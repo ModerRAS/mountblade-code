@@ -1,5 +1,13 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "SystemDataAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 01_initialization_part032.c - 16 个函数
 
@@ -242,7 +250,7 @@ uint64_t FUN_180060a50(int64_t *param_1,uint *param_2)
 
 
 
-int64_t * FUN_180060b80(int64_t *param_1,int64_t *param_2)
+int64_t * SystemCore_ChecksumValidator(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t lVar1;
@@ -307,7 +315,7 @@ uint64_t FUN_180060c60(int64_t param_1,uint64_t param_2)
                 plVar1[1] & *plVar1 - 1U) * 8);
       lVar6 = *(int64_t *)(lVar3 + 8);
       plVar1 = (int64_t *)(lVar6 + (uint64_t)((uint)uVar4 & 0x1f) * 8);
-      FUN_180060b80(param_2,plVar1);
+      SystemCore_ChecksumValidator(param_2,plVar1);
       plVar1 = (int64_t *)*plVar1;
       if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
@@ -349,7 +357,7 @@ uint64_t FUN_180060c60(int64_t param_1,uint64_t param_2)
                (((uVar4 & 0xffffffffffffffe0) - *(int64_t *)(plVar1[2] + plVar1[1] * 0x10) >> 5) +
                 plVar1[1] & *plVar1 - 1U) * 0x10);
       plVar1 = (int64_t *)(lVar3 + uVar7 * 8);
-      FUN_180060b80(param_2,plVar1);
+      SystemCore_ChecksumValidator(param_2,plVar1);
       plVar1 = (int64_t *)*plVar1;
       if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
@@ -389,7 +397,7 @@ uint64_t FUN_180060d76(void)
            (((uVar2 & 0xffffffffffffffe0) - **(int64_t **)(plVar4[3] + plVar4[1] * 8) >> 5) +
             plVar4[1] & *plVar4 - 1U) * 8);
   lVar6 = *(int64_t *)(lVar5 + 8);
-  FUN_180060b80();
+  SystemCore_ChecksumValidator();
   plVar4 = *(int64_t **)(lVar6 + (uint64_t)((uint)uVar2 & 0x1f) * 8);
   if (plVar4 != (int64_t *)0x0) {
     (**(code **)(*plVar4 + 0x38))();
@@ -758,7 +766,7 @@ void FUN_180061380(uint64_t param_1,int64_t param_2)
   SystemInitializer(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &system_state_ptr;
-  FUN_180627e10(system_main_module_state + 0x170,auStack_230,&system_ptr_c8c8);
+  UtilitiesSystem_CacheManager(system_main_module_state + 0x170,auStack_230,&system_ptr_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     CoreEngineDataBufferProcessor(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return
@@ -766,7 +774,7 @@ void FUN_180061380(uint64_t param_1,int64_t param_2)
            (int64_t)(*(int *)(param_2 + 0x10) + 1));
   }
   FUN_18062c100(auStack_208,auStack_230);
-  FUN_18062c1e0(auStack_208,1);
+  ResourceManager_Allocate(auStack_208,1);
                     // WARNING: Subroutine does not return
   memset(auStack_138,0,0x100);
 }
@@ -842,7 +850,7 @@ void FUN_180061be0(int64_t *param_1)
     (**(code **)(*plVar7 + 0x28))(plVar7);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(lVar3 + 400));
+  CoreEngine_SystemInitializer(*(uint64_t *)(lVar3 + 400));
   if (plVar6 != (int64_t *)0x0) {
     (**(code **)(*plVar6 + 0x38))(plVar6);
   }
@@ -923,7 +931,7 @@ void FUN_180061db0(int64_t *param_1)
     (**(code **)(*plVar7 + 0x28))(plVar7);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(lVar3 + 400));
+  CoreEngine_SystemInitializer(*(uint64_t *)(lVar3 + 400));
   if (plVar6 != (int64_t *)0x0) {
     (**(code **)(*plVar6 + 0x38))(plVar6);
   }
@@ -949,8 +957,8 @@ void FUN_180061f80(void)
 
 
 
-// 函数: void FUN_1800622d0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
-void FUN_1800622d0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
+// 函数: void SystemManager_DataHandler(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
+void SystemManager_DataHandler(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
 
 {
   FUN_180061f80(param_1,param_2,0xffffffff00000000,param_3,param_4,&stack0x00000028);
@@ -961,8 +969,8 @@ void FUN_1800622d0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180062300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180062300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemParameterHandler(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemParameterHandler(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uStackX_18;
@@ -1005,8 +1013,8 @@ void FUN_180062380(void)
 
 
 
-// 函数: void FUN_1800623b0(void)
-void FUN_1800623b0(void)
+// 函数: void SystemConfigurationManager(void)
+void SystemConfigurationManager(void)
 
 {
   FUN_180061f80();
@@ -1049,7 +1057,7 @@ void FUN_1800623e0(int64_t *param_1)
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
     (*pcVar2)(puVar1,&plStackX_8);
-    FUN_18020f150(*(uint64_t *)(lVar3 + 400));
+    CoreEngine_SystemInitializer(*(uint64_t *)(lVar3 + 400));
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }

@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -339,7 +344,7 @@ LAB_1808b2b4b:
         else if (iVar13 < iVar9) {
           iVar13 = iVar9;
         }
-        uVar8 = FUN_180747f10(param_1 + 2,iVar13);
+        uVar8 = RenderingTextureManager0(param_1 + 2,iVar13);
         if ((int)uVar8 != 0) {
           return uVar8;
         }
@@ -419,7 +424,7 @@ LAB_1808b2b4b:
         else if (iVar9 < iVar7) {
           iVar9 = iVar7;
         }
-        uVar5 = FUN_180747f10(unaff_RSI + 2,iVar9);
+        uVar5 = RenderingTextureManager0(unaff_RSI + 2,iVar9);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -493,7 +498,7 @@ code_r0x0001808b2b42:
       else if (iVar6 < iVar4) {
         iVar6 = iVar4;
       }
-      uVar3 = FUN_180747f10(unaff_RSI + 2,iVar6);
+      uVar3 = RenderingTextureManager0(unaff_RSI + 2,iVar6);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -663,7 +668,7 @@ uint64_t FUN_1808b2d60(int32_t *param_1,float param_2,float *param_3)
 
 
 
-uint64_t FUN_1808b2f30(int64_t *param_1,int param_2)
+uint64_t SystemDataFlowProcessor(int64_t *param_1,int param_2)
 
 {
   int64_t *plVar1;

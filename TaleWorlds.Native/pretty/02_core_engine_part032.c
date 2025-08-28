@@ -1,3 +1,9 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -236,7 +242,7 @@ int FUN_180076c50(int64_t param_1,int64_t *param_2)
   puVar12 = (uint64_t *)(*plVar1 + uVar10);
   *puVar12 = uVar11;
   puVar12[1] = 0;
-  FUN_18066c220(lVar9 + 0x20,&uStackX_8,*(int32_t *)(lVar9 + 0x10),*(int32_t *)(lVar9 + 0x18),
+  RenderingShaderProcessor0(lVar9 + 0x20,&uStackX_8,*(int32_t *)(lVar9 + 0x10),*(int32_t *)(lVar9 + 0x18),
                 1);
   if ((char)uStackX_8 != '\0') {
     uVar14 = uVar11 % (uint64_t)uStackX_8._4_4_;
@@ -301,7 +307,7 @@ uint64_t FUN_180077040(int64_t param_1)
       if ((((lVar3 != 0) && (*(int64_t *)(*(int64_t *)(param_1 + 0x1b8) + 0x328 + lVar6) == 0)) &&
           ((*(uint *)(lVar3 + 0x328) & 0x20000000) == 0)) && (*(int64_t *)(lVar3 + 0x370) == 0)) {
         if (*(int64_t *)(lVar3 + 0x1d8) == 0) {
-          FUN_18023b050(lVar3,0);
+          > HighFreq_RenderQueue1(lVar3,0);
           lVar5 = system_main_module_state;
           piVar1 = (int *)(*(int64_t *)(lVar6 + *(int64_t *)(param_1 + 0x1b8)) + 0x3a8);
           *piVar1 = *piVar1 + 1;
@@ -393,7 +399,7 @@ void FUN_180077150(int64_t *param_1)
         uStack_30 = 0;
         auStack_40[0] = 0;
         uStack_48._0_4_ = (uint)uStack_48 & 0xffffff00;
-        FUN_18022f2e0(&puStack_58,param_1,0);
+        > HighFreq_RenderPipeline1(&puStack_58,param_1,0);
         (**(code **)(*param_1 + 0x38))(param_1);
         FUN_180237d00(&puStack_58);
         FUN_18022f390(&puStack_58);
@@ -415,19 +421,19 @@ void FUN_180077150(int64_t *param_1)
       uStack_30 = 0;
       auStack_40[0] = 0;
       uStack_48._0_4_ = (uint)uStack_48 & 0xffffff00;
-      FUN_18022f2e0(&puStack_58,param_1,0);
+      > HighFreq_RenderPipeline1(&puStack_58,param_1,0);
       (**(code **)(*param_1 + 0x38))(param_1);
       FUN_180238950(&puStack_58);
       if (puStack_50 != (uint64_t *)0x0) {
         if (cStack_26 != '\0') {
-          FUN_180075b70(puStack_58);
+          SystemConfig_Manager(puStack_58);
         }
-        FUN_18007f6a0(&uStack_48);
+        SystemSecurityManager(&uStack_48);
         if (cStack_28 != '\0') {
-          FUN_180079520(puStack_58);
+          SystemInitializer(puStack_58);
         }
         if (cStack_27 != '\0') {
-          FUN_180079520(puStack_58);
+          SystemInitializer(puStack_58);
         }
         puVar2 = puStack_50;
         puStack_68 = puStack_50;

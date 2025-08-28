@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -107,7 +111,7 @@ typedef struct {
 #define RenderingSystem_ErrorHandler AdvancedSystemController
 #define RenderingSystem_MathProcessor FUN_18065c070
 #define RenderingSystem_InterpolationCalculator FUN_18065bf60
-#define RenderingSystem_MemoryAccessor FUN_18065fd40
+#define RenderingSystem_MemoryAccessor MathStatisticsProcessor0
 #define RenderingSystem_SecurityChecker SystemSecurityChecker
 
 // 核心函数声明

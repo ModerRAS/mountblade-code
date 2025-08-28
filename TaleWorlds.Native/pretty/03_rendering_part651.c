@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part651.c - 16 个函数
 
 // 函数: void FUN_1806382d0(int64_t *param_1,float *param_2)
@@ -31,7 +35,7 @@ void FUN_1806382d0(int64_t *param_1,float *param_2)
   dStack_c8 = (double)*param_2;
   dStack_d0 = (double)param_2[3];
   dStack_d8 = (double)param_2[2];
-  FUN_180626eb0(acStack_a8,0x80,&processed_var_6048_ptr,(double)param_2[1]);
+  SystemCore_CacheManager(acStack_a8,0x80,&processed_var_6048_ptr,(double)param_2[1]);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -150,7 +154,7 @@ LAB_18063859d:
   else {
     if (iStack_60 == 0) goto LAB_18063859d;
 LAB_18063859f:
-    FUN_180626ee0(&processed_var_6064_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_6064_ptr);
   }
   *(int32_t *)(param_1 + 0x28) = 0;
 LAB_180638614:
@@ -213,7 +217,7 @@ LAB_18063873d:
   else {
     if (iStack_30 == 0) goto LAB_18063873d;
 LAB_18063873f:
-    FUN_180626ee0(&processed_var_6064_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_6064_ptr);
   }
   *(int32_t *)(param_1 + 0x28) = 0;
 LAB_180638759:
@@ -480,7 +484,7 @@ int FUN_1806391a0(int64_t param_1,uint64_t param_2,char *param_3)
   }
   *(int8_t *)(puVar1 + 2) = 0;
   *puVar1 = 0;
-  FUN_18062dee0(puVar1,param_2,puVar2);
+  SystemCore_Validator(puVar1,param_2,puVar2);
   *(uint64_t **)(param_1 + 0xa8) = puVar1;
   bVar3 = puVar1[1] == 0;
   if (!bVar3) {
@@ -764,7 +768,7 @@ void FUN_1806393b0(uint64_t param_1,int64_t *param_2,uint64_t param_3)
   uStack_c0 = (uint)SUB81(auStack_7c._4_8_,7);
   uStack_100 = (uint)auStack_7c._0_4_ >> 0x10;
   uStack_108 = (uint64_t *)(CONCAT44(uStack_108._4_4_,auStack_7c._0_4_) & 0xffffffff0000ffff);
-  FUN_180626eb0(auStack_70,0x28,&processed_var_6672_ptr);
+  SystemCore_CacheManager(auStack_70,0x28,&processed_var_6672_ptr);
   (**(code **)(*param_2 + 0x18))(param_2,auStack_70,0x26);
   puVar8 = (uint64_t *)(alStack_b0[0] + 0x98);
   puVar7 = puVar8;
@@ -879,7 +883,7 @@ void FUN_180639630(uint8_t *param_1,int64_t *param_2,char param_3,char param_4)
       uStack_80 = (uint)bStack_69;
       uStack_c0 = (uint)uStack_72;
       uStack_c8 = (uint)(CONCAT26(uStack_72,*param_1) >> 0x20) & 0xffff;
-      FUN_180626eb0(auStack_68,0x28,&processed_var_6672_ptr);
+      SystemCore_CacheManager(auStack_68,0x28,&processed_var_6672_ptr);
       goto LAB_1806397f4;
     }
     uVar5 = 0x22;
@@ -895,7 +899,7 @@ void FUN_180639630(uint8_t *param_1,int64_t *param_2,char param_3,char param_4)
   uStack_b8 = uStack_b8 & 0xff;
   uStack_c0 = (uint)uStack_72;
   uStack_c8 = uStack_c8 & 0xffff;
-  FUN_180626eb0(auStack_68,0x28,puVar4,uStack_78);
+  SystemCore_CacheManager(auStack_68,0x28,puVar4,uStack_78);
 LAB_1806397f4:
   (**(code **)(*param_2 + 0x18))(param_2,auStack_68,uVar5);
                     // WARNING: Subroutine does not return
@@ -939,7 +943,7 @@ void FUN_180639688(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack0000000000000068 = (uint)(byte)((uint64_t)param_1 >> 0x38);
   uStack0000000000000060 = (uint)in_AL;
   uStack0000000000000028 = (uint)(ushort)((uint64_t)param_2 >> 0x30);
-  FUN_180626eb0(unaff_RBP + -9,unaff_R12D + 2,&processed_var_6672_ptr,param_4,
+  SystemCore_CacheManager(unaff_RBP + -9,unaff_R12D + 2,&processed_var_6672_ptr,param_4,
                 (uint)((uint64_t)param_4 >> 0x20) & 0xffff);
   (**(code **)(*unaff_R13 + 0x18))();
                     // WARNING: Subroutine does not return
@@ -975,7 +979,7 @@ void FUN_180639738(void)
   uStack0000000000000038 = (uint)*(byte *)(unaff_RBP + -0x10);
   uStack0000000000000030 = (uint)*(byte *)(unaff_RBP + -0x11);
   uStack0000000000000028 = (uint)*(ushort *)(unaff_RBP + -0x13);
-  FUN_180626eb0(unaff_RBP + -9,0x28,&processed_var_6848_ptr,*(int32_t *)(unaff_RBP + -0x19),
+  SystemCore_CacheManager(unaff_RBP + -9,0x28,&processed_var_6848_ptr,*(int32_t *)(unaff_RBP + -0x19),
                 *(int16_t *)(unaff_RBP + -0x15));
   (**(code **)(*unaff_R13 + 0x18))();
                     // WARNING: Subroutine does not return
@@ -1025,7 +1029,7 @@ LAB_1806398bc:
   if (puVar5 != puVar6) {
     *(int64_t *)(lVar2 + 0xb8) = *(int64_t *)(lVar2 + 0xb8) + -1;
     func_0x00018066bd70(puVar5);
-    FUN_18066ba00(puVar5,puVar6);
+    RenderingSystem_BufferHandler(puVar5,puVar6);
     puVar5[5] = &system_state_ptr;
     if (puVar5 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return

@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* FUN_1808fcf5c - RenderingSystem_DataStructureProcessor */
+#define RenderingSystem_DataStructureProcessor FUN_1808fcf5c
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -43,7 +48,7 @@ bool FUN_1808fbe31(void)
       puVar3 = &processed_var_9072_ptr;
       uVar1 = 0xef;
 LAB_1808fbebe:
-      FUN_1808fb790(&processed_var_8640_ptr,uVar1,&processed_var_8608_ptr,puVar3);
+      NetworkSystem_ConnectionHandler(&processed_var_8640_ptr,uVar1,&processed_var_8608_ptr,puVar3);
       free();
       free();
       return system_system_config != unaff_R12;
@@ -411,8 +416,8 @@ void free(void)
 
 
 
-// 函数: void FUN_1808fc418(int64_t param_1)
-void FUN_1808fc418(int64_t param_1)
+// 函数: void SystemRenderer(int64_t param_1)
+void SystemRenderer(int64_t param_1)
 
 {
   code *pcVar1;
@@ -833,8 +838,8 @@ void FUN_1808fcb00(int32_t *param_1)
 
 
 
-// 函数: void FUN_1808fcb30(int *param_1)
-void FUN_1808fcb30(int *param_1)
+// 函数: void SystemCore_StateController(int *param_1)
+void SystemCore_StateController(int *param_1)
 
 {
   byte bVar1;
@@ -1015,8 +1020,8 @@ void FUN_1808fccf4(void)
 
 
 
-// 函数: void FUN_1808fcdc8(void)
-void FUN_1808fcdc8(void)
+// 函数: void UltraHighFreq_ThreadManager1(void)
+void UltraHighFreq_ThreadManager1(void)
 
 {
   FUN_1808fcddc(8);
@@ -1120,8 +1125,8 @@ void FUN_1808fcee8(int64_t param_1)
 
 
 
-// 函数: void FUN_1808fcf5c(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_1808fcf5c(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
+// 函数: void RenderingSystem_DataStructureProcessor(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
+void RenderingSystem_DataStructureProcessor(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
 
 {
   int64_t lVar1;
@@ -1136,7 +1141,7 @@ void FUN_1808fcf5c(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
 
 
 
-void thunk_FUN_1808fc418(int64_t param_1)
+void thunk_SystemRenderer(int64_t param_1)
 
 {
   code *pcVar1;

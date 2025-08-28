@@ -28,7 +28,7 @@ void FUN_180892011(void)
       }
     }
   }
-  FUN_18088d7c0(*(uint64_t *)(unaff_RBP + 0x98));
+  RenderingSystem_TextureManager(*(uint64_t *)(unaff_RBP + 0x98));
   return;
 }
 

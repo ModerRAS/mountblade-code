@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_06_part020.c - 9 个函数
 
@@ -111,7 +117,7 @@ void FUN_1803b8390(int64_t param_1)
         puVar8 = puVar7;
       }
       strcpy_s(auStack_160,0x80,puVar8);
-      puVar8 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_198,&puStack_178,&uStack_1d8);
+      puVar8 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_198,&puStack_178,&uStack_1d8);
       uVar2 = *puVar8;
       *puVar8 = 0;
       plStack_1a0 = *(int64_t **)(param_1 + 0x160);
@@ -184,7 +190,7 @@ void FUN_1803b8390(int64_t param_1)
         puVar8 = puVar7;
       }
       strcpy_s(auStack_c0,0x80,puVar8);
-      puVar8 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_190,&puStack_d8,&uStack_1d8);
+      puVar8 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_190,&puStack_d8,&uStack_1d8);
       uVar2 = *puVar8;
       *puVar8 = 0;
       plStack_1a0 = *(int64_t **)(param_1 + 0x168);
@@ -716,7 +722,7 @@ void FUN_1803b8cd0(int64_t *param_1)
     } while (uVar14 < uVar12);
   }
   uStack_110 = uVar12;
-  FUN_1800b08e0(system_resource_state,&plStack_100,&puStack_120,0);
+  SystemCore_GarbageCollector(system_resource_state,&plStack_100,&puStack_120,0);
   if (plStack_100 == (int64_t *)0x0) {
     puStack_120 = &system_data_buffer_ptr;
     if (lStack_118 != 0) {
@@ -924,7 +930,7 @@ int * FUN_1803b9300(int64_t param_1,int *param_2)
   piVar1 = *(int **)(*(int64_t *)(param_1 + 8) + uVar4 * 8);
   while( true ) {
     if (piVar1 == (int *)0x0) {
-      FUN_18066c220(param_1 + 0x20,acStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x2c));
       *puVar2 = *(uint64_t *)param_2;
@@ -961,7 +967,7 @@ FUN_1803b9362(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   char cStack0000000000000050;
   uint uStack0000000000000054;
   
-  FUN_18066c220(param_1,&stack0x00000050,param_3,param_4,1);
+  RenderingShaderProcessor0(param_1,&stack0x00000050,param_3,param_4,1);
   puVar1 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(unaff_RBX + 0x2c));
   *puVar1 = *unaff_R14;
   puVar1[1] = 0;

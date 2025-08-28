@@ -11,7 +11,7 @@ void FUN_180270e30(int64_t param_1)
   
   uVar1 = 0xfffffffffffffffe;
   FUN_180170900(param_1 + 2000);
-  SystemDataValidator(param_1 + 0x248,0x58,0x10,FUN_180044a30,uVar1);
+  SystemDataValidator(param_1 + 0x248,0x58,0x10,CoreSystem_MessageHandler,uVar1);
   *(uint64_t *)(param_1 + 0x228) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x230) != 0) {
                     // WARNING: Subroutine does not return

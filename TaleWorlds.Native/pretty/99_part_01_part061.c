@@ -453,8 +453,8 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
 
 
 
-// 函数: void FUN_1800df980(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1800df980(uint64_t param_1,int64_t param_2,int64_t param_3)
+// 函数: void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   uint uVar1;

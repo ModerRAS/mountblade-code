@@ -445,22 +445,22 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
   // 根据渲染模式选择着色器
   switch(render_mode) {
   case 0:
-    FUN_180094b30(shader_params, &processed_var_5488_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5488_ptr);
     break;
   case 1:
-    FUN_180094b30(shader_params, &processed_var_5720_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5720_ptr);
     break;
   case 2:
-    FUN_180094b30(shader_params, &processed_var_5680_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5680_ptr);
     break;
   case 3:
-    FUN_180094b30(shader_params, &processed_var_5640_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5640_ptr);
     break;
   case 4:
-    FUN_180094b30(shader_params, &processed_var_5600_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5600_ptr);
     break;
   case 5:
-    FUN_180094b30(shader_params, &processed_var_5872_ptr);
+    SystemCore_NetworkHandler(shader_params, &processed_var_5872_ptr);
     break;
   default:
     FUN_180626ee0(&processed_var_5816_ptr);
@@ -771,7 +771,7 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
   buffer_param = 0xf;
   
   // 创建渲染管理器
-  render_object = (int64_t *)FUN_1801f20c0();
+  render_object = (int64_t *)RenderingSystem_RenderTargetManager();
   if (render_object != (int64_t *)0x0) {
     resource_chain_8 = render_object;
     (**(code **)(*render_object + 0x28))(render_object);

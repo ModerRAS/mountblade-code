@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -280,7 +285,7 @@ LAB_18037dd34:
         uVar12 = CoreSystem_ConfigValidator0(&puStack_b0,lVar5);
         lVar5 = render_system_data_config;
         if (*(int *)(system_main_module_state + 0x20) == 1) {
-          plVar2 = (int64_t *)FUN_180058080(render_system_data_config,auStack_78,&puStack_b0);
+          plVar2 = (int64_t *)HighFreq_AnimationSystem1(render_system_data_config,auStack_78,&puStack_b0);
           uVar12 = extraout_XMM0_Da;
           if (*plVar2 == lVar5) break;
         }
@@ -292,7 +297,7 @@ LAB_18037dd34:
           if (puStack_a8 != (void *)0x0) {
             puVar6 = puStack_a8;
           }
-          FUN_180627020(&processed_var_4048_ptr,puVar6);
+          SystemCore_Allocator(&processed_var_4048_ptr,puVar6);
           iVar1 = 0;
         }
         *param_1 = iVar1;
@@ -491,21 +496,21 @@ LAB_18037e0f4:
             }
           }
         }
-        lVar5 = FUN_180631960(param_2,&processed_var_4376_ptr,&iStack_70);
+        lVar5 = StringProcessor(param_2,&processed_var_4376_ptr,&iStack_70);
         if (lVar5 != 0) {
           param_1[6] = iStack_70;
           param_1[7] = iStack_6c;
           param_1[8] = iStack_68;
           param_1[9] = iStack_64;
         }
-        lVar5 = FUN_180631960(param_2,&processed_var_4360_ptr,&iStack_60);
+        lVar5 = StringProcessor(param_2,&processed_var_4360_ptr,&iStack_60);
         if (lVar5 != 0) {
           param_1[10] = iStack_60;
           param_1[0xb] = iStack_5c;
           param_1[0xc] = iStack_58;
           param_1[0xd] = iStack_54;
         }
-        lVar5 = FUN_180631960(param_2,&processed_var_4336_ptr,&iStack_50);
+        lVar5 = StringProcessor(param_2,&processed_var_4336_ptr,&iStack_50);
         if (lVar5 != 0) {
           param_1[0xe] = iStack_50;
           param_1[0xf] = iStack_4c;
@@ -671,7 +676,7 @@ LAB_18037e3a1:
   param_1[1] = (uint64_t)puVar13;
 FUN_18037e458:
   param_5 = (int)(((int64_t)puVar13 - (int64_t)puVar9) / 0x48) + -1;
-  FUN_1800571e0(param_1 + (int64_t)(iVar12 * 0x10 + iVar15) * 4 + 5,&param_5);
+  SystemDatabaseProcessor(param_1 + (int64_t)(iVar12 * 0x10 + iVar15) * 4 + 5,&param_5);
   return;
 }
 
@@ -733,7 +738,7 @@ LAB_18037e3c4:
     unaff_RBX[1] = (int64_t)(unaff_R14 + 9);
     auVar1 = SEXT816(unaff_R12) * SEXT816((int64_t)(unaff_R14 + 9) - (int64_t)unaff_R14);
     in_stack_000000b0 = ((int)(auVar1._8_8_ >> 2) - (auVar1._12_4_ >> 0x1f)) + -1;
-    FUN_1800571e0(unaff_RBX + (int64_t)(unaff_ESI * 0x10 + unaff_EBP) * 4 + 5,&stack0x000000b0);
+    SystemDatabaseProcessor(unaff_RBX + (int64_t)(unaff_ESI * 0x10 + unaff_EBP) * 4 + 5,&stack0x000000b0);
     return;
   }
                     // WARNING: Subroutine does not return
@@ -759,7 +764,7 @@ void FUN_18037e458(void)
   
   auVar1 = SEXT816(unaff_R12) * SEXT816(unaff_RDI - unaff_R14);
   iStack00000000000000b0 = ((int)(auVar1._8_8_ >> 2) - (auVar1._12_4_ >> 0x1f)) + -1;
-  FUN_1800571e0(unaff_RBX + 0x28 + (int64_t)(unaff_ESI * 0x10 + unaff_EBP) * 0x20,&stack0x000000b0)
+  SystemDatabaseProcessor(unaff_RBX + 0x28 + (int64_t)(unaff_ESI * 0x10 + unaff_EBP) * 0x20,&stack0x000000b0)
   ;
   return;
 }
@@ -802,7 +807,7 @@ void FUN_18037e4c0(int64_t *param_1,uint64_t *param_2)
     uStack_58 = uStack_68;
     uStack_54 = uStack_64;
     piStack_60 = aiStackX_8;
-    FUN_18015b810(uStack_70,0,8,1,0xffffffffffffffff,&piStack_60,uVar7);
+    SystemCore_DataTransformer(uStack_70,0,8,1,0xffffffffffffffff,&piStack_60,uVar7);
     aiStackX_8[0] = aiStackX_8[0] + 1;
   } while (aiStackX_8[0] < 2);
   iVar5 = 0;

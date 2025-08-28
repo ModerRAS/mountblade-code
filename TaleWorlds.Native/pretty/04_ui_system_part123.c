@@ -1,5 +1,13 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+
 
 // 04_ui_system_part123.c - 27 个函数
 
@@ -26,7 +34,7 @@ void FUN_18073dba0(uint64_t param_1,int32_t param_2)
     func_0x00018074b830(auStack_128,0x100,param_2);
     puStack_148 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,4,param_1,&processed_var_6080_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,4,param_1,&processed_var_6080_ptr);
   }
 LAB_18073dc41:
   if (lStack_138 != 0) {
@@ -62,10 +70,10 @@ void FUN_18073dc80(uint64_t param_1,int8_t param_2)
     if (iVar1 == 0) goto LAB_18073dd1d;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    FUN_18074be90(auStack_118,0x100,param_2);
+    SystemCore_Cleanup(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,4,param_1,&processed_var_6112_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,4,param_1,&processed_var_6112_ptr);
   }
 LAB_18073dd1d:
   if (lStack_128 != 0) {
@@ -104,7 +112,7 @@ void FUN_18073dd60(uint64_t param_1)
     puStack_138 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,4,param_1,&processed_var_5992_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,4,param_1,&processed_var_5992_ptr);
   }
 LAB_18073dde3:
   if (lStack_128 != 0) {
@@ -146,11 +154,11 @@ void FUN_18073de20(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = FUN_18074bac0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074b930(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    iVar3 = UISystem_ComponentManager(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    UIAnimationController(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_6912_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6912_ptr);
   }
 LAB_18073df0e:
                     // WARNING: Subroutine does not return
@@ -170,10 +178,10 @@ void FUN_18073de94(void)
   int32_t unaff_ESI;
   
   iVar1 = FUN_18074bac0(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  UIAnimationController(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,5);
+  RenderingSystem_ShaderProcessor(unaff_ESI,5);
 }
 
 
@@ -224,19 +232,19 @@ void FUN_18073df50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074bda0(auStack_148,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074bda0(auStack_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b930(auStack_148 + iVar2,0x100 - iVar2,param_4);
+    iVar3 = UIAnimationController(auStack_148 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074b930(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    UIAnimationController(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_6984_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6984_ptr);
   }
 LAB_18073e0bd:
                     // WARNING: Subroutine does not return
@@ -256,18 +264,18 @@ void FUN_18073dfd7(void)
   int32_t unaff_ESI;
   
   iVar1 = func_0x00018074bda0(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074bda0(&stack0x00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b930(&stack0x00000040 + iVar1,0x100 - iVar1);
+  iVar2 = UIAnimationController(&stack0x00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  UIAnimationController(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,5);
+  RenderingSystem_ShaderProcessor(unaff_ESI,5);
 }
 
 
@@ -317,12 +325,12 @@ void FUN_18073e110(uint64_t param_1,uint64_t param_2,int32_t param_3)
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar2 = SystemCore_CompressionHandler(auStack_138,0x100,param_2);
+    iVar3 = UISystem_ComponentManager(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_6960_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6960_ptr);
   }
 FUN_18073e229:
   if (lStack_140 != 0) {
@@ -369,11 +377,11 @@ void FUN_18073e12d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(&stack0x00000040,0x100,param_2);
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar2 = SystemCore_CompressionHandler(&stack0x00000040,0x100,param_2);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_6960_ptr,&stack0x00000040);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6960_ptr,&stack0x00000040);
   }
 FUN_18073e229:
   if (lStack0000000000000038 != 0) {
@@ -397,11 +405,11 @@ void FUN_18073e1b1(void)
   int32_t unaff_EBP;
   int32_t unaff_ESI;
   
-  iVar1 = FUN_18074ba80(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar1 = SystemCore_CompressionHandler(&stack0x00000040,0x100);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_EBP);
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,5);
+  RenderingSystem_ShaderProcessor(unaff_ESI,5);
 }
 
 
@@ -470,20 +478,20 @@ void FUN_18073e270(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(auStack_148,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar2 = SystemCore_CompressionHandler(auStack_148,0x100,param_2);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074b800(auStack_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074ba80(auStack_148 + iVar2,0x100 - iVar2,param_4);
+    iVar3 = SystemCore_CompressionHandler(auStack_148 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_7088_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_7088_ptr);
   }
 FUN_18073e414:
   if (lStack_150 != 0) {
@@ -539,20 +547,20 @@ void FUN_18073e28d(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(&stack0x00000040,0x100,param_2);
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar2 = SystemCore_CompressionHandler(&stack0x00000040,0x100,param_2);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074b800(&stack0x00000040 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074ba80(&stack0x00000040 + iVar2,0x100 - iVar2,param_4);
+    iVar3 = SystemCore_CompressionHandler(&stack0x00000040 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),in_stack_000001b0
                        );
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_7088_ptr,&stack0x00000040);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_7088_ptr,&stack0x00000040);
   }
 FUN_18073e414:
   if (lStack0000000000000038 != 0) {
@@ -577,19 +585,19 @@ void FUN_18073e330(void)
   int32_t unaff_ESI;
   int32_t unaff_R15D;
   
-  iVar1 = FUN_18074ba80(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar1 = SystemCore_CompressionHandler(&stack0x00000040,0x100);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b800(&stack0x00000040 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074ba80(&stack0x00000040 + iVar1,0x100 - iVar1);
+  iVar2 = SystemCore_CompressionHandler(&stack0x00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R15D);
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,5);
+  RenderingSystem_ShaderProcessor(unaff_ESI,5);
 }
 
 
@@ -652,10 +660,10 @@ void FUN_18073e470(uint64_t param_1,uint64_t param_2)
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    FUN_18074ba80(auStack_118,0x100,param_2);
+    SystemCore_CompressionHandler(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_7072_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_7072_ptr);
   }
 LAB_18073e512:
                     // WARNING: Subroutine does not return
@@ -693,19 +701,19 @@ void FUN_18073e550(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074bda0(auStack_148,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074ba80(auStack_148 + iVar2,0x100 - iVar2,param_3);
+    iVar3 = SystemCore_CompressionHandler(auStack_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = FUN_18074be30(auStack_148 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     FUN_18074be30(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_7008_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_7008_ptr);
   }
 FUN_18073e6ce:
   if (lStack_158 != 0) {
@@ -752,18 +760,18 @@ void FUN_18073e56d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074bda0(&stack0x00000040,0x100,param_2);
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074ba80(&stack0x00000040 + iVar2,0x100 - iVar2,param_3);
+    iVar3 = SystemCore_CompressionHandler(&stack0x00000040 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = FUN_18074be30(&stack0x00000040 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     FUN_18074be30(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),in_stack_000001b0);
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_7008_ptr,&stack0x00000040);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_7008_ptr,&stack0x00000040);
   }
 FUN_18073e6ce:
   if (param_6 != 0) {
@@ -787,18 +795,18 @@ void FUN_18073e5ea(void)
   int32_t unaff_ESI;
   
   iVar1 = func_0x00018074bda0(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074ba80(&stack0x00000040 + iVar1,0x100 - iVar1);
+  iVar2 = SystemCore_CompressionHandler(&stack0x00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be30(&stack0x00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = UISystem_ComponentManager(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074be30(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,5);
+  RenderingSystem_ShaderProcessor(unaff_ESI,5);
 }
 
 
@@ -870,11 +878,11 @@ void FUN_18073e810(uint64_t param_1,int32_t param_2,uint64_t param_3)
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,param_1,&processed_var_6936_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6936_ptr);
   }
 LAB_18073e90c:
   if (lStack_140 != 0) {
@@ -927,27 +935,27 @@ void FUN_18073e940(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t par
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074b800(auStack_158,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074b800(auStack_158 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074bda0(auStack_158 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074bda0(auStack_158 + iVar2,0x100 - iVar2,param_5);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = UISystem_ComponentManager(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074ba80(auStack_158 + iVar2,0x100 - iVar2,param_6);
+    iVar3 = SystemCore_CompressionHandler(auStack_158 + iVar2,0x100 - iVar2,param_6);
     iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074ba80(auStack_158 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_7);
+    iVar3 = UISystem_ComponentManager(auStack_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    SystemCore_CompressionHandler(auStack_158 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_7);
     puStack_198 = auStack_158;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,5,uStack_168,&processed_var_6856_ptr);
+    RenderingSystem_ShaderProcessor(iVar1,5,uStack_168,&processed_var_6856_ptr);
   }
 FUN_18073eb6d:
   if (lStack_170 != 0) {

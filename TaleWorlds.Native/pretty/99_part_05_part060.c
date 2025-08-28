@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part060.c - 1 个函数
 
 // 函数: void FUN_1802fddde(int32_t param_1)
@@ -136,7 +140,7 @@ void FUN_1802fddde(int32_t param_1)
   }
   lVar34 = *(int64_t *)(*(int64_t *)(unaff_RDI + 0x10) + 0x20);
   if ((*(byte *)(unaff_RDI + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,*(int64_t *)(unaff_RDI + 0x10) + 0x70);
+    SystemCore_FileSystem(param_1,*(int64_t *)(unaff_RDI + 0x10) + 0x70);
   }
   uVar33 = (**(code **)(**(int64_t **)(lVar34 + 0x318) + 0xd8))();
   lVar34 = FUN_1803009f0();
@@ -201,7 +205,7 @@ void FUN_1802fddde(int32_t param_1)
           uVar39 = *(uint64_t *)(*(int64_t *)(unaff_RDI + 0xd0) + 0x1000);
         }
         in_stack_00000068 = lVar34;
-        FUN_18005ea90(uVar39 + 600,&stack0x00000068);
+        SystemSecurity_Manager(uVar39 + 600,&stack0x00000068);
       }
       lVar34 = *(int64_t *)(unaff_RDI + 0x208);
       uVar41 = (int)uVar37 + 1;
@@ -261,7 +265,7 @@ void FUN_1802fddde(int32_t param_1)
         unaff_RBP[0xb] = fVar9;
         puVar46 = puVar2;
         FUN_180645340(unaff_RBP + -0x10,lVar44 + 0x114,(float *)(lVar44 + 0x124));
-        FUN_18063b5f0(unaff_RBP + 0xc,unaff_RBP + 4);
+        SystemSecurityManager(unaff_RBP + 0xc,unaff_RBP + 4);
         fVar67 = (float)unaff_RBP[0xc];
         fVar68 = (float)unaff_RBP[0xd];
         fVar69 = (float)unaff_RBP[0xe];
@@ -404,7 +408,7 @@ void FUN_1802fddde(int32_t param_1)
           fStack0000000000000058 = (*(float *)(lVar44 + 0x114) + *(float *)(lVar44 + 0x124)) * 0.5;
           fStack000000000000005c = (*(float *)(lVar44 + 0x128) + *(float *)(lVar44 + 0x118)) * 0.5;
           fStack0000000000000060 = (*(float *)(lVar44 + 300) + *(float *)(lVar44 + 0x11c)) * 0.5;
-          pfVar36 = (float *)FUN_1801c0fb0(unaff_RBP + 4,unaff_RBP + 0x18,&stack0x00000058);
+          pfVar36 = (float *)SystemFileHandler(unaff_RBP + 4,unaff_RBP + 0x18,&stack0x00000058);
           fVar54 = *pfVar50 - ((float)unaff_RBP[0x40] + *pfVar36);
           fVar52 = pfVar50[1] - ((float)unaff_RBP[0x41] + pfVar36[1]);
           fVar51 = pfVar50[2] - ((float)unaff_RBP[0x42] + pfVar36[2]);

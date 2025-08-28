@@ -534,7 +534,7 @@ void FUN_180599c20(float *param_1)
     fStack_94 = fVar4 * param_1[5] + param_1[1];
     uStack_68 = 0;
     uStack_60 = 0;
-    FUN_1801aa0f0(*(uint64_t *)(param_1 + 8),&fStack_98);
+    PhysicsSystem_JointManager(*(uint64_t *)(param_1 + 8),&fStack_98);
     if (fStack_58 < (fVar2 - fVar1 * 0.5) - 3.0) {
       *(int16_t *)(param_1 + 0xc) = 0x101;
       return;

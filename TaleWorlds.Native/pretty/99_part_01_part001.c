@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 /* SystemEventHandler - SystemDataProcessor 的语义化别名 */
 #define SystemEventHandler SystemDataProcessor
 
@@ -197,9 +201,9 @@ extern uint8_t system_memory_64d8;           // 系统数据寄存器12
 // 功能：管理和处理未定义的系统函数
 // 参数：无
 // 返回值：SystemStatus - 系统状态
-SystemFunction FUN_18025cc00;             // 系统未定义函数管理器1
-SystemFunction FUN_18025c000;             // 系统未定义函数管理器2
-SystemFunction FUN_18025d270;             // 系统未定义函数管理器3
+SystemFunction HighFreq_FileSystem1;             // 系统未定义函数管理器1
+SystemFunction HighFreq_ConfigManager1;             // 系统未定义函数管理器2
+SystemFunction UltraHighFreq_NetworkHandler1;             // 系统未定义函数管理器3
 SystemFunction FUN_18025d510;             // 系统未定义函数管理器4
 SystemFunction FUN_18025e330;             // 系统未定义函数管理器5
 SystemFunction FUN_1802633c0;             // 系统未定义函数管理器6
@@ -215,7 +219,7 @@ SystemFunction FUN_1802ab7f0;             // 系统数据处理器3
 SystemFunction FUN_1802ab780;             // 系统数据处理器4
 SystemFunction FUN_18023e120;             // 系统数据处理器5
 SystemFunction FUN_1800c0da0;             // 系统数据处理器6
-SystemFunction FUN_1800ea6f0;             // 系统数据处理器7
+SystemFunction CoreEngine_MemoryHandler;             // 系统数据处理器7
 SystemFunction FUN_1800e7f20;             // 系统数据处理器8
 SystemFunction FUN_1800e7ca0;             // 系统数据处理器9
 SystemFunction FUN_1800e7b80;             // 系统数据处理器10
@@ -238,7 +242,7 @@ SystemFunction FUN_1800f8630;             // 系统数据处理器22
 // 返回值：SystemStatus - 系统状态
 SystemFunction FUN_1800fcf80;             // 系统内存管理器1
 SystemFunction FUN_1806d84a0;             // 系统内存管理器2
-SystemFunction FUN_1800b8300;             // 系统内存管理器3
+SystemFunction DataDeserializer0;             // 系统内存管理器3
 SystemFunction FUN_1801b99e0;             // 系统内存管理器4
 SystemFunction FUN_1801bc9a0;             // 系统内存管理器5
 SystemFunction FUN_1801bc8d0;             // 系统内存管理器6

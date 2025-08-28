@@ -218,7 +218,7 @@ uint64_t FUN_180395830(int64_t param_1, float *param_2, int64_t *param_3)
       // 条件3：纹理坐标验证通过 FUN_18038d0a0
       // 条件4：首次匹配或优先纹理 (uVar13 == 0 || (uVar14 & 4) != 0)
       if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
-          (cVar3 = FUN_18038d0a0(uVar9,param_2), cVar3 != '\0')) &&
+          (cVar3 = SystemCore_PerformanceMonitor(uVar9,param_2), cVar3 != '\0')) &&
          ((uVar13 == 0 || ((uVar14 & 4) != 0)))) {
         
         // 计算纹理距离
@@ -438,7 +438,7 @@ int64_t FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
       bVar1 = *(byte *)(lVar11 + 0x139);
       uVar13 = (uint64_t)bVar1;
       if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
-          (cVar3 = FUN_18038d0a0(lVar11), cVar3 != '\0')) &&
+          (cVar3 = SystemCore_PerformanceMonitor(lVar11), cVar3 != '\0')) &&
          ((unaff_R15 == 0 || ((uVar13 & 4) != 0)))) {
         fVar14 = (float)func_0x00018038d2f0(lVar11);
         fVar14 = ABS(unaff_RBP[2] - fVar14);
@@ -661,7 +661,7 @@ int64_t FUN_1803958d2(void)
     bVar1 = *(byte *)(lVar10 + 0x139);
     uVar8 = (uint64_t)bVar1;
     if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
-        (cVar3 = FUN_18038d0a0(lVar10), cVar3 != '\0')) && ((unaff_R15 == 0 || ((uVar8 & 4) != 0))))
+        (cVar3 = SystemCore_PerformanceMonitor(lVar10), cVar3 != '\0')) && ((unaff_R15 == 0 || ((uVar8 & 4) != 0))))
     {
       fVar13 = (float)func_0x00018038d2f0(lVar10);
       fVar13 = ABS(unaff_RBP[2] - fVar13);

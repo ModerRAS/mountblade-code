@@ -1,3 +1,12 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -297,14 +306,14 @@ void FUN_1803e8510(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t p
       ppppuVar4 = (uint64_t ****)apppuStack_c0[0];
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_9752_ptr,ppppuVar4);
+    SystemParameterHandler(system_message_context,&processed_var_9752_ptr,ppppuVar4);
   }
   if (aiStack_f0[0] != 200) {
     if (0xf < (uint64_t)param_3[3]) {
       param_3 = (uint64_t *)*param_3;
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_9784_ptr,param_3);
+    SystemParameterHandler(system_message_context,&processed_var_9784_ptr,param_3);
   }
   if ((param_5 != 0) && (FUN_180476690(acStack_98,auStack_e8,param_5), acStack_98[0] != '\0')) {
     FUN_18018b350(&uStack_110,auStack_90);
@@ -316,7 +325,7 @@ void FUN_1803e8510(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t p
       param_3 = (uint64_t *)*param_3;
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_9832_ptr,param_3,puVar5);
+    SystemParameterHandler(system_message_context,&processed_var_9832_ptr,param_3,puVar5);
   }
   if (acStack_c8[0] != '\0') {
     SystemResourceAllocator(apppuStack_c0);
@@ -521,7 +530,7 @@ FUN_1803e8a40(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
   *(int32_t *)((int64_t)param_1 + 0x434) = 0;
   UNLOCK();
   *(int32_t *)(param_1 + 0x87) = 0;
-  FUN_1800671b0(param_1 + 0x88,&processed_var_9888_ptr,0x10,param_4,uVar3);
+  MathCoreCalculator0(param_1 + 0x88,&processed_var_9888_ptr,0x10,param_4,uVar3);
   puVar2 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_2 + 8);
@@ -604,7 +613,7 @@ void FUN_1803e8ce0(uint64_t *param_1)
   *param_1 = &memory_allocator_3768_ptr;
   FUN_1801ebae0();
   _Mtx_destroy_in_situ();
-  FUN_180057830();
+  DataTransformer0();
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
   FUN_18005d260(param_1 + 1,param_1[3]);
@@ -932,7 +941,7 @@ uint64_t FUN_1803e8fa0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xd8,param_3,param_4,uVar1);
   }

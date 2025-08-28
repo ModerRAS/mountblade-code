@@ -675,22 +675,22 @@ void FUN_1808008b0(int64_t param_1,byte param_2)
   if ((*(byte *)(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x48) & 0x10) == 0) {
     bVar2 = param_2 ^ 1;
     if ((*(int64_t *)(param_1 + 0x28) != 0) && (*(int64_t *)(param_1 + 0x290) != 0)) {
-      FUN_180762070(param_1 + 0x70,bVar2,1);
+      SystemCore_Initializer(param_1 + 0x70,bVar2,1);
     }
     if (*(int64_t *)(param_1 + 0x2d8) != 0) {
-      FUN_180762070(*(int64_t *)(param_1 + 0x2d8),bVar2,1);
+      SystemCore_Initializer(*(int64_t *)(param_1 + 0x2d8),bVar2,1);
     }
     if (*(int64_t *)(param_1 + 0x2e0) != 0) {
-      FUN_180762070(*(int64_t *)(param_1 + 0x2e0),bVar2,1);
+      SystemCore_Initializer(*(int64_t *)(param_1 + 0x2e0),bVar2,1);
     }
     if (*(int64_t *)(param_1 + 0x30) != 0) {
-      FUN_180762070(*(int64_t *)(param_1 + 0x30),bVar2,1);
+      SystemCore_Initializer(*(int64_t *)(param_1 + 0x30),bVar2,1);
     }
     if (*(int64_t *)(param_1 + 0x2e8) != 0) {
-      FUN_180762070(*(int64_t *)(param_1 + 0x2e8),bVar2,1);
+      SystemCore_Initializer(*(int64_t *)(param_1 + 0x2e8),bVar2,1);
     }
     if (*(int64_t *)(param_1 + 0x2f0) != 0) {
-      FUN_180762070(*(int64_t *)(param_1 + 0x2f0),bVar2,1);
+      SystemCore_Initializer(*(int64_t *)(param_1 + 0x2f0),bVar2,1);
     }
   }
   func_0x000180806c80(param_1,param_2);
@@ -711,22 +711,22 @@ void FUN_1808008fb(void)
   
   bVar1 = unaff_SIL ^ 1;
   if ((*(int64_t *)(unaff_RBX + 0x28) != 0) && (*(int64_t *)(unaff_RBX + 0x290) != 0)) {
-    FUN_180762070(unaff_RBX + 0x70,bVar1,1);
+    SystemCore_Initializer(unaff_RBX + 0x70,bVar1,1);
   }
   if (*(int64_t *)(unaff_RBX + 0x2d8) != 0) {
-    FUN_180762070(*(int64_t *)(unaff_RBX + 0x2d8),bVar1,1);
+    SystemCore_Initializer(*(int64_t *)(unaff_RBX + 0x2d8),bVar1,1);
   }
   if (*(int64_t *)(unaff_RBX + 0x2e0) != 0) {
-    FUN_180762070(*(int64_t *)(unaff_RBX + 0x2e0),bVar1,1);
+    SystemCore_Initializer(*(int64_t *)(unaff_RBX + 0x2e0),bVar1,1);
   }
   if (*(int64_t *)(unaff_RBX + 0x30) != 0) {
-    FUN_180762070(*(int64_t *)(unaff_RBX + 0x30),bVar1,1);
+    SystemCore_Initializer(*(int64_t *)(unaff_RBX + 0x30),bVar1,1);
   }
   if (*(int64_t *)(unaff_RBX + 0x2e8) != 0) {
-    FUN_180762070(*(int64_t *)(unaff_RBX + 0x2e8),bVar1,1);
+    SystemCore_Initializer(*(int64_t *)(unaff_RBX + 0x2e8),bVar1,1);
   }
   if (*(int64_t *)(unaff_RBX + 0x2f0) != 0) {
-    FUN_180762070(*(int64_t *)(unaff_RBX + 0x2f0),bVar1,1);
+    SystemCore_Initializer(*(int64_t *)(unaff_RBX + 0x2f0),bVar1,1);
   }
   func_0x000180806c80();
   return;

@@ -851,7 +851,7 @@ void FUN_180038180(void) {
              &memory_allocator_368_ptr, 0xfffffffffffffffe);
     
     // 注册字符串处理函数
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -875,7 +875,7 @@ void FUN_180038210(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &processed_var_520_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -899,7 +899,7 @@ void FUN_1800382a0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &rendering_buffer_2160_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -923,7 +923,7 @@ void FUN_180038330(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &rendering_buffer_2672_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -947,7 +947,7 @@ void FUN_1800383c0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &processed_var_4304_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -971,7 +971,7 @@ void FUN_180038450(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &processed_var_4936_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -995,7 +995,7 @@ void FUN_1800384e0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &processed_var_7256_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -1019,7 +1019,7 @@ void FUN_180038570(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &processed_var_4504_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -1043,7 +1043,7 @@ void FUN_180038610(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &rendering_buffer_2448_ptr, 0xfffffffffffffffe);
     
-    init_system_string = FUN_180623800(&string_config);
+    init_system_string = SystemCore_ConfigManager(&string_config);
     
     return;
 }
@@ -1075,7 +1075,7 @@ void FUN_1800386a0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    service_scheduler = FUN_18025cc00; // 服务调度器函数
+    service_scheduler = > HighFreq_FileSystem1; // 服务调度器函数
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1142,7 +1142,7 @@ void FUN_1800387a0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    memory_manager = FUN_18025c000; // 内存管理器函数
+    memory_manager = > HighFreq_ConfigManager1; // 内存管理器函数
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1275,7 +1275,7 @@ void FUN_1800389a0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    event_dispatcher = FUN_18025d270; // 事件分发器函数
+    event_dispatcher = > UltraHighFreq_NetworkHandler1; // 事件分发器函数
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1538,7 +1538,7 @@ void FUN_180038da0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    service_scheduler = FUN_18025cc00;
+    service_scheduler = > HighFreq_FileSystem1;
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1599,7 +1599,7 @@ void FUN_180038ea0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    memory_manager = FUN_18025c000;
+    memory_manager = > HighFreq_ConfigManager1;
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1720,7 +1720,7 @@ void FUN_1800390a0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    event_dispatcher = FUN_18025d270;
+    event_dispatcher = > UltraHighFreq_NetworkHandler1;
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(

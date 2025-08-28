@@ -1,9 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part139.c - 15 个函数
 
-// 函数: void FUN_18074b650(uint64_t param_1,uint64_t param_2,int32_t *param_3)
-void FUN_18074b650(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+// 函数: void RenderingSystem_ShaderCompiler(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+void RenderingSystem_ShaderCompiler(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 
 {
                     // WARNING: Subroutine does not return
@@ -135,8 +139,8 @@ uint64_t FUN_18074b8e9(int16_t *param_1)
 
 
 
-// 函数: void FUN_18074b930(uint64_t param_1,uint64_t param_2,int32_t *param_3)
-void FUN_18074b930(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+// 函数: void UIAnimationController(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+void UIAnimationController(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 
 {
   if (param_3 != (int32_t *)0x0) {
@@ -207,8 +211,8 @@ uint FUN_18074b970(int8_t *param_1,int param_2,uint *param_3,int param_4)
 
 
 
-// 函数: void FUN_18074ba80(uint64_t param_1,uint64_t param_2,int32_t *param_3)
-void FUN_18074ba80(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+// 函数: void SystemCore_CompressionHandler(uint64_t param_1,uint64_t param_2,int32_t *param_3)
+void SystemCore_CompressionHandler(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 
 {
   if (param_3 != (int32_t *)0x0) {
@@ -392,8 +396,8 @@ void FUN_18074bd20(void)
 
 
 
-// 函数: void FUN_18074bd40(uint64_t param_1,uint64_t param_2,float *param_3)
-void FUN_18074bd40(uint64_t param_1,uint64_t param_2,float *param_3)
+// 函数: void RenderingEngine_FrameBufferHandler(uint64_t param_1,uint64_t param_2,float *param_3)
+void RenderingEngine_FrameBufferHandler(uint64_t param_1,uint64_t param_2,float *param_3)
 
 {
   uint64_t uStackX_20;
@@ -466,8 +470,8 @@ void FUN_18074be30(uint64_t param_1,uint64_t param_2,char *param_3)
 
 
 
-// 函数: void FUN_18074be90(uint64_t param_1,int param_2,char param_3)
-void FUN_18074be90(uint64_t param_1,int param_2,char param_3)
+// 函数: void SystemCore_Cleanup(uint64_t param_1,int param_2,char param_3)
+void SystemCore_Cleanup(uint64_t param_1,int param_2,char param_3)
 
 {
   int iVar1;
@@ -553,7 +557,7 @@ uint64_t FUN_18074bf10(int64_t *param_1,int param_2,uint64_t param_3)
   LOCK();
   *(uint *)(param_3 + 100) = *(uint *)(param_3 + 100) | 0x40;
   UNLOCK();
-  uVar7 = FUN_180762070(param_3,1);
+  uVar7 = SystemCore_Initializer(param_3,1);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
@@ -702,7 +706,7 @@ uint64_t FUN_18074c014(void)
   LOCK();
   *(uint *)(unaff_RSI + 100) = *(uint *)(unaff_RSI + 100) | 0x40;
   UNLOCK();
-  uVar6 = FUN_180762070();
+  uVar6 = SystemCore_Initializer();
   if ((int)uVar6 != 0) {
     return uVar6;
   }

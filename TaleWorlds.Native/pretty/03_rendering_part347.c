@@ -1,3 +1,11 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -17,7 +25,7 @@ void FUN_180453de0(int64_t param_1)
     return;
   }
   UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
-  uVar1 = FUN_180628ca0();
+  uVar1 = MemoryDebugger0();
                     // WARNING: Could not recover jumptable at 0x000180453e33. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(system_cache_buffer,uVar1);
@@ -40,7 +48,7 @@ uint64_t FUN_180453e40(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   
   if (param_1 == 0) {
     UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
-    uVar2 = FUN_180628ca0();
+    uVar2 = MemoryDebugger0();
                     // WARNING: Could not recover jumptable at 0x000180453f06. Too many branches
                     // WARNING: Treating indirect jump as call
     uVar3 = (*UNRECOVERED_JUMPTABLE)(system_cache_buffer,uVar2);
@@ -310,7 +318,7 @@ void FUN_1804543f0(int64_t param_1,uint64_t param_2)
   uStack_1d8 = param_2;
   lStack_190 = param_1;
   if (*(char *)(param_1 + 0x5c42) != '\0') {
-    FUN_1800b8500(param_1 + 0x8158);
+    SystemCore_Controller(param_1 + 0x8158);
     FUN_1801ae4a0(param_1,&processed_var_7008_ptr,param_1 + 0x8158);
     *(int8_t *)(param_1 + 0x5c42) = 0;
   }
@@ -713,7 +721,7 @@ LAB_180455145:
           if (lVar5 != 0) goto LAB_180455145;
           puVar1 = (uint64_t *)0x0;
         }
-        lVar2 = FUN_180059780(puVar3,puVar6,puVar1);
+        lVar2 = SystemCore_Initializer(puVar3,puVar6,puVar1);
         SystemCore_NetworkHandler0(lVar2,lVar9);
         puVar7 = (uint64_t *)(lVar2 + 0x20);
         for (puVar12 = puVar3; puVar12 != puVar6; puVar12 = puVar12 + 4) {

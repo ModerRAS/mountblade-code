@@ -1,4 +1,8 @@
-#include "FUN_1806d7170_definition.h"
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part040.c - 12 个函数
@@ -689,7 +693,7 @@ void FUN_1806c1c70(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   int32_t uStack_34;
   int32_t uStack_30;
   
-  FUN_1806d7000(param_1,*param_3);
+  MemoryPoolManager0(param_1,*param_3);
   aiStackX_8[0] = 0x15c;
   piVar6 = aiStackX_8;
   if ((int *)param_1[0xb] != (int *)0x0) {
@@ -697,7 +701,7 @@ void FUN_1806c1c70(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   }
   lVar7 = *param_4;
   while (lVar7 != 0) {
-    FUN_1806d7000(param_1,lVar7);
+    MemoryPoolManager0(param_1,lVar7);
     lVar7 = param_4[1];
     pcStackX_20 = (char *)0x0;
     if ((char)param_1[9] != '\0') {
@@ -792,7 +796,7 @@ void FUN_1806c1c7e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   int in_stack_00000090;
   char *in_stack_000000a8;
   
-  uVar8 = FUN_1806d7000();
+  uVar8 = MemoryPoolManager0();
   in_stack_00000090 = 0x15c;
   piVar6 = &stack0x00000090;
   if ((int *)unaff_RBX[0xb] != (int *)0x0) {
@@ -800,7 +804,7 @@ void FUN_1806c1c7e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   }
   lVar7 = *param_4;
   while (lVar7 != 0) {
-    uVar8 = FUN_1806d7000(uVar8,lVar7);
+    uVar8 = MemoryPoolManager0(uVar8,lVar7);
     lVar7 = param_4[1];
     in_stack_000000a8 = (char *)0x0;
     if ((char)unaff_RBX[9] != '\0') {

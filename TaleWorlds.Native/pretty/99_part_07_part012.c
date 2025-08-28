@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part012.c - 19 个函数
 
 // 函数: void FUN_1804a52b0(int64_t param_1,int32_t param_2)
@@ -58,7 +62,7 @@ void FUN_1804a52b0(int64_t param_1,int32_t param_2)
       *(uint64_t *)(lVar1 + 0x418) = 0;
       *(int32_t *)(lVar1 + 0x410) = 1;
       (**(code **)(system_system_data_ui + 0x340))(*(int32_t *)(system_system_data_ui + 0x10));
-      FUN_1800622d0(system_message_context,0,0xd,&rendering_buffer_2104_ptr);
+      SystemManager_DataHandler(system_message_context,0,0xd,&rendering_buffer_2104_ptr);
       *(int8_t *)(system_main_module_state + 0x1ef) = 1;
     }
   }
@@ -69,8 +73,8 @@ void FUN_1804a52b0(int64_t param_1,int32_t param_2)
     puStack_30 = &processed_var_8352_ptr;
     puStack_28 = &processed_var_8320_ptr;
     alStack_40[0] = param_1;
-    uVar5 = FUN_18006b640(uVar5,alStack_40);
-    FUN_180056f10(system_system_data_ui + 0x220,uVar5);
+    uVar5 = SystemCore_ErrorHandler(uVar5,alStack_40);
+    SystemCore_PointerManager(system_system_data_ui + 0x220,uVar5);
     *(uint64_t *)(*(int64_t *)(system_system_data_ui + 0x220) + 0x18) = 0xfffffffffffffffd;
   }
   return;
@@ -116,7 +120,7 @@ void FUN_1804a54e0(uint64_t param_1,uint64_t param_2)
     apuStack_40[0][1] = 1;
     *(int32_t **)(apuStack_40[0] + 2) = auStackX_18;
     *(uint64_t **)(apuStack_40[0] + 4) = &uStackX_20;
-    FUN_18015b810(0x80c925a0,0,lVar2 >> 3 & 0xffffffff,3,0xffffffffffffffff,apuStack_40,uVar3,
+    SystemCore_DataTransformer(0x80c925a0,0,lVar2 >> 3 & 0xffffffff,3,0xffffffffffffffff,apuStack_40,uVar3,
                   ppuVar4);
   }
   system_system_ui = system_system_ui + 1;
@@ -158,7 +162,7 @@ void create_game_application(void)
   uStack_68 = 0;
   *puVar1 = &processed_var_4416_ptr;
   *puVar1 = &rendering_buffer_2120_ptr;
-  pcStack_98 = FUN_180627b90;
+  pcStack_98 = SystemValidator;
   puStack_58 = puVar1;
   DataStructureManager(puVar1 + 2,0x20,0x20,FUN_180627850);
   puVar1[0x83] = 0;
@@ -276,7 +280,7 @@ void FUN_1804a5930(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -321,7 +325,7 @@ void FUN_1804a5950(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -401,7 +405,7 @@ void FUN_1804a5990(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -550,7 +554,7 @@ void FUN_1804a59d0(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -591,7 +595,7 @@ void FUN_1804a59f0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -632,7 +636,7 @@ void FUN_1804a5a30(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -677,7 +681,7 @@ void FUN_1804a5a70(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -718,7 +722,7 @@ void FUN_1804a5ad0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -763,7 +767,7 @@ void FUN_1804a5b00(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -843,7 +847,7 @@ void FUN_1804a5bc0(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -900,7 +904,7 @@ void FUN_1804a5bc6(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -955,7 +959,7 @@ void FUN_1804a5bf0(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -998,7 +1002,7 @@ void FUN_1804a5c26(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -1041,7 +1045,7 @@ void FUN_1804a5c44(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }

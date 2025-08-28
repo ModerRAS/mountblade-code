@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part230.c - 1 个函数
@@ -44,7 +45,7 @@ LAB_180398c13:
     pcVar2 = pcVar2 + (int64_t)pcVar3;
     if (pcVar2 <= pcVar3) {
 LAB_180398c54:
-      FUN_180631000(puVar8,&processed_var_5968_ptr,param_1 + 0x11c,&processed_var_4448_ptr,0xfffffffffffffffe);
+      UltraHighFreq_CacheSystem1(puVar8,&processed_var_5968_ptr,param_1 + 0x11c,&processed_var_4448_ptr,0xfffffffffffffffe);
       if (*(char *)(param_1 + 0x11c) != '\0') {
         FUN_180631330(puVar8,&processed_var_5944_ptr,param_1 + 0x148);
         FUN_180631330(puVar8,&processed_var_5920_ptr,param_1 + 0x14c);
@@ -539,7 +540,7 @@ LAB_1803994f0:
         if ((param_1 + 0x218 != 0) && (pcVar11 != (char *)0x0)) {
           AdvancedSystemOptimizer(pcVar11,&system_data_6430,param_1 + 0x218);
         }
-        lVar5 = FUN_1800a02a0(puVar8,&processed_var_6280_ptr);
+        lVar5 = SystemCore_DataManager(puVar8,&processed_var_6280_ptr);
         if (lVar5 != 0) {
           lVar7 = 0x180d48d24;
           if (*(int64_t *)(lVar5 + 8) != 0) {
@@ -549,7 +550,7 @@ LAB_1803994f0:
         }
         FUN_180631330(puVar8,&processed_var_6256_ptr,param_1 + 0x120);
         FUN_180631330(puVar8,&processed_var_5872_ptr,param_1 + 0x124);
-        lVar5 = FUN_1800a02a0(puVar8,&processed_var_6416_ptr);
+        lVar5 = SystemCore_DataManager(puVar8,&processed_var_6416_ptr);
         if (lVar5 != 0) {
           lVar7 = 0x180d48d24;
           if (*(int64_t *)(lVar5 + 8) != 0) {

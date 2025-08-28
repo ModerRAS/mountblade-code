@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -757,7 +758,7 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
                 }
                 (*(code **)(stack_pointers[3][2] + 0x10))(stack_pointers[3] + 2, data_pointer);
                 *(int8_t *)(stack_pointers[3] + 0x7b) = 1;
-                FUN_180076910(*element_pointer, &stack_pointers[3]);
+                UltraHighFreq_SecurityValidator1(*element_pointer, &stack_pointers[3]);
                 if (stack_pointers[3] != (int64_t *)0x0) {
                     (*(code **)(*stack_pointers[3] + 0x38))();
                 }
@@ -1346,7 +1347,7 @@ void StatusUpdater(int64_t param_1)
             FUN_1802e7e20();
         }
         else {
-            FUN_18063ad30(*(int64_t *)(param_1 + OFFSET_28), *(int64_t *)(param_1 + OFFSET_28) + 0xf8, param_1 + OFFSET_70);
+            UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + OFFSET_28), *(int64_t *)(param_1 + OFFSET_28) + 0xf8, param_1 + OFFSET_70);
         }
         *(int16_t *)(param_1 + OFFSET_2b0) = *(int16_t *)(param_1 + OFFSET_2b4);
     }

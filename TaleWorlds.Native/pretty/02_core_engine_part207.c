@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part207.c - 5 个函数
 
 // 函数: void FUN_18018a130(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
@@ -419,7 +423,7 @@ void FUN_18018a960(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_180067110(0x60);
+  puVar1 = (uint64_t *)SystemCore_SyscallHandler(0x60);
   *puVar1 = *param_1;
   puVar1[1] = *param_1;
   puVar1[2] = *param_1;
@@ -452,7 +456,7 @@ void FUN_18018a9f0(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_180067110(0x28);
+  puVar1 = (uint64_t *)SystemCore_SyscallHandler(0x28);
   *puVar1 = *param_1;
   puVar1[1] = *param_1;
   puVar1[2] = *param_1;
@@ -1012,7 +1016,7 @@ uint64_t * FUN_18018b350(uint64_t *param_1,uint64_t *param_2)
   if (0x7fffffffffffffff < uVar3) {
     uVar3 = 0x7fffffffffffffff;
   }
-  uVar2 = FUN_180067110(uVar3 + 1);
+  uVar2 = SystemCore_SyscallHandler(uVar3 + 1);
   *param_1 = uVar2;
                     // WARNING: Subroutine does not return
   memcpy(uVar2,param_2,uVar1 + 1);

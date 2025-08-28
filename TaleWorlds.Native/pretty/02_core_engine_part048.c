@@ -1,3 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -153,7 +163,7 @@ void FUN_1800896b0(void)
   }
 LAB_18008984e:
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_8312_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_8312_ptr);
 LAB_1800897d5:
   lVar11 = lStack_3b8;
   uVar26 = 0;
@@ -205,7 +215,7 @@ LAB_180089891:
     puStack_348 = (int8_t *)0x0;
     iStack_340 = 0;
     uStack_3e4 = uVar26;
-    FUN_1806277c0(&puStack_350);
+    SystemManager_ConfigManager0(&puStack_350);
     puVar4 = puStack_348;
     if (0 < *(int *)(ppuVar10 + 2)) {
       puVar14 = &system_buffer_ptr;
@@ -237,7 +247,7 @@ LAB_180089891:
     if ((iVar7 < 0) ||
        (lVar16 = *(int64_t *)(*system_main_module_state + 0x888),
        (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar16 >> 5) <= uVar17)) {
-      lVar16 = FUN_180628ca0();
+      lVar16 = MemoryDebugger0();
     }
     else {
       lVar16 = uVar17 * 0x20 + lVar16;
@@ -246,7 +256,7 @@ LAB_180089891:
     uStack_398 = 0;
     puStack_3a8 = (int8_t *)0x0;
     uStack_3a0 = 0;
-    FUN_1806277c0(&puStack_3b0,*(int32_t *)(lVar16 + 0x10));
+    SystemManager_ConfigManager0(&puStack_3b0,*(int32_t *)(lVar16 + 0x10));
     lVar11 = lStack_310;
     puVar23 = puStack_3a8;
     if (*(int *)(lVar16 + 0x10) != 0) {
@@ -274,7 +284,7 @@ LAB_180089891:
       puVar20 = puStack_3a8;
     }
     System_DataHandler(&puStack_308,&processed_var_8368_ptr,puVar20,puVar15);
-    cVar5 = FUN_180624af0(&puStack_308);
+    cVar5 = RenderingSystem_RenderQueue(&puStack_308);
     lVar16 = lStack_3b8;
     if (cVar5 != '\0') {
       puStack_3d8 = &system_data_buffer_ptr;
@@ -331,7 +341,7 @@ LAB_180089891:
       uStack_2d0 = 0;
       puStack_2e0 = (int8_t *)0x0;
       uStack_2d8 = 0;
-      FUN_1806277c0(&puStack_2e8,iStack_148);
+      SystemManager_ConfigManager0(&puStack_2e8,iStack_148);
       if (0 < iStack_148) {
         puVar14 = &system_buffer_ptr;
         if (puStack_150 != (void *)0x0) {
@@ -348,7 +358,7 @@ LAB_180089891:
       uStack_358 = 0;
       puStack_368 = (int8_t *)0x0;
       uStack_360 = 0;
-      FUN_1806277c0(&puStack_370,uStack_3c8);
+      SystemManager_ConfigManager0(&puStack_370,uStack_3c8);
       if (uStack_3c8 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(puStack_368,lStack_3d0,uStack_3c8 + 1);
@@ -430,7 +440,7 @@ LAB_180089891:
        (lVar9 = *(int64_t *)(*system_main_module_state + 0x888),
        (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar9 >> 5) <=
        (uint64_t)(int64_t)iVar7)) {
-      lVar9 = FUN_180628ca0();
+      lVar9 = MemoryDebugger0();
     }
     else {
       lVar9 = (int64_t)iVar7 * 0x20 + lVar9;
@@ -504,7 +514,7 @@ LAB_180089891:
       puVar23 = puStack_388;
     }
     System_DataHandler(&puStack_330,&processed_var_8368_ptr,puVar23,puVar15);
-    cVar6 = FUN_180624a00(&puStack_330);
+    cVar6 = UltraHighFreq_LogManager1(&puStack_330);
     if (cVar6 != '\0') {
       ppuStack_278 = &puStack_330;
       plStack_270 = &lStack_1e8;
@@ -527,7 +537,7 @@ LAB_180089891:
         lVar11 = lVar16 + 0x48;
         lVar28 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(lVar16 + 0x70));
         SystemCore_NetworkHandler0(lVar28 + 0x20,&puStack_330);
-        lVar9 = FUN_1800590b0(lVar11,acStack_3e8,lVar28 + 0x20);
+        lVar9 = SystemCore_SecurityValidator(lVar11,acStack_3e8,lVar28 + 0x20);
         if (acStack_3e8[0] != '\0') {
           if (lVar9 == lVar11) goto LAB_18008a32f;
           if (*(int *)(lVar9 + 0x30) == 0) goto LAB_18008a327;
@@ -627,7 +637,7 @@ void FUN_18008a480(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     uStack_28 = 0;
     puStack_38 = (int8_t *)0x0;
     uStack_30 = 0;
-    FUN_1806277c0(&puStack_40,*(int32_t *)(param_2 + 0x10));
+    SystemManager_ConfigManager0(&puStack_40,*(int32_t *)(param_2 + 0x10));
     if (0 < *(int *)(param_2 + 0x10)) {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(param_2 + 8) != (void *)0x0) {
@@ -639,7 +649,7 @@ void FUN_18008a480(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     if ((*(int64_t *)(param_2 + 8) != 0) && (uStack_30 = 0, puStack_38 != (int8_t *)0x0)) {
       *puStack_38 = 0;
     }
-    FUN_180066df0(lVar1 + 0x28,&puStack_40);
+    DataEncryptionHandler0(lVar1 + 0x28,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return

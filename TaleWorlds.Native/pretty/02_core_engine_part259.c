@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part259.c - 9 个函数
 
 // 函数: void FUN_1802272b0(int64_t param_1)
@@ -183,7 +187,7 @@ void FUN_180227630(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -228,7 +232,7 @@ void FUN_180227650(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -591,7 +595,7 @@ void FUN_180227790(int64_t param_1,int64_t param_2,int32_t *param_3)
   *(float *)(param_1 + 400) = fVar41;
   *(int32_t *)(param_1 + 0x194) = uVar42;
   uStack_130 = uVar35;
-  FUN_1800b9f60();
+  SystemCore_Parser();
   FUN_18040b250(param_1,uVar35 & 0xff);
   uVar34 = 0;
   *(uint64_t *)(param_1 + 0x150) = 0;
@@ -742,7 +746,7 @@ LAB_180227e59:
               if (puVar28 != (void *)0x0) {
                 puVar31 = puVar28;
               }
-              FUN_180627020(&processed_var_6768_ptr,puVar31,puVar30);
+              SystemCore_Allocator(&processed_var_6768_ptr,puVar31,puVar30);
             }
             else {
               *(char *)((int64_t)cVar24 + 0xc0 + param_1) = (char)uVar35;

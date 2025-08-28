@@ -1132,7 +1132,7 @@ void advanced_resource_processor(uint64_t param_1, int64_t *param_2, int8_t para
     
     // 创建资源处理器实例
     uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x3d0, 8, 3, 0xfffffffffffffffe);
-    plVar2 = (int64_t *)FUN_180275090(uVar1);
+    plVar2 = (int64_t *)RenderingSystem_ShaderManager(uVar1);
     plVar6 = plVar2;
     
     // 初始化资源处理器
@@ -1182,7 +1182,7 @@ void advanced_resource_processor(uint64_t param_1, int64_t *param_2, int8_t para
     }
     
     // 执行最终处理
-    FUN_1802edcd0(param_1, plStackX_20, param_3);
+    PhysicsSystem_TerrainCollider(param_1, plStackX_20, param_3);
     
     // 执行资源释放
     if (plStackX_20 != (int64_t *)0x0) {
@@ -1222,7 +1222,7 @@ void advanced_resource_processor(uint64_t param_1, int64_t *param_2, int8_t para
 void simplified_resource_processor(uint64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 执行基础资源处理操作
-    FUN_1802edcd0(param_1, *param_2, param_3, param_4, INVALID_HANDLE);
+    PhysicsSystem_TerrainCollider(param_1, *param_2, param_3, param_4, INVALID_HANDLE);
     
     // 处理资源回调函数
     if ((int64_t *)*param_2 != (int64_t *)0x0) {

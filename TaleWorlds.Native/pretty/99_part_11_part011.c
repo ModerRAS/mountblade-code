@@ -94,7 +94,7 @@ void FUN_1806e25b0(int64_t param_1,uint param_2,float *param_3)
   fVar21 = fVar20 * fStack_e8;
   fVar11 = fVar13 * fStack_e4;
   fVar13 = fVar13 * fStack_e0;
-  puVar7 = (int32_t *)FUN_1800fcb90(&fStack_e8,auStack_c8,&fStack_98);
+  puVar7 = (int32_t *)SystemCore_Initializer(&fStack_e8,auStack_c8,&fStack_98);
   plVar2 = *(int64_t **)(param_1 + 0x60);
   uVar4 = puVar7[1];
   uVar5 = puVar7[2];
@@ -238,7 +238,7 @@ void FUN_1806e2b50(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
   float fStack_c0;
   float fStack_bc;
   
-  FUN_1800fcb90(param_4,&fStack_c8);
+  SystemCore_Initializer(param_4,&fStack_c8);
   lVar4 = param_2 + 0x10c;
   if (param_5 != '\0') {
     fVar7 = fStack_c4 * 2.0;

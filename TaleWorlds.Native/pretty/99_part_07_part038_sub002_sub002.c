@@ -138,7 +138,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   uStack_c78 = 0;
   uStack_c70 = 3;
   if (lStack_bf0 != 0) {
-    FUN_180057980(&puStack_bf8,&puStack_c88,&system_data_d518);
+    CoreSystem_DataCollector(&puStack_bf8,&puStack_c88,&system_data_d518);
   }
   CoreMemoryPoolValidator(&puStack_c18,param_7);
   puStack_ca8 = (uint64_t *)0x0;
@@ -146,7 +146,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   uStack_c98 = 0;
   uStack_c90 = 3;
   if (lStack_c10 != 0) {
-    FUN_180057980(&puStack_c18,&puStack_ca8,&system_data_d518);
+    CoreSystem_DataCollector(&puStack_c18,&puStack_ca8,&system_data_d518);
   }
   CoreMemoryPoolValidator(&puStack_c38,param_8);
   puStack_c68 = (uint64_t *)0x0;
@@ -154,7 +154,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   uStack_c58 = 0;
   uStack_c50 = 3;
   if (lStack_c30 != 0) {
-    FUN_180057980(&puStack_c38,&puStack_c68,&system_data_d518);
+    CoreSystem_DataCollector(&puStack_c38,&puStack_c68,&system_data_d518);
   }
   FUN_1804bbec0(param_1,param_2,param_3);
   *param_2 = param_5;
@@ -303,7 +303,7 @@ void FUN_1804bd980(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t param
   }
   if ((puVar8 == puVar12) || (auStack_cf8[0] < *(uint *)(puVar8 + 4))) {
     puStack_d08 = auStack_cf8;
-    puVar8 = (uint64_t *)FUN_1804c0610(puVar12,auStack_c40);
+    puVar8 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar12,auStack_c40);
     puVar8 = (uint64_t *)*puVar8;
   }
   lVar27 = puVar8[5];
@@ -1139,7 +1139,7 @@ LAB_1804beff7:
   }
   if ((puVar12 == puStack_c48) || (auStack_cf8[0] < *(uint *)(puVar12 + 4))) {
     puStack_d08 = auStack_cf8;
-    puVar12 = (uint64_t *)FUN_1804c0610(puStack_c48,auStack_c40,pfVar25,puVar12);
+    puVar12 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puStack_c48,auStack_c40,pfVar25,puVar12);
     puVar12 = (uint64_t *)*puVar12;
   }
   FUN_1804b2ea0(puVar12[5],param_2);

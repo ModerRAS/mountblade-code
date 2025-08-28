@@ -1,3 +1,10 @@
+n//  的语义化别名
+#define SystemCore_PointerManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -5,8 +12,6 @@
 /* UIManager - FUN_18086b47c 的语义化别名 */
 #define UIManager FUN_18086b47c
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 /**
  * 99_part_06_part080.c - 系统资源管理和状态同步模块
@@ -26,14 +31,14 @@
 
 /* 内存管理函数 */
 #define MemoryManager_CreateResourceBuffer() FUN_1800bdc80()
-#define MemoryManager_AllocateResource() FUN_1800b1230()
-#define MemoryManager_ReleaseResource() FUN_180060b80()
+#define MemoryManager_AllocateResource() SystemInitializer()
+#define MemoryManager_ReleaseResource() SystemCore_ChecksumValidator()
 #define MemoryManager_FreeMemoryBlock() DataCacheManager()
 
 /* 系统初始化函数 */
 #define SystemInitializer_Initialize() FUN_1801f9920()
 #define SystemInitializer_InitializeWithContext() FUN_1801f9270()
-#define SystemInitializer_InitializeAdvanced() FUN_1801fa180()
+#define SystemInitializer_InitializeAdvanced() SystemCore_ConfigValidator()
 
 /* 系统安全检查函数 */
 #define SystemSecurityChecker_VerifyAccess() SystemSecurityChecker()
@@ -41,16 +46,16 @@
 #define SystemSecurityChecker_ValidateContext() SystemDataValidator()
 
 /* 数据处理函数 */
-#define DataProcessor_TransformData() FUN_180244ff0()
-#define DataProcessor_ApplyTransform() FUN_180056f10()
+#define DataProcessor_TransformData() SystemOptimizer()
+#define DataProcessor_ApplyTransform() SystemCore_PointerManager()
 #define DataProcessor_ProcessData() FUN_1801f9aa0()
 #define DataProcessor_CompressData() FUN_18029ef00()
-#define DataProcessor_DecompressData() FUN_18029de40()
+#define DataProcessor_DecompressData() SystemCore_ProcessorEx()
 
 /* 字符串处理函数 */
-#define StringProcessor_EncodeString() FUN_1802c22a0()
-#define StringProcessor_DecodeString() FUN_1802c2560()
-#define StringProcessor_FormatString() FUN_1802c2ac0()
+#define StringProcessor_EncodeString() SystemData_Processor()
+#define StringProcessor_DecodeString() SystemCore_Analyzer()
+#define StringProcessor_FormatString() SystemCore_Synchronizer()
 
 /* 资源管理函数 */
 #define ResourceManager_CreateInstance() FUN_1800bdc80()

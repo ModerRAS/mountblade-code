@@ -105,7 +105,7 @@ void FUN_180464b38(void)
        fStack0000000000000064 * (3.0 - fVar11 * fVar11 * (fVar16 + fVar8)) * fVar11 * 0.5;
   fStack0000000000000068 = fStack0000000000000068 * (3.0 - fVar12 * fVar12 * fVar14) * fVar12 * 0.5;
   fStack000000000000006c = fStack000000000000006c * (3.0 - fVar13 * fVar13 * fVar15) * fVar13 * 0.5;
-  FUN_18063b5f0(&stack0x00000030,&stack0x00000060);
+  SystemSecurityManager(&stack0x00000030,&stack0x00000060);
   fVar17 = unaff_XMM12_Da - unaff_XMM9_Da;
   fVar16 = *(float *)(unaff_RDI + 0x30);
   fVar8 = *(float *)(unaff_RDI + 0x34);
@@ -213,7 +213,7 @@ void FUN_180464bac(void)
   fStack0000000000000064 = unaff_XMM6_Db * (3.0 - fVar11 * fVar11 * (fVar7 + fVar8)) * fVar11 * 0.5;
   fStack0000000000000068 = unaff_XMM6_Dc * (3.0 - fVar12 * fVar12 * fVar14) * fVar12 * 0.5;
   fStack000000000000006c = unaff_XMM6_Dd * (3.0 - fVar13 * fVar13 * fVar15) * fVar13 * 0.5;
-  FUN_18063b5f0(&stack0x00000030,&stack0x00000060);
+  SystemSecurityManager(&stack0x00000030,&stack0x00000060);
   fVar16 = unaff_XMM12_Da - unaff_XMM9_Da;
   fVar7 = *(float *)(unaff_RDI + 0x30);
   fVar8 = *(float *)(unaff_RDI + 0x34);

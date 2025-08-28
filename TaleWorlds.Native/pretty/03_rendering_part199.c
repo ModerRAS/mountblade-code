@@ -505,7 +505,7 @@ void FUN_180384140(int64_t param_1,int64_t param_2,int64_t param_3,int param_4)
   lVar8 = 0;
   if (*(char *)(param_1 + 0x50) != '\0') {
     lVar8 = FUN_1800daa50();
-    FUN_180094b30(lVar8,&processed_var_4992_ptr);
+    SystemCore_NetworkHandler(lVar8,&processed_var_4992_ptr);
     *(int8_t *)(lVar8 + 0x22) = 1;
     *(int32_t *)(*(int64_t *)(param_1 + 0x88) + 0x9a2c) = 0xfffffffe;
     *(int32_t *)(lVar8 + 0x9a2c) = 0xffffffff;

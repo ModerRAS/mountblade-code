@@ -609,7 +609,7 @@ void FUN_1802e9fa0(int64_t param_1,char param_2,char param_3,char param_4)
   char cStack0000000000000028;
   
   cStack0000000000000028 = *(char *)(param_1 + 0x2e8);
-  FUN_1802ed990(param_1,1);
+  PhysicsSystem_CharacterController(param_1,1);
   cVar2 = cStack0000000000000028;
   iVar4 = 0;
   lVar3 = *(int64_t *)(param_1 + 0xf0);
@@ -626,8 +626,8 @@ void FUN_1802e9fa0(int64_t param_1,char param_2,char param_3,char param_4)
       lVar3 = *(int64_t *)(param_1 + 0xf0);
     } while ((uint64_t)(int64_t)iVar4 < (uint64_t)(*(int64_t *)(param_1 + 0xf8) - lVar3 >> 3));
   }
-  FUN_1800b8500(param_1 + 0xf0);
-  FUN_1800b8500(param_1 + 0x1e0);
+  SystemCore_Controller(param_1 + 0xf0);
+  SystemCore_Controller(param_1 + 0x1e0);
   puVar6 = *(uint64_t **)(param_1 + 0x1c0);
   if (puVar6 != *(uint64_t **)(param_1 + 0x1c8)) {
     do {

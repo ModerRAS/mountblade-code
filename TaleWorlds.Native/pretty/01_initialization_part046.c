@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 01_initialization_part046.c - 7 个函数
 
 // 函数: void FUN_1800748d0(int64_t param_1,int64_t *param_2)
@@ -734,7 +738,7 @@ void FUN_180075630(int64_t param_1,uint64_t *param_2)
             else {
               lVar9 = FUN_180194940(lVar3 + 0x120,auStack_e8,plVar2[5] + 0x70);
             }
-            FUN_18063a240(puVar1,lVar3 + 0x274,lVar9);
+            UI_WidgetHandler(puVar1,lVar3 + 0x274,lVar9);
             plVar10 = plVar10 + 2;
           } while (plVar10 < (int64_t *)plVar2[8]);
         }
@@ -747,7 +751,7 @@ void FUN_180075630(int64_t param_1,uint64_t *param_2)
                *(int32_t *)(*(int64_t *)plVar2[7] + 0x2a4);
         }
         else {
-          FUN_1800b9f60(puVar1);
+          SystemCore_Parser(puVar1);
           plVar10 = (int64_t *)plVar2[7];
           fVar14 = 0.0;
           if (plVar10 < (int64_t *)plVar2[8]) {
@@ -915,7 +919,7 @@ void FUN_1800756e0(uint64_t *param_1)
   if ((int64_t *)param_1[0x4d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x4d] + 0x38))();
   }
-  FUN_18005d580();
+  DataSerializationEngine();
   if ((int64_t *)param_1[0x42] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x42] + 0x38))();
   }

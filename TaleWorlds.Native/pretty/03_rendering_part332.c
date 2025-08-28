@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part332.c - 26 个函数
 
 // 函数: void FUN_180441a00(int64_t param_1,int64_t param_2)
@@ -66,7 +70,7 @@ void FUN_180441a00(int64_t param_1,int64_t param_2)
     uStack_d0 = *(uint64_t *)(param_2 + 0x48) & 0xffffffff;
     uStack_c0 = *(uint64_t *)(param_2 + 0x58) & 0xffffffff;
     uStack_ac = 0x3f800000;
-    FUN_180084760(&uStack_e8,&uStack_68);
+    SystemCore_PerformanceMonitor(&uStack_e8,&uStack_68);
     uStack_a8 = 0xffffffff;
     uStack_a4 = 0;
     uStack_e8 = uStack_68;
@@ -79,7 +83,7 @@ void FUN_180441a00(int64_t param_1,int64_t param_2)
     uStack_ac = uStack_2c;
     FUN_1802e94a0(param_2,&lStack_108,alStack_98,&uStack_e8);
     uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    ppplVar2 = (int64_t ***)FUN_180275090(uVar1);
+    ppplVar2 = (int64_t ***)RenderingSystem_ShaderManager(uVar1);
     pplStackX_20 = (int64_t **)ppplVar2;
     if (ppplVar2 != (int64_t ***)0x0) {
       (*(code *)(*ppplVar2)[5])(ppplVar2);
@@ -88,7 +92,7 @@ void FUN_180441a00(int64_t param_1,int64_t param_2)
     uVar6 = uVar3;
     if (lStack_100 - lStack_108 >> 3 != 0) {
       do {
-        FUN_1800763c0(*(uint64_t *)(uVar6 + lStack_108),&ppplStackX_8);
+        SystemCore_BufferManager(*(uint64_t *)(uVar6 + lStack_108),&ppplStackX_8);
         FUN_180075630(ppplStackX_8,uVar3 * 0x40 + alStack_98[0]);
         pppplStack_70 = &ppplStackX_18;
         ppplStackX_18 = ppplStackX_8;
@@ -105,13 +109,13 @@ void FUN_180441a00(int64_t param_1,int64_t param_2)
         uVar6 = uVar6 + 8;
       } while (uVar3 < (uint64_t)(lStack_100 - lStack_108 >> 3));
     }
-    FUN_180276f30(ppplVar2,(int64_t)ppplVar2 + 0x214,1);
+    SystemCore_UpdateState(ppplVar2,(int64_t)ppplVar2 + 0x214,1);
     ppplStackX_8 = ppplVar2;
     if (ppplVar2 != (int64_t ***)0x0) {
       (*(code *)(*ppplVar2)[5])(ppplVar2);
     }
     ppplStackX_18 = (int64_t ***)&ppplStackX_8;
-    FUN_1802edcd0(param_1,ppplStackX_8,1);
+    PhysicsSystem_TerrainCollider(param_1,ppplStackX_8,1);
     if (ppplStackX_8 != (int64_t ***)0x0) {
       (*(code *)(*ppplStackX_8)[7])();
     }
@@ -141,7 +145,7 @@ uint64_t FUN_180441c50(int64_t param_1,uint64_t param_2)
   if (param_1 != 0) {
     lVar1 = FUN_1802e8fb0();
     if (lVar1 == 0) {
-      FUN_1802edcd0(param_1,param_2,1);
+      PhysicsSystem_TerrainCollider(param_1,param_2,1);
       return 1;
     }
     puVar2 = &system_buffer_ptr;
@@ -300,8 +304,8 @@ uint64_t * FUN_180441f60(uint64_t *param_1,int64_t param_2)
   
   if (param_2 != 0) {
     FUN_1802e7dc0(param_2);
-    FUN_1801c0d90(param_2);
-    FUN_1801c0d90(param_2);
+    UtilitiesSystem_CacheManager(param_2);
+    UtilitiesSystem_CacheManager(param_2);
     uVar1 = *(uint64_t *)(*(int64_t *)(param_2 + 0x28) + 0x18);
     *param_1 = *(uint64_t *)(*(int64_t *)(param_2 + 0x28) + 0x10);
     param_1[1] = uVar1;
@@ -321,8 +325,8 @@ uint64_t * FUN_180441fc0(uint64_t *param_1,int64_t param_2)
   
   if (param_2 != 0) {
     FUN_1802e7dc0(param_2);
-    FUN_1801c0d90(param_2);
-    FUN_1801c0d90(param_2);
+    UtilitiesSystem_CacheManager(param_2);
+    UtilitiesSystem_CacheManager(param_2);
     uVar1 = (*(uint64_t **)(param_2 + 0x28))[1];
     *param_1 = **(uint64_t **)(param_2 + 0x28);
     param_1[1] = uVar1;
@@ -536,7 +540,7 @@ void FUN_1804422a0(int64_t param_1,char param_2,int32_t *param_3)
     uStack_3c = uStack_8c;
     uStack_38 = uVar2;
     uStack_30 = uVar3;
-    FUN_18063b5f0(&uStack_78,&uStack_98);
+    SystemSecurityManager(&uStack_78,&uStack_98);
     *param_3 = uStack_78;
     param_3[1] = uStack_74;
     param_3[2] = uStack_70;
@@ -614,7 +618,7 @@ void FUN_1804422d1(int64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t pa
   uStack000000000000007c = uStack000000000000002c;
   uStack0000000000000080 = uVar2;
   uStack0000000000000088 = uVar3;
-  FUN_18063b5f0(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
+  SystemSecurityManager(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
   *param_3 = uStack0000000000000040;
   param_3[1] = uStack0000000000000044;
   param_3[2] = uStack0000000000000048;
@@ -672,7 +676,7 @@ void FUN_180442370(int64_t param_1,int64_t param_2,int64_t param_3)
       ;
     }
     if (param_3 != 0) {
-      FUN_1802edcd0(param_1,param_3,1);
+      PhysicsSystem_TerrainCollider(param_1,param_3,1);
     }
   }
   return;
@@ -706,7 +710,7 @@ void FUN_1804423a0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
     ;
   }
   if (unaff_R14 != 0) {
-    FUN_1802edcd0(param_1);
+    PhysicsSystem_TerrainCollider(param_1);
   }
   return;
 }
@@ -737,7 +741,7 @@ void FUN_1804423b3(void)
   } while ((uint64_t)(int64_t)(int)unaff_EBP <
            (uint64_t)(*(int64_t *)(unaff_RBX + 0xf8) - in_R9 >> 3));
   if (unaff_R14 != 0) {
-    FUN_1802edcd0();
+    PhysicsSystem_TerrainCollider();
   }
   return;
 }
@@ -753,7 +757,7 @@ void FUN_1804423f9(void)
   int64_t unaff_R14;
   
   if (unaff_R14 != 0) {
-    FUN_1802edcd0();
+    PhysicsSystem_TerrainCollider();
   }
   return;
 }
@@ -766,7 +770,7 @@ void FUN_1804423f9(void)
 void FUN_180442403(void)
 
 {
-  FUN_1802edcd0();
+  PhysicsSystem_TerrainCollider();
   return;
 }
 

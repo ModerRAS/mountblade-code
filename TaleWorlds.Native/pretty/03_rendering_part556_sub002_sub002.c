@@ -1,3 +1,4 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -98,7 +99,7 @@ void FUN_180573874(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   
   if (in_EAX == (int)unaff_R14) {
     cVar8 = *(char *)(unaff_R13 + 0xa8b4);
-    FUN_18022a890(param_4,cVar8,*(uint64_t *)(in_R10 + 0x208));
+    SystemErrorHandler(param_4,cVar8,*(uint64_t *)(in_R10 + 0x208));
     puVar43 = (uint64_t *)(*(int64_t *)(unaff_RBP + -0xc) + ((int64_t)cVar8 + 0x40) * 0x10);
     in_stack_00000070 = *puVar43;
     in_stack_00000078 = puVar43[1];
@@ -257,7 +258,7 @@ void FUN_180573874(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
           cVar56 = *pcVar37;
           uVar55 = *(uint64_t *)(unaff_RBP + -0xc);
           *(uint64_t *)((int64_t)unaff_RBP + lVar50 + 0x20) = *(uint64_t *)(pfVar52 + 2);
-          FUN_18022a890(uVar55,cVar8,*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x14) + 0x208));
+          SystemErrorHandler(uVar55,cVar8,*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x14) + 0x208));
           lVar60 = *(int64_t *)(unaff_RBP + -0xc);
           pfVar48 = (float *)(lVar60 + ((int64_t)cVar8 + 0x40) * 0x10);
           fVar14 = *pfVar48;
@@ -267,7 +268,7 @@ void FUN_180573874(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
           fVar61 = *pfVar48;
           fVar75 = pfVar48[1];
           fVar63 = pfVar48[2];
-          FUN_18022a890(lVar60,cVar56,*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x14) + 0x208));
+          SystemErrorHandler(lVar60,cVar56,*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x14) + 0x208));
           fVar64 = pfVar52[-2];
           fVar70 = pfVar52[-1];
           fVar72 = (float)unaff_RBP[-0x1d];

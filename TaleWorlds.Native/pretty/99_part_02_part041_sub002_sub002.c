@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -60,8 +61,8 @@ void FUN_1801b0d10(int64_t param_1,int64_t param_2,uint64_t *param_3)
       pcVar9 = pcVar9 + (int64_t)pcVar8;
       if (pcVar9 <= pcVar8) {
 LAB_1801b0db0:
-        FUN_180631850(puVar7,&processed_var_4548_ptr,param_1 + 0x3004);
-        FUN_180631850(puVar7,&processed_var_4580_ptr,param_1 + 0x300c);
+        SystemManager_Controller(puVar7,&processed_var_4548_ptr,param_1 + 0x3004);
+        SystemManager_Controller(puVar7,&processed_var_4580_ptr,param_1 + 0x300c);
         break;
       }
       lVar11 = (int64_t)&processed_var_4552_ptr - (int64_t)pcVar8;
@@ -333,20 +334,20 @@ LAB_1801b14d0:
                 if (iStack_d8 == 0x11) {
                   iVar2 = strcmp(puStack_e0,&processed_var_4672_ptr);
                   if (iVar2 == 0) {
-                    FUN_180631850(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x60b68);
+                    SystemManager_Controller(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x60b68);
                   }
                 }
                 else if (iStack_d8 == 0x18) {
                   iVar2 = strcmp(puStack_e0,&processed_var_4640_ptr);
                   if (iVar2 == 0) {
-                    FUN_180631000(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x48);
+                    UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x48);
                   }
                   else {
 LAB_1801b169b:
                     iVar2 = strcmp(puStack_e0,&processed_var_4736_ptr);
                     if (iVar2 == 0) {
                       puStackX_20 = (uint64_t *)((uint64_t)puStackX_20 & 0xffffffffffffff00);
-                      FUN_180631000(pcVar9,&memory_allocator_3692_ptr,&puStackX_20);
+                      UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,&puStackX_20);
                       *(bool *)(param_1 + 0x3f62) = (char)puStackX_20 == '\0';
                     }
                     else {
@@ -419,7 +420,7 @@ LAB_1801b1970:
                 else if (iStack_d8 == 0x12) {
                   iVar2 = strcmp(puStack_e0,&processed_var_4712_ptr);
                   if (iVar2 == 0) {
-                    FUN_180631850(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x60b70);
+                    SystemManager_Controller(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x60b70);
                   }
                   else {
 LAB_1801b1781:
@@ -479,7 +480,7 @@ LAB_1801b1620:
                 else if (iStack_d8 == 10) {
                   iVar2 = strcmp(puStack_e0,&processed_var_4768_ptr);
                   if (iVar2 == 0) {
-                    FUN_180631000(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3000);
+                    UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3000);
                   }
                 }
                 else {
@@ -487,7 +488,7 @@ LAB_1801b1620:
                   if (iStack_d8 == 0xc) {
                     iVar2 = strcmp(puStack_e0,&processed_var_4816_ptr);
                     if (iVar2 == 0) {
-                      FUN_180631960(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3e60);
+                      StringProcessor(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3e60);
                     }
                   }
                   else if (iStack_d8 == 0xe) {
@@ -499,7 +500,7 @@ LAB_1801b1620:
 LAB_1801b1a8b:
                       iVar2 = strcmp(puStack_e0,&processed_var_4928_ptr);
                       if (iVar2 == 0) {
-                        FUN_180631000(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x4c8);
+                        UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x4c8);
                       }
                     }
                   }
@@ -642,7 +643,7 @@ LAB_1801b1b60:
                         pcVar9 = pcVar9 + (int64_t)pcVar16;
                         if (pcVar9 <= pcVar16) {
 LAB_1801b1bd0:
-                          lVar11 = FUN_1800a02a0(puVar13,&system_data_3a84);
+                          lVar11 = SystemCore_DataManager(puVar13,&system_data_3a84);
                           if (lVar11 != 0) {
                             lVar12 = 0x180d48d24;
                             if (*(int64_t *)(lVar11 + 8) != 0) {
@@ -662,7 +663,7 @@ LAB_1801b1bd0:
                             uStack_b0 = 0;
                             pcStack_c0 = (char *)0x0;
                             uStack_b8 = 0;
-                            lVar11 = FUN_1800a02a0(puVar13,&memory_allocator_3692_ptr);
+                            lVar11 = SystemCore_DataManager(puVar13,&memory_allocator_3692_ptr);
                             uVar18 = extraout_XMM0_Da;
                             if (lVar11 != 0) {
                               lVar12 = 0x180d48d24;
@@ -692,7 +693,7 @@ LAB_1801b1bd0:
                                 pcVar16 = pcVar8;
                               } while (pcVar8 != (char *)0x5);
                               puStackX_20 = (uint64_t *)0x0;
-                              FUN_180631850(puVar13,&memory_allocator_3692_ptr,&puStackX_20);
+                              SystemManager_Controller(puVar13,&memory_allocator_3692_ptr,&puStackX_20);
                               uVar18 = FUN_1801be430(&puStackX_20);
                               *(uint64_t **)(*(int64_t *)(param_1 + 0x81f0) + 4) = puStackX_20;
                               FUN_1801be430();
@@ -701,7 +702,7 @@ LAB_1801b1bd0:
                             else if (iStack_d8 == 0x1b) {
                               iVar2 = strcmp(puStack_e0,&processed_var_5048_ptr);
                               if (iVar2 == 0) {
-                                FUN_180631000(puVar13,&memory_allocator_3692_ptr,param_1 + 0x60c1c);
+                                UltraHighFreq_CacheSystem1(puVar13,&memory_allocator_3692_ptr,param_1 + 0x60c1c);
                               }
                             }
                             else if ((iStack_d8 == 0x18) &&
@@ -805,7 +806,7 @@ LAB_1801b1efe:
                           uStack_b8 = 0;
                           if (pcVar9 != (char *)0x0) {
 LAB_1801b1f31:
-                            lVar11 = FUN_1800a02a0(pcVar9,&system_data_3a84);
+                            lVar11 = SystemCore_DataManager(pcVar9,&system_data_3a84);
                             if (lVar11 != 0) {
                               lVar12 = 0x180d48d24;
                               if (*(int64_t *)(lVar11 + 8) != 0) {
@@ -830,7 +831,7 @@ LAB_1801b2018:
                                 if (iVar2 == 0) {
                                   FUN_180630fb0(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3ed0);
                                   plVar6 = (int64_t *)
-                                           FUN_1800b30d0(system_resource_state,&plStack_60,param_1 + 0x3ed0
+                                           SystemCore_PerformanceMonitor(system_resource_state,&plStack_60,param_1 + 0x3ed0
                                                          ,0);
                                   lVar11 = *plVar6;
                                   if (plStack_60 != (int64_t *)0x0) {
@@ -854,7 +855,7 @@ LAB_1801b2018:
                               if (iStack_d8 == 0x13) {
                                 iVar2 = strcmp(puStack_e0,&processed_var_5160_ptr);
                                 if (iVar2 == 0) {
-                                  FUN_180631960(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3e94);
+                                  StringProcessor(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3e94);
                                 }
                                 else {
 LAB_1801b2186:
@@ -869,27 +870,27 @@ LAB_1801b2186:
                                     apuStack_a8[0] = (uint64_t *)0x0;
                                     ppuVar14 = apuStack_a8;
                                   }
-                                  FUN_180631850(pcVar9,&memory_allocator_3692_ptr,ppuVar14);
+                                  SystemManager_Controller(pcVar9,&memory_allocator_3692_ptr,ppuVar14);
                                   *(int8_t *)(param_1 + 0x3ef0) = 1;
                                 }
                               }
                               else if (iStack_d8 == 0x10) {
                                 iVar2 = strcmp(puStack_e0,&processed_var_5216_ptr);
                                 if (iVar2 == 0) {
-                                  FUN_180631960(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3ea4);
+                                  StringProcessor(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3ea4);
                                 }
                               }
                               else if (iStack_d8 == 0xc) {
                                 iVar2 = strcmp(puStack_e0,&processed_var_5200_ptr);
                                 if (iVar2 == 0) {
-                                  FUN_180631000(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3ef0);
+                                  UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x3ef0);
                                 }
                               }
                               else {
                                 if (iStack_d8 == 0x13) goto LAB_1801b2186;
                                 if ((iStack_d8 == 0x11) &&
                                    (iVar2 = strcmp(puStack_e0,&processed_var_5328_ptr), iVar2 == 0)) {
-                                  FUN_180631000(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x314);
+                                  UltraHighFreq_CacheSystem1(pcVar9,&memory_allocator_3692_ptr,param_1 + 0x314);
                                 }
                               }
                             }
@@ -943,7 +944,7 @@ LAB_1801b22be:
                              (puVar7 = (uint64_t *)FUN_18005d4b0(lVar11,&processed_var_4600_ptr,0),
                              puVar7 != (uint64_t *)0x0)) {
 LAB_1801b2300:
-                            lVar11 = FUN_1800a02a0(puVar7,&system_data_3a84);
+                            lVar11 = SystemCore_DataManager(puVar7,&system_data_3a84);
                             if (lVar11 != 0) {
                               lVar12 = 0x180d48d24;
                               if (*(int64_t *)(lVar11 + 8) != 0) {
@@ -959,7 +960,7 @@ LAB_1801b2300:
                               else {
                                 iVar2 = strcmp(puStack_e0,&processed_var_5352_ptr);
                                 if (iVar2 == 0) {
-                                  FUN_180631960(puVar7,&memory_allocator_3692_ptr,param_1 + 0x3f3c);
+                                  StringProcessor(puVar7,&memory_allocator_3692_ptr,param_1 + 0x3f3c);
                                 }
                               }
                             }

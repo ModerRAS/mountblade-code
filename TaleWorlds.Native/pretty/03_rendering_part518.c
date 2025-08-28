@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 /*==============================================================================
 * 模块: 03_rendering_part518.c - 渲染系统高级渲染管线和状态管理模块
@@ -95,7 +104,7 @@ void FUN_180547e60(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
   apuStack_30[0] = auStackX_10; // 设置参数数组
   
   // 执行渲染队列处理
-  FUN_18054a4b0(param_1 + 0xe0, apuStack_30, param_3, param_4, uVar2);
+  SystemCore_ResourceManager(param_1 + 0xe0, apuStack_30, param_3, param_4, uVar2);
   
   // 检查并调用渲染回调
   if (*(int64_t *)(param_1 + 0x1a0) != 0) {
@@ -836,7 +845,7 @@ void FUN_180548880(int64_t ******param_1,int8_t param_2)
          CONCAT44(pppppplStackX_20._4_4_,*(int32_t *)((int64_t)param_1 + 0x174));
     pppppplStack_58 = (int64_t ******)param_1[0x30];
     pppppplStack_48 = (int64_t ******)ppppppplVar4;
-    FUN_180049830(ppppppplVar4);
+    UltraHighFreq_PerformanceMonitor1(ppppppplVar4);
     *ppppppplVar4 = (int64_t ******)&processed_var_5896_ptr;
     ppppppplVar4[0x1c] = (int64_t ******)0x0;
     ppppppplVar4[0x1d] = (int64_t ******)0x0;
@@ -860,7 +869,7 @@ void FUN_180548880(int64_t ******param_1,int8_t param_2)
     ppppppplVar4[3] = (int64_t ******)0xfffffffffffffffc;
     *(int8_t *)((int64_t)ppppppplVar4 + 0x112) = pppppplStackX_8._0_1_;
     *(int8_t *)((int64_t)ppppppplVar4 + 0x111) = pppppplStackX_18._0_1_;
-    FUN_180056f10(param_1 + 0x33,ppppppplVar4);
+    SystemCore_PointerManager(param_1 + 0x33,ppppppplVar4);
     uVar3 = system_context_ptr;
     pppppplStackX_18 = (int64_t ******)&pppppplStackX_8;
     pppppplStackX_8 = (int64_t ******)param_1[0x33];

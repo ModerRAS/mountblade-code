@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -281,7 +286,7 @@ void FUN_1804966c0(uint64_t param_1,byte *param_2,int64_t param_3,int32_t param_
   *(int32_t *)((int64_t)plStack_5d8 + 0x2c) = uStack_538._4_4_;
   pplStack_620 = &plStack_5d8;
   uStack_628 = 0xffffffffffffffff;
-  FUN_18015b810((int32_t)uStack_540,0,(int)(char)((lVar10 - lVar1) / 0x48),1);
+  SystemCore_DataTransformer((int32_t)uStack_540,0,(int)(char)((lVar10 - lVar1) / 0x48),1);
   func_0x0001804845c0(param_2);
   uStack_588 = 0x3f800000;
   uStack_584 = 0x40000000;
@@ -294,7 +299,7 @@ void FUN_1804966c0(uint64_t param_1,byte *param_2,int64_t param_3,int32_t param_
                0x48) < render_system_config_memory) && (SystemInitializer(&system_ptr_9da8), render_system_config_memory == -1)) {
     _Mtx_init_in_situ(0x180d49db0,2);
     FUN_1808fc820(FUN_180942a40);
-    FUN_1808fcb30(&system_ptr_9da8);
+    SystemCore_StateController(&system_ptr_9da8);
   }
   pplStack_5e0 = (int64_t **)0x180d49db0;
   iVar6 = _Mtx_lock(0x180d49db0);
@@ -672,9 +677,9 @@ LAB_1804981cb:
       if (uVar9 < 2) {
         aiStackX_18[0] = 0;
         piStack_f0 = piVar11;
-        FUN_1800571e0(&piStack_f8,aiStackX_18);
+        SystemDatabaseProcessor(&piStack_f8,aiStackX_18);
         aiStackX_18[0] = *(ushort *)(param_2 + 2) - 1;
-        FUN_1800571e0(&piStack_f8,aiStackX_18);
+        SystemDatabaseProcessor(&piStack_f8,aiStackX_18);
         piVar11 = piStack_f8;
       }
       FUN_180499350(param_2,&piStack_f8);

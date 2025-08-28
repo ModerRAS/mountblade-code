@@ -1,3 +1,14 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "RenderingSystemProcessor0_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -306,10 +317,10 @@ uint64_t FUN_18053a0b0(int64_t param_1,int64_t param_2)
     *(int32_t *)(alStack_38[0] + 0x58) = uVar2;
     auStackX_8[0] = (int32_t)(*(int64_t *)(param_1 + 0x60) - *(int64_t *)(param_1 + 0x58) >> 3)
     ;
-    FUN_1800571e0(param_1 + 0x38,auStackX_8);
+    SystemDatabaseProcessor(param_1 + 0x38,auStackX_8);
     *(int32_t *)(param_2 + 0x68) = *(int32_t *)(param_1 + 0x78);
     *(int *)(param_1 + 0x78) = *(int *)(param_1 + 0x78) + 1;
-    FUN_18005ea90(param_1 + 0x58,&lStackX_10);
+    SystemSecurity_Manager(param_1 + 0x58,&lStackX_10);
   }
   else {
     if (*(int *)(*(int64_t *)(param_1 + 0x38) + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) != -1
@@ -318,12 +329,12 @@ uint64_t FUN_18053a0b0(int64_t param_1,int64_t param_2)
       if (*(void **)(param_2 + 0x18) != (void *)0x0) {
         puVar5 = *(void **)(param_2 + 0x18);
       }
-      FUN_180627020(&processed_var_7872_ptr,puVar5);
+      SystemCore_Allocator(&processed_var_7872_ptr,puVar5);
       return 0;
     }
     *(int *)(*(int64_t *)(param_1 + 0x38) + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) =
          (int)(*(int64_t *)(param_1 + 0x60) - *(int64_t *)(param_1 + 0x58) >> 3);
-    FUN_18005ea90((int64_t *)(param_1 + 0x58),&lStackX_10);
+    SystemSecurity_Manager((int64_t *)(param_1 + 0x58),&lStackX_10);
   }
   return 1;
 }
@@ -363,10 +374,10 @@ uint64_t FUN_18053a102(uint64_t param_1,byte *param_2)
   *(int32_t *)(in_stack_00000030 + 0x58) = uVar2;
   in_stack_00000070 =
        (int32_t)(*(int64_t *)(unaff_RDI + 0x60) - *(int64_t *)(unaff_RDI + 0x58) >> 3);
-  FUN_1800571e0(unaff_RDI + 0x38,&stack0x00000070);
+  SystemDatabaseProcessor(unaff_RDI + 0x38,&stack0x00000070);
   *(int32_t *)(unaff_RSI + 0x68) = *(int32_t *)(unaff_RDI + 0x78);
   *(int *)(unaff_RDI + 0x78) = *(int *)(unaff_RDI + 0x78) + 1;
-  FUN_18005ea90(unaff_RDI + 0x58,&stack0x00000078);
+  SystemSecurity_Manager(unaff_RDI + 0x58,&stack0x00000078);
   return 1;
 }
 
@@ -384,12 +395,12 @@ uint64_t FUN_18053a1a8(int64_t param_1)
     if (*(void **)(unaff_RSI + 0x18) != (void *)0x0) {
       puVar1 = *(void **)(unaff_RSI + 0x18);
     }
-    FUN_180627020(&processed_var_7872_ptr,puVar1);
+    SystemCore_Allocator(&processed_var_7872_ptr,puVar1);
     return 0;
   }
   *(int *)(*(int64_t *)(unaff_RDI + 0x38) + (int64_t)*(int *)(param_1 + 0x58) * 4) =
        (int)(*(int64_t *)(unaff_RDI + 0x60) - *(int64_t *)(unaff_RDI + 0x58) >> 3);
-  FUN_18005ea90((int64_t *)(unaff_RDI + 0x58),&stack0x00000078);
+  SystemSecurity_Manager((int64_t *)(unaff_RDI + 0x58),&stack0x00000078);
   return 1;
 }
 
@@ -483,7 +494,7 @@ LAB_18053a3ac:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18053a410(int64_t param_1,int param_2,int param_3,uint64_t param_4)
+int32_t SystemCacheManager(int64_t param_1,int param_2,int param_3,uint64_t param_4)
 
 {
   int32_t *puVar1;
@@ -523,7 +534,7 @@ int32_t FUN_18053a410(int64_t param_1,int param_2,int param_3,uint64_t param_4)
         puVar2 = puStack_28;
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,puVar2);
+      SystemParameterHandler(system_message_context,puVar2);
     }
   }
   return *(int32_t *)(*(int64_t *)(lVar4 + 0x78) + lVar5 * 8);
@@ -531,12 +542,12 @@ int32_t FUN_18053a410(int64_t param_1,int param_2,int param_3,uint64_t param_4)
 
 
 
-uint64_t FUN_18053a5a0(int64_t param_1)
+uint64_t SystemCore_Initializer(int64_t param_1)
 
 {
   int iVar1;
   
-  iVar1 = FUN_18053a410();
+  iVar1 = SystemCacheManager();
   iVar1 = *(int *)(*(int64_t *)(param_1 + 0x38) + (int64_t)iVar1 * 4);
   if (iVar1 != -1) {
     return *(uint64_t *)(*(int64_t *)(param_1 + 0x58) + (int64_t)iVar1 * 8);

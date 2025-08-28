@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -118,9 +119,9 @@ LAB_180551360:
   *param_1 = 0xffffffff;
 LAB_1805513c0:
   *(int8_t *)(param_1 + 1) = 0;
-  FUN_180631000(param_2,&ui_system_data_1800_ptr);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr);
   *(int8_t *)((int64_t)param_1 + 5) = 0;
-  FUN_180631000(param_2,&ui_system_data_1776_ptr);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1776_ptr);
   param_1[2] = 0xffffffff;
   puStack_60 = &system_data_buffer_ptr;
   uStack_48 = 0;
@@ -202,7 +203,7 @@ LAB_180551534:
     }
   }
   if (0 < iStack_70) {
-    uVar3 = FUN_18055b2f0(&system_data_6150,&puStack_80);
+    uVar3 = SystemFile_Manager(&system_data_6150,&puStack_80);
     param_1[3] = uVar3;
   }
   param_1[4] = 0;
@@ -216,9 +217,9 @@ LAB_180551534:
   param_1[0xe] = 0xffffffff;
   *(int8_t *)(param_1 + 0xd) = 1;
   param_1[0xe] = *param_1;
-  FUN_180631960(param_2,&rendering_buffer_2664_ptr);
-  FUN_180631850(param_2,&rendering_buffer_2648_ptr,param_1 + 8);
-  FUN_180631850(param_2,&rendering_buffer_2816_ptr,param_1 + 10);
+  StringProcessor(param_2,&rendering_buffer_2664_ptr);
+  SystemManager_Controller(param_2,&rendering_buffer_2648_ptr,param_1 + 8);
+  SystemManager_Controller(param_2,&rendering_buffer_2816_ptr,param_1 + 10);
   pcVar9 = "arm_length";
   do {
     pcVar5 = pcVar9;
@@ -269,11 +270,11 @@ LAB_180551646:
   param_1[0x19] = 0xffffffff;
   *(int8_t *)(param_1 + 0x18) = 1;
   param_1[0x19] = *param_1;
-  FUN_180631960(param_2,&rendering_buffer_2856_ptr);
+  StringProcessor(param_2,&rendering_buffer_2856_ptr);
   pfVar1 = (float *)(param_1 + 0x13);
-  FUN_180631850(param_2,&rendering_buffer_2832_ptr,pfVar1);
+  SystemManager_Controller(param_2,&rendering_buffer_2832_ptr,pfVar1);
   pfVar2 = (float *)(param_1 + 0x15);
-  FUN_180631850(param_2,&rendering_buffer_2752_ptr,pfVar2);
+  SystemManager_Controller(param_2,&rendering_buffer_2752_ptr,pfVar2);
   pcVar9 = "offhand_arm_length";
   do {
     pcVar5 = pcVar9;
@@ -366,9 +367,9 @@ void FUN_180551870(int8_t *param_1,int64_t param_2,uint64_t param_3,uint64_t par
   
   if (param_2 != 0) {
     *param_1 = 0;
-    FUN_180631000(param_2,&ui_system_data_1800_ptr,param_1,param_4,0xfffffffffffffffe);
+    UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr,param_1,param_4,0xfffffffffffffffe);
     param_1[1] = 0;
-    FUN_180631000(param_2,&ui_system_data_1776_ptr);
+    UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1776_ptr);
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
@@ -450,7 +451,7 @@ LAB_180551a34:
       }
     }
     if (0 < iStack_50) {
-      uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_60);
+      uVar1 = SystemFile_Manager(&system_data_6150,&puStack_60);
       *(int32_t *)(param_1 + 8) = uVar1;
     }
     puStack_60 = &system_data_buffer_ptr;
@@ -503,7 +504,7 @@ void FUN_180551ad0(int32_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     param_1[1] = 0;
     FUN_180631330(param_2,&rendering_buffer_2788_ptr,param_1 + 1,param_4,0xfffffffffffffffe);
     *(int8_t *)(param_1 + 2) = 0;
-    FUN_180631000(param_2,&ui_system_data_1776_ptr);
+    UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1776_ptr);
     param_1[3] = 0xffffffff;
     puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
@@ -627,7 +628,7 @@ LAB_180551d50:
       }
     }
     if (0 < iStack_70) {
-      uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_80);
+      uVar1 = SystemFile_Manager(&system_data_6150,&puStack_80);
       param_1[5] = uVar1;
     }
     iStack_70 = 0;
@@ -669,7 +670,7 @@ LAB_180551e04:
       }
     }
     if (0 < iStack_70) {
-      uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_80);
+      uVar1 = SystemFile_Manager(&system_data_6150,&puStack_80);
       param_1[4] = uVar1;
     }
     puStack_80 = &system_data_buffer_ptr;

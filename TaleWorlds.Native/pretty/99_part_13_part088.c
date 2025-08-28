@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_13_part088.c - 7 个函数
 
 // 函数: void FUN_1808e5ef0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int param_4,int param_5)
@@ -52,7 +56,7 @@ uint64_t FUN_1808e5f55(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   uint64_t uVar15;
   
   uVar15 = 0;
-  uVar10 = FUN_18073c4c0(*(uint64_t *)(param_1 + 8),param_2,0);
+  uVar10 = UtilitiesSystem_MathCalculator(*(uint64_t *)(param_1 + 8),param_2,0);
   if ((int)uVar10 != 0) {
     return uVar10;
   }
@@ -251,7 +255,7 @@ uint64_t FUN_1808e5f55(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     uVar10 = 0;
   }
 LAB_1808e6366:
-  FUN_180840270(&param_5);
+  SystemCore_MemoryManager(&param_5);
   return uVar10;
 }
 
@@ -483,7 +487,7 @@ uint64_t FUN_1808e5f84(void)
     uVar15 = unaff_R13 & 0xffffffff;
   }
 LAB_1808e6366:
-  FUN_180840270(&stack0x00000028);
+  SystemCore_MemoryManager(&stack0x00000028);
   return uVar15;
 }
 
@@ -710,7 +714,7 @@ uint64_t FUN_1808e6036(void)
   if (uVar11 == 0) {
     uVar13 = unaff_R13 & 0xffffffff;
   }
-  FUN_180840270(&stack0x00000028);
+  SystemCore_MemoryManager(&stack0x00000028);
   return uVar13;
 }
 
@@ -791,7 +795,7 @@ void FUN_1808e6410(int64_t *param_1)
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[1],&processed_var_9296_ptr,0x36,1);
   }
   if (*param_1 != 0) {
-    iVar1 = FUN_180768380(*param_1,0);
+    iVar1 = SystemCore_DataHandler(*param_1,0);
     if (iVar1 == 0) {
       *param_1 = 0;
     }

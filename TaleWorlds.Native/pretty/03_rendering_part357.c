@@ -111,7 +111,7 @@ void FUN_18045fc60(int64_t param_1)
   uStack_160 = 1;
   uStack_168 = 0x41;
   iStack_148 = iVar2;
-  puVar5 = (uint64_t *)FUN_1800b0a10(lVar7,&plStack_110,*(int32_t *)(lVar7 + 0xa0),&puStack_98)
+  puVar5 = (uint64_t *)SystemCore_ConfigManager(lVar7,&plStack_110,*(int32_t *)(lVar7 + 0xa0),&puStack_98)
   ;
   lVar7 = *(int64_t *)(param_1 + 8);
   uVar1 = *puVar5;
@@ -534,7 +534,7 @@ void FUN_18045ffd0(int64_t param_1)
         uStack_36c = 0;
         uStack_35c = 0x3f800000;
         uVar21 = FUN_180286010(auStack_268,&puStack_2c8,0);
-        FUN_1800946d0(auStack_398,&uStack_358,uVar21);
+        ErrorRecoverySystem(auStack_398,&uStack_358,uVar21);
         *puVar7 = uStack_358;
         puVar7[1] = uStack_350;
         puVar7[2] = uStack_348;
@@ -649,7 +649,7 @@ LAB_1804604cc:
   puStack_4c8 = (int8_t *)CONCAT44(puStack_4c8._4_4_,0x41);
   uStack_4a8 = uVar13;
   puVar7 = (uint64_t *)
-           FUN_1800b0a10(lVar15,&plStack_478,*(int32_t *)(lVar15 + 0xa0),&puStack_308);
+           SystemCore_ConfigManager(lVar15,&plStack_478,*(int32_t *)(lVar15 + 0xa0),&puStack_308);
   uVar20 = *puVar7;
   *puVar7 = 0;
   plStack_488 = *(int64_t **)(param_1 + 0x38);
@@ -677,7 +677,7 @@ LAB_1804604cc:
   puStack_4c8 = (int8_t *)CONCAT44(puStack_4c8._4_4_,0x41);
   uStack_4a8 = uVar13;
   puVar7 = (uint64_t *)
-           FUN_1800b0a10(lVar15,&plStack_458,*(int32_t *)(lVar15 + 0xa0),&puStack_2c8);
+           SystemCore_ConfigManager(lVar15,&plStack_458,*(int32_t *)(lVar15 + 0xa0),&puStack_2c8);
   uVar20 = *puVar7;
   *puVar7 = 0;
   plStack_488 = *(int64_t **)(param_1 + 0x40);
@@ -705,7 +705,7 @@ LAB_1804604cc:
   puStack_4c8 = (int8_t *)CONCAT44(puStack_4c8._4_4_,1);
   uStack_4a8 = uVar13;
   puVar7 = (uint64_t *)
-           FUN_1800b0a10(lVar15,&plStack_478,*(int32_t *)(lVar15 + 0xa0),&puStack_308);
+           SystemCore_ConfigManager(lVar15,&plStack_478,*(int32_t *)(lVar15 + 0xa0),&puStack_308);
   uVar20 = *puVar7;
   *puVar7 = 0;
   plStack_488 = *(int64_t **)(param_1 + 0x48);

@@ -1,3 +1,4 @@
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -91,7 +92,7 @@ void serialize_render_data(int64_t render_object, int64_t *output_buffer)
     uint64_t flag_count = counter;
     do {
         if ((*(uint32_t *)(flag_table + 1) & material_flags) != 0) {
-            FUN_180639de0(output_buffer, *flag_table);
+            UtilitiesSystem_ThreadManager(output_buffer, *flag_table);
             flag_count = (uint64_t)((int)flag_count + 1);
         }
         flag_table = flag_table + 2;
@@ -103,7 +104,7 @@ void serialize_render_data(int64_t render_object, int64_t *output_buffer)
     write_offset = counter;
     do {
         if (*material_type == *(char *)(render_object + 0x134)) {
-            FUN_180639de0(output_buffer, *(uint64_t *)((int64_t)(int)write_offset * 0x10 + 0x180bf8ff0));
+            UtilitiesSystem_ThreadManager(output_buffer, *(uint64_t *)((int64_t)(int)write_offset * 0x10 + 0x180bf8ff0));
             break;
         }
         write_offset = (uint64_t)((int)write_offset + 1);
@@ -724,7 +725,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
     *(uint32_t *)(render_obj + 1) = 0;
     
     // 处理材质参数
-    material_handle = FUN_1800b6de0(system_resource_state, param1, 1);
+    material_handle = RenderingSystem_VertexProcessor(system_resource_state, param1, 1);
     if (material_handle != 0) {
         FUN_180275a60(material_handle, render_obj, 1);
     }
@@ -843,12 +844,12 @@ void set_render_object_visibility(int64_t render_obj, char visibility)
             if (visibility == '\0') {
                 if (*(char *)(item_ptr + 0xfa) != '\0') {
                     *(int8_t *)(item_ptr + 0xfa) = 0;
-                    FUN_180079520();  // 通知可见性变更
+                    SystemInitializer();  // 通知可见性变更
                 }
             }
             else if (*(char *)(item_ptr + 0xfa) != '\x01') {
                 *(int8_t *)(item_ptr + 0xfa) = 1;
-                FUN_180079520();  // 通知可见性变更
+                SystemInitializer();  // 通知可见性变更
             }
             item_ptr = *(int64_t *)(render_obj + 0x38);
             item_count = (int)max_items + 1;
@@ -881,12 +882,12 @@ void batch_set_render_object_visibility(uint64_t param1, uint64_t param2, int64_
         if (visibility == '\0') {
             if (*(char *)(item_ptr + 0xfa) != '\0') {
                 *(int8_t *)(item_ptr + 0xfa) = 0;
-                FUN_180079520();  // 通知可见性变更
+                SystemInitializer();  // 通知可见性变更
             }
         }
         else if (*(char *)(item_ptr + 0xfa) != '\x01') {
             *(int8_t *)(item_ptr + 0xfa) = 1;
-            FUN_180079520();  // 通知可见性变更
+            SystemInitializer();  // 通知可见性变更
         }
         render_obj = *(int64_t *)(unaff_RSI + 0x38);
         unaff_EDI = unaff_EDI + 1;
@@ -958,7 +959,7 @@ uint64_t * create_render_object_copy(uint64_t param1, uint64_t *render_obj_ptr)
     
     // 分配新对象内存
     new_obj = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
-    created_obj = (int64_t *)FUN_180275090(new_obj);
+    created_obj = (int64_t *)RenderingSystem_ShaderManager(new_obj);
     *render_obj_ptr = created_obj;
     
     // 初始化新对象

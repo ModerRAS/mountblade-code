@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part071.c - 3 个函数
 
 // 函数: void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
@@ -56,7 +64,7 @@ void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
     puStack_b8 = &processed_var_7984_ptr;
     pcStack_b0 = FUN_1804ded00;
     apppplStack_c8[0] = (int64_t ****)param_1;
-    ppppplVar4 = (int64_t *****)FUN_18006b640(uVar3,apppplStack_c8);
+    ppppplVar4 = (int64_t *****)SystemCore_ErrorHandler(uVar3,apppplStack_c8);
     pppplStack_40 = (int64_t ****)ppppplVar4;
     if (ppppplVar4 != (int64_t *****)0x0) {
       (*(code *)(*ppppplVar4)[5])(ppppplVar4);
@@ -74,7 +82,7 @@ void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
     uStack_a4 = uStack_108._4_4_;
     uStack_108 = param_1;
     puStack_a0 = puStack_100;
-    pppplVar5 = (int64_t ****)FUN_18006b640(uVar3,&uStack_a8);
+    pppplVar5 = (int64_t ****)SystemCore_ErrorHandler(uVar3,&uStack_a8);
     ppplStack_38 = (int64_t ***)pppplVar5;
     if (pppplVar5 != (int64_t ****)0x0) {
       (*(code *)(*pppplVar5)[5])(pppplVar5);
@@ -88,7 +96,7 @@ void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
     uStack_84 = uVar2;
     uStack_108 = param_1;
     puStack_80 = puStack_100;
-    pppplVar6 = (int64_t ****)FUN_18006b640(uVar3,&uStack_88);
+    pppplVar6 = (int64_t ****)SystemCore_ErrorHandler(uVar3,&uStack_88);
     ppplStack_30 = (int64_t ***)pppplVar6;
     if (pppplVar6 != (int64_t ****)0x0) {
       (*(code *)(*pppplVar6)[5])(pppplVar6);
@@ -102,7 +110,7 @@ void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
     uStack_68._4_4_ = uVar2;
     ppppplStack_118 = param_1;
     puStack_60 = puStack_110;
-    ppppplVar7 = (int64_t *****)FUN_18006b640(uVar3,&uStack_68);
+    ppppplVar7 = (int64_t *****)SystemCore_ErrorHandler(uVar3,&uStack_68);
     uStack_108 = ppppplVar7;
     if (ppppplVar7 != (int64_t *****)0x0) {
       (*(code *)(*ppppplVar7)[5])(ppppplVar7);
@@ -114,56 +122,56 @@ void FUN_1804dad70(int64_t *****param_1,uint64_t param_2,uint64_t param_3)
       if (ppppplVar4 != (int64_t *****)0x0) {
         (*(code *)(*ppppplVar4)[5])(ppppplVar4);
       }
-      FUN_18005e110(uVar3,&ppppplStackX_20);
+      SystemCore_TimerManager(uVar3,&ppppplStackX_20);
       uVar3 = system_context_ptr;
       ppppplStack_118 = (int64_t *****)&ppplStack_f8;
       ppplStack_f8 = (int64_t ***)pppplVar6;
       if (pppplVar6 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar6)[5])(pppplVar6);
       }
-      FUN_18005e110(uVar3,&ppplStack_f8);
+      SystemCore_TimerManager(uVar3,&ppplStack_f8);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = (int64_t *****)&ppplStack_f0;
       ppplStack_f0 = (int64_t ***)pppplVar5;
       if (pppplVar5 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar5)[5])(pppplVar5);
       }
-      FUN_18005e110(uVar3,&ppplStack_f0);
+      SystemCore_TimerManager(uVar3,&ppplStack_f0);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = &pppplStack_e8;
       pppplStack_e8 = (int64_t ****)ppppplVar7;
       if (ppppplVar7 != (int64_t *****)0x0) {
         (*(code *)(*ppppplVar7)[5])(ppppplVar7);
       }
-      FUN_18005e110(uVar3,&pppplStack_e8);
+      SystemCore_TimerManager(uVar3,&pppplStack_e8);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = &pppplStack_e0;
       pppplStack_e0 = (int64_t ****)ppppplVar4;
       if (ppppplVar4 != (int64_t *****)0x0) {
         (*(code *)(*ppppplVar4)[5])(ppppplVar4);
       }
-      FUN_18005e6a0(uVar3,&pppplStack_e0,0);
+      SystemCore_ErrorHandler(uVar3,&pppplStack_e0,0);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = (int64_t *****)&ppplStack_d8;
       ppplStack_d8 = (int64_t ***)pppplVar6;
       if (pppplVar6 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar6)[5])(pppplVar6);
       }
-      FUN_18005e6a0(uVar3,&ppplStack_d8,0);
+      SystemCore_ErrorHandler(uVar3,&ppplStack_d8,0);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = (int64_t *****)&ppplStack_d0;
       ppplStack_d0 = (int64_t ***)pppplVar5;
       if (pppplVar5 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar5)[5])(pppplVar5);
       }
-      FUN_18005e6a0(uVar3,&ppplStack_d0,0);
+      SystemCore_ErrorHandler(uVar3,&ppplStack_d0,0);
       uVar3 = system_context_ptr;
       ppppplStackX_20 = (int64_t *****)&ppppplStack_118;
       ppppplStack_118 = ppppplVar7;
       if (ppppplVar7 != (int64_t *****)0x0) {
         (*(code *)(*ppppplVar7)[5])(ppppplVar7);
       }
-      FUN_18005e6a0(uVar3,&ppppplStack_118,0);
+      SystemCore_ErrorHandler(uVar3,&ppppplStack_118,0);
     }
     else {
       (*(code *)(*ppppplVar4)[0xc])(ppppplVar4);
@@ -363,7 +371,7 @@ void FUN_1804db240(int64_t param_1,int64_t param_2)
           }
           lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_2 + 0x28));
           CoreEngineDataTransformer(lVar7 + 0x20,&puStack_80);
-          lVar4 = FUN_1800590b0(param_2,acStackX_18,lVar7 + 0x20);
+          lVar4 = SystemCore_SecurityValidator(param_2,acStackX_18,lVar7 + 0x20);
           if (acStackX_18[0] != '\0') {
             if (lVar4 == param_2) goto LAB_1804db572;
             if (*(int *)(lVar4 + 0x30) == 0) goto LAB_1804db567;
@@ -692,7 +700,7 @@ void FUN_1804db620(int64_t param_1,uint64_t param_2)
   puVar7[5] = 0;
   puVar7[6] = 0;
   puVar7[7] = 0;
-  FUN_1800b9f60(puVar7);
+  SystemCore_Parser(puVar7);
   puVar8 = (int32_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x34,4,3);
   *puVar8 = 0;
   puVar8[1] = 0;
@@ -702,7 +710,7 @@ void FUN_1804db620(int64_t param_1,uint64_t param_2)
   puVar8[5] = 0;
   puVar8[6] = 0;
   puVar8[7] = 0;
-  uStack_120 = FUN_1800b9f60(puVar8);
+  uStack_120 = SystemCore_Parser(puVar8);
   puVar10 = *(uint64_t **)(param_1 + 0x70);
   puStack_138 = puVar6;
   cStack_130 = cVar16;

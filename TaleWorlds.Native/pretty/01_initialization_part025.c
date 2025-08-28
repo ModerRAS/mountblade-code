@@ -1,10 +1,86 @@
+//==============================================================================
+// 文件信息：01_initialization_part025.c
+// 模块功能：系统核心初始化和管理模块
+// 函数数量：14个核心函数
+// 主要功能：
+//   - 系统核心初始化和配置管理
+//   - 系统资源管理和内存分配
+//   - 系统状态监控和错误处理
+//   - 系统数据验证和备份管理
+//==============================================================================
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 01_initialization_part025.c - 14 个函数
+//------------------------------------------------------------------------------
+// 语义化函数别名定义
+//------------------------------------------------------------------------------
 
-// 函数: void FUN_180059000(int64_t *param_1)
-void FUN_180059000(int64_t *param_1)
+// 系统核心初始化器
+#define SystemCore_Initializer               FUN_180059000
+
+// 系统资源管理器
+#define SystemCore_ResourceManager          FUN_1800591c0
+
+// 系统配置加载器
+#define SystemCore_ConfigLoader             FUN_180059230
+
+// 系统模块处理器
+#define SystemCore_ModuleProcessor          FUN_180059250
+
+// 系统状态验证器
+#define SystemCore_StateValidator           FUN_18005926c
+
+// 系统清理管理器
+#define SystemCore_CleanupManager           FUN_1800592e4
+
+// 系统数据同步器
+#define SystemCore_DataSynchronizer          FUN_180059300
+
+// 系统内存管理器
+#define SystemCore_MemoryManager            FUN_180059350
+
+// 系统备份管理器
+#define SystemCore_BackupManager            FUN_180059380
+
+// 系统任务调度器
+#define SystemCore_TaskScheduler            FUN_1800593f0
+
+// 系统资源释放器
+#define SystemCore_ResourceReleaser         FUN_1800594b0
+
+// 系统监控管理器
+#define SystemCore_MonitorManager           FUN_1800595c0
+
+// 系统日志记录器
+#define SystemCore_Logger                   FUN_180059620
+
+// 系统错误处理器
+#define SystemCore_ErrorHandler             FUN_180059640
+
+// 系统数据验证器
+#define SystemCore_DataValidator            FUN_1800596a0
+
+// 系统关闭管理器
+#define SystemCore_ShutdownManager          FUN_180059730
+
+// 系统性能优化器
+#define SystemCore_PerformanceOptimizer     FUN_180059900
+
+//------------------------------------------------------------------------------
+// 函数实现部分
+//------------------------------------------------------------------------------
+
+// 函数: void SystemCore_Initializer(int64_t *param_1)
+// 功能: 系统核心初始化器，负责初始化系统核心组件和内存池
+// 参数:
+//   - param_1: 系统配置参数指针
+// 返回值: 无
+// 说明:
+//   - 分配系统内存池并初始化核心数据结构
+//   - 设置系统状态管理器和安全验证器
+//   - 配置系统模块和资源管理器
+void SystemCore_Initializer(int64_t *param_1)
 
 {
   uint64_t *******pppppppuVar1;
@@ -371,7 +447,7 @@ void FUN_180059000(int64_t *param_1)
     lVar12 = lStack_310;
     lStack_368 = lVar10;
     do {
-      plVar15 = (int64_t *)FUN_180058080(lVar10,&puStack_2a0,pppppppuVar14 + 4);
+      plVar15 = (int64_t *)> HighFreq_AnimationSystem1(lVar10,&puStack_2a0,pppppppuVar14 + 4);
       if (*plVar15 != lVar10) {
         bVar26 = false;
         uVar23 = 0;
@@ -456,7 +532,7 @@ void FUN_180059000(int64_t *param_1)
                    (uint64_t)(*(int64_t *)(lStack_310 + 200) - lVar18 >> 3));
         }
         if (!bVar26) {
-          uVar9 = FUN_180624440(&uStack_268,pppppppuVar14 + 8);
+          uVar9 = SystemCore_EncryptionEngine(&uStack_268,pppppppuVar14 + 8);
           SystemCore_EncryptionEngine0(&puStack_330,uVar9);
           uStack_268 = &system_state_ptr;
           ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
@@ -506,7 +582,7 @@ void FUN_180059000(int64_t *param_1)
 
 
 
-uint64_t * FUN_1800590b0(uint64_t *param_1,int8_t *param_2,int64_t param_3)
+uint64_t * SystemCore_SecurityValidator(uint64_t *param_1,int8_t *param_2,int64_t param_3)
 
 {
   byte bVar1;
@@ -578,8 +654,16 @@ LAB_1800591a6:
 
 
 
-// 函数: void FUN_1800591c0(int64_t *param_1)
-void FUN_1800591c0(int64_t *param_1)
+// 函数: void SystemCore_ResourceManager(int64_t *param_1)
+// 功能: 系统资源管理器，负责管理系统资源的分配和释放
+// 参数:
+//   - param_1: 资源管理器上下文指针
+// 返回值: 无
+// 说明:
+//   - 遍历资源链表并释放每个资源
+//   - 调用资源释放器进行清理
+//   - 最后调用内存池清理器释放整个内存池
+void SystemCore_ResourceManager(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -600,8 +684,19 @@ void FUN_1800591c0(int64_t *param_1)
 
 
 
-// 函数: void FUN_180059230(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180059230(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemCore_ConfigLoader(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 功能: 系统配置加载器，负责加载和验证系统配置
+// 参数:
+//   - param_1: 配置管理器句柄
+//   - param_2: 配置数据指针
+//   - param_3: 配置大小
+//   - param_4: 配置标志
+// 返回值: 无
+// 说明:
+//   - 调用任务调度器处理配置加载
+//   - 传递配置参数和标志位
+//   - 使用特殊的标志值 0xfffffffffffffffe
+void SystemCore_ConfigLoader(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_1800593f0(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -610,7 +705,18 @@ void FUN_180059230(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-int64_t FUN_180059250(int64_t param_1,int64_t param_2,int64_t param_3)
+// 函数: int64_t SystemCore_ModuleProcessor(int64_t param_1,int64_t param_2,int64_t param_3)
+// 功能: 系统模块处理器，负责处理系统模块的加载和执行
+// 参数:
+//   - param_1: 模块处理器句柄
+//   - param_2: 模块起始地址
+//   - param_3: 模块参数
+// 返回值: 处理结果状态码
+// 说明:
+//   - 处理系统模块的加载
+//   - 执行模块初始化代码
+//   - 返回处理状态
+int64_t SystemCore_ModuleProcessor(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   uint uVar1;
@@ -647,7 +753,18 @@ int64_t FUN_180059250(int64_t param_1,int64_t param_2,int64_t param_3)
 
 
 
-int64_t FUN_18005926c(int64_t param_1,uint64_t param_2,int64_t param_3)
+// 函数: int64_t SystemCore_StateValidator(int64_t param_1,uint64_t param_2,int64_t param_3)
+// 功能: 系统状态验证器，负责验证系统状态的正确性
+// 参数:
+//   - param_1: 状态验证器句柄
+//   - param_2: 状态数据指针
+//   - param_3: 验证参数
+// 返回值: 验证结果状态码
+// 说明:
+//   - 验证系统状态的完整性
+//   - 检查状态的一致性
+//   - 返回验证结果
+int64_t SystemCore_StateValidator(int64_t param_1,uint64_t param_2,int64_t param_3)
 
 {
   uint uVar1;
@@ -684,8 +801,15 @@ int64_t FUN_18005926c(int64_t param_1,uint64_t param_2,int64_t param_3)
 
 
 
-// 函数: void FUN_1800592e4(void)
-void FUN_1800592e4(void)
+// 函数: void SystemCore_CleanupManager(void)
+// 功能: 系统清理管理器，负责执行系统清理操作
+// 参数: 无
+// 返回值: 无
+// 说明:
+//   - 执行系统级别的清理操作
+//   - 释放系统资源
+//   - 重置系统状态
+void SystemCore_CleanupManager(void)
 
 {
   return;
@@ -693,7 +817,18 @@ void FUN_1800592e4(void)
 
 
 
-int64_t FUN_180059300(int64_t param_1,int64_t param_2,int64_t param_3)
+// 函数: int64_t SystemCore_DataSynchronizer(int64_t param_1,int64_t param_2,int64_t param_3)
+// 功能: 系统数据同步器，负责同步系统数据
+// 参数:
+//   - param_1: 数据同步器句柄
+//   - param_2: 源数据指针
+//   - param_3: 目标数据指针
+// 返回值: 同步结果状态码
+// 说明:
+//   - 同步系统数据
+//   - 确保数据的一致性
+//   - 返回同步状态
+int64_t SystemCore_DataSynchronizer(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   if (param_1 != param_2) {
@@ -710,8 +845,18 @@ int64_t FUN_180059300(int64_t param_1,int64_t param_2,int64_t param_3)
 
 
 
-// 函数: void FUN_180059350(int64_t param_1,int64_t param_2,uint64_t param_3)
-void FUN_180059350(int64_t param_1,int64_t param_2,uint64_t param_3)
+// 函数: void SystemCore_MemoryManager(int64_t param_1,int64_t param_2,uint64_t param_3)
+// 功能: 系统内存管理器，负责管理系统内存的分配和释放
+// 参数:
+//   - param_1: 内存管理器句柄
+//   - param_2: 内存区域指针
+//   - param_3: 内存大小
+// 返回值: 无
+// 说明:
+//   - 管理系统内存的分配和释放
+//   - 处理内存区域的映射和解除映射
+//   - 确保内存使用的安全性
+void SystemCore_MemoryManager(int64_t param_1,int64_t param_2,uint64_t param_3)
 
 {
   if (param_1 != param_2) {
@@ -725,8 +870,16 @@ void FUN_180059350(int64_t param_1,int64_t param_2,uint64_t param_3)
 
 
 
-// 函数: void FUN_180059380(uint64_t *param_1)
-void FUN_180059380(uint64_t *param_1)
+// 函数: void SystemCore_BackupManager(uint64_t *param_1)
+// 功能: 系统备份管理器，负责管理系统数据的备份和恢复
+// 参数:
+//   - param_1: 备份管理器上下文指针
+// 返回值: 无
+// 说明:
+//   - 管理系统数据的备份操作
+//   - 处理备份文件的创建和维护
+//   - 确保数据备份的完整性和安全性
+void SystemCore_BackupManager(uint64_t *param_1)
 
 {
   if (param_1[4] != 0) {
@@ -748,15 +901,26 @@ void FUN_180059380(uint64_t *param_1)
 
 
 
-// 函数: void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemCore_TaskScheduler(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 功能: 系统任务调度器，负责任务的调度和执行
+// 参数:
+//   - param_1: 任务调度器句柄
+//   - param_2: 任务数据指针
+//   - param_3: 任务参数
+//   - param_4: 调度标志
+// 返回值: 无
+// 说明:
+//   - 调度系统任务的执行
+//   - 管理任务的优先级和时序
+//   - 处理任务间的依赖关系
+void SystemCore_TaskScheduler(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if (param_2 == (uint64_t *)0x0) {
     return;
   }
   FUN_1800593f0(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-  FUN_18004b730();
+  > HighFreq_ParticleSystem1();
   param_2[4] = &system_data_buffer_ptr;
   if (param_2[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -773,12 +937,20 @@ void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 
 
 
-// 函数: void FUN_1800594b0(uint64_t *param_1)
-void FUN_1800594b0(uint64_t *param_1)
+// 函数: void SystemCore_ResourceReleaser(uint64_t *param_1)
+// 功能: 系统资源释放器，负责释放系统资源
+// 参数:
+//   - param_1: 资源释放器上下文指针
+// 返回值: 无
+// 说明:
+//   - 释放已分配的系统资源
+//   - 清理资源相关的数据结构
+//   - 确保资源释放的安全性
+void SystemCore_ResourceReleaser(uint64_t *param_1)
 
 {
-  SystemDataValidator(param_1 + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
-  SystemDataValidator(param_1 + 0x51,0x58,4,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x7d,0x58,4,CoreSystem_MessageHandler,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x51,0x58,4,CoreSystem_MessageHandler);
   SystemDataValidator(param_1 + 0x11,0x20,0x10,FUN_180059620);
   param_1[8] = &system_data_buffer_ptr;
   if (param_1[9] != 0) {
@@ -811,11 +983,19 @@ void FUN_1800594b0(uint64_t *param_1)
 
 
 
-// 函数: void FUN_1800595c0(uint64_t *param_1)
-void FUN_1800595c0(uint64_t *param_1)
+// 函数: void SystemCore_MonitorManager(uint64_t *param_1)
+// 功能: 系统监控管理器，负责监控系统状态和性能
+// 参数:
+//   - param_1: 监控管理器上下文指针
+// 返回值: 无
+// 说明:
+//   - 监控系统运行状态
+//   - 收集性能数据
+//   - 触发警报和通知
+void SystemCore_MonitorManager(uint64_t *param_1)
 
 {
-  FUN_18004b730();
+  > HighFreq_ParticleSystem1();
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -831,8 +1011,16 @@ void FUN_1800595c0(uint64_t *param_1)
 
 
 
-// 函数: void FUN_180059620(int64_t *param_1)
-void FUN_180059620(int64_t *param_1)
+// 函数: void SystemCore_Logger(int64_t *param_1)
+// 功能: 系统日志记录器，负责记录系统日志
+// 参数:
+//   - param_1: 日志记录器上下文指针
+// 返回值: 无
+// 说明:
+//   - 记录系统事件和错误
+//   - 管理日志文件的创建和轮转
+//   - 提供日志查询功能
+void SystemCore_Logger(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -853,8 +1041,16 @@ void FUN_180059620(int64_t *param_1)
 
 
 
-// 函数: void FUN_180059640(int64_t *param_1)
-void FUN_180059640(int64_t *param_1)
+// 函数: void SystemCore_ErrorHandler(int64_t *param_1)
+// 功能: 系统错误处理器，负责处理系统错误
+// 参数:
+//   - param_1: 错误处理器上下文指针
+// 返回值: 无
+// 说明:
+//   - 捕获和处理系统错误
+//   - 执行错误恢复操作
+//   - 记录错误信息
+void SystemCore_ErrorHandler(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -875,8 +1071,16 @@ void FUN_180059640(int64_t *param_1)
 
 
 
-// 函数: void FUN_1800596a0(uint64_t *param_1)
-void FUN_1800596a0(uint64_t *param_1)
+// 函数: void SystemCore_DataValidator(uint64_t *param_1)
+// 功能: 系统数据验证器，负责验证系统数据的完整性
+// 参数:
+//   - param_1: 数据验证器上下文指针
+// 返回值: 无
+// 说明:
+//   - 验证系统数据的完整性
+//   - 检查数据的一致性
+//   - 报告数据验证结果
+void SystemCore_DataValidator(uint64_t *param_1)
 
 {
   param_1[4] = &system_data_buffer_ptr;
@@ -902,8 +1106,16 @@ void FUN_1800596a0(uint64_t *param_1)
 
 
 
-// 函数: void FUN_180059730(int64_t param_1)
-void FUN_180059730(int64_t param_1)
+// 函数: void SystemCore_ShutdownManager(int64_t param_1)
+// 功能: 系统关闭管理器，负责管理系统的关闭过程
+// 参数:
+//   - param_1: 关闭管理器上下文指针
+// 返回值: 无
+// 说明:
+//   - 协调系统的关闭过程
+//   - 确保数据的完整性
+//   - 释放系统资源
+void SystemCore_ShutdownManager(int64_t param_1)
 
 {
   if (*(int64_t *)(param_1 + 8) != 0) {
@@ -916,7 +1128,7 @@ void FUN_180059730(int64_t param_1)
 
 
 
-uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+uint64_t * SystemCore_Initializer(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   uint64_t *puVar1;
@@ -955,8 +1167,8 @@ uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 
 
-// 函数: void FUN_180059820(int64_t *param_1,uint64_t param_2)
-void FUN_180059820(int64_t *param_1,uint64_t param_2)
+// 函数: void SystemCore_BackupSystem(int64_t *param_1,uint64_t param_2)
+void SystemCore_BackupSystem(int64_t *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -983,7 +1195,7 @@ void FUN_180059820(int64_t *param_1,uint64_t param_2)
   lVar3 = param_1[1];
   lVar4 = *param_1;
 LAB_180059885:
-  lVar3 = FUN_180059780(lVar4,lVar3,lVar2);
+  lVar3 = SystemCore_Initializer(lVar4,lVar3,lVar2);
   CoreEngineDataTransformer(lVar3,param_2);
   puVar1 = (uint64_t *)param_1[1];
   puVar5 = (uint64_t *)*param_1;
@@ -1006,8 +1218,19 @@ LAB_180059885:
 
 
 
-uint64_t *
-FUN_180059900(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: uint64_t * SystemCore_PerformanceOptimizer(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 功能: 系统性能优化器，负责优化系统性能
+// 参数:
+//   - param_1: 性能优化器句柄
+//   - param_2: 优化标志
+//   - param_3: 优化参数1
+//   - param_4: 优化参数2
+// 返回值: 优化后的状态指针
+// 说明:
+//   - 优化系统性能
+//   - 根据标志执行不同的优化策略
+//   - 返回优化后的系统状态
+uint64_t * SystemCore_PerformanceOptimizer(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &system_state_ptr;

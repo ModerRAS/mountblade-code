@@ -1,10 +1,28 @@
+
+#define CoreEngine_ScriptingEngine CoreEngine_ScriptingEngine
+#define CoreEngine_AIController CoreEngine_AIController
+#define CoreEngine_PhysicsEngine CoreEngine_PhysicsEngine
+#define CoreEngine_InputManager CoreEngine_InputManager
+#define CoreEngine_AudioSystem CoreEngine_AudioSystem
+#define CoreEngine_RenderingEngine CoreEngine_RenderingEngine
+#define CoreEngine_NetworkHandler CoreEngine_NetworkHandler
+#define CoreEngine_SystemInitializer CoreEngine_SystemInitializer
+#define CoreEngine_ConfigLoader CoreEngine_ConfigLoader
+#define CoreEngine_ErrorHandler CoreEngine_ErrorHandler
+#define CoreEngine_StateValidator CoreEngine_StateValidator
+#define CoreEngine_ResourceManager CoreEngine_ResourceManager
+#define CoreEngine_ThreadScheduler CoreEngine_ThreadScheduler
+#define CoreEngine_PerformanceMonitor CoreEngine_PerformanceMonitor
+#define CoreEngine_MemoryManager CoreEngine_MemoryManager
+#define CoreEngine_DataProcessor CoreEngine_DataProcessor
+// 函数别名定义 - 系统核心功能\n
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 02_core_engine_part107.c - 9 个函数
 
-// 函数: void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
-void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
+// 函数: void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float param_4)
+void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float param_4)
 
 {
   int *piVar1;
@@ -37,7 +55,7 @@ void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
     bVar6 = true;
   }
   if (!bVar6) {
-    FUN_180291b40(*(uint64_t *)(unaff_RBX + 0x2e8),CONCAT44(param_1,unaff_XMM9_Da),
+    CoreEngine_AIController(*(uint64_t *)(unaff_RBX + 0x2e8),CONCAT44(param_1,unaff_XMM9_Da),
                   CONCAT44(fVar9,fVar10),0);
   }
   lVar7 = SYSTEM_DATA_MANAGER_A;
@@ -55,12 +73,12 @@ void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
   *(float *)(unaff_RBP + 0x83) = unaff_XMM8_Da - 3.0;
   *(float *)(unaff_RBP + 0x7f) = unaff_XMM9_Da + unaff_XMM14_Da;
   if ((uVar8 & 0xff000000) != 0) {
-    FUN_180293e80(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBP + 0x7f,unaff_RBP + 0x77,uVar8);
+    CoreEngine_ScriptingEngine(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBP + 0x7f,unaff_RBP + 0x77,uVar8);
   }
   if (!bVar6) {
     piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
     *piVar1 = *piVar1 + -1;
-    FUN_180291950();
+    SystemCore_ErrorHandler();
   }
   lVar7 = SYSTEM_DATA_MANAGER_A;
   if ((unaff_RDI & 2) != 0) {
@@ -87,8 +105,8 @@ void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
       *(float *)(unaff_RBP + 0x7b) = fVar9;
       *(float *)(unaff_RBP + 0x7f) = unaff_XMM9_Da + 0.5;
       *(float *)(unaff_RBP + 0x83) = param_1 + 0.5;
-      FUN_1802939e0(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar8,1);
+      UtilitiesSystem_LogManager(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
+      RenderingSystem_LightManager(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar8,1);
       *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
@@ -101,8 +119,8 @@ void FUN_1801231dc(float param_1,float param_2,float param_3,float param_4)
 
 
 
-// 函数: void FUN_1801232da(void)
-void FUN_1801232da(void)
+// 函数: void CoreEngine_ErrorHandler(void)
+void CoreEngine_ErrorHandler(void)
 
 {
   int *piVar1;
@@ -127,11 +145,11 @@ void FUN_1801232da(void)
   
   uStack0000000000000030 = 0x40000000;
   uStack0000000000000028 = 0xf;
-  FUN_180293e80(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBP + 0x7f,unaff_RBP + 0x77,in_EAX);
+  CoreEngine_ScriptingEngine(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBP + 0x7f,unaff_RBP + 0x77,in_EAX);
   if (unaff_SIL == '\0') {
     piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
     *piVar1 = *piVar1 + -1;
-    FUN_180291950();
+    SystemCore_ErrorHandler();
   }
   lVar5 = SYSTEM_DATA_MANAGER_A;
   if ((unaff_RDI & 2) != 0) {
@@ -158,8 +176,8 @@ void FUN_1801232da(void)
       *(float *)(unaff_RBP + 0x7b) = fVar7;
       *(float *)(unaff_RBP + 0x7f) = unaff_XMM9_Da + 0.5;
       *(float *)(unaff_RBP + 0x83) = unaff_XMM8_Da + 0.5;
-      FUN_1802939e0(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar6,1);
+      UtilitiesSystem_LogManager(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
+      RenderingSystem_LightManager(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar6,1);
       *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
@@ -172,8 +190,8 @@ void FUN_1801232da(void)
 
 
 
-// 函数: void FUN_18012331b(void)
-void FUN_18012331b(void)
+// 函数: void CoreEngine_ConfigLoader(void)
+void CoreEngine_ConfigLoader(void)
 
 {
   int *piVar1;
@@ -194,7 +212,7 @@ void FUN_18012331b(void)
   
   piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
   *piVar1 = *piVar1 + -1;
-  FUN_180291950();
+  SystemCore_ErrorHandler();
   lVar5 = SYSTEM_DATA_MANAGER_A;
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(int64_t *)(unaff_RBX + 0x2e8);
@@ -220,8 +238,8 @@ void FUN_18012331b(void)
       *(float *)(unaff_RBP + 0x7b) = fVar7;
       *(float *)(unaff_RBP + 0x7f) = unaff_XMM9_Da + 0.5;
       *(float *)(unaff_RBP + 0x83) = unaff_XMM8_Da + 0.5;
-      FUN_1802939e0(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar6,1);
+      UtilitiesSystem_LogManager(lVar2,unaff_RBP + 0x7f,unaff_RBP + 0x77);
+      RenderingSystem_LightManager(lVar2,*(uint64_t *)(lVar2 + 0x88),*(int32_t *)(lVar2 + 0x80),uVar6,1);
       *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
@@ -232,8 +250,8 @@ void FUN_18012331b(void)
 
 
 
-// 函数: void FUN_18012344d(void)
-void FUN_18012344d(void)
+// 函数: void CoreEngine_SystemInitializer(void)
+void CoreEngine_SystemInitializer(void)
 
 {
   return;
@@ -243,8 +261,8 @@ void FUN_18012344d(void)
 
 
 
-// 函数: void FUN_180123455(void)
-void FUN_180123455(void)
+// 函数: void CoreEngine_NetworkHandler(void)
+void CoreEngine_NetworkHandler(void)
 
 {
   return;
@@ -254,7 +272,7 @@ void FUN_180123455(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
+uint64_t * CoreEngine_RenderingEngine(uint64_t *param_1,int64_t param_2,byte *param_3)
 
 {
   byte bVar1;
@@ -282,7 +300,7 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
   *(uint64_t *)((int64_t)param_1 + 0xa4) = 0;
   param_1[0x1e] = 0;
   param_1[0x1f] = 0;
-  FUN_180120b10(param_1 + 0x20,param_2,param_3,param_2,0xfffffffffffffffe);
+  CoreEngine_ThreadScheduler(param_1 + 0x20,param_2,param_3,param_2,0xfffffffffffffffe);
   param_1[0x43] = 0;
   param_1[0x44] = 0;
   *(int32_t *)(param_1 + 0x45) = 0x7f7fffff;
@@ -316,7 +334,7 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
   param_1[0x58] = 0;
   param_1[0x59] = 0;
   param_1[0x5a] = 0;
-  FUN_18011fa30(param_1 + 0x5e,param_2 + 0x1a00);
+  CoreEngine_MemoryManager(param_1 + 0x5e,param_2 + 0x1a00);
   puVar6 = param_1 + 0x7a;
   lVar5 = 2;
   do {
@@ -328,7 +346,7 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
   *(int32_t *)((int64_t)param_1 + 0x424) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x85) = 0xff7fffff;
   *(int32_t *)((int64_t)param_1 + 0x42c) = 0xff7fffff;
-  uVar4 = FUN_1801210b0(param_3);
+  uVar4 = CoreEngine_ResourceManager(param_3);
   *param_1 = uVar4;
   uVar7 = 0xffffffff;
   bVar1 = *param_3;
@@ -343,7 +361,7 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
     pbVar2 = pbVar2 + 1;
   }
   *(uint *)(param_1 + 1) = ~uVar7;
-  FUN_18011d940(param_1 + 0x43);
+  CoreEngine_DataProcessor(param_1 + 0x43);
   *(uint64_t *)((int64_t)param_1 + 0xc) = 0;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
@@ -362,7 +380,7 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
     lVar5 = lVar5 + 1;
   } while (param_3[lVar5] != 0);
   *(int *)(param_1 + 0x10) = (int)lVar5 + 1;
-  iVar3 = FUN_180121250(&rendering_buffer_2380_ptr,0,
+  iVar3 = SystemCore_HandleInput(&rendering_buffer_2380_ptr,0,
                         *(int32_t *)(param_1[0x44] + -4 + (int64_t)*(int *)(param_1 + 0x43) * 4)
                        );
   lVar5 = SYSTEM_DATA_MANAGER_A;
@@ -435,8 +453,8 @@ uint64_t * FUN_180123460(uint64_t *param_1,int64_t param_2,byte *param_3)
 
 
 
-// 函数: void FUN_180123960(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180123960(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
@@ -490,8 +508,8 @@ void FUN_180123960(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180123a60(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180123a60(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
@@ -524,7 +542,7 @@ void FUN_180123a60(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       lVar2 = lVar2 + 0x40;
     } while (iVar3 != (int)param_1[0x59]);
   }
-  FUN_18011fab0(param_1 + 0x5e);
+  CoreEngine_PerformanceMonitor(param_1 + 0x5e);
   lVar2 = param_1[0x5a];
   if (lVar2 != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
@@ -598,8 +616,8 @@ void FUN_180123a60(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_180123bc0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180123bc0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreEngine_PhysicsEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreEngine_PhysicsEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
@@ -621,14 +639,14 @@ void FUN_180123bc0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180123c00(int64_t param_1,uint64_t param_2)
-void FUN_180123c00(int64_t param_1,uint64_t param_2)
+// 函数: void SystemCore_EventHandler(int64_t param_1,uint64_t param_2)
+void SystemCore_EventHandler(int64_t param_1,uint64_t param_2)
 
 {
   int64_t lVar1;
   int iVar2;
   
-  iVar2 = FUN_180121250(param_2,0,
+  iVar2 = SystemCore_HandleInput(param_2,0,
                         *(int32_t *)
                          (*(int64_t *)(param_1 + 0x220) + -4 +
                          (int64_t)*(int *)(param_1 + 0x218) * 4));

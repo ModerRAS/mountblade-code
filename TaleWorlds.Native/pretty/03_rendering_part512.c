@@ -1,10 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part512.c - 8 个函数
 
-// 函数: void FUN_18053f270(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
-void FUN_18053f270(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+// 函数: void RenderingSystem_BufferProcessor(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+void RenderingSystem_BufferProcessor(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   int iVar1;
@@ -96,7 +102,7 @@ FUN_18053f310(int64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t *param_
     if (plVar4 == (int64_t *)0x0) {
 LAB_18053f452:
       param_5 = puVar8;
-      FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if ((char)param_5 != '\0') {
         lVar11 = ((uint64_t)param_5 >> 0x20) * 8;
@@ -706,7 +712,7 @@ void FUN_1805401f0(int64_t param_1,char param_2,uint64_t param_3,int32_t param_4
         uStack_1c = 0x7f7fffff;
         plVar4 = (int64_t *)FUN_1800bf780();
         uVar5 = (**(code **)(*plVar4 + 0xa8))(plVar4,&plStackX_8);
-        FUN_180060b80(param_1 + 0x838,uVar5);
+        SystemCore_ChecksumValidator(param_1 + 0x838,uVar5);
         if (plStackX_8 != (int64_t *)0x0) {
           (**(code **)(*plStackX_8 + 0x38))();
         }

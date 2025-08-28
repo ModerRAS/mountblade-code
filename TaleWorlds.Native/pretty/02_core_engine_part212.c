@@ -453,7 +453,7 @@ void FUN_18018f6a0(uint64_t param_1,int64_t param_2)
   *(int8_t *)((int64_t)puVar5 + 0x42) = 0;
   uStack_640 = 0x42;
   FUN_1800c4720(alStack_618);
-  lVar6 = FUN_180624440(apuStack_2d8,&puStack_650);
+  lVar6 = SystemCore_EncryptionEngine(apuStack_2d8,&puStack_650);
   puVar11 = &system_buffer_ptr;
   if (*(void **)(lVar6 + 8) != (void *)0x0) {
     puVar11 = *(void **)(lVar6 + 8);
@@ -517,7 +517,7 @@ void FUN_18018f6a0(uint64_t param_1,int64_t param_2)
       if (iStack_660 != 0) {
         lVar6 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_2 + 0x28));
         CoreEngineDataTransformer(lVar6 + 0x20,&puStack_670);
-        lVar8 = FUN_1800590b0(param_2,acStack_678,lVar6 + 0x20);
+        lVar8 = SystemCore_SecurityValidator(param_2,acStack_678,lVar6 + 0x20);
         if (acStack_678[0] != '\0') {
           if (lVar8 == param_2) goto LAB_18018fa06;
           if (*(int *)(lVar8 + 0x30) == 0) goto LAB_18018f9fb;

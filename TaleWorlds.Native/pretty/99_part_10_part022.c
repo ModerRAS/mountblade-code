@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part022.c - 高级系统资源管理和事件处理模块
@@ -1332,15 +1333,15 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             }
             *(uint64_t *)(param_1 + -0x20) = param_5;
             lVar2 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = 3;
             *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
             lVar2 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = uStackX_8;
             *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
             lVar2 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar2 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
@@ -1348,7 +1349,7 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,&uStack_78,uStack_88);
             if (*(uint *)(param_1 + -0x60) <=
                 (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
-                FUN_1806b4470(lVar1);
+                RenderingSystem_ShaderProcessor(lVar1);
             }
         }
         else {
@@ -1391,15 +1392,15 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             lVar2 = *(int64_t *)(param_1 + -0x38);
             bStackX_9 = bVar12 | bVar6;
             uStackX_a = param_2;
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = 1;
             *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
             lVar2 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(byte **)(lVar2 + 0x18) = bVar12 | bVar6;
             *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
             lVar2 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+            SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar2 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
@@ -1407,7 +1408,7 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             FUN_1806b2670(&uStack_70,param_1 + -0x38,&uStackX_8);
             if (*(uint *)(param_1 + -0x60) <=
                 (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
-                FUN_1806b4470(lVar1);
+                RenderingSystem_ShaderProcessor(lVar1);
             }
         }
         if (uStack_80 != 0) {
@@ -1462,15 +1463,15 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             }
             *(uint64_t *)(param_1 + -0x20) = param_6;
             lVar4 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = 4;
             *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
             lVar4 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = uVar10;
             *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
             lVar4 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar4 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
@@ -1516,15 +1517,15 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             *(uint64_t *)(param_1 + -0x20) = param_6;
             lVar4 = *(int64_t *)(param_1 + -0x38);
             bStack_83 = bVar9 | bVar12;
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = 2;
             *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
             lVar4 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(byte **)(lVar4 + 0x18) = bVar9 | bVar12;
             *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
             lVar4 = *(int64_t *)(param_1 + -0x38);
-            FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
+            SystemController(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar4 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
@@ -1533,7 +1534,7 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
         }
         if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
         {
-            FUN_1806b4470(lVar1);
+            RenderingSystem_ShaderProcessor(lVar1);
         }
         if (lVar8 != 0) {
             // WARNING: Subroutine does not return

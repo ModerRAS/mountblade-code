@@ -1,3 +1,4 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part314.c - 1 个函数
@@ -168,7 +169,7 @@ void FUN_180434565(void)
         puVar53[0x12] = (uint)fVar22;
         puVar53[0x13] = (uint)fVar23;
       }
-      puVar48 = (uint64_t *)FUN_18022a890(unaff_RBP + 0x6c,unaff_R14B);
+      puVar48 = (uint64_t *)SystemErrorHandler(unaff_RBP + 0x6c,unaff_R14B);
       uVar43 = *(uint64_t *)(pfVar54 + -0x108);
       uVar44 = *(uint64_t *)(pfVar54 + -0x106);
       uVar45 = puVar48[1];
@@ -714,7 +715,7 @@ void FUN_180434565(void)
       puVar53[8] = (uint)fVar22;
       *puVar53 = 0;
       if (bVar67) {
-        FUN_1802feba0();
+        RenderingSystem_DrawPrimitive();
       }
       lVar66 = lVar66 + 1;
       pfVar54 = pfVar54 + 4;

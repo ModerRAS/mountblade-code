@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part194.c - 12 个函数
 
@@ -497,7 +503,7 @@ void FUN_18037ef00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_18037f020(int64_t param_1,uint64_t *param_2,int *param_3)
+uint64_t * SystemCore_MessageQueueManager(int64_t param_1,uint64_t *param_2,int *param_3)
 
 {
   int iVar1;
@@ -527,7 +533,7 @@ uint64_t * FUN_18037f020(int64_t param_1,uint64_t *param_2,int *param_3)
       piVar5[3] = iVar4;
       piVar5[4] = 0;
       piVar5[5] = 0;
-      FUN_18066c220(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if (acStackX_8[0] != '\0') {
         uVar8 = (uint64_t)(int64_t)iVar1 % (uint64_t)uStackX_c;
@@ -996,14 +1002,14 @@ void FUN_18037f790(int64_t param_1,int64_t param_2,code *param_3)
         if (cVar1 != '\0') {
           lVar6 = lVar4 - lVar2;
           do {
-            FUN_18005d190(lVar5,lVar2);
+            SystemScheduler(lVar5,lVar2);
             *(int32_t *)(lVar6 + 0x20 + lVar2) = *(int32_t *)(lVar2 + 0x20);
             lVar5 = lVar5 + -0x28;
             lVar2 = lVar2 + -0x28;
             cVar1 = (*param_3)(&puStack_60,lVar2);
           } while (cVar1 != '\0');
         }
-        FUN_18005d190(lVar5,&puStack_60);
+        SystemScheduler(lVar5,&puStack_60);
         *(int32_t *)(lVar5 + 0x20) = uStack_40;
         puStack_60 = &system_data_buffer_ptr;
         if (lStack_58 != 0) {

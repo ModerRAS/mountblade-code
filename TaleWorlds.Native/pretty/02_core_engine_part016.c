@@ -1,3 +1,11 @@
+/* SystemCore_BackupSystem - RenderingSystem_ConfigProcessor */
+#define RenderingSystem_ConfigProcessor SystemCore_BackupSystem
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -102,7 +110,7 @@
 // 系统组件管理函数别名
 #define CoreEngineComponentProcessor FUN_1800574b0      // 核心引擎组件处理器
 #define CoreEngineResourceManager FUN_1800582b0         // 核心引擎资源管理器
-#define CoreEngineStateManager FUN_180058370            // 核心引擎状态管理器
+#define CoreEngineStateManager RenderingSystem_CameraSystem            // 核心引擎状态管理器
 #define CoreEngineErrorHandler FUN_180058420            // 核心引擎错误处理器
 #define CoreEngineSystemInitializer FUN_180058210       // 核心引擎系统初始化器
 
@@ -125,11 +133,11 @@
 #define CoreEngineResourceMonitor FUN_1800577c0           // 核心引擎资源监控器
 #define CoreEngineSystemValidator FUN_1800577f6          // 核心引擎系统验证器
 #define CoreEngineMemoryValidator FUN_180057814           // 核心引擎内存验证器
-#define CoreEngineStructureManager FUN_180057830         // 核心引擎结构管理器
+#define CoreEngineStructureManager DataTransformer0         // 核心引擎结构管理器
 
 // 高级系统函数别名
 #define CoreEngineSystemOptimizer FUN_1800578a0          // 核心引擎系统优化器
-#define CoreEngineDataAnalyzer FUN_180057980              // 核心引擎数据分析器
+#define CoreEngineDataAnalyzer CoreSystem_DataCollector              // 核心引擎数据分析器
 #define CoreEngineMemoryAnalyzer FUN_180057b00           // 核心引擎内存分析器
 #define CoreEngineStructureCleaner FUN_180057bf0          // 核心引擎结构清理器
 #define CoreEngineBufferProcessor FUN_180057cb0           // 核心引擎缓冲区处理器
@@ -148,12 +156,12 @@
 #define CoreEngineMemoryTransfer SystemCore_NetworkHandler0             // 核心引擎内存传输器
 #define CoreEngineDataTransformer FUN_180628210            // 核心引擎数据转换器
 #define CoreEngineSystemConfigurator2 SystemCore_NetworkHandler0        // 核心引擎系统配置器2
-#define CoreEngineResourceAllocator FUN_1800590b0         // 核心引擎资源分配器
+#define CoreEngineResourceAllocator SystemCore_SecurityValidator         // 核心引擎资源分配器
 #define CoreEngineSystemInitializer2 FUN_18005d1f0        // 核心引擎系统初始化器2
 #define CoreEngineDataProcessor2 SystemConfigProcessor             // 核心引擎数据处理器2
 #define CoreEngineSystemCleaner2 FUN_180174950            // 核心引擎系统清理器2
-#define CoreEngineParameterHandler FUN_180059820          // 核心引擎参数处理器
-#define CoreEngineErrorHandler2 FUN_18005d580             // 核心引擎错误处理器2
+#define CoreEngineParameterHandler SystemCore_BackupSystem          // 核心引擎参数处理器
+#define CoreEngineErrorHandler2 DataSerializationEngine             // 核心引擎错误处理器2
 #define CoreEngineSystemValidator2 FUN_180090420          // 核心引擎系统验证器2
 #define CoreEngineMemoryCleaner2 FUN_180090380            // 核心引擎内存清理器2
 
@@ -967,8 +975,8 @@ void FUN_180057814(void)
 
 
 
-// 函数: void FUN_180057830(int64_t *param_1)
-void FUN_180057830(int64_t *param_1)
+// 函数: void DataTransformer0(int64_t *param_1)
+void DataTransformer0(int64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -1006,7 +1014,7 @@ void FUN_1800578a0(void)
   if (system_operation_state == (uint64_t *)0x0) {
     return;
   }
-  FUN_180057830();
+  DataTransformer0();
   if ((int64_t *)puVar2[0x30b] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar2[0x30b] + 0x38))();
   }
@@ -1052,8 +1060,8 @@ void FUN_1800578a0(void)
 
 
 
-// 函数: void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   char cVar1;
@@ -1085,7 +1093,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
           SystemCore_NetworkHandler0();
         }
         else {
-          FUN_180059820(param_2,&puStack_50);
+          RenderingSystem_ConfigProcessor(param_2,&puStack_50);
         }
         puStack_50 = &system_data_buffer_ptr;
         if (lStack_48 != 0) {
@@ -1110,7 +1118,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,&puStack_50);
+        RenderingSystem_ConfigProcessor(param_2,&puStack_50);
       }
       puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 != 0) {
@@ -1140,7 +1148,7 @@ int64_t * FUN_180057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
   
   lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
   SystemCore_NetworkHandler0(lVar3 + 0x20,param_3);
-  lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
+  lVar4 = SystemCore_SecurityValidator(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
     FUN_18005d1f0();
     *param_2 = lVar4;
@@ -1256,8 +1264,8 @@ void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   param_1[0x123] = (int64_t)&system_state_ptr;
   CoreEngineStateManager(param_1 + 0x11d,param_1[0x11f],param_3,param_4,uVar3);
   if (param_1[0x119] == 0) {
-    FUN_18005d580();
-    FUN_18005d580();
+    DataSerializationEngine();
+    DataSerializationEngine();
     FUN_180058710(param_1 + 0x10b,param_1[0x10d]);
     param_1[0x87] = (int64_t)&system_state_ptr;
     param_1[4] = (int64_t)&system_state_ptr;

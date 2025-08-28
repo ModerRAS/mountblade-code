@@ -1,3 +1,11 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -440,7 +448,7 @@ void FUN_180364280(int64_t param_1,int64_t param_2,int64_t *param_3)
     *(int8_t *)((int64_t)puVar7 + 6) = 0;
     uStack_148 = 6;
     uStack_140._0_4_ = uVar5;
-    FUN_180066df0(param_3,&puStack_158);
+    DataEncryptionHandler0(param_3,&puStack_158);
     puStack_158 = &system_data_buffer_ptr;
     if (puStack_150 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -460,7 +468,7 @@ void FUN_180364280(int64_t param_1,int64_t param_2,int64_t *param_3)
     *puVar7 = 0x786f42;
     uStack_128 = 3;
     uStack_120._0_4_ = uVar5;
-    FUN_180066df0(param_3,&plStack_138);
+    DataEncryptionHandler0(param_3,&plStack_138);
     plStack_138 = (int64_t *)&system_data_buffer_ptr;
     if (plStack_130 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -549,7 +557,7 @@ LAB_18036460e:
             if (lVar13 != 0) goto LAB_18036460e;
             puStack_110 = (uint64_t *)0x0;
           }
-          puStack_f0 = (uint64_t *)FUN_180059780(lVar14,puVar11,puStack_110);
+          puStack_f0 = (uint64_t *)SystemCore_Initializer(lVar14,puVar11,puStack_110);
           *puStack_f0 = &system_state_ptr;
           puStack_f0[1] = 0;
           *(int32_t *)(puStack_f0 + 2) = 0;
@@ -613,7 +621,7 @@ LAB_18036460e:
         CoreEngineDataTransformer();
       }
       else {
-        FUN_180059820(param_3,&plStack_138);
+        SystemCore_BackupSystem(param_3,&plStack_138);
       }
       plStack_138 = (int64_t *)&system_data_buffer_ptr;
       if (plStack_130 != (int64_t *)0x0) {
@@ -744,7 +752,7 @@ void FUN_180364810(int64_t *param_1)
     uStack_70 = *(uint64_t *)(lVar3 + 0x88) & 0xffffffff;
     uStack_5c = 0;
     uStack_4c = 0x3f800000;
-    FUN_180084760(&uStack_88,&fStack_c8);
+    SystemCore_PerformanceMonitor(&uStack_88,&fStack_c8);
     fStack_98 = fStack_c8 * fStack_d8 + fStack_b8 * fStack_d4 + fStack_a8 * fStack_d0 + fStack_98;
     fStack_94 = fStack_c4 * fStack_d8 + fStack_b4 * fStack_d4 + fStack_a4 * fStack_d0 + fStack_94;
     fStack_90 = fStack_c0 * fStack_d8 + fStack_b0 * fStack_d4 + fStack_a0 * fStack_d0 + fStack_90;

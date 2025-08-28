@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -31,7 +32,7 @@ void FUN_1805435c0(int64_t param_1,byte *param_2,int64_t param_3)
                           *(int32_t *)(param_2 + 0x20),*(int32_t *)(param_3 + 0x53c),0,
                           0xfffffffffffffffe);
     uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar8 = (int64_t *)FUN_180275090(uVar7);
+    plVar8 = (int64_t *)RenderingSystem_ShaderManager(uVar7);
     plStackX_20 = plVar8;
     if (plVar8 != (int64_t *)0x0) {
       (**(code **)(*plVar8 + 0x28))(plVar8);
@@ -56,7 +57,7 @@ void FUN_1805435c0(int64_t param_1,byte *param_2,int64_t param_3)
         do {
           lVar2 = *(int64_t *)(uVar9 + (int64_t)uStack_58);
           uVar6 = FUN_18022cb40(*(uint64_t *)(lVar2 + 0x1b8),aplStackX_10);
-          FUN_180076910(lVar2,uVar6);
+          UltraHighFreq_SecurityValidator1(lVar2,uVar6);
           if (aplStackX_10[0] != (int64_t *)0x0) {
             (**(code **)(*aplStackX_10[0] + 0x38))();
           }
@@ -1026,7 +1027,7 @@ void FUN_180544640(int64_t param_1,int8_t param_2)
   uint64_t *puVar3;
   int64_t lVar4;
   
-  FUN_1802ee720(*(uint64_t *)(param_1 + 0x8a8));
+  RenderingSystem_UpdateCamera(*(uint64_t *)(param_1 + 0x8a8));
   lVar1 = *(int64_t *)(param_1 + 0x930);
   lVar2 = *(int64_t *)(lVar1 + 0x2b28);
   puVar3 = *(uint64_t **)

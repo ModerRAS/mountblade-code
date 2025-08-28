@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part430.c - 7 个函数
 
 // 函数: void FUN_180500bd0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *param_4)
@@ -250,7 +254,7 @@ uint64_t FUN_180501090(uint64_t *param_1,uint64_t *param_2)
               param_2[6] = puVar3[6];
               lVar19 = lVar4;
               FUN_18033dc50(param_2 + 7,puVar3 + 7);
-              SystemDataValidator(puVar3 + 7,0x30,4,FUN_18004a130,uVar18,lVar19,uVar12);
+              SystemDataValidator(puVar3 + 7,0x30,4,SystemCore_MemoryManager,uVar18,lVar19,uVar12);
               *(int8_t *)((lVar4 - uVar14) + 0x202f) = 1;
               cVar9 = '\x01';
               goto LAB_18050127e;
@@ -622,7 +626,7 @@ uint64_t FUN_180501aa0(int64_t param_1,uint64_t param_2)
         uVar8 = (uint64_t)((uint)uVar4 & 0x1f);
         lVar3 = uVar8 * 0x100 + lVar6;
         FUN_180506460(param_2,lVar3,plVar1,lVar5,0xfffffffffffffffe,lVar6,uVar4);
-        SystemDataValidator(lVar3 + 0x38,0x30,4,FUN_18004a130);
+        SystemDataValidator(lVar3 + 0x38,0x30,4,SystemCore_MemoryManager);
         *(int8_t *)((lVar6 - uVar8) + 0x202f) = 1;
         return 1;
       }

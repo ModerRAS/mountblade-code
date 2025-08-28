@@ -1,3 +1,11 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* FUN_18016d400 - RenderingSystem_ResourceBlockProcessor */
+#define RenderingSystem_ResourceBlockProcessor FUN_18016d400
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -59,7 +67,7 @@ void FUN_18016c97a(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t 
   *(int8_t *)(lVar17 + 0x1c14) = 1;
   *(uint64_t *)(lVar17 + 0x1c04) = *param_3;
   *(int32_t *)(lVar17 + 0x1bd4) = 1;
-  FUN_1801299b0(&ui_system_data_1792_ptr,0,0x907);
+  CoreSystem_Validator(&ui_system_data_1792_ptr,0,0x907);
   lVar17 = SYSTEM_DATA_MANAGER_A;
   *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar17 = *(int64_t *)(lVar17 + 0x1af8);
@@ -155,7 +163,7 @@ void FUN_18016c97a(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t 
     uVar19 = *(int32_t *)(*(int64_t *)(lVar17 + 0x1c0) + -8 + (int64_t)iVar8 * 4);
   }
   *(int32_t *)(lVar17 + 0x1a8) = uVar19;
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar10 = SYSTEM_DATA_MANAGER_A;
   lVar14 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar17 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -277,7 +285,7 @@ void FUN_18016cacd(void)
     unaff_R12 = (uint64_t)*(uint *)(*(int64_t *)(lVar9 + 0x1c0) + -8 + (int64_t)iVar7 * 4);
   }
   *(int *)(lVar9 + 0x1a8) = (int)unaff_R12;
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar11 = SYSTEM_DATA_MANAGER_A;
   lVar14 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar9 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -333,7 +341,7 @@ void FUN_18016cc64(void)
     unaff_R12D = *(int32_t *)(*(int64_t *)(lVar2 + 0x1c0) + -8 + (int64_t)iVar1 * 4);
   }
   *(int32_t *)(lVar2 + 0x1a8) = unaff_R12D;
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar3 = SYSTEM_DATA_MANAGER_A;
   lVar5 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar2 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -372,7 +380,7 @@ void FUN_18016cccb(int64_t param_1,int64_t param_2)
   
   *(int32_t *)(param_2 + 0x1a8) =
        *(int32_t *)(*(int64_t *)(param_2 + 0x1c0) + -8 + param_1 * 4);
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar2 = SYSTEM_DATA_MANAGER_A;
   lVar3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -720,8 +728,8 @@ void FUN_18016d200(int64_t param_1,int64_t param_2,int8_t param_3)
 
 
 
-// 函数: void FUN_18016d400(int64_t *param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
-void FUN_18016d400(int64_t *param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
+// 函数: void RenderingSystem_ResourceBlockProcessor(int64_t *param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
+void RenderingSystem_ResourceBlockProcessor(int64_t *param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
 
 {
   int32_t uVar1;
@@ -797,8 +805,8 @@ LAB_18016d59c:
   *(int32_t *)(param_3 + 0x10) = 0;
   *(uint64_t *)(param_3 + 8) = 0;
   *(uint64_t *)(param_3 + 0x18) = 0;
-  lVar7 = FUN_180059780(*param_1,param_2,lVar6);
-  lVar7 = FUN_180059780(param_2,param_1[1],lVar7 + 0x20);
+  lVar7 = SystemCore_Initializer(*param_1,param_2,lVar6);
+  lVar7 = SystemCore_Initializer(param_2,param_1[1],lVar7 + 0x20);
   puVar5 = (uint64_t *)param_1[1];
   puVar8 = (uint64_t *)*param_1;
   if (puVar8 != puVar5) {

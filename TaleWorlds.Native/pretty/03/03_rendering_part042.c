@@ -703,7 +703,7 @@ static float read_next_operand(render_data_stream_t* stream, uint8_t** current_p
 #define FUN_18028e460 create_render_object_ex
 #define FUN_18028e48d batch_render_objects
 #define FUN_18028e537 render_system_placeholder
-#define FUN_18028e550 render_coordinate_interpolation
+#define SystemCore_ProcessEvents render_coordinate_interpolation
 #define FUN_18028e569 render_advanced_interpolation
 #define FUN_18028e62b render_simple_interpolation
 #define FUN_18028e67f render_nop_operation

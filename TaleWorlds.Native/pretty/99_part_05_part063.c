@@ -326,8 +326,8 @@ int64_t * FUN_1802ffb00(uint64_t param_1,int64_t *param_2,int8_t param_3)
   uStack_1a8 = 0;
   uStack_1a0 = 3;
   plStackX_10 = param_2;
-  FUN_1802e8c60(param_2,&lStack_1b8);
-  FUN_18005ea90(&lStack_1b8,&plStackX_10);
+  NetworkSystem_SecurityManager(param_2,&lStack_1b8);
+  SystemSecurity_Manager(&lStack_1b8,&plStackX_10);
   uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xf0,8,3);
   plVar3 = (int64_t *)FUN_18039dda0(uVar2);
   if (plVar3 != (int64_t *)0x0) {
@@ -361,7 +361,7 @@ int64_t * FUN_1802ffb00(uint64_t param_1,int64_t *param_2,int8_t param_3)
           uStack_164 = uStack_124;
           uStack_160 = uStack_120;
           uStack_15c = 0x3f800000;
-          FUN_180084760(&uStack_198,auStack_78);
+          SystemCore_PerformanceMonitor(&uStack_198,auStack_78);
           uStack_108 = *(uint64_t *)(lVar1 + 0x70);
           uStack_f8 = *(uint64_t *)(lVar1 + 0x80);
           uStack_e8 = *(int32_t *)(lVar1 + 0x90);
@@ -374,7 +374,7 @@ int64_t * FUN_1802ffb00(uint64_t param_1,int64_t *param_2,int8_t param_3)
           uStack_f0 = *(uint64_t *)(lVar1 + 0x88) & 0xffffffff;
           uStack_dc = 0;
           uStack_cc = 0x3f800000;
-          puVar4 = (uint64_t *)FUN_1800946d0(&uStack_108,&uStack_198,auStack_78);
+          puVar4 = (uint64_t *)ErrorRecoverySystem(&uStack_108,&uStack_198,auStack_78);
           uStack_b8 = *puVar4;
           uStack_b0 = puVar4[1];
           uStack_a8 = puVar4[2];
@@ -605,8 +605,8 @@ void FUN_1802fffb0(int64_t param_1,char param_2)
         } while ((uint64_t)(int64_t)(int)uVar5 <
                  (uint64_t)(*(int64_t *)(puVar3 + 0x2e) - *(int64_t *)puVar1 >> 3));
       }
-      FUN_1800b8500(puVar1);
-      FUN_1800b8500(puVar2);
+      SystemCore_Controller(puVar1);
+      SystemCore_Controller(puVar2);
       uVar5 = (int)uVar4 + 1;
       uVar4 = (uint64_t)uVar5;
       uVar9 = uVar9 + 1;
@@ -655,7 +655,7 @@ LAB_1803a013f:
   if (puVar3 != puVar1) {
     puVar1[4] = puVar1[4] + -1;
     func_0x00018066bd70(puVar3);
-    FUN_18066ba00(puVar3,puVar1);
+    RenderingSystem_BufferHandler(puVar3,puVar1);
     if ((int64_t *)puVar3[4] != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)puVar3[4] + 0x38))();
     }

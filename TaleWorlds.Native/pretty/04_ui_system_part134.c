@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -943,7 +948,7 @@ uint64_t UISystem_AllocateComponentData_MemoryAllocator(int64_t param_1,int64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180747e10(int64_t *param_1,int param_2) - UI数组容量调整函数
+// 函数: uint64_t SystemCore_Initializer(int64_t *param_1,int param_2) - UI数组容量调整函数
 uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
 
 {
@@ -1027,7 +1032,7 @@ uint64_t UISystem_ArrayCapacityAdjustFailed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180747f10(int64_t *param_1,int param_2) - UI数组容量调整64位函数
+// 函数: uint64_t RenderingTextureManager0(int64_t *param_1,int param_2) - UI数组容量调整64位函数
 uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
 
 {
@@ -1111,7 +1116,7 @@ uint64_t UISystem_ArrayCapacityAdjust64Failed(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: uint64_t FUN_180748010(int64_t *param_1,int param_2) - UI数组容量调整128位函数
+// 函数: uint64_t UltraHighFreq_StateController1(int64_t *param_1,int param_2) - UI数组容量调整128位函数
 uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
 
 {

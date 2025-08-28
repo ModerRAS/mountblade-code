@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part053_sub002_sub002.c - 1 个函数
@@ -9,7 +13,7 @@ void FUN_1806c9b70(int64_t param_1,int64_t param_2)
   int *piVar1;
   int8_t auStack_108 [224];
   
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x208));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x208));
   piVar1 = *(int **)(param_2 + 0x58);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -39,7 +43,7 @@ int FUN_1806ca0a0(int64_t param_1,int64_t *param_2,int param_3)
   
   iVar2 = *(int *)(param_1 + 0x20);
   pcVar4 = *(code **)(param_1 + 0x30);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x18));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x18));
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -68,7 +72,7 @@ int FUN_1806ca0a0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar4 = *(code **)(param_1 + 0x50);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x38));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x38));
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -93,7 +97,7 @@ int FUN_1806ca0a0(int64_t param_1,int64_t *param_2,int param_3)
   SystemResourceProcessor(param_2);
   iVar2 = *(int *)(param_1 + 0x60);
   pcVar4 = *(code **)(param_1 + 0x70);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x58));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x58));
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -122,7 +126,7 @@ int FUN_1806ca0a0(int64_t param_1,int64_t *param_2,int param_3)
   SystemResourceProcessor(param_2);
   iVar2 = *(int *)(param_1 + 0x80);
   pcVar4 = *(code **)(param_1 + 0x90);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x78));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x78));
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -188,7 +192,7 @@ int FUN_1806ca0c0(uint64_t param_1,uint64_t param_2,int param_3)
   *(int *)(unaff_RBP + -0x24) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + -0x20) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + -0x1c) = in_XMM1_Dd;
-  FUN_1806d7000();
+  MemoryPoolManager0();
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -233,7 +237,7 @@ int FUN_1806ca0c0(uint64_t param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar15);
+  MemoryPoolManager0(uVar5,uVar15);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -277,7 +281,7 @@ int FUN_1806ca0c0(uint64_t param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar15);
+  MemoryPoolManager0(uVar5,uVar15);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -322,7 +326,7 @@ int FUN_1806ca0c0(uint64_t param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar15);
+  MemoryPoolManager0(uVar5,uVar15);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -423,7 +427,7 @@ int FUN_1806ca0e6(void)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar16);
+  MemoryPoolManager0(uVar5,uVar16);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -467,7 +471,7 @@ int FUN_1806ca0e6(void)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar16);
+  MemoryPoolManager0(uVar5,uVar16);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -512,7 +516,7 @@ int FUN_1806ca0e6(void)
   *(int32_t *)(unaff_RBP + -0x24) = uVar10;
   *(int32_t *)(unaff_RBP + -0x20) = uVar11;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar12;
-  FUN_1806d7000(uVar5,uVar16);
+  MemoryPoolManager0(uVar5,uVar16);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -648,7 +652,7 @@ int FUN_1806ca3c0(int64_t param_1,int64_t *param_2,int param_3)
   int32_t uStack_28;
   int32_t uStack_24;
   
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0xd0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0xd0));
   plVar7 = (int64_t *)0x0;
   if ((short)((int64_t *)param_2[6])[1] == 0xd) {
     plVar7 = (int64_t *)param_2[6];
@@ -766,7 +770,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x144);
   uStack_68 = *(int32_t *)(param_1 + 0x148);
   uStack_64 = *(int32_t *)(param_1 + 0x14c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x130));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x130));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -806,7 +810,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x164);
   uStack_68 = *(int32_t *)(param_1 + 0x168);
   uStack_64 = *(int32_t *)(param_1 + 0x16c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x150));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x150));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -840,7 +844,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x19c);
   uStack_68 = *(int32_t *)(param_1 + 0x1a0);
   uStack_64 = *(int32_t *)(param_1 + 0x1a4);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x188));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x188));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -880,7 +884,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x1d4);
   uStack_68 = *(int32_t *)(param_1 + 0x1d8);
   uStack_64 = *(int32_t *)(param_1 + 0x1dc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x1c0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x1c0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -914,7 +918,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 500);
   uStack_68 = *(int32_t *)(param_1 + 0x1f8);
   uStack_64 = *(int32_t *)(param_1 + 0x1fc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x1e0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x1e0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -948,7 +952,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x214);
   uStack_68 = *(int32_t *)(param_1 + 0x218);
   uStack_64 = *(int32_t *)(param_1 + 0x21c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x200));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x200));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -988,7 +992,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x234);
   uStack_68 = *(int32_t *)(param_1 + 0x238);
   uStack_64 = *(int32_t *)(param_1 + 0x23c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x220));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x220));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1028,7 +1032,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x254);
   uStack_68 = *(int32_t *)(param_1 + 600);
   uStack_64 = *(int32_t *)(param_1 + 0x25c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x240));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x240));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1059,12 +1063,12 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x274);
   uStack_68 = *(int32_t *)(param_1 + 0x278);
   uStack_64 = *(int32_t *)(param_1 + 0x27c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x260));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x260));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar3 = FUN_1806c4320(param_2,&pcStackX_8);
+  cVar3 = UISystem_DataProcessor(param_2,&pcStackX_8);
   if (cVar3 != '\0') {
     pbVar4 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                ((int64_t *)param_2[6],auStackX_18);
@@ -1081,7 +1085,7 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x294);
   uStack_68 = *(int32_t *)(param_1 + 0x298);
   uStack_64 = *(int32_t *)(param_1 + 0x29c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x280));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x280));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1101,12 +1105,12 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x2b4);
   uStack_68 = *(int32_t *)(param_1 + 0x2b8);
   uStack_64 = *(int32_t *)(param_1 + 700);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2a0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x2a0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar3 = FUN_1806c4320(param_2,&pcStackX_8);
+  cVar3 = UISystem_DataProcessor(param_2,&pcStackX_8);
   if (cVar3 != '\0') {
     pbVar4 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                ((int64_t *)param_2[6],auStackX_18);
@@ -1123,12 +1127,12 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x2d4);
   uStack_68 = *(int32_t *)(param_1 + 0x2d8);
   uStack_64 = *(int32_t *)(param_1 + 0x2dc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2c0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x2c0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar3 = FUN_1806c4320(param_2,&pcStackX_8);
+  cVar3 = UISystem_DataProcessor(param_2,&pcStackX_8);
   if (cVar3 != '\0') {
     pbVar4 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                ((int64_t *)param_2[6],auStackX_18);
@@ -1145,12 +1149,12 @@ int FUN_1806ca5c0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_6c = *(int32_t *)(param_1 + 0x2f4);
   uStack_68 = *(int32_t *)(param_1 + 0x2f8);
   uStack_64 = *(int32_t *)(param_1 + 0x2fc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2e0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x2e0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar3 = FUN_1806c4320(param_2,&pcStackX_8);
+  cVar3 = UISystem_DataProcessor(param_2,&pcStackX_8);
   if (cVar3 != '\0') {
     pbVar4 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                ((int64_t *)param_2[6],auStackX_18);
@@ -1208,7 +1212,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar15;
   *(int32_t *)(unaff_RBP + -9) = uVar16;
   *(int32_t *)(unaff_RBP + -5) = uVar5;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1258,7 +1262,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1301,7 +1305,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1351,7 +1355,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1394,7 +1398,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1437,7 +1441,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1487,7 +1491,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1537,7 +1541,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1577,12 +1581,12 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar9 = FUN_1806c4320(param_2,unaff_RBP + 0x67);
+  cVar9 = UISystem_DataProcessor(param_2,unaff_RBP + 0x67);
   if (cVar9 != '\0') {
     pbVar10 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                 ((int64_t *)param_2[6],unaff_RBP + 0x77);
@@ -1607,7 +1611,7 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1638,12 +1642,12 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar9 = FUN_1806c4320(param_2,unaff_RBP + 0x67);
+  cVar9 = UISystem_DataProcessor(param_2,unaff_RBP + 0x67);
   if (cVar9 != '\0') {
     pbVar10 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                 ((int64_t *)param_2[6],unaff_RBP + 0x77);
@@ -1668,12 +1672,12 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar9 = FUN_1806c4320(param_2,unaff_RBP + 0x67);
+  cVar9 = UISystem_DataProcessor(param_2,unaff_RBP + 0x67);
   if (cVar9 != '\0') {
     pbVar10 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                 ((int64_t *)param_2[6],unaff_RBP + 0x77);
@@ -1698,12 +1702,12 @@ int FUN_1806ca5d9(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0xd) = uVar6;
   *(int32_t *)(unaff_RBP + -9) = uVar7;
   *(int32_t *)(unaff_RBP + -5) = uVar8;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar9 = FUN_1806c4320(param_2,unaff_RBP + 0x67);
+  cVar9 = UISystem_DataProcessor(param_2,unaff_RBP + 0x67);
   if (cVar9 != '\0') {
     pbVar10 = (byte *)(**(code **)(*(int64_t *)param_2[6] + 0x1a8))
                                 ((int64_t *)param_2[6],unaff_RBP + 0x77);
@@ -1774,7 +1778,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1815,7 +1819,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1849,7 +1853,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1883,7 +1887,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1924,7 +1928,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1965,7 +1969,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -2006,12 +2010,12 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar2);
+  uVar14 = MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar10 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2036,7 +2040,7 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar2);
+  MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -2068,12 +2072,12 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar2);
+  uVar14 = MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2098,12 +2102,12 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar2);
+  uVar14 = MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2128,12 +2132,12 @@ int FUN_1806ca700(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar2);
+  uVar14 = MemoryPoolManager0(uVar14,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2210,7 +2214,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2244,7 +2248,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2278,7 +2282,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2319,7 +2323,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2360,7 +2364,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2401,12 +2405,12 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar3);
+  uVar14 = MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar10 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2431,7 +2435,7 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar14,uVar3);
+  MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -2463,12 +2467,12 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar3);
+  uVar14 = MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2493,12 +2497,12 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar3);
+  uVar14 = MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2523,12 +2527,12 @@ int FUN_1806ca7bf(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar14 = FUN_1806d7000(uVar14,uVar3);
+  uVar14 = MemoryPoolManager0(uVar14,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
   }
-  cVar11 = FUN_1806c4320(uVar14,unaff_RBP + 0x67);
+  cVar11 = UISystem_DataProcessor(uVar14,unaff_RBP + 0x67);
   if ((cVar11 != '\0') &&
      ((pbVar12 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                    ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77), (*pbVar12 & 1) == 0
@@ -2606,12 +2610,12 @@ int FUN_1806cac20(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar9;
   *(int32_t *)(unaff_RBP + -9) = uVar10;
   *(int32_t *)(unaff_RBP + -5) = uVar11;
-  uVar16 = FUN_1806d7000(uVar16,uVar2);
+  uVar16 = MemoryPoolManager0(uVar16,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar12 = FUN_1806c4320(uVar16,unaff_RBP + 0x67);
+  cVar12 = UISystem_DataProcessor(uVar16,unaff_RBP + 0x67);
   if (cVar12 != '\0') {
     pbVar14 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                 ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77);
@@ -2637,7 +2641,7 @@ int FUN_1806cac20(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar9;
   *(int32_t *)(unaff_RBP + -9) = uVar10;
   *(int32_t *)(unaff_RBP + -5) = uVar11;
-  FUN_1806d7000(uVar16,uVar2);
+  MemoryPoolManager0(uVar16,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -2669,12 +2673,12 @@ int FUN_1806cac20(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar9;
   *(int32_t *)(unaff_RBP + -9) = uVar10;
   *(int32_t *)(unaff_RBP + -5) = uVar11;
-  uVar16 = FUN_1806d7000(uVar16,uVar2);
+  uVar16 = MemoryPoolManager0(uVar16,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar13 = FUN_1806c4320(uVar16,unaff_RBP + 0x67);
+  cVar13 = UISystem_DataProcessor(uVar16,unaff_RBP + 0x67);
   if (cVar13 != '\0') {
     pbVar14 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                 ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77);
@@ -2700,12 +2704,12 @@ int FUN_1806cac20(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar9;
   *(int32_t *)(unaff_RBP + -9) = uVar10;
   *(int32_t *)(unaff_RBP + -5) = uVar11;
-  uVar16 = FUN_1806d7000(uVar16,uVar2);
+  uVar16 = MemoryPoolManager0(uVar16,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar13 = FUN_1806c4320(uVar16,unaff_RBP + 0x67);
+  cVar13 = UISystem_DataProcessor(uVar16,unaff_RBP + 0x67);
   if (cVar13 != '\0') {
     pbVar14 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                 ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77);
@@ -2731,12 +2735,12 @@ int FUN_1806cac20(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar9;
   *(int32_t *)(unaff_RBP + -9) = uVar10;
   *(int32_t *)(unaff_RBP + -5) = uVar11;
-  uVar16 = FUN_1806d7000(uVar16,uVar2);
+  uVar16 = MemoryPoolManager0(uVar16,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
   }
-  cVar13 = FUN_1806c4320(uVar16,unaff_RBP + 0x67);
+  cVar13 = UISystem_DataProcessor(uVar16,unaff_RBP + 0x67);
   if (cVar13 != '\0') {
     pbVar14 = (byte *)(**(code **)(*(int64_t *)unaff_RBX[6] + 0x1a8))
                                 ((int64_t *)unaff_RBX[6],unaff_RBP + 0x77);
@@ -2774,7 +2778,7 @@ int FUN_1806cace5(int32_t param_1)
   int32_t uVar13;
   
   *in_RAX = *in_RAX + 1;
-  cVar10 = FUN_1806c4320(param_1,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(param_1,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2801,7 +2805,7 @@ int FUN_1806cace5(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  FUN_1806d7000(uVar13,uVar1);
+  MemoryPoolManager0(uVar13,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -2833,12 +2837,12 @@ int FUN_1806cace5(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar13 = FUN_1806d7000(uVar13,uVar1);
+  uVar13 = MemoryPoolManager0(uVar13,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar13,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar13,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2865,12 +2869,12 @@ int FUN_1806cace5(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar13 = FUN_1806d7000(uVar13,uVar1);
+  uVar13 = MemoryPoolManager0(uVar13,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar13,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar13,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2897,12 +2901,12 @@ int FUN_1806cace5(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar13 = FUN_1806d7000(uVar13,uVar1);
+  uVar13 = MemoryPoolManager0(uVar13,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar13,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar13,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2939,7 +2943,7 @@ int FUN_1806cadd9(int32_t param_1)
   int32_t uVar12;
   
   *in_RAX = *in_RAX + 1;
-  cVar10 = FUN_1806c4320(param_1,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(param_1,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2966,12 +2970,12 @@ int FUN_1806cadd9(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar12 = FUN_1806d7000(uVar12,uVar1);
+  uVar12 = MemoryPoolManager0(uVar12,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar12,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar12,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -2998,12 +3002,12 @@ int FUN_1806cadd9(int32_t param_1)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   *(int32_t *)(unaff_RBP + -9) = uVar8;
   *(int32_t *)(unaff_RBP + -5) = uVar9;
-  uVar12 = FUN_1806d7000(uVar12,uVar1);
+  uVar12 = MemoryPoolManager0(uVar12,uVar1);
   piVar2 = *(int **)(unaff_RBX + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
   }
-  cVar10 = FUN_1806c4320(uVar12,unaff_RBP + 0x67);
+  cVar10 = UISystem_DataProcessor(uVar12,unaff_RBP + 0x67);
   if (cVar10 != '\0') {
     pbVar11 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                 (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -3029,7 +3033,7 @@ int FUN_1806caecb(void)
   int unaff_R14D;
   
   *in_RAX = *in_RAX + 1;
-  cVar1 = FUN_1806c4320();
+  cVar1 = UISystem_DataProcessor();
   if (cVar1 != '\0') {
     pbVar2 = (byte *)(**(code **)(**(int64_t **)(unaff_RBX + 0x30) + 0x1a8))
                                (*(int64_t **)(unaff_RBX + 0x30),unaff_RBP + 0x77);
@@ -3077,7 +3081,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x32c);
   uStack_58 = *(int32_t *)(param_1 + 0x330);
   uStack_54 = *(int32_t *)(param_1 + 0x334);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x318));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x318));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3112,7 +3116,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x34c);
   uStack_58 = *(int32_t *)(param_1 + 0x350);
   uStack_54 = *(int32_t *)(param_1 + 0x354);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x338));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x338));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3145,7 +3149,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x36c);
   uStack_58 = *(int32_t *)(param_1 + 0x370);
   uStack_54 = *(int32_t *)(param_1 + 0x374);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x358));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x358));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3175,7 +3179,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x38c);
   uStack_58 = *(int32_t *)(param_1 + 0x390);
   uStack_54 = *(int32_t *)(param_1 + 0x394);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x378));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x378));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3213,8 +3217,8 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   if ((int *)param_2[0xc] != (int *)0x0) {
     iVar9 = *(int *)param_2[0xc];
   }
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x398));
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x3a8));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x398));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x3a8));
   iStack_74 = iVar9 + 0xd4;
   iStack_70._0_1_ = 1;
   auStack_78[0] = 1;
@@ -3222,7 +3226,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   FUN_1806c13d0(param_2,*puVar8,auStack_78);
   *puVar8 = *puVar8 + 1;
   SystemResourceProcessor(param_2);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x3b0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x3b0));
   iStack_74 = iVar9 + 0xd8;
   iStack_70 = (uint)iStack_70._1_3_ << 8;
   FUN_1806c13d0(param_2,*puVar8,auStack_78);
@@ -3235,7 +3239,7 @@ int FUN_1806caf30(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x3dc);
   uStack_58 = *(int32_t *)(param_1 + 0x3e0);
   uStack_54 = *(int32_t *)(param_1 + 0x3e4);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x3c8));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 0x3c8));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3312,7 +3316,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x3c) = uVar7;
   *(int32_t *)(unaff_RBP + -0x38) = uVar8;
   *(int32_t *)(unaff_RBP + -0x34) = uVar9;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -3357,7 +3361,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x3c) = uVar10;
   *(int32_t *)(unaff_RBP + -0x38) = uVar11;
   *(int32_t *)(unaff_RBP + -0x34) = uVar12;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -3400,7 +3404,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x3c) = uVar10;
   *(int32_t *)(unaff_RBP + -0x38) = uVar11;
   *(int32_t *)(unaff_RBP + -0x34) = uVar12;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -3443,7 +3447,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x3c) = uVar10;
   *(int32_t *)(unaff_RBP + -0x38) = uVar11;
   *(int32_t *)(unaff_RBP + -0x34) = uVar12;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -3483,8 +3487,8 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   if ((int *)param_2[0xc] != (int *)0x0) {
     iVar18 = *(int *)param_2[0xc];
   }
-  FUN_1806d7000(param_2,*(uint64_t *)(in_RCX + 0x398));
-  FUN_1806d7000(param_2,*(uint64_t *)(in_RCX + 0x3a8));
+  MemoryPoolManager0(param_2,*(uint64_t *)(in_RCX + 0x398));
+  MemoryPoolManager0(param_2,*(uint64_t *)(in_RCX + 0x3a8));
   iVar1 = *piVar17;
   *(int *)(unaff_RBP + -0x54) = iVar18 + 0xd4;
   *(int8_t *)(unaff_RBP + -0x50) = 1;
@@ -3493,7 +3497,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   FUN_1806c13d0(param_2,iVar1,unaff_RBP + -0x58);
   *piVar17 = *piVar17 + 1;
   SystemResourceProcessor(param_2);
-  FUN_1806d7000(param_2,*(uint64_t *)(in_RCX + 0x3b0));
+  MemoryPoolManager0(param_2,*(uint64_t *)(in_RCX + 0x3b0));
   iVar1 = *piVar17;
   *(int *)(unaff_RBP + -0x54) = iVar18 + 0xd8;
   *(int8_t *)(unaff_RBP + -0x50) = 0;
@@ -3516,7 +3520,7 @@ int FUN_1806caf46(uint64_t param_1,int64_t *param_2,int param_3)
   *(int32_t *)(unaff_RBP + -0x3c) = uVar10;
   *(int32_t *)(unaff_RBP + -0x38) = uVar11;
   *(int32_t *)(unaff_RBP + -0x34) = uVar12;
-  FUN_1806d7000(param_2,uVar2);
+  MemoryPoolManager0(param_2,uVar2);
   piVar3 = (int *)param_2[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -3619,7 +3623,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x5c);
   uStack_38 = *(int32_t *)(param_1 + 0x60);
   uStack_34 = *(int32_t *)(param_1 + 100);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x48));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x48));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3651,7 +3655,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x7c);
   uStack_38 = *(int32_t *)(param_1 + 0x80);
   uStack_34 = *(int32_t *)(param_1 + 0x84);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x68));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x68));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3667,7 +3671,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x9c);
   uStack_38 = *(int32_t *)(param_1 + 0xa0);
   uStack_34 = *(int32_t *)(param_1 + 0xa4);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x88));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x88));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3679,13 +3683,13 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
     (*(code *)CONCAT44(uStack_34,uStack_38))(param_2[6],&uStack_98);
   }
   SystemResourceProcessor(param_2);
-  FUN_1806d7080(param_2,&ui_system_data_1560_ptr);
+  SystemCore_MemoryManager(param_2,&ui_system_data_1560_ptr);
   SystemResourceProcessor(param_2);
   uStack_40 = *(int32_t *)(param_1 + 0xd8);
   uStack_3c = *(int32_t *)(param_1 + 0xdc);
   uStack_38 = *(int32_t *)(param_1 + 0xe0);
   uStack_34 = *(int32_t *)(param_1 + 0xe4);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 200));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 200));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3711,7 +3715,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0xfc);
   uStack_38 = *(int32_t *)(param_1 + 0x100);
   uStack_34 = *(int32_t *)(param_1 + 0x104);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0xe8));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0xe8));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3737,7 +3741,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x11c);
   uStack_38 = *(int32_t *)(param_1 + 0x120);
   uStack_34 = *(int32_t *)(param_1 + 0x124);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x108));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x108));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3763,7 +3767,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x13c);
   uStack_38 = *(int32_t *)(param_1 + 0x140);
   uStack_34 = *(int32_t *)(param_1 + 0x144);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x128));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x128));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3789,7 +3793,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x15c);
   uStack_38 = *(int32_t *)(param_1 + 0x160);
   uStack_34 = *(int32_t *)(param_1 + 0x164);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x148));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x148));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3816,7 +3820,7 @@ int FUN_1806cb3f0(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x194);
   uStack_38 = *(int32_t *)(param_1 + 0x198);
   uStack_34 = *(int32_t *)(param_1 + 0x19c);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x180));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x180));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;

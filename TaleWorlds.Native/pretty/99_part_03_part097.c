@@ -772,8 +772,8 @@ void FUN_180254550(int64_t param_1)
 
 
 
-// 函数: void FUN_180254610(int64_t param_1)
-void FUN_180254610(int64_t param_1)
+// 函数: void RenderingSystem_CameraController(int64_t param_1)
+void RenderingSystem_CameraController(int64_t param_1)
 
 {
   float fVar1;

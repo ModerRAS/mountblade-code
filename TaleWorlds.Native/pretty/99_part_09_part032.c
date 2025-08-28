@@ -17,7 +17,7 @@ void FUN_1805cccfd(void)
                *(int64_t *)(unaff_R14 + 0x1768)) * unaff_XMM9_Da < -100.0) ||
       (9 < *(uint *)(unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)(unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }

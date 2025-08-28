@@ -1306,7 +1306,7 @@ LAB_1801545d1:
   puStack_68[4] = 0x6144746964455452;
   *(int32_t *)(puStack_68 + 5) = 0x5c6174;
   uStack_60 = 0x2b;
-  FUN_18005c8a0(lVar3,&puStack_70);
+  SystemCore_MemoryManager(lVar3,&puStack_70);
   puStack_70 = &system_data_buffer_ptr;
   if (puStack_68 == (uint64_t *)0x0) {
     puStack_68 = (uint64_t *)0x0;
@@ -1326,7 +1326,7 @@ LAB_1801545d1:
     puStack_48[4] = 0x6144746964455452;
     *(int32_t *)(puStack_48 + 5) = 0x5c6174;
     pcStack_40 = (code *)CONCAT44(pcStack_40._4_4_,0x2b);
-    FUN_1800b0680(lVar3,&puStack_50);
+    SystemCore_DataHandler(lVar3,&puStack_50);
     puStack_50 = &system_data_buffer_ptr;
     if (puStack_48 == (uint64_t *)0x0) {
       puStack_48 = (uint64_t *)0x0;

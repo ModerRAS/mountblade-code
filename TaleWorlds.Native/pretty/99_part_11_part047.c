@@ -1,3 +1,8 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -33,7 +38,7 @@ void FUN_1807ac600(void)
   int64_t *in_stack_00000070;
   int64_t in_stack_00000078;
   
-  iVar5 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0);
+  iVar5 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0,0);
   if ((((iVar5 == 0) &&
        (iVar5 = (**(code **)(*(int64_t *)*unaff_R12 + 0xb8))
                           ((int64_t *)*unaff_R12,*(uint64_t *)(unaff_RDI + 0x180)), -1 < iVar5))
@@ -696,10 +701,10 @@ void FUN_1807ad370(int64_t param_1)
   *(int32_t *)(param_1 + 0x178) = 0;
   *(int32_t *)(param_1 + 0x188) = 0;
   uStack_38 = 0;
-  iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_20,1,8);
+  iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_20,1,8);
   if ((iVar1 == 0) && (iVar1 = func_0x00018076b6b0(auStack_20,&processed_var_9732_ptr,4), iVar1 == 0)) {
     uStack_38 = 0;
-    iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_28,1);
+    iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_28,1);
     if ((iVar1 == 0) && (iVar1 = func_0x00018076b6b0(auStack_28,&processed_var_9740_ptr,4), iVar1 == 0)) {
       *(int32_t *)(param_1 + 0x110) = 0;
       *(int32_t *)(param_1 + 0x18c) = 0;

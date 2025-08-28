@@ -175,7 +175,7 @@ void FUN_1805abd60(int64_t *param_1,char *param_2,uint64_t *param_3,char param_4
   fStack_f4 = fVar4;
   fStack_f0 = auVar19._0_4_;
   uStack_ec = uStack_15c;
-  FUN_18063b5f0(&fStack_258,&uStack_178);
+  SystemSecurityManager(&fStack_258,&uStack_178);
   fStack_1b0 = pfStack_278[10];
   fStack_380 = fStack_1b0 * auVar19._0_4_ + pfStack_278[0xe];
   auVar19._0_4_ = pfStack_278[5];

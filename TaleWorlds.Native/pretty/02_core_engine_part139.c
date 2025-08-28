@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part139.c - 4 个函数
 
 // 函数: void FUN_180133893(float param_1)
@@ -183,7 +187,7 @@ LAB_1801338ca:
         uVar13 = 1;
         puVar11 = &stack0x000000a0;
 LAB_180133c1e:
-        pfVar9 = (float *)FUN_180131aa0(puVar11,uVar13,0,0);
+        pfVar9 = (float *)SystemCore_ConfigLoader(puVar11,uVar13,0,0);
         fVar19 = pfVar9[1];
         if ((*pfVar9 != unaff_XMM6_Da) || (fVar19 != unaff_XMM6_Da)) {
           fVar18 = *(float *)(unaff_RBX + 0xbc);
@@ -218,7 +222,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar16) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -247,7 +251,7 @@ LAB_180133d4a:
       uVar12 = *puVar1;
     }
     if (uVar2 != uVar14) {
-      FUN_18012d2e0(uVar2);
+      SystemCore_DataCompressor(uVar2);
       *(uint64_t *)(uVar2 + 0x3c0) = uVar14;
       uVar14 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -422,7 +426,7 @@ void FUN_18013396e(void)
         uVar12 = 1;
         puVar10 = &stack0x000000a0;
 LAB_180133c1e:
-        pfVar8 = (float *)FUN_180131aa0(puVar10,uVar12,0,0);
+        pfVar8 = (float *)SystemCore_ConfigLoader(puVar10,uVar12,0,0);
         fVar18 = pfVar8[1];
         if ((*pfVar8 != unaff_XMM6_Da) || (fVar18 != unaff_XMM6_Da)) {
           fVar17 = *(float *)(unaff_RBX + 0xbc);
@@ -457,7 +461,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar7) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -486,7 +490,7 @@ LAB_180133d4a:
       uVar11 = *puVar1;
     }
     if (uVar2 != uVar14) {
-      FUN_18012d2e0(uVar2);
+      SystemCore_DataCompressor(uVar2);
       *(uint64_t *)(uVar2 + 0x3c0) = uVar14;
       uVar14 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -615,7 +619,7 @@ void FUN_180133a2f(void)
         uVar9 = 1;
         puVar7 = &stack0x000000a0;
 LAB_180133c1e:
-        pfVar5 = (float *)FUN_180131aa0(puVar7,uVar9,0,0);
+        pfVar5 = (float *)SystemCore_ConfigLoader(puVar7,uVar9,0,0);
         fVar14 = pfVar5[1];
         if ((*pfVar5 != unaff_XMM6_Da) || (fVar14 != unaff_XMM6_Da)) {
           fVar15 = *(float *)(unaff_RBX + 0xbc);
@@ -650,7 +654,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar13) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -679,7 +683,7 @@ LAB_180133d4a:
       uVar8 = *puVar1;
     }
     if (uVar2 != uVar11) {
-      FUN_18012d2e0(uVar2);
+      SystemCore_DataCompressor(uVar2);
       *(uint64_t *)(uVar2 + 0x3c0) = uVar11;
       uVar11 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -795,7 +799,7 @@ void FUN_180133a9b(void)
         puVar8 = &stack0x000000a0;
         uVar7 = unaff_R12D;
 LAB_180133c1e:
-        pfVar6 = (float *)FUN_180131aa0(puVar8,uVar7,0,0);
+        pfVar6 = (float *)SystemCore_ConfigLoader(puVar8,uVar7,0,0);
         fVar14 = pfVar6[1];
         if ((*pfVar6 != unaff_XMM6_Da) || (fVar14 != unaff_XMM6_Da)) {
           fVar15 = *(float *)(unaff_RBX + 0xbc);
@@ -830,7 +834,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar13) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -859,7 +863,7 @@ LAB_180133d4a:
       uVar9 = *puVar1;
     }
     if (uVar3 != uVar10) {
-      FUN_18012d2e0(uVar3);
+      SystemCore_DataCompressor(uVar3);
       *(uint64_t *)(uVar3 + 0x3c0) = uVar10;
       uVar10 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }

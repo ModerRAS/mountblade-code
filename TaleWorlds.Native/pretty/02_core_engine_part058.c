@@ -1,3 +1,9 @@
+/* SystemCore_ConfigApplier - SystemCore_ConfigApplier */
+#define SystemCore_ConfigApplier SystemCore_ConfigApplier
+
+
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -414,7 +420,7 @@ void FUN_180094120(float *param_1,float *param_2)
 
 
 
-float * FUN_1800946d0(float *param_1,float *param_2,float *param_3)
+float * ErrorRecoverySystem(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -499,8 +505,8 @@ float * FUN_1800946d0(float *param_1,float *param_2,float *param_3)
 
 
 
-// 函数: void FUN_180094b30(int64_t param_1,int64_t param_2)
-void FUN_180094b30(int64_t param_1,int64_t param_2)
+// 函数: void SystemCore_NetworkHandler(int64_t param_1,int64_t param_2)
+void SystemCore_NetworkHandler(int64_t param_1,int64_t param_2)
 
 {
   int64_t lVar1;
@@ -608,21 +614,21 @@ void FUN_180094d40(int64_t *param_1,uint64_t param_2)
   plStack_18 = (int64_t *)0x0;
   uStack_28 = 0;
   auStack_30[0] = 0;
-  FUN_18022f2e0(&plStack_40,param_1,0);
+  > HighFreq_RenderPipeline1(&plStack_40,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
   FUN_180237030(&plStack_40,param_2,0,0x3f800000,uVar2);
   if ((plStack_40 != (int64_t *)0x0) && (plStack_38 != (int64_t *)0x0)) {
     if (cStack_e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     plVar1 = plStack_38;
     plStack_38 = (int64_t *)0x0;
@@ -630,7 +636,7 @@ void FUN_180094d40(int64_t *param_1,uint64_t param_2)
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_30);
+  SystemSecurityManager(auStack_30);
   if (plStack_18 != (int64_t *)0x0) {
     (**(code **)(*plStack_18 + 0x38))();
   }
@@ -712,8 +718,8 @@ void FUN_180094f80(int64_t param_1,uint param_2)
 
 
 
-// 函数: void FUN_180095000(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t param_4)
-void FUN_180095000(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t param_4)
+// 函数: void InitializationSystem_CoreLoader(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t param_4)
+void InitializationSystem_CoreLoader(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t param_4)
 
 {
   uint64_t uVar1;
@@ -745,7 +751,7 @@ void FUN_180095000(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t para
     uStack_78 = (int32_t)lVar2;
     strcpy_s(auStack_70,0x40);
   }
-  FUN_1800b30d0(uVar1,param_2,&puStack_88,param_4);
+  > MedHighFreq_InputMapper1(uVar1,param_2,&puStack_88,param_4);
   uStack_a8 = 1;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
@@ -782,7 +788,7 @@ void FUN_180095100(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   plStack_30 = (int64_t *)0x0;
   uStack_40 = 0;
   auStack_48[0] = 0;
-  FUN_18022f2e0(&plStack_58,param_1,0);
+  > HighFreq_RenderPipeline1(&plStack_58,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
@@ -793,14 +799,14 @@ void FUN_180095100(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   FUN_180235ca0(&plStack_58,param_2,param_3,0xff,&uStack_68,1,0,0,1);
   if ((plStack_58 != (int64_t *)0x0) && (plStack_50 != (int64_t *)0x0)) {
     if (cStack_26 != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_48);
+    SystemSecurityManager(auStack_48);
     if (cStack_28 != '\0') {
-      FUN_180079520(plStack_58);
+      SystemInitializer(plStack_58);
     }
     if (cStack_27 != '\0') {
-      FUN_180079520(plStack_58);
+      SystemInitializer(plStack_58);
     }
     plVar1 = plStack_50;
     plStack_50 = (int64_t *)0x0;
@@ -808,7 +814,7 @@ void FUN_180095100(int64_t *param_1,uint64_t param_2,uint64_t param_3)
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_48);
+  SystemSecurityManager(auStack_48);
   if (plStack_30 != (int64_t *)0x0) {
     (**(code **)(*plStack_30 + 0x38))();
   }
@@ -823,7 +829,7 @@ void FUN_180095100(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-int64_t FUN_180095280(int64_t param_1,int64_t param_2)
+int64_t SystemCore_ConfigApplier(int64_t param_1,int64_t param_2)
 
 {
   uint64_t *puVar1;

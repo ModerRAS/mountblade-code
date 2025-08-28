@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_03_part081_sub002_sub002.c - 1 个函数
 
@@ -215,7 +221,7 @@ void FUN_180246810(int32_t *param_1)
   if (plStack_5d8 != (int64_t *)0x0) {
     (**(code **)(*plStack_5d8 + 0x38))();
   }
-  FUN_1800b8500(param_1 + 0x25ac);
+  SystemCore_Controller(param_1 + 0x25ac);
   *(int8_t *)((int64_t)param_1 + 0x11c39) = 0;
   plStack_638 = (int64_t *)0x0;
   *(uint64_t *)(param_1 + 0x4733) = 0;
@@ -546,10 +552,10 @@ void FUN_180246810(int32_t *param_1)
       plStack_618 = (int64_t *)0x0;
       plStack_610 = (int64_t *)0x0;
       plStack_608 = (int64_t *)0x0;
-      FUN_180060b80(param_1 + 0xd3a,&plStack_620);
-      FUN_180060b80(param_1 + 0xd3c,&plStack_618);
-      FUN_180060b80(param_1 + 0xd3e,&plStack_610);
-      FUN_180060b80(param_1 + 0xd40,&plStack_608);
+      SystemCore_ChecksumValidator(param_1 + 0xd3a,&plStack_620);
+      SystemCore_ChecksumValidator(param_1 + 0xd3c,&plStack_618);
+      SystemCore_ChecksumValidator(param_1 + 0xd3e,&plStack_610);
+      SystemCore_ChecksumValidator(param_1 + 0xd40,&plStack_608);
       param_1[0xd42] = (int32_t)uStack_600;
       if (plStack_608 != (int64_t *)0x0) {
         (**(code **)(*plStack_608 + 0x38))();
@@ -789,7 +795,7 @@ void FUN_180246810(int32_t *param_1)
         *(int32_t *)(lVar5 + 0x308) = uVar1;
       }
       plStack_630 = (int64_t *)auStack_48;
-      FUN_180057830(auStack_48);
+      DataTransformer0(auStack_48);
       FUN_18024e1f0(auStack_338);
       *(uint64_t *)(param_1 + 0x2668) = 0xffffffffffffffff;
       plStack_490 = *(int64_t **)(param_1 + 0x2666);

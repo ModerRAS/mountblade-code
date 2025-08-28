@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part015.c - 5 个函数
 
 // 函数: void FUN_180276ade(int64_t param_1)
@@ -208,7 +216,7 @@ void FUN_180276ade(int64_t param_1)
   uStack000000000000003c = 0x7f7fffff;
   fStack0000000000000034 = fStack0000000000000034 - fVar26;
   in_stack_00000038 = in_stack_00000038 - fVar31;
-  FUN_180285b40(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
+  SystemCore_EventHandler(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
   in_stack_00000048 = _fStack0000000000000028;
   fVar31 = *unaff_RSI - *(float *)(unaff_RBP + -6);
   fVar26 = unaff_RSI[2] - *(float *)(unaff_RBP + -5);
@@ -250,7 +258,7 @@ void FUN_180276ade(int64_t param_1)
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar26;
   in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
-  FUN_180285b40(fVar26,&stack0x00000070,&stack0x00000050);
+  SystemCore_EventHandler(fVar26,&stack0x00000070,&stack0x00000050);
   if ((((*(float *)(unaff_RBX + 0x214) <= fStackX_20) &&
        (fStackX_20 < *(float *)(unaff_RBX + 0x224) || fStackX_20 == *(float *)(unaff_RBX + 0x224)))
       && (*(float *)(unaff_RBX + 0x218) <= fStackX_24)) &&
@@ -348,7 +356,7 @@ void FUN_180276d52(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t par
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar6;
   fStack0000000000000058 = in_stack_00000068 - fStack0000000000000058;
-  FUN_180285b40(fVar6,&stack0x00000070,&stack0x00000050);
+  SystemCore_EventHandler(fVar6,&stack0x00000070,&stack0x00000050);
   if ((((*(float *)(unaff_RBX + 0x214) <= fStackX_20) &&
        (fStackX_20 < *(float *)(unaff_RBX + 0x224) || fStackX_20 == *(float *)(unaff_RBX + 0x224)))
       && (*(float *)(unaff_RBX + 0x218) <= fStackX_24)) &&
@@ -571,7 +579,7 @@ void FUN_180276f1a(void)
   uStack000000000000003c = 0x7f7fffff;
   fStack0000000000000034 = fStack0000000000000034 - fVar26;
   in_stack_00000038 = in_stack_00000038 - fVar31;
-  FUN_180285b40(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
+  SystemCore_EventHandler(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
   in_stack_00000048 = _fStack0000000000000028;
   fVar31 = *unaff_RSI - *(float *)(unaff_RBP + -6);
   fVar26 = unaff_RSI[2] - *(float *)(unaff_RBP + -5);
@@ -613,7 +621,7 @@ void FUN_180276f1a(void)
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar26;
   in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
-  FUN_180285b40(fVar26,&stack0x00000070,&stack0x00000050);
+  SystemCore_EventHandler(fVar26,&stack0x00000070,&stack0x00000050);
   if ((((*(float *)(unaff_RBX + 0x214) <= fStackX_20) &&
        (fStackX_20 < *(float *)(unaff_RBX + 0x224) || fStackX_20 == *(float *)(unaff_RBX + 0x224)))
       && (*(float *)(unaff_RBX + 0x218) <= fStackX_24)) &&
@@ -647,8 +655,8 @@ void FUN_180276f1a(void)
 
 
 
-// 函数: void FUN_180276f30(int64_t param_1,uint64_t *param_2,char param_3)
-void FUN_180276f30(int64_t param_1,uint64_t *param_2,char param_3)
+// 函数: void SystemCore_UpdateState(int64_t param_1,uint64_t *param_2,char param_3)
+void SystemCore_UpdateState(int64_t param_1,uint64_t *param_2,char param_3)
 
 {
   int64_t lVar1;
@@ -689,7 +697,7 @@ void FUN_180276f30(int64_t param_1,uint64_t *param_2,char param_3)
       do {
         lVar1 = *plVar4;
         if (param_3 != '\0') {
-          FUN_180075b70(lVar1);
+          SystemConfig_Manager(lVar1);
         }
         if (((*(byte *)(lVar1 + 0x100) & 0x20) == 0) || (*(int64_t *)(param_1 + 0x28) == 0)) {
           lVar3 = lVar1 + 0x120;
@@ -697,7 +705,7 @@ void FUN_180276f30(int64_t param_1,uint64_t *param_2,char param_3)
         else {
           lVar3 = FUN_180194940(lVar1 + 0x120,auStack_e8,*(int64_t *)(param_1 + 0x28) + 0x70);
         }
-        FUN_18063a240(param_2,lVar1 + 0x274,lVar3);
+        UI_WidgetHandler(param_2,lVar1 + 0x274,lVar3);
         plVar4 = plVar4 + 2;
       } while (plVar4 < *(int64_t **)(param_1 + 0x40));
     }
@@ -710,7 +718,7 @@ void FUN_180276f30(int64_t param_1,uint64_t *param_2,char param_3)
       *(int32_t *)(param_2 + 6) = *(int32_t *)(**(int64_t **)(param_1 + 0x38) + 0x2a4);
     }
     else {
-      FUN_1800b9f60(param_2);
+      SystemCore_Parser(param_2);
       plVar4 = *(int64_t **)(param_1 + 0x38);
       fVar7 = 0.0;
       if (plVar4 < *(int64_t **)(param_1 + 0x40)) {

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part041_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1805a1900(int64_t param_1)
@@ -60,7 +64,7 @@ void FUN_1805a1900(int64_t param_1)
   int64_t *in_stack_00000078;
   
 code_r0x0001805a1900:
-  cVar15 = FUN_1805a3ab0(param_1 + 0x28);
+  cVar15 = RenderingSystem_ConfigValidator0(param_1 + 0x28);
   if (cVar15 == '\0') {
 LAB_1805a186c:
     unaff_XMM7_Da = 0.0;
@@ -318,7 +322,7 @@ LAB_1805a1b4d:
         unaff_RBP[0x15d] = fVar18;
         unaff_RBP[0x15e] = fVar23;
         unaff_RBP[0x15f] = fVar9;
-        pfVar19 = (float *)FUN_180534930(*(int64_t *)(lVar29 + 0x8a8) + 0x70,unaff_RBP + 0x178,
+        pfVar19 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar29 + 0x8a8) + 0x70,unaff_RBP + 0x178,
                                          lVar5 + 0xc28 + lVar25);
         unaff_RBP[-0xb] = 3.4028235e+38;
         fVar35 = pfVar19[1];
@@ -326,7 +330,7 @@ LAB_1805a1b4d:
         unaff_RBP[-0xe] = *pfVar19 - fVar17;
         unaff_RBP[-0xd] = fVar35 - fVar18;
         unaff_RBP[-0xc] = fVar32 - fVar23;
-        FUN_180285b40(unaff_RBP + 0x158,unaff_RBP + 0x154,unaff_RBP + -0xe);
+        SystemCore_EventHandler(unaff_RBP + 0x158,unaff_RBP + 0x154,unaff_RBP + -0xe);
         lVar29 = lVar25 + lVar5;
         unaff_RBP[-7] = 3.4028235e+38;
         fVar35 = *(float *)(lVar29 + 0xc3c);
@@ -338,7 +342,7 @@ LAB_1805a1b4d:
         unaff_RBP[-8] = *(float *)(lVar29 + 0xc40);
         unaff_RBP[-10] = fVar35 * fVar36 + fVar32 * fVar34;
         unaff_RBP[-9] = fVar32 * fVar17 + fVar35 * fVar18;
-        FUN_180285b40(unaff_RBP + 0x158,unaff_RBP + 8);
+        SystemCore_EventHandler(unaff_RBP + 0x158,unaff_RBP + 8);
         iVar4 = *(int *)(lVar31 + 0x10);
         fVar32 = (float)(int)unaff_RBP[0x4a] * unaff_XMM11_Da;
         fVar35 = unaff_XMM9_Da;
@@ -442,14 +446,14 @@ LAB_1805a2073:
       unaff_RBP[0x165] = fVar18;
       unaff_RBP[0x166] = fVar23;
       unaff_RBP[0x167] = fVar9;
-      pfVar19 = (float *)FUN_180534930(lVar30 + 0x70,unaff_RBP + 0x17c,lVar29);
+      pfVar19 = (float *)SystemCore_CleanupHandler0(lVar30 + 0x70,unaff_RBP + 0x17c,lVar29);
       unaff_RBP[1] = 3.4028235e+38;
       fVar35 = pfVar19[1];
       fVar32 = pfVar19[2];
       unaff_RBP[-2] = *pfVar19 - fVar17;
       unaff_RBP[-1] = fVar35 - fVar18;
       *unaff_RBP = fVar32 - fVar23;
-      FUN_180285b40(unaff_RBP + 0x160,unaff_RBP + 0x14c,unaff_RBP + -2);
+      SystemCore_EventHandler(unaff_RBP + 0x160,unaff_RBP + 0x14c,unaff_RBP + -2);
       FUN_1805ab940(*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x18) + 0x98d920),
                     *(uint64_t *)(unaff_RBP + -0x1e),lVar27,
                     *(int8_t *)(lVar25 + 0xca0 + lVar5),unaff_RBP + 0x14c);
@@ -697,7 +701,7 @@ LAB_1805a23af:
 LAB_1805a2c65:
         uVar33 = 0;
 LAB_1805a2c68:
-        FUN_1805a4a20(uVar33,1,pfVar19);
+        UISystem_InputHandler(uVar33,1,pfVar19);
       }
       else if (iVar4 == 1) {
         cVar15 = *(char *)(lVar25 + 0xca1 + lVar5);

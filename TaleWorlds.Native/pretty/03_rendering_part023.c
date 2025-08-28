@@ -19,7 +19,7 @@ void FUN_18027d880(uint64_t *param_1,uint64_t *param_2)
     uVar4 = func_0x00018023a100(puVar5);
     *(int8_t *)(param_1 + 100) = uVar4;
     if ((void *)*param_1 == &processed_var_9304_ptr) {
-      FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
+      SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,0);
     }
     else {
       (**(code **)((void *)*param_1 + 0x160))(param_1);
@@ -118,7 +118,7 @@ uint64_t * FUN_18027db30(uint64_t param_1,uint64_t *param_2)
   int64_t *plVar2;
   
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16,0,0xfffffffffffffffe);
-  plVar2 = (int64_t *)FUN_180275090(uVar1);
+  plVar2 = (int64_t *)RenderingSystem_ShaderManager(uVar1);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
   }

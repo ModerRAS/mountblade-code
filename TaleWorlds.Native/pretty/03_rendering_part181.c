@@ -32,7 +32,7 @@ void FUN_1803769d0(int64_t param_1)
   *(int **)(apuStack_28[0] + 2) = aiStackX_8;
   *(int32_t **)(apuStack_28[0] + 4) = auStackX_10;
   lVar1 = ((int64_t)aiStackX_8[0] + 0x10b) * 0x20;
-  FUN_18015b810(uStack_40,0,*(int64_t *)(lVar1 + 8 + param_1) - *(int64_t *)(lVar1 + param_1) >> 3
+  SystemCore_DataTransformer(uStack_40,0,*(int64_t *)(lVar1 + 8 + param_1) - *(int64_t *)(lVar1 + param_1) >> 3
                 ,0x10,0xffffffffffffffff,apuStack_28,uVar2);
   return;
 }

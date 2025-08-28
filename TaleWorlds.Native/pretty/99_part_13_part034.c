@@ -36,7 +36,7 @@ int FUN_1808bc920(int64_t param_1)
   }
   uStackX_8 = 0;
   iVar3 = FUN_18073a200(lVar4,&uStackX_8);
-  if ((iVar3 == 0) && (iVar3 = FUN_18073c4c0(uStackX_8,param_1 + 0x4c8,0), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = UtilitiesSystem_MathCalculator(uStackX_8,param_1 + 0x4c8,0), iVar3 == 0)) {
     iVar7 = 0;
     for (lVar4 = 0;
         ((-1 < lVar4 && (iVar7 < *(int *)(param_1 + 0x53c))) &&

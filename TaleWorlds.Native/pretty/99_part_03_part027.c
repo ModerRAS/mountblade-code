@@ -278,7 +278,7 @@ LAB_1801e63e9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1801e66c0(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+uint64_t * SystemCore_SecurityValidator(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   int32_t uVar1;

@@ -61,7 +61,7 @@ void FUN_18061e1bc(uint64_t param_1,int64_t param_2)
     pfVar8 = (float *)(**(code **)(*in_stack_00000040 + 0x90))(in_stack_00000040,unaff_RBP + -0x30);
     plVar7 = *(int64_t **)(uVar12 + *(int64_t *)(unaff_RSI + 0x1c0));
     lVar9 = (**(code **)(*plVar7 + 0x40))(plVar7,unaff_RBP + -0x10,0);
-    pfVar10 = (float *)FUN_1800fcb90(pfVar8,unaff_RBP + 0xc,lVar9);
+    pfVar10 = (float *)SystemCore_Initializer(pfVar8,unaff_RBP + 0xc,lVar9);
     fVar13 = pfVar8[3];
     fVar18 = pfVar8[1];
     fVar21 = *pfVar8;
@@ -105,7 +105,7 @@ void FUN_18061e1bc(uint64_t param_1,int64_t param_2)
     pfVar8 = (float *)(**(code **)(*in_stack_00000048 + 0x90))(in_stack_00000048,unaff_RBP + -0x10);
     plVar7 = *(int64_t **)(uVar12 + *(int64_t *)(unaff_RSI + 0x1c0));
     lVar9 = (**(code **)(*plVar7 + 0x40))(plVar7,unaff_RBP + 0x2c,1);
-    pfVar10 = (float *)FUN_1800fcb90(pfVar8,unaff_RBP + 0x1c,lVar9);
+    pfVar10 = (float *)SystemCore_Initializer(pfVar8,unaff_RBP + 0x1c,lVar9);
     fVar13 = pfVar8[3];
     fVar18 = pfVar8[1];
     fVar21 = *pfVar8;

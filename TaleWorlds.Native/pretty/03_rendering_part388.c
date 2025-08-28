@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part388.c - 6 个函数
 
 // 函数: void FUN_18047f800(int64_t *param_1,int param_2,uint64_t param_3,uint64_t param_4)
@@ -28,13 +32,13 @@ void FUN_18047f800(int64_t *param_1,int param_2,uint64_t param_3,uint64_t param_
     lVar9 = *(int64_t *)(lVar9 + 0x20);
   }
   if ((param_2 == 0) && ((int)param_3 == 1)) {
-    puVar3 = (uint64_t *)FUN_1808fc418(0x20);
+    puVar3 = (uint64_t *)SystemRenderer(0x20);
     *puVar3 = &processed_var_6184_ptr;
     puVar3[1] = 0x11;
     puVar3[2] = 0;
     puVar3[3] = 0;
     *puVar3 = &processed_var_5768_ptr;
-    puVar4 = (uint64_t *)FUN_1808fc418(0x30);
+    puVar4 = (uint64_t *)SystemRenderer(0x30);
     *puVar4 = &processed_var_6184_ptr;
     puVar4[1] = 0x10;
     puVar4[2] = 0;
@@ -42,7 +46,7 @@ void FUN_18047f800(int64_t *param_1,int param_2,uint64_t param_3,uint64_t param_
     *puVar4 = &processed_var_5816_ptr;
     puVar4[4] = puVar3;
     puVar4[5] = 0;
-    puVar5 = (uint64_t *)FUN_1808fc418(0x30);
+    puVar5 = (uint64_t *)SystemRenderer(0x30);
     *puVar5 = &processed_var_6184_ptr;
     puVar5[1] = 0x10;
     puVar5[2] = 0;
@@ -50,12 +54,12 @@ void FUN_18047f800(int64_t *param_1,int param_2,uint64_t param_3,uint64_t param_
     *puVar5 = &processed_var_5816_ptr;
     puVar5[4] = puVar3;
     puVar5[5] = 0;
-    puVar6 = (uint64_t *)FUN_1808fc418(0x20);
+    puVar6 = (uint64_t *)SystemRenderer(0x20);
     *puVar6 = &processed_var_6184_ptr;
     puVar6[1] = 8;
     puVar6[2] = 0;
     puVar6[3] = 0;
-    puVar7 = (uint64_t *)FUN_1808fc418(0x28);
+    puVar7 = (uint64_t *)SystemRenderer(0x28);
     *puVar7 = &processed_var_6184_ptr;
     puVar7[1] = 9;
     puVar7[2] = 0;
@@ -92,14 +96,14 @@ void FUN_18047f800(int64_t *param_1,int param_2,uint64_t param_3,uint64_t param_
     }
   }
   else {
-    puVar3 = (uint64_t *)FUN_1808fc418(0x28);
+    puVar3 = (uint64_t *)SystemRenderer(0x28);
     *puVar3 = &processed_var_6184_ptr;
     puVar3[1] = 0x13;
     puVar3[2] = 0;
     puVar3[3] = 0;
     *puVar3 = &processed_var_6200_ptr;
     puVar3[4] = 0;
-    puVar4 = (uint64_t *)FUN_1808fc418(0x38);
+    puVar4 = (uint64_t *)SystemRenderer(0x38);
     iVar1 = *(int *)(*param_1 + 0x24);
     *(int *)(*param_1 + 0x24) = iVar1 + 1;
     *puVar4 = &processed_var_6184_ptr;
@@ -444,7 +448,7 @@ uint64_t FUN_180480130(int64_t param_1)
         return (uint64_t)(cVar4 != '\0');
       }
       if (*(int *)(param_1 + 0x74) != 0) {
-        FUN_18047b390();
+        SystemCore_MemoryManager();
         pcVar3 = (code *)swi(3);
         uVar6 = (*pcVar3)();
         return uVar6;
@@ -559,7 +563,7 @@ void FUN_180480320(int64_t param_1,byte param_2,byte param_3)
     if (*(uint *)(param_1 + 0x20) <= uVar10) break;
     puVar5 = *(uint64_t **)(lVar7 + 0x28);
     if (puVar5 == (uint64_t *)0x0) {
-      puVar5 = (uint64_t *)FUN_1808fc418();
+      puVar5 = (uint64_t *)SystemRenderer();
       *puVar5 = 0;
       puVar5[1] = 0;
       puVar5[2] = 0;
@@ -576,7 +580,7 @@ void FUN_180480320(int64_t param_1,byte param_2,byte param_3)
   if (*(uint *)(param_1 + 0x24) <= uVar10 - uVar11) {
     puVar6 = *(uint **)(lVar7 + 0x38);
     if (puVar6 == (uint *)0x0) {
-      puVar6 = (uint *)FUN_1808fc418(0x10);
+      puVar6 = (uint *)SystemRenderer(0x10);
       puVar6[0] = 0;
       puVar6[1] = 0;
       puVar6[2] = 0;
@@ -628,7 +632,7 @@ void FUN_180480320(int64_t param_1,byte param_2,byte param_3)
     lVar7 = *(int64_t *)(param_1 + 8);
     puVar6 = *(uint **)(lVar7 + 0x30);
     if (puVar6 == (uint *)0x0) {
-      puVar6 = (uint *)FUN_1808fc418(0x10);
+      puVar6 = (uint *)SystemRenderer(0x10);
       puVar6[0] = 0;
       puVar6[1] = 0;
       puVar6[2] = 0;
@@ -691,7 +695,7 @@ void FUN_180480560(int64_t param_1,ushort param_2,char param_3)
     if (bVar6 != (bool)param_3) {
       puVar2 = *(uint64_t **)(lVar1 + 0x28);
       if (puVar2 == (uint64_t *)0x0) {
-        puVar2 = (uint64_t *)FUN_1808fc418();
+        puVar2 = (uint64_t *)SystemRenderer();
         *puVar2 = 0;
         puVar2[1] = 0;
         puVar2[2] = 0;
@@ -716,7 +720,7 @@ uint64_t * FUN_180480650(int64_t param_1,uint param_2)
   uint64_t *puVar2;
   int64_t lVar3;
   
-  puVar1 = (uint64_t *)FUN_1808fc418(0x28);
+  puVar1 = (uint64_t *)SystemRenderer(0x28);
   *puVar1 = &processed_var_6184_ptr;
   *(uint *)(puVar1 + 1) = (param_2 & 0xff) + 10;
   *(int32_t *)((int64_t)puVar1 + 0xc) = 0;
@@ -724,7 +728,7 @@ uint64_t * FUN_180480650(int64_t param_1,uint param_2)
   puVar1[3] = 0;
   *puVar1 = &processed_var_5288_ptr;
   puVar1[4] = 0;
-  puVar2 = (uint64_t *)FUN_1808fc418(0x20);
+  puVar2 = (uint64_t *)SystemRenderer(0x20);
   *puVar2 = &processed_var_6184_ptr;
   *(int32_t *)(puVar2 + 1) = 1;
   *(int32_t *)((int64_t)puVar2 + 0xc) = 0;
@@ -1019,7 +1023,7 @@ void FUN_180480870(int64_t *param_1,int64_t param_2,int64_t param_3,int8_t param
   }
   auStackX_20[0] = param_4;
   if (uVar3 < 0x8000000000000000) {
-    lVar2 = FUN_180067110(uVar3);
+    lVar2 = SystemCore_SyscallHandler(uVar3);
     *param_1 = lVar2;
     param_1[1] = lVar2;
     param_1[2] = lVar2 + uVar3;

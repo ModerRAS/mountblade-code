@@ -1,5 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_07_part062.c - 3 个函数
 
@@ -143,7 +154,7 @@ void FUN_1804d5bb0(int64_t param_1)
                 break;
               }
             }
-            FUN_18066c220(param_1 + 0x2cb0,&uStackX_8,(uint64_t)*(uint *)(param_1 + 0x2ca0),
+            RenderingShaderProcessor0(param_1 + 0x2cb0,&uStackX_8,(uint64_t)*(uint *)(param_1 + 0x2ca0),
                           *(int32_t *)(param_1 + 0x2ca8),1);
             puVar12 = (int32_t *)
                       CoreMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2cbc));
@@ -330,7 +341,7 @@ LAB_1804d6192:
   uStack_ac = uStack_d0._4_4_;
   uStack_d0 = param_1;
   ppuStack_b8 = ppuStack_d8;
-  FUN_18015b810((int64_t)puStack_f0 - (int64_t)puStack_f8,0,
+  SystemCore_DataTransformer((int64_t)puStack_f0 - (int64_t)puStack_f8,0,
                 ((int64_t)puStack_f0 - (int64_t)puStack_f8) / 0x18,0x10,0xffffffffffffffff,
                 &ppuStack_b8);
   if (puStack_f8 != (uint64_t *)0x0) {
@@ -349,7 +360,7 @@ LAB_1804d6192:
   uStack_94 = uVar10;
   ppuStack_d8 = param_1;
   puStack_90 = (int32_t *)uStack_d0;
-  uVar21 = FUN_18015b810(iVar19,0,*(int32_t *)((int64_t)param_1 + 0x2acc),0x10,
+  uVar21 = SystemCore_DataTransformer(iVar19,0,*(int32_t *)((int64_t)param_1 + 0x2acc),0x10,
                          0xffffffffffffffff,&iStack_98);
   if (((param_2[99] != (uint64_t **)0x0) && (*(char *)((int64_t)param_2 + 0x2a61) != '\0')) &&
      ((*(char *)((int64_t)param_2 + 0x2a62) != '\0' && (*(int *)(system_system_data_memory + 0xaf0) != 0)))) {
@@ -360,7 +371,7 @@ LAB_1804d6192:
     puStack_c8 = &processed_var_9008_ptr;
     pcStack_c0 = FUN_1804df080;
     ppuStack_d8 = param_1;
-    FUN_18015b810(uVar21,0,*(int32_t *)((int64_t)param_1 + 0x2acc),0x10,0xffffffffffffffff,
+    SystemCore_DataTransformer(uVar21,0,*(int32_t *)((int64_t)param_1 + 0x2acc),0x10,0xffffffffffffffff,
                   &ppuStack_d8);
   }
   if ((((param_2[99] != (uint64_t **)0x0) && (*(char *)((int64_t)param_2 + 0x2a61) != '\0')) &&
@@ -378,7 +389,7 @@ LAB_1804d6192:
   uStack_78._4_4_ = uVar10;
   ppuStack_d8 = param_1;
   puStack_70 = (int32_t *)uStack_d0;
-  FUN_18015b810(pppuStackX_10,0,*(int32_t *)((int64_t)param_1 + 0x5bc),0x32,0xffffffffffffffff,
+  SystemCore_DataTransformer(pppuStackX_10,0,*(int32_t *)((int64_t)param_1 + 0x5bc),0x32,0xffffffffffffffff,
                 &uStack_78);
   do {
     iVar19 = (int)puVar20;
@@ -420,7 +431,7 @@ LAB_1804d6192:
         piVar17 = (int *)(param_1[0xbd][(int)uVar2 >> 10] +
                          (int64_t)(int)(*(uint *)(param_1 + 0xc1) & uVar2) * 0x28);
         if ((uVar2 != 0xffffffff) && (*piVar17 != -1)) {
-          FUN_1800571e0(param_1 + 0xb9,&pppuStackX_10);
+          SystemDatabaseProcessor(param_1 + 0xb9,&pppuStackX_10);
           pppuStackX_10 = (uint64_t ***)(piVar17 + 2);
           if (*(int64_t **)(piVar17 + 6) != (int64_t *)0x0) {
             (**(code **)(**(int64_t **)(piVar17 + 6) + 0x38))();
@@ -682,11 +693,11 @@ void FUN_1804d6660(uint64_t *param_1,int param_2,int param_3)
       fStack_84 = fVar7;
       fStack_80 = fVar8;
       uStack_7c = uVar2;
-      FUN_1800b9f60(&fStack_1a8);
+      SystemCore_Parser(&fStack_1a8);
       lVar29 = param_1[1];
       uVar35 = (uint64_t)*(int *)(lVar37 + 0x20 + lVar33);
       lVar34 = *(int64_t *)(lVar21 + 0x8a8);
-      FUN_18063b5f0(&fStack_148,&uStack_168);
+      SystemSecurityManager(&fStack_148,&uStack_168);
       fVar9 = *(float *)(lVar34 + 0x70);
       fVar10 = *(float *)(lVar34 + 0x74);
       fVar11 = *(float *)(lVar34 + 0x78);
@@ -731,7 +742,7 @@ void FUN_1804d6660(uint64_t *param_1,int param_2,int param_3)
       fStack_a4 = fVar7;
       fStack_a0 = fVar8;
       uStack_9c = uVar2;
-      FUN_18063ad30(((int64_t)*(int *)(lVar29 + 0x500) & uVar35) * 0xc0 +
+      UltraHighFreq_DataProcessor1(((int64_t)*(int *)(lVar29 + 0x500) & uVar35) * 0xc0 +
                     *(int64_t *)(*(int64_t *)(lVar29 + 0x4e0) + (int64_t)((int)uVar35 >> 10) * 8)
                     + 8,&fStack_1a8,&fStack_118);
       lVar38 = lVar38 + 0x18;

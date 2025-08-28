@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -580,7 +584,7 @@ uint64_t * FUN_18015b6b0(int64_t param_1,uint64_t *param_2,int *param_3)
   while( true ) {
     uStackX_8 = piVar4;
     if (piVar2 == (int *)0x0) {
-      FUN_18066c220(param_1 + 0x20,&uStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&uStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if ((char)uStackX_8 != '\0') {
         uVar5 = (uint64_t)(int64_t)iVar1 % (uint64_t)uStackX_8._4_4_;
@@ -611,8 +615,8 @@ uint64_t * FUN_18015b6b0(int64_t param_1,uint64_t *param_2,int *param_3)
 
 
 
-// 函数: void FUN_18015b810(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_18015b810(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void SystemCore_DataTransformer(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+void SystemCore_DataTransformer(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
                   int64_t param_6)
 
 {

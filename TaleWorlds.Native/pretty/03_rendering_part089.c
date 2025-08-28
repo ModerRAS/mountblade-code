@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -28,7 +29,7 @@ void FUN_18031bc40(int64_t param_1)
   fStack_18 = *(float *)(param_1 + 0x94) + *(float *)(param_1 + 0xe4);
   fStack_14 = *(float *)(param_1 + 0x98) + *(float *)(param_1 + 0xe8);
   fStack_10 = *(float *)(param_1 + 0x9c) + *(float *)(param_1 + 0xec);
-  FUN_180084760(&uStack_48,param_1 + 0xa4);
+  SystemCore_PerformanceMonitor(&uStack_48,param_1 + 0xa4);
   return;
 }
 
@@ -326,7 +327,7 @@ void FUN_18031c090(int64_t *param_1)
         *(int8_t *)((int64_t)puStack_38 + 0xe) = 0;
         uStack_30 = 0xe;
         System_DataHandler(&puStack_40,&processed_var_6344_ptr,uVar6);
-        uVar2 = FUN_18023a940(*(uint64_t *)
+        uVar2 = SystemCore_Scheduler(*(uint64_t *)
                                (*(int64_t *)(uVar4 + *(int64_t *)(*param_1 + 0x10)) + 0x100));
         FUN_180225ee0(extraout_XMM0_Qa,&puStack_40,4,uVar2);
         puStack_40 = &system_data_buffer_ptr;
@@ -743,7 +744,7 @@ void FUN_18031c950(void *param_1,uint64_t param_2,void *param_3)
   puStack_60 = param_3;
   ppuVar2 = (void **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1a0,8,3);
   ppuStack_138 = ppuVar2;
-  FUN_180049830(ppuVar2);
+  UltraHighFreq_PerformanceMonitor1(ppuVar2);
   *ppuVar2 = &processed_var_6984_ptr;
   ppuStack_130 = ppuVar2 + 0x18;
   *ppuStack_130 = &system_state_ptr;
@@ -793,12 +794,12 @@ void FUN_18031c950(void *param_1,uint64_t param_2,void *param_3)
   pppuStack_128 = &ppuStack_130;
   ppuStack_130 = ppuVar2;
   (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
-  FUN_18005e370(uVar1,&ppuStack_130);
+  SystemPerformance_Monitor(uVar1,&ppuStack_130);
   uVar1 = system_context_ptr;
   pppuStack_128 = &ppuStack_138;
   ppuStack_138 = ppuVar2;
   (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
-  FUN_18005e6a0(uVar1,&ppuStack_138,0);
+  SystemCore_ErrorHandler(uVar1,&ppuStack_138,0);
   (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
   ppuStack_120 = &puStack_108;
   puStack_108 = &system_state_ptr;
@@ -835,7 +836,7 @@ void FUN_18031ccb0(int64_t *param_1)
   plVar3 = *(int64_t **)(lVar2 + 0x8400);
   iVar9 = (**(code **)(*plVar3 + 0x70))(plVar3,*(uint64_t *)(lVar1 + 0x10),0,1,0,apuStack_18);
   if (iVar9 < 0) {
-    FUN_180220810(iVar9,&ui_system_data_1768_ptr);
+    SystemCore_Loader(iVar9,&ui_system_data_1768_ptr);
   }
   lVar1 = param_1[2];
   uVar8 = apuStack_18[0][1];

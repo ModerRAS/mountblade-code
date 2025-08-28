@@ -273,7 +273,7 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
               *(uint *)(system_context + SYSTEM_OFFSET_BFC) = uVar4;
               if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= (int)uVar4) {
                 if (*(char *)(system_context + SYSTEM_OFFSET_BEA) == '\0') {
-                  FUN_18080d690(system_context);
+                  RenderingSystem_BufferManager0(system_context);
                 }
                 uVar4 = *(uint *)(system_context + SYSTEM_OFFSET_BD0);
                 *(uint *)(system_context + SYSTEM_OFFSET_BFC) = uVar4;
@@ -307,7 +307,7 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
           }
         }
         else {
-          FUN_18080d690(system_context);
+          RenderingSystem_BufferManager0(system_context);
         }
       }
       else {
@@ -329,7 +329,7 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
     if (is_less_than) {
       validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
       processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
-      FUN_18080d690(system_context);
+      RenderingSystem_BufferManager0(system_context);
       *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
       *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
     }
@@ -384,7 +384,7 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
               *(uint *)(unaff_RBX + 0xbfc) = uVar4;
               if (*(int *)(unaff_RBX + 0x8ec) <= (int)uVar4) {
                 if (*(char *)(unaff_RBX + 0xbea) == '\0') {
-                  FUN_18080d690();
+                  RenderingSystem_BufferManager0();
                 }
                 uVar4 = *(uint *)(unaff_RBX + 0xbd0);
                 *(uint *)(unaff_RBX + 0xbfc) = uVar4;
@@ -419,7 +419,7 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
           }
         }
         else {
-          FUN_18080d690();
+          RenderingSystem_BufferManager0();
         }
       }
       else {
@@ -442,7 +442,7 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
     if (bVar7) {
       uVar2 = *(int8_t *)(unaff_RBX + 0xbe8);
       uVar3 = *(int8_t *)(unaff_RBX + 0xbe9);
-      FUN_18080d690();
+      RenderingSystem_BufferManager0();
       *(int8_t *)(unaff_RBX + 0xbe8) = uVar2;
       *(int8_t *)(unaff_RBX + 0xbe9) = uVar3;
     }
@@ -491,7 +491,7 @@ uint64_t LoopDataProcessor(void)
             *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
             if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= (int)current_index) {
               if (*(char *)(system_context + SYSTEM_OFFSET_BEA) == '\0') {
-                FUN_18080d690();
+                RenderingSystem_BufferManager0();
               }
               current_index = *(uint *)(system_context + SYSTEM_OFFSET_BD0);
               *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
@@ -526,7 +526,7 @@ uint64_t LoopDataProcessor(void)
         }
       }
       else {
-        FUN_18080d690();
+        RenderingSystem_BufferManager0();
       }
     }
     else {
@@ -552,7 +552,7 @@ uint64_t LoopDataProcessor(void)
   if (context_flag != '\0') {
     validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
     processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
-    FUN_18080d690();
+    RenderingSystem_BufferManager0();
     *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
     *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
@@ -584,7 +584,7 @@ uint64_t FastStateChecker(void)
   if (context_flag != '\0') {
     validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
     processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
-    FUN_18080d690();
+    RenderingSystem_BufferManager0();
     *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
     *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
@@ -646,7 +646,7 @@ uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
           *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
           if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= (int)current_index) {
             if (*(char *)(system_context + SYSTEM_OFFSET_BEA) == '\0') {
-              FUN_18080d690(system_context);
+              RenderingSystem_BufferManager0(system_context);
             }
             current_index = *(uint *)(system_context + SYSTEM_OFFSET_BD0);
             *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
@@ -680,7 +680,7 @@ uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
       }
     }
     else {
-      FUN_18080d690();
+      RenderingSystem_BufferManager0();
     }
   }
   else if (operation_flag != '\0') {
@@ -1991,7 +1991,7 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
     
     /* 处理高级音频特性（标志位32） */
     if ((status_flags & 0x20) != 0) {
-      FUN_180758220(*(uint64_t )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
+      UIComponent_Renderer(*(uint64_t )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
       *(int32_t )(state_object + 0x58) = 0; /* 重置高级参数 */
     }
   }

@@ -152,7 +152,7 @@ void FUN_18024d3b0(int64_t *param_1)
   int64_t lVar6;
   int64_t *plVar7;
   
-  FUN_1800b8500();
+  SystemCore_Controller();
   lVar1 = *param_1;
   *param_1 = 0;
   lVar2 = param_1[1];

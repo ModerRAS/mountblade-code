@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -16,7 +20,7 @@ void FUN_180397ce0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     CoreEngineMemoryPoolCleaner();
   }
   FUN_18017b400(param_1 + 0x98,*(uint64_t *)(param_1 + 0xa8),param_3,param_4,uVar1);
-  FUN_180057830();
+  DataTransformer0();
   if (*(int64_t *)(param_1 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -280,7 +284,7 @@ void FUN_1803981a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_1800b8500(param_1 + 0x78);
+  SystemCore_Controller(param_1 + 0x78);
   plVar3 = *(int64_t **)(param_1 + 0x78);
   *(uint64_t *)(param_1 + 0x78) = 0;
   plVar4 = *(int64_t **)(param_1 + 0x80);
@@ -480,7 +484,7 @@ void FUN_180398550(int64_t param_1,int64_t param_2)
     if (lVar4 != lVar1) {
       *(int64_t *)(param_1 + 0xb8) = *(int64_t *)(param_1 + 0xb8) + -1;
       func_0x00018066bd70(lVar4);
-      FUN_18066ba00(lVar4,lVar1);
+      RenderingSystem_BufferHandler(lVar4,lVar1);
       if (*(int64_t **)(lVar4 + 0x20) != (int64_t *)0x0) {
         (**(code **)(**(int64_t **)(lVar4 + 0x20) + 0x38))();
       }

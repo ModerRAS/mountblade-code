@@ -1,10 +1,17 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
 #define ControlFlowHandler ControlFlowHandler  // 控制流处理器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part464.c - 7 个函数
 
@@ -29,7 +36,7 @@ void FUN_180516cb0(int64_t param_1,int32_t param_2,int64_t param_3,uint64_t para
   
   cVar1 = *(char *)(*(int64_t *)(param_1 + 0x590) + 0x25fb);
   puVar10 = (int32_t *)
-            FUN_18022a890(param_3,cVar1,*(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
+            SystemErrorHandler(param_3,cVar1,*(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
   uVar3 = puVar10[1];
   uVar4 = puVar10[2];
   uVar5 = puVar10[3];
@@ -155,7 +162,7 @@ void FUN_180516f46(void)
 
 
 
-uint64_t * FUN_180516f50(int64_t param_1,uint64_t *param_2)
+uint64_t * UltraHighFreq_MemoryManager1(int64_t param_1,uint64_t *param_2)
 
 {
   int64_t lVar1;
@@ -169,7 +176,7 @@ uint64_t * FUN_180516f50(int64_t param_1,uint64_t *param_2)
   lVar5 = *(int64_t *)(param_1 + 0x9d8);
   lVar6 = *(int64_t *)(param_1 + 0x20);
   lVar7 = lVar5;
-  if ((lVar5 == 0) || (cVar4 = FUN_18038d0a0(lVar5), lVar7 = lVar5, cVar4 == '\0')) {
+  if ((lVar5 == 0) || (cVar4 = SystemCore_PerformanceMonitor(lVar5), lVar7 = lVar5, cVar4 == '\0')) {
     lVar5 = 0;
   }
   lVar1 = *(int64_t *)(param_1 + 0x8d8);
@@ -254,7 +261,7 @@ float * FUN_180516fe0(int64_t param_1,float *param_2,int64_t param_3,int param_4
             iVar4 = iVar2;
             iVar15 = render_system_memory;
 LAB_18051724a:
-            FUN_1800622d0(system_message_context,0,0xc,&processed_var_6592_ptr,uVar14,iVar4,iVar15);
+            SystemManager_DataHandler(system_message_context,0,0xc,&processed_var_6592_ptr,uVar14,iVar4,iVar15);
           }
           else {
             if ((iVar5 < 0) || ((int)((render_system_memory - render_system_memory) / 0x68) <= iVar5)) {
@@ -263,14 +270,14 @@ LAB_18051724a:
               iVar15 = (int)((render_system_memory - render_system_memory) / 0x68);
               goto LAB_18051724a;
             }
-            iVar4 = FUN_18053a410(&system_data_5f30,iVar2,iVar5);
+            iVar4 = SystemCacheManager(&system_data_5f30,iVar2,iVar5);
             if ((iVar4 < 0) || ((int)(render_system_memory - render_system_memory >> 3) <= iVar4)) {
               uVar14 = 0x1317;
               iVar15 = (int)(render_system_memory - render_system_memory >> 3);
               goto LAB_18051724a;
             }
           }
-          iVar5 = FUN_18053a410(&system_data_5f30,iVar2,iVar5);
+          iVar5 = SystemCacheManager(&system_data_5f30,iVar2,iVar5);
           iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
           if (iVar5 == -1) {
             lVar8 = 0;
@@ -286,7 +293,7 @@ LAB_18051724a:
           iVar9 = iVar9 + 1;
         }
         if (*(int *)(lVar7 + 0x34) != -1) {
-          iVar5 = FUN_18053a410(&system_data_5f30,iVar2);
+          iVar5 = SystemCacheManager(&system_data_5f30,iVar2);
           iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
           if (iVar5 == -1) {
             lVar7 = 0;
@@ -376,7 +383,7 @@ float * FUN_180517093(uint64_t param_1,int64_t param_2,int64_t param_3,int param
             uVar11 = 0x130c;
             iStack0000000000000028 = iVar2;
 LAB_18051724a:
-            FUN_1800622d0(system_message_context,0,0xc,&processed_var_6592_ptr,uVar11);
+            SystemManager_DataHandler(system_message_context,0,0xc,&processed_var_6592_ptr,uVar11);
           }
           else {
             if ((iVar4 < 0) || ((int)((render_system_memory - render_system_memory) / 0x68) <= iVar4)) {
@@ -384,14 +391,14 @@ LAB_18051724a:
               iStack0000000000000028 = iVar4;
               goto LAB_18051724a;
             }
-            iVar3 = FUN_18053a410(&system_data_5f30,iVar2,iVar4,render_system_memory,uVar10);
+            iVar3 = SystemCacheManager(&system_data_5f30,iVar2,iVar4,render_system_memory,uVar10);
             if ((iVar3 < 0) || ((int)(render_system_memory - render_system_memory >> 3) <= iVar3)) {
               uVar11 = 0x1317;
               iStack0000000000000028 = iVar3;
               goto LAB_18051724a;
             }
           }
-          iVar4 = FUN_18053a410(&system_data_5f30,iVar2,iVar4);
+          iVar4 = SystemCacheManager(&system_data_5f30,iVar2,iVar4);
           iVar4 = *(int *)(render_system_memory + (int64_t)iVar4 * 4);
           if (iVar4 == -1) {
             lVar6 = 0;
@@ -407,7 +414,7 @@ LAB_18051724a:
           iVar7 = iVar7 + 1;
         }
         if (*(int *)(lVar5 + 0x34) != -1) {
-          iVar4 = FUN_18053a410(&system_data_5f30,iVar2);
+          iVar4 = SystemCacheManager(&system_data_5f30,iVar2);
           iVar4 = *(int *)(render_system_memory + (int64_t)iVar4 * 4);
           if (iVar4 == -1) {
             lVar5 = 0;
@@ -474,12 +481,12 @@ void FUN_1805173c0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   float fStack_1f0;
   float fStack_1ec;
   
-  FUN_18022a890(param_3,*(int8_t *)
+  SystemErrorHandler(param_3,*(int8_t *)
                          (*(int64_t *)
                            (*(int64_t *)
                              (*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x260) + 0x210
                            ) + 0xde),*(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
-  FUN_18022a890(param_3,*(int8_t *)
+  SystemErrorHandler(param_3,*(int8_t *)
                          (*(int64_t *)
                            (*(int64_t *)
                              (*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x260) + 0x210
@@ -587,7 +594,7 @@ void FUN_1805183c0(int64_t param_1,int64_t param_2,float *param_3,int8_t param_4
   
   uStack_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1c8;
   cVar2 = *(char *)(*(int64_t *)(param_1 + 0x590) + 0x25fa);
-  pfVar16 = (float *)FUN_18022a890(param_2,cVar2,
+  pfVar16 = (float *)SystemErrorHandler(param_2,cVar2,
                                    *(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
   fVar23 = *pfVar16;
   fVar34 = pfVar16[1];
@@ -642,8 +649,8 @@ void FUN_1805183c0(int64_t param_1,int64_t param_2,float *param_3,int8_t param_4
       fStack_164 = fVar32;
       fStack_160 = fVar9;
       fStack_15c = fVar33;
-      FUN_180285b40(&fStack_168,auStack_128,&uStack_118);
-      pfVar16 = (float *)FUN_18022a890(param_2,cVar4,
+      SystemCore_EventHandler(&fStack_168,auStack_128,&uStack_118);
+      pfVar16 = (float *)SystemErrorHandler(param_2,cVar4,
                                        *(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
       fVar10 = *pfVar16;
       fVar11 = pfVar16[1];
@@ -761,7 +768,7 @@ void FUN_1805183c0(int64_t param_1,int64_t param_2,float *param_3,int8_t param_4
         fStack_160 = fVar22 * fVar12 + fVar24 * fVar34 * fVar9;
         fStack_15c = fVar22 * fVar13 + fVar24 * fVar33;
       }
-      pfVar16 = (float *)FUN_1801c0fb0(&fStack_168,&uStack_118,auStack_128);
+      pfVar16 = (float *)SystemFileHandler(&fStack_168,&uStack_118,auStack_128);
       lVar18 = *(int64_t *)(param_1 + 0x590);
       uStack_118 = CONCAT44((uStack_158._4_4_ + pfVar16[1]) - uStack_138._4_4_,
                             ((float)uStack_158 + *pfVar16) - (float)uStack_138);

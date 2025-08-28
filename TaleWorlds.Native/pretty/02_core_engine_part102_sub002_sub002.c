@@ -65,7 +65,7 @@ FUN_18011ddb0(float *param_1,int param_2,uint64_t param_3,int *param_4,int param
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto LAB_18011e08c;
-    uVar8 = FUN_180131aa0(afStackX_20,3,5,0,0);
+    uVar8 = SystemCore_ConfigLoader(afStackX_20,3,5,0,0);
     if ((*(int *)(lVar3 + 0x1cac) == param_2) && (*(char *)(lVar3 + 0x1b3c) == '\0')) {
       *(bool *)(lVar3 + 0x1b3c) = *(int *)(lVar3 + 0x1b2c) != 0;
       if (*(int *)(lVar3 + 0x1b2c) != 0) {
@@ -196,7 +196,7 @@ FUN_18011e160(float *param_1,int param_2,uint64_t param_3,uint *param_4,uint par
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto LAB_18011e43d;
-    uVar10 = FUN_180131aa0(afStackX_20,3,5,0,0);
+    uVar10 = SystemCore_ConfigLoader(afStackX_20,3,5,0,0);
     if ((*(int *)(lVar4 + 0x1cac) == param_2) && (*(char *)(lVar4 + 0x1b3c) == '\0')) {
       *(bool *)(lVar4 + 0x1b3c) = *(int *)(lVar4 + 0x1b2c) != 0;
       if (*(int *)(lVar4 + 0x1b2c) != 0) {
@@ -327,7 +327,7 @@ FUN_18011e520(float *param_1,int param_2,uint64_t param_3,int64_t *param_4,int64
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto LAB_18011e808;
-    uVar8 = FUN_180131aa0(&param_6,3,5,0,0);
+    uVar8 = SystemCore_ConfigLoader(&param_6,3,5,0,0);
     if ((*(int *)(lVar4 + 0x1cac) == param_2) && (*(char *)(lVar4 + 0x1b3c) == '\0')) {
       *(bool *)(lVar4 + 0x1b3c) = *(int *)(lVar4 + 0x1b2c) != 0;
       if (*(int *)(lVar4 + 0x1b2c) != 0) {
@@ -484,7 +484,7 @@ LAB_18011eba2:
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto LAB_18011ec19;
-    uVar11 = FUN_180131aa0(&param_6,3,5,0,0);
+    uVar11 = SystemCore_ConfigLoader(&param_6,3,5,0,0);
     if ((*(int *)(lVar4 + 0x1cac) == param_2) && (*(char *)(lVar4 + 0x1b3c) == '\0')) {
       *(bool *)(lVar4 + 0x1b3c) = *(int *)(lVar4 + 0x1b2c) != 0;
       if (*(int *)(lVar4 + 0x1b2c) != 0) {
@@ -645,7 +645,7 @@ LAB_18011ee7f:
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto FUN_18011efb8;
-    param_1 = (float)FUN_180131aa0(afStackX_8,3,5,0,0);
+    param_1 = (float)SystemCore_ConfigLoader(afStackX_8,3,5,0,0);
     if ((*(int *)(lVar2 + 0x1cac) == param_2) && (*(char *)(lVar2 + 0x1b3c) == '\0')) {
       iVar3 = *(int *)(lVar2 + 0x1b2c);
       goto LAB_18011ee7f;
@@ -753,7 +753,7 @@ LAB_18011ee7f:
   }
   else {
     if (in_EAX != 2) goto LAB_18011efb0;
-    param_1 = (float)FUN_180131aa0(&stack0x000000e0,3,5,0,0);
+    param_1 = (float)SystemCore_ConfigLoader(&stack0x000000e0,3,5,0,0);
     if ((*(int *)(unaff_RBX + 0x1cac) == unaff_EDI) && (*(char *)(unaff_RBX + 0x1b3c) == '\0')) {
       in_ECX = *(int *)(unaff_RBX + 0x1b2c);
       goto LAB_18011ee7f;
@@ -914,7 +914,7 @@ LAB_18011f1e4:
   }
   else {
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b60) != 2) goto FUN_18011f32e;
-    in_XMM0_Qa = (double)FUN_180131aa0(&param_5,3,5,0,0);
+    in_XMM0_Qa = (double)SystemCore_ConfigLoader(&param_5,3,5,0,0);
     if ((*(int *)(lVar4 + 0x1cac) == param_2) && (*(char *)(lVar4 + 0x1b3c) == '\0')) {
       iVar7 = *(int *)(lVar4 + 0x1b2c);
       goto LAB_18011f1e4;
@@ -1031,7 +1031,7 @@ LAB_18011f1e4:
   }
   else {
     if (in_EAX != 2) goto LAB_18011f326;
-    param_1 = (double)FUN_180131aa0(&stack0x000000f0,3,5,0,0);
+    param_1 = (double)SystemCore_ConfigLoader(&stack0x000000f0,3,5,0,0);
     if ((*(int *)(unaff_RBX + 0x1cac) == unaff_EDI) && (*(char *)(unaff_RBX + 0x1b3c) == '\0')) {
       in_ECX = *(int *)(unaff_RBX + 0x1b2c);
       goto LAB_18011f1e4;

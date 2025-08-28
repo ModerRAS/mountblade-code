@@ -288,7 +288,7 @@ void FUN_1802a1dd0(int64_t param_1,int32_t *param_2)
   
   uStack_90 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
-  cVar1 = FUN_180624af0();
+  cVar1 = RenderingSystem_RenderQueue();
   if ((cVar1 != '\0') && (uVar3 = FUN_18062d9a0(param_1), 3 < uVar3)) {
     uStack_a8 = 0;
     lStack_a0 = 0;
@@ -296,7 +296,7 @@ void FUN_1802a1dd0(int64_t param_1,int32_t *param_2)
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar5 = *(void **)(param_1 + 8);
     }
-    FUN_18062dee0(&uStack_a8,puVar5,&processed_var_4880_ptr);
+    SystemCore_Validator(&uStack_a8,puVar5,&processed_var_4880_ptr);
     lVar6 = lStack_a0;
     if (lStack_a0 != 0) {
       fread(&iStack_b8,4,1,lStack_a0);

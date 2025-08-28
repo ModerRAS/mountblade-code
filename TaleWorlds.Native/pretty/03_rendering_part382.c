@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -52,7 +56,7 @@ void FUN_180478410(int64_t param_1,uint64_t *param_2)
     do {
       lVar7 = lVar7 + 1;
     } while (*(char *)(lVar3 + lVar7) != '\0');
-    FUN_1800671b0(&uStack_60);
+    MathCoreCalculator0(&uStack_60);
     puVar2 = (uint64_t *)&uStack_60;
     uVar5 = 2;
   }
@@ -821,14 +825,14 @@ void FUN_180479a10(char *param_1,int64_t *param_2,uint64_t param_3,uint64_t *par
   iVar13 = 1;
   uStack_280 = param_1;
   FUN_180476ff0(&lStack_278);
-  uVar5 = FUN_1800a1160(&lStack_278,param_3);
-  uVar5 = FUN_1800a0e50(uVar5,0x20);
+  uVar5 = SystemCore_Synchronizer(&lStack_278,param_3);
+  uVar5 = SystemCore_ResourceManager(uVar5,0x20);
   puVar8 = param_4 + 2;
   if (0xf < (uint64_t)param_4[3]) {
     param_4 = (uint64_t *)*param_4;
   }
   uVar5 = FUN_1803f4790(uVar5,param_4,*puVar8);
-  uVar5 = FUN_1800a1160(uVar5,&processed_var_4768_ptr);
+  uVar5 = SystemCore_Synchronizer(uVar5,&processed_var_4768_ptr);
   uVar6 = FUN_180481f90(&uStack_138,*(int16_t *)(*param_2 + 0x20));
   uVar7 = FUN_180482ac0(&uStack_118,*param_2);
   puVar8 = (uint64_t *)FUN_180482b40(&uStack_f8,uVar7,uVar6);
@@ -866,9 +870,9 @@ void FUN_180479a10(char *param_1,int64_t *param_2,uint64_t param_3,uint64_t *par
     puVar8 = (uint64_t *)*puVar8;
   }
   uVar5 = FUN_1803f4790(uVar5,puVar8,*puVar1);
-  uVar5 = FUN_1800a1160(uVar5,&processed_var_4744_ptr);
+  uVar5 = SystemCore_Synchronizer(uVar5,&processed_var_4744_ptr);
   uVar5 = __6__basic_ostream_DU__char_traits_D_std___std__QEAAAEAV01__K_Z(uVar5,param_5[2]);
-  FUN_1800a1160(uVar5,&processed_var_4800_ptr);
+  SystemCore_Synchronizer(uVar5,&processed_var_4800_ptr);
   uStack_298 = 0;
   if (0xf < uStack_e0) {
     uVar12 = uStack_e0 + 1;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part007.c - 13 个函数
 
 // 函数: void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
@@ -51,7 +55,7 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     FUN_180085c10(&uStack_38,system_system_memory);
     FUN_180085970(&uStack_38,system_system_memory);
     FUN_180085ac0(&uStack_38,system_system_memory);
-    FUN_18063b470(&uStack_58,&uStack_38);
+    AdvancedProcessor_StateManager0(&uStack_58,&uStack_38);
     system_system_memory = uStack_58;
     uRam0000000180c96374 = uStack_54;
     uRam0000000180c96378 = uStack_50;
@@ -61,7 +65,7 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     ppplStackX_18 = (int64_t ***)&uStack_58;
     puStack_48 = &processed_var_5104_ptr;
     puStack_40 = &processed_var_5088_ptr;
-    ppplVar3 = (int64_t ***)FUN_18006b640(uVar2,&uStack_58);
+    ppplVar3 = (int64_t ***)SystemCore_ErrorHandler(uVar2,&uStack_58);
     if (ppplVar3 != (int64_t ***)0x0) {
       ppplStackX_10 = ppplVar3;
       (*(code *)(*ppplVar3)[5])(ppplVar3);
@@ -81,12 +85,12 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     if (system_system_memory != (int64_t ***)0x0) {
       (*(code *)(*system_system_memory)[5])();
     }
-    FUN_18005e110(uVar2,&ppplStackX_10);
+    SystemCore_TimerManager(uVar2,&ppplStackX_10);
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
     ppplStackX_10 = (int64_t ***)&uStack_58;
     puStack_48 = &processed_var_5056_ptr;
     puStack_40 = &processed_var_5040_ptr;
-    ppplVar3 = (int64_t ***)FUN_18006b640(uVar2,&uStack_58);
+    ppplVar3 = (int64_t ***)SystemCore_ErrorHandler(uVar2,&uStack_58);
     if (ppplVar3 != (int64_t ***)0x0) {
       ppplStackX_18 = ppplVar3;
       (*(code *)(*ppplVar3)[5])(ppplVar3);
@@ -106,7 +110,7 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     if (system_system_memory != (int64_t ***)0x0) {
       (*(code *)(*system_system_memory)[5])();
     }
-    FUN_18005e110(uVar2,&ppplStackX_10);
+    SystemCore_TimerManager(uVar2,&ppplStackX_10);
     return;
   }
   if (param_1 == 1) {
@@ -115,14 +119,14 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     if (system_system_memory != (int64_t ***)0x0) {
       (*(code *)(*system_system_memory)[5])();
     }
-    FUN_18005e6a0(uVar2,&ppplStackX_10,0);
+    SystemCore_ErrorHandler(uVar2,&ppplStackX_10,0);
     uVar2 = system_context_ptr;
     pppplStackX_20 = &ppplStackX_18;
     ppplStackX_18 = system_system_memory;
     if (system_system_memory != (int64_t ***)0x0) {
       (*(code *)(*system_system_memory)[5])();
     }
-    FUN_18005e6a0(uVar2,&ppplStackX_18,0);
+    SystemCore_ErrorHandler(uVar2,&ppplStackX_18,0);
     FUN_18054c430();
     (**(code **)(system_system_data_memory + 0x118))();
   }
@@ -271,7 +275,7 @@ LAB_1804e103d:
   pppppplVar1 = pppppplStack_b8;
   system_system_memory = (int8_t *)0x0;
   if ((int64_t *******)pppppplStack_b8 != (int64_t *******)0x0) {
-    FUN_18004b790(&pppppplStack_c8,*pppppplStack_b8);
+    SystemCache_Manager(&pppppplStack_c8,*pppppplStack_b8);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(pppppplVar1);
   }

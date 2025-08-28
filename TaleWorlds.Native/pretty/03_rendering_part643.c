@@ -1,3 +1,6 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -545,7 +548,7 @@ void FUN_18062bd50(uint64_t param_1,int64_t param_2)
   
   uStack_68 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-  cVar6 = FUN_180624a00();
+  cVar6 = UltraHighFreq_LogManager1();
   if (cVar6 != '\0') {
     puStack_88 = (uint64_t *)0x0;
     puStack_80 = (uint64_t *)0x0;
@@ -560,7 +563,7 @@ void FUN_18062bd50(uint64_t param_1,int64_t param_2)
     if (uVar11 != 0) {
       do {
         puVar1 = puVar4 + uVar10 * 4;
-        cVar6 = FUN_180624af0(puVar1);
+        cVar6 = RenderingSystem_RenderQueue(puVar1);
         if (cVar6 != '\0') {
           FUN_180627490(&puStack_60,puVar1);
           iVar8 = *(int *)(param_2 + 0x10);
@@ -636,7 +639,7 @@ void FUN_18062bed0(uint64_t param_1)
   uStack_5b0 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_608;
   uStack_5d8 = 0;
-  uVar1 = FUN_180624440(apuStack_468,param_1);
+  uVar1 = SystemCore_EncryptionEngine(apuStack_468,param_1);
   SystemCore_EncryptionEngine0(&puStack_5d0,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_5e0 = 0x118;
@@ -727,7 +730,7 @@ uint64_t FUN_18062c100(uint64_t param_1)
   }
   iVar3 = -1;
 LAB_18062c185:
-  FUN_180629a40(&puStack_28,param_1,0,iVar3,uVar4,uVar5);
+  NetworkSystem_ProtocolParser(&puStack_28,param_1,0,iVar3,uVar4,uVar5);
   puStack_28 = &system_data_buffer_ptr;
   if (lStack_20 == 0) {
     return param_1;
@@ -742,8 +745,8 @@ LAB_18062c185:
 
 
 
-// 函数: void FUN_18062c1e0(uint64_t param_1,char param_2)
-void FUN_18062c1e0(uint64_t param_1,char param_2)
+// 函数: void ResourceManager_Allocate(uint64_t param_1,char param_2)
+void ResourceManager_Allocate(uint64_t param_1,char param_2)
 
 {
   char cVar1;
@@ -763,10 +766,10 @@ void FUN_18062c1e0(uint64_t param_1,char param_2)
   
   uStack_498 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4d8;
-  cVar1 = FUN_180624a00();
+  cVar1 = UltraHighFreq_LogManager1();
   if (cVar1 == '\0') {
     if (param_2 != '\0') {
-      uVar2 = FUN_180624440(apuStack_488,param_1);
+      uVar2 = SystemCore_EncryptionEngine(apuStack_488,param_1);
       SystemCore_EncryptionEngine0(auStack_4b8,uVar2);
       apuStack_488[0] = &system_state_ptr;
       uVar4 = 0;
@@ -793,7 +796,7 @@ void FUN_18062c1e0(uint64_t param_1,char param_2)
                     // WARNING: Subroutine does not return
       memset(auStack_268,0,0x118);
     }
-    FUN_180624910(param_1);
+    SystemManager_Processor(param_1);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_4d8);
@@ -834,7 +837,7 @@ void FUN_18062c470(uint64_t param_1)
   
   uStack_470 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4f8;
-  uVar3 = FUN_180624440(apuStack_468,param_1);
+  uVar3 = SystemCore_EncryptionEngine(apuStack_468,param_1);
   SystemCore_EncryptionEngine0(&puStack_4c8,uVar3);
   apuStack_468[0] = &system_state_ptr;
   puVar4 = &system_buffer_ptr;
@@ -868,9 +871,9 @@ void FUN_18062c470(uint64_t param_1)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_4f8);
     }
-    FUN_1808fcdc8();
+    UltraHighFreq_ThreadManager1();
   }
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -917,9 +920,9 @@ void FUN_18062c5f0(uint64_t param_1,int64_t param_2)
   
   uStack_6f8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_778;
-  cVar2 = FUN_180624a00();
+  cVar2 = UltraHighFreq_LogManager1();
   if (cVar2 != '\0') {
-    uVar4 = FUN_180624440(&uStack_498,param_1);
+    uVar4 = SystemCore_EncryptionEngine(&uStack_498,param_1);
     SystemCore_EncryptionEngine0(&puStack_718,uVar4);
     uStack_498 = &system_state_ptr;
     if (*(char *)((uint64_t)(uStack_708 - 1) + lStack_710) == '/') {
@@ -971,7 +974,7 @@ void FUN_18062c5f0(uint64_t param_1,int64_t param_2)
             SystemCore_NetworkHandler0();
           }
           else {
-            FUN_180059820(param_2,&puStack_738);
+            SystemCore_BackupSystem(param_2,&puStack_738);
           }
           puStack_738 = &system_data_buffer_ptr;
           if (lStack_730 != 0) {

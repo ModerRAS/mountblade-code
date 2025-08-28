@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part167.c - 2 个函数
 
 // 函数: void FUN_180768440(uint64_t param_1,int param_2,int32_t *param_3,int64_t *param_4)
@@ -371,7 +375,7 @@ FUN_1807689d0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
 
 
 
-uint64_t FUN_180768b50(uint64_t *param_1)
+uint64_t RenderingSystem_TextureManager(uint64_t *param_1)
 
 {
   uint uVar1;
@@ -383,7 +387,7 @@ uint64_t FUN_180768b50(uint64_t *param_1)
 
 
 
-uint64_t FUN_180768b70(int32_t *param_1)
+uint64_t SystemCore_PerformanceMonitor(int32_t *param_1)
 
 {
   int32_t uVar1;
@@ -415,7 +419,7 @@ uint64_t FUN_180768b90(int *param_1)
 
 
 
-uint64_t FUN_180768bf0(void)
+uint64_t UIComponent_EventHandler(void)
 
 {
   Sleep();
@@ -516,7 +520,7 @@ LAB_180768e5f:
     *(uint *)(param_1 + 0x194) = *(uint *)(param_1 + 0x194) | 0x10;
     iVar1 = *(int *)(param_1 + 400);
     while (iVar1 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar1 = *(int *)(param_1 + 400);
     }
     *(uint *)(param_1 + 0x194) = *(uint *)(param_1 + 0x194) & 0xffffffef;
@@ -525,7 +529,7 @@ LAB_180768eb3:
   if ((uVar5 == 1) && (*(uint *)(param_1 + 0x164) < *(uint *)(param_1 + 0x15c))) {
     iVar1 = *(int *)(param_1 + 400);
     while (iVar1 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar1 = *(int *)(param_1 + 400);
     }
     *(uint *)(param_1 + 0x194) = *(uint *)(param_1 + 0x194) | 0x28;
@@ -626,7 +630,7 @@ LAB_180768e5f:
     *(uint *)(unaff_RBX + 0x194) = *(uint *)(unaff_RBX + 0x194) | 0x10;
     iVar1 = *(int *)(unaff_RBX + 400);
     while (iVar1 != 0) {
-      param_1 = (float)FUN_180768bf0(10);
+      param_1 = (float)UIComponent_EventHandler(10);
       iVar1 = *(int *)(unaff_RBX + 400);
     }
     *(uint *)(unaff_RBX + 0x194) = *(uint *)(unaff_RBX + 0x194) & 0xffffffef;
@@ -635,7 +639,7 @@ LAB_180768eb3:
   if ((uVar4 == 1) && (*(uint *)(unaff_RBX + 0x164) < *(uint *)(unaff_RBX + 0x15c))) {
     iVar1 = *(int *)(unaff_RBX + 400);
     while (iVar1 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar1 = *(int *)(unaff_RBX + 400);
     }
     *(uint *)(unaff_RBX + 0x194) = *(uint *)(unaff_RBX + 0x194) | 0x28;
@@ -710,7 +714,7 @@ uint64_t FUN_180768f2a(uint64_t param_1,uint64_t param_2,int param_3)
     *(uint *)(unaff_RBX + 0x194) = *(uint *)(unaff_RBX + 0x194) | 0x10;
     iVar1 = *(int *)(unaff_RBX + 400);
     while (iVar1 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar1 = *(int *)(unaff_RBX + 400);
     }
     *(uint *)(unaff_RBX + 0x194) = *(uint *)(unaff_RBX + 0x194) & 0xffffffef;

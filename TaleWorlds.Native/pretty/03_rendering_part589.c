@@ -231,7 +231,7 @@ void FUN_18058f6e0(int64_t *param_1,int64_t param_2,short param_3,uint64_t param
 
 
 
-uint64_t FUN_18058f970(int64_t param_1)
+uint64_t SystemCore_EventHandler(int64_t param_1)
 
 {
   char cVar1;
@@ -578,8 +578,8 @@ void FUN_1805900c0(int64_t param_1,uint64_t param_2)
       fStack_e0 = fStack_e0 - fStack_f0;
       fStack_f4 = fStack_f4 + fVar1;
       fStack_f0 = fStack_f0 + fVar2;
-      FUN_1800863a0(param_2,&fStack_f8);
-      FUN_1800863a0(param_2,&fStack_e8);
+      AudioMixer(param_2,&fStack_f8);
+      AudioMixer(param_2,&fStack_e8);
       plVar10 = *(int64_t **)(param_1 + 0xb8);
       iVar8 = iVar8 + 1;
       lVar4 = lVar4 + 0x30;
@@ -603,7 +603,7 @@ void FUN_1805900c0(int64_t param_1,uint64_t param_2)
           if (0 < *(int *)(lVar7 + lVar6)) {
             piVar5 = (int *)(lVar6 + 4 + lVar7);
             do {
-              FUN_1800863a0(param_2,(int64_t)*piVar5 * 0x10 + *(int64_t *)(lVar11 + 0x28 + lVar4))
+              AudioMixer(param_2,(int64_t)*piVar5 * 0x10 + *(int64_t *)(lVar11 + 0x28 + lVar4))
               ;
               iVar9 = iVar9 + 1;
               piVar5 = piVar5 + 1;
@@ -739,8 +739,8 @@ void FUN_180590111(void)
     fStack0000000000000038 = fStack0000000000000038 - fStack0000000000000028;
     fStackX_24 = fStackX_24 + fVar1;
     fStack0000000000000028 = fStack0000000000000028 + fVar2;
-    uVar11 = FUN_1800863a0(fStack0000000000000028,&fStackX_20);
-    uVar11 = FUN_1800863a0(uVar11,&stack0x00000030);
+    uVar11 = AudioMixer(fStack0000000000000028,&fStackX_20);
+    uVar11 = AudioMixer(uVar11,&stack0x00000030);
     plVar9 = *(int64_t **)(unaff_RSI + 0xb8);
     unaff_EDI = unaff_EDI + 1;
     lVar5 = lVar5 + 0x30;
@@ -763,7 +763,7 @@ void FUN_180590111(void)
           if (0 < *(int *)(lVar7 + lVar4)) {
             piVar6 = (int *)(lVar4 + 4 + lVar7);
             do {
-              uVar11 = FUN_1800863a0(uVar11,(int64_t)*piVar6 * 0x10 +
+              uVar11 = AudioMixer(uVar11,(int64_t)*piVar6 * 0x10 +
                                             *(int64_t *)(lVar5 + 0x28 + lVar3));
               iVar8 = iVar8 + 1;
               piVar6 = piVar6 + 1;
@@ -820,7 +820,7 @@ void FUN_18059030a(void)
           iVar4 = 0;
           if (0 < *(int *)(lVar3 + lVar2)) {
             do {
-              FUN_1800863a0();
+              AudioMixer();
               iVar4 = iVar4 + 1;
             } while (iVar4 < *(int *)(lVar3 + lVar2));
           }
@@ -870,7 +870,7 @@ void FUN_18059033e(uint64_t param_1,uint64_t param_2,int param_3,int64_t param_4
         iVar4 = 0;
         if (0 < *(int *)(lVar3 + lVar2)) {
           do {
-            FUN_1800863a0();
+            AudioMixer();
             iVar4 = iVar4 + 1;
           } while (iVar4 < *(int *)(lVar3 + lVar2));
         }

@@ -1,5 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 
+/* ============================================================================
+ * FUN_函数语义化别名定义
+ * ============================================================================ */
+
+/* 异常处理系统函数别名 */
+#define ExceptionHandler_CleanupData ExceptionHandler_CleanupData
+#define ExceptionHandler_ResetState ExceptionHandler_ResetState
+#define ExceptionHandler_ProcessException ExceptionHandler_ProcessException
+
 /**
  * @file 99_part_14_part026_sub002_sub002.c
  * @brief 高级异常处理和内存管理模块
@@ -138,7 +147,7 @@ static void exception_cleanup_handler(uint64_t context, int64_t exception_data)
     // 清理异常处理标志
     *(uint *)(exception_data + 0x20) = *(uint *)(exception_data + 0x20) & ~EXCEPTION_HANDLER_ACTIVE;
     // 执行资源清理
-    FUN_180044a30(exception_data + 0x58);
+    ExceptionHandler_CleanupData(exception_data + 0x58);
   }
   return;
 }
@@ -183,7 +192,7 @@ static void exception_chain_processor(uint64_t context, int64_t exception_data)
       *reference_count = *reference_count - 1;
       if (*reference_count == 0) {
         // 引用计数归零，执行清理
-        FUN_18064d630();
+        ExceptionHandler_ResetState();
         return;
       }
     }
@@ -206,7 +215,7 @@ static void exception_chain_processor(uint64_t context, int64_t exception_data)
  */
 static void exception_state_manager(uint64_t context, int64_t exception_data)
 {
-  FUN_180057010(exception_data + 0x430);
+  ExceptionHandler_ProcessException(exception_data + 0x430);
   return;
 }
 
@@ -297,7 +306,7 @@ static void exception_handler_finalizer(uint64_t context, int64_t exception_data
   if ((*(uint *)(exception_data + 0x30) & STATE_ACTIVE) != 0) {
     // 清理异常处理标志
     *(uint *)(exception_data + 0x30) = *(uint *)(exception_data + 0x30) & ~STATE_ACTIVE;
-    FUN_180044a30(exception_data + 0x288);
+    ExceptionHandler_CleanupData(exception_data + 0x288);
   }
   return;
 }
@@ -315,7 +324,7 @@ static void exception_state_synchronizer(uint64_t context, int64_t exception_dat
   if ((*(uint *)(exception_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
     // 清理状态标志
     *(uint *)(exception_data + 0x30) = *(uint *)(exception_data + 0x30) & ~STATE_PENDING_CLEANUP;
-    FUN_180044a30(exception_data + 0x2b0);
+    ExceptionHandler_CleanupData(exception_data + 0x2b0);
   }
   return;
 }
@@ -372,7 +381,7 @@ static void memory_cache_cleaner(uint64_t context, int64_t memory_data)
   if ((*(uint *)(memory_data + 0x30) & STATE_INITIALIZED) != 0) {
     // 清理初始化标志
     *(uint *)(memory_data + 0x30) = *(uint *)(memory_data + 0x30) & ~STATE_INITIALIZED;
-    FUN_180044a30(memory_data + 0x2b0);
+    ExceptionHandler_CleanupData(memory_data + 0x2b0);
   }
   return;
 }
@@ -454,7 +463,7 @@ static void thread_pool_controller(uint64_t context, int64_t thread_data)
   if ((*(uint *)(thread_data + 0x30) & STATE_ACTIVE) != 0) {
     // 清理线程池状态
     *(uint *)(thread_data + 0x30) = *(uint *)(thread_data + 0x30) & ~STATE_ACTIVE;
-    FUN_180044a30(thread_data + 0x288);
+    ExceptionHandler_CleanupData(thread_data + 0x288);
   }
   return;
 }
@@ -472,7 +481,7 @@ static void thread_scheduler(uint64_t context, int64_t thread_data)
   if ((*(uint *)(thread_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
     // 清理调度状态
     *(uint *)(thread_data + 0x30) = *(uint *)(thread_data + 0x30) & ~STATE_PENDING_CLEANUP;
-    FUN_180044a30(thread_data + 0x2b0);
+    ExceptionHandler_CleanupData(thread_data + 0x2b0);
   }
   return;
 }

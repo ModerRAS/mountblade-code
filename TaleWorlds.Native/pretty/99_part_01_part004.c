@@ -70,7 +70,7 @@
 
 /** 数据处理函数别名 */
 #define DataStreamProcessor           FUN_1800a0c50
-#define StreamOutputOperator          FUN_1800a0e50
+#define StreamOutputOperator          CoreEngine_DataProcessor0
 #define StreamInitializer           FUN_1800a1010
 #define StreamUnlocker              FUN_1800a10c0
 #define StreamCleaner               FUN_1800a1120
@@ -778,9 +778,9 @@ int64_t * DataFormattingProcessor(int64_t *param_1,uint64_t param_2,uint64_t par
   }
   if ((param_4 & 1) == 0) {
     lVar1 = unaff_RBX[1];
-    FUN_1800a0e50(lVar1,10);
+    SystemCore_ResourceManager(lVar1,10);
     if (*unaff_RBX != 0) {
-      FUN_1800a1160(lVar1);
+      SystemCore_Synchronizer(lVar1);
     }
   }
   lVar1 = unaff_RBX[1];

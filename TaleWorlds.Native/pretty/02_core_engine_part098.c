@@ -478,7 +478,7 @@ void FUN_18011bac0(int64_t param_1,byte *param_2)
   
   lVar3 = SYSTEM_DATA_MANAGER_A;
   if ((*(uint *)(param_1 + 0x4c) & 0x100000) == 0) {
-    iVar5 = FUN_180121250(param_2,0,
+    iVar5 = SystemCore_HandleInput(param_2,0,
                           *(int32_t *)
                            (*(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
                            (int64_t)*(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
@@ -528,7 +528,7 @@ void FUN_18011bb4f(void)
   int iVar2;
   
   lVar1 = SYSTEM_DATA_MANAGER_A;
-  iVar2 = FUN_180121250();
+  iVar2 = SystemCore_HandleInput();
   if (*(int *)(lVar1 + 0x1b2c) == iVar2) {
     *(int *)(lVar1 + 0x1b34) = iVar2;
   }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part209.c - 3 个函数
 
 // 函数: void FUN_18078b880(int64_t param_1)
@@ -147,7 +151,7 @@ uint64_t FUN_18078baf0(int64_t param_1,int32_t param_2)
     }
     (**(code **)(*plVar13 + 0xa8))(plVar13,acStackX_18);
     if (acStackX_18[0] == '\0') {
-      FUN_180758220(plVar13,0x5b);
+      UIComponent_Renderer(plVar13,0x5b);
     }
   }
   if (*(int64_t *)(param_1 + 0x6b0) != 0) {
@@ -248,7 +252,7 @@ LAB_18078bec8:
             FUN_1807560f0(plVar11,auStack_80);
             func_0x000180756200(plVar11,&lStack_98);
             func_0x0001807561d0(plVar11,&lStack_90);
-            FUN_180758220(plVar11,4);
+            UIComponent_Renderer(plVar11,4);
             *(uint *)(lStack_c8 + 0x3c) = *(uint *)(lStack_c8 + 0x3c) & 0xfffffe8f;
             *(uint *)(lStack_c8 + 0x3c) = *(uint *)(lStack_c8 + 0x3c) | 0x80;
             func_0x000180786990(*(uint64_t *)(param_1 + 0x6b0),&lStack_d0,0);
@@ -279,7 +283,7 @@ LAB_18078bf7d:
             FUN_1807560f0(plVar16,auStack_60);
             func_0x000180756200(plVar16,&lStack_b0);
             func_0x0001807561d0(plVar16,&lStack_88);
-            FUN_180758220(plVar16,4);
+            UIComponent_Renderer(plVar16,4);
             uVar1 = *(uint *)(plVar16 + 9);
             *(uint *)(plVar16 + 9) = uVar1 | 0x200000;
             if ((lStack_b0 == 0) || ((*(byte *)(lStack_b0 + 0x2c) & 0x80) == 0)) {
@@ -407,9 +411,9 @@ void FUN_18078c0a0(int64_t param_1,char param_2)
     }
     FUN_180772cd0(param_1 + 0x11678);
     if (*(int *)(param_1 + 0x116b4) == 0) {
-      FUN_180768b70(param_1 + 0x116b4);
+      SystemCore_PerformanceMonitor(param_1 + 0x116b4);
     }
-    FUN_180768b70(&uStack_14c);
+    SystemCore_PerformanceMonitor(&uStack_14c);
     uVar8 = uStack_14c;
     if (*(uint *)(param_1 + 0x116b4) <= uStack_14c) {
       uVar8 = uStack_14c - *(int *)(param_1 + 0x116b4);
@@ -656,9 +660,9 @@ void FUN_18078c0dd(int64_t param_1)
   }
   FUN_180772cd0(unaff_RBX + 0x11678);
   if (*(int *)(unaff_RBX + 0x116b4) == 0) {
-    FUN_180768b70(unaff_RBX + 0x116b4);
+    SystemCore_PerformanceMonitor(unaff_RBX + 0x116b4);
   }
-  fVar11 = (float)FUN_180768b70((int64_t)&stack0x00000038 + 4);
+  fVar11 = (float)SystemCore_PerformanceMonitor((int64_t)&stack0x00000038 + 4);
   uVar8 = uStack000000000000003c;
   if (*(uint *)(unaff_RBX + 0x116b4) <= uStack000000000000003c) {
     uVar8 = uStack000000000000003c - *(int *)(unaff_RBX + 0x116b4);

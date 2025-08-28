@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_02_part022.c - 22 个函数
 
@@ -482,7 +487,7 @@ void FUN_1800fc1c0(void)
   puVar1 = (uint64_t *)(system_system_data_config + 0xd8);
   puVar2 = *(uint64_t **)(system_system_data_config + 0xe8);
   if (puVar2 != (uint64_t *)0x0) {
-    FUN_18004b790(puVar1,*puVar2);
+    SystemCache_Manager(puVar1,*puVar2);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(puVar2);
   }
@@ -573,7 +578,7 @@ void FUN_1800fc1d2(void)
   puVar1 = (uint64_t *)(unaff_RBP + 0xd8);
   puVar2 = *(uint64_t **)(unaff_RBP + 0xe8);
   if (puVar2 != (uint64_t *)0x0) {
-    FUN_18004b790(puVar1,*puVar2);
+    SystemCache_Manager(puVar1,*puVar2);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(puVar2);
   }
@@ -923,7 +928,7 @@ void FUN_1800fc580(uint64_t param_1,int64_t *****param_2)
     ppppplStackX_18 = (int64_t *****)&ppppplStackX_10;
     ppppplStackX_10 = (int64_t *****)pppppplVar3;
     (*(code *)(*pppppplVar3)[5])(pppppplVar3);
-    FUN_18005e110(uVar2,&ppppplStackX_10);
+    SystemCore_TimerManager(uVar2,&ppppplStackX_10);
   }
   else {
     pppplVar5 = (*pppppplVar3)[0xc];
@@ -984,7 +989,7 @@ void FUN_1800fc710(uint64_t param_1,uint param_2,uint64_t param_3)
   iVar1 = strncmp(param_3,&processed_var_7176_ptr,0x10);
   if ((iVar1 != 0) && ((param_2 < 3 || (param_2 == 0x80)))) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,param_3);
+    SystemParameterHandler(system_message_context,param_3);
   }
   return;
 }

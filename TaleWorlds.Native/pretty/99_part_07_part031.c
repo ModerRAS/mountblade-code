@@ -280,7 +280,7 @@ LAB_1804b9065:
           }
         }
         puVar8 = (uint64_t *)
-                 FUN_1800b30d0(system_resource_state,&plStack_70,(int64_t)iStackX_8 * 0x50 + *plVar1,1);
+                 SystemCore_PerformanceMonitor(system_resource_state,&plStack_70,(int64_t)iStackX_8 * 0x50 + *plVar1,1);
         lVar16 = *plVar1;
         uVar2 = *puVar8;
         *puVar8 = 0;
@@ -321,7 +321,7 @@ LAB_1804b9184:
                 lVar16 = puVar8[1];
               }
               CoreSystem_ConfigValidator0(&puStack_b0,lVar16);
-              puVar8 = (uint64_t *)FUN_1800b30d0(system_resource_state,&plStack_60,&puStack_b0,1);
+              puVar8 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&plStack_60,&puStack_b0,1);
               lVar16 = *plVar1;
               uVar2 = *puVar8;
               *puVar8 = 0;
@@ -417,7 +417,7 @@ LAB_1804b93b7:
         *(int32_t *)(puVar9 + uVar18) = 0x646f6c2e;
         puVar9[uVar18 + 4] = 0;
         uStack_80 = uVar21 + 4;
-        puVar8 = (uint64_t *)FUN_1800b30d0(system_resource_state,&plStack_50,&puStack_90,0);
+        puVar8 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&plStack_50,&puStack_90,0);
         lVar16 = *plVar1;
         uVar2 = *puVar8;
         *puVar8 = 0;

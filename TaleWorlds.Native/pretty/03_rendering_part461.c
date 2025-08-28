@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part461.c - 4 个函数
 
 // 函数: void FUN_180515349(void)
@@ -155,7 +159,7 @@ void FUN_180515349(void)
   *(int32_t *)(in_R11 + -0xa0) = unaff_XMM15_Dc;
   *(int32_t *)(in_R11 + -0x9c) = unaff_XMM15_Dd;
   if ((bVar2 & 1) == 0) {
-    FUN_1802fac00(lVar16,*(int64_t *)(lVar16 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar16,*(int64_t *)(lVar16 + 0x10) + 0x70,0xbf800000);
   }
   puVar15 = (uint *)((int64_t)cVar3 * 0x100 + *(int64_t *)(lVar16 + 0x18));
   do {
@@ -188,7 +192,7 @@ void FUN_180515349(void)
   in_stack_000000a8 = in_stack_00000088;
   uStack00000000000000ac = uStack000000000000005c;
   if ((*(byte *)(lVar16 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(lVar16,*(int64_t *)(lVar16 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar16,*(int64_t *)(lVar16 + 0x10) + 0x70,0xbf800000);
   }
   puVar15 = (uint *)((int64_t)cVar3 * 0x100 + *(int64_t *)(lVar16 + 0x18));
   do {
@@ -236,7 +240,7 @@ void FUN_180515349(void)
   fStack00000000000000c4 = fVar11;
   in_stack_000000c8 = fVar12;
   uStack00000000000000cc = uVar1;
-  FUN_18063b470(&stack0x00000060);
+  AdvancedProcessor_StateManager0(&stack0x00000060);
   fVar14 = fStack000000000000009c;
   fVar13 = in_stack_00000098;
   fVar21 = fStack0000000000000094;
@@ -405,7 +409,7 @@ void FUN_180515480(uint64_t param_1,uint *param_2)
   fStack00000000000000c4 = fVar8;
   fStack00000000000000c8 = fVar9;
   uStack00000000000000cc = uVar1;
-  FUN_18063b470(&stack0x00000060);
+  AdvancedProcessor_StateManager0(&stack0x00000060);
   fVar16 = fStack0000000000000098;
   fVar12 = fStack0000000000000090;
   lVar10 = *(int64_t *)(unaff_RBX + 0x728);

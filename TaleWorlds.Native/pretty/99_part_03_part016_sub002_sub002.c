@@ -1,3 +1,11 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -171,7 +179,7 @@ LAB_1801da300:
         if (lVar30 != 0) goto LAB_1801da300;
         puVar15 = (uint64_t *)0x0;
       }
-      lVar36 = FUN_180059780(puStack_2f8,puStack_2f0,puVar15);
+      lVar36 = SystemCore_Initializer(puStack_2f8,puStack_2f0,puVar15);
       CoreEngineDataTransformer(lVar36,lVar9 + 0x20);
       puVar7 = puStack_2f0;
       for (puVar35 = puStack_2f8; puVar35 != puVar7; puVar35 = puVar35 + 4) {
@@ -320,7 +328,7 @@ LAB_1801da300:
               auStack_e0[0] = 0;
               uStack_e8 = 0x10;
               strcpy_s(auStack_e0,0x40,&processed_var_9184_ptr);
-              FUN_1800b30d0(uVar13,&plStack_320,&puStack_f8,1);
+              SystemCore_PerformanceMonitor(uVar13,&plStack_320,&puStack_f8,1);
               plVar22 = plStack_320;
               uVar20 = uStack_378;
               uStack_378 = uStack_378 & 0xfffffff7 | 4;
@@ -795,7 +803,7 @@ LAB_1801dae19:
             *(int32_t *)((int64_t)plStack_1e8 + 0x2c) = uStack_150._4_4_;
             pplStack_380 = &plStack_1e8;
             puStack_388 = (uint64_t *)0xffffffffffffffff;
-            FUN_18015b810(0xffffffffffffffff,0,lStack_338 - lStack_340 >> 2,0x10);
+            SystemCore_DataTransformer(0xffffffffffffffff,0,lStack_338 - lStack_340 >> 2,0x10);
             iVar26 = 0;
             if (lStack_338 - lStack_340 >> 2 != 0) {
               lVar34 = 0;
@@ -862,7 +870,7 @@ LAB_1801dae19:
           iVar26 = iStack_2d4;
         } while ((uint64_t)(int64_t)iStack_2d8 < (uint64_t)(lStack_240 - lStack_248 >> 3));
       }
-      FUN_180057830(&lStack_248);
+      DataTransformer0(&lStack_248);
       if (plStack_2c8 != (int64_t *)0x0) {
         (**(code **)(*plStack_2c8 + 0x38))();
       }
@@ -923,14 +931,14 @@ LAB_1801db719:
       puVar15 = puStack_1c0;
     } while (pppppuVar16 != &ppppuStack_298);
   }
-  FUN_18004b730(&ppppuStack_298);
+  UtilitiesSystem_Processor(&ppppuStack_298);
   FUN_180080df0(&uStack_148);
   if (puVar15 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar15);
   }
-  FUN_180057830(&uStack_198);
-  FUN_18005d580(&puStack_2f8);
+  DataTransformer0(&uStack_198);
+  DataSerializationEngine(&puStack_2f8);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_3a8);
 }

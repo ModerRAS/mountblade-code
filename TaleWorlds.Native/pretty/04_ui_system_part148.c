@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part148.c - 9 个函数
 
 // 函数: void FUN_180753880(int64_t *param_1,char param_2)
@@ -78,7 +82,7 @@ void FUN_180753880(int64_t *param_1,char param_2)
         FUN_18075ef40(uStackX_18,uVar8,&lStack_48,&puStackX_20,0,1);
         func_0x000180763610(puStackX_20,&uStack_40);
         if (uStack_40 == ((int64_t)*(short *)((int64_t)param_1 + 0x1fc) | 0xfeed0000U)) {
-          FUN_18075dbf0(lStack_48,uStackX_18,puStackX_20,4);
+          SystemCore_ConfigurationManager(lStack_48,uStackX_18,puStackX_20,4);
           iVar4 = iVar4 + -1;
           aiStackX_10[0] = aiStackX_10[0] + -1;
         }
@@ -227,7 +231,7 @@ void FUN_1807538ca(void)
         func_0x000180763610(in_stack_00000098,&stack0x00000038);
         if (in_stack_00000038 == ((int64_t)*(short *)((int64_t)unaff_RDI + 0x1fc) | 0xfeed0000U))
         {
-          FUN_18075dbf0(in_stack_00000030,in_stack_00000090,in_stack_00000098,4);
+          SystemCore_ConfigurationManager(in_stack_00000030,in_stack_00000090,in_stack_00000098,4);
           iVar6 = iVar6 + -1;
           in_stack_00000088 = in_stack_00000088 + -1;
         }
@@ -328,7 +332,7 @@ void FUN_1807539dc(void)
     FUN_18075ef40(in_stack_00000090,unaff_EBX,&stack0x00000030,&stack0x00000098);
     func_0x000180763610(in_stack_00000098,&stack0x00000038);
     if (in_stack_00000038 == ((int64_t)*(short *)(unaff_RDI + 0x1fc) | 0xfeed0000U)) {
-      FUN_18075dbf0(in_stack_00000030,in_stack_00000090,in_stack_00000098,4);
+      SystemCore_ConfigurationManager(in_stack_00000030,in_stack_00000090,in_stack_00000098,4);
       unaff_EBX = unaff_EBX + -1;
       in_stack_00000088 = in_stack_00000088 + -1;
     }
@@ -859,7 +863,7 @@ LAB_1807544c8:
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_180762070(uStackX_18,param_2 ^ 1,1);
+    uVar2 = SystemCore_Initializer(uStackX_18,param_2 ^ 1,1);
     if ((int)uVar2 != 0) {
       return uVar2;
     }

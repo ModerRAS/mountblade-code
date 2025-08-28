@@ -89,7 +89,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   *puVar5 = 0;
   *(int8_t *)(puVar5 + 2) = 0;
-  FUN_18062dee0(puVar5,puVar9,&system_data_c7ec);
+  SystemCore_Validator(puVar5,puVar9,&system_data_c7ec);
   uVar16 = 0;
   uVar10 = uVar12;
   if (init_system_control_config - init_system_control_config >> 8 != 0) {
@@ -126,101 +126,101 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       if (pcStack_80 != (char *)0x0) {
         pcVar14 = pcStack_80;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2600_ptr,pcVar14);
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2600_ptr,pcVar14);
       dVar1 = *(double *)(lVar13 + 0xa0 + uVar10);
       dVar3 = (double)*(uint *)(lVar13 + 0xb0 + uVar10);
       if (dVar3 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2616_ptr,dVar3);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2616_ptr,dVar3);
       }
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2648_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2648_ptr,dVar1);
       }
       dVar1 = *(double *)(lVar13 + 0xb8 + uVar10);
       dVar3 = (double)*(uint *)(lVar13 + 200 + uVar10);
       if (dVar3 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2664_ptr,dVar3);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2664_ptr,dVar3);
       }
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2688_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2688_ptr,dVar1);
       }
       dVar1 = *(double *)(lVar13 + 0x20 + uVar10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2712_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2712_ptr,dVar1);
       }
       dVar1 = *(double *)(lVar13 + 0x28 + uVar10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2736_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&rendering_buffer_2736_ptr,dVar1);
       }
       lVar11 = *(int64_t *)(lVar13 + 0x30 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2768_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2768_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x38 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2800_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2800_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x40 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2832_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2832_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x48 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2872_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2872_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x50 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2912_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2912_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x58 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2952_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2952_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x60 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2976_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&rendering_buffer_2976_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x68 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&memory_allocator_3016_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&memory_allocator_3016_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       lVar11 = *(int64_t *)(lVar13 + 0x70 + uVar10);
       dVar1 = (double)lVar11;
       if (lVar11 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2788_ptr,&memory_allocator_3048_ptr,
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2788_ptr,&memory_allocator_3048_ptr,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       dVar1 = *(double *)(lVar13 + 0x78 + uVar10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&memory_allocator_3080_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&memory_allocator_3080_ptr,dVar1);
       }
       dVar1 = *(double *)(lVar13 + 0x80 + uVar10);
       if (dVar1 != 0.0) {
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,&memory_allocator_3096_ptr,dVar1);
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,&memory_allocator_3096_ptr,dVar1);
       }
       lVar13 = uVar10 + 0xd0 + lVar13;
       lVar11 = *(int64_t *)(lVar13 + 8);
@@ -256,7 +256,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         if (pcStack_a0 != (char *)0x0) {
           pcVar14 = pcStack_a0;
         }
-        FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,pcVar14,*(uint64_t *)(lVar11 + 0x60));
+        > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,pcVar14,*(uint64_t *)(lVar11 + 0x60));
         puStack_a8 = &system_data_buffer_ptr;
         if (pcStack_a0 != (char *)0x0) {
                     // WARNING: Subroutine does not return
@@ -268,7 +268,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         lVar11 = func_0x00018066bd70(lVar11);
         uVar4 = uVar16;
       }
-      FUN_18062e0f0(puVar5,&system_data_cc18);
+      > MedHighFreq_PluginManager1(puVar5,&system_data_cc18);
       puStack_88 = &system_data_buffer_ptr;
       if (pcStack_80 != (char *)0x0) {
                     // WARNING: Subroutine does not return
@@ -283,7 +283,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     } while ((uint64_t)(int64_t)(int)uVar16 < (uint64_t)(init_system_control_config - init_system_control_config >> 8));
   }
   iVar17 = 0;
-  FUN_18062e0f0(puVar5,&memory_allocator_3112_ptr);
+  > MedHighFreq_PluginManager1(puVar5,&memory_allocator_3112_ptr);
   if ((init_system_control_config - init_system_control_config) / 0x28 != 0) {
     lVar11 = 0;
     do {
@@ -305,7 +305,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       if (puVar9 != (void *)0x0) {
         puVar15 = puVar9;
       }
-      FUN_18062e0f0(puVar5,&rendering_buffer_2632_ptr,puVar15,*(uint64_t *)(init_system_control_config + 0x20 + lVar11));
+      > MedHighFreq_PluginManager1(puVar5,&rendering_buffer_2632_ptr,puVar15,*(uint64_t *)(init_system_control_config + 0x20 + lVar11));
       iVar17 = iVar17 + 1;
       lVar11 = lVar11 + 0x28;
     } while ((uint64_t)(int64_t)iVar17 < (uint64_t)((init_system_control_config - init_system_control_config) / 0x28));
@@ -543,7 +543,7 @@ uint64_t FUN_180048c70(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,200,param_3,param_4,uVar1);
   }
@@ -927,8 +927,8 @@ FUN_1800491b0(uint64_t *param_1,int64_t *param_2,int64_t *param_3,uint64_t *para
 
 
 
-// 函数: void FUN_180049470(uint64_t *param_1)
-void FUN_180049470(uint64_t *param_1)
+// 函数: void SystemCore_SecurityManager(uint64_t *param_1)
+void SystemCore_SecurityManager(uint64_t *param_1)
 
 {
   *param_1 = &memory_allocator_3280_ptr;
@@ -945,7 +945,7 @@ void FUN_180049470(uint64_t *param_1)
 uint64_t FUN_1800494f0(uint64_t param_1,uint64_t param_2)
 
 {
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xc0);
   }

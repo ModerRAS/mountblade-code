@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -61,7 +65,7 @@ int64_t * FUN_18039dbd0(int64_t param_1,int64_t *param_2,int64_t param_3,uint64_
   *(uint64_t *)(param_3 + 0x18) = 0;
   *(int32_t *)(lVar3 + 0x40) = *(int32_t *)(param_3 + 0x20);
   puStackX_10 = puStackX_8;
-  lVar4 = FUN_1800590b0(param_1,&puStackX_8,puStackX_8);
+  lVar4 = SystemCore_SecurityValidator(param_1,&puStackX_8,puStackX_8);
   if ((char)puStackX_8 == '\0') {
     FUN_18008ea80();
     *param_2 = lVar4;
@@ -180,8 +184,8 @@ uint64_t * FUN_18039dea0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_
       uVar6 = uVar6 + 8;
     } while ((uint64_t)(int64_t)(int)uVar4 < (uint64_t)(param_1[7] - lVar3 >> 3));
   }
-  FUN_180057830();
-  FUN_180057830(plVar1);
+  DataTransformer0();
+  DataTransformer0(plVar1);
   *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
@@ -1113,7 +1117,7 @@ void FUN_18039e8f0(int64_t param_1)
         if (cVar1 == '\0') {
           uVar2 = (**(code **)(**(int64_t **)(uVar7 + *(int64_t *)(param_1 + 0x30)) + 0x158))();
           uVar3 = (**(code **)(**(int64_t **)(uVar7 + *(int64_t *)(param_1 + 0x30)) + 0x198))();
-          FUN_18063a240(param_1 + 0x70,uVar3,uVar2);
+          UI_WidgetHandler(param_1 + 0x70,uVar3,uVar2);
         }
         lVar4 = *(int64_t *)(param_1 + 0x30);
         uVar5 = (int)uVar6 + 1;

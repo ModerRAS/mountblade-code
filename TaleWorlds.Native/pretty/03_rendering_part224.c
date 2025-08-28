@@ -48,7 +48,7 @@ void FUN_1803944c0(uint64_t param_1,int64_t param_2,int64_t param_3,float *param
   fVar4 = param_4[1];
   fStack_128 = fVar1 + fVar3;
   fStack_124 = fVar2 + fVar4;
-  cVar7 = FUN_18038d0a0(param_2,&fStack_128);
+  cVar7 = SystemCore_PerformanceMonitor(param_2,&fStack_128);
   if (param_2 != param_3) {
     if (param_3 == 0) {
       if (cVar7 == '\0') {
@@ -68,7 +68,7 @@ LAB_18039466d:
             lVar6 = *plVar10;
             if ((lVar6 != 0) &&
                (fStack_128 = fVar1 + fVar3, fStack_124 = fVar2 + fVar4,
-               cVar7 = FUN_18038d0a0(lVar6,&fStack_128), cVar7 != '\0')) {
+               cVar7 = SystemCore_PerformanceMonitor(lVar6,&fStack_128), cVar7 != '\0')) {
               if (in_stack_00000048 != 0) {
                 func_0x000180396690(in_stack_00000048);
                 fStack_128 = *param_4 + *pfStack_100;
@@ -446,7 +446,7 @@ LAB_180394c11:
   uStack_100 = *(int32_t *)(param_10 + 9);
   uStack_fc = *(int32_t *)((int64_t)param_10 + 0x4c);
   auStack_148[lStack_158] = plVar13;
-  cVar7 = FUN_18038d0a0(lVar9,&fStack_188);
+  cVar7 = SystemCore_PerformanceMonitor(lVar9,&fStack_188);
   if (((cVar7 == '\0') || (lStack_1e8 != 0)) && (lVar9 != lStack_1e8)) {
     cVar6 = '\0';
   }

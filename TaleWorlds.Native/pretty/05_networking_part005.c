@@ -151,7 +151,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, uint64_t *connection_in
     
     // 获取连接详细信息
     if ((status == 0) && 
-        (result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), 
+        (result = SystemCore_SecurityChecker(*(uint64_t *)(connection_data[0] + 0x98), 
                                message_buffers, 0x20), result == 0)) {
         
         // 设置消息处理回调
@@ -375,7 +375,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
     
     // 获取属性列表
     if ((status == 0) && 
-        (query_result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), 
+        (query_result = SystemCore_SecurityChecker(*(uint64_t *)(connection_data[0] + 0x98), 
                                     message_buffers, 0x28), query_result == 0)) {
         
         // 设置属性查询消息
@@ -455,7 +455,7 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
         }
         
         // 准备错误消息
-        FUN_18074b930(temp_buffer, 0x100, 0);
+        UIAnimationController(temp_buffer, 0x100, 0);
         data_buffer = temp_buffer;
         
         // 发送错误报告
@@ -791,7 +791,7 @@ void NetworkClient_GetClientAddress(uint64_t client_id, int32_t *client_address)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
-    FUN_18074b930(auStack_118,0x100,0);
+    UIAnimationController(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_592_ptr);
@@ -891,7 +891,7 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
   iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
+  UIAnimationController(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
   DataTransformer(0x1f,0xc,param_1,&processed_var_560_ptr);
@@ -925,7 +925,7 @@ void NetworkClient_InitializeClientData(void)
   iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  UIAnimationController(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,0xc);
 }
@@ -1260,7 +1260,7 @@ LAB_180846df9:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_6264_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -1315,7 +1315,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
-    FUN_18074b930(auStack_128,0x100,0);
+    UIAnimationController(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xd,param_1,&ui_system_data_1208_ptr);

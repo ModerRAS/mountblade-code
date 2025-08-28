@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -144,7 +145,7 @@ LAB_180787e12:
     }
     uStack_c8 = 0;
     uVar9 = CONCAT71((int7)((uint64_t)uVar8 >> 8),1);
-    uVar2 = FUN_180759220(uStack_d0,plVar3[2],&uStack_c8,0,uVar9,0);
+    uVar2 = UltraHighFreq_AudioSystem1(uStack_d0,plVar3[2],&uStack_c8,0,uVar9,0);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -202,7 +203,7 @@ LAB_180787e12:
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      uVar2 = FUN_180762070(plVar3[10],1);
+      uVar2 = SystemCore_Initializer(plVar3[10],1);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -229,7 +230,7 @@ LAB_180787e12:
     else {
       FUN_1807ef0f0(plVar3[2]);
     }
-    uVar2 = FUN_180762070(plVar3[2],1);
+    uVar2 = SystemCore_Initializer(plVar3[2],1);
     if ((int)uVar2 == 0) {
       plVar3[3] = param_3;
       *(int *)(plVar3 + 4) = (int)param_2;
@@ -368,7 +369,7 @@ LAB_180787e12:
     *(uint64_t *)(unaff_RBP + -0x71) = 0;
     lStack0000000000000028 = 0;
     uVar10 = CONCAT71((int7)((uint64_t)uVar9 >> 8),1);
-    uVar4 = FUN_180759220(*(uint64_t *)(unaff_RBP + -0x79),plVar5[2],unaff_RBP + -0x71,0,uVar10);
+    uVar4 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBP + -0x79),plVar5[2],unaff_RBP + -0x71,0,uVar10);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -433,7 +434,7 @@ LAB_180787e12:
       if ((int)uVar4 != 0) {
         return uVar4;
       }
-      uVar4 = FUN_180762070(plVar5[10],1);
+      uVar4 = SystemCore_Initializer(plVar5[10],1);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -461,7 +462,7 @@ LAB_180787e12:
     else {
       FUN_1807ef0f0(plVar5[2]);
     }
-    uVar4 = FUN_180762070(plVar5[2],1);
+    uVar4 = SystemCore_Initializer(plVar5[2],1);
     if ((int)uVar4 == 0) {
       plVar5[3] = unaff_RSI;
       *(int *)(plVar5 + 4) = unaff_R14D;
@@ -614,7 +615,7 @@ LAB_180787ee9:
   uVar2 = *(uint64_t *)(lVar16 + 0x48);
   *(int64_t **)((int64_t)register0x00000020 + 0x68) = unaff_RBP;
   *(uint64_t *)((int64_t)register0x00000020 + -8) = 0x180787f0e;
-  iVar9 = FUN_180743160(uVar2,0);
+  iVar9 = SystemCore_ResourceManager0(uVar2,0);
   if (iVar9 == 0) {
     lVar6 = *unaff_R14;
     if ((lVar6 != 0) && (*(char *)((int64_t)unaff_R14 + 0xc) == '\0')) {
@@ -706,7 +707,7 @@ int FUN_180787e70(int64_t param_1,int32_t param_2,int64_t *param_3,int64_t *para
   if (bVar5) {
     func_0x000180743c20(lVar1,2);
   }
-  iVar4 = FUN_180743160(*(uint64_t *)(param_1 + 0x48),0);
+  iVar4 = SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0x48),0);
   if (iVar4 == 0) {
     if ((*param_4 != 0) && (*(char *)((int64_t)param_4 + 0xc) == '\0')) {
       func_0x000180743c20(*param_4,(int)param_4[1]);
@@ -781,7 +782,7 @@ int FUN_180787e7e(int64_t param_1,int32_t param_2,uint64_t param_3,int64_t *para
   if (bVar4) {
     func_0x000180743c20();
   }
-  iVar3 = FUN_180743160(*(uint64_t *)(param_1 + 0x48),0);
+  iVar3 = SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0x48),0);
   if (iVar3 == 0) {
     if ((*param_4 != 0) && (*(char *)((int64_t)param_4 + 0xc) == '\0')) {
       func_0x000180743c20(*param_4,(int)param_4[1]);

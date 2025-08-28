@@ -903,7 +903,7 @@ uint64_t FUN_1807a8d90(uint64_t param_1,int64_t *param_2,float *param_3,float pa
         else if (iVar8 < iVar6) {
           iVar8 = iVar6;
         }
-        iVar6 = FUN_180747e10(param_2,iVar8);
+        iVar6 = SystemCore_Initializer(param_2,iVar8);
         if (iVar6 != 0) {
           return 0;
         }

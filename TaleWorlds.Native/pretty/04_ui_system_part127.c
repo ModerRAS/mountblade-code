@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part127.c - 16 个函数
 
 // 函数: void FUN_18074177e(void)
@@ -33,7 +37,7 @@ void FUN_1807417b0(uint64_t param_1,int32_t param_2,int32_t param_3)
   uint64_t uStack_38;
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
-  iVar1 = FUN_180763070(param_1,auStack_148,0);
+  iVar1 = UISystem_LayoutManager(param_1,auStack_148,0);
   if (((iVar1 != 0) || (iVar1 = func_0x000180762af0(auStack_148[0],param_2,param_3), iVar1 != 0)) &&
      ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
@@ -156,7 +160,7 @@ void FUN_1807419a0(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
     if (iVar1 == 0) goto FUN_180741b27;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074bac0(auStack_148,0x100,param_2);
+    iVar2 = NetworkSystem_DataProcessor(auStack_148,0x100,param_2);
     iVar3 = SystemDataProcessor(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074b7d0(auStack_148 + iVar2,0x100 - iVar2,param_3);
@@ -219,7 +223,7 @@ void FUN_1807419bd(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
     if (iVar1 == 0) goto FUN_180741b27;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074bac0(&stack0x00000050,0x100,param_2);
+    iVar2 = NetworkSystem_DataProcessor(&stack0x00000050,0x100,param_2);
     iVar3 = SystemDataProcessor(&stack0x00000050 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = func_0x00018074b7d0(&stack0x00000050 + iVar2,0x100 - iVar2,param_3);
@@ -257,7 +261,7 @@ void FUN_180741a43(void)
   int32_t unaff_R14D;
   int32_t unaff_R15D;
   
-  iVar1 = FUN_18074bac0(&stack0x00000050,0x100);
+  iVar1 = NetworkSystem_DataProcessor(&stack0x00000050,0x100);
   iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(&stack0x00000050 + iVar1,0x100 - iVar1,unaff_EBP);
@@ -327,17 +331,17 @@ uint64_t FUN_180741b80(int *param_1)
       return uVar1;
     }
     if (*(int64_t *)(param_1 + 0x4a) != 0) {
-      FUN_180768380(*(int64_t *)(param_1 + 0x4a),0);
+      SystemCore_DataHandler(*(int64_t *)(param_1 + 0x4a),0);
       param_1[0x4a] = 0;
       param_1[0x4b] = 0;
     }
     if (*(int64_t *)(param_1 + 0x48) != 0) {
-      FUN_180768380(*(int64_t *)(param_1 + 0x48),0);
+      SystemCore_DataHandler(*(int64_t *)(param_1 + 0x48),0);
       param_1[0x48] = 0;
       param_1[0x49] = 0;
     }
     if (*(int64_t *)(param_1 + 0x46) != 0) {
-      FUN_180768380(*(int64_t *)(param_1 + 0x46),0);
+      SystemCore_DataHandler(*(int64_t *)(param_1 + 0x46),0);
       param_1[0x46] = 0;
       param_1[0x47] = 0;
     }
@@ -353,15 +357,15 @@ uint64_t FUN_180741c20(int *param_1)
   uint64_t uVar1;
   
   if (*param_1 == 0) {
-    uVar1 = FUN_1807682e0(param_1 + 0x48,0);
+    uVar1 = SystemCore_DataProcessor(param_1 + 0x48,0);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_1807682e0(param_1 + 0x46,0);
+    uVar1 = SystemCore_DataProcessor(param_1 + 0x46,0);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_1807682e0(param_1 + 0x4a,0);
+    uVar1 = SystemCore_DataProcessor(param_1 + 0x4a,0);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -410,7 +414,7 @@ uint64_t thunk_FUN_180742070(int64_t *param_1)
   *(uint *)(param_1 + 0x66) = uVar1 & 0xfffffffe;
   param_1[0x6e] = 0;
   if (param_1[0x6f] != 0) {
-    FUN_180768380(param_1[0x6f],~(byte)(uVar1 >> 1) & 1);
+    SystemCore_DataHandler(param_1[0x6f],~(byte)(uVar1 >> 1) & 1);
     param_1[0x6f] = 0;
   }
   return 0;
@@ -467,8 +471,8 @@ void FUN_180741d80(uint64_t param_1,int param_2,int param_3,uint64_t param_4,int
 
 
 
-// 函数: void FUN_180741df0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180741df0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void RenderingSystem_MaterialHandler(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void RenderingSystem_MaterialHandler(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
                     // WARNING: Subroutine does not return
@@ -500,7 +504,7 @@ void SystemResourceManager(int64_t param_1,int param_2,uint64_t param_3,uint64_t
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
   lVar5 = (int64_t)param_2;
   if (*(int64_t *)(param_1 + 0x378) == 0) {
-    iVar2 = FUN_1807682e0(param_1 + 0x378,1);
+    iVar2 = SystemCore_DataProcessor(param_1 + 0x378,1);
     if (iVar2 != 0) {
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_198);
@@ -603,7 +607,7 @@ uint64_t FUN_180742070(int64_t *param_1)
   *(uint *)(param_1 + 0x66) = uVar1 & 0xfffffffe;
   param_1[0x6e] = 0;
   if (param_1[0x6f] != 0) {
-    FUN_180768380(param_1[0x6f],~(byte)(uVar1 >> 1) & 1);
+    SystemCore_DataHandler(param_1[0x6f],~(byte)(uVar1 >> 1) & 1);
     param_1[0x6f] = 0;
   }
   return 0;
@@ -678,7 +682,7 @@ void SystemDataValidator(int64_t *param_1,int *param_2)
   bool bVar13;
   
   uVar10 = 0;
-  if ((param_1[0x6f] == 0) && (iVar1 = FUN_1807682e0(param_1 + 0x6f,1), iVar1 != 0)) {
+  if ((param_1[0x6f] == 0) && (iVar1 = SystemCore_DataProcessor(param_1 + 0x6f,1), iVar1 != 0)) {
     return;
   }
   SystemMemoryAllocator(param_1[0x6f]);
@@ -813,7 +817,7 @@ FUN_180742460(int64_t param_1,int64_t param_2,int param_3,int32_t param_4,int32_
   *(uint64_t *)(param_1 + 0x358) = 0;
   *(uint64_t *)(param_1 + 0x360) = 0;
   *(uint64_t *)(param_1 + 0x368) = 0;
-  uVar2 = FUN_1807682e0(param_1 + 0x378,
+  uVar2 = SystemCore_DataProcessor(param_1 + 0x378,
                         CONCAT31((uint3)(*(uint *)(param_1 + 0x330) >> 9),
                                  ~(byte)(*(uint *)(param_1 + 0x330) >> 1)) & 0xffffff01);
   return uVar2;
@@ -913,7 +917,7 @@ FUN_180742aca:
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1b8);
   }
-  if ((param_1[0x6f] == 0) && (iVar2 = FUN_1807682e0(param_1 + 0x6f,1), iVar2 != 0))
+  if ((param_1[0x6f] == 0) && (iVar2 = SystemCore_DataProcessor(param_1 + 0x6f,1), iVar2 != 0))
   goto FUN_180742aca;
   SystemMemoryAllocator(param_1[0x6f]);
   if ((param_1[0x6b] == 0) && ((*(byte *)(param_1 + 0x66) & 1) == 0)) {

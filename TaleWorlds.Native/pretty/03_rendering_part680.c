@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -429,14 +433,14 @@ LAB_180659b1a:
       }
       lVar8 = *(int64_t *)(param_1 + (int64_t)(int)fVar25 * 0x4d6 + -0x26);
       uStack_180 = 0x180659ea7;
-      lVar6 = FUN_18065fd40(*(uint64_t *)(lVar8 + 8));
+      lVar6 = MathStatisticsProcessor0(*(uint64_t *)(lVar8 + 8));
       lVar9 = 0x14;
       if (0.0 <= (fVar21 - ABS(fVar17)) * fVar14) {
         lVar9 = 0x18;
       }
       fVar25 = *(float *)(lVar9 + lVar6);
       uStack_180 = 0x180659edd;
-      FUN_18065fd40(*(uint64_t *)(lVar8 + 8));
+      MathStatisticsProcessor0(*(uint64_t *)(lVar8 + 8));
       param_1[0xe] = fVar25;
     }
   }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part228.c - 1 个函数
 
 // 函数: void FUN_18019eb40(int64_t param_1)
@@ -178,7 +182,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
   
   uStack_f8 = 0xfffffffffffffffe;
   uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
-  plVar8 = (int64_t *)FUN_180275090(uVar7);
+  plVar8 = (int64_t *)RenderingSystem_ShaderManager(uVar7);
   (**(code **)(*plVar8 + 0x100))(plVar8,0);
   lVar14 = *param_2;
   lVar17 = param_2[1] - lVar14 >> 3;
@@ -335,7 +339,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
           if (plVar11 != (int64_t *)0x0) {
             (**(code **)(*plVar11 + 0x28))(plVar11);
           }
-          FUN_1800763c0(plVar11,&pplStack_2e0);
+          SystemCore_BufferManager(plVar11,&pplStack_2e0);
           if (plVar11 != (int64_t *)0x0) {
             (**(code **)(*plVar11 + 0x38))(plVar11);
           }
@@ -383,7 +387,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
           plVar11 = pplVar15[0x39];
           if (plVar11 != (int64_t *)0x0) {
             if (*(code **)(*plVar11 + 0x160) == (code *)&processed_var_6368_ptr) {
-              FUN_180276f30(plVar11,(int64_t)plVar11 + 0x214,0);
+              SystemCore_UpdateState(plVar11,(int64_t)plVar11 + 0x214,0);
             }
             else {
               (**(code **)(*plVar11 + 0x160))();
@@ -512,7 +516,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
             if (plVar11 != (int64_t *)0x0) {
               (**(code **)(*plVar11 + 0x28))(plVar11);
             }
-            FUN_1800763c0(plVar11,&plStack_2d8);
+            SystemCore_BufferManager(plVar11,&plStack_2d8);
             if (plVar11 != (int64_t *)0x0) {
               (**(code **)(*plVar11 + 0x38))(plVar11);
             }
@@ -566,7 +570,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
             plVar11 = (int64_t *)plVar11[0x39];
             if (plVar11 != (int64_t *)0x0) {
               if (*(code **)(*plVar11 + 0x160) == (code *)&processed_var_6368_ptr) {
-                FUN_180276f30(plVar11,(int64_t)plVar11 + 0x214,0);
+                SystemCore_UpdateState(plVar11,(int64_t)plVar11 + 0x214,0);
               }
               else {
                 (**(code **)(*plVar11 + 0x160))();
@@ -608,7 +612,7 @@ int64_t * FUN_18019eb80(int64_t param_1,int64_t *param_2)
         lVar14 = *param_2;
       } while ((uint64_t)(int64_t)iStack_2f4 < (param_2[1] - lVar14 >> 3) - 1U);
     }
-    FUN_180276f30(plVar8,(int64_t)plVar8 + 0x214,CONCAT71((int7)((uint64_t)lVar14 >> 8),1));
+    SystemCore_UpdateState(plVar8,(int64_t)plVar8 + 0x214,CONCAT71((int7)((uint64_t)lVar14 >> 8),1));
     (**(code **)(*plVar8 + 0x148))(plVar8,&system_data_0300);
   }
   return plVar8;

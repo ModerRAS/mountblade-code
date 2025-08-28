@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedHandler_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -48,7 +50,7 @@ FUN_18086d470(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param_4,
       }
       if ((lVar2 != 0) && (lVar4 = func_0x00018086dc30(param_6 + 8), lVar4 != 0)) {
         auStackX_20[0] = 1;
-        FUN_180879610(lVar4,lVar2 + 0x10,auStackX_20);
+        SystemStateProcessor(lVar4,lVar2 + 0x10,auStackX_20);
       }
       lVar4 = lStack_48;
       if (lVar2 != lStack_48) {
@@ -59,10 +61,10 @@ FUN_18086d470(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param_4,
           }
           if (lVar5 != 0) {
             auStackX_20[0] = 1;
-            FUN_180879610(lVar5,lVar2 + 0x10,auStackX_20);
+            SystemStateProcessor(lVar5,lVar2 + 0x10,auStackX_20);
           }
         }
-        lVar5 = FUN_1808761f0(param_2 + 0x1e0);
+        lVar5 = CoreSystem_SynchronizationManager0(param_2 + 0x1e0);
         if (lVar5 == 0) {
           *(ushort *)(lVar2 + 0xe) = *(ushort *)(lVar2 + 0xe) | 0x4000;
           uVar3 = DataStreamProcessor(param_2 + 0x1e0);
@@ -115,7 +117,7 @@ FUN_18086d620(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param_4,
       }
       if ((lVar2 != 0) && (lVar4 = func_0x00018086dc30(param_6 + 8), lVar4 != 0)) {
         auStackX_20[0] = 1;
-        FUN_180879610(lVar4,lVar2 + 0x10,auStackX_20);
+        SystemStateProcessor(lVar4,lVar2 + 0x10,auStackX_20);
       }
       lVar4 = lStack_48;
       if (lVar2 != lStack_48) {
@@ -126,10 +128,10 @@ FUN_18086d620(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param_4,
           }
           if (lVar5 != 0) {
             auStackX_20[0] = 1;
-            FUN_180879610(lVar5,lVar2 + 0x10,auStackX_20);
+            SystemStateProcessor(lVar5,lVar2 + 0x10,auStackX_20);
           }
         }
-        lVar5 = FUN_1808761f0(param_2 + 0x1f0);
+        lVar5 = CoreSystem_SynchronizationManager0(param_2 + 0x1f0);
         if (lVar5 == 0) {
           *(ushort *)(lVar2 + 0xe) = *(ushort *)(lVar2 + 0xe) | 0x4000;
           uVar3 = DataStreamProcessor(param_2 + 0x1f0);
@@ -180,7 +182,7 @@ uint64_t FUN_18086d7d0(int64_t param_1,int64_t *param_2)
       uStack_34 = *(int32_t *)((int64_t)puVar2 + 0x14);
       uStack_30 = *(int32_t *)(puVar2 + 3);
       uStack_2c = *(int32_t *)((int64_t)puVar2 + 0x1c);
-      uVar5 = FUN_1808801f0(plVar4[1],&uStack_38,puVar2,&lStackX_10);
+      uVar5 = UltraHighFreq_OperationHandler1(plVar4[1],&uStack_38,puVar2,&lStackX_10);
       lVar3 = lStackX_10;
       if ((int)uVar5 != 0) {
         return uVar5;
@@ -244,7 +246,7 @@ uint64_t FUN_18086d930(int64_t param_1,int64_t *param_2)
       uStack_34 = *(int32_t *)((int64_t)puVar2 + 0x14);
       uStack_30 = *(int32_t *)(puVar2 + 3);
       uStack_2c = *(int32_t *)((int64_t)puVar2 + 0x1c);
-      uVar5 = FUN_1808801f0(plVar4[1],&uStack_38,puVar2,&lStackX_10);
+      uVar5 = UltraHighFreq_OperationHandler1(plVar4[1],&uStack_38,puVar2,&lStackX_10);
       lVar3 = lStackX_10;
       if ((int)uVar5 != 0) {
         return uVar5;
@@ -343,7 +345,7 @@ uint64_t FUN_18086da90(int64_t *param_1,uint64_t *param_2)
     else if (iVar6 < iVar10) {
       iVar6 = iVar10;
     }
-    uVar4 = FUN_180748010(param_1,iVar6);
+    uVar4 = UltraHighFreq_StateController1(param_1,iVar6);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -431,7 +433,7 @@ uint64_t FUN_18086daa2(int64_t *param_1)
     else if (iVar2 < iVar8) {
       iVar2 = iVar8;
     }
-    uVar3 = FUN_180748010(param_1,iVar2);
+    uVar3 = UltraHighFreq_StateController1(param_1,iVar2);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -487,7 +489,7 @@ uint64_t FUN_18086db77(void)
     else if (iVar4 < iVar7) {
       iVar4 = iVar7;
     }
-    uVar2 = FUN_180748010(fVar8,iVar4);
+    uVar2 = UltraHighFreq_StateController1(fVar8,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -545,7 +547,7 @@ uint64_t FUN_18086dbb7(void)
     else if (iVar4 < iVar8) {
       iVar4 = iVar8;
     }
-    uVar2 = FUN_180748010(fVar9,iVar4);
+    uVar2 = UltraHighFreq_StateController1(fVar9,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -581,7 +583,7 @@ uint64_t FUN_18086dbbd(int32_t param_1,int param_2)
   if (param_2 < in_ECX) {
     param_2 = in_ECX;
   }
-  uVar1 = FUN_180748010(param_1,param_2);
+  uVar1 = UltraHighFreq_StateController1(param_1,param_2);
   if ((int)uVar1 == 0) {
     iVar4 = (int)unaff_R15[1] - unaff_EBX;
     if (0 < iVar4) {

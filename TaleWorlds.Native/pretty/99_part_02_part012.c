@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -92,14 +93,14 @@ void FUN_1800efac0(uint64_t param_1,int64_t param_2)
   iStack_1c8 = iVar19;
   lStack_1c0 = param_2;
   if (0 < iVar19) {
-    FUN_1802c22a0(auStack_1d0,&processed_var_5584_ptr);
+    SystemData_Processor(auStack_1d0,&processed_var_5584_ptr);
     ppuStack_1b8 = &puStack_98;
     puStack_98 = &memory_allocator_3480_ptr;
     puStack_90 = auStack_80;
     uStack_88 = 0;
     auStack_80[0] = 0;
     DataStructureManager0(&puStack_98,&processed_var_5584_ptr);
-    FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_98);
+    SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_98);
     lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
     lVar11 = *(int64_t *)(lVar10 + 0x418);
     auStack_f8[0] = uVar16;
@@ -468,7 +469,7 @@ LAB_1800f03c0:
           }
           uVar5 = *(uint64_t *)(system_message_buffer + 0x1cd8);
           uVar6 = *(uint64_t *)(lVar10 + 0x40a0);
-          FUN_18029fc10(uVar5,uVar6,lVar10 + 0x4a0,0x3c00);
+          UltraHighFreq_DatabaseHandler1(uVar5,uVar6,lVar10 + 0x4a0,0x3c00);
           FUN_18029dca0(uVar5,0xb,0x20,uVar6);
           plVar3 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
           (**(code **)(*plVar3 + 0x148))(plVar3,uStack_1cc,1);
@@ -493,7 +494,7 @@ LAB_1800f03c0:
     if (plStack_110 != (int64_t *)0x0) {
       (**(code **)(*plStack_110 + 0x38))();
     }
-    FUN_1802c2ac0(&puStack_98);
+    SystemCore_Synchronizer(&puStack_98);
     system_system_data_memory = system_system_data_memory + -1;
     (**(code **)(*system_system_data_memory + 0x20))();
   }
@@ -578,7 +579,7 @@ void FUN_1800f08a0(void)
   uStack_1b8 = 0;
   uStack_1c0 = 3;
   uStack_1c8 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar3 = *puVar2;
   *puVar2 = 0;
   plStack_188 = *(int64_t **)(lVar1 + 0x40a0);
@@ -751,7 +752,7 @@ uint64_t FUN_1800f0cb0(int64_t param_1,uint64_t param_2)
   if (plStack_a0 != (int64_t *)0x0) {
     (**(code **)(*plStack_a0 + 0x28))();
   }
-  uVar1 = FUN_180299eb0(uVar1,0,&uStack_80,auStackX_10);
+  uVar1 = UIRenderingEngine(uVar1,0,&uStack_80,auStackX_10);
   if (plStack_a0 != (int64_t *)0x0) {
     (**(code **)(*plStack_a0 + 0x38))();
   }

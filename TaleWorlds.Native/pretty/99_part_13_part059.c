@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -173,7 +174,7 @@ void FUN_1808cf489(int64_t *param_1)
       }
       iVar2 = (**(code **)(*unaff_R14 + 0x118))();
       if ((iVar2 == 0) && (iVar2 = (**(code **)(*unaff_R14 + 0x110))(), iVar2 == 0)) {
-        FUN_18073d8a0(*plVar5,0);
+        SystemCore_StateController(*plVar5,0);
       }
     }
   }
@@ -340,7 +341,7 @@ void FUN_1808cf569(void)
       }
       iVar3 = (**(code **)(*unaff_R14 + 0x118))();
       if ((iVar3 == 0) && (iVar3 = (**(code **)(*unaff_R14 + 0x110))(), iVar3 == 0)) {
-        FUN_18073d8a0(*plVar1,0);
+        SystemCore_StateController(*plVar1,0);
       }
     }
   }
@@ -384,7 +385,7 @@ void ConditionChecker(void)
 uint64_t FUN_1808cf990(uint64_t param_1)
 
 {
-  FUN_1808b2f30(param_1,2);
+  SystemDataFlowProcessor(param_1,2);
   return 0;
 }
 
@@ -421,17 +422,17 @@ LAB_1808cfb35:
         return uVar2;
       }
     }
-    uVar2 = FUN_1808b2f30(param_1,3);
+    uVar2 = SystemDataFlowProcessor(param_1,3);
     if ((int)uVar2 == 0) {
       puVar6 = (uint64_t *)(param_1[0x1d] + 0xe8);
       for (puVar1 = (uint64_t *)*puVar6; puVar1 != puVar6; puVar1 = (uint64_t *)*puVar1) {
-        uVar2 = FUN_1808b2f30(param_1,*(int32_t *)((int64_t)puVar1 + 0x24));
+        uVar2 = SystemDataFlowProcessor(param_1,*(int32_t *)((int64_t)puVar1 + 0x24));
         if ((int)uVar2 != 0) {
           return uVar2;
         }
         if (puVar1 == puVar6) break;
       }
-      uVar2 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(param_1[0x1f] + 0x2b0) + 0x78),0);
+      uVar2 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(param_1[0x1f] + 0x2b0) + 0x78),0);
       if ((int)uVar2 == 0) {
         if (param_5 != 0.0) {
           uVar4 = (uint64_t)*(uint *)(param_1[0x1f] + 0x1d4);
@@ -498,9 +499,9 @@ FUN_1808cfb50(int64_t *param_1,int64_t param_2,int64_t param_3,int param_4,float
   uVar3 = (**(code **)(*param_1 + 0x110))(param_1);
   if ((((int)uVar3 == 0) && (uVar3 = (**(code **)(*param_1 + 0x118))(param_1), (int)uVar3 == 0)) &&
      (uVar3 = FUN_18073d230(param_1[0x1e],param_2,0,1), (int)uVar3 == 0)) {
-    FUN_18073c4c0(param_1[0x1e],param_1 + 0x38,0);
+    UtilitiesSystem_MathCalculator(param_1[0x1e],param_1 + 0x38,0);
     param_1[7] = param_1[0x38];
-    uVar3 = FUN_18073d8a0(param_1[0x1e],0);
+    uVar3 = SystemCore_StateController(param_1[0x1e],0);
     if ((int)uVar3 == 0) {
       auStackX_8[0] = 0x3f800000;
       uVar3 = FUN_18073ca90(param_1[0x1e],auStackX_8);
@@ -551,9 +552,9 @@ void FUN_1808cfb99(void)
   iVar2 = (**(code **)(*unaff_R14 + 0x110))();
   if (((iVar2 == 0) && (iVar2 = (**(code **)(*unaff_R14 + 0x118))(), iVar2 == 0)) &&
      (iVar2 = FUN_18073d230(unaff_R14[0x1e]), iVar2 == 0)) {
-    FUN_18073c4c0(unaff_R14[0x1e],unaff_R14 + 0x38,0);
+    UtilitiesSystem_MathCalculator(unaff_R14[0x1e],unaff_R14 + 0x38,0);
     unaff_R14[7] = unaff_R14[0x38];
-    iVar2 = FUN_18073d8a0(unaff_R14[0x1e],0);
+    iVar2 = SystemCore_StateController(unaff_R14[0x1e],0);
     if (iVar2 == 0) {
       in_stack_00000070 = 0x3f800000;
       iVar2 = FUN_18073ca90(unaff_R14[0x1e],&stack0x00000070);
@@ -594,8 +595,8 @@ FUN_1808cfd00(int64_t *param_1,uint64_t param_2,int64_t param_3,uint param_4,flo
   
   uVar5 = 1;
   param_1[0x20] = param_3;
-  FUN_1808b2f30(param_1,1);
-  FUN_1808b2f30(param_1,0x1d);
+  SystemDataFlowProcessor(param_1,1);
+  SystemDataFlowProcessor(param_1,0x1d);
   fVar8 = (float)(**(code **)(*param_1 + 0xc0))(param_1);
   if (0.0 <= fVar8) {
     fVar1 = *(float *)(param_1 + 0x1f);
@@ -874,7 +875,7 @@ FUN_1808cfed0(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t param_4,
           }
           iVar2 = (**(code **)(*param_1 + 0x118))(param_1);
           if ((iVar2 == 0) && (iVar2 = (**(code **)(*param_1 + 0x110))(param_1), iVar2 == 0)) {
-            FUN_18073d8a0(*plVar5,0);
+            SystemCore_StateController(*plVar5,0);
           }
         }
       }

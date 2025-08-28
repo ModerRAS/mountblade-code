@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -175,7 +176,7 @@ joined_r0x000180389222:
       uStack_7c = (int32_t)((uint64_t)param_1 >> 0x20);
       uStack_50 = uStack_80;
       uStack_4c = uStack_7c;
-      FUN_18015b810(&uStack_50,0,(int64_t)puStack_68 - (int64_t)puStack_70 >> 3,1,
+      SystemCore_DataTransformer(&uStack_50,0,(int64_t)puStack_68 - (int64_t)puStack_70 >> 3,1,
                     0xffffffffffffffff,&uStack_50,uVar14);
       if (puStack_70 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -510,7 +511,7 @@ void FUN_180389750(int64_t *param_1)
     pplStackX_18 = &plStackX_10;
     plStackX_10 = plVar1;
     (**(code **)(*plVar1 + 0x28))();
-    FUN_18005e6a0(lVar3,&plStackX_10,0);
+    SystemCore_ErrorHandler(lVar3,&plStackX_10,0);
   }
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 != (uint64_t *)0x0) {
@@ -552,7 +553,7 @@ void FUN_180389800(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     pplStackX_10 = &plStackX_8;
     plStackX_8 = plVar1;
     (**(code **)(*plVar1 + 0x28))();
-    FUN_18005e6a0(lVar3,&plStackX_8,0);
+    SystemCore_ErrorHandler(lVar3,&plStackX_8,0);
   }
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 != (uint64_t *)0x0) {
@@ -624,7 +625,7 @@ void FUN_1803898a0(int64_t *param_1)
   }
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x210,0x10,3);
   ppuStack_e0 = (void **)plVar4;
-  FUN_180049830(plVar4);
+  UltraHighFreq_PerformanceMonitor1(plVar4);
   *plVar4 = (int64_t)&processed_var_5144_ptr;
   FUN_180094c20(plVar4 + 0x18);
   plVar4[0x40] = (int64_t)param_1;

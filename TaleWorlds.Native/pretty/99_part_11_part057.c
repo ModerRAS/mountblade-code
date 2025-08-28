@@ -65,9 +65,9 @@
 #define BinaryStreamHandler                  FUN_1807b8f20    // 二进制流处理器
 
 // 数据序列化函数别名
-#define data_serializer                       FUN_180772fe0    // 数据序列化器
-#define DataSerializer                        FUN_180772fe0    // 数据序列化器（标准命名）
-#define BinaryDataSerializer                 FUN_180772fe0    // 二进制数据序列化器
+#define data_serializer                       SystemCore_SystemMonitor    // 数据序列化器
+#define DataSerializer                        SystemCore_SystemMonitor    // 数据序列化器（标准命名）
+#define BinaryDataSerializer                 SystemCore_SystemMonitor    // 二进制数据序列化器
 
 // 内存初始化函数别名
 #define memory_initializer                    SystemDataValidator    // 内存初始化器
@@ -530,7 +530,7 @@ uint64_t memory_boundary_checker(int64_t param_1, int64_t param_2, int param_3)
  * - 参数：数据上下文、源地址、数据长度
  * - 作用：实现二进制数据的安全处理和转换
  * 
- * data_serializer (FUN_180772fe0):
+ * data_serializer (SystemCore_SystemMonitor):
  * - 功能：数据的序列化和反序列化处理
  * - 用途：将数据结构转换为字节流或反之
  * - 参数：数据对象、序列化类型、目标缓冲区

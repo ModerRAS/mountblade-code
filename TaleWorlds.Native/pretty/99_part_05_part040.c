@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 // 99_part_05_part040.c - 10 个函数
 
@@ -259,7 +266,7 @@ LAB_1802f12d7:
         puStack_cc8 = puVar18 + (int64_t)(int)uVar19 * 0xb;
         if (plVar11 < plStack_878) {
           plStack_880 = plVar11 + 0xb;
-          FUN_1800b8300(plVar11,puStack_cc8);
+          DataDeserializer0(plVar11,puStack_cc8);
           plVar11 = plStack_880;
           plVar9 = plStack_888;
           puVar18 = puStack_468;
@@ -301,7 +308,7 @@ LAB_1802f137b:
             } while (plVar20 != plVar11);
           }
           lVar12 = lStack_cd0;
-          FUN_1800b8300(plVar14,puStack_cc8);
+          DataDeserializer0(plVar14,puStack_cc8);
           plVar9 = plStack_880;
           uVar19 = uStack_ce4;
           param_2 = lStack_cc0;
@@ -402,7 +409,7 @@ void FUN_1802f1610(int64_t param_1,float *param_2)
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
                     param_1 + 0x70);
     }
     *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
@@ -440,19 +447,19 @@ void FUN_1802f1610(int64_t param_1,float *param_2)
   *(float *)(lVar1 + 0x10c) = fVar4;
   *(float *)(lVar1 + 0x110) = fVar6;
   *(int32_t *)(lVar1 + 0x114) = uStack_c;
-  FUN_1800b9f60(*(int64_t *)(param_1 + 0x28) + 0xf8,fVar4,fVar6,fVar3,fVar2,fVar5);
+  SystemCore_Parser(*(int64_t *)(param_1 + 0x28) + 0xf8,fVar4,fVar6,fVar3,fVar2,fVar5);
   if (*(short *)(param_1 + 0x2b0) != *(short *)(param_1 + 0x2b4)) {
     if (*(char *)(param_1 + 0x2d8) == '\0') {
       FUN_1802e7e20(param_1);
       *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
       return;
     }
-    FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70)
+    UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70)
     ;
     *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
     return;
   }
-  FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
+  UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
   *(int16_t *)(param_1 + 0x2b6) = *(int16_t *)(param_1 + 0x2b2);
   return;
 }

@@ -528,7 +528,7 @@ void FUN_1804bfcc0(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x30) {
-    FUN_18004b730(lVar2);
+    UtilitiesSystem_Processor(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -611,7 +611,7 @@ void FUN_1804bfe20(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -685,7 +685,7 @@ void FUN_1804bfe50(int64_t param_1)
           piVar1 = (int *)(lVar4 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemCore_DebugHandler();
             return;
           }
         }
@@ -760,7 +760,7 @@ void FUN_1804bfe5e(int64_t param_1)
           piVar1 = (int *)(lVar4 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemCore_DebugHandler();
             return;
           }
         }
@@ -832,7 +832,7 @@ void FUN_1804bfe7c(void)
           piVar1 = (int *)(lVar4 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemCore_DebugHandler();
             return;
           }
         }
@@ -883,7 +883,7 @@ void FUN_1804bfed9(void)
           piVar1 = (int *)(lVar2 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemCore_DebugHandler();
             return;
           }
         }
@@ -931,7 +931,7 @@ void FUN_1804bfef2(void)
           piVar1 = (int *)(lVar2 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemCore_DebugHandler();
             return;
           }
         }
@@ -986,7 +986,7 @@ void FUN_1804bff30(int64_t param_1,byte *param_2)
     if (*pbStackX_10 != 0x3c) {
       pbStack_18 = pbStackX_10;
       pbStack_10 = param_2;
-      FUN_18062e140(&processed_var_8032_ptr,&pbStack_18);
+      SystemTools_DataProcessor(&processed_var_8032_ptr,&pbStack_18);
       return;
     }
     pbStackX_10 = pbStackX_10 + 1;

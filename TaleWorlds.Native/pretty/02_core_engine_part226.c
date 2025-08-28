@@ -276,7 +276,7 @@ void FUN_18019c6e0(int64_t param_1,int64_t param_2)
         *(uint *)(lVar10 + 0x314) = uVar1 & *(uint *)(param_2 + 0x1c4);
         cVar6 = FUN_1800d6260(uVar8,param_2,lVar10,0,uVar4,uVar8,0);
         if (cVar6 == '\0') {
-          FUN_1800df980(extraout_XMM0_Qa,lVar10,param_2);
+          SystemCore_Controller0(extraout_XMM0_Qa,lVar10,param_2);
           *(int64_t *)(param_2 + 0x34e0) = lVar10;
         }
         else {
@@ -298,7 +298,7 @@ void FUN_18019c6e0(int64_t param_1,int64_t param_2)
         *(uint *)(lVar11 + 0x314) = uVar1 & *(uint *)(param_2 + 0x1c4);
         cVar6 = FUN_1800d6260(uVar8,param_2,lVar11,0,uVar4,uVar8,0);
         if (cVar6 == '\0') {
-          FUN_1800df980(extraout_XMM0_Qa_00,lVar11,param_2);
+          SystemCore_Controller0(extraout_XMM0_Qa_00,lVar11,param_2);
           *(int64_t *)(param_2 + 0x34d8) = lVar11;
         }
         else {
@@ -497,7 +497,7 @@ void FUN_18019d190(uint64_t *param_1,uint64_t param_2)
   if (*(char *)(param_1 + 0xc0e7) == '\0') {
     FUN_180199930(param_1);
   }
-  FUN_1801299b0(&processed_var_4608_ptr,0,0);
+  CoreSystem_Validator(&processed_var_4608_ptr,0,0);
   uStackX_10 = 0;
   cVar4 = FUN_18010f6f0(&memory_allocator_3536_ptr,&uStackX_10,0);
   if (cVar4 != '\0') {
@@ -703,7 +703,7 @@ LAB_18019d50f:
     *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
     *(int32_t *)(lVar8 + 0x1c08) = 0x43960000;
     *(int32_t *)(lVar8 + 0x1bd4) = 4;
-    FUN_1801299b0(&memory_allocator_3184_ptr,&puStackX_8,0);
+    CoreSystem_Validator(&memory_allocator_3184_ptr,&puStackX_8,0);
     uStackX_10 = 0xbf800000bf800000;
     puVar9 = &system_buffer_ptr;
     if ((void *)param_1[0xc0f1] != (void *)0x0) {
@@ -713,19 +713,19 @@ LAB_18019d50f:
     if ((char)puStackX_8 == '\0') {
       *(int8_t *)(param_1 + 0xc0f4) = 0;
     }
-    FUN_18012cfe0();
+    RenderingSystem_MeshProcessor();
   }
 LAB_18019d905:
   puStackX_8 = (uint64_t *)0x0;
   cVar4 = FUN_18010f6f0(&memory_allocator_3224_ptr,&puStackX_8,0);
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   puVar2 = puVar18;
   if (cVar4 != '\0') {
     puStackX_8 = &uStack_d0;
     uStack_d0 = param_1 + 0xc182;
     puStack_c0 = &ui_system_data_1904_ptr;
     pcStack_b8 = FUN_18031c090;
-    FUN_18005c650(&uStack_d0);
+    SystemCore_SecurityManager(&uStack_d0);
   }
   for (; puVar2 != puVar3; puVar2 = puVar2 + 4) {
     (**(code **)*puVar2)(puVar2,0);

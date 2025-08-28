@@ -39,15 +39,15 @@ int32_t * FUN_18083c870(uint64_t param_1,int64_t param_2,uint64_t param_3)
   if (puVar5 == (int32_t *)0x0) {
     return (int32_t *)0x0;
   }
-  uVar2 = FUN_18082d7f0(param_3,0x18);
+  uVar2 = SystemCore_Optimizer(param_3,0x18);
   *puVar5 = uVar2;
-  uVar2 = FUN_18082d7f0(param_3,0x18);
+  uVar2 = SystemCore_Optimizer(param_3,0x18);
   puVar5[1] = uVar2;
-  iVar3 = FUN_18082d7f0(param_3,0x18);
+  iVar3 = SystemCore_Optimizer(param_3,0x18);
   puVar5[2] = iVar3 + 1;
-  iVar3 = FUN_18082d7f0(param_3,6);
+  iVar3 = SystemCore_Optimizer(param_3,6);
   puVar5[3] = iVar3 + 1;
-  iVar3 = FUN_18082d7f0(param_3,8);
+  iVar3 = SystemCore_Optimizer(param_3,8);
   puVar5[4] = iVar3;
   if (-1 < iVar3) {
     uVar6 = 0;
@@ -56,11 +56,11 @@ int32_t * FUN_18083c870(uint64_t param_1,int64_t param_2,uint64_t param_3)
       uVar9 = uVar11;
       uVar12 = uVar11;
       do {
-        uVar4 = FUN_18082d7f0(param_3,3);
-        iVar3 = FUN_18082d7f0(param_3,1);
+        uVar4 = SystemCore_Optimizer(param_3,3);
+        iVar3 = SystemCore_Optimizer(param_3,1);
         if (iVar3 < 0) goto LAB_18083ca29;
         if (iVar3 != 0) {
-          iVar3 = FUN_18082d7f0(param_3,5);
+          iVar3 = SystemCore_Optimizer(param_3,5);
           if (iVar3 < 0) goto LAB_18083ca29;
           uVar4 = uVar4 | iVar3 * 8;
         }
@@ -82,7 +82,7 @@ int32_t * FUN_18083c870(uint64_t param_1,int64_t param_2,uint64_t param_3)
       piVar8 = puVar5 + 0x45;
       uVar9 = uVar11;
       do {
-        iVar3 = FUN_18082d7f0(param_3,8);
+        iVar3 = SystemCore_Optimizer(param_3,8);
         if (iVar3 < 0) goto LAB_18083ca29;
         *piVar8 = iVar3;
         uVar9 = uVar9 + 1;
@@ -879,11 +879,11 @@ void FUN_18083dff0(uint64_t param_1,uint64_t *param_2)
   if (param_2 != (uint64_t *)0x0) {
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0();
+      RenderingSystem_CoreProcessor0();
     }
     if (param_2[2] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0(param_1);
+      RenderingSystem_CoreProcessor0(param_1);
     }
     *param_2 = 0;
     param_2[1] = 0;

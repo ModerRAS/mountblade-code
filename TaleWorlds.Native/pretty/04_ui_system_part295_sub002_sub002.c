@@ -182,29 +182,29 @@ int32_t FUN_18082f330(uint64_t param_1,uint64_t param_2,int *param_3)
   param_3[0xc] = 0;
   param_3[0xd] = 0;
   param_3[0xc] = 1;
-  iVar1 = FUN_18082d7f0(param_2,0x18);
+  iVar1 = SystemCore_Optimizer(param_2,0x18);
   uVar4 = uVar12;
   if (iVar1 != 0x564342) goto LAB_18082f494;
-  iVar1 = FUN_18082d7f0(param_2,0x10);
+  iVar1 = SystemCore_Optimizer(param_2,0x10);
   *param_3 = iVar1;
-  iVar1 = FUN_18082d7f0(param_2,0x18);
+  iVar1 = SystemCore_Optimizer(param_2,0x18);
   param_3[1] = iVar1;
   if (iVar1 == -1) goto LAB_18082f494;
   iVar2 = func_0x00018082e5b0(*param_3);
   iVar1 = func_0x00018082e5b0(iVar1);
   if (0x18 < iVar2 + iVar1) goto LAB_18082f494;
-  iVar1 = FUN_18082d7f0(param_2,1);
+  iVar1 = SystemCore_Optimizer(param_2,1);
   if (iVar1 == 0) {
     lVar5 = FUN_1807c4200(param_1,param_3[1] << 2);
     *(int64_t *)(param_3 + 2) = lVar5;
     if (lVar5 != 0) {
-      iVar1 = FUN_18082d7f0(param_2,1);
+      iVar1 = SystemCore_Optimizer(param_2,1);
       uVar10 = 0;
       if (iVar1 == 0) {
         uVar11 = uVar10;
         if (0 < param_3[1]) {
           do {
-            iVar1 = FUN_18082d7f0(param_2,5);
+            iVar1 = SystemCore_Optimizer(param_2,5);
             uVar4 = uVar13;
             if (iVar1 == -1) goto LAB_18082f494;
             uVar7 = (int)uVar10 + 1;
@@ -218,12 +218,12 @@ int32_t FUN_18082f330(uint64_t param_1,uint64_t param_2,int *param_3)
         uVar11 = uVar10;
         if (0 < param_3[1]) {
           do {
-            iVar1 = FUN_18082d7f0(param_2,1);
+            iVar1 = SystemCore_Optimizer(param_2,1);
             if (iVar1 == 0) {
               *(int32_t *)(uVar11 + *(int64_t *)(param_3 + 2)) = 0;
             }
             else {
-              iVar1 = FUN_18082d7f0(param_2,5);
+              iVar1 = SystemCore_Optimizer(param_2,5);
               uVar4 = uVar13;
               if (iVar1 == -1) goto LAB_18082f494;
               *(int *)(uVar11 + *(int64_t *)(param_3 + 2)) = iVar1 + 1;
@@ -241,7 +241,7 @@ int32_t FUN_18082f330(uint64_t param_1,uint64_t param_2,int *param_3)
     if (iVar1 != 1) {
       return 0xffffffff;
     }
-    iVar1 = FUN_18082d7f0(param_2,5);
+    iVar1 = SystemCore_Optimizer(param_2,5);
     lVar5 = FUN_1807c4200(param_1,param_3[1] << 2);
     *(int64_t *)(param_3 + 2) = lVar5;
     if (lVar5 != 0) {
@@ -253,7 +253,7 @@ int32_t FUN_18082f330(uint64_t param_1,uint64_t param_2,int *param_3)
         do {
           iVar1 = iVar1 + 1;
           uVar3 = func_0x00018082e5b0(iVar2 - (int)uVar11);
-          iVar2 = FUN_18082d7f0(param_2,uVar3);
+          iVar2 = SystemCore_Optimizer(param_2,uVar3);
           if (iVar2 == -1) goto LAB_18082f494;
           uVar8 = uVar9;
           if (0 < iVar2) {
@@ -271,20 +271,20 @@ int32_t FUN_18082f330(uint64_t param_1,uint64_t param_2,int *param_3)
       }
 LAB_18082f55b:
       lVar5 = 0;
-      iVar1 = FUN_18082d7f0(param_2,4);
+      iVar1 = SystemCore_Optimizer(param_2,4);
       param_3[4] = iVar1;
       if (iVar1 == 0) {
         return 0;
       }
       uVar4 = uVar12;
       if (1 < iVar1 - 1U) goto LAB_18082f494;
-      iVar1 = FUN_18082d7f0(param_2,0x20);
+      iVar1 = SystemCore_Optimizer(param_2,0x20);
       param_3[5] = iVar1;
-      iVar1 = FUN_18082d7f0(param_2,0x20);
+      iVar1 = SystemCore_Optimizer(param_2,0x20);
       param_3[6] = iVar1;
-      iVar1 = FUN_18082d7f0(param_2,4);
+      iVar1 = SystemCore_Optimizer(param_2,4);
       param_3[7] = iVar1 + 1;
-      iVar1 = FUN_18082d7f0(param_2,1);
+      iVar1 = SystemCore_Optimizer(param_2,1);
       param_3[8] = iVar1;
       uVar4 = uVar13;
       if (iVar1 == -1) goto LAB_18082f494;
@@ -302,7 +302,7 @@ LAB_18082f55b:
       if (lVar6 != 0) {
         if (0 < iVar1) {
           do {
-            uVar4 = FUN_18082d7f0(param_2,param_3[7]);
+            uVar4 = SystemCore_Optimizer(param_2,param_3[7]);
             *(int32_t *)(*(int64_t *)(param_3 + 10) + lVar5 * 4) = uVar4;
             lVar5 = lVar5 + 1;
           } while (lVar5 < iVar1);
@@ -409,15 +409,15 @@ uint64_t FUN_18082f8b0(uint64_t param_1,int64_t *param_2)
   }
   if (*param_2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
   }
   if (param_2[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[4] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
                     // WARNING: Subroutine does not return
   memset(param_2,0,0x178);
@@ -663,7 +663,7 @@ uint64_t FUN_18082ff80(uint64_t param_1,int64_t *param_2)
   }
   if (*param_2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
   }
   *param_2 = 0;
   param_2[1] = 0;
@@ -1121,7 +1121,7 @@ int FUN_180830310(uint64_t param_1,int64_t param_2)
   iVar2 = 0;
   if (*(uint64_t **)(param_2 + 0x70) != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1,**(uint64_t **)(param_2 + 0x70));
+    RenderingSystem_CoreProcessor0(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
     lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),
@@ -1141,7 +1141,7 @@ int FUN_180830310(uint64_t param_1,int64_t param_2)
   }
   if (*(int64_t *)(param_2 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
                     // WARNING: Subroutine does not return
   memset(param_2,0,0x88);
@@ -1158,7 +1158,7 @@ int FUN_180830319(uint64_t param_1,int64_t param_2)
   iVar2 = 0;
   if (*(uint64_t **)(param_2 + 0x70) != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1,**(uint64_t **)(param_2 + 0x70));
+    RenderingSystem_CoreProcessor0(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
     lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),
@@ -1178,7 +1178,7 @@ int FUN_180830319(uint64_t param_1,int64_t param_2)
   }
   if (*(int64_t *)(param_2 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
                     // WARNING: Subroutine does not return
   memset(param_2,0,0x88);

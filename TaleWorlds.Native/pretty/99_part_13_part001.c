@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /**
  * @file 99_part_13_part001.c
  * @brief 高级数据结构和容器操作模块
@@ -174,7 +175,7 @@ uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
     
     // 步骤1：初始化临时缓冲区
     temp_buffer[0] = 0;
-    operation_result = FUN_1808afe30(*param_1, temp_buffer);
+    operation_result = SystemCore_Manager(*param_1, temp_buffer);
     bit_mask = temp_buffer[0];
     
     // 步骤2：检查操作结果
@@ -186,7 +187,7 @@ uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
         
         // 步骤4：容量验证和扩展
         if (((int)element_count <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ capacity_check) - capacity_check)) ||
-            (operation_result = FUN_180748010(param_2, element_count), (int)operation_result == 0)) {
+            (operation_result = UltraHighFreq_StateController1(param_2, element_count), (int)operation_result == 0)) {
             
             // 步骤5：获取当前大小
             current_size = (int)param_2[1];
@@ -206,7 +207,7 @@ uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
             if (bit_mask >> 1 != 0) {
                 do {
                     // 步骤8.1：遍历处理
-                    operation_result = FUN_1808dde10(param_1, stack_buffer[0]);
+                    operation_result = UISystemEventHandler(param_1, stack_buffer[0]);
                     if ((int)operation_result != 0) {
                         return operation_result;
                     }
@@ -239,7 +240,7 @@ uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
                     }
                     
                     // 步骤8.5：清理和更新
-                    operation_result = FUN_1808de0e0(param_1, stack_buffer);
+                    operation_result = SystemCore_Initializer(param_1, stack_buffer);
                     if ((int)operation_result != 0) {
                         return operation_result;
                     }
@@ -288,7 +289,7 @@ uint64_t ContainerOperator(void)
     
     // 步骤2：容量验证和分配
     if (((int)capacity_value <= (int)((operation_flags ^ (int)operation_flags >> 0x1f) - ((int)operation_flags >> 0x1f))) ||
-        (final_result = FUN_180748010(), (int)final_result == 0)) {
+        (final_result = UltraHighFreq_StateController1(), (int)final_result == 0)) {
         
         // 步骤3：获取容器当前大小
         iteration_count = (int)container_ptr[1];
@@ -307,7 +308,7 @@ uint64_t ContainerOperator(void)
             if (stack_flags >> 1 != 0) {
                 do {
                     // 步骤5.1：遍历处理
-                    final_result = FUN_1808dde10();
+                    final_result = UISystemEventHandler();
                     if ((int)final_result != 0) {
                         return final_result;
                     }
@@ -340,7 +341,7 @@ uint64_t ContainerOperator(void)
                     }
                     
                     // 步骤5.5：清理和更新
-                    final_result = FUN_1808de0e0();
+                    final_result = SystemCore_Initializer();
                     if ((int)final_result != 0) {
                         return final_result;
                     }
@@ -390,7 +391,7 @@ uint64_t DataTraversal(void)
     if (iteration_limit != 0) {
         do {
             // 步骤2.1：遍历处理
-            traversal_result = FUN_1808dde10();
+            traversal_result = UISystemEventHandler();
             if ((int)traversal_result != 0) {
                 return traversal_result;
             }
@@ -423,7 +424,7 @@ uint64_t DataTraversal(void)
             }
             
             // 步骤2.5：清理和更新
-            traversal_result = FUN_1808de0e0();
+            traversal_result = SystemCore_Initializer();
             if ((int)traversal_result != 0) {
                 return traversal_result;
             }
@@ -502,7 +503,7 @@ uint64_t ExtendedOperator(uint64_t *param_1, int64_t *param_2)
     
     // 步骤1：初始化临时缓冲区
     temp_buffer[0] = 0;
-    operation_result = FUN_1808afe30(*param_1, temp_buffer);
+    operation_result = SystemCore_Manager(*param_1, temp_buffer);
     operation_mask = temp_buffer[0];
     
     // 步骤2：检查操作结果
@@ -521,7 +522,7 @@ uint64_t ExtendedOperator(uint64_t *param_1, int64_t *param_2)
             if (operation_mask >> 1 != 0) {
                 do {
                     // 步骤5.1：遍历处理
-                    operation_result = FUN_1808dde10(param_1, stack_buffer[0]);
+                    operation_result = UISystemEventHandler(param_1, stack_buffer[0]);
                     if ((int)operation_result != 0) {
                         return operation_result;
                     }
@@ -572,7 +573,7 @@ uint64_t ExtendedOperator(uint64_t *param_1, int64_t *param_2)
                     }
                     
                     // 步骤5.6：清理和更新
-                    operation_result = FUN_1808de0e0(param_1, stack_buffer);
+                    operation_result = SystemCore_Initializer(param_1, stack_buffer);
                     if ((int)operation_result != 0) {
                         return operation_result;
                     }
@@ -621,7 +622,7 @@ uint64_t BatchProcessor(void)
         if (batch_flags >> 1 != 0) {
             do {
                 // 步骤2.1：批量遍历处理
-                batch_result = FUN_1808dde10();
+                batch_result = UISystemEventHandler();
                 if ((int)batch_result != 0) {
                     return batch_result;
                 }
@@ -672,7 +673,7 @@ uint64_t BatchProcessor(void)
                 }
                 
                 // 步骤2.6：清理和更新
-                batch_result = FUN_1808de0e0();
+                batch_result = SystemCore_Initializer();
                 if ((int)batch_result != 0) {
                     return batch_result;
                 }

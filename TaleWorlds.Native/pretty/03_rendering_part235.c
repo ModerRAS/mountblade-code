@@ -102,7 +102,7 @@ void FUN_18039cb40(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
     puVar6 = *(void **)(param_3 + 8);
   }
   uStack_8b0 = param_4;
-  FUN_180060680(acStack_398,&memory_allocator_3896_ptr,puVar6);
+  RenderingEngine_BufferManager(acStack_398,&memory_allocator_3896_ptr,puVar6);
   lStack_8e0 = 0xffffffffffffffff;
   puStack_778 = &rendering_buffer_2008_ptr;
   puStack_770 = auStack_760;
@@ -115,7 +115,7 @@ void FUN_18039cb40(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
   } while (acStack_398[lVar9] != '\0');
   uStack_768 = (int32_t)lVar3;
   strcpy_s(auStack_760,0x100,acStack_398);
-  lVar4 = FUN_180624440(apuStack_5b8,&puStack_778);
+  lVar4 = SystemCore_EncryptionEngine(apuStack_5b8,&puStack_778);
   puStack_898 = &rendering_buffer_2008_ptr;
   puStack_890 = auStack_880;
   auStack_880[0] = 0;

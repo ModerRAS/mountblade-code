@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_08_part065.c - 6 个函数
@@ -78,17 +82,17 @@ LAB_1805b52e7:
     param_1 = extraout_XMM0_Da;
     if (aiStackX_20[0] == iVar8) {
       if (((((cVar5 == '\0') ||
-            (cVar5 = FUN_180646700(extraout_XMM0_Da,&param_6), param_1 = extraout_XMM0_Da_10,
+            (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da,&param_6), param_1 = extraout_XMM0_Da_10,
             cVar5 == '\0')) ||
-           (cVar5 = FUN_180646700(extraout_XMM0_Da_10,(int64_t)&param_6 + 4),
+           (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_10,(int64_t)&param_6 + 4),
            param_1 = extraout_XMM0_Da_11, cVar5 == '\0')) ||
-          ((cVar5 = FUN_180646700(extraout_XMM0_Da_11,&param_7), param_1 = extraout_XMM0_Da_12,
+          ((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_11,&param_7), param_1 = extraout_XMM0_Da_12,
            cVar5 == '\0' ||
-           (cVar5 = FUN_180646700(extraout_XMM0_Da_12,&param_11), param_1 = extraout_XMM0_Da_13,
+           (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_12,&param_11), param_1 = extraout_XMM0_Da_13,
            cVar5 == '\0')))) ||
-         ((cVar5 = FUN_180646700(extraout_XMM0_Da_13,(int64_t)&param_11 + 4),
+         ((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_13,(int64_t)&param_11 + 4),
           param_1 = extraout_XMM0_Da_14, cVar5 == '\0' ||
-          (cVar5 = FUN_180646700(extraout_XMM0_Da_14,&param_12), param_1 = extraout_XMM0_Da_15,
+          (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_14,&param_12), param_1 = extraout_XMM0_Da_15,
           cVar5 == '\0')))) {
         param_3 = '\0';
       }
@@ -137,16 +141,16 @@ LAB_1805b52e7:
       goto LAB_1805b52d7;
     }
     if ((((cVar5 != '\0') &&
-         (cVar5 = FUN_180646700(extraout_XMM0_Da,&param_6,&processed_var_5376_ptr),
+         (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da,&param_6,&processed_var_5376_ptr),
          param_1 = extraout_XMM0_Da_00, cVar5 != '\0')) &&
-        (cVar5 = FUN_180646700(extraout_XMM0_Da_00,(int64_t)&param_6 + 4,&processed_var_5376_ptr),
+        (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_00,(int64_t)&param_6 + 4,&processed_var_5376_ptr),
         param_1 = extraout_XMM0_Da_01, cVar5 != '\0')) &&
-       (((cVar5 = FUN_180646700(extraout_XMM0_Da_01,&param_7,&processed_var_5392_ptr),
+       (((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_01,&param_7,&processed_var_5392_ptr),
          param_1 = extraout_XMM0_Da_02, cVar5 != '\0' &&
          (_fStack0000000000000048 = unaff_RDI,
-         cVar5 = FUN_180646700(extraout_XMM0_Da_02,&stack0x00000048,&processed_var_5408_ptr),
+         cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_02,&stack0x00000048,&processed_var_5408_ptr),
          param_1 = extraout_XMM0_Da_03, cVar5 != '\0')) &&
-        (cVar5 = FUN_180646700(extraout_XMM0_Da_03,(int64_t)&stack0x00000048 + 4,&processed_var_5408_ptr),
+        (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_03,(int64_t)&stack0x00000048 + 4,&processed_var_5408_ptr),
         param_1 = extraout_XMM0_Da_04, cVar5 != '\0')))) {
       bVar9 = true;
       piVar7 = (int *)&param_14;
@@ -608,22 +612,22 @@ LAB_1805b51f7:
     bVar1 = false;
   }
   else {
-    cVar2 = FUN_180646700(param_1,&stack0x00000030);
+    cVar2 = RenderingBufferHandler0(param_1,&stack0x00000030);
     param_1 = extraout_XMM0_Da;
     if (cVar2 == '\0') goto LAB_1805b51f7;
-    cVar2 = FUN_180646700(extraout_XMM0_Da,(int64_t)&stack0x00000030 + 4);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da,(int64_t)&stack0x00000030 + 4);
     param_1 = extraout_XMM0_Da_00;
     if (cVar2 == '\0') goto LAB_1805b51f7;
-    cVar2 = FUN_180646700(extraout_XMM0_Da_00,&stack0x00000038);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da_00,&stack0x00000038);
     param_1 = extraout_XMM0_Da_01;
     if (cVar2 == '\0') goto LAB_1805b51f7;
-    cVar2 = FUN_180646700(extraout_XMM0_Da_01,&stack0x00000058);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da_01,&stack0x00000058);
     param_1 = extraout_XMM0_Da_02;
     if (cVar2 == '\0') goto LAB_1805b51f7;
-    cVar2 = FUN_180646700(extraout_XMM0_Da_02,(int64_t)&stack0x00000058 + 4);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da_02,(int64_t)&stack0x00000058 + 4);
     param_1 = extraout_XMM0_Da_03;
     if (cVar2 == '\0') goto LAB_1805b51f7;
-    cVar2 = FUN_180646700(extraout_XMM0_Da_03,&stack0x00000060);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da_03,&stack0x00000060);
     param_1 = extraout_XMM0_Da_04;
     if (cVar2 == '\0') goto LAB_1805b51f7;
     bVar1 = true;

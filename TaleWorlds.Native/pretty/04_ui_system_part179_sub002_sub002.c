@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -35,8 +36,8 @@ uint64_t FUN_180770270(int64_t *param_1,int param_2)
      ((int)param_1[4] == -1)) {
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((param_2 <= (int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar6) - uVar6)) ||
-        (uVar3 = FUN_180748010(param_1 + 2,param_2), (int)uVar3 == 0)) &&
-       (uVar3 = FUN_1807703c0(param_1,param_2), (int)uVar3 == 0)) {
+        (uVar3 = UltraHighFreq_StateController1(param_1 + 2,param_2), (int)uVar3 == 0)) &&
+       (uVar3 = RenderingEngine_TextureManager(param_1,param_2), (int)uVar3 == 0)) {
       uVar8 = 0;
       uVar4 = uVar8;
       if (0 < param_2) {
@@ -77,7 +78,7 @@ LAB_180770376:
 
 
 
-uint64_t FUN_1807703c0(int64_t param_1,int param_2)
+uint64_t RenderingEngine_TextureManager(int64_t param_1,int param_2)
 
 {
   uint64_t uVar1;
@@ -85,7 +86,7 @@ uint64_t FUN_1807703c0(int64_t param_1,int param_2)
   
   uVar2 = (int)*(uint *)(param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0xc) ^ uVar2) - uVar2) < param_2) &&
-     (uVar1 = FUN_180747e10(param_1,param_2), (int)uVar1 != 0)) {
+     (uVar1 = SystemCore_Initializer(param_1,param_2), (int)uVar1 != 0)) {
     return uVar1;
   }
   *(int *)(param_1 + 8) = param_2;

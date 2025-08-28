@@ -1,3 +1,5 @@
+#include "SystemDataAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -136,7 +138,7 @@ LAB_180070b00:
       memcpy(puVar10 + uVar19,param_2,(int64_t)((int)lVar15 + 2));
     }
   }
-  FUN_180627e10(&puStack_118,&puStack_f8,&uStack_58);
+  UtilitiesSystem_CacheManager(&puStack_118,&puStack_f8,&uStack_58);
   uStack_94 = 0;
   uStack_11c = 0;
   puStack_118 = &system_data_buffer_ptr;
@@ -282,7 +284,7 @@ LAB_180070ee8:
   }
   *(int16_t *)(puStack_138 + uStack_130) = 0x3a;
   uStack_130 = 3;
-  FUN_180628380(&puStack_140,uStack_98);
+  > HighFreq_PerformanceMonitor1(&puStack_140,uStack_98);
   uVar6 = uStack_130;
   uVar5 = uStack_130 + 1;
   if (uVar5 != 0) {
@@ -446,7 +448,7 @@ LAB_18007113f:
   if (puVar10 != (int8_t *)0x0) {
     puStack_168 = puVar10;
   }
-  FUN_1800623b0(system_message_context,4,0xffffffff00000000,3);
+  SystemConfigurationManager(system_message_context,4,0xffffffff00000000,3);
   FUN_1800623e0();
   puVar12 = &system_buffer_ptr;
   if (puStack_138 != (int8_t *)0x0) {
@@ -493,7 +495,7 @@ LAB_18007113f:
           puStack_168 = &processed_var_6936_ptr;
           puStack_160 = puVar18;
           puStack_158 = puVar12;
-          FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd);
+          SystemConfigurationManager(system_message_context,3,0xffffffff00000000,0xd);
         }
       }
       uVar7 = MessageBoxA(0,puVar12,puVar18,0x52012);
@@ -531,7 +533,7 @@ LAB_18007113f:
           puStack_160 = &processed_var_4344_ptr;
           puStack_168 = &processed_var_6936_ptr;
           puStack_158 = puVar12;
-          FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd);
+          SystemConfigurationManager(system_message_context,3,0xffffffff00000000,0xd);
         }
       }
       else if (((param_6 == '\0') || (*(int *)(system_main_module_state + 0x340) == 2)) &&
@@ -606,7 +608,7 @@ LAB_1800715eb:
   }
   uVar7 = FUN_1800f98e0(puVar18);
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_4368_ptr,bVar13 ^ 1,uVar7);
+  SystemParameterHandler(system_message_context,&processed_var_4368_ptr,bVar13 ^ 1,uVar7);
 }
 
 
@@ -771,7 +773,7 @@ LAB_180071c93:
   }
   *(int16_t *)(puStack_88 + uStack_80) = 0x3a;
   uStack_80 = 0x14;
-  FUN_180628380(&puStack_90,param_3);
+  > HighFreq_PerformanceMonitor1(&puStack_90,param_3);
   uVar2 = uStack_80;
   uVar11 = uStack_80 + 1;
   if (uVar11 != 0) {
@@ -874,7 +876,7 @@ LAB_180071eb0:
   if (puVar9 != (void *)0x0) {
     puVar5 = puVar9;
   }
-  FUN_1800623b0(system_message_context,4,0xffffffff00000000,3,puVar5);
+  SystemConfigurationManager(system_message_context,4,0xffffffff00000000,3,puVar5);
   FUN_1800623e0();
   puVar8 = &system_buffer_ptr;
   if (puStack_88 != (int8_t *)0x0) {

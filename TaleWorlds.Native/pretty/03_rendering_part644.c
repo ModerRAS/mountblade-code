@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 
 // 03_rendering_part644.c - 9 个函数
 
@@ -74,7 +81,7 @@ void FUN_18062c8f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
         }
       }
       else {
-        FUN_180059820(param_2,&puStack_70);
+        SystemCore_BackupSystem(param_2,&puStack_70);
       }
       puStack_70 = &system_data_buffer_ptr;
       if (puStack_68 != (int8_t *)0x0) {
@@ -209,7 +216,7 @@ LAB_18062ccd5:
             CoreEngineDataTransformer();
           }
           else {
-            FUN_180059820(param_2,puVar2);
+            SystemCore_BackupSystem(param_2,puVar2);
           }
         }
       }
@@ -359,7 +366,7 @@ LAB_18062cfad:
             CoreEngineDataTransformer();
           }
           else {
-            FUN_180059820(param_2,puStack_b8 + uVar9 * 4);
+            SystemCore_BackupSystem(param_2,puStack_b8 + uVar9 * 4);
           }
         }
       }
@@ -452,9 +459,9 @@ void FUN_18062d0d0(uint64_t param_1,int64_t param_2)
   
   uStack_6f8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_778;
-  cVar2 = FUN_180624a00();
+  cVar2 = UltraHighFreq_LogManager1();
   if (cVar2 != '\0') {
-    uVar4 = FUN_180624440(&uStack_498,param_1);
+    uVar4 = SystemCore_EncryptionEngine(&uStack_498,param_1);
     SystemCore_EncryptionEngine0(&puStack_718,uVar4);
     uStack_498 = &system_state_ptr;
     uVar6 = uStack_708 + 2;
@@ -499,7 +506,7 @@ void FUN_18062d0d0(uint64_t param_1,int64_t param_2)
             CoreEngineDataTransformer();
           }
           else {
-            FUN_180059820(param_2,&puStack_738);
+            SystemCore_BackupSystem(param_2,&puStack_738);
           }
           puStack_738 = &system_data_buffer_ptr;
           if (lStack_730 != 0) {
@@ -580,9 +587,9 @@ void FUN_18062d3b0(int64_t param_1,int64_t param_2,uint64_t param_3)
   
   uStack_7e8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_8c8;
-  cVar2 = FUN_180624a00();
+  cVar2 = UltraHighFreq_LogManager1();
   if (cVar2 != '\0') {
-    uVar4 = FUN_180624440(apuStack_588,param_1);
+    uVar4 = SystemCore_EncryptionEngine(apuStack_588,param_1);
     SystemCore_EncryptionEngine0(&puStack_848,uVar4);
     apuStack_588[0] = &system_state_ptr;
     uVar7 = uStack_838 + 2;
@@ -631,12 +638,12 @@ void FUN_18062d3b0(int64_t param_1,int64_t param_2,uint64_t param_3)
               CoreEngineDataTransformer();
             }
             else {
-              FUN_180059820(param_2,&puStack_868);
+              SystemCore_BackupSystem(param_2,&puStack_868);
             }
-            uVar4 = FUN_180627910(&puStack_808,acStack_368);
+            uVar4 = SystemCore_CacheManager(&puStack_808,acStack_368);
             uVar4 = FUN_180627560(apuStack_588,uVar4);
             SystemCore_EncryptionEngine0(&puStack_828,uVar4);
-            FUN_180066df0(param_3,&puStack_828);
+            DataEncryptionHandler0(param_3,&puStack_828);
             puStack_828 = &system_data_buffer_ptr;
             if (lStack_820 != 0) {
                     // WARNING: Subroutine does not return
@@ -755,7 +762,7 @@ void FUN_18062d860(uint64_t param_1)
   
   uStack_4a8 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4f8;
-  uVar2 = FUN_180624440(apuStack_468,param_1);
+  uVar2 = SystemCore_EncryptionEngine(apuStack_468,param_1);
   SystemCore_EncryptionEngine0(&puStack_4c8,uVar2);
   apuStack_468[0] = &system_state_ptr;
   uStack_4d0 = 0x118;
@@ -804,7 +811,7 @@ uint64_t FUN_18062d9a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   }
   uStack_20 = 0;
   uStack_10 = 0;
-  FUN_18062dee0(&uStack_20,puVar3,&processed_var_4880_ptr,param_4,0xfffffffffffffffe);
+  SystemCore_Validator(&uStack_20,puVar3,&processed_var_4880_ptr,param_4,0xfffffffffffffffe);
   if (lStack_18 == 0) {
     uVar2 = 0;
   }
@@ -845,7 +852,7 @@ void FUN_18062da70(uint64_t param_1)
   
   uStack_478 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4c8;
-  uVar1 = FUN_180624440(apuStack_468,param_1);
+  uVar1 = SystemCore_EncryptionEngine(apuStack_468,param_1);
   SystemCore_EncryptionEngine0(&puStack_498,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_4a0 = 0x118;
@@ -893,10 +900,10 @@ void FUN_18062db60(uint64_t param_1,uint64_t param_2)
   
   uStack_6b8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_728;
-  uVar2 = FUN_180624440(apuStack_6a8,param_1);
+  uVar2 = SystemCore_EncryptionEngine(apuStack_6a8,param_1);
   SystemCore_EncryptionEngine0(&puStack_6d8,uVar2);
   apuStack_6a8[0] = &system_state_ptr;
-  uVar2 = FUN_180624440(apuStack_6a8,param_2);
+  uVar2 = SystemCore_EncryptionEngine(apuStack_6a8,param_2);
   SystemCore_EncryptionEngine0(&puStack_6f8,uVar2);
   apuStack_6a8[0] = &system_state_ptr;
   uStack_700 = 0x118;
@@ -957,10 +964,10 @@ void FUN_18062dce0(uint64_t param_1)
   
   uStack_6b8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_728;
-  uVar1 = FUN_180624440(apuStack_6a8);
+  uVar1 = SystemCore_EncryptionEngine(apuStack_6a8);
   SystemCore_EncryptionEngine0(&puStack_6d8,uVar1);
   apuStack_6a8[0] = &system_state_ptr;
-  uVar1 = FUN_180624440(apuStack_6a8,param_1);
+  uVar1 = SystemCore_EncryptionEngine(apuStack_6a8,param_1);
   SystemCore_EncryptionEngine0(&puStack_6f8,uVar1);
   apuStack_6a8[0] = &system_state_ptr;
   uStack_700 = 0x118;

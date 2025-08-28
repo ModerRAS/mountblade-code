@@ -166,7 +166,7 @@ uint64_t FUN_180758800(int64_t *param_1,int64_t param_2,int64_t param_3)
     if ((int)uVar3 != 0) {
       return uVar3;
     }
-    uVar3 = FUN_180762070(lVar4,bVar6,1);
+    uVar3 = SystemCore_Initializer(lVar4,bVar6,1);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -178,7 +178,7 @@ uint64_t FUN_180758800(int64_t *param_1,int64_t param_2,int64_t param_3)
     if ((int)uVar3 != 0) {
       return uVar3;
     }
-    if ((lVar1 != lVar2) && (uVar3 = FUN_180762070(lVar1,1), (int)uVar3 != 0)) {
+    if ((lVar1 != lVar2) && (uVar3 = SystemCore_Initializer(lVar1,1), (int)uVar3 != 0)) {
       return uVar3;
     }
     if ((((int64_t *)param_1[0x3b] != (int64_t *)0x0) && (acStackX_20[0] != '\0')) &&
@@ -232,7 +232,7 @@ uint64_t FUN_18075883f(void)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_180762070(lVar2,in_stack_00000088 == in_AL,1);
+    uVar1 = SystemCore_Initializer(lVar2,in_stack_00000088 == in_AL,1);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -244,7 +244,7 @@ uint64_t FUN_18075883f(void)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    if ((unaff_RBX != unaff_RBP) && (uVar1 = FUN_180762070(), (int)uVar1 != 0)) {
+    if ((unaff_RBX != unaff_RBP) && (uVar1 = SystemCore_Initializer(), (int)uVar1 != 0)) {
       return uVar1;
     }
     if (((*(int64_t **)(unaff_RDI + 0x1d8) != (int64_t *)0x0) && (in_stack_00000088 != '\0')) &&

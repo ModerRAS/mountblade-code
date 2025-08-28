@@ -151,7 +151,7 @@ FUN_1802578c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  puVar1 = (uint64_t *)FUN_1808fc418(0x28);
+  puVar1 = (uint64_t *)SystemRenderer(0x28);
   *puVar1 = &ui_system_data_1568_ptr;
   puVar1[3] = 0;
   puVar1[4] = _guard_check_icall;
@@ -234,7 +234,7 @@ FUN_180257ae0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  uVar1 = FUN_1808fc418(0x28);
+  uVar1 = SystemRenderer(0x28);
   FUN_180257820(uVar1,param_1,param_3,param_4,uVar2);
   return uVar1;
 }
@@ -431,7 +431,7 @@ void FUN_180257e50(int64_t param_1)
   *(uint64_t *)(param_1 + 0x100) = 0;
   *(int32_t *)(param_1 + 0x110) = 0;
   *(uint64_t *)(param_1 + 0xf8) = &system_state_ptr;
-  FUN_18005d580();
+  DataSerializationEngine();
   *(uint64_t *)(param_1 + 0x10) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
@@ -500,7 +500,7 @@ FUN_180258000(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_18005d580();
+  DataSerializationEngine();
   if (param_1[6] != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
@@ -561,7 +561,7 @@ void FUN_1802580b0(int64_t param_1)
         }
         uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,CONCAT71((int7)(uVar6 >> 8),0x16),0,
                               0xfffffffffffffffe);
-        plVar3 = (int64_t *)FUN_180275090(uVar2);
+        plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
         plStackX_8 = plVar3;
         if (plVar3 != (int64_t *)0x0) {
           (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -790,7 +790,7 @@ void FUN_1802585b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     }
     if (*(int *)(lVar2 + 0x128) != 0) {
       pplStackX_18 = &plStackX_8;
-      plStackX_8 = (int64_t *)FUN_1800b6de0(system_resource_state,lVar2 + 0x118,1);
+      plStackX_8 = (int64_t *)RenderingSystem_VertexProcessor(system_resource_state,lVar2 + 0x118,1);
       if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x28))(plStackX_8);
       }

@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -767,7 +773,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
           uStack_14c = uStack_14c & 0xffffff00;
           uStack_178 = (void *)
                        ((uint64_t)*(uint *)(*(int64_t *)(param_1 + 0x598) + 0x1a4) << 0x20);
-          FUN_18051ec50(param_1,&uStack_178);
+          CoreSystemThreadManager(param_1,&uStack_178);
           return;
         }
       }
@@ -819,7 +825,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
       FUN_18052f6f0(param_1,param_2,aiStackX_20,aiStack_128,pcVar26,pcVar27,&uStack_178);
       uVar12 = (int32_t)((uint64_t)pcVar26 >> 0x20);
       if (acStackX_8[0] != '\0') {
-        iVar6 = FUN_18053a410(&system_memory_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
+        iVar6 = SystemCacheManager(&system_memory_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
                               aiStackX_20[0]);
         iVar6 = *(int *)(render_system_memory + (int64_t)iVar6 * 4);
         if (iVar6 != -1) {
@@ -842,7 +848,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
              *(int64_t *)(&system_error_code + (int64_t)*(int *)(lVar15 + 0x6c0) * 8) + 200000;
         *(int32_t *)(param_1 + 0x670) = 0xffffffff;
         *(uint *)(param_1 + 0x584) = *(uint *)(uVar8 + 0x1d8) ^ 0x80000000;
-        FUN_18052e130(lVar15,0xffffffff,0x180c8ed01);
+        SystemCore_Validator0(lVar15,0xffffffff,0x180c8ed01);
         if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
           FUN_1805ed670(system_status_flag,0,*(int32_t *)(param_1 + 0x564),0xffffffff,
                         CONCAT44(uVar12,0xffffffff),(uint64_t)pcVar27 & 0xffffffff00000000);
@@ -850,7 +856,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
         FUN_1805b8920(*(uint64_t *)(lVar15 + 0x6e0));
         *(int32_t *)(*(int64_t *)(lVar15 + 0x738) + 0xa4) =
              *(int32_t *)(*(int64_t *)(lVar15 + 0x6e0) + 0x14a8);
-        FUN_180516f50(lVar15,&uStack_178);
+        UltraHighFreq_MemoryManager1(lVar15,&uStack_178);
                     // WARNING: Subroutine does not return
         AdvancedSystemController();
       }
@@ -909,9 +915,9 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
           }
           cVar5 = SystemBufferProcessor(uVar9,0,&system_param1_ptr);
           if (((cVar5 != '\0') && (cVar5 = SystemBufferProcessor(uVar9,5,&memory_allocator_3472_ptr), cVar5 != '\0')) &&
-             ((cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0' &&
-              (cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0')))) {
-            FUN_180645fa0(uVar9);
+             ((cVar5 = UI_LayoutManager(uVar9), cVar5 != '\0' &&
+              (cVar5 = UI_LayoutManager(uVar9), cVar5 != '\0')))) {
+            UI_LayoutManager(uVar9);
           }
           if (*(char *)(lVar15 + 0x31) == '\0') {
             FUN_1805faa20(lVar15 + 0x50);
@@ -936,7 +942,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
       fVar24 = fVar19;
       fVar25 = fVar20;
       if ((-1 < *(char *)(param_2 + 0xb4)) && ((*(uint *)(param_1 + 0x56c) & 0x800) != 0)) {
-        pfVar10 = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) +
+        pfVar10 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) +
                                          0x70,&uStack_178,param_2 + 0x58);
         fVar22 = *pfVar10;
         fVar23 = pfVar10[1];
@@ -1043,7 +1049,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
         iStack_ac = iVar6;
         uStack_a4 = uVar12;
         fStack_94 = fVar21;
-        FUN_1805a4a20(param_1 + 0x28,1,&uStack_120);
+        UISystem_InputHandler(param_1 + 0x28,1,&uStack_120);
       }
     }
   }
@@ -1336,7 +1342,7 @@ void FUN_18051d060(int64_t param_1,byte param_2,int param_3)
     uStack_170 = 0x3f7d70a4;
     uStack_178 = 0x80000000;
     iStack_17c = param_3;
-    FUN_18051ec50(param_1,&uStack_180);
+    CoreSystemThreadManager(param_1,&uStack_180);
     if ((((*(uint *)(param_1 + 0x56c) & 0x800) != 0) && (*(int64_t *)(param_1 + 0x590) != 0)) &&
        (lVar5 = *(int64_t *)(*(int64_t *)(param_1 + 0x590) + 0xabf0), lVar5 != 0)) {
       *(int32_t *)(lVar5 + 0x28) = 0xbe99999a;

@@ -224,7 +224,7 @@ uint FUN_1808f9f40(uint64_t param_1)
                     // WARNING: Subroutine does not return
                     memset(lVar6,0,0x430);
                   }
-                  FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+                  NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
                   uVar1 = 0x80004005;
                   goto LAB_1808fa111;
                 }
@@ -234,7 +234,7 @@ uint FUN_1808f9f40(uint64_t param_1)
               uVar9 = (uint64_t)uVar1;
             } while (uVar1 < (uint)uStack_68);
           }
-          FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+          NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
           uVar1 = 0x80070057;
 LAB_1808fa111:
           if ((uint)uStack_68 != 0) {
@@ -313,7 +313,7 @@ uint FUN_1808f9f9d(void)
                     // WARNING: Subroutine does not return
                     memset(lVar5,0,0x430);
                   }
-                  FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+                  NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
                   uVar1 = 0x80004005;
                   goto LAB_1808fa111;
                 }
@@ -323,7 +323,7 @@ uint FUN_1808f9f9d(void)
               uVar8 = (uint64_t)uVar1;
             } while (uVar1 < *(uint *)(unaff_RBP + -9));
           }
-          FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+          NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
           uVar1 = 0x80070057;
 LAB_1808fa111:
           if (*(int *)(unaff_RBP + -9) != 0) {
@@ -396,7 +396,7 @@ uint FUN_1808fa005(void)
                     // WARNING: Subroutine does not return
                   memset(lVar3,0,0x430);
                 }
-                FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+                NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
                 uVar1 = 0x80004005;
                 goto LAB_1808fa111;
               }
@@ -406,7 +406,7 @@ uint FUN_1808fa005(void)
             uVar6 = (uint64_t)uVar1;
           } while (uVar1 < *(uint *)(unaff_RBP + -9));
         }
-        FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+        NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
         uVar1 = 0x80070057;
 LAB_1808fa111:
         if (*(int *)(unaff_RBP + -9) != 0) {
@@ -463,7 +463,7 @@ uint FUN_1808fa046(int64_t param_1)
                     // WARNING: Subroutine does not return
                 memset(lVar3,0,0x430);
               }
-              FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+              NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
               uVar1 = 0x80004005;
               goto LAB_1808fa111;
             }
@@ -473,7 +473,7 @@ uint FUN_1808fa046(int64_t param_1)
           uVar4 = (uint64_t)uVar1;
         } while (uVar1 < *(uint *)(unaff_RBP + -9));
       }
-      FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+      NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
       uVar1 = 0x80070057;
 LAB_1808fa111:
       if (unaff_EBX < *(uint *)(unaff_RBP + -9)) {
@@ -547,7 +547,7 @@ uint FUN_1808fa08c(void)
                     // WARNING: Subroutine does not return
               memset(lVar2,0,0x430);
             }
-            FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+            NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
             uVar1 = 0x80004005;
             goto LAB_1808fa111;
           }
@@ -557,7 +557,7 @@ uint FUN_1808fa08c(void)
         uVar3 = (uint64_t)uVar1;
       } while (uVar1 < *(uint *)(unaff_RBP + -9));
     }
-    FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+    NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
     uVar1 = 0x80070057;
 LAB_1808fa111:
     if (unaff_EBX < *(uint *)(unaff_RBP + -9)) {
@@ -598,7 +598,7 @@ uint64_t FUN_1808fa0b1(uint64_t param_1,uint64_t param_2,uint param_3,uint param
                     // WARNING: Subroutine does not return
             memset(lVar1,0,0x430);
           }
-          FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+          NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
           uVar2 = 0x80004005;
           goto LAB_1808fa111;
         }
@@ -607,7 +607,7 @@ uint64_t FUN_1808fa0b1(uint64_t param_1,uint64_t param_2,uint param_3,uint param
       param_3 = param_3 + 1;
     } while (param_3 < param_4);
   }
-  FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+  NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
   uVar2 = 0x80070057;
 LAB_1808fa111:
   if (unaff_EBX < *(uint *)(unaff_RBP + -9)) {
@@ -658,7 +658,7 @@ uint64_t FUN_1808fa15c(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   uint64_t uVar2;
   
   if (*(int *)(unaff_RDI + (param_3 & 0xffffffff) * 0x14) == 0) {
-    FUN_1808fb790(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
+    NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x91,&processed_var_7672_ptr,&processed_var_7928_ptr);
     uVar2 = 0x80070057;
   }
   else {
@@ -667,7 +667,7 @@ uint64_t FUN_1808fa15c(uint64_t param_1,uint64_t param_2,uint64_t param_3)
                     // WARNING: Subroutine does not return
       memset(lVar1,0,0x430);
     }
-    FUN_1808fb790(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
+    NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0x8b,&processed_var_7672_ptr,&processed_var_7872_ptr);
     uVar2 = 0x80004005;
   }
   if (unaff_EBX < *(uint *)(unaff_RBP + -9)) {
@@ -733,14 +733,14 @@ void FUN_1808fa290(uint64_t param_1)
   if (((iVar1 < 0) && (iVar1 = FUN_1808f9e60(&processed_var_8144_ptr,&processed_var_8120_ptr,auStack_228), iVar1 != 0)
       ) && (iVar1 = FUN_1808f9e60(&processed_var_8272_ptr,&processed_var_8248_ptr,auStack_228), iVar1 != 0)) {
     puStack_238 = (int8_t *)CONCAT44(puStack_238._4_4_,iVar1);
-    FUN_1808fb790(&processed_var_7504_ptr,0xd6,&processed_var_8048_ptr,&processed_var_8400_ptr);
+    NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0xd6,&processed_var_8048_ptr,&processed_var_8400_ptr);
   }
   else {
     wcscat_s(auStack_228,0x104,&processed_var_7968_ptr);
     lVar3 = FUN_1808faf90(auStack_228,0,1);
     if (lVar3 == 0) {
       puStack_238 = auStack_228;
-      FUN_1808fb790(&processed_var_7504_ptr,0xd1,&processed_var_8048_ptr,&processed_var_8360_ptr);
+      NetworkSystem_ConnectionHandler(&processed_var_7504_ptr,0xd1,&processed_var_8048_ptr,&processed_var_8360_ptr);
     }
     else {
       puStack_238 = auStack_228;

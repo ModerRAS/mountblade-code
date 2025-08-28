@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_06_part021.c - 8 个函数
 
@@ -69,7 +71,7 @@ void FUN_1803b95a0(int64_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -718,7 +720,7 @@ LAB_1803b1fdd:
       uStack_3c = uStack_50._4_4_;
       uStack_50 = puVar9;
       ppppiStack_48 = ppppiStack_58;
-      FUN_18005c650(&ppppiStack_48);
+      SystemCore_SecurityManager(&ppppiStack_48);
       *(uint64_t **)(*(int64_t *)(lVar5 + 0x68) + 0x2918) = puVar9;
     }
   }
@@ -892,7 +894,7 @@ LAB_1803ba454:
                   DataStructureManager0(&puStack_98,lVar4);
                   uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x240,0x10,3);
                   uVar3 = FUN_1802fb490(uVar3);
-                  FUN_180056f10(*(int64_t *)(param_1 + 0x28) + 0x260,uVar3);
+                  SystemCore_PointerManager(*(int64_t *)(param_1 + 0x28) + 0x260,uVar3);
                   FUN_1802fdb10(*(uint64_t *)(*(int64_t *)(param_1 + 0x28) + 0x260));
                   break;
                 }
@@ -924,8 +926,8 @@ LAB_1803ba454:
             if (*(void **)(lVar4 + 0x290) != (void *)0x0) {
               puVar5 = *(void **)(lVar4 + 0x290);
             }
-            FUN_180627020(&ui_system_data_1248_ptr,puVar5,puVar7,puVar10);
-            FUN_1802ed990(*(uint64_t *)(param_1 + 0x28),1);
+            SystemCore_Allocator(&ui_system_data_1248_ptr,puVar5,puVar7,puVar10);
+            PhysicsSystem_CharacterController(*(uint64_t *)(param_1 + 0x28),1);
           }
           lVar4 = *(int64_t *)(*(int64_t *)(param_1 + 0x28) + 0x260);
           if (lVar4 != 0) {

@@ -1065,7 +1065,7 @@ uint64_t FUN_1802bf350(uint64_t param_1,uint64_t param_2)
       puVar1[8] = 0x746e65;
       system_system_config_config = 0x23;
       FUN_1808fc820(FUN_180941d50);
-      FUN_1808fcb30(&system_ptr_8db0);
+      SystemCore_StateController(&system_ptr_8db0);
     }
   }
   CoreEngineDataTransformer(param_2,&system_ptr_8db8);

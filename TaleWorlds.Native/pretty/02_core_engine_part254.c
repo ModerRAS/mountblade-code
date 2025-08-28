@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -294,13 +299,13 @@ void FUN_18021e0a0(void)
       if ((iStack_310 < 0) ||
          (lVar24 = *(int64_t *)(*system_main_module_state + 0x888),
          (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar24 >> 5) <= uStack_288)) {
-        lVar24 = FUN_180628ca0();
+        lVar24 = MemoryDebugger0();
       }
       else {
         lVar24 = lVar24 + lStack_280;
       }
-      FUN_180627e10(lVar24,&puStack_2a8,&processed_var_4120_ptr);
-      cVar13 = FUN_180624a00(&puStack_2a8);
+      UtilitiesSystem_CacheManager(lVar24,&puStack_2a8,&processed_var_4120_ptr);
+      cVar13 = UltraHighFreq_LogManager1(&puStack_2a8);
       if (cVar13 == '\0') {
         puStack_2a8 = &system_data_buffer_ptr;
         if (lStack_2a0 != 0) {
@@ -360,7 +365,7 @@ void FUN_18021e0a0(void)
                 pcVar16 = pcVar16 + 1;
               } while (uVar26 != 0);
             }
-            cVar13 = FUN_180624af0(puVar3);
+            cVar13 = RenderingSystem_RenderQueue(puVar3);
             puVar17 = (int8_t *)0x0;
             puVar15 = puStack_2c0;
             if (cVar13 == '\0') {
@@ -523,14 +528,14 @@ LAB_18021e424:
   *(int32_t **)(apuStack_1d8[0] + 4) = puStack_1e0;
   ppuStack_320 = apuStack_1d8;
   pplStack_328 = (int64_t **)0xffffffffffffffff;
-  uVar29 = FUN_18015b810(ppuStack_320,0,lStack_268 - lStack_270 >> 5,0x10);
+  uVar29 = SystemCore_DataTransformer(ppuStack_320,0,lStack_268 - lStack_270 >> 5,0x10);
   ppuStack_318 = apuStack_1b8;
   puStack_1a8 = &processed_var_4384_ptr;
   pcStack_1a0 = FUN_18020dae0;
   apuStack_1b8[0] = auStack_168;
   ppuStack_320 = apuStack_1b8;
   pplStack_328 = (int64_t **)0xffffffffffffffff;
-  FUN_18015b810(uVar29,0,auStack_168[0],0x10);
+  SystemCore_DataTransformer(uVar29,0,auStack_168[0],0x10);
   plVar8 = plStack_210;
   plVar7 = plStack_230;
   plVar23 = alStack_160;
@@ -725,7 +730,7 @@ FUN_18021f4e0(uint64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t param
   int32_t uStack_30;
   int32_t uStack_2c;
   
-  uVar2 = FUN_180628ca0();
+  uVar2 = MemoryDebugger0();
   CoreEngineDataTransformer(&lStack_48,uVar2);
   if ((void *)*param_1 == &memory_allocator_3856_ptr) {
     lVar3 = (uint64_t)(*(char *)(param_1 + 1) != '\0') + 2;
@@ -797,7 +802,7 @@ FUN_18021f710(uint64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t param
   param_2[1] = 0;
   param_2[2] = 0;
   *(int8_t *)(param_2 + 3) = 0;
-  uVar2 = FUN_180628ca0();
+  uVar2 = MemoryDebugger0();
   CoreEngineDataTransformer(param_2 + 4,uVar2);
   uVar4 = 1;
   param_2[2] = param_4;

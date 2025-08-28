@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_12_part011.c - 12 个函数
 
 // 函数: void FUN_1807d0928(void)
@@ -53,8 +61,8 @@ int FUN_1807d0940(uint64_t *param_1,int8_t param_2,short param_3)
   plVar6[8] = 0;
   *(int8_t *)(plVar6 + 10) = param_2;
   iVar4 = FUN_1807aa7e0();
-  if ((((iVar4 == 0) && (iVar4 = FUN_1807682e0(plVar6 + 8,0), iVar4 == 0)) &&
-      (iVar4 = FUN_180768b70(plVar6 + 9), iVar4 == 0)) || (iVar4 == 0)) {
+  if ((((iVar4 == 0) && (iVar4 = SystemCore_DataProcessor(plVar6 + 8,0), iVar4 == 0)) &&
+      (iVar4 = SystemCore_PerformanceMonitor(plVar6 + 9), iVar4 == 0)) || (iVar4 == 0)) {
     *param_1 = plVar6;
     return 0;
   }
@@ -103,7 +111,7 @@ int FUN_1807d0940(uint64_t *param_1,int8_t param_2,short param_3)
     } while (plVar8 != plVar1);
   }
   if (plVar6[8] != 0) {
-    FUN_180768380(plVar6[8],0);
+    SystemCore_DataHandler(plVar6[8],0);
   }
   iVar5 = FUN_1807aab10();
   if (iVar5 != 0) {
@@ -157,8 +165,8 @@ int FUN_1807d0978(int64_t param_1,uint64_t param_2,uint64_t param_3)
   plVar6[8] = 0;
   *(int8_t *)(plVar6 + 10) = unaff_R15B;
   iVar4 = FUN_1807aa7e0();
-  if ((((iVar4 == 0) && (iVar4 = FUN_1807682e0(plVar6 + 8,0), iVar4 == 0)) &&
-      (iVar4 = FUN_180768b70(plVar6 + 9), iVar4 == 0)) || (iVar4 == 0)) {
+  if ((((iVar4 == 0) && (iVar4 = SystemCore_DataProcessor(plVar6 + 8,0), iVar4 == 0)) &&
+      (iVar4 = SystemCore_PerformanceMonitor(plVar6 + 9), iVar4 == 0)) || (iVar4 == 0)) {
     *unaff_RBX = plVar6;
     return 0;
   }
@@ -207,7 +215,7 @@ int FUN_1807d0978(int64_t param_1,uint64_t param_2,uint64_t param_3)
     } while (plVar8 != plVar1);
   }
   if (plVar6[8] != 0) {
-    FUN_180768380(plVar6[8],0);
+    SystemCore_DataHandler(plVar6[8],0);
   }
   iVar5 = FUN_1807aab10();
   if (iVar5 != 0) {
@@ -256,8 +264,8 @@ int FUN_1807d09b4(void)
   unaff_RDI[8] = unaff_R12;
   *(int8_t *)(unaff_RDI + 10) = unaff_R15B;
   iVar4 = FUN_1807aa7e0();
-  if ((((iVar4 == 0) && (iVar4 = FUN_1807682e0(unaff_RDI + 8,0), iVar4 == 0)) &&
-      (iVar4 = FUN_180768b70(unaff_RDI + 9), iVar4 == 0)) || (iVar4 == 0)) {
+  if ((((iVar4 == 0) && (iVar4 = SystemCore_DataProcessor(unaff_RDI + 8,0), iVar4 == 0)) &&
+      (iVar4 = SystemCore_PerformanceMonitor(unaff_RDI + 9), iVar4 == 0)) || (iVar4 == 0)) {
     *unaff_RBX = unaff_RDI;
     return 0;
   }
@@ -306,7 +314,7 @@ int FUN_1807d09b4(void)
     } while (plVar7 != plVar1);
   }
   if (unaff_RDI[8] != 0) {
-    FUN_180768380(unaff_RDI[8],0);
+    SystemCore_DataHandler(unaff_RDI[8],0);
   }
   iVar5 = FUN_1807aab10();
   if (iVar5 != 0) {
@@ -508,7 +516,7 @@ void FUN_1807d0db0(int64_t *param_1)
     } while (plVar4 != param_1 + 5);
   }
   if (param_1[8] != 0) {
-    FUN_180768380(param_1[8],0);
+    SystemCore_DataHandler(param_1[8],0);
   }
   iVar2 = FUN_1807aab10();
   if (iVar2 != 0) {
@@ -571,7 +579,7 @@ void FUN_1807d0dde(int64_t param_1)
     } while (lVar4 != unaff_RDI + 0x28);
   }
   if (*(int64_t *)(unaff_RDI + 0x40) != 0) {
-    FUN_180768380(*(int64_t *)(unaff_RDI + 0x40),0);
+    SystemCore_DataHandler(*(int64_t *)(unaff_RDI + 0x40),0);
   }
   iVar2 = FUN_1807aab10();
   if (iVar2 != 0) {
@@ -618,7 +626,7 @@ void FUN_1807d0e3c(void)
     } while (unaff_RBX != unaff_RSI);
   }
   if (*(int64_t *)(unaff_RDI + 0x40) != 0) {
-    FUN_180768380(*(int64_t *)(unaff_RDI + 0x40),0);
+    SystemCore_DataHandler(*(int64_t *)(unaff_RDI + 0x40),0);
   }
   iVar2 = FUN_1807aab10();
   if (iVar2 != 0) {
@@ -738,7 +746,7 @@ uint64_t FUN_1807d0fe0(int64_t param_1)
       cStackX_10 = '\0';
       uStackX_11 = 0;
       uStackX_12 = 0;
-      uVar7 = FUN_180768b70(&cStackX_10);
+      uVar7 = SystemCore_PerformanceMonitor(&cStackX_10);
       if ((int)uVar7 != 0) {
         return uVar7;
       }
@@ -780,7 +788,7 @@ uint64_t FUN_1807d0fe0(int64_t param_1)
     }
   }
   aiStackX_18[0] = 0;
-  uVar7 = FUN_180768b70(aiStackX_18);
+  uVar7 = SystemCore_PerformanceMonitor(aiStackX_18);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
@@ -1123,7 +1131,7 @@ uint64_t FUN_1807d14a0(int64_t param_1,int64_t param_2,int64_t param_3)
   int aiStackX_20 [2];
   
   aiStackX_20[0] = 0;
-  uVar3 = FUN_180768b70(aiStackX_20);
+  uVar3 = SystemCore_PerformanceMonitor(aiStackX_20);
   if ((int)uVar3 == 0) {
     *(int *)(param_2 + 4) = aiStackX_20[0] - *(int *)(param_1 + 0x48);
     if (param_3 == 0) {

@@ -1,3 +1,4 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -196,7 +197,7 @@ void FUN_1805735c0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
     do {
       cVar26 = puVar33[-2];
       uVar5 = puVar33[-1];
-      FUN_18022a890(lStack_678,cVar26,*(uint64_t *)(lStack_698 + 0x208));
+      SystemErrorHandler(lStack_678,cVar26,*(uint64_t *)(lStack_698 + 0x208));
       uVar6 = *(int8_t *)(param_1 + 0x2607);
       puVar39 = auStack_448;
       lVar35 = 8;
@@ -256,7 +257,7 @@ void FUN_1805735c0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
   else {
     if (*(int *)(param_1 + 0xa8b0) == 2) {
       cVar26 = *(char *)(param_1 + 0xa8b4);
-      FUN_18022a890(param_2,cVar26,*(uint64_t *)(param_3 + 0x208));
+      SystemErrorHandler(param_2,cVar26,*(uint64_t *)(param_3 + 0x208));
       puVar34 = (uint64_t *)(lStack_678 + ((int64_t)cVar26 + 0x40) * 0x10);
       uStack_6d8 = *puVar34;
       uStack_6d0 = puVar34[1];
@@ -405,7 +406,7 @@ void FUN_1805735c0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
             cVar26 = pcStack_668[-1];
             cVar46 = *pcStack_668;
             *(uint64_t *)((int64_t)afStack_628 + lVar36) = *(uint64_t *)(pfVar25 + 2);
-            FUN_18022a890(lStack_678,cVar26,*(uint64_t *)(lStack_698 + 0x208));
+            SystemErrorHandler(lStack_678,cVar26,*(uint64_t *)(lStack_698 + 0x208));
             lVar22 = lStack_678;
             pfVar38 = (float *)(lStack_678 + ((int64_t)cVar26 + 0x40) * 0x10);
             fVar7 = *pfVar38;
@@ -414,7 +415,7 @@ void FUN_1805735c0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
             fVar63 = *pfStack_570;
             fVar64 = pfStack_570[1];
             fVar52 = pfStack_570[2];
-            FUN_18022a890(lStack_678,cVar46,*(uint64_t *)(lStack_698 + 0x208));
+            SystemErrorHandler(lStack_678,cVar46,*(uint64_t *)(lStack_698 + 0x208));
             lVar23 = lStack_650;
             lVar2 = lStack_6a0;
             fVar53 = pfVar25[-2];

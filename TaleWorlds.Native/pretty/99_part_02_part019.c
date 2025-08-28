@@ -1,3 +1,7 @@
+/* FUN_1808fcf5c - RenderingSystem_DataStructureProcessor */
+#define RenderingSystem_DataStructureProcessor FUN_1808fcf5c
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -36,7 +40,7 @@ LAB_1800f7b8b:
 LAB_1800f7b94:
   lVar5 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180049b30(lVar5 + 0x20,param_5);
+  SystemCore_EventHandler(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
   SystemStateController(lVar5,param_3,param_1,uVar4);
@@ -82,7 +86,7 @@ LAB_1800f7c6a:
 LAB_1800f7c75:
   lVar4 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180049b30(lVar4 + 0x20,param_5);
+  SystemCore_EventHandler(lVar4 + 0x20,param_5);
   *(uint64_t *)(lVar4 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
   SystemStateController(lVar4,param_3,param_1,uVar5);
@@ -507,7 +511,7 @@ int64_t FUN_1800f8470(int64_t param_1,int64_t param_2,int64_t param_3)
     lVar8 = param_3 - param_1;
     puVar9 = (uint64_t *)(param_1 + 0xb4);
     do {
-      FUN_1808fcf5c(param_3,(int64_t)puVar9 + -0xb4,0x58,2,FUN_1800f8630,FUN_1800f88f0,uVar10);
+      RenderingSystem_DataStructureProcessor(param_3,(int64_t)puVar9 + -0xb4,0x58,2,FUN_1800f8630,FUN_1800f88f0,uVar10);
       *(int32_t *)(lVar8 + -4 + (int64_t)puVar9) = *(int32_t *)((int64_t)puVar9 + -4);
       uVar7 = puVar9[1];
       *(uint64_t *)(lVar8 + (int64_t)puVar9) = *puVar9;
@@ -555,7 +559,7 @@ int64_t FUN_1800f8570(int64_t param_1,int64_t param_2)
   int32_t uVar3;
   uint64_t uVar4;
   
-  FUN_1808fcf5c(param_1,param_2,0x58,2,FUN_1800f8630,FUN_1800f88f0,0xfffffffffffffffe);
+  RenderingSystem_DataStructureProcessor(param_1,param_2,0x58,2,FUN_1800f8630,FUN_1800f88f0,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0xb0) = *(int32_t *)(param_2 + 0xb0);
   uVar4 = *(uint64_t *)(param_2 + 0xbc);
   *(uint64_t *)(param_1 + 0xb4) = *(uint64_t *)(param_2 + 0xb4);
@@ -592,7 +596,7 @@ uint64_t * FUN_1800f8630(uint64_t *param_1,uint64_t *param_2)
   *param_1 = *param_2;
   param_1[1] = param_2[1];
   *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 2);
-  FUN_1808fcf5c(param_1 + 3,param_2 + 3,0x20,2,SystemCore_NetworkHandler0,FUN_180627b90);
+  RenderingSystem_DataStructureProcessor(param_1 + 3,param_2 + 3,0x20,2,SystemCore_NetworkHandler0,SystemValidator);
   return param_1;
 }
 
@@ -881,7 +885,7 @@ void FUN_1800f88d0(int64_t *param_1)
 void FUN_1800f88f0(int64_t param_1)
 
 {
-  SystemDataValidator(param_1 + 0x18,0x20,2,FUN_180627b90,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x18,0x20,2,SystemValidator,0xfffffffffffffffe);
   return;
 }
 

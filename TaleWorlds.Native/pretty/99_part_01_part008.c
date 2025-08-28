@@ -181,7 +181,7 @@ extern void FUN_1802a1bc0(pointer param);
 extern uint64_t CoreEngineMemoryPoolAllocator(uint64_t param1, uint64_t param2);
 extern uint64_t FUN_1800ad760(uint64_t param);
 extern void CoreEngineMemoryPoolCleaner(uint64_t param);
-extern void FUN_180220810(int32_t param1, pointer param2);
+extern void SystemCore_Loader(int32_t param1, pointer param2);
 extern void FUN_1800adfe0(pointer param1, pointer param2);
 extern void SystemSecurityChecker(uint64_t param);
 extern void FUN_1800adfc0(pointer param);
@@ -503,8 +503,8 @@ resource_cleanup_handler:
             
             if (local_result < 0) {
                 /* 处理错误情况 */
-                FUN_180220810(local_result, &global_state_3528_ptr);
-                FUN_180220810(local_result, &global_state_3776_ptr);
+                SystemCore_Loader(local_result, &global_state_3528_ptr);
+                SystemCore_Loader(local_result, &global_state_3776_ptr);
                 local_ptr1 = &system_buffer_ptr;
                 if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
                     local_ptr1 = *(pointer *)(param_5 + 0x18);
@@ -536,7 +536,7 @@ resource_cleanup_handler:
                                               (*(int64_t **)(local_int4 + 0x1d78), local_stack_168[0], &local_stack_110,
                                                &local_stack_130);
                                 if (local_result < 0) {
-                                    FUN_180220810(local_result, &global_state_3680_ptr);
+                                    SystemCore_Loader(local_result, &global_state_3680_ptr);
                                     if (local_stack_168[0] != (int64_t *)0x0) {
                                         (**(code **)(*local_stack_168[0] + 0x10))();
                                         local_stack_168[0] = (int64_t *)0x0;
@@ -571,7 +571,7 @@ resource_cleanup_handler:
                                &local_stack_150);
                 
                 if (local_result < 0) {
-                    FUN_180220810(local_result, &global_state_3680_ptr);
+                    SystemCore_Loader(local_result, &global_state_3680_ptr);
                     if (local_stack_168[0] != (int64_t *)0x0) {
                         (**(code **)(*local_stack_168[0] + 0x10))();
                         local_stack_168[0] = (int64_t *)0x0;
@@ -753,7 +753,7 @@ void SystemStreamManager(int64_t param_1, int64_t param_2, int64_t *param_3)
                       (*(int64_t **)(param_1 + 0x1d78), &local_stack_9b0, 0, &local_stack_9d8);
         
         if (local_result < 0) {
-            FUN_180220810(local_result, &global_state_3872_ptr);
+            SystemCore_Loader(local_result, &global_state_3872_ptr);
         } else {
             /* 处理流配置 */
             local_ptr2 = *(int64_t **)(*(int64_t *)(param_1 + 0x1cd8) + 0x8400);
@@ -819,7 +819,7 @@ void SystemStreamManager(int64_t param_1, int64_t param_2, int64_t *param_3)
                             local_ptr1 = *(int64_t **)(*(int64_t *)(param_1 + 0x1cd8) + 0x8400);
                             local_result = (**(code **)(*local_ptr1 + 0x70))(local_ptr1, local_stack_9d8, local_ulong, 1);
                             if (local_result < 0) {
-                                FUN_180220810(local_result, &global_state_4048_ptr);
+                                SystemCore_Loader(local_result, &global_state_4048_ptr);
                             }
                             if (local_uint3 != 0) {
                                 /* 警告：子函数不返回 */
@@ -911,7 +911,7 @@ void SystemStateProcessor(void)
         local_result = (**(code **)(*local_ptr + 0x28))(local_ptr, &local_stack_68, 0, &local_stack_40);
         
         if (local_result < 0) {
-            FUN_180220810(local_result, &global_state_3872_ptr);
+            SystemCore_Loader(local_result, &global_state_3872_ptr);
         } else {
             /* 处理系统状态 */
             local_ptr = *(int64_t **)(*(int64_t *)(local_int4 + 0x1cd8) + 0x8400);
@@ -975,7 +975,7 @@ void SystemStateProcessor(void)
                             local_ptr = *(int64_t **)(*(int64_t *)(local_int4 + 0x1cd8) + 0x8400);
                             local_int2 = (**(code **)(*local_ptr + 0x70))(local_ptr, local_stack_40, local_ulong2, 1, 0);
                             if (local_int2 < 0) {
-                                FUN_180220810(local_int2, &global_state_4048_ptr);
+                                SystemCore_Loader(local_int2, &global_state_4048_ptr);
                             }
                             if (local_uint5 != 0) {
                                 /* 警告：子函数不返回 */
@@ -1103,7 +1103,7 @@ void SystemStreamProcessor(void)
                     local_ptr = *(int64_t **)(*(int64_t *)(local_int4 + 0x1cd8) + 0x8400);
                     local_int2 = (**(code **)(*local_ptr + 0x70))(local_ptr, local_stack_40, local_ulong, 1, local_uint5);
                     if (local_int2 < 0) {
-                        FUN_180220810(local_int2, &global_state_4048_ptr);
+                        SystemCore_Loader(local_int2, &global_state_4048_ptr);
                     }
                     if (local_uint7 != 0) {
                         /* 警告：子函数不返回 */
@@ -1179,7 +1179,7 @@ void SystemDataCopier(uint32_t param_1, uint32_t param_2, char param_3, uint64_t
                 local_ptr = *(int64_t **)(*(int64_t *)(local_r14 + 0x1cd8) + 0x8400);
                 local_result = (**(code **)(*local_ptr + 0x70))(local_ptr, param_8, local_r13d, 1, local_r12d);
                 if (local_result < 0) {
-                    FUN_180220810(local_result, &global_state_4048_ptr);
+                    SystemCore_Loader(local_result, &global_state_4048_ptr);
                 }
                 if (local_uint != 0) {
                     /* 警告：子函数不返回 */

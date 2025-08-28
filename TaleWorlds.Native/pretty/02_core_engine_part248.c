@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -110,7 +111,7 @@ void FUN_1802147c0(uint64_t *param_1)
     if (uVar12 != 0) {
       do {
         uVar6 = FUN_180849230(*puVar9);
-        FUN_180211a30(uVar6,&system_buffer_ptr);
+        SystemCore_NetworkHandler(uVar6,&system_buffer_ptr);
         iVar10 = iVar10 + 1;
         puVar9 = puVar9 + 1;
       } while ((uint64_t)(int64_t)iVar10 < uVar12);
@@ -126,7 +127,7 @@ void FUN_1802147c0(uint64_t *param_1)
   }
   if (*(char *)(param_1 + 0x42) == '\0') {
     uVar6 = FUN_18084b410(param_1[0x6d]);
-    FUN_180211a30(uVar6,&processed_var_4408_ptr);
+    SystemCore_NetworkHandler(uVar6,&processed_var_4408_ptr);
   }
                     // WARNING: Subroutine does not return
   CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_1a8);
@@ -462,7 +463,7 @@ int32_t FUN_180214c50(int64_t param_1)
   int32_t auStackX_8 [8];
   
   uVar1 = FUN_18073a840(*(uint64_t *)(param_1 + 0x370),auStackX_8,0,0);
-  FUN_180211a30(uVar1,&system_buffer_ptr);
+  SystemCore_NetworkHandler(uVar1,&system_buffer_ptr);
   return auStackX_8[0];
 }
 
@@ -475,7 +476,7 @@ int32_t FUN_180214c90(int64_t param_1)
   int32_t auStackX_8 [8];
   
   uVar1 = FUN_180739a50(*(uint64_t *)(param_1 + 0x370),auStackX_8,0);
-  FUN_180211a30(uVar1,&system_buffer_ptr);
+  SystemCore_NetworkHandler(uVar1,&system_buffer_ptr);
   return auStackX_8[0];
 }
 
@@ -523,7 +524,7 @@ void FUN_180214cc0(int64_t param_1)
   *(int16_t *)((int64_t)puStack_48 + 0xc) = 0x2820;
   *(int8_t *)((int64_t)puStack_48 + 0xe) = 0;
   uStack_40 = 0xe;
-  FUN_180628380(&puStack_50,iVar3);
+  RenderingSystem_CameraController(&puStack_50,iVar3);
   uVar2 = uStack_40;
   uVar8 = uStack_40 + 2;
   if (uVar8 != 0) {
@@ -537,7 +538,7 @@ void FUN_180214cc0(int64_t param_1)
     }
     else {
       if (uVar9 <= (uint)uStack_38) goto LAB_180211b66;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
+      puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
     }
     uVar1 = FUN_18064e990(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -558,7 +559,7 @@ LAB_180211b66:
     }
     else {
       if (uVar8 <= (uint)uStack_38) goto LAB_180211be9;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
+      puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
     }
     uVar1 = FUN_18064e990(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -585,7 +586,7 @@ LAB_180211be9:
       }
       else {
         if (uVar2 <= (uint)uStack_38) goto LAB_180211c85;
-        puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+        puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
       }
       uVar1 = FUN_18064e990(puStack_48);
       uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -607,7 +608,7 @@ LAB_180211c85:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211d03;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = FUN_18064e990(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -636,7 +637,7 @@ LAB_180211d03:
         }
         else {
           if (uVar2 <= (uint)uStack_38) goto LAB_180211da7;
-          puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+          puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
         }
         uVar1 = FUN_18064e990(puStack_48);
         uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -659,7 +660,7 @@ LAB_180211da7:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211e24;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = FUN_18064e990(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -671,7 +672,7 @@ LAB_180211e24:
     puVar5 = puStack_48;
   }
   uStack_40 = iVar3;
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar5);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar5);
   puStack_50 = &system_data_buffer_ptr;
   if (puStack_48 == (uint64_t *)0x0) {
     return;

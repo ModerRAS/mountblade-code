@@ -562,7 +562,7 @@ void FUN_1803cfd10(int64_t param_1,int32_t param_2,int32_t param_3,uint64_t para
     puVar13 = puVar7;
   }
   strcpy_s(auStack_170,0x80,puVar13);
-  puVar8 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_238,&puStack_188,&uStack_1d8);
+  puVar8 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_238,&puStack_188,&uStack_1d8);
   uVar1 = *puVar8;
   *puVar8 = 0;
   plStack_1e0 = *(int64_t **)(param_1 + 0x48);

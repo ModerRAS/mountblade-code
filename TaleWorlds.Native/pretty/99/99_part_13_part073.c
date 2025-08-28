@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -170,7 +175,7 @@ void system_resource_manager_initialize(void)
     void* system_context;
     
     // 调用底层初始化函数
-    FUN_18085dbf0(system_context + 9);
+    SystemController(system_context + 9);
     
     // 初始化资源链表
     resource_ptr = system_context + 6;
@@ -204,8 +209,8 @@ void system_resource_manager_initialize(void)
     
     // 设置资源状态
     *(uint32_t*)((int64_t)current_ptr + 0x44) = 0xffffffff;
-    FUN_18084c220(current_ptr + 4);
-    FUN_18084c220(current_ptr + 2);
+    UltraHighFreq_InputHandler1(current_ptr + 4);
+    UltraHighFreq_InputHandler1(current_ptr + 2);
     
     // 配置资源链接
     *(int64_t*)current_ptr[1] = *current_ptr;
@@ -288,8 +293,8 @@ int64_t system_resource_manager_release(int64_t resource_handle, uint64_t releas
     int64_t* resource_ptr;
     
     // 清理资源数据
-    FUN_18084c220(resource_handle + 0x58);
-    FUN_18084c220(resource_handle + 0x48);
+    UltraHighFreq_InputHandler1(resource_handle + 0x58);
+    UltraHighFreq_InputHandler1(resource_handle + 0x48);
     
     // 获取资源指针
     resource_ptr = (int64_t*)(resource_handle + 0x30);
@@ -388,7 +393,7 @@ uint32_t system_state_manager_destroy(int64_t* state_handle)
         
         // 检查是否需要释放资源
         if (*(int*)(*state_handle + 4) == 0) {
-            FUN_180741df0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *state_handle, &processed_var_7616_ptr, 0x89);
+            RenderingSystem_MaterialHandler(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *state_handle, &processed_var_7616_ptr, 0x89);
             *state_handle = 0;
         }
     }
@@ -476,7 +481,7 @@ uint32_t system_data_processor_configure(int64_t processor_handle, int64_t confi
     if (*(int*)(processor_handle + 0x50) < config_size) {
         param_flags = (int)*(uint*)(processor_handle + 0x54) >> 0x1f;
         if (((int)((*(uint*)(processor_handle + 0x54) ^ param_flags) - param_flags) < config_size) &&
-           (resource_ptr = FUN_180747f10(processor_handle + 0x48, config_size), (int)resource_ptr != 0)) {
+           (resource_ptr = RenderingTextureManager0(processor_handle + 0x48, config_size), (int)resource_ptr != 0)) {
             return resource_ptr;
         }
         

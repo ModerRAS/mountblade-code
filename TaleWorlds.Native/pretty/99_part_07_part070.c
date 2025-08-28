@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part070.c - 9 个函数
 
 // 函数: void FUN_1804d9963(void)
@@ -101,7 +105,7 @@ void FUN_1804d9963(void)
     fStack0000000000000084 = fVar4;
     fStack0000000000000088 = fVar5;
     uStack000000000000008c = uStack000000000000006c;
-    FUN_18063b5f0(&fStackX_20,&stack0x00000050);
+    SystemSecurityManager(&fStackX_20,&stack0x00000050);
     pfVar1 = (float *)(lVar25 + 8 + lVar22 * 0x48);
     fVar6 = *pfVar1;
     fVar7 = pfVar1[1];
@@ -453,7 +457,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   if (plStack_e0 != (int64_t *)0x0) {
     (**(code **)(*plStack_e0 + 0x38))();
   }
-  puVar3 = (uint64_t *)FUN_1800763c0(param_1[0x88],&plStack_100);
+  puVar3 = (uint64_t *)SystemCore_BufferManager(param_1[0x88],&plStack_100);
   uVar1 = *puVar3;
   *puVar3 = 0;
   plStack_108 = (int64_t *)param_1[0x89];
@@ -766,14 +770,14 @@ void FUN_1804da7e0(int32_t *param_1,uint64_t param_2,int64_t param_3)
     apuStack_30[0][5] = uStack_40._4_4_;
     apuStack_30[0][6] = (int32_t)uStack_38;
     apuStack_30[0][7] = uStack_38._4_4_;
-    FUN_18015b810((int32_t)uStack_50,0,param_1[0xb46],0x10,0xffffffffffffffff,apuStack_30);
+    SystemCore_DataTransformer((int32_t)uStack_50,0,param_1[0xb46],0x10,0xffffffffffffffff,apuStack_30);
     uVar4 = FUN_1804d7130(param_1,param_2);
     if (*(char *)(param_1 + 0x2b) != '\0') {
       ppuStackX_20 = apuStack_30;
       pcStack_20 = (code *)&processed_var_496_ptr;
       puStack_18 = &processed_var_480_ptr;
       apuStack_30[0] = param_1;
-      FUN_18015b810(uVar4,0,param_1[0x185],0x10,0xffffffffffffffff,apuStack_30);
+      SystemCore_DataTransformer(uVar4,0,param_1[0x185],0x10,0xffffffffffffffff,apuStack_30);
     }
   }
   return;

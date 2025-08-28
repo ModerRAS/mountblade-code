@@ -1,3 +1,4 @@
+#include "SystemCore_ConfigManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -14,7 +15,7 @@ void FUN_18076906d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_180769080(int64_t *param_1)
+int32_t UISystem_Renderer(int64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -27,7 +28,7 @@ int32_t FUN_180769080(int64_t *param_1)
   if ((*(uint *)((int64_t)param_1 + 0x194) & 8) != 0) {
     iVar2 = (int)param_1[0x32];
     while (iVar2 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar2 = (int)param_1[0x32];
     }
   }
@@ -276,8 +277,8 @@ LAB_180769671:
 
 
 
-// 函数: void FUN_180769720(uint64_t param_1,int8_t *param_2)
-void FUN_180769720(uint64_t param_1,int8_t *param_2)
+// 函数: void SystemMonitor(uint64_t param_1,int8_t *param_2)
+void SystemMonitor(uint64_t param_1,int8_t *param_2)
 
 {
   int8_t auStackX_10 [8];
@@ -380,7 +381,7 @@ uint64_t FUN_180769860(int64_t param_1)
   
   uVar6 = 4;
   cVar8 = '\0';
-  iVar4 = FUN_18076b6f0(&system_data_8c80,param_1 + 0x44,7);
+  iVar4 = SystemCore_Optimizer(&system_data_8c80,param_1 + 0x44,7);
   if (iVar4 == 0) {
     uVar6 = 3;
     cVar8 = '\x01';
@@ -413,7 +414,7 @@ uint64_t FUN_180769860(int64_t param_1)
   uVar2 = *(uint64_t *)(param_1 + 0x198);
   *(int32_t *)(plVar5 + 0x34) = uVar6;
   *(char *)((int64_t)plVar5 + 0x1a4) = cVar8;
-  iVar4 = FUN_1807682e0(plVar5 + 0x33,0);
+  iVar4 = SystemCore_DataProcessor(plVar5 + 0x33,0);
   if (iVar4 == 0) {
     uVar7 = 0;
     if (cVar8 != '\0') {

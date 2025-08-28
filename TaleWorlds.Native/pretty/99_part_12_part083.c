@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_12_part083.c - 3 个函数
 
 // 函数: void FUN_1808a27e0(void)
@@ -292,8 +296,8 @@ int32_t FUN_1808a2ddc(void)
 
 
 
-// 函数: void FUN_1808a2e00(int64_t *param_1,uint64_t param_2)
-void FUN_1808a2e00(int64_t *param_1,uint64_t param_2)
+// 函数: void SystemCore_ProtocolProcessor(int64_t *param_1,uint64_t param_2)
+void SystemCore_ProtocolProcessor(int64_t *param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -361,7 +365,7 @@ uint64_t FUN_1808a2ed0(int64_t param_1,int64_t *param_2,int32_t param_3)
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar5 = FUN_180899360(param_2,param_1 + 0x10);
+  uVar5 = SystemCore_ConfigManager(param_2,param_1 + 0x10);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -386,7 +390,7 @@ uint64_t FUN_1808a2ed0(int64_t param_1,int64_t *param_2,int32_t param_3)
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar5 = FUN_180899360(param_2,param_1 + 0x30);
+  uVar5 = SystemCore_ConfigManager(param_2,param_1 + 0x30);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -629,7 +633,7 @@ uint64_t FUN_1808a2f10(void)
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar5 = FUN_180899360();
+  uVar5 = SystemCore_ConfigManager();
   if ((int)uVar5 != 0) {
     return uVar5;
   }

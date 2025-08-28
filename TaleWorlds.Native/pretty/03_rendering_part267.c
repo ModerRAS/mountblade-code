@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -139,7 +143,7 @@ LAB_1804162d5:
                         if (puVar19[1] != 0) {
                           lVar16 = puVar19[1];
                         }
-                        FUN_18010cbc0(lVar16,&system_data_6430,&uStack_48);
+                        SystemCore_NetworkHandler(lVar16,&system_data_6430,&uStack_48);
                         break;
                       }
                       lVar16 = (int64_t)&processed_var_5276_ptr - (int64_t)pcVar24;
@@ -149,7 +153,7 @@ LAB_1804162d5:
                       }
                     }
                   }
-                  FUN_180631960(puVar18);
+                  StringProcessor(puVar18);
                   puVar20 = *(int32_t **)(param_1 + 0xca);
                   if (puVar20 < *(int32_t **)(param_1 + 0xcc)) {
                     *(int32_t **)(param_1 + 0xca) = puVar20 + 5;
@@ -319,7 +323,7 @@ LAB_1804165f0:
                         pcVar10 = pcVar10 + (int64_t)pcVar24;
                         if (pcVar10 <= pcVar24) {
 code_r0x00018041666a:
-                          FUN_18010cbc0();
+                          SystemCore_NetworkHandler();
                           break;
                         }
                         lVar16 = (int64_t)&processed_var_5276_ptr - (int64_t)pcVar24;
@@ -348,7 +352,7 @@ code_r0x00018041666a:
                         pcVar10 = pcVar10 + (int64_t)pcVar24;
                         if (pcVar10 <= pcVar24) {
 code_r0x0001804166ea:
-                          FUN_18010cbc0();
+                          SystemCore_NetworkHandler();
                           break;
                         }
                         lVar16 = (int64_t)&memory_allocator_3692_ptr - (int64_t)pcVar24;
@@ -722,8 +726,8 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
     puVar7[2] = pcVar10 + -0x180a180f3;
     SystemAllocationProcessor(param_3,puVar7,&system_data_3a84,param_2);
     FUN_180630c80(param_3,puVar7,&rendering_buffer_2256_ptr,1);
-    FUN_18062f990(param_3,puVar7,&system_data_b1c0);
-    FUN_18062f990(param_3,puVar7,&processed_var_5184_ptr);
+    MemoryDeallocationHandler0(param_3,puVar7,&system_data_b1c0);
+    MemoryDeallocationHandler0(param_3,puVar7,&processed_var_5184_ptr);
     if (*(int64_t *)(param_4 + 0x30) == 0) {
       puVar7[10] = 0;
       *(uint64_t **)(param_4 + 0x30) = puVar7;
@@ -783,10 +787,10 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
         } while (*pcVar8 != '\0');
         *puVar7 = &processed_var_5272_ptr;
         puVar7[2] = pcVar10 + -0x180a18107;
-        FUN_18062f990(param_3,puVar7,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
-        FUN_18062f990(param_3,puVar7,&memory_allocator_3692_ptr);
+        MemoryDeallocationHandler0(param_3,puVar7,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
+        MemoryDeallocationHandler0(param_3,puVar7,&memory_allocator_3692_ptr);
         _fStackX_8 = CONCAT44(iVar3,fVar2 * 0.03448276);
-        FUN_1806307a0(param_3,puVar7,&processed_var_5264_ptr,&fStackX_8);
+        NetworkSystem_PacketProcessor(param_3,puVar7,&processed_var_5264_ptr,&fStackX_8);
         if (puVar9[6] == 0) {
           puVar7[10] = 0;
           puVar9[6] = puVar7;
@@ -812,10 +816,10 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
         } while (*pcVar8 != '\0');
         *puVar7 = &processed_var_5272_ptr;
         puVar7[2] = pcVar10 + -0x180a18107;
-        FUN_18062f990(param_3,puVar7,&processed_var_5276_ptr,(float)iVar4 * 0.03448276);
-        FUN_18062f990(param_3,puVar7,&memory_allocator_3692_ptr);
+        MemoryDeallocationHandler0(param_3,puVar7,&processed_var_5276_ptr,(float)iVar4 * 0.03448276);
+        MemoryDeallocationHandler0(param_3,puVar7,&memory_allocator_3692_ptr);
         _fStackX_8 = CONCAT44(iVar6,fVar5 * 0.03448276);
-        FUN_1806307a0(param_3,puVar7,&processed_var_5264_ptr,&fStackX_8);
+        NetworkSystem_PacketProcessor(param_3,puVar7,&processed_var_5264_ptr,&fStackX_8);
         if (puVar9[6] == 0) {
           puVar7[10] = 0;
           puVar9[6] = puVar7;

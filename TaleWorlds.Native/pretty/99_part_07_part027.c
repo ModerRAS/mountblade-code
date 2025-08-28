@@ -430,7 +430,7 @@ LAB_1804b63d1:
                 }
               }
             }
-            lVar8 = FUN_1800b6de0(system_resource_state,plVar11,1);
+            lVar8 = RenderingSystem_VertexProcessor(system_resource_state,plVar11,1);
             plVar11[4] = lVar8;
             pcVar6 = "eyebrow_mesh";
             do {

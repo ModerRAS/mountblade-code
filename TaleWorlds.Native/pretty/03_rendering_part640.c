@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
 
 // 03_rendering_part640.c - 34 个函数
 
@@ -192,8 +198,8 @@ CoreEngineDataTransformer(uint64_t *param_1,int64_t param_2,uint64_t param_3,uin
 
 
 
-// 函数: void FUN_180627b90(uint64_t *param_1)
-void FUN_180627b90(uint64_t *param_1)
+// 函数: void SystemValidator(uint64_t *param_1)
+void SystemValidator(uint64_t *param_1)
 
 {
   *param_1 = &system_data_buffer_ptr;
@@ -270,7 +276,7 @@ void CoreSystem_ConfigValidator0(int64_t param_1,int64_t param_2)
 
 
 uint64_t *
-FUN_180627ce0(uint64_t param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
+UtilitiesSystem_FileHandler(uint64_t param_1,uint64_t *param_2,int64_t param_3,uint64_t param_4)
 
 {
   *param_2 = &system_state_ptr;
@@ -304,14 +310,14 @@ FUN_180627d90(uint64_t param_1,uint64_t *param_2,int32_t param_3,uint64_t param_
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
   SystemCore_ConfigurationHandler0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
-  FUN_180628380(param_2,param_3);
+  RenderingSystem_CameraController(param_2,param_3);
   return param_2;
 }
 
 
 
 uint64_t *
-FUN_180627e10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+UtilitiesSystem_CacheManager(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_2 = &system_state_ptr;
@@ -338,8 +344,8 @@ void FUN_180627e90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar1 = FUN_180627ce0(param_1,&puStack_30,param_2,param_4,0xfffffffffffffffe);
-  FUN_18005d190(param_1,uVar1);
+  uVar1 = UtilitiesSystem_FileHandler(param_1,&puStack_30,param_2,param_4,0xfffffffffffffffe);
+  RenderingSystem_ResourceBinder(param_1,uVar1);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -395,7 +401,7 @@ void FUN_180627f00(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       memcpy((uint64_t)uStack_38 + lStack_40,param_2,(int64_t)((int)lVar4 + 2));
     }
   }
-  FUN_18005d190(param_1,&puStack_48);
+  RenderingSystem_ResourceBinder(param_1,&puStack_48);
   puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
@@ -660,8 +666,8 @@ void FUN_18062836b(void)
 
 
 
-// 函数: void FUN_180628380(int64_t param_1,int32_t param_2)
-void FUN_180628380(int64_t param_1,int32_t param_2)
+// 函数: void RenderingSystem_CameraController(int64_t param_1,int32_t param_2)
+void RenderingSystem_CameraController(int64_t param_1,int32_t param_2)
 
 {
   int64_t lVar1;
@@ -672,7 +678,7 @@ void FUN_180628380(int64_t param_1,int32_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
-  FUN_180060680(acStack_28,&processed_var_4576_ptr,param_2);
+  RenderingEngine_BufferManager(acStack_28,&processed_var_4576_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -739,7 +745,7 @@ void FUN_180628420(int64_t param_1,int32_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&memory_allocator_3388_ptr,param_2);
+  SystemCore_CacheManager(acStack_38,0x20,&memory_allocator_3388_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -794,8 +800,8 @@ void FUN_1806284a1(void)
 
 
 
-// 函数: void FUN_1806284c0(int64_t param_1,float param_2)
-void FUN_1806284c0(int64_t param_1,float param_2)
+// 函数: void NetworkSystem_DataProcessor(int64_t param_1,float param_2)
+void NetworkSystem_DataProcessor(int64_t param_1,float param_2)
 
 {
   int64_t lVar1;
@@ -806,7 +812,7 @@ void FUN_1806284c0(int64_t param_1,float param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&system_data_6430,(double)param_2);
+  SystemCore_CacheManager(acStack_38,0x20,&system_data_6430,(double)param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -873,7 +879,7 @@ void FUN_180628570(int64_t param_1,uint64_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&processed_var_7284_ptr,param_2);
+  SystemCore_CacheManager(acStack_38,0x20,&processed_var_7284_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;

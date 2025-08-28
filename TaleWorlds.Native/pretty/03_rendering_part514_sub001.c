@@ -15,7 +15,7 @@
 #define RenderMemoryInitializer FUN_1804bce70  // 渲染内存初始化器
 
 // 渲染系统资源管理相关函数
-#define RenderResourceManager FUN_1804c0610  // 渲染资源管理器
+#define RenderResourceManager PhysicsSystem_IntegrationProcessor  // 渲染资源管理器
 #define RenderResourceInitializer FUN_1804bc4f0  // 渲染资源初始化器
 #define RenderResourceOptimizer FUN_1804bc380  // 渲染资源优化器
 #define RenderResourceProcessor FUN_1804bc2d0  // 渲染资源处理器
@@ -26,7 +26,7 @@
 #define RenderColorExtractor FUN_1804bbc50  // 渲染颜色提取器
 
 // 渲染系统对象管理相关函数
-#define RenderObjectManager FUN_180275090  // 渲染对象管理器
+#define RenderObjectManager RenderingSystem_ShaderManager  // 渲染对象管理器
 #define RenderObjectInitializer FUN_1802759e0  // 渲染对象初始化器
 #define RenderObjectProcessor FUN_180275a60  // 渲染对象处理器
 

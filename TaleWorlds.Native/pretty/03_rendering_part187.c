@@ -1,8 +1,11 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part187.c
@@ -172,12 +175,12 @@ typedef struct {
 #define RenderingSystemCleanup FUN_1803786a6                   // 渲染系统清理器
 
 /** 渲染系统辅助函数别名 */
-#define RenderingSystemMathCalculator FUN_1802a11e0           // 渲染系统数学计算器
+#define RenderingSystemMathCalculator SystemCore_DataConverter           // 渲染系统数学计算器
 #define RenderingSystemMemoryAllocator CoreMemoryPoolAllocator           // 渲染系统内存分配器
 #define RenderingSystemMemoryDeallocator CoreMemoryPoolInitializer         // 渲染系统内存释放器
 #define RenderingSystemRandomGenerator AdvancedSystemController          // 渲染系统随机数生成器
 #define RenderingSystemSystemCaller FUN_18046da60             // 渲染系统系统调用器
-#define RenderingSystemDataValidator FUN_180062300            // 渲染系统数据验证器
+#define RenderingSystemDataValidator SystemParameterHandler            // 渲染系统数据验证器
 #define RenderingSystemConditionChecker FUN_1803723f0         // 渲染系统条件检查器
 
 // ============================================================================

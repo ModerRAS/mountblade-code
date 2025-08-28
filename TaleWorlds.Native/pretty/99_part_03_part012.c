@@ -1,5 +1,16 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#define DataProcessor_HandleOperation DataProcessor_HandleOperation  // DataProcessor_HandleOperation 的语义化别名
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_03_part012.c - 4 个函数
 
@@ -122,7 +133,7 @@ void FUN_1801d6240(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t par
   auStack_270[0] = uVar6;
   FUN_1801d7360(uVar5);
   FUN_1801d7360(&puStack_240);
-  plVar4 = (int64_t *)FUN_18006b640(uVar3,auStack_270);
+  plVar4 = (int64_t *)SystemCore_ErrorHandler(uVar3,auStack_270);
   if (plVar4 != (int64_t *)0x0) {
     plStack_348 = plVar4;
     (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -139,7 +150,7 @@ void FUN_1801d6240(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t par
   if (plStack_348 != (int64_t *)0x0) {
     (**(code **)(*plStack_348 + 0x28))();
   }
-  FUN_18005e110(uVar3,&plStack_348);
+  SystemCore_TimerManager(uVar3,&plStack_348);
   puStack_2d0 = &system_data_buffer_ptr;
   if (lStack_2c8 != 0) {
                     // WARNING: Subroutine does not return
@@ -313,7 +324,7 @@ void FUN_1801d6680(int64_t param_1)
   
   uStack_120 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_338;
-  uVar8 = FUN_1801c5bb0(param_1,param_1 + 8,param_1 + 0x28);
+  uVar8 = DataProcessor_HandleOperation(param_1,param_1 + 8,param_1 + 0x28);
   CoreMemoryPoolValidator(&puStack_188,uVar8);
   puStack_1a8 = (uint64_t *)0x0;
   puStack_1a0 = (uint64_t *)0x0;
@@ -461,7 +472,7 @@ void FUN_1801d6680(int64_t param_1)
                 uVar1 = *(int32_t *)((int64_t)piVar16 + 10);
                 piVar16 = (int *)((int64_t)piVar16 + 0xe);
                 piStack_2e8 = piVar16;
-                plVar10 = (int64_t *)FUN_1800b31f0(system_resource_state,&plStack_1d0,&puStack_d8,0);
+                plVar10 = (int64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_1d0,&puStack_d8,0);
                 *plVar24 = *plVar10;
                 if (plStack_1d0 != (int64_t *)0x0) {
                   (**(code **)(*plStack_1d0 + 0x38))();
@@ -654,7 +665,7 @@ LAB_1801d6f7e:
             System_DataHandler(ppuVar18,&system_processor_ptr,puVar12);
             (**(code **)(*(int64_t *)*system_global_data_ptr + 0x48))((int64_t *)*system_global_data_ptr,ppuVar11)
             ;
-            FUN_18062c1e0(&puStack_2d0,1);
+            ResourceManager_Allocate(&puStack_2d0,1);
             if (0 < lVar20) {
               lVar9 = (int64_t)ppuVar4 + 0x50;
               do {

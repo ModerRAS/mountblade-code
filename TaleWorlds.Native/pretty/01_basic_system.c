@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 /**
  * TaleWorlds.Native - 基础系统模块
  * 
@@ -367,7 +370,7 @@ void RegisterSystemCallback(void* callback_data)
     manager_ptr = (int64_t *)RenderGraphicsManager();
     base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((int64_t)base_ptr[1] + 0x19);
-    callback_function = FUN_18007fcd0;
+    callback_function = SystemCore_Compression;
     prev_ptr = base_ptr;
     current_ptr = (uint64_t *)base_ptr[1];
     

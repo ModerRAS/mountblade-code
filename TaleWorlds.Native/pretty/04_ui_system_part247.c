@@ -418,9 +418,9 @@ int UISystem_DataProcessor(int64_t *param_1, int64_t param_2, int param_3)
             lVar5 = lVar5 + (int64_t)aiStack_34[0] * 4;
             
             // 根据处理模式选择不同的处理函数
-            iVar3 = FUN_1807681a0(2);
+            iVar3 = RenderingSystem_ShaderCompiler(2);
             if (iVar3 == 0) {
-                iVar3 = FUN_1807681a0(0);
+                iVar3 = RenderingSystem_ShaderCompiler(0);
                 uVar1 = *(int32_t *)(lVar2 + 4);
                 if (iVar3 == 0) {
                     // 模式0：完整数据处理
@@ -498,9 +498,9 @@ int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3)
     FUN_18080c4a0(param_1, param_2, (int)param_2 + unaff_EDI, unaff_RBP + -0x1c, unaff_RBP + -0x20);
     
     // 根据处理模式选择不同的状态管理函数
-    iVar1 = FUN_1807681a0(2);
+    iVar1 = RenderingSystem_ShaderCompiler(2);
     if (iVar1 == 0) {
-        iVar1 = FUN_1807681a0(0);
+        iVar1 = RenderingSystem_ShaderCompiler(0);
         if (iVar1 == 0) {
             // 模式0：基础状态管理
             FUN_18080ba00();

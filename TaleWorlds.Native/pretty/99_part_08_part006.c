@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_08_part006.c - 11 个函数
@@ -34,7 +39,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                       (*(int64_t *)(param_2 + 0x488) + (int64_t)((int)uVar7 >> 10) * 8) +
                     (int64_t)(int)(*(uint *)(param_2 + 0x4a8) & uVar7) * 0x48);
     if (*piVar1 != -1) {
-      FUN_1800571e0(param_2 + 0x468,&plStackX_8,(int64_t)((int)uVar7 >> 10),param_4,
+      SystemDatabaseProcessor(param_2 + 0x468,&plStackX_8,(int64_t)((int)uVar7 >> 10),param_4,
                     0xfffffffffffffffe);
       *piVar1 = -1;
     }
@@ -46,7 +51,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                       (*(int64_t *)(param_2 + 0x698) + (int64_t)((int)uVar7 >> 10) * 8) +
                     (int64_t)(int)(*(uint *)(param_2 + 0x6b8) & uVar7) * 0x30);
     if (*piVar1 != -1) {
-      FUN_1800571e0(param_2 + 0x678,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
+      SystemDatabaseProcessor(param_2 + 0x678,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
       *piVar1 = -1;
     }
   }
@@ -57,7 +62,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                       (*(int64_t *)(param_2 + 0x4e0) + (int64_t)((int)uVar7 >> 10) * 8) +
                     (int64_t)(int)(*(uint *)(param_2 + 0x500) & uVar7) * 0xc0);
     if (*piVar1 != -1) {
-      FUN_1800571e0(param_2 + 0x4c0,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
+      SystemDatabaseProcessor(param_2 + 0x4c0,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
       *piVar1 = -1;
     }
   }
@@ -68,7 +73,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                       (*(int64_t *)(param_2 + 0x3a0) + (int64_t)((int)uVar7 >> 10) * 8) +
                     (int64_t)(int)(*(uint *)(param_2 + 0x3c0) & uVar7) * 0xc);
     if (*piVar1 != -1) {
-      FUN_1800571e0(param_2 + 0x380,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
+      SystemDatabaseProcessor(param_2 + 0x380,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
       *piVar1 = -1;
     }
   }
@@ -79,7 +84,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                       (*(int64_t *)(param_2 + 0x538) + (int64_t)((int)uVar7 >> 10) * 8) +
                     (int64_t)(int)(*(uint *)(param_2 + 0x558) & uVar7) * 0x18);
     if (*piVar1 != -1) {
-      FUN_1800571e0(param_2 + 0x518,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
+      SystemDatabaseProcessor(param_2 + 0x518,&plStackX_8,(int64_t)(int)uVar7,param_4,uVar14);
       plStackX_8 = (int64_t *)(piVar1 + 2);
       if (*(int64_t **)(piVar1 + 4) != (int64_t *)0x0) {
         (**(code **)(**(int64_t **)(piVar1 + 4) + 0x38))();
@@ -158,7 +163,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
       piVar1 = (int *)(*(int64_t *)(*(int64_t *)(puVar11 + -8) + (int64_t)((int)uVar7 >> 10) * 8)
                       + (int64_t)(int)(*puVar11 & uVar7) * 0x68);
       if ((uVar7 != 0xffffffff) && (*piVar1 != -1)) {
-        FUN_1800571e0(puVar11 + -0x10,&plStackX_8);
+        SystemDatabaseProcessor(puVar11 + -0x10,&plStackX_8);
         piStackX_18 = piVar1 + 0x12;
         plStackX_8 = (int64_t *)(piVar1 + 2);
         FUN_1804a7550();
@@ -185,7 +190,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                         (*(int64_t *)(lVar5 + 0x590) + (int64_t)((int)uVar7 >> 10) * 8) +
                       (int64_t)(int)(*(uint *)(lVar5 + 0x5b0) & uVar7) * 0x18);
       if ((uVar7 != 0xffffffff) && (*piVar1 != -1)) {
-        FUN_1800571e0(lVar5 + 0x570,&plStackX_8);
+        SystemDatabaseProcessor(lVar5 + 0x570,&plStackX_8);
         plStackX_8 = (int64_t *)(piVar1 + 2);
         if (*(int64_t **)(piVar1 + 4) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(piVar1 + 4) + 0x38))();
@@ -208,7 +213,7 @@ void FUN_1804dfff0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
                         (*(int64_t *)(lVar5 + 0x5e8) + (int64_t)((int)uVar7 >> 10) * 8) +
                       (int64_t)(int)(uVar7 & *(uint *)(lVar5 + 0x608)) * 0x28);
       if ((uVar7 != 0xffffffff) && (*piVar1 != -1)) {
-        FUN_1800571e0(lVar5 + 0x5c8,&plStackX_8);
+        SystemDatabaseProcessor(lVar5 + 0x5c8,&plStackX_8);
         plStackX_8 = (int64_t *)(piVar1 + 2);
         if (*(int64_t **)(piVar1 + 6) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(piVar1 + 6) + 0x38))();
@@ -442,7 +447,7 @@ void FUN_1804e06d0(uint *param_1,int64_t param_2)
      lVar10 = *(int64_t *)
                (*(int64_t *)(param_2 + 0x2cf0) + (int64_t)((int)auStackX_8[0] >> 10) * 8),
      *(int *)(lVar10 + lVar12 * 0xc) != -1)) {
-    FUN_1800571e0(param_2 + 0x2cd0,auStackX_8);
+    SystemDatabaseProcessor(param_2 + 0x2cd0,auStackX_8);
     *(int32_t *)(lVar10 + lVar12 * 0xc) = 0xffffffff;
   }
   auStackX_8[0] = param_1[1];
@@ -451,7 +456,7 @@ void FUN_1804e06d0(uint *param_1,int64_t param_2)
      lVar10 = *(int64_t *)
                (*(int64_t *)(param_2 + 0x3f8) + (int64_t)((int)auStackX_8[0] >> 10) * 8),
      *(int *)(lVar10 + lVar12 * 0xc) != -1)) {
-    FUN_1800571e0(param_2 + 0x3d8,auStackX_8);
+    SystemDatabaseProcessor(param_2 + 0x3d8,auStackX_8);
     *(int32_t *)(lVar10 + lVar12 * 0xc) = 0xffffffff;
   }
   param_1[2] = 0xffffffff;
@@ -548,7 +553,7 @@ void FUN_1804e06df(uint *param_1)
      lVar10 = *(int64_t *)
                (*(int64_t *)(unaff_RDI + 0x2cf0) + (int64_t)((int)in_stack_00000050 >> 10) * 8),
      *(int *)(lVar10 + lVar12 * 0xc) != -1)) {
-    FUN_1800571e0(unaff_RDI + 0x2cd0,&stack0x00000050);
+    SystemDatabaseProcessor(unaff_RDI + 0x2cd0,&stack0x00000050);
     *(int32_t *)(lVar10 + lVar12 * 0xc) = 0xffffffff;
   }
   in_stack_00000050 = param_1[1];
@@ -557,7 +562,7 @@ void FUN_1804e06df(uint *param_1)
      lVar10 = *(int64_t *)
                (*(int64_t *)(unaff_RDI + 0x3f8) + (int64_t)((int)in_stack_00000050 >> 10) * 8),
      *(int *)(lVar10 + lVar12 * 0xc) != -1)) {
-    FUN_1800571e0(unaff_RDI + 0x3d8,&stack0x00000050);
+    SystemDatabaseProcessor(unaff_RDI + 0x3d8,&stack0x00000050);
     *(int32_t *)(lVar10 + lVar12 * 0xc) = 0xffffffff;
   }
   param_1[2] = 0xffffffff;
@@ -651,7 +656,7 @@ void FUN_1804e0706(uint64_t param_1,uint64_t param_2,int64_t param_3)
          lVar11 = *(int64_t *)
                    (*(int64_t *)(unaff_RDI + 0x2cf0) + (int64_t)((int)in_stack_00000050 >> 10) * 8
                    ), *(int *)(lVar11 + lVar7 * 0xc) != -1)) {
-        FUN_1800571e0(unaff_RDI + 0x2cd0,&stack0x00000050);
+        SystemDatabaseProcessor(unaff_RDI + 0x2cd0,&stack0x00000050);
         *(int32_t *)(lVar11 + lVar7 * 0xc) = 0xffffffff;
       }
       in_stack_00000050 = unaff_RSI[1];
@@ -660,7 +665,7 @@ void FUN_1804e0706(uint64_t param_1,uint64_t param_2,int64_t param_3)
          lVar11 = *(int64_t *)
                    (*(int64_t *)(unaff_RDI + 0x3f8) + (int64_t)((int)in_stack_00000050 >> 10) * 8)
          , *(int *)(lVar11 + lVar7 * 0xc) != -1)) {
-        FUN_1800571e0(unaff_RDI + 0x3d8,&stack0x00000050);
+        SystemDatabaseProcessor(unaff_RDI + 0x3d8,&stack0x00000050);
         *(int32_t *)(lVar11 + lVar7 * 0xc) = 0xffffffff;
       }
       unaff_RSI[2] = 0xffffffff;
@@ -728,7 +733,7 @@ void FUN_1804e08a1(void)
              (*(int64_t *)(unaff_RDI + 0x2cf0) + (int64_t)((int)uStack0000000000000050 >> 10) * 8)
     ;
     if (*(int *)(lVar1 + lVar2 * 0xc) != -1) {
-      FUN_1800571e0(unaff_RDI + 0x2cd0,&stack0x00000050);
+      SystemDatabaseProcessor(unaff_RDI + 0x2cd0,&stack0x00000050);
       *(int32_t *)(lVar1 + lVar2 * 0xc) = 0xffffffff;
     }
   }
@@ -738,7 +743,7 @@ void FUN_1804e08a1(void)
     lVar1 = *(int64_t *)
              (*(int64_t *)(unaff_RDI + 0x3f8) + (int64_t)((int)uStack0000000000000050 >> 10) * 8);
     if (*(int *)(lVar1 + lVar2 * 0xc) != -1) {
-      FUN_1800571e0(unaff_RDI + 0x3d8,&stack0x00000050);
+      SystemDatabaseProcessor(unaff_RDI + 0x3d8,&stack0x00000050);
       *(int32_t *)(lVar1 + lVar2 * 0xc) = 0xffffffff;
     }
   }
@@ -771,7 +776,7 @@ void FUN_1804e08af(void)
   lVar1 = *(int64_t *)
            (*(int64_t *)(unaff_RDI + 0x2cf0) + (int64_t)((int)uStack0000000000000050 >> 10) * 8);
   if (*(int *)(lVar1 + in_R9 * 0xc) != -1) {
-    FUN_1800571e0(unaff_RDI + 0x2cd0,&stack0x00000050);
+    SystemDatabaseProcessor(unaff_RDI + 0x2cd0,&stack0x00000050);
     *(int32_t *)(lVar1 + in_R9 * 0xc) = 0xffffffff;
   }
   uStack0000000000000050 = *(uint *)(unaff_RSI + 4);
@@ -780,7 +785,7 @@ void FUN_1804e08af(void)
     lVar1 = *(int64_t *)
              (*(int64_t *)(unaff_RDI + 0x3f8) + (int64_t)((int)uStack0000000000000050 >> 10) * 8);
     if (*(int *)(lVar1 + lVar2 * 0xc) != -1) {
-      FUN_1800571e0(unaff_RDI + 0x3d8,&stack0x00000050);
+      SystemDatabaseProcessor(unaff_RDI + 0x3d8,&stack0x00000050);
       *(int32_t *)(lVar1 + lVar2 * 0xc) = 0xffffffff;
     }
   }

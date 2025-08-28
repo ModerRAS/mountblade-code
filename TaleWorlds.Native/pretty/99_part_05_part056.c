@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part056.c - 1 个函数
 
 // 函数: void FUN_1802fcbe0(int64_t param_1,float *param_2)
@@ -310,7 +314,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
           uStack_294 = uVar16;
           uStack_290 = uVar17;
           uStack_28c = uVar18;
-          FUN_1802feba0(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8)
+          RenderingSystem_DrawPrimitive(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8)
           ;
           uVar19 = *(uint64_t *)(puVar25 + 0x12);
           *(uint64_t *)(param_1 + 0x1e8) = *(uint64_t *)(puVar25 + 0x10);
@@ -348,7 +352,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
           fStack_e4 = fVar30;
           fStack_e0 = fVar32;
           uStack_dc = uStack_22c;
-          pfVar21 = (float *)FUN_1801c0fb0(&fStack_248,auStack_1d8,puVar25 + 0x10);
+          pfVar21 = (float *)SystemFileHandler(&fStack_248,auStack_1d8,puVar25 + 0x10);
           fVar44 = (float)puVar25[0xc];
           fVar33 = (float)puVar25[0xd];
           fVar40 = (float)puVar25[0xe];
@@ -388,7 +392,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
           fStack_1c4 = fStack_284;
           fStack_1c0 = fStack_280;
           fStack_1bc = fStack_27c;
-          FUN_1802feba0(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8)
+          RenderingSystem_DrawPrimitive(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8)
           ;
         }
       }
@@ -471,7 +475,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
         fStack_164 = fStack_2f4;
         fStack_160 = fStack_2f0;
         fStack_15c = fStack_2ec;
-        FUN_18063b470(&uStack_2e8,&fStack_228);
+        AdvancedProcessor_StateManager0(&uStack_2e8,&fStack_228);
         uStack_2b8 = CONCAT44(fStack_1f4,fStack_1f8);
         uStack_2b0 = CONCAT44(fStack_1ec,fStack_1f0);
         uStack_2c8 = uStack_2e8;
@@ -499,7 +503,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
         *puVar25 = 0;
         uStack_2c8 = uVar19;
         uStack_2c0 = uVar20;
-        FUN_1802feba0(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8);
+        RenderingSystem_DrawPrimitive(param_1,(int64_t)(uint64_t)(uint)(iVar24 - *(int *)(param_1 + 0x18)) >> 8);
         if (cVar9 == -1) {
           do {
             LOCK();
@@ -570,7 +574,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
           fStack_104 = fStack_1a4;
           fStack_100 = fStack_1a0;
           uStack_fc = uStack_19c;
-          FUN_180285b40(&uStack_268,&uStack_2d8,&fStack_388);
+          SystemCore_EventHandler(&uStack_268,&uStack_2d8,&fStack_388);
           fStack_1e4 = (float)uStack_150 * fVar31 * -1.0 + fVar34 * uStack_158._4_4_ * -1.0 +
                        (float)uStack_158 * fVar27 + uStack_150._4_4_ * fVar29;
           fStack_1e0 = uStack_150._4_4_ * fVar27 * -1.0 + fVar34 * (float)uStack_150 * -1.0 +

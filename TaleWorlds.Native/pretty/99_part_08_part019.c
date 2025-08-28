@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -45,7 +49,7 @@ void FUN_1804f20b0(int64_t param_1,int32_t param_2)
   uStack_88 = uStack_98;
   uStack_84 = uStack_94;
   uVar8 = 0xffffffffffffffff;
-  FUN_18015b810(&uStack_88,0,
+  SystemCore_DataTransformer(&uStack_88,0,
                 *(int64_t *)(param_1 + 0x87b370) - *(int64_t *)(param_1 + 0x87b368) >> 3,1,
                 0xffffffffffffffff,&uStack_88);
   iVar14 = *(int *)(param_1 + 0x87b318);
@@ -555,7 +559,7 @@ void FUN_1804f2d20(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -737,7 +741,7 @@ void FUN_1804f2fb0(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -825,7 +829,7 @@ void FUN_1804f3070(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -934,7 +938,7 @@ void FUN_1804f30c0(uint64_t *param_1)
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
-  FUN_180057830();
+  DataTransformer0();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   FUN_180059ee0(param_1 + 0x10f677);

@@ -87,7 +87,7 @@ void FUN_180802653(void)
   }
   lVar18 = unaff_RDI * 0x3c;
   *unaff_R13 = 5;
-  iVar7 = FUN_1807682e0(unaff_RBX + 0x4a8,0);
+  iVar7 = SystemCore_DataProcessor(unaff_RBX + 0x4a8,0);
   if (iVar7 == 0) {
     puVar2 = (uint64_t *)(unaff_RBX + 0x450);
     lVar11 = *plVar1 + 0x2c + lVar18;

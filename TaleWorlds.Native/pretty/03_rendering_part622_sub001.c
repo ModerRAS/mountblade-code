@@ -1,9 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part622_sub001.c - 8 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part622.c - 8 个函数
 
@@ -22,7 +25,7 @@ void FUN_1806121d0(void)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
   }
-  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8432_ptr);
+  SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8432_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -62,7 +65,7 @@ void FUN_180612270(void)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_268);
   }
-  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8352_ptr);
+  SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8352_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_268);
@@ -626,7 +629,7 @@ void FUN_180612d20(uint64_t param_1,int32_t param_2)
     uStack_38 = uStack_48;
     uStack_34 = uStack_44;
     uStack_30 = param_2;
-    plVar4 = (int64_t *)FUN_18006b640(uVar3,&uStack_38);
+    plVar4 = (int64_t *)SystemCore_ErrorHandler(uVar3,&uStack_38);
     lVar2 = render_system_data_memory;
     if (plVar4 != (int64_t *)0x0) {
       (**(code **)(*plVar4 + 0x28))(plVar4);

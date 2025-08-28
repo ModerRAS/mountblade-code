@@ -56,7 +56,7 @@ typedef struct {
 // 渲染系统函数别名
 // ============================================================================
 #define RenderDataProcessor_InitializeDataBuffer FUN_18069bb20
-#define RenderDataProcessor_ProcessBitStream FUN_18069bbd0
+#define RenderDataProcessor_ProcessBitStream SystemCore_Monitor
 #define RenderDataProcessor_CopyDataBlocks FUN_18069bc50
 #define RenderDataProcessor_FillDataBuffer FUN_18069bd60
 #define RenderDataProcessor_ShiftDataLeft FUN_18069beb0
@@ -87,7 +87,7 @@ extern int16_t func_0x00018069ef00(int index, uint param2);
 extern int16_t func_0x00018069ee60(int index);
 extern int16_t func_0x00018069edf0(int index, uint param2);
 extern int16_t func_0x00018069ee30(int index, uint param2);
-extern void FUN_18069ec80(void);
+extern void SystemCore_Handler(void);
 extern void LOCK(void);
 extern void UNLOCK(void);
 extern void InitializeCriticalSection(void* cs);
@@ -182,7 +182,7 @@ void FUN_18069bb20(int64_t param_1)
 //         param_2 - 处理参数
 // 返回值: bool - 处理结果状态
 // ============================================================================
-bool FUN_18069bbd0(int64_t param_1, int param_2)
+bool SystemCore_Monitor(int64_t param_1, int param_2)
 {
     byte bit_value;
     uint64_t data_bits;
@@ -195,7 +195,7 @@ bool FUN_18069bbd0(int64_t param_1, int param_2)
     
     // 检查数据完整性
     if (*(int *)(param_1 + 0x18) < 0) {
-        FUN_18069ec80();
+        SystemCore_Handler();
     }
     
     // 获取数据位并移位

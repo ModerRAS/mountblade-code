@@ -1,10 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 
 // 99_part_09_part028_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_1805cabae(void)
-void FUN_1805cabae(void)
+// 函数: void SystemCore_EmptyFunction(void)
+void SystemCore_EmptyFunction(void)
 
 {
   return;
@@ -15,7 +21,7 @@ void FUN_1805cabae(void)
 // WARNING: Removing unreachable block (ram,0x0001805cb527)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int * FUN_1805cac10(uint64_t *param_1)
+int * SystemCore_DataProcessor(uint64_t *param_1)
 
 {
   int64_t lVar1;
@@ -161,7 +167,7 @@ LAB_1805cad41:
     }
     puVar9 = param_1 + 1;
     uStack_70 = 0x1805ce36d;
-    piVar12 = (int *)FUN_1805b7660(puVar9);
+    piVar12 = (int *)SystemCore_Executor(puVar9);
     if (*piVar12 == 2) goto FUN_1805ce79d;
     if ((0.0 < (float)(int64_t)
                       (*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2ec] * 8) -
@@ -171,11 +177,11 @@ LAB_1805cad41:
            *(uint *)((int64_t)param_1 + 0x158c) & 0xfffffc3f | 0x4000;
     }
     uStack_70 = 0x1805ce3d7;
-    piVar12 = (int *)FUN_1805b7660(puVar9);
+    piVar12 = (int *)SystemCore_Executor(puVar9);
     if (*piVar12 == 1) {
       if ((param_1[2] & 0x80) == 0) {
         uStack_70 = 0x1805ce5f8;
-        piVar12 = (int *)FUN_1805d4440(puVar9);
+        piVar12 = (int *)SystemCore_Validator(puVar9);
       }
       if ((*(char *)((int64_t)param_1 + 0xd5) != '\0') &&
          (piVar12 = (int *)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2dd] * 8) -
@@ -208,7 +214,7 @@ LAB_1805cad41:
         uVar15 = uVar15 << 5 ^ uVar15;
         *(uint *)(param_1 + 0x272) = uVar15;
         uStack_70 = 0x1805ce6de;
-        FUN_1805b7740(puVar9);
+        SystemCore_ResourceHandler0(puVar9);
         uStack_70 = 0x1805ce702;
         piVar12 = (int *)powf((float)(uVar15 - 1) * 2.3283064e-10);
         if (1.0 - extraout_XMM0_Da < fVar25) {
@@ -234,7 +240,7 @@ LAB_1805cad41:
     }
     if ((param_1[2] & 0x80) == 0) {
       uStack_70 = 0x1805ce3ee;
-      FUN_1805d4440(puVar9);
+      SystemCore_Validator(puVar9);
     }
     if (*(char *)((int64_t)param_1 + 0xd5) != '\0') {
       if ((param_1[2] & 0x10000000) == 0) {
@@ -267,7 +273,7 @@ LAB_1805cad41:
                          (*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2df] * 8) -
                          param_1[0x2de]) * 1e-05) {
           uStack_70 = 0x1805ce4ea;
-          piVar12 = (int *)FUN_1805b7660(puVar9);
+          piVar12 = (int *)SystemCore_Executor(puVar9);
           if (*piVar12 == 3) {
             fVar25 = *(float *)(*param_1 + 0x350);
           }
@@ -279,7 +285,7 @@ LAB_1805cad41:
           uVar15 = uVar15 << 5 ^ uVar15;
           *(uint *)(param_1 + 0x272) = uVar15;
           uStack_70 = 0x1805ce52d;
-          FUN_1805b7740(puVar9);
+          SystemCore_ResourceHandler0(puVar9);
           uStack_70 = 0x1805ce551;
           fVar19 = (float)powf((float)(uVar15 - 1) * 2.3283064e-10);
           if (fVar25 <= 1.0 - fVar19) goto LAB_1805ce5b6;
@@ -495,7 +501,7 @@ FUN_1805ccc2c:
         }
       }
       uStack_a0 = 0x1805ccd43;
-      piVar12 = (int *)FUN_1805caef0(param_1);
+      piVar12 = (int *)RenderingSystem_DrawCallManager(param_1);
                     // WARNING: Read-only address (ram,0x000180a401f0) is written
       return piVar12;
     }
@@ -636,7 +642,7 @@ code_r0x0001805caef0:
     return (int *)((uint64_t)pfVar6 & 0xffffffffffffff00);
   }
   if ((param_1[2] & 0x80) == 0) {
-    FUN_1805d4440(param_1 + 1);
+    SystemCore_Validator(param_1 + 1);
   }
   if ((*(char *)((int64_t)param_1 + 0xd6) == '\0') ||
      (((!bVar3 && ((param_1[0x269] & 2) == 0)) &&
@@ -668,17 +674,17 @@ code_r0x0001805caef0:
   }
   uVar15 = (uint)param_1[2];
   if ((uVar15 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
     uVar15 = (uint)param_1[2];
   }
   fVar23 = *(float *)(param_1 + 0x22);
   if ((uVar15 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
     uVar15 = (uint)param_1[2];
   }
   fVar25 = *(float *)((int64_t)param_1 + 0x10c);
   if ((uVar15 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
   }
   fVar19 = *(float *)((int64_t)param_1 + 0x114);
   uVar14 = 0xffffffff;
@@ -687,14 +693,14 @@ code_r0x0001805caef0:
     uVar10 = *param_1;
     lVar11 = *(int64_t *)(&system_error_code + (int64_t)*(int *)(uVar10 + 0x268) * 8);
     lVar1 = *(int64_t *)(uVar10 + 0x260);
-    lVar7 = FUN_1805a0610(uVar10 + 0x28,1);
+    lVar7 = PhysicsSystem_ForceCalculator(uVar10 + 0x28,1);
     if (lVar7 == 0) {
       uVar16 = 0xffffffff;
     }
     else {
       uVar16 = *(int32_t *)(lVar7 + 0x1c);
     }
-    iVar5 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
+    iVar5 = SystemCacheManager(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
                           uVar16);
     iVar5 = *(int *)(system_system_config + (int64_t)iVar5 * 4);
     if (iVar5 == -1) {
@@ -727,7 +733,7 @@ code_r0x0001805caef0:
     fVar18 = *(float *)((int64_t)*(int *)(uVar17 + 0xf0) * 0xa0 + 0x84 +
                        *(int64_t *)(uVar17 + 0xd0));
     if ((uVar15 & 1) == 0) {
-      FUN_1805d3210(param_1 + 1);
+      SystemCore_ThreadManager(param_1 + 1);
     }
     fVar18 = (0.02 / fVar18) * *(float *)(param_1 + 0xd);
     if (0.0 <= fVar18) {
@@ -745,7 +751,7 @@ code_r0x0001805caef0:
   }
   else {
     if ((param_1[2] & 0x1000) == 0) {
-      FUN_1805d4df0(param_1 + 1);
+      SystemCore_Initializer0(param_1 + 1);
       fVar19 = *(float *)((int64_t)param_1 + 0x114);
     }
     fVar23 = (fVar19 - fVar25) / ((fVar23 - fVar25) + (fVar19 - fVar25));
@@ -801,11 +807,11 @@ code_r0x0001805caef0:
     }
 FUN_1805cc66f:
     if (iVar5 == 3) {
-      lVar11 = FUN_1805a0610(*param_1 + 0x28,1);
+      lVar11 = PhysicsSystem_ForceCalculator(*param_1 + 0x28,1);
       if (lVar11 != 0) {
         uVar14 = *(int32_t *)(lVar11 + 0x34);
       }
-      lVar11 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
+      lVar11 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
                              uVar14);
       fVar23 = *(float *)(lVar11 + 0x1d8);
       fVar19 = *(float *)(lVar11 + 0x188);
@@ -886,7 +892,7 @@ LAB_1805cc805:
 
 // WARNING: Removing unreachable block (ram,0x0001805cb527)
 
-uint64_t FUN_1805caef0(int64_t *param_1)
+uint64_t RenderingSystem_DrawCallManager(int64_t *param_1)
 
 {
   float fVar1;

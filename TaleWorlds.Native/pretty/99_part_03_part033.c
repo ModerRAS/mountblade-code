@@ -51,7 +51,7 @@ LAB_1801ecaf0:
         *(int64_t *)(unaff_RDI + 8) = unaff_RDI;
         return;
       }
-      FUN_18004b790();
+      SystemCache_Manager();
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(lVar2);
     }
@@ -72,7 +72,7 @@ void FUN_1801ecb05(void)
   
   lVar1 = *(int64_t *)(unaff_RDI + 0x10);
   if (lVar1 != 0) {
-    FUN_18004b790();
+    SystemCache_Manager();
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(lVar1);
   }
@@ -124,10 +124,10 @@ void FUN_1801ecbb0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t *puVar1;
   
   FUN_1801de530();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    SystemCache_Manager(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(puVar1);
   }

@@ -622,7 +622,7 @@ void FUN_180492a90(void *param_1)
   uStack_110 = 0x80493400;
   uStack_10c = 1;
   puStack_128 = param_1;
-  FUN_18005c650(&puStack_128);
+  SystemCore_SecurityManager(&puStack_128);
   puVar4 = (uint64_t *)*render_system_data_memory;
   iVar3 = _Mtx_lock(0x180c91970);
   if (iVar3 != 0) {
@@ -647,7 +647,7 @@ void FUN_180492a90(void *param_1)
   *(uint64_t *)(puVar2 + 4) = 0x53286e6f6974617a;
   puVar2[6] = 0x294553;
   uStack_118 = 0x1b;
-  uVar5 = FUN_18023a940(*(uint64_t *)(param_1 + 0x58));
+  uVar5 = SystemCore_Scheduler(*(uint64_t *)(param_1 + 0x58));
   FUN_18009a080(uVar5,*(uint64_t *)(param_1 + 0x58));
   SYSTEM_DATA_MANAGER_A = uVar1;
   iVar3 = _Mtx_unlock(0x180c91970);

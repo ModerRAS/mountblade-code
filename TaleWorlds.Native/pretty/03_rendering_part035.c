@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -369,7 +370,7 @@ void FUN_180287ed0(char *param_1,int param_2,int param_3)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_9840_ptr,*(int *)(param_1 + 4),*(int32_t *)(param_1 + 8),
+  SystemParameterHandler(system_message_context,&processed_var_9840_ptr,*(int *)(param_1 + 4),*(int32_t *)(param_1 + 8),
                 param_2,param_3);
 }
 

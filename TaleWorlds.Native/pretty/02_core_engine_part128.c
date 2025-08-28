@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part128.c - 19 个函数
 
 // 函数: void FUN_18012d840(void)
@@ -19,7 +23,7 @@ void FUN_18012d840(void)
   lVar4 = SYSTEM_DATA_MANAGER_A;
   piVar1 = (int *)(*(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8) + 0x70);
   *piVar1 = *piVar1 + -1;
-  FUN_180291a50();
+  SystemCore_Initialize();
   iVar3 = *(int *)(lVar4 + 0x1ba0);
   iVar6 = iVar3 + -1;
   *(int *)(lVar4 + 0x1ba0) = iVar6;
@@ -578,7 +582,7 @@ void FUN_18012e1b0(uint64_t param_1)
   piVar5 = (int *)(lVar1 + 0x218);
   iVar7 = *piVar5;
   lVar6 = *(int64_t *)(lVar1 + 0x220);
-  uVar2 = FUN_180121250(param_1,0,*(int32_t *)(lVar6 + -4 + (int64_t)iVar7 * 4));
+  uVar2 = SystemCore_HandleInput(param_1,0,*(int32_t *)(lVar6 + -4 + (int64_t)iVar7 * 4));
   iVar3 = *(int *)(lVar1 + 0x21c);
   if (iVar7 == iVar3) {
     if (iVar3 == 0) {
@@ -696,7 +700,7 @@ void FUN_18012e350(uint64_t param_1)
   int iVar2;
   
   lVar1 = SYSTEM_DATA_MANAGER_A;
-  iVar2 = FUN_180121250(param_1,0,
+  iVar2 = SystemCore_HandleInput(param_1,0,
                         *(int32_t *)
                          (*(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
                          (int64_t)*(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
@@ -840,7 +844,7 @@ void FUN_18012e4e0(void)
            (fVar1 < *(float *)(lVar5 + 0x234))) &&
           (*(float *)(lVar5 + 0x228) <= fVar12 && fVar12 != *(float *)(lVar5 + 0x228))) &&
          (fVar2 < *(float *)(lVar5 + 0x230))) || (*(char *)(lVar10 + 0x2e38) != '\0')) &&
-       (cVar6 = FUN_180128040(&fStack_58,&fStack_50,1), cVar6 != '\0')) {
+       (cVar6 = SystemCore_HashCalculator(&fStack_58,&fStack_50,1), cVar6 != '\0')) {
       *(uint *)(lVar4 + 0x148) = *(uint *)(lVar4 + 0x148) | 1;
     }
   }
@@ -945,7 +949,7 @@ void FUN_18012e4f6(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t par
            (fVar1 < *(float *)(lVar5 + 0x234))) &&
           (*(float *)(lVar5 + 0x228) <= fVar11 && fVar11 != *(float *)(lVar5 + 0x228))) &&
          (fVar2 < *(float *)(lVar5 + 0x230))) || (*(char *)(in_R11 + 0x2e38) != '\0')) &&
-       (cVar6 = FUN_180128040(&stack0x00000020,&stack0x00000028,1), cVar6 != '\0')) {
+       (cVar6 = SystemCore_HashCalculator(&stack0x00000020,&stack0x00000028,1), cVar6 != '\0')) {
       *(uint *)(lVar4 + 0x148) = *(uint *)(lVar4 + 0x148) | 1;
     }
   }

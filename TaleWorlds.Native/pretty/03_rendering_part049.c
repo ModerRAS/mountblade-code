@@ -1,3 +1,14 @@
+n//  的语义化别名
+#define SystemCore_SystemMonitor 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
@@ -5,7 +16,6 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part049.c - 渲染系统高级图形处理模块 - 29 个函数
 
@@ -332,7 +342,7 @@ void RenderingSystem_NoOperation2(void)
 
 
 
-// 函数: void FUN_1802939e0(int64_t param_1,float *param_2,float *param_3,float param_4,uint param_5)
+// 函数: void UtilitiesSystem_LogManager(int64_t param_1,float *param_2,float *param_3,float param_4,uint param_5)
 // 功能: 渲染系统矩形区域处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始坐标点, param_3 - 结束坐标点, param_4 - 距离阈值, param_5 - 处理标志
 void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_coord, float *end_coord, float distance_threshold, uint process_flags)
@@ -383,7 +393,7 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
   // 检查距离是否在阈值范围内或处理标志为0
   if ((y_scale_factor <= 0.0) || (process_flags == 0)) {
     buffer_count_ptr = (int *)(render_context + 0x80);
-    FUN_18011d9a0(buffer_count_ptr);
+    SystemCore_InterruptHandler(buffer_count_ptr);
     temp_coord_x = *end_coord;
     default_capacity = 8;
     temp_coord_y = start_coord[1];
@@ -411,7 +421,7 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
          CONCAT44(temp_coord_y, temp_coord_x);
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
-    FUN_18011d9a0(buffer_count_ptr, end_coord);
+    SystemCore_InterruptHandler(buffer_count_ptr, end_coord);
     temp_coord_x = *start_coord;
     temp_coord_y = end_coord[1];
     current_count = *buffer_count_ptr;
@@ -459,19 +469,19 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
     // 处理四个方向的坐标变换
     temp_coord_x = *start_coord + final_distance;
     temp_coord_y = start_coord[1] + final_distance;
-    FUN_180293730(render_context, &temp_coord_x, final_distance, 6, 9);
+    UtilitiesSystem_FileHandler(render_context, &temp_coord_x, final_distance, 6, 9);
     
     temp_coord_y = y_distance + start_coord[1];
     temp_coord_x = *end_coord - y_distance;
-    FUN_180293730(render_context, &temp_coord_x, y_distance, 9, 0xc);
+    UtilitiesSystem_FileHandler(render_context, &temp_coord_x, y_distance, 9, 0xc);
     
     temp_coord_x = *end_coord - x_distance;
     temp_coord_y = end_coord[1] - x_distance;
-    FUN_180293730(render_context, &temp_coord_x, x_distance, 0, 3);
+    UtilitiesSystem_FileHandler(render_context, &temp_coord_x, x_distance, 0, 3);
     
     temp_coord_x = y_scale_factor + *start_coord;
     temp_coord_y = end_coord[1] - y_scale_factor;
-    FUN_180293730(render_context, &temp_coord_x, y_scale_factor, 3, 6);
+    UtilitiesSystem_FileHandler(render_context, &temp_coord_x, y_scale_factor, 3, 6);
   }
   return;
 }
@@ -525,16 +535,16 @@ void RenderingSystem_ProcessCoordinateOffset(int32_t render_context)
   }
   temp_coord_x = base_offset_x + temp_coord_y;
   temp_coord_y = base_coord_x + temp_coord_y;
-  FUN_180293730(render_context, &temp_coord_x, temp_coord_y, 0.0, 0, 0);
+  UtilitiesSystem_FileHandler(render_context, &temp_coord_x, temp_coord_y, 0.0, 0, 0);
   temp_coord_y = offset_y + coord_ptr1[1];
   temp_coord_x = *coord_ptr2 - offset_y;
-  FUN_180293730(render_context, &temp_coord_x, offset_y, 9, 0xc);
+  UtilitiesSystem_FileHandler(render_context, &temp_coord_x, offset_y, 9, 0xc);
   temp_coord_x = *coord_ptr2 - offset_x;
   temp_coord_y = coord_ptr2[1] - offset_x;
-  FUN_180293730(render_context, &temp_coord_x, offset_x, 0, 3);
+  UtilitiesSystem_FileHandler(render_context, &temp_coord_x, offset_x, 0, 3);
   temp_coord_x = offset_distance + *coord_ptr1;
   temp_coord_y = coord_ptr2[1] - offset_distance;
-  FUN_180293730(render_context, &temp_coord_x, offset_distance, 3, 6);
+  UtilitiesSystem_FileHandler(render_context, &temp_coord_x, offset_distance, 3, 6);
   return;
 }
 
@@ -564,7 +574,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
   coord_ptr2 = (int32_t *)0x3008;  // 示例地址，实际应根据上下文设置
   
   buffer_count_ptr = (int *)(render_context_reg + 0x80);
-  FUN_18011d9a0(buffer_count_ptr);
+  SystemCore_InterruptHandler(buffer_count_ptr);
   coord_x = *coord_ptr2;
   default_capacity = 8;
   coord_y = coord_ptr1[1];
@@ -592,7 +602,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
-  FUN_18011d9a0(buffer_count_ptr);
+  SystemCore_InterruptHandler(buffer_count_ptr);
   coord_x = *coord_ptr1;
   coord_y = coord_ptr2[1];
   current_count = *buffer_count_ptr;
@@ -643,7 +653,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
   coord_ptr2 = (int32_t *)0x5008;  // 示例地址，实际应根据上下文设置
   coord_x = 0x6000;                   // 示例值，实际应根据上下文设置
   
-  FUN_18011d9a0();
+  SystemCore_InterruptHandler();
   coord_x = *coord_ptr2;
   default_capacity = 8;
   coord_y = coord_ptr1[1];
@@ -671,7 +681,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
        CONCAT44(coord_y, coord_x);
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
-  FUN_18011d9a0();
+  SystemCore_InterruptHandler();
   coord_x = *coord_ptr1;
   coord_y = coord_ptr2[1];
   current_count = *buffer_count_ptr;
@@ -714,7 +724,7 @@ void RenderingSystem_NoOperation3(void)
 
 
 
-// 函数: void FUN_180293d20(int64_t param_1,float *param_2,float *param_3,uint param_4,int32_t param_5)
+// 函数: void SystemCore_SystemMonitor(int64_t param_1,float *param_2,float *param_3,uint param_4,int32_t param_5)
 // 功能: 渲染系统纹理坐标对齐处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始纹理坐标, param_3 - 结束纹理坐标, param_4 - 渲染标志, param_5 - 纹理参数
 void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *start_texcoord, float *end_texcoord, uint render_flags, int32_t texture_param)
@@ -782,7 +792,7 @@ void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *star
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
     // 执行纹理坐标渲染
-    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *buffer_count_ptr, render_flags, 0, texture_param);
+    RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *buffer_count_ptr, render_flags, 0, texture_param);
     *buffer_count_ptr = 0;
   }
   return;
@@ -889,7 +899,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_c
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行纹理渲染
-  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg2 + 0x88), *buffer_count_ptr, render_flags, 0);
+  RenderingSystem_LightManager(stack_param, *(uint64_t *)(context_reg2 + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -992,7 +1002,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行坐标渲染
-  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  RenderingSystem_LightManager(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -1039,7 +1049,7 @@ void RenderingSystem_ExpandBufferAndProcessData(int32_t buffer_ptr, uint64_t dat
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行数据处理
-  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  RenderingSystem_LightManager(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -1089,10 +1099,10 @@ void RenderingSystem_PreciseTextureCoordAlignment(int64_t render_context, float 
   }
   
   // 处理矩形区域
-  FUN_1802939e0(0x3f000000, &start_coord_x, &end_coord_x, param1, param2);
+  UtilitiesSystem_LogManager(0x3f000000, &start_coord_x, &end_coord_x, param1, param2);
   
   // 执行纹理渲染
-  FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, param3);
+  RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, param3);
   
   // 重置缓冲区计数器
   *(int32_t *)(render_context + 0x80) = 0;
@@ -1103,7 +1113,7 @@ void RenderingSystem_PreciseTextureCoordAlignment(int64_t render_context, float 
 
 
 
-// 函数: void FUN_180293f50(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint param_4,
+// 函数: void MathInterpolationCalculator0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint param_4,
 // 功能: 渲染系统四边形顶点处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组1, param_3 - 顶点数据数组2, param_4 - 渲染标志, param_5 - 缩放因子, param_6 - 渲染参数
 void RenderingSystem_ProcessQuadVertices(int64_t render_context, uint64_t *vertex_data1, uint64_t *vertex_data2, uint render_flags, float scale_factor, int32_t render_param)
@@ -1179,7 +1189,7 @@ void RenderingSystem_ProcessQuadVertices(int64_t render_context, uint64_t *verte
     }
     else {
       // 缩放处理模式：先处理矩形区域，再处理顶点索引
-      FUN_1802939e0(0, vertex_data1, vertex_data2, scale_factor, render_param);
+      UtilitiesSystem_LogManager(0, vertex_data1, vertex_data2, scale_factor, render_param);
       FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags);
       *(int32_t *)(render_context + 0x80) = 0;
     }
@@ -1250,8 +1260,8 @@ void RenderingSystem_ProcessTripleCoordinates(int64_t render_context, uint64_t d
     // 清理缓冲区
     clear_render_buffer(render_context + 0x80);
     // 添加三个坐标点到缓冲区
-    FUN_18011d9a0(render_context + 0x80, data_ptr2);
-    FUN_18011d9a0(render_context + 0x80, data_ptr3);
+    SystemCore_InterruptHandler(render_context + 0x80, data_ptr2);
+    SystemCore_InterruptHandler(render_context + 0x80, data_ptr3);
     // 处理顶点索引缓冲区
     FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags);
     // 重置缓冲区计数器
@@ -1275,9 +1285,9 @@ void RenderingSystem_ProcessTripleCoordinatesReg(void)
   render_context_reg = 0xD000;  // 示例地址，实际应根据上下文设置
   
   // 清理缓冲区
-  FUN_18011d9a0();
-  FUN_18011d9a0(render_context_reg + 0x80);
-  FUN_18011d9a0(render_context_reg + 0x80);
+  SystemCore_InterruptHandler();
+  SystemCore_InterruptHandler(render_context_reg + 0x80);
+  SystemCore_InterruptHandler(render_context_reg + 0x80);
   // 处理顶点索引缓冲区
   FUN_180293190();
   // 重置缓冲区计数器
@@ -1313,7 +1323,7 @@ void RenderingSystem_ProcessScaledCoordinates(int64_t render_context, uint64_t d
     // 执行缩放和初始化
     FUN_180293860(0x40bc7edd, data_ptr, scale_factor - 0.5, 0, 0x40bc7edd, 0xf);
     // 执行渲染
-    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, render_param);
+    RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, render_param);
     // 重置缓冲区计数器
     *(int32_t *)(render_context + 0x80) = 0;
   }

@@ -157,7 +157,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
          (SystemInitializer(&system_memory_9140), init_system_config_counter == -1)) {
         init_system_config_counter = float_param;
-        FUN_1808fcb30(&system_memory_9140);
+        SystemCore_StateController(&system_memory_9140);
       }
       
       // 执行一系列exp2f计算
@@ -191,7 +191,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
          (SystemInitializer(&system_memory_9148), init_system_config_counter == -1)) {
         init_system_config_counter = calculated_value2;
-        FUN_1808fcb30(&system_memory_9148);
+        SystemCore_StateController(&system_memory_9148);
       }
       
       init_system_config_counter = (MATH_NORMALIZATION_FACTOR - calculated_value1) * init_system_config_counter + calculated_value2 * calculated_value1;
@@ -421,7 +421,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
     temp_stack_pointer = temp_array1;
     temp_pointer1 = &processed_var_5376_ptr;
     temp_pointer2 = &processed_var_5360_ptr;
-    FUN_18005c650(temp_array1);
+    SystemCore_SecurityManager(temp_array1);
   }
   
   // 处理高级系统配置
@@ -447,7 +447,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
       (**(code **)(*resource_pointer + 0x28))(resource_pointer);
     }
     
-    FUN_18005e370(callback_param, &temp_stack_pointer);
+    SystemPerformance_Monitor(callback_param, &temp_stack_pointer);
     
     if (resource_pointer != (int64_t *)0x0) {
       (**(code **)(*resource_pointer + 0x38))(resource_pointer);
@@ -684,7 +684,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   stack_counter = 6;
   
   // 获取并处理进程名称
-  FUN_180060680(process_name_buffer, &processed_var_4576_ptr, process_id);
+  > MedHighFreq_StateMachine1(process_name_buffer, &processed_var_4576_ptr, process_id);
   resource_manager = -1;
   
   // 计算进程名称长度

@@ -1,4 +1,4 @@
-#include "FUN_1806d7170_definition.h"
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -653,7 +653,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar3 = (code *)param_1[3];
-  FUN_1806d7080(param_2,*param_1);
+  SystemCore_MemoryManager(param_2,*param_1);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -678,7 +678,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[7];
-  FUN_1806d7080(param_2,param_1[4]);
+  SystemCore_MemoryManager(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -702,7 +702,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0xb];
-  FUN_1806d7080(param_2,param_1[8]);
+  SystemCore_MemoryManager(param_2,param_1[8]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -725,7 +725,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x13];
-  FUN_1806d7080(param_2,param_1[0x10]);
+  SystemCore_MemoryManager(param_2,param_1[0x10]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -748,7 +748,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x17];
-  FUN_1806d7080(param_2,param_1[0x14]);
+  SystemCore_MemoryManager(param_2,param_1[0x14]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -943,7 +943,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   puVar2 = (uint64_t *)param_2[3];
   plVar10 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar2,uVar4);
+  SystemCore_CleanupManager(puVar2,uVar4);
   auStackX_18[0] = 0;
   (**(code **)*puVar2)(puVar2,auStackX_18,1);
   (**(code **)(*plVar10 + 0x10))(plVar10,puVar9,puVar2[4]);

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -24,9 +25,9 @@ void FUN_1800e8362(int64_t param_1,int64_t param_2)
   
   uVar5 = 0;
   *(uint64_t *)(*(int64_t *)(param_1 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(param_1 + 0x1cd8),
+  SystemCore_ProcessorEx(*(uint64_t *)(param_1 + 0x1cd8),
                 (*(uint *)(param_2 + 4) & 0x4000000 | 0x18000000) >> 0x1a);
-  lVar1 = FUN_180245280();
+  lVar1 = SystemLog_Manager();
   if (*(int *)(lVar1 + 0x160) == 5) {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
@@ -118,9 +119,9 @@ void FUN_1800e8367(int64_t param_1,int64_t param_2)
   
   uVar5 = 0;
   *(uint64_t *)(*(int64_t *)(param_1 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(param_1 + 0x1cd8),
+  SystemCore_ProcessorEx(*(uint64_t *)(param_1 + 0x1cd8),
                 (*(uint *)(param_2 + 4) & 0x4000000 | 0x18000000) >> 0x1a);
-  lVar1 = FUN_180245280();
+  lVar1 = SystemLog_Manager();
   if (*(int *)(lVar1 + 0x160) == 5) {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
@@ -289,7 +290,7 @@ void FUN_1800e8640(int64_t param_1,int64_t param_2)
   uVar1 = *(uint *)(param_2 + 0x2e0);
   FUN_1802ddd80(param_2,param_2 + 0x88);
   lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
-  FUN_18029fc10(lVar2,*(uint64_t *)(system_message_buffer + 0x1ca0),param_2 + 0x210,0x70);
+  UltraHighFreq_DatabaseHandler1(lVar2,*(uint64_t *)(system_message_buffer + 0x1ca0),param_2 + 0x210,0x70);
   lVar10 = 0;
   if (*(char *)(param_2 + 0x322) != '\0') {
     plVar3 = *(int64_t **)(param_1 + 0xea8);
@@ -423,9 +424,9 @@ void FUN_1800e8a00(uint64_t param_1,int64_t param_2)
   if (*(int *)(param_2 + 0x1fe0) != 0) {
     uVar6 = 0;
     *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
-    FUN_18029de40(*(uint64_t *)(lVar1 + 0x1cd8),
+    SystemCore_ProcessorEx(*(uint64_t *)(lVar1 + 0x1cd8),
                   (*(uint *)(param_2 + 4) & 0x4000000 | 0x18000000) >> 0x1a);
-    lVar1 = FUN_180245280(param_2);
+    lVar1 = SystemLog_Manager(param_2);
     if (*(int *)(lVar1 + 0x160) == 5) {
       uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
     }
@@ -521,9 +522,9 @@ void FUN_1800e8a22(int64_t param_1,int64_t param_2)
   
   uVar5 = 0;
   *(uint64_t *)(*(int64_t *)(param_1 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(param_1 + 0x1cd8),
+  SystemCore_ProcessorEx(*(uint64_t *)(param_1 + 0x1cd8),
                 (*(uint *)(param_2 + 4) & 0x4000000 | 0x18000000) >> 0x1a);
-  lVar1 = FUN_180245280();
+  lVar1 = SystemLog_Manager();
   if (*(int *)(lVar1 + 0x160) == 5) {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
@@ -615,9 +616,9 @@ void FUN_1800e8a27(int64_t param_1,int64_t param_2)
   
   uVar5 = 0;
   *(uint64_t *)(*(int64_t *)(param_1 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(param_1 + 0x1cd8),
+  SystemCore_ProcessorEx(*(uint64_t *)(param_1 + 0x1cd8),
                 (*(uint *)(param_2 + 4) & 0x4000000 | 0x18000000) >> 0x1a);
-  lVar1 = FUN_180245280();
+  lVar1 = SystemLog_Manager();
   if (*(int *)(lVar1 + 0x160) == 5) {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
@@ -765,8 +766,8 @@ void FUN_1800e8ced(void)
 
 
 
-// 函数: void FUN_1800e8d00(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
-void FUN_1800e8d00(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+// 函数: void CoreEngine_DataValidator(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+void CoreEngine_DataValidator(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
                   uint64_t param_5,int64_t param_6)
 
 {

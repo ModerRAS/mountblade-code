@@ -51,9 +51,9 @@ uint8_t processed_var_7896_ptr;                           // 系统引用指针1
 uint8_t processed_var_7920_ptr;                           // 系统引用指针13
 
 // 系统回调函数
-uint8_t FUN_18025cc00;                           // 系统回调函数1
-uint8_t FUN_18025c000;                           // 系统回调函数2
-uint8_t FUN_18025d270;                           // 系统回调函数3
+uint8_t > HighFreq_FileSystem1;                           // 系统回调函数1
+uint8_t > HighFreq_ConfigManager1;                           // 系统回调函数2
+uint8_t > UltraHighFreq_NetworkHandler1;                           // 系统回调函数3
 uint8_t FUN_18025e330;                           // 系统回调函数4
 uint8_t FUN_18025d510;                           // 系统回调函数5
 uint8_t FUN_1802281a0;                           // 系统回调函数6
@@ -136,9 +136,9 @@ typedef int64_t (*SystemToolFunction)(void);      // 系统工具函数类型
 #define SystemMemoryAllocator                      RenderShaderProcessor  // 系统内存分配器
 
 // 系统回调函数别名
-#define SystemCallback_Handler1                     FUN_18025cc00  // 系统回调处理器1
-#define SystemCallback_Handler2                     FUN_18025c000  // 系统回调处理器2
-#define SystemCallback_Handler3                     FUN_18025d270  // 系统回调处理器3
+#define SystemCallback_Handler1                     > HighFreq_FileSystem1  // 系统回调处理器1
+#define SystemCallback_Handler2                     > HighFreq_ConfigManager1  // 系统回调处理器2
+#define SystemCallback_Handler3                     > UltraHighFreq_NetworkHandler1  // 系统回调处理器3
 #define SystemCallback_Handler4                     FUN_18025e330  // 系统回调处理器4
 #define SystemCallback_Handler5                     FUN_18025d510  // 系统回调处理器5
 #define SystemCallback_Handler6                     FUN_1802281a0  // 系统回调处理器6

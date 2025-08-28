@@ -155,7 +155,7 @@ void FUN_180030170(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -206,7 +206,7 @@ void FUN_180030270(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -308,7 +308,7 @@ void FUN_180030470(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -511,7 +511,7 @@ void FUN_180030870(void)
   auStack_88[0] = 0;
   uStack_90 = 8;
   strcpy_s(auStack_88,0x80,&rendering_buffer_2216_ptr,in_R9,0xfffffffffffffffe);
-  core_system_ui = FUN_180623800(&puStack_a0);
+  core_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -751,7 +751,7 @@ void FUN_180031e10(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -802,7 +802,7 @@ void FUN_180031f10(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -904,7 +904,7 @@ void FUN_180032110(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1107,7 +1107,7 @@ void FUN_180032510(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&processed_var_7240_ptr,in_R9,0xfffffffffffffffe);
-  core_system_ui = FUN_180623800(&puStack_a0);
+  core_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -1133,7 +1133,7 @@ void FUN_1800325a0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1184,7 +1184,7 @@ void FUN_1800326a0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1286,7 +1286,7 @@ void FUN_1800328a0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {

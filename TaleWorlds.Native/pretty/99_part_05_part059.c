@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part059.c - 1 个函数
 
 // 函数: void FUN_1802fddb0(int64_t param_1)
@@ -162,7 +166,7 @@ void FUN_1802fddb0(int64_t param_1)
   }
   lVar19 = *(int64_t *)(*(int64_t *)(param_1 + 0x10) + 0x20);
   if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,*(int64_t *)(param_1 + 0x10) + 0x70);
+    SystemCore_FileSystem(param_1,*(int64_t *)(param_1 + 0x10) + 0x70);
   }
   uVar18 = (**(code **)(**(int64_t **)(lVar19 + 0x318) + 0xd8))();
   lVar19 = FUN_1803009f0(param_1);
@@ -288,7 +292,7 @@ void FUN_1802fddb0(int64_t param_1)
         fStack_8d0 = fVar40;
         fStack_8cc = fVar6;
         FUN_180645340(&fStack_a18,lVar28 + 0x114,(float *)(lVar28 + 0x124),&uStack_9d8);
-        FUN_18063b5f0(&fStack_9a8,&uStack_9c8);
+        SystemSecurityManager(&fStack_9a8,&uStack_9c8);
         fStack_928 = fStack_a14 * fStack_998 + fStack_a18 * fStack_9a8 + fStack_a10 * fStack_988;
         fStack_924 = fStack_a14 * fStack_994 + fStack_a18 * fStack_9a4 + fStack_a10 * fStack_984;
         fStack_920 = fStack_a14 * fStack_990 + fStack_a18 * fStack_9a0 + fStack_a10 * fStack_980;
@@ -389,7 +393,7 @@ void FUN_1802fddb0(int64_t param_1)
           fStack_a80 = (*(float *)(lVar28 + 0x114) + *(float *)(lVar28 + 0x124)) * 0.5;
           fStack_a7c = (*(float *)(lVar28 + 0x128) + *(float *)(lVar28 + 0x118)) * 0.5;
           fStack_a78 = (*(float *)(lVar28 + 300) + *(float *)(lVar28 + 0x11c)) * 0.5;
-          pfVar33 = (float *)FUN_1801c0fb0(&uStack_9c8,auStack_978,&fStack_a80);
+          pfVar33 = (float *)SystemFileHandler(&uStack_9c8,auStack_978,&fStack_a80);
           fVar40 = *pfVar34 - (fStack_8d8 + *pfVar33);
           fVar38 = pfVar34[1] - (fStack_8d4 + pfVar33[1]);
           fVar36 = pfVar34[2] - (fStack_8d0 + pfVar33[2]);

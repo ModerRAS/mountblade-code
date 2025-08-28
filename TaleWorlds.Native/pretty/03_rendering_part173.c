@@ -1,5 +1,18 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part173.c - 5 个函数
 
@@ -204,10 +217,10 @@ LAB_180374a51:
                                        CONCAT71((int7)((uint64_t)lVar20 >> 8),3));
                 uVar16 = *(uint64_t *)(unaff_RDI + 0x68);
                 *(int *)(unaff_RBP + -0xd) = iVar21;
-                uVar16 = FUN_180372430(uVar15,uVar16);
+                uVar16 = SystemCore_SignalHandler(uVar15,uVar16);
                 unaff_RBP[-0xc] = uVar16;
                 puVar17 = (int32_t *)
-                          FUN_18037f020(unaff_RDI + 0x108,unaff_RBP + -9,unaff_RBP + -0xd);
+                          SystemCore_MessageQueueManager(unaff_RDI + 0x108,unaff_RBP + -9,unaff_RBP + -0xd);
                 uVar30 = puVar17[1];
                 uVar31 = puVar17[2];
                 uVar32 = puVar17[3];
@@ -335,7 +348,7 @@ LAB_180374a51:
         param_10._4_4_ = fVar27;
         param_11._0_4_ = fVar26;
         param_11._4_4_ = fVar29;
-        FUN_18063ad30(unaff_RBP + -6,&param_6,&system_counter_0300);
+        UltraHighFreq_DataProcessor1(unaff_RBP + -6,&param_6,&system_counter_0300);
         lVar24 = (int64_t)(*(int *)(unaff_RDI + 0x60) * iStackX_24 + iVar25) * 0x130 +
                  *(int64_t *)(unaff_RDI + 0x138);
         uVar16 = unaff_RBP[-5];
@@ -544,7 +557,7 @@ void FUN_180374f40(int64_t param_1,int64_t param_2)
       if (ppuStackX_18 != (int32_t **)0x0) {
         (**(code **)(*ppuStackX_18 + 10))();
       }
-      FUN_18005e110(uVar4,&ppuStackX_18);
+      SystemCore_TimerManager(uVar4,&ppuStackX_18);
     }
     else {
       puVar1 = *(uint64_t **)(param_1 + 0x2308);
@@ -583,7 +596,7 @@ void FUN_180374f40(int64_t param_1,int64_t param_2)
         apuStack_60[0][5] = uStack_70._4_4_;
         apuStack_60[0][6] = (int32_t)uStack_68;
         apuStack_60[0][7] = uStack_68._4_4_;
-        FUN_18015b810((int32_t)uStack_80,0,lVar8 - lVar2 >> 3 & 0xffffffff,1,0xffffffffffffffff,
+        SystemCore_DataTransformer((int32_t)uStack_80,0,lVar8 - lVar2 >> 3 & 0xffffffff,1,0xffffffffffffffff,
                       apuStack_60);
         pppuVar6 = render_system_data_memory;
         if (render_system_data_memory == (int32_t ***)0x0) {
@@ -771,7 +784,7 @@ void FUN_180375260(int64_t param_1,int64_t param_2,int64_t param_3)
                       piStack_e0 = aiStack_70;
                       fStack_58 = (float)iVar7;
                       aiStack_70[0] = iVar12;
-                      FUN_180077750(lVar8,uVar1,&system_counter_0300,0,&uStack_118);
+                      SystemHealthMonitor(lVar8,uVar1,&system_counter_0300,0,&uStack_118);
                       uVar10 = iVar9 - iVar12;
                       uVar11 = (uint64_t)uVar10;
                       iVar14 = iVar14 + 1;

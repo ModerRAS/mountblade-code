@@ -1,5 +1,12 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_02_part039.c - 11 个函数
 
@@ -30,7 +37,7 @@ void FUN_1801ae1a0(int64_t *param_1)
   plStack_18 = (int64_t *)0x0;
   uStack_28 = 0;
   auStack_30[0] = 0;
-  FUN_18022f2e0(&plStack_40,param_1,0);
+  RenderingSystem_MaterialProcessor(&plStack_40,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
@@ -41,20 +48,20 @@ void FUN_1801ae1a0(int64_t *param_1)
     if ((void *)plStack_40[3] != (void *)0x0) {
       puVar3 = (void *)plStack_40[3];
     }
-    FUN_1800623b0(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar2,puVar3,(int)plStack_38[0xc],
+    SystemConfigurationManager(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar2,puVar3,(int)plStack_38[0xc],
                   uVar4);
   }
   cStack_10 = '\x01';
   if (plStack_38 != (int64_t *)0x0) {
     if (cStack_e != '\0') {
-      FUN_180075b70(plStack_40);
+      SystemConfig_Manager(plStack_40);
     }
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     plVar1 = plStack_38;
     plStack_38 = (int64_t *)0x0;
@@ -64,14 +71,14 @@ void FUN_1801ae1a0(int64_t *param_1)
   }
   if ((plStack_40 != (int64_t *)0x0) && (plStack_38 != (int64_t *)0x0)) {
     if (cStack_e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     plVar1 = plStack_38;
     plStack_38 = (int64_t *)0x0;
@@ -79,7 +86,7 @@ void FUN_1801ae1a0(int64_t *param_1)
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_30);
+  SystemSecurityManager(auStack_30);
   if (plStack_18 != (int64_t *)0x0) {
     (**(code **)(*plStack_18 + 0x38))();
   }
@@ -541,7 +548,7 @@ LAB_1801aeebc:
       auStack_50[0] = auStack_50[0] & 0xffffff00;
       uStack_58 = 0xe;
       strcpy_s(auStack_50,0x20,&processed_var_4456_ptr);
-      puVar5 = (uint64_t *)FUN_1800b30d0(system_resource_state,&uStack_a0,&puStack_68,0);
+      puVar5 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&uStack_a0,&puStack_68,0);
       plVar8 = (int64_t *)*puVar5;
       *puVar5 = 0;
       uStack_a8 = (int64_t **)0x0;
@@ -558,7 +565,7 @@ LAB_1801aeebc:
       }
       lVar4 = strstr(puVar7,&processed_var_4424_ptr);
       if (lVar4 != 0) goto LAB_1801aeebc;
-      puVar5 = (uint64_t *)FUN_1800b30d0(system_resource_state,&uStack_a0,param_1 + 0x3ed0,0);
+      puVar5 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&uStack_a0,param_1 + 0x3ed0,0);
       plVar8 = (int64_t *)*puVar5;
       *puVar5 = 0;
       uStack_a8 = (int64_t **)0x0;
@@ -583,7 +590,7 @@ LAB_1801aeebc:
           if (iVar3 == 0) goto LAB_1801af0c0;
         }
         uVar6 = FUN_180319490(param_1 + 0x60c10,&uStack_a8);
-        FUN_180060b80(param_1 + 0x8218,uVar6);
+        SystemCore_ChecksumValidator(param_1 + 0x8218,uVar6);
         if (uStack_a8 != (int64_t **)0x0) {
           (*(code *)(*uStack_a8)[7])();
         }
@@ -624,7 +631,7 @@ LAB_1801aeebc:
       uStack_2c = 0;
       uStack_30 = *(int32_t *)(param_1 + 0x3ec4);
       fStack_34 = fStack_8c;
-      FUN_1802ea790(*(int64_t *)(param_1 + 0x8218),&puStack_68);
+      NetworkProtocol_Transmitter(*(int64_t *)(param_1 + 0x8218),&puStack_68);
     }
 LAB_1801af0c0:
     if (plVar8 == (int64_t *)0x0) goto LAB_1801af114;
@@ -821,7 +828,7 @@ LAB_1801af476:
       FUN_1802ef920(*param_2,param_4);
     }
   }
-  FUN_1802ea790(*param_2,param_5);
+  NetworkProtocol_Transmitter(*param_2,param_5);
   plStackX_20 = (int64_t *)*param_2;
   if (plStackX_20 != (int64_t *)0x0) {
     (**(code **)(*plStackX_20 + 0x28))();

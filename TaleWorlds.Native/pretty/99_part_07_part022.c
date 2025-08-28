@@ -1,3 +1,5 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -75,7 +77,7 @@ void FUN_1804b0d50(int64_t param_1,int64_t *param_2,uint64_t *param_3,uint64_t p
   plStack_100 = (int64_t *)0x0;
   uStack_110 = 0;
   auStack_118[0] = 0;
-  FUN_18022f2e0(&plStack_128,param_2,0);
+  RenderingSystem_MaterialProcessor(&plStack_128,param_2,0);
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x38))();
   }
@@ -107,14 +109,14 @@ LAB_1804b0ec6:
     SystemDataInitializer(&processed_var_6512_ptr);
     if ((plStack_128 != (int64_t *)0x0) && (plStack_120 != (int64_t *)0x0)) {
       if (cStack_f6 != '\0') {
-        FUN_180075b70();
+        SystemConfig_Manager();
       }
-      FUN_18007f6a0(auStack_118);
+      SystemSecurityManager(auStack_118);
       if (cStack_f8 != '\0') {
-        FUN_180079520(plStack_128);
+        SystemInitializer(plStack_128);
       }
       if (cStack_f7 != '\0') {
-        FUN_180079520(plStack_128);
+        SystemInitializer(plStack_128);
       }
       plVar3 = plStack_120;
       plStack_120 = (int64_t *)0x0;
@@ -122,7 +124,7 @@ LAB_1804b0ec6:
         (**(code **)(*plVar3 + 0x38))();
       }
     }
-    FUN_18007f6a0(auStack_118);
+    SystemSecurityManager(auStack_118);
     if (plStack_100 != (int64_t *)0x0) {
       (**(code **)(*plStack_100 + 0x38))();
     }
@@ -190,14 +192,14 @@ LAB_1804b113b:
     pppppuStack_e8 = pppppuStack_f0;
     if ((plStack_128 != (int64_t *)0x0) && (plStack_120 != (int64_t *)0x0)) {
       if (cStack_f6 != '\0') {
-        FUN_180075b70();
+        SystemConfig_Manager();
       }
-      FUN_18007f6a0(auStack_118);
+      SystemSecurityManager(auStack_118);
       if (cStack_f8 != '\0') {
-        FUN_180079520(plStack_128);
+        SystemInitializer(plStack_128);
       }
       if (cStack_f7 != '\0') {
-        FUN_180079520(plStack_128);
+        SystemInitializer(plStack_128);
       }
       plVar3 = plStack_120;
       plStack_120 = (int64_t *)0x0;
@@ -205,7 +207,7 @@ LAB_1804b113b:
         (**(code **)(*plVar3 + 0x38))();
       }
     }
-    FUN_18007f6a0(auStack_118);
+    SystemSecurityManager(auStack_118);
     if (plStack_100 != (int64_t *)0x0) {
       (**(code **)(*plStack_100 + 0x38))();
     }

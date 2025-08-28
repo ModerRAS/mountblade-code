@@ -54,10 +54,10 @@ void FUN_1807a4650(int64_t param_1)
   } while (lVar3 != 0);
   lVar1 = 2;
   do {
-    FUN_1807fee60(param_1 + 0x220,0);
-    FUN_1807fee60(param_1 + 0x300);
-    FUN_1807fee60(param_1 + 0x290);
-    FUN_1807fee60(param_1 + 0x370);
+    UISystem_EventHandler(param_1 + 0x220,0);
+    UISystem_EventHandler(param_1 + 0x300);
+    UISystem_EventHandler(param_1 + 0x290);
+    UISystem_EventHandler(param_1 + 0x370);
     lVar1 = lVar1 + -1;
   } while (lVar1 != 0);
   return;
@@ -97,10 +97,10 @@ void FUN_1807a47d0(int64_t param_1,int32_t param_2)
       FUN_1807fefe0(param_1 + 0x530,param_1 + 0x56c,*(int32_t *)(param_1 + 0x25e0),0x3fab851f,
                     param_1 + 0x564,param_1 + 0x568,param_1 + 0x56c,param_1 + 0x570,param_1 + 0x574)
       ;
-      FUN_1807fee60(param_1 + 0x3e0,param_2);
-      FUN_1807fee60(param_1 + 0x4c0,param_2);
-      FUN_1807fee60(param_1 + 0x450,param_2);
-      FUN_1807fee60(param_1 + 0x530,param_2);
+      UISystem_EventHandler(param_1 + 0x3e0,param_2);
+      UISystem_EventHandler(param_1 + 0x4c0,param_2);
+      UISystem_EventHandler(param_1 + 0x450,param_2);
+      UISystem_EventHandler(param_1 + 0x530,param_2);
       return;
     }
     uVar2 = 0x3f3504f3;
@@ -109,8 +109,8 @@ void FUN_1807a47d0(int64_t param_1,int32_t param_2)
                 param_1 + 0x414,param_1 + 0x418,param_1 + 0x41c,param_1 + 0x420,param_1 + 0x424);
   FUN_1807fefe0(param_1 + 0x4c0,param_1 + 0x4fc,*(int32_t *)(param_1 + 0x25e0),uVar2,
                 param_1 + 0x4f4,param_1 + 0x4f8,param_1 + 0x4fc,param_1 + 0x500,param_1 + 0x504);
-  FUN_1807fee60(param_1 + 0x3e0,param_2);
-  FUN_1807fee60(param_1 + 0x4c0,param_2);
+  UISystem_EventHandler(param_1 + 0x3e0,param_2);
+  UISystem_EventHandler(param_1 + 0x4c0,param_2);
   return;
 }
 
@@ -143,10 +143,10 @@ void FUN_1807a4839(void)
                 *(int32_t *)(unaff_R14 + 0x25e0),0x3fab851f,unaff_R14 + 0x484);
   FUN_1807fefe0(unaff_R14 + 0x530,*(int32_t *)(unaff_R14 + 0x25e4),
                 *(int32_t *)(unaff_R14 + 0x25e0),0x3fab851f,unaff_R14 + 0x564);
-  FUN_1807fee60(unaff_R14 + 0x3e0,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x4c0,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x450,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x530,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x3e0,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x4c0,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x450,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x530,unaff_R15D);
   return;
 }
 
@@ -178,8 +178,8 @@ void FUN_1807a49b4(void)
   lStack0000000000000028 = unaff_R14 + 0x4f8;
   FUN_1807fefe0(unaff_R14 + 0x4c0,*(int32_t *)(unaff_R14 + 0x25e4),
                 *(int32_t *)(unaff_R14 + 0x25e0),0x3f3504f3,unaff_R14 + 0x4f4);
-  FUN_1807fee60(unaff_R14 + 0x3e0,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x4c0,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x3e0,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x4c0,unaff_R15D);
   return;
 }
 
@@ -216,10 +216,10 @@ void FUN_1807a4a90(int64_t param_1,int32_t param_2)
       FUN_1807fefe0(param_1 + 0x370,param_1 + 0x3ac,*(int32_t *)(param_1 + 0x25dc),0x3fab851f,
                     param_1 + 0x3a4,param_1 + 0x3a8,param_1 + 0x3ac,param_1 + 0x3b0,param_1 + 0x3b4)
       ;
-      FUN_1807fee60(param_1 + 0x220,param_2);
-      FUN_1807fee60(param_1 + 0x300,param_2);
-      FUN_1807fee60(param_1 + 0x290,param_2);
-      FUN_1807fee60(param_1 + 0x370,param_2);
+      UISystem_EventHandler(param_1 + 0x220,param_2);
+      UISystem_EventHandler(param_1 + 0x300,param_2);
+      UISystem_EventHandler(param_1 + 0x290,param_2);
+      UISystem_EventHandler(param_1 + 0x370,param_2);
       return;
     }
     uVar2 = 0x3f3504f3;
@@ -228,8 +228,8 @@ void FUN_1807a4a90(int64_t param_1,int32_t param_2)
                 param_1 + 0x254,param_1 + 600,param_1 + 0x25c,param_1 + 0x260,param_1 + 0x264);
   FUN_1807fefe0(param_1 + 0x300,param_1 + 0x33c,*(int32_t *)(param_1 + 0x25dc),uVar2,
                 param_1 + 0x334,param_1 + 0x338,param_1 + 0x33c,param_1 + 0x340,param_1 + 0x344);
-  FUN_1807fee60(param_1 + 0x220,param_2);
-  FUN_1807fee60(param_1 + 0x300,param_2);
+  UISystem_EventHandler(param_1 + 0x220,param_2);
+  UISystem_EventHandler(param_1 + 0x300,param_2);
   return;
 }
 
@@ -262,10 +262,10 @@ void FUN_1807a4af9(void)
                 *(int32_t *)(unaff_R14 + 0x25dc),0x3fab851f,unaff_R14 + 0x2c4);
   FUN_1807fefe0(unaff_R14 + 0x370,*(int32_t *)(unaff_R14 + 0x25e4),
                 *(int32_t *)(unaff_R14 + 0x25dc),0x3fab851f,unaff_R14 + 0x3a4);
-  FUN_1807fee60(unaff_R14 + 0x220,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x300,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x290,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x370,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x220,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x300,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x290,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x370,unaff_R15D);
   return;
 }
 
@@ -297,8 +297,8 @@ void FUN_1807a4c74(void)
   lStack0000000000000028 = unaff_R14 + 0x338;
   FUN_1807fefe0(unaff_R14 + 0x300,*(int32_t *)(unaff_R14 + 0x25e4),
                 *(int32_t *)(unaff_R14 + 0x25dc),0x3f3504f3,unaff_R14 + 0x334);
-  FUN_1807fee60(unaff_R14 + 0x220,unaff_R15D);
-  FUN_1807fee60(unaff_R14 + 0x300,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x220,unaff_R15D);
+  UISystem_EventHandler(unaff_R14 + 0x300,unaff_R15D);
   return;
 }
 

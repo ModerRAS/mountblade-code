@@ -76,7 +76,7 @@
 #define InternalDataTransfer                      FUN_1807b8f20
 #define InternalStateUpdate                       FUN_1807bb8a0
 #define InternalSystemExit                        SystemSecurityChecker
-#define InternalConfigUpdate                      FUN_180772fe0
+#define InternalConfigUpdate                      SystemMemory_Controller
 
 // ============================================================================
 // 全局数据引用

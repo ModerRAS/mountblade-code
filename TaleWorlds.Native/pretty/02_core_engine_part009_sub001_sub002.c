@@ -131,20 +131,20 @@ typedef struct {
  * ============================================================================ */
 
 // 核心字符串处理器
-#define CoreStringDataProcessor FUN_180045f60              // 核心字符串数据处理器
+#define CoreStringDataProcessor SystemManager_Executor              // 核心字符串数据处理器
 
 // 内存管理器
-#define MemorySafeCopyHandler FUN_180045f60                 // 内存安全复制处理器
-#define BufferOverflowChecker FUN_180045f60                 // 缓冲区溢出检查器
-#define DataSizeValidator FUN_180045f60                     // 数据大小验证器
+#define MemorySafeCopyHandler SystemManager_Executor                 // 内存安全复制处理器
+#define BufferOverflowChecker SystemManager_Executor                 // 缓冲区溢出检查器
+#define DataSizeValidator SystemManager_Executor                     // 数据大小验证器
 
 // 系统状态管理器
-#define SystemStateReset FUN_180045f60                      // 系统状态重置器
-#define MemoryOperationFinalizer FUN_180045f60              // 内存操作完成器
+#define SystemStateReset SystemManager_Executor                      // 系统状态重置器
+#define MemoryOperationFinalizer SystemManager_Executor              // 内存操作完成器
 
 // 错误处理器
-#define StringCopyErrorHandler FUN_180045f60                // 字符串复制错误处理器
-#define MemorySafetyChecker FUN_180045f60                  // 内存安全检查器
+#define StringCopyErrorHandler SystemManager_Executor                // 字符串复制错误处理器
+#define MemorySafetyChecker SystemManager_Executor                  // 内存安全检查器
 
 /* ============================================================================
  * 核心函数实现

@@ -138,7 +138,7 @@ void FUN_1802b1620(int64_t param_1,uint64_t *param_2)
   int64_t lVar5;
   int64_t lVar6;
   
-  FUN_1800b8500(*(int64_t *)(param_1 + 0x20) + 0x150);
+  SystemCore_Controller(*(int64_t *)(param_1 + 0x20) + 0x150);
   FUN_1802bed10(*(int64_t *)(param_1 + 0x20) + 0x150,
                 *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 0x158),*param_2,param_2[1]);
   iVar3 = (int)((*(int64_t *)(param_1 + 0x38) - *(int64_t *)(param_1 + 0x30)) / 0x88);

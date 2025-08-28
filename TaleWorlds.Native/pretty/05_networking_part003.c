@@ -110,50 +110,95 @@ typedef struct {
  */
 
 // 基础协议处理函数
-#define NetworkProtocol_SendBasic FUN_18083f8f0
+#define NetworkProtocol_SendBasic NetworkProtocol_CoreSender
 #define NetworkProtocol_SerializeExtended SystemDataProcessor
 #define NetworkProtocol_SerializeConnectionRequest SystemDataProcessor
 #define NetworkProtocol_SerializeConnectionResponse SystemDataProcessor
 #define NetworkProtocol_SerializeDisconnect SystemDataProcessor
 
 // 心跳和状态管理函数
-#define NetworkProtocol_SerializeHeartbeat FUN_180842690
-#define NetworkProtocol_SerializeHeartbeatResponse FUN_180842750
-#define NetworkProtocol_SerializeStatusQuery FUN_1808428d0
+#define NetworkProtocol_SerializeHeartbeat NetworkProtocol_HeartbeatSerializer
+#define NetworkProtocol_SerializeHeartbeatResponse NetworkProtocol_HeartbeatResponseSerializer
+#define NetworkProtocol_SerializeStatusQuery NetworkProtocol_StatusQuerySerializer
 
 // 安全和压缩协议函数
-#define NetworkProtocol_SendSecure FUN_1808427c0
-#define NetworkProtocol_SendCompressed FUN_1808427f0
-#define NetworkProtocol_SerializeCompressed FUN_180842820
-#define NetworkProtocol_SerializeEncrypted FUN_1808428d0
+#define NetworkProtocol_SendSecure NetworkProtocol_SecureSender
+#define NetworkProtocol_SendCompressed NetworkProtocol_CompressedSender
+#define NetworkProtocol_SerializeCompressed NetworkProtocol_CompressedSerializer
+#define NetworkProtocol_SerializeEncrypted NetworkProtocol_StatusQuerySerializer
 
 // 连接管理函数
-#define NetworkProtocol_SerializeConnectionAck FUN_180842990
-#define NetworkProtocol_SerializeDataTransfer FUN_180842a00
+#define NetworkProtocol_SerializeConnectionAck NetworkProtocol_ConnectionAckSerializer
+#define NetworkProtocol_SerializeDataTransfer NetworkProtocol_DataTransferSerializer
 
 // 状态和查询函数
-#define NetworkProtocol_SerializeStatusQuery FUN_180842ac0
-#define NetworkProtocol_SerializeThreeField FUN_180842b80
-#define NetworkProtocol_SerializeVariantThreeField FUN_180842c60
-#define NetworkProtocol_SerializeTwoField FUN_180842d40
-#define NetworkProtocol_SerializeSingleFieldA FUN_180842e00
-#define NetworkProtocol_SerializeSingleFieldB FUN_180842e70
-#define NetworkProtocol_SerializeSingleFieldC FUN_180842ee0
-#define NetworkProtocol_SerializeTimestamp FUN_180842f50
-#define NetworkProtocol_SerializeTwoFieldB FUN_180843010
+#define NetworkProtocol_SerializeStatusQuery NetworkProtocol_StatusQuerySerializerAlt
+#define NetworkProtocol_SerializeThreeField NetworkProtocol_ThreeFieldSerializer
+#define NetworkProtocol_SerializeVariantThreeField NetworkProtocol_VariantThreeFieldSerializer
+#define NetworkProtocol_SerializeTwoField NetworkProtocol_TwoFieldSerializer
+#define NetworkProtocol_SerializeSingleFieldA NetworkProtocol_SingleFieldSerializerA
+#define NetworkProtocol_SerializeSingleFieldB NetworkProtocol_SingleFieldSerializerB
+#define NetworkProtocol_SerializeSingleFieldC NetworkProtocol_SingleFieldSerializerC
+#define NetworkProtocol_SerializeTimestamp NetworkProtocol_TimestampSerializer
+#define NetworkProtocol_SerializeTwoFieldB NetworkProtocol_TwoFieldSerializerB
 
 // 特殊协议发送函数
-#define NetworkProtocol_SendSpecialA FUN_180843870
-#define NetworkProtocol_SendSpecialB FUN_180843b40
+#define NetworkProtocol_SendSpecialA NetworkProtocol_SpecialSenderA
+#define NetworkProtocol_SendSpecialB NetworkProtocol_SpecialSenderB
 
 /* 协议处理辅助函数 */
+/* 网络协议处理函数别名定义 */
+
+/* 网络协议处理函数别名定义 */
+
+/* 网络协议处理函数别名定义 */
+#define NetworkProtocol_BufferWriter RenderingSystem_ShaderCompiler
+// 高级网络协议处理函数别名定义
+#define NetworkProtocol_HeartbeatSerializer FUN_180842690
+#define NetworkProtocol_HeartbeatResponseSerializer FUN_180842750
+#define NetworkProtocol_StatusQuerySerializer FUN_1808428d0
+#define NetworkProtocol_SecureSender FUN_1808427c0
+#define NetworkProtocol_CompressedSender FUN_1808427f0
+#define NetworkProtocol_CompressedSerializer FUN_180842820
+#define NetworkProtocol_ConnectionAckSerializer FUN_180842990
+#define NetworkProtocol_DataTransferSerializer FUN_180842a00
+#define NetworkProtocol_StatusQuerySerializerAlt FUN_180842ac0
+#define NetworkProtocol_ThreeFieldSerializer FUN_180842b80
+#define NetworkProtocol_VariantThreeFieldSerializer FUN_180842c60
+#define NetworkProtocol_TwoFieldSerializer FUN_180842d40
+#define NetworkProtocol_SingleFieldSerializerA FUN_180842e00
+#define NetworkProtocol_SingleFieldSerializerB FUN_180842e70
+#define NetworkProtocol_SingleFieldSerializerC FUN_180842ee0
+#define NetworkProtocol_TimestampSerializer FUN_180842f50
+#define NetworkProtocol_TwoFieldSerializerB FUN_180843010
+#define NetworkProtocol_SpecialSenderA FUN_180843870
+#define NetworkProtocol_SpecialSenderB FUN_180843b40
+#define NetworkProtocol_AdvancedSender NetworkProtocol_SecureDataProcessor
+#define NetworkProtocol_ArrayDataProcessor NetworkProtocol_ArrayDataProcessor
+#define NetworkProtocol_SpecialDataSender FUN_18083fa50
+#define NetworkProtocol_DataFieldProcessor NetworkProtocol_Uint32FieldWriter
+#define NetworkProtocol_ParameterProcessor NetworkProtocol_Uint32FieldProcessor
+
+#define NetworkProtocol_ArraySerializer FUN_18088ebb0
+#define NetworkProtocol_CompressionHandler FUN_18074be90
+#define NetworkProtocol_CoreSender FUN_18083f8f0
+#define NetworkProtocol_Uint32Writer func_0x00018074b800
+#define NetworkProtocol_Uint64Writer func_0x00018074bda0
+
 #define ProtocolSerializer_WriteHeader SystemDataProcessor
 #define ProtocolSerializer_WriteSeparator SystemDataProcessor
-#define ProtocolSerializer_WriteUint32 func_0x00018074b800
-#define ProtocolSerializer_WriteUint64 func_0x00018074bda0
-#define ProtocolSerializer_WriteBuffer FUN_18074b650
-#define ProtocolSerializer_WriteArray FUN_18088ebb0
-#define ProtocolSerializer_WriteCompressed FUN_18074be90
+#define ProtocolSerializer_WriteUint32 NetworkProtocol_Uint32Writer
+#define ProtocolSerializer_WriteUint64 NetworkProtocol_Uint64Writer
+#define ProtocolSerializer_WriteBuffer NetworkProtocol_BufferWriter
+#define ProtocolSerializer_WriteArray NetworkProtocol_ArraySerializer
+#define ProtocolSerializer_WriteCompressed NetworkProtocol_CompressionHandler
+
+/* 额外的网络协议处理函数别名定义 */
+#define NetworkProtocol_SecureDataProcessor FUN_18083f9b0
+#define NetworkProtocol_Uint32FieldWriter func_0x00018074b7d0
+#define NetworkProtocol_Uint32FieldProcessor func_0x00018074b830
+#define NetworkProtocol_ArrayDataProcessor FUN_18088ece0
+
 
 /**
  * @brief 基础协议数据发送函数
@@ -178,7 +223,7 @@ void NetworkProtocol_SendBasic(void* context, uint8_t* data_buffer, uint32_t dat
     }
     
     // 调用底层协议发送函数
-    FUN_18083f8f0(data_buffer, data_size, &processed_var_5248_ptr, 
+    NetworkProtocol_CoreSender(data_buffer, data_size, &processed_var_5248_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18), 
                 *(uint32_t*)((uint8_t*)context + 0x1c));
@@ -239,7 +284,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化主字段
-    current_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    current_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -249,7 +294,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化次字段
-    current_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field2);
+    current_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -259,7 +304,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化堆栈字段
-    current_size = FUN_18074b650(output_buffer + total_size, buffer_size - total_size, stack_fields);
+    current_size = NetworkProtocol_BufferWriter(output_buffer + total_size, buffer_size - total_size, stack_fields);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -269,7 +314,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化结束字段
-    current_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    current_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     if (current_size < 0) return current_size;
     
     return total_size + current_size;
@@ -315,7 +360,7 @@ int NetworkProtocol_SerializeConnectionRequest(void* context, uint8_t* output_bu
     if (total_size < 0) return total_size;
     
     // 序列化连接标识符
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, connection_id);
     if (total_size < 0) return total_size;
     
@@ -362,7 +407,7 @@ int NetworkProtocol_SerializeConnectionResponse(void* context, uint8_t* output_b
     if (total_size < 0) return total_size;
     
     // 序列化响应码
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, response_code);
     if (total_size < 0) return total_size;
     
@@ -409,7 +454,7 @@ int NetworkProtocol_SerializeDisconnect(void* context, uint8_t* output_buffer, i
     if (total_size < 0) return total_size;
     
     // 序列化断开原因
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, disconnect_reason);
     if (total_size < 0) return total_size;
     
@@ -463,7 +508,7 @@ int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, in
     if (total_size < 0) return total_size;
     
     // 序列化会话ID
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, session_id);
     if (total_size < 0) return total_size;
     
@@ -473,7 +518,7 @@ int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, in
     if (total_size < 0) return total_size;
     
     // 序列化时间戳
-    total_size = func_0x00018074bda0(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint64Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, timestamp);
     if (total_size < 0) return total_size;
     
@@ -520,7 +565,7 @@ int NetworkProtocol_SerializeHeartbeatResponse(void* context, uint8_t* output_bu
     if (total_size < 0) return total_size;
     
     // 序列化响应码
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, response_code);
     if (total_size < 0) return total_size;
     
@@ -555,7 +600,7 @@ void NetworkProtocol_SendSecure(void* context, uint8_t* data_buffer, uint32_t da
     }
     
     // 调用安全协议发送函数
-    FUN_18083f9b0(data_buffer, data_size, &processed_var_9880_ptr, 
+    NetworkProtocol_AdvancedSender(data_buffer, data_size, &processed_var_9880_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint8_t*)((uint8_t*)context + 0x18));
 }
@@ -593,7 +638,7 @@ void NetworkProtocol_SendCompressed(void* context, uint8_t* data_buffer, uint32_
     }
     
     // 调用压缩协议发送函数
-    FUN_18083f9b0(data_buffer, data_size, &processed_var_9760_ptr, 
+    NetworkProtocol_AdvancedSender(data_buffer, data_size, &processed_var_9760_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint8_t*)((uint8_t*)context + 0x18));
 }
@@ -645,7 +690,7 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
     if (total_size < 0) return total_size;
     
     // 序列化算法标识
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, algorithm_id);
     if (total_size < 0) return total_size;
     
@@ -655,7 +700,7 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
     if (total_size < 0) return total_size;
     
     // 序列化压缩级别
-    total_size = func_0x00018074b830(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_ParameterProcessor(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, compression_level);
     if (total_size < 0) return total_size;
     
@@ -711,7 +756,7 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化算法标识
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, algorithm_id);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, algorithm_id);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -721,7 +766,7 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化密钥标识
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, key_id);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, key_id);
     return total_size + header_size;
 }
 
@@ -770,7 +815,7 @@ int NetworkProtocol_SerializeConnectionAck(void* context, uint8_t* output_buffer
     if (total_size < 0) return total_size;
     
     // 序列化确认码
-    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+    total_size = NetworkProtocol_Uint32Writer(output_buffer + header_size + total_size, 
                                      buffer_size - header_size - total_size, ack_code);
     if (total_size < 0) return total_size;
     
@@ -824,7 +869,7 @@ int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化数据大小参数
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, data_size_param);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, data_size_param);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -834,7 +879,7 @@ int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化传输参数
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, transfer_param);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, transfer_param);
     return total_size + header_size;
 }
 
@@ -885,7 +930,7 @@ int NetworkProtocol_SerializeStatusQuery(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化查询参数
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, query_param);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, query_param);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -895,7 +940,7 @@ int NetworkProtocol_SerializeStatusQuery(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化状态码
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, status_code);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, status_code);
     return total_size + header_size;
 }
 
@@ -947,7 +992,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化字段3
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -957,7 +1002,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -967,7 +1012,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1019,7 +1064,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段3
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1029,7 +1074,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1039,7 +1084,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1090,7 +1135,7 @@ int NetworkProtocol_SerializeTwoField(void* context, uint8_t* output_buffer, int
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1100,7 +1145,7 @@ int NetworkProtocol_SerializeTwoField(void* context, uint8_t* output_buffer, int
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1150,7 +1195,7 @@ int NetworkProtocol_SerializeSingleFieldA(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1200,7 +1245,7 @@ int NetworkProtocol_SerializeSingleFieldB(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1250,7 +1295,7 @@ int NetworkProtocol_SerializeSingleFieldC(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1302,7 +1347,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1312,7 +1357,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化时间戳
-    header_size = func_0x00018074bda0(output_buffer + total_size, buffer_size - total_size, timestamp);
+    header_size = NetworkProtocol_Uint64Writer(output_buffer + total_size, buffer_size - total_size, timestamp);
     return total_size + header_size;
 }
 
@@ -1363,7 +1408,7 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1373,7 +1418,7 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1428,7 +1473,7 @@ int NetworkProtocol_SerializeSingleFieldD(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field);
     return total_size + header_size;
 }
 
@@ -1483,7 +1528,7 @@ int NetworkProtocol_SerializeSingleFieldE(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field);
     return total_size + header_size;
 }
 
@@ -1550,7 +1595,7 @@ int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1560,7 +1605,7 @@ int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化复杂数据结构（数组）
-    header_size = FUN_18088ebb0(output_buffer + total_size, buffer_size - total_size, &field2);
+    header_size = NetworkProtocol_ArraySerializer(output_buffer + total_size, buffer_size - total_size, &field2);
     return total_size + header_size;
 }
 
@@ -1617,7 +1662,7 @@ int NetworkProtocol_SerializeTwoFieldC(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1627,7 +1672,7 @@ int NetworkProtocol_SerializeTwoFieldC(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段1
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -1689,7 +1734,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1699,7 +1744,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化数组数据
-    header_size = FUN_18088ece0(output_buffer + total_size, buffer_size - total_size, &array_field);
+    header_size = NetworkProtocol_ArrayDataProcessor(output_buffer + total_size, buffer_size - total_size, &array_field);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1709,7 +1754,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b830(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_ParameterProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1719,7 +1764,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化布尔字段（压缩数据）
-    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    header_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, bool_field);
     return total_size + header_size;
 }
 
@@ -1782,7 +1827,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1792,7 +1837,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化数组数据
-    header_size = FUN_18088ece0(output_buffer + total_size, buffer_size - total_size, &array_field);
+    header_size = NetworkProtocol_ArrayDataProcessor(output_buffer + total_size, buffer_size - total_size, &array_field);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1812,7 +1857,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化布尔字段（压缩数据）
-    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    header_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, bool_field);
     return total_size + header_size;
 }
 
@@ -1874,7 +1919,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段3
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1894,7 +1939,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段2（使用不同的序列化方式）
-    header_size = func_0x00018074b830(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_ParameterProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1904,7 +1949,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化布尔字段（压缩数据）
-    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    header_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, bool_field);
     return total_size + header_size;
 }
 
@@ -1966,7 +2011,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1996,7 +2041,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化布尔字段（压缩数据）
-    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    header_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, bool_field);
     return total_size + header_size;
 }
 
@@ -2054,7 +2099,7 @@ int NetworkProtocol_SerializeTwoFieldD(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2064,7 +2109,7 @@ int NetworkProtocol_SerializeTwoFieldD(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化布尔字段（压缩数据）
-    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    header_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, bool_field);
     return total_size + header_size;
 }
 
@@ -2100,7 +2145,7 @@ void NetworkProtocol_SendSpecialA(void* context, uint8_t* data_buffer, uint32_t 
     }
     
     // 调用特殊协议发送函数
-    FUN_18083fa50(data_buffer, data_size, &processed_var_6792_ptr, 
+    NetworkProtocol_SpecialDataSender(data_buffer, data_size, &processed_var_6792_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18));
 }
@@ -2159,7 +2204,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段3
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2169,7 +2214,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2179,7 +2224,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段2（使用不同的序列化方式）
-    header_size = func_0x00018074b830(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_ParameterProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     return total_size + header_size;
 }
 
@@ -2237,7 +2282,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段3
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field3);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2247,7 +2292,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2257,7 +2302,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化字段2（使用不同的序列化方式）
-    header_size = func_0x00018074b830(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_ParameterProcessor(output_buffer + total_size, buffer_size - total_size, field2);
     return total_size + header_size;
 }
 
@@ -2314,7 +2359,7 @@ int NetworkProtocol_SerializeTwoFieldE(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2324,7 +2369,7 @@ int NetworkProtocol_SerializeTwoFieldE(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -2360,7 +2405,7 @@ void NetworkProtocol_SendSpecialB(void* context, uint8_t* data_buffer, uint32_t 
     }
     
     // 调用特殊协议发送函数
-    FUN_18083fa50(data_buffer, data_size, &processed_var_6656_ptr, 
+    NetworkProtocol_SpecialDataSender(data_buffer, data_size, &processed_var_6656_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18));
 }
@@ -2416,7 +2461,7 @@ int NetworkProtocol_SerializeSingleFieldF(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field);
     return total_size + header_size;
 }
 
@@ -2473,7 +2518,7 @@ int NetworkProtocol_SerializeTwoFieldF(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段2
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field2);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field2);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2483,7 +2528,7 @@ int NetworkProtocol_SerializeTwoFieldF(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化字段1（使用不同的序列化方式）
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field1);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field1);
     return total_size + header_size;
 }
 
@@ -2543,7 +2588,7 @@ int NetworkProtocol_SerializeArrayA(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化数组数据（缓冲区序列化）
-    header_size = FUN_18074b650(output_buffer + total_size, buffer_size - total_size, &field1);
+    header_size = NetworkProtocol_BufferWriter(output_buffer + total_size, buffer_size - total_size, &field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2553,7 +2598,7 @@ int NetworkProtocol_SerializeArrayA(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field5);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field5);
     return total_size + header_size;
 }
 
@@ -2613,7 +2658,7 @@ int NetworkProtocol_SerializeArrayB(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化数组数据（缓冲区序列化）
-    header_size = FUN_18074b650(output_buffer + total_size, buffer_size - total_size, &field1);
+    header_size = NetworkProtocol_BufferWriter(output_buffer + total_size, buffer_size - total_size, &field1);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2623,7 +2668,7 @@ int NetworkProtocol_SerializeArrayB(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化字段值
-    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field5);
+    header_size = NetworkProtocol_Uint32Writer(output_buffer + total_size, buffer_size - total_size, field5);
     return total_size + header_size;
 }
 
@@ -2679,7 +2724,7 @@ int NetworkProtocol_SerializeSingleFieldG(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化字段值（使用特定的序列化方式）
-    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, field);
+    header_size = NetworkProtocol_DataFieldProcessor(output_buffer + total_size, buffer_size - total_size, field);
     return total_size + header_size;
 }
 

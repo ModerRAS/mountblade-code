@@ -240,7 +240,7 @@ void RenderingEngineCore0(int64_t param_1,int param_2,int64_t param_3,int param_
       lVar2 = param_3 + 0x1a0;
     }
   }
-  else if ((((param_3 != 0) && (lVar1 = FUN_18023a940(), lVar1 != 0)) &&
+  else if ((((param_3 != 0) && (lVar1 = SystemCore_Scheduler(), lVar1 != 0)) &&
            (lVar2 = lVar1, *(int64_t *)(lVar1 + 8) == 0)) && (*(int64_t *)(lVar1 + 0x10) == 0)) {
     lVar2 = 0;
   }
@@ -486,8 +486,8 @@ void FUN_18029d500(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_18029d760(int64_t param_1,int param_2,char param_3,int64_t param_4,int param_5)
-void FUN_18029d760(int64_t param_1,int param_2,char param_3,int64_t param_4,int param_5)
+// 函数: void CoreSystem_Initializer(int64_t param_1,int param_2,char param_3,int64_t param_4,int param_5)
+void CoreSystem_Initializer(int64_t param_1,int param_2,char param_3,int64_t param_4,int param_5)
 
 {
   int64_t *plVar1;
@@ -563,8 +563,8 @@ void FUN_18029d760(int64_t param_1,int param_2,char param_3,int64_t param_4,int 
 
 
 
-// 函数: void FUN_18029d930(int64_t param_1,uint64_t param_2,char param_3,int64_t param_4)
-void FUN_18029d930(int64_t param_1,uint64_t param_2,char param_3,int64_t param_4)
+// 函数: void NetworkSystem_DataProcessor0(int64_t param_1,uint64_t param_2,char param_3,int64_t param_4)
+void NetworkSystem_DataProcessor0(int64_t param_1,uint64_t param_2,char param_3,int64_t param_4)
 
 {
   int64_t *plVar1;
@@ -733,8 +733,8 @@ void FUN_18029dca0(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4
 
 
 
-// 函数: void FUN_18029de40(int64_t param_1,int32_t param_2)
-void FUN_18029de40(int64_t param_1,int32_t param_2)
+// 函数: void SystemCore_ProcessorEx(int64_t param_1,int32_t param_2)
+void SystemCore_ProcessorEx(int64_t param_1,int32_t param_2)
 
 {
   int64_t lVar1;
@@ -932,7 +932,7 @@ bool FUN_18029e1a0(int64_t param_1,int64_t param_2,int param_3,int param_4,uint 
   uint64_t uStack_18;
   uint uStack_10;
   
-  lVar2 = FUN_18023a940(param_2);
+  lVar2 = SystemCore_Scheduler(param_2);
   uVar4 = (uint)*(byte *)(param_2 + 0x335);
   if ((int)*(uint *)(param_2 + 0x35c) < (int)(uint)*(byte *)(param_2 + 0x335)) {
     uVar4 = *(uint *)(param_2 + 0x35c);
@@ -958,7 +958,7 @@ bool FUN_18029e1a0(int64_t param_1,int64_t param_2,int param_3,int param_4,uint 
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(lVar2 + 8),param_3,uVar3,0,
                      &uStack_18);
   if (iVar1 < 0) {
-    FUN_180220810(iVar1,&ui_system_data_1856_ptr);
+    SystemCore_Loader(iVar1,&ui_system_data_1856_ptr);
   }
   *(uint64_t *)(param_6 + 2) = uStack_18;
   *(uint64_t *)(param_6 + 4) = (uint64_t)uStack_10;
@@ -982,7 +982,7 @@ void FUN_18029e2a0(int64_t param_1,uint64_t param_2,int32_t *param_3)
   plVar2 = *(int64_t **)(param_1 + 0x8400);
   uVar1 = *param_3;
   UNRECOVERED_JUMPTABLE = *(code **)(*plVar2 + 0x78);
-  lVar3 = FUN_18023a940(param_2);
+  lVar3 = SystemCore_Scheduler(param_2);
                     // WARNING: Could not recover jumptable at 0x00018029e2e4. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(plVar2,*(uint64_t *)(lVar3 + 8),uVar1);
@@ -1022,7 +1022,7 @@ bool FUN_18029e2f0(int64_t param_1,int64_t param_2,uint param_3,int64_t param_4)
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(param_2 + 0x10),0,uVar3,0,
                      auStack_18);
   if (iVar2 < 0) {
-    FUN_180220810(iVar2,&ui_system_data_1768_ptr);
+    SystemCore_Loader(iVar2,&ui_system_data_1768_ptr);
   }
   *(uint64_t *)(param_4 + 8) = auStack_18[0];
   return -1 < iVar2;

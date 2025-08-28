@@ -1,4 +1,8 @@
-#include "FUN_1806d7170_definition.h"
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part037.c - 5 个函数
@@ -788,8 +792,8 @@ void FUN_1806c0130(int64_t *param_1,uint64_t *param_2)
     ppcVar8 = (char **)param_1[0xb];
   }
   pcStackX_8 = (char *)CONCAT44(pcStackX_8._4_4_,0x160);
-  FUN_1806d7000(param_1,*param_2);
-  FUN_1806d7000(param_1,param_2[2]);
+  MemoryPoolManager0(param_1,*param_2);
+  MemoryPoolManager0(param_1,param_2[2]);
   puVar6 = &ui_system_data_1920_ptr;
   apcStackX_10[0] = (char *)0x0;
   if ((char)param_1[9] != '\0') {
@@ -810,7 +814,7 @@ void FUN_1806c0130(int64_t *param_1,uint64_t *param_2)
   }
   *(int *)ppcVar8 = *(int *)ppcVar8 + 1;
   SystemResourceProcessor(param_1);
-  FUN_1806d7000(param_1,param_2[3]);
+  MemoryPoolManager0(param_1,param_2[3]);
   pcStackX_8 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
     iVar1 = *(int *)(*param_1 + 0x10);

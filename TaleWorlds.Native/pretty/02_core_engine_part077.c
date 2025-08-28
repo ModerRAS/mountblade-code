@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part077.c - 1 个函数
@@ -22,145 +26,145 @@ void FUN_180109d30(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   lVar1 = param_1 + 0xe0;
   (**(code **)(*(int64_t *)(param_1 + 0x120) + 0x10))
             ((int64_t *)(param_1 + 0x120),&ui_system_data_1104_ptr,param_3,param_4,0xfffffffffffffffe);
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x1a0;
   (**(code **)(*(int64_t *)(param_1 + 0x1e0) + 0x10))((int64_t *)(param_1 + 0x1e0),&ui_system_data_1080_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x260;
   (**(code **)(*(int64_t *)(param_1 + 0x2a0) + 0x10))((int64_t *)(param_1 + 0x2a0),&ui_system_data_1152_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 800;
   (**(code **)(*(int64_t *)(param_1 + 0x360) + 0x10))((int64_t *)(param_1 + 0x360),&ui_system_data_1128_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x3e0;
   (**(code **)(*(int64_t *)(param_1 + 0x420) + 0x10))((int64_t *)(param_1 + 0x420),&ui_system_data_1200_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x4a0;
   (**(code **)(*(int64_t *)(param_1 + 0x4e0) + 0x10))((int64_t *)(param_1 + 0x4e0),&ui_system_data_1176_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x560;
   (**(code **)(*(int64_t *)(param_1 + 0x5a0) + 0x10))((int64_t *)(param_1 + 0x5a0),&ui_system_data_1248_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x620;
   (**(code **)(*(int64_t *)(param_1 + 0x660) + 0x10))((int64_t *)(param_1 + 0x660),&ui_system_data_1224_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0x6e0;
   (**(code **)(*(int64_t *)(param_1 + 0x720) + 0x10))((int64_t *)(param_1 + 0x720),&ui_system_data_1296_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0x7e0) + 0x10))((int64_t *)(param_1 + 0x7e0),&ui_system_data_1272_ptr)
   ;
   lVar1 = param_1 + 0x7a0;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0x8a0) + 0x10))((int64_t *)(param_1 + 0x8a0),&ui_system_data_1344_ptr)
   ;
   lVar1 = param_1 + 0x860;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0x960) + 0x10))((int64_t *)(param_1 + 0x960),&ui_system_data_1320_ptr)
   ;
   lVar1 = param_1 + 0x920;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0xa20) + 0x10))((int64_t *)(param_1 + 0xa20),&ui_system_data_1400_ptr)
   ;
   lVar1 = param_1 + 0x9e0;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0xae0) + 0x10))((int64_t *)(param_1 + 0xae0),&ui_system_data_1368_ptr)
   ;
   lVar1 = param_1 + 0xaa0;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0xba0) + 0x10))((int64_t *)(param_1 + 0xba0),&ui_system_data_1472_ptr)
   ;
   lVar1 = param_1 + 0xb60;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0xc60) + 0x10))((int64_t *)(param_1 + 0xc60),&ui_system_data_1432_ptr)
   ;
   uVar2 = param_1 + 0xc20;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(uVar2,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(uVar2,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(uVar2,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(uVar2,uVar6);
   uStackX_8 = (int32_t *)uVar2;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   (**(code **)(*(int64_t *)(param_1 + 0xce8) + 0x10))(param_1 + 0xce8,&ui_system_data_1552_ptr);
@@ -294,28 +298,28 @@ LAB_18010a4a0:
   lVar1 = param_1 + 0xe30;
   (**(code **)(*(int64_t *)(param_1 + 0xe70) + 0x10))((int64_t *)(param_1 + 0xe70),&ui_system_data_1600_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0xef0;
   (**(code **)(*(int64_t *)(param_1 + 0xf30) + 0x10))((int64_t *)(param_1 + 0xf30),&rendering_state_manager_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(lVar1,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar1,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar1,uVar6);
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   uVar2 = param_1 + 0xfb0;
   (**(code **)(*(int64_t *)(param_1 + 0xff0) + 0x10))((int64_t *)(param_1 + 0xff0),&rendering_config_var_ptr)
   ;
-  uVar6 = FUN_180628ca0();
-  FUN_18005c8a0(uVar2,uVar6);
-  uVar6 = FUN_180628ca0();
-  FUN_1800b0680(uVar2,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_MemoryManager(uVar2,uVar6);
+  uVar6 = MemoryDebugger0();
+  SystemCore_DataHandler(uVar2,uVar6);
   uStackX_8 = (int32_t *)uVar2;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   pcStack_50 = (code *)&processed_var_9648_ptr;

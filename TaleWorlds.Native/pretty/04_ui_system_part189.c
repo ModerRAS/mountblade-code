@@ -85,7 +85,7 @@
 #define UISystem_RenderPipeline FUN_1808632b0             // UI系统渲染管线
 #define UISystem_GraphicsEngine FUN_180873f80              // UI系统图形引擎
 #define UISystem_InputProcessor FUN_1808793e0              // UI系统输入处理器
-#define UISystem_CursorManager FUN_1808777c0               // UI系统光标管理器
+#define UISystem_CursorManager RenderingSystem_TextureHandler0               // UI系统光标管理器
 #define UISystem_FocusController FUN_180877810             // UI系统焦点控制器
 #define UISystem_AccessibilityManager FUN_180877f00       // UI系统可访问性管理器
 #define UISystem_ThemeProcessor FUN_1808780d0              // UI系统主题处理器
@@ -560,7 +560,7 @@ uint8_t FUN_1808793e0(uint64_t input_type, uint64_t input_data);
  * @param cursor_params 光标参数结构体指针
  * @return uint64_t 光标管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-uint8_t FUN_1808777c0(uint64_t cursor_command, uint64_t cursor_params);
+uint8_t RenderingSystem_TextureHandler0(uint64_t cursor_command, uint64_t cursor_params);
 
 /**
  * @brief UI系统焦点控制器

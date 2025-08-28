@@ -674,7 +674,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
   uStack_3d0 = 0;
   puStack_3e0 = (void *)0x0;
   uStack_3d8 = 0;
-  cVar3 = FUN_180624af0();
+  cVar3 = RenderingSystem_RenderQueue();
   if (cVar3 == '\0') {
     puVar12 = &system_buffer_ptr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
@@ -688,7 +688,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
       puVar12 = *(void **)(param_1 + 8);
     }
     (**(code **)(puStack_3e8 + 0x10))(&puStack_3e8,puVar12);
-    lVar5 = FUN_180624440(apuStack_268,&puStack_3e8);
+    lVar5 = SystemCore_EncryptionEngine(apuStack_268,&puStack_3e8);
     puVar12 = &system_buffer_ptr;
     if (*(void **)(lVar5 + 8) != (void *)0x0) {
       puVar12 = *(void **)(lVar5 + 8);
@@ -732,7 +732,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
           if (puStack_3e0 != (void *)0x0) {
             puVar12 = puStack_3e0;
           }
-          iVar4 = FUN_18062dee0(puVar7,puVar12,&processed_var_4880_ptr);
+          iVar4 = SystemCore_Validator(puVar7,puVar12,&processed_var_4880_ptr);
           if (iVar4 == 0) {
             uVar8 = FUN_18062e090(puVar7);
             *(int32_t *)(param_2 + 0xc) = 0x10001;
@@ -753,7 +753,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
                     // WARNING: Subroutine does not return
               CoreEngineMemoryPoolCleaner(puVar7);
             }
-            FUN_180627020(&processed_var_9696_ptr);
+            SystemCore_Allocator(&processed_var_9696_ptr);
                     // WARNING: Subroutine does not return
             memset(*param_2,0,param_2[1]);
           }

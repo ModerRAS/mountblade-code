@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "SystemCore_ConfigManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -36,30 +42,30 @@ void FUN_1807c5030(int64_t param_1)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_678;
   auStack_634[0] = 0x200;
   iVar3 = 0x200;
-  iVar2 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+  iVar2 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
   if (iVar2 == 0) {
     uStack_658 = 0;
     iVar2 = FUN_1807c4340(param_1,acStack_628,auStack_634,0);
-    if ((iVar2 == 0) && (iVar2 = FUN_18076b6f0(&processed_var_8000_ptr,acStack_628,0xc), iVar2 == 0)) {
-      iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,acStack_628,0x10);
+    if ((iVar2 == 0) && (iVar2 = SystemCore_Optimizer(&processed_var_8000_ptr,acStack_628,0xc), iVar2 == 0)) {
+      iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,acStack_628,0x10);
       while (iVar2 != 0) {
         iVar2 = 0;
         cStack_638 = '\0';
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),acStack_637);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),acStack_637);
+          if (iVar3 != 0) goto UISystem_StateManager;
         } while ((((acStack_637[0] == ' ') || (acStack_637[0] == '\t')) || (acStack_637[0] == '\n'))
                 || (acStack_637[0] == '\r'));
-        iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
-        if (iVar3 != 0) goto FUN_1807c55e3;
+        iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+        if (iVar3 != 0) goto UISystem_StateManager;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar3 != 0) goto UISystem_StateManager;
         } while (cStack_638 != '<');
         pcVar7 = acStack_628;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar3 != 0) goto UISystem_StateManager;
           if (iVar2 < 0x200) {
             iVar2 = iVar2 + 1;
             *pcVar7 = cStack_638;
@@ -68,11 +74,11 @@ void FUN_1807c5030(int64_t param_1)
         } while (cStack_638 != '>');
         iVar3 = 0;
         lVar8 = 0;
-        iVar4 = FUN_1807c62b0(param_1,0);
-        if (iVar4 != 0) goto FUN_1807c55e3;
+        iVar4 = UIComponent_AdvancedManager(param_1,0);
+        if (iVar4 != 0) goto UISystem_StateManager;
         do {
-          iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar4 != 0) goto FUN_1807c55e3;
+          iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar4 != 0) goto UISystem_StateManager;
           if (lVar8 < 0x200) {
             iVar3 = iVar3 + 1;
             acStack_228[lVar8] = cStack_638;
@@ -80,23 +86,23 @@ void FUN_1807c5030(int64_t param_1)
           }
         } while (cStack_638 != '<');
         iVar3 = iVar3 + -1;
-        iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-        if (iVar4 != 0) goto FUN_1807c55e3;
+        iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+        if (iVar4 != 0) goto UISystem_StateManager;
         if (cStack_638 == '/') {
           do {
-            iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-            if (iVar4 != 0) goto FUN_1807c55e3;
+            iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+            if (iVar4 != 0) goto UISystem_StateManager;
           } while (cStack_638 != '>');
         }
         else {
-          iVar4 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xfffffffe,1);
-          if (iVar4 != 0) goto FUN_1807c55e3;
+          iVar4 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xfffffffe,1);
+          if (iVar4 != 0) goto UISystem_StateManager;
         }
         if (0x1ff < (uint64_t)(int64_t)(iVar2 + -1)) goto FUN_1807c55fe;
         acStack_628[iVar2 + -1] = '\0';
         if (0x1ff < (uint64_t)(int64_t)iVar3) goto FUN_1807c55fe;
         acStack_228[iVar3] = '\0';
-        iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,acStack_628,0x10);
+        iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,acStack_628,0x10);
       }
       do {
         if (iVar3 == 0) {
@@ -119,9 +125,9 @@ void FUN_1807c5030(int64_t param_1)
             lVar6 = lVar6 + 1;
           } while (lVar8 < 0x1ff);
           acStack_628[lVar6 + 0x200] = '\0';
-          iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,acStack_628,0x11);
+          iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,acStack_628,0x11);
           if (iVar2 == 0) {
-            iVar2 = FUN_18076b6f0(&processed_var_8036_ptr,acStack_628 + 0x200,5);
+            iVar2 = SystemCore_Optimizer(&processed_var_8036_ptr,acStack_628 + 0x200,5);
             pcVar7 = acStack_423;
             if (iVar2 != 0) {
               pcVar7 = acStack_628 + 0x200;
@@ -129,14 +135,14 @@ void FUN_1807c5030(int64_t param_1)
             puVar9 = &processed_var_7836_ptr;
             goto LAB_1807c5413;
           }
-          iVar2 = FUN_18076b6f0(&processed_var_8044_ptr,acStack_628,0xd);
+          iVar2 = SystemCore_Optimizer(&processed_var_8044_ptr,acStack_628,0xd);
           if (iVar2 == 0) {
             pcVar7 = acStack_628 + 0x200;
             uStack_658 = CONCAT44(uStack_658._4_4_,iVar3 + 1);
             puVar9 = &processed_var_8044_ptr;
             goto LAB_1807c5424;
           }
-          iVar2 = FUN_18076b6f0(&processed_var_8052_ptr,acStack_628,0xe);
+          iVar2 = SystemCore_Optimizer(&processed_var_8052_ptr,acStack_628,0xe);
           if (iVar2 == 0) {
             pcVar7 = acStack_628 + 0x200;
             uStack_658 = CONCAT44(uStack_658._4_4_,iVar3 + 1);
@@ -152,25 +158,25 @@ LAB_1807c5413:
 LAB_1807c5424:
           uStack_648 = 0;
           uStack_650 = 3;
-          FUN_180772fe0(param_1,8,puVar9,pcVar7);
+          SystemMemory_Controller(param_1,8,puVar9,pcVar7);
         }
         iVar2 = 0;
         cStack_638 = '\0';
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),acStack_637);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),acStack_637);
+          if (iVar3 != 0) goto UISystem_StateManager;
         } while (((acStack_637[0] == ' ') || (acStack_637[0] == '\t')) ||
                 ((acStack_637[0] == '\n' || (acStack_637[0] == '\r'))));
-        iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+        iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
         if (iVar3 != 0) break;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar3 != 0) goto UISystem_StateManager;
         } while (cStack_638 != '<');
         pcVar7 = acStack_628;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar3 != 0) goto FUN_1807c55e3;
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar3 != 0) goto UISystem_StateManager;
           if (iVar2 < 0x200) {
             iVar2 = iVar2 + 1;
             *pcVar7 = cStack_638;
@@ -179,11 +185,11 @@ LAB_1807c5424:
         } while (cStack_638 != '>');
         iVar3 = 0;
         lVar8 = 0;
-        iVar4 = FUN_1807c62b0(param_1,0);
+        iVar4 = UIComponent_AdvancedManager(param_1,0);
         if (iVar4 != 0) break;
         do {
-          iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
-          if (iVar4 != 0) goto FUN_1807c55e3;
+          iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+          if (iVar4 != 0) goto UISystem_StateManager;
           if (lVar8 < 0x200) {
             iVar3 = iVar3 + 1;
             acStack_228[lVar8] = cStack_638;
@@ -191,21 +197,21 @@ LAB_1807c5424:
           }
         } while (cStack_638 != '<');
         iVar3 = iVar3 + -1;
-        iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_638);
+        iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_638);
         if (iVar4 != 0) break;
         if (cStack_638 == '/') {
           do {
-            iVar4 = FUN_180769720();
-            if (iVar4 != 0) goto FUN_1807c55e3;
+            iVar4 = SystemMonitor();
+            if (iVar4 != 0) goto UISystem_StateManager;
           } while (cStack_638 != '>');
         }
         else {
-          iVar4 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xfffffffe,1);
+          iVar4 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xfffffffe,1);
           if (iVar4 != 0) break;
         }
         if (0x1ff < (uint64_t)(int64_t)(iVar2 + -1)) {
 FUN_1807c55fe:
-          FUN_1808fcdc8();
+          UltraHighFreq_ThreadManager1();
           pcVar1 = (code *)swi(3);
           (*pcVar1)();
           return;
@@ -216,7 +222,7 @@ FUN_1807c55fe:
       } while( true );
     }
   }
-FUN_1807c55e3:
+UISystem_StateManager:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_678);
 }
@@ -245,30 +251,30 @@ void FUN_1807c50a5(void)
   char cStack0000000000000040;
   char cStack0000000000000041;
   
-  iVar2 = FUN_18076b6f0(&processed_var_8000_ptr,&stack0x00000050,in_EAX + 0xc);
+  iVar2 = SystemCore_Optimizer(&processed_var_8000_ptr,&stack0x00000050,in_EAX + 0xc);
   if (iVar2 != 0) {
 LAB_1807c55cb:
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x550) ^ (uint64_t)&stack0x00000000);
   }
-  iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,&stack0x00000050,0x10);
+  iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,&stack0x00000050,0x10);
   while (iVar2 != 0) {
     iVar2 = 0;
     cStack0000000000000040 = '\0';
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
       if (iVar3 != 0) goto LAB_1807c55cb;
     } while ((((cStack0000000000000041 == ' ') || (cStack0000000000000041 == '\t')) ||
              (cStack0000000000000041 == '\n')) || (cStack0000000000000041 == '\r'));
-    iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
+    iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
     if (iVar3 != 0) goto LAB_1807c55cb;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
     } while (cStack0000000000000040 != '<');
     pcVar6 = &stack0x00000050;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
       if (iVar2 < 0x200) {
         iVar2 = iVar2 + 1;
@@ -278,10 +284,10 @@ LAB_1807c55cb:
     } while (cStack0000000000000040 != '>');
     iVar8 = 0;
     lVar7 = 0;
-    iVar3 = FUN_1807c62b0();
+    iVar3 = UIComponent_AdvancedManager();
     if (iVar3 != 0) goto LAB_1807c55cb;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
       if (lVar7 < 0x200) {
         iVar8 = iVar8 + 1;
@@ -290,23 +296,23 @@ LAB_1807c55cb:
       }
     } while (cStack0000000000000040 != '<');
     unaff_R15D = iVar8 + -1;
-    iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+    iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
     if (iVar3 != 0) goto LAB_1807c55cb;
     if (cStack0000000000000040 == '/') {
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+        iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
         if (iVar3 != 0) goto LAB_1807c55cb;
       } while (cStack0000000000000040 != '>');
     }
     else {
-      iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xfffffffe,1);
+      iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xfffffffe,1);
       if (iVar3 != 0) goto LAB_1807c55cb;
     }
     if (0x1ff < (uint64_t)(int64_t)(iVar2 + -1)) goto FUN_1807c55fe;
     (&stack0x00000050)[iVar2 + -1] = 0;
     if (0x1ff < (uint64_t)(int64_t)unaff_R15D) goto FUN_1807c55fe;
     *(int8_t *)(unaff_RBP + 0x350 + (int64_t)unaff_R15D) = 0;
-    iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,&stack0x00000050,0x10);
+    iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,&stack0x00000050,0x10);
   }
   do {
     if (unaff_R15D == 0) {
@@ -327,36 +333,36 @@ LAB_1807c55cb:
         lVar5 = lVar5 + 1;
       } while (lVar7 < 0x1ff);
       *(int8_t *)(unaff_RBP + 0x150 + lVar5) = 0;
-      iVar2 = FUN_18076b6f0(&processed_var_8016_ptr,&stack0x00000050,0x11);
+      iVar2 = SystemCore_Optimizer(&processed_var_8016_ptr,&stack0x00000050,0x11);
       if (iVar2 == 0) {
-        FUN_18076b6f0(&processed_var_8036_ptr,unaff_RBP + 0x150,5);
+        SystemCore_Optimizer(&processed_var_8036_ptr,unaff_RBP + 0x150,5);
         goto LAB_1807c5424;
       }
-      iVar2 = FUN_18076b6f0(&processed_var_8044_ptr,&stack0x00000050,0xd);
-      if ((iVar2 == 0) || (iVar2 = FUN_18076b6f0(&processed_var_8052_ptr,&stack0x00000050,0xe), iVar2 == 0))
+      iVar2 = SystemCore_Optimizer(&processed_var_8044_ptr,&stack0x00000050,0xd);
+      if ((iVar2 == 0) || (iVar2 = SystemCore_Optimizer(&processed_var_8052_ptr,&stack0x00000050,0xe), iVar2 == 0))
       goto LAB_1807c5424;
     }
     else {
       func_0x00018076b870(&stack0x00000050);
 LAB_1807c5424:
-      FUN_180772fe0();
+      SystemMemory_Controller();
     }
     iVar2 = 0;
     cStack0000000000000040 = '\0';
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
       if (iVar3 != 0) goto LAB_1807c55cb;
     } while (((cStack0000000000000041 == ' ') || (cStack0000000000000041 == '\t')) ||
             ((cStack0000000000000041 == '\n' || (cStack0000000000000041 == '\r'))));
-    iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
+    iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
     if (iVar3 != 0) goto LAB_1807c55cb;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
     } while (cStack0000000000000040 != '<');
     pcVar6 = &stack0x00000050;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
       if (iVar2 < 0x200) {
         iVar2 = iVar2 + 1;
@@ -366,10 +372,10 @@ LAB_1807c5424:
     } while (cStack0000000000000040 != '>');
     iVar8 = 0;
     lVar7 = 0;
-    iVar3 = FUN_1807c62b0();
+    iVar3 = UIComponent_AdvancedManager();
     if (iVar3 != 0) goto LAB_1807c55cb;
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if (iVar3 != 0) goto LAB_1807c55cb;
       if (lVar7 < 0x200) {
         iVar8 = iVar8 + 1;
@@ -378,21 +384,21 @@ LAB_1807c5424:
       }
     } while (cStack0000000000000040 != '<');
     unaff_R15D = iVar8 + -1;
-    iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+    iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
     if (iVar3 != 0) goto LAB_1807c55cb;
     if (cStack0000000000000040 == '/') {
       do {
-        iVar3 = FUN_180769720();
+        iVar3 = SystemMonitor();
         if (iVar3 != 0) goto LAB_1807c55cb;
       } while (cStack0000000000000040 != '>');
     }
     else {
-      iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xfffffffe,1);
+      iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xfffffffe,1);
       if (iVar3 != 0) goto LAB_1807c55cb;
     }
     if (0x1ff < (uint64_t)(int64_t)(iVar2 + -1)) {
 FUN_1807c55fe:
-      FUN_1808fcdc8();
+      UltraHighFreq_ThreadManager1();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
       return;
@@ -408,8 +414,8 @@ FUN_1807c55fe:
 
 
 
-// 函数: void FUN_1807c55e3(void)
-void FUN_1807c55e3(void)
+// 函数: void UISystem_StateManager(void)
+void UISystem_StateManager(void)
 
 {
   int64_t unaff_RBP;
@@ -429,7 +435,7 @@ void FUN_1807c55fe(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -464,39 +470,39 @@ void FUN_1807c5610(int64_t param_1)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
   auStack_224[0] = 0;
-  iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+  iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
   if (iVar3 == 0) {
     lVar5 = 0;
     do {
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+        iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
         if ((iVar3 != 0) || (0x1ff < lVar5)) goto FUN_1807c5975;
         acStack_219[lVar5 + 1] = cStack_228;
         lVar5 = lVar5 + 1;
         if (cStack_228 == '\n') goto LAB_1807c56d7;
       } while (cStack_228 != '\r');
-      FUN_180769720(*(uint64_t *)(param_1 + 0x170),acStack_227);
-      FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+      SystemMonitor(*(uint64_t *)(param_1 + 0x170),acStack_227);
+      MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
     } while (acStack_227[0] == '\n');
 LAB_1807c56d7:
-    iVar3 = FUN_18076b6f0(acStack_219 + 1,&processed_var_7568_ptr,7);
+    iVar3 = SystemCore_Optimizer(acStack_219 + 1,&processed_var_7568_ptr,7);
     if (iVar3 == 0) {
-      iVar3 = FUN_1807c62b0(param_1,0);
+      iVar3 = UIComponent_AdvancedManager(param_1,0);
       while (iVar3 == 0) {
         lVar5 = 0;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
           if (iVar3 != 0) break;
           if (lVar5 < 0x200) {
             acStack_219[lVar5 + 1] = cStack_228;
             lVar5 = lVar5 + 1;
           }
         } while (cStack_228 != ':');
-        iVar3 = FUN_18076b6f0(&processed_var_8064_ptr,acStack_219 + 1,7);
-        if ((iVar3 != 0) || (iVar3 = FUN_1807c62b0(param_1,0), iVar3 != 0)) break;
+        iVar3 = SystemCore_Optimizer(&processed_var_8064_ptr,acStack_219 + 1,7);
+        if ((iVar3 != 0) || (iVar3 = UIComponent_AdvancedManager(param_1,0), iVar3 != 0)) break;
         lVar5 = 0;
         do {
-          iVar3 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+          iVar3 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
           if (iVar3 != 0) break;
           if (lVar5 < 0x1ff) {
             acStack_219[lVar5 + 1] = cStack_228;
@@ -505,7 +511,7 @@ LAB_1807c56d7:
         } while (cStack_228 != ',');
         if (0x1ff < lVar5 - 1U) {
 FUN_1807c5995:
-          FUN_1808fcdc8();
+          UltraHighFreq_ThreadManager1();
           pcVar1 = (code *)swi(3);
           (*pcVar1)();
           return;
@@ -515,14 +521,14 @@ FUN_1807c5995:
         uStack_238 = 0;
         uStack_240 = 1;
         iStack_248 = 4;
-        FUN_180772fe0(param_1,8,&processed_var_8052_ptr,auStack_224);
-        iVar3 = FUN_1807c62b0(param_1,0);
+        SystemMemory_Controller(param_1,8,&processed_var_8052_ptr,auStack_224);
+        iVar3 = UIComponent_AdvancedManager(param_1,0);
         if (iVar3 != 0) break;
         iVar3 = 0;
         uVar6 = 0;
 LAB_1807c5810:
         do {
-          iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+          iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
           if ((iVar4 != 0) || (cStack_228 == '\n')) break;
           if (cStack_228 != '\r') {
             if ((int64_t)uVar6 < 0x1ff) {
@@ -532,21 +538,21 @@ LAB_1807c5810:
             }
             if (cStack_228 != '\r') goto LAB_1807c5810;
           }
-          FUN_180769720(*(uint64_t *)(param_1 + 0x170),acStack_227);
-          FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+          SystemMonitor(*(uint64_t *)(param_1 + 0x170),acStack_227);
+          MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
         } while (acStack_227[0] == '\n');
         if (0x1ff < uVar6) goto FUN_1807c5995;
         iStack_248 = iVar3 + 1;
         uStack_238 = 0;
         uStack_240 = 3;
         acStack_219[uVar6 + 1] = '\0';
-        FUN_180772fe0(param_1,8,&rendering_buffer_2136_ptr,acStack_219 + 1);
-        iVar3 = FUN_1807c62b0(param_1,0);
+        SystemMemory_Controller(param_1,8,&rendering_buffer_2136_ptr,acStack_219 + 1);
+        iVar3 = UIComponent_AdvancedManager(param_1,0);
         if (iVar3 != 0) break;
         iVar3 = 0;
         uVar6 = 0;
         do {
-          iVar4 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+          iVar4 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
           if (iVar4 != 0) break;
           if (((cStack_228 != '\n') && (cStack_228 != '\r')) && ((int64_t)uVar6 < 0x1ff)) {
             iVar3 = iVar3 + 1;
@@ -560,8 +566,8 @@ LAB_1807c5810:
         uStack_240 = 3;
         acStack_219[uVar6 + 1] = '\0';
         iStack_248 = iVar3;
-        FUN_180772fe0(param_1,8,&processed_var_7836_ptr,acStack_219 + 1);
-        iVar3 = FUN_1807c62b0(param_1,0);
+        SystemMemory_Controller(param_1,8,&processed_var_7836_ptr,acStack_219 + 1);
+        iVar3 = UIComponent_AdvancedManager(param_1,0);
       }
     }
   }
@@ -593,34 +599,34 @@ void FUN_1807c565a(void)
   lVar4 = 0;
   do {
     do {
-      iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+      iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
       if ((iVar3 != 0) || (0x1ff < lVar4)) goto LAB_1807c5965;
       (&stack0x00000050)[lVar4] = cStack0000000000000040;
       lVar4 = lVar4 + 1;
       if (cStack0000000000000040 == '\n') goto LAB_1807c56d7;
     } while (cStack0000000000000040 != '\r');
-    FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
-    FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
+    SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
+    MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
   } while (cStack0000000000000041 == '\n');
 LAB_1807c56d7:
-  iVar3 = FUN_18076b6f0(&stack0x00000050,&processed_var_7568_ptr,7);
+  iVar3 = SystemCore_Optimizer(&stack0x00000050,&processed_var_7568_ptr,7);
   if (iVar3 == 0) {
-    iVar3 = FUN_1807c62b0();
+    iVar3 = UIComponent_AdvancedManager();
     while (iVar3 == 0) {
       lVar4 = 0;
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+        iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
         if (iVar3 != 0) break;
         if (lVar4 < 0x200) {
           (&stack0x00000050)[lVar4] = cStack0000000000000040;
           lVar4 = lVar4 + 1;
         }
       } while (cStack0000000000000040 != ':');
-      iVar3 = FUN_18076b6f0(&processed_var_8064_ptr,&stack0x00000050,7);
-      if ((iVar3 != 0) || (iVar3 = FUN_1807c62b0(), iVar3 != 0)) break;
+      iVar3 = SystemCore_Optimizer(&processed_var_8064_ptr,&stack0x00000050,7);
+      if ((iVar3 != 0) || (iVar3 = UIComponent_AdvancedManager(), iVar3 != 0)) break;
       lVar4 = 0;
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+        iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
         if (iVar3 != 0) break;
         if (lVar4 < 0x1ff) {
           (&stack0x00000050)[lVar4] = cStack0000000000000040;
@@ -629,20 +635,20 @@ LAB_1807c56d7:
       } while (cStack0000000000000040 != ',');
       if (0x1ff < lVar4 - 1U) {
 FUN_1807c5995:
-        FUN_1808fcdc8();
+        UltraHighFreq_ThreadManager1();
         pcVar1 = (code *)swi(3);
         (*pcVar1)();
         return;
       }
       (&stack0x0000004f)[lVar4] = 0;
       uStack0000000000000044 = atoi(&stack0x00000050);
-      FUN_180772fe0();
-      iVar3 = FUN_1807c62b0();
+      SystemMemory_Controller();
+      iVar3 = UIComponent_AdvancedManager();
       if (iVar3 != 0) break;
       uVar5 = 0;
 LAB_1807c5810:
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+        iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
         if ((iVar3 != 0) || (cStack0000000000000040 == '\n')) break;
         if (cStack0000000000000040 != '\r') {
           if ((int64_t)uVar5 < 0x1ff) {
@@ -651,17 +657,17 @@ LAB_1807c5810:
           }
           if (cStack0000000000000040 != '\r') goto LAB_1807c5810;
         }
-        FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
-        FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
+        SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),(int64_t)&stack0x00000040 + 1);
+        MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0xffffffff,1);
       } while (cStack0000000000000041 == '\n');
       if (0x1ff < uVar5) goto FUN_1807c5995;
       (&stack0x00000050)[uVar5] = 0;
-      FUN_180772fe0();
-      iVar3 = FUN_1807c62b0();
+      SystemMemory_Controller();
+      iVar3 = UIComponent_AdvancedManager();
       if (iVar3 != 0) break;
       uVar5 = 0;
       do {
-        iVar3 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+        iVar3 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
         if (iVar3 != 0) break;
         if (((cStack0000000000000040 != '\n') && (cStack0000000000000040 != '\r')) &&
            ((int64_t)uVar5 < 0x1ff)) {
@@ -672,8 +678,8 @@ LAB_1807c5810:
       } while (cVar2 == '\0');
       if (0x1ff < uVar5) goto FUN_1807c5995;
       (&stack0x00000050)[uVar5] = 0;
-      FUN_180772fe0();
-      iVar3 = FUN_1807c62b0();
+      SystemMemory_Controller();
+      iVar3 = UIComponent_AdvancedManager();
     }
   }
 LAB_1807c5965:
@@ -707,7 +713,7 @@ void FUN_1807c5995(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -736,38 +742,38 @@ void FUN_1807c59a0(int64_t param_1)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
-  iVar2 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
-  if (((iVar2 == 0) && (iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,0), iVar2 == 0)) &&
-     (iVar2 = FUN_18076b6f0(auStack_218,&processed_var_8072_ptr,10), iVar2 == 0)) {
-    iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,0);
+  iVar2 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
+  if (((iVar2 == 0) && (iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,0), iVar2 == 0)) &&
+     (iVar2 = SystemCore_Optimizer(auStack_218,&processed_var_8072_ptr,10), iVar2 == 0)) {
+    iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,0);
     while (iVar2 == 0) {
-      iVar2 = FUN_18076b6f0(&processed_var_6616_ptr,auStack_218,4);
+      iVar2 = SystemCore_Optimizer(&processed_var_6616_ptr,auStack_218,4);
       if (iVar2 == 0) {
-        iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,&iStack_228);
+        iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,&iStack_228);
         if (iVar2 != 0) break;
         iStack_248 = iStack_228 + 1;
         uStack_238 = 0;
         uStack_240 = 3;
-        FUN_180772fe0(param_1,8,&processed_var_7836_ptr);
+        SystemMemory_Controller(param_1,8,&processed_var_7836_ptr);
       }
       else {
-        iVar2 = FUN_18076b6f0(&processed_var_8084_ptr,auStack_218,5);
+        iVar2 = SystemCore_Optimizer(&processed_var_8084_ptr,auStack_218,5);
         if (iVar2 == 0) {
-          iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,&iStack_228);
+          iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,&iStack_228);
           if (iVar2 != 0) break;
           iStack_248 = iStack_228 + 1;
           uStack_238 = 0;
           uStack_240 = 3;
-          FUN_180772fe0(param_1,8,&rendering_buffer_2136_ptr);
+          SystemMemory_Controller(param_1,8,&rendering_buffer_2136_ptr);
         }
         else {
-          iVar2 = FUN_18076b6f0(&processed_var_8092_ptr,auStack_218,6);
+          iVar2 = SystemCore_Optimizer(&processed_var_8092_ptr,auStack_218,6);
           if (iVar2 == 0) {
             uStack_224 = 0;
-            iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,&iStack_228);
+            iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,&iStack_228);
             if (iVar2 != 0) break;
             if (0x1ff < (uint64_t)(int64_t)iStack_228) {
-              FUN_1808fcdc8();
+              UltraHighFreq_ThreadManager1();
               pcVar1 = (code *)swi(3);
               (*pcVar1)();
               return;
@@ -777,16 +783,16 @@ void FUN_1807c59a0(int64_t param_1)
             uStack_238 = 0;
             uStack_240 = 1;
             iStack_248 = 4;
-            FUN_180772fe0(param_1,8,&processed_var_8052_ptr);
+            SystemMemory_Controller(param_1,8,&processed_var_8052_ptr);
           }
           else {
-            iVar2 = FUN_18076b6f0(&processed_var_8104_ptr,auStack_218,0xf);
-            if (((iVar2 == 0) || (iVar2 = FUN_18076b6f0(&processed_var_6376_ptr,auStack_218,7), iVar2 == 0))
-               && (iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,0), iVar2 != 0)) break;
+            iVar2 = SystemCore_Optimizer(&processed_var_8104_ptr,auStack_218,0xf);
+            if (((iVar2 == 0) || (iVar2 = SystemCore_Optimizer(&processed_var_6376_ptr,auStack_218,7), iVar2 == 0))
+               && (iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,0), iVar2 != 0)) break;
           }
         }
       }
-      iVar2 = FUN_1807c44f0(param_1,auStack_218,0x200,0);
+      iVar2 = SystemCore_MemoryManager0(param_1,auStack_218,0x200,0);
     }
   }
                     // WARNING: Subroutine does not return
@@ -807,45 +813,45 @@ void FUN_1807c5a20(void)
   int64_t unaff_RBP;
   int in_stack_00000040;
   
-  iVar2 = FUN_1807c44f0();
+  iVar2 = SystemCore_MemoryManager0();
   while (iVar2 == 0) {
-    iVar2 = FUN_18076b6f0(&processed_var_6616_ptr,&stack0x00000050,4);
+    iVar2 = SystemCore_Optimizer(&processed_var_6616_ptr,&stack0x00000050,4);
     if (iVar2 == 0) {
-      iVar2 = FUN_1807c44f0();
+      iVar2 = SystemCore_MemoryManager0();
       if (iVar2 != 0) break;
-      FUN_180772fe0();
+      SystemMemory_Controller();
     }
     else {
-      iVar2 = FUN_18076b6f0(&processed_var_8084_ptr,&stack0x00000050,5);
+      iVar2 = SystemCore_Optimizer(&processed_var_8084_ptr,&stack0x00000050,5);
       if (iVar2 == 0) {
-        iVar2 = FUN_1807c44f0();
+        iVar2 = SystemCore_MemoryManager0();
         if (iVar2 != 0) break;
-        FUN_180772fe0();
+        SystemMemory_Controller();
       }
       else {
-        iVar2 = FUN_18076b6f0(&processed_var_8092_ptr,&stack0x00000050,6);
+        iVar2 = SystemCore_Optimizer(&processed_var_8092_ptr,&stack0x00000050,6);
         if (iVar2 == 0) {
-          iVar2 = FUN_1807c44f0();
+          iVar2 = SystemCore_MemoryManager0();
           if (iVar2 != 0) break;
           if (0x1ff < (uint64_t)(int64_t)in_stack_00000040) {
-            FUN_1808fcdc8();
+            UltraHighFreq_ThreadManager1();
             pcVar1 = (code *)swi(3);
             (*pcVar1)();
             return;
           }
           (&stack0x00000050)[in_stack_00000040] = 0;
           atoi(&stack0x00000050);
-          FUN_180772fe0();
+          SystemMemory_Controller();
         }
         else {
-          iVar2 = FUN_18076b6f0(&processed_var_8104_ptr,&stack0x00000050,0xf);
+          iVar2 = SystemCore_Optimizer(&processed_var_8104_ptr,&stack0x00000050,0xf);
           if (((iVar2 == 0) ||
-              (iVar2 = FUN_18076b6f0(&processed_var_6376_ptr,&stack0x00000050,7), iVar2 == 0)) &&
-             (iVar2 = FUN_1807c44f0(), iVar2 != 0)) break;
+              (iVar2 = SystemCore_Optimizer(&processed_var_6376_ptr,&stack0x00000050,7), iVar2 == 0)) &&
+             (iVar2 = SystemCore_MemoryManager0(), iVar2 != 0)) break;
         }
       }
     }
-    iVar2 = FUN_1807c44f0();
+    iVar2 = SystemCore_MemoryManager0();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x150) ^ (uint64_t)&stack0x00000000);
@@ -877,7 +883,7 @@ void FUN_1807c5c49(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -911,43 +917,43 @@ void FUN_1807c5c50(int64_t param_1)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
-  iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+  iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
   if (iVar1 == 0) {
 LAB_1807c5ca0:
-    iVar1 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_227);
+    iVar1 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_227);
     if (iVar1 == 0) {
       if ((((cStack_227 != ' ') && (cStack_227 != '\t')) && (cStack_227 != '\n')) &&
          (cStack_227 != '\r')) {
-        iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+        iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
         if ((iVar1 != 0) ||
-           (iVar1 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228), iVar1 != 0))
+           (iVar1 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228), iVar1 != 0))
         goto FUN_1807c5ea9;
         if ((cStack_228 == '#') || (cStack_228 == '[')) {
           do {
             do {
-              iVar1 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_228);
+              iVar1 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_228);
               if (iVar1 != 0) goto FUN_1807c5ea9;
               if (cStack_228 == '\n') goto LAB_1807c5ca0;
             } while (cStack_228 != '\r');
-            FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_226);
-            FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+            SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_226);
+            MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
           } while (cStack_226 == '\n');
         }
         else {
-          iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+          iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
           if (iVar1 != 0) goto FUN_1807c5ea9;
           iVar1 = 0;
           lVar3 = 0;
           do {
-            iVar2 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_225);
+            iVar2 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_225);
             if (iVar2 != 0) goto FUN_1807c5ea9;
           } while (((cStack_225 == ' ') || (cStack_225 == '\t')) ||
                   ((cStack_225 == '\n' || (cStack_225 == '\r'))));
-          iVar2 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+          iVar2 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
           if (iVar2 != 0) goto FUN_1807c5ea9;
 LAB_1807c5de0:
           do {
-            iVar2 = FUN_180769720(*(uint64_t *)(param_1 + 0x170),&cStack_224);
+            iVar2 = SystemMonitor(*(uint64_t *)(param_1 + 0x170),&cStack_224);
             if (iVar2 != 0) goto FUN_1807c5ea9;
             if (cStack_224 == '\n') break;
             if (cStack_224 != '\r') {
@@ -958,8 +964,8 @@ LAB_1807c5de0:
               }
               if (cStack_224 != '\r') goto LAB_1807c5de0;
             }
-            FUN_180769720(*(uint64_t *)(param_1 + 0x170),acStack_223);
-            FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
+            SystemMonitor(*(uint64_t *)(param_1 + 0x170),acStack_223);
+            MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0xffffffff,1);
           } while (acStack_223[0] == '\n');
           acStack_218[lVar3] = '\0';
           iVar2 = func_0x00018076b8c0(acStack_218);
@@ -967,7 +973,7 @@ LAB_1807c5de0:
           iStack_248 = iVar1 + 1;
           uStack_238 = 0;
           uStack_240 = 3;
-          FUN_180772fe0(param_1,8,&processed_var_7836_ptr,acStack_218);
+          SystemMemory_Controller(param_1,8,&processed_var_7836_ptr,acStack_218);
         }
       }
       goto LAB_1807c5ca0;

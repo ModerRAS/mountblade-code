@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -256,9 +257,9 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
   if (plStack_560 != (int64_t *)0x0) {
     (**(code **)(*plStack_560 + 0x28))();
   }
-  lVar5 = FUN_180299eb0(uVar6,0,alStack_330,&uStack_5e4);
+  lVar5 = UIRenderingEngine(uVar6,0,alStack_330,&uStack_5e4);
   param_1[4] = lVar5;
-  lVar5 = FUN_18023a940(param_1[(uint64_t)*(byte *)(param_1 + 3) + 0xe]);
+  lVar5 = SystemCore_Scheduler(param_1[(uint64_t)*(byte *)(param_1 + 3) + 0xe]);
   if ((*(int64_t *)(lVar5 + 8) == 0) && (*(int64_t *)(lVar5 + 0x10) == 0)) {
     pcVar9 = *(code **)(*param_2 + 0xd8);
     uVar6 = FUN_1800bd5c0();
@@ -345,12 +346,12 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
   *(int32_t *)(param_2 + 0x1d) = 0x3f800000;
   *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f800000;
   if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
-    FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
+    UltraHighFreq_DatabaseHandler1(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
   }
   else {
     (**(code **)((void *)*param_2 + 0x250))(param_2);
   }
-  lVar5 = FUN_18023a940(param_1[0x10]);
+  lVar5 = SystemCore_Scheduler(param_1[0x10]);
   if ((*(int64_t *)(lVar5 + 8) == 0) && (*(int64_t *)(lVar5 + 0x10) == 0)) {
     pcVar9 = *(code **)(*param_2 + 0xd8);
     uVar6 = FUN_1800bd5c0();
@@ -408,7 +409,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
   if (plStack_500 != (int64_t *)0x0) {
     (**(code **)(*plStack_500 + 0x28))();
   }
-  lStack_168 = FUN_180299eb0(uVar6,0,alStack_2d0,&uStack_5e3);
+  lStack_168 = UIRenderingEngine(uVar6,0,alStack_2d0,&uStack_5e3);
   lVar5 = *(int64_t *)(param_1[0x13] + 0x1b8);
   cVar3 = *(char *)(lVar5 + 0x38c);
   if (cVar3 == '\t') {
@@ -498,12 +499,12 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
     *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f000000;
     fStack_3c4 = fVar15;
     if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
-      FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
+      UltraHighFreq_DatabaseHandler1(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
     }
     else {
       (**(code **)((void *)*param_2 + 0x250))(param_2);
     }
-    lVar5 = FUN_18023a940(param_1[0x12]);
+    lVar5 = SystemCore_Scheduler(param_1[0x12]);
     if ((*(int64_t *)(lVar5 + 8) == 0) && (*(int64_t *)(lVar5 + 0x10) == 0)) {
       pcVar9 = *(code **)(*param_2 + 0xd8);
       uVar6 = FUN_1800bd5c0();
@@ -561,7 +562,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
     if (plStack_4a0 != (int64_t *)0x0) {
       (**(code **)(*plStack_4a0 + 0x28))();
     }
-    lStack_128 = FUN_180299eb0(uVar6,0,alStack_270,&uStack_5e2);
+    lStack_128 = UIRenderingEngine(uVar6,0,alStack_270,&uStack_5e2);
     lVar5 = *(int64_t *)(param_1[0x13] + 0x1b8);
     cVar3 = *(char *)(lVar5 + 0x38c);
     if (cVar3 == '\t') {
@@ -671,12 +672,12 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
       *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f800000;
       fStack_384 = fVar15;
       if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
-        FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
+        UltraHighFreq_DatabaseHandler1(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
       }
       else {
         (**(code **)((void *)*param_2 + 0x250))(param_2);
       }
-      lVar5 = FUN_18023a940(param_1[0x12]);
+      lVar5 = SystemCore_Scheduler(param_1[0x12]);
       if ((*(int64_t *)(lVar5 + 8) == 0) && (*(int64_t *)(lVar5 + 0x10) == 0)) {
         pcVar9 = *(code **)(*param_2 + 0xd8);
         uVar6 = FUN_1800bd5c0();
@@ -734,7 +735,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
       if (plStack_440 != (int64_t *)0x0) {
         (**(code **)(*plStack_440 + 0x28))();
       }
-      lStack_1a8 = FUN_180299eb0(uVar6,0,alStack_210,&uStack_5e1);
+      lStack_1a8 = UIRenderingEngine(uVar6,0,alStack_210,&uStack_5e1);
       lVar5 = *(int64_t *)(param_1[0x13] + 0x1b8);
       cVar3 = *(char *)(lVar5 + 0x38c);
       if (cVar3 == '\t') {
@@ -813,7 +814,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
         uStack_34c = 0;
         uStack_33c = 0x3f800000;
         fStack_344 = fVar15;
-        lVar8 = FUN_18023a940(param_1[0x11],fStack_348);
+        lVar8 = SystemCore_Scheduler(param_1[0x11],fStack_348);
         if ((*(int64_t *)(lVar8 + 8) == 0) && (*(int64_t *)(lVar8 + 0x10) == 0)) {
           pcVar9 = *(code **)(*param_2 + 0xd8);
           uVar6 = FUN_1800bd5c0();
@@ -840,7 +841,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
         *(int32_t *)(param_2 + 0x1d) = 0x3e40c0c1;
         *(float *)((int64_t)param_2 + 0xec) = (fVar13 + 1.0) * 0.5;
         if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
-          FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
+          UltraHighFreq_DatabaseHandler1(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
         }
         else {
           (**(code **)((void *)*param_2 + 0x250))(param_2);

@@ -42,7 +42,7 @@ void FUN_180077710(int64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180077750(int64_t param_1,uint *param_2,float *param_3,int64_t param_4,
+uint64_t SystemHealthMonitor(int64_t param_1,uint *param_2,float *param_3,int64_t param_4,
                        int64_t param_5)
 
 {

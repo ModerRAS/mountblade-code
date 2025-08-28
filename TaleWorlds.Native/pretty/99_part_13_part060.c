@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -37,9 +38,9 @@ void FUN_1808cff60(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   uint64_t uStack_40;
   
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
-  iVar1 = FUN_1808b2f30(param_1,5);
-  if (((iVar1 == 0) && (iVar1 = FUN_1808b2f30(param_1,6), iVar1 == 0)) &&
-     (iVar1 = FUN_1808b2f30(param_1,7), iVar1 == 0)) {
+  iVar1 = SystemDataFlowProcessor(param_1,5);
+  if (((iVar1 == 0) && (iVar1 = SystemDataFlowProcessor(param_1,6), iVar1 == 0)) &&
+     (iVar1 = SystemDataFlowProcessor(param_1,7), iVar1 == 0)) {
     auStack_70[0] = 0x3f800000;
     *(int32_t *)(param_1 + 0x1d8) = param_7;
     iVar1 = FUN_18073ca90(*(uint64_t *)(param_1 + 0xf0),auStack_70);

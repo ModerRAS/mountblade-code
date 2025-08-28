@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 // TaleWorlds.Native - 核心引擎基础函数和全局变量模块
 // 文件说明：核心引擎基础函数和全局变量模块，负责游戏引擎的基础功能定义和全局数据管理
 // 作者：Claude Code
@@ -697,9 +701,9 @@ void core_engine_module_cleanup(void)
 // 系统调用函数别名
 #define core_engine_system_call_handler FUN_180086aa0
 #define core_engine_interrupt_handler FUN_180086b40
-#define core_engine_exception_handler FUN_180059ba0
+#define core_engine_exception_handler DataValidator0
 #define core_engine_thread_manager FUN_180059620
-#define core_engine_process_scheduler FUN_180044a30
+#define core_engine_process_scheduler CoreSystem_MessageHandler
 
 // 资源管理函数别名
 #define core_engine_resource_manager FUN_180046860
@@ -745,7 +749,7 @@ void core_engine_module_cleanup(void)
 
 // 脚本系统函数别名
 #define core_engine_script_initializer FUN_18015c190
-#define core_engine_script_executor FUN_180049b30
+#define core_engine_script_executor SystemCore_EventHandler
 #define core_engine_script_compiler FUN_18016f990
 #define core_engine_script_debugger FUN_180170ba0
 #define core_engine_script_gc FUN_180170da0

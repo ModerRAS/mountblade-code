@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part051.c - 4 个函数
 
 // 函数: void FUN_180230250(int64_t param_1)
@@ -82,7 +90,7 @@ uint64_t FUN_1802302d0(int64_t *param_1)
         *(int8_t *)(lVar15 + 0x58) = *(int8_t *)(lVar15 + 0x30);
         if (*(int *)(lVar15 + 0x3c) < *(int *)(lVar15 + 0x14)) {
           *(int *)(lVar15 + 0x3c) = *(int *)(lVar15 + 0x14);
-          FUN_1800846d0(piVar1);
+          CoreEngine_DataProcessor(piVar1);
           iVar11 = *piVar1;
         }
                     // WARNING: Subroutine does not return
@@ -228,19 +236,19 @@ int FUN_1802309b0(int64_t param_1,float *param_2,float *param_3,uint64_t param_4
   fVar4 = *param_2;
   uStack_68 = 0;
   auStackX_10[2] = param_4;
-  uVar8 = FUN_180235000();
+  uVar8 = SystemCore_DataSerializer();
   auStackX_10[0] = CONCAT44(auStackX_10[0]._4_4_,uVar8);
   uStack_54 = 0x7f7fffff;
   if (ABS(fVar1 - fVar2) <= fVar3 - fVar4) {
     fStack_60 = *param_3;
     fStack_5c = param_3[1];
     fStack_58 = param_3[2];
-    uVar8 = FUN_180235000(param_1,&fStack_60);
+    uVar8 = SystemCore_DataSerializer(param_1,&fStack_60);
     fStack_60 = *param_3;
     fStack_58 = param_2[2];
     fStack_5c = *param_5 + param_3[1];
     uStack_54 = 0x7f7fffff;
-    uVar9 = FUN_180235000(param_1,&fStack_60);
+    uVar9 = SystemCore_DataSerializer(param_1,&fStack_60);
     fStack_5c = *param_5 + param_2[1];
     fStack_60 = *param_2;
   }
@@ -249,12 +257,12 @@ int FUN_1802309b0(int64_t param_1,float *param_2,float *param_3,uint64_t param_4
     if (fStack_5c - param_2[1] <= 0.0) {
       fStack_60 = *param_3;
       fStack_58 = param_2[2];
-      uVar8 = FUN_180235000(param_1,&fStack_60);
+      uVar8 = SystemCore_DataSerializer(param_1,&fStack_60);
       fStack_58 = param_3[2];
       uStack_54 = 0x7f7fffff;
       fStack_60 = *param_3 + *param_5;
       fStack_5c = param_3[1];
-      uVar9 = FUN_180235000(param_1,&fStack_60);
+      uVar9 = SystemCore_DataSerializer(param_1,&fStack_60);
       fStack_60 = *param_2 + *param_5;
       fStack_58 = param_2[2];
       fStack_5c = param_2[1];
@@ -263,33 +271,33 @@ int FUN_1802309b0(int64_t param_1,float *param_2,float *param_3,uint64_t param_4
     fStack_60 = *param_2 + *param_5;
     fStack_58 = param_2[2];
     fStack_5c = param_2[1];
-    uVar8 = FUN_180235000(param_1,&fStack_60);
+    uVar8 = SystemCore_DataSerializer(param_1,&fStack_60);
     fStack_60 = *param_3 + *param_5;
     fStack_58 = param_3[2];
     uStack_54 = 0x7f7fffff;
     fStack_5c = param_3[1];
-    uVar9 = FUN_180235000(param_1,&fStack_60);
+    uVar9 = SystemCore_DataSerializer(param_1,&fStack_60);
     fStack_60 = *param_3;
     fStack_5c = param_3[1];
   }
   fStack_58 = param_2[2];
 LAB_180230b9d:
   uStack_54 = 0x7f7fffff;
-  uVar10 = FUN_180235000(param_1,&fStack_60);
+  uVar10 = SystemCore_DataSerializer(param_1,&fStack_60);
   uVar7 = auStackX_10[2];
   auStackX_10[1] = 0;
   fStack_60 = 0.0;
   fStack_5c = 0.0;
   fStack_58 = 1.0;
   uStack_54 = 0x7f7fffff;
-  uVar11 = FUN_1802350e0(param_1,auStackX_10[0] & 0xffffffff,auStackX_10 + 1,auStackX_10[2],
+  uVar11 = SystemCore_Decoder(param_1,auStackX_10[0] & 0xffffffff,auStackX_10 + 1,auStackX_10[2],
                          &fStack_60);
   auStackX_10[0] = 0;
-  uVar8 = FUN_1802350e0(param_1,uVar8,auStackX_10,uVar7,&fStack_60);
+  uVar8 = SystemCore_Decoder(param_1,uVar8,auStackX_10,uVar7,&fStack_60);
   auStackX_10[0] = 0;
-  uVar9 = FUN_1802350e0(param_1,uVar9,auStackX_10,uVar7,&fStack_60);
-  FUN_180235410(param_1,uVar11,uVar8,uVar9);
-  uVar8 = FUN_1802350e0(param_1,uVar10,&uStack_68,auStackX_10[2],&fStack_60);
+  uVar9 = SystemCore_Decoder(param_1,uVar9,auStackX_10,uVar7,&fStack_60);
+  SystemCore_RenderFrame(param_1,uVar11,uVar8,uVar9);
+  uVar8 = SystemCore_Decoder(param_1,uVar10,&uStack_68,auStackX_10[2],&fStack_60);
   lVar6 = *(int64_t *)(param_1 + 8);
   iVar5 = *(int *)(lVar6 + 0x88);
   iVar12 = *(int *)(lVar6 + 0x8c);

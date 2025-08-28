@@ -65,7 +65,7 @@
 
 // 函数别名定义
 #define SystemStreamFormatter FUN_1800a0c50
-#define SystemStreamProcessor FUN_1800a0e50
+#define SystemStreamProcessor CoreEngine_DataProcessor0
 #define SystemOutputInitializer FUN_1800a1010
 #define SystemOutputManager FUN_1800a10c0
 #define SystemOutputCleaner FUN_1800a1120

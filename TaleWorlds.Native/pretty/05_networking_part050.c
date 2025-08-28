@@ -18,7 +18,7 @@ void FUN_1808689a5(void)
   uint64_t uStack0000000000000040;
   
   uStack0000000000000040 = 0;
-  iVar1 = FUN_18088c740();
+  iVar1 = RenderingSystemOptimizer();
   if (((iVar1 == 0) && (-1 < unaff_ESI)) && (unaff_ESI < *(int *)(unaff_RBX + 0x28))) {
     *(uint64_t *)
      (*(int64_t *)(unaff_RBX + 0x20) + 8 +
@@ -449,7 +449,7 @@ FUN_1808690e0(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -458,7 +458,7 @@ FUN_1808690e0(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0x40,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0x40,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }
@@ -517,7 +517,7 @@ FUN_180869270(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -526,7 +526,7 @@ FUN_180869270(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0x30,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0x30,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }
@@ -585,7 +585,7 @@ FUN_180869400(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -594,7 +594,7 @@ FUN_180869400(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0x60,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0x60,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }
@@ -653,7 +653,7 @@ FUN_180869590(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -662,7 +662,7 @@ FUN_180869590(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0x70,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0x70,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }
@@ -721,7 +721,7 @@ FUN_180869720(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -730,7 +730,7 @@ FUN_180869720(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0x50,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0x50,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }
@@ -789,7 +789,7 @@ FUN_1808698b0(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
   
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1808741f0(param_2,&uStack_40,aiStack_38);
+  SystemResource_Manager(param_2,&uStack_40,aiStack_38);
   iVar5 = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
@@ -798,7 +798,7 @@ FUN_1808698b0(code *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,ui
       do {
         lVar3 = *(int64_t *)(param_2[2] + 0x18 + (int64_t)iVar6 * 0x20);
         if ((-1 < *(short *)(lVar3 + 0xe)) &&
-           (((param_3 == 0 || (lVar1 = FUN_1808761f0(param_3 + 0xc0,lVar3 + 0x10), lVar1 == 0)) &&
+           (((param_3 == 0 || (lVar1 = CoreSystem_SynchronizationManager0(param_3 + 0xc0,lVar3 + 0x10), lVar1 == 0)) &&
             (uVar2 = (*param_1)(lVar3,param_4,param_5), (int)uVar2 != 0)))) {
           return uVar2;
         }

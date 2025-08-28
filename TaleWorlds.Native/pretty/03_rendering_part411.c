@@ -559,7 +559,7 @@ void FUN_180494010(int64_t param_1,float *param_2,uint64_t *param_3,int param_4)
   uStack_120 = uVar14;
   uStack_118 = uVar12;
   uStack_110 = uVar6;
-  FUN_1800946d0(&uStack_138,&fStack_178,param_1 + 0x2c8 + lVar27 * 0x40);
+  ErrorRecoverySystem(&uStack_138,&fStack_178,param_1 + 0x2c8 + lVar27 * 0x40);
   fVar32 = *param_2;
   fVar35 = param_2[4];
   afStack_1b8[0] = fVar32 * fStack_178;

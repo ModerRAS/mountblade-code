@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -355,7 +360,7 @@ void FUN_1802b0ad0(int64_t param_1,int64_t param_2)
       if (aiStackX_8[0] != -1) {
         FUN_1802b13d0((int64_t)aiStackX_8[0] * 0x90 + *(int64_t *)(lVar10 + 0x28));
         *(int32_t *)(*(int64_t *)(lVar10 + 0x48) + uVar12 * 4) = 0xffffffff;
-        FUN_1800571e0(lVar10 + 0x68,aiStackX_8);
+        SystemDatabaseProcessor(lVar10 + 0x68,aiStackX_8);
         lVar9 = *(int64_t *)(param_1 + 0x30);
       }
       lVar10 = 0xe38e38e38e38e39;
@@ -467,7 +472,7 @@ void FUN_1802b0b1a(void)
     if (iStack00000000000000e0 != -1) {
       FUN_1802b13d0((int64_t)iStack00000000000000e0 * 0x90 + *(int64_t *)(lVar9 + 0x28));
       *(int32_t *)(*(int64_t *)(lVar9 + 0x48) + uVar11 * 4) = 0xffffffff;
-      FUN_1800571e0(lVar9 + 0x68,&stack0x000000e0);
+      SystemDatabaseProcessor(lVar9 + 0x68,&stack0x000000e0);
       lVar8 = *(int64_t *)(unaff_RBP + 0x30);
       in_R9 = in_stack_000000e8;
     }

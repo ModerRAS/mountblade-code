@@ -1,3 +1,4 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -115,7 +116,7 @@ void FUN_1807b95c0(int64_t param_1,uint64_t param_2,int64_t param_3)
                     (*(int64_t **)(param_1 + 0x170),&uStack_2f0);
   if (iVar1 == 0) {
     uStack_318 = 0;
-    iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_1b0,1,0xe);
+    iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_1b0,1,0xe);
     if (iVar1 == 0) {
       uStack_1a8 = uStack_1a8 << 8 | uStack_1a8 >> 8;
       uStack_1a4 = uStack_1a4 << 8 | uStack_1a4 >> 8;
@@ -291,9 +292,9 @@ void FUN_1807b9d7c(void)
     in_stack_00000040 = in_stack_00000040 + 1;
     uStack0000000000000044 = uStack0000000000000044 | 0x8000;
   }
-  iVar1 = FUN_180772fe0(fVar6,9,&processed_var_5832_ptr,&stack0x00000040,4);
+  iVar1 = SystemMemory_Controller(fVar6,9,&processed_var_5832_ptr,&stack0x00000040,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_180772fe0(extraout_XMM0_Qa,9,&processed_var_6872_ptr,&stack0x00000044,4);
+    iVar1 = SystemMemory_Controller(extraout_XMM0_Qa,9,&processed_var_6872_ptr,&stack0x00000044,4);
     if (iVar1 == 0) {
       lVar2 = *(int64_t *)(unaff_RDI + 0x3c08);
       if ((int)unaff_R12D < *(int *)(lVar2 + 0xb0)) {
@@ -424,11 +425,11 @@ void FUN_1807b9e61(void)
   cVar5 = (char)unaff_R12D;
   uStack0000000000000028 = 1;
   cStack0000000000000030 = cVar5;
-  iVar1 = FUN_180772fe0();
+  iVar1 = SystemMemory_Controller();
   if (iVar1 == 0) {
     uStack0000000000000028 = 1;
     cStack0000000000000030 = cVar5;
-    iVar1 = FUN_180772fe0(extraout_XMM0_Qa,9,&processed_var_6872_ptr,&stack0x00000044,4);
+    iVar1 = SystemMemory_Controller(extraout_XMM0_Qa,9,&processed_var_6872_ptr,&stack0x00000044,4);
     if (iVar1 == 0) {
       lVar2 = *(int64_t *)(unaff_RDI + 0x3c08);
       if ((int)unaff_R12D < *(int *)(lVar2 + 0xb0)) {

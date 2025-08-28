@@ -1,9 +1,16 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part196.c - 4 个函数
 
@@ -102,12 +109,12 @@ void FUN_180381360(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
     }
     if ((0.0 < *(float *)((int64_t)param_1 + 0x3c)) &&
        (*(float *)((int64_t)param_1 + 0x3c) != 1.0)) {
-      FUN_18062f990(param_2,puVar5,&processed_var_4496_ptr);
+      MemoryDeallocationHandler0(param_2,puVar5,&processed_var_4496_ptr);
     }
     if (0.0 < *(float *)(param_1 + 8) * *(float *)(param_1 + 8) +
               *(float *)((int64_t)param_1 + 0x44) * *(float *)((int64_t)param_1 + 0x44) +
               *(float *)(param_1 + 9) * *(float *)(param_1 + 9)) {
-      FUN_18062fb40(param_2,puVar5,&processed_var_4480_ptr);
+      UltraHighFreq_NetworkHandler1(param_2,puVar5,&processed_var_4480_ptr);
     }
     goto LAB_18038175b;
   }
@@ -194,14 +201,14 @@ LAB_1803815a5:
   }
   fVar12 = *(float *)((int64_t)param_1 + 0x3c) - *(float *)(param_4 + 0x14c);
   if (((fVar12 <= -0.01) || (0.01 <= fVar12)) && (*(float *)((int64_t)param_1 + 0x3c) != 1.0)) {
-    FUN_18062f990(param_2,puVar5,&processed_var_4496_ptr);
+    MemoryDeallocationHandler0(param_2,puVar5,&processed_var_4496_ptr);
   }
   fVar13 = *(float *)(param_4 + 0x154) - *(float *)((int64_t)param_1 + 0x44);
   fVar14 = *(float *)(param_4 + 0x150) - *(float *)(param_1 + 8);
   fVar12 = *(float *)(param_4 + 0x158) - *(float *)(param_1 + 9);
   fVar12 = SQRT(fVar14 * fVar14 + fVar13 * fVar13 + fVar12 * fVar12);
   if ((fVar12 <= -0.01) || (0.01 <= fVar12)) {
-    FUN_18062fb40(param_2,puVar5,&processed_var_4480_ptr);
+    UltraHighFreq_NetworkHandler1(param_2,puVar5,&processed_var_4480_ptr);
   }
   puStack_128 = &system_state_ptr;
   puStack_c8 = &system_state_ptr;
@@ -426,7 +433,7 @@ LAB_180381b06:
     }
     else {
       if (pcVar8 != (char *)0x0) {
-        FUN_18010cbc0(pcVar8,&system_flag_6430,puVar1);
+        SystemCore_NetworkHandler(pcVar8,&system_flag_6430,puVar1);
         goto LAB_180381b06;
       }
 LAB_180381b0b:
@@ -438,7 +445,7 @@ LAB_180381b0b:
     *(int32_t *)((int64_t)param_1 + 0x44) = 0;
     *(int32_t *)(param_1 + 9) = 0;
     *(int32_t *)((int64_t)param_1 + 0x4c) = 0;
-    lVar7 = FUN_180631960(puVar9,&processed_var_4480_ptr,param_1 + 8);
+    lVar7 = StringProcessor(puVar9,&processed_var_4480_ptr,param_1 + 8);
     if ((lVar7 == 0) && (param_3 != 0)) {
       uVar13 = *(int32_t *)(param_3 + 0x154);
       uVar2 = *(int32_t *)(param_3 + 0x158);
@@ -513,7 +520,7 @@ LAB_180381cc0:
           }
           uVar13 = DataStructureManager0(&puStack_a8,pcVar8);
           uVar6 = FUN_1800b3430(uVar13,aplStack_c0,&puStack_a8,1);
-          FUN_180060b80(param_1,uVar6);
+          SystemCore_ChecksumValidator(param_1,uVar6);
           if (aplStack_c0[0] != (int64_t *)0x0) {
             (**(code **)(*aplStack_c0[0] + 0x38))();
           }
@@ -800,7 +807,7 @@ LAB_180382245:
                         if (puVar9 != (void *)0x0) {
                           puVar7 = puVar9;
                         }
-                        FUN_180627020(&processed_var_4808_ptr,puVar7);
+                        SystemCore_Allocator(&processed_var_4808_ptr,puVar7);
                         puVar9 = puStack_48;
                         iVar8 = iStack_40;
                       }

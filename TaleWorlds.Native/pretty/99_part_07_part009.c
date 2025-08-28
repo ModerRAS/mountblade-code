@@ -74,7 +74,7 @@ void FUN_1804a2fc0(void)
   lVar6 = system_system_data_ui + 0x150;
   lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
   CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_92b8);
-  lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
+  lVar4 = SystemCore_SecurityValidator(lVar6,acStackX_10,lVar3 + 0x20);
   uVar7 = 1;
   if (acStackX_10[0] == '\0') {
     FUN_18005d1f0();
@@ -84,7 +84,7 @@ void FUN_1804a2fc0(void)
     lVar6 = system_system_data_ui + 0x150;
     lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
     CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_90b0);
-    lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
+    lVar4 = SystemCore_SecurityValidator(lVar6,acStackX_10,lVar3 + 0x20);
     if (acStackX_10[0] == '\0') {
       FUN_18005d1f0();
       return;
@@ -591,12 +591,12 @@ void FUN_1804a3270(void)
   }
   uVar2 = SYSTEM_DATA_MANAGER_A;
   SYSTEM_DATA_MANAGER_A = *puVar1;
-  cVar3 = FUN_1801299b0(&ui_system_data_1664_ptr,0,0,in_R9,uVar5);
+  cVar3 = CoreSystem_Validator(&ui_system_data_1664_ptr,0,0,in_R9,uVar5);
   if (cVar3 != '\0') {
     FUN_180111070(&ui_system_data_1688_ptr,&system_data_8f1a);
     FUN_180111070(&ui_system_data_1840_ptr,0x180d48f19);
     FUN_180111070(&ui_system_data_1864_ptr,0x180d48f18);
-    FUN_18012cfe0();
+    RenderingSystem_MeshProcessor();
   }
   if (system_data_8f1a != '\0') {
     (**(code **)(system_system_data_ui + 0x318))(*(int32_t *)(system_system_data_ui + 0x10));

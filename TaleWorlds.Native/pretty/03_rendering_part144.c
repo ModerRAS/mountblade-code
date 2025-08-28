@@ -1,3 +1,7 @@
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -118,7 +122,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_8c8);
   uStack_8d0 = 0;
   uStack_948 = 1;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -131,7 +135,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_868);
   uStack_8d0 = 3;
   uStack_948 = 2;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -144,7 +148,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_808);
   uStack_8d0 = 3;
   uStack_948 = 4;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -157,7 +161,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_7a8);
   uStack_8d0 = 10;
   uStack_948 = 8;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -170,7 +174,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_748);
   uStack_8d0 = 1;
   uStack_948 = 0x10;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -183,7 +187,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_6e8);
   uStack_8d0 = 1;
   uStack_948 = 0x20;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -196,7 +200,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_688);
   uStack_8d0 = 1;
   uStack_948 = 0x40;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -209,7 +213,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_628);
   uStack_8d0 = 1;
   uStack_948 = 0x80;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -222,7 +226,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_5c8);
   uStack_8d0 = 1;
   uStack_948 = 0x100;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -235,7 +239,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_568);
   uStack_8d0 = 3;
   uStack_948 = 0x200;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -248,7 +252,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_508);
   uStack_8d0 = 1;
   uStack_948 = 0x400;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -261,7 +265,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_4a8);
   uStack_8d0 = 3;
   uStack_948 = 0x800;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -274,7 +278,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_448);
   uStack_8d0 = 3;
   uStack_948 = 0x1000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -287,7 +291,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_3e8);
   uStack_8d0 = 1;
   uStack_948 = 0x2000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -300,7 +304,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_388);
   uStack_8d0 = 1;
   uStack_948 = 0x4000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -313,7 +317,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_328);
   uStack_8d0 = 8;
   uStack_948 = 0x8000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -326,7 +330,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_2c8);
   uStack_8d0 = 8;
   uStack_948 = 0x10000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -339,7 +343,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_268);
   uStack_8d0 = 8;
   uStack_948 = 0x20000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -352,7 +356,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_208);
   uStack_8d0 = 1;
   uStack_948 = 0x40000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -365,7 +369,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_1a8);
   uStack_8d0 = 1;
   uStack_948 = 0x80000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -378,7 +382,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_148);
   uStack_8d0 = 1;
   uStack_948 = 0x100000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -391,7 +395,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_e8);
   uStack_8d0 = 1;
   uStack_948 = 0x200000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;
@@ -404,7 +408,7 @@ void FUN_180357ad0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_928,&puStack_88);
   uStack_8d0 = 0xb;
   uStack_948 = 0x400000;
-  FUN_180180730(param_1,appuStack_940,apuStack_928);
+  MathOptimizationEngine0(param_1,appuStack_940,apuStack_928);
   uStack_948 = 0;
   appuStack_940[0] = apuStack_928;
   apuStack_928[0] = &system_state_ptr;

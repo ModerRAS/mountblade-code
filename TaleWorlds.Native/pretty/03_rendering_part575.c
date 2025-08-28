@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part575.c - 4 个函数
 
@@ -102,7 +107,7 @@ LAB_180581210:
         if (-1 < (int)uVar3) {
           lVar16 = (int64_t)(int)uVar3 * 0xa60 + *(int64_t *)(lVar5 + 0x8d8) + 0x30a0;
         }
-        puVar15 = (uint64_t *)FUN_180516f50(lVar16,auStack_128);
+        puVar15 = (uint64_t *)UltraHighFreq_MemoryManager1(lVar16,auStack_128);
         lVar16 = *(int64_t *)(lVar5 + 0x6e0);
         *(uint64_t *)(lVar16 + 0x13d8) = *puVar15;
         uVar9 = puVar15[4];
@@ -229,7 +234,7 @@ float * FUN_1805815f0(int64_t param_1,float *param_2,float *param_3)
   fStack_98 = fVar1 * fStack_90;
   fStack_94 = fStack_94 * fStack_90;
   fStack_90 = fVar2 * fStack_90;
-  FUN_180084ae0(&uStack_a8,fStack_94,param_3,param_1,fVar1,fVar2);
+  Utilities_DataValidator(&uStack_a8,fStack_94,param_3,param_1,fVar1,fVar2);
   lVar4 = *(int64_t *)(param_1 + 0xf0);
   fVar1 = *param_3;
   fVar2 = param_3[1];
@@ -608,7 +613,7 @@ void FUN_180581b00(int64_t param_1,int64_t param_2,int8_t param_3,int64_t param_
   fStack_a4 = 0.0;
   fStack_a0 = 1.0;
   uStack_9c = 0x7f7fffff;
-  FUN_180084ae0(&uStack_c8);
+  Utilities_DataValidator(&uStack_c8);
   fVar23 = *param_7;
   fVar19 = param_7[1];
   fVar21 = param_7[2];
@@ -641,8 +646,8 @@ void FUN_180581b00(int64_t param_1,int64_t param_2,int8_t param_3,int64_t param_
     *(float *)((int64_t)plVar2 + 100) = fVar19;
     *(float *)(plVar2 + 0xd) = fVar21;
     *(float *)((int64_t)plVar2 + 0x6c) = fVar22;
-    FUN_180254610(plVar2);
-    FUN_1802eace0();
+    RenderingSystem_CameraController(plVar2);
+    UtilitiesSystem_StringProcessor();
   }
   *(short *)(plVar2 + 0x56) = (short)plVar2[0x56] + 1;
   if (plVar2[0x2d] != 0) {
@@ -700,7 +705,7 @@ void FUN_180581b00(int64_t param_1,int64_t param_2,int8_t param_3,int64_t param_
   if (((*(uint64_t *)
          ((int64_t)*(int *)(lVar15 + 0xf0) * 0xa0 + 0x50 + *(int64_t *)(lVar15 + 0xd0)) &
        0x100000000) == 0) && (param_16 == 0)) {
-    FUN_1802ee720(plVar2);
+    RenderingSystem_UpdateCamera(plVar2);
     lVar15 = *plVar1;
   }
   lVar13 = (int64_t)*(int *)(lVar15 + 0xf0) * 0xa0;
@@ -849,14 +854,14 @@ void FUN_1805828f0(int64_t param_1)
       do {
         lVar2 = *(int64_t *)(lVar6 + lVar7 * 8);
         if ((lVar2 != 0) && (*(char *)(*(int64_t *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-          FUN_1805b59d0(lVar2,0x180c95578);
+          NetworkSystem_SecurityManager(lVar2,0x180c95578);
           lVar6 = render_system_config;
         }
         lVar7 = lVar7 + 1;
       } while (lVar7 < iVar5);
     }
     if (render_system_config != 0) {
-      FUN_180567f30(render_system_config,0x180c95578);
+      SystemCore_DatabaseHandler(render_system_config,0x180c95578);
     }
     render_system_config = 0;
                     // WARNING: Subroutine does not return

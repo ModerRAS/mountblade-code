@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -465,13 +466,13 @@ LAB_1802c0e54:
                   }
 LAB_1802c10bd:
                   if (uVar8 == 0) {
-                    FUN_1800b30d0(system_resource_state,&plStackX_18,&puStack_78,0,puVar18,pbVar19,uVar20,
+                    SystemCore_PerformanceMonitor(system_resource_state,&plStackX_18,&puStack_78,0,puVar18,pbVar19,uVar20,
                                   uVar16);
                     plVar2 = plStackX_18;
                     if (plStackX_18 != (int64_t *)0x0) {
                       plStackX_20 = plStackX_18;
                       (**(code **)(*plStackX_18 + 0x28))(plStackX_18);
-                      FUN_180076910(*(uint64_t *)
+                      UltraHighFreq_SecurityValidator1(*(uint64_t *)
                                      (pcVar12 + *(int64_t *)(*(int64_t *)(param_1 + 0x28) + 0x38))
                                     ,&plStackX_20);
                       (**(code **)(*plVar2 + 0x38))(plVar2);

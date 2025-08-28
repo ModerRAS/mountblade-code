@@ -1,3 +1,12 @@
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -89,7 +98,7 @@ void FUN_1801f01c0(void)
       uStack_c0 = 0;
       uStack_c8 = 1;
       uStack_a8 = (int)lVar6;
-      puVar5 = (uint64_t *)FUN_1800b0a10();
+      puVar5 = (uint64_t *)SystemCore_ConfigManager();
       uVar1 = *puVar5;
       *puVar5 = 0;
       plStack_80 = *(int64_t **)(lVar2 + 0xe0);
@@ -102,7 +111,7 @@ void FUN_1801f01c0(void)
       }
       puStack_60 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4336_ptr,lVar6);
+      SystemParameterHandler(system_message_context,&processed_var_4336_ptr,lVar6);
     }
     iVar3 = *(int *)(lVar4 + 0x48) * 2;
     if (*(int64_t *)(lVar4 + 0x38) != 0) break;
@@ -424,7 +433,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uint64_t uStack_28;
   
   uVar4 = 0xfffffffffffffffe;
-  FUN_180057110(param_2);
+  SystemCore_ConfigValidator(param_2);
   puStack_60 = &system_data_buffer_ptr;
   uStack_48 = 0;
   puStack_58 = (uint64_t *)0x0;
@@ -438,7 +447,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *(int8_t *)((int64_t)puVar2 + 6) = 0;
   uStack_50 = 6;
   uStack_48._0_4_ = uVar1;
-  FUN_180066df0(param_2,&puStack_60);
+  DataEncryptionHandler0(param_2,&puStack_60);
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -458,7 +467,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *puVar3 = 0x786f62646e6153;
   uStack_30 = 7;
   uStack_28._0_4_ = uVar1;
-  FUN_180066df0(param_2,&puStack_40);
+  DataEncryptionHandler0(param_2,&puStack_40);
   puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -479,7 +488,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *(int32_t *)(puVar3 + 1) = 0x65726f;
   uStack_50 = 0xb;
   uStack_48._0_4_ = uVar1;
-  FUN_180066df0(param_2,&puStack_60);
+  DataEncryptionHandler0(param_2,&puStack_60);
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -500,7 +509,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *puVar2 = 0x74736554;
   *(int8_t *)(puVar2 + 1) = 0;
   uStack_30 = 4;
-  FUN_180066df0(param_2,&puStack_40);
+  DataEncryptionHandler0(param_2,&puStack_40);
   puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return

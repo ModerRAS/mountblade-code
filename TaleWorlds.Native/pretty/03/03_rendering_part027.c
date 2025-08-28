@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -155,7 +159,7 @@ material_found:
                             stream_offset = material_hash;
                             
                             // 生成材质名称
-                            FUN_18066c220(texture_id + 0x20, render_target, *(int32_t *)(texture_id + 0x10),
+                            RenderingShaderProcessor0(texture_id + 0x20, render_target, *(int32_t *)(texture_id + 0x10),
                                           *(int32_t *)(texture_id + 0x18));
                             if (render_target[0] != '\0') {
                                 buffer_size = instance_data % (uint64_t)depth_stencil;
@@ -447,7 +451,7 @@ material_found:
             index_offset2 = buffer_size;
             
             // 生成材质名称
-            FUN_18066c220(texture_id + 0x20, material_target, *(int32_t *)(texture_id + 0x10),
+            RenderingShaderProcessor0(texture_id + 0x20, material_target, *(int32_t *)(texture_id + 0x10),
                           *(int32_t *)(texture_id + 0x18), 1);
             if (material_target[0] != '\0') {
               stream_offset = instance_data % (uint64_t)depth_target;

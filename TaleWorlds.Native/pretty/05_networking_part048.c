@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 05_networking_part048.c - 4 个函数
 
 // 函数: void FUN_180866c90(int64_t param_1)
@@ -115,7 +119,7 @@ uint64_t FUN_180866d00(int64_t param_1,int param_2,char param_3,char param_4)
   if (param_4 != '\0') {
     *(int32_t *)(param_1 + 0x78) = 0;
     *(int32_t *)(param_1 + 0x80) = 0;
-    FUN_180840270(param_1 + 0x88);
+    SystemCore_MemoryManager(param_1 + 0x88);
   }
   if (param_3 != '\0') {
     cVar3 = (**(code **)(**(int64_t **)(param_1 + 0x20) + 0x18))();
@@ -172,7 +176,7 @@ uint64_t FUN_180866e25(void)
   if (unaff_R12B != '\0') {
     *(int32_t *)(unaff_RDI + 0x78) = uVar4;
     *(int32_t *)(unaff_RDI + 0x80) = uVar4;
-    FUN_180840270(unaff_RDI + 0x88);
+    SystemCore_MemoryManager(unaff_RDI + 0x88);
   }
   if (unaff_R15B != '\0') {
     cVar1 = (**(code **)(**(int64_t **)(unaff_RDI + 0x20) + 0x18))();
@@ -209,7 +213,7 @@ uint64_t FUN_180866e97(void)
   
   *(int32_t *)(unaff_RDI + 0x78) = unaff_R13D;
   *(int32_t *)(unaff_RDI + 0x80) = unaff_R13D;
-  FUN_180840270(unaff_RDI + 0x88);
+  SystemCore_MemoryManager(unaff_RDI + 0x88);
   if (unaff_R15B != '\0') {
     cVar1 = (**(code **)(**(int64_t **)(unaff_RDI + 0x20) + 0x18))();
     if (cVar1 == '\0') {
@@ -548,7 +552,7 @@ uint64_t FUN_1808673a0(int64_t param_1)
     }
   }
   if (*(int *)(param_1 + 0x38) == 1) {
-    uVar1 = FUN_180768b70(aiStackX_8);
+    uVar1 = SystemCore_PerformanceMonitor(aiStackX_8);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -560,7 +564,7 @@ uint64_t FUN_1808673a0(int64_t param_1)
     }
   }
   if ((1 < *(int *)(param_1 + 0x38) - 1U) && (*(int *)(param_1 + 0x78) != 0)) {
-    uVar1 = FUN_180768b70(aiStackX_8);
+    uVar1 = SystemCore_PerformanceMonitor(aiStackX_8);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -616,7 +620,7 @@ void FUN_1808674e0(int64_t *param_1,int64_t param_2)
   
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
   uStack_38 = 0;
-  iVar3 = FUN_18088c740(&uStack_38,param_1[2]);
+  iVar3 = RenderingSystemOptimizer(&uStack_38,param_1[2]);
   if (iVar3 == 0) {
     lVar8 = (int64_t)(int)param_1[1];
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
@@ -836,7 +840,7 @@ void FUN_180867810(int64_t *param_1,int64_t param_2)
   
   uVar5 = 0;
   uStackX_8 = 0;
-  iVar1 = FUN_18088c740(&uStackX_8,param_1[2]);
+  iVar1 = RenderingSystemOptimizer(&uStackX_8,param_1[2]);
   if (iVar1 == 0) {
     iVar1 = (int)param_1[1];
     uVar4 = 0;
@@ -899,7 +903,7 @@ uint64_t FUN_1808678e0(uint64_t *param_1,int *param_2,int32_t param_3,int8_t par
       }
     }
     if ((-1 < iVar4) &&
-       (uVar1 = FUN_1808d73b0(*(uint64_t *)((int *)*param_1 + (int64_t)iVar4 * 6 + 2),param_3,
+       (uVar1 = UtilitiesSystem_StringProcessor(*(uint64_t *)((int *)*param_1 + (int64_t)iVar4 * 6 + 2),param_3,
                               param_4), (int)uVar1 != 0)) {
       return uVar1;
     }

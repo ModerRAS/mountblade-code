@@ -1,3 +1,7 @@
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -176,8 +180,8 @@ int64_t * FUN_18048d1c0(int64_t param_1,int64_t param_2,int64_t *param_3)
       if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
       }
-      FUN_18005d190(plVar6 + -0xd,plVar4 + -0xd);
-      FUN_18005d190(plVar6 + -9,plVar4 + -9);
+      RenderingSystem_ResourceBinder(plVar6 + -0xd,plVar4 + -0xd);
+      RenderingSystem_ResourceBinder(plVar6 + -9,plVar4 + -9);
       *(int *)(plVar6 + -5) = (int)plVar4[-5];
       *(int32_t *)((int64_t)plVar6 + -0x24) = *(int32_t *)((int64_t)plVar4 + -0x24);
       *(int *)(plVar6 + -4) = (int)plVar4[-4];
@@ -272,8 +276,8 @@ int64_t * FUN_18048d400(int64_t param_1,int64_t param_2,int64_t *param_3)
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x38))();
       }
-      FUN_18005d190(plVar8 + -0x22,plVar6 + -0x22);
-      FUN_18005d190(plVar8 + -0x1e,plVar6 + -0x1e);
+      RenderingSystem_ResourceBinder(plVar8 + -0x22,plVar6 + -0x22);
+      RenderingSystem_ResourceBinder(plVar8 + -0x1e,plVar6 + -0x1e);
       *(int *)(plVar8 + -0x1a) = (int)plVar6[-0x1a];
       *(int32_t *)((int64_t)plVar8 + -0xcc) = *(int32_t *)((int64_t)plVar6 + -0xcc);
       *(int *)(plVar8 + -0x19) = (int)plVar6[-0x19];

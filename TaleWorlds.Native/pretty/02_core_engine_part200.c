@@ -1,7 +1,10 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part200.c - 1 个函数
 
@@ -72,7 +75,7 @@ void FUN_18017ef40(void)
                0x48) < core_system_config_memory) && (SystemInitializer(&system_ptr_9620), core_system_config_memory == -1)) {
     core_system_config_memory = 0;
     FUN_1808fc820(&processed_var_7184_ptr);
-    FUN_1808fcb30(&system_ptr_9620);
+    SystemCore_StateController(&system_ptr_9620);
   }
   uStack_150 = 0;
   iVar7 = *(int *)(lVar13 + 0x318);
@@ -81,7 +84,7 @@ void FUN_18017ef40(void)
     pppppcStack_178 = (code *****)&pppcStack_170;
     uStack_160 = &processed_var_6112_ptr;
     uStack_158 = &processed_var_6096_ptr;
-    pppppcStack_180 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+    pppppcStack_180 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
     pppppcStack_188 = pppppcStack_180;
     if ((code ******)pppppcStack_180 != (code ******)0x0) {
       (*(code *)(*pppppcStack_180)[5])(pppppcStack_180);
@@ -91,8 +94,8 @@ void FUN_18017ef40(void)
     if ((code ******)pppppcStack_180 != (code ******)0x0) {
       (*(code *)(*pppppcStack_180)[5])(pppppcStack_180);
     }
-    FUN_18005e110(uVar8,&pppppcStack_180);
-    FUN_1800b88d0(lVar13 + 800,&pppppcStack_188);
+    SystemCore_TimerManager(uVar8,&pppppcStack_180);
+    PhysicsSystem_TriggersProcessor(lVar13 + 800,&pppppcStack_188);
     iVar7 = *(int *)(lVar13 + 0x340);
     if (iVar7 == 2) {
       core_system_memory = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
@@ -142,7 +145,7 @@ void FUN_18017ef40(void)
       *(int32_t *)((int64_t)pppppcStack_178 + 0x18c) = 0;
       *(code ******)(lVar13 + 0x40) = pppppcStack_178;
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_6720_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_6720_ptr);
     }
     pppppcStack_178 = (code *****)CoreMemoryPoolReallocator(system_memory_pool_ptr,400,8,3);
     *pppppcStack_178 = (code ****)&processed_var_9808_ptr;
@@ -172,7 +175,7 @@ void FUN_18017ef40(void)
   else {
     if (iVar7 == 1) {
       FUN_18005e770(system_context_ptr,lVar13 + 800,0);
-      FUN_1800b8500(lVar13 + 800);
+      SystemCore_Controller(lVar13 + 800);
       lVar1 = system_resource_state;
       plVar18 = *(int64_t **)(system_resource_state + 0x138);
       if (plVar18 != *(int64_t **)(system_resource_state + 0x140)) {
@@ -214,7 +217,7 @@ LAB_180180381:
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021bff0;
-      pppppcStack_188 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcStack_188 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
@@ -224,15 +227,15 @@ LAB_180180381:
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
       lVar1 = lVar13 + 800;
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021dc50;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -252,14 +255,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021b090;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -279,14 +282,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)&processed_var_5664_ptr;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -306,14 +309,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021cb50;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -333,14 +336,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021cf80;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -360,14 +363,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021b4f0;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -387,14 +390,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021b070;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -414,14 +417,14 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021e9c0;
-      ppppppcVar12 = (code ******)FUN_18006b640(uVar8,&pppcStack_170);
+      ppppppcVar12 = (code ******)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (ppppppcVar12 != (code ******)0x0) {
         pppppcStack_178 = (code *****)ppppppcVar12;
         (*(code *)(*ppppppcVar12)[5])(ppppppcVar12);
@@ -441,8 +444,8 @@ LAB_180180381:
       if (ppppppcVar12 != (code ******)0x0) {
         (*(code *)(*ppppppcVar12)[5])(ppppppcVar12);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar1,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar1,&pppppcStack_180);
       ppppppcVar12 = (code ******)pppppcStack_180;
       if ((*(int *)(lVar13 + 0x3c) == -1) ||
          (*(int *)(lVar13 + 0x318) + 1 < *(int *)(lVar13 + 0x3c))) {
@@ -534,7 +537,7 @@ LAB_180180381:
             uStack_130 = (uint64_t)uStack_130._4_4_ << 0x20;
             puStack_148 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-            FUN_180062300(system_message_context,&processed_var_6880_ptr);
+            SystemParameterHandler(system_message_context,&processed_var_6880_ptr);
           }
                     // WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
@@ -545,7 +548,7 @@ LAB_180180381:
       if (iVar7 != 5) {
         if (iVar7 == 6) {
           FUN_18005e770(system_context_ptr,lVar13 + 800,0);
-          FUN_1800b8500(lVar13 + 800);
+          SystemCore_Controller(lVar13 + 800);
           (**(code **)(**(int64_t **)(system_main_module_state + 0x2b0) + 0x120))
                     (*(int64_t **)(system_main_module_state + 0x2b0),0);
           FUN_18021e0a0();
@@ -585,7 +588,7 @@ LAB_180180381:
             *(int8_t *)((int64_t)puVar9 + 6) = 0;
             uStack_138 = 6;
             uStack_128 = 1;
-            FUN_180058080((code ******)(lVar13 + 0x70),&pppppcStack_178,&puStack_148);
+            HighFreq_AnimationSystem1((code ******)(lVar13 + 0x70),&pppppcStack_178,&puStack_148);
             if ((code ******)pppppcStack_178 != (code ******)(lVar13 + 0x70)) {
               SystemCore_ConfigurationHandler0(&pppcStack_170,pppppcStack_178 + 8);
               if ((int)uStack_160 == 3) {
@@ -632,13 +635,13 @@ LAB_180180381:
         goto LAB_180180381;
       }
       FUN_18005e770(system_context_ptr,lVar13 + 800,0);
-      FUN_1800b8500(lVar13 + 800);
+      SystemCore_Controller(lVar13 + 800);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_178 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021b9c0;
-      pppppcStack_188 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcStack_188 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
@@ -648,14 +651,14 @@ LAB_180180381:
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar13 + 800,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar13 + 800,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_6032_ptr;
       uStack_158 = &processed_var_6016_ptr;
       pppcStack_170 = (code ***)FUN_18021bc50;
-      pppppcVar11 = (code *****)FUN_18006b640(uVar8,&pppcStack_170);
+      pppppcVar11 = (code *****)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (pppppcVar11 != (code *****)0x0) {
         pppppcStack_178 = pppppcVar11;
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
@@ -675,15 +678,15 @@ LAB_180180381:
       if (pppppcVar11 != (code *****)0x0) {
         (*(code *)(*pppppcVar11)[5])(pppppcVar11);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar13 + 800,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar13 + 800,&pppppcStack_180);
       uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       uStack_160 = &processed_var_5952_ptr;
       uStack_158 = &processed_var_5936_ptr;
       pppcStack_170 = (code ***)FUN_18013ea70;
       puStack_168 = (int32_t *)core_system_data_memory;
-      ppppppcVar12 = (code ******)FUN_18006b640(uVar8,&pppcStack_170);
+      ppppppcVar12 = (code ******)SystemCore_ErrorHandler(uVar8,&pppcStack_170);
       if (ppppppcVar12 != (code ******)0x0) {
         pppppcStack_178 = (code *****)ppppppcVar12;
         (*(code *)(*ppppppcVar12)[5])(ppppppcVar12);
@@ -703,8 +706,8 @@ LAB_180180381:
       if (ppppppcVar12 != (code ******)0x0) {
         (*(code *)(*ppppppcVar12)[5])(ppppppcVar12);
       }
-      FUN_18005e110(uVar8,&pppppcStack_188);
-      FUN_1800b88d0(lVar13 + 800,&pppppcStack_180);
+      SystemCore_TimerManager(uVar8,&pppppcStack_188);
+      PhysicsSystem_TriggersProcessor(lVar13 + 800,&pppppcStack_180);
       ppppppcVar12 = (code ******)pppppcStack_180;
       if ((*(int *)(lVar13 + 0x3c) == -1) ||
          (*(int *)(lVar13 + 0x318) + 1 < *(int *)(lVar13 + 0x3c))) {

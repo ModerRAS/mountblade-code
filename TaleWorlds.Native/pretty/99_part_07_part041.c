@@ -307,7 +307,7 @@ void FUN_1804c1510(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t par
       if (pbVar7 == pbVar8) {
         pbStack_68 = pbVar8;
         uStack_60 = param_2;
-        FUN_18062e140(&processed_var_8168_ptr,&pbStack_68);
+        SystemTools_DataProcessor(&processed_var_8168_ptr,&pbStack_68);
       }
       plVar4 = (int64_t *)DataPipelineManager(param_1 + 0x60,0x38);
       *plVar4 = 0;
@@ -338,7 +338,7 @@ void FUN_1804c1510(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t par
       if (*pbVar8 != 0x3d) {
         pbStack_58 = pbVar8;
         uStack_50 = param_2;
-        FUN_18062e140(&processed_var_8152_ptr,&pbStack_58);
+        SystemTools_DataProcessor(&processed_var_8152_ptr,&pbStack_58);
         pbVar8 = (byte *)*param_3;
       }
       *param_3 = (int64_t)(pbVar8 + 1);
@@ -362,7 +362,7 @@ void FUN_1804c1510(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t par
       if ((bVar3 != 0x27) && (bVar3 != 0x22)) {
         pbStack_48 = pbVar8;
         uStack_40 = param_2;
-        FUN_18062e140(&processed_var_8064_ptr,&pbStack_48);
+        SystemTools_DataProcessor(&processed_var_8064_ptr,&pbStack_48);
         pbVar8 = (byte *)*param_3;
       }
       pbVar8 = pbVar8 + 1;
@@ -379,7 +379,7 @@ void FUN_1804c1510(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t par
       if (*pbVar8 != bVar3) {
         pbStack_38 = pbVar8;
         uStack_30 = param_2;
-        FUN_18062e140(&processed_var_8064_ptr,&pbStack_38);
+        SystemTools_DataProcessor(&processed_var_8064_ptr,&pbStack_38);
         pbVar8 = (byte *)*param_3;
       }
       lVar5 = 0;
@@ -449,7 +449,7 @@ void FUN_1804c1544(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     *unaff_RDI = (int64_t)pbVar7;
     if (pbVar7 == unaff_RBX) {
       param_5 = unaff_R14;
-      FUN_18062e140(&processed_var_8168_ptr,&stack0x00000020,param_3,param_4,unaff_RBX);
+      SystemTools_DataProcessor(&processed_var_8168_ptr,&stack0x00000020,param_3,param_4,unaff_RBX);
     }
     plVar4 = (int64_t *)DataPipelineManager(param_1 + 0x60,0x38);
     *plVar4 = 0;
@@ -479,7 +479,7 @@ void FUN_1804c1544(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     *unaff_RDI = (int64_t)pbVar7;
     if (*pbVar7 != 0x3d) {
       param_6 = pbVar7;
-      FUN_18062e140(&processed_var_8152_ptr,&param_6);
+      SystemTools_DataProcessor(&processed_var_8152_ptr,&param_6);
       pbVar7 = (byte *)*unaff_RDI;
     }
     *unaff_RDI = (int64_t)(pbVar7 + 1);
@@ -502,7 +502,7 @@ void FUN_1804c1544(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     bVar3 = *pbVar7;
     if ((bVar3 != 0x27) && (bVar3 != 0x22)) {
       param_8 = pbVar7;
-      FUN_18062e140(&processed_var_8064_ptr,&param_8);
+      SystemTools_DataProcessor(&processed_var_8064_ptr,&param_8);
       pbVar7 = (byte *)*unaff_RDI;
     }
     pbVar7 = pbVar7 + 1;
@@ -518,7 +518,7 @@ void FUN_1804c1544(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     pbVar7 = (byte *)*unaff_RDI;
     if (*pbVar7 != bVar3) {
       param_10 = pbVar7;
-      FUN_18062e140(&processed_var_8064_ptr,&param_10);
+      SystemTools_DataProcessor(&processed_var_8064_ptr,&param_10);
       pbVar7 = (byte *)*unaff_RDI;
     }
     lVar5 = 0;
@@ -590,7 +590,7 @@ LAB_1804c17e0:
     if (bVar7 == 0) {
       pbStack_38 = (byte *)*param_3;
       uStack_30 = param_2;
-      FUN_18062e140(&processed_var_7928_ptr,&pbStack_38);
+      SystemTools_DataProcessor(&processed_var_7928_ptr,&pbStack_38);
     }
     else if (bVar7 == 0x3c) break;
     *param_3 = (int64_t)pbVar3;
@@ -629,7 +629,7 @@ LAB_1804c17e0:
     }
     else {
       uStack_30 = param_2;
-      FUN_18062e140(&processed_var_7952_ptr,&pbStack_38);
+      SystemTools_DataProcessor(&processed_var_7952_ptr,&pbStack_38);
       *param_3 = *param_3 + 1;
     }
     return;
@@ -1161,7 +1161,7 @@ LAB_1804c1e36:
       else {
         uStack_18 = *param_2;
         uStack_10 = param_1;
-        FUN_18062e140(&processed_var_8120_ptr,&uStack_18);
+        SystemTools_DataProcessor(&processed_var_8120_ptr,&uStack_18);
       }
     }
     else {

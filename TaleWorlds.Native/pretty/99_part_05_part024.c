@@ -1,4 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_05_part024.c - 9 个函数
 
@@ -184,7 +189,7 @@ void FUN_1802e804f(int64_t param_1)
             *unaff_RBP = fVar11;
             unaff_RBP[1] = fVar12;
             *puVar33 = 0;
-            FUN_18063b5f0(&stack0x00000078,&stack0x00000020);
+            SystemSecurityManager(&stack0x00000078,&stack0x00000020);
             fVar24 = fStack0000000000000084;
             fVar23 = fStack0000000000000080;
             fVar22 = fStack000000000000007c;
@@ -230,7 +235,7 @@ void FUN_1802e804f(int64_t param_1)
             unaff_RBP[-8] = fVar4 * fVar15 + fVar5 * fVar23 + fVar6 * fVar19 + fVar11;
             unaff_RBP[-7] = fVar4 * fVar16 + fVar5 * fVar24 + fVar6 * fVar20 + fVar12;
             uVar31 = (**(code **)(lVar9 + 0x198))(plVar8,fVar6 * fVar17,fVar38,fVar39,fVar40);
-            FUN_18063a240(lVar32 + 0xf8,uVar31,unaff_RBP + -0x16);
+            NetworkSystem_BufferManager(lVar32 + 0xf8,uVar31,unaff_RBP + -0x16);
             lVar32 = *(int64_t *)(puVar33 + 0x2c);
             iVar35 = iVar35 + 1;
             lVar36 = lVar36 + 8;
@@ -291,11 +296,11 @@ void FUN_1802e804f(int64_t param_1)
   else {
     lVar32 = *(int64_t *)(unaff_RSI + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar32 + 0xf8);
+    SystemCore_Parser(lVar32 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(unaff_RSI + 0x2b4) = *(int16_t *)(unaff_RSI + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
+  UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
                 unaff_RSI + 0x70);
   *(int16_t *)(unaff_RSI + 0x2b6) = *(int16_t *)(unaff_RSI + 0x2b2);
                     // WARNING: Subroutine does not return
@@ -385,7 +390,7 @@ void FUN_1802e81b0(int64_t param_1)
         *unaff_RBP = fVar11;
         unaff_RBP[1] = fVar12;
         *puVar28 = 0;
-        FUN_18063b5f0(&stack0x00000078,&stack0x00000020);
+        SystemSecurityManager(&stack0x00000078,&stack0x00000020);
         fVar24 = fStack0000000000000084;
         fVar23 = fStack0000000000000080;
         fVar22 = fStack000000000000007c;
@@ -431,7 +436,7 @@ void FUN_1802e81b0(int64_t param_1)
         unaff_RBP[-8] = fVar4 * fVar15 + fVar5 * fVar23 + fVar6 * fVar19 + fVar11;
         unaff_RBP[-7] = fVar4 * fVar16 + fVar5 * fVar24 + fVar6 * fVar20 + fVar12;
         uVar26 = (**(code **)(lVar9 + 0x198))(plVar8,fVar6 * fVar17,fVar32,fVar33,fVar34);
-        FUN_18063a240(lVar27 + 0xf8,uVar26,unaff_RBP + -0x16);
+        NetworkSystem_BufferManager(lVar27 + 0xf8,uVar26,unaff_RBP + -0x16);
         lVar27 = *(int64_t *)(puVar28 + 0x2c);
         iVar29 = iVar29 + 1;
         lVar30 = lVar30 + 8;
@@ -484,11 +489,11 @@ void FUN_1802e81b0(int64_t param_1)
   else {
     lVar27 = *(int64_t *)(unaff_RSI + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar27 + 0xf8);
+    SystemCore_Parser(lVar27 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(unaff_RSI + 0x2b4) = *(int16_t *)(unaff_RSI + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
+  UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
                 unaff_RSI + 0x70);
   *(int16_t *)(unaff_RSI + 0x2b6) = *(int16_t *)(unaff_RSI + 0x2b2);
                     // WARNING: Subroutine does not return
@@ -553,11 +558,11 @@ void FUN_1802e838f(int64_t param_1)
   else {
     lVar4 = *(int64_t *)(unaff_RSI + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar4 + 0xf8);
+    SystemCore_Parser(lVar4 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(unaff_RSI + 0x2b4) = *(int16_t *)(unaff_RSI + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
+  UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
                 unaff_RSI + 0x70);
   *(int16_t *)(unaff_RSI + 0x2b6) = *(int16_t *)(unaff_RSI + 0x2b2);
                     // WARNING: Subroutine does not return
@@ -621,11 +626,11 @@ void FUN_1802e83d9(int64_t param_1)
   else {
     lVar4 = *(int64_t *)(unaff_RSI + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar4 + 0xf8);
+    SystemCore_Parser(lVar4 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(unaff_RSI + 0x2b4) = *(int16_t *)(unaff_RSI + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
+  UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
                 unaff_RSI + 0x70);
   *(int16_t *)(unaff_RSI + 0x2b6) = *(int16_t *)(unaff_RSI + 0x2b2);
                     // WARNING: Subroutine does not return

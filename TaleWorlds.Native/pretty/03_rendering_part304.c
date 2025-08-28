@@ -59,9 +59,9 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
         if (param_4 != (int *)0x0) {
           piVar9 = param_4;
         }
-        iVar3 = FUN_18041efc0(param_1);
-        iVar4 = FUN_18041efc0(param_1);
-        if ((iVar4 + iVar3 * 0x10000 == 0x38425053) && (iVar3 = FUN_18041efc0(param_1), iVar3 == 1))
+        iVar3 = RenderingSystem_Renderer(param_1);
+        iVar4 = RenderingSystem_Renderer(param_1);
+        if ((iVar4 + iVar3 * 0x10000 == 0x38425053) && (iVar3 = RenderingSystem_Renderer(param_1), iVar3 == 1))
         {
           if ((*(int64_t *)(param_1 + 4) == 0) ||
              (iVar3 = param_1[0x2e], 5 < param_1[0x30] - iVar3)) {
@@ -71,14 +71,14 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
             *(uint64_t *)(param_1 + 0x2e) = *(uint64_t *)(param_1 + 0x30);
             (**(code **)(param_1 + 6))(*(uint64_t *)(param_1 + 10),6 - (param_1[0x30] - iVar3));
           }
-          uVar5 = FUN_18041efc0(param_1);
+          uVar5 = RenderingSystem_Renderer(param_1);
           if (uVar5 < 0x11) {
             iVar3 = FUN_18041f070(param_1);
             *piStack_4a0 = iVar3;
             iVar3 = FUN_18041f070(param_1);
             *piVar6 = iVar3;
-            iVar3 = FUN_18041efc0(param_1);
-            if ((iVar3 == 8) && (iVar3 = FUN_18041efc0(param_1), iVar3 == 3)) {
+            iVar3 = RenderingSystem_Renderer(param_1);
+            if ((iVar3 == 8) && (iVar3 = RenderingSystem_Renderer(param_1), iVar3 == 3)) {
               *piVar9 = 4;
               goto LAB_18042d5a9;
             }

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -99,7 +103,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -120,7 +124,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -141,7 +145,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -162,7 +166,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)(puVar8 + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -183,7 +187,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -204,7 +208,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)(puVar8 + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -225,7 +229,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -246,7 +250,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)(puVar8 + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -267,7 +271,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -289,7 +293,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar8 + 10) = 0;
   uStack_1f8 = 10;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -311,7 +315,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar8 + 10) = 0;
   uStack_218._0_4_ = 10;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -331,7 +335,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x30303836207872;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -353,7 +357,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar8 + 10) = 0;
   uStack_218._0_4_ = 10;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -377,7 +381,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x30303735207872;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_138,&puStack_208);
+  DataEncryptionHandler0(&uStack_138,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -398,7 +402,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -419,7 +423,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -440,7 +444,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)(puVar8 + 1) = 0x697420;
   uStack_218._0_4_ = 0xb;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_138,&puStack_228);
+  DataEncryptionHandler0(&uStack_138,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -461,7 +465,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_138,&puStack_208);
+  DataEncryptionHandler0(&uStack_138,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -482,7 +486,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_138,&puStack_228);
+  DataEncryptionHandler0(&uStack_138,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -502,7 +506,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x34362061676576;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1d8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1d8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -522,7 +526,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x36352061676576;
   uStack_218._0_4_ = 7;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_138,&puStack_228);
+  DataEncryptionHandler0(&uStack_138,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -547,7 +551,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -568,7 +572,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)(puVar8 + 1) = 0;
   uStack_218._0_4_ = 8;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -588,7 +592,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x30383920787467;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -610,7 +614,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar8 + 10) = 0;
   uStack_218._0_4_ = 10;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -632,7 +636,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar9 + 6) = 0;
   uStack_1f8 = 6;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -654,7 +658,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar9 + 6) = 0;
   uStack_218._0_4_ = 6;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_228);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -674,7 +678,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x58303933203972;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_1b8,&puStack_208);
+  DataEncryptionHandler0(&uStack_1b8,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -699,7 +703,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)(puVar8 + 1) = 0x697420;
   uStack_218._0_4_ = 0xb;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_158,&puStack_228);
+  DataEncryptionHandler0(&uStack_158,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -719,7 +723,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puVar8 = 0x30373920787467;
   uStack_1f8 = 7;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_158,&puStack_208);
+  DataEncryptionHandler0(&uStack_158,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -741,7 +745,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar9 + 6) = 0;
   uStack_218._0_4_ = 6;
   uStack_210._0_4_ = uVar7;
-  FUN_180066df0(&uStack_158,&puStack_228);
+  DataEncryptionHandler0(&uStack_158,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -763,7 +767,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int8_t *)((int64_t)puVar9 + 6) = 0;
   uStack_1f8 = 6;
   uStack_1f0._0_4_ = uVar7;
-  FUN_180066df0(&uStack_158,&puStack_208);
+  DataEncryptionHandler0(&uStack_158,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -781,7 +785,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int16_t *)((int64_t)puStack_220 + 4) = 0x3038;
   *(int8_t *)((int64_t)puStack_220 + 6) = 0;
   uStack_218._0_4_ = 6;
-  FUN_180066df0(&uStack_158,&puStack_228);
+  DataEncryptionHandler0(&uStack_158,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -802,7 +806,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puStack_200 = 0x3035303120787467;
   *(int8_t *)(puStack_200 + 1) = 0;
   uStack_1f8 = 8;
-  FUN_180066df0(&uStack_178,&puStack_208);
+  DataEncryptionHandler0(&uStack_178,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -818,7 +822,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   CoreEngineDataBufferProcessor(&puStack_228,7);
   *puStack_220 = 0x58303833203972;
   uStack_218._0_4_ = 7;
-  FUN_180066df0(&uStack_178,&puStack_228);
+  DataEncryptionHandler0(&uStack_178,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -834,7 +838,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   CoreEngineDataBufferProcessor(&puStack_208,7);
   *puStack_200 = 0x30363920787467;
   uStack_1f8 = 7;
-  FUN_180066df0(&uStack_178,&puStack_208);
+  DataEncryptionHandler0(&uStack_178,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -850,7 +854,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   CoreEngineDataBufferProcessor(&puStack_228,7);
   *puStack_220 = 0x30353920787467;
   uStack_218._0_4_ = 7;
-  FUN_180066df0(&uStack_178,&puStack_228);
+  DataEncryptionHandler0(&uStack_178,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -868,7 +872,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int16_t *)((int64_t)puStack_200 + 4) = 0x3036;
   *(int8_t *)((int64_t)puStack_200 + 6) = 0;
   uStack_1f8 = 6;
-  FUN_180066df0(&uStack_178,&puStack_208);
+  DataEncryptionHandler0(&uStack_178,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -886,7 +890,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int16_t *)((int64_t)puStack_220 + 4) = 0x3036;
   *(int8_t *)((int64_t)puStack_220 + 6) = 0;
   uStack_218._0_4_ = 6;
-  FUN_180066df0(&uStack_178,&puStack_228);
+  DataEncryptionHandler0(&uStack_178,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -907,7 +911,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puStack_200 = 0x3033303120787467;
   *(int8_t *)(puStack_200 + 1) = 0;
   uStack_1f8 = 8;
-  FUN_180066df0(&uStack_198,&puStack_208);
+  DataEncryptionHandler0(&uStack_198,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -926,7 +930,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)((int64_t)puStack_220 + 8) = 0x68706172;
   *(int32_t *)((int64_t)puStack_220 + 0xc) = 0x736369;
   uStack_218._0_4_ = 0xf;
-  FUN_180066df0(&uStack_198,&puStack_228);
+  DataEncryptionHandler0(&uStack_198,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -944,7 +948,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int16_t *)(puStack_200 + 1) = 0x6974;
   *(int8_t *)((int64_t)puStack_200 + 10) = 0;
   uStack_1f8 = 10;
-  FUN_180066df0(&uStack_198,&puStack_208);
+  DataEncryptionHandler0(&uStack_198,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -960,7 +964,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   CoreEngineDataBufferProcessor(&puStack_228,7);
   *puStack_220 = 0x30363720787467;
   uStack_218._0_4_ = 7;
-  FUN_180066df0(&uStack_198,&puStack_228);
+  DataEncryptionHandler0(&uStack_198,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -976,7 +980,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   CoreEngineDataBufferProcessor(&puStack_208,7);
   *puStack_200 = 0x30363620787467;
   uStack_1f8 = 7;
-  FUN_180066df0(&uStack_198,&puStack_208);
+  DataEncryptionHandler0(&uStack_198,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -993,7 +997,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puStack_220 = 0x6d30363920787467;
   *(int8_t *)(puStack_220 + 1) = 0;
   uStack_218._0_4_ = 8;
-  FUN_180066df0(&uStack_198,&puStack_228);
+  DataEncryptionHandler0(&uStack_198,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1014,7 +1018,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *(int32_t *)puStack_200 = 0x65746e69;
   *(int16_t *)((int64_t)puStack_200 + 4) = 0x6c;
   uStack_1f8 = 5;
-  FUN_180066df0(&uStack_118,&puStack_208);
+  DataEncryptionHandler0(&uStack_118,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1031,7 +1035,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puStack_220 = 0x72206e6f65646172;
   *(int16_t *)(puStack_220 + 1) = 0x37;
   uStack_218 = CONCAT44(uStack_218._4_4_,9);
-  FUN_180066df0(&uStack_118,&puStack_228);
+  DataEncryptionHandler0(&uStack_118,&puStack_228);
   puStack_228 = &system_data_buffer_ptr;
   if (puStack_220 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1048,7 +1052,7 @@ void FUN_1801017d0(uint64_t param_1,char param_2)
   *puStack_200 = 0x6d30353920787467;
   *(int8_t *)(puStack_200 + 1) = 0;
   uStack_1f8 = 8;
-  FUN_180066df0(&uStack_118,&puStack_208);
+  DataEncryptionHandler0(&uStack_118,&puStack_208);
   puStack_208 = &system_data_buffer_ptr;
   if (puStack_200 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1175,13 +1179,13 @@ LAB_1801035ea:
   uStack_1e8 = apuStack_e8;
   apuStack_e8[0] = &system_state_ptr;
   if (puVar3 == (void *)0x0) {
-    FUN_18005d580(&uStack_118);
-    FUN_18005d580(&uStack_198);
-    FUN_18005d580(&uStack_178);
-    FUN_18005d580(&uStack_158);
-    FUN_18005d580(&uStack_1b8);
-    FUN_18005d580(&uStack_138);
-    FUN_18005d580(&uStack_1d8);
+    DataSerializationEngine(&uStack_118);
+    DataSerializationEngine(&uStack_198);
+    DataSerializationEngine(&uStack_178);
+    DataSerializationEngine(&uStack_158);
+    DataSerializationEngine(&uStack_1b8);
+    DataSerializationEngine(&uStack_138);
+    DataSerializationEngine(&uStack_1d8);
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_248);
   }

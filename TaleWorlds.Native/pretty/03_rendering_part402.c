@@ -1,3 +1,5 @@
+/* FUN_函数别名定义 */
+#define MatrixTransformInterpolator MatrixTransformInterpolator  // MatrixTransformInterpolator 的语义化别名
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -77,7 +79,7 @@ void FUN_18048fc80(void *param_1)
   uStack_110 = 0x80490480;
   uStack_10c = 1;
   puStack_128 = param_1;
-  FUN_18005c650(&puStack_128);
+  SystemCore_SecurityManager(&puStack_128);
   puVar4 = (uint64_t *)*render_system_data_config;
   iVar3 = _Mtx_lock(0x180c91970);
   if (iVar3 != 0) {
@@ -102,7 +104,7 @@ void FUN_18048fc80(void *param_1)
   *(uint64_t *)(puVar2 + 4) = 0x41286e6f6974617a;
   puVar2[6] = 0x295856;
   uStack_118 = 0x1b;
-  uVar5 = FUN_18023a940(*(uint64_t *)(param_1 + 0x58));
+  uVar5 = SystemCore_Scheduler(*(uint64_t *)(param_1 + 0x58));
   FUN_18009a080(uVar5,*(uint64_t *)(param_1 + 0x58));
   SYSTEM_DATA_MANAGER_A = uVar1;
   iVar3 = _Mtx_unlock(0x180c91970);
@@ -475,11 +477,11 @@ void FUN_180490480(int64_t *param_1)
   
   lVar5 = *(int64_t *)(*param_1 + 0x1f8);
   lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
-  lVar4 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar4 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
   plVar2 = *(int64_t **)(lVar1 + 0x8400);
   iVar3 = (**(code **)(*plVar2 + 0x70))(plVar2,*(uint64_t *)(lVar4 + 8),0,4,0,&puStack_48);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&ui_system_data_1856_ptr);
+    SystemCore_Loader(iVar3,&ui_system_data_1856_ptr);
   }
   uVar9 = 0;
   puVar10 = puStack_48;
@@ -502,7 +504,7 @@ void FUN_180490480(int64_t *param_1)
   } while ((int)uVar9 < 0x168);
   plVar2 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   UNRECOVERED_JUMPTABLE = *(code **)(*plVar2 + 0x78);
-  lVar5 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar5 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
                     // WARNING: Could not recover jumptable at 0x0001804905e2. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(plVar2,*(uint64_t *)(lVar5 + 8),0);
@@ -721,7 +723,7 @@ void FUN_180490bd0(int64_t param_1)
      (uVar1 = 0, *(int *)(param_1 + 8) != 0)) {
     do {
       if ((*(byte *)((uint64_t)uVar1 * 0x38 + *(int64_t *)(param_1 + 0xb0) + 0x18) & 1) == 0) {
-        FUN_18049c310();
+        MatrixTransformInterpolator();
       }
       uVar1 = uVar1 + 1;
     } while (uVar1 < *(uint *)(param_1 + 8));
@@ -764,7 +766,7 @@ void FUN_180490bff(int64_t param_1)
         uStack0000000000000038 = in_stack_000000a0;
         uStack0000000000000030 = in_stack_00000098;
         uStack0000000000000028 = in_stack_00000090;
-        FUN_18049c310();
+        MatrixTransformInterpolator();
       }
       uVar1 = uVar1 + 1;
     } while (uVar1 < *(uint *)(unaff_RDI + 8));
@@ -804,7 +806,7 @@ void FUN_180490c0a(void)
       uStack0000000000000038 = in_stack_000000a0;
       uStack0000000000000030 = in_stack_00000098;
       uStack0000000000000028 = in_stack_00000090;
-      FUN_18049c310();
+      MatrixTransformInterpolator();
     }
     unaff_EBX = unaff_EBX + 1;
   } while (unaff_EBX < *(uint *)(unaff_RDI + 8));

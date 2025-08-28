@@ -295,7 +295,7 @@ void System_EventDispatcher(void* context, void* event_data)
   event_handler = event_data;
   
   // 调用事件处理函数
-  FUN_18005c650(event_param);
+  SystemCore_SecurityManager(event_param);
   return;
 }
 

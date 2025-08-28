@@ -221,7 +221,7 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
     }
   }
   if ((puVar4 == puVar1) || (auStackX_10[0] < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)FUN_1804c0610(puVar1,auStackX_8,auStackX_10[0],puVar4,auStackX_10);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStackX_8,auStackX_10[0],puVar4,auStackX_10);
     puVar4 = (uint64_t *)*puVar4;
   }
   pfVar2 = (float *)puVar4[5];
@@ -255,7 +255,7 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
       }
     }
     if ((puVar4 == puVar1) || (auStackX_10[0] < *(uint *)(puVar4 + 4))) {
-      puVar4 = (uint64_t *)FUN_1804c0610(puVar1,auStack_58);
+      puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStack_58);
       puVar4 = (uint64_t *)*puVar4;
     }
     fVar8 = ((param_4 - fVar7) / ((fVar8 - fVar7) + 1.0)) * (*(float *)puVar4[5] - *pfVar2) +
@@ -308,7 +308,7 @@ float FUN_1804bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     }
   }
   if ((puVar3 == unaff_RDI) || (in_stack_00000098 < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(fVar4,&stack0x00000030,param_3,puVar3,&stack0x00000098);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(fVar4,&stack0x00000030,param_3,puVar3,&stack0x00000098);
     puVar3 = (uint64_t *)*puVar3;
   }
   return (in_stack_000000b0 * 0.2 + 0.9) *
@@ -485,7 +485,7 @@ void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
     }
   }
   if ((puVar6 == puVar1) || (auStackX_18[0] < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)FUN_1804c0610(puVar1,auStackX_8,auStackX_18[0],puVar6,auStackX_18);
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStackX_8,auStackX_18[0],puVar6,auStackX_18);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar4 = puVar6[5];
@@ -660,7 +660,7 @@ void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
     }
   }
   if ((puVar5 == puVar11) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)FUN_1804c0610(puVar11,auStackX_10);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar11,auStackX_10);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -787,7 +787,7 @@ void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
     }
   }
   if ((puVar5 == puVar9) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)FUN_1804c0610(puVar9,auStackX_8);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar9,auStackX_8);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -840,7 +840,7 @@ FUN_1804bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,in
     }
   }
   if ((puVar4 == puVar5) || (uVar3 < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)FUN_1804c0610(puVar5,auStack_18);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,auStack_18);
     puVar4 = (uint64_t *)*puVar4;
   }
   if (puVar4[5] != 0) {
@@ -876,7 +876,7 @@ uint64_t FUN_1804bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t p
     }
   }
   if ((puVar4 == puVar5) || (uVar3 < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)FUN_1804c0610(puVar5,auStack_18);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,auStack_18);
     puVar4 = (uint64_t *)*puVar4;
   }
   if (puVar4[5] != 0) {
@@ -914,7 +914,7 @@ FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_
     }
   }
   if ((puVar5 == puVar6) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)FUN_1804c0610(puVar6,auStack_18);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,auStack_18);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -959,7 +959,7 @@ int64_t FUN_1804bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t pa
     }
   }
   if ((puVar5 == puVar6) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)FUN_1804c0610(puVar6,auStack_18);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,auStack_18);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];

@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part070.c - 渲染系统高级资源管理和数据处理模块
 // 包含9个核心函数，涵盖渲染资源管理、数据处理、内存分配、状态同步等高级渲染功能
 
@@ -215,7 +219,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_var_2 = (int8_t *)CONCAT44(temp_var_2._4_4_,0x61);
         temp_int_1 = item_count;
         memory_block = (uint64_t *)
-                 FUN_1800b0a10(temp_var,&temp_long_pointer_4,*(int32_t *)(data_context + 0x1bd4),&temp_var_5);
+                 SystemCore_ConfigManager(temp_var,&temp_long_pointer_4,*(int32_t *)(data_context + 0x1bd4),&temp_var_5);
         temp_var = *memory_block;
         *memory_block = 0;
         temp_long_pointer_5 = *(int64_t **)(render_context + 0x68);
@@ -241,7 +245,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_var_2 = (int8_t *)CONCAT44(temp_var_2._4_4_,0x61);
         temp_int_1 = item_count;
         memory_block = (uint64_t *)
-                 FUN_1800b0a10(temp_var,&temp_long_pointer_3,*(int32_t *)(data_context + 0x1bd4),&temp_var_7);
+                 SystemCore_ConfigManager(temp_var,&temp_long_pointer_3,*(int32_t *)(data_context + 0x1bd4),&temp_var_7);
         temp_var = *memory_block;
         *memory_block = 0;
         temp_long_pointer_5 = *(int64_t **)(render_context + 0x70);
@@ -372,7 +376,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_long_6 = render_context + 0x988;
         temp_long_5 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X50;
         temp_var = CoreMemoryPoolReallocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_1);
+        resource_array = (int64_t *)SystemCore_StreamController(temp_var,&temp_var_1);
         temp_pointer_3 = (int64_t **)resource_array;
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
@@ -383,7 +387,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
-        FUN_18005e370(temp_var,&temp_long_pointer_2);
+        SystemPerformance_Monitor(temp_var,&temp_long_pointer_2);
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
@@ -399,7 +403,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_long_7 = render_context + 0x1290;
         temp_long_6 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X1B0;
         temp_var = CoreMemoryPoolReallocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_3);
+        resource_array = (int64_t *)SystemCore_StreamController(temp_var,&temp_var_3);
         temp_var_pointer = (void **)resource_array;
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
@@ -410,7 +414,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
-        FUN_18005e370(temp_var,&temp_long_pointer_1);
+        SystemPerformance_Monitor(temp_var,&temp_long_pointer_1);
         if (resource_array != (int64_t *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }

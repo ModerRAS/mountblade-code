@@ -111,14 +111,14 @@ typedef enum {
  * @brief 核心引擎系统高级子模块核心函数别名
  * @details 定义核心引擎系统高级子模块的核心函数别名，提高代码可读性
  */
-#define CoreEngineSubmodule_EmptyFunctionProcessor FUN_0014b6a0
-#define CoreEngineSubmodule_AdvancedPlaceholderManager FUN_0014b6a0
-#define CoreEngineSubmodule_CompatibilityHandler FUN_0014b6a0
-#define CoreEngineSubmodule_ExtensionReserver FUN_0014b6a0
-#define CoreEngineSubmodule_StateManager FUN_0014b6a0
-#define CoreEngineSubmodule_ErrorHandler FUN_0014b6a0
-#define CoreEngineSubmodule_Optimizer FUN_0014b6a0
-#define CoreEngineSubmodule_Debugger FUN_0014b6a0
+#define CoreEngineSubmodule_EmptyFunctionProcessor > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_AdvancedPlaceholderManager > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_CompatibilityHandler > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_ExtensionReserver > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_StateManager > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_ErrorHandler > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_Optimizer > UltraHighFreq_AudioSystem1
+#define CoreEngineSubmodule_Debugger > UltraHighFreq_AudioSystem1
 
 /* ============================================================================
  * 核心引擎系统高级子模块全局变量
@@ -380,7 +380,7 @@ const char* CoreEngineSubmodule_GetDescription(void) {
  * ============================================================================ */
 
 // 原始函数声明，保持兼容性
-int FUN_0014b6a0(int param1, int param2);
+int InitSubmodule_EmptyFunctionProcessor(int param1, int param2);
 
 /* ============================================================================
  * 文件结束标记

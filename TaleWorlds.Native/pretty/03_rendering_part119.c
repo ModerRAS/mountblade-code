@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -169,7 +173,7 @@ FUN_18033bd40(int64_t param_1,uint64_t *param_2,uint64_t param_3,int *param_4,ui
       piVar3 = *(int **)(piVar3 + 4);
     } while (piVar3 != (int *)0x0);
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   piVar3 = (int *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x2c));
   *piVar3 = *param_4;
@@ -213,7 +217,7 @@ void FUN_18033bd9a(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   char cStack0000000000000080;
   uint uStack0000000000000084;
   
-  FUN_18066c220(param_1,&stack0x00000080,param_3,param_4,1);
+  RenderingShaderProcessor0(param_1,&stack0x00000080,param_3,param_4,1);
   puVar2 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(unaff_RDI + 0x2c));
   *puVar2 = *unaff_RBX;
   *(uint64_t *)(puVar2 + 2) = 0;
@@ -371,7 +375,7 @@ void FUN_18033c160(int64_t param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  FUN_18033ad00();
+  RenderingSystem_CameraController0();
   if ((1 < *(uint64_t *)(param_1 + 0x10)) &&
      (puVar2 = *(uint64_t **)(param_1 + 8), puVar2 != (uint64_t *)0x0)) {
     uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -384,7 +388,7 @@ void FUN_18033c160(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -498,7 +502,7 @@ void FUN_18033c300(int64_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -987,7 +991,7 @@ uint64_t * FUN_18033ca70(int64_t param_1,uint64_t *param_2,uint64_t param_3,int 
       CoreMemoryPoolInitializer(piVar4);
     }
   }
-  FUN_18066c220(param_1 + 0x20,&piStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&piStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)piStackX_8 != '\0') {
     lVar1 = ((uint64_t)piStackX_8 >> 0x20) * 8;

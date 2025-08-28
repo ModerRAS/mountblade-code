@@ -525,7 +525,7 @@ float * FUN_1802f4040(int64_t *param_1,float *param_2,char param_3,char param_4)
   plStackX_8 = param_1;
   SystemInitializer(&lStack_58,&plStackX_8);
   if (param_3 != '\0') {
-    FUN_1802e8c60(param_1,&lStack_58);
+    NetworkSystem_SecurityManager(param_1,&lStack_58);
   }
   param_2[0] = 1e+08;
   param_2[1] = 1e+08;

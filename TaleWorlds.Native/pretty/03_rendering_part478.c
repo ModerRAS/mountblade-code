@@ -198,7 +198,7 @@ void FUN_1805238b0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   FUN_180532af0(*(uint64_t *)(param_1 + 0x6e0));
   *(uint64_t *)(param_1 + 0x6e0) = 0;
   FUN_18052e450(param_1,0xffffffff,0,0);
-  FUN_18052e130(param_1,0xffffffff);
+  SystemCore_Validator0(param_1,0xffffffff);
   uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2210,8,8);
   uVar2 = FUN_1805b8300(uVar2,param_1);
   *(uint64_t *)(param_1 + 0x6e0) = uVar2;
@@ -448,7 +448,7 @@ void FUN_180524310(int64_t param_1)
                  ((int64_t)*(int *)(param_1 + 0x564) * 0xa60 + 0x3638 +
                  *(int64_t *)(param_1 + 0x8d8)) + 0x20);
     }
-    iStack_34 = FUN_180557b40(*(uint64_t *)(param_1 + 0x598),uVar2,0,uVar6,0,0,
+    iStack_34 = RenderingSystem_EffectProcessor0(*(uint64_t *)(param_1 + 0x598),uVar2,0,uVar6,0,0,
                               1.0 < fVar9 * fVar9 + fVar8 * fVar8);
     if (*(int *)(*(int64_t *)
                   ((int64_t)*(int *)(*(int64_t *)(param_1 + 0x590) + 0xac) * 0xe0 + 0x78 +
@@ -529,8 +529,8 @@ void FUN_180524310(int64_t param_1)
     if (fVar8 < -0.8) {
       uVar3 = 1.0 < fVar8 * fVar8 + fVar9;
       uVar2 = func_0x00018052dcc0(param_1);
-      iStack_34 = FUN_180557b40(uVar6,uVar2,0,0,0,0,uVar3);
-      FUN_18051ec50(param_1,&uStack_38);
+      iStack_34 = RenderingSystem_EffectProcessor0(uVar6,uVar2,0,0,0,0,uVar3);
+      CoreSystemThreadManager(param_1,&uStack_38);
       if (*(int *)(param_1 + 0x1fc) == 2) {
         return;
       }
@@ -543,8 +543,8 @@ void FUN_180524310(int64_t param_1)
     if (0.8 < fVar8) {
       uVar3 = 1.0 < fVar8 * fVar8 + fVar9;
       uVar2 = func_0x00018052dcc0(param_1);
-      iStack_34 = FUN_180557b40(uVar6,uVar2,0,1,0,0,uVar3);
-      FUN_18051ec50(param_1,&uStack_38);
+      iStack_34 = RenderingSystem_EffectProcessor0(uVar6,uVar2,0,1,0,0,uVar3);
+      CoreSystemThreadManager(param_1,&uStack_38);
       if (*(int *)(param_1 + 0x1fc) == 2) {
         return;
       }
@@ -589,9 +589,9 @@ void FUN_180524310(int64_t param_1)
 LAB_18052449f:
     uVar6 = *(uint64_t *)(param_1 + 0x598);
   }
-  iStack_34 = FUN_180557b40(uVar6,uVar2,0);
+  iStack_34 = RenderingSystem_EffectProcessor0(uVar6,uVar2,0);
 LAB_18052490a:
-  FUN_18051ec50(param_1,&uStack_38);
+  CoreSystemThreadManager(param_1,&uStack_38);
   return;
 }
 
@@ -710,7 +710,7 @@ LAB_180524a5a:
                    *(int64_t *)(param_1 + 0x8d8)) + 0x20);
       }
     }
-    iStack_54 = FUN_180557b40(lVar15,uVar9,2,iVar11,param_2,(byte)iStackX_18,bVar12);
+    iStack_54 = RenderingSystem_EffectProcessor0(lVar15,uVar9,2,iVar11,param_2,(byte)iStackX_18,bVar12);
     if (iStack_54 != -1) {
       uStack_48 = 0;
       uStack_34 = 0x3ecccccd;
@@ -725,7 +725,7 @@ LAB_180524a5a:
       if ((system_status_flag == 1) || (system_status_flag == 4)) {
         uStack_50 = 0x2000;
       }
-      FUN_18051ec50(param_1,&uStack_58);
+      CoreSystemThreadManager(param_1,&uStack_58);
       if ((*(uint *)(param_1 + 0x56c) & 0x800) == 0) {
         return;
       }
@@ -747,7 +747,7 @@ LAB_180524a5a:
   uStack_2c = 0;
   iStack_54 = 0xffffffff;
   uStack_50 = 0x2021;
-  FUN_18051ec50(param_1,&uStack_58);
+  CoreSystemThreadManager(param_1,&uStack_58);
   return;
 }
 
@@ -846,7 +846,7 @@ LAB_180524a5a:
                   *(int64_t *)(unaff_RSI + 0x8d8)) + 0x20);
     }
   }
-  iVar6 = FUN_180557b40(lVar11,uVar12,2,iVar6);
+  iVar6 = RenderingSystem_EffectProcessor0(lVar11,uVar12,2,iVar6);
   if (iVar6 == -1) {
     *(int32_t *)(unaff_RBP + -0x10) = 0x1000000;
     *(int32_t *)(unaff_RBP + -0x28) = 0;
@@ -859,7 +859,7 @@ LAB_180524a5a:
     *(int8_t *)(unaff_RBP + -0xc) = 0;
     *(int32_t *)(unaff_RBP + -0x34) = 0xffffffff;
     *(uint64_t *)(unaff_RBP + -0x30) = 0x2021;
-    FUN_18051ec50(0x3ecccccd,unaff_RBP + -0x38);
+    CoreSystemThreadManager(0x3ecccccd,unaff_RBP + -0x38);
   }
   else {
     *(int *)(unaff_RBP + -0x34) = iVar6;
@@ -877,7 +877,7 @@ LAB_180524a5a:
     if ((iVar6 == 1) || (iVar6 == 4)) {
       *(uint64_t *)(unaff_RBP + -0x30) = 0x2000;
     }
-    uVar12 = FUN_18051ec50(0x3ecccccd,unaff_RBP + -0x38);
+    uVar12 = CoreSystemThreadManager(0x3ecccccd,unaff_RBP + -0x38);
     if (((*(uint *)(unaff_RSI + 0x56c) & 0x800) != 0) &&
        (*(byte *)(*(int64_t *)(unaff_RSI + 0x590) + 0x34bc) != bVar10)) {
       func_0x000180525350(uVar12,bVar10);

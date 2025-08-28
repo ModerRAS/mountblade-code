@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -305,7 +309,7 @@ uint64_t FUN_1808b89f0(int64_t param_1,int64_t *param_2)
     }
     uVar5 = (int)*(uint *)((int64_t)param_2 + 0x1c) >> 0x1f;
     if ((iVar7 <= (int)((*(uint *)((int64_t)param_2 + 0x1c) ^ uVar5) - uVar5)) ||
-       (uVar2 = FUN_180747f10(param_2 + 2,iVar7), (int)uVar2 == 0)) {
+       (uVar2 = RenderingTextureManager0(param_2 + 2,iVar7), (int)uVar2 == 0)) {
       puVar6 = (uint64_t *)(lVar3 + 0x20);
       for (puVar1 = (uint64_t *)*puVar6; puVar1 != puVar6; puVar1 = (uint64_t *)*puVar1) {
         uStackX_8 = 0;
@@ -350,7 +354,7 @@ uint64_t FUN_1808b8a22(void)
   }
   uVar5 = (int)*(uint *)((int64_t)unaff_RSI + 0x1c) >> 0x1f;
   if ((iVar7 <= (int)((*(uint *)((int64_t)unaff_RSI + 0x1c) ^ uVar5) - uVar5)) ||
-     (uVar4 = FUN_180747f10(unaff_RSI + 2,iVar7), (int)uVar4 == 0)) {
+     (uVar4 = RenderingTextureManager0(unaff_RSI + 2,iVar7), (int)uVar4 == 0)) {
     puVar6 = (uint64_t *)(lVar2 + 0x20);
     for (puVar1 = (uint64_t *)*puVar6; puVar1 != puVar6; puVar1 = (uint64_t *)*puVar1) {
       (**(code **)(*unaff_RSI + 0x38))();

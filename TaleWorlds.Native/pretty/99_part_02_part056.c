@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_02_part056.c - 6 个函数
 
 // 函数: void FUN_1801c1af0(int64_t *param_1,int64_t *param_2)
@@ -573,7 +577,7 @@ void FUN_1801c2460(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t pa
 
 
 
-uint64_t FUN_1801c24a0(float *param_1)
+uint64_t UtilitiesSystem_CryptoHandler(float *param_1)
 
 {
   float fVar1;
@@ -763,7 +767,7 @@ uint64_t * FUN_1801c2890(uint64_t *param_1)
 int64_t FUN_1801c28f0(int64_t param_1)
 
 {
-  DataStructureManager(param_1,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1,0x30,4,FUN_1801c2890,SystemCore_MemoryManager);
   *(int32_t *)(param_1 + 0xc0) = 0;
   return param_1;
 }

@@ -1,3 +1,9 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -859,11 +865,11 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 #define get_resource_info FUN_1808455f0
 #define process_resource_data FUN_180846fe0
 #define get_resource_properties FUN_180844f40
-#define validate_resource_handle FUN_180211a30
+#define validate_resource_handle SystemCore_NetworkHandler
 #define acquire_resource_lock FUN_180847110
 #define release_resource_reference FUN_18084a7a0
-#define process_render_queue FUN_18005ea90
-#define update_render_state FUN_1800571e0
+#define process_render_queue SystemSecurity_Manager
+#define update_render_state SystemDatabaseProcessor
 #define throw_thread_error __Throw_C_error_std__YAXH_Z
 #define create_shader_object FUN_180739270
 #define cleanup_shader_object FUN_18073ebd0
@@ -873,12 +879,12 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 #define find_resource_by_id FUN_180213440
 #define allocate_string_memory CoreMemoryPoolAllocator
 #define get_string_length CoreMemoryPoolCleaner
-#define format_error_message FUN_180627ce0
+#define format_error_message UtilitiesSystem_FileHandler
 #define free_string_memory CoreEngine_MemoryPoolManager
 #define initialize_render_object FUN_180159210
 #define allocate_object_memory CoreMemoryPoolReallocator
 #define initialize_render_object_data FUN_18015c2b0
-#define log_debug_event FUN_1800623b0
+#define log_debug_event SystemConfigurationManager
 #define configure_render_object FUN_180406a00
 #define _guard_check_icall _guard_check_icall
 #define reallocate_string_memory DataValidator
@@ -887,7 +893,7 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 #define free_memory CoreEngine_MemoryPoolManager
 #define get_material_database_handle FUN_18020fa10
 #define check_render_state_validity FUN_18084b380
-#define log_warning FUN_1800623b0
+#define log_warning SystemConfigurationManager
 #define find_event_handler FUN_180213440
 #define get_event_handler_info FUN_180840490
 #define setup_event_handler FUN_180407630

@@ -526,7 +526,7 @@ LAB_180533974:
           uStack_f8 = *(uint64_t *)pfVar7;
           fVar29 = pfVar7[2];
           uStack_f0 = *(uint64_t *)(pfVar7 + 2);
-          pfVar7 = (float *)FUN_1801c0fb0(&uStack_108,&fStack_198,&uStack_118);
+          pfVar7 = (float *)SystemFileHandler(&uStack_108,&fStack_198,&uStack_118);
           fStack_1a0 = fVar29 + pfVar7[2];
           fStack_1a4 = fVar28 + pfVar7[1];
           fStack_1a8 = fVar23 + *pfVar7;
@@ -584,7 +584,7 @@ LAB_180533974:
           uStack_f8 = *(uint64_t *)pfVar7;
           fVar29 = pfVar7[2];
           uStack_f0 = *(uint64_t *)(pfVar7 + 2);
-          pfVar7 = (float *)FUN_1801c0fb0(&uStack_108,&fStack_198,&uStack_118);
+          pfVar7 = (float *)SystemFileHandler(&uStack_108,&fStack_198,&uStack_118);
           fStack_1a0 = fVar29 + pfVar7[2];
           fStack_1a4 = fVar28 + pfVar7[1];
           fStack_1a8 = fVar23 + *pfVar7;

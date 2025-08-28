@@ -53,7 +53,7 @@ void FUN_18029777a(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4
   char in_stack_00000178;
   
   iStack0000000000000034 = in_EAX + param_3 * 6;
-  FUN_1802921e0(param_1,param_3 * 6,param_3 * 4);
+  NetworkSystem_PacketSerializer(param_1,param_3 * 6,param_3 * 4);
   pfVar9 = *(float **)(unaff_R13 + 0x50);
   psVar12 = *(short **)(unaff_R13 + 0x58);
   iVar11 = *(int *)(unaff_R13 + 0x48);
@@ -211,7 +211,7 @@ FUN_180297b6f:
     if (iVar5 < (int)uVar6) {
       uVar8 = (uint64_t)uVar6;
     }
-    FUN_18011dd10(in_stack_00000138 + 4,uVar8);
+    Memory_CacheManager(in_stack_00000138 + 4,uVar8);
   }
   in_stack_00000138[4] = iVar5;
   piVar1 = (int *)(*(int64_t *)(in_stack_00000138 + 2) + -0x30 +
@@ -423,7 +423,7 @@ LAB_180297b63:
     if (iVar9 < (int)uVar7) {
       uVar10 = (uint64_t)uVar7;
     }
-    FUN_18011dd10(in_stack_00000138 + 4,uVar10);
+    Memory_CacheManager(in_stack_00000138 + 4,uVar10);
   }
   in_stack_00000138[4] = iVar9;
   piVar1 = (int *)(*(int64_t *)(in_stack_00000138 + 2) + -0x30 +
@@ -468,7 +468,7 @@ void FUN_180297b6f(void)
     if (iVar4 < (int)uVar3) {
       uVar5 = (uint64_t)uVar3;
     }
-    FUN_18011dd10(in_stack_00000138 + 4,uVar5);
+    Memory_CacheManager(in_stack_00000138 + 4,uVar5);
   }
   in_stack_00000138[4] = iVar4;
   piVar1 = (int *)(*(int64_t *)(in_stack_00000138 + 2) + -0x30 +
@@ -592,7 +592,7 @@ void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
               (fVar13 < *(float *)(lVar7 + 8) + *(float *)(lVar7 + 0x10))) &&
              (*(float *)(lVar7 + 8) < (fVar1 + 2.0) * param_2 + fVar13)) {
             lVar7 = FUN_1801247c0();
-            FUN_180291c70(lVar7,lVar6);
+            RenderingSystem_TextureLoader(lVar7,lVar6);
             fVar11 = fVar2 * param_2;
             fStack_108 = fVar13 + param_2;
             fVar10 = fVar1 * param_2;
@@ -604,18 +604,18 @@ void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
                           (*(int64_t *)(lVar7 + 0x78) + -8 + (int64_t)*(int *)(lVar7 + 0x70) * 8))
                ) {
               bVar3 = true;
-              FUN_180291c70(lVar7,lVar6);
+              RenderingSystem_TextureLoader(lVar7,lVar6);
             }
             else {
               bVar3 = false;
             }
-            FUN_1802921e0(lVar7,6,4);
+            NetworkSystem_PacketSerializer(lVar7,6,4);
             pfStack_128 = &fStack_c8;
             uStack_120 = 0x30000000;
             FUN_180292290(lVar7,&fStack_108,&fStack_110,&fStack_d0);
             if (bVar3) {
               *(int *)(lVar7 + 0x70) = *(int *)(lVar7 + 0x70) + -1;
-              FUN_180291a50(lVar7);
+              SystemCore_Initialize(lVar7);
             }
             fStack_fc = fVar12 + fVar11;
             fStack_f8 = param_2 + param_2 + fVar13;
@@ -626,18 +626,18 @@ void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
                           (*(int64_t *)(lVar7 + 0x78) + -8 + (int64_t)*(int *)(lVar7 + 0x70) * 8))
                ) {
               bVar3 = true;
-              FUN_180291c70(lVar7,lVar6);
+              RenderingSystem_TextureLoader(lVar7,lVar6);
             }
             else {
               bVar3 = false;
             }
-            FUN_1802921e0(lVar7,6,4);
+            NetworkSystem_PacketSerializer(lVar7,6,4);
             pfStack_128 = &fStack_c8;
             uStack_120 = 0x30000000;
             FUN_180292290(lVar7,&fStack_f8,&fStack_100,&fStack_d0);
             if (bVar3) {
               *(int *)(lVar7 + 0x70) = *(int *)(lVar7 + 0x70) + -1;
-              FUN_180291a50(lVar7);
+              SystemCore_Initialize(lVar7);
             }
             fVar10 = fVar10 + fVar13;
             fVar11 = fVar11 + fVar12;
@@ -648,18 +648,18 @@ void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
                           (*(int64_t *)(lVar7 + 0x78) + -8 + (int64_t)*(int *)(lVar7 + 0x70) * 8))
                ) {
               bVar3 = true;
-              FUN_180291c70(lVar7,lVar6);
+              RenderingSystem_TextureLoader(lVar7,lVar6);
             }
             else {
               bVar3 = false;
             }
-            FUN_1802921e0(lVar7,6,4);
+            NetworkSystem_PacketSerializer(lVar7,6,4);
             pfStack_128 = &fStack_c8;
             uStack_120 = 0xff000000;
             FUN_180292290(lVar7,&uStack_118,&fStack_f0,&fStack_d0);
             if (bVar3) {
               *(int *)(lVar7 + 0x70) = *(int *)(lVar7 + 0x70) + -1;
-              FUN_180291a50(lVar7);
+              SystemCore_Initialize(lVar7);
             }
             fStack_e8 = fVar10;
             fStack_e4 = fVar11;
@@ -668,21 +668,21 @@ void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
                           (*(int64_t *)(lVar7 + 0x78) + -8 + (int64_t)*(int *)(lVar7 + 0x70) * 8))
                ) {
               bVar3 = true;
-              FUN_180291c70(lVar7,lVar6);
+              RenderingSystem_TextureLoader(lVar7,lVar6);
             }
             else {
               bVar3 = false;
             }
-            FUN_1802921e0(lVar7,6,4);
+            NetworkSystem_PacketSerializer(lVar7,6,4);
             pfStack_128 = &fStack_d8;
             uStack_120 = 0xffffffff;
             FUN_180292290(lVar7,&uStack_118,&fStack_e8,&fStack_e0);
             if (bVar3) {
               *(int *)(lVar7 + 0x70) = *(int *)(lVar7 + 0x70) + -1;
-              FUN_180291a50(lVar7);
+              SystemCore_Initialize(lVar7);
             }
             *(int *)(lVar7 + 0x70) = *(int *)(lVar7 + 0x70) + -1;
-            FUN_180291a50(lVar7);
+            SystemCore_Initialize(lVar7);
           }
           iVar8 = iVar8 + 1;
           lVar9 = lVar9 + 8;

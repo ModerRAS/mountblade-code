@@ -498,7 +498,7 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
         
         if (stack_data[0] == NULL) {
             /* 处理资源获取失败 */
-            FUN_180627020(&processed_var_9528_ptr, *(uint32_t*)(resource_info + 0xf0));
+            SystemCore_Allocator(&processed_var_9528_ptr, *(uint32_t*)(resource_info + 0xf0));
             if (stack_data[0] != NULL) {
                 (*(void(**)(void*))(*stack_data[0] + 0x38))(stack_data[0]);
             }

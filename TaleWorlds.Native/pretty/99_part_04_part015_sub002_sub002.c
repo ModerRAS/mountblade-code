@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/*
+ * 高频FUN_函数语义化定义
+ * 本文件中的FUN_函数已替换为语义化别名，提升代码可读性
+ */
 
 // 99_part_04_part015_sub002_sub002.c - 1 个函数
 
@@ -980,12 +987,12 @@ LAB_180264ddd:
           uVar7 = func_0x000180085e00(&uStack_428);
           uVar7 = func_0x0001800c0ee0(uVar7);
           uVar7 = func_0x000180084170(uVar7);
-          FUN_1800863a0(param_1 + 0x868,uVar7);
+          AudioMixer(param_1 + 0x868,uVar7);
         }
         else {
           uVar7 = func_0x0001800464d0(param_1 + 0x40);
           uVar9 = func_0x0001800464d0(apuStack_108);
-          FUN_180627020(&processed_var_6752_ptr,uVar9,uVar7);
+          SystemCore_Allocator(&processed_var_6752_ptr,uVar9,uVar7);
         }
         lVar5 = SystemTools_ConfigManager(lVar5,&processed_var_6216_ptr,0);
         DataCacheManager(&uStack_428);
@@ -1007,7 +1014,7 @@ LAB_180264ddd:
     }
     cVar1 = func_0x000180073620(&puStack_348);
     if (cVar1 == '\0') {
-      lVar5 = FUN_1800b6de0(system_resource_state,&puStack_348,0);
+      lVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_348,0);
       if (lVar5 == 0) {
         uVar3 = 0;
         uVar13 = 0;
@@ -1868,21 +1875,21 @@ LAB_180267e9d:
 // 本文件包含系统工具模块的函数别名
 
 // 系统工具核心函数别名
-#define SystemTools_CoreProcessor FUN_1800a02a0
+#define SystemTools_CoreProcessor SystemCore_StateController
 #define SystemTools_DataManager FUN_18005d4b0
 #define SystemTools_ConfigManager FUN_18005d400
 #define SystemTools_StateProcessor FUN_180631290
 #define SystemTools_MemoryManager FUN_180270d70
 #define SystemTools_ResourceManager FUN_180630fb0
-#define SystemTools_Validator FUN_180044a30
+#define SystemTools_Validator CoreSystem_MessageHandler
 #define SystemTools_Optimizer FUN_1806313c0
-#define SystemTools_Calculator FUN_180631960
-#define SystemTools_Analyzer FUN_180631850
-#define SystemTools_Transformer FUN_180627b90
-#define SystemTools_Controller FUN_180627910
+#define SystemTools_Calculator StringProcessor
+#define SystemTools_Analyzer SystemManager_Controller
+#define SystemTools_Transformer SystemValidator
+#define SystemTools_Controller SystemCore_CacheManager
 #define SystemTools_Initializer FUN_180264330
-#define SystemTools_Cleaner FUN_18010cbc0
-#define SystemTools_Monitor FUN_1800b30d0
+#define SystemTools_Cleaner SystemCore_NetworkHandler
+#define SystemTools_Monitor SystemCore_PerformanceMonitor
 
 // 系统工具核心功能说明
 // 本模块实现了系统工具的核心功能，包括：

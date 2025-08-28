@@ -1,10 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part155_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_18075dbf0(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
-void FUN_18075dbf0(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
+// 函数: void SystemCore_ConfigurationManager(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
+void SystemCore_ConfigurationManager(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
 
 {
   int iVar1;
@@ -83,7 +87,7 @@ uint64_t FUN_18075dcc0(int64_t param_1,int64_t param_2,uint64_t param_3,char par
   bVar4 = false;
   if (param_2 == 0) {
     if (param_5 != '\0') {
-      FUN_180743160(lVar2,1);
+      SystemCore_ResourceManager0(lVar2,1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8),1);
     }
     sVar1 = *(short *)(param_1 + 0x1a8);
@@ -170,7 +174,7 @@ LAB_18075dfdf:
           lVar3 = *(int64_t *)(param_1 + 0xa8);
           bVar15 = false;
           if (param_5 != '\0') {
-            FUN_180743160(lVar3,1);
+            SystemCore_ResourceManager0(lVar3,1);
             bVar15 = lVar3 != 0;
             if (bVar15) {
               func_0x000180743c20(lVar3,1);
@@ -386,7 +390,7 @@ uint64_t FUN_18075dcce(int64_t param_1,int64_t param_2,uint64_t param_3,char par
   lStack0000000000000030 = lVar12;
   if (param_2 == 0) {
     if (in_stack_000000a0 != '\0') {
-      FUN_180743160(lVar12,1);
+      SystemCore_ResourceManager0(lVar12,1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8),1);
     }
     sVar1 = *(short *)(param_1 + 0x1a8);
@@ -473,7 +477,7 @@ LAB_18075dfdf:
           lVar12 = *(int64_t *)(param_1 + 0xa8);
           bVar13 = false;
           if (in_stack_000000a0 != '\0') {
-            FUN_180743160(lVar12,1);
+            SystemCore_ResourceManager0(lVar12,1);
             bVar13 = lVar12 != 0;
             if (bVar13) {
               func_0x000180743c20(lVar12,1);
@@ -708,7 +712,7 @@ uint64_t FUN_18075e059(void)
         lVar2 = *(int64_t *)(unaff_RBX + 0xa8);
         bVar10 = false;
         if (in_stack_000000a0 != '\0') {
-          FUN_180743160(lVar2,1);
+          SystemCore_ResourceManager0(lVar2,1);
           bVar10 = lVar2 != 0;
           if (bVar10) {
             func_0x000180743c20(lVar2,1);
@@ -1045,7 +1049,7 @@ uint64_t FUN_18075e740(int64_t param_1,int param_2,uint64_t *param_3,uint64_t *p
   bVar11 = false;
   uVar7 = 0;
   if (param_6 != '\0') {
-    FUN_180743160(lVar1,1);
+    SystemCore_ResourceManager0(lVar1,1);
     bVar11 = lVar1 != 0;
     if (bVar11) {
       func_0x000180743c20(lVar1,1);
@@ -1306,7 +1310,7 @@ int32_t FUN_18075eb70(int64_t param_1,int *param_2,char param_3,char param_4)
   }
   else {
     if (param_4 != '\0') {
-      FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+      SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8),1);
     }
     if (param_3 == '\0') {
@@ -1338,7 +1342,7 @@ int32_t FUN_18075ec10(int64_t param_1,int *param_2,char param_3,char param_4)
   }
   else {
     if (param_4 != '\0') {
-      FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+      SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8),1);
     }
     if (param_3 == '\0') {
@@ -1522,7 +1526,7 @@ uint64_t FUN_18075ef40(int64_t param_1,int param_2,uint64_t *param_3,uint64_t *p
   bVar11 = false;
   uVar7 = 0;
   if (param_6 != '\0') {
-    FUN_180743160(lVar1,1);
+    SystemCore_ResourceManager0(lVar1,1);
     bVar11 = lVar1 != 0;
     if (bVar11) {
       func_0x000180743c20(lVar1,1);

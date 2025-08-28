@@ -1,10 +1,67 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+/*==============================================================================
+ * UI系统高级组件管理和状态控制模块
+ *==============================================================================*/
+
+/**
+ * @file 04_ui_system_part125.c
+ * @brief UI系统高级组件管理和状态控制模块
+ * @details 该模块包含35个核心函数，负责UI组件的状态管理、
+ *          事件处理、资源初始化和系统控制功能。
+ * 
+ * 主要功能：
+ * - UI组件状态管理和生命周期控制
+ * - 高级事件处理和消息分发
+ * - 资源初始化和内存管理
+ * - 系统状态验证和错误处理
+ * - 动画控制和用户交互处理
+ * 
+ * 技术特点：
+ * - 状态驱动的组件管理
+ * - 高效的事件分发机制
+ * - 内存优化的资源管理
+ * - 完整的错误处理和恢复
+ * - 支持多线程和异步操作
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
+
+/*==============================================================================
+ * 函数别名定义
+ *==============================================================================*/
+
+/** UI动画控制器函数别名 */
+#define UIAnimationController UIAnimationController
+
+/** 系统状态查询器函数别名 */
+#define SystemStateQuery FUN_18073f710
+
+/** 系统配置管理器函数别名 */
+#define SystemConfigManager FUN_18073f8b0
+
+/** 系统事件处理器函数别名 */
+#define SystemEventHandler FUN_18073f990
+
+/** 系统资源管理器函数别名 */
+#define SystemResourceManager FUN_180740620
+
 // 04_ui_system_part125.c - 35 个函数
 
-// 函数: void FUN_18073f710(uint64_t param_1)
-void FUN_18073f710(uint64_t param_1)
+// 函数: void SystemStateQuery(uint64_t param_1)
+void SystemStateQuery(uint64_t param_1)
 
 {
   int iVar1;
@@ -42,8 +99,8 @@ LAB_18073f792:
 
 
 
-// 函数: void FUN_18073f8b0(uint64_t param_1,uint64_t *param_2)
-void FUN_18073f8b0(uint64_t param_1,uint64_t *param_2)
+// 函数: void SystemConfigManager(uint64_t param_1,uint64_t *param_2)
+void SystemConfigManager(uint64_t param_1,uint64_t *param_2)
 
 {
   int iVar1;
@@ -82,8 +139,8 @@ void FUN_18073f8b0(uint64_t param_1,uint64_t *param_2)
 
 
 
-// 函数: void FUN_18073f990(uint64_t param_1,int32_t *param_2)
-void FUN_18073f990(uint64_t param_1,int32_t *param_2)
+// 函数: void SystemEventHandler(uint64_t param_1,int32_t *param_2)
+void SystemEventHandler(uint64_t param_1,int32_t *param_2)
 
 {
   int iVar1;
@@ -105,7 +162,7 @@ void FUN_18073f990(uint64_t param_1,int32_t *param_2)
     if (iVar1 == 0) goto LAB_18073fa2f;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    FUN_18074b930(auStack_118,0x100,param_2);
+    UIAnimationController(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,2,param_1,&processed_var_7520_ptr);
@@ -149,7 +206,7 @@ void FUN_18073fa70(uint64_t param_1,int32_t *param_2,int32_t param_3)
     if (iVar1 == 0) goto FUN_18073fb64;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(auStack_138,0x100,param_2);
+    iVar2 = SystemCore_CompressionHandler(auStack_138,0x100,param_2);
     iVar3 = SystemDataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
@@ -198,7 +255,7 @@ void FUN_18073fa8d(uint64_t param_1,int32_t *param_2,int32_t param_3)
     if (iVar1 == 0) goto FUN_18073fb64;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(&stack0x00000040,0x100,param_2);
+    iVar2 = SystemCore_CompressionHandler(&stack0x00000040,0x100,param_2);
     iVar3 = SystemDataProcessor(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074b800(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
                     // WARNING: Subroutine does not return
@@ -225,7 +282,7 @@ void FUN_18073faec(void)
   int32_t unaff_EBP;
   int32_t unaff_ESI;
   
-  iVar1 = FUN_18074ba80(&stack0x00000040,0x100);
+  iVar1 = SystemCore_CompressionHandler(&stack0x00000040,0x100);
   iVar2 = SystemDataProcessor(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_EBP);
                     // WARNING: Subroutine does not return
@@ -589,11 +646,11 @@ void FUN_180740030(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t pa
   
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   lStack_158 = 0;
-  iVar1 = FUN_180763070(param_1,&uStack_150,&lStack_158);
+  iVar1 = UISystem_LayoutManager(param_1,&uStack_150,&lStack_158);
   if (iVar1 == 0) {
     uStack_160 = 0;
     puStack_168 = (int8_t *)CONCAT71(puStack_168._1_7_,1);
-    iVar1 = FUN_180759220(uStack_150,param_2,param_3,param_4);
+    iVar1 = UltraHighFreq_AudioSystem1(uStack_150,param_2,param_3,param_4);
     if (iVar1 == 0) goto LAB_180740150;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
@@ -638,9 +695,9 @@ void FUN_180740190(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_148 = 0;
-  iVar1 = FUN_180763070(param_1,&uStack_140,&lStack_148);
+  iVar1 = UISystem_LayoutManager(param_1,&uStack_140,&lStack_148);
   if (iVar1 == 0) {
-    iVar1 = FUN_18075dbf0(uStack_140,param_2,param_3,4);
+    iVar1 = SystemCore_ConfigurationManager(uStack_140,param_2,param_3,4);
     if (iVar1 == 0) goto FUN_180740283;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
@@ -684,9 +741,9 @@ void FUN_1807401ad(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
   lStack0000000000000030 = 0;
-  iVar1 = FUN_180763070(param_1,&stack0x00000038,&stack0x00000030);
+  iVar1 = UISystem_LayoutManager(param_1,&stack0x00000038,&stack0x00000030);
   if (iVar1 == 0) {
-    iVar1 = FUN_18075dbf0(in_stack_00000038,param_2,param_3,4);
+    iVar1 = SystemCore_ConfigurationManager(in_stack_00000038,param_2,param_3,4);
     if (iVar1 == 0) goto FUN_180740283;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
@@ -778,15 +835,15 @@ void FUN_1807402d0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_148 = 0;
-  iVar1 = FUN_180763070(param_1,&uStack_140,&lStack_148);
+  iVar1 = UISystem_LayoutManager(param_1,&uStack_140,&lStack_148);
   if (iVar1 == 0) {
     iVar1 = func_0x00018075e4f0(uStack_140,param_2,param_3);
     if (iVar1 == 0) goto FUN_1807403bf;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(auStack_138,0x100,param_2);
+    iVar2 = SystemCore_CompressionHandler(auStack_138,0x100,param_2);
     iVar3 = SystemDataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074ba80(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    SystemCore_CompressionHandler(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_8016_ptr);
@@ -824,15 +881,15 @@ void FUN_1807402ed(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
   lStack0000000000000030 = 0;
-  iVar1 = FUN_180763070(param_1,&stack0x00000038,&stack0x00000030);
+  iVar1 = UISystem_LayoutManager(param_1,&stack0x00000038,&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = func_0x00018075e4f0(in_stack_00000038,param_2,param_3);
     if (iVar1 == 0) goto FUN_1807403bf;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = FUN_18074ba80(&stack0x00000040,0x100,param_2);
+    iVar2 = SystemCore_CompressionHandler(&stack0x00000040,0x100,param_2);
     iVar3 = SystemDataProcessor(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074ba80(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    SystemCore_CompressionHandler(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_8016_ptr,&stack0x00000040);
   }
@@ -856,9 +913,9 @@ void FUN_180740347(void)
   int iVar2;
   int32_t unaff_ESI;
   
-  iVar1 = FUN_18074ba80(&stack0x00000040,0x100);
+  iVar1 = SystemCore_CompressionHandler(&stack0x00000040,0x100);
   iVar2 = SystemDataProcessor(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074ba80(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  SystemCore_CompressionHandler(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,7);
 }
@@ -916,7 +973,7 @@ void FUN_180740410(uint64_t param_1,uint64_t param_2)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
-  iVar1 = FUN_180763070(param_1,&uStack_120,&lStack_128);
+  iVar1 = UISystem_LayoutManager(param_1,&uStack_120,&lStack_128);
   if (iVar1 == 0) {
     iVar1 = func_0x00018075e640(uStack_120,param_2);
     if (iVar1 == 0) goto LAB_1807404aa;
@@ -957,7 +1014,7 @@ void FUN_1807404e0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_148 = 0;
-  iVar1 = FUN_180763070(param_1,&uStack_140,&lStack_148);
+  iVar1 = UISystem_LayoutManager(param_1,&uStack_140,&lStack_148);
   if (iVar1 == 0) {
     iVar1 = FUN_18075e9c0(uStack_140,param_2,param_3);
     if (iVar1 == 0) goto FUN_1807405cf;
@@ -1003,7 +1060,7 @@ void FUN_1807404fd(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
   lStack0000000000000030 = 0;
-  iVar1 = FUN_180763070(param_1,&stack0x00000038,&stack0x00000030);
+  iVar1 = UISystem_LayoutManager(param_1,&stack0x00000038,&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_18075e9c0(in_stack_00000038,param_2,param_3);
     if (iVar1 == 0) goto FUN_1807405cf;
@@ -1081,8 +1138,8 @@ void FUN_1807405f1(void)
 
 
 
-// 函数: void FUN_180740620(uint64_t param_1,uint64_t param_2)
-void FUN_180740620(uint64_t param_1,uint64_t param_2)
+// 函数: void SystemResourceManager(uint64_t param_1,uint64_t param_2)
+void SystemResourceManager(uint64_t param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -1093,10 +1150,10 @@ void FUN_180740620(uint64_t param_1,uint64_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
-  iVar1 = FUN_180763070(param_1,auStack_128,0);
+  iVar1 = UISystem_LayoutManager(param_1,auStack_128,0);
   if (((iVar1 != 0) || (iVar1 = func_0x00018075ecb0(auStack_128[0],param_2), iVar1 != 0)) &&
      ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-    FUN_18074b930(auStack_118,0x100,param_2);
+    UIAnimationController(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7864_ptr);

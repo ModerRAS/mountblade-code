@@ -80,7 +80,7 @@ void FUN_1805cca5d(void)
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -149,7 +149,7 @@ void FUN_1805ccb47(void)
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -199,7 +199,7 @@ void FUN_1805ccbfe(void)
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -246,7 +246,7 @@ void FUN_1805ccc24(void)
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -293,7 +293,7 @@ void FUN_1805ccc2c(void)
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }

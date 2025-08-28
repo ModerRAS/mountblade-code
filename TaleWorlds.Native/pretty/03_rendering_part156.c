@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -185,7 +189,7 @@ LAB_180364b3d:
   }
 LAB_180364c1e:
   if (*(int *)(param_1 + 0xa0) == 0) {
-    lVar4 = FUN_180628ca0();
+    lVar4 = MemoryDebugger0();
     uVar14 = *(uint *)(lVar4 + 0x10);
     uVar11 = (uint64_t)uVar14;
     if (*(int64_t *)(lVar4 + 8) != 0) {
@@ -207,7 +211,7 @@ LAB_180364c1e:
       SystemCore_ConfigurationHandler0(param_1 + 0x158,param_1 + 0x90);
     }
     else {
-      uVar5 = FUN_180628ca0();
+      uVar5 = MemoryDebugger0();
       SystemCore_ConfigurationHandler0(param_1 + 0x158,uVar5);
       plStack_98 = (int64_t *)((uint64_t)plStack_98 & 0xffffffff00000000);
       FUN_1808464f0(lVar4,&plStack_98);
@@ -309,7 +313,7 @@ bool FUN_180364d70(int64_t param_1,float *param_2,float *param_3)
       uStack_70 = *(uint64_t *)(lVar2 + 0x88) & 0xffffffff;
       uStack_5c = 0;
       uStack_4c = 0x3f800000;
-      FUN_180084760(&uStack_88,&fStack_c8);
+      SystemCore_PerformanceMonitor(&uStack_88,&fStack_c8);
       fVar4 = param_3[1];
       fVar3 = *param_3;
       param_3[3] = 1.0;
@@ -424,7 +428,7 @@ FUN_180364e8e(int64_t param_1,uint64_t param_2,float *param_3,uint64_t param_4,f
     uStack0000000000000078 = *(uint64_t *)(lVar4 + 0x88) & 0xffffffff;
     uStack000000000000008c = 0;
     uStack000000000000009c = 0x3f800000;
-    FUN_180084760(&stack0x00000060,&fStackX_20);
+    SystemCore_PerformanceMonitor(&stack0x00000060,&fStackX_20);
     fVar1 = param_3[1];
     fVar2 = *param_3;
     param_3[3] = 1.0;
@@ -536,7 +540,7 @@ void FUN_180364fe0(int64_t *param_1)
     uStack_70 = *(uint64_t *)(lVar2 + 0x88) & 0xffffffff;
     uStack_5c = 0;
     uStack_4c = 0x3f800000;
-    FUN_180084760(&uStack_88,&fStack_c8);
+    SystemCore_PerformanceMonitor(&uStack_88,&fStack_c8);
     fStack_98 = fStack_c8 * fStack_d8 + fStack_b8 * fStack_d4 + fStack_a8 * fStack_d0 + fStack_98;
     fStack_94 = fStack_c4 * fStack_d8 + fStack_b4 * fStack_d4 + fStack_a4 * fStack_d0 + fStack_94;
     fStack_90 = fStack_c0 * fStack_d8 + fStack_b0 * fStack_d4 + fStack_a0 * fStack_d0 + fStack_90;
@@ -649,7 +653,7 @@ void FUN_180365038(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
     *(int32_t *)(unaff_RBP + 0x13) = uVar9;
     *(int32_t *)(unaff_RBP + 3) = 0;
     *(int32_t *)(unaff_RBP + 0x13) = 0x3f800000;
-    FUN_180084760(unaff_RBP + -0x29,unaff_RBP + -0x69);
+    SystemCore_PerformanceMonitor(unaff_RBP + -0x29,unaff_RBP + -0x69);
     fVar17 = *(float *)(unaff_RBP + -0x79);
     fVar13 = *(float *)(unaff_RBP + -0x75);
     fVar14 = *(float *)(unaff_RBP + -0x71);
@@ -824,7 +828,7 @@ void FUN_1803651c1(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   *(int32_t *)(unaff_RBP + 0x13) = uVar10;
   *(int32_t *)(unaff_RBP + 3) = 0;
   *(int32_t *)(unaff_RBP + 0x13) = 0x3f800000;
-  FUN_180084760(unaff_RBP + -0x29,unaff_RBP + -0x69);
+  SystemCore_PerformanceMonitor(unaff_RBP + -0x29,unaff_RBP + -0x69);
   fVar14 = *(float *)(unaff_RBP + -0x79);
   fVar1 = *(float *)(unaff_RBP + -0x75);
   fVar2 = *(float *)(unaff_RBP + -0x71);

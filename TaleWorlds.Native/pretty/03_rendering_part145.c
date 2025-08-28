@@ -894,7 +894,7 @@ void render_resource_allocator(int64_t param_1)
     if (plVar6[0x4d] == 0) {
         render_system_initializer(plVar6, &processed_var_4472_ptr);
     }
-    FUN_1802ea790(plVar6, &system_memory_0300);
+    NetworkProtocol_Transmitter(plVar6, &system_memory_0300);
     pplStackX_20 = &plStackX_8;
     plStackX_8 = plVar6;
     (**(code **)(*plVar6 + 0x28))(plVar6);

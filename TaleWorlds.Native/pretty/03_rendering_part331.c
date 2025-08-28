@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -328,7 +332,7 @@ void FUN_180440910(int64_t param_1,uint64_t param_2)
       if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
       }
-      FUN_1802edcd0(param_1,plStackX_8,1);
+      PhysicsSystem_TerrainCollider(param_1,plStackX_8,1);
       if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
       }
@@ -612,7 +616,7 @@ uint64_t FUN_180440f30(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   uVar7 = 0xfffffffffffffffe;
   if (param_1 == 0) {
     pcVar1 = *(code **)(*system_cache_buffer + 0x70);
-    uVar7 = FUN_180628ca0();
+    uVar7 = MemoryDebugger0();
     uVar4 = (*pcVar1)(system_cache_buffer,uVar7);
   }
   else {

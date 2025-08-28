@@ -48,12 +48,12 @@ void FUN_18028e702(void)
       if (fVar11 < (float)unaff_EDI) {
         fStack0000000000000028 = fVar11;
         if (fVar11 < 0.0) {
-          FUN_18028e550(unaff_RSI + -4,0,in_R9,fVar11);
+          SystemCore_ProcessEvents(unaff_RSI + -4,0,in_R9,fVar11);
         }
         else {
-          FUN_18028e550(in_R10,(int)fVar11,in_R9,fVar11);
+          SystemCore_ProcessEvents(in_R10,(int)fVar11,in_R9,fVar11);
           fStack0000000000000028 = fVar11;
-          FUN_18028e550(unaff_RSI + -4);
+          SystemCore_ProcessEvents(unaff_RSI + -4);
         }
       }
     }
@@ -91,38 +91,38 @@ void FUN_18028e702(void)
               if ((fVar15 <= fVar20) || (fVar11 <= fVar17)) {
                 if (((fVar11 < fVar15) && (fVar15 < fVar20)) ||
                    ((fVar20 < fVar15 && (fVar15 < fVar11)))) {
-                  FUN_18028e550(in_R10,uVar5,in_R9,fVar11);
+                  SystemCore_ProcessEvents(in_R10,uVar5,in_R9,fVar11);
                 }
                 else if ((fVar17 <= fVar11) || (fVar20 <= fVar17)) {
                   if ((fVar20 < fVar17) && (fVar17 < fVar11)) {
                     fStack0000000000000028 = fVar17;
                     fStack0000000000000030 = fVar19;
-                    FUN_18028e550(in_R10,uVar5,in_R9,fVar11);
+                    SystemCore_ProcessEvents(in_R10,uVar5,in_R9,fVar11);
                   }
                 }
                 else {
                   fStack0000000000000028 = fVar17;
                   fStack0000000000000030 = fVar19;
-                  FUN_18028e550(in_R10,uVar5,in_R9,fVar11);
+                  SystemCore_ProcessEvents(in_R10,uVar5,in_R9,fVar11);
                 }
               }
               else {
                 fStack0000000000000028 = fVar17;
                 fStack0000000000000030 = fVar19;
-                FUN_18028e550(in_R10,uVar5,in_R9,fVar11);
+                SystemCore_ProcessEvents(in_R10,uVar5,in_R9,fVar11);
                 fStack0000000000000028 = fVar15;
                 fStack0000000000000030 = fVar18;
-                FUN_18028e550();
+                SystemCore_ProcessEvents();
               }
             }
             else {
-              FUN_18028e550(in_R10,uVar5,in_R9,fVar11);
+              SystemCore_ProcessEvents(in_R10,uVar5,in_R9,fVar11);
               fStack0000000000000028 = fVar17;
               fStack0000000000000030 = fVar19;
-              FUN_18028e550();
+              SystemCore_ProcessEvents();
             }
             fStack0000000000000028 = fVar20;
-            FUN_18028e550(in_R10);
+            SystemCore_ProcessEvents(in_R10);
             uVar5 = uVar9 & 0xffffffff;
           } while ((int)uVar9 < unaff_EDI);
           unaff_XMM13_Da = 0.5;

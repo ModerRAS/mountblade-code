@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 /**
  * @file 03_rendering_part109.c
@@ -114,7 +121,7 @@ void RenderingSystem_ProcessResourceBatch(int64_t render_context, int64_t output
     puStack_108[2] = (int32_t)uStack_c0;
     puStack_108[3] = uStack_c0._4_4_;
     *(int32_t **)(puStack_108 + 4) = puStack_b8;
-    FUN_18015b810((int32_t)uStack_c8,0,auStackX_20[0],1,0xffffffffffffffff,&puStack_108);
+    SystemCore_DataTransformer((int32_t)uStack_c8,0,auStackX_20[0],1,0xffffffffffffffff,&puStack_108);
   }
   auStackX_20[0] = 0;
   fread(auStackX_20,4,1,*(uint64_t *)(lStackX_10 + 8));
@@ -173,7 +180,7 @@ LAB_180332829:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0x6d8,acStack_d8,(uint64_t)*(uint *)(param_1 + 0x6c8),
+          RenderingShaderProcessor0(param_1 + 0x6d8,acStack_d8,(uint64_t)*(uint *)(param_1 + 0x6c8),
                         *(int32_t *)(param_1 + 0x6d0),1);
           puVar4 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x6e4));
           *puVar4 = *puVar2;
@@ -199,7 +206,7 @@ LAB_18033290a:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0x6d8,acStack_d0,(uint64_t)*(uint *)(param_1 + 0x6c8),
+          RenderingShaderProcessor0(param_1 + 0x6d8,acStack_d0,(uint64_t)*(uint *)(param_1 + 0x6c8),
                         *(int32_t *)(param_1 + 0x6d0),1);
           puVar5 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x6e4));
           *puVar5 = *puVar2;
@@ -494,7 +501,7 @@ LAB_180332f24:
             }
           }
           lStack_228 = CONCAT44(lStack_228._4_4_,1);
-          FUN_18066c220(lVar12 + 0xa10,acStack_1a0,(uint64_t)*(uint *)(lVar12 + 0xa00),
+          RenderingShaderProcessor0(lVar12 + 0xa10,acStack_1a0,(uint64_t)*(uint *)(lVar12 + 0xa00),
                         *(int32_t *)(lVar12 + 0xa08));
           puVar7 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar12 + 0xa1c));
           *puVar7 = uVar1;
@@ -521,7 +528,7 @@ LAB_180333054:
             }
           }
           lStack_228 = CONCAT44(lStack_228._4_4_,1);
-          FUN_18066c220(lVar12 + 0xa10,acStack_198,(uint64_t)*(uint *)(lVar12 + 0xa00),
+          RenderingShaderProcessor0(lVar12 + 0xa10,acStack_198,(uint64_t)*(uint *)(lVar12 + 0xa00),
                         *(int32_t *)(lVar12 + 0xa08));
           puVar7 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar12 + 0xa1c));
           *puVar7 = uVar1;
@@ -934,13 +941,13 @@ void RenderingSystem_CleanupResourceData(int64_t resource_context, char cleanup_
         if (plStackX_8 != (int64_t *)0x0) {
           (**(code **)(*plStackX_8 + 0x28))();
         }
-        FUN_18005e6a0(uVar5,&plStackX_8,0);
+        SystemCore_ErrorHandler(uVar5,&plStackX_8,0);
       }
     }
     if (param_2 == '\0') {
       plVar7 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,uVar11);
       plStackX_18 = plVar7;
-      FUN_180049830(plVar7);
+      UltraHighFreq_PerformanceMonitor1(plVar7);
       *plVar7 = (int64_t)&processed_var_8024_ptr;
       *(int *)(plVar7 + 0x18) = iVar2;
       plVar7[0x19] = param_1;
@@ -956,7 +963,7 @@ void RenderingSystem_CleanupResourceData(int64_t resource_context, char cleanup_
       if (plStackX_18 != (int64_t *)0x0) {
         (**(code **)(*plStackX_18 + 0x28))();
       }
-      FUN_18005e110(uVar5,&plStackX_18);
+      SystemCore_TimerManager(uVar5,&plStackX_18);
     }
     else {
       FUN_1803368b0(param_1,iVar2);

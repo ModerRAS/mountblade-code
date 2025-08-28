@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_12_part013.c - 7 个函数
 
@@ -131,7 +140,7 @@ uint64_t FUN_1807d2880(uint64_t *param_1,int8_t *param_2)
 
 
 
-uint64_t FUN_1807d28c0(int64_t *param_1,uint *param_2,uint64_t *param_3)
+uint64_t RenderingSystem_Renderer(int64_t *param_1,uint *param_2,uint64_t *param_3)
 
 {
   uint uVar1;
@@ -184,7 +193,7 @@ uint64_t FUN_1807d28c0(int64_t *param_1,uint *param_2,uint64_t *param_3)
         else if (iVar11 < iVar7) {
           iVar11 = iVar7;
         }
-        uVar5 = FUN_180748010(param_1 + 2,iVar11);
+        uVar5 = UltraHighFreq_StateController1(param_1 + 2,iVar11);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -265,7 +274,7 @@ uint64_t FUN_1807d28e3(void)
       else if (iVar10 < iVar6) {
         iVar10 = iVar6;
       }
-      uVar4 = FUN_180748010(unaff_RDI + 2,iVar10);
+      uVar4 = UltraHighFreq_StateController1(unaff_RDI + 2,iVar10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -424,10 +433,10 @@ void FUN_1807d2c10(int64_t param_1)
   uint64_t uStack_30;
   int aiStack_28 [4];
   
-  FUN_180768380(*(uint64_t *)(param_1 + 0x38),0);
+  SystemCore_DataHandler(*(uint64_t *)(param_1 + 0x38),0);
   uStack_30 = 0xffffffffffffffff;
   aiStack_28[0] = -1;
-  FUN_1807d1650(param_1 + 0x50,&uStack_30,aiStack_28);
+  NetworkSystem_ConnectionHandler(param_1 + 0x50,&uStack_30,aiStack_28);
   if (aiStack_28[0] != -1) {
     lVar1 = *(int64_t *)(*(int64_t *)(param_1 + 0x60) + 8 + (int64_t)aiStack_28[0] * 0x10);
     iVar2 = FUN_1807688f0(*(uint64_t *)(lVar1 + 8));
@@ -439,7 +448,7 @@ void FUN_1807d2c10(int64_t param_1)
   }
   uStack_30 = 0xffffffffffffffff;
   aiStack_28[0] = -1;
-  FUN_1807d1650(param_1 + 0x78,&uStack_30,aiStack_28);
+  NetworkSystem_ConnectionHandler(param_1 + 0x78,&uStack_30,aiStack_28);
   if (aiStack_28[0] != -1) {
     lVar1 = *(int64_t *)(*(int64_t *)(param_1 + 0x88) + 8 + (int64_t)aiStack_28[0] * 0x10);
     if ((*(int64_t *)(lVar1 + 0x10) != 0) && (iVar2 = FUN_180768420(), iVar2 != 0)) {
@@ -562,7 +571,7 @@ uint64_t FUN_1807d3080(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(param_1,0), (int)uVar3 != 0)) {
+     (uVar3 = SystemCore_SecurityHandler(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -597,7 +606,7 @@ uint64_t FUN_1807d3160(int64_t *param_1)
   if (-1 < (int)uVar3) {
     uVar1 = uVar3;
   }
-  if ((0 < (int)uVar1) && (uVar2 = FUN_180748010(param_1,0), (int)uVar2 != 0)) {
+  if ((0 < (int)uVar1) && (uVar2 = UltraHighFreq_StateController1(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;
@@ -678,10 +687,10 @@ uint64_t FUN_1807d3300(int64_t *param_1)
     }
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1807d3f50(param_1 + 2,iVar8), (int)uVar3 != 0)) {
+       (uVar3 = SystemCore_SecurityHandler(param_1 + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0(param_1,iVar8);
+    uVar3 = SystemCore_StateController0(param_1,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -749,10 +758,10 @@ uint64_t FUN_1807d3326(void)
     }
     uVar5 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = FUN_1807d3f50(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
+       (uVar2 = SystemCore_SecurityHandler(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
-    uVar2 = FUN_1807703c0();
+    uVar2 = SystemCore_StateController0();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -864,7 +873,7 @@ FUN_1807d3460(int64_t *param_1,int64_t *param_2,int8_t *param_3,int8_t *param_4)
         else if (iVar10 < iVar7) {
           iVar10 = iVar7;
         }
-        uVar4 = FUN_1807d3f50(param_1 + 2,iVar10);
+        uVar4 = SystemCore_SecurityHandler(param_1 + 2,iVar10);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -946,7 +955,7 @@ FUN_1807d34a5(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
       else if (iVar10 < iVar6) {
         iVar10 = iVar6;
       }
-      uVar4 = FUN_1807d3f50(unaff_RBX + 2,iVar10);
+      uVar4 = SystemCore_SecurityHandler(unaff_RBX + 2,iVar10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -1006,7 +1015,7 @@ FUN_1807d34ea(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
       else if (iVar6 < iVar4) {
         iVar6 = iVar4;
       }
-      uVar2 = FUN_1807d3f50(unaff_RBX + 0x10,iVar6);
+      uVar2 = SystemCore_SecurityHandler(unaff_RBX + 0x10,iVar6);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -1057,7 +1066,7 @@ FUN_1807d3555(int param_1,int param_2,uint64_t param_3,uint64_t param_4,uint64_t
   if (param_2 < param_1) {
     param_2 = param_1;
   }
-  uVar1 = FUN_1807d3f50(unaff_RBX + 0x10,param_2);
+  uVar1 = SystemCore_SecurityHandler(unaff_RBX + 0x10,param_2);
   if ((int)uVar1 == 0) {
     puVar2 = (uint64_t *)
              ((int64_t)*(int *)(unaff_RBX + 0x18) * 0x10 + *(int64_t *)(unaff_RBX + 0x10));

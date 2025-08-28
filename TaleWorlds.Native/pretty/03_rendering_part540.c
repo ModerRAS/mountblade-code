@@ -99,7 +99,7 @@ void FUN_180561b50(int64_t param_1,int64_t *param_2)
   puVar7[2] = uVar4;
   puVar7[3] = uVar5;
   param_2[1] = param_2[1] + 0x10;
-  FUN_180639fd0(param_2,param_1 + 0x44);
+  Audio_SoundManager(param_2,param_1 + 0x44);
   System_QueueProcessor(param_2,param_1 + 0x58);
   System_QueueProcessor(param_2,param_1 + 0x78);
   System_QueueProcessor(param_2,param_1 + 0x98);
@@ -205,7 +205,7 @@ void FUN_180561b50(int64_t param_1,int64_t *param_2)
   uVar11 = uVar14;
   do {
     if ((puVar13[1] & uVar2) != 0) {
-      FUN_180639de0(param_2,*puVar13);
+      UtilitiesSystem_ThreadManager(param_2,*puVar13);
       uVar11 = (uint64_t)((int)uVar11 + 1);
     }
     puVar13 = puVar13 + 2;

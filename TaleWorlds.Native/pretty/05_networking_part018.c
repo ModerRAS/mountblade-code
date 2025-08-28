@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 //============================================================================
@@ -401,9 +406,9 @@ network_result_t NetworkingSystem_ConnectionProcessor(int64_t param_1,int64_t pa
     }
     
     // 清理配置和事件数据
-    uVar3 = FUN_180744d60(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
+    uVar3 = SystemAnalyzer(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
     if (((int)uVar3 == NETWORKING_ERROR_NONE) && 
-        (uVar3 = FUN_180744d60(param_2 + NETWORKING_OFFSET_EVENT_DATA), (int)uVar3 == NETWORKING_ERROR_NONE)) {
+        (uVar3 = SystemAnalyzer(param_2 + NETWORKING_OFFSET_EVENT_DATA), (int)uVar3 == NETWORKING_ERROR_NONE)) {
       lVar2 = *(int64_t *)(param_2 + 0x60);
       uVar3 = FUN_180851840(param_2);
       if ((((int)uVar3 == NETWORKING_ERROR_NONE) &&
@@ -599,7 +604,7 @@ LAB_180851913:
       
       // 更新活动状态
       bVar4 = *(char *)(*(int64_t *)(param_1 + 0x40) + 0x74) != '\0';
-      FUN_18073d8a0(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+      SystemCore_StateController(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
       
       // 遍历并清理所有活动连接
       for (puVar2 = *(uint64_t **)(param_1 + 0x50);
@@ -697,7 +702,7 @@ LAB_180851913:
     
     // 处理活动状态变化
     bVar5 = *(char *)(*(int64_t *)(unaff_RDI + 0x40) + 0x74) != '\0';
-    FUN_18073d8a0(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar5);
+    SystemCore_StateController(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar5);
     
     // 通知所有相关组件状态变化
     for (puVar1 = *(uint64_t **)(unaff_RDI + 0x50);
@@ -760,7 +765,7 @@ network_result_t NetworkingSystem_EventProcessor(void)
   
   // 处理事件状态变化
   bVar4 = *(char *)(*(int64_t *)(unaff_RDI + 0x40) + 0x74) != cVar3;
-  FUN_18073d8a0(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+  SystemCore_StateController(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
   
   // 通知所有监听器事件变化
   for (puVar1 = *(uint64_t **)(unaff_RDI + 0x50);
@@ -880,7 +885,7 @@ network_result_t NetworkingSystem_ConfigManager(int64_t param_1)
   
   // 如果缓存中没有，则从系统获取配置
   auStackX_8[0] = 0;
-  iVar1 = FUN_18073c380(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,auStackX_8);
+  iVar1 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,auStackX_8);
   if (iVar1 != 0) {
     auStackX_8[0] = 0;
   }
@@ -939,12 +944,12 @@ network_result_t NetworkingSystem_HashTableManager(int64_t *param_1)
     // 验证容量
     uVar7 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar7) - uVar7) < iVar9) &&
-       (uVar4 = FUN_1808532e0(param_1 + 2,iVar9), (int)uVar4 != NETWORKING_ERROR_NONE)) {
+       (uVar4 = Physics_AnimationProcessor(param_1 + 2,iVar9), (int)uVar4 != NETWORKING_ERROR_NONE)) {
       return uVar4;
     }
     
     // 重新分配内存
-    uVar4 = FUN_1807703c0(param_1,iVar9);
+    uVar4 = RenderingEngine_TextureManager(param_1,iVar9);
     if ((int)uVar4 != NETWORKING_ERROR_NONE) {
       return uVar4;
     }
@@ -1037,12 +1042,12 @@ network_result_t NetworkingSystem_ArrayProcessor(void)
     // 验证容量
     uVar6 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1808532e0(unaff_RBX + 2,iVar8), (int)uVar3 != NETWORKING_ERROR_NONE)) {
+       (uVar3 = Physics_AnimationProcessor(unaff_RBX + 2,iVar8), (int)uVar3 != NETWORKING_ERROR_NONE)) {
       return uVar3;
     }
     
     // 重新分配内存
-    uVar3 = FUN_1807703c0();
+    uVar3 = RenderingEngine_TextureManager();
     if ((int)uVar3 != NETWORKING_ERROR_NONE) {
       return uVar3;
     }
@@ -1137,7 +1142,7 @@ void NetworkingSystem_CallbackHandler(int64_t param_1,int8_t param_2)
   iVar1 = FUN_180853980();
   if (iVar1 == 0) {
     // 执行回调操作
-    FUN_18073d8a0(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),param_2);
+    SystemCore_StateController(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),param_2);
   }
   return;
 }
@@ -1240,7 +1245,7 @@ network_result_t NetworkingSystem_TransferManager(int64_t param_1,int64_t param_
   if (param_2 != 0) {
     if (*(int *)(param_1 + 0x88) == 0) {
       uStackX_10 = 0;
-      iVar1 = FUN_18073c380(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,&uStackX_10);
+      iVar1 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,&uStackX_10);
       uVar2 = uStackX_10;
       if (iVar1 != 0) {
         uVar2 = 0;
@@ -1293,7 +1298,7 @@ network_result_t NetworkingSystem_ConnectionValidator(uint64_t param_1)
   
   // 执行连接验证
   uStack0000000000000038 = 0;
-  iVar1 = FUN_18073c380(param_1,0xfffffffe);
+  iVar1 = UltraHighFreq_PhysicsEngine1(param_1,0xfffffffe);
   uVar2 = uStack0000000000000038;
   if (iVar1 != 0) {
     uVar2 = 0;
@@ -1466,7 +1471,7 @@ LAB_180851f6d:
         else if (iVar8 < iVar6) {
           iVar8 = iVar6;
         }
-        uVar5 = FUN_180747f10(param_5,iVar8);
+        uVar5 = RenderingTextureManager0(param_5,iVar8);
         if ((int)uVar5 != NETWORKING_ERROR_NONE) {
           return uVar5;
         }

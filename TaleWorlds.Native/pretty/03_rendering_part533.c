@@ -1,3 +1,11 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -104,7 +112,7 @@ int64_t * FUN_18055b790(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
   lVar7 = *plVar1;
   do {
     if (lVar7 == 0) {
-      FUN_18066c220(param_1 + 0x20,acStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x2c));
       lStackX_10 = lVar7;
@@ -420,7 +428,7 @@ LAB_18055bcdc:
       puVar4 = puVar4 + 0xd;
     } while (puVar1 != puVar7);
   }
-  FUN_1800b8300(puVar5,param_2);
+  DataDeserializer0(puVar5,param_2);
   *(int32_t *)(puVar5 + 0xb) = *(int32_t *)(param_2 + 0x58);
   *(int32_t *)((int64_t)puVar5 + 0x5c) = *(int32_t *)(param_2 + 0x5c);
   *(int8_t *)(puVar5 + 0xc) = *(int8_t *)(param_2 + 0x60);

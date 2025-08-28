@@ -170,9 +170,9 @@ typedef struct {
 // 辅助功能函数别名
 #define RenderingSystem_CreateBuffer FUN_18033b220            // 渲染系统缓冲区创建器
 #define RenderingSystem_DestroyBuffer FUN_18033bc80           // 渲染系统缓冲区销毁器
-#define RenderingSystem_UpdateBuffer FUN_180254610            // 渲染系统缓冲区更新器
+#define RenderingSystem_UpdateBuffer RenderingSystem_CameraController            // 渲染系统缓冲区更新器
 #define RenderingSystem_LockBuffer FUN_1802eeb00              // 渲染系统缓冲区锁定器
-#define RenderingSystem_UnlockBuffer FUN_1802ee720            // 渲染系统缓冲区解锁器
+#define RenderingSystem_UnlockBuffer RenderingSystem_UpdateCamera            // 渲染系统缓冲区解锁器
 
 /* ============================================================================
  * 全局变量声明

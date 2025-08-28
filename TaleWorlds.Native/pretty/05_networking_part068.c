@@ -94,7 +94,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
     *(uint64_t *)(unaff_RBP + -9) = param_2;
     *(uint64_t *)(unaff_RBP + -1) = 0xffffffffffffffff;
     *(int32_t *)(unaff_RBP + 7) = 0xffffffff;
-    FUN_1808741f0(param_2,unaff_RBP + -1,unaff_RBP + 7);
+    SystemResource_Manager(param_2,unaff_RBP + -1,unaff_RBP + 7);
     iVar13 = *(int *)(unaff_RBP + 7);
     *(int *)(unaff_RBP + -0x49) = iVar13;
     if (iVar13 != -1) {

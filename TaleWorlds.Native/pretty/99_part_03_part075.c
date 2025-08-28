@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 // 99_part_03_part075.c - 11 个函数
 
@@ -88,7 +94,7 @@ LAB_18024063e:
   else {
     if (*(int64_t *)(param_1 + 0xb8) == 0) {
       puVar5 = (uint64_t *)
-               FUN_1800b31f0(system_resource_state,&plStackX_8,param_1 + 0x1618,param_3,0,
+               SystemCore_EncryptionManager(system_resource_state,&plStackX_8,param_1 + 0x1618,param_3,0,
                              0xfffffffffffffffe);
       *(uint64_t *)(param_1 + 0xb8) = *puVar5;
       if (plStackX_8 != (int64_t *)0x0) {
@@ -318,7 +324,7 @@ int64_t FUN_180240a60(int64_t param_1)
     return param_1 + 0x1598;
   }
   while( true ) {
-    puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStackX_8,param_1 + 0x1618,1,0,uVar3);
+    puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStackX_8,param_1 + 0x1618,1,0,uVar3);
     *(uint64_t *)(param_1 + 0xb8) = *puVar2;
     if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
@@ -393,7 +399,7 @@ uint64_t FUN_180241250(int64_t param_1)
   while (0 < iVar2) {
     plVar1 = (int64_t *)(param_1 + 0xb8);
     if (*plVar1 == 0) {
-      plVar3 = (int64_t *)FUN_1800b31f0(system_resource_state,&plStackX_8,param_1 + 0x1618,0,0,uVar4);
+      plVar3 = (int64_t *)SystemCore_EncryptionManager(system_resource_state,&plStackX_8,param_1 + 0x1618,0,0,uVar4);
       *plVar1 = *plVar3;
       if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
@@ -819,7 +825,7 @@ LAB_180241760:
       puVar4 = puVar4 + 0xc;
     } while (puVar1 != puVar7);
   }
-  FUN_1800b8300(puVar5,param_2);
+  DataDeserializer0(puVar5,param_2);
   *(int32_t *)(puVar5 + 0xb) = *(int32_t *)(param_2 + 0x58);
   *(int32_t *)((int64_t)puVar5 + 0x5c) = *(int32_t *)(param_2 + 0x5c);
   puVar7 = (uint64_t *)param_1[1];

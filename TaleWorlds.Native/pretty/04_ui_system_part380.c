@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -144,7 +145,7 @@ LAB_18087317c:
     }
     *(uint *)(param_1 + 0x48) = uVar7;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180747e10(param_1 + 0x40,0);
+      SystemCore_Initializer(param_1 + 0x40,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x3c);
@@ -170,7 +171,7 @@ LAB_18087320a:
     }
     *(uint *)(param_1 + 0x38) = uVar7;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180748010(param_1 + 0x30,0);
+      UltraHighFreq_StateController1(param_1 + 0x30,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x2c);
@@ -309,7 +310,7 @@ LAB_18087317c:
     }
     *(uint *)(unaff_RBP + 0x48) = uVar5;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180747e10(unaff_RBP + 0x40,0);
+      SystemCore_Initializer(unaff_RBP + 0x40,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x3c);
@@ -335,7 +336,7 @@ LAB_18087320a:
     }
     *(uint *)(unaff_RBP + 0x38) = uVar5;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180748010(unaff_RBP + 0x30,0);
+      UltraHighFreq_StateController1(unaff_RBP + 0x30,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x2c);
@@ -466,7 +467,7 @@ LAB_18087317c:
     }
     *(uint *)(unaff_RBP + 0x48) = uVar4;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180747e10(unaff_RBP + 0x40,0);
+      SystemCore_Initializer(unaff_RBP + 0x40,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x3c);
@@ -492,7 +493,7 @@ LAB_18087320a:
     }
     *(uint *)(unaff_RBP + 0x38) = uVar4;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180748010(unaff_RBP + 0x30,0);
+      UltraHighFreq_StateController1(unaff_RBP + 0x30,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x2c);
@@ -610,7 +611,7 @@ LAB_18087317c:
     }
     *(uint *)(unaff_RBP + 0x48) = uVar4;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180747e10(unaff_RBP + 0x40,0);
+      SystemCore_Initializer(unaff_RBP + 0x40,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x3c);
@@ -636,7 +637,7 @@ LAB_18087320a:
     }
     *(uint *)(unaff_RBP + 0x38) = uVar4;
     if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-      FUN_180748010(unaff_RBP + 0x30,0);
+      UltraHighFreq_StateController1(unaff_RBP + 0x30,0);
     }
   }
   uVar3 = *(uint *)(unaff_RBP + 0x2c);

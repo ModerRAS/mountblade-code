@@ -1,3 +1,9 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -740,7 +746,7 @@ void RenderingSystemConditionHandler(
   
   // 执行条件处理和状态更新
   FUN_18058e430(temp_var2,param1,param2,param3,&processed_var_5760_ptr,0,0,&param4,0,0xffffffff,0);
-  FUN_18005ea90(system_handle + 0x900,stack_array);
+  SystemSecurity_Manager(system_handle + 0x900,stack_array);
   temp_var1 = *(uint64_t *)(system_handle + 0x6d8);
   stack_ptr2 = &param4;
   param4 = stack_ptr;
@@ -872,7 +878,7 @@ void FUN_1806005f0(int64_t param_1,int param_2,char param_3)
     if (piVar6 != piVar4) goto LAB_18060064c;
   }
   aiStackX_8[0] = param_2;
-  FUN_1800571e0((uint64_t *)(lVar3 + 0x2110),aiStackX_8);
+  SystemDatabaseProcessor((uint64_t *)(lVar3 + 0x2110),aiStackX_8);
 LAB_18060064c:
   if ((*(int *)(lVar3 + 0x178) == 0) && (*(char *)(lVar3 + 0x12bc) != '\0')) {
     iVar7 = *(int *)(lVar3 + 0x12b8);
@@ -1302,7 +1308,7 @@ void FUN_180601090(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t par
   uStack_38 = param_2;
   uStack_34 = param_3;
   uStack_30 = param_4;
-  FUN_18051ec50(param_9,&uStack_38);
+  CoreSystemThreadManager(param_9,&uStack_38);
   return;
 }
 
@@ -1338,7 +1344,7 @@ void FUN_180601160(int64_t param_1)
   }
   if (*(int64_t *)plVar2[0x1f] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&ui_system_data_1944_ptr);
+    SystemParameterHandler(system_message_context,&ui_system_data_1944_ptr);
   }
   lVar3 = FUN_18040db80(*(int64_t *)plVar2[0x1f]);
   fVar7 = 0.0;

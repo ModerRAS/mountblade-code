@@ -275,13 +275,13 @@ void FUN_18083b6f0(uint64_t param_1,int64_t param_2,uint64_t param_3)
   auStack_270[0] = param_1;
   piVar6 = (int *)FUN_1807c4170(param_1,1,0x460);
   if (piVar6 != (int *)0x0) {
-    iVar4 = FUN_18082d7f0(param_3,5);
+    iVar4 = SystemCore_Optimizer(param_3,5);
     *piVar6 = iVar4;
     uVar12 = uVar15;
     piVar9 = piVar6;
     if (0 < iVar4) {
       do {
-        iVar4 = FUN_18082d7f0(param_3,4);
+        iVar4 = SystemCore_Optimizer(param_3,4);
         piVar9[1] = iVar4;
         if (iVar4 < 0) goto LAB_18083bb2d;
         if (iVar4 <= iVar10) {
@@ -300,13 +300,13 @@ void FUN_18083b6f0(uint64_t param_1,int64_t param_2,uint64_t param_3)
       piVar18 = piVar6 + 0x30;
       do {
         piStack_278 = piVar9;
-        iVar10 = FUN_18082d7f0(param_3,3);
+        iVar10 = SystemCore_Optimizer(param_3,3);
         piVar18[-0x10] = iVar10 + 1;
-        iVar10 = FUN_18082d7f0(param_3,2);
+        iVar10 = SystemCore_Optimizer(param_3,2);
         *piVar18 = iVar10;
         if (iVar10 < 0) goto LAB_18083bb2d;
         if (iVar10 != 0) {
-          iVar10 = FUN_18082d7f0(param_3,8);
+          iVar10 = SystemCore_Optimizer(param_3,8);
           piVar18[0x10] = iVar10;
         }
         if ((piVar18[0x10] < 0) || (*(int *)(lVar16 + 0x18) <= piVar18[0x10])) goto LAB_18083bb2d;
@@ -314,7 +314,7 @@ void FUN_18083b6f0(uint64_t param_1,int64_t param_2,uint64_t param_3)
         uVar12 = uVar15;
         if (0 < 1 << ((byte)*piVar18 & 0x1f)) {
           do {
-            iVar10 = FUN_18082d7f0(param_3,8);
+            iVar10 = SystemCore_Optimizer(param_3,8);
             iVar10 = iVar10 + -1;
             *piVar9 = iVar10;
             if ((iVar10 < -1) || (*(int *)(lVar16 + 0x18) <= iVar10)) goto LAB_18083bb2d;
@@ -330,9 +330,9 @@ void FUN_18083b6f0(uint64_t param_1,int64_t param_2,uint64_t param_3)
         piStack_278 = piVar9;
       } while ((int)uStack_288 < iStack_280);
     }
-    iVar10 = FUN_18082d7f0(param_3,2);
+    iVar10 = SystemCore_Optimizer(param_3,2);
     piVar6[0xd0] = iVar10 + 1;
-    iStack_280 = FUN_18082d7f0(param_3,4);
+    iStack_280 = SystemCore_Optimizer(param_3,4);
     if (iStack_280 < 0) {
 LAB_18083bb2d:
                     // WARNING: Subroutine does not return
@@ -352,7 +352,7 @@ LAB_18083bb2d:
           bVar3 = (byte)iVar10 & 0x1f;
           piVar9 = piVar6 + uVar12 + 0xd3;
           do {
-            iVar10 = FUN_18082d7f0(param_3,iVar10);
+            iVar10 = SystemCore_Optimizer(param_3,iVar10);
             *piVar9 = iVar10;
             if ((iVar10 < 0) || ((int)(1 << bVar3 | 1U >> 0x20 - bVar3) <= iVar10))
             goto LAB_18083bb2d;

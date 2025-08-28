@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_03_part078.c - 6 个函数
 
@@ -133,7 +138,7 @@ void FUN_1802436f0(int64_t param_1)
   }
   puStack_60 = &system_state_ptr;
   if (*(char *)(lVar2 + 0xea) == '\0') {
-    uVar11 = FUN_18023a940(uVar11);
+    uVar11 = SystemCore_Scheduler(uVar11);
     FUN_180225ee0(extraout_XMM0_Da,&puStack_a0,*(int32_t *)(param_1 + 0x9608),uVar11);
   }
   else {
@@ -155,12 +160,12 @@ void FUN_1802436f0(int64_t param_1)
     *(uint64_t *)((int64_t)puVar10 + 0x3c) = 0;
     *(uint64_t *)((int64_t)puVar10 + 0x44) = 0;
     *(uint64_t *)((int64_t)puVar10 + 0x4c) = 0;
-    uVar11 = FUN_18023a940(uVar11);
+    uVar11 = SystemCore_Scheduler(uVar11);
     FUN_1800a5fc0(system_message_buffer,uVar11,puVar10);
     plVar12 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xf0,8,3);
     uVar5 = *(int32_t *)(param_1 + 0x9608);
     pplStack_78 = (int64_t **)plVar12;
-    FUN_180049830(plVar12);
+    UltraHighFreq_PerformanceMonitor1(plVar12);
     *plVar12 = (int64_t)&processed_var_9624_ptr;
     plStack_80 = plVar12 + 0x18;
     *plStack_80 = (int64_t)&system_state_ptr;
@@ -183,7 +188,7 @@ void FUN_1802436f0(int64_t param_1)
     pplStack_78 = &plStack_80;
     plStack_80 = plVar12;
     (**(code **)(*plVar12 + 0x28))(plVar12);
-    FUN_18005e110(uVar11,&plStack_80);
+    SystemCore_TimerManager(uVar11,&plStack_80);
     (**(code **)(*plVar12 + 0x38))(plVar12);
   }
   uVar16 = 0;
@@ -206,11 +211,11 @@ void FUN_1802436f0(int64_t param_1)
   uStack_48 = CONCAT44(uStack_48._4_4_,uVar5);
   *puVar10 = 0x2f736573736170;
   uStack_50 = 7;
-  cVar4 = FUN_180624a00(&puStack_60);
+  cVar4 = UltraHighFreq_LogManager1(&puStack_60);
   if (cVar4 == '\0') {
-    FUN_180624910(&puStack_60);
+    SystemManager_Processor(&puStack_60);
   }
-  plStack_80 = (int64_t *)FUN_18023a940(*(uint64_t *)(param_1 + 0x9690));
+  plStack_80 = (int64_t *)SystemCore_Scheduler(*(uint64_t *)(param_1 + 0x9690));
   uVar3 = uStack_50;
   puVar10 = puStack_58;
   puStack_c0 = &system_data_buffer_ptr;
@@ -278,7 +283,7 @@ LAB_180243cb3:
   puStack_b8 = (void *)0x0;
   uStack_a8 = (uint64_t)uStack_a8._4_4_ << 0x20;
   puStack_c0 = &system_state_ptr;
-  pplStack_78 = (int64_t **)FUN_18023a940();
+  pplStack_78 = (int64_t **)SystemCore_Scheduler();
   puVar13 = (int8_t *)0x0;
   puStack_a0 = &system_data_buffer_ptr;
   plStack_80 = (int64_t *)0x0;
@@ -346,7 +351,7 @@ LAB_180243e2b:
   if (*(int64_t *)
        (*(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x99d0) + 0x58) + -8) + 0x428) == 0)
   goto LAB_18024401f;
-  uVar11 = FUN_18023a940();
+  uVar11 = SystemCore_Scheduler();
   puStack_c0 = &system_data_buffer_ptr;
   uStack_a8 = 0;
   puStack_b8 = (int8_t *)0x0;

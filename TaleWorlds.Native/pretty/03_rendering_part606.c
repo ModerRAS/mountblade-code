@@ -54,7 +54,7 @@ void FUN_18059bc2a(void)
     *(uint64_t *)(unaff_RBP + 0x3b) = unaff_RDI;
     *(int32_t *)(unaff_RBP + 0x2b) = 0xffffffff;
     *(int32_t *)(unaff_RBP + 0x43) = 0x3f800000;
-    cVar4 = FUN_1805a4a20(0,1,unaff_RBP + -0x49,1);
+    cVar4 = UISystem_InputHandler(0,1,unaff_RBP + -0x49,1);
     if (cVar4 != '\0') {
       *(int32_t **)(unaff_RBX + 0x270) = puVar5;
     }
@@ -110,7 +110,7 @@ void FUN_18059bc2a(void)
     *(uint64_t *)(unaff_RBP + 0x3b) = unaff_RDI;
     *(int32_t *)(unaff_RBP + 0x2b) = 0xffffffff;
     *(int32_t *)(unaff_RBP + 0x43) = 0x3f800000;
-    FUN_1805a4a20(0,1,unaff_RBP + -0x49,1);
+    UISystem_InputHandler(0,1,unaff_RBP + -0x49,1);
   }
   return;
 }
@@ -182,7 +182,7 @@ void FUN_18059bd17(void)
     *(uint64_t *)(unaff_RBP + 0x3b) = unaff_RDI;
     *(int32_t *)(unaff_RBP + 0x2b) = 0xffffffff;
     *(int32_t *)(unaff_RBP + 0x43) = 0x3f800000;
-    FUN_1805a4a20(0,1,unaff_RBP + -0x49,1);
+    UISystem_InputHandler(0,1,unaff_RBP + -0x49,1);
   }
   return;
 }
@@ -340,7 +340,7 @@ void FUN_18059c170(int64_t param_1)
       uStack_54 = 0xffffffff;
       uStack_3c = 0x3f800000;
       uStack_7c = uVar6;
-      FUN_1805a4a20(param_1,uVar8,&uStack_c8,1);
+      UISystem_InputHandler(param_1,uVar8,&uStack_c8,1);
       lVar7 = *(int64_t *)(param_1 + 0x108);
       uVar6 = *(uint *)(param_1 + 0x1d4);
       piVar10 = *(int **)(param_1 + 0x268);
@@ -348,7 +348,7 @@ void FUN_18059c170(int64_t param_1)
     if ((((((*(uint *)(lVar7 + 0x4c8) & 0x3c0) != 0) || (*(int *)(param_1 + 0x27c) - 4U < 5)) &&
          (uVar6 == 0)) || (*(uint *)(param_1 + 0x27c) < 4)) &&
        ((iVar4 = *piVar10, *(int *)(param_1 + 0x48) = iVar4, iVar4 != 9 &&
-        (iVar4 = FUN_1805a0a20(param_1), iVar4 != -1)))) {
+        (iVar4 = CoreSystem_OperationHandler(param_1), iVar4 != -1)))) {
       uStack_80 = 0;
       uStack_c8 = 0xffffffffffffffff;
       uStack_b8 = 0;
@@ -376,7 +376,7 @@ void FUN_18059c170(int64_t param_1)
       uStack_44 = 0;
       uStack_54 = 0xffffffff;
       uStack_3c = 0x3f800000;
-      cVar3 = FUN_1805a4a20(param_1,uVar8,&uStack_c8,1);
+      cVar3 = UISystem_InputHandler(param_1,uVar8,&uStack_c8,1);
       if (cVar3 != '\0') {
         *(uint64_t *)(param_1 + 600) = *(uint64_t *)(param_1 + 0x268);
         plVar2 = *(int64_t **)(*(int64_t *)(param_1 + 0x108) + 0x590);
@@ -393,7 +393,7 @@ void FUN_18059c170(int64_t param_1)
     if ((((piVar10 != *(int **)(param_1 + 600)) && (iVar4 = *piVar10, iVar4 != 9)) &&
         (uVar6 = *(uint *)(*(int64_t *)(param_1 + 0x108) + 0x4c8), (uVar6 & 0x3c0) != 0)) &&
        (((uVar6 & 0x7c00) == 0 &&
-        (iVar5 = FUN_1805a0a20(param_1,*(int32_t *)(param_1 + 0x48)), iVar5 != -1)))) {
+        (iVar5 = CoreSystem_OperationHandler(param_1,*(int32_t *)(param_1 + 0x48)), iVar5 != -1)))) {
       *(int *)(param_1 + 0x48) = iVar4;
       iStack_78 = *piVar10;
       uStack_b8 = 0;
@@ -422,7 +422,7 @@ void FUN_18059c170(int64_t param_1)
       uStack_44 = 0;
       uStack_54 = 0xffffffff;
       uStack_3c = 0x3f800000;
-      cVar3 = FUN_1805a4a20(param_1,uVar8,&uStack_c8,1);
+      cVar3 = UISystem_InputHandler(param_1,uVar8,&uStack_c8,1);
       if (cVar3 != '\0') {
         *(uint64_t *)(param_1 + 600) = *(uint64_t *)(param_1 + 0x268);
         plVar2 = *(int64_t **)(*(int64_t *)(param_1 + 0x108) + 0x590);
@@ -466,7 +466,7 @@ void FUN_18059c170(int64_t param_1)
         uStack_44 = 0;
         uStack_54 = 0xffffffff;
         uStack_3c = 0x3f800000;
-        FUN_1805a4a20(param_1,uVar8,&uStack_c8,1);
+        UISystem_InputHandler(param_1,uVar8,&uStack_c8,1);
       }
     }
     else {
@@ -607,7 +607,7 @@ void FUN_18059c193(float param_1)
       *(uint64_t *)(unaff_RBP + 0x1b) = 0;
       *(int32_t *)(unaff_RBP + 0xb) = 0xffffffff;
       *(int32_t *)(unaff_RBP + 0x23) = 0x3f800000;
-      param_1 = (float)FUN_1805a4a20(0,uVar8,unaff_RBP + -0x69,1);
+      param_1 = (float)UISystem_InputHandler(0,uVar8,unaff_RBP + -0x69,1);
       lVar7 = *(int64_t *)(unaff_RBX + 0x108);
       uVar6 = *(uint *)(unaff_RBX + 0x1d4);
       piVar10 = *(int **)(unaff_RBX + 0x268);
@@ -615,7 +615,7 @@ void FUN_18059c193(float param_1)
     if ((((((*(uint *)(lVar7 + 0x4c8) & 0x3c0) != 0) || (*(int *)(unaff_RBX + 0x27c) - 4U < 5)) &&
          (uVar6 == 0)) || (*(uint *)(unaff_RBX + 0x27c) < 4)) &&
        ((iVar4 = *piVar10, *(int *)(unaff_RBX + 0x48) = iVar4, iVar4 != 9 &&
-        (iVar4 = FUN_1805a0a20(), param_1 = extraout_XMM0_Da, iVar4 != -1)))) {
+        (iVar4 = CoreSystem_OperationHandler(), param_1 = extraout_XMM0_Da, iVar4 != -1)))) {
       uVar6 = *(uint *)(unaff_RBX + 0x27c);
       *(int8_t *)(unaff_RBP + -0x21) = 0;
       *(uint64_t *)(unaff_RBP + -0x69) = 0xffffffffffffffff;
@@ -644,7 +644,7 @@ void FUN_18059c193(float param_1)
       *(uint64_t *)(unaff_RBP + 0x1b) = 0;
       *(int32_t *)(unaff_RBP + 0xb) = 0xffffffff;
       *(int32_t *)(unaff_RBP + 0x23) = 0x3f800000;
-      cVar3 = FUN_1805a4a20(0,uVar8,unaff_RBP + -0x69,1);
+      cVar3 = UISystem_InputHandler(0,uVar8,unaff_RBP + -0x69,1);
       param_1 = extraout_XMM0_Da_00;
       if (cVar3 != '\0') {
         *(uint64_t *)(unaff_RBX + 600) = *(uint64_t *)(unaff_RBX + 0x268);
@@ -663,7 +663,7 @@ void FUN_18059c193(float param_1)
     if ((((piVar10 != *(int **)(unaff_RBX + 600)) && (iVar4 = *piVar10, iVar4 != 9)) &&
         (uVar6 = *(uint *)(*(int64_t *)(unaff_RBX + 0x108) + 0x4c8), (uVar6 & 0x3c0) != 0)) &&
        (((uVar6 & 0x7c00) == 0 &&
-        (iVar5 = FUN_1805a0a20(param_1,*(int32_t *)(unaff_RBX + 0x48)), iVar5 != -1)))) {
+        (iVar5 = CoreSystem_OperationHandler(param_1,*(int32_t *)(unaff_RBX + 0x48)), iVar5 != -1)))) {
       *(int *)(unaff_RBX + 0x48) = iVar4;
       iVar4 = *piVar10;
       *(uint64_t *)(unaff_RBP + -0x59) = 0;
@@ -693,7 +693,7 @@ void FUN_18059c193(float param_1)
       *(uint64_t *)(unaff_RBP + 0x1b) = 0;
       *(int32_t *)(unaff_RBP + 0xb) = 0xffffffff;
       *(int32_t *)(unaff_RBP + 0x23) = 0x3f800000;
-      cVar3 = FUN_1805a4a20(0,uVar8,unaff_RBP + -0x69,1);
+      cVar3 = UISystem_InputHandler(0,uVar8,unaff_RBP + -0x69,1);
       if (cVar3 != '\0') {
         *(uint64_t *)(unaff_RBX + 600) = *(uint64_t *)(unaff_RBX + 0x268);
         plVar2 = *(int64_t **)(*(int64_t *)(unaff_RBX + 0x108) + 0x590);
@@ -737,7 +737,7 @@ void FUN_18059c193(float param_1)
         *(uint64_t *)(unaff_RBP + 0x1b) = 0;
         *(int32_t *)(unaff_RBP + 0xb) = 0xffffffff;
         *(int32_t *)(unaff_RBP + 0x23) = 0x3f800000;
-        FUN_1805a4a20(0,uVar8,unaff_RBP + -0x69,1);
+        UISystem_InputHandler(0,uVar8,unaff_RBP + -0x69,1);
       }
     }
     else {

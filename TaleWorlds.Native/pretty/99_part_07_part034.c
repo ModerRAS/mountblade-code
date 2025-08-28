@@ -109,7 +109,7 @@ LAB_1804b9820:
       if (0 < iVar9) {
         lVar8 = 0;
         do {
-          FUN_180631960(lVar5,&system_data_be48,*(int64_t *)(unaff_R14 + 0x5c8) + lVar8);
+          StringProcessor(lVar5,&system_data_be48,*(int64_t *)(unaff_R14 + 0x5c8) + lVar8);
           lVar5 = *(int64_t *)(lVar5 + 0x58);
           lVar8 = lVar8 + 0x10;
           uVar10 = uVar10 - 1;
@@ -217,7 +217,7 @@ LAB_1804b9a15:
       if (0 < (int)uVar10) {
         lVar8 = unaff_R14 + 0x5d4;
         do {
-          FUN_180631960(lVar5,&system_data_be48,lVar8);
+          StringProcessor(lVar5,&system_data_be48,lVar8);
           lVar5 = *(int64_t *)(lVar5 + 0x58);
           lVar8 = lVar8 + 0x10;
           uVar10 = uVar10 - 1;
@@ -305,7 +305,7 @@ LAB_1804b9bde:
             lVar8 = unaff_R14 + 0x7d8;
             uVar10 = (uint64_t)uVar12;
             do {
-              FUN_180631960(lVar5,&system_data_be48,lVar8);
+              StringProcessor(lVar5,&system_data_be48,lVar8);
               lVar5 = *(int64_t *)(lVar5 + 0x58);
               lVar8 = lVar8 + 0x10;
               uVar10 = uVar10 - 1;
@@ -401,7 +401,7 @@ LAB_1804b9bde:
               lVar6 = unaff_R14 + 0x7d8;
               uVar5 = (uint64_t)uVar8;
               do {
-                FUN_180631960(lVar3,&system_data_be48,lVar6);
+                StringProcessor(lVar3,&system_data_be48,lVar6);
                 lVar3 = *(int64_t *)(lVar3 + 0x58);
                 lVar6 = lVar6 + 0x10;
                 uVar5 = uVar5 - 1;
@@ -544,7 +544,7 @@ LAB_1804b9ac6:
     lVar5 = unaff_R14 + 0x5d4;
     uVar6 = (uint64_t)in_R11D;
     do {
-      FUN_180631960(lVar7,&system_data_be48,lVar5);
+      StringProcessor(lVar7,&system_data_be48,lVar5);
       lVar7 = *(int64_t *)(lVar7 + 0x58);
       lVar5 = lVar5 + 0x10;
       uVar6 = uVar6 - 1;
@@ -631,7 +631,7 @@ LAB_1804b9bde:
         lVar5 = unaff_R14 + 0x7d8;
         uVar6 = (uint64_t)uVar9;
         do {
-          FUN_180631960(lVar7,&system_data_be48,lVar5);
+          StringProcessor(lVar7,&system_data_be48,lVar5);
           lVar7 = *(int64_t *)(lVar7 + 0x58);
           lVar5 = lVar5 + 0x10;
           uVar6 = uVar6 - 1;
@@ -742,7 +742,7 @@ LAB_1804b9bde:
             lVar6 = unaff_R14 + 0x7d8;
             uVar5 = (uint64_t)uVar8;
             do {
-              FUN_180631960(lVar3,&system_data_be48,lVar6);
+              StringProcessor(lVar3,&system_data_be48,lVar6);
               lVar3 = *(int64_t *)(lVar3 + 0x58);
               lVar6 = lVar6 + 0x10;
               uVar5 = uVar5 - 1;

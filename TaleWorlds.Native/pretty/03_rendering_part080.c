@@ -145,42 +145,42 @@ void rendering_system_process_render_data(void)
        CONCAT44(uStack000000000000004c,(float)*(byte *)(unaff_RBP + -0x58) * unaff_XMM10_Da);
   bVar9 = (byte)(*(uint *)(unaff_RBP + -0x60) >> 0x14) & unaff_R14B;
   fVar15 = (float)*(byte *)(unaff_RBP + -0x57) * unaff_XMM10_Da;
-  uVar16 = FUN_1803109a0(fVar15,0xf0,(byte)(*(uint *)(unaff_RBP + -0x60) >> 4) & unaff_R14B);
-  uVar16 = FUN_1803109a0(uVar16,0xf1,
+  uVar16 = PhysicsSystem_SpatialPartitioning(fVar15,0xf0,(byte)(*(uint *)(unaff_RBP + -0x60) >> 4) & unaff_R14B);
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf1,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0xe),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 6) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf2,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf2,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0xf),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 7) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf3,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf3,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0xd),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 5) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf6,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf6,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x17),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 0xf) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf4,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf4,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x14),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 0xc) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf5,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf5,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x16),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 0xe) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf7,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf7,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x15),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 0xd) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xfa,bVar9);
-  uVar16 = FUN_1803109a0(uVar16,0xfb,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xfa,bVar9);
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xfb,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0xb),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 3) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf8,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf8,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x12),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 10) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xf9,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xf9,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 0x13),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 0xb) & unaff_R14B));
-  uVar16 = FUN_1803109a0(uVar16,0xfc,
+  uVar16 = PhysicsSystem_SpatialPartitioning(uVar16,0xfc,
                          CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 9),
                                   (byte)(*(uint *)(unaff_RBP + -0x60) >> 1) & unaff_R14B));
-  FUN_1803109a0(uVar16,0xfd,
+  PhysicsSystem_SpatialPartitioning(uVar16,0xfd,
                 CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 10),
                          (byte)(*(uint *)(unaff_RBP + -0x60) >> 2) & unaff_R14B));
   if (fStack0000000000000048 <= unaff_XMM12_Da) {
@@ -191,7 +191,7 @@ void rendering_system_process_render_data(void)
     _fStack0000000000000048 = in_stack_00000050;
   }
   _fStack0000000000000048 = CONCAT14(0xfe,fStack0000000000000048);
-  FUN_180310a00();
+  NetworkProtocol_ConnectionHandler();
   if (fVar15 <= unaff_XMM12_Da) {
     in_stack_00000050 = 0;
   }
@@ -200,7 +200,7 @@ void rendering_system_process_render_data(void)
     in_stack_00000050 = _fStack0000000000000048;
   }
   _fStack0000000000000048 = CONCAT14(0xff,fStack0000000000000048);
-  FUN_180310a00();
+  NetworkProtocol_ConnectionHandler();
   uVar33 = (int16_t)((uint)fVar15 >> 0x10);
   iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
   cVar12 = (char)unaff_R13D;
@@ -213,11 +213,11 @@ void rendering_system_process_render_data(void)
       _fStack0000000000000048 = 0x3f800000;
       _fStack0000000000000070 = 0x3f800000;
       uStack000000000000006c = 0xe7;
-      FUN_180310a00(fVar15,&stack0x00000068);
+      NetworkProtocol_ConnectionHandler(fVar15,&stack0x00000068);
     }
     _fStack0000000000000070 = 0;
     uStack000000000000006c = 0xe7;
-    FUN_180310a00();
+    NetworkProtocol_ConnectionHandler();
     *(char *)(unaff_RSI + 0x7c) = cVar12;
     *(int32_t *)(unaff_RSI + 0x68) = 0xbf800000;
     *(uint64_t *)(unaff_RSI + 0x6c) = 0;
@@ -240,7 +240,7 @@ void rendering_system_process_render_data(void)
     *(float *)(unaff_RSI + 0x68) = fVar15;
     in_stack_00000050 = 0;
     _fStack0000000000000048 = CONCAT14(0xe7,fStack0000000000000048);
-    FUN_180310a00();
+    NetworkProtocol_ConnectionHandler();
     _fStack0000000000000048 =
          CONCAT44((float)*(ushort *)(unaff_RBP + -0x22),(float)*(ushort *)(unaff_RBP + -0x24));
     *(uint64_t *)(unaff_RSI + 0x74) = _fStack0000000000000048;
@@ -307,7 +307,7 @@ void rendering_system_process_render_data(void)
         iStack0000000000000068 = unaff_R13D;
         iStack0000000000000078 = iVar10;
         iStack000000000000007c = iVar13;
-        FUN_1801edeb0();
+        CoreEngine_MemoryManager();
         lVar14 = render_system_data_memory;
         if (*(char *)(system_operation_state + 0x1609) != cVar12) {
           _fStack0000000000000048 = CONCAT44(iVar13,iVar10);
@@ -361,47 +361,47 @@ void rendering_system_process_render_data(void)
   _fStack0000000000000070 = uVar16;
   fStack0000000000000058 = fVar15;
   fStack000000000000005c = unaff_XMM7_Da;
-  uVar16 = FUN_180310a00(uVar17,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar17,&stack0x00000068);
   uStack000000000000006c = 0xdf;
   fStack0000000000000070 = fVar15;
   fStack0000000000000074 = unaff_XMM7_Da;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   uVar1 = *(uint *)(unaff_RBP + -0x74);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,uVar1);
   uStack000000000000006c = 0xe8;
   fStack0000000000000028 = (float)uVar1;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fStack0000000000000028 = (float)(uVar1 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
   uStack000000000000006c = 0xe9;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   uVar1 = *(uint *)(unaff_RBP + -0x78);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,uVar1);
   uStack000000000000006c = 0xeb;
   fStack0000000000000028 = (float)uVar1;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fStack0000000000000028 = (float)(uVar1 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
   uStack000000000000006c = 0xea;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fVar15 = fStack000000000000005c;
   fStack0000000000000028 = fStack000000000000005c;
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack000000000000005c);
   uStack000000000000006c = 0xec;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fStack0000000000000028 = (float)((uint)fVar15 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
   uStack000000000000006c = 0xed;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fVar15 = fStack0000000000000058;
   _fStack0000000000000058 = CONCAT44(unaff_R13D,fStack0000000000000058);
   _fStack0000000000000070 = _fStack0000000000000058;
   uStack000000000000006c = 0xef;
-  uVar16 = FUN_180310a00(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   _fStack0000000000000058 = CONCAT44(unaff_R13D,(uint)fVar15 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = _fStack0000000000000058;
   uStack000000000000006c = 0xee;
-  FUN_180310a00(uVar16,&stack0x00000068);
+  NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
   fVar15 = render_system_control_memory;
   uVar8 = 0;
   uVar26 = 0;

@@ -462,9 +462,9 @@ void FUN_18038e430(uint64_t param_1,int param_2,int64_t param_3,int64_t param_4,
   uint64_t uStack_e8;
   uint64_t uStack_e0;
   
-  bVar5 = FUN_18038d0a0(param_3,param_5);
+  bVar5 = SystemCore_PerformanceMonitor(param_3,param_5);
   bVar20 = bVar5;
-  cVar6 = FUN_18038d0a0(param_4,param_6);
+  cVar6 = SystemCore_PerformanceMonitor(param_4,param_6);
   plVar1 = (int64_t *)(param_7 + 0x1000);
   if (*(char *)(param_7 + 0x1024) == '\0') {
     *(int64_t *)(param_7 + 0x1008) = *plVar1;

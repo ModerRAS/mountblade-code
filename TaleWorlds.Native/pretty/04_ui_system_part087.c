@@ -239,7 +239,7 @@ void FUN_18071ad00(int64_t param_1,int param_2,int param_3,int64_t param_4,int p
             }
           }
           else {
-            uVar4 = FUN_18070f3e0(param_6,&processed_var_9124_ptr,2);
+            uVar4 = SystemCore_Processor(param_6,&processed_var_9124_ptr,2);
             uVar4 = -(uVar4 & 1) ^ (int)uVar4 >> 1;
           }
         }
@@ -325,7 +325,7 @@ void FUN_18071ad94(float param_1)
           }
         }
         else {
-          uVar2 = FUN_18070f3e0(param_1,&processed_var_9124_ptr,2);
+          uVar2 = SystemCore_Processor(param_1,&processed_var_9124_ptr,2);
           uVar2 = -(uVar2 & 1) ^ (int)uVar2 >> 1;
         }
       }
@@ -689,11 +689,11 @@ void FUN_18071bfe0(uint64_t param_1,char *param_2)
 {
   int64_t lVar1;
   
-  FUN_1807054a0(param_1,param_2[2] * 5 + (int)param_2[5],&processed_var_9648_ptr,8);
+  RenderingSystem_VertexBuffer(param_1,param_2[2] * 5 + (int)param_2[5],&processed_var_9648_ptr,8);
   lVar1 = 2;
   do {
-    FUN_1807054a0(param_1,(int)*param_2,&processed_var_9556_ptr,8);
-    FUN_1807054a0(param_1,(int)param_2[1],&processed_var_9564_ptr,8);
+    RenderingSystem_VertexBuffer(param_1,(int)*param_2,&processed_var_9556_ptr,8);
+    RenderingSystem_VertexBuffer(param_1,(int)param_2[1],&processed_var_9564_ptr,8);
     param_2 = param_2 + 3;
     lVar1 = lVar1 + -1;
   } while (lVar1 != 0);
@@ -870,28 +870,28 @@ void FUN_18071c7f0(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
     iVar10 = iVar10 + -2;
     puVar12 = &processed_var_9608_ptr;
   }
-  FUN_1807054a0(param_2,iVar10,puVar12,8);
+  RenderingSystem_VertexBuffer(param_2,iVar10,puVar12,8);
   uVar5 = (uint)*pcVar9;
   if (param_5 == 2) {
     puVar12 = &processed_var_4120_ptr;
   }
   else {
-    FUN_1807054a0(param_2,(int)uVar5 >> 3,&processed_var_4096_ptr + (int64_t)pcVar9[0x1d] * 8,8);
+    RenderingSystem_VertexBuffer(param_2,(int)uVar5 >> 3,&processed_var_4096_ptr + (int64_t)pcVar9[0x1d] * 8,8);
     puVar12 = &processed_var_9592_ptr;
     uVar5 = (int)*pcVar9 & 7;
   }
-  FUN_1807054a0(param_2,uVar5,puVar12,8);
+  RenderingSystem_VertexBuffer(param_2,uVar5,puVar12,8);
   iVar10 = 1;
   pcVar8 = pcVar9;
   if (1 < *(int *)(param_1 + 0x11e0)) {
     do {
-      FUN_1807054a0(param_2,(int)pcVar8[1],&processed_var_4120_ptr,8);
+      RenderingSystem_VertexBuffer(param_2,(int)pcVar8[1],&processed_var_4120_ptr,8);
       iVar10 = iVar10 + 1;
       pcVar8 = pcVar8 + 1;
     } while (iVar10 < *(int *)(param_1 + 0x11e0));
   }
   pcVar8 = pcVar9 + 8;
-  FUN_1807054a0(param_2,(int)*pcVar8,
+  RenderingSystem_VertexBuffer(param_2,(int)*pcVar8,
                 (int64_t)(((int)pcVar9[0x1d] >> 1) * (int)**(short **)(param_1 + 0x1258)) +
                 *(int64_t *)(*(short **)(param_1 + 0x1258) + 0xc),8);
   FUN_1807248c0(asStack_68,auStack_78,*(uint64_t *)(param_1 + 0x1258),(int)*pcVar8);
@@ -906,7 +906,7 @@ void FUN_18071c7f0(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
       puVar12 = (void *)((int64_t)*psVar11 + *(int64_t *)(lVar4 + 0x30));
       if (cVar1 < '\x04') {
         if (cVar1 < -3) {
-          FUN_1807054a0(param_2,0,puVar12,8);
+          RenderingSystem_VertexBuffer(param_2,0,puVar12,8);
           puVar12 = &processed_var_9580_ptr;
           iVar6 = -4 - *pcVar7;
         }
@@ -915,11 +915,11 @@ void FUN_18071c7f0(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
         }
       }
       else {
-        FUN_1807054a0(param_2,8,puVar12,8);
+        RenderingSystem_VertexBuffer(param_2,8,puVar12,8);
         puVar12 = &processed_var_9580_ptr;
         iVar6 = *pcVar7 + -4;
       }
-      FUN_1807054a0(param_2,iVar6,puVar12,8);
+      RenderingSystem_VertexBuffer(param_2,iVar6,puVar12,8);
       lVar4 = *(int64_t *)(param_1 + 0x1258);
       iVar13 = iVar13 + 1;
       psVar11 = psVar11 + 1;
@@ -927,7 +927,7 @@ void FUN_18071c7f0(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
     } while (iVar13 < *(short *)(lVar4 + 2));
   }
   if (*(int *)(param_1 + 0x11e0) == 4) {
-    FUN_1807054a0(param_2,(int)pcVar9[0x1f],&processed_var_9696_ptr,8);
+    RenderingSystem_VertexBuffer(param_2,(int)pcVar9[0x1f],&processed_var_9696_ptr,8);
   }
   if (pcVar9[0x1d] != '\x02') goto LAB_18071cb6a;
   if ((param_5 == 2) && (*(int *)(param_1 + 0x1690) == 2)) {
@@ -937,7 +937,7 @@ void FUN_18071c7f0(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
     if (0x13 < uVar5) {
       iVar13 = 0;
     }
-    FUN_1807054a0(param_2,iVar13,&processed_var_4200_ptr,8);
+    RenderingSystem_VertexBuffer(param_2,iVar13,&processed_var_4200_ptr,8);
     if (0x13 < uVar5) goto LAB_18071ca80;
   }
   else {
@@ -945,28 +945,28 @@ LAB_18071ca80:
     sVar2 = *(short *)(pcVar9 + 0x1a);
     iVar13 = *(int *)(param_1 + 0x11dc) >> 1;
     uVar3 = (int64_t)(int)sVar2 / (int64_t)iVar13;
-    FUN_1807054a0(param_2,uVar3 & 0xffffffff,&processed_var_4168_ptr,8);
-    FUN_1807054a0(param_2,(int)sVar2 - (int)(short)iVar13 * (int)(short)uVar3,
+    RenderingSystem_VertexBuffer(param_2,uVar3 & 0xffffffff,&processed_var_4168_ptr,8);
+    RenderingSystem_VertexBuffer(param_2,(int)sVar2 - (int)(short)iVar13 * (int)(short)uVar3,
                   *(uint64_t *)(param_1 + 0x1248),8);
   }
   *(int16_t *)(param_1 + 0x1694) = *(int16_t *)(pcVar9 + 0x1a);
-  FUN_1807054a0(param_2,(int)pcVar9[0x1c],*(uint64_t *)(param_1 + 0x1250),8);
-  FUN_1807054a0(param_2,(int)pcVar9[0x20],&processed_var_4304_ptr,8);
+  RenderingSystem_VertexBuffer(param_2,(int)pcVar9[0x1c],*(uint64_t *)(param_1 + 0x1250),8);
+  RenderingSystem_VertexBuffer(param_2,(int)pcVar9[0x20],&processed_var_4304_ptr,8);
   if (0 < *(int *)(param_1 + 0x11e0)) {
     pcVar8 = pcVar9 + 4;
     do {
-      FUN_1807054a0(param_2,(int)*pcVar8,
+      RenderingSystem_VertexBuffer(param_2,(int)*pcVar8,
                     *(uint64_t *)(&processed_var_4312_ptr + (int64_t)pcVar9[0x20] * 8),8);
       iVar10 = iVar10 + 1;
       pcVar8 = pcVar8 + 1;
     } while (iVar10 < *(int *)(param_1 + 0x11e0));
   }
   if (param_5 == 0) {
-    FUN_1807054a0(param_2,(int)pcVar9[0x21],&processed_var_9588_ptr,8);
+    RenderingSystem_VertexBuffer(param_2,(int)pcVar9[0x21],&processed_var_9588_ptr,8);
   }
 LAB_18071cb6a:
   *(int *)(param_1 + 0x1690) = (int)pcVar9[0x1d];
-  FUN_1807054a0(param_2,(int)pcVar9[0x22],&processed_var_9560_ptr,8);
+  RenderingSystem_VertexBuffer(param_2,(int)pcVar9[0x22],&processed_var_9560_ptr,8);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_98);
 }

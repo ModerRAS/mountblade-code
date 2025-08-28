@@ -138,7 +138,7 @@ void NetworkInitializePacket(uint64_t packet_context)
                 status_code = SystemSecurityProcessor(network_handles + 1);
                 
                 if ((status_code == 0) &&
-                    (status_code = FUN_18088dec0(*(uint64_t *)(network_handles[0] + 0x98), 
+                    (status_code = SystemCore_SecurityChecker(*(uint64_t *)(network_handles[0] + 0x98), 
                                                data_pointers, 0x10), status_code == 0)) {
                     // 设置数据包处理器
                     *data_pointers[0] = &memory_allocator_3472_ptr;
@@ -279,7 +279,7 @@ int SerializeInt64Data(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化扩展数据
-    processed_bytes = FUN_18074b650(serialized_bytes + buffer_ptr, 
+    processed_bytes = RenderingSystem_ShaderCompiler(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, &config_values[0]);
     serialized_bytes = serialized_bytes + processed_bytes;
     
@@ -365,7 +365,7 @@ int SerializeFloatData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化浮点数精度信息
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, float_config);
     
     return processed_bytes + serialized_bytes;
@@ -686,7 +686,7 @@ int SerializeTransformData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化变换结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, transform_type);
     
     return processed_bytes + serialized_bytes;
@@ -746,7 +746,7 @@ int SerializeAnimationData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化动画结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, animation_type);
     
     return processed_bytes + serialized_bytes;
@@ -806,7 +806,7 @@ int SerializeAudioData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化音频结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, audio_type);
     
     return processed_bytes + serialized_bytes;
@@ -864,7 +864,7 @@ int SerializeVideoData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化视频结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, video_type);
     
     return processed_bytes + serialized_bytes;
@@ -947,7 +947,7 @@ int SerializeNetworkConfig(int64_t data_ptr, int64_t buffer_ptr, int buffer_size
     main_config = *(int32_t *)(data_ptr + 0x20);
     
     // 序列化配置数据
-    serialized_bytes = FUN_18074b650(buffer_ptr, buffer_size, &config_params[0]);
+    serialized_bytes = RenderingSystem_ShaderCompiler(buffer_ptr, buffer_size, &config_params[0]);
     
     // 序列化分隔符
     processed_bytes = DataProcessor(buffer_ptr + serialized_bytes, 
@@ -1279,7 +1279,7 @@ int SerializePhysicsData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化物理结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, physics_type);
     
     return processed_bytes + serialized_bytes;
@@ -1368,7 +1368,7 @@ int SerializeRenderData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化渲染结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, render_type);
     
     return processed_bytes + serialized_bytes;
@@ -1417,7 +1417,7 @@ int SerializeShaderData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化着色器结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, shader_type);
     
     return processed_bytes + serialized_bytes;
@@ -1466,7 +1466,7 @@ int SerializeTextureData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化纹理结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, texture_type);
     
     return processed_bytes + serialized_bytes;
@@ -1513,7 +1513,7 @@ int SerializeMaterialData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化材质结束标记
-    processed_bytes = FUN_18074be90(serialized_bytes + buffer_ptr, 
+    processed_bytes = SystemCore_Cleanup(serialized_bytes + buffer_ptr, 
                                    buffer_size - serialized_bytes, material_type);
     
     return processed_bytes + serialized_bytes;
@@ -1624,7 +1624,7 @@ int SendDataPacket(int64_t packet_ptr, int64_t target_ptr, int packet_size)
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送扩展数据
-    processed_bytes = FUN_18074b650(target_ptr + sent_bytes, 
+    processed_bytes = RenderingSystem_ShaderCompiler(target_ptr + sent_bytes, 
                                    packet_size - sent_bytes, &packet_params[0]);
     sent_bytes = sent_bytes + processed_bytes;
     
@@ -1743,7 +1743,7 @@ int SendHeartbeatPacket(int64_t heartbeat_ptr, int64_t target_ptr, int heartbeat
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送扩展数据
-    processed_bytes = FUN_18074b650(target_ptr + sent_bytes, 
+    processed_bytes = RenderingSystem_ShaderCompiler(target_ptr + sent_bytes, 
                                    heartbeat_size - sent_bytes, &heartbeat_params[0]);
     sent_bytes = sent_bytes + processed_bytes;
     

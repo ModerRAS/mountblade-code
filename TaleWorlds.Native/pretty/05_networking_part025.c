@@ -217,10 +217,10 @@ uint64_t FUN_180855b80(int64_t *param_1)
     }
     uVar8 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar8) - uVar8) < iVar9) &&
-       (uVar5 = FUN_18084d3f0(param_1 + 2,iVar9), (int)uVar5 != 0)) {
+       (uVar5 = RenderingSystem_TextureManager(param_1 + 2,iVar9), (int)uVar5 != 0)) {
       return uVar5;
     }
-    uVar5 = FUN_1807703c0(param_1,iVar9);
+    uVar5 = RenderingEngine_TextureManager(param_1,iVar9);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -292,10 +292,10 @@ uint64_t FUN_180855ba6(void)
     }
     uVar7 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar7) - uVar7) < iVar8) &&
-       (uVar4 = FUN_18084d3f0(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
+       (uVar4 = RenderingSystem_TextureManager(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
       return uVar4;
     }
-    uVar4 = FUN_1807703c0();
+    uVar4 = RenderingEngine_TextureManager();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -381,7 +381,7 @@ uint64_t FUN_180855ce0(int64_t *param_1)
        (uVar5 = FUN_1808595a0(param_1 + 2,iVar9), (int)uVar5 != 0)) {
       return uVar5;
     }
-    uVar5 = FUN_1807703c0(param_1,iVar9);
+    uVar5 = RenderingEngine_TextureManager(param_1,iVar9);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -456,7 +456,7 @@ uint64_t FUN_180855d06(void)
        (uVar4 = FUN_1808595a0(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
       return uVar4;
     }
-    uVar4 = FUN_1807703c0();
+    uVar4 = RenderingEngine_TextureManager();
     if ((int)uVar4 != 0) {
       return uVar4;
     }

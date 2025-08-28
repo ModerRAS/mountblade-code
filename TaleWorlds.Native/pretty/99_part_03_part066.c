@@ -585,13 +585,13 @@ LAB_180238a80:
     if (pppppppuStack_90 == (uint64_t *******)0x0) {
       return;
     }
-    FUN_18004b790(&pppppppuStack_a0,*pppppppuStack_90);
+    SystemCache_Manager(&pppppppuStack_a0,*pppppppuStack_90);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(pppppppuVar3);
   }
   puVar6 = (uint64_t *)((int64_t)puStack_c0 + 0xc);
   if (pppppppuStack_90 != (uint64_t *******)0x0) {
-    FUN_18004b790(&pppppppuStack_a0,*pppppppuStack_90);
+    SystemCache_Manager(&pppppppuStack_a0,*pppppppuStack_90);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(pppppppuVar3);
   }

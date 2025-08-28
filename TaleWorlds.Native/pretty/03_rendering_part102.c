@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part102.c - 渲染系统高级资源管理和数据处理模块
 // 
 // 模块概述：
@@ -192,7 +196,7 @@ LAB_180329ed7:
       __Throw_C_error_std__YAXH_Z(iVar2);
     }
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
-    plVar5 = (int64_t *)FUN_180275090(uVar4);
+    plVar5 = (int64_t *)RenderingSystem_ShaderManager(uVar4);
     plStack_c8 = (int64_t *)CONCAT44(plStack_c8._4_4_,plStackX_18._0_4_);
     plStack_c0 = plVar5;
     FUN_18033b220(param_1 + 0x3a8,alStack_b0,&plStack_c8);
@@ -222,7 +226,7 @@ LAB_180329ed7:
     if (*(int *)(param_3 + 0x160) != 0) {
       puVar3 = (uint64_t *)
                FUN_1800b32c0(system_resource_state,&plStack_c8,param_3 + 0x150,1,&processed_var_7656_ptr);
-      FUN_1800763c0(*puVar3,&plStackX_18);
+      SystemCore_BufferManager(*puVar3,&plStackX_18);
       if (plStack_c8 != (int64_t *)0x0) {
         (**(code **)(*plStack_c8 + 0x38))();
       }
@@ -241,7 +245,7 @@ LAB_180329ed7:
       }
     }
     if (*(int *)(param_3 + 0x1b8) != 0) {
-      puVar3 = (uint64_t *)FUN_1800b30d0(system_resource_state,&plStack_b8,param_3 + 0x1a8,1);
+      puVar3 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&plStack_b8,param_3 + 0x1a8,1);
       FUN_18022cb40(*puVar3,&plStack_90);
       if (plStack_b8 != (int64_t *)0x0) {
         (**(code **)(*plStack_b8 + 0x38))();
@@ -451,7 +455,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  FUN_18033ad00(param_1 + 0x328);
+  RenderingSystem_CameraController0(param_1 + 0x328);
   iVar6 = _Mtx_unlock(lVar10);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
@@ -462,7 +466,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  FUN_18033ad00(param_1 + 0x3a8);
+  RenderingSystem_CameraController0(param_1 + 0x3a8);
   iVar6 = _Mtx_unlock(lVar10);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
@@ -510,10 +514,10 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
             lVar9 = *plVar13;
           }
         }
-        FUN_18033ad00(plVar2);
+        RenderingSystem_CameraController0(plVar2);
         _Mtx_destroy_in_situ();
         plStackX_10 = plVar2;
-        FUN_18033ad00(plVar2);
+        RenderingSystem_CameraController0(plVar2);
         if ((1 < (uint64_t)plVar2[2]) && (plVar2[1] != 0)) {
                     // WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner();
@@ -530,7 +534,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
                         (*(int64_t *)(param_1 + 0x9f8) + *(int64_t *)(param_1 + 0xa00) * 8));
     plStackX_10 = (int64_t *)0x0;
   }
-  FUN_18033ad00(param_1 + 0x9f0);
+  RenderingSystem_CameraController0(param_1 + 0x9f0);
   FUN_18033ae70(param_1 + 0x4a8);
   plVar2 = *(int64_t **)(param_1 + 0x570);
   lVar10 = *plVar2;
@@ -564,11 +568,11 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
     } while (lVar10 != *(int64_t *)
                         (*(int64_t *)(param_1 + 0x570) + *(int64_t *)(param_1 + 0x578) * 8));
   }
-  FUN_18033ad00(param_1 + 0x568);
+  RenderingSystem_CameraController0(param_1 + 0x568);
   lVar10 = param_1 + 0x530;
   puVar3 = *(uint64_t **)(param_1 + 0x540);
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar10,*puVar3);
+    SystemCache_Manager(lVar10,*puVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
   }
@@ -577,7 +581,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
   *(uint64_t *)(param_1 + 0x540) = 0;
   *(int8_t *)(param_1 + 0x548) = 0;
   *(uint64_t *)(param_1 + 0x550) = 0;
-  FUN_18033ad00(param_1 + 0x568);
+  RenderingSystem_CameraController0(param_1 + 0x568);
   plVar2 = *(int64_t **)(param_1 + 0x6c0);
   lVar10 = *plVar2;
   plVar13 = plVar2;
@@ -617,10 +621,10 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
             lVar9 = *plVar13;
           }
         }
-        FUN_18033ad00(plVar2);
+        RenderingSystem_CameraController0(plVar2);
         _Mtx_destroy_in_situ();
         plStackX_10 = plVar2;
-        FUN_18033ad00(plVar2);
+        RenderingSystem_CameraController0(plVar2);
         if ((1 < (uint64_t)plVar2[2]) && (plVar2[1] != 0)) {
                     // WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner();
@@ -639,7 +643,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
   }
   FUN_1803214c0(param_1);
   FUN_18033ae70(param_1 + 0x638);
-  FUN_18033ad00(param_1 + 0x6b8);
+  RenderingSystem_CameraController0(param_1 + 0x6b8);
   FUN_18033b1a0(param_1 + 0x988);
   lVar10 = param_1 + 0xbf8;
   FUN_18033c0f0(lVar10,*(uint64_t *)(param_1 + 0xc08));
@@ -670,7 +674,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
     } while (lVar10 != *(int64_t *)
                         (*(int64_t *)(param_1 + 0x430) + *(int64_t *)(param_1 + 0x438) * 8));
   }
-  FUN_18033ad00(param_1 + 0x428);
+  RenderingSystem_CameraController0(param_1 + 0x428);
   plVar13 = *(int64_t **)(param_1 + 0xbd0);
   lVar10 = plVar13[*(int64_t *)(param_1 + 0xbd8)];
   lVar9 = *plVar13;
@@ -694,7 +698,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
       lVar9 = *plVar13;
     }
   }
-  FUN_18033ad00(param_1 + 0xbc8);
+  RenderingSystem_CameraController0(param_1 + 0xbc8);
   plVar13 = *(int64_t **)(param_1 + 0xb20);
   lVar10 = plVar13[*(int64_t *)(param_1 + 0xb28)];
   lVar9 = *plVar13;
@@ -733,7 +737,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
       lVar9 = *plVar13;
     }
   }
-  FUN_18033ad00(param_1 + 0xb18);
+  RenderingSystem_CameraController0(param_1 + 0xb18);
   plVar13 = *(int64_t **)(param_1 + 0xaf0);
   lVar10 = plVar13[*(int64_t *)(param_1 + 0xaf8)];
   lVar9 = *plVar13;
@@ -785,7 +789,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
       lVar9 = *plVar13;
     }
   }
-  FUN_18033ad00(param_1 + 0xae8);
+  RenderingSystem_CameraController0(param_1 + 0xae8);
   lVar10 = param_1 + 0x848;
   plStackX_20 = (int64_t *)lVar10;
   for (lVar9 = *(int64_t *)(param_1 + 0x850); plStackX_18 = (int64_t *)lVar9, lVar9 != lVar10;

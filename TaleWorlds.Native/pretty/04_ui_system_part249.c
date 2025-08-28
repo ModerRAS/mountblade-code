@@ -65,7 +65,7 @@ uint64_t FUN_18080d590(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
 
 
 
-uint64_t FUN_18080d690(int64_t param_1)
+uint64_t RenderingSystem_BufferManager0(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -100,7 +100,7 @@ uint64_t FUN_18080d690(int64_t param_1)
               plVar4 = (int64_t *)plVar3[4];
             }
             if (plVar4 != (int64_t *)0x0) {
-              FUN_180758220(plVar4,0x80);
+              UIComponent_Renderer(plVar4,0x80);
               plVar4 = (int64_t *)plVar3[4];
             }
           }
@@ -108,7 +108,7 @@ uint64_t FUN_18080d690(int64_t param_1)
           if ((plVar4 == (int64_t *)0x0) ||
              ((**(code **)(*plVar4 + 0xa8))(plVar4,acStackX_8), acStackX_8[0] == '\0')) {
             if (plVar3[4] != 0) {
-              FUN_180758220(plVar3[4],0x80);
+              UIComponent_Renderer(plVar3[4],0x80);
               if (*(int64_t *)(plVar3[6] + 0x5f0) != 0) {
                 plVar4 = (int64_t *)plVar3[4];
                 (**(code **)(*plVar4 + 0x118))
@@ -139,7 +139,7 @@ uint64_t FUN_18080d690(int64_t param_1)
 
 
 
-uint64_t FUN_18080d69a(int64_t param_1)
+uint64_t RenderingSystem_BufferManagera(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -173,7 +173,7 @@ uint64_t FUN_18080d69a(int64_t param_1)
               plVar3 = (int64_t *)plVar2[4];
             }
             if (plVar3 != (int64_t *)0x0) {
-              FUN_180758220(plVar3,0x80);
+              UIComponent_Renderer(plVar3,0x80);
               plVar3 = (int64_t *)plVar2[4];
             }
           }
@@ -181,7 +181,7 @@ uint64_t FUN_18080d69a(int64_t param_1)
           if ((plVar3 == (int64_t *)0x0) ||
              ((**(code **)(*plVar3 + 0xa8))(plVar3,&stack0x00000050), in_stack_00000050 == '\0')) {
             if (plVar2[4] != 0) {
-              FUN_180758220(plVar2[4],0x80);
+              UIComponent_Renderer(plVar2[4],0x80);
               if (*(int64_t *)(plVar2[6] + 0x5f0) != 0) {
                 plVar3 = (int64_t *)plVar2[4];
                 (**(code **)(*plVar3 + 0x118))
@@ -242,7 +242,7 @@ uint64_t FUN_18080d6db(void)
             plVar3 = (int64_t *)plVar2[4];
           }
           if (plVar3 != (int64_t *)0x0) {
-            FUN_180758220(plVar3,0x80);
+            UIComponent_Renderer(plVar3,0x80);
             plVar3 = (int64_t *)plVar2[4];
           }
         }
@@ -250,7 +250,7 @@ uint64_t FUN_18080d6db(void)
         if ((plVar3 == (int64_t *)0x0) ||
            ((**(code **)(*plVar3 + 0xa8))(plVar3,&stack0x00000050), in_stack_00000050 == '\0')) {
           if (plVar2[4] != 0) {
-            FUN_180758220(plVar2[4],0x80);
+            UIComponent_Renderer(plVar2[4],0x80);
             if (*(int64_t *)(plVar2[6] + 0x5f0) != 0) {
               plVar3 = (int64_t *)plVar2[4];
               (**(code **)(*plVar3 + 0x118))

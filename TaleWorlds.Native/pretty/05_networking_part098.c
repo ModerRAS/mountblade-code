@@ -1,3 +1,4 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
@@ -26,7 +27,7 @@ void SystemDataManager(int64_t *param_1,int32_t *param_2)
         goto LAB_18089962f;
       }
     }
-    iVar1 = FUN_180769ed0(*param_1,auStackX_18,1,4,0);
+    iVar1 = SystemPerformanceOptimizer(*param_1,auStackX_18,1,4,0);
   }
 LAB_18089962f:
   if (iVar1 == 0) {
@@ -62,7 +63,7 @@ uint64_t FUN_180899650(int64_t *param_1,int64_t *param_2)
         goto LAB_1808996c5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,aiStackX_8,1,4,0);
+    uVar1 = SystemPerformanceOptimizer(*param_1,aiStackX_8,1,4,0);
   }
 LAB_1808996c5:
   if ((int)uVar1 == 0) {
@@ -169,13 +170,13 @@ uint64_t FUN_1808997f0(uint64_t param_1,int64_t *param_2)
   int aiStackX_18 [2];
   
   aiStackX_18[0] = 0;
-  uVar2 = FUN_1808afe30(param_1,aiStackX_18);
+  uVar2 = SystemCore_Manager(param_1,aiStackX_18);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
   lVar4 = (int64_t)aiStackX_18[0];
   if (aiStackX_18[0] == 0) {
-    FUN_180840270(param_2);
+    SystemCore_MemoryManager(param_2);
   }
   else {
     iVar5 = aiStackX_18[0] + 1;
@@ -212,7 +213,7 @@ uint64_t FUN_180899816(void)
   int in_stack_00000040;
   
   if (in_stack_00000040 == 0) {
-    FUN_180840270();
+    SystemCore_MemoryManager();
   }
   else {
     iVar4 = in_stack_00000040 + 1;
@@ -729,10 +730,10 @@ void FUN_180899c60(int64_t param_1,int32_t *param_2)
   if (((((iVar1 == 0) && (iVar1 = FUN_1808affb0(param_1,param_2 + 1), iVar1 == 0)) &&
        (((*(byte *)(param_2 + 1) & 0x20) == 0 ||
         (iVar1 = FUN_180899040(param_1,param_2 + 2), iVar1 == 0)))) &&
-      (((iVar1 = FUN_1808b0010(param_1,param_2 + 0xe), iVar1 == 0 &&
-        (iVar1 = FUN_1808b0010(param_1,param_2 + 0xf), iVar1 == 0)) &&
-       (iVar1 = FUN_1808b0010(param_1,param_2 + 0x10), iVar1 == 0)))) &&
-     (iVar1 = FUN_1808b0010(param_1,param_2 + 0x11), iVar1 == 0)) {
+      (((iVar1 = ResourceLoadingManager(param_1,param_2 + 0xe), iVar1 == 0 &&
+        (iVar1 = ResourceLoadingManager(param_1,param_2 + 0xf), iVar1 == 0)) &&
+       (iVar1 = ResourceLoadingManager(param_1,param_2 + 0x10), iVar1 == 0)))) &&
+     (iVar1 = ResourceLoadingManager(param_1,param_2 + 0x11), iVar1 == 0)) {
     if ((param_2[1] & 0x100) != 0) {
       auStackX_8[0] = param_2[0x12];
       iVar1 = (**(code **)**(uint64_t **)(param_1 + 8))
@@ -746,8 +747,8 @@ void FUN_180899c60(int64_t param_1,int32_t *param_2)
       }
     }
     if (((param_2[1] & 0x800) == 0) ||
-       ((iVar1 = FUN_1808b0010(param_1,param_2 + 0x18), iVar1 == 0 &&
-        (iVar1 = FUN_1808b0010(param_1,param_2 + 0x17), iVar1 == 0)))) {
+       ((iVar1 = ResourceLoadingManager(param_1,param_2 + 0x18), iVar1 == 0 &&
+        (iVar1 = ResourceLoadingManager(param_1,param_2 + 0x17), iVar1 == 0)))) {
       FUN_18089a750(param_1,param_2 + 0x19);
     }
   }
@@ -772,9 +773,9 @@ void FUN_180899c96(void)
     if (((*(byte *)(unaff_RBX + 4) & 0x20) != 0) && (iVar1 = FUN_180899040(), iVar1 != 0)) {
       return;
     }
-    iVar1 = FUN_1808b0010();
-    if ((((iVar1 == 0) && (iVar1 = FUN_1808b0010(), iVar1 == 0)) &&
-        (iVar1 = FUN_1808b0010(), iVar1 == 0)) && (iVar1 = FUN_1808b0010(), iVar1 == 0)) {
+    iVar1 = ResourceLoadingManager();
+    if ((((iVar1 == 0) && (iVar1 = ResourceLoadingManager(), iVar1 == 0)) &&
+        (iVar1 = ResourceLoadingManager(), iVar1 == 0)) && (iVar1 = ResourceLoadingManager(), iVar1 == 0)) {
       if ((*(uint *)(unaff_RBX + 4) & 0x100) != 0) {
         in_stack_00000030 = *(int32_t *)(unaff_RBX + 0x48);
         iVar1 = (**(code **)**(uint64_t **)(unaff_RDI + 8))
@@ -788,11 +789,11 @@ void FUN_180899c96(void)
         }
       }
       if ((*(uint *)(unaff_RBX + 4) & 0x800) != 0) {
-        iVar1 = FUN_1808b0010();
+        iVar1 = ResourceLoadingManager();
         if (iVar1 != 0) {
           return;
         }
-        iVar1 = FUN_1808b0010();
+        iVar1 = ResourceLoadingManager();
         if (iVar1 != 0) {
           return;
         }

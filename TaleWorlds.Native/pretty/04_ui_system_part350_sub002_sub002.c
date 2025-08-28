@@ -1,4 +1,4 @@
-#include "FUN_1808555a0_definition.h"
+#include "SystemAdvancedManager_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -147,7 +147,7 @@
 #define UISystem_Initializer FUN_18085a980
 
 // UI系统时间计算器
-#define UISystem_TimeCalculator FUN_18085ab70
+#define UISystem_TimeCalculator UISystem_WidgetController
 
 // UI系统数据处理器
 #define UISystem_DataHandler FUN_18085abf2
@@ -240,7 +240,7 @@
 #define UISystem_BufferChecker System_Initializer2
 
 // UI系统缓冲区清理器 - 清理缓冲区
-#define UISystem_BufferCleaner FUN_1808fcb30
+#define UISystem_BufferCleaner RenderingSystem_MemoryManager0
 
 // UI系统数据格式器 - 格式化数据
 #define UISystem_DataFormatter FUN_180854810
@@ -261,7 +261,7 @@
 #define UISystem_StateSetter FUN_18085c6f0
 
 // UI系统状态获取器 - 获取系统状态
-#define UISystem_StateGetter FUN_18085ab70
+#define UISystem_StateGetter UISystem_WidgetController
 
 // UI系统数据计算器 - 计算数据
 #define UISystem_DataCalculator FUN_180854610

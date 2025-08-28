@@ -499,7 +499,7 @@ code_r0x0001807d84a4:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int32_t
-FUN_1807d84c0(uint64_t *param_1,int param_2,uint64_t param_3,uint64_t param_4,int param_5,
+NetworkSystem_DataManager(uint64_t *param_1,int param_2,uint64_t param_3,uint64_t param_4,int param_5,
              int param_6,char param_7)
 
 {

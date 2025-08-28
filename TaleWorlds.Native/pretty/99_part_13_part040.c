@@ -116,7 +116,7 @@ LAB_1808bfd9d:
             aiStack_c8[0] = -1;
             uVar1 = (uint)uStack_90;
             uStack_90 = plStack_b8;
-            FUN_1807d1650(uVar1,&uStack_d0,aiStack_c8);
+            NetworkSystem_ConnectionHandler(uVar1,&uStack_d0,aiStack_c8);
             plVar12 = plStack_d8;
             plVar5 = uStack_90;
             if (aiStack_c8[0] != -1) {
@@ -338,7 +338,7 @@ LAB_1808c01ad:
             lStack_b0 = -1;
             aiStack_a8[0] = -1;
             plStack_b8 = plVar9;
-            FUN_1807d1650(plVar9,&lStack_b0,aiStack_a8);
+            NetworkSystem_ConnectionHandler(plVar9,&lStack_b0,aiStack_a8);
             param_2 = puStack_a0;
             plVar12 = plStack_b8;
             if (aiStack_a8[0] != -1) {
@@ -490,7 +490,7 @@ LAB_1808c05ce:
               plStack_d8 = plVar9;
               uVar1 = (uint)uStack_80;
               uStack_80 = plStack_b8;
-              FUN_1807d1650(uVar1,&uStack_d0,aiStack_c8);
+              NetworkSystem_ConnectionHandler(uVar1,&uStack_d0,aiStack_c8);
               plVar9 = plStack_d8;
               plVar5 = uStack_80;
               if (aiStack_c8[0] != -1) {

@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+n//  的语义化别名
+#define SystemCore_MessageQueueManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 03_rendering_part172.c - 4 个函数
 
@@ -84,10 +94,10 @@ void FUN_180373d90(int64_t param_1)
   FUN_1800b8a30(lVar8);
   _Mtx_destroy_in_situ();
   FUN_1800b9270(lVar3,*(uint64_t *)(param_1 + 0x2210));
-  FUN_180057830();
+  DataTransformer0();
   SystemDataValidator(param_1 + 0x2160,0x20,4,FUN_180046860);
   _Mtx_destroy_in_situ();
-  FUN_180057830();
+  DataTransformer0();
   if (*(int64_t *)(param_1 + 0x20b0) == 0) {
     SystemDataValidator(param_1 + 0xb0,0x20,0x100,FUN_180046860);
     if (*(int64_t *)(param_1 + 0x88) == 0) {
@@ -194,9 +204,9 @@ void FUN_180374050(int64_t param_1)
                         lStack_50 = lVar6 + lVar7 * 8;
 LAB_180374230:
                         if ((*ppiVar5 != *(int **)(lVar6 + lVar7 * 8)) &&
-                           (lVar6 = FUN_180372570(lVar1,iVar10,uVar13),
+                           (lVar6 = SystemCore_SecurityManager(lVar1,iVar10,uVar13),
                            *(int64_t *)(lVar6 + 0x108) != 0)) {
-                          lVar7 = FUN_180372570(lVar1,iVar10,uVar13 & 0xffffffff);
+                          lVar7 = SystemCore_SecurityManager(lVar1,iVar10,uVar13 & 0xffffffff);
                           for (lVar6 = *(int64_t *)(lVar7 + 0x120); lVar6 != lVar7 + 0x118;
                               lVar6 = func_0x00018066bd70(lVar6)) {
                             (**(code **)(**(int64_t **)(lVar6 + 0x20) + 0x1b0))();
@@ -623,8 +633,8 @@ LAB_180374a51:
                   uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,
                                         CONCAT71((int7)((uint64_t)lVar11 >> 8),3));
                   aiStack_1d0[0] = iVar12;
-                  uStack_1c8 = FUN_180372430(uVar7,*(uint64_t *)(param_2 + 0x68));
-                  puVar8 = (uint64_t *)FUN_18037f020(param_2 + 0x108,auStack_1b0,aiStack_1d0);
+                  uStack_1c8 = SystemCore_SignalHandler(uVar7,*(uint64_t *)(param_2 + 0x68));
+                  puVar8 = (uint64_t *)SystemCore_MessageQueueManager(param_2 + 0x108,auStack_1b0,aiStack_1d0);
                   uStack_1c0 = *(int32_t *)puVar8;
                   uStack_1bc = *(int32_t *)((int64_t)puVar8 + 4);
                   piVar10 = (int *)*puVar8;
@@ -749,7 +759,7 @@ LAB_180374a51:
           fStack_214 = fVar18;
           fStack_210 = fVar17;
           fStack_20c = fVar20;
-          FUN_18063ad30(&uStack_198,&uStack_238,&system_data_0300);
+          UltraHighFreq_DataProcessor1(&uStack_198,&uStack_238,&system_data_0300);
           lVar15 = (int64_t)(*(int *)(param_2 + 0x60) * iStack_244 + iVar16) * 0x130 +
                    *(int64_t *)(param_2 + 0x138);
           *(uint64_t *)(lVar15 + 8) = uStack_198;

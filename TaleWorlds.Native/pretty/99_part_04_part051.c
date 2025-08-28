@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -36,7 +40,7 @@ uint64_t * FUN_1802b6b00(uint64_t *param_1)
 
 
 
-uint64_t * FUN_1802b6c00(uint64_t *param_1)
+uint64_t * NetworkSystem_ProtocolHandler0(uint64_t *param_1)
 
 {
   *param_1 = &processed_var_7440_ptr;
@@ -595,7 +599,7 @@ void FUN_1802b6f60(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x28) {
-    FUN_180057830();
+    DataTransformer0();
   }
   if (*param_1 == 0) {
     return;

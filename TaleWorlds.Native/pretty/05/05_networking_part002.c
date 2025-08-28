@@ -96,11 +96,11 @@ void process_network_connection_init(uint64_t connection_handle)
             // 检查是否有活动数据
             if (*(int*)(*(int64_t*)(connection_info[0] + 0x98) + 0x200) != 0) {
                 connection_info[1] = 0;
-                result = FUN_18088c740(connection_info + 1);
+                result = RenderingSystemOptimizer(connection_info + 1);
                 
                 // 处理数据格式化
                 if ((result == 0) && 
-                    (result = FUN_18088dec0(*(uint64_t*)(connection_info[0] + 0x98), 
+                    (result = SystemCore_SecurityChecker(*(uint64_t*)(connection_info[0] + 0x98), 
                                            format_pointers, NETWORK_HEADER_SIZE), result == 0)) {
                     *format_pointers[0] = NETWORK_FORMAT_BASIC;
                     *(uint*)(format_pointers[0] + 1) = NETWORK_HEADER_SIZE;
@@ -209,7 +209,7 @@ int process_extended_network_data(int64_t data_ptr, int64_t buffer, int length)
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, stack_fields);
+    remaining_length = RenderingSystem_ShaderCompiler(processed_length + buffer, length - processed_length, stack_fields);
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
@@ -262,7 +262,7 @@ int process_byte_network_data(int64_t data_ptr, int64_t buffer, int length)
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
     remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, byte_field);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, byte_field);
     return remaining_length + processed_length;
 }
 
@@ -443,7 +443,7 @@ int process_mixed_type_network_data(int64_t data_ptr, int64_t buffer, int length
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -479,7 +479,7 @@ int process_dynamic_field_network_data(int64_t data_ptr, int64_t buffer, int len
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -515,7 +515,7 @@ int process_multi_segment_network_data(int64_t data_ptr, int64_t buffer, int len
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -549,7 +549,7 @@ int process_extended_multi_segment_network_data(int64_t data_ptr, int64_t buffer
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -608,7 +608,7 @@ int process_quad_field_network_data(int64_t data_ptr, int64_t buffer, int length
     header_fields[3] = *(uint*)(data_ptr + 0x1c);
     tail_field = *(uint*)(data_ptr + 0x20);
     
-    processed_length = FUN_18074b650(buffer, length, header_fields);
+    processed_length = RenderingSystem_ShaderCompiler(buffer, length, header_fields);
     remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, tail_field);
@@ -822,7 +822,7 @@ int process_advanced_network_data(int64_t data_ptr, int64_t buffer, int length)
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, compression_flag);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, compression_flag);
     
     return remaining_length + processed_length;
 }
@@ -882,7 +882,7 @@ int process_extended_validation_network_data(int64_t data_ptr, int64_t buffer, i
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -914,7 +914,7 @@ int process_dynamic_validation_network_data(int64_t data_ptr, int64_t buffer, in
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -946,7 +946,7 @@ int process_smart_routing_network_data(int64_t data_ptr, int64_t buffer, int len
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -976,7 +976,7 @@ int process_adaptive_routing_network_data(int64_t data_ptr, int64_t buffer, int 
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
+    remaining_length = SystemCore_Cleanup(processed_length + buffer, length - processed_length, flag_byte);
     
     return remaining_length + processed_length;
 }
@@ -1046,7 +1046,7 @@ int process_custom_format_v1_network_data(int64_t data_ptr, int64_t buffer, int 
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, extended_fields);
+    remaining_length = RenderingSystem_ShaderCompiler(processed_length + buffer, length - processed_length, extended_fields);
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
@@ -1120,7 +1120,7 @@ int process_custom_format_v2_network_data(int64_t data_ptr, int64_t buffer, int 
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, extended_fields);
+    remaining_length = RenderingSystem_ShaderCompiler(processed_length + buffer, length - processed_length, extended_fields);
     processed_length += remaining_length;
     remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;

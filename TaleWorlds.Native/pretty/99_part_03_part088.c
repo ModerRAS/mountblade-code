@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -78,7 +82,7 @@ void FUN_18024bdd8(void)
     *(uint64_t *)(lVar1 + 0x6b8) = uVar10;
   }
   uVar11 = FUN_180286010(unaff_RBX + 0x30,&stack0x00000038,0);
-  puVar13 = (uint64_t *)FUN_1800946d0(extraout_XMM0_Da,unaff_RBP + 0x100,uVar11);
+  puVar13 = (uint64_t *)ErrorRecoverySystem(extraout_XMM0_Da,unaff_RBP + 0x100,uVar11);
   uVar11 = puVar13[1];
   *(uint64_t *)(unaff_RBX + 0x12b00) = *puVar13;
   *(uint64_t *)(unaff_RBX + 0x12b08) = uVar11;
@@ -214,7 +218,7 @@ void FUN_18024be63(void)
     *(int32_t *)(in_RAX + 0x6bc) = uVar15;
   }
   uVar16 = FUN_180286010(unaff_RBX + 0x30,&stack0x00000038,0);
-  puVar17 = (uint64_t *)FUN_1800946d0(extraout_XMM0_Da,unaff_RBP + 0x100,uVar16);
+  puVar17 = (uint64_t *)ErrorRecoverySystem(extraout_XMM0_Da,unaff_RBP + 0x100,uVar16);
   uVar16 = puVar17[1];
   *(uint64_t *)(unaff_RBX + 0x12b00) = *puVar17;
   *(uint64_t *)(unaff_RBX + 0x12b08) = uVar16;
@@ -366,7 +370,7 @@ void FUN_18024c0f0(int64_t param_1,uint64_t param_2)
     uVar2 = 1;
   }
   uStack_108 = uVar2;
-  FUN_1800b8300(param_2,ppuVar1);
+  DataDeserializer0(param_2,ppuVar1);
   if ((uVar2 & 2) != 0) {
     uVar2 = uVar2 & 0xfffffffd;
     puStack_e8 = &system_state_ptr;

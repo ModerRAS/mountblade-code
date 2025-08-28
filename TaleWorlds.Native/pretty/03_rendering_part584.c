@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -27,7 +32,7 @@ int64_t FUN_18058b980(int64_t param_1,int param_2)
   int64_t lVar2;
   
   if (param_2 != -1) {
-    iVar1 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),param_2);
+    iVar1 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),param_2);
     iVar1 = *(int *)(render_system_config + (int64_t)iVar1 * 4);
     if (iVar1 == -1) {
       lVar2 = 0;

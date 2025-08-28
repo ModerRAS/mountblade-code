@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -196,7 +201,7 @@ typedef struct {
 #define SystemDataValidator CoreSystem_ConfigValidator0                // 系统数据验证器
 #define SystemBufferManager CoreEngineDataBufferProcessor                // 系统缓冲区管理器
 #define SystemErrorHandler FUN_18004b100                  // 系统错误处理器
-#define SystemStatusChecker FUN_180624a00                // 系统状态检查器
+#define SystemStatusChecker AuthenticationManager                // 系统状态检查器
 #define SystemConfigurationLoader SystemCore_CacheManager0           // 系统配置加载器
 #define SystemMutexInitializer FUN_180637560              // 系统互斥量初始化器
 #define SystemDataCopier FUN_1801954d0                   // 系统数据复制器
@@ -205,9 +210,9 @@ typedef struct {
 #define SystemDataFinalizer FUN_1801a2ea0                // 系统数据终结器
 #define SystemDataInitializerEx FUN_1801a6440            // 系统数据初始化器扩展
 #define SystemDataDestroyer FUN_180199500                // 系统数据销毁器
-#define SystemPathProcessor FUN_180629a40                 // 系统路径处理器
-#define SystemStringHandler FUN_180624910                // 系统字符串处理器
-#define SystemDataFormatter FUN_180624af0                // 系统数据格式化器
+#define SystemPathProcessor NetworkSystem_ProtocolParser                 // 系统路径处理器
+#define SystemStringHandler SystemManager_Processor                // 系统字符串处理器
+#define SystemDataFormatter RenderingSystem_RenderQueue                // 系统数据格式化器
 #define SystemSecurityValidator FUN_1801426a0            // 系统安全验证器
 #define SystemDataSerializer FUN_18005c1c0               // 系统数据序列化器
 #define SystemDataDeserializer FUN_18062db60             // 系统数据反序列化器
@@ -219,8 +224,8 @@ typedef struct {
 #define SystemInternalProcessor FUN_18062c5f0             // 系统内部处理器
 #define SystemInternalValidator FUN_180061db0             // 系统内部验证器
 #define SystemInternalInitializer FUN_180061be0           // 系统内部初始化器
-#define SystemInternalCleaner FUN_1801299b0               // 系统内部清理器
-#define SystemInternalFinalizer FUN_18012cfe0             // 系统内部终结器
+#define SystemInternalCleaner CoreSystem_Validator               // 系统内部清理器
+#define SystemInternalFinalizer HighFreq_CacheSystem1             // 系统内部终结器
 #define SystemInternalAllocator CoreEngineMemoryPoolReallocator             // 系统内部分配器
 #define SystemInternalDeallocator CoreEngineMemoryPoolCleaner           // 系统内部释放器
 #define SystemInternalCopier FUN_1801954d0                // 系统内部复制器
@@ -228,9 +233,9 @@ typedef struct {
 #define SystemInternalReader FUN_18019e260                // 系统内部读取器
 #define SystemInternalFinalizerEx FUN_1801a2ea0           // 系统内部终结器扩展
 #define SystemInternalDestroyer FUN_180199500             // 系统内部销毁器
-#define SystemInternalPathProcessor FUN_180629a40          // 系统内部路径处理器
-#define SystemInternalStringHandler FUN_180624910         // 系统内部字符串处理器
-#define SystemInternalFormatter FUN_180624af0             // 系统内部格式化器
+#define SystemInternalPathProcessor NetworkSystem_ProtocolParser          // 系统内部路径处理器
+#define SystemInternalStringHandler SystemManager_Processor         // 系统内部字符串处理器
+#define SystemInternalFormatter RenderingSystem_RenderQueue             // 系统内部格式化器
 #define SystemInternalSecurityValidator FUN_1801426a0     // 系统内部安全验证器
 #define SystemInternalSerializer FUN_18005c1c0            // 系统内部序列化器
 #define SystemInternalDeserializer FUN_18062db60          // 系统内部反序列化器
@@ -954,7 +959,7 @@ void SystemDataProcessor(int64_t *param_1, int64_t param_2)
   if ((iVar2 < 0) ||
      (lVar6 = *(int64_t *)(*param_1 + 0x888),
      (uint64_t)(*(int64_t *)(*param_1 + 0x890) - lVar6 >> 5) <= (uint64_t)(int64_t)iVar2)) {
-    lVar6 = FUN_180628ca0();
+    lVar6 = MemoryDebugger0();
   }
   else {
     lVar6 = (int64_t)iVar2 * 0x20 + lVar6;
@@ -1108,7 +1113,7 @@ void FUN_1800547b0(void)
       iVar13 = 0;
       if (iStack_f8 < 0) {
 LAB_18005485e:
-        lVar10 = FUN_180628ca0();
+        lVar10 = MemoryDebugger0();
       }
       else {
         lVar10 = *(int64_t *)(*system_main_module_state + 0x888);
@@ -1134,7 +1139,7 @@ LAB_18005485e:
       }
       if (iVar9 < 0) {
 LAB_180054912:
-        lVar10 = FUN_180628ca0();
+        lVar10 = MemoryDebugger0();
       }
       else {
         lVar10 = *(int64_t *)(*system_main_module_state + 0x8a8);
@@ -1163,7 +1168,7 @@ LAB_180054912:
       *(uint64_t *)(puStack_130 + uStack_128) = 0x6a624f656e656353;
       *(int8_t *)((int64_t)(puStack_130 + uStack_128) + 8) = 0;
       uStack_128 = iVar8;
-      cVar4 = FUN_180624a00(&puStack_138);
+      cVar4 = UltraHighFreq_LogManager1(&puStack_138);
       if (cVar4 == '\0') {
         puStack_118 = &system_data_buffer_ptr;
         if (puStack_110 != (int8_t *)0x0) {
@@ -1194,9 +1199,9 @@ LAB_180054912:
           puVar6 = puStack_110;
         }
         System_DataHandler(&puStack_d0,&processed_var_6404_ptr,puVar6);
-        cVar4 = FUN_180624a00(&puStack_d0);
+        cVar4 = UltraHighFreq_LogManager1(&puStack_d0);
         if (cVar4 == '\0') {
-          FUN_180624910(&puStack_d0);
+          SystemManager_Processor(&puStack_d0);
         }
         plVar2 = plStack_a8;
         iVar8 = (int)(lVar10 >> 5);
@@ -1260,7 +1265,7 @@ LAB_180054912:
               }
               lVar14 = strstr(puVar6,&processed_var_6536_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
-              cVar4 = FUN_180624af0(&puStack_158);
+              cVar4 = RenderingSystem_RenderQueue(&puStack_158);
               if (cVar4 == '\0') {
                 uStack_148 = 0;
                 if (puStack_150 != (int8_t *)0x0) {
@@ -1289,7 +1294,7 @@ LAB_180054912:
                 *(int16_t *)(puVar7 + 4) = 0x656e;
                 *(int8_t *)((int64_t)puVar7 + 0x12) = 0;
                 uStack_148 = 0x12;
-                cVar4 = FUN_180624af0(&puStack_158);
+                cVar4 = RenderingSystem_RenderQueue(&puStack_158);
                 if (cVar4 != '\0') goto LAB_180054d28;
                 puStack_158 = &system_data_buffer_ptr;
                 if (puStack_150 != (int8_t *)0x0) {
@@ -1311,7 +1316,7 @@ LAB_180054d28:
                 }
                 iVar9 = -1;
 LAB_180054d57:
-                FUN_180629a40(puVar3 + (int64_t)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
+                NetworkSystem_ProtocolParser(puVar3 + (int64_t)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
                 uVar17 = FUN_180054360(plVar2,&puStack_98);
                 if (init_system_data_memory != 0) {
                   FUN_18005c1c0(uVar17,&puStack_78);
@@ -1710,7 +1715,7 @@ void FUN_180055fa0(void)
     }
     uVar2 = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *puVar1;
-    FUN_1801299b0(&processed_var_6880_ptr,0,0,in_R9,uVar6);
+    CoreSystem_Validator(&processed_var_6880_ptr,0,0,in_R9,uVar6);
     SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
     SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
     SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
@@ -1728,7 +1733,7 @@ void FUN_180055fa0(void)
     SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
     SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
     SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
-    FUN_18012cfe0();
+    HighFreq_CacheSystem1();
     SYSTEM_DATA_MANAGER_A = uVar2;
     iVar4 = _Mtx_unlock(0x180c91970);
     if (iVar4 != 0) {

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -230,7 +231,7 @@ void FUN_180663300(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
   uStack_744 = *(int32_t *)((int64_t)puVar10 + 0x24);
   uStack_740 = *(int32_t *)(puVar10 + 5);
   uStack_73c = *(int32_t *)((int64_t)puVar10 + 0x2c);
-  FUN_18063b470(&uStack_a68,auStack_768);
+  AdvancedProcessor_StateManager0(&uStack_a68,auStack_768);
   uStack_978 = uStack_738;
   uStack_970 = uStack_730;
   uStack_988 = uStack_a68;
@@ -250,7 +251,7 @@ void FUN_180663300(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
       do {
         param_2 = lVar40;
         if ((int)cVar8 == param_7) break;
-        pfVar11 = (float *)FUN_18022a890(lVar40,cVar8,param_6);
+        pfVar11 = (float *)CoreSystem_AuthenticationHandler0(lVar40,cVar8,param_6);
         fVar42 = *pfVar11;
         fVar67 = pfVar11[1];
         fVar59 = pfVar11[2];
@@ -341,7 +342,7 @@ void FUN_180663300(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
         if (iVar27 == iVar37) {
           if (cVar8 != '\0') {
             puVar12 = (int8_t *)
-                      FUN_18022a890(lStack_ae0,*(int8_t *)(uVar39 + 0x100 + param_6),param_6);
+                      CoreSystem_AuthenticationHandler0(lStack_ae0,*(int8_t *)(uVar39 + 0x100 + param_6),param_6);
             puVar25 = auStack_aa8;
             puVar13 = auStack_768 + (int64_t)iVar27 * 2;
             goto LAB_180663714;
@@ -387,7 +388,7 @@ LAB_180663714:
       puVar10 = (uint64_t *)(lVar29 * 0x1b0 + 0x80 + *(int64_t *)(param_6 + 0x140));
       uStack_7a8 = *puVar10;
       uStack_7a0 = puVar10[1];
-      puVar10 = (uint64_t *)FUN_1801c10f0(&uStack_a08,auStack_aa8,&uStack_7a8);
+      puVar10 = (uint64_t *)UltraHighFreq_ConfigManager1(&uStack_a08,auStack_aa8,&uStack_7a8);
       puVar31 = (uint64_t *)func_0x00018022b490(&uStack_a08,auStack_998,&uStack_7b8);
       uStack_9f8 = *puVar10;
       uStack_9f0 = puVar10[1];
@@ -401,12 +402,12 @@ LAB_180663714:
   iVar37 = *(int *)(param_1 + 0xa0);
   if (iVar37 == 3) {
     uVar15 = FUN_1801c13c0(param_5,auStack_aa8,param_1 + 0x10);
-    plVar16 = (int64_t *)FUN_1801c10f0(&uStack_988,auStack_998,uVar15);
+    plVar16 = (int64_t *)UltraHighFreq_ConfigManager1(&uStack_988,auStack_998,uVar15);
     uStack_af8 = (uint64_t *)*plVar16;
     lStack_af0 = plVar16[1];
     if (0.0 < *(float *)(param_1 + 0x30)) {
       uVar15 = func_0x0001803812e0(&uStack_a08,auStack_aa8);
-      FUN_1801c0fb0(param_1 + 0x20,&uStack_a68,uVar15);
+      SystemFileHandler(param_1 + 0x20,&uStack_a68,uVar15);
       fVar67 = *(float *)(param_1 + 0x30);
       uStack_af8 = (uint64_t *)
                    CONCAT44(uStack_af8._4_4_ - uStack_a68._4_4_ * fVar67,
@@ -417,14 +418,14 @@ LAB_180663ade:
     if ((((float)uStack_9f8 != 0.0) || (uStack_9f8._4_4_ != 0.0)) || ((float)uStack_9f0 != 0.0)) {
       puVar10 = (uint64_t *)(param_1 + 0x20);
 LAB_180663a5e:
-      pfVar17 = (float *)FUN_1801c0fb0(puVar10,auStack_aa8,&uStack_9f8);
+      pfVar17 = (float *)SystemFileHandler(puVar10,auStack_aa8,&uStack_9f8);
       uStack_af8 = (uint64_t *)
                    CONCAT44(uStack_af8._4_4_ - pfVar17[1],(float)uStack_af8 - *pfVar17);
       lStack_af0 = CONCAT44(lStack_af0._4_4_,(float)lStack_af0 - pfVar17[2]);
     }
   }
   else if (iVar37 == 4) {
-    puVar10 = (uint64_t *)FUN_18022a890(param_2,cVar26,param_6);
+    puVar10 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_2,cVar26,param_6);
     auStack_768[0] = *puVar10;
     auStack_768[1] = puVar10[1];
     _auStack_758 = *(int8_t (*) [16])(param_2 + ((int64_t)cVar26 + 0x40) * 0x10);
@@ -440,33 +441,33 @@ LAB_180663a5e:
     uStack_9a0 = puVar10[1];
     fStack_a94 = (float)auStack_758._4_4_ + *(float *)(param_1 + 0x14);
     fStack_a90 = fStack_750 + *(float *)(param_1 + 0x18);
-    plVar16 = (int64_t *)FUN_1801c10f0(&uStack_988,auStack_aa8,&fStack_a98);
+    plVar16 = (int64_t *)UltraHighFreq_ConfigManager1(&uStack_988,auStack_aa8,&fStack_a98);
     uStack_af8 = (uint64_t *)*plVar16;
     lStack_af0 = plVar16[1];
   }
   else if (iVar37 == 5) {
     cVar8 = *(char *)(param_1 + 0x20);
-    puVar10 = (uint64_t *)FUN_18022a890(param_2,cVar8,param_6);
+    puVar10 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_2,cVar8,param_6);
     auStack_768[0] = *puVar10;
     auStack_768[1] = puVar10[1];
     _auStack_758 = *(int8_t (*) [16])(param_2 + ((int64_t)cVar8 + 0x40) * 0x10);
-    pfVar17 = (float *)FUN_1801c0fb0(auStack_768,auStack_aa8,param_1 + 0x10);
+    pfVar17 = (float *)SystemFileHandler(auStack_768,auStack_aa8,param_1 + 0x10);
     auVar61 = _auStack_758;
     auStack_758._4_4_ = (float)auStack_758._4_4_ + pfVar17[1];
     auStack_758._0_4_ = (float)auStack_758._0_4_ + *pfVar17;
     uStack_74c = auVar61._12_4_;
     fStack_750 = fStack_750 + pfVar17[2];
-    FUN_1801c10f0(&uStack_988,&uStack_9d8,auStack_758);
+    UltraHighFreq_ConfigManager1(&uStack_988,&uStack_9d8,auStack_758);
     uStack_af8 = uStack_9d8;
     lStack_af0 = uStack_9d0;
-    puVar10 = (uint64_t *)FUN_18022a890(param_2,*(int8_t *)(param_1 + 0xa4),param_6);
+    puVar10 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_2,*(int8_t *)(param_1 + 0xa4),param_6);
     uStack_9a8 = *puVar10;
     uStack_9a0 = puVar10[1];
     puVar10 = (uint64_t *)func_0x00018022b490(&uStack_988,auStack_aa8,&uStack_9a8);
     uStack_9a8 = *puVar10;
     uStack_9a0 = puVar10[1];
     if ((((float)uStack_9f8 != 0.0) || (uStack_9f8._4_4_ != 0.0)) || ((float)uStack_9f0 != 0.0)) {
-      FUN_1801c0fb0(&uStack_9a8,&uStack_a68,&uStack_9f8);
+      SystemFileHandler(&uStack_9a8,&uStack_a68,&uStack_9f8);
       uStack_af8 = (uint64_t *)
                    CONCAT44(uStack_af8._4_4_ - uStack_a68._4_4_,
                             (float)uStack_af8 - (float)uStack_a68);
@@ -476,7 +477,7 @@ LAB_180663a5e:
   else {
     if (iVar37 == 6) {
       uVar15 = FUN_1801c13c0(param_5,auStack_aa8,param_1 + 0x10);
-      plVar16 = (int64_t *)FUN_1801c10f0(&uStack_988,auStack_998,uVar15);
+      plVar16 = (int64_t *)UltraHighFreq_ConfigManager1(&uStack_988,auStack_998,uVar15);
       uStack_af8 = (uint64_t *)*plVar16;
       lStack_af0 = plVar16[1];
       goto LAB_180663ade;
@@ -484,7 +485,7 @@ LAB_180663a5e:
     if (iVar37 == 7) {
       if ((*(uint64_t *)(param_4 + 0x810) >> ((uint64_t)*(byte *)(param_1 + 0xa5) & 0x3f) & 1) ==
           0) {
-        puVar31 = (uint64_t *)FUN_18022a890(param_2,cVar26,param_6);
+        puVar31 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_2,cVar26,param_6);
         puVar10 = (uint64_t *)(param_2 + ((int64_t)cVar26 + 0x40) * 0x10);
         uStack_7a8 = *puVar10;
         uStack_7a0 = puVar10[1];
@@ -494,13 +495,13 @@ LAB_180663a5e:
         cVar8 = *(char *)(param_1 + 0xa5);
         uStack_9a8 = *puVar10;
         uStack_9a0 = puVar10[1];
-        FUN_18022a890(param_2,cVar8,param_6);
+        CoreSystem_AuthenticationHandler0(param_2,cVar8,param_6);
         puVar10 = (uint64_t *)(param_2 + ((int64_t)cVar8 + 0x40) * 0x10);
         auStack_ad8 = (int8_t  [8])*puVar10;
         uVar15 = puVar10[1];
       }
       else {
-        puVar31 = (uint64_t *)FUN_18022a890(param_4,cVar26,param_6);
+        puVar31 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_4,cVar26,param_6);
         puVar10 = (uint64_t *)(param_4 + ((int64_t)cVar26 + 0x40) * 0x10);
         uStack_7a8 = *puVar10;
         uStack_7a0 = puVar10[1];
@@ -510,7 +511,7 @@ LAB_180663a5e:
         cVar8 = *(char *)(param_1 + 0xa5);
         uStack_9a8 = *puVar10;
         uStack_9a0 = puVar10[1];
-        FUN_18022a890(param_4,cVar8,param_6);
+        CoreSystem_AuthenticationHandler0(param_4,cVar8,param_6);
         puVar10 = (uint64_t *)(param_4 + ((int64_t)cVar8 + 0x40) * 0x10);
         auStack_ad8 = (int8_t  [8])*puVar10;
         uVar15 = puVar10[1];
@@ -524,7 +525,7 @@ LAB_180663a5e:
       pauVar14 = (int8_t (*) [16])func_0x0001800f8f10(param_1 + 0x50,auStack_aa8,auStack_ad8);
       _auStack_ad8 = *pauVar14;
       uVar15 = FUN_1801c13c0(lStack_968,auStack_aa8,auStack_ad8);
-      plVar16 = (int64_t *)FUN_1801c10f0(&uStack_988,auStack_998,uVar15);
+      plVar16 = (int64_t *)UltraHighFreq_ConfigManager1(&uStack_988,auStack_998,uVar15);
       uStack_af8 = (uint64_t *)*plVar16;
       lStack_af0 = plVar16[1];
       if ((((float)uStack_9f8 != 0.0) || (uStack_9f8._4_4_ != 0.0)) || ((float)uStack_9f0 != 0.0)) {
@@ -563,7 +564,7 @@ LAB_180663a5e:
     do {
       lVar29 = lStack_ae0;
       if ((int)*(char *)(param_1 + 0xa6) <= (int)uVar23) break;
-      puVar18 = (int32_t *)FUN_18022a890(lStack_ae0,uVar28 & 0xff,param_6);
+      puVar18 = (int32_t *)CoreSystem_AuthenticationHandler0(lStack_ae0,uVar28 & 0xff,param_6);
       lVar40 = (int64_t)(char)uVar28;
       uVar9 = puVar18[1];
       uVar55 = puVar18[2];
@@ -576,7 +577,7 @@ LAB_180663a5e:
       uVar15 = puVar31[1];
       puVar10[2] = *puVar31;
       puVar10[3] = uVar15;
-      puVar31 = (uint64_t *)FUN_18022a890(lVar29,bStack_b08,param_6);
+      puVar31 = (uint64_t *)CoreSystem_AuthenticationHandler0(lVar29,bStack_b08,param_6);
       lVar29 = lStack_ab8;
       bVar1 = *(byte *)(lVar40 + 0x100 + param_6);
       uVar15 = puVar31[1];
@@ -591,7 +592,7 @@ LAB_180663a5e:
         }
         pfVar11 = (float *)FUN_180285c90(&uStack_988,auStack_aa8,&uStack_af8);
         cVar8 = *(char *)(lVar29 + 0xa4);
-        FUN_18022a890(lStack_ae0,cVar8,param_6);
+        CoreSystem_AuthenticationHandler0(lStack_ae0,cVar8,param_6);
         pfVar17 = (float *)(lStack_ae0 + ((int64_t)cVar8 + 0x40) * 0x10);
         fStack_a10 = pfVar11[2] - pfVar17[2];
         uStack_a0c = 0x7f7fffff;
@@ -601,7 +602,7 @@ LAB_180663a5e:
           fStack_a10 = 0.0;
           uStack_a0c = 0x7f7fffff;
         }
-        pfVar17 = (float *)FUN_1801c0fb0(&uStack_988,auStack_998,auStack_a18);
+        pfVar17 = (float *)SystemFileHandler(&uStack_988,auStack_998,auStack_a18);
         uStack_af8 = (uint64_t *)
                      CONCAT44(uStack_af8._4_4_ - pfVar17[1],(float)uStack_af8 - *pfVar17);
         lStack_af0 = CONCAT44(lStack_af0._4_4_,(float)lStack_af0 - pfVar17[2]);
@@ -623,7 +624,7 @@ LAB_180663a5e:
         uStack_8e0 = 0x3f80000000000000;
       }
       else {
-        puVar10 = (uint64_t *)FUN_18022a890(lStack_ae0,uVar28 & 0xff,param_6);
+        puVar10 = (uint64_t *)CoreSystem_AuthenticationHandler0(lStack_ae0,uVar28 & 0xff,param_6);
         uStack_8f8 = *puVar10;
         uStack_8f0 = puVar10[1];
         puVar10 = (uint64_t *)(lVar29 + ((int64_t)(char)bStack_b08 + 0x40) * 0x10);
@@ -681,7 +682,7 @@ LAB_180663a5e:
                   uStack_a54 = *(int32_t *)(lVar29 + 0x84);
                   uStack_a50 = *(int32_t *)(lVar29 + 0x88);
                   uStack_a4c = *(int32_t *)(lVar29 + 0x8c);
-                  puVar10 = (uint64_t *)FUN_1801c10f0(&uStack_a68,auStack_7e8,&uStack_958);
+                  puVar10 = (uint64_t *)UltraHighFreq_ConfigManager1(&uStack_a68,auStack_7e8,&uStack_958);
                   uStack_958 = (uint64_t *)*puVar10;
                   uStack_950 = puVar10[1];
                   uVar33 = uStack_b04;
@@ -755,7 +756,7 @@ LAB_180663a5e:
                     uVar23 = uStack_ae8;
                   } while (lVar40 != 0);
                 }
-                pfVar17 = (float *)FUN_1801c0fb0(puVar25,auStack_848,&uStack_958);
+                pfVar17 = (float *)SystemFileHandler(puVar25,auStack_848,&uStack_958);
                 fVar67 = *(float *)((int64_t)&uStack_6d8 + (int64_t)puStack_a38) - *pfVar17;
                 fVar59 = *(float *)((int64_t)&uStack_6d8 + 4 + (int64_t)puStack_a38) - pfVar17[1];
                 fVar66 = *(float *)((int64_t)&uStack_6d0 + (int64_t)puStack_a38) - pfVar17[2];
@@ -843,7 +844,7 @@ LAB_180663a5e:
                   uStack_944 = *(int32_t *)(lVar29 + 0x84);
                   uStack_940 = *(int32_t *)(lVar29 + 0x88);
                   uStack_93c = *(int32_t *)(lVar29 + 0x8c);
-                  puVar10 = (uint64_t *)FUN_1801c10f0(&uStack_958,auStack_838,&uStack_a68);
+                  puVar10 = (uint64_t *)UltraHighFreq_ConfigManager1(&uStack_958,auStack_838,&uStack_a68);
                   uStack_a68 = *puVar10;
                   uStack_a60 = puVar10[1];
                 }
@@ -919,7 +920,7 @@ LAB_180663a5e:
                     puVar31 = puVar31 + -4;
                   } while (lVar29 != 0);
                 }
-                puVar18 = (int32_t *)FUN_1801c10f0(puVar10,afStack_898,&uStack_a68);
+                puVar18 = (int32_t *)UltraHighFreq_ConfigManager1(puVar10,afStack_898,&uStack_a68);
                 uVar9 = puVar18[1];
                 uVar55 = puVar18[2];
                 uVar56 = puVar18[3];
@@ -946,7 +947,7 @@ LAB_180663a5e:
         }
         uStack_8d8 = uStack_6d8;
         uStack_8d0 = uStack_6d0;
-        pfVar17 = (float *)FUN_1801c10f0(&uStack_988,auStack_768,&uStack_8d8);
+        pfVar17 = (float *)UltraHighFreq_ConfigManager1(&uStack_988,auStack_768,&uStack_8d8);
         fStack_abc = (float)((int)fStack_abc + 1);
         fVar67 = *pfVar17;
         fVar59 = pfVar17[1];
@@ -1006,7 +1007,7 @@ LAB_180663a5e:
               cVar8 = *(char *)(lVar32 + *(int64_t *)
                                           (lVar40 + 0xf8 + *(int64_t *)(param_6 + 0x140)));
               if (cVar8 != cVar26) {
-                pfVar17 = (float *)FUN_18022a890(lVar29,cVar8,param_6);
+                pfVar17 = (float *)CoreSystem_AuthenticationHandler0(lVar29,cVar8,param_6);
                 lVar24 = (int64_t)cVar8;
                 fVar42 = pfVar17[1];
                 fVar67 = pfVar17[2];
@@ -1037,7 +1038,7 @@ LAB_180663a5e:
       uVar56 = (int32_t)uStack_970;
       uVar57 = uStack_970._4_4_;
       if (bStack_b08 != 0xff) {
-        puVar10 = (uint64_t *)FUN_180300bf0(&uStack_9c8,&uStack_7b8,&uStack_8f8);
+        puVar10 = (uint64_t *)UltraHighFreq_FileSystem1(&uStack_9c8,&uStack_7b8,&uStack_8f8);
         uStack_9c8 = *puVar10;
         uStack_9c0 = puVar10[1];
         uVar9 = *(int32_t *)(puVar10 + 2);
@@ -1069,7 +1070,7 @@ LAB_180663a5e:
           uStack_7b8 = uStack_9c8;
           uStack_7b0 = uStack_9c0;
           puVar10 = (uint64_t *)
-                    FUN_180300bf0(&uStack_988,&uStack_788,&uStack_6e8 + (int64_t)iVar37 * 4);
+                    UltraHighFreq_FileSystem1(&uStack_988,&uStack_788,&uStack_6e8 + (int64_t)iVar37 * 4);
           uStack_9c8 = *puVar10;
           uStack_9c0 = puVar10[1];
           uStack_9b8 = puVar10[2];
@@ -1101,7 +1102,7 @@ LAB_180664ddf:
               uStack_9c8 = *(uint64_t *)(lVar29 + 0x20);
               uStack_9c0 = *(uint64_t *)(lVar29 + 0x28);
               if (0.0 < *(float *)(lVar29 + 0x30)) {
-                pfVar11 = (float *)FUN_1801c10f0(&uStack_9c8,auStack_768,&uStack_9f8);
+                pfVar11 = (float *)UltraHighFreq_ConfigManager1(&uStack_9c8,auStack_768,&uStack_9f8);
                 fVar42 = *pfVar11;
                 fVar67 = *(float *)(lStack_968 + 0x30);
                 fVar59 = *(float *)(lStack_968 + 0x34);
@@ -1109,7 +1110,7 @@ LAB_180664ddf:
                 fVar52 = pfVar11[1];
                 fVar54 = pfVar11[2];
                 uVar15 = func_0x0001803812e0(&uStack_a08,afStack_898);
-                FUN_1801c0fb0(&uStack_9c8,auStack_998,uVar15);
+                SystemFileHandler(&uStack_9c8,auStack_998,uVar15);
                 uStack_a68 = CONCAT44(*(float *)(lVar29 + 0x14) -
                                       ((fVar52 - fVar59) * fStack_934 + fVar59),
                                       *(float *)(lVar29 + 0x10) -
@@ -1231,7 +1232,7 @@ LAB_180664ddf:
               *plVar16 = (int64_t)plStack_928;
               plVar16[1] = lStack_920;
               puVar10 = (uint64_t *)
-                        FUN_180300bf0(&uStack_7b8,&uStack_788,
+                        UltraHighFreq_FileSystem1(&uStack_7b8,&uStack_788,
                                       (int64_t)alStack_5e8 + (int64_t)auStack_ad8);
               uStack_9c8 = *puVar10;
               uStack_9c0 = puVar10[1];

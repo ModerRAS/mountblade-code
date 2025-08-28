@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -65,7 +66,7 @@ uint64_t FUN_180697f10(uint *param_1,uint param_2,uint param_3,uint param_4)
     iVar5 = (((int)uVar9 >> 1) + param_4) * uVar6;
     uVar3 = iVar5 * 2 + iVar7;
     if (*(int64_t *)(param_1 + 0x16) == 0) {
-      uVar1 = FUN_18066e960(0x20,(int64_t)(int)uVar3);
+      uVar1 = RenderingSystem_RenderTarget(0x20,(int64_t)(int)uVar3);
       *(uint64_t *)(param_1 + 0x16) = uVar1;
       param_1[0x18] = uVar3;
     }
@@ -151,7 +152,7 @@ uint64_t FUN_180697f32(uint64_t param_1,uint param_2,int param_3)
   iVar6 = (uStack0000000000000070 + uVar1) * uVar7;
   uVar4 = iVar6 * 2 + iVar8;
   if (*(int64_t *)(unaff_RBX + 0x16) == 0) {
-    uVar2 = FUN_18066e960(0x20,(int64_t)(int)uVar4);
+    uVar2 = RenderingSystem_RenderTarget(0x20,(int64_t)(int)uVar4);
     *(uint64_t *)(unaff_RBX + 0x16) = uVar2;
     unaff_RBX[0x18] = uVar4;
     param_2 = in_stack_00000078;
@@ -824,7 +825,7 @@ void FUN_1806988d0(int *param_1,int param_2,int param_3)
     acStack_1b8[uVar3] = '\0';
     uVar3 = uVar3 + 1;
   }
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -950,7 +951,7 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
     acStackX_20[uVar3] = '\0';
     uVar3 = uVar3 + 1;
   }
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -977,7 +978,7 @@ void FUN_180698a50(void)
   
   do {
     if (299 < in_RAX) {
-      FUN_1808fcdc8();
+      UltraHighFreq_ThreadManager1();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
       return;

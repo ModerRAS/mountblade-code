@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part056.c - 9 个函数
 
 // 函数: void FUN_180232a0a(void)
@@ -846,11 +854,11 @@ void FUN_1802333f0(int64_t param_1,float *param_2,int *param_3,float *param_4,in
           fVar9 = (float)iVar6 * param_4[1] + param_2[1];
           fStack_68 = fVar8;
           fStack_64 = fVar9;
-          uVar2 = FUN_180235000(param_1,&fStack_68);
+          uVar2 = SystemCore_DataSerializer(param_1,&fStack_68);
           param_5 = 0xffffffff;
           fStackX_8 = fVar8 / ((float)*param_3 * *param_4);
           fStackX_c = fVar9 / ((float)param_3[1] * param_4[1]);
-          FUN_1802350e0(param_1,uVar2,&fStackX_8,&param_5,&uStack_58);
+          SystemCore_Decoder(param_1,uVar2,&fStackX_8,&param_5,&uStack_58);
           iVar5 = iVar5 + 1;
           iVar3 = *param_3 + 1;
         } while (iVar5 < iVar3);
@@ -872,8 +880,8 @@ void FUN_1802333f0(int64_t param_1,float *param_2,int *param_3,float *param_4,in
           iVar5 = iVar5 + 1;
           iVar4 = iVar5 * (*param_3 + 1) + iVar6;
           iVar3 = iVar4 + 1;
-          FUN_180235410(param_1,iVar4,iVar7,iVar3);
-          FUN_180235410(param_1,iVar3,iVar7,iVar7 + 1);
+          SystemCore_RenderFrame(param_1,iVar4,iVar7,iVar3);
+          SystemCore_RenderFrame(param_1,iVar3,iVar7,iVar7 + 1);
           iVar3 = param_3[1];
         } while (iVar5 < iVar3);
         iVar4 = *param_3;
@@ -927,12 +935,12 @@ void FUN_1802334c4(int param_1,int param_2)
         fVar2 = unaff_RSI[1];
         fVar3 = *unaff_RBP;
         fVar4 = unaff_RBP[1];
-        uVar5 = FUN_180235000();
+        uVar5 = SystemCore_DataSerializer();
         in_stack_000000c0 = 0xffffffff;
         fStack00000000000000a0 = ((float)iVar6 * fVar1 + fVar3) / ((float)*unaff_R14 * *unaff_RSI);
         fStack00000000000000a4 =
              ((float)unaff_EDI * fVar2 + fVar4) / ((float)unaff_R14[1] * unaff_RSI[1]);
-        FUN_1802350e0((float)*unaff_R14 * *unaff_RSI,uVar5,&stack0x000000a0,&stack0x000000c0,
+        SystemCore_Decoder((float)*unaff_R14 * *unaff_RSI,uVar5,&stack0x000000a0,&stack0x000000c0,
                       &stack0x00000040);
         iVar6 = iVar6 + 1;
         param_2 = *unaff_R14 + 1;
@@ -953,8 +961,8 @@ void FUN_1802334c4(int param_1,int param_2)
           iVar6 = *unaff_R14;
           iVar9 = (iVar6 + 1) * iVar8 + iVar7;
           iVar8 = iVar8 + 1;
-          uVar10 = FUN_180235410();
-          FUN_180235410(uVar10,iVar8 * (iVar6 + 1) + iVar7 + 1,iVar9,iVar9 + 1);
+          uVar10 = SystemCore_RenderFrame();
+          SystemCore_RenderFrame(uVar10,iVar8 * (iVar6 + 1) + iVar7 + 1,iVar9,iVar9 + 1);
           iVar9 = unaff_R14[1];
         } while (iVar8 < iVar9);
         iVar6 = *unaff_R14;

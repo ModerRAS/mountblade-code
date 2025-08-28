@@ -973,7 +973,7 @@ FUN_18044b610(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar4 = 0xfffffffffffffffe;
   uVar2 = CoreMemoryPoolValidator(&puStack_30);
-  plVar3 = (int64_t *)FUN_1800b6de0(system_resource_state,uVar2,0,param_4,uVar4);
+  plVar3 = (int64_t *)RenderingSystem_VertexProcessor(system_resource_state,uVar2,0,param_4,uVar4);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {
     lStack_28 = 0;

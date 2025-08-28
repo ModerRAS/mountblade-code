@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_05_part066.c - 4 个函数
 
@@ -73,12 +79,12 @@ void FUN_1803a2b10(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
           memcpy(puStack_90 + uStack_88,param_2,(int64_t)((int)lVar5 + 2));
         }
       }
-      cVar2 = FUN_180624af0(&puStack_98);
+      cVar2 = RenderingSystem_RenderQueue(&puStack_98);
       if (cVar2 == '\0') {
         if ((0 < *(int *)(param_6 + 0x10)) &&
            (*(char *)(*(int64_t *)(param_1 + 0x10) + 0x30) != '\0')) {
           *(int8_t *)(*(int64_t *)(param_1 + 0x10) + 0x30) = 0;
-          FUN_180627020(&processed_var_7976_ptr);
+          SystemCore_Allocator(&processed_var_7976_ptr);
         }
       }
       else if (iVar6 == 0) {
@@ -238,7 +244,7 @@ void FUN_1803a2e70(int64_t param_1)
   *(int8_t *)(param_1 + 0x5e0) = *(int8_t *)(lVar7 + 0x1e50);
   *(int32_t *)(param_1 + 0x108) = *(int32_t *)(param_1 + 0x78);
   *(int32_t *)(param_1 + 0x118) = *(int32_t *)(param_1 + 0x7c);
-  FUN_1800b9f60(param_1 + 0x100);
+  SystemCore_Parser(param_1 + 0x100);
   *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x80);
   *(uint64_t *)(param_1 + 0x148) = *(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x88);
   *(uint64_t *)(param_1 + 0x150) = *(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x90);
@@ -479,7 +485,7 @@ LAB_1803a37f8:
             puVar3[1] = CONCAT44(uStack_974,iStack_978);
             puVar3[2] = 0;
             fStack_9e8 = 1.4013e-45;
-            FUN_18066c220(&uStack_9a8,&uStack_9d0,uStack_9b8 & 0xffffffff,uStack_9b0 & 0xffffffff);
+            RenderingShaderProcessor0(&uStack_9a8,&uStack_9d0,uStack_9b8 & 0xffffffff,uStack_9b0 & 0xffffffff);
             if ((char)uStack_9d0 != '\0') {
               uVar4 = (uint64_t)puVar10 % (uStack_9d0 >> 0x20);
               FUN_18033db70(auStack_9c8);

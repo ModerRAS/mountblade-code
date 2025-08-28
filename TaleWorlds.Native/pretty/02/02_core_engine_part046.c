@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -462,7 +468,7 @@ uint64_t FUN_1800873b0(int param_1,int64_t *param_2,int8_t *param_3)
   uVar4 = 0;
   if (param_1 < 0) {
 LAB_180087418:
-    lVar2 = FUN_180628ca0();
+    lVar2 = MemoryDebugger0();
   }
   else {
     lVar2 = *(int64_t *)(*system_main_module_state + 0x888);
@@ -510,10 +516,10 @@ LAB_180087418:
     puVar5 = puStack_50;
   }
   System_DataHandler(&puStack_b8,&processed_var_8076_ptr,puVar5,puVar3);
-  cVar1 = FUN_180624a00(&puStack_78);
+  cVar1 = UltraHighFreq_LogManager1(&puStack_78);
   if (cVar1 == '\0') {
 LAB_18008755d:
-    cVar1 = FUN_180624a00(&puStack_b8);
+    cVar1 = UltraHighFreq_LogManager1(&puStack_b8);
     if (cVar1 == '\0') goto LAB_18008758f;
     puVar3 = &system_buffer_ptr;
     if (core_system_control_memory != (void *)0x0) {
@@ -523,7 +529,7 @@ LAB_18008755d:
     *param_3 = 1;
   }
   else {
-    cVar1 = FUN_180624a00(&puStack_98);
+    cVar1 = UltraHighFreq_LogManager1(&puStack_98);
     if (cVar1 == '\0') goto LAB_18008755d;
     puVar3 = &system_buffer_ptr;
     if (core_system_control_memory != (void *)0x0) {
@@ -891,7 +897,7 @@ LAB_18008807f:
             if (puVar17 == (uint64_t *)0x0) {
 LAB_180087f81:
                     // WARNING: Subroutine does not return
-              FUN_180062300(system_message_context,&processed_var_9136_ptr);
+              SystemParameterHandler(system_message_context,&processed_var_9136_ptr);
             }
             do {
               iVar10 = memcmp(puVar17 + 4,&uStack_70,0x10);
@@ -1083,8 +1089,8 @@ LAB_180087f16:
   }
   puStack_120 = (int8_t *)0x0;
   puStack_128 = &system_state_ptr;
-  FUN_180627b90(param_2);
-  FUN_180627b90(param_3);
+  SystemValidator(param_2);
+  SystemValidator(param_3);
 LAB_180088131:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_158);

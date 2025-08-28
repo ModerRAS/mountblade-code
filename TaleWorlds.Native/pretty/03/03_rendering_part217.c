@@ -1,7 +1,13 @@
+n//  的语义化别名
+#define SystemCore_ProcessManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* RenderingProcessor - FUN_180391980 的语义化别名 */
 #define RenderingProcessor FUN_180391980
 
-#include "TaleWorlds.Native.Split.h"
 
 /**
  * @file 03_rendering_part217.c
@@ -472,7 +478,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                             if (plVar27[2] != 0) {
                               *(int8_t *)(plVar27 + 4) = 1;
                             }
-                            FUN_18038b160(plVar27[2]);
+                            SystemCore_ProcessManager(plVar27[2]);
                           }
                           else {
                             FUN_18038d8f0(param_1, plVar27);
@@ -512,7 +518,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                                 *(int8_t *)(plVar11 + 4) = 2;
                                 plVar11[3] = uStack_108;
                                 *plVar29 = (int64_t)plVar11;
-                                FUN_18038b160(plVar11[2]);
+                                SystemCore_ProcessManager(plVar11[2]);
                                 lVar33 = lVar7;
                                 uVar17 = uStack_108;
                                 goto LAB_1803922c3;
@@ -643,8 +649,8 @@ LAB_180392028:
           }
           
           // 清理和释放几何数据资源
-          FUN_18038b160(uVar23);
-          FUN_18038af00(uVar23);
+          SystemCore_ProcessManager(uVar23);
+          SystemCore_PerformanceMonitor(uVar23);
           uVar36 = uVar15;
           if (*(int64_t *)(uVar23 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
             uVar36 = *(uint *)(*(int64_t *)(uVar23 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
@@ -665,8 +671,8 @@ LAB_180392028:
           *(uint *)(uVar23 + RENDERING_PROPERTY_OFFSET_134) = uVar16;
           
           // 释放和清理其他几何数据
-          FUN_18038b160(uVar39);
-          FUN_18038af00(uVar39);
+          SystemCore_ProcessManager(uVar39);
+          SystemCore_PerformanceMonitor(uVar39);
           if (*(int64_t *)(uVar39 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
             uVar15 = *(uint *)(*(int64_t *)(uVar39 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
           }
@@ -685,8 +691,8 @@ LAB_180392028:
           }
           *(uint *)(uVar39 + RENDERING_PROPERTY_OFFSET_134) = uVar36;
           
-          FUN_18038b160(uVar26);
-          FUN_18038af00(uVar26);
+          SystemCore_ProcessManager(uVar26);
+          SystemCore_PerformanceMonitor(uVar26);
           uVar15 = uVar21;
           if (*(int64_t *)(uVar26 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
             uVar15 = *(uint *)(*(int64_t *)(uVar26 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
@@ -706,8 +712,8 @@ LAB_180392028:
           }
           *(uint *)(uVar26 + RENDERING_PROPERTY_OFFSET_134) = uVar36;
           
-          FUN_18038b160(uStack_108);
-          uVar41 = FUN_18038af00(uStack_108);
+          SystemCore_ProcessManager(uStack_108);
+          uVar41 = SystemCore_PerformanceMonitor(uStack_108);
           if (*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
             uVar21 = *(uint *)(*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
           }
@@ -727,14 +733,14 @@ LAB_180392028:
           *(uint *)(uStack_108 + RENDERING_PROPERTY_OFFSET_134) = uVar15;
           
           // 更新渲染系统状态和计数器
-          uVar41 = FUN_18038ee20(uVar41, uVar23, RENDERING_MAX_ITERATION_COUNT);
-          uVar41 = FUN_18038ee20(uVar41, uVar39, RENDERING_MAX_ITERATION_COUNT);
-          uVar41 = FUN_18038ee20(uVar41, uVar26, RENDERING_MAX_ITERATION_COUNT);
-          uVar41 = FUN_18038ee20(uVar41, uStack_108, RENDERING_MAX_ITERATION_COUNT);
+          uVar41 = SystemCore_Encoder(uVar41, uVar23, RENDERING_MAX_ITERATION_COUNT);
+          uVar41 = SystemCore_Encoder(uVar41, uVar39, RENDERING_MAX_ITERATION_COUNT);
+          uVar41 = SystemCore_Encoder(uVar41, uVar26, RENDERING_MAX_ITERATION_COUNT);
+          uVar41 = SystemCore_Encoder(uVar41, uStack_108, RENDERING_MAX_ITERATION_COUNT);
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
-          uVar41 = FUN_18038ee20(uVar41, uVar23, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
+          uVar41 = SystemCore_Encoder(uVar41, uVar23, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
-          FUN_18038ee20(uVar41, uVar39, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
+          SystemCore_Encoder(uVar41, uVar39, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
         }
       }
     }
@@ -750,14 +756,14 @@ LAB_180392028:
  * 渲染系统核心功能函数别名
  */
 #define RenderingSystemGeometryCalculator RenderingProcessor
-#define RenderingSystemEdgeDetector FUN_18038b160
-#define RenderingSystemVectorNormalizer FUN_18038af00
+#define RenderingSystemEdgeDetector SystemCore_ProcessManager
+#define RenderingSystemVectorNormalizer SystemCore_PerformanceMonitor
 #define RenderingSystemDistanceCalculator FUN_18038c180
 #define RenderingSystemPathOptimizer FUN_18038d8f0
 #define RenderingSystemCollisionDetector FUN_18038ac80
-#define RenderingSystemVisibilityCalculator FUN_18038ee20
-#define RenderingSystemMeshProcessor FUN_18038b160
-#define RenderingSystemTransformManager FUN_18038af00
+#define RenderingSystemVisibilityCalculator SystemCore_Encoder
+#define RenderingSystemMeshProcessor SystemCore_ProcessManager
+#define RenderingSystemTransformManager SystemCore_PerformanceMonitor
 #define RenderingSystemStateValidator FUN_18038c180
 
 /**
@@ -765,24 +771,24 @@ LAB_180392028:
  */
 #define GeometryProcessorBuffer FUN_18038d8f0
 #define EdgeDetectionHandler FUN_18038ac80
-#define VectorCalculationEngine FUN_18038b160
-#define DistanceMeasurementSystem FUN_18038af00
+#define VectorCalculationEngine SystemCore_ProcessManager
+#define DistanceMeasurementSystem SystemCore_PerformanceMonitor
 #define PathFindingAlgorithm FUN_18038c180
-#define CollisionDetectionSystem FUN_18038ee20
-#define VisibilityCullingEngine FUN_18038b160
-#define MeshOptimizationProcessor FUN_18038af00
+#define CollisionDetectionSystem SystemCore_Encoder
+#define VisibilityCullingEngine SystemCore_ProcessManager
+#define MeshOptimizationProcessor SystemCore_PerformanceMonitor
 
 /**
  * 数据处理系统函数别名
  */
 #define DataStructureManager FUN_18038c180
-#define MemoryAllocationHandler FUN_18038ee20
-#define StackFrameProcessor FUN_18038b160
-#define RegisterOptimizer FUN_18038af00
+#define MemoryAllocationHandler SystemCore_Encoder
+#define StackFrameProcessor SystemCore_ProcessManager
+#define RegisterOptimizer SystemCore_PerformanceMonitor
 #define CacheManager FUN_18038c180
-#define BufferController FUN_18038ee20
-#define StreamProcessor FUN_18038b160
-#define PipelineManager FUN_18038af00
+#define BufferController SystemCore_Encoder
+#define StreamProcessor SystemCore_ProcessManager
+#define PipelineManager SystemCore_PerformanceMonitor
 
 /*==========================================
 =            模块初始化和清理            =

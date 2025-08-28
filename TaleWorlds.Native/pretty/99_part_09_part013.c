@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -43,7 +44,7 @@ void FUN_1805c260a(void)
   float in_stack_00000068;
   int32_t uStack000000000000006c;
   
-  FUN_180487c70(unaff_RBX + 0x29e,2);
+  SystemCore_Validator(unaff_RBX + 0x29e,2);
   fVar15 = -NAN;
   if ((int)unaff_RBX[0x2a6] < 2) {
     fVar11 = -NAN;
@@ -53,8 +54,8 @@ void FUN_1805c260a(void)
   }
   fVar13 = *(float *)(unaff_RBX + 0x2a1);
   fVar14 = *(float *)((int64_t)unaff_RBX + 0x150c);
-  lVar3 = FUN_180516f50(*unaff_RBX,&stack0x00000070);
-  FUN_180487c70(lVar3,2);
+  lVar3 = UltraHighFreq_MemoryManager1(*unaff_RBX,&stack0x00000070);
+  SystemCore_Validator(lVar3,2);
   if (*(int *)(lVar3 + 0x40) < 2) {
     in_stack_00000058 = -NAN;
   }
@@ -65,10 +66,10 @@ void FUN_1805c260a(void)
   fStack0000000000000054 = fVar14 - *(float *)(lVar3 + 0x1c);
   in_stack_00000058 = fVar11 - in_stack_00000058;
   uStack000000000000005c = 0x7f7fffff;
-  fVar11 = (float)FUN_1801c24a0(&stack0x00000050);
-  lVar3 = FUN_180516f50((int64_t)**(int **)(unaff_RBP + 0x100) * 0xa60 + unaff_RBX[0x291] + 0x30a0,
+  fVar11 = (float)UtilitiesSystem_CryptoHandler(&stack0x00000050);
+  lVar3 = UltraHighFreq_MemoryManager1((int64_t)**(int **)(unaff_RBP + 0x100) * 0xa60 + unaff_RBX[0x291] + 0x30a0,
                         &stack0x00000070);
-  FUN_180487c70(lVar3,2);
+  SystemCore_Validator(lVar3,2);
   if (*(int *)(lVar3 + 0x40) < 2) {
     fVar13 = -NAN;
   }
@@ -77,8 +78,8 @@ void FUN_1805c260a(void)
   }
   fVar14 = *(float *)(lVar3 + 0x18);
   fVar12 = *(float *)(lVar3 + 0x1c);
-  lVar3 = FUN_180516f50(*unaff_RBX,unaff_RBP + -0x48);
-  FUN_180487c70(lVar3,2);
+  lVar3 = UltraHighFreq_MemoryManager1(*unaff_RBX,unaff_RBP + -0x48);
+  SystemCore_Validator(lVar3,2);
   if (1 < *(int *)(lVar3 + 0x40)) {
     fVar15 = *(float *)(lVar3 + 0x20);
   }
@@ -88,7 +89,7 @@ void FUN_1805c260a(void)
   in_stack_00000060 = fVar14;
   fStack0000000000000064 = fVar12;
   in_stack_00000068 = fVar13 - fVar15;
-  fVar8 = (float)FUN_1801c24a0(&stack0x00000060);
+  fVar8 = (float)UtilitiesSystem_CryptoHandler(&stack0x00000060);
   fVar10 = fStack0000000000000064 * fStack0000000000000054 + in_stack_00000060 * in_stack_00000050 +
            in_stack_00000068 * in_stack_00000058;
   if (fVar10 < -1.0) {
@@ -180,7 +181,7 @@ LAB_1805c2880:
       if (*(int *)(*(int64_t *)(lVar3 + 0x8f8) + 0x9e4) == 4) {
         plVar7 = (int64_t *)(*(int64_t *)(lVar3 + 0x8f8) + 0xd8);
         do {
-          cVar2 = FUN_18058f970(plVar7 + -0x1a);
+          cVar2 = SystemCore_EventHandler(plVar7 + -0x1a);
           if ((cVar2 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar7[4] * 0xa0 + 0x50 + *plVar7) & 0x12) == 2))
           goto LAB_1805c2964;
@@ -196,7 +197,7 @@ LAB_1805c2880:
       if (*(int *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0x9e4) == 4) {
         plVar7 = (int64_t *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0xd8);
         do {
-          cVar2 = FUN_18058f970(plVar7 + -0x1a);
+          cVar2 = SystemCore_EventHandler(plVar7 + -0x1a);
           if ((cVar2 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar7[4] * 0xa0 + 0x50 + *plVar7) & 0x12) == 2))
           goto LAB_1805c2964;
@@ -356,7 +357,7 @@ void FUN_1805c28b4(void)
       if (*(int *)(*(int64_t *)(lVar3 + 0x8f8) + 0x9e4) == 4) {
         plVar6 = (int64_t *)(*(int64_t *)(lVar3 + 0x8f8) + 0xd8);
         do {
-          cVar2 = FUN_18058f970(plVar6 + -0x1a);
+          cVar2 = SystemCore_EventHandler(plVar6 + -0x1a);
           if ((cVar2 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar6[4] * 0xa0 + 0x50 + *plVar6) & 0x12) == 2))
           goto LAB_1805c2964;
@@ -372,7 +373,7 @@ void FUN_1805c28b4(void)
       if (*(int *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0x9e4) == 4) {
         plVar6 = (int64_t *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0xd8);
         do {
-          cVar2 = FUN_18058f970(plVar6 + -0x1a);
+          cVar2 = SystemCore_EventHandler(plVar6 + -0x1a);
           if ((cVar2 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar6[4] * 0xa0 + 0x50 + *plVar6) & 0x12) == 2))
           goto LAB_1805c2964;

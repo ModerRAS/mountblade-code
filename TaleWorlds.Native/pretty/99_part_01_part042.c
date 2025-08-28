@@ -1,9 +1,14 @@
+n//  的语义化别名
+#define SystemCore_DecryptionManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_01_part042.c - 5 个函数
 
@@ -495,7 +500,7 @@ LAB_1800cc2f2:
   (**(code **)(*plVar14 + 0x40))(plVar14,0x4a,1,&lStack_1d8);
   lVar11 = *(int64_t *)(system_message_buffer + 0x1cd8);
   lVar13 = lVar16;
-  if ((((*(int64_t *)(param_2 + 0x9700) != 0) && (lVar10 = FUN_18023a940(), lVar10 != 0)) &&
+  if ((((*(int64_t *)(param_2 + 0x9700) != 0) && (lVar10 = SystemCore_Scheduler(), lVar10 != 0)) &&
       (lVar13 = lVar10, *(int64_t *)(lVar10 + 8) == 0)) && (*(int64_t *)(lVar10 + 0x10) == 0)) {
     lVar13 = 0;
   }
@@ -528,7 +533,7 @@ LAB_1800cc2f2:
   uVar18 = (**(code **)(*plVar14 + 0x40))(plVar14,0x4b,1,&lStack_1d0);
   if (*(int64_t *)(param_2 + 0x9708) != 0) {
     lVar11 = *(int64_t *)(system_message_buffer + 0x1cd8);
-    lVar10 = FUN_18023a940();
+    lVar10 = SystemCore_Scheduler();
     lVar13 = lVar16;
     if (((lVar10 != 0) && (lVar13 = lVar10, *(int64_t *)(lVar10 + 8) == 0)) &&
        (*(int64_t *)(lVar10 + 0x10) == 0)) {
@@ -607,7 +612,7 @@ LAB_1800cc2f2:
     lVar11 = *(int64_t *)(lVar11 + 0x1cd8);
     lVar10 = FUN_1800bdc80();
     lVar13 = lVar16;
-    if (((lVar10 != 0) && (lVar10 = FUN_18023a940(), lVar10 != 0)) &&
+    if (((lVar10 != 0) && (lVar10 = SystemCore_Scheduler(), lVar10 != 0)) &&
        ((lVar13 = lVar10, *(int64_t *)(lVar10 + 8) == 0 && (*(int64_t *)(lVar10 + 0x10) == 0)))) {
       lVar13 = 0;
     }
@@ -638,7 +643,7 @@ LAB_1800cc2f2:
     lVar11 = *(int64_t *)(system_message_buffer + 0x1cd8);
     lVar10 = FUN_1800bd5c0();
     lVar13 = lVar16;
-    if ((((lVar10 != 0) && (lVar10 = FUN_18023a940(), lVar10 != 0)) &&
+    if ((((lVar10 != 0) && (lVar10 = SystemCore_Scheduler(), lVar10 != 0)) &&
         (lVar13 = lVar10, *(int64_t *)(lVar10 + 8) == 0)) && (*(int64_t *)(lVar10 + 0x10) == 0)) {
       lVar13 = 0;
     }
@@ -670,7 +675,7 @@ LAB_1800cc2f2:
     auStack_a0[0] = 0;
     uStack_a8 = 0xd;
     strcpy_s(auStack_a0,0x40,&render_data_ptr);
-    FUN_1800b08e0(uVar18,&plStack_1e0,&puStack_b8,0);
+    SystemCore_GarbageCollector(uVar18,&plStack_1e0,&puStack_b8,0);
     plVar14 = plStack_1e0;
     uStack_1e8 = 1;
     puStack_b8 = &system_state_ptr;
@@ -689,7 +694,7 @@ LAB_1800cc2f2:
   uStack_1a8 = 0;
   pcStack_1a0 = (code *)0x0;
   pcStack_198 = _guard_check_icall;
-  FUN_18023c450(*(uint64_t *)(lVar11 + 0xc0),0,*(int32_t *)(lVar11 + 0x468),&uStack_1b0);
+  SystemCore_DecryptionManager(*(uint64_t *)(lVar11 + 0xc0),0,*(int32_t *)(lVar11 + 0x468),&uStack_1b0);
   if (pcStack_1a0 != (code *)0x0) {
     (*pcStack_1a0)(&uStack_1b0,0,0);
   }
@@ -699,7 +704,7 @@ LAB_1800cc2f2:
     lVar11 = FUN_1800bd5c0();
   }
   lVar10 = lVar16;
-  if ((((lVar11 != 0) && (lVar11 = FUN_18023a940(), lVar11 != 0)) &&
+  if ((((lVar11 != 0) && (lVar11 = SystemCore_Scheduler(), lVar11 != 0)) &&
       (lVar10 = lVar11, *(int64_t *)(lVar11 + 8) == 0)) && (*(int64_t *)(lVar11 + 0x10) == 0)) {
     lVar10 = 0;
   }
@@ -727,7 +732,7 @@ LAB_1800cc2f2:
       lVar13 = FUN_1800bd5c0();
     }
     lVar10 = lVar16;
-    if (((lVar13 != 0) && (lVar13 = FUN_18023a940(), lVar13 != 0)) &&
+    if (((lVar13 != 0) && (lVar13 = SystemCore_Scheduler(), lVar13 != 0)) &&
        ((lVar10 = lVar13, *(int64_t *)(lVar13 + 8) == 0 && (*(int64_t *)(lVar13 + 0x10) == 0)))) {
       lVar10 = 0;
     }

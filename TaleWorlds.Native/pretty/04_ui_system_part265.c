@@ -225,7 +225,7 @@ uint64_t FUN_180819d70(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_
           if (*piVar6 == iVar2) {
             if (*param_5 != 0) {
                     // WARNING: Subroutine does not return
-              FUN_1807c41d0(param_1);
+              RenderingSystem_CoreProcessor0(param_1);
             }
             *param_5 = 0;
             *param_6 = 0;

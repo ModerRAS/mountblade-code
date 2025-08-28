@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -111,7 +115,7 @@ LAB_18018d08e:
                ((uint64_t)
                 (*(int64_t *)(*system_main_module_state + 0x890) - *(int64_t *)(*system_main_module_state + 0x888) >>
                 5) <= (uint64_t)(int64_t)param_4)) {
-              FUN_180628ca0();
+              MemoryDebugger0();
             }
             puVar10 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x36,0x13);
             *(int8_t *)puVar10 = 0;

@@ -1,4 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part112.c - 渲染系统文件I/O和资源处理模块
 // 包含5个核心函数，涵盖渲染系统文件操作、数据序列化、资源管理、内存分配和线程同步等高级渲染功能
@@ -746,7 +758,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   
   // 创建资源表
   resource_ptr = (int64_t *)CoreMemoryPoolReallocator(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
-  FUN_180049830(resource_ptr);
+  UltraHighFreq_PerformanceMonitor1(resource_ptr);
   
   *resource_ptr = (int64_t)&RENDERING_FILE_POINTER_ADDRESS;
   hash_table = (uint64_t *)(resource_ptr + 0x18);
@@ -789,7 +801,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
       }
       
       // 创建新的哈希条目
-      FUN_18066c220(resource_context + 0xa10, &stack0x00000018, 
+      RenderingShaderProcessor0(resource_context + 0xa10, &stack0x00000018, 
                     (uint64_t)*(uint *)(resource_context + 0xa00),
                     *(int32_t *)(resource_context + 0xa08), 1);
       
@@ -914,7 +926,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   
   resource_data = RENDERING_MEMORY_POOL_ADDRESS;
   (**(code **)(*resource_ptr + 0x28))(resource_ptr);
-  FUN_18005e110(resource_data, &stack0x00000018);
+  SystemCore_TimerManager(resource_data, &stack0x00000018);
   
   // 处理辅助资源表
   temp_ptr = (uint *)0x0;
@@ -942,7 +954,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
       }
       
       // 创建新的辅助哈希条目
-      FUN_18066c220(resource_context + 0x6d8, &stack0x00000018, 
+      RenderingShaderProcessor0(resource_context + 0x6d8, &stack0x00000018, 
                     (uint64_t)*(uint *)(resource_context + 0x6c8),
                     *(int32_t *)(resource_context + 0x6d0), 1);
       
@@ -1102,7 +1114,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   while (temp_ptr = hash_ptr, temp_ptr != table_data) {
     table_size = temp_ptr[5];
     if (table_size != 0) {
-      SystemDataValidator(table_size + 0x38, 0x30, 4, FUN_18004a130);
+      SystemDataValidator(table_size + 0x38, 0x30, 4, SystemCore_MemoryManager);
       buffer_ptr8 = (uint64_t *)(table_size + 0x18);
       *buffer_ptr8 = &RENDERING_DATA_ARRAY_ADDRESS;
       
@@ -1154,7 +1166,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   if ((temp_ptr == *(uint64_t **)(resource_context + 0x820)) && (table_data == resource_info)) {
     next_resource = *(uint64_t **)(resource_context + 0x828);
     if (next_resource != (uint64_t *)0x0) {
-      FUN_18004b790(resource_info, *next_resource);
+      SystemCache_Manager(resource_info, *next_resource);
       CoreMemoryPoolInitializer(next_resource);
     }
     
@@ -1168,7 +1180,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
     while (next_resource = temp_ptr, next_resource != table_data) {
       *(int64_t *)(resource_context + 0x838) = *(int64_t)(resource_context + 0x838) + -1;
       temp_ptr = (uint64_t *)func_0x00018066bd70(next_resource);
-      FUN_18066ba00(next_resource, table_data);
+      RenderingSystem_BufferHandler(next_resource, table_data);
       
       if (next_resource != (uint64_t *)0x0) {
         CoreMemoryPoolInitializer(next_resource);

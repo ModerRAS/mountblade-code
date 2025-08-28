@@ -1,3 +1,15 @@
+#include "ultra_high_freq_fun_definitions.h"
+n//  的语义化别名
+#define SystemCore_SyncController 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 /**
  * TaleWorlds.Native 渲染系统 - 场景管理和边界计算模块
  * 
@@ -23,7 +35,6 @@
  * @date 2024
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 // 渲染系统常量定义
 #define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值
@@ -132,7 +143,7 @@ void FUN_180348d90(int64_t param_1)
   }
   
   // 应用默认材质设置
-  FUN_180627020(&processed_var_5328_ptr,puVar2);
+  SystemCore_Allocator(&processed_var_5328_ptr,puVar2);
   return;
 }
 
@@ -256,7 +267,7 @@ void FUN_180348e60(uint64_t param_1,int64_t param_2,int64_t *param_3,uint64_t *p
     fStack_a0 = fVar10;
     fStack_9c = fVar11;
     fStack_98 = fVar12;
-    FUN_1800b9f60(&fStack_b0);
+    SystemCore_Parser(&fStack_b0);
     plVar3 = plStack_c8;
     *param_4 = CONCAT44(fStack_ac,fStack_b0);
     param_4[1] = CONCAT44(uStack_a4,fStack_a8);
@@ -402,14 +413,14 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       }
       
       // 清理场景对象的引用
-      FUN_180076910(param_2,&plStackX_10);
+      UltraHighFreq_SecurityValidator1(param_2,&plStackX_10);
       
       // 获取相关的渲染对象列表
       lStack_60 = 0;
       lStack_58 = 0;
       uStack_50 = 0;
       uStack_48 = 3;
-      FUN_1802e8c60(*(uint64_t *)(param_1 + 0x18),&lStack_60);
+      Network_ProtocolHandler(*(uint64_t *)(param_1 + 0x18),&lStack_60);
       FUN_1802ec150(*(uint64_t *)(param_1 + 0x18),1);
       uVar6 = uVar9;
       
@@ -547,7 +558,7 @@ void FUN_180349330(int64_t param_1)
           plVar8[0x28] = plVar8[0x28] & ~uVar5;
           FUN_18022dd60(plVar8);
           puStack_98 = &system_state_ptr;
-          FUN_180076910(lVar2,&plStack_150);
+          UltraHighFreq_SecurityValidator1(lVar2,&plStack_150);
         }
         if (plVar8 != (int64_t *)0x0) {
           (**(code **)(*plVar8 + 0x38))(plVar8);
@@ -566,9 +577,9 @@ void FUN_180349330(int64_t param_1)
   lStack_140 = 0;
   uStack_138 = 0;
   uStack_130 = 3;
-  FUN_1802e8c60(*(uint64_t *)(param_1 + 0x18),&lStack_148);
+  Network_ProtocolHandler(*(uint64_t *)(param_1 + 0x18),&lStack_148);
   lStack_168 = *(int64_t *)(param_1 + 0x18);
-  uVar13 = FUN_18005ea90(&lStack_148,&lStack_168);
+  uVar13 = SystemSecurity_Manager(&lStack_148,&lStack_168);
   uVar10 = uVar7;
   
   if (lStack_140 - lStack_148 >> 3 != 0) {
@@ -648,7 +659,7 @@ FUN_180349730(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_6048_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x80,param_3,param_4,uVar1);
   }
@@ -681,7 +692,7 @@ void FUN_180349780(uint64_t *param_1)
   
   uVar3 = 0xfffffffffffffffe;
   puVar2 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar2 = &processed_var_6048_ptr;
   puVar2[0xe] = 0;
   *(int32_t *)(puVar2 + 0xf) = RENDERING_DEFAULT_SHADER_ID;
@@ -701,7 +712,7 @@ void FUN_180349780(uint64_t *param_1)
   uStack_80 = 8;
   
   // 应用材质参数
-  FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
+  SystemNetwork_Processor(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
   puStack_90 = &system_data_buffer_ptr;
   CoreEngine_MemoryPoolManager(puVar2);
 }
@@ -894,7 +905,7 @@ void FUN_180349a50(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_148);
   uStack_150 = 10;
   uStack_1c8 = 1;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   
   // 设置第二个着色器参数
   uStack_1c8 = 0;
@@ -909,7 +920,7 @@ void FUN_180349a50(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_e8);
   uStack_150 = 2;
   uStack_1c8 = 2;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   
   // 设置第三个着色器参数
   uStack_1c8 = 0;
@@ -924,7 +935,7 @@ void FUN_180349a50(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_88);
   uStack_150 = 2;
   uStack_1c8 = 4;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -1016,7 +1027,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   puVar1 = param_1;
   puStack_140 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   
   // 初始化纹理对象基本信息
   *puVar1 = &processed_var_6496_ptr;
@@ -1036,7 +1047,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   auStack_120[0] = 0;
   uStack_128 = 8;
   strcpy_s(auStack_120,0x10,&processed_var_8280_ptr);
-  FUN_1803460a0(param_1,&puStack_138,param_1 + 0x12,3);
+  SystemNetwork_Processor(param_1,&puStack_138,param_1 + 0x12,3);
   puStack_138 = &system_state_ptr;
   
   // 设置纹理参数
@@ -1045,7 +1056,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   auStack_f8[0] = 0;
   uStack_100 = 0x13;
   strcpy_s(auStack_f8,0x20,&processed_var_6464_ptr);
-  FUN_1803460a0(param_1,&puStack_110,(int64_t)param_1 + 0x92,3);
+  SystemNetwork_Processor(param_1,&puStack_110,(int64_t)param_1 + 0x92,3);
   puStack_110 = &system_state_ptr;
   
   // 设置着色器参数
@@ -1054,7 +1065,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   auStack_c0[0] = 0;
   uStack_c8 = 0x11;
   strcpy_s(auStack_c0,0x20,&processed_var_6440_ptr);
-  FUN_1803460a0(param_1,&puStack_d8,(int64_t)param_1 + 0x8c,2);
+  SystemNetwork_Processor(param_1,&puStack_d8,(int64_t)param_1 + 0x8c,2);
   puStack_d8 = &system_state_ptr;
   
   // 设置纹理坐标
@@ -1063,7 +1074,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   auStack_88[0] = 0;
   uStack_90 = 0xf;
   strcpy_s(auStack_88,0x20,&processed_var_6424_ptr);
-  FUN_1803460a0(param_1,&puStack_a0,param_1 + 0x11,2);
+  SystemNetwork_Processor(param_1,&puStack_a0,param_1 + 0x11,2);
   puStack_a0 = &system_state_ptr;
   
   // 设置材质属性
@@ -1072,7 +1083,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   auStack_50[0] = 0;
   uStack_58 = 9;
   strcpy_s(auStack_50,0x20,&processed_var_6408_ptr);
-  FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
+  SystemNetwork_Processor(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &system_state_ptr;
   SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_168);
 }
@@ -1092,7 +1103,7 @@ uint64_t FUN_180349fb0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xe0,param_3,param_4,uVar1);
   }

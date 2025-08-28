@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part252.c - 9 个函数
 
 // 函数: void FUN_1802187b0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -102,7 +106,7 @@ int64_t FUN_180218920(int64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   if (0x1fffffffffffffff < uVar11) {
     lVar6 = -1;
   }
-  puVar4 = (uint64_t *)FUN_180067110(lVar6);
+  puVar4 = (uint64_t *)SystemCore_SyscallHandler(lVar6);
   puVar4[lVar10] = *param_3;
   puVar8 = (uint64_t *)param_1[1];
   puVar7 = (uint64_t *)*param_1;

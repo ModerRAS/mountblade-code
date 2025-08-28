@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 
 // 03_rendering_part383.c - 21 个函数
 
@@ -129,7 +135,7 @@ LAB_18047a2ec:
   lStack_e0 = param_2;
   FUN_18047b290(alStack_c8,0,&plStackX_20);
   uStack_b0 = 0;
-  plStack_f8 = (int64_t *)FUN_1808fc418(0x30);
+  plStack_f8 = (int64_t *)SystemRenderer(0x30);
   *plStack_f8 = (int64_t)&processed_var_6184_ptr;
   plStack_f8[1] = 0x14;
   plStack_f8[2] = 0;
@@ -146,7 +152,7 @@ LAB_18047a2ec:
   puStack_a0 = plStack_f8;
   plStack_90 = plVar1;
   plStack_80 = plVar1;
-  FUN_18047b3a0(&lStack_e8);
+  RenderingSystem_MaterialManager0(&lStack_e8);
   lVar4 = FUN_18047afc0(&lStack_e8);
   if (lVar4 != 0) {
     LOCK();
@@ -190,7 +196,7 @@ FUN_18047a470(int64_t *param_1,int8_t *param_2,uint64_t param_3,uint64_t param_4
   *(uint64_t *)(param_2 + 0x18) = 0xf;
   *param_2 = 0;
   if (lStack_18 != lStack_10) {
-    FUN_1800671b0(param_2,lStack_18,lStack_10 - lStack_18,param_4,0,0xfffffffffffffffe);
+    MathCoreCalculator0(param_2,lStack_18,lStack_10 - lStack_18,param_4,0,0xfffffffffffffffe);
   }
   return param_2;
 }
@@ -485,7 +491,7 @@ void FUN_18047a8c0(uint64_t *param_1,uint64_t param_2,char param_3)
        (uVar1 = (uVar2 >> 1) + uVar2, uVar7 = uVar6, uVar6 < uVar1)) {
       uVar7 = uVar1;
     }
-    uVar5 = FUN_180067110(uVar7 + 1);
+    uVar5 = SystemCore_SyscallHandler(uVar7 + 1);
     param_1[2] = lVar3 + param_2;
     param_1[3] = uVar7;
     if (0xf < uVar2) {
@@ -522,7 +528,7 @@ void FUN_18047a936(uint64_t param_1,int64_t param_2)
      (uVar1 = (unaff_RBP >> 1) + unaff_RBP, unaff_RBX = uVar3, uVar3 < uVar1)) {
     unaff_RBX = uVar1;
   }
-  uVar2 = FUN_180067110(unaff_RBX + 1);
+  uVar2 = SystemCore_SyscallHandler(unaff_RBX + 1);
   unaff_RDI[2] = unaff_R14 + param_2;
   unaff_RDI[3] = unaff_RBX;
   if (0xf < unaff_RBP) {
@@ -617,7 +623,7 @@ LAB_18047ab4b:
     }
   }
   if (plVar6 == (int64_t *)0x0) {
-    plVar6 = (int64_t *)FUN_1808fc418(0x20);
+    plVar6 = (int64_t *)SystemRenderer(0x20);
     plStack_c0 = plVar6;
     puVar7 = (uint64_t *)FUN_180478410(param_1,&uStack_38);
     uStack_c8 = 1;
@@ -858,7 +864,7 @@ int64_t FUN_18047afc0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_
     FUN_1804788c0(lVar3,0,0,lVar3,uVar4,lVar3);
     return lVar3;
   }
-  FUN_18047b390(param_1[2],0xe);
+  SystemCore_MemoryManager(param_1[2],0xe);
   pcVar1 = (code *)swi(3);
   lVar3 = (*pcVar1)();
   return lVar3;
@@ -1061,7 +1067,7 @@ uint64_t FUN_18047b330(int64_t *param_1,uint64_t param_2)
       uVar3 = (*pcVar1)();
       return uVar3;
     }
-    lVar2 = FUN_180067110(param_2 * 4);
+    lVar2 = SystemCore_SyscallHandler(param_2 * 4);
     *param_1 = lVar2;
     param_1[1] = lVar2;
     lVar2 = lVar2 + param_2 * 4;
@@ -1079,7 +1085,7 @@ uint64_t FUN_18047b35a(uint64_t param_1,int64_t param_2)
   int64_t lVar1;
   int64_t *unaff_RDI;
   
-  lVar1 = FUN_180067110(param_2 * 4);
+  lVar1 = SystemCore_SyscallHandler(param_2 * 4);
   *unaff_RDI = lVar1;
   unaff_RDI[1] = lVar1;
   lVar1 = lVar1 + param_2 * 4;
@@ -1102,8 +1108,8 @@ void FUN_18047b384(void)
 
 
 
-// 函数: void FUN_18047b390(uint64_t param_1,int32_t param_2)
-void FUN_18047b390(uint64_t param_1,int32_t param_2)
+// 函数: void SystemCore_MemoryManager(uint64_t param_1,int32_t param_2)
+void SystemCore_MemoryManager(uint64_t param_1,int32_t param_2)
 
 {
   code *pcVar1;
@@ -1118,8 +1124,8 @@ void FUN_18047b390(uint64_t param_1,int32_t param_2)
 
 
 
-// 函数: void FUN_18047b3a0(int64_t *param_1)
-void FUN_18047b3a0(int64_t *param_1)
+// 函数: void RenderingSystem_MaterialManager0(int64_t *param_1)
+void RenderingSystem_MaterialManager0(int64_t *param_1)
 
 {
   char cVar1;

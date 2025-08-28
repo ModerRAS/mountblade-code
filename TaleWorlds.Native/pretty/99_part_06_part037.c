@@ -371,9 +371,9 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
   uStack_64 = *(int32_t *)((int64_t)param_5 + 0x34);
   uStack_60 = *(int32_t *)(param_5 + 7);
   uStack_5c = *(int32_t *)((int64_t)param_5 + 0x3c);
-  FUN_180084ae0(&uStack_98,uStack_68,param_3,param_4,1);
+  Utilities_DataValidator(&uStack_98,uStack_68,param_3,param_4,1);
   uVar6 = *(uint64_t *)(param_1 + 200);
-  lVar4 = FUN_18063b470(&uStack_c8,&uStack_98);
+  lVar4 = AdvancedProcessor_StateManager0(&uStack_c8,&uStack_98);
   uStack_b8 = uStack_c4;
   uStack_b4 = uStack_c0;
   uStack_b0 = uStack_bc;
@@ -433,7 +433,7 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
   *(int *)(*param_2 + 0x18) = (int)param_3[7];
   (**(code **)(*(int64_t *)*param_2 + 0x138))((int64_t *)*param_2,param_4);
   lVar4 = system_system_data_memory;
-  iVar3 = FUN_180191c00(system_system_data_memory,param_3 + 1);
+  iVar3 = RenderingSystem_PostProcessor(system_system_data_memory,param_3 + 1);
   if ((iVar3 == -1) || (lVar4 = (int64_t)iVar3 * 0x68 + *(int64_t *)(lVar4 + 0x38), lVar4 == 0)) {
     lVar4 = *(int64_t *)(param_4 + 0x28);
     if (lVar4 == 0) goto LAB_1803ca01a;
@@ -449,7 +449,7 @@ LAB_1803ca01a:
   (**(code **)(*plVar5 + 0x1c0))(plVar5,0x40800000);
   (**(code **)(*plVar5 + 600))(plVar5,6,1);
   (**(code **)(*plVar5 + 0x198))(plVar5,4,1);
-  FUN_18005ea90(param_1 + 0x1b0,&plStackX_20);
+  SystemSecurity_Manager(param_1 + 0x1b0,&plStackX_20);
   return param_2;
 }
 
@@ -508,8 +508,8 @@ FUN_1803ca080(int64_t param_1,int64_t *param_2,int64_t param_3,int64_t param_4,
   uStack_54 = *(int32_t *)((int64_t)param_5 + 0x34);
   uStack_50 = *(int32_t *)(param_5 + 7);
   uStack_4c = *(int32_t *)((int64_t)param_5 + 0x3c);
-  FUN_180084ae0(&uStack_88,uStack_58,param_3,(char)param_4,1);
-  FUN_18063b470(&uStack_b8,&uStack_88);
+  Utilities_DataValidator(&uStack_88,uStack_58,param_3,(char)param_4,1);
+  AdvancedProcessor_StateManager0(&uStack_b8,&uStack_88);
   uStack_a8 = uStack_b4;
   uStack_a4 = uStack_b0;
   uStack_a0 = uStack_ac;

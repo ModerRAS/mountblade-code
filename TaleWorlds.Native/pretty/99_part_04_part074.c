@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -311,7 +312,7 @@ uint64_t FUN_1802cb7a0(int64_t param_1,int64_t param_2,int16_t param_3)
   if (plStack_a0 != (int64_t *)0x0) {
     (**(code **)(*plStack_a0 + 0x28))();
   }
-  uVar1 = FUN_180299eb0(uVar1,0,&lStack_80,auStackX_18);
+  uVar1 = UIRenderingEngine(uVar1,0,&lStack_80,auStackX_18);
   if (plStack_a0 != (int64_t *)0x0) {
     (**(code **)(*plStack_a0 + 0x38))();
   }
@@ -391,14 +392,14 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
   
   uStack_1b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_298;
-  FUN_1802c22a0(auStack_268,&system_message_control_ptr);
+  SystemData_Processor(auStack_268,&system_message_control_ptr);
   ppuStack_230 = &puStack_98;
   puStack_98 = &system_message_buffer_ptr;
   puStack_90 = auStack_80;
   uStack_88 = 0;
   auStack_80[0] = 0;
   DataStructureManager0(&puStack_98,&system_message_template_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_98);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_98);
   puStack_148 = (uint64_t *)&system_string_buffer_ptr;
   ppuStack_140 = apuStack_130;
   apuStack_130[0] = (uint64_t *)((uint64_t)apuStack_130[0] & 0xffffffffffffff00);
@@ -431,7 +432,7 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
   uStack_278 = 0xffffffff;
   RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,param_2[0xb],0x20);
   auStack_264[0] = *(uint *)((int64_t)param_2 + 0x2e4);
-  FUN_1802c22a0(auStack_268,&system_message_config_ptr);
+  SystemData_Processor(auStack_268,&system_message_config_ptr);
   puStack_1c0 = &uStack_228;
   ppuStack_140 = (uint64_t **)auStack_264;
   apuStack_130[0] = &uStack_220;
@@ -449,38 +450,38 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
     } while (lVar5 != 0);
   }
   else {
-    FUN_1802c22a0(auStack_268,&system_message_event_ptr);
+    SystemData_Processor(auStack_268,&system_message_event_ptr);
     ppuStack_230 = &puStack_1a8;
     puStack_1a8 = &system_message_buffer_ptr;
     puStack_1a0 = auStack_190;
     uStack_198 = 0;
     auStack_190[0] = 0;
     DataStructureManager0(&puStack_1a8,&system_message_callback_ptr);
-    FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
+    SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
     uStack_210 = param_2[4];
     uStack_218 = 4;
     uStack_208 = 1;
-    FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+    NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
     uStack_1f8 = param_2[(int64_t)(int)auStack_264[0] + 5];
     uStack_200 = 1;
     uStack_1f0 = 1;
-    FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
+    NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
     uStack_1e0 = param_2[7];
     uStack_1e8 = 2;
     uStack_1d8 = 1;
-    FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
+    NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
     uStack_258 = param_2[3];
     auStack_264[1] = 3;
     auStack_264[2] = 0;
     uStack_250 = 1;
-    FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+    NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
     uStack_240 = param_2[(int64_t)(int)(1 - auStack_264[0]) + 5];
     uStack_248 = 5;
     uStack_238 = 1;
-    FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
+    NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
     uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);
     uVar2 = param_2[8];
-    FUN_18029fc10(uVar1,uVar2,param_2 + 0x10,0x260);
+    UltraHighFreq_DatabaseHandler1(uVar1,uVar2,param_2 + 0x10,0x260);
     FUN_18029dca0(uVar1,0xb,0x20,uVar2);
     lVar3 = *(int64_t *)(system_message_buffer + 0x1cd8);
     if ((lVar5 != 0) && (*(int64_t *)(lVar3 + 0x82a0) != (int64_t)**(int **)(lVar5 + 0x10))) {
@@ -492,19 +493,19 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
     (**(code **)(*plVar4 + 0x148))(plVar4,1,1,1);
     uStack_270 = 1;
     uStack_278 = 0xffffffff;
-    FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
+    CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
     uStack_270 = 1;
     uStack_278 = 0xffffffff;
-    FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+    CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
     uStack_270 = 1;
     uStack_278 = 0xffffffff;
-    FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1,0);
+    CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1,0);
     uStack_270 = 1;
     uStack_278 = 0xffffffff;
-    FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
+    CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
     uStack_270 = 1;
     uStack_278 = 0xffffffff;
-    FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+    CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
     FUN_1802cc500(&puStack_148);
     do {
       auStack_264[0] = (uint)(auStack_264[0] == 0);
@@ -512,30 +513,30 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
       FUN_1802cc500(&puStack_148);
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
-    FUN_1802c2ac0(&puStack_1a8);
+    SystemCore_Synchronizer(&puStack_1a8);
     system_system_data_memory = system_system_data_memory + -1;
     (**(code **)(*system_system_data_memory + 0x20))();
   }
-  FUN_1802c22a0(auStack_268,&system_message_input_ptr);
+  SystemData_Processor(auStack_268,&system_message_input_ptr);
   ppuStack_230 = &puStack_1a8;
   puStack_1a8 = &system_message_buffer_ptr;
   puStack_1a0 = auStack_190;
   uStack_198 = 0;
   auStack_190[0] = 0;
   DataStructureManager0(&puStack_1a8,&system_message_output_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
   uStack_240 = param_2[4];
   uStack_248 = 4;
   uStack_238 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
   uStack_258 = param_2[3];
   auStack_264[1] = 3;
   auStack_264[2] = 0;
   uStack_250 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
   uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   uVar2 = param_2[8];
-  FUN_18029fc10(uVar1,uVar2,param_2 + 0x10,0x260);
+  UltraHighFreq_DatabaseHandler1(uVar1,uVar2,param_2 + 0x10,0x260);
   FUN_18029dca0(uVar1,0xb,0x20,uVar2);
   lVar5 = *(int64_t *)(system_message_buffer + 0x1cd8);
   if ((lVar6 != 0) && (*(int64_t *)(lVar5 + 0x82a0) != (int64_t)**(int **)(lVar6 + 0x10))) {
@@ -547,16 +548,16 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
   (**(code **)(*plVar4 + 0x148))(plVar4,1,1,1);
   uStack_270 = 1;
   uStack_278 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
   uStack_270 = 1;
   uStack_278 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
-  FUN_1802c2ac0(&puStack_1a8);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  SystemCore_Synchronizer(&puStack_1a8);
   system_system_data_memory = system_system_data_memory + -1;
   (**(code **)(*system_system_data_memory + 0x20))();
   system_system_data_memory = system_system_data_memory + -1;
   (**(code **)(*system_system_data_memory + 0x20))();
-  FUN_1802c2ac0(&puStack_98);
+  SystemCore_Synchronizer(&puStack_98);
   system_system_data_memory = system_system_data_memory + -1;
   (**(code **)(*system_system_data_memory + 0x20))();
                     // WARNING: Subroutine does not return
@@ -599,25 +600,25 @@ void FUN_1802cc270(int64_t *param_1)
   
   uStack_90 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
-  FUN_1802c22a0(auStack_c8,&system_message_processor_ptr);
+  SystemData_Processor(auStack_c8,&system_message_processor_ptr);
   ppuStack_88 = &puStack_78;
   puStack_78 = &system_message_buffer_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
   DataStructureManager0(&puStack_78,&system_message_formatter_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_78);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_78);
   uStack_b8 = *(uint64_t *)(*param_1 + 0x20);
   uStack_c0 = 4;
   uStack_b0 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
   uStack_a0 = *(uint64_t *)(*param_1 + 0x18);
   uStack_a8 = 3;
   uStack_98 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
   uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   uVar2 = *(uint64_t *)(*param_1 + 0x40);
-  FUN_18029fc10(uVar1,uVar2,param_1[1] + 0x80,0x260);
+  UltraHighFreq_DatabaseHandler1(uVar1,uVar2,param_1[1] + 0x80,0x260);
   FUN_18029dca0(uVar1,0xb,0x20,uVar2);
   lVar3 = *(int64_t *)param_1[2];
   lVar4 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -630,11 +631,11 @@ void FUN_1802cc270(int64_t *param_1)
   (**(code **)(*plVar5 + 0x148))(plVar5,1,1,1);
   uStack_d0 = 1;
   uStack_d8 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),3,1);
   uStack_d0 = 1;
   uStack_d8 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
-  FUN_1802c2ac0(&puStack_78);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  SystemCore_Synchronizer(&puStack_78);
   system_system_data_memory = system_system_data_memory + -1;
   (**(code **)(*system_system_data_memory + 0x20))();
                     // WARNING: Subroutine does not return
@@ -683,33 +684,33 @@ void FUN_1802cc500(int64_t *param_1)
   
   uStack_90 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_128;
-  FUN_1802c22a0(auStack_f8,&system_message_handler_ptr);
+  SystemData_Processor(auStack_f8,&system_message_handler_ptr);
   ppuStack_88 = &puStack_78;
   puStack_78 = &system_message_buffer_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
   DataStructureManager0(&puStack_78,&system_message_logger_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_78);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_78);
   uStack_e8 = *(uint64_t *)(*param_1 + 0x20);
   uStack_f0 = 4;
   uStack_e0 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
   uStack_d0 = *(uint64_t *)(*param_1 + 0x28 + (int64_t)*(int *)param_1[1] * 8);
   uStack_d8 = 1;
   uStack_c8 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
   uStack_b8 = *(uint64_t *)(*param_1 + 0x38);
   uStack_c0 = 2;
   uStack_b0 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
   uStack_a0 = *(uint64_t *)(*param_1 + 0x28 + (int64_t)(1 - *(int *)param_1[1]) * 8);
   uStack_a8 = 5;
   uStack_98 = 1;
-  FUN_18029d930(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
+  NetworkSystem_DataProcessor0(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
   uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   uVar2 = *(uint64_t *)(*param_1 + 0x40);
-  FUN_18029fc10(uVar1,uVar2,param_1[2] + 0x80,0x260);
+  UltraHighFreq_DatabaseHandler1(uVar1,uVar2,param_1[2] + 0x80,0x260);
   FUN_18029dca0(uVar1,0xb,0x20,uVar2);
   lVar3 = *(int64_t *)param_1[3];
   lVar4 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -722,17 +723,17 @@ void FUN_1802cc500(int64_t *param_1)
   (**(code **)(*plVar5 + 0x150))(plVar5,*(uint64_t *)(*(int64_t *)(*param_1 + 0x18) + 0x10),0);
   uStack_100 = 1;
   uStack_108 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),5,1);
   uStack_100 = 1;
   uStack_108 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),2,1);
   uStack_100 = 1;
   uStack_108 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1);
   uStack_100 = 1;
   uStack_108 = 0xffffffff;
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
-  FUN_1802c2ac0(&puStack_78);
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),4,1);
+  SystemCore_Synchronizer(&puStack_78);
   system_system_data_memory = system_system_data_memory + -1;
   (**(code **)(*system_system_data_memory + 0x20))();
                     // WARNING: Subroutine does not return
@@ -776,14 +777,14 @@ void FUN_1802cc890(uint64_t param_1,int64_t param_2)
   
   uStack_358 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3e8;
-  FUN_1802c22a0(auStack_3b8,&system_message_state_ptr);
+  SystemData_Processor(auStack_3b8,&system_message_state_ptr);
   ppuStack_368 = &puStack_a8;
   puStack_a8 = &system_message_buffer_ptr;
   puStack_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
   DataStructureManager0(&puStack_a8,&system_message_queue_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
   lVar9 = 4;
   puVar7 = auStack_348;
   puVar4 = (uint64_t *)(param_2 + 0x80);

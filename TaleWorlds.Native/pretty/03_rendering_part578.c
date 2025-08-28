@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part578.c - 4 个函数
 
 // 函数: void FUN_180584d80(int64_t param_1,float *param_2,int32_t param_3,int32_t param_4,
@@ -240,7 +244,7 @@ void FUN_180584d80(int64_t param_1,float *param_2,int32_t param_3,int32_t param_
     lVar5 = *plVar6;
     if (((lVar5 != 0) && (lVar5 = *(int64_t *)(lVar5 + 0x260), lVar5 != 0)) &&
        ((*(byte *)(lVar5 + 0xa8) & 1) == 0)) {
-      FUN_1802fac00(lVar5,*(int64_t *)(lVar5 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar5,*(int64_t *)(lVar5 + 0x10) + 0x70,0xbf800000);
     }
     FUN_1805ec350(plVar6,&uStack_198,0,uVar1,uVar1,in_stack_fffffffffffffdb0 & 0xffffffffffffff00,1)
     ;
@@ -511,7 +515,7 @@ void FUN_180585590(int64_t param_1)
   fStack_184 = *(float *)(param_1 + 0xb4);
   fStack_180 = *(float *)(param_1 + 0xb8);
   uStack_17c = *(int32_t *)(param_1 + 0xbc);
-  FUN_180084ae0(&uStack_198);
+  Utilities_DataValidator(&uStack_198);
   fVar16 = *(float *)(param_1 + 0x60) + *(float *)(param_1 + 0x80);
   fStack_164 = *(float *)(param_1 + 0x5c) + *(float *)(param_1 + 0x7c);
   fVar11 = *(float *)(param_1 + 0x58) + *(float *)(param_1 + 0x78);
@@ -636,8 +640,8 @@ void FUN_180585590(int64_t param_1)
     *(float *)((int64_t)plVar1 + 100) = fVar17;
     *(float *)(plVar1 + 0xd) = fVar15;
     *(int32_t *)((int64_t)plVar1 + 0x6c) = uStack_15c;
-    FUN_180254610(plVar1,fVar12,fVar16,fVar11,uVar22);
-    FUN_1802eace0();
+    RenderingSystem_CameraController(plVar1,fVar12,fVar16,fVar11,uVar22);
+    UtilitiesSystem_StringProcessor();
   }
   return;
 }

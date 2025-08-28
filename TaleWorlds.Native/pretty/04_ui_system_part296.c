@@ -28,6 +28,101 @@
 #include "include/global_constants.h"
 
 // ============================================================================
+
+// ============================================================================
+// UI系统FUN_函数语义化别名定义
+// ============================================================================
+
+/**
+ * @brief UI系统资源管理器主处理器
+ * @details 负责UI系统资源的主要处理逻辑
+ */
+#define UIResourceManager_MainHandler RenderingSystem_CoreProcessor0
+
+/**
+ * @brief UI系统资源管理器高级处理器
+ * @details 负责UI系统资源的高级处理任务
+ */
+#define UIResourceManager_AdvancedProcessor FUN_1807c4260
+
+/**
+ * @brief UI系统资源管理器状态初始化器
+ * @details 负责UI系统资源状态的初始化
+ */
+#define UIResourceManager_StateInitializer FUN_180830338
+
+/**
+ * @brief UI系统资源管理器资源控制器
+ * @details 负责UI系统资源的控制和管理
+ */
+#define UIResourceManager_ResourceController FUN_180830370
+
+/**
+ * @brief UI系统资源管理器内存管理器
+ * @details 负责UI系统资源的内存管理
+ */
+#define UIResourceManager_MemoryManager FUN_18083037c
+
+/**
+ * @brief UI系统资源管理器数据验证器
+ * @details 负责UI系统资源数据的验证
+ */
+#define UIResourceManager_DataValidator FUN_1808303bf
+
+/**
+ * @brief UI系统资源管理器状态检查器
+ * @details 负责UI系统资源状态的检查
+ */
+#define UIResourceManager_StatusChecker FUN_180830400
+
+/**
+ * @brief UI系统资源管理器错误处理器
+ * @details 负责UI系统资源的错误处理
+ */
+#define UIResourceManager_ErrorHandler FUN_180830440
+
+/**
+ * @brief UI系统资源管理器清理处理器
+ * @details 负责UI系统资源的清理工作
+ */
+#define UIResourceManager_CleanupHandler FUN_180830455
+
+/**
+ * @brief UI系统资源管理器配置管理器
+ * @details 负责UI系统资源的配置管理
+ */
+#define UIResourceManager_ConfigManager FUN_18083045d
+
+/**
+ * @brief UI系统资源管理器性能监控器
+ * @details 负责UI系统资源的性能监控
+ */
+#define UIResourceManager_PerformanceMonitor FUN_1808304f8
+
+/**
+ * @brief UI系统资源管理器线程控制器
+ * @details 负责UI系统资源的线程控制
+ */
+#define UIResourceManager_ThreadController FUN_1808305d8
+
+/**
+ * @brief UI系统资源管理器安全管理器
+ * @details 负责UI系统资源的安全管理
+ */
+#define UIResourceManager_SecurityManager FUN_1808305e6
+
+/**
+ * @brief UI系统资源管理器网络处理器
+ * @details 负责UI系统资源的网络处理
+ */
+#define UIResourceManager_NetworkHandler FUN_18083064b
+
+/**
+ * @brief UI系统资源管理器终结器
+ * @details 负责UI系统资源的最终处理
+ */
+#define UIResourceManager_Finalizer FUN_18083dff0
+
 // UI系统高级资源管理和状态控制常量定义
 // ============================================================================
 
@@ -148,22 +243,22 @@ typedef struct {
 // ============================================================================
 
 // UI系统资源初始化器
-#define UISystem_ResourceInitializer FUN_180830338            /* UI系统资源初始化器 */
+#define UISystem_ResourceInitializer UIResourceManager_StateInitializer            /* UI系统资源初始化器 */
 
 // UI系统状态检查器
-#define UISystem_StateChecker FUN_180830370                   /* UI系统状态检查器 */
-#define UISystem_StateValidator FUN_18083037c                 /* UI系统状态验证器 */
-#define UISystem_StateRetriever FUN_1808303bf                /* UI系统状态获取器 */
+#define UISystem_StateChecker UIResourceManager_ResourceController                   /* UI系统状态检查器 */
+#define UISystem_StateValidator UIResourceManager_MemoryManager                 /* UI系统状态验证器 */
+#define UISystem_StateRetriever UIResourceManager_DataValidator                /* UI系统状态获取器 */
 
 // UI系统内存管理器
-#define UISystem_MemoryInitializer FUN_180830400              /* UI系统内存初始化器 */
-#define UISystem_ResourceProcessor FUN_180830440              /* UI系统资源处理器 */
-#define UISystem_ResourceHandler FUN_180830455                /* UI系统资源处理器 */
-#define UISystem_StateController FUN_18083045d               /* UI系统状态控制器 */
-#define UISystem_ResourceCleaner FUN_1808304f8               /* UI系统资源清理器 */
-#define UISystem_MemoryCleaner FUN_1808305d8                 /* UI系统内存清理器 */
-#define UISystem_StateCleaner FUN_1808305e6                   /* UI系统状态清理器 */
-#define UISystem_ErrorHandler FUN_18083064b                   /* UI系统错误处理器 */
+#define UISystem_MemoryInitializer UIResourceManager_StatusChecker              /* UI系统内存初始化器 */
+#define UISystem_ResourceProcessor UIResourceManager_ErrorHandler              /* UI系统资源处理器 */
+#define UISystem_ResourceHandler UIResourceManager_CleanupHandler                /* UI系统资源处理器 */
+#define UISystem_StateController UIResourceManager_ConfigManager               /* UI系统状态控制器 */
+#define UISystem_ResourceCleaner UIResourceManager_PerformanceMonitor               /* UI系统资源清理器 */
+#define UISystem_MemoryCleaner UIResourceManager_ThreadController                 /* UI系统内存清理器 */
+#define UISystem_StateCleaner UIResourceManager_SecurityManager                   /* UI系统状态清理器 */
+#define UISystem_ErrorHandler UIResourceManager_NetworkHandler                   /* UI系统错误处理器 */
 
 // ============================================================================
 // 全局变量定义
@@ -208,7 +303,7 @@ static uint64_t* processed_var_4232_ptr = (uint64_t*)0x4232;  /* 未知变量423
 void UISystem_ResourceInitializer(void)
 {
     // 调用系统初始化函数
-    FUN_1807c41d0();
+    UIResourceManager_MainHandler();
 }
 
 /**
@@ -243,7 +338,7 @@ int UISystem_StateChecker(void)
     
     iVar2 = (int)unaff_R15;
     if (*(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68) != 0) {
-        lVar1 = FUN_1807c4260();
+        lVar1 = UIResourceManager_AdvancedProcessor();
         *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
             *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
@@ -260,7 +355,7 @@ int UISystem_StateChecker(void)
         return unaff_R14D;
     }
     if (*(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
-        FUN_1807c41d0();
+        UIResourceManager_MainHandler();
     }
     memset();
 }
@@ -295,7 +390,7 @@ int UISystem_StateValidator(void)
     int iVar3;
     uint64_t unaff_R15;
     
-    lVar1 = FUN_1807c4260();
+    lVar1 = UIResourceManager_AdvancedProcessor();
     *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
     *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
@@ -312,7 +407,7 @@ int UISystem_StateValidator(void)
         return iVar2;
     }
     if (*(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
-        FUN_1807c41d0();
+        UIResourceManager_MainHandler();
     }
     memset();
 }
@@ -421,12 +516,12 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
     lVar2 = param_2[0xe];
     if (lVar2 != 0) {
         if (*(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x8) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x8));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x8));
         }
         if (*(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
         lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar3 != 0) {
@@ -443,7 +538,7 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar7 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x10));
                 lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
-            FUN_1807c41d0(param_1, lVar3);
+            UIResourceManager_MainHandler(param_1, lVar3);
         }
         lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar3 != 0) {
@@ -460,7 +555,7 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar7 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x14));
                 lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
-            FUN_1807c41d0(param_1, lVar3);
+            UIResourceManager_MainHandler(param_1, lVar3);
         }
     }
     lVar3 = param_2[1];
@@ -468,19 +563,19 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
         if (lVar2 == 0) {
             memset(param_2, 0, UI_SYSTEM_MEMORY_CLEAR_SIZE_0x78);
         }
-        FUN_1807c41d0(param_1, lVar2);
+        UIResourceManager_MainHandler(param_1, lVar2);
     }
     if ((lVar1 != 0) && (uVar5 = uVar4, 0 < *(int *)(lVar1 + 4))) {
         do {
             if (*(int64_t *)(uVar5 + lVar3) != 0) {
-                FUN_1807c41d0(param_1);
+                UIResourceManager_MainHandler(param_1);
             }
             uVar7 = (int)uVar4 + 1;
             uVar4 = (uint64_t)uVar7;
             uVar5 = uVar5 + 8;
         } while ((int)uVar7 < *(int *)(lVar1 + 4));
     }
-    FUN_1807c41d0(param_1, lVar3);
+    UIResourceManager_MainHandler(param_1, lVar3);
 }
 
 /**
@@ -526,12 +621,12 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
     lVar1 = param_2[0xe];
     if (lVar1 != 0) {
         if (*(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
         }
         if (*(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
         lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar2 != 0) {
@@ -548,7 +643,7 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10));
                 lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
-            FUN_1807c41d0(param_1, lVar2);
+            UIResourceManager_MainHandler(param_1, lVar2);
         }
         lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar2 != 0) {
@@ -565,7 +660,7 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14));
                 lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
-            FUN_1807c41d0(param_1, lVar2);
+            UIResourceManager_MainHandler(param_1, lVar2);
         }
     }
     lVar2 = param_2[1];
@@ -573,19 +668,19 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
         if (lVar1 == 0) {
             memset(param_2, 0, UI_SYSTEM_MEMORY_CLEAR_SIZE_0x78);
         }
-        FUN_1807c41d0(param_1, lVar1);
+        UIResourceManager_MainHandler(param_1, lVar1);
     }
     if ((lStack0000000000000078 != 0) && (uVar4 = uVar3, 0 < *(int *)(lStack0000000000000078 + 4))) {
         do {
             if (*(int64_t *)(uVar4 + lVar2) != 0) {
-                FUN_1807c41d0(param_1);
+                UIResourceManager_MainHandler(param_1);
             }
             uVar6 = (int)uVar3 + 1;
             uVar3 = (uint64_t)uVar6;
             uVar4 = uVar4 + 8;
         } while ((int)uVar6 < *(int *)(lStack0000000000000078 + 4));
     }
-    FUN_1807c41d0(param_1, lVar2);
+    UIResourceManager_MainHandler(param_1, lVar2);
 }
 
 /**
@@ -632,12 +727,12 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
     lVar1 = param_2[0xe];
     if (lVar1 != 0) {
         if (*(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x8));
         }
         if (*(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10) != (uint64_t *)0x0) {
-            FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
-            FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_Finalizer(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
+            UIResourceManager_MainHandler(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
         lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar2 != 0) {
@@ -654,7 +749,7 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10));
                 lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
-            FUN_1807c41d0(param_1, lVar2);
+            UIResourceManager_MainHandler(param_1, lVar2);
         }
         lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar2 != 0) {
@@ -671,7 +766,7 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14));
                 lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
-            FUN_1807c41d0(param_1, lVar2);
+            UIResourceManager_MainHandler(param_1, lVar2);
         }
     }
     lVar2 = *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8);
@@ -679,19 +774,19 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
         if (lVar1 == 0) {
             memset();
         }
-        FUN_1807c41d0(param_1, lVar1);
+        UIResourceManager_MainHandler(param_1, lVar1);
     }
     if ((lStack0000000000000078 != 0) && (uVar4 = uVar3, 0 < *(int *)(lStack0000000000000078 + 4))) {
         do {
             if (*(int64_t *)(uVar4 + lVar2) != 0) {
-                FUN_1807c41d0(param_1);
+                UIResourceManager_MainHandler(param_1);
             }
             uVar6 = (int)uVar3 + 1;
             uVar3 = (uint64_t)uVar6;
             uVar4 = uVar4 + 8;
         } while ((int)uVar6 < *(int *)(lStack0000000000000078 + 4));
     }
-    FUN_1807c41d0(param_1, lVar2);
+    UIResourceManager_MainHandler(param_1, lVar2);
 }
 
 /**
@@ -741,26 +836,26 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
                 piVar2 = piVar2 + 1;
             } while ((int)uVar3 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x10));
         }
-        FUN_1807c41d0();
+        UIResourceManager_MainHandler();
     }
     if (*(int64_t *)(unaff_RSI + UI_SYSTEM_DATA_OFFSET_0x28) == 0) {
         if (*(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
             if (unaff_RSI == 0) {
                 memset();
             }
-            FUN_1807c41d0();
+            UIResourceManager_MainHandler();
         }
         if ((unaff_R13 != 0) && (uVar4 = unaff_RBX, iVar1 < *(int *)(unaff_R13 + 4))) {
             do {
                 if (*(int64_t *)(uVar4 + *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
-                    FUN_1807c41d0();
+                    UIResourceManager_MainHandler();
                 }
                 uVar3 = (int)unaff_RBX + 1;
                 unaff_RBX = (uint64_t)uVar3;
                 uVar4 = uVar4 + 8;
             } while ((int)uVar3 < *(int *)(unaff_R13 + 4));
         }
-        FUN_1807c41d0();
+        UIResourceManager_MainHandler();
     }
     if ((unaff_RBP != 0) && (iVar1 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x14))) {
         piVar2 = (int *)(unaff_RBP + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
@@ -772,7 +867,7 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
             piVar2 = piVar2 + 1;
         } while ((int)uVar3 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x14));
     }
-    FUN_1807c41d0();
+    UIResourceManager_MainHandler();
 }
 
 /**
@@ -810,19 +905,19 @@ void UISystem_MemoryCleaner(void)
         if (unaff_RSI == 0) {
             memset();
         }
-        FUN_1807c41d0();
+        UIResourceManager_MainHandler();
     }
     if ((unaff_R13 != 0) && (uVar2 = unaff_RBX, (int)unaff_RBX < *(int *)(unaff_R13 + 4))) {
         do {
             if (*(int64_t *)(uVar2 + *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
-                FUN_1807c41d0();
+                UIResourceManager_MainHandler();
             }
             uVar1 = (int)unaff_RBX + 1;
             unaff_RBX = (uint64_t)uVar1;
             uVar2 = uVar2 + 8;
         } while ((int)uVar1 < *(int *)(unaff_R13 + 4));
     }
-    FUN_1807c41d0();
+    UIResourceManager_MainHandler();
 }
 
 /**
@@ -858,14 +953,14 @@ void UISystem_StateCleaner(void)
     if ((unaff_R13 != 0) && (uVar2 = unaff_RBX, (int)unaff_RBX < *(int *)(unaff_R13 + 4))) {
         do {
             if (*(int64_t *)(uVar2 + in_RAX) != 0) {
-                FUN_1807c41d0();
+                UIResourceManager_MainHandler();
             }
             uVar1 = (int)unaff_RBX + 1;
             unaff_RBX = (uint64_t)uVar1;
             uVar2 = uVar2 + 8;
         } while ((int)uVar1 < *(int *)(unaff_R13 + 4));
     }
-    FUN_1807c41d0();
+    UIResourceManager_MainHandler();
 }
 
 /**
@@ -892,7 +987,7 @@ void UISystem_StateCleaner(void)
  */
 void UISystem_ErrorHandler(void)
 {
-    FUN_1807c41d0();
+    UIResourceManager_MainHandler();
 }
 
 // ============================================================================

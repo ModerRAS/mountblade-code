@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part017.c - 2 个函数
 
 // 函数: void FUN_1802e1590(int64_t param_1,uint64_t param_2)
@@ -181,7 +185,7 @@ void FUN_1802e18c0(int64_t param_1)
   uStack_34 = *(int32_t *)(param_1 + 0x44);
   uStack_30 = *(int32_t *)(param_1 + 0x48);
   uStack_2c = *(int32_t *)(param_1 + 0x4c);
-  FUN_1800b9f60(&uStack_48);
+  SystemCore_Parser(&uStack_48);
   FUN_180287610(*(int64_t *)(param_1 + 0x28) + 0x36d0,*(int64_t *)(param_1 + 0x28) + 0x3830,
                 &uStack_48);
   lVar1 = FUN_1802e1950(param_1);
@@ -220,7 +224,7 @@ int32_t * FUN_1802e1950(int *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if ((cVar9 != '\0') && (*(int64_t *)(param_1 + 4) != 0)) {
       puVar10 = (int32_t *)FUN_1800daa50();
       *(int8_t *)((int64_t)puVar10 + 0x23) = 1;
-      FUN_180094b30(puVar10,&processed_var_0_ptr);
+      SystemCore_NetworkHandler(puVar10,&processed_var_0_ptr);
       *puVar10 = 0x10;
       *(uint64_t *)(puVar10 + 0x4706) = 0;
       puVar10[0x4708] = (float)(param_1[8] << 2);

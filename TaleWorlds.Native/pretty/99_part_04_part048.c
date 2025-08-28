@@ -1,3 +1,4 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -179,7 +180,7 @@ LAB_1802b515c:
       puVar13 = *(void **)(unaff_RSI + 0x50);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5104_ptr,puVar13,puVar17);
+    SystemParameterHandler(system_message_context,&processed_var_5104_ptr,puVar13,puVar17);
   }
   pcVar9 = "emitters";
   do {
@@ -551,7 +552,7 @@ LAB_1802b515c:
       puVar12 = *(void **)(unaff_RSI + 0x50);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5104_ptr,puVar12,puVar17);
+    SystemParameterHandler(system_message_context,&processed_var_5104_ptr,puVar12,puVar17);
   }
   pcVar14 = "emitters";
   do {

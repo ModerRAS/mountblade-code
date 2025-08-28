@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -63,7 +64,7 @@ LAB_180158962:
 
 
 
-int64_t * FUN_180158990(int64_t param_1,int64_t *param_2,int param_3)
+int64_t * RenderingSystem_MaterialHandler(int64_t param_1,int64_t *param_2,int param_3)
 
 {
   int64_t lVar1;
@@ -173,7 +174,7 @@ LAB_180158aea:
     *(int8_t *)((int64_t)puStack_58 + 0x1a) = 0;
     uStack_50 = 0x1a;
     uStack_48._0_4_ = uVar4;
-    FUN_180628380(&puStack_60,param_2);
+    RenderingSystem_CameraController(&puStack_60,param_2);
     iVar3 = uStack_50 + 1;
     if (iVar3 != 0) {
       uVar4 = uStack_50 + 2;
@@ -197,7 +198,7 @@ LAB_180158c0c:
       puVar6 = puStack_58;
     }
     uStack_50 = iVar3;
-    FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar6);
+    SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar6);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -282,8 +283,8 @@ void FUN_180158ce0(uint64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180158e10(uint64_t param_1,int64_t param_2)
-void FUN_180158e10(uint64_t param_1,int64_t param_2)
+// 函数: void CoreEngine_ParameterHandler(uint64_t param_1,int64_t param_2)
+void CoreEngine_ParameterHandler(uint64_t param_1,int64_t param_2)
 
 {
   int64_t lVar1;
@@ -477,7 +478,7 @@ LAB_18015906f:
 
 
 
-int64_t * FUN_180159210(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+int64_t * CoreEngine_MemoryAccessor(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t *plVar1;
@@ -635,7 +636,7 @@ void FUN_1801594d0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_2c = *(int32_t *)(param_2 + 0x20);
   uStack_28 = 1;
   lVar1 = (int64_t)*(int *)(param_1 + 0xc0) * 0x30 + param_1;
-  FUN_18005d190(lVar1,&puStack_50,param_3,param_4,uVar2);
+  SystemScheduler(lVar1,&puStack_50,param_3,param_4,uVar2);
   *(int32_t *)(lVar1 + 0x20) = uStack_30;
   *(int32_t *)(lVar1 + 0x24) = uStack_2c;
   *(int8_t *)(lVar1 + 0x28) = uStack_28;
@@ -848,7 +849,7 @@ void FUN_18015a900(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     apuStack_60[0][1] = uStack_94;
     *(int32_t **)(apuStack_60[0] + 2) = auStackX_10;
     *(uint64_t **)(apuStack_60[0] + 4) = auStackX_18;
-    FUN_18015b810(uStack_98,0,4,1,0xffffffffffffffff,apuStack_60,uVar5,uVar6);
+    SystemCore_DataTransformer(uStack_98,0,4,1,0xffffffffffffffff,apuStack_60,uVar5,uVar6);
     puStack_80 = &system_data_buffer_ptr;
     if (lStack_78 == 0) {
       return;
@@ -945,7 +946,7 @@ void FUN_18015aa70(int64_t *param_1,int param_2,int param_3)
       apuStack_68[0][2] = (int32_t)uStack_78;
       apuStack_68[0][3] = uStack_78._4_4_;
       *(int **)(apuStack_68[0] + 4) = piStack_70;
-      FUN_18015b810(plVar7[1] - *plVar7,0,(plVar7[1] - *plVar7) / 0x28,1,0xffffffffffffffff,
+      SystemCore_DataTransformer(plVar7[1] - *plVar7,0,(plVar7[1] - *plVar7) / 0x28,1,0xffffffffffffffff,
                     apuStack_68);
       piVar1 = (int *)(*(int64_t *)param_1[2] + lVar6 * 4);
       *piVar1 = *piVar1 + aiStackX_10[0];
@@ -1030,7 +1031,7 @@ uint64_t FUN_18015acc0(int64_t *param_1,int param_2,int param_3)
       if (puStack_60 != (int8_t *)0x0) {
         puVar8 = puStack_60;
       }
-      uVar5 = FUN_18062dee0(&uStack_80,puVar8,&processed_var_4880_ptr);
+      uVar5 = SystemCore_Validator(&uStack_80,puVar8,&processed_var_4880_ptr);
       lVar2 = lStack_78;
       if (lStack_78 != 0) {
         lStack_48 = 0;

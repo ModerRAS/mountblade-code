@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 99_part_07_part068.c - 7 个函数
 
@@ -178,7 +184,7 @@ void FUN_1804d8b40(int64_t *param_1,int param_2,int param_3)
           puVar11 = (uint64_t *)FUN_18020d730(puVar2,auStack_50,puVar2,puVar11,aiStackX_10);
           puVar11 = (uint64_t *)*puVar11;
         }
-        FUN_1800863a0(puVar11 + 5,lVar12 + (int64_t)(int)(uVar5 & uVar4) * 0x48 + 0x38);
+        AudioMixer(puVar11 + 5,lVar12 + (int64_t)(int)(uVar5 & uVar4) * 0x48 + 0x38);
         iVar10 = _Mtx_unlock(lVar7);
         if (iVar10 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar10);
@@ -225,7 +231,7 @@ void FUN_1804d8e00(int64_t param_1,int param_2,int param_3,uint64_t param_4)
                                             (int64_t)((int)uVar1 >> 10) * 8) + 8), cVar3 != '\0'))
         {
           aiStackX_8[0] = param_3 + param_2 * 6;
-          FUN_1800571e0(piVar4 + 0x12,aiStackX_8);
+          SystemDatabaseProcessor(piVar4 + 0x12,aiStackX_8);
         }
       }
 LAB_1804d8f02:
@@ -265,7 +271,7 @@ void FUN_1804d8e34(void)
         cVar1 = FUN_18063c5e0();
         if (cVar1 != '\0') {
           in_stack_00000040 = unaff_R15D + unaff_R14D * 6;
-          FUN_1800571e0(piVar2 + 0x12,&stack0x00000040);
+          SystemDatabaseProcessor(piVar2 + 0x12,&stack0x00000040);
         }
       }
     }
@@ -468,7 +474,7 @@ void FUN_1804d8f30(int64_t param_1,int64_t param_2,uint64_t param_3)
                    *(int64_t *)(*(int64_t *)(param_1 + 11000) + (int64_t)((int)uVar3 >> 10) * 8);
           uVar35 = *(uint *)(lVar29 + 0x1c);
           if (uVar35 != 0xffffffff) {
-            FUN_1802fac00(*(uint64_t *)
+            SystemCore_FileSystem(*(uint64_t *)
                            (*(int64_t *)
                              (*(int64_t *)(param_1 + 0x698) + (int64_t)((int)uVar35 >> 10) * 8) +
                             8 + (int64_t)(int)(*(uint *)(param_1 + 0x6b8) & uVar35) * 0x30),
@@ -547,7 +553,7 @@ void FUN_1804d8f30(int64_t param_1,int64_t param_2,uint64_t param_3)
               fStack_c4 = fVar6;
               fStack_c0 = fVar7;
               uStack_bc = uStack_11c;
-              FUN_18063b5f0(&fStack_1d8,&uStack_138);
+              SystemSecurityManager(&fStack_1d8,&uStack_138);
               pfVar24 = (float *)(lVar33 + 8 + lVar26 * 0x48);
               fVar8 = *pfVar24;
               fVar9 = pfVar24[1];
@@ -628,7 +634,7 @@ void FUN_1804d8f30(int64_t param_1,int64_t param_2,uint64_t param_3)
                  (fVar38 * fVar38 + fVar37 * fVar37 + fVar36 * fVar36) - fVar2 * fVar2 <=
                  fVar1 * fVar1)) {
                 puStack_298 = &uStack_248;
-                FUN_180077750(*(uint64_t *)(lVar31 + 8 + lVar29),param_2,&fStack_118,uStack_268);
+                SystemHealthMonitor(*(uint64_t *)(lVar31 + 8 + lVar29),param_2,&fStack_118,uStack_268);
               }
               lVar31 = lVar31 + 0x68;
               lStack_270 = lStack_270 + -1;
@@ -691,7 +697,7 @@ void FUN_1804d8f30(int64_t param_1,int64_t param_2,uint64_t param_3)
                 puStack_298 = &uStack_1a8;
                 uStack_188 = uStack_190;
                 plStack_140 = plVar34;
-                FUN_180077750(*(uint64_t *)(lVar31 + 0x48 + lVar33),param_2,lVar32,uStack_268);
+                SystemHealthMonitor(*(uint64_t *)(lVar31 + 0x48 + lVar33),param_2,lVar32,uStack_268);
               }
               lVar31 = lVar31 + 0x68;
               lVar29 = lVar29 + -1;

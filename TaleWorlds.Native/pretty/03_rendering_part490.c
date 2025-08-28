@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part490.c - 11 个函数
 
 // 函数: void FUN_18052b890(int64_t param_1,float param_2)
@@ -499,7 +503,7 @@ LAB_18052c185:
     pplVar7 = &plStack_178;
     if (100.0 <= fVar10 * fVar10 + fVar9 * fVar9 + fVar8 * fVar8) goto LAB_18052c185;
   }
-  pcStack_1a8 = FUN_18004a130;
+  pcStack_1a8 = SystemCore_MemoryManager;
   DataStructureManager(aplStack_138,0x30,4,FUN_1801c2890);
   iStack_78 = 0;
   if (*(char *)(param_2 + 0x15) == '\0') {
@@ -571,7 +575,7 @@ LAB_18052c185:
   if (plStack_170 != (int64_t *)0x0) {
     (**(code **)(*plStack_170 + 0x38))();
   }
-  SystemDataValidator(aplStack_138,0x30,4,FUN_18004a130);
+  SystemDataValidator(aplStack_138,0x30,4,SystemCore_MemoryManager);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x38))(plVar3);
   }
@@ -661,7 +665,7 @@ void FUN_18052c460(int64_t param_1,int *param_2)
           uStack_d8 = 0;
           uStack_d0 = 0;
           uStack_cc = 0x3f800000;
-          FUN_180084ae0(&uStack_108);
+          Utilities_DataValidator(&uStack_108);
           fVar6 = *(float *)(lVar4 + 0x80);
           fVar9 = *(float *)(lVar4 + 0x70);
           fVar10 = *(float *)(lVar4 + 0x84);
@@ -745,7 +749,7 @@ void FUN_18052c545(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
   *(int32_t *)(unaff_RBP + -0x78) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + -0x74) = in_XMM1_Dd;
   fStack0000000000000058 = in_XMM0_Dc;
-  FUN_180084ae0();
+  Utilities_DataValidator();
   fVar1 = *(float *)(param_3 + 0x80);
   fVar2 = *(float *)(param_3 + 0x70);
   fVar3 = *(float *)(param_3 + 0x84);

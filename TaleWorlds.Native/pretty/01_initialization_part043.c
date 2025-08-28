@@ -1,3 +1,8 @@
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -138,7 +143,7 @@ LAB_1800721e1:
       memcpy(puVar10 + uVar19,param_2,(int64_t)((int)lVar17 + 2));
     }
   }
-  FUN_180627e10(&puStack_110,&puStack_a8,&uStack_58);
+  UtilitiesSystem_CacheManager(&puStack_110,&puStack_a8,&uStack_58);
   uStack_114 = 0;
   puStack_110 = &system_data_buffer_ptr;
   if (puVar10 != (int8_t *)0x0) {
@@ -323,7 +328,7 @@ LAB_1800726e7:
       }
       *(int16_t *)(puStack_130 + uStack_128) = 0x3a;
       uStack_128 = 0x17;
-      FUN_180628380(&puStack_138,uStack_b0);
+      > HighFreq_PerformanceMonitor1(&puStack_138,uStack_b0);
       uVar6 = uStack_128;
       uVar4 = uStack_128 + 1;
       if (uVar4 != 0) {
@@ -467,7 +472,7 @@ LAB_1800729bd:
       if (puVar10 != (void *)0x0) {
         puStack_148 = puVar10;
       }
-      FUN_1800623b0(system_message_context,4,0xffffffff00000000,3);
+      SystemConfigurationManager(system_message_context,4,0xffffffff00000000,3);
       FUN_1800623e0();
       puVar14 = &system_buffer_ptr;
       if (puStack_130 != (int8_t *)0x0) {
@@ -582,7 +587,7 @@ void FUN_180072e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plVar1 = *(int64_t **)(system_main_module_state + 0x2b0);
   if (plVar1 != (int64_t *)0x0) {
     uVar2 = (**(code **)(*plVar1 + 0x110))(plVar1,&puStack_30,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005d190(param_2,uVar2);
+    RenderingSystem_ResourceBinder(param_2,uVar2);
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -731,7 +736,7 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
   if (puStack_e8 != (int16_t *)0x0) {
     puVar10 = puStack_e8;
   }
-  FUN_1800623b0(system_message_context,5,0xffffffff00000000,3,&processed_var_92_ptr,puVar10);
+  SystemConfigurationManager(system_message_context,5,0xffffffff00000000,3,&processed_var_92_ptr,puVar10);
   FUN_1800623e0();
   lVar4 = system_main_module_state;
   if (system_main_module_state == 0) {
@@ -899,7 +904,7 @@ void FUN_180073630(uint64_t param_1,uint64_t param_2)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_1800623b0(system_message_context,0,0x100000000,0,&processed_var_4936_ptr,param_2,0xfffffffffffffffe);
+  SystemConfigurationManager(system_message_context,0,0x100000000,0,&processed_var_4936_ptr,param_2,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xffff0000;
     CoreMemoryPoolValidator(&puStack_30,param_2);

@@ -651,7 +651,7 @@ uint FUN_18082d710(int *param_1,uint param_2)
 
 
 
-uint FUN_18082d7f0(int *param_1,uint param_2)
+uint SystemCore_Optimizer(int *param_1,uint param_2)
 
 {
   uint uVar1;
@@ -749,23 +749,23 @@ void FUN_18082d940(uint64_t param_1,uint64_t *param_2)
 {
   if (param_2[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
   }
   if (param_2[4] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[6] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[7] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   *param_2 = 0;
   param_2[1] = 0;

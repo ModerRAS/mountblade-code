@@ -1,3 +1,4 @@
+#include "SystemAdvancedValidator_definition.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 #define ResourceReleaser CoreEngine_MemoryPoolManager  // 资源释放器
 #define AdvancedMemoryAllocator CoreMemoryPoolAllocator  // 高级内存分配器
@@ -821,8 +822,8 @@ void * FUN_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       init_system_config_ui = &system_ptr_9178;
 
 
-// 函数: void FUN_180079520(int64_t param_1)
-void FUN_180079520(int64_t param_1)
+// 函数: void SystemInitializer(int64_t param_1)
+void SystemInitializer(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -898,7 +899,7 @@ int8_t FUN_18007953e(void)
  *    - FUN_180079309: 参数化系统初始化函数
  *    - FUN_18007940e: 简化系统初始化函数
  *    - FUN_180079430: 系统资源管理函数
- *    - FUN_180079520: 系统状态控制函数
+ *    - SystemInitializer: 系统状态控制函数
  *    - FUN_18007953e: 系统状态查询函数
  *
  * 3. 技术特性

@@ -32,7 +32,7 @@ void FUN_18013df80(int *param_1,uint64_t *param_2)
     if (iVar6 + 1 < iVar5) {
       iVar3 = iVar5;
     }
-    FUN_18013e760(param_1,iVar3);
+    RenderingEngine_Renderer(param_1,iVar3);
     iVar6 = *param_1;
   }
   uVar4 = param_2[1];
@@ -510,7 +510,7 @@ void FUN_18013e410(int *param_1,int *param_2)
     if (iVar2 < iVar6) {
       iVar4 = iVar6;
     }
-    FUN_18013e760(param_1,iVar4);
+    RenderingEngine_Renderer(param_1,iVar4);
     uVar7 = *(uint64_t *)(param_1 + 2);
   }
   *param_1 = iVar2;
@@ -605,7 +605,7 @@ void FUN_18013e570(int *param_1,int *param_2)
     if (iVar2 < iVar6) {
       iVar4 = iVar6;
     }
-    FUN_18011dd10(param_1,iVar4);
+    Memory_CacheManager(param_1,iVar4);
     uVar7 = *(uint64_t *)(param_1 + 2);
   }
   *param_1 = iVar2;
@@ -751,8 +751,8 @@ void FUN_18013e74d(void)
 
 
 
-// 函数: void FUN_18013e760(int *param_1,int param_2)
-void FUN_18013e760(int *param_1,int param_2)
+// 函数: void RenderingEngine_Renderer(int *param_1,int param_2)
+void RenderingEngine_Renderer(int *param_1,int param_2)
 
 {
   uint64_t uVar1;
@@ -1030,7 +1030,7 @@ void FUN_18013f090(int64_t param_1)
   uVar4 = 0;
   while( true ) {
     if (lVar3 == param_1) {
-      FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10));
+      RenderingSystem_CameraSystem(param_1,*(uint64_t *)(param_1 + 0x10));
       *(int64_t *)param_1 = param_1;
       *(int64_t *)(param_1 + 8) = param_1;
       *(uint64_t *)(param_1 + 0x10) = 0;

@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -131,7 +136,7 @@ LAB_1805b1e78:
     }
   }
 LAB_1805b1f10:
-  uVar7 = FUN_18053a410(&system_data_5f30,
+  uVar7 = SystemCacheManager(&system_data_5f30,
                         *(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0xb8) + 0x590) + 0xac)
                         ,iVar12);
   lVar9 = FUN_18058d7f0(&system_data_61e0,uVar7,fVar15);
@@ -177,7 +182,7 @@ LAB_1805b1f10:
   }
   uStack_78 = param_2;
   iStack_74 = iVar12;
-  cVar6 = FUN_18051ec50(lVar10,&uStack_78);
+  cVar6 = CoreSystemThreadManager(lVar10,&uStack_78);
   if (cVar6 == '\0') {
     return 0;
   }
@@ -293,7 +298,7 @@ uint64_t FUN_1805b1ea5(uint64_t param_1,int64_t param_2)
     }
   }
 LAB_1805b1f10:
-  uVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),
+  uVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),
                         unaff_ESI);
   lVar10 = FUN_18058d7f0(&system_data_61e0,uVar8,fVar15);
   lVar11 = *(int64_t *)(unaff_RBX + 0xb8);
@@ -346,7 +351,7 @@ LAB_1805b1f10:
     fVar16 = 0.0;
   }
   *(float *)(unaff_RBP + -0x19) = fVar16;
-  cVar7 = FUN_18051ec50(lVar11,unaff_RBP + -0x39);
+  cVar7 = CoreSystemThreadManager(lVar11,unaff_RBP + -0x39);
   if (cVar7 == '\0') {
     uVar12 = 0;
   }
@@ -577,7 +582,7 @@ uint FUN_1805b2220(int64_t param_1,int param_2,byte param_3)
     case 9:
       uVar5 = 9;
     }
-    puVar3 = (uint *)FUN_1805a0610(lVar2 + 0x28,uVar5);
+    puVar3 = (uint *)PhysicsSystem_ForceCalculator(lVar2 + 0x28,uVar5);
     bVar9 = false;
     if (puVar3 != (uint *)0x0) {
       uVar6 = *puVar3;
@@ -585,7 +590,7 @@ uint FUN_1805b2220(int64_t param_1,int param_2,byte param_3)
     }
     uVar5 = *(uint *)(param_1 + 0xd0);
     if (((bVar9) ||
-        (piVar4 = (int *)FUN_1805a0610(*(int64_t *)(param_1 + 0xb8) + 0x28,iVar7),
+        (piVar4 = (int *)PhysicsSystem_ForceCalculator(*(int64_t *)(param_1 + 0xb8) + 0x28,iVar7),
         piVar4 == (int *)0x0)) || ((iVar1 = *piVar4, iVar1 != iVar7 && (puVar3 != (uint *)0x0)))) {
       uVar8 = uVar5;
       if ((puVar3 != (uint *)0x0) && (uVar8 = uVar6, uVar6 == 9)) {
@@ -655,7 +660,7 @@ uint FUN_1805b2276(uint64_t param_1,int32_t param_2,byte param_3,int64_t param_4
   case 9:
     uVar4 = 9;
   }
-  puVar2 = (uint *)FUN_1805a0610(param_4 + 0x28,uVar4);
+  puVar2 = (uint *)PhysicsSystem_ForceCalculator(param_4 + 0x28,uVar4);
   bVar8 = false;
   if (puVar2 != (uint *)0x0) {
     uVar5 = *puVar2;
@@ -663,7 +668,7 @@ uint FUN_1805b2276(uint64_t param_1,int32_t param_2,byte param_3,int64_t param_4
   }
   uVar4 = *(uint *)(unaff_RBP + 0xd0);
   if (((bVar8) ||
-      (piVar3 = (int *)FUN_1805a0610(*(int64_t *)(unaff_RBP + 0xb8) + 0x28,iVar6),
+      (piVar3 = (int *)PhysicsSystem_ForceCalculator(*(int64_t *)(unaff_RBP + 0xb8) + 0x28,iVar6),
       piVar3 == (int *)0x0)) || ((iVar1 = *piVar3, iVar1 != iVar6 && (puVar2 != (uint *)0x0)))) {
     uVar7 = uVar4;
     if ((puVar2 != (uint *)0x0) && (uVar7 = uVar5, uVar5 == 9)) {
@@ -758,7 +763,7 @@ float * FUN_1805b2900(int64_t param_1,float *param_2,int64_t param_3)
   int64_t lVar7;
   float fVar8;
   
-  iVar3 = FUN_18053a410(&system_data_5f30,
+  iVar3 = SystemCacheManager(&system_data_5f30,
                         *(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0xb8) + 0x590) + 0xac)
                        );
   iVar3 = *(int *)(system_system_config + (int64_t)iVar3 * 4);
@@ -821,7 +826,7 @@ float FUN_1805b2a50(int64_t param_1,int64_t param_2)
   else {
     iVar4 = *(int *)(param_2 + 0x34);
   }
-  iVar2 = FUN_18053a410(&system_data_5f30,
+  iVar2 = SystemCacheManager(&system_data_5f30,
                         *(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0xb8) + 0x590) + 0xac)
                         ,iVar4);
   iVar2 = *(int *)(system_system_config + (int64_t)iVar2 * 4);

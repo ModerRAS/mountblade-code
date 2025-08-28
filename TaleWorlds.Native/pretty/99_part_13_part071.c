@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -650,7 +651,7 @@ uint64_t FUN_1808d9380(int64_t param_1,char param_2)
     }
     return uVar3;
   }
-  uVar3 = FUN_1808b2f30(param_1,3);
+  uVar3 = SystemDataFlowProcessor(param_1,3);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -923,7 +924,7 @@ LAB_1808d9713:
               else if (iVar12 < iVar7) {
                 iVar12 = iVar7;
               }
-              iVar4 = FUN_1808532e0(param_1 + 0x60,iVar12);
+              iVar4 = SystemCore_DataProcessor0(param_1 + 0x60,iVar12);
               if (iVar4 != 0) {
                 return;
               }

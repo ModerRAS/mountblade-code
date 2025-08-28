@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -85,7 +89,7 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
     uStack_148 = 0;
     uStack_140 = 0xf;
     uStack_158 = 0;
-    FUN_1800671b0(&uStack_158,&memory_allocator_3272_ptr,0x2a);
+    MathCoreCalculator0(&uStack_158,&memory_allocator_3272_ptr,0x2a);
     FUN_180472d60(param_2,param_1,&uStack_158,0);
     uStack_298 = 1;
     if (0xf < uStack_140) {
@@ -112,7 +116,7 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
       uStack_c8 = 0;
       uStack_c0 = 0xf;
       uStack_d8 = 0;
-      FUN_1800671b0(&uStack_d8,&memory_allocator_3320_ptr,0xc);
+      MathCoreCalculator0(&uStack_d8,&memory_allocator_3320_ptr,0xc);
       FUN_180472d60(param_2,param_1,&uStack_d8,0);
       uStack_298 = 1;
       if (0xf < uStack_c0) {
@@ -139,7 +143,7 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
         uStack_128 = 0;
         uStack_120 = 0xf;
         uStack_138 = 0;
-        FUN_1800671b0(&uStack_138,&memory_allocator_3752_ptr,0x1a);
+        MathCoreCalculator0(&uStack_138,&memory_allocator_3752_ptr,0x1a);
         FUN_180472d60(param_2,param_1,&uStack_138,0);
         uStack_298 = 1;
         if (0xf < uStack_120) {
@@ -347,7 +351,7 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
               uStack_e8 = 0;
               uStack_e0 = 0xf;
               uStack_f8 = 0;
-              FUN_1800671b0(&uStack_f8,&memory_allocator_3784_ptr,0x13);
+              MathCoreCalculator0(&uStack_f8,&memory_allocator_3784_ptr,0x13);
               FUN_180472d60(param_2,param_1,&uStack_f8,0);
               uStack_298 = 1;
               if (0xf < uStack_e0) {
@@ -507,7 +511,7 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
           uStack_108 = 0;
           uStack_100 = 0xf;
           uStack_118 = 0;
-          FUN_1800671b0(&uStack_118,&memory_allocator_3784_ptr,0x13);
+          MathCoreCalculator0(&uStack_118,&memory_allocator_3784_ptr,0x13);
           FUN_180472d60(param_2,param_1,&uStack_118,0);
           uStack_298 = 1;
           if (0xf < uStack_100) {

@@ -40,8 +40,8 @@ void FUN_1803aa090(uint64_t *param_1)
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
-  FUN_18004b730();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
   if ((int64_t *)param_1[0x1c7] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1c7] + 0x38))();
   }

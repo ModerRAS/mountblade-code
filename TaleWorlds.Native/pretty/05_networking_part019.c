@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -219,21 +225,21 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     // 第三阶段：网络系统状态验证
     // 验证网络系统的整体状态和连接状态
     iVar5 = FUN_1808b2950(param_1, param_2);           // 验证网络系统状态
-    if (iVar5 != 0) goto FUN_180852aaa;                 // 状态验证失败，跳转到错误处理
+    if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;                 // 状态验证失败，跳转到错误处理
     
     // 第四阶段：网络连接处理和状态管理
     // 执行网络连接的处理和状态管理操作
     cVar3 = func_0x0001808c5700(param_2, param_1[8]);  // 检查网络连接状态
     if (cVar3 != '\0') {
         // 网络连接需要处理
-        iVar5 = FUN_1808b2f30(param_1, 0);              // 执行网络连接处理
-        if ((iVar5 != 0) || (iVar5 = FUN_1808b2f30(param_1, 1), iVar5 != 0)) {
-            goto FUN_180852aaa;                         // 连接处理失败，跳转到错误处理
+        iVar5 = SystemDataFlowProcessor(param_1, 0);              // 执行网络连接处理
+        if ((iVar5 != 0) || (iVar5 = SystemDataFlowProcessor(param_1, 1), iVar5 != 0)) {
+            goto NetworkSystem_ConnectionHandler;                         // 连接处理失败，跳转到错误处理
         }
         
         // 第五阶段：网络资源管理和分配
         // 管理网络资源的分配和释放
-        iVar5 = FUN_180744d60(param_1 + 0x1f);         // 检查网络资源状态
+        iVar5 = SystemAnalyzer(param_1 + 0x1f);         // 检查网络资源状态
         puVar11 = (uint64_t *)0x0;                     // 初始化资源指针
         
         if (iVar5 == 0) {
@@ -296,19 +302,19 @@ LAB_180852282:
                 }
                 
                 // 清理资源管理缓冲区
-                FUN_180744d60(&puStack_288);
+                SystemAnalyzer(&puStack_288);
             }
         }
         else {
 LAB_180852302:
             // 资源管理错误处理
-            if (iVar5 != 0) goto FUN_180852aaa;           // 资源管理失败，跳转到错误处理
+            if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;           // 资源管理失败，跳转到错误处理
         }
         
         // 第八阶段：网络数据传输处理
         // 执行网络数据的传输和处理操作
         iVar5 = FUN_18084ec10(param_1);                  // 检查数据传输状态
-        if (iVar5 != 0) goto FUN_180852aaa;               // 数据传输失败，跳转到错误处理
+        if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;               // 数据传输失败，跳转到错误处理
         
         // 第九阶段：网络连接配置验证
         // 验证网络连接配置的有效性和兼容性
@@ -334,13 +340,13 @@ LAB_180852302:
             if ((*(int *)(lVar6 + 0x58) == 0) &&
                 (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
                     (*(int *)(lVar6 + 100) == 0)))) {
-                goto FUN_180852aaa;                       // 连接状态无效，跳转到错误处理
+                goto NetworkSystem_ConnectionHandler;                       // 连接状态无效，跳转到错误处理
             }
             
             // 执行连接状态同步操作
             uVar1 = param_1[0xe];                         // 保存当前状态
             iVar5 = FUN_180853470(param_1);              // 执行状态同步
-            if (iVar5 != 0) goto FUN_180852aaa;           // 状态同步失败，跳转到错误处理
+            if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;           // 状态同步失败，跳转到错误处理
             
             // 恢复网络状态
             param_1[0xe] = uVar1;                         // 恢复保存的状态
@@ -400,7 +406,7 @@ joined_r0x0001808523af:
         }
         
         // 连接处理完成，跳转到错误处理
-        goto FUN_180852aaa;
+        goto NetworkSystem_ConnectionHandler;
     }
     
     // 第十三阶段：网络数据批量处理
@@ -410,7 +416,7 @@ LAB_180852a22:
          ((uint64_t *)param_1[0x10] <= puVar11 &&
          (puVar11 < (uint64_t *)param_1[0x10] + *(int *)(param_1 + 0x11))); puVar11 = puVar11 + 1) {
         iVar5 = FUN_1808b50d0(*puVar11, param_2);       // 处理每个数据项
-        if (iVar5 != 0) goto FUN_180852aaa;             // 数据处理失败，跳转到错误处理
+        if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;             // 数据处理失败，跳转到错误处理
     }
     
     // 继续处理下一批数据
@@ -423,7 +429,7 @@ LAB_180852a22:
     
     // 第十四阶段：网络系统错误处理和清理
     // 执行网络系统的错误处理和资源清理操作
-FUN_180852aaa:
+NetworkSystem_ConnectionHandler:
     // 执行系统安全检查和资源清理
     SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_338);  // 安全检查和资源清理
     
@@ -469,7 +475,7 @@ LAB_1808524b7:
         // 检查状态处理是否成功
         if ((iVar5 != 0) ||
             ((uStack_2b8 != 0 && (iVar5 = FUN_1808c2ec0(uStack_2b8, param_1), iVar5 != 0)))) {
-            goto FUN_180852aaa;                           // 状态处理失败，跳转到错误处理
+            goto NetworkSystem_ConnectionHandler;                           // 状态处理失败，跳转到错误处理
         }
     }
     
@@ -484,7 +490,7 @@ LAB_180852518:
     if ((cVar3 == '\0') || (cVar3 = FUN_180853040(param_1 + 0x12, param_1[8] + 0x90), cVar3 == '\0')) {
         // 系统状态正常，执行状态重置操作
         iVar5 = FUN_18084ead0(param_1, 0);              // 执行状态重置
-        if (iVar5 != 0) goto FUN_180852aaa;             // 状态重置失败，跳转到错误处理
+        if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;             // 状态重置失败，跳转到错误处理
         
         // 第十八阶段：网络数据缓冲区管理
         // 管理网络数据缓冲区和执行数据操作
@@ -542,7 +548,7 @@ LAB_180852518:
                     }
                     
                     // 分配数据缓冲区
-                    iVar5 = FUN_180747f10(&uStack_2c8, iVar18);  // 分配缓冲区
+                    iVar5 = RenderingTextureManager0(&uStack_2c8, iVar18);  // 分配缓冲区
                     if (iVar5 != 0) goto LAB_180852943;   // 缓冲区分配失败，跳转到清理
                     
                     // 保存缓冲区信息
@@ -591,8 +597,8 @@ LAB_180852518:
             
 LAB_180852954:
             // 数据验证失败，执行清理操作
-            FUN_180744d60(&uStack_2c8);                  // 清理数据缓冲区
-            goto FUN_180852aaa;                           // 跳转到错误处理
+            SystemAnalyzer(&uStack_2c8);                  // 清理数据缓冲区
+            goto NetworkSystem_ConnectionHandler;                           // 跳转到错误处理
         }
         
 LAB_1808526bf:
@@ -652,7 +658,7 @@ LAB_1808526bf:
                     }
                     
                     // 分配数据缓冲区
-                    iVar5 = FUN_180747f10(&uStack_2c8, iVar18);  // 分配缓冲区
+                    iVar5 = RenderingTextureManager0(&uStack_2c8, iVar18);  // 分配缓冲区
                     if (iVar5 != 0) goto LAB_180852943;   // 缓冲区分配失败，跳转到清理
                     
                     // 保存缓冲区信息
@@ -707,7 +713,7 @@ LAB_1808526bf:
         
         // 第二十四阶段：网络数据最终处理
         // 执行网络数据的最终处理和验证操作
-        iVar5 = FUN_18073c380(param_1[0xf], 0xfffffffe, auStack_298);  // 执行数据处理
+        iVar5 = UltraHighFreq_PhysicsEngine1(param_1[0xf], 0xfffffffe, auStack_298);  // 执行数据处理
         if ((iVar5 == 0) && (iVar5 = FUN_18073c5f0(param_1[0xf], auStack_298[0], &uStack_2b8), iVar5 == 0)) {
             // 数据处理成功，执行最终验证
             puStack_310 = &uStack_2c8;                  // 设置数据缓冲区指针
@@ -748,7 +754,7 @@ LAB_1808526bf:
                                                         0xffffff01);
                     if (iVar5 == 0) {
                         // 所有验证成功，清理缓冲区并完成处理
-                        FUN_180744d60(&uStack_2c8);      // 清理数据缓冲区
+                        SystemAnalyzer(&uStack_2c8);      // 清理数据缓冲区
                         goto LAB_180852980;               // 跳转到完成处理
                     }
                 }
@@ -758,8 +764,8 @@ LAB_1808526bf:
 LAB_180852943:
         // 第二十五阶段：网络数据清理和错误处理
         // 执行网络数据的清理操作和错误处理
-        FUN_180744d60(&uStack_2c8);                      // 清理数据缓冲区
-        goto FUN_180852aaa;                               // 跳转到错误处理
+        SystemAnalyzer(&uStack_2c8);                      // 清理数据缓冲区
+        goto NetworkSystem_ConnectionHandler;                               // 跳转到错误处理
     }
     
 LAB_180852980:
@@ -767,7 +773,7 @@ LAB_180852980:
     // 执行网络系统的最终状态检查和验证操作
     uVar15 = 0;                                          // 初始化状态计数器
     iVar5 = FUN_18084e9e0(param_1);                     // 检查系统状态
-    if (iVar5 != 0) goto FUN_180852aaa;                 // 系统状态检查失败，跳转到错误处理
+    if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;                 // 系统状态检查失败，跳转到错误处理
     
     // 初始化最终处理变量
     uVar14 = uVar15;                                     // 初始化数据计数器

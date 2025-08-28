@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -746,7 +751,7 @@ LAB_1804cf694:
                                         &uStack_310);
                           puStack_378 = (uint *)(int64_t)iVar4;
                           uStack_328 = (uint64_t)(int)param_3;
-                          FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
+                          SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
                                         0xd8 + *(int64_t *)
                                                 (*(int64_t *)(param_1 + 11000) +
                                                 (int64_t)puStack_378 * 8) + 0x70,&uStack_3a8);
@@ -766,7 +771,7 @@ LAB_1804cf694:
                           if (plStack_330 != (int64_t *)0x0) {
                             (**(code **)(*plStack_330 + 0x38))();
                           }
-                          FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
+                          SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
                                         0xd8 + *(int64_t *)
                                                 (*(int64_t *)(param_1 + 11000) +
                                                 (int64_t)puStack_378 * 8) + 0x50);
@@ -914,7 +919,7 @@ LAB_1804cf694:
                                                   (*(int64_t *)(param_1 + 0x5e8) +
                                                   (int64_t)((int)uStack_3a8 >> 10) * 8) + 8,
                                           &uStack_2f0);
-                            FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
+                            SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) *
                                           0xd8 + *(int64_t *)
                                                   (*(int64_t *)(param_1 + 11000) +
                                                   (int64_t)iVar4 * 8) + 0x70,&uStack_3a8);
@@ -949,7 +954,7 @@ LAB_1804cf694:
                                 *(int64_t *)
                                  (*(int64_t *)(param_1 + 0x5e8) + (int64_t)((int)uVar5 >> 10) * 8)
                                 + 8,&uStack_2d0);
-                  FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8 +
+                  SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8 +
                                 *(int64_t *)(*(int64_t *)(param_1 + 11000) + (int64_t)iVar4 * 8)
                                 + 0x70);
                   if (plVar9 != (int64_t *)0x0) {

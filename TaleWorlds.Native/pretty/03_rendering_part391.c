@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -79,7 +83,7 @@ void FUN_1804836c0(uint64_t param_1,uint64_t param_2,int64_t *param_3,int32_t pa
       }
     }
   }
-  lVar3 = FUN_180628ca0();
+  lVar3 = MemoryDebugger0();
 LAB_180483845:
   cVar2 = FUN_180484e60(param_1,&puStack_a8,lVar3,param_4,CONCAT44(uVar7,param_5));
   if (cVar2 == '\0') {

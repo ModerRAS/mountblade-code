@@ -1,4 +1,4 @@
-#include "FUN_1808555a0_definition.h"
+#include "SystemAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -523,7 +523,7 @@ uint64_t FUN_1808554a0(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if (((int)((uVar9 ^ (int)uVar9 >> 0x1f) - ((int)uVar9 >> 0x1f)) < 1) ||
-     (uVar6 = FUN_18084d3f0(param_1,0), (int)uVar6 == 0)) {
+     (uVar6 = RenderingSystem_TextureManager(param_1,0), (int)uVar6 == 0)) {
     uVar6 = 0;
   }
   return uVar6;
@@ -568,7 +568,7 @@ uint64_t FUN_180855512(int32_t param_1,int param_2,uint param_3)
   }
   *(int32_t *)(unaff_RDI + 8) = unaff_EBP;
   if ((0 < (int)((param_3 ^ (int)param_3 >> 0x1f) - ((int)param_3 >> 0x1f))) &&
-     (uVar5 = FUN_18084d3f0(param_1,0), (int)uVar5 != 0)) {
+     (uVar5 = RenderingSystem_TextureManager(param_1,0), (int)uVar5 != 0)) {
     return uVar5;
   }
   return 0;
@@ -611,7 +611,7 @@ uint64_t FUN_18085551e(int64_t param_1)
   *(int32_t *)(unaff_RDI + 8) = unaff_EBP;
   uVar7 = (int)*(uint *)(unaff_RDI + 0xc) >> 0x1f;
   if ((0 < (int)((*(uint *)(unaff_RDI + 0xc) ^ uVar7) - uVar7)) &&
-     (uVar6 = FUN_18084d3f0(uVar1,0), (int)uVar6 != 0)) {
+     (uVar6 = RenderingSystem_TextureManager(uVar1,0), (int)uVar6 != 0)) {
     return uVar6;
   }
   return 0;
@@ -628,7 +628,7 @@ uint64_t FUN_180855559(uint64_t param_1,uint64_t param_2,uint param_3)
   
   *(int32_t *)(unaff_RDI + 8) = unaff_EBP;
   if ((0 < (int)((param_3 ^ (int)param_3 >> 0x1f) - ((int)param_3 >> 0x1f))) &&
-     (uVar1 = FUN_18084d3f0(), (int)uVar1 != 0)) {
+     (uVar1 = RenderingSystem_TextureManager(), (int)uVar1 != 0)) {
     return uVar1;
   }
   return 0;
@@ -645,7 +645,7 @@ uint64_t FUN_18085555e(uint64_t param_1,uint64_t param_2,uint param_3)
   
   *(int32_t *)(unaff_RDI + 8) = unaff_EBP;
   if ((0 < (int)((param_3 ^ (int)param_3 >> 0x1f) - ((int)param_3 >> 0x1f))) &&
-     (uVar1 = FUN_18084d3f0(), (int)uVar1 != 0)) {
+     (uVar1 = RenderingSystem_TextureManager(), (int)uVar1 != 0)) {
     return uVar1;
   }
   return 0;

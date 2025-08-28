@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemPhysicsEngine 的语义化别名 */
 #define SystemController SystemPhysicsEngine
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_13_part028.c - 10 个函数
 
@@ -124,19 +126,19 @@ int FUN_1808b7800(int64_t param_1,int64_t param_2,int64_t *param_3)
 LAB_1808b7979:
   if (cStack_58 == '\0') {
     *(int32_t *)(lVar6 + 0x60) = 0;
-    FUN_18084f560(lVar6 + 0x30);
+    RenderingEngine_ShaderProcessor(lVar6 + 0x30);
   }
   if (cStack_68 == '\0') {
     *(int32_t *)(lVar7 + 0x60) = 0;
-    FUN_18084f040(lVar7 + 0x30);
+    SystemCore_CacheManager(lVar7 + 0x30);
   }
   if (cStack_78 == '\0') {
     *(int32_t *)(lVar9 + 0x60) = 0;
-    FUN_18084f040(lVar9 + 0x30);
+    SystemCore_CacheManager(lVar9 + 0x30);
   }
   if (acStack_88[0] == '\0') {
     *(int32_t *)(lVar8 + 0x60) = 0;
-    FUN_18084f2d0(lVar8 + 0x30);
+    SystemCore_NetworkProcessor(lVar8 + 0x30);
   }
   return iVar2;
 }
@@ -733,8 +735,8 @@ uint64_t FUN_1808b8130(int64_t param_1,int64_t param_2)
         return uVar5;
       }
     }
-    uVar5 = FUN_180744d60(param_1 + 0x80);
-    if (((int)uVar5 == 0) && (uVar5 = FUN_180744d60(param_1 + 0x90), (int)uVar5 == 0)) {
+    uVar5 = SystemAnalyzer(param_1 + 0x80);
+    if (((int)uVar5 == 0) && (uVar5 = SystemAnalyzer(param_1 + 0x90), (int)uVar5 == 0)) {
       lVar2 = *(int64_t *)(param_1 + 0x60);
       uVar5 = FUN_180851840(param_1);
       if ((((int)uVar5 == 0) &&
@@ -791,8 +793,8 @@ uint64_t FUN_1808b81c0(int64_t param_1,int64_t param_2)
   if (param_2 == 0) {
     return 0x1f;
   }
-  uVar1 = FUN_1808ca6f0(param_2 + 0x378);
-  if (((((int)uVar1 == 0) && (uVar1 = FUN_1808ca6f0(param_2 + 0x3f8), (int)uVar1 == 0)) &&
+  uVar1 = NetworkSystem_ProtocolHandler(param_2 + 0x378);
+  if (((((int)uVar1 == 0) && (uVar1 = NetworkSystem_ProtocolHandler(param_2 + 0x3f8), (int)uVar1 == 0)) &&
       (uVar1 = thunk_FUN_180865550(param_2), (int)uVar1 == 0)) &&
      (uVar1 = FUN_18085ff70(param_2), (int)uVar1 == 0)) {
     if (*(int64_t *)(param_2 + 0x80) != 0) {

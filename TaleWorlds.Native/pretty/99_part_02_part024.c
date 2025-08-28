@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_02_part024.c - 10 个函数
 
@@ -586,7 +591,7 @@ void FUN_1800fe2d0(int64_t param_1)
   auStack_70[0] = 0;
   uStack_78 = 0xc;
   strcpy_s(auStack_70,0x40,&processed_var_7496_ptr);
-  FUN_1800b30d0(uVar1,&plStack_100,&puStack_88,1);
+  SystemCore_PerformanceMonitor(uVar1,&plStack_100,&puStack_88,1);
   uStack_118 = 1;
   puStack_88 = &system_state_ptr;
   uVar3 = FUN_18022cb40(plStack_100,&plStack_110);
@@ -595,7 +600,7 @@ void FUN_1800fe2d0(int64_t param_1)
     uVar3 = (**(code **)(*plStack_100 + 0x38))();
   }
   puVar2 = (uint64_t *)FUN_1800bf050(uVar3,&plStack_108);
-  puVar2 = (uint64_t *)FUN_1800763c0(*puVar2,&plStack_f0);
+  puVar2 = (uint64_t *)SystemCore_BufferManager(*puVar2,&plStack_f0);
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_f8 = *(int64_t **)(param_1 + 600);
@@ -610,7 +615,7 @@ void FUN_1800fe2d0(int64_t param_1)
     (**(code **)(*plStack_108 + 0x38))();
   }
   FUN_18022cd30(plStack_110,0,*(uint64_t *)(param_1 + 0x238));
-  FUN_180076910(*(uint64_t *)(param_1 + 600),&plStack_110);
+  UltraHighFreq_SecurityValidator1(*(uint64_t *)(param_1 + 600),&plStack_110);
   uStack_e8 = 0;
   uStack_e0 = 0;
   uStack_dc = 0xffffffff;
@@ -703,7 +708,7 @@ void FUN_1800fe500(int64_t param_1,int64_t param_2)
     uStack_94 = 0xff;
     uStack_90 = 0xffffffff;
     uStack_84 = 0x400;
-    FUN_180077750(*(uint64_t *)(param_1 + 600),param_2,&uStack_48,0,&uStack_b8);
+    SystemHealthMonitor(*(uint64_t *)(param_1 + 600),param_2,&uStack_48,0,&uStack_b8);
     if (*(code **)(param_2 + 0x9670) != (code *)0x0) {
       (**(code **)(param_2 + 0x9670))(param_2 + 0x9660,0,0);
     }
@@ -760,7 +765,7 @@ void FUN_1800fe52b(void)
   *(int8_t *)(unaff_RBP + -0x35) = 0xff;
   *(int32_t *)(unaff_RBP + -0x31) = 0xffffffff;
   *(int16_t *)(unaff_RBP + -0x25) = 0x400;
-  FUN_180077750(uVar1,0,unaff_RBP + 0x17,0,unaff_RBP + -0x59);
+  SystemHealthMonitor(uVar1,0,unaff_RBP + 0x17,0,unaff_RBP + -0x59);
   if (*(code **)(unaff_RSI + 0x9670) != (code *)0x0) {
     (**(code **)(unaff_RSI + 0x9670))(unaff_RSI + 0x9660,0,0);
   }

@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -274,7 +279,7 @@ LAB_18058a3a1:
   }
   else {
     uVar6 = param_2[0xb];
-    iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
+    iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
     if ((char)uVar6 == '\0') {
 LAB_18058a36c:
       iVar3 = *(int *)(render_system_config + (int64_t)iVar3 * 4);
@@ -287,7 +292,7 @@ LAB_18058a36c:
     }
     else {
       if (iVar3 < 0) {
-        iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
+        iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
         goto LAB_18058a36c;
       }
       uVar8 = FUN_18058d7f0(&system_data_61e0,iVar3,fVar26);
@@ -363,14 +368,14 @@ LAB_18058a7c4:
                (uint)fVar27 & 0xffffff00,1,!bVar21,*(int8_t *)((int64_t)param_2 + 0x29));
   }
   else {
-    iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
+    iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar19);
     iVar3 = *(int *)(render_system_config + (int64_t)iVar3 * 4);
     uVar9 = uVar12;
     if (iVar3 != -1) {
       uVar9 = *(uint64_t *)(render_system_config + (int64_t)iVar3 * 8);
     }
     uVar4 = *(int32_t *)(uVar9 + 0x1ec);
-    iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar4);
+    iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),uVar4);
     iVar3 = *(int *)(render_system_config + (int64_t)iVar3 * 4);
     if (iVar3 != -1) {
       uVar12 = *(uint64_t *)(render_system_config + (int64_t)iVar3 * 8);
@@ -534,14 +539,14 @@ LAB_18058a7c4:
     uVar11 = (**(code **)(*unaff_RDI + 0x70))(fStack0000000000000028,*unaff_RSI);
   }
   else {
-    iVar4 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),unaff_R14D);
+    iVar4 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),unaff_R14D);
     iVar4 = *(int *)(render_system_config + (int64_t)iVar4 * 4);
     uVar6 = unaff_RBX;
     if (iVar4 != -1) {
       uVar6 = *(uint64_t *)(render_system_config + (int64_t)iVar4 * 8);
     }
     uVar2 = *(int32_t *)(uVar6 + 0x1ec);
-    iVar4 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),uVar2);
+    iVar4 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),uVar2);
     iVar4 = *(int *)(render_system_config + (int64_t)iVar4 * 4);
     uVar6 = unaff_RBX;
     if (iVar4 != -1) {
@@ -650,14 +655,14 @@ int8_t FUN_18058a546(void)
     func_0x00018057c5b0((float)unaff_RSI[7] - -0.2,*unaff_RSI);
   }
   else {
-    iVar2 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),unaff_R14D);
+    iVar2 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),unaff_R14D);
     iVar2 = *(int *)(render_system_config + (int64_t)iVar2 * 4);
     lVar4 = unaff_RBX;
     if (iVar2 != -1) {
       lVar4 = *(int64_t *)(render_system_config + (int64_t)iVar2 * 8);
     }
     uVar1 = *(int32_t *)(lVar4 + 0x1ec);
-    iVar2 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),uVar1);
+    iVar2 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac),uVar1);
     iVar2 = *(int *)(render_system_config + (int64_t)iVar2 * 4);
     lVar4 = unaff_RBX;
     if (iVar2 != -1) {

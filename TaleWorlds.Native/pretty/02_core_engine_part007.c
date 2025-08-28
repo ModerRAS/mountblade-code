@@ -21,7 +21,7 @@ void FUN_180039eb0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -786,7 +786,7 @@ void FUN_180040ee0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -837,7 +837,7 @@ void FUN_180040fe0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -939,7 +939,7 @@ void FUN_1800411e0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {

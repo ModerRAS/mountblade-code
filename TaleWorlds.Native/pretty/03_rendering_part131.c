@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 
 // 03_rendering_part131.c - 12 个函数
 
@@ -45,7 +51,7 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
   iVar4 = (int)param_4;
   if (iVar4 == 0) {
     uVar2 = CoreMemoryPoolValidator(&puStack_30,param_3 + 0x20,param_3,param_4,0xfffffffffffffffe);
-    lVar3 = FUN_1803466a0(param_1,param_2);
+    lVar3 = RenderingSystem_LightingEngine0(param_1,param_2);
     SystemCore_ConfigurationHandler0(*(uint64_t *)(lVar3 + 0x20),uVar2);
     if (param_5 != '\0') {
       (**(code **)(*param_1 + 0xb0))(param_1,param_2);
@@ -58,25 +64,25 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
   }
   else {
     if (iVar4 == 1) {
-      lVar3 = FUN_1803466a0((int)*(uint64_t *)(param_3 + 0xa0));
+      lVar3 = RenderingSystem_LightingEngine0((int)*(uint64_t *)(param_3 + 0xa0));
       **(uint64_t **)(lVar3 + 0x20) = CONCAT44(extraout_XMM0_Db,extraout_XMM0_Da);
     }
     else if (iVar4 == 2) {
-      lVar3 = FUN_1803466a0(param_3[0xa2]);
+      lVar3 = RenderingSystem_LightingEngine0(param_3[0xa2]);
       **(int32_t **)(lVar3 + 0x20) = extraout_XMM0_Da_00;
     }
     else if (iVar4 == 3) {
       iVar4 = param_3[0xa3];
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       *(bool *)*(uint64_t *)(lVar3 + 0x20) = iVar4 != 0;
     }
     else if (iVar4 == 4) {
       uVar5 = param_3[0xa4];
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       **(int32_t **)(lVar3 + 0x20) = uVar5;
     }
     else if (iVar4 == 5) {
-      lVar3 = FUN_1803466a0(param_3[0x14]);
+      lVar3 = RenderingSystem_LightingEngine0(param_3[0x14]);
       puVar1 = *(int32_t **)(lVar3 + 0x20);
       *puVar1 = extraout_XMM0_Da_01;
       puVar1[1] = extraout_XMM0_Db_00;
@@ -84,7 +90,7 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
       puVar1[3] = extraout_XMM0_Dd;
     }
     else if (iVar4 == 0xc) {
-      lVar3 = FUN_1803466a0(param_3[0x10]);
+      lVar3 = RenderingSystem_LightingEngine0(param_3[0x10]);
       puVar1 = *(int32_t **)(lVar3 + 0x20);
       *puVar1 = extraout_XMM0_Da_02;
       puVar1[1] = extraout_XMM0_Db_01;
@@ -93,22 +99,22 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
     }
     else if (iVar4 == 6) {
       uVar2 = *(uint64_t *)(param_3 + 0x18);
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       **(uint64_t **)(lVar3 + 0x20) = uVar2;
     }
     else if (iVar4 == 7) {
       uVar2 = *(uint64_t *)(param_3 + 0x1a);
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       **(uint64_t **)(lVar3 + 0x20) = uVar2;
     }
     else if (iVar4 == 8) {
       uVar2 = *(uint64_t *)(param_3 + 0x1c);
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       **(uint64_t **)(lVar3 + 0x20) = uVar2;
     }
     else if (iVar4 == 10) {
       uVar2 = *(uint64_t *)(param_3 + 0x1e);
-      lVar3 = FUN_1803466a0();
+      lVar3 = RenderingSystem_LightingEngine0();
       **(uint64_t **)(lVar3 + 0x20) = uVar2;
     }
     else {
@@ -137,7 +143,7 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
       uVar14 = param_3[0xd];
       uVar15 = param_3[0xe];
       uVar16 = param_3[0xf];
-      lVar3 = FUN_1803466a0(*param_3);
+      lVar3 = RenderingSystem_LightingEngine0(*param_3);
       puVar1 = *(int32_t **)(lVar3 + 0x20);
       *puVar1 = extraout_XMM0_Da_03;
       puVar1[1] = extraout_XMM0_Db_02;
@@ -279,7 +285,7 @@ void FUN_180346640(int64_t *param_1,uint64_t param_2,uint64_t param_3,char param
 {
   int64_t lVar1;
   
-  lVar1 = FUN_1803466a0();
+  lVar1 = RenderingSystem_LightingEngine0();
   SystemCore_ConfigurationHandler0(*(uint64_t *)(lVar1 + 0x20),param_3);
   if (param_4 != '\0') {
     (**(code **)(*param_1 + 0xb0))(param_1,param_2);
@@ -289,7 +295,7 @@ void FUN_180346640(int64_t *param_1,uint64_t param_2,uint64_t param_3,char param
 
 
 
-int64_t FUN_1803466a0(int64_t param_1,int64_t param_2)
+int64_t RenderingSystem_LightingEngine0(int64_t param_1,int64_t param_2)
 
 {
   char cVar1;
@@ -402,7 +408,7 @@ uint64_t * FUN_1803468a0(uint64_t *param_1,uint64_t param_2)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xa8);
   }
@@ -429,7 +435,7 @@ void FUN_180346910(uint64_t *param_1)
   
   uVar3 = 0xfffffffffffffffe;
   puVar2 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar2 = &processed_var_5664_ptr;
   puVar2[0x11] = 0;
   puVar2[0x12] = 0;
@@ -450,7 +456,7 @@ void FUN_180346910(uint64_t *param_1)
   *puVar2 = 0x6f6d4120646e6542;
   *(int32_t *)(puVar2 + 1) = 0x746e75;
   uStack_70 = 0xb;
-  FUN_1803460a0(param_1,&puStack_80,param_1 + 0xf,1,uVar3);
+  SystemNetwork_Processor(param_1,&puStack_80,param_1 + 0xf,1,uVar3);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar2);
@@ -597,7 +603,7 @@ void FUN_180346b50(uint64_t param_1,int64_t param_2)
         puStack_c0[uStack_b8] = 0;
       }
       FUN_1800b3430(uVar9,&plStackX_10,&puStack_c8,1);
-      FUN_180085020(plVar1 + 0xe,&uStack_58);
+      RenderingSystem_LightSystem(plVar1 + 0xe,&uStack_58);
       uStack_78 = uStack_58;
       uStack_74 = uStack_54;
       uStack_70 = uStack_50;
@@ -654,7 +660,7 @@ void FUN_180346b50(uint64_t param_1,int64_t param_2)
         puStack_a0[uStack_98] = 0;
       }
       FUN_1800b3430(uVar9,&plStackX_18,&puStack_a8,1);
-      FUN_180085020(plVar1 + 0xe,&uStack_48);
+      RenderingSystem_LightSystem(plVar1 + 0xe,&uStack_48);
       uStack_78 = uStack_48;
       uStack_74 = uStack_44;
       uStack_70 = uStack_40;
@@ -738,7 +744,7 @@ void FUN_180346f00(int64_t param_1)
   if (*(void **)(lVar1 + 0x290) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 0x290);
   }
-  FUN_180627020(&processed_var_5328_ptr,puVar2);
+  SystemCore_Allocator(&processed_var_5328_ptr,puVar2);
   return;
 }
 
@@ -779,7 +785,7 @@ void FUN_180346f40(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_88,&puStack_148);
   uStack_30 = 1;
   uStack_168 = 1;
-  FUN_180180730(param_1,appuStack_160,apuStack_88);
+  MathOptimizationEngine0(param_1,appuStack_160,apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
@@ -792,7 +798,7 @@ void FUN_180346f40(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_88,&puStack_e8);
   uStack_30 = 1;
   uStack_168 = 2;
-  FUN_180180730(param_1,appuStack_160,apuStack_88);
+  MathOptimizationEngine0(param_1,appuStack_160,apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_e8 = &system_state_ptr;

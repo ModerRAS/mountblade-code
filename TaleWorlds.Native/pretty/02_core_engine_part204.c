@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -132,7 +136,7 @@ void FUN_1801865a0(uint64_t param_1,uint64_t *param_2)
     do {
       lVar7 = lVar7 + 1;
     } while (puVar4[lVar7] != '\0');
-    FUN_1800671b0(auStack_90);
+    MathCoreCalculator0(auStack_90);
     puVar4 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar4 = (void *)param_2[1];
@@ -140,12 +144,12 @@ void FUN_1801865a0(uint64_t param_1,uint64_t *param_2)
     uStack_50 = 0;
     uStack_48 = 0xf;
     puStack_60 = (void *)((uint64_t)puStack_60 & 0xffffffffffffff00);
-    FUN_1800671b0(&puStack_60,&rendering_buffer_276_ptr,5);
+    MathCoreCalculator0(&puStack_60,&rendering_buffer_276_ptr,5);
     uVar3 = FUN_180187f00(&plStack_70,&puStack_60);
     do {
       lVar6 = lVar6 + 1;
     } while (puVar4[lVar6] != '\0');
-    FUN_1800671b0(uVar3,puVar4,lVar6);
+    MathCoreCalculator0(uVar3,puVar4,lVar6);
     if (0xf < uStack_48) {
       uVar5 = uStack_48 + 1;
       puVar4 = puStack_60;
@@ -281,7 +285,7 @@ void FUN_180186880(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
     do {
       lVar5 = lVar5 + 1;
     } while (puVar3[lVar5] != '\0');
-    FUN_1800671b0(auStack_68);
+    MathCoreCalculator0(auStack_68);
     puVar3 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar3 = (void *)param_2[1];
@@ -289,7 +293,7 @@ void FUN_180186880(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
     do {
       lVar4 = lVar4 + 1;
     } while (puVar3[lVar4] != '\0');
-    FUN_1800671b0(auStack_48,puVar3,lVar4);
+    MathCoreCalculator0(auStack_48,puVar3,lVar4);
     plVar1 = *(int64_t **)(lVar2 + 8);
     ppuStack_b0 = &puStack_a8;
     puStack_a8 = &processed_var_592_ptr;
@@ -406,7 +410,7 @@ void FUN_180186ac0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t 
       lVar5 = lVar5 + 1;
     } while (puVar3[lVar5] != '\0');
     uStack_48 = param_4;
-    FUN_1800671b0(auStack_88);
+    MathCoreCalculator0(auStack_88);
     puVar3 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar3 = (void *)param_2[1];
@@ -414,7 +418,7 @@ void FUN_180186ac0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t 
     do {
       lVar4 = lVar4 + 1;
     } while (puVar3[lVar4] != '\0');
-    FUN_1800671b0(auStack_68,puVar3,lVar4);
+    MathCoreCalculator0(auStack_68,puVar3,lVar4);
     plVar1 = *(int64_t **)(lVar2 + 8);
     ppuStack_d0 = &puStack_c8;
     puStack_c8 = &processed_var_648_ptr;
@@ -492,7 +496,7 @@ void FUN_180186ca0(uint64_t param_1,int64_t param_2,uint64_t param_3)
         do {
           lVar6 = lVar6 + 1;
         } while (*(char *)(*(int64_t *)(param_2 + uVar5 * 8) + lVar6) != '\0');
-        FUN_1800671b0(&puStack_70);
+        MathCoreCalculator0(&puStack_70);
         ppuVar4 = ppuStack_90;
         if (ppuStack_88 == ppuStack_90) {
           FUN_180188f60(&ppuStack_98,ppuStack_90,&puStack_70);
@@ -711,7 +715,7 @@ void FUN_180187390(void **param_1,int64_t param_2)
   lStack_e8 = param_2;
   if ((puVar9 != (uint64_t *)0x0) &&
      (((int64_t)param_1[4] - (int64_t)param_1[3] & 0xfffffffffffffff8U) != 0)) {
-    puVar4 = (uint64_t *)FUN_1808fc418(0x10);
+    puVar4 = (uint64_t *)SystemRenderer(0x10);
     *puVar4 = &processed_var_872_ptr;
     *puVar4 = &processed_var_952_ptr;
     uVar5 = 0;
@@ -740,7 +744,7 @@ void FUN_180187390(void **param_1,int64_t param_2)
     do {
       lVar11 = lVar11 + 1;
     } while (*(char *)(param_2 + lVar11) != '\0');
-    FUN_1800671b0(auStack_60,param_2);
+    MathCoreCalculator0(auStack_60,param_2);
     for (ppuVar10 = (uint64_t **)param_1[3]; ppuStack_110 = ppuVar10,
         ppuVar10 != (uint64_t **)param_1[4]; ppuVar10 = (uint64_t **)((int64_t *)ppuVar10 + 1))
     {
@@ -757,7 +761,7 @@ void FUN_180187390(void **param_1,int64_t param_2)
       do {
         lVar11 = lVar11 + 1;
       } while (*(char *)(*(int64_t *)((int64_t)*ppuVar10 + 0x40) + lVar11) != '\0');
-      FUN_1800671b0(&puStack_d8);
+      MathCoreCalculator0(&puStack_d8);
       lVar11 = (int64_t)*ppuVar10;
       uStack_b8 = *(int8_t *)(lVar11 + 0x48);
       uStack_b4 = *(uint64_t *)(lVar11 + 0x4c);
@@ -773,7 +777,7 @@ void FUN_180187390(void **param_1,int64_t param_2)
           do {
             lVar12 = lVar12 + 1;
           } while (*(char *)(param_2 + lVar12) != '\0');
-          FUN_1800671b0(&uStack_98,param_2);
+          MathCoreCalculator0(&uStack_98,param_2);
           uVar14 = uStack_80;
           uVar8 = uStack_88;
           puVar9 = puStack_a8;
@@ -839,7 +843,7 @@ LAB_18018764a:
           do {
             lVar12 = lVar12 + 1;
           } while (*(char *)(lVar12 + lVar11) != '\0');
-          FUN_1800671b0(puVar9 + 8,lVar11);
+          MathCoreCalculator0(puVar9 + 8,lVar11);
           if (0xf < uStack_80) {
             if (0xfff < uStack_80 + 1) {
               lVar11 = *(int64_t *)(CONCAT71(uStack_97,uStack_98) + -8);

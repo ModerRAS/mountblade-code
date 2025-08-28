@@ -1,3 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedValidator_definition.h"
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -58,7 +69,7 @@ void FUN_180415120(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   puStack_298 = param_8;
   if (*(int *)(param_2 + 0x70) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_9360_ptr);
+    SystemParameterHandler(system_message_context,&processed_var_9360_ptr);
   }
   puStack_2f8 = auStack_288;
   cVar1 = FUN_180381130(param_2,param_4,param_5,param_3);
@@ -74,7 +85,7 @@ void FUN_180415120(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     if (param_6 != (int64_t *)0x0) {
       if (cStack_1fc != '\0') {
         puStack_308 = &processed_var_8576_ptr;
-        FUN_1800623b0(system_message_context,0,0x80000000000,9);
+        SystemConfigurationManager(system_message_context,0,0x80000000000,9);
       }
       lVar7 = param_6[1];
       if (cStack_1fc == '\0') {
@@ -392,7 +403,7 @@ FUN_1804158e0(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
   do {
     if (plVar2 == (int64_t *)0x0) {
 LAB_18041593f:
-      FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       puVar6 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c));
       uVar4 = *(int32_t *)((int64_t)param_4 + 4);
@@ -455,7 +466,7 @@ void FUN_180415947(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   char cStack0000000000000080;
   uint uStack0000000000000084;
   
-  FUN_18066c220(param_1,&stack0x00000080,param_3,param_4,1);
+  RenderingShaderProcessor0(param_1,&stack0x00000080,param_3,param_4,1);
   puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c));
   uVar2 = unaff_RBX[1];
   uVar3 = unaff_RBX[2];
@@ -511,7 +522,7 @@ void FUN_180415a52(int64_t param_1,int64_t param_2,uint64_t param_3)
     *(int8_t *)(unaff_R15 + 2) = 0;
     return;
   }
-  FUN_18066c220(unaff_RDI + 0x20,&stack0x00000080,param_3,*(int32_t *)(unaff_RDI + 0x18),1);
+  RenderingShaderProcessor0(unaff_RDI + 0x20,&stack0x00000080,param_3,*(int32_t *)(unaff_RDI + 0x18),1);
   puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c));
   uVar2 = unaff_RBX[1];
   uVar3 = unaff_RBX[2];
@@ -799,9 +810,9 @@ void FUN_180415c50(int64_t param_1,int64_t param_2,int64_t param_3)
       } while (*pcVar3 != '\0');
       *puVar2 = &processed_var_5272_ptr;
       puVar2[2] = pcVar5 + -0x180a18107;
-      FUN_18062f990(param_2,puVar2,&processed_var_5276_ptr,
+      MemoryDeallocationHandler0(param_2,puVar2,&processed_var_5276_ptr,
                     *(int32_t *)(lVar10 + *(int64_t *)(param_1 + 800)));
-      FUN_18062fb40(param_2,puVar2,&memory_allocator_3692_ptr,*(int64_t *)(param_1 + 800) + (uVar9 * 5 + 1) * 4
+      UltraHighFreq_NetworkHandler1(param_2,puVar2,&memory_allocator_3692_ptr,*(int64_t *)(param_1 + 800) + (uVar9 * 5 + 1) * 4
                    );
       if (puVar4[6] == 0) {
         puVar2[10] = 0;
@@ -889,9 +900,9 @@ void FUN_180415c50(int64_t param_1,int64_t param_2,int64_t param_3)
       } while (*pcVar3 != '\0');
       *puVar2 = &processed_var_5272_ptr;
       puVar2[2] = pcVar5 + -0x180a18107;
-      FUN_18062f990(param_2,puVar2,&processed_var_5276_ptr,
+      MemoryDeallocationHandler0(param_2,puVar2,&processed_var_5276_ptr,
                     *(int32_t *)(*(int64_t *)(param_1 + 0x340) + uVar7));
-      FUN_18062f990(param_2,puVar2,&memory_allocator_3692_ptr,
+      MemoryDeallocationHandler0(param_2,puVar2,&memory_allocator_3692_ptr,
                     *(int32_t *)(*(int64_t *)(param_1 + 0x340) + 4 + uVar7));
       if (puVar4[6] == 0) {
         puVar2[10] = 0;

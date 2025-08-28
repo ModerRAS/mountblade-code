@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part577.c - 1 个函数
 
 // 函数: void FUN_180583b80(int64_t *param_1,float param_2)
@@ -368,7 +372,7 @@ LAB_180583e24:
                 fStack_1b4 = fVar8;
                 fStack_1b0 = fVar9;
                 uStack_1ac = uVar2;
-                FUN_18063b5f0(&fStack_480,&uStack_548);
+                SystemSecurityManager(&fStack_480,&uStack_548);
                 fStack_388 = fStack_470;
                 fStack_384 = fStack_46c;
                 fStack_380 = fStack_468;
@@ -524,7 +528,7 @@ LAB_180583e24:
                   fStack_574 = fStack_718;
                   iStack_56c = iVar10;
                   uStack_55c = uVar23;
-                  FUN_1805a4a20(lVar17 + 0x28,1,&uStack_5e0);
+                  UISystem_InputHandler(lVar17 + 0x28,1,&uStack_5e0);
                   cVar14 = acStack_748[0];
                 }
               }
@@ -585,7 +589,7 @@ LAB_180583e24:
                 piStack_770 = (int *)CONCAT71(piStack_770._1_7_,bVar6);
                 pfStack_778 = (float *)CONCAT44(pfStack_778._4_4_,0x31b789);
                 cStack_484 = bVar6;
-                FUN_1801aa0f0(*(int64_t *)(param_1[2] + 0x18),auStack_4c8);
+                PhysicsSystem_JointManager(*(int64_t *)(param_1[2] + 0x18),auStack_4c8);
                 fVar27 = fStack_488;
                 if (cStack_484 == '\0') {
                   fVar27 = 0.0;
@@ -655,7 +659,7 @@ LAB_180583e24:
                   ((*(uint64_t *)
                      ((int64_t)*(int *)(param_1[0x1e] + 0xf0) * 0xa0 + 0x50 +
                      *(int64_t *)(param_1[0x1e] + 0xd0)) & 0x5000000000) != 0)))) {
-                pfStack_778 = (float *)FUN_18004a130;
+                pfStack_778 = (float *)SystemCore_MemoryManager;
                 DataStructureManager(alStack_1a8,0x30,4,FUN_1801c2890);
                 iStack_e8 = 0;
                 puStack_258 = &ui_system_data_1808_ptr;
@@ -713,7 +717,7 @@ LAB_180583e24:
                 plStack_768 = alStack_1a8;
                 pfStack_778 = &fStack_700;
                 FUN_1804f8630(param_1[2],(int)param_1[0x54],lVar17,pfVar13[6]);
-                SystemDataValidator(alStack_1a8,0x30,4,FUN_18004a130);
+                SystemDataValidator(alStack_1a8,0x30,4,SystemCore_MemoryManager);
               }
             }
             break;

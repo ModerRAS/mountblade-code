@@ -249,7 +249,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 }
                 
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
-                    texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x168);
+                    texture_ptr = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x168);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
@@ -280,7 +280,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
-                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x200);
+                    texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x200);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
@@ -301,7 +301,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
-                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f8);
+                    texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x1f8);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
@@ -322,7 +322,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
-                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f0);
+                    texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x1f0);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
@@ -343,7 +343,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 }
                 
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
-                    texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x228);
+                    texture_ptr = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x228);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
@@ -535,8 +535,8 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     
     // 设置数据指针
     data_ptr = source_buffer2;
-    source_ptr1 = (float *)FUN_180085020(source_buffer2, float_array);
-    source_ptr2 = (float *)FUN_180085020(target_buffer, &temp_value1);
+    source_ptr1 = (float *)RenderingSystem_LightSystem(source_buffer2, float_array);
+    source_ptr2 = (float *)RenderingSystem_LightSystem(target_buffer, &temp_value1);
     
     // 保存源数据
     ustack_138 = *source_buffer1;
@@ -569,8 +569,8 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ustack_dc = *(int32_t *)((int64_t)data_ptr + 0x2c);
     
     FUN_1802bfc90(&ustack_108, float_array);
-    FUN_18063b470(float_array, &ustack_108);
-    interpolation_result = FUN_18063b470(&temp_value1, &ustack_138);
+    AdvancedProcessor_StateManager0(float_array, &ustack_108);
+    interpolation_result = AdvancedProcessor_StateManager0(&temp_value1, &ustack_138);
     
     // 处理高精度插值
     if (RENDERING_INTERPOLATION_THRESHOLD <= interpolation_factor) {
@@ -659,7 +659,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     }
     
     // 应用变换结果
-    FUN_18063b5f0(&ustack_138, &temp_value1);
+    SystemSecurityManager(&ustack_138, &temp_value1);
     *(uint64_t *)target_buffer = ustack_138;
     *(uint64_t *)(target_buffer + 2) = ustack_130;
     *(uint64_t *)(target_buffer + 4) = CONCAT44(ustack_124, ustack_128);
@@ -851,7 +851,7 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     }
     
     // 应用变换结果
-    FUN_18063b5f0(&param6, &stack_temp1);
+    SystemSecurityManager(&param6, &stack_temp1);
     *(uint64_t *)source_buffer = param6;
     *(uint64_t *)(source_buffer + 2) = param7;
     *(uint64_t *)(source_buffer + 4) = param8;
@@ -955,7 +955,7 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     stack_temp2 = rotation_factor3 * stack_temp2 + rotation_factor1 * register_xmm10_db;
     
     // 应用变换结果
-    FUN_18063b5f0(&stack0x00000030, &stack_temp1);
+    SystemSecurityManager(&stack0x00000030, &stack_temp1);
     *(uint64_t *)target_buffer = stack_param1;
     *(uint64_t *)(target_buffer + 2) = stack_param2;
     *(uint64_t *)(target_buffer + 4) = stack_param3;
@@ -1080,7 +1080,7 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     normalization_factor5 = (3.0 - normalization_factor5 * normalization_factor5 * (normalization_factor2 + normalization_factor1)) * normalization_factor5 * 0.5;
     
     // 应用归一化结果
-    FUN_18063b5f0(&stack0x00000030, &stack_param1, simd_vector._0_8_, normalization_factor5, normalization_factor4 * normalization_factor5);
+    SystemSecurityManager(&stack0x00000030, &stack_param1, simd_vector._0_8_, normalization_factor5, normalization_factor4 * normalization_factor5);
     *(uint64_t *)target_buffer = stack_param2;
     *(uint64_t *)(target_buffer + 2) = stack_param3;
     *(uint64_t *)(target_buffer + 4) = stack_param4;
@@ -1168,7 +1168,7 @@ void RenderingSystem_FastTransformProcessor(void)
     uint64_t stack_param7;
     
     // 应用快速变换
-    FUN_18063b5f0(&stack0x00000030, alignment_buffer);
+    SystemSecurityManager(&stack0x00000030, alignment_buffer);
     *(uint64_t *)target_buffer = stack_param1;
     *(uint64_t *)(target_buffer + 2) = stack_param2;
     *(uint64_t *)(target_buffer + 4) = stack_param3;

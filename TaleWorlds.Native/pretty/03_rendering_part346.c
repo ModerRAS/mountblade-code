@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 03_rendering_part346.c - 7 个函数
 
@@ -243,7 +249,7 @@ LAB_18045275c:
     lVar16 = (int64_t)iVar19 * 0x20 + lVar16;
   }
   else {
-    lVar16 = FUN_180628ca0();
+    lVar16 = MemoryDebugger0();
   }
   uVar8 = CoreEngineDataTransformer(&puStack_118,param_1 + 0x27c8);
   uStack_258 = 1;
@@ -271,8 +277,8 @@ LAB_18045275c:
   iStack_230 = 0xf;
   uStack_258 = 3;
   uStack_228._0_4_ = (int)lStack_250;
-  FUN_180627ce0(uVar8,&puStack_150,&puStack_240);
-  FUN_180624910(&puStack_150);
+  UtilitiesSystem_FileHandler(uVar8,&puStack_150,&puStack_240);
+  SystemManager_Processor(&puStack_150);
   iStack_248 = 0xf;
   if (0 < iStack_d8) {
     iStack_248 = iStack_d8 + 0xf;
@@ -314,7 +320,7 @@ LAB_1804529b8:
     puVar9 = (int32_t *)0x0;
     puVar18 = (int32_t *)&system_buffer_ptr;
   }
-  FUN_180627e10(lVar16,&puStack_170,puVar18);
+  UtilitiesSystem_CacheManager(lVar16,&puStack_170,puVar18);
   uStack_258 = 1;
   puStack_240 = &system_data_buffer_ptr;
   if (puVar9 != (int32_t *)0x0) {
@@ -340,14 +346,14 @@ LAB_1804529b8:
   if (puStack_168 != (void *)0x0) {
     puVar15 = puStack_168;
   }
-  FUN_18062dee0(&uStack_130,puVar15,&processed_var_4880_ptr);
+  SystemCore_Validator(&uStack_130,puVar15,&processed_var_4880_ptr);
   lVar16 = lStack_128;
   if (lStack_128 == 0) {
     puVar15 = &system_buffer_ptr;
     if (puStack_168 != (void *)0x0) {
       puVar15 = puStack_168;
     }
-    FUN_180627020(&processed_var_408_ptr,puVar15);
+    SystemCore_Allocator(&processed_var_408_ptr,puVar15);
   }
   else {
     uVar8 = _ftelli64(lStack_128);
@@ -440,8 +446,8 @@ bool FUN_180452fa0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
       fVar3 = SQRT(fVar3 * fVar3 + fVar4 * fVar4);
     }
     else {
-      uVar1 = FUN_180488690(param_3);
-      uVar2 = FUN_180488690(param_2);
+      uVar1 = SystemCore_ErrorHandler(param_3);
+      uVar2 = SystemCore_ErrorHandler(param_2);
       fVar3 = (float)FUN_180392600(param_1 + 0x2a68,uVar2,uVar1,param_2 + 0x18,
                                    (float *)(param_3 + 0x18),param_4,0x49742400);
     }
@@ -471,8 +477,8 @@ bool FUN_180452fe6(uint64_t param_1,int64_t param_2,int64_t param_3)
     fVar3 = SQRT(fVar3 * fVar3 + fVar4 * fVar4);
   }
   else {
-    uVar1 = FUN_180488690(param_3);
-    uVar2 = FUN_180488690();
+    uVar1 = SystemCore_ErrorHandler(param_3);
+    uVar2 = SystemCore_ErrorHandler();
     FUN_180392600(unaff_RDI + 0x2a68,uVar2,uVar1,unaff_R15 + 0x18,(float *)(param_3 + 0x18));
     fVar3 = extraout_XMM0_Da;
   }
@@ -492,8 +498,8 @@ bool FUN_180453003(void)
   int64_t unaff_R15;
   float fVar3;
   
-  uVar1 = FUN_180488690();
-  uVar2 = FUN_180488690();
+  uVar1 = SystemCore_ErrorHandler();
+  uVar2 = SystemCore_ErrorHandler();
   fVar3 = (float)FUN_180392600(unaff_RDI + 0x2a68,uVar2,uVar1,unaff_R15 + 0x18);
   *unaff_R14 = fVar3;
   return fVar3 < 1e+30;
@@ -644,7 +650,7 @@ float * FUN_180453300(float *param_1,int64_t param_2,int64_t param_3,uint64_t pa
   if (param_2 != 0) {
     pfVar1 = (float *)(param_3 + 0x18);
     uStack_58 = param_4;
-    uVar4 = FUN_180488690(param_3);
+    uVar4 = SystemCore_ErrorHandler(param_3);
     fVar6 = (float)uStack_58;
     fVar2 = uStack_58._4_4_;
     fStackX_10 = (float)uStack_58 - *pfVar1;
@@ -690,10 +696,10 @@ uint64_t FUN_1804534d0(int64_t param_1,uint64_t param_2,uint64_t param_3)
     if (*(int64_t *)(param_1 + 0x2ee8) - *(int64_t *)(param_1 + 12000) >> 3 == 0) {
       return 1;
     }
-    lVar1 = FUN_180488690(param_2);
-    if ((lVar1 != 0) && (lVar1 = FUN_180488690(param_3), lVar1 != 0)) {
-      lVar1 = FUN_180488690(param_3);
-      lVar2 = FUN_180488690(param_2);
+    lVar1 = SystemCore_ErrorHandler(param_2);
+    if ((lVar1 != 0) && (lVar1 = SystemCore_ErrorHandler(param_3), lVar1 != 0)) {
+      lVar1 = SystemCore_ErrorHandler(param_3);
+      lVar2 = SystemCore_ErrorHandler(param_2);
       if (*(int *)(lVar2 + 0x128) == *(int *)(lVar1 + 0x128)) {
         return 1;
       }

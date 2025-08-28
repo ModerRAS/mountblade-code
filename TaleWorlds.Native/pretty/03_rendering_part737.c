@@ -142,9 +142,9 @@ void FUN_18069d460(int64_t param_1)
         FUN_18069d8a0(param_1,piVar8 + -8,*piVar8 + lVar4,uVar2,uVar5,uVar2);
       }
       else {
-        FUN_18069d9e0(piVar8 + -8,*piVar8 + lVar4,uVar2,uVar5,uVar2,*(uint64_t *)(param_1 + 0xf98)
+        RenderingSystem_TextureProcessor0(piVar8 + -8,*piVar8 + lVar4,uVar2,uVar5,uVar2,*(uint64_t *)(param_1 + 0xf98)
                      );
-        FUN_18069d9e0(piVar8 + 6,piVar8[0xe] + lVar4,uVar2,uVar5,uVar2,
+        RenderingSystem_TextureProcessor0(piVar8 + 6,piVar8[0xe] + lVar4,uVar2,uVar5,uVar2,
                       *(uint64_t *)(param_1 + 0xf98));
       }
       lVar6 = lVar6 + 0x70;
@@ -174,9 +174,9 @@ void FUN_18069d460(int64_t param_1)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,iVar3,lVar6,iVar3,
+      RenderingSystem_TextureProcessor0(piVar8 + -0xc,piVar8[-4] + lVar4,iVar3,lVar6,iVar3,
                     *(uint64_t *)(param_1 + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,iVar3,lVar6,iVar3,*(uint64_t *)(param_1 + 0xf98)
+      RenderingSystem_TextureProcessor0(piVar8 + 2,piVar8[10] + lVar4,iVar3,lVar6,iVar3,*(uint64_t *)(param_1 + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -201,9 +201,9 @@ void FUN_18069d460(int64_t param_1)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,iVar3,lVar6,iVar3,
+      RenderingSystem_TextureProcessor0(piVar8 + -0xc,piVar8[-4] + lVar4,iVar3,lVar6,iVar3,
                     *(uint64_t *)(param_1 + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,iVar3,lVar6,iVar3,*(uint64_t *)(param_1 + 0xf98)
+      RenderingSystem_TextureProcessor0(piVar8 + 2,piVar8[10] + lVar4,iVar3,lVar6,iVar3,*(uint64_t *)(param_1 + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -304,8 +304,8 @@ void FUN_18069d940(int64_t param_1,int64_t param_2,uint64_t *param_3,int param_4
 
 
 
-// 函数: void FUN_18069d9e0(int64_t param_1,int8_t *param_2,int param_3,int64_t param_4,int param_5,
-void FUN_18069d9e0(int64_t param_1,int8_t *param_2,int param_3,int64_t param_4,int param_5,
+// 函数: void RenderingSystem_TextureProcessor0(int64_t param_1,int8_t *param_2,int param_3,int64_t param_4,int param_5,
+void RenderingSystem_TextureProcessor0(int64_t param_1,int8_t *param_2,int param_3,int64_t param_4,int param_5,
                   code *param_6)
 
 {
@@ -507,11 +507,11 @@ void FUN_18069de90(int64_t param_1)
       }
       else {
         uVar12 = CONCAT44(uVar13,uVar15);
-        FUN_18069d9e0(piVar7 + -8,*piVar7 + lVar3,uVar15,uVar4,uVar12,
+        RenderingSystem_TextureProcessor0(piVar7 + -8,*piVar7 + lVar3,uVar15,uVar4,uVar12,
                       *(uint64_t *)(param_1 + 0xf98));
         in_stack_ffffffffffffffd0 = *(uint64_t *)(param_1 + 0xf98);
         in_stack_ffffffffffffffc8 = CONCAT44((int)((uint64_t)uVar12 >> 0x20),uVar15);
-        FUN_18069d9e0(piVar7 + 6,piVar7[0xe] + lVar3,uVar15,uVar4,in_stack_ffffffffffffffc8,
+        RenderingSystem_TextureProcessor0(piVar7 + 6,piVar7[0xe] + lVar3,uVar15,uVar4,in_stack_ffffffffffffffc8,
                       in_stack_ffffffffffffffd0);
       }
       lVar5 = lVar5 + 0x70;
@@ -541,9 +541,9 @@ void FUN_18069de90(int64_t param_1)
       }
     }
     else {
-      FUN_18069d9e0(piVar7 + -0xc,piVar7[-4] + lVar3,iVar2,lVar5,iVar2,
+      RenderingSystem_TextureProcessor0(piVar7 + -0xc,piVar7[-4] + lVar3,iVar2,lVar5,iVar2,
                     *(uint64_t *)(param_1 + 0xf98));
-      FUN_18069d9e0(piVar7 + 2,piVar7[10] + lVar3,iVar2,lVar5,iVar2,*(uint64_t *)(param_1 + 0xf98)
+      RenderingSystem_TextureProcessor0(piVar7 + 2,piVar7[10] + lVar3,iVar2,lVar5,iVar2,*(uint64_t *)(param_1 + 0xf98)
                    );
     }
     piVar7 = piVar7 + 0x1c;
@@ -568,9 +568,9 @@ void FUN_18069de90(int64_t param_1)
       }
     }
     else {
-      FUN_18069d9e0(piVar7 + -0xc,piVar7[-4] + lVar3,iVar2,lVar5,iVar2,
+      RenderingSystem_TextureProcessor0(piVar7 + -0xc,piVar7[-4] + lVar3,iVar2,lVar5,iVar2,
                     *(uint64_t *)(param_1 + 0xf98));
-      FUN_18069d9e0(piVar7 + 2,piVar7[10] + lVar3,iVar2,lVar5,iVar2,*(uint64_t *)(param_1 + 0xf98)
+      RenderingSystem_TextureProcessor0(piVar7 + 2,piVar7[10] + lVar3,iVar2,lVar5,iVar2,*(uint64_t *)(param_1 + 0xf98)
                    );
     }
     piVar7 = piVar7 + 0x1c;

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -625,7 +626,7 @@ void FUN_1805d62c0(int64_t *param_1)
     }
     pcVar4 = (char *)FUN_1805b73f0(param_1 + 1);
     if (((*pcVar4 == '\0') && (pfVar5 = (float *)FUN_1805b7450(param_1 + 1), *pfVar5 == 0.0)) &&
-       (pfVar5 = (float *)FUN_1805b6e50(param_1 + 1), 2.0 < *pfVar5)) {
+       (pfVar5 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1), 2.0 < *pfVar5)) {
       cVar2 = func_0x0001805b7d30(param_1);
       if (((cVar2 == '\0') && (cVar2 = func_0x0001805b7cd0(param_1), cVar2 == '\0')) &&
          ((pcVar4 = (char *)FUN_1805b7080(param_1 + 1), *pcVar4 == '\0' &&
@@ -745,7 +746,7 @@ void FUN_1805d62f9(uint param_1)
     }
     pcVar5 = (char *)FUN_1805b73f0(unaff_RBX + 1);
     if (((*pcVar5 == cVar11) && (pfVar6 = (float *)FUN_1805b7450(unaff_RBX + 1), *pfVar6 == 0.0)) &&
-       (pfVar6 = (float *)FUN_1805b6e50(unaff_RBX + 1), 2.0 < *pfVar6)) {
+       (pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1), 2.0 < *pfVar6)) {
       cVar2 = func_0x0001805b7d30();
       if (((cVar2 == '\0') && (cVar2 = func_0x0001805b7cd0(), cVar2 == '\0')) &&
          (((pcVar5 = (char *)FUN_1805b7080(unaff_RBX + 1), *pcVar5 == cVar11 &&

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // 99_part_01_part010_sub002_sub002.c - 文件路径构建和处理模块
 // ============================================================================
@@ -275,7 +279,7 @@ void FUN_1800a73e0(int64_t param_1, uint64_t param_2, int64_t param_3, int8_t pa
   FUN_1802230e0(param_1, &lStack_810, param_10, param_11);  // 初始化文件系统参数
   
   // 路径处理初始化
-  uVar5 = FUN_180624440(apuStack_2d8, param_2);  // 处理基础路径字符串
+  uVar5 = SystemCore_EncryptionEngine(apuStack_2d8, param_2);  // 处理基础路径字符串
   SystemCore_EncryptionEngine0(auStack_7b0, uVar5);               // 初始化路径缓冲区
   apuStack_2d8[0] = &system_state_ptr;                // 设置路径数组初始值
   
@@ -567,7 +571,7 @@ LAB_1800a7a55:
 LAB_1800a7ae4:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar16;
-  FUN_180626eb0(acStack_98,0x20,&memory_allocator_3388_ptr,param_5);
+  SystemCore_CacheManager(acStack_98,0x20,&memory_allocator_3388_ptr,param_5);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -618,7 +622,7 @@ LAB_1800a7ba5:
 LAB_1800a7c35:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180626eb0(acStack_78,0x20,&processed_var_7284_ptr,param_6);
+  SystemCore_CacheManager(acStack_78,0x20,&processed_var_7284_ptr,param_6);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -669,7 +673,7 @@ LAB_1800a7d01:
 LAB_1800a7d91:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_4);
+  RenderingEngine_BufferManager(acStack_a8,&processed_var_4576_ptr,param_4);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -720,7 +724,7 @@ LAB_1800a7e51:
 LAB_1800a7ee0:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180060680(acStack_b8,&processed_var_4576_ptr,iVar17);
+  RenderingEngine_BufferManager(acStack_b8,&processed_var_4576_ptr,iVar17);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -828,7 +832,7 @@ LAB_1800a814a:
     }
     uStack_768 = 0;
     uStack_758 = 0;
-    FUN_18062dee0(&uStack_768,puVar12,&system_memory_c7ec);
+    SystemCore_Validator(&uStack_768,puVar12,&system_memory_c7ec);
     if (cStack_968 == '\0') {
       puStack_7d0 = &system_data_buffer_ptr;
       uStack_7b8 = 0;
@@ -851,7 +855,7 @@ LAB_1800a814a:
       }
       uStack_6f0 = 0;
       uStack_6e0 = 0;
-      FUN_18062dee0(&uStack_6f0,puVar15,&processed_var_4880_ptr);
+      SystemCore_Validator(&uStack_6f0,puVar15,&processed_var_4880_ptr);
       lVar7 = lStack_6e8;
       uVar5 = _ftelli64(lStack_6e8);
       _fseeki64(lVar7,0,2);

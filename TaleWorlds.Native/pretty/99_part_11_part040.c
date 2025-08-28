@@ -121,7 +121,7 @@ uint64_t FUN_1807a6b80(int64_t *param_1)
   lVar1 = *param_1;
   if (*(int *)(lVar1 + 0x220) == 1) {
     SystemMemoryAllocator(system_system_config);
-    FUN_1807a7b70((int64_t)*(int *)(lVar1 + 0x2e4) * 0x70 +
+    SystemCore_PerformanceMonitor0((int64_t)*(int *)(lVar1 + 0x2e4) * 0x70 +
                   *(int64_t *)((int64_t)*(int *)(lVar1 + 0xe0) * 8 + 0x180c2c210),lVar1 + 0x230,
                   0xffffffff);
                     // WARNING: Subroutine does not return
@@ -146,7 +146,7 @@ void FUN_1807a6b92(void)
   
   uVar1 = system_system_config;
   SystemMemoryAllocator(system_system_config);
-  FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x2e4) * 0x70 +
+  SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x2e4) * 0x70 +
                 *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                 unaff_RDI + 0x230,0xffffffff);
                     // WARNING: Subroutine does not return
@@ -350,7 +350,7 @@ uint64_t FUN_1807a6f70(int64_t param_1)
     } while (lVar4 < 0xe00);
     if ((system_system_config + system_system_config + system_system_config + system_system_config + system_system_config +
          system_system_config + system_system_config + system_system_config == 0) &&
-       (uVar2 = FUN_1807682e0(&system_data_c270), (int)uVar2 != 0)) {
+       (uVar2 = SystemCore_DataProcessor(&system_data_c270), (int)uVar2 != 0)) {
       return uVar2;
     }
   }
@@ -487,10 +487,10 @@ uint64_t FUN_1807a7310(int64_t param_1,int param_2)
     if (*(int *)(param_1 + 0x2e4) != *(int *)(param_1 + 0x21c)) {
       if (*(int *)(param_1 + 0x220) == 1) {
         SystemMemoryAllocator(system_system_config);
-        FUN_1807a7b70((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(param_1 + 0xe0) * 8 + 0x180c2c210),
                       param_1 + 0x230,0xffffffff);
-        FUN_1807a7b70((int64_t)*(int *)(param_1 + 0x2e4) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(param_1 + 0x2e4) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(param_1 + 0xe0) * 8 + 0x180c2c210),
                       param_1 + 0x230,1);
                     // WARNING: Subroutine does not return
@@ -511,10 +511,10 @@ uint64_t FUN_1807a7310(int64_t param_1,int param_2)
       uVar4 = system_system_config;
       if ((*(int *)(param_1 + 0x220) == 1) && (uVar6 != auStackX_10[0])) {
         SystemMemoryAllocator(system_system_config);
-        FUN_1807a7b70((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(param_1 + 0xe0) * 8 + 0x180c2c210),
                       auStackX_10,0xffffffff);
-        FUN_1807a7b70((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(param_1 + 0xe0) * 8 + 0x180c2c210),
                       param_1 + 0x230,1);
                     // WARNING: Subroutine does not return
@@ -529,7 +529,7 @@ uint64_t FUN_1807a7310(int64_t param_1,int param_2)
   if (*(int *)(param_1 + 0x2e8) != 1) {
     uVar8 = 0xffffffff;
   }
-  FUN_1807a7b70((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
+  SystemCore_PerformanceMonitor0((int64_t)*(int *)(param_1 + 0x21c) * 0x70 +
                 *(int64_t *)((int64_t)*(int *)(param_1 + 0xe0) * 8 + 0x180c2c210),param_1 + 0x230,
                 uVar8);
   *(int32_t *)(param_1 + 0x220) = *(int32_t *)(param_1 + 0x2e8);
@@ -585,10 +585,10 @@ uint64_t FUN_1807a7329(int64_t param_1)
     if (*(int *)(unaff_RDI + 0x2e4) != *(int *)(unaff_RDI + 0x21c)) {
       if (*(int *)(unaff_RDI + 0x220) == 1) {
         SystemMemoryAllocator(system_system_config);
-        FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                       unaff_RDI + 0x230,0xffffffff);
-        FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x2e4) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x2e4) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                       unaff_RDI + 0x230,1);
                     // WARNING: Subroutine does not return
@@ -609,10 +609,10 @@ uint64_t FUN_1807a7329(int64_t param_1)
       uVar4 = system_system_config;
       if ((*(int *)(unaff_RDI + 0x220) == 1) && (iVar6 != in_stack_00000058)) {
         SystemMemoryAllocator(system_system_config);
-        FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                       &stack0x00000058,0xffffffff);
-        FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
+        SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
                       *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                       unaff_RDI + 0x230,1);
                     // WARNING: Subroutine does not return
@@ -627,7 +627,7 @@ uint64_t FUN_1807a7329(int64_t param_1)
   if (*(int *)(unaff_RDI + 0x2e8) != 1) {
     uVar8 = 0xffffffff;
   }
-  FUN_1807a7b70((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
+  SystemCore_PerformanceMonitor0((int64_t)*(int *)(unaff_RDI + 0x21c) * 0x70 +
                 *(int64_t *)((int64_t)*(int *)(unaff_RDI + 0xe0) * 8 + 0x180c2c210),
                 unaff_RDI + 0x230,uVar8);
   *(int32_t *)(unaff_RDI + 0x220) = *(int32_t *)(unaff_RDI + 0x2e8);
@@ -785,7 +785,7 @@ uint64_t FUN_1807a7b4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_1807a7b70(int64_t param_1,int *param_2,int param_3)
+int32_t SystemCore_PerformanceMonitor0(int64_t param_1,int *param_2,int param_3)
 
 {
   int *piVar1;
@@ -910,7 +910,7 @@ uint64_t FUN_1807a7f20(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180747e10(param_1,0), (int)uVar2 != 0)) {
+     (uVar2 = SystemCore_Initializer(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;

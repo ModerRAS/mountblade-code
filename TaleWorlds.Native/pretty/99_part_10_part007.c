@@ -30,7 +30,7 @@ void FUN_1806a6f80(uint64_t param_1,uint64_t param_2,int8_t param_3)
   puStack_28 = &memory_allocator_3232_ptr;
   uStack_20 = param_2;
   uStack_18 = param_3;
-  FUN_1806a39a0(param_1,&puStack_28,0x16);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x16);
   return;
 }
 
@@ -102,16 +102,16 @@ int8_t FUN_1806a6fb0(int64_t param_1,uint64_t param_2,uint64_t *param_3,int *par
     *(uint64_t *)param_4 = uVar3;
     uVar4 = puVar7[1];
     *(uint64_t *)(param_4 + 2) = uVar4;
-    puVar8 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8,param_3[1]);
+    puVar8 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8,param_3[1]);
     uVar1 = *puVar8;
-    puVar8 = (int32_t *)FUN_1806a74b0(param_1,auStackX_20,*param_3);
+    puVar8 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_20,*param_3);
     uStack_158 = CONCAT44(uVar1,*puVar8);
     puStack_148 = &memory_allocator_3168_ptr;
     uStack_138 = uStack_158;
     uStack_140 = param_2;
     uStack_130 = uVar3;
     uStack_128 = uVar4;
-    FUN_1806a39a0(param_1,&puStack_148,0xb);
+    RenderingSystem_StateManager0(param_1,&puStack_148,0xb);
     uVar9 = *(char *)(param_1 + 0x1b8) == '\0';
     puStack_148 = &rendering_buffer_2008_ptr;
   }
@@ -133,9 +133,9 @@ bool FUN_1806a7079(void)
   puVar2 = (uint64_t *)FUN_1806a41e0();
   *unaff_RBX = *puVar2;
   unaff_RBX[1] = puVar2[1];
-  FUN_1806a74b0();
-  FUN_1806a74b0();
-  FUN_1806a39a0();
+  RenderingSystem_ShaderProcessor();
+  RenderingSystem_ShaderProcessor();
+  RenderingSystem_StateManager0();
   cVar1 = *(char *)(unaff_R15 + 0x1b8);
   (**(code **)(*unaff_R14 + 0x20))();
   return cVar1 == '\0';
@@ -222,13 +222,13 @@ bool FUN_1806a7160(int64_t param_1,uint64_t param_2,uint64_t param_3,int *param_
   piVar9 = piStackX_20;
   *(uint64_t *)piStackX_20 = *puVar13;
   *(uint64_t *)(piStackX_20 + 2) = puVar13[1];
-  puVar14 = (int32_t *)FUN_1806a74b0(lVar12,&piStackX_20,puVar10[1]);
+  puVar14 = (int32_t *)RenderingSystem_ShaderProcessor(lVar12,&piStackX_20,puVar10[1]);
   uVar2 = *puVar14;
-  puVar14 = (int32_t *)FUN_1806a74b0(lVar12,&lStackX_8,*puVar10);
+  puVar14 = (int32_t *)RenderingSystem_ShaderProcessor(lVar12,&lStackX_8,*puVar10);
   uVar7 = *(uint64_t *)piVar9;
   uVar8 = *(uint64_t *)(piVar9 + 2);
   uStack_138 = CONCAT44(uVar2,*puVar14);
-  puVar14 = (int32_t *)FUN_1806a74b0(lVar12,&param_5,uStackX_18);
+  puVar14 = (int32_t *)RenderingSystem_ShaderProcessor(lVar12,&param_5,uStackX_18);
   uStack_f8 = *puVar14;
   puStack_108 = &memory_allocator_3104_ptr;
   uStack_100 = uStackX_10;
@@ -236,7 +236,7 @@ bool FUN_1806a7160(int64_t param_1,uint64_t param_2,uint64_t param_3,int *param_
   uStack_f0 = uVar7;
   uStack_e8 = uVar8;
   uStack_d8 = (uint)(iVar4 - iVar5) / uVar1;
-  FUN_1806a39a0(lVar12,&puStack_108,7);
+  RenderingSystem_StateManager0(lVar12,&puStack_108,7);
   return *(char *)(lVar12 + 0x1b8) == '\0';
 }
 
@@ -368,7 +368,7 @@ void FUN_1806a7472(void)
 
 
 
-int32_t * FUN_1806a74b0(int64_t param_1,int32_t *param_2,byte *param_3)
+int32_t * RenderingSystem_ShaderProcessor(int64_t param_1,int32_t *param_2,byte *param_3)
 
 {
   char cVar1;
@@ -436,7 +436,7 @@ int32_t * FUN_1806a74b0(int64_t param_1,int32_t *param_2,byte *param_3)
   uStack_20 = auStackX_20[0];
   puStack_30 = &rendering_buffer_2976_ptr;
   uStack_28 = uVar9;
-  FUN_1806a39a0(param_1,&puStack_30,1);
+  RenderingSystem_StateManager0(param_1,&puStack_30,1);
   uVar4 = auStackX_20[0];
   uStack_38 = uVar9;
   puVar10 = (uint64_t *)FUN_1806a45c0(param_1 + 0x10,&uStack_38,acStackX_18);
@@ -476,7 +476,7 @@ void FUN_1806a756c(void)
   (**(code **)(*plVar4 + 0x20))(plVar4,&stack0x00000078);
   plVar3 = (int64_t *)(**(code **)(*plVar3 + 0xc0))(plVar3);
   uVar5 = (**(code **)(*plVar3 + 0x28))(plVar3,in_stack_00000078);
-  FUN_1806a39a0();
+  RenderingSystem_StateManager0();
   uVar2 = in_stack_00000078;
   uStackX_20 = uVar5;
   puVar6 = (uint64_t *)FUN_1806a45c0(unaff_RDI + 0x10,&uStackX_20,&stack0x00000070);
@@ -524,7 +524,7 @@ void FUN_1806a763c(void)
   (**(code **)(*plVar4 + 0x20))(plVar4,&stack0x00000078);
   plVar3 = (int64_t *)(**(code **)(*plVar3 + 0xc0))(plVar3);
   uVar5 = (**(code **)(*plVar3 + 0x28))(plVar3,in_stack_00000078);
-  FUN_1806a39a0();
+  RenderingSystem_StateManager0();
   uVar2 = in_stack_00000078;
   uStackX_20 = uVar5;
   puVar6 = (uint64_t *)FUN_1806a45c0(unaff_RDI + 0x10,&uStackX_20,&stack0x00000070);
@@ -570,7 +570,7 @@ void FUN_1806a7680(uint64_t param_1,uint64_t param_2,int32_t *param_3,int32_t *p
   uStack_1c = param_5[1];
   uStack_18 = param_5[2];
   uStack_40 = param_2;
-  FUN_1806a39a0(uStack_18,&puStack_48,0x17);
+  RenderingSystem_StateManager0(uStack_18,&puStack_48,0x17);
   return;
 }
 

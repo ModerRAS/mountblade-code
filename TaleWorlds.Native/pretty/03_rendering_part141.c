@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_PointerManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 
 // 03_rendering_part141.c - 13 个函数
 
@@ -301,7 +310,7 @@ LAB_180351c06:
   }
   uVar28 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x140,0x10,3,uVar28);
   uVar28 = FUN_18014a1b0(uVar28);
-  FUN_180056f10((int64_t *)(param_1 + 0x90),uVar28);
+  SystemCore_PointerManager((int64_t *)(param_1 + 0x90),uVar28);
   plVar16 = *(int64_t **)(*(int64_t *)(param_1 + 0x90) + 0xb8);
   lVar14 = *(int64_t *)(render_system_data_memory + 0x28);
   plVar17 = (int64_t *)plVar16[1];
@@ -537,7 +546,7 @@ void FUN_180351d90(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_78,&puStack_d8);
   uStack_20 = 3;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -677,7 +686,7 @@ uint64_t * FUN_180351fb0(uint64_t *param_1,uint64_t param_2)
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xb8);
   }
@@ -705,7 +714,7 @@ void FUN_180352020(uint64_t *param_1)
   
   uStack_38 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &ui_system_data_1584_ptr;
   puVar3[0x13] = 0;
   puVar3[0x14] = 0;
@@ -726,7 +735,7 @@ void FUN_180352020(uint64_t *param_1)
   puVar2[3] = 0x6e6f4320;
   *(uint64_t *)(puVar2 + 4) = 0x746e6961727473;
   uStack_128 = 0x17;
-  FUN_1803460a0(param_1,&puStack_138,(int64_t)param_1 + 0x74,2);
+  SystemNetwork_Processor(param_1,&puStack_138,(int64_t)param_1 + 0x74,2);
   puStack_138 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager(puVar2);
@@ -793,7 +802,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_328);
   uStack_330 = 2;
   uStack_3a8 = 1;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -806,7 +815,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_2c8);
   uStack_330 = 3;
   uStack_3a8 = 2;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -819,7 +828,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_268);
   uStack_330 = 3;
   uStack_3a8 = 4;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -832,7 +841,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_208);
   uStack_330 = 0xb;
   uStack_3a8 = 8;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -845,7 +854,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_1a8);
   uStack_330 = 5;
   uStack_3a8 = 0x10;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -858,7 +867,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_148);
   uStack_330 = 5;
   uStack_3a8 = 0x20;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -871,7 +880,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_e8);
   uStack_330 = 0xb;
   uStack_3a8 = 0x40;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;
@@ -884,7 +893,7 @@ void FUN_1803525b0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_388,&puStack_88);
   uStack_330 = 0xb;
   uStack_3a8 = 0x80;
-  FUN_180180730(param_1,appuStack_3a0,apuStack_388);
+  MathOptimizationEngine0(param_1,appuStack_3a0,apuStack_388);
   uStack_3a8 = 0;
   appuStack_3a0[0] = apuStack_388;
   apuStack_388[0] = &system_state_ptr;

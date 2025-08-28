@@ -1,3 +1,9 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 /**
  * @file 01_initialization_part048.c
  * @brief 初始化系统资源管理和同步机制模块
@@ -529,7 +535,7 @@ int InitializationSystem_ParameterProcessor(int64_t param_1, int64_t *param_2)
     hash_table = (uint64_t*)(*resource_table + config_key);
     *hash_table = hash_value;
     hash_table[1] = 0;
-    FUN_18066c220(config_data + 0x20, &temp_stack, *(int32_t*)(config_data + 0x10), *(int32_t*)(config_data + 0x18),
+    RenderingShaderProcessor0(config_data + 0x20, &temp_stack, *(int32_t*)(config_data + 0x10), *(int32_t*)(config_data + 0x18),
                   1);
     if ((char)temp_stack != 0) {
         hash_value = hash_value % (uint64_t)temp_stack._4_4_;
@@ -634,7 +640,7 @@ uint64_t InitializationSystem_StateSynchronizer(int64_t param_1)
             if ((((state_context != 0) && (*(int64_t*)(*(StateContext*)(param_1 + 0x1b8) + 0x328 + resource_offset) == 0)) &&
                 ((*(uint*)(state_context + 0x328) & 0x20000000) == 0)) && (*(int64_t*)(state_context + 0x370) == 0)) {
                 if (*(int64_t*)(state_context + 0x1d8) == 0) {
-                    FUN_18023b050(state_context, 0);
+                    > HighFreq_RenderQueue1(state_context, 0);
                     system_base = system_main_module_state;
                     status_counter = (int*)(*(StateContext*)(resource_offset + *(int64_t*)(param_1 + 0x1b8)) + 0x3a8);
                     *status_counter = *status_counter + 1;
@@ -747,7 +753,7 @@ void InitializationSystem_ConfigManager(int64_t *param_1)
                 stack_control = 0;
                 config_info[0] = 0;
                 config_flag._0_4_ = (uint)config_flag & 0xffffff00;
-                FUN_18022f2e0(&data_pointer, param_1, 0);
+                > HighFreq_RenderPipeline1(&data_pointer, param_1, 0);
                 (**(code**)(*param_1 + 0x38))(param_1);
                 FUN_180237d00(&data_pointer);
                 FUN_18022f390(&data_pointer);
@@ -769,19 +775,19 @@ void InitializationSystem_ConfigManager(int64_t *param_1)
             stack_control = 0;
             config_info[0] = 0;
             config_flag._0_4_ = (uint)config_flag & 0xffffff00;
-            FUN_18022f2e0(&data_pointer, param_1, 0);
+            > HighFreq_RenderPipeline1(&data_pointer, param_1, 0);
             (**(code**)(*param_1 + 0x38))(param_1);
             FUN_180238950(&data_pointer);
             if (config_pointer != (uint64_t*)0x0) {
                 if (cleanup_flag_3 != 0) {
-                    FUN_180075b70(data_pointer);
+                    SystemConfig_Manager(data_pointer);
                 }
-                FUN_18007f6a0(&config_flag);
+                SystemSecurityManager(&config_flag);
                 if (cleanup_flag_1 != 0) {
-                    FUN_180079520(data_pointer);
+                    SystemInitializer(data_pointer);
                 }
                 if (cleanup_flag_2 != 0) {
-                    FUN_180079520(data_pointer);
+                    SystemInitializer(data_pointer);
                 }
                 config_data = config_pointer;
                 temp_buffer = config_pointer;

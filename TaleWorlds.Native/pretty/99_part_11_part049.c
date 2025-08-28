@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -25,7 +29,7 @@ void FUN_1807ad502(uint64_t param_1,int param_2)
   
   uVar9 = in_EAX + 4;
   *(int *)(unaff_RBP + -0x39) = param_2;
-  iVar4 = FUN_18076a440(param_1,param_2 + 8);
+  iVar4 = MathTrigonometryFunction0(param_1,param_2 + 8);
   if (iVar4 != 0) {
 LAB_1807ae26f:
                     // WARNING: Subroutine does not return
@@ -193,7 +197,7 @@ LAB_1807ad976:
           if (iVar4 != 0) goto LAB_1807ae26f;
           uVar5 = (uint)*(uint64_t *)(unaff_RBP + -0x31);
           if (8 < uVar5) {
-            FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),uVar5 - 8,1);
+            MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),uVar5 - 8,1);
           }
           iVar4 = *(int *)(unaff_RBP + -0x2d) * 0xc;
           if (*(uint *)((int64_t)*(int *)(unaff_RBX + 0x17c) * 0x128 + 0x100 +
@@ -252,7 +256,7 @@ LAB_1807ad976:
           iVar4 = SystemDataAnalyzer(uVar8,unaff_RBP + -0x19,1,uVar5,0);
           if ((iVar4 != 0) ||
              ((uVar1 < *(uint *)(unaff_RBP + -0x1d) &&
-              (iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),
+              (iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),
                                      *(uint *)(unaff_RBP + -0x1d) - 0x28,1), iVar4 != 0))))
           goto LAB_1807ae26f;
           sVar3 = *(short *)(unaff_RBP + -0xb);
@@ -360,7 +364,7 @@ LAB_1807adf11:
                          iVar4 != 0 &&
                          (iVar4 = func_0x00018076b6b0(unaff_RBP + -0x21,&processed_var_9724_ptr,4),
                          iVar4 != 0)))))))))) {
-              FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),*(int32_t *)(unaff_RBP + -0x1d),1)
+              MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),*(int32_t *)(unaff_RBP + -0x1d),1)
               ;
             }
           }
@@ -379,7 +383,7 @@ LAB_1807ae229:
     *(int *)(unaff_RBP + -0x39) = iVar4;
   }
   if (((unaff_R15D <= uVar9) || (uVar9 == 0)) ||
-     (iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),iVar4 + 8,0), iVar4 != 0))
+     (iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),iVar4 + 8,0), iVar4 != 0))
   goto LAB_1807ae26f;
   goto LAB_1807ad540;
 }
@@ -389,8 +393,8 @@ LAB_1807ae229:
 
 
 
-// 函数: void FUN_1807ae28f(void)
-void FUN_1807ae28f(void)
+// 函数: void NetworkSystem_ConnectionValidator(void)
+void NetworkSystem_ConnectionValidator(void)
 
 {
   int64_t unaff_RBP;
@@ -528,7 +532,7 @@ LAB_1807ae515:
       goto LAB_1807ae515;
     }
   }
-  uVar4 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),
+  uVar4 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),
                         *(int *)(lVar5 + 0xc + *(int64_t *)(param_1 + 8)) * param_3 +
                         *(int *)((int64_t)iVar2 * 0x128 + 0x100 + *(int64_t *)(param_1 + 400)),0);
   uVar6 = (uint)uVar4;

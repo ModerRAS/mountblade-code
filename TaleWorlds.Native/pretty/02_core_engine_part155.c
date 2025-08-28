@@ -562,13 +562,13 @@ void FUN_18013d010(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
   float fStack_14;
   int aiStack_10 [2];
   
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3208_ptr,&fStack_18,&fStack_14);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3208_ptr,&fStack_18,&fStack_14);
   if (iVar1 == 2) {
     *(float *)(param_3 + 0xc) = fStack_18;
     *(float *)(param_3 + 0x10) = fStack_14;
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3248_ptr,&fStack_18,&fStack_14);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3248_ptr,&fStack_18,&fStack_14);
   if (iVar1 == 2) {
     if (fStack_18 <= *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c)) {
       fStack_18 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c);
@@ -581,35 +581,35 @@ void FUN_18013d010(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
     *(float *)(param_3 + 0x18) = fVar2;
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3224_ptr,auStackX_18);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3224_ptr,auStackX_18);
   if (iVar1 == 1) {
     *(int32_t *)(param_3 + 0x24) = auStackX_18[0];
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3280_ptr,&fStack_18,&fStack_14);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3280_ptr,&fStack_18,&fStack_14);
   if (iVar1 == 2) {
     *(float *)(param_3 + 0x1c) = fStack_18;
     *(float *)(param_3 + 0x20) = fStack_14;
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3264_ptr,aiStack_10);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3264_ptr,aiStack_10);
   if (iVar1 == 1) {
     *(bool *)(param_3 + 0x32) = aiStack_10[0] != 0;
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3320_ptr,auStackX_18,aiStack_10);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3320_ptr,auStackX_18,aiStack_10);
   if (iVar1 == 2) {
     *(int32_t *)(param_3 + 0x28) = auStackX_18[0];
     *(int16_t *)(param_3 + 0x30) = (int16_t)aiStack_10[0];
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3304_ptr,auStackX_18);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3304_ptr,auStackX_18);
   if (iVar1 == 1) {
     *(int32_t *)(param_3 + 0x28) = auStackX_18[0];
     *(int16_t *)(param_3 + 0x30) = 0xffff;
     return;
   }
-  iVar1 = FUN_18010cbc0(param_4,&memory_allocator_3344_ptr,auStackX_18);
+  iVar1 = SystemCore_NetworkHandler(param_4,&memory_allocator_3344_ptr,auStackX_18);
   if (iVar1 == 1) {
     *(int32_t *)(param_3 + 0x2c) = auStackX_18[0];
   }

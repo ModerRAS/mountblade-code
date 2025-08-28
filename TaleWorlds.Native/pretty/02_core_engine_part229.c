@@ -457,7 +457,7 @@ void FUN_18019fc10(int64_t param_1,float *param_2,float *param_3,int param_4,int
             fStack_104 = fVar26;
             fStack_100 = fVar27;
             uStack_fc = uVar20;
-            FUN_18063b5f0(&fStack_228,&uStack_288);
+            SystemSecurityManager(&fStack_228,&uStack_288);
             fVar28 = *(float *)(lVar14 + 0x70);
             fVar1 = *(float *)(lVar14 + 0x74);
             fVar33 = *(float *)(lVar14 + 0x78);
@@ -522,7 +522,7 @@ void FUN_18019fc10(int64_t param_1,float *param_2,float *param_3,int param_4,int
             fStack_124 = fVar26;
             fStack_120 = fVar27;
             uStack_11c = uVar20;
-            FUN_180084760(&fStack_3c8,&fStack_388);
+            SystemCore_PerformanceMonitor(&fStack_3c8,&fStack_388);
             fStack_408 = fStack_328 * fStack_388 + fStack_324 * fStack_378 + fStack_320 * fStack_368
                          + fStack_358;
             fStack_404 = fStack_328 * fStack_384 + fStack_324 * fStack_374 + fStack_320 * fStack_364
@@ -548,7 +548,7 @@ void FUN_18019fc10(int64_t param_1,float *param_2,float *param_3,int param_4,int
             fStack_258 = fVar25;
             fStack_254 = fVar26;
             fStack_250 = fVar27;
-            pfVar15 = (float *)FUN_1801c0fb0(&fStack_268,auStack_1a8,&fStack_408);
+            pfVar15 = (float *)SystemFileHandler(&fStack_268,auStack_1a8,&fStack_408);
             lVar14 = lStack_438;
             fVar25 = fVar25 + *pfVar15;
             uStack_418 = CONCAT44(fVar26,fVar26 + pfVar15[1]);

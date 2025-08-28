@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 99_part_13_part008.c - 6 个函数
 
@@ -38,14 +44,14 @@ uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
   uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar6 == 0) {
     aiStack_58[0] = 0;
-    uVar4 = FUN_1808de650(param_1,aiStack_58);
+    uVar4 = SystemCore_EncryptionManager(param_1,aiStack_58);
     if (aiStack_58[0] < 0) {
       uVar6 = 0xd;
     }
     else {
       uVar9 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
       if ((aiStack_58[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar9) - uVar9)) ||
-         (uVar6 = FUN_180747f10(param_2,aiStack_58[0]), (int)uVar6 == 0)) {
+         (uVar6 = RenderingTextureManager0(param_2,aiStack_58[0]), (int)uVar6 == 0)) {
         if (uVar4 != 0x12) {
           if (uVar4 != 0) {
             return (uint64_t)uVar4;
@@ -133,7 +139,7 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
   uint64_t *in_stack_00000048;
   
   iStack0000000000000040 = 0;
-  uVar3 = FUN_1808de650(param_1,&stack0x00000040);
+  uVar3 = SystemCore_EncryptionManager(param_1,&stack0x00000040);
   if (iStack0000000000000040 < 0) {
     uVar5 = 0xd;
   }
@@ -141,7 +147,7 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
     uVar8 = (int)*(uint *)(unaff_RBP + 0xc) >> 0x1f;
     uVar10 = extraout_XMM0_Da;
     if ((iStack0000000000000040 <= (int)((*(uint *)(unaff_RBP + 0xc) ^ uVar8) - uVar8)) ||
-       (uVar5 = FUN_180747f10(extraout_XMM0_Da,iStack0000000000000040), uVar10 = extraout_XMM0_Da_00
+       (uVar5 = RenderingTextureManager0(extraout_XMM0_Da,iStack0000000000000040), uVar10 = extraout_XMM0_Da_00
        , (int)uVar5 == 0)) {
       if (uVar3 != 0x12) {
         if (uVar3 != 0) {
@@ -350,13 +356,13 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
   uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   aiStack_78[0] = (int)uVar6;
   if (aiStack_78[0] == 0) {
-    uVar4 = FUN_1808de650(param_1,aiStack_78);
+    uVar4 = SystemCore_EncryptionManager(param_1,aiStack_78);
     if (aiStack_78[0] < 0) {
       return 0xd;
     }
     uVar9 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
     if ((aiStack_78[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar9) - uVar9)) ||
-       (uVar6 = FUN_180747f10(param_2,aiStack_78[0]), (int)uVar6 == 0)) {
+       (uVar6 = RenderingTextureManager0(param_2,aiStack_78[0]), (int)uVar6 == 0)) {
       if (uVar4 != 0x12) {
         if (uVar4 != 0) {
           return (uint64_t)uVar4;
@@ -394,9 +400,9 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
             puVar7[7] = 0;
             puStack_70 = puVar7;
             iVar5 = DataFlowProcessor(param_1,auStack_68,0,0x56525543);
-            if ((iVar5 == 0) && (iVar5 = FUN_180899360(param_1,puVar7 + 2), iVar5 == 0)) {
+            if ((iVar5 == 0) && (iVar5 = SystemCore_ConfigManager(param_1,puVar7 + 2), iVar5 == 0)) {
               if (*(int *)(param_1[1] + 0x18) == 0) {
-                iVar5 = FUN_180899090(*param_1,puVar7 + 4);
+                iVar5 = UIEventHandler(*param_1,puVar7 + 4);
                 if ((iVar5 == 0) && (iVar5 = FUN_1808a4e60(param_1,puVar7 + 6,0), iVar5 == 0)) {
                     // WARNING: Subroutine does not return
                   AdvancedSystemManager(param_1,auStack_68);
@@ -454,14 +460,14 @@ uint64_t FUN_1808aa3d1(void)
   uint64_t *in_stack_00000048;
   
   iStack0000000000000040 = in_EAX;
-  uVar4 = FUN_1808de650();
+  uVar4 = SystemCore_EncryptionManager();
   if (iStack0000000000000040 < 0) {
     return 0xd;
   }
   uVar9 = (int)*(uint *)(unaff_R13 + 0xc) >> 0x1f;
   uVar11 = extraout_XMM0_Da;
   if (((int)((*(uint *)(unaff_R13 + 0xc) ^ uVar9) - uVar9) < iStack0000000000000040) &&
-     (uVar6 = FUN_180747f10(extraout_XMM0_Da,iStack0000000000000040), uVar11 = extraout_XMM0_Da_00,
+     (uVar6 = RenderingTextureManager0(extraout_XMM0_Da,iStack0000000000000040), uVar11 = extraout_XMM0_Da_00,
      (int)uVar6 != 0)) {
     return uVar6;
   }
@@ -504,10 +510,10 @@ uint64_t FUN_1808aa3d1(void)
         iVar5 = DataFlowProcessor(uVar11,&stack0x00000050,0,0x56525543);
         uVar11 = extraout_XMM0_Da_01;
         if ((iVar5 == 0) &&
-           (iVar5 = FUN_180899360(extraout_XMM0_Da_01,puVar7 + 2), uVar11 = extraout_XMM0_Da_02,
+           (iVar5 = SystemCore_ConfigManager(extraout_XMM0_Da_01,puVar7 + 2), uVar11 = extraout_XMM0_Da_02,
            iVar5 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-            iVar5 = FUN_180899090(*unaff_RDI,puVar7 + 4);
+            iVar5 = UIEventHandler(*unaff_RDI,puVar7 + 4);
             uVar11 = extraout_XMM0_Da_03;
             if ((iVar5 == 0) &&
                (iVar5 = FUN_1808a4e60(extraout_XMM0_Da_03,puVar7 + 6,0),
@@ -566,7 +572,7 @@ uint64_t FUN_1808aa407(int param_1)
   
   uVar8 = (int)*(uint *)(unaff_R13 + 0xc) >> 0x1f;
   if (((int)((*(uint *)(unaff_R13 + 0xc) ^ uVar8) - uVar8) < param_1) &&
-     (uVar5 = FUN_180747f10(in_XMM0_Da,param_1), in_XMM0_Da = extraout_XMM0_Da,
+     (uVar5 = RenderingTextureManager0(in_XMM0_Da,param_1), in_XMM0_Da = extraout_XMM0_Da,
      param_1 = in_stack_00000040, (int)uVar5 != 0)) {
     return uVar5;
   }
@@ -609,10 +615,10 @@ uint64_t FUN_1808aa407(int param_1)
         iVar4 = DataFlowProcessor(uVar10,&stack0x00000050,0,0x56525543);
         uVar10 = extraout_XMM0_Da_00;
         if ((iVar4 == 0) &&
-           (iVar4 = FUN_180899360(extraout_XMM0_Da_00,puVar6 + 2), uVar10 = extraout_XMM0_Da_01,
+           (iVar4 = SystemCore_ConfigManager(extraout_XMM0_Da_00,puVar6 + 2), uVar10 = extraout_XMM0_Da_01,
            iVar4 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-            iVar4 = FUN_180899090(*unaff_RDI,puVar6 + 4);
+            iVar4 = UIEventHandler(*unaff_RDI,puVar6 + 4);
             uVar10 = extraout_XMM0_Da_02;
             if ((iVar4 == 0) &&
                (iVar4 = FUN_1808a4e60(extraout_XMM0_Da_02,puVar6 + 6,0),
@@ -704,10 +710,10 @@ int FUN_1808aa42a(int32_t param_1)
         iVar4 = DataFlowProcessor(uVar8,&stack0x00000050,0,0x56525543);
         uVar8 = extraout_XMM0_Da;
         if ((iVar4 == 0) &&
-           (iVar4 = FUN_180899360(extraout_XMM0_Da,puVar5 + 2), uVar8 = extraout_XMM0_Da_00,
+           (iVar4 = SystemCore_ConfigManager(extraout_XMM0_Da,puVar5 + 2), uVar8 = extraout_XMM0_Da_00,
            iVar4 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-            iVar4 = FUN_180899090(*unaff_RDI,puVar5 + 4);
+            iVar4 = UIEventHandler(*unaff_RDI,puVar5 + 4);
             uVar8 = extraout_XMM0_Da_01;
             if ((iVar4 == 0) &&
                (iVar4 = FUN_1808a4e60(extraout_XMM0_Da_01,puVar5 + 6,0), uVar8 = extraout_XMM0_Da_02

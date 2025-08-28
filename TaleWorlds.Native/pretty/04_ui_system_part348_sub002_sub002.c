@@ -31,7 +31,7 @@ void * FUN_180857df0(void)
     SystemInitializer(&system_ptr_eaac);
     if (ui_system_memory == -1) {
       ui_system_memory = 0xffffffff;
-      FUN_1808fcb30(&system_ptr_eaac);
+      SystemCore_StateController(&system_ptr_eaac);
     }
   }
   return &system_ptr_eaa8;
@@ -149,7 +149,7 @@ LAB_180857f16:
       uVar12 = 1;
     }
   }
-  iVar8 = FUN_18085ab70(param_1);
+  iVar8 = UISystem_WidgetController(param_1);
   if (0 < iVar8) {
     uVar6 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     uVar10 = (int64_t)iVar8;
@@ -228,7 +228,7 @@ LAB_1808580a0:
       if ((*piStack_100 < ui_system_memory) && (SystemInitializer(&system_ptr_ea98), ui_system_memory == -1))
       {
         ui_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       uVar7 = (uint)uVar12;
       if (uVar7 <= ui_system_memory) {
@@ -384,7 +384,7 @@ LAB_1808580a0:
       if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
          (SystemInitializer(&system_ptr_ea98), ui_system_memory == -1)) {
         ui_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (ui_system_memory < uStack_158) {
         uVar9 = 0;
@@ -447,7 +447,7 @@ LAB_180859163:
         if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
            (SystemInitializer(&system_ptr_ea98), ui_system_memory == -1)) {
           ui_system_memory = uVar7;
-          FUN_1808fcb30(&system_ptr_ea98);
+          SystemCore_StateController(&system_ptr_ea98);
         }
         *(uint *)(param_1 + 0x148) = ui_system_memory;
         uVar7 = FUN_180855810(param_1,uVar26);
@@ -585,7 +585,7 @@ LAB_180858c20:
       if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
          (SystemInitializer(&system_ptr_ea98), ui_system_memory == -1)) {
         ui_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (*(uint *)(lVar15 + 0xa0) != ui_system_memory) {
         puVar14 = (int32_t *)MemoryCacheController0();
@@ -824,7 +824,7 @@ LAB_180858e04:
     if ((*(int *)(lStack_c0 + 0x48) < ui_system_memory) &&
        (SystemInitializer(&system_ptr_ea98), ui_system_memory == -1)) {
       ui_system_memory = 0;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
     uStack_15c = ui_system_memory;
     plVar24 = (int64_t *)(param_1 + 0x70);

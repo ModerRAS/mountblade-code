@@ -1,3 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -18,7 +27,7 @@ void FUN_180652b60(uint64_t param_1,int64_t *param_2)
   
   uStack_d10 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_de8;
-  FUN_180057110();
+  SystemCore_ConfigValidator();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
   if (iVar1 != 0) {
@@ -145,7 +154,7 @@ void FUN_18065340f(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -182,7 +191,7 @@ FUN_180653420(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
     *(int32_t *)(param_1 + 3) = uStack_10;
     return param_1;
   }
-  uVar3 = FUN_180628ca0();
+  uVar3 = MemoryDebugger0();
   CoreEngineDataTransformer(param_1,uVar3);
   return param_1;
 }
@@ -197,7 +206,7 @@ void FUN_180653530(uint64_t param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
-  FUN_180626ee0(&rendering_param16_ptr);
+  UtilitiesSystem_PerformanceMonitor(&rendering_param16_ptr);
 
 
 // 函数: void FUN_180653670(int64_t param_1,int64_t param_2)
@@ -316,13 +325,13 @@ void FUN_180653940(void)
   puStack_b8 = &system_state_ptr;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&processed_var_80_ptr,&system_data_dda8);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_80_ptr,&system_data_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
   plVar1[1] = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&memory_allocator_328_ptr);
+    UtilitiesSystem_PerformanceMonitor(&memory_allocator_328_ptr);
   }
   puStack_90 = &system_data_buffer_ptr;
   uStack_78 = 0;

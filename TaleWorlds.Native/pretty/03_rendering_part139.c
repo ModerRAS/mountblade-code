@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 
 // 03_rendering_part139.c - 8 个函数
 
@@ -19,7 +25,7 @@ void FUN_18034ef70(uint64_t *param_1)
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &processed_var_9296_ptr;
   plVar1 = puVar3 + 0xe;
   *plVar1 = (int64_t)&system_state_ptr;
@@ -44,7 +50,7 @@ void FUN_18034ef70(uint64_t *param_1)
   *puVar3 = 0x6d614e2068746150;
   *(int16_t *)(puVar3 + 1) = 0x65;
   uStack_88 = 9;
-  FUN_1803460a0(param_1,&puStack_98,plVar1,0,uVar4,plVar5);
+  SystemNetwork_Processor(param_1,&puStack_98,plVar1,0,uVar4,plVar5);
   puStack_98 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
@@ -74,7 +80,7 @@ uint64_t * FUN_18034f1f0(uint64_t *param_1,uint64_t param_2)
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
   param_1[0xe] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xa0);
   }
@@ -174,7 +180,7 @@ void FUN_18034f2c0(int64_t param_1)
     if (*(char *)(param_1 + 0x98) != '\0') {
       uStack_18 = CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da);
       uStack_40 = CONCAT44(unaff_XMM9_Dd,unaff_XMM9_Dc);
-      FUN_180085020(&uStack_148,&fStack_f8);
+      RenderingSystem_LightSystem(&uStack_148,&fStack_f8);
       fVar11 = fStack_b8 - *(float *)(lVar4 + 0x1b8);
       fVar10 = fStack_b4 - *(float *)(lVar4 + 0x1bc);
       fVar9 = fStack_b0 - *(float *)(lVar4 + 0x1c0);
@@ -230,7 +236,7 @@ void FUN_18034f2c0(int64_t param_1)
       fStack_110 = fStack_b0;
       uStack_10c = uStack_ac;
     }
-    FUN_1802ea790(*(uint64_t *)(param_1 + 0x18),&uStack_148);
+    NetworkProtocol_Transmitter(*(uint64_t *)(param_1 + 0x18),&uStack_148);
   }
   return;
 }
@@ -305,7 +311,7 @@ void FUN_18034f3a0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_148);
   uStack_150 = 0;
   uStack_1c8 = 1;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -318,7 +324,7 @@ void FUN_18034f3a0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_e8);
   uStack_150 = 3;
   uStack_1c8 = 2;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -331,7 +337,7 @@ void FUN_18034f3a0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_1a8,&puStack_88);
   uStack_150 = 3;
   uStack_1c8 = 4;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -450,7 +456,7 @@ void FUN_18034f660(int64_t param_1)
     fStack_110 = fStack_b0;
     uStack_10c = uStack_ac;
     if (*(char *)(param_1 + 0x98) != '\0') {
-      FUN_180085020(&uStack_148,&fStack_f8);
+      RenderingSystem_LightSystem(&uStack_148,&fStack_f8);
       fVar10 = fStack_b8 - *(float *)(lVar3 + 0x1b8);
       fVar9 = fStack_b4 - *(float *)(lVar3 + 0x1bc);
       fVar8 = fStack_b0 - *(float *)(lVar3 + 0x1c0);
@@ -506,7 +512,7 @@ void FUN_18034f660(int64_t param_1)
       fStack_110 = fStack_b0;
       uStack_10c = uStack_ac;
     }
-    FUN_1802ea790(*(uint64_t *)(param_1 + 0x18),&uStack_148);
+    NetworkProtocol_Transmitter(*(uint64_t *)(param_1 + 0x18),&uStack_148);
   }
   return;
 }
@@ -625,7 +631,7 @@ void FUN_18034f69c(void)
     in_stack_00000158 = unaff_XMM7_Dc;
     in_stack_00000160 = unaff_XMM6_Da;
     in_stack_00000168 = unaff_XMM6_Dc;
-    FUN_180085020(&stack0x00000030,unaff_RBP + -0x80);
+    RenderingSystem_LightSystem(&stack0x00000030,unaff_RBP + -0x80);
     fVar12 = fVar2 - *(float *)(unaff_RDI + 0x1b8);
     fVar11 = fVar3 - *(float *)(unaff_RDI + 0x1bc);
     fVar10 = fVar4 - *(float *)(unaff_RDI + 0x1c0);
@@ -684,7 +690,7 @@ void FUN_18034f69c(void)
     in_stack_00000068 = fVar4;
     uStack000000000000006c = uVar5;
   }
-  FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
+  NetworkProtocol_Transmitter(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
   return;
 }
 
@@ -802,7 +808,7 @@ void FUN_18034f6a9(void)
     in_stack_00000158 = unaff_XMM7_Dc;
     in_stack_00000160 = unaff_XMM6_Da;
     in_stack_00000168 = unaff_XMM6_Dc;
-    FUN_180085020(&stack0x00000030,unaff_RBP + -0x80);
+    RenderingSystem_LightSystem(&stack0x00000030,unaff_RBP + -0x80);
     fVar12 = fVar2 - *(float *)(unaff_RDI + 0x1b8);
     fVar11 = fVar3 - *(float *)(unaff_RDI + 0x1bc);
     fVar10 = fVar4 - *(float *)(unaff_RDI + 0x1c0);
@@ -861,7 +867,7 @@ void FUN_18034f6a9(void)
     in_stack_00000068 = fVar4;
     uStack000000000000006c = uVar5;
   }
-  FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
+  NetworkProtocol_Transmitter(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
   return;
 }
 

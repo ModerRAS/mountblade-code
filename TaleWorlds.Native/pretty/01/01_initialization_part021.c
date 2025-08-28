@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -112,7 +117,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   if ((resource_index < 0) ||
      (resource_offset = *(int64_t *)(*engine_context + 0x888),
      (uint64_t)(*(int64_t *)(*engine_context + 0x890) - resource_offset >> 5) <= (uint64_t)(int64_t)resource_index)) {
-    resource_offset = FUN_180628ca0();
+    resource_offset = MemoryDebugger0();
   }
   else {
     resource_offset = (int64_t)resource_index * 0x20 + resource_offset;
@@ -257,7 +262,7 @@ void process_shader_files(void)
       file_id = 0;
       if (file_count < 0) {
 LAB_file_processing_error:
-        file_offset = FUN_180628ca0();
+        file_offset = MemoryDebugger0();
       }
       else {
         file_offset = *(int64_t *)(*system_main_module_state + 0x888);
@@ -283,7 +288,7 @@ LAB_file_processing_error:
       }
       if (shader_index < 0) {
 LAB_path_processing_error:
-        file_offset = FUN_180628ca0();
+        file_offset = MemoryDebugger0();
       }
       else {
         file_offset = *(int64_t *)(*system_main_module_state + 0x8a8);
@@ -312,7 +317,7 @@ LAB_path_processing_error:
       *(uint64_t *)(file_content + content_size) = 0x6a624f656e656353;
       *(int8_t *)((int64_t)(file_content + content_size) + 8) = 0;
       content_size = file_count;
-      path_separator = FUN_180624a00(&shader_reader);
+      path_separator = UltraHighFreq_LogManager1(&shader_reader);
       if (path_separator == '\0') {
         file_writer = &system_data_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
@@ -343,9 +348,9 @@ LAB_path_processing_error:
           file_path = file_handle;
         }
         System_DataHandler(&file_buffer,&processed_var_6404_ptr,file_path);
-        path_separator = FUN_180624a00(&file_buffer);
+        path_separator = UltraHighFreq_LogManager1(&file_buffer);
         if (path_separator == '\0') {
-          FUN_180624910(&file_buffer);
+          SystemManager_Processor(&file_buffer);
         }
         engine_ptr = global_engine_ptr;
         file_count = (int)(file_offset >> 5);
@@ -409,7 +414,7 @@ LAB_path_processing_error:
               }
               total_files = strstr(file_path,&processed_var_6536_ptr);
               if (total_files != 0) goto LAB_shader_found;
-              path_separator = FUN_180624af0(&shader_output);
+              path_separator = RenderingSystem_RenderQueue(&shader_output);
               if (path_separator == '\0') {
                 shader_length = 0;
                 if (shader_input != (int8_t *)0x0) {
@@ -438,7 +443,7 @@ LAB_path_processing_error:
                 *(int16_t *)(file_size_ptr + 4) = 0x656e;
                 *(int8_t *)((int64_t)file_size_ptr + 0x12) = 0;
                 shader_length = 0x12;
-                path_separator = FUN_180624af0(&shader_output);
+                path_separator = RenderingSystem_RenderQueue(&shader_output);
                 if (path_separator != '\0') goto LAB_shader_processing;
                 shader_output = &system_data_buffer_ptr;
                 if (shader_input != (int8_t *)0x0) {
@@ -460,7 +465,7 @@ LAB_shader_processing:
                 }
                 shader_index = -1;
 LAB_shader_path_found:
-                FUN_180629a40(shader_data + (int64_t)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
+                NetworkSystem_ProtocolParser(shader_data + (int64_t)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
                 file_type = FUN_180054360(engine_ptr,&temp_buffer);
                 if (init_system_data_file != 0) {
                   FUN_18005c1c0(file_type,&resource_handle);
@@ -865,7 +870,7 @@ void finalize_initialization(void)
     }
     temp_value = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *global_ptr;
-    FUN_1801299b0(&processed_var_6880_ptr,0,0,unused_param,stack_guard);
+    CoreSystem_Validator(&processed_var_6880_ptr,0,0,unused_param,stack_guard);
     SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(config_data + 4));
     SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(config_data + 8));
     SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(config_data + 0xc));
@@ -883,7 +888,7 @@ void finalize_initialization(void)
     SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(config_data + 0x80));
     SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(config_data + 0x84));
     SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(config_data + 0x88));
-    FUN_18012cfe0();
+    RenderingSystem_MeshProcessor();
     SYSTEM_DATA_MANAGER_A = temp_value;
     lock_status = _Mtx_unlock(0x180c91970);
     if (lock_status != 0) {

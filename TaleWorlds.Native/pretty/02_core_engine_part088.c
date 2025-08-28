@@ -1,5 +1,17 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_LoggingSystem 
+
+n//  的语义化别名
+#define SystemCore_StateController 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 // 02_core_engine_part088.c - 5 个函数
 
@@ -57,7 +69,7 @@ void FUN_180113940(float *param_1,uint64_t param_2,float *param_3,uint64_t param
   *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar4 = *(int64_t *)(lVar6 + 0x1af8);
   if (*(char *)(lVar4 + 0xb4) != '\0') goto FUN_18011403f;
-  iVar9 = FUN_180121250(param_1,0,
+  iVar9 = SystemCore_HandleInput(param_1,0,
                         *(int32_t *)
                          (*(int64_t *)(lVar4 + 0x220) + -4 + (int64_t)*(int *)(lVar4 + 0x218) * 4)
                        );
@@ -86,7 +98,7 @@ void FUN_180113940(float *param_1,uint64_t param_2,float *param_3,uint64_t param
     pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,0xbf800000);
     pfStack_140 = param_1;
     pfStack_138 = pfVar12;
-    FUN_180297340(pfVar16,&fStack_e0,fVar20,0x7f7fffff);
+    SystemCore_StateController(pfVar16,&fStack_e0,fVar20,0x7f7fffff);
     fVar19 = fStack_e0;
     if (0.0 < fStack_e0) {
       fVar19 = fStack_e0 - fVar20 / *pfVar16;
@@ -108,7 +120,7 @@ void FUN_180113940(float *param_1,uint64_t param_2,float *param_3,uint64_t param
   fStack_f0 = fStack_100;
   fStack_ec = fStack_fc;
   fStack_e4 = fStack_f4;
-  cVar7 = FUN_180124190(&fStack_100,iVar9,&fStack_f0);
+  cVar7 = Memory_GarbageCollector(&fStack_100,iVar9,&fStack_f0);
   if (cVar7 == '\0') {
     fStack_dc = fStack_f4 - fStack_fc;
     fStack_e0 = fStack_f8 - fStack_100;
@@ -138,10 +150,10 @@ LAB_180113c0c:
       fStack_f4 = pfVar12[3] * *(float *)(lVar6 + 0x1628);
       uVar10 = func_0x000180121e20(&fStack_100);
       if (iVar9 == *(int *)(lVar6 + 0x1ca0)) {
-        FUN_1801230e0(&fStack_f0,1,lVar6);
+        UtilitiesSystem_Validator(&fStack_f0,1,lVar6);
       }
       pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,*(int32_t *)(lVar6 + 0x1664));
-      FUN_180122960(CONCAT44(fStack_ec,fStack_f0),CONCAT44(fStack_e4,fStack_e8),uVar10,1);
+      SystemCore_ResourceManager(CONCAT44(fStack_ec,fStack_f0),CONCAT44(fStack_e4,fStack_e8),uVar10,1);
       pfStack_120 = &fStack_100;
       uStack_118 = 4;
       uStack_128 = 0;
@@ -173,8 +185,8 @@ LAB_180113c0c:
       uVar10 = func_0x000180121e20(&fStack_e0);
       pfStack_140 = (float *)CONCAT44(pfStack_140._4_4_,0xf);
       pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,*(int32_t *)(lVar6 + 0x1698));
-      FUN_180293f50(*(uint64_t *)(lVar4 + 0x2e8),&fStack_100,&fStack_f8,uVar10);
-      iVar9 = FUN_180121200(&uStack_c8,0x40,&processed_var_8448_ptr,(double)*param_3);
+      MathInterpolationCalculator0(*(uint64_t *)(lVar4 + 0x2e8),&fStack_100,&fStack_f8,uVar10);
+      iVar9 = SystemCore_LoggingSystem(&uStack_c8,0x40,&processed_var_8448_ptr,(double)*param_3);
       lVar4 = SYSTEM_DATA_MANAGER_A;
       pfVar12 = (float *)((int64_t)&uStack_c8 + (int64_t)iVar9);
       fStack_e0 = 0.5;
@@ -195,7 +207,7 @@ LAB_180113c0c:
         uStack_130 = 0;
         pfStack_140 = (float *)0x0;
         pfStack_148 = pfVar16;
-        FUN_1801224c0(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_f0,
+        UtilitiesSystem_DataValidator(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_f0,
                       &fStack_e8,&uStack_c8);
         fVar20 = fStack_ec;
         lVar13 = SYSTEM_DATA_MANAGER_A;
@@ -242,7 +254,7 @@ LAB_180113c0c:
         }
       }
       if (0.0 < fVar19) {
-        FUN_180122320(CONCAT44(fVar20 + *(float *)(lVar6 + 0x1660),
+        SystemCore_ManageMemory(CONCAT44(fVar20 + *(float *)(lVar6 + 0x1660),
                                fStack_e8 + *(float *)(lVar6 + 0x1674)),param_1,0,1);
       }
       goto FUN_18011403f;
@@ -251,7 +263,7 @@ LAB_180113c0c:
   else {
     func_0x000180123e90(iVar9,lVar4);
     FUN_180123f30();
-    FUN_18012d2e0(lVar4);
+    SystemCore_DataCompressor(lVar4);
     *(int32_t *)(lVar6 + 0x1b44) = 0xc;
     if ((cVar7 == '\0') &&
        ((*(char *)(lVar6 + 0x134) == '\0' && (*(int *)(lVar6 + 0x1cb0) != iVar9))))
@@ -322,7 +334,7 @@ void FUN_1801139a9(int64_t param_1,uint64_t param_2)
   
   uVar11 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   uVar25 = (int32_t)((uint64_t)unaff_R12 >> 0x20);
-  iVar9 = FUN_180121250(in_XMM0_Da,param_2,*(int32_t *)(in_RAX + -4 + param_1 * 4));
+  iVar9 = SystemCore_HandleInput(in_XMM0_Da,param_2,*(int32_t *)(in_RAX + -4 + param_1 * 4));
   if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
     *(int *)(unaff_RSI + 0x1b34) = iVar9;
   }
@@ -344,7 +356,7 @@ void FUN_1801139a9(int64_t param_1,uint64_t param_2)
   }
   else {
     uVar24 = CONCAT44(uVar11,0xbf800000);
-    FUN_180297340(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
+    SystemCore_StateController(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
     uVar11 = (int32_t)((uint64_t)uVar24 >> 0x20);
     fVar22 = *(float *)(unaff_RBP + -0x78);
     if (0.0 < fVar22) {
@@ -368,7 +380,7 @@ void FUN_1801139a9(int64_t param_1,uint64_t param_2)
   in_stack_00000070 = in_stack_00000070 + fVar21 + in_stack_00000068;
   in_stack_00000078 = in_stack_00000068;
   fStack000000000000007c = fStack000000000000006c;
-  cVar7 = FUN_180124190(&stack0x00000068,iVar9,&stack0x00000078);
+  cVar7 = Memory_GarbageCollector(&stack0x00000068,iVar9,&stack0x00000078);
   if (cVar7 == '\0') {
     *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
     uVar25 = *(int32_t *)(unaff_RSI + 0x1660);
@@ -400,9 +412,9 @@ LAB_180113c0c:
       fStack0000000000000074 = (float)puVar3[3] * *(float *)(unaff_RSI + 0x1628);
       uVar10 = func_0x000180121e20(&stack0x00000068);
       if (iVar9 == *(int *)(unaff_RSI + 0x1ca0)) {
-        FUN_1801230e0(&stack0x00000078,1);
+        UtilitiesSystem_Validator(&stack0x00000078,1);
       }
-      FUN_180122960(CONCAT44(fStack000000000000007c,in_stack_00000078),
+      SystemCore_ResourceManager(CONCAT44(fStack000000000000007c,in_stack_00000078),
                     *(uint64_t *)(unaff_RBP + -0x80),uVar10,1,
                     CONCAT44(uVar11,*(int32_t *)(unaff_RSI + 0x1664)));
       in_stack_00000068 = 3.4028235e+38;
@@ -431,9 +443,9 @@ LAB_180113c0c:
       *(float *)(unaff_RBP + -0x6c) = fVar21;
       *(float *)(unaff_RBP + -0x6c) = fVar21 * *(float *)(lVar14 + 0x1628);
       uVar11 = func_0x000180121e20(unaff_RBP + -0x78);
-      FUN_180293f50(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
+      MathInterpolationCalculator0(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
                     CONCAT44(uVar25,*(int32_t *)(unaff_RSI + 0x1698)));
-      iVar9 = FUN_180121200(unaff_RBP + -0x60,0x40,&processed_var_8448_ptr,(double)*unaff_R15);
+      iVar9 = SystemCore_LoggingSystem(unaff_RBP + -0x60,0x40,&processed_var_8448_ptr,(double)*unaff_R15);
       pcVar13 = (char *)(unaff_RBP + -0x60 + (int64_t)iVar9);
       *(int32_t *)(unaff_RBP + -0x78) = 0x3f000000;
       *(int32_t *)(unaff_RBP + -0x74) = 0x3f000000;
@@ -451,7 +463,7 @@ LAB_180113c0c:
       fVar21 = fStack000000000000007c;
       if (((int)pcVar18 != (int)unaff_RBP + -0x60) &&
          (pcVar13 = pcVar18,
-         FUN_1801224c0(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),
+         UtilitiesSystem_DataValidator(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),
                        &stack0x00000078,unaff_RBP + -0x80,unaff_RBP + -0x60,pcVar18),
          fVar21 = fStack000000000000007c, lVar16 = SYSTEM_DATA_MANAGER_A,
          *(char *)(lVar14 + 0x2e38) != '\0')) {
@@ -496,7 +508,7 @@ LAB_180113c0c:
         }
       }
       if (0.0 < fVar22) {
-        FUN_180122320(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
+        SystemCore_ManageMemory(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
                                *(float *)(unaff_RBP + -0x80) + *(float *)(unaff_RSI + 0x1674)));
       }
       goto LAB_180114015;
@@ -505,7 +517,7 @@ LAB_180113c0c:
   else {
     func_0x000180123e90(iVar9);
     FUN_180123f30();
-    FUN_18012d2e0();
+    SystemCore_DataCompressor();
     *(int32_t *)(unaff_RSI + 0x1b44) = 0xc;
     if ((cVar7 == '\0') &&
        ((*(char *)(unaff_RSI + 0x134) == '\0' && (*(int *)(unaff_RSI + 0x1cb0) != iVar9))))
@@ -572,7 +584,7 @@ void FUN_1801139c9(void)
   
   uVar11 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   uVar25 = (int32_t)((uint64_t)unaff_R12 >> 0x20);
-  iVar9 = FUN_180121250();
+  iVar9 = SystemCore_HandleInput();
   if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
     *(int *)(unaff_RSI + 0x1b34) = iVar9;
   }
@@ -594,7 +606,7 @@ void FUN_1801139c9(void)
   }
   else {
     uVar24 = CONCAT44(uVar11,0xbf800000);
-    FUN_180297340(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
+    SystemCore_StateController(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
     uVar11 = (int32_t)((uint64_t)uVar24 >> 0x20);
     fVar22 = *(float *)(unaff_RBP + -0x78);
     if (0.0 < fVar22) {
@@ -618,7 +630,7 @@ void FUN_1801139c9(void)
   in_stack_00000070 = in_stack_00000070 + fVar21 + in_stack_00000068;
   in_stack_00000078 = in_stack_00000068;
   fStack000000000000007c = fStack000000000000006c;
-  cVar7 = FUN_180124190(&stack0x00000068,iVar9,&stack0x00000078);
+  cVar7 = Memory_GarbageCollector(&stack0x00000068,iVar9,&stack0x00000078);
   if (cVar7 == '\0') {
     *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
     uVar25 = *(int32_t *)(unaff_RSI + 0x1660);
@@ -650,9 +662,9 @@ LAB_180113c0c:
       fStack0000000000000074 = (float)puVar3[3] * *(float *)(unaff_RSI + 0x1628);
       uVar10 = func_0x000180121e20(&stack0x00000068);
       if (iVar9 == *(int *)(unaff_RSI + 0x1ca0)) {
-        FUN_1801230e0(&stack0x00000078,1);
+        UtilitiesSystem_Validator(&stack0x00000078,1);
       }
-      FUN_180122960(CONCAT44(fStack000000000000007c,in_stack_00000078),
+      SystemCore_ResourceManager(CONCAT44(fStack000000000000007c,in_stack_00000078),
                     *(uint64_t *)(unaff_RBP + -0x80),uVar10,1,
                     CONCAT44(uVar11,*(int32_t *)(unaff_RSI + 0x1664)));
       in_stack_00000068 = 3.4028235e+38;
@@ -681,9 +693,9 @@ LAB_180113c0c:
       *(float *)(unaff_RBP + -0x6c) = fVar21;
       *(float *)(unaff_RBP + -0x6c) = fVar21 * *(float *)(lVar14 + 0x1628);
       uVar11 = func_0x000180121e20(unaff_RBP + -0x78);
-      FUN_180293f50(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
+      MathInterpolationCalculator0(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
                     CONCAT44(uVar25,*(int32_t *)(unaff_RSI + 0x1698)));
-      iVar9 = FUN_180121200(unaff_RBP + -0x60,0x40,&processed_var_8448_ptr,(double)*unaff_R15);
+      iVar9 = SystemCore_LoggingSystem(unaff_RBP + -0x60,0x40,&processed_var_8448_ptr,(double)*unaff_R15);
       pcVar13 = (char *)(unaff_RBP + -0x60 + (int64_t)iVar9);
       *(int32_t *)(unaff_RBP + -0x78) = 0x3f000000;
       *(int32_t *)(unaff_RBP + -0x74) = 0x3f000000;
@@ -701,7 +713,7 @@ LAB_180113c0c:
       fVar21 = fStack000000000000007c;
       if (((int)pcVar18 != (int)unaff_RBP + -0x60) &&
          (pcVar13 = pcVar18,
-         FUN_1801224c0(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),
+         UtilitiesSystem_DataValidator(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),
                        &stack0x00000078,unaff_RBP + -0x80,unaff_RBP + -0x60,pcVar18),
          fVar21 = fStack000000000000007c, lVar16 = SYSTEM_DATA_MANAGER_A,
          *(char *)(lVar14 + 0x2e38) != '\0')) {
@@ -746,7 +758,7 @@ LAB_180113c0c:
         }
       }
       if (0.0 < fVar22) {
-        FUN_180122320(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
+        SystemCore_ManageMemory(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
                                *(float *)(unaff_RBP + -0x80) + *(float *)(unaff_RSI + 0x1674)));
       }
       goto LAB_180114015;
@@ -755,7 +767,7 @@ LAB_180113c0c:
   else {
     func_0x000180123e90(iVar9);
     FUN_180123f30();
-    FUN_18012d2e0();
+    SystemCore_DataCompressor();
     *(int32_t *)(unaff_RSI + 0x1b44) = 0xc;
     if ((cVar7 == '\0') &&
        ((*(char *)(unaff_RSI + 0x134) == '\0' && (*(int *)(unaff_RSI + 0x1cb0) != iVar9))))

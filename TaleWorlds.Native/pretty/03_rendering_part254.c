@@ -271,7 +271,7 @@ LAB_18040dd37:
           uStack_f8 = *(uint64_t *)pfVar6;
           fVar31 = pfVar6[2];
           uStack_f0 = *(uint64_t *)(pfVar6 + 2);
-          pfVar6 = (float *)FUN_1801c0fb0(&uStack_108,&fStack_198,&uStack_118);
+          pfVar6 = (float *)SystemFileHandler(&uStack_108,&fStack_198,&uStack_118);
           fStack_1a0 = fVar31 + pfVar6[2];
           fStack_1a4 = fVar29 + pfVar6[1];
           fStack_1a8 = fVar28 + *pfVar6;
@@ -329,7 +329,7 @@ LAB_18040dd37:
           uStack_f8 = *(uint64_t *)pfVar6;
           fVar31 = pfVar6[2];
           uStack_f0 = *(uint64_t *)(pfVar6 + 2);
-          pfVar6 = (float *)FUN_1801c0fb0(&uStack_108,&fStack_198,&uStack_118);
+          pfVar6 = (float *)SystemFileHandler(&uStack_108,&fStack_198,&uStack_118);
           fStack_1a0 = fVar31 + pfVar6[2];
           fStack_1a4 = fVar29 + pfVar6[1];
           fStack_1a8 = fVar28 + *pfVar6;

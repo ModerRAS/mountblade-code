@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part329.c - 14 个函数
 
@@ -31,7 +36,7 @@ void FUN_18043e9b0(int64_t param_1)
   int64_t lVar10;
   int iVar11;
   
-  FUN_1802ed990(param_1,1);
+  PhysicsSystem_CharacterController(param_1,1);
   plVar5 = (int64_t *)(param_1 + 0xf0);
   uVar6 = 0;
   uVar9 = uVar6;
@@ -44,8 +49,8 @@ void FUN_18043e9b0(int64_t param_1)
     } while ((uint64_t)(int64_t)(int)uVar7 <
              (uint64_t)(*(int64_t *)(param_1 + 0xf8) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(param_1 + 0x1e0);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(param_1 + 0x1e0);
   lVar2 = *(int64_t *)(param_1 + 0x260);
   if (lVar2 == 0) {
     return;
@@ -60,8 +65,8 @@ void FUN_18043e9b0(int64_t param_1)
       iVar4 = iVar4 + 1;
     } while ((uint64_t)(int64_t)iVar4 < (uint64_t)(*(int64_t *)(lVar2 + 0x1b0) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(lVar2 + 0x1c8);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(lVar2 + 0x1c8);
   iVar4 = 0;
   if ('\0' < *(char *)(lVar2 + 0x20)) {
     lVar8 = 0;
@@ -136,7 +141,7 @@ void FUN_18043e9b4(int64_t param_1)
   int64_t lVar10;
   int iVar11;
   
-  FUN_1802ed990(param_1,1);
+  PhysicsSystem_CharacterController(param_1,1);
   plVar5 = (int64_t *)(param_1 + 0xf0);
   uVar6 = 0;
   uVar9 = uVar6;
@@ -149,8 +154,8 @@ void FUN_18043e9b4(int64_t param_1)
     } while ((uint64_t)(int64_t)(int)uVar7 <
              (uint64_t)(*(int64_t *)(param_1 + 0xf8) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(param_1 + 0x1e0);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(param_1 + 0x1e0);
   lVar2 = *(int64_t *)(param_1 + 0x260);
   if (lVar2 == 0) {
     return;
@@ -165,8 +170,8 @@ void FUN_18043e9b4(int64_t param_1)
       iVar4 = iVar4 + 1;
     } while ((uint64_t)(int64_t)iVar4 < (uint64_t)(*(int64_t *)(lVar2 + 0x1b0) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(lVar2 + 0x1c8);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(lVar2 + 0x1c8);
   iVar4 = 0;
   if ('\0' < *(char *)(lVar2 + 0x20)) {
     lVar8 = 0;
@@ -249,8 +254,8 @@ void FUN_18043e9e6(void)
     uVar6 = uVar6 + 8;
     unaff_EDI = unaff_EDI + 1;
   } while ((uint64_t)(int64_t)(int)unaff_EDI < (uint64_t)(unaff_RBX[1] - *unaff_RBX >> 3));
-  FUN_1800b8500();
-  FUN_1800b8500(unaff_RBP + 0x1e0);
+  SystemCore_Controller();
+  SystemCore_Controller(unaff_RBP + 0x1e0);
   lVar2 = *(int64_t *)(unaff_RBP + 0x260);
   if (lVar2 == 0) {
     return;
@@ -265,8 +270,8 @@ void FUN_18043e9e6(void)
       iVar4 = iVar4 + 1;
     } while ((uint64_t)(int64_t)iVar4 < (uint64_t)(*(int64_t *)(lVar2 + 0x1b0) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(lVar2 + 0x1c8);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(lVar2 + 0x1c8);
   iVar4 = 0;
   if ('\0' < *(char *)(lVar2 + 0x20)) {
     lVar7 = 0;
@@ -339,8 +344,8 @@ void FUN_18043ea20(void)
   int64_t lVar7;
   int iVar8;
   
-  FUN_1800b8500();
-  FUN_1800b8500(unaff_RBP + 0x1e0);
+  SystemCore_Controller();
+  SystemCore_Controller(unaff_RBP + 0x1e0);
   lVar2 = *(int64_t *)(unaff_RBP + 0x260);
   if (lVar2 == 0) {
     return;
@@ -355,8 +360,8 @@ void FUN_18043ea20(void)
       iVar4 = iVar4 + 1;
     } while ((uint64_t)(int64_t)iVar4 < (uint64_t)(*(int64_t *)(lVar2 + 0x1b0) - *plVar5 >> 3));
   }
-  FUN_1800b8500(plVar5);
-  FUN_1800b8500(lVar2 + 0x1c8);
+  SystemCore_Controller(plVar5);
+  SystemCore_Controller(lVar2 + 0x1c8);
   iVar4 = 0;
   if ('\0' < *(char *)(lVar2 + 0x20)) {
     lVar6 = 0;
@@ -438,8 +443,8 @@ void FUN_18043ea4f(int64_t param_1)
     } while ((uint64_t)(int64_t)iVar3 < (uint64_t)(*(int64_t *)(param_1 + 0x1b0) - *plVar4 >> 3)
             );
   }
-  FUN_1800b8500(plVar4);
-  FUN_1800b8500(param_1 + 0x1c8);
+  SystemCore_Controller(plVar4);
+  SystemCore_Controller(param_1 + 0x1c8);
   iVar3 = 0;
   if ('\0' < *(char *)(param_1 + 0x20)) {
     lVar5 = 0;
@@ -657,14 +662,14 @@ void FUN_18043ecc0(int64_t param_1)
         FUN_1802e7e20();
       }
       else {
-        FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
+        UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
                       param_1 + 0x70);
       }
       *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
     }
     return;
   }
-  FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
+  UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
   *(int16_t *)(param_1 + 0x2b6) = *(int16_t *)(param_1 + 0x2b2);
   return;
 }
@@ -897,7 +902,7 @@ void FUN_18043ef90(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   void *puStack_28;
   
   uVar3 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  SystemCore_CacheManager(&puStack_30);
   pcVar1 = *(code **)(*(int64_t *)(param_1 + 0x288) + 0x10);
   puVar2 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
@@ -1000,7 +1005,7 @@ LAB_18043f16d:
           plVar9 = *(int64_t **)(lVar3 + (int64_t)(int)plVar7 * 8);
           if (plVar9 != (int64_t *)0x0) {
             (**(code **)(*plVar9 + 0x28))(plVar9);
-            uVar6 = FUN_180627910(auStack_40,param_3);
+            uVar6 = SystemCore_CacheManager(auStack_40,param_3);
             plVar7 = (int64_t *)FUN_1803543b0(param_1,uVar6,0,0);
             if (plVar7 != (int64_t *)0x0) {
               (**(code **)(*plVar7 + 0x28))(plVar7);

@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -63,7 +69,7 @@ void FUN_1805d6382(void)
     }
     pcVar5 = (char *)FUN_1805b73f0(unaff_RBX + 1);
     if (((*pcVar5 == cVar11) && (pfVar6 = (float *)FUN_1805b7450(unaff_RBX + 1), *pfVar6 == 0.0)) &&
-       (pfVar6 = (float *)FUN_1805b6e50(unaff_RBX + 1), 2.0 < *pfVar6)) {
+       (pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1), 2.0 < *pfVar6)) {
       cVar2 = func_0x0001805b7d30();
       if (((cVar2 == '\0') && (cVar2 = func_0x0001805b7cd0(), cVar2 == '\0')) &&
          ((pcVar5 = (char *)FUN_1805b7080(unaff_RBX + 1), *pcVar5 == cVar11 &&
@@ -176,7 +182,7 @@ void FUN_1805d6396(void)
     if (*pcVar5 == cVar11) {
       pfVar6 = (float *)FUN_1805b7450(unaff_RBX + 1);
       if (*pfVar6 == 0.0) {
-        pfVar6 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+        pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
         if (2.0 < *pfVar6) {
           cVar2 = func_0x0001805b7d30();
           if (cVar2 == '\0') {
@@ -407,7 +413,7 @@ LAB_1805d7cdc:
     } while ((int64_t)uVar6 < (int64_t)*(int *)(lVar11 + 0x70));
   }
 LAB_1805d7d58:
-  iVar2 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),iVar8
+  iVar2 = SystemCacheManager(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),iVar8
                        );
   iVar2 = *(int *)(system_system_config + (int64_t)iVar2 * 4);
   if (iVar2 != -1) {

@@ -1,3 +1,14 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_EventHandler - RenderingSystem_DataBlockCopier */
+#define RenderingSystem_DataBlockCopier SystemCore_EventHandler
+
+
+/* NetworkSystem_ProtocolParser - RenderingSystem_StringParser */
+#define RenderingSystem_StringParser NetworkSystem_ProtocolParser
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -779,7 +790,7 @@ void FUN_180046ca0(int64_t *param_1,uint64_t *param_2)
   FUN_180047fc0();
   plVar1 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,uVar2,uVar3);
   plStackX_8 = plVar1;
-  FUN_180049830(plVar1);
+  UltraHighFreq_PerformanceMonitor1(plVar1);
   *plVar1 = (int64_t)&system_param5_ptr;
   plVar1[0x18] = (int64_t)&system_memory_ptr;
   plStackX_18 = plVar1;
@@ -890,7 +901,7 @@ void FUN_180046e20(void)
   *(int8_t *)(core_system_data_memory + 0x39) = 1;
   ppplVar4 = (int64_t ***)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   ppplStack_590 = ppplVar4;
-  FUN_180049830(ppplVar4);
+  UltraHighFreq_PerformanceMonitor1(ppplVar4);
   *ppplVar4 = (int64_t **)&system_param5_ptr;
   ppplVar4[0x18] = (int64_t **)&system_param7_ptr;
   pplStack_4f0 = (int64_t **)ppplVar4;
@@ -906,14 +917,14 @@ void FUN_180046e20(void)
   CoreEngineDataTransformer(&lStack_678,&system_data_52c0);
   if (iStack_668 == 0) {
     (**(code **)(lStack_678 + 0x10))(&lStack_678,&system_param1_ptr);
-    cVar2 = FUN_180624a00(&lStack_678);
+    cVar2 = UltraHighFreq_LogManager1(&lStack_678);
     if (cVar2 == '\0') {
-      FUN_180624910(&lStack_678);
+      SystemManager_Processor(&lStack_678);
     }
   }
-  cVar2 = FUN_180624a00(&lStack_678);
+  cVar2 = UltraHighFreq_LogManager1(&lStack_678);
   if (cVar2 == '\0') {
-    FUN_180624910(&lStack_678);
+    SystemManager_Processor(&lStack_678);
   }
   puStack_4e8 = &system_param6_ptr;
   puStack_4e0 = auStack_4d0;
@@ -961,7 +972,7 @@ void FUN_180046e20(void)
   puStack_308 = &system_state_ptr;
   uVar5 = FUN_180623ce0();
   if (0 < core_system_control_memory) {
-    FUN_180629a40(&system_data_52c0,&puStack_558,0,core_system_control_memory + -1);
+    RenderingSystem_StringParser(&system_data_52c0,&puStack_558,0,core_system_control_memory + -1);
     iStack_548 = iStack_548 + -1;
     lVar6 = (int64_t)iStack_548;
     iVar3 = -1;
@@ -974,7 +985,7 @@ void FUN_180046e20(void)
         iVar3 = -1;
       } while (-1 < lVar6);
     }
-    FUN_180629a40(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
+    RenderingSystem_StringParser(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
     iVar3 = FUN_180046b80(&system_data_5240,&puStack_538);
     if (iVar3 == -1) {
       iVar3 = FUN_180046890(&system_data_5240,&puStack_538);
@@ -985,7 +996,7 @@ void FUN_180046e20(void)
     puStack_508 = &system_param4_ptr;
     pcStack_500 = FUN_1800adba0;
     appplStack_518[0] = (int64_t ***)&ppplStack_590;
-    FUN_18005c650(appplStack_518);
+    SystemCore_SecurityManager(appplStack_518);
     *(double *)(lVar6 + 0xa0 + core_system_control_memory) = (double)(1.0 / fVar12);
     *(double *)(lVar6 + 0xb8 + core_system_control_memory) = (double)(1.0 / fVar11);
     *(int *)(lVar6 + 0xb0 + core_system_control_memory) = (int)(int64_t)core_system_control_memory;
@@ -1028,7 +1039,7 @@ void FUN_180046e20(void)
     }
     uStack_600 = uStack_600 & 0xffffffff;
   }
-  FUN_18062c1e0(&lStack_678,1);
+  ResourceManager_Allocate(&lStack_678,1);
   iVar3 = uStack_608 + 0x11;
   CoreEngineDataBufferProcessor(&puStack_618,iVar3);
   puVar8 = (int32_t *)(puStack_610 + uStack_608);
@@ -1045,7 +1056,7 @@ void FUN_180046e20(void)
   }
   *puVar7 = 0;
   *(int8_t *)(puVar7 + 2) = 0;
-  FUN_18062dee0(puVar7,puVar9,&system_data_c7ec);
+  SystemCore_Validator(puVar7,puVar9,&system_data_c7ec);
   FUN_1800ae730(SYSTEM_STATE_MANAGER,puVar7);
   if (puVar7[1] != 0) {
     fclose();
@@ -1073,7 +1084,7 @@ FUN_180047d40(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 {
   *param_1 = *param_2;
   *(int32_t *)(param_1 + 1) = *(int32_t *)(param_2 + 1);
-  FUN_180049b30(param_1 + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_DataBlockCopier(param_1 + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x15) = *(int32_t *)(param_2 + 0x15);
   *(int32_t *)((int64_t)param_1 + 0xac) = *(int32_t *)((int64_t)param_2 + 0xac);
   param_1[0x16] = param_2[0x16];

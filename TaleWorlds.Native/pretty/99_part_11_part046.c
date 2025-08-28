@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -72,7 +76,7 @@ void FUN_1807ac340(int64_t param_1)
       *(uint64_t **)(param_1 + 8) = (uint64_t *)(param_1 + 0x1b0);
       iVar6 = (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x10))
                         (*(int64_t **)(param_1 + 0x170),param_1 + 0x1c4);
-      if ((iVar6 == 0) && (iVar6 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 == 0))
+      if ((iVar6 == 0) && (iVar6 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 == 0))
       {
         puVar1 = (uint64_t *)(param_1 + 0x178);
         iVar6 = (*system_system_memory)(0,0,puVar1);
@@ -98,7 +102,7 @@ void FUN_1807ac340(int64_t param_1)
               (**(code **)(*(int64_t *)*puVar1 + 0x10))();
               iVar6 = (*system_system_memory)(0,0,puVar1);
               if ((iVar6 < 0) ||
-                 (iVar6 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 != 0))
+                 (iVar6 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 != 0))
               goto FUN_1807ac5e4;
               iVar6 = (**(code **)(*(int64_t *)*puVar1 + 0xb8))
                                 ((int64_t *)*puVar1,*(uint64_t *)(param_1 + 0x180));
@@ -320,7 +324,7 @@ void FUN_1807ac3e3(void)
       iVar6 = (**(code **)(**(int64_t **)(unaff_RDI + 0x170) + 0x10))
                         (*(int64_t **)(unaff_RDI + 0x170),unaff_RDI + 0x1c4);
       if ((iVar6 == 0) &&
-         (iVar6 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 == 0)) {
+         (iVar6 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 == 0)) {
         puVar1 = (uint64_t *)(unaff_RDI + 0x178);
         iVar6 = (*system_system_memory)(0,0,puVar1);
         if (-1 < iVar6) {
@@ -345,7 +349,7 @@ void FUN_1807ac3e3(void)
               (**(code **)(*(int64_t *)*puVar1 + 0x10))();
               iVar6 = (*system_system_memory)(0,0,puVar1);
               if ((iVar6 < 0) ||
-                 (iVar6 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 != 0))
+                 (iVar6 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 != 0))
               goto LAB_1807ac5c4;
               iVar6 = (**(code **)(*(int64_t *)*puVar1 + 0xb8))
                                 ((int64_t *)*puVar1,*(uint64_t *)(unaff_RDI + 0x180));

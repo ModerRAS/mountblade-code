@@ -52,7 +52,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2150) = auStack_158[0];
@@ -73,7 +73,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x2180) = auStack_158[0];
   uStack_148 = 0;
@@ -95,7 +95,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2158) = auStack_158[0];
@@ -116,7 +116,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x2160) = auStack_158[0];
   uStack_148 = 0;
@@ -139,7 +139,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2168) = auStack_158[0];
@@ -160,7 +160,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2170) = auStack_158[0];
@@ -181,7 +181,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2178) = auStack_158[0];
@@ -202,7 +202,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2188) = auStack_158[0];
@@ -223,7 +223,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   lVar9 = 8;
   *(uint64_t *)(param_1 + 0x2190) = auStack_158[0];
@@ -244,7 +244,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x2198) = auStack_158[0];
   uStack_148 = 0x100000000;
@@ -275,7 +275,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x21a0) = auStack_158[0];
   uStack_148 = 0x100000000;
@@ -305,7 +305,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x21a8) = auStack_158[0];
   puVar8 = auStack_140 + 3;
@@ -325,7 +325,7 @@ void FUN_1800acb60(int64_t param_1)
   iVar3 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0xa0))
                     (*(int64_t **)(param_1 + 0x1d78),&uStack_148,auStack_158);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&processed_var_6160_ptr);
+    SystemCore_Loader(iVar3,&processed_var_6160_ptr);
   }
   *(uint64_t *)(param_1 + 0x21b0) = auStack_158[0];
                     // WARNING: Subroutine does not return
@@ -451,7 +451,7 @@ void FUN_1800ad2a0(int64_t param_1)
             iVar2 = (**(code **)(**(int64_t **)(lVar1 + 0x1d78) + 0xb0))
                               (*(int64_t **)(lVar1 + 0x1d78),&uStack_60,&uStack_68);
             if (iVar2 < 0) {
-              FUN_180220810(iVar2,&processed_var_5888_ptr);
+              SystemCore_Loader(iVar2,&processed_var_5888_ptr);
             }
             *puVar4 = uStack_68;
             iVar3 = iVar3 + 1;
@@ -529,7 +529,7 @@ void FUN_1800ad510(int64_t param_1)
           pfVar5 = *(float **)(lVar10 + 0x78);
           if (pfVar5 == pfVar2) {
 LAB_1800ad67f:
-            FUN_1800863a0((uint64_t *)(lVar10 + 0x78),&fStack_18);
+            AudioMixer((uint64_t *)(lVar10 + 0x78),&fStack_18);
             lVar10 = system_main_module_state;
             uVar9 = auStackX_8[0];
           }
@@ -612,7 +612,7 @@ void FUN_1800ad52d(int64_t param_1,int64_t param_2)
         pfVar5 = *(float **)(lVar10 + 0x78);
         if (pfVar5 == pfVar2) {
 LAB_1800ad67f:
-          FUN_1800863a0((uint64_t *)(lVar10 + 0x78),&stack0x00000030);
+          AudioMixer((uint64_t *)(lVar10 + 0x78),&stack0x00000030);
           lVar10 = system_main_module_state;
           uVar9 = in_stack_00000050;
         }
@@ -686,7 +686,7 @@ void FUN_1800ad59f(int32_t param_1)
       pfVar3 = *(float **)(lVar6 + 0x78);
       if (pfVar3 == pfVar1) {
 LAB_1800ad67f:
-        FUN_1800863a0((uint64_t *)(lVar6 + 0x78),&stack0x00000030);
+        AudioMixer((uint64_t *)(lVar6 + 0x78),&stack0x00000030);
         lVar6 = system_main_module_state;
         uVar5 = in_stack_00000050;
       }
@@ -1007,7 +1007,7 @@ void FUN_1800adc50(int64_t *param_1)
   int64_t *aplStackX_8 [2];
   
   if (*(int64_t *)(*param_1 + 0x121e0) != 0) {
-    FUN_18023b050();
+    SystemCore_NetworkHandler();
     aplStackX_8[0] = *(int64_t **)(*param_1 + 0x121e0);
     *(uint64_t *)(*param_1 + 0x121e0) = 0;
     if (aplStackX_8[0] != (int64_t *)0x0) {

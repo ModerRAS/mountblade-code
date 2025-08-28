@@ -50,7 +50,7 @@ void FUN_180395ea0(int64_t param_1,int param_2,int64_t param_3,int64_t param_4,i
         iVar2 = *(int *)(lVar7 + 0x558 + lVar3 * 4);
         if (*(int *)(lVar6 + 0x40 + lVar3 * 4) < iVar2) {
           *(int *)(lVar6 + 0x40 + lVar3 * 4) = iVar2;
-          cVar1 = FUN_18038d0a0(lVar6,param_3);
+          cVar1 = SystemCore_PerformanceMonitor(lVar6,param_3);
           if (cVar1 != '\0') {
             fVar10 = (float)func_0x00018038d2f0(lVar6,param_3);
             fVar10 = ABS(*(float *)(param_3 + 8) - fVar10);
@@ -134,7 +134,7 @@ void FUN_180395ed7(uint64_t param_1,int param_2)
         iVar1 = *(int *)(in_R11 + 0x558 + lVar3 * 4);
         if (*(int *)(lVar6 + 0x40 + lVar3 * 4) < iVar1) {
           *(int *)(lVar6 + 0x40 + lVar3 * 4) = iVar1;
-          cVar2 = FUN_18038d0a0(lVar6);
+          cVar2 = SystemCore_PerformanceMonitor(lVar6);
           if (cVar2 != '\0') {
             fVar9 = (float)func_0x00018038d2f0(lVar6);
             fVar9 = ABS(*(float *)(unaff_R13 + 8) - fVar9);
@@ -212,7 +212,7 @@ void FUN_180395f09(uint64_t param_1,int param_2)
       iVar1 = *(int *)(in_R11 + 0x558 + lVar3 * 4);
       if (*(int *)(lVar6 + 0x40 + lVar3 * 4) < iVar1) {
         *(int *)(lVar6 + 0x40 + lVar3 * 4) = iVar1;
-        cVar2 = FUN_18038d0a0(lVar6);
+        cVar2 = SystemCore_PerformanceMonitor(lVar6);
         if (cVar2 != '\0') {
           fVar9 = (float)func_0x00018038d2f0(lVar6);
           fVar9 = ABS(*(float *)(unaff_R13 + 8) - fVar9);
@@ -329,7 +329,7 @@ uint64_t FUN_180396100(int64_t param_1,float *param_2,uint64_t param_3,char para
       if (puStack_88 != (void *)0x0) {
         puVar7 = puStack_88;
       }
-      FUN_180627020(puVar7);
+      SystemCore_Allocator(puVar7);
       puStack_90 = &system_data_buffer_ptr;
       if (puStack_88 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -511,9 +511,9 @@ void FUN_1803965f0(int64_t param_1)
       }
       iVar4 = iVar4 + 1;
     } while (iVar4 < 8);
-    lVar5 = FUN_18005e890(system_context_ptr);
+    lVar5 = PerformanceOptimizer(system_context_ptr);
     if (lVar5 != 0) {
-      plVar6 = (int64_t *)FUN_18005e890(uVar3);
+      plVar6 = (int64_t *)PerformanceOptimizer(uVar3);
       (**(code **)(*plVar6 + 0x20))(plVar6,0);
     }
   } while( true );

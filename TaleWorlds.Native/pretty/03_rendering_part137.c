@@ -1,3 +1,7 @@
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -158,7 +162,7 @@ FUN_18034dec0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_8888_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x88,param_3,param_4,uVar1);
   }
@@ -290,7 +294,7 @@ void FUN_18034df10(int64_t param_1)
             fStack_64 = fVar6;
             fStack_60 = fVar7;
             uStack_5c = uStack_bc;
-            FUN_18063b5f0(&fStack_108,&uStack_d8);
+            SystemSecurityManager(&fStack_108,&uStack_d8);
             fVar8 = *(float *)(lVar3 + 0x70);
             fVar9 = *(float *)(lVar3 + 0x74);
             fVar10 = *(float *)(lVar3 + 0x78);
@@ -319,7 +323,7 @@ void FUN_18034df10(int64_t param_1)
             fStack_84 = fVar6 * fVar13 + fVar5 * fVar9 + fVar7 * fVar17 + *(float *)(lVar3 + 0xa4);
             fStack_80 = fVar6 * fVar14 + fVar5 * fVar10 + fVar7 * fVar18 + *(float *)(lVar3 + 0xa8);
             fStack_7c = fVar6 * fVar15 + fVar5 * fVar11 + fVar7 * fVar19 + *(float *)(lVar3 + 0xac);
-            FUN_1802ea790(*(uint64_t *)(lVar22 + *(int64_t *)(param_1 + 0x78)),&fStack_b8);
+            NetworkProtocol_Transmitter(*(uint64_t *)(lVar22 + *(int64_t *)(param_1 + 0x78)),&fStack_b8);
             iVar21 = iVar21 + 1;
             lVar22 = lVar22 + 8;
           } while (iVar21 < cVar2);
@@ -459,7 +463,7 @@ void FUN_18034df2d(int64_t param_1,int64_t param_2)
           fStack_3c = fVar6;
           fStack_38 = fVar7;
           uStack_34 = uStack_94;
-          FUN_18063b5f0(&fStack_e0,&uStack_b0);
+          SystemSecurityManager(&fStack_e0,&uStack_b0);
           fVar8 = *(float *)(lVar3 + 0x70);
           fVar9 = *(float *)(lVar3 + 0x74);
           fVar10 = *(float *)(lVar3 + 0x78);
@@ -488,7 +492,7 @@ void FUN_18034df2d(int64_t param_1,int64_t param_2)
           fStack_5c = fVar6 * fVar13 + fVar5 * fVar9 + fVar7 * fVar17 + *(float *)(lVar3 + 0xa4);
           fStack_58 = fVar6 * fVar14 + fVar5 * fVar10 + fVar7 * fVar18 + *(float *)(lVar3 + 0xa8);
           fStack_54 = fVar6 * fVar15 + fVar5 * fVar11 + fVar7 * fVar19 + *(float *)(lVar3 + 0xac);
-          FUN_1802ea790(*(uint64_t *)(lVar22 + *(int64_t *)(unaff_RBX + 0x78)),&fStack_90);
+          NetworkProtocol_Transmitter(*(uint64_t *)(lVar22 + *(int64_t *)(unaff_RBX + 0x78)),&fStack_90);
           iVar21 = iVar21 + 1;
           lVar22 = lVar22 + 8;
         } while (iVar21 < cVar2);
@@ -748,7 +752,7 @@ void FUN_18034e5f0(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_78,&puStack_d8);
   uStack_20 = 3;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -890,7 +894,7 @@ void FUN_18034e770(int64_t param_1)
       fStack_64 = fVar6;
       fStack_60 = fVar7;
       uStack_5c = uStack_bc;
-      FUN_18063b5f0(&fStack_108,&uStack_d8);
+      SystemSecurityManager(&fStack_108,&uStack_d8);
       fVar8 = *(float *)(lVar3 + 0x70);
       fVar9 = *(float *)(lVar3 + 0x74);
       fVar10 = *(float *)(lVar3 + 0x78);
@@ -919,7 +923,7 @@ void FUN_18034e770(int64_t param_1)
       fStack_84 = fVar6 * fVar13 + fVar5 * fVar9 + fVar7 * fVar17 + *(float *)(lVar3 + 0xa4);
       fStack_80 = fVar6 * fVar14 + fVar5 * fVar10 + fVar7 * fVar18 + *(float *)(lVar3 + 0xa8);
       fStack_7c = fVar6 * fVar15 + fVar5 * fVar11 + fVar7 * fVar19 + *(float *)(lVar3 + 0xac);
-      FUN_1802ea790(*(uint64_t *)(lVar22 + *(int64_t *)(param_1 + 0x78)),&fStack_b8);
+      NetworkProtocol_Transmitter(*(uint64_t *)(lVar22 + *(int64_t *)(param_1 + 0x78)),&fStack_b8);
       iVar21 = iVar21 + 1;
       lVar22 = lVar22 + 8;
     } while (iVar21 < cVar2);

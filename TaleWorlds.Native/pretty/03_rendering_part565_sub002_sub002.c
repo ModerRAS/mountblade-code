@@ -107,7 +107,7 @@ int FUN_180579c90(uint64_t param_1,int64_t param_2,float *param_3,char param_4,i
   if ((cVar3 == '\0') ||
      (fVar20 = param_3[1] - param_6[1], fVar21 = *param_3 - *param_6,
      0.0004 < fVar20 * fVar20 + fVar21 * fVar21)) {
-    FUN_1801aa0f0(auVar14._0_8_,param_3,param_3,param_6,0x51b189,1);
+    PhysicsSystem_JointManager(auVar14._0_8_,param_3,param_3,param_6,0x51b189,1);
     cVar3 = *(char *)(param_6 + 0xd);
   }
   if (cVar3 == '\0') {
@@ -147,7 +147,7 @@ LAB_180579e93:
         if ((cVar3 == '\0') ||
            (0.0004 < (param_7[1] - param_6[-7]) * (param_7[1] - param_6[-7]) +
                      (*param_7 - param_6[-8]) * (*param_7 - param_6[-8]))) {
-          FUN_1801aa0f0(param_1,param_7);
+          PhysicsSystem_JointManager(param_1,param_7);
           cVar3 = *(char *)(param_6 + 5);
         }
         fVar13 = fVar19;
@@ -169,7 +169,7 @@ LAB_180579e93:
       if ((*(char *)(param_6 + 5) == '\0') ||
          (0.0004 < (fStack_e4 - param_6[-7]) * (fStack_e4 - param_6[-7]) +
                    (fStack_e8 - param_6[-8]) * (fStack_e8 - param_6[-8]))) {
-        FUN_1801aa0f0(param_1,&fStack_e8);
+        PhysicsSystem_JointManager(param_1,&fStack_e8);
       }
       if (*(char *)(param_6 + 5) == '\0') {
         *pfVar7 = -10000.0;
@@ -374,7 +374,7 @@ int FUN_180579cdc(uint64_t param_1,int64_t param_2,uint64_t param_3,char param_4
      (0.0004 < (in_XMM5_Da - in_stack_00000148[1]) * (in_XMM5_Da - in_stack_00000148[1]) +
                (unaff_XMM6_Da - *in_stack_00000148) * (unaff_XMM6_Da - *in_stack_00000148))) {
     param_5._0_1_ = 1;
-    FUN_1801aa0f0(auVar13._0_8_,param_3,param_3,in_stack_00000148,0x51b189);
+    PhysicsSystem_JointManager(auVar13._0_8_,param_3,param_3,in_stack_00000148,0x51b189);
     cVar8 = *(char *)(in_stack_00000148 + 0xd);
     in_R10 = in_stack_00000120;
   }
@@ -417,7 +417,7 @@ LAB_180579e93:
                      (*in_stack_00000150 - in_stack_00000148[-8]) *
                      (*in_stack_00000150 - in_stack_00000148[-8]))) {
           param_5._0_1_ = 1;
-          FUN_1801aa0f0(in_R10,in_stack_00000150);
+          PhysicsSystem_JointManager(in_R10,in_stack_00000150);
           cVar8 = *(char *)(in_stack_00000148 + 5);
         }
         fVar4 = fVar15;
@@ -443,7 +443,7 @@ LAB_180579e93:
                    + ((float)param_6 - in_stack_00000148[-8]) *
                      ((float)param_6 - in_stack_00000148[-8]))) {
         param_5._0_1_ = 1;
-        FUN_1801aa0f0(in_stack_00000120,&param_6);
+        PhysicsSystem_JointManager(in_stack_00000120,&param_6);
       }
       if (*(char *)(in_stack_00000148 + 5) == cVar8) {
         *pfVar6 = -10000.0;
@@ -597,7 +597,7 @@ int FUN_180579ec7(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t para
          fVar12 * fVar12 +
          (*unaff_R13 - *(float *)(plVar8 + -4)) * (*unaff_R13 - *(float *)(plVar8 + -4)))) {
         param_5._0_1_ = 1;
-        FUN_1801aa0f0(in_R10);
+        PhysicsSystem_JointManager(in_R10);
         cVar6 = *(char *)((int64_t)plVar8 + 0x14);
       }
       fVar12 = unaff_XMM8_Da;
@@ -627,7 +627,7 @@ int FUN_180579ec7(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t para
        fVar12 * fVar12 +
        ((float)param_6 - *(float *)(plVar8 + -4)) * ((float)param_6 - *(float *)(plVar8 + -4)))) {
       param_5._0_1_ = 1;
-      FUN_1801aa0f0(in_stack_00000120,&param_6);
+      PhysicsSystem_JointManager(in_stack_00000120,&param_6);
     }
     if (*(char *)((int64_t)plVar8 + 0x14) == cVar6) {
       *pfVar3 = -10000.0;

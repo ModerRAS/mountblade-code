@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization_part008.c - 初始化系统高级数据结构和树形搜索模块
@@ -323,7 +326,7 @@ void FUN_1800394a0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025cc00;
+    callback_function = > HighFreq_FileSystem1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -406,7 +409,7 @@ void FUN_1800395a0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025c000;
+    callback_function = > HighFreq_ConfigManager1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -568,7 +571,7 @@ void FUN_1800397a0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025d270;
+    callback_function = > UltraHighFreq_NetworkHandler1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -892,7 +895,7 @@ void FUN_180039bb0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025cc00;
+    callback_function = > HighFreq_FileSystem1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -975,7 +978,7 @@ void FUN_180039cb0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025c000;
+    callback_function = > HighFreq_ConfigManager1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1137,7 +1140,7 @@ void FUN_180039eb0(void) {
     search_context.found_node->flags = node_flags;
     
     // 设置回调函数
-    callback_function = FUN_18025d270;
+    callback_function = > UltraHighFreq_NetworkHandler1;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1461,7 +1464,7 @@ void FUN_18003a2b0(void) {
     search_context.found_node->flags = node_flags;
     
     // 获取键值回调函数
-    key_callback = (InitializationSystemKeyPtr)FUN_18007fcd0;
+    key_callback = (InitializationSystemKeyPtr)SystemCore_Compression;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;

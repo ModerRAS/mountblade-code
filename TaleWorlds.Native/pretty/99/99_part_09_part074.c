@@ -1,3 +1,8 @@
+#include "SystemDataAdvancedValidator_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /**
  * @file 99_part_09_part074.c
  * @brief TaleWorlds引擎系统核心数据处理和状态管理模块
@@ -31,7 +36,6 @@
  * @date 2023
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 /*=============================================================================
  * 系统核心常量定义
@@ -186,9 +190,9 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   }
   
   /* 系统数据处理流程 - 处理多个状态参数 */
-  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2936_ptr, param_2);
-  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2888_ptr, param_3);
-  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2992_ptr, param_4);
+  SystemConfigurationManager(system_message_context, 0, 4, 10, &rendering_buffer_2936_ptr, param_2);
+  SystemConfigurationManager(system_message_context, 0, 4, 10, &rendering_buffer_2888_ptr, param_3);
+  SystemConfigurationManager(system_message_context, 0, 4, 10, &rendering_buffer_2992_ptr, param_4);
   
   /* 系统状态验证 - 多层次状态检查 */
   system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
@@ -222,7 +226,7 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
     do {
       int64_t resource_handle = *(int64_t *)(system_base_address + system_iterator * 8);
       if ((resource_handle != 0) && (*(char *)(*(int64_t *)(resource_handle + 0x58f8) + 0x1c) != '\0')) {
-        FUN_1805b59d0(resource_handle, 0x180c95578);
+        NetworkSystem_SecurityManager(resource_handle, 0x180c95578);
         system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
@@ -231,7 +235,7 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   
   /* 系统最终清理 - 执行最终的资源清理 */
   if (system_system_config != 0) {
-    FUN_180567f30(system_system_config, 0x180c95578);
+    SystemCore_DatabaseHandler(system_system_config, 0x180c95578);
   }
   
   system_system_config = 0;
@@ -310,7 +314,7 @@ void system_data_validator(int64_t *param_1)
       if (((system_data_handle != 0) && 
            (*(char *)(*(int64_t *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
           (*(int64_t *)(system_data_handle + 0x58f8) != system_target_address)) {
-        FUN_1805b59d0(system_data_handle, 0x180c95578);
+        NetworkSystem_SecurityManager(system_data_handle, 0x180c95578);
         system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
@@ -319,7 +323,7 @@ void system_data_validator(int64_t *param_1)
   
   /* 系统最终清理 - 执行最终资源清理 */
   if (system_system_config != 0) {
-    FUN_180567f30(system_system_config, 0x180c95578);
+    SystemCore_DatabaseHandler(system_system_config, 0x180c95578);
   }
   
   system_system_config = 0;
@@ -399,7 +403,7 @@ void system_resource_manager(int64_t *param_1, uint64_t param_2, int64_t param_3
       if (((system_data_handle != 0) && 
            (*(char *)(*(int64_t *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
           (*(int64_t *)(system_data_handle + 0x58f8) != system_target_address)) {
-        FUN_1805b59d0(system_data_handle, 0x180c95578);
+        NetworkSystem_SecurityManager(system_data_handle, 0x180c95578);
         system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
@@ -408,7 +412,7 @@ void system_resource_manager(int64_t *param_1, uint64_t param_2, int64_t param_3
   
   /* 系统最终清理 - 执行最终资源清理 */
   if (system_system_config != 0) {
-    FUN_180567f30(system_system_config, 0x180c95578);
+    SystemCore_DatabaseHandler(system_system_config, 0x180c95578);
   }
   
   system_system_config = 0;
@@ -436,7 +440,7 @@ void system_resource_manager(int64_t *param_1, uint64_t param_2, int64_t param_3
 void system_cleanup_manager(void)
 {
   /* 系统资源清理 - 执行资源清理操作 */
-  FUN_180567f30(system_system_config, 0x180c95578);
+  SystemCore_DatabaseHandler(system_system_config, 0x180c95578);
   
   /* 系统状态重置 - 重置数据计数器 */
   system_system_config = 0;

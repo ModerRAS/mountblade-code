@@ -47,7 +47,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_100 = *(int64_t **)(param_1 + 0x1c70);
@@ -72,7 +72,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_100 = *(int64_t **)(param_1 + 0x1cb8);
@@ -97,7 +97,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_f8 = *(int64_t **)(param_1 + 0x1c78);
@@ -122,7 +122,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1cb0);
@@ -147,7 +147,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1c80);
@@ -172,7 +172,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1c88);
@@ -197,7 +197,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1c90);
@@ -222,7 +222,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1ca0);
@@ -247,7 +247,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1c98);
@@ -272,7 +272,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1ca8);
@@ -297,7 +297,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1cc8);
@@ -322,7 +322,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1cc0);
@@ -347,7 +347,7 @@ void FUN_18021fbb0(int64_t param_1)
   uStack_138 = 0;
   uStack_140 = 3;
   uStack_148 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10();
+  puVar2 = (uint64_t *)SystemCore_ConfigManager();
   uVar1 = *puVar2;
   *puVar2 = 0;
   plStack_108 = *(int64_t **)(param_1 + 0x1cd0);
@@ -367,8 +367,8 @@ void FUN_18021fbb0(int64_t param_1)
 
 
 
-// 函数: void FUN_180220810(void)
-void FUN_180220810(void)
+// 函数: void SystemCore_Loader(void)
+void SystemCore_Loader(void)
 
 {
                     // WARNING: Subroutine does not return

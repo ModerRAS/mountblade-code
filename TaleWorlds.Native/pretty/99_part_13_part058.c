@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedController_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -577,7 +579,7 @@ void FUN_1808cf080(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t para
   uint64_t uStackX_8;
   
   uVar1 = *(uint64_t *)(param_1 + 0xf0);
-  iVar2 = FUN_18073c380(uVar1,0xfffffffd,&uStackX_8);
+  iVar2 = UltraHighFreq_PhysicsEngine1(uVar1,0xfffffffd,&uStackX_8);
   if (iVar2 == 0) {
     iVar2 = FUN_1807411a0(uStackX_8,0,param_4,0);
     if (iVar2 == 0) {
@@ -690,17 +692,17 @@ void FUN_1808cf270(int64_t *param_1,int64_t param_2,int64_t param_3,uint64_t par
   }
   iVar1 = FUN_1808d52a0(param_1 + 0xb,param_3);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808b2f30(param_1,0);
+    iVar1 = SystemDataFlowProcessor(param_1,0);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808b2f30(param_1,4);
+      iVar1 = SystemDataFlowProcessor(param_1,4);
       if (iVar1 == 0) {
-        iVar1 = FUN_1808b2f30(param_1,1);
+        iVar1 = SystemDataFlowProcessor(param_1,1);
         if (iVar1 == 0) {
-          iVar1 = FUN_1808b2f30(param_1,9);
+          iVar1 = SystemDataFlowProcessor(param_1,9);
           if (iVar1 == 0) {
-            iVar1 = FUN_1808b2f30(param_1,0xb);
+            iVar1 = SystemDataFlowProcessor(param_1,0xb);
             if (iVar1 == 0) {
-              iVar1 = FUN_1808b2f30(param_1,8);
+              iVar1 = SystemDataFlowProcessor(param_1,8);
               if (iVar1 == 0) {
                 lVar2 = (**(code **)*param_1)(param_1);
                 fVar6 = (float)(**(code **)(*param_1 + 200))(param_1);
@@ -1014,7 +1016,7 @@ void FUN_1808cf440(int64_t *param_1)
           }
           iVar2 = (**(code **)(*param_1 + 0x118))(param_1);
           if ((iVar2 == 0) && (iVar2 = (**(code **)(*param_1 + 0x110))(param_1), iVar2 == 0)) {
-            FUN_18073d8a0(*plVar5,0);
+            SystemCore_StateController(*plVar5,0);
           }
         }
       }

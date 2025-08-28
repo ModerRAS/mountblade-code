@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -162,14 +165,14 @@ typedef struct {
 #define InitializationSystemRegistryRoot RenderGraphicsManager
 #define InitializationSystemMemoryAllocator RenderPipelineProcessor
 #define InitializationSystemMemoryInserter RenderShaderProcessor
-#define InitializationSystemStringProcessor FUN_180623800
-#define InitializationSystemNodeHandler1 FUN_18007fcd0
+#define InitializationSystemStringProcessor SystemCore_ConfigManager
+#define InitializationSystemNodeHandler1 SystemCore_Compression
 #define InitializationSystemNodeHandler2 FUN_180073930
-#define InitializationSystemNodeHandler3 FUN_18025cc00
-#define InitializationSystemNodeHandler4 FUN_18025c000
-#define InitializationSystemNodeHandler5 FUN_18025d270
+#define InitializationSystemNodeHandler3 > HighFreq_FileSystem1
+#define InitializationSystemNodeHandler4 > HighFreq_ConfigManager1
+#define InitializationSystemNodeHandler5 > UltraHighFreq_NetworkHandler1
 #define InitializationSystemNodeHandler6 FUN_18025e330
-#define InitializationSystemStringProcessor FUN_180623800
+#define InitializationSystemStringProcessor SystemCore_ConfigManager
 #define InitializationSystemConfigData1 processed_var_7304_ptr
 #define InitializationSystemConfigData2 processed_var_4992_ptr
 #define InitializationSystemConfigData3 processed_var_6248_ptr

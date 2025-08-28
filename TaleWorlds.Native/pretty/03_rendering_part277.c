@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -251,7 +252,7 @@ void FUN_18041bf30(int64_t *param_1)
 uint64_t * FUN_18041bf60(uint64_t *param_1,uint64_t param_2,int64_t param_3)
 
 {
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &processed_var_9560_ptr;
   FUN_1801eb9b0(param_1 + 0x19);
   LOCK();
@@ -279,7 +280,7 @@ int64_t FUN_18041c050(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   
   uVar1 = 0xfffffffffffffffe;
   FUN_1801c92a0(param_1 + 200);
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x178,param_3,param_4,uVar1);
   }

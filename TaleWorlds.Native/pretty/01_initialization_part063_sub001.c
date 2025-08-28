@@ -90,12 +90,12 @@ typedef enum {
  * @brief 初始化系统高级子模块核心函数别名
  * @details 定义初始化系统高级子模块的核心函数别名，提高代码可读性
  */
-#define InitSubmodule_EmptyFunctionProcessor FUN_0014b6a0
-#define InitSubmodule_PlaceholderManager FUN_0014b6a0
-#define InitSubmodule_CompatibilityHandler FUN_0014b6a0
-#define InitSubmodule_ExtensionReserver FUN_0014b6a0
-#define InitSubmodule_StateManager FUN_0014b6a0
-#define InitSubmodule_ErrorHandler FUN_0014b6a0
+#define InitSubmodule_EmptyFunctionProcessor > UltraHighFreq_AudioSystem1
+#define InitSubmodule_PlaceholderManager > UltraHighFreq_AudioSystem1
+#define InitSubmodule_CompatibilityHandler > UltraHighFreq_AudioSystem1
+#define InitSubmodule_ExtensionReserver > UltraHighFreq_AudioSystem1
+#define InitSubmodule_StateManager > UltraHighFreq_AudioSystem1
+#define InitSubmodule_ErrorHandler > UltraHighFreq_AudioSystem1
 
 /* ============================================================================
  * 初始化系统高级子模块全局变量
@@ -285,7 +285,7 @@ const char* InitSubmodule_GetDescription(void) {
  * ============================================================================ */
 
 // 原始函数声明，保持兼容性
-int FUN_0014b6a0(int param1, int param2);
+int InitSubmodule_EmptyFunctionProcessor(int param1, int param2);
 
 /* ============================================================================
  * 文件结束标记

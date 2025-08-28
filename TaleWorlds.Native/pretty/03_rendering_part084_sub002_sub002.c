@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part084_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_180316460(int *param_1,int64_t param_2,uint64_t param_3)
@@ -262,7 +270,7 @@ void FUN_180316460(int *param_1,int64_t param_2,uint64_t param_3)
       uVar7 = iVar22 + 2;
       uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3b0,0x10,3);
       uVar10 = FUN_18023a2e0(uVar10,0);
-      FUN_180056f10(plVar13,uVar10);
+      SystemCore_PointerManager(plVar13,uVar10);
       puStack_558 = &system_data_buffer_ptr;
       uStack_540 = 0;
       puStack_550 = (uint64_t *)0x0;
@@ -391,7 +399,7 @@ LAB_180316e53:
       uStack_f8 = *(uint64_t *)(param_1 + 0x16);
       pplStack_f0 = pplStack_598;
       uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      pplVar17 = (int64_t **)FUN_18005ce30(uVar10,&puStack_198);
+      pplVar17 = (int64_t **)SystemCore_StreamController(uVar10,&puStack_198);
       pplStack_5f8 = pplVar17;
       pplStack_468 = pplVar17;
       if (pplVar17 != (int64_t **)0x0) {
@@ -403,7 +411,7 @@ LAB_180316e53:
       if (pplVar17 != (int64_t **)0x0) {
         (*(code *)(*pplVar17)[5])(pplVar17);
       }
-      FUN_18005e370(lVar23,&pplStack_598);
+      SystemPerformance_Monitor(lVar23,&pplStack_598);
       *param_1 = *param_1 + 1;
       iVar27 = 0;
       do {
@@ -569,7 +577,7 @@ LAB_180316e53:
       iVar22 = iVar22 + 2;
       uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3b0,0x10,3);
       uVar10 = FUN_18023a2e0(uVar10,0);
-      FUN_180056f10(plVar13,uVar10);
+      SystemCore_PointerManager(plVar13,uVar10);
       puStack_578 = &system_data_buffer_ptr;
       uStack_560 = 0;
       puStack_570 = (uint64_t *)0x0;
@@ -702,7 +710,7 @@ LAB_180316799:
       uStack_1d8 = *(uint64_t *)(param_1 + 0x16);
       pplStack_1d0 = pplStack_5f8;
       uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      plVar13 = (int64_t *)FUN_18005ce30(uVar10,&puStack_278);
+      plVar13 = (int64_t *)SystemCore_StreamController(uVar10,&puStack_278);
       plStack_480 = plVar13;
       if (plVar13 != (int64_t *)0x0) {
         (**(code **)(*plVar13 + 0x28))(plVar13);
@@ -713,7 +721,7 @@ LAB_180316799:
       if (plVar13 != (int64_t *)0x0) {
         (**(code **)(*plVar13 + 0x28))(plVar13);
       }
-      FUN_18005e370(lVar23,&plStack_518);
+      SystemPerformance_Monitor(lVar23,&plStack_518);
       *param_1 = *param_1 + 1;
       param_1[2] = 2;
       if (plVar13 != (int64_t *)0x0) {
@@ -748,7 +756,7 @@ LAB_180316799:
       uStack_658 = 0x21;
       uStack_638 = (int)lVar23;
       puVar14 = (uint64_t *)
-                FUN_1800b0a10(uVar8,&plStack_4e8,*(int32_t *)(lStack_5f0 + 0x1bd4),&puStack_b8);
+                SystemCore_ConfigManager(uVar8,&plStack_4e8,*(int32_t *)(lStack_5f0 + 0x1bd4),&puStack_b8);
       uVar10 = *puVar14;
       *puVar14 = 0;
       plStack_4f0 = *(int64_t **)(param_1 + 0x10);
@@ -774,7 +782,7 @@ LAB_180316799:
       uStack_658 = 0x61;
       uStack_638 = (int)lVar23;
       puVar14 = (uint64_t *)
-                FUN_1800b0a10(uVar8,&plStack_4d8,*(int32_t *)(lVar21 + 0x1bd4),&puStack_80);
+                SystemCore_ConfigManager(uVar8,&plStack_4d8,*(int32_t *)(lVar21 + 0x1bd4),&puStack_80);
       uVar10 = *puVar14;
       *puVar14 = 0;
       plStack_4e0 = *(int64_t **)(param_1 + 0x12);
@@ -840,7 +848,7 @@ LAB_180316799:
                ((*(code *)(*ppplVar20)[7])(ppplVar20), ppplVar20 == (int64_t ***)0x0)) {
               ppplVar20 = (int64_t ***)FUN_180319780(param_1);
               ppplStack_610 = ppplVar20;
-              FUN_18023a940(ppplVar20);
+              SystemCore_Scheduler(ppplVar20);
             }
             iVar22 = uVar7 * 6;
             pplStack_5a8 = (int64_t **)CONCAT44(pplStack_5a8._4_4_,iVar22);
@@ -1008,7 +1016,7 @@ LAB_180316799:
           pppuStack_520 = &ppuStack_508;
           ppuStack_508 = ppuVar19;
           (**(code **)(*ppuVar19 + 0x28))(ppuVar19);
-          FUN_18005e370(lVar23,&ppuStack_508);
+          SystemPerformance_Monitor(lVar23,&ppuStack_508);
           *(int *)((int64_t)ppuVar18 + 0x54) = *param_1;
           (**(code **)(*ppuVar19 + 0x38))(ppuVar19);
           (**(code **)(*plStack_4b8 + 0x38))();

@@ -1,3 +1,10 @@
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+#include "fun_aliases_batch.txt"
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -801,7 +808,7 @@ void FUN_18066e938(void)
 
 
 
-uint64_t FUN_18066e960(int64_t param_1,int64_t param_2)
+uint64_t RenderingSystem_RenderTarget(int64_t param_1,int64_t param_2)
 
 {
   int64_t lVar1;
@@ -880,7 +887,7 @@ uint64_t FUN_18066ea80(void)
   int64_t lVar1;
   uint64_t in_R9;
   
-  lVar1 = FUN_18066e960(0x20,0x4440);
+  lVar1 = RenderingSystem_RenderTarget(0x20,0x4440);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     memset(lVar1,0,0x4440,in_R9,lVar1);

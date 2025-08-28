@@ -86,10 +86,10 @@
 #define ResourceStateHandler FUN_180246810
 #define SystemErrorHandler CoreEngine_MemoryPoolManager
 #define SecurityChecker SystemSecurityChecker
-#define SystemContextInitializer FUN_18005e630
-#define SystemParameterProcessor FUN_18005c650
-#define SystemStateManager FUN_18005ea90
-#define ResourceAllocator FUN_1800b1230
+#define SystemContextInitializer SystemCore_FileSystem
+#define SystemParameterProcessor SystemCore_SecurityManager
+#define SystemStateManager SystemSecurity_Manager
+#define ResourceAllocator SystemInitializer
 #define ParameterHandler FUN_1800b1d80
 
 // 数据结构别名

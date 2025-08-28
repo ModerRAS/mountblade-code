@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -203,7 +207,7 @@ uint64_t FUN_180645ea0(int64_t param_1,uint64_t param_2,uint64_t *param_3)
 
 
 
-uint64_t FUN_180645fa0(int64_t param_1,uint64_t param_2,int64_t param_3)
+uint64_t UI_LayoutManager(int64_t param_1,uint64_t param_2,int64_t param_3)
 
 {
   uint64_t *puVar1;
@@ -744,7 +748,7 @@ int8_t FUN_1806466de(void)
 
 
 
-uint64_t FUN_180646700(int64_t param_1,float *param_2,float *param_3)
+uint64_t RenderingBufferHandler0(int64_t param_1,float *param_2,float *param_3)
 
 {
   uint64_t uVar1;

@@ -89,7 +89,7 @@ void FUN_18023690b(void)
       if (*(void **)(in_stack_00000068 + 8) != (void *)0x0) {
         puVar12 = *(void **)(in_stack_00000068 + 8);
       }
-      FUN_180627020(&processed_var_8000_ptr,puVar12);
+      SystemCore_Allocator(&processed_var_8000_ptr,puVar12);
       bStackX_20 = 0;
     }
     if ((int)*(char *)(*unaff_RSI + 0xf6) < (char)bStackX_20 + 1) {
@@ -156,12 +156,12 @@ void FUN_18023690b(void)
       lVar3 = *(int64_t *)(in_stack_00000058 + 0x90);
       lVar11 = (int64_t)(int)unaff_R14;
       if (bVar5) {
-        fVar17 = (float)FUN_180235410(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
+        fVar17 = (float)SystemCore_RenderFrame(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
                                       *(int *)(lVar3 + 4 + lVar11 * 0xc) + unaff_R12D,
                                       *(int *)(lVar3 + 8 + lVar11 * 0xc) + unaff_R12D);
       }
       if (bVar6) {
-        fVar17 = (float)FUN_180235410(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
+        fVar17 = (float)SystemCore_RenderFrame(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
                                       *(int *)(lVar3 + 8 + lVar11 * 0xc) + unaff_R12D,
                                       *(int *)(lVar3 + 4 + lVar11 * 0xc) + unaff_R12D);
       }
@@ -174,18 +174,18 @@ void FUN_18023690b(void)
   *(int8_t *)((int64_t)unaff_RSI + 0x32) = 1;
   if (lVar3 == 0) {
     if (in_stack_00000070 != 0) {
-      FUN_18007f840(in_stack_00000070);
+      SystemManager_Validator(in_stack_00000070);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(in_stack_00000070);
     }
     if (in_stack_00000078 != 0) {
-      FUN_18007f840(in_stack_00000078);
+      SystemManager_Validator(in_stack_00000078);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(in_stack_00000078);
     }
     lVar3 = *(int64_t *)(unaff_RBP + -0x80);
     if (lVar3 != 0) {
-      FUN_18007f840(lVar3);
+      SystemManager_Validator(lVar3);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(lVar3);
     }
@@ -226,10 +226,10 @@ void FUN_180236b64(char param_1)
   if (*(int *)(in_stack_00000058 + 0x88) != 0) {
     do {
       if (unaff_R13B != '\0') {
-        FUN_180235410();
+        SystemCore_RenderFrame();
       }
       if (unaff_R15B != '\0') {
-        FUN_180235410();
+        SystemCore_RenderFrame();
       }
       unaff_R14D = unaff_R14D + 1;
     } while (unaff_R14D < *(uint *)(in_stack_00000058 + 0x88));
@@ -239,18 +239,18 @@ void FUN_180236b64(char param_1)
   *(int8_t *)(unaff_RSI + 0x32) = 1;
   if (lVar1 == 0) {
     if (in_stack_00000070 != 0) {
-      FUN_18007f840(in_stack_00000070);
+      SystemManager_Validator(in_stack_00000070);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(in_stack_00000070);
     }
     if (in_stack_00000078 != 0) {
-      FUN_18007f840(in_stack_00000078);
+      SystemManager_Validator(in_stack_00000078);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(in_stack_00000078);
     }
     lVar1 = *(int64_t *)(unaff_RBP + -0x80);
     if (lVar1 != 0) {
-      FUN_18007f840(lVar1);
+      SystemManager_Validator(lVar1);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(lVar1);
     }
@@ -274,18 +274,18 @@ void FUN_180236c4b(void)
   int64_t in_stack_00000078;
   
   if (in_stack_00000070 != 0) {
-    FUN_18007f840(in_stack_00000070);
+    SystemManager_Validator(in_stack_00000070);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(in_stack_00000070);
   }
   if (in_stack_00000078 != 0) {
-    FUN_18007f840(in_stack_00000078);
+    SystemManager_Validator(in_stack_00000078);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(in_stack_00000078);
   }
   lVar1 = *(int64_t *)(unaff_RBP + -0x80);
   if (lVar1 != 0) {
-    FUN_18007f840(lVar1);
+    SystemManager_Validator(lVar1);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(lVar1);
   }

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -25,7 +26,7 @@ void FUN_1808affb0(int64_t param_1,uint *param_2)
 
 
 
-uint64_t FUN_1808b0010(int64_t param_1,int *param_2)
+uint64_t ResourceLoadingManager(int64_t param_1,int *param_2)
 
 {
   byte bVar1;
@@ -110,8 +111,8 @@ void FUN_1808b0160(int64_t *param_1,uint64_t param_2,int32_t param_3)
 
 {
   *(int32_t *)((int64_t)param_1 + 0x44) = 0xffffffff;
-  FUN_18084c220(param_1 + 4);
-  FUN_18084c220(param_1 + 2);
+  UltraHighFreq_InputHandler1(param_1 + 4);
+  UltraHighFreq_InputHandler1(param_1 + 2);
   *(int64_t *)param_1[1] = *param_1;
   *(int64_t *)(*param_1 + 8) = param_1[1];
   param_1[1] = (int64_t)param_1;
@@ -177,8 +178,8 @@ void FUN_1808b02a0(uint64_t *param_1)
     plVar3 = plVar2;
   }
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar3 + 4);
-  FUN_18084c220(plVar3 + 2);
+  UltraHighFreq_InputHandler1(plVar3 + 4);
+  UltraHighFreq_InputHandler1(plVar3 + 2);
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
@@ -219,8 +220,8 @@ uint64_t * FUN_1808b0380(uint64_t *param_1,uint64_t param_2)
     plVar3 = plVar2;
   }
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar3 + 4);
-  FUN_18084c220(plVar3 + 2);
+  UltraHighFreq_InputHandler1(plVar3 + 4);
+  UltraHighFreq_InputHandler1(plVar3 + 2);
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
@@ -261,8 +262,8 @@ uint64_t * FUN_1808b0386(uint64_t *param_1,uint64_t param_2)
     plVar3 = plVar2;
   }
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar3 + 4);
-  FUN_18084c220(plVar3 + 2);
+  UltraHighFreq_InputHandler1(plVar3 + 4);
+  UltraHighFreq_InputHandler1(plVar3 + 2);
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
@@ -526,11 +527,11 @@ FUN_1808b06c0(int64_t *param_1,uint64_t *param_2,int32_t param_3,int32_t param_4
   uVar1 = *(uint *)(param_1 + 1);
   uVar5 = (uint64_t)uVar1;
   if (uVar1 == 0) {
-    FUN_1808b0fb0(param_1,0x20);
+    RenderingSystem_ShaderManager0(param_1,0x20);
     puVar4 = (int32_t *)(*param_1 + uVar5);
   }
   else {
-    FUN_1808b0fb0(param_1,uVar1 + 0x28);
+    RenderingSystem_ShaderManager0(param_1,uVar1 + 0x28);
     lVar2 = *param_1;
     *(int32_t *)(uVar5 + lVar2) = 0x1002;
     puVar4 = (int32_t *)(lVar2 + 4 + uVar5);
@@ -866,7 +867,7 @@ LAB_1808b0d17:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808b0fb0(int64_t *param_1,uint64_t param_2)
+uint64_t RenderingSystem_ShaderManager0(int64_t *param_1,uint64_t param_2)
 
 {
   uint uVar1;

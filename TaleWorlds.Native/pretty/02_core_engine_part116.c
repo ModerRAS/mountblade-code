@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part116.c - 2 个函数
 
@@ -46,16 +48,16 @@ void FUN_1801286d8(void)
              (*(float *)(lVar2 + 0x228) <= in_XMM5_Da && in_XMM5_Da != *(float *)(lVar2 + 0x228)))
             && (unaff_XMM8_Da < *(float *)(lVar2 + 0x230))))) || (*(char *)(lVar7 + 0x2e38) != '\0')
        ) {
-      cVar8 = FUN_180128040(unaff_RBP + -0x50,unaff_RBP + -0x48,1);
+      cVar8 = SystemCore_HashCalculator(unaff_RBP + -0x50,unaff_RBP + -0x48,1);
       if (cVar8 != '\0') {
         *(uint *)(lVar9 + 0x148) = *(uint *)(lVar9 + 0x148) | 1;
       }
     }
   }
   else {
-    FUN_180124190(unaff_RBP + -0x50,*(int32_t *)(unaff_RBX + 0x88),0);
+    Memory_GarbageCollector(unaff_RBP + -0x50,*(int32_t *)(unaff_RBX + 0x88),0);
     if (*(int *)(unaff_RBX + 0x88) == *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
-      FUN_1801230e0(unaff_RBP + -0x50,1);
+      UtilitiesSystem_Validator(unaff_RBP + -0x50,1);
     }
     if ((*(int *)(unaff_RBX + 0x174) == 0) && (unaff_RBX == *(int64_t *)(unaff_RDI + 0x1c98))) {
       iVar1 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0);
@@ -64,7 +66,7 @@ void FUN_1801286d8(void)
       *(float *)(unaff_RBP + -0x50) = *(float *)(unaff_RBP + -0x50) - 2.0;
       *(float *)(unaff_RBP + -0x4c) = *(float *)(unaff_RBP + -0x4c) - 2.0;
       if (*(int *)(unaff_RDI + 0x1ca0) == iVar1) {
-        FUN_1801230e0(unaff_RBP + -0x50,2);
+        UtilitiesSystem_Validator(unaff_RBP + -0x50,2);
       }
     }
   }
@@ -356,7 +358,7 @@ LAB_180128faf:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180128fd0(uint64_t *param_1,int64_t param_2,uint64_t param_3)
+uint64_t * SystemCore_MemoryManager(uint64_t *param_1,int64_t param_2,uint64_t param_3)
 
 {
   int64_t lVar1;
@@ -536,7 +538,7 @@ uint64_t * FUN_180129220(uint64_t *param_1,int64_t param_2,float *param_3)
   if ((fVar6 <= fVar5) && (fVar6 = fVar4, fVar5 <= fVar4)) {
     fVar6 = fVar5;
   }
-  FUN_180128fd0(&fStackX_10,fVar4,CONCAT44(fStackX_c,fVar6));
+  SystemCore_MemoryManager(&fStackX_10,fVar4,CONCAT44(fStackX_c,fVar6));
   if (((fStackX_10 < *param_3) && ((*(uint *)(param_2 + 0xc) & 8) == 0)) &&
      ((*(uint *)(param_2 + 0xc) >> 0xb & 1) != 0)) {
     fStackX_c = fStackX_c + *(float *)(lVar3 + 0x168c);
@@ -790,7 +792,7 @@ void FUN_1801295b0(int64_t param_1,float *param_2,float *param_3,float *param_4,
   fVar3 = (*(float *)(param_1 + 0x44) - fVar6) * param_3[1] + fVar6;
   fVar5 = ((fVar5 - fVar1) * *param_3 + fVar1) - fVar4;
   fVar6 = ((fVar6 - fVar2) * param_3[1] + fVar2) - fVar3;
-  FUN_180128fd0(&fStackX_8,param_1,CONCAT44(fVar6,fVar5));
+  SystemCore_MemoryManager(&fStackX_8,param_1,CONCAT44(fVar6,fVar5));
   *(uint64_t *)param_4 = CONCAT44(fVar3,fVar4);
   if (*param_3 == 0.0) {
     *param_4 = *param_4 - (fStackX_8 - fVar5);

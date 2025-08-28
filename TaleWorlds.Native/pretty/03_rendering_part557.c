@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 
 // 03_rendering_part557.c - 7 个函数
 
@@ -462,8 +468,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
             iVar9 = iVar12;
           }
           iStack_3e8._0_1_ = bVar5;
-          uVar7 = FUN_180557990(lVar1,2,iVar9);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,2,iVar9);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -474,7 +480,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11) = uVar10;
           iStack_3e8._0_1_ = bVar5;
           uVar7 = FUN_180557a10(lVar1,2,iVar9);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -484,8 +490,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           }
           *(uint64_t *)((int64_t)auStack_318 + lVar11) = uVar10;
           iStack_3e8._0_1_ = bVar5;
-          uVar7 = FUN_180557990(lVar1,1,iVar9);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,1,iVar9);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -496,7 +502,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11 + 0x10) = uVar10;
           iStack_3e8._0_1_ = bVar5;
           uVar7 = FUN_180557a10(lVar1,1,iVar9);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -506,8 +512,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           }
           *(uint64_t *)((int64_t)auStack_318 + lVar11 + 0x10) = uVar10;
           iStack_3e8._0_1_ = bVar5;
-          uVar7 = FUN_180557990(lVar1,0,iVar9,0xffffffff);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,0,iVar9,0xffffffff);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -518,7 +524,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11 + 0x18) = uVar10;
           iStack_3e8._0_1_ = bVar5;
           uVar7 = FUN_180557a10(lVar1,0,iVar9,0xffffffff);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -528,8 +534,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           }
           *(uint64_t *)((int64_t)auStack_318 + lVar11 + 0x18) = uVar10;
           iStack_3e8._0_1_ = bVar5;
-          uVar7 = FUN_180557990(lVar1,5,iVar9);
-          iVar8 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,5,iVar9);
+          iVar8 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar8 = *(int *)(render_system_memory + (int64_t)iVar8 * 4);
           if (iVar8 == -1) {
             uVar10 = 0;
@@ -540,7 +546,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11 + 8) = uVar10;
           iStack_3e8._0_1_ = bVar5;
           uVar7 = FUN_180557a10(lVar1,5,iVar9);
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar9 = *(int *)(render_system_memory + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             uVar10 = 0;
@@ -550,8 +556,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           }
           *(uint64_t *)((int64_t)auStack_318 + lVar11 + 8) = uVar10;
           iStack_3e8._0_1_ = 0;
-          uVar7 = FUN_180557990(lVar1,0xffffffff,1);
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,0xffffffff,1);
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar9 = *(int *)(render_system_memory + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             uVar10 = 0;
@@ -562,7 +568,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11 + 0x20) = uVar10;
           iStack_3e8._0_1_ = 0;
           uVar7 = FUN_180557a10(lVar1,0xffffffff,1);
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar9 = *(int *)(render_system_memory + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             uVar10 = 0;
@@ -572,8 +578,8 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           }
           *(uint64_t *)((int64_t)auStack_318 + lVar11 + 0x20) = uVar10;
           iStack_3e8._0_1_ = 0;
-          uVar7 = FUN_180557990(lVar1,0xffffffff,1);
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          uVar7 = RenderingSystem_RenderQueue(lVar1,0xffffffff,1);
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar9 = *(int *)(render_system_memory + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             uVar10 = 0;
@@ -584,7 +590,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
           *(uint64_t *)((int64_t)auStack_1c8 + lVar11 + 0x28) = uVar10;
           iStack_3e8 = (uint)iStack_3e8._1_3_ << 8;
           uVar7 = FUN_180557a10(lVar1,0xffffffff,1);
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)(param_1 + 0xac),uVar7);
           iVar9 = *(int *)(render_system_memory + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             uVar10 = 0;
@@ -637,7 +643,7 @@ void FUN_180577110(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
         uStack_3c4 = 0x7f7fffff;
         fStack_3c8 = (fStack_380 - *(float *)(*(int64_t *)(lVar1 + 0x140) + 0x158) * 1.5) -
                      fStack_360;
-        FUN_180285b40(auStack_378,&lStack_3b0,&uStack_3d0);
+        SystemCore_EventHandler(auStack_378,&lStack_3b0,&uStack_3d0);
         *(int64_t *)(param_1 + 0x2528) = lStack_3b0;
         *(uint64_t *)(param_1 + 0x2530) = uStack_3a8;
         *(int32_t *)(param_1 + 0x2554) = uStack_340;

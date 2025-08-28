@@ -125,7 +125,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
   uStack_410 = 0xfffffffffffffffe;
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_518;
   uStack_488 = param_2;
-  FUN_1802c22a0(auStack_4b8,&processed_var_808_ptr);
+  SystemData_Processor(auStack_4b8,&processed_var_808_ptr);
   if (param_2 != 0) {
     plVar13 = (int64_t *)0x0;
     if (param_1[0x1049] == 0) {
@@ -142,7 +142,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
       uStack_4e8 = 0;
       uStack_4f0 = 3;
       puStack_4f8 = (uint *)CONCAT44(puStack_4f8._4_4_,0x220);
-      plVar8 = (int64_t *)FUN_1800b0a10(uVar22,&plStack_4b0,0xffffffff,&puStack_2f8);
+      plVar8 = (int64_t *)SystemCore_ConfigManager(uVar22,&plStack_4b0,0xffffffff,&puStack_2f8);
       lVar18 = *plVar8;
       *plVar8 = 0;
       uStack_480 = (int64_t *)param_1[0x1049];
@@ -178,28 +178,28 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
       auStack_140[0] = auStack_140[0] & 0xffffff00;
       uStack_148 = 10;
       strcpy_s(auStack_140,0x80,&processed_var_888_ptr);
-      FUN_1800b1230(system_resource_state,&plStack_430,&puStack_158,&puStack_3f8);
+      SystemInitializer(system_resource_state,&plStack_430,&puStack_158,&puStack_3f8);
       puStack_158 = &system_state_ptr;
       puStack_398 = &memory_allocator_3432_ptr;
       puStack_390 = auStack_380;
       auStack_380[0] = auStack_380[0] & 0xffffff00;
       uStack_388 = CONCAT44(uStack_388._4_4_,10);
       strcpy_s(auStack_380,0x80,&processed_var_832_ptr);
-      FUN_1800b1230(system_resource_state,&plStack_438,&puStack_398,&puStack_3f8);
+      SystemInitializer(system_resource_state,&plStack_438,&puStack_398,&puStack_3f8);
       puStack_398 = &system_state_ptr;
       puStack_1f8 = &memory_allocator_3432_ptr;
       puStack_1f0 = auStack_1e0;
       auStack_1e0[0] = 0;
       uStack_1e8 = 10;
       strcpy_s(auStack_1e0,0x80,&processed_var_848_ptr);
-      FUN_1800b1230(system_resource_state,&plStack_440,&puStack_1f8,&puStack_3f8);
+      SystemInitializer(system_resource_state,&plStack_440,&puStack_1f8,&puStack_3f8);
       puStack_1f8 = &system_state_ptr;
       puStack_298 = &memory_allocator_3432_ptr;
       puStack_290 = auStack_280;
       auStack_280[0] = 0;
       uStack_288 = 10;
       strcpy_s(auStack_280,0x80,&processed_var_904_ptr);
-      FUN_1800b1230(system_resource_state,&plStack_448,&puStack_298,&puStack_3f8);
+      SystemInitializer(system_resource_state,&plStack_448,&puStack_298,&puStack_3f8);
       puStack_298 = &system_state_ptr;
       bVar1 = *(byte *)(param_2 + 0x335);
       uVar2 = *(ushort *)(param_2 + 0x332);
@@ -363,7 +363,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
               if (plStack_340 != (int64_t *)0x0) {
                 (**(code **)(*plStack_340 + 0x28))();
               }
-              auStack_408[0] = FUN_180299eb0(uVar4,0,&puStack_158,auStack_4b8);
+              auStack_408[0] = UIRenderingEngine(uVar4,0,&puStack_158,auStack_4b8);
               (**(code **)(*param_1 + 0xc0))(param_1,auStack_408);
               uVar14 = uStack_4a4;
               if (uStack_4a4 == 1) {
@@ -604,10 +604,10 @@ void FUN_18029c460(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar2);
   }
-  FUN_180058370(param_1 + 0x2b8,*(uint64_t *)(param_1 + 0x2c8),param_3,param_4,0xfffffffffffffffe)
+  RenderingSystem_CameraSystem(param_1 + 0x2b8,*(uint64_t *)(param_1 + 0x2c8),param_3,param_4,0xfffffffffffffffe)
   ;
-  FUN_180058370(param_1 + 0x288,*(uint64_t *)(param_1 + 0x298));
-  FUN_180058370(param_1 + 600,*(uint64_t *)(param_1 + 0x268));
+  RenderingSystem_CameraSystem(param_1 + 0x288,*(uint64_t *)(param_1 + 0x298));
+  RenderingSystem_CameraSystem(param_1 + 600,*(uint64_t *)(param_1 + 0x268));
   SystemDataValidator(param_1 + 0x1b8,0x20,5,FUN_180046860);
   if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -742,8 +742,8 @@ int64_t FUN_18029c700(int64_t param_1)
 
 
 
-// 函数: void FUN_18029c8a0(int64_t param_1,uint param_2,uint64_t param_3,int32_t param_4,
-void FUN_18029c8a0(int64_t param_1,uint param_2,uint64_t param_3,int32_t param_4,
+// 函数: void UtilitiesSystem_MathCalculator(int64_t param_1,uint param_2,uint64_t param_3,int32_t param_4,
+void UtilitiesSystem_MathCalculator(int64_t param_1,uint param_2,uint64_t param_3,int32_t param_4,
                   int8_t param_5,uint param_6)
 
 {

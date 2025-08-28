@@ -60,7 +60,7 @@ void FUN_1803e581b(int param_1,int64_t param_2,int param_3,int64_t param_4)
       uVar7 = (int64_t)(int)uVar11;
     } while ((uint64_t)(int64_t)(int)uVar11 < uVar14);
   }
-  FUN_1800863a0(unaff_R15 + 0xf0,&stack0x00000030);
+  AudioMixer(unaff_R15 + 0xf0,&stack0x00000030);
 LAB_1803e58e9:
   plVar9 = (int64_t *)FUN_1803e74c0();
   lVar2 = plVar9[1];
@@ -743,7 +743,7 @@ void FUN_1803e6170(int64_t param_1,int64_t param_2)
         }
       }
       else {
-        FUN_180059820(param_1 + 0x110,&puStack_90);
+        SystemCore_BackupSystem(param_1 + 0x110,&puStack_90);
       }
       puStack_70 = &system_data_buffer_ptr;
       if (lStack_68 != 0) {

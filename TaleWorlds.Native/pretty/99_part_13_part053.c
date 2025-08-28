@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -619,7 +620,7 @@ uint64_t FUN_1808cbb50(int64_t param_1,uint64_t param_2)
   uVar1 = FUN_1808cbf60();
   if ((int)uVar1 == 0) {
     FUN_1808c8f30(param_2,param_1 + 0x88);
-    FUN_1808b2f30(param_1,2);
+    SystemDataFlowProcessor(param_1,2);
     uVar1 = 0;
   }
   return uVar1;
@@ -647,27 +648,27 @@ void FUN_1808cbba0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uVar3 = (**(code **)*param_1)(param_1);
   cVar1 = func_0x0001808c57f0(param_2,uVar3,param_3,param_4,unaff_RDI);
   if (cVar1 != '\0') {
-    iVar2 = FUN_1808b2f30(param_1,0);
+    iVar2 = SystemDataFlowProcessor(param_1,0);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,4);
+    iVar2 = SystemDataFlowProcessor(param_1,4);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,1);
+    iVar2 = SystemDataFlowProcessor(param_1,1);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,9);
+    iVar2 = SystemDataFlowProcessor(param_1,9);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,0xb);
+    iVar2 = SystemDataFlowProcessor(param_1,0xb);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,8);
+    iVar2 = SystemDataFlowProcessor(param_1,8);
     if (iVar2 != 0) {
       return;
     }
@@ -751,14 +752,14 @@ LAB_1808cbcfb:
                                 *(int64_t *)(param_1 + 0xe8) + 0xd8,*(uint64_t *)(param_1 + 0xf0)
                                 ,plVar8);
           if ((((iVar4 == 0) && (*plVar8 != 0)) &&
-              (iVar4 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(*plVar8 + 0x2b0) + 0x78),1),
+              (iVar4 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(*plVar8 + 0x2b0) + 0x78),1),
               iVar4 == 0)) &&
              (iVar4 = FUN_18073f130(lVar5,*(uint64_t *)(*(int64_t *)(*plVar8 + 0x2b0) + 0x78),1,
                                     param_1 + 0x128), iVar4 == 0)) {
             FUN_18085ff30(*plVar8);
           }
         }
-        iVar4 = FUN_1808b2f30(param_1,3);
+        iVar4 = SystemDataFlowProcessor(param_1,3);
         if (iVar4 == 0) {
           puVar9 = (uint64_t *)(*(int64_t *)(param_1 + 0xe8) + 0xe8);
           for (puVar2 = (uint64_t *)*puVar9; puVar2 != puVar9; puVar2 = (uint64_t *)*puVar2) {
@@ -766,7 +767,7 @@ LAB_1808cbcfb:
                                         *(int32_t *)((int64_t)puVar2 + 0x24));
             lVar5 = func_0x00018085fd70(*(uint64_t *)(param_1 + 0xf8),puVar2 + 2);
             if ((lVar5 == 0) || ((*(int64_t *)(lVar5 + 0x40) != 0) == (cVar3 == '\0'))) {
-              iVar4 = FUN_1808b2f30(param_1,*(int32_t *)((int64_t)puVar2 + 0x24));
+              iVar4 = SystemDataFlowProcessor(param_1,*(int32_t *)((int64_t)puVar2 + 0x24));
 LAB_1808cbeb9:
               if (iVar4 != 0) goto FUN_1808cbf42;
             }
@@ -791,7 +792,7 @@ LAB_1808cbeb9:
              || (*(int64_t *)(lVar1 + 0xe0) != *(int64_t *)(*(int64_t *)(param_1 + 0xe8) + 0xe0))
              ) {
             FUN_1808c9e60(param_1);
-            iVar4 = FUN_18073d8a0(*(uint64_t *)
+            iVar4 = SystemCore_StateController(*(uint64_t *)
                                    (*(int64_t *)(*(int64_t *)(param_1 + 0xf8) + 0x2b0) + 0x78),0);
             if (iVar4 == 0) {
               FUN_180863420(*(uint64_t *)(param_1 + 0xf8));
@@ -867,14 +868,14 @@ LAB_1808cbcfb:
                                 *(int64_t *)(unaff_RDI + 0xe8) + 0xd8,
                                 *(uint64_t *)(unaff_RDI + 0xf0),plVar6);
           if ((((iVar3 == 0) && (*plVar6 != 0)) &&
-              (iVar3 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(*plVar6 + 0x2b0) + 0x78),1),
+              (iVar3 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(*plVar6 + 0x2b0) + 0x78),1),
               iVar3 == 0)) &&
              (iVar3 = FUN_18073f130(lVar5,*(uint64_t *)(*(int64_t *)(*plVar6 + 0x2b0) + 0x78),1,
                                     unaff_RDI + 0x128), iVar3 == 0)) {
             FUN_18085ff30(*plVar6);
           }
         }
-        iVar3 = FUN_1808b2f30();
+        iVar3 = SystemDataFlowProcessor();
         if (iVar3 == 0) {
           puVar7 = (uint64_t *)(*(int64_t *)(unaff_RDI + 0xe8) + 0xe8);
           for (puVar1 = (uint64_t *)*puVar7; puVar1 != puVar7; puVar1 = (uint64_t *)*puVar1) {
@@ -882,7 +883,7 @@ LAB_1808cbcfb:
                                         *(int32_t *)((int64_t)puVar1 + 0x24));
             lVar5 = func_0x00018085fd70(*(uint64_t *)(unaff_RDI + 0xf8),puVar1 + 2);
             if ((lVar5 == 0) || ((*(int64_t *)(lVar5 + 0x40) != 0) == (cVar2 == '\0'))) {
-              iVar3 = FUN_1808b2f30();
+              iVar3 = SystemDataFlowProcessor();
 LAB_1808cbeb9:
               if (iVar3 != 0) goto LAB_1808cbf32;
             }
@@ -908,7 +909,7 @@ LAB_1808cbeb9:
              (*(int64_t *)(unaff_R13 + 0xe0) !=
               *(int64_t *)(*(int64_t *)(unaff_RDI + 0xe8) + 0xe0))) {
             FUN_1808c9e60();
-            iVar3 = FUN_18073d8a0(*(uint64_t *)
+            iVar3 = SystemCore_StateController(*(uint64_t *)
                                    (*(int64_t *)(*(int64_t *)(unaff_RDI + 0xf8) + 0x2b0) + 0x78),0
                                  );
             if (iVar3 == 0) {
@@ -959,27 +960,27 @@ void FUN_1808cbf60(uint64_t *param_1,uint64_t param_2)
   uVar3 = (**(code **)*param_1)(param_1);
   cVar1 = func_0x0001808c57f0(param_2,uVar3);
   if (cVar1 != '\0') {
-    iVar2 = FUN_1808b2f30(param_1,0);
+    iVar2 = SystemDataFlowProcessor(param_1,0);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,4);
+    iVar2 = SystemDataFlowProcessor(param_1,4);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,1);
+    iVar2 = SystemDataFlowProcessor(param_1,1);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,9);
+    iVar2 = SystemDataFlowProcessor(param_1,9);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,0xb);
+    iVar2 = SystemDataFlowProcessor(param_1,0xb);
     if (iVar2 != 0) {
       return;
     }
-    iVar2 = FUN_1808b2f30(param_1,8);
+    iVar2 = SystemDataFlowProcessor(param_1,8);
     if (iVar2 != 0) {
       return;
     }
@@ -1065,11 +1066,11 @@ void FUN_1808cc0b0(int64_t param_1,uint64_t *param_2)
   }
   iVar2 = FUN_1808ccd40(param_1,param_2,lVar1);
   if (iVar2 == 0) {
-    iVar2 = FUN_1808b2f30(param_1,5);
+    iVar2 = SystemDataFlowProcessor(param_1,5);
     if (iVar2 == 0) {
-      iVar2 = FUN_1808b2f30(param_1,6);
+      iVar2 = SystemDataFlowProcessor(param_1,6);
       if (iVar2 == 0) {
-        FUN_1808b2f30(param_1,7);
+        SystemDataFlowProcessor(param_1,7);
       }
     }
   }
@@ -1114,11 +1115,11 @@ void FUN_1808cc0c7(int64_t param_1,uint64_t *param_2)
   }
   iVar3 = FUN_1808ccd40(param_1,param_2,lVar1);
   if (iVar3 == 0) {
-    iVar3 = FUN_1808b2f30(param_1,5);
+    iVar3 = SystemDataFlowProcessor(param_1,5);
     if (iVar3 == 0) {
-      iVar3 = FUN_1808b2f30(param_1,6);
+      iVar3 = SystemDataFlowProcessor(param_1,6);
       if (iVar3 == 0) {
-        FUN_1808b2f30(param_1,7);
+        SystemDataFlowProcessor(param_1,7);
       }
     }
   }

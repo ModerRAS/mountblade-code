@@ -97,7 +97,7 @@ void FUN_1805ea4b0(int64_t param_1,int64_t param_2,int64_t param_3,char *param_4
       else {
         iVar3 = *(int *)((int64_t)(int)plVar1[0x493] * 0x68 + 0x58 + system_system_config);
         if (iVar3 == 0x12) {
-          lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((int64_t)plVar1 + 0xac));
+          lVar2 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)((int64_t)plVar1 + 0xac));
           if ((int)plVar1[0x493] == -1) {
             return;
           }
@@ -152,7 +152,7 @@ LAB_1805ea5e4:
     }
     else {
       if (*(int *)((int64_t)iVar3 * 0x68 + 0x58 + system_system_config) != 0x12) goto LAB_1805ea5e4;
-      lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((int64_t)plVar1 + 0xac));
+      lVar2 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)((int64_t)plVar1 + 0xac));
       if (((int)plVar1[0x493] != -1) &&
          (*(char *)((int64_t)(int)plVar1[0x493] * 0x68 + 0x60 + system_system_config) == '\x04')) {
         fVar5 = (float)(**(code **)(*plVar1 + 0x90))(plVar1,1);
@@ -238,7 +238,7 @@ void FUN_1805ea582(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   float fVar2;
   
   if (*(int *)(param_2 * 0x68 + 0x58 + param_1) == 0x12) {
-    lVar1 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac));
+    lVar1 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)((int64_t)unaff_RDI + 0xac));
     if (((int)unaff_RDI[0x493] != -1) &&
        (*(char *)((int64_t)(int)unaff_RDI[0x493] * 0x68 + 0x60 + system_system_config) == '\x04')) {
       fVar2 = (float)(**(code **)(*unaff_RDI + 0x90))(extraout_XMM0_Da,1);

@@ -119,7 +119,7 @@ void FUN_180508f50(int64_t param_1,uint64_t *param_2,int param_3)
   fStack_c4 = fVar25;
   fStack_c0 = fVar10;
   uStack_bc = uStack_17c;
-  FUN_18063b5f0(&fStack_178,&fStack_198);
+  SystemSecurityManager(&fStack_178,&fStack_198);
   fVar2 = *(float *)(lVar20 + 0xa0);
   fVar21 = *(float *)(lVar20 + 0x9c);
   fVar3 = *(float *)(lVar20 + 0xa4);

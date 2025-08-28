@@ -157,7 +157,7 @@ uint64_t FUN_18081d44a(short param_1)
 
 
 uint64_t
-FUN_18081d600(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
+UISystem_InputProcessor0(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
 {
@@ -201,7 +201,7 @@ FUN_18081d600(float *param_1,short param_2,float *param_3,short param_4,float *p
 
 
 uint64_t
-FUN_18081d760(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
+UISystem_EventHandler(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
 {
@@ -244,7 +244,7 @@ FUN_18081d760(float *param_1,short param_2,float *param_3,short param_4,float *p
 
 
 uint64_t
-FUN_18081d8a0(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
+UIComponent_EventHandler(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
 {

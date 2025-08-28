@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -20,9 +21,9 @@ void FUN_1808d0210(int64_t *param_1,int64_t param_2,int64_t param_3,uint64_t par
   param_1[0x44] = param_2;
   iVar1 = FUN_1808ca8a0();
   if (iVar1 == 0) {
-    iVar1 = FUN_1808b2f30(param_1,0x16);
+    iVar1 = SystemDataFlowProcessor(param_1,0x16);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808b2f30(param_1,0x20);
+      iVar1 = SystemDataFlowProcessor(param_1,0x20);
       if (iVar1 == 0) {
         if (param_3 == 0) {
           param_3 = (uint64_t)param_6 + param_2;
@@ -167,7 +168,7 @@ uint64_t FUN_1808d0490(int64_t param_1,uint64_t param_2,int8_t param_3)
         plVar6 = (int64_t *)0x38;
       }
       lVar2 = *plVar6;
-      iVar3 = FUN_18085ab70(*(int64_t *)(param_1 + 0x58) + 200);
+      iVar3 = UISystem_WidgetController(*(int64_t *)(param_1 + 0x58) + 200);
       uVar9 = iVar3 + lVar2;
     }
     puVar4 = (uint64_t *)(plVar8 + 2);
@@ -978,7 +979,7 @@ uint64_t FUN_1808d0fe0(int64_t *param_1)
     plStack_58 = plStackX_8;
     uStack_50 = 0xffffffffffffffff;
     aiStack_48[0] = -1;
-    FUN_1807d1650(plStackX_8,&uStack_50,aiStack_48);
+    NetworkSystem_ConnectionHandler(plStackX_8,&uStack_50,aiStack_48);
     plVar2 = plStack_58;
     if (aiStack_48[0] == -1) {
       return 0;
@@ -988,7 +989,7 @@ uint64_t FUN_1808d0fe0(int64_t *param_1)
     do {
       do {
         lVar5 = *(int64_t *)(plVar2[2] + 8 + (int64_t)iVar8 * 0x10);
-        iVar3 = FUN_1808605e0(lVar5);
+        iVar3 = SystemCore_StateController(lVar5);
         if (((iVar3 != 2) && (*(int64_t *)(lVar5 + 0x350) == 0)) &&
            (uVar4 = FUN_180863820(lVar5,-(uVar1 != 0) & 3,0), uVar4 != 0)) {
           uVar9 = (uint64_t)uVar4;
@@ -1090,7 +1091,7 @@ LAB_1808d12d7:
     }
     fVar11 = *(float *)(lVar5 + 0x20) + *(float *)(param_1 + 0x13);
   }
-  uVar6 = FUN_1808d73b0(lVar5,fVar11,0);
+  uVar6 = UtilitiesSystem_StringProcessor(lVar5,fVar11,0);
 LAB_1808d11b7:
   if ((int)uVar6 == 0) {
     return 0;
@@ -1125,7 +1126,7 @@ uint64_t FUN_1808d11dd(uint64_t param_1)
     *(int64_t *)(unaff_RBP + -0x38) = lVar5;
     *(uint64_t *)(unaff_RBP + -0x30) = 0xffffffffffffffff;
     *(int32_t *)(unaff_RBP + -0x28) = 0xffffffff;
-    FUN_1807d1650(lVar5,unaff_RBP + -0x30,unaff_RBP + -0x28);
+    NetworkSystem_ConnectionHandler(lVar5,unaff_RBP + -0x30,unaff_RBP + -0x28);
     iVar7 = *(int *)(unaff_RBP + -0x28);
     if (iVar7 != -1) {
       iVar6 = *(int *)(unaff_RBP + -0x30);
@@ -1133,7 +1134,7 @@ uint64_t FUN_1808d11dd(uint64_t param_1)
       do {
         do {
           lVar5 = *(int64_t *)(plVar1[2] + 8 + (int64_t)iVar7 * 0x10);
-          iVar2 = FUN_1808605e0(lVar5);
+          iVar2 = SystemCore_StateController(lVar5);
           if (((iVar2 != 2) && (*(int64_t *)(lVar5 + 0x350) == 0)) &&
              (uVar3 = FUN_180863820(lVar5,-(unaff_R12D != 0) & 3,0), uVar3 != 0)) {
             uVar4 = (uint64_t)uVar3;
@@ -1185,7 +1186,7 @@ int FUN_1808d1236(void)
   do {
     do {
       lVar3 = *(int64_t *)(plVar1[2] + 8 + (int64_t)unaff_EDI * 0x10);
-      iVar2 = FUN_1808605e0(lVar3);
+      iVar2 = SystemCore_StateController(lVar3);
       if ((iVar2 != 2) && (*(int64_t *)(lVar3 + 0x350) == 0)) {
         iVar2 = FUN_180863820(lVar3,-(unaff_R12D != 0) & 3,0);
         if (iVar2 != 0) {

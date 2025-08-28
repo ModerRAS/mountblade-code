@@ -1,5 +1,11 @@
+#include "SystemDataAdvancedValidator_definition.h"
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // ============================================================================
 // 99_part_03_part001.c - 高级数据处理和文件操作模块
@@ -53,15 +59,15 @@
 
 // 系统调用和内存管理器
 #define SystemMemoryAllocator CoreEngineMemoryPoolReallocator     // 系统内存分配器
-#define SystemMemoryDeallocator FUN_18005e110    // 系统内存释放器
+#define SystemMemoryDeallocator SystemCore_TimerManager    // 系统内存释放器
 #define SystemDataCopier CoreEngineDataTransformer          // 系统数据复制器
 #define SystemConfigurator CoreEngineDataBufferProcessor         // 系统配置器
 #define SystemErrorHandler CoreEngineMemoryPoolCleaner         // 系统错误处理器
 #define SystemResourceTracker FUN_1801c9940     // 系统资源跟踪器
 #define SystemDataManager FUN_1803e8a40          // 系统数据管理器
-#define SystemInitializer FUN_18005e630          // 系统初始化器
+#define SystemInitializer SystemCore_FileSystem          // 系统初始化器
 #define SystemCleanupHandler SystemSecurityChecker      // 系统清理处理器
-#define SystemValidator FUN_18062dee0            // 系统验证器
+#define SystemValidator RenderingSystem_DataValidator0            // 系统验证器
 #define SystemBufferManager System_BufferManager       // 系统缓冲区管理器
 #define SystemDataProcessor FUN_180628f30       // 系统数据处理器
 #define SystemSearchHandler FUN_1801ea180       // 系统搜索处理器
@@ -70,21 +76,21 @@
 #define SystemNodeManager FUN_1801e8280         // 系统节点管理器
 #define SystemFileHandler FUN_1801d8e90         // 系统文件处理器
 #define SystemSecurityChecker FUN_18063ba00     // 系统安全检查器
-#define SystemMessageHandler FUN_1800623b0      // 系统消息处理器
+#define SystemMessageHandler SystemConfigurationManager      // 系统消息处理器
 #define SystemConfigurator2 FUN_18004b860       // 系统配置器2
 #define SystemMemoryManager CoreEngineMemoryPoolAllocator      // 系统内存管理器
-#define SystemStateChecker FUN_180624af0         // 系统状态检查器
+#define SystemStateChecker RenderingSystem_RenderQueue         // 系统状态检查器
 #define SystemStateSetter FUN_18062c1e0         // 系统状态设置器
-#define SystemInitializer2 FUN_180062300        // 系统初始化器2
+#define SystemInitializer2 SystemParameterHandler        // 系统初始化器2
 #define SystemStringHandler FUN_1800baa80       // 系统字符串处理器
-#define SystemResourceBinder FUN_18005d190      // 系统资源绑定器
+#define SystemResourceBinder SystemScheduler      // 系统资源绑定器
 #define SystemPathProcessor SystemEventProcessor       // 系统路径处理器
 #define SystemDataComparator FUN_1801eb6f0      // 系统数据比较器
 
 // 系统常量和函数指针
 #define SystemFunctionPointer1 FUN_1801eb5a0     // 系统函数指针1
 #define SystemFunctionPointer2 FUN_1801eb560     // 系统函数指针2
-#define SystemResourceHandler FUN_18006b640      // 系统资源处理器
+#define SystemResourceHandler SystemCore_ErrorHandler      // 系统资源处理器
 
 // 系统全局数据指针
 #define system_global_data_ptr system_global_data_ptr     // 系统全局数据指针

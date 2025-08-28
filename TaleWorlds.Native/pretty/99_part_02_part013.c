@@ -327,7 +327,7 @@ void FUN_1800f1850(int64_t param_1)
       iStack_258 = iVar18;
       iStack_250 = iVar15;
       iStack_248 = iVar5;
-      plVar3 = (int64_t *)FUN_1800b0a10();
+      plVar3 = (int64_t *)SystemCore_ConfigManager();
       lVar8 = *plVar3;
       *plVar3 = 0;
       plStack_1f0 = (int64_t *)plVar19[-0x14];
@@ -600,7 +600,7 @@ void FUN_1800f1ff0(int64_t param_1)
       uStack_1b8 = 0;
       uStack_1c0 = 1;
       uStack_1c8 = 0x41;
-      puVar22 = (uint64_t *)FUN_1800b0a10(uVar34,&plStack_170,0xffffffff,&puStack_e8);
+      puVar22 = (uint64_t *)SystemCore_ConfigManager(uVar34,&plStack_170,0xffffffff,&puStack_e8);
       uVar8 = *puVar22;
       *puVar22 = 0;
       plStack_178 = *(int64_t **)(param_1 + 0x370);
@@ -734,7 +734,7 @@ void FUN_1800f25a0(int64_t param_1)
       uStack_120 = 1;
       uStack_128 = 1;
       iStack_108 = (int)uVar9;
-      puVar6 = (uint64_t *)FUN_1800b0a10();
+      puVar6 = (uint64_t *)SystemCore_ConfigManager();
       uVar3 = *puVar6;
       *puVar6 = 0;
       plStack_d0 = *(int64_t **)(param_1 + 0x378);
@@ -760,7 +760,7 @@ void FUN_1800f25a0(int64_t param_1)
       uStack_120 = 1;
       uStack_128 = 1;
       iStack_108 = (int)uVar11;
-      puVar6 = (uint64_t *)FUN_1800b0a10();
+      puVar6 = (uint64_t *)SystemCore_ConfigManager();
       uVar3 = *puVar6;
       *puVar6 = 0;
       plStack_d0 = *(int64_t **)(param_1 + 0x380);

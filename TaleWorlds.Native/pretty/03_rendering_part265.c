@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 03_rendering_part265.c - 5 个函数
 
@@ -390,7 +396,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
      (lVar4 = *(int64_t *)(*system_main_module_state + 0x888),
      (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar4 >> 5) <= (uint64_t)(int64_t)iVar2)
      ) {
-    lVar4 = FUN_180628ca0();
+    lVar4 = MemoryDebugger0();
   }
   else {
     lVar4 = (int64_t)iVar2 * 0x20 + lVar4;
@@ -413,7 +419,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
   uStack_138 = (uint)auVar1[8];
   puStack_140 = (void *)CONCAT44(puStack_140._4_4_,(uint)auVar1._6_2_);
   puStack_148 = (void *)CONCAT44(puStack_148._4_4_,(uint)auVar1._4_2_);
-  FUN_180626eb0(auStack_68,0x28,&processed_var_6768_ptr,auVar1._0_8_);
+  SystemCore_CacheManager(auStack_68,0x28,&processed_var_6768_ptr,auVar1._0_8_);
   (**(code **)(puStack_c8 + 0x18))(&puStack_c8,auStack_68,0x24);
   puStack_140 = &system_buffer_ptr;
   if (render_system_control_memory != (void *)0x0) {
@@ -735,7 +741,7 @@ FUN_180414a60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
       }
       else {
         if ((param_7 != (int64_t *)0x0) && (cStack_3c != '\0')) {
-          FUN_1800623b0(system_message_context,0,0x80000000000,9,&processed_var_9184_ptr);
+          SystemConfigurationManager(system_message_context,0,0x80000000000,9,&processed_var_9184_ptr);
         }
         lVar14 = alStack_158[0];
         uVar9 = (uint)uStack_88;

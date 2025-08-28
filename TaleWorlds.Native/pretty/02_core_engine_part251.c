@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 02_core_engine_part251.c - 16 个函数
 
@@ -128,7 +135,7 @@ void FUN_180217530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   if (*(int64_t *)(param_1 + 0x2b8) - *(int64_t *)(param_1 + 0x2b0) >> 4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5328_ptr,0,param_4,uVar2);
+    SystemParameterHandler(system_message_context,&processed_var_5328_ptr,0,param_4,uVar2);
   }
   iVar1 = _Mtx_unlock(param_1 + 0x260);
   if (iVar1 != 0) {
@@ -237,7 +244,7 @@ void FUN_1802177f0(int64_t param_1)
   
   uStack_148 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1a8;
-  FUN_1801299b0(&processed_var_5280_ptr,0,0);
+  CoreSystem_Validator(&processed_var_5280_ptr,0,0);
   plVar1 = *(int64_t **)(param_1 + 0x38);
   lVar6 = *plVar1;
   plVar7 = plVar1;
@@ -255,7 +262,7 @@ void FUN_1802177f0(int64_t param_1)
       FUN_180846610(plVar1[0xf],auStack_138,0x100,auStack_150);
       if ((void *)*plVar1 == &rendering_buffer_2656_ptr) {
         iVar3 = FUN_180846a90(plVar1[0x10],&iStack_160);
-        FUN_180211a30(iVar3,&system_buffer_ptr);
+        SystemCore_NetworkHandler(iVar3,&system_buffer_ptr);
         if ((iVar3 == 0) && ((iStack_160 == 0 || (iStack_160 == 3)))) {
           cVar2 = '\x01';
         }
@@ -322,7 +329,7 @@ void FUN_1802177f0(int64_t param_1)
     } while (lVar6 != *(int64_t *)
                        (*(int64_t *)(param_1 + 0x38) + *(int64_t *)(param_1 + 0x40) * 8));
   }
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_1a8);
 }
@@ -352,7 +359,7 @@ void FUN_180217b00(int64_t *param_1,uint64_t param_2)
   if (0x1fffffffffffffff < param_2) {
     lVar5 = -1;
   }
-  puVar4 = (uint64_t *)FUN_180067110(lVar5);
+  puVar4 = (uint64_t *)SystemCore_SyscallHandler(lVar5);
   puVar3 = (uint64_t *)param_1[1];
   puVar8 = puVar4;
   for (puVar6 = (uint64_t *)*param_1; puVar6 != puVar3; puVar6 = puVar6 + 1) {
@@ -573,7 +580,7 @@ void FUN_180217f60(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uVar6 = param_1[1];
   if (uVar6 < param_1[2]) {
     param_1[1] = uVar6 + 0x98;
-    FUN_180049b30(uVar6);
+    SystemCore_EventHandler(uVar6);
     return;
   }
   uVar8 = *param_1;
@@ -612,7 +619,7 @@ LAB_18021800d:
       puVar4 = puVar4 + 0x13;
     } while (lVar9 + (int64_t)puVar4 != uVar6);
   }
-  FUN_180049b30(puVar4,param_2);
+  SystemCore_EventHandler(puVar4,param_2);
   puVar2 = (uint64_t *)param_1[1];
   puVar5 = (uint64_t *)*param_1;
   if (puVar5 != puVar2) {
@@ -719,7 +726,7 @@ FUN_180218290(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   lVar3 = func_0x000180218bc0(param_1,*(uint64_t *)(*(int64_t *)(param_1 + 8) + uVar2 * 8),
                               param_4);
   if (lVar3 == 0) {
-    FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
+    RenderingShaderProcessor0(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
     lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x88,*(int8_t *)(param_1 + 0x2c));
     SystemCore_NetworkHandler0(lVar3,param_4);

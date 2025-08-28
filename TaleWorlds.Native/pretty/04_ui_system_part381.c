@@ -1,6 +1,11 @@
-#include "FUN_1808555a0_definition.h"
+#include "SystemDataAdvancedHandler_definition.h"
+#include "SystemAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part381.c - 1 个函数
 
@@ -27,7 +32,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x8a8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x868;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x878);
@@ -39,7 +44,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x878);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x838;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x848);
@@ -51,7 +56,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x848);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x808;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x818);
@@ -63,7 +68,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x818);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x7d8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x7e8);
@@ -75,7 +80,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x7e8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x7a8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x7b8);
@@ -99,7 +104,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x788);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x748;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x758);
@@ -111,7 +116,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x758);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x718;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x728);
@@ -123,7 +128,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x728);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x6e8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x6f8);
@@ -135,7 +140,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x6f8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x6b8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x6c8);
@@ -147,7 +152,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x6c8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x688;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x698);
@@ -159,7 +164,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x698);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x658;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x668);
@@ -171,7 +176,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x668);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x628;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x638);
@@ -183,7 +188,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x638);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x5f8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x608);
@@ -195,7 +200,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x608);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x5c8;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x5d8);
@@ -207,7 +212,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x5d8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x598;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x5a8);
@@ -219,7 +224,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x5a8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x568;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x578);
@@ -231,7 +236,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x578);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x538;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x548);
@@ -243,7 +248,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x548);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x508;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x518);
@@ -279,7 +284,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x4b8);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x478;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x488);
@@ -291,7 +296,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x488);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x448;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x458);
@@ -303,7 +308,7 @@ void FUN_180873460(int64_t param_1)
   SystemCore_FileSystem0(param_1 + 0x458);
   SystemLockProcessor(lVar2);
   lVar2 = param_1 + 0x418;
-  FUN_180874760(lVar2);
+  SystemCore_AuthenticationHandler(lVar2);
   iVar3 = SystemLockProcessor(lVar2);
   if (iVar3 == 0) {
     iVar3 = SystemCore_FileSystem0(param_1 + 0x428);
@@ -459,7 +464,7 @@ uint64_t FUN_180873cd0(int64_t *param_1)
   if (-1 < (int)uVar4) {
     uVar1 = uVar4;
   }
-  if ((0 < (int)uVar1) && (uVar3 = FUN_180747e10(param_1,0), (int)uVar3 != 0)) {
+  if ((0 < (int)uVar1) && (uVar3 = SystemCore_Initializer(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -533,7 +538,7 @@ uint64_t FUN_180873f80(int64_t param_1,uint64_t param_2,int64_t param_3)
       }
       else {
         auStackX_8[0] = 1;
-        uVar2 = FUN_180879610(param_3 + 8,&uStack_18,auStackX_8);
+        uVar2 = SystemStateProcessor(param_3 + 8,&uStack_18,auStackX_8);
       }
       if ((int)uVar2 == 0) {
         return 0;
@@ -565,7 +570,7 @@ uint64_t FUN_180873f80(int64_t param_1,uint64_t param_2,int64_t param_3)
   }
   else {
     auStackX_8[0] = 1;
-    uVar2 = FUN_180879610(param_3 + 8,&uStack_18,auStackX_8);
+    uVar2 = SystemStateProcessor(param_3 + 8,&uStack_18,auStackX_8);
   }
   if ((int)uVar2 == 0) {
     return 0;
@@ -621,7 +626,7 @@ LAB_180874129:
       }
       else {
         auStackX_10[0] = 1;
-        uVar3 = FUN_180879610(uVar4,lVar1 + 0x10,auStackX_10);
+        uVar3 = SystemStateProcessor(uVar4,lVar1 + 0x10,auStackX_10);
       }
       if ((int)uVar3 != 0) {
         return uVar3;
@@ -634,7 +639,7 @@ LAB_180874129:
         return 0x44;
       }
       auStackX_10[0] = 1;
-      uVar3 = FUN_180879610(uVar4,lVar1 + 0x10,auStackX_10);
+      uVar3 = SystemStateProcessor(uVar4,lVar1 + 0x10,auStackX_10);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -645,7 +650,7 @@ LAB_180874129:
 
 
 
-uint64_t FUN_1808741f0(int64_t *param_1,int *param_2,int *param_3)
+uint64_t SystemResource_Manager(int64_t *param_1,int *param_2,int *param_3)
 
 {
   int64_t lVar1;
@@ -871,7 +876,7 @@ uint64_t SystemCore_FileSystem0(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_1808532e0(param_1,0), (int)uVar2 != 0)) {
+     (uVar2 = Physics_AnimationProcessor(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;

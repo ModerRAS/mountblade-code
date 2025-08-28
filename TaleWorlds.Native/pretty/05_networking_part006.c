@@ -404,7 +404,7 @@ void * SystemCoreProcessor(void)
       uRam0000000180c4ea84 = 0;
       uRam0000000180c4ea88 = 0;
       uRam0000000180c4ea8c = 0;
-      FUN_1808fcb30(&system_ptr_ea90);
+      SystemCore_StateController(&system_ptr_ea90);
     }
   }
   return &system_ptr_ea80;
@@ -719,7 +719,7 @@ LAB_180847fc4:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
     *apuStack_128[0] = &processed_var_7896_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
@@ -786,7 +786,7 @@ LAB_18084820e:
     iVar4 = iVar3;
   }
   if ((iVar4 == 0) &&
-     (iVar3 = FUN_18088dec0(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
+     (iVar3 = SystemCore_SecurityChecker(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
     *puStack_160 = &ui_system_data_1896_ptr;
     *(int32_t *)(puStack_160 + 2) = 0;
     *(int32_t *)(puStack_160 + 1) = 0x218;
@@ -830,7 +830,7 @@ LAB_180848354:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
     *apuStack_128[0] = &memory_allocator_3872_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
@@ -852,9 +852,9 @@ void FUN_180848440(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee20(param_2,param_1 + 0x18);
+    UISystem_LayoutEngine(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -869,11 +869,11 @@ void FUN_180848480(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088ee20(param_2,param_1 + 0x1c);
+      UISystem_LayoutEngine(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -889,13 +889,13 @@ void FUN_1808484d0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
       iVar1 = FUN_18088f1a0(param_2,param_1 + 0x1c);
       if (iVar1 == 0) {
-        FUN_18088ee60(param_2,param_1 + 0x2c);
+        SystemCore_DataProcessor(param_2,param_1 + 0x2c);
       }
     }
   }
@@ -910,9 +910,9 @@ uint64_t FUN_180848530(int64_t param_1,uint64_t param_2)
   uint64_t uVar1;
   int32_t auStackX_8 [2];
   
-  uVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  uVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if ((int)uVar1 == 0) {
-    uVar1 = FUN_18088ee20(param_2,auStackX_8);
+    uVar1 = UISystem_LayoutEngine(param_2,auStackX_8);
     if ((int)uVar1 == 0) {
       *(int32_t *)(param_1 + 0x18) = auStackX_8[0];
       uVar1 = 0;
@@ -931,7 +931,7 @@ void FUN_180848590(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     FUN_18088f010(param_2,param_1 + 0x18);
   }
@@ -948,7 +948,7 @@ void FUN_1808485d0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     FUN_18088f470(param_2,param_1 + 0x18);
   }
@@ -965,9 +965,9 @@ void FUN_180848610(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088eea0(param_2,param_1 + 0x18);
+    SystemCore_ErrorHandler(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -982,9 +982,9 @@ void FUN_180848650(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x18);
+    SystemCore_DataProcessor(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -999,11 +999,11 @@ void FUN_180848690(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x1c);
+      SystemCore_DataProcessor(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -1019,7 +1019,7 @@ void FUN_1808486e0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     FUN_18088f050(param_2,param_1 + 0x18);
   }
@@ -1036,11 +1036,11 @@ void FUN_180848720(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x20);
+      iVar1 = SystemCore_ErrorHandler(param_2,param_1 + 0x20);
       if (iVar1 == 0) {
         FUN_18088f470(param_2,param_1 + 0x24);
       }
@@ -1059,7 +1059,7 @@ void FUN_180848780(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
@@ -1082,11 +1082,11 @@ void FUN_1808487e0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     iVar1 = FUN_18088f4d0(param_2,param_1 + 0x28,0x80);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x18);
+      iVar1 = SystemCore_ErrorHandler(param_2,param_1 + 0x18);
       if (iVar1 == 0) {
         FUN_18088f470(param_2,param_1 + 0x1c);
       }

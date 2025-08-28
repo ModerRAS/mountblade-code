@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part028.c - 渲染系统数据处理和变换模块
 // 包含6个核心函数，主要处理渲染数据结构、矩阵变换和资源管理
@@ -204,7 +211,7 @@ found_object_entry:
                         flag_mask = texture_hash;
                         
                         // 调用材质处理函数
-                        FUN_18066c220(camera_distance + 0x20, &shader_data, 
+                        RenderingShaderProcessor0(camera_distance + 0x20, &shader_data, 
                                       *(int32_t*)(camera_distance + 0x10),
                                       *(int32_t*)(camera_distance + 0x18), 1);
                         
@@ -564,7 +571,7 @@ expand_render_queue:
     
     // 执行渲染上下文更新
     if (*(code**)(*target_context + 0x160) == (code*)&processed_var_6368_ptr) {
-        FUN_180276f30(target_context, (int64_t)target_context + 0x214, 0);
+        SystemCore_UpdateState(target_context, (int64_t)target_context + 0x214, 0);
     }
     else {
         (**(code**)(*target_context + 0x160))(target_context);
@@ -704,7 +711,7 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
     
     // 材质系统处理
     if (0 < *(int*)(render_params + 0xc0)) {
-        texture_handle = FUN_1800b6de0(system_resource_state, render_params + 0xb0, 0);
+        texture_handle = RenderingSystem_VertexProcessor(system_resource_state, render_params + 0xb0, 0);
         material_system = render_system_data_material;
         if (texture_handle != 0) {
             if (*(float*)(render_params + 0x1b8) <= -1.0) {
@@ -768,7 +775,7 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
             if (*(int*)(texture_hash + 0x70 + texture_handle) == 0) {
                 frame_counter = 0;
                 FUN_1800b32c0(system_resource_state, &shadow_cache, (int64_t)render_flags * 0x1a0 + texture_handle, 1);
-                FUN_1800763c0(shadow_cache, &texture_cache);
+                SystemCore_BufferManager(shadow_cache, &texture_cache);
                 material_system = &shader_cache;
                 shader_cache = texture_cache;
                 if (texture_cache != (int64_t*)0x0) {
@@ -784,7 +791,7 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
             }
             else {
                 material_key = FUN_180334930(material_data, (int64_t)render_flags * 0x1a0 + texture_handle);
-                FUN_1800763c0(material_key, &texture_cache);
+                SystemCore_BufferManager(material_key, &texture_cache);
                 material_system = &light_cache;
                 light_cache = texture_cache;
                 if (texture_cache != (int64_t*)0x0) {
@@ -823,7 +830,7 @@ material_processing_complete:
                 FUN_18022dd60(render_cache);
                 *(int16_t*)(render_cache + 0x78) = 0xffff;
                 render_state = &system_state_ptr;
-                FUN_180076910(texture_handle, &shader_cache);
+                UltraHighFreq_SecurityValidator1(texture_handle, &shader_cache);
                 if (shader_cache != (int64_t*)0x0) {
                     (**(code**)(*shader_cache + 0x38))();
                 }

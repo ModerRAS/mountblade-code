@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -253,7 +254,7 @@ LAB_1805c09a3:
     goto LAB_1805c111b;
   }
   if ((uVar10 & 1) == 0) {
-    lVar9 = FUN_18065cec0(*(int64_t *)
+    lVar9 = UtilitiesSystem_FormatConverter(*(int64_t *)
                            (*(int64_t *)(*(int64_t *)(lVar9 + 0x590) + 0x2590) + 0xc78) + 0x60,0,
                           puVar7,lVar9,uVar26);
     fVar19 = *(float *)(lVar9 + 0x10) * 0.9;
@@ -279,7 +280,7 @@ LAB_1805c09a3:
       if (((*(uint *)(lVar9 + 0x56c) & 0x200000) == 0) ||
          (*(int *)((int64_t)unaff_RDI + 0x1b6c) < 1)) {
         if (iVar15 < 1) {
-          puVar8 = (uint64_t *)FUN_180516f50(lVar9,unaff_RBP + -0x78);
+          puVar8 = (uint64_t *)UltraHighFreq_MemoryManager1(lVar9,unaff_RBP + -0x78);
           puVar7 = *(uint64_t **)(unaff_RBP + 200);
           *puVar7 = *puVar8;
           uVar6 = puVar8[4];
@@ -311,7 +312,7 @@ LAB_1805c09a3:
           }
         }
         else {
-          puVar7 = (uint64_t *)FUN_180516f50(lVar9,unaff_RBP + -0x78);
+          puVar7 = (uint64_t *)UltraHighFreq_MemoryManager1(lVar9,unaff_RBP + -0x78);
           puVar8 = *(uint64_t **)(unaff_RBP + 200);
           *puVar8 = *puVar7;
           uVar6 = puVar7[4];
@@ -355,7 +356,7 @@ LAB_1805c09a3:
         }
       }
       else {
-        FUN_180516f50((int64_t)*(int *)((int64_t)unaff_RDI + 0x17ac) * 0xa60 +
+        UltraHighFreq_MemoryManager1((int64_t)*(int *)((int64_t)unaff_RDI + 0x17ac) * 0xa60 +
                       unaff_RDI[0x291] + 0x30a0,&stack0x00000030);
         if (0 < *(int *)(unaff_RBP + 0xd8)) {
           fVar24 = fStack0000000000000048 - *(float *)(*(int64_t *)(*unaff_RDI + 0x20) + 0xc);
@@ -409,7 +410,7 @@ LAB_1805c109d:
       }
     }
   }
-  lVar9 = FUN_18065cec0(*(int64_t *)
+  lVar9 = UtilitiesSystem_FormatConverter(*(int64_t *)
                          (*(int64_t *)(*(int64_t *)(*unaff_RDI + 0x590) + 0x2590) + 0xc78) + 0x60,
                         0,puVar7,fVar24,uVar26);
   fVar19 = *(float *)(lVar9 + 0x10) * 1.8;

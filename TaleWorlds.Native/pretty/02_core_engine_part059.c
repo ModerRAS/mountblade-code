@@ -571,7 +571,7 @@ LAB_18009611a:
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
       puVar8 = puVar7 + 0x1a;
-      FUN_180058370(puVar8,puVar7[0x1c]);
+      RenderingSystem_CameraSystem(puVar8,puVar7[0x1c]);
       *puVar8 = puVar8;
       puVar7[0x1b] = puVar8;
       puVar7[0x1c] = 0;
@@ -754,8 +754,8 @@ LAB_180096990:
           plVar5 = plVar25;
           do {
             lVar21 = plVar5[-1];
-            FUN_180058080(puVar12 + 0x12,auStackX_10,lVar11 + 0x20);
-            plVar13 = (int64_t *)FUN_180058080(puVar12 + 0x12,auStackX_20,lVar21 + 0x20);
+            > HighFreq_AnimationSystem1(puVar12 + 0x12,auStackX_10,lVar11 + 0x20);
+            plVar13 = (int64_t *)> HighFreq_AnimationSystem1(puVar12 + 0x12,auStackX_20,lVar21 + 0x20);
             if (extraout_XMM0_Da == *(float *)(*plVar13 + 0x40)) {
               if (*(int *)(lVar11 + 0x30) == 0) {
                 bVar3 = false;
@@ -789,13 +789,13 @@ LAB_180096990:
   }
   puVar8 = puStackX_18 + 0x1e;
   lVar11 = param_2 + 0x20;
-  plVar5 = (int64_t *)FUN_180058080(puVar8,&puStackX_18,lVar11);
+  plVar5 = (int64_t *)> HighFreq_AnimationSystem1(puVar8,&puStackX_18,lVar11);
   if ((uint64_t *)*plVar5 == puVar8) {
     puVar6 = (int8_t *)FUN_18009b960(puVar8,lVar11);
     *puVar6 = 0;
   }
   puVar8 = puVar12 + 0x18;
-  FUN_180058080(puVar8,&puStackX_18,lVar11);
+  > HighFreq_AnimationSystem1(puVar8,&puStackX_18,lVar11);
   dVar27 = 0.0;
   if (puStackX_18 == puVar8) {
     fVar29 = (float)*(double *)(param_2 + 0x40);
@@ -933,7 +933,7 @@ LAB_180096691:
     lVar11 = puVar8[9];
     puVar8[0xc] = puVar8[0xc] - 1;
     func_0x00018066bd70(lVar11);
-    FUN_18066ba00(lVar11,puVar20);
+    RenderingSystem_BufferHandler(lVar11,puVar20);
     if (lVar11 != 0) {
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(lVar11);
@@ -985,7 +985,7 @@ LAB_180096a34:
 
 
 
-bool FUN_180096a80(int64_t *param_1,int64_t param_2,int64_t param_3)
+bool CoreEngine_ConfigValidator(int64_t *param_1,int64_t param_2,int64_t param_3)
 
 {
   byte bVar1;
@@ -997,8 +997,8 @@ bool FUN_180096a80(int64_t *param_1,int64_t param_2,int64_t param_3)
   int8_t auStackX_8 [8];
   
   lVar5 = *param_1;
-  FUN_180058080(lVar5 + 0x90,auStackX_8,param_2 + 0x20);
-  plVar2 = (int64_t *)FUN_180058080(lVar5 + 0x90,auStackX_8,param_3 + 0x20);
+  > HighFreq_AnimationSystem1(lVar5 + 0x90,auStackX_8,param_2 + 0x20);
+  plVar2 = (int64_t *)> HighFreq_AnimationSystem1(lVar5 + 0x90,auStackX_8,param_3 + 0x20);
   if (extraout_XMM0_Da != *(float *)(*plVar2 + 0x40)) {
     return *(float *)(*plVar2 + 0x40) < extraout_XMM0_Da;
   }

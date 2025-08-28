@@ -15,7 +15,7 @@ void FUN_1802aa4b0(int64_t param_1)
   iVar1 = (**(code **)(**(int64_t **)(param_1 + 200) + 0xc0))
                     (*(int64_t **)(param_1 + 200),&uStackX_10,&plStackX_8);
   if (iVar1 < 0) {
-    FUN_180220810(iVar1,&memory_allocator_3784_ptr);
+    SystemCore_Loader(iVar1,&memory_allocator_3784_ptr);
   }
   (**(code **)(**(int64_t **)(param_1 + 0xd0) + 0xe0))(*(int64_t **)(param_1 + 0xd0),plStackX_8);
   do {

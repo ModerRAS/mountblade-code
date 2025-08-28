@@ -1,3 +1,7 @@
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -626,7 +630,7 @@ void FUN_1803e28f0(int64_t param_1)
   puVar3 = *(uint64_t **)(param_1 + 0x70);
   lVar1 = param_1 + 0x60;
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar1,*puVar3);
+    SystemCache_Manager(lVar1,*puVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
   }
@@ -636,12 +640,12 @@ void FUN_1803e28f0(int64_t param_1)
   *(int8_t *)(param_1 + 0x78) = 0;
   *(uint64_t *)(param_1 + 0x80) = 0;
   *(uint64_t *)(param_1 + 0xf8) = *(uint64_t *)(param_1 + 0xf0);
-  FUN_180057110(param_1 + 0x110);
+  SystemCore_ConfigValidator(param_1 + 0x110);
   FUN_1800572d0(param_1 + 0x90);
   lVar1 = param_1 + 0xc0;
   puVar3 = *(uint64_t **)(param_1 + 0xd0);
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar1,*puVar3);
+    SystemCache_Manager(lVar1,*puVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
   }
@@ -701,7 +705,7 @@ void FUN_1803e28f8(int64_t param_1)
   puVar3 = *(uint64_t **)(param_1 + 0x70);
   lVar1 = param_1 + 0x60;
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar1,*puVar3);
+    SystemCache_Manager(lVar1,*puVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
   }
@@ -711,12 +715,12 @@ void FUN_1803e28f8(int64_t param_1)
   *(int8_t *)(param_1 + 0x78) = 0;
   *(uint64_t *)(param_1 + 0x80) = 0;
   *(uint64_t *)(param_1 + 0xf8) = *(uint64_t *)(param_1 + 0xf0);
-  FUN_180057110(param_1 + 0x110);
+  SystemCore_ConfigValidator(param_1 + 0x110);
   FUN_1800572d0(param_1 + 0x90);
   lVar1 = param_1 + 0xc0;
   puVar3 = *(uint64_t **)(param_1 + 0xd0);
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar1,*puVar3);
+    SystemCache_Manager(lVar1,*puVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
   }

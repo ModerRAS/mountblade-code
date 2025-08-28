@@ -88,7 +88,7 @@ void FUN_18076161b(float param_1)
     }
     in_stack_00000020 = CONCAT44((int)(in_stack_00000020 >> 0x20),unaff_R15D);
     FUN_1807636f0(unaff_RBP + 0x150,uVar13,uVar16,0,in_stack_00000020);
-    FUN_18075f8e0(unaff_RBP + -0x70);
+    UtilitiesSystem_DataValidator(unaff_RBP + -0x70);
     param_1 = *(float *)(unaff_RBX + 0x1cc);
   }
   if ((((*(float *)(unaff_RBX + 0x1c8) != 0.0) || (*(float *)(unaff_RBX + 0x1d4) != 0.0)) ||
@@ -98,9 +98,9 @@ void FUN_18076161b(float param_1)
   *(int32_t *)(unaff_RBX + 0x1d0) = *(int32_t *)(unaff_RBX + 0x1c4);
   *(float *)(unaff_RBX + 0x1d4) = *(float *)(unaff_RBX + 0x1c8);
   *(float *)(unaff_RBX + 0x1d8) = param_1;
-  FUN_18075f8e0(unaff_RBX + 0x158);
-  uVar22 = FUN_18075f8e0();
-  if ((*unaff_R12 == 0) || (iVar4 = FUN_18075f8e0(), uVar22 = extraout_XMM0_Da, iVar4 == 0)) {
+  UtilitiesSystem_DataValidator(unaff_RBX + 0x158);
+  uVar22 = UtilitiesSystem_DataValidator();
+  if ((*unaff_R12 == 0) || (iVar4 = UtilitiesSystem_DataValidator(), uVar22 = extraout_XMM0_Da, iVar4 == 0)) {
     unaff_R12[1] = in_stack_00000068;
     *(int32_t *)(unaff_R12 + 3) = in_stack_00000078;
     in_stack_00000060 = (uint64_t *)0x0;
@@ -357,7 +357,7 @@ LAB_180761ebf:
         plVar20 = *(int64_t **)(lVar9 + 0x20);
       } while (plVar20 != (int64_t *)(unaff_RBX + 400));
     }
-    FUN_18075f8e0(unaff_RBX + 0x138);
+    UtilitiesSystem_DataValidator(unaff_RBX + 0x138);
   }
   LOCK();
   *(uint *)(unaff_RBX + 100) = *(uint *)(unaff_RBX + 100) & 0xfffeffff;
@@ -415,7 +415,7 @@ void FUN_1807617cf(void)
   int64_t in_stack_00000068;
   int32_t in_stack_00000078;
   
-  iVar2 = FUN_18075f8e0();
+  iVar2 = UtilitiesSystem_DataValidator();
   if (iVar2 == 0) {
     unaff_R12[1] = in_stack_00000068;
     *(int32_t *)(unaff_R12 + 3) = in_stack_00000078;
@@ -674,7 +674,7 @@ LAB_180761ebf:
         plVar15 = *(int64_t **)(lVar7 + 0x20);
       } while (plVar15 != (int64_t *)(unaff_RBX + 400));
     }
-    FUN_18075f8e0(unaff_RBX + 0x138);
+    UtilitiesSystem_DataValidator(unaff_RBX + 0x138);
   }
   LOCK();
   *(uint *)(unaff_RBX + 100) = *(uint *)(unaff_RBX + 100) & 0xfffeffff;

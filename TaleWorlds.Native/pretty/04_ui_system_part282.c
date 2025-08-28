@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part282.c - 9 个函数
 
 // 函数: void FUN_180827cb0(int16_t *param_1,int64_t *param_2,uint param_3,uint param_4,int param_5)
@@ -359,18 +363,18 @@ void FUN_1808281a0(uint64_t param_1)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   auStack_48[0] = 0;
-  iVar1 = FUN_18080b990(param_1,0x18);
+  iVar1 = SystemCore_DatabaseManager(param_1,0x18);
   if (iVar1 == 0x564342) {
-    uStack_40 = FUN_18080b990(param_1,0x10);
-    iVar1 = FUN_18080b990(param_1,0x18);
+    uStack_40 = SystemCore_DatabaseManager(param_1,0x10);
+    iVar1 = SystemCore_DatabaseManager(param_1,0x18);
     if (iVar1 != -1) {
-      iVar1 = FUN_18080b990(param_1,1);
+      iVar1 = SystemCore_DatabaseManager(param_1,1);
       if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
         SystemCore_MemoryManager0();
       }
       if (iVar1 == 1) {
-        FUN_18080b990(param_1,5);
+        SystemCore_DatabaseManager(param_1,5);
                     // WARNING: Subroutine does not return
         SystemCore_MemoryManager0();
       }
@@ -509,7 +513,7 @@ void FUN_180829400(uint64_t param_1,uint64_t param_2)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   auStack_48[0] = 0;
-  FUN_18080b990(param_2,5);
+  SystemCore_DatabaseManager(param_2,5);
                     // WARNING: Subroutine does not return
   SystemCore_MemoryManager0(0xffffffffffffff0);
 }
@@ -545,14 +549,14 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
   iVar21 = 0;
   iVar13 = -1;
   plVar9 = (int64_t *)func_0x0001807b1780(1,0x40);
-  uVar8 = FUN_18080b990(param_2,5);
+  uVar8 = SystemCore_DatabaseManager(param_2,5);
   *(int32_t *)(plVar9 + 6) = uVar8;
   lVar10 = func_0x0001807b17e0(uVar8);
   iVar16 = 0;
   plVar9[1] = lVar10;
   if (0 < (int)plVar9[6]) {
     do {
-      uVar5 = FUN_18080b990(param_2,4);
+      uVar5 = SystemCore_DatabaseManager(param_2,4);
       *(int8_t *)((int64_t)iVar16 + plVar9[1]) = uVar5;
       iVar14 = (int)*(char *)((int64_t)iVar16 + plVar9[1]);
       if (iVar14 <= iVar13) {
@@ -567,10 +571,10 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
   iVar16 = 0;
   if (0 < iVar13 + 1) {
     do {
-      cVar6 = FUN_18080b990(param_2,3);
+      cVar6 = SystemCore_DatabaseManager(param_2,3);
       lVar10 = (int64_t)iVar16 * 0xb;
       *(char *)(lVar10 + *plVar9) = cVar6 + '\x01';
-      uVar5 = FUN_18080b990(param_2,2);
+      uVar5 = SystemCore_DatabaseManager(param_2,2);
       *(int8_t *)(lVar10 + 1 + *plVar9) = uVar5;
       iVar14 = func_0x00018080b960(param_2);
       if (iVar14 < 0) goto LAB_18082997d;
@@ -578,7 +582,7 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
         *(int8_t *)(*plVar9 + 2 + lVar10) = 0;
       }
       else {
-        uVar5 = FUN_18080b990(param_2,8);
+        uVar5 = SystemCore_DatabaseManager(param_2,8);
         *(int8_t *)(lVar10 + 2 + *plVar9) = uVar5;
       }
       if (*(int *)(lVar11 + 0x18) <= (int)(uint)*(byte *)(*plVar9 + 2 + lVar10)) goto LAB_18082997d;
@@ -586,7 +590,7 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
       lVar15 = lVar10;
       if (0 < 1 << (*(byte *)(*plVar9 + 1 + lVar10) & 0x1f)) {
         do {
-          cVar6 = FUN_18080b990(param_2,8);
+          cVar6 = SystemCore_DatabaseManager(param_2,8);
           *(char *)(*plVar9 + 3 + lVar15) = cVar6 + -1;
           bVar2 = *(byte *)(*plVar9 + 3 + lVar15);
           if ((*(int *)(lVar11 + 0x18) <= (int)(uint)bVar2) && (bVar2 != 0xff)) goto LAB_18082997d;
@@ -597,9 +601,9 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
       iVar16 = iVar16 + 1;
     } while (iVar16 < iVar13 + 1);
   }
-  iVar13 = FUN_18080b990(param_2,2);
+  iVar13 = SystemCore_DatabaseManager(param_2,2);
   *(int *)(plVar9 + 7) = iVar13 + 1;
-  uVar8 = FUN_18080b990(param_2,4);
+  uVar8 = SystemCore_DatabaseManager(param_2,4);
   if (0 < (int)*(uint *)(plVar9 + 6)) {
     uVar20 = (uint64_t)*(uint *)(plVar9 + 6);
     pcVar19 = (char *)plVar9[1];
@@ -629,7 +633,7 @@ int64_t * FUN_1808296c0(int64_t param_1,uint64_t param_2)
         lVar10 = lVar11 * 2 + 4;
         bVar2 = (byte)uVar8 & 0x1f;
         do {
-          uVar7 = FUN_18080b990(param_2,uVar8);
+          uVar7 = SystemCore_DatabaseManager(param_2,uVar8);
           *(ushort *)(lVar10 + plVar9[2]) = uVar7;
           if ((int)(1 << bVar2 | 1U >> 0x20 - bVar2) <= (int)(uint)uVar7) goto LAB_18082997d;
           lVar11 = lVar11 + 1;
@@ -730,20 +734,20 @@ FUN_180829a70(int64_t *param_1,uint64_t param_2,int64_t *param_3,int32_t *param_
   
   lVar18 = *(int64_t *)(*(int64_t *)(*param_1 + 0x20) + 0x48);
   iVar4 = *(int *)((int64_t)(int)param_3[7] * 4 + 0x180bec07c);
-  iVar5 = FUN_18080b990(param_2,1);
+  iVar5 = SystemCore_DatabaseManager(param_2,1);
   if (iVar5 == 1) {
     iVar5 = 0;
     uVar15 = iVar4 - 1;
     for (uVar6 = uVar15; uVar6 != 0; uVar6 = uVar6 >> 1) {
       iVar5 = iVar5 + 1;
     }
-    uVar7 = FUN_18080b990(param_2,iVar5);
+    uVar7 = SystemCore_DatabaseManager(param_2,iVar5);
     iVar5 = 0;
     *param_4 = uVar7;
     for (; uVar15 != 0; uVar15 = uVar15 >> 1) {
       iVar5 = iVar5 + 1;
     }
-    uVar7 = FUN_18080b990(param_2,iVar5);
+    uVar7 = SystemCore_DatabaseManager(param_2,iVar5);
     param_4[1] = uVar7;
     iStack_68 = 0;
     iStackX_8 = 2;

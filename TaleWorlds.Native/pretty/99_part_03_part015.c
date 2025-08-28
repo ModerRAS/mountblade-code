@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 /**
  * @file 99_part_03_part015.c
@@ -98,17 +103,17 @@
 
 /** 系统调用和内存管理器 */
 #define SystemMemoryAllocator CoreEngineMemoryPoolAllocator     /** 系统内存分配器 */
-#define SystemMemoryDeallocator FUN_18005e110    /** 系统内存释放器 */
+#define SystemMemoryDeallocator SystemCore_TimerManager    /** 系统内存释放器 */
 #define SystemMemoryReallocator DataValidator   /** 系统内存重分配器 */
 #define SystemDataCopier CoreEngineDataTransformer          /** 系统数据复制器 */
 #define SystemConfigurator CoreEngineDataBufferProcessor         /** 系统配置器 */
 #define SystemErrorHandler CoreEngineMemoryPoolCleaner         /** 系统错误处理器 */
 #define SystemCleanupHandler SystemSecurityChecker      /** 系统清理处理器 */
-#define SystemInitializer FUN_18005e630          /** 系统初始化器 */
-#define SystemValidator FUN_18062dee0            /** 系统验证器 */
+#define SystemInitializer SystemCore_FileSystem          /** 系统初始化器 */
+#define SystemValidator RenderingSystem_DataValidator0            /** 系统验证器 */
 #define SystemBufferManager System_BufferManager       /** 系统缓冲区管理器 */
 #define SystemSecurityChecker FUN_18063ba00     /** 系统安全检查器 */
-#define SystemStateChecker FUN_180624af0         /** 系统状态检查器 */
+#define SystemStateChecker RenderingSystem_RenderQueue         /** 系统状态检查器 */
 #define SystemStateSetter FUN_18062c1e0         /** 系统状态设置器 */
 #define SystemStringHandler FUN_1800baa80       /** 系统字符串处理器 */
 #define SystemPathProcessor SystemCore_ConfigurationHandler0       /** 系统路径处理器 */
@@ -124,7 +129,7 @@
 /** 数据结构处理器 */
 #define DataStructureInitializer FUN_1801ec5c0   /** 数据结构初始化器 */
 #define DataStructureCleaner FUN_1801ec3f0      /** 数据结构清理器 */
-#define DataStructureProcessor FUN_1801e66c0     /** 数据结构处理器 */
+#define DataStructureProcessor SystemCore_SecurityValidator     /** 数据结构处理器 */
 #define DataStructureManager FUN_1801e8280       /** 数据结构管理器 */
 #define DataStructureSearcher FUN_1801ea180     /** 数据结构搜索器 */
 #define DataStructureFinder FUN_1801ea730       /** 数据结构查找器 */
@@ -135,10 +140,10 @@
 /** 事件和消息处理器 */
 #define EventHandler FUN_1801e8b60               /** 事件处理器 */
 #define EventInitializer FUN_1801e8210           /** 事件初始化器 */
-#define MessageHandler FUN_1800623b0            /** 消息处理器 */
+#define MessageHandler SystemConfigurationManager            /** 消息处理器 */
 #define NotificationHandler SystemCore_LoggingSystem0        /** 通知处理器 */
 #define CallbackHandler FUN_1806299b0            /** 回调处理器 */
-#define CallbackExecutor FUN_180629a40            /** 回调执行器 */
+#define CallbackExecutor NetworkSystem_ProtocolParser            /** 回调执行器 */
 
 /** 锁和同步处理器 */
 #define LockAcquirer CoreEngineMemoryPoolReallocator               /** 锁获取器 */

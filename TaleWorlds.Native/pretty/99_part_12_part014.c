@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_12_part014.c - 7 个函数
 
@@ -363,7 +368,7 @@ uint64_t FUN_1807d3e20(int64_t *param_1,uint64_t *param_2)
     if (iVar4 < 4) {
       iVar4 = 4;
     }
-    uVar2 = FUN_180748010(param_1,iVar4);
+    uVar2 = UltraHighFreq_StateController1(param_1,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -483,7 +488,7 @@ uint64_t FUN_1807d3f0f(uint64_t param_1,int64_t param_2,int64_t param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807d3f50(int64_t *param_1,int param_2)
+uint64_t SystemCore_SecurityHandler(int64_t *param_1,int param_2)
 
 {
   int32_t *puVar1;

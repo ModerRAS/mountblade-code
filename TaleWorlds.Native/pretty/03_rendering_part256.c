@@ -22,7 +22,7 @@ void FUN_18040f650(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       (**(code **)(*plVar1 + 0x28))(plVar1);
     }
     if (*plVar4 != 0) {
-      FUN_18023b050(plVar1,0,param_3,param_4,uVar5);
+      SystemCore_NetworkHandler(plVar1,0,param_3,param_4,uVar5);
     }
     plVar2 = (int64_t *)*plVar4;
     *plVar4 = 0;

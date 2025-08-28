@@ -262,8 +262,8 @@ LAB_1802c9326:
       }
     }
 LAB_1802c945e:
-    SystemDataValidator(auStack_1b0,0x58,4,FUN_180044a30);
-    SystemDataValidator(auStack_310,0x58,4,FUN_180044a30);
+    SystemDataValidator(auStack_1b0,0x58,4,CoreSystem_MessageHandler);
+    SystemDataValidator(auStack_310,0x58,4,CoreSystem_MessageHandler);
     SystemDataValidator(auStack_510,0x20,0x10,FUN_180059620);
     ppuStack_5b0 = &puStack_558;
     puStack_558 = &system_data_buffer_ptr;
@@ -713,7 +713,7 @@ LAB_1802c9ddd:
   if ((uint64_t *****)ppppuStack_58 == (uint64_t *****)0x0) {
     return;
   }
-  FUN_180058370(&ppppuStack_68,*ppppuStack_58);
+  RenderingSystem_CameraSystem(&ppppuStack_68,*ppppuStack_58);
   ppppuVar8[4] = (uint64_t ***)&system_data_buffer_ptr;
   if ((uint64_t ****)ppppuVar8[5] == (uint64_t ****)0x0) {
     ppppuVar8[5] = (uint64_t ****)0x0;

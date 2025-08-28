@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -216,7 +217,7 @@ LAB_1805c09a3:
     goto LAB_1805c111b;
   }
   if ((uVar8 & 1) == 0) {
-    lVar7 = FUN_18065cec0(*(int64_t *)
+    lVar7 = UtilitiesSystem_FormatConverter(*(int64_t *)
                            (*(int64_t *)(*(int64_t *)(lVar7 + 0x590) + 0x2590) + 0xc78) + 0x60,0);
     fVar15 = *(float *)(lVar7 + 0x10) * 0.9;
     goto LAB_1805c111b;
@@ -235,7 +236,7 @@ LAB_1805c09a3:
       if (((*(uint *)(lVar7 + 0x56c) & 0x200000) == 0) || (*(int *)((int64_t)param_1 + 0x1b6c) < 1)
          ) {
         if (iStackX_20 < 1) {
-          plVar6 = (int64_t *)FUN_180516f50(lVar7,auStack_130);
+          plVar6 = (int64_t *)UltraHighFreq_MemoryManager1(lVar7,auStack_130);
           *param_2 = *plVar6;
           lVar7 = plVar6[4];
           param_2[3] = plVar6[3];
@@ -265,7 +266,7 @@ LAB_1805c09a3:
           }
         }
         else {
-          plVar6 = (int64_t *)FUN_180516f50(lVar7,auStack_130);
+          plVar6 = (int64_t *)UltraHighFreq_MemoryManager1(lVar7,auStack_130);
           *param_2 = *plVar6;
           lVar7 = plVar6[4];
           param_2[3] = plVar6[3];
@@ -306,7 +307,7 @@ LAB_1805c09a3:
         }
       }
       else {
-        FUN_180516f50((int64_t)*(int *)((int64_t)param_1 + 0x17ac) * 0xa60 +
+        UltraHighFreq_MemoryManager1((int64_t)*(int *)((int64_t)param_1 + 0x17ac) * 0xa60 +
                       param_1[0x291] + 0x30a0,&plStack_188);
         if (0 < iStackX_20) {
           fVar13 = fStack_170 - *(float *)(*(int64_t *)(*param_1 + 0x20) + 0xc);
@@ -362,7 +363,7 @@ LAB_1805c109d:
     *(uint *)((int64_t)param_1 + 0x1484) = uVar8 & 0xfffffffc;
     *(int8_t *)((int64_t)param_1 + 0x2201) = 1;
   }
-  lVar7 = FUN_18065cec0(*(int64_t *)
+  lVar7 = UtilitiesSystem_FormatConverter(*(int64_t *)
                          (*(int64_t *)(*(int64_t *)(*param_1 + 0x590) + 0x2590) + 0xc78) + 0x60,0)
   ;
   fVar15 = *(float *)(lVar7 + 0x10) * 1.8;

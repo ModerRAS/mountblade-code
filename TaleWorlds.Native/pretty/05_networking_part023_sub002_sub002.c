@@ -23,7 +23,7 @@ void FUN_180853fc0(int64_t param_1,char param_2)
   else {
     uVar2 = 1;
   }
-  FUN_18073d8a0(*(uint64_t *)(param_1 + 0x78),uVar2);
+  SystemCore_StateController(*(uint64_t *)(param_1 + 0x78),uVar2);
   for (puVar1 = *(uint64_t **)(param_1 + 0x50);
       (puVar1 != (uint64_t *)(param_1 + 0x50) &&
       (FUN_180853fc0(puVar1[2],uVar2), puVar1 != (uint64_t *)(param_1 + 0x50)));

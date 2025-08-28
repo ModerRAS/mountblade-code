@@ -71,8 +71,8 @@ int FUN_18076f350(int64_t param_1,uint64_t param_2,int32_t param_3)
 LAB_18076f469:
       iVar4 = FUN_18076f100(param_1,(int64_t)puVar6 << 0x14,0xfffffffffff00000,0);
       if (((iVar4 == 0) &&
-          (iVar4 = FUN_18076e380(param_1,(int64_t)puVar6 << 0x14,fStackX_10), iVar4 == 0)) &&
-         (iVar4 = FUN_18076e380(param_1,param_2,param_3), iVar4 == 0)) {
+          (iVar4 = UISystem_DataHandler0(param_1,(int64_t)puVar6 << 0x14,fStackX_10), iVar4 == 0)) &&
+         (iVar4 = UISystem_DataHandler0(param_1,param_2,param_3), iVar4 == 0)) {
         iVar4 = 0;
       }
       if ((lVar1 != 0) && (lVar1 != 0)) {
@@ -283,9 +283,9 @@ int FUN_18076f660(int64_t param_1)
       if (*(uint64_t *)(param_1 + 0x18) <= *puVar5) {
         uVar14 = *puVar5;
       }
-      iVar8 = FUN_18076e380(param_1,uVar14);
+      iVar8 = UISystem_DataHandler0(param_1,uVar14);
       if (((iVar8 != 0) ||
-          (iVar8 = FUN_18076e380(param_1,(uint64_t)uVar7 * 0x40 + uVar14,fVar19), iVar8 != 0)) ||
+          (iVar8 = UISystem_DataHandler0(param_1,(uint64_t)uVar7 * 0x40 + uVar14,fVar19), iVar8 != 0)) ||
          (iVar8 = FUN_18076f660(param_1), iVar8 != 0)) goto LAB_18076f928;
     }
     *(float *)(param_1 + 0x230) = fVar19;
@@ -449,9 +449,9 @@ int FUN_18076f670(int64_t param_1)
       if (*(uint64_t *)(param_1 + 0x18) <= *puVar4) {
         uVar13 = *puVar4;
       }
-      iVar7 = FUN_18076e380(param_1,uVar13);
+      iVar7 = UISystem_DataHandler0(param_1,uVar13);
       if (((iVar7 != 0) ||
-          (iVar7 = FUN_18076e380(param_1,(uint64_t)uVar6 * 0x40 + uVar13,fVar18), iVar7 != 0)) ||
+          (iVar7 = UISystem_DataHandler0(param_1,(uint64_t)uVar6 * 0x40 + uVar13,fVar18), iVar7 != 0)) ||
          (iVar7 = FUN_18076f660(param_1), iVar7 != 0)) goto LAB_18076f928;
     }
     *(float *)(param_1 + 0x230) = fVar18;
@@ -616,9 +616,9 @@ int FUN_18076f67e(float param_1)
       if (*(uint64_t *)(unaff_RBX + 0x18) <= *puVar4) {
         uVar13 = *puVar4;
       }
-      iVar7 = FUN_18076e380(param_1,uVar13);
+      iVar7 = UISystem_DataHandler0(param_1,uVar13);
       if (((iVar7 != 0) ||
-          (iVar7 = FUN_18076e380(extraout_XMM0_Da,(uint64_t)uVar6 * 0x40 + uVar13,fVar18),
+          (iVar7 = UISystem_DataHandler0(extraout_XMM0_Da,(uint64_t)uVar6 * 0x40 + uVar13,fVar18),
           iVar7 != 0)) || (iVar7 = FUN_18076f660(), iVar7 != 0)) goto LAB_18076f928;
     }
     *(float *)(unaff_RBX + 0x230) = fVar18;
@@ -753,9 +753,9 @@ int FUN_18076f6db(float param_1,uint64_t param_2,int64_t *param_3,int64_t *param
       if (*(uint64_t *)(unaff_RBX + 0x18) <= *puVar3) {
         uVar8 = *puVar3;
       }
-      iVar5 = FUN_18076e380(param_1,uVar8);
+      iVar5 = UISystem_DataHandler0(param_1,uVar8);
       if (((iVar5 != 0) ||
-          (iVar5 = FUN_18076e380(extraout_XMM0_Da,(uint64_t)uVar4 * 0x40 + uVar8,unaff_XMM6_Da),
+          (iVar5 = UISystem_DataHandler0(extraout_XMM0_Da,(uint64_t)uVar4 * 0x40 + uVar8,unaff_XMM6_Da),
           iVar5 != 0)) || (iVar5 = FUN_18076f660(), iVar5 != 0)) goto LAB_18076f928;
     }
     *(float *)(unaff_RBX + 0x230) = unaff_XMM6_Da;
@@ -838,11 +838,11 @@ uint64_t FUN_18076f7ef(float param_1,uint64_t param_2,float param_3,int64_t *par
       if (*(uint64_t *)(unaff_RBX + 0x18) <= *puVar2) {
         uVar7 = *puVar2;
       }
-      uVar3 = FUN_18076e380(param_1,uVar7);
+      uVar3 = UISystem_DataHandler0(param_1,uVar7);
       uVar8 = (uint64_t)uVar3;
       param_1 = extraout_XMM0_Da;
       if (uVar3 != 0) goto LAB_18076f928;
-      uVar4 = FUN_18076e380(extraout_XMM0_Da,(uint64_t)uVar4 * 0x40 + uVar7);
+      uVar4 = UISystem_DataHandler0(extraout_XMM0_Da,(uint64_t)uVar4 * 0x40 + uVar7);
       uVar8 = (uint64_t)uVar4;
       param_1 = extraout_XMM0_Da_00;
       if (uVar4 != 0) goto LAB_18076f928;
@@ -877,9 +877,9 @@ int FUN_18076f8bb(uint64_t param_1,uint64_t param_2,float param_3)
   
   if (unaff_R15B != '\0') {
     if ((param_3 == *(float *)(unaff_RBX + 0x230)) && (param_3 != unaff_XMM6_Da)) {
-      in_R10D = FUN_18076e380();
+      in_R10D = UISystem_DataHandler0();
       if ((in_R10D != 0) ||
-         ((in_R10D = FUN_18076e380(), in_R10D != 0 || (in_R10D = FUN_18076f660(), in_R10D != 0))))
+         ((in_R10D = UISystem_DataHandler0(), in_R10D != 0 || (in_R10D = FUN_18076f660(), in_R10D != 0))))
       goto LAB_18076f928;
       in_R10D = 0;
     }

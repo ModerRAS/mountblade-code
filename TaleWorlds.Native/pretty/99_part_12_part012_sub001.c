@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -37,23 +38,23 @@ uint64_t * FUN_1807d1590(uint64_t *param_1,uint64_t param_2)
   
   iVar1 = SystemLockProcessor(param_1 + 0xf);
   if (iVar1 == 0) {
-    iVar1 = FUN_180744e20(param_1 + 0x11);
+    iVar1 = UISystem_ComponentManager(param_1 + 0x11);
     if (iVar1 == 0) {
       *(int32_t *)(param_1 + 0x13) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
     }
   }
-  FUN_180744e20(param_1 + 0x11);
+  UISystem_ComponentManager(param_1 + 0x11);
   SystemLockProcessor(param_1 + 0xf);
   iVar1 = SystemLockProcessor(param_1 + 10);
   if (iVar1 == 0) {
-    iVar1 = FUN_180744e20(param_1 + 0xc);
+    iVar1 = UISystem_ComponentManager(param_1 + 0xc);
     if (iVar1 == 0) {
       *(int32_t *)(param_1 + 0xe) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x74) = 0;
     }
   }
-  FUN_180744e20(param_1 + 0xc);
+  UISystem_ComponentManager(param_1 + 0xc);
   SystemLockProcessor(param_1 + 10);
   *param_1 = &processed_var_9984_ptr;
   if ((param_2 & 1) != 0) {
@@ -64,7 +65,7 @@ uint64_t * FUN_1807d1590(uint64_t *param_1,uint64_t param_2)
 
 
 
-uint64_t FUN_1807d1650(int64_t *param_1,int *param_2,int *param_3)
+uint64_t NetworkSystem_ConnectionHandler(int64_t *param_1,int *param_2,int *param_3)
 
 {
   int64_t lVar1;
@@ -161,7 +162,7 @@ void FUN_1807d1740(int64_t param_1)
   if (*piVar1 == 0) {
     uStack_40 = 0xffffffffffffffff;
     aiStack_38[0] = -1;
-    FUN_1807d1650((int64_t *)(param_1 + 0x50),&uStack_40,aiStack_38);
+    NetworkSystem_ConnectionHandler((int64_t *)(param_1 + 0x50),&uStack_40,aiStack_38);
     if (aiStack_38[0] != -1) {
       iVar4 = aiStack_38[0];
       iVar6 = (int)uStack_40;
@@ -199,10 +200,10 @@ LAB_1807d181b:
     }
     uStack_40 = 0xffffffffffffffff;
     aiStack_38[0] = -1;
-    FUN_1807d1650(param_1 + 0x78,&uStack_40,aiStack_38);
+    NetworkSystem_ConnectionHandler(param_1 + 0x78,&uStack_40,aiStack_38);
     if (aiStack_38[0] == -1) {
       iVar4 = SystemLockProcessor(param_1 + 0x78);
-      if ((iVar4 == 0) && (iVar4 = FUN_180744e20(param_1 + 0x88), iVar4 == 0)) {
+      if ((iVar4 == 0) && (iVar4 = UISystem_ComponentManager(param_1 + 0x88), iVar4 == 0)) {
         *(int32_t *)(param_1 + 0x98) = 0xffffffff;
         *(int32_t *)(param_1 + 0x9c) = 0;
       }
@@ -271,7 +272,7 @@ uint64_t FUN_1807d1980(int64_t *param_1)
     *(int32_t *)(plVar3 + 9) = 1;
     plVar3[0x14] = 0;
     plVar3[0x15] = 0;
-    iVar2 = FUN_1807682e0(plVar3 + 7,0);
+    iVar2 = SystemCore_DataProcessor(plVar3 + 7,0);
     if ((iVar2 != 0) || (iVar2 = (**(code **)(*param_1 + 8))(param_1,plVar3), iVar2 != 0)) {
                     // WARNING: Subroutine does not return
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar4,&rendering_buffer_2144_ptr,0xb8,1);
@@ -306,7 +307,7 @@ uint64_t FUN_1807d1a59(int64_t param_1)
   *(int32_t *)(unaff_RDI + 9) = 1;
   unaff_RDI[0x14] = unaff_RBP;
   unaff_RDI[0x15] = unaff_RBP;
-  iVar1 = FUN_1807682e0(unaff_RDI + 7,0);
+  iVar1 = SystemCore_DataProcessor(unaff_RDI + 7,0);
   if (iVar1 == 0) {
     iVar1 = (**(code **)(*unaff_R14 + 8))();
     if (iVar1 == 0) {
@@ -412,10 +413,10 @@ uint64_t FUN_1807d1bf0(int64_t *param_1)
     }
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_180748010(param_1 + 2,iVar8), (int)uVar3 != 0)) {
+       (uVar3 = UltraHighFreq_StateController1(param_1 + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0(param_1,iVar8);
+    uVar3 = SystemCore_StateController0(param_1,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -481,10 +482,10 @@ uint64_t FUN_1807d1c16(void)
     }
     uVar5 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = FUN_180748010(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
+       (uVar2 = UltraHighFreq_StateController1(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
-    uVar2 = FUN_1807703c0();
+    uVar2 = SystemCore_StateController0();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -834,7 +835,7 @@ void FUN_1807d2050(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     *(int *)(plVar4 + 2) = iVar2;
     func_0x00018076b450((int64_t)plVar4 + 0x34,param_2,0x100);
     iVar2 = FUN_1807688b0(plVar4 + 1);
-    if ((iVar2 == 0) && (iVar2 = FUN_1807d28c0(param_1 + 0x50,aiStack_198,&plStack_190), iVar2 == 0)
+    if ((iVar2 == 0) && (iVar2 = RenderingSystem_Renderer(param_1 + 0x50,aiStack_198,&plStack_190), iVar2 == 0)
        ) {
                     // WARNING: Subroutine does not return
       SystemConfigManager(uVar1);
@@ -947,7 +948,7 @@ LAB_1807d23bb:
   func_0x00018076b450((int64_t)plVar7 + 0x1c,param_2,0x100);
   *(int32_t *)(plVar7 + 3) = auStack_78[0];
   plVar7[2] = lStack_70;
-  iVar4 = FUN_1807d28c0(param_1 + 0x78,puVar1,&plStack_68);
+  iVar4 = RenderingSystem_Renderer(param_1 + 0x78,puVar1,&plStack_68);
   if (iVar4 != 0) {
 LAB_1807d24a5:
                     // WARNING: Subroutine does not return

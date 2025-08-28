@@ -1,4 +1,13 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 05_networking_part105.c - 网络系统高级数据包处理和协议管理模块
 // 包含17个核心函数，涵盖网络数据包验证、协议处理、连接管理、数据传输、错误处理等高级网络功能
@@ -301,7 +310,7 @@ uint64_t NetworkingDataProcessor(int64_t param_1, int64_t *param_2) {
                     goto LAB_18089cd46;
                 }
             }
-            uVar3 = FUN_180769ed0(*plVar1, auStackX_18, 1, 4, 0);
+            uVar3 = SystemPerformanceOptimizer(*plVar1, auStackX_18, 1, 4, 0);
         }
     LAB_18089cd46:
         if ((int)uVar3 != 0) {
@@ -338,7 +347,7 @@ LAB_18089cd76:
         uVar2 = 0;
     }
     else if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*param_2, param_1 + NETWORK_OFFSET_TIMEOUT_DATA);
+        uVar2 = SystemCore_ProtocolProcessor(*param_2, param_1 + NETWORK_OFFSET_TIMEOUT_DATA);
     }
     if (uVar2 == 0) {
         // 清理网络资源
@@ -390,7 +399,7 @@ uint64_t NetworkingDataValidator(void) {
                     goto LAB_18089cd46;
                 }
             }
-            uVar3 = FUN_180769ed0(*plVar1, &stack0x00000080, 1, 4, 0);
+            uVar3 = SystemPerformanceOptimizer(*plVar1, &stack0x00000080, 1, 4, 0);
         }
     LAB_18089cd46:
         if ((int)uVar3 != 0) {
@@ -427,7 +436,7 @@ LAB_18089cd76:
         uVar2 = 0;
     }
     else if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*unaff_RSI, unaff_RBP + NETWORK_OFFSET_TIMEOUT_DATA);
+        uVar2 = SystemCore_ProtocolProcessor(*unaff_RSI, unaff_RBP + NETWORK_OFFSET_TIMEOUT_DATA);
     }
     if (uVar2 != 0) {
         return (uint64_t)uVar2;
@@ -535,7 +544,7 @@ uint64_t NetworkingConnectionValidator(int64_t param_1, int64_t *param_2) {
                 goto LAB_18089cef2;
             }
         }
-        uVar2 = FUN_180769ed0(*plVar1, auStackX_20, 1, 4, 0);
+        uVar2 = SystemPerformanceOptimizer(*plVar1, auStackX_20, 1, 4, 0);
     }
 LAB_18089cef2:
     if ((int)uVar2 != 0) {
@@ -575,7 +584,7 @@ LAB_18089cef2:
                 goto LAB_18089cf93;
             }
         }
-        uVar2 = FUN_180769ed0(*plVar1, auStackX_20, 1, 4, 0);
+        uVar2 = SystemPerformanceOptimizer(*plVar1, auStackX_20, 1, 4, 0);
     }
 LAB_18089cf93:
     if ((int)uVar2 != 0) {
@@ -606,7 +615,7 @@ LAB_18089cf93:
     if (*plVar1 != 0) {
         if (plVar1[2] == 0) {
     LAB_18089d034:
-            uVar3 = FUN_180769ed0(*plVar1, auStackX_18, 1, 1, 0);
+            uVar3 = SystemPerformanceOptimizer(*plVar1, auStackX_18, 1, 1, 0);
         }
         else {
             auStackX_20[0] = 0;
@@ -680,7 +689,7 @@ uint64_t NetworkingConnectionHandler(void) {
                 goto LAB_18089cef2;
             }
         }
-        uVar2 = FUN_180769ed0(*plVar1, &stack0x00000098, 1, 4, 0);
+        uVar2 = SystemPerformanceOptimizer(*plVar1, &stack0x00000098, 1, 4, 0);
     }
 LAB_18089cef2:
     if ((int)uVar2 != 0) {
@@ -720,7 +729,7 @@ LAB_18089cef2:
                 goto LAB_18089cf93;
             }
         }
-        uVar2 = FUN_180769ed0(*plVar1, &stack0x00000098, 1, 4, 0);
+        uVar2 = SystemPerformanceOptimizer(*plVar1, &stack0x00000098, 1, 4, 0);
     }
 LAB_18089cf93:
     if ((int)uVar2 != 0) {
@@ -751,7 +760,7 @@ LAB_18089cf93:
     if (*plVar1 != 0) {
         if (plVar1[2] == 0) {
     LAB_18089d034:
-            uVar3 = FUN_180769ed0(*plVar1, &stack0x00000090, 1, 1, 0);
+            uVar3 = SystemPerformanceOptimizer(*plVar1, &stack0x00000090, 1, 1, 0);
         }
         else {
             in_stack_00000098 = 0;
@@ -808,7 +817,7 @@ uint64_t NetworkingConnectionFinalizer(void) {
     if (*plVar1 != 0) {
         if (plVar1[2] == unaff_R15) {
     LAB_18089d034:
-            uVar2 = FUN_180769ed0(*plVar1, &stack0x00000090, 1);
+            uVar2 = SystemPerformanceOptimizer(*plVar1, &stack0x00000090, 1);
         }
         else {
             in_stack_00000098 = (uint)unaff_R15;
@@ -911,7 +920,7 @@ uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
     uVar2 = DataFlowProcessor(param_2, auStack_28, 1, NETWORK_PROTOCOL_FFEP);
     if (((((int)uVar2 != 0) ||
           (uVar2 = DataFlowProcessor(param_2, auStack_48, 0, NETWORK_PROTOCOL_BFEP), (int)uVar2 != 0)) ||
-         (uVar2 = FUN_180899360(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), (int)uVar2 != 0)) ||
+         (uVar2 = SystemCore_ConfigManager(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), (int)uVar2 != 0)) ||
         ((*(uint *)(param_2 + 8) < NETWORK_HEADER_SIZE_MIN &&
           (uVar2 = FUN_1808afc70(param_2, param_1 + NETWORK_OFFSET_SECURITY_DATA), (int)uVar2 != 0)))) {
         return uVar2;
@@ -922,7 +931,7 @@ uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    uVar1 = FUN_1808a2740(*param_2, param_1 + NETWORK_OFFSET_PROTOCOL_DATA);
+    uVar1 = SystemCore_Validator(*param_2, param_1 + NETWORK_OFFSET_PROTOCOL_DATA);
     uVar2 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar2 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -932,7 +941,7 @@ uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
         else {
             uVar3 = uVar2;
             if (*(int *)(param_2[1] + 0x18) == 0) {
-                uVar3 = FUN_1808a2740(*param_2, param_1 + NETWORK_OFFSET_EXTENDED_DATA);
+                uVar3 = SystemCore_Validator(*param_2, param_1 + NETWORK_OFFSET_EXTENDED_DATA);
             }
         }
         if ((int)uVar3 != 0) {
@@ -942,7 +951,7 @@ uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
             uVar2 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-            uVar1 = FUN_1808a2e00(*param_2, param_1 + NETWORK_OFFSET_SECURITY_DATA);
+            uVar1 = SystemCore_ProtocolProcessor(*param_2, param_1 + NETWORK_OFFSET_SECURITY_DATA);
             uVar2 = (uint64_t)uVar1;
         }
         if ((int)uVar2 == 0) {
@@ -978,7 +987,7 @@ uint64_t NetworkingTransferValidator(void) {
         return NETWORK_ERROR_DATA_CORRUPTED;
     }
     
-    uVar1 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
+    uVar1 = SystemCore_Validator(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
     uVar3 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -988,7 +997,7 @@ uint64_t NetworkingTransferValidator(void) {
         else {
             uVar2 = uVar3;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_EXTENDED_DATA);
+                uVar2 = SystemCore_Validator(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_EXTENDED_DATA);
             }
         }
         if ((int)uVar2 != 0) {
@@ -998,7 +1007,7 @@ uint64_t NetworkingTransferValidator(void) {
             uVar3 = 0;
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar1 = FUN_1808a2e00(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
+            uVar1 = SystemCore_ProtocolProcessor(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
             uVar3 = (uint64_t)uVar1;
         }
         if ((int)uVar3 == 0) {
@@ -1029,7 +1038,7 @@ uint64_t NetworkingTransferProcessor(void) {
     uint64_t uVar3;
     
     // 执行传输处理
-    uVar1 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
+    uVar1 = SystemCore_Validator(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_PROTOCOL_DATA);
     uVar3 = (uint64_t)uVar1;
     if (uVar1 == 0) {
         uVar3 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1039,7 +1048,7 @@ uint64_t NetworkingTransferProcessor(void) {
         else {
             uVar2 = uVar3;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808a2740(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_EXTENDED_DATA);
+                uVar2 = SystemCore_Validator(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_EXTENDED_DATA);
             }
         }
         if ((int)uVar2 != 0) {
@@ -1049,7 +1058,7 @@ uint64_t NetworkingTransferProcessor(void) {
             uVar3 = 0;
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar1 = FUN_1808a2e00(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
+            uVar1 = SystemCore_ProtocolProcessor(*unaff_RBX, unaff_RSI + NETWORK_OFFSET_SECURITY_DATA);
             uVar3 = (uint64_t)uVar1;
         }
         if ((int)uVar3 == 0) {
@@ -1136,19 +1145,19 @@ uint64_t NetworkingConfigValidator(void) {
 uint64_t NetworkingConfigProcessor(int64_t param_1, uint64_t *param_2) {
     uint64_t uVar1;
     
-    uVar1 = FUN_1808dde10(param_2, 0);
+    uVar1 = UISystemEventHandler(param_2, 0);
     if ((int)uVar1 == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
             return NETWORK_ERROR_DATA_CORRUPTED;
         }
-        uVar1 = FUN_180899090(*param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA);
+        uVar1 = UIEventHandler(*param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA);
         if (((int)uVar1 == 0) && (uVar1 = FUN_1808afc70(param_2, param_1 + 8), (int)uVar1 == 0)) {
             if (*(int *)(param_2[1] + 0x18) != 0) {
                 return NETWORK_ERROR_DATA_CORRUPTED;
             }
             uVar1 = SystemThreadProcessor(*param_2, param_1 + 0xc, 4);
             if ((int)uVar1 == 0) {
-                uVar1 = FUN_1808de0e0(param_2, 0);
+                uVar1 = SystemCore_Initializer(param_2, 0);
             }
         }
     }
@@ -1176,7 +1185,7 @@ void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
     // 初始化联合操作协议验证
     iVar1 = DataFlowProcessor(param_2, auStack_28, 1, NETWORK_PROTOCOL_JORP);
     if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(param_2, auStack_48, 0, NETWORK_PROTOCOL_IKNB), iVar1 == 0)) &&
-        (iVar1 = FUN_180899360(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), iVar1 == 0)) {
+        (iVar1 = SystemCore_ConfigManager(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), iVar1 == 0)) {
         if (*(uint *)(param_2 + 8) < NETWORK_DATA_SIZE_MIN_3) {
             iVar1 = 0;
         }
@@ -1242,7 +1251,7 @@ void NetworkingConfigFinalizer(int32_t param_1) {
     
     iVar1 = DataFlowProcessor(param_1, &stack0x00000030, 0);
     if (iVar1 == 0) {
-        iVar1 = FUN_180899360(extraout_XMM0_Da, unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA);
+        iVar1 = SystemCore_ConfigManager(extraout_XMM0_Da, unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA);
         if (iVar1 == 0) {
             if (*(uint *)(unaff_RBX + 8) < NETWORK_DATA_SIZE_MIN_3) {
                 iVar1 = 0;

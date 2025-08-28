@@ -73,7 +73,7 @@ void FUN_1804a45f0(uint64_t param_1,int64_t *param_2)
   uStack_88 = 3;
   auStackX_18[0] = 0x2c;
   if (lStack_78 != 0) {
-    FUN_180057980(&puStack_80,&puStack_a0,auStackX_18);
+    CoreSystem_DataCollector(&puStack_80,&puStack_a0,auStackX_18);
   }
   iVar21 = 0;
   uVar18 = (int64_t)puStack_98 - (int64_t)puStack_a0 >> 5;
@@ -89,7 +89,7 @@ void FUN_1804a45f0(uint64_t param_1,int64_t *param_2)
       uStack_48 = 3;
       auStackX_18[0] = 0x7c;
       if (puVar19[1] != 0) {
-        FUN_180057980(puVar19,&puStack_60,auStackX_18);
+        CoreSystem_DataCollector(puVar19,&puStack_60,auStackX_18);
       }
       puVar5 = puStack_58;
       puVar4 = puStack_60;
@@ -238,7 +238,7 @@ LAB_1804a493a:
             }
           }
 LAB_1804a495b:
-          plVar10 = (int64_t *)FUN_1800590b0(param_2,auStackX_18,lVar17);
+          plVar10 = (int64_t *)SystemCore_SecurityValidator(param_2,auStackX_18,lVar17);
           plVar9 = plVar10;
           if ((char)auStackX_18[0] != '\0') {
             FUN_180142a00(param_2,&plStack_c0,plVar10,0,lVar17);
@@ -399,7 +399,7 @@ LAB_1804a4c7a:
                 }
               }
 LAB_1804a4c99:
-              plVar10 = (int64_t *)FUN_1800590b0(param_2,acStackX_20,lVar17);
+              plVar10 = (int64_t *)SystemCore_SecurityValidator(param_2,acStackX_20,lVar17);
               plVar9 = plVar10;
               if (acStackX_20[0] != '\0') {
                 FUN_180142a00(param_2,&plStack_b8,plVar10,0,lVar17);
@@ -545,7 +545,7 @@ LAB_1804a4eea:
                 }
               }
 LAB_1804a4f09:
-              plVar10 = (int64_t *)FUN_1800590b0(param_2,&cStack_f8,lVar17);
+              plVar10 = (int64_t *)SystemCore_SecurityValidator(param_2,&cStack_f8,lVar17);
               plVar9 = plVar10;
               if (cStack_f8 != '\0') {
                 FUN_180142a00(param_2,&plStack_b0,plVar10,0,lVar17);
@@ -688,7 +688,7 @@ LAB_1804a513a:
               }
             }
 LAB_1804a5159:
-            plVar20 = (int64_t *)FUN_1800590b0(param_2,acStack_f7,lVar15);
+            plVar20 = (int64_t *)SystemCore_SecurityValidator(param_2,acStack_f7,lVar15);
             plVar10 = plVar20;
             if (acStack_f7[0] != '\0') {
               FUN_180142a00(param_2,&plStack_a8,plVar20,0,lVar15);

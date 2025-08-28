@@ -232,7 +232,7 @@ LAB_180408ade:
       if (puStack_3b0 != (int8_t *)0x0) {
         puVar14 = puStack_3b0;
       }
-      FUN_180627020(&ui_system_data_1648_ptr,puVar14);
+      SystemCore_Allocator(&ui_system_data_1648_ptr,puVar14);
       iVar2 = -1;
     }
     else {
@@ -336,7 +336,7 @@ LAB_180408c50:
               *puStack_350 = 0;
             }
           }
-          iVar2 = FUN_180191c00(render_system_data_memory,&puStack_358);
+          iVar2 = RenderingSystem_PostProcessor(render_system_data_memory,&puStack_358);
           iStack_378 = iVar2;
           if (iVar2 == -1) {
             puVar16 = &system_buffer_ptr;
@@ -397,13 +397,13 @@ LAB_180408d90:
             }
             iVar12 = iVar4;
             if ((0 < iStack_1c8) &&
-               (iVar12 = FUN_180191c00(render_system_data_memory,&puStack_1d8), fVar28 = extraout_XMM0_Da_00,
+               (iVar12 = RenderingSystem_PostProcessor(render_system_data_memory,&puStack_1d8), fVar28 = extraout_XMM0_Da_00,
                iVar12 == -1)) {
               puVar16 = &system_buffer_ptr;
               if (puStack_1d0 != (int8_t *)0x0) {
                 puVar16 = puStack_1d0;
               }
-              fVar28 = (float)FUN_180627020(&processed_var_7080_ptr,puVar16);
+              fVar28 = (float)SystemCore_Allocator(&processed_var_7080_ptr,puVar16);
               iVar12 = iVar4;
             }
             lVar13 = lVar13 * 0x2c0;
@@ -1150,7 +1150,7 @@ LAB_180409cce:
     uStack_3e0 = uStack_3e0 & 0xffffffff00000000;
     puStack_3f8 = &system_state_ptr;
     afStack_374[0] = -1.0;
-    lVar22 = FUN_1800a02a0(pcVar23,&processed_var_7560_ptr);
+    lVar22 = SystemCore_DataManager(pcVar23,&processed_var_7560_ptr);
     fVar28 = extraout_XMM0_Da_01;
     if (lVar22 != 0) {
       lVar6 = 0x180d48d24;

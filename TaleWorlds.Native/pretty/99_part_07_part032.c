@@ -116,7 +116,7 @@ LAB_1804b9695:
       iVar5 = 0;
       if (0 < iVar12) {
         do {
-          FUN_180631960(lVar3,&system_data_be48,param_1 + 0x3c4 + (int64_t)iVar5 * 0x10);
+          StringProcessor(lVar3,&system_data_be48,param_1 + 0x3c4 + (int64_t)iVar5 * 0x10);
           lVar3 = *(int64_t *)(lVar3 + 0x58);
           iVar5 = iVar5 + 1;
         } while (iVar5 < *(int *)(param_1 + 0x5c4));
@@ -227,7 +227,7 @@ LAB_1804b985d:
     if (0 < iVar12) {
       lVar6 = 0;
       do {
-        FUN_180631960(lVar3,&system_data_be48,*(int64_t *)(param_1 + 0x5c8) + lVar6);
+        StringProcessor(lVar3,&system_data_be48,*(int64_t *)(param_1 + 0x5c8) + lVar6);
         lVar3 = *(int64_t *)(lVar3 + 0x58);
         lVar6 = lVar6 + 0x10;
         uVar7 = uVar7 - 1;
@@ -324,7 +324,7 @@ LAB_1804b9a15:
         if (0 < (int)uVar7) {
           lVar6 = param_1 + 0x5d4;
           do {
-            FUN_180631960(lVar3,&system_data_be48,lVar6);
+            StringProcessor(lVar3,&system_data_be48,lVar6);
             lVar3 = *(int64_t *)(lVar3 + 0x58);
             lVar6 = lVar6 + 0x10;
             uVar7 = uVar7 - 1;
@@ -368,7 +368,7 @@ LAB_1804b9bde:
                     param_1 = param_1 + 0x7d8;
                     uVar7 = (uint64_t)uVar13;
                     do {
-                      FUN_180631960(lVar3,&system_data_be48,param_1);
+                      StringProcessor(lVar3,&system_data_be48,param_1);
                       lVar3 = *(int64_t *)(lVar3 + 0x58);
                       param_1 = param_1 + 0x10;
                       uVar7 = uVar7 - 1;
@@ -580,7 +580,7 @@ LAB_1804b9695:
       iVar6 = 0;
       if (0 < iVar12) {
         do {
-          FUN_180631960(lVar4,&system_data_be48,param_1 + 0x3c4 + (int64_t)iVar6 * 0x10);
+          StringProcessor(lVar4,&system_data_be48,param_1 + 0x3c4 + (int64_t)iVar6 * 0x10);
           lVar4 = *(int64_t *)(lVar4 + 0x58);
           iVar6 = iVar6 + 1;
         } while (iVar6 < *(int *)(param_1 + 0x5c4));
@@ -691,7 +691,7 @@ LAB_1804b985d:
     if (0 < iVar12) {
       lVar7 = 0;
       do {
-        FUN_180631960(lVar4,&system_data_be48,*(int64_t *)(param_1 + 0x5c8) + lVar7);
+        StringProcessor(lVar4,&system_data_be48,*(int64_t *)(param_1 + 0x5c8) + lVar7);
         lVar4 = *(int64_t *)(lVar4 + 0x58);
         lVar7 = lVar7 + 0x10;
         uVar8 = uVar8 - 1;
@@ -788,7 +788,7 @@ LAB_1804b9a15:
         if (0 < (int)uVar8) {
           lVar7 = param_1 + 0x5d4;
           do {
-            FUN_180631960(lVar4,&system_data_be48,lVar7);
+            StringProcessor(lVar4,&system_data_be48,lVar7);
             lVar4 = *(int64_t *)(lVar4 + 0x58);
             lVar7 = lVar7 + 0x10;
             uVar8 = uVar8 - 1;
@@ -832,7 +832,7 @@ LAB_1804b9bde:
                     param_1 = param_1 + 0x7d8;
                     uVar8 = (uint64_t)uVar13;
                     do {
-                      FUN_180631960(lVar4,&system_data_be48,param_1);
+                      StringProcessor(lVar4,&system_data_be48,param_1);
                       lVar4 = *(int64_t *)(lVar4 + 0x58);
                       param_1 = param_1 + 0x10;
                       uVar8 = uVar8 - 1;

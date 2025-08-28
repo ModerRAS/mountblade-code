@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 // 02_core_engine_part147.c - 2 个函数
 
@@ -99,7 +105,7 @@ void FUN_1801376c9(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBX + 0x1c4c) = uVar6;
         *(int32_t *)(unaff_RBX + 0x1c50) = uVar7;
         *(int32_t *)(unaff_RBX + 0x1c54) = unaff_RDI[0x19];
-        FUN_180121200(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
+        SystemCore_LoggingSystem(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
         lVar3 = SYSTEM_DATA_MANAGER_A;
         *(int32_t *)(unaff_RBP + -0x59) = 1;
         uVar12 = *(int32_t *)(lVar3 + 0x1630);
@@ -107,7 +113,7 @@ void FUN_1801376c9(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBP + -0x51) = uVar12;
         FUN_18013e000(lVar3 + 0x1b90,unaff_RBP + -0x59);
         *(uint64_t *)(lVar3 + 0x162c) = unaff_R14;
-        FUN_1801299b0(unaff_RBP + -0x19,0,0x20081139);
+        CoreSystem_Validator(unaff_RBP + -0x19,0,0x20081139);
         unaff_RBX = SYSTEM_DATA_MANAGER_A;
         lVar13 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
         lVar3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -260,7 +266,7 @@ LAB_180137a81:
     *(float *)(unaff_RBP + -0x1d) = fVar26 * fVar25;
     *(float *)(unaff_RBP + -0x59) = (float)unaff_RDI[0xe] + (float)unaff_RDI[0x10];
     uVar12 = func_0x000180121e20(unaff_RBP + -0x29);
-    param_1 = (float)FUN_180293f50(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59
+    param_1 = (float)MathInterpolationCalculator0(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59
                                    ,uVar12,0);
     unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
@@ -311,7 +317,7 @@ LAB_180137cc2:
       *(float *)(unaff_RBP + -0x59) = (float)unaff_RDI[0xe] + (float)unaff_RDI[0x10];
       *(float *)(unaff_RBP + -0x55) = fVar22 + fVar23;
       uVar12 = func_0x000180121e20(unaff_RBP + -0x29);
-      FUN_180293f50(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59,uVar12,0);
+      MathInterpolationCalculator0(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59,uVar12,0);
     }
     param_1 = (float)FUN_180291f60(*(uint64_t *)(uVar16 + 0x2e8));
   }
@@ -344,7 +350,7 @@ LAB_180137cc2:
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return
@@ -452,7 +458,7 @@ void FUN_1801376d4(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBX + 0x1c4c) = uVar6;
         *(int32_t *)(unaff_RBX + 0x1c50) = uVar7;
         *(int32_t *)(unaff_RBX + 0x1c54) = unaff_RDI[0x19];
-        FUN_180121200(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
+        SystemCore_LoggingSystem(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
         lVar3 = SYSTEM_DATA_MANAGER_A;
         *(int32_t *)(unaff_RBP + -0x59) = 1;
         uVar12 = *(int32_t *)(lVar3 + 0x1630);
@@ -460,7 +466,7 @@ void FUN_1801376d4(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBP + -0x51) = uVar12;
         FUN_18013e000(lVar3 + 0x1b90,unaff_RBP + -0x59);
         *(uint64_t *)(lVar3 + 0x162c) = unaff_R14;
-        FUN_1801299b0(unaff_RBP + -0x19,0,0x20081139);
+        CoreSystem_Validator(unaff_RBP + -0x19,0,0x20081139);
         unaff_RBX = SYSTEM_DATA_MANAGER_A;
         lVar13 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
         lVar3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -613,7 +619,7 @@ LAB_180137a81:
     *(float *)(unaff_RBP + -0x1d) = fVar26 * fVar25;
     *(float *)(unaff_RBP + -0x59) = (float)unaff_RDI[0xe] + (float)unaff_RDI[0x10];
     uVar12 = func_0x000180121e20(unaff_RBP + -0x29);
-    param_1 = (float)FUN_180293f50(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59
+    param_1 = (float)MathInterpolationCalculator0(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59
                                    ,uVar12,0);
     unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
@@ -664,7 +670,7 @@ LAB_180137cc2:
       *(float *)(unaff_RBP + -0x59) = (float)unaff_RDI[0xe] + (float)unaff_RDI[0x10];
       *(float *)(unaff_RBP + -0x55) = fVar22 + fVar23;
       uVar12 = func_0x000180121e20(unaff_RBP + -0x29);
-      FUN_180293f50(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59,uVar12,0);
+      MathInterpolationCalculator0(*(uint64_t *)(uVar16 + 0x2e8),unaff_RDI + 0xe,unaff_RBP + -0x59,uVar12,0);
     }
     param_1 = (float)FUN_180291f60(*(uint64_t *)(uVar16 + 0x2e8));
   }
@@ -697,7 +703,7 @@ LAB_180137cc2:
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return

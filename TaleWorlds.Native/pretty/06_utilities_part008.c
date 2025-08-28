@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // 工具系统高级内存管理和数据处理模块 - 06_utilities_part008.c (美化版本)
 // ============================================================================
@@ -560,7 +564,7 @@ uint64_t FUN_180895ef0(int64_t param_1);
  * @param param2 参数2
  * @return 分配结果
  */
-uint64_t FUN_1807d3f50(int64_t param_1, int param_2);
+uint64_t SystemCore_SecurityHandler(int64_t param_1, int param_2);
 
 /**
  * @brief 栈清理函数

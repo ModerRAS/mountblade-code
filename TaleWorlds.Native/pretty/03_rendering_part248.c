@@ -334,7 +334,7 @@ LAB_18040a675:
   }
   lVar14 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,system_data_aee8);
   CoreEngineDataTransformer(lVar14 + 0x20,&puStack_128);
-  puVar9 = (void *)FUN_1800590b0(&system_data_aec0,auStackX_20,lVar14 + 0x20);
+  puVar9 = (void *)SystemCore_SecurityValidator(&system_data_aec0,auStackX_20,lVar14 + 0x20);
   if ((char)auStackX_20[0] != '\0') {
     if (puVar9 == &system_data_aec0) goto LAB_18040a719;
     if (*(int *)(puVar9 + 0x30) == 0) goto LAB_18040a70e;

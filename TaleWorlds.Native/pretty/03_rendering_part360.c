@@ -316,8 +316,8 @@ void FUN_1804649e0(uint64_t *param_1,int64_t param_2,int64_t param_3,float param
   
   uStack_88 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
   lVar8 = param_3;
-  FUN_18063b470(&fStack_e8);
-  uVar5 = FUN_18063b470(afStack_a8,lVar8);
+  AdvancedProcessor_StateManager0(&fStack_e8);
+  uVar5 = AdvancedProcessor_StateManager0(afStack_a8,lVar8);
   fVar15 = fStack_e8;
   fVar11 = fStack_e4;
   fVar13 = fStack_e0;
@@ -405,7 +405,7 @@ void FUN_1804649e0(uint64_t *param_1,int64_t param_2,int64_t param_3,float param
   afStack_a8[0] = fVar15 * (3.0 - fVar18 * fVar18 * (fVar14 + fVar12)) * fVar18 * 0.5;
   afStack_a8[3] = fVar17 * (3.0 - fVar10 * fVar10 * fVar21) * fVar10 * 0.5;
   afStack_a8[2] = fVar13 * (3.0 - fVar9 * fVar9 * fVar19) * fVar9 * 0.5;
-  FUN_18063b5f0(&uStack_d8,afStack_a8);
+  SystemSecurityManager(&uStack_d8,afStack_a8);
   fVar22 = 1.0 - param_4;
   fVar15 = *(float *)(param_3 + 0x30);
   fVar11 = *(float *)(param_3 + 0x34);
@@ -571,7 +571,7 @@ void FUN_180464a7a(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   uStack0000000000000068 =
        CONCAT44(fVar18 * (3.0 - fVar8 * fVar8 * fVar14) * fVar8 * 0.5,
                 fVar17 * (3.0 - fVar7 * fVar7 * fVar9) * fVar7 * 0.5);
-  FUN_18063b5f0(&param_6,&stack0x00000060);
+  SystemSecurityManager(&param_6,&stack0x00000060);
   fVar21 = unaff_XMM12_Da - unaff_XMM9_Da;
   fVar10 = *(float *)(unaff_RDI + 0x30);
   fVar11 = *(float *)(unaff_RDI + 0x34);
@@ -696,7 +696,7 @@ void FUN_180464ace(void)
        fStack0000000000000064 * (3.0 - fVar11 * fVar11 * (fVar7 + fVar8)) * fVar11 * 0.5;
   in_stack_00000068 = in_stack_00000068 * (3.0 - fVar12 * fVar12 * fVar14) * fVar12 * 0.5;
   fStack000000000000006c = fStack000000000000006c * (3.0 - fVar13 * fVar13 * fVar15) * fVar13 * 0.5;
-  FUN_18063b5f0(&stack0x00000030,&stack0x00000060);
+  SystemSecurityManager(&stack0x00000030,&stack0x00000060);
   fVar16 = unaff_XMM12_Da - unaff_XMM9_Da;
   fVar7 = *(float *)(unaff_RDI + 0x30);
   fVar8 = *(float *)(unaff_RDI + 0x34);

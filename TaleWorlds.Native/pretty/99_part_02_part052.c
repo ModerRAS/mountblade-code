@@ -20,7 +20,7 @@ void FUN_1801bd868(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     }
     lVar1 = param_1 + lVar3 * 0x28;
     lVar2 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar2,lVar1);
+    SystemScheduler(lVar2,lVar1);
     *(int32_t *)(lVar2 + 0x20) = *(int32_t *)(lVar1 + 0x20);
     param_4 = lVar3;
     lVar1 = lVar3 * 2;
@@ -28,7 +28,7 @@ void FUN_1801bd868(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   if (lVar2 == param_3) {
     lVar2 = param_1 + lVar2 * 0x28;
     lVar3 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar3,lVar2 + -0x28);
+    SystemScheduler(lVar3,lVar2 + -0x28);
     param_4 = lVar1 + 1;
     *(int32_t *)(lVar3 + 0x20) = *(int32_t *)(lVar2 + -8);
   }
@@ -37,12 +37,12 @@ void FUN_1801bd868(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     lVar1 = param_1 + lVar2 * 0x28;
     if (*(int *)(lVar1 + 0x20) <= *(int *)(in_stack_00000060 + 0x20)) break;
     lVar3 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar3,lVar1);
+    SystemScheduler(lVar3,lVar1);
     *(int32_t *)(lVar3 + 0x20) = *(int32_t *)(lVar1 + 0x20);
     param_4 = lVar2;
   }
   param_1 = param_1 + param_4 * 0x28;
-  FUN_18005d190(param_1,in_stack_00000060);
+  SystemScheduler(param_1,in_stack_00000060);
   *(int32_t *)(param_1 + 0x20) = *(int32_t *)(in_stack_00000060 + 0x20);
   return;
 }
@@ -69,12 +69,12 @@ void FUN_1801bd911(void)
     lVar1 = unaff_R14 + lVar3 * 0x28;
     if (*(int *)(lVar1 + 0x20) <= *(int *)(unaff_RBP + 0x20)) break;
     lVar2 = unaff_R14 + in_R10 * 0x28;
-    FUN_18005d190(lVar2,lVar1);
+    SystemScheduler(lVar2,lVar1);
     *(int32_t *)(lVar2 + 0x20) = *(int32_t *)(lVar1 + 0x20);
     in_R10 = lVar3;
   } while (unaff_R12 < lVar3);
   lVar1 = unaff_R14 + in_R10 * 0x28;
-  FUN_18005d190(lVar1);
+  SystemScheduler(lVar1);
   *(int32_t *)(lVar1 + 0x20) = *(int32_t *)(unaff_RBP + 0x20);
   return;
 }
@@ -782,13 +782,13 @@ FUN_1801be7f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_6304_ptr;
   if (param_1[7] != 0) {
-    FUN_18023b050(param_1[7],0,param_3,param_4,0xfffffffffffffffe);
+    SystemCore_NetworkHandler(param_1[7],0,param_3,param_4,0xfffffffffffffffe);
   }
   if (param_1[8] != 0) {
-    FUN_18023b050(param_1[8],0,param_3,param_4,uVar1);
+    SystemCore_NetworkHandler(param_1[8],0,param_3,param_4,uVar1);
   }
   if (param_1[9] != 0) {
-    FUN_18023b050(param_1[9],0,param_3,param_4,uVar1);
+    SystemCore_NetworkHandler(param_1[9],0,param_3,param_4,uVar1);
   }
   if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return

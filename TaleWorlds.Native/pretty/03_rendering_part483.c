@@ -167,7 +167,7 @@ void FUN_180526aff(float param_1)
                 *(int32_t *)(unaff_RBP + -0x39) = 0;
                 *(int32_t *)(unaff_RBP + -0x35) = 0xffffffff;
                 *(uint64_t *)(unaff_RBP + -0x31) = RENDERING_DEFAULT_TEXTURE_ID;
-                FUN_18051ec50(0,unaff_RBP + -0x39);
+                CoreSystemThreadManager(0,unaff_RBP + -0x39);
                 
                 if (iVar5 != RENDERING_SYSTEM_INVALID_INDEX) {
                     *(int32_t *)(unaff_RBP + -0x21) = *(int32_t *)(unaff_RBP + 0x67);
@@ -180,7 +180,7 @@ void FUN_180526aff(float param_1)
                     *(int8_t *)(unaff_RBP + -0xd) = 0;
                     *(int32_t *)(unaff_RBP + -0x39) = 0;
                     *(int *)(unaff_RBP + -0x35) = iVar5;
-                    FUN_18051ec50(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
+                    CoreSystemThreadManager(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
                 }
             }
         }
@@ -227,7 +227,7 @@ LAB_180526faa:
                 uVar6 = *(int32_t *)
                          ((int64_t)*(int *)(lVar7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar7 + 0xd0));
             }
-            lVar7 = FUN_18054f900(lVar9,9,unaff_R15B,uVar6,uVar4);
+            lVar7 = Timer_GetElapsed(lVar9,9,unaff_R15B,uVar6,uVar4);
             if (lVar7 == 0) goto LAB_180526f68;
             iVar5 = *(int *)(lVar7 + 0x1c);
             iVar1 = *(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x2498);
@@ -262,7 +262,7 @@ LAB_180526faa:
                     }
                 }
                 *(float *)(unaff_RBP + -0x25) = fVar11;
-                cVar3 = FUN_18051ec50(fVar11,unaff_RBP + -0x39);
+                cVar3 = CoreSystemThreadManager(fVar11,unaff_RBP + -0x39);
                 if (cVar3 != '\0') {
                     // 设置渲染系统状态和颜色参数
                     if (iVar10 != RENDERING_RESOURCE_FLAG_20) {
@@ -424,7 +424,7 @@ void FUN_180526b0e(float param_1)
                 *(int32_t *)(unaff_RBP + -0x39) = 0;
                 *(int32_t *)(unaff_RBP + -0x35) = 0xffffffff;
                 *(uint64_t *)(unaff_RBP + -0x31) = RENDERING_DEFAULT_TEXTURE_ID;
-                FUN_18051ec50(0,unaff_RBP + -0x39);
+                CoreSystemThreadManager(0,unaff_RBP + -0x39);
                 
                 if (iVar5 != RENDERING_SYSTEM_INVALID_INDEX) {
                     *(int32_t *)(unaff_RBP + -0x21) = *(int32_t *)(unaff_RBP + 0x67);
@@ -437,7 +437,7 @@ void FUN_180526b0e(float param_1)
                     *(int8_t *)(unaff_RBP + -0xd) = 0;
                     *(int32_t *)(unaff_RBP + -0x39) = 0;
                     *(int *)(unaff_RBP + -0x35) = iVar5;
-                    FUN_18051ec50(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
+                    CoreSystemThreadManager(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
                 }
             }
         }
@@ -485,7 +485,7 @@ LAB_180526faa:
                 uVar6 = *(int32_t *)
                          ((int64_t)*(int *)(lVar7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar7 + 0xd0));
             }
-            lVar7 = FUN_18054f900(lVar9,9,unaff_R15B,uVar6,uVar4);
+            lVar7 = Timer_GetElapsed(lVar9,9,unaff_R15B,uVar6,uVar4);
             if (lVar7 == 0) goto LAB_180526f68;
             iVar5 = *(int *)(lVar7 + 0x1c);
             iVar1 = *(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x2498);
@@ -520,7 +520,7 @@ LAB_180526faa:
                     }
                 }
                 *(float *)(unaff_RBP + -0x25) = fVar11;
-                cVar3 = FUN_18051ec50(fVar11,unaff_RBP + -0x39);
+                cVar3 = CoreSystemThreadManager(fVar11,unaff_RBP + -0x39);
                 if (cVar3 != '\0') {
                     unaff_RSI = &system_error_code;
                     // 设置渲染系统状态和颜色参数
@@ -718,8 +718,8 @@ void FUN_180527112(void)
 // 
 // 函数调用说明：
 // - FUN_18050d480: 参数处理函数
-// - FUN_18051ec50: 资源配置函数
-// - FUN_18054f900: 资源分配函数
+// - CoreSystemThreadManager: 资源配置函数
+// - Timer_GetElapsed: 资源分配函数
 // - FUN_18058ada0: 系统更新函数
 // - FUN_180590480: 状态处理函数
 // - System_StringProcessor: 状态检查函数

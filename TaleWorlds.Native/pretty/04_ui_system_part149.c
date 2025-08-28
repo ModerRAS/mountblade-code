@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part149.c - 6 个函数
 
@@ -411,11 +416,11 @@ uint64_t FUN_180754c20(int64_t *param_1,int64_t param_2,int64_t param_3)
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_180762070(lVar3,acStack_48[0] == (char)uVar2,1);
+    uVar2 = SystemCore_Initializer(lVar3,acStack_48[0] == (char)uVar2,1);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_180762070(lVar1,1);
+    uVar2 = SystemCore_Initializer(lVar1,1);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -475,11 +480,11 @@ uint64_t FUN_180754c5c(void)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_180762070(unaff_RBX,cStackX_20 == (char)uVar1,CONCAT71(uVar3,1));
+    uVar1 = SystemCore_Initializer(unaff_RBX,cStackX_20 == (char)uVar1,CONCAT71(uVar3,1));
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_180762070();
+    uVar1 = SystemCore_Initializer();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -515,7 +520,7 @@ uint64_t FUN_180754d50(int64_t *param_1,int param_2)
         if ((int)uVar1 != 0) {
           return uVar1;
         }
-        uVar1 = FUN_180759220(*(uint64_t *)(param_1[1] + 0x12640 + lVar2 * 0x18),uStackX_8,
+        uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(param_1[1] + 0x12640 + lVar2 * 0x18),uStackX_8,
                               param_1 + lVar2 + 0x2a,2,(char)uVar1,0);
         if ((int)uVar1 != 0) {
           return uVar1;
@@ -534,7 +539,7 @@ uint64_t FUN_180754d50(int64_t *param_1,int param_2)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_18075dbf0(*(uint64_t *)(param_1[1] + 0x12640 + lVar2 * 0x18),uStackX_8,
+    uVar1 = SystemCore_ConfigurationManager(*(uint64_t *)(param_1[1] + 0x12640 + lVar2 * 0x18),uStackX_8,
                           param_1[lVar2 + 0x2a],4);
     if ((int)uVar1 != 0) {
       return uVar1;

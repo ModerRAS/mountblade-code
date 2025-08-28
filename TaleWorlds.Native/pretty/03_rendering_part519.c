@@ -141,7 +141,7 @@ void FUN_180548ce0(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64_t *p
             }
           }
           if ((puVar10 == (uint64_t *)0x180c95e98) || (uVar9 < *(uint *)(puVar10 + 4))) {
-            puVar10 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStack_70);
+            puVar10 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStack_70);
             puVar10 = (uint64_t *)*puVar10;
           }
           lVar5 = puVar10[5];
@@ -248,7 +248,7 @@ uint64_t FUN_180549230(int64_t *param_1,uint64_t param_2,int64_t param_3)
   int64_t *plVar3;
   
   uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-  plVar3 = (int64_t *)FUN_180275090(uVar2);
+  plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
@@ -261,7 +261,7 @@ uint64_t FUN_180549230(int64_t *param_1,uint64_t param_2,int64_t param_3)
             ((int64_t *)param_1[0x20],param_2,*(uint64_t *)(param_3 + 0x6a8));
   if (*(int64_t *)(param_3 + 0x6b0) != 0) {
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar3 = (int64_t *)FUN_180275090(uVar2);
+    plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
     if (plVar3 != (int64_t *)0x0) {
       (**(code **)(*plVar3 + 0x28))(plVar3);
     }
@@ -275,7 +275,7 @@ uint64_t FUN_180549230(int64_t *param_1,uint64_t param_2,int64_t param_3)
   }
   if (*(int64_t *)(param_3 + 0x6b8) != 0) {
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar3 = (int64_t *)FUN_180275090(uVar2);
+    plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
     if (plVar3 != (int64_t *)0x0) {
       (**(code **)(*plVar3 + 0x28))(plVar3);
     }
@@ -289,7 +289,7 @@ uint64_t FUN_180549230(int64_t *param_1,uint64_t param_2,int64_t param_3)
   }
   if (*(int64_t *)(param_3 + 0x6c0) != 0) {
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar3 = (int64_t *)FUN_180275090(uVar2);
+    plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
     if (plVar3 != (int64_t *)0x0) {
       (**(code **)(*plVar3 + 0x28))(plVar3);
     }
@@ -413,7 +413,7 @@ LAB_1805495a1:
   }
 LAB_180549617:
   plVar1 = param_1 + 0x1c;
-  FUN_1800b8500(plVar1);
+  SystemCore_Controller(plVar1);
   if ((uint64_t)(param_1[0x1e] - *plVar1 >> 3) < 4) {
     plVar7 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,(char)param_1[0x1f]);
     plVar2 = (int64_t *)param_1[0x1d];
@@ -447,16 +447,16 @@ LAB_180549617:
     param_1[0x1d] = (int64_t)plVar8;
   }
   if (param_1[0x20] != 0) {
-    FUN_1800b88d0(plVar1);
+    PhysicsSystem_TriggersProcessor(plVar1);
   }
   if (param_1[0x23] != 0) {
-    FUN_1800b88d0(plVar1);
+    PhysicsSystem_TriggersProcessor(plVar1);
   }
   if (param_1[0x22] != 0) {
-    FUN_1800b88d0(plVar1);
+    PhysicsSystem_TriggersProcessor(plVar1);
   }
   if (param_1[0x21] != 0) {
-    FUN_1800b88d0(plVar1);
+    PhysicsSystem_TriggersProcessor(plVar1);
   }
   return;
 }
@@ -851,24 +851,24 @@ void FUN_18054a0f0(int64_t param_1,uint64_t param_2,uint64_t param_3)
 void FUN_18054a180(int64_t param_1)
 
 {
-  FUN_1800b8500(param_1 + 0xe0);
+  SystemCore_Controller(param_1 + 0xe0);
   if (*(int64_t *)(param_1 + 0x100) != 0) {
-    FUN_1800b88d0(param_1 + 0xe0,param_1 + 0x100);
+    PhysicsSystem_TriggersProcessor(param_1 + 0xe0,param_1 + 0x100);
     (**(code **)(**(int64_t **)(param_1 + 0x100) + 0x1e0))
               (*(int64_t **)(param_1 + 0x100),*(uint64_t *)(param_1 + 0x28));
   }
   if (*(int64_t *)(param_1 + 0x108) != 0) {
-    FUN_1800b88d0(param_1 + 0xe0,param_1 + 0x108);
+    PhysicsSystem_TriggersProcessor(param_1 + 0xe0,param_1 + 0x108);
     (**(code **)(**(int64_t **)(param_1 + 0x108) + 0x1e0))
               (*(int64_t **)(param_1 + 0x108),*(uint64_t *)(param_1 + 0x28));
   }
   if (*(int64_t *)(param_1 + 0x110) != 0) {
-    FUN_1800b88d0(param_1 + 0xe0,param_1 + 0x110);
+    PhysicsSystem_TriggersProcessor(param_1 + 0xe0,param_1 + 0x110);
     (**(code **)(**(int64_t **)(param_1 + 0x110) + 0x1e0))
               (*(int64_t **)(param_1 + 0x110),*(uint64_t *)(param_1 + 0x28));
   }
   if (*(int64_t *)(param_1 + 0x118) != 0) {
-    FUN_1800b88d0(param_1 + 0xe0,param_1 + 0x118);
+    PhysicsSystem_TriggersProcessor(param_1 + 0xe0,param_1 + 0x118);
     (**(code **)(**(int64_t **)(param_1 + 0x118) + 0x1e0))
               (*(int64_t **)(param_1 + 0x118),*(uint64_t *)(param_1 + 0x28));
   }

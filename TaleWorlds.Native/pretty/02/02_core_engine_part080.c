@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part080.c - 文本渲染引擎模块
 // 包含3个函数：文本布局计算、文本渲染处理、文本区域管理
 
@@ -460,7 +468,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
               fVar16 = 0.0;
             }
             else {
-              FUN_180297340(pfVar3,&stack0x00000050,fVar16,0x7f7fffff,0xbf800000);
+              SystemCore_StateController(pfVar3,&stack0x00000050,fVar16,0x7f7fffff,0xbf800000);
               fVar15 = fStack0000000000000050;
               if (0.0 < fStack0000000000000050) {
                 fVar15 = fStack0000000000000050 - fVar16 / *pfVar3;
@@ -472,7 +480,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
               *(float *)(unaff_RBP + 0x48) = fVar16;
               fVar21 = fVar16;
             }
-            FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar8,0);
+            SystemCore_ManageMemory(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar8,0);
             unaff_RSI = SYSTEM_DATA_MANAGER_A;
             fVar18 = fVar18 + fVar19;
             unaff_RDI = uVar8 + 1;
@@ -510,7 +518,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
            (*(float *)(lVar11 + 0x230) <= fVar2)))) && (*(char *)(unaff_RSI + 0x2e38) == '\0')) {
         return;
       }
-      cVar6 = FUN_180128040(&stack0x00000050,&stack0x00000058,1);
+      cVar6 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
       if (cVar6 == '\0') {
         return;
       }
@@ -557,7 +565,7 @@ LAB_18010ed80:
     fVar19 = 0.0;
   }
   else {
-    FUN_180297340(pfVar3,unaff_RBP + 0x48,fVar20,0x7f7fffff,fVar19);
+    SystemCore_StateController(pfVar3,unaff_RBP + 0x48,fVar20,0x7f7fffff,fVar19);
     fVar19 = *(float *)(unaff_RBP + 0x48);
     if (0.0 < fVar19) {
       fVar19 = fVar19 - fVar20 / *pfVar3;
@@ -583,7 +591,7 @@ LAB_18010ed80:
        (fVar22 < *(float *)(lVar11 + 0x234))) &&
       ((*(float *)(lVar11 + 0x228) <= fVar19 && fVar19 != *(float *)(lVar11 + 0x228) &&
        (fVar2 < *(float *)(lVar11 + 0x230))))) || (*(char *)(unaff_RSI + 0x2e38) != '\0')) {
-    cVar6 = FUN_180128040(&stack0x00000050,&stack0x00000058,1);
+    cVar6 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
     uVar4 = _fStack0000000000000050;
     if (cVar6 != '\0') {
       *(uint *)(lVar10 + 0x148) = *(uint *)(lVar10 + 0x148) | 1;
@@ -630,7 +638,7 @@ LAB_18010ed80:
         }
       }
       if (*(char *)(unaff_RSI + 0x2e38) != '\0') {
-        FUN_18013c800(unaff_RBP + 0x40);
+        SystemCore_ThreadController(unaff_RBP + 0x40);
       }
     }
   }
@@ -753,7 +761,7 @@ void update_text_area(uint64_t area_params)
         }
         fVar12 = unaff_XMM8_Da;
         if (unaff_RDI != uVar7) {
-          FUN_180297340(pfVar3,&stack0x00000050,fVar2,0x7f7fffff,0xbf800000);
+          SystemCore_StateController(pfVar3,&stack0x00000050,fVar2,0x7f7fffff,0xbf800000);
           if (unaff_XMM8_Da < fStack0000000000000050) {
             fStack0000000000000050 = fStack0000000000000050 - fVar2 / *pfVar3;
           }
@@ -764,7 +772,7 @@ void update_text_area(uint64_t area_params)
           *(float *)(unaff_RBP + 0x48) = fVar12;
           fVar16 = fVar12;
         }
-        FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar7,0);
+        SystemCore_ManageMemory(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar7,0);
         unaff_RSI = SYSTEM_DATA_MANAGER_A;
         fVar14 = fVar14 + fVar1;
         unaff_RDI = uVar7 + 1;
@@ -801,7 +809,7 @@ void update_text_area(uint64_t area_params)
        ((*(float *)(lVar4 + 0x228) <= fVar16 && fVar16 != *(float *)(lVar4 + 0x228) &&
         (unaff_XMM14_Da < *(float *)(lVar4 + 0x230))))) || (*(char *)(unaff_RSI + 0x2e38) != cVar5))
      && (fStack0000000000000058 = fVar16, fStack000000000000005c = fVar13,
-        cVar5 = FUN_180128040(&stack0x00000050,&stack0x00000058,1), cVar5 != '\0')) {
+        cVar5 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1), cVar5 != '\0')) {
     *(uint *)(lVar8 + 0x148) = *(uint *)(lVar8 + 0x148) | 1;
   }
   return;

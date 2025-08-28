@@ -1,3 +1,11 @@
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -222,14 +230,14 @@ void FUN_1804ab140(void)
     iVar3 = FUN_1801426a0(lVar8,(int64_t)&puStack_1b8 + uVar13);
     if (iVar3 < 0) {
 LAB_1804ab686:
-      lVar8 = FUN_180628ca0();
+      lVar8 = MemoryDebugger0();
     }
     else {
       if ((uint64_t)(*(int64_t *)(lVar8 + 0x890) - *(int64_t *)(lVar8 + 0x888) >> 5) <=
           (uint64_t)(int64_t)iVar3) goto LAB_1804ab686;
       lVar8 = (int64_t)iVar3 * 0x20 + *(int64_t *)(lVar8 + 0x888);
     }
-    FUN_180627ce0(lVar8,&puStack_310,&puStack_2f0);
+    UtilitiesSystem_FileHandler(lVar8,&puStack_310,&puStack_2f0);
     ppuStack_338 = &puStack_368;
     puStack_368 = &system_data_buffer_ptr;
     uStack_350 = 0;
@@ -449,8 +457,8 @@ LAB_1804aba26:
     uVar13 = uVar13 + 0x20;
     plVar11 = plVar11 + 1;
     if (4 < (int)uVar12) {
-      SystemDataValidator(&puStack_118,0x20,5,FUN_180627b90);
-      SystemDataValidator(&puStack_1b8,0x20,5,FUN_180627b90);
+      SystemDataValidator(&puStack_118,0x20,5,SystemValidator);
+      SystemDataValidator(&puStack_1b8,0x20,5,SystemValidator);
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_3b8);
     }
@@ -722,7 +730,7 @@ void FUN_1804abca0(int64_t **param_1)
         *(int *)(plVar6 + 0x17) = (int)lVar7;
         *(int32_t *)((int64_t)plVar6 + 0xbc) = uVar16;
         *(int8_t *)(*(int64_t *)(&system_data_6220 + lVar9 * 8) + 0xdd) = 1;
-        FUN_1802ee720(pplVar2,1);
+        RenderingSystem_UpdateCamera(pplVar2,1);
         puVar8 = &system_buffer_ptr;
         if (puStack_130 != (void *)0x0) {
           puVar8 = puStack_130;
@@ -797,7 +805,7 @@ void FUN_1804abca0(int64_t **param_1)
             if (plStackX_10 != (int64_t *)0x0) {
               (**(code **)(*plStackX_10 + 0x38))();
             }
-            FUN_18005d190(plVar10 + 1,plVar15);
+            RenderingSystem_ResourceBinder(plVar10 + 1,plVar15);
             *(int *)(plVar10 + 5) = (int)plVar12[6];
             lVar9 = lVar9 + -1;
             plVar10 = plVar10 + 7;

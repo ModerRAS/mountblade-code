@@ -549,7 +549,7 @@ LAB_18059abc3:
     uVar5 = uVar5 - 4;
   }
   if (-1 < (int)uVar5) {
-    uVar6 = FUN_1805a0610(param_1);
+    uVar6 = PhysicsSystem_ForceCalculator(param_1);
     *(uint64_t *)(param_1 + 0x268) = uVar6;
     if (bVar4) {
       *(uint64_t *)(param_1 + 0xf0) =
@@ -673,7 +673,7 @@ LAB_18059abc3:
     uVar5 = uVar5 - 4;
   }
   if (-1 < (int)uVar5) {
-    uVar4 = FUN_1805a0610();
+    uVar4 = PhysicsSystem_ForceCalculator();
     *(uint64_t *)(unaff_RBX + 0x268) = uVar4;
     if (bVar2) {
       *(uint64_t *)(unaff_RBX + 0xf0) =
@@ -752,7 +752,7 @@ void FUN_18059ac28(uint64_t param_1,uint64_t param_2,int64_t param_3,float param
     uVar5 = uVar5 - 4;
   }
   if (-1 < (int)uVar5) {
-    uVar4 = FUN_1805a0610();
+    uVar4 = PhysicsSystem_ForceCalculator();
     *(uint64_t *)(unaff_RBX + 0x268) = uVar4;
     if (bVar3) {
       *(uint64_t *)(unaff_RBX + 0xf0) =

@@ -221,7 +221,7 @@ void rendering_system_advanced_initializer(int64_t param_1, int64_t param_2, int
             stack_guard = 0xfffffffffffffffe;
             
             // 执行资源初始化
-            FUN_18015b810();
+            SystemCore_DataTransformer();
             FUN_1803a64f0(resource_manager);
           }
           resource_pool = resource_pool + 1;

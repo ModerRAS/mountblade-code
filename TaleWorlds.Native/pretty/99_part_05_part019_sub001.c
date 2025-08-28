@@ -1,9 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_05_part019_sub001.c - 8 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_05_part019.c - 8 个函数
 
@@ -105,7 +110,7 @@ void FUN_1802e3970(int64_t *param_1)
         *(uint64_t *)piVar15 = CONCAT44(uStackX_24,iVar5);
         piVar15[2] = 0;
         piVar15[3] = 0;
-        FUN_18066c220(&uStack_b8,acStack_88,1,iVar4,1);
+        RenderingShaderProcessor0(&uStack_b8,acStack_88,1,iVar4,1);
         if (acStack_88[0] != '\0') {
           lVar1 = (uint64_t)uStack_84 * 8;
           LOCK();
@@ -953,7 +958,7 @@ void FUN_1802e4840(int64_t param_1)
       (**(code **)(*plStack_190 + 0x38))();
     }
     puStack_178 = &system_state_ptr;
-    FUN_18005e630(system_context_ptr);
+    SystemCore_FileSystem(system_context_ptr);
     puVar4 = puStack_1d0;
     if (*(int *)(*(int64_t *)(param_1 + 0x10) + 0x380) == 2) {
       puStack_1d8 = &system_data_buffer_ptr;
@@ -982,12 +987,12 @@ void FUN_1802e4840(int64_t param_1)
         iStack_1b4 = iStack_1b8;
         uVar6 = strcpy_s(auStack_c0,0x80,puVar5);
         uVar6 = FUN_1800b1d80(uVar6,&plStack_188,&puStack_d8,&iStack_1b8);
-        FUN_180060b80(param_1 + 0x10,uVar6);
+        SystemCore_ChecksumValidator(param_1 + 0x10,uVar6);
         if (plStack_188 != (int64_t *)0x0) {
           (**(code **)(*plStack_188 + 0x38))();
         }
         puStack_d8 = &system_state_ptr;
-        FUN_18005e630(system_context_ptr);
+        SystemCore_FileSystem(system_context_ptr);
       }
       puStack_1d8 = &system_data_buffer_ptr;
       if (puVar4 != (uint64_t *)0x0) {

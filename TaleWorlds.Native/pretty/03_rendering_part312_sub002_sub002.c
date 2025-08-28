@@ -1,4 +1,9 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part312_sub002_sub002.c - 1 个函数
 
@@ -427,7 +432,7 @@ LAB_180433698:
                              *(float *)((int64_t)param_3 + 0x34);
                 fStack_2d0 = *(float *)(param_3 + 2) - *(float *)(param_3 + 6);
                 uStack_2c4 = 0x7f7fffff;
-                FUN_180285b40(param_3 + 4,&uStack_130,&fStack_2d0);
+                SystemCore_EventHandler(param_3 + 4,&uStack_130,&fStack_2d0);
                 param_3[8] = uStack_130;
                 param_3[9] = uStack_128;
                 *(int8_t *)((int64_t)param_3 + 0x52) = 1;
@@ -438,7 +443,7 @@ LAB_180433698:
                              *(float *)((int64_t)param_3 + 0x34);
                 fStack_2c0 = *(float *)(param_3 + 2) - *(float *)(param_3 + 6);
                 uStack_2b4 = 0x7f7fffff;
-                FUN_180285b40(param_3 + 4,&fStack_298,&fStack_2c0);
+                SystemCore_EventHandler(param_3 + 4,&fStack_298,&fStack_2c0);
                 fStack_2a8 = (fStack_298 - *(float *)(param_3 + 8)) * fVar28 +
                              *(float *)(param_3 + 8);
                 fStack_2a4 = (fStack_294 - *(float *)((int64_t)param_3 + 0x44)) * fVar28 +
@@ -581,7 +586,7 @@ LAB_180433698:
         fVar36 = fVar36 * (3.0 - fVar27 * fVar27 * fVar31) * fVar27 * 0.5;
         uVar21 = func_0x000180435370(param_2);
         uVar11 = (uint64_t)cVar6;
-        pfVar10 = (float *)FUN_18022a890(uVar21,*(int8_t *)
+        pfVar10 = (float *)SystemErrorHandler(uVar21,*(int8_t *)
                                                  (uVar11 * 0x1b0 + 0xf0 +
                                                  *(int64_t *)(param_5 + 0x140)),param_5);
         fVar38 = *pfVar10;

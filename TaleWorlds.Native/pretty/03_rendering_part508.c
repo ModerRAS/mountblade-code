@@ -53,9 +53,9 @@ void FUN_18053be00(void)
   if (uVar16 != 0) {
     do {
       uVar1 = system_context_ptr;
-      lVar5 = FUN_18005e890(system_context_ptr);
+      lVar5 = PerformanceOptimizer(system_context_ptr);
       if (lVar5 != 0) {
-        plVar6 = (int64_t *)FUN_18005e890(uVar1);
+        plVar6 = (int64_t *)PerformanceOptimizer(uVar1);
         (**(code **)(*plVar6 + 0x20))(plVar6,0);
       }
       lVar5 = *(int64_t *)(lVar2 + 0x38);
@@ -163,9 +163,9 @@ void FUN_18053be16(void)
   if (uVar14 != 0) {
     do {
       uVar1 = system_context_ptr;
-      lVar4 = FUN_18005e890(system_context_ptr);
+      lVar4 = PerformanceOptimizer(system_context_ptr);
       if (lVar4 != 0) {
-        plVar5 = (int64_t *)FUN_18005e890(uVar1);
+        plVar5 = (int64_t *)PerformanceOptimizer(uVar1);
         (**(code **)(*plVar5 + 0x20))(plVar5,0);
       }
       lVar4 = *(int64_t *)(unaff_RBX + 0x38);
@@ -858,14 +858,14 @@ LAB_18053cdb2:
     *(int32_t *)((int64_t)param_1 + 0x1ec) = 0xffffffff;
   }
   else {
-    uVar11 = FUN_18055b2f0(&system_data_6150,param_2 + 0xb8);
+    uVar11 = SystemFile_Manager(&system_data_6150,param_2 + 0xb8);
     *(int32_t *)((int64_t)param_1 + 0x1ec) = uVar11;
   }
   if (*(int *)(param_2 + 0x108) < 1) {
     *(int32_t *)(param_1 + 0x3e) = 0xffffffff;
   }
   else {
-    uVar11 = FUN_18055b2f0(&system_data_6150,param_2 + 0xf8);
+    uVar11 = SystemFile_Manager(&system_data_6150,param_2 + 0xf8);
     *(int32_t *)(param_1 + 0x3e) = uVar11;
   }
   plVar18 = param_1 + 0x33;

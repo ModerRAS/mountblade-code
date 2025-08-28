@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 99_part_02_part011.c - 1 个函数
 
@@ -110,7 +117,7 @@ void FUN_1800eee70(int64_t *******param_1,int32_t param_2)
         **(int8_t **)(*(int64_t *)(puVar10 + 0x140) + lVar19 * 8) = 0;
         *(uint64_t *)(*(int64_t *)(*(int64_t *)(puVar10 + 0x140) + lVar19 * 8) + 0x1a8) = 0;
         FUN_1800f8a50(*(int64_t *)(*(int64_t *)(puVar10 + 0x140) + lVar19 * 8) + 8);
-        FUN_1800571e0(puVar10 + 0xc0,&uStackX_10);
+        SystemDatabaseProcessor(puVar10 + 0xc0,&uStackX_10);
         *(int32_t *)(lVar26 + 0x2ec) = 0xffffffff;
         ReleaseSRWLockExclusive(puVar2);
         *(int32_t *)(lVar26 + 0x2ec) = 0xffffffff;
@@ -121,7 +128,7 @@ void FUN_1800eee70(int64_t *******param_1,int32_t param_2)
     } while ((uint64_t)(int64_t)iVar13 < (uint64_t)(*(int64_t *)(puVar9 + 0x218) - lVar26 >> 3))
     ;
   }
-  FUN_1800b8500(plVar1);
+  SystemCore_Controller(plVar1);
   iVar13 = 0;
   plVar1 = (int64_t *)(puVar9 + 0x230);
   lVar26 = *plVar1;
@@ -167,7 +174,7 @@ void FUN_1800eee70(int64_t *******param_1,int32_t param_2)
         if (pppppplStack_e0 != (int64_t ******)0x0) {
           (*(code *)(*pppppplStack_e0)[7])();
         }
-        FUN_1800571e0(puVar10 + 0x100,&ppppppplStackX_8);
+        SystemDatabaseProcessor(puVar10 + 0x100,&ppppppplStackX_8);
         *(int32_t *)(lVar26 + 0x2fc) = 0xffffffff;
         ReleaseSRWLockExclusive(pppppplVar16);
         *(int32_t *)(lVar26 + 0x2fc) = 0xffffffff;
@@ -178,7 +185,7 @@ void FUN_1800eee70(int64_t *******param_1,int32_t param_2)
     } while ((uint64_t)(int64_t)iVar13 < (uint64_t)(*(int64_t *)(puVar9 + 0x238) - lVar26 >> 3))
     ;
   }
-  FUN_1800b8500(plVar1);
+  SystemCore_Controller(plVar1);
   iVar13 = _Mtx_unlock();
   uVar30 = extraout_XMM0_Da;
   if (iVar13 != 0) {
@@ -471,7 +478,7 @@ LAB_1800ef805:
                 if (bVar7) {
                   ppppppplVar15 = (int64_t *******)CoreSystem_LoggingManager0(system_memory_pool_ptr,200,8);
                   ppppppplStackX_8 = ppppppplVar15;
-                  FUN_180049830(ppppppplVar15);
+                  UltraHighFreq_PerformanceMonitor1(ppppppplVar15);
                   pppppplVar16 = pppppplStack_e0;
                   *ppppppplVar15 = (int64_t ******)&processed_var_6584_ptr;
                   ppppppplVar15[0x18] = (int64_t ******)0x0;
@@ -507,7 +514,7 @@ LAB_1800ef805:
                   ppppppplStackX_8 = (int64_t *******)&ppppppplStack_d0;
                   ppppppplStack_d0 = ppppppplVar15;
                   (*(code *)(*ppppppplVar15)[5])(ppppppplVar15);
-                  FUN_18005e110(lVar26,&ppppppplStack_d0);
+                  SystemCore_TimerManager(lVar26,&ppppppplStack_d0);
                   pppppplVar16 = *ppppppplVar15;
                   goto LAB_1800ef68e;
                 }
@@ -522,7 +529,7 @@ LAB_1800ef805:
             else if (cVar17 == '\0') goto LAB_1800ef6dd;
             ppppppplVar15 = (int64_t *******)CoreSystem_LoggingManager0(system_memory_pool_ptr,0xd0,8);
             ppppppplStackX_8 = ppppppplVar15;
-            FUN_180049830(ppppppplVar15);
+            UltraHighFreq_PerformanceMonitor1(ppppppplVar15);
             *ppppppplVar15 = (int64_t ******)&processed_var_6728_ptr;
             ppppppplVar15[0x18] = (int64_t ******)0x0;
             *(bool *)(ppppppplVar15 + 0x19) = bVar28;

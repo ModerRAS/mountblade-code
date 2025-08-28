@@ -336,7 +336,7 @@ uint FUN_180325ed0(int64_t param_1,uint64_t param_2,int64_t param_3,uint param_4
      ((uVar11 >> 1 & 1) != 0)) {
     FUN_1800c1750(param_1,aplStack_78,*(int32_t *)(param_3 + 0xf0));
     if (aplStack_78[0] == (int64_t *)0x0) {
-      FUN_180627020(&processed_var_9528_ptr,*(int32_t *)(param_3 + 0xf0));
+      SystemCore_Allocator(&processed_var_9528_ptr,*(int32_t *)(param_3 + 0xf0));
       if (aplStack_78[0] != (int64_t *)0x0) {
         (**(code **)(*aplStack_78[0] + 0x38))();
       }

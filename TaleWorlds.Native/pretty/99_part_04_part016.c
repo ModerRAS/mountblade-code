@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_04_part016.c - 1 个函数
 
 // 函数: void FUN_180267ee0(int64_t param_1,int64_t param_2,int64_t param_3)
@@ -150,7 +154,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x158) == *(float *)(param_1 + 0x158))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x160,param_3 + 0x160), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x158) = *(uint64_t *)(param_2 + 0x158);
-    FUN_180269810(param_1 + 0x160,param_2 + 0x160);
+    SystemCore_NetworkProtocol(param_1 + 0x160,param_2 + 0x160);
     *(int32_t *)(param_1 + 0x188) = *(int32_t *)(param_2 + 0x188);
     *(int32_t *)(param_1 + 0x18c) = *(int32_t *)(param_2 + 0x18c);
   }
@@ -159,7 +163,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 400) == *(float *)(param_1 + 400))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x198,param_3 + 0x198), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 400) = *(uint64_t *)(param_2 + 400);
-    FUN_180269810(param_1 + 0x198,param_2 + 0x198);
+    SystemCore_NetworkProtocol(param_1 + 0x198,param_2 + 0x198);
     *(int32_t *)(param_1 + 0x1c0) = *(int32_t *)(param_2 + 0x1c0);
     *(int32_t *)(param_1 + 0x1c4) = *(int32_t *)(param_2 + 0x1c4);
   }
@@ -168,7 +172,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x1c8) == *(float *)(param_1 + 0x1c8))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x1d0,param_3 + 0x1d0), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x1c8) = *(uint64_t *)(param_2 + 0x1c8);
-    FUN_180269810(param_1 + 0x1d0,param_2 + 0x1d0);
+    SystemCore_NetworkProtocol(param_1 + 0x1d0,param_2 + 0x1d0);
     *(int32_t *)(param_1 + 0x1f8) = *(int32_t *)(param_2 + 0x1f8);
     *(int32_t *)(param_1 + 0x1fc) = *(int32_t *)(param_2 + 0x1fc);
   }
@@ -177,7 +181,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x200) == *(float *)(param_1 + 0x200))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x208,param_3 + 0x208), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x200) = *(uint64_t *)(param_2 + 0x200);
-    FUN_180269810(param_1 + 0x208,param_2 + 0x208);
+    SystemCore_NetworkProtocol(param_1 + 0x208,param_2 + 0x208);
     *(int32_t *)(param_1 + 0x230) = *(int32_t *)(param_2 + 0x230);
     *(int32_t *)(param_1 + 0x234) = *(int32_t *)(param_2 + 0x234);
   }
@@ -186,7 +190,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x238) == *(float *)(param_1 + 0x238))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x240,param_3 + 0x240), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x238) = *(uint64_t *)(param_2 + 0x238);
-    FUN_180269810(param_1 + 0x240,param_2 + 0x240);
+    SystemCore_NetworkProtocol(param_1 + 0x240,param_2 + 0x240);
     *(int32_t *)(param_1 + 0x268) = *(int32_t *)(param_2 + 0x268);
     *(int32_t *)(param_1 + 0x26c) = *(int32_t *)(param_2 + 0x26c);
   }
@@ -196,10 +200,10 @@ LAB_180267fad:
       ((cVar8 = func_0x000180417730(param_1 + 0x278,param_3 + 0x278), cVar8 != '\0' &&
        (cVar8 = func_0x000180417730(param_1 + 0x2a8,param_3 + 0x2a8), cVar8 != '\0')))))) {
     *(uint64_t *)(param_1 + 0x270) = *(uint64_t *)(param_2 + 0x270);
-    FUN_180269810(param_1 + 0x278,param_2 + 0x278);
+    SystemCore_NetworkProtocol(param_1 + 0x278,param_2 + 0x278);
     *(int32_t *)(param_1 + 0x2a0) = *(int32_t *)(param_2 + 0x2a0);
     *(int32_t *)(param_1 + 0x2a4) = *(int32_t *)(param_2 + 0x2a4);
-    FUN_180269810(param_1 + 0x2a8,param_2 + 0x2a8);
+    SystemCore_NetworkProtocol(param_1 + 0x2a8,param_2 + 0x2a8);
     *(int32_t *)(param_1 + 0x2d0) = *(int32_t *)(param_2 + 0x2d0);
     *(int32_t *)(param_1 + 0x2d4) = *(int32_t *)(param_2 + 0x2d4);
   }
@@ -208,7 +212,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x2d8) == *(float *)(param_1 + 0x2d8))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x2e0,param_3 + 0x2e0), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x2d8) = *(uint64_t *)(param_2 + 0x2d8);
-    FUN_180269810(param_1 + 0x2e0,param_2 + 0x2e0);
+    SystemCore_NetworkProtocol(param_1 + 0x2e0,param_2 + 0x2e0);
     *(int32_t *)(param_1 + 0x308) = *(int32_t *)(param_2 + 0x308);
     *(int32_t *)(param_1 + 0x30c) = *(int32_t *)(param_2 + 0x30c);
   }
@@ -223,7 +227,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x310) == *(float *)(param_1 + 0x310))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x318,param_3 + 0x318), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x310) = *(uint64_t *)(param_2 + 0x310);
-    FUN_180269810(param_1 + 0x318,param_2 + 0x318);
+    SystemCore_NetworkProtocol(param_1 + 0x318,param_2 + 0x318);
     *(int32_t *)(param_1 + 0x340) = *(int32_t *)(param_2 + 0x340);
     *(int32_t *)(param_1 + 0x344) = *(int32_t *)(param_2 + 0x344);
   }
@@ -232,7 +236,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x348) == *(float *)(param_1 + 0x348))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x350,param_3 + 0x350), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x348) = *(uint64_t *)(param_2 + 0x348);
-    FUN_180269810(param_1 + 0x350,param_2 + 0x350);
+    SystemCore_NetworkProtocol(param_1 + 0x350,param_2 + 0x350);
     *(int32_t *)(param_1 + 0x378) = *(int32_t *)(param_2 + 0x378);
     *(int32_t *)(param_1 + 0x37c) = *(int32_t *)(param_2 + 0x37c);
   }
@@ -241,7 +245,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x380) == *(float *)(param_1 + 0x380))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x388,param_3 + 0x388), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x380) = *(uint64_t *)(param_2 + 0x380);
-    FUN_180269810(param_1 + 0x388,param_2 + 0x388);
+    SystemCore_NetworkProtocol(param_1 + 0x388,param_2 + 0x388);
     *(int32_t *)(param_1 + 0x3b0) = *(int32_t *)(param_2 + 0x3b0);
     *(int32_t *)(param_1 + 0x3b4) = *(int32_t *)(param_2 + 0x3b4);
   }
@@ -250,7 +254,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x3b8) == *(float *)(param_1 + 0x3b8))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x3c0,param_3 + 0x3c0), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x3b8) = *(uint64_t *)(param_2 + 0x3b8);
-    FUN_180269810(param_1 + 0x3c0,param_2 + 0x3c0);
+    SystemCore_NetworkProtocol(param_1 + 0x3c0,param_2 + 0x3c0);
     *(int32_t *)(param_1 + 1000) = *(int32_t *)(param_2 + 1000);
     *(int32_t *)(param_1 + 0x3ec) = *(int32_t *)(param_2 + 0x3ec);
   }
@@ -264,7 +268,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x3f0) == *(float *)(param_1 + 0x3f0))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x3f8,param_3 + 0x3f8), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x3f0) = *(uint64_t *)(param_2 + 0x3f0);
-    FUN_180269810(param_1 + 0x3f8,param_2 + 0x3f8);
+    SystemCore_NetworkProtocol(param_1 + 0x3f8,param_2 + 0x3f8);
     *(int32_t *)(param_1 + 0x420) = *(int32_t *)(param_2 + 0x420);
     *(int32_t *)(param_1 + 0x424) = *(int32_t *)(param_2 + 0x424);
   }
@@ -273,7 +277,7 @@ LAB_180267fad:
        (*(float *)(param_3 + 0x428) == *(float *)(param_1 + 0x428))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x430,param_3 + 0x430), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x428) = *(uint64_t *)(param_2 + 0x428);
-    FUN_180269810(param_1 + 0x430,param_2 + 0x430);
+    SystemCore_NetworkProtocol(param_1 + 0x430,param_2 + 0x430);
     *(int32_t *)(param_1 + 0x458) = *(int32_t *)(param_2 + 0x458);
     *(int32_t *)(param_1 + 0x45c) = *(int32_t *)(param_2 + 0x45c);
   }
@@ -395,7 +399,7 @@ LAB_180268c75:
        (*(float *)(param_3 + 0x100) == *(float *)(param_1 + 0x100))) &&
       (cVar8 = func_0x000180417730(param_1 + 0x108,param_3 + 0x108), cVar8 != '\0')))) {
     *(uint64_t *)(param_1 + 0x100) = *(uint64_t *)(param_2 + 0x100);
-    FUN_180269810(param_1 + 0x108,param_2 + 0x108);
+    SystemCore_NetworkProtocol(param_1 + 0x108,param_2 + 0x108);
     *(int32_t *)(param_1 + 0x130) = *(int32_t *)(param_2 + 0x130);
     *(int32_t *)(param_1 + 0x134) = *(int32_t *)(param_2 + 0x134);
   }

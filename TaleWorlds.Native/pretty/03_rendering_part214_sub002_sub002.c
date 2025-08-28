@@ -1,5 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part214_sub002_sub002.c - 1 个函数
 
@@ -558,7 +569,7 @@ LAB_18038fba6:
         *(int64_t *)(lVar43 + 8) = *(int64_t *)(lVar43 + 8) + 1;
       }
       if (*(byte *)(lVar26 + 0xa8) != uVar38) {
-        FUN_180627020(&processed_var_5536_ptr,(double)*(float *)(lVar26 + 0xe8),
+        SystemCore_Allocator(&processed_var_5536_ptr,(double)*(float *)(lVar26 + 0xe8),
                       (double)*(float *)(lVar26 + 0xec),(double)*(float *)(lVar26 + 0xf0));
         lVar27 = *(int64_t *)(lVar26 + 0x60);
         if (lVar27 != 0) {
@@ -633,7 +644,7 @@ LAB_18038fd80:
                 *puVar18 = uStack_e0;
                 puVar18[1] = CONCAT44(uStack_d4,uStack_d8);
                 puVar18[2] = 0;
-                FUN_18066c220(&uStack_100,&puStack_128,uStack_110 & 0xffffffff,
+                RenderingShaderProcessor0(&uStack_100,&puStack_128,uStack_110 & 0xffffffff,
                               uStack_108 & 0xffffffff,1);
                 if ((char)puStack_128 != '\0') {
                   uVar31 = uVar24 % ((uint64_t)puStack_128 >> 0x20);
@@ -650,7 +661,7 @@ LAB_18038ff34:
             lVar27 = lVar27 + -1;
           } while (lVar27 != 0);
         }
-        FUN_18038af00(lVar26);
+        SystemCore_PerformanceMonitor(lVar26);
         if ((*(float *)(lVar26 + 0xd8) <= 0.0 && *(float *)(lVar26 + 0xd8) != 0.0) ||
            ((3 < *(byte *)(lVar26 + 0xa8) &&
             (*(float *)(lVar26 + 0xe4) <= 0.0 && *(float *)(lVar26 + 0xe4) != 0.0)))) {
@@ -675,19 +686,19 @@ LAB_18038ff34:
               uVar24 = uVar24 - 1;
             } while (uVar24 != 0);
           }
-          FUN_1806284c0(&puStack_1c8);
+          NetworkSystem_DataProcessor(&puStack_1c8);
           uVar38 = uStack_1b8 + 2;
           CoreEngineDataBufferProcessor(&puStack_1c8,uVar38);
           *(int16_t *)((uint64_t)uStack_1b8 + (int64_t)puStack_1c0) = 0x202c;
           *(int8_t *)((int16_t *)((uint64_t)uStack_1b8 + (int64_t)puStack_1c0) + 1) = 0;
           uStack_1b8 = uVar38;
-          FUN_1806284c0(&puStack_1c8);
+          NetworkSystem_DataProcessor(&puStack_1c8);
           uVar38 = uStack_1b8 + 2;
           CoreEngineDataBufferProcessor(&puStack_1c8,uVar38);
           *(int16_t *)((uint64_t)uStack_1b8 + (int64_t)puStack_1c0) = 0x202c;
           *(int8_t *)((int16_t *)((uint64_t)uStack_1b8 + (int64_t)puStack_1c0) + 1) = 0;
           uStack_1b8 = uVar38;
-          FUN_1806284c0(&puStack_1c8);
+          NetworkSystem_DataProcessor(&puStack_1c8);
           iVar42 = uStack_1b8 + 1;
           CoreEngineDataBufferProcessor(&puStack_1c8,iVar42);
           *(int16_t *)((uint64_t)uStack_1b8 + (int64_t)puStack_1c0) = 0x29;
@@ -696,7 +707,7 @@ LAB_18038ff34:
             puVar29 = puStack_1c0;
           }
           uStack_1b8 = iVar42;
-          FUN_180627020(puVar29);
+          SystemCore_Allocator(puVar29);
           puStack_1c8 = &system_data_buffer_ptr;
           if (puStack_1c0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1153,8 +1164,8 @@ LAB_18039068b:
   plVar15 = plStack_1a0;
   if ((cStackX_20 != '\0') && (plVar33 = plVar35, 0 < lStack_e8)) {
     do {
-      FUN_18038af00(plVar15[(int64_t)plVar33]);
-      FUN_18038b160(plVar15[(int64_t)plVar33]);
+      SystemCore_PerformanceMonitor(plVar15[(int64_t)plVar33]);
+      SystemCore_ProcessManager(plVar15[(int64_t)plVar33]);
       plVar33 = (int64_t *)((int64_t)plVar33 + 1);
     } while ((int64_t)plVar33 < lVar26);
   }
@@ -1262,12 +1273,12 @@ LAB_18039068b:
     }
     if (lVar26 == 0) break;
     puVar39[0x14c] = puVar39[0x14c] + 1;
-    iVar14 = FUN_18038ee20(plVar17,lVar26,puVar39[0x14c]);
+    iVar14 = SystemCore_Encoder(plVar17,lVar26,puVar39[0x14c]);
     uVar38 = (int)plVar15 - iVar14;
     plVar15 = (int64_t *)(uint64_t)uVar38;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5392_ptr,param_8);
+  SystemParameterHandler(system_message_context,&processed_var_5392_ptr,param_8);
 }
 
 

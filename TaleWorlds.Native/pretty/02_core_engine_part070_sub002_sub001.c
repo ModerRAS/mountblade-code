@@ -114,16 +114,16 @@ typedef enum {
  * @brief 核心引擎系统高级子模块二级组件核心函数别名
  * @details 定义核心引擎系统高级子模块二级组件的核心函数别名，提高代码可读性
  */
-#define CoreEngineSubmoduleL2_EmptyFunctionProcessor FUN_0014b6a0
-#define CoreEngineSubmoduleL2_SuperPlaceholderManager FUN_0014b6a0
-#define CoreEngineSubmoduleL2_DeepCompatibilityHandler FUN_0014b6a0
-#define CoreEngineSubmoduleL2_SuperExtensionReserver FUN_0014b6a0
-#define CoreEngineSubmoduleL2_StateManager FUN_0014b6a0
-#define CoreEngineSubmoduleL2_ErrorHandler FUN_0014b6a0
-#define CoreEngineSubmoduleL2_Optimizer FUN_0014b6a0
-#define CoreEngineSubmoduleL2_Debugger FUN_0014b6a0
-#define CoreEngineSubmoduleL2_Initializer FUN_0014b6a0
-#define CoreEngineSubmoduleL2_Cleanup FUN_0014b6a0
+#define CoreEngineSubmoduleL2_EmptyFunctionProcessor UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_SuperPlaceholderManager UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_DeepCompatibilityHandler UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_SuperExtensionReserver UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_StateManager UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_ErrorHandler UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_Optimizer UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_Debugger UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_Initializer UltraHighFreq_AudioSystem1
+#define CoreEngineSubmoduleL2_Cleanup UltraHighFreq_AudioSystem1
 
 /* ============================================================================
  * 核心引擎系统高级子模块二级组件全局变量
@@ -439,7 +439,7 @@ const char* CoreEngineSubmoduleL2_GetDescription(void) {
  * ============================================================================ */
 
 // 原始函数声明，保持兼容性
-int FUN_0014b6a0(int param1, int param2);
+int InitSubmodule_EmptyFunctionProcessor(int param1, int param2);
 
 /* ============================================================================
  * 文件结束标记

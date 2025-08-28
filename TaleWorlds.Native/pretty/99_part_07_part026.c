@@ -103,7 +103,7 @@ LAB_1804b4fc4:
                (puVar10 = &processed_var_5412_ptr, (pcVar16[1] + 0xa8U & 0xdf) != 0)) {
               puVar10 = &rendering_buffer_2208_ptr;
             }
-            FUN_18010cbc0(pcVar16,puVar10,aiStackX_18);
+            SystemCore_NetworkHandler(pcVar16,puVar10,aiStackX_18);
             break;
           }
           lVar9 = (int64_t)&processed_var_6712_ptr - (int64_t)pcVar16;
@@ -321,7 +321,7 @@ LAB_1804b5394:
             }
           }
         }
-        puVar6 = (uint64_t *)FUN_1800b30d0(system_resource_state,&puStack_98,&puStack_90,1);
+        puVar6 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&puStack_98,&puStack_90,1);
         lVar12 = *(int64_t *)(param_1 + 0x3a8);
         uVar2 = *puVar6;
         *puVar6 = 0;
@@ -517,7 +517,7 @@ LAB_1804b5656:
               }
             }
             else {
-              FUN_180059820(lVar13,&puStack_b8);
+              SystemCore_BackupSystem(lVar13,&puStack_b8);
             }
             pcVar16 = "style_tag";
             do {

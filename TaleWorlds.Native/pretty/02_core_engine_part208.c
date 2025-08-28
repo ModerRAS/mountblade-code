@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -229,7 +233,7 @@ void FUN_18018b9e0(int64_t param_1,int64_t param_2)
   puVar1 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar1;
   if (uVar3 != 0) {
-    FUN_180045f60(&puStack_458,puVar1,uVar3);
+    SystemManager_Executor(&puStack_458,puVar1,uVar3);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
   }
   plVar9 = (int64_t *)0x180bf6740;
@@ -312,7 +316,7 @@ void FUN_18018bbd0(int64_t param_1,int64_t *param_2)
   param_2[1] = param_2[1] + 4;
   do {
     if (*piVar2 == *(int *)(param_1 + 8)) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)iVar3 * 0x10 + 0x180bf6740));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)iVar3 * 0x10 + 0x180bf6740));
       break;
     }
     iVar3 = iVar3 + 1;
@@ -535,7 +539,7 @@ FUN_18018be60(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
   do {
     if (plVar8 == (int64_t *)0x0) {
 LAB_18018bee2:
-      FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       puVar6 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c));
       uVar4 = *(int32_t *)((int64_t)param_4 + 4);
@@ -655,16 +659,16 @@ int64_t * FUN_18018c160(int64_t *param_1,uint64_t *param_2)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_180058080(param_1,&plStackX_8,param_2);
+  HighFreq_AnimationSystem1(param_1,&plStackX_8,param_2);
   plVar7 = plStackX_8;
   cVar6 = FUN_180371c60(plStackX_8 + 8,param_2);
   if (cVar6 == '\0') {
-    FUN_180058080(param_1,&plStackX_8,param_2);
+    HighFreq_AnimationSystem1(param_1,&plStackX_8,param_2);
     plVar7 = plStackX_8;
     if (plStackX_8 != param_1) {
       param_1[4] = param_1[4] + -1;
       func_0x00018066bd70(plStackX_8);
-      uVar8 = FUN_18066ba00(plVar7,param_1);
+      uVar8 = RenderingSystem_BufferHandler(plVar7,param_1);
       FUN_180058830(uVar8,plVar7);
     }
     *param_2 = &system_data_buffer_ptr;

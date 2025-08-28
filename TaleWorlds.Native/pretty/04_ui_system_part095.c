@@ -763,7 +763,7 @@ void FUN_180724090(uint64_t param_1,int64_t param_2,int param_3,short param_4,sh
                     [(uint64_t)uVar1 + (int64_t)((short)(param_4 * 2 + param_5) * 7)];
         do {
           if (0 < *(short *)(param_2 + lVar4 * 2)) {
-            sVar2 = FUN_18070f3e0(param_1,&uStack_28,8);
+            sVar2 = SystemCore_Processor(param_1,&uStack_28,8);
             *(short *)(param_2 + lVar4 * 2) = *(short *)(param_2 + lVar4 * 2) * (sVar2 * 2 + -1);
           }
           lVar4 = lVar4 + 1;
@@ -797,7 +797,7 @@ void FUN_1807240d8(void)
       lVar2 = 0;
       do {
         if (0 < *(short *)(unaff_RDI + lVar2 * 2)) {
-          sVar1 = FUN_18070f3e0();
+          sVar1 = SystemCore_Processor();
           *(short *)(unaff_RDI + lVar2 * 2) = *(short *)(unaff_RDI + lVar2 * 2) * (sVar1 * 2 + -1);
         }
         lVar2 = lVar2 + 1;
@@ -854,7 +854,7 @@ void FUN_180724170(uint64_t param_1,int64_t param_2,int param_3,short param_4,sh
                     [(uint64_t)uVar1 + (int64_t)((short)(param_4 * 2 + param_5) * 7)];
         do {
           if (*(char *)(lVar3 + param_2) != '\0') {
-            FUN_1807054a0(param_1,((int)*(char *)(lVar3 + param_2) >> 7) + 1,&uStack_28,8);
+            RenderingSystem_VertexBuffer(param_1,((int)*(char *)(lVar3 + param_2) >> 7) + 1,&uStack_28,8);
           }
           lVar3 = lVar3 + 1;
         } while (lVar3 < 0x10);
@@ -886,7 +886,7 @@ void FUN_1807241b8(void)
       lVar1 = 0;
       do {
         if (*(char *)(lVar1 + unaff_RDI) != '\0') {
-          FUN_1807054a0();
+          RenderingSystem_VertexBuffer();
         }
         lVar1 = lVar1 + 1;
       } while (lVar1 < 0x10);

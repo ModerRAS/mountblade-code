@@ -360,7 +360,7 @@ void FUN_180176de0(void)
     lVar10 = lStack_310;
     lStack_368 = lVar20;
     do {
-      plVar13 = (int64_t *)FUN_180058080(lVar20,&puStack_2a0,pppppppuVar12 + 4);
+      plVar13 = (int64_t *)HighFreq_AnimationSystem1(lVar20,&puStack_2a0,pppppppuVar12 + 4);
       if (*plVar13 != lVar20) {
         bVar26 = false;
         uVar23 = 0;
@@ -445,7 +445,7 @@ void FUN_180176de0(void)
                    (uint64_t)(*(int64_t *)(lStack_310 + 200) - lVar17 >> 3));
         }
         if (!bVar26) {
-          uVar14 = FUN_180624440(&uStack_268,pppppppuVar12 + 8);
+          uVar14 = SystemCore_EncryptionEngine(&uStack_268,pppppppuVar12 + 8);
           SystemCore_EncryptionEngine0(&puStack_330,uVar14);
           uStack_268 = &system_state_ptr;
           ppppppuVar18 = (uint64_t ******)&system_buffer_ptr;

@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -319,7 +323,7 @@ void FUN_1804954f0(void *param_1)
   uStack_110 = 0x80495d80;
   uStack_10c = 1;
   puStack_128 = param_1;
-  FUN_18005c650(&puStack_128);
+  SystemCore_SecurityManager(&puStack_128);
   puVar4 = (uint64_t *)*render_system_data_memory;
   iVar3 = _Mtx_lock(0x180c91970);
   if (iVar3 != 0) {
@@ -335,7 +339,7 @@ void FUN_1804954f0(void *param_1)
   uStack_120 = 0;
   uStack_11c = 0;
   uStack_118 = 0;
-  FUN_1806277c0(&puStack_128,0x1e);
+  SystemManager_ConfigManager0(&puStack_128,0x1e);
   puVar2 = (int32_t *)CONCAT44(uStack_11c,uStack_120);
   *puVar2 = 0x74666f53;
   puVar2[1] = 0x65726177;
@@ -346,7 +350,7 @@ void FUN_1804954f0(void *param_1)
   *(int16_t *)(puVar2 + 7) = 0x2952;
   *(int8_t *)((int64_t)puVar2 + 0x1e) = 0;
   uStack_118 = 0x1e;
-  uVar5 = FUN_18023a940(*(uint64_t *)(param_1 + 0x58));
+  uVar5 = SystemCore_Scheduler(*(uint64_t *)(param_1 + 0x58));
   FUN_18009a080(uVar5,*(uint64_t *)(param_1 + 0x58));
   SYSTEM_DATA_MANAGER_A = uVar1;
   iVar3 = _Mtx_unlock(0x180c91970);
@@ -618,8 +622,8 @@ void FUN_180495cb0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint para
   *(int32_t *)(param_1 + 0x27c) = uVar1;
   *(int32_t *)(param_1 + 0x280) = uVar2;
   *(int32_t *)(param_1 + 0x284) = uVar3;
-  uVar4 = FUN_1800946d0(param_2,auStack_88);
-  puVar5 = (uint64_t *)FUN_1800946d0(uVar4,auStack_48,0x180bfbc50);
+  uVar4 = ErrorRecoverySystem(param_2,auStack_88);
+  puVar5 = (uint64_t *)ErrorRecoverySystem(uVar4,auStack_48,0x180bfbc50);
   uVar4 = puVar5[1];
   *(uint64_t *)(param_1 + 0x2c8) = *puVar5;
   *(uint64_t *)(param_1 + 0x2d0) = uVar4;
@@ -662,11 +666,11 @@ void FUN_180495d80(int64_t *param_1)
   
   lVar7 = *(int64_t *)(system_message_buffer + 0x1cd8);
   puVar6 = *(int32_t **)(*param_1 + 0x348);
-  lVar3 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar3 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
   plVar1 = *(int64_t **)(lVar7 + 0x8400);
   iVar2 = (**(code **)(*plVar1 + 0x70))(plVar1,*(uint64_t *)(lVar3 + 8),0,4,0,&puStack_58);
   if (iVar2 < 0) {
-    FUN_180220810(iVar2,&ui_system_data_1856_ptr);
+    SystemCore_Loader(iVar2,&ui_system_data_1856_ptr);
   }
   lVar7 = 0x168;
   puVar5 = puStack_58;
@@ -702,7 +706,7 @@ void FUN_180495d80(int64_t *param_1)
   } while (lVar7 != 0);
   plVar1 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   UNRECOVERED_JUMPTABLE = *(code **)(*plVar1 + 0x78);
-  lVar7 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar7 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
                     // WARNING: Could not recover jumptable at 0x000180495f1c. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(plVar1,*(uint64_t *)(lVar7 + 8),0);
@@ -902,7 +906,7 @@ void FUN_180496270(uint64_t *param_1,int32_t param_2)
     uStack_58 = 0;
     uStack_50 = 0xf;
     uStack_68 = 0;
-    FUN_1800671b0(&uStack_68,&processed_var_9264_ptr,0xd);
+    MathCoreCalculator0(&uStack_68,&processed_var_9264_ptr,0xd);
     puVar3 = (uint64_t *)&uStack_68;
     uVar5 = 2;
   }
@@ -914,7 +918,7 @@ void FUN_180496270(uint64_t *param_1,int32_t param_2)
     do {
       lVar7 = lVar7 + 1;
     } while (*(char *)(alStack_80[0] + lVar7) != '\0');
-    FUN_1800671b0(&uStack_48);
+    MathCoreCalculator0(&uStack_48);
     puVar3 = (uint64_t *)&uStack_48;
     uVar5 = 1;
   }

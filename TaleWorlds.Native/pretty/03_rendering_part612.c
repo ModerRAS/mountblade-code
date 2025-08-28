@@ -642,7 +642,7 @@ void FUN_1806038e0(int64_t param_1)
     fStack_18 = *(float *)(lVar1 + 0x1508) - *pfVar2;
     fStack_14 = *(float *)(lVar1 + 0x150c) - *(float *)(*(int64_t *)(param_1 + 0x20) + 0x10);
     uStack_c = 0x7f7fffff;
-    FUN_180633110(render_system_data_memory,pfVar2,&fStack_18,0xffffff00,0,0);
+    RenderingSystem_VertexBuffer(render_system_data_memory,pfVar2,&fStack_18,0xffffff00,0,0);
   }
   return;
 }
@@ -670,7 +670,7 @@ int32_t FUN_1806039e0(int64_t param_1)
 {
   int64_t lVar1;
   
-  lVar1 = FUN_18065cec0(*(int64_t *)
+  lVar1 = UtilitiesSystem_FormatConverter(*(int64_t *)
                          (*(int64_t *)(*(int64_t *)(param_1 + 0x590) + 0x2590) + 0xc78) + 0x60,0);
   return *(int32_t *)(lVar1 + 0x10);
 }

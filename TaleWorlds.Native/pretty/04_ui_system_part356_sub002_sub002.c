@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 04_ui_system_part356_sub002_sub002.c - 1 个函数
 
@@ -101,9 +107,9 @@ void FUN_180860690(int64_t param_1,uint64_t *param_2)
         iVar6 = -1;
 LAB_1808607eb:
         if (iVar6 != -1) {
-          iVar6 = FUN_1808b2f30(param_1 + 8,10);
-          if (((iVar6 != 0) || (iVar6 = FUN_1808b2f30(param_1 + 8,0x1e), iVar6 != 0)) ||
-             (iVar6 = FUN_1808b2f30(param_1 + 8), iVar6 != 0)) goto FUN_1808616bc;
+          iVar6 = SystemDataFlowProcessor(param_1 + 8,10);
+          if (((iVar6 != 0) || (iVar6 = SystemDataFlowProcessor(param_1 + 8,0x1e), iVar6 != 0)) ||
+             (iVar6 = SystemDataFlowProcessor(param_1 + 8), iVar6 != 0)) goto SystemCore_ValidationSystem;
           lVar7 = *(int64_t *)(param_1 + 0x88);
           for (uVar20 = *(uint64_t *)(lVar7 + 0x70);
               (*(uint64_t *)(lVar7 + 0x70) <= uVar20 &&
@@ -113,7 +119,7 @@ LAB_1808607eb:
             if (cVar4 == '\0') {
               uStack_130 = (int64_t *)0x0;
               iVar6 = FUN_1808bc010(*(uint64_t *)(param_1 + 0x2c8),uVar20,param_1);
-              if (iVar6 != 0) goto FUN_1808616bc;
+              if (iVar6 != 0) goto SystemCore_ValidationSystem;
             }
           }
           for (plVar19 = *(int64_t **)(lVar13 + 0x70);
@@ -146,7 +152,7 @@ LAB_1808607eb:
                     // WARNING: Subroutine does not return
                 SystemMemoryManager(lVar14);
               }
-              goto FUN_1808616bc;
+              goto SystemCore_ValidationSystem;
             }
             if (((*(int *)((int64_t)plVar9 + 0x24) != 0) && ((int)plVar9[1] != 0)) &&
                (iVar6 = *(int *)(*plVar9 + (int64_t)(int)((int)plVar9[1] - 1U & uVar18) * 4),
@@ -169,7 +175,7 @@ LAB_180860998:
             }
             if ((lVar7 == 0) ||
                (iVar6 = FUN_1808c19d0(*(uint64_t *)(param_1 + 0x2c8)), iVar6 != 0))
-            goto FUN_1808616bc;
+            goto SystemCore_ValidationSystem;
 LAB_1808609c2:
           }
           iVar6 = 0;
@@ -188,7 +194,7 @@ LAB_1808609c2:
                 } while (iVar22 < iVar17);
               }
               iVar17 = FUN_1808626e0(param_1);
-              if (iVar17 != 0) goto FUN_1808616bc;
+              if (iVar17 != 0) goto SystemCore_ValidationSystem;
 LAB_180860a65:
               iVar6 = iVar6 + 1;
             } while (iVar6 < *(int *)(lVar13 + 0x88));
@@ -209,7 +215,7 @@ LAB_180860a65:
                 } while (iVar17 < *(int *)(lVar13 + 0x88));
               }
               iVar17 = FUN_18085ea80(param_1,iVar6);
-              if (iVar17 != 0) goto FUN_1808616bc;
+              if (iVar17 != 0) goto SystemCore_ValidationSystem;
 LAB_180860af6:
               lVar7 = *(int64_t *)(param_1 + 0x88);
               iVar6 = iVar6 + 1;
@@ -264,7 +270,7 @@ LAB_180860af6:
                       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&rendering_buffer_2624_ptr,
                                     0xa2c);
                     }
-                    goto FUN_1808616bc;
+                    goto SystemCore_ValidationSystem;
                   }
                   break;
                 }
@@ -288,15 +294,15 @@ LAB_180860c58:
           (puVar16 < *(uint64_t **)(param_1 + 0x4d0) + *(int *)(param_1 + 0x4d8)));
           puVar16 = puVar16 + 1) {
         iVar6 = FUN_1808cc190(*puVar16,param_2);
-        if (iVar6 != 0) goto FUN_1808616bc;
+        if (iVar6 != 0) goto SystemCore_ValidationSystem;
       }
       plVar19 = (int64_t *)(param_1 + 0x250);
       func_0x00018085f3d0(plVar19);
       puVar1 = (uint64_t *)(param_1 + 0x260);
-      iVar6 = FUN_180744d60(puVar1);
+      iVar6 = SystemAnalyzer(puVar1);
       if (iVar6 == 0) {
         puVar25 = (uint64_t *)(param_1 + 0x270);
-        iVar6 = FUN_180744d60(puVar25);
+        iVar6 = SystemAnalyzer(puVar25);
         if (iVar6 == 0) {
           plVar21 = (int64_t *)0x0;
           aplStack_110[0] = (int64_t *)(lStack_138 + 0x240);
@@ -317,16 +323,16 @@ LAB_180860c58:
                 plVar9 = (int64_t *)0x0;
               }
               iVar6 = FUN_1808d6650(plVar9,puStack_120);
-              if (iVar6 != 0) goto FUN_1808616bc;
+              if (iVar6 != 0) goto SystemCore_ValidationSystem;
               plVar9 = plVar23 + 4;
               if (plVar23 == (int64_t *)0x0) {
                 plVar9 = (int64_t *)0x38;
               }
               if ((*(int *)(*plVar9 + 0x30) != -1) &&
-                 (iVar6 = FUN_18085e990(lVar13,*plVar9), iVar6 != 0)) goto FUN_1808616bc;
+                 (iVar6 = FUN_18085e990(lVar13,*plVar9), iVar6 != 0)) goto SystemCore_ValidationSystem;
               if ((*(int64_t *)(lStack_138 + 0x80) != 0) &&
                  (iVar6 = FUN_180868970(*(int64_t *)(lStack_138 + 0x80),plVar21), iVar6 != 0))
-              goto FUN_1808616bc;
+              goto SystemCore_ValidationSystem;
               plVar9 = plVar23 + 3;
               iVar6 = 0;
               if (plVar23 == (int64_t *)0x0) {
@@ -338,7 +344,7 @@ LAB_180860c58:
                 uStack_130 = (int64_t *)0x0;
                 iVar17 = FUN_180860480(lStack_138,
                                        (int64_t)iVar6 * 0x10 + *(int64_t *)(*plVar9 + 0x58));
-                if (iVar17 != 0) goto FUN_1808616bc;
+                if (iVar17 != 0) goto SystemCore_ValidationSystem;
                 iVar6 = iVar6 + 1;
               }
               if (plVar23 != aplStack_110[0]) {
@@ -375,7 +381,7 @@ LAB_180860c58:
               uVar11 = (**(code **)(*(int64_t *)(lVar13 + 8) + 0x30))(lVar13 + 8);
               puVar16 = puStack_120;
               iVar6 = FUN_1808d6410(plVar21,puStack_120,uVar11,uVar10);
-              if (iVar6 != 0) goto FUN_1808616bc;
+              if (iVar6 != 0) goto SystemCore_ValidationSystem;
               lVar7 = plVar21[3];
               if (lVar7 != 0) {
                 plVar23 = puVar16 + 0x97;
@@ -426,7 +432,7 @@ LAB_180860f7b:
                     if (cVar4 != cVar5) {
                       if (cVar4 == '\0') {
                         iVar17 = (int)((int64_t)(uVar20 - uVar2) >> 3);
-                        if ((iVar17 < 0) || (iVar6 <= iVar17)) goto FUN_1808616bc;
+                        if ((iVar17 < 0) || (iVar6 <= iVar17)) goto SystemCore_ValidationSystem;
                         iVar22 = (iVar6 - iVar17) + -1;
                         if (0 < iVar22) {
                           lVar13 = uVar2 + (int64_t)iVar17 * 8;
@@ -451,8 +457,8 @@ LAB_180860f7b:
                           else if (iVar22 < iVar6) {
                             iVar22 = iVar6;
                           }
-                          iVar6 = FUN_180747f10(puVar25,iVar22);
-                          if (iVar6 != 0) goto FUN_1808616bc;
+                          iVar6 = RenderingTextureManager0(puVar25,iVar22);
+                          if (iVar6 != 0) goto SystemCore_ValidationSystem;
                         }
                         *(int64_t **)(*puVar25 + (int64_t)*(int *)(param_1 + 0x278) * 8) = plVar23
                         ;
@@ -490,7 +496,7 @@ LAB_180860f7b:
                     if (cVar4 != cVar5) {
                       if (cVar4 == '\0') {
                         iVar17 = (int)((int64_t)(uVar20 - uVar2) >> 3);
-                        if ((iVar17 < 0) || (iVar6 <= iVar17)) goto FUN_1808616bc;
+                        if ((iVar17 < 0) || (iVar6 <= iVar17)) goto SystemCore_ValidationSystem;
                         iVar22 = (iVar6 - iVar17) + -1;
                         if (0 < iVar22) {
                           lVar13 = uVar2 + (int64_t)iVar17 * 8;
@@ -515,8 +521,8 @@ LAB_180860f7b:
                           else if (iVar22 < iVar6) {
                             iVar22 = iVar6;
                           }
-                          iVar6 = FUN_180747f10(puVar1,iVar22);
-                          if (iVar6 != 0) goto FUN_1808616bc;
+                          iVar6 = RenderingTextureManager0(puVar1,iVar22);
+                          if (iVar6 != 0) goto SystemCore_ValidationSystem;
                         }
                         *(int64_t **)(*puVar1 + (int64_t)*(int *)(param_1 + 0x268) * 8) = plVar23;
                         *(int *)(param_1 + 0x268) = *(int *)(param_1 + 0x268) + 1;
@@ -590,14 +596,14 @@ LAB_180860f7b:
                     uStack_130 = (int64_t *)0x0;
                     iVar17 = FUN_180860480(lVar13,plVar9,&uStack_130);
                     plVar9 = uStack_130;
-                    if (iVar17 != 0) goto FUN_1808616bc;
+                    if (iVar17 != 0) goto SystemCore_ValidationSystem;
                     *(uint *)((int64_t)uStack_130 + 0x1c) =
                          *(uint *)((int64_t)uStack_130 + 0x1c) | 0x80;
                     if (((*(uint *)((int64_t)uStack_130 + 0x1c) >> 5 & 1) == 0) ||
                        ((*(uint *)((int64_t)uStack_130 + 0x1c) >> 6 & 1) != 0)) {
                       uVar10 = FUN_18085ba10(lVar13 + 200,auStack_f0);
                       iVar17 = FUN_1808c7260(uVar10,plVar9,1);
-                      if (iVar17 != 0) goto FUN_1808616bc;
+                      if (iVar17 != 0) goto SystemCore_ValidationSystem;
                     }
 LAB_18086142b:
                     lVar14 = *(int64_t *)(lVar13 + 0x88);
@@ -609,7 +615,7 @@ LAB_18086142b:
               iVar6 = FUN_180856ec0(lVar13 + 200,puStack_120);
               if ((iVar6 == 0) && (iVar6 = FUN_1808d3ee0(lVar13 + 0x280,puVar16), iVar6 == 0)) {
                 lVar7 = *(int64_t *)(*(int64_t *)(lVar13 + 0x2b0) + 0x30);
-                iVar6 = FUN_18085ab70(lVar13 + 200);
+                iVar6 = UISystem_WidgetController(lVar13 + 200);
                 lVar7 = lVar7 + iVar6;
                 plVar9 = (int64_t *)*plVar19;
                 lVar13 = lStack_138;
@@ -701,7 +707,7 @@ joined_r0x000180861496:
                         SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&rendering_buffer_2624_ptr
                                       ,0xadc);
                       }
-                      goto FUN_1808616bc;
+                      goto SystemCore_ValidationSystem;
                     }
                   }
                   else {
@@ -716,7 +722,7 @@ joined_r0x000180861496:
       }
     }
   }
-FUN_1808616bc:
+SystemCore_ValidationSystem:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_1a8);
 }

@@ -239,7 +239,7 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
         // 主线程处理逻辑
         if (*(int64_t *)(param_1 + 0x121e0) != 0) {
             // 执行清理函数
-            FUN_18023b050();
+            SystemCore_NetworkHandler();
             stackPointer2 = *(int64_t **)(param_1 + 0x121e0);
             *(uint64_t *)(param_1 + 0x121e0) = 0;
             if (stackPointer2 != (int64_t *)0x0) {
@@ -252,12 +252,12 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
     }
     else {
         // 子线程处理逻辑
-        FUN_18005e630(system_context_ptr);
+        SystemCore_FileSystem(system_context_ptr);
         stackPointer3 = stackArray1;
         stackPtr1 = &rendering_buffer_2816_ptr;
         stackCodePtr = FUN_1800adc50;
         stackArray1[0] = param_1;
-        FUN_18005c650(stackArray1);
+        SystemCore_SecurityManager(stackArray1);
     }
     
     // 执行系统调用
@@ -364,7 +364,7 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
     if (tempInt2 < 0) {
         if ((tempInt2 + 0x7785fffbU & 0xfffffffd) == 0) {
             tempUint = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x138))();
-            FUN_180220810(tempUint, &processed_var_6384_ptr);
+            SystemCore_Loader(tempUint, &processed_var_6384_ptr);
         }
     }
     else {
@@ -550,7 +550,7 @@ uint64_t SystemParameterCalculator(int64_t param_1, uint64_t *param_2)
     if (systemStatus < 0) {
         if ((systemStatus + 0x7785fffbU & 0xfffffffd) == 0) {
             errorFlag = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x138))();
-            FUN_180220810(errorFlag, &processed_var_6384_ptr);
+            SystemCore_Loader(errorFlag, &processed_var_6384_ptr);
         }
         resultFlag = 0;
     }
@@ -716,7 +716,7 @@ void ComplexAlgorithmHandler(int64_t param_1, uint param_2, int param_3, int par
                     (*(int64_t **)(stackLong1 + 0x1d78), &stackInt2, resourcePtr1, &stackPtr1);
     
     if (tempInt1 < 0) {
-        FUN_180220810(tempInt1, &memory_allocator_3072_ptr);
+        SystemCore_Loader(tempInt1, &memory_allocator_3072_ptr);
     }
     else {
         tempLong1 = stackLong1;
@@ -741,7 +741,7 @@ void ComplexAlgorithmHandler(int64_t param_1, uint param_2, int param_3, int par
                               (*(int64_t **)(stackLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr2);
             
             if (tempInt1 < 0) {
-                FUN_180220810(tempInt1, &memory_allocator_3264_ptr);
+                SystemCore_Loader(tempInt1, &memory_allocator_3264_ptr);
                 goto LAB_1800a4380;
             }
         }
@@ -778,7 +778,7 @@ void ComplexAlgorithmHandler(int64_t param_1, uint param_2, int param_3, int par
                               (*(int64_t **)(tempLong1 + 0x1d78), stackPtr1, &stackUint1, &stackPtr3);
             
             if (tempInt1 < 0) {
-                FUN_180220810(tempInt1, &memory_allocator_3168_ptr);
+                SystemCore_Loader(tempInt1, &memory_allocator_3168_ptr);
                 goto LAB_1800a4380;
             }
         }
@@ -1020,11 +1020,11 @@ void ResourceDataManager(void **param_1, uint *param_2, int64_t param_3)
                     (tempPtrPtr1[0x3af], &stackUint13, 0, &stackUlong4);
     
     if (tempInt1 < 0) {
-        FUN_180220810(tempInt1, &memory_allocator_3400_ptr);
+        SystemCore_Loader(tempInt1, &memory_allocator_3400_ptr);
     }
     
     *(uint64_t *)(param_3 + 0x170) = stackUlong4;
-    tempPtrPtr1 = (void **)FUN_180049b30(stackBuffer4, param_3 + 0x10);
+    tempPtrPtr1 = (void **)SystemCore_EventHandler(stackBuffer4, param_3 + 0x10);
     *tempPtrPtr1 = &system_state_ptr;
     *(int64_t *)(param_3 + 0x168) = param_3;
     
@@ -1355,7 +1355,7 @@ LAB_1800a46f5:
     UNLOCK();
     
     // 执行系统初始化
-    FUN_18023a940(param_3);
+    SystemCore_Scheduler(param_3);
     
     stackPtrPtr2 = &stackPtr3;
     stackPtr3 = &memory_allocator_3432_ptr;

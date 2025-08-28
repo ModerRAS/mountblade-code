@@ -1,3 +1,7 @@
+/* 函数别名定义: DataSerializer */
+#define DataSerializer DataSerializer
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_14_part004.c - 21 个函数
@@ -26,14 +30,14 @@ void FUN_1808e9b10(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -81,14 +85,14 @@ void FUN_1808e9bf0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -137,14 +141,14 @@ void FUN_1808e9cd0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -192,14 +196,14 @@ void FUN_1808e9db0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -244,14 +248,14 @@ void FUN_1808e9e80(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -296,14 +300,14 @@ void FUN_1808e9f50(void)
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(in_R9,iVar2);
+    iVar2 = DataSerializer0(in_R9,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4) < iVar5) &&
-     (iVar2 = FUN_180849030(in_R9,iVar5), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(in_R9,iVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)in_R9[1];
@@ -345,14 +349,14 @@ void FUN_1808ea030(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -401,14 +405,14 @@ void FUN_1808ea110(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -455,14 +459,14 @@ void FUN_1808ea1e0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -509,14 +513,14 @@ void FUN_1808ea2b0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -563,14 +567,14 @@ void FUN_1808ea390(void)
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(in_R9,iVar2);
+    iVar2 = DataSerializer0(in_R9,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4) < iVar5) &&
-     (iVar2 = FUN_180849030(in_R9,iVar5), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(in_R9,iVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)in_R9[1];
@@ -612,14 +616,14 @@ void FUN_1808ea470(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -668,14 +672,14 @@ void FUN_1808ea550(void)
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(in_R9,iVar2);
+    iVar2 = DataSerializer0(in_R9,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4) < iVar5) &&
-     (iVar2 = FUN_180849030(in_R9,iVar5), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(in_R9,iVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)in_R9[1];
@@ -717,14 +721,14 @@ void FUN_1808ea630(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -773,14 +777,14 @@ void FUN_1808ea710(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -827,14 +831,14 @@ void FUN_1808ea7e0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -881,14 +885,14 @@ void FUN_1808ea8b0(void)
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(in_R9,iVar2);
+    iVar2 = DataSerializer0(in_R9,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4) < iVar5) &&
-     (iVar2 = FUN_180849030(in_R9,iVar5), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(in_R9,iVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)in_R9[1];
@@ -930,14 +934,14 @@ void FUN_1808ea990(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -986,14 +990,14 @@ void FUN_1808eaa70(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -1047,14 +1051,14 @@ void FUN_1808eab60(void)
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(in_R9,iVar2);
+    iVar2 = DataSerializer0(in_R9,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4) < iVar5) &&
-     (iVar2 = FUN_180849030(in_R9,iVar5), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(in_R9,iVar5), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)in_R9[1];
@@ -1096,14 +1100,14 @@ void FUN_1808eac40(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = DataSerializer0(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = DataSerializer0(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];

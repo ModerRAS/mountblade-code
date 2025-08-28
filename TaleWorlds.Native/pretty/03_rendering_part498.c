@@ -77,10 +77,10 @@ void FUN_180532770(int64_t param_1)
       *(float *)(unaff_RBP + -0x35) = -fVar18;
       *(float *)(unaff_RBP + -0x25) = fVar17;
       *(float *)(unaff_RBP + -0x39) = fVar17;
-      cVar16 = FUN_18063b400(unaff_RBP + -0x39);
-      if (((cVar16 != '\0') && (cVar16 = FUN_18063b400(unaff_RBP + -0x29), cVar16 != '\0')) &&
-         ((cVar16 = FUN_18063b400(unaff_RBP + -0x19), cVar16 != '\0' &&
-          (cVar16 = FUN_18063b400(unaff_RBP + -9), cVar16 != '\0')))) {
+      cVar16 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x39);
+      if (((cVar16 != '\0') && (cVar16 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x29), cVar16 != '\0')) &&
+         ((cVar16 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x19), cVar16 != '\0' &&
+          (cVar16 = RenderingSystem_AdvancedProcessor(unaff_RBP + -9), cVar16 != '\0')))) {
         auVar21 = *(int8_t (*) [16])(unaff_RBP + -0x39);
         fVar22 = *(float *)(unaff_RBP + -0x29);
         uVar5 = *(int32_t *)(unaff_RBP + -0x25);
@@ -162,8 +162,8 @@ void FUN_180532770(int64_t param_1)
           *(int32_t *)(lVar2 + 100) = uVar5;
           *(int32_t *)(lVar2 + 0x68) = uVar6;
           *(int32_t *)(lVar2 + 0x6c) = uVar7;
-          FUN_180254610();
-          FUN_1802eace0();
+          RenderingSystem_CameraController();
+          UtilitiesSystem_StringProcessor();
         }
       }
     }
@@ -245,10 +245,10 @@ void FUN_180532795(void)
     *(float *)(unaff_RBP + -0x35) = -fVar17;
     *(float *)(unaff_RBP + -0x25) = fVar16;
     *(float *)(unaff_RBP + -0x39) = fVar16;
-    cVar15 = FUN_18063b400(unaff_RBP + -0x39);
-    if (((cVar15 != '\0') && (cVar15 = FUN_18063b400(unaff_RBP + -0x29), cVar15 != '\0')) &&
-       ((cVar15 = FUN_18063b400(unaff_RBP + -0x19), cVar15 != '\0' &&
-        (cVar15 = FUN_18063b400(unaff_RBP + -9), cVar15 != '\0')))) {
+    cVar15 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x39);
+    if (((cVar15 != '\0') && (cVar15 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x29), cVar15 != '\0')) &&
+       ((cVar15 = RenderingSystem_AdvancedProcessor(unaff_RBP + -0x19), cVar15 != '\0' &&
+        (cVar15 = RenderingSystem_AdvancedProcessor(unaff_RBP + -9), cVar15 != '\0')))) {
       auVar20 = *(int8_t (*) [16])(unaff_RBP + -0x39);
       fVar21 = *(float *)(unaff_RBP + -0x29);
       uVar4 = *(int32_t *)(unaff_RBP + -0x25);
@@ -330,8 +330,8 @@ void FUN_180532795(void)
         *(int32_t *)(lVar3 + 100) = uVar4;
         *(int32_t *)(lVar3 + 0x68) = uVar5;
         *(int32_t *)(lVar3 + 0x6c) = uVar6;
-        FUN_180254610();
-        FUN_1802eace0();
+        RenderingSystem_CameraController();
+        UtilitiesSystem_StringProcessor();
       }
     }
   }
@@ -424,8 +424,8 @@ void FUN_18053297f(uint64_t param_1,uint64_t param_2,float param_3,float param_4
     *(int32_t *)(lVar2 + 100) = uVar3;
     *(int32_t *)(lVar2 + 0x68) = uVar4;
     *(int32_t *)(lVar2 + 0x6c) = uVar5;
-    FUN_180254610();
-    FUN_1802eace0();
+    RenderingSystem_CameraController();
+    UtilitiesSystem_StringProcessor();
   }
   return;
 }

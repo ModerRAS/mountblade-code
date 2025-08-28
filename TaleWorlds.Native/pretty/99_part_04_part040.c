@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_04_part040.c - 2 个函数
 
@@ -533,7 +535,7 @@ LAB_1802ad6d5:
       }
       if (*(int64_t *)(param_1 + 0x48) == 0) {
         uVar6 = FUN_1802ac200(uVar15,&plStack_158,&ui_system_data_1192_ptr);
-        FUN_180060b80(param_1 + 0x48,uVar6);
+        SystemCore_ChecksumValidator(param_1 + 0x48,uVar6);
         if (plStack_158 != (int64_t *)0x0) {
           (**(code **)(*plStack_158 + 0x38))();
         }
@@ -541,7 +543,7 @@ LAB_1802ad6d5:
         if (puStack_130 != (void *)0x0) {
           puVar5 = puStack_130;
         }
-        FUN_180627020(&processed_var_4752_ptr,puVar5);
+        SystemCore_Allocator(&processed_var_4752_ptr,puVar5);
       }
       puStack_138 = &system_state_ptr;
     }
@@ -660,13 +662,13 @@ LAB_1802ad479:
           if (puVar5 != (void *)0x0) {
             puStack_198 = puVar5;
           }
-          FUN_1800622d0(system_message_context,0,6,puVar13);
+          SystemManager_DataHandler(system_message_context,0,6,puVar13);
           goto LAB_1802ad4bb;
         }
         goto LAB_1802ad540;
       }
     }
-    FUN_1800622d0(system_message_context,0,6,&processed_var_4896_ptr);
+    SystemManager_DataHandler(system_message_context,0,6,&processed_var_4896_ptr);
 LAB_1802ad4bb:
     puStack_d8 = &processed_var_672_ptr;
     puStack_d0 = auStack_c0;
@@ -687,7 +689,7 @@ LAB_1802ad540:
       lVar8 = *(int64_t *)(*(int64_t *)(param_1 + 0x48) + 0x10);
       if ((*(int64_t *)(lVar8 + 0xc) != *(int64_t *)(plVar9[2] + 0xc)) ||
          (*(int64_t *)(lVar8 + 0x14) != *(int64_t *)(plVar9[2] + 0x14))) {
-        FUN_1800622d0(system_message_context,0,6,&processed_var_4688_ptr);
+        SystemManager_DataHandler(system_message_context,0,6,&processed_var_4688_ptr);
         aplStack_188[0] = *(int64_t **)(param_1 + 0x48);
         *(uint64_t *)(param_1 + 0x48) = 0;
         if (aplStack_188[0] != (int64_t *)0x0) {

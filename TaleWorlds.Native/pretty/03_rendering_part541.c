@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 
 // 03_rendering_part541.c - 13 个函数
 
@@ -48,7 +55,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[4] = param_3;
     puVar2[6] = 0;
   }
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   param_2 = param_2 + 0x60;
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
@@ -80,7 +87,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -111,7 +118,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -346,7 +353,7 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[4] = param_3;
     puVar2[6] = 0;
   }
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -377,7 +384,7 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
   puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -575,7 +582,7 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[4] = param_3;
     puVar2[6] = 0;
   }
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -606,7 +613,7 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
   puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -805,7 +812,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[4] = param_3;
     puVar2[6] = 0;
   }
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   param_2 = param_2 + 0x60;
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
@@ -837,7 +844,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -868,7 +875,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-  FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
+  SystemCore_CacheManager(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
   puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -1122,8 +1129,8 @@ void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar1;
   puVar1[4] = param_3;
   puVar1[6] = 0;
-  FUN_18062fb40(param_2,param_3,&processed_var_8224_ptr,param_1 + 8);
-  FUN_18062f990(param_2,param_3,&processed_var_8160_ptr,*(int32_t *)(param_1 + 0x18));
+  UltraHighFreq_NetworkHandler1(param_2,param_3,&processed_var_8224_ptr,param_1 + 8);
+  MemoryDeallocationHandler0(param_2,param_3,&processed_var_8160_ptr,*(int32_t *)(param_1 + 0x18));
   return;
 }
 

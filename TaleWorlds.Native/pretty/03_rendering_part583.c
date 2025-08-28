@@ -1,3 +1,9 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -241,7 +247,7 @@ void FUN_18058ac10(int64_t *param_1,int64_t param_2)
   }
   if (*(int64_t *)param_1[0x1f] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&ui_system_data_1944_ptr);
+    SystemParameterHandler(system_message_context,&ui_system_data_1944_ptr);
   }
   lVar2 = FUN_18040db80(*(int64_t *)param_1[0x1f]);
   fVar6 = 0.0;
@@ -293,7 +299,7 @@ void FUN_18058ac62(void)
   
   if (*in_RAX == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&ui_system_data_1944_ptr);
+    SystemParameterHandler(system_message_context,&ui_system_data_1944_ptr);
   }
   lVar3 = FUN_18040db80(*in_RAX);
   fVar6 = 0.0;
@@ -505,7 +511,7 @@ void FUN_18058ada0(int64_t *param_1,int64_t param_2,uint64_t param_3,int32_t par
           (**(code **)(*param_1 + 0x160))(param_1,&iStack_140,param_3);
         }
         else {
-          iVar9 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac));
+          iVar9 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac));
           iVar9 = *(int *)(render_system_config + (int64_t)iVar9 * 4);
           if (iVar9 == -1) {
             lVar13 = 0;
@@ -555,7 +561,7 @@ void FUN_18058ada0(int64_t *param_1,int64_t param_2,uint64_t param_3,int32_t par
             *(float *)(lVar10 + 0x34) = fVar26;
 LAB_18058b017:
                     // WARNING: Subroutine does not return
-            FUN_1808fd400();
+            RenderingSystem_Renderer0();
           }
         }
       }
@@ -722,7 +728,7 @@ LAB_18058b792:
             *(float *)((int64_t)param_1 + lVar13 * 0x48 + 0x248c) = fVar23;
           }
           if (fVar23 <= 0.0) goto LAB_18058b60f;
-          iVar19 = FUN_18053a410(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),
+          iVar19 = SystemCacheManager(&system_data_5f30,*(int32_t *)((int64_t)param_1 + 0xac),
                                  *(int32_t *)(lVar12 + 0x1ec));
           iVar19 = *(int *)(render_system_config + (int64_t)iVar19 * 4);
           if (iVar19 == -1) {

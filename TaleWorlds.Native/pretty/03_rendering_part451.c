@@ -444,7 +444,7 @@ joined_r0x000180512974:
   uStack_b4 = 0x3ecccccd;
   uStack_b0 = CONCAT35(uStack_b0._5_3_,0x1000000);
   puStack_d8 = (void *)(uVar12 << 0x20);
-  FUN_18051ec50(param_1,&puStack_d8);
+  CoreSystemThreadManager(param_1,&puStack_d8);
 LAB_1805129c0:
   lVar22 = *(int64_t *)(param_1 + 0x6e0);
   if (((((byte)*(int32_t *)(lVar22 + 0x209c) & 3) == 3) && (*(int *)(param_1 + 0x568) != 4)) &&
@@ -601,15 +601,15 @@ LAB_180512e2b:
       uStack_7c = 0;
       fVar18 = (float)asinf(fVar17);
       fVar18 = SQRT(fVar18);
-      puVar3 = (uint64_t *)FUN_180534b00(&uStack_98,auStack_a8,&fStack_b8,fVar18);
+      puVar3 = (uint64_t *)SystemCore_ConfigManager(&uStack_98,auStack_a8,&fStack_b8,fVar18);
       uStack_98 = *puVar3;
       uStack_90 = puVar3[1];
-      puVar4 = (int32_t *)FUN_180534b00(&uStack_88,auStack_a8,&fStack_b8,fVar18);
+      puVar4 = (int32_t *)SystemCore_ConfigManager(&uStack_88,auStack_a8,&fStack_b8,fVar18);
       uStack_88 = *puVar4;
       uStack_84 = puVar4[1];
       uStack_80 = puVar4[2];
       uStack_7c = puVar4[3];
-      puVar3 = (uint64_t *)FUN_180534b00(&uStack_78,auStack_a8,&fStack_b8,fVar18);
+      puVar3 = (uint64_t *)SystemCore_ConfigManager(&uStack_78,auStack_a8,&fStack_b8,fVar18);
       uStack_78 = *puVar3;
       uStack_70 = puVar3[1];
       FUN_1801c1720(&uStack_98,&fStack_b8);
@@ -629,7 +629,7 @@ LAB_180512e2b:
       iVar11 = *(int *)(lVar9 * 0x1b0 + 0x110 + lVar2);
     }
     FUN_180534d00(lVar8,&uStack_98);
-    uVar5 = FUN_1801c24a0(param_3);
+    uVar5 = UtilitiesSystem_CryptoHandler(param_3);
     uStack_ac = 0x7f7fffff;
     fVar17 = extraout_XMM0_Da - fVar17;
     if (fVar17 <= 0.0) {
@@ -639,7 +639,7 @@ LAB_180512e2b:
     fStack_b8 = fVar17 * *param_3;
     fStack_b4 = fVar17 * param_3[1];
     fStack_b0 = fVar17 * param_3[2];
-    pfVar6 = (float *)FUN_1801c0fb0(uVar5,auStack_a8,&fStack_b8);
+    pfVar6 = (float *)SystemFileHandler(uVar5,auStack_a8,&fStack_b8);
     lVar2 = *(int64_t *)(param_1 + 0x728);
     fVar17 = pfVar6[1] * render_system_config;
     fVar18 = pfVar6[2] * render_system_config;

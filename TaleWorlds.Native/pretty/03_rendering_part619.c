@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -52,10 +57,10 @@
 #define RenderingSystem_ProcessResourceCommand          RenderingSystemRenderer  /* 渲染系统资源命令处理器 */
 
 /* 渲染系统内存和数据处理函数别名定义 */
-#define RenderingSystem_DataBufferProcessor              FUN_1804c0610  /* 渲染系统数据缓冲区处理器 */
+#define RenderingSystem_DataBufferProcessor              PhysicsSystem_IntegrationProcessor  /* 渲染系统数据缓冲区处理器 */
 #define RenderingSystem_MemoryPoolAllocator             CoreEngineMemoryPoolAllocator  /* 渲染系统内存池分配器 */
 #define RenderingSystem_FormatProcessor                  CoreEngineSystemCleanup  /* 渲染系统格式化处理器 */
-#define RenderingSystem_DataContextInitializer           FUN_180628380  /* 渲染系统数据上下文初始化器 */
+#define RenderingSystem_DataContextInitializer           RenderingSystem_CameraController  /* 渲染系统数据上下文初始化器 */
 #define RenderingSystem_MemoryPoolReallocator            DataValidator  /* 渲染系统内存池重分配器 */
 
 /**
@@ -904,7 +909,7 @@ void RenderingSystem_AddResourceToTable(int64_t *param_1, int32_t param_2, int8_
   int64_t *plStackX_8;
   
   if (param_1 != (int64_t *)0x0) {
-    FUN_1802ee720(param_1,1);
+    RenderingSystem_UpdateCamera(param_1,1);
     lVar3 = FUN_18060ece0(param_1);
     lVar1 = render_system_memory;
     if (lVar3 == 0) {
@@ -950,7 +955,7 @@ void RenderingSystem_RemoveResourceFromTable(int64_t param_1, char param_2, uint
   if (param_1 != 0) {
     lVar5 = RenderingSystem_FindResourceByPointer();
     if (lVar5 != 0) {
-      FUN_1802ee720(*(uint64_t *)(lVar5 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
+      RenderingSystem_UpdateCamera(*(uint64_t *)(lVar5 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
       if (param_2 != '\0') {
         FUN_1802ea560(*(uint64_t *)(lVar5 + 0x18),0x3f800000);
       }
@@ -973,7 +978,7 @@ void RenderingSystem_RemoveResourceFromTable(int64_t param_1, char param_2, uint
         (*pcVar1)(puVar7,pcVar1,(uint64_t)(uVar4 >> 4),param_4,0xfffffffffffffffe);
       }
       *(int32_t *)(puVar7 + 1) = RENDERING_SYSTEM_FLAG_DISABLE;
-      FUN_1800571e0(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000010);
+      SystemDatabaseProcessor(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000010);
       if (*piVar6 - 1U == uVar4) {
         *piVar6 = RENDERING_SYSTEM_FLAG_DISABLE;
         uVar4 = *(int *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8) - 1;
@@ -991,7 +996,7 @@ void RenderingSystem_RemoveResourceFromTable(int64_t param_1, char param_2, uint
       }
       return;
     }
-    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
+    RenderingSystem_UpdateCamera(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
     if (param_2 != '\0') {
       FUN_1802ea560(param_1,0x3f800000);
     }
@@ -1025,13 +1030,13 @@ void RenderingSystem_ReleaseResourceReference(uint64_t param_1)
   
   lVar4 = RenderingSystem_FindResourceByPointer();
   if (lVar4 == 0) {
-    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
+    RenderingSystem_UpdateCamera(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
     if (unaff_SIL != '\0') {
       FUN_1802ea560(param_1,0x3f800000);
     }
     return;
   }
-  FUN_1802ee720(*(uint64_t *)(lVar4 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
+  RenderingSystem_UpdateCamera(*(uint64_t *)(lVar4 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
   if (unaff_SIL != '\0') {
     FUN_1802ea560(*(uint64_t *)(lVar4 + 0x18),0x3f800000);
   }
@@ -1054,7 +1059,7 @@ void RenderingSystem_ReleaseResourceReference(uint64_t param_1)
     (**(code **)((void *)*puVar6 + 0x10))(puVar6);
   }
   *(int32_t *)(puVar6 + 1) = RENDERING_SYSTEM_FLAG_DISABLE;
-  FUN_1800571e0(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000038);
+  SystemDatabaseProcessor(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000038);
   if (*piVar5 - 1U == uVar3) {
     *piVar5 = RENDERING_SYSTEM_FLAG_DISABLE;
     uVar3 = *(int *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8) - 1;
@@ -1086,7 +1091,7 @@ void RenderingSystem_EmptyFunction2(void)
 {
   char unaff_SIL;
   
-  FUN_1802ee720();
+  RenderingSystem_UpdateCamera();
   if (unaff_SIL != '\0') {
     FUN_1802ea560();
   }
@@ -1125,7 +1130,7 @@ void RenderingSystem_CleanupResourcePointer(int64_t param_1)
   int64_t lVar1;
   
   if ((param_1 != 0) && (lVar1 = RenderingSystem_FindResourceByPointer(), lVar1 == 0)) {
-    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_DISABLE);
+    RenderingSystem_UpdateCamera(param_1,RENDERING_SYSTEM_FLAG_DISABLE);
   }
   return;
 }
@@ -1254,7 +1259,7 @@ void RenderingSystem_ExtractResourceData(int param_1,uint64_t *param_2)
   uint64_t uStack_10;
   
   FUN_1804c31d0((int64_t)param_1 * 200 + render_system_memory,auStack_58,auStackX_8);
-  FUN_18063b5f0(&uStack_38,auStack_58);
+  SystemSecurityManager(&uStack_38,auStack_58);
   *param_2 = uStack_38;
   param_2[1] = uStack_30;
   param_2[2] = uStack_28;
@@ -1329,7 +1334,7 @@ RenderingSystem_GetResourceParameter(uint64_t param_1,int32_t param_2,int8_t par
   if (lVar2 == 0) {
     return 0xffffffff;
   }
-  lVar2 = FUN_18054f900(lVar2,param_2,param_3,param_4,param_5);
+  lVar2 = Timer_GetElapsed(lVar2,param_2,param_3,param_4,param_5);
   return *(int32_t *)(lVar2 + 0x50);
 }
 
@@ -1356,7 +1361,7 @@ int RenderingSystem_GetResourceIndex(uint64_t param_1,int32_t param_2,int8_t par
   
   iVar1 = RenderingSystem_GetResourceProperty();
   lVar2 = (int64_t)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + render_system_memory;
-  if (((lVar2 != 0) && (lVar2 = FUN_18054f900(lVar2,param_2,param_3,param_4,param_5), lVar2 != 0))
+  if (((lVar2 != 0) && (lVar2 = Timer_GetElapsed(lVar2,param_2,param_3,param_4,param_5), lVar2 != 0))
      && (*(int *)(lVar2 + 0x104) != -1)) {
     return *(int *)(lVar2 + 0x104);
   }

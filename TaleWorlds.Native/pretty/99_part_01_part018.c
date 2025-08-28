@@ -1,10 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_01_part018.c - 3 个函数
 
-// 函数: void FUN_1800b1230(int64_t param_1,int64_t ***param_2,int64_t param_3,int *param_4)
-void FUN_1800b1230(int64_t param_1,int64_t ***param_2,int64_t param_3,int *param_4)
+// 函数: void SystemInitializer(int64_t param_1,int64_t ***param_2,int64_t param_3,int *param_4)
+void SystemInitializer(int64_t param_1,int64_t ***param_2,int64_t param_3,int *param_4)
 
 {
   double *pdVar1;
@@ -321,7 +325,7 @@ LAB_1800b1376:
                 (**(code **)((void *)*plStack_140 + 0x28))();
               }
               uVar21 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-              pplVar20 = (int64_t **)FUN_18005ce30(uVar21,&plStack_218);
+              pplVar20 = (int64_t **)SystemCore_StreamController(uVar21,&plStack_218);
               pplStack_4d8 = pplVar20;
               if (pplVar20 != (int64_t **)0x0) {
                 (*(code *)(*pplVar20)[5])(pplVar20);
@@ -332,7 +336,7 @@ LAB_1800b1376:
               if (pplVar20 != (int64_t **)0x0) {
                 (*(code *)(*pplVar20)[5])(pplVar20);
               }
-              FUN_18005e370(lVar19,&pplStack_4d0);
+              SystemPerformance_Monitor(lVar19,&pplStack_4d0);
               if (pplVar20 != (int64_t **)0x0) {
                 (*(code *)(*pplVar20)[7])(pplVar20);
               }
@@ -342,15 +346,15 @@ LAB_1800b1376:
             break;
           }
           if ((int)plVar22[0x70] != 2) break;
-          FUN_18023a940(*param_2);
+          SystemCore_Scheduler(*param_2);
           ppplStack_520 = (int64_t ***)aplStack_350;
-          puStack_4e0 = (uint64_t *)FUN_180049b30(aplStack_350,lVar19);
+          puStack_4e0 = (uint64_t *)SystemCore_EventHandler(aplStack_350,lVar19);
         }
         else {
           if ((int)plVar22[0x70] != 2) break;
-          FUN_18023a940(*param_2);
+          SystemCore_Scheduler(*param_2);
           ppplStack_520 = (int64_t ***)aplStack_2b8;
-          puStack_4e0 = (uint64_t *)FUN_180049b30(aplStack_2b8,lVar19);
+          puStack_4e0 = (uint64_t *)SystemCore_EventHandler(aplStack_2b8,lVar19);
         }
         *puStack_4e0 = &system_state_ptr;
         break;
@@ -475,7 +479,7 @@ LAB_1800b1376:
           (**(code **)((void *)*plStack_60 + 0x28))();
         }
         uVar21 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        plVar22 = (int64_t *)FUN_18005ce30(uVar21,&plStack_138);
+        plVar22 = (int64_t *)SystemCore_StreamController(uVar21,&plStack_138);
         pplStack_4b8 = (int64_t **)plVar22;
         if (plVar22 != (int64_t *)0x0) {
           (**(code **)(*plVar22 + 0x28))(plVar22);
@@ -510,7 +514,7 @@ LAB_1800b1376:
     if (iVar16 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar16);
     }
-    FUN_1800b88d0(plVar31,param_2);
+    PhysicsSystem_TriggersProcessor(plVar31,param_2);
     *(int *)(*param_2 + 0x3d) = param_4[0xc];
     iVar16 = _Mtx_unlock(puVar29);
     if (iVar16 != 0) {
@@ -725,7 +729,7 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
             iStack_150 = param_4[6];
             lStack_148 = *param_2;
             uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-            plVar11 = (int64_t *)FUN_18005ce30(uVar10,&plStack_208);
+            plVar11 = (int64_t *)SystemCore_StreamController(uVar10,&plStack_208);
             pplStack_3e8 = (int64_t **)plVar11;
             if (plVar11 != (int64_t *)0x0) {
               (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -736,7 +740,7 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
             if (plVar11 != (int64_t *)0x0) {
               (**(code **)(*plVar11 + 0x28))(plVar11);
             }
-            FUN_18005e370(lVar3,&plStack_3c8);
+            SystemPerformance_Monitor(lVar3,&plStack_3c8);
             if (plVar11 != (int64_t *)0x0) {
               (**(code **)(*plVar11 + 0x38))(plVar11);
             }
@@ -745,9 +749,9 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
           }
         }
         else if (*(int *)(*param_2 + 0x380) == 2) {
-          FUN_18023a940(*param_2);
+          SystemCore_Scheduler(*param_2);
           pplStack_3e8 = aplStack_340;
-          pplStack_3d8 = (int64_t **)FUN_180049b30(aplStack_340,param_3);
+          pplStack_3d8 = (int64_t **)SystemCore_EventHandler(aplStack_340,param_3);
           *pplStack_3d8 = (int64_t *)&system_state_ptr;
         }
         break;
@@ -811,7 +815,7 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
       iStack_360 = param_4[6];
       FUN_1800a4c50(system_message_buffer,&iStack_378,*param_2);
       ppuStack_3b0 = apuStack_2a8;
-      pplStack_3e8 = (int64_t **)FUN_180049b30(apuStack_2a8,param_3);
+      pplStack_3e8 = (int64_t **)SystemCore_EventHandler(apuStack_2a8,param_3);
       *pplStack_3e8 = (int64_t *)&system_state_ptr;
     }
     else {
@@ -829,7 +833,7 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
       iStack_70 = param_4[6];
       lStack_68 = *param_2;
       uVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      plVar11 = (int64_t *)FUN_18005ce30(uVar10,&puStack_128);
+      plVar11 = (int64_t *)SystemCore_StreamController(uVar10,&puStack_128);
       ppuStack_3b0 = (void **)plVar11;
       if (plVar11 != (int64_t *)0x0) {
         (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -863,7 +867,7 @@ void FUN_1800b1d80(uint64_t param_1,int64_t *param_2,int64_t param_3,int *param_
     if (iVar8 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar8);
     }
-    FUN_1800b88d0(plVar16,param_2);
+    PhysicsSystem_TriggersProcessor(plVar16,param_2);
     iVar8 = _Mtx_unlock(lVar1);
     if (iVar8 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar8);

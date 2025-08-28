@@ -1,7 +1,13 @@
+n//  的语义化别名
+#define SystemCore_ProcessManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* RenderingProcessor - FUN_180391980 的语义化别名 */
 #define RenderingProcessor FUN_180391980
 
-#include "TaleWorlds.Native.Split.h"
 
 //============================================================================
 // 渲染系统高级连接处理模块
@@ -135,11 +141,11 @@ static RenderStatusFlags g_global_render_state = 0;        // 全局渲染状态
 #define RenderingSystem_ConnectionProcessor RenderingProcessor
 
 // 连接处理函数别名
-#define RenderingSystem_ConnectionHandleCleanup FUN_18038b160
-#define RenderingSystem_ConnectionAllocator FUN_18038af00
+#define RenderingSystem_ConnectionHandleCleanup SystemCore_ProcessManager
+#define RenderingSystem_ConnectionAllocator SystemCore_PerformanceMonitor
 #define RenderingSystem_ConnectionPointFinder FUN_18038c180
 #define RenderingSystem_ConnectionValidator FUN_18038d8f0
-#define RenderingSystem_ConnectionOptimizer FUN_18038ee20
+#define RenderingSystem_ConnectionOptimizer SystemCore_Encoder
 
 //============================================================================
 // 枚举定义

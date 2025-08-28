@@ -1,3 +1,11 @@
+/* SystemCore_Validator - SystemCore_Validator */
+#define SystemCore_Validator SystemCore_Validator
+
+
+/* FUN_1801616b0 - RenderingSystem_ResourceIdGenerator */
+#define RenderingSystem_ResourceIdGenerator FUN_1801616b0
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -455,7 +463,7 @@ FUN_1801615a0(uint64_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t para
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1801616b0(int64_t param_1,uint64_t *param_2,uint64_t param_3)
+uint64_t * RenderingSystem_ResourceIdGenerator(int64_t param_1,uint64_t *param_2,uint64_t param_3)
 
 {
   int iVar1;
@@ -510,7 +518,7 @@ uint64_t * FUN_1801616b0(int64_t param_1,uint64_t *param_2,uint64_t param_3)
   else {
     if (iVar1 == 1) {
       SystemCore_EncryptionEngine0(&puStack_a0,param_3);
-      FUN_180169c30(&puStack_80,&puStack_a0);
+      SystemCore_Validator(&puStack_80,&puStack_a0);
       puStack_a0 = &system_data_buffer_ptr;
       if (puStack_98 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -571,7 +579,7 @@ uint64_t * FUN_1801616b0(int64_t param_1,uint64_t *param_2,uint64_t param_3)
         }
         FUN_1801624e0(param_1,&puStack_a0);
         SystemCore_EncryptionEngine0(&puStack_80,param_3);
-        FUN_180169c30(&puStack_60);
+        SystemCore_Validator(&puStack_60);
         puStack_80 = (uint64_t *)&system_data_buffer_ptr;
         if (puStack_78 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -696,7 +704,7 @@ LAB_18016195a:
         CoreEngine_MemoryPoolManager(puVar5);
       }
       SystemCore_EncryptionEngine0(&puStack_a0,param_3);
-      FUN_180169c30(&puStack_c0,&puStack_a0);
+      SystemCore_Validator(&puStack_c0,&puStack_a0);
       puStack_a0 = &system_data_buffer_ptr;
       if (puStack_98 != (void *)0x0) {
                     // WARNING: Subroutine does not return

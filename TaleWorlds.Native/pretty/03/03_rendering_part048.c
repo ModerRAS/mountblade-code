@@ -268,7 +268,7 @@ void update_float_bounding_box(render_context_t* context, uint64_t param2, uint6
         if (iVar12 + 1 < iVar13) {
             iVar4 = iVar13;
         }
-        FUN_18013e760(context,iVar4);
+        RenderingEngine_Renderer(context,iVar4);
         iVar12 = *context;
     }
     lVar14 = (int64_t)iVar12;
@@ -382,7 +382,7 @@ void process_render_params(render_context_t* context, uint64_t param2) {
         if (iVar8 + 1 < iVar7) {
             iVar3 = iVar7;
         }
-        FUN_18013e760(context,iVar3);
+        RenderingEngine_Renderer(context,iVar3);
         iVar8 = *context;
     }
     lVar9 = (int64_t)iVar8;
@@ -486,7 +486,7 @@ void initialize_render_data_block(int64_t param1, int param2, uint64_t param3, u
                     if (0 < iVar9) {
                         iVar13 = iVar9;
                     }
-                    FUN_18013e760(puVar15,iVar13);
+                    RenderingEngine_Renderer(puVar15,iVar13);
                 }
                 *puVar15 = 0;
                 lVar5 = *(int64_t *)(param1 + 0xa0);
@@ -497,7 +497,7 @@ void initialize_render_data_block(int64_t param1, int param2, uint64_t param3, u
                     if (0 < iVar9) {
                         iVar13 = iVar9;
                     }
-                    FUN_18011dd10(lVar5 + 0x10 + lVar14,iVar13);
+                    NetworkSystem_ErrorHandler(lVar5 + 0x10 + lVar14,iVar13);
                 }
                 *(int32_t *)(lVar5 + 0x10 + lVar14) = 0;
             }
@@ -523,7 +523,7 @@ void initialize_render_data_block(int64_t param1, int param2, uint64_t param3, u
                 uVar10 = *(uint64_t *)
                           (*(int64_t *)(param1 + 0x78) + -8 + (int64_t)*(int *)(param1 + 0x70) * 8);
                 if (piVar16[1] == 0) {
-                    FUN_18013e760(piVar16,8);
+                    RenderingEngine_Renderer(piVar16,8);
                     iVar17 = *piVar16;
                 }
                 lVar11 = (int64_t)iVar17;
@@ -610,7 +610,7 @@ void merge_render_data_blocks(render_context_t* context) {
             if (iVar4 < iVar2) {
                 iVar1 = iVar2;
             }
-            FUN_18013e760(context,iVar1);
+            RenderingEngine_Renderer(context,iVar1);
         }
         *context = iVar4;
         iVar4 = context[5];
@@ -623,7 +623,7 @@ void merge_render_data_blocks(render_context_t* context) {
             if (iVar2 < iVar7) {
                 iVar4 = iVar7;
             }
-            FUN_18011dd10(context + 4,iVar4);
+            NetworkSystem_ErrorHandler(context + 4,iVar4);
         }
         context[4] = iVar2;
         iVar4 = 1;
@@ -646,7 +646,7 @@ void merge_render_data_blocks(render_context_t* context) {
                 lVar9 = lVar9 + 0x20;
             } while (iVar4 < context[0x25]);
         }
-        FUN_180291950(context);
+        SystemCore_ErrorHandler(context);
         context[0x25] = 1;
     }
     return;
@@ -700,7 +700,7 @@ void merge_render_data_blocks_simple(uint64_t param1) {
     }
     iVar5 = 8;
     if (unaff_RBX[1] < iVar2 + iVar4) {
-        FUN_18013e760();
+        RenderingEngine_Renderer();
     }
     *unaff_RBX = iVar2 + iVar4;
     iVar2 = unaff_RBX[5];
@@ -713,7 +713,7 @@ void merge_render_data_blocks_simple(uint64_t param1) {
         if (iVar7 < iVar5) {
             iVar2 = iVar5;
         }
-        FUN_18011dd10(unaff_RBX + 4,iVar2);
+        NetworkSystem_ErrorHandler(unaff_RBX + 4,iVar2);
     }
     unaff_RBX[4] = iVar7;
     iVar2 = 1;
@@ -736,7 +736,7 @@ void merge_render_data_blocks_simple(uint64_t param1) {
             lVar8 = lVar8 + 0x20;
         } while (iVar2 < unaff_RBX[0x25]);
     }
-    FUN_180291950();
+    SystemCore_ErrorHandler();
     unaff_RBX[0x25] = 1;
     return;
 }
@@ -788,7 +788,7 @@ void merge_render_data_blocks_basic(void) {
     }
     iVar5 = 8;
     if (unaff_RBX[1] < iVar2 + iVar4) {
-        FUN_18013e760();
+        RenderingEngine_Renderer();
     }
     *unaff_RBX = iVar2 + iVar4;
     iVar2 = unaff_RBX[5];
@@ -801,7 +801,7 @@ void merge_render_data_blocks_basic(void) {
         if (iVar7 < iVar5) {
             iVar2 = iVar5;
         }
-        FUN_18011dd10(unaff_RBX + 4,iVar2);
+        NetworkSystem_ErrorHandler(unaff_RBX + 4,iVar2);
     }
     unaff_RBX[4] = iVar7;
     iVar2 = 1;
@@ -824,7 +824,7 @@ void merge_render_data_blocks_basic(void) {
             lVar8 = lVar8 + 0x20;
         } while (iVar2 < unaff_RBX[0x25]);
     }
-    FUN_180291950();
+    SystemCore_ErrorHandler();
     unaff_RBX[0x25] = 1;
     return;
 }
@@ -851,7 +851,7 @@ void process_render_data_stream(void) {
         unaff_EBP = unaff_EBP + 1;
         unaff_R14 = unaff_R14 + 0x20;
         if (*(int *)(unaff_RBX + 0x94) <= unaff_EBP) {
-            FUN_180291950();
+            SystemCore_ErrorHandler();
             *(int32_t *)(unaff_RBX + 0x94) = 1;
             return;
         }
@@ -904,7 +904,7 @@ void update_render_data_stats(render_context_t* context, int param2, int param3)
         if (param2 < iVar4) {
             iVar3 = iVar4;
         }
-        FUN_18011dd10(context + 4,iVar3);
+        NetworkSystem_ErrorHandler(context + 4,iVar3);
     }
     context[4] = param2;
     *(int64_t *)(context + 0x16) = *(int64_t *)(context + 6) + (int64_t)iVar2 * 2;
@@ -1040,11 +1040,11 @@ void execute_float_interpolation_render(int64_t param1, int64_t param2, int para
             if (!(bool)auStack_f8[0]) {
                 iVar7 = 0xc;
             }
-            FUN_1802921e0(param1,iVar7 * iVar9,iStack_d0);
+            NetworkSystem_PacketSerializer(param1,iVar7 * iVar9,iStack_d0);
                         // WARNING: Subroutine does not return
             SystemCore_MemoryManager0();
         }
-        FUN_1802921e0(param1,iVar9 * 6,iVar9 * 4);
+        NetworkSystem_PacketSerializer(param1,iVar9 * 6,iVar9 * 4);
         if (0 < lVar10) {
             iVar9 = 0;
             lVar8 = 0;
@@ -1115,7 +1115,7 @@ void execute_float_interpolation_render(int64_t param1, int64_t param2, int para
 void FUN_180291b40(int *param_1, uint64_t param_2, uint64_t param_3, char param_4)
     __attribute__((alias("update_float_bounding_box")));
 
-void FUN_180291c70(int *param_1, uint64_t param_2)
+void RenderingSystem_TextureLoader(int *param_1, uint64_t param_2)
     __attribute__((alias("process_render_params")));
 
 void FUN_180291cf0(int64_t param_1, int param_2, uint64_t param_3, uint64_t param_4)
@@ -1136,14 +1136,14 @@ void FUN_1802920d0(void)
 void FUN_180292156(void)
     __attribute__((alias("render_nop_operation")));
 
-void FUN_1802921e0(int *param_1, int param_2, int param_3)
+void NetworkSystem_PacketSerializer(int *param_1, int param_2, int param_3)
     __attribute__((alias("update_render_data_stats")));
 
 void FUN_180292290(int64_t param_1, uint64_t *param_2, uint64_t *param_3, uint64_t *param_4,
                   uint64_t *param_5, int32_t param_6)
     __attribute__((alias("process_float_render_params")));
 
-void FUN_1802923e0(int64_t param_1, int64_t param_2, int param_3, uint param_4, char param_5,
+void RenderingSystem_LightManager(int64_t param_1, int64_t param_2, int param_3, uint param_4, char param_5,
                   float param_6)
     __attribute__((alias("execute_float_interpolation_render")));
 
@@ -1168,8 +1168,8 @@ void FUN_1802923e0(int64_t param_1, int64_t param_2, int param_3, uint param_4, 
  * 
  * @dependencies
  * - TaleWorlds.Native.Split.h
- * - 内存管理函数 (FUN_18013e620, FUN_18013e760, FUN_18011dd10)
- * - 数据处理函数 (FUN_180292160, FUN_180291950)
+ * - 内存管理函数 (FUN_18013e620, RenderingEngine_Renderer, NetworkSystem_ErrorHandler)
+ * - 数据处理函数 (FUN_180292160, SystemCore_ErrorHandler)
  * 
  * @notes
  * 本模块中的函数主要用于渲染系统的高级数据处理，涉及复杂的内存管理

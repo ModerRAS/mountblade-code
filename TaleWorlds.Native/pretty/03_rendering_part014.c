@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part014.c - 3 个函数
 
 // 函数: void FUN_1802768b0(int64_t param_1,int64_t *param_2)
@@ -285,7 +289,7 @@ void FUN_180276a70(uint64_t *param_1,int64_t param_2,float *param_3,float *param
     fStack_b4 = fStack_114;
     fStack_b0 = fStack_110;
     fStack_ac = fStack_10c;
-    FUN_180285b40(&uStack_128,&fStack_1e8,&fStack_1d8);
+    SystemCore_EventHandler(&uStack_128,&fStack_1e8,&fStack_1d8);
     fVar23 = *param_4 - fStack_138;
     fVar22 = param_4[2] - fStack_130;
     fVar21 = param_4[1] - fStack_134;
@@ -320,7 +324,7 @@ void FUN_180276a70(uint64_t *param_1,int64_t param_2,float *param_3,float *param
     fStack_94 = fStack_f4;
     fStack_90 = fStack_f0;
     fStack_8c = fStack_ec;
-    FUN_180285b40(&uStack_108,&uStack_198,&fStack_1b8);
+    SystemCore_EventHandler(&uStack_108,&uStack_198,&fStack_1b8);
     if ((((*(float *)((int64_t)param_1 + 0x214) <= fStack_1e8) &&
          (fStack_1e8 < *(float *)((int64_t)param_1 + 0x224) ||
           fStack_1e8 == *(float *)((int64_t)param_1 + 0x224))) &&
@@ -575,7 +579,7 @@ void FUN_180276ad4(int64_t param_1)
   uStack000000000000003c = 0x7f7fffff;
   fStack0000000000000034 = fStack0000000000000034 - fVar26;
   in_stack_00000038 = in_stack_00000038 - fVar31;
-  FUN_180285b40(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
+  SystemCore_EventHandler(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
   in_stack_00000048 = _fStack0000000000000028;
   fVar31 = *unaff_RSI - *(float *)(unaff_RBP + -6);
   fVar26 = unaff_RSI[2] - *(float *)(unaff_RBP + -5);
@@ -617,7 +621,7 @@ void FUN_180276ad4(int64_t param_1)
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar26;
   in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
-  FUN_180285b40(fVar26,&stack0x00000070,&stack0x00000050);
+  SystemCore_EventHandler(fVar26,&stack0x00000070,&stack0x00000050);
   if ((((*(float *)(unaff_RBX + 0x214) <= fStackX_20) &&
        (fStackX_20 < *(float *)(unaff_RBX + 0x224) || fStackX_20 == *(float *)(unaff_RBX + 0x224)))
       && (*(float *)(unaff_RBX + 0x218) <= fStackX_24)) &&

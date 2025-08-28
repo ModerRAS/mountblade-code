@@ -101,7 +101,7 @@ FUN_18043f3f0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int8_t param_4)
       plStackX_10 = plVar4;
       (**(code **)(plVar4[0x51] + 0x10))(plVar4 + 0x51,puVar5);
       FUN_1802ec6e0(plVar4,lVar1,1,param_4,0);
-      FUN_1802ea790(plVar4,lVar1 + 0x30);
+      NetworkProtocol_Transmitter(plVar4,lVar1 + 0x30);
     }
     else {
       plStackX_8 = (int64_t *)CONCAT71(plStackX_8._1_7_,*(int8_t *)(lVar1 + 0x2e5));
@@ -413,7 +413,7 @@ void FUN_18043f960(int64_t param_1,uint64_t *param_2)
       *(int32_t *)((int64_t)puVar37 + 0x34) = uVar30;
       *(int32_t *)(puVar37 + 7) = uVar31;
       *(int32_t *)((int64_t)puVar37 + 0x3c) = uVar32;
-      FUN_180254610();
+      RenderingSystem_CameraController();
       *(byte *)(param_1 + 0x2e8) = *(byte *)(param_1 + 0x2e8) | 0x10;
       if (((*(uint *)(param_1 + 0x2ac) & 0x10000000) == 0) && (*(int64_t *)(param_1 + 0x20) != 0))
       {
@@ -480,7 +480,7 @@ void FUN_18043f960(int64_t param_1,uint64_t *param_2)
             *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
             *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
             *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-            FUN_1802eace0(lVar13);
+            UtilitiesSystem_StringProcessor(lVar13);
           }
           lVar38 = lVar38 + 1;
         } while (lVar38 < iVar36);
@@ -672,7 +672,7 @@ uint64_t * FUN_18043fce0(uint64_t *param_1,int64_t param_2)
   uint64_t uStack_18;
   uint64_t uStack_10;
   
-  FUN_180085020(param_2 + 0x70,&uStack_18);
+  RenderingSystem_LightSystem(param_2 + 0x70,&uStack_18);
   *param_1 = uStack_18;
   param_1[1] = uStack_10;
   return param_1;
@@ -932,7 +932,7 @@ void FUN_1804401b0(int64_t param_1,int32_t *param_2,int32_t *param_3)
   
   cVar1 = (**(code **)(**(int64_t **)(param_1 + 0x270) + 0x70))();
   if (cVar1 != '\0') {
-    FUN_180254610(param_1);
+    RenderingSystem_CameraController(param_1);
     uStack_28 = *param_3;
     uStack_24 = param_3[1];
     uStack_20 = param_3[2];
@@ -963,7 +963,7 @@ void FUN_180440220(int64_t param_1,int32_t *param_2)
   
   cVar1 = (**(code **)(**(int64_t **)(param_1 + 0x270) + 0x70))();
   if (cVar1 != '\0') {
-    FUN_180254610(param_1);
+    RenderingSystem_CameraController(param_1);
     uStack_18 = *param_2;
     uStack_14 = param_2[1];
     uStack_10 = param_2[2];
@@ -990,7 +990,7 @@ void FUN_180440280(int64_t param_1,int32_t *param_2)
   
   cVar1 = (**(code **)(**(int64_t **)(param_1 + 0x270) + 0x70))();
   if (cVar1 != '\0') {
-    FUN_180254610(param_1);
+    RenderingSystem_CameraController(param_1);
     uStack_18 = *param_2;
     uStack_14 = param_2[1];
     uStack_10 = param_2[2];
@@ -1021,7 +1021,7 @@ void FUN_1804402e0(int64_t param_1,int32_t *param_2,int32_t *param_3)
   
   cVar1 = (**(code **)(**(int64_t **)(param_1 + 0x270) + 0x70))();
   if (cVar1 != '\0') {
-    FUN_180254610(param_1);
+    RenderingSystem_CameraController(param_1);
     uStack_28 = *param_3;
     uStack_24 = param_3[1];
     uStack_20 = param_3[2];

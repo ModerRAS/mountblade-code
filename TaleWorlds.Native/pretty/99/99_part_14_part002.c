@@ -1,3 +1,7 @@
+/* 函数别名定义: DataSerializer */
+#define DataSerializer DataSerializer
+
+
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -64,7 +68,7 @@ typedef struct {
  * ============================================================================ */
 
 /** 内存池重新分配函数 */
-extern int FUN_180849030(void* pool, int new_size);
+extern int DataSerializer0(void* pool, int new_size);
 
 /** 对象初始化函数 */
 extern void global_var_7856(void* object, ObjectType type, void* params);
@@ -179,7 +183,7 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -188,7 +192,7 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
     // 再次检查容量
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -236,7 +240,7 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -244,7 +248,7 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -290,7 +294,7 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -298,7 +302,7 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -344,7 +348,7 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -352,7 +356,7 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -399,7 +403,7 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -407,7 +411,7 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -453,7 +457,7 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -461,7 +465,7 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -508,7 +512,7 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -516,7 +520,7 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -563,7 +567,7 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -571,7 +575,7 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -618,7 +622,7 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -626,7 +630,7 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -673,7 +677,7 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -681,7 +685,7 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -727,7 +731,7 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -735,7 +739,7 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool), new_capacity != 0)) {
         return;
     }
     
@@ -782,7 +786,7 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -790,7 +794,7 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -837,7 +841,7 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -845,7 +849,7 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -892,7 +896,7 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -900,7 +904,7 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool), new_capacity != 0)) {
         return;
     }
     
@@ -947,7 +951,7 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -955,7 +959,7 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -1002,7 +1006,7 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -1010,7 +1014,7 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -1056,7 +1060,7 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -1064,7 +1068,7 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -1110,7 +1114,7 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -1118,7 +1122,7 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -1164,7 +1168,7 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -1172,7 +1176,7 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool, required_capacity), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool, required_capacity), new_capacity != 0)) {
         return;
     }
     
@@ -1219,7 +1223,7 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
         if (new_capacity < MIN_POOL_CAPACITY) {
             new_capacity = MIN_POOL_CAPACITY;
         }
-        new_capacity = FUN_180849030(pool, new_capacity);
+        new_capacity = DataSerializer0(pool, new_capacity);
         if (new_capacity != 0) {
             return;
         }
@@ -1227,7 +1231,7 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
     
     sign_ext = (int)*(uint *)((int64_t)pool + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)pool + 0xc) ^ sign_ext) - sign_ext) < required_capacity) &&
-        (new_capacity = FUN_180849030(pool), new_capacity != 0)) {
+        (new_capacity = DataSerializer0(pool), new_capacity != 0)) {
         return;
     }
     

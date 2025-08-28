@@ -164,8 +164,8 @@ typedef struct {
 #define SystemInitializationManager FUN_180244e4d           // 系统初始化管理器
 #define SystemEmptyFunction FUN_180244ef2                    // 系统空函数
 #define SystemMemoryAllocator FUN_180244f00                  // 系统内存分配器
-#define SystemGraphicsRenderer FUN_180244ff0                // 系统图形渲染器
-#define SystemResourceCleanup FUN_180245280                  // 系统资源清理器
+#define SystemGraphicsRenderer SystemOptimizer                // 系统图形渲染器
+#define SystemResourceCleanup SystemLog_Manager                  // 系统资源清理器
 #define SystemObjectLifecycleManager FUN_180245420           // 系统对象生命周期管理器
 
 // ============================================================================
@@ -307,7 +307,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
         param_1[0x18] = &system_state_ptr;
         
         // 调用内存初始化函数
-        FUN_180049470(param_1);
+        SystemCore_SecurityManager(param_1);
         
         // 检查是否需要释放内存
         if ((param_2 & 1) != 0) {
@@ -457,7 +457,7 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
             var5 == '\0')) || (*(SystemInt32*)(var7 + 0x380) == 0)) {
             
             // 创建新的渲染管线
-            var8 = (SystemUInt64*)FUN_1800b1230(var10, stack_pointer_array, &stack_data_ptr, stack_flags);
+            var8 = (SystemUInt64*)SystemInitializer(var10, stack_pointer_array, &stack_data_ptr, stack_flags);
             var4 = *var8;
             *var8 = 0;
             
@@ -537,7 +537,7 @@ void SystemResourceCleanup(SystemInt64 param_1) {
         
         // 初始化资源参数
         var4 = 1;
-        var2 = FUN_180244ff0();
+        var2 = SystemOptimizer();
         
         // 获取资源尺寸参数
         if (var2 == 0) {

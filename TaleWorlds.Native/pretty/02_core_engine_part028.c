@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -13,7 +14,7 @@ void FUN_180073730(uint64_t param_1,uint64_t param_2)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_1800623b0(system_message_context,0,0x100000000,1,&processed_var_4968_ptr,param_2,0xfffffffffffffffe);
+  SystemConfigurationManager(system_message_context,0,0x100000000,1,&processed_var_4968_ptr,param_2,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xff00ff00;
     CoreMemoryPoolValidator(&puStack_30,param_2);
@@ -53,7 +54,7 @@ void FUN_180073830(uint64_t param_1,int32_t param_2,uint64_t param_3)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_1800623b0(system_message_context,0,0x100000000,0xc,&processed_var_5000_ptr,param_3,0xfffffffffffffffe);
+  SystemConfigurationManager(system_message_context,0,0x100000000,0xc,&processed_var_5000_ptr,param_3,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_20[0] = param_2;
     CoreMemoryPoolValidator(&puStack_30,param_3);

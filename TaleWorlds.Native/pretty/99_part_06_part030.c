@@ -103,7 +103,7 @@ void FUN_1803c1a30(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
               plVar18 = plVar18 + 4;
             }
             else {
-              FUN_180059820(&plStack_90,puStack_70 + uVar11 * 4);
+              SystemCore_BackupSystem(&plStack_90,puStack_70 + uVar11 * 4);
               plVar12 = plStack_80;
               plVar18 = plStack_88;
             }
@@ -656,7 +656,7 @@ int64_t * FUN_1803c2430(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
   puVar1 = (uint64_t *)(lVar4 + 0x20);
   SystemCommunicationProcessor(puVar1,param_3);
   lStackX_10 = lVar4;
-  lVar5 = FUN_1800590b0(param_1,&puStackX_8,puVar1);
+  lVar5 = SystemCore_SecurityValidator(param_1,&puStackX_8,puVar1);
   if ((char)puStackX_8 == '\0') {
     *puVar1 = &system_state_ptr;
     if (lVar4 != 0) {

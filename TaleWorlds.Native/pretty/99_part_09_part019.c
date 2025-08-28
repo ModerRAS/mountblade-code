@@ -108,7 +108,7 @@ void FUN_1805c63f0(int64_t *param_1,uint64_t *param_2,int8_t *param_3)
     lVar16 = *param_1;
     uVar11 = *(uint64_t *)(lVar16 + 0x9d8);
     lVar17 = *(int64_t *)(lVar16 + 0x20);
-    if ((uVar11 != 0) && (cVar8 = FUN_18038d0a0(uVar11,lVar17 + 0xc), cVar8 != '\0'))
+    if ((uVar11 != 0) && (cVar8 = SystemCore_PerformanceMonitor(uVar11,lVar17 + 0xc), cVar8 != '\0'))
     goto LAB_1805c70c1;
     uVar18 = 0;
   }
@@ -133,7 +133,7 @@ void FUN_1805c63f0(int64_t *param_1,uint64_t *param_2,int8_t *param_3)
     uStack_e0 = *puVar9;
     uVar18 = 0;
     iStack_d8 = 0;
-    FUN_180487c70(&uStack_118,3);
+    SystemCore_Validator(&uStack_118,3);
     *param_2 = uStack_118;
     param_2[3] = CONCAT44(fStack_fc,uStack_100);
     param_2[4] = CONCAT44(fStack_f4,fStack_f8);
@@ -428,9 +428,9 @@ LAB_1805c6da5:
         param_2[3] = uStack_248;
       }
       if (*(int64_t *)(*param_1 + 0x9d8) == 0) goto LAB_1805c7137;
-      FUN_180487c70(param_2,2);
+      SystemCore_Validator(param_2,2);
       if ((1 < *(int *)(param_2 + 8)) && (param_2[1] != 0)) {
-        FUN_180487c70(param_2,2);
+        SystemCore_Validator(param_2,2);
         uVar11 = uVar18;
         if (1 < *(int *)(param_2 + 8)) {
           uVar11 = param_2[1];
@@ -452,7 +452,7 @@ LAB_1805c6da5:
     lVar16 = *param_1;
     uVar11 = *(uint64_t *)(lVar16 + 0x9d8);
     lVar17 = *(int64_t *)(lVar16 + 0x20);
-    if ((uVar11 != 0) && (cVar8 = FUN_18038d0a0(uVar11,lVar17 + 0xc), cVar8 != '\0')) {
+    if ((uVar11 != 0) && (cVar8 = SystemCore_PerformanceMonitor(uVar11,lVar17 + 0xc), cVar8 != '\0')) {
 LAB_1805c70c1:
       uVar18 = uVar11;
     }

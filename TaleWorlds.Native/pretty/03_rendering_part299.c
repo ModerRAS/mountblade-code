@@ -131,9 +131,9 @@ LAB_180428c99:
       (**(code **)(param_1 + 0x18))(*(uint64_t *)(param_1 + 0x28),9 - iVar8);
     }
   }
-  iVar8 = FUN_18041f0a0(param_1);
+  iVar8 = SystemCore_MemoryManager(param_1);
   uVar6 = uVar5;
-  if ((iVar8 < 1) || (iVar8 = FUN_18041f0a0(), uVar6 = uVar4, iVar8 < 1)) goto FUN_180428d1c;
+  if ((iVar8 < 1) || (iVar8 = SystemCore_MemoryManager(), uVar6 = uVar4, iVar8 < 1)) goto FUN_180428d1c;
   if (*(byte **)(param_1 + 0xb8) < *(byte **)(param_1 + 0xc0)) {
     bVar3 = **(byte **)(param_1 + 0xb8);
   }
@@ -246,9 +246,9 @@ LAB_180428c95:
     (**(code **)(unaff_RBX + 0x18))(*(uint64_t *)(unaff_RBX + 0x28),9 - iVar5);
   }
 LAB_180428ca0:
-  iVar5 = FUN_18041f0a0();
+  iVar5 = SystemCore_MemoryManager();
   if (iVar5 < 1) goto LAB_180428d12;
-  iVar5 = FUN_18041f0a0();
+  iVar5 = SystemCore_MemoryManager();
   if (iVar5 < 1) goto LAB_180428d12;
   if (*(byte **)(unaff_RBX + 0xb8) < *(byte **)(unaff_RBX + 0xc0)) {
     bVar3 = **(byte **)(unaff_RBX + 0xb8);

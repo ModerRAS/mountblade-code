@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 02_core_engine_part199.c - 2 个函数
 
@@ -21,7 +30,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x98,8,3);
   uVar6 = 0xfffffffffffffffe;
   puVar5 = puVar3;
-  FUN_1803456e0(puVar3,param_2,param_1);
+  SystemCore_SyncController(puVar3,param_2,param_1);
   *puVar5 = &rendering_buffer_2008_ptr;
   plVar1 = puVar5 + 0xf;
   *plVar1 = (int64_t)&system_state_ptr;
@@ -51,7 +60,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   *(int16_t *)(puVar4 + 7) = 0x6c65;
   *(int8_t *)((int64_t)puVar4 + 0x1e) = 0;
   uStack_70 = 0x1e;
-  FUN_1803460a0(puVar3,&puStack_80,puVar3 + 0xe,0xb,uVar6);
+  SystemNetwork_Processor(puVar3,&puStack_80,puVar3 + 0xe,0xb,uVar6);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);
@@ -76,7 +85,7 @@ void FUN_18017ee80(int64_t *param_1)
   plStackX_8 = param_1;
   plVar3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_8 = plVar3;
-  FUN_180049830(plVar3);
+  UltraHighFreq_PerformanceMonitor1(plVar3);
   *plVar3 = (int64_t)&processed_var_7960_ptr;
   plVar3[0x18] = lVar2 + 0x38;
   plVar3[3] = -3;
@@ -84,7 +93,7 @@ void FUN_18017ee80(int64_t *param_1)
   uVar1 = system_context_ptr;
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
-  FUN_18005e110(uVar1,&plStackX_8);
+  SystemCore_TimerManager(uVar1,&plStackX_8);
                     // WARNING: Could not recover jumptable at 0x00018017ef34. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);

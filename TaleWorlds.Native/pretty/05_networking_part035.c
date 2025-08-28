@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -212,19 +216,19 @@ typedef enum {
 #define NetworkStateReset FUN_18085f812                             // 网络状态重置
 
 /** 辅助函数别名 */
-#define NetworkQueueInitialize FUN_180747f10                        // 网络队列初始化
+#define NetworkQueueInitialize RenderingTextureManager0                        // 网络队列初始化
 #define NetworkSocketCreate FUN_180860480                           // 网络套接字创建
 #define NetworkSocketValidate FUN_180863930                         // 网络套接字验证
 #define NetworkSocketConfigure FUN_1808c7260                        // 网络套接字配置
 #define NetworkMemoryAllocate FUN_1808592c0                         // 网络内存分配
-#define NetworkTimerGet FUN_18085ab70                              // 网络计时器获取
-#define NetworkConnectionManager FUN_1808605e0                      // 网络连接管理器
+#define NetworkTimerGet UISystem_WidgetController                              // 网络计时器获取
+#define NetworkConnectionManager SystemCore_StateController                      // 网络连接管理器
 #define NetworkProcessExecute FUN_18084efe0                         // 网络进程执行
 #define NetworkResourceRelease FUN_1808cf130                        // 网络资源释放
 #define NetworkCallbackExecute FUN_1808cded0                        // 网络回调执行
 #define NetworkConnectionCheck FUN_180853980                        // 网络连接检查
 #define NetworkAuthentication FUN_1808d9380                        // 网络认证
-#define NetworkProtocolValidate FUN_18073d8a0                       // 网络协议验证
+#define NetworkProtocolValidate SystemCore_StateController                       // 网络协议验证
 #define NetworkStateConfigure FUN_1808624a0                         // 网络状态配置
 #define NetworkEventProcess FUN_1808c16c0                           // 网络事件处理
 #define NetworkQueueProcess FUN_18085fb30                           // 网络队列处理

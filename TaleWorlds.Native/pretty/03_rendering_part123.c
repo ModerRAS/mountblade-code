@@ -100,7 +100,7 @@ void FUN_18033eb00(uint64_t param_1,int64_t param_2,int64_t param_3)
       uStack_70 = 0;
       puStack_80 = (void *)0x0;
       uStack_78 = 0;
-      FUN_180060680(acStack_50,&processed_var_4576_ptr,uVar6);
+      RenderingEngine_BufferManager(acStack_50,&processed_var_4576_ptr,uVar6);
       lVar11 = lVar14;
       do {
         lVar7 = lVar11;
@@ -273,7 +273,7 @@ void FUN_18033eb00(uint64_t param_1,int64_t param_2,int64_t param_3)
     puVar12 = &ui_system_data_1592_ptr;
     break;
   default:
-    FUN_180627020(&ui_system_data_1640_ptr);
+    SystemCore_Allocator(&ui_system_data_1640_ptr);
     iVar9 = *(int *)(param_2 + 0x10);
     goto code_r0x00018033f10d;
   }
@@ -725,7 +725,7 @@ void FUN_18033fa60(uint64_t param_1,int64_t param_2,uint64_t param_3)
     puVar2 = puStack_b8;
   }
   uStack_b0 = iVar4;
-  FUN_18062dee0(&uStack_a0,puVar2,&system_data_c7ec);
+  SystemCore_Validator(&uStack_a0,puVar2,&system_data_c7ec);
   lVar5 = lStack_98;
   puVar2 = &system_buffer_ptr;
   if (puStack_80 != (void *)0x0) {

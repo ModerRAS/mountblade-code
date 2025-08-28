@@ -191,8 +191,8 @@ void FUN_180131701(uint64_t param_1,uint64_t param_2,int64_t param_3)
 
 
 
-// 函数: void FUN_1801319b0(int param_1,int param_2)
-void FUN_1801319b0(int param_1,int param_2)
+// 函数: void CoreEngine_PerformanceMonitor(int param_1,int param_2)
+void CoreEngine_PerformanceMonitor(int param_1,int param_2)
 
 {
   float *pfVar1;
@@ -244,7 +244,7 @@ LAB_180131a76:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-float * FUN_180131aa0(float *param_1,uint param_2,uint param_3,float param_4,float param_5)
+float * SystemCore_ConfigLoader(float *param_1,uint param_2,uint param_3,float param_4,float param_5)
 
 {
   int64_t lVar1;
@@ -261,28 +261,28 @@ float * FUN_180131aa0(float *param_1,uint param_2,uint param_3,float param_4,flo
   param_1[1] = 0.0;
   fVar7 = 0.0;
   if ((param_2 & 1) != 0) {
-    fVar7 = (float)FUN_1801319b0(0x14,param_3);
-    fVar4 = (float)FUN_1801319b0(0x13);
-    fVar5 = (float)FUN_1801319b0(0x12);
-    fVar6 = (float)FUN_1801319b0(0x11);
+    fVar7 = (float)CoreEngine_PerformanceMonitor(0x14,param_3);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(0x13);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(0x12);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(0x11);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
   if ((uVar2 & 2) != 0) {
-    fVar7 = (float)FUN_1801319b0(7,uVar3 & 0xffffffff);
-    fVar4 = (float)FUN_1801319b0(6);
-    fVar5 = (float)FUN_1801319b0(5);
-    fVar6 = (float)FUN_1801319b0(4);
+    fVar7 = (float)CoreEngine_PerformanceMonitor(7,uVar3 & 0xffffffff);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(6);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(5);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(4);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
   if ((uVar2 & 4) != 0) {
-    fVar7 = (float)FUN_1801319b0(0xb,uVar3 & 0xffffffff);
-    fVar4 = (float)FUN_1801319b0(10);
-    fVar5 = (float)FUN_1801319b0(9);
-    fVar6 = (float)FUN_1801319b0(8);
+    fVar7 = (float)CoreEngine_PerformanceMonitor(0xb,uVar3 & 0xffffffff);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(10);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(9);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(8);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
@@ -323,28 +323,28 @@ float * FUN_180131aac(float *param_1,uint param_2,uint param_3,float param_4)
   *(uint64_t *)param_1 = in_RAX;
   fVar7 = 0.0;
   if ((param_2 & 1) != 0) {
-    fVar7 = (float)FUN_1801319b0((int)in_RAX + 0x14,param_3);
-    fVar4 = (float)FUN_1801319b0(0x13);
-    fVar5 = (float)FUN_1801319b0(0x12);
-    fVar6 = (float)FUN_1801319b0(0x11);
+    fVar7 = (float)CoreEngine_PerformanceMonitor((int)in_RAX + 0x14,param_3);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(0x13);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(0x12);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(0x11);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
   if ((uVar2 & 2) != 0) {
-    fVar7 = (float)FUN_1801319b0(7,uVar3 & 0xffffffff);
-    fVar4 = (float)FUN_1801319b0(6);
-    fVar5 = (float)FUN_1801319b0(5);
-    fVar6 = (float)FUN_1801319b0(4);
+    fVar7 = (float)CoreEngine_PerformanceMonitor(7,uVar3 & 0xffffffff);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(6);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(5);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(4);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
   if ((uVar2 & 4) != 0) {
-    fVar7 = (float)FUN_1801319b0(0xb,uVar3 & 0xffffffff);
-    fVar4 = (float)FUN_1801319b0(10);
-    fVar5 = (float)FUN_1801319b0(9);
-    fVar6 = (float)FUN_1801319b0(8);
+    fVar7 = (float)CoreEngine_PerformanceMonitor(0xb,uVar3 & 0xffffffff);
+    fVar4 = (float)CoreEngine_PerformanceMonitor(10);
+    fVar5 = (float)CoreEngine_PerformanceMonitor(9);
+    fVar6 = (float)CoreEngine_PerformanceMonitor(8);
     fVar7 = (fVar7 - fVar4) + param_1[1];
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;

@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 99_part_13_part035.c - 2 个函数
 
@@ -83,11 +89,11 @@ LAB_1808bcd12:
     }
   }
   iVar4 = SystemStatusChecker(lVar3);
-  if ((iVar4 == 0) && (iVar4 = FUN_180744e20(lVar3 + 0x10), iVar4 == 0)) {
+  if ((iVar4 == 0) && (iVar4 = UISystem_ComponentManager(lVar3 + 0x10), iVar4 == 0)) {
     *(int32_t *)(lVar3 + 0x20) = 0xffffffff;
     *(int32_t *)(lVar3 + 0x24) = 0;
   }
-  FUN_180744e20(lVar3 + 0x10);
+  UISystem_ComponentManager(lVar3 + 0x10);
   SystemStatusChecker(lVar3);
                     // WARNING: Subroutine does not return
   SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar3,&rendering_buffer_2080_ptr,0x62,1);
@@ -97,7 +103,7 @@ LAB_1808bcd12:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808bceb0(int64_t *param_1)
+uint64_t NetworkSystem_ProtocolProcessor(int64_t *param_1)
 
 {
   ushort *puVar1;
@@ -110,7 +116,7 @@ uint64_t FUN_1808bceb0(int64_t *param_1)
     do {
       if ((*(byte *)(lVar3 + 8 + *param_1) & 1) == 0) {
         *(int *)(param_1 + 2) = (int)param_1[2] + -0x200;
-        FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(lVar3 + *param_1),
+        RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(lVar3 + *param_1),
                       &rendering_buffer_2816_ptr,0x104);
         puVar1 = (ushort *)(lVar3 + 8 + *param_1);
         *puVar1 = *puVar1 | 1;
@@ -139,7 +145,7 @@ uint64_t FUN_1808bcec4(void)
   do {
     if ((*(byte *)(uVar2 + 8 + *unaff_RBX) & 1) == 0) {
       *(int *)(unaff_RBX + 2) = (int)unaff_RBX[2] + -0x200;
-      FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(uVar2 + *unaff_RBX),
+      RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(uVar2 + *unaff_RBX),
                     &rendering_buffer_2816_ptr,0x104);
       puVar1 = (ushort *)(uVar2 + 8 + *unaff_RBX);
       *puVar1 = *puVar1 | 1;
@@ -205,12 +211,12 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     if (*(int *)(param_1 + 0x5c) < 1) break;
     uStack_50 = 0xffffffffffffffff;
     aiStack_48[0] = -1;
-    FUN_1808741f0(param_1 + 0x38,&uStack_50,aiStack_48);
+    SystemResource_Manager(param_1 + 0x38,&uStack_50,aiStack_48);
     uStack_38 = 0xffffffffffffffff;
     aiStack_30[0] = -1;
     lStack_40 = *(int64_t *)((int64_t)aiStack_48[0] * 0x20 + 0x18 + *(int64_t *)(param_1 + 0x48))
     ;
-    FUN_1807d1650(lStack_40,&uStack_38,aiStack_30);
+    NetworkSystem_ConnectionHandler(lStack_40,&uStack_38,aiStack_30);
     if ((*(char *)(param_1 + 0x780) == '\0') &&
        (uVar5 = FUN_1808b81c0(param_1 + 0x3c8,
                               *(uint64_t *)
@@ -233,7 +239,7 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     uStack_38 = 0xffffffffffffffff;
     aiStack_30[0] = -1;
     lStack_40 = lVar1;
-    FUN_1808741f0(lVar1,&uStack_38,aiStack_30);
+    SystemResource_Manager(lVar1,&uStack_38,aiStack_30);
     uVar5 = FUN_180851740(param_1 + 0x368,
                           (int64_t)aiStack_30[0] * 0x20 + *(int64_t *)(lStack_40 + 0x10));
     if ((int)uVar5 != 0) {
@@ -322,8 +328,8 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     if (lVar6 != 0) {
       SystemMemoryAllocator(lVar6);
     }
-    FUN_18084f2d0(param_1 + 0x68);
-    FUN_18084f2d0(param_1 + 0x38);
+    SystemCore_NetworkProcessor(param_1 + 0x68);
+    SystemCore_NetworkProcessor(param_1 + 0x38);
     if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar6);
@@ -342,8 +348,8 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     if (lVar6 != 0) {
       SystemMemoryAllocator(lVar6);
     }
-    FUN_18084f040(param_1 + 0x138);
-    FUN_18084f040(lVar1);
+    SystemCore_CacheManager(param_1 + 0x138);
+    SystemCore_CacheManager(lVar1);
     if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar6);
@@ -352,8 +358,8 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     if (lVar1 != 0) {
       SystemMemoryAllocator(lVar1);
     }
-    FUN_18084f560(param_1 + 0x208);
-    FUN_18084f560(param_1 + 0x1d8);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x1d8);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar1);
@@ -362,20 +368,20 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     if (lVar1 != 0) {
       SystemMemoryAllocator(lVar1);
     }
-    FUN_18084f040(param_1 + 0x1a0);
-    FUN_18084f040(param_1 + 0x170);
+    SystemCore_CacheManager(param_1 + 0x1a0);
+    SystemCore_CacheManager(param_1 + 0x170);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar1);
     }
-    FUN_1808bceb0(param_1 + 0x3e0);
-    FUN_1808bceb0(param_1 + 0x408);
-    FUN_1808bceb0(param_1 + 0x430);
-    FUN_1808bceb0(param_1 + 0x458);
-    FUN_1808bceb0(param_1 + 0x480);
+    NetworkSystem_ProtocolProcessor(param_1 + 0x3e0);
+    NetworkSystem_ProtocolProcessor(param_1 + 0x408);
+    NetworkSystem_ProtocolProcessor(param_1 + 0x430);
+    NetworkSystem_ProtocolProcessor(param_1 + 0x458);
+    NetworkSystem_ProtocolProcessor(param_1 + 0x480);
     uStack_50 = 0xffffffffffffffff;
     aiStack_48[0] = -1;
-    FUN_1808741f0(param_1 + 0x240,&uStack_50,aiStack_48);
+    SystemResource_Manager(param_1 + 0x240,&uStack_50,aiStack_48);
     if (aiStack_48[0] == -1) {
       iVar3 = SystemStatusChecker(param_1 + 0x240);
       if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(param_1 + 0x250), iVar3 == 0)) {
@@ -446,7 +452,7 @@ LAB_1808bd5a0:
   }
   *(int32_t *)(lVar1 + 0x10) = 0;
   if (0 < (int)((uVar11 ^ (int)uVar11 >> 0x1f) - ((int)uVar11 >> 0x1f))) {
-    FUN_180747f10(lVar1 + 8,0);
+    RenderingTextureManager0(lVar1 + 8,0);
   }
 LAB_1808bd1ec:
                     // WARNING: Subroutine does not return
@@ -490,7 +496,7 @@ uint64_t FUN_1808bd05e(void)
     *(int64_t *)(unaff_RBP + -0x18) = lVar1;
     *(uint64_t *)(unaff_RBP + -0x10) = 0xffffffffffffffff;
     *(int32_t *)(unaff_RBP + -8) = 0xffffffff;
-    FUN_1808741f0(lVar1,unaff_RBP + -0x10,unaff_RBP + -8);
+    SystemResource_Manager(lVar1,unaff_RBP + -0x10,unaff_RBP + -8);
     uVar4 = FUN_180851740(unaff_RSI + 0x368,
                           (int64_t)*(int *)(unaff_RBP + -8) * 0x20 +
                           *(int64_t *)(*(int64_t *)(unaff_RBP + -0x18) + 0x10));
@@ -581,8 +587,8 @@ uint64_t FUN_1808bd05e(void)
     if (lVar6 != 0) {
       SystemMemoryAllocator(lVar6);
     }
-    FUN_18084f2d0(unaff_R13 + 0x30);
-    FUN_18084f2d0();
+    SystemCore_NetworkProcessor(unaff_R13 + 0x30);
+    SystemCore_NetworkProcessor();
     if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar6);
@@ -601,8 +607,8 @@ uint64_t FUN_1808bd05e(void)
     if (lVar6 != 0) {
       SystemMemoryAllocator(lVar6);
     }
-    FUN_18084f040(unaff_RSI + 0x138);
-    FUN_18084f040(lVar1);
+    SystemCore_CacheManager(unaff_RSI + 0x138);
+    SystemCore_CacheManager(lVar1);
     if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar6);
@@ -611,8 +617,8 @@ uint64_t FUN_1808bd05e(void)
     if (lVar1 != 0) {
       SystemMemoryAllocator(lVar1);
     }
-    FUN_18084f560(unaff_RSI + 0x208);
-    FUN_18084f560(unaff_RSI + 0x1d8);
+    RenderingEngine_ShaderProcessor(unaff_RSI + 0x208);
+    RenderingEngine_ShaderProcessor(unaff_RSI + 0x1d8);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar1);
@@ -621,22 +627,22 @@ uint64_t FUN_1808bd05e(void)
     if (lVar1 != 0) {
       SystemMemoryAllocator(lVar1);
     }
-    FUN_18084f040(unaff_RSI + 0x1a0);
-    FUN_18084f040(unaff_RSI + 0x170);
+    SystemCore_CacheManager(unaff_RSI + 0x1a0);
+    SystemCore_CacheManager(unaff_RSI + 0x170);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
       SystemMemoryManager(lVar1);
     }
-    FUN_1808bceb0(unaff_RSI + 0x3e0);
-    FUN_1808bceb0(unaff_RSI + 0x408);
-    FUN_1808bceb0(unaff_RSI + 0x430);
-    FUN_1808bceb0(unaff_RSI + 0x458);
-    FUN_1808bceb0(unaff_RSI + 0x480);
+    NetworkSystem_ProtocolProcessor(unaff_RSI + 0x3e0);
+    NetworkSystem_ProtocolProcessor(unaff_RSI + 0x408);
+    NetworkSystem_ProtocolProcessor(unaff_RSI + 0x430);
+    NetworkSystem_ProtocolProcessor(unaff_RSI + 0x458);
+    NetworkSystem_ProtocolProcessor(unaff_RSI + 0x480);
     lVar1 = unaff_RSI + 0x240;
     *(uint64_t *)(unaff_RBP + -0x28) = 0xffffffffffffffff;
     *(int64_t *)(unaff_RBP + -0x30) = lVar1;
     *(int32_t *)(unaff_RBP + -0x20) = 0xffffffff;
-    FUN_1808741f0(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
+    SystemResource_Manager(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
     if (*(int *)(unaff_RBP + -0x20) == -1) {
       iVar3 = SystemStatusChecker(lVar1);
       if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(unaff_RSI + 0x250), iVar3 == 0)) {
@@ -712,7 +718,7 @@ LAB_1808bd5a0:
   }
   *(uint *)(lVar1 + 0x10) = uVar11;
   if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-    FUN_180747f10(lVar1 + 8,0);
+    RenderingTextureManager0(lVar1 + 8,0);
   }
 LAB_1808bd1ec:
                     // WARNING: Subroutine does not return
@@ -815,8 +821,8 @@ uint64_t FUN_1808bd222(void)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  FUN_18084f2d0(unaff_R13 + 0x30);
-  FUN_18084f2d0();
+  SystemCore_NetworkProcessor(unaff_R13 + 0x30);
+  SystemCore_NetworkProcessor();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
@@ -835,8 +841,8 @@ uint64_t FUN_1808bd222(void)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  FUN_18084f040(unaff_R15 + 0x30);
-  FUN_18084f040();
+  SystemCore_CacheManager(unaff_R15 + 0x30);
+  SystemCore_CacheManager();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
@@ -845,8 +851,8 @@ uint64_t FUN_1808bd222(void)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  FUN_18084f560(unaff_RSI + 0x208);
-  FUN_18084f560(unaff_RSI + 0x1d8);
+  RenderingEngine_ShaderProcessor(unaff_RSI + 0x208);
+  RenderingEngine_ShaderProcessor(unaff_RSI + 0x1d8);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
@@ -855,22 +861,22 @@ uint64_t FUN_1808bd222(void)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  FUN_18084f040(unaff_RSI + 0x1a0);
-  FUN_18084f040(unaff_RSI + 0x170);
+  SystemCore_CacheManager(unaff_RSI + 0x1a0);
+  SystemCore_CacheManager(unaff_RSI + 0x170);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
-  FUN_1808bceb0(unaff_RSI + 0x3e0);
-  FUN_1808bceb0(unaff_RSI + 0x408);
-  FUN_1808bceb0(unaff_RSI + 0x430);
-  FUN_1808bceb0(unaff_RSI + 0x458);
-  FUN_1808bceb0(unaff_RSI + 0x480);
+  NetworkSystem_ProtocolProcessor(unaff_RSI + 0x3e0);
+  NetworkSystem_ProtocolProcessor(unaff_RSI + 0x408);
+  NetworkSystem_ProtocolProcessor(unaff_RSI + 0x430);
+  NetworkSystem_ProtocolProcessor(unaff_RSI + 0x458);
+  NetworkSystem_ProtocolProcessor(unaff_RSI + 0x480);
   lVar1 = unaff_RSI + 0x240;
   *(uint64_t *)(unaff_RBP + -0x28) = 0xffffffffffffffff;
   *(int64_t *)(unaff_RBP + -0x30) = lVar1;
   *(int32_t *)(unaff_RBP + -0x20) = 0xffffffff;
-  FUN_1808741f0(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
+  SystemResource_Manager(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
   if (*(int *)(unaff_RBP + -0x20) == -1) {
     iVar3 = SystemStatusChecker(lVar1);
     if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(unaff_RSI + 0x250), iVar3 == 0)) {

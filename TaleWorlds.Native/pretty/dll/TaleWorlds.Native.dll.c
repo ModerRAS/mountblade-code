@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 
 // =============================================================================
@@ -52,7 +55,7 @@ extern uint8_t global_config_3744;    // 未知类型变量9
 extern uint8_t global_config_3768;    // 未知类型变量10
 
 // 函数指针声明 (FUN_ 前缀)
-extern uint8_t FUN_18007fcd0;    // 系统初始化函数
+extern uint8_t SystemCore_Compression;    // 系统初始化函数
 extern uint8_t FUN_180073930;    // 核心处理函数
 extern uint8_t FUN_1809414f0;    // 渲染系统函数
 extern uint8_t FUN_180941590;    // UI系统函数

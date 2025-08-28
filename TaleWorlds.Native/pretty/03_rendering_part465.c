@@ -1,8 +1,11 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part465.c - 9 个函数
 
@@ -93,8 +96,8 @@ void FUN_18051847b(uint64_t param_1,uint64_t param_2,char param_3)
   fStack0000000000000064 = fVar8;
   fStack0000000000000068 = fVar9;
   fStack000000000000006c = fVar10;
-  uVar14 = FUN_180285b40(&stack0x00000060,unaff_RBP + -0x60,unaff_RBP + -0x50);
-  pfVar13 = (float *)FUN_18022a890(uVar14,cVar2,
+  uVar14 = SystemCore_EventHandler(&stack0x00000060,unaff_RBP + -0x60,unaff_RBP + -0x50);
+  pfVar13 = (float *)SystemErrorHandler(uVar14,cVar2,
                                    *(uint64_t *)(*(int64_t *)(unaff_RDI + 0x658) + 0x208));
   fVar22 = *pfVar13;
   fVar24 = pfVar13[1];
@@ -222,7 +225,7 @@ void FUN_18051847b(uint64_t param_1,uint64_t param_2,char param_3)
     fStack0000000000000068 = fVar19 * fVar27 + fVar25 * fVar23 * fVar9;
     fStack000000000000006c = fVar19 * fVar32 + fVar25 * fVar30 * fVar10;
   }
-  pfVar13 = (float *)FUN_1801c0fb0(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
+  pfVar13 = (float *)SystemFileHandler(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
   fVar22 = pfVar13[1];
   fVar24 = pfVar13[2];
   lVar3 = *(int64_t *)(unaff_RDI + 0x590);
@@ -367,7 +370,7 @@ void FUN_18051860f(void)
     in_stack_00000068 = fVar9 * unaff_XMM11_Dc + fVar11 * fVar8 * unaff_XMM12_Dc;
     fStack000000000000006c = fVar9 * unaff_XMM11_Dd + fVar11 * fVar10 * unaff_XMM12_Dd;
   }
-  pfVar5 = (float *)FUN_1801c0fb0(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
+  pfVar5 = (float *)SystemFileHandler(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
   fVar6 = pfVar5[1];
   fVar7 = pfVar5[2];
   lVar1 = *(int64_t *)(unaff_RDI + 0x590);
@@ -424,7 +427,7 @@ void FUN_180518748(void)
   fStack0000000000000064 = fVar5 * unaff_XMM11_Db + fVar3 * unaff_XMM8_Db;
   in_stack_00000068 = fVar5 * unaff_XMM11_Dc + fVar3 * unaff_XMM8_Dc;
   fStack000000000000006c = fVar5 * unaff_XMM11_Dd + fVar3 * unaff_XMM8_Dd;
-  pfVar2 = (float *)FUN_1801c0fb0(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
+  pfVar2 = (float *)SystemFileHandler(&stack0x00000060,unaff_RBP + -0x50,unaff_RBP + -0x60);
   fVar3 = pfVar2[1];
   fVar4 = pfVar2[2];
   lVar1 = *(int64_t *)(unaff_RDI + 0x590);
@@ -514,7 +517,7 @@ void FUN_180518970(int64_t param_1,int64_t param_2)
   cVar2 = *(char *)(*(int64_t *)
                      (*(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x260) +
                      0x210) + 0xe3);
-  FUN_18022a890(param_2,cVar2,*(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
+  SystemErrorHandler(param_2,cVar2,*(uint64_t *)(*(int64_t *)(param_1 + 0x658) + 0x208));
   fVar17 = (float)render_system_data_memory;
   pfVar1 = (float *)(param_2 + ((int64_t)cVar2 + 0x40) * 0x10);
   fVar15 = *pfVar1;
@@ -637,7 +640,7 @@ void FUN_180518970(int64_t param_1,int64_t param_2)
             (cVar3 != '\0' && (cVar3 != *(char *)(*(int64_t *)(param_1 + 0x590) + 0x25ff)));
             cVar3 = *(char *)((int64_t)cVar3 + 0x100 + lVar10)) {
         }
-        FUN_18022a890(param_2,cVar2);
+        SystemErrorHandler(param_2,cVar2);
                     // WARNING: Subroutine does not return
         AdvancedSystemController(*(float *)(*(int64_t *)(param_1 + 0x728) + 0x54c) * 0.5);
       }
@@ -681,7 +684,7 @@ void FUN_180518f29(int32_t param_1,int64_t param_2)
       (cVar2 != '\0' && (cVar2 != *(char *)(*(int64_t *)(unaff_RBP + 0x590) + 0x25ff)));
       cVar2 = *(char *)((int64_t)cVar2 + 0x100 + *(int64_t *)(param_2 + 0x208))) {
   }
-  FUN_18022a890(param_1,cVar1);
+  SystemErrorHandler(param_1,cVar1);
                     // WARNING: Subroutine does not return
   AdvancedSystemController(*(float *)(*(int64_t *)(unaff_RBP + 0x728) + 0x54c) * 0.5);
 }
@@ -705,7 +708,7 @@ void FUN_180518fa5(int32_t param_1,uint64_t param_2,int64_t param_3)
       in_CL = *(char *)((int64_t)in_CL + 0x100 + param_3);
     } while (in_CL != '\0');
   }
-  FUN_18022a890(param_1,unaff_DIL);
+  SystemErrorHandler(param_1,unaff_DIL);
                     // WARNING: Subroutine does not return
   AdvancedSystemController(*(float *)(*(int64_t *)(unaff_RBP + 0x728) + 0x54c) * 0.5);
 }

@@ -423,7 +423,7 @@ void FUN_1805ad560(int64_t *param_1,char *param_2)
       fStack_104 = fVar7;
       fStack_100 = fVar8;
       uStack_fc = uVar1;
-      FUN_18063b5f0(&fStack_1e8,&uStack_208);
+      SystemSecurityManager(&fStack_1e8,&uStack_208);
       fVar13 = *(float *)(lVar12 + 0x70);
       fVar14 = *(float *)(lVar12 + 0x80);
       fVar2 = *(float *)(lVar12 + 0x84);
@@ -731,7 +731,7 @@ void FUN_1805ad5f5(uint64_t param_1,int64_t param_2,int64_t param_3)
   unaff_RBP[-0xb] = fVar21;
   unaff_RBP[-10] = fVar19;
   unaff_RBP[-9] = fVar20;
-  FUN_18063b5f0(unaff_RBP + -8,unaff_RBP + -0x10);
+  SystemSecurityManager(unaff_RBP + -8,unaff_RBP + -0x10);
   fVar22 = *unaff_RBP;
   fVar23 = unaff_RBP[1];
   fVar5 = unaff_RBP[-4];

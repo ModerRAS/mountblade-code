@@ -1,3 +1,11 @@
+/* SystemCore_DataManager - SystemCore_DataManager */
+#define SystemCore_DataManager SystemCore_DataManager
+
+
+/* SystemCore_DataHandleCreator - SystemCore_DataHandleCreator */
+#define SystemCore_DataHandleCreator SystemCore_DataHandleCreator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -84,8 +92,8 @@ typedef struct {
 
 // 主要函数别名
 #define CoreEngineDataProcessor FUN_180161eb0
-#define CoreEngineResourceAllocator FUN_180161f80
-#define CoreEngineStringHandler FUN_180162220
+#define CoreEngineResourceAllocator SystemCore_DataHandleCreator
+#define CoreEngineStringHandler SystemCore_DataManager
 #define CoreEngineSystemInitializer FUN_1801624e0
 #define CoreEngineMemoryManager FUN_180162600
 #define CoreEngineConfigurationProcessor FUN_180165950
@@ -98,13 +106,13 @@ typedef struct {
 
 // 数据处理函数别名
 #define CoreEngineDataBufferProcessor CoreEngineDataBufferProcessor
-#define CoreEngineDataStringProcessor FUN_180627ce0
+#define CoreEngineDataStringProcessor UtilitiesSystem_FileHandler
 #define CoreEngineDataSystemCaller CoreEngineDataTransformer
 #define CoreEngineDataInitializer FUN_180628320
 
 // 系统调用函数别名
 #define CoreEngineSystemCleanup FUN_18004e7a0
-#define CoreEngineSystemParameterHandler FUN_180059820
+#define CoreEngineSystemParameterHandler SystemCore_BackupSystem
 #define CoreEngineMemoryTransfer FUN_1801614d0
 
 //============================================================================

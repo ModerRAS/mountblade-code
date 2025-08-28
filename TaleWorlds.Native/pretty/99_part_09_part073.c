@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part073.c - 10 个函数
 
 // 函数: void FUN_1805ec3e5(int64_t param_1,uint64_t param_2)
@@ -45,7 +49,7 @@ void FUN_1805ec3e5(int64_t param_1,uint64_t param_2)
   *(int *)(param_1 + 100) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(param_1 + 0x68) = in_XMM1_Dc;
   *(int32_t *)(param_1 + 0x6c) = in_XMM1_Dd;
-  FUN_180254610();
+  RenderingSystem_CameraController();
   lVar1 = *unaff_RSI;
   fVar2 = *(float *)(lVar1 + 0x90);
   fVar3 = *(float *)(lVar1 + 0x94);
@@ -339,10 +343,10 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     }
     if (((uVar19 != 0) && (lVar2 = *(int64_t *)(uVar19 + 0x260), lVar2 != 0)) &&
        ((*(byte *)(lVar2 + 0xa8) & 1) == 0)) {
-      FUN_1802fac00(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
     }
     FUN_1805ec350(param_1,&fStack_88,0,param_4,param_5,param_2,uVar20);
-    FUN_1802ea790(uVar19,&fStack_88);
+    NetworkProtocol_Transmitter(uVar19,&fStack_88);
     (**(code **)(*(int64_t *)param_1[0xb] + 0x148))((int64_t *)param_1[0xb],&system_data_0300);
     FUN_1805ea350(param_1);
     if ((param_2 == '\0') || (uStackX_8 = uStackX_8 & 0xffffffff00000000, param_1[0xe] == 0)) {
@@ -485,7 +489,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     fStack_50 = fVar24 * fVar5 + fVar25 * fVar9 + fVar26 * fVar13 + *(float *)(plVar1 + 0x15);
     fStack_4c = fVar24 * fVar6 + fVar25 * fVar10 + fVar26 * fVar14 +
                 *(float *)((int64_t)plVar1 + 0xac);
-    FUN_1802ea790(uStackX_8,&fStack_88);
+    NetworkProtocol_Transmitter(uStackX_8,&fStack_88);
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x38))(plVar1);
     }
@@ -559,10 +563,10 @@ void FUN_1805ecc80(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   lVar1 = *param_1;
   if (((lVar1 != 0) && (lVar2 = *(int64_t *)(lVar1 + 0x260), lVar2 != 0)) &&
      ((*(byte *)(lVar2 + 0xa8) & 1) == 0)) {
-    FUN_1802fac00(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
   }
   FUN_1805ec350(param_1,auStack_48,0,0,0,0,0);
-  FUN_1802ea790(lVar1,auStack_48);
+  NetworkProtocol_Transmitter(lVar1,auStack_48);
   plVar3 = (int64_t *)param_1[0x10];
   if (plVar3 == (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xb] + 0x128))((int64_t *)param_1[0xb],&processed_var_6612_ptr);
@@ -645,7 +649,7 @@ void FUN_1805ece60(uint64_t *param_1,int param_2)
       if (plVar3 != (int64_t *)0x0) {
         (**(code **)(*plVar3 + 0x28))(plVar3);
       }
-      FUN_1802edcd0(uVar2,plStackX_18,1);
+      PhysicsSystem_TerrainCollider(uVar2,plStackX_18,1);
       if (plStackX_18 != (int64_t *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
       }
@@ -669,7 +673,7 @@ void FUN_1805ece60(uint64_t *param_1,int param_2)
       uVar2 = *param_1;
       plStackX_18 = plVar4;
       (**(code **)(*plVar4 + 0x28))(plVar4);
-      FUN_1802edcd0(uVar2,plStackX_18,1);
+      PhysicsSystem_TerrainCollider(uVar2,plStackX_18,1);
       if (plStackX_18 != (int64_t *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
       }

@@ -1,13 +1,17 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 99_part_13_part011_sub001_sub001.c - 10 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_13_part011_sub001.c - 11 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_13_part011.c - 11 个函数
 
@@ -47,14 +51,14 @@ uint64_t FUN_1808ab460(uint64_t param_1,int64_t param_2,int32_t param_3)
   if ((int)uVar3 == 0) {
     iVar6 = 0;
     aiStack_98[0] = 0;
-    uVar1 = FUN_1808de650(param_1,aiStack_98);
+    uVar1 = SystemCore_EncryptionManager(param_1,aiStack_98);
     if (aiStack_98[0] < 0) {
       uVar3 = 0xd;
     }
     else {
       uVar5 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
       if ((aiStack_98[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar5) - uVar5)) ||
-         (uVar3 = FUN_180747f10(param_2,aiStack_98[0]), (int)uVar3 == 0)) {
+         (uVar3 = RenderingTextureManager0(param_2,aiStack_98[0]), (int)uVar3 == 0)) {
         if (uVar1 != 0x12) {
           if (uVar1 != 0) {
             return (uint64_t)uVar1;
@@ -78,7 +82,7 @@ uint64_t FUN_1808ab460(uint64_t param_1,int64_t param_2,int32_t param_3)
               iVar2 = DataFlowProcessor(param_1,auStack_68,1,0x5449554d);
               if (((iVar2 == 0) &&
                   (iVar2 = DataFlowProcessor(param_1,auStack_88,0,0x4249554d), iVar2 == 0)) &&
-                 (iVar2 = FUN_180899360(param_1,puVar4 + 2), iVar2 == 0)) {
+                 (iVar2 = SystemCore_ConfigManager(param_1,puVar4 + 2), iVar2 == 0)) {
                     // WARNING: Subroutine does not return
                 AdvancedSystemManager(param_1,auStack_88);
               }
@@ -117,14 +121,14 @@ uint64_t FUN_1808ab48f(void)
   
   iVar6 = 0;
   iStack0000000000000040 = 0;
-  uVar1 = FUN_1808de650();
+  uVar1 = SystemCore_EncryptionManager();
   if (iStack0000000000000040 < 0) {
     uVar3 = 0xd;
   }
   else {
     uVar5 = (int)*(uint *)(unaff_R14 + 0xc) >> 0x1f;
     if ((iStack0000000000000040 <= (int)((*(uint *)(unaff_R14 + 0xc) ^ uVar5) - uVar5)) ||
-       (uVar3 = FUN_180747f10(), (int)uVar3 == 0)) {
+       (uVar3 = RenderingTextureManager0(), (int)uVar3 == 0)) {
       if (uVar1 != 0x12) {
         if (uVar1 != 0) {
           return (uint64_t)uVar1;
@@ -146,7 +150,7 @@ uint64_t FUN_1808ab48f(void)
             puVar4[6] = &processed_var_9792_ptr;
             iVar2 = DataFlowProcessor();
             if (((iVar2 == 0) && (iVar2 = DataFlowProcessor(), iVar2 == 0)) &&
-               (iVar2 = FUN_180899360(), iVar2 == 0)) {
+               (iVar2 = SystemCore_ConfigManager(), iVar2 == 0)) {
                     // WARNING: Subroutine does not return
               AdvancedSystemManager();
             }
@@ -202,7 +206,7 @@ int FUN_1808ab4ea(int param_1)
         puVar2[6] = &processed_var_9792_ptr;
         iVar1 = DataFlowProcessor();
         if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(), iVar1 == 0)) &&
-           (iVar1 = FUN_180899360(), iVar1 == 0)) {
+           (iVar1 = SystemCore_ConfigManager(), iVar1 == 0)) {
                     // WARNING: Subroutine does not return
           AdvancedSystemManager();
         }
@@ -293,14 +297,14 @@ uint64_t FUN_1808ab6f0(uint64_t param_1,int64_t param_2,int32_t param_3)
   if ((int)uVar6 == 0) {
     iVar10 = 0;
     aiStack_58[0] = 0;
-    uVar4 = FUN_1808de650(param_1,aiStack_58);
+    uVar4 = SystemCore_EncryptionManager(param_1,aiStack_58);
     if (aiStack_58[0] < 0) {
       uVar6 = 0xd;
     }
     else {
       uVar9 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
       if ((aiStack_58[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar9) - uVar9)) ||
-         (uVar6 = FUN_180747f10(param_2,aiStack_58[0]), (int)uVar6 == 0)) {
+         (uVar6 = RenderingTextureManager0(param_2,aiStack_58[0]), (int)uVar6 == 0)) {
         if (uVar4 != 0x12) {
           if (uVar4 != 0) {
             return (uint64_t)uVar4;
@@ -387,7 +391,7 @@ uint64_t FUN_1808ab71c(int32_t param_1)
   
   iVar9 = 0;
   iStack0000000000000040 = 0;
-  uVar3 = FUN_1808de650(param_1,&stack0x00000040);
+  uVar3 = SystemCore_EncryptionManager(param_1,&stack0x00000040);
   if (iStack0000000000000040 < 0) {
     uVar5 = 0xd;
   }
@@ -395,7 +399,7 @@ uint64_t FUN_1808ab71c(int32_t param_1)
     uVar8 = (int)*(uint *)(unaff_RBP + 0xc) >> 0x1f;
     uVar10 = extraout_XMM0_Da;
     if ((iStack0000000000000040 <= (int)((*(uint *)(unaff_RBP + 0xc) ^ uVar8) - uVar8)) ||
-       (uVar5 = FUN_180747f10(extraout_XMM0_Da,iStack0000000000000040), uVar10 = extraout_XMM0_Da_00
+       (uVar5 = RenderingTextureManager0(extraout_XMM0_Da,iStack0000000000000040), uVar10 = extraout_XMM0_Da_00
        , (int)uVar5 == 0)) {
       if (uVar3 != 0x12) {
         if (uVar3 != 0) {
@@ -608,14 +612,14 @@ uint64_t FUN_1808ab910(uint64_t param_1,int64_t param_2,int32_t param_3)
   if ((int)uVar4 == 0) {
     iVar7 = 0;
     aiStack_48[0] = 0;
-    uVar2 = FUN_1808de650(param_1,aiStack_48);
+    uVar2 = SystemCore_EncryptionManager(param_1,aiStack_48);
     if (aiStack_48[0] < 0) {
       uVar4 = 0xd;
     }
     else {
       uVar6 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
       if ((aiStack_48[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar6) - uVar6)) ||
-         (uVar4 = FUN_180747f10(param_2,aiStack_48[0]), (int)uVar4 == 0)) {
+         (uVar4 = RenderingTextureManager0(param_2,aiStack_48[0]), (int)uVar4 == 0)) {
         if (uVar2 != 0x12) {
           if (uVar2 != 0) {
             return (uint64_t)uVar2;
@@ -682,14 +686,14 @@ uint64_t FUN_1808ab939(void)
   
   iVar7 = 0;
   iStack0000000000000040 = 0;
-  uVar2 = FUN_1808de650();
+  uVar2 = SystemCore_EncryptionManager();
   if (iStack0000000000000040 < 0) {
     uVar4 = 0xd;
   }
   else {
     uVar6 = (int)*(uint *)(unaff_RBP + 0xc) >> 0x1f;
     if ((iStack0000000000000040 <= (int)((*(uint *)(unaff_RBP + 0xc) ^ uVar6) - uVar6)) ||
-       (uVar4 = FUN_180747f10(), (int)uVar4 == 0)) {
+       (uVar4 = RenderingTextureManager0(), (int)uVar4 == 0)) {
       if (uVar2 != 0x12) {
         if (uVar2 != 0) {
           return (uint64_t)uVar2;

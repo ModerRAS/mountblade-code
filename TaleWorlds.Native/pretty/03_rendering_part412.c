@@ -115,7 +115,7 @@ void FUN_180494080(int64_t param_1,uint64_t param_2,int64_t param_3)
   *(int32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
   fVar9 = unaff_RBP[2];
   fVar10 = *unaff_RBP;
-  FUN_1800946d0(unaff_RBP + -8,in_RDX,param_1 + 0x2c8 + in_RAX * 0x40);
+  ErrorRecoverySystem(unaff_RBP + -8,in_RDX,param_1 + 0x2c8 + in_RAX * 0x40);
   fVar11 = *in_R10;
   fVar47 = in_R10[4];
   in_stack_00000060 = fVar11 * unaff_RBP[-0x18];

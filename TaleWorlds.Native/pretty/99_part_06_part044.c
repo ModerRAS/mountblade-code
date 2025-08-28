@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_06_part044.c - 11 个函数
 
@@ -160,7 +166,7 @@ LAB_1803d1b14:
           puVar15 = *(void **)(*param_2 + 0x18);
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_776_ptr,puVar15);
+        SystemParameterHandler(system_message_context,&processed_var_776_ptr,puVar15);
       }
       if ((iStack_1f4 == 2) || (*system_global_data_ptr != 0)) {
         pplVar1 = (int64_t **)(lVar11 + 0x30);
@@ -204,7 +210,7 @@ LAB_1803d1b14:
           if (plVar12 != (int64_t *)0x0) {
             (**(code **)(*plVar12 + 0x28))(plVar12);
           }
-          FUN_18005e110(uVar10,&plStack_1e8);
+          SystemCore_TimerManager(uVar10,&plStack_1e8);
         }
         if (plVar12 != (int64_t *)0x0) {
           (**(code **)(*plVar12 + 0x38))(plVar12);
@@ -391,10 +397,10 @@ void FUN_1803d22d0(int64_t param_1)
   *(uint64_t *)(param_1 + 0x5f0) = 0;
   *(int32_t *)(param_1 + 0x600) = 0;
   *(uint64_t *)(param_1 + 0x5e8) = &system_state_ptr;
-  FUN_18004b730();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
   FUN_1800ed380(param_1 + 0x4c0);
-  FUN_180057830();
+  DataTransformer0();
   if (*(int64_t **)(param_1 + 0x140) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x140) + 0x38))();
   }
@@ -772,10 +778,10 @@ void FUN_1803d5530(int64_t *param_1)
         *(int64_t *)(*(int64_t *)(system_message_buffer + 0x121e0) + 0x340) =
              (int64_t)*(int *)(system_main_module_state + 0x224);
       }
-      FUN_18029ad30(uVar3,0,lVar7);
+      SystemCore_MemoryManager(uVar3,0,lVar7);
       lVar7 = system_message_buffer;
       *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
-      FUN_18029de40(*(uint64_t *)(lVar7 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar7 + 0x1cd8),1);
       plStackX_18 = &uStackX_8;
       uStackX_8 = 0;
       plStackX_10 = plVar2;
@@ -794,7 +800,7 @@ void FUN_1803d5530(int64_t *param_1)
       plStackX_18 = plVar2;
       (**(code **)(*plVar2 + 0x28))(plVar2);
       FUN_1802435e0();
-      FUN_18023b050(plVar2);
+      SystemCore_NetworkHandler(plVar2);
       LOCK();
       *(int32_t *)(plVar2 + 0x70) = 0;
       UNLOCK();
@@ -808,7 +814,7 @@ void FUN_1803d5530(int64_t *param_1)
       }
     }
   }
-  FUN_180057830(param_1);
+  DataTransformer0(param_1);
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(param_1);
 }
@@ -840,7 +846,7 @@ code * FUN_1803d5780(int64_t param_1)
     *(int32_t *)(puVar3 + 3) = 3;
     if ((*(int64_t *)(param_1 + 0x96b8) - *(int64_t *)(param_1 + 0x96b0) & 0xfffffffffffffff8U) ==
         8) {
-      FUN_1800b88d0(puVar3);
+      PhysicsSystem_TriggersProcessor(puVar3);
     }
     puVar3[4] = *plVar2;
     *(int *)(puVar3 + 5) = (int)plVar2[1];
@@ -934,7 +940,7 @@ LAB_1803d59ef:
   uStack_370 = param_3;
   FUN_1803b8120(*(uint64_t *)(param_1 + 0x68),uStack_3d0);
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5704_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5704_ptr);
 }
 
 

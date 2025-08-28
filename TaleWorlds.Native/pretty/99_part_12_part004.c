@@ -1,3 +1,4 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -271,13 +272,13 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
   *(int32_t *)(param_1 + 0x18) = 0;
   *(uint64_t *)(param_1 + 8) = 0;
   uStack_68 = 0;
-  iVar13 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_30,1,8);
+  iVar13 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_30,1,8);
   if ((iVar13 != 0) || (iVar13 = func_0x00018076b6b0(auStack_30,&processed_var_9732_ptr,4), iVar13 != 0))
-  goto FUN_1807ca2c6;
+  goto UISystem_InputHandler;
   uStack_68 = 0;
-  iVar13 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_44,1,4);
+  iVar13 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_44,1,4);
   if ((iVar13 != 0) || (iVar13 = func_0x00018076b6b0(auStack_44,&processed_var_7316_ptr,4), iVar13 != 0))
-  goto FUN_1807ca2c6;
+  goto UISystem_InputHandler;
   *(uint64_t *)(param_1 + 0x1a8) = 0;
   *(uint64_t *)(param_1 + 0x1b0) = 0;
   *(uint64_t *)(param_1 + 0x1b8) = 0;
@@ -290,7 +291,7 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
   *(uint64_t *)(param_1 + 0x1e8) = 0;
   *(int32_t *)(param_1 + 0x1e0) = 0;
   iVar13 = FUN_1808168c0(param_1,uStack_2c,0);
-  if ((iVar13 != 0) || (*(int64_t *)(param_1 + 0x230) == 0)) goto FUN_1807ca2c6;
+  if ((iVar13 != 0) || (*(int64_t *)(param_1 + 0x230) == 0)) goto UISystem_InputHandler;
   if (*(int *)(param_1 + 0x110) == -1) {
     uStack_68 = CONCAT71(uStack_68._1_7_,1);
                     // WARNING: Subroutine does not return
@@ -306,12 +307,12 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
   psVar6 = *(short **)(param_1 + 0x230);
   *(int16_t *)puVar2 = 1;
   sVar3 = *psVar6;
-  if ((sVar3 == 0x50) || (sVar3 == 0x55)) goto FUN_1807ca2c6;
+  if ((sVar3 == 0x50) || (sVar3 == 0x55)) goto UISystem_InputHandler;
   if (sVar3 == -2) {
     if (((*(int64_t *)(psVar6 + 0xc) != 0x10000000000001) ||
         (*(int64_t *)(psVar6 + 0x10) != 0x719b3800aa000080)) &&
        ((*(int64_t *)(psVar6 + 0xc) != 0x10000000000003 ||
-        (*(int64_t *)(psVar6 + 0x10) != 0x719b3800aa000080)))) goto FUN_1807ca2c6;
+        (*(int64_t *)(psVar6 + 0x10) != 0x719b3800aa000080)))) goto UISystem_InputHandler;
     uVar12 = *(uint64_t *)(psVar6 + 4);
     *puVar2 = *(uint64_t *)psVar6;
     *(uint64_t *)(param_1 + 0x188) = uVar12;
@@ -340,7 +341,7 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
       *(int32_t *)(lVar15 + 8) = 3;
     }
     else {
-      if (sVar4 != 0x20) goto FUN_1807ca2c6;
+      if (sVar4 != 0x20) goto UISystem_InputHandler;
       *(int32_t *)(lVar15 + 8) = 4;
     }
   }
@@ -361,7 +362,7 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
     if (sVar3 == 3) {
       *(int32_t *)(lVar15 + 8) = 5;
 LAB_1807ca2a3:
-      if (*(short *)(param_1 + 0x18e) != 0x20) goto FUN_1807ca2c6;
+      if (*(short *)(param_1 + 0x18e) != 0x20) goto UISystem_InputHandler;
     }
     else {
       sVar4 = *(short *)(param_1 + 0x18e);
@@ -375,7 +376,7 @@ LAB_1807ca2a3:
         *(int32_t *)(lVar15 + 8) = 3;
       }
       else {
-        if (sVar4 != 0x20) goto FUN_1807ca2c6;
+        if (sVar4 != 0x20) goto UISystem_InputHandler;
         *(int32_t *)(lVar15 + 8) = 4;
       }
     }
@@ -392,7 +393,7 @@ LAB_1807ca2a3:
     if ((psVar6[8] != 2) ||
        (((2 < (ushort)psVar6[1] || (uVar5 = psVar6[6], uVar5 == 0)) ||
         ((int)(((uint)uVar5 / (uint)(ushort)psVar6[1]) * 2 + -7) < (int)(uint)(ushort)psVar6[9]))))
-    goto FUN_1807ca2c6;
+    goto UISystem_InputHandler;
     lVar15 = *(int64_t *)(param_1 + 8);
     uVar14 = (*(uint *)(lVar15 + 0x14) / (uint)uVar5) * (uint)(ushort)psVar6[9];
     if (*(uint *)(lVar15 + 0x18) < uVar14) {
@@ -424,13 +425,13 @@ LAB_1807ca2a3:
   else {
     uStack_68 = CONCAT44(uStack_68._4_4_,0x10000);
     iVar13 = acmFormatSuggest(0,psVar6,puVar2,0x12);
-    if (iVar13 != 0) goto FUN_1807ca2c6;
+    if (iVar13 != 0) goto UISystem_InputHandler;
     uStack_50 = 4;
     uStack_58 = 0;
     uStack_60 = 0;
     uStack_68 = 0;
     iVar13 = acmStreamOpen(&uStack_38,0,*(uint64_t *)(param_1 + 0x230),puVar2);
-    if (iVar13 != 0) goto FUN_1807ca2c6;
+    if (iVar13 != 0) goto UISystem_InputHandler;
     sVar4 = *(short *)(param_1 + 0x18e);
     *(uint64_t *)(param_1 + 0x178) = uStack_38;
     lVar15 = *(int64_t *)(param_1 + 8);
@@ -444,7 +445,7 @@ LAB_1807ca2a3:
       *(int32_t *)(lVar15 + 8) = 3;
     }
     else {
-      if (sVar4 != 0x20) goto FUN_1807ca2c6;
+      if (sVar4 != 0x20) goto UISystem_InputHandler;
       *(int32_t *)(lVar15 + 8) = 4;
     }
     *(uint *)(*(int64_t *)(param_1 + 8) + 0xc) = (uint)*(ushort *)(param_1 + 0x182);
@@ -479,7 +480,7 @@ LAB_1807ca473:
     if (uVar5 != 0) {
       *(uint *)(param_1 + 0x200) = (uint)uVar5;
       acmStreamSize(uStack_38,uVar5,auStack_40,0);
-      if (auStack_40[0] == 0) goto FUN_1807ca2c6;
+      if (auStack_40[0] == 0) goto UISystem_InputHandler;
       lVar15 = *(int64_t *)(param_1 + 8);
       if (*(uint *)(lVar15 + 0xc) != 0) {
         iVar13 = *(int *)(lVar15 + 8);
@@ -514,7 +515,7 @@ LAB_1807ca6d1:
       lVar15 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(param_1 + 0x200),
                              &processed_var_8368_ptr,0x178);
       *(int64_t *)(param_1 + 0x1f8) = lVar15;
-      if (lVar15 == 0) goto FUN_1807ca2c6;
+      if (lVar15 == 0) goto UISystem_InputHandler;
     }
     *(uint *)(*(int64_t *)(param_1 + 8) + 0xc) =
          (uint)*(ushort *)(*(int64_t *)(param_1 + 0x230) + 2);
@@ -535,7 +536,7 @@ LAB_1807ca6d1:
       *(int32_t *)(param_1 + 0x18) = 0;
     }
   }
-FUN_1807ca2c6:
+UISystem_InputHandler:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_88);
 }
@@ -582,7 +583,7 @@ void FUN_1807ca099(void)
   
   iVar13 = func_0x00018076b6b0(&stack0x00000058,&processed_var_9732_ptr,unaff_R15D + 4);
   if (iVar13 != 0) goto LAB_1807ca2b6;
-  iVar13 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),&stack0x00000044,unaff_EBP,
+  iVar13 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),&stack0x00000044,unaff_EBP,
                          unaff_R15D + 4);
   if ((iVar13 != 0) ||
      (iVar13 = func_0x00018076b6b0(&stack0x00000044,&processed_var_7316_ptr,unaff_R15D + 4), iVar13 != 0))
@@ -848,8 +849,8 @@ LAB_1807ca2b6:
 
 
 
-// 函数: void FUN_1807ca2c6(void)
-void FUN_1807ca2c6(void)
+// 函数: void UISystem_InputHandler(void)
+void UISystem_InputHandler(void)
 
 {
   uint64_t in_stack_00000060;

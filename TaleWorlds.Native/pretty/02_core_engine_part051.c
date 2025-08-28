@@ -251,9 +251,9 @@ void FUN_18008d810(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 {
   if (param_2 != (uint64_t *)0x0) {
     FUN_18008d810(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-    FUN_18004b730();
-    FUN_180058370(param_2 + 0xc,param_2[0xe]);
-    FUN_18004b730(param_2 + 6);
+    > HighFreq_ParticleSystem1();
+    RenderingSystem_CameraSystem(param_2 + 0xc,param_2[0xe]);
+    > HighFreq_ParticleSystem1(param_2 + 6);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(param_2);
   }

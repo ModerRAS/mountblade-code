@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part052.c - 渲染系统高级操作模块 - 13个函数
@@ -367,7 +371,7 @@ int64_t rendering_parameter_initializer(int64_t param_context)
 // - param_2-param_4: 清理参数（传递给底层函数）
 // 
 // 注意：
-// - 底层函数FUN_180059ba0不返回（可能包含跳转或异常处理）
+// - 底层函数DataValidator0不返回（可能包含跳转或异常处理）
 // - 使用全局变量跟踪资源状态
 void rendering_resource_cleanup(int64_t resource_context, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
 {
@@ -384,7 +388,7 @@ void rendering_resource_cleanup(int64_t resource_context, uint64_t cleanup_param
       *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
   }
   
   // 清理第二个资源（位于偏移量0x28）
@@ -394,7 +398,7 @@ void rendering_resource_cleanup(int64_t resource_context, uint64_t cleanup_param
       *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
   }
   
   // 清理第三个资源（位于偏移量0x18）
@@ -404,7 +408,7 @@ void rendering_resource_cleanup(int64_t resource_context, uint64_t cleanup_param
       *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2, cleanup_param2, cleanup_param3, cleanup_flag);
   }
   return;
 }
@@ -421,7 +425,7 @@ void rendering_resource_cleanup(int64_t resource_context, uint64_t cleanup_param
 // - param_1: 渲染状态结构体指针
 // 
 // 注意：
-// - 底层函数FUN_180059ba0不返回（可能包含跳转或异常处理）
+// - 底层函数DataValidator0不返回（可能包含跳转或异常处理）
 void rendering_state_reset(int32_t *state_context)
 {
   int64_t resource_ptr;
@@ -439,7 +443,7 @@ void rendering_state_reset(int32_t *state_context)
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
   }
   
   // 释放第二个资源（位于偏移量10）
@@ -450,7 +454,7 @@ void rendering_state_reset(int32_t *state_context)
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
   }
   
   // 释放第三个资源（位于偏移量14）
@@ -461,7 +465,7 @@ void rendering_state_reset(int32_t *state_context)
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
   }
   
   // 重置其他状态字段
@@ -674,7 +678,7 @@ void rendering_parameter_processor(int64_t param_context)
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
     // 调用资源释放函数（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
   }
   
   // 清理资源（路径2）
@@ -683,7 +687,7 @@ void rendering_parameter_processor(int64_t param_context)
     *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
   }
   // 调用资源释放函数（该函数不返回）
-  FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+  DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
 }
 
 // 函数: rendering_capacity_expander - 渲染系统容量扩展器
@@ -751,7 +755,7 @@ void rendering_capacity_expander(int64_t param_context, int required_capacity)
       if (required_capacity < new_capacity) {
         current_size = new_capacity;
       }
-      FUN_18011dd10(current_capacity, current_size);  // 重新分配索引缓冲区
+      NetworkSystem_ErrorHandler(current_capacity, current_size);  // 重新分配索引缓冲区
     }
     
     // 初始化新分配的索引缓冲区
@@ -829,7 +833,7 @@ void rendering_array_initializer(void)
     if (target_size < (int)expansion_factor) {
       required_capacity = (uint64_t)expansion_factor;
     }
-    FUN_18011dd10(default_value, required_capacity);  // 重新分配索引数组
+    NetworkSystem_ErrorHandler(default_value, required_capacity);  // 重新分配索引数组
   }
   
   // 初始化索引数组元素
@@ -904,7 +908,7 @@ void rendering_index_cleaner(int32_t init_value)
     if (target_size < (int)expansion_factor) {
       required_capacity = (uint64_t)expansion_factor;
     }
-    FUN_18011dd10(init_value, required_capacity);  // 重新分配索引数组
+    NetworkSystem_ErrorHandler(init_value, required_capacity);  // 重新分配索引数组
   }
   
   // 初始化索引数组元素
@@ -930,7 +934,7 @@ void rendering_state_finalizer(void)
   int64_t target_size;
   int *array_capacity;
   
-  FUN_18011dd10();  // 调用清理函数
+  NetworkSystem_ErrorHandler();  // 调用清理函数
   array_ptr = (int64_t)*array_capacity;
   if (*array_capacity < (int)target_size) {
     for (; array_ptr < target_size; array_ptr = array_ptr + 1) {

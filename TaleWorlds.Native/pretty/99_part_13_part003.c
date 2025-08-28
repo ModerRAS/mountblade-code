@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* UISystem_Controller - UISystem_Controller */
+#define UISystem_Controller UISystem_Controller
+
+
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -36,7 +42,7 @@ uint64_t FUN_1808a75c0(uint64_t *param_1,int64_t param_2)
   int32_t uStack_2c;
   
   auStackX_20[0] = 0;
-  uVar1 = FUN_1808afe30(*param_1,auStackX_20);
+  uVar1 = SystemCore_Manager(*param_1,auStackX_20);
   if ((int)uVar1 == 0) {
     iVar6 = 0;
     uVar5 = auStackX_20[0] & 1;
@@ -44,7 +50,7 @@ uint64_t FUN_1808a75c0(uint64_t *param_1,int64_t param_2)
     uVar7 = auStackX_20[0] >> 1;
     if (uVar7 != 0) {
       do {
-        uVar1 = FUN_1808dde10(param_1,auStackX_8[0]);
+        uVar1 = UISystemEventHandler(param_1,auStackX_8[0]);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -76,7 +82,7 @@ uint64_t FUN_1808a75c0(uint64_t *param_1,int64_t param_2)
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar1 = FUN_180899090(uVar1,&uStack_38);
+          uVar1 = UIEventHandler(uVar1,&uStack_38);
           if ((int)uVar1 != 0) {
             return uVar1;
           }
@@ -110,7 +116,7 @@ LAB_1808a7763:
             return uVar1;
           }
         }
-        uVar1 = FUN_1808de0e0(param_1,auStackX_8);
+        uVar1 = SystemCore_Initializer(param_1,auStackX_8);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -156,7 +162,7 @@ uint64_t FUN_1808a75ed(int32_t param_1)
   uVar5 = unaff_R12D;
   if (in_stack_000000a8 >> 1 != 0) {
     do {
-      uVar2 = FUN_1808dde10(param_1,uStack0000000000000090);
+      uVar2 = UISystemEventHandler(param_1,uStack0000000000000090);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -189,7 +195,7 @@ uint64_t FUN_1808a75ed(int32_t param_1)
         if ((int)uVar2 != 0) {
           return uVar2;
         }
-        uVar2 = FUN_180899090(uVar1,&stack0x00000050);
+        uVar2 = UIEventHandler(uVar1,&stack0x00000050);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -224,7 +230,7 @@ LAB_1808a7763:
           return uVar2;
         }
       }
-      uVar2 = FUN_1808de0e0(uVar6,&stack0x00000090);
+      uVar2 = SystemCore_Initializer(uVar6,&stack0x00000090);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -283,7 +289,7 @@ uint64_t FUN_1808a77c0(int64_t *param_1,uint64_t *param_2,uint param_3)
     puVar1 = (uint64_t *)*param_2;
     auStackX_8[0] = 0;
     for (; puVar1 != param_2; puVar1 = (uint64_t *)*puVar1) {
-      uVar6 = FUN_1808ddf00(param_1,auStackX_8[0]);
+      uVar6 = UltraHighFreq_ResourceLoader1(param_1,auStackX_8[0]);
       if ((int)uVar6 != 0) {
         return uVar6;
       }
@@ -299,7 +305,7 @@ uint64_t FUN_1808a77c0(int64_t *param_1,uint64_t *param_2,uint param_3)
       if ((int)uVar6 != 0) {
         return uVar6;
       }
-      uVar6 = FUN_1808de160(param_1,auStackX_8);
+      uVar6 = UISystem_Controller(param_1,auStackX_8);
       if ((int)uVar6 != 0) {
         return uVar6;
       }
@@ -331,7 +337,7 @@ uint64_t FUN_1808a7843(void)
     if (puVar1 == unaff_R14) {
       return 0;
     }
-    uVar2 = FUN_1808ddf00();
+    uVar2 = UltraHighFreq_ResourceLoader1();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -345,7 +351,7 @@ uint64_t FUN_1808a7843(void)
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808de160();
+    uVar2 = UISystem_Controller();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -409,7 +415,7 @@ uint64_t FUN_1808a78f0(int64_t *param_1,uint64_t *param_2)
     auStackX_10[0] = 0;
     for (; ((int32_t *)*param_2 <= puVar3 &&
            (puVar3 < (int32_t *)*param_2 + *(int *)(param_2 + 1))); puVar3 = puVar3 + 1) {
-      uVar4 = FUN_1808ddf00(param_1,auStackX_10[0],puVar3);
+      uVar4 = UltraHighFreq_ResourceLoader1(param_1,auStackX_10[0],puVar3);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -422,7 +428,7 @@ uint64_t FUN_1808a78f0(int64_t *param_1,uint64_t *param_2)
       if ((int)uVar4 != 0) {
         return uVar4;
       }
-      uVar4 = FUN_1808de160(param_1,auStackX_10);
+      uVar4 = UISystem_Controller(param_1,auStackX_10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -451,7 +457,7 @@ uint64_t FUN_1808a7959(uint64_t param_1,int32_t param_2)
        ((int32_t *)*unaff_RSI + *(int *)(unaff_RSI + 1) <= puVar2)) {
       return 0;
     }
-    uVar1 = FUN_1808ddf00();
+    uVar1 = UltraHighFreq_ResourceLoader1();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -462,7 +468,7 @@ uint64_t FUN_1808a7959(uint64_t param_1,int32_t param_2)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_1808de160();
+    uVar1 = UISystem_Controller();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -506,14 +512,14 @@ uint64_t FUN_1808a79f0(uint64_t *param_1,int64_t *param_2)
   uint auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  uVar2 = FUN_1808afe30(*param_1,auStackX_18);
+  uVar2 = SystemCore_Manager(*param_1,auStackX_18);
   uVar1 = auStackX_18[0];
   if ((int)uVar2 == 0) {
     uVar3 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
     uVar5 = auStackX_18[0] & 1;
     uVar6 = auStackX_18[0] >> 1;
     if (((int)uVar6 <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar3) - uVar3)) ||
-       (uVar2 = FUN_180748010(param_2,uVar6), (int)uVar2 == 0)) {
+       (uVar2 = UltraHighFreq_StateController1(param_2,uVar6), (int)uVar2 == 0)) {
       iVar4 = (int)param_2[1];
       if (iVar4 < (int)uVar6) {
                     // WARNING: Subroutine does not return
@@ -524,12 +530,12 @@ uint64_t FUN_1808a79f0(uint64_t *param_1,int64_t *param_2)
       auStackX_8[0] = 0;
       if (uVar1 >> 1 != 0) {
         do {
-          uVar2 = FUN_1808dde10(param_1,auStackX_8[0]);
+          uVar2 = UISystemEventHandler(param_1,auStackX_8[0]);
           if ((int)uVar2 != 0) {
             return uVar2;
           }
           if (*(int *)(param_1[1] + 0x18) == 0) {
-            uVar2 = FUN_180899090(*param_1,(int64_t)iVar4 * 0x10 + *param_2);
+            uVar2 = UIEventHandler(*param_1,(int64_t)iVar4 * 0x10 + *param_2);
           }
           else {
             uVar2 = 0x1c;
@@ -537,7 +543,7 @@ uint64_t FUN_1808a79f0(uint64_t *param_1,int64_t *param_2)
           if ((int)uVar2 != 0) {
             return uVar2;
           }
-          uVar2 = FUN_1808de0e0(param_1,auStackX_8);
+          uVar2 = SystemCore_Initializer(param_1,auStackX_8);
           if ((int)uVar2 != 0) {
             return uVar2;
           }
@@ -566,7 +572,7 @@ uint64_t FUN_1808a7a1f(void)
   
   uVar3 = in_stack_00000050 >> 1;
   if (((int)uVar3 <= (int)((in_EAX ^ (int)in_EAX >> 0x1f) - ((int)in_EAX >> 0x1f))) ||
-     (uVar1 = FUN_180748010(), (int)uVar1 == 0)) {
+     (uVar1 = UltraHighFreq_StateController1(), (int)uVar1 == 0)) {
     iVar2 = (int)unaff_R14[1];
     if (iVar2 < (int)uVar3) {
                     // WARNING: Subroutine does not return
@@ -576,12 +582,12 @@ uint64_t FUN_1808a7a1f(void)
     iVar2 = 0;
     if (in_stack_00000050 >> 1 != 0) {
       do {
-        uVar1 = FUN_1808dde10();
+        uVar1 = UISystemEventHandler();
         if ((int)uVar1 != 0) {
           return uVar1;
         }
         if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-          uVar1 = FUN_180899090(*unaff_RDI,(int64_t)iVar2 * 0x10 + *unaff_R14);
+          uVar1 = UIEventHandler(*unaff_RDI,(int64_t)iVar2 * 0x10 + *unaff_R14);
         }
         else {
           uVar1 = 0x1c;
@@ -589,7 +595,7 @@ uint64_t FUN_1808a7a1f(void)
         if ((int)uVar1 != 0) {
           return uVar1;
         }
-        uVar1 = FUN_1808de0e0();
+        uVar1 = SystemCore_Initializer();
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -619,12 +625,12 @@ uint64_t FUN_1808a7a7a(void)
   uStack0000000000000040 = in_EAX;
   if (unaff_ESI != 0) {
     do {
-      uVar1 = FUN_1808dde10();
+      uVar1 = UISystemEventHandler();
       if ((int)uVar1 != 0) {
         return uVar1;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar1 = FUN_180899090(*unaff_RDI,(int64_t)iVar2 * 0x10 + *unaff_R14);
+        uVar1 = UIEventHandler(*unaff_RDI,(int64_t)iVar2 * 0x10 + *unaff_R14);
       }
       else {
         uVar1 = 0x1c;
@@ -632,7 +638,7 @@ uint64_t FUN_1808a7a7a(void)
       if ((int)uVar1 != 0) {
         return uVar1;
       }
-      uVar1 = FUN_1808de0e0();
+      uVar1 = SystemCore_Initializer();
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -697,7 +703,7 @@ uint64_t FUN_1808a7b00(int64_t *param_1,uint64_t *param_2)
     auStackX_10[0] = 0;
     for (; (*param_2 <= uVar3 && (uVar3 < (int64_t)(int)param_2[1] * 0x10 + *param_2));
         uVar3 = uVar3 + 0x10) {
-      uVar4 = FUN_1808ddf00(param_1,auStackX_10[0]);
+      uVar4 = UltraHighFreq_ResourceLoader1(param_1,auStackX_10[0]);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -708,7 +714,7 @@ uint64_t FUN_1808a7b00(int64_t *param_1,uint64_t *param_2)
       if ((int)uVar4 != 0) {
         return uVar4;
       }
-      uVar4 = FUN_1808de160(param_1,auStackX_10);
+      uVar4 = UISystem_Controller(param_1,auStackX_10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -735,7 +741,7 @@ uint64_t FUN_1808a7b69(uint64_t param_1,int32_t param_2)
     if ((uVar2 < *unaff_RSI) || ((int64_t)(int)unaff_RSI[1] * 0x10 + *unaff_RSI <= uVar2)) {
       return 0;
     }
-    uVar1 = FUN_1808ddf00();
+    uVar1 = UltraHighFreq_ResourceLoader1();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -744,7 +750,7 @@ uint64_t FUN_1808a7b69(uint64_t param_1,int32_t param_2)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar1 = FUN_1808de160();
+    uVar1 = UISystem_Controller();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -877,7 +883,7 @@ uint64_t FUN_1808a7ce0(int64_t *param_1,int64_t *param_2,int param_3)
         goto LAB_1808a7dcd;
       }
     }
-    uVar2 = FUN_180769ed0(*param_1,auStackX_8,1,4,0);
+    uVar2 = SystemPerformanceOptimizer(*param_1,auStackX_8,1,4,0);
   }
 LAB_1808a7dcd:
   if (((int)uVar2 == 0) && (uVar2 = 0xd, auStackX_18[0] = auStackX_8[0], auStackX_8[0] < 0x1f)) {
@@ -934,7 +940,7 @@ void FUN_1808a7d01(int64_t *param_1,int64_t *param_2)
         goto LAB_1808a7dcd;
       }
     }
-    iVar2 = FUN_180769ed0(*param_1,&stack0x00000040,1,4,0);
+    iVar2 = SystemPerformanceOptimizer(*param_1,&stack0x00000040,1,4,0);
   }
 LAB_1808a7dcd:
   if (iVar2 == 0) {
@@ -973,7 +979,7 @@ void FUN_1808a7d73(int64_t param_1)
         goto LAB_1808a7dcd;
       }
     }
-    iVar1 = FUN_180769ed0(*unaff_RBX,&stack0x00000040,1,4,0);
+    iVar1 = SystemPerformanceOptimizer(*unaff_RBX,&stack0x00000040,1,4,0);
   }
 LAB_1808a7dcd:
   if (iVar1 == 0) {

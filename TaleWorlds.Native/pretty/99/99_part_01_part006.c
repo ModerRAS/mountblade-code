@@ -294,7 +294,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     if (status1 == status2) {
         // 主线程处理逻辑
         if (*(int64_t *)(handle + 0x121e0) != 0) {
-            FUN_18023b050();  // 执行资源清理函数
+            SystemCore_NetworkHandler();  // 执行资源清理函数
             stack_handle_ptr5 = *(int64_t **)(handle + 0x121e0);
             *(uint64_t *)(handle + 0x121e0) = 0;
             
@@ -306,12 +306,12 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     }
     else {
         // 子线程处理逻辑
-        FUN_18005e630(system_context_ptr);  // 执行线程同步函数
+        SystemCore_FileSystem(system_context_ptr);  // 执行线程同步函数
         stack_handle_ptr3 = stack_handle_array;
         stack_ptr1 = &rendering_buffer_2816_ptr;
         code_ptr = FUN_1800adc50;
         stack_handle_array[0] = handle;
-        FUN_18005c650(stack_handle_array);  // 执行线程初始化
+        SystemCore_SecurityManager(stack_handle_array);  // 执行线程初始化
     }
     
     // 执行资源管理操作
@@ -419,7 +419,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         // 处理错误状态
         if ((status2 + SPECIAL_ADDRESS_3 & 0xfffffffd) == 0) {
             config_val1 = (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x138))();
-            FUN_180220810(config_val1, &processed_var_6384_ptr);
+            SystemCore_Loader(config_val1, &processed_var_6384_ptr);
         }
     }
     else {
@@ -602,7 +602,7 @@ uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
         // 处理错误状态
         if ((status2 + SPECIAL_ADDRESS_3 & 0xfffffffd) == 0) {
             config_val = (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x138))();
-            FUN_180220810(config_val, &processed_var_6384_ptr);
+            SystemCore_Loader(config_val, &processed_var_6384_ptr);
         }
         result_code = 0;
     }
@@ -760,7 +760,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
                     (*(int64_t **)(stack_handle1 + 0x1d78), &stack_int2, data_ptr1, &stack_ptr1);
     
     if (temp_int1 < 0) {
-        FUN_180220810(temp_int1, &memory_allocator_3072_ptr);
+        SystemCore_Loader(temp_int1, &memory_allocator_3072_ptr);
     }
     else {
         temp_handle1 = stack_handle1;
@@ -781,7 +781,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
             temp_int1 = (**(code **)(**(int64_t **)(stack_handle1 + 0x1d78) + 0x38))
                             (*(int64_t **)(stack_handle1 + 0x1d78), stack_ptr1, &stack_val1, &stack_ptr2);
             if (temp_int1 < 0) {
-                FUN_180220810(temp_int1, &memory_allocator_3264_ptr);
+                SystemCore_Loader(temp_int1, &memory_allocator_3264_ptr);
                 goto LAB_1800a4380;
             }
         }
@@ -812,7 +812,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
             temp_int1 = (**(code **)(**(int64_t **)(temp_handle1 + 0x1d78) + 0x40))
                             (*(int64_t **)(temp_handle1 + 0x1d78), stack_ptr1, &stack_val1, &stack_ptr3);
             if (temp_int1 < 0) {
-                FUN_180220810(temp_int1, &memory_allocator_3168_ptr);
+                SystemCore_Loader(temp_int1, &memory_allocator_3168_ptr);
                 goto LAB_1800a4380;
             }
         }
@@ -1036,11 +1036,11 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
                     (stack_ptr_ptr1[0x3af], &stack_uint5, 0, &stack_data4);
     
     if (status1 < 0) {
-        FUN_180220810(status1, &memory_allocator_3400_ptr);
+        SystemCore_Loader(status1, &memory_allocator_3400_ptr);
     }
     
     *(uint64_t *)(sync_handle + 0x170) = stack_data4;
-    stack_ptr_ptr1 = (void **)FUN_180049b30(stack_buffer4, sync_handle + 0x10);
+    stack_ptr_ptr1 = (void **)SystemCore_EventHandler(stack_buffer4, sync_handle + 0x10);
     *stack_ptr_ptr1 = &system_state_ptr;
     *(int64_t *)(sync_handle + 0x168) = sync_handle;
     data_word1 = *(ushort *)(sync_handle + 0x332);
@@ -1300,7 +1300,7 @@ LAB_1800a46f5:
     LOCK();
     *(int8_t *)(sync_handle + 900) = 1;
     UNLOCK();
-    FUN_18023a940(sync_handle);
+    SystemCore_Scheduler(sync_handle);
     stack_ptr_ptr2 = &stack_ptr2;
     stack_ptr2 = &memory_allocator_3432_ptr;
     stack_byte_ptr2 = stack_buffer3;

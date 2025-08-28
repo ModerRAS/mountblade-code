@@ -51,7 +51,7 @@
 #define SystemConfigManager FUN_1800cd410
 
 // 系统状态验证器
-#define SystemStateValidator FUN_1802c22a0
+#define SystemStateValidator SystemData_Processor
 
 // 系统初始化检查器
 #define SystemInitChecker FUN_180178540
@@ -72,7 +72,7 @@
 #define SystemConfigInitializer FUN_1800ca380
 
 // 系统数据管理器
-#define SystemDataManager FUN_18029de40
+#define SystemDataManager SystemCore_ProcessorEx
 
 // 系统状态处理器
 #define SystemStateProcessor FUN_1802c8fe0
@@ -96,7 +96,7 @@
 #define SystemExecutor FUN_1800cbf90
 
 // 系统复制器
-#define SystemCopier FUN_18029fc10
+#define SystemCopier SystemCore_ThreadManager
 
 // 系统锁管理器
 #define SystemLockManager _Mtx_lock
@@ -108,19 +108,19 @@
 #define SystemErrorHandler __Throw_C_error_std__YAXH_Z
 
 // 系统状态获取器
-#define SystemStateGetter FUN_180244ff0
+#define SystemStateGetter SystemOptimizer
 
 // 系统处理器
-#define SystemProcessor FUN_180245280
+#define SystemProcessor SystemLog_Manager
 
 // 系统消息处理器
-#define SystemMessageProcessor FUN_18029c8a0
+#define SystemMessageProcessor UtilitiesSystem_MathCalculator
 
 // 系统队列管理器
-#define SystemQueueManager FUN_18029d760
+#define SystemQueueManager CoreSystem_Initializer
 
 // 系统缓冲区管理器
-#define SystemBufferManager FUN_18029d930
+#define SystemBufferManager NetworkSystem_DataProcessor0
 
 // 系统安全Cookie变量 - 用于栈保护和安全检查
 #define SystemSecurityCookie GET_SECURITY_COOKIE()

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part045.c - 13 个函数
 
 // 函数: void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
@@ -18,7 +22,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   
   puVar2 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   puVar4 = puVar2;
-  FUN_1803456e0(puVar2,param_2,param_1);
+  SystemCore_SyncController(puVar2,param_2,param_1);
   *puVar4 = &ui_system_data_1216_ptr;
   puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
@@ -33,7 +37,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   *(int16_t *)(puVar3 + 1) = 0x6e6f;
   *(int8_t *)((int64_t)puVar3 + 6) = 0;
   uStack_30 = 6;
-  FUN_1803460a0(puVar2,&puStack_40,puVar2 + 0xe,0xb);
+  SystemNetwork_Processor(puVar2,&puStack_40,puVar2 + 0xe,0xb);
   puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager(puVar3);
@@ -94,7 +98,7 @@ void FUN_1804c61e0(int64_t param_1)
     uStack_64 = *(int32_t *)(lVar3 + 100);
     uStack_60 = *(int32_t *)(lVar3 + 0x68);
     uStack_5c = *(int32_t *)(lVar3 + 0x6c);
-    FUN_18063b5f0(&uStack_38,&uStack_78);
+    SystemSecurityManager(&uStack_38,&uStack_78);
     puVar2 = (int32_t *)(lVar3 + 0x30);
     uVar4 = *(int32_t *)(lVar3 + 0x60);
     uVar5 = *(int32_t *)(lVar3 + 100);
@@ -134,8 +138,8 @@ void FUN_1804c61e0(int64_t param_1)
       puVar2[0xd] = uVar5;
       puVar2[0xe] = uVar6;
       puVar2[0xf] = uVar7;
-      FUN_180254610(lVar3);
-      FUN_1802eace0();
+      RenderingSystem_CameraController(lVar3);
+      UtilitiesSystem_StringProcessor();
     }
   }
   return;

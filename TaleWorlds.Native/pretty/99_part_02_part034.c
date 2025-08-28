@@ -988,7 +988,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                             *(int32_t*)(stack_string + 0x1c) = stack_uint64_2._4_4_;
                             *(int**)(stack_string + 0x20) = int_ptr;
                             
-                            FUN_18015b810((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
+                            SystemCore_DataTransformer((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
                                          0xffffffffffffffff, &stack_string, process_handle, string_array_ptr);
                             return;
                         }
@@ -1179,7 +1179,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                 *(int32_t*)(stack_string + 0x1c) = stack_uint64_2._4_4_;
                                 *(int**)(stack_string + 0x20) = int_ptr;
                                 
-                                FUN_18015b810((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
+                                SystemCore_DataTransformer((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
                                              0xffffffffffffffff, &stack_string, process_handle, string_array_ptr);
                                 return;
                             }
@@ -1367,7 +1367,7 @@ process_entity_init:
     *(int32_t*)(stack_string + 0x1c) = stack_uint64_2._4_4_;
     *(int**)(stack_string + 0x20) = int_ptr;
     
-    FUN_18015b810((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
+    SystemCore_DataTransformer((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
                  0xffffffffffffffff, &stack_string, process_handle, string_array_ptr);
     return;
     
@@ -1412,7 +1412,7 @@ process_game_entity:
             *(int32_t*)(stack_string + 0x1c) = stack_uint64_2._4_4_;
             *(int**)(stack_string + 0x20) = int_ptr;
             
-            FUN_18015b810((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
+            SystemCore_DataTransformer((int)int_ptr, 0, (int)(length >> 2) - (int)(length >> 0x3f), 0x40,
                          0xffffffffffffffff, &stack_string, process_handle, string_array_ptr);
             return;
         }

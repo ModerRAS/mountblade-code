@@ -1,3 +1,4 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -39,14 +40,14 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,int64_t param_3,int32_t para
       uStack_60 = 0xc;
       strcpy_s(auStack_58,0x10,&processed_var_5088_ptr);
       lVar2 = system_system_data_config;
-      iVar3 = FUN_180191c00(system_system_data_config,&puStack_70);
+      iVar3 = RenderingSystem_PostProcessor(system_system_data_config,&puStack_70);
       if ((iVar3 == -1) ||
          (lVar4 = (int64_t)iVar3 * 0x68 + *(int64_t *)(lVar2 + 0x38), lVar4 == 0)) {
         lVar4 = *(int64_t *)(lVar2 + 0x28);
       }
       system_system_config_config = *(int32_t *)(lVar4 + 100);
       puStack_70 = &system_state_ptr;
-      FUN_1808fcb30(&system_ptr_9e58);
+      SystemCore_StateController(&system_ptr_9e58);
     }
   }
   if (((param_3 == 0) || (*(int *)(param_3 + 0x30) < 1)) ||
@@ -270,7 +271,7 @@ void FUN_1804f8bd0(int64_t param_1,float param_2,float param_3)
   *(int8_t *)(param_1 + 0x87b718) = 1;
   if (param_3 <= param_2) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5064_ptr,(double)param_2);
+    SystemParameterHandler(system_message_context,&processed_var_5064_ptr,(double)param_2);
   }
   if (0.0033333334 < param_2) {
     FUN_1804e93e0(param_1,param_2);

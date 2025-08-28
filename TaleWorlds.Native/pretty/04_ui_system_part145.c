@@ -232,7 +232,7 @@ int FUN_180751800(uint64_t *param_1)
              ((puVar7 = param_1 + 0x2c, (uint64_t *)*puVar7 != puVar7 ||
               ((uint64_t *)param_1[0x2d] != puVar7)))) {
             while ((*(uint *)(param_1 + 0xb) & 0x40) == 0) {
-              FUN_180768bf0(2);
+              UIComponent_EventHandler(2);
             }
           }
           func_0x000180743c20(param_1[0x1b],10);
@@ -463,7 +463,7 @@ int FUN_180751811(uint64_t *param_1)
              ((puVar7 = param_1 + 0x2c, (uint64_t *)*puVar7 != puVar7 ||
               ((uint64_t *)param_1[0x2d] != puVar7)))) {
             while ((*(uint *)(param_1 + 0xb) & 0x40) == 0) {
-              FUN_180768bf0(2);
+              UIComponent_EventHandler(2);
             }
           }
           func_0x000180743c20(param_1[0x1b],10);
@@ -659,7 +659,7 @@ void FUN_1807519a8(uint64_t param_1,int64_t *param_2)
        ((puVar7 = unaff_RBX + 0x2c, (uint64_t *)*puVar7 != puVar7 ||
         ((uint64_t *)unaff_RBX[0x2d] != puVar7)))) {
       while ((*(uint *)(unaff_RBX + 0xb) & 0x40) == 0) {
-        FUN_180768bf0(2);
+        UIComponent_EventHandler(2);
       }
     }
     func_0x000180743c20(unaff_RBX[0x1b],10);

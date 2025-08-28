@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_01_part030.c - 1 个函数
 
 // 函数: void FUN_1800bcab0(uint64_t *param_1)
@@ -434,7 +442,7 @@ int64_t FUN_1800bd410(int64_t param_1)
     uStack_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(&uStack_80,0,0);
     }
@@ -444,7 +452,7 @@ int64_t FUN_1800bd410(int64_t param_1)
     uStack_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_60);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(&uStack_60,0,0);
     }
@@ -458,7 +466,7 @@ int64_t FUN_1800bd410(int64_t param_1)
       uStack_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
-      FUN_18023c450(*(uint64_t *)(param_1 + 8),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
+      SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
                     *(int32_t *)(param_1 + 0x468),&uStack_40);
       if (pcStack_30 != (code *)0x0) {
         (*pcStack_30)(&uStack_40,0,0);
@@ -516,7 +524,7 @@ uint64_t FUN_1800bd5c0(uint64_t param_1)
     uStack_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(&uStack_80,0,0);
     }
@@ -526,7 +534,7 @@ uint64_t FUN_1800bd5c0(uint64_t param_1)
     uStack_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(&uStack_60,0,0);
     }
@@ -539,7 +547,7 @@ uint64_t FUN_1800bd5c0(uint64_t param_1)
       uStack_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
-      FUN_18023c450(*(uint64_t *)(lVar5 + 0xd0),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
+      SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
                     *(int32_t *)(lVar5 + 0x468),&uStack_40);
       if (pcStack_30 != (code *)0x0) {
         (*pcStack_30)(&uStack_40,0,0);
@@ -580,14 +588,14 @@ uint64_t FUN_1800bd790(int64_t param_1)
     if (*(int64_t *)(param_1 + 0x50) == 0) {
       FUN_1806272a0(&processed_var_9104_ptr);
       uVar3 = FUN_1800bd410(system_system_data_memory);
-      FUN_180056f10(param_1 + 0x50,uVar3);
+      SystemCore_PointerManager(param_1 + 0x50,uVar3);
     }
   }
   uStack_30 = 0;
   uStack_28 = 0;
   pcStack_20 = (code *)0x0;
   pcStack_18 = _guard_check_icall;
-  FUN_18023c450(*(uint64_t *)(param_1 + 0x50),0,*(int32_t *)(param_1 + 0x468),&uStack_30);
+  SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 0x50),0,*(int32_t *)(param_1 + 0x468),&uStack_30);
   if (pcStack_20 != (code *)0x0) {
     (*pcStack_20)(&uStack_30,0,0);
   }
@@ -642,7 +650,7 @@ int64_t FUN_1800bd890(uint64_t param_1)
     uStack_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(&uStack_80,0,0);
     }
@@ -652,7 +660,7 @@ int64_t FUN_1800bd890(uint64_t param_1)
     uStack_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(&uStack_60,0,0);
     }
@@ -666,7 +674,7 @@ int64_t FUN_1800bd890(uint64_t param_1)
       uStack_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
-      FUN_18023c450(*(uint64_t *)(lVar5 + 0x18),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
+      SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
                     *(int32_t *)(lVar5 + 0x468),&uStack_40);
       if (pcStack_30 != (code *)0x0) {
         (*pcStack_30)(&uStack_40,0,0);
@@ -688,7 +696,7 @@ int64_t * FUN_1800bda40(int64_t param_1,int64_t *param_2)
   int64_t *plStackX_18;
   
   if (*(int64_t *)(param_1 + 0xe0) == 0) {
-    puVar3 = (uint64_t *)FUN_180095000(param_1,&plStackX_18,&processed_var_9176_ptr,1,0,0xfffffffffffffffe)
+    puVar3 = (uint64_t *)InitializationSystem_CoreLoader(param_1,&plStackX_18,&processed_var_9176_ptr,1,0,0xfffffffffffffffe)
     ;
     uVar1 = *puVar3;
     *puVar3 = 0;
@@ -724,7 +732,7 @@ int64_t * FUN_1800bdaf0(uint64_t param_1,int64_t *param_2)
   
   lVar3 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x278) == 0) {
-    puVar4 = (uint64_t *)FUN_180095000(param_1,&plStackX_18,&processed_var_9184_ptr,1,0,0xfffffffffffffffe)
+    puVar4 = (uint64_t *)InitializationSystem_CoreLoader(param_1,&plStackX_18,&processed_var_9184_ptr,1,0,0xfffffffffffffffe)
     ;
     uVar1 = *puVar4;
     *puVar4 = 0;
@@ -780,7 +788,7 @@ uint64_t FUN_1800bdbb0(uint64_t param_1)
   uStack_28 = 0;
   pcStack_20 = (code *)0x0;
   pcStack_18 = _guard_check_icall;
-  FUN_18023c450(*(uint64_t *)(lVar3 + 0x30),0,*(int32_t *)(lVar3 + 0x468),&uStack_30);
+  SystemCore_DecryptionManager(*(uint64_t *)(lVar3 + 0x30),0,*(int32_t *)(lVar3 + 0x468),&uStack_30);
   if (pcStack_20 != (code *)0x0) {
     (*pcStack_20)(&uStack_30,0,0);
   }
@@ -835,7 +843,7 @@ int64_t FUN_1800bdc80(uint64_t param_1)
     uStack_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(&uStack_80,0,0);
     }
@@ -845,7 +853,7 @@ int64_t FUN_1800bdc80(uint64_t param_1)
     uStack_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(&uStack_60,0,0);
     }
@@ -859,7 +867,7 @@ int64_t FUN_1800bdc80(uint64_t param_1)
       uStack_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
-      FUN_18023c450(*(uint64_t *)(lVar5 + 0x38),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
+      SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
                     *(int32_t *)(lVar5 + 0x468),&uStack_40);
       if (pcStack_30 != (code *)0x0) {
         (*pcStack_30)(&uStack_40,0,0);
@@ -918,7 +926,7 @@ int64_t FUN_1800bde30(uint64_t param_1)
     uStack_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(&uStack_80,0,0);
     }
@@ -928,7 +936,7 @@ int64_t FUN_1800bde30(uint64_t param_1)
     uStack_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(&uStack_60,0,0);
     }
@@ -942,7 +950,7 @@ int64_t FUN_1800bde30(uint64_t param_1)
       uStack_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
-      FUN_18023c450(*(uint64_t *)(lVar5 + 0x40),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
+      SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
                     *(int32_t *)(lVar5 + 0x468),&uStack_40);
       if (pcStack_30 != (code *)0x0) {
         (*pcStack_30)(&uStack_40,0,0);

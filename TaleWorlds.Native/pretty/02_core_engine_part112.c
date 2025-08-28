@@ -1,3 +1,8 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define CoreEngine_AIController CoreEngine_AIController
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -72,7 +77,7 @@ void FUN_180126edf(void)
       *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
       *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar18;
       uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
-      FUN_180293f50(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9);
+      MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9);
     }
     unaff_R14D = unaff_R14D + 1;
     lVar17 = lVar17 + 8;
@@ -97,7 +102,7 @@ void FUN_180126edf(void)
       } while (bVar5);
     }
     lVar12 = *(int64_t *)(lVar12 + 0x2e8);
-    FUN_180291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
+    CoreEngine_AIController(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
                   *(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x20),0);
     lVar14 = *(int64_t *)(lVar17 + 0x3a8);
     if (((*(byte *)(lVar14 + 0x432) & 1) != 0) &&
@@ -206,13 +211,13 @@ void FUN_180126edf(void)
       }
       *(float *)(unaff_RBP + 0x67) = fVar23;
       *(float *)(unaff_RBP + 0x6b) = fVar21;
-      FUN_1802939e0(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar18,0xffffffff);
-      FUN_1802923e0(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
+      UtilitiesSystem_LogManager(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar18,0xffffffff);
+      RenderingSystem_LightManager(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
                     uVar16 | uVar10,1);
       *(int32_t *)(lVar12 + 0x80) = 0;
     }
     *(int *)(lVar12 + 0x60) = *(int *)(lVar12 + 0x60) + -1;
-    FUN_180291950(lVar12);
+    SystemCore_ErrorHandler(lVar12);
   }
   return;
 }
@@ -277,7 +282,7 @@ void FUN_180126ffa(void)
       } while (bVar5);
     }
     lVar12 = *(int64_t *)(lVar12 + 0x2e8);
-    FUN_180291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
+    CoreEngine_AIController(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
                   *(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x20),0);
     lVar11 = *(int64_t *)(lVar3 + 0x3a8);
     if (((*(byte *)(lVar11 + 0x432) & 1) != 0) &&
@@ -386,13 +391,13 @@ void FUN_180126ffa(void)
       }
       *(float *)(unaff_RBP + 0x67) = fVar21;
       *(float *)(unaff_RBP + 0x6b) = fVar19;
-      FUN_1802939e0(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar16,0xffffffff);
-      FUN_1802923e0(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
+      UtilitiesSystem_LogManager(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar16,0xffffffff);
+      RenderingSystem_LightManager(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
                     uVar15 | uVar10,1);
       *(int32_t *)(lVar12 + 0x80) = 0;
     }
     *(int *)(lVar12 + 0x60) = *(int *)(lVar12 + 0x60) + -1;
-    FUN_180291950(lVar12);
+    SystemCore_ErrorHandler(lVar12);
   }
   return;
 }
@@ -455,7 +460,7 @@ void FUN_18012700b(void)
     } while (bVar5);
   }
   lVar12 = *(int64_t *)(lVar12 + 0x2e8);
-  FUN_180291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
+  CoreEngine_AIController(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
                 *(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x20),0);
   lVar11 = *(int64_t *)(lVar3 + 0x3a8);
   if (((*(byte *)(lVar11 + 0x432) & 1) != 0) &&
@@ -564,13 +569,13 @@ void FUN_18012700b(void)
     }
     *(float *)(unaff_RBP + 0x67) = fVar21;
     *(float *)(unaff_RBP + 0x6b) = fVar19;
-    FUN_1802939e0(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar16,0xffffffff);
-    FUN_1802923e0(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
+    UtilitiesSystem_LogManager(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar16,0xffffffff);
+    RenderingSystem_LightManager(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
                   uVar15 | uVar10,1);
     *(int32_t *)(lVar12 + 0x80) = 0;
   }
   *(int *)(lVar12 + 0x60) = *(int *)(lVar12 + 0x60) + -1;
-  FUN_180291950(lVar12);
+  SystemCore_ErrorHandler(lVar12);
   return;
 }
 
@@ -631,7 +636,7 @@ void FUN_180127012(void)
     } while (bVar4);
   }
   lVar11 = *(int64_t *)(lVar11 + 0x2e8);
-  FUN_180291b40(lVar11,*(uint64_t *)(*(int64_t *)(lVar11 + 0x38) + 0x18),
+  CoreEngine_AIController(lVar11,*(uint64_t *)(*(int64_t *)(lVar11 + 0x38) + 0x18),
                 *(uint64_t *)(*(int64_t *)(lVar11 + 0x38) + 0x20),0);
   lVar10 = *(int64_t *)(unaff_RSI + 0x3a8);
   if (((*(byte *)(lVar10 + 0x432) & 1) != 0) &&
@@ -740,13 +745,13 @@ void FUN_180127012(void)
     }
     *(float *)(unaff_RBP + 0x67) = fVar20;
     *(float *)(unaff_RBP + 0x6b) = fVar18;
-    FUN_1802939e0(lVar11,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar15,0xffffffff);
-    FUN_1802923e0(lVar11,*(uint64_t *)(lVar11 + 0x88),*(int32_t *)(lVar11 + 0x80),
+    UtilitiesSystem_LogManager(lVar11,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar15,0xffffffff);
+    RenderingSystem_LightManager(lVar11,*(uint64_t *)(lVar11 + 0x88),*(int32_t *)(lVar11 + 0x80),
                   uVar14 | uVar9,1);
     *(int32_t *)(lVar11 + 0x80) = 0;
   }
   *(int *)(lVar11 + 0x60) = *(int *)(lVar11 + 0x60) + -1;
-  FUN_180291950(lVar11);
+  SystemCore_ErrorHandler(lVar11);
   return;
 }
 

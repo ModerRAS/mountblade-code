@@ -798,7 +798,7 @@ uint64_t * FUN_180485280(uint64_t *param_1,int *param_2,int8_t param_3)
   puStack_40 = &ui_system_data_1296_ptr;
   pcStack_48 = FUN_180485510;
   aiStack_58[0] = iVar1;
-  plVar5 = (int64_t *)FUN_18006b640(uVar4,aiStack_58);
+  plVar5 = (int64_t *)SystemCore_ErrorHandler(uVar4,aiStack_58);
   if (plVar5 != (int64_t *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }

@@ -158,8 +158,8 @@ int64_t * FUN_18009e230(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64
   lVar2 = *param_3;
   do {
     lVar3 = *param_1;
-    plVar5 = (int64_t *)FUN_180058080(param_4 + 0x90,auStackX_8,lVar3 + 0x20);
-    plVar5 = (int64_t *)FUN_180058080(*(int32_t *)(*plVar5 + 0x40),auStackX_10,lVar2 + 0x20);
+    plVar5 = (int64_t *)> HighFreq_AnimationSystem1(param_4 + 0x90,auStackX_8,lVar3 + 0x20);
+    plVar5 = (int64_t *)> HighFreq_AnimationSystem1(*(int32_t *)(*plVar5 + 0x40),auStackX_10,lVar2 + 0x20);
     if (extraout_XMM0_Da == *(float *)(*plVar5 + 0x40)) {
       if (*(int *)(lVar3 + 0x30) == 0) {
         bVar4 = false;
@@ -189,8 +189,8 @@ int64_t * FUN_18009e230(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64
       do {
         lVar8 = param_2[-1];
         param_2 = param_2 + -1;
-        plVar5 = (int64_t *)FUN_180058080(param_4 + 0x90,auStackX_18,lVar2 + 0x20);
-        plVar5 = (int64_t *)FUN_180058080(*(int32_t *)(*plVar5 + 0x40),auStackX_20,lVar8 + 0x20)
+        plVar5 = (int64_t *)> HighFreq_AnimationSystem1(param_4 + 0x90,auStackX_18,lVar2 + 0x20);
+        plVar5 = (int64_t *)> HighFreq_AnimationSystem1(*(int32_t *)(*plVar5 + 0x40),auStackX_20,lVar8 + 0x20)
         ;
         if (extraout_XMM0_Da_00 == *(float *)(*plVar5 + 0x40)) {
           if (*(int *)(lVar2 + 0x30) == 0) {
@@ -363,8 +363,8 @@ void FUN_18009e500(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   while (lVar4 = lVar1 + 2, lStackX_10 = param_2, param_5 = plVar6, lVar4 < param_3) {
     lVar10 = *(int64_t *)(param_1 + lVar4 * 8);
     lVar11 = *(int64_t *)(param_1 + -8 + lVar4 * 8);
-    FUN_180058080(lVar5 + 0x90,&param_6,lVar10 + 0x20);
-    plVar6 = (int64_t *)FUN_180058080(lVar5 + 0x90,auStackX_8,lVar11 + 0x20);
+    > HighFreq_AnimationSystem1(lVar5 + 0x90,&param_6,lVar10 + 0x20);
+    plVar6 = (int64_t *)> HighFreq_AnimationSystem1(lVar5 + 0x90,auStackX_8,lVar11 + 0x20);
     if (extraout_XMM0_Da == *(float *)(*plVar6 + 0x40)) {
       if (*(int *)(lVar10 + 0x30) == 0) {
         bVar3 = false;
@@ -406,8 +406,8 @@ void FUN_18009e500(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
       lVar1 = *plVar6;
       lVar10 = param_4 + -1 >> 1;
       lVar4 = *(int64_t *)(param_1 + lVar10 * 8);
-      FUN_180058080(lVar5 + 0x90,&lStackX_10,lVar4 + 0x20);
-      plVar7 = (int64_t *)FUN_180058080(lVar5 + 0x90,&param_5,lVar1 + 0x20);
+      > HighFreq_AnimationSystem1(lVar5 + 0x90,&lStackX_10,lVar4 + 0x20);
+      plVar7 = (int64_t *)> HighFreq_AnimationSystem1(lVar5 + 0x90,&param_5,lVar1 + 0x20);
       if (extraout_XMM0_Da_00 == *(float *)(*plVar7 + 0x40)) {
         if (*(int *)(lVar4 + 0x30) == 0) {
           bVar3 = false;
@@ -682,7 +682,7 @@ void FUN_18009e9e0(uint64_t param_1,uint64_t param_2,int64_t param_3)
     uStack_68 = (int32_t)lVar2;
     strcpy_s(auStack_60,0x40);
   }
-  FUN_1800b31f0(uVar1,param_2,&puStack_78,1);
+  > HighFreq_TextureManager1(uVar1,param_2,&puStack_78,1);
   uStack_98 = 1;
   puStack_78 = &system_state_ptr;
                     // WARNING: Subroutine does not return

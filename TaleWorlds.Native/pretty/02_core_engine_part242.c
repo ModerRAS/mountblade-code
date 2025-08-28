@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -148,7 +149,7 @@ void FUN_18020a890(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t *par
     *(int32_t *)(puVar8 + 8) = 0x7478742e;
     *(int8_t *)((int64_t)puVar8 + 0x44) = 0;
     plStack_4b0 = (int64_t *)CONCAT44(plStack_4b0._4_4_,0x44);
-    FUN_180624440(&puStack_2f8,&pcStack_4c0);
+    SystemCore_EncryptionEngine(&puStack_2f8,&pcStack_4c0);
     puVar23 = &system_buffer_ptr;
     if (puStack_2f0 != (void *)0x0) {
       puVar23 = puStack_2f0;
@@ -302,7 +303,7 @@ LAB_18020ada0:
     pcStack_4c0 = &system_state_ptr;
   }
   uVar7 = CoreMemoryPoolValidator(&pcStack_4c0,param_2);
-  cVar3 = FUN_180624af0(uVar7);
+  cVar3 = RenderingSystem_RenderQueue(uVar7);
   pcStack_4c0 = &system_data_buffer_ptr;
   if (puStack_4b8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -430,7 +431,7 @@ LAB_18020b0af:
   }
   puVar8 = (uint64_t *)0x0;
 LAB_18020b1b3:
-  lVar9 = FUN_180631000(puVar8,&rendering_buffer_2160_ptr,auStack_4e8);
+  lVar9 = UltraHighFreq_CacheSystem1(puVar8,&rendering_buffer_2160_ptr,auStack_4e8);
   plVar5 = plStack_438;
   if (lVar9 == 0) {
     auStack_4e8[0] = 1;

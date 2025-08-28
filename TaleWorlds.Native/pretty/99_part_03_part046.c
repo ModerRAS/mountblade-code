@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_03_part046.c - 1 个函数
@@ -18,7 +22,7 @@ void FUN_1801fa0a0(int64_t *param_1,uint64_t param_2,uint64_t param_3,int32_t pa
 uint64_t * FUN_1801fa0e0(uint64_t *param_1,int32_t param_2,int32_t param_3)
 
 {
-  FUN_1801fa180();
+  SystemCore_ConfigValidator();
   *param_1 = &processed_var_7976_ptr;
   *(int32_t *)(param_1 + 0x8a) = param_2;
   *(int32_t *)((int64_t)param_1 + 0x454) = param_3;
@@ -39,7 +43,7 @@ uint64_t FUN_1801fa140(uint64_t param_1,uint64_t param_2)
 
 
 
-uint64_t * FUN_1801fa180(uint64_t *param_1)
+uint64_t * SystemCore_ConfigValidator(uint64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -65,7 +69,7 @@ uint64_t * FUN_1801fa180(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 300) = 0;
   param_1[0x26] = 0x900;
   DataStructureManager(param_1 + 0x27,8,0x10,&SUB_18005d5f0,DataCacheManager);
-  DataStructureManager(param_1 + 0x39,0x98,4,FUN_180049970,FUN_180044a30);
+  DataStructureManager(param_1 + 0x39,0x98,4,FUN_180049970,CoreSystem_MessageHandler);
   DataStructureManager(param_1 + 0x85,8,4,&SUB_18005d5f0,DataCacheManager);
   param_1[0x89] = 0;
   param_1[1] = 0x3f8000003f800000;
@@ -164,7 +168,7 @@ int64_t FUN_1801fa330(int64_t param_1)
   *(uint64_t *)(param_1 + 0x3b0) = 0;
   *(int32_t *)(param_1 + 0x3b8) = 0;
   *(uint64_t *)(param_1 + 0x3c8) = 0;
-  uVar4 = FUN_180628ca0();
+  uVar4 = MemoryDebugger0();
   SystemCore_ConfigurationHandler0(puVar2,uVar4);
   *(int8_t *)(param_1 + 0x380) = 1;
   *(uint64_t *)(param_1 + 0x288) = 0;

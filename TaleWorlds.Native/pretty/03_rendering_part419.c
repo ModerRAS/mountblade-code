@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -214,9 +219,9 @@ LAB_180498a16:
       if (uVar14 < 2) {
         auStackX_18[0] = 0;
         puStack_130 = puVar17;
-        FUN_1800571e0(&puStack_138,auStackX_18);
+        SystemDatabaseProcessor(&puStack_138,auStackX_18);
         auStackX_18[0] = *(ushort *)(param_2 + 2) - 1;
-        FUN_1800571e0(&puStack_138,auStackX_18);
+        SystemDatabaseProcessor(&puStack_138,auStackX_18);
         puVar17 = puStack_138;
       }
       FUN_180499470(param_2,&puStack_138);
@@ -637,7 +642,7 @@ void FUN_180499350(uint64_t *param_1,int64_t *param_2)
         piVar1 = (int *)(lVar11 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -736,7 +741,7 @@ void FUN_18049935f(uint64_t *param_1,int64_t *param_2)
         piVar1 = (int *)(lVar10 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -786,7 +791,7 @@ void FUN_18049945b(void)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -885,7 +890,7 @@ void FUN_180499470(int64_t *param_1,int64_t *param_2)
         piVar1 = (int *)(lVar13 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }

@@ -261,7 +261,7 @@ void FUN_180378b60(int64_t param_1,int64_t param_2,int32_t param_3,int8_t param_
       *(int32_t *)((int64_t)plStack_68 + 0x14) = uStack_78._4_4_;
       *(int32_t *)(plStack_68 + 3) = (int32_t)uStack_70;
       *(int32_t *)((int64_t)plStack_68 + 0x1c) = uStack_70._4_4_;
-      FUN_18015b810();
+      SystemCore_DataTransformer();
       if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager(lVar1);
@@ -458,9 +458,9 @@ LAB_180378e96:
               } while (lVar16 != 0);
             }
             while (uVar4 = system_context_ptr, iVar14 != aiStackX_20[0]) {
-              lVar16 = FUN_18005e890(system_context_ptr);
+              lVar16 = PerformanceOptimizer(system_context_ptr);
               if (lVar16 != 0) {
-                plVar18 = (int64_t *)FUN_18005e890(uVar4);
+                plVar18 = (int64_t *)PerformanceOptimizer(uVar4);
                 (**(code **)(*plVar18 + 0x20))(plVar18);
               }
             }

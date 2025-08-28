@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part138.c - 7 个函数
 
 // 函数: void FUN_180133320(void)
@@ -550,7 +554,7 @@ LAB_1801338ca:
         uVar10 = 1;
         puVar8 = auStackX_8;
 LAB_180133c1e:
-        pfVar6 = (float *)FUN_180131aa0(puVar8,uVar10,0,0,0);
+        pfVar6 = (float *)SystemCore_ConfigLoader(puVar8,uVar10,0,0,0);
         fVar15 = pfVar6[1];
         if ((*pfVar6 != 0.0) || (fVar15 != 0.0)) {
           fVar17 = *(float *)(lVar2 + 0xbc);
@@ -584,7 +588,7 @@ LAB_180133ce2:
       lVar9 = *(int64_t *)(lVar9 + 0x3c0);
     }
     FUN_18012ed10(lVar9);
-    FUN_18012d2e0(lVar9);
+    SystemCore_DataCompressor(lVar9);
     if (*(int *)(lVar9 + 0x3c8) == 0) {
       func_0x000180131810(lVar9,0);
     }
@@ -612,7 +616,7 @@ LAB_180133d4a:
       lVar11 = *plVar13;
     }
     if (lVar9 != lVar12) {
-      FUN_18012d2e0(lVar9);
+      SystemCore_DataCompressor(lVar9);
       *(int64_t *)(lVar9 + 0x3c0) = lVar12;
       lVar12 = *(int64_t *)(lVar2 + 0x1c98);
     }
@@ -829,7 +833,7 @@ LAB_1801338ca:
         uVar13 = 1;
         puVar11 = &stack0x000000a0;
 LAB_180133c1e:
-        pfVar9 = (float *)FUN_180131aa0(puVar11,uVar13,0,0,0);
+        pfVar9 = (float *)SystemCore_ConfigLoader(puVar11,uVar13,0,0,0);
         fVar17 = pfVar9[1];
         if ((*pfVar9 != 0.0) || (fVar17 != 0.0)) {
           fVar19 = *(float *)(unaff_RBX + 0xbc);
@@ -864,7 +868,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar16) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -893,7 +897,7 @@ LAB_180133d4a:
       uVar12 = *puVar1;
     }
     if (uVar2 != uVar14) {
-      FUN_18012d2e0(uVar2);
+      SystemCore_DataCompressor(uVar2);
       *(uint64_t *)(uVar2 + 0x3c0) = uVar14;
       uVar14 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }

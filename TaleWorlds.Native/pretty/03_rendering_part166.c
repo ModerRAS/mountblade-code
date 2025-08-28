@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part166.c - 1 个函数
 
@@ -146,8 +155,8 @@ LAB_180372c0c:
       if (piVar12 == *(int **)(lVar13 + lVar11 * 8)) {
         uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         uStack_2d8 = (int *)CONCAT44(uStack_2d8._4_4_,iVar6);
-        uStack_2d0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-        FUN_18037f020(param_1 + 0x108,auStack_1f0,&uStack_2d8);
+        uStack_2d0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+        SystemCore_MessageQueueManager(param_1 + 0x108,auStack_1f0,&uStack_2d8);
       }
       lVar19 = lVar19 + 0x28;
       lVar23 = lVar23 + -1;
@@ -191,8 +200,8 @@ LAB_180372cf0:
         if (piVar18 == piVar1) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar19 >> 8),3));
           aiStack_2b8[0] = iVar21;
-          uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1d8,aiStack_2b8);
+          uStack_2b0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_1d8,aiStack_2b8);
           piVar18 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }
@@ -217,8 +226,8 @@ LAB_180372de8:
         if (piVar12 == *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_2a8 = (int *)CONCAT44(piStack_2a8._4_4_,iVar21);
-          lStack_2a0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1c0,&piStack_2a8);
+          lStack_2a0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_1c0,&piStack_2a8);
           auStack_2e8 = *pauVar10;
           piVar12 = (int *)auStack_2e8._0_8_;
         }
@@ -235,8 +244,8 @@ LAB_180372e98:
         if (piVar12 == *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_298 = (int *)CONCAT44(piStack_298._4_4_,iVar7);
-          lStack_290 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1a8,&piStack_298);
+          lStack_290 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_1a8,&piStack_298);
           auStack_2e8 = *pauVar10;
           piVar12 = (int *)auStack_2e8._0_8_;
         }
@@ -295,8 +304,8 @@ LAB_18037309e:
       if (piVar12 == *(int **)(lVar13 + lVar11 * 8)) {
         uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         piStack_298 = (int *)CONCAT44(piStack_298._4_4_,iVar5);
-        lStack_290 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-        pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_238,&piStack_298);
+        lStack_290 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+        pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_238,&piStack_298);
         piVar12 = *(int **)*pauVar10;
         auStack_2e8 = *pauVar10;
       }
@@ -348,8 +357,8 @@ LAB_18037321d:
         if (piVar12 == *(int **)(lVar23 + lVar13 * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_2a8 = (int *)CONCAT44(piStack_2a8._4_4_,iVar5);
-          lStack_2a0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_220,&piStack_2a8);
+          lStack_2a0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_220,&piStack_2a8);
           piVar12 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }
@@ -382,7 +391,7 @@ LAB_18037321d:
           lVar23 = (**(code **)(*plVar2 + 0x198))(plVar2);
         }
         fVar26 = fVar26 * *(float *)(lVar23 + 0x30);
-        lVar23 = FUN_180372570(param_1,iVar21,iVar6);
+        lVar23 = SystemCore_SecurityManager(param_1,iVar21,iVar6);
         if ((float)*(int *)(lVar23 + 0x110) < fVar26) {
           lVar23 = *(int64_t *)(param_1 + 0x110);
           iVar5 = *(int *)(param_1 + 0x58) * iVar21 + iVar6;
@@ -400,14 +409,14 @@ LAB_18037336c:
           if (piVar12 == *(int **)(lVar23 + lVar13 * 8)) {
             uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
             aiStack_2b8[0] = iVar5;
-            uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-            pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_208,aiStack_2b8);
+            uStack_2b0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+            pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_208,aiStack_2b8);
             piVar12 = *(int **)*pauVar10;
             auStack_2e8 = *pauVar10;
           }
           *(int *)(*(int64_t *)(piVar12 + 2) + 0x110) = (int)fVar26;
         }
-        lVar13 = FUN_180372570(param_1,iVar21,iVar6);
+        lVar13 = SystemCore_SecurityManager(param_1,iVar21,iVar6);
         lVar23 = *(int64_t *)(param_1 + 0x110);
         lVar13 = *(int64_t *)(lVar13 + 0x108);
         iVar6 = *(int *)(param_1 + 0x58) * iVar21 + iVar6;
@@ -421,8 +430,8 @@ LAB_180373428:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           uStack_2c8 = CONCAT44(uStack_2c8._4_4_,iVar6);
-          lStack_2c0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_190,&uStack_2c8);
+          lStack_2c0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_190,&uStack_2c8);
           auStack_2e8 = *pauVar10;
           piVar12 = (int *)auStack_2e8._0_8_;
         }
@@ -472,8 +481,8 @@ LAB_180373580:
         if (piVar18 == piVar1) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar23 >> 8),3));
           aiStack_2b8[0] = iVar21;
-          uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_208,aiStack_2b8);
+          uStack_2b0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_208,aiStack_2b8);
           piVar18 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }
@@ -544,13 +553,13 @@ LAB_180373799:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0,8,3);
           uStack_2c8 = CONCAT44(uStack_2c8._4_4_,iVar21);
-          lStack_2c0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_220,&uStack_2c8);
+          lStack_2c0 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_220,&uStack_2c8);
           piVar12 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }
-        FUN_18063ad30(&uStack_178,*(int64_t *)(piVar12 + 2) + 0x18,&system_data_0300);
-        lVar19 = FUN_180372570(param_1,uVar3 & 0xffffffff,uVar16 & 0xffffffff);
+        UltraHighFreq_DataProcessor1(&uStack_178,*(int64_t *)(piVar12 + 2) + 0x18,&system_data_0300);
+        lVar19 = SystemCore_SecurityManager(param_1,uVar3 & 0xffffffff,uVar16 & 0xffffffff);
         lVar23 = *(int64_t *)(param_1 + 0x110);
         iVar5 = *(int *)(param_1 + 0x58) * iVar7 + iVar5;
         uStack_c8 = CONCAT44((float)*(int *)(lVar19 + 0x110),(int32_t)uStack_c8);
@@ -564,8 +573,8 @@ LAB_180373878:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           lStack_280 = CONCAT44(lStack_280._4_4_,iVar5);
-          uStack_278 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
-          pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_238,&lStack_280);
+          uStack_278 = SystemCore_SignalHandler(uVar8,*(uint64_t *)(param_1 + 0x68));
+          pauVar10 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,auStack_238,&lStack_280);
           piVar12 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }

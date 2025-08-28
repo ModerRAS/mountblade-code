@@ -85,7 +85,7 @@ uint64_t FUN_1807c8250(int64_t param_1,uint64_t param_2,uint param_3,int param_4
       if (bVar5) {
         uVar1 = *(int8_t *)(param_1 + 0xbe8);
         uVar2 = *(int8_t *)(param_1 + 0xbe9);
-        FUN_18080d690(param_1);
+        RenderingSystem_BufferManager0(param_1);
         *(int8_t *)(param_1 + 0xbe8) = uVar1;
         *(int8_t *)(param_1 + 0xbe9) = uVar2;
       }
@@ -123,7 +123,7 @@ uint64_t FUN_1807c8450(int64_t param_1,char param_2)
       }
     }
     else {
-      FUN_18080d690();
+      RenderingSystem_BufferManager0();
     }
   }
   else if (param_2 != '\0') {
@@ -644,7 +644,7 @@ code_r0x0001807c8982:
           FUN_180757470(plStackX_8[4],0xda7600 % (int64_t)iVar10 & 0xffffffff);
         }
         if ((*(byte *)((int64_t)plStackX_8 + 0x3c) & 0x20) != 0) {
-          FUN_180758220(plStackX_8[4],0x80);
+          UIComponent_Renderer(plStackX_8[4],0x80);
           *(int32_t *)(plStackX_8 + 0xb) = 0;
         }
       }
@@ -1235,7 +1235,7 @@ code_r0x0001807c8982:
           plVar8 = *(int64_t **)(unaff_RBP + 0x20);
         }
         if ((*(byte *)((int64_t)plVar8 + 0x3c) & 0x20) != 0) {
-          FUN_180758220(plVar8[4],0x80);
+          UIComponent_Renderer(plVar8[4],0x80);
           in_R10 = 0;
           *(int32_t *)(*(int64_t *)(unaff_RBP + 0x20) + 0x58) = 0;
           goto LAB_1807c8f94;
@@ -1672,7 +1672,7 @@ code_r0x0001807c98f0:
                               0xda7600 % (int64_t)iVar9 & 0xffffffff);
               }
               if ((*(byte *)(lStackX_20 + 0x3c) & 0x20) != 0) {
-                FUN_180758220(*(uint64_t *)(lStackX_20 + 0x20),0x80);
+                UIComponent_Renderer(*(uint64_t *)(lStackX_20 + 0x20),0x80);
                 *(int32_t *)(lStackX_20 + 0x58) = 0;
                 *(uint64_t *)(lStackX_20 + 0x20) = 0;
               }
@@ -2125,7 +2125,7 @@ code_r0x0001807c98f0:
             lVar12 = *(int64_t *)(unaff_RBP + 0x7f);
           }
           if ((*(byte *)(lVar12 + 0x3c) & 0x20) != 0) {
-            FUN_180758220(*(uint64_t *)(lVar12 + 0x20),0x80);
+            UIComponent_Renderer(*(uint64_t *)(lVar12 + 0x20),0x80);
             param_3 = 0;
             uVar15 = *(uint64_t *)(unaff_RBP + -0x29);
             *(int32_t *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x58) = 0;

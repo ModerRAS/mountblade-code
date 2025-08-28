@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -31,7 +32,7 @@ void FUN_1808d5040(int64_t param_1)
   iVar3 = *(int *)(*(int64_t *)(param_1 + 0xa8) + 0x44);
   if ((iVar3 == 0) || (iVar3 == 1)) {
     uStack_30 = 0x1808d507d;
-    iVar3 = FUN_1808b2f30(param_1 + 0x48,iVar3 + 0xc);
+    iVar3 = SystemDataFlowProcessor(param_1 + 0x48,iVar3 + 0xc);
     if (iVar3 != 0) {
       return;
     }
@@ -179,17 +180,17 @@ uint64_t FUN_1808d50c0(int64_t param_1)
   *(int32_t *)(param_1 + 0x68) = 4;
   iVar1 = *(int *)(*(int64_t *)(param_1 + 0xa0) + 0x44);
   if (iVar1 == 0) {
-    uVar4 = FUN_1808b2f30(param_1 + 0x48,0xc);
+    uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0xc);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
   }
-  else if ((iVar1 == 1) && (uVar4 = FUN_1808b2f30(param_1 + 0x48,0xd), (int)uVar4 != 0)) {
+  else if ((iVar1 == 1) && (uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0xd), (int)uVar4 != 0)) {
     return uVar4;
   }
-  uVar4 = FUN_1808b2f30(param_1 + 0x48,0x1b);
-  if ((((int)uVar4 == 0) && (uVar4 = FUN_1808b2f30(param_1 + 0x48,0xb), (int)uVar4 == 0)) &&
-     (uVar4 = FUN_1808b2f30(param_1 + 0x48,0x1c), (int)uVar4 == 0)) {
+  uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0x1b);
+  if ((((int)uVar4 == 0) && (uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0xb), (int)uVar4 == 0)) &&
+     (uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0x1c), (int)uVar4 == 0)) {
     lVar6 = *(int64_t *)(param_1 + 0xa0);
     fVar10 = *(float *)(param_1 + 0xb0) * 0.017453292;
     *(float *)(param_1 + 0xbc) = fVar10;
@@ -245,11 +246,11 @@ uint64_t FUN_1808d5116(void)
   float fVar9;
   uint64_t extraout_XMM0_Qb;
   
-  uVar3 = FUN_1808b2f30(unaff_RBX + 0x48);
+  uVar3 = SystemDataFlowProcessor(unaff_RBX + 0x48);
   if ((int)uVar3 == 0) {
-    uVar3 = FUN_1808b2f30(unaff_RBX + 0x48,0xb);
+    uVar3 = SystemDataFlowProcessor(unaff_RBX + 0x48,0xb);
     if ((int)uVar3 == 0) {
-      uVar3 = FUN_1808b2f30(unaff_RBX + 0x48,0x1c);
+      uVar3 = SystemDataFlowProcessor(unaff_RBX + 0x48,0x1c);
       if ((int)uVar3 == 0) {
         lVar5 = *(int64_t *)(unaff_RBX + 0xa0);
         fVar9 = *(float *)(unaff_RBX + 0xb0) * 0.017453292;
@@ -430,12 +431,12 @@ uint64_t FUN_1808d5330(int64_t param_1)
   *(int32_t *)(param_1 + 0x68) = 4;
   iVar1 = *(int *)(*(int64_t *)(param_1 + 0x98) + 0x44);
   if (iVar1 == 0) {
-    uVar4 = FUN_1808b2f30(param_1 + 0x48,0xc);
+    uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0xc);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
   }
-  else if ((iVar1 == 1) && (uVar4 = FUN_1808b2f30(param_1 + 0x48,0xd), (int)uVar4 != 0)) {
+  else if ((iVar1 == 1) && (uVar4 = SystemDataFlowProcessor(param_1 + 0x48,0xd), (int)uVar4 != 0)) {
     return uVar4;
   }
   puVar3 = *(uint **)(param_1 + 0xa0);
@@ -791,7 +792,7 @@ void FUN_1808d58e0(uint64_t *param_1)
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&processed_var_7152_ptr,0x34,1);
   }
   func_0x00018085deb0(plVar4);
-  FUN_18085dbf0(param_1 + 9);
+  SystemController(param_1 + 9);
   plVar9 = param_1 + 1;
   *(int64_t *)param_1[2] = *plVar9;
   *(uint64_t *)(*plVar9 + 8) = param_1[2];

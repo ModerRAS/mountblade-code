@@ -93,7 +93,7 @@ LAB_180132c8d:
     *(float *)(lVar2 + 0x11c) = (fVar10 + *(float *)(lVar2 + 0x11c)) - fVar9;
   }
 LAB_180132d15:
-  FUN_180131aa0(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  SystemCore_ConfigLoader(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
   if ((fStack00000000000000b0 != unaff_XMM6_Da) && (*(char *)(lVar2 + 0xac) != cVar6)) {
     fVar9 = *(float *)(lVar2 + 0x8c);
     fVar10 = (float)(int)(fStack00000000000000b0 * fVar18 + fVar9);

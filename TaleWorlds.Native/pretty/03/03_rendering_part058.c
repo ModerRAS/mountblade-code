@@ -1,5 +1,20 @@
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part058.c - 8 个函数
 
@@ -63,7 +78,7 @@ void render_advanced_data_processing_controller(void)
   uint64_t render_state_flags;
   
   // 初始化渲染管线状态和参数
-  render_flag = FUN_180128040(&texture_handle,&render_mode,1);
+  render_flag = SystemCore_HashCalculator(&texture_handle,&render_mode,1);
   texture_id_2 = (int32_t)((uint64_t)render_target >> 0x20);
   if (render_flag != '\0') {
     *(uint *)(viewport_width + 0x148) = *(uint *)(viewport_width + 0x148) | 1;
@@ -116,7 +131,7 @@ void render_advanced_data_processing_controller(void)
   fStack000000000000004c = *(float *)(unaff_RBX + 0x1744) * *(float *)(unaff_RBX + 0x1628);
   uVar6 = func_0x000180121e20(&stack0x00000040);
   uVar27 = CONCAT44(uVar7,*(int32_t *)(in_R11 + 0x1664));
-  FUN_180122960(CONCAT44(fStack0000000000000074,fStack0000000000000070),in_stack_00000078,uVar6,1,
+  SystemCore_ResourceManager(CONCAT44(fStack0000000000000074,fStack0000000000000070),in_stack_00000078,uVar6,1,
                 uVar27);
   iVar9 = iVar16 + -1;
   iStack0000000000000050 = -1;
@@ -189,7 +204,7 @@ joined_r0x0001802999aa:
     iVar16 = *(int *)(unaff_RBP + 200);
     uVar12 = uStack000000000000005c;
   }
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   unaff_R14 = (uint64_t)*(uint *)(unaff_RBP + 0xa0);
   iVar9 = iVar16 + -1;
 LAB_180299abc:
@@ -265,7 +280,7 @@ LAB_180299abc:
           fStack0000000000000070 = fStack0000000000000054 * fVar26 + *(float *)(unaff_RBP + 0x98);
           *(float *)(unaff_RBP + -0x6c) = fVar24 * fVar17 + *(float *)(unaff_RBP + 0x90);
           *(float *)(unaff_RBP + -0x70) = fVar25 * fVar26 + *(float *)(unaff_RBP + 0x98);
-          FUN_180293d20(uVar4,&stack0x00000070,unaff_RBP + -0x70,uVar12,uVar27);
+          SystemCore_SystemMonitor(uVar4,&stack0x00000070,unaff_RBP + -0x70,uVar12,uVar27);
           uVar11 = uVar11 - 1;
           fStack0000000000000054 = fVar25;
         } while (uVar11 != 0);
@@ -283,7 +298,7 @@ LAB_180299abc:
     unaff_XMM13_Da = *(float *)(unaff_RBP + -0x74);
     in_stack_00000040 = 0;
   }
-  FUN_180122320(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
+  SystemCore_ManageMemory(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
                          unaff_XMM13_Da + *(float *)(in_stack_00000068 + 0x1674)),&system_buffer_ptr,0,1
                );
   return;
@@ -466,7 +481,7 @@ LAB_180299f92:
           puVar12 = *(void **)(*param_3 + 0x18);
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_776_ptr,puVar12);
+        SystemParameterHandler(system_message_context,&processed_var_776_ptr,puVar12);
       }
       if ((iVar2 == 2) || (*system_global_data_ptr != 0)) {
         pplVar1 = (int64_t **)(lVar10 + 0x30);
@@ -502,7 +517,7 @@ LAB_180299f92:
           if (plVar11 != (int64_t *)0x0) {
             (**(code **)(*plVar11 + 0x28))(plVar11);
           }
-          FUN_18005e110(uVar15,&plStack_200);
+          SystemCore_TimerManager(uVar15,&plStack_200);
         }
         else {
           if (plVar11 != (int64_t *)0x0) {
@@ -883,7 +898,7 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
     } while (plVar7 != (int64_t *)0x0);
   }
   // 更新哈希表统计信息并分配新条目内存
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1); // 更新统计
   puVar5 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
@@ -942,7 +957,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   uint uStack0000000000000084;
   
   // 更新哈希表统计信息并分配新条目内存
-  FUN_18066c220(param_1,&stack0x00000080,in_R10D,param_4,1); // 更新统计信息
+  RenderingShaderProcessor0(param_1,&stack0x00000080,in_R10D,param_4,1); // 更新统计信息
   puVar5 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
   uVar2 = unaff_RBX[1]; // 获取键的次部分

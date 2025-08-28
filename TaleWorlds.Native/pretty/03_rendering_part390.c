@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part390.c - 6 个函数
 
 // 函数: void FUN_180482450(int64_t *param_1,char *param_2)
@@ -489,7 +493,7 @@ void FUN_180482cc0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
        (uVar1 = (uVar2 >> 1) + uVar2, uVar7 = uVar6, uVar6 < uVar1)) {
       uVar7 = uVar1;
     }
-    uVar5 = FUN_180067110(uVar7 + 1);
+    uVar5 = SystemCore_SyscallHandler(uVar7 + 1);
     param_1[2] = param_4 + lVar3;
     param_1[3] = uVar7;
     if (0xf < uVar2) {
@@ -527,7 +531,7 @@ void FUN_180482d79(void)
      (uVar1 = (unaff_R14 >> 1) + unaff_R14, unaff_RDI = uVar3, uVar3 < uVar1)) {
     unaff_RDI = uVar1;
   }
-  uVar2 = FUN_180067110(unaff_RDI + 1);
+  uVar2 = SystemCore_SyscallHandler(unaff_RDI + 1);
   *(int64_t *)(unaff_RBX + 0x10) = in_R9 + unaff_RBP;
   *(uint64_t *)(unaff_RBX + 0x18) = unaff_RDI;
   if (0xf < unaff_R14) {
@@ -676,7 +680,7 @@ int8_t FUN_180482e70(char *param_1,uint64_t *param_2,uint64_t param_3,uint64_t p
           else {
             uVar14 = 0x7fffffffffffffff;
           }
-          lVar8 = FUN_180067110(uVar14 + 1);
+          lVar8 = SystemCore_SyscallHandler(uVar14 + 1);
           param_2[3] = uVar14;
           param_2[2] = uVar3 + 1;
           if (0xf < uVar4) {
@@ -718,7 +722,7 @@ LAB_1804833fb:
           else {
             uVar14 = 0x7fffffffffffffff;
           }
-          uVar10 = FUN_180067110(uVar14 + 1);
+          uVar10 = SystemCore_SyscallHandler(uVar14 + 1);
           param_2[3] = uVar14;
           param_2[2] = uVar3 + 1;
           if (0xf < uVar4) {
@@ -756,7 +760,7 @@ LAB_1804833fb:
           else {
             uVar15 = 0x7fffffffffffffff;
           }
-          uVar10 = FUN_180067110(uVar15 + 1);
+          uVar10 = SystemCore_SyscallHandler(uVar15 + 1);
           param_2[2] = uVar3 + 1;
           param_2[3] = uVar15;
           if (0xf < uVar14) {

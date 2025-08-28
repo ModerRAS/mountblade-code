@@ -101,11 +101,11 @@ LAB_18050dd10:
       }
       bVar8 = (byte)((uint)*(int32_t *)(in_R11 + 0x564) >> 0x1f) ^ 1;
       uVar1 = *(int8_t *)(*(int64_t *)(in_R11 + 0x590) + 0x34bc);
-      lVar4 = FUN_18054f900(lVar6,(int)param_6,bVar8,uVar7,uVar1);
+      lVar4 = Timer_GetElapsed(lVar6,(int)param_6,bVar8,uVar7,uVar1);
       if (((lVar4 == 0) || (*(int *)(lVar4 + 0x104) == -1)) &&
-         ((lVar4 = FUN_18054f900(lVar6,param_6._4_4_,bVar8,uVar7,uVar1), lVar4 == 0 ||
+         ((lVar4 = Timer_GetElapsed(lVar6,param_6._4_4_,bVar8,uVar7,uVar1), lVar4 == 0 ||
           (*(int *)(lVar4 + 0x104) == -1)))) {
-        FUN_18054f900(lVar6,uVar3,bVar8,uVar7,uVar1);
+        Timer_GetElapsed(lVar6,uVar3,bVar8,uVar7,uVar1);
       }
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(param_8 ^ (uint64_t)&stack0x00000000);
@@ -172,11 +172,11 @@ LAB_18050dd9f:
   }
   bVar5 = (byte)((uint)*(int32_t *)(in_R11 + 0x564) >> 0x1f) ^ 1;
   uVar1 = *(int8_t *)(*(int64_t *)(in_R11 + 0x590) + 0x34bc);
-  lVar2 = FUN_18054f900(lVar3,iStack0000000000000030,bVar5,uVar4,uVar1);
+  lVar2 = Timer_GetElapsed(lVar3,iStack0000000000000030,bVar5,uVar4,uVar1);
   if (((lVar2 == 0) || (*(int *)(lVar2 + 0x104) == -1)) &&
-     ((lVar2 = FUN_18054f900(lVar3,iStack0000000000000034,bVar5,uVar4,uVar1), lVar2 == 0 ||
+     ((lVar2 = Timer_GetElapsed(lVar3,iStack0000000000000034,bVar5,uVar4,uVar1), lVar2 == 0 ||
       (*(int *)(lVar2 + 0x104) == -1)))) {
-    FUN_18054f900(lVar3,iStack0000000000000038,bVar5,uVar4,uVar1);
+    Timer_GetElapsed(lVar3,iStack0000000000000038,bVar5,uVar4,uVar1);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
@@ -320,7 +320,7 @@ void FUN_18050df10(int64_t param_1,char param_2,int32_t param_3,char param_4)
     uStack_134 = FUN_180557850(*(uint64_t *)(param_1 + 0x598),0xffffffff,5,2);
     puVar7 = &uStack_138;
   }
-  FUN_18051ec50(param_1,puVar7);
+  CoreSystemThreadManager(param_1,puVar7);
 LAB_18050e0d9:
   lVar5 = *(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8);
   puVar8 = (uint *)((int64_t)*(char *)(*(int64_t *)(param_1 + 0x590) + 0x25fc) * 0x100 +

@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -234,9 +239,9 @@ char FUN_1805bf660(int64_t *param_1,int param_2,int64_t param_3)
     else {
       fVar12 = fVar12 + -6.2831855;
     }
-    lVar8 = FUN_1805a0610(lVar8 + 0x28,9);
+    lVar8 = PhysicsSystem_ForceCalculator(lVar8 + 0x28,9);
     if ((lVar8 != 0) && (*(int *)(lVar8 + 0x1c) != -1)) {
-      iVar7 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac));
+      iVar7 = SystemCacheManager(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac));
       iVar7 = *(int *)(system_system_memory + (int64_t)iVar7 * 4);
       if (iVar7 != -1) {
         lVar10 = *(int64_t *)(system_system_memory + (int64_t)iVar7 * 8);
@@ -420,7 +425,7 @@ LAB_1805bff74:
         fStack_168 = *pfVar9 - fStack_148;
         fStack_164 = pfVar9[1] - fStack_144;
         fStack_160 = pfVar9[2] - fStack_140;
-        fVar12 = (float)FUN_1801c24a0(&fStack_168);
+        fVar12 = (float)UtilitiesSystem_CryptoHandler(&fStack_168);
         if ((*(float *)(*(int64_t *)(lVar11 + 0x30c0 + lVar1) + 0x1d0) * 0.5 < fVar12) &&
            (cVar6 = FUN_1805c0080(param_1,&fStack_148,&fStack_168,fVar12,
                                   *(int32_t *)(param_3 + 0x14)), cVar6 != '\0')) {
@@ -688,7 +693,7 @@ LAB_1805bff74:
         fStack0000000000000030 = *pfVar7 - in_stack_00000050;
         fStack0000000000000034 = pfVar7[1] - fStack0000000000000054;
         fStack0000000000000038 = pfVar7[2] - in_stack_00000058;
-        fVar10 = (float)FUN_1801c24a0(&stack0x00000030);
+        fVar10 = (float)UtilitiesSystem_CryptoHandler(&stack0x00000030);
         if ((*(float *)(*(int64_t *)(unaff_R15 + 0x30c0 + unaff_R12) + 0x1d0) * 0.5 < fVar10) &&
            (cVar4 = FUN_1805c0080(fVar10,&stack0x00000050,&stack0x00000030,fVar10,
                                   *(int32_t *)(unaff_R13 + 0x14)), cVar4 != '\0')) {

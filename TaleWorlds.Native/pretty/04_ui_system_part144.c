@@ -31,7 +31,7 @@ uint64_t FUN_1807502f0(void)
   
   while (((*(int *)(unaff_RBX + 0x110) != 0 && (*(int *)(unaff_RBX + 0x110) != 2)) ||
          (*(char *)(unaff_RBX + 0x5c) != '\0'))) {
-    FUN_180768bf0(2);
+    UIComponent_EventHandler(2);
   }
   return 0;
 }

@@ -223,7 +223,7 @@ LAB_1803cb1f9:
   FUN_1803c5c50(uVar13,plVar6);
   ppplVar8 = ppplStack_100;
   if ((int64_t ****)ppplStack_100 != (int64_t ****)0x0) {
-    FUN_18004b790(&ppplStack_110,*ppplStack_100);
+    SystemCache_Manager(&ppplStack_110,*ppplStack_100);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(ppplVar8);
   }
@@ -272,7 +272,7 @@ FUN_1803cb450(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   
   plVar1 = *(int64_t **)(param_1 + 0xb8);
   (**(code **)(*plVar1 + 0x318))(plVar1,0,0);
-  FUN_18063b470(&uStack_98,param_4);
+  AdvancedProcessor_StateManager0(&uStack_98,param_4);
   uStack_58 = uStack_98._4_4_;
   uStack_54 = (int32_t)uStack_90;
   uStack_50 = uStack_90._4_4_;
@@ -280,7 +280,7 @@ FUN_1803cb450(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   uStack_40 = *(int32_t *)(param_4 + 0x38);
   uStack_44 = *(int32_t *)(param_4 + 0x34);
   uStack_48 = *(int32_t *)(param_4 + 0x30);
-  FUN_18063b470(&uStack_98);
+  AdvancedProcessor_StateManager0(&uStack_98);
   uStack_78 = uStack_98._4_4_;
   uStack_74 = (int32_t)uStack_90;
   uStack_70 = uStack_90._4_4_;
@@ -408,7 +408,7 @@ FUN_1803cb810(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   
   plVar1 = *(int64_t **)(param_1 + 0xb8);
   (**(code **)(*plVar1 + 0x318))(plVar1,0,0);
-  FUN_18063b470(&uStack_78,param_4);
+  AdvancedProcessor_StateManager0(&uStack_78,param_4);
   uStack_38 = uStack_74;
   uStack_34 = (int32_t)uStack_70;
   uStack_30 = uStack_70._4_4_;
@@ -416,7 +416,7 @@ FUN_1803cb810(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   uStack_20 = *(int32_t *)(param_4 + 0x38);
   uStack_24 = *(int32_t *)(param_4 + 0x34);
   uStack_28 = *(int32_t *)(param_4 + 0x30);
-  FUN_18063b470(&uStack_78);
+  AdvancedProcessor_StateManager0(&uStack_78);
   uStack_58 = uStack_74;
   uStack_54 = (int32_t)uStack_70;
   uStack_50 = uStack_70._4_4_;
@@ -498,7 +498,7 @@ FUN_1803cba10(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   FUN_180645340(auStack_68,param_4 + 0x30,param_5 + 0x30,&uStack_148);
   FUN_1802f5d10(param_4,auStack_e8,auStack_68);
   FUN_1802f5d10(param_5,auStack_a8,auStack_68);
-  FUN_18063b470(&uStack_148,auStack_e8);
+  AdvancedProcessor_StateManager0(&uStack_148,auStack_e8);
   uStack_118 = uStack_144;
   uStack_114 = uStack_140;
   uStack_110 = uStack_13c;
@@ -506,7 +506,7 @@ FUN_1803cba10(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,in
   uStack_108 = uStack_b8;
   uStack_104 = uStack_b4;
   uStack_100 = uStack_b0;
-  FUN_18063b470(&uStack_148,auStack_a8);
+  AdvancedProcessor_StateManager0(&uStack_148,auStack_a8);
   uStack_138 = uStack_144;
   uStack_134 = uStack_140;
   uStack_130 = uStack_13c;

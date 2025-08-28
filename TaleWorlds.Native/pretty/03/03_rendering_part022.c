@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -93,7 +98,7 @@ void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context
   
   // 处理父网格为空的情况
   if (parent_mesh_ptr == (uint64_t *)0x0) {
-    long_val = FUN_180628ca0();
+    long_val = MemoryDebugger0();
     int_val = *(int *)(mesh_component_ptr + 0x40);
     if (int_val == *(int *)(long_val + 0x10)) {
       if (int_val == 0) {
@@ -123,7 +128,7 @@ LAB_18027c7bb:
       }
       SystemMemoryManager(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
     }
-    stack_mesh_ptr = (uint64_t *)FUN_1800b6de0(system_resource_state, mesh_component_ptr + 0x3e, 1);
+    stack_mesh_ptr = (uint64_t *)RenderingSystem_VertexProcessor(system_resource_state, mesh_component_ptr + 0x3e, 1);
     if (stack_mesh_ptr == (uint64_t *)0x0) {
       return;
     }
@@ -189,10 +194,10 @@ LAB_18027c801:
     float_val6 = *(float *)(mesh_component_ptr + 0x6d);
     float_pack2 = *(int32_t *)((int64_t)mesh_component_ptr + 0x36c);
     FUN_1801c1720(mesh_component_ptr + 0x66, &float_val);
-    FUN_180085020(mesh_component_ptr + 0x66, stack_array);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &processed_var_8872_ptr, &float_val4);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &processed_var_8888_ptr, &float_val);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &processed_var_8408_ptr, stack_array);
+    RenderingSystem_LightSystem(mesh_component_ptr + 0x66, stack_array);
+    UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8872_ptr, &float_val4);
+    UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8888_ptr, &float_val);
+    UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8408_ptr, stack_array);
   }
   
   // 处理材质
@@ -714,7 +719,7 @@ void export_material_data(int64_t mesh_data_ptr)
   }
   index = -1;
 LAB_18027d492:
-  file_offset = FUN_180629a40(path_buffer, &temp_ptr, 0, index);
+  file_offset = NetworkSystem_ProtocolParser(path_buffer, &temp_ptr, 0, index);
   if (path_ptr != (void *)0x0) {
     CoreMemoryPoolInitializer();
   }
@@ -739,7 +744,7 @@ LAB_18027d492:
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
   *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = file_size;
-  FUN_180628380(path_buffer, *(int32_t *)(mesh_data_ptr + 0x324));
+  RenderingSystem_CameraController(path_buffer, *(int32_t *)(mesh_data_ptr + 0x324));
   index = path_length + 4;
   CoreMemoryPoolProcessor(path_buffer, index);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
@@ -754,7 +759,7 @@ LAB_18027d492:
   }
   *file_handle = 0;
   *(int8_t *)(file_handle + 2) = 0;
-  FUN_18062dee0(file_handle, data_ptr, &processed_var_9772_ptr);
+  SystemCore_Validator(file_handle, data_ptr, &processed_var_9772_ptr);
   magic_number = 0x31444d4d;  // "MMD1"
   fwrite(&magic_number, 4, 1, file_handle[1]);
   

@@ -273,7 +273,7 @@ void FUN_1806708b0(int64_t param_1)
     if (lVar1 == 0) {
       SystemInitializationProcessor(param_1 + 0x12c0,2,&processed_var_7824_ptr);
     }
-    lVar1 = FUN_18066e960(0x20,(uint64_t)*(uint *)(param_1 + 0x438c) * 0x12a0);
+    lVar1 = RenderingSystem_RenderTarget(0x20,(uint64_t)*(uint *)(param_1 + 0x438c) * 0x12a0);
     *(int64_t *)(param_1 + 0x43e0) = lVar1;
     if (lVar1 == 0) {
       SystemInitializationProcessor(param_1 + 0x12c0,2,&processed_var_7880_ptr);
@@ -309,7 +309,7 @@ void FUN_1806708fb(void)
   if (lVar1 == 0) {
     SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&processed_var_7824_ptr);
   }
-  lVar1 = FUN_18066e960(0x20,(uint64_t)*(uint *)(unaff_RBX + 0x438c) * 0x12a0);
+  lVar1 = RenderingSystem_RenderTarget(0x20,(uint64_t)*(uint *)(unaff_RBX + 0x438c) * 0x12a0);
   *(int64_t *)(unaff_RBX + 0x43e0) = lVar1;
   if (lVar1 == 0) {
     SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&processed_var_7880_ptr);
@@ -639,7 +639,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
       uVar6 = uVar5;
       uVar8 = uVar5;
       do {
-        uVar4 = FUN_18066e960(0x10,(int64_t)(int)(param_2 + 0x40));
+        uVar4 = RenderingSystem_RenderTarget(0x10,(int64_t)(int)(param_2 + 0x40));
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43b0)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43b0)) == 0) {
           SystemInitializationProcessor(lVar1,2,&processed_var_8056_ptr);
@@ -658,7 +658,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
       uVar6 = uVar5;
       uVar8 = uVar5;
       do {
-        uVar4 = FUN_18066e960(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
+        uVar4 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
         *(uint64_t *)(uVar8 + *(int64_t *)(param_1 + 0x43b8)) = uVar4;
         if (*(int64_t *)(uVar8 + *(int64_t *)(param_1 + 0x43b8)) == 0) {
           SystemInitializationProcessor(lVar1,2,&processed_var_8144_ptr);
@@ -677,7 +677,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
       uVar6 = uVar5;
       uVar8 = uVar5;
       do {
-        uVar4 = FUN_18066e960(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
+        uVar4 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c0)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c0)) == 0) {
           SystemInitializationProcessor(lVar1,2,&processed_var_8232_ptr);
@@ -798,7 +798,7 @@ void FUN_180670c62(uint64_t param_1,uint64_t param_2,int32_t param_3)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(int)(unaff_ESI + 0x40));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(int)(unaff_ESI + 0x40));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) == 0) {
         SystemInitializationProcessor();
@@ -817,7 +817,7 @@ void FUN_180670c62(uint64_t param_1,uint64_t param_2,int32_t param_3)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) = uVar3;
       if (*(int64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) == 0) {
         SystemInitializationProcessor();
@@ -836,7 +836,7 @@ void FUN_180670c62(uint64_t param_1,uint64_t param_2,int32_t param_3)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) == 0) {
         SystemInitializationProcessor();

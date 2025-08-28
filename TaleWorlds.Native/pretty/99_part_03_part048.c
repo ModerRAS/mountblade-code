@@ -189,7 +189,7 @@ LAB_1801fd775:
   *(int32_t *)((int64_t)param_2 + 0x74) = *(int32_t *)((int64_t)param_2 + 0x34);
   *(int32_t *)(param_2 + 0xf) = *(int32_t *)(param_2 + 7);
   *(int32_t *)((int64_t)param_2 + 0x7c) = *(int32_t *)((int64_t)param_2 + 0x3c);
-  FUN_180084ae0();
+  Utilities_DataValidator();
   *(int32_t *)((int64_t)param_2 + 0x4c) = 0;
   *(int32_t *)((int64_t)param_2 + 0x5c) = 0;
   *(int32_t *)((int64_t)param_2 + 0x6c) = 0;

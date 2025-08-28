@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedInitializer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -206,7 +207,7 @@ void ui_system_event_handler_base(int64_t control_handle, int64_t event_context)
         status_code = func_0x0001808c8470(processed_context.event_source);
         if (status_code == UI_STATUS_SUCCESS) {
             // 调用核心事件处理函数（不返回）
-            FUN_18088d720(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+            SystemResourceHandler(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
         }
     }
 }
@@ -235,7 +236,7 @@ void ui_system_event_handler_simple(int64_t control_handle, int64_t event_contex
     status_code = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), processed_context.event_data);
     if (status_code == UI_STATUS_SUCCESS) {
         // 直接调用事件处理函数（不返回）
-        FUN_18088d720(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+        SystemResourceHandler(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
     }
 }
 
@@ -266,7 +267,7 @@ void ui_system_event_handler_enhanced(int64_t control_handle, int64_t event_cont
         status_code = func_0x0001808c7d30(processed_context.event_source);
         if (status_code == UI_STATUS_SUCCESS) {
             // 调用增强的事件处理函数（不返回）
-            FUN_18088d720(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+            SystemResourceHandler(*(uint64_t*)(event_context + UI_CONTROL_OFFSET_EVENT), control_handle);
         }
     }
 }
@@ -310,7 +311,7 @@ ui_status_code_t ui_control_property_getter(int64_t control_handle, int64_t prop
             *(uint64_t*)(*(int64_t*)(*(int64_t*)(property_container + 0x10) + 0x2b0) + 0x78);
         
         // 调用属性获取处理函数
-        return FUN_18088d7c0(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+        return RenderingSystem_TextureManager(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
     }
     return status_code;
 }
@@ -354,7 +355,7 @@ ui_status_code_t ui_control_property_setter_base(int64_t control_handle, int64_t
             control_handle + UI_CONTROL_OFFSET_STATE);
         if (status_code == UI_STATUS_SUCCESS) {
             // 调用属性设置处理函数
-            return FUN_18088d7c0(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+            return RenderingSystem_TextureManager(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
         }
     }
     return status_code;
@@ -425,7 +426,7 @@ ui_status_code_t ui_control_property_setter_batch(int64_t control_handle, int64_
                     if (status_code != UI_STATUS_SUCCESS) {
                         return status_code;
                     }
-                    status_code = FUN_18088d7c0(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+                    status_code = RenderingSystem_TextureManager(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
                     return status_code;
                 }
                 property_index = (uint32_t)current_index + 1;
@@ -495,7 +496,7 @@ ui_status_code_t ui_system_batch_property_processor(void)
                 if (status_code != UI_STATUS_SUCCESS) {
                     return status_code;
                 }
-                status_code = FUN_18088d7c0(*(uint64_t*)(context_param1 + UI_CONTROL_OFFSET_EVENT));
+                status_code = RenderingSystem_TextureManager(*(uint64_t*)(context_param1 + UI_CONTROL_OFFSET_EVENT));
                 return status_code;
             }
             property_index = (uint32_t)current_index + 1;
@@ -533,7 +534,7 @@ void ui_system_simple_validator(void)
     // 执行系统验证
     validation_result = func_0x00018088c500();
     if (validation_result == UI_STATUS_SUCCESS) {
-        FUN_18088d7c0(*(uint64_t*)(context_param + UI_CONTROL_OFFSET_EVENT));
+        RenderingSystem_TextureManager(*(uint64_t*)(context_param + UI_CONTROL_OFFSET_EVENT));
     }
 }
 
@@ -597,7 +598,7 @@ ui_status_code_t ui_control_state_validator(int64_t control_handle, int64_t vali
     // 检查验证标志
     if ((*(int*)(state_container + 0x180) != 0) || (*(int*)(state_container + 0x184) != 0)) {
         property_container = 0;
-        FUN_180768b50(&property_container);
+        RenderingSystem_TextureManager(&property_container);
         if (property_container == *(int64_t*)((int64_t)*(int*)(state_container + 0x17c) * 8 + 0x180c4f450)) {
             status_code = FUN_18088dd60(state_container, control_handle);
             goto validation_complete;
@@ -665,7 +666,7 @@ void ui_control_creator(int64_t control_handle, int64_t creation_context)
             control_pointer = (int64_t*)(memory_block + 0x58);
             if (((int64_t*)*control_pointer != control_pointer) || (*(int64_t**)(memory_block + 0x60) != control_pointer)) {
                 // 指针验证失败，调用错误处理函数（不返回）
-                FUN_18088d720(*(uint64_t*)(creation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+                SystemResourceHandler(*(uint64_t*)(creation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
             }
         }
     }
@@ -705,7 +706,7 @@ void ui_control_initializer(int64_t* control_pointer, int64_t init_context)
     }
     
     // 初始化失败，调用错误处理函数（不返回）
-    FUN_18088d720(*(uint64_t*)(context_param + UI_CONTROL_OFFSET_EVENT));
+    SystemResourceHandler(*(uint64_t*)(context_param + UI_CONTROL_OFFSET_EVENT));
 }
 
 /**
@@ -870,7 +871,7 @@ ui_status_code_t ui_control_data_validator(int64_t control_handle, int64_t valid
         // 检查验证标志
         if ((*(int*)(data_pointer + 0x180) != 0) || (*(int*)(data_pointer + 0x184) != 0)) {
             temp_data[0] = 0;
-            FUN_180768b50(temp_data);
+            RenderingSystem_TextureManager(temp_data);
             if (temp_data[0] == *(int64_t*)((int64_t)*(int*)(data_pointer + 0x17c) * 8 + 0x180c4f450)) {
                 status_code = FUN_18088dd60(data_pointer, control_handle);
                 if (status_code == UI_STATUS_SUCCESS) {
@@ -919,7 +920,7 @@ void ui_system_state_setter(int64_t control_handle, int64_t state_context)
         *(uint32_t*)(state_data + 0x88) = *(uint32_t*)(control_handle + UI_CONTROL_OFFSET_STATE);
         
         // 调用状态设置处理函数（不返回）
-        FUN_18088d720(*(uint64_t*)(state_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+        SystemResourceHandler(*(uint64_t*)(state_context + UI_CONTROL_OFFSET_EVENT), control_handle);
     }
 }
 
@@ -994,7 +995,7 @@ ui_status_code_t ui_float_property_validator(int64_t control_handle, int64_t val
             *(ui_float_t*)(property_container + 4) = max_value;
             
             // 调用验证处理函数（不返回）
-            FUN_18088d720(*(uint64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+            SystemResourceHandler(*(uint64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
         }
     }
     return status_code;
@@ -1048,7 +1049,7 @@ ui_status_code_t ui_float_property_adjuster(int64_t control_handle, int64_t adju
             }
             
             // 调整浮点数值
-            status_code = FUN_18084de40(property_data, control_handle + 0x25, control_handle + UI_CONTROL_OFFSET_DATA);
+            status_code = RenderingSystem_GeometryProcessor0(property_data, control_handle + 0x25, control_handle + UI_CONTROL_OFFSET_DATA);
             if (status_code == UI_STATUS_SUCCESS) {
                 float_value = *(ui_float_t*)(control_handle + UI_CONTROL_OFFSET_DATA);
                 if ((*(ui_float_t*)(property_data + 0x38) <= float_value) &&
@@ -1056,7 +1057,7 @@ ui_status_code_t ui_float_property_adjuster(int64_t control_handle, int64_t adju
                     status_code = *(uint64_t*)(adjustment_context + UI_CONTROL_OFFSET_EVENT);
                     *(ui_float_t*)(property_container + 4) = float_value;
                     // 调用调整处理函数（不返回）
-                    FUN_18088d720(status_code, control_handle);
+                    SystemResourceHandler(status_code, control_handle);
                 }
                 status_code = UI_STATUS_VALIDATION_FAILED;
             }
@@ -1097,7 +1098,7 @@ ui_status_code_t ui_float_property_adjuster_context(void)
     }
     
     // 调整浮点数值
-    status_code = FUN_18084de40(property_data, context_param2 + 0x25, context_param2 + UI_CONTROL_OFFSET_DATA);
+    status_code = RenderingSystem_GeometryProcessor0(property_data, context_param2 + 0x25, context_param2 + UI_CONTROL_OFFSET_DATA);
     if (status_code == UI_STATUS_SUCCESS) {
         float_value = *(ui_float_t*)(context_param2 + UI_CONTROL_OFFSET_DATA);
         if ((*(ui_float_t*)(property_data + 0x38) <= float_value) &&
@@ -1105,7 +1106,7 @@ ui_status_code_t ui_float_property_adjuster_context(void)
             status_code = *(uint64_t*)(context_param1 + UI_CONTROL_OFFSET_EVENT);
             *(ui_float_t*)(stack_param + 4) = float_value;
             // 调用调整处理函数（不返回）
-            FUN_18088d720(status_code);
+            SystemResourceHandler(status_code);
         }
         status_code = UI_STATUS_VALIDATION_FAILED;
     }
@@ -1144,7 +1145,7 @@ ui_status_code_t ui_float_property_adjuster_register1(void)
     }
     
     // 调整浮点数值
-    status_code = FUN_18084de40(property_data, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
+    status_code = RenderingSystem_GeometryProcessor0(property_data, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
     if (status_code == UI_STATUS_SUCCESS) {
         float_value = *(ui_float_t*)(context_param3 + UI_CONTROL_OFFSET_DATA);
         if ((*(ui_float_t*)(property_data + 0x38) <= float_value) &&
@@ -1152,7 +1153,7 @@ ui_status_code_t ui_float_property_adjuster_register1(void)
             status_code = *(uint64_t*)(context_param2 + UI_CONTROL_OFFSET_EVENT);
             *(ui_float_t*)(stack_param + 4) = float_value;
             // 调用调整处理函数（不返回）
-            FUN_18088d720(status_code);
+            SystemResourceHandler(status_code);
         }
         status_code = UI_STATUS_VALIDATION_FAILED;
     }
@@ -1186,7 +1187,7 @@ ui_status_code_t ui_float_property_adjuster_register2(uint32_t param1)
     }
     
     // 调整浮点数值
-    status_code = FUN_18084de40(param1, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
+    status_code = RenderingSystem_GeometryProcessor0(param1, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
     if (status_code == UI_STATUS_SUCCESS) {
         float_value = *(ui_float_t*)(context_param3 + UI_CONTROL_OFFSET_DATA);
         if ((*(ui_float_t*)(context_param1 + 0x38) <= float_value) &&
@@ -1194,7 +1195,7 @@ ui_status_code_t ui_float_property_adjuster_register2(uint32_t param1)
             status_code = *(uint64_t*)(context_param2 + UI_CONTROL_OFFSET_EVENT);
             *(ui_float_t*)(stack_param + 4) = float_value;
             // 调用调整处理函数（不返回）
-            FUN_18088d720(status_code);
+            SystemResourceHandler(status_code);
         }
         status_code = UI_STATUS_VALIDATION_FAILED;
     }
@@ -1223,7 +1224,7 @@ ui_status_code_t ui_float_property_adjuster_direct(uint32_t param1)
     int64_t stack_param;
     
     // 调整浮点数值
-    status_code = FUN_18084de40(param1, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
+    status_code = RenderingSystem_GeometryProcessor0(param1, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
     if (status_code == UI_STATUS_SUCCESS) {
         float_value = *(ui_float_t*)(context_param3 + UI_CONTROL_OFFSET_DATA);
         if ((*(ui_float_t*)(context_param1 + 0x38) <= float_value) &&
@@ -1231,7 +1232,7 @@ ui_status_code_t ui_float_property_adjuster_direct(uint32_t param1)
             status_code = *(uint64_t*)(context_param2 + UI_CONTROL_OFFSET_EVENT);
             *(ui_float_t*)(stack_param + 4) = float_value;
             // 调用调整处理函数（不返回）
-            FUN_18088d720(status_code);
+            SystemResourceHandler(status_code);
         }
         status_code = UI_STATUS_VALIDATION_FAILED;
     }
@@ -1339,7 +1340,7 @@ ui_status_code_t ui_control_property_index_validator(int64_t control_handle, int
             *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (int64_t)(int)temp_data[0] * 8);
             
             // 调用验证处理函数（不返回）
-            FUN_18088d720(*(uint64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+            SystemResourceHandler(*(uint64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
         }
     }
     return UI_STATUS_INVALID_PARAMETER;
@@ -1400,7 +1401,7 @@ ui_status_code_t ui_control_property_index_adjuster(int64_t control_handle, int6
         list_data = *(int64_t*)(property_container + 0x20);
         property_data = *(int64_t*)(list_data + 0x10 + index_data * MEMORY_POOL_BLOCK_SIZE);
         if ((*(uint8_t*)(property_data + 0x34) & 0x11) == 0) {
-            status_code = FUN_18084de40(property_data, control_handle + 0xa8, control_handle + UI_CONTROL_OFFSET_STATE);
+            status_code = RenderingSystem_GeometryProcessor0(property_data, control_handle + 0xa8, control_handle + UI_CONTROL_OFFSET_STATE);
             if (status_code != UI_STATUS_SUCCESS) {
                 return status_code;
             }
@@ -1414,7 +1415,7 @@ ui_status_code_t ui_control_property_index_adjuster(int64_t control_handle, int6
                 *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (int64_t)temp_data[0] * 8);
                 
                 // 调用调整处理函数（不返回）
-                FUN_18088d720(*(uint64_t*)(adjustment_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+                SystemResourceHandler(*(uint64_t*)(adjustment_context + UI_CONTROL_OFFSET_EVENT), control_handle);
             }
             return UI_STATUS_VALIDATION_FAILED;
         }
@@ -1505,7 +1506,7 @@ ui_status_code_t ui_control_property_index_processor(int64_t control_handle, int
         property_container = *(int64_t*)(process_context + UI_CONTROL_OFFSET_EVENT);
         if ((*(int*)(property_container + 0x180) != 0) || (*(int*)(property_container + 0x184) != 0)) {
             stack_param = 0;
-            FUN_180768b50(&stack_param, control_handle, param3, param4, extra_param);
+            RenderingSystem_TextureManager(&stack_param, control_handle, param3, param4, extra_param);
             if (stack_param == *(int64_t*)((int64_t)*(int*)(property_container + 0x17c) * 8 + 0x180c4f450)) {
                 status_code = FUN_18088dd60(property_container, control_handle);
                 if (status_code == UI_STATUS_SUCCESS) {
@@ -1632,7 +1633,7 @@ ui_status_code_t ui_float_array_processor(int64_t control_handle, int64_t proces
     }
     
     // 调用处理函数（不返回）
-    FUN_18088d720(*(uint64_t*)(process_context + UI_CONTROL_OFFSET_EVENT), control_handle);
+    SystemResourceHandler(*(uint64_t*)(process_context + UI_CONTROL_OFFSET_EVENT), control_handle);
 }
 
 /**
@@ -1733,7 +1734,7 @@ ui_status_code_t ui_float_array_processor_context(void)
     }
     
     // 调用处理函数（不返回）
-    FUN_18088d720(*(uint64_t*)(context_param6 + UI_CONTROL_OFFSET_EVENT));
+    SystemResourceHandler(*(uint64_t*)(context_param6 + UI_CONTROL_OFFSET_EVENT));
 }
 
 /**

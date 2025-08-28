@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_01_part034.c - 5 个函数
 
 // 函数: void FUN_1800c1a80(void)
@@ -85,7 +89,7 @@ void FUN_1800c1a80(void)
   auStack_400[0] = auStack_400[0] & 0xffffffffffffff00;
   uStack_408 = CONCAT44((int)(uStack_408 >> 0x20),0x10);
   strcpy_s(auStack_400,0x20,&system_data_3870);
-  puVar8 = (uint64_t *)FUN_1800b31f0(system_resource_state,aplStack_438,&plStack_418,1);
+  puVar8 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,aplStack_438,&plStack_418,1);
   *(uint64_t *)(lVar17 + 0x160) = *puVar8;
   if (aplStack_438[0] != (int64_t *)0x0) {
     (**(code **)(*aplStack_438[0] + 0x38))();
@@ -205,7 +209,7 @@ void FUN_1800c1a80(void)
     *(int8_t *)((int64_t)puVar12 + 0x12) = 0;
     uStack_408 = CONCAT44(uStack_408._4_4_,0x12);
     auStack_400[0]._0_4_ = uVar7;
-    FUN_180060680(acStack_48,&processed_var_4576_ptr,1 << (bVar6 & 0x1f));
+    RenderingEngine_BufferManager(acStack_48,&processed_var_4576_ptr,1 << (bVar6 & 0x1f));
     lVar5 = -1;
     do {
       lVar14 = lVar5;
@@ -357,7 +361,7 @@ uint64_t FUN_1800c26d0(int64_t *param_1,int64_t *param_2)
   plStackX_8 = param_1;
   plStackX_10 = param_2;
   if (*(int *)(lVar13 + 0x58) == 0) {
-    FUN_180627020(&ui_system_data_1368_ptr);
+    SystemCore_Allocator(&ui_system_data_1368_ptr);
 LAB_1800c2711:
     if ((int64_t *)*param_2 != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)*param_2 + 0x38))();
@@ -365,13 +369,13 @@ LAB_1800c2711:
     return 0;
   }
   puVar1 = (uint64_t *)(system_system_data_memory + 0x20);
-  plVar6 = (int64_t *)FUN_180058080(puVar1,&plStackX_8,lVar13 + 0x48);
+  plVar6 = (int64_t *)HighFreq_AnimationSystem1(puVar1,&plStackX_8,lVar13 + 0x48);
   if ((uint64_t *)*plVar6 != puVar1) {
     puVar11 = &system_buffer_ptr;
     if (*(void **)(lVar13 + 0x50) != (void *)0x0) {
       puVar11 = *(void **)(lVar13 + 0x50);
     }
-    FUN_180627020(&ui_system_data_1456_ptr,puVar11);
+    SystemCore_Allocator(&ui_system_data_1456_ptr,puVar11);
     goto LAB_1800c2711;
   }
   puVar8 = puVar1;
@@ -748,7 +752,7 @@ LAB_1800c2ba7:
     return param_2;
   }
 LAB_1800c2bd3:
-  uVar4 = FUN_1800590b0(param_1,acStackX_18,param_5);
+  uVar4 = SystemCore_SecurityValidator(param_1,acStackX_18,param_5);
   if (acStackX_18[0] != '\0') {
     FUN_18009c860(param_1,&uStackX_8,uVar4,0,param_5);
     uVar4 = uStackX_8;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part069_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_3,
@@ -265,7 +269,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
                 puVar14[2] = 0x6165775f;
                 puVar14[3] = 0x6e6f70;
                 uStack_1c0 = 0xf;
-                FUN_1800b6de0(system_resource_state,&puStack_1d0,0);
+                RenderingSystem_VertexProcessor(system_resource_state,&puStack_1d0,0);
                 puStack_1d0 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
                 CoreEngineMemoryPoolCleaner(puVar14);
@@ -362,7 +366,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
       ppppppplStack_1f8 = ppppppplVar13;
       (*(code *)(*ppppppplVar13)[5])(ppppppplVar13);
       ppppppplStack_138 = (int64_t *******)&ppppppplStack_1f8;
-      FUN_1802edcd0(pppppplVar11,ppppppplStack_1f8,1);
+      PhysicsSystem_TerrainCollider(pppppplVar11,ppppppplStack_1f8,1);
       if (ppppppplStack_1f8 != (int64_t *******)0x0) {
         (*(code *)(*ppppppplStack_1f8)[7])();
       }
@@ -466,7 +470,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
           }
           else if ((uint)puVar16 < uVar8) {
             uStack_218 = 0x13;
-            puVar15 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar15,uVar8,0x10);
+            puVar15 = (int8_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puVar15,uVar8,0x10);
             uStack_190 = (int32_t *)puVar15;
             uVar8 = CoreEngineSystemCleanup(puVar15);
             puVar16 = (int8_t *)(uint64_t)uVar8;
@@ -515,7 +519,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
     }
     else {
       uVar10 = FUN_1805ed5c0(&ppppppplStack_208);
-      FUN_180060b80(param_1 + 0x10,uVar10);
+      SystemCore_ChecksumValidator(param_1 + 0x10,uVar10);
       if (ppppppplStack_208 != (int64_t *******)0x0) {
         (*(code *)(*ppppppplStack_208)[7])();
       }
@@ -527,7 +531,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
         (*(code *)(*ppppppplStack_1f8)[5])();
       }
       ppppppplStack_138 = (int64_t *******)&ppppppplStack_1f8;
-      FUN_1802edcd0(pppppplVar11,ppppppplStack_1f8,1);
+      PhysicsSystem_TerrainCollider(pppppplVar11,ppppppplStack_1f8,1);
       ppppppplVar13 = ppppppplStack_1a8;
       if (ppppppplStack_1f8 != (int64_t *******)0x0) {
         (*(code *)(*ppppppplStack_1f8)[7])();

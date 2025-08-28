@@ -1,3 +1,8 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -48,12 +53,12 @@ void FUN_1808168c0(int64_t param_1,uint param_2,char param_3)
   if (iVar2 == 0) {
     iStack_b4 = iStack_b4 + -8;
     uStack_ac = 4;
-    iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),iVar3,0);
+    iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),iVar3,0);
     uVar6 = 0;
     if (iVar3 == 0) {
       while( true ) {
         piStack_c8 = (int *)0x0;
-        iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_90,1);
+        iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_90,1);
         if (iVar3 != 0) break;
         iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_9588_ptr,4);
         if (iVar3 == 0) {
@@ -68,7 +73,7 @@ void FUN_1808168c0(int64_t param_1,uint param_2,char param_3)
             *(int64_t *)(param_1 + 0x230) = lVar4;
             if (lVar4 == 0) break;
             piStack_c8 = (int *)0x0;
-            iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),lVar4,1,uStack_8c);
+            iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),lVar4,1,uStack_8c);
 joined_r0x000180816c9e:
             if (iVar3 != 0) break;
           }
@@ -77,7 +82,7 @@ joined_r0x000180816c9e:
           iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_840_ptr,4);
           if (iVar3 == 0) {
             piStack_c8 = (int *)0x0;
-            FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),param_1 + 0x1e0,4,1);
+            SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),param_1 + 0x1e0,4,1);
             if (*(int *)(param_1 + 0x1e0) != 0) {
               if (*(int64_t *)(param_1 + 0x1e8) != 0) {
                 piStack_c8 = (int *)CONCAT71(piStack_c8._1_7_,1);
@@ -97,7 +102,7 @@ joined_r0x000180816c9e:
                 do {
                   lVar4 = *(int64_t *)(param_1 + 0x1e8) + uVar5;
                   piStack_c8 = (int *)0x0;
-                  iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_88,1);
+                  iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_88,1);
                   param_3 = cStack_b8;
                   cVar7 = cStack_b7;
                   param_2 = uStack_b0;
@@ -120,7 +125,7 @@ joined_r0x000180816c9e:
             iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_848_ptr);
             if (iVar3 == 0) {
               piStack_c8 = (int *)0x0;
-              iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),&uStack_a8,4,1);
+              iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),&uStack_a8,4,1);
               if (iVar3 != 0) break;
               *(int32_t *)(*(int64_t *)(param_1 + 8) + 0x18) = uStack_a8;
             }
@@ -128,7 +133,7 @@ joined_r0x000180816c9e:
               iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_9516_ptr);
               if (iVar3 == 0) {
                 piStack_c8 = (int *)0x0;
-                iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_98,1,4);
+                iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_98,1,4);
                 if (iVar3 == 0) {
                   iVar3 = FUN_1808168c0(param_1,uStack_8c,1);
                   goto joined_r0x000180816c9e;
@@ -139,7 +144,7 @@ joined_r0x000180816c9e:
               if (iVar3 == 0) {
                 if (*(int64_t *)(param_1 + 0x1e8) != 0) {
                   piStack_c8 = (int *)0x0;
-                  iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),&uStack_a4,4,1);
+                  iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),&uStack_a4,4,1);
                   if (iVar3 != 0) break;
                   if (0 < *(int *)(param_1 + 0x1e0)) {
                     lVar4 = *(int64_t *)(param_1 + 0x1e8);
@@ -147,7 +152,7 @@ joined_r0x000180816c9e:
                     do {
                       if (*(ushort *)(lVar4 + 0x36) == uStack_a4) {
                         piStack_c8 = (int *)0x0;
-                        FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),*(uint64_t *)(lVar4 + 0x20)
+                        SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),*(uint64_t *)(lVar4 + 0x20)
                                       ,1,uStack_8c - 4);
                         break;
                       }
@@ -162,7 +167,7 @@ joined_r0x000180816c9e:
                 iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_864_ptr,4);
                 if (iVar3 == 0) {
                   piStack_c8 = &iStack_a0;
-                  iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_70,1);
+                  iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_70,1);
                   if (iVar3 != 0) break;
                   if ((iStack_a0 == 0x3c) && (iStack_54 != 0)) {
                     *(int32_t *)(param_1 + 0x114) = uStack_44;
@@ -189,7 +194,7 @@ joined_r0x000180816c9e:
                         }
                       }
                       if ((*(uint *)(*(int64_t *)(param_1 + 0x170) + 0x194) & 1) != 0) {
-                        iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),uStack_8c,1);
+                        iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),uStack_8c,1);
                         param_3 = cStack_b8;
                         goto joined_r0x000180816c9e;
                       }
@@ -199,7 +204,7 @@ joined_r0x000180816c9e:
                     }
                   }
                   else {
-                    FUN_18076a440(*(uint64_t *)(param_1 + 0x170),uStack_8c,1);
+                    MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),uStack_8c,1);
                   }
                 }
               }
@@ -213,7 +218,7 @@ joined_r0x000180816c9e:
           iStack_b4 = iStack_b4 + 1;
         }
         if ((((param_2 <= uStack_ac) || (uStack_ac == 0)) || (cVar7 != '\0')) ||
-           (iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),iStack_b4 + 8,0), iVar3 != 0))
+           (iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),iStack_b4 + 8,0), iVar3 != 0))
         break;
       }
     }
@@ -247,12 +252,12 @@ void FUN_180816928(void)
   uint64_t uVar8;
   
   *(int32_t *)(unaff_RBP + -0x4d) = 4;
-  iVar2 = FUN_18076a440();
+  iVar2 = MathTrigonometryFunction0();
   uVar5 = 0;
   if (iVar2 == 0) {
     while( true ) {
       uVar8 = 0;
-      iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1,8,0);
+      iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1,8,0);
       if (iVar2 != 0) break;
       iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9588_ptr,4);
       if (iVar2 == 0) {
@@ -265,7 +270,7 @@ void FUN_180816928(void)
                                 uVar8 & 0xffffffff00000000);
           *(int64_t *)(unaff_RBX + 0x230) = lVar3;
           if (lVar3 == 0) break;
-          iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),lVar3,1,
+          iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),lVar3,1,
                                 *(int32_t *)(unaff_RBP + -0x2d),0);
 joined_r0x000180816c9e:
           if (iVar2 != 0) break;
@@ -275,7 +280,7 @@ joined_r0x000180816c9e:
         iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_840_ptr,4);
         if (iVar2 == 0) {
           uVar8 = 0;
-          FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1,0);
+          SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1,0);
           if (*(int *)(unaff_RBX + 0x1e0) != 0) {
             if (*(int64_t *)(unaff_RBX + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -292,7 +297,7 @@ joined_r0x000180816c9e:
             if (0 < *(int *)(unaff_RBX + 0x1e0)) {
               do {
                 lVar3 = *(int64_t *)(unaff_RBX + 0x1e8) + uVar8;
-                iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x29,1,0x18,0)
+                iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x29,1,0x18,0)
                 ;
                 if (iVar2 != 0) break;
                 *(int64_t *)(lVar3 + 0x20) = lVar3 + 0x3c;
@@ -315,7 +320,7 @@ joined_r0x000180816c9e:
         else {
           iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_848_ptr);
           if (iVar2 == 0) {
-            iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1,0);
+            iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1,0);
             if (iVar2 != 0) break;
             *(int32_t *)(*(int64_t *)(unaff_RBX + 8) + 0x18) =
                  *(int32_t *)(unaff_RBP + -0x49);
@@ -323,7 +328,7 @@ joined_r0x000180816c9e:
           else {
             iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9516_ptr);
             if (iVar2 == 0) {
-              iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4,0);
+              iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4,0);
               if (iVar2 == 0) {
                 iVar2 = FUN_1808168c0();
                 goto joined_r0x000180816c9e;
@@ -333,14 +338,14 @@ joined_r0x000180816c9e:
             iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_856_ptr,4);
             if (iVar2 == 0) {
               if (*(int64_t *)(unaff_RBX + 0x1e8) != 0) {
-                iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1,0);
+                iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1,0);
                 if (iVar2 != 0) break;
                 if (0 < *(int *)(unaff_RBX + 0x1e0)) {
                   lVar3 = *(int64_t *)(unaff_RBX + 0x1e8);
                   uVar8 = uVar5;
                   do {
                     if ((uint)*(ushort *)(lVar3 + 0x36) == *(uint *)(unaff_RBP + -0x45)) {
-                      FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),*(uint64_t *)(lVar3 + 0x20)
+                      SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),*(uint64_t *)(lVar3 + 0x20)
                                     ,1,*(int *)(unaff_RBP + -0x2d) + -4,0);
                       break;
                     }
@@ -354,7 +359,7 @@ joined_r0x000180816c9e:
             else {
               iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_864_ptr,4);
               if (iVar2 == 0) {
-                iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
+                iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
                                       unaff_RBP + -0x41);
                 if (iVar2 != 0) break;
                 if ((*(int *)(unaff_RBP + -0x41) == 0x3c) && (*(int *)(unaff_RBP + 0xb) != 0)) {
@@ -389,7 +394,7 @@ joined_r0x000180816c9e:
                       *(int8_t *)(unaff_RBP + -0x58) = 1;
                     }
                     else {
-                      iVar2 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),
+                      iVar2 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),
                                             *(int32_t *)(unaff_RBP + -0x2d),1);
                       if (iVar2 != 0) break;
                       unaff_DIL = *(char *)(unaff_RBP + -0x59);
@@ -397,7 +402,7 @@ joined_r0x000180816c9e:
                   }
                 }
                 else {
-                  FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),
+                  MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),
                                 *(int32_t *)(unaff_RBP + -0x2d),1);
                 }
               }
@@ -417,7 +422,7 @@ joined_r0x000180816c9e:
         *(int *)(unaff_RBP + -0x55) = iVar2;
       }
       if ((((unaff_R15D <= uVar4) || (uVar4 == 0)) || (unaff_R14B != '\0')) ||
-         (iVar2 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),iVar2 + 8,0), iVar2 != 0)) break;
+         (iVar2 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),iVar2 + 8,0), iVar2 != 0)) break;
     }
   }
                     // WARNING: Subroutine does not return
@@ -468,7 +473,7 @@ void FUN_180816a57(void)
     iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_840_ptr,4);
     iVar6 = (int)unaff_R13;
     if (iVar2 == 0) {
-      FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1);
+      SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1);
       if (*(int *)(unaff_RBX + 0x1e0) != 0) {
         if (*(int64_t *)(unaff_RBX + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -485,7 +490,7 @@ void FUN_180816a57(void)
         if (iVar6 < *(int *)(unaff_RBX + 0x1e0)) {
           do {
             lVar3 = *(int64_t *)(unaff_RBX + 0x1e8) + uVar4;
-            iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x29,1);
+            iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x29,1);
             if (iVar2 != 0) break;
             *(int64_t *)(lVar3 + 0x20) = lVar3 + 0x3c;
             iVar2 = *(int *)(unaff_RBP + -0x15);
@@ -507,14 +512,14 @@ void FUN_180816a57(void)
     else {
       iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_848_ptr);
       if (iVar2 == 0) {
-        iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1);
+        iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1);
         if (iVar2 != 0) goto LAB_180816a24;
         *(int32_t *)(*(int64_t *)(unaff_RBX + 8) + 0x18) = *(int32_t *)(unaff_RBP + -0x49);
       }
       else {
         iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9516_ptr);
         if (iVar2 == 0) {
-          iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4);
+          iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4);
           if (iVar2 == 0) {
             iVar2 = FUN_1808168c0();
             goto joined_r0x000180816c9e;
@@ -526,14 +531,14 @@ LAB_180816a24:
         iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_856_ptr,4);
         if (iVar2 == 0) {
           if (*(uint64_t *)(unaff_RBX + 0x1e8) != unaff_R13) {
-            iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1);
+            iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1);
             if (iVar2 != 0) goto LAB_180816a24;
             uVar4 = unaff_R13 & 0xffffffff;
             if (0 < *(int *)(unaff_RBX + 0x1e0)) {
               lVar3 = *(int64_t *)(unaff_RBX + 0x1e8);
               do {
                 if ((uint)*(ushort *)(lVar3 + 0x36) == *(uint *)(unaff_RBP + -0x45)) {
-                  FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),*(uint64_t *)(lVar3 + 0x20),1,
+                  SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),*(uint64_t *)(lVar3 + 0x20),1,
                                 *(int *)(unaff_RBP + -0x2d) + -4);
                   break;
                 }
@@ -547,7 +552,7 @@ LAB_180816a24:
         else {
           iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_864_ptr,4);
           if (iVar2 == 0) {
-            iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
+            iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
                                   unaff_RBP + -0x41);
             if (iVar2 != 0) goto LAB_180816a24;
             if ((*(int *)(unaff_RBP + -0x41) == 0x3c) && (*(int *)(unaff_RBP + 0xb) != iVar6)) {
@@ -581,7 +586,7 @@ LAB_180816a24:
                   *(int8_t *)(unaff_RBP + -0x58) = 1;
                 }
                 else {
-                  iVar2 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),
+                  iVar2 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),
                                         *(int32_t *)(unaff_RBP + -0x2d),1);
                   if (iVar2 != 0) goto LAB_180816a24;
                   unaff_DIL = *(char *)(unaff_RBP + -0x59);
@@ -589,7 +594,7 @@ LAB_180816a24:
               }
             }
             else {
-              FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),*(int32_t *)(unaff_RBP + -0x2d),1)
+              MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),*(int32_t *)(unaff_RBP + -0x2d),1)
               ;
             }
           }
@@ -609,10 +614,10 @@ LAB_180816b9b:
       *(int *)(unaff_RBP + -0x55) = iVar2;
     }
     if ((((unaff_R15D <= uVar5) || (uVar5 == 0)) || (unaff_R14B != '\0')) ||
-       (iVar2 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),iVar2 + 8,0), iVar2 != 0))
+       (iVar2 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),iVar2 + 8,0), iVar2 != 0))
     goto LAB_180816a24;
     uVar4 = unaff_R13;
-    iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1);
+    iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1);
     uVar9 = (int32_t)(uVar4 >> 0x20);
     if (iVar2 != 0) goto LAB_180816a24;
     iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9588_ptr,4);
@@ -626,7 +631,7 @@ LAB_180816b9b:
                               CONCAT44(uVar9,iVar6));
         *(int64_t *)(unaff_RBX + 0x230) = lVar3;
         if (lVar3 == 0) goto LAB_180816a24;
-        iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),lVar3,1,
+        iVar2 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RBX + 0x170),lVar3,1,
                               *(int32_t *)(unaff_RBP + -0x2d));
 joined_r0x000180816c9e:
         if (iVar2 != 0) goto LAB_180816a24;
@@ -657,22 +662,22 @@ void FUN_180816ee0(uint64_t param_1,int64_t *param_2)
         do {
           if (*(int64_t *)(lVar2 + lVar1) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_1807c41d0(param_1,*(int64_t *)(lVar2 + lVar1));
+            RenderingSystem_CoreProcessor0(param_1,*(int64_t *)(lVar2 + lVar1));
           }
           iVar3 = iVar3 + 1;
           lVar2 = lVar2 + 8;
         } while (iVar3 < (int)param_2[2]);
       }
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0(param_1,lVar1);
+      RenderingSystem_CoreProcessor0(param_1,lVar1);
     }
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0(param_1);
+      RenderingSystem_CoreProcessor0(param_1);
     }
     if (param_2[3] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0(param_1);
+      RenderingSystem_CoreProcessor0(param_1);
     }
     *param_2 = 0;
     param_2[1] = 0;
@@ -700,14 +705,14 @@ void FUN_180816f01(uint64_t param_1,int64_t param_2)
     do {
       if (*(int64_t *)(lVar1 + param_2) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_1807c41d0();
+        RenderingSystem_CoreProcessor0();
       }
       iVar2 = iVar2 + 1;
       lVar1 = lVar1 + 8;
     } while (iVar2 < *(int *)(unaff_RBX + 0x10));
   }
                     // WARNING: Subroutine does not return
-  FUN_1807c41d0();
+  RenderingSystem_CoreProcessor0();
 }
 
 
@@ -726,13 +731,13 @@ void FUN_180816f0d(uint64_t param_1,int64_t param_2)
   do {
     if (*(int64_t *)(uVar1 + param_2) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1807c41d0();
+      RenderingSystem_CoreProcessor0();
     }
     unaff_EDI = unaff_EDI + 1;
     uVar1 = uVar1 + 8;
   } while ((int)unaff_EDI < *(int *)(unaff_RBX + 0x10));
                     // WARNING: Subroutine does not return
-  FUN_1807c41d0();
+  RenderingSystem_CoreProcessor0();
 }
 
 
@@ -744,7 +749,7 @@ void FUN_180816f44(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1807c41d0();
+  RenderingSystem_CoreProcessor0();
 }
 
 
@@ -759,11 +764,11 @@ void FUN_180816f51(void)
   
   if (unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
   }
   if (unaff_RBX[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
   }
   *unaff_RBX = 0;
   unaff_RBX[1] = 0;

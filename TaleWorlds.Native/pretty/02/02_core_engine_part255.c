@@ -6,8 +6,8 @@
 
 // 函数映射表
 #define initialize_resource_manager     FUN_18021fbb0
-#define execute_system_shutdown         FUN_180220810
-#define get_system_context              FUN_1800b0a10
+#define execute_system_shutdown         SystemCore_Loader
+#define get_system_context              SystemCore_ConfigManager
 #define trigger_cleanup_callback        SystemSecurityChecker
 #define perform_system_termination      SystemCore_MemoryManager0
 

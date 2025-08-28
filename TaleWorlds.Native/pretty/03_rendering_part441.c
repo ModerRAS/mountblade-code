@@ -18,7 +18,7 @@ void FUN_18050bc2f(void)
   int64_t in_R11;
   
   lVar3 = unaff_RDI * 0x1f8;
-  cVar1 = FUN_18058f970(in_R11 + 8 + lVar3);
+  cVar1 = SystemCore_EventHandler(in_R11 + 8 + lVar3);
   if ((cVar1 != '\0') &&
      ((*(uint *)((int64_t)*(int *)(lVar3 + 0xf8 + in_R11) * 0xa0 +
                  *(int64_t *)(lVar3 + 0xd8 + in_R11) + 0x50) & 0x103) != 0x100)) {

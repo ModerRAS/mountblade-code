@@ -192,7 +192,7 @@ int32_t FUN_1808bf350(int64_t param_1,int64_t param_2,int64_t *param_3)
   plStack_68 = (int64_t *)(param_1 + 0x38);
   uStack_60 = 0xffffffffffffffff;
   aiStack_58[0] = -1;
-  FUN_1808741f0(plStack_68,&uStack_60,aiStack_58);
+  SystemResource_Manager(plStack_68,&uStack_60,aiStack_58);
   iStackX_20 = aiStack_58[0];
   if (aiStack_58[0] != -1) {
     plVar9 = plStack_68;
@@ -211,7 +211,7 @@ int32_t FUN_1808bf350(int64_t param_1,int64_t param_2,int64_t *param_3)
               uStack_78 = 0xffffffffffffffff;
               aiStack_70[0] = -1;
               plStack_80 = plVar2;
-              FUN_1807d1650(plVar2,&uStack_78,aiStack_70);
+              NetworkSystem_ConnectionHandler(plVar2,&uStack_78,aiStack_70);
               plVar2 = plStack_80;
               plVar9 = plStack_68;
               if (aiStack_70[0] != -1) {
@@ -354,7 +354,7 @@ uint64_t FUN_1808bf382(int64_t param_1)
   plStack0000000000000060 = (int64_t *)(param_1 + 0x38);
   _iStack0000000000000068 = 0xffffffffffffffff;
   iStack0000000000000070 = -1;
-  FUN_1808741f0(plStack0000000000000060,&stack0x00000068,&stack0x00000070);
+  SystemResource_Manager(plStack0000000000000060,&stack0x00000068,&stack0x00000070);
   iStack00000000000000e8 = iStack0000000000000070;
   if (iStack0000000000000070 != -1) {
     plVar9 = plStack0000000000000060;
@@ -373,7 +373,7 @@ uint64_t FUN_1808bf382(int64_t param_1)
               _iStack0000000000000050 = 0xffffffffffffffff;
               in_stack_00000058 = -1;
               in_stack_00000048 = plVar2;
-              FUN_1807d1650(plVar2,&stack0x00000050,&stack0x00000058);
+              NetworkSystem_ConnectionHandler(plVar2,&stack0x00000050,&stack0x00000058);
               plVar2 = in_stack_00000048;
               unaff_RSI = in_stack_000000d0;
               plVar9 = plStack0000000000000060;
@@ -566,7 +566,7 @@ LAB_1808bf6ca:
             _iStack0000000000000050 = 0xffffffffffffffff;
             in_stack_00000058 = -1;
             plStack0000000000000048 = plVar2;
-            FUN_1807d1650(plVar2,&stack0x00000050,&stack0x00000058);
+            NetworkSystem_ConnectionHandler(plVar2,&stack0x00000050,&stack0x00000058);
             lVar5 = in_stack_000000d0;
             if (in_stack_00000058 != -1) {
               unaff_R12 = plStack0000000000000048;

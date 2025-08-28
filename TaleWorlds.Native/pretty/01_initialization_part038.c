@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -309,7 +310,7 @@ LAB_18006c852:
             pbVar12 = pbStack_1f0;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(system_message_context,&memory_allocator_3520_ptr,uVar19,pbVar12);
+          SystemParameterHandler(system_message_context,&memory_allocator_3520_ptr,uVar19,pbVar12);
         }
         if (((uStack_258 < lVar10 + uVar19) ||
             ((uint64_t)(int64_t)*(int *)(param_1 + 0x3fc) < (int64_t)iVar17 + 1U)) ||

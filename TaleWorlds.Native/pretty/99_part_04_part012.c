@@ -103,7 +103,7 @@ void FUN_180261c20(int64_t *param_1,uint64_t param_2)
   lVar8 = *param_1;
   if (lVar8 != lVar10) {
     do {
-      FUN_18005d580(lVar8);
+      DataSerializationEngine(lVar8);
       lVar8 = lVar8 + 0x30;
     } while (lVar8 != lVar10);
     lVar8 = *param_1;
@@ -308,7 +308,7 @@ void FUN_1802622c0(int64_t *param_1,int64_t param_2,int64_t param_3)
     lVar3 = *param_1;
     if (lVar3 != lVar5) {
       do {
-        FUN_18005d580(lVar3);
+        DataSerializationEngine(lVar3);
         lVar3 = lVar3 + 0x30;
       } while (lVar3 != lVar5);
       lVar3 = *param_1;
@@ -334,7 +334,7 @@ void FUN_1802622c0(int64_t *param_1,int64_t param_2,int64_t param_3)
       lVar3 = FUN_180262790(param_2,param_3,lVar2,lVar5,0xfffffffffffffffe);
       lVar2 = param_1[1];
       for (lVar5 = lVar3; lVar5 != lVar2; lVar5 = lVar5 + 0x30) {
-        FUN_18005d580(lVar5);
+        DataSerializationEngine(lVar5);
       }
       param_1[1] = lVar3;
     }

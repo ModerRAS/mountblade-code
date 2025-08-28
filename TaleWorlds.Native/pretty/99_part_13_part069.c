@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /**
  * @file pretty/99_part_13_part069.c
  * @brief 高级数据结构管理和资源清理模块
@@ -137,7 +138,7 @@ typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
  * @brief 内存清理器
  * 清理内存资源
  */
-#define MemoryCleaner FUN_1808532e0
+#define MemoryCleaner SystemCore_DataProcessor0
 
 /**
  * @brief 数据初始化器
@@ -149,7 +150,7 @@ typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
  * @brief 数据管理器
  * 管理数据操作
  */
-#define DataManager FUN_18084c680
+#define DataManager UIComponent_StateProcessor
 
 /**
  * @brief 系统配置器
@@ -209,7 +210,7 @@ typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
  * @brief 系统更新器
  * 更新系统
  */
-#define SystemUpdater FUN_1808b2f30
+#define SystemUpdater SystemDataFlowProcessor
 
 /**
  * @brief 数据查找器2

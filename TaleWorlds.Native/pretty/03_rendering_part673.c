@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -367,7 +368,7 @@ void FUN_180650050(code *param_1)
     uVar2 = render_system_config;
     if (0x8000 < render_system_config) {
       render_system_config = render_system_config + 1;
-      FUN_1808fcdc8();
+      UltraHighFreq_ThreadManager1();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
       return;
@@ -410,7 +411,7 @@ void FUN_1806500a6(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -627,8 +628,8 @@ void FUN_1806502a2(void)
 
 
 
-// 函数: void FUN_1806502b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1806502b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void RenderingSystem_ShaderCompiler(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void RenderingSystem_ShaderCompiler(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uStackX_20;
@@ -711,8 +712,8 @@ void FUN_180650340(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_1806503d0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1806503d0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void UtilitiesSystem_MemoryAllocator(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void UtilitiesSystem_MemoryAllocator(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   bool bVar1;
@@ -796,7 +797,7 @@ void FUN_180650490(int *param_1)
       } while (uVar7 < uVar6);
     }
     if (0x40 < uVar6) {
-      FUN_1808fcdc8();
+      UltraHighFreq_ThreadManager1();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
       return;
@@ -887,7 +888,7 @@ void FUN_180650513(void)
     } while (uVar8 < uVar7);
   }
   if (0x40 < uVar7) {
-    FUN_1808fcdc8();
+    UltraHighFreq_ThreadManager1();
     pcVar2 = (code *)swi(3);
     (*pcVar2)();
     return;
@@ -1041,7 +1042,7 @@ void FUN_180650697(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;

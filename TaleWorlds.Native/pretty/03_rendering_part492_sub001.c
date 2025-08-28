@@ -88,7 +88,7 @@ void FUN_18052dcf0(int64_t param_1,char param_2,int32_t param_3)
       fStack_e8 = fVar19 * *(float *)(lVar15 + 0x148 + lVar13) +
                   fVar20 * *(float *)(lVar15 + 0x138 + lVar13);
       uStack_dc = 0x7f7fffff;
-      pfVar10 = (float *)FUN_1801c0fb0(auStack_a8,auStack_80,&fStack_e8);
+      pfVar10 = (float *)SystemFileHandler(auStack_a8,auStack_80,&fStack_e8);
       fStack_f0 = (fStack_90 + pfVar10[2]) * *(float *)(lVar14 + 0x98) + *(float *)(lVar14 + 0xa8);
       fStack_f4 = (fStack_98 + *pfVar10) * *(float *)(lVar14 + 0x74) +
                   (fStack_94 + pfVar10[1]) * *(float *)(lVar14 + 0x84) + *(float *)(lVar14 + 0xa4);
@@ -157,8 +157,8 @@ void FUN_18052dcf0(int64_t param_1,char param_2,int32_t param_3)
 
 
 
-// 函数: void FUN_18052e130(int64_t param_1,uint64_t param_2,char param_3,uint64_t param_4)
-void FUN_18052e130(int64_t param_1,uint64_t param_2,char param_3,uint64_t param_4)
+// 函数: void SystemCore_Validator0(int64_t param_1,uint64_t param_2,char param_3,uint64_t param_4)
+void SystemCore_Validator0(int64_t param_1,uint64_t param_2,char param_3,uint64_t param_4)
 
 {
   ushort *puVar1;
@@ -584,7 +584,7 @@ void FUN_18052ed30(int64_t param_1,int64_t param_2)
   uint64_t uVar2;
   
   lVar1 = *(int64_t *)(param_1 + 0x660);
-  FUN_180487c70(param_2,2);
+  SystemCore_Validator(param_2,2);
   if (*(int *)(param_2 + 0x40) < 2) {
     uVar2 = 0;
   }
@@ -708,7 +708,7 @@ void FUN_18052efb0(int64_t param_1)
       (lVar1 = *(int64_t *)(param_1 + 0x20), (*(byte *)(lVar1 + 0x40) & 1) != 0)) &&
      ((0.0001 <= ABS(*(float *)(lVar1 + 0x1c)) || (0.0001 <= ABS(*(float *)(lVar1 + 0x20)))))) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(lVar1 + 0x34));
+    RenderingSystem_Renderer0(*(int32_t *)(lVar1 + 0x34));
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_1d8);

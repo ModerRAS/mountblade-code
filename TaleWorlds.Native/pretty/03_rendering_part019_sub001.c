@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -254,7 +255,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
                     puVar12 = (int32_t *)(*param_2 + 0x330);  // 从源对象复制颜色值
                 }
                 (**(code **)(*param_1 + 0x148))(param_1,puVar12);  // 应用颜色参数
-                FUN_180276f30(param_1,(int64_t)param_1 + 0x214,1);  // 更新颜色状态
+                SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,1);  // 更新颜色状态
                 param_2 = plStack_468;
                 break;
                 
@@ -349,7 +350,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
                                     if (plVar10 != (int64_t *)0x0) {
                                         (**(code **)(*plVar10 + 0x28))(plVar10);
                                     }
-                                    FUN_180076910(lVar13,&plStack_430);
+                                    UltraHighFreq_SecurityValidator1(lVar13,&plStack_430);
                                     if (plVar10 != (int64_t *)0x0) {
                                         (**(code **)(*plVar10 + 0x38))(plVar10);
                                     }
@@ -411,7 +412,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
                                     } while (*pbVar1 != 0);
                                 }
                                 if (iVar11 == 0) {
-                                    FUN_180076910(lVar13,*(int64_t *)
+                                    UltraHighFreq_SecurityValidator1(lVar13,*(int64_t *)
                                         (*(int64_t *)(*plStack_468 + 0x38) + uVar17 * 0x10) + 0x1b8);
                                     puStack_418 = &system_state_ptr;
                                     param_2 = plStack_468;

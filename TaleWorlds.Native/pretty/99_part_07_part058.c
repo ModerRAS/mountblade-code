@@ -118,7 +118,7 @@ void FUN_1804d2fd0(int64_t *param_1,int64_t param_2)
   aplStack_1e8[0][4] = (int64_t)plStack_188;
   pplStack_1f0 = aplStack_1e8;
   uStack_1f8 = 0xffffffffffffffff;
-  uVar15 = FUN_18015b810((int)plStack_188,0,*(int32_t *)((int64_t)param_1 + 0x2c3c),0x40);
+  uVar15 = SystemCore_DataTransformer((int)plStack_188,0,*(int32_t *)((int64_t)param_1 + 0x2c3c),0x40);
   uVar12 = 0;
   if (0 < *(int *)((int64_t)param_1 + 0x2c3c)) {
     puVar7 = puVar14;
@@ -180,7 +180,7 @@ LAB_1804d32bc:
   pplStack_1f0 = aplStack_1e8;
   uStack_1f8 = 0xffffffffffffffff;
   aplStack_1e8[0] = param_1;
-  FUN_18015b810(uVar15,0,(int)param_1[0x5a3],0x40);
+  SystemCore_DataTransformer(uVar15,0,(int)param_1[0x5a3],0x40);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_218);
 }

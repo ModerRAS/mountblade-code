@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // 03_rendering_part032.c - 渲染系统高级矩阵变换和投影计算模块
 // ============================================================================
@@ -1219,7 +1223,7 @@ uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t pa
 
 // 原始FUN_函数语义化别名定义
 #define RenderingSystemStateQueryHandler FUN_18007b240
-#define RenderingSystemMathCalculator FUN_180285b40
+#define RenderingSystemMathCalculator SystemCore_EventHandler
 
 // ============================================================================
 // 文件结束

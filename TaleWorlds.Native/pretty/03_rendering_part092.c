@@ -772,7 +772,7 @@ LAB_18031f8f7:
       *(int32_t *)(param_1 + 0x10) = 0;
       *(uint64_t *)(param_1 + 8) = 0;
       *(uint64_t *)(param_1 + 0x18) = 0;
-      FUN_18005d190(param_1,param_2);
+      SystemScheduler(param_1,param_2);
       if (*(int64_t *)(uVar8 - 0x18) != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
@@ -906,7 +906,7 @@ void FUN_18031f9e0(int64_t param_1,uint64_t param_2,uint64_t param_3)
       *(int32_t *)(plVar7 + 1) = 0;
       *plVar7 = 0;
       plVar7[2] = 0;
-      FUN_18005d190(plVar7 + -1,param_1);
+      SystemScheduler(plVar7 + -1,param_1);
       FUN_18031fd10(param_1,0,lVar9 + -1,0,&puStack_60);
       puStack_60 = &system_data_buffer_ptr;
       if (lStack_58 != 0) {
@@ -978,7 +978,7 @@ int64_t FUN_18031fd10(int64_t param_1,int64_t param_2,int64_t param_3,int64_t pa
     lVar5 = lVar7 * 2;
   }
   if (lVar6 == param_3) {
-    FUN_18005d190(param_4 * 0x20 + param_1,param_1 + -0x20 + lVar6 * 0x20);
+    SystemScheduler(param_4 * 0x20 + param_1,param_1 + -0x20 + lVar6 * 0x20);
     param_4 = lVar5 + 1;
   }
   while (param_2 < param_4) {
@@ -1040,7 +1040,7 @@ int64_t FUN_18031ff10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   
   uVar1 = 0xfffffffffffffffe;
   *(void **)(param_1 + 0xc0) = &system_state_ptr;
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x1a0,param_3,param_4,uVar1);
   }

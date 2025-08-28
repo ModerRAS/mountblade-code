@@ -292,7 +292,7 @@ LAB_1802ed8bf:
           (**(code **)(*plStackX_10 + 0x28))();
         }
         pplStackX_20 = &plStackX_8;
-        FUN_1802edcd0(param_1,plStackX_8,1);
+        PhysicsSystem_TerrainCollider(param_1,plStackX_8,1);
         if (plStackX_8 != (int64_t *)0x0) {
           (**(code **)(*plStackX_8 + 0x38))();
         }
@@ -312,8 +312,8 @@ LAB_1802ed8bf:
 
 
 
-// 函数: void FUN_1802ed990(int64_t param_1,int8_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1802ed990(int64_t param_1,int8_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void PhysicsSystem_CharacterController(int64_t param_1,int8_t param_2,uint64_t param_3,uint64_t param_4)
+void PhysicsSystem_CharacterController(int64_t param_1,int8_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t *plVar1;
@@ -339,7 +339,7 @@ void FUN_1802ed990(int64_t param_1,int8_t param_2,uint64_t param_3,uint64_t para
   iVar3 = (int)(*(int64_t *)(param_1 + 0x1c8) - *(int64_t *)(param_1 + 0x1c0) >> 3);
   if (0 < iVar3) {
     do {
-      FUN_1802ed990(*(uint64_t *)(*(int64_t *)(param_1 + 0x1c0) + lVar4 * 8),param_2,param_3,
+      PhysicsSystem_CharacterController(*(uint64_t *)(*(int64_t *)(param_1 + 0x1c0) + lVar4 * 8),param_2,param_3,
                     param_4,uVar5);
       lVar4 = lVar4 + 1;
     } while (lVar4 < iVar3);
@@ -563,11 +563,11 @@ void FUN_1802edb40(int64_t param_1,int64_t *param_2)
   if (*(int64_t *)(param_1 + 0x168) != 0) {
     func_0x0001802eeba0();
   }
-  FUN_1800b88d0(param_1 + 0xf0,&plStackX_8);
+  PhysicsSystem_TriggersProcessor(param_1 + 0xf0,&plStackX_8);
   plVar3 = plStackX_8;
   cVar1 = (**(code **)(*plStackX_8 + 0xa0))(plStackX_8);
   if (cVar1 != '\0') {
-    FUN_1800b88d0(param_1 + 0x1e0,&plStackX_8);
+    PhysicsSystem_TriggersProcessor(param_1 + 0x1e0,&plStackX_8);
     plVar3 = plStackX_8;
   }
   (**(code **)(*plVar3 + 0xe0))
@@ -590,8 +590,8 @@ void FUN_1802edb40(int64_t param_1,int64_t *param_2)
 
 
 
-// 函数: void FUN_1802edcd0(int64_t param_1,int64_t *param_2,char param_3)
-void FUN_1802edcd0(int64_t param_1,int64_t *param_2,char param_3)
+// 函数: void PhysicsSystem_TerrainCollider(int64_t param_1,int64_t *param_2,char param_3)
+void PhysicsSystem_TerrainCollider(int64_t param_1,int64_t *param_2,char param_3)
 
 {
   int8_t uVar1;
@@ -611,7 +611,7 @@ void FUN_1802edcd0(int64_t param_1,int64_t *param_2,char param_3)
   uint64_t uStack_40;
   
   uStack_60 = 0xfffffffffffffffe;
-  FUN_1802ed990(param_1,1);
+  PhysicsSystem_CharacterController(param_1,1);
   plStack_68 = param_2;
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
@@ -653,7 +653,7 @@ void FUN_1802edcd0(int64_t param_1,int64_t *param_2,char param_3)
   }
   cVar2 = (**(code **)(*plVar6 + 0xa0))(plVar6);
   if (cVar2 != '\0') {
-    FUN_1800b88d0(param_1 + 0x1e0,&plStack_68);
+    PhysicsSystem_TriggersProcessor(param_1 + 0x1e0,&plStack_68);
     plVar6 = plStack_68;
   }
   (**(code **)(*plVar6 + 0x1e0))(plVar6,param_1);
@@ -661,7 +661,7 @@ void FUN_1802edcd0(int64_t param_1,int64_t *param_2,char param_3)
   if (*(int64_t *)(param_1 + 0x168) != 0) {
     func_0x0001802eeba0();
   }
-  FUN_1800b88d0(param_1 + 0xf0,&plStack_68);
+  PhysicsSystem_TriggersProcessor(param_1 + 0xf0,&plStack_68);
   plVar6 = plStack_68;
   (**(code **)(*plStack_68 + 0xe0))
             (plStack_68,

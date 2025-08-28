@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -754,7 +758,7 @@ FUN_1804dd2e0(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
       plVar3 = (int64_t *)plVar3[2];
     } while (plVar3 != (int64_t *)0x0);
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   plVar3 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x2c));
   *plVar3 = *param_4;
@@ -797,7 +801,7 @@ void FUN_1804dd33b(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   char cStack0000000000000080;
   uint uStack0000000000000084;
   
-  FUN_18066c220(param_1,&stack0x00000080,param_3,param_4,1);
+  RenderingShaderProcessor0(param_1,&stack0x00000080,param_3,param_4,1);
   puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(unaff_RDI + 0x2c));
   *puVar2 = *unaff_RBX;
   *(int32_t *)(puVar2 + 1) = 0;

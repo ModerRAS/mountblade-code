@@ -27,7 +27,7 @@ void FUN_1806a0150(int64_t param_1,int64_t param_2)
     do {
       uVar4 = ((*(int *)(param_1 + 0x1c) + -1) * (uint)*pbVar6 >> 8) + 1;
       if (*(int *)(param_1 + 0x18) < 0) {
-        FUN_18069ec80(param_1);
+        SystemCore_Handler(param_1);
       }
       uVar3 = *(uint64_t *)(param_1 + 0x10);
       uVar2 = (uint64_t)uVar4 << 0x38;
@@ -47,7 +47,7 @@ void FUN_1806a0150(int64_t param_1,int64_t param_2)
         do {
           uVar5 = ((uint)((*(int *)(param_1 + 0x1c) + -1) * 0x80) >> 8) + 1;
           if (*(int *)(param_1 + 0x18) < 0) {
-            FUN_18069ec80(param_1);
+            SystemCore_Handler(param_1);
           }
           uVar3 = *(uint64_t *)(param_1 + 0x10);
           uVar2 = (uint64_t)uVar5 << 0x38;
@@ -96,7 +96,7 @@ int FUN_1806a02d0(int64_t param_1,int64_t param_2)
     uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * (*(int *)(param_1 + 0x1c) + -1) >>
             8) + 1;
     if (*(int *)(param_1 + 0x18) < 0) {
-      FUN_18069ec80(param_1);
+      SystemCore_Handler(param_1);
     }
     uVar4 = *(uint64_t *)(param_1 + 0x10);
     uVar3 = (uint64_t)uVar5 << 0x38;
@@ -131,7 +131,7 @@ int FUN_1806a03a0(int64_t param_1,int64_t param_2)
     uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * (*(int *)(param_1 + 0x1c) + -1) >>
             8) + 1;
     if (*(int *)(param_1 + 0x18) < 0) {
-      FUN_18069ec80(param_1);
+      SystemCore_Handler(param_1);
     }
     uVar4 = *(uint64_t *)(param_1 + 0x10);
     uVar3 = (uint64_t)uVar5 << 0x38;
@@ -195,7 +195,7 @@ void FUN_1806a0470(int64_t param_1)
               uVar7 = ((uint)*(byte *)(param_1 + 0xf64) * (*(int *)(param_1 + 0x42dc) + -1) >> 8) +
                       1;
               if (*(int *)(param_1 + 0x42d8) < 0) {
-                FUN_18069ec80(lVar1);
+                SystemCore_Handler(lVar1);
               }
               uVar5 = *(uint64_t *)(param_1 + 0x42d0);
               uVar4 = (uint64_t)uVar7 << 0x38;
@@ -214,7 +214,7 @@ void FUN_1806a0470(int64_t param_1)
               if (bVar11) {
                 uVar7 = ((uint)*(byte *)(param_1 + 0xf65) * iVar8 >> 8) + 1;
                 if (iVar9 < 0) {
-                  FUN_18069ec80(lVar1);
+                  SystemCore_Handler(lVar1);
                 }
                 uVar5 = *(uint64_t *)(param_1 + 0x42d0);
                 uVar4 = (uint64_t)uVar7 << 0x38;
@@ -232,7 +232,7 @@ void FUN_1806a0470(int64_t param_1)
               else {
                 uVar7 = ((uint)*(byte *)(param_1 + 0xf66) * iVar8 >> 8) + 1;
                 if (iVar9 < 0) {
-                  FUN_18069ec80(lVar1);
+                  SystemCore_Handler(lVar1);
                 }
                 uVar5 = *(uint64_t *)(param_1 + 0x42d0);
                 uVar4 = (uint64_t)uVar7 << 0x38;
@@ -256,7 +256,7 @@ void FUN_1806a0470(int64_t param_1)
             uVar7 = ((uint)*(byte *)(param_1 + 0x4417) * (*(int *)(param_1 + 0x42dc) + -1) >> 8) + 1
             ;
             if (*(int *)(param_1 + 0x42d8) < 0) {
-              FUN_18069ec80(param_1 + 0x42c0);
+              SystemCore_Handler(param_1 + 0x42c0);
             }
             uVar5 = *(uint64_t *)(param_1 + 0x42d0);
             uVar4 = (uint64_t)uVar7 << 0x38;
@@ -335,7 +335,7 @@ void FUN_1806a04c6(void)
             uVar5 = ((uint)*(byte *)(unaff_RBX + 0xf64) * (*(int *)(unaff_RBX + 0x42dc) + -1) >> 8)
                     + 1;
             if (*(int *)(unaff_RBX + 0x42d8) < 0) {
-              FUN_18069ec80(lVar1);
+              SystemCore_Handler(lVar1);
             }
             uVar4 = *(uint64_t *)(unaff_RBX + 0x42d0);
             uVar3 = (uint64_t)uVar5 << 0x38;
@@ -354,7 +354,7 @@ void FUN_1806a04c6(void)
             if (bVar9) {
               uVar5 = ((uint)*(byte *)(unaff_RBX + 0xf65) * iVar6 >> 8) + 1;
               if (iVar7 < 0) {
-                FUN_18069ec80(lVar1);
+                SystemCore_Handler(lVar1);
               }
               uVar4 = *(uint64_t *)(unaff_RBX + 0x42d0);
               uVar3 = (uint64_t)uVar5 << 0x38;
@@ -372,7 +372,7 @@ void FUN_1806a04c6(void)
             else {
               uVar5 = ((uint)*(byte *)(unaff_RBX + 0xf66) * iVar6 >> 8) + 1;
               if (iVar7 < 0) {
-                FUN_18069ec80(lVar1);
+                SystemCore_Handler(lVar1);
               }
               uVar4 = *(uint64_t *)(unaff_RBX + 0x42d0);
               uVar3 = (uint64_t)uVar5 << 0x38;
@@ -396,7 +396,7 @@ void FUN_1806a04c6(void)
           uVar5 = ((uint)*(byte *)(unaff_RBX + 0x4417) * (*(int *)(unaff_RBX + 0x42dc) + -1) >> 8) +
                   1;
           if (*(int *)(unaff_RBX + 0x42d8) < 0) {
-            FUN_18069ec80(unaff_RBX + 0x42c0);
+            SystemCore_Handler(unaff_RBX + 0x42c0);
           }
           uVar4 = *(uint64_t *)(unaff_RBX + 0x42d0);
           uVar3 = (uint64_t)uVar5 << 0x38;

@@ -1,7 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part050.c - 14 个函数
 
@@ -59,7 +62,7 @@ void FUN_18008bb30(uint64_t param_1,int64_t param_2,int64_t *param_3,int64_t *pa
     cVar1 = *(char *)((int64_t)param_3 + 0x44);
     if (cVar1 != '\0') {
       puStack_268 = &processed_var_8576_ptr;
-      FUN_1800623b0(system_message_context,0,0x80000000000,9);
+      SystemConfigurationManager(system_message_context,0,0x80000000000,9);
       cVar1 = *(char *)((int64_t)param_3 + 0x44);
     }
     lStack_240 = param_4[1];
@@ -233,7 +236,7 @@ void FUN_18008bf40(uint64_t param_1,int64_t param_2,int64_t *param_3,int64_t *pa
   if (param_4 != (int64_t *)0x0) {
     if (*(char *)((int64_t)param_3 + 0x44) != '\0') {
       puStack_308 = &processed_var_8576_ptr;
-      FUN_1800623b0(system_message_context,0,0x80000000000,9);
+      SystemConfigurationManager(system_message_context,0,0x80000000000,9);
       if (*(char *)((int64_t)param_3 + 0x44) != '\0') goto LAB_18008c01e;
     }
     lVar7 = lVar7 + *param_4;
@@ -640,7 +643,7 @@ LAB_18008ce85:
       CoreMemoryPoolInitializer(plVar5);
     }
     if ((uint64_t *****)ppppuStack_60 != (uint64_t *****)0x0) {
-      FUN_18004b790(&ppppuStack_70,*ppppuStack_60);
+      SystemCache_Manager(&ppppuStack_70,*ppppuStack_60);
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(ppppuVar4);
     }
@@ -879,7 +882,7 @@ void * NetworkDataProcessor(void)
       core_system_config_memory = 0;
       core_system_config_memory = FUN_18008d1b0();
       FUN_1808fc820(FUN_180941920);
-      FUN_1808fcb30(&system_ptr_91f8);
+      SystemCore_StateController(&system_ptr_91f8);
       return &system_ptr_9200;
     }
   }
@@ -936,7 +939,7 @@ void FUN_18008d1b0(void)
 {
   int64_t lVar1;
   
-  lVar1 = FUN_180067110(0x58);
+  lVar1 = SystemCore_SyscallHandler(0x58);
   *(int64_t *)lVar1 = lVar1;
   *(int64_t *)(lVar1 + 8) = lVar1;
   *(int64_t *)(lVar1 + 0x10) = lVar1;

@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
 
 // 03_rendering_part143.c - 6 个函数
 
@@ -81,7 +87,7 @@ void FUN_180355500(uint64_t *param_1)
   
   uStack_40 = 0xfffffffffffffffe;
   puVar5 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar5 = &memory_allocator_3136_ptr;
   puVar4 = puVar5 + 0xe;
   *puVar4 = &system_state_ptr;
@@ -106,7 +112,7 @@ void FUN_180355500(uint64_t *param_1)
   *(int8_t *)(puVar3 + 1) = 0;
   uStack_2d8 = 4;
   uStack_2d0._0_4_ = uVar2;
-  FUN_18005d190(puVar4);
+  RenderingSystem_ResourceBinder(puVar4);
   puStack_2e8 = &system_data_buffer_ptr;
   if (puStack_2e0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -147,7 +153,7 @@ void FUN_180355500(uint64_t *param_1)
   *puVar4 = 0x6d614e2068746150;
   *(int16_t *)(puVar4 + 1) = 0x65;
   uStack_2d8 = 9;
-  FUN_1803460a0(param_1,&puStack_2e8,puStack_48,0);
+  SystemNetwork_Processor(param_1,&puStack_2e8,puStack_48,0);
   puStack_2e8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);
@@ -185,7 +191,7 @@ uint64_t * FUN_180356600(uint64_t *param_1,uint64_t param_2)
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
   param_1[0xe] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x148);
   }
@@ -700,7 +706,7 @@ void FUN_180357a80(uint64_t param_1,uint64_t param_2)
   puVar5 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x148,8,3);
   uStack_40 = 0xfffffffffffffffe;
   puVar6 = puVar5;
-  FUN_1803456e0(puVar5,param_2,param_1);
+  SystemCore_SyncController(puVar5,param_2,param_1);
   *puVar6 = &memory_allocator_3136_ptr;
   puVar4 = puVar6 + 0xe;
   *puVar4 = &system_state_ptr;
@@ -725,7 +731,7 @@ void FUN_180357a80(uint64_t param_1,uint64_t param_2)
   *(int8_t *)(puVar3 + 1) = 0;
   uStack_2d8 = 4;
   uStack_2d0._0_4_ = uVar2;
-  FUN_18005d190(puVar4);
+  RenderingSystem_ResourceBinder(puVar4);
   puStack_2e8 = &system_data_buffer_ptr;
   if (puStack_2e0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -766,7 +772,7 @@ void FUN_180357a80(uint64_t param_1,uint64_t param_2)
   *puVar4 = 0x6d614e2068746150;
   *(int16_t *)(puVar4 + 1) = 0x65;
   uStack_2d8 = 9;
-  FUN_1803460a0(puVar5,&puStack_2e8,puStack_48,0);
+  SystemNetwork_Processor(puVar5,&puStack_2e8,puStack_48,0);
   puStack_2e8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);

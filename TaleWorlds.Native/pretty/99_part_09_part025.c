@@ -68,7 +68,7 @@ LAB_1805c94b7:
       iVar12 = -1;
       if (bVar7 == 0) {
         lVar6 = *(int64_t *)(*unaff_RBX + 0x8f8);
-        cVar4 = FUN_18058f970(lVar6 + 0x7e8);
+        cVar4 = SystemCore_EventHandler(lVar6 + 0x7e8);
         if ((cVar4 == '\0') ||
            ((*(uint *)((int64_t)*(int *)(lVar6 + 0x8d8) * 0xa0 + 0x58 +
                       *(int64_t *)(lVar6 + 0x8b8)) & 0x80000) == 0)) {

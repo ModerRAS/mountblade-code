@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -67,7 +68,7 @@ uint64_t FUN_180759120(int64_t *param_1,int32_t param_2,int64_t param_3,int64_t 
 
 
 uint64_t
-FUN_180759220(int64_t param_1,int64_t param_2,int64_t *param_3,int param_4,int8_t param_5,
+UltraHighFreq_AudioSystem1(int64_t param_1,int64_t param_2,int64_t *param_3,int param_4,int8_t param_5,
              int64_t param_6)
 
 {
@@ -214,7 +215,7 @@ uint64_t FUN_1807594d0(uint64_t param_1,uint64_t param_2,int param_3,int param_4
       lVar2 = *(int64_t *)(uStackX_8 + 0xa8);
       bVar18 = false;
       if (param_6 != '\0') {
-        FUN_180743160(lVar2,1);
+        SystemCore_ResourceManager0(lVar2,1);
         bVar18 = lVar2 != 0;
         if (bVar18) {
           func_0x000180743c20(lVar2,1);
@@ -284,7 +285,7 @@ LAB_1807595e2:
   lVar2 = *(int64_t *)(param_1 + 0xa8);
   bVar18 = false;
   if (param_6 != '\0') {
-    FUN_180743160(lVar2,1);
+    SystemCore_ResourceManager0(lVar2,1);
     bVar18 = lVar2 != 0;
     if (bVar18) {
       func_0x000180743c20(lVar2,1);
@@ -340,7 +341,7 @@ LAB_180759661:
   if ((int)uVar5 == 0) {
     if (param_4 == 0) {
       if (param_6 != '\0') {
-        FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+        SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
         func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8),1);
       }
       sVar1 = *(short *)(param_1 + 0x1ae);
@@ -411,7 +412,7 @@ LAB_180759661:
         lVar2 = *(int64_t *)(uVar5 + 0xa8);
         bVar18 = false;
         if (param_6 != '\0') {
-          FUN_180743160(lVar2,1);
+          SystemCore_ResourceManager0(lVar2,1);
           bVar18 = lVar2 != 0;
           if (bVar18) {
             func_0x000180743c20(lVar2,1);
@@ -467,7 +468,7 @@ LAB_180759a33:
       }
       else {
         if (param_6 != '\0') {
-          FUN_180743160(*(uint64_t *)(uVar5 + 0xa8),1);
+          SystemCore_ResourceManager0(*(uint64_t *)(uVar5 + 0xa8),1);
           func_0x000180743c20(*(uint64_t *)(uVar5 + 0xa8),1);
         }
         sVar1 = *(short *)(uVar5 + 0x1ac);
@@ -536,7 +537,7 @@ LAB_180759a33:
           *(uint64_t *)(param_2 + 8) = *(uint64_t *)(uVar5 + 8);
           *(uint64_t *)(param_2 + 0x10) = *(uint64_t *)(uVar5 + 0x10);
           lVar2 = *(int64_t *)(param_2 + 0xa8);
-          if ((param_6 != '\0') && (FUN_180743160(lVar2,1), lVar2 != 0)) {
+          if ((param_6 != '\0') && (SystemCore_ResourceManager0(lVar2,1), lVar2 != 0)) {
             func_0x000180743c20(lVar2,1);
             bVar18 = true;
           }
@@ -933,7 +934,7 @@ FUN_18075a100(uint64_t *param_1,uint64_t param_2,int param_3,int32_t param_4,cha
   
   param_1[1] = param_2;
   iVar5 = *(int *)(param_2 + 0x6d8) * param_3;
-  if ((*param_1 != 0) && (uVar2 = FUN_18075f8e0(), (int)uVar2 != 0)) {
+  if ((*param_1 != 0) && (uVar2 = UtilitiesSystem_DataValidator(), (int)uVar2 != 0)) {
     return uVar2;
   }
   if (*(int *)(param_1[1] + 0x107b0) < param_3) {
@@ -4895,7 +4896,7 @@ uint64_t FUN_18075d580(int64_t *param_1,int64_t *param_2)
 {
   uint64_t uVar1;
   
-  if ((*param_2 != 0) && (uVar1 = FUN_18075f8e0(param_2), (int)uVar1 != 0)) {
+  if ((*param_2 != 0) && (uVar1 = UtilitiesSystem_DataValidator(param_2), (int)uVar1 != 0)) {
     return uVar1;
   }
   *param_2 = *param_1;
@@ -4920,7 +4921,7 @@ uint64_t FUN_18075d5e0(void)
 
 
 
-uint64_t FUN_18075d600(int64_t param_1,char param_2,char param_3)
+uint64_t UISystem_ComponentHandler(int64_t param_1,char param_2,char param_3)
 
 {
   short sVar1;
@@ -5196,7 +5197,7 @@ uint64_t FUN_18075d7f0(int64_t param_1,char param_2,char param_3,char param_4,ch
     iVar7 = 0;
     uVar10 = -(uint)(param_4 != '\0') & 5;
     if (param_5 != '\0') {
-      FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+      SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8));
     }
     if (param_4 == '\0') {
@@ -5266,7 +5267,7 @@ LAB_18075d910:
     iVar7 = 0;
     uVar10 = -(uint)(param_4 != '\0') & 5;
     if (param_5 != '\0') {
-      FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+      SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
       func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8));
     }
     if (param_4 == '\0') {

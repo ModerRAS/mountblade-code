@@ -61,7 +61,7 @@ uint64_t FUN_18089e820(int64_t param_1,int64_t *param_2)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899360(param_2,param_1 + 0x20);
+  uVar4 = SystemCore_ConfigManager(param_2,param_1 + 0x20);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -83,7 +83,7 @@ uint64_t FUN_18089e820(int64_t param_1,int64_t *param_2)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899220(param_2,param_1 + 0x50);
+  uVar4 = CoreSystem_StateManager(param_2,param_1 + 0x50);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -356,7 +356,7 @@ uint64_t FUN_18089e87d(void)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899360();
+  uVar4 = SystemCore_ConfigManager();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -378,7 +378,7 @@ uint64_t FUN_18089e87d(void)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899220();
+  uVar4 = CoreSystem_StateManager();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -952,7 +952,7 @@ uint64_t FUN_18089ede0(int64_t param_1,uint64_t *param_2)
   uVar2 = DataFlowProcessor(param_2,auStack_28,1,0x54494157);
   if (((((int)uVar2 == 0) &&
        (uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x42494157), (int)uVar2 == 0)) &&
-      (uVar2 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
+      (uVar2 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
      ((0x45 < *(uint *)(param_2 + 8) ||
       (uVar2 = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)uVar2 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) != 0) {

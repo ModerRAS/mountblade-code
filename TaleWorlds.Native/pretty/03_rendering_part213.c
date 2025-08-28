@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part213.c - 7 个函数
 
 // 函数: void FUN_18038e459(uint64_t param_1,int param_2,int64_t param_3,int64_t param_4)
@@ -53,9 +57,9 @@ void FUN_18038e459(uint64_t param_1,int param_2,int64_t param_3,int64_t param_4)
   *(int32_t *)(in_RAX + -0x74) = unaff_XMM9_Db;
   *(int32_t *)(in_RAX + -0x70) = unaff_XMM9_Dc;
   *(int32_t *)(in_RAX + -0x6c) = unaff_XMM9_Dd;
-  bVar5 = FUN_18038d0a0(param_1,in_stack_00000140);
+  bVar5 = SystemCore_PerformanceMonitor(param_1,in_stack_00000140);
   bVar20 = bVar5;
-  cVar6 = FUN_18038d0a0(param_4,in_stack_00000148);
+  cVar6 = SystemCore_PerformanceMonitor(param_4,in_stack_00000148);
   plVar1 = (int64_t *)(in_stack_00000150 + 0x1000);
   if (*(char *)(in_stack_00000150 + 0x1024) == '\0') {
     *(int64_t *)(in_stack_00000150 + 0x1008) = *plVar1;
@@ -865,8 +869,8 @@ LAB_18038ed75:
 
 
 
-// 函数: void FUN_18038ee20(void)
-void FUN_18038ee20(void)
+// 函数: void SystemCore_Encoder(void)
+void SystemCore_Encoder(void)
 
 {
   uint64_t in_R9;

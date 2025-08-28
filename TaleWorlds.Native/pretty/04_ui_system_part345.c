@@ -209,10 +209,10 @@ uint64_t FUN_180856280(int64_t param_1,uint64_t *param_2,uint64_t *param_3)
     uStack_30 = 0;
     uVar3 = FUN_180859e40(param_1,puVar1 + 0x12,&uStack_38,0);
     if ((uVar3 != 0) || (uVar3 = FUN_180859e40(param_1,puVar1 + 0x10,&uStack_38,1), uVar3 != 0)) {
-      FUN_18084c5a0(&uStack_38);
+      UISystem_EventDispatcher(&uStack_38);
       return (uint64_t)uVar3;
     }
-    FUN_18084c5a0(&uStack_38);
+    UISystem_EventDispatcher(&uStack_38);
 LAB_180856347:
     if (puVar1 == param_2) break;
   }
@@ -246,7 +246,7 @@ LAB_180856347:
       uVar3 = FUN_18085d570(param_1,&uStack_38,puVar1 + 0x10);
       if (uVar3 != 0) {
 FUN_18085652b:
-        FUN_18084c5a0(&uStack_38);
+        UISystem_EventDispatcher(&uStack_38);
         return (uint64_t)uVar3;
       }
       uStack_30 = uStack_30 & 0xffffffff00000000;
@@ -324,7 +324,7 @@ uint64_t FUN_180856362(void)
         uVar4 = FUN_18085d570();
         if (uVar4 != 0) {
 FUN_18085652b:
-          FUN_18084c5a0(&stack0x00000040);
+          UISystem_EventDispatcher(&stack0x00000040);
           return (uint64_t)uVar4;
         }
         in_stack_00000048 = (uint64_t *)CONCAT44(in_stack_00000048._4_4_,(int)unaff_RBX);
@@ -360,7 +360,7 @@ int32_t FUN_18085644f(void)
 {
   int32_t unaff_EBP;
   
-  FUN_18084c5a0(&stack0x00000040);
+  UISystem_EventDispatcher(&stack0x00000040);
   return unaff_EBP;
 }
 
@@ -430,7 +430,7 @@ uint64_t FUN_180856460(void)
     }
   }
 FUN_18085652b:
-  FUN_18084c5a0(&stack0x00000040);
+  UISystem_EventDispatcher(&stack0x00000040);
   return (uint64_t)uVar3;
 }
 
@@ -452,7 +452,7 @@ int32_t FUN_18085652b(void)
 {
   int32_t unaff_EDI;
   
-  FUN_18084c5a0(&stack0x00000040);
+  UISystem_EventDispatcher(&stack0x00000040);
   return unaff_EDI;
 }
 
@@ -907,7 +907,7 @@ uint64_t FUN_180856d20(int64_t param_1,uint64_t *param_2,uint64_t param_3)
     *(int *)(lStack_18 + 0x10) = *(int *)(lStack_18 + 0x10) + 1;
   }
   if (iStack_1c == 0) {
-    iVar4 = FUN_18085ab70(param_1);
+    iVar4 = UISystem_WidgetController(param_1);
     uVar7 = (int64_t)iVar4 + *(int64_t *)(param_1 + 0x10);
     if (uStack_28 < uVar7) {
       if (uVar7 < uStack_28) {

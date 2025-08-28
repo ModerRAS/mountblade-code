@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part036.c - 19 个函数
 
 // 函数: void FUN_1802ee7f0(void)
@@ -468,12 +472,12 @@ void FUN_1802eeb00(int64_t param_1,int64_t param_2)
   
   plVar1 = (int64_t *)(param_1 + 0x260);
   if (param_2 != *plVar1) {
-    FUN_1802ed990(param_1,1);
+    PhysicsSystem_CharacterController(param_1,1);
     if (*plVar1 != 0) {
       FUN_1802fc960(*plVar1,*(uint64_t *)(param_1 + 0x20));
       FUN_1802fdb10(*plVar1,0);
     }
-    FUN_180056f10(plVar1,param_2);
+    SystemCore_PointerManager(plVar1,param_2);
     if (param_2 != 0) {
       FUN_1802fdb10(*plVar1,param_1);
       FUN_1802fc840(*plVar1,*(uint64_t *)(param_1 + 0x20));
@@ -594,7 +598,7 @@ void FUN_1802eec60(int64_t param_1)
   uVar1 = uStack_68;
   plVar7 = plStack_40;
   if (&plStack_80 != pplVar6) {
-    FUN_1800b8500(&plStack_80);
+    SystemCore_Controller(&plStack_80);
     uStack_60 = 0;
     uStack_58 = 0;
     uStack_50 = 0;
@@ -764,7 +768,7 @@ LAB_1802eefe9:
     if ((int)uVar11 <= (int)uVar10) {
       return (void *)((uint64_t)puVar7 & 0xffffffffffffff00);
     }
-    FUN_180629a40(param_1 + 0xd0,&puStack_70,uVar10,uVar11);
+    NetworkSystem_ProtocolParser(param_1 + 0xd0,&puStack_70,uVar10,uVar11);
     puVar7 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar7 = *(void **)(param_2 + 8);

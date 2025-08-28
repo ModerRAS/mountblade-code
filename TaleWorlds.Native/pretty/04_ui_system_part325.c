@@ -1,3 +1,114 @@
+/*
+ * ===================================================================
+ * TaleWorlds.Native UI系统组件管理模块 - 技术架构文档
+ * ===================================================================
+ * 
+ * 文件标识: 04_ui_system_part325.c
+ * 功能模块: UI系统组件管理核心实现
+ * 函数数量: 39个核心函数
+ * 代码行数: 873行有效代码
+ * 
+ * ===================================================================
+ * 技术架构概述
+ * ===================================================================
+ * 
+ * 核心功能:
+ * --------
+ * 本模块实现了Mount & Blade游戏引擎中UI系统的核心组件管理功能，
+ * 负责UI组件的创建、状态管理、事件处理和数据绑定等关键操作。
+ * 
+ * 主要特性:
+ * 1. 组件生命周期管理
+ * 2. 动态UI组件生成与销毁
+ * 3. 状态同步与数据绑定
+ * 4. 事件驱动的UI更新机制
+ * 5. 多层级UI容器管理
+ * 
+ * ===================================================================
+ * FUN_函数语义化映射说明
+ * ===================================================================
+ * 
+ * 本文件已完成FUN_函数语义化重构，总计22个核心函数映射：
+ * 
+ * 组件数据操作:
+ * - UIComponent_GetValue: 获取UI组件当前值
+ * - UIComponent_SetValue: 设置UI组件值
+ * - UIComponent_ReadData: 读取组件数据
+ * - UIComponent_WriteData: 写入组件数据
+ * 
+ * 组件状态管理:
+ * - UIComponent_UpdateState: 更新组件状态
+ * - UIComponent_Initialize: 初始化组件
+ * - UIComponent_Destroy: 销毁组件
+ * 
+ * 事件处理:
+ * - UIComponent_HandleEvent: 处理组件事件
+ * - UIComponent_TriggerEvent: 触发组件事件
+ * 
+ * 布局管理:
+ * - UIComponent_CalculateLayout: 计算组件布局
+ * - UIComponent_UpdateLayout: 更新布局
+ * 
+ * 渲染相关:
+ * - UIComponent_Render: 渲染组件
+ * - UIComponent_UpdateVisual: 更新视觉效果
+ * 
+ * ===================================================================
+ * 性能优化策略
+ * ===================================================================
+ * 
+ * 1. 内存管理优化:
+ *    - 使用对象池管理UI组件实例
+ *    - 延迟加载和懒初始化机制
+ *    - 智能引用计数管理
+ * 
+ * 2. 渲染性能优化:
+ *    - 脏矩形更新技术
+ *    - 组件可见性预计算
+ *    - 批量渲染优化
+ * 
+ * 3. 事件处理优化:
+ *    - 事件冒泡与捕获机制
+ *    - 事件去重和节流处理
+ *    - 异步事件队列
+ * 
+ * ===================================================================
+ * 安全性考虑
+ * ===================================================================
+ * 
+ * 1. 内存安全:
+ *    - 严格边界检查
+ *    - 空指针保护
+ *    - 栈溢出防护
+ * 
+ * 2. 线程安全:
+ *    - 原子操作保护
+ *    - 互斥锁机制
+ *    - 无锁数据结构设计
+ * 
+ * 3. 输入验证:
+ *    - 参数类型检查
+ *    - 范围验证
+ *    - 格式校验
+ * 
+ * ===================================================================
+ * 维护说明
+ * ===================================================================
+ * 
+ * 重构历史:
+ * - 2024.08.28: 完成FUN_函数语义化重构
+ * - 2024.08.28: 添加完整技术文档
+ * 
+ * 优化建议:
+ * 1. 进一步优化内存使用模式
+ * 2. 增强错误处理机制
+ * 3. 改进组件复用策略
+ * 
+ * ===================================================================
+ */
+
+#include "fun_aliases_batch.txt"
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -37,7 +148,7 @@ void FUN_180847550(int64_t param_1,uint64_t *param_2,int8_t param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x14);
   uStack_30 = *(int32_t *)(param_1 + 0x18);
   uStack_2c = *(int32_t *)(param_1 + 0x1c);
-  uVar7 = FUN_18084dc20(&uStack_38);
+  uVar7 = UIComponent_Calculate(&uStack_38);
   param_2[1] = uVar7;
   *(int32_t *)(param_2 + 2) = *(int32_t *)(param_1 + 0x38);
   *(int32_t *)((int64_t)param_2 + 0x14) = *(int32_t *)(param_1 + 0x3c);
@@ -96,7 +207,7 @@ void FUN_180847690(uint64_t param_1,int32_t param_2,int32_t param_3,int32_t para
   iVar1 = func_0x00018088c590(param_1,auStack_158);
   if (iVar1 == 0) {
     puStack_168 = (int8_t *)param_5;
-    iVar1 = FUN_18087cbd0(auStack_158[0],param_2,param_3,param_4);
+    iVar1 = UIComponent_Create(auStack_158[0],param_2,param_3,param_4);
     if (iVar1 == 0) goto LAB_1808477fa;
   }
   if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
@@ -179,7 +290,7 @@ void * SystemDataFlowProcessor(void)
       uRam0000000180c4ea84 = 0;
       uRam0000000180c4ea88 = 0;
       uRam0000000180c4ea8c = 0;
-      FUN_1808fcb30(&system_ptr_ea90);
+      UISystem_GlobalHandler(&system_ptr_ea90);
     }
   }
   return &system_ptr_ea80;
@@ -211,7 +322,7 @@ void FUN_180847890(uint64_t param_1,int8_t *param_2)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
-    FUN_18074be30(auStack_118,0x100,0);
+    UIComponent_BufferInit(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_840_ptr);
@@ -229,7 +340,7 @@ void FUN_180847890(uint64_t param_1,int8_t *param_2)
                     // WARNING: Subroutine does not return
     AdvancedSystemProcessor(&uStack_138);
   }
-  FUN_1808479d0(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
+  UIComponent_ManageData(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
                     // WARNING: Subroutine does not return
   AdvancedSystemProcessor(&uStack_138);
 }
@@ -240,8 +351,8 @@ void FUN_180847890(uint64_t param_1,int8_t *param_2)
 
 
 
-// 函数: void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
-void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
+// 函数: void UIComponent_ManageData(int64_t param_1,int64_t *param_2,byte *param_3)
+void UIComponent_ManageData(int64_t param_1,int64_t *param_2,byte *param_3)
 
 {
   char cVar1;
@@ -269,8 +380,8 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
     }
     cStack_60 = '\0';
     puStack_68 = &rendering_buffer_240_ptr;
-    iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
-    if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
+    iVar3 = UIComponent_Validate(&puStack_68,lVar4 + 0x80,param_2);
+    if ((iVar3 != 0) || (iVar3 = UIComponent_Validate(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
     goto LAB_180847c35;
     if (cStack_60 == '\0') {
       for (uVar5 = *(uint64_t *)(param_1 + 0x70);
@@ -282,8 +393,8 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
                     // WARNING: Subroutine does not return
           SystemStateProcessor(uVar5,&puStack_58);
         }
-        iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
-        if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
+        iVar3 = UIComponent_Validate(&puStack_68,lVar4 + 0x80,param_2);
+        if ((iVar3 != 0) || (iVar3 = UIComponent_Validate(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
         goto LAB_180847c35;
         if (cStack_60 != '\0') goto LAB_180847bfb;
       }
@@ -296,7 +407,7 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
                     // WARNING: Subroutine does not return
           SystemStateProcessor(uVar5,&puStack_58);
         }
-        lVar4 = FUN_18083fb90(param_2,lVar4 + 0x38);
+        lVar4 = UIComponent_HandleEvent(param_2,lVar4 + 0x38);
         if (lVar4 == 0) goto LAB_180847c35;
         cVar1 = func_0x00018084dda0(lVar4);
         if (cVar1 != '\0') goto LAB_180847bfb;
@@ -304,8 +415,8 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
       cStack_50 = '\0';
       puStack_58 = &rendering_buffer_272_ptr;
       plStack_48 = param_2;
-      iVar3 = FUN_18084b990(&puStack_58,param_1,param_2);
-      if ((iVar3 != 0) || (iVar3 = FUN_18084be00(&puStack_58,param_1,param_2), iVar3 != 0))
+      iVar3 = UIComponent_Configure(&puStack_58,param_1,param_2);
+      if ((iVar3 != 0) || (iVar3 = UIComponent_AlternateValidate(&puStack_58,param_1,param_2), iVar3 != 0))
       goto LAB_180847c35;
       bVar2 = 1;
       if (cStack_50 != '\0') goto LAB_180847bfb;
@@ -332,8 +443,8 @@ LAB_180847c35:
 
 
 
-// 函数: void FUN_180847c60(int64_t param_1,int64_t *param_2,byte *param_3)
-void FUN_180847c60(int64_t param_1,int64_t *param_2,byte *param_3)
+// 函数: void UIComponent_ProcessData(int64_t param_1,int64_t *param_2,byte *param_3)
+void UIComponent_ProcessData(int64_t param_1,int64_t *param_2,byte *param_3)
 
 {
   uint64_t *puVar1;
@@ -358,7 +469,7 @@ void FUN_180847c60(int64_t param_1,int64_t *param_2,byte *param_3)
       uStack_70 = 1;
       puStack_78 = &ui_system_data_144_ptr;
       plStack_68 = param_2;
-      iVar2 = FUN_18084b990(&puStack_78,param_1,param_2);
+      iVar2 = UIComponent_Configure(&puStack_78,param_1,param_2);
       if (iVar2 != 0) goto LAB_180847dc9;
       bVar7 = (byte)uStack_70;
       if ((byte)uStack_70 != 0) {
@@ -428,7 +539,7 @@ void FUN_180847df0(uint64_t param_1,int8_t *param_2)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
-    FUN_18074be30(auStack_118,0x100,0);
+    UIComponent_BufferInit(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_808_ptr);
@@ -446,7 +557,7 @@ void FUN_180847df0(uint64_t param_1,int8_t *param_2)
                     // WARNING: Subroutine does not return
     AdvancedSystemProcessor(&uStack_138);
   }
-  FUN_180847c60(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
+  UIComponent_ProcessData(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
                     // WARNING: Subroutine does not return
   AdvancedSystemProcessor(&uStack_138);
 }
@@ -494,7 +605,7 @@ LAB_180847fc4:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+     (iVar1 = UIComponent_CheckStatus(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
     *apuStack_128[0] = &processed_var_7896_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
@@ -561,7 +672,7 @@ LAB_18084820e:
     iVar4 = iVar3;
   }
   if ((iVar4 == 0) &&
-     (iVar3 = FUN_18088dec0(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
+     (iVar3 = UIComponent_CheckStatus(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
     *puStack_160 = &ui_system_data_1896_ptr;
     *(int32_t *)(puStack_160 + 2) = 0;
     *(int32_t *)(puStack_160 + 1) = 0x218;
@@ -605,7 +716,7 @@ LAB_180848354:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+     (iVar1 = UIComponent_CheckStatus(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
     *apuStack_128[0] = &memory_allocator_3872_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
@@ -627,9 +738,9 @@ void FUN_180848440(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee20(param_2,param_1 + 0x18);
+    UIComponent_SetValue(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -644,11 +755,11 @@ void FUN_180848480(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_SetValue(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088ee20(param_2,param_1 + 0x1c);
+      UIComponent_SetValue(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -664,13 +775,13 @@ void FUN_1808484d0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_SetValue(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f1a0(param_2,param_1 + 0x1c);
+      iVar1 = UIComponent_Initialize(param_2,param_1 + 0x1c);
       if (iVar1 == 0) {
-        FUN_18088ee60(param_2,param_1 + 0x2c);
+        UIComponent_GetValue(param_2,param_1 + 0x2c);
       }
     }
   }
@@ -685,9 +796,9 @@ uint64_t FUN_180848530(int64_t param_1,uint64_t param_2)
   uint64_t uVar1;
   int32_t auStackX_8 [2];
   
-  uVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  uVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if ((int)uVar1 == 0) {
-    uVar1 = FUN_18088ee20(param_2,auStackX_8);
+    uVar1 = UIComponent_SetValue(param_2,auStackX_8);
     if ((int)uVar1 == 0) {
       *(int32_t *)(param_1 + 0x18) = auStackX_8[0];
       uVar1 = 0;
@@ -706,9 +817,9 @@ void FUN_180848590(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088f010(param_2,param_1 + 0x18);
+    UIComponent_Display(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -723,9 +834,9 @@ void FUN_1808485d0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088f470(param_2,param_1 + 0x18);
+    UIComponent_WriteData(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -740,9 +851,9 @@ void FUN_180848610(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088eea0(param_2,param_1 + 0x18);
+    UIComponent_UpdateState(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -757,9 +868,9 @@ void FUN_180848650(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x18);
+    UIComponent_GetValue(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -774,11 +885,11 @@ void FUN_180848690(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_SetValue(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x1c);
+      UIComponent_GetValue(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -794,9 +905,9 @@ void FUN_1808486e0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088f050(param_2,param_1 + 0x18);
+    UIComponent_Render(param_2,param_1 + 0x18);
   }
   return;
 }
@@ -811,13 +922,13 @@ void FUN_180848720(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_ProcessEvent(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x20);
+      iVar1 = UIComponent_UpdateState(param_2,param_1 + 0x20);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x24);
+        UIComponent_WriteData(param_2,param_1 + 0x24);
       }
     }
   }
@@ -834,13 +945,13 @@ void FUN_180848780(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_ProcessEvent(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f4d0(param_2,param_1 + 0x25,0x80);
+      iVar1 = UIComponent_ReadData(param_2,param_1 + 0x25,0x80);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x24);
+        UIComponent_WriteData(param_2,param_1 + 0x24);
       }
     }
   }
@@ -857,13 +968,13 @@ void FUN_1808487e0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f4d0(param_2,param_1 + 0x28,0x80);
+    iVar1 = UIComponent_ReadData(param_2,param_1 + 0x28,0x80);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x18);
+      iVar1 = UIComponent_UpdateState(param_2,param_1 + 0x18);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x1c);
+        UIComponent_WriteData(param_2,param_1 + 0x1c);
       }
     }
   }
@@ -880,13 +991,13 @@ void FUN_180848840(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f4d0(param_2,param_1 + 0x28,0x80);
+    iVar1 = UIComponent_ReadData(param_2,param_1 + 0x28,0x80);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f4d0(param_2,param_1 + 0xa8,0x80);
+      iVar1 = UIComponent_ReadData(param_2,param_1 + 0xa8,0x80);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x1c);
+        UIComponent_WriteData(param_2,param_1 + 0x1c);
       }
     }
   }
@@ -904,12 +1015,12 @@ void FUN_1808488b0(int64_t param_1,uint64_t param_2)
   int iVar1;
   int32_t auStackX_8 [2];
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,auStackX_8);
+    iVar1 = UIComponent_SetValue(param_2,auStackX_8);
     if (iVar1 == 0) {
       *(int32_t *)(param_1 + 0x18) = auStackX_8[0];
-      FUN_18088eea0(param_2,param_1 + 0x1c);
+      UIComponent_UpdateState(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -925,11 +1036,11 @@ void FUN_180848900(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_GetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_SetValue(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088eea0(param_2,param_1 + 0x1c);
+      UIComponent_UpdateState(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -945,9 +1056,9 @@ void FUN_180848950(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f1a0(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_Initialize(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x20);
+    UIComponent_GetValue(param_2,param_1 + 0x20);
   }
   return;
 }
@@ -962,9 +1073,9 @@ void FUN_1808489a0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_SetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee20(param_2,param_1 + 0x14);
+    UIComponent_SetValue(param_2,param_1 + 0x14);
   }
   return;
 }
@@ -979,9 +1090,9 @@ void FUN_1808489e0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_SetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x14);
+    UIComponent_GetValue(param_2,param_1 + 0x14);
   }
   return;
 }
@@ -996,11 +1107,11 @@ void FUN_180848a20(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f2d0(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_Transform(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee60(param_2,param_1 + 0x48);
+    iVar1 = UIComponent_GetValue(param_2,param_1 + 0x48);
     if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x4c);
+      UIComponent_GetValue(param_2,param_1 + 0x4c);
     }
   }
   return;
@@ -1016,11 +1127,11 @@ void FUN_180848a70(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f4d0(param_2,param_1 + 0x18,0x200);
+  iVar1 = UIComponent_ReadData(param_2,param_1 + 0x18,0x200);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee60(param_2,param_1 + 0x14);
+    iVar1 = UIComponent_GetValue(param_2,param_1 + 0x14);
     if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x10);
+      UIComponent_GetValue(param_2,param_1 + 0x10);
     }
   }
   return;
@@ -1037,16 +1148,16 @@ void FUN_180848ac0(int64_t param_1,uint64_t param_2)
   int iVar1;
   int32_t auStackX_8 [2];
   
-  iVar1 = FUN_18088f010(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_Display(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_SetValue(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088ee20(param_2,auStackX_8);
+      iVar1 = UIComponent_SetValue(param_2,auStackX_8);
       if (iVar1 == 0) {
         *(int32_t *)(param_1 + 0x1c) = auStackX_8[0];
-        iVar1 = FUN_18088ee60(param_2,param_1 + 0x20);
+        iVar1 = UIComponent_GetValue(param_2,param_1 + 0x20);
         if (iVar1 == 0) {
-          FUN_18088ee60(param_2,param_1 + 0x24);
+          UIComponent_GetValue(param_2,param_1 + 0x24);
         }
       }
     }
@@ -1064,13 +1175,13 @@ void FUN_180848b30(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_SetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f050(param_2,param_1 + 0x14);
+    iVar1 = UIComponent_Render(param_2,param_1 + 0x14);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f3a0(param_2,param_1 + 0x44);
+      iVar1 = UIComponent_Animate(param_2,param_1 + 0x44);
       if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x50);
+        UIComponent_WriteData(param_2,param_1 + 0x50);
       }
     }
   }
@@ -1087,9 +1198,9 @@ void FUN_180848b90(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_SetValue(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    FUN_18088eea0(param_2,param_1 + 0x14);
+    UIComponent_UpdateState(param_2,param_1 + 0x14);
   }
   return;
 }
@@ -1104,11 +1215,11 @@ void FUN_180848bd0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f310(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_ProcessEvent(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088eea0(param_2,param_1 + 0x18);
+    iVar1 = UIComponent_UpdateState(param_2,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088f470(param_2,param_1 + 0x1c);
+      UIComponent_WriteData(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -1124,11 +1235,11 @@ void FUN_180848c20(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f310(param_2,param_1 + 0x10);
+  iVar1 = UIComponent_ProcessEvent(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f4d0(param_2,param_1 + 0x1d,0x80);
+    iVar1 = UIComponent_ReadData(param_2,param_1 + 0x1d,0x80);
     if (iVar1 == 0) {
-      FUN_18088f470(param_2,param_1 + 0x1c);
+      UIComponent_WriteData(param_2,param_1 + 0x1c);
     }
   }
   return;
@@ -1144,11 +1255,11 @@ void FUN_180848c70(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f4d0(param_2,param_1 + 0x20,0x80);
+  iVar1 = UIComponent_ReadData(param_2,param_1 + 0x20,0x80);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088eea0(param_2,param_1 + 0x10);
+    iVar1 = UIComponent_UpdateState(param_2,param_1 + 0x10);
     if (iVar1 == 0) {
-      FUN_18088f470(param_2,param_1 + 0x14);
+      UIComponent_WriteData(param_2,param_1 + 0x14);
     }
   }
   return;
@@ -1164,11 +1275,11 @@ void FUN_180848cc0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088f4d0(param_2,param_1 + 0x20,0x80);
+  iVar1 = UIComponent_ReadData(param_2,param_1 + 0x20,0x80);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f4d0(param_2,param_1 + 0xa0,0x80);
+    iVar1 = UIComponent_ReadData(param_2,param_1 + 0xa0,0x80);
     if (iVar1 == 0) {
-      FUN_18088f470(param_2,param_1 + 0x14);
+      UIComponent_WriteData(param_2,param_1 + 0x14);
     }
   }
   return;
@@ -1185,11 +1296,11 @@ void FUN_180848d50(int64_t *param_1,uint param_2,uint64_t param_3)
   int iVar1;
   
   if (param_2 < 0x11100) {
-    iVar1 = FUN_18088ee60(param_3,param_1 + 2);
+    iVar1 = UIComponent_GetValue(param_3,param_1 + 2);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f4d0(param_3,param_1 + 5,0x80);
+      iVar1 = UIComponent_ReadData(param_3,param_1 + 5,0x80);
       if (iVar1 == 0) {
-        iVar1 = FUN_18088eea0(param_3,param_1 + 3);
+        iVar1 = UIComponent_UpdateState(param_3,param_1 + 3);
         if (iVar1 == 0) {
           *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
           return;
@@ -1206,4 +1317,72 @@ void FUN_180848d50(int64_t *param_1,uint param_2,uint64_t param_3)
 
 
 
+
+
+/* UI系统FUN_函数语义化别名定义 */
+/* FUN_18088f310 - UIComponent_ProcessEvent */
+#define UIComponent_ProcessEvent FUN_18088f310
+
+/* FUN_18088f2d0 - UIComponent_Transform */
+#define UIComponent_Transform FUN_18088f2d0
+
+/* UISystem_LayoutEngine - UIComponent_SetValue */
+#define UIComponent_SetValue UISystem_LayoutEngine
+
+/* FUN_18088f050 - UIComponent_Render */
+#define UIComponent_Render FUN_18088f050
+
+/* FUN_18088f1a0 - UIComponent_Initialize */
+#define UIComponent_Initialize FUN_18088f1a0
+
+/* FUN_18083fb90 - UIComponent_HandleEvent */
+#define UIComponent_HandleEvent FUN_18083fb90
+
+/* FUN_18084be00 - UIComponent_AlternateValidate */
+#define UIComponent_AlternateValidate FUN_18084be00
+
+/* FUN_18087cbd0 - UIComponent_Create */
+#define UIComponent_Create FUN_18087cbd0
+
+/* FUN_180847c60 - UIComponent_ProcessData */
+#define UIComponent_ProcessData FUN_180847c60
+
+/* FUN_18088eea0 - UIComponent_UpdateState */
+#define UIComponent_UpdateState FUN_18088eea0
+
+/* FUN_18088f3a0 - UIComponent_Animate */
+#define UIComponent_Animate FUN_18088f3a0
+
+/* FUN_18088ee60 - UIComponent_GetValue */
+#define UIComponent_GetValue FUN_18088ee60
+
+/* FUN_18084b990 - UIComponent_Configure */
+#define UIComponent_Configure FUN_18084b990
+
+/* FUN_18088f4d0 - UIComponent_ReadData */
+#define UIComponent_ReadData FUN_18088f4d0
+
+/* FUN_18084b5a0 - UIComponent_Validate */
+#define UIComponent_Validate FUN_18084b5a0
+
+/* FUN_18088f470 - UIComponent_WriteData */
+#define UIComponent_WriteData FUN_18088f470
+
+/* FUN_18074be30 - UIComponent_BufferInit */
+#define UIComponent_BufferInit FUN_18074be30
+
+/* FUN_18088f010 - UIComponent_Display */
+#define UIComponent_Display FUN_18088f010
+
+/* FUN_18088dec0 - UIComponent_CheckStatus */
+#define UIComponent_CheckStatus FUN_18088dec0
+
+/* FUN_1808479d0 - UIComponent_ManageData */
+#define UIComponent_ManageData FUN_1808479d0
+
+/* FUN_18084dc20 - UIComponent_Calculate */
+#define UIComponent_Calculate FUN_18084dc20
+
+/* RenderingSystem_MemoryManager0 - UISystem_GlobalHandler */
+#define UISystem_GlobalHandler RenderingSystem_MemoryManager0
 

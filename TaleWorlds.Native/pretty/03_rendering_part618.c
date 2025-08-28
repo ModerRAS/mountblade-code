@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -59,7 +63,7 @@ void FUN_18060d060(int param_1,uint param_2,float param_3,uint64_t *param_4)
     } while (puVar7 != (uint64_t *)0x0);
   }
   if ((puVar4 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStack_70,in_R8,puVar4,auStackX_8);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStack_70,in_R8,puVar4,auStackX_8);
     puVar4 = (uint64_t *)*puVar4;
   }
   lVar5 = puVar4[5];
@@ -94,7 +98,7 @@ void FUN_18060d060(int param_1,uint param_2,float param_3,uint64_t *param_4)
   *(int16_t *)(puStack_60 + 5) = 0x6563;
   *(int8_t *)((int64_t)puStack_60 + 0x16) = 0;
   uStack_58 = 0x16;
-  FUN_180628380(&puStack_68,param_1);
+  RenderingSystem_CameraController(&puStack_68,param_1);
   uVar11 = uStack_58 + 0xc;
   if (uVar11 != 0) {
     uVar3 = uStack_58 + 0xd;
@@ -118,7 +122,7 @@ LAB_18060d273:
   *(int32_t *)(puVar7 + 1) = 0x20726564;
   *(int8_t *)((int64_t)puVar7 + 0xc) = 0;
   uStack_58 = uVar11;
-  FUN_180628380(&puStack_68,param_2);
+  RenderingSystem_CameraController(&puStack_68,param_2);
   uVar11 = uStack_58 + 0x13;
   if (uVar11 != 0) {
     uVar3 = uStack_58 + 0x14;
@@ -275,7 +279,7 @@ int32_t FUN_18060d4d0(int param_1,uint param_2,float param_3)
     } while (puVar5 != (uint64_t *)0x0);
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   if (puVar3[5] != 0) {
@@ -297,7 +301,7 @@ int32_t FUN_18060d4d0(int param_1,uint param_2,float param_3)
   *(int16_t *)(puStack_78 + 5) = 0x6563;
   *(int8_t *)((int64_t)puStack_78 + 0x16) = 0;
   uStack_70 = 0x16;
-  FUN_180628380(&puStack_80,param_1);
+  RenderingSystem_CameraController(&puStack_80,param_1);
   uVar9 = uStack_70 + 0xc;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0xd;
@@ -321,7 +325,7 @@ LAB_18060d6b3:
   *(int32_t *)(puVar5 + 1) = 0x20726564;
   *(int8_t *)((int64_t)puVar5 + 0xc) = 0;
   uStack_70 = uVar9;
-  FUN_180628380(&puStack_80,param_2);
+  RenderingSystem_CameraController(&puStack_80,param_2);
   uVar9 = uStack_70 + 0x13;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0x14;
@@ -474,7 +478,7 @@ void FUN_18060d910(int param_1,uint param_2,float param_3,uint64_t *param_4)
     } while (puVar2 != (uint64_t *)0x0);
   }
   if ((puVar5 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStack_18,auStackX_8[0],puVar5,auStackX_8);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStack_18,auStackX_8[0],puVar5,auStackX_8);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar3 = puVar5[5];
@@ -549,7 +553,7 @@ int32_t FUN_18060da20(int param_1,uint param_2,float param_3)
     } while (puVar5 != (uint64_t *)0x0);
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   if (puVar3[5] != 0) {
@@ -571,7 +575,7 @@ int32_t FUN_18060da20(int param_1,uint param_2,float param_3)
   *(int16_t *)(puStack_78 + 5) = 0x6563;
   *(int8_t *)((int64_t)puStack_78 + 0x16) = 0;
   uStack_70 = 0x16;
-  FUN_180628380(&puStack_80,param_1);
+  RenderingSystem_CameraController(&puStack_80,param_1);
   uVar9 = uStack_70 + 0xc;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0xd;
@@ -595,7 +599,7 @@ LAB_18060dc03:
   *(int32_t *)(puVar5 + 1) = 0x20726564;
   *(int8_t *)((int64_t)puVar5 + 0xc) = 0;
   uStack_70 = uVar9;
-  FUN_180628380(&puStack_80,param_2);
+  RenderingSystem_CameraController(&puStack_80,param_2);
   uVar9 = uStack_70 + 0x13;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0x14;
@@ -793,7 +797,7 @@ LAB_18060df9c:
           lVar11 = uVar13 * 2;
           if (lVar11 != 0) goto LAB_18060df9c;
         }
-        lVar8 = FUN_180059780(puVar17,puVar19,puVar7);
+        lVar8 = SystemCore_Initializer(puVar17,puVar19,puVar7);
         SystemCore_NetworkHandler0(lVar8,lVar4 + 8);
         puVar18 = (uint64_t *)(lVar8 + 0x20);
         for (puVar16 = puVar17; puVar16 != puVar19; puVar16 = puVar16 + 4) {

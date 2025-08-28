@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -470,7 +474,7 @@ void FUN_1803ce380(int64_t param_1,int64_t *param_2,int64_t param_3,char param_4
   fStack_1a8 = fStack_218;
   fStack_1a4 = fStack_214;
   fStack_1a0 = fStackX_10;
-  FUN_180084ae0(&uStack_1d8);
+  Utilities_DataValidator(&uStack_1d8);
   lVar6 = *param_2;
   fVar13 = *(float *)(lVar6 + 0x18) - fStack_1a0;
   fVar12 = *(float *)(lVar6 + 0x14) - fStack_1a4;
@@ -498,7 +502,7 @@ void FUN_1803ce380(int64_t param_1,int64_t *param_2,int64_t param_3,char param_4
   fStack_208 = 4.2039e-45;
   fStack_204 = ABS(fVar14 * (float)uStack_1d8 + fVar12 * uStack_1d8._4_4_ +
                    fVar13 * (float)uStack_1d0);
-  FUN_18063b470(&fStack_218,&uStack_1d8);
+  AdvancedProcessor_StateManager0(&fStack_218,&uStack_1d8);
   fStack_100 = fStack_214;
   fStack_fc = fStack_210;
   uStack_f8 = uStack_20c;
@@ -743,7 +747,7 @@ void FUN_1803cec00(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -825,7 +829,7 @@ FUN_1803cece0(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
       plVar3 = (int64_t *)plVar3[5];
     } while (plVar3 != (int64_t *)0x0);
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   plVar4 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x2c));
   *plVar4 = *param_4;

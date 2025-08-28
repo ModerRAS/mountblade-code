@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part069.c - 4 个函数
 
 // 函数: void FUN_1804d8f82(void)
@@ -98,7 +102,7 @@ void FUN_1804d8f82(void)
                  *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + (int64_t)((int)uVar5 >> 10) * 8);
         uVar6 = *(uint *)(lVar35 + 0x1c);
         if (uVar6 != 0xffffffff) {
-          FUN_1802fac00(*(uint64_t *)
+          SystemCore_FileSystem(*(uint64_t *)
                          (*(int64_t *)
                            (*(int64_t *)(unaff_RBX + 0x698) + (int64_t)((int)uVar6 >> 10) * 8) + 8
                          + (int64_t)(int)(*(uint *)(unaff_RBX + 0x6b8) & uVar6) * 0x30),
@@ -184,7 +188,7 @@ void FUN_1804d8f82(void)
             unaff_RBP[0x25] = fVar11;
             unaff_RBP[0x26] = fVar12;
             unaff_RBP[0x27] = fVar44;
-            FUN_18063b5f0(unaff_RBP + -8,unaff_RBP + 0x20);
+            SystemSecurityManager(unaff_RBP + -8,unaff_RBP + 0x20);
             pfVar29 = (float *)(lVar40 + 8 + lVar32 * 0x48);
             fVar13 = *pfVar29;
             fVar14 = pfVar29[1];
@@ -280,7 +284,7 @@ void FUN_1804d8f82(void)
                fVar41 = *(float *)(lVar40 + 0x40 + lVar32 * 0x48) - *(float *)(lVar38 + 0x128),
                fVar2 = *(float *)(unaff_R14 + 0x60 + lVar39), fVar42 = fVar42 * fVar42,
                (fVar43 * fVar43 + fVar42 + fVar41 * fVar41) - fVar2 * fVar2 <= fVar1 * fVar1)) {
-              FUN_180077750(*(uint64_t *)(unaff_R14 + 8 + lVar39),fVar42,unaff_RBP + 0x28,
+              SystemHealthMonitor(*(uint64_t *)(unaff_R14 + 8 + lVar39),fVar42,unaff_RBP + 0x28,
                             in_stack_00000050,&stack0x00000070);
             }
             unaff_R14 = unaff_R14 + 0x68;
@@ -351,7 +355,7 @@ void FUN_1804d8f82(void)
               }
               uVar9 = *(uint64_t *)(unaff_R14 + 0x48 + lVar40);
               *(int **)(unaff_RBP + 0x1e) = piVar30 + 0x12;
-              FUN_180077750(uVar9);
+              SystemHealthMonitor(uVar9);
             }
             unaff_R14 = unaff_R14 + 0x68;
             lVar39 = lVar39 + -1;
@@ -515,7 +519,7 @@ void FUN_1804d9810(int64_t param_1,uint64_t param_2,uint param_3,int param_4)
         fStack_84 = fVar6;
         fStack_80 = fVar7;
         uStack_7c = uStack_9c;
-        FUN_18063b5f0(&fStack_e8,&uStack_b8);
+        SystemSecurityManager(&fStack_e8,&uStack_b8);
         pfVar1 = (float *)(lVar29 + 8 + lVar25 * 0x48);
         fVar8 = *pfVar1;
         fVar9 = pfVar1[1];
@@ -681,7 +685,7 @@ void FUN_1804d9885(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
       param_16._4_4_ = fVar6;
       param_17._0_4_ = fVar7;
       param_17._4_4_ = param_13._4_4_;
-      FUN_18063b5f0(&fStackX_20,&param_10);
+      SystemSecurityManager(&fStackX_20,&param_10);
       pfVar1 = (float *)(lVar28 + 8 + lVar24 * 0x48);
       fVar8 = *pfVar1;
       fVar9 = pfVar1[1];

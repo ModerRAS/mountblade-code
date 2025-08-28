@@ -73,14 +73,14 @@ void FUN_18005e5ff(void)
 
 
 
-// 函数: void FUN_18005e630(int64_t param_1)
-void FUN_18005e630(int64_t param_1)
+// 函数: void SystemCore_FileSystem(int64_t param_1)
+void SystemCore_FileSystem(int64_t param_1)
 
 {
   int iVar1;
   int64_t lVar2;
   
-  FUN_18020f150(*(uint64_t *)(*(int64_t *)(param_1 + 8) + 8));
+  CoreEngine_SystemInitializer(*(uint64_t *)(*(int64_t *)(param_1 + 8) + 8));
   lVar2 = system_message_buffer + 0x20;
   iVar1 = _Mtx_lock(lVar2);
   if (iVar1 != 0) {
@@ -100,8 +100,8 @@ void FUN_18005e630(int64_t param_1)
 
 
 
-// 函数: void FUN_18005e6a0(uint64_t param_1,int64_t *param_2,int8_t param_3,uint64_t param_4)
-void FUN_18005e6a0(uint64_t param_1,int64_t *param_2,int8_t param_3,uint64_t param_4)
+// 函数: void SystemCore_ErrorHandler(uint64_t param_1,int64_t *param_2,int8_t param_3,uint64_t param_4)
+void SystemCore_ErrorHandler(uint64_t param_1,int64_t *param_2,int8_t param_3,uint64_t param_4)
 
 {
   code *pcVar1;
@@ -119,7 +119,7 @@ void FUN_18005e6a0(uint64_t param_1,int64_t *param_2,int8_t param_3,uint64_t par
       cVar3 = (*pcVar1)();
     }
     if (cVar3 != '\0') break;
-    plVar2 = (int64_t *)FUN_18005e890(param_1);
+    plVar2 = (int64_t *)PerformanceOptimizer(param_1);
     cVar3 = (**(code **)(*plVar2 + 0x20))(plVar2,param_3,*(code **)(*plVar2 + 0x20),param_4,uVar4);
     if (cVar3 == '\0') {
       pcVar1 = *(code **)(*(int64_t *)*param_2 + 0x80);
@@ -172,7 +172,7 @@ void FUN_18005e770(uint64_t param_1,int64_t *param_2,char param_3)
       }
       if (cVar7 == '\0') {
         bVar2 = true;
-        plVar3 = (int64_t *)FUN_18005e890(param_1);
+        plVar3 = (int64_t *)PerformanceOptimizer(param_1);
         if (param_3 == '\0') {
           cVar7 = (**(code **)(*plVar3 + 0x20))(plVar3,0);
         }
@@ -200,7 +200,7 @@ void FUN_18005e770(uint64_t param_1,int64_t *param_2,char param_3)
 
 
 
-int64_t FUN_18005e890(int64_t param_1)
+int64_t PerformanceOptimizer(int64_t param_1)
 
 {
   int64_t lVar1;

@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -41,7 +46,7 @@ void FUN_18084dae0(int64_t *param_1)
   else if (0 < (int)uVar3) {
     lVar2 = *param_1;
     do {
-      FUN_180840270(lVar2);
+      SystemCore_MemoryManager(lVar2);
       lVar2 = lVar2 + 0x10;
       uVar4 = uVar4 - 1;
     } while (uVar4 != 0);
@@ -70,7 +75,7 @@ void FUN_18084db76(void)
   
   lVar2 = *unaff_RDI;
   do {
-    FUN_180840270(lVar2);
+    SystemCore_MemoryManager(lVar2);
     lVar2 = lVar2 + 0x10;
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
@@ -108,7 +113,7 @@ int64_t FUN_18084dbd0(int64_t param_1,uint64_t param_2)
 
 {
   FUN_18084dae0(param_1 + 0x60);
-  FUN_180840270(param_1 + 0x50);
+  SystemCore_MemoryManager(param_1 + 0x50);
   FUN_1808b02a0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x70);
@@ -150,7 +155,7 @@ void FUN_18084dc20(int32_t *param_1)
 
 
 
-uint64_t FUN_18084de40(int64_t param_1,int64_t param_2,float *param_3)
+uint64_t RenderingSystem_GeometryProcessor0(int64_t param_1,int64_t param_2,float *param_3)
 
 {
   int iVar1;
@@ -224,7 +229,7 @@ uint64_t FUN_18084def0(int64_t *param_1,int param_2)
           *puVar5 = *(int32_t *)(lVar7 + (int64_t)puVar5);
           *(uint64_t *)(lVar7 + -0xc + (int64_t)puVar5) = 0;
           *(uint64_t *)(lVar7 + -4 + (int64_t)puVar5) = 0;
-          FUN_180840270((int64_t)iVar6 * 0x10 + lVar2);
+          SystemCore_MemoryManager((int64_t)iVar6 * 0x10 + lVar2);
           iVar6 = iVar6 + 1;
           puVar5 = puVar5 + 4;
           lVar4 = lVar4 + -1;
@@ -281,7 +286,7 @@ uint64_t FUN_18084df0d(uint64_t param_1,int param_2)
           *puVar5 = *(int32_t *)(lVar7 + (int64_t)puVar5);
           *(uint64_t *)(lVar7 + -0xc + (int64_t)puVar5) = 0;
           *(uint64_t *)(lVar7 + -4 + (int64_t)puVar5) = 0;
-          FUN_180840270((int64_t)iVar6 * 0x10 + lVar2);
+          SystemCore_MemoryManager((int64_t)iVar6 * 0x10 + lVar2);
           iVar6 = iVar6 + 1;
           puVar5 = puVar5 + 4;
           lVar4 = lVar4 + -1;
@@ -327,7 +332,7 @@ uint64_t FUN_18084df73(void)
       *puVar2 = *(int32_t *)(lVar4 + (int64_t)puVar2);
       *(uint64_t *)(lVar4 + -0xc + (int64_t)puVar2) = 0;
       *(uint64_t *)(lVar4 + -4 + (int64_t)puVar2) = 0;
-      FUN_180840270((int64_t)iVar3 * 0x10 + lVar1);
+      SystemCore_MemoryManager((int64_t)iVar3 * 0x10 + lVar1);
       iVar3 = iVar3 + 1;
       puVar2 = puVar2 + 4;
       in_RAX = in_RAX + -1;
@@ -368,7 +373,7 @@ uint64_t FUN_18084df94(uint64_t param_1)
     *puVar1 = *(int32_t *)(lVar2 + (int64_t)puVar1);
     *(uint64_t *)(lVar2 + -0xc + (int64_t)puVar1) = param_1;
     *(uint64_t *)(lVar2 + -4 + (int64_t)puVar1) = 0;
-    FUN_180840270((int64_t)unaff_R12D * 0x10 + unaff_R13);
+    SystemCore_MemoryManager((int64_t)unaff_R12D * 0x10 + unaff_R13);
     unaff_R12D = unaff_R12D + 1;
     puVar1 = puVar1 + 4;
     param_1 = 0;
@@ -443,7 +448,7 @@ uint64_t FUN_18084e110(int64_t *param_1,char *param_2)
   int64_t lVar5;
   
   if (*param_2 == '\0') {
-    FUN_180840270();
+    SystemCore_MemoryManager();
     return 0;
   }
   lVar5 = -1;
@@ -478,12 +483,12 @@ int64_t FUN_18084e3b0(int64_t param_1,uint64_t param_2)
 {
   int64_t *plVar1;
   
-  FUN_180744d60(param_1 + 0xf8);
-  FUN_18084c680(param_1 + 0xb0);
+  SystemAnalyzer(param_1 + 0xf8);
+  UIComponent_StateProcessor(param_1 + 0xb0);
   func_0x00018084e310(param_1 + 0xa0);
-  FUN_180744d60(param_1 + 0x90);
-  FUN_180744d60(param_1 + 0x80);
-  FUN_18084c680(param_1 + 0x50);
+  SystemAnalyzer(param_1 + 0x90);
+  SystemAnalyzer(param_1 + 0x80);
+  UIComponent_StateProcessor(param_1 + 0x50);
   plVar1 = (int64_t *)(param_1 + 0x20);
   **(int64_t **)(param_1 + 0x28) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(param_1 + 0x28);
@@ -680,7 +685,7 @@ LAB_18084e841:
     if ((7 < iVar1) && (iVar8 = iVar4, iVar4 < iVar7)) {
       iVar8 = iVar7;
     }
-    uVar3 = FUN_180747f10(param_1 + 0x1f,iVar8);
+    uVar3 = RenderingTextureManager0(param_1 + 0x1f,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -728,7 +733,7 @@ uint64_t FUN_18084e8f0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int *
       if (iVar7 < 2) {
         iVar7 = 2;
       }
-      uVar5 = FUN_1808532e0(param_1 + 0x10,iVar7);
+      uVar5 = Physics_AnimationProcessor(param_1 + 0x10,iVar7);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
@@ -770,7 +775,7 @@ uint64_t FUN_18084e9e0(int64_t param_1)
     uStackX_8 = 0;
     if (*(int *)(param_1 + 0x88) == 0) {
       uVar1 = *(int32_t *)(*(int64_t *)(param_1 + 0x40) + 0xc0);
-      iVar2 = FUN_18073c380(uVar3,0xfffffffe,&uStackX_8);
+      iVar2 = UltraHighFreq_PhysicsEngine1(uVar3,0xfffffffe,&uStackX_8);
       uVar3 = uStackX_8;
       if (iVar2 != 0) {
         uVar3 = 0;
@@ -796,7 +801,7 @@ uint64_t FUN_18084e9e0(int64_t param_1)
     uVar3 = *(uint64_t *)(param_1 + 0x78);
   }
   uStackX_8 = 0;
-  iVar2 = FUN_18073c380(uVar3,0xfffffffe,&uStackX_8);
+  iVar2 = UltraHighFreq_PhysicsEngine1(uVar3,0xfffffffe,&uStackX_8);
   uVar3 = uStackX_8;
   if (iVar2 != 0) {
     uVar3 = 0;
@@ -815,7 +820,7 @@ uint64_t FUN_18084ea8c(void)
 {
   uint64_t uVar1;
   
-  FUN_18073c380();
+  UltraHighFreq_PhysicsEngine1();
   uVar1 = FUN_180853bf0();
   if ((int)uVar1 == 0) {
     uVar1 = 0;
@@ -854,7 +859,7 @@ uint64_t FUN_18084ead0(int64_t param_1,char param_2)
   if (*(int *)(param_1 + 0x88) == 0) {
     uStackX_8 = 0;
     if (*(int *)(param_1 + 0x98) == 0) {
-      iVar2 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
+      iVar2 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
       uVar4 = uStackX_8;
       if (iVar2 != 0) {
         uVar4 = uVar5;
@@ -863,7 +868,7 @@ uint64_t FUN_18084ead0(int64_t param_1,char param_2)
       iVar2 = (int)uVar3;
       goto joined_r0x00018084ebb8;
     }
-    iVar2 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
+    iVar2 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
     uVar4 = uStackX_8;
     if (iVar2 != 0) {
       uVar4 = uVar5;
@@ -880,7 +885,7 @@ uint64_t FUN_18084ead0(int64_t param_1,char param_2)
   }
   if (*(int *)(param_1 + 0x98) == 0) {
     uStackX_8 = 0;
-    iVar2 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
+    iVar2 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
     uVar4 = uStackX_8;
     if (iVar2 != 0) {
       uVar4 = uVar5;
@@ -1009,7 +1014,7 @@ uint64_t FUN_18084ec60(int64_t param_1)
   else {
     uVar3 = 1;
   }
-  FUN_18073d8a0(*(uint64_t *)(param_1 + 0x78),uVar3);
+  SystemCore_StateController(*(uint64_t *)(param_1 + 0x78),uVar3);
   for (puVar1 = *(uint64_t **)(param_1 + 0x50);
       (puVar1 != (uint64_t *)(param_1 + 0x50) &&
       (FUN_180853fc0(puVar1[2],uVar3), puVar1 != (uint64_t *)(param_1 + 0x50)));

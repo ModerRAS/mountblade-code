@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_12_part017.c - 6 个函数
 
 // 函数: void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float param_5,
@@ -53,7 +57,7 @@ void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float 
       puStack_138 = (int32_t *)param_8;
       lStack_140 = CONCAT44(lStack_140._4_4_,param_7);
       uStack_148 = CONCAT31(uStack_148._1_3_,1);
-      FUN_1807d7590(uVar6,(param_4 - 90.0) * param_3 * 0.0027777778 + param_2,
+      SystemCore_ThreadManager(uVar6,(param_4 - 90.0) * param_3 * 0.0027777778 + param_2,
                     param_3 * 0.0027777778 * 180.0,param_6);
     }
     else {
@@ -69,12 +73,12 @@ void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float 
       puStack_138 = auStack_128;
       lStack_140._0_4_ = 1;
       uStack_148 = (uint)uStack_148._1_3_ << 8;
-      FUN_1807d7590(param_1,(param_4 - 180.0) * 0.5 * fVar7 + param_2,fVar7 * (param_4 + 180.0),
+      SystemCore_ThreadManager(param_1,(param_4 - 180.0) * 0.5 * fVar7 + param_2,fVar7 * (param_4 + 180.0),
                     (param_4 + 180.0) * 0.0055555557 * param_6);
       puStack_138 = auStack_128;
       lStack_140 = CONCAT44(lStack_140._4_4_,1);
       uStack_148 = uStack_148 & 0xffffff00;
-      FUN_1807d7590(param_1,(param_4 * 0.5 + 180.0) * fVar7 + param_2,fVar7 * -param_4,
+      SystemCore_ThreadManager(param_1,(param_4 * 0.5 + 180.0) * fVar7 + param_2,fVar7 * -param_4,
                     -param_4 * 0.0055555557 * param_6);
       lStack_140 = param_8;
       uStack_148 = param_7;
@@ -85,7 +89,7 @@ void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float 
       puStack_138 = (int32_t *)(param_8 + 4);
       lStack_140 = CONCAT44(lStack_140._4_4_,param_7);
       uStack_148 = CONCAT31(uStack_148._1_3_,1);
-      FUN_1807d7590(param_1,(param_4 + 90.0) * param_3 + param_2,param_3 * 180.0,param_6);
+      SystemCore_ThreadManager(param_1,(param_4 + 90.0) * param_3 + param_2,param_3 * 180.0,param_6);
     }
     else {
       lVar3 = (int64_t)*param_1;
@@ -99,12 +103,12 @@ void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float 
       puStack_138 = auStack_128;
       lStack_140._0_4_ = 1;
       uStack_148 = (uint)uStack_148._1_3_ << 8;
-      FUN_1807d7590(param_1,(param_4 * 0.5 + 90.0) * param_3 + param_2,param_3 * (180.0 - param_4),
+      SystemCore_ThreadManager(param_1,(param_4 * 0.5 + 90.0) * param_3 + param_2,param_3 * (180.0 - param_4),
                     (180.0 - param_4) * 0.0055555557 * param_6);
       puStack_138 = auStack_128;
       lStack_140 = CONCAT44(lStack_140._4_4_,1);
       uStack_148 = uStack_148 & 0xffffff00;
-      FUN_1807d7590(param_1,(param_4 * 0.5 - 180.0) * param_3 + param_2,param_3 * param_4,
+      SystemCore_ThreadManager(param_1,(param_4 * 0.5 - 180.0) * param_3 + param_2,param_3 * param_4,
                     param_4 * 0.0055555557 * param_6);
       lStack_140 = param_8 + 4;
       uStack_148 = param_7;
@@ -226,7 +230,7 @@ void FUN_1807d6934(int *param_1,float param_2,float param_3,float param_4)
     in_stack_00000138 = unaff_XMM6_Dc;
     if (0.0 <= param_4) {
       uVar9 = CONCAT31(uVar10,1);
-      uVar6 = FUN_1807d7590(uVar6,(param_4 - 90.0) * param_3 * 0.0027777778 + param_2,
+      uVar6 = SystemCore_ThreadManager(uVar6,(param_4 - 90.0) * param_3 * 0.0027777778 + param_2,
                             param_3 * 0.0027777778 * 180.0,in_R9,uVar9);
     }
     else {
@@ -241,17 +245,17 @@ void FUN_1807d6934(int *param_1,float param_2,float param_3,float param_4)
       fVar8 = param_3 * 0.0027777778;
       fVar7 = param_4 + 180.0;
       uVar9 = (uint)uVar10 << 8;
-      FUN_1807d7590(fVar7,(param_4 - 180.0) * 0.5 * fVar8 + param_2,fVar8 * fVar7,
+      SystemCore_ThreadManager(fVar7,(param_4 - 180.0) * 0.5 * fVar8 + param_2,fVar8 * fVar7,
                     fVar7 * 0.0055555557 * unaff_XMM10_Da,uVar9);
       fVar7 = -param_4;
-      FUN_1807d7590(fVar7,(param_4 * 0.5 + 180.0) * fVar8 + param_2,fVar8 * fVar7,
+      SystemCore_ThreadManager(fVar7,(param_4 * 0.5 + 180.0) * fVar8 + param_2,fVar8 * fVar7,
                     fVar7 * 0.0055555557 * unaff_XMM10_Da,uVar9 & 0xffffff00);
       uVar9 = unaff_EBP;
       uVar6 = FUN_1807d5580(*unaff_RBX);
     }
     param_3 = param_3 * 0.0027777778;
     if (param_4 <= 0.0) {
-      FUN_1807d7590(uVar6,(param_4 + 90.0) * param_3 + param_2,param_3 * 180.0);
+      SystemCore_ThreadManager(uVar6,(param_4 + 90.0) * param_3 + param_2,param_3 * 180.0);
     }
     else {
       lVar3 = (int64_t)*unaff_RBX;
@@ -264,9 +268,9 @@ void FUN_1807d6934(int *param_1,float param_2,float param_3,float param_4)
       }
       fVar7 = 180.0 - param_4;
       uVar9 = uVar9 & 0xffffff00;
-      uVar6 = FUN_1807d7590(fVar7,(param_4 * 0.5 + 90.0) * param_3 + param_2,param_3 * fVar7,
+      uVar6 = SystemCore_ThreadManager(fVar7,(param_4 * 0.5 + 90.0) * param_3 + param_2,param_3 * fVar7,
                             fVar7 * 0.0055555557 * unaff_XMM10_Da,uVar9);
-      FUN_1807d7590(uVar6,(param_4 * 0.5 - 180.0) * param_3 + param_2,param_3 * param_4,
+      SystemCore_ThreadManager(uVar6,(param_4 * 0.5 - 180.0) * param_3 + param_2,param_3 * param_4,
                     param_4 * 0.0055555557 * unaff_XMM10_Da,uVar9 & 0xffffff00);
       FUN_1807d5580(*unaff_RBX);
     }
@@ -324,7 +328,7 @@ void FUN_1807d69da(float param_1,uint64_t param_2,uint64_t param_3,uint64_t para
   uVar7 = (uint3)((uint)in_stack_00000020 >> 8);
   if (0.0 <= unaff_XMM7_Da) {
     uVar6 = CONCAT31(uVar7,1);
-    uVar4 = FUN_1807d7590(param_1,(unaff_XMM7_Da - 90.0) * unaff_XMM9_Da * 0.0027777778 +
+    uVar4 = SystemCore_ThreadManager(param_1,(unaff_XMM7_Da - 90.0) * unaff_XMM9_Da * 0.0027777778 +
                                   unaff_XMM11_Da,unaff_XMM9_Da * 0.0027777778 * 180.0,param_4,uVar6)
     ;
   }
@@ -340,17 +344,17 @@ void FUN_1807d69da(float param_1,uint64_t param_2,uint64_t param_3,uint64_t para
     fVar5 = unaff_XMM9_Da * 0.0027777778;
     fVar3 = unaff_XMM7_Da + 180.0;
     uVar6 = (uint)uVar7 << 8;
-    FUN_1807d7590(fVar3,(unaff_XMM7_Da - 180.0) * 0.5 * fVar5 + unaff_XMM11_Da,fVar5 * fVar3,
+    SystemCore_ThreadManager(fVar3,(unaff_XMM7_Da - 180.0) * 0.5 * fVar5 + unaff_XMM11_Da,fVar5 * fVar3,
                   fVar3 * 0.0055555557 * unaff_XMM10_Da,uVar6);
     fVar3 = -unaff_XMM7_Da;
-    FUN_1807d7590(fVar3,(unaff_XMM7_Da * 0.5 + 180.0) * fVar5 + unaff_XMM11_Da,fVar5 * fVar3,
+    SystemCore_ThreadManager(fVar3,(unaff_XMM7_Da * 0.5 + 180.0) * fVar5 + unaff_XMM11_Da,fVar5 * fVar3,
                   fVar3 * 0.0055555557 * unaff_XMM10_Da,uVar6 & 0xffffff00);
     uVar6 = unaff_EBP;
     uVar4 = FUN_1807d5580(*unaff_RBX);
   }
   fVar3 = unaff_XMM9_Da * 0.0027777778;
   if (unaff_XMM7_Da <= 0.0) {
-    FUN_1807d7590(uVar4,(unaff_XMM7_Da + 90.0) * fVar3 + unaff_XMM11_Da,fVar3 * 180.0);
+    SystemCore_ThreadManager(uVar4,(unaff_XMM7_Da + 90.0) * fVar3 + unaff_XMM11_Da,fVar3 * 180.0);
   }
   else {
     lVar1 = (int64_t)*unaff_RBX;
@@ -363,9 +367,9 @@ void FUN_1807d69da(float param_1,uint64_t param_2,uint64_t param_3,uint64_t para
     }
     fVar5 = 180.0 - unaff_XMM7_Da;
     uVar6 = uVar6 & 0xffffff00;
-    uVar4 = FUN_1807d7590(fVar5,(unaff_XMM7_Da * 0.5 + 90.0) * fVar3 + unaff_XMM11_Da,fVar3 * fVar5,
+    uVar4 = SystemCore_ThreadManager(fVar5,(unaff_XMM7_Da * 0.5 + 90.0) * fVar3 + unaff_XMM11_Da,fVar3 * fVar5,
                           fVar5 * 0.0055555557 * unaff_XMM10_Da,uVar6);
-    FUN_1807d7590(uVar4,(unaff_XMM7_Da * 0.5 - 180.0) * fVar3 + unaff_XMM11_Da,fVar3 * unaff_XMM7_Da
+    SystemCore_ThreadManager(uVar4,(unaff_XMM7_Da * 0.5 - 180.0) * fVar3 + unaff_XMM11_Da,fVar3 * unaff_XMM7_Da
                   ,unaff_XMM7_Da * 0.0055555557 * unaff_XMM10_Da,uVar6 & 0xffffff00);
     FUN_1807d5580(*unaff_RBX);
   }
@@ -511,7 +515,7 @@ void FUN_1807d6d40(int64_t param_1,int *param_2,float param_3,uint64_t param_4,f
             lStack_1b0 = CONCAT44(lStack_1b0._4_4_,param_8);
             fStack_1b8 = (float)CONCAT31(fStack_1b8._1_3_,1);
             puStack_1a8 = puVar8;
-            FUN_1807d7590(param_2);
+            SystemCore_ThreadManager(param_2);
             if (param_2[0x26] != -1) {
               iVar3 = param_2[0x26] * (int)param_8;
               puVar8[iVar3] = fVar12 * param_7 + (float)puVar8[iVar3];
@@ -630,7 +634,7 @@ void FUN_1807d6d40(int64_t param_1,int *param_2,float param_3,uint64_t param_4,f
               fStack_1b8 = (float)((uint)fStack_1b8._1_3_ << 8);
               auVar15._0_4_ = fVar9 * fVar18 + param_3;
               auVar15._4_12_ = auVar14._4_12_;
-              FUN_1807d7590(param_2,auVar15._0_8_,0,(210.0 - fVar18) * 0.016666668);
+              SystemCore_ThreadManager(param_2,auVar15._0_8_,0,(210.0 - fVar18) * 0.016666668);
               goto LAB_1807d71b7;
             }
             auVar16._0_4_ = fVar9 * fVar18 + param_3;
@@ -639,7 +643,7 @@ void FUN_1807d6d40(int64_t param_1,int *param_2,float param_3,uint64_t param_4,f
                           (param_9 + (int64_t)*(int *)(*(int64_t *)(param_1 + 8) + lVar7) * 4);
             lStack_1b0 = CONCAT44(lStack_1b0._4_4_,param_8);
             fStack_1b8 = (float)CONCAT31(fStack_1b8._1_3_,1);
-            FUN_1807d7590(param_2,auVar16._0_8_,0,param_7);
+            SystemCore_ThreadManager(param_2,auVar16._0_8_,0,param_7);
           }
           else {
             lVar4 = (int64_t)*param_2;
@@ -654,12 +658,12 @@ void FUN_1807d6d40(int64_t param_1,int *param_2,float param_3,uint64_t param_4,f
             lStack_1b0 = CONCAT44(lStack_1b0._4_4_,1);
             fStack_1b8 = (float)((uint)fStack_1b8._1_3_ << 8);
             auVar14._0_4_ = fVar9 * fVar18 + param_3;
-            FUN_1807d7590(param_2,auVar14._0_8_,0,fVar18 * 0.016666668 + 3.5);
+            SystemCore_ThreadManager(param_2,auVar14._0_8_,0,fVar18 * 0.016666668 + 3.5);
 LAB_1807d71b7:
             puStack_1a8 = auStack_178;
             lStack_1b0 = CONCAT44(lStack_1b0._4_4_,1);
             fStack_1b8 = (float)((uint)fStack_1b8 & 0xffffff00);
-            FUN_1807d7590(param_2);
+            SystemCore_ThreadManager(param_2);
             lStack_1b0 = param_9 + (int64_t)*(int *)(*(int64_t *)(param_1 + 8) + lVar7) * 4;
             fStack_1b8 = param_8;
             FUN_1807d5580(*param_2,fStack_194 * param_7,1,auStack_178);
@@ -683,7 +687,7 @@ LAB_1807d71b7:
       puStack_1a8 = (int32_t *)(param_9 + (int64_t)iVar6 * 4);
       lStack_1b0 = CONCAT44(lStack_1b0._4_4_,param_8);
       fStack_1b8 = (float)CONCAT31(fStack_1b8._1_3_,1);
-      FUN_1807d7590(param_2,puStack_1a8,fVar18,param_6 * param_7);
+      SystemCore_ThreadManager(param_2,puStack_1a8,fVar18,param_6 * param_7);
     }
     else {
       lVar2 = (int64_t)(param_2[0x26] * (int)param_8 + iVar6);

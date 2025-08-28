@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -206,7 +210,7 @@ LAB_180877bb2:
               else if (iVar11 < iVar8) {
                 iVar11 = iVar8;
               }
-              iVar4 = FUN_180747f10(plVar6,iVar11);
+              iVar4 = RenderingTextureManager0(plVar6,iVar11);
               if (iVar4 != 0) goto LAB_180877c01;
             }
             *(int64_t *)(*plVar6 + (int64_t)(int)plVar6[1] * 8) = lStack_90;
@@ -240,7 +244,7 @@ LAB_180877e87:
   plStack_80 = &lStack_e0;
   uStack_78 = 0xffffffffffffffff;
   aiStack_70[0] = -1;
-  FUN_1808741f0(&lStack_e0,&uStack_78,aiStack_70);
+  SystemResource_Manager(&lStack_e0,&uStack_78,aiStack_70);
   if (aiStack_70[0] == -1) goto LAB_180877e87;
   plVar6 = *(int64_t **)(plStack_80[2] + 0x18 + (int64_t)aiStack_70[0] * 0x20);
   uVar10 = *(uint *)((int64_t)plVar6 + 0xc);
@@ -266,7 +270,7 @@ LAB_180877e87:
   }
   *(int32_t *)(plVar6 + 1) = 0;
   if (0 < (int)((uVar10 ^ (int)uVar10 >> 0x1f) - ((int)uVar10 >> 0x1f))) {
-    FUN_180747f10(plVar6,0);
+    RenderingTextureManager0(plVar6,0);
   }
 LAB_180877dfe:
   uStack_138 = CONCAT31(uStack_138._1_3_,1);
@@ -544,7 +548,7 @@ void FUN_1808782a0(int64_t param_1,int64_t *param_2,int64_t *param_3)
     uStack_60 = 0xffffffffffffffff;
     aiStack_58[0] = -1;
     plStack_68 = param_2;
-    FUN_1808741f0(param_2,&uStack_60,aiStack_58);
+    SystemResource_Manager(param_2,&uStack_60,aiStack_58);
     lVar2 = alStack_90[0];
     aiStack_a8[0] = aiStack_58[0];
     if (aiStack_58[0] != -1) {

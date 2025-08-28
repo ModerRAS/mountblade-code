@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -12,7 +13,7 @@ void FUN_1808dc020(int64_t *param_1)
   
   FUN_1808dbf90(param_1 + 8);
   FUN_1808dbf90(param_1 + 6);
-  FUN_180840270(param_1 + 4);
+  SystemCore_MemoryManager(param_1 + 4);
   uVar2 = *(uint *)((int64_t)param_1 + 0x1c);
   if ((int)((uVar2 ^ (int)uVar2 >> 0x1f) - ((int)uVar2 >> 0x1f)) < 0) {
     if (0 < (int)param_1[3]) goto LAB_1808dc0dc;
@@ -31,7 +32,7 @@ void FUN_1808dc020(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 3) = 0;
   if (0 < (int)((uVar2 ^ (int)uVar2 >> 0x1f) - ((int)uVar2 >> 0x1f))) {
-    FUN_180748010(param_1 + 2,0);
+    UltraHighFreq_StateController1(param_1 + 2,0);
   }
 LAB_1808dc0dc:
   uVar2 = *(uint *)((int64_t)param_1 + 0xc);
@@ -93,7 +94,7 @@ LAB_1808dc214:
   }
   else if (iVar3 == 1) {
     if (param_1[0x45] != 0) {
-      FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x45],&processed_var_8432_ptr,0xe9);
+      RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x45],&processed_var_8432_ptr,0xe9);
     }
   }
   else if ((iVar3 == 3) && (0 < *(int *)(param_1 + 0x47))) {
@@ -111,41 +112,41 @@ LAB_1808dc214:
   if (lVar6 == 0) {
     if (param_1[0x60] == 0) {
       FUN_180840100(param_1 + 0x59);
-      FUN_18084c220(param_1 + 0x57);
-      FUN_18084c220(param_1 + 0x55);
+      UltraHighFreq_InputHandler1(param_1 + 0x57);
+      UltraHighFreq_InputHandler1(param_1 + 0x55);
       FUN_180840100(param_1 + 0x53);
       FUN_180840100(param_1 + 0x51);
-      FUN_18084c220(param_1 + 0x4f);
+      UltraHighFreq_InputHandler1(param_1 + 0x4f);
       FUN_1808c76b0(param_1 + 0x4d);
-      FUN_18085dbf0(param_1 + 0x3e);
-      FUN_18085dbf0(param_1 + 0x3c);
-      FUN_18085dbf0(param_1 + 0x3a);
-      FUN_18085dbf0(param_1 + 0x38);
-      FUN_18085dbf0(param_1 + 0x36);
-      FUN_18085dbf0(param_1 + 0x34);
-      FUN_18085dbf0(param_1 + 0x32);
-      FUN_18085dbf0(param_1 + 0x30);
-      FUN_18085dbf0(param_1 + 0x2e);
-      FUN_18085dbf0(param_1 + 0x2c);
-      FUN_18085dbf0(param_1 + 0x2a);
-      FUN_18085dbf0(param_1 + 0x28);
-      FUN_18085dbf0(param_1 + 0x26);
-      FUN_18085dbf0(param_1 + 0x24);
-      FUN_18085dbf0(param_1 + 0x22);
-      FUN_18085dbf0(param_1 + 0x20);
-      FUN_18085dbf0(param_1 + 0x1e);
-      FUN_18085dbf0(param_1 + 0x1c);
-      FUN_18085dbf0(param_1 + 0x1a);
-      FUN_18085dbf0(param_1 + 0x18);
-      FUN_18085dbf0(param_1 + 0x16);
-      FUN_18085dbf0(param_1 + 0x14);
-      FUN_18085dbf0(param_1 + 0x12);
-      FUN_18085dbf0(param_1 + 0x10);
-      FUN_18085dbf0(param_1 + 0xe);
-      FUN_18085dbf0(param_1 + 0xc);
-      FUN_18085dbf0(param_1 + 10);
-      FUN_18085dbf0(param_1 + 8);
-      FUN_18085dbf0(param_1 + 6);
+      SystemController(param_1 + 0x3e);
+      SystemController(param_1 + 0x3c);
+      SystemController(param_1 + 0x3a);
+      SystemController(param_1 + 0x38);
+      SystemController(param_1 + 0x36);
+      SystemController(param_1 + 0x34);
+      SystemController(param_1 + 0x32);
+      SystemController(param_1 + 0x30);
+      SystemController(param_1 + 0x2e);
+      SystemController(param_1 + 0x2c);
+      SystemController(param_1 + 0x2a);
+      SystemController(param_1 + 0x28);
+      SystemController(param_1 + 0x26);
+      SystemController(param_1 + 0x24);
+      SystemController(param_1 + 0x22);
+      SystemController(param_1 + 0x20);
+      SystemController(param_1 + 0x1e);
+      SystemController(param_1 + 0x1c);
+      SystemController(param_1 + 0x1a);
+      SystemController(param_1 + 0x18);
+      SystemController(param_1 + 0x16);
+      SystemController(param_1 + 0x14);
+      SystemController(param_1 + 0x12);
+      SystemController(param_1 + 0x10);
+      SystemController(param_1 + 0xe);
+      SystemController(param_1 + 0xc);
+      SystemController(param_1 + 10);
+      SystemController(param_1 + 8);
+      SystemController(param_1 + 6);
       plVar2 = param_1 + 4;
       *(int64_t *)param_1[5] = *plVar2;
       *(uint64_t *)(*plVar2 + 8) = param_1[5];
@@ -444,7 +445,7 @@ uint64_t FUN_1808dcad0(int64_t param_1,uint64_t param_2,int64_t *param_3)
   
   uVar5 = 0;
   uStackX_20 = 0;
-  uVar4 = FUN_180749e60(param_2,&uStackX_20,0);
+  uVar4 = SystemState_Manager(param_2,&uStackX_20,0);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -572,7 +573,7 @@ uint64_t FUN_1808dcca0(int64_t param_1,uint64_t param_2)
   if (((int)uVar3 == 0) &&
      ((uVar4 = (int)*(uint *)(param_1 + 0x1c) >> 0x1f, iVar1 = *(int *)(param_1 + 8),
       iVar1 <= (int)((*(uint *)(param_1 + 0x1c) ^ uVar4) - uVar4) ||
-      (uVar3 = FUN_180748010(param_1 + 0x10,iVar1), (int)uVar3 == 0)))) {
+      (uVar3 = UltraHighFreq_StateController1(param_1 + 0x10,iVar1), (int)uVar3 == 0)))) {
     iVar2 = *(int *)(param_1 + 0x18);
     if (iVar2 < iVar1) {
                     // WARNING: Subroutine does not return
@@ -598,7 +599,7 @@ uint64_t FUN_1808dccc2(uint64_t param_1,uint param_2)
   
   iVar1 = *(int *)(unaff_RDI + 8);
   if (((int)((in_EAX ^ param_2) - param_2) < iVar1) &&
-     (uVar3 = FUN_180748010(unaff_RDI + 0x10,iVar1), (int)uVar3 != 0)) {
+     (uVar3 = UltraHighFreq_StateController1(unaff_RDI + 0x10,iVar1), (int)uVar3 != 0)) {
     return uVar3;
   }
   iVar2 = *(int *)(unaff_RDI + 0x18);

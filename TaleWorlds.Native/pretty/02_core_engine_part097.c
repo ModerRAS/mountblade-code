@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part097.c - 4 个函数
 
 // 函数: void FUN_18011ae54(void)
@@ -124,7 +128,7 @@ uint64_t FUN_18011aea0(int *param_1,uint64_t *param_2,uint param_3,int64_t param
         pfVar8 = &fStack_50;
       }
       fStack_4c = fStack_54;
-      FUN_180293d20(*(uint64_t *)(lVar1 + 0x2e8),pfVar8,pfVar10,uVar5,0x3f800000);
+      SystemCore_SystemMonitor(*(uint64_t *)(lVar1 + 0x2e8),pfVar8,pfVar10,uVar5,0x3f800000);
     }
     uVar6 = 1;
   }
@@ -254,7 +258,7 @@ uint64_t FUN_18011aedb(int64_t param_1)
       puVar7 = &stack0x00000038;
     }
     fStack000000000000003c = fStack0000000000000034;
-    FUN_180293d20(*(uint64_t *)(unaff_RSI + 0x2e8),puVar7,puVar9,uVar4,0x3f800000);
+    SystemCore_SystemMonitor(*(uint64_t *)(unaff_RSI + 0x2e8),puVar7,puVar9,uVar4,0x3f800000);
   }
   return 1;
 }
@@ -360,7 +364,7 @@ uint64_t FUN_18011af38(void)
       puVar6 = &stack0x00000038;
     }
     fStack000000000000003c = fStack0000000000000034;
-    FUN_180293d20(*(uint64_t *)(unaff_RSI + 0x2e8),puVar6,puVar7,uVar3,0x3f800000);
+    SystemCore_SystemMonitor(*(uint64_t *)(unaff_RSI + 0x2e8),puVar6,puVar7,uVar3,0x3f800000);
   }
   return 1;
 }
@@ -452,7 +456,7 @@ uint64_t FUN_18011afbf(void)
       puVar6 = &stack0x00000038;
     }
     fStack000000000000003c = fStack0000000000000034;
-    FUN_180293d20(*(uint64_t *)(unaff_RSI + 0x2e8),puVar6,puVar7,uVar4,0x3f800000);
+    SystemCore_SystemMonitor(*(uint64_t *)(unaff_RSI + 0x2e8),puVar6,puVar7,uVar4,0x3f800000);
   }
   return 1;
 }
@@ -539,7 +543,7 @@ uint64_t FUN_18011afee(void)
     puVar5 = &stack0x00000038;
   }
   fStack000000000000003c = fStack0000000000000034;
-  FUN_180293d20(*(uint64_t *)(unaff_RSI + 0x2e8),puVar5,puVar6,uVar4,0x3f800000);
+  SystemCore_SystemMonitor(*(uint64_t *)(unaff_RSI + 0x2e8),puVar5,puVar6,uVar4,0x3f800000);
   return 1;
 }
 

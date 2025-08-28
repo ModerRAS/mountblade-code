@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part342.c - 15 个函数
 
 // 函数: void FUN_18044df40(int64_t param_1,uint64_t *param_2,uint64_t param_3,char param_4,
@@ -181,7 +189,7 @@ void FUN_18044e3b0(int64_t param_1,int param_2)
   *(int *)(param_1 + 0x34) = param_2;
   if (0 < param_2) {
     puVar3 = (uint64_t *)
-             FUN_1800b08e0(system_resource_state,&plStackX_8,
+             SystemCore_GarbageCollector(system_resource_state,&plStackX_8,
                            (int64_t)param_2 * 0x58 +
                            *(int64_t *)(*(int64_t *)(system_main_module_state + 0x3e0) + 0x20),
                            CONCAT71((int7)((uint64_t)*(int64_t *)(system_main_module_state + 0x3e0) >> 8),1)
@@ -194,7 +202,7 @@ void FUN_18044e3b0(int64_t param_1,int param_2)
     uStack_28 = 0;
     pcStack_20 = (code *)0x0;
     pcStack_18 = _guard_check_icall;
-    FUN_18023c450(uVar1,0,0xffffffff,&uStack_30);
+    SystemCore_DecryptionManager(uVar1,0,0xffffffff,&uStack_30);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&uStack_30,0,0);
     }
@@ -238,7 +246,7 @@ int32_t FUN_18044e4f0(int64_t param_1,int param_2)
   
   *(int *)(param_1 + 0x38) = param_2;
   puVar3 = (uint64_t *)
-           FUN_1800b08e0(system_resource_state,aplStackX_18,
+           SystemCore_GarbageCollector(system_resource_state,aplStackX_18,
                          (int64_t)param_2 * 0x58 +
                          *(int64_t *)(*(int64_t *)(system_main_module_state + 0x3e0) + 0x40),
                          CONCAT71((int7)((uint64_t)*(int64_t *)(system_main_module_state + 0x3e0) >> 8),1),
@@ -356,7 +364,7 @@ void FUN_18044e650(int64_t param_1,uint64_t *param_2,uint64_t *param_3,char para
           lVar7 = *plVar11;
           if ((((*(uint *)(lVar7 + 0x134) & uVar10) == uVar10) ||
               ((*(uint *)(lVar7 + 0x134) & 1) != 0)) &&
-             (cVar3 = FUN_18038d0a0(lVar7,&uStack_58), cVar3 != '\0')) {
+             (cVar3 = SystemCore_PerformanceMonitor(lVar7,&uStack_58), cVar3 != '\0')) {
             fVar12 = (float)func_0x00018038d2f0(lVar7,&uStack_58);
             fVar12 = ABS(fVar2 - fVar12);
             if ((fVar12 < 1.5) && (fVar12 < fVar13)) {
@@ -451,7 +459,7 @@ void FUN_18044e65f(int64_t param_1,uint64_t *param_2,uint64_t *param_3,char para
         lVar8 = *plVar12;
         if ((((*(uint *)(lVar8 + 0x134) & uVar11) == uVar11) ||
             ((*(uint *)(lVar8 + 0x134) & 1) != 0)) &&
-           (cVar4 = FUN_18038d0a0(lVar8,&stack0x00000040), cVar4 != '\0')) {
+           (cVar4 = SystemCore_PerformanceMonitor(lVar8,&stack0x00000040), cVar4 != '\0')) {
           fVar13 = (float)func_0x00018038d2f0(lVar8,&stack0x00000040);
           fVar13 = ABS(fVar3 - fVar13);
           if ((fVar13 < 1.5) && (fVar13 < fVar14)) {
@@ -529,7 +537,7 @@ void FUN_18044e6c6(int64_t param_1)
       lVar6 = *plVar9;
       if ((((*(uint *)(lVar6 + 0x134) & unaff_EDI) == unaff_EDI) ||
           ((*(uint *)(lVar6 + 0x134) & 1) != 0)) &&
-         (cVar3 = FUN_18038d0a0(lVar6,&stack0x00000040), cVar3 != '\0')) {
+         (cVar3 = SystemCore_PerformanceMonitor(lVar6,&stack0x00000040), cVar3 != '\0')) {
         fVar10 = (float)func_0x00018038d2f0(lVar6,&stack0x00000040);
         fVar10 = ABS(fVar2 - fVar10);
         if ((fVar10 < 1.5) && (fVar10 < fVar11)) {
@@ -597,7 +605,7 @@ void FUN_18044e6f5(float param_1,float param_2)
     lVar6 = *plVar9;
     if ((((*(uint *)(lVar6 + 0x134) & unaff_EDI) == unaff_EDI) ||
         ((*(uint *)(lVar6 + 0x134) & 1) != 0)) &&
-       (cVar3 = FUN_18038d0a0(lVar6,&stack0x00000040), cVar3 != '\0')) {
+       (cVar3 = SystemCore_PerformanceMonitor(lVar6,&stack0x00000040), cVar3 != '\0')) {
       fVar10 = (float)func_0x00018038d2f0(lVar6,&stack0x00000040);
       fVar10 = ABS(fVar2 - fVar10);
       if ((fVar10 < 1.5) && (fVar10 < unaff_XMM6_Da)) {
@@ -642,7 +650,7 @@ void FUN_18044e77d(void)
     lVar3 = *in_R10;
     if (((*(uint *)(lVar3 + 0x134) & unaff_EDI) == unaff_EDI) ||
        ((*(uint *)(lVar3 + 0x134) & 1) != 0)) {
-      cVar2 = FUN_18038d0a0(lVar3,&stack0x00000040);
+      cVar2 = SystemCore_PerformanceMonitor(lVar3,&stack0x00000040);
       if (cVar2 != '\0') {
         fVar4 = (float)func_0x00018038d2f0(lVar3,&stack0x00000040);
         fVar4 = ABS(fVar1 - fVar4);

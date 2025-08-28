@@ -1,3 +1,16 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -57,7 +70,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     stack_ulong2 = 0xfffffffffffffffe;
     stack_ulong9 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint2 = 0;
-    FUN_180057110();
+    SystemCore_ConfigValidator();
     temp_ptr4 = &system_buffer_ptr;
     if (*(void **)(source_path1 + 8) != (void *)0x0) {
         temp_ptr4 = *(void **)(source_path1 + 8);
@@ -70,7 +83,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     do {
         temp_long3 = temp_long3 + 1;
     } while (temp_ptr4[temp_long3] != '\0');
-    FUN_1800671b0(&stack_byte1);
+    MathCoreCalculator0(&stack_byte1);
     temp_ptr4 = &system_buffer_ptr;
     if (*(void **)(source_path2 + 8) != (void *)0x0) {
         temp_ptr4 = *(void **)(source_path2 + 8);
@@ -81,7 +94,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     do {
         temp_long2 = temp_long2 + 1;
     } while (temp_ptr4[temp_long2] != '\0');
-    FUN_1800671b0(&stack_byte2, temp_ptr4, temp_long2);
+    MathCoreCalculator0(&stack_byte2, temp_ptr4, temp_long2);
     temp_long3 = stack_long2;
     temp_uint1 = stack_uint3;
     stack_ulong4 = 0;
@@ -160,7 +173,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     if (0xf < stack_ulong3) {
         temp_ptr3 = (int8_t *)CONCAT71(stack_pad1, stack_byte1);
     }
-    FUN_1800671b0(&stack_uint7, temp_ptr3, temp_ptr2);
+    MathCoreCalculator0(&stack_uint7, temp_ptr3, temp_ptr2);
     stack_uint2 = 1;
     SystemResourceAllocator(&stack_uint3);
     temp_ulong2 = stack_ulong7;
@@ -230,7 +243,7 @@ EXPAND_CONTAINER:
             temp_long1 = temp_long1 * 2;
             if (temp_long1 != 0) goto EXPAND_CONTAINER;
         }
-        stack_ptr8 = (uint64_t *)FUN_180059780(temp_long3, temp_ptr2, temp_long2);
+        stack_ptr8 = (uint64_t *)SystemCore_Initializer(temp_long3, temp_ptr2, temp_long2);
         *stack_ptr8 = &system_state_ptr;
         stack_ptr8[1] = 0;
         *(int32_t *)(stack_ptr8 + 2) = 0;
@@ -393,14 +406,14 @@ void generate_system_info_report(uint64_t report_param)
     stack_ulong12 = 0xfffffffffffffffe;
     stack_ulong14 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint1 = 0;
-    FUN_180627e10(report_param, &stack_ptr19, &processed_var_816_ptr);
+    UtilitiesSystem_CacheManager(report_param, &stack_ptr19, &processed_var_816_ptr);
     stack_ulong7 = 0;
     stack_long2 = 0;
     temp_ptr4 = &system_buffer_ptr;
     if (stack_ptr17 != (void *)0x0) {
         temp_ptr4 = stack_ptr17;
     }
-    temp_uint = FUN_18062dee0(&stack_ulong7, temp_ptr4, &processed_var_572_ptr);
+    temp_uint = SystemCore_Validator(&stack_ulong7, temp_ptr4, &processed_var_572_ptr);
     stack_ptr2 = &system_data_buffer_ptr;
     stack_ulong1 = 0;
     stack_long1 = 0;
@@ -595,7 +608,7 @@ void generate_system_info_report(uint64_t report_param)
         stack_uint7 = 3;
         stack_short1[0] = 10;
         if (stack_long4 != 0) {
-            FUN_180057980(&stack_ptr11, &stack_ptr9, stack_short1);
+            CoreSystem_DataCollector(&stack_ptr11, &stack_ptr9, stack_short1);
         }
         temp_ulong3 = (int64_t)stack_ptr10 - (int64_t)stack_ptr9 >> 5;
         temp_ptr8 = stack_ptr9;
@@ -610,7 +623,7 @@ void generate_system_info_report(uint64_t report_param)
                 stack_uint8 = 3;
                 stack_short2[0] = 0x23;
                 if (temp_ptr8[1] != 0) {
-                    FUN_180057980(temp_ptr8, &stack_ptr22, stack_short2);
+                    CoreSystem_DataCollector(temp_ptr8, &stack_ptr22, stack_short2);
                 }
                 temp_ptr3 = stack_ptr23;
                 temp_ptr5 = stack_ptr22;
@@ -887,9 +900,9 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     CoreMemoryPoolProcessor(&ptr1, temp_int);
     *(int32_t *)((uint64_t)stack_uint + stack_long1) = 0x706d74;
     stack_uint = temp_int;
-    temp_char = FUN_180624a00(&ptr1);
+    temp_char = UltraHighFreq_LogManager1(&ptr1);
     if (temp_char == '\0') {
-        FUN_180624910(&ptr1);
+        SystemManager_Processor(&ptr1);
     }
     ptr_ptr = &ptr1;
     long_ptr_ptr_ptr = &long_ptr_ptr;
@@ -918,7 +931,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     stack_uint1 = 0;
     ptr2 = &system_state_ptr;
     if (operation_param == 0) {
-        temp_long = FUN_18005e890(system_context_ptr);
+        temp_long = PerformanceOptimizer(system_context_ptr);
         (**(code **)(*long_ptr_ptr + 8))(long_ptr_ptr, operation_type, *(int32_t *)(temp_long + 0x38));
     }
     else {

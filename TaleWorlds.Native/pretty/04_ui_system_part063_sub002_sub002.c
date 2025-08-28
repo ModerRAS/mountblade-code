@@ -151,14 +151,14 @@ typedef struct {
 #define UISystem_ErrorHandler SystemInitializationProcessor
 #define UISystem_CallbackHandler FUN_18066e860
 #define UISystem_DataValidator FUN_18069ed90
-#define UISystem_MemoryManager FUN_18069bbd0
+#define UISystem_MemoryManager SystemCore_Monitor
 #define UISystem_BufferProcessor FUN_18069a210
 #define UISystem_DataReader FUN_180699e30
 #define UISystem_CleanupHandler FUN_18069bb20
 #define UISystem_StateManager FUN_18069ba40
 #define UISystem_SecurityChecker SystemSecurityChecker
 #define UISystem_Initializer FUN_180699f40
-#define UISystem_Finalizer FUN_18069ec80
+#define UISystem_Finalizer SystemCore_Handler
 
 // 外部变量引用
 extern void* processed_var_6272_ptr;     // 未知变量6272指针

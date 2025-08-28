@@ -111,7 +111,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               }
               func_0x00018076b450(auStack_e0,puVar12,0x80);
               iVar6 = SystemNetworkProcessor(param_1,&puStack_108);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto CoreSystem_DataProcessor;
             }
             lVar8 = lVar8 + 1;
             lVar14 = lVar14 + 0x18;
@@ -140,7 +140,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               uStack_114 = *(int32_t *)(lVar2 + 100);
               uStack_148 = uStack_1c8;
               iVar6 = SystemNetworkProcessor(param_1,&puStack_158);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto CoreSystem_DataProcessor;
             }
           }
           iVar6 = FUN_1808682e0(lVar2,&fStack_19c,0);
@@ -151,7 +151,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto CoreSystem_DataProcessor;
             }
             iVar6 = FUN_180868270(lVar2,afStack_198,0);
             if (iVar6 == 0) {
@@ -161,7 +161,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto CoreSystem_DataProcessor;
               }
               fVar13 = 0.0;
               pfVar15 = (float *)(lVar2 + 0x94);
@@ -173,7 +173,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  if (iVar6 != 0) goto CoreSystem_DataProcessor;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -189,7 +189,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
                   iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  if (iVar6 != 0) goto CoreSystem_DataProcessor;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -201,7 +201,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto CoreSystem_DataProcessor;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -209,24 +209,24 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto CoreSystem_DataProcessor;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = SystemCore_StateController(param_2);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &processed_var_7496_ptr;
                 uStack_1b0 = uStack_1c8;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto CoreSystem_DataProcessor;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = SystemCore_StateController(param_2);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &processed_var_7624_ptr;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto CoreSystem_DataProcessor;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -240,7 +240,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
       }
     }
   }
-FUN_180897b16:
+CoreSystem_DataProcessor:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1e8);
 }
@@ -353,7 +353,7 @@ void FUN_180897644(void)
             }
             uVar24 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
             iVar13 = SystemNetworkProcessor(uVar24,unaff_RBP + -4);
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto CoreSystem_MemoryManager;
           }
           unaff_R13D = 0.0;
           uVar23 = uVar23 + 1;
@@ -396,7 +396,7 @@ void FUN_180897644(void)
             *(int32_t *)((int64_t)unaff_RBP + -0x2c) = uVar11;
             iVar13 = SystemNetworkProcessor(uVar8,unaff_RBP + -0xe);
             uVar24 = extraout_XMM0_Da_02;
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto CoreSystem_MemoryManager;
           }
         }
         iVar13 = FUN_1808682e0(uVar24,(int64_t)&stack0x00000048 + 4,0);
@@ -410,7 +410,7 @@ void FUN_180897644(void)
             in_stack_00000030 = unaff_R13D;
             iVar13 = SystemNetworkProcessor(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto CoreSystem_MemoryManager;
           }
           iVar13 = FUN_180868270(fStack000000000000004c,&stack0x00000050,0);
           if (iVar13 == 0) {
@@ -420,7 +420,7 @@ void FUN_180897644(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(in_stack_00000050,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto CoreSystem_MemoryManager;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
             fVar19 = unaff_R13D;
@@ -433,7 +433,7 @@ void FUN_180897644(void)
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 iVar13 = SystemNetworkProcessor(fVar1,&stack0x00000028);
-                if (iVar13 != 0) goto FUN_180897b0e;
+                if (iVar13 != 0) goto CoreSystem_MemoryManager;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -449,7 +449,7 @@ void FUN_180897644(void)
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 iVar13 = SystemNetworkProcessor(fVar1,&stack0x00000028);
-                if (iVar13 != 0) goto FUN_180897b0e;
+                if (iVar13 != 0) goto CoreSystem_MemoryManager;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -463,7 +463,7 @@ void FUN_180897644(void)
               fStack0000000000000040 = (float)(uVar14 / 0x30);
               iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_04,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_05;
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto CoreSystem_MemoryManager;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
               in_stack_00000028 = &processed_var_7360_ptr;
@@ -471,17 +471,17 @@ void FUN_180897644(void)
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(uVar24,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto CoreSystem_MemoryManager;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = SystemCore_StateController(unaff_R14);
             if (iVar13 != 2) {
               in_stack_00000028 = &processed_var_7496_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_06,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto CoreSystem_MemoryManager;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = SystemCore_StateController(unaff_R14);
             uVar24 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
               in_stack_00000028 = &processed_var_7624_ptr;
@@ -490,7 +490,7 @@ void FUN_180897644(void)
               fStack0000000000000040 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_07,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_08;
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto CoreSystem_MemoryManager;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &processed_var_8024_ptr;
@@ -503,7 +503,7 @@ void FUN_180897644(void)
       }
     }
   }
-FUN_180897b0e:
+CoreSystem_MemoryManager:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
 }
@@ -600,7 +600,7 @@ void FUN_1808976b0(void)
         }
         uVar23 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
         iVar13 = SystemNetworkProcessor(uVar23,unaff_RBP + -4);
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
       }
       unaff_R13D = 0.0;
       uVar22 = uVar22 + 1;
@@ -643,7 +643,7 @@ void FUN_1808976b0(void)
         *(int32_t *)((int64_t)unaff_RBP + -0x2c) = uVar11;
         iVar13 = SystemNetworkProcessor(uVar8,unaff_RBP + -0xe);
         uVar23 = extraout_XMM0_Da_01;
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
       }
     }
     iVar13 = FUN_1808682e0(uVar23,(int64_t)&stack0x00000048 + 4,0);
@@ -657,7 +657,7 @@ void FUN_1808976b0(void)
         in_stack_00000030 = unaff_R13D;
         iVar13 = SystemNetworkProcessor(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
       }
       iVar13 = FUN_180868270(in_stack_00000048._4_4_,&stack0x00000050,0);
       if (iVar13 == 0) {
@@ -667,7 +667,7 @@ void FUN_1808976b0(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(in_stack_00000050,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
         fVar19 = unaff_R13D;
@@ -680,7 +680,7 @@ void FUN_1808976b0(void)
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             iVar13 = SystemNetworkProcessor(fVar1,&stack0x00000028);
-            if (iVar13 != 0) goto FUN_180897afe;
+            if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -696,7 +696,7 @@ void FUN_1808976b0(void)
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             iVar13 = SystemNetworkProcessor(fVar1,&stack0x00000028);
-            if (iVar13 != 0) goto FUN_180897afe;
+            if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -710,7 +710,7 @@ void FUN_1808976b0(void)
           fStack0000000000000040 = (float)(uVar14 / 0x30);
           iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_03,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_04;
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
           in_stack_00000028 = &processed_var_7360_ptr;
@@ -718,17 +718,17 @@ void FUN_1808976b0(void)
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(uVar23,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = SystemCore_StateController(unaff_R14);
         if (iVar13 != 2) {
           in_stack_00000028 = &processed_var_7496_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_05,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = SystemCore_StateController(unaff_R14);
         uVar23 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
           in_stack_00000028 = &processed_var_7624_ptr;
@@ -737,7 +737,7 @@ void FUN_1808976b0(void)
           fStack0000000000000040 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_06,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_07;
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto CoreSystem_ConfigurationHandler;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &processed_var_8024_ptr;
@@ -748,7 +748,7 @@ void FUN_1808976b0(void)
       }
     }
   }
-FUN_180897afe:
+CoreSystem_ConfigurationHandler:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
 }

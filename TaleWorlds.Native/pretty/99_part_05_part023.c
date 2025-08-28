@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_05_part023.c - 2 个函数
 
@@ -117,7 +122,7 @@ void FUN_1802e7e20(int64_t param_1)
       if ((*(uint *)(lVar29 + 0x2ac) & 0x1000) == 0) {
         lVar33 = *(int64_t *)(param_1 + 0x28);
         FUN_1802e7dc0(lVar29);
-        FUN_18063a240(lVar33 + 0xf8,*(int64_t *)(lVar29 + 0x28) + 0xf8,lVar29 + 0x30);
+        NetworkSystem_BufferManager(lVar33 + 0xf8,*(int64_t *)(lVar29 + 0x28) + 0xf8,lVar29 + 0x30);
       }
       plVar35 = plVar35 + 1;
     } while (plVar35 < *(int64_t **)(param_1 + 0x1c8));
@@ -158,7 +163,7 @@ void FUN_1802e7e20(int64_t param_1)
         lVar29 = *(int64_t *)(param_1 + 0x28);
         uVar26 = (**(code **)(**(int64_t **)(lVar33 + *(int64_t *)(param_1 + 0xf0)) + 0x158))();
         uVar27 = (**(code **)(**(int64_t **)(lVar33 + *(int64_t *)(param_1 + 0xf0)) + 0x198))();
-        FUN_18063a240(lVar29 + 0xf8,uVar27,uVar26);
+        NetworkSystem_BufferManager(lVar29 + 0xf8,uVar27,uVar26);
       }
       lVar29 = *(int64_t *)(param_1 + 0xf0);
       iVar34 = iVar34 + 1;
@@ -269,7 +274,7 @@ void FUN_1802e7e20(int64_t param_1)
             fStack_7c = fVar8;
             fStack_78 = fVar9;
             fStack_74 = fVar10;
-            FUN_18063b5f0(&fStack_100,&uStack_158);
+            SystemSecurityManager(&fStack_100,&uStack_158);
             fVar22 = fStack_d4;
             fVar21 = fStack_d8;
             fVar20 = fStack_dc;
@@ -312,7 +317,7 @@ void FUN_1802e7e20(int64_t param_1)
             fStack_98 = fVar5 * fVar17 + fVar6 * fVar13 + fVar2 * fVar21 + fVar9;
             fStack_94 = fVar5 * fVar18 + fVar6 * fVar14 + fVar2 * fVar22 + fVar10;
             uVar26 = (**(code **)(*plVar35 + 0x198))(plVar35);
-            FUN_18063a240(lVar29 + 0xf8,uVar26,&fStack_d0);
+            NetworkSystem_BufferManager(lVar29 + 0xf8,uVar26,&fStack_d0);
             lVar29 = *(int64_t *)(puVar31 + 0x2c);
             iVar34 = iVar34 + 1;
             lVar33 = lVar33 + 8;
@@ -367,11 +372,11 @@ void FUN_1802e7e20(int64_t param_1)
   else {
     lVar29 = *(int64_t *)(param_1 + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar29 + 0xf8);
+    SystemCore_Parser(lVar29 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(param_1 + 0x2b4) = *(int16_t *)(param_1 + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
+  UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70);
   *(int16_t *)(param_1 + 0x2b6) = *(int16_t *)(param_1 + 0x2b2);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_70 ^ (uint64_t)auStack_178);
@@ -495,7 +500,7 @@ void FUN_1802e7e53(int64_t param_1,uint64_t param_2)
       if ((*(uint *)(lVar34 + 0x2ac) & 0x1000) == 0) {
         lVar38 = *(int64_t *)(unaff_RSI + 0x28);
         FUN_1802e7dc0(lVar34);
-        FUN_18063a240(lVar38 + 0xf8,*(int64_t *)(lVar34 + 0x28) + 0xf8,lVar34 + 0x30);
+        NetworkSystem_BufferManager(lVar38 + 0xf8,*(int64_t *)(lVar34 + 0x28) + 0xf8,lVar34 + 0x30);
       }
       plVar40 = plVar40 + 1;
     } while (plVar40 < *(int64_t **)(unaff_RSI + 0x1c8));
@@ -536,7 +541,7 @@ void FUN_1802e7e53(int64_t param_1,uint64_t param_2)
         lVar34 = *(int64_t *)(unaff_RSI + 0x28);
         uVar31 = (**(code **)(**(int64_t **)(lVar38 + *(int64_t *)(unaff_RSI + 0xf0)) + 0x158))();
         uVar32 = (**(code **)(**(int64_t **)(lVar38 + *(int64_t *)(unaff_RSI + 0xf0)) + 0x198))();
-        FUN_18063a240(lVar34 + 0xf8,uVar32,uVar31);
+        NetworkSystem_BufferManager(lVar34 + 0xf8,uVar32,uVar31);
       }
       lVar34 = *(int64_t *)(unaff_RSI + 0xf0);
       iVar39 = iVar39 + 1;
@@ -655,7 +660,7 @@ void FUN_1802e7e53(int64_t param_1,uint64_t param_2)
             *unaff_RBP = fVar9;
             unaff_RBP[1] = fVar10;
             *puVar36 = 0;
-            FUN_18063b5f0(&stack0x00000078,&stack0x00000020);
+            SystemSecurityManager(&stack0x00000078,&stack0x00000020);
             fVar22 = fStack0000000000000084;
             fVar21 = fStack0000000000000080;
             fVar20 = fStack000000000000007c;
@@ -701,7 +706,7 @@ void FUN_1802e7e53(int64_t param_1,uint64_t param_2)
             unaff_RBP[-8] = fVar4 * fVar13 + fVar5 * fVar21 + fVar6 * fVar17 + fVar9;
             unaff_RBP[-7] = fVar4 * fVar14 + fVar5 * fVar22 + fVar6 * fVar18 + fVar10;
             uVar31 = (**(code **)(lVar35 + 0x198))(plVar40,fVar6 * fVar15,fVar42,fVar43,fVar44);
-            FUN_18063a240(lVar34 + 0xf8,uVar31,unaff_RBP + -0x16);
+            NetworkSystem_BufferManager(lVar34 + 0xf8,uVar31,unaff_RBP + -0x16);
             lVar34 = *(int64_t *)(puVar36 + 0x2c);
             iVar39 = iVar39 + 1;
             lVar38 = lVar38 + 8;
@@ -762,11 +767,11 @@ void FUN_1802e7e53(int64_t param_1,uint64_t param_2)
   else {
     lVar34 = *(int64_t *)(unaff_RSI + 0x28);
 LAB_1802e8524:
-    FUN_1800b9f60(lVar34 + 0xf8);
+    SystemCore_Parser(lVar34 + 0xf8);
   }
 LAB_1802e8530:
   *(int16_t *)(unaff_RSI + 0x2b4) = *(int16_t *)(unaff_RSI + 0x2b0);
-  FUN_18063ad30(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
+  UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RSI + 0x28),*(int64_t *)(unaff_RSI + 0x28) + 0xf8,
                 unaff_RSI + 0x70);
   *(int16_t *)(unaff_RSI + 0x2b6) = *(int16_t *)(unaff_RSI + 0x2b2);
                     // WARNING: Subroutine does not return

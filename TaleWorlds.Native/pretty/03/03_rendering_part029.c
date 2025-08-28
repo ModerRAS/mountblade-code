@@ -672,7 +672,7 @@ void initialize_rendering_system(void) {
 #define initialize_scene_object FUN_180284720
 #define setup_scene_objects FUN_180284580
 #define setup_object_data FUN_1803263e0
-#define get_texture_data FUN_1800b6de0
+#define get_texture_data RenderingSystem_VertexProcessor
 #define cleanup_texture_array FUN_180274db0
 #define setup_texture_array FUN_1803263e0
 #define compare_texture_data FUN_180327250

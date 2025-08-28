@@ -588,7 +588,7 @@ LAB_18078fd4b:
         if ((*(uint *)(in_stack_00000070 + 0x78) & 0x100000) == 0) {
           func_0x000180743c20(in_stack_00000070,0xc);
         }
-        FUN_180769080(*(uint64_t *)(in_stack_00000068 + 0x170));
+        UISystem_Renderer(*(uint64_t *)(in_stack_00000068 + 0x170));
                     // WARNING: Subroutine does not return
         SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                       *(uint64_t *)(in_stack_00000068 + 0x170),&ui_system_data_1936_ptr,0x752,1);
@@ -659,7 +659,7 @@ LAB_18078fd4b:
         FUN_18076b5b0(plVar10[7],0x100,unaff_RBP[8]);
         cStack0000000000000054 = cVar21;
       }
-      FUN_1807d84c0(*(uint64_t *)(in_stack_00000068 + 0x168),*(int32_t *)(unaff_RBP + 6),
+      NetworkSystem_DataManager(*(uint64_t *)(in_stack_00000068 + 0x168),*(int32_t *)(unaff_RBP + 6),
                     unaff_RBP[7],unaff_RBP[8],CONCAT44(uVar5,*(int32_t *)(unaff_RBP + 9)));
       if (cStack0000000000000054 == cVar21) goto LAB_1807901bd;
     }
@@ -704,7 +704,7 @@ LAB_1807901f2:
     FUN_1807d8800();
   }
   if (unaff_R13 != (int64_t *)0x0) {
-    FUN_180769080();
+    UISystem_Renderer();
   }
   if (unaff_R15 != 0) {
                     // WARNING: Subroutine does not return
@@ -742,7 +742,7 @@ void FUN_1807901fa(void)
     FUN_1807d8800();
   }
   if (unaff_R13 != 0) {
-    FUN_180769080();
+    UISystem_Renderer();
   }
   if (unaff_R15 != 0) {
                     // WARNING: Subroutine does not return
@@ -774,7 +774,7 @@ void FUN_18079021c(void)
   int64_t unaff_R14;
   int64_t unaff_R15;
   
-  FUN_180769080();
+  UISystem_Renderer();
   if (unaff_R15 != 0) {
                     // WARNING: Subroutine does not return
     SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));

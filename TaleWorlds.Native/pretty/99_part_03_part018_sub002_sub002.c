@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 99_part_03_part018_sub002_sub002.c - 1 个函数
 
@@ -132,9 +138,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_568[0] = auStack_568[0] & 0xffffff00;
   uStack_570 = CONCAT44((int)((uint64_t)uStack_570 >> 0x20),0xd);
   strcpy_s(auStack_568,0x20,&processed_var_832_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_670,&puStack_580,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_670,&puStack_580,1);
   plStack_6a8 = (int64_t *)*puVar2;
-  FUN_1801e66c0(param_2,&plStack_6a8,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_6a0);
   if (plStack_670 != (int64_t *)0x0) {
     (**(code **)(*plStack_670 + 0x38))();
   }
@@ -144,7 +150,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_2a0[0] = 0;
   uStack_2a8 = 0x10;
   strcpy_s(auStack_2a0,0x80,&processed_var_6880_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_6a8,&puStack_2b8,0);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_6a8,&puStack_2b8,0);
   plVar10 = (int64_t *)*puVar2;
   plStack_670 = plVar10;
   if (plStack_6a8 != (int64_t *)0x0) {
@@ -209,7 +215,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       puStack_6a0 = (uint64_t *)*puVar6;
       uStack_698 = 0;
       uStack_694 = 0;
-      FUN_1801e66c0(param_2,&plStack_670,&puStack_6a0);
+      SystemCore_SecurityValidator(param_2,&plStack_670,&puStack_6a0);
       iVar7 = iVar7 + 1;
       puVar6 = puVar6 + 1;
     } while ((uint64_t)(int64_t)iVar7 < uVar11);
@@ -230,9 +236,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_568[0] = auStack_568[0] & 0xffffff00;
   uStack_570 = CONCAT44((int)((uint64_t)uStack_570 >> 0x20),0xd);
   strcpy_s(auStack_568,0x20,&processed_var_4760_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_670,&puStack_580,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_670,&puStack_580,1);
   plStack_6a8 = (int64_t *)*puVar2;
-  FUN_1801e66c0(param_2,&plStack_6a8,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_6a0);
   if (plStack_670 != (int64_t *)0x0) {
     (**(code **)(*plStack_670 + 0x38))();
   }
@@ -298,7 +304,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_4c0[0] = auStack_4c0[0] & 0xffffff00;
   uStack_4c8 = CONCAT44(uStack_4c8._4_4_,0x10);
   strcpy_s(auStack_4c0,0x20,&processed_var_872_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_6a8,&puStack_4d8,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_6a8,&puStack_4d8,1);
   uStack_688 = *puVar2;
   if (plStack_6a8 != (int64_t *)0x0) {
     (**(code **)(*plStack_6a8 + 0x38))();
@@ -312,19 +318,19 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       puStack_6a0 = (uint64_t *)(*puVar5 | uVar11);
       uStack_698 = 0;
       uStack_694 = 0;
-      FUN_1801e66c0(param_2,&uStack_688,&puStack_6a0);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&puStack_6a0);
       plStack_680 = (int64_t *)(*puVar5 | uVar4);
       uStack_678 = 0;
       uStack_674 = 0;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_680);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_680);
       uStack_658 = *puVar5 | (uint64_t)plVar10;
       uStack_650 = 0;
       uStack_64c = 0;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_658);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_658);
       plStack_670 = (int64_t *)(*puVar5 | uStack_690);
       uStack_668 = 0;
       uStack_664 = 0;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_670);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_670);
       iVar7 = iVar7 + 1;
       puVar5 = puVar5 + 1;
     } while ((uint64_t)(int64_t)iVar7 < uVar12);
@@ -346,9 +352,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_568[0] = auStack_568[0] & 0xffffff00;
   uStack_570 = CONCAT44((int)((uint64_t)uStack_570 >> 0x20),0x18);
   strcpy_s(auStack_568,0x20,&rendering_buffer_2776_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_670,&puStack_580,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_670,&puStack_580,1);
   plStack_6a8 = (int64_t *)*puVar2;
-  FUN_1801e66c0(param_2,&plStack_6a8,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_6a0);
   if (plStack_670 != (int64_t *)0x0) {
     (**(code **)(*plStack_670 + 0x38))();
   }
@@ -361,9 +367,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_4c0[0] = auStack_4c0[0] & 0xffffff00;
   uStack_4c8 = CONCAT44((int)((uint64_t)uStack_4c8 >> 0x20),0x17);
   strcpy_s(auStack_4c0,0x20,&processed_var_848_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_660,&puStack_4d8,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_660,&puStack_4d8,1);
   plStack_6a8 = (int64_t *)*puVar2;
-  FUN_1801e66c0(param_2,&plStack_6a8,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_6a0);
   if (plStack_660 != (int64_t *)0x0) {
     (**(code **)(*plStack_660 + 0x38))();
   }
@@ -373,7 +379,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_3e0[0] = 0;
   uStack_3e8 = 0x17;
   strcpy_s(auStack_3e0,0x40,&rendering_buffer_2712_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_6a8,&puStack_3f8,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_6a8,&puStack_3f8,1);
   uVar3 = *puVar2;
   uStack_688 = uVar3;
   if (plStack_6a8 != (int64_t *)0x0) {
@@ -385,7 +391,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   auStack_340[0] = 0;
   uStack_348 = 0x16;
   strcpy_s(auStack_340,0x40,&rendering_buffer_2736_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_670,&puStack_358,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_670,&puStack_358,1);
   plStack_6a8 = (int64_t *)*puVar2;
   if (plStack_670 != (int64_t *)0x0) {
     (**(code **)(*plStack_670 + 0x38))();
@@ -401,21 +407,21 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   puStack_6a0 = (uint64_t *)0x0;
   uStack_698 = 0;
   uStack_694 = 0;
-  FUN_1801e66c0(param_2,&uStack_688,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&uStack_688,&puStack_6a0);
   uStack_698 = 0;
   uStack_694 = 0;
   puStack_6a0 = puVar5;
-  FUN_1801e66c0(param_2,&uStack_688,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&uStack_688,&puStack_6a0);
   puStack_6a0 = (uint64_t *)0x0;
   uStack_698 = 0;
   uStack_694 = 0;
-  FUN_1801e66c0(param_2,&plStack_6a8,&puStack_6a0);
+  SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_6a0);
   puStack_3f8 = &memory_allocator_3480_ptr;
   puStack_3f0 = auStack_3e0;
   auStack_3e0[0] = 0;
   uStack_3e8 = 0x21;
   strcpy_s(auStack_3e0,0x40,&ui_system_data_1008_ptr);
-  puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_6a8,&puStack_3f8,1);
+  puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_6a8,&puStack_3f8,1);
   uVar3 = *puVar2;
   uStack_688 = uVar3;
   if (plStack_6a8 != (int64_t *)0x0) {
@@ -467,9 +473,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
   uStack_4c8 = 0;
   auStack_4c0[0] = 3;
   uStack_690._0_4_ = 0x80000000;
-  FUN_1800571e0(&puStack_580,&uStack_690);
+  SystemDatabaseProcessor(&puStack_580,&uStack_690);
   uStack_690 = CONCAT44(uStack_690._4_4_,0x200);
-  uVar13 = FUN_1800571e0(&puStack_580,&uStack_690);
+  uVar13 = SystemDatabaseProcessor(&puStack_580,&uStack_690);
   plStack_6b8 = (int64_t *)uVar3;
   FUN_1801d7910(uVar13,0,&puStack_4d8,&puStack_580);
   uVar12 = (int64_t)puStack_4d0 - (int64_t)puStack_4d8 >> 2;
@@ -483,41 +489,41 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       uStack_640 = 0;
       uStack_634 = 0;
       uStack_638 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_640);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_640);
       uStack_630 = uStack_658;
       uStack_624 = 0;
       uStack_628 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_630);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_630);
       plStack_620 = plStack_660;
       uStack_614 = 0;
       uStack_618 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_620);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_620);
       plStack_610 = plStack_670;
       uStack_604 = 0;
       uStack_608 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_610);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_610);
       plStack_600 = plStack_6a8;
       uStack_5f4 = 0;
       uStack_5f8 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_600);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_600);
       uStack_5e4 = 0;
       uStack_5f0 = uVar4;
       uStack_5e8 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_5f0);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_5f0);
       uStack_5d4 = 0;
       uStack_5e0 = uVar4 | uVar11;
       uStack_5d8 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_5e0);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_5e0);
       uStack_5d0 = uStack_690;
       uStack_5c4 = 0;
       uStack_5c8 = uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&uStack_5d0);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&uStack_5d0);
       plStack_510 = plStack_680;
       puStack_508._0_6_ = (uint6)uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&plStack_510);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&plStack_510);
       puStack_5b8 = puStack_6a0;
       puStack_5b0._0_6_ = (uint6)uVar1;
-      FUN_1801e66c0(param_2,&uStack_688,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_688,&puStack_5b8);
       iVar7 = iVar7 + 1;
       puVar9 = puVar9 + 1;
     } while ((uint64_t)(int64_t)iVar7 < uVar12);
@@ -606,9 +612,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       auStack_530[0] = 0;
       uStack_538 = 0xb;
       strcpy_s(auStack_530,0x20,&processed_var_816_ptr);
-      puVar6 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_680,&puStack_548,1);
+      puVar6 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_680,&puStack_548,1);
       puStack_6a0 = (uint64_t *)*puVar6;
-      FUN_1801e66c0(param_2,&puStack_6a0,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&puStack_6a0,&puStack_5b8);
       if (plStack_680 != (int64_t *)0x0) {
         (**(code **)(*plStack_680 + 0x38))();
       }
@@ -674,9 +680,9 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
         auStack_530[0] = 0;
         uStack_538 = 0x18;
         strcpy_s(auStack_530,0x20,&rendering_buffer_2976_ptr);
-        puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&plStack_680,&puStack_548,1);
+        puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_680,&puStack_548,1);
         puStack_6a0 = (uint64_t *)*puVar2;
-        uVar13 = FUN_1801e66c0(param_2,&puStack_6a0,&puStack_5b8);
+        uVar13 = SystemCore_SecurityValidator(param_2,&puStack_6a0,&puStack_5b8);
         if (plStack_680 != (int64_t *)0x0) {
           uVar13 = (**(code **)(*plStack_680 + 0x38))();
         }
@@ -699,7 +705,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_530,0x20,&memory_allocator_3032_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uVar11,&puStack_548,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_548 = &system_state_ptr;
       puStack_430 = &processed_var_672_ptr;
       puStack_428 = auStack_418;
@@ -708,7 +714,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_418,0x20,&rendering_buffer_2584_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_430,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_430 = &system_state_ptr;
       puStack_468 = &processed_var_672_ptr;
       puStack_460 = auStack_450;
@@ -717,7 +723,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_450,0x20,&rendering_buffer_2544_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_468,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_468 = &system_state_ptr;
       puStack_4a0 = &processed_var_672_ptr;
       puStack_498 = auStack_488;
@@ -726,7 +732,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_488,0x20,&rendering_buffer_2552_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_4a0,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_4a0 = &system_state_ptr;
       puStack_580 = (uint64_t *)&processed_var_672_ptr;
       puStack_578 = auStack_568;
@@ -735,7 +741,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_568,0x20,&rendering_buffer_2512_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_580,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_580 = (uint64_t *)&system_state_ptr;
       puStack_4d8 = (uint *)&processed_var_672_ptr;
       puStack_4d0 = auStack_4c0;
@@ -744,7 +750,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_4c0,0x20,&rendering_buffer_2528_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_4d8,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_4d8 = (uint *)&system_state_ptr;
       plStack_510 = (int64_t *)&processed_var_672_ptr;
       puStack_508 = auStack_4f8;
@@ -753,7 +759,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_4f8,0x20,&rendering_buffer_2496_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&plStack_510,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       plStack_510 = (int64_t *)&system_state_ptr;
       puStack_358 = &processed_var_672_ptr;
       puStack_350 = auStack_340;
@@ -762,7 +768,7 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_340,0x20,&rendering_buffer_2504_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_358,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_358 = &system_state_ptr;
       puStack_3f8 = &processed_var_672_ptr;
       puStack_3f0 = auStack_3e0;
@@ -771,14 +777,14 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       strcpy_s(auStack_3e0,0x20,&memory_allocator_3152_ptr);
       puStack_5b8 = (uint64_t *)SystemCore_LoggingSystem0(uStack_690,&puStack_3f8,1);
       puStack_5b0 = (uint *)((uint64_t)puStack_5b0 & 0xffff000000000000);
-      FUN_1801e66c0(param_2,&uStack_690,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&uStack_690,&puStack_5b8);
       puStack_3f8 = &system_state_ptr;
       puStack_2b8 = &memory_allocator_3480_ptr;
       puStack_2b0 = auStack_2a0;
       auStack_2a0[0] = 0;
       uStack_2a8 = 0xd;
       strcpy_s(auStack_2a0,0x40,&memory_allocator_3168_ptr);
-      puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&puStack_6a0,&puStack_2b8,1);
+      puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&puStack_6a0,&puStack_2b8,1);
       plVar10 = (int64_t *)*puVar2;
       plStack_6a8 = plVar10;
       if (puStack_6a0 != (uint64_t *)0x0) {
@@ -794,16 +800,16 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       puStack_3f8 = &system_state_ptr;
       puStack_5b8 = (uint64_t *)0x0;
       puStack_5b0._0_6_ = 0x400000000;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
       puStack_5b0 = (uint *)CONCAT26(puStack_5b0._6_2_,0x400000000);
       puStack_5b8 = puVar5;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
       puStack_358 = &memory_allocator_3480_ptr;
       puStack_350 = auStack_340;
       auStack_340[0] = 0;
       uStack_348 = 0x16;
       strcpy_s(auStack_340,0x40,&memory_allocator_3128_ptr);
-      puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&puStack_6a0,&puStack_358,1);
+      puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&puStack_6a0,&puStack_358,1);
       plVar10 = (int64_t *)*puVar2;
       plStack_6a8 = plVar10;
       if (puStack_6a0 != (uint64_t *)0x0) {
@@ -819,16 +825,16 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       puStack_3f8 = &system_state_ptr;
       puStack_5b8 = (uint64_t *)0x0;
       puStack_5b0._0_6_ = 0x400000000;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
       puStack_5b0 = (uint *)CONCAT26(puStack_5b0._6_2_,0x400000000);
       puStack_5b8 = puVar5;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
       puStack_2b8 = &memory_allocator_3480_ptr;
       puStack_2b0 = auStack_2a0;
       auStack_2a0[0] = 0;
       uStack_2a8 = 0x15;
       strcpy_s(auStack_2a0,0x40,&memory_allocator_3184_ptr);
-      puVar2 = (uint64_t *)FUN_1800b31f0(system_resource_state,&puStack_6a0,&puStack_2b8,1);
+      puVar2 = (uint64_t *)SystemCore_EncryptionManager(system_resource_state,&puStack_6a0,&puStack_2b8,1);
       plVar10 = (int64_t *)*puVar2;
       plStack_6a8 = plVar10;
       if (puStack_6a0 != (uint64_t *)0x0) {
@@ -844,10 +850,10 @@ void FUN_1801dbdc0(uint64_t param_1,uint64_t param_2)
       puStack_3f8 = &system_state_ptr;
       puStack_5b8 = (uint64_t *)0x0;
       puStack_5b0._0_6_ = 0x400000000;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
       puStack_5b0 = (uint *)CONCAT26(puStack_5b0._6_2_,0x400000000);
       puStack_5b8 = puVar5;
-      FUN_1801e66c0(param_2,&plStack_6a8,&puStack_5b8);
+      SystemCore_SecurityValidator(param_2,&plStack_6a8,&puStack_5b8);
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_6d8);
     }
@@ -973,7 +979,7 @@ uint64_t FUN_1801de280(uint64_t param_1,int64_t *param_2,int64_t *param_3)
         if (plStack_c0 != (int64_t *)0x0) {
           (**(code **)(*plStack_c0 + 0x28))();
         }
-        lVar9 = FUN_180299eb0(uVar4,0,&lStack_b0,&uStackX_8);
+        lVar9 = UIRenderingEngine(uVar4,0,&lStack_b0,&uStackX_8);
         bVar13 = bVar13 & lVar9 != 0;
         if (plStack_c0 != (int64_t *)0x0) {
           (**(code **)(*plStack_c0 + 0x38))();

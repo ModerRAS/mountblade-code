@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part144.c - 9 个函数
 
 // 函数: void FUN_1801356a0(int64_t param_1)
@@ -926,7 +930,7 @@ void FUN_180136210(int64_t param_1,int64_t param_2,int param_3)
         puVar4 = puVar3;
         puVar6 = *(int32_t **)(puVar3 + 2);
       }
-      FUN_180121200(&bStack_48,0x14,&rendering_buffer_2680_ptr,*puVar4);
+      SystemCore_LoggingSystem(&bStack_48,0x14,&rendering_buffer_2680_ptr,*puVar4);
       uVar12 = 0xffffffff;
       pbVar5 = abStack_47;
       bVar1 = bStack_48;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part055.c - 4 个函数
 
 // 函数: void FUN_1803deab0(int64_t param_1,uint64_t param_2)
@@ -174,7 +178,7 @@ void FUN_1803deab0(int64_t param_1,uint64_t param_2)
     _uStack_164 = CONCAT31((int3)((uint)fVar15 >> 8),0xff);
     uStack_160 = 0xffffffff;
     uStack_154 = 0x400;
-    FUN_180077750(*(uint64_t *)(param_1 + 0x108),param_2,&fStack_118,0,&uStack_188);
+    SystemHealthMonitor(*(uint64_t *)(param_1 + 0x108),param_2,&fStack_118,0,&uStack_188);
   }
   return;
 }
@@ -433,7 +437,7 @@ void FUN_1803dead8(uint64_t param_1)
   uStack0000000000000074 = CONCAT31((int3)((uint)fVar18 >> 8),0xff);
   in_stack_00000078 = 0xffffffff;
   *(int16_t *)(unaff_RBP + -0x1f) = 0x400;
-  FUN_180077750(uVar4,fVar12,unaff_RBP + -0x10,0,&stack0x00000050);
+  SystemHealthMonitor(uVar4,fVar12,unaff_RBP + -0x10,0,&stack0x00000050);
   return;
 }
 
@@ -562,7 +566,7 @@ void FUN_1803deff0(int64_t param_1)
   uStack_2c = 0x3f800000;
   uStack_28 = 0x3f800000;
   uStack_24 = 0x7f7fffff;
-  FUN_1800b9f60(&uStack_40);
+  SystemCore_Parser(&uStack_40);
   *(uint64_t *)(param_1 + 0x434) = CONCAT44(uStack_3c,uStack_40);
   *(uint64_t *)(param_1 + 0x43c) = CONCAT44(uStack_34,uStack_38);
   *(uint64_t *)(param_1 + 0x444) = CONCAT44(uStack_2c,uStack_30);

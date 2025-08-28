@@ -1,3 +1,9 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -32,7 +38,7 @@ void FUN_1802561d0(int64_t *param_1)
           puVar5 = (void *)param_1[0xe];
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&ui_system_data_1392_ptr,puVar5);
+        SystemParameterHandler(system_message_context,&ui_system_data_1392_ptr,puVar5);
       }
       FUN_180256390(lVar1,param_1,param_1[0x12] + 0x10 + lVar4,param_1[0x12] + 0x20 + lVar4);
       lVar4 = lVar4 + 0x30;
@@ -55,7 +61,7 @@ void FUN_1802561d0(int64_t *param_1)
           puVar5 = (void *)param_1[0xe];
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&ui_system_data_1392_ptr,puVar5);
+        SystemParameterHandler(system_message_context,&ui_system_data_1392_ptr,puVar5);
       }
       FUN_180256390(lVar4,param_1,lStack_30 + 0x10 + lVar2,lStack_30 + 0x20 + lVar2,uVar6);
       lVar2 = lVar2 + 0x30;
@@ -490,7 +496,7 @@ void FUN_180256940(int64_t param_1)
          (lVar2 = *(int64_t *)(*system_main_module_state + 0x8a8),
          (uint64_t)(*(int64_t *)(*system_main_module_state + 0x8b0) - lVar2 >> 5) <
          (uint64_t)(int64_t)iVar1)) {
-        lVar2 = FUN_180628ca0();
+        lVar2 = MemoryDebugger0();
       }
       else {
         lVar2 = (int64_t)iVar1 * 0x20 + lVar2;
@@ -805,7 +811,7 @@ FUN_180256d10(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
     puVar2 = *(void **)(param_1[2] + 0x70);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&ui_system_data_1520_ptr,puVar2,*(uint64_t *)(param_2 + 0x10));
+  SystemParameterHandler(system_message_context,&ui_system_data_1520_ptr,puVar2,*(uint64_t *)(param_2 + 0x10));
 }
 
 
@@ -959,7 +965,7 @@ FUN_180257020(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4,
       if (puVar1 != (void *)0x0) {
         puVar3 = puVar1;
       }
-      FUN_1800623b0(system_message_context,0,0x80000000000,9,&ui_system_data_1448_ptr,puVar3,
+      SystemConfigurationManager(system_message_context,0,0x80000000000,9,&ui_system_data_1448_ptr,puVar3,
                     *(uint64_t *)(param_2 + 0x10),puVar6);
       uVar4 = 0;
     }
@@ -1110,7 +1116,7 @@ void FUN_180257480(uint64_t param_1,int64_t param_2,int32_t *param_3)
   puVar1 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar1;
   if (uVar3 != 0) {
-    FUN_180045f60(&puStack_448,puVar1,uVar3);
+    SystemManager_Executor(&puStack_448,puVar1,uVar3);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
   }
   plVar8 = (int64_t *)0x180bf8a40;

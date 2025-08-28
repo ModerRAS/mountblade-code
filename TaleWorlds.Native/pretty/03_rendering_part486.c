@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 
 // 03_rendering_part486.c - 5 个函数
 
@@ -343,7 +350,7 @@ void FUN_1805279f0(int64_t param_1,float *param_2,int64_t param_3,int8_t param_4
     else {
       uStack_387 = *(int8_t *)(lVar19 + 0x25fb);
     }
-    iVar13 = FUN_18053a410(&system_data_5f30,*(int32_t *)(lVar19 + 0xac),fVar27);
+    iVar13 = SystemCacheManager(&system_data_5f30,*(int32_t *)(lVar19 + 0xac),fVar27);
     iVar13 = *(int *)(render_system_memory + (int64_t)iVar13 * 4);
     if (iVar13 == -1) {
       lVar19 = 0;
@@ -532,8 +539,8 @@ void FUN_1805279f0(int64_t param_1,float *param_2,int64_t param_3,int8_t param_4
   fStack_298 = fVar27;
   fStack_294 = fVar21;
   fStack_290 = fVar39;
-  FUN_180285b40(param_1 + 0x7f0,&fStack_288,&fStack_368);
-  pfVar18 = (float *)FUN_1801c0fb0(&fStack_2a8,auStack_1b8,&fStack_288);
+  SystemCore_EventHandler(param_1 + 0x7f0,&fStack_288,&fStack_368);
+  pfVar18 = (float *)SystemFileHandler(&fStack_2a8,auStack_1b8,&fStack_288);
   fStack_378 = fVar27 + *pfVar18;
   fStack_294 = fVar21 + pfVar18[1];
   fVar39 = fVar39 + pfVar18[2];
@@ -617,8 +624,8 @@ void FUN_1805279f0(int64_t param_1,float *param_2,int64_t param_3,int8_t param_4
   fStack_354 = *(float *)(param_1 + 0x844) - *(float *)(param_1 + 0x824);
   fStack_350 = *(float *)(param_1 + 0x848) - *(float *)(param_1 + 0x828);
   uStack_34c = 0x7f7fffff;
-  FUN_180285b40(param_1 + 0x810,auStack_228,&fStack_358);
-  pfVar18 = (float *)FUN_1801c0fb0(&fStack_2a8,auStack_1a8,auStack_228);
+  SystemCore_EventHandler(param_1 + 0x810,auStack_228,&fStack_358);
+  pfVar18 = (float *)SystemFileHandler(&fStack_2a8,auStack_1a8,auStack_228);
   fStack_298 = fVar27 + *pfVar18;
   fStack_294 = fVar21 + pfVar18[1];
   fStack_290 = fVar39 + pfVar18[2];
@@ -636,18 +643,18 @@ void FUN_1805279f0(int64_t param_1,float *param_2,int64_t param_3,int8_t param_4
                (fVar27 * fVar11 - fVar21 * fStack_2d0);
   fStack_2a8 = fVar29 * uStack_2f0._4_4_ * -1.0 + fVar39 * fStack_2bc * -1.0 +
                (fVar27 * fVar8 - fVar21 * fStack_2cc);
-  FUN_180300bf0(&fStack_2a8,auStack_318,param_1 + 0x850);
+  UltraHighFreq_FileSystem1(&fStack_2a8,auStack_318,param_1 + 0x850);
   if ((*(uint64_t *)
         ((int64_t)*(int *)((int64_t)param_4 + 0xf0) * 0xa0 + 0x50 +
         *(int64_t *)((int64_t)param_4 + 0xd0)) & 0x100000000) == 0) {
-    pfVar18 = (float *)FUN_1801c0fb0(auStack_318,auStack_188,param_1 + 0x8a0);
+    pfVar18 = (float *)SystemFileHandler(auStack_318,auStack_188,param_1 + 0x8a0);
     fStack_308 = fStack_308 + *pfVar18;
     fStack_304 = fStack_304 + pfVar18[1];
     fStack_300 = fStack_300 + pfVar18[2];
   }
   else {
     lVar19 = *(int64_t *)((int64_t)param_4 + 0xf8) + 0x9c;
-    FUN_18063b470(&uStack_2e8);
+    AdvancedProcessor_StateManager0(&uStack_2e8);
     uStack_338 = uStack_2e8;
     uStack_330 = uStack_2e0;
     uStack_31c = *(int32_t *)(lVar19 + 0x3c);
@@ -655,7 +662,7 @@ void FUN_1805279f0(int64_t param_1,float *param_2,int64_t param_3,int8_t param_4
     fStack_328 = *(float *)(lVar19 + 0x30) * fStack_320;
     fStack_324 = *(float *)(lVar19 + 0x34) * fStack_320;
     fStack_320 = *(float *)(lVar19 + 0x38) * fStack_320;
-    pfVar18 = (float *)FUN_1801c0fb0(auStack_318,auStack_198,&fStack_328);
+    pfVar18 = (float *)SystemFileHandler(auStack_318,auStack_198,&fStack_328);
     fStack_308 = fStack_308 + *pfVar18;
     fStack_304 = fStack_304 + pfVar18[1];
     fStack_300 = fStack_300 + pfVar18[2];

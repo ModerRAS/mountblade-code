@@ -1,5 +1,19 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+n//  的语义化别名
+#define SystemCore_PointerManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 02_core_engine_part015.c - 23 个函数
 
@@ -173,7 +187,7 @@ void FUN_180055fa0(void)
     }
     uVar2 = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *puVar1;
-    FUN_1801299b0(&processed_var_6880_ptr,0,0,in_R9,uVar6);
+    CoreSystem_Validator(&processed_var_6880_ptr,0,0,in_R9,uVar6);
     SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
     SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
     SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
@@ -191,7 +205,7 @@ void FUN_180055fa0(void)
     SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
     SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
     SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
-    FUN_18012cfe0();
+    > HighFreq_CacheSystem1();
     SYSTEM_DATA_MANAGER_A = uVar2;
     iVar4 = _Mtx_unlock(0x180c91970);
     if (iVar4 != 0) {
@@ -470,7 +484,7 @@ void FUN_1800565f0(int64_t *param_1)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3);
   pplStack_60 = (int64_t **)plVar4;
-  FUN_180049830(plVar4);
+  UltraHighFreq_PerformanceMonitor1(plVar4);
   *plVar4 = (int64_t)&processed_var_7704_ptr;
   plVar4[0x18] = 0;
   *(int32_t *)(plVar4 + 0x19) = 0;
@@ -517,7 +531,7 @@ uint64_t FUN_1800567c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xd0,param_3,param_4,uVar1);
   }
@@ -613,7 +627,7 @@ void FUN_180056810(int64_t param_1)
     *(int16_t *)(puVar5 + 8) = 0x2072;
     *(int8_t *)((int64_t)puVar5 + 0x22) = 0;
     uStack_88 = 0x3e;
-    FUN_180060680(acStack_60,&processed_var_4576_ptr,900);
+    > MedHighFreq_StateMachine1(acStack_60,&processed_var_4576_ptr,900);
     uVar3 = uStack_88;
     lVar4 = -1;
     do {
@@ -689,20 +703,20 @@ void FUN_180056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   puStack_20 = &processed_var_5200_ptr;
   puStack_18 = &processed_var_5168_ptr;
-  FUN_18005c650(auStack_30);
+  SystemCore_SecurityManager(auStack_30);
   *(int8_t *)(core_system_data_config + 0x3a0) = 1;
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   if (core_system_data_config != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   if (core_system_data_config != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   FUN_1800b4ec0();
   lVar1 = system_parameter_buffer;
   *(int8_t *)(system_parameter_buffer + 0x1504) = 0;
@@ -750,7 +764,7 @@ void FUN_180056c50(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   uStack_58 = CoreEngineDataTransformer(uVar1,param_2);
   uStack_50 = param_3;
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-  ppuVar2 = (void **)FUN_18005ce30(uVar1,&puStack_108);
+  ppuVar2 = (void **)SystemCore_StreamController(uVar1,&puStack_108);
   ppuStack_118 = ppuVar2;
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
@@ -761,7 +775,7 @@ void FUN_180056c50(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
   }
-  FUN_18005e370(uVar1,&ppuStack_138);
+  SystemPerformance_Monitor(uVar1,&ppuStack_138);
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
   }
@@ -853,7 +867,7 @@ uint64_t * FUN_180056e90(uint64_t *param_1)
 
 
 
-int64_t * FUN_180056f10(int64_t *param_1,int64_t *param_2)
+int64_t * SystemCore_PointerManager(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t *plVar1;
@@ -1009,8 +1023,8 @@ FUN_180057090(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
 
 
 
-// 函数: void FUN_180057110(int64_t *param_1)
-void FUN_180057110(int64_t *param_1)
+// 函数: void SystemCore_ConfigValidator(int64_t *param_1)
+void SystemCore_ConfigValidator(int64_t *param_1)
 
 {
   uint64_t *puVar1;
@@ -1060,8 +1074,8 @@ void FUN_180057170(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_1800571e0(int64_t *param_1,int32_t *param_2)
-void FUN_1800571e0(int64_t *param_1,int32_t *param_2)
+// 函数: void SystemDatabaseProcessor(int64_t *param_1,int32_t *param_2)
+void SystemDatabaseProcessor(int64_t *param_1,int32_t *param_2)
 
 {
   int64_t lVar1;
@@ -1118,7 +1132,7 @@ void FUN_1800572d0(int64_t param_1)
   
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*puVar1);
+    SystemCache_Manager(param_1,*puVar1);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar1);
   }
@@ -1138,7 +1152,7 @@ void FUN_1800572d0(int64_t param_1)
 void FUN_1800572e6(void)
 
 {
-  FUN_18004b790();
+  SystemCache_Manager();
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner();
 }

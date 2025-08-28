@@ -1,5 +1,19 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 // 03_rendering_part148.c - 13 个函数
 
@@ -83,13 +97,13 @@ void FUN_18035ce30(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       }
       lVar11 = FUN_180275820(plVar8);
       *(uint64_t *)(param_1 + 0x78) = *(uint64_t *)(lVar11 + 0x1b8);
-      FUN_1802ed990(*(uint64_t *)(param_1 + 0x18),1);
+      PhysicsSystem_CharacterController(*(uint64_t *)(param_1 + 0x18),1);
       FUN_1802ee610(*(uint64_t *)(param_1 + 0x18),plVar8);
     }
     if (*(int64_t *)(param_1 + 0x78) == 0) {
       return;
     }
-    FUN_1802edcd0(lVar1,plVar9,1);
+    PhysicsSystem_TerrainCollider(lVar1,plVar9,1);
     if (*(int64_t *)(param_1 + 0x70) != 0) {
       *(int8_t *)(*(int64_t *)(param_1 + 0x70) + 0x39) = 1;
       *(uint64_t *)(param_1 + 0x70) = 0;
@@ -135,7 +149,7 @@ void FUN_18035ce30(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     else {
       uVar6 = (**(code **)(*plVar9 + 0x130))(plVar9);
     }
-    FUN_1802ed990(lVar1,1);
+    PhysicsSystem_CharacterController(lVar1,1);
     pcVar2 = *(code **)(*plVar8 + 0x148);
     if (*(code **)(*plVar9 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
       plVar12 = plVar9 + 0x66;
@@ -145,7 +159,7 @@ void FUN_18035ce30(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     }
     (*pcVar2)(plVar8,plVar12);
     FUN_1802ee610(*(uint64_t *)(param_1 + 0x18),plVar9);
-    FUN_1802edcd0(lVar1,plVar8,1);
+    PhysicsSystem_TerrainCollider(lVar1,plVar8,1);
     iVar5 = FUN_1802ed190(*(uint64_t *)(param_1 + 0x18),7);
     if (iVar5 == 0) {
       return;
@@ -256,10 +270,10 @@ void FUN_18035d260(uint64_t param_1)
   auStack_c0[0] = 0;
   uStack_c8 = 0xe;
   strcpy_s(auStack_c0,0x40,&system_data_ef48);
-  FUN_1800b8300(apuStack_78,&puStack_d8);
+  DataDeserializer0(apuStack_78,&puStack_d8);
   uStack_20 = 10;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -329,13 +343,13 @@ void FUN_18035d370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       }
       lVar11 = FUN_180275820(plVar8);
       param_1[0xf] = *(uint64_t *)(lVar11 + 0x1b8);
-      FUN_1802ed990(param_1[3],1);
+      PhysicsSystem_CharacterController(param_1[3],1);
       FUN_1802ee610(param_1[3],plVar8);
     }
     if (param_1[0xf] == 0) {
       return;
     }
-    FUN_1802edcd0(lVar1,plVar9,1);
+    PhysicsSystem_TerrainCollider(lVar1,plVar9,1);
     if (param_1[0xe] != 0) {
       *(int8_t *)(param_1[0xe] + 0x39) = 1;
       param_1[0xe] = 0;
@@ -381,7 +395,7 @@ void FUN_18035d370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     else {
       uVar6 = (**(code **)(*plVar9 + 0x130))(plVar9);
     }
-    FUN_1802ed990(lVar1,1);
+    PhysicsSystem_CharacterController(lVar1,1);
     pcVar2 = *(code **)(*plVar8 + 0x148);
     if (*(code **)(*plVar9 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
       plVar12 = plVar9 + 0x66;
@@ -391,7 +405,7 @@ void FUN_18035d370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     }
     (*pcVar2)(plVar8,plVar12);
     FUN_1802ee610(param_1[3],plVar9);
-    FUN_1802edcd0(lVar1,plVar8,1);
+    PhysicsSystem_TerrainCollider(lVar1,plVar8,1);
     iVar5 = FUN_1802ed190(param_1[3],7);
     if (iVar5 == 0) {
       return;
@@ -431,7 +445,7 @@ FUN_18035d3a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &memory_allocator_3520_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x88,param_3,param_4,uVar1);
   }
@@ -459,7 +473,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &memory_allocator_3928_ptr;
   puVar1 = puVar3 + 0xf;
   *puVar1 = &system_state_ptr;
@@ -492,7 +506,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   *(int32_t *)(puVar3 + 1) = 0x6d614e20;
   *(int16_t *)((int64_t)puVar3 + 0xc) = 0x65;
   uStack_70 = 0xd;
-  FUN_1803460a0(param_1,&puStack_80,puVar1,0,uVar4);
+  SystemNetwork_Processor(param_1,&puStack_80,puVar1,0,uVar4);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
@@ -533,7 +547,7 @@ uint64_t * FUN_18035d5e0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
   param_1[0xf] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,200);
   }
@@ -563,7 +577,7 @@ void FUN_18035d710(uint64_t param_1,uint64_t param_2)
   puVar4 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
-  FUN_1803456e0(puVar4,param_2,param_1);
+  SystemCore_SyncController(puVar4,param_2,param_1);
   *puVar3 = &memory_allocator_3928_ptr;
   puVar1 = puVar3 + 0xf;
   *puVar1 = &system_state_ptr;
@@ -596,7 +610,7 @@ void FUN_18035d710(uint64_t param_1,uint64_t param_2)
   *(int32_t *)(puVar3 + 1) = 0x6d614e20;
   *(int16_t *)((int64_t)puVar3 + 0xc) = 0x65;
   uStack_70 = 0xd;
-  FUN_1803460a0(puVar4,&puStack_80,puVar1,0,uVar5);
+  SystemNetwork_Processor(puVar4,&puStack_80,puVar1,0,uVar5);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
@@ -636,10 +650,10 @@ void FUN_18035d760(uint64_t param_1)
   auStack_130[0] = 0;
   uStack_138 = 0xd;
   strcpy_s(auStack_130,0x40,&system_data_f0d0);
-  FUN_1800b8300(apuStack_88,&puStack_148);
+  DataDeserializer0(apuStack_88,&puStack_148);
   uStack_30 = 0;
   uStack_168 = 1;
-  FUN_180180730(param_1,appuStack_160,apuStack_88);
+  MathOptimizationEngine0(param_1,appuStack_160,apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
@@ -649,10 +663,10 @@ void FUN_18035d760(uint64_t param_1)
   uStack_d8 = 5;
   appuStack_160[0] = apuStack_88;
   strcpy_s(auStack_d0,0x40,&system_data_f0c8);
-  FUN_1800b8300(apuStack_88,&puStack_e8);
+  DataDeserializer0(apuStack_88,&puStack_e8);
   uStack_30 = 9;
   uStack_168 = 2;
-  FUN_180180730(param_1,appuStack_160,apuStack_88);
+  MathOptimizationEngine0(param_1,appuStack_160,apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_e8 = &system_state_ptr;
@@ -798,7 +812,7 @@ void FUN_18035dac0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int8_t *)((int64_t)puVar4 + 6) = 0;
     uStack_50 = 6;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -818,7 +832,7 @@ void FUN_18035dac0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     uStack_28 = CONCAT44(uStack_28._4_4_,uVar2);
     *puVar4 = 0x786f42;
     uStack_30 = 3;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -978,7 +992,7 @@ void FUN_18035dd60(int64_t param_1)
     uStack_50 = uStack_50 & 0xffffffff;
     uStack_40 = uStack_40 & 0xffffffff;
     uStack_2c = 0x3f800000;
-    FUN_180084760(&uStack_68,&uStack_a8);
+    SystemCore_PerformanceMonitor(&uStack_68,&uStack_a8);
     fVar9 = (float)uStack_a8 * fVar7 + (float)uStack_98 * fVar2 + (float)uStack_88 * fVar3 +
             (float)uStack_78;
     fVar8 = uStack_a8._4_4_ * fVar7 + uStack_98._4_4_ * fVar2 + uStack_88._4_4_ * fVar3 +

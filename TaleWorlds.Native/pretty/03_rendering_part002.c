@@ -1,3 +1,10 @@
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+#include "fun_aliases_batch.txt"
+
 /**
  * @file 03_rendering_part002.c
  * @brief TaleWorlds引擎渲染系统核心函数声明模块

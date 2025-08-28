@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 01_initialization_part027.c - 14 个函数
 
@@ -8,8 +13,8 @@ void FUN_18005b560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
 
 {
   *param_1 = &processed_var_8016_ptr;
-  FUN_18005d580();
-  FUN_18005d580();
+  DataSerializationEngine();
+  DataSerializationEngine();
   DataCompressionEngine(param_1 + 0x262);
   DataCompressionEngine(param_1 + 0x254);
   DataCompressionEngine(param_1 + 0x246);
@@ -17,28 +22,28 @@ void FUN_18005b560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   DataCompressionEngine(param_1 + 0x22a);
   DataCompressionEngine(param_1 + 0x21c);
   DataCompressionEngine(param_1 + 0x20e);
-  FUN_18005b960(param_1 + 0x1f6);
-  FUN_18005b960(param_1 + 0x1de);
-  FUN_18005b960(param_1 + 0x1c6);
+  InitializationSystem_DataProcessor(param_1 + 0x1f6);
+  InitializationSystem_DataProcessor(param_1 + 0x1de);
+  InitializationSystem_DataProcessor(param_1 + 0x1c6);
   DataCompressionEngine(param_1 + 0x1b8);
   DataCompressionEngine(param_1 + 0x1aa);
   DataCompressionEngine(param_1 + 0x19c);
-  FUN_18005b960(param_1 + 0x184);
-  FUN_18005b960(param_1 + 0x16c);
-  FUN_18005b960(param_1 + 0x154);
-  FUN_18005b960(param_1 + 0x13c);
-  FUN_18005b960(param_1 + 0x124);
-  FUN_18005b960(param_1 + 0x10c);
-  FUN_18005b960(param_1 + 0xf4);
-  FUN_18005b960(param_1 + 0xdc);
-  FUN_18005b960(param_1 + 0xc4);
-  FUN_18005b960(param_1 + 0xac);
-  FUN_18005b960(param_1 + 0x94);
-  FUN_18005b960(param_1 + 0x7c);
-  FUN_18005b960(param_1 + 100);
-  FUN_18005b960(param_1 + 0x4c);
-  FUN_18005b960(param_1 + 0x34);
-  FUN_18005b960(param_1 + 0x1c);
+  InitializationSystem_DataProcessor(param_1 + 0x184);
+  InitializationSystem_DataProcessor(param_1 + 0x16c);
+  InitializationSystem_DataProcessor(param_1 + 0x154);
+  InitializationSystem_DataProcessor(param_1 + 0x13c);
+  InitializationSystem_DataProcessor(param_1 + 0x124);
+  InitializationSystem_DataProcessor(param_1 + 0x10c);
+  InitializationSystem_DataProcessor(param_1 + 0xf4);
+  InitializationSystem_DataProcessor(param_1 + 0xdc);
+  InitializationSystem_DataProcessor(param_1 + 0xc4);
+  InitializationSystem_DataProcessor(param_1 + 0xac);
+  InitializationSystem_DataProcessor(param_1 + 0x94);
+  InitializationSystem_DataProcessor(param_1 + 0x7c);
+  InitializationSystem_DataProcessor(param_1 + 100);
+  InitializationSystem_DataProcessor(param_1 + 0x4c);
+  InitializationSystem_DataProcessor(param_1 + 0x34);
+  InitializationSystem_DataProcessor(param_1 + 0x1c);
   *param_1 = &processed_var_7304_ptr;
   param_1[0x18] = &system_data_buffer_ptr;
   if (param_1[0x19] != 0) {
@@ -48,7 +53,7 @@ void FUN_18005b560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1b) = 0;
   param_1[0x18] = &system_state_ptr;
-  FUN_18005d260(param_1 + 0x12,param_1[0x14],param_3,param_4,0xfffffffffffffffe);
+  InitializationSystem_ConfigManager(param_1 + 0x12,param_1[0x14],param_3,param_4,0xfffffffffffffffe);
   if (param_1[0xd] != 0) {
                     // WARNING: Subroutine does not return
     SystemCoreProcessor();
@@ -171,8 +176,8 @@ uint64_t * FUN_18005b870(uint64_t *param_1)
 
 
 
-// 函数: void FUN_18005b960(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18005b960(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void InitializationSystem_DataProcessor(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void InitializationSystem_DataProcessor(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if ((code *)param_1[0x16] != (code *)0x0) {
@@ -250,7 +255,7 @@ void FUN_18005ba80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *puVar2 = 0x6e6f632072657355;
   *(int32_t *)(puVar2 + 1) = 0x676966;
   uStack_40 = 0xb;
-  FUN_1800ae520(param_1,&puStack_50);
+  InitializationSystem_MessageHandler(param_1,&puStack_50);
   puStack_50 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   SystemCoreProcessor(puVar2);
@@ -276,8 +281,8 @@ int64_t FUN_18005c090(int64_t param_1)
   int64_t lVar1;
   int64_t lVar2;
   
-  DataStructureManager(param_1,0x20,0x400,FUN_18005c060,FUN_180046860);
-  DataStructureManager(param_1 + 0x8000,0x20,0x400,FUN_18005c060,FUN_180046860);
+  DataStructureManager(param_1,0x20,0x400,FUN_18005c060,InitializationSystem_MemoryAllocator);
+  DataStructureManager(param_1 + 0x8000,0x20,0x400,FUN_18005c060,InitializationSystem_MemoryAllocator);
   *(uint64_t *)(param_1 + 0x10400) = 0;
   *(uint64_t *)(param_1 + 0x10408) = 0;
   *(uint64_t *)(param_1 + 0x10410) = 0;
@@ -435,7 +440,7 @@ int64_t FUN_18005c4f0(int64_t param_1,uint param_2,uint64_t param_3,uint64_t par
   if (*(code **)(param_1 + 0xd0) != (code *)0x0) {
     (**(code **)(param_1 + 0xd0))(param_1 + 0xc0,0,0,param_4,0xfffffffffffffffe);
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xe8);
   }
@@ -482,7 +487,7 @@ FUN_18005c590(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &processed_var_8312_ptr;
   puVar1 = param_1 + 0x18;
   param_1[0x1a] = 0;
@@ -512,8 +517,8 @@ FUN_18005c590(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 
 
-// 函数: void FUN_18005c650(int64_t *param_1)
-void FUN_18005c650(int64_t *param_1)
+// 函数: void SystemCore_SecurityManager(int64_t *param_1)
+void SystemCore_SecurityManager(int64_t *param_1)
 
 {
   int iVar1;
@@ -574,8 +579,8 @@ void FUN_18005c650(int64_t *param_1)
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    FUN_18005e370(lVar2,&plStack_108);
-    FUN_180046190(alStack_b8);
+    SystemPerformance_Monitor(lVar2,&plStack_108);
+    InitializationSystem_CleanupHandler(alStack_b8);
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -621,7 +626,7 @@ void FUN_18005c830(uint *param_1)
 
 
 
-uint64_t FUN_18005c8a0(int64_t param_1,uint64_t param_2)
+uint64_t SystemCore_MemoryManager(int64_t param_1,uint64_t param_2)
 
 {
   char cVar1;
@@ -819,7 +824,7 @@ void FUN_18005cc00(void **param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   uVar8 = 0;
   ppuVar6 = (void **)(init_system_data_config + 0x70);
   ppuStackX_8 = param_1;
-  FUN_180058080(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
+  > HighFreq_AnimationSystem1(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppuVar6) {
     SystemCore_ConfigurationHandler0(ppuStackX_8 + 8,param_3);
     return;
@@ -829,7 +834,7 @@ void FUN_18005cc00(void **param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   uVar9 = 1;
   lVar3 = SystemMemoryManager(system_memory_pool_ptr,0x60,*(int8_t *)(lVar3 + 0x98));
   FUN_18005caa0(lVar3 + 0x20,&puStack_68);
-  ppuVar4 = (void **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
+  ppuVar4 = (void **)SystemCore_SecurityValidator(ppuVar6,acStackX_20,lVar3 + 0x20);
   if (acStackX_20[0] == '\0') {
     FUN_18005cb60(lVar3);
     if (lVar3 != 0) {
@@ -890,7 +895,7 @@ FUN_18005cdb0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 
 
 
-uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
+uint64_t * SystemCore_StreamController(uint64_t *param_1,uint64_t *param_2)
 
 {
   uint64_t *puVar1;
@@ -971,7 +976,7 @@ int32_t FUN_18005cf50(int64_t param_1)
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
-  uVar2 = FUN_1800b2bd0();
+  uVar2 = SystemCore_StatusChecker();
   iVar1 = _Mtx_unlock(param_1 + 0x9f0);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -1000,7 +1005,7 @@ int FUN_18005cfc0(void)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  iVar3 = FUN_1800b2bd0();
+  iVar3 = SystemCore_StatusChecker();
   iVar4 = _Mtx_unlock(lVar1);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
@@ -1009,7 +1014,7 @@ int FUN_18005cfc0(void)
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  iVar4 = FUN_1800b2bd0();
+  iVar4 = SystemCore_StatusChecker();
   iVar5 = _Mtx_unlock(lVar2 + 0x7c0);
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
@@ -1019,7 +1024,7 @@ int FUN_18005cfc0(void)
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  iVar6 = FUN_1800b2bd0();
+  iVar6 = SystemCore_StatusChecker();
   iVar7 = _Mtx_unlock(lVar2 + 0x950);
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
@@ -1111,7 +1116,7 @@ void FUN_18005d0e0(uint64_t param_1,int64_t param_2)
       lVar5 = SystemMemoryManager(system_memory_pool_ptr,(int64_t)iVar8,3);
     }
     FUN_18004b9b0(lVar5,(int64_t)iVar8,&processed_var_8600_ptr,&dStackX_18);
-    FUN_1806281a0(param_2,lVar5);
+    SystemCore_StringProcessor(param_2,lVar5);
     if (lVar5 != 0) {
                     // WARNING: Subroutine does not return
       SystemCoreProcessor(lVar5);
@@ -1123,7 +1128,7 @@ void FUN_18005d0e0(uint64_t param_1,int64_t param_2)
 
 
 
-int64_t FUN_18005d190(int64_t param_1,int64_t param_2)
+int64_t SystemScheduler(int64_t param_1,int64_t param_2)
 
 {
   if (*(int64_t *)(param_1 + 8) != 0) {

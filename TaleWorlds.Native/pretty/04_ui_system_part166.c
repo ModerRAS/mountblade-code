@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part166.c - 4 个函数
 
 // 函数: void FUN_180767956(void)
@@ -19,7 +23,7 @@ uint64_t FUN_1807679d0(uint64_t *param_1)
   int iVar2;
   uint64_t uVar3;
   
-  FUN_180768b50(param_1 + 0x22);
+  RenderingSystem_TextureManager(param_1 + 0x22);
   if ((param_1[0x27] != 0) && (*(int *)(param_1 + 0x28) != -1)) {
     *(uint64_t *)(param_1[0x27] + 0x10 + (int64_t)*(int *)(param_1 + 0x28) * 8) = param_1[0x22];
   }
@@ -38,7 +42,7 @@ uint64_t FUN_1807679d0(uint64_t *param_1)
         (*(code *)param_1[0x29])(param_1[0x24]);
       }
       if (*(int *)((int64_t)param_1 + 0x11c) != 0) {
-        FUN_180768bf0();
+        UIComponent_EventHandler();
       }
     }
     if (*(char *)((int64_t)param_1 + 0x119) == '\0') break;
@@ -265,7 +269,7 @@ uint64_t FUN_180767db0(int64_t param_1)
   int64_t lVar3;
   int64_t alStackX_10 [3];
   
-  FUN_180768b50(alStackX_10);
+  RenderingSystem_TextureManager(alStackX_10);
   lVar3 = 0;
   lVar1 = lVar3;
   do {
@@ -770,7 +774,7 @@ uint64_t FUN_180768180(void)
 // WARNING: Removing unreachable block (ram,0x0001807681c0)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_1807681a0(uint param_1)
+bool RenderingSystem_ShaderCompiler(uint param_1)
 
 {
   int *piVar1;
@@ -940,7 +944,7 @@ uint64_t FUN_180768280(int8_t *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_1807682e0(int64_t *param_1,char param_2)
+int32_t SystemCore_DataProcessor(int64_t *param_1,char param_2)
 
 {
   int64_t lVar1;
@@ -976,7 +980,7 @@ int32_t SystemMemoryAllocator(int64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_180768380(int64_t param_1,char param_2)
+int32_t SystemCore_DataHandler(int64_t param_1,char param_2)
 
 {
   if (param_1 == 0) {

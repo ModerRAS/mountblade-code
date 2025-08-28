@@ -684,7 +684,7 @@ code_r0x00018007db1b:
           fStack_dc = 3.4028235e+38;
           fStack_110 = fStack_e0;
         }
-        FUN_18063b470(&fStack_128,&fStack_108,fStack_e0,fVar31,uVar35);
+        AdvancedProcessor_StateManager0(&fStack_128,&fStack_108,fStack_e0,fVar31,uVar35);
         FUN_180084000(&fStack_128);
         if (fStack_128 < 0.0) {
           fStack_128 = -fStack_128;
@@ -700,7 +700,7 @@ code_r0x00018007db1b:
           SystemInitializer(0x180d49150);
           if (iRam0000000180d49150 == -1) {
             fRam0000000180d49154 = 1.0;
-            FUN_1808fcb30(0x180d49150);
+            SystemCore_StateController(0x180d49150);
           }
           lVar22 = 0x48;
           fVar28 = fRam0000000180d49154;

@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part468.c - 16 个函数
 
@@ -216,14 +218,14 @@ void FUN_18051ac20(int64_t param_1,char param_2)
       do {
         lVar2 = *(int64_t *)(lVar6 + lVar7 * 8);
         if ((lVar2 != 0) && (*(char *)(*(int64_t *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-          FUN_1805b59d0(lVar2,0x180c95578);
+          NetworkSystem_SecurityManager(lVar2,0x180c95578);
           lVar6 = render_system_config;
         }
         lVar7 = lVar7 + 1;
       } while (lVar7 < iVar4);
     }
     if (render_system_config != 0) {
-      FUN_180567f30(render_system_config,0x180c95578);
+      SystemCore_DatabaseHandler(render_system_config,0x180c95578);
     }
     render_system_config = 0;
                     // WARNING: Subroutine does not return
@@ -364,7 +366,7 @@ void FUN_18051b210(int64_t param_1,int64_t param_2)
       __Throw_C_error_std__YAXH_Z(iVar1);
     }
     FUN_18052e450((int64_t)iVar2 * 0xa60 + lVar3 + 0x30a0,0xffffffff,1,0);
-    FUN_18052e130(param_1,0xffffffff,1);
+    SystemCore_Validator0(param_1,0xffffffff,1);
     iVar2 = _Mtx_unlock(param_2 + 8);
     if (iVar2 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar2);

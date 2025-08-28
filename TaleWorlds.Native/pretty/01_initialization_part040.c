@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -183,7 +184,7 @@ void FUN_18006e4a0(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -245,7 +246,7 @@ void FUN_18006e4a4(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -316,7 +317,7 @@ void FUN_18006e50f(void)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -352,7 +353,7 @@ void FUN_18006e570(uint64_t *param_1)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -416,7 +417,7 @@ void FUN_18006e580(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -485,7 +486,7 @@ uint64_t * FUN_18006e660(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   uint64_t *puVar6;
   int64_t lVar7;
   
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &memory_allocator_3624_ptr;
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0;
@@ -669,7 +670,7 @@ void FUN_18006eb30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int iVar3;
   
   lVar2 = init_system_data_config;
-  FUN_18005e630(system_context_ptr,param_2,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_FileSystem(system_context_ptr,param_2,param_3,param_4,0xfffffffffffffffe);
   FUN_18006efc0(lVar2);
   iVar3 = _Mtx_lock(lVar2 + 0x98);
   if (iVar3 != 0) {

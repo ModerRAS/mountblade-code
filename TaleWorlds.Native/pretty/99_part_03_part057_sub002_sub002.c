@@ -24,8 +24,8 @@ void FUN_1802335cb(void)
       if (0 < iVar1) {
         do {
           iVar4 = iVar4 + 1;
-          FUN_180235410();
-          FUN_180235410();
+          SystemCore_RenderFrame();
+          SystemCore_RenderFrame();
           iVar1 = unaff_R14[1];
         } while (iVar4 < iVar1);
         iVar2 = *unaff_R14;
@@ -818,7 +818,7 @@ LAB_18023446f:
   }
   pcVar36 = pcStack_158;
   pfVar19 = pfStack_178;
-  FUN_18007f840(&lStack_108);
+  SystemManager_Validator(&lStack_108);
   if (pfVar19 != (float *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(pfVar19);

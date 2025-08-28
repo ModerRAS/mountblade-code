@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part011.c - 6 个函数
 
 // 函数: void FUN_1801d17f0(int64_t ******param_1)
@@ -88,7 +92,7 @@ void FUN_1801d17f0(int64_t ******param_1)
   if (iVar12 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar12);
   }
-  plVar13 = (int64_t *)FUN_1800b31f0(system_resource_state,&plStack_98,param_1[1],0);
+  plVar13 = (int64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_98,param_1[1],0);
   lVar17 = *plVar13;
   if (plStack_98 != (int64_t *)0x0) {
     (**(code **)(*plStack_98 + 0x38))();
@@ -425,7 +429,7 @@ LAB_1801d1f67:
               pppplVar6[(uint64_t)bVar4 * 0xe + 0xc] =
                    (int64_t ***)((int64_t)pppplVar6[(uint64_t)bVar4 * 0xe + 0xc] + -1);
               func_0x00018066bd70();
-              FUN_18066ba00(pppplVar27,pppplVar2);
+              RenderingSystem_BufferHandler(pppplVar27,pppplVar2);
                     // WARNING: Subroutine does not return
               CoreMemoryPoolInitializer(pppplVar27);
             }
@@ -476,7 +480,7 @@ LAB_1801d1f67:
         if ((int64_t ******)ppppplStackX_8 != pppppplVar19) {
           pppppplVar19[4] = (int64_t *****)((int64_t)pppppplVar19[4] + -1);
           func_0x00018066bd70(ppppplStackX_8);
-          FUN_18066ba00(ppppplVar14,pppppplVar19);
+          RenderingSystem_BufferHandler(ppppplVar14,pppppplVar19);
         }
         uVar34 = (int)uVar35 + 1;
         uVar33 = (uint64_t)(int)uVar34;
@@ -488,12 +492,12 @@ LAB_1801d1f67:
     pppppuVar10 = pppppuStack_118;
     ppppplVar14 = ppppplStack_148;
     if (puStack_c0 != (uint64_t *)0x0) {
-      FUN_18004b790(&pppppuStack_d0,*puStack_c0);
+      SystemCache_Manager(&pppppuStack_d0,*puStack_c0);
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar18);
     }
     if ((uint64_t ******)pppppuStack_118 != (uint64_t ******)0x0) {
-      FUN_18004b790(&pppppuStack_128,*pppppuStack_118);
+      SystemCache_Manager(&pppppuStack_128,*pppppuStack_118);
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(pppppuVar10);
     }
@@ -507,7 +511,7 @@ LAB_1801d1f67:
       FUN_1801e85e0(&ppppplStack_158,*ppppplStack_148);
       uStackX_10 = (int64_t ******)(ppppplVar14 + 4);
       ppppplStackX_18 = ppppplVar14 + 5;
-      FUN_18004b730();
+      UtilitiesSystem_Processor();
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(ppppplVar14);
     }

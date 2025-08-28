@@ -1,3 +1,4 @@
+#include "SystemAdvancedValidator_definition.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -816,8 +817,8 @@ void * FUN_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       core_system_config_ui = &system_ptr_9178;
 
 
-// 函数: void FUN_180079520(int64_t param_1)
-void FUN_180079520(int64_t param_1)
+// 函数: void SystemInitializer(int64_t param_1)
+void SystemInitializer(int64_t param_1)
 
 {
   int64_t lVar1;

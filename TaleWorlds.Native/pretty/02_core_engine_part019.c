@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -88,7 +92,7 @@ void FUN_180059730(int64_t param_1)
 
 
 
-uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+uint64_t * SystemCore_Initializer(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   uint64_t *puVar1;
@@ -127,8 +131,8 @@ uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 
 
-// 函数: void FUN_180059820(int64_t *param_1,uint64_t param_2)
-void FUN_180059820(int64_t *param_1,uint64_t param_2)
+// 函数: void SystemCore_BackupSystem(int64_t *param_1,uint64_t param_2)
+void SystemCore_BackupSystem(int64_t *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -155,7 +159,7 @@ void FUN_180059820(int64_t *param_1,uint64_t param_2)
   lVar3 = param_1[1];
   lVar4 = *param_1;
 LAB_180059885:
-  lVar3 = FUN_180059780(lVar4,lVar3,lVar2);
+  lVar3 = SystemCore_Initializer(lVar4,lVar3,lVar2);
   CoreEngineDataTransformer(lVar3,param_2);
   puVar1 = (uint64_t *)param_1[1];
   puVar5 = (uint64_t *)*param_1;
@@ -1079,7 +1083,7 @@ uint64_t FUN_180060630(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 
 
 
-int FUN_180060680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int > MedHighFreq_StateMachine1(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;

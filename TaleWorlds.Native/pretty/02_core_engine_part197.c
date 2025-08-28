@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
 
 // 02_core_engine_part197.c - 15 个函数
 
@@ -507,8 +513,8 @@ void FUN_18017b850(int64_t param_1)
   }
   plVar10[0x1077] = (int64_t)plVar8;
   *(uint64_t *)(plVar9[0x39b] + 0x83f0) = 0;
-  FUN_18029de40(plVar9[0x39b],1);
-  FUN_18029c8a0(plVar9[0x39b],3,0xff0000ff,0x3f800000,0x8a,0);
+  SystemCore_ProcessorEx(plVar9[0x39b],1);
+  UtilitiesSystem_MathCalculator(plVar9[0x39b],3,0xff0000ff,0x3f800000,0x8a,0);
   lVar4 = system_resource_state;
   plVar9 = *(int64_t **)(system_resource_state + 0x138);
   if (plVar9 != *(int64_t **)(system_resource_state + 0x140)) {
@@ -595,7 +601,7 @@ void FUN_18017bc20(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_78,&puStack_d8);
   uStack_20 = 9;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -693,7 +699,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_5c8);
   uStack_5d0 = 2;
   uStack_648 = 1;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -706,7 +712,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_568);
   uStack_5d0 = 10;
   uStack_648 = 2;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -719,7 +725,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_508);
   uStack_5d0 = 10;
   uStack_648 = 4;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -732,7 +738,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_4a8);
   uStack_5d0 = 10;
   uStack_648 = 8;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -745,7 +751,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_448);
   uStack_5d0 = 10;
   uStack_648 = 0x10;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -758,7 +764,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_3e8);
   uStack_5d0 = 7;
   uStack_648 = 0x20;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -771,7 +777,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_388);
   uStack_5d0 = 0;
   uStack_648 = 0x40;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -784,7 +790,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_328);
   uStack_5d0 = 4;
   uStack_648 = 0x80;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -797,7 +803,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_2c8);
   uStack_5d0 = 2;
   uStack_648 = 0x100;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -810,7 +816,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_268);
   uStack_5d0 = 2;
   uStack_648 = 0x200;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -823,7 +829,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_208);
   uStack_5d0 = 2;
   uStack_648 = 0x400;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -836,7 +842,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_1a8);
   uStack_5d0 = 2;
   uStack_648 = 0x800;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -849,7 +855,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_148);
   uStack_5d0 = 2;
   uStack_648 = 0x1000;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -862,7 +868,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_e8);
   uStack_5d0 = 0xb;
   uStack_648 = 0x2000;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -875,7 +881,7 @@ void FUN_18017bd30(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_628,&puStack_88);
   uStack_5d0 = 0xb;
   uStack_648 = 0x4000;
-  FUN_180180730(param_1,appuStack_640,apuStack_628);
+  MathOptimizationEngine0(param_1,appuStack_640,apuStack_628);
   uStack_648 = 0;
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
@@ -906,7 +912,7 @@ void FUN_18017c750(uint64_t param_1,uint64_t param_2)
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xa8,8,3);
   uVar4 = 0xfffffffffffffffe;
   puVar3 = puVar2;
-  FUN_1803456e0(puVar2,param_2,param_1);
+  SystemCore_SyncController(puVar2,param_2,param_1);
   *puVar3 = &processed_var_5664_ptr;
   puVar3[0x11] = 0;
   puVar3[0x12] = 0;
@@ -927,7 +933,7 @@ void FUN_18017c750(uint64_t param_1,uint64_t param_2)
   *puVar3 = 0x6f6d4120646e6542;
   *(int32_t *)(puVar3 + 1) = 0x746e75;
   uStack_70 = 0xb;
-  FUN_1803460a0(puVar2,&puStack_80,puVar2 + 0xf,1,uVar4);
+  SystemNetwork_Processor(puVar2,&puStack_80,puVar2 + 0xf,1,uVar4);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
@@ -957,7 +963,7 @@ void FUN_18017c7a0(uint64_t param_1,uint64_t param_2)
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3);
   uVar4 = 0xfffffffffffffffe;
   puVar3 = puVar2;
-  FUN_1803456e0(puVar2,param_2,param_1);
+  SystemCore_SyncController(puVar2,param_2,param_1);
   *puVar3 = &processed_var_6048_ptr;
   puVar3[0xe] = 0;
   *(int32_t *)(puVar3 + 0xf) = 0x3f800000;
@@ -973,7 +979,7 @@ void FUN_18017c7a0(uint64_t param_1,uint64_t param_2)
   *puVar3 = 0x6c6169726574614d;
   *(int8_t *)(puVar3 + 1) = 0;
   uStack_80 = 8;
-  FUN_1803460a0(puVar2,&puStack_90,puVar2 + 0xe,10,uVar4);
+  SystemNetwork_Processor(puVar2,&puStack_90,puVar2 + 0xe,10,uVar4);
   puStack_90 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
@@ -1022,7 +1028,7 @@ void FUN_18017c7e0(uint64_t param_1,int64_t param_2)
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   puVar2 = puVar1;
   puStack_140 = puVar1;
-  FUN_1803456e0(puVar1,param_2,param_1);
+  SystemCore_SyncController(puVar1,param_2,param_1);
   *puVar2 = &processed_var_6496_ptr;
   *(int16_t *)(puVar2 + 0x12) = 0;
   *(int8_t *)((int64_t)puVar2 + 0x92) = 0;
@@ -1038,35 +1044,35 @@ void FUN_18017c7e0(uint64_t param_1,int64_t param_2)
   auStack_120[0] = 0;
   uStack_128 = 8;
   strcpy_s(auStack_120,0x10,&processed_var_8280_ptr);
-  FUN_1803460a0(puVar1,&puStack_138,puVar1 + 0x12,3);
+  SystemNetwork_Processor(puVar1,&puStack_138,puVar1 + 0x12,3);
   puStack_138 = &system_state_ptr;
   puStack_110 = &processed_var_672_ptr;
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
   uStack_100 = 0x13;
   strcpy_s(auStack_f8,0x20,&processed_var_6464_ptr);
-  FUN_1803460a0(puVar1,&puStack_110,(int64_t)puVar1 + 0x92,3);
+  SystemNetwork_Processor(puVar1,&puStack_110,(int64_t)puVar1 + 0x92,3);
   puStack_110 = &system_state_ptr;
   puStack_d8 = &processed_var_672_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0x11;
   strcpy_s(auStack_c0,0x20,&processed_var_6440_ptr);
-  FUN_1803460a0(puVar1,&puStack_d8,(int64_t)puVar1 + 0x8c,2);
+  SystemNetwork_Processor(puVar1,&puStack_d8,(int64_t)puVar1 + 0x8c,2);
   puStack_d8 = &system_state_ptr;
   puStack_a0 = &processed_var_672_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
   strcpy_s(auStack_88,0x20,&processed_var_6424_ptr);
-  FUN_1803460a0(puVar1,&puStack_a0,puVar1 + 0x11,2);
+  SystemNetwork_Processor(puVar1,&puStack_a0,puVar1 + 0x11,2);
   puStack_a0 = &system_state_ptr;
   puStack_68 = &processed_var_672_ptr;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
   uStack_58 = 9;
   strcpy_s(auStack_50,0x20,&processed_var_6408_ptr);
-  FUN_1803460a0(puVar1,&puStack_68,puVar1 + 0xf,5);
+  SystemNetwork_Processor(puVar1,&puStack_68,puVar1 + 0xf,5);
   puStack_68 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_168);

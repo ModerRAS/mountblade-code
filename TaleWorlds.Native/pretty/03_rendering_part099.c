@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_ValidationEngine0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -336,7 +338,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             }
             
             // 资源管理和状态处理
-            uVar26 = FUN_1800b33d0(system_resource_state,&plStack_118,&puStack_108);
+            uVar26 = RenderingSystem_ShaderCompiler0(system_resource_state,&plStack_118,&puStack_108);
             uStack_110 = 1;
             if (plStack_118 == (int64_t *)0x0) {
                 if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&processed_var_9000_ptr), iVar13 == 0)) {
@@ -484,7 +486,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 *(int16_t *)(plVar16 + 0x78) = 0xffff;
                 puStack_a8 = &system_state_ptr;
                 FUN_18022cd30(plStack_118,1,uVar3);
-                FUN_180076910(param_3);
+                UltraHighFreq_SecurityValidator1(param_3);
                 if (plStack_118 != (int64_t *)0x0) {
                     (**(code **)(*plStack_118 + 0x38))();
                 }
@@ -579,7 +581,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 plVar16 = plStack_f0;
             }
             plStack_f0 = plVar16;
-            FUN_18007f6a0(&puStack_108);
+            SystemSecurityManager(&puStack_108);
             if (plStack_f0 != (int64_t *)0x0) {
                 (**(code **)(*plStack_f0 + 0x38))();
             }

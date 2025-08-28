@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -34,7 +38,7 @@
 #define ui_system_advanced_animation_processor FUN_1806598ca
 #define ui_system_calculate_angle_difference FUN_18065c070
 #define ui_system_interpolate_animation_value FUN_18065bf60
-#define ui_system_get_animation_data FUN_18065fd40
+#define ui_system_get_animation_data MathStatisticsProcessor0
 #define ui_system_error_handler SystemSecurityChecker
 #define ui_system_assertion_handler AdvancedSystemController
 

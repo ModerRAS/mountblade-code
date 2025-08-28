@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part103.c - 17 个函数
 
 // 函数: void FUN_18011f3e0(char *param_1,uint64_t param_2,int32_t param_3)
@@ -21,7 +25,7 @@ void FUN_18011f3e0(char *param_1,uint64_t param_2,int32_t param_3)
     if (cVar1 == '\0') {
 LAB_18011f415:
       if ((cVar1 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,param_3);
         pcVar2 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar2 = pcVar2 + 1;
@@ -74,7 +78,7 @@ void FUN_18011f480(char *param_1,uint64_t param_2,int32_t param_3)
     if (cVar1 == '\0') {
 LAB_18011f4b5:
       if ((cVar1 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,param_3);
         pcVar2 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar2 = pcVar2 + 1;
@@ -127,7 +131,7 @@ void FUN_18011f520(char *param_1,uint64_t param_2,uint64_t param_3)
     if (cVar1 == '\0') {
 LAB_18011f555:
       if ((cVar1 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,param_3);
         pcVar2 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar2 = pcVar2 + 1;
@@ -180,7 +184,7 @@ void FUN_18011f5c0(char *param_1,uint64_t param_2,uint64_t param_3)
     if (cVar1 == '\0') {
 LAB_18011f5f5:
       if ((cVar1 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,param_3);
         pcVar2 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar2 = pcVar2 + 1;
@@ -234,7 +238,7 @@ void FUN_18011f690(char *param_1,uint64_t param_2,float param_3)
     if (cVar2 == '\0') {
 LAB_18011f6c5:
       if ((cVar2 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,(double)param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,(double)param_3);
         pcVar3 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar3 = pcVar3 + 1;
@@ -287,7 +291,7 @@ void FUN_18011f740(char *param_1,uint64_t param_2,uint64_t param_3)
     if (cVar1 == '\0') {
 LAB_18011f775:
       if ((cVar1 == '%') && (param_1[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,param_1,param_3);
+        SystemCore_LoggingSystem(&cStack_58,0x40,param_1,param_3);
         pcVar2 = &cStack_58;
         while (cStack_58 == ' ') {
           pcVar2 = pcVar2 + 1;
@@ -830,7 +834,7 @@ void FUN_180121130(int64_t param_1,uint64_t *param_2,int64_t param_3)
 
 
 
-uint64_t FUN_180121200(int64_t param_1,int param_2)
+uint64_t SystemCore_LoggingSystem(int64_t param_1,int param_2)
 
 {
   uint64_t uVar1;
@@ -850,7 +854,7 @@ uint64_t FUN_180121200(int64_t param_1,int param_2)
 
 
 
-uint FUN_180121250(byte *param_1,int64_t param_2,uint param_3)
+uint SystemCore_HandleInput(byte *param_1,int64_t param_2,uint param_3)
 
 {
   byte bVar1;

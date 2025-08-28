@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -70,7 +71,7 @@ void FUN_1808c6e91(void)
     if (lVar8 != *(int64_t *)(*(int64_t *)(lVar3 + 0x2b0) + 0x78)) {
       do {
         *(uint64_t *)(unaff_RBP + -0x19) = unaff_RDI;
-        iVar1 = FUN_18073c4c0(lVar8,0,unaff_RBP + -0x19);
+        iVar1 = UtilitiesSystem_MathCalculator(lVar8,0,unaff_RBP + -0x19);
         if (iVar1 != 0) goto LAB_1808c7124;
         *(uint64_t *)(unaff_RBP + -0x29) = unaff_RDI;
         iVar1 = FUN_18073c730(*(uint64_t *)(unaff_RBP + -0x39),unaff_RBP + -0x29,0,0);
@@ -91,7 +92,7 @@ void FUN_1808c6e91(void)
       } while (lVar8 != *(int64_t *)(*(int64_t *)(lVar3 + 0x2b0) + 0x78));
     }
     uVar6 = *(uint64_t *)(*(int64_t *)(*(int64_t *)(*unaff_R14 + 0x160) + 0x2b0) + 0x30);
-    iVar1 = FUN_18085ab70();
+    iVar1 = UISystem_WidgetController();
     lVar8 = uVar6 - (int64_t)((int)(fVar9 + 0.5) - iVar1);
     fVar9 = (float)(*(int64_t *)(unaff_RBP + -0x31) - lVar8);
     if (fVar9 <= unaff_XMM9_Da) {
@@ -355,7 +356,7 @@ void FUN_1808c7770(uint64_t *param_1)
     if (plVar2 != (int64_t *)0x0) {
       plVar4 = plVar2;
     }
-    FUN_180840270(plVar4 + 2);
+    SystemCore_MemoryManager(plVar4 + 2);
     *(int64_t *)plVar4[1] = *plVar4;
     *(int64_t *)(*plVar4 + 8) = plVar4[1];
     plVar4[1] = (int64_t)plVar4;
@@ -376,8 +377,8 @@ void FUN_1808c7770(uint64_t *param_1)
     if (plVar3 != (int64_t *)0x0) {
       plVar2 = plVar3;
     }
-    FUN_180840270(plVar2 + 4);
-    FUN_180840270(plVar2 + 2);
+    SystemCore_MemoryManager(plVar2 + 4);
+    SystemCore_MemoryManager(plVar2 + 2);
     *(int64_t *)plVar2[1] = *plVar2;
     *(int64_t *)(*plVar2 + 8) = plVar2[1];
     plVar2[1] = (int64_t)plVar2;
@@ -392,17 +393,17 @@ void FUN_1808c7770(uint64_t *param_1)
   lVar1 = param_1[0x1a];
   if ((lVar1 != 0) && ((*(uint *)(param_1 + 0x1f) >> 7 & 1) == 0)) {
     FUN_1808c7dc0(lVar1,0);
-    FUN_18085dbf0(lVar1 + 0x20);
-    FUN_180744d60(lVar1 + 0x10);
+    SystemController(lVar1 + 0x20);
+    SystemAnalyzer(lVar1 + 0x10);
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&memory_allocator_3232_ptr,0x50,1);
   }
   func_0x00018085dda0(plVar2);
   func_0x00018085dda0(plVar4);
-  FUN_18084c220(param_1 + 0x14);
+  UltraHighFreq_InputHandler1(param_1 + 0x14);
   FUN_1808c76b0(param_1 + 0x12);
-  FUN_18084c220(param_1 + 0x10);
-  FUN_18084c220(param_1 + 0xe);
+  UltraHighFreq_InputHandler1(param_1 + 0x10);
+  UltraHighFreq_InputHandler1(param_1 + 0xe);
   *param_1 = &processed_var_936_ptr;
   plVar4 = param_1 + 4;
   plVar2 = (int64_t *)*plVar4;
@@ -417,8 +418,8 @@ void FUN_1808c7770(uint64_t *param_1)
     plVar3 = plVar2;
   }
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar3 + 4);
-  FUN_18084c220(plVar3 + 2);
+  UltraHighFreq_InputHandler1(plVar3 + 4);
+  UltraHighFreq_InputHandler1(plVar3 + 2);
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
@@ -693,7 +694,7 @@ uint64_t FUN_1808c7c80(int64_t param_1,uint64_t param_2)
   *(int *)(param_1 + 0x4c) = iVar1;
   if (*(int *)(param_1 + 0x58) + *(int *)(param_1 + 0x54) + iVar1 == 0) {
     uStackX_8 = 0;
-    iVar1 = FUN_18088c740(&uStackX_8);
+    iVar1 = RenderingSystemOptimizer(&uStackX_8);
     if (iVar1 == 0) {
       iVar1 = FUN_1808c7dc0(param_1,0);
       if (iVar1 == 0) {
@@ -725,7 +726,7 @@ uint64_t FUN_1808c7caf(int param_1)
     return 0;
   }
   uStack0000000000000030 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000030);
+  iVar1 = RenderingSystemOptimizer(&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_1808c7dc0();
     if (iVar1 == 0) {

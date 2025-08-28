@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part158.c - 3 个函数
 
 // 函数: void FUN_1803663f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -27,7 +35,7 @@ void FUN_1803663f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     uStack_40 = 0;
     uStack_38 = 3;
     uStackX_8 = *(uint64_t *)(param_1 + 0x18);
-    FUN_1802e8c60(uStackX_8,&lStack_50,param_3,param_4,0xfffffffffffffffe);
+    NetworkSystem_SecurityManager(uStackX_8,&lStack_50,param_3,param_4,0xfffffffffffffffe);
     SystemInitializer(&lStack_50,&uStackX_8);
     iVar8 = 0;
     if (lStack_48 - lStack_50 >> 3 != 0) {
@@ -98,7 +106,7 @@ uint64_t
 FUN_1803665f0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180627910(param_2,&processed_var_7160_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  SystemCore_CacheManager(param_2,&processed_var_7160_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -199,7 +207,7 @@ uint64_t * FUN_180366860(uint64_t param_1,uint64_t param_2)
   
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xb0,8,3,0xfffffffffffffffe);
   puVar3 = puVar2;
-  FUN_1803456e0(puVar2,param_2,param_1);
+  SystemCore_SyncController(puVar2,param_2,param_1);
   *puVar2 = &ui_system_data_192_ptr;
   puVar1 = puVar2 + 0xe;
   puVar2[0x11] = 0;
@@ -267,7 +275,7 @@ void FUN_180366900(int64_t param_1)
   uStack_d8 = 0;
   uStack_d0 = 3;
   if (*(int64_t *)(param_1 + 0xd8) != 0) {
-    FUN_180057980(param_1 + 0xd0,&puStack_e8,&system_data_c8e4);
+    CoreSystem_DataCollector(param_1 + 0xd0,&puStack_e8,&system_data_c8e4);
   }
   puVar3 = puStack_e0;
   puVar2 = puStack_e8;
@@ -369,7 +377,7 @@ void FUN_180366b10(int64_t param_1,int64_t param_2)
       uStack_e8 = 0;
       uStack_e0 = 3;
       if (*(int64_t *)(param_1 + 0xd8) != 0) {
-        FUN_180057980(param_1 + 0xd0,&puStack_f8,&system_data_c8e4);
+        CoreSystem_DataCollector(param_1 + 0xd0,&puStack_f8,&system_data_c8e4);
       }
       puVar4 = puStack_f0;
       puVar3 = puStack_f8;
@@ -434,7 +442,7 @@ int64_t FUN_180366d90(int64_t param_1,uint param_2,uint64_t param_3,uint64_t par
 
 {
   FUN_1800c2ff0(param_1 + 0x70,*(uint64_t *)(param_1 + 0x80),param_3,param_4,0xfffffffffffffffe);
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xb0);
   }

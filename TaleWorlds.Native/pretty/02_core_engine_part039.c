@@ -1,3 +1,5 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -106,11 +108,11 @@ float * FUN_1800795b0(float *param_1)
       puStack_58 = &processed_var_5472_ptr;
       uStack_80 = 0x18007967a;
       fStack_50 = fVar6;
-      FUN_1800623b0(system_message_context,0,0x80000000000,3);
+      SystemConfigurationManager(system_message_context,0,0x80000000000,3);
     }
     param_1[0x40] = (float)((uint)param_1[0x40] | 0x10000);
     uStack_80 = 0x18007968e;
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
   }
   uStack_38 = 0xfffffffffffffffe;
   pfVar7 = param_1;
@@ -182,7 +184,7 @@ float * FUN_1800795b0(float *param_1)
       puStack_48 = *(void **)(param_1 + 0x54);
       uStack_40 = *(uint64_t *)(param_1 + 0x56);
       FUN_180085c10(&uStack_78);
-      FUN_18063a240(pfVar1,pfVar1,&uStack_78);
+      UI_WidgetHandler(pfVar1,pfVar1,&uStack_78);
       pfVar7 = *(float **)(param_1 + 0x6e);
       if (((uint)pfVar7[0x4e] & 0x3000) == 0x2000) {
         uStack_78 = *(uint64_t *)(param_1 + 0x48);
@@ -195,7 +197,7 @@ float * FUN_1800795b0(float *param_1)
         puStack_48 = *(void **)(param_1 + 0x54);
         uStack_40 = *(uint64_t *)(param_1 + 0x56);
         FUN_180085ac0(&uStack_78,0x3fc90fdb);
-        FUN_18063a240(pfVar1,pfVar1,&uStack_78);
+        UI_WidgetHandler(pfVar1,pfVar1,&uStack_78);
         uStack_78 = *(uint64_t *)(param_1 + 0x48);
         uStack_70 = *(uint64_t *)(param_1 + 0x4a);
         uStack_68 = *(uint64_t *)(param_1 + 0x4c);
@@ -206,7 +208,7 @@ float * FUN_1800795b0(float *param_1)
         puStack_48 = *(void **)(param_1 + 0x54);
         uStack_40 = *(uint64_t *)(param_1 + 0x56);
         FUN_180085970(&uStack_78);
-        pfVar7 = (float *)FUN_18063a240(pfVar1,pfVar1,&uStack_78);
+        pfVar7 = (float *)UI_WidgetHandler(pfVar1,pfVar1,&uStack_78);
       }
     }
     pfVar4 = pfStack_98;

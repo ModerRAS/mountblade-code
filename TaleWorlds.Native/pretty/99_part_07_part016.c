@@ -1,3 +1,12 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -409,7 +418,7 @@ void FUN_1804aa710(int64_t param_1)
     do {
       if (-1 < *(int *)(*(int64_t *)((int64_t)iVar5 * 0xe0 + 0x78 + system_system_memory) + lVar13 * 8))
       {
-        iVar6 = FUN_18053a410(&system_state_5f30,iVar5,iVar12);
+        iVar6 = SystemCacheManager(&system_state_5f30,iVar5,iVar12);
         if (iVar6 != -1) {
           iVar2 = *(int *)(system_system_memory + (int64_t)iVar6 * 4);
           if (iVar2 == -1) {
@@ -439,7 +448,7 @@ void FUN_1804aa710(int64_t param_1)
 LAB_1804aa8b8:
             if (((*ppiVar7 == *(int **)(lVar8 + lVar9 * 8)) || (*(int64_t *)(*ppiVar7 + 0xe) == 0))
                && (*(int *)(lVar11 + 0x1ec) != -1)) {
-              iVar6 = FUN_18053a410(&system_state_5f30,iVar5);
+              iVar6 = SystemCacheManager(&system_state_5f30,iVar5);
               iVar6 = *(int *)(system_system_memory + (int64_t)iVar6 * 4);
               if (iVar6 == -1) {
                 lVar8 = 0;
@@ -520,7 +529,7 @@ FUN_1804aa990(int64_t param_1,uint64_t *param_2,uint64_t param_3,int *param_4,
       CoreEngineMemoryPoolCleaner(piVar8);
     }
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)param_5 == '\0') {
     *(uint64_t *)(piVar8 + 0x18) = *(uint64_t *)(*(int64_t *)(param_1 + 8) + uVar7 * 8);
@@ -704,7 +713,7 @@ void FUN_1804aac20(int64_t param_1,int64_t param_2)
     puVar11 = *(void **)(param_1 + 8);
   }
   System_DataHandler(&puStack_440,&processed_var_5232_ptr,puVar11,&processed_var_5256_ptr);
-  FUN_180624440(&puStack_2e8,&puStack_440);
+  SystemCore_EncryptionEngine(&puStack_2e8,&puStack_440);
   puVar11 = &system_buffer_ptr;
   if (puStack_2e0 != (void *)0x0) {
     puVar11 = puStack_2e0;
@@ -750,7 +759,7 @@ void FUN_1804aac20(int64_t param_1,int64_t param_2)
       uStack_450 = 0;
       lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_2 + 0x28));
       CoreEngineDataTransformer(lVar5 + 0x20,&puStack_460);
-      lVar8 = FUN_1800590b0(param_2,acStack_468,lVar5 + 0x20);
+      lVar8 = SystemCore_SecurityValidator(param_2,acStack_468,lVar5 + 0x20);
       if (acStack_468[0] != '\0') {
         if (lVar8 == param_2) goto LAB_1804aaef2;
         if (*(int *)(lVar8 + 0x30) == 0) goto LAB_1804aaee7;

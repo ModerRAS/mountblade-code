@@ -92,7 +92,7 @@ void FUN_1808bfc22(void)
 LAB_1808bfd9d:
           _iStack0000000000000078 = 0xffffffffffffffff;
           *(int32_t *)(unaff_RBP + -0x80) = 0xffffffff;
-          FUN_1807d1650(*(int32_t *)(unaff_RBP + -0x48),&stack0x00000078,unaff_RBP + -0x80);
+          NetworkSystem_ConnectionHandler(*(int32_t *)(unaff_RBP + -0x48),&stack0x00000078,unaff_RBP + -0x80);
           plVar12 = plStack0000000000000070;
           iVar17 = *(int *)(unaff_RBP + -0x80);
           if (iVar17 != -1) {
@@ -310,7 +310,7 @@ LAB_1808c01ad:
         *(int64_t *)(unaff_RBP + -0x70) = lVar18;
         *(uint64_t *)(unaff_RBP + -0x68) = 0xffffffffffffffff;
         *(int32_t *)(unaff_RBP + -0x60) = 0xffffffff;
-        FUN_1807d1650(lVar18,unaff_RBP + -0x68,unaff_RBP + -0x60);
+        NetworkSystem_ConnectionHandler(lVar18,unaff_RBP + -0x68,unaff_RBP + -0x60);
         iVar7 = *(int *)(unaff_RBP + -0x60);
         unaff_R13 = *(int64_t *)(unaff_RBP + -0x58);
         if (iVar7 != -1) {
@@ -478,7 +478,7 @@ LAB_1808c05ce:
             _iStack0000000000000078 = 0xffffffffffffffff;
             *(int32_t *)(unaff_RBP + -0x80) = 0xffffffff;
             plStack0000000000000070 = plVar15;
-            FUN_1807d1650(*(int32_t *)(unaff_RBP + -0x38),&stack0x00000078,unaff_RBP + -0x80);
+            NetworkSystem_ConnectionHandler(*(int32_t *)(unaff_RBP + -0x38),&stack0x00000078,unaff_RBP + -0x80);
             plVar15 = plStack0000000000000070;
             iVar17 = *(int *)(unaff_RBP + -0x80);
             if (iVar17 != -1) {
@@ -597,7 +597,7 @@ LAB_1808c05c5:
   do {
     _iStack0000000000000078 = 0xffffffffffffffff;
     *(int32_t *)(unaff_RBP + -0x80) = 0xffffffff;
-    FUN_1807d1650(plVar5,&stack0x00000078,unaff_RBP + -0x80);
+    NetworkSystem_ConnectionHandler(plVar5,&stack0x00000078,unaff_RBP + -0x80);
     iVar7 = *(int *)(unaff_RBP + -0x80);
     if (iVar7 != -1) {
       iVar8 = iStack0000000000000078;

@@ -62,7 +62,7 @@ void FUN_180091430(void)
     }
     (**(code **)(*(int64_t *)(lVar9 + 0x3520) + 0x10))((int64_t *)(lVar9 + 0x3520),puVar13);
     puStack_c8 = &system_state_ptr;
-    FUN_180094b30(*plVar7,&ui_system_data_1736_ptr);
+    SystemCore_NetworkHandler(*plVar7,&ui_system_data_1736_ptr);
     *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 0x8000000;
     *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 4;
     plVar11 = plVar7 + 0x2d4;
@@ -209,7 +209,7 @@ void FUN_180091430(void)
       pplStack_128 = &plStack_130;
       plStack_130 = plVar11;
       (**(code **)(*plVar11 + 0x28))();
-      FUN_18005e6a0(uVar6,&plStack_130,0);
+      SystemCore_ErrorHandler(uVar6,&plStack_130,0);
     }
     if (((char)plVar7[0x2fd] != '\0') &&
        (lVar9 = plVar7[0x30d], uVar17 = uVar16, plVar7[0x30e] - lVar9 >> 3 != 0)) {

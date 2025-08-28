@@ -256,7 +256,7 @@ uint8_t processed_var_4276;   // 服务注册表指针
 uint8_t FUN_180059620;  // ComponentLifecycleManager - 组件生命周期管理器
 
 // 函数: 系统安全检查器
-uint8_t FUN_180044a30;  // SystemSecurityChecker - 系统安全检查器
+uint8_t CoreSystem_MessageHandler;  // SystemSecurityChecker - 系统安全检查器
 uint8_t system_memory_0000;   // 安全策略数据
 uint8_t processed_var_7864;   // 安全验证器
 uint8_t processed_var_7944;   // 安全监控器
@@ -746,8 +746,8 @@ uint8_t processed_var_9888;
 uint8_t rendering_buffer_2544;
 
 
-// 函数: uint8_t FUN_180049b30;
-uint8_t FUN_180049b30;
+// 函数: uint8_t SystemCore_EventHandler;
+uint8_t SystemCore_EventHandler;
 
 
 // 函数: uint8_t FUN_18016f990;

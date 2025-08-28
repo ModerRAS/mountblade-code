@@ -619,7 +619,7 @@ bool FUN_1805e65c0(int64_t param_1,float *param_2,uint64_t *param_3)
   lVar2 = **(int64_t **)(param_1 + 0x20);
   lVar7 = *(int64_t *)(lVar2 + 0x9d8);
   lVar11 = *(int64_t *)(lVar2 + 0x20);
-  if ((lVar7 == 0) || (cVar6 = FUN_18038d0a0(lVar7,lVar11 + 0xc), lVar9 = lVar7, cVar6 == '\0')) {
+  if ((lVar7 == 0) || (cVar6 = SystemCore_PerformanceMonitor(lVar7,lVar11 + 0xc), lVar9 = lVar7, cVar6 == '\0')) {
     lVar9 = 0;
   }
   uStack_80 = 0;
@@ -702,7 +702,7 @@ bool FUN_1805e65c0(int64_t param_1,float *param_2,uint64_t *param_3)
     fStackX_14 = fStackX_14 * fVar13;
     fStackX_10 = fStackX_10 * fVar13;
     uVar1 = *(int32_t *)(*(int64_t *)(lVar2 + 0x20) + 0x1d0);
-    FUN_180487c70(param_3,2);
+    SystemCore_Validator(param_3,2);
     if (*(int *)(param_3 + 8) < 2) {
       uVar10 = 0;
     }
@@ -746,7 +746,7 @@ bool FUN_1805e6825(void)
   
   *(int32_t *)(unaff_RBP + 0x6f) = unaff_XMM6_Da;
   *(int32_t *)(unaff_RBP + 0x73) = in_XMM5_Da;
-  uVar5 = FUN_180487c70();
+  uVar5 = SystemCore_Validator();
   if (*(int *)(unaff_RBX + 0x40) < 2) {
     uVar4 = 0;
   }

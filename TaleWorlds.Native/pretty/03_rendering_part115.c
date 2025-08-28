@@ -558,11 +558,11 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   }
   *puVar5 = uVar1;
   param_2[1] = param_2[1] + RENDERING_SYSTEM_INT_SIZE;
-  FUN_180639fd0(param_2,param_1 + 0x80);
-  FUN_180639fd0(param_2,param_1 + 0x90);
-  FUN_180639fd0(param_2,param_1 + 0xa0);
-  FUN_180639fd0(param_2,param_1 + 0xb0);
-  FUN_180639fd0(param_2,param_1 + 0xc0);
+  Audio_SoundManager(param_2,param_1 + 0x80);
+  Audio_SoundManager(param_2,param_1 + 0x90);
+  Audio_SoundManager(param_2,param_1 + 0xa0);
+  Audio_SoundManager(param_2,param_1 + 0xb0);
+  Audio_SoundManager(param_2,param_1 + 0xc0);
   
   /* 处理变换数据 */
   puVar5 = (int32_t *)param_2[1];

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -512,7 +513,7 @@ void FUN_18056f700(int64_t param_1)
     else {
       plVar4 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3);
       plStack_68 = plVar4;
-      FUN_180049830(plVar4);
+      UltraHighFreq_PerformanceMonitor1(plVar4);
       *plVar4 = (int64_t)&system_pattern2_ptr;
       plVar4[0x18] = param_1;
       plStack_58 = plVar4;

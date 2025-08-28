@@ -1,12 +1,13 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part463_sub001.c - 5 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part463.c - 5 个函数
 
@@ -62,7 +63,7 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   float in_stack_00000078;
   float fStack000000000000007c;
   
-  FUN_18063b5f0();
+  SystemSecurityManager();
   fVar22 = unaff_RBP[0x18];
   fVar24 = unaff_RBP[0x19];
   unaff_RBP[-0x1c] = 3.4028235e+38;
@@ -177,7 +178,7 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
     fVar23 = fStack0000000000000074 * fVar29 - in_stack_00000078 * fVar14;
     fVar17 = fVar14 * in_stack_00000070 - fStack0000000000000074 * fVar16;
     fVar15 = in_stack_00000078 * fVar16 - fVar29 * in_stack_00000070;
-    FUN_18063b5f0(unaff_RBP + -0x13);
+    SystemSecurityManager(unaff_RBP + -0x13);
     fVar26 = unaff_RBP[-0xd];
     fVar13 = unaff_RBP[-9];
     fVar12 = unaff_RBP[-0x12];
@@ -205,7 +206,7 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
     fStack0000000000000074 = fVar28 * fVar14 + fVar26 * fVar15 + fVar13 * fStack0000000000000074;
     in_stack_00000078 = fVar28 * fVar29 + fVar26 * fVar17 + fVar13 * in_stack_00000078;
     fStack000000000000007c = fVar21 + fVar20 + fVar13 * fStack000000000000007c;
-    FUN_18063b470(unaff_RBP + 4,&stack0x00000050);
+    AdvancedProcessor_StateManager0(unaff_RBP + 4,&stack0x00000050);
     uVar5 = *(uint64_t *)(unaff_RBP + 6);
     *(uint64_t *)(lVar10 + 0x40) = *(uint64_t *)(unaff_RBP + 4);
     *(uint64_t *)(lVar10 + 0x48) = uVar5;
@@ -273,11 +274,11 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
       unaff_RBP[0xd] = fVar27;
       unaff_RBP[0xe] = fVar22;
       unaff_RBP[0xf] = fVar24;
-      pfVar7 = (float *)FUN_180534930(*(int64_t *)(lVar10 + 0x8a8) + 0x70,unaff_RBP + 0x20,
+      pfVar7 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar10 + 0x8a8) + 0x70,unaff_RBP + 0x20,
                                       lVar9 + 0x50);
       _fStack0000000000000040 = CONCAT44(pfVar7[1] - fVar27,*pfVar7 - fVar1);
       _fStack0000000000000048 = CONCAT44(0x7f7fffff,pfVar7[2] - fVar22);
-      FUN_180285b40(unaff_RBP + 8,unaff_RBP + -7,&stack0x00000040);
+      SystemCore_EventHandler(unaff_RBP + 8,unaff_RBP + -7,&stack0x00000040);
       puVar4 = *(uint64_t **)(unaff_RBX + 0x728);
       uVar5 = *(uint64_t *)(unaff_RBP + -5);
       *puVar4 = *(uint64_t *)(unaff_RBP + -7);
@@ -401,13 +402,13 @@ void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
     *(float *)(unaff_RBP + 0x34) = fVar5;
     *(float *)(unaff_RBP + 0x38) = fVar6;
     *(uint *)(unaff_RBP + 0x3c) = uVar11;
-    pfVar13 = (float *)FUN_180534930(*(int64_t *)(lVar3 + 0x8a8) + 0x70,unaff_RBP + 0x80,
+    pfVar13 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar3 + 0x8a8) + 0x70,unaff_RBP + 0x80,
                                      lVar15 + 0x50);
     uStack000000000000004c = 0x7f7fffff;
     fStack0000000000000040 = *pfVar13 - fVar19;
     fStack0000000000000044 = pfVar13[1] - fVar5;
     fStack0000000000000048 = pfVar13[2] - fVar6;
-    FUN_180285b40(unaff_RBP + 0x20,unaff_RBP + -0x1c,&stack0x00000040);
+    SystemCore_EventHandler(unaff_RBP + 0x20,unaff_RBP + -0x1c,&stack0x00000040);
     puVar4 = *(uint64_t **)(unaff_RBX + 0x728);
     uVar12 = *(uint64_t *)(unaff_RBP + -0x14);
     *puVar4 = *(uint64_t *)(unaff_RBP + -0x1c);
@@ -509,7 +510,7 @@ void FUN_1805162e0(int64_t param_1)
            *(float *)(lVar8 + 0xb0) * *(float *)(lVar1 + 0x70) + *(float *)(lVar1 + 0xa0);
   fVar29 = *(float *)(lVar8 + 0xb0) * *(float *)(lVar1 + 0x74) +
            *(float *)(lVar8 + 0xb4) * *(float *)(lVar1 + 0x84) + *(float *)(lVar1 + 0xa4);
-  uVar5 = FUN_18063b470(&uStack_d8,param_1 + 0x520);
+  uVar5 = AdvancedProcessor_StateManager0(&uStack_d8,param_1 + 0x520);
   lVar1 = *(int64_t *)(param_1 + 0x728);
   fVar19 = *(float *)(lVar1 + 0x90);
   fVar21 = *(float *)(lVar1 + 0x94);

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -378,12 +379,12 @@ LAB_18037d51b:
   puVar6 = puStack_1b8;
   pppppppuVar10 = pppppppuStack_270;
   if (pppppppuStack_270 != (uint64_t *******)0x0) {
-    FUN_18004b790(&pppppppuStack_280,*pppppppuStack_270);
+    SystemCache_Manager(&pppppppuStack_280,*pppppppuStack_270);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(pppppppuVar10);
   }
   if (puStack_1b8 != (uint64_t *)0x0) {
-    FUN_18004b790(&pppppppuStack_1c8,*puStack_1b8);
+    SystemCache_Manager(&pppppppuStack_1c8,*puStack_1b8);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(puVar6);
   }
@@ -415,7 +416,7 @@ int64_t FUN_180455a30(int64_t param_1,int64_t param_2,uint64_t param_3,uint para
       if (((((*(uint *)(lVar5 + 0x134) & param_4 & 0xfffffffe) == (param_4 & 0xfffffffe)) ||
            ((*(uint *)(lVar5 + 0x134) & 1) != 0)) && ((*(byte *)(lVar5 + 0x139) & 1) != 0)) &&
          (((*(byte *)(lVar5 + 0x139) & 2) == 0 &&
-          (cVar2 = FUN_18038d0a0(lVar5,param_2), cVar2 != '\0')))) {
+          (cVar2 = SystemCore_PerformanceMonitor(lVar5,param_2), cVar2 != '\0')))) {
         if (param_5 != '\0') {
           return lVar5;
         }
@@ -954,7 +955,7 @@ void FUN_1804563a0(int64_t *param_1,int8_t param_2)
   if (param_1 != (int64_t *)0x0) {
     plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,0xfffffffffffffffe);
     plStackX_18 = plVar2;
-    FUN_180049830(plVar2);
+    UltraHighFreq_PerformanceMonitor1(plVar2);
     *plVar2 = (int64_t)&memory_allocator_3160_ptr;
     plVar2[0x19] = 0;
     aplStackX_8[0] = param_1;

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -149,7 +150,7 @@ LAB_1808d9710:
                 else if (iVar13 < iVar9) {
                   iVar13 = iVar9;
                 }
-                iVar5 = FUN_1808532e0(unaff_RBP + 0x60,iVar13);
+                iVar5 = SystemCore_DataProcessor0(unaff_RBP + 0x60,iVar13);
                 if (iVar5 != 0) {
                   return;
                 }
@@ -386,7 +387,7 @@ LAB_1808d9713:
               else if (iVar12 < iVar8) {
                 iVar12 = iVar8;
               }
-              iVar4 = FUN_1808532e0(unaff_RBP + 0x60,iVar12);
+              iVar4 = SystemCore_DataProcessor0(unaff_RBP + 0x60,iVar12);
               if (iVar4 != 0) {
                 return;
               }
@@ -522,7 +523,7 @@ void FUN_1808d9732(uint64_t param_1,int64_t *param_2)
                 else if (iVar10 < iVar6) {
                   iVar10 = iVar6;
                 }
-                iVar3 = FUN_1808532e0(unaff_RBP + 0x60,iVar10);
+                iVar3 = SystemCore_DataProcessor0(unaff_RBP + 0x60,iVar10);
                 if (iVar3 != 0) {
                   return;
                 }
@@ -787,7 +788,7 @@ void FUN_1808d9bd0(uint64_t *param_1)
       lVar4 = lVar4 + 1;
     } while (lVar4 < *(int *)(param_1 + 10));
   }
-  FUN_18085dbf0(param_1 + 9);
+  SystemController(param_1 + 9);
   plVar1 = param_1 + 6;
   *(int64_t *)param_1[7] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = param_1[7];
@@ -811,8 +812,8 @@ void FUN_1808d9bd0(uint64_t *param_1)
     plVar5 = plVar2;
   }
   *(int32_t *)((int64_t)plVar5 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar5 + 4);
-  FUN_18084c220(plVar5 + 2);
+  UltraHighFreq_InputHandler1(plVar5 + 4);
+  UltraHighFreq_InputHandler1(plVar5 + 2);
   *(int64_t *)plVar5[1] = *plVar5;
   *(int64_t *)(*plVar5 + 8) = plVar5[1];
   plVar5[1] = (int64_t)plVar5;
@@ -854,7 +855,7 @@ void FUN_1808d9bf4(void)
     }
     lVar4 = lVar4 + 1;
   } while (lVar4 < unaff_RBP);
-  FUN_18085dbf0(unaff_R14 + 9);
+  SystemController(unaff_R14 + 9);
   plVar1 = unaff_R14 + 6;
   *(int64_t *)unaff_R14[7] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = unaff_R14[7];
@@ -878,8 +879,8 @@ void FUN_1808d9bf4(void)
     plVar5 = plVar2;
   }
   *(int32_t *)((int64_t)plVar5 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar5 + 4);
-  FUN_18084c220(plVar5 + 2);
+  UltraHighFreq_InputHandler1(plVar5 + 4);
+  UltraHighFreq_InputHandler1(plVar5 + 2);
   *(int64_t *)plVar5[1] = *plVar5;
   *(int64_t *)(*plVar5 + 8) = plVar5[1];
   plVar5[1] = (int64_t)plVar5;

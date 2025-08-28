@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 
 // 99_part_09_part030.c - 6 个函数
 
@@ -29,7 +35,7 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
   int8_t auStack_e8 [208];
   
   if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-    FUN_1805d4440(param_1 + 1);
+    SystemCore_Validator(param_1 + 1);
   }
   if ((*(char *)((int64_t)param_1 + 0xd6) == '\0') ||
      (((param_2 == '\0' && ((*(byte *)(param_1 + 0x269) & 2) == 0)) &&
@@ -61,17 +67,17 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
   }
   uVar10 = *(uint *)(param_1 + 2);
   if ((uVar10 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
     uVar10 = *(uint *)(param_1 + 2);
   }
   fVar16 = *(float *)(param_1 + 0x22);
   if ((uVar10 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
     uVar10 = *(uint *)(param_1 + 2);
   }
   fVar17 = *(float *)((int64_t)param_1 + 0x10c);
   if ((uVar10 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
   }
   fVar18 = *(float *)((int64_t)param_1 + 0x114);
   uVar11 = 0xffffffff;
@@ -80,14 +86,14 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
     lVar9 = *param_1;
     lVar2 = *(int64_t *)(&system_error_code + (int64_t)*(int *)(lVar9 + 0x268) * 8);
     lVar3 = *(int64_t *)(lVar9 + 0x260);
-    lVar9 = FUN_1805a0610(lVar9 + 0x28,1);
+    lVar9 = PhysicsSystem_ForceCalculator(lVar9 + 0x28,1);
     if (lVar9 == 0) {
       uVar12 = 0xffffffff;
     }
     else {
       uVar12 = *(int32_t *)(lVar9 + 0x1c);
     }
-    iVar6 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
+    iVar6 = SystemCacheManager(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
                           uVar12);
     iVar6 = *(int *)(system_system_config + (int64_t)iVar6 * 4);
     if (iVar6 == -1) {
@@ -120,7 +126,7 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
     fVar14 = *(float *)((int64_t)*(int *)(lVar9 + 0xf0) * 0xa0 + 0x84 + *(int64_t *)(lVar9 + 0xd0)
                        );
     if ((uVar10 & 1) == 0) {
-      FUN_1805d3210(param_1 + 1);
+      SystemCore_ThreadManager(param_1 + 1);
     }
     fVar14 = (0.02 / fVar14) * *(float *)(param_1 + 0xd);
     if (0.0 <= fVar14) {
@@ -138,7 +144,7 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
   }
   else {
     if ((*(uint *)(param_1 + 2) & 0x1000) == 0) {
-      FUN_1805d4df0(param_1 + 1);
+      SystemCore_Initializer0(param_1 + 1);
       fVar18 = *(float *)((int64_t)param_1 + 0x114);
     }
     fVar16 = (fVar18 - fVar17) / ((fVar16 - fVar17) + (fVar18 - fVar17));
@@ -192,11 +198,11 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
     }
 FUN_1805cc66f:
     if (iVar6 == 3) {
-      lVar9 = FUN_1805a0610(*param_1 + 0x28,1);
+      lVar9 = PhysicsSystem_ForceCalculator(*param_1 + 0x28,1);
       if (lVar9 != 0) {
         uVar11 = *(int32_t *)(lVar9 + 0x34);
       }
-      lVar9 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
+      lVar9 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
                             uVar11);
       fVar16 = *(float *)(lVar9 + 0x1d8);
       fVar18 = *(float *)(lVar9 + 0x188);
@@ -377,11 +383,11 @@ void FUN_1805cc66f(char param_1)
     }
   }
   else {
-    lVar5 = FUN_1805a0610(*unaff_RDI + 0x28,1);
+    lVar5 = PhysicsSystem_ForceCalculator(*unaff_RDI + 0x28,1);
     if (lVar5 != 0) {
       unaff_ESI = *(int *)(lVar5 + 0x34);
     }
-    lVar5 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(*unaff_RDI + 0x590) + 0xac),
+    lVar5 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(*unaff_RDI + 0x590) + 0xac),
                           unaff_ESI);
     fVar7 = *(float *)(lVar5 + 0x1d8);
     fVar1 = *(float *)(lVar5 + 0x188);
@@ -534,7 +540,7 @@ FUN_1805ccc2c:
        ((float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2ee] * 8) - param_1[0x2ed])
         * 1e-05 < -100.0)) || (9 < *(uint *)((int64_t)param_1 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)param_1 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0(param_1);
+    RenderingSystem_DrawCallManager(param_1);
   }
   return;
 }
@@ -676,7 +682,7 @@ FUN_1805ccc2c:
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -819,7 +825,7 @@ FUN_1805ccc24:
        ((float)(*(int64_t *)(unaff_R15 + (int64_t)(int)unaff_R14[0x2ee] * 8) - unaff_R14[0x2ed]) *
         unaff_XMM9_Da < -100.0)) || (9 < *(uint *)((int64_t)unaff_R14 + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_R14 + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }

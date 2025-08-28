@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part057.c - 5 个函数
 
 // 函数: void FUN_1803e0670(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t param_4)
@@ -40,7 +48,7 @@ void FUN_1803e0670(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t para
     uStack_10 = *(int32_t *)(param_1 + 0xb8);
     uStack_c = *(int32_t *)(param_1 + 0xbc);
     lVar1 = param_3;
-    FUN_180084ae0(&uStack_48);
+    Utilities_DataValidator(&uStack_48);
     *(uint64_t *)(lVar1 + 0xc0) = uStack_48;
     *(uint64_t *)(lVar1 + 200) = uStack_40;
     *(uint64_t *)(lVar1 + 0xd0) = uStack_38;
@@ -291,7 +299,7 @@ void FUN_1803e0bc0(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *pa
     param_3 = (int64_t *)(param_1 + 0x408);
     param_4 = (int64_t *)CONCAT71((int7)((uint64_t)param_4 >> 8),1);
     puVar6 = (uint64_t *)
-             FUN_1800b08e0(system_resource_state,&plStackX_10,param_3,param_4,0,0xfffffffffffffffe);
+             SystemCore_GarbageCollector(system_resource_state,&plStackX_10,param_3,param_4,0,0xfffffffffffffffe);
     uVar3 = *puVar6;
     *puVar6 = 0;
     plVar7 = *(int64_t **)(param_1 + 0x400);
@@ -309,7 +317,7 @@ void FUN_1803e0bc0(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *pa
   }
   else {
     param_3 = (int64_t *)(param_1 + 0x118);
-    puVar6 = (uint64_t *)FUN_1800b33d0(system_resource_state,&plStackX_18);
+    puVar6 = (uint64_t *)RenderingSystem_ShaderCompiler0(system_resource_state,&plStackX_18);
     uVar3 = *puVar6;
     *puVar6 = 0;
     plVar7 = *(int64_t **)(param_1 + 0x108);
@@ -321,7 +329,7 @@ void FUN_1803e0bc0(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *pa
       (**(code **)(*plStackX_18 + 0x38))();
     }
     if (*(int64_t *)(param_1 + 0x108) == 0) goto LAB_1803e0d25;
-    puVar6 = (uint64_t *)FUN_1800763c0(*(int64_t *)(param_1 + 0x108),&plStackX_20);
+    puVar6 = (uint64_t *)SystemCore_BufferManager(*(int64_t *)(param_1 + 0x108),&plStackX_20);
     uVar3 = *puVar6;
     *puVar6 = 0;
     plVar7 = *(int64_t **)(param_1 + 0x108);

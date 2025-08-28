@@ -482,7 +482,7 @@ void FUN_180606e30(int64_t param_1,char param_2,char param_3,uint64_t *param_4)
     uStack_3c = uStack_8c;
     uStack_38 = uVar3;
     uStack_30 = uVar4;
-    FUN_18063b5f0(&uStack_78,&uStack_98);
+    SystemSecurityManager(&uStack_78,&uStack_98);
     *(int32_t *)param_4 = uStack_78;
     *(int32_t *)((int64_t)param_4 + 4) = uStack_74;
     *(int32_t *)(param_4 + 1) = uStack_70;
@@ -576,7 +576,7 @@ void FUN_180606e60(uint64_t param_1,char param_2,char param_3,int32_t *param_4)
   uStack000000000000007c = uStack000000000000002c;
   uStack0000000000000080 = uVar2;
   uStack0000000000000088 = uVar3;
-  FUN_18063b5f0(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
+  SystemSecurityManager(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
   *param_4 = uStack0000000000000040;
   param_4[1] = uStack0000000000000044;
   param_4[2] = uStack0000000000000048;
@@ -1041,7 +1041,7 @@ void FUN_1806075e0(int64_t *param_1)
   aplStack_48[0] = plStackX_10;
   plStackX_10 = (int64_t *)0x0;
   pplStackX_8 = (int64_t **)0x0;
-  pplVar2 = (int64_t **)FUN_18006b640(uVar3,aplStack_48);
+  pplVar2 = (int64_t **)SystemCore_ErrorHandler(uVar3,aplStack_48);
   pplVar1 = pplVar2;
   pplStackX_20 = pplVar2;
   uVar3 = system_context_ptr;

@@ -352,13 +352,13 @@ void FUN_1806d31ca(void)
 uint64_t * FUN_1806d3200(uint64_t *param_1,int32_t *param_2)
 
 {
-  FUN_1806d3300(param_1,*param_2);
+  SystemCore_CleanupManager(param_1,*param_2);
   (**(code **)*param_1)(param_1,&system_data_c8e4,1);
-  FUN_1806d3300(param_1,param_2[1]);
+  SystemCore_CleanupManager(param_1,param_2[1]);
   (**(code **)*param_1)(param_1,&system_data_c8e4,1);
-  FUN_1806d3300(param_1,param_2[2]);
+  SystemCore_CleanupManager(param_1,param_2[2]);
   (**(code **)*param_1)(param_1,&system_data_c8e4,1);
-  FUN_1806d3300(param_1,param_2[3]);
+  SystemCore_CleanupManager(param_1,param_2[3]);
   return param_1;
 }
 
@@ -367,11 +367,11 @@ uint64_t * FUN_1806d3200(uint64_t *param_1,int32_t *param_2)
 uint64_t * FUN_1806d3290(uint64_t *param_1,int32_t *param_2)
 
 {
-  FUN_1806d3300(param_1,*param_2);
+  SystemCore_CleanupManager(param_1,*param_2);
   (**(code **)*param_1)(param_1,&system_data_c8e4,1);
-  FUN_1806d3300(param_1,param_2[1]);
+  SystemCore_CleanupManager(param_1,param_2[1]);
   (**(code **)*param_1)(param_1,&system_data_c8e4,1);
-  FUN_1806d3300(param_1,param_2[2]);
+  SystemCore_CleanupManager(param_1,param_2[2]);
   return param_1;
 }
 
@@ -380,8 +380,8 @@ uint64_t * FUN_1806d3290(uint64_t *param_1,int32_t *param_2)
 
 
 
-// 函数: void FUN_1806d3300(void)
-void FUN_1806d3300(void)
+// 函数: void SystemCore_CleanupManager(void)
+void SystemCore_CleanupManager(void)
 
 {
   int8_t auStack_98 [144];

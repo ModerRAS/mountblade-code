@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -133,7 +138,7 @@ void FUN_1803d64f0(int64_t *param_1,int param_2,int param_3)
       if ((iStack_238 == *piVar21) && (iStack_234 == piVar21[1])) goto LAB_1803d6689;
     }
     puStack_248 = (uint64_t *)CONCAT44(puStack_248._4_4_,1);
-    FUN_18066c220(lVar8 + 0x58,acStack_230,(uint64_t)*(uint *)(lVar8 + 0x48),
+    RenderingShaderProcessor0(lVar8 + 0x58,acStack_230,(uint64_t)*(uint *)(lVar8 + 0x48),
                   *(int32_t *)(lVar8 + 0x50));
     piVar21 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar8 + 100));
     *(uint64_t *)piVar21 = CONCAT44(iStack_234,iStack_238);
@@ -249,7 +254,7 @@ LAB_1803d6689:
       uStack_d4 = 0;
       uStack_d0 = 0;
       uStack_cc = 0;
-      FUN_18063ad30(&uStack_178,lVar8 + 0x100,&fStack_1b8);
+      UltraHighFreq_DataProcessor1(&uStack_178,lVar8 + 0x100,&fStack_1b8);
       plVar22 = (int64_t *)param_1[3];
       lVar9 = *(int64_t *)param_1[2];
       bVar7 = *(byte *)(*plVar22 + 0x1bd8);
@@ -409,7 +414,7 @@ void FUN_1803d6522(int64_t *param_1,int param_2,int param_3)
       if ((iStack0000000000000030 == *piVar27) && (iStack0000000000000034 == piVar27[1]))
       goto LAB_1803d6689;
     }
-    FUN_18066c220(lVar10 + 0x58,&stack0x00000038,(uint64_t)*(uint *)(lVar10 + 0x48),
+    RenderingShaderProcessor0(lVar10 + 0x58,&stack0x00000038,(uint64_t)*(uint *)(lVar10 + 0x48),
                   *(int32_t *)(lVar10 + 0x50),1);
     piVar27 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar10 + 100));
     *(uint64_t *)piVar27 = CONCAT44(iStack0000000000000034,iStack0000000000000030);
@@ -536,7 +541,7 @@ LAB_1803d6689:
       unaff_RBP[0x25] = 0;
       unaff_RBP[0x26] = 0;
       unaff_RBP[0x27] = 0;
-      FUN_18063ad30(unaff_RBP + -4,lVar10 + 0x100,unaff_RBP + -0x14);
+      UltraHighFreq_DataProcessor1(unaff_RBP + -4,lVar10 + 0x100,unaff_RBP + -0x14);
       plVar28 = (int64_t *)param_1[3];
       lVar11 = *(int64_t *)param_1[2];
       bVar9 = *(byte *)(*plVar28 + 0x1bd8);
@@ -729,7 +734,7 @@ void FUN_1803d69c0(int64_t *param_1,int param_2,int param_3)
       if ((iStack_260 == *piVar20) && (iStack_25c == piVar20[1])) goto LAB_1803d6b64;
     }
     puStack_278 = (uint64_t *)CONCAT44(puStack_278._4_4_,1);
-    FUN_18066c220(lVar8 + 0x58,acStack_258,(uint64_t)*(uint *)(lVar8 + 0x48),
+    RenderingShaderProcessor0(lVar8 + 0x58,acStack_258,(uint64_t)*(uint *)(lVar8 + 0x48),
                   *(int32_t *)(lVar8 + 0x50));
     piVar20 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar8 + 100));
     *(uint64_t *)piVar20 = CONCAT44(iStack_25c,iStack_260);
@@ -844,7 +849,7 @@ LAB_1803d6b64:
         uStack_f4 = 0;
         uStack_f0 = 0;
         uStack_ec = 0;
-        FUN_18063ad30(&uStack_198,lVar8 + 0x100,&fStack_1d8,lVar24);
+        UltraHighFreq_DataProcessor1(&uStack_198,lVar8 + 0x100,&fStack_1d8,lVar24);
         lVar25 = *(int64_t *)param_1[3];
         bVar7 = *(byte *)(*(int64_t *)(uVar21 + *plVar26) + 0x1bd8);
         fVar1 = (float)uStack_e8;

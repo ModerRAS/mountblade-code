@@ -109,7 +109,7 @@ LAB_1805d1360:
     else {
       if (!bVar1) {
         if ((*(byte *)(unaff_RSI + 2) & 0x80) == 0) {
-          fVar19 = (float)FUN_1805d4440(unaff_RSI + 1);
+          fVar19 = (float)SystemCore_Validator(unaff_RSI + 1);
         }
         if (*(char *)((int64_t)unaff_RSI + 0xd5) != cVar17) goto LAB_1805d1360;
       }

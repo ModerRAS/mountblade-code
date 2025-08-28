@@ -48,7 +48,7 @@ void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
           if (((((*(uint *)(lVar9 + 0x134) & uVar2 & 0xfffffffe) == (uVar2 & 0xfffffffe)) ||
                ((*(uint *)(lVar9 + 0x134) & 1) != 0)) && ((*(byte *)(lVar9 + 0x139) & 1) != 0)) &&
              (((*(byte *)(lVar9 + 0x139) & 2) == 0 &&
-              (cVar5 = FUN_18038d0a0(lVar9,&uStack_78), cVar5 != '\0')))) {
+              (cVar5 = SystemCore_PerformanceMonitor(lVar9,&uStack_78), cVar5 != '\0')))) {
             if (cVar1 != '\0') break;
             fVar13 = (float)func_0x00018038d2f0(lVar9,&uStack_78);
             fVar13 = ABS(fVar13);

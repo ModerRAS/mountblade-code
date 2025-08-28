@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part202.c - 1 个函数
 
 // 函数: void FUN_180385230(int64_t param_1)
@@ -147,7 +151,7 @@ void FUN_180385230(int64_t param_1)
     uStack_558 = 0x61;
     iStack_538 = iVar18;
     puVar3 = (uint64_t *)
-             FUN_1800b0a10(uVar23,&plStack_448,*(int32_t *)(*(int64_t *)(param_1 + 0x90) + 0xa0)
+             SystemCore_ConfigManager(uVar23,&plStack_448,*(int32_t *)(*(int64_t *)(param_1 + 0x90) + 0xa0)
                            ,&puStack_168);
     uVar23 = *puVar3;
     *puVar3 = 0;
@@ -287,7 +291,7 @@ LAB_180385551:
       (**(code **)(*plStack_360 + 0x28))(plStack_360);
     }
     uVar23 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    pplVar6 = (int64_t **)FUN_18005ce30(uVar23,&puStack_408);
+    pplVar6 = (int64_t **)SystemCore_StreamController(uVar23,&puStack_408);
     pplStack_420 = pplVar6;
     if (pplVar6 != (int64_t **)0x0) {
       (*(code *)(*pplVar6)[5])(pplVar6);
@@ -358,7 +362,7 @@ LAB_180385551:
       uStack_558 = 0x61;
       iStack_538 = (int)auVar25._0_4_ << 7;
       puVar3 = (uint64_t *)
-               FUN_1800b0a10(uVar23,&plStack_488,
+               SystemCore_ConfigManager(uVar23,&plStack_488,
                              *(int32_t *)(*(int64_t *)(param_1 + 0x90) + 0xa0),&puStack_130);
       uVar23 = *puVar3;
       *puVar3 = 0;
@@ -510,7 +514,7 @@ LAB_180385551:
         (**(code **)(*plVar4 + 0x28))(plVar4);
       }
       uVar23 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      pplVar6 = (int64_t **)FUN_18005ce30(uVar23,&puStack_328);
+      pplVar6 = (int64_t **)SystemCore_StreamController(uVar23,&puStack_328);
       pplStack_498 = pplVar6;
       if (pplVar6 != (int64_t **)0x0) {
         (*(code *)(*pplVar6)[5])(pplVar6);
@@ -576,7 +580,7 @@ LAB_180385551:
     uStack_558 = 0x21;
     iStack_538 = (int)auVar27._0_4_ << 7;
     puVar3 = (uint64_t *)
-             FUN_1800b0a10(uVar23,&plStack_468,*(int32_t *)(*(int64_t *)(param_1 + 0x90) + 0xa0)
+             SystemCore_ConfigManager(uVar23,&plStack_468,*(int32_t *)(*(int64_t *)(param_1 + 0x90) + 0xa0)
                            ,&puStack_f8);
     uVar23 = *puVar3;
     *puVar3 = 0;
@@ -659,7 +663,7 @@ LAB_180385551:
       (**(code **)(*plVar4 + 0x28))(plVar4);
     }
     uVar23 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    plVar8 = (int64_t *)FUN_18005ce30(uVar23,&puStack_248);
+    plVar8 = (int64_t *)SystemCore_StreamController(uVar23,&puStack_248);
     ppuStack_430 = (void **)plVar8;
     if (plVar8 != (int64_t *)0x0) {
       (**(code **)(*plVar8 + 0x28))(plVar8);

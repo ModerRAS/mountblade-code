@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -44,7 +45,7 @@ void FUN_18040cf70(uint64_t *param_1,uint64_t *param_2)
   *(int32_t *)((int64_t)param_1 + 0x2c) = 0;
   *(int32_t *)((int64_t)param_1 + 0x3c) = 0x3f800000;
   FUN_1802f5bc0();
-  FUN_18063b470(&uStack_88,param_1);
+  AdvancedProcessor_StateManager0(&uStack_88,param_1);
   *(int32_t *)(param_1 + 8) = uStack_88;
   *(int32_t *)((int64_t)param_1 + 0x44) = uStack_84;
   *(int32_t *)(param_1 + 9) = uStack_80;
@@ -213,9 +214,9 @@ int64_t FUN_18040d0c0(char *param_1,int64_t param_2)
       uStack_284 = puVar1[1];
       uStack_280 = puVar1[2];
       uStack_27c = puVar1[3];
-      FUN_180300bf0(&uStack_288,&uStack_268,param_1 + 0x10);
+      UltraHighFreq_FileSystem1(&uStack_288,&uStack_268,param_1 + 0x10);
     }
-    FUN_18063b5f0(&fStack_248,&uStack_268);
+    SystemSecurityManager(&fStack_248,&uStack_268);
     fStack_148 = fStack_248;
     fStack_144 = fStack_248;
     fStack_140 = fStack_248;
@@ -268,7 +269,7 @@ int64_t FUN_18040d0c0(char *param_1,int64_t param_2)
     uStack_280 = 0x3f800000;
     uStack_27c = 0x7f7fffff;
     FUN_180645340(&fStack_248,lVar9 + 0x114,lVar9 + 0x124,&uStack_288);
-    FUN_180084760(&fStack_248,&fStack_188);
+    SystemCore_PerformanceMonitor(&fStack_248,&fStack_188);
     if (*(int64_t *)(param_2 + 0xd0) != 0) {
       lVar8 = *(int64_t *)(*(int64_t *)(param_2 + 0xd0) + 0x1000);
     }
@@ -310,13 +311,13 @@ int64_t FUN_18040d0c0(char *param_1,int64_t param_2)
         uStack_284 = *(int32_t *)(lVar9 + 0x44);
         uStack_280 = *(int32_t *)(lVar9 + 0x48);
         uStack_27c = *(int32_t *)(lVar9 + 0x4c);
-        FUN_180300bf0(&uStack_288,&uStack_268,param_1 + 0x10);
+        UltraHighFreq_FileSystem1(&uStack_288,&uStack_268,param_1 + 0x10);
         fStack_158 = (float)uStack_258;
         fStack_154 = uStack_258._4_4_;
         fStack_150 = (float)uStack_250;
         fStack_14c = (float)uStack_250._4_4_;
       }
-      FUN_18063b5f0(&fStack_248,&uStack_268);
+      SystemSecurityManager(&fStack_248,&uStack_268);
       fStack_178 = fStack_238;
       fStack_174 = fStack_234;
       fStack_170 = fStack_230;
@@ -342,7 +343,7 @@ int64_t FUN_18040d0c0(char *param_1,int64_t param_2)
       fStack_218 = fStack_218 * fVar10;
       fStack_214 = fStack_214 * fVar10;
       fStack_210 = fStack_210 * fVar10;
-      FUN_180084760(&fStack_248,&fStack_208);
+      SystemCore_PerformanceMonitor(&fStack_248,&fStack_208);
       if (*(int64_t *)(param_2 + 0xd0) != 0) {
         lVar8 = *(int64_t *)(*(int64_t *)(param_2 + 0xd0) + 0x1000);
       }
@@ -510,9 +511,9 @@ void FUN_18040d148(int64_t param_1)
     uStack0000000000000044 = puVar1[1];
     uStack0000000000000048 = puVar1[2];
     uStack000000000000004c = puVar1[3];
-    FUN_180300bf0(&stack0x00000040,&stack0x00000060,unaff_RBX + 0x10);
+    UltraHighFreq_FileSystem1(&stack0x00000040,&stack0x00000060,unaff_RBX + 0x10);
   }
-  FUN_18063b5f0(unaff_RBP + -0x20,&stack0x00000060);
+  SystemSecurityManager(unaff_RBP + -0x20,&stack0x00000060);
   fVar33 = unaff_RBP[8];
   fVar34 = unaff_RBP[9];
   fVar15 = unaff_RBP[10];
@@ -590,7 +591,7 @@ void FUN_18040d148(int64_t param_1)
   unaff_RBP[0x32] = fVar34 * fVar24 + fVar33 * fVar23 + fVar32 * fVar25;
   unaff_RBP[0x33] = fVar34 * fVar26 + fVar33 * fVar26 + fVar32 * fVar26;
   FUN_180645340(unaff_RBP + -0x20,lVar28 + 0x114,lVar28 + 0x124,&stack0x00000040);
-  FUN_180084760(unaff_RBP + -0x20,unaff_RBP + 0x10);
+  SystemCore_PerformanceMonitor(unaff_RBP + -0x20,unaff_RBP + 0x10);
   if (*(int64_t *)(unaff_RSI + 0xd0) != 0) {
     unaff_RDI = *(int64_t *)(*(int64_t *)(unaff_RSI + 0xd0) + 0x1000);
   }

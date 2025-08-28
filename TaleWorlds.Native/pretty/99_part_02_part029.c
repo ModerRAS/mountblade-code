@@ -252,7 +252,7 @@ void FUN_1801a0854(uint64_t param_1,code *param_2)
                   unaff_RBP[0x49] = fVar27;
                   unaff_RBP[0x4a] = fVar26;
                   unaff_RBP[0x4b] = fVar31;
-                  FUN_18063b5f0(unaff_RBP + 0x5c,unaff_RBP + 0x44);
+                  SystemSecurityManager(unaff_RBP + 0x5c,unaff_RBP + 0x44);
                   fVar38 = unaff_RBP[0x5c];
                   fVar30 = unaff_RBP[0x5d];
                   fVar28 = unaff_RBP[0x5e];
@@ -338,7 +338,7 @@ void FUN_1801a0854(uint64_t param_1,code *param_2)
                   unaff_RBP[-5] = 0.0;
                   unaff_RBP[-1] = 0.0;
                   unaff_RBP[3] = 1.0;
-                  FUN_180084760(unaff_RBP + -0xc,unaff_RBP + 4);
+                  SystemCore_PerformanceMonitor(unaff_RBP + -0xc,unaff_RBP + 4);
                   fVar32 = unaff_RBP[0x1d];
                   fVar27 = unaff_RBP[0x1e];
                   fVar26 = unaff_RBP[0x1c];
@@ -372,7 +372,7 @@ void FUN_1801a0854(uint64_t param_1,code *param_2)
                   unaff_RBP[0x4d] = fVar39;
                   unaff_RBP[0x4e] = fVar40;
                   unaff_RBP[0x4f] = fVar29;
-                  pfVar20 = (float *)FUN_1801c0fb0(unaff_RBP + 0x4c,unaff_RBP + 0x7c,
+                  pfVar20 = (float *)SystemFileHandler(unaff_RBP + 0x4c,unaff_RBP + 0x7c,
                                                    unaff_RBP + -0x1c);
                   lVar24 = in_stack_00000060;
                   fVar32 = unaff_RBP[0x22];

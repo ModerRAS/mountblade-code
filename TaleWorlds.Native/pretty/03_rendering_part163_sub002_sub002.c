@@ -1,6 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part163_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_18036b380(int64_t *******param_1)
@@ -181,7 +193,7 @@ void FUN_18036b380(int64_t *******param_1)
   ppppppplStack_4b0 = param_1;
   if (param_1[0x1c] == (int64_t ******)0x0) {
     uVar13 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    pppppplVar14 = (int64_t ******)FUN_180275090(uVar13);
+    pppppplVar14 = (int64_t ******)RenderingSystem_ShaderManager(uVar13);
     if (pppppplVar14 != (int64_t ******)0x0) {
       ppppppplStack_4c0 = (int64_t *******)pppppplVar14;
       (*(code *)(*pppppplVar14)[5])(pppppplVar14);
@@ -198,7 +210,7 @@ void FUN_18036b380(int64_t *******param_1)
       (*(code *)(*ppppppplStack_4c8)[5])();
     }
     ppppppplStack_498 = (int64_t *******)&ppppppplStack_4c8;
-    FUN_1802edcd0(pppppplVar14,ppppppplStack_4c8,1);
+    PhysicsSystem_TerrainCollider(pppppplVar14,ppppppplStack_4c8,1);
     if (ppppppplStack_4c8 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplStack_4c8)[7])();
     }
@@ -262,7 +274,7 @@ void FUN_18036b380(int64_t *******param_1)
       ppppppplStack_4c8 = ppppppplVar16;
       FUN_18007f770(ppppppplVar16);
       uVar13 = FUN_180275820(param_1[0x13]);
-      puVar17 = (uint64_t *)FUN_1800763c0(uVar13,&uStack_468);
+      puVar17 = (uint64_t *)SystemCore_BufferManager(uVar13,&uStack_468);
       ppppppplVar15 = (int64_t *******)*puVar17;
       *puVar17 = 0;
       ppppppplStack_438 = (int64_t *******)0x0;
@@ -280,7 +292,7 @@ void FUN_18036b380(int64_t *******param_1)
       *(int8_t *)uStack_468 = 0;
       uStack_488 = ppppppplVar18;
       ppppppplStack_438 = ppppppplVar18;
-      FUN_18022f2e0(ppppppplVar18,ppppppplVar15,0);
+      RenderingSystem_MaterialProcessor(ppppppplVar18,ppppppplVar15,0);
       FUN_180230250(ppppppplVar18);
       if (pppppplVar14 != (int64_t ******)0x0) {
         (*(code *)(*pppppplVar14)[7])(pppppplVar14);
@@ -288,7 +300,7 @@ void FUN_18036b380(int64_t *******param_1)
       uVar25 = (uint)uStack_398;
     }
     CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    ppppppplVar19 = (int64_t *******)FUN_180275090();
+    ppppppplVar19 = (int64_t *******)RenderingSystem_ShaderManager();
     ppppppplStack_498 = ppppppplVar19;
     if (ppppppplVar19 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplVar19)[5])();
@@ -392,7 +404,7 @@ void FUN_18036b380(int64_t *******param_1)
                                     pfVar20[0xf],
                                     pfVar20[2] * 0.0 + fVar38 * pfVar20[6] + fVar40 * pfVar20[10] +
                                     pfVar20[0xe]);
-              FUN_180235000(ppppppplVar18,&uStack_458);
+              SystemCore_DataSerializer(ppppppplVar18,&uStack_458);
               iVar32 = iVar32 + 1;
               lVar26 = lVar26 + 0x10;
             } while (iVar32 < *(int *)ppppppplVar31);
@@ -482,7 +494,7 @@ void FUN_18036b380(int64_t *******param_1)
               uStack_350._4_4_ = (int)((uint64_t)uVar13 >> 0x20);
               iVar27 = uStack_350._4_4_ + iVar23;
               uStack_350 = uVar13;
-              FUN_180235410(ppppppplVar18,iVar32,iVar27,
+              SystemCore_RenderFrame(ppppppplVar18,iVar32,iVar27,
                             *(int *)((int64_t)pppppplVar14[0x12] + lVar26 + 8) + iVar23);
               iVar33 = iVar33 + 1;
               lVar26 = lVar26 + 0xc;
@@ -556,7 +568,7 @@ void FUN_18036b380(int64_t *******param_1)
         fStack_32c = uStack_468._4_4_;
         fStack_328 = fStack_460;
         uStack_324 = uStack_45c;
-        FUN_1800b9f60(&ppppppplStack_340);
+        SystemCore_Parser(&ppppppplStack_340);
         uStack_198 = 0;
         uStack_194 = 0;
         uStack_190 = 0;
@@ -811,7 +823,7 @@ LAB_18036c470:
     }
     FUN_18014c430(&puStack_428);
     if (system_data_aa6b != '\0') {
-      FUN_180075b70(ppppppplVar15);
+      SystemConfig_Manager(ppppppplVar15);
       cVar12 = FUN_180084fa0(ppppppplVar15 + 0x24);
       func_0x0001800773c0(ppppppplVar15,cVar12 != '\0');
       uStack_488 = (int64_t *******)&ppppppplStack_4c0;
@@ -823,7 +835,7 @@ LAB_18036c470:
       ppppppplVar16 = ppppppplStack_438;
       ppppppplVar31 = ppppppplStack_4c8;
       if (ppppppplStack_4c8 != (int64_t *******)0x0) {
-        FUN_18007f840(ppppppplStack_4c8);
+        SystemManager_Validator(ppppppplStack_4c8);
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(ppppppplVar31);
       }
@@ -832,7 +844,7 @@ LAB_18036c470:
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(ppppppplVar16);
       }
-      FUN_180276f30(ppppppplVar19,(int64_t)ppppppplVar19 + 0x214,1);
+      SystemCore_UpdateState(ppppppplVar19,(int64_t)ppppppplVar19 + 0x214,1);
     }
     FUN_1802e9fa0(param_1[0x1d],1,1);
     if (*(char *)(param_1 + 0x1e) != '\0') {
@@ -843,7 +855,7 @@ LAB_18036c470:
         (*(code *)(*ppppppplVar19)[5])(ppppppplVar19);
       }
       ppppppplStack_4c0 = (int64_t *******)&ppppppplStack_4b0;
-      FUN_1802edcd0(pppppplVar14,ppppppplStack_4b0,1);
+      PhysicsSystem_TerrainCollider(pppppplVar14,ppppppplStack_4b0,1);
       if (ppppppplStack_4b0 != (int64_t *******)0x0) {
         (*(code *)(*ppppppplStack_4b0)[7])();
       }

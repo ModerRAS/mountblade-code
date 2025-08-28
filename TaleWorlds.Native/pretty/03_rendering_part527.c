@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -525,7 +526,7 @@ LAB_180554b10:
   iStack_9c = 1;
 LAB_180554b73:
   uStack_a0 = uStack_a0 & 0xffffff00;
-  FUN_180631000(puVar9,&memory_allocator_3384_ptr,&uStack_a0);
+  UltraHighFreq_CacheSystem1(puVar9,&memory_allocator_3384_ptr,&uStack_a0);
   puStack_90 = &system_data_buffer_ptr;
   if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return

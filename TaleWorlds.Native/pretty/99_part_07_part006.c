@@ -1,3 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+#include "fun_aliases_batch.txt"
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -120,13 +128,13 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
   auStack_3c0[0] = 0;
   if (puVar9 != (void *)0x0) {
     DataStructureManager0(&puStack_3d8);
-    FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_3d8);
+    SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_3d8);
   }
   puVar9 = &system_buffer_ptr;
   if ((void *)param_1[3] != (void *)0x0) {
     puVar9 = (void *)param_1[3];
   }
-  FUN_1802c22a0(auStack_4d7,puVar9);
+  SystemData_Processor(auStack_4d7,puVar9);
   if ((void *)*param_1 != &processed_var_6168_ptr) {
     (**(code **)((void *)*param_1 + 0x30))(param_1);
   }
@@ -143,9 +151,9 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
                 ((int64_t)(int)((uint)*(byte *)(lVar3 + 0x335) * iVar15) * 0x10 +
                 *(int64_t *)(lVar3 + 0x1d8));
     }
-    FUN_18029ad30(uVar6,0,plVar12);
+    SystemCore_MemoryManager(uVar6,0,plVar12);
     plVar12 = *(int64_t **)(system_message_buffer + 0x1cd8);
-    lVar3 = FUN_180245280(param_3);
+    lVar3 = SystemLog_Manager(param_3);
     iVar15 = *(int *)(param_3 + 0x357c);
     plVar11 = plVar4;
     if (*(int64_t *)(lVar3 + 0x1e0) != 0) {
@@ -158,7 +166,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       }
     }
     plVar12[0x107e] = (int64_t)plVar11;
-    FUN_18029de40(*(uint64_t *)(system_message_buffer + 0x1cd8),1);
+    SystemCore_ProcessorEx(*(uint64_t *)(system_message_buffer + 0x1cd8),1);
     if (*(char *)((int64_t)param_1 + 0x4c) == '\0') {
       dVar16 = (double)param_1[0xb];
       dVar17 = (double)param_1[0xc];
@@ -169,7 +177,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
     }
     uStack_4e0 = 0;
     uStack_4e8 = 0;
-    FUN_18029c8a0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,0,0x3f800000);
+    UtilitiesSystem_MathCalculator(*(uint64_t *)(system_message_buffer + 0x1cd8),1,0,0x3f800000);
     lVar7 = system_message_buffer;
     *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1df0) =
          *(uint64_t *)(param_3 + 0x35a8);
@@ -186,7 +194,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       *(float *)(*(int64_t *)(lVar7 + 0x1cd8) + 0x1be8) = 1.0 / (float)*(ushort *)(lVar3 + 0x32c);
       *(float *)(*(int64_t *)(lVar7 + 0x1cd8) + 0x1bec) = 1.0 / (float)*(ushort *)(lVar3 + 0x32e);
     }
-    FUN_18029fc10(*(int64_t *)(lVar7 + 0x1cd8),*(uint64_t *)(lVar7 + 0x1c88),
+    UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar7 + 0x1cd8),*(uint64_t *)(lVar7 + 0x1c88),
                   *(int64_t *)(lVar7 + 0x1cd8) + 0x1be0,0x230);
     uVar14 = param_4 | 0x400;
     if (*(int *)(param_3 + 0x9a34) != 2) {
@@ -330,14 +338,14 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
     if (plStack_460 != (int64_t *)0x0) {
       (**(code **)(*plStack_460 + 0x28))();
     }
-    uVar6 = FUN_180299eb0(uVar6,param_3,&lStack_440,&cStack_4d8);
+    uVar6 = UIRenderingEngine(uVar6,param_3,&lStack_440,&cStack_4d8);
     if (cStack_4d8 == '\0') {
       param_1[0x1f] = uVar6;
       *(int32_t *)((int64_t)param_1 + 0x134) = 1;
       *(int32_t *)((int64_t)param_1 + 0x114) = *(int32_t *)(param_1[0x85] + 0x324);
-      lVar3 = FUN_180245280(param_3);
+      lVar3 = SystemLog_Manager(param_3);
       if (lVar3 != 0) {
-        lVar3 = FUN_180245280(param_3);
+        lVar3 = SystemLog_Manager(param_3);
         uVar13 = *(int32_t *)(lVar3 + 0x324);
       }
       *(int32_t *)(param_1 + 0x22) = uVar13;
@@ -411,7 +419,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
   }
   system_system_data_ui = system_system_data_ui + -1;
   (**(code **)(*system_system_data_ui + 0x20))();
-  FUN_1802c2ac0(&puStack_3d8);
+  SystemCore_Synchronizer(&puStack_3d8);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_508);
 }

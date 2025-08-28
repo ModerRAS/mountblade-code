@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part206.c - 20 个函数
 
 // 函数: void FUN_180188b30(int64_t *param_1,int64_t param_2,uint64_t *param_3)
@@ -41,7 +45,7 @@ void FUN_180188b30(int64_t *param_1,int64_t param_2,uint64_t *param_3)
   if (0x666666666666666 < uStackX_10) {
     lVar9 = -1;
   }
-  lVar9 = FUN_180067110(lVar9);
+  lVar9 = SystemCore_SyscallHandler(lVar9);
   puVar2 = (uint64_t *)(lVar9 + ((param_2 - lVar10) / 0x28) * 0x28);
   uVar8 = param_3[1];
   *puVar2 = *param_3;
@@ -106,7 +110,7 @@ int32_t * FUN_180188d20(int64_t *param_1,int64_t param_2,int32_t *param_3)
   if (0x666666666666666 < uVar10) {
     lVar9 = -1;
   }
-  puVar7 = (int32_t *)FUN_180067110(lVar9);
+  puVar7 = (int32_t *)SystemCore_SyscallHandler(lVar9);
   puVar2 = puVar7 + ((param_2 - lVar12) / 0x28) * 10;
   *(uint64_t *)(puVar2 + 4) = 0;
   *(uint64_t *)(puVar2 + 6) = 0;
@@ -207,7 +211,7 @@ int64_t FUN_180188f60(int64_t *param_1,int64_t param_2,int64_t param_3)
   if (0x666666666666666 < uVar7) {
     lVar5 = -1;
   }
-  lVar3 = FUN_180067110(lVar5);
+  lVar3 = SystemCore_SyscallHandler(lVar5);
   lVar4 = lVar3 + ((param_2 - lVar4) / 0x28) * 0x28;
   lVar11 = lVar3;
   lVar13 = lVar4;
@@ -304,7 +308,7 @@ int64_t FUN_1801891f0(int64_t *param_1,int64_t param_2,int64_t param_3)
   if (0x3ffffffffffffff < uVar10) {
     lVar3 = -1;
   }
-  lVar3 = FUN_180067110(lVar3);
+  lVar3 = SystemCore_SyscallHandler(lVar3);
   uVar4 = param_2 - lVar8 & 0xffffffffffffffc0;
   lVar6 = uVar4 + lVar3;
   FUN_18018b350(lVar6,param_3);
@@ -398,7 +402,7 @@ void FUN_180189470(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (0x1fffffffffffffff < uVar7) {
       lVar3 = -1;
     }
-    lVar3 = FUN_180067110(lVar3);
+    lVar3 = SystemCore_SyscallHandler(lVar3);
     puVar5 = (uint64_t *)(lVar3 + uVar6 * 8);
     for (lVar4 = param_2 - uVar6; lVar4 != 0; lVar4 = lVar4 + -1) {
       *puVar5 = 0;
@@ -481,7 +485,7 @@ LAB_180189786:
   param_1[2] = 0;
   if (uVar2 != 0) {
     if (0x3fffffffffffffff < uVar2) goto LAB_180189786;
-    lVar3 = FUN_180067110(uVar2 * 4);
+    lVar3 = SystemCore_SyscallHandler(uVar2 * 4);
     *param_1 = lVar3;
     param_1[1] = lVar3;
     param_1[2] = uVar2 * 4 + lVar3;

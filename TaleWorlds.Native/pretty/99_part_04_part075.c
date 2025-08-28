@@ -54,8 +54,8 @@ void FUN_1802cd2b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4,
   uStack_44c = 0;
   uStack_43c = 0x3f800000;
   uVar10 = FUN_180286010(param_5 + 0x10,auStack_430,1);
-  uVar10 = FUN_1800946d0(auStack_478,auStack_3f0,uVar10);
-  puVar11 = (uint64_t *)FUN_1800946d0(param_5,auStack_3b0,uVar10);
+  uVar10 = ErrorRecoverySystem(auStack_478,auStack_3f0,uVar10);
+  puVar11 = (uint64_t *)ErrorRecoverySystem(param_5,auStack_3b0,uVar10);
   uVar10 = puVar11[1];
   *(uint64_t *)(param_1 + 0xa0) = *puVar11;
   *(uint64_t *)(param_1 + 0xa8) = uVar10;
@@ -78,8 +78,8 @@ void FUN_1802cd2b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4,
   uStack_44c = 0;
   uStack_43c = 0x3f800000;
   uVar10 = FUN_180286010(param_5 + 0x60,auStack_370,1);
-  uVar10 = FUN_1800946d0(auStack_478,auStack_330,uVar10);
-  puVar11 = (uint64_t *)FUN_1800946d0(param_5,auStack_2f0,uVar10);
+  uVar10 = ErrorRecoverySystem(auStack_478,auStack_330,uVar10);
+  puVar11 = (uint64_t *)ErrorRecoverySystem(param_5,auStack_2f0,uVar10);
   uVar10 = puVar11[1];
   *(uint64_t *)(param_1 + 0xe0) = *puVar11;
   *(uint64_t *)(param_1 + 0xe8) = uVar10;
@@ -102,8 +102,8 @@ void FUN_1802cd2b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4,
   uStack_44c = 0;
   uStack_43c = 0x3f800000;
   uVar10 = FUN_180286010(param_5 + 0xb0,auStack_2b0,1);
-  uVar10 = FUN_1800946d0(auStack_478,auStack_270,uVar10);
-  puVar11 = (uint64_t *)FUN_1800946d0(param_5,auStack_230,uVar10);
+  uVar10 = ErrorRecoverySystem(auStack_478,auStack_270,uVar10);
+  puVar11 = (uint64_t *)ErrorRecoverySystem(param_5,auStack_230,uVar10);
   uVar10 = puVar11[1];
   *(uint64_t *)(param_1 + 0x120) = *puVar11;
   *(uint64_t *)(param_1 + 0x128) = uVar10;
@@ -126,8 +126,8 @@ void FUN_1802cd2b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4,
   uStack_44c = 0;
   uStack_43c = 0x3f800000;
   uVar10 = FUN_180286010(param_5 + 0x100,auStack_1f0,1);
-  uVar10 = FUN_1800946d0(auStack_478,auStack_1b0,uVar10);
-  puVar11 = (uint64_t *)FUN_1800946d0(param_5,auStack_170,uVar10);
+  uVar10 = ErrorRecoverySystem(auStack_478,auStack_1b0,uVar10);
+  puVar11 = (uint64_t *)ErrorRecoverySystem(param_5,auStack_170,uVar10);
   uVar10 = puVar11[1];
   *(uint64_t *)(param_1 + 0x160) = *puVar11;
   *(uint64_t *)(param_1 + 0x168) = uVar10;
@@ -150,8 +150,8 @@ void FUN_1802cd2b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4,
   uStack_44c = 0;
   uStack_43c = 0x3f800000;
   uVar10 = FUN_180286010(param_5 + 0x150,auStack_130,1);
-  uVar10 = FUN_1800946d0(auStack_478,auStack_f0,uVar10);
-  puVar11 = (uint64_t *)FUN_1800946d0(param_5,auStack_b0,uVar10);
+  uVar10 = ErrorRecoverySystem(auStack_478,auStack_f0,uVar10);
+  puVar11 = (uint64_t *)ErrorRecoverySystem(param_5,auStack_b0,uVar10);
   auStack_60[0] = 0x10;
   auStack_60[1] = 0x11;
   auStack_60[2] = 0x12;
@@ -502,7 +502,7 @@ void FUN_1802cdce0(int32_t *param_1)
 void FUN_1802cdd10(int32_t *param_1)
 
 {
-  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),*param_1,*(int8_t *)(param_1 + 4),0,
+  CoreSystem_Initializer(*(uint64_t *)(system_message_buffer + 0x1cd8),*param_1,*(int8_t *)(param_1 + 4),0,
                 0xffffffff,1,0xfffffffffffffffe);
   return;
 }

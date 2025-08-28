@@ -638,7 +638,7 @@ void FUN_1803a25c0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       memcpy((uint64_t)uStack_48 + (int64_t)puStack_50,param_2,(int64_t)((int)lVar10 + 2));
     }
   }
-  cVar2 = FUN_180624af0(&puStack_58);
+  cVar2 = RenderingSystem_RenderQueue(&puStack_58);
   iVar12 = 0;
   if (cVar2 != '\0') {
     CoreMemoryPoolValidator(&puStack_78,param_2);
@@ -731,12 +731,12 @@ LAB_1803a290a:
           memcpy(puStack_70 + uStack_68,param_2,(int64_t)((int)lVar11 + 2));
         }
       }
-      cVar2 = FUN_180624af0(&puStack_78);
+      cVar2 = RenderingSystem_RenderQueue(&puStack_78);
       if (cVar2 == '\0') {
         if ((0 < *(int *)(param_6 + 0x10)) &&
            (*(char *)(*(int64_t *)(param_1 + 0x10) + 0x30) != '\0')) {
           *(int8_t *)(*(int64_t *)(param_1 + 0x10) + 0x30) = 0;
-          FUN_180627020(&processed_var_8008_ptr,param_2);
+          SystemCore_Allocator(&processed_var_8008_ptr,param_2);
         }
       }
       else {

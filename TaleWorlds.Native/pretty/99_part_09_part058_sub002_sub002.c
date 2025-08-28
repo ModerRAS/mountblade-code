@@ -1,7 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part058_sub002_sub002.c - 1 个函数
 
@@ -110,7 +113,7 @@ int64_t FUN_1805dc680(int *param_1)
     lVar13 = *(int64_t *)(lVar4 + 0x9d8);
     lVar8 = *(int64_t *)(lVar4 + 0x20);
     if ((lVar13 == 0) ||
-       (cVar6 = FUN_18038d0a0(lVar13,lVar8 + 0xc), lStack_120 = lVar13, cVar6 == '\0')) {
+       (cVar6 = SystemCore_PerformanceMonitor(lVar13,lVar8 + 0xc), lStack_120 = lVar13, cVar6 == '\0')) {
       lStack_120 = lVar22;
     }
     uStack_90 = 0;
@@ -130,7 +133,7 @@ int64_t FUN_1805dc680(int *param_1)
   }
   lVar13 = *(int64_t *)(**(int64_t **)(param_1 + 8) + 0x9d8);
   alStack_d8[0] = lVar13;
-  lVar8 = FUN_180488690(&uStack_128);
+  lVar8 = SystemCore_ErrorHandler(&uStack_128);
   cVar6 = (char)param_1[0x451];
   if (lVar13 == lVar8) {
 LAB_1805dc854:
@@ -148,8 +151,8 @@ LAB_1805dc83e:
     }
   }
   else {
-    lVar8 = FUN_180488690(&uStack_128);
-    lVar9 = FUN_180488690(param_1 + 0x12);
+    lVar8 = SystemCore_ErrorHandler(&uStack_128);
+    lVar9 = SystemCore_ErrorHandler(param_1 + 0x12);
     if (lVar8 != lVar9) goto LAB_1805dc83e;
     *param_1 = 0;
     *(int8_t *)((int64_t)param_1 + 0x1145) = 1;
@@ -170,7 +173,7 @@ LAB_1805dc83e:
   if ((char)param_1[0x451] == '\0') {
     iVar7 = *param_1;
     if (iVar7 == 0) {
-      lVar8 = FUN_180488690(param_1 + 0x12);
+      lVar8 = SystemCore_ErrorHandler(param_1 + 0x12);
       if ((lVar8 == lVar13) ||
          (lVar8 = *(int64_t *)(lStackX_20 + 0x18), lVar13 = alStack_d8[0],
          *(int64_t *)(lVar8 + 0x2ee8) - *(int64_t *)(lVar8 + 12000) >> 3 == 0)) {
@@ -183,7 +186,7 @@ LAB_1805dc9ac:
       uVar2 = *(int32_t *)(*(int64_t *)(lVar4 + 0x20) + 0x1d0);
       lVar9 = *(int64_t *)(param_1 + 8);
       fStack_134 = (float)param_1[0x19] - *(float *)(lStackX_10 + 0x10);
-      uVar10 = FUN_180488690(param_1 + 0x12);
+      uVar10 = SystemCore_ErrorHandler(param_1 + 0x12);
       lVar13 = alStack_d8[0];
       uVar27 = CONCAT44(uVar28,uVar2);
       in_stack_fffffffffffffe90 =
@@ -206,7 +209,7 @@ LAB_1805dc9b4:
         fVar25 = *(float *)(lStackX_10 + 0x10) - *(float *)(lVar8 + 0x10),
         fVar23 = *(float *)(lStackX_10 + 0x14) - *(float *)(lVar8 + 0x14),
         fVar25 * fVar25 + fVar24 * fVar24 + fVar23 * fVar23 < 4.0)) ||
-       (lVar8 = FUN_180488690(param_1 + 0x12), lVar8 == lVar13)) {
+       (lVar8 = SystemCore_ErrorHandler(param_1 + 0x12), lVar8 == lVar13)) {
       cVar6 = '\x01';
     }
     else {
@@ -500,7 +503,7 @@ uint FUN_1805dc7e3(void)
   
   lVar12 = *(int64_t *)(*in_RAX + 0x9d8);
   *(int64_t *)(unaff_RBP + -0x40) = lVar12;
-  lVar8 = FUN_180488690(&stack0x00000070);
+  lVar8 = SystemCore_ErrorHandler(&stack0x00000070);
   cVar6 = (char)unaff_R15D;
   if (lVar12 == lVar8) {
     bVar18 = (char)unaff_RDI[0x451] == '\0';
@@ -519,8 +522,8 @@ LAB_1805dc83e:
     }
   }
   else {
-    lVar8 = FUN_180488690(&stack0x00000070);
-    lVar9 = FUN_180488690(unaff_RDI + 0x12);
+    lVar8 = SystemCore_ErrorHandler(&stack0x00000070);
+    lVar9 = SystemCore_ErrorHandler(unaff_RDI + 0x12);
     if (lVar8 != lVar9) goto LAB_1805dc83e;
     *unaff_RDI = unaff_R15D;
     *(int8_t *)((int64_t)unaff_RDI + 0x1145) = 1;
@@ -548,7 +551,7 @@ LAB_1805dc83e:
   if ((char)unaff_RDI[0x451] == cVar6) {
     uVar16 = *unaff_RDI;
     if (uVar16 == 0) {
-      lVar8 = FUN_180488690(unaff_RDI + 0x12);
+      lVar8 = SystemCore_ErrorHandler(unaff_RDI + 0x12);
       if (lVar8 == lVar12) {
 LAB_1805dc9ac:
         uVar16 = *unaff_RDI;
@@ -560,7 +563,7 @@ LAB_1805dc9ac:
         lVar12 = *(int64_t *)(unaff_RBP + -0x40);
         goto LAB_1805dc9ac;
       }
-      uVar10 = FUN_180488690(unaff_RDI + 0x12);
+      uVar10 = SystemCore_ErrorHandler(unaff_RDI + 0x12);
       lVar12 = *(int64_t *)(unaff_RBP + -0x40);
       cVar5 = FUN_1803944c0(lVar8 + 0x2a68,lVar12,uVar10);
       if (cVar5 != '\0') goto LAB_1805dc9ac;
@@ -579,7 +582,7 @@ LAB_1805dc9b4:
         fVar21 = *(float *)(*(int64_t *)(unaff_RBP + 0xa8) + 0x10) - *(float *)(lVar8 + 0x10),
         fVar19 = *(float *)(*(int64_t *)(unaff_RBP + 0xa8) + 0x14) - *(float *)(lVar8 + 0x14),
         fVar21 * fVar21 + fVar20 * fVar20 + fVar19 * fVar19 < 4.0)) ||
-       (lVar8 = FUN_180488690(unaff_RDI + 0x12), lVar8 == lVar12)) {
+       (lVar8 = SystemCore_ErrorHandler(unaff_RDI + 0x12), lVar8 == lVar12)) {
       cVar5 = '\x01';
     }
     else {

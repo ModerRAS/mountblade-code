@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_04_part059_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1802ba410(int64_t *param_1,float param_2)
@@ -769,7 +773,7 @@ LAB_1802bb355:
       lVar20 = lVar20 + -1;
     } while (lVar20 != 0);
   }
-  FUN_1800b9f60(param_1 + 2);
+  SystemCore_Parser(param_1 + 2);
   uVar18 = (uint64_t)(int)uVar16;
   lVar20 = param_1[0xb];
   uVar16 = (param_1[0xc] - lVar20) / 0x70;

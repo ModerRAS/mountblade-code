@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part545.c - 1 个函数
 
@@ -192,7 +197,7 @@ void FUN_180567fd0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
       puStack_5f0 = (void *)param_2[1];
     }
     puStack_5f8 = &processed_var_8632_ptr;
-    FUN_1800623b0(system_message_context,0,0x10000000000,8);
+    SystemConfigurationManager(system_message_context,0,0x10000000000,8);
     puVar12 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar12 = (void *)param_2[1];
@@ -203,7 +208,7 @@ void FUN_180567fd0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
     uStack_538 = *(int32_t *)(puStack_518 + 2);
     uStack_534 = *(int32_t *)(uStack_598 + 0x98d9a0);
     uStack_530 = *(int32_t *)(puStack_510 + 2);
-    FUN_180627910(&puStack_4f8,uStack_598 + 0x87bbec);
+    SystemCore_CacheManager(&puStack_4f8,uStack_598 + 0x87bbec);
     iStack_5b8 = iStack_4e8;
     uStack_52c = *(int32_t *)(uVar6 + 0x87bca4);
     uVar6 = 4;
@@ -407,7 +412,7 @@ LAB_1805688a3:
       param_2 = puStack_560;
       puStack_5e8 = auStack_468;
       puStack_5f8 = &processed_var_8672_ptr;
-      FUN_1800623b0(system_message_context,0,0x10000000000,3);
+      SystemConfigurationManager(system_message_context,0,0x10000000000,3);
     }
     puStack_4f8 = &system_data_buffer_ptr;
     if (puStack_4f0 != (void *)0x0) {

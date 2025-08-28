@@ -3,8 +3,8 @@
 
 // 03_rendering_part081.c - 1 个函数
 
-// 函数: void FUN_180310a00(int64_t *param_1,uint64_t *param_2)
-void FUN_180310a00(int64_t *param_1,uint64_t *param_2)
+// 函数: void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
+void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
 
 {
   uint64_t *puVar1;

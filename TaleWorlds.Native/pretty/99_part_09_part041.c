@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part041.c - 8 个函数
 
 // 函数: void FUN_1805cfd80(int64_t *param_1)
@@ -24,7 +28,7 @@ void FUN_1805cfd80(int64_t *param_1)
      ((iVar9 = *(int *)((int64_t)iVar9 * 0x68 + 0x58 + system_system_config), 3 < iVar9 - 0x13U &&
       (iVar9 != 0x20)))) {
     if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-      FUN_1805d4440(param_1 + 1);
+      SystemCore_Validator(param_1 + 1);
     }
     if (*(char *)((int64_t)param_1 + 0xd5) != '\0') {
       if ((*(uint *)(param_1 + 2) & 0x8000000) == 0) {
@@ -63,20 +67,20 @@ void FUN_1805cfd80(int64_t *param_1)
     return;
   }
   if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-    FUN_1805d4440(param_1 + 1);
+    SystemCore_Validator(param_1 + 1);
   }
   if ((((*(float *)(param_1 + 0x1b) != 0.0) && (*(int *)(*param_1 + 0x1fc) != 2)) &&
-      (piVar4 = (int *)FUN_1805b7660(param_1 + 1), *piVar4 == 2)) &&
+      (piVar4 = (int *)SystemCore_Executor(param_1 + 1), *piVar4 == 2)) &&
      (fVar11 = *(float *)(*param_1 + 0x308),
      uVar8 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272),
      uVar8 = uVar8 >> 0x11 ^ uVar8, uVar8 = uVar8 << 5 ^ uVar8, *(uint *)(param_1 + 0x272) = uVar8,
      (float)(uVar8 - 1) * 2.3283064e-10 < fVar11)) goto SUB_1805cef70;
   if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-    FUN_1805d4440(param_1 + 1);
+    SystemCore_Validator(param_1 + 1);
   }
   if (*(char *)((int64_t)param_1 + 0xd5) == '\0') {
     if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-      FUN_1805d4440(param_1 + 1);
+      SystemCore_Validator(param_1 + 1);
     }
     if (*(float *)(param_1 + 0x1b) != 0.0) {
       uVar8 = *(uint *)(param_1 + 2);
@@ -144,7 +148,7 @@ void FUN_1805cfd80(int64_t *param_1)
     }
   }
 LAB_1805d00bb:
-  cVar2 = FUN_1805a3ab0(*param_1 + 0x28);
+  cVar2 = RenderingSystem_ConfigValidator0(*param_1 + 0x28);
   if (cVar2 == '\0') {
     iVar3 = *(int *)(*param_1 + 0x70);
   }
@@ -159,7 +163,7 @@ LAB_1805d00bb:
     bVar1 = *(byte *)((int64_t)param_1 + 0x11c);
   }
   if (((bVar1 == 0) && (pfVar6 = (float *)FUN_1805b6b40(param_1 + 1), 0.3 < *pfVar6)) &&
-     (piVar4 = (int *)FUN_1805b7660(param_1 + 1), *piVar4 == 7)) {
+     (piVar4 = (int *)SystemCore_Executor(param_1 + 1), *piVar4 == 7)) {
     if (iVar9 != 8) {
       if (iVar3 == 2) {
         bVar10 = iVar9 == 7;
@@ -180,7 +184,7 @@ LAB_1805d00bb:
         return;
       }
     }
-    uVar7 = FUN_1805b74c0(param_1 + 1);
+    uVar7 = SystemCore_MemoryAllocator(param_1 + 1);
     cVar2 = func_0x00018051f6a0(uVar7);
     if (cVar2 == '\0') {
       fVar11 = (float)powf(*param_1,SQRT((float)((int)param_1[0x2db] + 1)));
@@ -233,20 +237,20 @@ void FUN_1805cfdcb(void)
   float fVar11;
   
   if (in_ZF) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if ((((*(float *)(unaff_RBX + 0x1b) != 0.0) && (*(int *)(*unaff_RBX + 0x1fc) != 2)) &&
-      (piVar4 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar4 == 2)) &&
+      (piVar4 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar4 == 2)) &&
      (fVar11 = *(float *)(*unaff_RBX + 0x308),
      uVar8 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
      uVar8 = uVar8 >> 0x11 ^ uVar8, uVar8 = uVar8 << 5 ^ uVar8, *(uint *)(unaff_RBX + 0x272) = uVar8
      , (float)(uVar8 - 1) * 2.3283064e-10 < fVar11)) goto SUB_1805cef70;
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if (*(char *)((int64_t)unaff_RBX + 0xd5) == '\0') {
     if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-      FUN_1805d4440(unaff_RBX + 1);
+      SystemCore_Validator(unaff_RBX + 1);
     }
     if (*(float *)(unaff_RBX + 0x1b) != 0.0) {
       uVar8 = *(uint *)(unaff_RBX + 2);
@@ -314,7 +318,7 @@ void FUN_1805cfdcb(void)
     }
   }
 LAB_1805d00bb:
-  cVar2 = FUN_1805a3ab0(*unaff_RBX + 0x28);
+  cVar2 = RenderingSystem_ConfigValidator0(*unaff_RBX + 0x28);
   if (cVar2 == '\0') {
     iVar3 = *(int *)(*unaff_RBX + 0x70);
   }
@@ -329,7 +333,7 @@ LAB_1805d00bb:
     bVar1 = *(byte *)((int64_t)unaff_RBX + 0x11c);
   }
   if (((bVar1 == 0) && (pfVar6 = (float *)FUN_1805b6b40(unaff_RBX + 1), 0.3 < *pfVar6)) &&
-     (piVar4 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar4 == 7)) {
+     (piVar4 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar4 == 7)) {
     if (iVar9 != 8) {
       if (iVar3 == 2) {
         bVar10 = iVar9 == 7;
@@ -350,7 +354,7 @@ LAB_1805d00bb:
         return;
       }
     }
-    uVar7 = FUN_1805b74c0(unaff_RBX + 1);
+    uVar7 = SystemCore_MemoryAllocator(unaff_RBX + 1);
     cVar2 = func_0x00018051f6a0(uVar7);
     if (cVar2 == '\0') {
       fVar11 = (float)powf(*unaff_RBX,SQRT((float)((int)unaff_RBX[0x2db] + 1)));
@@ -402,11 +406,11 @@ void FUN_1805cfe5c(void)
   float unaff_XMM6_Da;
   
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if (*(char *)((int64_t)unaff_RBX + 0xd5) == '\0') {
     if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-      FUN_1805d4440(unaff_RBX + 1);
+      SystemCore_Validator(unaff_RBX + 1);
     }
     if (unaff_XMM6_Da != *(float *)(unaff_RBX + 0x1b)) {
       uVar8 = *(uint *)(unaff_RBX + 2);
@@ -475,7 +479,7 @@ void FUN_1805cfe5c(void)
     }
   }
 LAB_1805d00bb:
-  cVar2 = FUN_1805a3ab0(*unaff_RBX + 0x28);
+  cVar2 = RenderingSystem_ConfigValidator0(*unaff_RBX + 0x28);
   if (cVar2 == '\0') {
     iVar3 = *(int *)(*unaff_RBX + 0x70);
   }
@@ -490,7 +494,7 @@ LAB_1805d00bb:
     bVar1 = *(byte *)((int64_t)unaff_RBX + 0x11c);
   }
   if (((bVar1 == 0) && (pfVar5 = (float *)FUN_1805b6b40(unaff_RBX + 1), 0.3 < *pfVar5)) &&
-     (piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 7)) {
+     (piVar6 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar6 == 7)) {
     if (iVar9 != 8) {
       if (iVar3 == 2) {
         bVar10 = iVar9 == 7;
@@ -511,7 +515,7 @@ LAB_1805d00bb:
         return;
       }
     }
-    uVar7 = FUN_1805b74c0(unaff_RBX + 1);
+    uVar7 = SystemCore_MemoryAllocator(unaff_RBX + 1);
     cVar2 = func_0x00018051f6a0(uVar7);
     if (cVar2 == '\0') {
       fVar11 = (float)powf(*unaff_RBX,SQRT((float)((int)unaff_RBX[0x2db] + 1)));
@@ -586,7 +590,7 @@ void FUN_1805cffc0(void)
     }
   }
 LAB_1805d00bb:
-  cVar1 = FUN_1805a3ab0(*unaff_RBX + 0x28);
+  cVar1 = RenderingSystem_ConfigValidator0(*unaff_RBX + 0x28);
   if (cVar1 == '\0') {
     iVar3 = *(int *)(*unaff_RBX + 0x70);
   }
@@ -601,7 +605,7 @@ LAB_1805d00bb:
     bVar2 = *(byte *)((int64_t)unaff_RBX + 0x11c);
   }
   if (((bVar2 == 0) && (pfVar5 = (float *)FUN_1805b6b40(unaff_RBX + 1), 0.3 < *pfVar5)) &&
-     (piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 7)) {
+     (piVar6 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar6 == 7)) {
     if (iVar9 != 8) {
       if (iVar3 == 2) {
         bVar10 = iVar9 == 7;
@@ -622,7 +626,7 @@ LAB_1805d00bb:
         return;
       }
     }
-    uVar7 = FUN_1805b74c0(unaff_RBX + 1);
+    uVar7 = SystemCore_MemoryAllocator(unaff_RBX + 1);
     cVar1 = func_0x00018051f6a0(uVar7);
     if (cVar1 == '\0') {
       fVar11 = (float)powf(*unaff_RBX,SQRT((float)((int)unaff_RBX[0x2db] + 1)));
@@ -663,7 +667,7 @@ void FUN_1805d00c2(void)
   bool bVar8;
   float fVar9;
   
-  cVar1 = FUN_1805a3ab0();
+  cVar1 = RenderingSystem_ConfigValidator0();
   if (cVar1 == '\0') {
     iVar7 = *(int *)(*unaff_RBX + 0x70);
   }
@@ -678,7 +682,7 @@ void FUN_1805d00c2(void)
     bVar2 = *(byte *)((int64_t)unaff_RBX + 0x11c);
   }
   if (((bVar2 == 0) && (pfVar3 = (float *)FUN_1805b6b40(unaff_RBX + 1), 0.3 < *pfVar3)) &&
-     (piVar4 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar4 == 7)) {
+     (piVar4 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar4 == 7)) {
     if (unaff_ESI != 8) {
       if (iVar7 == 2) {
         bVar8 = unaff_ESI == 7;
@@ -699,7 +703,7 @@ void FUN_1805d00c2(void)
         return;
       }
     }
-    uVar5 = FUN_1805b74c0(unaff_RBX + 1);
+    uVar5 = SystemCore_MemoryAllocator(unaff_RBX + 1);
     cVar1 = func_0x00018051f6a0(uVar5);
     if (cVar1 == '\0') {
       fVar9 = (float)powf(*unaff_RBX,SQRT((float)((int)unaff_RBX[0x2db] + 1)));
@@ -733,7 +737,7 @@ void FUN_1805d0225(void)
   int64_t *unaff_RBX;
   
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if (*(char *)((int64_t)unaff_RBX + 0xd5) != '\0') {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
@@ -797,7 +801,7 @@ void FUN_1805d0390(int64_t *param_1)
          *(uint *)((int64_t)param_1 + 0x159c) | *(uint *)(param_1 + 0x2f1);
   }
   if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-    FUN_1805d4440(param_1 + 1);
+    SystemCore_Validator(param_1 + 1);
   }
   if (*(char *)((int64_t)param_1 + 0xd4) == '\0') {
     return;
@@ -843,7 +847,7 @@ void FUN_1805d0390(int64_t *param_1)
     }
     if (*(char *)((int64_t)param_1 + 0xc2) != '\0') goto FUN_1805d061e;
   }
-  piVar4 = (int *)FUN_1805b7660(param_1 + 1);
+  piVar4 = (int *)SystemCore_Executor(param_1 + 1);
   if (*piVar4 == 2) {
     return;
   }
@@ -853,7 +857,7 @@ void FUN_1805d0390(int64_t *param_1)
   }
   if (0.0 <= (float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2df] * 8) -
                     param_1[0x2de]) * 1e-05) {
-    piVar4 = (int *)FUN_1805b7660(param_1 + 1);
+    piVar4 = (int *)SystemCore_Executor(param_1 + 1);
     if (*piVar4 == 1) {
       fVar7 = *(float *)(*param_1 + 0x2e8);
     }
@@ -864,7 +868,7 @@ void FUN_1805d0390(int64_t *param_1)
     uVar5 = uVar5 >> 0x11 ^ uVar5;
     uVar5 = uVar5 << 5 ^ uVar5;
     *(uint *)(param_1 + 0x272) = uVar5;
-    FUN_1805b7740(param_1 + 1);
+    SystemCore_ResourceHandler0(param_1 + 1);
     fVar6 = (float)powf((float)(uVar5 - 1) * 2.3283064e-10);
     if (fVar7 <= 1.0 - fVar6) {
       return;
@@ -916,7 +920,7 @@ void FUN_1805d04b4(void)
     }
     if (*(char *)((int64_t)unaff_RSI + 0xc2) != '\0') goto FUN_1805d061e;
   }
-  piVar3 = (int *)FUN_1805b7660(unaff_RSI + 1);
+  piVar3 = (int *)SystemCore_Executor(unaff_RSI + 1);
   if (*piVar3 == 2) {
     return;
   }
@@ -926,7 +930,7 @@ void FUN_1805d04b4(void)
   }
   if (0.0 <= (float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RSI[0x2df] * 8) -
                     unaff_RSI[0x2de]) * 1e-05) {
-    piVar3 = (int *)FUN_1805b7660(unaff_RSI + 1);
+    piVar3 = (int *)SystemCore_Executor(unaff_RSI + 1);
     if (*piVar3 == 1) {
       fVar6 = *(float *)(*unaff_RSI + 0x2e8);
     }
@@ -937,7 +941,7 @@ void FUN_1805d04b4(void)
     uVar4 = uVar4 >> 0x11 ^ uVar4;
     uVar4 = uVar4 << 5 ^ uVar4;
     *(uint *)(unaff_RSI + 0x272) = uVar4;
-    FUN_1805b7740(unaff_RSI + 1);
+    SystemCore_ResourceHandler0(unaff_RSI + 1);
     fVar5 = (float)powf((float)(uVar4 - 1) * 2.3283064e-10);
     if (fVar6 <= 1.0 - fVar5) {
       return;

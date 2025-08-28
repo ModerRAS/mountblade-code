@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 
 // 03_rendering_part645.c - 13 个函数
 
@@ -43,8 +50,8 @@ bool FUN_18062de90(int64_t param_1)
 
 
 
-// 函数: void FUN_18062dee0(int64_t param_1,int64_t param_2,uint64_t param_3)
-void FUN_18062dee0(int64_t param_1,int64_t param_2,uint64_t param_3)
+// 函数: void SystemCore_Validator(int64_t param_1,int64_t param_2,uint64_t param_3)
+void SystemCore_Validator(int64_t param_1,int64_t param_2,uint64_t param_3)
 
 {
   int64_t lVar1;
@@ -81,7 +88,7 @@ void FUN_18062dee0(int64_t param_1,int64_t param_2,uint64_t param_3)
     uStack_6f8 = (int32_t)lVar1;
     strcpy_s(auStack_6f0,0x100,param_2);
   }
-  lVar1 = FUN_180624440(apuStack_4c8,&puStack_708);
+  lVar1 = SystemCore_EncryptionEngine(apuStack_4c8,&puStack_708);
   puStack_5e8 = &rendering_buffer_2008_ptr;
   puStack_5e0 = auStack_5d0;
   auStack_5d0[0] = 0;
@@ -153,8 +160,8 @@ void FUN_18062e0f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_18062e140(int64_t param_1,uint64_t *param_2)
-void FUN_18062e140(int64_t param_1,uint64_t *param_2)
+// 函数: void SystemTools_DataProcessor(int64_t param_1,uint64_t *param_2)
+void SystemTools_DataProcessor(int64_t param_1,uint64_t *param_2)
 
 {
   char *pcVar1;
@@ -265,7 +272,7 @@ void FUN_18062f640(int64_t param_1,int64_t param_2,char *param_3)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -300,7 +307,7 @@ void FUN_18062f640(int64_t param_1,int64_t param_2,char *param_3)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -330,9 +337,9 @@ void FUN_18062f7c0(int64_t param_1,int64_t param_2,uint64_t param_3,char param_4
   void *puVar6;
   
   if (param_4 == '\0') {
-    lVar2 = FUN_1800a02a0(param_2,param_3);
+    lVar2 = SystemCore_DataManager(param_2,param_3);
     if (lVar2 != 0) {
-      lVar2 = FUN_1800a02a0(param_2,param_3);
+      lVar2 = SystemCore_DataManager(param_2,param_3);
       puVar6 = &rendering_buffer_2336_ptr;
       pcVar3 = "false";
       do {
@@ -362,9 +369,9 @@ void FUN_18062f7c0(int64_t param_1,int64_t param_2,uint64_t param_3,char param_4
     } while (*pcVar3 != '\0');
   }
   else {
-    lVar2 = FUN_1800a02a0(param_2,param_3);
+    lVar2 = SystemCore_DataManager(param_2,param_3);
     if (lVar2 != 0) {
-      lVar2 = FUN_1800a02a0(param_2,param_3);
+      lVar2 = SystemCore_DataManager(param_2,param_3);
       puVar6 = &rendering_buffer_2328_ptr;
       pcVar3 = "true";
       do {
@@ -420,8 +427,8 @@ LAB_18062f968:
 
 
 
-// 函数: void FUN_18062f990(int64_t param_1,int64_t param_2,char *param_3,float param_4)
-void FUN_18062f990(int64_t param_1,int64_t param_2,char *param_3,float param_4)
+// 函数: void MemoryDeallocationHandler0(int64_t param_1,int64_t param_2,char *param_3,float param_4)
+void MemoryDeallocationHandler0(int64_t param_1,int64_t param_2,char *param_3,float param_4)
 
 {
   char cVar1;
@@ -456,7 +463,7 @@ void FUN_18062f990(int64_t param_1,int64_t param_2,char *param_3,float param_4)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -491,7 +498,7 @@ void FUN_18062f990(int64_t param_1,int64_t param_2,char *param_3,float param_4)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -511,8 +518,8 @@ void FUN_18062f990(int64_t param_1,int64_t param_2,char *param_3,float param_4)
 
 
 
-// 函数: void FUN_18062fb40(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
-void FUN_18062fb40(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
+// 函数: void UltraHighFreq_NetworkHandler1(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
+void UltraHighFreq_NetworkHandler1(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
 
 {
   char cVar1;
@@ -571,7 +578,7 @@ void FUN_18062fb40(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -606,7 +613,7 @@ void FUN_18062fb40(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -675,7 +682,7 @@ void FUN_18062fd40(int64_t param_1,int64_t param_2,uint64_t param_3,int8_t (*par
   uStack_e0 = (uint)auVar1[0xf];
   uStack_118 = (uint)auVar1[8];
   uStack_120 = (uint)auVar1._6_2_;
-  FUN_180626eb0(auStack_68,0x28,&processed_var_6672_ptr);
+  SystemCore_CacheManager(auStack_68,0x28,&processed_var_6672_ptr);
   (**(code **)(puStack_c8 + 0x18))(&puStack_c8,auStack_68,0x26);
   param_1 = param_1 + 0x60;
   pcVar8 = "";
@@ -698,7 +705,7 @@ void FUN_18062fd40(int64_t param_1,int64_t param_2,uint64_t param_3,int8_t (*par
       pcVar7 = pcVar7 + -1;
     } while (pcVar7 != (char *)0x0);
   }
-  lVar4 = FUN_1800a02a0(param_2,&memory_allocator_3692_ptr);
+  lVar4 = SystemCore_DataManager(param_2,&memory_allocator_3692_ptr);
   if (lVar4 == 0) {
     pcVar8 = "value";
     do {
@@ -732,7 +739,7 @@ void FUN_18062fd40(int64_t param_1,int64_t param_2,uint64_t param_3,int8_t (*par
     }
   }
   else {
-    lVar4 = FUN_1800a02a0(param_2,&memory_allocator_3692_ptr);
+    lVar4 = SystemCore_DataManager(param_2,&memory_allocator_3692_ptr);
     cVar2 = *pcVar3;
     pcVar8 = pcVar3;
     while (cVar2 != '\0') {
@@ -820,7 +827,7 @@ void FUN_180630010(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -855,7 +862,7 @@ void FUN_180630010(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -938,7 +945,7 @@ void FUN_180630240(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -973,7 +980,7 @@ void FUN_180630240(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -1042,7 +1049,7 @@ void FUN_180630560(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar6 = param_3;
@@ -1077,7 +1084,7 @@ void FUN_180630560(int64_t param_1,int64_t param_2,char *param_3,float *param_4)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {

@@ -38,7 +38,7 @@ void FUN_1805a2d30(int64_t param_1,int param_2,int64_t param_3)
   if (param_2 == 1) {
     uVar12 = *(uint *)(lVar8 + 0x56c) >> 0xe & 1;
     uVar13 = (uint64_t)uVar12;
-    cVar6 = FUN_1805a3ab0();
+    cVar6 = RenderingSystem_ConfigValidator0();
     cVar7 = FUN_1805a6e00(param_1,uVar13,cVar6);
     if (cVar7 == '\0') {
       return;
@@ -273,7 +273,7 @@ void FUN_1805a2d57(uint64_t param_1,uint param_2)
   
   param_2 = *(uint *)(in_R11 + 0x56c) >> 0xe & param_2;
   uVar11 = (uint64_t)param_2;
-  cVar5 = FUN_1805a3ab0();
+  cVar5 = RenderingSystem_ConfigValidator0();
   cVar6 = FUN_1805a6e00(extraout_XMM0_Da,uVar11,cVar5);
   if (cVar6 == '\0') {
     return;
@@ -589,7 +589,7 @@ void FUN_1805a31d0(int64_t param_1)
     *(int8_t *)(param_1 + 0xd8) = 0xff;
     return;
   }
-  uVar11 = FUN_1805a3ab0();
+  uVar11 = RenderingSystem_ConfigValidator0();
   cVar12 = FUN_1805a6e00(param_1,1,uVar11);
   if (cVar12 != '\0') {
     uVar11 = FUN_180527720(*(uint64_t *)(param_1 + 0x108),1);
@@ -608,7 +608,7 @@ void FUN_1805a31d0(int64_t param_1)
     lVar5 = *(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x6d8) + 0x8a8);
     lVar13 = FUN_180534d00(*(uint64_t *)(*(int64_t *)(param_1 + 0x108) + 0x658),auStack_b8,uVar11
                           );
-    FUN_18063b5f0(&fStack_128);
+    SystemSecurityManager(&fStack_128);
     fVar1 = *(float *)(lVar5 + 0x70);
     fVar2 = *(float *)(lVar5 + 0x80);
     fVar3 = *(float *)(lVar5 + 0x84);
@@ -727,7 +727,7 @@ void FUN_1805a31fc(void)
   int32_t in_stack_00000160;
   int32_t in_stack_00000168;
   
-  uVar13 = FUN_1805a3ab0();
+  uVar13 = RenderingSystem_ConfigValidator0();
   cVar14 = FUN_1805a6e00(extraout_XMM0_Da,1,uVar13);
   if (cVar14 != '\0') {
     uVar13 = FUN_180527720(*(uint64_t *)(unaff_RDI + 0x108),1);
@@ -746,7 +746,7 @@ void FUN_1805a31fc(void)
     lVar7 = *(int64_t *)(*(int64_t *)(*(int64_t *)(unaff_RDI + 0x108) + 0x6d8) + 0x8a8);
     lVar15 = FUN_180534d00(*(uint64_t *)(*(int64_t *)(unaff_RDI + 0x108) + 0x658),
                            unaff_RBP + -0x40,uVar13);
-    FUN_18063b5f0(&stack0x00000050);
+    SystemSecurityManager(&stack0x00000050);
     fVar1 = *(float *)(lVar7 + 0x70);
     fVar2 = *(float *)(lVar7 + 0x80);
     fVar3 = *(float *)(lVar7 + 0x84);

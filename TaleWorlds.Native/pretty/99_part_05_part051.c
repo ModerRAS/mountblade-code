@@ -154,7 +154,7 @@ void FUN_1802fa300(int64_t param_1,int64_t param_2,uint64_t *param_3)
         fStack_a4 = fVar21;
         fStack_a0 = fVar22;
         uStack_9c = uStack_fc;
-        FUN_18063b5f0(&fStack_1b8,&uStack_118);
+        SystemSecurityManager(&fStack_1b8,&uStack_118);
         puVar16 = puStack_1d0;
         uVar15 = uStack_1e0;
         fVar23 = *pfVar18;
@@ -429,7 +429,7 @@ void FUN_1802fa3a5(void)
       unaff_RBP[5] = (uint)fVar7;
       unaff_RBP[6] = (uint)fVar8;
       unaff_RBP[7] = uVar9;
-      FUN_18063b5f0(&stack0x00000060);
+      SystemSecurityManager(&stack0x00000060);
       fVar10 = *unaff_RDI;
       fVar11 = unaff_RDI[1];
       fVar12 = unaff_RDI[2];
@@ -701,7 +701,7 @@ void FUN_1802fa3d5(void)
     unaff_RBP[5] = (uint)fVar7;
     unaff_RBP[6] = (uint)fVar8;
     unaff_RBP[7] = uVar9;
-    FUN_18063b5f0(&stack0x00000060);
+    SystemSecurityManager(&stack0x00000060);
     fVar10 = *unaff_RDI;
     fVar11 = unaff_RDI[1];
     fVar12 = unaff_RDI[2];

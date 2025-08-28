@@ -1,3 +1,4 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -524,7 +525,7 @@ status_t Resource_ValidateAndProcess(void* param_1, void* param_2)
   }
   stack_context = 0;
   if ((*(uint16_t *)((uint64_t)param_2 + 0xe) & RESOURCE_MASK) == 1) {
-    status = FUN_18088c740(&stack_context, *(uint64_t *)((uint64_t)param_1 + 0x20));
+    status = RenderingSystemOptimizer(&stack_context, *(uint64_t *)((uint64_t)param_1 + 0x20));
     if (status != 0) goto cleanup_handler;
   }
   FUN_1808db3f0(param_1, param_2);
@@ -1826,7 +1827,7 @@ status_t AdvancedDataProcessor(void** param_1, void** param_2)
   }
   
   /* 读取数据标志和属性 */
-  status = FUN_180769ed0(*data_manager, stack_data, 1, 2, 0);
+  status = SystemPerformanceOptimizer(*data_manager, stack_data, 1, 2, 0);
   
 size_check_failed:
   if (status != SYSTEM_SUCCESS) {
@@ -1855,7 +1856,7 @@ size_check_failed:
   }
   
   /* 读取完整数据标志 */
-  status = FUN_180769ed0(*data_manager, stack_data, 1, 2, 0);
+  status = SystemPerformanceOptimizer(*data_manager, stack_data, 1, 2, 0);
   
 flag_check_failed:
   if (status != SYSTEM_SUCCESS) {
@@ -1887,7 +1888,7 @@ flag_processing_complete:
     /* 批量数据处理 */
     if (element_count != 0) {
       do {
-        status = FUN_1808dde10(param_1, stack_buffer[0]);
+        status = UISystemEventHandler(param_1, stack_buffer[0]);
         if (status != SYSTEM_SUCCESS) {
           return status;
         }
@@ -1904,7 +1905,7 @@ flag_processing_complete:
           return status;
         }
         
-        status = FUN_1808de0e0(param_1, stack_buffer);
+        status = SystemCore_Initializer(param_1, stack_buffer);
         if (status != SYSTEM_SUCCESS) {
           return status;
         }
@@ -1983,7 +1984,7 @@ status_t OptimizedDataProcessor(void* param_1, uint32_t param_2)
     current_index = 0;
     if (element_count != 0) {
       do {
-        operation_result = FUN_1808dde10();
+        operation_result = UISystemEventHandler();
         if (operation_result != SYSTEM_SUCCESS) {
           return operation_result;
         }
@@ -2000,7 +2001,7 @@ status_t OptimizedDataProcessor(void* param_1, uint32_t param_2)
           return operation_result;
         }
         
-        operation_result = FUN_1808de0e0();
+        operation_result = SystemCore_Initializer();
         if (operation_result != SYSTEM_SUCCESS) {
           return operation_result;
         }

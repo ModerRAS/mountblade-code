@@ -1,3 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /**
  * @file 05_networking_part017.c
  * @brief 网络系统连接管理和资源清理模块
@@ -16,7 +24,6 @@
  * @author Claude Code
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 /* ============================================================================
  * 网络系统连接管理和资源清理常量定义
@@ -98,13 +105,13 @@
 #define NetworkingSystem_DataTransmitter FUN_18084ead0
 
 // 网络数据获取器
-#define NetworkingSystem_DataAcquirer FUN_18073c380
+#define NetworkingSystem_DataAcquirer FileSystemHandler
 
 // 网络数据处理器
 #define NetworkingSystem_DataProcessor FUN_18073c5f0
 
 // 网络连接计数器
-#define NetworkingSystem_ConnectionCounter FUN_180747f10
+#define NetworkingSystem_ConnectionCounter RenderingTextureManager0
 
 // 网络消息处理器
 #define NetworkingSystem_MessageHandler FUN_1808b4570
@@ -116,7 +123,7 @@
 #define NetworkingSystem_ConnectionCompleter FUN_18084e9e0
 
 // 网络连接管理器
-#define NetworkingSystem_ConnectionManager FUN_1808b2f30
+#define NetworkingSystem_ConnectionManager SystemDataFlowProcessor
 
 // 网络连接关闭器
 #define NetworkingSystem_ConnectionCloser FUN_18084ec10
@@ -140,10 +147,10 @@
 #define NetworkingSystem_MemoryCleaner FUN_18084f560
 
 // 网络资源清理器
-#define NetworkingSystem_ResourceCleanerInternal FUN_18084f040
+#define NetworkingSystem_ResourceCleanerInternal SystemCore_PerformanceTracker
 
 // 网络配置清理器
-#define NetworkingSystem_ConfigCleaner FUN_18084f2d0
+#define NetworkingSystem_ConfigCleaner SystemCore_NetworkProcessor
 
 // 网络安全清理器
 #define NetworkingSystem_SecurityCleaner SystemSecurityChecker

@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part341.c - 17 个函数
 
 // 函数: void FUN_18044d155(int64_t param_1,int32_t *param_2,float param_3,uint64_t param_4,
@@ -661,8 +669,8 @@ FUN_18044d680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = FUN_180191c00(render_system_data_config,uVar2);
+  uVar2 = SystemCore_CacheManager(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar1 = RenderingSystem_PostProcessor(render_system_data_config,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -826,7 +834,7 @@ FUN_18044da90(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_180627910(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_CacheManager(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
   FUN_180198e30(param_2,&plStackX_8,&puStack_30,param_4 & 0xff);
   plVar1 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -867,10 +875,10 @@ void FUN_18044db70(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  SystemCore_CacheManager(&puStack_30);
   auStackX_8[0] = 0x24;
   if (lStack_28 != 0) {
-    FUN_180057980(&puStack_30,param_1 + 0x60710,auStackX_8,param_4,uVar1);
+    CoreSystem_DataCollector(&puStack_30,param_1 + 0x60710,auStackX_8,param_4,uVar1);
   }
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -997,7 +1005,7 @@ void FUN_18044dd10(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   do {
     uVar6 = uVar7;
     do {
-      FUN_1802a11e0(&lStack_d8,&fStack_68,
+      SystemCore_DataConverter(&lStack_d8,&fStack_68,
                     CONCAT44(1.0 - (float)(int)uVar4 * 0.0009765625,(float)(int)uVar6 * 0.0009765625
                             ),1);
       *(char *)(uVar3 + *(int64_t *)param_1[1]) = (char)(int64_t)(fStack_68 * 255.0);

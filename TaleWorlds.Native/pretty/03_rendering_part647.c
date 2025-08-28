@@ -144,7 +144,7 @@ int64_t * FUN_180632160(int64_t *param_1,int32_t param_2,uint64_t param_3,uint64
     (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3488_ptr,0x180000000,param_4,1,0xfffffffffffffffe);
     return param_1;
   default:
-    FUN_180626ee0(&processed_var_5920_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_5920_ptr);
     return param_1;
   }
 }
@@ -448,7 +448,7 @@ void FUN_180632aa0(char *param_1)
     }
   }
   if (*param_1 == '\0') {
-    FUN_180626ee0(&processed_var_5944_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_5944_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_1d8);
@@ -581,8 +581,8 @@ void FUN_180632f00(int64_t param_1)
 
 
 
-// 函数: void FUN_180633110(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t param_4,
-void FUN_180633110(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t param_4,
+// 函数: void RenderingSystem_VertexBuffer(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t param_4,
+void RenderingSystem_VertexBuffer(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t param_4,
                   byte param_5,int32_t param_6)
 
 {
@@ -649,62 +649,62 @@ void FUN_180633220(uint64_t param_1,float *param_2,int32_t param_3,int8_t param_
   fStack_5c = param_2[0x1d] - param_2[1];
   fStack_60 = param_2[0x1c] - *param_2;
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2,&fStack_60,param_3,param_4,param_5,uVar2);
+  RenderingSystem_VertexBuffer(param_1,param_2,&fStack_60,param_3,param_4,param_5,uVar2);
   fStack_58 = param_2[10] - param_2[2];
   fStack_5c = param_2[9] - param_2[1];
   fStack_60 = param_2[8] - *param_2;
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x1e] - param_2[0xe];
   fStack_5c = param_2[0x1d] - param_2[0xd];
   fStack_60 = param_2[0x1c] - param_2[0xc];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[10] - param_2[0xe];
   fStack_5c = param_2[9] - param_2[0xd];
   fStack_60 = param_2[8] - param_2[0xc];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x16] - param_2[0x12];
   fStack_5c = param_2[0x15] - param_2[0x11];
   fStack_60 = param_2[0x14] - param_2[0x10];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0x10,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0x10,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x1a] - param_2[0x12];
   fStack_5c = param_2[0x19] - param_2[0x11];
   fStack_60 = param_2[0x18] - param_2[0x10];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0x10,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0x10,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x16] - param_2[6];
   fStack_5c = param_2[0x15] - param_2[5];
   fStack_60 = param_2[0x14] - param_2[4];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 4,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 4,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x1a] - param_2[6];
   fStack_5c = param_2[0x19] - param_2[5];
   fStack_60 = param_2[0x18] - param_2[4];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 4,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 4,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x12] - param_2[2];
   fStack_5c = param_2[0x11] - param_2[1];
   fStack_60 = param_2[0x10] - *param_2;
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x16] - param_2[0x1e];
   fStack_5c = param_2[0x15] - param_2[0x1d];
   fStack_60 = param_2[0x14] - param_2[0x1c];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0x1c,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0x1c,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[0x1a] - param_2[10];
   fStack_5c = param_2[0x19] - param_2[9];
   fStack_60 = param_2[0x18] - param_2[8];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 8,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 8,&fStack_60,param_3,param_4,param_5);
   fStack_58 = param_2[6] - param_2[0xe];
   fStack_5c = param_2[5] - param_2[0xd];
   fStack_60 = param_2[4] - param_2[0xc];
   uStack_54 = 0x7f7fffff;
-  FUN_180633110(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(param_1,param_2 + 0xc,&fStack_60,param_3,param_4,param_5);
   iVar1 = _Mtx_unlock(param_1);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -889,7 +889,7 @@ void FUN_1806336a0(int64_t param_1,float *param_2,float *param_3,float param_4,i
     fStack_12c = fVar15;
     fStack_128 = fVar13;
     if (iStack_22c != 0x20) {
-      FUN_180633110(param_1,&fStack_180,&fStack_160,param_5,param_6,param_7,fStackX_18,fVar10,fVar6,
+      RenderingSystem_VertexBuffer(param_1,&fStack_180,&fStack_160,param_5,param_6,param_7,fStackX_18,fVar10,fVar6,
                     fVar5);
     }
     if (0 < iStack_22c) {
@@ -897,13 +897,13 @@ void FUN_1806336a0(int64_t param_1,float *param_2,float *param_3,float param_4,i
       fStack_14c = fVar9 - fVar8;
       fStack_150 = fVar20 - fVar5;
       uStack_144 = 0x7f7fffff;
-      FUN_180633110(param_1,&fStack_180,&fStack_150,param_5,param_6,param_7,fStackX_18,fVar10,fVar6,
+      RenderingSystem_VertexBuffer(param_1,&fStack_180,&fStack_150,param_5,param_6,param_7,fStackX_18,fVar10,fVar6,
                     fVar5);
       fStack_138 = fVar11 - fVar13;
       fStack_13c = fStackX_18 - fVar15;
       fStack_140 = fStackX_8 - fVar17;
       uStack_134 = 0x7f7fffff;
-      FUN_180633110(param_1,&fStack_130,&fStack_140,param_5,param_6,param_7);
+      RenderingSystem_VertexBuffer(param_1,&fStack_130,&fStack_140,param_5,param_6,param_7);
     }
     fVar20 = fVar5;
     fVar9 = fStackX_10 * fStack_1fc - fVar10 * fStack_1f8;

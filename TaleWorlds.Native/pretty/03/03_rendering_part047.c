@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
@@ -21,8 +25,8 @@
 #define release_rendering_memory_pool FUN_180291839
 #define deallocate_rendering_buffer FUN_18029184a
 #define add_rendering_parameter_entry FUN_180291880
-#define update_rendering_parameter_entry FUN_180291950
-#define remove_rendering_parameter_entry FUN_180291a50
+#define update_rendering_parameter_entry SystemCore_ErrorHandler
+#define remove_rendering_parameter_entry SystemCore_Initialize
 
 /**
  * 初始化渲染参数配置
@@ -330,7 +334,7 @@ void reset_rendering_context(int32_t *context)
     if (0 < resource_count) {
       cleanup_size = resource_count;
     }
-    FUN_18013e760(context, cleanup_size);
+    RenderingEngine_Renderer(context, cleanup_size);
   }
   
   // 重置主上下文标志
@@ -344,7 +348,7 @@ void reset_rendering_context(int32_t *context)
     if (0 < resource_count) {
       cleanup_size = resource_count;
     }
-    FUN_18011dd10(context + 4, cleanup_size);
+    NetworkSystem_ErrorHandler(context + 4, cleanup_size);
   }
   
   // 重置辅助上下文标志
@@ -432,7 +436,7 @@ void release_rendering_resources(uint64_t *resource_handle)
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
     // 释放内存
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放次要资源
@@ -442,7 +446,7 @@ void release_rendering_resources(uint64_t *resource_handle)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放第三级资源
@@ -452,7 +456,7 @@ void release_rendering_resources(uint64_t *resource_handle)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 重置资源标志
@@ -472,7 +476,7 @@ void release_rendering_resources(uint64_t *resource_handle)
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
-      FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+      DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
     }
     
     // 处理数组资源
@@ -503,7 +507,7 @@ void release_rendering_resources(uint64_t *resource_handle)
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
-            FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+            DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
           }
           
           // 清理数组元素扩展资源
@@ -513,7 +517,7 @@ void release_rendering_resources(uint64_t *resource_handle)
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
-            FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+            DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
           }
           
           resource_index = (int)iteration_count + 1;
@@ -532,7 +536,7 @@ void release_rendering_resources(uint64_t *resource_handle)
         reference_counter = (int *)(global_context + 0x3a8);
         *reference_counter = *reference_counter + -1;
       }
-      FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+      DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
     }
     
     // 释放数组资源容器
@@ -540,7 +544,7 @@ void release_rendering_resources(uint64_t *resource_handle)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放最终资源
@@ -548,7 +552,7 @@ void release_rendering_resources(uint64_t *resource_handle)
   if (global_context != 0) {
     *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
   }
-  FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+  DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
 }
 
 /**
@@ -580,7 +584,7 @@ void release_rendering_resources_extended(int64_t resource_context)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放次要资源
@@ -590,7 +594,7 @@ void release_rendering_resources_extended(int64_t resource_context)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放第三级资源
@@ -600,7 +604,7 @@ void release_rendering_resources_extended(int64_t resource_context)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 重置资源标志
@@ -620,7 +624,7 @@ void release_rendering_resources_extended(int64_t resource_context)
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
-      FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+      DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
     }
     
     // 处理数组资源
@@ -651,7 +655,7 @@ void release_rendering_resources_extended(int64_t resource_context)
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
-            FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+            DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
           }
           
           // 清理数组元素扩展资源
@@ -661,7 +665,7 @@ void release_rendering_resources_extended(int64_t resource_context)
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
-            FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+            DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
           }
           
           resource_index = (int)iteration_count + 1;
@@ -680,7 +684,7 @@ void release_rendering_resources_extended(int64_t resource_context)
         reference_counter = (int *)(global_context + 0x3a8);
         *reference_counter = *reference_counter + -1;
       }
-      FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+      DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
     }
     
     // 释放数组资源容器
@@ -688,7 +692,7 @@ void release_rendering_resources_extended(int64_t resource_context)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+    DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
   }
   
   // 释放最终资源
@@ -696,7 +700,7 @@ void release_rendering_resources_extended(int64_t resource_context)
   if (global_context != 0) {
     *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
   }
-  FUN_180059ba0(resource_ptr, MEMORY_ALLOCATOR);
+  DataValidator0(resource_ptr, MEMORY_ALLOCATOR);
 }
 
 /**
@@ -741,7 +745,7 @@ void cleanup_rendering_data_arrays(void)
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
-      FUN_180059ba0(array_element, MEMORY_ALLOCATOR);
+      DataValidator0(array_element, MEMORY_ALLOCATOR);
     }
     
     // 释放元素扩展资源
@@ -751,7 +755,7 @@ void cleanup_rendering_data_arrays(void)
       if (global_context != 0) {
         *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
       }
-      FUN_180059ba0(array_element, MEMORY_ALLOCATOR);
+      DataValidator0(array_element, MEMORY_ALLOCATOR);
     }
     
     // 更新迭代索引
@@ -766,7 +770,7 @@ void cleanup_rendering_data_arrays(void)
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
-    FUN_180059ba0(array_element, MEMORY_ALLOCATOR);
+    DataValidator0(array_element, MEMORY_ALLOCATOR);
   }
   
   return;
@@ -797,7 +801,7 @@ void release_rendering_memory_pool(void)
       reference_counter = (int *)(global_context + 0x3a8);
       *reference_counter = *reference_counter + -1;
     }
-    FUN_180059ba0(memory_pool, MEMORY_ALLOCATOR);
+    DataValidator0(memory_pool, MEMORY_ALLOCATOR);
   }
   
   return;
@@ -825,7 +829,7 @@ void deallocate_rendering_buffer(uint64_t buffer_handle)
     reference_counter = (int *)(global_context + 0x3a8);
     *reference_counter = *reference_counter + -1;
   }
-  FUN_180059ba0(buffer_handle, MEMORY_ALLOCATOR);
+  DataValidator0(buffer_handle, MEMORY_ALLOCATOR);
 }
 
 /**
@@ -880,7 +884,7 @@ void add_rendering_parameter_entry(int *parameter_array)
     if (current_count + 1 < array_capacity) {
       new_capacity = array_capacity;
     }
-    FUN_18013e760(parameter_array, new_capacity);
+    RenderingEngine_Renderer(parameter_array, new_capacity);
     current_count = *parameter_array;
   }
   
@@ -983,7 +987,7 @@ void update_rendering_parameter_entry(int *parameter_array)
       if (current_count + 1 < array_capacity) {
         new_capacity = array_capacity;
       }
-      FUN_18013e760(parameter_array, new_capacity);
+      RenderingEngine_Renderer(parameter_array, new_capacity);
       current_count = *parameter_array;
     }
     
@@ -1126,7 +1130,7 @@ void remove_rendering_parameter_entry(int *parameter_array)
     if (current_count + 1 < array_capacity) {
       new_capacity = array_capacity;
     }
-    FUN_18013e760(parameter_array, new_capacity);
+    RenderingEngine_Renderer(parameter_array, new_capacity);
     current_count = *parameter_array;
   }
   

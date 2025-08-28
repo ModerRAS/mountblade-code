@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_02_part044.c - 6 个函数
 
 // 函数: void FUN_1801b5480(int64_t param_1)
@@ -120,7 +124,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 3;
       uStack_5f8 = 0x21;
       uStack_5d8 = iVar2 * 0x6000;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       pplStack_590 = *(int64_t ***)(param_1 + 0xdc8);
@@ -144,7 +148,7 @@ void FUN_1801b5480(int64_t param_1)
     lStack_460 = (int64_t)iVar6 << 6;
     pplStack_590 = &plStack_518;
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    plVar5 = (int64_t *)FUN_18005ce30(uVar4,&plStack_518);
+    plVar5 = (int64_t *)SystemCore_StreamController(uVar4,&plStack_518);
     pplStack_5b8 = (int64_t **)plVar5;
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -155,7 +159,7 @@ void FUN_1801b5480(int64_t param_1)
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    FUN_18005e370(uVar4,&plStack_5a8);
+    SystemPerformance_Monitor(uVar4,&plStack_5a8);
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -185,7 +189,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 3;
       uStack_5f8 = 0x21;
       uStack_5d8 = iVar2 << 0xb;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       plStack_580 = *(int64_t **)(param_1 + 0xe08);
@@ -209,7 +213,7 @@ void FUN_1801b5480(int64_t param_1)
     puStack_390 = puVar8 + 2;
     lStack_380 = (int64_t)(int)uVar1 << 3;
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    plVar5 = (int64_t *)FUN_18005ce30(uVar4,&plStack_438);
+    plVar5 = (int64_t *)SystemCore_StreamController(uVar4,&plStack_438);
     pplStack_5b0 = (int64_t **)plVar5;
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -220,7 +224,7 @@ void FUN_1801b5480(int64_t param_1)
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    FUN_18005e370(uVar4,&plStack_5a0);
+    SystemPerformance_Monitor(uVar4,&plStack_5a0);
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -244,7 +248,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 0;
       uStack_5f8 = 5;
       uStack_5d8 = uVar1;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       plStack_570 = *(int64_t **)(param_1 + 0xde8);
@@ -273,7 +277,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 0;
       uStack_5f8 = 5;
       uStack_5d8 = uVar1;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       plStack_560 = *(int64_t **)(param_1 + 0xdf8);
@@ -302,7 +306,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 0;
       uStack_5f8 = 5;
       uStack_5d8 = uVar1;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       plStack_550 = *(int64_t **)(param_1 + 0xe00);
@@ -337,7 +341,7 @@ void FUN_1801b5480(int64_t param_1)
       uStack_5f0 = 3;
       uStack_5f8 = 0x21;
       uStack_5d8 = iVar6 << 0xb;
-      puVar3 = (uint64_t *)FUN_1800b0a10();
+      puVar3 = (uint64_t *)SystemCore_ConfigManager();
       uVar4 = *puVar3;
       *puVar3 = 0;
       plStack_540 = *(int64_t **)(param_1 + 0xdd8);
@@ -361,7 +365,7 @@ void FUN_1801b5480(int64_t param_1)
     puStack_2b0 = puVar8 + 2;
     lStack_2a0 = (int64_t)(int)uVar1 << 2;
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    plVar5 = (int64_t *)FUN_18005ce30(uVar4,&puStack_358);
+    plVar5 = (int64_t *)SystemCore_StreamController(uVar4,&puStack_358);
     ppuStack_530 = (void **)plVar5;
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -372,7 +376,7 @@ void FUN_1801b5480(int64_t param_1)
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    FUN_18005e370(uVar4,&plStack_598);
+    SystemPerformance_Monitor(uVar4,&plStack_598);
     if (plVar5 != (int64_t *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -586,7 +590,7 @@ void FUN_1801b6020(int64_t param_1)
     *(uint *)(lVar2 + 0x2c4) = uVar1 | 4;
     if (((*(int64_t *)(lVar2 + 0x20) != 0) &&
         (*(char *)(*(int64_t *)(lVar2 + 0x20) + 0x60cb0) == '\0')) && ((uVar1 & 2) != 0)) {
-      FUN_1802ee720(lVar2,0);
+      RenderingSystem_UpdateCamera(lVar2,0);
     }
   }
   lStack_58 = *plVar11;
@@ -626,7 +630,7 @@ void FUN_1801b6020(int64_t param_1)
   uStack_a0 = 0x18;
   *(int8_t *)(puVar8 + 6) = 0;
   uStack_98 = uStack_60 & 0xffffffff;
-  FUN_180060680(acStack_40,&processed_var_4576_ptr,iVar12);
+  RenderingEngine_BufferManager(acStack_40,&processed_var_4576_ptr,iVar12);
   lVar2 = -1;
   do {
     lVar10 = lVar2;
@@ -700,7 +704,7 @@ void FUN_1801b6370(int64_t param_1)
         puStack_68 = (uint64_t *)0x0;
         puStack_60 = (uint64_t *)0x0;
         uStack_58 = 3;
-        FUN_1802e8c60(*(uint64_t *)(*(int64_t *)(param_1 + 0x60858) + lVar8),&puStack_70);
+        NetworkSystem_SecurityManager(*(uint64_t *)(*(int64_t *)(param_1 + 0x60858) + lVar8),&puStack_70);
         uVar1 = *(uint64_t *)(*(int64_t *)(param_1 + 0x60858) + lVar8);
         if (puStack_68 < puStack_60) {
           *puStack_68 = uVar1;

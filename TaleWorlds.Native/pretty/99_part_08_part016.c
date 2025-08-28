@@ -31,7 +31,7 @@ void FUN_1804efa70(uint64_t *param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -466,7 +466,7 @@ void FUN_1804efd10(int64_t param_1,int32_t *param_2,int32_t *param_3,int8_t *par
   puStack_130 = param_4;
   puStack_128 = param_3;
   puStack_120 = param_2;
-  cStack_157 = FUN_1805a3ab0(param_9 + 0x28);
+  cStack_157 = RenderingSystem_ConfigValidator0(param_9 + 0x28);
   bVar12 = (byte)((uint)*(int32_t *)(param_10 + 0x564) >> 0x1f) ^ 1;
   if (((param_12 != '\0') ||
       ((cStack_157 != '\0' && ((bVar12 != 0 || (-1 < *(int *)(param_9 + 0x564))))))) &&

@@ -142,23 +142,23 @@ void FUN_180438c50(void)
   if ((*(int *)(SYSTEM_STATE_MANAGER + 0x4d0) - 3U & 0xfffffffd) == 0) {
     uVar4 = 2;
   }
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e08) = uVar3;
   uStackX_8 = 0x7000200;
   uStackX_c = 1;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e10) = uVar3;
   uStackX_8 = 0x7000007;
   uStackX_c = 1;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e18) = uVar3;
   uStackX_8 = 0x7000207;
   uStackX_c = 1;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e20) = uVar3;
   uStackX_8 = 0x7000107;
   uStackX_c = 1;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e28) = uVar3;
   iVar1 = *(int *)(SYSTEM_STATE_MANAGER + 0x310);
   if (iVar1 == 0) {
@@ -190,16 +190,16 @@ LAB_1800a37ee:
 LAB_1800a37f8:
   uStackX_8._0_2_ = (ushort)(byte)uStackX_8;
   uStackX_8 = CONCAT13(7,(uint3)uStackX_8);
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e30) = uVar3;
   uStackX_8 = 0x300020a;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e38) = uVar3;
   uStackX_8 = 0x600020a;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e40) = uVar3;
   uStackX_8 = 0x300030a;
-  uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
+  uVar3 = SystemCore_PerformanceMonitor(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e48) = uVar3;
   return;
 }

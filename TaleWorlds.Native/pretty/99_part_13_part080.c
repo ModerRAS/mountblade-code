@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -95,7 +99,7 @@ uint64_t FUN_1808e0750(int64_t param_1,int64_t param_2)
         if (iVar3 < 8) {
           iVar3 = 8;
         }
-        uVar2 = FUN_180747f10(param_1 + 8,iVar3);
+        uVar2 = RenderingTextureManager0(param_1 + 8,iVar3);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -198,7 +202,7 @@ uint64_t FUN_1808e0920(uint64_t *param_1,int64_t *param_2,uint64_t param_3,uint6
                     // WARNING: Subroutine does not return
       memset(auStack_e8,0,0xe0);
     }
-    FUN_180840270(&uStack_f8);
+    SystemCore_MemoryManager(&uStack_f8);
   }
   else {
     lVar2 = *plVar4;
@@ -273,7 +277,7 @@ void FUN_1808e0c60(int64_t param_1)
   
   *(void **)(param_1 + 0x70) = &processed_var_8408_ptr;
   func_0x0001808e0bc0(param_1 + 0x48);
-  FUN_18085dbf0(param_1 + 0x38);
+  SystemController(param_1 + 0x38);
   plVar1 = (int64_t *)(param_1 + 0x20);
   plVar3 = (int64_t *)*plVar1;
   if (plVar3 != plVar1) {
@@ -453,7 +457,7 @@ int FUN_1808e0d80(uint64_t *param_1)
     iVar7 = 0;
   }
 LAB_1808e0f9d:
-  if ((puVar9 != (uint64_t *)0x0) && (iVar6 = FUN_180769080(puVar9), iVar6 == 0)) {
+  if ((puVar9 != (uint64_t *)0x0) && (iVar6 = UISystem_Renderer(puVar9), iVar6 == 0)) {
     (**(code **)*puVar9)(puVar9,0);
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar9,&processed_var_8336_ptr,0x16d,1);
@@ -562,7 +566,7 @@ int FUN_1808e0d8f(uint64_t *param_1)
     iVar7 = 0;
   }
 LAB_1808e0f9d:
-  if ((unaff_RBX != (uint64_t *)0x0) && (iVar6 = FUN_180769080(unaff_RBX), iVar6 == 0)) {
+  if ((unaff_RBX != (uint64_t *)0x0) && (iVar6 = UISystem_Renderer(unaff_RBX), iVar6 == 0)) {
     (**(code **)*unaff_RBX)(unaff_RBX,0);
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_RBX,&processed_var_8336_ptr,0x16d,1);
@@ -581,7 +585,7 @@ int32_t FUN_1808e0fc0(void)
   uint64_t *unaff_RBX;
   int32_t unaff_EDI;
   
-  iVar1 = FUN_180769080();
+  iVar1 = UISystem_Renderer();
   if (iVar1 == 0) {
     (**(code **)*unaff_RBX)();
                     // WARNING: Subroutine does not return
@@ -602,7 +606,7 @@ int32_t FUN_1808e100f(void)
   uint64_t *in_stack_000000a8;
   
   if (in_stack_000000a8 != (uint64_t *)0x0) {
-    iVar1 = FUN_180769080(in_stack_000000a8);
+    iVar1 = UISystem_Renderer(in_stack_000000a8);
     if (iVar1 == 0) {
       (**(code **)*in_stack_000000a8)(in_stack_000000a8,0);
                     // WARNING: Subroutine does not return

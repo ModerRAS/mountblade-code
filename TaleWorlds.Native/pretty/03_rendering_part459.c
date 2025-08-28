@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part459.c - 5 个函数
 
@@ -86,13 +88,13 @@ void FUN_180514820(float param_1,int64_t param_2)
   unaff_RBP[5] = fVar11;
   unaff_RBP[6] = fVar12;
   unaff_RBP[7] = fVar13;
-  pfVar14 = (float *)FUN_180534930(*(int64_t *)(lVar5 + 0x8a8) + 0x70,unaff_RBP + 0xc,lVar6 + 0x50)
+  pfVar14 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar5 + 0x8a8) + 0x70,unaff_RBP + 0xc,lVar6 + 0x50)
   ;
   uStack0000000000000074 = 0x7f7fffff;
   in_stack_00000068 = *pfVar14 - fVar4;
   fStack000000000000006c = pfVar14[1] - fVar11;
   in_stack_00000070 = pfVar14[2] - fVar12;
-  FUN_180285b40(fVar11,unaff_RBP + -0x14,&stack0x00000068);
+  SystemCore_EventHandler(fVar11,unaff_RBP + -0x14,&stack0x00000068);
   puVar2 = *(int32_t **)(unaff_RBX + 0x728);
   uVar7 = unaff_RBP[-0x13];
   uVar8 = unaff_RBP[-0x12];
@@ -287,7 +289,7 @@ void FUN_180514a60(int64_t param_1)
     fStack_e4 = fVar18;
     fStack_e0 = fVar13;
     uStack_dc = uStack_10c;
-    pfVar6 = (float *)FUN_1801c0fb0(&uStack_128,auStack_108);
+    pfVar6 = (float *)SystemFileHandler(&uStack_128,auStack_108);
     fVar21 = (fVar13 + pfVar6[2]) * *(float *)(lVar12 + 0x98) + *(float *)(lVar12 + 0xa8);
     fVar13 = (fVar18 + pfVar6[1]) * *(float *)(lVar12 + 0x80) +
              (fVar16 + *pfVar6) * *(float *)(lVar12 + 0x70) + *(float *)(lVar12 + 0xa0);
@@ -562,7 +564,7 @@ void FUN_180514acc(uint64_t param_1,uint *param_2)
   *(float *)(unaff_RBP + -0x78) = fVar15;
   *(uint *)(unaff_RBP + -0x74) = uVar2;
   lVar10 = *(int64_t *)(lVar10 + 0x8a8);
-  pfVar9 = (float *)FUN_1801c0fb0(&stack0x00000070,unaff_RBP + -0x70);
+  pfVar9 = (float *)SystemFileHandler(&stack0x00000070,unaff_RBP + -0x70);
   fVar24 = (fVar15 + pfVar9[2]) * *(float *)(lVar10 + 0x98) + *(float *)(lVar10 + 0xa8);
   fVar15 = (fVar22 + pfVar9[1]) * *(float *)(lVar10 + 0x80) +
            (fVar19 + *pfVar9) * *(float *)(lVar10 + 0x70) + *(float *)(lVar10 + 0xa0);

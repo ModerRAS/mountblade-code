@@ -474,8 +474,8 @@ void FUN_1803a42d0(int64_t param_1,int64_t param_2,int32_t *param_3,int32_t para
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar10 = *(void **)(param_2 + 8);
   }
-  FUN_180060680(auStack_168,&processed_var_8104_ptr,puVar10,param_4);
-  FUN_18062dee0(puVar6,auStack_168,&processed_var_4880_ptr);
+  RenderingEngine_BufferManager(auStack_168,&processed_var_8104_ptr,puVar10,param_4);
+  SystemCore_Validator(puVar6,auStack_168,&processed_var_4880_ptr);
   if (0 < iVar1) {
     if (puVar6[1] == 0) {
       SystemDataInitializer(&processed_var_8344_ptr,param_4,param_5);

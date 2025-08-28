@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part062.c - 12 个函数
 
 // 函数: void FUN_1802fe6e7(void)
@@ -311,8 +315,8 @@ void FUN_1802feaf0(int64_t param_1,short param_2)
 
 
 
-// 函数: void FUN_1802feba0(int64_t param_1,char param_2)
-void FUN_1802feba0(int64_t param_1,char param_2)
+// 函数: void RenderingSystem_DrawPrimitive(int64_t param_1,char param_2)
+void RenderingSystem_DrawPrimitive(int64_t param_1,char param_2)
 
 {
   float fVar1;
@@ -405,7 +409,7 @@ void FUN_1802feba0(int64_t param_1,char param_2)
   fStack_64 = fStack_e4;
   fStack_60 = fStack_e0;
   fStack_5c = fStack_dc;
-  FUN_18063b5f0(&fStack_d8,&fStack_f8);
+  SystemSecurityManager(&fStack_d8,&fStack_f8);
   fVar1 = pfVar6[0x18];
   fVar2 = pfVar6[0x19];
   fVar3 = pfVar6[0x1a];
@@ -517,7 +521,7 @@ void FUN_1802fee60(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     }
   }
   if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000,param_4,uVar2);
+    SystemCore_FileSystem(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000,param_4,uVar2);
   }
   if (*(int64_t *)(param_1 + 0x28) != 0) {
     iVar1 = _Mtx_unlock(*(int64_t *)(param_1 + 0x28) + 0x58);
@@ -755,7 +759,7 @@ LAB_1802ff2f4:
   }
   if (lVar7 != *(int64_t *)(param_1 + 0x208)) {
     if (*(int64_t *)(param_1 + 0x10) != 0) {
-      FUN_1802ed990(*(int64_t *)(param_1 + 0x10),1);
+      PhysicsSystem_CharacterController(*(int64_t *)(param_1 + 0x10),1);
     }
     puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3);
     *puVar3 = &ui_system_data_1864_ptr;
@@ -938,11 +942,11 @@ LAB_1802ff5d0:
           if (puVar1 != (void *)0x0) {
             puVar8 = puVar1;
           }
-          FUN_180627020(&rendering_buffer_2384_ptr,puVar8,lVar9,puVar14,lVar17);
+          SystemCore_Allocator(&rendering_buffer_2384_ptr,puVar8,lVar9,puVar14,lVar17);
           if (*(int64_t *)(param_1 + 0x10) == 0) {
             return;
           }
-          FUN_1802ed990(*(int64_t *)(param_1 + 0x10),1);
+          PhysicsSystem_CharacterController(*(int64_t *)(param_1 + 0x10),1);
           return;
         }
         lVar6 = (int64_t)&rendering_buffer_2296_ptr - (int64_t)pcVar4;

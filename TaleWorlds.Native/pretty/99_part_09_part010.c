@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_09_part010.c - 1 个函数
 
@@ -271,7 +276,7 @@ LAB_1805c1afc:
         }
         if (*(int *)((int64_t)iVar7 * 0xa60 + 0x3608 + unaff_RBX[0x291]) == 1) {
           if ((*(byte *)(in_RCX + 0x10) & 1) == 0) {
-            fVar22 = (float)FUN_1805d3210(puVar1);
+            fVar22 = (float)SystemCore_ThreadManager(puVar1);
             cVar5 = (char)unaff_RBX[0x438];
           }
           fVar33 = *(float *)(in_RCX + 0x68);
@@ -404,7 +409,7 @@ LAB_1805c1cc6:
     }
     if ((char)unaff_RBX[0x386] != '\0') {
       if ((*(byte *)(in_RCX + 0x10) & 1) == 0) {
-        FUN_1805d3210(puVar1);
+        SystemCore_ThreadManager(puVar1);
         cVar6 = bVar4;
       }
       fVar22 = (float)func_0x0001805d8e00(unaff_RBX + 0x2ce,*(int32_t *)(in_RCX + 0x68));
@@ -458,7 +463,7 @@ LAB_1805c1cc6:
           fVar31 = fVar31 * 0.5 * (3.0 - fVar26);
           if ((fVar32 * fVar25 * fVar24 * fVar31 + fVar32 * fVar27 * fVar29 * fVar31 < 0.5) &&
              (*(char *)(unaff_RBP + 0xf8) == '\0')) {
-            FUN_180487c70(unaff_RBX + 0x29e,3,auVar30._0_8_,fVar26,uVar34);
+            SystemCore_Validator(unaff_RBX + 0x29e,3,auVar30._0_8_,fVar26,uVar34);
             if ((int)unaff_RBX[0x2a6] < 3) {
               fVar22 = -NAN;
             }
@@ -497,7 +502,7 @@ LAB_1805c1cc6:
               fVar22 = (float)(fVar22 <= 1.1754944e-38) * 1.1754944e-38 + fVar22;
               auVar30 = rsqrtss(ZEXT416((uint)fVar22),ZEXT416((uint)fVar22));
                     // WARNING: Subroutine does not return
-              FUN_1808fd400(*(int32_t *)(lVar21 + 0x34),
+              RenderingSystem_Renderer0(*(int32_t *)(lVar21 + 0x34),
                             3.0 - fVar22 * auVar30._0_4_ * auVar30._0_4_);
             }
           }
@@ -525,7 +530,7 @@ LAB_1805c1cc6:
             }
           }
           else {
-            FUN_180487c70(unaff_RBX + 0x29e,2);
+            SystemCore_Validator(unaff_RBX + 0x29e,2);
             fVar22 = -NAN;
             if ((int)unaff_RBX[0x2a6] < 2) {
               fVar29 = -NAN;
@@ -535,8 +540,8 @@ LAB_1805c1cc6:
             }
             fVar24 = *(float *)(unaff_RBX + 0x2a1);
             fVar27 = *(float *)((int64_t)unaff_RBX + 0x150c);
-            lVar21 = FUN_180516f50(*unaff_RBX,&stack0x00000070);
-            FUN_180487c70(lVar21,2);
+            lVar21 = UltraHighFreq_MemoryManager1(*unaff_RBX,&stack0x00000070);
+            SystemCore_Validator(lVar21,2);
             if (*(int *)(lVar21 + 0x40) < 2) {
               fStack0000000000000058 = -NAN;
             }
@@ -547,10 +552,10 @@ LAB_1805c1cc6:
             uStack000000000000005c = 0x7f7fffff;
             _fStack0000000000000050 =
                  CONCAT44(fVar27 - *(float *)(lVar21 + 0x1c),fVar24 - *(float *)(lVar21 + 0x18));
-            fVar29 = (float)FUN_1801c24a0(&stack0x00000050);
-            lVar21 = FUN_180516f50((int64_t)**(int **)(unaff_RBP + 0x100) * 0xa60 +
+            fVar29 = (float)UtilitiesSystem_CryptoHandler(&stack0x00000050);
+            lVar21 = UltraHighFreq_MemoryManager1((int64_t)**(int **)(unaff_RBP + 0x100) * 0xa60 +
                                    unaff_RBX[0x291] + 0x30a0,&stack0x00000070);
-            FUN_180487c70(lVar21,2);
+            SystemCore_Validator(lVar21,2);
             if (*(int *)(lVar21 + 0x40) < 2) {
               fVar24 = -NAN;
             }
@@ -559,8 +564,8 @@ LAB_1805c1cc6:
             }
             fVar27 = *(float *)(lVar21 + 0x18);
             fVar26 = *(float *)(lVar21 + 0x1c);
-            lVar21 = FUN_180516f50(*unaff_RBX,unaff_RBP + -0x48);
-            FUN_180487c70(lVar21,2);
+            lVar21 = UltraHighFreq_MemoryManager1(*unaff_RBX,unaff_RBP + -0x48);
+            SystemCore_Validator(lVar21,2);
             if (1 < *(int *)(lVar21 + 0x40)) {
               fVar22 = *(float *)(lVar21 + 0x20);
             }
@@ -569,7 +574,7 @@ LAB_1805c1cc6:
             uStack000000000000006c = 0x7f7fffff;
             _fStack0000000000000060 = CONCAT44(fVar26,fVar27);
             fStack0000000000000068 = fVar24 - fVar22;
-            fVar25 = (float)FUN_1801c24a0(&stack0x00000060);
+            fVar25 = (float)UtilitiesSystem_CryptoHandler(&stack0x00000060);
             fVar31 = fStack0000000000000064 * fStack0000000000000054 +
                      fStack0000000000000060 * fStack0000000000000050 +
                      fStack0000000000000068 * fStack0000000000000058;
@@ -667,7 +672,7 @@ LAB_1805c280c:
       if (*(int *)(*(int64_t *)(lVar21 + 0x8f8) + 0x9e4) == 4) {
         plVar19 = (int64_t *)(*(int64_t *)(lVar21 + 0x8f8) + 0xd8);
         do {
-          cVar6 = FUN_18058f970(plVar19 + -0x1a);
+          cVar6 = SystemCore_EventHandler(plVar19 + -0x1a);
           if ((cVar6 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar19[4] * 0xa0 + 0x50 + *plVar19) & 0x12) == 2))
           goto FUN_1805c296d;
@@ -683,7 +688,7 @@ LAB_1805c280c:
       if (*(int *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0x9e4) == 4) {
         plVar19 = (int64_t *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0xd8);
         do {
-          cVar6 = FUN_18058f970(plVar19 + -0x1a);
+          cVar6 = SystemCore_EventHandler(plVar19 + -0x1a);
           if ((cVar6 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar19[4] * 0xa0 + 0x50 + *plVar19) & 0x12) == 2))
           goto FUN_1805c296d;

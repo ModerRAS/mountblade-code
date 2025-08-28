@@ -187,7 +187,7 @@ LAB_18059b0ab:
       uStack_90 = 1;
       uStack_8c = 0xffffffff;
       uStack_88 = 0x40;
-      FUN_18051ec50(*(int64_t *)(param_1 + 0x108),&uStack_90);
+      CoreSystemThreadManager(*(int64_t *)(param_1 + 0x108),&uStack_90);
     }
   }
   if (uVar20 != 0) {
@@ -681,7 +681,7 @@ void FUN_18059ba40(int64_t param_1)
       uStack_24 = 0;
       uStack_34 = 0xffffffff;
       uStack_58 = uVar14;
-      FUN_1805a4a20(param_1,1,&uStack_a8,1);
+      UISystem_InputHandler(param_1,1,&uStack_a8,1);
       *(uint64_t *)(param_1 + 0x218) =
            *(uint64_t *)(&system_error_code + (int64_t)*(int *)(param_1 + 0x220) * 8);
       return;
@@ -745,7 +745,7 @@ LAB_18059bb87:
         uStack_24 = 0;
         uStack_34 = 0xffffffff;
         uStack_1c = 0x3f800000;
-        cVar7 = FUN_1805a4a20(param_1,1,&uStack_a8,1);
+        cVar7 = UISystem_InputHandler(param_1,1,&uStack_a8,1);
         if (cVar7 != '\0') {
           *(int32_t **)(param_1 + 0x270) = puVar9;
         }
@@ -804,7 +804,7 @@ LAB_18059bba5:
       uStack_34 = 0xffffffff;
       uStack_1c = 0x3f800000;
       uStack_58 = uVar14;
-      FUN_1805a4a20(param_1,1,&uStack_a8,1);
+      UISystem_InputHandler(param_1,1,&uStack_a8,1);
     }
   }
 FUN_18059bd17:
@@ -855,7 +855,7 @@ LAB_18059bd8e:
   uStack_24 = 0;
   uStack_34 = 0xffffffff;
   uStack_1c = 0x3f800000;
-  FUN_1805a4a20(param_1,1,&uStack_a8,1);
+  UISystem_InputHandler(param_1,1,&uStack_a8,1);
   return;
 }
 

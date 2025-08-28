@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part016.c - 13 个函数
 
 // 函数: void FUN_1805c465b(int64_t *param_1,uint64_t *param_2,int8_t *param_3,char param_4)
@@ -115,7 +119,7 @@ void FUN_1805c465b(int64_t *param_1,uint64_t *param_2,int8_t *param_3,char param
       }
       if (bVar7 == 0) {
         if ((*(uint *)(param_1 + 2) & 1) == 0) {
-          FUN_1805d3210(param_1 + 1);
+          SystemCore_ThreadManager(param_1 + 1);
         }
         fVar17 = *(float *)(*(int64_t *)(*param_1 + 0x20) + 0x10) -
                  *(float *)((int64_t)param_1 + 0x54);
@@ -146,7 +150,7 @@ void FUN_1805c465b(int64_t *param_1,uint64_t *param_2,int8_t *param_3,char param
     lVar1 = *(int64_t *)(lVar10 + 0x20);
     lVar13 = 0;
     if (lVar14 != 0) {
-      cVar8 = FUN_18038d0a0(lVar14,lVar1 + 0xc);
+      cVar8 = SystemCore_PerformanceMonitor(lVar14,lVar1 + 0xc);
       if (cVar8 != '\0') {
         lVar13 = lVar14;
       }
@@ -207,7 +211,7 @@ void FUN_1805c4876(uint param_1,int param_2)
   }
   if (bVar2 == 0) {
     if ((*(uint *)(unaff_RBX + 2) & 1) == 0) {
-      FUN_1805d3210(unaff_RBX + 1);
+      SystemCore_ThreadManager(unaff_RBX + 1);
     }
     fVar5 = *(float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x10) -
             *(float *)((int64_t)unaff_RBX + 0x54);
@@ -260,7 +264,7 @@ void FUN_1805c48ea(uint64_t param_1,uint64_t param_2)
   float unaff_XMM8_Da;
   
   if ((param_2 & 1) == 0) {
-    FUN_1805d3210(unaff_RBX + 1);
+    SystemCore_ThreadManager(unaff_RBX + 1);
   }
   fVar4 = *(float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x10) -
           *(float *)((int64_t)unaff_RBX + 0x54);
@@ -377,7 +381,7 @@ void FUN_1805c49c4(int32_t param_1)
   
   lVar2 = *(int64_t *)(in_R10 + 0x20);
   if (in_R11 != 0) {
-    cVar7 = FUN_18038d0a0(param_1,lVar2 + 0xc);
+    cVar7 = SystemCore_PerformanceMonitor(param_1,lVar2 + 0xc);
     if (cVar7 != '\0') {
       unaff_RSI = in_R11;
     }
@@ -605,7 +609,7 @@ void FUN_1805c4a90(int64_t *param_1,uint64_t *param_2,int8_t *param_3)
   lVar11 = *(int64_t *)(lVar15 + 0x9d8);
   lVar3 = *(int64_t *)(lVar15 + 0x20);
   lVar14 = 0;
-  if ((lVar11 != 0) && (cVar9 = FUN_18038d0a0(lVar11,lVar3 + 0xc), cVar9 != '\0')) {
+  if ((lVar11 != 0) && (cVar9 = SystemCore_PerformanceMonitor(lVar11,lVar3 + 0xc), cVar9 != '\0')) {
     lVar14 = lVar11;
   }
   uVar4 = *(uint64_t *)(*(int64_t *)(lVar15 + 0x8d8) + 0x18);
@@ -800,7 +804,7 @@ void FUN_1805c4a9b(int64_t *param_1,uint64_t *param_2,int8_t *param_3,uint64_t p
   lVar11 = *(int64_t *)(lVar15 + 0x9d8);
   lVar3 = *(int64_t *)(lVar15 + 0x20);
   lVar14 = 0;
-  if ((lVar11 != 0) && (cVar9 = FUN_18038d0a0(lVar11,lVar3 + 0xc), cVar9 != '\0')) {
+  if ((lVar11 != 0) && (cVar9 = SystemCore_PerformanceMonitor(lVar11,lVar3 + 0xc), cVar9 != '\0')) {
     lVar14 = lVar11;
   }
   uVar4 = *(uint64_t *)(*(int64_t *)(lVar15 + 0x8d8) + 0x18);

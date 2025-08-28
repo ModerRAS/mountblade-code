@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part677.c - 6 个函数
 
 // 函数: void FUN_180656610(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -15,10 +19,10 @@ void FUN_180656610(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_14;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  SystemCore_CacheManager(&puStack_30);
   uVar1 = (uint64_t)uStack_20;
   if (lStack_28 != 0) {
-    FUN_1806277c0(param_1 + 0x10,uVar1);
+    SystemManager_ConfigManager0(param_1 + 0x10,uVar1);
   }
   if (uStack_20 != 0) {
                     // WARNING: Subroutine does not return
@@ -62,7 +66,7 @@ uint64_t * FUN_1806566c0(int64_t param_1)
       uVar3 = uVar2;
       uVar2 = uVar3 + 1;
     } while (*(char *)(param_1 + uVar2) != '\0');
-    FUN_1806277c0(puVar1,uVar2 & 0xffffffff);
+    SystemManager_ConfigManager0(puVar1,uVar2 & 0xffffffff);
     if ((int)uVar2 != 0) {
                     // WARNING: Subroutine does not return
       memcpy(puVar1[1],param_1,(int)uVar3 + 2);
@@ -207,7 +211,7 @@ void FUN_180656870(int64_t *param_1)
         uStack_a0 = 0;
         pbStack_b0 = (int8_t *)0x0;
         uStack_a8 = 0;
-        FUN_1806277c0(&puStack_b8,*(int32_t *)(uVar20 + 0x10 + (int64_t)puStack_58));
+        SystemManager_ConfigManager0(&puStack_b8,*(int32_t *)(uVar20 + 0x10 + (int64_t)puStack_58));
         iVar14 = *(int *)(uVar20 + 0x10 + (int64_t)puVar10);
         if (iVar14 != 0) {
                     // WARNING: Subroutine does not return
@@ -224,7 +228,7 @@ void FUN_180656870(int64_t *param_1)
         uStack_80 = 0;
         puStack_90 = (int8_t *)0x0;
         uStack_88 = 0;
-        FUN_1806277c0(&puStack_98,uStack_a8);
+        SystemManager_ConfigManager0(&puStack_98,uStack_a8);
         if (uStack_a8 != 0) {
                     // WARNING: Subroutine does not return
           memcpy(puStack_90,pbStack_b0,uStack_a8 + 1);
@@ -237,14 +241,14 @@ void FUN_180656870(int64_t *param_1)
           uStack_80 = uStack_80 & 0xffffffff;
         }
         iVar14 = uStack_88 + 0xe;
-        FUN_1806277c0(&puStack_98,iVar14);
+        SystemManager_ConfigManager0(&puStack_98,iVar14);
         puVar10 = (uint64_t *)(puStack_90 + uStack_88);
         *puVar10 = 0x75646f4d6275532f;
         *(int32_t *)(puVar10 + 1) = 0x782e656c;
         *(int16_t *)((int64_t)puVar10 + 0xc) = 0x6c6d;
         *(int8_t *)((int64_t)puVar10 + 0xe) = 0;
         uStack_88 = iVar14;
-        cVar5 = FUN_180624af0(&puStack_98);
+        cVar5 = RenderingSystem_RenderQueue(&puStack_98);
         plVar21 = plVar7;
         if (cVar5 != '\0') {
           lVar6 = FUN_180657fa0(&puStack_98);
@@ -335,7 +339,7 @@ LAB_180656abd:
       uStack_a0 = 0;
       pbStack_b0 = (byte *)0x0;
       uStack_a8 = 0;
-      FUN_1806277c0(&puStack_b8,*(int32_t *)(lVar6 + 0x10));
+      SystemManager_ConfigManager0(&puStack_b8,*(int32_t *)(lVar6 + 0x10));
       if (*(int *)(lVar6 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(pbStack_b0,*(uint64_t *)(lVar6 + 8),*(int *)(lVar6 + 0x10) + 1);
@@ -547,7 +551,7 @@ void FUN_180657040(uint64_t *param_1)
   uStack_b8 = 0;
   puStack_60 = &system_state_ptr;
   iVar9 = uStack_a0 + 8;
-  FUN_1806277c0(&puStack_b0,iVar9);
+  SystemManager_ConfigManager0(&puStack_b0,iVar9);
   *(uint64_t *)((uint64_t)uStack_a0 + lStack_a8) = 0x2f73656c75646f4d;
   *(int8_t *)((uint64_t *)((uint64_t)uStack_a0 + lStack_a8) + 1) = 0;
   puStack_88 = (uint64_t *)0x0;
@@ -568,7 +572,7 @@ void FUN_180657040(uint64_t *param_1)
       auStack_48[0] = 0;
       puStack_58 = (uint64_t *)0x0;
       iStack_50 = 0;
-      FUN_1806277c0(&puStack_60,*piVar10);
+      SystemManager_ConfigManager0(&puStack_60,*piVar10);
       if (*piVar10 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(puStack_58,*(uint64_t *)(piVar10 + -2),*piVar10 + 1);
@@ -584,7 +588,7 @@ void FUN_180657040(uint64_t *param_1)
       uStack_c0 = 0;
       puStack_d0 = (int8_t *)0x0;
       uStack_c8 = 0;
-      FUN_1806277c0(&puStack_d8,iStack_50);
+      SystemManager_ConfigManager0(&puStack_d8,iStack_50);
       if (iStack_50 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(puStack_d0,puStack_58,iStack_50 + 1);
@@ -597,14 +601,14 @@ void FUN_180657040(uint64_t *param_1)
         uStack_c0 = uStack_c0 & 0xffffffff;
       }
       iVar9 = uStack_c8 + 0xe;
-      FUN_1806277c0(&puStack_d8,iVar9);
+      SystemManager_ConfigManager0(&puStack_d8,iVar9);
       puVar7 = (uint64_t *)(puStack_d0 + uStack_c8);
       *puVar7 = 0x75646f4d6275532f;
       *(int32_t *)(puVar7 + 1) = 0x782e656c;
       *(int16_t *)((int64_t)puVar7 + 0xc) = 0x6c6d;
       *(int8_t *)((int64_t)puVar7 + 0xe) = 0;
       uStack_c8 = iVar9;
-      cVar3 = FUN_180624af0(&puStack_d8);
+      cVar3 = RenderingSystem_RenderQueue(&puStack_d8);
       if (cVar3 != '\0') {
         uVar4 = FUN_180657fa0(&puStack_d8);
         puVar7 = (uint64_t *)param_1[1];

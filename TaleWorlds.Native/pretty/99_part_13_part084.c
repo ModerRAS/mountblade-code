@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -162,7 +163,7 @@ LAB_1808e3f76:
         }
       }
       else {
-        iVar8 = FUN_18073c380(*(int64_t *)(lVar10 + 0x78),0xffffffff,&uStack_160);
+        iVar8 = UltraHighFreq_PhysicsEngine1(*(int64_t *)(lVar10 + 0x78),0xffffffff,&uStack_160);
         if (iVar8 != 0) goto LAB_1808e3f99;
         uStack_168 = uStack_168 & 0xffffffff00000000;
         FUN_1807402d0(uStack_160,0,&uStack_168);
@@ -270,7 +271,7 @@ LAB_1808e3f76:
         }
       }
       else {
-        iVar4 = FUN_18073c380(*(int64_t *)(lVar2 + 0x78),0xffffffff,&param_5);
+        iVar4 = UltraHighFreq_PhysicsEngine1(*(int64_t *)(lVar2 + 0x78),0xffffffff,&param_5);
         if (iVar4 != 0) goto LAB_1808e3f99;
         puStackX_20 = (int8_t *)((uint64_t)puStackX_20 & 0xffffffff00000000);
         FUN_1807402d0(param_5,0,&puStackX_20);
@@ -333,7 +334,7 @@ void FUN_1808e3eb9(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
     iVar2 = 0;
     if (lVar1 != 0) {
       if (*(int64_t *)(lVar1 + 0x78) != 0) {
-        iVar2 = FUN_18073c380(*(int64_t *)(lVar1 + 0x78),0xffffffff,&param_5);
+        iVar2 = UltraHighFreq_PhysicsEngine1(*(int64_t *)(lVar1 + 0x78),0xffffffff,&param_5);
         if (iVar2 != 0) goto LAB_1808e3f99;
         aiStackX_20[0] = iVar2;
         FUN_1807402d0(param_5,0,aiStackX_20);

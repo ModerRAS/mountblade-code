@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 //==============================================================================
 // 文件信息：02_core_engine_part083.c
@@ -188,7 +194,7 @@ void FUN_180110540(int param_1)
     }
     
     // 执行初始计算和索引获取
-    iVar8 = FUN_180121250(puVar11, 0,
+    iVar8 = SystemCore_HandleInput(puVar11, 0,
                           *(int32_t *)
                            (*(int64_t *)(lVar4 + ENGINE_OFFSET_CONFIG) + -4 + (int64_t)*(int *)(lVar4 + ENGINE_OFFSET_STATE) * 4)
                          );
@@ -295,7 +301,7 @@ void FUN_180110540(int param_1)
         uVar10 = func_0x000180121e20(&uStack_e8);     // 执行位置计算
         
         // 调用核心位置处理函数
-        FUN_180293f50(*(uint64_t *)(lVar4 + 0x2e8), &fStack_f8, &fStack_f0, uVar10,
+        MathInterpolationCalculator0(*(uint64_t *)(lVar4 + 0x2e8), &fStack_f8, &fStack_f0, uVar10,
                       *(int32_t *)(lVar4 + 0x78), uVar14);
         
         // 执行范围限制和标准化
@@ -368,7 +374,7 @@ void FUN_180110540(int param_1)
         fVar22 = fVar21 * fVar24;                      // 计算最终比例
         
         // 调用坐标验证函数
-        FUN_18010f170(&fStack_f8, iVar8, acStackX_10, acStackX_8, 0x2000);
+        SystemCore_Formatter(&fStack_f8, iVar8, acStackX_10, acStackX_8, 0x2000);
         
         // 保存中间计算结果
         fVar19 = fStack_f4;                           // 保存X位置
@@ -514,7 +520,7 @@ void FUN_180110540(int param_1)
         }
         
         // 调用最终的位置处理函数
-        FUN_180293f50(*(uint64_t *)(lVar4 + 0x2e8), &fStack_f8, &fStack_f0, uVar10,
+        MathInterpolationCalculator0(*(uint64_t *)(lVar4 + 0x2e8), &fStack_f8, &fStack_f0, uVar10,
                       *(int32_t *)(lVar6 + 0x1690), 0xf);
     }
     
@@ -612,7 +618,7 @@ void FUN_180110753(void)
         uVar7 = func_0x000180121e20(&uStack0000000000000040);  // 执行位置计算
         
         // 调用核心位置处理函数
-        FUN_180293f50(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &fStack0000000000000038, uVar7,
+        MathInterpolationCalculator0(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &fStack0000000000000038, uVar7,
                       *(int32_t *)(unaff_RBX + 0x78));
         
         // 执行范围限制和标准化
@@ -685,7 +691,7 @@ void FUN_180110753(void)
         fVar14 = fVar13 * fVar16;                     // 计算最终比例
         
         // 调用坐标验证函数
-        FUN_18010f170(&in_stack_00000030, unaff_R14D, unaff_RBP + 0x6f, unaff_RBP + 0x67, 0x2000);
+        SystemCore_Formatter(&in_stack_00000030, unaff_R14D, unaff_RBP + 0x6f, unaff_RBP + 0x67, 0x2000);
         
         // 保存中间计算结果
         fVar6 = fStack0000000000000034;              // 保存X位置
@@ -832,7 +838,7 @@ void FUN_180110753(void)
         }
         
         // 调用最终的位置处理函数
-        FUN_180293f50(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &fStack0000000000000038, uVar7,
+        MathInterpolationCalculator0(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &fStack0000000000000038, uVar7,
                       *(int32_t *)(unaff_RDI + 0x1690));
     }
     
@@ -930,7 +936,7 @@ void FUN_18011077f(void)
     uVar7 = func_0x000180121e20(&uStack0000000000000040);  // 执行增强的位置计算
     
     // 调用核心位置处理函数
-    FUN_180293f50(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &in_stack_00000038, uVar7,
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &in_stack_00000038, uVar7,
                   *(int32_t *)(unaff_RBX + 0x78));
     
     // 执行增强的范围限制和标准化
@@ -1003,7 +1009,7 @@ void FUN_18011077f(void)
     fVar14 = fVar13 * fVar16;                         // 计算最终比例
     
     // 调用增强的坐标验证函数
-    FUN_18010f170(&in_stack_00000030, unaff_R14D, unaff_RBP + 0x6f, unaff_RBP + 0x67, 0x2000);
+    SystemCore_Formatter(&in_stack_00000030, unaff_R14D, unaff_RBP + 0x6f, unaff_RBP + 0x67, 0x2000);
     
     // 保存增强的中间计算结果
     fVar6 = fStack0000000000000034;                  // 保存X位置
@@ -1150,7 +1156,7 @@ void FUN_18011077f(void)
     }
     
     // 调用增强的最终位置处理函数
-    FUN_180293f50(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &in_stack_00000038, uVar7,
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RBX + 0x2e8), &in_stack_00000030, &in_stack_00000038, uVar7,
                   *(int32_t *)(unaff_RDI + 0x1690));
     
     return;                                           // 返回执行结果
@@ -1222,7 +1228,7 @@ void FUN_180110b7d(void)
     uStack0000000000000028 = 0xf;                 // 设置快速处理标志
     
     // 调用快速的位置处理函数
-    FUN_180293f50(*(uint64_t *)(unaff_RBX + 0x2e8), &fStack0000000000000030, &in_stack_00000038, in_EAX,
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RBX + 0x2e8), &fStack0000000000000030, &in_stack_00000038, in_EAX,
                   *(int32_t *)(unaff_RDI + 0x1690));
     
     return;                                           // 返回执行结果

@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization_part008.c - 初始化模块第8部分
@@ -1530,5 +1533,5 @@ void initialize_game_system_component_type26(void)
 // FUN_18025cc00 -> get_component_callback_handler
 // FUN_18025c000 -> get_component_handler
 // FUN_18025d270 -> get_system_callback
-// FUN_18007fcd0 -> get_module_initializer
+// SystemCore_Compression -> get_module_initializer
 // FUN_180073930 -> get_system_processor

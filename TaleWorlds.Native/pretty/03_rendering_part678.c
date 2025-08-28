@@ -97,7 +97,7 @@ FUN_180657b00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &ui_system_data_1744_ptr;
-  FUN_18005d580();
+  DataSerializationEngine();
   *param_1 = &ui_system_data_1792_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,uVar1);
@@ -184,7 +184,7 @@ void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         }
       }
       else {
-        FUN_180059820(param_2,&puStack_50);
+        SystemCore_BackupSystem(param_2,&puStack_50);
       }
       puStack_50 = &system_data_buffer_ptr;
       if (puStack_48 != (int8_t *)0x0) {

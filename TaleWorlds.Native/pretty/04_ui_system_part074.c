@@ -231,7 +231,7 @@ LAB_18070d1ad:
         }
       }
       if (*(int *)(param_6 + 0x18) - iVar9 < iVar2) {
-        uStack_16c = FUN_18070f3e0(param_6,&memory_allocator_3328_ptr);
+        uStack_16c = SystemCore_Processor(param_6,&memory_allocator_3328_ptr);
       }
     }
     iVar9 = 0x1f;
@@ -835,7 +835,7 @@ uint FUN_18070f3b3(uint64_t param_1,uint64_t param_2,int param_3)
 
 
 
-int FUN_18070f3e0(int64_t param_1,int64_t param_2,byte param_3)
+int SystemCore_Processor(int64_t param_1,int64_t param_2,byte param_3)
 
 {
   uint uVar1;

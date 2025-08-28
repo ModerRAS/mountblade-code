@@ -242,7 +242,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
     *(int8_t *)(unaff_R13 + 0x4416) = unaff_R14B;
     
     /* 检查系统状态 */
-    iVar2 = FUN_18069bbd0();
+    iVar2 = SystemCore_Monitor();
     if (iVar2 != 0) {
         lVar7 = 0;
         do {
@@ -254,7 +254,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 
                 /* 检查边界条件 */
                 if (*(int *)(unaff_RBX + 0x18) < 0) {
-                    FUN_18069ec80();
+                    SystemCore_Handler();
                 }
                 
                 /* 处理数据块 */
@@ -283,7 +283,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
     }
     
     /* 第二阶段状态处理 */
-    iVar2 = FUN_18069bbd0();
+    iVar2 = SystemCore_Monitor();
     if (iVar2 != 0) {
         lVar7 = 0;
         do {
@@ -295,7 +295,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 
                 /* 检查处理条件 */
                 if (*(int *)(unaff_RBX + 0x18) < 0) {
-                    FUN_18069ec80();
+                    SystemCore_Handler();
                 }
                 
                 /* 执行数据处理 */
@@ -373,7 +373,7 @@ int RenderingSystem_AdvancedDataProcessor(int64_t param_1, int64_t param_2)
         
         /* 检查数据完整性 */
         if (*(int *)(param_1 + 0x18) < 0) {
-            FUN_18069ec80(param_1);
+            SystemCore_Handler(param_1);
         }
         
         /* 执行数据操作 */
@@ -592,7 +592,7 @@ int RenderingSystem_DataFlowProcessor(int64_t param_1, int64_t param_2)
         
         /* 检查数据流状态 */
         if (*(int *)(param_1 + 0x18) < 0) {
-            FUN_18069ec80(param_1);
+            SystemCore_Handler(param_1);
         }
         
         /* 执行数据流操作 */
@@ -674,7 +674,7 @@ void RenderingSystem_AdvancedPipelineManager(int64_t param_1, int64_t param_2, c
     lStack_70 = param_2;
     
     /* 获取管线状态 */
-    cVar6 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4414));
+    cVar6 = SystemCore_Monitor(lVar1, *(int8_t *)(param_1 + 0x4414));
     param_3[2] = cVar6;
     
     /* 处理管线状态 */
@@ -712,10 +712,10 @@ void RenderingSystem_AdvancedPipelineManager(int64_t param_1, int64_t param_2, c
     piVar17 = (int *)&uStack_58;
     param_3[10] = '\0';
     pcStack_78 = (char *)(param_2 + (int64_t)iVar8 * -0x4c);
-    iVar8 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4415));
+    iVar8 = SystemCore_Monitor(lVar1, *(int8_t *)(param_1 + 0x4415));
     
     if (iVar8 != 0) {
-        cVar6 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4416));
+        cVar6 = SystemCore_Monitor(lVar1, *(int8_t *)(param_1 + 0x4416));
         param_3[2] = cVar6 + '\x02';
     }
     
@@ -807,7 +807,7 @@ LAB_18069fbb4:
     }
     
     /* 管线执行 */
-    iVar9 = FUN_18069bbd0(lVar1, *(int32_t *)(&ui_system_data_1232_ptr + (int64_t)iVar8 * 0x10));
+    iVar9 = SystemCore_Monitor(lVar1, *(int32_t *)(&ui_system_data_1232_ptr + (int64_t)iVar8 * 0x10));
     if (iVar9 == 0) {
         *param_3 = '\a';
         param_3[4] = '\0';
@@ -828,14 +828,14 @@ LAB_18069fbb4:
         iVar13 = iVar10;
     }
     uStack_98 = CONCAT44(uStack_98._4_4_, iVar13);
-    iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&ui_system_data_1236_ptr + (int64_t)iVar13 * 0x10));
+    iVar10 = SystemCore_Monitor(lVar1, *(int32_t *)(&ui_system_data_1236_ptr + (int64_t)iVar13 * 0x10));
     
     if (iVar10 == 0) {
         *param_3 = '\x05';
         *(uint *)(param_3 + 4) = uVar16;
     }
     else {
-        iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&ui_system_data_1240_ptr + (int64_t)iVar9 * 0x10));
+        iVar10 = SystemCore_Monitor(lVar1, *(int32_t *)(&ui_system_data_1240_ptr + (int64_t)iVar9 * 0x10));
         pcVar4 = pcStack_78;
         pcVar3 = pcStack_80;
         if (iVar10 != 0) {
@@ -872,7 +872,7 @@ LAB_18069fcfe:
             }
             
             /* 渲染数据计算 */
-            iVar8 = FUN_18069bbd0(lVar1, *(int32_t *)
+            iVar8 = SystemCore_Monitor(lVar1, *(int32_t *)
                                  (&ui_system_data_1244_ptr +
                                  ((uint64_t)(pcStack_78[-0x4c] == '\t') +
                                  ((uint64_t)(*pcStack_80 == '\t') +
@@ -963,7 +963,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
     
     /* 初始化纹理采样 */
     uVar7 = 0;
-    iVar3 = FUN_18069bbd0(param_1, *param_2);
+    iVar3 = SystemCore_Monitor(param_1, *param_2);
     
     if (iVar3 == 0) {
         /* 基础纹理采样 */
@@ -974,7 +974,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
             
             /* 检查纹理状态 */
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             /* 执行纹理采样 */
@@ -1006,7 +1006,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
             uVar8 = ((*(int *)(param_1 + 0x1c) + -1) * (uint)*pbVar9 >> 8) + 1;
             
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             uVar6 = *(uint64_t *)(param_1 + 0x10);
@@ -1035,7 +1035,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
             uVar8 = ((*(int *)(param_1 + 0x1c) + -1) * (uint)*pbVar9 >> 8) + 1;
             
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             uVar6 = *(uint64_t *)(param_1 + 0x10);
@@ -1059,7 +1059,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
         
         /* 采样结果验证 */
         if ((uVar7 & 0xfff0) != 0) {
-            iVar3 = FUN_18069bbd0(param_1, param_2[0xc]);
+            iVar3 = SystemCore_Monitor(param_1, param_2[0xc]);
             if (iVar3 == 0) goto LAB_1806a011c;
         }
         uVar7 = uVar7 + 8;
@@ -1068,7 +1068,7 @@ uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
 LAB_1806a011c:
     /* 最终采样处理 */
     if (uVar7 != 0) {
-        iVar3 = FUN_18069bbd0(param_1, param_2[1]);
+        iVar3 = SystemCore_Monitor(param_1, param_2[1]);
         if (iVar3 != 0) {
             uVar7 = -uVar7;
         }
@@ -1102,7 +1102,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
     
     /* 初始化纹理映射 */
     uVar7 = 0;
-    iVar3 = FUN_18069bbd0(param_1, *param_2);
+    iVar3 = SystemCore_Monitor(param_1, *param_2);
     
     if (iVar3 == 0) {
         /* 基础纹理映射 */
@@ -1113,7 +1113,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
             
             /* 检查映射状态 */
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             /* 执行纹理映射 */
@@ -1145,7 +1145,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
             uVar8 = ((*(int *)(param_1 + 0x1c) + -1) * (uint)*pbVar9 >> 8) + 1;
             
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             uVar6 = *(uint64_t *)(param_1 + 0x10);
@@ -1174,7 +1174,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
             uVar8 = ((*(int *)(param_1 + 0x1c) + -1) * (uint)*pbVar9 >> 8) + 1;
             
             if (*(int *)(param_1 + 0x18) < 0) {
-                FUN_18069ec80(param_1);
+                SystemCore_Handler(param_1);
             }
             
             uVar6 = *(uint64_t *)(param_1 + 0x10);
@@ -1198,7 +1198,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
         
         /* 映射结果验证 */
         if ((uVar7 & 0xfff0) != 0) {
-            iVar3 = FUN_18069bbd0(param_1, param_2[0xc]);
+            iVar3 = SystemCore_Monitor(param_1, param_2[0xc]);
             if (iVar3 == 0) goto LAB_1806a011c;
         }
         uVar7 = uVar7 + 8;
@@ -1207,7 +1207,7 @@ uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
 LAB_1806a011c:
     /* 最终映射处理 */
     if (uVar7 != 0) {
-        iVar3 = FUN_18069bbd0(param_1, param_2[1]);
+        iVar3 = SystemCore_Monitor(param_1, param_2[1]);
         if (iVar3 != 0) {
             uVar7 = -uVar7;
         }
@@ -1248,7 +1248,7 @@ uint RenderingSystem_VectorOperationExecutor(void)
         uVar5 = ((*(int *)(unaff_RBX + 0x1c) + -1) * (uint)*pbVar6 >> 8) + 1;
         
         if (*(int *)(unaff_RBX + 0x18) < 0) {
-            FUN_18069ec80();
+            SystemCore_Handler();
         }
         
         uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
@@ -1277,7 +1277,7 @@ uint RenderingSystem_VectorOperationExecutor(void)
         uVar5 = ((*(int *)(unaff_RBX + 0x1c) + -1) * (uint)*pbVar6 >> 8) + 1;
         
         if (*(int *)(unaff_RBX + 0x18) < 0) {
-            FUN_18069ec80();
+            SystemCore_Handler();
         }
         
         uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
@@ -1301,7 +1301,7 @@ uint RenderingSystem_VectorOperationExecutor(void)
     
     /* 向量操作结果验证 */
     if ((unaff_ESI & 0xfff0) != 0) {
-        iVar7 = FUN_18069bbd0();
+        iVar7 = SystemCore_Monitor();
         if (iVar7 == 0) goto LAB_1806a011c;
     }
     unaff_ESI = unaff_ESI + 8;
@@ -1309,7 +1309,7 @@ uint RenderingSystem_VectorOperationExecutor(void)
 LAB_1806a011c:
     /* 最终向量操作处理 */
     if (unaff_ESI != 0) {
-        iVar7 = FUN_18069bbd0();
+        iVar7 = SystemCore_Monitor();
         if (iVar7 != 0) {
             unaff_ESI = -unaff_ESI;
         }
@@ -1332,14 +1332,14 @@ int RenderingSystem_DataBlockInitializer(void)
     int unaff_ESI;
     
     /* 执行数据块初始化 */
-    iVar1 = FUN_18069bbd0();
+    iVar1 = SystemCore_Monitor();
     if (iVar1 != 0) {
         unaff_ESI = unaff_ESI + 8;
     }
     
     /* 初始化结果处理 */
     if (unaff_ESI != 0) {
-        iVar1 = FUN_18069bbd0();
+        iVar1 = SystemCore_Monitor();
         if (iVar1 != 0) {
             unaff_ESI = -unaff_ESI;
         }
@@ -1362,7 +1362,7 @@ int RenderingSystem_ExceptionHandler(void)
     int unaff_ESI;
     
     /* 执行异常处理 */
-    iVar1 = FUN_18069bbd0();
+    iVar1 = SystemCore_Monitor();
     if (iVar1 != 0) {
         unaff_ESI = -unaff_ESI;
     }

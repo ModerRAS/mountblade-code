@@ -179,7 +179,7 @@ LAB_18017023b:
       *(uint64_t *)(uVar14 + 0x18) = 0;
       uStack_50 = uVar5;
       uStack_48 = uVar2;
-      FUN_18005d190(uVar14,uVar7);
+      SystemScheduler(uVar14,uVar7);
       if (*(int64_t *)(uVar12 - 0x18) != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
@@ -323,7 +323,7 @@ void FUN_180170380(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
       *(int32_t *)(plVar7 + 1) = 0;
       *plVar7 = 0;
       plVar7[2] = 0;
-      FUN_18005d190(plVar7 + -1,param_1);
+      SystemScheduler(plVar7 + -1,param_1);
       FUN_180170700(param_1,0,lVar9 + -1,0,&puStack_60,param_4);
       puStack_60 = &system_data_buffer_ptr;
       if (lStack_58 != 0) {
@@ -395,7 +395,7 @@ int64_t FUN_180170700(int64_t param_1,int64_t param_2,int64_t param_3,int64_t pa
     lVar5 = lVar7 * 2;
   }
   if (lVar6 == param_3) {
-    FUN_18005d190(param_4 * 0x20 + param_1,param_1 + -0x20 + lVar6 * 0x20);
+    SystemScheduler(param_4 * 0x20 + param_1,param_1 + -0x20 + lVar6 * 0x20);
     param_4 = lVar5 + 1;
   }
   while (param_2 < param_4) {
@@ -473,10 +473,10 @@ void FUN_180170900(uint64_t *param_1)
   FUN_18006b6f0();
   param_1[0x204] = &system_state_ptr;
   param_1[0x1f1] = &system_state_ptr;
-  SystemDataValidator(param_1 + 0x146,0x98,9,FUN_180044a30);
-  SystemDataValidator(param_1 + 0x96,0x58,0x10,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x146,0x98,9,CoreSystem_MessageHandler);
+  SystemDataValidator(param_1 + 0x96,0x58,0x10,CoreSystem_MessageHandler);
   FUN_18006b6f0();
-  SystemDataValidator(param_1 + 0x33,0x98,5,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x33,0x98,5,CoreSystem_MessageHandler);
   FUN_18006b6f0();
   param_1[0x1c] = &system_state_ptr;
   param_1[8] = &system_state_ptr;

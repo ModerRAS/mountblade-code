@@ -243,7 +243,7 @@ void FUN_18002f270(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025c000;
+    callback_func = > HighFreq_ConfigManager1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -357,7 +357,7 @@ void FUN_18002f470(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025d270;
+    callback_func = > UltraHighFreq_NetworkHandler1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -585,7 +585,7 @@ void FUN_18002f870(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025cc00;
+    callback_func = > HighFreq_FileSystem1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -642,7 +642,7 @@ void FUN_18002f970(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025c000;
+    callback_func = > HighFreq_ConfigManager1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -756,7 +756,7 @@ void FUN_18002fb70(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025d270;
+    callback_func = > UltraHighFreq_NetworkHandler1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -1098,7 +1098,7 @@ void FUN_180030170(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025cc00;
+    callback_func = > HighFreq_FileSystem1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -1155,7 +1155,7 @@ void FUN_180030270(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025c000;
+    callback_func = > HighFreq_ConfigManager1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -1269,7 +1269,7 @@ void FUN_180030470(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    callback_func = FUN_18025d270;
+    callback_func = > UltraHighFreq_NetworkHandler1;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -1498,7 +1498,7 @@ void FUN_180030870(void)
     strcpy_s(stack_buffer, 0x80, &rendering_buffer_2216_ptr, register_value, 0xfffffffffffffffe);
     
     // 设置全局配置变量
-    init_system_pointer = FUN_180623800(&config_data_ptr);
+    init_system_pointer = SystemCore_ConfigManager(&config_data_ptr);
 }
 
 /**

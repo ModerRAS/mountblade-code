@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part096.c - 9 个函数
 
 // 函数: void FUN_180252ca0(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t param_4,
@@ -242,7 +246,7 @@ void FUN_180252ca0(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t pa
   plVar11 = plStack_968;
   plVar5 = plStack_878;
   if (plVar8 != plVar3) {
-    puVar9 = (uint64_t *)FUN_1800763c0(param_2,&plStack_920);
+    puVar9 = (uint64_t *)SystemCore_BufferManager(param_2,&plStack_920);
     plVar11 = (int64_t *)*puVar9;
     *puVar9 = 0;
     plStack_968 = plVar11;
@@ -266,7 +270,7 @@ void FUN_180252ca0(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t pa
   }
   plStack_878 = plVar5;
   uStack_7a4 = *(uint *)(plVar11 + 0x4e) | 0x10;
-  FUN_180075b70(plVar11);
+  SystemConfig_Manager(plVar11);
   uStack_8f8 = *(uint64_t *)((int64_t)plVar11 + 0x274);
   uStack_8f0 = *(uint64_t *)((int64_t)plVar11 + 0x27c);
   uStack_8e8 = *(int32_t *)((int64_t)plVar11 + 0x284);
@@ -313,7 +317,7 @@ void FUN_180252ca0(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t pa
     plVar11 = plStack_968;
     plVar5 = plStack_458;
     if (plVar8 != plVar3) {
-      puVar9 = (uint64_t *)FUN_1800763c0(param_2,&plStack_960);
+      puVar9 = (uint64_t *)SystemCore_BufferManager(param_2,&plStack_960);
       plVar11 = (int64_t *)*puVar9;
       *puVar9 = 0;
       plStack_968 = plVar11;
@@ -339,7 +343,7 @@ void FUN_180252ca0(uint64_t param_1,int64_t *param_2,int32_t param_3,uint64_t pa
     }
     plStack_458 = plVar5;
     uStack_384 = (int32_t)plVar11[0x4e];
-    FUN_180075b70(plVar11);
+    SystemConfig_Manager(plVar11);
     uStack_8c0 = *(uint64_t *)((int64_t)plVar11 + 0x274);
     uStack_8b8 = *(uint64_t *)((int64_t)plVar11 + 0x27c);
     uStack_8b0 = *(int32_t *)((int64_t)plVar11 + 0x284);

@@ -109,7 +109,7 @@ void FUN_180509f20(int64_t param_1,uint64_t *param_2,uint *param_3)
       *(uint64_t *)(lVar3 + 0xc) = uVar14;
       *(uint64_t *)(lVar3 + 0x14) = uVar10;
     }
-    FUN_1801aa0f0(*(uint64_t *)(lVar12 + 0x18),lVar3 + 0xc,0,lVar3 + 0xa0,0x51b189,
+    PhysicsSystem_JointManager(*(uint64_t *)(lVar12 + 0x18),lVar3 + 0xc,0,lVar3 + 0xa0,0x51b189,
                   (byte)((uint)uStack_254 >> 8) & 1);
     cVar8 = *(char *)(lVar3 + 0xd4);
     if (cVar8 == '\0') {
@@ -264,7 +264,7 @@ void FUN_180509f20(int64_t param_1,uint64_t *param_2,uint *param_3)
     uVar11 = *(uint64_t *)(param_1 + 0x9d8);
     lVar12 = *(int64_t *)(param_1 + 0x20);
     if ((uVar11 == 0) ||
-       (cVar7 = FUN_18038d0a0(uVar11,lVar12 + 0xc), uStack_2c0 = uVar11, cVar7 == '\0')) {
+       (cVar7 = SystemCore_PerformanceMonitor(uVar11,lVar12 + 0xc), uStack_2c0 = uVar11, cVar7 == '\0')) {
       uStack_2c0 = uVar15;
     }
     uStack_2c8 = *(uint64_t *)(*(int64_t *)(param_1 + 0x8d8) + 0x18);
@@ -420,7 +420,7 @@ void FUN_18050a770(int64_t param_1,uint64_t *param_2)
   fStack_44 = fVar6;
   fStack_40 = fVar7;
   uStack_3c = uStack_8c;
-  pfVar8 = (float *)FUN_1801c0fb0(&uStack_a8,auStack_b8,param_1 + 0x8a0);
+  pfVar8 = (float *)SystemFileHandler(&uStack_a8,auStack_b8,param_1 + 0x8a0);
   fVar2 = *pfVar8;
   fVar3 = pfVar8[1];
   fVar4 = pfVar8[2];
@@ -428,7 +428,7 @@ void FUN_18050a770(int64_t param_1,uint64_t *param_2)
   fStack_98 = fVar5 + fVar2;
   fStack_94 = fVar6 + fVar3;
   fStack_90 = fVar7 + fVar4;
-  FUN_18063b5f0(&uStack_88,&uStack_a8);
+  SystemSecurityManager(&uStack_88,&uStack_a8);
   *param_2 = uStack_88;
   param_2[1] = uStack_80;
   *(int32_t *)(param_2 + 2) = uStack_78;
@@ -705,7 +705,7 @@ void FUN_18050a8c0(int64_t param_1)
     fStack_c4 = fVar7;
     fStack_c0 = fVar8;
     uStack_bc = uStack_1bc;
-    pfVar11 = (float *)FUN_1801c0fb0(&uStack_188,auStack_168,lVar14 + 0x920);
+    pfVar11 = (float *)SystemFileHandler(&uStack_188,auStack_168,lVar14 + 0x920);
     uStack_1bc = 0x7f7fffff;
     fVar15 = fStack_1d0;
     uVar16 = uStack_1d4;
@@ -825,7 +825,7 @@ void FUN_18050abe6(char param_1,int64_t param_2)
        fVar2 * fStack0000000000000040 + *(float *)(lVar20 + 0x80) * fVar14 + fVar5;
   fStack0000000000000044 = fVar14;
   fStack0000000000000048 = fVar15;
-  pfVar18 = (float *)FUN_1801c0fb0(unaff_RBP + -0x80,unaff_RBP + -0x60,lVar21 + 0x920);
+  pfVar18 = (float *)SystemFileHandler(unaff_RBP + -0x80,unaff_RBP + -0x60,lVar21 + 0x920);
   uStack000000000000004c = 0x7f7fffff;
   fVar9 = *(float *)(lVar20 + 0x80);
   fVar10 = *pfVar18;

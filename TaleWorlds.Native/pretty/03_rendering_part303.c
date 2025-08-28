@@ -370,9 +370,9 @@ void FUN_18042c990(int64_t param_1,int *param_2,int *param_3,int *param_4)
       *puVar1 = *(uint64_t *)(param_1 + 0xc0);
       (**(code **)(param_1 + 0x18))(*(uint64_t *)(param_1 + 0x28),puVar6);
     }
-    iVar2 = FUN_18041efc0(param_1);
+    iVar2 = RenderingSystem_Renderer(param_1);
     *piVar9 = iVar2;
-    iVar2 = FUN_18041efc0(param_1);
+    iVar2 = RenderingSystem_Renderer(param_1);
     *piVar12 = iVar2;
     if (*(int64_t *)(param_1 + 0x10) == 0) {
 LAB_18042ca75:

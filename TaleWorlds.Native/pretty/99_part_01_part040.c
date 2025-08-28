@@ -1,9 +1,14 @@
+n//  的语义化别名
+#define SystemCore_DecryptionManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_01_part040.c - 2 个函数
 
@@ -120,7 +125,7 @@ void FUN_1800c89a0(uint64_t param_1,int64_t param_2)
       auStack_48[0] = 0;
       uStack_50 = 6;
       strcpy_s(auStack_48,0x20,&rendering_buffer_2156_ptr);
-      puVar3 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStack_b0,&puStack_60,0);
+      puVar3 = (uint64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_b0,&puStack_60,0);
       plVar2 = (int64_t *)*puVar3;
       if (plVar2 != (int64_t *)0x0) {
         plStack_b8 = plVar2;
@@ -208,7 +213,7 @@ LAB_1800c8b2a:
   RenderingEngineCore0(uVar9,0x13,lVar8);
   lVar6 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x298) == 0) {
-    puVar3 = (uint64_t *)FUN_180095000();
+    puVar3 = (uint64_t *)InitializationSystem_CoreLoader();
     uVar9 = *puVar3;
     *puVar3 = 0;
     plStack_a0 = *(int64_t **)(lVar6 + 0x298);
@@ -337,7 +342,7 @@ LAB_1800c9185:
   uStack_e0 = 0;
   pcStack_d8 = (code *)0x0;
   pcStack_d0 = _guard_check_icall;
-  FUN_18023c450(*(uint64_t *)(lVar6 + 0xa0),0,*(int32_t *)(lVar6 + 0x468),&uStack_e8);
+  SystemCore_DecryptionManager(*(uint64_t *)(lVar6 + 0xa0),0,*(int32_t *)(lVar6 + 0x468),&uStack_e8);
   if (pcStack_d8 != (code *)0x0) {
     (*pcStack_d8)(&uStack_e8,0,0);
   }
@@ -705,7 +710,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     *(int8_t *)(puVar4 + 3) = 0;
     uStack_50 = uVar2;
     puVar4 = (uint64_t *)
-             FUN_1800b0a10(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2b,1,iVar3 * 0x10,0,1,1,
+             SystemCore_ConfigManager(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2b,1,iVar3 * 0x10,0,1,1,
                            uVar8);
     uVar8 = *puVar4;
     *puVar4 = 0;
@@ -737,7 +742,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     iVar3 = iVar3 * 0x80;
     uStack_50 = uVar2;
     puVar4 = (uint64_t *)
-             FUN_1800b0a10(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
+             SystemCore_ConfigManager(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
     uVar8 = *puVar4;
     *puVar4 = 0;
     plVar1 = *(int64_t **)(param_2 + 0x9738);
@@ -765,7 +770,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     *(int16_t *)(puVar4 + 2) = 0x73;
     uStack_50 = uVar2;
     puVar4 = (uint64_t *)
-             FUN_1800b0a10(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
+             SystemCore_ConfigManager(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
     uVar8 = *puVar4;
     *puVar4 = 0;
     plVar1 = *(int64_t **)(param_2 + 0x9830);
@@ -794,7 +799,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     *(int8_t *)(puVar4 + 3) = 0;
     uStack_50 = iVar5;
     puVar4 = (uint64_t *)
-             FUN_1800b0a10(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
+             SystemCore_ConfigManager(puVar4,&plStackX_10,0xffffffff,&puStack_60,5,0,0x2c,2,iVar3,0,1,1);
     uVar8 = *puVar4;
     *puVar4 = 0;
     plVar1 = *(int64_t **)(param_2 + 0x9838);

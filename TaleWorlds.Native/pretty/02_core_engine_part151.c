@@ -1,3 +1,7 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -181,7 +185,7 @@ void FUN_18013a920(int32_t *param_1)
           puStackX_8 = (int32_t *)CONCAT44(puStackX_8._4_4_,puVar6[uVar15 + 0x10]);
           afStackX_10[0] = (float)puVar7[uVar15 + 0x10];
           fVar3 = (float)puVar6[uVar15 + 0xe];
-          iVar11 = FUN_180121250((afStackX_10[0] + (float)puVar7[uVar15 + 0xe]) - fVar18,0,
+          iVar11 = SystemCore_HandleInput((afStackX_10[0] + (float)puVar7[uVar15 + 0xe]) - fVar18,0,
                                  *(int32_t *)
                                   (*(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) +
                                    -4 + (int64_t)
@@ -265,7 +269,7 @@ void FUN_18013a920(int32_t *param_1)
           fStack_a4 = *(float *)(lVar16 + 0x1884) * *(float *)(lVar16 + 0x1628);
           uVar10 = func_0x000180121e20(afStack_b8 + 2);
           in_stack_fffffffffffffee8 = (float *)CONCAT44(uVar20,*(int32_t *)(lVar16 + 0x1664));
-          FUN_180293f50(*(uint64_t *)(*(int64_t *)(lVar16 + 0x1af8) + 0x2e8),afStack_e0,
+          MathInterpolationCalculator0(*(uint64_t *)(*(int64_t *)(lVar16 + 0x1af8) + 0x2e8),afStack_e0,
                         &uStack_d8,uVar10,in_stack_fffffffffffffee8,0xf);
         }
       }
@@ -894,7 +898,7 @@ LAB_18013b999:
           {
             *param_2 = 0;
           }
-          uVar8 = FUN_180123c00(*(uint64_t *)(param_1[0x81] + 0x68),*param_1);
+          uVar8 = SystemCore_EventHandler(*(uint64_t *)(param_1[0x81] + 0x68),*param_1);
           *(int32_t *)(param_1 + 0x11) = uVar8;
           return;
         }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // UI系统高级组件管理和状态控制模块
 // ============================================================================
@@ -115,7 +119,7 @@ typedef struct {
 #define UISystem_ComponentStateManager      FUN_180749a2a    // UI系统组件状态管理器
 #define UISystem_EmptyHandler1              FUN_180749e0b    // UI系统空处理器1
 #define UISystem_EmptyHandler2              FUN_180749e21    // UI系统空处理器2
-#define UISystem_ComponentValidator         FUN_180749e60    // UI系统组件验证器
+#define UISystem_ComponentValidator         SystemState_Manager    // UI系统组件验证器
 #define UISystem_EventDispatcher           DataTransformer    // UI系统事件分发器
 #define UISystem_VectorProcessor           FUN_180749f70    // UI系统向量处理器
 #define UISystem_ResourceInitializer       FUN_18074a310    // UI系统资源初始化器
@@ -128,7 +132,7 @@ typedef struct {
 #define UISystem_PhysicsProcessor          FUN_18074a6ac    // UI系统物理处理器
 #define UISystem_StateSynchronizer         FUN_18074a885    // UI系统状态同步器
 #define UISystem_DataValidator             FUN_18074a895    // UI系统数据验证器
-#define UISystem_AngleProcessor            FUN_180768b70    // UI系统角度处理器
+#define UISystem_AngleProcessor            SystemCore_PerformanceMonitor    // UI系统角度处理器
 #define UISystem_SystemCallHandler         SystemSecurityChecker    // UI系统调用处理器
 #define UISystem_InternalFunction1         FUN_180743c40    // UI系统内部函数1
 #define UISystem_InternalFunction2         FUN_1807d4800    // UI系统内部函数2
@@ -383,7 +387,7 @@ void FUN_180749e21(void)
  * 包含了完整的UI系统组件管理、状态控制、数据处理和系统服务功能。
  */
 
-uint64_t FUN_180749e60(int64_t param_1,int64_t *param_2,int64_t *param_3)
+uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
 
 {
   int64_t *plVar1;

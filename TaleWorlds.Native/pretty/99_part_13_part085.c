@@ -72,13 +72,13 @@ uint64_t FUN_1808e4742(void)
   
   uVar8 = func_0x00018085fa80();
   iVar5 = memcmp(unaff_R14 + 0x28,uVar8,0x30);
-  iVar6 = FUN_1808605e0();
+  iVar6 = SystemCore_StateController();
   uVar18 = (uint)unaff_RDI;
   uVar14 = uVar18;
   if (iVar6 != 2) {
     uVar14 = 1;
   }
-  iVar6 = FUN_1808605e0();
+  iVar6 = SystemCore_StateController();
   if (iVar6 == 4) {
     uVar14 = uVar14 | 2;
   }
@@ -224,7 +224,7 @@ uint64_t FUN_1808e4742(void)
             else if (iVar12 < iVar5) {
               iVar12 = iVar5;
             }
-            uVar8 = FUN_180747e10(plVar2,iVar12);
+            uVar8 = SystemCore_Initializer(plVar2,iVar12);
             if ((int)uVar8 != 0) {
               return uVar8;
             }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part089.c - 8 个函数
 
 // 函数: void FUN_1801141d0(float *param_1,int param_2,uint64_t param_3,uint64_t param_4,float *param_5,
@@ -63,7 +67,7 @@ void FUN_1801141d0(float *param_1,int param_2,uint64_t param_3,uint64_t param_4,
     }
     param_6 = acStack_51 + 1;
   }
-  FUN_180121200(acStack_70,0x20,param_6,(double)*param_5);
+  SystemCore_LoggingSystem(acStack_70,0x20,param_6,(double)*param_5);
   for (pcVar6 = acStack_70; (cVar2 = *pcVar6, cVar2 == ' ' || (cVar2 == '\t')); pcVar6 = pcVar6 + 1)
   {
   }
@@ -144,10 +148,10 @@ void FUN_180114450(char *param_1,uint param_2,double *param_3,double *param_4,do
     param_6 = *(uint64_t *)(&processed_var_5912_ptr + (int64_t)(int)param_2 * 0x18);
   }
   if (param_2 < 2) {
-    FUN_180121200(auStack_98,0x40,param_6,*(float *)param_3);
+    SystemCore_LoggingSystem(auStack_98,0x40,param_6,*(float *)param_3);
   }
   else if (param_2 - 2 < 2) {
-    FUN_180121200(auStack_98,0x40,param_6,*param_3);
+    SystemCore_LoggingSystem(auStack_98,0x40,param_6,*param_3);
   }
   else {
     if (param_2 == 4) {
@@ -157,7 +161,7 @@ void FUN_180114450(char *param_1,uint param_2,double *param_3,double *param_4,do
       if (param_2 != 5) goto LAB_180114554;
       dVar2 = *param_3;
     }
-    FUN_180121200(auStack_98,0x40,param_6,dVar2);
+    SystemCore_LoggingSystem(auStack_98,0x40,param_6,dVar2);
   }
 LAB_180114554:
   uVar7 = param_7 | 1;
@@ -303,10 +307,10 @@ void FUN_1801144aa(int32_t param_1,uint64_t param_2,double *param_3)
           (CONCAT44(unaff_0000002c,unaff_EBP) * 2 + CONCAT44(unaff_0000002c,unaff_EBP)) * 8);
   }
   if (unaff_EBP < 2) {
-    param_1 = FUN_180121200(&stack0x00000050,0x40,in_stack_00000118,*(float *)param_3);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050,0x40,in_stack_00000118,*(float *)param_3);
   }
   else if (unaff_EBP - 2 < 2) {
-    param_1 = FUN_180121200(&stack0x00000050,0x40,in_stack_00000118,*param_3);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050,0x40,in_stack_00000118,*param_3);
   }
   else {
     if (unaff_EBP == 4) {
@@ -316,7 +320,7 @@ void FUN_1801144aa(int32_t param_1,uint64_t param_2,double *param_3)
       if (unaff_EBP != 5) goto LAB_180114554;
       dVar2 = *param_3;
     }
-    param_1 = FUN_180121200(&stack0x00000050,0x40,in_stack_00000118,dVar2);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050,0x40,in_stack_00000118,dVar2);
   }
 LAB_180114554:
   uVar4 = in_stack_00000120 | 1;

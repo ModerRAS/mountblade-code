@@ -378,7 +378,7 @@ uint64_t QueueSizeManager(int64_t param_1, uint param_2)
     }
     
     // 检查队列是否已存在
-    uVar1 = FUN_1807682e0(param_1, 0);
+    uVar1 = SystemCore_DataProcessor(param_1, 0);
     if ((int)uVar1 == 0) {
         // 分配队列节点内存
         lVar2 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, 

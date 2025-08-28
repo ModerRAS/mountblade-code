@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -104,7 +105,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
       puStack_bd0 = param_2[1];
     }
     piStack_bd8 = (int *)&processed_var_8736_ptr;
-    FUN_1800623b0(system_message_context,0,0x10000000000,8);
+    SystemConfigurationManager(system_message_context,0,0x10000000000,8);
     puVar7 = &system_buffer_ptr;
     if (param_2[1] != (void *)0x0) {
       puVar7 = param_2[1];
@@ -394,7 +395,7 @@ LAB_180569148:
                           }
                           puStack_bc8 = auStack_a48;
                           piStack_bd8 = (int *)&processed_var_8672_ptr;
-                          FUN_1800623b0(system_message_context,0,0x10000000000,3);
+                          SystemConfigurationManager(system_message_context,0,0x10000000000,3);
                         }
                         if (((char)uStack_b58 == '\0') && (piStack_b70 != (int *)0x0)) {
                     // WARNING: Subroutine does not return
@@ -432,7 +433,7 @@ LAB_18056945f:
   }
   puStack_bc8 = auStack_a48;
   piStack_bd8 = (int *)&processed_var_8672_ptr;
-  FUN_1800623b0(system_message_context,0,0x10000000000,3);
+  SystemConfigurationManager(system_message_context,0,0x10000000000,3);
 LAB_1805693bf:
   puStack_b20[0xcd] = *puStack_b20;
   if (lVar12 != -1) {

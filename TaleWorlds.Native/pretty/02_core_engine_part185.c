@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -142,20 +146,20 @@
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
-/* FUN_180628ca0 - 系统时间戳获取函数 */
-#define SystemTimestampGetter FUN_180628ca0
+/* MemoryDebugger0 - 系统时间戳获取函数 */
+#define SystemTimestampGetter MemoryDebugger0
 
 /* CoreEngineDataTransformer - 字符串初始化函数 */
 #define StringInitializer CoreEngineDataTransformer
 
-/* FUN_1801299b0 - 字符串比较函数 */
-#define StringComparator FUN_1801299b0
+/* CoreSystem_Validator - 字符串比较函数 */
+#define StringComparator CoreSystem_Validator
 
-/* FUN_18012cfe0 - 系统控制函数 */
-#define SystemController FUN_18012cfe0
+/* HighFreq_CacheSystem1 - 系统控制函数 */
+#define SystemController HighFreq_CacheSystem1
 
-/* FUN_180121250 - 资源标识符获取函数 */
-#define ResourceIdGetter FUN_180121250
+/* SystemCore_HandleInput - 资源标识符获取函数 */
+#define ResourceIdGetter SystemCore_HandleInput
 
 /* FUN_1801283f0 - 资源状态设置函数 */
 #define ResourceStatusSetter FUN_1801283f0
@@ -196,8 +200,8 @@
 /* CoreEngineMemoryPoolReallocator - 内存分配函数 */
 #define MemoryAllocator CoreEngineMemoryPoolReallocator
 
-/* FUN_180049830 - 资源初始化函数 */
-#define ResourceInitializer FUN_180049830
+/* SystemCore_ResourceLoader - 资源初始化函数 */
+#define ResourceInitializer SystemCore_ResourceLoader
 
 /* CoreEngineDataBufferProcessor - 数据块初始化函数 */
 #define DataBlockInitializer CoreEngineDataBufferProcessor
@@ -211,8 +215,8 @@
 /* FUN_18016a8b0 - 数据传输函数 */
 #define DataTransfer FUN_18016a8b0
 
-/* FUN_180049470 - 数据验证函数 */
-#define DataValidator FUN_180049470
+/* SystemCore_SecurityManager - 数据验证函数 */
+#define DataValidator SystemCore_SecurityManager
 
 /* FUN_18012d9c0 - 系统初始化函数 */
 #define SystemInitializer FUN_18012d9c0

@@ -17,7 +17,7 @@ void FUN_1806c2790(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   int aiStackX_8 [2];
   char *pcStackX_20;
   
-  FUN_1806d7080(param_1,*param_3);
+  SystemCore_MemoryManager(param_1,*param_3);
   aiStackX_8[0] = 0x61;
   piVar7 = aiStackX_8;
   if ((int *)param_1[0xb] != (int *)0x0) {
@@ -25,7 +25,7 @@ void FUN_1806c2790(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   }
   lVar8 = *param_4;
   while (lVar8 != 0) {
-    FUN_1806d7080(param_1,lVar8);
+    SystemCore_MemoryManager(param_1,lVar8);
     lVar8 = param_4[1];
     pcStackX_20 = (char *)0x0;
     if ((char)param_1[9] != '\0') {
@@ -111,7 +111,7 @@ void FUN_1806c279e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   int in_stack_00000050;
   char *in_stack_00000068;
   
-  FUN_1806d7080();
+  SystemCore_MemoryManager();
   in_stack_00000050 = 0x61;
   piVar7 = &stack0x00000050;
   if ((int *)unaff_RBX[0xb] != (int *)0x0) {
@@ -119,7 +119,7 @@ void FUN_1806c279e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   }
   lVar8 = *param_4;
   while (lVar8 != 0) {
-    FUN_1806d7080();
+    SystemCore_MemoryManager();
     lVar8 = param_4[1];
     in_stack_00000068 = (char *)0x0;
     if ((char)unaff_RBX[9] != '\0') {
@@ -208,7 +208,7 @@ void FUN_1806c27df(void)
   char *in_stack_00000068;
   
   do {
-    FUN_1806d7080();
+    SystemCore_MemoryManager();
     lVar6 = unaff_RDI[1];
     cVar7 = (char)unaff_R15;
     in_stack_00000068 = unaff_R15;

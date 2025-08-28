@@ -69,7 +69,7 @@ void FUN_1802e8630(int64_t param_1,char param_2,char param_3)
     return;
   }
   lVar10 = param_1 + 0x70;
-  puVar9 = (int32_t *)FUN_180085020(lVar10,auStack_50);
+  puVar9 = (int32_t *)RenderingSystem_LightSystem(lVar10,auStack_50);
   fVar3 = (float)puVar9[1];
   uVar4 = puVar9[2];
   uVar5 = puVar9[3];
@@ -244,7 +244,7 @@ void FUN_1802e8636(int64_t *param_1,char param_2,char param_3)
     return;
   }
   plVar16 = param_1 + 0xe;
-  puVar9 = (int32_t *)FUN_180085020(plVar16,auStack_28);
+  puVar9 = (int32_t *)RenderingSystem_LightSystem(plVar16,auStack_28);
   fVar2 = (float)puVar9[1];
   uVar3 = puVar9[2];
   uVar4 = puVar9[3];
@@ -422,7 +422,7 @@ void FUN_1802e865d(void)
     return;
   }
   lVar11 = unaff_RBX + 0x70;
-  puVar10 = (int32_t *)FUN_180085020(lVar11,auStack_28);
+  puVar10 = (int32_t *)RenderingSystem_LightSystem(lVar11,auStack_28);
   fVar4 = (float)puVar10[1];
   uVar5 = puVar10[2];
   uVar6 = puVar10[3];
@@ -593,7 +593,7 @@ void FUN_1802e866d(void)
     return;
   }
   plVar14 = unaff_RBX + 0xe;
-  puVar9 = (int32_t *)FUN_180085020(plVar14,auStack_28);
+  puVar9 = (int32_t *)RenderingSystem_LightSystem(plVar14,auStack_28);
   fVar2 = (float)puVar9[1];
   uVar3 = puVar9[2];
   uVar4 = puVar9[3];
@@ -759,7 +759,7 @@ void FUN_1802e86bd(void)
     return;
   }
   plVar13 = unaff_RBX + 0xe;
-  puVar9 = (int32_t *)FUN_180085020(plVar13,auStack_28);
+  puVar9 = (int32_t *)RenderingSystem_LightSystem(plVar13,auStack_28);
   fVar2 = (float)puVar9[1];
   uVar3 = puVar9[2];
   uVar4 = puVar9[3];

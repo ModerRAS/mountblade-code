@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -285,7 +286,7 @@ void FUN_1801970c0(uint64_t **param_1,float param_2)
   ppuStack_90 = (uint64_t **)&rendering_buffer_2208_ptr;
   puStack_88 = &rendering_buffer_2192_ptr;
   ppuStack_a0 = param_1;
-  FUN_18015b810(&ppuStack_a0,0,(int64_t)param_1[0x53b] - (int64_t)param_1[0x53a] >> 3,0x10,
+  SystemCore_DataTransformer(&ppuStack_a0,0,(int64_t)param_1[0x53b] - (int64_t)param_1[0x53a] >> 3,0x10,
                 0xffffffffffffffff,&ppuStack_a0,uVar17);
   if (((param_1[99] != (int64_t *)0x0) && (*(char *)((int64_t)param_1 + 0x2a61) != '\0')) &&
      ((*(char *)((int64_t)param_1 + 0x2a62) != '\0' && (*(int *)(core_system_data_config + 0xaf0) != 0)))) {
@@ -410,7 +411,7 @@ LAB_1801974aa:
   pfStack_78 = afStackX_10;
   puStack_70 = &rendering_buffer_2128_ptr;
   pcStack_68 = FUN_1801bc9a0;
-  FUN_18015b810(&pppuStack_80,0,(int64_t)ppuStack_98 - (int64_t)ppuStack_a0 >> 3,0x10,
+  SystemCore_DataTransformer(&pppuStack_80,0,(int64_t)ppuStack_98 - (int64_t)ppuStack_a0 >> 3,0x10,
                 0xffffffffffffffff,&pppuStack_80);
   fVar7 = afStackX_10[0];
   uVar17 = system_context_ptr;
@@ -421,7 +422,7 @@ LAB_1801974aa:
     if (ppppuStackX_8 != (uint64_t ****)0x0) {
       (*(code *)(*ppppuStackX_8)[5])();
     }
-    FUN_18005e6a0(uVar17,&ppppuStackX_8,0);
+    SystemCore_ErrorHandler(uVar17,&ppppuStackX_8,0);
     *pfVar5 = fVar7 + *pfVar5;
     if (((param_1[99] != (int64_t *)0x0) && (*(char *)((int64_t)param_1 + 0x2a61) != '\0')) &&
        ((*(char *)((int64_t)param_1 + 0x2a62) != '\0' && (*(int *)(core_system_data_config + 0xaf0) != 0))))
@@ -556,7 +557,7 @@ void FUN_1801977e0(int64_t *param_1,int param_2,int param_3)
         FUN_1802e7e20(lVar2);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar2 + 0x28),*(int64_t *)(lVar2 + 0x28) + 0xf8,lVar2 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar2 + 0x28),*(int64_t *)(lVar2 + 0x28) + 0xf8,lVar2 + 0x70);
       }
       *(int16_t *)(lVar2 + 0x2b0) = *(int16_t *)(lVar2 + 0x2b4);
     }
@@ -660,7 +661,7 @@ LAB_18019797c:
         FUN_1802e7e20(lVar2);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar2 + 0x28),*(int64_t *)(lVar2 + 0x28) + 0xf8,lVar2 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar2 + 0x28),*(int64_t *)(lVar2 + 0x28) + 0xf8,lVar2 + 0x70);
       }
       *(int16_t *)(lVar2 + 0x2b0) = *(int16_t *)(lVar2 + 0x2b4);
     }

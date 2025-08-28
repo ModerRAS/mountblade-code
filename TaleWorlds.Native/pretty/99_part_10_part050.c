@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part050.c - 4 个函数
@@ -13,7 +17,7 @@ void FUN_1806c7280(int64_t param_1,int64_t param_2,int32_t param_3)
   
   uStackX_18 = param_3;
   FUN_1806c21d0(param_2,param_3,param_1 + 0x1d8,&system_data_0560,auStackX_8);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 600));
+  MemoryPoolManager0(param_2,*(uint64_t *)(param_1 + 600));
   piVar1 = *(int **)(param_2 + 0x58);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -54,7 +58,7 @@ void FUN_1806c7299(int64_t param_1,int64_t param_2,int32_t param_3)
   *(int32_t *)(unaff_RBP + -0x44) = uVar3;
   *(int32_t *)(unaff_RBP + -0x40) = uVar4;
   *(int32_t *)(unaff_RBP + -0x3c) = uVar5;
-  FUN_1806d7000(param_2,uVar1);
+  MemoryPoolManager0(param_2,uVar1);
   piVar2 = *(int **)(param_2 + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -93,7 +97,7 @@ void FUN_1806c72a4(int64_t param_1,int64_t param_2,int32_t param_3,uint64_t para
   *(int32_t *)(unaff_RBP + -0x44) = uVar3;
   *(int32_t *)(unaff_RBP + -0x40) = uVar4;
   *(int32_t *)(unaff_RBP + -0x3c) = uVar5;
-  FUN_1806d7000(param_2,uVar1);
+  MemoryPoolManager0(param_2,uVar1);
   piVar2 = *(int **)(param_2 + 0x58);
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;

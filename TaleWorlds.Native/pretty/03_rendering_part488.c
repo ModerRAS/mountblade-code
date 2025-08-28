@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -63,7 +64,7 @@ LAB_18052a0d7:
           }
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,puVar8);
+        SystemParameterHandler(system_message_context,puVar8);
       }
       uVar1 = *(int32_t *)(lVar10 + *(int64_t *)(param_1 + 0x8f8));
       AcquireSRWLockExclusive(param_2);
@@ -285,7 +286,7 @@ LAB_18052a5b9:
           uStack_158 = 0;
           uStack_154 = 0;
           uStack_150 = 0x7f7fffff3f800000;
-          FUN_180084ae0(&fStack_178);
+          Utilities_DataValidator(&fStack_178);
           if (3.0 < *(float *)(*(int64_t *)(lVar16 + 0x30c0 + lVar15) + 0x28)) {
             FUN_180085970(&fStack_178,0x3e19999a);
           }
@@ -318,7 +319,7 @@ LAB_18052a5b9:
         plVar12 = (int64_t *)(lVar15 + 0x98d8d8);
         if ((uint64_t)(*(int64_t *)(lVar15 + 0x98d8e0) - *plVar12 >> 3) <
             (uint64_t)(int64_t)iVar8) {
-          FUN_18005ea90(plVar12,&plStackX_8);
+          SystemSecurity_Manager(plVar12,&plStackX_8);
           uVar11 = *(uint64_t *)(*(int64_t *)(lVar10 + 0x8a8) + 0x260);
           FUN_1802feaf0(uVar11,1);
           lVar10 = FUN_1803009f0(uVar11);
@@ -379,7 +380,7 @@ LAB_18052a5b9:
               uStack_a4 = 0;
               uStack_a0 = 0x3f800000;
               uStack_9c = 0x7f7fffff;
-              FUN_180084ae0(auStack_c8);
+              Utilities_DataValidator(auStack_c8);
               uStack_150 = *(uint64_t *)(render_system_data_config + 0x28);
               fStack_174 = *pfVar13;
               fStack_170 = pfVar13[1];

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -140,11 +144,11 @@ uint64_t FUN_1805f6f50(uint64_t param_1,int64_t param_2,uint64_t param_3)
   
   cVar2 = SystemSynchronizationProcessor(param_3,auStackX_20,&processed_var_6384_ptr);
   if (cVar2 != '\0') {
-    cVar2 = FUN_180646700(param_3,&fStack_48,&processed_var_6400_ptr);
+    cVar2 = RenderingBufferHandler0(param_3,&fStack_48,&processed_var_6400_ptr);
     if (cVar2 != '\0') {
-      cVar2 = FUN_180646700(param_3,&fStack_44,&processed_var_6400_ptr);
+      cVar2 = RenderingBufferHandler0(param_3,&fStack_44,&processed_var_6400_ptr);
       if (cVar2 != '\0') {
-        cVar2 = FUN_180646700(param_3,&fStack_40,&processed_var_6416_ptr);
+        cVar2 = RenderingBufferHandler0(param_3,&fStack_40,&processed_var_6416_ptr);
         if (cVar2 != '\0') {
           if (((param_2 != 0) && (lVar3 = *(int64_t *)(param_2 + 0x58f8), lVar3 != 0)) &&
              (*(int *)(lVar3 + 0x10) == 1)) {
@@ -237,11 +241,11 @@ uint64_t FUN_1805f7180(uint64_t param_1,int64_t param_2,uint64_t param_3)
   float fStack_40;
   int32_t uStack_3c;
   
-  cVar2 = FUN_180646700(param_3,&fStack_48,&processed_var_6400_ptr);
+  cVar2 = RenderingBufferHandler0(param_3,&fStack_48,&processed_var_6400_ptr);
   if (cVar2 != '\0') {
-    cVar2 = FUN_180646700(param_3,&fStack_44,&processed_var_6400_ptr);
+    cVar2 = RenderingBufferHandler0(param_3,&fStack_44,&processed_var_6400_ptr);
     if (cVar2 != '\0') {
-      cVar2 = FUN_180646700(param_3,&fStack_40,&processed_var_6416_ptr);
+      cVar2 = RenderingBufferHandler0(param_3,&fStack_40,&processed_var_6416_ptr);
       if (cVar2 != '\0') {
         if (((((param_2 != 0) && (lVar3 = *(int64_t *)(param_2 + 0x58f8), lVar3 != 0)) &&
              (*(int *)(lVar3 + 0x10) == 1)) &&
@@ -798,11 +802,11 @@ uint64_t FUN_1805f7c30(int64_t param_1,uint64_t param_2,float *param_3,int *para
     afStackX_8[0] = 0.0;
     fStack_20 = 1.0 / (float)((1 << (sbyte)iStack_1c) - 1);
     fStack_20 = fStack_20 + fStack_20;
-    cVar2 = FUN_180646700(param_2,afStackX_8,&uStack_28);
+    cVar2 = RenderingBufferHandler0(param_2,afStackX_8,&uStack_28);
     fVar9 = afStackX_8[0] * 0.08;
     afStackX_8[0] = 0.0;
     *param_3 = fVar9 + *param_3;
-    if ((cVar2 == '\0') || (FUN_180646700(param_2,afStackX_8,&uStack_28), extraout_AL == '\0')) {
+    if ((cVar2 == '\0') || (RenderingBufferHandler0(param_2,afStackX_8,&uStack_28), extraout_AL == '\0')) {
       bVar3 = false;
     }
     else {
@@ -811,7 +815,7 @@ uint64_t FUN_1805f7c30(int64_t param_1,uint64_t param_2,float *param_3,int *para
     fVar9 = afStackX_8[0] * 0.08;
     afStackX_8[0] = 0.0;
     param_3[1] = fVar9 + param_3[1];
-    if ((bVar3) && (cVar2 = FUN_180646700(param_2,afStackX_8,&uStack_28), cVar2 != '\0')) {
+    if ((bVar3) && (cVar2 = RenderingBufferHandler0(param_2,afStackX_8,&uStack_28), cVar2 != '\0')) {
       uVar4 = 1;
     }
     else {
@@ -901,7 +905,7 @@ void FUN_1805f7e10(int *param_1,int64_t *param_2,int64_t *param_3)
     aplStack_58[0][5] = (int64_t)puStack_70;
     aplStack_58[0][6] = (int64_t)puStack_68;
     aplStack_58[0][7] = (int64_t)puStack_60;
-    uVar1 = FUN_18015b810();
+    uVar1 = SystemCore_DataTransformer();
     if (acStackX_18[0] == '\0') {
       *param_1 = 0;
       iVar3 = 2;

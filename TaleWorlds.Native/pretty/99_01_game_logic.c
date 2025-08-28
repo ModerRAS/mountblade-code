@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -493,7 +497,7 @@ uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, ui
   uint64_t state_update_result;
   
   // 执行状态更新逻辑
-  state_update_result = FUN_1800b8300;
+  state_update_result = DataDeserializer0;
   
   // 更新游戏系统状态
   if ((g_game_system_flags & GAME_STATE_RUNNING) != 0) {

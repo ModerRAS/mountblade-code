@@ -1,3 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -292,7 +299,7 @@ void FUN_18027f510(int64_t param_1,int64_t *param_2)
               }
               (**(code **)(plVar10[2] + 0x10))(plVar10 + 2,puVar16);
               lVar32 = (*pplVar34)[9];
-              FUN_180076910(plVar10,lVar32 + 0x1b8);
+              UltraHighFreq_SecurityValidator1(plVar10,lVar32 + 0x1b8);
               plVar11 = plStack_158;
               *(int32_t *)(plVar10 + 0x4e) = *(int32_t *)(lVar32 + 0x270);
               lVar17 = *(int64_t *)(lVar32 + 0x2b0);
@@ -313,7 +320,7 @@ void FUN_18027f510(int64_t param_1,int64_t *param_2)
                 plStack_110 = (int64_t *)0x0;
                 uStack_120 = 0;
                 plStack_128._0_1_ = 0;
-                FUN_18022f2e0(&plStack_138,plStack_158,0);
+                RenderingSystem_MaterialProcessor(&plStack_138,plStack_158,0);
                 plVar22 = *pplVar34;
                 uVar30 = uVar28;
                 uVar21 = uVar28;
@@ -335,14 +342,14 @@ void FUN_18027f510(int64_t param_1,int64_t *param_2)
                 }
                 if ((plStack_138 != (int64_t *)0x0) && (plStack_130 != (int64_t *)0x0)) {
                   if (cStack_106 != '\0') {
-                    FUN_180075b70();
+                    SystemConfig_Manager();
                   }
-                  FUN_18007f6a0(&plStack_128);
+                  SystemSecurityManager(&plStack_128);
                   if (cStack_108 != '\0') {
-                    FUN_180079520(plStack_138);
+                    SystemInitializer(plStack_138);
                   }
                   if (cStack_107 != '\0') {
-                    FUN_180079520(plStack_138);
+                    SystemInitializer(plStack_138);
                   }
                   plVar22 = plStack_130;
                   plStack_a8 = plStack_130;
@@ -352,7 +359,7 @@ void FUN_18027f510(int64_t param_1,int64_t *param_2)
                   }
                 }
                 pplStack_228 = &plStack_128;
-                FUN_18007f6a0(&plStack_128);
+                SystemSecurityManager(&plStack_128);
                 if (plStack_110 != (int64_t *)0x0) {
                   (**(code **)(*plStack_110 + 0x38))();
                 }
@@ -755,7 +762,7 @@ LAB_1802802a3:
     }
     uVar28 = 0;
     if (lVar32 == 0) {
-      FUN_180276f30(param_1,param_1 + 0x214,1);
+      SystemCore_UpdateState(param_1,param_1 + 0x214,1);
       lVar32 = *(int64_t *)(param_1 + 0x28);
       if ((lVar32 != 0) &&
          (*(short *)(lVar32 + 0x2b0) = *(short *)(lVar32 + 0x2b0) + 1,
@@ -764,7 +771,7 @@ LAB_1802802a3:
       }
     }
     FUN_1802841d0(&pplStack_1f8);
-    FUN_180057830(&puStack_218);
+    DataTransformer0(&puStack_218);
     if (plStack_178 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();

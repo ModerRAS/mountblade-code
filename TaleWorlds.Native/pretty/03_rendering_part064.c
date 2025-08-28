@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part064.c - 12 个函数
 
@@ -142,7 +151,7 @@ float * FUN_180300b10(float *param_1,float *param_2,float *param_3)
   fStack_24 = param_3[5] - param_1[5];
   fStack_20 = param_3[6] - param_1[6];
   uStack_1c = 0x7f7fffff;
-  FUN_180285b40(0x7f7fffff,&uStack_18,&fStack_28);
+  SystemCore_EventHandler(0x7f7fffff,&uStack_18,&fStack_28);
   fVar1 = *param_3;
   fVar2 = param_3[1];
   fVar3 = param_3[2];
@@ -162,7 +171,7 @@ float * FUN_180300b10(float *param_1,float *param_2,float *param_3)
 
 
 
-float * FUN_180300bf0(float *param_1,float *param_2,float *param_3)
+float * UltraHighFreq_FileSystem1(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -180,7 +189,7 @@ float * FUN_180300bf0(float *param_1,float *param_2,float *param_3)
   float *pfVar13;
   int8_t auStack_58 [88];
   
-  pfVar13 = (float *)FUN_1801c0fb0(param_1,auStack_58,param_3 + 4);
+  pfVar13 = (float *)SystemFileHandler(param_1,auStack_58,param_3 + 4);
   fVar1 = param_1[5];
   fVar2 = param_1[6];
   fVar5 = *param_3;
@@ -340,7 +349,7 @@ void FUN_180300eb0(int64_t param_1,char param_2)
     } while ((uint64_t)(int64_t)iVar2 < uVar3);
   }
   acStackX_10[0] = param_2;
-  FUN_180194a50((uint64_t *)(param_1 + 0xb0),acStackX_10);
+  Memory_Allocator((uint64_t *)(param_1 + 0xb0),acStackX_10);
   return;
 }
 
@@ -363,7 +372,7 @@ FUN_180300f20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   if ((int64_t *)param_1[0x19] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x19] + 0x38))();
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xd0,param_3,param_4,uVar2);
   }
@@ -597,45 +606,45 @@ void FUN_1803014f0(int64_t param_1)
   if (*(char *)(param_1 + 0x10b) != '\0') {
     plVar1 = (int64_t *)(param_1 + 0x530);
     if ((*plVar1 != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa,*plVar1 + 0x18,*(int32_t *)(*plVar1 + 0x94));
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa,*plVar1 + 0x18,*(int32_t *)(*plVar1 + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(plVar1,lVar6);
+      SystemCore_PointerManager(plVar1,lVar6);
     }
     if ((*(int64_t *)(param_1 + 0x538) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_00,*(int64_t *)(param_1 + 0x538) + 0x18,
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa_00,*(int64_t *)(param_1 + 0x538) + 0x18,
                             *(int32_t *)(*(int64_t *)(param_1 + 0x538) + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x538,lVar6);
+      SystemCore_PointerManager(param_1 + 0x538,lVar6);
     }
     if ((*(int64_t *)(param_1 + 0x540) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_01,*(int64_t *)(param_1 + 0x540) + 0x18,
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa_01,*(int64_t *)(param_1 + 0x540) + 0x18,
                             *(int32_t *)(*(int64_t *)(param_1 + 0x540) + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x540,lVar6);
+      SystemCore_PointerManager(param_1 + 0x540,lVar6);
     }
     if ((*(int64_t *)(param_1 + 0x550) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_02,*(int64_t *)(param_1 + 0x550) + 0x18,
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa_02,*(int64_t *)(param_1 + 0x550) + 0x18,
                             *(int32_t *)(*(int64_t *)(param_1 + 0x550) + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x550,lVar6);
+      SystemCore_PointerManager(param_1 + 0x550,lVar6);
     }
     if ((*(int64_t *)(param_1 + 0x558) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_03,*(int64_t *)(param_1 + 0x558) + 0x18,
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa_03,*(int64_t *)(param_1 + 0x558) + 0x18,
                             *(int32_t *)(*(int64_t *)(param_1 + 0x558) + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x558,lVar6);
+      SystemCore_PointerManager(param_1 + 0x558,lVar6);
     }
     if ((*(int64_t *)(param_1 + 0x548) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_04,*(int64_t *)(param_1 + 0x548) + 0x18,
+      lVar6 = Network_DataSerializer(extraout_XMM0_Qa_04,*(int64_t *)(param_1 + 0x548) + 0x18,
                             *(int32_t *)(*(int64_t *)(param_1 + 0x548) + 0x94));
       *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
       *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x548,lVar6);
+      SystemCore_PointerManager(param_1 + 0x548,lVar6);
     }
     lVar6 = *plVar1;
     if ((lVar6 != 0) && (lVar3 = *(int64_t *)(lVar6 + 0x48), lVar3 != 0)) {
@@ -714,45 +723,45 @@ void FUN_180301506(int64_t param_1)
   
   plVar1 = (int64_t *)(param_1 + 0x530);
   if ((*plVar1 != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa,*plVar1 + 0x18,*(int32_t *)(*plVar1 + 0x94));
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa,*plVar1 + 0x18,*(int32_t *)(*plVar1 + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(plVar1,lVar6);
+    SystemCore_PointerManager(plVar1,lVar6);
   }
   if ((*(int64_t *)(unaff_RBX + 0x538) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_00,*(int64_t *)(unaff_RBX + 0x538) + 0x18,
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa_00,*(int64_t *)(unaff_RBX + 0x538) + 0x18,
                           *(int32_t *)(*(int64_t *)(unaff_RBX + 0x538) + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x538,lVar6);
+    SystemCore_PointerManager(unaff_RBX + 0x538,lVar6);
   }
   if ((*(int64_t *)(unaff_RBX + 0x540) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_01,*(int64_t *)(unaff_RBX + 0x540) + 0x18,
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa_01,*(int64_t *)(unaff_RBX + 0x540) + 0x18,
                           *(int32_t *)(*(int64_t *)(unaff_RBX + 0x540) + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x540,lVar6);
+    SystemCore_PointerManager(unaff_RBX + 0x540,lVar6);
   }
   if ((*(int64_t *)(unaff_RBX + 0x550) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_02,*(int64_t *)(unaff_RBX + 0x550) + 0x18,
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa_02,*(int64_t *)(unaff_RBX + 0x550) + 0x18,
                           *(int32_t *)(*(int64_t *)(unaff_RBX + 0x550) + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x550,lVar6);
+    SystemCore_PointerManager(unaff_RBX + 0x550,lVar6);
   }
   if ((*(int64_t *)(unaff_RBX + 0x558) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_03,*(int64_t *)(unaff_RBX + 0x558) + 0x18,
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa_03,*(int64_t *)(unaff_RBX + 0x558) + 0x18,
                           *(int32_t *)(*(int64_t *)(unaff_RBX + 0x558) + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x558,lVar6);
+    SystemCore_PointerManager(unaff_RBX + 0x558,lVar6);
   }
   if ((*(int64_t *)(unaff_RBX + 0x548) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_04,*(int64_t *)(unaff_RBX + 0x548) + 0x18,
+    lVar6 = Network_DataSerializer(extraout_XMM0_Qa_04,*(int64_t *)(unaff_RBX + 0x548) + 0x18,
                           *(int32_t *)(*(int64_t *)(unaff_RBX + 0x548) + 0x94));
     *(int32_t *)(lVar6 + 0x90) = 0x3c888889;
     *(int32_t *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x548,lVar6);
+    SystemCore_PointerManager(unaff_RBX + 0x548,lVar6);
   }
   lVar6 = *plVar1;
   if (lVar6 != 0) {

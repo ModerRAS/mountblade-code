@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part266.c - 8 个函数
 
 // 函数: void FUN_18081a760(void)
@@ -1026,7 +1030,7 @@ void FUN_18081b390(int64_t param_1,uint64_t param_2,uint64_t param_3)
   *(uint64_t *)(param_1 + 0x18) = param_3;
   iVar1 = FUN_18081b490(param_1 + 0x4d8,0x20000,1);
   if ((((iVar1 == 0) && (iVar1 = FUN_18081b490(param_1 + 0x520,0x20000,4), iVar1 == 0)) &&
-      (iVar1 = FUN_1807682e0(param_1 + 0x28,0), iVar1 == 0)) &&
+      (iVar1 = SystemCore_DataProcessor(param_1 + 0x28,0), iVar1 == 0)) &&
      ((iVar1 = FUN_18081bd90(param_1,0,0,0xffffffff), iVar1 == 0 &&
       (iVar1 = FUN_180767c00(param_1 + 0x30,&ui_system_data_1272_ptr,FUN_18081bc60,param_1,7,0,0,0,0),
       iVar1 == 0)))) {
@@ -1094,7 +1098,7 @@ uint64_t FUN_18081b490(int64_t *param_1,uint64_t param_2,int32_t param_3)
     *(int32_t *)((int64_t)param_1 + 0x14) = 0;
     *(int8_t *)(param_1 + 3) = 0;
     *(int32_t *)(param_1 + 8) = param_3;
-    uVar2 = FUN_1807682e0(param_1 + 4,0);
+    uVar2 = SystemCore_DataProcessor(param_1 + 4,0);
     if ((int)uVar2 == 0) {
       uVar2 = FUN_1807688b0(param_1 + 5);
       if ((int)uVar2 == 0) {
@@ -1122,7 +1126,7 @@ uint64_t FUN_18081b580(int64_t param_1,char *param_2)
   int aiStackX_8 [2];
   
   if (*(char *)(param_1 + 0x2d0) == '\0') {
-    in_RAX = FUN_180768b70(aiStackX_8);
+    in_RAX = SystemCore_PerformanceMonitor(aiStackX_8);
     pcVar4 = (char *)(param_1 + 0x2d5);
     uVar5 = 0;
     do {

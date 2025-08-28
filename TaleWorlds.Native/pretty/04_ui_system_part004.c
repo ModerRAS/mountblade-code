@@ -1,3 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -80,7 +89,7 @@ void FUN_180651a80(int64_t param_1,int64_t param_2,int64_t param_3)
   pcVar1 = ui_system_data_config;
   *(int8_t *)(param_1 + 0x189) = 1;
   if (pcVar1 == (code *)0x0) {
-    FUN_180626ee0(&processed_var_9680_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_9680_ptr);
   }
   else {
     puVar2 = &system_buffer_ptr;
@@ -96,7 +105,7 @@ void FUN_180651a80(int64_t param_1,int64_t param_2,int64_t param_3)
   if (ui_system_data_config == (code *)0x0) {
     SystemDataInitializer(&processed_var_9720_ptr);
     if (ui_system_data_config == (code *)0x0) {
-      FUN_180626ee0(&processed_var_9680_ptr);
+      UtilitiesSystem_PerformanceMonitor(&processed_var_9680_ptr);
       goto LAB_180651b0f;
     }
   }
@@ -419,7 +428,7 @@ void FUN_180652400(int64_t *param_1,int64_t param_2)
     uStack_80 = 3;
     auStackX_10[0] = 10;
     if (*(int64_t *)(param_2 + 8) != 0) {
-      FUN_180057980(param_2,&puStack_98,auStackX_10);
+      CoreSystem_DataCollector(param_2,&puStack_98,auStackX_10);
     }
     uVar9 = (int64_t)puStack_90 - (int64_t)puStack_98 >> 5;
     puVar15 = puStack_98;
@@ -435,7 +444,7 @@ void FUN_180652400(int64_t *param_1,int64_t param_2)
         auStackX_10[0] = 0x40;
         uStackX_18 = uVar9;
         if (puVar15[1] != 0) {
-          FUN_180057980(puVar15,&puStack_58,auStackX_10);
+          CoreSystem_DataCollector(puVar15,&puStack_58,auStackX_10);
         }
         puVar6 = puStack_50;
         puVar5 = puStack_58;
@@ -588,7 +597,7 @@ void FUN_180652b60(uint64_t param_1,int64_t *param_2)
   
   uStack_d10 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_de8;
-  FUN_180057110();
+  SystemCore_ConfigValidator();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
   if (iVar1 != 0) {
@@ -715,7 +724,7 @@ void FUN_18065340f(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -752,7 +761,7 @@ FUN_180653420(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
     *(int32_t *)(param_1 + 3) = uStack_10;
     return param_1;
   }
-  uVar3 = FUN_180628ca0();
+  uVar3 = MemoryDebugger0();
   CoreEngineDataTransformer(param_1,uVar3);
   return param_1;
 }
@@ -767,7 +776,7 @@ void FUN_180653530(uint64_t param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
-  FUN_180626ee0(&ui_system_data_16_ptr);
+  UtilitiesSystem_PerformanceMonitor(&ui_system_data_16_ptr);
 
 
 // 函数: void FUN_180653670(int64_t param_1,int64_t param_2)
@@ -886,13 +895,13 @@ void FUN_180653940(void)
   puStack_b8 = &system_state_ptr;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&processed_var_80_ptr,&system_data_dda8);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_80_ptr,&system_data_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
   plVar1[1] = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&memory_allocator_328_ptr);
+    UtilitiesSystem_PerformanceMonitor(&memory_allocator_328_ptr);
   }
   puStack_90 = &system_data_buffer_ptr;
   uStack_78 = 0;

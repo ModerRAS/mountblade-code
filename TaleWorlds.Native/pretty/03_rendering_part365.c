@@ -102,7 +102,7 @@ void FUN_180467500(int64_t param_1)
   *(uint64_t *)(param_1 + 400) = 0;
   *(int8_t *)(param_1 + 0x198) = 0;
   *(uint64_t *)(param_1 + 0x1a0) = 0;
-  FUN_1800b8500(param_1 + 0x118);
+  SystemCore_Controller(param_1 + 0x118);
   *(uint64_t *)(param_1 + 0x100) = *(uint64_t *)(param_1 + 0xf8);
   fVar38 = 0.0;
   afStackX_10[0] = 0.0;
@@ -165,7 +165,7 @@ void FUN_180467500(int64_t param_1)
 LAB_1804677f9:
         pppppppuVar2 = pppppppuStack_1c8;
         if (pppppppuStack_1c8 != (uint64_t *******)0x0) {
-          FUN_18004b790(&pppppppuStack_1d8,*pppppppuStack_1c8);
+          SystemCache_Manager(&pppppppuStack_1d8,*pppppppuStack_1c8);
                     // WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(pppppppuVar2);
         }
@@ -448,7 +448,7 @@ LAB_1804678f3:
         if (pppppppuStack_1c8 == (uint64_t *******)0x0) {
           return;
         }
-        FUN_18004b790(&pppppppuStack_1d8,*pppppppuStack_1c8);
+        SystemCache_Manager(&pppppppuStack_1d8,*pppppppuStack_1c8);
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(pppppppuVar2);
       }

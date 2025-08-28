@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // 03_rendering_part079.c - 渲染系统输入控制和数据处理模块
 // ============================================================================
@@ -313,7 +317,7 @@ int64_t * FUN_18030f1e0(int64_t param_1)
     puVar3 = (uint64_t *)FUN_1800bf2a0(param_1, aplStackX_10, lVar4, uVar2, 0xfffffffffffffffe);
     
     // 初始化新分配的对象
-    FUN_1800763c0(*puVar3, &plStackX_8);
+    SystemCore_BufferManager(*puVar3, &plStackX_8);
     
     // 执行清理操作
     if (aplStackX_10[0] != (int64_t *)0x0) {
@@ -324,7 +328,7 @@ int64_t * FUN_18030f1e0(int64_t param_1)
     (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2, &processed_var_4960_ptr);
     
     // 将对象添加到对象池
-    FUN_1800b88d0(param_1 + RENDER_DATA_OFFSET + (int64_t)*(int *)(param_1 + 0x124) * OBJECT_POOL_SIZE, &plStackX_8);
+    PhysicsSystem_TriggersProcessor(param_1 + RENDER_DATA_OFFSET + (int64_t)*(int *)(param_1 + 0x124) * OBJECT_POOL_SIZE, &plStackX_8);
     
     // 执行最终的资源清理
     if (plStackX_8 != (int64_t *)0x0) {
@@ -563,20 +567,20 @@ void FUN_18030f390(int64_t param_1)
             uStack_278 = fVar25;
             
             // 处理方向键输入
-            FUN_1803109a0(param_1, 0xf0, uStack_210._4_1_ & 1);           // 上
-            FUN_1803109a0(param_1, 0xf1, uStack_210._4_1_ >> 1 & 1);       // 下
-            FUN_1803109a0(param_1, 0xf2, uStack_210._4_1_ >> 2 & 1);       // 左
-            FUN_1803109a0(param_1, 0xf3, uStack_210._4_1_ >> 3 & 1);       // 右
-            FUN_1803109a0(param_1, 0xf6, (byte)(uStack_210 >> 0x28) >> 6 & 1);  // Start
-            FUN_1803109a0(param_1, 0xf4, uStack_210._4_2_ >> 0xf);        // 左扳机
-            FUN_1803109a0(param_1, 0xf5, (byte)(uStack_210 >> 0x28) >> 4 & 1);  // 右扳机
-            FUN_1803109a0(param_1, 0xf7, (byte)(uStack_210 >> 0x28) >> 5 & 1);  // 左肩
-            FUN_1803109a0(param_1, 0xfa, uStack_210._4_1_ >> 5 & 1);       // A
-            FUN_1803109a0(param_1, 0xfb, uStack_210._4_1_ >> 4 & 1);       // B
-            FUN_1803109a0(param_1, 0xf8, (byte)(uStack_210 >> 0x28) & 1);  // X
-            FUN_1803109a0(param_1, 0xf9, (byte)(uStack_210 >> 0x28) >> 1 & 1);  // Y
-            FUN_1803109a0(param_1, 0xfc, uStack_210._4_1_ >> 6 & 1);       // 左摇杆按下
-            FUN_1803109a0(param_1, 0xfd, uStack_210._4_1_ >> 7);           // 右摇杆按下
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf0, uStack_210._4_1_ & 1);           // 上
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf1, uStack_210._4_1_ >> 1 & 1);       // 下
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf2, uStack_210._4_1_ >> 2 & 1);       // 左
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf3, uStack_210._4_1_ >> 3 & 1);       // 右
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf6, (byte)(uStack_210 >> 0x28) >> 6 & 1);  // Start
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf4, uStack_210._4_2_ >> 0xf);        // 左扳机
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf5, (byte)(uStack_210 >> 0x28) >> 4 & 1);  // 右扳机
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf7, (byte)(uStack_210 >> 0x28) >> 5 & 1);  // 左肩
+            PhysicsSystem_SpatialPartitioning(param_1, 0xfa, uStack_210._4_1_ >> 5 & 1);       // A
+            PhysicsSystem_SpatialPartitioning(param_1, 0xfb, uStack_210._4_1_ >> 4 & 1);       // B
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf8, (byte)(uStack_210 >> 0x28) & 1);  // X
+            PhysicsSystem_SpatialPartitioning(param_1, 0xf9, (byte)(uStack_210 >> 0x28) >> 1 & 1);  // Y
+            PhysicsSystem_SpatialPartitioning(param_1, 0xfc, uStack_210._4_1_ >> 6 & 1);       // 左摇杆按下
+            PhysicsSystem_SpatialPartitioning(param_1, 0xfd, uStack_210._4_1_ >> 7);           // 右摇杆按下
             
             // 处理扳机输入
             if ((float)uStack_250 <= TRIGGER_THRESHOLD) {
@@ -587,7 +591,7 @@ void FUN_18030f390(int64_t param_1)
                 uStack_258 = uStack_260;
             }
             uStack_260._0_5_ = CONCAT14(0xfe, (int)uStack_260);
-            FUN_180310a00(param_1, &uStack_260);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_260);
             
             // 处理按钮颜色输入
             if ((float)uVar9 * COLOR_SCALE_FACTOR <= TRIGGER_THRESHOLD) {
@@ -598,7 +602,7 @@ void FUN_18030f390(int64_t param_1)
                 uStack_258 = uStack_260;
             }
             uStack_260._0_5_ = CONCAT14(0xff, (int)uStack_260);
-            FUN_180310a00(param_1, &uStack_260);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_260);
             
             // 处理摇杆角度计算
             lVar15 = render_system_data_memory;
@@ -686,48 +690,48 @@ void FUN_18030f390(int64_t param_1)
             uStack_26c._0_1_ = 0xde;
             uStack_268 = uVar7;
             uStack_240 = uVar12;
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             uStack_26c = CONCAT31(uStack_26c._1_3_, 0xdf);
             uStack_268 = uVar12;
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             fVar25 = uStack_260._4_4_;
             fStack_270 = uStack_260._4_4_;
             uStack_26c = 0;
             uStack_248 = (uint64_t)(uint)uStack_260._4_4_;
             uStack_250._0_5_ = CONCAT14(0xe8, (float)uStack_250);
-            FUN_180310a00(param_1, &uStack_250);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_250);
             fStack_270 = -fVar25;
             uStack_26c = 0;
             uStack_248 = (uint64_t)(uint)fStack_270;
             uStack_250._0_5_ = CONCAT14(0xe9, (float)uStack_250);
-            FUN_180310a00(param_1, &uStack_250);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_250);
             uVar7 = uStack_260;
             uStack_260 = uStack_260 & 0xffffffff;
             uStack_268 = uStack_260;
             uStack_26c._0_1_ = 0xeb;
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             uStack_260 = uVar7 & 0xffffffff ^ 0x80000000;
             uStack_268 = uStack_260;
             uStack_26c._0_1_ = 0xea;
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             uVar9 = (uint)uStack_240._4_4_;
             uStack_260 = (uint64_t)(uint)uStack_240._4_4_;
             uStack_268 = uStack_260;
             uStack_26c._0_1_ = 0xec;
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             uStack_260 = (uint64_t)uVar9 ^ 0x80000000;
             uStack_268 = uStack_260;
             uStack_26c = CONCAT31(uStack_26c._1_3_, 0xed);
-            FUN_180310a00(param_1, &fStack_270);
+            NetworkProtocol_ConnectionHandler(param_1, &fStack_270);
             uVar7 = uStack_240;
             uStack_260 = uStack_240 & 0xffffffff;
             uStack_238 = uStack_260;
             uStack_240._0_5_ = CONCAT14(0xef, (float)uStack_240);
-            FUN_180310a00(param_1, &uStack_240);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_240);
             uStack_260 = uVar7 & 0xffffffff ^ 0x80000000;
             uStack_238 = uStack_260;
             uStack_240._0_5_ = CONCAT14(0xee, (float)uStack_240);
-            FUN_180310a00(param_1, &uStack_240);
+            NetworkProtocol_ConnectionHandler(param_1, &uStack_240);
             
             // 处理振动反馈
             fVar27 = render_system_control_memory;
@@ -813,31 +817,31 @@ void FUN_18030f390(int64_t param_1)
                 uStack_278 = (float)bStack_1ef * COLOR_SCALE_FACTOR;
                 
                 // 处理触摸按钮输入
-                FUN_1803109a0(param_1, 0xf0, (byte)(uStack_1f8 >> 4) & 1);
-                FUN_1803109a0(param_1, 0xf1,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf0, (byte)(uStack_1f8 >> 4) & 1);
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf1,
                               CONCAT31((uint3)(uStack_1f8 >> 0xe), (char)(uStack_1f8 >> 6)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf2,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf2,
                               CONCAT31((uint3)(uStack_1f8 >> 0xf), (char)(uStack_1f8 >> 7)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf3,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf3,
                               CONCAT31((uint3)(uStack_1f8 >> 0xd), (char)(uStack_1f8 >> 5)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf6,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf6,
                               CONCAT31((uint3)(uStack_1f8 >> 0x17), (char)(uStack_1f8 >> 0xf)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf4,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf4,
                               CONCAT31((uint3)(uStack_1f8 >> 0x14), (char)(uStack_1f8 >> 0xc)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf5,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf5,
                               CONCAT31((uint3)(uStack_1f8 >> 0x16), (char)(uStack_1f8 >> 0xe)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf7,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf7,
                               CONCAT31((uint3)(uStack_1f8 >> 0x15), (char)(uStack_1f8 >> 0xd)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xfa, (byte)uVar9 & 1);
-                FUN_1803109a0(param_1, 0xfb,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xfa, (byte)uVar9 & 1);
+                PhysicsSystem_SpatialPartitioning(param_1, 0xfb,
                               CONCAT31((uint3)(uStack_1f8 >> 0xb), (char)(uStack_1f8 >> 3)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf8,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf8,
                               CONCAT31((uint3)(uStack_1f8 >> 0x12), (char)(uStack_1f8 >> 10)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xf9,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xf9,
                               CONCAT31((uint3)(uStack_1f8 >> 0x13), (char)(uStack_1f8 >> 0xb)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xfc,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xfc,
                               CONCAT31((uint3)(uStack_1f8 >> 9), (char)(uStack_1f8 >> 1)) & 0xffffff01);
-                FUN_1803109a0(param_1, 0xfd,
+                PhysicsSystem_SpatialPartitioning(param_1, 0xfd,
                               CONCAT31((uint3)(uStack_1f8 >> 10), (char)(uStack_1f8 >> 2)) & 0xffffff01);
                 
                 // 处理触摸扳机输入
@@ -849,7 +853,7 @@ void FUN_18030f390(int64_t param_1)
                     uStack_248 = uStack_250;
                 }
                 uStack_250._0_5_ = CONCAT14(0xfe, (float)uStack_250);
-                FUN_180310a00(param_1, &uStack_250);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_250);
                 
                 if (uStack_278 <= TRIGGER_THRESHOLD) {
                     uStack_248 = 0;
@@ -859,7 +863,7 @@ void FUN_18030f390(int64_t param_1)
                     uStack_248 = uStack_250;
                 }
                 uStack_250._0_5_ = CONCAT14(0xff, (float)uStack_250);
-                FUN_180310a00(param_1, &uStack_250);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_250);
                 
                 iVar6 = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
                 if (cStack_1c4 == '\0') {
@@ -871,11 +875,11 @@ void FUN_18030f390(int64_t param_1)
                         uStack_250 = 0x3f800000;
                         uStack_228 = 0x3f800000;
                         uStack_22c = 0xe7;
-                        FUN_180310a00(param_1, &uStack_230);
+                        NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                     }
                     uStack_228 = 0;
                     uStack_22c = 0xe7;
-                    FUN_180310a00(param_1, &uStack_230);
+                    NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                     *(int8_t *)(param_1 + 0x7c) = 0;
                     *(int32_t *)(param_1 + 0x68) = 0xbf800000;
                     *(uint64_t *)(param_1 + 0x6c) = 0;
@@ -897,7 +901,7 @@ void FUN_18030f390(int64_t param_1)
                     *(float *)(param_1 + 0x68) = fVar16;
                     uStack_248 = 0;
                     uStack_250._0_5_ = CONCAT14(0xe7, (float)uStack_250);
-                    FUN_180310a00(param_1, &uStack_250);
+                    NetworkProtocol_ConnectionHandler(param_1, &uStack_250);
                     uStack_250 = CONCAT44((float)uStack_1ba, (float)uStack_1bc);
                     *(uint64_t *)(param_1 + 0x74) = uStack_250;
                     cVar8 = cVar13;
@@ -967,7 +971,7 @@ void FUN_18030f390(int64_t param_1)
                             iVar14 = (int)fVar25;
                             iStack_220 = iVar10;
                             iStack_21c = iVar14;
-                            FUN_1801edeb0();
+                            CoreEngine_MemoryManager();
                             lVar15 = render_system_data_memory;
                             if (*(char *)(system_operation_state + 0x1609) != '\0') {
                                 uStack_250 = CONCAT44(iVar14, iVar10);
@@ -1018,53 +1022,53 @@ void FUN_18030f390(int64_t param_1)
                 uStack_228 = uVar7;
                 uStack_240._0_4_ = fVar25;
                 uStack_240._4_4_ = fVar26;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 uStack_22c = 0xdf;
                 uStack_228._0_4_ = fVar25;
                 uStack_228._4_4_ = fVar26;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fVar25 = uStack_210._4_4_;
                 fStack_270 = uStack_210._4_4_;
                 uStack_26c = 0;
                 uStack_228 = (uint64_t)(uint)uStack_210._4_4_;
                 uStack_22c = 0xe8;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fStack_270 = -fVar25;
                 uStack_26c = 0;
                 uStack_228 = (uint64_t)(uint)fStack_270;
                 uStack_22c = 0xe9;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fVar25 = (float)uStack_210;
                 fStack_270 = (float)uStack_210;
                 uStack_26c = 0;
                 uStack_228 = uStack_210 & 0xffffffff;
                 uStack_22c = 0xeb;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fStack_270 = -fVar25;
                 uStack_26c = 0;
                 uStack_228 = (uint64_t)(uint)fStack_270;
                 uStack_22c = 0xea;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fVar25 = uStack_240._4_4_;
                 fStack_270 = uStack_240._4_4_;
                 uStack_26c = 0;
                 uStack_228 = (uint64_t)(uint)uStack_240._4_4_;
                 uStack_22c = 0xec;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fStack_270 = -fVar25;
                 uStack_26c = 0;
                 uStack_228 = (uint64_t)(uint)fStack_270;
                 uStack_22c = 0xed;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fVar25 = (float)uStack_240;
                 uStack_240 = (uint64_t)(uint)(float)uStack_240;
                 uStack_228 = uStack_240;
                 uStack_22c = 0xef;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 uStack_240 = (uint64_t)(uint)fVar25 ^ 0x80000000;
                 uStack_228 = uStack_240;
                 uStack_22c = 0xee;
-                FUN_180310a00(param_1, &uStack_230);
+                NetworkProtocol_ConnectionHandler(param_1, &uStack_230);
                 fVar27 = render_system_control_memory;
                 fVar25 = 0.0;
                 fVar26 = 0.0;

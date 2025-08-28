@@ -56,7 +56,7 @@ void FUN_1805aa090(uint64_t param_1,int64_t param_2)
     }
     else {
       if (uVar3 <= (uint)uStack_28) goto LAB_1805aa1de;
-      puStack_38 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_38,uVar3,0x10,0x13);
+      puStack_38 = (int32_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puStack_38,uVar3,0x10,0x13);
     }
     uVar2 = CoreEngineSystemCleanup(puStack_38);
     uStack_28 = CONCAT44(uStack_28._4_4_,uVar2);

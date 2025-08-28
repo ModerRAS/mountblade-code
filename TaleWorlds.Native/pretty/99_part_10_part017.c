@@ -528,7 +528,7 @@ uint64_t * FUN_1806ad620(int64_t param_1,uint64_t *param_2,uint64_t param_3)
   lVar2 = FUN_1806ac530(param_1,param_3);
   if (lVar2 == 0) {
     *(int *)(param_1 + 0xe8) = *(int *)(param_1 + 0xe8) + 1;
-    lVar2 = FUN_1806ad710(param_1,param_3);
+    lVar2 = CoreEngine_ConfigLoader(param_1,param_3);
   }
   *param_2 = &rendering_buffer_2232_ptr;
   uVar1 = *(uint64_t *)(lVar2 + 0x10);
@@ -557,7 +557,7 @@ uint64_t * FUN_1806ad620(int64_t param_1,uint64_t *param_2,uint64_t param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_1806ad710(int64_t param_1,uint64_t *param_2,uint param_3)
+int64_t CoreEngine_ConfigLoader(int64_t param_1,uint64_t *param_2,uint param_3)
 
 {
   uint64_t uVar1;

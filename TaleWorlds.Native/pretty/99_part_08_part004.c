@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part004.c - 18 个函数
 
 // 函数: void FUN_1804de87e(void)
@@ -49,7 +53,7 @@ bool FUN_1804de880(uint64_t param_1,int64_t param_2,uint param_3,float param_4)
         else {
           param_4 = -1.0;
         }
-        FUN_1802fac00(lVar3,lVar4,param_4);
+        SystemCore_FileSystem(lVar3,lVar4,param_4);
       }
 LAB_1801bcd78:
       if ((*(byte *)(lVar3 + 0xa8) >> 3 & 1) != 0) {
@@ -104,7 +108,7 @@ bool FUN_1804de930(uint64_t param_1,int64_t param_2,uint param_3,float param_4)
         else {
           param_4 = -1.0;
         }
-        FUN_1802fac00(lVar3,lVar4,param_4);
+        SystemCore_FileSystem(lVar3,lVar4,param_4);
       }
 LAB_1801bce68:
       if ((*(byte *)(lVar3 + 0xa8) >> 3 & 1) != 0) {
@@ -142,7 +146,7 @@ bool FUN_1804de9e0(uint64_t param_1,int64_t param_2,uint param_3)
                (*(int64_t *)(*(int64_t *)(param_2 + 0x698) + (int64_t)((int)uVar1 >> 10) * 8) + 8
                + (int64_t)(int)(*(uint *)(param_2 + 0x6b8) & uVar1) * 0x30);
       if ((*(byte *)(lVar3 + 0xa8) & 1) == 0) {
-        FUN_1802fac00(lVar3,(int64_t)(int)(*(uint *)(param_2 + 0x4a8) & uVar2) * 0x48 +
+        SystemCore_FileSystem(lVar3,(int64_t)(int)(*(uint *)(param_2 + 0x4a8) & uVar2) * 0x48 +
                             *(int64_t *)
                              (*(int64_t *)(param_2 + 0x488) + (int64_t)((int)uVar2 >> 10) * 8) + 8
                       ,0xbf800000);
@@ -202,7 +206,7 @@ void FUN_1804dea90(int64_t *param_1)
     uStack_3c = (int32_t)((uint64_t)lVar1 >> 0x20);
     uStack_30 = uStack_40;
     uStack_2c = uStack_3c;
-    FUN_18015b810(uStack_40,0,*(int32_t *)(lVar1 + 0x2d18),0x10,0xffffffffffffffff,&uStack_30,
+    SystemCore_DataTransformer(uStack_40,0,*(int32_t *)(lVar1 + 0x2d18),0x10,0xffffffffffffffff,&uStack_30,
                   uVar4);
   }
   return;
@@ -238,7 +242,7 @@ void FUN_1804deba0(int64_t *param_1)
   uStack_3c = (int32_t)((uint64_t)lVar1 >> 0x20);
   uStack_30 = uStack_40;
   uStack_2c = uStack_3c;
-  FUN_18015b810(uStackX_8,0,*(int32_t *)(lVar1 + 0x564),0x40,0xffffffffffffffff,&uStack_30,
+  SystemCore_DataTransformer(uStackX_8,0,*(int32_t *)(lVar1 + 0x564),0x40,0xffffffffffffffff,&uStack_30,
                 0xfffffffffffffffe);
   return;
 }
@@ -259,7 +263,7 @@ void FUN_1804dec60(int64_t *param_1)
   alStack_30[0] = *param_1;
   puStack_20 = &processed_var_8144_ptr;
   puStack_18 = &processed_var_8128_ptr;
-  FUN_18015b810(&processed_var_8128_ptr,0,*(int32_t *)(alStack_30[0] + 0x2d18),0x10,0xfffffffffffffffe,
+  SystemCore_DataTransformer(&processed_var_8128_ptr,0,*(int32_t *)(alStack_30[0] + 0x2d18),0x10,0xfffffffffffffffe,
                 alStack_30,0xfffffffffffffffe);
   return;
 }
@@ -280,7 +284,7 @@ void FUN_1804ded00(int64_t *param_1)
   alStack_30[0] = *param_1;
   puStack_20 = &processed_var_8224_ptr;
   puStack_18 = &processed_var_8208_ptr;
-  FUN_18015b810(&processed_var_8208_ptr,0,*(int32_t *)(alStack_30[0] + 0x50c),0x10,0xffffffffffffffff,
+  SystemCore_DataTransformer(&processed_var_8208_ptr,0,*(int32_t *)(alStack_30[0] + 0x50c),0x10,0xffffffffffffffff,
                 alStack_30,0xfffffffffffffffe);
   return;
 }

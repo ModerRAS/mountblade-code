@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_05_part032.c - 19 个函数
@@ -59,7 +60,7 @@ void FUN_1802ebcf1(void)
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -134,7 +135,7 @@ LAB_1802ebe3a:
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -196,7 +197,7 @@ LAB_1802ebe3a:
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -256,7 +257,7 @@ LAB_1802ebe3a:
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -306,7 +307,7 @@ LAB_1802ebe3a:
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -334,7 +335,7 @@ void FUN_1802ebe44(void)
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);
@@ -361,7 +362,7 @@ void FUN_1802ebe5a(int64_t param_1)
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);

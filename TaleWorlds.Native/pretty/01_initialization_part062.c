@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -807,8 +810,8 @@ void FUN_18007fca8(void)
 
 
 
-// 函数: void FUN_18007fcd0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_18007fcd0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void SystemCore_Compression(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void SystemCore_Compression(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   uint64_t uVar1;

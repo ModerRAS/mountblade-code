@@ -34,14 +34,14 @@ uint64_t * FUN_18053ea40(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   puVar5 = param_2 + ((int64_t)param_3 - (int64_t)param_2 >> 4);
   lVar4 = (int64_t)param_3 + (-8 - (int64_t)param_2) >> 3;
   if (lVar4 < 0x29) {
-    FUN_18053f270(param_2,puVar5,param_3 + -1);
+    RenderingSystem_BufferProcessor(param_2,puVar5,param_3 + -1);
   }
   else {
     lVar4 = lVar4 + 1 >> 3;
-    FUN_18053f270(param_2,param_2 + lVar4,param_2 + lVar4 * 2);
-    FUN_18053f270(puVar5 + -lVar4,puVar5,puVar5 + lVar4);
-    FUN_18053f270(param_3 + lVar4 * -2 + -1,param_3 + (-1 - lVar4),param_3 + -1);
-    FUN_18053f270(param_2 + lVar4,puVar5,param_3 + (-1 - lVar4));
+    RenderingSystem_BufferProcessor(param_2,param_2 + lVar4,param_2 + lVar4 * 2);
+    RenderingSystem_BufferProcessor(puVar5 + -lVar4,puVar5,puVar5 + lVar4);
+    RenderingSystem_BufferProcessor(param_3 + lVar4 * -2 + -1,param_3 + (-1 - lVar4),param_3 + -1);
+    RenderingSystem_BufferProcessor(param_2 + lVar4,puVar5,param_3 + (-1 - lVar4));
   }
   puVar8 = puVar5 + 1;
   if (param_2 < puVar5) {
@@ -176,15 +176,15 @@ uint64_t * FUN_18053ea59(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   puVar5 = param_2 + (in_RAX - (int64_t)param_2 >> 4);
   lVar4 = (int64_t)param_3 + (-8 - (int64_t)param_2) >> 3;
   if (lVar4 < 0x29) {
-    FUN_18053f270(param_2,puVar5,param_3 + -1);
+    RenderingSystem_BufferProcessor(param_2,puVar5,param_3 + -1);
     in_stack_00000050 = param_1;
   }
   else {
     lVar4 = lVar4 + 1 >> 3;
-    FUN_18053f270(param_2,param_2 + lVar4,param_2 + lVar4 * 2);
-    FUN_18053f270(puVar5 + -lVar4,puVar5,puVar5 + lVar4);
-    FUN_18053f270(param_3 + lVar4 * -2 + -1,param_3 + (-1 - lVar4),param_3 + -1);
-    FUN_18053f270(param_2 + lVar4,puVar5,param_3 + (-1 - lVar4));
+    RenderingSystem_BufferProcessor(param_2,param_2 + lVar4,param_2 + lVar4 * 2);
+    RenderingSystem_BufferProcessor(puVar5 + -lVar4,puVar5,puVar5 + lVar4);
+    RenderingSystem_BufferProcessor(param_3 + lVar4 * -2 + -1,param_3 + (-1 - lVar4),param_3 + -1);
+    RenderingSystem_BufferProcessor(param_2 + lVar4,puVar5,param_3 + (-1 - lVar4));
   }
   puVar8 = puVar5 + 1;
   if (param_2 < puVar5) {
@@ -321,10 +321,10 @@ uint64_t * FUN_18053ea89(uint64_t param_1,int64_t param_2)
   
   lVar5 = in_RAX >> 3;
   lVar1 = lVar5 * 8 + param_2;
-  FUN_18053f270(param_1,lVar1,lVar5 * 0x10 + param_2);
-  FUN_18053f270(unaff_RBX + -lVar5);
-  FUN_18053f270(unaff_R15 + lVar5 * -2 + -1,unaff_R15 + (-1 - lVar5),unaff_R15 + -1);
-  FUN_18053f270(lVar1);
+  RenderingSystem_BufferProcessor(param_1,lVar1,lVar5 * 0x10 + param_2);
+  RenderingSystem_BufferProcessor(unaff_RBX + -lVar5);
+  RenderingSystem_BufferProcessor(unaff_R15 + lVar5 * -2 + -1,unaff_R15 + (-1 - lVar5),unaff_R15 + -1);
+  RenderingSystem_BufferProcessor(lVar1);
   puVar8 = unaff_RBX + 1;
   if (unaff_R12 < unaff_RBX) {
     uVar7 = *unaff_RBX;
@@ -458,7 +458,7 @@ void FUN_18053eaf7(void)
   uint64_t *unaff_R14;
   uint64_t *unaff_R15;
   
-  FUN_18053f270();
+  RenderingSystem_BufferProcessor();
   puVar6 = unaff_RBX + 1;
   if (unaff_R12 < unaff_RBX) {
     uVar5 = *unaff_RBX;

@@ -248,25 +248,25 @@ void FUN_180317ee0(int64_t param_1,int64_t param_2,int64_t *param_3,uint64_t par
   puVar8 = (int32_t *)FUN_1800daa50();
   switch(param_7) {
   case 0:
-    FUN_180094b30(puVar8,&processed_var_5488_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5488_ptr);
     break;
   case 1:
-    FUN_180094b30(puVar8,&processed_var_5720_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5720_ptr);
     break;
   case 2:
-    FUN_180094b30(puVar8,&processed_var_5680_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5680_ptr);
     break;
   case 3:
-    FUN_180094b30(puVar8,&processed_var_5640_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5640_ptr);
     break;
   case 4:
-    FUN_180094b30(puVar8,&processed_var_5600_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5600_ptr);
     break;
   case 5:
-    FUN_180094b30(puVar8,&processed_var_5872_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5872_ptr);
     break;
   default:
-    FUN_180626ee0(&processed_var_5816_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_5816_ptr);
   }
   plVar9 = (int64_t *)FUN_1800bde30();
   if (plVar9 != (int64_t *)0x0) {
@@ -509,7 +509,7 @@ void FUN_180317ee0(int64_t param_1,int64_t param_2,int64_t *param_3,uint64_t par
   *puVar10 = 0x616d776f64616873;
   puVar10[1] = 0x68706172675f70;
   uStack_330 = 0xf;
-  plVar9 = (int64_t *)FUN_1801f20c0();
+  plVar9 = (int64_t *)Network_DataSerializer();
   if (plVar9 != (int64_t *)0x0) {
     plStack_2e8 = plVar9;
     (**(code **)(*plVar9 + 0x28))(plVar9);

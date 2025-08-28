@@ -1,4 +1,5 @@
 /* 函数别名定义: DataProcessingEngine */
+#define CoreEngine_AIController CoreEngine_AIController
 #define DataProcessingEngine DataProcessingEngine
 
 
@@ -7,8 +8,8 @@
 
 // 03_rendering_part048.c - 11 个函数
 
-// 函数: void FUN_180291b40(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
-void FUN_180291b40(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
+// 函数: void CoreEngine_AIController(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
+void CoreEngine_AIController(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
 
 {
   uint64_t *puVar1;
@@ -163,7 +164,7 @@ void FUN_180291b40(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
     if (iVar12 + 1 < iVar13) {
       iVar4 = iVar13;
     }
-    FUN_18013e760(param_1,iVar4);
+    RenderingEngine_Renderer(param_1,iVar4);
     iVar12 = *param_1;
   }
   lVar14 = (int64_t)iVar12;
@@ -185,8 +186,8 @@ void FUN_180291b40(int *param_1,uint64_t param_2,uint64_t param_3,char param_4)
 
 
 
-// 函数: void FUN_180291c70(int *param_1,uint64_t param_2)
-void FUN_180291c70(int *param_1,uint64_t param_2)
+// 函数: void RenderingSystem_TextureLoader(int *param_1,uint64_t param_2)
+void RenderingSystem_TextureLoader(int *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -273,7 +274,7 @@ void FUN_180291c70(int *param_1,uint64_t param_2)
     if (iVar8 + 1 < iVar7) {
       iVar3 = iVar7;
     }
-    FUN_18013e760(param_1,iVar3);
+    RenderingEngine_Renderer(param_1,iVar3);
     iVar8 = *param_1;
   }
   lVar9 = (int64_t)iVar8;
@@ -373,7 +374,7 @@ void FUN_180291cf0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
           if (0 < iVar9) {
             iVar13 = iVar9;
           }
-          FUN_18013e760(puVar15,iVar13);
+          RenderingEngine_Renderer(puVar15,iVar13);
         }
         *puVar15 = 0;
         lVar5 = *(int64_t *)(param_1 + 0xa0);
@@ -384,7 +385,7 @@ void FUN_180291cf0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
           if (0 < iVar9) {
             iVar13 = iVar9;
           }
-          FUN_18011dd10(lVar5 + 0x10 + lVar14,iVar13);
+          Memory_CacheManager(lVar5 + 0x10 + lVar14,iVar13);
         }
         *(int32_t *)(lVar5 + 0x10 + lVar14) = 0;
       }
@@ -410,7 +411,7 @@ void FUN_180291cf0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
         uVar10 = *(uint64_t *)
                   (*(int64_t *)(param_1 + 0x78) + -8 + (int64_t)*(int *)(param_1 + 0x70) * 8);
         if (piVar16[1] == 0) {
-          FUN_18013e760(piVar16,8);
+          RenderingEngine_Renderer(piVar16,8);
           iVar17 = *piVar16;
         }
         lVar11 = (int64_t)iVar17;
@@ -496,7 +497,7 @@ void FUN_180291f60(int *param_1)
       if (iVar4 < iVar2) {
         iVar1 = iVar2;
       }
-      FUN_18013e760(param_1,iVar1);
+      RenderingEngine_Renderer(param_1,iVar1);
     }
     *param_1 = iVar4;
     iVar4 = param_1[5];
@@ -509,7 +510,7 @@ void FUN_180291f60(int *param_1)
       if (iVar2 < iVar7) {
         iVar4 = iVar7;
       }
-      FUN_18011dd10(param_1 + 4,iVar4);
+      Memory_CacheManager(param_1 + 4,iVar4);
     }
     param_1[4] = iVar2;
     iVar4 = 1;
@@ -532,7 +533,7 @@ void FUN_180291f60(int *param_1)
         lVar9 = lVar9 + 0x20;
       } while (iVar4 < param_1[0x25]);
     }
-    FUN_180291950(param_1);
+    SystemCore_ErrorHandler(param_1);
     param_1[0x25] = 1;
   }
   return;
@@ -586,7 +587,7 @@ void FUN_180291f76(uint64_t param_1)
   }
   iVar5 = 8;
   if (unaff_RBX[1] < iVar2 + iVar4) {
-    FUN_18013e760();
+    RenderingEngine_Renderer();
   }
   *unaff_RBX = iVar2 + iVar4;
   iVar2 = unaff_RBX[5];
@@ -599,7 +600,7 @@ void FUN_180291f76(uint64_t param_1)
     if (iVar7 < iVar5) {
       iVar2 = iVar5;
     }
-    FUN_18011dd10(unaff_RBX + 4,iVar2);
+    Memory_CacheManager(unaff_RBX + 4,iVar2);
   }
   unaff_RBX[4] = iVar7;
   iVar2 = 1;
@@ -622,7 +623,7 @@ void FUN_180291f76(uint64_t param_1)
       lVar8 = lVar8 + 0x20;
     } while (iVar2 < unaff_RBX[0x25]);
   }
-  FUN_180291950();
+  SystemCore_ErrorHandler();
   unaff_RBX[0x25] = 1;
   return;
 }
@@ -675,7 +676,7 @@ void FUN_180291f87(void)
   }
   iVar5 = 8;
   if (unaff_RBX[1] < iVar2 + iVar4) {
-    FUN_18013e760();
+    RenderingEngine_Renderer();
   }
   *unaff_RBX = iVar2 + iVar4;
   iVar2 = unaff_RBX[5];
@@ -688,7 +689,7 @@ void FUN_180291f87(void)
     if (iVar7 < iVar5) {
       iVar2 = iVar5;
     }
-    FUN_18011dd10(unaff_RBX + 4,iVar2);
+    Memory_CacheManager(unaff_RBX + 4,iVar2);
   }
   unaff_RBX[4] = iVar7;
   iVar2 = 1;
@@ -711,7 +712,7 @@ void FUN_180291f87(void)
       lVar8 = lVar8 + 0x20;
     } while (iVar2 < unaff_RBX[0x25]);
   }
-  FUN_180291950();
+  SystemCore_ErrorHandler();
   unaff_RBX[0x25] = 1;
   return;
 }
@@ -739,7 +740,7 @@ void FUN_1802920d0(void)
     unaff_EBP = unaff_EBP + 1;
     unaff_R14 = unaff_R14 + 0x20;
     if (*(int *)(unaff_RBX + 0x94) <= unaff_EBP) {
-      FUN_180291950();
+      SystemCore_ErrorHandler();
       *(int32_t *)(unaff_RBX + 0x94) = 1;
       return;
     }
@@ -763,8 +764,8 @@ void FUN_180292156(void)
 
 
 
-// 函数: void FUN_1802921e0(int *param_1,int param_2,int param_3)
-void FUN_1802921e0(int *param_1,int param_2,int param_3)
+// 函数: void NetworkSystem_PacketSerializer(int *param_1,int param_2,int param_3)
+void NetworkSystem_PacketSerializer(int *param_1,int param_2,int param_3)
 
 {
   int *piVar1;
@@ -791,7 +792,7 @@ void FUN_1802921e0(int *param_1,int param_2,int param_3)
     if (param_2 < iVar4) {
       iVar3 = iVar4;
     }
-    FUN_18011dd10(param_1 + 4,iVar3);
+    Memory_CacheManager(param_1 + 4,iVar3);
   }
   param_1[4] = param_2;
   *(int64_t *)(param_1 + 0x16) = *(int64_t *)(param_1 + 6) + (int64_t)iVar2 * 2;
@@ -865,8 +866,8 @@ void FUN_180292290(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t 
 
 
 
-// 函数: void FUN_1802923e0(int64_t param_1,int64_t param_2,int param_3,uint param_4,char param_5,
-void FUN_1802923e0(int64_t param_1,int64_t param_2,int param_3,uint param_4,char param_5,
+// 函数: void RenderingSystem_LightManager(int64_t param_1,int64_t param_2,int param_3,uint param_4,char param_5,
+void RenderingSystem_LightManager(int64_t param_1,int64_t param_2,int param_3,uint param_4,char param_5,
                   float param_6)
 
 {
@@ -909,11 +910,11 @@ void FUN_1802923e0(int64_t param_1,int64_t param_2,int param_3,uint param_4,char
       if (!(bool)auStack_f8[0]) {
         iVar7 = 0xc;
       }
-      FUN_1802921e0(param_1,iVar7 * iVar9,iStack_d0);
+      NetworkSystem_PacketSerializer(param_1,iVar7 * iVar9,iStack_d0);
                     // WARNING: Subroutine does not return
       SystemEventProcessor();
     }
-    FUN_1802921e0(param_1,iVar9 * 6,iVar9 * 4);
+    NetworkSystem_PacketSerializer(param_1,iVar9 * 6,iVar9 * 4);
     if (0 < lVar10) {
       iVar9 = 0;
       lVar8 = 0;

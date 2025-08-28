@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /**
  * @file 03_rendering_part105.c
  * @brief 渲染系统高级数据处理和文件操作模块
@@ -6,7 +11,6 @@
  * 资源管理、路径处理、字符串操作等高级渲染功能。
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 /**
  * @defgroup rendering_constants 渲染系统常量定义
@@ -148,7 +152,7 @@ void RenderingSystem_ProcessResourceData(int64_t render_context, int64_t output_
   CoreEngineDataBufferProcessor(&puStack_f0,uVar6);
   *(int16_t *)(puStack_e8 + uStack_e0) = 0x5c;
   uStack_e0 = uVar6;
-  FUN_180626eb0(acStack_60,0x20,&memory_allocator_3388_ptr,*puVar9);
+  SystemCore_CacheManager(acStack_60,0x20,&memory_allocator_3388_ptr,*puVar9);
   lVar3 = -1;
   do {
     lVar8 = lVar3;
@@ -167,7 +171,7 @@ void RenderingSystem_ProcessResourceData(int64_t render_context, int64_t output_
     auStack_98[0] = 0;
     uStack_88 = 0;
     uStack_e0 = iVar7;
-    FUN_18062dee0(auStack_98,puVar5,&processed_var_9772_ptr);
+    SystemCore_Validator(auStack_98,puVar5,&processed_var_9772_ptr);
     lStack_118 = 0;
     puStack_110 = (int32_t *)0x0;
     lStack_108 = 0;
@@ -310,7 +314,7 @@ int32_t RenderingSystem_ExportResourceData(int64_t render_context, int64_t outpu
   uStack_60 = 0;
   uStack_50 = 0;
   uStack_f8 = iVar15;
-  FUN_18062dee0(&uStack_60,puVar12,&processed_var_9772_ptr);
+  SystemCore_Validator(&uStack_60,puVar12,&processed_var_9772_ptr);
   lStack_128 = 0;
   lStack_120 = 0;
   uStack_118 = 0;
@@ -664,9 +668,9 @@ void RenderingSystem_ProcessTexturePath(int64_t render_context, int64_t output_h
   puVar5[3] = 0x65727574;
   *(int16_t *)(puVar5 + 4) = 0x73;
   uStack_e0 = uVar6;
-  cVar4 = FUN_180624a00(&puStack_f0);
+  cVar4 = UltraHighFreq_LogManager1(&puStack_f0);
   if (cVar4 == '\0') {
-    FUN_180624910(&puStack_f0);
+    SystemManager_Processor(&puStack_f0);
   }
   lVar3 = lStack_c8;
   uVar6 = uStack_e0;
@@ -840,7 +844,7 @@ int32_t RenderingSystem_OptimizeRenderData(int64_t render_context, int64_t outpu
   uStack_78 = 0;
   uStack_68 = 0;
   uStack_e8 = iVar2;
-  FUN_18062dee0(&uStack_78,puVar9,&processed_var_9772_ptr);
+  SystemCore_Validator(&uStack_78,puVar9,&processed_var_9772_ptr);
   lVar7 = *(int64_t *)(param_1 + 0x8e0);
   puVar8 = puStack_b0;
   puVar5 = puStack_b8;

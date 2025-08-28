@@ -687,7 +687,7 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
   
   uVar14 = (uint64_t)param_4;
   puVar9 = (int8_t *)((uVar14 * 3 + (int64_t)param_3) * 0xb + param_2);
-  uVar7 = FUN_18069bbd0(param_1,*puVar9);
+  uVar7 = SystemCore_Monitor(param_1,*puVar9);
   uVar15 = uVar14;
   if ((int)uVar7 == 0) {
     return uVar7;
@@ -697,7 +697,7 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
     uVar7 = uVar15 + 1;
     uVar13 = ((uint)(byte)puVar9[1] * (*(int *)(param_1 + 0x1c) + -1) >> 8) + 1;
     if (*(int *)(param_1 + 0x18) < 0) {
-      FUN_18069ec80(param_1);
+      SystemCore_Handler(param_1);
     }
     uVar14 = *(uint64_t *)(param_1 + 0x10);
     uVar8 = (uint64_t)uVar13 << 0x38;
@@ -711,46 +711,46 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
     *(uint64_t *)(param_1 + 0x10) = uVar14 << (bVar1 & 0x3f);
     *(uint *)(param_1 + 0x1c) = uVar13 << (bVar1 & 0x1f);
     if (bVar16) {
-      iVar5 = FUN_18069bbd0(param_1,puVar9[2]);
+      iVar5 = SystemCore_Monitor(param_1,puVar9[2]);
       if (iVar5 == 0) {
         lVar10 = param_2 + 0xb;
         sVar11 = 1;
       }
       else {
-        iVar5 = FUN_18069bbd0(param_1,puVar9[3]);
+        iVar5 = SystemCore_Monitor(param_1,puVar9[3]);
         if (iVar5 == 0) {
-          iVar5 = FUN_18069bbd0(param_1,puVar9[4]);
+          iVar5 = SystemCore_Monitor(param_1,puVar9[4]);
           if (iVar5 == 0) {
             sVar11 = 2;
           }
           else {
-            sVar11 = FUN_18069bbd0(param_1,puVar9[5]);
+            sVar11 = SystemCore_Monitor(param_1,puVar9[5]);
             sVar11 = sVar11 + 3;
           }
         }
         else {
-          iVar5 = FUN_18069bbd0(param_1,puVar9[6]);
+          iVar5 = SystemCore_Monitor(param_1,puVar9[6]);
           if (iVar5 == 0) {
-            iVar5 = FUN_18069bbd0(param_1,puVar9[7]);
+            iVar5 = SystemCore_Monitor(param_1,puVar9[7]);
             if (iVar5 == 0) {
-              sVar11 = FUN_18069bbd0(param_1,0x9f);
+              sVar11 = SystemCore_Monitor(param_1,0x9f);
               sVar11 = sVar11 + 5;
             }
             else {
-              sVar4 = FUN_18069bbd0(param_1,0xa5);
-              sVar11 = FUN_18069bbd0(param_1,0x91);
+              sVar4 = SystemCore_Monitor(param_1,0xa5);
+              sVar11 = SystemCore_Monitor(param_1,0x91);
               sVar11 = sVar4 * 2 + 7 + sVar11;
             }
           }
           else {
-            iVar5 = FUN_18069bbd0(param_1,puVar9[8]);
-            iVar6 = FUN_18069bbd0(param_1,puVar9[(int64_t)iVar5 + 9]);
+            iVar5 = SystemCore_Monitor(param_1,puVar9[8]);
+            iVar6 = SystemCore_Monitor(param_1,puVar9[(int64_t)iVar5 + 9]);
             sVar11 = 0;
             iVar6 = iVar6 + iVar5 * 2;
             pcVar3 = *(char **)(&processed_var_6520_ptr + (int64_t)iVar6 * 8);
             cVar2 = *pcVar3;
             while (cVar2 != '\0') {
-              sVar4 = FUN_18069bbd0(param_1,cVar2);
+              sVar4 = SystemCore_Monitor(param_1,cVar2);
               pcVar3 = pcVar3 + 1;
               sVar11 = sVar4 + sVar11 * 2;
               cVar2 = *pcVar3;
@@ -764,7 +764,7 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
       uVar13 = *(int *)(param_1 + 0x1c) + 1U >> 1;
       puVar9 = (int8_t *)(lVar10 + (uint64_t)(byte)(&processed_var_6497_ptr)[uVar15] * 0x21);
       if (*(int *)(param_1 + 0x18) < 0) {
-        FUN_18069ec80(param_1);
+        SystemCore_Handler(param_1);
       }
       if (*(uint64_t *)(param_1 + 0x10) < (uint64_t)uVar13 << 0x38) {
         *(uint *)(param_1 + 0x1c) = uVar13;
@@ -779,7 +779,7 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
       *(int *)(param_1 + 0x1c) = *(int *)(param_1 + 0x1c) * 2;
       *(int64_t *)(param_1 + 0x10) = *(int64_t *)(param_1 + 0x10) * 2;
       *(short *)(param_5 + (uint64_t)bVar1 * 2) = sVar11;
-      if ((uVar7 == 0x10) || (iVar5 = FUN_18069bbd0(param_1,*puVar9), iVar5 == 0)) {
+      if ((uVar7 == 0x10) || (iVar5 = SystemCore_Monitor(param_1,*puVar9), iVar5 == 0)) {
         return (uint64_t)uVar12;
       }
     }

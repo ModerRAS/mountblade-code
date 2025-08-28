@@ -49,7 +49,7 @@ uint64_t FUN_1808acf30(int64_t param_1,int64_t *param_2,int param_3)
     return uVar4;
   }
   if (iVar3 == 0) {
-    uVar4 = FUN_180898eb0(param_2,lVar5 + 0x18);
+    uVar4 = NetworkSecurityManager(param_2,lVar5 + 0x18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -182,7 +182,7 @@ int FUN_1808ad130(int64_t param_1,uint64_t *param_2)
         if ((1 < iVar5) && (iVar10 = iVar6, iVar6 < iVar2)) {
           iVar10 = iVar2;
         }
-        iVar2 = FUN_1808aef40(&uStack_68,iVar10);
+        iVar2 = NetworkSystem_ConnectionManager(&uStack_68,iVar10);
         if (iVar2 != 0) goto LAB_1808ad451;
       }
       lVar9 = (int64_t)(int)uStack_60;
@@ -196,7 +196,7 @@ int FUN_1808ad130(int64_t param_1,uint64_t *param_2)
   }
   else if (*(uint *)(param_2 + 8) < 0x82) {
     auStackX_18[0] = 0;
-    iVar2 = FUN_1808afe30(*param_2,auStackX_18);
+    iVar2 = SystemCore_Manager(*param_2,auStackX_18);
     uVar3 = auStackX_18[0];
     if (iVar2 == 0) {
       uVar12 = auStackX_18[0] & 1;
@@ -205,7 +205,7 @@ int FUN_1808ad130(int64_t param_1,uint64_t *param_2)
       if ((int64_t)uStack_60 < 0) {
         iVar2 = -uStack_60._4_4_;
       }
-      if (((int)uVar11 <= iVar2) || (iVar2 = FUN_1808aef40(&uStack_68,uVar11), iVar2 == 0)) {
+      if (((int)uVar11 <= iVar2) || (iVar2 = NetworkSystem_ConnectionManager(&uStack_68,uVar11), iVar2 == 0)) {
         if (((int)uStack_60 < (int)uVar11) &&
            (lVar9 = (int64_t)(int)(uVar11 - (int)uStack_60), 0 < (int)(uVar11 - (int)uStack_60))) {
           lVar7 = uStack_68 + 0x14 + (int64_t)(int)uStack_60 * 0x18;
@@ -226,10 +226,10 @@ int FUN_1808ad130(int64_t param_1,uint64_t *param_2)
       auStackX_10[0] = 0;
       if (uVar3 >> 1 != 0) {
         do {
-          iVar2 = FUN_1808dde10(param_2,auStackX_10[0]);
+          iVar2 = UISystemEventHandler(param_2,auStackX_10[0]);
           if (((iVar2 != 0) ||
               (iVar2 = FUN_180899180(param_2,uStack_68 + (int64_t)iVar5 * 0x18), iVar2 != 0)) ||
-             (iVar2 = FUN_1808de0e0(param_2,auStackX_10), iVar2 != 0)) goto LAB_1808ad3d1;
+             (iVar2 = SystemCore_Initializer(param_2,auStackX_10), iVar2 != 0)) goto LAB_1808ad3d1;
           iVar5 = iVar5 + 1;
           auStackX_10[0] = auStackX_10[0] & -uVar12;
         } while (iVar5 < (int)uVar11);
@@ -294,7 +294,7 @@ LAB_1808ad451:
     uVar3 = -uVar3;
   }
   if (0 < (int)uVar3) {
-    FUN_1808aef40(&uStack_68,0);
+    NetworkSystem_ConnectionManager(&uStack_68,0);
   }
   return iVar2;
 }
@@ -375,7 +375,7 @@ int FUN_1808ad144(int64_t param_1,uint64_t *param_2)
         if ((1 < iVar4) && (iVar10 = iVar6, iVar6 < iVar11)) {
           iVar10 = iVar11;
         }
-        iVar4 = FUN_1808aef40(unaff_RBP + -0x40,iVar10);
+        iVar4 = NetworkSystem_ConnectionManager(unaff_RBP + -0x40,iVar10);
         if (iVar4 != 0) goto LAB_1808ad451;
         iVar6 = *(int *)(unaff_RBP + -0x38);
       }
@@ -393,7 +393,7 @@ int FUN_1808ad144(int64_t param_1,uint64_t *param_2)
   else if (in_EAX < 0x82) {
     uVar2 = *param_2;
     *(int *)(unaff_RBP + 0x40) = iVar7;
-    iVar4 = FUN_1808afe30(uVar2,unaff_RBP + 0x40);
+    iVar4 = SystemCore_Manager(uVar2,unaff_RBP + 0x40);
     if (iVar4 == 0) {
       uVar1 = *(uint *)(unaff_RBP + 0x40);
       uVar16 = uVar1 >> 1;
@@ -403,7 +403,7 @@ int FUN_1808ad144(int64_t param_1,uint64_t *param_2)
       else {
         iVar4 = *(int *)(unaff_RBP + -0x34);
       }
-      if (((int)uVar16 <= iVar4) || (iVar4 = FUN_1808aef40(unaff_RBP + -0x40,uVar16), iVar4 == 0)) {
+      if (((int)uVar16 <= iVar4) || (iVar4 = NetworkSystem_ConnectionManager(unaff_RBP + -0x40,uVar16), iVar4 == 0)) {
         iVar4 = *(int *)(unaff_RBP + -0x38);
         if (iVar4 < (int)uVar16) {
           lVar13 = (int64_t)(int)(uVar16 - iVar4);
@@ -429,11 +429,11 @@ int FUN_1808ad144(int64_t param_1,uint64_t *param_2)
       uVar15 = unaff_R12 & 0xffffffff;
       if (uVar1 >> 1 != 0) {
         do {
-          iVar4 = FUN_1808dde10(param_2,uVar12);
+          iVar4 = UISystemEventHandler(param_2,uVar12);
           if (iVar4 != 0) goto LAB_1808ad3d1;
           iVar4 = FUN_180899180(param_2,*(int64_t *)(unaff_RBP + -0x40) +
                                         (int64_t)(int)uVar15 * 0x18);
-          if ((iVar4 != 0) || (iVar4 = FUN_1808de0e0(param_2,unaff_RBP + 0x38), iVar4 != 0))
+          if ((iVar4 != 0) || (iVar4 = SystemCore_Initializer(param_2,unaff_RBP + 0x38), iVar4 != 0))
           goto LAB_1808ad3d1;
           uVar14 = (int)uVar15 + 1;
           uVar15 = (uint64_t)uVar14;
@@ -511,7 +511,7 @@ LAB_1808ad451:
     iVar7 = *(int *)(unaff_RBP + -0x34);
   }
   if (0 < iVar7) {
-    FUN_1808aef40(unaff_RBP + -0x40,0);
+    NetworkSystem_ConnectionManager(unaff_RBP + -0x40,0);
   }
   return iVar4;
 }
@@ -577,7 +577,7 @@ int32_t FUN_1808ad46a(void)
     iVar5 = *(int *)(unaff_RBP + -0x34);
   }
   if (0 < iVar5) {
-    FUN_1808aef40(unaff_RBP + -0x40,0);
+    NetworkSystem_ConnectionManager(unaff_RBP + -0x40,0);
   }
   return unaff_EBX;
 }
@@ -595,12 +595,12 @@ uint64_t FUN_1808ad530(uint64_t *param_1,int64_t *param_2)
   int aiStackX_8 [2];
   
   aiStackX_8[0] = 0;
-  uVar3 = FUN_1808afe30(*param_1,aiStackX_8);
+  uVar3 = SystemCore_Manager(*param_1,aiStackX_8);
   iVar2 = aiStackX_8[0];
   if (((int)uVar3 == 0) &&
      ((uVar4 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f, lVar5 = (int64_t)aiStackX_8[0],
       aiStackX_8[0] <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar4) - uVar4) ||
-      (uVar3 = FUN_180747e10(param_2,aiStackX_8[0]), (int)uVar3 == 0)))) {
+      (uVar3 = SystemCore_Initializer(param_2,aiStackX_8[0]), (int)uVar3 == 0)))) {
     iVar1 = (int)param_2[1];
     if (iVar1 < iVar2) {
                     // WARNING: Subroutine does not return
@@ -634,7 +634,7 @@ uint64_t FUN_1808ad561(uint64_t param_1,uint param_2)
   int in_stack_00000030;
   
   if ((in_stack_00000030 <= (int)((in_EAX ^ param_2) - param_2)) ||
-     (uVar2 = FUN_180747e10(), (int)uVar2 == 0)) {
+     (uVar2 = SystemCore_Initializer(), (int)uVar2 == 0)) {
     iVar1 = (int)unaff_RDI[1];
     if (iVar1 < in_stack_00000030) {
                     // WARNING: Subroutine does not return
@@ -696,7 +696,7 @@ uint64_t FUN_1808ad600(uint64_t *param_1,uint64_t *param_2)
   int aiStackX_8 [2];
   
   aiStackX_8[0] = 0;
-  uVar2 = FUN_1808afe30(*param_1,aiStackX_8);
+  uVar2 = SystemCore_Manager(*param_1,aiStackX_8);
   iVar1 = aiStackX_8[0];
   if (((int)uVar2 == 0) &&
      ((uVar3 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f, lVar4 = (int64_t)aiStackX_8[0],

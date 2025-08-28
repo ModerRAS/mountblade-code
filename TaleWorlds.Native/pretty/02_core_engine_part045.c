@@ -1047,7 +1047,7 @@ void thunk_CoreEngine_MemoryPoolManager(void)
  * @param container_ptr 容器指针
  * @param data_ptr 数据指针
  * 
- * 原始实现：FUN_1800863a0
+ * 原始实现：> HighFreq_ResourceLoader1
  */
 void Engine_PushDoubleData_0863a0(uint64_t *container_ptr, uint64_t *data_ptr)
 {

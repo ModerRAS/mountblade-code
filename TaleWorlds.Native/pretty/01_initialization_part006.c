@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -547,7 +550,7 @@ void FUN_180036450(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -598,7 +601,7 @@ void FUN_180036550(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -700,7 +703,7 @@ void FUN_180036750(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -903,7 +906,7 @@ void FUN_180036b50(void)
   auStack_88[0] = 0;
   uStack_90 = 0xc;
   strcpy_s(auStack_88,0x80,&processed_var_8816_ptr,in_R9,0xfffffffffffffffe);
-  init_system_memory = FUN_180623800(&puStack_a0);
+  init_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -936,7 +939,7 @@ void FUN_180036cc0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&system_memory_6c50,in_R9,0xfffffffffffffffe);
-  init_system_memory = FUN_180623800(&puStack_a0);
+  init_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -961,7 +964,7 @@ void FUN_180036d50(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&system_memory_6c38,in_R9,0xfffffffffffffffe);
-  init_system_memory = FUN_180623800(&puStack_a0);
+  init_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -987,7 +990,7 @@ void FUN_180036df0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1038,7 +1041,7 @@ void FUN_180036ef0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1140,7 +1143,7 @@ void FUN_1800370f0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1394,7 +1397,7 @@ void FUN_1800375f0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
   strcpy_s(auStack_88,0x80,&processed_var_4568_ptr,in_R9,0xfffffffffffffffe);
-  init_system_memory = FUN_180623800(&puStack_a0);
+  init_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -1420,7 +1423,7 @@ void FUN_180037680(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
+  pcStackX_18 = SystemCore_Compression;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {

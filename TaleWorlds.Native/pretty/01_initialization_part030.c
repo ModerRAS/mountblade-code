@@ -3,8 +3,8 @@
 
 // 01_initialization_part030.c - 1 个函数
 
-// 函数: void FUN_18005ea90(uint64_t *param_1,uint64_t *param_2)
-void FUN_18005ea90(uint64_t *param_1,uint64_t *param_2)
+// 函数: void SystemSecurity_Manager(uint64_t *param_1,uint64_t *param_2)
+void SystemSecurity_Manager(uint64_t *param_1,uint64_t *param_2)
 
 {
   int64_t lVar1;

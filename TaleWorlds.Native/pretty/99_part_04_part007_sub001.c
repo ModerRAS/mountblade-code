@@ -25,7 +25,7 @@ void FUN_18025c090(int *param_1,int64_t *param_2)
   iVar8 = 0;
   do {
     if (*piVar5 == *param_1) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)iVar8 * 0x10 + 0x180bf89e0));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)iVar8 * 0x10 + 0x180bf89e0));
       break;
     }
     iVar8 = iVar8 + 1;
@@ -79,7 +79,7 @@ void FUN_18025c090(int *param_1,int64_t *param_2)
   }
   *puVar7 = uVar1;
   param_2[1] = param_2[1] + 1;
-  FUN_180639fd0(param_2,param_1 + 3);
+  Audio_SoundManager(param_2,param_1 + 3);
   piVar5 = (int *)param_2[1];
   iVar8 = param_1[7];
   if ((uint64_t)((*param_2 - (int64_t)piVar5) + param_2[2]) < 5) {
@@ -204,7 +204,7 @@ void FUN_18025c3e0(int32_t *param_1,int64_t param_2,uint param_3)
   puVar1 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar1;
   if (uVar3 != 0) {
-    FUN_180045f60(&puStack_458,puVar1,uVar3);
+    SystemManager_Executor(&puStack_458,puVar1,uVar3);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
   }
   plVar14 = (int64_t *)0x180bf89e0;
@@ -374,7 +374,7 @@ void FUN_18025c650(int64_t param_1,int64_t param_2,int param_3)
       puVar1 = *(uint **)(param_2 + 8) + 1;
       *(uint **)(param_2 + 8) = puVar1;
       if (uVar4 != 0) {
-        FUN_180045f60(&puStack_468,puVar1,uVar4);
+        SystemManager_Executor(&puStack_468,puVar1,uVar4);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar4;
       }
       plVar12 = (int64_t *)&processed_var_8384_ptr;
@@ -423,7 +423,7 @@ LAB_18025c7fe:
     puVar1 = *(uint **)(param_2 + 8) + 1;
     *(uint **)(param_2 + 8) = puVar1;
     if (uVar4 != 0) {
-      FUN_180045f60(&puStack_468,puVar1,uVar4);
+      SystemManager_Executor(&puStack_468,puVar1,uVar4);
       *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar4;
     }
     plVar12 = (int64_t *)0x180bf8990;
@@ -561,7 +561,7 @@ void FUN_18025c980(int32_t *param_1,int64_t *param_2)
   puVar13 = (uint64_t *)&processed_var_8384_ptr;
   do {
     if ((*(uint *)(puVar13 + 1) & uVar4) != 0) {
-      FUN_180639de0(param_2,*puVar13);
+      UtilitiesSystem_ThreadManager(param_2,*puVar13);
       iVar11 = iVar11 + 1;
     }
     puVar13 = puVar13 + 2;
@@ -570,7 +570,7 @@ void FUN_18025c980(int32_t *param_1,int64_t *param_2)
   puVar6 = (uint *)0x180bf8998;
   do {
     if (*puVar6 == (uint)*(byte *)(param_1 + 6)) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)iVar12 * 0x10 + 0x180bf8990));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)iVar12 * 0x10 + 0x180bf8990));
       return;
     }
     iVar12 = iVar12 + 1;
@@ -585,8 +585,8 @@ void FUN_18025c980(int32_t *param_1,int64_t *param_2)
 
 
 
-// 函数: void FUN_18025cc00(uint64_t param_1,int32_t param_2,uint64_t param_3)
-void FUN_18025cc00(uint64_t param_1,int32_t param_2,uint64_t param_3)
+// 函数: void HighFreq_FileSystem1(uint64_t param_1,int32_t param_2,uint64_t param_3)
+void HighFreq_FileSystem1(uint64_t param_1,int32_t param_2,uint64_t param_3)
 
 {
   uint64_t uStack_28;
@@ -700,7 +700,7 @@ void FUN_18025cc70(int64_t param_1,int64_t *param_2)
   uVar12 = uVar17;
   do {
     if ((*(uint *)(puVar15 + 1) & uVar4) != 0) {
-      FUN_180639de0(param_2,*puVar15);
+      UtilitiesSystem_ThreadManager(param_2,*puVar15);
       uVar12 = (uint64_t)((int)uVar12 + 1);
     }
     puVar15 = puVar15 + 2;
@@ -864,7 +864,7 @@ void FUN_18025cfd0(int64_t param_1,int64_t param_2)
       puVar15 = *(uint **)(param_2 + 8) + 1;
       *(uint **)(param_2 + 8) = puVar15;
       if (uVar21 != 0) {
-        FUN_180045f60(&puStack_468,puVar15,uVar21);
+        SystemManager_Executor(&puStack_468,puVar15,uVar21);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar21;
       }
       plVar19 = (int64_t *)&processed_var_8176_ptr;

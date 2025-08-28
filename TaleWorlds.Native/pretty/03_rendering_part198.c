@@ -91,11 +91,11 @@ void FUN_180382d5a(uint64_t param_1,int64_t param_2)
     fStack0000000000000054 = fVar11 * fStack0000000000000054 + fVar14 + fVar8;
     fStack0000000000000058 = fVar11 * fStack0000000000000058 + fVar15 + fVar9;
     fStack000000000000005c = fVar11 * fStack000000000000005c + fVar16 + fVar10;
-    FUN_1802ea790(fStack0000000000000050,&stack0x00000030);
+    NetworkProtocol_Transmitter(fStack0000000000000050,&stack0x00000030);
     *(byte *)(unaff_RBX + 0x2e8) = *(byte *)(unaff_RBX + 0x2e8) & 0xef;
     return;
   }
-  pfVar3 = (float *)FUN_180085020(uVar5,auStackX_20);
+  pfVar3 = (float *)RenderingSystem_LightSystem(uVar5,auStackX_20);
   fVar6 = ABS(*(float *)(unaff_RBX + 0x138) - *pfVar3);
   if (((0.001 <= fVar6) || (fVar6 = ABS(*(float *)(unaff_RBX + 0x13c) - pfVar3[1]), 0.001 <= fVar6))
      || (fVar6 = ABS(*(float *)(unaff_RBX + 0x140) - pfVar3[2]), 0.001 <= fVar6)) {
@@ -180,7 +180,7 @@ void FUN_180382da4(int64_t *param_1)
   fStack0000000000000054 = fVar6 * fStack0000000000000054 + fVar9 + fVar3;
   fStack0000000000000058 = fVar6 * fStack0000000000000058 + fVar10 + fVar4;
   fStack000000000000005c = fVar6 * fStack000000000000005c + fVar11 + fVar5;
-  FUN_1802ea790(fStack0000000000000050,&stack0x00000030);
+  NetworkProtocol_Transmitter(fStack0000000000000050,&stack0x00000030);
   *(byte *)(unaff_RBX + 0x2e8) = *(byte *)(unaff_RBX + 0x2e8) & 0xef;
   return;
 }
@@ -201,7 +201,7 @@ void FUN_180382ef8(int32_t param_1)
   float fVar4;
   int8_t auStackX_20 [8];
   
-  pfVar2 = (float *)FUN_180085020(param_1,auStackX_20);
+  pfVar2 = (float *)RenderingSystem_LightSystem(param_1,auStackX_20);
   fVar4 = ABS(*(float *)(unaff_RBX + 0x138) - *pfVar2);
   if (((0.001 <= fVar4) || (fVar4 = ABS(*(float *)(unaff_RBX + 0x13c) - pfVar2[1]), 0.001 <= fVar4))
      || (fVar4 = ABS(*(float *)(unaff_RBX + 0x140) - pfVar2[2]), 0.001 <= fVar4)) {
@@ -655,7 +655,7 @@ void FUN_180383450(int64_t param_1,uint64_t param_2,int64_t *param_3)
 void FUN_180383570(int64_t param_1)
 
 {
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
   if (*(int64_t **)(param_1 + 0xf8) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xf8) + 0x38))();
   }

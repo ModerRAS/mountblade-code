@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -139,11 +143,11 @@ uint64_t * FUN_180417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
     } while (puVar1 != (uint64_t *)0x0);
     if (puVar3 != param_1) {
       if (puVar3 == (uint64_t *)param_1[1]) {
-        FUN_1800b8300(param_2,(uint64_t *)param_1[1] + 5);
+        DataDeserializer0(param_2,(uint64_t *)param_1[1] + 5);
         return param_2;
       }
       lVar2 = func_0x00018066b9a0();
-      FUN_1800b8300(param_2,lVar2 + 0x28);
+      DataDeserializer0(param_2,lVar2 + 0x28);
       return param_2;
     }
   }
@@ -194,7 +198,7 @@ uint64_t * FUN_180417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint6
     else {
       param_1 = (uint64_t *)param_1[1];
     }
-    FUN_1800b8300(param_2,param_1 + 5);
+    DataDeserializer0(param_2,param_1 + 5);
   }
   return param_2;
 }

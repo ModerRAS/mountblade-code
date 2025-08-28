@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -224,7 +227,7 @@ void FUN_180041f10(void)
   auStack_88[0] = 0;
   uStack_90 = 0xd;
   strcpy_s(auStack_88,0x80,&processed_var_9616_ptr,in_R9,0xfffffffffffffffe);
-  core_system_ui = FUN_180623800(&puStack_a0);
+  core_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -466,7 +469,7 @@ void FUN_1800423d0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = > HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -517,7 +520,7 @@ void FUN_1800424d0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = > HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -619,7 +622,7 @@ void FUN_1800426d0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -823,7 +826,7 @@ void FUN_180042ad0(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
+  pcStackX_18 = SystemCore_Compression;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1332,7 +1335,7 @@ void FUN_1800434d0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
   strcpy_s(auStack_88,0x80,&rendering_buffer_2504_ptr,in_R9,0xfffffffffffffffe);
-  core_system_ui = FUN_180623800(&puStack_a0);
+  core_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 

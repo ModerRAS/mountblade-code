@@ -395,7 +395,7 @@ LAB_1801e7148:
         if (puStack_160 != puVar20) {
           *(int64_t *)(puVar20 + 8) = *(int64_t *)(puVar20 + 8) + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar22,puVar20);
+          RenderingSystem_BufferHandler(puVar22,puVar20);
         }
       }
       else {
@@ -411,7 +411,7 @@ LAB_1801e7148:
           plVar15 = (int64_t *)(lVar12 + 0x348);
           *plVar15 = *plVar15 + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar20,puVar22);
+          RenderingSystem_BufferHandler(puVar20,puVar22);
           if (puVar20 != (uint *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar20);
@@ -598,7 +598,7 @@ int64_t * FUN_1801e76c0(int64_t param_1,int64_t *param_2,uint64_t param_3)
   
   lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
   SystemCore_EncryptionEngine0(lVar3 + 0x20,param_3);
-  lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
+  lVar4 = SystemCore_SecurityValidator(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
     FUN_18005d1f0();
     *param_2 = lVar4;

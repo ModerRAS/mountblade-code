@@ -19,7 +19,7 @@ uint64_t FUN_1807be340(int64_t *param_1)
 {
   int64_t lVar1;
   
-  FUN_180758220(param_1 + 4,0);
+  UIComponent_Renderer(param_1 + 4,0);
   param_1[0x4a] = 0;
   *(int8_t *)((int64_t)param_1 + 0x304) = 0;
   *(int32_t *)((int64_t)param_1 + 0x2d4) = 0xffffffff;

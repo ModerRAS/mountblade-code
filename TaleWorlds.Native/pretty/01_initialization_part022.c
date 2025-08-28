@@ -1,31 +1,39 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 01_initialization_part022.c - 25 个函数
 
 // 外部函数别名定义
 #define FUN_180058a20 SystemDataMerger
-#define FUN_180049830 SystemMemoryInitializer
+#define SystemCore_ResourceLoader SystemMemoryInitializer
 #define FUN_18020e0e0 SystemResourceInitializer
 #define FUN_18020e840 SystemConfigInitializer
-#define FUN_180049470 SystemSecurityInitializer
-#define FUN_180060680 SystemDataValidator
+#define SystemCore_SecurityManager SystemSecurityInitializer
+#define > MedHighFreq_StateMachine1 SystemDataValidator
 #define FUN_1800b4ec0 SystemContextManager
-#define FUN_18005c650 SystemStateValidator
-#define FUN_18005e630 SystemContextHandler
+#define SystemCore_SecurityManager SystemStateValidator
+#define SystemCore_FileSystem SystemContextHandler
 #define FUN_18006eb30 SystemFinalizer
-#define FUN_18005ce30 SystemResourceHandler
-#define FUN_18005e370 SystemDataHandler
+#define SystemCore_StreamController SystemResourceHandler
+#define SystemPerformance_Monitor SystemDataHandler
 #define FUN_180058210 SystemProcessor
 #define FUN_180058c20 SystemCleaner
 #define FUN_1800582b0 SystemContextInitializer
-#define FUN_180058370 SystemManager
-#define FUN_18004b790 SystemExecutor
+#define RenderingSystem_CameraSystem SystemManager
+#define SystemCache_Manager SystemExecutor
 #define FUN_180056de0 SystemDataAllocator
 #define FUN_180056e10 SystemMemoryAllocator
 #define FUN_180056e60 SystemResourceAllocator
 #define FUN_180056e90 SystemStateAllocator
-#define FUN_180056f10 SystemContextAllocator
+#define SystemCore_PointerManager SystemContextAllocator
 #define FUN_180057090 SystemDataProcessor
 
 // 函数: void SystemInitializer(int64_t param_1)
@@ -512,20 +520,20 @@ void SystemDataValidator(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint
   }
   puStack_20 = &processed_var_5200_ptr;
   puStack_18 = &processed_var_5168_ptr;
-  FUN_18005c650(auStack_30);
+  SystemCore_SecurityManager(auStack_30);
   *(int8_t *)(init_system_data_config + 0x3a0) = 1;
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   if (init_system_data_config != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   if (init_system_data_config != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   FUN_1800b4ec0();
   lVar1 = system_parameter_buffer;
   *(int8_t *)(system_parameter_buffer + 0x1504) = 0;
@@ -573,7 +581,7 @@ void SystemDataProcessor(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   uStack_58 = CoreEngineDataTransformer(uVar1,param_2);
   uStack_50 = param_3;
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-  ppuVar2 = (void **)FUN_18005ce30(uVar1,&puStack_108);
+  ppuVar2 = (void **)SystemCore_StreamController(uVar1,&puStack_108);
   ppuStack_118 = ppuVar2;
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
@@ -584,7 +592,7 @@ void SystemDataProcessor(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
   }
-  FUN_18005e370(uVar1,&ppuStack_138);
+  SystemPerformance_Monitor(uVar1,&ppuStack_138);
   if (ppuVar2 != (void **)0x0) {
     (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
   }
@@ -941,7 +949,7 @@ void SystemStateProcessor(int64_t param_1)
   
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*puVar1);
+    SystemCache_Manager(param_1,*puVar1);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar1);
   }
@@ -961,7 +969,7 @@ void SystemStateProcessor(int64_t param_1)
 void SystemFinalizer(void)
 
 {
-  FUN_18004b790();
+  SystemCache_Manager();
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner();
 }
@@ -1197,7 +1205,7 @@ void SystemResourceDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3
 void SystemDataDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 

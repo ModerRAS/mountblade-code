@@ -33,7 +33,7 @@ void FUN_180662000(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4
   
   uVar13 = (uint64_t)param_4;
   lVar14 = uVar13 * 0x1b0;
-  pfVar11 = (float *)FUN_18022a890(param_3,*(int8_t *)
+  pfVar11 = (float *)CoreSystem_AuthenticationHandler0(param_3,*(int8_t *)
                                             (*(int64_t *)(param_2 + 0x140) + 0xf0 + lVar14),param_2
                                   );
   fVar2 = *pfVar11;
@@ -211,8 +211,8 @@ void FUN_180662320(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   lVar17 = (int64_t)*(char *)((int64_t)cVar2 + 0x100 + param_4);
   cVar3 = *(char *)(param_4 + 0x100 + lVar17);
   fVar27 = SQRT(*param_3 * *param_3 + param_3[1] * param_3[1] + param_3[2] * param_3[2]);
-  uVar16 = FUN_18022a890(param_2,cVar3,param_4);
-  FUN_18063b5f0(&fStack_138,uVar16);
+  uVar16 = CoreSystem_AuthenticationHandler0(param_2,cVar3,param_4);
+  SystemSecurityManager(&fStack_138,uVar16);
   fVar23 = *param_3;
   fVar4 = param_3[1];
   fVar5 = param_3[2];
@@ -271,7 +271,7 @@ void FUN_180662320(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   fStack_118 = fStack_134 * fStack_120 - fStack_130 * fStack_124;
   fStack_114 = fStack_130 * fStack_128 - fStack_120 * fStack_138;
   fStack_110 = fStack_124 * fStack_138 - fStack_134 * fStack_128;
-  FUN_18063b470(&fStack_178,&fStack_138);
+  AdvancedProcessor_StateManager0(&fStack_178,&fStack_138);
   fStack_138 = fStack_138 * fVar27;
   fStack_134 = fStack_134 * fVar27;
   fStack_130 = fStack_130 * fVar27;
@@ -316,7 +316,7 @@ void FUN_180662320(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   *(int8_t *)(param_1 + 0x1c4) = uStack_188;
   fVar19 = fVar22 * fVar21 + fVar19;
   uVar16 = FUN_180535610(param_3,&fStack_138);
-  FUN_18063b470(&fStack_158,uVar16);
+  AdvancedProcessor_StateManager0(&fStack_158,uVar16);
   fVar19 = (float)atan2f(fVar19 * fStack_154 - fVar23 * fVar21 * fStack_158,
                          fVar19 * fStack_158 + fVar23 * fVar21 * fStack_154);
                     // WARNING: Subroutine does not return

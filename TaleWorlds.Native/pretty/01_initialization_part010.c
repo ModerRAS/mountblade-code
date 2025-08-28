@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -362,7 +365,7 @@ void FUN_18003e610(void)
     
     // 检查组件状态
     component_status = *(char *)((int64_t)registry_root[1] + 0x19);
-    callback_function = FUN_18025cc00;    // 设置回调函数
+    callback_function = > HighFreq_FileSystem1;    // 设置回调函数
     
     previous_node = registry_root;
     current_node = (uint64_t *)registry_root[1];
@@ -433,7 +436,7 @@ void FUN_18003e710(void)
     
     // 检查组件状态
     component_status = *(char *)((int64_t)registry_root[1] + 0x19);
-    service_handler = FUN_18025c000;      // 设置服务处理函数
+    service_handler = > HighFreq_ConfigManager1;      // 设置服务处理函数
     
     previous_node = registry_root;
     current_node = (uint64_t *)registry_root[1];
@@ -575,7 +578,7 @@ void FUN_18003e910(void)
     
     // 检查组件状态
     component_status = *(char *)((int64_t)registry_root[1] + 0x19);
-    log_handler = FUN_18025d270;          // 设置日志处理函数
+    log_handler = > UltraHighFreq_NetworkHandler1;          // 设置日志处理函数
     
     previous_node = registry_root;
     current_node = (uint64_t *)registry_root[1];
@@ -860,7 +863,7 @@ void FUN_18003ed10(void)
     strcpy_s(system_data, 0x80, &ui_system_data_1824_ptr, system_config, 0xfffffffffffffffe);
     
     // 初始化系统配置
-    init_system_file = FUN_180623800(&system_service);
+    init_system_file = SystemCore_ConfigManager(&system_service);
     return;
 }
 
@@ -1043,7 +1046,7 @@ void FUN_18003ee90(void)
     
     // 检查资源状态
     resource_status = *(char *)((int64_t)resource_root[1] + 0x19);
-    resource_loader = FUN_18007fcd0;      // 设置资源加载器
+    resource_loader = SystemCore_Compression;      // 设置资源加载器
     
     previous_node = resource_root;
     current_node = (uint64_t *)resource_root[1];

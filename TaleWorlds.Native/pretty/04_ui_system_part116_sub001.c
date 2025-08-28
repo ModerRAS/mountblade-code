@@ -8,8 +8,8 @@
 // 04_ui_system_part116.c - 9 个函数
 
 
-// 函数: void FUN_180737df0(char *param_1,int64_t param_2,int64_t param_3,int64_t param_4,int64_t param_5
-void FUN_180737df0(char *param_1,int64_t param_2,int64_t param_3,int64_t param_4,int64_t param_5
+// 函数: void UIComponent_Initialize(char *param_1,int64_t param_2,int64_t param_3,int64_t param_4,int64_t param_5
+void UIComponent_Initialize(char *param_1,int64_t param_2,int64_t param_3,int64_t param_4,int64_t param_5
                   ,int64_t param_6,short param_7,short param_8,short param_9,short param_10)
 
 {
@@ -482,7 +482,7 @@ LAB_18073802b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180738630(int32_t *param_1,int32_t *param_2,int param_3)
+int UIComponent_ValidateState(int32_t *param_1,int32_t *param_2,int param_3)
 
 {
   int64_t lVar1;
@@ -495,11 +495,11 @@ int FUN_180738630(int32_t *param_1,int32_t *param_2,int param_3)
     do {
       lVar1 = *(int64_t *)(lVar4 + SYSTEM_MAIN_CONTROL_BLOCK);
       if ((lVar1 != 0) && (*(char *)(lVar1 + 8) != '\0')) {
-        iVar2 = FUN_180743c40(lVar1);
+        iVar2 = SystemCore_Validate(lVar1);
         lVar3 = 0;
         if ((iVar2 != 0) ||
-           ((iVar2 = FUN_180743160(lVar1,1), lVar3 = lVar1, iVar2 != 0 ||
-            (iVar2 = FUN_180743660(lVar1), iVar2 != 0)))) {
+           ((iVar2 = SystemCore_ResourceManager0(lVar1,1), lVar3 = lVar1, iVar2 != 0 ||
+            (iVar2 = SystemCore_Reset(lVar1), iVar2 != 0)))) {
           if (lVar3 == 0) {
             return iVar2;
           }
@@ -525,7 +525,7 @@ int FUN_180738630(int32_t *param_1,int32_t *param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t
-FUN_180738730(int64_t param_1,uint param_2,int64_t param_3,int64_t param_4,int64_t param_5,
+UIComponent_ProcessEvent(int64_t param_1,uint param_2,int64_t param_3,int64_t param_4,int64_t param_5,
              int32_t param_6)
 
 {
@@ -571,7 +571,7 @@ FUN_180738730(int64_t param_1,uint param_2,int64_t param_3,int64_t param_4,int64
     }
     else if ((((param_1 != 0) && (param_3 == 0)) && (param_4 == 0)) &&
             ((param_5 == 0 && (0xff < (int)param_2)))) {
-      uVar3 = FUN_180742460(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,4,0);
+      uVar3 = SystemCore_Process(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,4,0);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -589,7 +589,7 @@ FUN_180738730(int64_t param_1,uint param_2,int64_t param_3,int64_t param_4,int64
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
+uint64_t UIComponent_GetData(uint64_t *param_1,int param_2)
 
 {
   int64_t lVar1;
@@ -610,7 +610,7 @@ uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
   lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x127f8,&processed_var_4608_ptr,0x91,0);
   uVar2 = uVar5;
   if (lVar1 != 0) {
-    uVar2 = FUN_180743e90(lVar1);
+    uVar2 = SystemCore_GetData(lVar1);
   }
   *param_1 = uVar2;
   if (uVar2 == 0) {
@@ -631,7 +631,7 @@ uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
                     // WARNING: Subroutine does not return
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&processed_var_4608_ptr,0xa3,1);
     }
-    uVar4 = FUN_180741c20();
+    uVar4 = SystemCore_GetState();
     if ((int)uVar4 == 0) {
       *(uint64_t *)((int64_t)(int)uVar6 * 8 + 0x160 + SYSTEM_MAIN_CONTROL_BLOCK) = uVar2;
       *(uint *)(uVar2 + 0x116b8) = uVar6;
@@ -645,7 +645,7 @@ uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807388f6(int64_t param_1,uint64_t param_2,uint64_t param_3)
+uint64_t UIComponent_SetData(int64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   int64_t lVar1;
@@ -661,7 +661,7 @@ uint64_t FUN_1807388f6(int64_t param_1,uint64_t param_2,uint64_t param_3)
   lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(param_1 + 0x1a0),0x127f8,param_3,0x91,0);
   uVar2 = uVar5;
   if (lVar1 != 0) {
-    uVar2 = FUN_180743e90(lVar1);
+    uVar2 = SystemCore_GetData(lVar1);
   }
   *unaff_RSI = uVar2;
   if (uVar2 == 0) {
@@ -682,7 +682,7 @@ uint64_t FUN_1807388f6(int64_t param_1,uint64_t param_2,uint64_t param_3)
                     // WARNING: Subroutine does not return
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&processed_var_4608_ptr,0xa3,1);
     }
-    uVar4 = FUN_180741c20();
+    uVar4 = SystemCore_GetState();
     if ((int)uVar4 == 0) {
       *(uint64_t *)((int64_t)(int)uVar6 * 8 + 0x160 + SYSTEM_MAIN_CONTROL_BLOCK) = uVar2;
       *(uint *)(uVar2 + 0x116b8) = uVar6;
@@ -696,14 +696,14 @@ uint64_t FUN_1807388f6(int64_t param_1,uint64_t param_2,uint64_t param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807389a0(void)
+uint64_t UIComponent_GetActiveState(void)
 
 {
   uint64_t uVar1;
   int unaff_EBX;
   int64_t unaff_RDI;
   
-  uVar1 = FUN_180741c20();
+  uVar1 = SystemCore_GetState();
   if ((int)uVar1 == 0) {
     *(int64_t *)((int64_t)unaff_EBX * 8 + 0x160 + SYSTEM_MAIN_CONTROL_BLOCK) = unaff_RDI;
     *(int *)(unaff_RDI + 0x116b8) = unaff_EBX;
@@ -714,7 +714,7 @@ uint64_t FUN_1807389a0(void)
 
 
 
-uint64_t FUN_1807389d7(void)
+uint64_t UIComponent_GetFocusState(void)
 
 {
   return 0x14;
@@ -722,7 +722,7 @@ uint64_t FUN_1807389d7(void)
 
 
 
-int FUN_1807389f0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,
+int UIComponent_UpdateLayout(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,
                  int32_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                  uint64_t param_9)
 
@@ -741,11 +741,11 @@ int FUN_1807389f0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074bc50(iVar1 + param_1,param_2 - iVar1,param_6);
+  iVar2 = SystemCore_Allocate(iVar1 + param_1,param_2 - iVar1,param_6);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b930(iVar1 + param_1,param_2 - iVar1,param_7);
+  iVar2 = UIAnimationController(iVar1 + param_1,param_2 - iVar1,param_7);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
@@ -753,13 +753,13 @@ int FUN_1807389f0(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b930(iVar1 + param_1,param_2 - iVar1,param_9);
+  iVar2 = UIAnimationController(iVar1 + param_1,param_2 - iVar1,param_9);
   return iVar2 + iVar1;
 }
 
 
 
-int FUN_180738b40(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4,
+int UIComponent_Render(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4,
                  uint64_t param_5,uint64_t param_6)
 
 {
@@ -788,8 +788,8 @@ int FUN_180738b40(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4,
 
 
 
-// 函数: void FUN_180738c00(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_180738c00(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void UIComponent_HandleInput(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+void UIComponent_HandleInput(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
                   int8_t param_5)
 
 {
@@ -805,11 +805,11 @@ void FUN_180738c00(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   lStack_158 = 0;
-  iVar1 = FUN_180749e60(param_1,&uStack_150,&lStack_158);
+  iVar1 = SystemState_Manager(param_1,&uStack_150,&lStack_158);
   if (iVar1 == 0) {
     puStack_168 = (int8_t *)CONCAT71(puStack_168._1_7_,param_5);
-    iVar1 = FUN_180744920(uStack_150,param_2,param_3,param_4);
-    if (iVar1 == 0) goto FUN_180738d3d;
+    iVar1 = SystemCore_Execute(uStack_150,param_2,param_3,param_4);
+    if (iVar1 == 0) goto UIComponent_Destroy;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074b7d0(auStack_148,0x100,param_2);
@@ -823,7 +823,7 @@ void FUN_180738c00(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr);
   }
-FUN_180738d3d:
+UIComponent_Destroy:
   if (lStack_158 != 0) {
     SystemDataProcessor();
   }
@@ -838,8 +838,8 @@ FUN_180738d3d:
 
 
 
-// 函数: void FUN_180738c1d(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_180738c1d(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void UIComponent_HandleInputEx(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+void UIComponent_HandleInputEx(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
                   uint64_t param_5,uint64_t param_6,uint64_t param_7)
 
 {
@@ -859,10 +859,10 @@ void FUN_180738c1d(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
   *(uint64_t *)(in_R11 + -0x30) = unaff_R15;
   param_6 = 0;
-  iVar1 = FUN_180749e60(param_1,&param_7,&param_6);
+  iVar1 = SystemState_Manager(param_1,&param_7,&param_6);
   if (iVar1 == 0) {
-    iVar1 = FUN_180744920(param_7,param_2,param_3,param_4,in_stack_000001b0);
-    if (iVar1 == 0) goto FUN_180738d3d;
+    iVar1 = SystemCore_Execute(param_7,param_2,param_3,param_4,in_stack_000001b0);
+    if (iVar1 == 0) goto UIComponent_Destroy;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074b7d0(&stack0x00000040,0x100,param_2);
@@ -875,7 +875,7 @@ void FUN_180738c1d(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr,&stack0x00000040);
   }
-FUN_180738d3d:
+UIComponent_Destroy:
   if (param_6 != 0) {
     SystemDataProcessor();
   }
@@ -888,8 +888,8 @@ FUN_180738d3d:
 
 
 
-// 函数: void FUN_180738c8f(void)
-void FUN_180738c8f(void)
+// 函数: void UIComponent_Cleanup(void)
+void UIComponent_Cleanup(void)
 
 {
   int iVar1;
@@ -913,8 +913,8 @@ void FUN_180738c8f(void)
 
 
 
-// 函数: void FUN_180738d3d(void)
-void FUN_180738d3d(void)
+// 函数: void UIComponent_Destroy(void)
+void UIComponent_Destroy(void)
 
 {
   int64_t in_stack_00000030;
@@ -932,8 +932,8 @@ void FUN_180738d3d(void)
 
 
 
-// 函数: void FUN_180738d67(void)
-void FUN_180738d67(void)
+// 函数: void UIComponent_Reset(void)
+void UIComponent_Reset(void)
 
 {
   uint64_t in_stack_00000140;
@@ -950,8 +950,8 @@ void FUN_180738d67(void)
 
 
 
-// 函数: void FUN_180738d90(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180738d90(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void UIComponent_SetVisibility(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void UIComponent_SetVisibility(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   int iVar1;
@@ -966,7 +966,7 @@ void FUN_180738d90(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_148 = 0;
-  iVar1 = FUN_180749e60(param_1,&uStack_140,&lStack_148);
+  iVar1 = SystemState_Manager(param_1,&uStack_140,&lStack_148);
   if (iVar1 == 0) {
     iVar1 = func_0x0001807455d0(uStack_140,param_2,param_3);
     if (iVar1 == 0) goto FUN_180738e7f;
@@ -994,8 +994,8 @@ FUN_180738e7f:
 
 
 
-// 函数: void FUN_180738dad(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180738dad(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void UIComponent_SetEnabled(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void UIComponent_SetEnabled(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   int iVar1;
@@ -1013,7 +1013,7 @@ void FUN_180738dad(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
   lStack0000000000000030 = 0;
-  iVar1 = FUN_180749e60(param_1,&stack0x00000038,&stack0x00000030);
+  iVar1 = SystemState_Manager(param_1,&stack0x00000038,&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = func_0x0001807455d0(in_stack_00000038,param_2,param_3);
     if (iVar1 == 0) goto FUN_180738e7f;

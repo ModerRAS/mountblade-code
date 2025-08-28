@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -28,7 +29,7 @@ void FUN_18063aca0(int64_t param_1,int64_t *param_2)
 
 
 
-uint64_t FUN_18063ad30(int8_t (*param_1) [16],float *param_2,float *param_3)
+uint64_t UltraHighFreq_DataProcessor1(int8_t (*param_1) [16],float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -324,7 +325,7 @@ float FUN_18063b1d0(float *param_1,float *param_2,float *param_3,float *param_4,
 
 
 
-int16_t FUN_18063b400(int32_t *param_1)
+int16_t RenderingSystem_AdvancedProcessor(int32_t *param_1)
 
 {
   short sVar1;
@@ -350,8 +351,8 @@ int16_t FUN_18063b400(int32_t *param_1)
 
 
 
-// 函数: void FUN_18063b470(float *param_1,float *param_2)
-void FUN_18063b470(float *param_1,float *param_2)
+// 函数: void AdvancedProcessor_StateManager0(float *param_1,float *param_2)
+void AdvancedProcessor_StateManager0(float *param_1,float *param_2)
 
 {
   float fVar1;
@@ -410,8 +411,8 @@ void FUN_18063b470(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_18063b5f0(float *param_1,float *param_2)
-void FUN_18063b5f0(float *param_1,float *param_2)
+// 函数: void SystemSecurityManager(float *param_1,float *param_2)
+void SystemSecurityManager(float *param_1,float *param_2)
 
 {
   float fVar1;
@@ -574,7 +575,7 @@ void FUN_18063b860(uint64_t param_1,uint64_t param_2,float param_3)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_3 * 0.5);
+  RenderingSystem_Renderer0(param_3 * 0.5);
 }
 
 
@@ -589,7 +590,7 @@ void FUN_18063b8c0(uint64_t param_1,uint *param_2)
   
   fVar1 = (float)atan2f(*param_2 ^ 0x80000000,param_2[1]);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar1 * 0.5);
+  RenderingSystem_Renderer0(fVar1 * 0.5);
 }
 
 
@@ -660,7 +661,7 @@ void FUN_18063ba00(int64_t *param_1,int64_t param_2,uint param_3,uint param_4)
     uStack_6c8 = (int32_t)lVar4;
     strcpy_s(auStack_6c0,0x100,param_2);
   }
-  lVar4 = FUN_180624440(apuStack_498,&puStack_6d8);
+  lVar4 = SystemCore_EncryptionEngine(apuStack_498,&puStack_6d8);
   puStack_5b8 = &rendering_buffer_2008_ptr;
   puStack_5b0 = auStack_5a0;
   auStack_5a0[0] = 0;

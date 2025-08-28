@@ -178,7 +178,7 @@ void FUN_18050ebe0(int64_t param_1,float param_2)
     else {
       uVar8 = *(int32_t *)(*(int64_t *)(param_1 + 0x280) + 0x1c);
     }
-    lVar6 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
+    lVar6 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
                           uVar8);
     fVar9 = 1.0;
     lVar5 = *(int64_t *)(*(int64_t *)(param_1 + 0x8f8) + 0x9e8);
@@ -349,7 +349,7 @@ void FUN_18050ec04(int64_t param_1,uint64_t param_2,float param_3,int32_t param_
     else {
       uVar7 = *(int32_t *)(*(int64_t *)(param_1 + 0x280) + 0x1c);
     }
-    lVar5 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
+    lVar5 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
                           uVar7);
     lVar4 = *(int64_t *)(*(int64_t *)(param_1 + 0x8f8) + 0x9e8);
     fVar8 = unaff_XMM10_Da;
@@ -523,7 +523,7 @@ void FUN_18050ec0b(int64_t param_1,uint64_t param_2,float param_3,int32_t param_
     else {
       uVar7 = *(int32_t *)(*(int64_t *)(unaff_RBX + 0x280) + 0x1c);
     }
-    lVar5 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RBX + 0x590) + 0xac),
+    lVar5 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RBX + 0x590) + 0xac),
                           uVar7);
     lVar4 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e8);
     fVar8 = unaff_XMM10_Da;
@@ -673,7 +673,7 @@ void FUN_18050ec90(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   else {
     uVar5 = *(int32_t *)(*(int64_t *)(unaff_RBX + 0x280) + 0x1c);
   }
-  lVar3 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RBX + 0x590) + 0xac),
+  lVar3 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RBX + 0x590) + 0xac),
                         uVar5);
   lVar2 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e8);
   fVar6 = unaff_XMM10_Da;

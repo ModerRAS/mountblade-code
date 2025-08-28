@@ -1,3 +1,9 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -217,7 +223,7 @@ void FUN_18017a1a0(uint64_t *param_1)
 void FUN_18017a1c0(void)
 
 {
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
   _Mtx_destroy_in_situ();
   return;
 }
@@ -613,7 +619,7 @@ void FUN_18017a9c0(int64_t *param_1)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_180057830();
+  DataTransformer0();
   if ((int64_t *)*param_1 != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
@@ -676,9 +682,9 @@ void FUN_18017aa30(int64_t param_1)
   
   uStack_78 = 0xfffffffffffffffe;
   while (uVar4 = system_context_ptr, *(int *)(param_1 + 0x80) != 0) {
-    lVar5 = FUN_18005e890(system_context_ptr);
+    lVar5 = PerformanceOptimizer(system_context_ptr);
     if (lVar5 != 0) {
-      plVar6 = (int64_t *)FUN_18005e890(uVar4);
+      plVar6 = (int64_t *)PerformanceOptimizer(uVar4);
       (**(code **)(*plVar6 + 0x20))(plVar6,0);
     }
   }
@@ -802,14 +808,14 @@ void FUN_18017aa30(int64_t param_1)
       FUN_18007ea10(plVar9,1);
       if ((plStack_138 != (int64_t *)0x0) && (plStack_130 != (int64_t *)0x0)) {
         if (cStack_106 != '\0') {
-          FUN_180075b70();
+          SystemConfig_Manager();
         }
-        FUN_18007f6a0(&plStack_128);
+        SystemSecurityManager(&plStack_128);
         if ((char)uStack_108 != '\0') {
-          FUN_180079520(plStack_138);
+          SystemInitializer(plStack_138);
         }
         if (uStack_108._1_1_ != '\0') {
-          FUN_180079520(plStack_138);
+          SystemInitializer(plStack_138);
         }
         plVar6 = plStack_130;
         plStack_130 = (int64_t *)0x0;
@@ -818,7 +824,7 @@ void FUN_18017aa30(int64_t param_1)
         }
       }
       pplStack_f8 = &plStack_128;
-      FUN_18007f6a0(&plStack_128);
+      SystemSecurityManager(&plStack_128);
       if (plStack_110 != (int64_t *)0x0) {
         (**(code **)(*plStack_110 + 0x38))();
       }
@@ -839,7 +845,7 @@ void FUN_18017aa30(int64_t param_1)
         CoreEngineMemoryPoolCleaner();
       }
       pplStack_f8 = &plStack_e0;
-      FUN_180057830(&plStack_e0);
+      DataTransformer0(&plStack_e0);
       if (plStack_e8 != (int64_t *)0x0) {
         (**(code **)(*plStack_e8 + 0x38))();
       }

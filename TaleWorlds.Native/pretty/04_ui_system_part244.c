@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part244.c - 2 个函数
 
 // 函数: void FUN_180808700(uint64_t param_1,uint64_t *param_2)
@@ -36,7 +40,7 @@ void FUN_180808700(uint64_t param_1,uint64_t *param_2)
   uStack_64 = 2;
   uVar8 = 0;
   do {
-    iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
+    iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
     if (iVar3 == 0) goto LAB_180808dec;
     bVar7 = 0;
     if (uStack_68 == 0xff) {
@@ -218,12 +222,12 @@ code_r0x000180808a48:
     *(uint *)(param_2[1] + 0x570) = uStack_68;
 LAB_180808b2f:
     if (bVar7 != 0) {
-      iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
+      iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
       if (iVar3 == 0) goto LAB_180808dec;
       abStack_50[uStack_64] = (byte)uStack_68;
       uStack_64 = uStack_64 + 1;
       if (bVar7 == 7) {
-        iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_60,8);
+        iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_60,8);
         if (iVar3 == 0) goto LAB_180808dec;
         abStack_50[uStack_64] = (byte)auStack_60[0];
         uStack_64 = uStack_64 + 1;
@@ -232,12 +236,12 @@ LAB_180808b2f:
       *(uint *)(param_2[1] + 0x558) = uStack_68 + 1;
     }
     if (uVar8 != 0) {
-      iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
+      iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
       if (iVar3 == 0) goto LAB_180808dec;
       abStack_50[uStack_64] = (byte)uStack_68;
       uStack_64 = uStack_64 + 1;
       if (uVar8 != 0xc) {
-        iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_60,8);
+        iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_60,8);
         if (iVar3 == 0) goto LAB_180808dec;
         abStack_50[uStack_64] = (byte)auStack_60[0];
         uStack_64 = uStack_64 + 1;
@@ -256,7 +260,7 @@ LAB_180808b2f:
       *(int *)(param_2[1] + 0x55c) = iVar3;
     }
 LAB_180808c6b:
-    iVar3 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
+    iVar3 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_68,8);
     if (iVar3 == 0) goto LAB_180808dec;
     cVar1 = (char)uStack_68;
     cVar2 = func_0x000180825c70(abStack_50,uStack_64);
@@ -363,13 +367,13 @@ void FUN_180808ec0(uint64_t param_1,uint64_t *param_2)
   uint64_t uStack_48;
   
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
-  iVar1 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&iStack_100,1);
+  iVar1 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&iStack_100,1);
   if (iVar1 != 0) {
     uVar5 = (uint)(iStack_100 != 0);
     uStack_114 = uVar5;
-    iVar1 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_118,7);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_118,7);
     if ((iVar1 != 0) &&
-       (iVar1 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_110,0x18),
+       (iVar1 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),auStack_110,0x18),
        iVar1 != 0)) {
       if (uStack_118 == 0) {
         iVar1 = FUN_180809b80(param_1,param_2,iStack_100 != 0,auStack_110[0]);
@@ -422,7 +426,7 @@ void FUN_180808ec0(uint64_t param_1,uint64_t *param_2)
             if (iVar1 == 0) goto LAB_180809328;
             *(uint64_t *)(*(int64_t *)(param_2[1] + 0x2a8) + 8 + lVar3) =
                  CONCAT44(uStack_104,iStack_108);
-            iVar1 = FUN_180824d50(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_114,0x10);
+            iVar1 = SystemCore_NetworkConnectionManager(param_1,*(uint64_t *)(param_2[1] + 0x78),&uStack_114,0x10);
             if (iVar1 == 0) goto LAB_180809328;
             uVar4 = (int)uVar2 + 1;
             uVar2 = (uint64_t)uVar4;

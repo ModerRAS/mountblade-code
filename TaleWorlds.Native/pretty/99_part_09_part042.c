@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part042.c - 9 个函数
 
 // 函数: void FUN_1805d057f(void)
@@ -15,7 +19,7 @@ void FUN_1805d057f(void)
   float fVar4;
   float fVar5;
   
-  piVar2 = (int *)FUN_1805b7660(unaff_RSI + 1);
+  piVar2 = (int *)SystemCore_Executor(unaff_RSI + 1);
   if (*piVar2 == 1) {
     fVar5 = *(float *)(*unaff_RSI + 0x2e8);
   }
@@ -26,7 +30,7 @@ void FUN_1805d057f(void)
   uVar3 = uVar3 >> 0x11 ^ uVar3;
   uVar3 = uVar3 << 5 ^ uVar3;
   *(uint *)(unaff_RSI + 0x272) = uVar3;
-  FUN_1805b7740(unaff_RSI + 1);
+  SystemCore_ResourceHandler0(unaff_RSI + 1);
   fVar4 = (float)powf((float)(uVar3 - 1) * 2.3283064e-10);
   if ((1.0 - fVar4 < fVar5) &&
      (((unaff_RSI[0x41e] != 0 &&
@@ -134,7 +138,7 @@ bool FUN_1805d06b0(int64_t *param_1)
         }
         else {
           if ((*(byte *)(param_1 + 2) & 1) == 0) {
-            FUN_1805d3210(param_1 + 1);
+            SystemCore_ThreadManager(param_1 + 1);
           }
           uStackX_10 = param_1[8];
           lVar6 = func_0x0001805d1df0(param_1);
@@ -261,7 +265,7 @@ bool FUN_1805d06d8(int64_t param_1,char param_2)
         }
         else {
           if ((*(byte *)(unaff_RBX + 2) & 1) == 0) {
-            FUN_1805d3210(unaff_RBX + 1);
+            SystemCore_ThreadManager(unaff_RBX + 1);
           }
           _fStack0000000000000088 = unaff_RBX[8];
           lVar6 = func_0x0001805d1df0();
@@ -367,7 +371,7 @@ bool FUN_1805d078a(void)
   float fStack000000000000009c;
   
   if (in_ZF) {
-    FUN_1805d3210(unaff_RBX + 8);
+    SystemCore_ThreadManager(unaff_RBX + 8);
   }
   _fStack0000000000000088 = *(uint64_t *)(unaff_RBX + 0x40);
   lVar3 = func_0x0001805d1df0();

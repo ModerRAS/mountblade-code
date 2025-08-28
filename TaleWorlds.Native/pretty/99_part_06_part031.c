@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -124,7 +128,7 @@ void FUN_1803c2600(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uStack_260 = 0;
   uStack_250 = 0;
   uStack_238 = iVar13;
-  FUN_18062dee0(&uStack_260,puVar12,&processed_var_4880_ptr);
+  SystemCore_Validator(&uStack_260,puVar12,&processed_var_4880_ptr);
   lVar7 = lStack_258;
   if (lStack_258 != 0) {
     iStack_320 = -1;
@@ -196,7 +200,7 @@ LAB_1803c29ae:
               if (lVar7 != 0) goto LAB_1803c29ae;
             }
             puStack_2f8 = puVar4;
-            lVar14 = FUN_180059780(puVar20,puVar17,puVar4);
+            lVar14 = SystemCore_Initializer(puVar20,puVar17,puVar4);
             SystemCore_NetworkHandler0(lVar14);
             puVar4 = (uint *)(lVar14 + 0x20);
             puVar21 = puStack_2f8;
@@ -374,9 +378,9 @@ LAB_1803c2b4d:
           __Throw_C_error_std__YAXH_Z(iVar13);
         }
         while (lVar7 = lStack_2d8, uVar9 = system_context_ptr, acStack_378[0] == '\0') {
-          lVar7 = FUN_18005e890(system_context_ptr);
+          lVar7 = PerformanceOptimizer(system_context_ptr);
           if (lVar7 != 0) {
-            plVar8 = (int64_t *)FUN_18005e890(uVar9);
+            plVar8 = (int64_t *)PerformanceOptimizer(uVar9);
             (**(code **)(*plVar8 + 0x20))(plVar8,0);
           }
         }
@@ -715,7 +719,7 @@ LAB_1803c3d6b:
   aplStack_108[0][6] = (int64_t)piStack_110;
   pplStack_180 = aplStack_108;
   uStack_188 = 0xffffffffffffffff;
-  FUN_18015b810((int32_t)uStack_120,0,*(int32_t *)(*(int64_t *)(param_1 + 8) + 0x1ec),1);
+  SystemCore_DataTransformer((int32_t)uStack_120,0,*(int32_t *)(*(int64_t *)(param_1 + 8) + 0x1ec),1);
   if (puStack_170 == (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1a8);

@@ -979,7 +979,7 @@ uint64_t FUN_180060630(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 
 
 
-int FUN_180060680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int > MedHighFreq_StateMachine1(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;

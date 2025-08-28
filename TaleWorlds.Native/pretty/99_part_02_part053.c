@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_02_part053.c - 16 个函数
 
@@ -633,7 +639,7 @@ void FUN_1801bf1f0(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x20) {
-    FUN_180057830(lVar2);
+    DataTransformer0(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -656,7 +662,7 @@ void FUN_1801bf260(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x20) {
-    FUN_180057830(lVar2);
+    DataTransformer0(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -748,7 +754,7 @@ void FUN_1801bf280(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar8 = *param_1;
     if (lVar8 != lVar4) {
       do {
-        FUN_180057830(lVar8);
+        DataTransformer0(lVar8);
         lVar8 = lVar8 + 0x20;
       } while (lVar8 != lVar4);
       lVar8 = *param_1;
@@ -837,7 +843,7 @@ void FUN_1801bf4d0(uint64_t *param_1)
           uVar5 = system_context_ptr;
           plStackX_10 = plVar2;
           (**(code **)(*plVar2 + 0x28))(plVar2);
-          FUN_18005e110(uVar5,&plStackX_10);
+          SystemCore_TimerManager(uVar5,&plStackX_10);
           if (plStack_60 < plVar10) {
             *plStack_60 = (int64_t)plVar2;
             (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -906,7 +912,7 @@ LAB_1801bf606:
           }
           if (cVar14 == '\0') {
             bVar4 = true;
-            plVar8 = (int64_t *)FUN_18005e890(uVar5);
+            plVar8 = (int64_t *)PerformanceOptimizer(uVar5);
             cVar14 = (**(code **)(*plVar8 + 0x20))(plVar8,0);
             if (cVar14 == '\0') {
               plVar10 = (int64_t *)*plVar10;

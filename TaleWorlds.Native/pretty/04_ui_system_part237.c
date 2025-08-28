@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part237.c - 3 个函数
 
 // 函数: void FUN_180803120(int64_t param_1,int param_2)
@@ -146,7 +150,7 @@ LAB_1808031e5:
 uint64_t FUN_1808035a0(int64_t param_1)
 
 {
-  FUN_180768b70(param_1 + 8);
+  SystemCore_PerformanceMonitor(param_1 + 8);
   return 0;
 }
 
@@ -198,7 +202,7 @@ uint64_t FUN_1808035c0(int64_t param_1)
     *(uint64_t *)(param_1 + 0x728) = 0;
   }
   if (*(int64_t *)(param_1 + 0x740) != 0) {
-    FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x740),
+    RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x740),
                   &processed_var_7648_ptr,0x20f);
     *(uint64_t *)(param_1 + 0x740) = 0;
   }

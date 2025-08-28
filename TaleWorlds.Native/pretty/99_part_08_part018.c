@@ -135,9 +135,9 @@ void FUN_1804f17b0(int64_t param_1,int64_t param_2,int32_t *param_3)
   uStack_128 = 0;
   uStack_124 = 0xffffffff;
   uStack_120 = 0x10064;
-  FUN_18051ec50(param_2,&uStack_128);
+  CoreSystemThreadManager(param_2,&uStack_128);
   uStack_128 = 1;
-  FUN_18051ec50(param_2,&uStack_128);
+  CoreSystemThreadManager(param_2,&uStack_128);
   if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
     lVar3 = *(int64_t *)(param_2 + 0x590);
     uStack_ac = 0xffffffffffffffff;
@@ -454,11 +454,11 @@ void FUN_1804f1e70(int64_t param_1,int32_t param_2,char param_3)
       pcStack_28 = FUN_1805029b0;
       uStack_50 = (int32_t)param_1;
       lStack_40 = param_1;
-      uVar8 = FUN_18015b810(uStack_50,0,uVar2,1,0xffffffffffffffff,&lStack_40,0xfffffffffffffffe);
+      uVar8 = SystemCore_DataTransformer(uStack_50,0,uVar2,1,0xffffffffffffffff,&lStack_40,0xfffffffffffffffe);
       puStack_30 = &processed_var_4432_ptr;
       pcStack_28 = FUN_1805028c0;
       lStack_40 = param_1;
-      FUN_18015b810(uVar8,0,uVar2,1,0xffffffffffffffff,&lStack_40);
+      SystemCore_DataTransformer(uVar8,0,uVar2,1,0xffffffffffffffff,&lStack_40);
     }
     else if (0 < (int)uVar2) {
       lVar5 = 0;

@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -57,7 +62,7 @@ void FUN_18057a3c0(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4)
                  0x48) < render_system_config_memory) && (SystemInitializer(&system_ptr_a038), render_system_config_memory == -1)) {
       render_system_config_memory = 0;
       FUN_1808fc820(&rendering_buffer_2768_ptr);
-      FUN_1808fcb30(&system_ptr_a038);
+      SystemCore_StateController(&system_ptr_a038);
     }
     puStack_118 = &system_ptr_a040;
     uStack_110 = 1;
@@ -88,7 +93,7 @@ void FUN_18057a3c0(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4)
       do {
         iStack_128 = (int)uVar11;
         uVar4 = FUN_18054f810(*(uint64_t *)(param_1 + 0x2518),param_4,uVar2,param_2);
-        iVar5 = FUN_18053a410(&system_ptr_5f30,*(int32_t *)(param_1 + 0xac),uVar4);
+        iVar5 = SystemCacheManager(&system_ptr_5f30,*(int32_t *)(param_1 + 0xac),uVar4);
         iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
         if (iVar5 == -1) {
           uVar9 = 0;
@@ -792,7 +797,7 @@ LAB_18057b795:
   fStack_120 = fVar33 * fVar17 + fVar26 * fVar16 + fVar27 * fVar18;
   fStack_11c = fVar33 * fVar15 + fVar26 * fVar15 + fVar27 * fVar15;
   fStack_1f8 = fVar31;
-  FUN_18063b470(&fStack_218,&fStack_148);
+  AdvancedProcessor_StateManager0(&fStack_218,&fStack_148);
                     // WARNING: Subroutine does not return
   AdvancedSystemController(fVar31 * *(float *)(param_1 + 0x58) * 0.5);
 }

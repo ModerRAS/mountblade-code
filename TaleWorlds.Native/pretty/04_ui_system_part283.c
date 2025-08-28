@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part283.c - 2 个函数
 
 // 函数: void FUN_18082a780(uint64_t param_1,int64_t *param_2)
@@ -23,7 +27,7 @@ void FUN_18082a780(uint64_t param_1,int64_t *param_2)
   *param_2 = *param_2 +
              (uint64_t)(uVar2 >> 3) + (uint64_t)(uVar3 >> 3) + (uint64_t)(uVar4 >> 3) +
              ((int64_t)(int)uVar5 >> 3);
-  iVar1 = FUN_18080b990(param_2,6);
+  iVar1 = SystemCore_DatabaseManager(param_2,6);
   uVar2 = (int)param_2[2] + 8;
   *(uint *)(param_2 + 2) = uVar2 & 7;
   *param_2 = *param_2 + ((int64_t)(int)uVar2 >> 3);
@@ -57,18 +61,18 @@ uint64_t FUN_18082a950(uint *param_1,int64_t param_2,uint64_t param_3)
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[9] = 0;
-  uVar4 = FUN_18080b990(param_3,0x10);
+  uVar4 = SystemCore_DatabaseManager(param_3,0x10);
   *param_1 = uVar4;
   if (uVar4 < 3) {
-    uVar4 = FUN_18080b990(param_3,0x18);
+    uVar4 = SystemCore_DatabaseManager(param_3,0x18);
     param_1[6] = uVar4;
-    uVar4 = FUN_18080b990(param_3,0x18);
+    uVar4 = SystemCore_DatabaseManager(param_3,0x18);
     param_1[7] = uVar4;
-    iVar5 = FUN_18080b990(param_3,0x18);
+    iVar5 = SystemCore_DatabaseManager(param_3,0x18);
     param_1[8] = iVar5 + 1;
-    cVar2 = FUN_18080b990(param_3,6);
+    cVar2 = SystemCore_DatabaseManager(param_3,6);
     *(char *)(param_1 + 9) = cVar2 + '\x01';
-    bVar3 = FUN_18080b990(param_3,8);
+    bVar3 = SystemCore_DatabaseManager(param_3,8);
     *(byte *)((int64_t)param_1 + 0x25) = bVar3;
     if ((int)(uint)bVar3 < *(int *)(lVar1 + 0x18)) {
       uVar7 = func_0x0001807b17e0((int)(char)param_1[9]);
@@ -80,10 +84,10 @@ uint64_t FUN_18082a950(uint *param_1,int64_t param_2,uint64_t param_3)
       if ('\0' < cVar2) {
         lVar9 = 0;
         do {
-          bVar3 = FUN_18080b990(param_3,3);
-          iVar6 = FUN_18080b990(param_3,1);
+          bVar3 = SystemCore_DatabaseManager(param_3,3);
+          iVar6 = SystemCore_DatabaseManager(param_3,1);
           if (iVar6 != 0) {
-            cVar2 = FUN_18080b990(param_3,5);
+            cVar2 = SystemCore_DatabaseManager(param_3,5);
             bVar3 = bVar3 | cVar2 << 3;
           }
           iVar5 = iVar5 + 1;
@@ -103,7 +107,7 @@ uint64_t FUN_18082a950(uint *param_1,int64_t param_2,uint64_t param_3)
               *(int8_t *)((int64_t)(iVar6 + iVar8) + *(int64_t *)(param_1 + 4)) = 0xff;
             }
             else {
-              bVar3 = FUN_18080b990(param_3,8);
+              bVar3 = SystemCore_DatabaseManager(param_3,8);
               if (*(int *)(lVar1 + 0x18) <= (int)(uint)bVar3) {
                 return 1;
               }
@@ -143,17 +147,17 @@ uint FUN_18082ab40(int64_t param_1,int64_t *param_2)
   uint64_t uVar8;
   
   uVar4 = 0;
-  iVar1 = FUN_18080b990(param_2,1);
+  iVar1 = SystemCore_DatabaseManager(param_2,1);
   if (iVar1 == 0) {
     uVar5 = 1;
   }
   else {
-    iVar1 = FUN_18080b990(param_2,4);
+    iVar1 = SystemCore_DatabaseManager(param_2,4);
     uVar5 = iVar1 + 1;
   }
-  iVar1 = FUN_18080b990(param_2,1);
+  iVar1 = SystemCore_DatabaseManager(param_2,1);
   if (iVar1 != 0) {
-    iVar1 = FUN_18080b990(param_2);
+    iVar1 = SystemCore_DatabaseManager(param_2);
     uVar2 = iVar1 + 1;
     uVar4 = uVar2 * 2 + 3 & 0xfffffffc;
     if (0 < (int)uVar2) {
@@ -237,19 +241,19 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[9] = 0;
-  iVar5 = FUN_18080b990(param_3,1);
+  iVar5 = SystemCore_DatabaseManager(param_3,1);
   if (iVar5 == 0) {
     iVar5 = 1;
   }
   else {
-    iVar5 = FUN_18080b990(param_3,4);
+    iVar5 = SystemCore_DatabaseManager(param_3,4);
     iVar5 = iVar5 + 1;
   }
   *param_1 = iVar5;
-  iVar5 = FUN_18080b990(param_3,1);
+  iVar5 = SystemCore_DatabaseManager(param_3,1);
   uVar11 = 0;
   if (iVar5 != 0) {
-    iVar5 = FUN_18080b990(param_3,8);
+    iVar5 = SystemCore_DatabaseManager(param_3,8);
     param_1[6] = iVar5 + 1;
     uVar6 = func_0x0001807b17e0((iVar5 + 1) * 2);
     *(uint64_t *)(param_1 + 8) = uVar6;
@@ -271,7 +275,7 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
             uVar7 = uVar7 >> 1;
           } while (1 < uVar9);
         }
-        bVar2 = FUN_18080b990(param_3,uVar8);
+        bVar2 = SystemCore_DatabaseManager(param_3,uVar8);
         *(byte *)(uVar12 + *(int64_t *)(param_1 + 8)) = bVar2;
         uVar9 = *(int *)(param_2 + 4) - 1;
         if (*(int *)(param_2 + 4) == 0) {
@@ -286,7 +290,7 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
             uVar7 = uVar7 >> 1;
           } while (1 < uVar9);
         }
-        bVar3 = FUN_18080b990(param_3,uVar8);
+        bVar3 = SystemCore_DatabaseManager(param_3,uVar8);
         *(byte *)(uVar12 + 1 + *(int64_t *)(param_1 + 8)) = bVar3;
         if ((((uint)bVar2 == (uint)bVar3) ||
             (iVar5 = *(int *)(param_2 + 4), iVar5 <= (int)(uint)bVar2)) ||
@@ -297,7 +301,7 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
       } while ((int)uVar9 < param_1[6]);
     }
   }
-  iVar5 = FUN_18080b990(param_3,2);
+  iVar5 = SystemCore_DatabaseManager(param_3,2);
   if (iVar5 < 1) {
     if (1 < *param_1) {
       uVar6 = func_0x0001807b17e0(*(int32_t *)(param_2 + 4));
@@ -306,7 +310,7 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
       uVar12 = uVar11;
       if (0 < *(int *)(param_2 + 4)) {
         do {
-          uVar4 = FUN_18080b990(param_3,4);
+          uVar4 = SystemCore_DatabaseManager(param_3,4);
           *(int8_t *)(uVar12 + *(int64_t *)(param_1 + 2)) = uVar4;
           if (*param_1 <= (int)(uint)*(byte *)(*(int64_t *)(param_1 + 2) + uVar12))
           goto LAB_18082aeb4;
@@ -321,12 +325,12 @@ uint64_t FUN_18082aca0(int *param_1,int64_t param_2,uint64_t param_3)
     uVar10 = uVar11;
     if (0 < *param_1) {
       do {
-        FUN_18080b990(param_3,8);
-        uVar4 = FUN_18080b990(param_3,8);
+        SystemCore_DatabaseManager(param_3,8);
+        uVar4 = SystemCore_DatabaseManager(param_3,8);
         *(int8_t *)(uVar10 + *(int64_t *)(param_1 + 4)) = uVar4;
         if (*(int *)(lVar1 + 0x10) <= (int)*(char *)(uVar10 + *(int64_t *)(param_1 + 4)))
         goto LAB_18082aeb4;
-        uVar4 = FUN_18080b990(param_3,8);
+        uVar4 = SystemCore_DatabaseManager(param_3,8);
         *(int8_t *)(uVar10 + 1 + *(int64_t *)(param_1 + 4)) = uVar4;
         if (*(int *)(lVar1 + 0x14) <= (int)*(char *)(uVar10 + 1 + *(int64_t *)(param_1 + 4)))
         goto LAB_18082aeb4;

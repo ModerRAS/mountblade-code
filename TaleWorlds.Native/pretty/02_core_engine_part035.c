@@ -645,12 +645,12 @@ void FUN_180078550(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     *(int32_t *)((int64_t)param_1 + 0xb4) = *(int32_t *)((int64_t)param_1 + 0x74);
     *(int32_t *)(param_1 + 0x17) = *(int32_t *)(param_1 + 0xf);
     *(int32_t *)((int64_t)param_1 + 0xbc) = *(int32_t *)((int64_t)param_1 + 0x7c);
-    uVar4 = FUN_180084ae0();
+    uVar4 = Utilities_DataValidator();
     *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
     *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
     *(int32_t *)((int64_t)param_1 + 0xac) = 0;
     *(int32_t *)((int64_t)param_1 + 0xbc) = 0x3f800000;
-    FUN_180084760(uVar4,param_1 + 0x18);
+    SystemCore_PerformanceMonitor(uVar4,param_1 + 0x18);
   }
   else {
     (**(code **)((void *)*param_1 + 0x10))(param_1,0,param_3,param_4,uVar5);

@@ -197,7 +197,7 @@ uint64_t FUN_1807e5cd0(int64_t param_1)
       return uVar6;
     }
     if ((*(uint *)(param_1 + 100) & 0x300) != 0) {
-      FUN_180743160(*(uint64_t *)(param_1 + 0xa8),1);
+      SystemCore_ResourceManager0(*(uint64_t *)(param_1 + 0xa8),1);
       uVar6 = FUN_18075dcc0(param_1,0,0,1,1,4);
       if ((int)uVar6 != 0) {
         return uVar6;

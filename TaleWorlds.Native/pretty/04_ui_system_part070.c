@@ -435,8 +435,8 @@ LAB_1807053b0:
 
 
 
-// 函数: void FUN_1807054a0(int64_t *param_1,int param_2,int64_t param_3,byte param_4)
-void FUN_1807054a0(int64_t *param_1,int param_2,int64_t param_3,byte param_4)
+// 函数: void RenderingSystem_VertexBuffer(int64_t *param_1,int param_2,int64_t param_3,byte param_4)
+void RenderingSystem_VertexBuffer(int64_t *param_1,int param_2,int64_t param_3,byte param_4)
 
 {
   int64_t *plVar1;

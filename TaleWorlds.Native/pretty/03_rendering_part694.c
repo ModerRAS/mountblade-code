@@ -222,7 +222,7 @@ void FUN_180669a20(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
       uStack_220 = 0;
       uStack_228 = 0x51b189;
       fStack_1f0 = fVar20;
-      FUN_1801aa0f0(lStack_1d0,&fStack_1f8,param_3,auStack_188);
+      PhysicsSystem_JointManager(lStack_1d0,&fStack_1f8,param_3,auStack_188);
       fVar20 = fStack_1f0;
       *(float *)(param_1 + 0x28) = fStack_158 - fStack_1f0;
       fVar13 = ABS(fStack_158 - fStack_1f0);
@@ -231,7 +231,7 @@ void FUN_180669a20(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
       }
       uStack_220 = 0;
       uStack_228 = 0x51b189;
-      FUN_1801aa0f0();
+      PhysicsSystem_JointManager();
       *(float *)(param_1 + 0x30) = fStack_158 - fStack_1e0;
       fVar13 = ABS(fStack_158 - fStack_1e0);
       if (*(float *)(param_1 + 0x24) <= fVar13 && fVar13 != *(float *)(param_1 + 0x24)) {
@@ -393,7 +393,7 @@ void FUN_180669a20(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
         uStack_228 = 0x51b189;
         uStack_220 = bVar12;
         uStack_114 = bVar12;
-        FUN_1801aa0f0(lStack_1d0,&fStack_1c8,lVar10,auStack_148);
+        PhysicsSystem_JointManager(lStack_1d0,&fStack_1c8,lVar10,auStack_148);
         fStack_200 = fStack_1f0 - fStack_1e0;
         uStack_1fc = 0x7f7fffff;
         fVar13 = fVar20 * fVar20 + fVar16 * fVar16 + fStack_200 * fStack_200;
@@ -561,7 +561,7 @@ void FUN_18066ae20(int64_t param_1,int64_t param_2,float *param_3,float *param_4
       fStack_94 = fStack_a4;
       fStack_90 = fStack_a0;
       fStack_8c = fStack_9c;
-      FUN_1801aa0f0(param_2,&fStack_98,0,&fStack_88,0,1,uVar7);
+      PhysicsSystem_JointManager(param_2,&fStack_98,0,&fStack_88,0,1,uVar7);
       if (cStack_54 == '\0') {
         fStack_58 = 0.0;
       }
@@ -575,7 +575,7 @@ void FUN_18066ae20(int64_t param_1,int64_t param_2,float *param_3,float *param_4
       fStack_8c = 3.4028235e+38;
       fStack_98 = fVar5;
       fStack_94 = fVar6;
-      FUN_1801aa0f0(param_2,&fStack_98,0,&fStack_88,0,1,uVar7);
+      PhysicsSystem_JointManager(param_2,&fStack_98,0,&fStack_88,0,1,uVar7);
       fVar4 = 0.0;
       if (cStack_54 != '\0') {
         fVar4 = fStack_58;
@@ -759,8 +759,8 @@ void FUN_18066b100(uint64_t param_1,int64_t param_2,float *param_3,uint64_t para
       } while (iVar2 < 0x20);
 
 
-// 函数: void FUN_18066ba00(int64_t *param_1,int64_t *param_2)
-void FUN_18066ba00(int64_t *param_1,int64_t *param_2)
+// 函数: void RenderingSystem_BufferHandler(int64_t *param_1,int64_t *param_2)
+void RenderingSystem_BufferHandler(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t *plVar1;

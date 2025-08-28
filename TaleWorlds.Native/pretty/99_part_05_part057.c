@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part057.c - 3 个函数
 
 // 函数: void FUN_1802fcdd8(void)
@@ -145,7 +149,7 @@ void FUN_1802fcdd8(void)
         puVar30[7] = uVar20;
         puVar30[8] = uVar21;
         *puVar30 = 0;
-        FUN_1802feba0(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
+        RenderingSystem_DrawPrimitive(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
         uVar22 = *(uint64_t *)(puVar30 + 0x12);
         *(uint64_t *)(unaff_RDI + 0x1e8) = *(uint64_t *)(puVar30 + 0x10);
         *(uint64_t *)(unaff_RDI + 0x1f0) = uVar22;
@@ -183,7 +187,7 @@ void FUN_1802fcdd8(void)
         unaff_RBP[0x1d] = (uint)fVar9;
         unaff_RBP[0x1e] = (uint)fVar31;
         unaff_RBP[0x1f] = uVar2;
-        pfVar26 = (float *)FUN_1801c0fb0(unaff_RBP + 0x18,unaff_RBP + 0x34,puVar30 + 0x10);
+        pfVar26 = (float *)SystemFileHandler(unaff_RBP + 0x18,unaff_RBP + 0x34,puVar30 + 0x10);
         fVar32 = (float)puVar30[0xc];
         fVar33 = (float)puVar30[0xd];
         fVar10 = (float)puVar30[0xe];
@@ -230,7 +234,7 @@ void FUN_1802fcdd8(void)
         puVar30[7] = uVar20;
         puVar30[8] = uVar21;
         *puVar30 = 0;
-        FUN_1802feba0(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
+        RenderingSystem_DrawPrimitive(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
       }
     }
     else {
@@ -351,7 +355,7 @@ void FUN_1802fcdd8(void)
            (uint)(fVar45 * unaff_XMM11_Db + fVar49 * unaff_XMM11_Da + fVar50 * unaff_XMM11_Dc);
       unaff_RBP[0x2f] =
            (uint)(fVar45 * unaff_XMM11_Dd + fVar49 * unaff_XMM11_Dd + fVar50 * unaff_XMM11_Dd);
-      FUN_18063b470(unaff_RBP + -0x10,unaff_RBP + 0x20);
+      AdvancedProcessor_StateManager0(unaff_RBP + -0x10,unaff_RBP + 0x20);
       *(uint64_t *)(unaff_RBP + -4) = *(uint64_t *)(unaff_RBP + 0x2c);
       *(uint64_t *)(unaff_RBP + -2) = *(uint64_t *)(unaff_RBP + 0x2e);
       *(uint64_t *)(unaff_RBP + -8) = *(uint64_t *)(unaff_RBP + -0x10);
@@ -379,7 +383,7 @@ void FUN_1802fcdd8(void)
       puVar30[7] = uVar20;
       puVar30[8] = uVar21;
       *puVar30 = 0;
-      FUN_1802feba0(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
+      RenderingSystem_DrawPrimitive(uVar2,(int64_t)(uint64_t)(uint)(iVar29 - *(int *)(unaff_RDI + 0x18)) >> 8);
       if (cVar3 == -1) {
         do {
           LOCK();
@@ -457,7 +461,7 @@ void FUN_1802fcdd8(void)
         unaff_RBP[0x3d] = (uint)fVar49;
         unaff_RBP[0x3e] = (uint)fVar37;
         unaff_RBP[0x3f] = (uint)fVar45;
-        FUN_180285b40(unaff_RBP + 0x10,unaff_RBP + -0xc,&fStackX_20);
+        SystemCore_EventHandler(unaff_RBP + 0x10,unaff_RBP + -0xc,&fStackX_20);
         fVar50 = (float)unaff_RBP[0x54];
         fVar1 = (float)unaff_RBP[0x55];
         fVar46 = (float)unaff_RBP[0x56];
@@ -640,7 +644,7 @@ void FUN_1802fd530(int64_t param_1,int64_t param_2,float *param_3)
   fStack_530 = *(float *)(lVar21 + 0x98);
   fStack_52c = *(float *)(lVar21 + 0x9c);
   lStack_5d0 = param_2;
-  FUN_180084ae0(&uStack_558);
+  Utilities_DataValidator(&uStack_558);
   lVar21 = *(int64_t *)(param_1 + 0x10);
   pfVar19 = afStack_4e8;
   fVar23 = *(float *)(param_1 + 0x38);

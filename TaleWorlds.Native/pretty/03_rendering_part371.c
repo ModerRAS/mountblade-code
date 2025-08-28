@@ -627,8 +627,8 @@ void FUN_18046de20(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint para
   *(int32_t *)(lVar2 + 0x34) = uVar3;
   *(int32_t *)(lVar2 + 0x38) = uVar4;
   *(int32_t *)(lVar2 + 0x3c) = uVar5;
-  uVar6 = FUN_1800946d0(param_2,auStack_48);
-  FUN_1800946d0(uVar6,&uStack_88,&system_data_bb50);
+  uVar6 = ErrorRecoverySystem(param_2,auStack_48);
+  ErrorRecoverySystem(uVar6,&uStack_88,&system_data_bb50);
   puVar1 = *(uint64_t **)(param_1 + 0x1e8 + uVar7 * 8);
   *puVar1 = uStack_88;
   puVar1[1] = uStack_80;
@@ -853,7 +853,7 @@ void FUN_18046e1e0(int64_t param_1,int64_t param_2,uint param_3)
   lStack_100 = param_1;
   lStack_e8 = param_1;
   puStack_e0 = puStack_f8;
-  FUN_18015b810(uVar3,0,0x20,1);
+  SystemCore_DataTransformer(uVar3,0,0x20,1);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_148);
 }

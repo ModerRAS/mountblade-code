@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_06_part018.c - 1 个函数
 
@@ -118,9 +128,9 @@ void FUN_1803b5630(int64_t *param_1,char param_2,char param_3)
     FUN_1803b27a0(param_1);
   }
   while (uVar9 = system_context_ptr, (char)param_1[0x388] == '\0') {
-    lVar7 = FUN_18005e890(system_context_ptr);
+    lVar7 = PerformanceOptimizer(system_context_ptr);
     if (lVar7 != 0) {
-      plVar8 = (int64_t *)FUN_18005e890(uVar9);
+      plVar8 = (int64_t *)PerformanceOptimizer(uVar9);
       (**(code **)(*plVar8 + 0x20))(plVar8);
     }
   }
@@ -186,7 +196,7 @@ LAB_1803b57c6:
               goto LAB_1803b6243;
             }
             uStack_aa8 = CONCAT44(uStack_aa8._4_4_,1);
-            FUN_18066c220(param_1 + 0xb,&uStack_a78,(uint64_t)*(uint *)(param_1 + 9),
+            RenderingShaderProcessor0(param_1 + 0xb,&uStack_a78,(uint64_t)*(uint *)(param_1 + 9),
                           (int)param_1[10]);
             plVar8 = (int64_t *)
                      CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)((int64_t)param_1 + 100));
@@ -229,7 +239,7 @@ LAB_1803b6243:
     apuStack_878[0][4] = piStack_978;
     ppuStack_aa0 = apuStack_878;
     uStack_aa8 = 0xffffffffffffffff;
-    FUN_18015b810((int)piStack_978,0,(int)param_1[3] * *(int *)((int64_t)param_1 + 0x14),1);
+    SystemCore_DataTransformer((int)piStack_978,0,(int)param_1[3] * *(int *)((int64_t)param_1 + 0x14),1);
     if (iStack_a84 == 0x3552475a) {
       uStack_a26 = 3;
       uStack_a80 = lStack_a70;
@@ -417,7 +427,7 @@ LAB_1803b6009:
                 if ((iVar22 == *piVar11) && (iVar21 == piVar11[1])) goto LAB_1803b5f97;
               }
               uStack_aa8 = CONCAT44(uStack_aa8._4_4_,1);
-              FUN_18066c220(param_1 + 0xb,acStack_968,(uint64_t)*(uint *)(param_1 + 9),
+              RenderingShaderProcessor0(param_1 + 0xb,acStack_968,(uint64_t)*(uint *)(param_1 + 9),
                             (int)param_1[10]);
               piVar11 = (int *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,
                                              *(int8_t *)((int64_t)param_1 + 100));
@@ -526,7 +536,7 @@ LAB_1803b5c5a:
   }
   FUN_180639d30(param_1 + 900);
   if (param_2 != '\0') {
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     uVar6 = *(uint *)(lVar7 + 0x10);
     if ((*(int64_t *)(lVar7 + 8) != 0) && (uVar6 != 0)) {
       uVar5 = uVar6 + 1;
@@ -691,7 +701,7 @@ LAB_1803b69fc:
             *(int32_t *)(lVar7 + 0x110) = 0x44800000;
             *(int32_t *)(lVar7 + 0x114) = 0x44800000;
             *(int32_t *)(lVar7 + 0x118) = *(int32_t *)(lVar7 + 0x7c);
-            FUN_1800b9f60();
+            SystemCore_Parser();
           }
           iVar22 = (int)uVar17;
           uVar18 = (uint64_t)(iVar21 + 1U);

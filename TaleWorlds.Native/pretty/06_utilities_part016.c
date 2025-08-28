@@ -1,6 +1,11 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 06_utilities_part016.c - 14 个函数
 
@@ -136,7 +141,7 @@ uint64_t FUN_18089abe0(int64_t param_1,uint64_t *param_2)
   uVar1 = DataFlowProcessor(param_2,auStack_38,1,0x46464542);
   if (((((int)uVar1 == 0) &&
        (uVar1 = DataFlowProcessor(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
-      (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+      (uVar1 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
@@ -146,7 +151,7 @@ uint64_t FUN_18089abe0(int64_t param_1,uint64_t *param_2)
           uVar1 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar1 = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          uVar1 = SystemCore_ProtocolProcessor(*param_2,param_1 + 0x40);
         }
         else {
           uVar1 = 0x1c;
@@ -181,7 +186,7 @@ uint64_t FUN_18089ac64(void)
         uVar1 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        uVar1 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         uVar1 = 0x1c;
@@ -214,7 +219,7 @@ void FUN_18089ac96(void)
     iVar1 = 0;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    iVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+    iVar1 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RDI + 0x40);
   }
   else {
     iVar1 = 0x1c;
@@ -337,7 +342,7 @@ void FUN_18089ae50(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t para
   
   iVar1 = DataFlowProcessor(param_2,auStack_38,1,param_3);
   if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(param_2,auStack_78,0,param_4), iVar1 == 0)) &&
-     (iVar1 = FUN_180899360(param_2,param_1 + 0x10), iVar1 == 0)) {
+     (iVar1 = SystemCore_ConfigManager(param_2,param_1 + 0x10), iVar1 == 0)) {
     if ((param_5 != '\0') && (iVar1 = FUN_18089d490(param_1 + 0x48,param_2), iVar1 != 0)) {
       return;
     }
@@ -380,7 +385,7 @@ uint64_t FUN_18089af12(void)
     if (*plVar1 != 0) {
       if (plVar1[2] == 0) {
 LAB_18089af81:
-        uVar3 = FUN_180769ed0(*plVar1,&stack0x00000030,unaff_ESI,unaff_ESI,0);
+        uVar3 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,unaff_ESI,unaff_ESI,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -483,7 +488,7 @@ LAB_18089af81:
     if (*plVar1 != 0) {
       if (plVar1[2] == 0) {
 LAB_18089b1ab:
-        unaff_EDI = FUN_180769ed0(*plVar1,&stack0x00000038,unaff_ESI,4,0);
+        unaff_EDI = SystemPerformanceOptimizer(*plVar1,&stack0x00000038,unaff_ESI,4,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -598,8 +603,8 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
   uStack_30 = puVar2[2];
   uStack_2c = puVar2[3];
   uVar3 = DataFlowProcessor(param_2,auStack_28,0,0x4c525443);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_180899360(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
+  if ((((int)uVar3 == 0) && (uVar3 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
+     (uVar3 = SystemCore_ConfigManager(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
     uVar4 = 0x1c;
     if (*(uint *)(param_2 + 8) < 0x5a) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
@@ -619,7 +624,7 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
     }
     if ((int)uVar3 == 0) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar3 = FUN_180899090(*param_2,param_1 + 0x30);
+        uVar3 = UIEventHandler(*param_2,param_1 + 0x30);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -672,7 +677,7 @@ uint64_t FUN_18089b307(void)
     return uVar2;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar2 = UIEventHandler(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -710,7 +715,7 @@ uint64_t FUN_18089b31f(void)
     return uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar3 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar3 = UIEventHandler(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -738,7 +743,7 @@ uint64_t FUN_18089b380(void)
   uint64_t unaff_RDI;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar2 = UIEventHandler(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -900,7 +905,7 @@ uint64_t FUN_18089b460(int64_t param_1,int64_t *param_2)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*param_2,&stack0x00000008,1,1,0);
+    uVar2 = SystemPerformanceOptimizer(*param_2,&stack0x00000008,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -978,7 +983,7 @@ uint64_t FUN_18089b52a(void)
         goto LAB_1808a2e6d;
       }
     }
-    uVar3 = FUN_180769ed0(*plVar2,&stack0x00000030,1,1,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar2,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar3 == 0) {
@@ -1031,7 +1036,7 @@ uint64_t FUN_18089b540(void)
         goto LAB_1808a2e6d;
       }
     }
-    uVar3 = FUN_180769ed0(*plVar2,&stack0x00000030,1,1,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar2,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar3 == 0) {
@@ -1102,7 +1107,7 @@ uint64_t FUN_18089b5a9(int param_1)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,&stack0x00000030,1,1,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -1144,7 +1149,7 @@ void FUN_18089b5fc(void)
         goto LAB_1808a2e6d;
       }
     }
-    iVar2 = FUN_180769ed0(*plVar1,&stack0x00000030,1,1,0);
+    iVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if (iVar2 == 0) {
@@ -1189,15 +1194,15 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
   uVar1 = DataFlowProcessor(param_2,auStack_48,1,0x54495645);
   if (((((int)uVar1 == 0) &&
        (uVar1 = DataFlowProcessor(param_2,auStack_68,0,0x42495645), (int)uVar1 == 0)) &&
-      (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
-     (uVar1 = FUN_180899360(param_2,param_1 + 0xd8), (int)uVar1 == 0)) {
+      (uVar1 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+     (uVar1 = SystemCore_ConfigManager(param_2,param_1 + 0xd8), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
     uVar1 = SystemDataManager(*param_2,param_1 + 0xf8);
     if ((int)uVar1 == 0) {
       auStackX_20[0] = 0;
-      uVar1 = FUN_1808afe30(*param_2,auStackX_20);
+      uVar1 = SystemCore_Manager(*param_2,auStackX_20);
       if ((int)uVar1 == 0) {
         iVar2 = 0;
         auStackX_18[0] = 0;
@@ -1205,7 +1210,7 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
         uVar4 = auStackX_20[0] >> 1;
         if (uVar4 != 0) {
           do {
-            uVar1 = FUN_1808dde10(param_2,auStackX_18[0]);
+            uVar1 = UISystemEventHandler(param_2,auStackX_18[0]);
             if ((int)uVar1 != 0) {
               return uVar1;
             }
@@ -1213,7 +1218,7 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
             if ((int)uVar1 != 0) {
               return uVar1;
             }
-            uVar1 = FUN_1808de0e0(param_2,auStackX_18);
+            uVar1 = SystemCore_Initializer(param_2,auStackX_18);
             if ((int)uVar1 != 0) {
               return uVar1;
             }
@@ -1243,7 +1248,7 @@ void FUN_18089b6df(void)
   uint uStack00000000000000a8;
   
   uStack00000000000000a8 = 0;
-  iVar1 = FUN_1808afe30();
+  iVar1 = SystemCore_Manager();
   if (iVar1 != 0) {
     return;
   }
@@ -1251,7 +1256,7 @@ void FUN_18089b6df(void)
   uVar3 = uStack00000000000000a8 >> 1;
   if (uVar3 != 0) {
     do {
-      iVar2 = FUN_1808dde10();
+      iVar2 = UISystemEventHandler();
       if (iVar2 != 0) {
         return;
       }
@@ -1259,7 +1264,7 @@ void FUN_18089b6df(void)
       if (iVar2 != 0) {
         return;
       }
-      iVar2 = FUN_1808de0e0();
+      iVar2 = SystemCore_Initializer();
       if (iVar2 != 0) {
         return;
       }

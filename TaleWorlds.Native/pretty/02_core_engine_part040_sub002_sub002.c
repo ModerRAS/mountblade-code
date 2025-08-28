@@ -1149,7 +1149,7 @@ LAB_18007a312:
           else {
             *(int *)(lVar21 + 0x2c) = (iVar27 >> 1) + iVar27;
           }
-          FUN_1800846d0(lVar21 + 0x28);
+          CoreEngine_DataProcessor(lVar21 + 0x28);
           iVar11 = *(int *)(lVar21 + 0x28);
           lVar31 = *(int64_t *)(lVar21 + 0x30);
         }

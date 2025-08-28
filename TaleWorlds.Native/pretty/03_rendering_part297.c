@@ -375,15 +375,15 @@ int32_t FUN_1804276f0(int *param_1,int *param_2)
     cVar1 = *pcVar4;
     *(char **)(param_1 + 0x2e) = pcVar4 + 1;
     if (cVar1 == 'M') {
-      FUN_18041f0a0(param_1);
-      FUN_18041f0a0(param_1);
-      FUN_18041f0a0(param_1);
-      FUN_18041f0a0(param_1);
-      iVar2 = FUN_18041f0a0(param_1);
-      iVar3 = FUN_18041f0a0(param_1);
+      SystemCore_MemoryManager(param_1);
+      SystemCore_MemoryManager(param_1);
+      SystemCore_MemoryManager(param_1);
+      SystemCore_MemoryManager(param_1);
+      iVar2 = SystemCore_MemoryManager(param_1);
+      iVar3 = SystemCore_MemoryManager(param_1);
       param_2[1] = iVar3 * 0x10000 + iVar2;
-      iVar2 = FUN_18041f0a0(param_1);
-      iVar3 = FUN_18041f0a0(param_1);
+      iVar2 = SystemCore_MemoryManager(param_1);
+      iVar3 = SystemCore_MemoryManager(param_1);
       uVar5 = iVar3 * 0x10000 + iVar2;
       param_2[5] = 0;
       param_2[6] = 0;
@@ -392,66 +392,66 @@ int32_t FUN_1804276f0(int *param_1,int *param_2)
       param_2[4] = 0;
       if ((((uVar5 < 0x39) && ((0x100010000001000U >> ((uint64_t)uVar5 & 0x3f) & 1) != 0)) ||
           (uVar5 == 0x6c)) || (uVar5 == 0x7c)) {
-        iVar2 = FUN_18041f0a0(param_1);
+        iVar2 = SystemCore_MemoryManager(param_1);
         if (uVar5 == 0xc) {
           *param_1 = iVar2;
-          iVar3 = FUN_18041f0a0(param_1);
+          iVar3 = SystemCore_MemoryManager(param_1);
         }
         else {
-          iVar3 = FUN_18041f0a0(param_1);
+          iVar3 = SystemCore_MemoryManager(param_1);
           *param_1 = iVar3 * 0x10000 + iVar2;
-          iVar3 = FUN_18041f0a0(param_1);
-          iVar2 = FUN_18041f0a0(param_1);
+          iVar3 = SystemCore_MemoryManager(param_1);
+          iVar2 = SystemCore_MemoryManager(param_1);
           iVar3 = iVar2 * 0x10000 + iVar3;
         }
         param_1[1] = iVar3;
-        iVar2 = FUN_18041f0a0(param_1);
+        iVar2 = SystemCore_MemoryManager(param_1);
         if (iVar2 == 1) {
-          iVar2 = FUN_18041f0a0(param_1);
+          iVar2 = SystemCore_MemoryManager(param_1);
           *param_2 = iVar2;
           if (iVar2 != 1) {
             if (uVar5 == 0xc) {
               return 1;
             }
-            iVar2 = FUN_18041f150(param_1);
+            iVar2 = UtilitiesSystem_MemoryManager(param_1);
             if (1 < iVar2 - 1U) {
-              FUN_18041f150(param_1);
-              FUN_18041f150(param_1);
-              FUN_18041f150(param_1);
-              FUN_18041f150(param_1);
-              FUN_18041f150(param_1);
+              UtilitiesSystem_MemoryManager(param_1);
+              UtilitiesSystem_MemoryManager(param_1);
+              UtilitiesSystem_MemoryManager(param_1);
+              UtilitiesSystem_MemoryManager(param_1);
+              UtilitiesSystem_MemoryManager(param_1);
               if (uVar5 != 0x28) {
                 if (uVar5 != 0x38) {
                   if ((uVar5 - 0x6c & 0xffffffef) != 0) {
                     return 0;
                   }
-                  iVar2 = FUN_18041f150(param_1);
+                  iVar2 = UtilitiesSystem_MemoryManager(param_1);
                   param_2[3] = iVar2;
-                  iVar2 = FUN_18041f150(param_1);
+                  iVar2 = UtilitiesSystem_MemoryManager(param_1);
                   param_2[4] = iVar2;
-                  iVar2 = FUN_18041f150(param_1);
+                  iVar2 = UtilitiesSystem_MemoryManager(param_1);
                   param_2[5] = iVar2;
-                  iVar2 = FUN_18041f150(param_1);
+                  iVar2 = UtilitiesSystem_MemoryManager(param_1);
                   param_2[6] = iVar2;
-                  FUN_18041f150(param_1);
+                  UtilitiesSystem_MemoryManager(param_1);
                   lVar6 = 0xc;
                   do {
-                    FUN_18041f150(param_1);
+                    UtilitiesSystem_MemoryManager(param_1);
                     lVar6 = lVar6 + -1;
                   } while (lVar6 != 0);
                   if (uVar5 != 0x7c) {
                     return 1;
                   }
-                  FUN_18041f150(param_1);
-                  FUN_18041f150(param_1);
-                  FUN_18041f150(param_1);
-                  FUN_18041f150(param_1);
+                  UtilitiesSystem_MemoryManager(param_1);
+                  UtilitiesSystem_MemoryManager(param_1);
+                  UtilitiesSystem_MemoryManager(param_1);
+                  UtilitiesSystem_MemoryManager(param_1);
                   return 1;
                 }
-                FUN_18041f150(param_1);
-                FUN_18041f150(param_1);
-                FUN_18041f150(param_1);
-                FUN_18041f150(param_1);
+                UtilitiesSystem_MemoryManager(param_1);
+                UtilitiesSystem_MemoryManager(param_1);
+                UtilitiesSystem_MemoryManager(param_1);
+                UtilitiesSystem_MemoryManager(param_1);
               }
               if ((*param_2 - 0x10U & 0xffffffef) != 0) {
                 return 1;
@@ -471,11 +471,11 @@ int32_t FUN_1804276f0(int *param_1,int *param_2)
                 return 1;
               }
               if (iVar2 == 3) {
-                iVar2 = FUN_18041f150(param_1);
+                iVar2 = UtilitiesSystem_MemoryManager(param_1);
                 param_2[3] = iVar2;
-                iVar2 = FUN_18041f150(param_1);
+                iVar2 = UtilitiesSystem_MemoryManager(param_1);
                 param_2[4] = iVar2;
-                iVar2 = FUN_18041f150(param_1);
+                iVar2 = UtilitiesSystem_MemoryManager(param_1);
                 param_2[5] = iVar2;
                 if (param_2[3] != param_2[4]) {
                   return 1;

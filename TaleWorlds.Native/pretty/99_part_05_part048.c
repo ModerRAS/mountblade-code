@@ -651,11 +651,11 @@ void FUN_1802f9110(int64_t *param_1,int64_t *param_2,int64_t param_3,uint64_t pa
   else {
     (**(code **)(*param_2 + 0x98))(param_2);
   }
-  FUN_1800b88d0(param_1 + 0x16,&plStackX_8);
+  PhysicsSystem_TriggersProcessor(param_1 + 0x16,&plStackX_8);
   plVar5 = plStackX_8;
   cVar2 = (**(code **)(*plStackX_8 + 0xa0))(plStackX_8);
   if (cVar2 != '\0') {
-    FUN_1800b88d0(param_1 + 0x1a,&plStackX_8);
+    PhysicsSystem_TriggersProcessor(param_1 + 0x1a,&plStackX_8);
     plVar5 = plStackX_8;
     iVar3 = (**(code **)(*plStackX_8 + 0x98))(plStackX_8);
     if (iVar3 == 2) {
@@ -685,7 +685,7 @@ LAB_1802f92c0:
           pcVar8 = pcVar8 + 1;
         } while ((uint64_t)(int64_t)iVar3 < uVar10);
       }
-      FUN_180194a50((uint64_t *)(param_3 + 0xb0),acStackX_20);
+      NetworkSystem_StreamProcessor((uint64_t *)(param_3 + 0xb0),acStackX_20);
     }
   }
 LAB_1802f9310:
@@ -699,7 +699,7 @@ LAB_1802f9310:
     if (puVar6 != puVar1) goto LAB_1802f934e;
   }
   plStackX_10 = param_1;
-  FUN_18005ea90((uint64_t *)(param_3 + 0x140),&plStackX_10);
+  SystemSecurity_Manager((uint64_t *)(param_3 + 0x140),&plStackX_10);
 LAB_1802f934e:
   uStack_44 = (int32_t)((uint64_t)param_1 >> 0x20);
   *(int32_t *)(param_2 + 2) = 0;
@@ -875,7 +875,7 @@ void FUN_1802f9480(uint *param_1,int32_t param_2,int64_t param_3,float *param_4)
             fStack_a4 = fVar5;
             fStack_a0 = fVar6;
             uStack_9c = uStack_fc;
-            FUN_18063b5f0(&fStack_148,&uStack_118);
+            SystemSecurityManager(&fStack_148,&uStack_118);
             fVar7 = *param_4;
             fVar8 = param_4[1];
             fVar9 = param_4[2];

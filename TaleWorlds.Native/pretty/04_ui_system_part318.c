@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -995,7 +999,7 @@ LAB_18083f348:
     }
     else {
       if (*param_2 != 0) {
-        uVar3 = FUN_18076a440(*param_2,(int)plVar1[2],1);
+        uVar3 = MathTrigonometryFunction0(*param_2,(int)plVar1[2],1);
         goto LAB_18083f348;
       }
       uVar3 = 0x1c;

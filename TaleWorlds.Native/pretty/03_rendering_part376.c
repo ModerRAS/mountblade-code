@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -236,7 +240,7 @@ void FUN_180471ab0(int64_t param_1,float *param_2,int64_t param_3)
   fStack_684 = fVar23 + fStack_684 * 0.0 + fVar17;
   fStack_680 = fVar24 + fStack_680 * 0.0 + fVar14;
   fStack_67c = fVar25 + fStack_67c * 0.0 + fVar15;
-  FUN_18063b470(&uStack_6b8,&uStack_698);
+  AdvancedProcessor_StateManager0(&uStack_6b8,&uStack_698);
   uStack_5e8 = uStack_6b8._4_4_;
   uStack_5e4 = uStack_6b0;
   uStack_5e0 = uStack_6ac;
@@ -271,7 +275,7 @@ void FUN_180471ab0(int64_t param_1,float *param_2,int64_t param_3)
       (**(code **)(*plVar1 + 0x48))(plVar1,auStack_518);
       puStack_598 = &uStack_658;
       puStack_5a0 = auStack_518;
-      puVar4 = (int32_t *)FUN_1800fcb90(&fStack_648,auStack_528,auStack_590);
+      puVar4 = (int32_t *)SystemCore_Initializer(&fStack_648,auStack_528,auStack_590);
       fVar18 = fStack_580 * 2.0;
       fVar14 = fStack_57c * 2.0;
       fVar16 = fStack_578 * 2.0;
@@ -446,7 +450,7 @@ void FUN_180472240(uint64_t *param_1,uint64_t *param_2)
   uStack_58 = 0;
   puStack_38 = param_1;
   puStack_20 = param_2;
-  puStack_30 = (uint64_t *)FUN_1808fc418(0x38);
+  puStack_30 = (uint64_t *)SystemRenderer(0x38);
   *(int32_t *)(puStack_30 + 1) = 1;
   *(int32_t *)((int64_t)puStack_30 + 0xc) = 1;
   *puStack_30 = &memory_allocator_3984_ptr;
@@ -495,7 +499,7 @@ uint64_t FUN_180472360(uint64_t param_1,int64_t param_2)
   do {
     lVar1 = lVar1 + 1;
   } while (*(char *)(param_2 + lVar1) != '\0');
-  FUN_1800671b0(auStack_30);
+  MathCoreCalculator0(auStack_30);
   FUN_180472240(param_1,auStack_30);
   return param_1;
 }
@@ -508,7 +512,7 @@ uint64_t * FUN_1804723d0(uint64_t *param_1,uint64_t *param_2)
   uint64_t *puVar1;
   uint64_t *puVar2;
   
-  puVar2 = (uint64_t *)FUN_1808fc418(0x30);
+  puVar2 = (uint64_t *)SystemRenderer(0x30);
   *(int32_t *)(puVar2 + 1) = 1;
   *(int32_t *)((int64_t)puVar2 + 0xc) = 1;
   *puVar2 = &processed_var_4040_ptr;
@@ -555,7 +559,7 @@ FUN_1804724f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar4 = 0xfffffffffffffffe;
   uVar3 = 0;
-  puVar2 = (uint64_t *)FUN_1808fc418(0x58);
+  puVar2 = (uint64_t *)SystemRenderer(0x58);
   *(int32_t *)(puVar2 + 1) = 1;
   *(int32_t *)((int64_t)puVar2 + 0xc) = 1;
   *puVar2 = &processed_var_4480_ptr;

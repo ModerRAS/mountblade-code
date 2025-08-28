@@ -206,8 +206,8 @@ uint64_t * FUN_1806a3970(uint64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_1806a39a0(int64_t param_1,int64_t *param_2,int8_t param_3)
-void FUN_1806a39a0(int64_t param_1,int64_t *param_2,int8_t param_3)
+// 函数: void RenderingSystem_StateManager0(int64_t param_1,int64_t *param_2,int8_t param_3)
+void RenderingSystem_StateManager0(int64_t param_1,int64_t *param_2,int8_t param_3)
 
 {
   int32_t auStackX_8 [2];
@@ -292,7 +292,7 @@ void FUN_1806a3b20(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   puStack_28 = &memory_allocator_3280_ptr;
   uStack_20 = param_2;
   uStack_18 = param_3;
-  FUN_1806a39a0(param_1,&puStack_28,0x18);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x18);
   return;
 }
 
@@ -317,7 +317,7 @@ void FUN_1806a3b50(uint64_t param_1,uint64_t param_2,uint64_t param_3,int16_t pa
   uStack_20 = param_2;
   uStack_18 = param_3;
   uStack_10 = param_4;
-  FUN_1806a39a0(param_1,&puStack_28,0x19);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x19);
   return;
 }
 
@@ -456,7 +456,7 @@ bool FUN_1806a3d10(int64_t param_1,int *param_2)
   uStack_18 = puVar4[1];
   *(uint64_t *)(param_2 + 2) = uStack_18;
   puStack_28 = &memory_allocator_3136_ptr;
-  FUN_1806a39a0(param_1,&puStack_28,9);
+  RenderingSystem_StateManager0(param_1,&puStack_28,9);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 
@@ -586,14 +586,14 @@ bool FUN_1806a3e70(int64_t param_1,uint64_t *param_2)
   *(int32_t *)(param_1 + 0x178) = *(int32_t *)(lVar8 + 0x48);
   *(uint64_t *)(param_1 + 0x180) = *(uint64_t *)(lVar8 + 0x50);
   *(uint64_t *)(param_1 + 0x188) = *(uint64_t *)(lVar8 + 0x58);
-  puVar9 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8,param_2[1]);
+  puVar9 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8,param_2[1]);
   uVar2 = *puVar9;
-  puVar9 = (int32_t *)FUN_1806a74b0(param_1,auStackX_10,*param_2);
+  puVar9 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_10,*param_2);
   uStackX_18 = *puVar9;
   puStack_98 = &rendering_buffer_2992_ptr;
   uStack_90 = CONCAT44(uVar2,uStackX_18);
   uStackX_1c = uVar2;
-  FUN_1806a39a0(param_1,&puStack_98,0xc);
+  RenderingSystem_StateManager0(param_1,&puStack_98,0xc);
   puStack_98 = &rendering_buffer_2008_ptr;
   cVar1 = *(char *)(param_1 + 0x1b8);
   (**(code **)(*plVar3 + 0x20))(plVar3);
@@ -614,12 +614,12 @@ bool FUN_1806a3fb0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uint64_t uStack_10;
   
   uVar1 = _getCurrentCounterValue_Time_shdfnd_physx__SA_KXZ();
-  puVar2 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8,param_3);
+  puVar2 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8,param_3);
   uStack_18 = *puVar2;
   puStack_28 = &memory_allocator_3200_ptr;
   uStack_20 = param_2;
   uStack_10 = uVar1;
-  FUN_1806a39a0(param_1,&puStack_28,0x12);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x12);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 
@@ -672,16 +672,16 @@ bool FUN_1806a4040(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t *p
   *(int8_t *)(param_1 + 0x128) = *(int8_t *)(lVar6 + 0x68);
   *(int8_t *)(param_1 + 0x129) = *(int8_t *)(lVar6 + 0x69);
   (**(code **)(*plVar3 + 0x20))(plVar3);
-  puVar7 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8,param_4[1]);
+  puVar7 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8,param_4[1]);
   uVar1 = *puVar7;
-  puVar7 = (int32_t *)FUN_1806a74b0(param_1,auStackX_10,*param_4);
+  puVar7 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_10,*param_4);
   uVar2 = *puVar7;
-  puVar7 = (int32_t *)FUN_1806a74b0(param_1,auStackX_20,param_3);
+  puVar7 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_20,param_3);
   uStack_b0 = *puVar7;
   uStack_ac = CONCAT44(uVar1,uVar2);
   puStack_c0 = &memory_allocator_3120_ptr;
   uStack_b8 = param_2;
-  FUN_1806a39a0(param_1,&puStack_c0,8);
+  RenderingSystem_StateManager0(param_1,&puStack_c0,8);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 

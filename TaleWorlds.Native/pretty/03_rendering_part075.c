@@ -360,7 +360,7 @@ uint64_t * FUN_18030b970(int64_t param_1,uint64_t *param_2)
   uVar1 = *(int8_t *)(param_1 + 0x43);
   uVar2 = *(uint64_t *)(param_1 + 0x48);
   uVar4 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-  plVar5 = (int64_t *)FUN_180275090(uVar4);
+  plVar5 = (int64_t *)RenderingSystem_ShaderManager(uVar4);
   if (plVar5 != (int64_t *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
@@ -434,7 +434,7 @@ void FUN_18030bb40(uint64_t param_1,int64_t param_2,uint64_t param_3,int8_t para
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
   uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
-  plVar4 = (int64_t *)FUN_180275090(uVar3);
+  plVar4 = (int64_t *)RenderingSystem_ShaderManager(uVar3);
   if (plVar4 != (int64_t *)0x0) {
     (**(code **)(*plVar4 + 0x28))(plVar4);
   }

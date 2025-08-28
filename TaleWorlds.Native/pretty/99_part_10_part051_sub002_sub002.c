@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part051_sub002_sub002.c - 1 个函数
@@ -68,12 +72,12 @@ int FUN_1806c7a9d(void)
   *(int32_t *)(unaff_RBP + -0x44) = uVar8;
   *(int32_t *)(unaff_RBP + -0x40) = uVar5;
   *(int32_t *)(unaff_RBP + -0x3c) = uVar6;
-  uVar8 = FUN_1806d7000(uVar9,uVar3);
+  uVar8 = MemoryPoolManager0(uVar9,uVar3);
   piVar4 = (int *)unaff_R12[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
   }
-  cVar7 = FUN_1806c4320(uVar8,unaff_RBP + 0x240);
+  cVar7 = UISystem_DataProcessor(uVar8,unaff_RBP + 0x240);
   if (cVar7 != '\0') {
     (**(code **)(unaff_RBP + -0x40))(unaff_R12[6],*(int32_t *)(unaff_RBP + 0x240));
   }
@@ -93,7 +97,7 @@ int FUN_1806c7b35(void)
   int64_t unaff_R12;
   
   *in_RAX = *in_RAX + 1;
-  cVar1 = FUN_1806c4320();
+  cVar1 = UISystem_DataProcessor();
   if (cVar1 != '\0') {
     (**(code **)(unaff_RBP + -0x40))
               (*(uint64_t *)(unaff_R12 + 0x30),*(int32_t *)(unaff_RBP + 0x240));
@@ -126,8 +130,8 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   if ((int *)param_2[0xb] != (int *)0x0) {
     piVar8 = (int *)param_2[0xb];
   }
-  FUN_1806d7000(param_2,*param_1);
-  FUN_1806d7000(param_2,param_1[2]);
+  MemoryPoolManager0(param_2,*param_1);
+  MemoryPoolManager0(param_2,param_1[2]);
   puVar7 = &ui_system_data_1920_ptr;
   iVar1 = *(int *)(*param_2 + 0x10);
   if (iVar1 == 0) {
@@ -144,7 +148,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   *piVar8 = *piVar8 + 1;
   SystemResourceProcessor(param_2);
-  FUN_1806d7000(param_2,param_1[3]);
+  MemoryPoolManager0(param_2,param_1[3]);
   iVar1 = *(int *)(*param_2 + 0x10);
   if (iVar1 == 0) {
     puVar6 = &ui_system_data_1920_ptr;
@@ -163,7 +167,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   FUN_1806c1c70(param_2,param_3 + 1,param_1 + 6,0x180be0530,aiStackX_18);
   FUN_1806c0130(param_2,param_1 + 0x13,param_3 + 5);
   pcVar3 = (code *)param_1[0x1c];
-  FUN_1806d7000(param_2,param_1[0x19]);
+  MemoryPoolManager0(param_2,param_1[0x19]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -187,7 +191,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x20];
-  FUN_1806d7000(param_2,param_1[0x1d]);
+  MemoryPoolManager0(param_2,param_1[0x1d]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -210,7 +214,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x24];
-  FUN_1806d7000(param_2,param_1[0x21]);
+  MemoryPoolManager0(param_2,param_1[0x21]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -233,7 +237,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x28];
-  FUN_1806d7000(param_2,param_1[0x25]);
+  MemoryPoolManager0(param_2,param_1[0x25]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -256,7 +260,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x2c];
-  FUN_1806d7000(param_2,param_1[0x29]);
+  MemoryPoolManager0(param_2,param_1[0x29]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -279,7 +283,7 @@ int FUN_1806c7b80(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x33];
-  FUN_1806d7000(param_2,param_1[0x30]);
+  MemoryPoolManager0(param_2,param_1[0x30]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -319,7 +323,7 @@ int FUN_1806c8030(int64_t param_1,int64_t *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar3 = *(code **)(param_1 + 0x58);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x40));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x40));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -343,7 +347,7 @@ int FUN_1806c8030(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x78);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x60));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x60));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -383,7 +387,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar3 = *(code **)(param_1 + 0x208);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x1f0));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x1f0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -407,7 +411,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x228);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x210));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x210));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -430,7 +434,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x248);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x230));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x230));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -453,7 +457,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x268);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x250));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x250));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -476,7 +480,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x288);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x270));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x270));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -499,7 +503,7 @@ int FUN_1806c81b0(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x2a8);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x290));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x290));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -546,8 +550,8 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   if ((int *)param_2[0xb] != (int *)0x0) {
     piVar8 = (int *)param_2[0xb];
   }
-  FUN_1806d7080(param_2,*param_1);
-  FUN_1806d7080(param_2,param_1[2]);
+  SystemCore_MemoryManager(param_2,*param_1);
+  SystemCore_MemoryManager(param_2,param_1[2]);
   puVar7 = &ui_system_data_1920_ptr;
   iVar1 = *(int *)(*param_2 + 0x10);
   if (iVar1 == 0) {
@@ -564,7 +568,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   *piVar8 = *piVar8 + 1;
   SystemResourceProcessor(param_2);
-  FUN_1806d7080(param_2,param_1[3]);
+  SystemCore_MemoryManager(param_2,param_1[3]);
   iVar1 = *(int *)(*param_2 + 0x10);
   if (iVar1 == 0) {
     puVar6 = &ui_system_data_1920_ptr;
@@ -583,7 +587,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   FUN_1806c1e70(param_2,param_3 + 1,param_1 + 6,0x180be0530,aiStackX_18);
   FUN_1806c02c0(param_2,param_1 + 0x13,param_3 + 5);
   pcVar3 = (code *)param_1[0x1c];
-  FUN_1806d7080(param_2,param_1[0x19]);
+  SystemCore_MemoryManager(param_2,param_1[0x19]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -607,7 +611,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x20];
-  FUN_1806d7080(param_2,param_1[0x1d]);
+  SystemCore_MemoryManager(param_2,param_1[0x1d]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -630,7 +634,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x24];
-  FUN_1806d7080(param_2,param_1[0x21]);
+  SystemCore_MemoryManager(param_2,param_1[0x21]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -653,7 +657,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x28];
-  FUN_1806d7080(param_2,param_1[0x25]);
+  SystemCore_MemoryManager(param_2,param_1[0x25]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -676,7 +680,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x2c];
-  FUN_1806d7080(param_2,param_1[0x29]);
+  SystemCore_MemoryManager(param_2,param_1[0x29]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -699,7 +703,7 @@ int FUN_1806c8540(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x33];
-  FUN_1806d7080(param_2,param_1[0x30]);
+  SystemCore_MemoryManager(param_2,param_1[0x30]);
   piVar8 = (int *)param_2[0xb];
   if (piVar8 != (int *)0x0) {
     *piVar8 = *piVar8 + 1;
@@ -743,7 +747,7 @@ int FUN_1806c89f0(uint64_t *param_1,int64_t *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar4 = (code *)param_1[3];
-  FUN_1806d7080(param_2,*param_1);
+  SystemCore_MemoryManager(param_2,*param_1);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -772,7 +776,7 @@ int FUN_1806c89f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar4 = (code *)param_1[7];
-  FUN_1806d7080(param_2,param_1[4]);
+  SystemCore_MemoryManager(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -795,7 +799,7 @@ int FUN_1806c89f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar4 = (code *)param_1[0xb];
-  FUN_1806d7080(param_2,param_1[8]);
+  SystemCore_MemoryManager(param_2,param_1[8]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -818,7 +822,7 @@ int FUN_1806c89f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar4 = (code *)param_1[0xf];
-  FUN_1806d7080(param_2,param_1[0xc]);
+  SystemCore_MemoryManager(param_2,param_1[0xc]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -841,7 +845,7 @@ int FUN_1806c89f0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar4 = (code *)param_1[0x13];
-  FUN_1806d7080(param_2,param_1[0x10]);
+  SystemCore_MemoryManager(param_2,param_1[0x10]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -894,7 +898,7 @@ int FUN_1806c8a06(int32_t param_1,uint64_t param_2,int param_3)
   *(int *)(unaff_RBP + -0x24) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + -0x20) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + -0x1c) = in_XMM1_Dd;
-  FUN_1806d7080(param_1,uVar10);
+  SystemCore_MemoryManager(param_1,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -934,7 +938,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -965,7 +969,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -996,7 +1000,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1027,7 +1031,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1083,7 +1087,7 @@ int FUN_1806c8a17(uint64_t param_1,uint64_t param_2,int param_3)
   *(int *)(unaff_RBP + -0x24) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + -0x20) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + -0x1c) = in_XMM1_Dd;
-  FUN_1806d7080();
+  SystemCore_MemoryManager();
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1123,7 +1127,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1154,7 +1158,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1185,7 +1189,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1216,7 +1220,7 @@ LAB_1806c8af0:
   *(int32_t *)(unaff_RBP + -0x24) = uVar14;
   *(int32_t *)(unaff_RBP + -0x20) = uVar5;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar6;
-  FUN_1806d7080(uVar13,uVar10);
+  SystemCore_MemoryManager(uVar13,uVar10);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1283,7 +1287,7 @@ int FUN_1806c8b1f(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0x24) = uVar9;
   *(int32_t *)(unaff_RBP + -0x20) = uVar6;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar7;
-  FUN_1806d7080(uVar10,uVar3);
+  SystemCore_MemoryManager(uVar10,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -1304,7 +1308,7 @@ int FUN_1806c8b1f(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0x24) = uVar9;
   *(int32_t *)(unaff_RBP + -0x20) = uVar6;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar7;
-  FUN_1806d7080(uVar10,uVar3);
+  SystemCore_MemoryManager(uVar10,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -1325,7 +1329,7 @@ int FUN_1806c8b1f(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + -0x24) = uVar9;
   *(int32_t *)(unaff_RBP + -0x20) = uVar6;
   *(int32_t *)(unaff_RBP + -0x1c) = uVar7;
-  FUN_1806d7080(uVar10,uVar3);
+  SystemCore_MemoryManager(uVar10,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -1407,7 +1411,7 @@ int FUN_1806c8d40(uint64_t *param_1,int64_t *param_2,int param_3)
   int8_t auStackX_10 [8];
   
   pcVar3 = (code *)param_1[3];
-  FUN_1806d7080(param_2,*param_1);
+  SystemCore_MemoryManager(param_2,*param_1);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1431,7 +1435,7 @@ int FUN_1806c8d40(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[7];
-  FUN_1806d7080(param_2,param_1[4]);
+  SystemCore_MemoryManager(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1454,7 +1458,7 @@ int FUN_1806c8d40(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0xb];
-  FUN_1806d7080(param_2,param_1[8]);
+  SystemCore_MemoryManager(param_2,param_1[8]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1477,7 +1481,7 @@ int FUN_1806c8d40(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0xf];
-  FUN_1806d7080(param_2,param_1[0xc]);
+  SystemCore_MemoryManager(param_2,param_1[0xc]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1500,7 +1504,7 @@ int FUN_1806c8d40(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x13];
-  FUN_1806d7080(param_2,param_1[0x10]);
+  SystemCore_MemoryManager(param_2,param_1[0x10]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1538,7 +1542,7 @@ int FUN_1806c9010(int64_t param_1,int64_t *param_2,int param_3)
   int8_t auStackX_10 [8];
   
   pcVar3 = *(code **)(param_1 + 0xb8);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0xa0));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0xa0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1562,7 +1566,7 @@ int FUN_1806c9010(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0xd8);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0xc0));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0xc0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1585,7 +1589,7 @@ int FUN_1806c9010(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0xf8);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0xe0));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0xe0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1608,7 +1612,7 @@ int FUN_1806c9010(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x118);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x100));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x100));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1647,7 +1651,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar3 = *(code **)(param_1 + 0x30);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x18));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x18));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1671,7 +1675,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x50);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x38));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x38));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1694,7 +1698,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x70);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x58));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x58));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1717,7 +1721,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0x90);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x78));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x78));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1741,7 +1745,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0xb0);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0x98));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0x98));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1764,7 +1768,7 @@ int FUN_1806c9270(int64_t param_1,int64_t *param_2,int param_3)
   }
   SystemResourceProcessor(param_2);
   pcVar3 = *(code **)(param_1 + 0xd0);
-  FUN_1806d7080(param_2,*(uint64_t *)(param_1 + 0xb8));
+  SystemCore_MemoryManager(param_2,*(uint64_t *)(param_1 + 0xb8));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1814,7 +1818,7 @@ int FUN_1806c95f0(uint64_t *param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)((int64_t)param_1 + 0x14);
   uStack_58 = *(int32_t *)(param_1 + 3);
   uStack_54 = *(int32_t *)((int64_t)param_1 + 0x1c);
-  FUN_1806d7080(param_2,*param_1);
+  SystemCore_MemoryManager(param_2,*param_1);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1846,7 +1850,7 @@ int FUN_1806c95f0(uint64_t *param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)((int64_t)param_1 + 0x34);
   uStack_58 = *(int32_t *)(param_1 + 7);
   uStack_54 = *(int32_t *)((int64_t)param_1 + 0x3c);
-  FUN_1806d7080(param_2,param_1[4]);
+  SystemCore_MemoryManager(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1903,7 +1907,7 @@ int FUN_1806c960c(int32_t param_1,uint64_t param_2,int param_3)
   *(int *)(unaff_RBP + 3) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + 7) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + 0xb) = in_XMM1_Dd;
-  FUN_1806d7080(param_1,uVar2);
+  SystemCore_MemoryManager(param_1,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -1943,7 +1947,7 @@ int FUN_1806c960c(int32_t param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7080(uVar12,uVar2);
+  SystemCore_MemoryManager(uVar12,uVar2);
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;

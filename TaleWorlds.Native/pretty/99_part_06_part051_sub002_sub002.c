@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part051_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1803daba0(int64_t *param_1)
@@ -227,7 +231,7 @@ void FUN_1803daba0(int64_t *param_1)
             puVar30 = puVar30 + 1;
           } while ((int)plVar43 < (int)(uint)bVar5);
         }
-        FUN_18038af00(*plVar25);
+        SystemCore_PerformanceMonitor(*plVar25);
         *(int *)(*plVar25 + 0x124) = *(int *)(*plVar25 + 0x124) + 1;
         FUN_180388630(plVar38,*plVar25);
         plVar25 = plVar25 + 4;
@@ -257,7 +261,7 @@ void FUN_1803daba0(int64_t *param_1)
             plVar42 = plVar42 + 1) {
           lVar22 = *plVar42;
           if (((*(byte *)(lVar22 + 0x139) & 4) == 0) &&
-             (cVar19 = FUN_18038d0a0(lVar22,pfVar34), cVar19 != '\0')) {
+             (cVar19 = SystemCore_PerformanceMonitor(lVar22,pfVar34), cVar19 != '\0')) {
             fVar49 = (float)func_0x00018038d2f0(lVar22,pfVar34);
             if ((pfVar34[2] - fVar49 < 1.0) && (-2.0 < pfVar34[2] - fVar49)) {
               puVar36[2] = lVar22;
@@ -808,7 +812,7 @@ LAB_1803dbd52:
       if (plVar25 != (int64_t *)0x0) {
         do {
           if ((*plVar42 != 0) && (*(int *)(*plVar42 + 0x128) != -1)) {
-            FUN_18038ee20();
+            SystemCore_Encoder();
           }
           plVar42 = plVar42 + 1;
           plVar38 = (int64_t *)((int64_t)plVar38 + 1);
@@ -823,7 +827,7 @@ LAB_1803dbd52:
       if (plVar38 != (int64_t *)0x0) {
         do {
           if ((*(int64_t *)auVar37 != 0) && (*(int *)(*(int64_t *)auVar37 + 0x128) != -1)) {
-            FUN_18038ee20();
+            SystemCore_Encoder();
           }
           auVar37 = (int8_t  [8])((int64_t)auVar37 + 8);
           plVar42 = (int64_t *)((int64_t)plVar42 + 1);
@@ -835,7 +839,7 @@ LAB_1803dbd52:
           plVar25 = plVar25 + 7) {
         if (((char)plVar25[2] != '\0') && (*(int *)(*(int64_t *)(*plVar25 + 0x10) + 0x128) != -1))
         {
-          FUN_18038ee20();
+          SystemCore_Encoder();
         }
         lVar22 = lStack_100;
       }
@@ -849,7 +853,7 @@ LAB_1803dbd52:
         do {
           if ((*plVar42 != 0) && (*(int *)(*plVar42 + 0x128) == -1)) {
             *(int *)(lVar22 + 0x2f98) = *(int *)(lVar22 + 0x2f98) + 1;
-            FUN_18038ee20();
+            SystemCore_Encoder();
           }
           plVar42 = plVar42 + 1;
           plVar43 = (int64_t *)((int64_t)plVar43 + 1);
@@ -862,7 +866,7 @@ LAB_1803dbd52:
         do {
           if ((*(int64_t *)auVar37 != 0) && (*(int *)(*(int64_t *)auVar37 + 0x128) == -1)) {
             *(int *)(lVar22 + 0x2f98) = *(int *)(lVar22 + 0x2f98) + 1;
-            FUN_18038ee20();
+            SystemCore_Encoder();
           }
           plVar42 = (int64_t *)((int64_t)plVar42 + 1);
           auVar37 = (int8_t  [8])((int64_t)auVar37 + 8);
@@ -873,7 +877,7 @@ LAB_1803dbd52:
       for (plVar42 = (int64_t *)param_1[4]; plVar42 != plVar38; plVar42 = plVar42 + 7) {
         if (((char)plVar42[2] != '\0') && (*(int *)(*(int64_t *)(*plVar42 + 0x10) + 0x128) == -1))
         {
-          FUN_18038ee20();
+          SystemCore_Encoder();
         }
       }
       if (puVar1 != (uint64_t *)auStack_160) {

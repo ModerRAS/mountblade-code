@@ -1,3 +1,18 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
+#include "CoreSystem_DatabaseHandler0_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -328,13 +343,13 @@ void * FUN_180321bf0(int64_t param_1,int64_t param_2)
   *(uint64_t *)(param_1 + 0x528) = uVar3;
   *(int32_t *)(param_1 + 0x110) = 1;
   SystemCore_ConfigurationHandler0(param_1 + 0x2e0,param_2 + 0x4d8);
-  FUN_180057110(param_1 + 0x300);
+  SystemCore_ConfigValidator(param_1 + 0x300);
   uVar5 = FUN_18033d450(param_1 + 0x300,*(uint64_t *)(param_1 + 0x308),
                         *(uint64_t *)(param_2 + 0x60710),*(uint64_t *)(param_2 + 0x60718));
   FUN_18032d520(uVar5,&puStack_58);
-  cVar2 = FUN_180624a00(&puStack_58);
+  cVar2 = UltraHighFreq_LogManager1(&puStack_58);
   if (cVar2 == '\0') {
-    FUN_180624910(&puStack_58);
+    SystemManager_Processor(&puStack_58);
   }
   uVar4 = (uint64_t)uStack_48;
   if (lStack_50 != 0) {
@@ -387,7 +402,7 @@ uint64_t FUN_180321e80(int64_t param_1,float param_2)
     return uVar1 & 0xffffffffffffff00;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_7408_ptr,(double)param_2);
+  SystemParameterHandler(system_message_context,&processed_var_7408_ptr,(double)param_2);
 }
 
 
@@ -489,7 +504,7 @@ void FUN_1803224b0(int64_t param_1)
     uStack_74 = (int32_t)((uint64_t)param_1 >> 0x20);
     uStack_50 = uStack_78;
     uStack_4c = uStack_74;
-    FUN_18015b810(uStack_80,0,
+    SystemCore_DataTransformer(uStack_80,0,
                   *(int64_t *)(*(int64_t *)(param_1 + 0x2d8) + 0x60860) - *plStack_58 >> 3,0x10,
                   0xffffffffffffffff,&plStack_58,uVar12,puVar13);
     puVar8 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3);
@@ -522,7 +537,7 @@ void FUN_1803224b0(int64_t param_1)
     puVar8 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0x9b4));
     *puVar8 = CONCAT44(fStackX_1c,uStackX_18);
     puVar8[1] = 0;
-    FUN_18066c220(param_1 + 0x9a8,acStackX_20,*(int32_t *)(param_1 + 0x998),
+    RenderingShaderProcessor0(param_1 + 0x9a8,acStackX_20,*(int32_t *)(param_1 + 0x998),
                   *(int32_t *)(param_1 + 0x9a0),CONCAT44(uVar11,1));
     if (acStackX_20[0] != '\0') {
       uVar10 = (uint64_t)(uVar9 % uStackX_24);
@@ -533,7 +548,7 @@ void FUN_1803224b0(int64_t param_1)
     *(int64_t *)(param_1 + 0x9a0) = *(int64_t *)(param_1 + 0x9a0) + 1;
 LAB_18032285f:
     auStackX_10[0] = *(int32_t *)(param_1 + 0x150);
-    FUN_1800571e0(param_1 + 0x230,auStackX_10);
+    SystemDatabaseProcessor(param_1 + 0x230,auStackX_10);
     return;
   }
 LAB_180322608:

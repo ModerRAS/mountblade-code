@@ -278,7 +278,7 @@ uint64_t FUN_180896140(int64_t param_1)
     uStack_110 = 0;
     uStack_100 = 0xffffffffffffffff;
     aiStack_f8[0] = -1;
-    FUN_1807d1650(plStack_108,&uStack_100,aiStack_f8);
+    NetworkSystem_ConnectionHandler(plStack_108,&uStack_100,aiStack_f8);
     aiStackX_8[0] = aiStack_f8[0];
     if (aiStack_f8[0] != -1) {
       plVar13 = plStack_108;
@@ -531,7 +531,7 @@ LAB_18089638e:
 LAB_1808963ec:
   if ((uVar8 >> 0x19 & 1) != 0) {
     lVar5 = *(int64_t *)(param_1 + 0xa0);
-    uVar6 = FUN_18073c4c0(*(uint64_t *)(param_1 + 0x60),param_1 + 0xa0,0);
+    uVar6 = UtilitiesSystem_MathCalculator(*(uint64_t *)(param_1 + 0x60),param_1 + 0xa0,0);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
@@ -580,7 +580,7 @@ uint64_t * FUN_180896830(uint64_t *param_1,uint64_t param_2)
 
 {
   *param_1 = &processed_var_7872_ptr;
-  FUN_180840270(param_1 + 5);
+  SystemCore_MemoryManager(param_1 + 5);
   *param_1 = &processed_var_7840_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x38);
@@ -711,10 +711,10 @@ uint64_t FUN_180896c10(int64_t param_1,uint64_t param_2,uint64_t param_3)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18088ee20(param_3,param_1 + 0x10);
+  uVar1 = UISystem_LayoutEngine(param_3,param_1 + 0x10);
   if ((int)uVar1 == 0) {
     *(int32_t *)(param_1 + 0x14) = 0;
-    if ((1 < *(int *)(param_1 + 0x10)) && (uVar1 = FUN_18088ee60(param_3), (int)uVar1 != 0)) {
+    if ((1 < *(int *)(param_1 + 0x10)) && (uVar1 = SystemCore_DataProcessor(param_3), (int)uVar1 != 0)) {
       return uVar1;
     }
     uVar1 = 0;

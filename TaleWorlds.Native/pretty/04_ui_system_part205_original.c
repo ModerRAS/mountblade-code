@@ -175,7 +175,7 @@ typedef void*     memory_ptr_t;           /**< 内存指针类型 */
 #define UI_InternalInit               SystemStateManager    /**< UI内部初始化函数 */
 #define UI_InternalCleanup            SystemConfigManager    /**< UI内部清理函数 */
 #define UI_MemoryAllocator            UI_MemoryAllocator    /**< UI内存分配器 */
-#define UI_ProcessorInit              FUN_1807682e0    /**< UI处理器初始化函数 */
+#define UI_ProcessorInit              SystemCore_DataProcessor    /**< UI处理器初始化函数 */
 #define UI_ErrorHandler               AdvancedSystemController    /**< UI错误处理器 */
 #define UI_EventProcessor             FUN_180767c00    /**< UI事件处理器 */
 #define UI_DataTransformer            FUN_1807863b0    /**< UI数据变换器 */

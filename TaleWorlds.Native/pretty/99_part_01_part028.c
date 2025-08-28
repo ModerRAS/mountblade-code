@@ -1,3 +1,9 @@
+/* FUN_函数别名定义 */
+#define DataValidator_CheckIntegrity DataValidator_CheckIntegrity  // DataValidator_CheckIntegrity 的语义化别名
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -70,7 +76,7 @@ void FUN_1800babf0(uint64_t param_1)
   auStack_50[0] = 0;
   iStack_58 = 9;
   strcpy_s(auStack_50,0x10,&system_data_2fe8);
-  iVar1 = FUN_180628d60(&puStack_f0,&puStack_68);
+  iVar1 = DataValidator_CheckIntegrity(&puStack_f0,&puStack_68);
   if (iVar1 < 0) {
     plVar8 = (int64_t *)*system_main_module_state;
     plStack_d0 = plVar8;
@@ -130,7 +136,7 @@ void FUN_1800babf0(uint64_t param_1)
                     // WARNING: Subroutine does not return
       memcpy(puVar6,puVar5,1);
     }
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     uVar19 = *(uint *)(lVar7 + 0x10);
     uVar17 = (uint64_t)uVar19;
     if (*(int64_t *)(lVar7 + 8) != 0) {
@@ -218,7 +224,7 @@ void FUN_1800babf0(uint64_t param_1)
       uVar9 = (uint64_t)uVar12;
       iVar1 = uVar12 - uStack_e0;
     }
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     uVar19 = *(uint *)(lVar7 + 0x10);
     if ((*(int64_t *)(lVar7 + 8) != 0) && (uVar19 != 0)) {
       uVar12 = uVar19 + 1;
@@ -360,7 +366,7 @@ LAB_1800bb37f:
   uStack_e0 = uVar19;
 LAB_1800bb587:
   lVar7 = *system_main_module_state;
-  plVar8 = (int64_t *)FUN_180058080(lVar7 + 0x938,&plStack_d0,&puStack_f0);
+  plVar8 = (int64_t *)HighFreq_AnimationSystem1(lVar7 + 0x938,&plStack_d0,&puStack_f0);
   ppuVar10 = &puStack_f0;
   if (*plVar8 != lVar7 + 0x938) {
     ppuVar10 = (void **)(*plVar8 + 0x40);
@@ -446,10 +452,10 @@ int64_t FUN_1800bb630(int64_t param_1)
   *puVar5 = 0x73656c75646f4d2f;
   *(int16_t *)(puVar5 + 1) = 0x2f;
   uStack_b0 = 9;
-  iVar3 = FUN_180628d60(param_1,&puStack_c0);
+  iVar3 = DataValidator_CheckIntegrity(param_1,&puStack_c0);
   if (-1 < iVar3) {
-    uVar10 = FUN_180629a40(param_1,&puStack_80,iVar3 + 9,*(int *)(param_1 + 0x10) + 1);
-    FUN_18005d190(param_1,uVar10);
+    uVar10 = NetworkSystem_ProtocolParser(param_1,&puStack_80,iVar3 + 9,*(int *)(param_1 + 0x10) + 1);
+    SystemScheduler(param_1,uVar10);
     puStack_80 = &system_data_buffer_ptr;
     if (puStack_78 == (int8_t *)0x0) {
       puStack_78 = (int8_t *)0x0;
@@ -466,7 +472,7 @@ int64_t FUN_1800bb630(int64_t param_1)
       uStack_c8 = CONCAT44(uStack_c8._4_4_,uVar2);
       *puVar6 = 0x2f;
       uStack_d0 = 1;
-      FUN_180628d60(param_1,&puStack_e0);
+      DataValidator_CheckIntegrity(param_1,&puStack_e0);
       puStack_e0 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar6);
@@ -528,7 +534,7 @@ int64_t FUN_1800bb630(int64_t param_1)
                     // WARNING: Subroutine does not return
     memcpy(puVar7 + 1,*(uint64_t *)(lVar9 + 8),(int64_t)(iVar3 + 1));
   }
-  lVar9 = FUN_180628ca0();
+  lVar9 = MemoryDebugger0();
   uVar4 = *(uint *)(lVar9 + 0x10);
   uVar11 = (uint64_t)uVar4;
   if (*(int64_t *)(lVar9 + 8) != 0) {

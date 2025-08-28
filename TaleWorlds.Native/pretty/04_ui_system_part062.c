@@ -306,14 +306,14 @@ uint FUN_180699e30(int64_t param_1,uint param_2,int32_t *param_3)
   bool bVar7;
   
   uVar6 = 0;
-  iVar2 = FUN_18069bbd0(param_1,0x80);
+  iVar2 = SystemCore_Monitor(param_1,0x80);
   if (iVar2 != 0) {
     uVar6 = 0;
     iVar2 = 3;
     do {
       uVar5 = ((uint)((*(int *)(param_1 + 0x1c) + -1) * 0x80) >> 8) + 1;
       if (*(int *)(param_1 + 0x18) < 0) {
-        FUN_18069ec80(param_1);
+        SystemCore_Handler(param_1);
       }
       uVar4 = *(uint64_t *)(param_1 + 0x10);
       uVar3 = (uint64_t)uVar5 << 0x38;
@@ -329,7 +329,7 @@ uint FUN_180699e30(int64_t param_1,uint param_2,int32_t *param_3)
       iVar2 = iVar2 + -1;
       *(uint *)(param_1 + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (-1 < iVar2);
-    iVar2 = FUN_18069bbd0(param_1,0x80);
+    iVar2 = SystemCore_Monitor(param_1,0x80);
     if (iVar2 != 0) {
       uVar6 = -uVar6;
     }
@@ -354,14 +354,14 @@ uint FUN_180699e38(int64_t param_1,uint param_2,int32_t *param_3)
   bool bVar7;
   
   uVar6 = 0;
-  iVar2 = FUN_18069bbd0(param_1,0x80);
+  iVar2 = SystemCore_Monitor(param_1,0x80);
   if (iVar2 != 0) {
     uVar6 = 0;
     iVar2 = 3;
     do {
       uVar5 = ((uint)((*(int *)(param_1 + 0x1c) + -1) * 0x80) >> 8) + 1;
       if (*(int *)(param_1 + 0x18) < 0) {
-        FUN_18069ec80(param_1);
+        SystemCore_Handler(param_1);
       }
       uVar4 = *(uint64_t *)(param_1 + 0x10);
       uVar3 = (uint64_t)uVar5 << 0x38;
@@ -377,7 +377,7 @@ uint FUN_180699e38(int64_t param_1,uint param_2,int32_t *param_3)
       iVar2 = iVar2 + -1;
       *(uint *)(param_1 + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (-1 < iVar2);
-    iVar2 = FUN_18069bbd0(param_1,0x80);
+    iVar2 = SystemCore_Monitor(param_1,0x80);
     if (iVar2 != 0) {
       uVar6 = -uVar6;
     }
@@ -410,7 +410,7 @@ uint FUN_180699e5f(void)
   do {
     uVar4 = ((uint)((*(int *)(unaff_RDI + 0x1c) + -1) * 0x80) >> 8) + 1;
     if (*(int *)(unaff_RDI + 0x18) < (int)unaff_ESI) {
-      FUN_18069ec80();
+      SystemCore_Handler();
     }
     uVar3 = *(uint64_t *)(unaff_RDI + 0x10);
     uVar2 = (uint64_t)uVar4;
@@ -427,7 +427,7 @@ uint FUN_180699e5f(void)
     iVar7 = iVar7 + -1;
     *(uint *)(unaff_RDI + 0x1c) = uVar4 << (bVar1 & 0x1f);
   } while (-1 < iVar7);
-  iVar7 = FUN_18069bbd0();
+  iVar7 = SystemCore_Monitor();
   if (iVar7 != 0) {
     uVar6 = -uVar6;
   }
@@ -617,7 +617,7 @@ void FUN_18069a210(int64_t param_1,int64_t param_2)
   do {
     uVar6 = ((uint)((*(int *)(param_1 + 0x42dc) + -1) * 0x80) >> 8) + 1;
     if (*(int *)(param_1 + 0x42d8) < 0) {
-      FUN_18069ec80(param_1 + 0x42c0);
+      SystemCore_Handler(param_1 + 0x42c0);
     }
     uVar5 = *(uint64_t *)(param_1 + 0x42d0);
     uVar4 = (uint64_t)uVar6 << 0x38;

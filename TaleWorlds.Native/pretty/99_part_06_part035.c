@@ -74,7 +74,7 @@ void FUN_1803c7730(int64_t *param_1,int64_t *param_2)
   uStackX_18 = bVar22;
   uStack_108 = uVar21;
   if (((int)param_2[3] != 0) &&
-     (iVar8 = FUN_180191c00(system_system_data_memory,param_2 + 1), lStack_f8 = 0, iVar8 != -1)) {
+     (iVar8 = RenderingSystem_PostProcessor(system_system_data_memory,param_2 + 1), lStack_f8 = 0, iVar8 != -1)) {
     lStack_f8 = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar12 + 0x38);
   }
   puVar9 = (uint64_t *)FUN_1803c7600(param_1,param_2,bVar22,lStack_f8);

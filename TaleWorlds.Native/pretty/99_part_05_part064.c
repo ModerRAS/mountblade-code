@@ -1,3 +1,11 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -446,7 +454,7 @@ FUN_1803a0f80(int64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t *param
   puVar3 = *(uint64_t **)(*(int64_t *)(param_1 + 8) + uVar8 * 8);
   while( true ) {
     if (puVar3 == (uint64_t *)0x0) {
-      FUN_18066c220(param_1 + 0x20,&puStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&puStackX_8,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if ((char)puStackX_8 == '\0') {
         lVar5 = *(int64_t *)(param_1 + 8);
@@ -630,10 +638,10 @@ void FUN_1803a1190(uint64_t *param_1)
   param_1[0xce] = 0;
   *(int32_t *)(param_1 + 0xd0) = 0;
   param_1[0xcd] = &system_state_ptr;
-  FUN_18004b730();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
   FUN_1800ed380(param_1 + 0xa8);
-  FUN_180057830();
+  DataTransformer0();
   if ((int64_t *)param_1[0x38] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x38] + 0x38))();
   }
@@ -704,12 +712,12 @@ void FUN_1803a1330(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t para
   iVar9 = (int)(lVar8 + 1);
   uStack_b8 = uVar6;
   if (iVar9 < 1) {
-    cVar2 = FUN_180624af0(&puStack_c8);
+    cVar2 = RenderingSystem_RenderQueue(&puStack_c8);
     if (cVar2 == '\0') {
       if ((0 < *(int *)(param_2 + 0x10)) &&
          (*(char *)(*(int64_t *)(param_1 + 0x10) + 0x30) != '\0')) {
         *(int8_t *)(*(int64_t *)(param_1 + 0x10) + 0x30) = 0;
-        FUN_180627020(&processed_var_7912_ptr);
+        SystemCore_Allocator(&processed_var_7912_ptr);
       }
     }
     else {

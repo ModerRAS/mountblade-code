@@ -78,7 +78,7 @@ bool FUN_1806a5db0(int64_t param_1,uint64_t param_2,int32_t *param_3)
   uStack_10 = param_3[2];
   puStack_28 = &memory_allocator_3312_ptr;
   uStack_20 = param_2;
-  FUN_1806a39a0(uStack_10,&puStack_28,0x1c);
+  RenderingSystem_StateManager0(uStack_10,&puStack_28,0x1c);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 
@@ -155,12 +155,12 @@ bool FUN_1806a5e70(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_18;
   uint64_t uStack_10;
   
-  puVar1 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8);
+  puVar1 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8);
   uStack_18 = *puVar1;
   puStack_28 = &memory_allocator_3200_ptr;
   uStack_20 = param_2;
   uStack_10 = param_4;
-  FUN_1806a39a0(param_1,&puStack_28,0x10);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x10);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 
@@ -602,12 +602,12 @@ bool FUN_1806a6320(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_18;
   uint64_t uStack_10;
   
-  puVar1 = (int32_t *)FUN_1806a74b0(param_1,auStackX_8);
+  puVar1 = (int32_t *)RenderingSystem_ShaderProcessor(param_1,auStackX_8);
   uStack_18 = *puVar1;
   puStack_28 = &memory_allocator_3200_ptr;
   uStack_20 = param_2;
   uStack_10 = param_4;
-  FUN_1806a39a0(param_1,&puStack_28,0x11);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0x11);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 
@@ -769,7 +769,7 @@ void FUN_1806a66c0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   uStack_30 = param_2;
   uStack_28 = param_3;
   uStack_20 = param_4;
-  FUN_1806a39a0(param_1,&puStack_38,0x1b);
+  RenderingSystem_StateManager0(param_1,&puStack_38,0x1b);
   return;
 }
 
@@ -798,7 +798,7 @@ int8_t FUN_1806a6700(int64_t param_1,uint64_t param_2,int *param_3)
   *(uint64_t *)(param_3 + 2) = uStack_10;
   puStack_28 = &memory_allocator_3184_ptr;
   uStack_20 = param_2;
-  FUN_1806a39a0(param_1,&puStack_28,0xd);
+  RenderingSystem_StateManager0(param_1,&puStack_28,0xd);
   return *(char *)(param_1 + 0x1b8) == '\0';
 }
 

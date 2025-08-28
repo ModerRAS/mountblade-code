@@ -472,7 +472,7 @@ void FUN_18057f880(int64_t param_1,float *param_2,int64_t param_3,int *param_4)
     pplStack_5c0 = &plStack_558;
   }
   pplStack_5c8 = (int64_t **)0xffffffffffffffff;
-  FUN_18015b810();
+  SystemCore_DataTransformer();
   *piStack_560 = iStack_5b8;
   iVar8 = iStack_5b8 >> 1;
   iVar4 = iStack_5b8;

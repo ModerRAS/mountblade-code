@@ -1,3 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /**
  * @file 99_part_01_part027.c
  * @brief 高级数据结构和算法处理模块
@@ -19,7 +27,6 @@
  * @date 2025-08-28
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 /*=============================================================================
                              常量定义模块
@@ -778,7 +785,7 @@ void FUN_1800b9e60(int64_t heap_base, int64_t start_index, int64_t heap_size, in
  * @param float_array 浮点数组指针
  * @return void
  */
-void FUN_1800b9f60(float* float_array)
+void SystemCore_Parser(float* float_array)
 {
     float min_value;                    /**< 最小值 */
     float max_value;                    /**< 最大值 */
@@ -966,7 +973,7 @@ void FUN_1800ba180(int64_t allocator_context)
                 ref_count_ptr = (int*)(aligned_address + 0x18);
                 *ref_count_ptr = *ref_count_ptr + -1;
                 if (*ref_count_ptr == 0) {
-                    FUN_18064d630();
+                    SystemCore_DebugHandler();
                     return;
                 }
             }
@@ -1011,7 +1018,7 @@ void FUN_1800ba1b0(int64_t async_context)
                 ref_count_ptr = (int*)(aligned_address + 0x18);
                 *ref_count_ptr = *ref_count_ptr + -1;
                 if (*ref_count_ptr == 0) {
-                    FUN_18064d630();
+                    SystemCore_DebugHandler();
                     return;
                 }
             }
@@ -1056,7 +1063,7 @@ void FUN_1800ba1f0(int64_t thread_context)
                 ref_count_ptr = (int*)(aligned_address + 0x18);
                 *ref_count_ptr = *ref_count_ptr + -1;
                 if (*ref_count_ptr == 0) {
-                    FUN_18064d630();
+                    SystemCore_DebugHandler();
                     return;
                 }
             }
@@ -1152,7 +1159,7 @@ int64_t FUN_1800ba340(int64_t resource_context, uint64_t release_flags,
     if (*(int64_t**)(resource_context + 0xe8) != (int64_t*)0x0) {
         (**(code**)(**(int64_t**)(resource_context + 0xe8) + 0x38))();
     }
-    FUN_180049470(resource_context);
+    SystemCore_SecurityManager(resource_context);
     if ((release_flags & 1) != 0) {
         free(resource_context, MEMORY_BLOCK_SIZE, param3, param4, cleanup_flag);
     }
@@ -1227,7 +1234,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     path_length = GetModuleFileNameW(0, module_name, PATH_MAX_LENGTH);
     if (path_length == 0) {
         FUN_180627160(&processed_var_8696_ptr);
-        debug_value = FUN_180628ca0();
+        debug_value = MemoryDebugger0();
         SystemCore_NetworkHandler0(module_param, debug_value);
         buffer_value8 = 1;
         SystemSecurityChecker(stack_checksum ^ (uint64_t)debug_buffer);

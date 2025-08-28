@@ -170,10 +170,10 @@ LAB_180466960:
           uVar4 = uVar4 + 1;
         } while (pcVar16[uVar4] != '\0');
         if (((uVar4 < 3) || (*pcVar16 != '0')) || ((pcVar16[1] + 0xa8U & 0xdf) != 0)) {
-          FUN_18010cbc0(pcVar16,&rendering_buffer_2208_ptr,&puStackX_8);
+          SystemCore_NetworkHandler(pcVar16,&rendering_buffer_2208_ptr,&puStackX_8);
         }
         else {
-          FUN_18010cbc0(pcVar16,&processed_var_5412_ptr,&puStackX_8);
+          SystemCore_NetworkHandler(pcVar16,&processed_var_5412_ptr,&puStackX_8);
         }
 LAB_1804669cf:
         uVar8 = SUB81(puStackX_8,0);
@@ -220,7 +220,7 @@ LAB_180466a85:
         }
         else {
           if (pcVar16 != (char *)0x0) {
-            FUN_18010cbc0(pcVar16,&rendering_buffer_2208_ptr,puVar1);
+            SystemCore_NetworkHandler(pcVar16,&rendering_buffer_2208_ptr,puVar1);
             goto LAB_180466a85;
           }
 LAB_180466a8a:
@@ -401,8 +401,8 @@ LAB_180466d74:
                       fStack_1e4 = 1.0;
                       fStack_1e0 = 1.0;
                       uStack_1dc = 0x7f7fffff;
-                      FUN_180631960(pcVar16,&processed_var_8872_ptr,&uStack_228);
-                      FUN_180631960(pcVar16,&processed_var_8408_ptr,&fStack_1e8);
+                      StringProcessor(pcVar16,&processed_var_8872_ptr,&uStack_228);
+                      StringProcessor(pcVar16,&processed_var_8408_ptr,&fStack_1e8);
                       uStack_1b8 = 0x3f800000;
                       uStack_1b4 = 0;
                       uStack_1b0 = 0;
@@ -498,7 +498,7 @@ LAB_180467095:
                       puVar1 = puStackX_8;
                       uVar5 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0xd8,8,3);
                       auStackX_18[0] = func_0x000180464d70(uVar5,&fStack_258,puVar1);
-                      FUN_18005ea90(plVar2,auStackX_18);
+                      SystemSecurity_Manager(plVar2,auStackX_18);
                       *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + 1;
                       pcVar9 = "first_tangent";
                       do {
@@ -531,7 +531,7 @@ LAB_180467164:
                             uStack_134 = 0;
                             uStack_130 = 0;
                             uStack_12c = 0x3f800000;
-                            FUN_180631960(puVar13,&processed_var_8872_ptr,&uStack_138);
+                            StringProcessor(puVar13,&processed_var_8872_ptr,&uStack_138);
                             lVar12 = *(int64_t *)
                                       (*plVar2 + -8 +
                                       (*(int64_t *)(param_1 + 0xd8) - *plVar2 >> 3) * 8);
@@ -594,7 +594,7 @@ LAB_1804672b4:
                             uStack_f4 = 0;
                             uStack_f0 = 0;
                             uStack_ec = 0x3f800000;
-                            FUN_180631960(puVar13,&processed_var_8872_ptr,&uStack_f8);
+                            StringProcessor(puVar13,&processed_var_8872_ptr,&uStack_f8);
                             lVar12 = *(int64_t *)
                                       (*plVar2 + -8 +
                                       (*(int64_t *)(param_1 + 0xd8) - *plVar2 >> 3) * 8);

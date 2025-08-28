@@ -1,3 +1,10 @@
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+#include "fun_aliases_batch.txt"
+
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part001.c - UI系统接口定义文件 (179个函数)

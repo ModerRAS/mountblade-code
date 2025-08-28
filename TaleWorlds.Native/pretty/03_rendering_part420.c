@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -208,7 +212,7 @@ FUN_180499720(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   lVar3 = func_0x000180499a90(param_1,*(uint64_t *)(*(int64_t *)(param_1 + 8) + uVar2 * 8),
                               param_4);
   if (lVar3 == 0) {
-    FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
+    RenderingShaderProcessor0(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
     lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xa0,*(int8_t *)(param_1 + 0x2c));
     CoreEngineDataTransformer(lVar3,param_4);

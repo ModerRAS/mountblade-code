@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -115,7 +119,7 @@ LAB_18083f558:
     }
     else {
       if (*param_2 != 0) {
-        uVar3 = FUN_18076a440(*param_2,(int)plVar1[2],1);
+        uVar3 = MathTrigonometryFunction0(*param_2,(int)plVar1[2],1);
         goto LAB_18083f558;
       }
       uVar3 = 0x1c;
@@ -179,7 +183,7 @@ uint64_t * FUN_18083f670(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_18083f6e0(uint64_t *param_1,uint64_t param_2)
 
 {
-  FUN_180840270(param_1 + 4);
+  SystemCore_MemoryManager(param_1 + 4);
   *param_1 = &processed_var_9496_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30);
@@ -192,7 +196,7 @@ uint64_t * FUN_18083f6e0(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_18083f760(uint64_t *param_1,uint64_t param_2)
 
 {
-  FUN_180840270(param_1 + 0xb);
+  SystemCore_MemoryManager(param_1 + 0xb);
   param_1[7] = &processed_var_9496_ptr;
   *param_1 = &processed_var_9496_ptr;
   if ((param_2 & 1) != 0) {
@@ -281,7 +285,7 @@ int FUN_18083f9b0(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4,
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074be90(iVar1 + param_1,param_2 - iVar1,param_5);
+  iVar2 = SystemCore_Cleanup(iVar1 + param_1,param_2 - iVar1,param_5);
   return iVar2 + iVar1;
 }
 
@@ -396,7 +400,7 @@ uint64_t FUN_18083fc50(int32_t param_1,char *param_2,uint64_t *param_3)
     if ((((iVar3 != 0) ||
          (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
           (iVar4 = SystemSecurityProcessor(alStackX_18 + 1), iVar4 == 0)))) && (iVar3 == 0)) &&
-       (iVar3 = FUN_18088dec0(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
+       (iVar3 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
        ) {
       *(int32_t *)(apuStack_38[0] + 4) = 0;
       *apuStack_38[0] = &processed_var_440_ptr;
@@ -496,7 +500,7 @@ uint64_t FUN_18083fde0(int32_t param_1,char *param_2,uint64_t *param_3)
     if ((((iVar3 != 0) ||
          (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
           (iVar4 = SystemSecurityProcessor(alStackX_18 + 1), iVar4 == 0)))) && (iVar3 == 0)) &&
-       (iVar3 = FUN_18088dec0(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
+       (iVar3 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
        ) {
       *(int32_t *)(apuStack_38[0] + 4) = 0;
       *apuStack_38[0] = &memory_allocator_312_ptr;
@@ -596,7 +600,7 @@ uint64_t FUN_18083ff70(int32_t param_1,char *param_2,uint64_t *param_3)
     if ((((iVar3 != 0) ||
          (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
           (iVar4 = SystemSecurityProcessor(alStackX_18 + 1), iVar4 == 0)))) && (iVar3 == 0)) &&
-       (iVar3 = FUN_18088dec0(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
+       (iVar3 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_38,0x228), iVar3 == 0)
        ) {
       *(int32_t *)(apuStack_38[0] + 4) = 0;
       *apuStack_38[0] = &processed_var_560_ptr;
@@ -751,7 +755,7 @@ void FUN_1808401c0(uint64_t param_1)
   if ((((iVar1 != 0) ||
        (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
         (iVar2 = SystemSecurityProcessor(alStackX_10 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), iVar1 == 0))
   {
     *puStackX_20 = &processed_var_4128_ptr;
     *(int32_t *)(puStackX_20 + 1) = 0x18;
@@ -766,7 +770,7 @@ void FUN_1808401c0(uint64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180840270(int64_t *param_1)
+uint64_t SystemCore_MemoryManager(int64_t *param_1)
 
 {
   int iVar1;
@@ -909,7 +913,7 @@ LAB_18084055a:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_5400_ptr;
     *(int32_t *)(apuStack_138[0] + 3) = 0;

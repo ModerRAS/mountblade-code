@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -662,7 +667,7 @@ uint64_t FUN_1805fded0(int64_t param_1,int64_t *param_2)
                   if (*(int *)(lVar9 + 0x568) == 1) {
                     if (*(char *)(lVar11 + 0x58 + lVar14) == '\0') {
                       func_0x00018055f040(auStack_168,lVar14 + 0x10 + lVar11);
-                      FUN_1805a4a20(lVar9 + 0x28,1);
+                      UISystem_InputHandler(lVar9 + 0x28,1);
                     }
                     else {
                       FUN_18051ebd0(lVar9,1);
@@ -726,7 +731,7 @@ code_r0x0001805fe968:
                   if (*(int *)(lVar9 + 0x568) == 1) {
                     if (*(char *)(lVar11 + 0x58 + lVar14) == '\0') {
                       uVar7 = func_0x00018055f040(auStack_168,lVar14 + 0x10 + lVar11);
-                      FUN_1805a4a20(lVar9 + 0x28,0,uVar7,0);
+                      UISystem_InputHandler(lVar9 + 0x28,0,uVar7,0);
                     }
                     else {
                       FUN_18051ebd0(lVar9,0);
@@ -851,7 +856,7 @@ void FUN_1805fed10(int32_t param_1,int32_t param_2)
   int iVar1;
   
   UNRECOVERED_JUMPTABLE_00 = *(code **)(*system_cache_buffer + 0x70);
-  iVar1 = FUN_18053a410(&system_data_5f30,param_1,param_2);
+  iVar1 = SystemCacheManager(&system_data_5f30,param_1,param_2);
   iVar1 = *(int *)(system_system_memory + (int64_t)iVar1 * 4);
   if (iVar1 != -1) {
                     // WARNING: Could not recover jumptable at 0x0001805fed66. Too many branches

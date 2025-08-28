@@ -42,7 +42,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
   if (param_2 == 0xc4) {
-    iVar9 = FUN_18041efc0();
+    iVar9 = RenderingSystem_Renderer();
     iVar9 = iVar9 + -2;
     while (0 < iVar9) {
       iVar18 = 0;
@@ -152,7 +152,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
     goto LAB_1804226bb;
   }
   if (param_2 == 0xdb) {
-    iVar9 = FUN_18041efc0();
+    iVar9 = RenderingSystem_Renderer();
     for (iVar9 = iVar9 + -2; 0 < iVar9; iVar9 = iVar9 - iVar18) {
       lVar20 = *param_1;
       pbVar17 = *(byte **)(lVar20 + 0xb8);
@@ -191,7 +191,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
           uVar8 = (ushort)bVar13;
         }
         else {
-          uVar8 = FUN_18041efc0(lVar22);
+          uVar8 = RenderingSystem_Renderer(lVar22);
         }
         pbVar17 = &ui_system_data_1504_ptr + lVar20;
         lVar20 = lVar20 + 1;
@@ -207,15 +207,15 @@ void FUN_180422040(int64_t *param_1,int param_2)
     goto LAB_1804226bb;
   }
   if (param_2 == 0xdd) {
-    iVar9 = FUN_18041efc0(*param_1);
+    iVar9 = RenderingSystem_Renderer(*param_1);
     if (iVar9 == 4) {
-      uVar10 = FUN_18041efc0(*param_1);
+      uVar10 = RenderingSystem_Renderer(*param_1);
       *(int32_t *)(param_1 + 0x90d) = uVar10;
     }
     goto LAB_1804226bb;
   }
   if ((param_2 == 0xff) ||
-     (((0xf < param_2 - 0xe0U && (param_2 != 0xfe)) || (iVar9 = FUN_18041efc0(), iVar9 < 2))))
+     (((0xf < param_2 - 0xe0U && (param_2 != 0xfe)) || (iVar9 = RenderingSystem_Renderer(), iVar9 < 2))))
   goto LAB_1804226bb;
   iVar18 = iVar9 + -2;
   if (param_2 == 0xe0) {
@@ -287,8 +287,8 @@ void FUN_180422040(int64_t *param_1,int param_2)
         RenderingGeometryProcessor0(lVar20);
         *(int64_t *)(lVar20 + 0xb8) = *(int64_t *)(lVar20 + 0xb8) + 1;
       }
-      FUN_18041efc0(*param_1);
-      FUN_18041efc0();
+      RenderingSystem_Renderer(*param_1);
+      RenderingSystem_Renderer();
       lVar20 = *param_1;
       pbVar17 = *(byte **)(lVar20 + 0xb8);
       if (pbVar17 < *(byte **)(lVar20 + 0xc0)) {
@@ -330,7 +330,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
   int64_t lVar9;
   int64_t *plVar10;
   
-  iVar3 = FUN_18041efc0();
+  iVar3 = RenderingSystem_Renderer();
   lVar9 = *param_1;
   pbVar2 = *(byte **)(lVar9 + 0xb8);
   if (pbVar2 < *(byte **)(lVar9 + 0xc0)) {
@@ -572,7 +572,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
   piVar3 = (int *)*param_1;
   uVar20 = 1;
   uVar19 = 1;
-  iVar6 = FUN_18041efc0(piVar3);
+  iVar6 = RenderingSystem_Renderer(piVar3);
   if (10 < iVar6) {
     pcVar8 = *(char **)(piVar3 + 0x2e);
     if (*(char **)(piVar3 + 0x30) <= pcVar8) {
@@ -585,10 +585,10 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
     cVar1 = *pcVar8;
     *(char **)(piVar3 + 0x2e) = pcVar8 + 1;
     if (cVar1 == '\b') {
-      iVar7 = FUN_18041efc0(piVar3);
+      iVar7 = RenderingSystem_Renderer(piVar3);
       piVar3[1] = iVar7;
       if (iVar7 != 0) {
-        iVar7 = FUN_18041efc0();
+        iVar7 = RenderingSystem_Renderer();
         *piVar3 = iVar7;
         if (iVar7 != 0) {
           pbVar15 = *(byte **)(piVar3 + 0x2e);
@@ -999,8 +999,8 @@ LAB_180423201:
       }
     }
     else if (cVar3 == -0x24) {
-      FUN_18041efc0(*param_1);
-      FUN_18041efc0(*param_1);
+      RenderingSystem_Renderer(*param_1);
+      RenderingSystem_Renderer(*param_1);
     }
     else {
       iVar4 = FUN_180422040(param_1,cVar3);

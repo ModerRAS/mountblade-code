@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -644,7 +650,7 @@ void process_configuration_file(int64_t param_1)
   stack_cookie2 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
   FUN_180217c40(param_1 + 0x260);
   FUN_1801596c0();
-  FUN_180624440(temp_buffer, stack_buffer2);
+  SystemCore_EncryptionEngine(temp_buffer, stack_buffer2);
   FUN_1800c4720(stream_handle);
   default_ptr = &system_buffer_ptr;
   if (file_ptr != (void *)0x0) {
@@ -679,7 +685,7 @@ void process_configuration_file(int64_t param_1)
         } while (processed_line[config_name_len + 2] != '\0');
         if (processed_line[config_name_len + 1] == '\r') {
           if (0x1ff < config_name_len) {
-            FUN_1808fcdc8();
+            UltraHighFreq_ThreadManager1();
             exception_handler = (code *)swi(3);
             (*exception_handler)();
             return;
@@ -780,7 +786,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
-  alloc_result = FUN_18062dee0(&stack_cookie, default_ptr, &processed_var_4880_ptr);
+  alloc_result = SystemCore_Validator(&stack_cookie, default_ptr, &processed_var_4880_ptr);
   file_handle = temp_long2;
   if (temp_long2 == 0) {
     file_handle = FUN_1801595d0(alloc_result, &string_ptr);
@@ -962,7 +968,7 @@ LAB_18021ae8e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr, error_handler);
+  SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr, error_handler);
   return -1;
 }
 
@@ -1029,7 +1035,7 @@ LAB_18021ae8e:
   if (*(void **)(unaff_RSI + 8) != (void *)0x0) {
     error_handler = *(void **)(unaff_RSI + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr);
+  SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr);
   return -1;
 }
 
@@ -1105,7 +1111,7 @@ LAB_18021af9e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4680_ptr, error_handler);
+  SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4680_ptr, error_handler);
   return -1;
 }
 
@@ -1231,7 +1237,7 @@ void initialize_message_system(void)
   if (0 < (int)queue_capacity) {
     queue_start = *(int64_t *)(*system_main_module_state + 0x888);
     if (*(int64_t *)(*system_main_module_state + 0x890) - queue_start >> 5 == 0) {
-      queue_start = FUN_180628ca0();
+      queue_start = MemoryDebugger0();
     }
     message_ptr = &system_data_buffer_ptr;
     message_timeout = 0;
@@ -1247,7 +1253,7 @@ void initialize_message_system(void)
     *(int16_t *)((int64_t)message_handler + 0xc) = 0x7362;  // "bs"
     *(int8_t *)((int64_t)message_handler + 0xe) = 0;
     message_count = 0xe;
-    FUN_180627ce0(queue_start, stack_buffer2, &message_ptr);
+    UtilitiesSystem_FileHandler(queue_start, stack_buffer2, &message_ptr);
     message_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(message_handler);

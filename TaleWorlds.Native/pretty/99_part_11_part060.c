@@ -1,3 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "SystemCore_ConfigManager_definition.h"
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -49,11 +56,11 @@ void FUN_1807bf330(int64_t param_1,int32_t param_2,uint64_t param_3)
     if (iVar3 == 0) {
       *(uint *)(*(int64_t *)(param_1 + 0x170) + 0x194) =
            *(uint *)(*(int64_t *)(param_1 + 0x170) + 0x194) | 4;
-      iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0x438,0);
+      iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0x438,0);
       lVar5 = *(int64_t *)(param_1 + 0x170);
       if (iVar3 == 0) {
         uStack_2e8 = 0;
-        iVar3 = FUN_180769ed0(lVar5,&cStack_2c8,1,4);
+        iVar3 = SystemPerformanceOptimizer(lVar5,&cStack_2c8,1,4);
         if ((iVar3 == 0) &&
            (((((iVar3 = func_0x00018076b6b0(&cStack_2c8,&processed_var_6992_ptr,4), iVar3 == 0 ||
                (iVar3 = func_0x00018076b6b0(&cStack_2c8,&processed_var_7000_ptr,4), iVar3 == 0)) ||
@@ -112,9 +119,9 @@ void FUN_1807bf330(int64_t param_1,int32_t param_2,uint64_t param_3)
             uStack_2d8 = 0;
             uStack_2e0 = 1;
             uStack_2e8 = CONCAT44(uStack_2e8._4_4_,4);
-            iVar3 = FUN_180772fe0(param_1,9,&processed_var_5832_ptr,(int *)(param_1 + 0x3c8));
+            iVar3 = SystemMemory_Controller(param_1,9,&processed_var_5832_ptr,(int *)(param_1 + 0x3c8));
             if (iVar3 == 0) {
-              iVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+              iVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
               if (iVar3 == 0) {
                 uStack_2e8 = 0;
                 *(uint64_t *)(param_1 + 0x3d0) = 0;
@@ -190,7 +197,7 @@ void FUN_1807bf330(int64_t param_1,int32_t param_2,uint64_t param_3)
                 *(int32_t *)(param_1 + 0x864) = 0x7d;
                 *(int32_t *)(param_1 + 0x8f0) = 0;
                 *(int32_t *)(param_1 + 0xbd0) = 0;
-                iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),param_1 + 0x178,1);
+                iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),param_1 + 0x178,1);
                 if (iVar3 == 0) {
                   uStack_2e8 = uStack_2e8 & 0xffffffff00000000;
                   lVar5 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
@@ -201,7 +208,7 @@ void FUN_1807bf330(int64_t param_1,int32_t param_2,uint64_t param_3)
                       iVar3 = FUN_1807697a0(*(uint64_t *)(param_1 + 0x170),param_1 + 0x8ec);
                       lVar5 = *(int64_t *)(param_1 + 0x170);
                       if (iVar3 == 0) {
-                        iVar3 = FUN_180769720(lVar5,0);
+                        iVar3 = SystemMonitor(lVar5,0);
                         if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
                           memset(param_1 + 0x290,0,0x100);
@@ -224,13 +231,13 @@ void FUN_1807bf330(int64_t param_1,int32_t param_2,uint64_t param_3)
                       puVar1[4] = 0;
                       puVar1[5] = 0;
                       puVar1[6] = 0;
-                      iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),acStack_158,1,0x16);
+                      iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),acStack_158,1,0x16);
                       uVar8 = uVar6;
                       if (iVar3 == 0) {
                         do {
                           if (acStack_158[uVar6] < ' ') {
                             if (0x15 < uVar6) {
-                              FUN_1808fcdc8(uVar8,0);
+                              UltraHighFreq_ThreadManager1(uVar8,0);
                               pcVar2 = (code *)swi(3);
                               (*pcVar2)();
                               return;
@@ -309,10 +316,10 @@ void FUN_1807bf388(int64_t param_1)
   if (iVar3 == 0) {
     *(uint *)(*(int64_t *)(unaff_RDI + 0x170) + 0x194) =
          *(uint *)(*(int64_t *)(unaff_RDI + 0x170) + 0x194) | 4;
-    iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0x438,0);
+    iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0x438,0);
     lVar5 = *(int64_t *)(unaff_RDI + 0x170);
     if (iVar3 == 0) {
-      iVar3 = FUN_180769ed0(lVar5,&stack0x00000040,1,4,0);
+      iVar3 = SystemPerformanceOptimizer(lVar5,&stack0x00000040,1,4,0);
       if ((iVar3 == 0) &&
          (((((iVar3 = func_0x00018076b6b0(&stack0x00000040,&processed_var_6992_ptr,4), iVar3 == 0 ||
              (iVar3 = func_0x00018076b6b0(&stack0x00000040,&processed_var_7000_ptr,4), iVar3 == 0)) ||
@@ -370,9 +377,9 @@ void FUN_1807bf388(int64_t param_1)
                *(uint *)(*(int64_t *)(unaff_RDI + 0x170) + 0x194) & 0xfffffffb;
         }
         else {
-          iVar3 = FUN_180772fe0();
+          iVar3 = SystemMemory_Controller();
           if (iVar3 == 0) {
-            iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0);
+            iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0,0);
             if (iVar3 == 0) {
               uVar8 = 0;
               *(uint64_t *)(unaff_RDI + 0x3d0) = 0;
@@ -448,7 +455,7 @@ void FUN_1807bf388(int64_t param_1)
               *(int32_t *)(unaff_RDI + 0x864) = 0x7d;
               *(int32_t *)(unaff_RDI + 0x8f0) = 0;
               *(int32_t *)(unaff_RDI + 0xbd0) = 0;
-              iVar3 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1,0x14,0);
+              iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1,0x14,0);
               if (iVar3 == 0) {
                 lVar5 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                       *(int *)(unaff_RDI + 0x8fc) << 3,&processed_var_7040_ptr,0x542,
@@ -459,7 +466,7 @@ void FUN_1807bf388(int64_t param_1)
                     iVar3 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x8ec);
                     lVar5 = *(int64_t *)(unaff_RDI + 0x170);
                     if (iVar3 == 0) {
-                      iVar3 = FUN_180769720(lVar5,0);
+                      iVar3 = SystemMonitor(lVar5,0);
                       if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
                         memset(unaff_RDI + 0x290,0,0x100);
@@ -481,14 +488,14 @@ void FUN_1807bf388(int64_t param_1)
                     puVar1[4] = 0;
                     puVar1[5] = 0;
                     puVar1[6] = 0;
-                    iVar3 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + 0xb0,1,0x16
+                    iVar3 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + 0xb0,1,0x16
                                           ,0);
                     uVar8 = uVar6;
                     if (iVar3 == 0) {
                       do {
                         if (*(char *)(unaff_RBP + 0xb0 + uVar6) < ' ') {
                           if (0x15 < uVar6) {
-                            FUN_1808fcdc8(uVar8,0);
+                            UltraHighFreq_ThreadManager1(uVar8,0);
                             pcVar2 = (code *)swi(3);
                             (*pcVar2)();
                             return;

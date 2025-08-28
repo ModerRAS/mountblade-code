@@ -1,10 +1,16 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // ============================================================================
 // 03_rendering_part470.c - 渲染系统高级参数处理和渲染管线管理模块
@@ -290,7 +296,7 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
                     if (((temp_long != 0) && 
                          (*(char *)(*(int64_t *)(temp_long + 0x58f8) + 0x1c) != '\0')) &&
                         (*(int64_t *)(temp_long + 0x58f8) != long_var2)) {
-                        FUN_1805b59d0(temp_long, 0x180c95578);
+                        NetworkSystem_SecurityManager(temp_long, 0x180c95578);
                         long_var3 = render_system_memory;
                     }
                     long_var1 = long_var1 + 1;
@@ -299,7 +305,7 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
             
             // 处理渲染缓存
             if (render_system_memory != 0) {
-                FUN_180567f30(render_system_memory, 0x180c95578);
+                SystemCore_DatabaseHandler(render_system_memory, 0x180c95578);
             }
             render_system_memory = 0;
             // 清理渲染缓存
@@ -403,7 +409,7 @@ SHADOW_PROCESSING_BRANCH:
     
     // 计算渲染质量参数
     uint_value2 = *(uint *)(*(int64_t *)(context + 0x590) + 0xac);
-    index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, stack_uint1);
+    index_var1 = SystemCacheManager(&system_memory_5f30, uint_value2, stack_uint1);
     index_var1 = *(int *)(render_system_memory + (int64_t)index_var1 * 4);
     
     if (index_var1 == -1) {
@@ -422,7 +428,7 @@ SHADOW_PROCESSING_BRANCH:
     
     while ((float_var1 == 0.0f && (index_var1 != -1))) {
         float_var3 = float_var3 + float_var2;
-        index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+        index_var1 = SystemCacheManager(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
         index_var1 = *(int *)(render_system_memory + (int64_t)index_var1 * 4);
         
         if (index_var1 == -1) {
@@ -447,7 +453,7 @@ SHADOW_PROCESSING_BRANCH:
         
         while ((float_var1 == 0.0f && (index_var1 != -1))) {
             float_var4 = float_var4 + float_var2;
-            index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+            index_var1 = SystemCacheManager(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
             index_var1 = *(int *)(render_system_memory + (int64_t)index_var1 * 4);
             
             if (index_var1 == -1) {
@@ -519,13 +525,13 @@ SHADOW_PROCESSING_BRANCH:
     uint render_reserved = 0;
     char* render_params = (char*)((uint64_t)stack_uint1 << 0x20);
     char* render_data = (char*)stack_uint2;
-    FUN_18051ec50(context, &render_params);
+    CoreSystemThreadManager(context, &render_params);
     
     uint texture_id = *(uint*)(*(int64_t*)(context + 0x590) + 0x2450);
     stack_uint1 = texture_id;
     
     // 查找纹理质量数据
-    int quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(int64_t*)(context + 0x590) + 0xac), texture_id);
+    int quality_index = SystemCacheManager(&system_memory_5f30, *(uint*)(*(int64_t*)(context + 0x590) + 0xac), texture_id);
     quality_index = *(int*)(render_system_memory + (int64_t)quality_index * 4);
     if (quality_index != -1) {
       quality_data_ptr = *(int64_t*)(render_system_memory + (int64_t)quality_index * 8);
@@ -556,10 +562,10 @@ SHADOW_PROCESSING_BRANCH:
       render_data = (char*)0x80000000;
       
       int64_t pipeline_ptr = *(int64_t*)(context + 0x8d8) + 0x30a0 + (int64_t)*(int*)(context + 0x560) * 0xa60;
-      FUN_18051ec50(pipeline_ptr, &render_params);
+      CoreSystemThreadManager(pipeline_ptr, &render_params);
       
       // 获取管线质量数据
-      quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(int64_t*)(pipeline_ptr + 0x590) + 0xac), texture_id);
+      quality_index = SystemCacheManager(&system_memory_5f30, *(uint*)(*(int64_t*)(pipeline_ptr + 0x590) + 0xac), texture_id);
       quality_index = *(int*)(render_system_memory + (int64_t)quality_index * 4);
       int64_t pipeline_quality_data = 0;
       if (quality_index == -1) {
@@ -581,9 +587,9 @@ SHADOW_PROCESSING_BRANCH:
       
       // 设置管线时间戳和参数
       *(int64_t*)(pipeline_ptr + 0x6b8) = *(int64_t*)(&system_error_code + (int64_t)*(int*)(pipeline_ptr + 0x6c0) * 8) + RENDERING_TIME_OFFSET;
-      int64_t scale_factor_ptr = FUN_180532320(pipeline_quality_data);
+      int64_t scale_factor_ptr = InitializationSystem_ConfigManager(pipeline_quality_data);
       FUN_18052e450(pipeline_ptr, 0xffffffff, 1, *(float*)(pipeline_quality_data + 0x188) * *(float*)(scale_factor_ptr + 8));
-      FUN_18052e130(context, 0xffffffff, 1);
+      SystemCore_Validator0(context, 0xffffffff, 1);
       texture_id = stack_uint1;
       
       // 根据渲染模式优化管线
@@ -627,7 +633,7 @@ SHADOW_PROCESSING_BRANCH:
     uStack_234 = 0x3ecccccd;
     uStack_22c = 0;
     puStack_258 = (void *)((uint64_t)uStack_264 << 0x20);
-    FUN_18051ec50(param_1,&puStack_258);
+    CoreSystemThreadManager(param_1,&puStack_258);
     lVar15 = *(int64_t *)(param_1 + 0x590);
     uStack_264 = *(uint *)(lVar15 + 0x2450);
     if ((lVar15 != 0) && (lVar15 = *(int64_t *)(lVar15 + 0xabf0), lVar15 != 0)) {
@@ -710,7 +716,7 @@ SHADOW_PROCESSING_BRANCH:
       FUN_180541010(*(uint64_t *)(param_1 + 0x6d8),0x21);
     }
     uVar21 = uStack_264;
-    iVar7 = FUN_18053a410(&system_memory_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
+    iVar7 = SystemCacheManager(&system_memory_5f30,*(int32_t *)(*(int64_t *)(param_1 + 0x590) + 0xac),
                           uStack_264);
     iVar7 = *(int *)(render_system_memory + (int64_t)iVar7 * 4);
     lVar15 = 0;
@@ -728,7 +734,7 @@ SHADOW_PROCESSING_BRANCH:
       }
       else {
         puVar10 = (uint64_t *)
-                  FUN_180534930(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x70,
+                  SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x70,
                                 &puStack_258,param_2 + 0x58);
         uVar22 = puVar10[1];
         *(uint64_t *)(param_1 + 0xa20) = *puVar10;
@@ -824,7 +830,7 @@ SHADOW_PROCESSING_BRANCH:
            *(int64_t *)(&system_error_code + (int64_t)*(int *)(lVar16 + 0x6d0) * 8) -
            (int64_t)(fVar25 * -100000.0);
       if (*(int *)(lVar16 + 0x560) == *(int *)(param_1 + 0x10)) {
-        FUN_18052e130(lVar16,0xffffffff,1);
+        SystemCore_Validator0(lVar16,0xffffffff,1);
       }
       FUN_1805b8920(*(uint64_t *)(lVar16 + 0x6e0));
       *(int32_t *)(*(int64_t *)(lVar16 + 0x738) + 0xa4) =
@@ -832,7 +838,7 @@ SHADOW_PROCESSING_BRANCH:
       lStack_108 = *(int64_t *)(lVar16 + 0x9d8);
       lVar15 = *(int64_t *)(lVar16 + 0x20);
       if ((lStack_108 == 0) ||
-         (cVar6 = FUN_18038d0a0(lStack_108,lVar15 + 0xc), lStack_110 = lStack_108, cVar6 == '\0')) {
+         (cVar6 = SystemCore_PerformanceMonitor(lStack_108,lVar15 + 0xc), lStack_110 = lStack_108, cVar6 == '\0')) {
         lStack_110 = 0;
       }
       uStack_118 = *(uint64_t *)(*(int64_t *)(lVar16 + 0x8d8) + 0x18);
@@ -933,14 +939,14 @@ SHADOW_PROCESSING_BRANCH:
       do {
         lVar14 = *(int64_t *)(lVar15 + lVar16 * 8);
         if ((lVar14 != 0) && (*(char *)(*(int64_t *)(lVar14 + 0x58f8) + 0x1c) != '\0')) {
-          FUN_1805b59d0(lVar14,0x180c95578);
+          NetworkSystem_SecurityManager(lVar14,0x180c95578);
           lVar15 = render_system_memory;
         }
         lVar16 = lVar16 + 1;
       } while (lVar16 < iVar7);
     }
     if (render_system_memory != 0) {
-      FUN_180567f30(render_system_memory,0x180c95578);
+      SystemCore_DatabaseHandler(render_system_memory,0x180c95578);
     }
     render_system_memory = 0;
                     // WARNING: Subroutine does not return

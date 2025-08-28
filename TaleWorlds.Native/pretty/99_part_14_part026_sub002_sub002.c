@@ -1,3 +1,7 @@
+/* CoreSystem_MessageHandler - RenderingSystem_DataValidator */
+#define RenderingSystem_DataValidator CoreSystem_MessageHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -138,7 +142,7 @@ static void exception_cleanup_handler(uint64_t context, int64_t exception_data)
     // 清理异常处理标志
     *(uint *)(exception_data + 0x20) = *(uint *)(exception_data + 0x20) & ~EXCEPTION_HANDLER_ACTIVE;
     // 执行资源清理
-    FUN_180044a30(exception_data + 0x58);
+    RenderingSystem_DataValidator(exception_data + 0x58);
   }
   return;
 }
@@ -183,7 +187,7 @@ static void exception_chain_processor(uint64_t context, int64_t exception_data)
       *reference_count = *reference_count - 1;
       if (*reference_count == 0) {
         // 引用计数归零，执行清理
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -297,7 +301,7 @@ static void exception_handler_finalizer(uint64_t context, int64_t exception_data
   if ((*(uint *)(exception_data + 0x30) & STATE_ACTIVE) != 0) {
     // 清理异常处理标志
     *(uint *)(exception_data + 0x30) = *(uint *)(exception_data + 0x30) & ~STATE_ACTIVE;
-    FUN_180044a30(exception_data + 0x288);
+    RenderingSystem_DataValidator(exception_data + 0x288);
   }
   return;
 }
@@ -315,7 +319,7 @@ static void exception_state_synchronizer(uint64_t context, int64_t exception_dat
   if ((*(uint *)(exception_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
     // 清理状态标志
     *(uint *)(exception_data + 0x30) = *(uint *)(exception_data + 0x30) & ~STATE_PENDING_CLEANUP;
-    FUN_180044a30(exception_data + 0x2b0);
+    RenderingSystem_DataValidator(exception_data + 0x2b0);
   }
   return;
 }
@@ -372,7 +376,7 @@ static void memory_cache_cleaner(uint64_t context, int64_t memory_data)
   if ((*(uint *)(memory_data + 0x30) & STATE_INITIALIZED) != 0) {
     // 清理初始化标志
     *(uint *)(memory_data + 0x30) = *(uint *)(memory_data + 0x30) & ~STATE_INITIALIZED;
-    FUN_180044a30(memory_data + 0x2b0);
+    RenderingSystem_DataValidator(memory_data + 0x2b0);
   }
   return;
 }
@@ -454,7 +458,7 @@ static void thread_pool_controller(uint64_t context, int64_t thread_data)
   if ((*(uint *)(thread_data + 0x30) & STATE_ACTIVE) != 0) {
     // 清理线程池状态
     *(uint *)(thread_data + 0x30) = *(uint *)(thread_data + 0x30) & ~STATE_ACTIVE;
-    FUN_180044a30(thread_data + 0x288);
+    RenderingSystem_DataValidator(thread_data + 0x288);
   }
   return;
 }
@@ -472,7 +476,7 @@ static void thread_scheduler(uint64_t context, int64_t thread_data)
   if ((*(uint *)(thread_data + 0x30) & STATE_PENDING_CLEANUP) != 0) {
     // 清理调度状态
     *(uint *)(thread_data + 0x30) = *(uint *)(thread_data + 0x30) & ~STATE_PENDING_CLEANUP;
-    FUN_180044a30(thread_data + 0x2b0);
+    RenderingSystem_DataValidator(thread_data + 0x2b0);
   }
   return;
 }

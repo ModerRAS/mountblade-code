@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part035.c - 3 个函数
 
 // 函数: void FUN_1805a0d13(uint64_t param_1,int param_2)
@@ -258,7 +262,7 @@ LAB_1805a0e8e:
         *(float *)((int64_t)unaff_RBP + 0x154) = fVar13;
         *(float *)(unaff_RBP + 0x2b) = fVar14;
         *(uint *)((int64_t)unaff_RBP + 0x15c) = uVar15;
-        pfVar23 = (float *)FUN_180534930(*(int64_t *)(lVar28 + 0x8a8) + 0x70,unaff_RBP + 0x2c,
+        pfVar23 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar28 + 0x8a8) + 0x70,unaff_RBP + 0x2c,
                                          puVar33);
         *(int32_t *)((int64_t)unaff_RBP + 0x9c) = 0x7f7fffff;
         fVar3 = pfVar23[1];
@@ -266,7 +270,7 @@ LAB_1805a0e8e:
         *(float *)(unaff_RBP + 0x12) = *pfVar23 - fVar12;
         *(float *)((int64_t)unaff_RBP + 0x94) = fVar3 - fVar13;
         *(float *)(unaff_RBP + 0x13) = fVar4 - fVar14;
-        FUN_180285b40(unaff_RBP + 0x28,unaff_RBP + 0x26,unaff_RBP + 0x12);
+        SystemCore_EventHandler(unaff_RBP + 0x28,unaff_RBP + 0x26,unaff_RBP + 0x12);
         FUN_1805ab940();
       }
     }
@@ -315,7 +319,7 @@ LAB_1805a0e8e:
           *(int8_t *)(unaff_RBP + 0x24) = 0xff;
           *(int32_t *)(unaff_RBP + 0x23) = 0xffffffff;
           *(int32_t *)((int64_t)unaff_RBP + 300) = 0x3f800000;
-          FUN_1805a4a20(unaff_R13 + 0x28,uVar6,unaff_RBP + 0x14,0);
+          UISystem_InputHandler(unaff_R13 + 0x28,uVar6,unaff_RBP + 0x14,0);
         }
       }
       if ((*(int *)(lVar29 + 0xc20 + lVar24) == 2) &&
@@ -439,7 +443,7 @@ uint64_t FUN_1805a15d0(int64_t *param_1)
       }
     }
     else {
-      cVar3 = FUN_1805a3ab0(lVar2 + 0x28);
+      cVar3 = RenderingSystem_ConfigValidator0(lVar2 + 0x28);
       if (cVar3 != '\0') {
         return 0;
       }

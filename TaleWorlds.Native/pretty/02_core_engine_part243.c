@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 
 // 02_core_engine_part243.c - 4 个函数
 
@@ -77,7 +83,7 @@ void FUN_18020bb70(uint64_t param_1,int64_t *param_2)
       if (pcStack_2a0 != (char *)0x0) {
         pcVar6 = pcStack_2a0;
       }
-      FUN_180626eb0(acStack_238,0x200,&rendering_buffer_2176_ptr,pcVar6);
+      SystemCore_CacheManager(acStack_238,0x200,&rendering_buffer_2176_ptr,pcVar6);
       puStack_288 = &system_data_buffer_ptr;
       uStack_270 = 0;
       puStack_280 = (int8_t *)0x0;
@@ -102,7 +108,7 @@ void FUN_18020bb70(uint64_t param_1,int64_t *param_2)
         memcpy(puVar5,acStack_238,iVar8);
       }
       uStack_278 = 0;
-      cVar2 = FUN_180624af0(&puStack_288);
+      cVar2 = RenderingSystem_RenderQueue(&puStack_288);
       puStack_288 = &system_data_buffer_ptr;
       if (puStack_280 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -366,7 +372,7 @@ LAB_18020c1b3:
   uStack_80 = 0;
   uStack_78 = 3;
   SystemInitializer(&lStack_90,&lStackX_18);
-  FUN_1802e8c60(param_3,&lStack_90);
+  Network_ProtocolHandler(param_3,&lStack_90);
   puStack_128 = (uint64_t *)0x0;
   puStack_120 = (uint64_t *)0x0;
   puVar19 = (uint64_t *)0x0;
@@ -404,7 +410,7 @@ LAB_18020c2f3:
                 if (lVar6 != 0) goto LAB_18020c2f3;
                 puVar7 = (uint64_t *)0x0;
               }
-              lVar3 = FUN_180059780(puStack_128,puStack_120,puVar7);
+              lVar3 = SystemCore_Initializer(puStack_128,puStack_120,puVar7);
               CoreEngineDataTransformer(lVar3,plVar8 + 0x3e);
               for (puVar19 = puStack_128; puVar19 != puStack_120; puVar19 = puVar19 + 4) {
                 (**(code **)*puVar19)(puVar19,0);
@@ -469,7 +475,7 @@ LAB_18020c2f3:
               plStack_f8 = plVar8 + 1;
               plStack_108 = plVar8;
               plStack_100 = plVar8 + 1;
-              FUN_1802e8c60(lVar4,&plStack_108);
+              Network_ProtocolHandler(lVar4,&plStack_108);
               puStack_b0 = (uint64_t *)0x0;
               puStack_a8 = (uint64_t *)0x0;
               puVar7 = (uint64_t *)0x0;
@@ -518,7 +524,7 @@ LAB_18020c64c:
                             if (lVar3 != 0) goto LAB_18020c64c;
                             puVar9 = (uint64_t *)0x0;
                           }
-                          lVar17 = FUN_180059780(puVar11,puVar18,puVar9);
+                          lVar17 = SystemCore_Initializer(puVar11,puVar18,puVar9);
                           CoreEngineDataTransformer(lVar17,plVar8 + 0x3e);
                           puVar19 = (uint64_t *)(lVar17 + 0x20);
                           for (puVar7 = puVar11; puVar7 != puVar18; puVar7 = puVar7 + 4) {

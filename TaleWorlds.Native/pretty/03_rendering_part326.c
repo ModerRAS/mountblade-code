@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 /*=============================================================================
  * 03_rendering_part326.c - 渲染系统高级参数处理和状态管理模块
@@ -65,12 +70,12 @@
 #define SystemInitializer                                  FUN_180103970  /* 系统初始化器 */
 #define SystemCleanupHandler                               FUN_1800b3a40  /* 系统清理处理器 */
 #define SystemMemoryAllocator                              CoreEngineMemoryPoolReallocator  /* 系统内存分配器 */
-#define SystemPointerManager                               FUN_18005ce30  /* 系统指针管理器 */
-#define SystemDataManager                                  FUN_18005e370  /* 系统数据管理器 */
+#define SystemPointerManager                               SystemCore_StreamController  /* 系统指针管理器 */
+#define SystemDataManager                                  SystemPerformance_Monitor  /* 系统数据管理器 */
 #define SystemExitHandler                                  FUN_18004b1f0  /* 系统退出处理器 */
 #define SystemSecurityChecker                              SystemSecurityChecker  /* 系统安全检查器 */
 #define SystemStringFormatter                              FUN_180060680  /* 系统字符串格式化器 */
-#define SystemCommandProcessor                             FUN_1800623b0  /* 系统命令处理器 */
+#define SystemCommandProcessor                             SystemConfigurationManager  /* 系统命令处理器 */
 
 /* 渲染系统全局变量 */
 extern int64_t SYSTEM_STATE_MANAGER;      /* 渲染系统全局数据指针 */

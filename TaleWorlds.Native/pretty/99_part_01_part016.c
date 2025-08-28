@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_01_part016.c - 9 个函数
 
 // 函数: void FUN_1800b01b0(int64_t param_1,int64_t param_2)
@@ -24,7 +28,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
+        SystemCore_BackupSystem(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
       }
       lVar1 = *(int64_t *)(param_1 + 8);
       uVar2 = (int)uVar3 + 1;
@@ -43,7 +47,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
+        SystemCore_BackupSystem(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
       }
       lVar1 = *(int64_t *)(param_1 + 0x28);
       uVar2 = (int)uVar3 + 1;
@@ -62,7 +66,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 0x40);
+        SystemCore_BackupSystem(param_2,*(int64_t *)(uVar4 + lVar1) + 0x40);
       }
       lVar1 = *(int64_t *)(param_1 + 0x48);
       uVar2 = (int)uVar3 + 1;
@@ -80,7 +84,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,*(int64_t *)(uVar5 + lVar1) + 0x10);
+        SystemCore_BackupSystem(param_2,*(int64_t *)(uVar5 + lVar1) + 0x10);
       }
       lVar1 = *(int64_t *)(param_1 + 0x68);
       uVar2 = (int)uVar3 + 1;
@@ -114,7 +118,7 @@ void FUN_1800b01cf(int64_t param_1)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820();
+        SystemCore_BackupSystem();
       }
       iVar1 = iVar1 + 1;
     } while ((uint64_t)(int64_t)iVar1 <
@@ -128,7 +132,7 @@ void FUN_1800b01cf(int64_t param_1)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820();
+        SystemCore_BackupSystem();
       }
       iVar1 = iVar1 + 1;
     } while ((uint64_t)(int64_t)iVar1 <
@@ -142,7 +146,7 @@ void FUN_1800b01cf(int64_t param_1)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820();
+        SystemCore_BackupSystem();
       }
       iVar1 = iVar1 + 1;
     } while ((uint64_t)(int64_t)iVar1 <
@@ -155,7 +159,7 @@ void FUN_1800b01cf(int64_t param_1)
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820();
+        SystemCore_BackupSystem();
       }
       unaff_R14D = unaff_R14D + 1;
     } while ((uint64_t)(int64_t)unaff_R14D <
@@ -183,7 +187,7 @@ void FUN_1800b030f(void)
       SystemCore_NetworkHandler0();
     }
     else {
-      FUN_180059820();
+      SystemCore_BackupSystem();
     }
     unaff_R14D = unaff_R14D + 1;
   } while ((uint64_t)(int64_t)unaff_R14D <
@@ -704,7 +708,7 @@ void FUN_1800b05fe(uint64_t param_1,int64_t param_2)
 
 
 
-uint64_t FUN_1800b0680(int64_t param_1,uint64_t param_2)
+uint64_t SystemCore_DataHandler(int64_t param_1,uint64_t param_2)
 
 {
   char cVar1;
@@ -809,7 +813,7 @@ void FUN_1800b0890(uint64_t *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1800b08e0(int64_t param_1,uint64_t *param_2,int64_t param_3,char param_4)
+uint64_t * SystemCore_GarbageCollector(int64_t param_1,uint64_t *param_2,int64_t param_3,char param_4)
 
 {
   int64_t *plVar1;
@@ -833,12 +837,12 @@ uint64_t * FUN_1800b08e0(int64_t param_1,uint64_t *param_2,int64_t param_3,char 
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar2 = *(void **)(param_3 + 8);
         }
-        FUN_1800622d0(system_message_context,0,7,&processed_var_7376_ptr,puVar2);
+        SystemManager_DataHandler(system_message_context,0,7,&processed_var_7376_ptr,puVar2);
         puVar2 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar2 = *(void **)(param_3 + 8);
         }
-        FUN_180627020(&processed_var_7408_ptr,puVar2);
+        SystemCore_Allocator(&processed_var_7408_ptr,puVar2);
         plVar1 = (int64_t *)FUN_1800bd410(system_system_data_config);
         *param_2 = plVar1;
         if (plVar1 != (int64_t *)0x0) {

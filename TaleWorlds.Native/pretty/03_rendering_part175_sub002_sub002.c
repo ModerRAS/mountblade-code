@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part175_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_180375760(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t param_4)
@@ -543,10 +551,10 @@ LAB_18037619a:
                               lStack_2a0 = lVar32 + lVar33 * 8;
 LAB_18037624d:
                               if ((*ppiVar26 != *(int **)(lVar32 + lVar33 * 8)) &&
-                                 (lVar32 = FUN_180372570(param_3,iVar21,iVar38),
+                                 (lVar32 = SystemCore_SecurityManager(param_3,iVar21,iVar38),
                                  *(int64_t *)(lVar32 + 0x108) != 0)) {
-                                lVar32 = FUN_180372570(param_3,iVar21,iVar38);
-                                lVar33 = FUN_180372570(param_3,iVar21,iVar38);
+                                lVar32 = SystemCore_SecurityManager(param_3,iVar21,iVar38);
+                                lVar33 = SystemCore_SecurityManager(param_3,iVar21,iVar38);
                                 fVar48 = *(float *)(lVar32 + 0x38) - fStack_138;
                                 fVar50 = *(float *)(lVar32 + 0x3c) - fVar53;
                                 fVar49 = *(float *)(lVar32 + 0x40) - fVar51;
@@ -561,7 +569,7 @@ LAB_18037624d:
                                                                fVar55 + fVar55,iVar20 == 2,
                                                                (byte)puVar2[0x6f6] >> 1 & 1),
                                        iVar41 != 0)))) {
-                                  lVar40 = FUN_180372570(param_3,iVar21,iVar38);
+                                  lVar40 = SystemCore_SecurityManager(param_3,iVar21,iVar38);
                                   lVar33 = *(int64_t *)(param_3 + 0x110);
                                   lVar32 = lVar40 + 0x118;
                                   iVar41 = *(int *)(param_3 + 0x58) * iVar21 + iVar38;
@@ -581,10 +589,10 @@ LAB_1803763e0:
                                   if (piVar29 == *(int **)(lVar33 + lVar44 * 8)) {
                                     uVar27 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
                                     aiStack_298[0] = iVar41;
-                                    uStack_290 = FUN_180372430(uVar27,*(uint64_t *)
+                                    uStack_290 = SystemCore_SignalHandler(uVar27,*(uint64_t *)
                                                                        (param_3 + 0x68));
                                     puVar28 = (uint64_t *)
-                                              FUN_18037f020(param_3 + 0x108,auStack_240,aiStack_298)
+                                              SystemCore_MessageQueueManager(param_3 + 0x108,auStack_240,aiStack_298)
                                     ;
                                     piVar29 = (int *)*puVar28;
                                     uStack_2c0 = *(int32_t *)(puVar28 + 1);

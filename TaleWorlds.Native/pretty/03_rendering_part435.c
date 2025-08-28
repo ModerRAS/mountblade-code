@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part435.c - 12 个函数
 
@@ -364,7 +366,7 @@ uint64_t * FUN_1805064a0(uint64_t *param_1,uint64_t *param_2)
   *(int32_t *)(param_1 + 5) = uVar3;
   *(int32_t *)((int64_t)param_1 + 0x2c) = uVar4;
   param_1[6] = param_2[6];
-  DataStructureManager(param_1 + 7,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1 + 7,0x30,4,FUN_1801c2890,SystemCore_MemoryManager);
   iVar1 = *(int *)(param_2 + 0x1f);
   *(int *)(param_1 + 0x1f) = iVar1;
   iVar7 = 0;
@@ -372,7 +374,7 @@ uint64_t * FUN_1805064a0(uint64_t *param_1,uint64_t *param_2)
     puVar6 = param_1 + 0xb;
     lVar8 = (int64_t)param_2 + (0x38 - (int64_t)(param_1 + 7));
     do {
-      FUN_18005d190(puVar6 + -4,lVar8 + -0x20 + (int64_t)puVar6);
+      SystemScheduler(puVar6 + -4,lVar8 + -0x20 + (int64_t)puVar6);
       *(int32_t *)puVar6 = *(int32_t *)(lVar8 + (int64_t)puVar6);
       *(int32_t *)((int64_t)puVar6 + 4) = *(int32_t *)(lVar8 + 4 + (int64_t)puVar6);
       *(int8_t *)(puVar6 + 1) = *(int8_t *)(lVar8 + 8 + (int64_t)puVar6);
@@ -553,7 +555,7 @@ void FUN_1805067a0(float *param_1,int32_t *param_2)
   uStack_5c = 0;
   uStack_4c = 0;
   uStack_3c = 0;
-  FUN_180084760(&uStack_68,&fStack_b8);
+  SystemCore_PerformanceMonitor(&uStack_68,&fStack_b8);
   fVar1 = param_1[1];
   fVar2 = *param_1;
   fVar3 = param_1[2];

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_01_part017.c - 系统调用处理器和资源管理模块
 // 
 // 本模块包含1个核心函数，主要负责系统调用处理、资源分配管理、内存池操作、
@@ -138,7 +142,7 @@ typedef struct {
  * @warning 包含复杂的内存管理逻辑，需要谨慎处理
  * @see 相关函数：FUN_180081480, CoreEngineMemoryPoolReallocator, FUN_1800a4010
  */
-void FUN_1800b0a10(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
+void SystemCore_ConfigManager(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                   int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
                   uint param_12)
 {
@@ -380,7 +384,7 @@ LAB_1800b0d28:
       
       // 执行异步操作
       uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
-      plVar9 = (int64_t *)FUN_18005ce30(uVar8, &puStack_1c8);
+      plVar9 = (int64_t *)SystemCore_StreamController(uVar8, &puStack_1c8);
       ppuStack_200 = (void **)plVar9;
       if (plVar9 != (int64_t *)0x0) {
         (**(code **)(*plVar9 + 0x28))(plVar9);
@@ -393,7 +397,7 @@ LAB_1800b0d28:
       if (plVar9 != (int64_t *)0x0) {
         (**(code **)(*plVar9 + 0x28))(plVar9);
       }
-      FUN_18005e370(lVar11, &plStack_240);
+      SystemPerformance_Monitor(lVar11, &plStack_240);
       if (plVar9 != (int64_t *)0x0) {
         (**(code **)(*plVar9 + 0x38))(plVar9);
       }
@@ -594,46 +598,46 @@ LAB_1800b11f1:
 /**
  * 系统调用处理器和资源管理器（别名）
  * 
- * 提供与FUN_1800b0a10相同功能的别名接口，便于代码理解和维护。
+ * 提供与SystemCore_ConfigManager相同功能的别名接口，便于代码理解和维护。
  * 
- * @see FUN_1800b0a10
+ * @see SystemCore_ConfigManager
  */
 void system_call_processor_and_resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                                                int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
-                                               uint param_12) __attribute__((alias("FUN_1800b0a10")));
+                                               uint param_12) __attribute__((alias("SystemCore_ConfigManager")));
 
 /**
  * 高级系统调用处理器（别名）
  * 
  * 提供简化的系统调用处理接口，专注于高级功能的实现。
  * 
- * @see FUN_1800b0a10
+ * @see SystemCore_ConfigManager
  */
 void advanced_system_call_processor(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                                     int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
-                                    uint param_12) __attribute__((alias("FUN_1800b0a10")));
+                                    uint param_12) __attribute__((alias("SystemCore_ConfigManager")));
 
 /**
  * 资源管理器（别名）
  * 
  * 提供资源管理功能的简化接口，专注于资源分配和生命周期管理。
  * 
- * @see FUN_1800b0a10
+ * @see SystemCore_ConfigManager
  */
 void resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                       int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
-                      uint param_12) __attribute__((alias("FUN_1800b0a10")));
+                      uint param_12) __attribute__((alias("SystemCore_ConfigManager")));
 
 /**
  * 线程安全资源管理器（别名）
  * 
  * 提供线程安全的资源管理接口，专注于多线程环境下的资源操作。
  * 
- * @see FUN_1800b0a10
+ * @see SystemCore_ConfigManager
  */
 void thread_safe_resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                                    int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
-                                   uint param_12) __attribute__((alias("FUN_1800b0a10")));
+                                   uint param_12) __attribute__((alias("SystemCore_ConfigManager")));
 
 // =============================================================================
 // 模块说明和版本信息

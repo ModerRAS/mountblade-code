@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -260,7 +264,7 @@ uint64_t FUN_1808aef38(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808aef40(int64_t *param_1,int param_2)
+uint64_t NetworkSystem_ConnectionManager(int64_t *param_1,int param_2)
 
 {
   int32_t *puVar1;
@@ -603,7 +607,7 @@ uint64_t FUN_1808af220(int64_t *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180747e10(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = SystemCore_Initializer(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -626,7 +630,7 @@ uint64_t FUN_1808af280(int64_t *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180747f10(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = RenderingTextureManager0(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -850,7 +854,7 @@ uint64_t FUN_1808af450(int64_t *param_1,int param_2)
   
   uVar7 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if ((param_2 <= (int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar7) - uVar7)) ||
-     (uVar5 = FUN_1808aef40(param_1,param_2), (int)uVar5 == 0)) {
+     (uVar5 = NetworkSystem_ConnectionManager(param_1,param_2), (int)uVar5 == 0)) {
     iVar1 = (int)param_1[1];
     if (iVar1 < param_2) {
       lVar9 = (int64_t)(param_2 - iVar1);

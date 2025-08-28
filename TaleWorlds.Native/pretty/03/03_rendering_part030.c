@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part030.c - 渲染系统高级对象管理模块
@@ -268,7 +270,7 @@ void rendering_object_advanced_manager(int64_t ******render_context, int64_t ***
                     }
                     stack_manager_7 = (int64_t *******)0x0;
                     stack_manager_2 = temp_manager;
-                    FUN_180079520(temp_manager);
+                    SystemInitializer(temp_manager);
                 }
                 
                 // 设置对象属性并执行初始化
@@ -343,7 +345,7 @@ void rendering_object_advanced_manager(int64_t ******render_context, int64_t ***
     FUN_180278270(render_context);
     temp_manager = temp_manager;
     if ((*render_context)[0x2c] == (int64_t ****)&RENDERING_INTERFACE_PTR) {
-        FUN_180276f30(render_context, (int64_t)render_context + 0x214, 0);
+        SystemCore_UpdateState(render_context, (int64_t)render_context + 0x214, 0);
     }
     else {
         (*(code *)(*render_context)[0x2c])(render_context);
@@ -405,7 +407,7 @@ uint64_t rendering_object_finder(int64_t *render_context, int64_t object_id)
                 
                 // 更新渲染状态
                 if (*(code **)(*render_context + 0x160) == (code *)&RENDERING_INTERFACE_PTR) {
-                    FUN_180276f30(render_context, (int64_t)render_context + 0x214, 0);
+                    SystemCore_UpdateState(render_context, (int64_t)render_context + 0x214, 0);
                 }
                 else {
                     (**(code **)(*render_context + 0x160))(render_context);
@@ -806,7 +808,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
         *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + (uint64_t)data_size;
     }
     
-    object_index = FUN_1800b6de0(RENDERING_GLOBAL_DATA_1, &stack_data_1, 1);
+    object_index = RenderingSystem_VertexProcessor(RENDERING_GLOBAL_DATA_1, &stack_data_1, 1);
     data_size = stack_flags_1;
     if (object_index == 0) {
         process_limit = (uint64_t)stack_flags_1;
@@ -864,7 +866,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
             *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + (uint64_t)data_size;
         }
         
-        current_object = (int64_t *)FUN_1800b30d0(RENDERING_GLOBAL_DATA_1, &stack_object_2, &stack_data_2, 1);
+        current_object = (int64_t *)SystemCore_PerformanceMonitor(RENDERING_GLOBAL_DATA_1, &stack_object_2, &stack_data_2, 1);
         current_object = (int64_t *)*current_object;
         if (current_object != (int64_t *)0x0) {
             stack_object_1 = current_object;
@@ -932,8 +934,8 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
                 *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + (uint64_t)data_size;
             }
             
-            data_value = FUN_1800b30d0(RENDERING_GLOBAL_DATA_1, &stack_object_2, &stack_data_3, 1);
-            FUN_180076910(object_offset, data_value);
+            data_value = SystemCore_PerformanceMonitor(RENDERING_GLOBAL_DATA_1, &stack_object_2, &stack_data_3, 1);
+            UltraHighFreq_SecurityValidator1(object_offset, data_value);
             if (stack_object_2 != (int64_t *)0x0) {
                 (**(code **)(*stack_object_2 + 0x38))();
             }

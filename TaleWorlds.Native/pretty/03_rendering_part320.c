@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -379,7 +383,7 @@ void FUN_180438210(void)
   }
   SystemDataInitializer(&processed_var_6416_ptr);
   UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
-  uVar1 = FUN_180628ca0();
+  uVar1 = MemoryDebugger0();
                     // WARNING: Could not recover jumptable at 0x00018043828c. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(system_cache_buffer,uVar1);

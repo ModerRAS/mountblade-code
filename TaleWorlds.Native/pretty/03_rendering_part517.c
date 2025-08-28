@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_ResourceManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 /*==============================================================================
  * 03_rendering_part517.c - 渲染系统核心模块
@@ -91,14 +100,14 @@ extern void* system_main_module_state;                         // 全局系统�
 // 外部函数声明
 extern void SystemCore_MemoryManager0(void);                     // 系统初始化函数
 extern void* CoreMemoryPoolReallocator(void*, size_t, size_t, int); // 内存分配函数
-extern void* FUN_18054a4b0(void*, void*, ...);      // 渲染队列操作函数
+extern void* SystemCore_ResourceManager(void*, void*, ...);      // 渲染队列操作函数
 extern void FUN_180320470(void);                     // 系统配置函数
-extern void FUN_1800b8500(void*);                    // 资源清理函数
-extern void FUN_180057830(void*);                    // 内存释放函数
+extern void SystemCore_Controller(void*);                    // 资源清理函数
+extern void DataTransformer0(void*);                    // 内存释放函数
 extern char func_0x000180282950(void);               // 系统状态查询函数
 extern void* FUN_18030b420(void*, void*, int);       // 对象创建函数
 extern void FUN_18054a180(void*);                    // 渲染状态设置函数
-extern void FUN_1800b9f60(void*);                    // 资源管理函数
+extern void SystemCore_Parser(void*);                    // 资源管理函数
 extern void CoreMemoryPoolInitializer(void);                     // 错误处理函数
 extern void FUN_18054b530(void);                     // 渲染回调函数1
 extern void FUN_18054b4b0(void);                     // 渲染回调函数2
@@ -649,8 +658,8 @@ RenderSystem_InitializeContext(uint64_t *param_1, int64_t *param_2, int64_t *par
     puStack_70 = &global_state_9872_ptr;
     pcStack_68 = FUN_18054aab0;
     apuStack_80[0] = param_1;
-    FUN_18054a4b0(param_1 + 0x1c, apuStack_80);
-    FUN_1800b9f60(puVar1);
+    SystemCore_ResourceManager(param_1 + 0x1c, apuStack_80);
+    SystemCore_Parser(puVar1);
     
     // 步骤13：最终状态设置
     *(int8_t *)(param_1 + 0x1a) = 0;
@@ -800,7 +809,7 @@ void RenderSystem_DestroyContext(uint64_t *param_1)
     }
     
     // 步骤6：清理资源队列
-    FUN_1800b8500(param_1 + 0x1c);
+    SystemCore_Controller(param_1 + 0x1c);
     
     // 步骤7：检查上下文状态
     if (param_1[0x31] != 0) {
@@ -836,7 +845,7 @@ void RenderSystem_DestroyContext(uint64_t *param_1)
     }
     
     // 步骤12：释放资源队列内存
-    FUN_180057830(param_1 + 0x1c);
+    DataTransformer0(param_1 + 0x1c);
     
     // 步骤13：销毁同步机制
     _Mtx_destroy_in_situ();
@@ -914,7 +923,7 @@ int32_t RenderSystem_ExecuteCommand(int64_t param_1, int32_t param_2, int64_t pa
     aplStack_28[0][2] = param_3;               // 附加参数
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, aplStack_28);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, aplStack_28);
     
     // 返回执行结果
     return auStackX_8[0];
@@ -974,7 +983,7 @@ int8_t RenderSystem_SetState(int64_t param_1, uint64_t param_2, uint64_t param_3
     apuStack_30[0] = auStackX_8;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 返回状态设置结果
     return auStackX_8[0];
@@ -1033,7 +1042,7 @@ void RenderSystem_SetParameter(int64_t param_1, int8_t param_2, uint64_t param_3
     auStackX_10[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1084,14 +1093,14 @@ void RenderSystem_UpdateMatrix(int64_t param_1, uint64_t param_2, uint64_t param
     pcStack_18 = FUN_18054b2b0;
     
     // 发送第一个矩阵更新命令到队列
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 设置第二个矩阵处理回调函数
     puStack_20 = &global_state_1680_ptr;
     pcStack_18 = FUN_18054b230;
     
     // 发送第二个矩阵更新命令到队列
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30);
     
     return;
 }
@@ -1145,7 +1154,7 @@ void RenderSystem_SetTransform(int64_t param_1, uint64_t param_2, uint64_t param
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1204,7 +1213,7 @@ void RenderSystem_SetViewport(int64_t param_1, int8_t param_2, uint64_t param_3,
     auStackX_10[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1259,7 +1268,7 @@ void RenderSystem_SetScissor(int64_t param_1, uint64_t param_2, uint64_t param_3
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1318,7 +1327,7 @@ void RenderSystem_SetBlendMode(int64_t param_1, int32_t param_2, uint64_t param_
     auStackX_10[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1372,7 +1381,7 @@ void RenderSystem_SetDepthMode(int64_t param_1, uint64_t param_2, uint64_t param
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1428,7 +1437,7 @@ void RenderSystem_SetStencilMode(int64_t param_1, int32_t param_2, uint64_t para
     auStackX_10[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1482,7 +1491,7 @@ void RenderSystem_SetCullMode(int64_t param_1, uint64_t param_2, uint64_t param_
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1585,7 +1594,7 @@ void RenderSystem_SetTexture(int64_t param_1, uint64_t param_2, uint64_t param_3
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -1703,7 +1712,7 @@ void RenderSystem_SetBuffer(int64_t param_1, uint64_t param_2, int32_t param_3, 
     alStack_30[0] = param_1;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, alStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, alStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 计算缓冲区边界框和距离
     fVar4 = *(float *)(param_1 + 0x130);
@@ -1802,7 +1811,7 @@ void RenderSystem_SetShader(int64_t param_1, uint64_t param_2, uint64_t param_3,
     *(uint64_t *)(apuStack_28[0] + 4) = param_4;    // 附加参数2
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_28);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_28);
     return;
 }
 
@@ -1869,7 +1878,7 @@ void RenderSystem_SetUniform(int64_t param_1, uint64_t param_2, int32_t param_3,
     auStackX_18[0] = param_3;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, &uStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, &uStack_30, param_3, param_4, 0xfffffffffffffffe);
     return;
 }
 
@@ -1983,7 +1992,7 @@ int32_t RenderSystem_ExecuteDraw(int64_t param_1, uint64_t param_2, uint64_t par
     apuStack_30[0] = auStackX_8;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 返回执行结果
     return auStackX_8[0];
@@ -2189,7 +2198,7 @@ void RenderSystem_SetRenderTarget(int64_t param_1, uint64_t param_2, uint64_t pa
     auStack_30[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -2246,7 +2255,7 @@ void RenderSystem_SetClearFlags(int64_t param_1, int8_t param_2, uint64_t param_
     auStackX_10[0] = param_2;
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     return;
 }
@@ -2325,7 +2334,7 @@ int RenderSystem_ExecuteFrame(int64_t param_1, int64_t param_2, uint64_t param_3
     uStack_24 = uStack_34;                      // 复制高32位
     
     // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, &piStack_30, param_3, param_4, 0xfffffffffffffffe);
+    SystemCore_ResourceManager(param_1 + OFFSET_RENDER_QUEUE, &piStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 检查特殊标志位（字节8的位2）
     if ((*(byte *)(param_2 + 8) & 2) != 0) {

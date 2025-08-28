@@ -353,7 +353,7 @@ CONFIG_COMPLETE:
     
     /* 错误处理 */
     if (status_code < 0) {
-        FUN_180220810(status_code,&memory_allocator_3352_ptr);
+        SystemCore_Loader(status_code,&memory_allocator_3352_ptr);
     }
     
     /* 设置输出缓冲区 */
@@ -475,7 +475,7 @@ CONFIG_COMPLETE:
     LOCK();
     *(int8_t *)(output_buffer + 900) = 1;
     UNLOCK();
-    FUN_18023a940(output_buffer);
+    SystemCore_Scheduler(output_buffer);
     
     /* 设置栈保护和安全返回 */
     context_ptr2 = &stack_ptr1;
@@ -655,13 +655,13 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
     
     /* 错误处理 */
     if (config_param2 < 0) {
-        FUN_180220810(config_param2,&memory_allocator_3480_ptr);
+        SystemCore_Loader(config_param2,&memory_allocator_3480_ptr);
     }
     
     config_param2 = func_0x000180225d90(init_params[4]);
     *(int *)(resource_handle + 0x368) = config_param2 * *init_params;
     *(uint64_t *)(resource_handle + 0x170) = temp_storage12;
-    context_ptr = (void **)FUN_180049b30(buffer2,resource_handle + 0x10);
+    context_ptr = (void **)SystemCore_EventHandler(buffer2,resource_handle + 0x10);
     *context_ptr = &system_state_ptr;
     *(int64_t *)(resource_handle + 0x168) = resource_handle;
     

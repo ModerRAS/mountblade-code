@@ -113,7 +113,7 @@ LAB_180856fce:
               plVar21 = (int64_t *)*plVar21) {
           }
           plStack_78 = plVar18;
-          FUN_1808b0fb0(&uStack_90,0);
+          RenderingSystem_ShaderManager0(&uStack_90,0);
           *pppppppuStack_a0 = pppppppuStack_a8;
           pppppppuStack_a8[1] = pppppppuStack_a0;
           pppppppuStack_a0 = &pppppppuStack_a8;
@@ -514,7 +514,7 @@ uint64_t FUN_1808577c0(int64_t *param_1,uint *param_2,int32_t *param_3)
         else if (iVar12 < iVar9) {
           iVar12 = iVar9;
         }
-        uVar8 = FUN_18084d3f0(param_1 + 2,iVar12);
+        uVar8 = RenderingSystem_TextureManager(param_1 + 2,iVar12);
         if ((int)uVar8 != 0) {
           return uVar8;
         }
@@ -608,7 +608,7 @@ uint64_t FUN_1808577e2(void)
       else if (iVar12 < iVar9) {
         iVar12 = iVar9;
       }
-      uVar8 = FUN_18084d3f0(unaff_RSI + 2,iVar12);
+      uVar8 = RenderingSystem_TextureManager(unaff_RSI + 2,iVar12);
       if ((int)uVar8 != 0) {
         return uVar8;
       }

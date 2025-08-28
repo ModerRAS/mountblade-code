@@ -534,7 +534,7 @@ UISystem_DataStructureOperator(uint64_t *structure_ptr, uint64_t operation_flag,
   
   memory_management_flag = 0xfffffffffffffffe;
   *structure_ptr = &ui_system_data_1744_ptr;
-  FUN_18005d580();
+  DataSerializationEngine();
   *structure_ptr = &ui_system_data_1792_ptr;
   if ((operation_flag & 1) != 0) {
     free(structure_ptr,MEMORY_BLOCK_SIZE,data_param1,data_param2,memory_management_flag);
@@ -634,7 +634,7 @@ void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t p
         }
       }
       else {
-        FUN_180059820(data_target,&stack_data_buffer);
+        SystemCore_BackupSystem(data_target,&stack_data_buffer);
       }
       stack_data_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {

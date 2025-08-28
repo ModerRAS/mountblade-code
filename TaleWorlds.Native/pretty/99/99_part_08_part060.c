@@ -69,7 +69,7 @@ void FUN_1805b31e0(int64_t *param_1,uint param_2,uint param_3,char param_4);
 void CoreEngine_MemoryPoolManager(void);
 void FUN_1805fab40(void);
 void FUN_1805b62d0(int64_t param_1);
-void FUN_18005ea90(int64_t param_1,void *param_2);
+void SystemSecurity_Manager(int64_t param_1,void *param_2);
 void FUN_1806193b0(int64_t param_1,int param_2);
 void FUN_1805f7890(uint64_t param_1);
 void FUN_180646200(int64_t param_1);
@@ -905,7 +905,7 @@ void ProcessMemoryManagement(int64_t memory_manager)
           }
           *(int64_t *)(memory_manager + 0x5830) = memory_offset + -8;
         }
-        FUN_18005ea90(memory_manager + 0x5808, &stack_pointer);
+        SystemSecurity_Manager(memory_manager + 0x5808, &stack_pointer);
         item_id = item_id + -1;
       }
       list_head = *(int64_t *)(memory_manager + 0x5828);
@@ -928,7 +928,7 @@ void ProcessMemoryManagement(int64_t memory_manager)
           }
           *(int64_t *)(memory_manager + 0x5870) = block_size + -8;
         }
-        FUN_18005ea90(memory_manager + 0x5848, &stack_pointer);
+        SystemSecurity_Manager(memory_manager + 0x5848, &stack_pointer);
         item_id = item_id + -1;
       }
       memory_offset = *(int64_t *)(memory_manager + 0x5868);
@@ -987,7 +987,7 @@ LAB_1805b3eb4:
       *(uint64_t *)(memory_manager + 0x5850) = memory_offset + memory_capacity * 8;
     }
     stack_pointer = memory_block;
-    FUN_18005ea90(memory_manager + 0x5868, &stack_pointer);
+    SystemSecurity_Manager(memory_manager + 0x5868, &stack_pointer);
     // 复制内存块
     memcpy(memory_block, data_pointer, 0xc98);
   }
@@ -1058,7 +1058,7 @@ void ProcessMemoryManagementEx(int64_t memory_manager)
           }
           *(int64_t *)(system_config + 0x5830) = memory_offset + -8;
         }
-        FUN_18005ea90(system_config + 0x5808, &stack0x00000080);
+        SystemSecurity_Manager(system_config + 0x5808, &stack0x00000080);
         item_id = item_id + -1;
       }
       list_head = *(int64_t *)(system_config + 0x5828);
@@ -1081,7 +1081,7 @@ void ProcessMemoryManagementEx(int64_t memory_manager)
           }
           *(int64_t *)(system_config + 0x5870) = memory_offset + -8;
         }
-        FUN_18005ea90(system_config + 0x5848, &stack0x00000080);
+        SystemSecurity_Manager(system_config + 0x5848, &stack0x00000080);
         item_id = item_id + -1;
       }
       memory_offset = *(int64_t *)(system_config + 0x5868);
@@ -1140,7 +1140,7 @@ LAB_1805b3eb4:
       *(uint64_t *)(system_config + 0x5850) = memory_offset + memory_capacity * 8;
     }
     context_pointer = memory_block;
-    FUN_18005ea90(system_config + 0x5868, &stack0x00000080);
+    SystemSecurity_Manager(system_config + 0x5868, &stack0x00000080);
     // 复制内存块
     memcpy(memory_block, data_pointer, 0xc98);
   }

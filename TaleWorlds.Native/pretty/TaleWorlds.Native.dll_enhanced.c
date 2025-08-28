@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 /**
  * TaleWorlds.Native.dll - 系统动态链接库核心接口文件
  * 
@@ -183,7 +186,7 @@ extern uint8_t system_memory_6098;    /** 网络协议主数据 */
  * ============================================================================ */
 
 /** 系统核心函数组 */
-extern uint8_t FUN_18007fcd0;    /** 系统初始化主函数 */
+extern uint8_t SystemCore_Compression;    /** 系统初始化主函数 */
 extern uint8_t FUN_180073930;    /** 系统核心处理函数 */
 extern uint8_t FUN_1809414f0;    /** 渲染系统主函数 */
 extern uint8_t FUN_180941590;    /** UI系统主函数 */

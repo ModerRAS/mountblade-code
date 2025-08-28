@@ -19,7 +19,7 @@ uint64_t FUN_1808ca280(int64_t param_1)
   uint64_t uVar2;
   int aiStackX_8 [8];
   
-  uVar2 = FUN_18073c4c0(*(uint64_t *)(param_1 + 0xe8),param_1 + 0x38,0);
+  uVar2 = UtilitiesSystem_MathCalculator(*(uint64_t *)(param_1 + 0xe8),param_1 + 0x38,0);
   aiStackX_8[0] = (int)uVar2;
   if (aiStackX_8[0] == 0) {
     if (*(int64_t *)(param_1 + 0xf8) != 0) {
@@ -261,7 +261,7 @@ uint64_t FUN_1808ca620(int64_t *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808ca6f0(int64_t param_1)
+uint64_t NetworkSystem_ProtocolHandler(int64_t param_1)
 
 {
   uint64_t uVar1;
@@ -518,7 +518,7 @@ uint64_t FUN_1808cabf0(int64_t *param_1)
        (uVar4 = FUN_180859470(param_1 + 2,iVar9), (int)uVar4 != 0)) {
       return uVar4;
     }
-    uVar4 = FUN_1807703c0(param_1,iVar9);
+    uVar4 = SystemCore_StateController0(param_1,iVar9);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -592,7 +592,7 @@ uint64_t FUN_1808cac16(void)
        (uVar3 = FUN_180859470(unaff_RBX + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0();
+    uVar3 = SystemCore_StateController0();
     if ((int)uVar3 != 0) {
       return uVar3;
     }

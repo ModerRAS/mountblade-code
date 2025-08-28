@@ -28,7 +28,7 @@ void FUN_1802d38cc(int32_t param_1)
   
   puVar1 = (uint64_t *)(in_RCX + 8);
   *in_RCX = param_1;
-  FUN_180058370(puVar1,*(uint64_t *)(in_RCX + 0xc));
+  RenderingSystem_CameraSystem(puVar1,*(uint64_t *)(in_RCX + 0xc));
   uVar10 = 0;
   *puVar1 = puVar1;
   *(uint64_t **)(in_RCX + 10) = puVar1;

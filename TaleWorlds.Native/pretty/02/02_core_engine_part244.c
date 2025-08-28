@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -1175,15 +1179,15 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
  * 函数名称映射：
  * - FUN_18020d310 -> cleanup_resource_item (清理资源项)
  * - func_0x00018066bd70 -> get_next_resource_entry (获取下一个资源条目)
- * - FUN_1800b8500 -> deallocate_resource_memory (释放资源内存)
- * - FUN_180057830 -> free_resource_structure (释放资源结构)
+ * - SystemManager_Validator0 -> deallocate_resource_memory (释放资源内存)
+ * - DataTransformer0 -> free_resource_structure (释放资源结构)
  * - CoreEngine_MemoryPoolManager -> trigger_resource_cleanup_error (触发资源清理错误)
  * - FUN_180179f00 -> process_resource_cleanup (处理资源清理)
  * - SystemCore_EncryptionEngine0 -> initialize_search_context (初始化搜索上下文)
  * - FUN_180141820 -> calculate_search_hash (计算搜索哈希)
- * - FUN_1802e8c60 -> process_resource_allocation (处理资源分配)
+ * - NetworkSystem_SecurityManager -> process_resource_allocation (处理资源分配)
  * - CoreMemoryPoolAllocator -> allocate_resource_memory (分配资源内存)
- * - FUN_1800590b0 -> process_resource_matching (处理资源匹配)
+ * - SystemCore_SecurityValidator -> process_resource_matching (处理资源匹配)
  * - SystemStateController -> register_resource_match (注册资源匹配)
  * - FUN_18020b790 -> finalize_resource_search (完成资源搜索)
  * - FUN_1802f5440 -> initialize_cleanup_context (初始化清理上下文)
@@ -1196,7 +1200,7 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
  * - FUN_18066b9a0 -> get_previous_resource_entry (获取前一个资源条目)
  * - FUN_1803bb5f0 -> process_resource_data (处理资源数据)
  * - FUN_1803ba550 -> process_resource_block (处理资源块)
- * - FUN_180624440 -> format_output_data (格式化输出数据)
+ * - SystemCore_EncryptionEngine -> format_output_data (格式化输出数据)
  * - FUN_1800a1310 -> format_resource_name (格式化资源名称)
  * - FUN_18009ec20 -> format_output_string (格式化输出字符串)
  * - FUN_18009ec80 -> write_output_data (写入输出数据)

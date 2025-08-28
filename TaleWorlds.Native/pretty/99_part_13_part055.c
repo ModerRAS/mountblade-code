@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -226,8 +227,8 @@ void FUN_1808cc8e0(void)
 
 
 
-// 函数: void FUN_1808cc913(void)
-void FUN_1808cc913(void)
+// 函数: void SystemCore_AdvancedController(void)
+void SystemCore_AdvancedController(void)
 
 {
   int64_t unaff_RBP;
@@ -311,7 +312,7 @@ LAB_1808ccad0:
       *(int *)(param_1 + 0x26) = *(int *)(param_1[0x1e] + 0xb0);
       if (param_1[0x1f] != 0) {
         uStack_88 = 0;
-        uVar4 = FUN_18073c4c0(param_1[0x1f],0,&uStack_88);
+        uVar4 = UtilitiesSystem_MathCalculator(param_1[0x1f],0,&uStack_88);
         if ((uVar4 < 0x1f) && ((0x40000009U >> (uVar4 & 0x1f) & 1) != 0)) {
           uStack_78 = 0;
           iVar3 = FUN_1808cd780(param_1,uStack_88 - param_1[6],&uStack_78);
@@ -445,7 +446,7 @@ LAB_1808ccad0:
       lVar2 = param_1[0x1f];
       if (lVar2 != 0) {
         *(uint64_t *)(unaff_RBP + -0x29) = 0;
-        uVar5 = FUN_18073c4c0(lVar2,0,unaff_RBP + -0x29);
+        uVar5 = UtilitiesSystem_MathCalculator(lVar2,0,unaff_RBP + -0x29);
         if ((uVar5 < 0x1f) && ((0x40000009U >> (uVar5 & 0x1f) & 1) != 0)) {
           lVar2 = param_1[6];
           *(uint64_t *)(unaff_RBP + -0x19) = 0;
@@ -534,7 +535,7 @@ void FUN_1808ccaf2(int32_t param_1)
   lVar1 = *(int64_t *)(unaff_R14 + 0xf8);
   if (lVar1 != 0) {
     *(uint64_t *)(unaff_RBP + -0x29) = 0;
-    uVar2 = FUN_18073c4c0(lVar1,0,unaff_RBP + -0x29);
+    uVar2 = UtilitiesSystem_MathCalculator(lVar1,0,unaff_RBP + -0x29);
     if ((uVar2 < 0x1f) && ((0x40000009U >> (uVar2 & 0x1f) & 1) != 0)) {
       *(uint64_t *)(unaff_RBP + -0x19) = 0;
       iVar3 = FUN_1808cd780();
@@ -612,7 +613,7 @@ uint64_t FUN_1808ccc40(int64_t param_1)
                                 *(int32_t *)((int64_t)puVar1 + 0x24));
     lVar3 = func_0x00018085fd70(*(uint64_t *)(param_1 + 0xf8),puVar1 + 2);
     if ((lVar3 == 0) || ((*(int64_t *)(lVar3 + 0x40) != 0) == (cVar2 == '\0'))) {
-      uVar5 = FUN_1808b2f30(param_1,*(int32_t *)((int64_t)puVar1 + 0x24));
+      uVar5 = SystemDataFlowProcessor(param_1,*(int32_t *)((int64_t)puVar1 + 0x24));
 LAB_1808ccd05:
       if ((int)uVar5 != 0) {
         return uVar5;

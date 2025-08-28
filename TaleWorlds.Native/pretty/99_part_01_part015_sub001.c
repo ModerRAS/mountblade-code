@@ -1,9 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 99_part_01_part015_sub001.c - 2 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_01_part015.c - 2 个函数
 
@@ -183,7 +188,7 @@ LAB_1800af16e:
     if (!bVar13) {
       uVar6 = 0xffffffff;
     }
-    FUN_180626eb0(auStack_60,0x20,&processed_var_7284_ptr,lStack_a0 + (uVar6 & uVar11));
+    SystemCore_CacheManager(auStack_60,0x20,&processed_var_7284_ptr,lStack_a0 + (uVar6 & uVar11));
     (**(code **)(*plStack_a8 + 0x10))(plStack_a8,auStack_60);
   }
   puStack_98 = &system_data_buffer_ptr;
@@ -512,13 +517,13 @@ LAB_1800af68c:
               if (puStack_90[uVar12] != (&processed_var_7160_ptr)[uVar12]) goto LAB_1800af89b;
               uVar12 = uVar26;
             } while (uVar26 != 5);
-            ppuVar11 = (void **)FUN_180628ca0();
+            ppuVar11 = (void **)MemoryDebugger0();
           }
           else {
 LAB_1800af89b:
             ppuVar11 = &puStack_b8;
           }
-          uVar8 = FUN_18005c8a0(uVar10,ppuVar11);
+          uVar8 = SystemCore_MemoryManager(uVar10,ppuVar11);
           puStack_b8 = &system_data_buffer_ptr;
           if (pbStack_b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return

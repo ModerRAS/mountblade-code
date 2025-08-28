@@ -118,7 +118,7 @@ int FUN_1808c3de0(int64_t *param_1,int32_t *param_2,uint64_t param_3)
     puVar7 = puVar8;
   }
   puStackX_8 = (uint64_t *)CONCAT44(puStackX_8._4_4_,0xffffffff);
-  iVar11 = FUN_1807d28c0(puVar7,&puStackX_8,&uStackX_18);
+  iVar11 = RenderingSystem_Renderer(puVar7,&puStackX_8,&uStackX_18);
   if (iVar11 != 0) goto LAB_1808c40b1;
   if (!bVar5) {
     return 0;
@@ -258,7 +258,7 @@ int FUN_1808c3e53(void)
     plVar6 = plVar7;
   }
   in_stack_00000080 = (int64_t *)CONCAT44(in_stack_00000080._4_4_,0xffffffff);
-  iVar10 = FUN_1807d28c0(plVar6,&stack0x00000080,&stack0x00000090);
+  iVar10 = RenderingSystem_Renderer(plVar6,&stack0x00000080,&stack0x00000090);
   if (iVar10 != 0) goto LAB_1808c40b1;
   if (!bVar5) {
     return iVar12;
@@ -418,7 +418,7 @@ int FUN_1808c3e75(uint64_t param_1,uint64_t param_2,int64_t *param_3)
     plVar6 = plVar7;
   }
   in_stack_00000080 = (int64_t *)CONCAT44(in_stack_00000080._4_4_,0xffffffff);
-  iVar10 = FUN_1807d28c0(plVar6,&stack0x00000080,&stack0x00000090);
+  iVar10 = RenderingSystem_Renderer(plVar6,&stack0x00000080,&stack0x00000090);
   if (iVar10 != 0) goto LAB_1808c40b1;
   if (!bVar4) {
     return iVar12;
@@ -547,7 +547,7 @@ int FUN_1808c3edb(void)
     plVar6 = plVar7;
   }
   in_stack_00000080 = (int64_t *)CONCAT44(in_stack_00000080._4_4_,0xffffffff);
-  iVar10 = FUN_1807d28c0(plVar6,&stack0x00000080,&stack0x00000090);
+  iVar10 = RenderingSystem_Renderer(plVar6,&stack0x00000080,&stack0x00000090);
   if (iVar10 != 0) goto LAB_1808c40b1;
   if (!bVar5) {
     return iVar12;

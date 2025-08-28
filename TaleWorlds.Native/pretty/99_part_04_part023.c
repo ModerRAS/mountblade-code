@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -356,7 +360,7 @@ void FUN_18026d9d0(uint64_t *param_1)
 
 
 
-uint64_t * FUN_18026daf0(uint64_t *param_1,int64_t param_2)
+uint64_t * NetworkSystem_DataHandler(uint64_t *param_1,int64_t param_2)
 
 {
   FUN_18026ead0();
@@ -379,7 +383,7 @@ FUN_18026db60(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_7440_ptr;
-  FUN_1802708b0(param_1 + 1);
+  MemoryBufferManager(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
@@ -428,80 +432,80 @@ void FUN_18026dbe0(int64_t param_1)
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x430) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x438));
+  MemoryBufferManager((int64_t *)(param_1 + 0x438));
   if (*(int64_t *)(param_1 + 0x438) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x3f8) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x400));
+  MemoryBufferManager((int64_t *)(param_1 + 0x400));
   if (*(int64_t *)(param_1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x3c0) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x3c8));
+  MemoryBufferManager((int64_t *)(param_1 + 0x3c8));
   if (*(int64_t *)(param_1 + 0x3c8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x388) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x390));
+  MemoryBufferManager((int64_t *)(param_1 + 0x390));
   if (*(int64_t *)(param_1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x350) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x358));
+  MemoryBufferManager((int64_t *)(param_1 + 0x358));
   if (*(int64_t *)(param_1 + 0x358) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x318) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 800));
+  MemoryBufferManager((int64_t *)(param_1 + 800));
   if (*(int64_t *)(param_1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x2e0) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x2e8));
+  MemoryBufferManager((int64_t *)(param_1 + 0x2e8));
   if (*(int64_t *)(param_1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   FUN_180269f50(param_1 + 0x270);
   *(void **)(param_1 + 0x240) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x248));
+  MemoryBufferManager((int64_t *)(param_1 + 0x248));
   if (*(int64_t *)(param_1 + 0x248) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x208) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x210));
+  MemoryBufferManager((int64_t *)(param_1 + 0x210));
   if (*(int64_t *)(param_1 + 0x210) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x1d0) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x1d8));
+  MemoryBufferManager((int64_t *)(param_1 + 0x1d8));
   if (*(int64_t *)(param_1 + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x198) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x1a0));
+  MemoryBufferManager((int64_t *)(param_1 + 0x1a0));
   if (*(int64_t *)(param_1 + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x160) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x168));
+  MemoryBufferManager((int64_t *)(param_1 + 0x168));
   if (*(int64_t *)(param_1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   *(void **)(param_1 + 0x108) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x110));
+  MemoryBufferManager((int64_t *)(param_1 + 0x110));
   if (*(int64_t *)(param_1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
@@ -626,7 +630,7 @@ void FUN_18026dfc0(int64_t *param_1,uint64_t param_2)
   lVar7 = *param_1;
   if (lVar7 != lVar10) {
     do {
-      FUN_180057830();
+      DataTransformer0();
       lVar7 = lVar7 + 0x28;
     } while (lVar7 != lVar10);
     lVar7 = *param_1;

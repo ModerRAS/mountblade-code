@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part056.c - 7 个函数
 
 // 函数: void FUN_180091970(uint64_t param_1)
@@ -218,7 +222,7 @@ void FUN_180091970(uint64_t param_1)
       pplStack_298 = &plStack_268;
       plStack_268 = plVar13;
       (**(code **)(*plVar13 + 0x28))();
-      FUN_18005e110(lVar20,&plStack_268);
+      SystemCore_TimerManager(lVar20,&plStack_268);
     }
     FUN_1800f9350();
     lVar20 = plVar6[0x30d];
@@ -261,7 +265,7 @@ void FUN_180091970(uint64_t param_1)
       pplStack_298 = &plStack_280;
       plStack_280 = plVar13;
       (**(code **)(*plVar13 + 0x28))();
-      FUN_18005e110(lVar20,&plStack_280);
+      SystemCore_TimerManager(lVar20,&plStack_280);
     }
     if (*(int *)(core_system_data_memory + 0x380) != 0) {
       FUN_1800f9350();
@@ -290,7 +294,7 @@ void FUN_180091970(uint64_t param_1)
       pplStack_298 = &plStack_278;
       plStack_278 = plVar13;
       (**(code **)(*plVar13 + 0x28))();
-      FUN_18005e6a0(lVar20,&plStack_278,0);
+      SystemCore_ErrorHandler(lVar20,&plStack_278,0);
       plStack_1f0 = *(int64_t **)(core_system_data_memory + 0x228);
       *(uint64_t *)(core_system_data_memory + 0x228) = 0;
       if (plStack_1f0 != (int64_t *)0x0) {
@@ -325,7 +329,7 @@ void FUN_180091970(uint64_t param_1)
           pplStack_298 = &plStack_270;
           plStack_270 = plVar13;
           (**(code **)(*plVar13 + 0x28))();
-          FUN_18005e6a0(lVar15,&plStack_270,0);
+          SystemCore_ErrorHandler(lVar15,&plStack_270,0);
           plStack_1e8 = *(int64_t **)(lVar20 + 0x1b0);
           *(uint64_t *)(lVar20 + 0x1b0) = 0;
           if (plStack_1e8 != (int64_t *)0x0) {
@@ -407,7 +411,7 @@ void FUN_180091970(uint64_t param_1)
     *(int *)(plVar10 + 0x17) = (int)lVar11;
     *(int32_t *)((int64_t)plVar10 + 0xbc) = uVar3;
     FUN_18024b8d0(lVar20);
-    FUN_180094b30(lVar20,&ui_system_data_1744_ptr);
+    SystemCore_NetworkHandler(lVar20,&ui_system_data_1744_ptr);
     if ((int)(system_operation_state[0x30e] - system_operation_state[0x30d] >> 3) == 0) {
       *(int8_t *)(lVar20 + 0x12c0a) = 1;
     }
@@ -486,7 +490,7 @@ void FUN_180091970(uint64_t param_1)
         puVar21 = puStack_130;
       }
       strcpy_s(auStack_c0,0x80,puVar21);
-      plVar13 = (int64_t *)FUN_1800b1230(system_resource_state,&plStack_1c8,&puStack_d8,&uStack_250);
+      plVar13 = (int64_t *)SystemInitializer(system_resource_state,&plStack_1c8,&puStack_d8,&uStack_250);
       plVar13 = (int64_t *)*plVar13;
       if (plVar13 != (int64_t *)0x0) {
         plStack_1d0 = plVar13;
@@ -610,7 +614,7 @@ void FUN_180091970(uint64_t param_1)
   uStack_1b0 = lVar20;
   uStack_1a8 = uVar9;
   uStack_198 = uVar9;
-  plVar13 = (int64_t *)FUN_18006b640(uVar12,&uStack_1a0);
+  plVar13 = (int64_t *)SystemCore_ErrorHandler(uVar12,&uStack_1a0);
   lVar20 = system_parameter_buffer;
   if (plVar13 != (int64_t *)0x0) {
     pplStack_260 = (int64_t **)plVar13;
@@ -666,7 +670,7 @@ void FUN_180091970(uint64_t param_1)
     pplStack_258 = aplStack_178;
     puStack_168 = &processed_var_7056_ptr;
     pcStack_160 = _guard_check_icall;
-    uVar9 = FUN_18005c650(aplStack_178);
+    uVar9 = SystemCore_SecurityManager(aplStack_178);
   }
   FUN_1800d36c0(uVar9,*plVar6);
   *plVar6 = 0;

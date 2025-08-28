@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedHandler_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -141,7 +142,7 @@ void FUN_180876428(void)
   }
   if (unaff_R13B != '\0') {
     in_stack_00000070 = 0;
-    iVar5 = FUN_18088c740(&stack0x00000070);
+    iVar5 = RenderingSystemOptimizer(&stack0x00000070);
     if ((((iVar5 == 0) &&
          (iVar5 = FUN_18087e0b0(extraout_XMM0_Da_04,*(uint64_t *)(unaff_R14 + 0xc0),
                                 unaff_RBP + 0x9c,*(uint64_t *)(unaff_R14 + 800),unaff_RBP + -0x10)
@@ -161,7 +162,7 @@ void FUN_180876428(void)
       in_stack_00000048 = (int64_t *)(unaff_R14 + 0x778);
       _iStack0000000000000050 = (uint64_t *)0xffffffffffffffff;
       _iStack0000000000000058 = (uint64_t *)CONCAT44(uStack000000000000005c,0xffffffff);
-      FUN_1808741f0(in_stack_00000048,&stack0x00000050,&stack0x00000058);
+      SystemResource_Manager(in_stack_00000048,&stack0x00000050,&stack0x00000058);
       if (iStack0000000000000058 != -1) {
         iVar5 = iStack0000000000000058;
         iVar6 = iStack0000000000000050;
@@ -222,7 +223,7 @@ LAB_1808768bc:
             uStack0000000000000068 = *(int32_t *)(lVar9 + 0x18);
             uStack000000000000006c = *(int32_t *)(lVar9 + 0x1c);
             in_stack_00000040 = 1;
-            FUN_180879610(unaff_RBP + -0xf,&stack0x00000060);
+            SystemStateProcessor(unaff_RBP + -0xf,&stack0x00000060);
           }
         }
         uVar12 = uVar12 + 0x10;
@@ -301,7 +302,7 @@ LAB_1808769aa:
         uStack0000000000000068 = *(int32_t *)(lVar9 + 0x18);
         uStack000000000000006c = *(int32_t *)(lVar9 + 0x1c);
         in_stack_00000040 = 1;
-        FUN_180879610(unaff_RBP + -0xf,&stack0x00000060,&stack0x00000040);
+        SystemStateProcessor(unaff_RBP + -0xf,&stack0x00000060,&stack0x00000040);
       }
     }
     uVar12 = uVar12 + 0x10;
@@ -319,7 +320,7 @@ LAB_1808769aa:
     in_stack_00000048 = (int64_t *)(unaff_R14 + 0x898);
     _iStack0000000000000050 = (uint64_t *)0xffffffffffffffff;
     _iStack0000000000000058 = (uint64_t *)CONCAT44(uStack000000000000005c,0xffffffff);
-    FUN_1808741f0(in_stack_00000048,&stack0x00000050,&stack0x00000058);
+    SystemResource_Manager(in_stack_00000048,&stack0x00000050,&stack0x00000058);
     plVar3 = in_stack_00000048;
     while (in_stack_00000048 = plVar3, iStack0000000000000058 != -1) {
       lVar9 = (int64_t)iStack0000000000000058;
@@ -867,8 +868,8 @@ void FUN_180877798(void)
 
 
 
-// 函数: void FUN_1808777c0(int64_t param_1,uint64_t param_2)
-void FUN_1808777c0(int64_t param_1,uint64_t param_2)
+// 函数: void RenderingSystem_TextureHandler0(int64_t param_1,uint64_t param_2)
+void RenderingSystem_TextureHandler0(int64_t param_1,uint64_t param_2)
 
 {
   int iVar1;

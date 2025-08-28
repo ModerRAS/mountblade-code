@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -154,7 +158,7 @@ void FUN_1804cd9f0(uint64_t param_1,int64_t param_2,int32_t param_3)
       uVar23 = 1 << ((byte)uVar21 & 0x1f);
       if ((1 < *(int *)(*(int64_t *)(lVar19 + uVar22) + 0x178)) &&
          ((uVar23 & unaff_R12W) == uVar23)) {
-        FUN_180077750(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(lVar19 + uVar22),
+        SystemHealthMonitor(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(lVar19 + uVar22),
                       unaff_RBP + -0x19,0,&stack0x00000030);
       }
       lVar19 = *(int64_t *)(unaff_RSI + 8);
@@ -321,7 +325,7 @@ void FUN_1804cd9f9(uint64_t param_1,uint64_t param_2,int32_t param_3)
       uVar22 = 1 << ((byte)unaff_RBX & 0x1f);
       if ((1 < *(int *)(*(int64_t *)(lVar19 + uVar21) + 0x178)) &&
          ((uVar22 & unaff_R12W) == uVar22)) {
-        FUN_180077750(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(lVar19 + uVar21),
+        SystemHealthMonitor(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(lVar19 + uVar21),
                       unaff_RBP + -0x19,0,&stack0x00000030);
       }
       lVar19 = *(int64_t *)(unaff_RSI + 8);
@@ -359,7 +363,7 @@ void FUN_1804cdafa(uint64_t param_1,int64_t param_2)
   do {
     uVar2 = 1 << ((byte)unaff_EBX & 0x1f);
     if ((1 < *(int *)(*(int64_t *)(param_2 + uVar1) + 0x178)) && ((uVar2 & unaff_R12W) == uVar2)) {
-      FUN_180077750(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(param_2 + uVar1),
+      SystemHealthMonitor(*(uint64_t *)(unaff_R14 + 8 + unaff_R15),*(int64_t *)(param_2 + uVar1),
                     unaff_RBP + -0x19,0,&stack0x00000030);
     }
     param_2 = *(int64_t *)(unaff_RSI + 8);
@@ -500,7 +504,7 @@ void FUN_1804cdb90(int64_t param_1,ushort param_2,int param_3,ushort param_4)
               ((fVar18 = *(float *)(lVar13 + 0x174) * 0.2, fVar18 <= 0.0 ||
                (pfVar2 = (float *)(lVar10 + 0x5c + lVar5), fVar18 < *pfVar2 || fVar18 == *pfVar2))))
              )) {
-            FUN_180077750(*(uint64_t *)(lVar10 + 0x48 + lVar5),lVar13,lVar1 + 8,0,&uStack_c8);
+            SystemHealthMonitor(*(uint64_t *)(lVar10 + 0x48 + lVar5),lVar13,lVar1 + 8,0,&uStack_c8);
           }
           lVar13 = *(int64_t *)(param_1 + 8);
           uVar11 = (int)uVar12 + 1;
@@ -582,7 +586,7 @@ void FUN_1804cdcb5(void)
             ((fVar13 = *(float *)(lVar10 + 0x174) * 0.2, fVar13 <= 0.0 ||
              (pfVar2 = (float *)(uVar7 + 0x5c + lVar4), fVar13 < *pfVar2 || fVar13 == *pfVar2))))))
         {
-          FUN_180077750(*(uint64_t *)(uVar7 + 0x48 + lVar4),lVar10,lVar1 + 8,0,&stack0x00000050);
+          SystemHealthMonitor(*(uint64_t *)(uVar7 + 0x48 + lVar4),lVar10,lVar1 + 8,0,&stack0x00000050);
         }
         lVar10 = *(int64_t *)(unaff_RBP + 8);
         uVar8 = (int)uVar9 + 1;
@@ -801,7 +805,7 @@ void FUN_1804ce1c0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         if ((int64_t *)puVar2[5] != (int64_t *)0x0) {
           (**(code **)(*(int64_t *)puVar2[5] + 0x38))();
         }
-        FUN_180057830(puVar2 + 1);
+        DataTransformer0(puVar2 + 1);
       }
       uVar3 = uVar3 + 1;
     } while (uVar3 < (uint64_t)param_1[1]);
@@ -843,7 +847,7 @@ void FUN_1804ce2b0(int64_t *param_1)
           if ((int64_t *)puVar2[5] != (int64_t *)0x0) {
             (**(code **)(*(int64_t *)puVar2[5] + 0x38))();
           }
-          FUN_180057830(puVar2 + 1);
+          DataTransformer0(puVar2 + 1);
           lVar1 = *param_1;
         }
         uVar3 = uVar3 + 1;
@@ -947,7 +951,7 @@ int64_t FUN_1804ce670(int64_t param_1)
   if (*(int64_t **)(param_1 + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x20) + 0x38))();
   }
-  FUN_180057830(param_1);
+  DataTransformer0(param_1);
   return param_1;
 }
 

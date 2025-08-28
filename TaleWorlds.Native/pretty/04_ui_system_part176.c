@@ -328,7 +328,7 @@ uint64_t FUN_18076e374(void)
 
 
 
-int FUN_18076e380(int64_t param_1,uint64_t param_2,float param_3)
+int UISystem_DataHandler0(int64_t param_1,uint64_t param_2,float param_3)
 
 {
   int64_t lVar1;
@@ -415,7 +415,7 @@ LAB_18076e4f2:
 
 
 
-int FUN_18076e38d(int32_t param_1,uint64_t param_2,float param_3)
+int UISystem_DataHandlerd(int32_t param_1,uint64_t param_2,float param_3)
 
 {
   bool bVar1;

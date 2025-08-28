@@ -109,7 +109,7 @@ void FUN_1805115e5(void)
   uVar15 = *(uint *)(unaff_RBX + 0x4c4) >> 10;
   in_stack_000000a0 = '\x01';
   if ((uVar15 & 1) == 0) {
-    cVar9 = FUN_1805a3ab0(unaff_RBX + 0x28);
+    cVar9 = RenderingSystem_ConfigValidator0(unaff_RBX + 0x28);
     if ((cVar9 == '\0') || (cVar9 = StringProcessor(unaff_RBX + 0x28,&stack0x000000a0), cVar9 != '\0')
        ) goto LAB_18051181d;
     bVar8 = true;

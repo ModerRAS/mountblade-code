@@ -113,7 +113,7 @@ void process_network_packet(uint64_t packet_data)
   cleanup_network_connection(connection_info + 1);
 }
 
-// 函数: uint64_t FUN_180840270(int64_t *param_1)
+// 函数: uint64_t SystemCore_MemoryManager(int64_t *param_1)
 // 网络数据发送函数 - 发送网络数据到指定连接
 uint64_t send_network_data(int64_t *connection_handle)
 {

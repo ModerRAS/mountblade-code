@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 
 // 04_ui_system_part169.c - 4 个函数
 
@@ -117,7 +123,7 @@ int FUN_180769c60(int64_t *param_1,int64_t param_2,int param_3,int param_4,int64
 
 
 
-uint64_t FUN_180769ed0(int64_t *param_1,uint *param_2,uint param_3,int param_4,uint *param_5)
+uint64_t SystemPerformanceOptimizer(int64_t *param_1,uint *param_2,uint param_3,int param_4,uint *param_5)
 
 {
   int64_t *plVar1;
@@ -737,7 +743,7 @@ void FUN_18076a3b0(int64_t *param_1)
     *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x40) = 0;
   }
   if (param_1[0x33] != 0) {
-    FUN_180768380(param_1[0x33],0);
+    SystemCore_DataHandler(param_1[0x33],0);
   }
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&ui_system_data_1664_ptr,0xd5,1);
@@ -745,7 +751,7 @@ void FUN_18076a3b0(int64_t *param_1)
 
 
 
-int32_t FUN_18076a440(int64_t *param_1,int param_2,uint param_3)
+int32_t MathTrigonometryFunction0(int64_t *param_1,int param_2,uint param_3)
 
 {
   uint uVar1;
@@ -824,7 +830,7 @@ int32_t FUN_18076a5d0(int64_t *param_1)
   if ((*(uint *)((int64_t)param_1 + 0x194) & 8) != 0) {
     iVar4 = (int)param_1[0x32];
     while (iVar4 != 0) {
-      FUN_180768bf0(10);
+      UIComponent_EventHandler(10);
       iVar4 = (int)param_1[0x32];
     }
   }
@@ -867,7 +873,7 @@ uint64_t FUN_18076a6f0(void)
       *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x40) = 0;
     }
     if (plVar1[0x33] != 0) {
-      FUN_180768380(plVar1[0x33],0);
+      SystemCore_DataHandler(plVar1[0x33],0);
     }
                     // WARNING: Subroutine does not return
     SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&ui_system_data_1664_ptr,0xd5,1);

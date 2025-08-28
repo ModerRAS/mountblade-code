@@ -1,3 +1,11 @@
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -131,7 +139,7 @@ void FUN_1801f1300(int64_t param_1)
   iVar7 = FUN_1801426a0(lVar21,&puStack_228);
   if (iVar7 < 0) {
 LAB_1801f1465:
-    lVar21 = FUN_180628ca0();
+    lVar21 = MemoryDebugger0();
   }
   else {
     if ((uint64_t)(*(int64_t *)(lVar21 + 0x890) - *(int64_t *)(lVar21 + 0x888) >> 5) <=
@@ -258,7 +266,7 @@ LAB_1801f16b2:
   puVar18[6] = puVar13[6];
   *(int16_t *)(puVar18 + 7) = *(int16_t *)(puVar13 + 7);
   uStack_2b0 = uVar1 + 0x26;
-  FUN_180627e10(&puStack_2c0,&puStack_200,&system_data_d7c8);
+  UtilitiesSystem_CacheManager(&puStack_2c0,&puStack_200,&system_data_d7c8);
   uStack_2c8 = 1;
   puStack_2c0 = &system_data_buffer_ptr;
   if (puVar15 != (int8_t *)0x0) {
@@ -326,7 +334,7 @@ LAB_1801f16b2:
   *(int8_t *)(puVar18 + 1) = 0;
   uStack_290 = 4;
   uStack_288._0_4_ = uVar6;
-  FUN_180066df0(plVar12 + 0xc0e2,&puStack_2a0);
+  DataEncryptionHandler0(plVar12 + 0xc0e2,&puStack_2a0);
   puStack_2a0 = &system_data_buffer_ptr;
   if (puStack_298 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -347,7 +355,7 @@ LAB_1801f16b2:
   *(int16_t *)(puVar18 + 1) = 0x65;
   uStack_2b0 = 5;
   uStack_2a8._0_4_ = uVar6;
-  FUN_180066df0(plVar12 + 0xc0e2,&puStack_2c0);
+  DataEncryptionHandler0(plVar12 + 0xc0e2,&puStack_2c0);
   puStack_2c0 = &system_data_buffer_ptr;
   if (puStack_2b8 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -367,7 +375,7 @@ LAB_1801f16b2:
   *puVar16 = 0x335f6c6576656c;
   uStack_290 = 7;
   uStack_288._0_4_ = uVar6;
-  FUN_180066df0(plVar12 + 0xc0e2,&puStack_2a0);
+  DataEncryptionHandler0(plVar12 + 0xc0e2,&puStack_2a0);
   puStack_2a0 = &system_data_buffer_ptr;
   if (puStack_298 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return

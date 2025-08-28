@@ -1,3 +1,11 @@
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 //==============================================================================
 // 文件信息：03_rendering_part140.c
 // 模块功能：渲染系统高级渲染处理模块
@@ -435,7 +443,7 @@ render_uint64_t *render_data_structure_initialize(render_uint64_t *param_1, rend
     
     uVar1 = 0xfffffffffffffffe;
     *param_1 = &processed_var_9680_ptr;
-    FUN_1803457d0();
+    UIComponent_Manager();
     if ((param_2 & 1) != 0) {
         free(param_1, 0x78, param_3, param_4, uVar1);
     }
@@ -709,7 +717,7 @@ void FUN_180350270(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_208,&puStack_1a8);
   uStack_1b0 = 1;
   uStack_228 = 1;
-  FUN_180180730(param_1,appuStack_220,apuStack_208);
+  MathOptimizationEngine0(param_1,appuStack_220,apuStack_208);
   uStack_228 = 0;
   appuStack_220[0] = apuStack_208;
   apuStack_208[0] = &system_state_ptr;
@@ -722,7 +730,7 @@ void FUN_180350270(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_208,&puStack_148);
   uStack_1b0 = 1;
   uStack_228 = 2;
-  FUN_180180730(param_1,appuStack_220,apuStack_208);
+  MathOptimizationEngine0(param_1,appuStack_220,apuStack_208);
   uStack_228 = 0;
   appuStack_220[0] = apuStack_208;
   apuStack_208[0] = &system_state_ptr;
@@ -735,7 +743,7 @@ void FUN_180350270(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_208,&puStack_e8);
   uStack_1b0 = 1;
   uStack_228 = 4;
-  FUN_180180730(param_1,appuStack_220,apuStack_208);
+  MathOptimizationEngine0(param_1,appuStack_220,apuStack_208);
   uStack_228 = 0;
   appuStack_220[0] = apuStack_208;
   apuStack_208[0] = &system_state_ptr;
@@ -748,7 +756,7 @@ void FUN_180350270(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_208,&puStack_88);
   uStack_1b0 = 1;
   uStack_228 = 8;
-  FUN_180180730(param_1,appuStack_220,apuStack_208);
+  MathOptimizationEngine0(param_1,appuStack_220,apuStack_208);
   uStack_228 = 0;
   appuStack_220[0] = apuStack_208;
   apuStack_208[0] = &system_state_ptr;
@@ -923,7 +931,7 @@ uint64_t * FUN_1803507f0(uint64_t *param_1,uint64_t param_2)
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
   param_1[0xe] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x98);
   }
@@ -940,7 +948,7 @@ FUN_1803508a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &ui_system_data_1024_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x78,param_3,param_4,uVar1);
   }
@@ -984,7 +992,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *puVar3 = 0x74736143796152;
     uStack_50 = 7;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1005,7 +1013,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int32_t *)(puVar3 + 1) = 0x744174;
     uStack_30 = 0xb;
     uStack_28._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1026,7 +1034,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int32_t *)(puVar3 + 1) = 0x747361;
     uStack_50 = 0xb;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1050,7 +1058,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int8_t *)(puVar4 + 4) = 0;
     uStack_30 = 0x10;
     uStack_28._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1072,7 +1080,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int16_t *)((int64_t)puVar3 + 0xc) = 0x74;
     uStack_50 = 0xd;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1093,7 +1101,7 @@ void FUN_1803508f0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *puVar3 = 0x546e696172726554;
     *(int32_t *)(puVar3 + 1) = 0x747365;
     uStack_30 = 0xb;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1137,7 +1145,7 @@ void FUN_180350ca0(void)
   *(int16_t *)((int64_t)puVar3 + 0xc) = 0x6873;
   *(int8_t *)((int64_t)puVar3 + 0xe) = 0;
   uStack_c8 = 0xe;
-  FUN_1800b6de0(uVar1,&puStack_d8,1);
+  RenderingSystem_VertexProcessor(uVar1,&puStack_d8,1);
   puStack_d8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(puVar3);
@@ -1176,7 +1184,7 @@ void FUN_180351010(uint64_t param_1)
   SystemCommunicationProcessor(apuStack_78,&puStack_d8);
   uStack_20 = 9;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;

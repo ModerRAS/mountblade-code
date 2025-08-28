@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part576.c - 1 个函数
 
 // 函数: void FUN_180582ab0(int64_t param_1,float param_2)
@@ -230,7 +234,7 @@ void FUN_180582ab0(int64_t param_1,float param_2)
       fStack_1b0 = 0.0;
       (**(code **)(render_system_data_config + 0x210))
                 (*(int32_t *)(lVar11 + 0x98d928),*(int32_t *)(param_1 + 0xc),&fStack_1d0);
-      pcStack_288 = FUN_18004a130;
+      pcStack_288 = SystemCore_MemoryManager;
       DataStructureManager(auStack_1a8,0x30,4,FUN_1801c2890);
       uStack_e8 = 0;
       puStack_270 = (int8_t *)0x0;
@@ -249,7 +253,7 @@ void FUN_180582ab0(int64_t param_1,float param_2)
       uStack_278 = 0xffffffff;
       pcStack_288 = (code *)((uint64_t)pcStack_288 & 0xffffffffffffff00);
       FUN_1804f83f0(*(uint64_t *)(param_1 + 0x10),iVar5,&uStack_258,1);
-      SystemMemoryManager(auStack_1a8,0x30,4,FUN_18004a130);
+      SystemMemoryManager(auStack_1a8,0x30,4,SystemCore_MemoryManager);
     }
   }
   if ((*(int64_t **)(param_1 + 0xd0) != (int64_t *)0x0) &&
@@ -315,7 +319,7 @@ LAB_1805834b2:
     }
     if ((fVar24 + fVar13) * (fVar24 + fVar13) <= fVar19 * fVar19 + fVar12 * fVar12 + fVar15 * fVar15
        ) {
-      FUN_1802ee720(plVar6,1);
+      RenderingSystem_UpdateCamera(plVar6,1);
     }
   }
   FUN_1805815f0(param_1,&uStack_230,param_1 + 0x58);

@@ -373,9 +373,9 @@ LAB_180428199:
             iVar24 = 0;
             puVar3 = (int8_t *)((int)uVar23 + lVar2);
             do {
-              uVar22 = FUN_18041f0a0(param_1);
+              uVar22 = SystemCore_MemoryManager(param_1);
               if (iStack_4b8 != 0x10) {
-                iVar13 = FUN_18041f0a0(param_1);
+                iVar13 = SystemCore_MemoryManager(param_1);
                 uVar22 = uVar22 + iVar13 * 0x10000;
               }
               iVar13 = (uVar22 & uStack_4ac) << ((byte)iStack_48c & 0x1f);
@@ -713,13 +713,13 @@ LAB_18042887b:
     }
     uVar7 = 0;
   }
-  iVar9 = FUN_18041f0a0(param_1);
+  iVar9 = SystemCore_MemoryManager(param_1);
   if (iVar9 < 1) {
     *(uint64_t *)(param_1 + 0xb8) = *(uint64_t *)(param_1 + 200);
     *(uint64_t *)(param_1 + 0xc0) = *(uint64_t *)(param_1 + 0xd0);
     return 0;
   }
-  iVar2 = FUN_18041f0a0(param_1);
+  iVar2 = SystemCore_MemoryManager(param_1);
   if (iVar2 < 1) goto LAB_180428a0b;
   pbVar4 = *(byte **)(param_1 + 0xb8);
   pbVar3 = *(byte **)(param_1 + 0xc0);
@@ -871,13 +871,13 @@ LAB_18042887b:
       (**(code **)(unaff_RBX + 0x18))(*(uint64_t *)(unaff_RBX + 0x28));
     }
   }
-  iVar8 = FUN_18041f0a0();
+  iVar8 = SystemCore_MemoryManager();
   if (iVar8 < 1) {
     *(uint64_t *)(unaff_RBX + 0xb8) = *(uint64_t *)(unaff_RBX + 200);
     *(uint64_t *)(unaff_RBX + 0xc0) = *(uint64_t *)(unaff_RBX + 0xd0);
     return 0;
   }
-  iVar1 = FUN_18041f0a0();
+  iVar1 = SystemCore_MemoryManager();
   if (iVar1 < 1) goto LAB_180428a0b;
   pbVar2 = *(byte **)(unaff_RBX + 0xb8);
   pbVar3 = *(byte **)(unaff_RBX + 0xc0);
@@ -967,13 +967,13 @@ uint64_t FUN_1804288e4(void)
   int *in_stack_00000068;
   int *in_stack_00000070;
   
-  iVar1 = FUN_18041f0a0();
+  iVar1 = SystemCore_MemoryManager();
   if (iVar1 < 1) {
     *(uint64_t *)(unaff_RBX + 0xb8) = *(uint64_t *)(unaff_RBX + 200);
     *(uint64_t *)(unaff_RBX + 0xc0) = *(uint64_t *)(unaff_RBX + 0xd0);
     return 0;
   }
-  iVar2 = FUN_18041f0a0();
+  iVar2 = SystemCore_MemoryManager();
   if (iVar2 < 1) goto LAB_180428a0b;
   pbVar3 = *(byte **)(unaff_RBX + 0xb8);
   pbVar4 = *(byte **)(unaff_RBX + 0xc0);
@@ -1068,7 +1068,7 @@ uint64_t FUN_18042891c(void)
   int32_t *in_stack_00000068;
   int *in_stack_00000070;
   
-  iVar1 = FUN_18041f0a0();
+  iVar1 = SystemCore_MemoryManager();
   if (iVar1 < 1) goto LAB_180428a0b;
   pbVar2 = *(byte **)(unaff_RBX + 0xb8);
   pbVar3 = *(byte **)(unaff_RBX + 0xc0);

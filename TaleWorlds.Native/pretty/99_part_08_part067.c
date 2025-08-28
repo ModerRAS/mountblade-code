@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_08_part067.c - 8 个函数
 
@@ -736,7 +738,7 @@ int64_t FUN_1805b6920(int64_t param_1)
 
 {
   if ((*(byte *)(param_1 + 8) & 1) == 0) {
-    FUN_1805d3210();
+    SystemCore_ThreadManager();
     return param_1 + 0x58;
   }
   return param_1 + 0x58;
@@ -748,7 +750,7 @@ int64_t FUN_1805b6950(int64_t param_1)
 
 {
   if ((*(byte *)(param_1 + 8) & 1) == 0) {
-    FUN_1805d3210();
+    SystemCore_ThreadManager();
     return param_1 + 0x60;
   }
   return param_1 + 0x60;
@@ -790,8 +792,8 @@ float * FUN_1805b69b0(int64_t *param_1)
     *(uint *)(param_1 + 1) = *(uint *)(param_1 + 1) | 4;
     return (float *)(param_1 + 0xd);
   }
-  if (((uVar2 & 1) == 0) && (FUN_1805d3210(param_1), (*(uint *)(param_1 + 1) & 1) == 0)) {
-    FUN_1805d3210(param_1);
+  if (((uVar2 & 1) == 0) && (SystemCore_ThreadManager(param_1), (*(uint *)(param_1 + 1) & 1) == 0)) {
+    SystemCore_ThreadManager(param_1);
   }
   *(float *)(param_1 + 0xd) = *(float *)(param_1 + 10) - *(float *)(param_1 + 8);
   *(uint *)(param_1 + 1) = *(uint *)(param_1 + 1) | 4;
@@ -823,7 +825,7 @@ int32_t * FUN_1805b6a70(int64_t *param_1)
     return (int32_t *)((int64_t)param_1 + 0x6c);
   }
   if ((uVar1 & 1) == 0) {
-    FUN_1805d3210(param_1);
+    SystemCore_ThreadManager(param_1);
   }
                     // WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(*(int64_t *)(*(int64_t *)*param_1 + 0x20) + 0x34));
@@ -845,7 +847,7 @@ int32_t * FUN_1805b6b40(int64_t param_1)
   if (*(int64_t *)(param_1 + 0xe0) != 0) {
     uVar1 = *(uint *)(param_1 + 8);
     if ((uVar1 & 1) == 0) {
-      FUN_1805d3210(param_1);
+      SystemCore_ThreadManager(param_1);
       uVar1 = *(uint *)(param_1 + 8);
     }
     if ((uVar1 >> 9 & 1) == 0) {
@@ -872,7 +874,7 @@ void FUN_1805b6b72(void)
   int64_t unaff_RBX;
   
   if ((in_EAX & 1) == 0) {
-    FUN_1805d3210();
+    SystemCore_ThreadManager();
     in_EAX = *(uint *)(unaff_RBX + 8);
   }
   if ((in_EAX >> 9 & 1) == 0) {

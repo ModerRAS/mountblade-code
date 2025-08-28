@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part118.c - 渲染系统内存管理和数据结构操作
@@ -422,7 +426,7 @@ int64_t Rendering_HashTableRemove_18033ad80(int64_t param_1,uint *param_2)
       puVar5 = puVar4;
     } while (*(uint **)puVar1 != (uint *)0x0);
     if (puVar5 != (uint *)0x0) {
-      FUN_18004b730();
+      UtilitiesSystem_Processor();
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar5);
     }
@@ -453,7 +457,7 @@ void Rendering_HashTableClear_18033ae70(int64_t param_1)
     do {
       lVar3 = *(int64_t *)(lVar2 + uVar4 * 8);
       if (lVar3 != 0) {
-        FUN_18004b730();
+        UtilitiesSystem_Processor();
                     // WARNING: Subroutine does not return
         CoreMemoryPoolInitializer(lVar3);
       }
@@ -494,7 +498,7 @@ uint64_t *Rendering_HashTableInsert_18033af10(int64_t param_1,uint64_t *param_2,
       piVar4 = *(int **)(piVar4 + 0xe);
     } while (piVar4 != (int *)0x0);
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   piVar5 = (int *)CoreMemoryPoolAllocator(MemoryAllocator_180c8ed18,0x40,*(int8_t *)(param_1 + 0x2c));
   *piVar5 = *param_4;
@@ -665,7 +669,7 @@ uint64_t *Rendering_HashTableAdd_18033b220(int64_t param_1,uint64_t *param_2,uin
       puVar5[3] = uVar4;
       puVar5[4] = 0;
       puVar5[5] = 0;
-      FUN_18066c220(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if (acStackX_8[0] != '\0') {
         uVar8 = (uint64_t)uVar1 % (uint64_t)uStackX_c;
@@ -893,7 +897,7 @@ void Rendering_MemoryManager_18033b720(int64_t param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  FUN_18033ad00();
+  RenderingSystem_CameraController0();
   if ((1 < *(uint64_t *)(param_1 + 0x10)) &&
      (puVar2 = *(uint64_t **)(param_1 + 8), puVar2 != (uint64_t *)0x0)) {
     uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -906,7 +910,7 @@ void Rendering_MemoryManager_18033b720(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -966,7 +970,7 @@ void Rendering_MemoryHandler_18033b800(int64_t param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  FUN_18033ad00();
+  RenderingSystem_CameraController0();
   if ((1 < *(uint64_t *)(param_1 + 0x10)) &&
      (puVar2 = *(uint64_t **)(param_1 + 8), puVar2 != (uint64_t *)0x0)) {
     uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -979,7 +983,7 @@ void Rendering_MemoryHandler_18033b800(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -1200,13 +1204,13 @@ void Rendering_ArrayExpand_18033b840(int64_t *param_1,uint64_t param_2)
  * 
  * 原始实现文件：
  * - 源文件：/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/src/03_rendering_part118.c
- * - 原始函数：FUN_18033ab50, FUN_18033ac00, FUN_18033ac70, FUN_18033ad00, FUN_18033ad29, FUN_18033ad68, FUN_18033ad80, FUN_18033ae70, FUN_18033af10, FUN_18033b120, FUN_18033b1a0, FUN_18033b1c9, FUN_18033b208, FUN_18033b220, FUN_18033b330, FUN_18033b3a0, FUN_18033b460, FUN_18033b720, FUN_18033b760, FUN_18033b800, FUN_18033b840
+ * - 原始函数：FUN_18033ab50, FUN_18033ac00, FUN_18033ac70, RenderingSystem_CameraController0, FUN_18033ad29, FUN_18033ad68, FUN_18033ad80, FUN_18033ae70, FUN_18033af10, FUN_18033b120, FUN_18033b1a0, FUN_18033b1c9, FUN_18033b208, FUN_18033b220, FUN_18033b330, FUN_18033b3a0, FUN_18033b460, FUN_18033b720, FUN_18033b760, FUN_18033b800, FUN_18033b840
  * 
  * 简化实现对应关系：
  * - rendering_system_dynamic_array_resize 对应 FUN_18033ab50
  * - rendering_system_object_initialize 对应 FUN_18033ac00
  * - rendering_system_thread_safe_update 对应 FUN_18033ac70
- * - rendering_system_memory_cleanup 对应 FUN_18033ad00
+ * - rendering_system_memory_cleanup 对应 RenderingSystem_CameraController0
  * - rendering_system_memory_release 对应 FUN_18033ad29
  * - rendering_system_set_value 对应 FUN_18033ad68
  * - rendering_system_hash_table_remove 对应 FUN_18033ad80

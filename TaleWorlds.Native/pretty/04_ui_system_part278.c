@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part278.c - 7 个函数
 
 // 函数: void FUN_1808249f0(int64_t *param_1)
@@ -161,7 +165,7 @@ uint64_t FUN_180824be0(uint64_t param_1,int64_t *param_2,int8_t *param_3,uint pa
                 if (param_4 == 0) {
                   return 1;
                 }
-                iVar3 = FUN_180824d50(param_1,param_2,auStackX_20,8);
+                iVar3 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20,8);
                 if (iVar3 == 0) break;
                 *param_3 = auStackX_20[0];
                 param_3 = param_3 + 1;
@@ -184,7 +188,7 @@ uint64_t FUN_180824be0(uint64_t param_1,int64_t *param_2,int8_t *param_3,uint pa
         } while (iVar3 != 0);
         return 0;
       }
-      iVar3 = FUN_180824d50(param_1,param_2,auStackX_20,8);
+      iVar3 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20,8);
       if (iVar3 == 0) {
         return 0;
       }
@@ -203,7 +207,7 @@ uint64_t FUN_180824d00(uint64_t param_1,uint64_t param_2,int *param_3,char param
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180824d50();
+  uVar1 = SystemCore_NetworkConnectionManager();
   if ((int)uVar1 == 0) {
     return uVar1;
   }
@@ -213,7 +217,7 @@ uint64_t FUN_180824d00(uint64_t param_1,uint64_t param_2,int *param_3,char param
 
 
 
-uint64_t FUN_180824d50(uint64_t param_1,int64_t *param_2,uint *param_3,uint param_4)
+uint64_t SystemCore_NetworkConnectionManager(uint64_t param_1,int64_t *param_2,uint *param_3,uint param_4)
 
 {
   uint uVar1;
@@ -297,7 +301,7 @@ uint64_t FUN_180824ed0(uint64_t param_1,uint64_t param_2,uint64_t *param_3,uint 
   int32_t auStack_18 [4];
   
   if (param_4 < 0x21) {
-    iVar1 = FUN_180824d50(param_1,param_2,auStackX_20);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20);
     if (iVar1 != 0) {
       uVar2 = (uint64_t)auStackX_20[0];
 LAB_180824f4f:
@@ -306,9 +310,9 @@ LAB_180824f4f:
     }
   }
   else {
-    iVar1 = FUN_180824d50(param_1,param_2,auStack_18,param_4 - 0x20);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_18,param_4 - 0x20);
     if (iVar1 != 0) {
-      iVar1 = FUN_180824d50(param_1,param_2,auStackX_20,0x20);
+      iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20,0x20);
       if (iVar1 != 0) {
         uVar2 = CONCAT44(auStack_18[0],auStackX_20[0]);
         goto LAB_180824f4f;
@@ -492,13 +496,13 @@ uint64_t FUN_1808252a0(uint64_t param_1,uint64_t param_2,uint *param_3)
   uint auStack_28 [4];
   
   auStack_28[0] = 0;
-  iVar1 = FUN_180824d50(param_1,param_2,auStack_28,8);
-  if ((iVar1 != 0) && (iVar1 = FUN_180824d50(param_1,param_2,aiStackX_20,8), iVar1 != 0)) {
+  iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_28,8);
+  if ((iVar1 != 0) && (iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,aiStackX_20,8), iVar1 != 0)) {
     uVar3 = aiStackX_20[0] << 8 | auStack_28[0];
-    iVar1 = FUN_180824d50(param_1,param_2,aiStackX_20,8);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,aiStackX_20,8);
     if (iVar1 != 0) {
       uVar2 = aiStackX_20[0] << 0x10;
-      iVar1 = FUN_180824d50(param_1,param_2,aiStackX_20,8);
+      iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,aiStackX_20,8);
       if (iVar1 != 0) {
         *param_3 = aiStackX_20[0] << 0x18 | uVar2 | uVar3;
         return 1;
@@ -613,7 +617,7 @@ FUN_180825560(uint64_t param_1,uint64_t param_2,uint *param_3,int64_t param_4,ui
   uint uVar4;
   uint auStack_28 [4];
   
-  iVar1 = FUN_180824d50(param_1,param_2,auStack_28,8);
+  iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_28,8);
   if (iVar1 == 0) {
 LAB_18082567c:
     uVar3 = 0;
@@ -657,7 +661,7 @@ LAB_18082566e:
         iVar1 = 1;
       }
       do {
-        iVar2 = FUN_180824d50(param_1,param_2,auStack_28,8);
+        iVar2 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_28,8);
         if (iVar2 == 0) goto LAB_18082567c;
         if (param_4 != 0) {
           *(byte *)((uint64_t)*param_5 + param_4) = (byte)auStack_28[0];
@@ -685,7 +689,7 @@ int FUN_1808256a0(uint64_t param_1,uint64_t param_2,uint64_t *param_3,int64_t pa
   uint64_t uVar3;
   uint auStack_28 [4];
   
-  iVar1 = FUN_180824d50(param_1,param_2,auStack_28,8);
+  iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_28,8);
   if (iVar1 == 0) {
 LAB_1808257fe:
     iVar2 = 0;
@@ -735,7 +739,7 @@ LAB_1808257f0:
       }
       do {
         iVar2 = iVar1;
-        iVar1 = FUN_180824d50(param_1,param_2,auStack_28,8);
+        iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStack_28,8);
         if (iVar1 == 0) goto LAB_1808257fe;
         if (param_4 != 0) {
           *(byte *)((uint64_t)*param_5 + param_4) = (byte)auStack_28[0];
@@ -776,7 +780,7 @@ uint64_t FUN_180825830(uint64_t param_1,int64_t param_2,uint param_3)
     if (uVar2 < param_3) {
       uVar3 = uVar2;
     }
-    iVar1 = FUN_180824d50(param_1,param_2,auStackX_20,uVar3);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20,uVar3);
     if (iVar1 == 0) {
       return 0;
     }
@@ -800,7 +804,7 @@ uint64_t FUN_180825830(uint64_t param_1,int64_t param_2,uint param_3)
             }
           }
           for (; uVar2 != 0; uVar2 = uVar2 - 1) {
-            iVar1 = FUN_180824d50(param_1,param_2,auStackX_18,8);
+            iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_18,8);
             if (iVar1 == 0) {
               return 0;
             }
@@ -808,7 +812,7 @@ uint64_t FUN_180825830(uint64_t param_1,int64_t param_2,uint param_3)
         }
         break;
       }
-      iVar1 = FUN_180824d50(param_1,param_2,auStackX_18,8);
+      iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_18,8);
       if (iVar1 == 0) {
         return 0;
       }
@@ -816,7 +820,7 @@ uint64_t FUN_180825830(uint64_t param_1,int64_t param_2,uint param_3)
     } while (uVar2 != 0);
     param_3 = param_3 & 7;
   }
-  if ((param_3 != 0) && (iVar1 = FUN_180824d50(param_1,param_2,auStackX_20,param_3), iVar1 == 0)) {
+  if ((param_3 != 0) && (iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_20,param_3), iVar1 == 0)) {
     return 0;
   }
   return 1;
@@ -845,7 +849,7 @@ uint64_t FUN_180825950(uint64_t param_1,int64_t param_2,uint param_3)
               return 1;
             }
             do {
-              iVar1 = FUN_180824d50(param_1,param_2,auStackX_18,8);
+              iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_18,8);
               if (iVar1 == 0) {
                 return 0;
               }
@@ -861,7 +865,7 @@ uint64_t FUN_180825950(uint64_t param_1,int64_t param_2,uint param_3)
       } while (iVar1 != 0);
       return 0;
     }
-    iVar1 = FUN_180824d50(param_1,param_2,auStackX_18,8);
+    iVar1 = SystemCore_NetworkConnectionManager(param_1,param_2,auStackX_18,8);
     if (iVar1 == 0) break;
     param_3 = param_3 - 1;
     if (param_3 == 0) {

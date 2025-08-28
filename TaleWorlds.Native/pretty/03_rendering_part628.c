@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part628.c - 7 个函数
 
 // 函数: void FUN_18061c7a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -108,7 +112,7 @@ void FUN_18061c990(int64_t param_1,int param_2,uint64_t param_3)
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_248);
   }
   uStack_228 = param_3;
-  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1912_ptr,param_2);
+  SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1912_ptr,param_2);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_248);
@@ -133,7 +137,7 @@ void FUN_18061ca10(int64_t param_1,int param_2)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
   }
-  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1872_ptr,param_2);
+  SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1872_ptr,param_2);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -174,7 +178,7 @@ LAB_18061cadc:
     }
   }
   iStack_228 = iVar2;
-  FUN_180626eb0(auStack_218,0x200,&rendering_buffer_2000_ptr,param_1);
+  SystemCore_CacheManager(auStack_218,0x200,&rendering_buffer_2000_ptr,param_1);
   FUN_18061c7a0(auStack_218);
 LAB_18061cb49:
                     // WARNING: Subroutine does not return

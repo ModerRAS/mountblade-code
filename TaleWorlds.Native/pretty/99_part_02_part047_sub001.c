@@ -21,7 +21,7 @@ void FUN_1801b8770(int64_t param_1,uint64_t param_2,uint param_3)
     dVar1 = dVar1 - 9.223372036854776e+18;
   }
   SystemCore_NetworkHandler0(&puStack_30,param_2);
-  FUN_18005d190(param_1 + 8 + (int64_t)dVar1 * 0x20,&puStack_30);
+  SystemScheduler(param_1 + 8 + (int64_t)dVar1 * 0x20,&puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {
     return;
@@ -87,7 +87,7 @@ int FUN_1801b8840(uint64_t param_1,int64_t param_2,int64_t param_3,int8_t param_
       *(int32_t *)(param_3 + 0x2e0) = 0x1010101;
     }
     lVar13 = *(int64_t *)(param_3 + 0x28);
-    FUN_1801c0d90(param_3);
+    UtilitiesSystem_CacheManager(param_3);
     fVar22 = *(float *)(param_3 + 0x2cc);
     lVar14 = *(int64_t *)(param_3 + 0x28);
     if ((fVar22 <= 0.0) ||
@@ -273,7 +273,7 @@ uint64_t FUN_1801b88cb(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int32_t *)(param_3 + 0x2e0) = 0x1010101;
   }
   lVar14 = *(int64_t *)(param_3 + 0x28);
-  FUN_1801c0d90();
+  UtilitiesSystem_CacheManager();
   fVar23 = *(float *)(unaff_RDI + 0x2cc);
   lVar15 = *(int64_t *)(unaff_RDI + 0x28);
   if ((0.0 < fVar23) &&

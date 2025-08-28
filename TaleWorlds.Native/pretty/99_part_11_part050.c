@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -9,7 +14,7 @@ void FUN_1807aecc3(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -39,7 +44,7 @@ bool FUN_1807aed20(uint64_t param_1,uint64_t param_2,int64_t param_3)
 {
   int iVar1;
   
-  iVar1 = FUN_18076a440(*(uint64_t *)(param_3 + 0x170),param_2,0);
+  iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_3 + 0x170),param_2,0);
   return iVar1 != 0;
 }
 
@@ -299,7 +304,7 @@ uint64_t FUN_1807aeff0(int64_t param_1,char param_2)
       {
         return 0x13;
       }
-      uVar3 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+      uVar3 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
       if ((int)uVar3 != 0) {
         return uVar3;
       }

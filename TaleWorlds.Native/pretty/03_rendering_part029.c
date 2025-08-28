@@ -346,7 +346,7 @@ void FUN_180281770(uint64_t *param_1,uint64_t param_2)
   *(int32_t *)(lVar7 + 0x1b8) = *(int32_t *)(lVar8 + 0x2d8);
   bVar19 = 0 < (int)uStack_4f0;
   if (0 < (int)uStack_4f0) {
-    lVar9 = FUN_1800b6de0(system_resource_state,&puStack_500);
+    lVar9 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_500);
     if ((bVar19) && (lVar9 != 0)) {
       bVar19 = true;
       iVar5 = (int)(*(int64_t *)(lVar9 + 0x40) - *(int64_t *)(lVar9 + 0x38) >> 4);

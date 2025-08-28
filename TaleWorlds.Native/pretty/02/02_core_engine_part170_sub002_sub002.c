@@ -104,7 +104,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     
     // 应用配置到引擎
     stack_data_8 = (int32_t*)(engine_context + 0xe0);
-    FUN_18005ea90(engine_context + 8, &stack_data_8);
+    SystemSecurity_Manager(engine_context + 8, &stack_data_8);
     
     // 继续初始化其他配置模块
     // （原始函数包含大量重复的配置模式，此处简化）
@@ -131,7 +131,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     *(int32_t*)(stack_ptr_68 + 5) = 0x5c6174;    // "t\\"
     stack_value_60 = 0x2b;
     
-    FUN_18005c8a0(temp_long, &stack_ptr_70);
+    SystemCore_MemoryManager(temp_long, &stack_ptr_70);
     
     // 错误处理和清理
     stack_ptr_70 = &system_data_buffer_ptr;
@@ -156,7 +156,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
         stack_ptr_48[4] = 0x6144746964455452;
         *(int32_t*)(stack_ptr_48 + 5) = 0x5c6174;
         function_ptr = (code*)CONCAT44(function_ptr._4_4_, 0x2b);
-        FUN_1800b0680(temp_long, &stack_ptr_50);
+        SystemCore_DataHandler(temp_long, &stack_ptr_50);
         
         stack_ptr_50 = &system_data_buffer_ptr;
         if (stack_ptr_48 == (uint64_t*)0x0) {
@@ -164,7 +164,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
             stack_ptr_38 = (void*)((uint64_t)stack_ptr_38 & 0xffffffff00000000);
             stack_ptr_50 = &system_state_ptr;
             stack_data_8 = (int32_t*)temp_long;
-            FUN_18005ea90(engine_context + 0x48, &stack_data_8);
+            SystemSecurity_Manager(engine_context + 0x48, &stack_data_8);
             *(int32_t*)(engine_context + 0x88) = 1;
             return;
         }

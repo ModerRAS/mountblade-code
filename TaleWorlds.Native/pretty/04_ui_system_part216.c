@@ -686,7 +686,7 @@ uint64_t FUN_180790ff0(int64_t param_1)
 
 {
   if (*(int64_t *)(param_1 + 0x40) != 0) {
-    FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x40),
+    RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x40),
                   &rendering_buffer_2784_ptr,0x9b);
     *(uint64_t *)(param_1 + 0x40) = 0;
   }

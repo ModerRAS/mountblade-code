@@ -1256,11 +1256,11 @@ void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param
             uVar8 = (uint64_t)in_stack_00000080;
             do {
                 // 写入超时标记
-                FUN_1800a0e50(lVar3, SYSTEM_TIMEOUT_VALUE);
+                SystemCore_ResourceManager(lVar3, SYSTEM_TIMEOUT_VALUE);
                 
                 // 如果有数据指针，执行数据传输
                 if (lVar2 != 0) {
-                    FUN_1800a1160(lVar3, lVar2);
+                    SystemCore_Synchronizer(lVar3, lVar2);
                 }
                 
                 // 更新循环计数器
@@ -1277,54 +1277,54 @@ void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param
     lVar2 = param_2[1];
     
     // 写入系统初始化标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_INITIALIZED);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_INITIALIZED);
     lVar3 = *param_2;
     
     // 如果有数据指针，执行数据传输
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入系统活动标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_ACTIVE);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_ACTIVE);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入系统完成标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_COMPLETED);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_COMPLETED);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入数据就绪标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_DATA_READY);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_DATA_READY);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入分配标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_ALLOCATED);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_ALLOCATED);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入传输标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_TRANSMITTED);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_TRANSMITTED);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入接收标志
-    FUN_1800a0e50(lVar2, SYSTEM_FLAG_RECEIVED);
+    SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_RECEIVED);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 写入终止符
-    FUN_1800a0e50(lVar2, STRING_TERMINATOR);
+    SystemCore_ResourceManager(lVar2, STRING_TERMINATOR);
     if (lVar3 != 0) {
-        FUN_1800a1160(lVar2, lVar3);
+        SystemCore_Synchronizer(lVar2, lVar3);
     }
     
     // 获取字符串数据源
@@ -1357,11 +1357,11 @@ void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param
         puVar9 = puVar9 + 1;
         
         // 写入字符数据到缓冲区
-        FUN_1800a0e50(lVar3, uVar1);
+        SystemCore_ResourceManager(lVar3, uVar1);
         
         // 如果有数据指针，执行数据传输
         if (lVar2 != 0) {
-            FUN_1800a1160(lVar3, lVar2);
+            SystemCore_Synchronizer(lVar3, lVar2);
         }
     }
     
@@ -1373,24 +1373,24 @@ void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param
     lVar7 = param_2[1];
     
     // 写入结束标记
-    FUN_1800a0e50(lVar7, SYSTEM_FLAG_TERMINATED);
+    SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     lVar5 = *param_2;
     
     // 如果有数据指针，执行数据传输
     if (lVar5 != 0) {
-        FUN_1800a1160(lVar7, lVar5);
+        SystemCore_Synchronizer(lVar7, lVar5);
     }
     
     // 写入第二个结束标记
-    FUN_1800a0e50(lVar7, SYSTEM_FLAG_TERMINATED);
+    SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     if (lVar5 != 0) {
-        FUN_1800a1160(lVar7, lVar5);
+        SystemCore_Synchronizer(lVar7, lVar5);
     }
     
     // 写入系统结束标记
-    FUN_1800a0e50(lVar7, SYSTEM_FLAG_TERMINATED);
+    SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     if (lVar5 != 0) {
-        FUN_1800a1160(lVar7, lVar5);
+        SystemCore_Synchronizer(lVar7, lVar5);
     }
     
     // 更新输出缓冲区

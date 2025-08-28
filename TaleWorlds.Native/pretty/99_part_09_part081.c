@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part081.c - 11 个函数
 
 // 函数: void FUN_1805f2840(uint64_t *param_1,uint param_2)
@@ -29,7 +33,7 @@ void FUN_1805f2840(uint64_t *param_1,uint param_2)
   if (puStack_38 != (void *)0x0) {
     puVar5 = puStack_38;
   }
-  FUN_18062dee0(&uStack_78,puVar5,&processed_var_4880_ptr);
+  SystemCore_Validator(&uStack_78,puVar5,&processed_var_4880_ptr);
   lVar1 = lStack_70;
   if (lStack_70 != 0) {
     uStack_60 = 0;
@@ -99,7 +103,7 @@ uint64_t FUN_1805f2a20(uint64_t param_1,uint64_t param_2)
   if (puStack_90 != (void *)0x0) {
     puVar3 = puStack_90;
   }
-  FUN_18062dee0(&uStack_50,puVar3,&processed_var_4880_ptr);
+  SystemCore_Validator(&uStack_50,puVar3,&processed_var_4880_ptr);
   lVar1 = lStack_48;
   if (lStack_48 == 0) {
     puStack_98 = &system_data_buffer_ptr;
@@ -131,7 +135,7 @@ uint64_t FUN_1805f2a20(uint64_t param_1,uint64_t param_2)
     if (puStack_70 != (void *)0x0) {
       puVar3 = puStack_70;
     }
-    FUN_18062dee0(&uStack_38,puVar3,&processed_var_4880_ptr);
+    SystemCore_Validator(&uStack_38,puVar3,&processed_var_4880_ptr);
     if (lStack_30 == 0) {
       puStack_78 = &system_data_buffer_ptr;
       if (puStack_70 != (void *)0x0) {
@@ -248,7 +252,7 @@ void FUN_1805f2c50(int64_t *param_1)
   puStack_48 = &render_data_ptr;
   pcStack_40 = FUN_1805f3060;
   aplStack_58[0] = param_1;
-  pplVar6 = (int64_t **)FUN_18006b640(uVar5,aplStack_58);
+  pplVar6 = (int64_t **)SystemCore_ErrorHandler(uVar5,aplStack_58);
   pplStack_28 = pplVar6;
   if (pplVar6 != (int64_t **)0x0) {
     (*(code *)(*pplVar6)[5])(pplVar6);
@@ -259,7 +263,7 @@ void FUN_1805f2c50(int64_t *param_1)
   if (pplVar6 != (int64_t **)0x0) {
     (*(code *)(*pplVar6)[5])(pplVar6);
   }
-  FUN_18005e110(uVar5,&pplStack_38);
+  SystemCore_TimerManager(uVar5,&pplStack_38);
   if (pplVar6 != (int64_t **)0x0) {
     (*(code *)(*pplVar6)[7])(pplVar6);
   }

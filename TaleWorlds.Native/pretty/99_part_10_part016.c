@@ -509,12 +509,12 @@ uint64_t FUN_1806ac0e0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   lVar2 = FUN_1806ac530();
   if (lVar2 == 0) {
     *(int *)(param_1 + 0xe8) = *(int *)(param_1 + 0xe8) + 1;
-    lVar2 = FUN_1806ad710(param_1,param_2);
+    lVar2 = CoreEngine_ConfigLoader(param_1,param_2);
   }
   uVar3 = FUN_1806ac530(param_1,param_3);
   if (uVar3 == 0) {
     *(int *)(param_1 + 0xe8) = *(int *)(param_1 + 0xe8) + 1;
-    uVar3 = FUN_1806ad710(param_1,param_3);
+    uVar3 = CoreEngine_ConfigLoader(param_1,param_3);
   }
   if (*(int *)(uVar3 + 0x1c) < 0) {
     *(int8_t *)(lVar2 + 0x68) = 1;

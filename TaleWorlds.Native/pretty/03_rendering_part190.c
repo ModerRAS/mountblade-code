@@ -11,7 +11,7 @@ void FUN_18037ad00(int64_t param_1)
   uint64_t uVar2;
   int64_t lVar3;
   
-  uVar2 = FUN_180244ff0();
+  uVar2 = SystemOptimizer();
   lVar1 = *(int64_t *)(param_1 + 0x9650);
   if ((*(int *)(param_1 + 0x124e8) == 0) && (*(int *)(param_1 + 0x124ec) == 0)) {
     FUN_18037a770(uVar2,*(uint64_t *)(lVar1 + 0x10));

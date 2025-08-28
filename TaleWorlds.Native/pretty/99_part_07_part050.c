@@ -710,7 +710,7 @@ void FUN_1804cd8e0(int64_t param_1)
   puStack_20 = &ui_system_data_1536_ptr;
   pcStack_18 = FUN_1804ce920;
   alStack_30[0] = param_1;
-  FUN_18015b810(alStack_30,0,*(int64_t *)(param_1 + 400) - *(int64_t *)(param_1 + 0x188) >> 3,0x40
+  SystemCore_DataTransformer(alStack_30,0,*(int64_t *)(param_1 + 400) - *(int64_t *)(param_1 + 0x188) >> 3,0x40
                 ,0xffffffffffffffff,alStack_30,uVar2);
   iVar1 = _Mtx_unlock(param_1 + 0x2e8);
   if (iVar1 != 0) {
@@ -844,7 +844,7 @@ void FUN_1804cd9a0(int64_t param_1,ushort param_2,int32_t param_3,ushort param_4
         uVar11 = 1 << ((byte)uVar10 & 0x1f);
         if ((1 < *(int *)(*(int64_t *)(lVar8 + uVar7) + 0x178)) && ((uVar11 & param_4) == uVar11))
         {
-          FUN_180077750(*(uint64_t *)(lVar12 + 8 + lVar5),*(int64_t *)(lVar8 + uVar7),&fStack_78,
+          SystemHealthMonitor(*(uint64_t *)(lVar12 + 8 + lVar5),*(int64_t *)(lVar8 + uVar7),&fStack_78,
                         0,&uStack_e8);
         }
         lVar8 = *(int64_t *)(param_1 + 8);

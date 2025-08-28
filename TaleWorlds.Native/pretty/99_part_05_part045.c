@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -108,7 +113,7 @@ LAB_1802f6db4:
   }
   if (0 < iStack_138) {
     pcVar1 = *(code **)(*param_1 + 0x118);
-    uVar2 = FUN_1800b30d0(system_resource_state,aplStackX_18,&puStack_148,1);
+    uVar2 = SystemCore_PerformanceMonitor(system_resource_state,aplStackX_18,&puStack_148,1);
     (*pcVar1)(param_1,uVar2);
     if (aplStackX_18[0] != (int64_t *)0x0) {
       (**(code **)(*aplStackX_18[0] + 0x38))();
@@ -163,14 +168,14 @@ LAB_1802f6e87:
     *(int32_t *)(param_1 + 0xd) = uStack_88;
     *(int32_t *)((int64_t)param_1 + 0x6c) = uStack_84;
   }
-  lVar4 = FUN_180631850(param_2,&processed_var_696_ptr,param_1 + 0x11);
+  lVar4 = SystemManager_Controller(param_2,&processed_var_696_ptr,param_1 + 0x11);
   if (lVar4 != 0) {
-    FUN_180631850(param_2,&processed_var_816_ptr,param_1 + 0x12);
-    FUN_180631850(param_2,&processed_var_800_ptr,param_1 + 0x13);
-    FUN_180631850(param_2,&processed_var_784_ptr,param_1 + 0x14);
-    FUN_180631960(param_2,&processed_var_768_ptr,param_1 + 0x15);
-    FUN_180631960(param_2,&processed_var_904_ptr,param_1 + 0x17);
-    FUN_180631960(param_2,&processed_var_888_ptr,param_1 + 0x19);
+    SystemManager_Controller(param_2,&processed_var_816_ptr,param_1 + 0x12);
+    SystemManager_Controller(param_2,&processed_var_800_ptr,param_1 + 0x13);
+    SystemManager_Controller(param_2,&processed_var_784_ptr,param_1 + 0x14);
+    StringProcessor(param_2,&processed_var_768_ptr,param_1 + 0x15);
+    StringProcessor(param_2,&processed_var_904_ptr,param_1 + 0x17);
+    StringProcessor(param_2,&processed_var_888_ptr,param_1 + 0x19);
     pcVar7 = "width";
     do {
       pcVar8 = pcVar7;
@@ -423,10 +428,10 @@ LAB_1802f73d0:
   uStack_78 = (int32_t)param_1[0x37];
   uStack_74 = *(int32_t *)((int64_t)param_1 + 0x1bc);
   FUN_1801c1720(param_1 + 0x30,&uStack_108);
-  FUN_180085020(param_1 + 0x30,&fStack_f8);
-  FUN_180631960(param_2,&processed_var_8872_ptr,&uStack_80);
-  FUN_180631960(param_2,&processed_var_8888_ptr,&uStack_108);
-  FUN_180631960(param_2,&processed_var_8408_ptr,&fStack_f8);
+  RenderingSystem_LightSystem(param_1 + 0x30,&fStack_f8);
+  StringProcessor(param_2,&processed_var_8872_ptr,&uStack_80);
+  StringProcessor(param_2,&processed_var_8888_ptr,&uStack_108);
+  StringProcessor(param_2,&processed_var_8408_ptr,&fStack_f8);
   uStack_b8 = CONCAT44(uStack_7c,uStack_80);
   uStack_b0 = CONCAT44(uStack_74,uStack_78);
   uStack_70 = 0x3f800000;
@@ -526,10 +531,10 @@ void FUN_1802f75e0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     if ((void *)*param_1 != &ui_system_data_1008_ptr) {
       puVar7 = (uint64_t *)(**(code **)((void *)*param_1 + 0x158))(param_1);
     }
-    FUN_180085020(puVar7,auStack_38);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8872_ptr,&uStack_58);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8888_ptr,auStack_48);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8408_ptr,auStack_38);
+    RenderingSystem_LightSystem(puVar7,auStack_38);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8872_ptr,&uStack_58);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8888_ptr,auStack_48);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8408_ptr,auStack_38);
   }
   if (param_1[0x2b] != 0) {
     puVar5 = *(void **)(param_1[0x2b] + 0x18);
@@ -573,22 +578,22 @@ void FUN_1802f75e0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
   }
   if (((*(float *)(param_1 + 0x15) != 0.0) || (*(float *)((int64_t)param_1 + 0xac) != 0.0)) ||
      (*(float *)(param_1 + 0x16) != 0.0)) {
-    FUN_1806307a0(param_2,puVar2,&processed_var_696_ptr,param_1 + 0x11);
-    FUN_1806307a0(param_2,puVar2,&processed_var_816_ptr,param_1 + 0x12);
-    FUN_1806307a0(param_2,puVar2,&processed_var_800_ptr,param_1 + 0x13);
-    FUN_1806307a0(param_2,puVar2,&processed_var_784_ptr,param_1 + 0x14);
-    FUN_18062fb40(param_2,puVar2,&processed_var_768_ptr,param_1 + 0x15);
-    FUN_18062fb40(param_2,puVar2,&processed_var_904_ptr,param_1 + 0x17);
-    FUN_18062fb40(param_2,puVar2,&processed_var_888_ptr,param_1 + 0x19);
-    FUN_18062f990(param_2,puVar2,&processed_var_8236_ptr,*(int32_t *)(param_1 + 0x1b));
-    FUN_18062f990(param_2,puVar2,&processed_var_8188_ptr,*(int32_t *)((int64_t)param_1 + 0xdc));
-    FUN_18062f990(param_2,puVar2,&processed_var_832_ptr,*(int32_t *)(param_1 + 0x1c));
-    FUN_18062f990(param_2,puVar2,&processed_var_864_ptr,*(int32_t *)((int64_t)param_1 + 0xe4));
-    FUN_18062f990(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
-    FUN_18062f990(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
-    FUN_18062f990(param_2,puVar2,&processed_var_992_ptr,*(int32_t *)(param_1 + 0x26));
-    FUN_18062f990(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
-    FUN_18062f990(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_696_ptr,param_1 + 0x11);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_816_ptr,param_1 + 0x12);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_800_ptr,param_1 + 0x13);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_784_ptr,param_1 + 0x14);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_768_ptr,param_1 + 0x15);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_904_ptr,param_1 + 0x17);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_888_ptr,param_1 + 0x19);
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_8236_ptr,*(int32_t *)(param_1 + 0x1b));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_8188_ptr,*(int32_t *)((int64_t)param_1 + 0xdc));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_832_ptr,*(int32_t *)(param_1 + 0x1c));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_864_ptr,*(int32_t *)((int64_t)param_1 + 0xe4));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_992_ptr,*(int32_t *)(param_1 + 0x26));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
     FUN_180630240(param_2,puVar2,&processed_var_928_ptr,param_1 + 0x1d);
   }
   if ((puVar2[6] != 0) || (puVar2[8] != 0)) {
@@ -683,10 +688,10 @@ void FUN_1802f75f0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     if ((void *)*param_1 != &ui_system_data_1008_ptr) {
       puVar7 = (uint64_t *)(**(code **)((void *)*param_1 + 0x158))(param_1);
     }
-    FUN_180085020(puVar7,&stack0x00000050);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8872_ptr,&param_6);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8888_ptr,&stack0x00000040);
-    FUN_18062fb40(param_2,puVar2,&processed_var_8408_ptr,&stack0x00000050);
+    RenderingSystem_LightSystem(puVar7,&stack0x00000050);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8872_ptr,&param_6);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8888_ptr,&stack0x00000040);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_8408_ptr,&stack0x00000050);
   }
   if (param_1[0x2b] != 0) {
     puVar5 = *(void **)(param_1[0x2b] + 0x18);
@@ -730,22 +735,22 @@ void FUN_1802f75f0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
   }
   if (((*(float *)(param_1 + 0x15) != 0.0) || (*(float *)((int64_t)param_1 + 0xac) != 0.0)) ||
      (*(float *)(param_1 + 0x16) != 0.0)) {
-    FUN_1806307a0(param_2,puVar2,&processed_var_696_ptr,param_1 + 0x11);
-    FUN_1806307a0(param_2,puVar2,&processed_var_816_ptr,param_1 + 0x12);
-    FUN_1806307a0(param_2,puVar2,&processed_var_800_ptr,param_1 + 0x13);
-    FUN_1806307a0(param_2,puVar2,&processed_var_784_ptr,param_1 + 0x14);
-    FUN_18062fb40(param_2,puVar2,&processed_var_768_ptr,param_1 + 0x15);
-    FUN_18062fb40(param_2,puVar2,&processed_var_904_ptr,param_1 + 0x17);
-    FUN_18062fb40(param_2,puVar2,&processed_var_888_ptr,param_1 + 0x19);
-    FUN_18062f990(param_2,puVar2,&processed_var_8236_ptr,*(int32_t *)(param_1 + 0x1b));
-    FUN_18062f990(param_2,puVar2,&processed_var_8188_ptr,*(int32_t *)((int64_t)param_1 + 0xdc));
-    FUN_18062f990(param_2,puVar2,&processed_var_832_ptr,*(int32_t *)(param_1 + 0x1c));
-    FUN_18062f990(param_2,puVar2,&processed_var_864_ptr,*(int32_t *)((int64_t)param_1 + 0xe4));
-    FUN_18062f990(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
-    FUN_18062f990(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
-    FUN_18062f990(param_2,puVar2,&processed_var_992_ptr,*(int32_t *)(param_1 + 0x26));
-    FUN_18062f990(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
-    FUN_18062f990(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_696_ptr,param_1 + 0x11);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_816_ptr,param_1 + 0x12);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_800_ptr,param_1 + 0x13);
+    NetworkSystem_PacketProcessor(param_2,puVar2,&processed_var_784_ptr,param_1 + 0x14);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_768_ptr,param_1 + 0x15);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_904_ptr,param_1 + 0x17);
+    UltraHighFreq_NetworkHandler1(param_2,puVar2,&processed_var_888_ptr,param_1 + 0x19);
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_8236_ptr,*(int32_t *)(param_1 + 0x1b));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_8188_ptr,*(int32_t *)((int64_t)param_1 + 0xdc));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_832_ptr,*(int32_t *)(param_1 + 0x1c));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_864_ptr,*(int32_t *)((int64_t)param_1 + 0xe4));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_992_ptr,*(int32_t *)(param_1 + 0x26));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_976_ptr,*(int32_t *)(param_1 + 0x25));
+    MemoryDeallocationHandler0(param_2,puVar2,&processed_var_960_ptr,*(int32_t *)((int64_t)param_1 + 300));
     FUN_180630240(param_2,puVar2,&processed_var_928_ptr,param_1 + 0x1d);
   }
   if ((puVar2[6] != 0) || (puVar2[8] != 0)) {
@@ -812,10 +817,10 @@ void FUN_1802f7671(void)
   if ((void *)*unaff_RDI != &ui_system_data_1008_ptr) {
     unaff_RBP = (**(code **)((void *)*unaff_RDI + 0x158))();
   }
-  FUN_180085020(unaff_RBP,&stack0x00000050);
-  FUN_18062fb40();
-  FUN_18062fb40();
-  FUN_18062fb40();
+  RenderingSystem_LightSystem(unaff_RBP,&stack0x00000050);
+  UltraHighFreq_NetworkHandler1();
+  UltraHighFreq_NetworkHandler1();
+  UltraHighFreq_NetworkHandler1();
   if (unaff_RDI[0x2b] != 0) {
     SystemAllocationProcessor();
   }
@@ -855,22 +860,22 @@ void FUN_1802f7671(void)
   }
   if (((*(float *)(unaff_RDI + 0x15) != 0.0) || (*(float *)((int64_t)unaff_RDI + 0xac) != 0.0)) ||
      (*(float *)(unaff_RDI + 0x16) != 0.0)) {
-    FUN_1806307a0();
-    FUN_1806307a0();
-    FUN_1806307a0();
-    FUN_1806307a0();
-    FUN_18062fb40();
-    FUN_18062fb40();
-    FUN_18062fb40();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
-    FUN_18062f990();
+    NetworkSystem_PacketProcessor();
+    NetworkSystem_PacketProcessor();
+    NetworkSystem_PacketProcessor();
+    NetworkSystem_PacketProcessor();
+    UltraHighFreq_NetworkHandler1();
+    UltraHighFreq_NetworkHandler1();
+    UltraHighFreq_NetworkHandler1();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
+    MemoryDeallocationHandler0();
     FUN_180630240();
   }
   if ((*(int64_t *)(unaff_RBX + 0x30) != unaff_R15) ||

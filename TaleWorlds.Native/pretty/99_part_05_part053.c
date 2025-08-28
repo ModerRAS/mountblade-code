@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_05_part053.c - 18 个函数
 
@@ -326,7 +332,7 @@ void FUN_1802fb280(int64_t param_1)
         cVar20 = '\0';
         if ('\0' < cVar2) {
           do {
-            FUN_1802feba0(param_1,cVar20);
+            RenderingSystem_DrawPrimitive(param_1,cVar20);
             cVar20 = cVar20 + '\x01';
           } while (cVar20 < cVar2);
         }
@@ -447,7 +453,7 @@ void FUN_1802fb2ae(int64_t param_1)
       uVar24 = extraout_XMM0_Da;
       if ('\0' < cVar2) {
         do {
-          uVar24 = FUN_1802feba0(uVar24,cVar19);
+          uVar24 = RenderingSystem_DrawPrimitive(uVar24,cVar19);
           cVar19 = cVar19 + '\x01';
         } while (cVar19 < cVar2);
       }
@@ -619,8 +625,8 @@ void FUN_1802fb790(uint64_t *param_1)
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x1a] = 0;
-  FUN_180057830();
-  FUN_180057830();
+  DataTransformer0();
+  DataTransformer0();
   if (param_1[0x31] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -664,7 +670,7 @@ void FUN_1802fb960(int64_t param_1,uint64_t param_2,char param_3)
   
   if ((((byte)*(ushort *)(param_1 + 0xa8) >> 3 & 1) == 0) && (param_3 != '\0')) {
     if ((*(ushort *)(param_1 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(param_1,param_2,0xbf800000);
+      SystemCore_FileSystem(param_1,param_2,0xbf800000);
       cVar6 = *(char *)(param_1 + 0x20);
     }
     else {
@@ -672,7 +678,7 @@ void FUN_1802fb960(int64_t param_1,uint64_t param_2,char param_3)
       cVar5 = '\0';
       if ('\0' < cVar6) {
         do {
-          FUN_1802feba0(param_1,cVar5);
+          RenderingSystem_DrawPrimitive(param_1,cVar5);
           cVar6 = *(char *)(param_1 + 0x20);
           cVar5 = cVar5 + '\x01';
         } while (cVar5 < cVar6);
@@ -713,7 +719,7 @@ void FUN_1802fb969(int64_t param_1,uint64_t param_2,char param_3)
   
   if ((((byte)*(ushort *)(param_1 + 0xa8) >> 3 & 1) == 0) && (param_3 != '\0')) {
     if ((*(ushort *)(param_1 + 0xa8) & 1) == 0) {
-      FUN_1802fac00();
+      SystemCore_FileSystem();
       cVar6 = *(char *)(unaff_RSI + 0x20);
     }
     else {
@@ -721,7 +727,7 @@ void FUN_1802fb969(int64_t param_1,uint64_t param_2,char param_3)
       cVar5 = '\0';
       if ('\0' < cVar6) {
         do {
-          FUN_1802feba0();
+          RenderingSystem_DrawPrimitive();
           cVar6 = *(char *)(unaff_RSI + 0x20);
           cVar5 = cVar5 + '\x01';
         } while (cVar5 < cVar6);
@@ -762,7 +768,7 @@ void FUN_1802fb990(uint64_t param_1)
   char unaff_R14B;
   
   if ((param_1 & 1) == 0) {
-    FUN_1802fac00();
+    SystemCore_FileSystem();
     cVar6 = *(char *)(unaff_RSI + 0x20);
   }
   else {
@@ -770,7 +776,7 @@ void FUN_1802fb990(uint64_t param_1)
     cVar5 = '\0';
     if ('\0' < cVar6) {
       do {
-        FUN_1802feba0();
+        RenderingSystem_DrawPrimitive();
         cVar6 = *(char *)(unaff_RSI + 0x20);
         cVar5 = cVar5 + '\x01';
       } while (cVar5 < cVar6);
@@ -843,7 +849,7 @@ void FUN_1802fba50(int64_t param_1)
   cVar3 = '\0';
   if ('\0' < cVar2) {
     do {
-      FUN_1802feba0(param_1,cVar3);
+      RenderingSystem_DrawPrimitive(param_1,cVar3);
       cVar2 = *(char *)(param_1 + 0x20);
       cVar3 = cVar3 + '\x01';
     } while (cVar3 < cVar2);
@@ -940,7 +946,7 @@ void FUN_1802fbb40(int64_t param_1)
       puVar9[8] = uStack_4c;
       *puVar9 = 0;
       if (bVar8) {
-        FUN_1802feba0(param_1,(int64_t)(uint64_t)(uint)((int)puVar9 - *(int *)(param_1 + 0x18)) >>
+        RenderingSystem_DrawPrimitive(param_1,(int64_t)(uint64_t)(uint)((int)puVar9 - *(int *)(param_1 + 0x18)) >>
                               8 & 0xff);
       }
       cVar12 = cVar12 + '\x01';
@@ -1030,7 +1036,7 @@ void FUN_1802fbb7a(void)
       _uStack0000000000000028 = uStack0000000000000068;
       _uStack0000000000000030 = uStack0000000000000070;
       _uStack0000000000000038 = uStack0000000000000078;
-      FUN_1802feba0(uStackX_20,
+      RenderingSystem_DrawPrimitive(uStackX_20,
                     (int64_t)(uint64_t)(uint)((int)puVar4 - *(int *)(unaff_RBX + 0x18)) >> 8 &
                     0xff);
     }

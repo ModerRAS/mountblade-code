@@ -368,7 +368,7 @@ void FUN_18025eb50(int64_t *param_1,int64_t *param_2)
       puVar11 = (uint64_t *)&processed_var_8416_ptr;
       do {
         if ((*(uint *)(puVar11 + 1) & uVar2) != 0) {
-          FUN_180639de0(param_2,*puVar11);
+          UtilitiesSystem_ThreadManager(param_2,*puVar11);
           iVar7 = iVar7 + 1;
         }
         puVar11 = puVar11 + 2;
@@ -462,7 +462,7 @@ void FUN_18025ed5a(int32_t *param_1)
     puVar8 = &processed_var_8416_ptr;
     do {
       if ((*(uint *)(puVar8 + 8) & uVar1) != 0) {
-        FUN_180639de0();
+        UtilitiesSystem_ThreadManager();
         iVar7 = iVar7 + 1;
       }
       puVar8 = puVar8 + 0x10;
@@ -632,7 +632,7 @@ void FUN_18025ef30(int64_t *param_1,int64_t param_2)
           puVar7 = *(uint **)(param_2 + 8) + 1;
           *(uint **)(param_2 + 8) = puVar7;
           if (uVar2 != 0) {
-            FUN_180045f60(&puStack_468,puVar7,uVar2);
+            SystemManager_Executor(&puStack_468,puVar7,uVar2);
             *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
           }
           lVar8 = 0;
@@ -770,7 +770,7 @@ void FUN_18025f450(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x30) {
-    FUN_18005d580(lVar2);
+    DataSerializationEngine(lVar2);
   }
   if (*param_1 == 0) {
     return;

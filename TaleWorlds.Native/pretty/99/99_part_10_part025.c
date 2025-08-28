@@ -210,7 +210,7 @@ typedef struct {
 #define HashTable_Clear FUN_1806b43d5           // 哈希表清除器
 
 // 数据操作函数别名
-#define Data_Processor FUN_1806b4470            // 数据处理器
+#define Data_Processor RenderingSystem_ShaderProcessor            // 数据处理器
 #define Data_Cleaner FUN_1806b44d0              // 数据清理器
 #define Data_Manager FUN_1806b4510              // 数据管理器
 #define Data_Handler FUN_1806b4580              // 数据处理器

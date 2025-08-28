@@ -149,7 +149,7 @@ void FUN_1805e2950(int64_t param_1)
       return;
     }
     if ((((-1 < *(int *)(lVar2 + 0x564)) || (*(int *)((int64_t)plVar1 + 0x14e4) < 0)) ||
-        (cVar6 = FUN_1805a3ab0(lVar2 + 0x28), cVar6 == '\0')) ||
+        (cVar6 = RenderingSystem_ConfigValidator0(lVar2 + 0x28), cVar6 == '\0')) ||
        (lVar4 = *(int64_t *)(lVar2 + 0x20),
        fVar9 = *(float *)(lVar4 + 0x10) - *(float *)(param_1 + 100),
        fVar8 = *(float *)(lVar4 + 0xc) - *(float *)(param_1 + 0x60),
@@ -171,7 +171,7 @@ void FUN_1805e2950(int64_t param_1)
       if (*(char *)(param_1 + 0x1144) != '\0') {
         return;
       }
-      cVar6 = FUN_1805a3ab0(lVar2 + 0x28);
+      cVar6 = RenderingSystem_ConfigValidator0(lVar2 + 0x28);
       if (cVar6 == '\0') {
         if (*(int *)(*(int64_t *)(param_1 + 0x20) + 0x14a8) != 3) {
           return;
@@ -217,7 +217,7 @@ void FUN_1805e2a50(void)
     if (*(char *)(unaff_RDI + 0x1144) != '\0') {
       return;
     }
-    cVar1 = FUN_1805a3ab0(unaff_RSI + 0x28);
+    cVar1 = RenderingSystem_ConfigValidator0(unaff_RSI + 0x28);
     if (cVar1 == '\0') {
       if (*(int *)(*(int64_t *)(unaff_RDI + 0x20) + 0x14a8) != 3) {
         return;
@@ -273,7 +273,7 @@ void FUN_1805e2c8f(uint64_t param_1,float param_2)
     if (*(char *)(unaff_RDI + 0x1144) != '\0') {
       return;
     }
-    cVar1 = FUN_1805a3ab0(unaff_RSI + 0x28);
+    cVar1 = RenderingSystem_ConfigValidator0(unaff_RSI + 0x28);
     if (cVar1 == '\0') {
       if (*(int *)(*(int64_t *)(unaff_RDI + 0x20) + 0x14a8) != 3) {
         return;
@@ -307,7 +307,7 @@ void FUN_1805e2cc6(void)
     if (*(char *)(unaff_RDI + 0x1144) != '\0') {
       return;
     }
-    cVar1 = FUN_1805a3ab0(unaff_RSI + 0x28);
+    cVar1 = RenderingSystem_ConfigValidator0(unaff_RSI + 0x28);
     if (cVar1 == '\0') {
       if (*(int *)(*(int64_t *)(unaff_RDI + 0x20) + 0x14a8) != 3) {
         return;
@@ -459,7 +459,7 @@ LAB_1805e3697:
       }
     }
     else if (cVar5 == '\0') {
-      FUN_180487c70(param_1 + 0x48,2);
+      SystemCore_Validator(param_1 + 0x48,2);
       if (*(int *)(param_1 + 0x88) < 2) {
         fVar21 = -NAN;
       }
@@ -548,7 +548,7 @@ LAB_1805e2fdd:
   if (fVar23 - *(float *)(plVar9 + 0x15) <= 2.0 != (bool)bVar19) {
     if (*(char *)(param_1 + 0x1144) == '\0') {
 LAB_1805e3236:
-      FUN_180487c70(param_1 + 0x48,2);
+      SystemCore_Validator(param_1 + 0x48,2);
       if (*(int *)(param_1 + 0x88) < 2) {
         fVar21 = -NAN;
       }

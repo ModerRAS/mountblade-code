@@ -755,10 +755,10 @@ void FUN_1808ed7e0(int64_t param_1,int param_2)
           uStack_84 = uStack_74;
           uStack_80 = uStack_70;
           uStack_7c = uStack_6c;
-          FUN_18074b650(auStack_68,0x40);
+          RenderingSystem_ShaderCompiler(auStack_68,0x40);
           bVar4 = true;
         }
-        FUN_180768bf0(1);
+        UIComponent_EventHandler(1);
         uStack_a8 = 0;
         iVar5 = FUN_18073e550(uVar3,aiStack_98,0,0);
       }
@@ -771,7 +771,7 @@ void FUN_1808ed7e0(int64_t param_1,int param_2)
     uStack_74 = uStack_84;
     uStack_70 = uStack_80;
     uStack_6c = uStack_7c;
-    FUN_18074b650(auStack_68,0x40,&uStack_78);
+    RenderingSystem_ShaderCompiler(auStack_68,0x40,&uStack_78);
     for (puVar2 = (uint64_t *)*puVar1; puVar2 != puVar1; puVar2 = (uint64_t *)*puVar2) {
       uVar3 = puVar2[2];
       puVar2[2] = 0;
@@ -822,10 +822,10 @@ void FUN_1808ed87f(void)
         uStack0000000000000044 = uStack0000000000000054;
         uStack0000000000000048 = uStack0000000000000058;
         uStack000000000000004c = uStack000000000000005c;
-        FUN_18074b650(&stack0x00000060,0x40);
+        RenderingSystem_ShaderCompiler(&stack0x00000060,0x40);
         bVar3 = true;
       }
-      FUN_180768bf0(1);
+      UIComponent_EventHandler(1);
       iVar4 = FUN_18073e550(uVar2,&stack0x00000030,0,0,0);
     }
     if (puVar1 == unaff_RDI) break;
@@ -871,10 +871,10 @@ void FUN_1808ed895(void)
         uStack0000000000000044 = uStack0000000000000054;
         uStack0000000000000048 = uStack0000000000000058;
         uStack000000000000004c = uStack000000000000005c;
-        FUN_18074b650(&stack0x00000060,0x40);
+        RenderingSystem_ShaderCompiler(&stack0x00000060,0x40);
         unaff_BL = '\x01';
       }
-      FUN_180768bf0(1);
+      UIComponent_EventHandler(1);
       iVar2 = FUN_18073e550(lVar1,&stack0x00000030,0,0,0);
     }
   } while ((unaff_RSI != unaff_RDI) && (unaff_RSI = (int64_t *)*unaff_RSI, unaff_RSI != unaff_RDI))

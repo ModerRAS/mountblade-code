@@ -333,7 +333,7 @@ LAB_18024bde4:
     *(uint64_t *)(lVar13 + 0x6b8) = uVar8;
   }
   uVar11 = FUN_180286010(param_1 + 0x30,auStack_320,0);
-  puVar14 = (uint64_t *)FUN_1800946d0(puVar14,&uStack_158,uVar11);
+  puVar14 = (uint64_t *)ErrorRecoverySystem(puVar14,&uStack_158,uVar11);
   uVar11 = puVar14[1];
   *(uint64_t *)(param_1 + 0x12b00) = *puVar14;
   *(uint64_t *)(param_1 + 0x12b08) = uVar11;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part076_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1805bac1f(void)
@@ -103,7 +107,7 @@ FUN_1805bac30(int64_t *param_1,int64_t param_2,char param_3,char param_4,float *
   lVar13 = *(int64_t *)(lVar7 + 0x9d8);
   lVar8 = *(int64_t *)(lVar7 + 0x20);
   if ((lVar13 == 0) ||
-     (cVar5 = FUN_18038d0a0(lVar13,lVar8 + 0xc), lStack_190 = lVar13, cVar5 == '\0')) {
+     (cVar5 = SystemCore_PerformanceMonitor(lVar13,lVar8 + 0xc), lStack_190 = lVar13, cVar5 == '\0')) {
     lStack_190 = lVar16;
   }
   uStack_198 = *(uint64_t *)(*(int64_t *)(lVar7 + 0x8d8) + 0x18);
@@ -118,12 +122,12 @@ FUN_1805bac30(int64_t *param_1,int64_t param_2,char param_3,char param_4,float *
   uStack_164 = *(int32_t *)(lVar8 + 0xbc);
   uStack_158 = 3;
   lStack_188 = lVar13;
-  lVar7 = FUN_180488690(&uStack_198);
+  lVar7 = SystemCore_ErrorHandler(&uStack_198);
   if (lVar7 != 0) {
     lVar7 = *(int64_t *)(param_2 + 0x9d8);
     lVar13 = *(int64_t *)(param_2 + 0x20);
     if ((lVar7 == 0) ||
-       (cVar5 = FUN_18038d0a0(lVar7,lVar13 + 0xc), lStack_190 = lVar7, cVar5 == '\0')) {
+       (cVar5 = SystemCore_PerformanceMonitor(lVar7,lVar13 + 0xc), lStack_190 = lVar7, cVar5 == '\0')) {
       lStack_190 = lVar16;
     }
     uStack_198 = *(uint64_t *)(*(int64_t *)(param_2 + 0x8d8) + 0x18);
@@ -138,12 +142,12 @@ FUN_1805bac30(int64_t *param_1,int64_t param_2,char param_3,char param_4,float *
     uStack_164 = *(int32_t *)(lVar13 + 0xbc);
     uStack_158 = 3;
     lStack_188 = lVar7;
-    lVar7 = FUN_180488690(&uStack_198);
+    lVar7 = SystemCore_ErrorHandler(&uStack_198);
     if (lVar7 != 0) {
       lVar7 = *(int64_t *)(param_2 + 0x9d8);
       lVar13 = *(int64_t *)(param_2 + 0x20);
       if ((lVar7 == 0) ||
-         (cVar5 = FUN_18038d0a0(lVar7,lVar13 + 0xc), lStack_190 = lVar7, cVar5 == '\0')) {
+         (cVar5 = SystemCore_PerformanceMonitor(lVar7,lVar13 + 0xc), lStack_190 = lVar7, cVar5 == '\0')) {
         lStack_190 = lVar16;
       }
       uStack_198 = *(uint64_t *)(*(int64_t *)(param_2 + 0x8d8) + 0x18);
@@ -158,12 +162,12 @@ FUN_1805bac30(int64_t *param_1,int64_t param_2,char param_3,char param_4,float *
       uStack_164 = *(int32_t *)(lVar13 + 0xbc);
       uStack_158 = 3;
       lStack_188 = lVar7;
-      lVar8 = FUN_180488690(&uStack_198);
+      lVar8 = SystemCore_ErrorHandler(&uStack_198);
       lVar7 = *param_1;
       lStack_118 = *(int64_t *)(lVar7 + 0x9d8);
       lVar13 = *(int64_t *)(lVar7 + 0x20);
       if ((lStack_118 == 0) ||
-         (cVar5 = FUN_18038d0a0(lStack_118,lVar13 + 0xc), lStack_120 = lStack_118, cVar5 == '\0')) {
+         (cVar5 = SystemCore_PerformanceMonitor(lStack_118,lVar13 + 0xc), lStack_120 = lStack_118, cVar5 == '\0')) {
         lStack_120 = lVar16;
       }
       uStack_128 = *(uint64_t *)(*(int64_t *)(lVar7 + 0x8d8) + 0x18);
@@ -177,7 +181,7 @@ FUN_1805bac30(int64_t *param_1,int64_t param_2,char param_3,char param_4,float *
       uStack_f8 = *(int32_t *)(lVar13 + 0xb8);
       uStack_f4 = *(int32_t *)(lVar13 + 0xbc);
       uStack_e8 = 3;
-      lVar7 = FUN_180488690(&uStack_128);
+      lVar7 = SystemCore_ErrorHandler(&uStack_128);
       if (*(int *)(lVar7 + 0x128) == *(int *)(lVar8 + 0x128)) {
         lVar7 = func_0x0001805b6e80(param_1 + 1);
         if (((lVar7 == 0) || (*(int *)(lVar7 + 0x30) < 1)) ||

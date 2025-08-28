@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -559,14 +563,14 @@ COMPLEX_ANIMATION_ENABLED:
       }
       context_offset = *(int64_t *)(animation_data + (int64_t)(int)weight_sum * 0x4d6 + -0x26);
       stack_param1 = 0x180659ea7;
-      array_base = FUN_18065fd40(*(uint64_t *)(context_offset + 8));
+      array_base = MathStatisticsProcessor0(*(uint64_t *)(context_offset + 8));
       element_offset = 0x14;
       if (0.0 <= (angle_y - ABS(scale_x)) * rotation_angle) {
         element_offset = 0x18;
       }
       weight_sum = *(float *)(element_offset + array_base);
       stack_param1 = 0x180659edd;
-      FUN_18065fd40(*(uint64_t *)(context_offset + 8));
+      MathStatisticsProcessor0(*(uint64_t *)(context_offset + 8));
       animation_data[0xe] = weight_sum;
     }
   }

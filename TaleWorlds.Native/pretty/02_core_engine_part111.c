@@ -1,3 +1,7 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -17,7 +21,7 @@ void FUN_180126d80(void)
   lVar3 = *(int64_t *)(lVar3 + 0x1af8);
   piVar1 = (int *)(*(int64_t *)(lVar3 + 0x2e8) + 0x60);
   *piVar1 = *piVar1 + -1;
-  FUN_180291950();
+  SystemCore_ErrorHandler();
   puVar2 = (uint64_t *)
            (*(int64_t *)(*(int64_t *)(lVar3 + 0x2e8) + 0x68) + -0x10 +
            (int64_t)*(int *)(*(int64_t *)(lVar3 + 0x2e8) + 0x60) * 0x10);
@@ -115,7 +119,7 @@ LAB_180126e9d:
           fStackX_8 = *(float *)(lVar2 + 0x10) + *(float *)(lVar2 + 8);
           fStackX_c = *(float *)(lVar2 + 0xc) + *(float *)(lVar2 + 0x14);
           uVar5 = func_0x000180121e20(&fStack_c8);
-          FUN_180293f50(uVar7,lVar2 + 8,&fStackX_8,uVar5,0,0xf);
+          MathInterpolationCalculator0(uVar7,lVar2 + 8,&fStackX_8,uVar5,0,0xf);
         }
         iVar13 = iVar13 + 1;
         lVar14 = lVar14 + 8;
@@ -232,13 +236,13 @@ LAB_180126e9d:
           fStackX_8 = fVar19 - 0.5;
           fStackX_c = fVar17 - 0.5;
         }
-        FUN_1802939e0(lVar8,&fStackX_10,&fStackX_8,fVar23,0xffffffff);
-        FUN_1802923e0(lVar8,*(uint64_t *)(lVar8 + 0x88),*(int32_t *)(lVar8 + 0x80),
+        UtilitiesSystem_LogManager(lVar8,&fStackX_10,&fStackX_8,fVar23,0xffffffff);
+        RenderingSystem_LightManager(lVar8,*(uint64_t *)(lVar8 + 0x88),*(int32_t *)(lVar8 + 0x80),
                       uVar11 | uVar6,1,0x40400000);
         *(int32_t *)(lVar8 + 0x80) = 0;
       }
       *(int *)(lVar8 + 0x60) = *(int *)(lVar8 + 0x60) + -1;
-      FUN_180291950(lVar8);
+      SystemCore_ErrorHandler(lVar8);
     }
   }
   return;
@@ -319,7 +323,7 @@ void FUN_180126eb2(void)
         *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
         *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar19;
         uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
-        FUN_180293f50(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
+        MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
       }
       iVar16 = iVar16 + 1;
       lVar17 = lVar17 + 8;
@@ -467,13 +471,13 @@ void FUN_180126eb2(void)
       }
       *(float *)(unaff_RBP + 0x67) = fVar23;
       *(float *)(unaff_RBP + 0x6b) = fVar21;
-      FUN_1802939e0(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar19,0xffffffff);
-      FUN_1802923e0(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
+      UtilitiesSystem_LogManager(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar19,0xffffffff);
+      RenderingSystem_LightManager(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
                     uVar15 | uVar10,1);
       *(int32_t *)(lVar12 + 0x80) = 0;
     }
     *(int *)(lVar12 + 0x60) = *(int *)(lVar12 + 0x60) + -1;
-    FUN_180291950(lVar12);
+    SystemCore_ErrorHandler(lVar12);
   }
   return;
 }
@@ -553,7 +557,7 @@ void FUN_180126eba(void)
         *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
         *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar19;
         uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
-        FUN_180293f50(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
+        MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
       }
       iVar16 = iVar16 + 1;
       lVar17 = lVar17 + 8;
@@ -701,13 +705,13 @@ void FUN_180126eba(void)
       }
       *(float *)(unaff_RBP + 0x67) = fVar23;
       *(float *)(unaff_RBP + 0x6b) = fVar21;
-      FUN_1802939e0(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar19,0xffffffff);
-      FUN_1802923e0(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
+      UtilitiesSystem_LogManager(lVar12,unaff_RBP + 0x6f,unaff_RBP + 0x67,fVar19,0xffffffff);
+      RenderingSystem_LightManager(lVar12,*(uint64_t *)(lVar12 + 0x88),*(int32_t *)(lVar12 + 0x80),
                     uVar15 | uVar10,1);
       *(int32_t *)(lVar12 + 0x80) = 0;
     }
     *(int *)(lVar12 + 0x60) = *(int *)(lVar12 + 0x60) + -1;
-    FUN_180291950(lVar12);
+    SystemCore_ErrorHandler(lVar12);
   }
   return;
 }

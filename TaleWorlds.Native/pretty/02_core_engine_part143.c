@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_SystemMonitor 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 
 // 02_core_engine_part143.c - 8 个函数
 
@@ -71,7 +80,7 @@ void FUN_180134c48(void)
       in_stack_00000108 = '\0';
       in_stack_00000100 = '\0';
       if ((((*(byte *)(unaff_RBX + 1) & 2) == 0) &&
-          ((FUN_18010f170(&stack0x00000038,iVar6,&stack0x00000108,&stack0x00000100,0),
+          ((SystemCore_Formatter(&stack0x00000038,iVar6,&stack0x00000108,&stack0x00000100,0),
            in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
          (*(int32_t *)(unaff_R13 + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
         lVar5 = 0x1d;
@@ -100,7 +109,7 @@ void FUN_180134c48(void)
       }
       fStack0000000000000118 = fStack0000000000000030;
       uVar4 = func_0x000180121e20(&stack0x00000048);
-      FUN_180293d20(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
+      SystemCore_SystemMonitor(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
                     0x3f800000);
       lVar7 = SYSTEM_DATA_MANAGER_A;
       unaff_R14D = iVar8;
@@ -229,7 +238,7 @@ void FUN_180134c57(void)
       in_stack_00000108 = '\0';
       in_stack_00000100 = '\0';
       if ((((*(byte *)(unaff_RBX + 1) & 2) == 0) &&
-          ((FUN_18010f170(&stack0x00000038,iVar6,&stack0x00000108,&stack0x00000100,0),
+          ((SystemCore_Formatter(&stack0x00000038,iVar6,&stack0x00000108,&stack0x00000100,0),
            in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
          (*(int32_t *)(unaff_R13 + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
         lVar5 = 0x1d;
@@ -258,7 +267,7 @@ void FUN_180134c57(void)
       }
       fStack0000000000000118 = fStack0000000000000030;
       uVar4 = func_0x000180121e20(&stack0x00000048);
-      FUN_180293d20(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
+      SystemCore_SystemMonitor(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
                     0x3f800000);
       unaff_RDI = SYSTEM_DATA_MANAGER_A;
       unaff_R14D = iVar7;
@@ -484,7 +493,7 @@ void FUN_180135090(void)
     *(uint64_t *)(lVar2 + 0x1e48) = 0;
     *(int *)(lVar2 + 0x3a8) = *(int *)(lVar2 + 0x3a8) + -1;
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(*(int64_t *)(lVar2 + 0x1e50),uVar1);
+    DataValidator0(*(int64_t *)(lVar2 + 0x1e50),uVar1);
   }
   *(uint64_t *)(lVar2 + 0x1e58) = 0;
   return;
@@ -683,13 +692,13 @@ void FUN_180135510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
+          DataValidator0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
         }
         if (SYSTEM_DATA_MANAGER_A != 0) {
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
+        DataValidator0(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
       }
       uVar4 = (int)uVar5 + 1;
       uVar3 = uVar3 + 0x10;
@@ -707,7 +716,7 @@ void FUN_180135510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
+    DataValidator0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(int64_t *)(piVar6 + 6);
   if (lVar1 == 0) {
@@ -717,19 +726,19 @@ void FUN_180135510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(piVar6,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
+      DataValidator0(piVar6,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
     }
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
+    DataValidator0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
+  DataValidator0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
 }
 
 

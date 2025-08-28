@@ -383,13 +383,13 @@ LAB_1805c8eb6:
     *(uint *)(param_1 + 0x272) = uStackX_10;
     if (fVar16 <= (float)(uStackX_10 - 1) * 2.3283064e-10) goto LAB_1805c8eb6;
     lVar11 = lVar8 + 0x30c8 + lVar11;
-    iVar1 = FUN_1805a0a20(lVar11,0);
+    iVar1 = CoreSystem_OperationHandler(lVar11,0);
     acStackX_8[0] = iVar1 != -1;
-    iVar2 = FUN_1805a0a20(lVar11,1);
+    iVar2 = CoreSystem_OperationHandler(lVar11,1);
     acStackX_8[1] = iVar2 != -1;
-    iVar3 = FUN_1805a0a20(lVar11,2);
+    iVar3 = CoreSystem_OperationHandler(lVar11,2);
     acStackX_8[2] = iVar3 != -1;
-    iVar4 = FUN_1805a0a20(lVar11,3);
+    iVar4 = CoreSystem_OperationHandler(lVar11,3);
     bStackX_b = iVar4 != -1;
     uVar5 = 0;
     uVar14 = (iVar1 != -1) + 1;
@@ -619,13 +619,13 @@ LAB_1805c8eb6:
     *(uint *)(unaff_R15 + 0x272) = in_stack_00000068;
     if (fVar16 <= (float)(in_stack_00000068 - 1) * 2.3283064e-10) goto LAB_1805c8eb6;
     lVar11 = lVar8 + 0x30c8 + lVar11;
-    iVar1 = FUN_1805a0a20(lVar11,0);
+    iVar1 = CoreSystem_OperationHandler(lVar11,0);
     in_stack_00000060 = iVar1 != -1;
-    iVar2 = FUN_1805a0a20(lVar11,1);
+    iVar2 = CoreSystem_OperationHandler(lVar11,1);
     uStack0000000000000061 = iVar2 != -1;
-    iVar3 = FUN_1805a0a20(lVar11,2);
+    iVar3 = CoreSystem_OperationHandler(lVar11,2);
     uStack0000000000000062 = iVar3 != -1;
-    iVar4 = FUN_1805a0a20(lVar11,3);
+    iVar4 = CoreSystem_OperationHandler(lVar11,3);
     bStack0000000000000063 = iVar4 != -1;
     uVar5 = 0;
     uVar14 = (iVar1 != -1) + 1;
@@ -718,13 +718,13 @@ int32_t FUN_1805c8f2e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t 
   uint64_t uVar8;
   
   param_3 = param_4 + 0x30c8 + param_3;
-  iVar2 = FUN_1805a0a20(param_3,0);
+  iVar2 = CoreSystem_OperationHandler(param_3,0);
   in_stack_00000060 = iVar2 != -1;
-  iVar3 = FUN_1805a0a20(param_3,1);
+  iVar3 = CoreSystem_OperationHandler(param_3,1);
   uStack0000000000000061 = iVar3 != -1;
-  iVar4 = FUN_1805a0a20(param_3,2);
+  iVar4 = CoreSystem_OperationHandler(param_3,2);
   uStack0000000000000062 = iVar4 != -1;
-  iVar5 = FUN_1805a0a20(param_3,3);
+  iVar5 = CoreSystem_OperationHandler(param_3,3);
   bStack0000000000000063 = iVar5 != -1;
   uVar6 = 0;
   uVar7 = (iVar2 != -1) + 1;
@@ -983,7 +983,7 @@ LAB_1805c94b7:
       iVar12 = -1;
       if (bVar7 == 0) {
         lVar6 = *(int64_t *)(*param_1 + 0x8f8);
-        cVar4 = FUN_18058f970(lVar6 + 0x7e8);
+        cVar4 = SystemCore_EventHandler(lVar6 + 0x7e8);
         if ((cVar4 == '\0') ||
            ((*(uint *)((int64_t)*(int *)(lVar6 + 0x8d8) * 0xa0 + 0x58 +
                       *(int64_t *)(lVar6 + 0x8b8)) & 0x80000) == 0)) {

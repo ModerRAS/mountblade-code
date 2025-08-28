@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 //==============================================================================
 // 文件信息：03_rendering_part142.c - 渲染系统核心功能模块
@@ -132,7 +142,7 @@ void FUN_180352bf0(uint64_t *param_1)
     puVar4 = param_1;
     
     // 调用渲染系统初始化函数
-    FUN_1803456e0();
+    SystemCore_SyncController();
     
     // 设置渲染对象的基本配置
     *puVar4 = &rendering_buffer_2008_ptr;   // 设置渲染对象类型
@@ -188,7 +198,7 @@ void FUN_180352bf0(uint64_t *param_1)
     uStack_70 = 0x1e;            // 消息长度30字节
     
     // 调用配置处理函数
-    FUN_1803460a0(param_1, &puStack_80, param_1 + 0xe, 0xb, uVar5);
+    SystemNetwork_Processor(param_1, &puStack_80, param_1 + 0xe, 0xb, uVar5);
     
     // 清理配置缓冲区
     puStack_80 = &system_data_buffer_ptr;
@@ -223,7 +233,7 @@ int64_t FUN_180352dc0(int64_t param_1, uint64_t param_2)
     *(uint64_t *)(param_1 + 0x78) = &system_state_ptr;  // 清理完成标志
     
     // 调用渲染对象清理回调函数
-    FUN_1803457d0(param_1);
+    UIComponent_Manager(param_1);
     
     // 根据标志位决定是否释放内存
     if ((param_2 & 1) != 0) {
@@ -293,7 +303,7 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_48._0_4_ = uVar2;      // 设置句柄
         
         // 调用配置处理函数
-        FUN_180066df0(param_3, &puStack_60);
+        DataEncryptionHandler0(param_3, &puStack_60);
         
         // 清理第一阶段配置缓冲区
         puStack_60 = &system_data_buffer_ptr;
@@ -331,7 +341,7 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_30 = 4;                // 消息长度4字节
         
         // 调用配置处理函数
-        FUN_180066df0(param_3, &puStack_40);
+        DataEncryptionHandler0(param_3, &puStack_40);
         
         // 清理第二阶段配置缓冲区
         puStack_40 = &system_data_buffer_ptr;
@@ -882,7 +892,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     aplStack_a0[0] = alStack_48;
     uVar5 = SystemCore_NetworkHandler0(alStack_48,param_2);
     uVar5 = FUN_180354db0(&puStack_70,uVar5);
-    FUN_18005d190(param_2,uVar5);
+    SystemScheduler(param_2,uVar5);
     puStack_70 = &system_data_buffer_ptr;
     if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
@@ -1337,7 +1347,7 @@ void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -1363,7 +1373,7 @@ FUN_180355340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   uint64_t auStackX_18 [2];
   
   auStackX_18[0] = param_3;
-  FUN_18066c220(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)auStackX_18[0] != '\0') {
     lVar1 = (auStackX_18[0] >> 0x20) * 8;

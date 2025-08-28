@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -529,7 +533,7 @@ LAB_1803c00bb:
     bVar11 = *(float *)(lVar10 + 700) == *(float *)(*(int64_t *)(lVar10 + 0x268) + 700);
   }
   if (!bVar11) {
-    FUN_18062f990(param_2,param_3,&rendering_buffer_2816_ptr);
+    MemoryDeallocationHandler0(param_2,param_3,&rendering_buffer_2816_ptr);
     lVar10 = *(int64_t *)(param_1 + 8);
   }
   cVar3 = *(char *)(lVar10 + 0x2e7);

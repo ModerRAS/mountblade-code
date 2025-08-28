@@ -211,7 +211,7 @@ uint64_t FUN_180717fa0(int *param_1,float *param_2,uint param_3,int32_t param_4,
     }
   }
   uVar29 = (uint)uVar30;
-  uVar15 = FUN_180718bd0(param_1,param_2,uVar30 & 0xffffffff,param_4,param_5,param_6,param_7,param_9
+  uVar15 = UISystem_EventManager0(param_1,param_2,uVar30 & 0xffffffff,param_4,param_5,param_6,param_7,param_9
                          ,param_11);
   uVar23 = (uint64_t)uVar15;
   if (param_1[1] != 0) {
@@ -894,7 +894,7 @@ int32_t FUN_180718a8d(void)
 
 
 
-uint64_t FUN_180718bd0(int *param_1,int64_t param_2,int param_3,uint param_4,int param_5,
+uint64_t UISystem_EventManager0(int *param_1,int64_t param_2,int param_3,uint param_4,int param_5,
                        int64_t param_6,int param_7,float param_8,uint param_9)
 
 {
@@ -1152,25 +1152,25 @@ uint64_t FUN_180718bd0(int *param_1,int64_t param_2,int param_3,uint param_4,int
     }
     bVar7 = (byte)(param_5 >> 1);
     if (iVar13 < iVar11) {
-      iVar4 = FUN_180718bd0(param_1,lVar16,param_3,iVar11,iVar1,uVar10,param_7,
+      iVar4 = UISystem_EventManager0(param_1,lVar16,param_3,iVar11,iVar1,uVar10,param_7,
                             (float)iStack_78 * 3.0517578e-05 * param_8,
                             (int)param_9 >> ((byte)iVar1 & 0x1f));
       iVar12 = (iVar11 - iVar12) + param_1[10];
       if ((0x18 < iVar12) && (uStack_70 != 0x4000)) {
         iVar13 = iVar13 + -0x18 + iVar12;
       }
-      uVar3 = FUN_180718bd0(param_1,param_2,param_3,iVar13,iVar1,param_6,param_7,
+      uVar3 = UISystem_EventManager0(param_1,param_2,param_3,iVar13,iVar1,param_6,param_7,
                             (float)iStack_7c * 3.0517578e-05 * param_8,param_9);
       uVar3 = uVar3 | iVar4 << (bVar7 & 0x1f);
     }
     else {
-      uVar3 = FUN_180718bd0(param_1,param_2,param_3,uVar5,iVar1,param_6,param_7,
+      uVar3 = UISystem_EventManager0(param_1,param_2,param_3,uVar5,iVar1,param_6,param_7,
                             (float)iStack_7c * 3.0517578e-05 * param_8,param_9);
       iVar12 = (iVar13 - iVar12) + param_1[10];
       if ((0x18 < iVar12) && (uStack_70 != 0)) {
         iVar11 = iVar11 + -0x18 + iVar12;
       }
-      iVar1 = FUN_180718bd0(param_1,lVar16,param_3,iVar11,iVar1,uVar10,param_7,
+      iVar1 = UISystem_EventManager0(param_1,lVar16,param_3,iVar11,iVar1,uVar10,param_7,
                             (float)iStack_78 * 3.0517578e-05 * param_8,
                             (int)param_9 >> ((byte)iVar1 & 0x1f));
       uVar3 = iVar1 << (bVar7 & 0x1f) | uVar3;
@@ -1263,22 +1263,22 @@ uint FUN_180718c67(uint64_t param_1,int64_t param_2)
     uStack0000000000000040 = (int)in_stack_00000130 >> (bVar6 & 0x1f);
     fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * in_stack_00000128;
     puStack0000000000000028 = (int32_t *)lVar7;
-    iVar5 = FUN_180718bd0();
+    iVar5 = UISystem_EventManager0();
     uStack0000000000000040 = in_stack_00000130;
     fStack0000000000000038 = (float)in_stack_00000068._4_4_ * 3.0517578e-05 * fVar1;
     puStack0000000000000028 = (int32_t *)in_stack_00000118;
-    uVar4 = FUN_180718bd0();
+    uVar4 = UISystem_EventManager0();
     uVar4 = uVar4 | iVar5 << (bVar8 & 0x1f);
   }
   else {
     uStack0000000000000040 = in_stack_00000130;
     fStack0000000000000038 = (float)in_stack_00000068._4_4_ * 3.0517578e-05 * in_stack_00000128;
     puStack0000000000000028 = (int32_t *)in_stack_00000118;
-    uVar4 = FUN_180718bd0();
+    uVar4 = UISystem_EventManager0();
     uStack0000000000000040 = (int)in_stack_00000130 >> (bVar6 & 0x1f);
     fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * fVar1;
     puStack0000000000000028 = (int32_t *)lVar7;
-    iVar5 = FUN_180718bd0();
+    iVar5 = UISystem_EventManager0();
     uVar4 = iVar5 << (bVar8 & 0x1f) | uVar4;
   }
   return uVar4;
@@ -1318,21 +1318,21 @@ uint FUN_180718dab(int64_t param_1)
   if (unaff_ESI < unaff_EBP) {
     iStack0000000000000040 = in_stack_00000130 >> (in_stack_00000110 & 0x1f);
     fStack0000000000000038 = unaff_XMM7_Da * in_stack_00000128;
-    iVar2 = FUN_180718bd0();
+    iVar2 = UISystem_EventManager0();
     iStack0000000000000040 = in_stack_00000130;
     fStack0000000000000038 = unaff_XMM6_Da * in_stack_00000128;
     lStack0000000000000028 = in_stack_00000118;
-    uVar1 = FUN_180718bd0();
+    uVar1 = UISystem_EventManager0();
     uVar1 = uVar1 | iVar2 << (bVar3 & 0x1f);
   }
   else {
     iStack0000000000000040 = in_stack_00000130;
     fStack0000000000000038 = unaff_XMM6_Da * in_stack_00000128;
-    uVar1 = FUN_180718bd0();
+    uVar1 = UISystem_EventManager0();
     iStack0000000000000040 = in_stack_00000130 >> (in_stack_00000110 & 0x1f);
     fStack0000000000000038 = unaff_XMM7_Da * in_stack_00000128;
     lStack0000000000000028 = lStack0000000000000060;
-    iVar2 = FUN_180718bd0();
+    iVar2 = UISystem_EventManager0();
     uVar1 = iVar2 << (bVar3 & 0x1f) | uVar1;
   }
   return uVar1;

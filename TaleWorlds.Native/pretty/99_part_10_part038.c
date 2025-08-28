@@ -1,4 +1,8 @@
-#include "FUN_1806d7170_definition.h"
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part038.c - 11 个函数
@@ -29,8 +33,8 @@ void FUN_1806c014e(void)
     piVar8 = in_RAX;
   }
   _iStack0000000000000060 = (char *)CONCAT44(uStack0000000000000064,0x160);
-  uVar9 = FUN_1806d7000();
-  FUN_1806d7000(uVar9,*(uint64_t *)(unaff_RSI + 0x10));
+  uVar9 = MemoryPoolManager0();
+  MemoryPoolManager0(uVar9,*(uint64_t *)(unaff_RSI + 0x10));
   puVar6 = &ui_system_data_1920_ptr;
   _uStack0000000000000068 = (char *)0x0;
   if ((char)unaff_RDI[9] != '\0') {
@@ -52,7 +56,7 @@ void FUN_1806c014e(void)
   }
   *piVar8 = *piVar8 + 1;
   uVar9 = SystemResourceProcessor();
-  FUN_1806d7000(uVar9,*(uint64_t *)(unaff_RSI + 0x18));
+  MemoryPoolManager0(uVar9,*(uint64_t *)(unaff_RSI + 0x18));
   _iStack0000000000000060 = (char *)0x0;
   if ((char)unaff_RDI[9] != '\0') {
     iVar1 = *(int *)(*unaff_RDI + 0x10);
@@ -178,8 +182,8 @@ void FUN_1806c02c0(int64_t *param_1,uint64_t *param_2)
     ppcVar8 = (char **)param_1[0xb];
   }
   pcStackX_8 = (char *)CONCAT44(pcStackX_8._4_4_,0x160);
-  FUN_1806d7080(param_1,*param_2);
-  FUN_1806d7080(param_1,param_2[2]);
+  SystemCore_MemoryManager(param_1,*param_2);
+  SystemCore_MemoryManager(param_1,param_2[2]);
   puVar6 = &ui_system_data_1920_ptr;
   apcStackX_10[0] = (char *)0x0;
   if ((char)param_1[9] != '\0') {
@@ -200,7 +204,7 @@ void FUN_1806c02c0(int64_t *param_1,uint64_t *param_2)
   }
   *(int *)ppcVar8 = *(int *)ppcVar8 + 1;
   SystemResourceProcessor(param_1);
-  FUN_1806d7080(param_1,param_2[3]);
+  SystemCore_MemoryManager(param_1,param_2[3]);
   pcStackX_8 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
     iVar1 = *(int *)(*param_1 + 0x10);
@@ -270,8 +274,8 @@ void FUN_1806c02de(void)
     piVar8 = in_RAX;
   }
   _iStack0000000000000060 = (char *)CONCAT44(uStack0000000000000064,0x160);
-  uVar9 = FUN_1806d7080();
-  FUN_1806d7080(uVar9,*(uint64_t *)(unaff_RSI + 0x10));
+  uVar9 = SystemCore_MemoryManager();
+  SystemCore_MemoryManager(uVar9,*(uint64_t *)(unaff_RSI + 0x10));
   puVar6 = &ui_system_data_1920_ptr;
   _uStack0000000000000068 = (char *)0x0;
   if ((char)unaff_RDI[9] != '\0') {
@@ -293,7 +297,7 @@ void FUN_1806c02de(void)
   }
   *piVar8 = *piVar8 + 1;
   uVar9 = SystemResourceProcessor();
-  FUN_1806d7080(uVar9,*(uint64_t *)(unaff_RSI + 0x18));
+  SystemCore_MemoryManager(uVar9,*(uint64_t *)(unaff_RSI + 0x18));
   _iStack0000000000000060 = (char *)0x0;
   if ((char)unaff_RDI[9] != '\0') {
     iVar1 = *(int *)(*unaff_RDI + 0x10);
@@ -430,7 +434,7 @@ void FUN_1806c0450(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar5,puVar2[4]);
@@ -453,7 +457,7 @@ void FUN_1806c0450(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar7,puVar2[4]);
@@ -517,7 +521,7 @@ void FUN_1806c0620(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar5,puVar2[4]);
@@ -540,7 +544,7 @@ void FUN_1806c0620(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar7,puVar2[4]);
@@ -604,7 +608,7 @@ void FUN_1806c07f0(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar5,puVar2[4]);
@@ -627,7 +631,7 @@ void FUN_1806c07f0(int64_t *param_1,uint64_t *param_2)
   }
   puVar2 = (uint64_t *)param_1[3];
   plVar3 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar2,auStackX_8[0]);
+  SystemCore_CleanupManager(puVar2,auStackX_8[0]);
   auStackX_8[0] = auStackX_8[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_8,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar7,puVar2[4]);
@@ -680,8 +684,8 @@ void FUN_1806c09c0(int64_t *param_1,uint64_t *param_2)
   if ((char **)param_1[0xb] != (char **)0x0) {
     ppcVar7 = (char **)param_1[0xb];
   }
-  FUN_1806d7000(param_1,*param_2);
-  FUN_1806d7000(param_1,param_2[2]);
+  MemoryPoolManager0(param_1,*param_2);
+  MemoryPoolManager0(param_1,param_2[2]);
   puVar9 = &ui_system_data_1920_ptr;
   pcStackX_10 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
@@ -703,7 +707,7 @@ void FUN_1806c09c0(int64_t *param_1,uint64_t *param_2)
   }
   *(int *)ppcVar7 = *(int *)ppcVar7 + 1;
   SystemResourceProcessor(param_1);
-  FUN_1806d7000(param_1,param_2[3]);
+  MemoryPoolManager0(param_1,param_2[3]);
   pcStackX_8 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
     iVar1 = *(int *)(*param_1 + 0x10);
@@ -773,8 +777,8 @@ void FUN_1806c09d9(int64_t *param_1)
   if (!in_ZF) {
     piVar7 = in_RAX;
   }
-  FUN_1806d7000();
-  FUN_1806d7000(param_1,*(uint64_t *)(unaff_R14 + 0x10));
+  MemoryPoolManager0();
+  MemoryPoolManager0(param_1,*(uint64_t *)(unaff_R14 + 0x10));
   puVar9 = &ui_system_data_1920_ptr;
   in_stack_00000058 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
@@ -796,7 +800,7 @@ void FUN_1806c09d9(int64_t *param_1)
   }
   *piVar7 = *piVar7 + 1;
   SystemResourceProcessor(param_1);
-  FUN_1806d7000(param_1,*(uint64_t *)(unaff_R14 + 0x18));
+  MemoryPoolManager0(param_1,*(uint64_t *)(unaff_R14 + 0x18));
   in_stack_00000050 = (char *)0x0;
   if ((char)param_1[9] != '\0') {
     iVar1 = *(int *)(*param_1 + 0x10);

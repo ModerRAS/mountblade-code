@@ -334,7 +334,7 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
   *(int32_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x174c) = *(int32_t *)(param_2 + 0x12c04);
   if ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0) {
     FUN_180094120(param_2 + 0x12ac0,&uStack_b8);
-    puVar16 = (uint64_t *)FUN_1800946d0(&uStack_b8,auStack_78,param_2 + 0x12b40);
+    puVar16 = (uint64_t *)ErrorRecoverySystem(&uStack_b8,auStack_78,param_2 + 0x12b40);
     uVar1 = puVar16[1];
     uVar19 = puVar16[2];
     uVar10 = puVar16[3];
@@ -411,13 +411,13 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
   *(uint64_t *)(lVar17 + 0x1738) = uVar1;
   *(uint64_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x1790) = *(uint64_t *)(param_2 + 0x35a8);
   *(uint64_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x17c0) = *(uint64_t *)(param_2 + 0x35b0);
-  lVar17 = FUN_180244ff0(param_2);
+  lVar17 = SystemOptimizer(param_2);
   lVar18 = system_message_buffer;
   if (lVar17 != 0) {
-    lVar18 = FUN_180244ff0(param_2);
+    lVar18 = SystemOptimizer(param_2);
     *(float *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x17c8) =
          0.5 / (float)*(ushort *)(lVar18 + 0x32c);
-    lVar17 = FUN_180244ff0(param_2);
+    lVar17 = SystemOptimizer(param_2);
     lVar18 = system_message_buffer;
     *(float *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x17cc) =
          0.5 / (float)*(ushort *)(lVar17 + 0x32e);

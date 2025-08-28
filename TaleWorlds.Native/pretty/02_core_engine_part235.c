@@ -535,7 +535,7 @@ FUN_180204b50(int64_t param_1,uint64_t *param_2,int param_3,char param_4,int32_t
       uVar2 = func_0x000180206330(param_3);
       func_0x000180225e50(uVar2);
     }
-    FUN_1800b0a10();
+    SystemCore_ConfigManager();
     *param_2 = 0;
     *(int32_t *)(param_2 + 1) = 0xffffffff;
     *(int *)((int64_t)param_2 + 0xc) = param_3;

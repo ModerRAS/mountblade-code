@@ -13,7 +13,7 @@ void FUN_180428d50(uint64_t param_1,int8_t *param_2)
 {
   ushort uVar1;
   
-  uVar1 = FUN_18041f0a0();
+  uVar1 = SystemCore_MemoryManager();
   *param_2 = (char)(((uVar1 >> 10 & 0x1f) * 0xff) / 0x1f);
   param_2[1] = (char)(((uVar1 >> 5 & 0x1f) * 0xff) / 0x1f);
   param_2[2] = (char)(((uVar1 & 0x1f) * 0xff) / 0x1f);
@@ -108,8 +108,8 @@ int8_t * FUN_180428de0(int64_t param_1,int *param_2,uint *param_3,int *param_4)
     *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
   }
   uVar21 = (uint)bVar7;
-  uVar2 = FUN_18041f0a0(param_1);
-  uStack_4c = FUN_18041f0a0(param_1);
+  uVar2 = SystemCore_MemoryManager(param_1);
+  uStack_4c = SystemCore_MemoryManager(param_1);
   pbVar4 = *(byte **)(param_1 + 0xb8);
   if (pbVar4 < *(byte **)(param_1 + 0xc0)) {
     uVar13 = (uint)*pbVar4;
@@ -123,10 +123,10 @@ int8_t * FUN_180428de0(int64_t param_1,int *param_2,uint *param_3,int *param_4)
     uVar13 = (uint)**(byte **)(param_1 + 0xb8);
     *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
   }
-  FUN_18041f0a0(param_1);
-  FUN_18041f0a0(param_1);
-  iStack_60 = FUN_18041f0a0(param_1);
-  uStack_64 = FUN_18041f0a0(param_1);
+  SystemCore_MemoryManager(param_1);
+  SystemCore_MemoryManager(param_1);
+  iStack_60 = SystemCore_MemoryManager(param_1);
+  uStack_64 = SystemCore_MemoryManager(param_1);
   pbVar4 = *(byte **)(param_1 + 0xc0);
   pbVar5 = *(byte **)(param_1 + 0xb8);
   if (pbVar5 < pbVar4) {
@@ -335,7 +335,7 @@ LAB_1804293c4:
             }
           }
           else {
-            uVar3 = FUN_18041f0a0(param_1);
+            uVar3 = SystemCore_MemoryManager(param_1);
           }
           if ((int)uStack_4c <= (int)uVar3) {
             uVar3 = 0;
@@ -579,9 +579,9 @@ FUN_180429860(int64_t param_1,int *param_2,int *param_3,int32_t *param_4,uint64_
   float fVar22;
   int16_t *puStack_48;
   
-  iVar3 = FUN_18041efc0();
-  iVar4 = FUN_18041efc0(param_1);
-  if ((iVar4 + iVar3 * 0x10000 == 0x38425053) && (iVar3 = FUN_18041efc0(param_1), iVar3 == 1)) {
+  iVar3 = RenderingSystem_Renderer();
+  iVar4 = RenderingSystem_Renderer(param_1);
+  if ((iVar4 + iVar3 * 0x10000 == 0x38425053) && (iVar3 = RenderingSystem_Renderer(param_1), iVar3 == 1)) {
     plVar1 = (int64_t *)(param_1 + 0xb8);
     if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar3 = *(int *)(param_1 + 0xc0) - *(int *)plVar1, 5 < iVar3)) {
@@ -591,19 +591,19 @@ FUN_180429860(int64_t param_1,int *param_2,int *param_3,int32_t *param_4,uint64_
       *plVar1 = *(int64_t *)(param_1 + 0xc0);
       (**(code **)(param_1 + 0x18))(*(uint64_t *)(param_1 + 0x28),6 - iVar3);
     }
-    uVar5 = FUN_18041efc0(param_1);
+    uVar5 = RenderingSystem_Renderer(param_1);
     if (uVar5 < 0x11) {
       iVar3 = FUN_18041f070(param_1);
       iVar4 = FUN_18041f070(param_1);
-      iVar6 = FUN_18041efc0(param_1);
-      if (((iVar6 - 8U & 0xfffffff7) == 0) && (iVar7 = FUN_18041efc0(param_1), iVar7 == 3)) {
+      iVar6 = RenderingSystem_Renderer(param_1);
+      if (((iVar6 - 8U & 0xfffffff7) == 0) && (iVar7 = RenderingSystem_Renderer(param_1), iVar7 == 3)) {
         uVar8 = FUN_18041f070(param_1);
         func_0x00018041ee90(param_1,uVar8);
         uVar8 = FUN_18041f070(param_1);
         func_0x00018041ee90(param_1,uVar8);
         uVar8 = FUN_18041f070(param_1);
         func_0x00018041ee90(param_1,uVar8);
-        iVar7 = FUN_18041efc0(param_1);
+        iVar7 = RenderingSystem_Renderer(param_1);
         if ((((iVar7 < 2) && (-1 < iVar4)) &&
             ((((iVar4 == 0 || (3 < (int)(0x7fffffff / (int64_t)iVar4))) && (-1 < iVar4 * 4)) &&
              (-1 < iVar3)))) && ((iVar3 == 0 || (iVar4 * 4 <= (int)(0x7fffffff / (int64_t)iVar3))))
@@ -637,7 +637,7 @@ FUN_180429860(int64_t param_1,int *param_2,int *param_3,int32_t *param_4,uint64_
                       uVar9 = (uint64_t)uVar16;
                       puVar10 = puVar20;
                       do {
-                        uVar2 = FUN_18041efc0(param_1);
+                        uVar2 = RenderingSystem_Renderer(param_1);
                         *puVar10 = uVar2;
                         puVar10 = puVar10 + 4;
                         uVar9 = uVar9 - 1;
@@ -649,7 +649,7 @@ FUN_180429860(int64_t param_1,int *param_2,int *param_3,int32_t *param_4,uint64_
                       uVar9 = (uint64_t)uVar16;
                       puVar10 = puVar19;
                       do {
-                        FUN_18041efc0(param_1);
+                        RenderingSystem_Renderer(param_1);
                         *(int8_t *)puVar10 = extraout_AH;
                         puVar10 = puVar10 + 2;
                         uVar9 = uVar9 - 1;

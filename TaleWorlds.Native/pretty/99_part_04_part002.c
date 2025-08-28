@@ -93,7 +93,7 @@ void FUN_180258bc0(int64_t param_1,int64_t param_2)
         puVar17 = *(uint **)(param_2 + 8) + 1;
         *(uint **)(param_2 + 8) = puVar17;
         if (uVar2 != 0) {
-          FUN_180045f60(&puStack_468,puVar17,uVar2);
+          SystemManager_Executor(&puStack_468,puVar17,uVar2);
           *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
         }
         plVar20 = (int64_t *)&system_data_d7d0;
@@ -312,7 +312,7 @@ void FUN_180258f70(int64_t param_1,int64_t *param_2)
   param_2[1] = lVar8 + 4;
   bVar16 = (uVar4 & 1) != 0;
   if (bVar16) {
-    FUN_180639de0(param_2,&rendering_buffer_2120_ptr);
+    UtilitiesSystem_ThreadManager(param_2,&rendering_buffer_2120_ptr);
   }
   *(uint *)(uVar14 + *param_2) = (uint)bVar16;
   lVar9 = *(int64_t *)(param_1 + 0x48) - *(int64_t *)(param_1 + 0x40);

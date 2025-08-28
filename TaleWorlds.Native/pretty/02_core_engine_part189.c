@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -171,10 +172,10 @@ void FUN_180171410(int64_t param_1,uint64_t *param_2)
   *(int64_t *)(*(int64_t *)(param_1 + 0x140) + 0x210) = param_1;
   FUN_18020e840(*(uint64_t *)(param_1 + 0x140));
   plStack_68 = *(int64_t **)(param_1 + 0x140);
-  FUN_18005ea90(system_context_ptr + 0x48,&plStack_68);
+  SystemSecurity_Manager(system_context_ptr + 0x48,&plStack_68);
   plVar5 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   plStack_68 = plVar5;
-  FUN_180049830(plVar5);
+  UltraHighFreq_PerformanceMonitor1(plVar5);
   *plVar5 = (int64_t)&rendering_buffer_2776_ptr;
   plVar5[0x18] = param_1;
   plStack_58 = plVar5;
@@ -185,7 +186,7 @@ void FUN_180171410(int64_t param_1,uint64_t *param_2)
   plStack_68 = plVar5;
   (**(code **)(*plVar5 + 0x28))(plVar5);
   (*pcVar4)(puVar3,&plStack_68);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
   *(int8_t *)(core_system_data_memory + 0x2028) = 1;
   (**(code **)(*plVar5 + 0x38))(plVar5);
                     // WARNING: Subroutine does not return
@@ -255,7 +256,7 @@ uint64_t FUN_1801716e0(int64_t param_1,int64_t param_2)
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
   (**(code **)(*plVar3 + 0x38))(plVar3);
   return 1;
 }
@@ -298,7 +299,7 @@ uint64_t FUN_1801717e0(int64_t param_1,uint64_t param_2)
   aplStackX_8[0] = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,aplStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
   SystemCore_ConfigurationHandler0(param_2,param_1 + 0x148);
   (**(code **)(*plVar3 + 0x38))(plVar3);
   return 1;
@@ -342,7 +343,7 @@ void FUN_1801718f0(int64_t param_1)
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x0001801719ca. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);
@@ -387,7 +388,7 @@ void FUN_1801719d0(int64_t param_1)
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x000180171aaa. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);
@@ -432,7 +433,7 @@ void FUN_180171ab0(int64_t param_1)
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x000180171b8a. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);
@@ -572,7 +573,7 @@ void FUN_180171dd0(int64_t param_1,int32_t param_2,int32_t *param_3)
   plStackX_8 = plVar6;
   (**(code **)(*plVar6 + 0x28))(plVar6);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x000180171eb9. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar6 + 0x38))(plVar6);
@@ -859,7 +860,7 @@ void FUN_1801724f0(int64_t param_1,int32_t param_2,int64_t param_3)
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x0001801725d6. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);
@@ -902,7 +903,7 @@ void FUN_1801725e0(int64_t param_1,int32_t param_2,int32_t param_3,int8_t param_
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(uint64_t *)(param_1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(param_1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x0001801726de. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar3 + 0x38))(plVar3);

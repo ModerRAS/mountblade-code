@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -166,7 +170,7 @@ LAB_18019e4af:
               puVar22 = (uint64_t *)(*plStack_150 + uVar16);
               *puVar22 = uVar14;
               puVar22[1] = 0;
-              FUN_18066c220(&uStack_160);
+              RenderingShaderProcessor0(&uStack_160);
               if (fStack_190._0_1_ != '\0') {
                 uVar15 = uVar14 % (uint64_t)(uint)fStack_18c;
                 FUN_180083b20(auStack_180,fStack_18c);
@@ -268,7 +272,7 @@ LAB_18019e731:
                   puVar24 = (uint64_t *)(*plStack_150 + uVar16);
                   *puVar24 = uVar14;
                   puVar24[1] = 0;
-                  FUN_18066c220(&uStack_160,&uStack_188,uStack_170 & 0xffffffff,
+                  RenderingShaderProcessor0(&uStack_160,&uStack_188,uStack_170 & 0xffffffff,
                                 uStack_168 & 0xffffffff,1);
                   if ((char)uStack_188 != '\0') {
                     uVar15 = uVar14 % (uint64_t)(uint)uStack_188._4_4_;
@@ -382,8 +386,8 @@ LAB_18019e833:
                      *(int32_t *)(*(int64_t *)(lVar21 + 0x2148) + 0x3054);
                 FUN_180379810(lVar21);
                 FUN_1803769d0(lVar21);
-                FUN_1800b8500(*(int64_t *)(lVar2 + 0x448) + 0x21e0);
-                FUN_1800b8500(lVar2 + 0x81b0);
+                SystemCore_Controller(*(int64_t *)(lVar2 + 0x448) + 0x21e0);
+                SystemCore_Controller(lVar2 + 0x81b0);
               }
               if (system_data_2847 == '\0') {
                 FUN_1801aedf0(lVar2);

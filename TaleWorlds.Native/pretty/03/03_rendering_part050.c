@@ -1,3 +1,11 @@
+/* FUN_180296ad0 - RenderingSystem_ResourceCleaner */
+#define RenderingSystem_ResourceCleaner FUN_180296ad0
+
+
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part050.c - 渲染系统高级参数处理和浮点数计算模块
@@ -58,7 +66,7 @@ void rendering_resource_basic_cleaner(int64_t resource_context)
             *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(resource_ptr_1, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(resource_ptr_1, RENDERING_GLOBAL_CONTEXT_2);
     }
     
     // 获取第二个资源指针
@@ -69,7 +77,7 @@ void rendering_resource_basic_cleaner(int64_t resource_context)
             *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(resource_ptr_2, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(resource_ptr_2, RENDERING_GLOBAL_CONTEXT_2);
     }
     
     // 重置资源指针
@@ -123,7 +131,7 @@ void rendering_resource_advanced_cleaner(int64_t resource_context)
                     *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
                 }
                 // 释放资源（该函数不返回）
-                FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+                DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
             }
             process_count = (int)array_size + 1;
             array_size = (uint64_t)process_count;
@@ -162,7 +170,7 @@ void rendering_resource_advanced_cleaner(int64_t resource_context)
                 *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
             }
             // 释放资源（该函数不返回）
-            FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+            DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
         }
         
         // 设置清理标志
@@ -175,12 +183,12 @@ void rendering_resource_advanced_cleaner(int64_t resource_context)
             do {
                 context_ptr = *(int64_t *)(array_size + *(int64_t *)(resource_context + 0x48));
                 if (context_ptr != 0) {
-                    FUN_180296ad0(context_ptr);
+                    RenderingSystem_ResourceCleaner(context_ptr);
                     if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                         *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
                     }
                     // 释放资源（该函数不返回）
-                    FUN_180059ba0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
+                    DataValidator0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
                 }
                 process_count = (int)array_size + 1;
                 array_size = array_size + 8;
@@ -197,7 +205,7 @@ void rendering_resource_advanced_cleaner(int64_t resource_context)
             *resource_counter_ptr = *resource_counter_ptr + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
     }
     
     // 重置资源计数
@@ -206,7 +214,7 @@ void rendering_resource_advanced_cleaner(int64_t resource_context)
         *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
     }
     // 释放资源（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
 }
 
 /**
@@ -252,7 +260,7 @@ void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t
                     *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
                 }
                 // 释放资源（该函数不返回）
-                FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+                DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
             }
             index_counter = (int)array_size + 1;
             array_size = (uint64_t)index_counter;
@@ -289,7 +297,7 @@ void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t
                 *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
             }
             // 释放资源（该函数不返回）
-            FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+            DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
         }
         
         // 设置参数化清理标志
@@ -303,12 +311,12 @@ void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t
             do {
                 context_ptr = *(int64_t *)(array_size + *(int64_t *)(resource_context + 0x48));
                 if (context_ptr != 0) {
-                    FUN_180296ad0(context_ptr);
+                    RenderingSystem_ResourceCleaner(context_ptr);
                     if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                         *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
                     }
                     // 释放资源（该函数不返回）
-                    FUN_180059ba0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
+                    DataValidator0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
                 }
                 index_counter = (int)process_count + 1;
                 process_count = (uint64_t)index_counter;
@@ -326,7 +334,7 @@ void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t
             *resource_counter_ptr = *resource_counter_ptr + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(context_ptr, RENDERING_GLOBAL_CONTEXT_2);
     }
     
     // 设置参数化资源计数
@@ -335,7 +343,7 @@ void rendering_resource_parameterized_cleaner(int64_t resource_context, uint64_t
         *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
     }
     // 释放资源（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
 }
 
 /**
@@ -367,12 +375,12 @@ void rendering_resource_batch_cleaner(void)
     do {
         resource_ptr = *(int64_t *)(array_offset + *(int64_t *)(resource_base_ptr + 0x48));
         if (resource_ptr != 0) {
-            FUN_180296ad0(resource_ptr);
+            RenderingSystem_ResourceCleaner(resource_ptr);
             if (RENDERING_GLOBAL_CONTEXT_1 != 0) {
                 *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) = *(int *)(RENDERING_GLOBAL_CONTEXT_1 + 0x3a8) + -1;
             }
             // 释放资源（该函数不返回）
-            FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+            DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
         }
         array_index = array_index + 1;
         array_offset = array_offset + 8;
@@ -386,7 +394,7 @@ void rendering_resource_batch_cleaner(void)
             *resource_counter_ptr = *resource_counter_ptr + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(array_offset, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(array_offset, RENDERING_GLOBAL_CONTEXT_2);
     }
     return;
 }
@@ -420,7 +428,7 @@ void rendering_resource_memory_cleaner(void)
             *resource_counter_ptr = *resource_counter_ptr + -1;
         }
         // 释放资源（该函数不返回）
-        FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+        DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
     }
     return;
 }
@@ -452,7 +460,7 @@ void rendering_resource_direct_cleaner(uint64_t resource_ptr)
         *resource_counter_ptr = *resource_counter_ptr + -1;
     }
     // 释放资源（该函数不返回）
-    FUN_180059ba0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
+    DataValidator0(resource_ptr, RENDERING_GLOBAL_CONTEXT_2);
 }
 
 /**

@@ -57,7 +57,7 @@ void FUN_1802f9e8b(int64_t param_1,uint64_t param_2,int64_t param_3)
       } while ((uint64_t)(int64_t)(int)unaff_EBX < uVar10);
     }
     in_stack_00000050 = cVar11;
-    FUN_180194a50(puVar1,&stack0x00000050);
+    NetworkSystem_StreamProcessor(puVar1,&stack0x00000050);
     return;
   }
   pcVar8 = (char *)*puVar1;
@@ -140,7 +140,7 @@ LAB_1802f9f0d:
           } while ((uint64_t)(int64_t)(int)unaff_EBX < uVar8);
         }
         in_stack_00000050 = cVar9;
-        FUN_180194a50(puVar1,&stack0x00000050);
+        NetworkSystem_StreamProcessor(puVar1,&stack0x00000050);
         return;
       }
       pcVar7 = (char *)*puVar1;
@@ -213,7 +213,7 @@ void FUN_1802f9f17(void)
       } while ((uint64_t)(int64_t)unaff_EBX < uVar6);
     }
     in_stack_00000050 = cVar7;
-    FUN_180194a50(puVar1,&stack0x00000050);
+    NetworkSystem_StreamProcessor(puVar1,&stack0x00000050);
     return;
   }
   pcVar5 = (char *)*puVar1;
@@ -269,7 +269,7 @@ void FUN_1802f9f3d(uint64_t *param_1,uint64_t param_2,uint64_t param_3,char para
     } while ((uint64_t)(int64_t)unaff_EBX < uVar2);
   }
   cStack0000000000000050 = param_4;
-  FUN_180194a50(param_1,&stack0x00000050);
+  NetworkSystem_StreamProcessor(param_1,&stack0x00000050);
   return;
 }
 

@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_DecryptionManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 03_rendering_part344.c - 13 个函数
 
@@ -487,7 +496,7 @@ void FUN_1804512f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   iVar4 = FUN_1801426a0(lVar7,&puStack_120);
   if (iVar4 < 0) {
 LAB_180451418:
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
   }
   else {
     if ((uint64_t)(*(int64_t *)(lVar7 + 0x890) - *(int64_t *)(lVar7 + 0x888) >> 5) <=
@@ -769,7 +778,7 @@ void FUN_1804519d0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
     } while (*(char *)(param_2 + lVar3) != '\0');
     if (lVar3 != 0) {
       uVar4 = CoreMemoryPoolValidator(&puStack_80,param_2,param_3,in_R9,auStackX_8,0xfffffffffffffffe);
-      uVar4 = FUN_1800b08e0(system_resource_state,auStackX_8,uVar4,1);
+      uVar4 = SystemCore_GarbageCollector(system_resource_state,auStackX_8,uVar4,1);
       FUN_1803aef00(param_1 + 0x3018,uVar4);
       puStack_80 = &system_data_buffer_ptr;
       if (lStack_78 != 0) {
@@ -786,7 +795,7 @@ void FUN_1804519d0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
     } while (*(char *)(param_3 + lVar3) != '\0');
     if (lVar3 != 0) {
       uVar4 = CoreMemoryPoolValidator(&puStack_60,param_3);
-      plVar5 = (int64_t *)FUN_1800b08e0(system_resource_state,auStackX_8,uVar4,1);
+      plVar5 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,auStackX_8,uVar4,1);
       plVar2 = (int64_t *)*plVar5;
       plVar8 = plVar5;
       if (plVar2 != (int64_t *)0x0) {
@@ -804,7 +813,7 @@ void FUN_1804519d0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
         lStack_78 = 0;
         pcStack_70 = (code *)0x0;
         uStack_68 = _guard_check_icall;
-        FUN_18023c450(*(uint64_t *)(param_1 + 0x3190),0,0xffffffff,&puStack_80,plVar6,uVar7,plVar8
+        SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 0x3190),0,0xffffffff,&puStack_80,plVar6,uVar7,plVar8
                      );
         if (pcStack_70 != (code *)0x0) {
           (*pcStack_70)(&puStack_80,0,0);
@@ -901,7 +910,7 @@ int32_t FUN_180451ca0(int64_t param_1,int32_t *param_2,int32_t param_3)
     uStack_60 = param_2[2];
     uStack_5c = param_2[3];
     uStack_28 = 0;
-    FUN_1801aa0f0(uStack_68,&uStack_68,0,auStack_58,param_3,1);
+    PhysicsSystem_JointManager(uStack_68,&uStack_68,0,auStack_58,param_3,1);
     uVar1 = 0;
     if (cStack_24 != '\0') {
       uVar1 = uStack_28;
@@ -949,7 +958,7 @@ int32_t FUN_180451cc5(uint64_t param_1,int32_t *param_2,int32_t param_3)
   *(int32_t *)(in_RAX + -100) = uVar1;
   *(int32_t *)(in_RAX + -0x60) = uVar2;
   *(int32_t *)(in_RAX + -0x5c) = uVar3;
-  FUN_1801aa0f0(uVar4,in_RAX + -0x68,0);
+  PhysicsSystem_JointManager(uVar4,in_RAX + -0x68,0);
   uVar4 = 0;
   if (cStack0000000000000074 != '\0') {
     uVar4 = uStack0000000000000070;
@@ -994,7 +1003,7 @@ FUN_180451d20(int64_t param_1,int32_t *param_2,uint64_t *param_3,int32_t param_4
     uStack_50 = param_2[2];
     uStack_4c = param_2[3];
     uStack_18 = 0;
-    FUN_1801aa0f0(uStack_58,&uStack_58,0,auStack_48,param_4,1);
+    PhysicsSystem_JointManager(uStack_58,&uStack_58,0,auStack_48,param_4,1);
     *param_3 = uStack_38;
     param_3[1] = uStack_30;
     return uStack_18;

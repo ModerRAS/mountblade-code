@@ -248,7 +248,7 @@ void FUN_1801a91f0(int64_t *param_1)
       puVar7 = &uStack_110;
       uVar9 = 0xffffffffffffffff;
       uStack_110 = plVar8;
-      FUN_18015b810();
+      SystemCore_DataTransformer();
       lVar15 = param_1[1];
       lVar11 = *(int64_t *)(lVar15 + 0x448);
       if (lVar11 == 0) {
@@ -264,8 +264,8 @@ void FUN_1801a91f0(int64_t *param_1)
       *(int32_t *)(lVar3 + 0x2150) = *(int32_t *)(*(int64_t *)(lVar3 + 0x2148) + 0x3054);
       FUN_180379810(lVar3);
       FUN_1803769d0(lVar3);
-      FUN_1800b8500(plVar8[0x89] + 0x21e0);
-      FUN_1800b8500(plVar8 + 0x1036);
+      SystemCore_Controller(plVar8[0x89] + 0x21e0);
+      SystemCore_Controller(plVar8 + 0x1036);
     }
     uStack_d8 = 0;
     uStack_d0 = 0;
@@ -776,8 +776,8 @@ void FUN_1801a9fd0(int64_t param_1,int32_t *param_2,int32_t param_3,int32_t *par
 
 
 
-// 函数: void FUN_1801aa0f0(int64_t param_1,int64_t *param_2,float param_3,int32_t *param_4,
-void FUN_1801aa0f0(int64_t param_1,int64_t *param_2,float param_3,int32_t *param_4,
+// 函数: void PhysicsSystem_JointManager(int64_t param_1,int64_t *param_2,float param_3,int32_t *param_4,
+void PhysicsSystem_JointManager(int64_t param_1,int64_t *param_2,float param_3,int32_t *param_4,
                   int32_t param_5,int8_t param_6)
 
 {
@@ -936,7 +936,7 @@ void FUN_1801aa3d0(int64_t param_1)
   if (*(int64_t *)(param_1 + 0x380) != 0) {
     FUN_1802c2de0();
     puStackX_10 = auStackX_8;
-    uVar3 = FUN_1800b30d0(system_resource_state,auStackX_8,*(int64_t *)(param_1 + 0x388) + 0x10,1);
+    uVar3 = SystemCore_PerformanceMonitor(system_resource_state,auStackX_8,*(int64_t *)(param_1 + 0x388) + 0x10,1);
     FUN_1801ae990(param_1,uVar3);
   }
   lVar6 = SYSTEM_STATE_MANAGER;

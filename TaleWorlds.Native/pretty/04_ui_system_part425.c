@@ -1,5 +1,10 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 /**
  * @file 04_ui_system_part425.c
@@ -68,7 +73,7 @@ uint64_t ui_system_processor_type1(int64_t param_1,uint64_t *param_2)
   uVar3 = DataFlowProcessor(param_2,auStack_38,1,0x54495053);
   if ((((int)uVar3 == 0) &&
       (uVar3 = DataFlowProcessor(param_2,auStack_58,0,0x42495053), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar3 == 0)) {
+     (uVar3 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar3 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -123,7 +128,7 @@ uint64_t ui_system_processor_type1(int64_t param_1,uint64_t *param_2)
               }
               if (((int)uVar3 == 0) &&
                  ((*(uint *)(param_2 + 8) < 0x85 ||
-                  (uVar3 = FUN_180899220(param_2,param_1 + 0x108), (int)uVar3 == 0)))) {
+                  (uVar3 = CoreSystem_StateManager(param_2,param_1 + 0x108), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
                 AdvancedSystemManager(param_2,auStack_58);
               }
@@ -215,7 +220,7 @@ uint64_t ui_system_processor_type2(void)
                 }
               }
               if (((int)uVar3 == 0) &&
-                 ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0))))
+                 ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = CoreSystem_StateManager(), (int)uVar3 == 0))))
               {
                     // WARNING: Subroutine does not return
                 AdvancedSystemManager();
@@ -307,7 +312,7 @@ uint64_t ui_system_processor_type3(void)
               }
             }
             if (((int)uVar3 == 0) &&
-               ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0)))) {
+               ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = CoreSystem_StateManager(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
               AdvancedSystemManager();
             }
@@ -392,7 +397,7 @@ uint64_t ui_system_processor_type4(void)
               }
             }
             if (((int)uVar3 == 0) &&
-               ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0)))) {
+               ((*(uint *)(unaff_RBX + 8) < 0x85 || (uVar3 = CoreSystem_StateManager(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
               AdvancedSystemManager();
             }
@@ -453,7 +458,7 @@ uint64_t ui_system_processor_type5(void)
         unaff_EDI = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
       }
       if (unaff_EDI == 0) {
-        if ((0x84 < *(uint *)(unaff_RBX + 8)) && (uVar2 = FUN_180899220(), (int)uVar2 != 0)) {
+        if ((0x84 < *(uint *)(unaff_RBX + 8)) && (uVar2 = CoreSystem_StateManager(), (int)uVar2 != 0)) {
           return uVar2;
         }
                     // WARNING: Subroutine does not return
@@ -504,7 +509,7 @@ uint64_t ui_system_processor_type6(void)
       unaff_EDI = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
     }
     if (unaff_EDI == 0) {
-      if ((*(uint *)(unaff_RBX + 8) < 0x85) || (uVar1 = FUN_180899220(), (int)uVar1 == 0)) {
+      if ((*(uint *)(unaff_RBX + 8) < 0x85) || (uVar1 = CoreSystem_StateManager(), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
         AdvancedSystemManager();
       }
@@ -565,7 +570,7 @@ uint64_t ui_system_data_processor_type1(int64_t param_1,uint64_t *param_2)
   uVar2 = DataFlowProcessor(param_2,auStack_28,1,0x46464553);
   if (((((int)uVar2 == 0) &&
        (uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x42464553), (int)uVar2 == 0)) &&
-      (uVar2 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
+      (uVar2 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (uVar2 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar2 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -587,7 +592,7 @@ uint64_t ui_system_data_processor_type1(int64_t param_1,uint64_t *param_2)
           uVar2 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar2 = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          uVar2 = SystemCore_ProtocolProcessor(*param_2,param_1 + 0x40);
         }
         else {
           uVar2 = 0x1c;
@@ -644,7 +649,7 @@ uint64_t ui_system_data_processor_type2(void)
         uVar2 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        uVar2 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         uVar2 = 0x1c;
@@ -701,7 +706,7 @@ uint64_t ui_system_data_processor_type3(void)
         uVar2 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar2 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        uVar2 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         uVar2 = 0x1c;
@@ -745,7 +750,7 @@ uint64_t ui_system_data_processor_type4(void)
       uVar1 = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+      uVar1 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RDI + 0x40);
     }
     else {
       uVar1 = 0x1c;
@@ -808,11 +813,11 @@ uint64_t ui_system_advanced_data_processor(int64_t param_1,uint64_t *param_2)
     return uVar1;
   }
   uVar1 = DataFlowProcessor(param_2,auStack_48,0,0x46454353);
-  if (((int)uVar1 == 0) && (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) {
+  if (((int)uVar1 == 0) && (uVar1 = SystemCore_ConfigManager(param_2,param_1 + 0x10), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_1808a2e00(*param_2,param_1 + 0x6c);
+    uVar1 = SystemCore_ProtocolProcessor(*param_2,param_1 + 0x6c);
     if (((int)uVar1 == 0) && (uVar1 = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)uVar1 == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
          (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 != 0)) {
@@ -879,7 +884,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
   if ((int)uVar2 != 0) {
     return uVar2;
   }
-  uVar2 = FUN_180899360(param_2,param_1 + 0x10);
+  uVar2 = SystemCore_ConfigManager(param_2,param_1 + 0x10);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -892,7 +897,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
   }
   uVar7 = 0;
   auStackX_20[0] = 0;
-  uVar2 = FUN_1808afe30(*param_2,auStackX_20);
+  uVar2 = SystemCore_Manager(*param_2,auStackX_20);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -903,7 +908,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
   uVar5 = uVar7;
   if (uVar6 != 0) {
     do {
-      uVar2 = FUN_1808dde10(param_2,uVar2);
+      uVar2 = UISystemEventHandler(param_2,uVar2);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -911,7 +916,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      uVar2 = FUN_1808de0e0(param_2,auStackX_18);
+      uVar2 = SystemCore_Initializer(param_2,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -924,7 +929,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808a2e00(*param_2,param_1 + 0x48);
+  uVar3 = SystemCore_ProtocolProcessor(*param_2,param_1 + 0x48);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }
@@ -947,7 +952,7 @@ uint64_t ui_system_resource_manager(int64_t param_1,int64_t *param_2)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,auStackX_20,1,4,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,auStackX_20,1,4,0);
   }
 LAB_18089e447:
   if ((int)uVar2 == 0) {
@@ -1010,7 +1015,7 @@ uint64_t ui_system_resource_manager_type2(void)
   }
   uVar7 = 0;
   in_stack_000000b8 = 0;
-  uVar2 = FUN_1808afe30(*unaff_RBX,&stack0x000000b8);
+  uVar2 = SystemCore_Manager(*unaff_RBX,&stack0x000000b8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -1020,7 +1025,7 @@ uint64_t ui_system_resource_manager_type2(void)
   uVar2 = uVar7;
   if (uVar6 != 0) {
     do {
-      uVar3 = FUN_1808dde10();
+      uVar3 = UISystemEventHandler();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1028,7 +1033,7 @@ uint64_t ui_system_resource_manager_type2(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808de0e0();
+      uVar3 = SystemCore_Initializer();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1040,7 +1045,7 @@ uint64_t ui_system_resource_manager_type2(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (uint64_t)uVar4;
   }
@@ -1063,7 +1068,7 @@ uint64_t ui_system_resource_manager_type2(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,&stack0x000000b8,1,4,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
   if ((int)uVar2 == 0) {
@@ -1122,7 +1127,7 @@ uint64_t ui_system_resource_manager_type3(void)
   }
   uVar7 = 0;
   in_stack_000000b8 = 0;
-  uVar2 = FUN_1808afe30(*unaff_RBX,&stack0x000000b8);
+  uVar2 = SystemCore_Manager(*unaff_RBX,&stack0x000000b8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -1132,7 +1137,7 @@ uint64_t ui_system_resource_manager_type3(void)
   uVar2 = uVar7;
   if (uVar6 != 0) {
     do {
-      uVar3 = FUN_1808dde10();
+      uVar3 = UISystemEventHandler();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1140,7 +1145,7 @@ uint64_t ui_system_resource_manager_type3(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808de0e0();
+      uVar3 = SystemCore_Initializer();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1152,7 +1157,7 @@ uint64_t ui_system_resource_manager_type3(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (uint64_t)uVar4;
   }
@@ -1175,7 +1180,7 @@ uint64_t ui_system_resource_manager_type3(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,&stack0x000000b8,1,4,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
   if ((int)uVar2 == 0) {
@@ -1230,7 +1235,7 @@ uint64_t ui_system_resource_manager_type4(void)
   
   uVar7 = 0;
   uStack00000000000000b8 = 0;
-  uVar2 = FUN_1808afe30(*unaff_RBX,&stack0x000000b8);
+  uVar2 = SystemCore_Manager(*unaff_RBX,&stack0x000000b8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -1240,7 +1245,7 @@ uint64_t ui_system_resource_manager_type4(void)
   uVar2 = uVar7;
   if (uVar6 != 0) {
     do {
-      uVar3 = FUN_1808dde10();
+      uVar3 = UISystemEventHandler();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1248,7 +1253,7 @@ uint64_t ui_system_resource_manager_type4(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808de0e0();
+      uVar3 = SystemCore_Initializer();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -1260,7 +1265,7 @@ uint64_t ui_system_resource_manager_type4(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*unaff_RBX,unaff_RSI + 0x48);
+  uVar4 = SystemCore_ProtocolProcessor(*unaff_RBX,unaff_RSI + 0x48);
   if (uVar4 != 0) {
     return (uint64_t)uVar4;
   }
@@ -1283,7 +1288,7 @@ uint64_t ui_system_resource_manager_type4(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,&stack0x000000b8,1,4,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x000000b8,1,4,0);
   }
 LAB_18089e447:
   if ((int)uVar2 == 0) {

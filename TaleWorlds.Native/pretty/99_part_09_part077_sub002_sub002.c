@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_09_part077_sub002_sub002.c - 1 个函数
 
@@ -558,8 +563,8 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
     fStack_8cc = *(float *)(lVar23 + 0xac);
     cStack_a88 = cVar10;
     lStack_8b0 = lVar22;
-    FUN_180084ae0(&uStack_908);
-    FUN_18063b470(&fStack_968,&uStack_908);
+    NetworkSystem_PerformanceMonitor(&uStack_908);
+    AdvancedProcessor_StateManager0(&fStack_968,&uStack_908);
     fVar37 = fStack_95c;
     fVar46 = fStack_960;
     fVar44 = fStack_964;
@@ -618,7 +623,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
       fStack_1d4 = fVar41;
       fStack_1d0 = fVar51;
       fStack_1cc = fStack_a5c;
-      puVar14 = (uint64_t *)FUN_18063b5f0(&fStack_878,&fStack_668);
+      puVar14 = (uint64_t *)SystemSecurityManager(&fStack_878,&fStack_668);
       fVar38 = *(float *)(lVar22 + 0x255c);
       fVar44 = *(float *)(lVar22 + 0x2560);
       fVar46 = *(float *)(lVar22 + 0x2558);
@@ -652,7 +657,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
                              SQRT(*(float *)(lVar23 + 0x70) * *(float *)(lVar23 + 0x70) +
                                   *(float *)(lVar23 + 0x74) * *(float *)(lVar23 + 0x74) +
                                   *(float *)(lVar23 + 0x78) * *(float *)(lVar23 + 0x78)));
-      puVar14 = (uint64_t *)FUN_18063b470(&fStack_678,uVar13);
+      puVar14 = (uint64_t *)AdvancedProcessor_StateManager0(&fStack_678,uVar13);
       fVar43 = *(float *)(param_1 + 0x70);
       fVar41 = *(float *)(param_1 + 0x74);
       fVar51 = *(float *)(param_1 + 0x78);
@@ -760,7 +765,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
         uStack_134 = uStack_634;
         uStack_130 = uStack_630;
         uStack_12c = uStack_62c;
-        uVar13 = FUN_180300bf0(&uStack_648,auStack_338,param_1 + 0x90);
+        uVar13 = UltraHighFreq_FileSystem1(&uStack_648,auStack_338,param_1 + 0x90);
         puVar15 = (uint64_t *)FUN_180300b10(&uStack_a38,auStack_318,uVar13);
         uVar13 = puVar15[1];
         *(uint64_t *)(param_1 + 0x90) = *puVar15;
@@ -801,7 +806,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
         uStack_1b4 = uStack_614;
         uStack_1b0 = uStack_610;
         uStack_1ac = uStack_60c;
-        uVar13 = FUN_180300bf0(&uStack_628,auStack_2f8,param_1 + 0xb0);
+        uVar13 = UltraHighFreq_FileSystem1(&uStack_628,auStack_2f8,param_1 + 0xb0);
         puVar14 = (uint64_t *)FUN_180300b10(&uStack_a38,auStack_2d8,uVar13);
         uVar13 = puVar14[1];
         *(uint64_t *)(param_1 + 0xb0) = *puVar14;
@@ -954,14 +959,14 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
       *(float *)(param_1 + 0xb4) = fStack_344;
       *(float *)(param_1 + 0xb8) = fStack_340;
       *(float *)(param_1 + 0xbc) = fStack_33c;
-      puVar15 = (uint64_t *)FUN_180300bf0(&uStack_a38,auStack_2b8,pfVar17);
+      puVar15 = (uint64_t *)UltraHighFreq_FileSystem1(&uStack_a38,auStack_2b8,pfVar17);
       uStack_a38 = *puVar15;
       uStack_a30 = puVar15[1];
       fStack_a28 = *(float *)(puVar15 + 2);
       fStack_a24 = *(float *)((int64_t)puVar15 + 0x14);
       fStack_a20 = *(float *)(puVar15 + 3);
       fStack_a1c = *(float *)((int64_t)puVar15 + 0x1c);
-      puVar15 = (uint64_t *)FUN_180300bf0(&uStack_a08,auStack_298,pfVar16);
+      puVar15 = (uint64_t *)UltraHighFreq_FileSystem1(&uStack_a08,auStack_298,pfVar16);
       uStack_a08 = *puVar15;
       uStack_a00 = puVar15[1];
       uStack_9f8 = puVar15[2];
@@ -1050,7 +1055,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_174 = fVar42;
           fStack_170 = fVar36;
           uStack_16c = uStack_5ec;
-          pfVar16 = (float *)FUN_1801c0fb0(&fStack_608,auStack_568,lVar25 + 0x20 + lVar19);
+          pfVar16 = (float *)SystemFileHandler(&fStack_608,auStack_568,lVar25 + 0x20 + lVar19);
           pfVar17 = (float *)(lVar19 + 0x10 + lVar25);
           fVar49 = *pfVar17;
           fVar35 = pfVar17[1];
@@ -1084,7 +1089,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_554 = fVar45;
           fStack_550 = fVar47;
           fStack_54c = fVar48;
-          pfVar17 = (float *)FUN_1801c0fb0(&fStack_588,auStack_548,pfVar30 + 4);
+          pfVar17 = (float *)SystemFileHandler(&fStack_588,auStack_548,pfVar30 + 4);
           fVar43 = *pfVar30;
           fVar41 = pfVar30[1];
           fVar51 = pfVar30[2];
@@ -1113,7 +1118,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_474 = fVar40;
           fStack_470 = fVar42;
           fStack_46c = fVar36;
-          pfVar17 = (float *)FUN_1801c0fb0(&fStack_898,auStack_538,&fStack_838);
+          pfVar17 = (float *)SystemFileHandler(&fStack_898,auStack_538,&fStack_838);
           plVar27 = *(int64_t **)(param_1 + 0xd8);
           fStack_9a8 = fStack_8d8 + *pfVar17;
           fStack_9a4 = fStack_8d4 + pfVar17[1];
@@ -1201,7 +1206,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
             fStack_194 = fVar41;
             fStack_190 = fVar51;
             uStack_18c = uStack_58c;
-            pfVar16 = (float *)FUN_1801c0fb0(&fStack_5a8,auStack_438,lVar29 + 0x20 + lVar19);
+            pfVar16 = (float *)SystemFileHandler(&fStack_5a8,auStack_438,lVar29 + 0x20 + lVar19);
             pfVar17 = (float *)(lVar19 + 0x10 + lVar29);
             fVar50 = *pfVar17;
             fVar40 = pfVar17[1];
@@ -1243,7 +1248,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
             fStack_364 = fStack_694;
             fStack_360 = fStack_690;
             fStack_35c = fStack_68c;
-            FUN_1802feba0(param_2,(int64_t)
+            RenderingSystem_DrawPrimitive(param_2,(int64_t)
                                   (uint64_t)(uint)((int)puVar21 - *(int *)(param_2 + 0x18)) >> 8);
             cVar10 = cVar10 + '\x01';
           } while (cVar10 < *(char *)(lVar23 + 0x148));
@@ -1265,7 +1270,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
         uStack_714 = *(int32_t *)(lVar23 + 0xa4);
         uStack_710 = *(int32_t *)(lVar23 + 0xa8);
         uStack_70c = *(int32_t *)(lVar23 + 0xac);
-        FUN_180084ae0(&uStack_748);
+        NetworkSystem_PerformanceMonitor(&uStack_748);
         iVar12 = *(int *)(lVar28 + 0x44);
         lVar23 = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
         iVar8 = (int)((*(int64_t *)(*(int64_t *)(param_1 + 0x100) + 0x20) -
@@ -1457,7 +1462,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
             fStack_758 = fStack_a68;
             fStack_754 = fStack_a64;
             fStack_750 = fStack_a60;
-            FUN_18063b470(&uStack_6c8,&fStack_788);
+            AdvancedProcessor_StateManager0(&uStack_6c8,&fStack_788);
             uStack_5e8 = uStack_6c8;
             uStack_5e4 = uStack_6c4;
             uStack_5e0 = uStack_6c0;
@@ -1507,9 +1512,9 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
       uStack_154 = uStack_7f4;
       uStack_150 = uStack_7f0;
       uStack_14c = uStack_7ec;
-      FUN_180300bf0(&uStack_808,auStack_3a8,param_1 + 0x1b0);
-      FUN_180300bf0(&uStack_808,&uStack_7c8,param_1 + 0x170);
-      puVar18 = (int32_t *)FUN_180300bf0(&fStack_898,auStack_278,&uStack_7c8);
+      UltraHighFreq_FileSystem1(&uStack_808,auStack_3a8,param_1 + 0x1b0);
+      UltraHighFreq_FileSystem1(&uStack_808,&uStack_7c8,param_1 + 0x170);
+      puVar18 = (int32_t *)UltraHighFreq_FileSystem1(&fStack_898,auStack_278,&uStack_7c8);
       uStack_7c8 = *puVar18;
       uStack_7c4 = puVar18[1];
       uStack_7c0 = puVar18[2];
@@ -1518,8 +1523,8 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
       uStack_7b4 = puVar18[5];
       uStack_7b0 = puVar18[6];
       uStack_7ac = puVar18[7];
-      FUN_180300bf0(&uStack_808,&uStack_7a8,param_1 + 400);
-      puVar18 = (int32_t *)FUN_180300bf0(&fStack_898,auStack_258,&uStack_7a8);
+      UltraHighFreq_FileSystem1(&uStack_808,&uStack_7a8,param_1 + 400);
+      puVar18 = (int32_t *)UltraHighFreq_FileSystem1(&fStack_898,auStack_258,&uStack_7a8);
       uVar31 = (uint64_t)*(int *)(param_1 + 0x58);
       uStack_7a8 = *puVar18;
       uStack_7a4 = puVar18[1];
@@ -1529,8 +1534,8 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
       uStack_794 = puVar18[5];
       uStack_790 = puVar18[6];
       uStack_78c = puVar18[7];
-      FUN_180300bf0(auStack_3a8,&uStack_7e8,uVar31 * 0x40 + *(int64_t *)(param_1 + 0x108));
-      puVar18 = (int32_t *)FUN_180300bf0(&fStack_898,auStack_238,&uStack_7e8);
+      UltraHighFreq_FileSystem1(auStack_3a8,&uStack_7e8,uVar31 * 0x40 + *(int64_t *)(param_1 + 0x108));
+      puVar18 = (int32_t *)UltraHighFreq_FileSystem1(&fStack_898,auStack_238,&uStack_7e8);
       plVar27 = *(int64_t **)(param_1 + 0xd8);
       uStack_7e8 = *puVar18;
       uStack_7e4 = puVar18[1];
@@ -1610,7 +1615,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_958 = fStack_818 - fStack_8d8;
           fStack_954 = fStack_814 - fStack_8d4;
           fStack_950 = fStack_810 - fStack_8d0;
-          FUN_180285b40(&fStack_898,&fStack_6f8,&fStack_958);
+          SystemCore_EventHandler(&fStack_898,&fStack_6f8,&fStack_958);
           fVar51 = fStack_6f0;
           fVar41 = fStack_6f4;
           fVar43 = fStack_6f8;
@@ -1637,7 +1642,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_484 = fVar50;
           fStack_480 = fVar40;
           fStack_47c = fVar42;
-          pfVar16 = (float *)FUN_1801c0fb0(&fStack_5c8,auStack_508,lVar23 + 0x30 + lVar28);
+          pfVar16 = (float *)SystemFileHandler(&fStack_5c8,auStack_508,lVar23 + 0x30 + lVar28);
           pfVar17 = (float *)(lVar28 + 0x20 + lVar23);
           fVar38 = *pfVar17;
           fVar44 = pfVar17[1];
@@ -1678,7 +1683,7 @@ void FUN_1805f0650(int64_t param_1,int64_t param_2)
           fStack_464 = fStack_6b4;
           fStack_460 = fStack_6b0;
           fStack_45c = fStack_6ac;
-          FUN_1802feba0(param_2,(int64_t)(uint64_t)(uint)((int)puVar21 - *(int *)(param_2 + 0x18))
+          RenderingSystem_DrawPrimitive(param_2,(int64_t)(uint64_t)(uint)((int)puVar21 - *(int *)(param_2 + 0x18))
                                 >> 8);
           cVar10 = cVar10 + '\x01';
         } while (cVar10 < *(char *)(param_2 + 0x20));

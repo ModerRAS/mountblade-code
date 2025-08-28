@@ -157,7 +157,7 @@ void FUN_180134640(void *param_1,int param_2,int32_t param_3)
   if (param_1 != (void *)0x0) {
     puVar15 = param_1;
   }
-  iVar11 = FUN_180121250(puVar15,0,
+  iVar11 = SystemCore_HandleInput(puVar15,0,
                          *(int32_t *)
                           (*(int64_t *)(lVar5 + 0x220) + -4 + (int64_t)*(int *)(lVar5 + 0x218) * 4
                           ));
@@ -425,7 +425,7 @@ void FUN_18013464a(void *param_1,int param_2,int32_t param_3)
   if (param_1 != (void *)0x0) {
     puVar15 = param_1;
   }
-  iVar11 = FUN_180121250(puVar15,0,
+  iVar11 = SystemCore_HandleInput(puVar15,0,
                          *(int32_t *)
                           (*(int64_t *)(lVar5 + 0x220) + -4 + (int64_t)*(int *)(lVar5 + 0x218) * 4
                           ));
@@ -687,7 +687,7 @@ void FUN_180134651(uint64_t param_1,int param_2,int32_t param_3)
   *(int8_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0xb1) = 1;
   lVar5 = *(int64_t *)(lVar6 + 0x1af8);
   uVar21 = FUN_18012e2d0(iVar10 + 0x11223347);
-  iVar10 = FUN_180121250(uVar21,0,*(int32_t *)
+  iVar10 = SystemCore_HandleInput(uVar21,0,*(int32_t *)
                                    (*(int64_t *)(lVar5 + 0x220) + -4 +
                                    (int64_t)*(int *)(lVar5 + 0x218) * 4));
   lVar13 = SYSTEM_DATA_MANAGER_A;

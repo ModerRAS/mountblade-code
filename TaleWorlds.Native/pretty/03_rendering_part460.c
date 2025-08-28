@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part460.c - 9 个函数
 
@@ -600,7 +602,7 @@ void FUN_180515300(int64_t param_1,uint64_t param_2,float *param_3,float param_4
     lVar14 = *(int64_t *)(param_1 + 0x658);
     cVar2 = *(char *)(*(int64_t *)(param_1 + 0x590) + 0x25f9);
     if ((*(byte *)(lVar14 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(lVar14,*(int64_t *)(lVar14 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar14,*(int64_t *)(lVar14 + 0x10) + 0x70,0xbf800000);
     }
     puVar13 = (uint *)((int64_t)cVar2 * 0x100 + *(int64_t *)(lVar14 + 0x18));
     do {
@@ -637,7 +639,7 @@ void FUN_180515300(int64_t param_1,uint64_t param_2,float *param_3,float param_4
     uStack_e0 = uStack_130;
     uStack_dc = uStack_12c;
     if ((*(byte *)(lVar14 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(lVar14,*(int64_t *)(lVar14 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar14,*(int64_t *)(lVar14 + 0x10) + 0x70,0xbf800000);
     }
     puVar13 = (uint *)((int64_t)cVar2 * 0x100 + *(int64_t *)(lVar14 + 0x18));
     do {
@@ -687,7 +689,7 @@ void FUN_180515300(int64_t param_1,uint64_t param_2,float *param_3,float param_4
     fStack_c4 = fVar9;
     fStack_c0 = fVar10;
     uStack_bc = uVar1;
-    FUN_18063b470(&fStack_128);
+    AdvancedProcessor_StateManager0(&fStack_128);
     fVar12 = fStack_ec;
     fVar11 = fStack_f0;
     fVar19 = fStack_f4;

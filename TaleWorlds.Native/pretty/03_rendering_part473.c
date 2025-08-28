@@ -302,7 +302,7 @@ typedef enum {
 #define RenderProcessBuffer             FUN_180593b40         // 渲染缓冲区处理
 #define RenderCallUpdateFunction        FUN_180511990         // 渲染更新函数调用
 #define RenderCallClearFunction         FUN_1805d1c80         // 渲染清除函数调用
-#define RenderCallInitFunction          FUN_18052e130         // 渲染初始化函数调用
+#define RenderCallInitFunction          SystemCore_Validator0         // 渲染初始化函数调用
 #define RenderCallSetupFunction         FUN_18052e450         // 渲染设置函数调用
 #define RenderCallDebugFunction         func_0x0001805da580   // 渲染调试函数调用
 

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -39,7 +43,7 @@ void FUN_180121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar4,SYSTEM_DATA_MANAGER_B);
+    DataValidator0(lVar4,SYSTEM_DATA_MANAGER_B);
   }
   return;
 }
@@ -81,7 +85,7 @@ int64_t FUN_180121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(lVar3,SYSTEM_DATA_MANAGER_B);
+          DataValidator0(lVar3,SYSTEM_DATA_MANAGER_B);
         }
         fclose(lVar2);
         if (param_3 == (int64_t *)0x0) {
@@ -1144,8 +1148,8 @@ void FUN_180122310(void)
 
 
 
-// 函数: void FUN_180122320(uint64_t param_1,char *param_2,char *param_3,char param_4)
-void FUN_180122320(uint64_t param_1,char *param_2,char *param_3,char param_4)
+// 函数: void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char param_4)
+void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char param_4)
 
 {
   int32_t *puVar1;
@@ -1221,7 +1225,7 @@ void FUN_180122320(uint64_t param_1,char *param_2,char *param_3,char param_4)
       }
     }
     if (*(char *)(lVar2 + 0x2e38) != '\0') {
-      FUN_18013c800(&uStack_38,param_2,param_3);
+      SystemCore_ThreadController(&uStack_38,param_2,param_3);
     }
   }
   return;

@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -47,7 +51,7 @@ void FUN_18025aa20(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       puVar4 = (uint64_t *)param_1[1];
       lVar3 = *param_1;
     }
-    lVar3 = FUN_180059780(lVar3,puVar4,lVar2);
+    lVar3 = SystemCore_Initializer(lVar3,puVar4,lVar2);
     if (param_2 != 0) {
       puVar4 = (uint64_t *)(lVar3 + 8);
       uVar6 = param_2;
@@ -400,7 +404,7 @@ void FUN_18025aec0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       puVar3 = (uint64_t *)param_1[1];
       lVar2 = *param_1;
     }
-    lVar2 = FUN_180059780(lVar2,puVar3,lVar1);
+    lVar2 = SystemCore_Initializer(lVar2,puVar3,lVar1);
     if (param_2 != 0) {
       puVar3 = (uint64_t *)(lVar2 + 8);
       uVar6 = param_2;

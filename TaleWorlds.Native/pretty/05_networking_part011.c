@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -116,7 +117,7 @@ LAB_18084c923:
   else if (0 < (int)uVar8) {
     lVar10 = unaff_R15[0xf] + 0x10;
     do {
-      FUN_180840270(lVar10);
+      SystemCore_MemoryManager(lVar10);
       lVar10 = lVar10 + 0x28;
       uVar11 = uVar11 - 1;
     } while (uVar11 != 0);
@@ -161,9 +162,9 @@ LAB_18084ca76:
   *(int64_t *)(*unaff_RDI + 8) = unaff_RDI[1];
   unaff_RDI[1] = (int64_t)unaff_RDI;
   *unaff_RDI = (int64_t)unaff_RDI;
-  FUN_18084c5a0(unaff_R15 + 9);
-  FUN_18084c5a0(unaff_R15 + 7);
-  FUN_18084c220(unaff_R15 + 5);
+  UISystem_EventDispatcher(unaff_R15 + 9);
+  UISystem_EventDispatcher(unaff_R15 + 7);
+  UltraHighFreq_InputHandler1(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
   *unaff_R15 = &ui_system_data_1544_ptr;
   return;
@@ -213,9 +214,9 @@ void FUN_18084ca92(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   *(int64_t *)(*unaff_RDI + 8) = unaff_RDI[1];
   unaff_RDI[1] = (int64_t)unaff_RDI;
   *unaff_RDI = (int64_t)unaff_RDI;
-  FUN_18084c5a0(unaff_R15 + 9);
-  FUN_18084c5a0(unaff_R15 + 7);
-  FUN_18084c220(unaff_R15 + 5);
+  UISystem_EventDispatcher(unaff_R15 + 9);
+  UISystem_EventDispatcher(unaff_R15 + 7);
+  UltraHighFreq_InputHandler1(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
   *unaff_R15 = &ui_system_data_1544_ptr;
   return;
@@ -246,9 +247,9 @@ void FUN_18084cae7(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   *(int64_t *)(*unaff_RDI + 8) = unaff_RDI[1];
   unaff_RDI[1] = (int64_t)unaff_RDI;
   *unaff_RDI = (int64_t)unaff_RDI;
-  FUN_18084c5a0(unaff_R15 + 9);
-  FUN_18084c5a0(unaff_R15 + 7);
-  FUN_18084c220(unaff_R15 + 5);
+  UISystem_EventDispatcher(unaff_R15 + 9);
+  UISystem_EventDispatcher(unaff_R15 + 7);
+  UltraHighFreq_InputHandler1(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
   *unaff_R15 = &ui_system_data_1544_ptr;
   return;
@@ -587,7 +588,7 @@ uint * FUN_18084cde0(int64_t param_1,uint *param_2)
       if ((*(int *)(lVar3 + 0x48) < network_system_ui) &&
          (SystemInitializer(&system_ptr_ea98), network_system_ui == -1)) {
         network_system_ui = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (*(int *)(puVar8 + 0x14) != network_system_ui) {
         plVar4 = *(int64_t **)(param_1 + 0x78);
@@ -731,7 +732,7 @@ uint * FUN_18084cde8(int64_t param_1,uint *param_2)
       if ((*(int *)(lVar3 + 0x48) < network_system_ui) &&
          (SystemInitializer(&system_ptr_ea98), network_system_ui == -1)) {
         network_system_ui = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (*(int *)(puVar8 + 0x14) != network_system_ui) {
         plVar4 = *(int64_t **)(param_1 + 0x78);
@@ -826,7 +827,7 @@ void FUN_18084cf13(int64_t param_1,uint64_t *param_2,uint64_t *param_3)
     if ((*(int *)(lVar2 + 0x48) < network_system_ui) &&
        (SystemInitializer(&system_ptr_ea98), network_system_ui == -1)) {
       network_system_ui = unaff_R12D;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
     uVar4 = (uint)unaff_RBP;
     if (*(int *)(unaff_RBX + 0x14) != network_system_ui) {

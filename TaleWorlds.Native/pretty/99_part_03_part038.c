@@ -1,3 +1,11 @@
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -165,7 +173,7 @@ void FUN_1801f0ed0(int64_t param_1,int32_t param_2)
   iVar9 = FUN_1801426a0(lVar23,&puStack_228);
   if (iVar9 < 0) {
 LAB_1801f1465:
-    lVar23 = FUN_180628ca0();
+    lVar23 = MemoryDebugger0();
   }
   else {
     if ((uint64_t)(*(int64_t *)(lVar23 + 0x890) - *(int64_t *)(lVar23 + 0x888) >> 5) <=
@@ -292,7 +300,7 @@ LAB_1801f16b2:
   puVar20[6] = puVar15[6];
   *(int16_t *)(puVar20 + 7) = *(int16_t *)(puVar15 + 7);
   uStack_2b0 = uVar1 + 0x26;
-  FUN_180627e10(&puStack_2c0,&puStack_200,&system_data_d7c8);
+  UtilitiesSystem_CacheManager(&puStack_2c0,&puStack_200,&system_data_d7c8);
   uStack_2c8 = 1;
   puStack_2c0 = &system_data_buffer_ptr;
   if (puVar17 != (int8_t *)0x0) {
@@ -360,7 +368,7 @@ LAB_1801f16b2:
   *(int8_t *)(puVar20 + 1) = 0;
   uStack_290 = 4;
   uStack_288._0_4_ = uVar8;
-  FUN_180066df0(plVar14 + 0xc0e2,&puStack_2a0);
+  DataEncryptionHandler0(plVar14 + 0xc0e2,&puStack_2a0);
   puStack_2a0 = &system_data_buffer_ptr;
   if (puStack_298 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -381,7 +389,7 @@ LAB_1801f16b2:
   *(int16_t *)(puVar20 + 1) = 0x65;
   uStack_2b0 = 5;
   uStack_2a8._0_4_ = uVar8;
-  FUN_180066df0(plVar14 + 0xc0e2,&puStack_2c0);
+  DataEncryptionHandler0(plVar14 + 0xc0e2,&puStack_2c0);
   puStack_2c0 = &system_data_buffer_ptr;
   if (puStack_2b8 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -401,7 +409,7 @@ LAB_1801f16b2:
   *puVar18 = 0x335f6c6576656c;
   uStack_290 = 7;
   uStack_288._0_4_ = uVar8;
-  FUN_180066df0(plVar14 + 0xc0e2,&puStack_2a0);
+  DataEncryptionHandler0(plVar14 + 0xc0e2,&puStack_2a0);
   puStack_2a0 = &system_data_buffer_ptr;
   if (puStack_298 == (uint64_t *)0x0) {
     puStack_298 = (uint64_t *)0x0;

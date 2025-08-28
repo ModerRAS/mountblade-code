@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part020.c - 1 个函数
 
 // 函数: void FUN_1805c7200(int64_t *param_1,int8_t param_2)
@@ -56,7 +60,7 @@ void FUN_1805c7200(int64_t *param_1,int8_t param_2)
     lVar9 = *param_1;
     lVar8 = *(int64_t *)(lVar9 + 0x9d8);
     lVar2 = *(int64_t *)(lVar9 + 0x20);
-    if ((lVar8 == 0) || (cVar4 = FUN_18038d0a0(lVar8,lVar2 + 0xc), lStack_c0 = lVar8, cVar4 == '\0')
+    if ((lVar8 == 0) || (cVar4 = SystemCore_PerformanceMonitor(lVar8,lVar2 + 0xc), lStack_c0 = lVar8, cVar4 == '\0')
        ) {
       lStack_c0 = 0;
     }
@@ -105,7 +109,7 @@ void FUN_1805c7200(int64_t *param_1,int8_t param_2)
       lVar8 = *(int64_t *)(lVar9 + 0x9d8);
       lVar2 = *(int64_t *)(lVar9 + 0x20);
       if ((lVar8 == 0) ||
-         (cVar4 = FUN_18038d0a0(lVar8,lVar2 + 0xc), lStack_c0 = lVar8, cVar4 == '\0')) {
+         (cVar4 = SystemCore_PerformanceMonitor(lVar8,lVar2 + 0xc), lStack_c0 = lVar8, cVar4 == '\0')) {
         lStack_c0 = 0;
       }
       uStack_40 = 0;
@@ -135,7 +139,7 @@ void FUN_1805c7200(int64_t *param_1,int8_t param_2)
     FUN_1805dd320(uVar12,&lStack_c8);
   }
   lVar9 = *(int64_t *)(*(int64_t *)param_1[0x33] + 0x9d8);
-  lVar8 = FUN_180488690(&lStack_c8);
+  lVar8 = SystemCore_ErrorHandler(&lStack_c8);
   cVar4 = *(char *)((int64_t)param_1 + 0x12bc);
   if (lVar9 == lVar8) {
 LAB_1805c750e:
@@ -153,8 +157,8 @@ LAB_1805c74f5:
     }
   }
   else {
-    lVar9 = FUN_180488690(param_1 + 0x38);
-    lVar8 = FUN_180488690(&lStack_c8);
+    lVar9 = SystemCore_ErrorHandler(param_1 + 0x38);
+    lVar8 = SystemCore_ErrorHandler(&lStack_c8);
     if (lVar8 != lVar9) goto LAB_1805c74f5;
     *(int32_t *)plVar7 = 0;
     *(int8_t *)((int64_t)param_1 + 0x12bd) = 1;
@@ -391,7 +395,7 @@ uint64_t FUN_1805c79a0(int64_t *param_1,int64_t param_2)
         fVar10 = 3.0;
       }
       else {
-        FUN_180487c70(param_1 + 0x29e,2);
+        SystemCore_Validator(param_1 + 0x29e,2);
         if ((int)param_1[0x2a6] < 2) {
           fVar10 = -NAN;
         }
@@ -490,7 +494,7 @@ uint64_t FUN_1805c79c4(int64_t param_1,int64_t param_2)
       fVar8 = 3.0;
     }
     else {
-      FUN_180487c70(unaff_RBX + 0x29e,2);
+      SystemCore_Validator(unaff_RBX + 0x29e,2);
       if ((int)unaff_RBX[0x2a6] < 2) {
         fVar8 = -NAN;
       }
@@ -570,7 +574,7 @@ bool FUN_1805c7ac5(int64_t param_1,int64_t param_2)
     fVar4 = 3.0;
   }
   else {
-    FUN_180487c70(unaff_RBX + 0x29e,2);
+    SystemCore_Validator(unaff_RBX + 0x29e,2);
     if ((int)unaff_RBX[0x2a6] < 2) {
       fVar4 = -NAN;
     }
@@ -636,7 +640,7 @@ bool FUN_1805c7ad7(void)
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
   
-  FUN_180487c70(unaff_RBX + 0x29e);
+  SystemCore_Validator(unaff_RBX + 0x29e);
   if ((int)unaff_RBX[0x2a6] < 2) {
     fVar5 = -NAN;
   }

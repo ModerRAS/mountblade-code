@@ -427,7 +427,7 @@ int FUN_180843330(int64_t param_1,int64_t param_2,int param_3)
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074be90(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar5 = SystemCore_Cleanup(iVar4 + param_2,param_3 - iVar4,uVar2);
   return iVar5 + iVar4;
 }
 
@@ -460,7 +460,7 @@ int FUN_180843450(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;
 }
 
@@ -493,7 +493,7 @@ int FUN_180843570(int64_t param_1,int64_t param_2,int param_3)
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074be90(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar5 = SystemCore_Cleanup(iVar4 + param_2,param_3 - iVar4,uVar2);
   return iVar5 + iVar4;
 }
 
@@ -524,7 +524,7 @@ int FUN_180843690(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;
 }
 
@@ -547,7 +547,7 @@ int FUN_1808437b0(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;
 }
 
@@ -719,7 +719,7 @@ int FUN_180843ce0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&processed_var_784_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -748,7 +748,7 @@ int FUN_180843d90(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&rendering_buffer_288_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -830,7 +830,7 @@ int FUN_180843fa0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&processed_var_544_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -859,7 +859,7 @@ int FUN_180844050(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&memory_allocator_32_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -888,7 +888,7 @@ int FUN_180844100(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&processed_var_416_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -917,7 +917,7 @@ int FUN_1808441b0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = DataProcessor(param_2,param_3,&processed_var_9904_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;

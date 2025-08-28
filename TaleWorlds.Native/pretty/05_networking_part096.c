@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -101,7 +102,7 @@ void FUN_180897859(float param_1)
       iVar2 = SystemNetworkProcessor(uVar6,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = SystemCore_StateController();
     if (iVar2 != 2) {
       in_stack_00000028 = &processed_var_7496_ptr;
       in_stack_00000038 = uStackX_20;
@@ -109,7 +110,7 @@ void FUN_180897859(float param_1)
       iVar2 = SystemNetworkProcessor(extraout_XMM0_Da_02,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = SystemCore_StateController();
     uVar6 = extraout_XMM0_Da_03;
     if (iVar2 == 4) {
       in_stack_00000028 = &processed_var_7624_ptr;
@@ -136,8 +137,8 @@ LAB_180897af6:
 
 
 
-// 函数: void FUN_180897afe(void)
-void FUN_180897afe(void)
+// 函数: void CoreSystem_ConfigurationHandler(void)
+void CoreSystem_ConfigurationHandler(void)
 
 {
   int64_t unaff_RBP;
@@ -150,8 +151,8 @@ void FUN_180897afe(void)
 
 
 
-// 函数: void FUN_180897b0e(void)
-void FUN_180897b0e(void)
+// 函数: void CoreSystem_MemoryManager(void)
+void CoreSystem_MemoryManager(void)
 
 {
   int64_t unaff_RBP;
@@ -164,8 +165,8 @@ void FUN_180897b0e(void)
 
 
 
-// 函数: void FUN_180897b16(void)
-void FUN_180897b16(void)
+// 函数: void CoreSystem_DataProcessor(void)
+void CoreSystem_DataProcessor(void)
 
 {
   int64_t unaff_RBP;
@@ -269,8 +270,8 @@ LAB_180897ce8:
 
 
 
-// 函数: void FUN_180897d20(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180897d20(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void UltraHighFreq_UISystem1(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void UltraHighFreq_UISystem1(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uStackX_18;
@@ -321,40 +322,40 @@ uint64_t FUN_180897d90(int64_t *param_1)
       uVar2 = (**(code **)(*param_1 + 8))(param_1,&processed_var_8236_ptr);
       if ((int)uVar2 == 0) {
         uVar4 = 0x14;
-        uVar2 = FUN_180897d20(param_1,&processed_var_8240_ptr,2,2,0x14);
+        uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8240_ptr,2,2,0x14);
         if (((((int)uVar2 == 0) &&
-             (uVar2 = FUN_180897d20(param_1,&processed_var_8280_ptr,*(int32_t *)(lVar1 + 0x116bc)),
+             (uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8280_ptr,*(int32_t *)(lVar1 + 0x116bc)),
              (int)uVar2 == 0)) &&
-            (uVar2 = FUN_180897d20(param_1,&processed_var_8352_ptr,(uint64_t)*(uint *)(lVar1 + 0x6d8),
+            (uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8352_ptr,(uint64_t)*(uint *)(lVar1 + 0x6d8),
                                    (uint64_t)*(uint *)(lVar1 + 0x6dc) /
                                    (uint64_t)*(uint *)(lVar1 + 0x6d8),uVar4), (int)uVar2 == 0)) &&
-           (uVar2 = FUN_180897d20(param_1,&processed_var_8416_ptr,*(int32_t *)(lVar1 + 0x6d0),
+           (uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8416_ptr,*(int32_t *)(lVar1 + 0x6d0),
                                   *(int32_t *)(lVar1 + 0x1193c),*(int32_t *)(lVar1 + 0x6d4)),
            (int)uVar2 == 0)) {
           uVar4 = *(int32_t *)(lVar1 + 0x11668);
           uVar8 = *(int32_t *)(lVar1 + 0x11624);
           uVar7 = *(int32_t *)(lVar1 + 0x11620);
           uVar6 = *(int32_t *)(lVar1 + 0x1161c);
-          uVar2 = FUN_180897d20(param_1,&processed_var_8512_ptr,*(int32_t *)(lVar1 + 0x1160c),
+          uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8512_ptr,*(int32_t *)(lVar1 + 0x1160c),
                                 *(int32_t *)(lVar1 + 0x11610),*(int32_t *)(lVar1 + 0x11614),
                                 *(int32_t *)(lVar1 + 0x11618),uVar6,uVar7,uVar8,uVar4);
           if (((int)uVar2 == 0) &&
-             (uVar2 = FUN_180897d20(param_1,&processed_var_8720_ptr,*(int32_t *)(lVar1 + 0x11628),
+             (uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8720_ptr,*(int32_t *)(lVar1 + 0x11628),
                                     (double)*(float *)(lVar1 + 0x11640),
                                     *(int32_t *)(lVar1 + 0x11644),
                                     *(int32_t *)(lVar1 + 0x1164c),uVar6,uVar7,uVar8,uVar4),
              (int)uVar2 == 0)) {
             uVar6 = *(int32_t *)(lVar1 + 0x11660);
-            uVar2 = FUN_180897d20(param_1,&processed_var_8832_ptr,(double)*(float *)(lVar1 + 0x11650),
+            uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8832_ptr,(double)*(float *)(lVar1 + 0x11650),
                                   *(int32_t *)(lVar1 + 0x11654),*(int32_t *)(lVar1 + 0x11658),
                                   *(int32_t *)(lVar1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
             if ((int)uVar2 == 0) {
               uVar5 = *(int32_t *)(lVar3 + 0x10);
-              uVar2 = FUN_180897d20(param_1,&processed_var_8960_ptr,*(int32_t *)(lVar3 + 4),
+              uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_8960_ptr,*(int32_t *)(lVar3 + 4),
                                     *(int32_t *)(lVar3 + 8),*(int32_t *)(lVar3 + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
               if ((((int)uVar2 == 0) &&
-                  (uVar2 = FUN_180897d20(param_1,&processed_var_9120_ptr,*(int32_t *)(lVar1 + 0x1e0),
+                  (uVar2 = UltraHighFreq_UISystem1(param_1,&processed_var_9120_ptr,*(int32_t *)(lVar1 + 0x1e0),
                                          *(int32_t *)(param_1[1] + 0x20),
                                          *(int32_t *)(lVar1 + 0x78),uVar5,uVar6,uVar7,uVar8,uVar4
                                         ), (int)uVar2 == 0)) &&
@@ -387,14 +388,14 @@ uint64_t FUN_180897dd3(void)
   }
   else {
     uVar2 = (**(code **)(*unaff_RBX + 8))();
-    if ((((((((int)uVar2 == 0) && (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-           (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-          ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 && (uVar2 = FUN_180897d20(), (int)uVar2 == 0)))
-          ) && ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
-                ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
-                 (uVar2 = FUN_180897d20(), (int)uVar2 == 0)))))) &&
-        (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-       ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
+    if ((((((((int)uVar2 == 0) && (uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0)) &&
+           (uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0)) &&
+          ((uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0 && (uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0)))
+          ) && ((uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0 &&
+                ((uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0 &&
+                 (uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0)))))) &&
+        (uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0)) &&
+       ((uVar2 = UltraHighFreq_UISystem1(), (int)uVar2 == 0 &&
         (uVar2 = (**(code **)(*unaff_RBX + 8))(), (int)uVar2 == 0)))) {
       if (((*(uint *)(unaff_RBX + 3) & 2) == 0) && (uVar2 = FUN_180898040(), (int)uVar2 != 0)) {
         return uVar2;
@@ -609,7 +610,7 @@ void FUN_180898040(int64_t *param_1)
             if ((char)lVar11 == '\0') {
               *(int8_t *)(param_1 + 4) = 1;
               iVar7 = FUN_18073a200(*(uint64_t *)(param_1[1] + 0x78),auStack_2e8);
-              if (((iVar7 != 0) || (iVar7 = FUN_18073c4c0(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
+              if (((iVar7 != 0) || (iVar7 = UtilitiesSystem_MathCalculator(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*param_1 + 0x10))(param_1), iVar7 != 0))
               goto LAB_18089866f;
               uVar9 = (uint64_t)(lStack_320 * 48000) /
@@ -642,7 +643,7 @@ void FUN_180898040(int64_t *param_1)
       uStack_310 = 0xffffffffffffffff;
       afStack_308[0] = -NAN;
       plStack_318 = (int64_t *)(*(int64_t *)(param_1[1] + 0x90) + 0x38);
-      FUN_1808741f0(plStack_318,&uStack_310,afStack_308);
+      SystemResource_Manager(plStack_318,&uStack_310,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         plVar16 = plStack_318;
@@ -654,7 +655,7 @@ void FUN_180898040(int64_t *param_1)
             aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
             plStack_340 = *(int64_t **)(plVar16[2] + 0x18 + lVar15);
             lStack_320 = lVar15;
-            FUN_1807d1650(plStack_340,&uStack_338,aplStack_330);
+            NetworkSystem_ConnectionHandler(plStack_340,&uStack_338,aplStack_330);
             plVar14 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
               iVar6 = (int)aplStack_330[0];

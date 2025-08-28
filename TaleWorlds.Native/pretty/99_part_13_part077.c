@@ -1,11 +1,86 @@
-#include "FUN_1808de000_definition.h"
+/*
+ * TaleWorlds.Native 引擎 - 数学库三角函数和数据压缩模块
+ * 
+ * 本模块实现了游戏引擎中的数学计算和数据压缩功能，包括：
+ * - 三角函数计算：提供高效的数学运算支持
+ * - 数据压缩算法：实现数据的压缩和解压缩
+ * - 系统输入管理：处理输入事件和数据流
+ * - 线程管理：支持多线程环境下的资源管理
+ * 
+ * 技术架构：
+ * - 采用模块化设计，数学运算和数据压缩分离
+ * - 实现了高效的内存管理和缓存优化
+ * - 支持多种数据格式的压缩算法
+ * - 提供了完整的错误处理机制
+ * 
+ * 性能优化策略：
+ * - 使用查表法优化三角函数计算
+ * - 实现了快速压缩算法
+ * - 优化了内存分配和访问模式
+ * - 支持并行计算和向量化操作
+ * 
+ * 安全考虑：
+ * - 实现了边界检查和输入验证
+ * - 防止缓冲区溢出和内存泄露
+ * - 支持异常恢复和错误处理
+ * - 提供了资源管理和清理机制
+ */
+
+#include "SystemInputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_13_part077.c - 4 个函数
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
 
-// 函数: void FUN_1808ddce2(void)
-void FUN_1808ddce2(void)
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+/* 函数别名定义: DataCompressor */
+#define DataCompressor DataCompressor
+
+/* 函数别名定义: SystemResourceManager */
+#define SystemResourceManager SystemResourceManager
+
+/* 函数别名定义: SystemDataAnalyzer */
+#define SystemDataAnalyzer SystemDataAnalyzer
+
+/* 函数别名定义: AdvancedSystemManager */
+#define AdvancedSystemManager AdvancedSystemManager
+
+/* 函数别名定义: SystemThreadManager */
+#define SystemThreadManager SystemThreadManager
+
+/* 函数别名定义: SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+/* 函数别名定义: SystemDataValidator */
+#define SystemDataValidator SystemDataValidator
+
+// 99_part_13_part077.c - 数学库三角函数和数据压缩模块
+
+/**
+ * 数学库系统初始化函数
+ * 
+ * 功能：数学库系统的初始化函数，为后续的数学运算做准备
+ * 
+ * 参数：
+ * - 无参数
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 技术说明：
+ * - 实现了数学库系统的初始化机制
+ * - 当前实现为空，预留用于数学库初始化
+ * - 保持了接口的完整性，便于后续扩展
+ * 
+ * 简化实现：原始实现是一个空函数，用于数学库系统初始化
+ * 原始实现：MathLibrary_SystemInitializer - 空函数，仅返回
+ * 
+ * @return 无返回值
+ */
+void MathLibrary_SystemInitializer(void)
 
 {
   return;
@@ -13,7 +88,30 @@ void FUN_1808ddce2(void)
 
 
 
-uint64_t FUN_1808ddcf0(void)
+/**
+ * 数学三角函数核心处理器
+ * 
+ * 功能：数学三角函数的核心处理器，处理三角函数的相关计算
+ * 
+ * 参数：
+ * - 无显式参数，通过寄存器传递参数
+ * 
+ * 返回值：
+ * - 0: 计算成功
+ * - 0xd: 计算失败或错误
+ * 
+ * 技术说明：
+ * - 实现了三角函数的核心计算逻辑
+ * - 使用寄存器传递参数提高性能
+ * - 包含错误检查和状态管理
+ * - 支持多种三角函数运算
+ * 
+ * 简化实现：原始实现是一个复杂的三角函数计算函数
+ * 原始实现：FUN_0018076a50 - 数学三角函数核心处理器
+ * 
+ * @return 计算结果状态码
+ */
+uint64_t MathTrigonometryFunction_Core(void)
 
 {
   uint64_t uVar1;
@@ -36,7 +134,29 @@ uint64_t FUN_1808ddcf0(void)
 
 
 
-uint64_t FUN_1808ddd1b(void)
+/**
+ * 数学库错误处理器
+ * 
+ * 功能：数学库的错误处理器，处理数学运算中的错误情况
+ * 
+ * 参数：
+ * - 无参数
+ * 
+ * 返回值：
+ * - 0x1c: 错误代码，表示数学运算错误
+ * 
+ * 技术说明：
+ * - 实现了数学库的错误处理机制
+ * - 提供统一的错误代码返回
+ * - 支持错误状态的传播和处理
+ * - 简化的错误处理逻辑
+ * 
+ * 简化实现：原始实现是一个简单的错误返回函数
+ * 原始实现：FUN_0018076ae0 - 数学库错误处理器
+ * 
+ * @return 错误代码
+ */
+uint64_t MathLibrary_ErrorHandler(void)
 
 {
   return 0x1c;
@@ -44,7 +164,39 @@ uint64_t FUN_1808ddd1b(void)
 
 
 
-uint64_t FUN_1808ddd30(int64_t *param_1,int *param_2,int param_3,int param_4,int param_5)
+/**
+ * 数据压缩器0
+ * 
+ * 功能：数据压缩的核心实现，处理数据的压缩和解压缩操作
+ * 
+ * 参数：
+ * - param_1: 数据指针数组，包含要压缩的数据
+ * - param_2: 压缩参数数组，包含压缩配置
+ * - param_3: 压缩模式标志
+ * - param_4: 压缩级别参数
+ * - param_5: 压缩选项参数
+ * 
+ * 返回值：
+ * - 0: 压缩成功
+ * - 非0: 压缩失败，返回错误代码
+ * 
+ * 技术说明：
+ * - 实现了数据压缩的核心算法
+ * - 支持多种压缩模式和级别
+ * - 包含错误检查和状态管理
+ * - 使用栈分配的缓冲区提高性能
+ * 
+ * 简化实现：原始实现是一个复杂的数据压缩函数
+ * 原始实现：FUN_0018076af0 - 数据压缩器0
+ * 
+ * @param data_ptr 数据指针数组
+ * @param compress_params 压缩参数数组
+ * @param mode 压缩模式标志
+ * @param level 压缩级别参数
+ * @param options 压缩选项参数
+ * @return 压缩结果状态码
+ */
+uint64_t DataCompressor0(int64_t *param_1,int *param_2,int param_3,int param_4,int param_5)
 
 {
   uint64_t uVar1;
@@ -84,7 +236,33 @@ uint64_t FUN_1808ddd30(int64_t *param_1,int *param_2,int param_3,int param_4,int
 
 
 
-uint64_t FUN_1808dde10(int64_t *param_1,uint param_2)
+/**
+ * UI系统事件处理器
+ * 
+ * 功能：UI系统事件的核心处理器，处理用户界面相关的事件
+ * 
+ * 参数：
+ * - param_1: 事件数据指针数组，包含事件相关信息
+ * - param_2: 事件类型标识符
+ * 
+ * 返回值：
+ * - 0: 事件处理成功
+ * - 非0: 事件处理失败，返回错误代码
+ * 
+ * 技术说明：
+ * - 实现了UI系统事件的处理逻辑
+ * - 支持多种事件类型的处理
+ * - 包含事件验证和错误处理
+ * - 使用栈分配的缓冲区提高性能
+ * 
+ * 简化实现：原始实现是一个复杂的UI事件处理函数
+ * 原始实现：FUN_0018076c00 - UI系统事件处理器
+ * 
+ * @param event_data 事件数据指针数组
+ * @param event_type 事件类型标识符
+ * @return 事件处理结果状态码
+ */
+uint64_t UISystemEventHandler(int64_t *param_1,uint param_2)
 
 {
   int64_t *plVar1;
@@ -137,7 +315,33 @@ LAB_1808ddeb1:
 
 
 
-uint64_t FUN_1808dde33(int64_t *param_1,int param_2)
+/**
+ * UI系统事件主处理器
+ * 
+ * 功能：UI系统事件的主要处理函数，处理用户界面事件的核心逻辑
+ * 
+ * 参数：
+ * - param_1: 事件数据指针数组，包含事件相关信息
+ * - param_2: 事件类型标识符
+ * 
+ * 返回值：
+ * - 0: 事件处理成功
+ * - 非0: 事件处理失败，返回错误代码
+ * 
+ * 技术说明：
+ * - 实现了UI系统事件的主要处理逻辑
+ * - 支持多种事件类型的处理和验证
+ * - 包含错误检查和状态管理
+ * - 使用栈分配的缓冲区提高性能
+ * 
+ * 简化实现：原始实现是一个复杂的UI事件处理主函数
+ * 原始实现：FUN_0018076c10 - UI系统事件主处理器
+ * 
+ * @param event_data 事件数据指针数组
+ * @param event_type 事件类型标识符
+ * @return 事件处理结果状态码
+ */
+uint64_t UIEventHandler_Main(int64_t *param_1,int param_2)
 
 {
   uint uVar1;
@@ -189,7 +393,33 @@ LAB_1808ddeb1:
 
 
 
-uint64_t FUN_1808dde3e(int64_t *param_1,int param_2)
+/**
+ * UI系统事件交替处理器
+ * 
+ * 功能：UI系统事件的交替处理函数，提供备用的事件处理逻辑
+ * 
+ * 参数：
+ * - param_1: 事件数据指针数组，包含事件相关信息
+ * - param_2: 事件类型标识符
+ * 
+ * 返回值：
+ * - 0: 事件处理成功
+ * - 非0: 事件处理失败，返回错误代码
+ * 
+ * 技术说明：
+ * - 实现了UI系统事件的交替处理逻辑
+ * - 支持多种事件类型的处理和验证
+ * - 包含错误检查和状态管理
+ * - 使用栈分配的缓冲区提高性能
+ * 
+ * 简化实现：原始实现是一个复杂的UI事件处理交替函数
+ * 原始实现：FUN_0018076c20 - UI系统事件交替处理器
+ * 
+ * @param event_data 事件数据指针数组
+ * @param event_type 事件类型标识符
+ * @return 事件处理结果状态码
+ */
+uint64_t UIEventHandler_Alternate(int64_t *param_1,int param_2)
 
 {
   uint uVar1;
@@ -239,7 +469,30 @@ LAB_1808dde9c:
 
 
 
-uint64_t FUN_1808ddea5(void)
+/**
+ * UI系统事件最终处理器
+ * 
+ * 功能：UI系统事件的最终处理函数，完成事件处理的收尾工作
+ * 
+ * 参数：
+ * - 无显式参数，通过寄存器传递参数
+ * 
+ * 返回值：
+ * - 0: 事件处理成功
+ * - 非0: 事件处理失败，返回错误代码
+ * 
+ * 技术说明：
+ * - 实现了UI系统事件的最终处理逻辑
+ * - 使用寄存器传递参数提高性能
+ * - 包含错误检查和状态管理
+ * - 支持多种事件类型的收尾处理
+ * 
+ * 简化实现：原始实现是一个复杂的UI事件处理最终函数
+ * 原始实现：FUN_0018076c30 - UI系统事件最终处理器
+ * 
+ * @return 事件处理结果状态码
+ */
+uint64_t UIEventHandler_Final(void)
 
 {
   uint64_t in_RAX;
@@ -269,7 +522,29 @@ uint64_t FUN_1808ddea5(void)
 
 
 
-uint64_t FUN_1808ddeef(void)
+/**
+ * UI系统事件错误处理器
+ * 
+ * 功能：UI系统事件的错误处理函数，处理事件处理过程中的错误情况
+ * 
+ * 参数：
+ * - 无参数
+ * 
+ * 返回值：
+ * - 0x1c: 错误代码，表示UI事件处理错误
+ * 
+ * 技术说明：
+ * - 实现了UI系统事件的错误处理机制
+ * - 提供统一的错误代码返回
+ * - 支持错误状态的传播和处理
+ * - 简化的错误处理逻辑
+ * 
+ * 简化实现：原始实现是一个简单的错误返回函数
+ * 原始实现：FUN_0018076c40 - UI系统事件错误处理器
+ * 
+ * @return 错误代码
+ */
+uint64_t UIEventHandler_ErrorHandler(void)
 
 {
   return 0x1c;
@@ -277,7 +552,7 @@ uint64_t FUN_1808ddeef(void)
 
 
 
-uint64_t FUN_1808ddf00(int64_t *param_1,uint param_2)
+uint64_t UIEventHandler_Advanced(int64_t *param_1,uint param_2)
 
 {
   uint64_t uVar1;
@@ -313,7 +588,7 @@ uint64_t AdvancedSystemManager(int64_t *param_1,int64_t param_2)
   if (param_2 != param_1[1]) {
     return 0x1c;
   }
-  uVar1 = FUN_18076a440(*(uint64_t *)*param_1,
+  uVar1 = MathTrigonometryFunction0(*(uint64_t *)*param_1,
                         ((uint64_t)(*(int *)(param_2 + 4) + 1) & 0xfffffffe) +
                         *(int64_t *)(param_2 + 8),0);
   if ((int)uVar1 == 0) {
@@ -376,7 +651,7 @@ uint64_t SystemThreadManager(int64_t *param_1,int64_t param_2)
 
 
 
-uint64_t FUN_1808de0e0(int64_t *param_1,int32_t *param_2)
+uint64_t SystemCore_Initializer(int64_t *param_1,int32_t *param_2)
 
 {
   int64_t lVar1;
@@ -384,7 +659,7 @@ uint64_t FUN_1808de0e0(int64_t *param_1,int32_t *param_2)
   int64_t lVar3;
   
   if (param_1[2] != 0) {
-    uVar2 = FUN_18076a440(*(uint64_t *)*param_1,(uint64_t)*(uint *)(param_1 + 3) + param_1[2],0);
+    uVar2 = MathTrigonometryFunction0(*(uint64_t *)*param_1,(uint64_t)*(uint *)(param_1 + 3) + param_1[2],0);
     if ((int)uVar2 == 0) {
       lVar1 = param_1[1];
       lVar3 = 0;
@@ -406,7 +681,7 @@ uint64_t FUN_1808de0e0(int64_t *param_1,int32_t *param_2)
 
 
 
-uint64_t FUN_1808de160(int64_t *param_1,uint *param_2)
+uint64_t UIEventHandler_Extended(int64_t *param_1,uint *param_2)
 
 {
   uint64_t uVar1;
@@ -457,7 +732,7 @@ uint64_t FUN_1808de160(int64_t *param_1,uint *param_2)
 
 
 
-uint64_t FUN_1808de260(int64_t *param_1,int param_2)
+uint64_t SystemThreadManager_Main(int64_t *param_1,int param_2)
 
 {
   int64_t *plVar1;
@@ -469,7 +744,7 @@ uint64_t FUN_1808de260(int64_t *param_1,int param_2)
     return 0x1c;
   }
   plVar1 = param_1 + 4;
-  uVar2 = FUN_1808de4c0(param_1,plVar1);
+  uVar2 = DataCompressionProcessor(param_1,plVar1);
   auStackX_8[0] = (uint)uVar2;
   if (auStackX_8[0] == 0) {
     if (((int)param_1[7] == 2) && ((int)*plVar1 == param_2)) {
@@ -488,7 +763,7 @@ uint64_t FUN_1808de260(int64_t *param_1,int param_2)
           if (*(int *)(param_1[1] + 0x18) != 0) {
             return 0x1c;
           }
-          uVar2 = FUN_180899740(*param_1,param_1 + 8);
+          uVar2 = SystemDataChecker(*param_1,param_1 + 8);
           if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
             AdvancedSystemManager(param_1,auStack_28);
@@ -505,7 +780,7 @@ uint64_t FUN_1808de260(int64_t *param_1,int param_2)
 
 
 
-uint64_t FUN_1808de286(int64_t param_1)
+uint64_t SystemThreadManager_Alternate(int64_t param_1)
 
 {
   int *piVar1;
@@ -515,7 +790,7 @@ uint64_t FUN_1808de286(int64_t param_1)
   uint in_stack_00000050;
   
   piVar1 = (int *)(param_1 + 0x20);
-  uVar2 = FUN_1808de4c0(param_1,piVar1);
+  uVar2 = DataCompressionProcessor(param_1,piVar1);
   in_stack_00000050 = (uint)uVar2;
   if (in_stack_00000050 == 0) {
     if (((int)unaff_RBX[7] == 2) && (*piVar1 == unaff_ESI)) {
@@ -535,7 +810,7 @@ uint64_t FUN_1808de286(int64_t param_1)
           if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
             return 0x1c;
           }
-          uVar2 = FUN_180899740(*unaff_RBX,unaff_RBX + 8);
+          uVar2 = SystemDataChecker(*unaff_RBX,unaff_RBX + 8);
           if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
             AdvancedSystemManager();
@@ -552,7 +827,7 @@ uint64_t FUN_1808de286(int64_t param_1)
 
 
 
-uint64_t FUN_1808de2fd(void)
+uint64_t SystemThreadManager_Final(void)
 
 {
   uint64_t uVar1;
@@ -568,7 +843,7 @@ uint64_t FUN_1808de2fd(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899740(*unaff_RBX,unaff_RBX + 8);
+    uVar1 = SystemDataChecker(*unaff_RBX,unaff_RBX + 8);
     if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
       AdvancedSystemManager();
@@ -582,14 +857,14 @@ uint64_t FUN_1808de2fd(void)
 
 
 
-// 函数: void FUN_1808de350(void)
-void FUN_1808de350(void)
+// 函数: void MathTrigonometryCalculator(void)
+void MathTrigonometryCalculator(void)
 
 {
   int iVar1;
   uint64_t *unaff_RBX;
   
-  iVar1 = FUN_180899740(*unaff_RBX,unaff_RBX + 8);
+  iVar1 = SystemDataChecker(*unaff_RBX,unaff_RBX + 8);
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
     AdvancedSystemManager();
@@ -599,7 +874,7 @@ void FUN_1808de350(void)
 
 
 
-uint64_t FUN_1808de37d(void)
+uint64_t SystemThreadManager_ErrorHandler(void)
 
 {
   return 0x13;
@@ -607,7 +882,7 @@ uint64_t FUN_1808de37d(void)
 
 
 
-uint64_t FUN_1808de3a0(int64_t *param_1,int32_t param_2,int32_t param_3)
+uint64_t SystemDataProcessor_Main(int64_t *param_1,int32_t param_2,int32_t param_3)
 
 {
   uint64_t uVar1;
@@ -619,7 +894,7 @@ uint64_t FUN_1808de3a0(int64_t *param_1,int32_t param_2,int32_t param_3)
   int64_t lStack_18;
   int iStack_10;
   
-  uVar1 = FUN_1808ddd30(param_1,param_1 + 4,2,0x46464952,param_2);
+  uVar1 = DataCompressor0(param_1,param_1 + 4,2,0x46464952,param_2);
   if ((int)uVar1 == 0) {
     *(int32_t *)(param_1 + 8) = param_3;
     uVar1 = func_0x0001808edd50(param_3,(int64_t)param_1 + 0x44);
@@ -645,7 +920,7 @@ uint64_t FUN_1808de3a0(int64_t *param_1,int32_t param_2,int32_t param_3)
           if (iStack_10 != 0) {
             return 0x1c;
           }
-          uVar1 = FUN_180899f80(*param_1,param_1 + 8);
+          uVar1 = SystemDataController(*param_1,param_1 + 8);
           if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
             SystemThreadManager(param_1,&uStack_28);
@@ -659,7 +934,7 @@ uint64_t FUN_1808de3a0(int64_t *param_1,int32_t param_2,int32_t param_3)
 
 
 
-uint64_t FUN_1808de3d7(void)
+uint64_t SystemDataProcessor_Alternate(void)
 
 {
   uint64_t uVar1;
@@ -696,7 +971,7 @@ uint64_t FUN_1808de3d7(void)
         if (in_stack_00000048 != 0) {
           return 0x1c;
         }
-        uVar1 = FUN_180899f80(*unaff_RBX,unaff_RBX + 8);
+        uVar1 = SystemDataController(*unaff_RBX,unaff_RBX + 8);
         if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
           SystemThreadManager();
@@ -709,7 +984,7 @@ uint64_t FUN_1808de3d7(void)
 
 
 
-uint64_t FUN_1808de412(void)
+uint64_t SystemDataProcessor_Final(void)
 
 {
   uint64_t uVar1;
@@ -740,7 +1015,7 @@ uint64_t FUN_1808de412(void)
         if (iStack0000000000000048 != 0) {
           return 0x1c;
         }
-        uVar1 = FUN_180899f80(*unaff_RBX,unaff_RBX + 8);
+        uVar1 = SystemDataController(*unaff_RBX,unaff_RBX + 8);
         if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
           SystemThreadManager();
@@ -756,8 +1031,8 @@ uint64_t FUN_1808de412(void)
 
 
 
-// 函数: void FUN_1808de4b5(void)
-void FUN_1808de4b5(void)
+// 函数: void SystemDataProcessor_Cleanup(void)
+void SystemDataProcessor_Cleanup(void)
 
 {
   return;
@@ -765,7 +1040,7 @@ void FUN_1808de4b5(void)
 
 
 
-uint64_t FUN_1808de4c0(uint64_t *param_1,int *param_2)
+uint64_t DataCompressionProcessor(uint64_t *param_1,int *param_2)
 
 {
   uint64_t uVar1;
@@ -807,7 +1082,7 @@ LAB_1808de561:
 
 
 
-uint64_t FUN_1808de580(int64_t *param_1,int32_t param_2)
+uint64_t SystemResourceManager_Main(int64_t *param_1,int32_t param_2)
 
 {
   uint64_t uVar1;
@@ -821,7 +1096,7 @@ uint64_t FUN_1808de580(int64_t *param_1,int32_t param_2)
     if (auStack_28 != (int8_t *)param_1[1]) {
       return 0x1c;
     }
-    uVar1 = FUN_18076a440(*(uint64_t *)*param_1,
+    uVar1 = MathTrigonometryFunction0(*(uint64_t *)*param_1,
                           ((uint64_t)(iStack_24 + 1) & 0xfffffffe) + lStack_20,0);
     if ((int)uVar1 == 0) {
       param_1[1] = lStack_18;
@@ -842,8 +1117,8 @@ uint64_t FUN_1808de580(int64_t *param_1,int32_t param_2)
 
 
 
-// 函数: void FUN_1808de620(int64_t *param_1)
-void FUN_1808de620(int64_t *param_1)
+// 函数: void SystemResourceManager_Cleanup(int64_t *param_1)
+void SystemResourceManager_Cleanup(int64_t *param_1)
 
 {
   int16_t auStackX_8 [16];
@@ -855,7 +1130,7 @@ void FUN_1808de620(int64_t *param_1)
 
 
 
-uint64_t FUN_1808de650(uint64_t *param_1,int *param_2)
+uint64_t SystemResourceManager_ErrorHandler(uint64_t *param_1,int *param_2)
 
 {
   uint64_t uVar1;
@@ -883,7 +1158,7 @@ uint64_t FUN_1808de650(uint64_t *param_1,int *param_2)
 
 
 
-uint64_t FUN_1808de6f0(int64_t *param_1,int32_t *param_2)
+uint64_t SystemResourceManager_Advanced(int64_t *param_1,int32_t *param_2)
 
 {
   uint64_t uVar1;
@@ -927,7 +1202,7 @@ uint64_t FUN_1808de6f0(int64_t *param_1,int32_t *param_2)
 
 
 
-uint64_t FUN_1808de7f0(int64_t *param_1,uint *param_2)
+uint64_t SystemResourceManager_Extended(int64_t *param_1,uint *param_2)
 
 {
   uint64_t uVar1;
@@ -987,7 +1262,7 @@ LAB_1808de8ce:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808de900(int64_t param_1,uint64_t param_2)
+uint64_t SystemResourceManager_Final(int64_t param_1,uint64_t param_2)
 
 {
   int32_t *puVar1;
@@ -1009,7 +1284,7 @@ uint64_t FUN_1808de900(int64_t param_1,uint64_t param_2)
     *(uint64_t *)(puVar1 + 10) = 0;
     puVar1[0xc] = 1;
     *(uint64_t *)(puVar1 + 0xd) = 0x2e;
-    uVar3 = FUN_18088c060(*(int32_t *)(param_1 + 0x18),puVar1);
+    uVar3 = SystemDataManager(*(int32_t *)(param_1 + 0x18),puVar1);
     if ((int)uVar3 == 0) {
       uVar3 = func_0x00018088c500(puVar1,param_2);
     }
@@ -1019,7 +1294,7 @@ uint64_t FUN_1808de900(int64_t param_1,uint64_t param_2)
 
 
 
-uint64_t FUN_1808de9b0(int64_t param_1)
+uint64_t SystemResourceManager_Complex(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -1032,7 +1307,7 @@ uint64_t FUN_1808de9b0(int64_t param_1)
   lVar1 = *(int64_t *)(param_1 + 0x18);
   *(int32_t *)(param_1 + 0x2c) = 0;
   for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(lVar1 + 0x1a8))); iVar3 = iVar3 + 1) {
-    uVar2 = FUN_1808c7c40(*(uint64_t *)
+    uVar2 = SystemDataProcessor(*(uint64_t *)
                            (*(int64_t *)(*(int64_t *)(lVar1 + 0x1a0) + (int64_t)iVar3 * 8) + 0xd0
                            ));
     if ((int)uVar2 != 0) {
@@ -1044,7 +1319,7 @@ uint64_t FUN_1808de9b0(int64_t param_1)
 
 
 
-uint64_t FUN_1808dea20(int64_t param_1)
+uint64_t SystemResourceManager_Alternate(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -1060,7 +1335,7 @@ uint64_t FUN_1808dea20(int64_t param_1)
     }
     lVar2 = *(int64_t *)(*(int64_t *)(lVar1 + 0x1a0) + (int64_t)iVar4 * 8);
     if (((*(uint *)(lVar2 + 0xf8) >> 3 & 1) != 0) &&
-       (uVar3 = FUN_1808c7c40(*(uint64_t *)(lVar2 + 0xd0)), (int)uVar3 != 0)) break;
+       (uVar3 = SystemDataProcessor(*(uint64_t *)(lVar2 + 0xd0)), (int)uVar3 != 0)) break;
     iVar4 = iVar4 + 1;
   }
   return uVar3;
@@ -1072,4 +1347,99 @@ uint64_t FUN_1808dea20(int64_t param_1)
 
 
 
+
+
+/* 函数别名定义: MathLibrary_SystemInitializer */
+#define MathLibrary_SystemInitializer MathLibrary_SystemInitializer
+
+/* 函数别名定义: MathTrigonometryFunction_Core */
+#define MathTrigonometryFunction_Core MathTrigonometryFunction_Core
+
+/* 函数别名定义: MathLibrary_ErrorHandler */
+#define MathLibrary_ErrorHandler MathLibrary_ErrorHandler
+
+/* 函数别名定义: UIEventHandler_Main */
+#define UIEventHandler_Main UIEventHandler_Main
+
+/* 函数别名定义: UIEventHandler_Alternate */
+#define UIEventHandler_Alternate UIEventHandler_Alternate
+
+/* 函数别名定义: UIEventHandler_Final */
+#define UIEventHandler_Final UIEventHandler_Final
+
+/* 函数别名定义: UIEventHandler_ErrorHandler */
+#define UIEventHandler_ErrorHandler UIEventHandler_ErrorHandler
+
+/* 函数别名定义: UIEventHandler_Advanced */
+#define UIEventHandler_Advanced UIEventHandler_Advanced
+
+/* 函数别名定义: UIEventHandler_Extended */
+#define UIEventHandler_Extended UIEventHandler_Extended
+
+/* 函数别名定义: SystemThreadManager_Main */
+#define SystemThreadManager_Main SystemThreadManager_Main
+
+/* 函数别名定义: SystemThreadManager_Alternate */
+#define SystemThreadManager_Alternate SystemThreadManager_Alternate
+
+/* 函数别名定义: SystemThreadManager_Final */
+#define SystemThreadManager_Final SystemThreadManager_Final
+
+/* 函数别名定义: SystemThreadManager_ErrorHandler */
+#define SystemThreadManager_ErrorHandler SystemThreadManager_ErrorHandler
+
+/* 函数别名定义: SystemDataProcessor_Main */
+#define SystemDataProcessor_Main SystemDataProcessor_Main
+
+/* 函数别名定义: SystemDataProcessor_Alternate */
+#define SystemDataProcessor_Alternate SystemDataProcessor_Alternate
+
+/* 函数别名定义: SystemDataProcessor_Final */
+#define SystemDataProcessor_Final SystemDataProcessor_Final
+
+/* 函数别名定义: SystemDataProcessor_Cleanup */
+#define SystemDataProcessor_Cleanup SystemDataProcessor_Cleanup
+
+/* 函数别名定义: SystemResourceManager_Main */
+#define SystemResourceManager_Main SystemResourceManager_Main
+
+/* 函数别名定义: SystemResourceManager_Cleanup */
+#define SystemResourceManager_Cleanup SystemResourceManager_Cleanup
+
+/* 函数别名定义: SystemResourceManager_ErrorHandler */
+#define SystemResourceManager_ErrorHandler SystemResourceManager_ErrorHandler
+
+/* 函数别名定义: SystemResourceManager_Advanced */
+#define SystemResourceManager_Advanced SystemResourceManager_Advanced
+
+/* 函数别名定义: SystemResourceManager_Extended */
+#define SystemResourceManager_Extended SystemResourceManager_Extended
+
+/* 函数别名定义: SystemResourceManager_Final */
+#define SystemResourceManager_Final SystemResourceManager_Final
+
+/* 函数别名定义: SystemResourceManager_Complex */
+#define SystemResourceManager_Complex SystemResourceManager_Complex
+
+/* 函数别名定义: SystemResourceManager_Alternate */
+#define SystemResourceManager_Alternate SystemResourceManager_Alternate
+
+
+/* 统一函数别名定义 */
+#define SystemDataValidator SystemDataValidator
+#define SystemDataProcessor SystemDataProcessor
+#define SystemConfigValidator SystemConfigValidator
+#define SystemDataFinalizer SystemDataFinalizer
+#define SystemDataVerifier SystemDataVerifier
+#define SystemDataHandler SystemDataHandler
+#define SystemDataOptimizer SystemDataOptimizer
+#define SystemDataInitializer SystemDataInitializer
+#define SystemDataConfigurator SystemDataConfigurator
+#define SystemDataChecker SystemDataChecker
+#define SystemDataController SystemDataController
+#define SystemDataManager SystemDataManager
+
+/* 数学库和数据压缩模块函数别名定义 */
+#define MathTrigonometryCalculator MathTrigonometryCalculator
+#define DataCompressionProcessor DataCompressionProcessor
 

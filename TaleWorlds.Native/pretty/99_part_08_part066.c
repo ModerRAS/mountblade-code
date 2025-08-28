@@ -826,8 +826,8 @@ void FUN_1805b5997(void)
 
 
 
-// 函数: void FUN_1805b59d0(int64_t param_1,int64_t param_2)
-void FUN_1805b59d0(int64_t param_1,int64_t param_2)
+// 函数: void NetworkSystem_SecurityManager(int64_t param_1,int64_t param_2)
+void NetworkSystem_SecurityManager(int64_t param_1,int64_t param_2)
 
 {
   int iVar1;

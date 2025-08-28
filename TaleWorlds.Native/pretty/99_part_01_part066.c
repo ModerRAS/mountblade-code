@@ -3,8 +3,8 @@
 
 // 99_part_01_part066.c - 11 个函数
 
-// 函数: void FUN_1800e4da0(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
-void FUN_1800e4da0(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
+// 函数: void UtilitiesSystem_DataProcessor(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
+void UtilitiesSystem_DataProcessor(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
 
 {
   uint64_t uVar1;
@@ -459,13 +459,13 @@ void FUN_1800e5110(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   
   puStack_28 = auStackX_10;
   puStack_20 = &ui_system_data_1264_ptr;
-  pcStack_18 = FUN_1800ea6f0;
+  pcStack_18 = CoreEngine_MemoryHandler;
   uStack_40 = SUB84(param_3,0);
   uStack_3c = (int32_t)((uint64_t)param_3 >> 0x20);
   uStack_30 = uStack_40;
   uStack_2c = uStack_3c;
   auStackX_10[0] = param_2;
-  FUN_1800e8d00(&uStack_30,param_2,param_3[1] - *param_3 >> 3 & 0xffffffff);
+  CoreEngine_DataValidator(&uStack_30,param_2,param_3[1] - *param_3 >> 3 & 0xffffffff);
   return;
 }
 

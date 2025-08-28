@@ -154,7 +154,7 @@ static ContainerInfo* g_active_containers = NULL; // 活动容器列表
 #define InsertElement(container, element, position) FUN_18022edb0(container, element, position)
 #define RemoveElement(container, position) FUN_18022f080(container, position)
 #define FindElement(container, key) FUN_18022f240(container, key)
-#define ReplaceElement(container, old_element, new_element) FUN_18022f2e0(container, old_element, new_element)
+#define ReplaceElement(container, old_element, new_element) RenderingSystem_MaterialProcessor(container, old_element, new_element)
 #define ClearContainer(container) FUN_18022f390(container)
 #define DestroyContainer(container) FUN_18022f410(container)
 #define OptimizeContainer(container) FUN_18022f490(container, 0)
@@ -682,7 +682,7 @@ int64_t * FUN_18022f240(uint64_t *container, uint64_t key)
  * @param flags 操作标志
  * @return void
  */
-void FUN_18022f2e0(int64_t *container, int64_t *old_element, int32_t flags)
+void RenderingSystem_MaterialProcessor(int64_t *container, int64_t *old_element, int32_t flags)
 {
     int64_t *temp_ptr;
     int64_t *temp_ptr2;

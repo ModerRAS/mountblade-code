@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part068.c - 12 个函数
 
 // 函数: void FUN_18009f020(uint64_t *param_1,int8_t param_2)
@@ -33,7 +37,7 @@ void FUN_18009f020(uint64_t *param_1,int8_t param_2)
        (uVar1 = (uVar3 >> 1) + uVar3, uVar7 = uVar6, uVar6 < uVar1)) {
       uVar7 = uVar1;
     }
-    uVar5 = FUN_180067110(uVar7 + 1);
+    uVar5 = SystemCore_SyscallHandler(uVar7 + 1);
     param_1[2] = uVar2 + 1;
     param_1[3] = uVar7;
     if (0xf < uVar3) {
@@ -78,7 +82,7 @@ void FUN_18009f069(void)
      (uVar1 = (unaff_RBP >> 1) + unaff_RBP, uVar5 = uVar4, uVar4 < uVar1)) {
     uVar5 = uVar1;
   }
-  uVar3 = FUN_180067110(uVar5 + 1);
+  uVar3 = SystemCore_SyscallHandler(uVar5 + 1);
   unaff_RBX[2] = unaff_RSI + 1U;
   unaff_RBX[3] = uVar5;
   if (0xf < unaff_RBP) {
@@ -110,7 +114,7 @@ void FUN_18009f088(void)
      (uVar1 = (unaff_RBP >> 1) + unaff_RBP, unaff_RDI = uVar3, uVar3 < uVar1)) {
     unaff_RDI = uVar1;
   }
-  uVar2 = FUN_180067110(unaff_RDI + 1);
+  uVar2 = SystemCore_SyscallHandler(unaff_RDI + 1);
   unaff_RBX[2] = unaff_RSI + 1U;
   unaff_RBX[3] = unaff_RDI;
   if (0xf < unaff_RBP) {
@@ -726,9 +730,9 @@ void FUN_18009fc60(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint para
     if (0 < (int)param_5) {
       uVar9 = (uint64_t)param_5;
       do {
-        FUN_1800a0e50(lVar3,9);
+        SystemCore_ResourceManager(lVar3,9);
         if (lVar11 != 0) {
-          FUN_1800a1160(lVar3,lVar11);
+          SystemCore_Synchronizer(lVar3,lVar11);
         }
         uVar9 = uVar9 - 1;
       } while (uVar9 != 0);
@@ -737,9 +741,9 @@ void FUN_18009fc60(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint para
     param_2[1] = lVar3;
   }
   lVar11 = param_2[1];
-  FUN_1800a0e50(lVar11,0x3c);
+  SystemCore_ResourceManager(lVar11,0x3c);
   if (*param_2 != 0) {
-    FUN_1800a1160(lVar11);
+    SystemCore_Synchronizer(lVar11);
   }
   puVar2 = (int8_t *)*param_3;
   lVar3 = *param_2;
@@ -761,9 +765,9 @@ void FUN_18009fc60(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint para
   while (puVar10 != puVar7 + lVar11) {
     uVar1 = *puVar10;
     puVar10 = puVar10 + 1;
-    FUN_1800a0e50(lVar8,uVar1);
+    SystemCore_ResourceManager(lVar8,uVar1);
     if (lVar3 != 0) {
-      FUN_1800a1160(lVar8,lVar3);
+      SystemCore_Synchronizer(lVar8,lVar3);
     }
   }
   lVar11 = 0;
@@ -780,19 +784,19 @@ void FUN_18009fc60(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint para
   *(int32_t *)((int64_t)param_2 + 0xc) = uVar14;
   if (((lVar3 == 0) || (param_3[3] == 0)) && (param_3[6] == 0)) {
     lVar11 = param_2[1];
-    FUN_1800a0e50(lVar11,0x2f);
+    SystemCore_ResourceManager(lVar11,0x2f);
     lVar3 = *param_2;
     if (lVar3 != 0) {
-      FUN_1800a1160(lVar11,lVar3);
+      SystemCore_Synchronizer(lVar11,lVar3);
     }
-    FUN_1800a0e50(lVar11,0x3e);
+    SystemCore_ResourceManager(lVar11,0x3e);
     goto joined_r0x0001800a000b;
   }
   lVar3 = param_2[1];
-  FUN_1800a0e50(lVar3,0x3e);
+  SystemCore_ResourceManager(lVar3,0x3e);
   lVar8 = *param_2;
   if (lVar8 != 0) {
-    FUN_1800a1160(lVar3,lVar8);
+    SystemCore_Synchronizer(lVar3,lVar8);
   }
   lVar4 = param_3[6];
   if (lVar4 == 0) {
@@ -839,8 +843,8 @@ LAB_18009fe7d:
       }
       goto LAB_18009fe7d;
     }
-    if (((param_4 & 1) == 0) && (FUN_1800a0e50(lVar3,10), lVar8 != 0)) {
-      FUN_1800a1160(lVar3,lVar8);
+    if (((param_4 & 1) == 0) && (SystemCore_ResourceManager(lVar3,10), lVar8 != 0)) {
+      SystemCore_Synchronizer(lVar3,lVar8);
     }
     lVar11 = param_3[6];
     uVar12 = (int32_t)*param_2;
@@ -873,9 +877,9 @@ LAB_18009fe7d:
       if (0 < (int)param_5) {
         uVar9 = (uint64_t)param_5;
         do {
-          FUN_1800a0e50(lVar3,9);
+          SystemCore_ResourceManager(lVar3,9);
           if (lVar11 != 0) {
-            FUN_1800a1160(lVar3,lVar11);
+            SystemCore_Synchronizer(lVar3,lVar11);
           }
           uVar9 = uVar9 - 1;
         } while (uVar9 != 0);
@@ -887,14 +891,14 @@ LAB_18009fe7d:
     }
   }
   lVar11 = param_2[1];
-  FUN_1800a0e50(lVar11,0x3c);
+  SystemCore_ResourceManager(lVar11,0x3c);
   lVar3 = *param_2;
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar11,lVar3);
+    SystemCore_Synchronizer(lVar11,lVar3);
   }
-  FUN_1800a0e50(lVar11);
+  SystemCore_ResourceManager(lVar11);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar11);
+    SystemCore_Synchronizer(lVar11);
   }
   puVar2 = (int8_t *)*param_3;
   lVar11 = *param_2;
@@ -916,19 +920,19 @@ LAB_18009fe7d:
   while (puVar10 != puVar7 + lVar8) {
     uVar1 = *puVar10;
     puVar10 = puVar10 + 1;
-    FUN_1800a0e50(lVar3,uVar1);
+    SystemCore_ResourceManager(lVar3,uVar1);
     if (lVar11 != 0) {
-      FUN_1800a1160(lVar3,lVar11);
+      SystemCore_Synchronizer(lVar3,lVar11);
     }
   }
   *param_2 = lVar11;
   param_2[1] = lVar3;
   lVar11 = param_2[1];
-  FUN_1800a0e50(lVar11,0x3e);
+  SystemCore_ResourceManager(lVar11,0x3e);
   lVar3 = *param_2;
 joined_r0x0001800a000b:
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar11,lVar3);
+    SystemCore_Synchronizer(lVar11,lVar3);
   }
   lVar11 = param_2[1];
   *param_1 = *param_2;
@@ -958,9 +962,9 @@ FUN_1800a0040(int64_t *param_1,int64_t *param_2,int64_t param_3,byte param_4,uin
     if (0 < (int)param_5) {
       uVar8 = (uint64_t)param_5;
       do {
-        FUN_1800a0e50(lVar3,9);
+        SystemCore_ResourceManager(lVar3,9);
         if (lVar2 != 0) {
-          FUN_1800a1160(lVar3,lVar2);
+          SystemCore_Synchronizer(lVar3,lVar2);
         }
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
@@ -969,42 +973,42 @@ FUN_1800a0040(int64_t *param_1,int64_t *param_2,int64_t param_3,byte param_4,uin
     param_2[1] = lVar3;
   }
   lVar2 = param_2[1];
-  FUN_1800a0e50(lVar2,0x3c);
+  SystemCore_ResourceManager(lVar2,0x3c);
   lVar3 = *param_2;
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x21);
+  SystemCore_ResourceManager(lVar2,0x21);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x5b);
+  SystemCore_ResourceManager(lVar2,0x5b);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x43);
+  SystemCore_ResourceManager(lVar2,0x43);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x44);
+  SystemCore_ResourceManager(lVar2,0x44);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x41);
+  SystemCore_ResourceManager(lVar2,0x41);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x54);
+  SystemCore_ResourceManager(lVar2,0x54);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2,0x41);
+  SystemCore_ResourceManager(lVar2,0x41);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2,lVar3);
+    SystemCore_Synchronizer(lVar2,lVar3);
   }
-  FUN_1800a0e50(lVar2);
+  SystemCore_ResourceManager(lVar2);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2);
+    SystemCore_Synchronizer(lVar2);
   }
   puVar4 = *(int8_t **)(param_3 + 8);
   lVar2 = *param_2;
@@ -1024,26 +1028,26 @@ FUN_1800a0040(int64_t *param_1,int64_t *param_2,int64_t param_3,byte param_4,uin
   while (puVar9 != puVar6 + lVar7) {
     uVar1 = *puVar9;
     puVar9 = puVar9 + 1;
-    FUN_1800a0e50(lVar3,uVar1);
+    SystemCore_ResourceManager(lVar3,uVar1);
     if (lVar2 != 0) {
-      FUN_1800a1160(lVar3,lVar2);
+      SystemCore_Synchronizer(lVar3,lVar2);
     }
   }
   *param_2 = lVar2;
   param_2[1] = lVar3;
   lVar7 = param_2[1];
-  FUN_1800a0e50(lVar7,0x5d);
+  SystemCore_ResourceManager(lVar7,0x5d);
   lVar5 = *param_2;
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7,lVar5);
+    SystemCore_Synchronizer(lVar7,lVar5);
   }
-  FUN_1800a0e50(lVar7,0x5d);
+  SystemCore_ResourceManager(lVar7,0x5d);
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7,lVar5);
+    SystemCore_Synchronizer(lVar7,lVar5);
   }
-  FUN_1800a0e50(lVar7,0x3e);
+  SystemCore_ResourceManager(lVar7,0x3e);
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7,lVar5);
+    SystemCore_Synchronizer(lVar7,lVar5);
   }
   *param_1 = lVar2;
   param_1[1] = lVar3;

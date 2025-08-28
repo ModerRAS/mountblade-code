@@ -200,7 +200,7 @@ void FUN_180577e50(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
       afStack_128[5] = 0.0;
       afStack_128[6] = 1.0;
       afStack_128[7] = 3.4028235e+38;
-      FUN_1801aa0f0(lVar13,lVar19 + 0xa0);
+      PhysicsSystem_JointManager(lVar13,lVar19 + 0xa0);
       fVar26 = *(float *)(lVar19 + 0xa8) - afStack_128[0xc];
       fVar32 = SQRT(*(float *)(lVar19 + 0x80) * *(float *)(lVar19 + 0x80) +
                     *(float *)(lVar19 + 0x84) * *(float *)(lVar19 + 0x84) +
@@ -309,7 +309,7 @@ LAB_1805788ef:
                 cVar15 = *(char *)((int64_t)cVar16 + *(int64_t *)(lVar19 + 0xf8 + lVar18));
                 if (cVar15 == *(char *)(param_1 + 0x261c)) {
                   puVar9 = (int32_t *)
-                           FUN_18022a890(param_3,cVar15,*(uint64_t *)(param_2 + 0x208));
+                           CoreSystem_AuthenticationHandler0(param_3,cVar15,*(uint64_t *)(param_2 + 0x208));
                   uStack_148 = *puVar9;
                   uStack_144 = puVar9[1];
                   uStack_140 = puVar9[2];
@@ -317,7 +317,7 @@ LAB_1805788ef:
                 }
                 else if (cVar15 == *(char *)(param_1 + 0x261d)) {
                   puVar9 = (int32_t *)
-                           FUN_18022a890(param_3,cVar15,*(uint64_t *)(param_2 + 0x208));
+                           CoreSystem_AuthenticationHandler0(param_3,cVar15,*(uint64_t *)(param_2 + 0x208));
                   uStack_138 = *puVar9;
                   uStack_134 = puVar9[1];
                   uStack_130 = puVar9[2];
@@ -472,10 +472,10 @@ LAB_1805788ef:
       }
       else {
         bVar4 = true;
-        puVar11 = (uint64_t *)FUN_18022a890(param_3,*(int8_t *)(param_1 + 0x2603),lStack_1c0);
+        puVar11 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_3,*(int8_t *)(param_1 + 0x2603),lStack_1c0);
         uStack_188 = (float *)*puVar11;
         uStack_180 = puVar11[1];
-        puVar11 = (uint64_t *)FUN_18022a890(param_3,*(int8_t *)(param_1 + 0x2604),lVar18);
+        puVar11 = (uint64_t *)CoreSystem_AuthenticationHandler0(param_3,*(int8_t *)(param_1 + 0x2604),lVar18);
         uStack_178 = *puVar11;
         uStack_170 = puVar11[1];
         uVar5 = uStack_158;

@@ -1,3 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -24,9 +34,9 @@ void FUN_1801eb320(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   param_1 = (int64_t *)*param_1;
   lVar1 = *param_1;
   while (uVar2 = system_context_ptr, *(int *)(lVar1 + 0x30c) != 0) {
-    lVar3 = FUN_18005e890(system_context_ptr);
+    lVar3 = PerformanceOptimizer(system_context_ptr);
     if (lVar3 != 0) {
-      plVar4 = (int64_t *)FUN_18005e890(uVar2);
+      plVar4 = (int64_t *)PerformanceOptimizer(uVar2);
       (**(code **)(*plVar4 + 0x20))(plVar4,0,*plVar4,param_4,uVar5);
     }
   }
@@ -37,7 +47,7 @@ void FUN_1801eb320(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_3c = (int32_t)((uint64_t)*param_1 >> 0x20);
   uStack_30 = uStack_40;
   uStack_2c = uStack_3c;
-  FUN_18005c650(&uStack_30);
+  SystemCore_SecurityManager(&uStack_30);
   return;
 }
 
@@ -460,7 +470,7 @@ void FUN_1801ebc30(uint64_t *param_1)
   *param_1 = &memory_allocator_3768_ptr;
   FUN_1801ebae0();
   _Mtx_destroy_in_situ();
-  FUN_180057830();
+  DataTransformer0();
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
   FUN_18005d260(param_1 + 1,param_1[3]);
@@ -512,7 +522,7 @@ int64_t FUN_1801ebd20(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   *(int32_t *)(param_1 + 0x108) = 0;
   *(uint64_t *)(param_1 + 0xf0) = &system_state_ptr;
   FUN_1801ec300(param_1 + 0xc0,*(uint64_t *)(param_1 + 0xd0),param_3,param_4,0xfffffffffffffffe);
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x150);
   }
@@ -672,7 +682,7 @@ FUN_1801ec160(uint64_t *param_1,int64_t param_2,uint64_t *param_3,uint64_t param
   uint64_t *puVar4;
   uint64_t *puVar5;
   
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &memory_allocator_3864_ptr;
   puVar1 = param_1 + 0x18;
   *puVar1 = 0;
@@ -756,7 +766,7 @@ void FUN_1801ec300(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 {
   if (param_2 != (uint64_t *)0x0) {
     FUN_1801ec300(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005d580();
+    DataSerializationEngine();
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(param_2);
   }
@@ -865,7 +875,7 @@ void FUN_1801ec3f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   CoreMemoryPoolProcessor(&puStack_58,3);
   *(int32_t *)((uint64_t)uStack_48 + lStack_50) = 0x203a20;
   uStack_48 = 3;
-  FUN_18005d190(param_1,&puStack_58);
+  RenderingSystem_ResourceBinder(param_1,&puStack_58);
   puStack_58 = &system_data_buffer_ptr;
   if (lStack_50 != 0) {
                     // WARNING: Subroutine does not return
@@ -874,13 +884,13 @@ void FUN_1801ec3f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   lStack_50 = 0;
   uStack_40 = (uint64_t)uStack_40._4_4_ << 0x20;
   puStack_58 = &system_state_ptr;
-  FUN_1806284c0(param_1,fVar5);
+  NetworkSystem_DataProcessor(param_1,fVar5);
   puVar4 = &system_buffer_ptr;
   if ((void *)param_1[1] != (void *)0x0) {
     puVar4 = (void *)param_1[1];
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_92_ptr,puVar4);
+  SystemParameterHandler(system_message_context,&processed_var_92_ptr,puVar4);
 }
 
 
@@ -1143,7 +1153,7 @@ void FUN_1801eca80(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     if (lVar3 == param_1) {
       puVar1 = *(uint64_t **)(param_1 + 0x10);
       if (puVar1 != (uint64_t *)0x0) {
-        FUN_18004b790(param_1,*puVar1,param_3,param_4,unaff_RSI);
+        SystemCache_Manager(param_1,*puVar1,param_3,param_4,unaff_RSI);
                     // WARNING: Subroutine does not return
         CoreMemoryPoolInitializer(puVar1);
       }

@@ -187,7 +187,7 @@ LAB_180512e2b:
     fVar19 = (float)asinf(fVar13);
     fVar19 = SQRT(fVar19);
     puVar5 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
+             SystemCore_ConfigManager(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
     uVar17 = puVar5[1];
     uVar3 = puVar5[2];
     uVar4 = puVar5[3];
@@ -196,7 +196,7 @@ LAB_180512e2b:
     *(int32_t *)(unaff_RBP + -0x31) = uVar3;
     *(int32_t *)(unaff_RBP + -0x2d) = uVar4;
     puVar5 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
+             SystemCore_ConfigManager(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
     uVar17 = puVar5[1];
     uVar3 = puVar5[2];
     uVar4 = puVar5[3];
@@ -205,7 +205,7 @@ LAB_180512e2b:
     *(int32_t *)(unaff_RBP + -0x21) = uVar3;
     *(int32_t *)(unaff_RBP + -0x1d) = uVar4;
     puVar5 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
+             SystemCore_ConfigManager(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar19);
     uVar17 = puVar5[1];
     uVar3 = puVar5[2];
     uVar4 = puVar5[3];
@@ -231,7 +231,7 @@ LAB_180512e2b:
     iVar12 = *(int *)(lVar10 * 0x1b0 + 0x110 + lVar2);
   }
   FUN_180534d00(lVar9,unaff_RBP + -0x39);
-  uVar6 = FUN_1801c24a0();
+  uVar6 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar13 = extraout_XMM0_Da - fVar13;
   if (fVar13 <= 0.0) {
@@ -243,7 +243,7 @@ LAB_180512e2b:
   *(float *)(unaff_RBP + -0x59) = fVar13 * *unaff_RBX;
   *(float *)(unaff_RBP + -0x55) = fVar13 * fVar19;
   *(float *)(unaff_RBP + -0x51) = fVar13 * fVar21;
-  pfVar7 = (float *)FUN_1801c0fb0(uVar6,unaff_RBP + -0x49,unaff_RBP + -0x59);
+  pfVar7 = (float *)SystemFileHandler(uVar6,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar9 = *(int64_t *)(unaff_RSI + 0x728);
   fVar21 = pfVar7[1] * render_system_ui;
   fVar19 = pfVar7[2] * render_system_ui;
@@ -328,7 +328,7 @@ void FUN_180512eba(void)
     fVar15 = (float)asinf(unaff_XMM7_Da);
     fVar15 = SQRT(fVar15);
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
+             SystemCore_ConfigManager(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -337,7 +337,7 @@ void FUN_180512eba(void)
     *(int32_t *)(unaff_RBP + -0x31) = uVar6;
     *(int32_t *)(unaff_RBP + -0x2d) = uVar7;
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
+             SystemCore_ConfigManager(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -346,7 +346,7 @@ void FUN_180512eba(void)
     *(int32_t *)(unaff_RBP + -0x21) = uVar6;
     *(int32_t *)(unaff_RBP + -0x1d) = uVar7;
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
+             SystemCore_ConfigManager(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar15);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -372,7 +372,7 @@ void FUN_180512eba(void)
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
   FUN_180534d00(lVar3,unaff_RBP + -0x39);
-  uVar9 = FUN_1801c24a0();
+  uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar15 = extraout_XMM0_Da - unaff_XMM7_Da;
   if (extraout_XMM0_Da - unaff_XMM7_Da <= unaff_XMM8_Da) {
@@ -384,7 +384,7 @@ void FUN_180512eba(void)
   *(float *)(unaff_RBP + -0x59) = fVar15 * *unaff_RBX;
   *(float *)(unaff_RBP + -0x55) = fVar15 * fVar14;
   *(float *)(unaff_RBP + -0x51) = fVar15 * fVar1;
-  pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
+  pfVar10 = (float *)SystemFileHandler(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(int64_t *)(unaff_RSI + 0x728);
   fVar14 = pfVar10[1] * render_system_ui;
   fVar15 = pfVar10[2] * render_system_ui;
@@ -477,7 +477,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     fVar16 = (float)asinf(fVar13);
     fVar16 = SQRT(fVar16);
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
+             SystemCore_ConfigManager(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -486,7 +486,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     *(int32_t *)(unaff_RBP + -0x31) = uVar6;
     *(int32_t *)(unaff_RBP + -0x2d) = uVar7;
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
+             SystemCore_ConfigManager(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -495,7 +495,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     *(int32_t *)(unaff_RBP + -0x21) = uVar6;
     *(int32_t *)(unaff_RBP + -0x1d) = uVar7;
     puVar8 = (int32_t *)
-             FUN_180534b00(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
+             SystemCore_ConfigManager(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar16);
     uVar5 = puVar8[1];
     uVar6 = puVar8[2];
     uVar7 = puVar8[3];
@@ -521,7 +521,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
   FUN_180534d00(lVar3,unaff_RBP + -0x39);
-  uVar9 = FUN_1801c24a0();
+  uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar16 = extraout_XMM0_Da - fVar13;
   if (extraout_XMM0_Da - fVar13 <= unaff_XMM8_Da) {
@@ -533,7 +533,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
   *(float *)(unaff_RBP + -0x59) = fVar16 * *unaff_RBX;
   *(float *)(unaff_RBP + -0x55) = fVar16 * fVar13;
   *(float *)(unaff_RBP + -0x51) = fVar16 * fVar15;
-  pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
+  pfVar10 = (float *)SystemFileHandler(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(int64_t *)(unaff_RSI + 0x728);
   fVar16 = pfVar10[1] * render_system_ui;
   fVar13 = pfVar10[2] * render_system_ui;
@@ -590,7 +590,7 @@ void FUN_180512f80(void)
   *(int32_t *)(unaff_RBP + -0x1d) = 0;
   fVar12 = (float)asinf(unaff_XMM7_Da);
   fVar12 = SQRT(fVar12);
-  puVar8 = (int32_t *)FUN_180534b00(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
+  puVar8 = (int32_t *)SystemCore_ConfigManager(unaff_RBP + -0x39,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
   ;
   uVar5 = puVar8[1];
   uVar6 = puVar8[2];
@@ -599,7 +599,7 @@ void FUN_180512f80(void)
   *(int32_t *)(unaff_RBP + -0x35) = uVar5;
   *(int32_t *)(unaff_RBP + -0x31) = uVar6;
   *(int32_t *)(unaff_RBP + -0x2d) = uVar7;
-  puVar8 = (int32_t *)FUN_180534b00(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
+  puVar8 = (int32_t *)SystemCore_ConfigManager(unaff_RBP + -0x29,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
   ;
   uVar5 = puVar8[1];
   uVar6 = puVar8[2];
@@ -608,7 +608,7 @@ void FUN_180512f80(void)
   *(int32_t *)(unaff_RBP + -0x25) = uVar5;
   *(int32_t *)(unaff_RBP + -0x21) = uVar6;
   *(int32_t *)(unaff_RBP + -0x1d) = uVar7;
-  puVar8 = (int32_t *)FUN_180534b00(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
+  puVar8 = (int32_t *)SystemCore_ConfigManager(unaff_RBP + -0x19,unaff_RBP + -0x49,unaff_RBP + -0x59,fVar12)
   ;
   uVar5 = puVar8[1];
   uVar6 = puVar8[2];
@@ -634,7 +634,7 @@ void FUN_180512f80(void)
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
   FUN_180534d00(lVar3,unaff_RBP + -0x39);
-  uVar9 = FUN_1801c24a0();
+  uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar12 = extraout_XMM0_Da - unaff_XMM7_Da;
   if (extraout_XMM0_Da - unaff_XMM7_Da <= unaff_XMM8_Da) {
@@ -646,7 +646,7 @@ void FUN_180512f80(void)
   *(float *)(unaff_RBP + -0x59) = fVar12 * *unaff_RBX;
   *(float *)(unaff_RBP + -0x55) = fVar12 * fVar13;
   *(float *)(unaff_RBP + -0x51) = fVar12 * fVar1;
-  pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
+  pfVar10 = (float *)SystemFileHandler(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(int64_t *)(unaff_RSI + 0x728);
   fVar13 = pfVar10[1] * render_system_ui;
   fVar12 = pfVar10[2] * render_system_ui;
@@ -688,7 +688,7 @@ void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     param_3 = param_2;
   } while (*(int *)(param_2 * 0x1b0 + 0x110 + param_4) == -1);
   FUN_180534d00(param_1,unaff_RBP + -0x39);
-  uVar3 = FUN_1801c24a0();
+  uVar3 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar5 = extraout_XMM0_Da - unaff_XMM7_Da;
   if (extraout_XMM0_Da - unaff_XMM7_Da <= unaff_XMM8_Da) {
@@ -700,7 +700,7 @@ void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   *(float *)(unaff_RBP + -0x59) = fVar5 * *unaff_RBX;
   *(float *)(unaff_RBP + -0x55) = fVar5 * fVar6;
   *(float *)(unaff_RBP + -0x51) = fVar5 * fVar1;
-  pfVar4 = (float *)FUN_1801c0fb0(uVar3,unaff_RBP + -0x49,unaff_RBP + -0x59);
+  pfVar4 = (float *)SystemFileHandler(uVar3,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar2 = *(int64_t *)(unaff_RSI + 0x728);
   fVar6 = pfVar4[1] * render_system_ui;
   fVar5 = pfVar4[2] * render_system_ui;

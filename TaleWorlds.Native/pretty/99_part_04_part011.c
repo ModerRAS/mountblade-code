@@ -328,7 +328,7 @@ void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *res
             
             // 处理数据值
             if (data_value != 0) {
-                FUN_180045f60(&stack_data_ptr, data_iterator, data_value);
+                SystemManager_Executor(&stack_data_ptr, data_iterator, data_value);
                 *(int64_t *)(data_buffer + 8) = *(int64_t *)(data_buffer + 8) + (uint64_t)data_value;
             }
             
@@ -447,7 +447,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, int64_t *contain
     table_ptr = (uint64_t *)&processed_var_8416_ptr;
     do {
         if ((*(uint *)(table_ptr + 1) & init_flag) != 0) {
-            FUN_180639de0(container_ptr, *table_ptr);
+            UtilitiesSystem_ThreadManager(container_ptr, *table_ptr);
             item_count = item_count + 1;
         }
         table_ptr = table_ptr + 2;
@@ -612,7 +612,7 @@ void ContainerCleaner(int64_t *container_ptr)
     // 遍历并清理容器元素
     for (current_position = *container_ptr; current_position != container_end; 
          current_position = current_position + CONTAINER_SIZE_0x30) {
-        FUN_18005d580(current_position);
+        DataSerializationEngine(current_position);
     }
     
     // 检查是否需要完全释放
@@ -667,7 +667,7 @@ void MediumContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
         if (new_end_position != container_end) {
             // 清理多余的容器空间
             do {
-                FUN_18005d580(new_end_position);
+                DataSerializationEngine(new_end_position);
                 new_end_position = new_end_position + CONTAINER_SIZE_0x30;
             } while (new_end_position != container_end);
             new_end_position = *container_ptr;

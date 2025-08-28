@@ -1,5 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_07_part021_sub002_sub002.c - 1 个函数
 
@@ -218,7 +226,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
   uStack_344 = uVar26 | 0xffffff;
   uVar36 = *(uint64_t *)(param_1 + 0x370);
   uVar12 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-  plVar13 = (int64_t *)FUN_180275090(uVar12);
+  plVar13 = (int64_t *)RenderingSystem_ShaderManager(uVar12);
   pppplStack_378 = (int64_t ****)plVar13;
   if (plVar13 != (int64_t *)0x0) {
     (**(code **)(*plVar13 + 0x28))(plVar13);
@@ -476,19 +484,19 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
                         CONCAT44(puStack_3a0._4_4_,*(int32_t *)(pppplStack_230 + 0xc));
           pplStack_3b0 = (int64_t **)((uint64_t)pplStack_3b0 & 0xffffffff00000000);
           puStack_3b8 = &processed_var_5472_ptr;
-          FUN_1800623b0(system_message_context,0,0x80000000000,3);
+          SystemConfigurationManager(system_message_context,0,0x80000000000,3);
         }
         uStack_208 = CONCAT11(uStack_208._1_1_,1);
         if ((pppplStack_238 != (int64_t ****)0x0) && (pppplStack_230 != (int64_t ****)0x0)) {
           if (cStack_206 != '\0') {
-            FUN_180075b70();
+            SystemConfig_Manager();
           }
-          FUN_18007f6a0(auStack_228);
+          SystemSecurityManager(auStack_228);
           if ((char)uStack_208 != '\0') {
-            FUN_180079520(pppplStack_238);
+            SystemInitializer(pppplStack_238);
           }
           if (uStack_208._1_1_ != '\0') {
-            FUN_180079520(pppplStack_238);
+            SystemInitializer(pppplStack_238);
           }
           pppplVar33 = pppplStack_230;
           pppplStack_2f8 = pppplStack_230;
@@ -498,7 +506,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
           }
         }
         puStack_2f0 = auStack_228;
-        FUN_18007f6a0(auStack_228);
+        SystemSecurityManager(auStack_228);
         if (pppplStack_210 != (int64_t ****)0x0) {
           (*(code *)(*pppplStack_210)[7])();
         }
@@ -554,7 +562,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
         if (plVar30 != (int64_t *)0x0) {
           (**(code **)(*plVar30 + 0x28))(plVar30);
         }
-        FUN_180076910(lVar20,&plStack_268);
+        UltraHighFreq_SecurityValidator1(lVar20,&plStack_268);
         uStack_26c = 0x3f800000;
         uStack_278 = 0x3f800000;
         uStack_274 = 0x3f800000;
@@ -748,7 +756,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
             pppplVar29 = pppplStack_2c8;
           }
         }
-        FUN_180076910(lVar20,&pppplStack_318);
+        UltraHighFreq_SecurityValidator1(lVar20,&pppplStack_318);
         pppplVar33 = pppplStack_378;
         uVar10 = uStack_384;
         if (pppplVar23 != (int64_t ****)0x0) {
@@ -803,7 +811,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
     puStack_3b8 = (void *)CONCAT44(puStack_3b8._4_4_,uStack_340);
     uVar36 = FUN_1804b39e0((int64_t)iStack_2d8 * 400 + *(int64_t *)(param_1 + 0x388),
                            &ppplStack_338,param_1,iStack_310);
-    FUN_180060b80(plStack_2b8,uVar36);
+    SystemCore_ChecksumValidator(plStack_2b8,uVar36);
     if ((int64_t ****)ppplStack_338 != (int64_t ****)0x0) {
       (*(code *)(*ppplStack_338)[7])();
     }
@@ -816,7 +824,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
     puStack_3b8 = (void *)CONCAT44(puStack_3b8._4_4_,uVar11);
     uVar36 = FUN_1804b4700((int64_t)iStack_2d4 * 400 + *(int64_t *)(param_1 + 0x378),
                            &ppplStack_338,param_1);
-    FUN_180060b80(plStack_2b0,uVar36);
+    SystemCore_ChecksumValidator(plStack_2b0,uVar36);
     if ((int64_t ****)ppplStack_338 != (int64_t ****)0x0) {
       (*(code *)(*ppplStack_338)[7])();
     }
@@ -827,7 +835,7 @@ void FUN_1804af7b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
   puStack_3b8 = (void *)CONCAT44(puStack_3b8._4_4_,uVar10);
   uVar36 = FUN_1804b3c30((int64_t)iStack_2cc * 0x58 + *(int64_t *)(param_1 + 0x398),&ppplStack_338
                          ,param_1,uVar11);
-  FUN_180060b80(uStack_248,uVar36);
+  SystemCore_ChecksumValidator(uStack_248,uVar36);
   if ((int64_t ****)ppplStack_338 != (int64_t ****)0x0) {
     (*(code *)(*ppplStack_338)[7])();
   }

@@ -274,7 +274,7 @@ FUN_18085bc30(int64_t param_1,uint param_2,char param_3,char param_4,uint64_t *p
   }
   else {
     uVar12 = *(uint64_t *)(*(int64_t *)(lVar14 + 0x2b0) + 0x30);
-    iVar6 = FUN_18085ab70();
+    iVar6 = UISystem_WidgetController();
     uVar18 = (int64_t)iVar6 + uVar12;
     uVar7 = uVar18;
     if (param_3 != '\0') {
@@ -390,7 +390,7 @@ FUN_18085bc30(int64_t param_1,uint param_2,char param_3,char param_4,uint64_t *p
       plVar19 = plVar16 + 3;
     }
     while (plVar19 != plVar2) {
-      iVar6 = FUN_18085ab70(param_1);
+      iVar6 = UISystem_WidgetController(param_1);
       lVar14 = (int64_t)iVar6;
       uVar13 = 0;
       if (0 < iVar6) {
@@ -589,7 +589,7 @@ void FUN_18085c230(int64_t param_1,uint64_t param_2)
   iVar5 = FUN_180855810(param_1,param_2);
   if (iVar5 == 0) {
     if (*(int64_t *)(*(int64_t *)(param_1 + 0x160) + 0x350) == 0) {
-      iVar6 = FUN_18085ab70(param_1);
+      iVar6 = UISystem_WidgetController(param_1);
     }
     lStack_38 = (int64_t)iVar6 + param_2;
     if (*(int64_t *)(param_1 + 0x58) == 0) {
@@ -774,7 +774,7 @@ int32_t * FUN_18085c820(int64_t param_1,int32_t *param_2)
   int iVar2;
   int64_t lVar3;
   
-  iVar2 = FUN_18085ab70();
+  iVar2 = UISystem_WidgetController();
   lVar3 = (int64_t)iVar2;
   if (0 < iVar2) {
     uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);

@@ -237,7 +237,7 @@ void FUN_180840950(uint64_t param_1,int64_t param_2,int64_t param_3,int *param_4
   
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_3 != 0) {
-    iVar2 = FUN_18076b6f0(param_3,&memory_allocator_368_ptr,10);
+    iVar2 = SystemCore_Optimizer(param_3,&memory_allocator_368_ptr,10);
     if (iVar2 == 0) {
       iVar2 = FUN_180881fa0(param_1,param_3,auStack_40);
       if (iVar2 == 0) {
@@ -345,7 +345,7 @@ void FUN_180840af0(int64_t param_1,int64_t param_2,int *param_3)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
   if (param_2 != 0) {
     bVar1 = false;
-    iVar2 = FUN_18076b6f0(param_2,&memory_allocator_368_ptr,10);
+    iVar2 = SystemCore_Optimizer(param_2,&memory_allocator_368_ptr,10);
     if (iVar2 == 0) {
       iVar2 = FUN_180881fa0(param_1,param_2,&lStack_38);
       if (iVar2 != 0) goto LAB_180840b99;
@@ -426,7 +426,7 @@ LAB_180840d1b:
         alStack_138[1] = 0;
         iVar1 = SystemSecurityProcessor(alStack_138 + 1);
         if ((iVar1 == 0) &&
-           (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x10),
+           (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x10),
            iVar1 == 0)) {
           *apuStack_128[0] = &memory_allocator_3472_ptr;
           *(int32_t *)(apuStack_128[0] + 1) = 0x10;

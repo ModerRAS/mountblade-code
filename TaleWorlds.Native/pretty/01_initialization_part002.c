@@ -160,7 +160,7 @@ void FUN_18002d550(void)
   strcpy_s(auStack_88, 0x80, &processed_var_5216_ptr, in_R9, 0xfffffffffffffffe);
   
   /* 存储处理结果 */
-  init_system_ui = FUN_180623800(&puStack_a0);
+  init_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -185,7 +185,7 @@ void FUN_18002d5e0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64 *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
+  pcStackX_18 = HighFreq_FileSystem1;
   puVar7 = puVar2;
   puVar6 = (uint64 *)puVar2[1];
   
@@ -237,7 +237,7 @@ void FUN_18002d6e0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64 *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
+  pcStackX_18 = HighFreq_ConfigManager1;
   puVar7 = puVar2;
   puVar6 = (uint64 *)puVar2[1];
   
@@ -341,7 +341,7 @@ void FUN_18002d8e0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64 *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = > UltraHighFreq_NetworkHandler1;
   puVar7 = puVar2;
   puVar6 = (uint64 *)puVar2[1];
   

@@ -214,7 +214,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     }
     
     // 系统资源分配
-    local_var2 = FUN_180624440(local_stack_ptr_array, &local_stack_ptr5);
+    local_var2 = SystemCore_EncryptionEngine(local_stack_ptr_array, &local_stack_ptr5);
     SystemCore_EncryptionEngine0(&local_stack_ptr_ptr, local_var2);
     
     // 资源句柄管理
@@ -543,7 +543,7 @@ void resource_manager_and_handle_cleaner(uint64_t *resource_ptr)
                 local_var1 = (int *)(local_var3 + 0x18);
                 *local_var1 = *local_var1 + -1;
                 if (*local_var1 == 0) {
-                    FUN_18064d630();
+                    SystemCore_DebugHandler();
                     return;
                 }
             }
@@ -621,7 +621,7 @@ void directx_subsystem_initializer(int64_t system_handle)
             *(int32_t *)(system_handle + 0x121bc) = 0;
             local_var3 = CreateDXGIFactory1(&processed_var_6728_ptr, local_var1);
             if (local_var3 < 0) {
-                FUN_180220810(local_var3, &rendering_buffer_2664_ptr);
+                SystemCore_Loader(local_var3, &rendering_buffer_2664_ptr);
             }
         }
     }
@@ -1010,27 +1010,27 @@ void system_state_manager_and_resource_allocator(int64_t system_handle)
     }
     
     // 资源分配序列
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e08) = local_var2;
     
     local_stack_value1 = 0x7000200;
     local_stack_value2 = 1;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e10) = local_var2;
     
     local_stack_value1 = 0x7000007;
     local_stack_value2 = 1;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e18) = local_var2;
     
     local_stack_value1 = 0x7000207;
     local_stack_value2 = 1;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e20) = local_var2;
     
     local_stack_value1 = 0x7000107;
     local_stack_value2 = 1;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e28) = local_var2;
     
     // 系统配置读取
@@ -1066,19 +1066,19 @@ LAB_1800a37f8:
     // 最终资源配置
     local_stack_value1._0_2_ = (ushort)(byte)local_stack_value1;
     local_stack_value1 = CONCAT13(7, (uint3)local_stack_value1);
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e30) = local_var2;
     
     local_stack_value1 = 0x300020a;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e38) = local_var2;
     
     local_stack_value1 = 0x600020a;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e40) = local_var2;
     
     local_stack_value1 = 0x300030a;
-    local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
+    local_var2 = SystemCore_PerformanceMonitor(system_handle, &local_stack_value1);
     *(uint64_t *)(system_handle + 0x1e48) = local_var2;
     return;
 }
@@ -1133,27 +1133,27 @@ void resource_sync_manager_and_state_controller(int64_t system_handle)
     }
     
     // 同步资源分配
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e08) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x7000200;
     *(int32_t *)(local_var7 + 0x1c) = 1;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e10) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x7000007;
     *(int32_t *)(local_var7 + 0x1c) = 1;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e18) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x7000207;
     *(int32_t *)(local_var7 + 0x1c) = 1;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e20) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x7000107;
     *(int32_t *)(local_var7 + 0x1c) = 1;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e28) = local_var3;
     
     // 系统配置读取
@@ -1191,19 +1191,19 @@ LAB_1800a37f8:
     // 最终同步配置
     *(int8_t *)(local_var7 + 0x19) = 0;
     *(int8_t *)(local_var7 + 0x1b) = 7;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e30) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x300020a;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e38) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x600020a;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e40) = local_var3;
     
     *(int32_t *)(local_var7 + 0x18) = 0x300030a;
-    local_var3 = FUN_1800ab420();
+    local_var3 = SystemCore_PerformanceMonitor();
     *(uint64_t *)(local_var7 + 0x1e48) = local_var3;
     return;
 }

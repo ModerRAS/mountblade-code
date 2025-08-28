@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_05_part031.c - 3 个函数
@@ -146,7 +147,7 @@ void FUN_1802eaec0(int64_t param_1,int64_t param_2,char param_3,char param_4,int
           } while ((uint64_t)(int64_t)iVar26 <
                    (uint64_t)(*(int64_t *)(param_1 + 0x208) - *plVar1 >> 3));
         }
-        FUN_1800b8500(plVar1);
+        SystemCore_Controller(plVar1);
         *(uint64_t *)(param_1 + 0x228) = *(uint64_t *)(param_1 + 0x220);
       }
       if (((param_6 == '\0') && (*(int64_t *)(param_1 + 0x20) != 0)) &&
@@ -539,7 +540,7 @@ FUN_1802eb9a0(int64_t param_1,int64_t *param_2,int8_t param_3,char param_4,int8_
   int32_t uStack_58;
   
   uStack_80 = 0xfffffffffffffffe;
-  FUN_1802ed990(param_1,1);
+  PhysicsSystem_CharacterController(param_1,1);
   plVar33 = *(int64_t **)(param_1 + 0x1c0);
   uVar35 = 0;
   iVar31 = (int)(*(int64_t *)(param_1 + 0x1c8) - (int64_t)plVar33 >> 3);
@@ -614,7 +615,7 @@ FUN_1802eb9a0(int64_t param_1,int64_t *param_2,int8_t param_3,char param_4,int8_
           lStack_68 = 0;
           uStack_60 = 0;
           uStack_58 = 3;
-          FUN_1802e8c60(param_2,&lStack_70);
+          NetworkSystem_SecurityManager(param_2,&lStack_70);
           uVar32 = uVar35;
           if (lStack_68 - lStack_70 >> 3 != 0) {
             do {
@@ -711,7 +712,7 @@ void FUN_1802ebcb0(int64_t param_1,int32_t param_2,char param_3)
       FUN_1802e7e20(param_1);
     }
     else {
-      FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
                     param_1 + 0x70);
     }
     *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
@@ -783,7 +784,7 @@ void FUN_1802ebcc0(int64_t param_1,int32_t param_2,char param_3)
       FUN_1802e7e20();
     }
     else {
-      FUN_18063ad30(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
+      UltraHighFreq_DataProcessor1(*(int64_t *)(unaff_RBX + 0x28),*(int64_t *)(unaff_RBX + 0x28) + 0xf8,
                     unaff_RBX + 0x70);
     }
     *(int16_t *)(unaff_RBX + 0x2b0) = *(int16_t *)(unaff_RBX + 0x2b4);

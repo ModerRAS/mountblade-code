@@ -1,5 +1,19 @@
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 /**
  * @file 03_rendering_part148.c
@@ -279,7 +293,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
       *(uint64_t *)(param_1 + 0x78) = *(uint64_t *)(lVar11 + 0x1b8);
       
       // 更新渲染状态
-      FUN_1802ed990(*(uint64_t *)(param_1 + 0x18), 1);
+      PhysicsSystem_CharacterController(*(uint64_t *)(param_1 + 0x18), 1);
       FUN_1802ee610(*(uint64_t *)(param_1 + 0x18), plVar8);
     }
     
@@ -287,7 +301,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     if (*(int64_t *)(param_1 + 0x78) == 0) {
       return;
     }
-    FUN_1802edcd0(lVar1, plVar9, 1);
+    PhysicsSystem_TerrainCollider(lVar1, plVar9, 1);
     
     // 清理状态标志
     if (*(int64_t *)(param_1 + 0x70) != 0) {
@@ -350,7 +364,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     }
     
     // 更新渲染状态
-    FUN_1802ed990(lVar1, 1);
+    PhysicsSystem_CharacterController(lVar1, 1);
     pcVar2 = *(code **)(*plVar8 + FUNCTION_OFFSET_SHADER);
     if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&rendering_buffer_2528_ptr) {
       plVar12 = plVar9 + 0x66;
@@ -360,7 +374,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     }
     (*pcVar2)(plVar8, plVar12);
     FUN_1802ee610(*(uint64_t *)(param_1 + 0x18), plVar9);
-    FUN_1802edcd0(lVar1, plVar8, 1);
+    PhysicsSystem_TerrainCollider(lVar1, plVar8, 1);
     
     // 验证更新状态
     iVar5 = FUN_1802ed190(*(uint64_t *)(param_1 + 0x18), 7);
@@ -508,12 +522,12 @@ void FUN_18035d260(uint64_t param_1)
   strcpy_s(auStack_c0, 0x40, &system_memory_ef48);
   
   // 初始化字符串处理
-  FUN_1800b8300(apuStack_78, &puStack_d8);
+  DataDeserializer0(apuStack_78, &puStack_d8);
   uStack_20 = 10;
   uStack_f8 = 1;
   
   // 执行字符串处理
-  FUN_180180730(param_1, appuStack_e8, apuStack_78);
+  MathOptimizationEngine0(param_1, appuStack_e8, apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -600,7 +614,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
       param_1[0xf] = *(uint64_t *)(lVar11 + 0x1b8);
       
       // 更新渲染状态
-      FUN_1802ed990(param_1[3], 1);
+      PhysicsSystem_CharacterController(param_1[3], 1);
       FUN_1802ee610(param_1[3], plVar8);
     }
     
@@ -608,7 +622,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     if (param_1[0xf] == 0) {
       return;
     }
-    FUN_1802edcd0(lVar1, plVar9, 1);
+    PhysicsSystem_TerrainCollider(lVar1, plVar9, 1);
     
     // 清理状态标志
     if (param_1[0xe] != 0) {
@@ -671,7 +685,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 更新渲染状态
-    FUN_1802ed990(lVar1, 1);
+    PhysicsSystem_CharacterController(lVar1, 1);
     pcVar2 = *(code **)(*plVar8 + FUNCTION_OFFSET_SHADER);
     if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&rendering_buffer_2528_ptr) {
       plVar12 = plVar9 + 0x66;
@@ -681,7 +695,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     (*pcVar2)(plVar8, plVar12);
     FUN_1802ee610(param_1[3], plVar9);
-    FUN_1802edcd0(lVar1, plVar8, 1);
+    PhysicsSystem_TerrainCollider(lVar1, plVar8, 1);
     
     // 验证更新状态
     iVar5 = FUN_1802ed190(param_1[3], 7);
@@ -739,7 +753,7 @@ uint64_t *FUN_18035d3a0(uint64_t *param_1, uint64_t param_2, uint64_t param_3, u
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &memory_allocator_3520_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   
   // 根据标志释放内存
   if ((param_2 & 1) != 0) {
@@ -767,7 +781,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &memory_allocator_3928_ptr;
   
   // 初始化渲染组件指针
@@ -810,7 +824,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   uStack_70 = 0xd;
   
   // 执行渲染初始化
-  FUN_1803460a0(param_1, &puStack_80, puVar1, 0, uVar4);
+  SystemNetwork_Processor(param_1, &puStack_80, puVar1, 0, uVar4);
   puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
@@ -867,7 +881,7 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
   param_1[0xf] = &system_state_ptr;
   
   // 执行最终清理
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1, MEMORY_ALLOCATION_SIZE_200);
   }
@@ -897,7 +911,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   puVar4 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_200, 8, 3);
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
-  FUN_1803456e0(puVar4, param_2, param_1);
+  SystemCore_SyncController(puVar4, param_2, param_1);
   *puVar3 = &memory_allocator_3928_ptr;
   
   // 初始化渲染组件指针
@@ -940,7 +954,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uStack_70 = 0xd;
   
   // 执行渲染初始化
-  FUN_1803460a0(puVar4, &puStack_80, puVar1, 0, uVar5);
+  SystemNetwork_Processor(puVar4, &puStack_80, puVar1, 0, uVar5);
   puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
@@ -984,12 +998,12 @@ void FUN_18035d760(uint64_t param_1)
   strcpy_s(auStack_130, 0x40, &system_memory_f0d0);
   
   // 初始化配置处理
-  FUN_1800b8300(apuStack_88, &puStack_148);
+  DataDeserializer0(apuStack_88, &puStack_148);
   uStack_30 = 0;
   uStack_168 = 1;
   
   // 执行配置处理
-  FUN_180180730(param_1, appuStack_160, apuStack_88);
+  MathOptimizationEngine0(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
@@ -1005,12 +1019,12 @@ void FUN_18035d760(uint64_t param_1)
   strcpy_s(auStack_d0, 0x40, &system_memory_f0c8);
   
   // 初始化第二组配置处理
-  FUN_1800b8300(apuStack_88, &puStack_e8);
+  DataDeserializer0(apuStack_88, &puStack_e8);
   uStack_30 = 9;
   uStack_168 = 2;
   
   // 执行第二组配置处理
-  FUN_180180730(param_1, appuStack_160, apuStack_88);
+  MathOptimizationEngine0(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_e8 = &system_state_ptr;
@@ -1182,7 +1196,7 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     uStack_48._0_4_ = uVar2;
     
     // 执行参数处理
-    FUN_180066df0(param_3, &puStack_60);
+    DataEncryptionHandler0(param_3, &puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     
     // 清理参数资源
@@ -1209,7 +1223,7 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     uStack_30 = 3;
     
     // 执行第二组参数处理
-    FUN_180066df0(param_3, &puStack_40);
+    DataEncryptionHandler0(param_3, &puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     
     // 清理第二组参数资源
@@ -1385,7 +1399,7 @@ void FUN_18035dd60(int64_t param_1)
     uStack_50 = uStack_50 & 0xffffffff;
     uStack_40 = uStack_40 & 0xffffffff;
     uStack_2c = 0x3f800000;
-    FUN_180084760(&uStack_68, &uStack_a8);
+    SystemCore_PerformanceMonitor(&uStack_68, &uStack_a8);
     
     // 计算渲染变换
     fVar9 = (float)uStack_a8 * fVar7 + (float)uStack_98 * fVar2 + (float)uStack_88 * fVar3 +

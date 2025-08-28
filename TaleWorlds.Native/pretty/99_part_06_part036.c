@@ -449,7 +449,7 @@ void FUN_1803c8ef0(int64_t param_1)
   }
   puVar6 = *(uint64_t **)(param_1 + 400);
   if (puVar6 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar2,*puVar6);
+    SystemCache_Manager(lVar2,*puVar6);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar6);
   }
@@ -761,9 +761,9 @@ void FUN_1803c94f0(int64_t param_1)
                         (*(int64_t **)(param_1 + 0xb8),0,0);
       uVar2 = system_context_ptr;
       while (system_context_ptr = uVar2, cVar3 == '\0') {
-        lVar4 = FUN_18005e890(uVar2);
+        lVar4 = PerformanceOptimizer(uVar2);
         if (lVar4 != 0) {
-          plVar5 = (int64_t *)FUN_18005e890(uVar2);
+          plVar5 = (int64_t *)PerformanceOptimizer(uVar2);
           (**(code **)(*plVar5 + 0x20))(plVar5);
         }
         cVar3 = (**(code **)(**(int64_t **)(param_1 + 0xb8) + 0x1b0))();
@@ -806,9 +806,9 @@ void FUN_1803c9527(void)
                       (*(int64_t **)(unaff_RDI + 0xb8),0,0);
     uVar1 = system_context_ptr;
     while (system_context_ptr = uVar1, cVar2 == '\0') {
-      lVar3 = FUN_18005e890(uVar1);
+      lVar3 = PerformanceOptimizer(uVar1);
       if (lVar3 != 0) {
-        plVar4 = (int64_t *)FUN_18005e890(uVar1);
+        plVar4 = (int64_t *)PerformanceOptimizer(uVar1);
         (**(code **)(*plVar4 + 0x20))(plVar4);
       }
       cVar2 = (**(code **)(**(int64_t **)(unaff_RDI + 0xb8) + 0x1b0))();

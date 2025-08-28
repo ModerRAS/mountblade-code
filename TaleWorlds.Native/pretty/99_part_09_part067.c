@@ -280,7 +280,7 @@ void FUN_1805e712e(void)
        fVar10 = *(float *)(unaff_RBX + 0x30) - *(float *)(lVar1 + 0xec),
        fVar9 = unaff_XMM9_Da * in_XMM3_Da + 1.0 + *(float *)(unaff_R13 + 1),
        fVar12 * fVar12 + fVar10 * fVar10 < fVar9 * fVar9)) {
-      cVar3 = FUN_18038d0a0(lVar1,unaff_RBX + 0x2c);
+      cVar3 = SystemCore_PerformanceMonitor(lVar1,unaff_RBX + 0x2c);
       if (cVar3 == '\0') {
         iVar5 = 0;
         if (*(char *)(lVar1 + 0xa8) != '\0') {

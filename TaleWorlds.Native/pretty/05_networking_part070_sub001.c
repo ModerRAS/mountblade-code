@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedHandler_definition.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -49,7 +50,7 @@ void FUN_180879232(void)
     uVar20 = SystemInitializer(&system_ptr_ea98);
     if (network_system_config == -1) {
       network_system_config = unaff_R12D;
-      uVar20 = FUN_1808fcb30(&system_ptr_ea98);
+      uVar20 = SystemCore_StateController(&system_ptr_ea98);
     }
     do {
       if ((int)unaff_RDI[0x14] != network_system_config) {
@@ -128,10 +129,10 @@ LAB_180878d26:
     }
   }
   if ((0x5a < uVar18) ||
-     ((((iVar8 = FUN_180868e40(FUN_1808777c0,lVar11), iVar8 == 0 &&
-        (iVar8 = FUN_180868de0(FUN_1808777c0,lVar11), iVar8 == 0)) &&
-       (iVar8 = FUN_180868fc0(FUN_1808777c0,lVar11), iVar8 == 0)) &&
-      (iVar8 = FUN_180868ea0(FUN_1808777c0,lVar11), iVar8 == 0)))) {
+     ((((iVar8 = FUN_180868e40(RenderingSystem_TextureHandler0,lVar11), iVar8 == 0 &&
+        (iVar8 = FUN_180868de0(RenderingSystem_TextureHandler0,lVar11), iVar8 == 0)) &&
+       (iVar8 = FUN_180868fc0(RenderingSystem_TextureHandler0,lVar11), iVar8 == 0)) &&
+      (iVar8 = FUN_180868ea0(RenderingSystem_TextureHandler0,lVar11), iVar8 == 0)))) {
     if (uVar18 < 0x61) {
       uVar14 = uVar13;
       uVar15 = uVar13;
@@ -420,7 +421,7 @@ LAB_1808795e2:
 
 
 
-uint64_t FUN_180879610(int64_t *param_1,uint *param_2,int8_t *param_3)
+uint64_t SystemStateProcessor(int64_t *param_1,uint *param_2,int8_t *param_3)
 
 {
   uint64_t *puVar1;
@@ -757,7 +758,7 @@ int FUN_1808797a0(int64_t param_1,int64_t param_2,int param_3)
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x24);
   uVar2 = *(int32_t *)(param_1 + 0x20);
-  iVar3 = FUN_18074b650(param_2,param_3,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(param_2,param_3,&uStack_18);
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -791,7 +792,7 @@ int FUN_180879880(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = SystemDataProcessor(param_2,param_3,&processed_var_5688_ptr);
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
+  iVar4 = RenderingSystem_ShaderCompiler(iVar3 + param_2,param_3 - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;

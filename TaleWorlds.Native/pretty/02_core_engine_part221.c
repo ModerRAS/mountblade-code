@@ -1,3 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 /**
  * TaleWorlds.Native - 核心引擎模块第221部分
  * 
@@ -11,7 +19,6 @@
  * 版本：1.0
  */
 
-#include "TaleWorlds.Native.Split.h"
 
 /*=============================================================================
  * 模块说明
@@ -191,7 +198,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     param_1[0x66c] = 0;
     
     /* 清理线程同步机制 */
-    FUN_180057830();
+    DataTransformer0();
     _Mtx_destroy_in_situ();
     
     /* 清理事件处理系统 */
@@ -212,7 +219,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理字符串管理器 */
     FUN_1801ba4d0();
     FUN_1801ba4d0();
-    FUN_18004b730();
+    UtilitiesSystem_Processor();
     param_1[0xc169] = &system_data_buffer_ptr;
     if (param_1[0xc16a] != 0) {
         CoreEngine_MemoryPoolManager();
@@ -230,10 +237,10 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理对象池 */
     FUN_180397ce0(param_1 + 0xc0fc);
     FUN_180196d20(param_1 + 0xc0e7);
-    FUN_18005d580();
+    DataSerializationEngine();
     
     /* 清理事件队列 */
-    SystemDataValidator(param_1 + 0xc061, 0x20, 0x20, FUN_18004a130);
+    SystemDataValidator(param_1 + 0xc061, 0x20, 0x20, SystemCore_MemoryManager);
     FUN_180196c40(param_1 + 0x1045);
     if ((int64_t *)param_1[0x1043] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x1043] + 0x38))();
@@ -259,10 +266,10 @@ void ObjectManagerDestructor(uint64_t *param_1)
     param_1[0x103b] = 0;
     *(int32_t *)(param_1 + 0x103d) = 0;
     param_1[0x103a] = &system_state_ptr;
-    FUN_180057830();
-    FUN_18005d580();
-    FUN_180057830();
-    FUN_180057830();
+    DataTransformer0();
+    DataSerializationEngine();
+    DataTransformer0();
+    DataTransformer0();
     
     /* 清理资源管理器 */
     if (param_1[0x1023] != 0) {
@@ -419,7 +426,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if ((int64_t *)param_1[0x71] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x71] + 0x38))();
     }
-    FUN_180057830();
+    DataTransformer0();
     if ((int64_t *)param_1[100] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[100] + 0x38))();
     }
@@ -504,7 +511,7 @@ void ObjectReferenceManager(int64_t param_1, int64_t param_2)
             } while ((uint64_t)(int64_t)iVar3 < uVar4);
         }
         lStackX_10 = param_2;
-        FUN_18005ea90(param_1 + 0x2870, &lStackX_10, iVar3, uVar4, 0, 0xfffffffffffffffe);
+        SystemSecurity_Manager(param_1 + 0x2870, &lStackX_10, iVar3, uVar4, 0, 0xfffffffffffffffe);
     }
     else {
         /* 处理新对象引用 */
@@ -607,7 +614,7 @@ void MatrixTransformCalculator(int64_t param_1, float *param_2)
     param_2[3] = FLOAT_MAX;
     
     /* 矩阵变换处理 */
-    FUN_1801c24a0(param_2);
+    UtilitiesSystem_CryptoHandler(param_2);
     param_2[4] = param_2[2] * param_2[9] - param_2[1] * param_2[10];
     param_2[5] = *param_2 * param_2[10] - param_2[2] * param_2[8];
     param_2[6] = param_2[1] * param_2[8] - *param_2 * param_2[9];
@@ -1001,7 +1008,7 @@ void ObjectDestructor(int64_t param_1, int64_t *param_2, uint64_t param_3, uint6
             FUN_1802eaec0(param_2, 0, 1, 1, 0, in_stack_ffffffffffffffc0 & 0xffffff00, 1, param_5);
         }
         else {
-            FUN_1802ed990(lVar1, 1);
+            PhysicsSystem_CharacterController(lVar1, 1);
             FUN_1802eb9a0(lVar1, param_2, 0, 0, 1, param_5);
         }
         

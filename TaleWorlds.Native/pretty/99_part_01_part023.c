@@ -23,7 +23,7 @@ void FUN_1800b6d80(uint64_t *param_1)
 
 
 
-uint64_t FUN_1800b6de0(int64_t param_1,int64_t param_2,char param_3)
+uint64_t RenderingSystem_VertexProcessor(int64_t param_1,int64_t param_2,char param_3)
 
 {
   uint64_t *puVar1;
@@ -115,7 +115,7 @@ LAB_1800b6eea:
         if (*(void **)(param_2 + 8) != (void *)0x0) {
           puVar7 = *(void **)(param_2 + 8);
         }
-        FUN_180627020(&processed_var_7984_ptr,puVar7);
+        SystemCore_Allocator(&processed_var_7984_ptr,puVar7);
       }
     }
     else {
@@ -767,13 +767,13 @@ void FUN_1800b7840(uint64_t *param_1,int64_t *param_2)
   }
   lVar9 = lVar6 + 0xa90;
   lVar10 = *param_2;
-  plVar4 = (int64_t *)FUN_180058080(lVar9,&puStackX_8,lVar10 + 0x1f0);
+  plVar4 = (int64_t *)HighFreq_AnimationSystem1(lVar9,&puStackX_8,lVar10 + 0x1f0);
   if (*plVar4 != lVar9) {
     puVar8 = &system_buffer_ptr;
     if (*(void **)(lVar10 + 0x1f8) != (void *)0x0) {
       puVar8 = *(void **)(lVar10 + 0x1f8);
     }
-    FUN_180627020(&processed_var_8336_ptr,puVar8);
+    SystemCore_Allocator(&processed_var_8336_ptr,puVar8);
     iVar2 = _Mtx_unlock(lVar5);
     if (iVar2 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar2);
@@ -808,7 +808,7 @@ void FUN_1800b7840(uint64_t *param_1,int64_t *param_2)
   *(int64_t **)(lVar5 + 0x40) = plStack_50;
   plStack_50 = (int64_t *)0x0;
   puStackX_20 = puStackX_8;
-  lVar6 = FUN_1800590b0(lVar9,&puStackX_8,puStackX_8);
+  lVar6 = SystemCore_SecurityValidator(lVar9,&puStackX_8,puStackX_8);
   if ((char)puStackX_8 == '\0') {
     FUN_1800b94f0(lVar5);
                     // WARNING: Subroutine does not return

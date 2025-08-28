@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -166,7 +167,7 @@ void FUN_18050cca0(int64_t param_1)
     if (-1 < cVar4) {
       lVar13 = (int64_t)cVar4 * 0x1f8;
       lVar12 = lVar7;
-      cVar5 = FUN_18058f970(lVar7 + 8 + lVar13);
+      cVar5 = SystemCore_EventHandler(lVar7 + 8 + lVar13);
       if ((cVar5 != '\0') &&
          ((*(uint *)((int64_t)*(int *)(lVar13 + 0xf8 + lVar12) * 0xa0 + 0x58 +
                     *(int64_t *)(lVar13 + 0xd8 + lVar12)) & 0x80000) == 0)) {
@@ -220,7 +221,7 @@ void FUN_18050cca0(int64_t param_1)
 LAB_18050cd1a:
   *(int8_t *)(*(int64_t *)(param_1 + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(int64_t *)(param_1 + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
+    SystemConfigurationManager(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
     lVar7 = *(int64_t *)(param_1 + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (int64_t)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {
@@ -378,7 +379,7 @@ void FUN_18050ccd5(int64_t param_1,uint64_t param_2)
     if (-1 < cVar4) {
       lVar13 = (int64_t)cVar4 * 0x1f8;
       lVar12 = lVar7;
-      cVar5 = FUN_18058f970(lVar7 + 8 + lVar13);
+      cVar5 = SystemCore_EventHandler(lVar7 + 8 + lVar13);
       if ((cVar5 != '\0') &&
          ((*(uint *)((int64_t)*(int *)(lVar13 + 0xf8 + lVar12) * 0xa0 + 0x58 +
                     *(int64_t *)(lVar13 + 0xd8 + lVar12)) & 0x80000) == 0)) {
@@ -433,7 +434,7 @@ void FUN_18050ccd5(int64_t param_1,uint64_t param_2)
 LAB_18050cd1a:
   *(int8_t *)(*(int64_t *)(unaff_RDI + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(int64_t *)(unaff_RDI + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
+    SystemConfigurationManager(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
     lVar7 = *(int64_t *)(unaff_RDI + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (int64_t)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {
@@ -546,7 +547,7 @@ void FUN_18050ce90(int64_t *param_1)
     if (-1 < cVar2) {
       lVar11 = (int64_t)cVar2 * 0x1f8;
       lVar10 = lVar7;
-      cVar5 = FUN_18058f970(lVar7 + 8 + lVar11);
+      cVar5 = SystemCore_EventHandler(lVar7 + 8 + lVar11);
       if ((cVar5 != '\0') &&
          ((*(uint *)((int64_t)*(int *)(lVar11 + 0xf8 + lVar10) * 0xa0 + 0x58 +
                     *(int64_t *)(lVar11 + 0xd8 + lVar10)) & 0x80000) == 0)) {
@@ -626,7 +627,7 @@ void FUN_18050cec3(void)
   if (-1 < *(char *)(lVar5 + 0xa26)) {
     lVar8 = (int64_t)*(char *)(lVar5 + 0xa26) * 0x1f8;
     lVar7 = lVar5;
-    cVar3 = FUN_18058f970(lVar5 + 8 + lVar8);
+    cVar3 = SystemCore_EventHandler(lVar5 + 8 + lVar8);
     if ((cVar3 != '\0') &&
        ((*(uint *)((int64_t)*(int *)(lVar8 + 0xf8 + lVar7) * 0xa0 + 0x58 +
                   *(int64_t *)(lVar8 + 0xd8 + lVar7)) & 0x80000) == 0)) {
@@ -700,7 +701,7 @@ void FUN_18050ceca(void)
   if (-1 < *(char *)(in_R11 + 0xa26)) {
     lVar7 = (int64_t)*(char *)(in_R11 + 0xa26) * 0x1f8;
     lVar6 = in_R11;
-    cVar2 = FUN_18058f970(in_R11 + 8 + lVar7);
+    cVar2 = SystemCore_EventHandler(in_R11 + 8 + lVar7);
     if ((cVar2 != '\0') &&
        ((*(uint *)((int64_t)*(int *)(lVar7 + 0xf8 + lVar6) * 0xa0 + 0x58 +
                   *(int64_t *)(lVar7 + 0xd8 + lVar6)) & 0x80000) == 0)) {
@@ -772,7 +773,7 @@ void FUN_18050cef2(int64_t param_1)
   int64_t unaff_R15;
   
   lVar5 = in_RAX * 0x1f8;
-  cVar2 = FUN_18058f970(param_1 + lVar5);
+  cVar2 = SystemCore_EventHandler(param_1 + lVar5);
   if ((cVar2 != '\0') &&
      ((*(uint *)((int64_t)*(int *)(lVar5 + 0xf8 + in_R11) * 0xa0 + 0x58 +
                 *(int64_t *)(lVar5 + 0xd8 + in_R11)) & 0x80000) == 0)) {

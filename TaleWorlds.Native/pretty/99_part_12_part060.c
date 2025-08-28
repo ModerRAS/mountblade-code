@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part060.c - 5 个函数
@@ -658,7 +662,7 @@ void FUN_1807f41c0(int64_t param_1)
       return;
     }
   }
-  FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0);
+  MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),0,0);
   return;
 }
 

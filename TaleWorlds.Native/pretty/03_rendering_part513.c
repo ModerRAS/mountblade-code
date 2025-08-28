@@ -1,3 +1,4 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -629,7 +630,7 @@ void FUN_180541110(int64_t param_1,int64_t param_2)
         puVar8 = &processed_var_9696_ptr;
 LAB_1805411ce:
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,puVar8);
+        SystemParameterHandler(system_message_context,puVar8);
       }
       if (*(int64_t *)(lVar9 + 0x210) == 0) {
         puVar8 = &processed_var_9632_ptr;
@@ -653,7 +654,7 @@ LAB_1805411ce:
       uStack_134 = 0;
       lVar9 = *(int64_t *)(*(int64_t *)(param_1 + 0x8a8) + 0x260);
       cVar2 = *(char *)(*(int64_t *)(lVar9 + 0x210) + 0xde);
-      FUN_18022a890(param_2,cVar2,*(uint64_t *)(lVar9 + 0x208));
+      CoreSystem_AuthenticationHandler0(param_2,cVar2,*(uint64_t *)(lVar9 + 0x208));
       pfVar1 = (float *)(param_2 + ((int64_t)cVar2 + 0x40) * 0x10);
       fStack_130 = *pfVar1;
       fStack_12c = pfVar1[1];
@@ -661,10 +662,10 @@ LAB_1805411ce:
       fStack_124 = pfVar1[3];
       plVar10 = *(int64_t **)(param_1 + 0x80);
       pcVar3 = *(code **)(*plVar10 + 0x150);
-      uVar7 = FUN_18022a890(param_2,0,
+      uVar7 = CoreSystem_AuthenticationHandler0(param_2,0,
                             *(uint64_t *)
                              (*(int64_t *)(*(int64_t *)(param_1 + 0x8a8) + 0x260) + 0x208));
-      FUN_18063b5f0(&fStack_188,uVar7);
+      SystemSecurityManager(&fStack_188,uVar7);
       fStack_120 = fStack_188 * 0.3 + fStack_184 * 0.0 + fStack_180 * 0.0;
       fStack_11c = fStack_178 * 0.3 + fStack_174 * 0.0 + fStack_170 * 0.0;
       fStack_118 = fStack_168 * 0.3 + fStack_164 * 0.0 + fStack_160 * 0.0;
@@ -860,7 +861,7 @@ void FUN_180541730(int64_t param_1,int64_t *param_2)
     FUN_180198980(lVar9);
   }
   if ((*(uint *)((int64_t)plVar8 + 0x2ac) & 0x20000) == 0) {
-    FUN_1802ed990(lVar13,1);
+    PhysicsSystem_CharacterController(lVar13,1);
   }
   plVar8[0x2d] = lVar13;
   lVar9 = lVar13;
@@ -876,8 +877,8 @@ void FUN_180541730(int64_t param_1,int64_t *param_2)
   if (plStackX_10 != (int64_t *)0x0) {
     (**(code **)(*plStackX_10 + 0x38))();
   }
-  FUN_180254610(plVar8);
-  FUN_1802eace0(plVar8);
+  RenderingSystem_CameraController(plVar8);
+  UtilitiesSystem_StringProcessor(plVar8);
   *(short *)(plVar8 + 0x56) = (short)plVar8[0x56] + 1;
   if (plVar8[0x2d] != 0) {
     func_0x0001802eeba0();

@@ -2149,15 +2149,15 @@ float SQRT(float value)
 /** 系统回调函数别名 */
 #define FUN_1802633c0 core_engine_callback_handler_type1
 #define FUN_180262b00 core_engine_callback_handler_type2
-#define FUN_18025cc00 core_engine_callback_handler_type3
-#define FUN_18025c000 core_engine_callback_handler_type4
-#define FUN_18025d270 core_engine_callback_handler_type5
+#define > HighFreq_FileSystem1 core_engine_callback_handler_type3
+#define > HighFreq_ConfigManager1 core_engine_callback_handler_type4
+#define > UltraHighFreq_NetworkHandler1 core_engine_callback_handler_type5
 #define FUN_18025e330 core_engine_callback_handler_type6
 #define FUN_18025d510 core_engine_callback_handler_type7
 #define FUN_1802281a0 core_engine_callback_handler_type8
 
 /** 字符串处理函数别名 */
-#define FUN_180623800 core_engine_string_processor_register
+#define SystemCore_ConfigManager core_engine_string_processor_register
 
 // =============================================================================
 // 技术说明

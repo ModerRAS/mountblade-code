@@ -198,7 +198,7 @@ void SystemRegistryNodeCreatorType2(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025cc00;
+    initialization_handler = > HighFreq_FileSystem1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -256,7 +256,7 @@ void SystemRegistryNodeCreatorType3(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025c000;
+    initialization_handler = > HighFreq_ConfigManager1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -372,7 +372,7 @@ void SystemRegistryNodeCreatorType5(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025d270;
+    initialization_handler = > UltraHighFreq_NetworkHandler1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -720,7 +720,7 @@ void SystemRegistryNodeCreatorType11(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025cc00;
+    initialization_handler = > HighFreq_FileSystem1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -778,7 +778,7 @@ void SystemRegistryNodeCreatorType12(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025c000;
+    initialization_handler = > HighFreq_ConfigManager1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -894,7 +894,7 @@ void SystemRegistryNodeCreatorType14(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025d270;
+    initialization_handler = > UltraHighFreq_NetworkHandler1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -1416,7 +1416,7 @@ void SystemRegistryNodeCreatorType23(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025cc00;
+    initialization_handler = > HighFreq_FileSystem1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -1474,7 +1474,7 @@ void SystemRegistryNodeCreatorType24(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025c000;
+    initialization_handler = > HighFreq_ConfigManager1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -1590,7 +1590,7 @@ void SystemRegistryNodeCreatorType26(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = FUN_18025d270;
+    initialization_handler = > UltraHighFreq_NetworkHandler1;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     

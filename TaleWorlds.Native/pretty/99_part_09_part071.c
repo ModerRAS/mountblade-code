@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -147,7 +149,7 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
       *(int32_t *)(lVar20 + 100) = 0;
       *(int32_t *)(lVar20 + 0x68) = 0;
       *(int32_t *)(lVar20 + 0x6c) = 0x3f800000;
-      FUN_180254610(lVar20);
+      RenderingSystem_CameraController(lVar20);
     }
     plVar25 = (int64_t *)param_1[0xc];
     if (plVar25 != (int64_t *)0x0) {
@@ -256,7 +258,7 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
       lVar20 = *(int64_t *)(*param_1 + 0x260);
       if (lVar20 != 0) {
         lVar20 = *(int64_t *)(lVar20 + 0x18) + -0xd0 + (int64_t)*(char *)(lVar20 + 0x20) * 0x100;
-        FUN_18063b5f0(&uStack_118);
+        SystemSecurityManager(&uStack_118);
         fVar35 = *(float *)(lVar20 + 0x10);
         fVar36 = *(float *)(lVar20 + 0x14);
         fVar32 = *(float *)(lVar20 + 0x18);
@@ -315,7 +317,7 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
     }
     lVar20 = param_1[10];
     puVar18 = (uint64_t *)
-              FUN_18022a890(lStackX_10,(char)lVar20,*(uint64_t *)(lStackX_18 + 0x208));
+              CoreSystem_AuthenticationHandler0(lStackX_10,(char)lVar20,*(uint64_t *)(lStackX_18 + 0x208));
     uStack_118 = *puVar18;
     uStack_110 = puVar18[1];
     pfVar17 = (float *)(lStackX_10 + ((int64_t)(char)lVar20 + 0x40) * 0x10);
@@ -323,8 +325,8 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
     fStack_104 = pfVar17[1];
     fStack_100 = pfVar17[2];
     fStack_fc = pfVar17[3];
-    lVar20 = FUN_180300bf0(&uStack_118,&uStack_1c8,param_1 + 6);
-    FUN_18063b5f0(&uStack_118);
+    lVar20 = UltraHighFreq_FileSystem1(&uStack_118,&uStack_1c8,param_1 + 6);
+    SystemSecurityManager(&uStack_118);
     uVar2 = *(int32_t *)(lVar20 + 0x10);
     uVar3 = *(int32_t *)(lVar20 + 0x14);
     uVar4 = *(int32_t *)(lVar20 + 0x18);
@@ -346,7 +348,7 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
     *(int32_t *)(lVar20 + 100) = uVar3;
     *(int32_t *)(lVar20 + 0x68) = uVar4;
     *(int32_t *)(lVar20 + 0x6c) = uVar5;
-    FUN_180254610();
+    RenderingSystem_CameraController();
     aiStack_1d0[0] = 0x21;
     if ((param_5 != '\0') &&
        (((cVar15 = (char)param_1[10], cVar15 == param_7 || (cVar15 == param_9)) ||
@@ -393,7 +395,7 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
     if (cStack_1d6 == '\0') {
       if ((int64_t *)param_1[0xb] == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&memory_allocator_3544_ptr);
+        SystemParameterHandler(system_message_context,&memory_allocator_3544_ptr);
       }
       iVar16 = (**(code **)(*(int64_t *)param_1[0xb] + 0x130))();
       if (iVar16 != 0) {
@@ -491,8 +493,8 @@ void FUN_1805ea790(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t *par
         }
       }
       lVar20 = (int64_t)cStack_1d8;
-      uVar19 = FUN_18022a890(param_2,cStack_1d8,*(uint64_t *)(lStackX_18 + 0x208));
-      FUN_18063b5f0(&uStack_118,uVar19);
+      uVar19 = CoreSystem_AuthenticationHandler0(param_2,cStack_1d8,*(uint64_t *)(lStackX_18 + 0x208));
+      SystemSecurityManager(&uStack_118,uVar19);
       pfVar17 = (float *)(param_2 + (lVar20 + 0x40) * 0x10);
       fVar28 = (float)uStack_1c8 * (float)uStack_118 + uStack_1c8._4_4_ * fStack_108 +
                (float)uStack_1c0 * fStack_f8;

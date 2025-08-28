@@ -564,7 +564,7 @@ LAB_180417650:
                                             }
                                             
                                             // 添加关键帧到曲线
-                                            FUN_180631850(puVar7, &processed_var_5264_ptr, &stack0x00000008);
+                                            SystemManager_Controller(puVar7, &processed_var_5264_ptr, &stack0x00000008);
                                             
                                             // 调用曲线处理函数
                                             (**(code **)(*(int64_t *)(param_1 + 0x38) + 8))
@@ -768,7 +768,7 @@ LAB_180417224:
                                 }
                                 
                                 // 添加关键帧到曲线
-                                FUN_180631850(puVar7, &processed_var_5264_ptr, &stack0x00000008);
+                                SystemManager_Controller(puVar7, &processed_var_5264_ptr, &stack0x00000008);
                                 
                                 // 计算关键帧参数
                                 iStack_70 = (int)(afStack_88[0] * 29.0);
@@ -888,7 +888,7 @@ LAB_1804173c4:
                                 }
                                 
                                 // 添加关键帧到曲线
-                                FUN_180631850(puVar7, &processed_var_5264_ptr, &stack0x00000008);
+                                SystemManager_Controller(puVar7, &processed_var_5264_ptr, &stack0x00000008);
                                 
                                 // 计算关键帧参数
                                 iStack_60 = (int)(afStack_88[0] * 29.0);

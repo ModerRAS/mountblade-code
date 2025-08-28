@@ -346,7 +346,7 @@ LAB_1805af41f:
     uVar5 = 0;
   }
   else {
-    uVar5 = FUN_1805a3ab0((int64_t)*(int *)(param_2 + 0x560) * 0xa60 + 0x28 + lVar9);
+    uVar5 = RenderingSystem_ConfigValidator0((int64_t)*(int *)(param_2 + 0x560) * 0xa60 + 0x28 + lVar9);
   }
   uVar14 = 0;
   *(int8_t *)(param_1 + 0xb0) = uVar5;
@@ -411,7 +411,7 @@ LAB_1805af41f:
       *(int32_t *)(param_1 + 0x14c) = *(int32_t *)(*(int64_t *)(lVar8 + 0x2590) + 0x10);
       iVar2 = *(int *)(*(int64_t *)(lVar8 + 0x2590) + 0xc);
       if (1 < iVar2) {
-        lVar8 = FUN_18065cec0((int64_t)iVar2 * 0x30 +
+        lVar8 = UtilitiesSystem_FormatConverter((int64_t)iVar2 * 0x30 +
                               *(int64_t *)(*(int64_t *)(lVar8 + 0x2590) + 0xc78),0);
         uVar14 = *(int32_t *)(lVar8 + 0x10);
       }
@@ -525,7 +525,7 @@ void FUN_1805af580(int64_t param_1,int64_t param_2)
     uVar5 = 0;
   }
   else {
-    uVar5 = FUN_1805a3ab0((int64_t)*(int *)(param_2 + 0x560) * 0xa60 + 0x28 + lVar8);
+    uVar5 = RenderingSystem_ConfigValidator0((int64_t)*(int *)(param_2 + 0x560) * 0xa60 + 0x28 + lVar8);
   }
   uVar11 = 0;
   *(int8_t *)(param_1 + 0xb0) = uVar5;
@@ -592,7 +592,7 @@ void FUN_1805af580(int64_t param_1,int64_t param_2)
       *(int32_t *)(param_1 + 0x14c) = *(int32_t *)(*(int64_t *)(lVar7 + 0x2590) + 0x10);
       iVar1 = *(int *)(*(int64_t *)(lVar7 + 0x2590) + 0xc);
       if (1 < iVar1) {
-        lVar7 = FUN_18065cec0((int64_t)iVar1 * 0x30 +
+        lVar7 = UtilitiesSystem_FormatConverter((int64_t)iVar1 * 0x30 +
                               *(int64_t *)(*(int64_t *)(lVar7 + 0x2590) + 0xc78),0);
         uVar11 = *(int32_t *)(lVar7 + 0x10);
       }
@@ -706,7 +706,7 @@ void FUN_1805af5a1(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
     uVar5 = 0;
   }
   else {
-    uVar5 = FUN_1805a3ab0((int64_t)*(int *)(unaff_RDI + 0x560) * 0xa60 + 0x28 + lVar7);
+    uVar5 = RenderingSystem_ConfigValidator0((int64_t)*(int *)(unaff_RDI + 0x560) * 0xa60 + 0x28 + lVar7);
   }
   uVar10 = 0;
   *(int8_t *)(unaff_RBX + 0xb0) = uVar5;
@@ -773,7 +773,7 @@ void FUN_1805af5a1(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
       *(int32_t *)(unaff_RBX + 0x14c) = *(int32_t *)(*(int64_t *)(lVar7 + 0x2590) + 0x10);
       iVar1 = *(int *)(*(int64_t *)(lVar7 + 0x2590) + 0xc);
       if (1 < iVar1) {
-        lVar7 = FUN_18065cec0((int64_t)iVar1 * 0x30 +
+        lVar7 = UtilitiesSystem_FormatConverter((int64_t)iVar1 * 0x30 +
                               *(int64_t *)(*(int64_t *)(lVar7 + 0x2590) + 0xc78),0);
         uVar10 = *(int32_t *)(lVar7 + 0x10);
       }

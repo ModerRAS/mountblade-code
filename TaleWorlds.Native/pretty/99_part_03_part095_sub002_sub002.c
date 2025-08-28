@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -276,7 +278,7 @@ void FUN_1802511f0(int64_t *param_1,int64_t param_2,int64_t *param_3,uint param_
         puStack_6b8 = puVar13;
       }
       puStack_6b0 = puVar13 + 1;
-      FUN_1802e8c60(uVar19,&puStack_6b8);
+      NetworkSystem_SecurityManager(uVar19,&puStack_6b8);
       iStack_6c8 = 0;
       puVar13 = puStack_6b8;
       if ((int64_t)puStack_6b0 - (int64_t)puStack_6b8 >> 3 != 0) {
@@ -410,7 +412,7 @@ LAB_180251624:
         puStack_660 = puVar20;
       }
       puStack_658 = puVar20 + 1;
-      FUN_1802e8c60(uVar19,&puStack_660);
+      NetworkSystem_SecurityManager(uVar19,&puStack_660);
       iVar29 = 0;
       puVar20 = puStack_660;
       if ((int64_t)puStack_658 - (int64_t)puStack_660 >> 3 != 0) {
@@ -439,9 +441,9 @@ LAB_180251624:
     } while (puVar13 != puVar35);
   }
   while (uVar19 = system_context_ptr, iVar28 != aiStack_6c0[0]) {
-    lVar27 = FUN_18005e890(system_context_ptr);
+    lVar27 = PerformanceOptimizer(system_context_ptr);
     if (lVar27 != 0) {
-      plVar17 = (int64_t *)FUN_18005e890(uVar19);
+      plVar17 = (int64_t *)PerformanceOptimizer(uVar19);
       (**(code **)(*plVar17 + 0x20))(plVar17,0);
     }
   }
@@ -526,7 +528,7 @@ LAB_180251aae:
     CoreEngineMemoryPoolCleaner();
   }
   if (puStack_548 != (uint64_t *)0x0) {
-    FUN_18004b790(&pppuStack_558,*puStack_548);
+    SystemCache_Manager(&pppuStack_558,*puStack_548);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar13);
   }
@@ -584,7 +586,7 @@ LAB_180251aae:
         puStack_6b8 = puVar20;
       }
       puStack_6b0 = puStack_6b8 + 1;
-      FUN_1802e8c60(puVar35,&puStack_6b8);
+      NetworkSystem_SecurityManager(puVar35,&puStack_6b8);
       iStack_6c8 = 0;
       plStack_670 = (int64_t *)0x0;
       uVar33 = (uint)uVar36;
@@ -736,12 +738,12 @@ LAB_180251aae:
                 FUN_1802e7e20(lVar27);
               }
               else {
-                FUN_18063ad30(*(int64_t *)(lVar27 + 0x28),*(int64_t *)(lVar27 + 0x28) + 0xf8,
+                UltraHighFreq_DataProcessor1(*(int64_t *)(lVar27 + 0x28),*(int64_t *)(lVar27 + 0x28) + 0xf8,
                               lVar24);
               }
               *(int16_t *)(lVar27 + 0x2b0) = *(int16_t *)(lVar27 + 0x2b4);
             }
-            FUN_18063ad30(*(int64_t *)(lVar27 + 0x28),*(int64_t *)(lVar27 + 0x28) + 0xf8,lVar24);
+            UltraHighFreq_DataProcessor1(*(int64_t *)(lVar27 + 0x28),*(int64_t *)(lVar27 + 0x28) + 0xf8,lVar24);
             *(int16_t *)(lVar27 + 0x2b6) = *(int16_t *)(lVar27 + 0x2b2);
             if (((*(byte *)(lVar27 + 0x2e8) & 0x10) != 0) ||
                ((*(int64_t **)(lVar27 + 0x270) != (int64_t *)0x0 &&
@@ -877,7 +879,7 @@ LAB_180251aae:
                                   (fVar42 - fVar39) * (fVar42 - fVar39) +
                                   (fVar43 - fStack_5c0) * (fVar43 - fStack_5c0));
               }
-              FUN_18063ad30(&uStack_308,&uStack_620,lVar24);
+              UltraHighFreq_DataProcessor1(&uStack_308,&uStack_620,lVar24);
             }
             plVar17 = plStack_688;
             uStack_250 = 0;
@@ -982,7 +984,7 @@ LAB_180252407:
     } while ((int **)puVar13 != ppiVar15);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_680_ptr,(double)((float)(int)uStack_698 * 0.0009765625),
+  SystemParameterHandler(system_message_context,&processed_var_680_ptr,(double)((float)(int)uStack_698 * 0.0009765625),
                 uStack_5d0 >> 10);
 }
 

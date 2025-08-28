@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part167.c - 1 个函数
 
@@ -100,8 +109,8 @@ LAB_180372c0c:
       if (piVar22 == *(int **)(lVar3 + lVar17 * 8)) {
         uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         param_6 = (int *)CONCAT44(param_6._4_4_,iVar15);
-        param_7 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-        FUN_18037f020(param_1 + 0x108,unaff_RBP + 0x18,&param_6);
+        param_7 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+        SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + 0x18,&param_6);
       }
       lVar28 = lVar28 + 0x28;
       lVar32 = lVar32 + -1;
@@ -145,8 +154,8 @@ LAB_180372cf0:
         if (piVar27 == piVar4) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar32 >> 8),3));
           param_10 = iVar30;
-          param_11 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108,unaff_RBP + 0x30,&param_10);
+          param_11 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + 0x30,&param_10);
           piVar27 = (int *)*puVar19;
         }
         lVar32 = *(int64_t *)(piVar27 + 2);
@@ -170,8 +179,8 @@ LAB_180372de8:
         if (piStackX_20 == *(int **)(lVar32 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           param_12 = CONCAT44(param_12._4_4_,iVar30);
-          param_13 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          pauVar20 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,unaff_RBP + 0x48,&param_12);
+          param_13 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          pauVar20 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + 0x48,&param_12);
           piStackX_20 = SUB168(*pauVar20,0);
         }
         *(int32_t *)(*(int64_t *)(piStackX_20 + 2) + 0x110) = 0;
@@ -187,8 +196,8 @@ LAB_180372e98:
         if (piStackX_20 == *(int **)(lVar32 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           param_14 = (int *)CONCAT44(param_14._4_4_,iVar16);
-          param_15 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          pauVar20 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,unaff_RBP + 0x60,&param_14);
+          param_15 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          pauVar20 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + 0x60,&param_14);
           piStackX_20 = SUB168(*pauVar20,0);
         }
         *(uint64_t *)(*(int64_t *)(piStackX_20 + 2) + 0x108) = 0;
@@ -247,8 +256,8 @@ LAB_18037309e:
       if (piVar22 == *(int **)(lVar21 + lVar28 * 8)) {
         uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         param_14 = (int *)CONCAT44(param_14._4_4_,iVar14);
-        param_15 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-        puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108,unaff_RBP + -0x30,&param_14);
+        param_15 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+        puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + -0x30,&param_14);
         piVar22 = (int *)*puVar19;
       }
       FUN_18037d8b0(*(uint64_t *)(piVar22 + 2),pfVar29,unaff_R12);
@@ -308,8 +317,8 @@ LAB_18037321d:
         if (piVar22 == *(int **)(lVar21 + lVar28 * 8)) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           param_12 = CONCAT44(param_12._4_4_,iVar14);
-          param_13 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108,unaff_RBP + -0x18,&param_12);
+          param_13 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + -0x18,&param_12);
           piVar22 = (int *)*puVar19;
         }
         lVar21 = *(int64_t *)(piVar22 + 2);
@@ -341,7 +350,7 @@ LAB_18037321d:
           lVar21 = (**(code **)(*plVar5 + 0x198))(plVar5);
         }
         fVar35 = fVar35 * *(float *)(lVar21 + 0x30);
-        lVar21 = FUN_180372570(param_1,iVar30,iVar15);
+        lVar21 = SystemCore_SecurityManager(param_1,iVar30,iVar15);
         if ((float)*(int *)(lVar21 + 0x110) < fVar35) {
           lVar21 = *(int64_t *)(param_1 + 0x110);
           iVar14 = *(int *)(param_1 + 0x58) * iVar30 + iVar15;
@@ -359,13 +368,13 @@ LAB_18037336c:
           if (piVar22 == *(int **)(lVar21 + lVar28 * 8)) {
             uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
             param_10 = iVar14;
-            param_11 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-            puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108);
+            param_11 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+            puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108);
             piVar22 = (int *)*puVar19;
           }
           *(int *)(*(int64_t *)(piVar22 + 2) + 0x110) = (int)fVar35;
         }
-        lVar28 = FUN_180372570(param_1,iVar30,iVar15);
+        lVar28 = SystemCore_SecurityManager(param_1,iVar30,iVar15);
         lVar21 = *(int64_t *)(param_1 + 0x110);
         lVar28 = *(int64_t *)(lVar28 + 0x108);
         iVar15 = *(int *)(param_1 + 0x58) * iVar30 + iVar15;
@@ -379,8 +388,8 @@ LAB_180373428:
         if (piStackX_20 == *(int **)(lVar21 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           param_8 = CONCAT44(param_8._4_4_,iVar15);
-          param_9 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          pauVar20 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,unaff_RBP + 0x78,&param_8);
+          param_9 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          pauVar20 = (int8_t (*) [16])SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + 0x78,&param_8);
           piStackX_20 = SUB168(*pauVar20,0);
         }
         unaff_R12 = *(int64_t *)(unaff_RBP + -0x78);
@@ -429,8 +438,8 @@ LAB_180373580:
         if (piVar27 == piVar4) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar32 >> 8),3));
           param_10 = iVar30;
-          param_11 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108);
+          param_11 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108);
           piVar27 = (int *)*puVar19;
         }
         lVar32 = *(int64_t *)(piVar27 + 2);
@@ -501,12 +510,12 @@ LAB_180373799:
         if (piVar22 == *(int **)(lVar32 + *(int64_t *)(param_1 + 0x118) * 8)) {
           uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0,8,3);
           param_8 = CONCAT44(param_8._4_4_,iVar30);
-          param_9 = FUN_180372430(uVar18,*(uint64_t *)(param_1 + 0x68));
-          puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108,unaff_RBP + -0x18,&param_8);
+          param_9 = SystemCore_SignalHandler(uVar18,*(uint64_t *)(param_1 + 0x68));
+          puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + -0x18,&param_8);
           piVar22 = (int *)*puVar19;
         }
-        FUN_18063ad30(unaff_RBP + 0x90,*(int64_t *)(piVar22 + 2) + 0x18,&system_data_0300);
-        lVar21 = FUN_180372570(param_1,uVar6 & 0xffffffff,uVar25 & 0xffffffff);
+        UltraHighFreq_DataProcessor1(unaff_RBP + 0x90,*(int64_t *)(piVar22 + 2) + 0x18,&system_data_0300);
+        lVar21 = SystemCore_SecurityManager(param_1,uVar6 & 0xffffffff,uVar25 & 0xffffffff);
         uVar2 = *(uint *)(param_1 + 0x118);
         lVar32 = *(int64_t *)(param_1 + 0x110);
         iVar14 = *(int *)(param_1 + 0x58) * iVar16 + iVar14;
@@ -521,9 +530,9 @@ LAB_180373878:
           uVar23 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           uVar18 = *(uint64_t *)(param_1 + 0x68);
           *(int *)(unaff_RBP + -0x78) = iVar14;
-          uVar18 = FUN_180372430(uVar23,uVar18);
+          uVar18 = SystemCore_SignalHandler(uVar23,uVar18);
           *(uint64_t *)(unaff_RBP + -0x70) = uVar18;
-          puVar19 = (uint64_t *)FUN_18037f020(param_1 + 0x108,unaff_RBP + -0x30,unaff_RBP + -0x78)
+          puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + -0x30,unaff_RBP + -0x78)
           ;
           piVar22 = (int *)*puVar19;
         }

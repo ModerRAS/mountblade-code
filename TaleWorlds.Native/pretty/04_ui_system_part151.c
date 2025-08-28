@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part151.c - 16 个函数
 
@@ -474,7 +479,7 @@ uint64_t FUN_180757000(int64_t *param_1,int64_t param_2,char param_3,char param_
             return uVar4;
           }
           if ((lStackX_8 != 0) &&
-             (uVar4 = FUN_18075dbf0(lStackX_8,param_1[0xc],0,0), (int)uVar4 != 0)) {
+             (uVar4 = SystemCore_ConfigurationManager(lStackX_8,param_1[0xc],0,0), (int)uVar4 != 0)) {
             return uVar4;
           }
         }
@@ -485,7 +490,7 @@ uint64_t FUN_180757000(int64_t *param_1,int64_t param_2,char param_3,char param_
           }
           if (lStackX_8 != 0) {
             in_stack_fffffffffffffff0 = 0;
-            uVar4 = FUN_180759220(lStackX_8,param_1[0xc],0,0,(char)uVar4,0);
+            uVar4 = UltraHighFreq_AudioSystem1(lStackX_8,param_1[0xc],0,0,(char)uVar4,0);
             if ((int)uVar4 != 0) {
               return uVar4;
             }

@@ -263,7 +263,7 @@ LAB_18033173f:
     plStack_f8[3] = lStack_c0;
     plStack_f8[4] = (int64_t)plStack_b8;
     plStack_f8[5] = (int64_t)ppuStack_b0;
-    FUN_18015b810();
+    SystemCore_DataTransformer();
   }
   if (plStack_148 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 /**
  * @file 03_rendering_part429.c
  * @brief 渲染系统资源管理和错误处理模块
@@ -771,7 +775,7 @@ LAB_180500318:
                   + plVar5[1] & *plVar5 - 1U) * 8) + 8);
     }
     else if (lVar9 == 0) goto LAB_180500318;
-    SystemDataValidator((uint64_t)((uint)uVar10 & 0x1f) * 0x100 + lVar9 + 0x38,0x30,4,FUN_18004a130,
+    SystemDataValidator((uint64_t)((uint)uVar10 & 0x1f) * 0x100 + lVar9 + 0x38,0x30,4,SystemCore_MemoryManager,
                   uVar12);
   }
   lVar9 = param_1[8];

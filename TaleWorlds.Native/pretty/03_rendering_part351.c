@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part351.c - 19 个函数
 
 // 函数: void FUN_1804588a0(int32_t param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
@@ -15,7 +19,7 @@ void FUN_1804588a0(int32_t param_1,uint64_t param_2,int32_t param_3,uint64_t par
   int64_t lStack_38;
   int32_t uStack_28;
   
-  FUN_180158990(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
   plVar2 = plStackX_20;
   if (plStackX_20 != (int64_t *)0x0) {
     pcVar1 = *(code **)(*plStackX_20 + 0x140);
@@ -52,7 +56,7 @@ FUN_180458970(int32_t *param_1,int32_t param_2,uint64_t param_3,uint64_t param_4
   int64_t *aplStackX_8 [4];
   int8_t auStack_30 [40];
   
-  FUN_180158990(render_system_data_memory,aplStackX_8,param_2,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_8,param_2,param_4,0xfffffffffffffffe);
   if (aplStackX_8[0] == (int64_t *)0x0) {
     uVar2 = 0xbf800000;
     uVar3 = 0xbf800000;
@@ -92,7 +96,7 @@ void FUN_1804589f0(int32_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_18;
   int32_t uStack_14;
   
-  FUN_180158990(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_18[0] != (int64_t *)0x0) {
     uStack_20 = *param_2;
     uStack_1c = param_2[1];
@@ -122,7 +126,7 @@ void FUN_180458a50(int32_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_18;
   int32_t uStack_14;
   
-  FUN_180158990(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_18[0] != (int64_t *)0x0) {
     uStack_20 = *param_2;
     uStack_1c = param_2[1];
@@ -148,7 +152,7 @@ FUN_180458ab0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   uint64_t uVar2;
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     cVar1 = (**(code **)(*aplStackX_10[0] + 0x60))();
     if (cVar1 != '\0') {
@@ -179,7 +183,7 @@ FUN_180458b10(int32_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4
   int32_t uStack_18;
   int32_t uStack_14;
   
-  FUN_180158990(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_18[0] == (int64_t *)0x0) {
     uVar1 = 0;
   }
@@ -209,7 +213,7 @@ void FUN_180458b90(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x68))();
   }
@@ -231,7 +235,7 @@ void FUN_180458be0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x70))();
   }
@@ -253,7 +257,7 @@ void FUN_180458c30(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x78))();
   }
@@ -281,7 +285,7 @@ void FUN_180458c80(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   int32_t uStack_18;
   
-  FUN_180158990(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_18,param_1,param_4,0xfffffffffffffffe);
   plVar2 = aplStackX_18[0];
   if (aplStackX_18[0] != (int64_t *)0x0) {
     pcVar1 = *(code **)(*aplStackX_18[0] + 0x158);
@@ -324,7 +328,7 @@ void FUN_180458d30(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   int32_t uStack_18;
   
-  FUN_180158990(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
   plVar2 = plStackX_20;
   if (plStackX_20 != (int64_t *)0x0) {
     pcVar1 = *(code **)(*plStackX_20 + 0x150);
@@ -366,7 +370,7 @@ void FUN_180458e30(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x160))();
   }
@@ -388,7 +392,7 @@ void FUN_180458e80(int32_t param_1,int32_t param_2,int32_t param_3,uint64_t para
 {
   int64_t *plStackX_20;
   
-  FUN_180158990(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,&plStackX_20,param_1,param_4,0xfffffffffffffffe);
   if (plStackX_20 != (int64_t *)0x0) {
     (**(code **)(*plStackX_20 + 0x138))(plStackX_20,param_2,param_3);
   }
@@ -410,7 +414,7 @@ FUN_180458ef0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   uint64_t uVar2;
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     cVar1 = (**(code **)(*aplStackX_10[0] + 0x80))();
     if (cVar1 != '\0') {
@@ -438,7 +442,7 @@ FUN_180458f50(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   uint64_t uVar2;
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_memory,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     cVar1 = (**(code **)(*aplStackX_10[0] + 0x90))();
     if (cVar1 != '\0') {
@@ -556,7 +560,7 @@ void FUN_1804591a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t p
   
   uStack_128 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
-  pcStack_178 = FUN_18004a130;
+  pcStack_178 = SystemCore_MemoryManager;
   DataStructureManager(alStack_118,0x30,4,FUN_1801c2890);
   iStack_58 = 0;
   lVar2 = CoreMemoryPoolValidator(&puStack_168,param_3);
@@ -589,7 +593,7 @@ void FUN_1804591a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t p
   lStack_140 = 0;
   uStack_130 = 0;
   puStack_148 = &system_state_ptr;
-  SystemDataValidator(alStack_118,0x30,4,FUN_18004a130);
+  SystemDataValidator(alStack_118,0x30,4,SystemCore_MemoryManager);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
 }

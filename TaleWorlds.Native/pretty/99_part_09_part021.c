@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_09_part021.c - 2 个函数
 
@@ -135,7 +140,7 @@ LAB_1805c7f79:
   }
   else {
     if ((*(byte *)(param_1 + 2) & 1) == 0) {
-      FUN_1805d3210(param_1 + 1);
+      SystemCore_ThreadManager(param_1 + 1);
     }
     fVar21 = *(float *)(param_1 + 0xd);
   }
@@ -234,7 +239,7 @@ LAB_1805c80dc:
       else {
         bVar2 = *(byte *)((int64_t)param_1 + 0x11c);
       }
-      if ((bVar2 != 0) && (pfVar7 = (float *)FUN_1805b6e50(param_1 + 1), 2.0 < *pfVar7)) {
+      if ((bVar2 != 0) && (pfVar7 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1), 2.0 < *pfVar7)) {
         fVar21 = fVar21 * 1.25;
       }
       fVar23 = (5.0 / (fVar21 + 0.01)) * fVar22;
@@ -290,7 +295,7 @@ LAB_1805c855d:
     *(uint *)(param_1 + 0x272) = uVar9;
   }
   else {
-    pfVar7 = (float *)FUN_1805b6e50(param_1 + 1);
+    pfVar7 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1);
     uVar9 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
     if (5.0 <= *pfVar7) {
       uVar9 = uVar9 >> 0x11 ^ uVar9;
@@ -458,7 +463,7 @@ LAB_1805c7f79:
   }
   else {
     if ((*(byte *)(unaff_RBX + 2) & 1) == 0) {
-      param_1 = (float)FUN_1805d3210(unaff_RBX + 1);
+      param_1 = (float)SystemCore_ThreadManager(unaff_RBX + 1);
     }
     fVar19 = *(float *)(unaff_RBX + 0xd);
   }
@@ -553,7 +558,7 @@ LAB_1805c80dc:
       else {
         bVar2 = *(byte *)((int64_t)unaff_RBX + 0x11c);
       }
-      if ((bVar2 != 0) && (pfVar7 = (float *)FUN_1805b6e50(unaff_RBX + 1), 2.0 < *pfVar7)) {
+      if ((bVar2 != 0) && (pfVar7 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1), 2.0 < *pfVar7)) {
         fVar19 = fVar19 * 1.25;
       }
       fVar21 = (5.0 / (fVar19 + 0.01)) * fVar20;
@@ -608,7 +613,7 @@ LAB_1805c855d:
     *(uint *)(unaff_RBX + 0x272) = uVar9;
   }
   else {
-    pfVar7 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar7 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     uVar9 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
     if (5.0 <= *pfVar7) {
       uVar9 = uVar9 >> 0x11 ^ uVar9;

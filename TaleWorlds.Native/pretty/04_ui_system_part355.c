@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -186,7 +190,7 @@ thunk_FUN_18085fbb0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   alStack_38[0] = 0;
   uStackX_8 = 0;
   uVar6 = FUN_18073a200(*(uint64_t *)(*(int64_t *)(param_1 + 0x2c8) + 0x4c0),&uStackX_8);
-  if (((int)uVar6 == 0) && (uVar6 = FUN_18073c4c0(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
+  if (((int)uVar6 == 0) && (uVar6 = UtilitiesSystem_MathCalculator(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
     cVar4 = FUN_180863210(param_4,0,0);
     if (cVar4 == '\0') {
       plVar2 = (int64_t *)(param_1 + 0x4e0);
@@ -279,7 +283,7 @@ FUN_18085fbb0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t param
   alStack_38[0] = 0;
   uStackX_8 = 0;
   uVar6 = FUN_18073a200(*(uint64_t *)(*(int64_t *)(param_1 + 0x2c8) + 0x4c0),&uStackX_8);
-  if (((int)uVar6 == 0) && (uVar6 = FUN_18073c4c0(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
+  if (((int)uVar6 == 0) && (uVar6 = UtilitiesSystem_MathCalculator(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
     cVar4 = FUN_180863210(param_4,0,0);
     if (cVar4 == '\0') {
       plVar2 = (int64_t *)(param_1 + 0x4e0);
@@ -706,7 +710,7 @@ uint64_t thunk_FUN_180865550(int64_t param_1)
   uStackX_20 = 0;
   uStackX_18 = 0;
   uVar8 = FUN_18073a200(*(uint64_t *)(*(int64_t *)(param_1 + 0x2c8) + 0x4c0),&uStackX_18);
-  if (((int)uVar8 == 0) && (uVar8 = FUN_18073c4c0(uStackX_18,&uStackX_20,0), (int)uVar8 == 0)) {
+  if (((int)uVar8 == 0) && (uVar8 = UtilitiesSystem_MathCalculator(uStackX_18,&uStackX_20,0), (int)uVar8 == 0)) {
     while ((*(uint64_t *)(param_1 + 0x4e0) <= uVar2 &&
            (uVar2 < (int64_t)*(int *)(param_1 + 0x4e8) * 0x38 + *(uint64_t *)(param_1 + 0x4e0))))
     {
@@ -721,7 +725,7 @@ uint64_t thunk_FUN_180865550(int64_t param_1)
       if ((iVar4 < 0) || (*(int *)(param_1 + 0x4e8) <= iVar4)) {
         return 0x1c;
       }
-      FUN_180840270(*(int64_t *)(param_1 + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
+      SystemCore_MemoryManager(*(int64_t *)(param_1 + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
       iVar10 = *(int *)(param_1 + 0x4e8);
       iVar11 = (iVar10 - iVar4) + -1;
       if (0 < iVar11) {
@@ -752,7 +756,7 @@ uint64_t thunk_FUN_180865550(int64_t param_1)
             FUN_18084e110(lVar13 + -0xc,puVar12);
             *(uint64_t *)(lVar13 + 4) = *(uint64_t *)(lVar9 + 4 + lVar13);
             *(int32_t *)(lVar13 + 0xc) = *(int32_t *)(lVar9 + 0xc + lVar13);
-            FUN_180840270((int64_t)iVar14 * 0x38 + 0x10 + lVar15 + 0x38);
+            SystemCore_MemoryManager((int64_t)iVar14 * 0x38 + 0x10 + lVar15 + 0x38);
             iVar14 = iVar14 + 1;
             lVar13 = lVar13 + 0x38;
             lVar16 = lVar16 + -1;
@@ -851,7 +855,7 @@ uint64_t FUN_180860390(int64_t param_1,int64_t param_2,uint64_t *param_3)
       else if (iVar7 < iVar5) {
         iVar7 = iVar5;
       }
-      uVar4 = FUN_180747f10(puVar1,iVar7);
+      uVar4 = RenderingTextureManager0(puVar1,iVar7);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -905,7 +909,7 @@ uint64_t FUN_1808603ae(int64_t param_1)
       else if (iVar7 < iVar5) {
         iVar7 = iVar5;
       }
-      uVar4 = FUN_180747f10(puVar1,iVar7);
+      uVar4 = RenderingTextureManager0(puVar1,iVar7);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -949,7 +953,7 @@ uint64_t FUN_1808603f6(void)
       else if (iVar5 < iVar3) {
         iVar5 = iVar3;
       }
-      uVar2 = FUN_180747f10(fVar6,iVar5);
+      uVar2 = RenderingTextureManager0(fVar6,iVar5);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -1034,7 +1038,7 @@ LAB_1808605b0:
 
 
 
-uint64_t FUN_1808605e0(int64_t param_1)
+uint64_t SystemCore_StateController(int64_t param_1)
 
 {
   int iVar1;

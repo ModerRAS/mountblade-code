@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_MemoryManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 02_core_engine_part218.c - 19 个函数
 
@@ -224,7 +233,7 @@ void FUN_1801946c0(int64_t *param_1)
       (**(code **)(**(int64_t **)(lVar2 + 0x40) + 0x38))();
     }
     if (*(int64_t *)(lVar2 + 0x20) != 0) break;
-    FUN_180057830(lVar2);
+    DataTransformer0(lVar2);
     lVar2 = lVar2 + 0x48;
   }
                     // WARNING: Subroutine does not return
@@ -316,7 +325,7 @@ void FUN_1801946e0(uint64_t *param_1)
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
-      FUN_180057830(lVar5);
+      DataTransformer0(lVar5);
       lVar5 = lVar5 + 0x48;
     } while (lVar5 != lVar10);
     param_1[3] = param_1[2];
@@ -349,7 +358,7 @@ void FUN_1801948b0(int64_t *param_1)
       (**(code **)(**(int64_t **)(lVar2 + 0x40) + 0x38))();
     }
     if (*(int64_t *)(lVar2 + 0x20) != 0) break;
-    FUN_180057830(lVar2);
+    DataTransformer0(lVar2);
     lVar2 = lVar2 + 0x48;
   }
                     // WARNING: Subroutine does not return
@@ -358,7 +367,7 @@ void FUN_1801948b0(int64_t *param_1)
 
 
 
-float * FUN_180194940(float *param_1,float *param_2,float *param_3)
+float * InitializationSystem_Manager(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -422,8 +431,8 @@ float * FUN_180194940(float *param_1,float *param_2,float *param_3)
 
 
 
-// 函数: void FUN_180194a50(int64_t *param_1,int8_t *param_2)
-void FUN_180194a50(int64_t *param_1,int8_t *param_2)
+// 函数: void Memory_Allocator(int64_t *param_1,int8_t *param_2)
+void Memory_Allocator(int64_t *param_1,int8_t *param_2)
 
 {
   int8_t *puVar1;
@@ -475,7 +484,7 @@ LAB_180194acf:
 void FUN_180194b30(uint64_t param_1)
 
 {
-  SystemDataValidator(param_1,0x30,4,FUN_18004a130,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x30,4,SystemCore_MemoryManager,0xfffffffffffffffe);
   return;
 }
 
@@ -506,7 +515,7 @@ int32_t * FUN_180194c10(uint64_t param_1,int32_t *param_2)
   param_2[5] = 0;
   param_2[6] = 0;
   param_2[7] = 0x7f7fffff;
-  FUN_1800b9f60(0);
+  SystemCore_Parser(0);
   return param_2;
 }
 

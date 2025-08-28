@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -138,7 +140,7 @@ LAB_18055794f:
 
 
 
-uint FUN_180557990(int64_t param_1,int param_2,int param_3,int param_4,byte param_5)
+uint RenderingSystem_RenderQueue(int64_t param_1,int param_2,int param_3,int param_4,byte param_5)
 
 {
   uint *puVar1;
@@ -217,7 +219,7 @@ LAB_180557b00:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180557b40(int64_t param_1,int param_2,int param_3,int param_4,byte param_5,byte param_6,
+uint RenderingSystem_EffectProcessor0(int64_t param_1,int param_2,int param_3,int param_4,byte param_5,byte param_6,
                   byte param_7)
 
 {
@@ -271,7 +273,7 @@ LAB_180557c56:
   }
   if (puVar4 == *(uint **)(*(int64_t *)(param_1 + 0xf0) + *(int64_t *)(param_1 + 0xf8) * 8)) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_4152_ptr,param_2,param_3,param_4,param_5,param_6);
+    SystemParameterHandler(system_message_context,&processed_var_4152_ptr,param_2,param_3,param_4,param_5,param_6);
   }
   return puVar4[1];
 }
@@ -725,9 +727,9 @@ LAB_18055861d:
   }
 LAB_180558633:
   FUN_180631330(param_2,&processed_var_4404_ptr,param_1 + 4);
-  FUN_180631000(param_2,&processed_var_4560_ptr,(int64_t)param_1 + 0x15);
-  FUN_180631000(param_2,&ui_system_data_1800_ptr,param_1 + 5);
-  FUN_180631000(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0x16);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4560_ptr,(int64_t)param_1 + 0x15);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr,param_1 + 5);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0x16);
   puStack_98 = &system_data_buffer_ptr;
   uStack_80 = 0;
   lStack_90 = 0;
@@ -767,7 +769,7 @@ LAB_180558714:
     }
   }
   if (0 < iStack_88) {
-    uVar3 = FUN_18055b2f0(&system_data_6150,&puStack_98);
+    uVar3 = SystemFile_Manager(&system_data_6150,&puStack_98);
     param_1[1] = uVar3;
   }
   puStack_b8 = &system_data_buffer_ptr;

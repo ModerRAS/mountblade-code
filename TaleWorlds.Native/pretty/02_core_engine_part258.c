@@ -576,7 +576,7 @@ void FUN_180226a90(char *param_1,int64_t *param_2)
   param_2[1] = param_2[1] + 4;
   do {
     if (*pcVar2 == *param_1) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)iVar3 * 0x10 + 0x180bf7e20));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)iVar3 * 0x10 + 0x180bf7e20));
       break;
     }
     iVar3 = iVar3 + 1;
@@ -831,7 +831,7 @@ void FUN_180226e10(char *param_1,int64_t param_2)
   *(uint **)(param_2 + 8) = puVar7;
   pcStack_468 = param_1;
   if (uVar3 != 0) {
-    FUN_180045f60(&puStack_458,puVar7,uVar3);
+    SystemManager_Executor(&puStack_458,puVar7,uVar3);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
   }
   plVar9 = (int64_t *)0x180bf7e20;

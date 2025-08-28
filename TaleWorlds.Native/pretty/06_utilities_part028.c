@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -886,7 +890,7 @@ void FUN_180942c50(void)
 {
     // 检查内存状态
     if (system_memory_6098 != '\0') {
-        FUN_180057830();
+        DataTransformer0();
         if (system_config_data_6070 != (int64_t *)0x0) {
             (**(code **)(*system_config_data_6070 + 0x38))();
         }

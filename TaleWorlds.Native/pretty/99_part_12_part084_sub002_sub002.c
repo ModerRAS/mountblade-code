@@ -67,7 +67,7 @@ uint64_t * FUN_1808a33c0(int64_t *param_1,int32_t param_2,int64_t *param_3)
   uStack_6c = puVar10[1];
   uStack_68 = puVar10[2];
   uStack_64 = puVar10[3];
-  if ((0x54 < uVar7) && (puVar11 = (uint64_t *)FUN_1808dde10(param_1,0), (int)puVar11 != 0)) {
+  if ((0x54 < uVar7) && (puVar11 = (uint64_t *)UISystemEventHandler(param_1,0), (int)puVar11 != 0)) {
     return puVar11;
   }
   if (*(int *)(param_1[1] + 0x18) != 0) {
@@ -91,7 +91,7 @@ uint64_t * FUN_1808a33c0(int64_t *param_1,int32_t param_2,int64_t *param_3)
   if ((int)puVar11 != 0) {
     return puVar11;
   }
-  puVar11 = (uint64_t *)FUN_180899360(param_1,&uStack_70);
+  puVar11 = (uint64_t *)SystemCore_ConfigManager(param_1,&uStack_70);
   if ((int)puVar11 != 0) {
     return puVar11;
   }
@@ -188,12 +188,12 @@ LAB_1808a3652:
   if ((int)puVar11 != 0) {
     return puVar11;
   }
-  if ((0x54 < uVar7) && (puVar11 = (uint64_t *)FUN_1808de0e0(param_1,0), (int)puVar11 != 0)) {
+  if ((0x54 < uVar7) && (puVar11 = (uint64_t *)SystemCore_Initializer(param_1,0), (int)puVar11 != 0)) {
     return puVar11;
   }
   puVar11 = (uint64_t *)0x0;
   if (uVar7 < 0x55) {
-    uVar7 = FUN_1808dde10(param_1,0);
+    uVar7 = UISystemEventHandler(param_1,0);
     puVar13 = (uint64_t *)(uint64_t)uVar7;
     if (uVar7 != 0) goto LAB_1808a3889;
   }
@@ -405,7 +405,7 @@ LAB_1808a3a53:
   }
 LAB_1808a385d:
   if (uStack_74 < 0x55) {
-    uVar8 = FUN_1808de0e0(param_1,0);
+    uVar8 = SystemCore_Initializer(param_1,0);
     puVar13 = (uint64_t *)(uint64_t)uVar8;
     puVar9 = puVar12;
     if (uVar8 != 0) {
@@ -496,7 +496,7 @@ uint64_t * FUN_1808a340d(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar2;
   *(int32_t *)(unaff_RBP + -9) = uVar5;
   *(int32_t *)(unaff_RBP + -5) = uVar6;
-  if ((0x54 < uVar9) && (puVar11 = (uint64_t *)FUN_1808dde10(uVar16,0), (int)puVar11 != 0)) {
+  if ((0x54 < uVar9) && (puVar11 = (uint64_t *)UISystemEventHandler(uVar16,0), (int)puVar11 != 0)) {
     return puVar11;
   }
   if (*(int *)(unaff_R14[1] + 0x18) != 0) {
@@ -524,7 +524,7 @@ uint64_t * FUN_1808a340d(void)
   if ((int)puVar11 != 0) {
     return puVar11;
   }
-  puVar11 = (uint64_t *)FUN_180899360(uVar16,unaff_RBP + -0x11);
+  puVar11 = (uint64_t *)SystemCore_ConfigManager(uVar16,unaff_RBP + -0x11);
   if ((int)puVar11 != 0) {
     return puVar11;
   }
@@ -631,13 +631,13 @@ LAB_1808a3652:
     return puVar11;
   }
   if ((0x54 < uVar9) &&
-     (puVar11 = (uint64_t *)FUN_1808de0e0(uVar16,0), uVar16 = extraout_XMM0_Da_10,
+     (puVar11 = (uint64_t *)SystemCore_Initializer(uVar16,0), uVar16 = extraout_XMM0_Da_10,
      (int)puVar11 != 0)) {
     return puVar11;
   }
   puVar11 = (uint64_t *)0x0;
   if (uVar9 < 0x55) {
-    uVar9 = FUN_1808dde10(uVar16,0);
+    uVar9 = UISystemEventHandler(uVar16,0);
     puVar14 = (uint64_t *)(uint64_t)uVar9;
     uVar16 = extraout_XMM0_Da_11;
     if (uVar9 != 0) goto LAB_1808a3889;
@@ -879,7 +879,7 @@ LAB_1808a3a53:
   }
 LAB_1808a385d:
   if (*(uint *)(unaff_RBP + -0x15) < 0x55) {
-    uVar9 = FUN_1808de0e0(uVar16,0);
+    uVar9 = SystemCore_Initializer(uVar16,0);
     puVar14 = (uint64_t *)(uint64_t)uVar9;
     puVar13 = puVar12;
     uVar16 = extraout_XMM0_Da_18;
@@ -975,7 +975,7 @@ uint64_t FUN_1808a3465(void)
   if ((int)uVar9 != 0) {
     return uVar9;
   }
-  uVar9 = FUN_180899360(uVar14,unaff_RBP + -0x11);
+  uVar9 = SystemCore_ConfigManager(uVar14,unaff_RBP + -0x11);
   if ((int)uVar9 != 0) {
     return uVar9;
   }
@@ -1078,11 +1078,11 @@ LAB_1808a3652:
     return uVar9;
   }
   if ((0x54 < unaff_EDI) &&
-     (uVar9 = FUN_1808de0e0(uVar14,0), uVar14 = extraout_XMM0_Da_10, (int)uVar9 != 0)) {
+     (uVar9 = SystemCore_Initializer(uVar14,0), uVar14 = extraout_XMM0_Da_10, (int)uVar9 != 0)) {
     return uVar9;
   }
   if (unaff_EDI < 0x55) {
-    uVar8 = FUN_1808dde10(uVar14,0);
+    uVar8 = UISystemEventHandler(uVar14,0);
     uVar9 = (uint64_t)uVar8;
     uVar14 = extraout_XMM0_Da_11;
     if (uVar8 != 0) goto LAB_1808a3889;
@@ -1322,7 +1322,7 @@ LAB_1808a3a53:
   }
 LAB_1808a385d:
   if (*(uint *)(unaff_RBP + -0x15) < 0x55) {
-    uVar8 = FUN_1808de0e0(uVar14,0);
+    uVar8 = SystemCore_Initializer(uVar14,0);
     uVar9 = (uint64_t)uVar8;
     uVar14 = extraout_XMM0_Da_18;
     if (uVar8 != 0) {

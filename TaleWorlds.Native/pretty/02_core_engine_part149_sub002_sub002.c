@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_SystemMonitor 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 // 02_core_engine_part149_sub002_sub002.c - 1 个函数
 
@@ -153,7 +162,7 @@ LAB_18013802c:
     iStack_138 = 0;
     iVar15 = iVar13;
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1bc0) < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0)) {
-      iVar10 = FUN_180121250(&rendering_buffer_2696_ptr,0,
+      iVar10 = SystemCore_HandleInput(&rendering_buffer_2696_ptr,0,
                              *(int32_t *)
                               (*(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
                               (int64_t)*(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4
@@ -246,7 +255,7 @@ LAB_18013802c:
     fStack_11c = fVar30;
     uVar11 = func_0x000180121e20(&lStack_100);
     uVar33 = CONCAT44(uVar12,*(int32_t *)(param_2 + 0x78));
-    FUN_180293f50(*(uint64_t *)(param_2 + 0x2e8),&uStack_128,&fStack_120,uVar11,uVar33,3);
+    MathInterpolationCalculator0(*(uint64_t *)(param_2 + 0x2e8),&uStack_128,&fStack_120,uVar11,uVar33,3);
     uVar11 = (int32_t)((uint64_t)uVar33 >> 0x20);
     uStack_f0 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1718);
     uStack_ec = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x171c);
@@ -255,9 +264,9 @@ LAB_18013802c:
     lStack_100 = CONCAT44(fStack_11c,fStack_120);
     uStackX_18 = (int *)CONCAT44(fVar30,fVar32);
     uVar12 = func_0x000180121e20(&uStack_f0);
-    FUN_180293d20(*(uint64_t *)(param_2 + 0x2e8),&uStackX_18,&lStack_100,uVar12,
+    SystemCore_SystemMonitor(*(uint64_t *)(param_2 + 0x2e8),&uStackX_18,&lStack_100,uVar12,
                   CONCAT44(uVar11,*(int32_t *)(lVar25 + 0x1638)));
-    iVar13 = FUN_180121250(&rendering_buffer_2480_ptr,0,
+    iVar13 = SystemCore_HandleInput(&rendering_buffer_2480_ptr,0,
                            *(int32_t *)
                             (*(int64_t *)(param_2 + 0x220) + -4 +
                             (int64_t)*(int *)(param_2 + 0x218) * 4));
@@ -451,7 +460,7 @@ LAB_180138724:
       fVar28 = *(float *)(lVar25 + 0x19f8) * 0.5;
       fStackX_8 = fVar31 - (fVar28 + *(float *)(lVar25 + 0x165c));
       fStackX_c = fVar28 + *(float *)(lVar25 + 0x1660) + fVar29;
-      iVar13 = FUN_180121250(&rendering_buffer_2512_ptr,0,
+      iVar13 = SystemCore_HandleInput(&rendering_buffer_2512_ptr,0,
                              *(int32_t *)
                               (*(int64_t *)(lStackX_10 + 0x220) + -4 +
                               (int64_t)*(int *)(lStackX_10 + 0x218) * 4));
@@ -574,7 +583,7 @@ LAB_180138724:
         if (*piVar18 == iVar13) {
           piVar19 = *(int **)(piVar23 + 2) + (int64_t)(int)piVar19 * 10;
           if (piVar19 != (int *)0x0) {
-            FUN_18012d2e0(*(uint64_t *)(piVar19 + 2));
+            SystemCore_DataCompressor(*(uint64_t *)(piVar19 + 2));
             lVar25 = *(int64_t *)(piVar19 + 2);
             if (((*(uint *)(lVar25 + 0xc) >> 0x12 & 1) == 0) &&
                (((*(uint *)(lVar25 + 0xc) & 0x5000000) != 0x1000000 ||

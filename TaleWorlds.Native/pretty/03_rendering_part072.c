@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -566,7 +571,7 @@ FUN_18030a110(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   AcquireSRWLockExclusive(lVar1);
   *(int8_t *)(lVar2 + 1) = 1;
   *(int8_t *)(*(int64_t *)(lVar2 + 0x180) + lVar3 * 0x30) = 0;
-  FUN_1800571e0(lVar2 + 0xe0,aiStackX_10,param_3,param_4,uVar4,lVar5,1);
+  SystemDatabaseProcessor(lVar2 + 0xe0,aiStackX_10,param_3,param_4,uVar4,lVar5,1);
   *(int32_t *)(param_1 + 2) = 0xffffffff;
   ReleaseSRWLockExclusive(lVar1);
   if ((int64_t *)param_1[0x30] != (int64_t *)0x0) {

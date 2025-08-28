@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -866,7 +871,7 @@ uint64_t memory_manager(uint64_t memory_ptr, uint64_t manage_flag)
 int64_t resource_cleaner(int64_t resource_ptr, uint64_t clean_flag)
 {
     // 调用清理函数
-    FUN_180744d60(resource_ptr + 0x98);
+    SystemAnalyzer(resource_ptr + 0x98);
     object_initializer((uint64_t *)resource_ptr);
     
     // 根据标志释放内存
@@ -1077,7 +1082,7 @@ LAB_1808d3538:
         else if (temp_var9 < temp_var6) {
             temp_var9 = temp_var6;
         }
-        temp_var5 = FUN_180747f10(temp_ptr1, temp_var9);
+        temp_var5 = RenderingTextureManager0(temp_ptr1, temp_var9);
         if ((int)temp_var5 != 0) {
             return temp_var5;
         }
@@ -1220,7 +1225,7 @@ uint64_t resource_registrar(int64_t registrar_ptr, int64_t resource_param)
         else if (temp_var8 < temp_var5) {
             temp_var8 = temp_var5;
         }
-        temp_var4 = FUN_180747f10(temp_ptr1, temp_var8);
+        temp_var4 = RenderingTextureManager0(temp_ptr1, temp_var8);
         if ((int)temp_var4 != 0) {
             return temp_var4;
         }
@@ -1433,25 +1438,25 @@ void advanced_resource_manager(int64_t *resource_manager, uint64_t *resource_par
     
     // 根据资源类型处理
     if (*(int *)(resource_manager[0x13] + 0x44) == 0) {
-        temp_var3 = FUN_1808b2f30(resource_manager + 9, 0xe);
-        if (((temp_var3 != 0) || (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0xf), temp_var3 != 0)) ||
-           (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x10), temp_var3 != 0)) goto LAB_1808d3bd8;
-        temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x11);
+        temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0xe);
+        if (((temp_var3 != 0) || (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0xf), temp_var3 != 0)) ||
+           (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x10), temp_var3 != 0)) goto LAB_1808d3bd8;
+        temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x11);
     joined_r0x0001808d3b85:
         if (temp_var3 != 0) goto LAB_1808d3bd8;
     }
     else if (*(int *)(resource_manager[0x13] + 0x44) == 1) {
-        temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x12);
-        if (((temp_var3 != 0) || (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x13), temp_var3 != 0)) ||
-           (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x14), temp_var3 != 0)) goto LAB_1808d3bd8;
-        temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x15);
+        temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x12);
+        if (((temp_var3 != 0) || (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x13), temp_var3 != 0)) ||
+           (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x14), temp_var3 != 0)) goto LAB_1808d3bd8;
+        temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x15);
         goto joined_r0x0001808d3b85;
     }
     
-    temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x17);
-    if (((temp_var3 == 0) && (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x18), temp_var3 == 0)) &&
-        ((temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x19), temp_var3 == 0 &&
-          (temp_var3 = FUN_1808b2f30(resource_manager + 9, 0x1a), temp_var3 == 0)))) {
+    temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x17);
+    if (((temp_var3 == 0) && (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x18), temp_var3 == 0)) &&
+        ((temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x19), temp_var3 == 0 &&
+          (temp_var3 = SystemDataFlowProcessor(resource_manager + 9, 0x1a), temp_var3 == 0)))) {
         (**(code **)(*resource_manager + 0x30))(resource_manager);
     }
     
@@ -1505,11 +1510,11 @@ void system_resource_handler(int64_t *resource_processor, uint64_t *resource_par
         }
         temp_var2 = func_0x0001808d2c80(resource_params, temp_var4);
         if (temp_var2 != '\0') {
-            FUN_180744d60(resource_processor + 0x13);
+            SystemAnalyzer(resource_processor + 0x13);
             array_handler((uint64_t)resource_processor);
             temp_var3 = *(int *)(resource_processor[0x15] + 0x44);
             if (((temp_var3 != 0) && (temp_var3 != 1)) ||
-               (temp_var3 = FUN_1808b2f30(resource_processor + 9, temp_var3 + 0xc), temp_var3 == 0)) {
+               (temp_var3 = SystemDataFlowProcessor(resource_processor + 9, temp_var3 + 0xc), temp_var3 == 0)) {
                 (**(code **)(*resource_processor + 0x30))(resource_processor);
             }
         }

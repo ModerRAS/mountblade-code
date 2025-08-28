@@ -38,7 +38,7 @@ LAB_180862dd7:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180862e00(int64_t param_1,byte param_2)
+uint64_t SystemCore_OperationHandler(int64_t param_1,byte param_2)
 
 {
   int64_t lVar1;
@@ -57,8 +57,8 @@ uint64_t FUN_180862e00(int64_t param_1,byte param_2)
       if (param_1 == 0) {
         return 0x1f;
       }
-      uVar3 = FUN_1808ca6f0(param_1 + 0x378);
-      if ((((int)uVar3 == 0) && (uVar3 = FUN_1808ca6f0(param_1 + 0x3f8), (int)uVar3 == 0)) &&
+      uVar3 = Physics_CollisionDetector(param_1 + 0x378);
+      if ((((int)uVar3 == 0) && (uVar3 = Physics_CollisionDetector(param_1 + 0x3f8), (int)uVar3 == 0)) &&
          ((uVar3 = thunk_FUN_180865550(param_1), (int)uVar3 == 0 &&
           (uVar3 = FUN_18085ff70(param_1), (int)uVar3 == 0)))) {
         if (*(int64_t *)(param_1 + 0x80) != 0) {
@@ -153,7 +153,7 @@ uint64_t FUN_180862e90(int64_t param_1,byte param_2)
              ((uint)param_2 << 0xc | *(uint *)(param_1 + 0x2d8)) & ~((param_2 ^ 1) << 0xc);
       }
       else {
-        uVar4 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),param_2);
+        uVar4 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),param_2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -174,13 +174,13 @@ uint64_t FUN_180862e90(int64_t param_1,byte param_2)
     else {
       iVar2 = 0;
       if (param_2 == 0) {
-        uVar4 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),0);
+        uVar4 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),0);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        iVar3 = FUN_18085ab70(param_1 + 200);
+        iVar3 = UISystem_WidgetController(param_1 + 200);
         if (0 < iVar3 + -0x40) {
-          iVar2 = FUN_18085ab70(param_1 + 200);
+          iVar2 = UISystem_WidgetController(param_1 + 200);
           iVar2 = iVar2 + -0x40;
         }
         lVar5 = (int64_t)iVar2 + *(int64_t *)(param_1 + 0x338);
@@ -199,12 +199,12 @@ uint64_t FUN_180862e90(int64_t param_1,byte param_2)
         lVar6 = 0;
       }
       else {
-        iVar2 = FUN_18085ab70(param_1 + 200);
+        iVar2 = UISystem_WidgetController(param_1 + 200);
         if (iVar2 < 0x41) {
           iVar2 = 0x40;
         }
         else {
-          iVar2 = FUN_18085ab70(param_1 + 200);
+          iVar2 = UISystem_WidgetController(param_1 + 200);
         }
         lVar6 = (int64_t)iVar2 + *(int64_t *)(param_1 + 0x338);
         uVar4 = FUN_18073d3c0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),lVar6,0);
@@ -377,7 +377,7 @@ int FUN_180863420(int64_t param_1)
     lStack_28 = param_1;
   }
   *(uint *)(param_1 + 0x2d8) = (uVar12 | *(uint *)(param_1 + 0x2d8)) & uVar10;
-  iVar6 = FUN_1808605e0(param_1);
+  iVar6 = SystemCore_StateController(param_1);
   if (iVar6 != 2) {
     uVar12 = *(uint *)(param_1 + 0x2d8);
     *(uint *)(param_1 + 0x2d8) = uVar12 | 0x800;
@@ -402,7 +402,7 @@ LAB_18086350f:
     do {
       lVar2 = *(int64_t *)(uVar14 + 8 + *(int64_t *)(lVar9 + 0x20));
       if (*(int *)(lVar2 + 0x30) != -1) {
-        FUN_1808d73b0(lVar2,*(int32_t *)(uVar14 + 4 + *(int64_t *)(lVar9 + 0x20)),0);
+        UtilitiesSystem_StringProcessor(lVar2,*(int32_t *)(uVar14 + 4 + *(int64_t *)(lVar9 + 0x20)),0);
         lVar9 = *(int64_t *)(param_1 + 0x80);
       }
       uVar12 = (int)uVar13 + 1;
@@ -462,12 +462,12 @@ LAB_180863724:
     bVar4 = abStackX_8[0];
     iVar6 = FUN_18085f670(param_1);
     if ((iVar6 != 0) ||
-       (iVar6 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),bVar4),
+       (iVar6 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),bVar4),
        iVar6 != 0)) goto LAB_180863790;
     lVar9 = *(int64_t *)(param_1 + 0x80);
     *(int32_t *)(param_1 + 0x2e4) = 0;
     if (lVar9 != 0) {
-      uVar7 = FUN_1808605e0(param_1);
+      uVar7 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar9 + 0x80) = uVar7;
     }
     puVar3 = *(uint64_t **)(param_1 + 0x480);
@@ -477,7 +477,7 @@ LAB_180863724:
   iVar6 = 0;
 LAB_180863795:
   if (lStack_28 != 0) {
-    iVar8 = FUN_1808605e0();
+    iVar8 = SystemCore_StateController();
     if (iVar8 == 2) {
       *(int32_t *)(lStack_28 + 0x488) = 0;
       return iVar6;
@@ -542,7 +542,7 @@ uint64_t FUN_180863430(uint64_t param_1)
     uVar17 = param_1;
   }
   *(uint *)(param_1 + 0x2d8) = (uVar7 | *(uint *)(param_1 + 0x2d8)) & uVar10;
-  iVar6 = FUN_1808605e0(param_1);
+  iVar6 = SystemCore_StateController(param_1);
   if (iVar6 != 2) {
     uVar7 = *(uint *)(param_1 + 0x2d8);
     *(uint *)(param_1 + 0x2d8) = uVar7 | 0x800;
@@ -569,7 +569,7 @@ LAB_18086350f:
     do {
       lVar2 = *(int64_t *)(uVar13 + 8 + *(int64_t *)(lVar9 + 0x20));
       if (*(int *)(lVar2 + 0x30) != -1) {
-        FUN_1808d73b0(lVar2,*(int32_t *)(uVar13 + 4 + *(int64_t *)(lVar9 + 0x20)),0);
+        UtilitiesSystem_StringProcessor(lVar2,*(int32_t *)(uVar13 + 4 + *(int64_t *)(lVar9 + 0x20)),0);
         lVar9 = *(int64_t *)(param_1 + 0x80);
       }
       uVar7 = (int)uVar12 + 1;
@@ -642,13 +642,13 @@ LAB_18086378e:
       uVar7 = (uint)uVar13;
       goto LAB_180863790;
     }
-    uVar7 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),bVar4);
+    uVar7 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),bVar4);
     uVar13 = (uint64_t)uVar7;
     if (uVar7 != 0) goto LAB_18086378e;
     lVar9 = *(int64_t *)(param_1 + 0x80);
     *(uint *)(param_1 + 0x2e4) = uVar15;
     if (lVar9 != 0) {
-      uVar8 = FUN_1808605e0(param_1);
+      uVar8 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar9 + 0x80) = uVar8;
     }
     puVar3 = *(uint64_t **)(param_1 + 0x480);
@@ -661,7 +661,7 @@ LAB_18086378e:
   uVar13 = unaff_R14 & 0xffffffff;
 LAB_180863795:
   if (uVar17 != 0) {
-    iVar6 = FUN_1808605e0();
+    iVar6 = SystemCore_StateController();
     if (iVar6 == 2) {
       *(uint *)(uVar17 + 0x488) = uVar15;
       return uVar13;
@@ -692,7 +692,7 @@ int32_t FUN_1808637ae(void)
   char cStack000000000000002c;
   uint in_stack_00000058;
   
-  iVar1 = FUN_1808605e0();
+  iVar1 = SystemCore_StateController();
   if (iVar1 == 2) {
     *(int32_t *)(lStackX_20 + 0x488) = unaff_R14D;
     return unaff_EDI;
@@ -884,7 +884,7 @@ uint64_t FUN_180863a80(int64_t param_1,uint64_t param_2)
     }
     lVar3 = *(int64_t *)(param_1 + 0x80);
     if (lVar3 != 0) {
-      uVar4 = FUN_1808605e0(param_1);
+      uVar4 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar3 + 0x80) = uVar4;
     }
   }
@@ -912,7 +912,7 @@ uint64_t FUN_180863aa3(uint param_1)
   if ((int)uVar5 == 0) {
     lVar3 = *(int64_t *)(unaff_RBP + 0x80);
     if (lVar3 != 0) {
-      uVar4 = FUN_1808605e0();
+      uVar4 = SystemCore_StateController();
       *(int32_t *)(lVar3 + 0x80) = uVar4;
     }
     uVar5 = 0;
@@ -931,7 +931,7 @@ uint64_t FUN_180863b09(void)
   
   lVar1 = *(int64_t *)(unaff_RBP + 0x80);
   if (lVar1 != 0) {
-    uVar2 = FUN_1808605e0();
+    uVar2 = SystemCore_StateController();
     *(int32_t *)(lVar1 + 0x80) = uVar2;
   }
   return 0;

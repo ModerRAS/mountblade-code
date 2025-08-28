@@ -71,7 +71,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
   } while (iVar9 < 7);
   uVar4 = FUN_1801fc6c0(param_2,&uStack_58);
   lVar1 = core_system_data_config;
-  iVar9 = FUN_180191c00(core_system_data_config,uVar4);
+  iVar9 = RenderingSystem_PostProcessor(core_system_data_config,uVar4);
   if ((iVar9 == -1) || (lVar7 = (int64_t)iVar9 * 0x68 + *(int64_t *)(lVar1 + 0x38), lVar7 == 0)) {
     lVar7 = *(int64_t *)(lVar1 + 0x28);
   }
@@ -244,7 +244,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
     *(int32_t *)((int64_t)param_1 + 0xb4) = *(int32_t *)((int64_t)param_1 + 0x74);
     *(int32_t *)(param_1 + 0x17) = *(int32_t *)(param_1 + 0xf);
     *(int32_t *)((int64_t)param_1 + 0xbc) = *(int32_t *)((int64_t)param_1 + 0x7c);
-    FUN_180084ae0();
+    Utilities_DataValidator();
     *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
     *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
     *(int32_t *)((int64_t)param_1 + 0xac) = 0;
@@ -362,7 +362,7 @@ void FUN_180078c10(int64_t param_1)
   *(int32_t *)(param_1 + 0xb4) = *(int32_t *)(param_1 + 0x74);
   *(int32_t *)(param_1 + 0xb8) = *(int32_t *)(param_1 + 0x78);
   *(int32_t *)(param_1 + 0xbc) = *(int32_t *)(param_1 + 0x7c);
-  FUN_180084ae0();
+  Utilities_DataValidator();
   *(int32_t *)(param_1 + 0xbc) = 0x3f800000;
   *(int32_t *)(param_1 + 0x8c) = 0;
   *(int32_t *)(param_1 + 0x9c) = 0;

@@ -76,7 +76,7 @@ uint64_t FUN_1805a35f0(int64_t param_1)
       uStack_38 = 1;
       iStack_34 = -1;
       uStack_30 = 0x200c;
-      FUN_18051ec50(*(int64_t *)(param_1 + 0x108),&uStack_38);
+      CoreSystemThreadManager(*(int64_t *)(param_1 + 0x108),&uStack_38);
       if (((*(byte *)((int64_t)
                       *(int *)((int64_t)*(int *)(param_1 + 0x298) * 0xa0 + 100 +
                               *(int64_t *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10)
@@ -103,7 +103,7 @@ uint64_t FUN_1805a35f0(int64_t param_1)
       if (iVar7 != -1) {
         uStack_30 = 0;
         iStack_34 = iVar7;
-        FUN_18051ec50(*(uint64_t *)(param_1 + 0x108),&uStack_38);
+        CoreSystemThreadManager(*(uint64_t *)(param_1 + 0x108),&uStack_38);
       }
       lVar6 = *(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x8f8);
       if ((*(byte *)(*(int64_t *)((int64_t)iVar3 * 0x1f8 + 0xd8 + lVar6) + 0x50 +
@@ -194,7 +194,7 @@ void FUN_1805a3a20(int64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1805a3ab0(int64_t param_1)
+uint64_t RenderingSystem_ConfigValidator0(int64_t param_1)
 
 {
   int64_t *plVar1;
@@ -269,7 +269,7 @@ uint64_t StringProcessor(int64_t param_1,int8_t *param_2)
        ((iVar1 = *(int *)(lVar6 + 0x2450), iVar1 == -1 ||
         ((*(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config) < 0x18 ||
          (uVar5 = (int64_t)iVar1 * 0x68, 0x1b < *(int *)(uVar5 + 0x58 + system_system_config))))))) {
-      cVar3 = FUN_1805a3ab0(param_1);
+      cVar3 = RenderingSystem_ConfigValidator0(param_1);
       fVar7 = system_system_config;
       if (cVar3 != '\0') {
         fVar7 = system_system_config * 0.85;
@@ -440,7 +440,7 @@ LAB_1805a3e5f:
     uStack_28 = 0xff;
     uStack_24 = 0;
     uStack_1c = 0x3f800000;
-    cVar2 = FUN_1805a4a20(param_1,piVar9,&uStack_a8,0);
+    cVar2 = UISystem_InputHandler(param_1,piVar9,&uStack_a8,0);
     if (cVar2 != '\0') {
       *(int32_t *)(param_1 + 0x28c) = 1;
       cVar2 = func_0x0001805241e0(*(uint64_t *)(param_1 + 0x108));
@@ -605,7 +605,7 @@ void FUN_1805a4160(int64_t param_1,int param_2,int param_3,uint param_4)
   uStack_78 = 1;
   uStack_74 = 0xffffffff;
   uStack_70 = 0x200c;
-  FUN_18051ec50(*(int64_t *)(param_1 + 0x108),&uStack_78);
+  CoreSystemThreadManager(*(int64_t *)(param_1 + 0x108),&uStack_78);
   lVar2 = *(int64_t *)(lVar5 + 0xd8);
   uVar4 = 0x800;
   if (((*(byte *)((int64_t)*(int *)((int64_t)param_3 * 0xa0 + 100 + lVar2) * 0x170 + 0x140 +
@@ -672,7 +672,7 @@ void FUN_1805a4160(int64_t param_1,int param_2,int param_3,uint param_4)
     uStack_1c = 0;
     uStack_48 = 1;
     iStack_44 = iVar3;
-    FUN_18051ec50(*(uint64_t *)(param_1 + 0x108),&uStack_48);
+    CoreSystemThreadManager(*(uint64_t *)(param_1 + 0x108),&uStack_48);
   }
   return;
 }
@@ -705,7 +705,7 @@ void FUN_1805a43d0(int64_t param_1)
     *(int32_t *)(param_1 + 0x1e0) = 0xffffffff;
     return;
   }
-  piVar4 = (int *)FUN_1805a0610(lVar3 + 0x28,3);
+  piVar4 = (int *)PhysicsSystem_ForceCalculator(lVar3 + 0x28,3);
   iVar6 = -1;
   bVar8 = false;
   if (piVar4 != (int *)0x0) {
@@ -715,7 +715,7 @@ void FUN_1805a43d0(int64_t param_1)
   iVar1 = *(int *)(param_1 + 0x1e0);
   iVar7 = 3;
   if ((bVar8) ||
-     (piVar5 = (int *)FUN_1805a0610(*(int64_t *)(param_1 + 0x1c8) + 0x28,7), piVar5 == (int *)0x0))
+     (piVar5 = (int *)PhysicsSystem_ForceCalculator(*(int64_t *)(param_1 + 0x1c8) + 0x28,7), piVar5 == (int *)0x0))
   {
 LAB_1805a44c4:
     iVar7 = iVar1;
@@ -764,7 +764,7 @@ void FUN_1805a43eb(int64_t param_1)
     *(int32_t *)(param_1 + 0x1e0) = 0xffffffff;
     return;
   }
-  piVar4 = (int *)FUN_1805a0610(lVar3 + 0x28,3);
+  piVar4 = (int *)PhysicsSystem_ForceCalculator(lVar3 + 0x28,3);
   iVar6 = -1;
   bVar8 = false;
   if (piVar4 != (int *)0x0) {
@@ -774,7 +774,7 @@ void FUN_1805a43eb(int64_t param_1)
   iVar1 = *(int *)(param_1 + 0x1e0);
   iVar7 = 3;
   if ((bVar8) ||
-     (piVar5 = (int *)FUN_1805a0610(*(int64_t *)(param_1 + 0x1c8) + 0x28,7), piVar5 == (int *)0x0))
+     (piVar5 = (int *)PhysicsSystem_ForceCalculator(*(int64_t *)(param_1 + 0x1c8) + 0x28,7), piVar5 == (int *)0x0))
   {
 LAB_1805a44c4:
     iVar7 = iVar1;
@@ -816,7 +816,7 @@ void FUN_1805a4442(int64_t param_1)
   int iVar6;
   bool bVar7;
   
-  piVar3 = (int *)FUN_1805a0610(param_1 + 0x28,3);
+  piVar3 = (int *)PhysicsSystem_ForceCalculator(param_1 + 0x28,3);
   iVar5 = -1;
   bVar7 = false;
   if (piVar3 != (int *)0x0) {
@@ -826,7 +826,7 @@ void FUN_1805a4442(int64_t param_1)
   iVar1 = *(int *)(unaff_RSI + 0xd0);
   iVar6 = 3;
   if ((bVar7) ||
-     (piVar4 = (int *)FUN_1805a0610(*(int64_t *)(unaff_RSI + 0xb8) + 0x28,7), piVar4 == (int *)0x0)
+     (piVar4 = (int *)PhysicsSystem_ForceCalculator(*(int64_t *)(unaff_RSI + 0xb8) + 0x28,7), piVar4 == (int *)0x0)
      ) {
 LAB_1805a44c4:
     iVar6 = iVar1;
@@ -964,7 +964,7 @@ LAB_1805a49ef:
       if (4 < uVar8 - 4) {
         uVar3 = uVar8;
       }
-      uVar7 = FUN_1805a0610(param_1,uVar3);
+      uVar7 = PhysicsSystem_ForceCalculator(param_1,uVar3);
       *(uint64_t *)(param_1 + 0x268) = uVar7;
     }
   }

@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 02_core_engine_part245.c - 14 个函数
 
@@ -354,7 +359,7 @@ void FUN_18020e840(int64_t param_1)
   
   *(int8_t *)(param_1 + 0x58) = 1;
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
-  plVar3 = (int64_t *)FUN_1808fc418(0x10);
+  plVar3 = (int64_t *)SystemRenderer(0x10);
   *plVar3 = param_1;
   plVar3[1] = (int64_t)&ui_system_data_1688_ptr;
   FUN_18020f620(uVar1);
@@ -517,7 +522,7 @@ uint64_t FUN_18020eae0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     pplStackX_18 = &plStackX_10;
     plStackX_10 = plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
-    FUN_18005e110(uVar3,&plStackX_10);
+    SystemCore_TimerManager(uVar3,&plStackX_10);
   }
   uVar3 = 0;
 LAB_18020eb6e:
@@ -640,7 +645,7 @@ uint64_t FUN_18020eba0(int64_t param_1,char param_2)
       (*(code *)(*pppplVar7)[5])();
       pppplVar6 = &ppplStackX_20;
 LAB_18020ed57:
-      FUN_18005e110(uVar8,pppplVar6);
+      SystemCore_TimerManager(uVar8,pppplVar6);
     }
   }
   uVar8 = 0;
@@ -851,8 +856,8 @@ LAB_18020f126:
 
 
 
-// 函数: void FUN_18020f150(uint64_t *param_1)
-void FUN_18020f150(uint64_t *param_1)
+// 函数: void CoreEngine_SystemInitializer(uint64_t *param_1)
+void CoreEngine_SystemInitializer(uint64_t *param_1)
 
 {
   code *pcVar1;
@@ -876,7 +881,7 @@ void FUN_18020f150(uint64_t *param_1)
   uStack_20 = 0;
   plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   plStack_d8 = plVar2;
-  FUN_180049830(plVar2);
+  UltraHighFreq_PerformanceMonitor1(plVar2);
   *plVar2 = (int64_t)&rendering_buffer_2248_ptr;
   plVar2[0x18] = (int64_t)alStack_b8;
   plStack_c0 = plVar2;
@@ -926,7 +931,7 @@ uint64_t FUN_18020f2b0(int64_t param_1,char param_2)
       }
       plStackX_20 = plStackX_18;
       (**(code **)(*plStackX_18 + 0x28))();
-      FUN_18005e110(uVar6,&plStackX_20);
+      SystemCore_TimerManager(uVar6,&plStackX_20);
     }
   }
   else {

@@ -1,5 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* FUN_1808fcf5c - RenderingSystem_DataStructureProcessor */
+#define RenderingSystem_DataStructureProcessor FUN_1808fcf5c
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 03_rendering_part077.c - 渲染系统高级缓冲区管理和资源处理
 // 本文件包含11个核心函数，主要负责渲染系统的高级缓冲区管理、资源处理和状态同步
@@ -59,7 +70,7 @@ LAB_18030cb58:
     temp_ptr9 = (uint64_t *)(stack_offset18 + 0x110);
     do {
       // 复制缓冲区数据
-      FUN_1808fcf5c(new_buffer_size, (int64_t)temp_ptr9 + buffer_start + -0x110, 0x58, 2, FUN_18030ccf0, FUN_1800f88f0, temp_var12, new_buffer_size);
+      RenderingSystem_DataStructureProcessor(new_buffer_size, (int64_t)temp_ptr9 + buffer_start + -0x110, 0x58, 2, FUN_18030ccf0, FUN_1800f88f0, temp_var12, new_buffer_size);
       *(int32_t *)(temp_ptr9 + -0xc) = *(int32_t *)(buffer_start + -0x60 + (int64_t)temp_ptr9);
       temp_ptr1 = (uint64_t *)(buffer_start + -0x5c + (int64_t)temp_ptr9);
       temp_var6 = temp_ptr1[1];
@@ -147,7 +158,7 @@ uint64_t * render_system_buffer_data_copier(uint64_t *dest_buffer, uint64_t *src
   dest_buffer[1] = src_buffer[1];
   *(int32_t *)(dest_buffer + 2) = *(int32_t *)(src_buffer + 2);
   // 复制扩展数据
-  FUN_1808fcf5c(dest_buffer + 3, src_buffer + 3, 0x20, 2, FUN_180627a70, FUN_180627b90);
+  RenderingSystem_DataStructureProcessor(dest_buffer + 3, src_buffer + 3, 0x20, 2, FUN_180627a70, SystemValidator);
   return dest_buffer;
 }
 
@@ -200,7 +211,7 @@ uint64_t render_system_resource_status_checker(int64_t resource_context)
 uint64_t * render_system_buffer_cleaner(uint64_t *buffer_context)
 {
   // 清理缓冲区数据
-  DataStructureManager(buffer_context + 3, 0x20, 2, FUN_180627850, FUN_180627b90);
+  DataStructureManager(buffer_context + 3, 0x20, 2, FUN_180627850, SystemValidator);
   *buffer_context = 0xffffffffffffffff;
   buffer_context[1] = 0;
   *(int32_t *)(buffer_context + 2) = 0;
@@ -422,21 +433,21 @@ void render_system_resource_cleaner(uint64_t *resource_context)
     }
   }
   // 清理缓冲区
-  FUN_1800b8500(resource_context + 0x26);
-  FUN_1800b8500(resource_context + 0x2a);
+  SystemCore_Controller(resource_context + 0x26);
+  SystemCore_Controller(resource_context + 0x2a);
   temp_ptr1 = resource_context + 0x37;
   // 清理资源链表
   for (temp_ptr2 = (uint64_t *)resource_context[0x38]; temp_ptr2 != temp_ptr1; temp_ptr2 = (uint64_t *)func_0x00018066bd70(temp_ptr2)) {
     resource_handle = temp_ptr2[6];
     if (resource_handle != 0) {
-      FUN_180057830(resource_handle);
+      DataTransformer0(resource_handle);
       // 释放资源
       CoreMemoryPoolInitializer(resource_handle);
     }
   }
   temp_ptr2 = (uint64_t *)resource_context[0x39];
   if (temp_ptr2 != (uint64_t *)0x0) {
-    FUN_18004b790(temp_ptr1, *temp_ptr2);
+    SystemCache_Manager(temp_ptr1, *temp_ptr2);
     // 释放资源
     CoreMemoryPoolInitializer(temp_ptr2);
   }
@@ -478,7 +489,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
     CoreMemoryPoolInitializer(resource_ptr);
   }
   resource_context[0x22] = 0;
-  FUN_18004b730(temp_ptr1);
+  UtilitiesSystem_Processor(temp_ptr1);
   if ((int64_t *)resource_context[0x36] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resource_context[0x36] + 0x38))();
   }
@@ -546,7 +557,7 @@ uint64_t render_system_render_object_creator(int64_t render_context)
   
   // 分配渲染对象内存
   render_obj = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 200, 8, 3, 0xfffffffffffffffe);
-  FUN_180049830(render_obj);
+  UltraHighFreq_PerformanceMonitor1(render_obj);
   *render_obj = (int64_t)&processed_var_5304_ptr;
   render_obj[0x18] = render_context;
   stack_ptr8 = render_obj;
@@ -562,7 +573,7 @@ uint64_t render_system_render_object_creator(int64_t render_context)
   if (stack_ptr8 != (int64_t *)0x0) {
     (**(code **)(*stack_ptr8 + 0x28))();
   }
-  FUN_18005e110(temp_var1, &stack_ptr8);
+  SystemCore_TimerManager(temp_var1, &stack_ptr8);
   return 0;
 }
 
@@ -660,7 +671,7 @@ void render_system_render_data_processor(int64_t render_context)
           temp_stack_88 = 0;
           temp_stack_84 = 0;
           // 处理渲染数据
-          FUN_180077750(*(uint64_t *)(*(int64_t *)(data_ptr + 8) + element_size), temp_var1, &temp_stack_68, 0, &temp_stack_d8);
+          SystemHealthMonitor(*(uint64_t *)(*(int64_t *)(data_ptr + 8) + element_size), temp_var1, &temp_stack_68, 0, &temp_stack_d8);
           element_ptr = *(int64_t *)(data_ptr + 8);
           temp_index = (int)temp_var4 + 1;
           temp_var4 = (uint64_t)temp_index;
@@ -753,7 +764,7 @@ void render_system_advanced_render_processor(uint64_t render_id, uint64_t render
         *(int32_t *)(global_rbp + -0x29) = 0;
         *(int8_t *)(global_rbp + -0x25) = 0;
         // 执行渲染处理
-        FUN_180077750(temp_var2, 0, global_rbp + -9, 0, global_rbp + -0x79);
+        SystemHealthMonitor(temp_var2, 0, global_rbp + -9, 0, global_rbp + -0x79);
         data_start = *(int64_t *)(element_ptr + 8);
         render_flags = render_flags + 8;
         temp_index = (int)outer_counter + 1;
@@ -803,7 +814,7 @@ uint64_t render_system_memory_manager(uint64_t memory_id, uint64_t memory_flags,
   uint64_t temp_var1;
   
   temp_var1 = 0xfffffffffffffffe;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((memory_flags & 1) != 0) {
     free(memory_id, 200, memory_config, memory_options, temp_var1);
   }
@@ -936,7 +947,7 @@ LAB_18030d811:
   FUN_18022d470(data_structure[0x37], &temp_stack_98);
   if ((temp_stack_d6 != '\0') || (temp_index = FUN_18022d470(data_structure[0x37], &temp_stack_e8), temp_index == 0)) {
     stack_ptr8 = data_structure;
-    FUN_18005ea90(data_start + 8, &stack_ptr8);
+    SystemSecurity_Manager(data_start + 8, &stack_ptr8);
     if (*(int *)(render_context + 0x11c) < management_flag) {
       *(int *)(render_context + 0x11c) = management_flag;
     }
@@ -1018,7 +1029,7 @@ void render_system_advanced_render_controller(uint64_t render_id, int64_t render
       float_ptr7 = float_ptr3;
       do {
         temp_long4 = FUN_18030f1e0(render_id);
-        FUN_180076910(temp_long4, render_object);
+        UltraHighFreq_SecurityValidator1(temp_long4, render_object);
         temp_float2 = render_data_array[8];
         temp_index = (uint)temp_float2 >> 0x10 & 0xff;
         *(float *)(temp_long4 + 0x238) = (float)temp_index * 0.003921569;
@@ -1052,7 +1063,7 @@ void render_system_advanced_render_controller(uint64_t render_id, int64_t render
   else {
     // 执行高级渲染流程
     temp_long8 = FUN_18030f1e0();
-    FUN_180076910(temp_long8, render_object);
+    UltraHighFreq_SecurityValidator1(temp_long8, render_object);
     temp_float1 = render_data_array[8];
     *(float *)(temp_long8 + 0x238) = (float)((uint)temp_float1 >> 0x10 & 0xff) * 0.003921569;
     *(float *)(temp_long8 + 0x23c) = (float)((uint)temp_float1 >> 8 & 0xff) * 0.003921569;

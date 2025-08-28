@@ -138,7 +138,7 @@ int network_complex_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   serialized_size = serialized_size + temp_size;
   
   // 序列化复合字段组
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -184,7 +184,7 @@ int network_multi_field_serializer(int64_t config_ptr, int64_t buffer_ptr, int b
   serialized_size = serialized_size + temp_size;
   
   // 序列化多字段数据
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -230,7 +230,7 @@ int network_extended_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   serialized_size = serialized_size + temp_size;
   
   // 序列化扩展字段
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -276,7 +276,7 @@ int network_advanced_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   serialized_size = serialized_size + temp_size;
   
   // 序列化高级字段
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -369,7 +369,7 @@ int network_variable_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   serialized_size = serialized_size + temp_size;
   
   // 序列化变量字段
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -415,7 +415,7 @@ int network_flag_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_s
   serialized_size = serialized_size + temp_size;
   
   // 序列化标志字段
-  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  temp_size = RenderingSystem_ShaderCompiler(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
   serialized_size = serialized_size + temp_size;
   
   // 序列化分隔符
@@ -689,7 +689,7 @@ int network_message_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   serialized_size = serialized_size + temp_size;
   
   // 序列化消息标志
-  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  temp_size = SystemCore_Cleanup(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
   return temp_size + serialized_size;
 }
 
@@ -809,7 +809,7 @@ int network_request_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   serialized_size = serialized_size + temp_size;
   
   // 序列化请求标志
-  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  temp_size = SystemCore_Cleanup(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
   return temp_size + serialized_size;
 }
 
@@ -857,7 +857,7 @@ int network_response_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   serialized_size = serialized_size + temp_size;
   
   // 序列化响应标志
-  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  temp_size = SystemCore_Cleanup(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
   return temp_size + serialized_size;
 }
 
@@ -905,7 +905,7 @@ int network_error_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_
   serialized_size = serialized_size + temp_size;
   
   // 序列化错误标志
-  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  temp_size = SystemCore_Cleanup(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
   return temp_size + serialized_size;
 }
 
@@ -951,7 +951,7 @@ int network_info_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_s
   serialized_size = serialized_size + temp_size;
   
   // 序列化信息标志
-  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  temp_size = SystemCore_Cleanup(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
   return temp_size + serialized_size;
 }
 
@@ -1073,7 +1073,7 @@ void network_connection_handler(uint64_t connection_id, uint64_t *output_data)
   
   // 检查初始化是否成功
   if (((status_code == 0) && 
-       (status_code = FUN_18088c740(&stack_buffer_148, stack_buffer_140), status_code == 0)) &&
+       (status_code = RenderingSystemOptimizer(&stack_buffer_148, stack_buffer_140), status_code == 0)) &&
       (status_code = func_0x00018088c530(connection_id & 0xffffffff, &stack_buffer_130), status_code == 0)) {
     // 成功初始化，设置连接参数
     stack_buffer_138 = 0;
@@ -1159,7 +1159,7 @@ void network_data_sender(uint64_t target_id, int64_t data_ptr)
       // 连接不可用，清理资源
       AdvancedSystemProcessor(&stack_buffer_138);
     }
-    sub_status = FUN_18088c740(&stack_buffer_138);
+    sub_status = RenderingSystemOptimizer(&stack_buffer_138);
     if (sub_status != 0) goto cleanup_handler;
   }
   else {
@@ -1382,7 +1382,7 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
     // 检查连接权限
     if ((*(uint *)(stack_buffer_148[0] + 0x24) >> 1 & 1) == 0) goto resource_handler;
     
-    sub_status = FUN_18088c740(stack_buffer_148 + 1);
+    sub_status = RenderingSystemOptimizer(stack_buffer_148 + 1);
     if (sub_status == 0) goto data_extraction;
   }
   else {
@@ -1391,7 +1391,7 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
   
   // 处理连接失败
   if ((sub_status == 0) &&
-      (status_code = FUN_18088dec0(*(uint64_t *)(stack_buffer_148[0] + 0x98), stack_buffer_138, 0x20), status_code == 0)) {
+      (status_code = SystemCore_SecurityChecker(*(uint64_t *)(stack_buffer_148[0] + 0x98), stack_buffer_138, 0x20), status_code == 0)) {
     // 设置数据提取参数
     *stack_buffer_138[0] = &processed_var_9408_ptr;
     *(int32_t *)(stack_buffer_138[0] + 1) = 0x20;

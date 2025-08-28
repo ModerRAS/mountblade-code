@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 /**
  * TaleWorlds.Native - 初始化系统事件处理和回调管理模块
  * 
@@ -122,12 +125,12 @@ extern uint64_t system_memory_c8c8;            /* 系统标识符21 */
  * 系统回调函数指针
  * 指向系统内部的回调处理函数
  */
-extern code *FUN_18007fcd0;                 /* 系统回调函数1 */
+extern code *SystemCore_Compression;                 /* 系统回调函数1 */
 extern code *FUN_1802281a0;                /* 系统回调函数2 */
 extern code *FUN_1802285e0;                /* 系统回调函数3 */
-extern code *FUN_18025cc00;                /* 系统回调函数4 */
-extern code *FUN_18025c000;                /* 系统回调函数5 */
-extern code *FUN_18025d270;                /* 系统回调函数6 */
+extern code *> HighFreq_FileSystem1;                /* 系统回调函数4 */
+extern code *> HighFreq_ConfigManager1;                /* 系统回调函数5 */
+extern code *> UltraHighFreq_NetworkHandler1;                /* 系统回调函数6 */
 extern code *FUN_180073930;                /* 系统回调函数7 */
 extern void *FUN_1800868c0;           /* 系统函数指针1 */
 
@@ -213,7 +216,7 @@ extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 #define SystemCoreFunction_1 NetworkDataProcessor        // 系统核心功能1
 #define SystemCoreFunction_2 NetworkConnectionManager        // 系统核心功能2
 #define SystemCoreFunction_3 NetworkProtocolHandler        // 系统核心功能3
-#define SystemCoreFunction_4 FUN_180623800        // 系统核心功能4
+#define SystemCoreFunction_4 SystemCore_ConfigManager        // 系统核心功能4
 #define SystemCoreFunction_5 FUN_180629770        // 系统核心功能5
 #define SystemCoreFunction_6 FUN_1808fc7d0        // 系统核心功能6
 
@@ -701,7 +704,7 @@ uint8_t SystemCallbackRegister_7(void)
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_18025cc00;
+    pcStackX_18 = > HighFreq_FileSystem1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
     
@@ -766,7 +769,7 @@ uint8_t SystemCallbackRegister_8(void)
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_18025c000;
+    pcStackX_18 = > HighFreq_ConfigManager1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
     
@@ -896,7 +899,7 @@ uint8_t SystemCallbackRegister_10(void)
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_18025d270;
+    pcStackX_18 = > UltraHighFreq_NetworkHandler1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
     
@@ -1156,7 +1159,7 @@ uint8_t SystemCallbackRegister_14(void)
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_18007fcd0;
+    pcStackX_18 = SystemCore_Compression;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
     

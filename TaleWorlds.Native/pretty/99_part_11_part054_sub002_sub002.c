@@ -44,7 +44,7 @@ uint64_t FUN_1807b5fd0(int64_t param_1,uint64_t param_2,uint param_3,int param_4
       if (bVar8) {
         uVar1 = *(int8_t *)(param_1 + 0xbe8);
         uVar2 = *(int8_t *)(param_1 + 0xbe9);
-        FUN_18080d690(param_1);
+        RenderingSystem_BufferManager0(param_1);
         *(int8_t *)(param_1 + 0xbe8) = uVar1;
         *(int8_t *)(param_1 + 0xbe9) = uVar2;
       }
@@ -109,7 +109,7 @@ uint64_t FUN_1807b62e0(int64_t param_1,int8_t param_2)
         *(uint *)(param_1 + 0xbfc) = uVar3;
         if (*(int *)(param_1 + 0x8ec) <= (int)uVar3) {
           if (*(char *)(param_1 + 0xbea) == '\0') {
-            FUN_18080d690(param_1);
+            RenderingSystem_BufferManager0(param_1);
           }
           uVar3 = *(uint *)(param_1 + 0xbd0);
           *(uint *)(param_1 + 0xbfc) = uVar3;
@@ -196,7 +196,7 @@ uint64_t FUN_1807b62ec(int64_t param_1,int8_t param_2)
         *(uint *)(param_1 + 0xbfc) = uVar2;
         if (*(int *)(param_1 + 0x8ec) <= (int)uVar2) {
           if (*(char *)(param_1 + 0xbea) == (char)unaff_RBP) {
-            FUN_18080d690(param_1);
+            RenderingSystem_BufferManager0(param_1);
           }
           uVar2 = *(uint *)(param_1 + 0xbd0);
           *(uint *)(param_1 + 0xbfc) = uVar2;
@@ -1850,7 +1850,7 @@ LAB_1807b8751:
                                      (*(int64_t *)(param_1 + 0x5f0) +
                                      (int64_t)(int)plVar4[0x3a] * 8));
                 }
-                FUN_180758220(puVar9[4],0x80);
+                UIComponent_Renderer(puVar9[4],0x80);
                 *(int32_t *)(puVar9 + 0xb) = 0;
               }
             }
@@ -3340,7 +3340,7 @@ LAB_1807b8751:
                                      (*(int64_t *)(unaff_RSI + 0x5f0) +
                                      (int64_t)(int)plVar4[0x3a] * 8));
                 }
-                FUN_180758220(plVar14[4],0x80);
+                UIComponent_Renderer(plVar14[4],0x80);
                 *(int32_t *)(plVar14 + 0xb) = 0;
               }
             }
@@ -3552,7 +3552,7 @@ LAB_1807b8751:
                                    (*(int64_t *)(unaff_RSI + 0x5f0) +
                                    (int64_t)(int)plVar3[0x3a] * 8));
               }
-              FUN_180758220(plVar9[4],0x80);
+              UIComponent_Renderer(plVar9[4],0x80);
               *(int32_t *)(plVar9 + 0xb) = 0;
             }
           }
@@ -5065,7 +5065,7 @@ LAB_1807b8751:
                                  (*(int64_t *)(unaff_RSI + 0x5f0) + (int64_t)(int)plVar4[0x3a] * 8
                                  ));
             }
-            FUN_180758220(plVar16[4],0x80);
+            UIComponent_Renderer(plVar16[4],0x80);
             *(int32_t *)(plVar16 + 0xb) = 0;
           }
         }
@@ -5277,7 +5277,7 @@ LAB_1807b8751:
                                  (*(int64_t *)(unaff_RSI + 0x5f0) + (int64_t)(int)plVar7[0x3a] * 8
                                  ));
             }
-            FUN_180758220(puVar8[4],0x80);
+            UIComponent_Renderer(puVar8[4],0x80);
             *(int32_t *)(puVar8 + 0xb) = 0;
           }
         }
@@ -5358,7 +5358,7 @@ uint64_t FUN_1807b8f20(uint64_t *param_1,uint64_t param_2,int param_3,char param
     else {
       uVar4 = FUN_1807bb8a0(param_1,lVar3,param_3);
       if ((int)uVar4 == 0) {
-        FUN_180772fe0(*param_1,7,param_2,lVar3,param_3,3,(char)uVar4);
+        SystemMemory_Controller(*param_1,7,param_2,lVar3,param_3,3,(char)uVar4);
                     // WARNING: Subroutine does not return
         SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar3,&processed_var_6512_ptr,0x917,1);
       }

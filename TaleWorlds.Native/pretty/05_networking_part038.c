@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 05_networking_part038.c - 2 个函数
 
@@ -69,9 +75,9 @@ void FUN_180860737(void)
       iVar5 = -1;
 LAB_1808607eb:
       if (iVar5 != -1) {
-        iVar5 = FUN_1808b2f30(unaff_R12 + 8,10);
-        if (((iVar5 != 0) || (iVar5 = FUN_1808b2f30(unaff_R12 + 8,0x1e), iVar5 != 0)) ||
-           (iVar5 = FUN_1808b2f30(unaff_R12 + 8), iVar5 != 0)) goto LAB_180861693;
+        iVar5 = SystemDataFlowProcessor(unaff_R12 + 8,10);
+        if (((iVar5 != 0) || (iVar5 = SystemDataFlowProcessor(unaff_R12 + 8,0x1e), iVar5 != 0)) ||
+           (iVar5 = SystemDataFlowProcessor(unaff_R12 + 8), iVar5 != 0)) goto LAB_180861693;
         lVar14 = *(int64_t *)(unaff_R12 + 0x88);
         uVar9 = extraout_XMM0_Qa;
         for (uVar19 = *(uint64_t *)(lVar14 + 0x70);
@@ -257,10 +263,10 @@ LAB_180860c58:
     plVar18 = (int64_t *)(unaff_R12 + 0x250);
     func_0x00018085f3d0(plVar18);
     puVar1 = (uint64_t *)(unaff_R12 + 0x260);
-    iVar5 = FUN_180744d60(puVar1);
+    iVar5 = SystemAnalyzer(puVar1);
     if (iVar5 == 0) {
       puVar24 = (uint64_t *)(unaff_R12 + 0x270);
-      iVar5 = FUN_180744d60(puVar24);
+      iVar5 = SystemAnalyzer(puVar24);
       if (iVar5 == 0) {
         plVar22 = (int64_t *)0x0;
         plVar7 = (int64_t *)(in_stack_00000070 + 0x240);
@@ -421,7 +427,7 @@ LAB_180860f7b:
                           else if (iVar21 < iVar5) {
                             iVar21 = iVar5;
                           }
-                          iVar5 = FUN_180747f10(puVar24,iVar21);
+                          iVar5 = RenderingTextureManager0(puVar24,iVar21);
                           if (iVar5 != 0) goto LAB_180861693;
                         }
                         *(int64_t **)(*puVar24 + (int64_t)*(int *)(unaff_R12 + 0x278) * 8) =
@@ -485,7 +491,7 @@ LAB_180860f7b:
                           else if (iVar21 < iVar5) {
                             iVar21 = iVar5;
                           }
-                          iVar5 = FUN_180747f10(puVar1,iVar21);
+                          iVar5 = RenderingTextureManager0(puVar1,iVar21);
                           if (iVar5 != 0) goto LAB_180861693;
                         }
                         *(int64_t **)(*puVar1 + (int64_t)*(int *)(unaff_R12 + 0x268) * 8) =
@@ -571,7 +577,7 @@ LAB_18086142b:
             if ((iVar5 == 0) && (iVar5 = FUN_1808d3ee0(in_stack_00000070 + 0x280,uVar9), iVar5 == 0)
                ) {
               lVar14 = *(int64_t *)(*(int64_t *)(in_stack_00000070 + 0x2b0) + 0x30);
-              iVar5 = FUN_18085ab70(in_stack_00000070 + 200);
+              iVar5 = UISystem_WidgetController(in_stack_00000070 + 200);
               lVar14 = lVar14 + iVar5;
               plVar7 = (int64_t *)*plVar18;
 joined_r0x000180861496:
@@ -681,8 +687,8 @@ LAB_180861693:
 
 
 
-// 函数: void FUN_1808616bc(void)
-void FUN_1808616bc(void)
+// 函数: void SystemCore_ValidationSystem(void)
+void SystemCore_ValidationSystem(void)
 
 {
   int64_t unaff_RBP;

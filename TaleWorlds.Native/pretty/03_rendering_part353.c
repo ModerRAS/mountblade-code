@@ -1,5 +1,19 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 03_rendering_part353.c - 18 个函数
 
@@ -7,7 +21,7 @@
 void FUN_18045af40(uint64_t *param_1)
 
 {
-  FUN_18023b050(*param_1,0);
+  SystemCore_NetworkHandler(*param_1,0);
                     // WARNING: Could not recover jumptable at 0x00018045af5e. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*(int64_t *)*param_1 + 0x38))();
@@ -131,7 +145,7 @@ void FUN_18045b1d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   int64_t lStack_28;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30,param_6);
+  SystemCore_CacheManager(&puStack_30,param_6);
   if (param_1 == 0) {
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
@@ -164,7 +178,7 @@ void FUN_18045b2f0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int64_t lStack_28;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  SystemCore_CacheManager(&puStack_30);
   FUN_180489b50(param_1,&puStack_30,param_3,param_4,uVar1);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -192,8 +206,8 @@ void FUN_18045b360(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30,param_7);
-  FUN_180627910(&puStack_50,param_8);
+  SystemCore_CacheManager(&puStack_30,param_7);
+  SystemCore_CacheManager(&puStack_50,param_8);
   if (param_1 == 0) {
     puStack_50 = &system_data_buffer_ptr;
     if (lStack_48 != 0) {
@@ -301,7 +315,7 @@ void FUN_18045b5b0(int64_t param_1)
   }
   *(uint *)(param_1 + 0x124) = uVar4;
   *(int32_t *)(param_1 + 0x128) = 0;
-  FUN_1800b8500(param_1 + 0x170 + (int64_t)(int)uVar4 * 0x20);
+  SystemCore_Controller(param_1 + 0x170 + (int64_t)(int)uVar4 * 0x20);
   lVar2 = *(int64_t *)(param_1 + 0x1c0);
   while( true ) {
     if (lVar2 == param_1 + 0x1b8) {
@@ -315,7 +329,7 @@ void FUN_18045b5b0(int64_t param_1)
     if (0x78 < *(int *)(lVar1 + 0x24)) break;
     lVar2 = func_0x00018066bd70(lVar2);
   }
-  FUN_180057830(lVar1);
+  DataTransformer0(lVar1);
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(lVar1);
 }
@@ -449,7 +463,7 @@ void FUN_18045bb20(void)
 {
   int8_t auStack_30 [40];
   
-  FUN_180627910(auStack_30);
+  SystemCore_CacheManager(auStack_30);
   FUN_180200780();
   return;
 }
@@ -521,7 +535,7 @@ int32_t FUN_18045bbb0(void)
   puStack_88 = &rendering_buffer_2640_ptr;
   pcStack_80 = FUN_1800adba0;
   appuStack_98[0] = &plStackX_8;
-  FUN_18005c650(appuStack_98);
+  SystemCore_SecurityManager(appuStack_98);
   fVar3 = (float)alStack_78[0];
   if (alStack_78[0] < 0) {
     fVar3 = fVar3 + 1.8446744e+19;
@@ -563,7 +577,7 @@ FUN_18045bdb0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = SystemCore_CacheManager(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180051f00(system_main_module_state,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -640,7 +654,7 @@ void FUN_18045bf30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   FUN_18021e9c0();
   puStack_20 = &processed_var_4944_ptr;
   puStack_18 = &processed_var_4928_ptr;
-  FUN_18005c650(auStack_30);
+  SystemCore_SecurityManager(auStack_30);
   return;
 }
 
@@ -775,7 +789,7 @@ void FUN_18045c1d0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   void *puStack_30;
   int64_t lStack_28;
   
-  lVar1 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  lVar1 = SystemCore_CacheManager(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   puVar2 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
@@ -804,7 +818,7 @@ void FUN_18045c250(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar1 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar1 = SystemCore_CacheManager(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   FUN_180054360(system_main_module_state,uVar1);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -835,12 +849,12 @@ void FUN_18045c2c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uVar4 = 0xfffffffffffffffe;
   lVar1 = *system_main_module_state;
   appuStackX_18[0] = &puStack_30;
-  uVar3 = FUN_180627910(&puStack_30);
+  uVar3 = SystemCore_CacheManager(&puStack_30);
   uVar2 = FUN_180142220(lVar1,uVar3,param_3,param_4,uVar4);
-  FUN_180627910(&puStack_30,param_1);
+  SystemCore_CacheManager(&puStack_30,param_1);
   appuStackX_18[0] = (void **)CONCAT44(appuStackX_18[0]._4_4_,uVar2);
   uVar3 = FUN_18009b5a0(lVar1 + 0x858,&puStack_30);
-  FUN_1800571e0(uVar3,appuStackX_18);
+  SystemDatabaseProcessor(uVar3,appuStackX_18);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -905,7 +919,7 @@ void FUN_18045c3f0(uint64_t param_1)
   pcVar1 = *(code **)(*system_cache_buffer + 0x70);
   lVar4 = *system_main_module_state;
   puStack_268 = auStack_260;
-  uVar3 = FUN_180627910(auStack_260,param_1);
+  uVar3 = SystemCore_CacheManager(auStack_260,param_1);
   iVar2 = FUN_180142220(lVar4,uVar3);
   if (-1 < iVar2) {
     if ((uint64_t)(int64_t)iVar2 <
@@ -914,9 +928,9 @@ void FUN_18045c3f0(uint64_t param_1)
       goto LAB_18045c493;
     }
   }
-  lVar4 = FUN_180628ca0();
+  lVar4 = MemoryDebugger0();
 LAB_18045c493:
-  uVar3 = FUN_180624440(apuStack_238,lVar4);
+  uVar3 = SystemCore_EncryptionEngine(apuStack_238,lVar4);
   uVar3 = SystemCore_EncryptionEngine0(&puStack_290,uVar3);
   uStack_298 = 1;
   apuStack_238[0] = &system_state_ptr;

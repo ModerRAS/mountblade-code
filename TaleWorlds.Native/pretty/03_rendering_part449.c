@@ -34,7 +34,7 @@ void FUN_180510ff0(void)
   plVar1 = *(int64_t **)(unaff_RSI + 0x590);
   fVar10 = *(float *)(unaff_R14 + 0x188);
   pcVar2 = *(code **)(*plVar1 + 0x90);
-  lVar4 = FUN_180532320();
+  lVar4 = InitializationSystem_ConfigManager();
   fVar9 = *(float *)(lVar4 + 8);
   fVar6 = (float)(*pcVar2)(plVar1,0);
   fVar10 = (fVar9 - fVar6) * fVar10;
@@ -42,12 +42,12 @@ void FUN_180510ff0(void)
     fVar10 = unaff_XMM9_Da;
   }
   if (*(int *)(unaff_R14 + 0x1f0) != -1) {
-    lVar4 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RSI + 0x590) + 0xac));
-    lVar5 = FUN_180532320(lVar4);
+    lVar4 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RSI + 0x590) + 0xac));
+    lVar5 = InitializationSystem_ConfigManager(lVar4);
     fVar6 = extraout_XMM0_Da;
     if (lVar5 != 0) {
       fVar9 = *(float *)(lVar4 + 0x188);
-      lVar4 = FUN_180532320(lVar4);
+      lVar4 = InitializationSystem_ConfigManager(lVar4);
       fVar10 = fVar10 + fVar9 * *(float *)(lVar4 + 8);
       fVar6 = extraout_XMM0_Da_00;
     }
@@ -64,7 +64,7 @@ void FUN_180510ff0(void)
   }
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(uVar7,0xffffffff);
+      SystemCore_Validator0(uVar7,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -162,12 +162,12 @@ void FUN_180511050(void)
   float in_stack_000000c0;
   
   uVar8 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
-  lVar3 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RSI + 0x590) + 0xac));
-  lVar4 = FUN_180532320(lVar3);
+  lVar3 = SystemCore_Initializer(&system_data_5f30,*(int32_t *)(*(int64_t *)(unaff_RSI + 0x590) + 0xac));
+  lVar4 = InitializationSystem_ConfigManager(lVar3);
   uVar5 = extraout_XMM0_Da;
   if (lVar4 != 0) {
     fVar6 = *(float *)(lVar3 + 0x188);
-    lVar3 = FUN_180532320(lVar3);
+    lVar3 = InitializationSystem_ConfigManager(lVar3);
     unaff_XMM8_Da = unaff_XMM8_Da + fVar6 * *(float *)(lVar3 + 8);
     uVar5 = extraout_XMM0_Da_00;
   }
@@ -183,7 +183,7 @@ void FUN_180511050(void)
   }
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(uVar5,0xffffffff);
+      SystemCore_Validator0(uVar5,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -289,7 +289,7 @@ void FUN_180511098(int32_t param_1)
   }
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(uVar4,0xffffffff);
+      SystemCore_Validator0(uVar4,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -395,7 +395,7 @@ void FUN_1805110a0(int32_t param_1)
   }
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(uVar4,0xffffffff);
+      SystemCore_Validator0(uVar4,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -486,7 +486,7 @@ void FUN_18051112d(int32_t param_1)
   
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(param_1,0xffffffff);
+      SystemCore_Validator0(param_1,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -577,7 +577,7 @@ void FUN_180511135(int32_t param_1)
   
   if (*(int *)(unaff_RSI + 0x568) - 3U < 2) {
     if (*(int *)(unaff_RSI + 0x560) != -1) {
-      FUN_18052e130(param_1,0xffffffff);
+      SystemCore_Validator0(param_1,0xffffffff);
     }
     FUN_1805989b0(&system_data_f0c8);
   }
@@ -730,7 +730,7 @@ void FUN_1805113f0(int64_t param_1,float param_2)
             uStack_68 = 0;
             uStack_64 = 0xffffffff;
             uStack_60 = 1;
-            FUN_18051ec50(param_1,&uStack_68);
+            CoreSystemThreadManager(param_1,&uStack_68);
           }
         }
         if ((((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) &&
@@ -827,7 +827,7 @@ void FUN_1805113f0(int64_t param_1,float param_2)
   uVar15 = *(uint *)(param_1 + 0x4c4) >> 10;
   acStackX_8[0] = '\x01';
   if ((uVar15 & 1) == 0) {
-    cVar9 = FUN_1805a3ab0(param_1 + 0x28);
+    cVar9 = RenderingSystem_ConfigValidator0(param_1 + 0x28);
     if ((cVar9 == '\0') || (cVar9 = StringProcessor(param_1 + 0x28,acStackX_8), cVar9 != '\0'))
     goto LAB_18051181d;
     bVar8 = true;

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part024.c - 8 个函数
@@ -385,7 +389,7 @@ uint FUN_18066c160(float *param_1,uint param_2)
 
 
 
-int8_t * FUN_18066c220(float *param_1,int8_t *param_2,uint param_3,int param_4,int param_5)
+int8_t * RenderingShaderProcessor0(float *param_1,int8_t *param_2,uint param_3,int param_4,int param_5)
 
 {
   uint uVar1;

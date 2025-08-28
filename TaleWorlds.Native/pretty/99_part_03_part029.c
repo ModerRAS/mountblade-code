@@ -652,7 +652,7 @@ void FUN_1801e85e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 {
   if (param_2 != (uint64_t *)0x0) {
     FUN_1801e85e0(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-    FUN_18004b730();
+    UtilitiesSystem_Processor();
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(param_2);
   }

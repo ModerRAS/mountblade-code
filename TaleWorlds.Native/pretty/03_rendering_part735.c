@@ -13,7 +13,7 @@
  * - 渲染管线优化
  * 
  * 主要功能模块：
- * 1. 图像数据处理 - FUN_18069bb20, FUN_18069bbd0
+ * 1. 图像数据处理 - FUN_18069bb20, SystemCore_Monitor
  * 2. 内存操作管理 - FUN_18069bc50, FUN_18069bd60, FUN_18069beb0
  * 3. 线程同步控制 - FUN_18069bfb0, FUN_18069bfc6, FUN_18069c023
  * 4. 图像格式处理 - FUN_18069c080, FUN_18069c200, FUN_18069c990
@@ -52,7 +52,7 @@ extern int16_t func_0x00018069edf0(int index, unsigned int param);
 extern int16_t func_0x00018069ee30(int index, unsigned int param);
 
 // 系统管理外部函数
-extern void FUN_18069ec80(void);
+extern void SystemCore_Handler(void);
 extern void func_0x000180029620(void);
 extern void func_0x0001800296e1(void);
 
@@ -130,7 +130,7 @@ typedef struct {
 
 // 图像处理函数别名
 #define RenderingSystem_ImageDataProcessor        FUN_18069bb20
-#define RenderingSystem_BufferValidator           FUN_18069bbd0
+#define RenderingSystem_BufferValidator           SystemCore_Monitor
 #define RenderingSystem_MemoryManager             FUN_18069bc50
 #define RenderingSystem_BufferInitializer         FUN_18069bd60
 #define RenderingSystem_DataCopier                FUN_18069beb0
@@ -269,7 +269,7 @@ bool RenderingSystem_BufferValidator(int64_t param_1, int param_2)
   
   // 检查是否需要重新填充缓冲区
   if (*(int *)(param_1 + 0x18) < 0) {
-    FUN_18069ec80();  // 重新填充缓冲区
+    SystemCore_Handler();  // 重新填充缓冲区
   }
   
   // 获取当前位流状态
@@ -1245,7 +1245,7 @@ void RenderingSystem_PostProcessor(unsigned long long param_1, int64_t param_2, 
  * 
  * 1. 图像数据处理功能：
  *    - 多通道图像数据处理器（FUN_18069bb20）
- *    - 缓冲区验证器（FUN_18069bbd0）
+ *    - 缓冲区验证器（SystemCore_Monitor）
  *    - 图像块处理器（FUN_18069c3b0）
  *    - 图像数据验证器（FUN_18069c3f3）
  *    - 图像代码分析器（FUN_18069c4ff）

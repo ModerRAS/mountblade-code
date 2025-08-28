@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -160,7 +161,7 @@ void render_system_texture_mapper(uint64_t render_context, int64_t texture_data,
     memory_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protector;
     
     // 初始化纹理数据
-    FUN_1802c22a0(alignment_buffer, &processed_var_6264_ptr);
+    SystemData_Processor(alignment_buffer, &processed_var_6264_ptr);
     texture_offset = system_message_buffer;
     
     // 计算纹理步长
@@ -194,10 +195,10 @@ void render_system_texture_mapper(uint64_t render_context, int64_t texture_data,
     *(uint64_t *)(*(int64_t *)(texture_offset + 0x1cd8) + 0x83f0) = 0;
     
     // 初始化渲染状态
-    FUN_18029de40(*(uint64_t *)(texture_offset + 0x1cd8), 1);
+    SystemCore_ProcessorEx(*(uint64_t *)(texture_offset + 0x1cd8), 1);
     buffer_size_1 = 0;
     buffer_size_2 = 0;
-    FUN_18029c8a0(*(uint64_t *)(system_message_buffer + 0x1cd8), 1, 0xff000000, 0x3f800000);
+    UtilitiesSystem_MathCalculator(*(uint64_t *)(system_message_buffer + 0x1cd8), 1, 0xff000000, 0x3f800000);
     
     texture_offset = system_message_buffer;
     texture_scale = (float)texture_step;
@@ -305,7 +306,7 @@ apply_parameters:
     
     // 处理纹理数据
     FUN_18031a240(texture_cache, render_flags);
-    FUN_18029fc10(*(int64_t *)(system_message_buffer + 0x1cd8), *(uint64_t *)(system_message_buffer + 0x1c88),
+    UltraHighFreq_DatabaseHandler1(*(int64_t *)(system_message_buffer + 0x1cd8), *(uint64_t *)(system_message_buffer + 0x1c88),
                   *(int64_t *)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
     
     // 设置数据源
@@ -353,7 +354,7 @@ apply_parameters:
         (**(code **)(*texture_manager + 0x28))();
     }
     
-    data_source = (void *)FUN_180299eb0(texture_offset, 0, &cache_handle, alignment_buffer);
+    data_source = (void *)UIRenderingEngine(texture_offset, 0, &cache_handle, alignment_buffer);
     data_flags = 0xff;
     data_buffer = (int8_t [8])0x4000300;
     temp_handle = 0;
@@ -514,7 +515,7 @@ void render_system_parameter_processor(uint64_t *render_context, int64_t texture
     strcpy_s(data_block, 0x80, param_source);
     
     // 初始化渲染参数
-    FUN_1800b1230(system_resource_state, render_context, &param_source, &data_width);
+    SystemInitializer(system_resource_state, render_context, &param_source, &data_width);
     data_height = 1;
     param_source = &system_state_ptr;
     texture_size = 0;

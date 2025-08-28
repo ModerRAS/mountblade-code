@@ -48,10 +48,10 @@ void FUN_180228280(int64_t param_1,int64_t *param_2)
       if ((uint64_t)((*param_2 - param_2[1]) + param_2[2]) < 0x41) {
         System_BufferManager(param_2,(param_2[1] - *param_2) + 0x40);
       }
-      FUN_180639fd0(param_2,lVar5 + 0xa0);
-      FUN_180639fd0(param_2,lVar5 + 0xb0);
-      FUN_180639fd0(param_2,lVar5 + 0xc0);
-      FUN_180639fd0(param_2,lVar5 + 0xd0);
+      Audio_SoundManager(param_2,lVar5 + 0xa0);
+      Audio_SoundManager(param_2,lVar5 + 0xb0);
+      Audio_SoundManager(param_2,lVar5 + 0xc0);
+      Audio_SoundManager(param_2,lVar5 + 0xd0);
       lVar5 = *(int64_t *)(param_1 + 0x20);
       uVar8 = (int)uVar9 + 1;
       uVar6 = (uint64_t)(int)uVar8;
@@ -93,10 +93,10 @@ void FUN_180228326(void)
     if ((uint64_t)((*unaff_RBX - unaff_RBX[1]) + unaff_RBX[2]) < 0x41) {
       System_BufferManager();
     }
-    FUN_180639fd0();
-    FUN_180639fd0();
-    FUN_180639fd0();
-    FUN_180639fd0();
+    Audio_SoundManager();
+    Audio_SoundManager();
+    Audio_SoundManager();
+    Audio_SoundManager();
     unaff_R15D = unaff_R15D + 1;
     lVar3 = SUB168(SEXT816(unaff_R12) *
                    SEXT816(*(int64_t *)(unaff_RDI + 0x28) - *(int64_t *)(unaff_RDI + 0x20)),8);
@@ -366,7 +366,7 @@ void FUN_180228730(int32_t *param_1,int64_t *param_2)
   uVar11 = uVar14;
   do {
     if (*pcVar6 == *(char *)(param_1 + 9)) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)(int)uVar11 * 0x10 + 0x180bf7cf0));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)(int)uVar11 * 0x10 + 0x180bf7cf0));
       break;
     }
     uVar11 = (uint64_t)((int)uVar11 + 1);
@@ -417,7 +417,7 @@ void FUN_180228730(int32_t *param_1,int64_t *param_2)
       uVar9 = uVar14;
       do {
         if (*pcVar6 == *(char *)(uVar11 + 0xf8 + lVar3)) {
-          FUN_180639de0(param_2,*(uint64_t *)(uVar9 * 0x10 + 0x180bf7d20));
+          UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)(uVar9 * 0x10 + 0x180bf7d20));
           break;
         }
         uVar9 = uVar9 + 1;
@@ -581,7 +581,7 @@ void FUN_18022873e(int32_t *param_1,int64_t param_2)
   uVar11 = uVar14;
   do {
     if (*pcVar6 == *(char *)(param_1 + 9)) {
-      uVar15 = FUN_180639de0(uVar15,*(uint64_t *)((int64_t)(int)uVar11 * 0x10 + 0x180bf7cf0));
+      uVar15 = UtilitiesSystem_ThreadManager(uVar15,*(uint64_t *)((int64_t)(int)uVar11 * 0x10 + 0x180bf7cf0));
       break;
     }
     uVar11 = (uint64_t)((int)uVar11 + 1);
@@ -633,7 +633,7 @@ void FUN_18022873e(int32_t *param_1,int64_t param_2)
       uVar9 = uVar14;
       do {
         if (*pcVar6 == *(char *)(uVar11 + 0xf8 + lVar3)) {
-          uVar15 = FUN_180639de0(uVar15,*(uint64_t *)(uVar9 * 0x10 + 0x180bf7d20));
+          uVar15 = UtilitiesSystem_ThreadManager(uVar15,*(uint64_t *)(uVar9 * 0x10 + 0x180bf7d20));
           break;
         }
         uVar9 = uVar9 + 1;

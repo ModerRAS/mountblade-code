@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part176_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_18037579d(int64_t param_1,uint64_t param_2,int64_t param_3)
@@ -570,10 +578,10 @@ LAB_18037619a:
                             *(int64_t *)(unaff_RBP + -0x18) = lVar31 + lVar32 * 8;
 LAB_18037624d:
                             if ((*plVar21 != *(int64_t *)(lVar31 + lVar32 * 8)) &&
-                               (lVar31 = FUN_180372570(unaff_R14,iVar16,iVar15),
+                               (lVar31 = SystemCore_SecurityManager(unaff_R14,iVar16,iVar15),
                                *(int64_t *)(lVar31 + 0x108) != 0)) {
-                              lVar31 = FUN_180372570(unaff_R14,iVar16,iVar15);
-                              lVar32 = FUN_180372570(unaff_R14,iVar16,iVar15);
+                              lVar31 = SystemCore_SecurityManager(unaff_R14,iVar16,iVar15);
+                              lVar32 = SystemCore_SecurityManager(unaff_R14,iVar16,iVar15);
                               fVar42 = *(float *)(lVar31 + 0x38) - *(float *)(unaff_RBP + 0x150);
                               fVar44 = *(float *)(lVar31 + 0x3c) - fVar47;
                               fVar43 = *(float *)(lVar31 + 0x40) - fVar45;
@@ -588,7 +596,7 @@ LAB_18037624d:
                                                           *(int64_t *)(unaff_RBP + -0x78) + 0x30,
                                                           lVar32 + 0x4c,lVar31 + 0x18,&system_data_0300
                                                          ), iVar38 != 0)))) {
-                                lVar31 = FUN_180372570(unaff_R14,iVar16,iVar15);
+                                lVar31 = SystemCore_SecurityManager(unaff_R14,iVar16,iVar15);
                                 uVar30 = *(uint *)(unaff_R14 + 0x118);
                                 iVar38 = *(int *)(unaff_R14 + 0x58);
                                 lVar27 = *(int64_t *)(unaff_R14 + 0x110);
@@ -609,10 +617,10 @@ LAB_1803763e0:
                                   uVar22 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
                                   uVar23 = *(uint64_t *)(unaff_R14 + 0x68);
                                   *(int *)(unaff_RBP + -0x10) = iVar38;
-                                  uVar23 = FUN_180372430(uVar22,uVar23);
+                                  uVar23 = SystemCore_SignalHandler(uVar22,uVar23);
                                   *(uint64_t *)(unaff_RBP + -8) = uVar23;
                                   puVar24 = (int32_t *)
-                                            FUN_18037f020(unaff_R14 + 0x108,unaff_RBP + 0x48,
+                                            SystemCore_MessageQueueManager(unaff_R14 + 0x108,unaff_RBP + 0x48,
                                                           unaff_RBP + -0x10);
                                   uVar17 = puVar24[1];
                                   uVar6 = puVar24[2];

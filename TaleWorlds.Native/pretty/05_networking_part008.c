@@ -103,7 +103,7 @@ void FUN_180849820(int32_t param_1, int64_t param_2, int32_t param_3)
   uStack_158 = 0;
   uStack_150 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = RenderingSystemOptimizer(&uStack_158,uStack_150), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
     if (alStack_140[0] == 0) {
       lStack_148 = alStack_140[0];
@@ -240,7 +240,7 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
     iVar6 = func_0x00018074bda0(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
     iVar6 = SystemDataProcessor(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
-    FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
+    RenderingEngine_FrameBufferHandler(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
     // 调用错误处理函数
     DataTransformer(0x1f,0xb,param_1,&ui_system_data_1728_ptr);
@@ -249,7 +249,7 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
   iVar5 = func_0x00018088c590(param_1,&lStack_160);
   if (iVar5 == 0) {
     if ((*(uint *)(lStack_160 + 0x24) >> 1 & 1) == 0) goto LAB_1808499fb;
-    iVar6 = FUN_18088c740(&uStack_168);
+    iVar6 = RenderingSystemOptimizer(&uStack_168);
     if (iVar6 == 0) goto LAB_180849ad3;
   }
   else {
@@ -258,7 +258,7 @@ LAB_180849ad3:
   }
   // 处理数据包数据
   if ((iVar6 == 0) &&
-     (iVar5 = FUN_18088dec0(*(uint64_t *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
+     (iVar5 = SystemCore_SecurityChecker(*(uint64_t *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
     *apuStack_158[0] = &ui_system_data_1624_ptr;
     *(int32_t *)(apuStack_158[0] + 1) = 0x58;
     *(int32_t *)(apuStack_158[0] + 2) = param_2;
@@ -340,7 +340,7 @@ void FUN_180849bb0(uint64_t param_1,uint64_t param_2,int32_t param_3,int8_t para
   iVar1 = func_0x00018088c590(param_1,&lStack_168);
   if (iVar1 == 0) {
     if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
-    iVar2 = FUN_18088c740(auStack_158);
+    iVar2 = RenderingSystemOptimizer(auStack_158);
     if (iVar2 == 0) goto LAB_180849c22;
   }
   else {
@@ -349,7 +349,7 @@ LAB_180849c22:
   }
   // 准备发送数据包
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x28), iVar1 == 0)) {
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x28), iVar1 == 0)) {
     *puStack_160 = &processed_var_8424_ptr;
     *(int32_t *)(puStack_160 + 1) = 0x28;
     *(int32_t *)(puStack_160 + 4) = param_3;
@@ -402,7 +402,7 @@ void FUN_180849d40(uint64_t param_1,int64_t param_2,int32_t param_3)
   iVar2 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_170);
   if (iVar2 == 0) {
     if ((*(uint *)(lStack_170 + 0x24) >> 1 & 1) == 0) goto LAB_180849dd1;
-    iVar3 = FUN_18088c740(&uStack_178);
+    iVar3 = RenderingSystemOptimizer(&uStack_178);
     if (iVar3 == 0) goto LAB_180849e6f;
   }
   else {
@@ -410,7 +410,7 @@ LAB_180849e6f:
     iVar3 = iVar2;
   }
   if ((iVar3 == 0) &&
-     (iVar2 = FUN_18088dec0(*(uint64_t *)(lStack_170 + 0x98),apuStack_168,0xa8), iVar2 == 0)) {
+     (iVar2 = SystemCore_SecurityChecker(*(uint64_t *)(lStack_170 + 0x98),apuStack_168,0xa8), iVar2 == 0)) {
     *apuStack_168[0] = &processed_var_8856_ptr;
     *(int32_t *)(apuStack_168[0] + 1) = 0xa8;
     *(int *)(apuStack_168[0] + 2) = (int)param_1;
@@ -460,7 +460,7 @@ void FUN_180849f40(uint64_t param_1,int64_t param_2,int32_t param_3)
   iVar2 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_170);
   if (iVar2 == 0) {
     if ((*(uint *)(lStack_170 + 0x24) >> 1 & 1) == 0) goto LAB_180849fd1;
-    iVar3 = FUN_18088c740(&uStack_178);
+    iVar3 = RenderingSystemOptimizer(&uStack_178);
     if (iVar3 == 0) goto LAB_18084a06f;
   }
   else {
@@ -468,7 +468,7 @@ LAB_18084a06f:
     iVar3 = iVar2;
   }
   if ((iVar3 == 0) &&
-     (iVar2 = FUN_18088dec0(*(uint64_t *)(lStack_170 + 0x98),apuStack_168,0xa0), iVar2 == 0)) {
+     (iVar2 = SystemCore_SecurityChecker(*(uint64_t *)(lStack_170 + 0x98),apuStack_168,0xa0), iVar2 == 0)) {
     *apuStack_168[0] = &ui_system_data_1216_ptr;
     *(int32_t *)(apuStack_168[0] + 1) = 0xa0;
                     // WARNING: Subroutine does not return
@@ -502,7 +502,7 @@ void FUN_18084a140(uint64_t param_1,int8_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084a1fa;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084a1a4;
   }
   else {
@@ -510,7 +510,7 @@ LAB_18084a1a4:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_7360_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -546,7 +546,7 @@ void FUN_18084a280(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084a346;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084a2ef;
   }
   else {
@@ -554,7 +554,7 @@ LAB_18084a2ef:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_6688_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -590,7 +590,7 @@ void FUN_18084a3d0(uint64_t param_1,int32_t param_2,int32_t param_3)
   iVar1 = func_0x00018088c590(param_1,alStack_158);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084a498;
-    iVar2 = FUN_18088c740(alStack_158 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_158 + 1);
     if (iVar2 == 0) goto LAB_18084a43e;
   }
   else {
@@ -598,7 +598,7 @@ LAB_18084a43e:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_158[0] + 0x98),apuStack_148,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_158[0] + 0x98),apuStack_148,0x20), iVar1 == 0))
   {
     *apuStack_148[0] = &processed_var_7088_ptr;
     *(int32_t *)(apuStack_148[0] + 1) = 0x20;
@@ -635,7 +635,7 @@ void FUN_18084a550(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084a608;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084a5b3;
   }
   else {
@@ -643,7 +643,7 @@ LAB_18084a5b3:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_7752_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -679,7 +679,7 @@ void FUN_18084a680(int32_t param_1,uint64_t param_2)
   uStack_138 = 0;
   uStack_130 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = RenderingSystemOptimizer(&uStack_138,uStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1,alStack_120), iVar1 == 0)) {
     lStack_128 = *(int64_t *)(alStack_120[0] + 8);
   }
@@ -713,7 +713,7 @@ void FUN_18084a7a0(int32_t param_1,uint64_t param_2)
   uStack_138 = 0;
   uStack_130 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = RenderingSystemOptimizer(&uStack_138,uStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1,alStack_120), iVar1 == 0)) {
     if (alStack_120[0] == 0) {
       lStack_128 = alStack_120[0];
@@ -752,7 +752,7 @@ void FUN_18084a8c0(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084a986;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084a92f;
   }
   else {
@@ -760,7 +760,7 @@ LAB_18084a92f:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_9536_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -796,7 +796,7 @@ void FUN_18084aa10(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084aad6;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084aa7f;
   }
   else {
@@ -804,7 +804,7 @@ LAB_18084aa7f:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_6552_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -840,7 +840,7 @@ void FUN_18084ab60(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084ac26;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084abcf;
   }
   else {
@@ -848,7 +848,7 @@ LAB_18084abcf:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &rendering_buffer_24_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -884,7 +884,7 @@ void FUN_18084acb0(uint64_t param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084ad66;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_18084ad14;
   }
   else {
@@ -892,7 +892,7 @@ LAB_18084ad14:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
     *apuStack_128[0] = &processed_var_7496_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
@@ -927,7 +927,7 @@ void FUN_18084ade0(uint64_t param_1,int32_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084ae98;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = RenderingSystemOptimizer(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_18084ae43;
   }
   else {
@@ -935,7 +935,7 @@ LAB_18084ae43:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_7624_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -969,7 +969,7 @@ void FUN_18084af10(int32_t param_1,int32_t *param_2)
   iVar2 = func_0x00018088c590(param_1,&lStackX_18);
   if (iVar2 == 0) {
     if ((*(uint *)(lStackX_18 + 0x24) >> 1 & 1) == 0) goto LAB_18084af88;
-    iVar3 = FUN_18088c740(&uStackX_10);
+    iVar3 = RenderingSystemOptimizer(&uStackX_10);
     if (iVar3 == 0) goto LAB_18084af68;
   }
   else {
@@ -1008,9 +1008,9 @@ uint64_t FUN_18084afc0(uint64_t param_1)
   if ((int)uVar3 == 0) {
     if (*(int *)(*(int64_t *)(alStackX_10[0] + 0x98) + 0x200) != 0) {
       alStackX_10[1] = 0;
-      iVar2 = FUN_18088c740(alStackX_10 + 1);
+      iVar2 = RenderingSystemOptimizer(alStackX_10 + 1);
       if (iVar2 == 0) {
-        iVar2 = FUN_18088dec0(*(uint64_t *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
+        iVar2 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
         if (iVar2 == 0) {
           *puStackX_20 = &memory_allocator_3344_ptr;
           *(int32_t *)(puStackX_20 + 1) = 0x10;
@@ -1043,9 +1043,9 @@ uint64_t FUN_18084b015(uint64_t param_1,int64_t param_2)
     return 0;
   }
   uStack0000000000000040 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000040);
+  iVar1 = RenderingSystemOptimizer(&stack0x00000040);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088dec0(*(uint64_t *)(in_stack_00000038 + 0x98),&stack0x00000048,0x10);
+    iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(in_stack_00000038 + 0x98),&stack0x00000048,0x10);
     if (iVar1 == 0) {
       *in_stack_00000048 = &memory_allocator_3344_ptr;
       *(int32_t *)(in_stack_00000048 + 1) = 0x10;
@@ -1107,7 +1107,7 @@ void FUN_18084b0c0(int32_t param_1)
                     // WARNING: Subroutine does not return
       AdvancedSystemProcessor(&uStackX_10);
     }
-    iVar2 = FUN_18088c740(&uStackX_10);
+    iVar2 = RenderingSystemOptimizer(&uStackX_10);
     if (iVar2 != 0) goto LAB_18084b131;
   }
   iVar2 = iVar1;
@@ -1144,7 +1144,7 @@ void FUN_18084b0db(void)
                     // WARNING: Subroutine does not return
       AdvancedSystemProcessor(&stack0x00000038);
     }
-    iVar2 = FUN_18088c740(&stack0x00000038);
+    iVar2 = RenderingSystemOptimizer(&stack0x00000038);
     if (iVar2 != 0) goto LAB_18084b131;
   }
   iVar2 = iVar1;
@@ -1172,7 +1172,7 @@ void FUN_18084b11f(void)
   int unaff_EDI;
   int64_t in_stack_00000040;
   
-  iVar1 = FUN_18088c740(&stack0x00000038);
+  iVar1 = RenderingSystemOptimizer(&stack0x00000038);
   if (iVar1 == 0) {
     iVar1 = unaff_EDI;
   }

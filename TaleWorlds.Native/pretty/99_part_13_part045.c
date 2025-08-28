@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* SystemEventHandler - SystemDataProcessor 的语义化别名 */
 #define SystemEventHandler SystemDataProcessor
 
@@ -165,7 +166,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3);
 #define SystemMemoryManager SystemErrorTerminator
 #define SystemStateProcessor SystemAllocationFailureHandler
 #define FUN_1808b2950 SystemDataValidator
-#define FUN_1808b2f30 SystemDataProcessor
+#define SystemDataFlowProcessor SystemDataProcessor
 #define FUN_1808c3dad SystemErrorHandlerExit
 #define SystemDataFlowProcessor SystemMemoryAllocator
 #define FUN_1808bc240 SystemDataChecker

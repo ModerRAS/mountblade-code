@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part060_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte param_4,
@@ -213,7 +217,7 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
       }
     }
     *(int *)(lVar45 + 0x14) = iVar32;
-    FUN_1800846d0();
+    CoreEngine_DataProcessor();
   }
   lVar45 = param_1[1];
   iVar32 = *(int *)((int64_t)dVar37 + 0x60) + *(int *)(lVar45 + 0x60);
@@ -325,7 +329,7 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
         param_5._12_4_ =
              fVar20 * auVar75._12_4_ + fVar21 * fVar80 + fVar22 * fVar85 +
              fVar73 * fVar60 + fVar56 * fVar66 + fVar76 * fVar72 + fVar82;
-        FUN_180235000(param_1,param_5);
+        SystemCore_DataSerializer(param_1,param_5);
         auVar75 = *(int8_t (*) [16])(unaff_RBP + -0xc);
         uVar44 = uVar44 + 1;
       } while (uVar44 < *(uint *)((int64_t)dVar37 + 0x10));
@@ -392,7 +396,7 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
         param_5._0_4_ = (float)(dVar69 * dVar9 + dVar74 * unaff_RBP[-10] + dVar15 * dVar6 + dVar13);
         param_5._12_4_ = auVar75._12_4_;
         param_5._8_4_ = (float)(dVar7 * dVar69 + unaff_RBP[-8] * dVar74 + dVar4 * dVar15 + dVar38);
-        FUN_180235000(param_1,param_5);
+        SystemCore_DataSerializer(param_1,param_5);
         uVar44 = uVar44 + 1;
       } while (uVar44 < *(uint *)((int64_t)dVar37 + 0x10));
     }
@@ -784,7 +788,7 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
         if (*(void **)(lVar45 + 8) != (void *)0x0) {
           puVar43 = *(void **)(lVar45 + 8);
         }
-        FUN_180627020(&processed_var_8000_ptr,puVar43);
+        SystemCore_Allocator(&processed_var_8000_ptr,puVar43);
         bStackX_20 = 0;
       }
       if ((int)*(char *)(*param_1 + 0xf6) < (char)bStackX_20 + 1) {
@@ -853,13 +857,13 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
       lVar45 = *(int64_t *)((int64_t)dVar37 + 0x90);
       lVar42 = (int64_t)(int)uVar53;
       if (bVar29) {
-        FUN_180235410(param_1,*(int *)(lVar45 + lVar42 * 0xc) + iVar34,
+        SystemCore_RenderFrame(param_1,*(int *)(lVar45 + lVar42 * 0xc) + iVar34,
                       *(int *)(lVar45 + 4 + lVar42 * 0xc) + iVar34,
                       *(int *)(lVar45 + 8 + lVar42 * 0xc) + iVar34);
         dVar37 = param_10;
       }
       if (bVar30) {
-        FUN_180235410(param_1,*(int *)(lVar45 + lVar42 * 0xc) + iVar34,
+        SystemCore_RenderFrame(param_1,*(int *)(lVar45 + lVar42 * 0xc) + iVar34,
                       *(int *)(lVar45 + 8 + lVar42 * 0xc) + iVar34,
                       *(int *)(lVar45 + 4 + lVar42 * 0xc) + iVar34);
         dVar37 = param_10;
@@ -875,18 +879,18 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
   *(int8_t *)((int64_t)param_1 + 0x32) = 1;
   if (dVar37 == 0.0) {
     if (param_13 != (double *)0x0) {
-      FUN_18007f840(param_13);
+      SystemManager_Validator(param_13);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(pdVar39);
     }
     if (param_14 != (double *)0x0) {
-      FUN_18007f840(param_14);
+      SystemManager_Validator(param_14);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(pdVar1);
     }
     dVar37 = unaff_RBP[-0x10];
     if (dVar37 != 0.0) {
-      FUN_18007f840(dVar37);
+      SystemManager_Validator(dVar37);
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(dVar37);
     }

@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -497,7 +502,7 @@ LAB_180552978:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
+    uVar1 = SystemFile_Manager(&system_data_6150,&puStack_40);
     *param_1 = uVar1;
   }
   param_1[1] = 0xffffffff;
@@ -535,7 +540,7 @@ LAB_180552a20:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
+    uVar1 = SystemFile_Manager(&system_data_6150,&puStack_40);
     param_1[1] = uVar1;
   }
   param_1[2] = 0xffffffff;
@@ -573,7 +578,7 @@ LAB_180552ac0:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
+    uVar1 = SystemFile_Manager(&system_data_6150,&puStack_40);
     param_1[2] = uVar1;
   }
   param_1[3] = 0xffffffff;
@@ -587,11 +592,11 @@ LAB_180552ac0:
     if (puVar4 == (uint64_t *)0x0) {
 LAB_180552b7d:
       if (0 < iStack_30) {
-        uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
+        uVar1 = SystemFile_Manager(&system_data_6150,&puStack_40);
         param_1[3] = uVar1;
       }
       *(int8_t *)(param_1 + 4) = 0;
-      FUN_180631000(param_2,&ui_system_data_1800_ptr);
+      UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr);
       puStack_40 = &system_data_buffer_ptr;
       if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
@@ -653,7 +658,7 @@ uint64_t * FUN_180552c00(int64_t param_1,uint64_t *param_2,int *param_3)
       *(uint64_t *)piVar2 = *(uint64_t *)param_3;
       piVar2[2] = 0;
       piVar2[3] = 0;
-      FUN_18066c220(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       if (acStackX_8[0] != '\0') {
         uVar5 = (uint64_t)(int64_t)iVar1 % (uint64_t)uStackX_c;

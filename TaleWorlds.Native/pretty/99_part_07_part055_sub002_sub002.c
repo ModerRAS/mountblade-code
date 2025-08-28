@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_07_part055_sub002_sub002.c - 1 个函数
@@ -232,7 +237,7 @@ void FUN_1804d13d0(int64_t param_1,int64_t param_2,uint param_3)
                            (*(int64_t *)(param_1 + 0x5e8) + (int64_t)((int)uVar6 >> 10) * 8) + 8,
                           &uStack_128);
             lStack_228 = (int64_t)iVar4;
-            FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8 +
+            SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8 +
                           *(int64_t *)(*(int64_t *)(param_1 + 11000) + lStack_228 * 8) + 0x70,
                           &puStack_238);
             uStack_e0 = param_3;
@@ -251,7 +256,7 @@ void FUN_1804d13d0(int64_t param_1,int64_t param_2,uint param_3)
             if (plStack_208 != (int64_t *)0x0) {
               (**(code **)(*plStack_208 + 0x38))();
             }
-            FUN_1800571e0();
+            SystemDatabaseProcessor();
             iStack_248 = 0;
             puStack_230 = (uint *)0x2c;
             puVar13 = (uint *)(param_1 + 0x100);
@@ -652,7 +657,7 @@ void FUN_1804d13d0(int64_t param_1,int64_t param_2,uint param_3)
                                       *(int64_t *)
                                        (*(int64_t *)(param_1 + 0x5e8) +
                                        (int64_t)((int)uVar6 >> 10) * 8) + 8,&uStack_108);
-                        FUN_1800571e0((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8
+                        SystemDatabaseProcessor((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_3) * 0xd8
                                       + *(int64_t *)
                                          (*(int64_t *)(param_1 + 11000) + (int64_t)iVar4 * 8) +
                                         0x70,&puStack_238);

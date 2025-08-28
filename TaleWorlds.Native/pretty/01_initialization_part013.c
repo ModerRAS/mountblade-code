@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedValidator_definition.h"
 /**
  * TaleWorlds.Native - 系统初始化模块第013部分
  * 
@@ -108,7 +110,7 @@ void SystemCallbackManagerInitialize(void)
     strcpy_s(auStack_88, 0x80, &memory_allocator_384_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册回调管理器到系统 */
-    init_system_memory = FUN_180623800(&puStack_a0);
+    init_system_memory = SystemCore_ConfigManager(&puStack_a0);
     return;
 }
 
@@ -200,7 +202,7 @@ void SystemPathManagerInitialize(void)
     strcpy_s(auStack_88, 0x80, &ui_system_data_1640_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册路径管理器到系统 */
-    init_system_memory = FUN_180623800(&puStack_a0);
+    init_system_memory = SystemCore_ConfigManager(&puStack_a0);
     return;
 }
 
@@ -235,7 +237,7 @@ void SystemConfigurationManagerInitialize(void)
     strcpy_s(auStack_88, 0x80, &ui_system_data_1664_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册配置管理器到系统 */
-    init_system_memory = FUN_180623800(&puStack_a0);
+    init_system_memory = SystemCore_ConfigManager(&puStack_a0);
     return;
 }
 
@@ -353,7 +355,7 @@ void FileManagerInitialize(void)
     int iVar1;
     
     /* 初始化文件管理器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be14a8;
     if (iVar1 != 0) {
         init_system_memory = 0x180be14c0;
@@ -379,12 +381,12 @@ void FilePathBuilderInitialize(void)
     int iVar1;
     
     /* 初始化路径构建器 */
-    iVar1 = FUN_1807681a0(1);
+    iVar1 = RenderingEngine_ShaderProcessor(1);
     if (iVar1 != 0) {
         init_system_memory = 0x180be15c0;
         return;
     }
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be14e0;
     if (iVar1 != 0) {
         init_system_memory = 0x180be1550;
@@ -410,7 +412,7 @@ void FileValidatorInitialize(void)
     int iVar1;
     
     /* 初始化文件验证器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be1c00;
     if (iVar1 != 0) {
         init_system_memory = 0x180be1c08;
@@ -436,7 +438,7 @@ void FileDataWriterInitialize(void)
     int iVar1;
     
     /* 初始化文件数据写入器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be23a0;
     if (iVar1 != 0) {
         init_system_memory = 0x180be23c0;
@@ -462,7 +464,7 @@ void FileOperationProcessorInitialize(void)
     int iVar1;
     
     /* 初始化文件操作处理器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be2ad8;
     if (iVar1 != 0) {
         init_system_memory = 0x180be2af8;
@@ -488,7 +490,7 @@ void FileSystemMonitorInitialize(void)
     int iVar1;
     
     /* 初始化文件系统监视器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be4710;
     if (iVar1 != 0) {
         init_system_memory = 0x180be4728;
@@ -514,12 +516,12 @@ void FileCacheManagerInitialize(void)
     int iVar1;
     
     /* 初始化文件缓存管理器 */
-    iVar1 = FUN_1807681a0(1);
+    iVar1 = RenderingEngine_ShaderProcessor(1);
     if (iVar1 != 0) {
         init_system_memory = 0x180be6078;
         return;
     }
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180be6068;
     if (iVar1 != 0) {
         init_system_memory = 0x180be6070;
@@ -580,7 +582,7 @@ void FilePermissionManagerInitialize(void)
     int iVar1;
     
     /* 初始化文件权限管理器 */
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180bebac8;
     if (iVar1 != 0) {
         init_system_memory = 0x180bebad8;
@@ -606,17 +608,17 @@ void FileCompressionManagerInitialize(void)
     int iVar1;
     
     /* 初始化文件压缩管理器 */
-    iVar1 = FUN_1807681a0(3);
+    iVar1 = RenderingEngine_ShaderProcessor(3);
     if (iVar1 != 0) {
         init_system_memory = 0x180bebc10;
         return;
     }
-    iVar1 = FUN_1807681a0(2);
+    iVar1 = RenderingEngine_ShaderProcessor(2);
     if (iVar1 != 0) {
         init_system_memory = 0x180bebbb0;
         return;
     }
-    iVar1 = FUN_1807681a0(0);
+    iVar1 = RenderingEngine_ShaderProcessor(0);
     init_system_memory = 0x180bebaf0;
     if (iVar1 != 0) {
         init_system_memory = 0x180bebb50;
@@ -742,7 +744,7 @@ void SystemThreadManagerInitialize(int64_t param_1)
     /* 创建线程管理器结构 */
     plVar2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 3, uVar4);
     plStackX_20 = plVar2;
-    FUN_180049830(plVar2);
+    UltraHighFreq_PerformanceMonitor1(plVar2);
     *plVar2 = (int64_t)&processed_var_8768_ptr;
     plVar2[3] = -4;
     pplStackX_10 = (int64_t **)plVar2;
@@ -967,9 +969,9 @@ void SystemEnvironmentInitializer(void)
         }
         else {
             if (0x100 < ((uint64_t)plStack_208 & 0xffffffff)) {
-                FUN_1808fcdc8();
+                UltraHighFreq_ThreadManager1();
 LAB_180044db8:
-                FUN_1808fcdc8();
+                UltraHighFreq_ThreadManager1();
                 pcVar2 = (code *)swi(3);
                 (*pcVar2)();
                 return;
@@ -988,7 +990,7 @@ LAB_180044db8:
             puStack_220 = puStack_1d0;
         }
         puStack_228 = &rendering_buffer_208_ptr;
-        FUN_1800623b0(system_message_context, 5, 0xffffffffffffffff, 4);
+        SystemConfigurationManager(system_message_context, 5, 0xffffffffffffffff, 4);
         puStack_188 = &processed_var_672_ptr;
         puStack_180 = auStack_170;
         uStack_178 = 0;
@@ -1000,7 +1002,7 @@ LAB_180044db8:
             puStack_220 = puStack_180;
         }
         puStack_228 = &rendering_buffer_232_ptr;
-        FUN_1800623b0(system_message_context, 5, 0xffffffffffffffff, 4);
+        SystemConfigurationManager(system_message_context, 5, 0xffffffffffffffff, 4);
         uStack_200 = 0;
         puStack_188 = &system_state_ptr;
         puStack_1f8 = &system_data_buffer_ptr;
@@ -1187,7 +1189,7 @@ LAB_180044faf:
     /* 初始化性能计数器 */
     iVar2 = QueryPerformanceFrequency(&pplStackX_18);
     if (iVar2 == 0) {
-        FUN_180626ee0(&rendering_buffer_2608_ptr);
+        UtilitiesSystem_PerformanceMonitor(&rendering_buffer_2608_ptr);
     }
     init_system_data_memory = 1.0 / (double)(int64_t)pplStackX_18;
     timeBeginPeriod(1);
@@ -1291,7 +1293,7 @@ int32_t SystemExitManager(void)
     /* 创建退出管理器结构 */
     pppplVar6 = (int64_t ****)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 3, uVar12);
     pppplStackX_8 = pppplVar6;
-    FUN_180049830(pppplVar6);
+    UltraHighFreq_PerformanceMonitor1(pppplVar6);
     *pppplVar6 = (int64_t ***)&memory_allocator_3368_ptr;
     ppplStackX_20 = (int64_t ***)pppplVar6;
     (*(code *)(*pppplVar6)[5])(pppplVar6);
@@ -1343,7 +1345,7 @@ int32_t SystemExitManager(void)
         (*(code *)(*ppplVar9)[5])(ppplVar9);
     }
     (*pcVar2)(puVar1, &pplStackX_18);
-    FUN_18020f150(*(uint64_t *)(lVar10 + 400));
+    CoreEngine_SystemInitializer(*(uint64_t *)(lVar10 + 400));
     if (ppplVar9 != (int64_t ***)0x0) {
         (*(code *)(*ppplVar9)[7])(ppplVar9);
     }
@@ -1796,7 +1798,7 @@ void SystemShortStringResetter(int8_t *param_1)
 #define FUN_180043d40             SystemThreadManagerInitialize
 #define FUN_180043f30             SystemMemoryAllocator
 #define FUN_180043f90             SystemErrorHandler
-#define FUN_180044a30             SystemInformationCollector
+#define CoreSystem_MessageHandler             SystemInformationCollector
 #define FUN_180044a50             SystemEnvironmentInitializer
 #define FUN_180044dc0             SystemDebugManagerInitialize
 #define FUN_180045380             SystemThreadCreator
@@ -1811,7 +1813,7 @@ void SystemShortStringResetter(int8_t *param_1)
 #define FUN_180045dc0             SystemResourceCleaner
 #define FUN_180045ea0             SystemBufferManager
 #define FUN_180045ee0             SystemShortStringCopier
-#define FUN_180045f60             SystemShortStringAppender
+#define SystemManager_Executor             SystemShortStringAppender
 #define FUN_180045f81             SystemShortMemoryCopier
 #define FUN_180045fa6             SystemShortStringResetter
 

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -212,7 +213,7 @@ uint64_t FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4)
     // 检查是否需要分配内存
     if (*(int64_t *)(param_1 + 0x16) == 0) {
       // 分配缓冲区内存
-      uVar1 = FUN_18066e960(0x20, (int64_t)(int)uVar3);
+      uVar1 = RenderingSystem_RenderTarget(0x20, (int64_t)(int)uVar3);
       *(uint64_t *)(param_1 + 0x16) = uVar1;
       param_1[0x18] = uVar3;
     }
@@ -324,7 +325,7 @@ uint64_t FUN_180697f32(uint64_t param_1, uint param_2, int param_3)
   // 检查是否需要分配内存
   if (*(int64_t *)(unaff_RBX + 0x16) == 0) {
     // 分配纹理内存
-    uVar2 = FUN_18066e960(0x20, (int64_t)(int)uVar4);
+    uVar2 = RenderingSystem_RenderTarget(0x20, (int64_t)(int)uVar4);
     *(uint64_t *)(unaff_RBX + 0x16) = uVar2;
     unaff_RBX[0x18] = uVar4;
     param_2 = in_stack_00000078;
@@ -1289,7 +1290,7 @@ void FUN_1806988d0(int *param_1, int param_2, int param_3)
   }
   
   // 清理随机数生成器
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   
@@ -1449,7 +1450,7 @@ void FUN_1806988f5(int *param_1, int param_2, int param_3)
   }
   
   // 清理随机数生成器
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   
@@ -1490,7 +1491,7 @@ void FUN_180698a50(void)
   do {
     if (299 < in_RAX) {
       // 清理随机数生成器
-      FUN_1808fcdc8();
+      UltraHighFreq_ThreadManager1();
       pcVar1 = (code *)swi(3);
       (*pcVar1)();
       return;

@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -32,7 +37,7 @@ void FUN_1804615e0(int64_t *param_1,int param_2,int param_3,uint64_t param_4)
       plStack_48 = (int64_t *)0x0;
       plStack_40 = (int64_t *)0x0;
       uStack_38 = 3;
-      FUN_1802e8c60(lVar3,&plStack_50);
+      NetworkSystem_SecurityManager(lVar3,&plStack_50);
       if (plStack_48 < plStack_40) {
         *plStack_48 = lVar3;
         plVar2 = plStack_48;
@@ -67,7 +72,7 @@ LAB_1804616c3:
       if ((int64_t)plStack_48 - (int64_t)plStack_50 >> 3 != 0) {
         lVar3 = 0;
         do {
-          FUN_1801c0d90(*(uint64_t *)(lVar3 + (int64_t)plStack_50));
+          UtilitiesSystem_CacheManager(*(uint64_t *)(lVar3 + (int64_t)plStack_50));
           iVar4 = iVar4 + 1;
           lVar3 = lVar3 + 8;
         } while ((uint64_t)(int64_t)iVar4 <
@@ -309,13 +314,13 @@ void FUN_180461a20(int64_t param_1,int64_t param_2,int64_t param_3)
                  (int64_t)*(int *)(param_3 + 0x9a28)) * 0x20 + render_system_data_memory);
     puStack_40 = &processed_var_848_ptr;
     puStack_38 = &processed_var_800_ptr;
-    FUN_18015b810(apiStack_50[0],0,apiStack_50[0][2] - *apiStack_50[0],0x10,0xffffffffffffffff,
+    SystemCore_DataTransformer(apiStack_50[0],0,apiStack_50[0][2] - *apiStack_50[0],0x10,0xffffffffffffffff,
                   apiStack_50,uVar6);
     lStack_30 = (((int64_t)*(int *)(*(int64_t *)(param_2 + 0x3580) + 0x628) + 8) * 0x80 +
                 (int64_t)*(int *)(param_3 + 0x9a28)) * 0x20 + render_system_data_memory;
     puStack_20 = &processed_var_736_ptr;
     puStack_18 = &processed_var_688_ptr;
-    FUN_18015b810();
+    SystemCore_DataTransformer();
     func_0x00018024f0d0(lVar1,*(uint64_t *)(param_2 + 0x3580),param_3);
   }
   return;
@@ -466,7 +471,7 @@ void FUN_180461c10(int64_t param_1,int param_2,uint64_t param_3,int64_t param_4,
                && ((int)uVar1 < param_7)) &&
               ((pppppuVar4 = ppppppuVar2[0x5d], ((uint64_t)pppppuVar4 & 1) != 0 &&
                (((uint64_t)pppppuVar4 & 2) != 0)))) && (((uint64_t)pppppuVar4 & 8) != 0)) {
-            FUN_1801c0d90(ppppppuVar2);
+            UtilitiesSystem_CacheManager(ppppppuVar2);
             cVar7 = FUN_18063c5e0(auStack_1c8,ppppppuVar2[5]);
             if (cVar7 != '\0') {
               pppppppuVar13 = &ppppppuStack_320;
@@ -584,7 +589,7 @@ LAB_18046261d:
   }
   ppppppuVar2 = ppppppuStack_310;
   if ((uint64_t *******)ppppppuStack_310 != (uint64_t *******)0x0) {
-    FUN_18004b790(&ppppppuStack_320,*ppppppuStack_310);
+    SystemCache_Manager(&ppppppuStack_320,*ppppppuStack_310);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(ppppppuVar2);
   }
@@ -596,7 +601,7 @@ LAB_18046261d:
       __Throw_C_error_std__YAXH_Z(iVar8);
     }
     iStack_368 = param_6 + iStack_364 * 6;
-    FUN_1800571e0(lVar18 + 0x27f0,&iStack_368);
+    SystemDatabaseProcessor(lVar18 + 0x27f0,&iStack_368);
     iVar8 = _Mtx_unlock(uVar17);
     if (iVar8 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar8);

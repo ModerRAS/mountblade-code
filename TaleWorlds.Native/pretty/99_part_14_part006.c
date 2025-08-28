@@ -1,8 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_14_part006.c - 7 个函数
 
@@ -20,11 +23,11 @@ void FUN_1808ebc00(uint64_t param_1,uint64_t param_2)
   uStack_10 = 0;
   uStack_28 = 0;
   uStack_24 = 0;
-  iVar1 = FUN_18088ee60(param_2,&uStack_28);
+  iVar1 = SystemCore_DataProcessor(param_2,&uStack_28);
   if (iVar1 == 0) {
     iVar1 = FUN_18088efe0(param_2,&uStack_10);
     if (iVar1 == 0) {
-      iVar1 = FUN_18088ee60(param_2,&uStack_24);
+      iVar1 = SystemCore_DataProcessor(param_2,&uStack_24);
       if (iVar1 == 0) {
         auStack_20[0] = uStack_28;
         auStack_18[0] = uStack_24;
@@ -50,7 +53,7 @@ uint64_t FUN_1808ebc80(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64
   
   uVar4 = 0;
   auStack_18[0] = 0;
-  uVar2 = FUN_18088ee60(param_2,auStack_18);
+  uVar2 = SystemCore_DataProcessor(param_2,auStack_18);
   if ((int)uVar2 == 0) {
     uVar5 = 0;
     if (((*(int *)((int64_t)param_1 + 0x24) != 0) && (uVar5 = uVar4, (int)param_1[1] != 0)) &&
@@ -387,8 +390,8 @@ uint64_t * FUN_1808ebf10(uint64_t *param_1,uint64_t param_2)
   if (param_1[9] != 0) {
     FUN_18088cae0();
   }
-  FUN_18084c220(param_1 + 0xb);
-  FUN_18084c220(param_1 + 7);
+  UltraHighFreq_InputHandler1(param_1 + 0xb);
+  UltraHighFreq_InputHandler1(param_1 + 7);
   FUN_1808b02a0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x68);
@@ -548,7 +551,7 @@ uint64_t FUN_1808ec200(int64_t param_1,int64_t param_2)
     else if (iVar7 < iVar5) {
       iVar7 = iVar5;
     }
-    uVar3 = FUN_1807d3f50((int64_t *)(param_1 + 0x40),iVar7);
+    uVar3 = SystemCore_SecurityHandler((int64_t *)(param_1 + 0x40),iVar7);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -589,7 +592,7 @@ uint64_t FUN_1808ec23d(int64_t param_1,uint param_2)
     else if (iVar5 < iVar4) {
       iVar5 = iVar4;
     }
-    uVar2 = FUN_1807d3f50((int64_t *)(param_1 + 0x40),iVar5);
+    uVar2 = SystemCore_SecurityHandler((int64_t *)(param_1 + 0x40),iVar5);
     if ((int)uVar2 != 0) {
       return uVar2;
     }

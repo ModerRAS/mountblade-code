@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
 
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
 
 // 99_part_01_part021.c - 系统资源管理和事件处理模块
 // 本模块包含7个核心函数，主要功能包括：
@@ -162,7 +164,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
         for (plVar7 = *(int64_t **)(lVar4 + 0xa0); plVar7 != plVar8; plVar7 = plVar7 + 1) {
             lVar15 = *plVar7;
             if ((*(int *)(lVar15 + 0x380) == 2) && ((*(uint *)(lVar15 + 0x328) & 0x20000000) == 0)) {
-                FUN_18023b050(lVar15, 0);
+                SystemCore_NetworkHandler(lVar15, 0);
             }
         }
     }
@@ -871,7 +873,7 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
         // 初始化监控数据缓冲区
         do {
             (**(code **)(puStack_90 + 0x10))(&puStack_90, &processed_var_7896_ptr);
-            FUN_180060680(acStack_50, &processed_var_4576_ptr, iVar7);
+            RenderingEngine_BufferManager(acStack_50, &processed_var_4576_ptr, iVar7);
             lVar2 = -1;
             
             // 计算字符串长度
@@ -888,7 +890,7 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
             }
             
             // 创建监控器实例
-            plVar3 = (int64_t *)FUN_1800b08e0(lVar1, &plStack_68, &puStack_90, 1);
+            plVar3 = (int64_t *)SystemCore_GarbageCollector(lVar1, &plStack_68, &puStack_90, 1);
             uStack_98 = 2;
             plVar3 = (int64_t *)*plVar3;
             

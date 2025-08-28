@@ -91,7 +91,7 @@ void FUN_18045db70(uint64_t param_1)
   uStack_30 = 0x18045dbba;
   CoreMemoryPoolValidator(lVar14 + 0x20,param_1);
   uStack_30 = 0x18045dbcb;
-  lVar15 = FUN_1800590b0(lVar21,acStackX_10,lVar14 + 0x20);
+  lVar15 = SystemCore_SecurityValidator(lVar21,acStackX_10,lVar14 + 0x20);
   if (acStackX_10[0] == '\0') {
     uStack_30 = 0x18045dc2f;
     FUN_18005d1f0(extraout_XMM0_Da,lVar14);
@@ -378,7 +378,7 @@ void FUN_18045db70(uint64_t param_1)
       lVar15 = lStack_310;
       lStack_368 = lVar14;
       do {
-        plVar13 = (int64_t *)FUN_180058080(lVar14,&puStack_2a0,pppppppuVar12 + 4);
+        plVar13 = (int64_t *)HighFreq_AnimationSystem1(lVar14,&puStack_2a0,pppppppuVar12 + 4);
         if (*plVar13 != lVar14) {
           bVar29 = false;
           uVar25 = 0;
@@ -463,7 +463,7 @@ void FUN_18045db70(uint64_t param_1)
                      (uint64_t)(*(int64_t *)(lStack_310 + 200) - lVar21 >> 3));
           }
           if (!bVar29) {
-            uVar28 = FUN_180624440(&uStack_268,pppppppuVar12 + 8);
+            uVar28 = SystemCore_EncryptionEngine(&uStack_268,pppppppuVar12 + 8);
             SystemCore_EncryptionEngine0(&puStack_330,uVar28);
             uStack_268 = &system_state_ptr;
             ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;

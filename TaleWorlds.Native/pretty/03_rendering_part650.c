@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part650.c - 11 个函数
 
 // 函数: void FUN_180636f00(int64_t *param_1,uint64_t *param_2)
@@ -544,7 +548,7 @@ void FUN_180637890(int64_t *param_1,int8_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
+  RenderingEngine_BufferManager(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -595,7 +599,7 @@ void FUN_1806379a0(int64_t *param_1,int16_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
+  RenderingEngine_BufferManager(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -646,7 +650,7 @@ void FUN_180637ab0(int64_t *param_1,short param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&processed_var_4576_ptr,(int)param_2);
+  RenderingEngine_BufferManager(acStack_a8,&processed_var_4576_ptr,(int)param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -697,7 +701,7 @@ void FUN_180637bc0(int64_t *param_1,int32_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
+  RenderingEngine_BufferManager(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -971,7 +975,7 @@ void FUN_1806381a0(int64_t *param_1,float param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180626eb0(acStack_b8,0x80,&processed_var_6040_ptr,(double)param_2);
+  SystemCore_CacheManager(acStack_b8,0x80,&processed_var_6040_ptr,(double)param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;

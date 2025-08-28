@@ -188,7 +188,7 @@ typedef struct {
 #define SystemMemoryAllocator                  func_0x0001800ab000
 #define SystemSizeCalculator                   func_0x000180225d90
 #define SystemMemoryManager                    CoreMemoryPoolAllocator
-#define SystemErrorHandler                     FUN_180220810
+#define SystemErrorHandler                     SystemCore_Loader
 #define SystemCleanupHandler                  FUN_18023ce10
 #define SystemFinalizer                       SystemSecurityChecker
 #define SystemStateInitializer                 FUN_1800a5750

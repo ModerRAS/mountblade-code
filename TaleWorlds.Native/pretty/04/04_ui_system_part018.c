@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -36,11 +40,11 @@ extern const void* ui_system_data_config;     // UI系统配置数据
 extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 
 // 函数声明
-void FUN_180403910(void);
+void RenderingSystem_LightManager(void);
 void SystemSecurityChecker(uint64_t param_1);
 void func_0x000180669850(float* param_1, int32_t param_2, void* param_3, float param_4, int32_t param_5, float param_6);
-int64_t FUN_18065fd40(int64_t param_1);
-int64_t FUN_18065cec0(int64_t param_1, int param_2);
+int64_t MathStatisticsProcessor0(int64_t param_1);
+int64_t UtilitiesSystem_FormatConverter(int64_t param_1, int param_2);
 char func_0x000180435420(int64_t param_1, int param_2);
 uint64_t func_0x000180435400(void);
 void FUN_180405240(void* param_1, int64_t param_2, float param_3, int param_4, uint64_t param_5, uint64_t param_6);
@@ -70,7 +74,7 @@ void ui_system_animation_loop_processor(void)
     do {
         // 动画状态检查
         if ((*state_array != 0) && (comparison_value < threshold_value * *animation_data)) {
-            FUN_180403910();
+            RenderingSystem_LightManager();
         }
         loop_counter = loop_counter + 1;
         animation_data = animation_data + 1;
@@ -133,32 +137,32 @@ void ui_system_animation_parameter_processor(int64_t param_1, float *param_2, in
     
     if (UI_ZERO_THRESHOLD < animation_duration) {
         // 动画数据处理
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         blend_factor = *(float *)(context_data + 0x14) - *(float *)(context_data + 0x1c);
         if (blend_factor < UI_ZERO_THRESHOLD) {
             blend_factor = blend_factor + UI_NORMALIZATION_FACTOR;
         }
         base_value = *(float *)(context_data + 0xc);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         offset_value = *(float *)(context_data + 0x14);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         param_6._0_4_ = offset_value;
         param_6._4_4_ = fmodf(offset_value + *(float *)(context_data + 0xc), UI_MODULATION_FACTOR);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         func_0x000180669850(output_array, *(int32_t *)(context_data + 0xc), &param_6, blend_factor + base_value, param_4, animation_duration);
         
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         blend_factor = *(float *)(context_data + 0x18) - *(float *)(context_data + 0x20);
         if (blend_factor < UI_ZERO_THRESHOLD) {
             blend_factor = blend_factor + UI_NORMALIZATION_FACTOR;
         }
         base_value = *(float *)(context_data + 0x10);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         offset_value = *(float *)(context_data + 0x18);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         param_6._0_4_ = offset_value;
         param_6._4_4_ = fmodf(offset_value + *(float *)(context_data + 0x10), UI_MODULATION_FACTOR);
-        context_data = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+        context_data = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
         func_0x000180669850(output_array + 6, *(int32_t *)(context_data + 0x10), &param_6, blend_factor + base_value, param_4, animation_duration);
     }
     
@@ -176,32 +180,32 @@ void ui_system_animation_parameter_processor(int64_t param_1, float *param_2, in
                 if (1 < array_index - 7U) {
                     control_param = param_3;
                 }
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 animation_duration = *(float *)(context_data + 0x14) - *(float *)(context_data + 0x1c);
                 if (animation_duration < UI_ZERO_THRESHOLD) {
                     animation_duration = animation_duration + UI_NORMALIZATION_FACTOR;
                 }
                 blend_factor = *(float *)(context_data + 0xc);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 base_value = *(float *)(context_data + 0x14);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 param_6._0_4_ = base_value;
                 param_6._4_4_ = fmodf(base_value + *(float *)(context_data + 0xc), UI_MODULATION_FACTOR);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 func_0x000180669850(output_array, *(int32_t *)(context_data + 0xc), &param_6, animation_duration + blend_factor, control_param, animation_speed);
                 animation_speed = *param_2;
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 animation_duration = *(float *)(context_data + 0x18) - *(float *)(context_data + 0x20);
                 if (animation_duration < UI_ZERO_THRESHOLD) {
                     animation_duration = animation_duration + UI_NORMALIZATION_FACTOR;
                 }
                 blend_factor = *(float *)(context_data + 0x10);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 base_value = *(float *)(context_data + 0x18);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 temp_stack = base_value;
                 temp_stack_param = fmodf(base_value + *(float *)(context_data + 0x10), UI_MODULATION_FACTOR);
-                context_data = FUN_18065fd40(*parameter_ptr);
+                context_data = MathStatisticsProcessor0(*parameter_ptr);
                 func_0x000180669850(output_array + 6, *(int32_t *)(context_data + 0x10), &temp_stack, animation_duration + blend_factor, control_param, animation_speed);
             }
             array_index = array_index + 1;
@@ -457,12 +461,12 @@ void ui_system_batch_animation_processor(int64_t *param_1, int64_t param_2, uint
             }
             process_id = (uint64_t)(uint)animation_value;
             animation_param = context_data;
-            FUN_180403910(*param_1, param_3, param_3, threshold_value, process_id, context_data);
+            RenderingSystem_LightManager(*param_1, param_3, param_3, threshold_value, process_id, context_data);
             
             if (*(int64_t *)(param_4 + 0x810) != 0) {
                 process_id = (uint64_t)(uint)animation_value;
                 animation_param = context_data;
-                FUN_180403910(param_1[6], param_4);
+                RenderingSystem_LightManager(param_1[6], param_4);
             }
             
             process_flag = func_0x000180435420(param_5, 0);
@@ -618,7 +622,7 @@ void ui_system_effect_renderer(uint64_t *param_1, uint64_t param_2, uint64_t par
             if (render_index - 2U < 4) {
                 control_param = param_7;
             }
-            FUN_180403910(*param_1, param_2, param_3, control_param, effect_value, context_data);
+            RenderingSystem_LightManager(*param_1, param_2, param_3, control_param, effect_value, context_data);
         }
         
         render_index = render_index + 1;
@@ -650,12 +654,12 @@ float ui_system_animation_interpolator(int64_t *param_1, float param_2)
     float normalized_value;
     float interpolation_factor;
     
-    state_data = FUN_18065cec0(param_1, 0);
+    state_data = UtilitiesSystem_FormatConverter(param_1, 0);
     interpolation_factor = *(float *)(*param_1 + 0x188);
     
     if (*(float *)(state_data + 8) != UI_ZERO_THRESHOLD) {
         base_value = *(float *)(param_1[1] + 0x188);
-        state_data = FUN_18065cec0(param_1, 0);
+        state_data = UtilitiesSystem_FormatConverter(param_1, 0);
         current_value = *(float *)(state_data + 0xc);
         end_value = *(float *)(state_data + 0x10);
         start_value = current_value;
@@ -704,7 +708,7 @@ float ui_system_animation_calculator(void)
     float output_param = 0.0; // 简化的输出参数
     
     base_value = *(float *)(context_data + 0x188);
-    context_data = FUN_18065cec0();
+    context_data = UtilitiesSystem_FormatConverter();
     current_value = *(float *)(context_data + 0xc);
     end_value = *(float *)(context_data + 0x10);
     start_value = current_value;
@@ -761,7 +765,7 @@ float ui_system_animation_value_calculator(int64_t param_1, float param_2)
     base_value = *(float *)(*(int64_t *)(param_1 + 0x10) + 0x188);
     
     if (UI_ZERO_THRESHOLD < param_2) {
-        state_data = FUN_18065cec0(param_1, 2);
+        state_data = UtilitiesSystem_FormatConverter(param_1, 2);
         normalized_value = *(float *)(state_data + 8) / (base_value * param_2);
         scaled_value = base_value * UI_THRESHOLD_LOW;
         
@@ -914,7 +918,7 @@ void FUN_18065fa20(int64_t *param_1, int64_t param_2, uint64_t param_3, int64_t 
                    float param_10, float param_11, char param_12) 
     __attribute__((alias("ui_system_batch_animation_processor")));
 
-uint64_t FUN_18065fd40(int64_t param_1) __attribute__((alias("ui_system_state_query_2")));
+uint64_t MathStatisticsProcessor0(int64_t param_1) __attribute__((alias("ui_system_state_query_2")));
 
 void FUN_18065fdb0(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                    uint64_t param_5, int32_t param_6, int32_t param_7, float param_8,

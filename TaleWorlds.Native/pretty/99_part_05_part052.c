@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 /**
  * @file 99_part_05_part052.c
@@ -294,7 +296,7 @@ void FUN_1802fa9b8(int64_t param_1, uint64_t param_2);
 void FUN_1802fabe4(void);
 
 /** 系统终结函数声明 */
-void FUN_1802fac00(void);
+void SystemCore_FileSystem(void);
 
 /** 系统配置处理函数声明 */
 void FUN_1802faca2(void);
@@ -342,7 +344,7 @@ void SystemCore_MemoryManager0(void);
 #define SystemEmptyOperation FUN_1802fabe4
 
 /** 系统终结器别名 */
-#define SystemTerminator FUN_1802fac00
+#define SystemTerminator SystemCore_FileSystem
 
 /** 系统配置处理器别名 */
 #define SystemConfigurationProcessor FUN_1802faca2
@@ -700,7 +702,7 @@ void FUN_1802fabe4(void)
  * - 释放内存资源
  * - 终止系统操作
  */
-void FUN_1802fac00(void)
+void SystemCore_FileSystem(void)
 {
     // 系统终结实现
     SystemCore_MemoryManager0();

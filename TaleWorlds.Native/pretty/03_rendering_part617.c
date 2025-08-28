@@ -108,7 +108,7 @@ void FUN_18060c1a0(int32_t *param_1,int8_t param_2,uint64_t param_3,int32_t para
     }
   }
   if ((puVar6 == puVar16) || (uVar4 < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)FUN_1804c0610(puVar16,&stack0x00000010);
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar16,&stack0x00000010);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar1 = puVar6[5];
@@ -253,7 +253,7 @@ void FUN_18060c310(int64_t param_1)
     }
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_10,0,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_10,0,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   pfVar7 = (float *)(param_1 + 0x40);
@@ -348,7 +348,7 @@ void FUN_18060c590(int param_1,int64_t param_2,int32_t param_3,int32_t param_4,u
     }
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (param_5 < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_10,puVar3,puVar3,&param_5);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_10,puVar3,puVar3,&param_5);
     puVar3 = (uint64_t *)*puVar3;
   }
   puVar2 = *(void **)(*(int64_t *)(puVar3[5] + 0x290) + 0x28 + (int64_t)param_1 * 0xa8);
@@ -417,7 +417,7 @@ int32_t FUN_18060c6a0(int param_1,uint param_2,float param_3)
     } while (puVar5 != (uint64_t *)0x0);
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_20,in_R8,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   if (puVar3[5] != 0) {
@@ -439,7 +439,7 @@ int32_t FUN_18060c6a0(int param_1,uint param_2,float param_3)
   *(int16_t *)(puStack_78 + 5) = 0x6563;
   *(int8_t *)((int64_t)puStack_78 + 0x16) = 0;
   uStack_70 = 0x16;
-  FUN_180628380(&puStack_80,param_1);
+  RenderingSystem_CameraController(&puStack_80,param_1);
   uVar9 = uStack_70 + 0xc;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0xd;
@@ -463,7 +463,7 @@ LAB_18060c883:
   *(int32_t *)(puVar5 + 1) = 0x20726564;
   *(int8_t *)((int64_t)puVar5 + 0xc) = 0;
   uStack_70 = uVar9;
-  FUN_180628380(&puStack_80,param_2);
+  RenderingSystem_CameraController(&puStack_80,param_2);
   uVar9 = uStack_70 + 0x13;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0x14;
@@ -633,7 +633,7 @@ int32_t FUN_18060cb10(int param_1,uint param_2,uint64_t param_3)
     } while (puVar5 != (uint64_t *)0x0);
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_20,param_3,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_20,param_3,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   if (puVar3[5] != 0) {
@@ -655,7 +655,7 @@ int32_t FUN_18060cb10(int param_1,uint param_2,uint64_t param_3)
   *(int16_t *)(puStack_78 + 5) = 0x6563;
   *(int8_t *)((int64_t)puStack_78 + 0x16) = 0;
   uStack_70 = 0x16;
-  FUN_180628380(&puStack_80,param_1);
+  RenderingSystem_CameraController(&puStack_80,param_1);
   uVar9 = uStack_70 + 0xc;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0xd;
@@ -679,7 +679,7 @@ LAB_18060ccf3:
   *(int32_t *)(puVar5 + 1) = 0x20726564;
   *(int8_t *)((int64_t)puVar5 + 0xc) = 0;
   uStack_70 = uVar9;
-  FUN_180628380(&puStack_80,param_2);
+  RenderingSystem_CameraController(&puStack_80,param_2);
   uVar9 = uStack_70 + 0x13;
   if (uVar9 != 0) {
     uVar2 = uStack_70 + 0x14;

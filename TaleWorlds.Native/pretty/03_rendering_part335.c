@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 /*=============================================================================
  * 03_rendering_part335.c - 渲染系统高级颜色处理和数据转换模块
@@ -210,7 +216,7 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,int64_t *param_2)
   plVar2[7] = 0;
   plVar2[5] = 0;
   *(int8_t *)(plVar2 + 4) = 0;
-  FUN_18022f2e0(plVar2 + 2,param_2,0);
+  RenderingSystem_MaterialProcessor(plVar2 + 2,param_2,0);
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x38))(param_2);
   }
@@ -279,7 +285,7 @@ void RenderingSystem_ConvertColorToARGB(int64_t param_1,int32_t param_2,uint64_t
     auStackX_8[0] = uVar2;
   }
   auStackX_8[0] = ((uVar3 << 8 | uVar1) << 8 | uVar4) << 8 | auStackX_8[0];
-  FUN_1802350e0(param_1 + RENDERING_SYSTEM_OFFSET_0X10,param_2,param_3,auStackX_8,param_5);
+  SystemCore_Decoder(param_1 + RENDERING_SYSTEM_OFFSET_0X10,param_2,param_3,auStackX_8,param_5);
   return;
 }
 
@@ -1564,7 +1570,7 @@ void RenderingSystem_ProcessRenderEffect(int64_t param_1,uint64_t param_2,uint64
   
   FUN_180233690(param_1 + 0x10,auStack_40,param_2,param_3,param_4);
   if (puStack_30 != (uint64_t *)0x0) {
-    FUN_18004b790(auStack_40,*puStack_30);
+    SystemCache_Manager(auStack_40,*puStack_30);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(puStack_30);
   }
@@ -1858,7 +1864,7 @@ void RenderingSystem_SetResourcePointer(uint64_t param_1,int64_t param_2,uint64_
   uint64_t uVar1;
   int8_t auStack_60 [88];
   
-  uVar1 = FUN_1800b8300(auStack_60,param_2 + 0x10,param_3,param_4,0xfffffffffffffffe);
+  uVar1 = DataDeserializer0(auStack_60,param_2 + 0x10,param_3,param_4,0xfffffffffffffffe);
   FUN_18022ccc0(param_1,uVar1);
   return;
 }

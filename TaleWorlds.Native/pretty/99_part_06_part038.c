@@ -163,7 +163,7 @@ void FUN_1803ca330(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t p
   fStack_f4 = fVar19 + fStack_f4 * fVar3 + fStack_f0 * fVar6 + param_8[0xd];
   fStack_f0 = fVar21 + fVar26 + fStack_f0 * fVar7 + param_8[0xe];
   fStack_ec = fVar23 + fVar28 + fVar24 + param_8[0xf];
-  FUN_180084ae0(&fStack_128);
+  Utilities_DataValidator(&fStack_128);
   fVar1 = pfVar15[2];
   fVar19 = pfVar16[2];
   fVar21 = pfVar15[1];
@@ -178,14 +178,14 @@ void FUN_1803ca330(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t p
     fStack_c8 = 7.00649e-45;
     strcpy_s(afStack_c0,0x10,&memory_allocator_3180_ptr);
     lVar13 = system_system_data_memory;
-    iVar8 = FUN_180191c00(system_system_data_memory,&uStack_d8);
+    iVar8 = RenderingSystem_PostProcessor(system_system_data_memory,&uStack_d8);
     if ((iVar8 == -1) ||
        (system_system_config_memory = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar13 + 0x38), system_system_config_memory == 0)
        ) {
       system_system_config_memory = *(uint64_t *)(lVar13 + 0x28);
     }
     uStack_d8 = &system_state_ptr;
-    FUN_1808fcb30(&system_ptr_9994);
+    SystemCore_StateController(&system_ptr_9994);
   }
   puVar17 = (uint64_t *)(system_system_data_memory + 0xd8);
   puVar9 = puVar17;
@@ -223,7 +223,7 @@ void FUN_1803ca330(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t p
   uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,6);
   uVar12 = FUN_1803c5c50(uVar11,plVar10);
   uVar11 = *(uint64_t *)(param_1 + 200);
-  lVar13 = FUN_18063b470(&uStack_168,&fStack_128);
+  lVar13 = AdvancedProcessor_StateManager0(&uStack_168,&fStack_128);
   uStack_d8 = (void *)CONCAT44(uStack_160,uStack_164);
   uStack_d0 = (float *)CONCAT44(uStack_168,uStack_15c);
   fStack_c8 = fStack_f8;
@@ -598,7 +598,7 @@ LAB_1803cae81:
   }
   *param_2 = 0;
   if (ppppppplStack_e8 != (int64_t *******)0x0) {
-    FUN_18004b790(&ppppppplStack_f8,*ppppppplStack_e8);
+    SystemCache_Manager(&ppppppplStack_f8,*ppppppplStack_e8);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(ppppppplVar11);
   }

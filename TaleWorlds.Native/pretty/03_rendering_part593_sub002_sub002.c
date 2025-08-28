@@ -179,7 +179,7 @@ void FUN_180592060(int64_t param_1,float param_2,int64_t param_3,int64_t param_4
   fStack_1b4 = *(float *)(param_1 + 0x16c);
   fStack_1b0 = *(float *)(param_1 + 0x170);
   uStack_1ac = *(int32_t *)(param_1 + 0x174);
-  FUN_1801c24a0();
+  UtilitiesSystem_CryptoHandler();
   uStack_118 = CONCAT44(fStack_1b4,fStack_1b8);
   uStack_110 = CONCAT44(uStack_1ac,fStack_1b0);
   bVar9 = *(byte *)(param_1 + 0x40) & 3;
@@ -342,7 +342,7 @@ LAB_180592690:
             fStack_1c0 = param_2 * *(float *)(param_1 + 0x2c);
             uStack_1c8 = CONCAT44(param_2 * *(float *)(param_1 + 0x28),
                                   param_2 * *(float *)(param_1 + 0x24));
-            fVar30 = (float)FUN_1801c24a0(&uStack_1c8);
+            fVar30 = (float)UtilitiesSystem_CryptoHandler(&uStack_1c8);
             func_0x000180085850(&uStack_198,&lStack_170,&uStack_1c8);
             lVar15 = func_0x000180085850(&lStack_170,&fStack_1b8,&uStack_198);
             fVar29 = *(float *)(lVar15 + 8) * fVar30 + fVar29;
@@ -879,7 +879,7 @@ FUN_180593b40(int64_t param_1,uint64_t param_2,uint64_t *param_3,float *param_4,
   param_3[4] = 0;
   param_3[5] = 0;
   do {
-    FUN_1801aa0f0(param_2,param_4,0,param_3,(uint)param_5 << 6 | 0x51b189,param_6);
+    PhysicsSystem_JointManager(param_2,param_4,0,param_3,(uint)param_5 << 6 | 0x51b189,param_6);
     if (*(char *)((int64_t)param_3 + 0x34) == '\0') {
       fVar1 = *(float *)(param_1 + 0x10);
       fVar2 = *(float *)(param_1 + 0x14);

@@ -123,7 +123,7 @@ void FUN_1800d7470(uint64_t param_1,int64_t param_2)
   }
   plVar2 = *(int64_t **)(lVar3 + 0x1cd8);
   uStack_60 = 0x1800d7713;
-  lVar4 = FUN_180244ff0(param_2);
+  lVar4 = SystemOptimizer(param_2);
   iVar1 = *(int *)(param_2 + 0x3578);
   plVar7 = plVar6;
   if (*(int64_t *)(lVar4 + 0x1d8) != 0) {
@@ -142,7 +142,7 @@ void FUN_1800d7470(uint64_t param_1,int64_t param_2)
   plVar2[0x1077] = (int64_t)plVar7;
   plVar2 = *(int64_t **)(lVar4 + 0x1cd8);
   uStack_60 = 0x1800d7790;
-  lVar4 = FUN_180245280(param_2);
+  lVar4 = SystemLog_Manager(param_2);
   iVar1 = *(int *)(param_2 + 0x357c);
   if (*(int64_t *)(lVar4 + 0x1e0) != 0) {
     if (system_main_module_state != 0) {
@@ -330,7 +330,7 @@ void FUN_1800d7810(void)
   uStack_258 = 0;
   uStack_260 = 3;
   uStack_268 = 0x220;
-  puVar2 = (uint64_t *)FUN_1800b0a10(uVar6,aplStack_200,0xffffffff,&puStack_1e8);
+  puVar2 = (uint64_t *)SystemCore_ConfigManager(uVar6,aplStack_200,0xffffffff,&puStack_1e8);
   uVar3 = *puVar2;
   *puVar2 = 0;
   plStack_208 = *(int64_t **)(lVar1 + 0x1588);
@@ -486,7 +486,7 @@ void FUN_1800d82a0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   if (*(char *)(param_3 + 0xc0) != '\0') {
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar4 = uVar5;
-    if ((((*(int64_t *)(param_3 + 0x78) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(param_3 + 0x78) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar4 = uVar2, *(int64_t *)(uVar2 + 8) == 0)) && (*(int64_t *)(uVar2 + 0x10) == 0)) {
       uVar4 = 0;
     }
@@ -506,7 +506,7 @@ void FUN_1800d82a0(uint64_t param_1,uint64_t param_2,int64_t param_3)
     }
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar4 = uVar5;
-    if ((((*(int64_t *)(param_3 + 0x70) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(param_3 + 0x70) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar4 = uVar2, *(int64_t *)(uVar2 + 8) == 0)) && (*(int64_t *)(uVar2 + 0x10) == 0)) {
       uVar4 = 0;
     }
@@ -586,7 +586,7 @@ void FUN_1800d82bb(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   if (*(char *)(param_3 + 0xc0) != '\0') {
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar4 = uVar5;
-    if ((((*(int64_t *)(param_3 + 0x78) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(param_3 + 0x78) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar4 = uVar2, *(int64_t *)(uVar2 + 8) == 0)) && (*(int64_t *)(uVar2 + 0x10) == 0)) {
       uVar4 = 0;
     }
@@ -606,7 +606,7 @@ void FUN_1800d82bb(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
     }
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar4 = uVar5;
-    if ((((*(int64_t *)(param_3 + 0x70) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(param_3 + 0x70) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar4 = uVar2, *(int64_t *)(uVar2 + 8) == 0)) && (*(int64_t *)(uVar2 + 0x10) == 0)) {
       uVar4 = 0;
     }
@@ -671,7 +671,7 @@ void FUN_1800d83ba(void)
   if (*(char *)(unaff_RDI + 0xc0) != (char)unaff_RSI) {
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar3 = unaff_RSI;
-    if ((((*(int64_t *)(unaff_RDI + 0x78) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(unaff_RDI + 0x78) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar3 = uVar2, *(uint64_t *)(uVar2 + 8) == unaff_RSI)) &&
        (*(uint64_t *)(uVar2 + 0x10) == unaff_RSI)) {
       uVar3 = unaff_RSI;
@@ -693,7 +693,7 @@ void FUN_1800d83ba(void)
     }
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     uVar3 = unaff_RSI;
-    if ((((*(int64_t *)(unaff_RDI + 0x70) != 0) && (uVar2 = FUN_18023a940(), uVar2 != 0)) &&
+    if ((((*(int64_t *)(unaff_RDI + 0x70) != 0) && (uVar2 = SystemCore_Scheduler(), uVar2 != 0)) &&
         (uVar3 = uVar2, *(uint64_t *)(uVar2 + 8) == unaff_RSI)) &&
        (*(uint64_t *)(uVar2 + 0x10) == unaff_RSI)) {
       uVar3 = unaff_RSI;
@@ -791,7 +791,7 @@ void FUN_1800d8a80(int64_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }

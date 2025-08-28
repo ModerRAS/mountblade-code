@@ -400,7 +400,7 @@ LAB_180761ebf:
           plVar21 = *(int64_t **)(lVar12 + 0x20);
         } while (plVar21 != (int64_t *)(param_1 + 400));
       }
-      FUN_18075f8e0(param_1 + 0x138);
+      UtilitiesSystem_DataValidator(param_1 + 0x138);
     }
     LOCK();
     *(uint *)(param_1 + 100) = *(uint *)(param_1 + 100) & 0xfffeffff;
@@ -449,7 +449,7 @@ LAB_180760f3a:
               iVar4 = FUN_18075a100((int64_t *)(param_1 + 0x158),*(uint64_t *)(param_1 + 0xa8),
                                     *(int32_t *)(param_1 + 0x148));
               if (iVar4 != 0) {
-                FUN_18075f8e0(&puStack_508);
+                UtilitiesSystem_DataValidator(&puStack_508);
                 puVar18 = puStack_508;
                 puVar14 = puStack_4d8;
                 goto LAB_180761496;
@@ -572,7 +572,7 @@ LAB_180760f3a:
                 piStack_540 = (int *)CONCAT44(piStack_540._4_4_,*(int32_t *)(ppuVar22 + 2));
                 puStack_548 = (int32_t *)CONCAT44(puStack_548._4_4_,iVar4);
                 FUN_1807636f0(&uStack_318,uVar17,uVar10,0);
-                FUN_18075f8e0(&puStack_4d8);
+                UtilitiesSystem_DataValidator(&puStack_4d8);
                 fVar25 = *(float *)(param_1 + 0x1cc);
               }
               if (((*(float *)(param_1 + 0x1c8) != 0.0) || (*(float *)(param_1 + 0x1d4) != 0.0)) ||
@@ -582,9 +582,9 @@ LAB_180760f3a:
               *(int32_t *)(param_1 + 0x1d0) = *(int32_t *)(param_1 + 0x1c4);
               *(float *)(param_1 + 0x1d4) = *(float *)(param_1 + 0x1c8);
               *(float *)(param_1 + 0x1d8) = fVar25;
-              FUN_18075f8e0(param_1 + 0x158);
-              FUN_18075f8e0(ppuVar1);
-              if ((*ppuVar1 == (uint64_t *)0x0) || (iVar3 = FUN_18075f8e0(ppuVar1), iVar3 == 0)) {
+              UtilitiesSystem_DataValidator(param_1 + 0x158);
+              UtilitiesSystem_DataValidator(ppuVar1);
+              if ((*ppuVar1 == (uint64_t *)0x0) || (iVar3 = UtilitiesSystem_DataValidator(ppuVar1), iVar3 == 0)) {
                 *(int64_t *)(param_1 + 0x140) = lStack_500;
                 *(int32_t *)(param_1 + 0x150) = (int32_t)uStack_4f0;
                 puStack_508 = (uint64_t *)0x0;

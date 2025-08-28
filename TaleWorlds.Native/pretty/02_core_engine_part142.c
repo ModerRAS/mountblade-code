@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part142.c - 6 个函数
 
 // 函数: void FUN_180134826(void)
@@ -592,7 +600,7 @@ void FUN_180134b80(void)
           acStackX_10[0] = '\0';
           acStackX_8[0] = '\0';
           if ((((*(byte *)(piVar4 + 1) & 2) == 0) &&
-              ((FUN_18010f170(&fStack_c0,iVar8,acStackX_10,acStackX_8,0), acStackX_10[0] != '\0' ||
+              ((SystemCore_Formatter(&fStack_c0,iVar8,acStackX_10,acStackX_8,0), acStackX_10[0] != '\0' ||
                (acStackX_8[0] != '\0')))) &&
              (*(int32_t *)(lVar9 + 0x1dcc) = 4, acStackX_8[0] != '\0')) {
             lVar7 = 0x1d;
@@ -621,7 +629,7 @@ void FUN_180134b80(void)
           }
           fStack_c8 = fStackX_20;
           uVar6 = func_0x000180121e20(&uStack_b0);
-          FUN_180293d20(*(uint64_t *)(lVar3 + 0x2e8),&fStack_c8,&fStackX_20,uVar6,0x3f800000);
+          SystemCore_SystemMonitor(*(uint64_t *)(lVar3 + 0x2e8),&fStack_c8,&fStackX_20,uVar6,0x3f800000);
           lVar11 = SYSTEM_DATA_MANAGER_A;
           iVar12 = iVar13;
         }
@@ -755,7 +763,7 @@ void FUN_180134c17(void)
         in_stack_00000108 = '\0';
         in_stack_00000100 = '\0';
         if ((((*(byte *)(unaff_RBX + 1) & 2) == 0) &&
-            ((FUN_18010f170(&stack0x00000038,iVar4,&stack0x00000108,&stack0x00000100,0),
+            ((SystemCore_Formatter(&stack0x00000038,iVar4,&stack0x00000108,&stack0x00000100,0),
              in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
            (*(int32_t *)(unaff_R13 + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
           lVar3 = 0x1d;
@@ -784,7 +792,7 @@ void FUN_180134c17(void)
         }
         fStack0000000000000118 = fStack0000000000000030;
         uVar2 = func_0x000180121e20(&stack0x00000048);
-        FUN_180293d20(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar2,
+        SystemCore_SystemMonitor(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar2,
                       0x3f800000);
         lVar6 = SYSTEM_DATA_MANAGER_A;
         iVar7 = iVar8;

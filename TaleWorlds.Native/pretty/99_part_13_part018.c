@@ -201,7 +201,7 @@ uint64_t FUN_1808af810(int64_t *param_1,int param_2)
   
   uVar7 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if ((param_2 <= (int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar7) - uVar7)) ||
-     (uVar5 = FUN_18084d3f0(param_1,param_2), (int)uVar5 == 0)) {
+     (uVar5 = RenderingSystem_TextureManager(param_1,param_2), (int)uVar5 == 0)) {
     iVar1 = (int)param_1[1];
     if (iVar1 < param_2) {
       lVar9 = (int64_t)(param_2 - iVar1);
@@ -364,7 +364,7 @@ uint64_t FUN_1808af8b0(int64_t *param_1,int param_2)
             *puVar6 = *(int32_t *)(lVar9 + (int64_t)puVar6);
             *(uint64_t *)(lVar9 + -0xc + (int64_t)puVar6) = 0;
             *(uint64_t *)(lVar9 + -4 + (int64_t)puVar6) = 0;
-            FUN_180840270((int64_t)iVar8 * 0x10 + lVar2);
+            SystemCore_MemoryManager((int64_t)iVar8 * 0x10 + lVar2);
             iVar8 = iVar8 + 1;
             puVar6 = puVar6 + 4;
             lVar4 = lVar4 + -1;
@@ -399,7 +399,7 @@ uint64_t FUN_1808af8b0(int64_t *param_1,int param_2)
     if (0 < iVar1 - param_2) {
       uVar7 = (uint64_t)(uint)(iVar1 - param_2);
       do {
-        FUN_180840270(lVar3);
+        SystemCore_MemoryManager(lVar3);
         lVar3 = lVar3 + 0x10;
         uVar7 = uVar7 - 1;
       } while (uVar7 != 0);
@@ -440,7 +440,7 @@ uint64_t FUN_1808af949(void)
       *puVar2 = *(int32_t *)(lVar6 + (int64_t)puVar2);
       *(uint64_t *)(lVar6 + -0xc + (int64_t)puVar2) = 0;
       *(uint64_t *)(lVar6 + -4 + (int64_t)puVar2) = 0;
-      FUN_180840270((int64_t)iVar5 * 0x10 + lVar1);
+      SystemCore_MemoryManager((int64_t)iVar5 * 0x10 + lVar1);
       iVar5 = iVar5 + 1;
       puVar2 = puVar2 + 4;
       in_RAX = in_RAX + -1;
@@ -473,7 +473,7 @@ uint64_t FUN_1808af949(void)
     if (0 < iVar5 - iVar4) {
       uVar3 = (uint64_t)(uint)(iVar5 - iVar4);
       do {
-        FUN_180840270(lVar1);
+        SystemCore_MemoryManager(lVar1);
         lVar1 = lVar1 + 0x10;
         uVar3 = uVar3 - 1;
       } while (uVar3 != 0);
@@ -513,7 +513,7 @@ uint64_t FUN_1808af968(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     *puVar3 = *(int32_t *)(lVar6 + (int64_t)puVar3);
     *(uint64_t *)(lVar6 + -0xc + (int64_t)puVar3) = param_3;
     *(uint64_t *)(lVar6 + -4 + (int64_t)puVar3) = 0;
-    FUN_180840270((int64_t)unaff_R12D * 0x10 + unaff_R13);
+    SystemCore_MemoryManager((int64_t)unaff_R12D * 0x10 + unaff_R13);
     unaff_R12D = unaff_R12D + 1;
     puVar3 = puVar3 + 4;
     param_3 = 0;
@@ -546,7 +546,7 @@ uint64_t FUN_1808af968(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     if (0 < iVar1 - iVar5) {
       uVar4 = (uint64_t)(uint)(iVar1 - iVar5);
       do {
-        FUN_180840270(lVar6);
+        SystemCore_MemoryManager(lVar6);
         lVar6 = lVar6 + 0x10;
         uVar4 = uVar4 - 1;
       } while (uVar4 != 0);
@@ -599,7 +599,7 @@ uint64_t FUN_1808af9db(void)
     if (0 < iVar1 - iVar5) {
       uVar4 = (uint64_t)(uint)(iVar1 - iVar5);
       do {
-        FUN_180840270(lVar3);
+        SystemCore_MemoryManager(lVar3);
         lVar3 = lVar3 + 0x10;
         uVar4 = uVar4 - 1;
       } while (uVar4 != 0);
@@ -652,7 +652,7 @@ uint64_t FUN_1808af9ea(void)
     if (0 < iVar1 - iVar5) {
       uVar4 = (uint64_t)(uint)(iVar1 - iVar5);
       do {
-        FUN_180840270(lVar3);
+        SystemCore_MemoryManager(lVar3);
         lVar3 = lVar3 + 0x10;
         uVar4 = uVar4 - 1;
       } while (uVar4 != 0);
@@ -708,7 +708,7 @@ uint64_t FUN_1808afac0(int64_t *param_1,int param_2)
         uVar10 = (uint64_t)(uint)(iVar1 - param_2);
         lVar9 = *param_1 + 0x10 + (int64_t)param_2 * 0x28;
         do {
-          FUN_180840270(lVar9);
+          SystemCore_MemoryManager(lVar9);
           lVar9 = lVar9 + 0x28;
           uVar10 = uVar10 - 1;
         } while (uVar10 != 0);
@@ -765,7 +765,7 @@ uint64_t FUN_1808afaf0(uint64_t param_1,int64_t param_2)
       uVar9 = (uint64_t)(uint)(iVar5 - iVar7);
       lVar8 = *unaff_R14 + 0x10 + unaff_RSI * 0x28;
       do {
-        FUN_180840270(lVar8);
+        SystemCore_MemoryManager(lVar8);
         lVar8 = lVar8 + 0x28;
         uVar9 = uVar9 - 1;
       } while (uVar9 != 0);
@@ -828,7 +828,7 @@ uint64_t FUN_1808afb49(uint64_t param_1,int param_2)
       uVar3 = (uint64_t)uVar1;
       lVar2 = *unaff_R14 + 0x10 + unaff_RSI * 0x28;
       do {
-        FUN_180840270(lVar2);
+        SystemCore_MemoryManager(lVar2);
         lVar2 = lVar2 + 0x28;
         uVar3 = uVar3 - 1;
       } while (uVar3 != 0);
@@ -1181,7 +1181,7 @@ LAB_1808afdba:
 
 
 
-uint64_t FUN_1808afe30(int64_t *param_1,uint *param_2)
+uint64_t SystemCore_Manager(int64_t *param_1,uint *param_2)
 
 {
   uint64_t uVar1;
@@ -1240,8 +1240,8 @@ LAB_1808aff0e:
 
 
 
-// 函数: void FUN_1808aff40(int64_t param_1,uint *param_2)
-void FUN_1808aff40(int64_t param_1,uint *param_2)
+// 函数: void RenderingSystem_TextureProcessor(int64_t param_1,uint *param_2)
+void RenderingSystem_TextureProcessor(int64_t param_1,uint *param_2)
 
 {
   uint uVar1;

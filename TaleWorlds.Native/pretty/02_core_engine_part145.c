@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part145.c - 11 个函数
 
@@ -82,7 +84,7 @@ void FUN_180136231(int64_t param_1,int64_t param_2,int param_3)
         puVar4 = puVar3;
         puVar6 = *(int32_t **)(puVar3 + 2);
       }
-      FUN_180121200(&bStackX_20,0x14,&rendering_buffer_2680_ptr,*puVar4);
+      SystemCore_LoggingSystem(&bStackX_20,0x14,&rendering_buffer_2680_ptr,*puVar4);
       uVar12 = 0xffffffff;
       pbVar5 = abStackX_21;
       bVar1 = bStackX_20;

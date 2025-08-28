@@ -1,5 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 /**
  * @file 03_rendering_part112.c
@@ -694,7 +705,7 @@ void RenderingSystem_ProcessResourceOperation(int64_t resource_context, uint res
   uVar18 = (uint64_t)resource_id;
   uStack_68 = 0xfffffffffffffffe;
   plVar6 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
-  FUN_180049830(plVar6);
+  UltraHighFreq_PerformanceMonitor1(plVar6);
   *plVar6 = (int64_t)&processed_var_7880_ptr;
   puVar1 = (uint64_t *)(plVar6 + 0x18);
   *puVar1 = 0;
@@ -724,7 +735,7 @@ void RenderingSystem_ProcessResourceOperation(int64_t resource_context, uint res
           break;
         }
       }
-      FUN_18066c220(resource_context + 0xa10,&stack0x00000018,(uint64_t)*(uint *)(resource_context + 0xa00),
+      RenderingShaderProcessor0(resource_context + 0xa10,&stack0x00000018,(uint64_t)*(uint *)(resource_context + 0xa00),
                     *(int32_t *)(resource_context + 0xa08),1);
       puVar8 = (uint *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(resource_context + 0xa1c));
       *puVar8 = uVar2;
@@ -824,7 +835,7 @@ LAB_180333cae:
   }
   uVar17 = system_context_ptr;
   (**(code **)(*plVar6 + 0x28))(plVar6);
-  FUN_18005e110(uVar17,&stack0x00000018);
+  SystemCore_TimerManager(uVar17,&stack0x00000018);
   puStack_a8 = (uint *)0x0;
   puStack_a0 = (uint *)0x0;
   uStack_98 = 0;
@@ -842,7 +853,7 @@ LAB_180333cae:
           break;
         }
       }
-      FUN_18066c220(resource_context + 0x6d8,&stack0x00000018,(uint64_t)*(uint *)(resource_context + 0x6c8),
+      RenderingShaderProcessor0(resource_context + 0x6d8,&stack0x00000018,(uint64_t)*(uint *)(resource_context + 0x6c8),
                     *(int32_t *)(resource_context + 0x6d0),1);
       puVar8 = (uint *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(resource_context + 0x6e4));
       *puVar8 = uVar2;
@@ -977,7 +988,7 @@ LAB_180333fbc:
   while (puStack_a8 = puVar7, puVar15 != puVar11) {
     lVar10 = puVar15[5];
     if (lVar10 != 0) {
-      SystemDataValidator(lVar10 + 0x38,0x30,4,FUN_18004a130);
+      SystemDataValidator(lVar10 + 0x38,0x30,4,SystemCore_MemoryManager);
       puStack_58 = (uint64_t *)(lVar10 + 0x18);
       *puStack_58 = &system_data_buffer_ptr;
       if (*(int64_t *)(lVar10 + 0x20) == 0) {
@@ -1021,7 +1032,7 @@ LAB_180333fbc:
   if ((puVar15 == *(uint64_t **)(resource_context + 0x820)) && (puVar11 == puVar21)) {
     puVar16 = *(uint64_t **)(resource_context + 0x828);
     if (puVar16 != (uint64_t *)0x0) {
-      FUN_18004b790(puVar21,*puVar16);
+      SystemCache_Manager(puVar21,*puVar16);
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar16);
     }
@@ -1035,7 +1046,7 @@ LAB_180333fbc:
     while (puVar16 = puVar15, puVar16 != puVar11) {
       *(int64_t *)(resource_context + 0x838) = *(int64_t *)(resource_context + 0x838) + -1;
       puVar15 = (uint64_t *)func_0x00018066bd70(puVar16);
-      FUN_18066ba00(puVar16,puVar21);
+      RenderingSystem_BufferHandler(puVar16,puVar21);
       if (puVar16 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(puVar16);

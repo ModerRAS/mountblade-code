@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -650,7 +654,7 @@ void FUN_1803e7a90(int64_t param_1,int64_t *param_2,int64_t *param_3)
     }
     iVar10 = iVar10 + 1;
   }
-  FUN_18066c220(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,acStackX_8,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),iVar10);
   if (acStackX_8[0] != '\0') {
     FUN_1803b94a0(param_1);
@@ -677,7 +681,7 @@ void FUN_1803e7a90(int64_t param_1,int64_t *param_2,int64_t *param_3)
     piVar6[3] = iVar5;
     piVar6[4] = 0;
     piVar6[5] = 0;
-    FUN_18066c220(param_1 + 0x20,acStackX_10,*(int32_t *)(param_1 + 0x10),
+    RenderingShaderProcessor0(param_1 + 0x20,acStackX_10,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
     if (acStackX_10[0] != '\0') {
       uVar9 = uVar11 % (uint64_t)uStackX_14;
@@ -743,7 +747,7 @@ void FUN_1803e7b2b(void)
     piVar4[3] = iVar3;
     piVar4[4] = 0;
     piVar4[5] = 0;
-    FUN_18066c220(unaff_RDI + 0x20,&stack0x00000088,*(int32_t *)(unaff_RDI + 0x10),
+    RenderingShaderProcessor0(unaff_RDI + 0x20,&stack0x00000088,*(int32_t *)(unaff_RDI + 0x10),
                   *(int32_t *)(unaff_RDI + 0x18),1);
     if (cStack0000000000000088 != '\0') {
       uVar6 = uVar7 % (uint64_t)uStack000000000000008c;

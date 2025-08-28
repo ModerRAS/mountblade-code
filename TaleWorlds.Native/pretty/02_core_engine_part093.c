@@ -1,5 +1,17 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_StateController 
+
+n//  的语义化别名
+#define SystemCore_Formatter 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 // 02_core_engine_part093.c - 3 个函数
 
@@ -38,7 +50,7 @@ uint64_t FUN_180118aa0(uint64_t param_1,int32_t param_2)
       }
       *(int8_t *)(iVar4 + lVar1) = 0;
     }
-    iVar5 = FUN_180121250(param_1,0,
+    iVar5 = SystemCore_HandleInput(param_1,0,
                           *(int32_t *)
                            (*(int64_t *)(lVar2 + 0x220) + -4 +
                            (int64_t)*(int *)(lVar2 + 0x218) * 4));
@@ -82,7 +94,7 @@ void FUN_180118ae6(void)
     }
     *(int8_t *)(iVar3 + lVar1) = 0;
   }
-  iVar4 = FUN_180121250();
+  iVar4 = SystemCore_HandleInput();
   lVar2 = SYSTEM_DATA_MANAGER_A;
   if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar4) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar4;
@@ -198,7 +210,7 @@ uint64_t FUN_180118ba0(uint param_1,uint param_2,char *param_3,char *param_4)
   else {
     uVar13 = CONCAT44(uVar8,0xbf800000);
     pcVar16 = param_3;
-    FUN_180297340(pfVar9,&fStack_118,fVar24,uStack_e0,uVar13,param_3,param_4,0);
+    SystemCore_StateController(pfVar9,&fStack_118,fVar24,uStack_e0,uVar13,param_3,param_4,0);
     uVar29 = (int32_t)((uint64_t)pcVar16 >> 0x20);
     uVar8 = (int32_t)((uint64_t)uVar13 >> 0x20);
     if (0.0 < fStack_118) {
@@ -313,7 +325,7 @@ uint64_t FUN_180118ba0(uint param_1,uint param_2,char *param_3,char *param_4)
          *(uint *)(lVar10 + 0x140) | 1 << ((byte)*(int32_t *)(lVar10 + 0x13c) & 0x1f);
   }
   uStack_fc = uVar20;
-  cVar4 = FUN_180124190(&fStack_f8,param_1,0);
+  cVar4 = Memory_GarbageCollector(&fStack_f8,param_1,0);
   *(uint *)(uStack_e0 + 0x148) = *(uint *)(uStack_e0 + 0x148) | 2;
   *(float *)(uStack_e0 + 0x15c) = fStack_d8;
   *(float *)(uStack_e0 + 0x160) = fStack_d4;
@@ -329,7 +341,7 @@ uint64_t FUN_180118ba0(uint param_1,uint param_2,char *param_3,char *param_4)
     uVar12 = uVar12 | (param_2 & 0x80 | 0x400) >> 6;
   }
   uVar13 = CONCAT44(uVar8,uVar12);
-  cVar4 = FUN_18010f170(&fStack_f8,param_1,&cStack_110,acStack_10f,uVar13);
+  cVar4 = SystemCore_Formatter(&fStack_f8,param_1,&cStack_110,acStack_10f,uVar13);
   uVar20 = (uint)((uint64_t)uVar13 >> 0x20);
   if ((char)uStack_fc == '\0') {
     bVar17 = 0;
@@ -340,7 +352,7 @@ uint64_t FUN_180118ba0(uint param_1,uint param_2,char *param_3,char *param_4)
       if ((char)param_2 < '\0') {
         bVar5 = 1;
         uStack_108 = CONCAT44(fStack_ec,fStack_f8 + fVar21);
-        cVar4 = FUN_180128040(&fStack_f8,&uStack_108);
+        cVar4 = SystemCore_HashCalculator(&fStack_f8,&uStack_108);
         if ((cVar4 == '\0') || (*(char *)(lVar3 + 0x1d07) != '\0')) {
           bVar5 = 0;
         }
@@ -406,10 +418,10 @@ LAB_180119279:
     if ((cStack_110 != '\0') || ((param_2 & 1) != 0)) {
       uStack_108 = CONCAT44(fVar25,fVar27);
       uStack_e0 = CONCAT44(fVar2,fVar26);
-      FUN_180293f50(*(uint64_t *)(*(int64_t *)(lVar19 + 0x1af8) + 0x2e8),&uStack_e0,&uStack_108,
+      MathInterpolationCalculator0(*(uint64_t *)(*(int64_t *)(lVar19 + 0x1af8) + 0x2e8),&uStack_e0,&uStack_108,
                     uVar8,(uint64_t)uVar20 << 0x20,CONCAT44(uVar29,0xf));
       if (param_1 == *(uint *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
-        FUN_1801230e0(&fStack_d8,2);
+        UtilitiesSystem_Validator(&fStack_d8,2);
       }
     }
     if ((param_2 >> 9 & 1) == 0) {
@@ -427,15 +439,15 @@ LAB_180119279:
                             ));
     }
     if (*(char *)(lVar3 + 0x2e38) != '\0') {
-      FUN_18013c800(&fStack_118,&rendering_buffer_2252_ptr,0);
+      SystemCore_ThreadController(&fStack_118,&rendering_buffer_2252_ptr,0);
     }
-    FUN_180122320(CONCAT44(fStack_114,fStack_118),param_3,param_4,0);
+    SystemCore_ManageMemory(CONCAT44(fStack_114,fStack_118),param_3,param_4,0);
   }
   else {
-    FUN_180122960(CONCAT44(fStack_d4,fStack_d8),CONCAT44(fStack_cc,fStack_d0),uVar8,1,
+    SystemCore_ResourceManager(CONCAT44(fStack_d4,fStack_d8),CONCAT44(fStack_cc,fStack_d0),uVar8,1,
                   CONCAT44(uVar20,*(int32_t *)(lVar3 + 0x1664)));
     if (param_1 == *(uint *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
-      FUN_1801230e0(&fStack_d8,2);
+      UtilitiesSystem_Validator(&fStack_d8,2);
     }
     uVar13 = 1;
     if (cVar14 != '\0') {
@@ -456,16 +468,16 @@ LAB_180119279:
         }
       }
       if (((int)pcVar16 != (int)param_3) &&
-         (FUN_1801224c0(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_118,
+         (UtilitiesSystem_DataValidator(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_118,
                         &fStack_d0,param_3,pcVar16,&fStack_e8,&uStack_108,0),
          *(char *)(lVar10 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_3,pcVar16);
+        SystemCore_ThreadController(&fStack_118,param_3,pcVar16);
       }
     }
     else {
       uStack_100 = CONCAT13(uStack_100._3_1_,0x2323);
       uStack_fc = 0x23230a;
-      FUN_18013c800(&fStack_118,&uStack_fc,(int64_t)&uStack_fc + 3);
+      SystemCore_ThreadController(&fStack_118,&uStack_fc,(int64_t)&uStack_fc + 3);
       lVar3 = SYSTEM_DATA_MANAGER_A;
       uStack_108 = 0;
       if (param_4 == (char *)0x0) {
@@ -479,12 +491,12 @@ LAB_180119279:
         } while (pcVar16 < param_4);
       }
       if (((int)pcVar16 != (int)param_3) &&
-         (FUN_1801224c0(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_118,
+         (UtilitiesSystem_DataValidator(*(uint64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8),&fStack_118,
                         &fStack_d0,param_3,pcVar16,&fStack_e8,&uStack_108,0),
          *(char *)(lVar3 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_3,pcVar16);
+        SystemCore_ThreadController(&fStack_118,param_3,pcVar16);
       }
-      FUN_18013c800(&fStack_118,(int64_t)&uStack_100 + 1,(int64_t)&uStack_100 + 3);
+      SystemCore_ThreadController(&fStack_118,(int64_t)&uStack_100 + 1,(int64_t)&uStack_100 + 3);
     }
   }
 joined_r0x000180119648:

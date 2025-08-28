@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_05_part020.c - 10 个函数
 
 // 函数: void FUN_1802e4d10(int64_t param_1,int64_t param_2)
@@ -330,7 +334,7 @@ int8_t FUN_1802e5280(int64_t param_1,int64_t param_2)
   }
   *(int64_t *)(param_1 + 0x1a0) = *(int64_t *)(param_1 + 0x1a0) + -1;
   func_0x00018066bd70(lVar1);
-  FUN_18066ba00(lVar1,param_1 + 0x180);
+  RenderingSystem_BufferHandler(lVar1,param_1 + 0x180);
   FUN_18008ea80();
   return 1;
 }
@@ -509,7 +513,7 @@ void FUN_1802e5470(uint64_t *param_1)
   auStack_50[0] = 0;
   uStack_58 = 0xb;
   strcpy_s(auStack_50,0x20,&rendering_buffer_248_ptr);
-  puVar2 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStack_e0,&puStack_68,1);
+  puVar2 = (uint64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_e0,&puStack_68,1);
   uVar3 = *puVar2;
   *puVar2 = 0;
   plStack_e8 = (int64_t *)param_1[2];

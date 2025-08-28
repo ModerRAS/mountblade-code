@@ -65,8 +65,8 @@ void FUN_180492ee0(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint para
   *(int32_t *)(lVar2 + 0x34) = uVar3;
   *(int32_t *)(lVar2 + 0x38) = uVar4;
   *(int32_t *)(lVar2 + 0x3c) = uVar5;
-  uVar6 = FUN_1800946d0(param_2,auStack_48);
-  FUN_1800946d0(uVar6,&uStack_88,0x180bfbc10);
+  uVar6 = ErrorRecoverySystem(param_2,auStack_48);
+  ErrorRecoverySystem(uVar6,&uStack_88,0x180bfbc10);
   puVar1 = *(uint64_t **)(param_1 + 0x1f0 + uVar7 * 8);
   *puVar1 = uStack_88;
   puVar1[1] = uStack_80;
@@ -307,11 +307,11 @@ void FUN_180493400(int64_t *param_1)
   
   lVar5 = *(int64_t *)(*param_1 + 0x200);
   lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
-  lVar4 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar4 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
   plVar2 = *(int64_t **)(lVar1 + 0x8400);
   iVar3 = (**(code **)(*plVar2 + 0x70))(plVar2,*(uint64_t *)(lVar4 + 8),0,4,0,&puStack_48);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&ui_system_data_1856_ptr);
+    SystemCore_Loader(iVar3,&ui_system_data_1856_ptr);
   }
   uVar9 = 0;
   puVar10 = puStack_48;
@@ -334,7 +334,7 @@ void FUN_180493400(int64_t *param_1)
   } while ((int)uVar9 < 0x168);
   plVar2 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   UNRECOVERED_JUMPTABLE = *(code **)(*plVar2 + 0x78);
-  lVar5 = FUN_18023a940(*(uint64_t *)(*param_1 + 0x58));
+  lVar5 = SystemCore_Scheduler(*(uint64_t *)(*param_1 + 0x58));
                     // WARNING: Could not recover jumptable at 0x000180493561. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(plVar2,*(uint64_t *)(lVar5 + 8),0);

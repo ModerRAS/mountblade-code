@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -77,7 +78,7 @@ void FUN_1803198f0(uint64_t param_1,int64_t param_2,int param_3,int param_4,int3
   
   uStack_178 = 0xfffffffffffffffe;
   uStack_80 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_228;
-  FUN_1802c22a0(auStack_1f8,&processed_var_6264_ptr);
+  SystemData_Processor(auStack_1f8,&processed_var_6264_ptr);
   lVar3 = system_message_buffer;
   iVar5 = 0x80 >> ((byte)param_3 & 0x1f);
   plVar1 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -98,10 +99,10 @@ void FUN_1803198f0(uint64_t param_1,int64_t param_2,int param_3,int param_4,int3
   }
   plVar1[0x1077] = (int64_t)plVar4;
   *(uint64_t *)(*(int64_t *)(lVar3 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(lVar3 + 0x1cd8),1);
+  SystemCore_ProcessorEx(*(uint64_t *)(lVar3 + 0x1cd8),1);
   uStack_200 = 0;
   uStack_208 = 0;
-  FUN_18029c8a0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,0xff000000,0x3f800000);
+  UtilitiesSystem_MathCalculator(*(uint64_t *)(system_message_buffer + 0x1cd8),1,0xff000000,0x3f800000);
   lVar3 = system_message_buffer;
   fStack_90 = (float)iVar5;
   fVar7 = 1.0 / fStack_90;
@@ -195,7 +196,7 @@ LAB_180319bc0:
   *(int32_t *)(*(int64_t *)(lVar3 + 0x1cd8) + 0x1c28) = uVar14;
   *(int32_t *)(*(int64_t *)(lVar3 + 0x1cd8) + 0x1c2c) = 0x3f800000;
   FUN_18031a240(aplStack_1e8,param_5);
-  FUN_18029fc10(*(int64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(system_message_buffer + 0x1c88),
+  UltraHighFreq_DatabaseHandler1(*(int64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(system_message_buffer + 0x1c88),
                 *(int64_t *)(system_message_buffer + 0x1cd8) + 0x1be0,0x230);
   puStack_f8 = &memory_allocator_3480_ptr;
   puStack_f0 = auStack_e4 + 4;
@@ -235,7 +236,7 @@ LAB_180319bc0:
   if (plStack_180 != (int64_t *)0x0) {
     (**(code **)(*plStack_180 + 0x28))();
   }
-  puStack_f8 = (void *)FUN_180299eb0(lVar3,0,&plStack_170,auStack_1f8);
+  puStack_f8 = (void *)UIRenderingEngine(lVar3,0,&plStack_170,auStack_1f8);
   uStack_e8 = 0xff;
   auStack_e4 = (int8_t  [8])0x4000300;
   uStack_d4 = 0;
@@ -377,7 +378,7 @@ void FUN_18031a020(uint64_t *param_1,int64_t param_2,int32_t param_3)
   uStack_148 = iVar4;
   iStack_d8 = iVar4;
   strcpy_s(auStack_d0,0x80,puVar7);
-  FUN_1800b1230(system_resource_state,param_1,&puStack_e8,&uStack_130);
+  SystemInitializer(system_resource_state,param_1,&puStack_e8,&uStack_130);
   uStack_138 = 1;
   puStack_e8 = &system_state_ptr;
   uVar1 = 0;

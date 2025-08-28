@@ -628,9 +628,9 @@ uint32_t AudioAnalyzer(void* analysis_params)
  * @{
  */
 
-#define AudioSystemInitialize1 FUN_18025cc00
-#define AudioSystemCleanup1 FUN_18025c000
-#define AudioDeviceManager1 FUN_18025d270
+#define AudioSystemInitialize1 HighFreq_FileSystem1
+#define AudioSystemCleanup1 HighFreq_ConfigManager1
+#define AudioDeviceManager1 UltraHighFreq_NetworkHandler1
 #define AudioBufferManager1 FUN_18025d510
 #define AudioStreamManager1 FUN_18025e330
 #define AudioResourceManager1 FUN_1802542a0

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 01_initialization_part028.c - 24 个函数
 
 // 函数: void FUN_18005d260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
@@ -388,8 +392,8 @@ void FUN_18005d560(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_18005d580(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18005d580(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void DataSerializationEngine(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void DataSerializationEngine(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -418,7 +422,7 @@ FUN_18005d600(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_8768_ptr;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xc0,param_3,param_4,uVar1);
   }
@@ -834,7 +838,7 @@ void FUN_18005dbb0(void)
       auStack_148[0] = 0;
       uStack_150 = 7;
       strcpy_s(auStack_148,0x10,&processed_var_8920_ptr);
-      FUN_180060680(&uStack_58,&processed_var_4576_ptr,iVar12 + -1);
+      > MedHighFreq_StateMachine1(&uStack_58,&processed_var_4576_ptr,iVar12 + -1);
       lVar6 = -1;
       do {
         lVar5 = lVar6 + 1;
@@ -875,7 +879,7 @@ void FUN_18005dbb0(void)
       auStack_148[0] = 0;
       uStack_150 = 10;
       strcpy_s(auStack_148,0x10,&processed_var_8928_ptr);
-      FUN_180060680(acStack_48,&processed_var_4576_ptr,uVar8);
+      > MedHighFreq_StateMachine1(acStack_48,&processed_var_4576_ptr,uVar8);
       lVar6 = -1;
       do {
         lVar7 = lVar6;
@@ -931,8 +935,8 @@ void FUN_18005dbb0(void)
 
 
 
-// 函数: void FUN_18005e110(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18005e110(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemCore_TimerManager(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+void SystemCore_TimerManager(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint uVar1;
@@ -1067,8 +1071,8 @@ void FUN_18005e300(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_18005e370(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18005e370(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemPerformance_Monitor(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+void SystemPerformance_Monitor(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;

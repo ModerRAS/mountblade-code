@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -879,7 +884,7 @@ int8_t FUN_180560d50(int64_t param_1)
     FUN_18053df50(0x180c95f38,alStack_38,uVar10,lVar2 + 0x10,uVar6);
     *(int *)(alStack_38[0] + 0x58) = iVar3;
     auStackX_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
-    FUN_1800571e0(&system_memory_5f68,auStackX_8);
+    SystemDatabaseProcessor(&system_memory_5f68,auStackX_8);
     *(int *)(lVar2 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
     SystemInitializer(&system_memory_5f88,&lStackX_10);
@@ -890,7 +895,7 @@ int8_t FUN_180560d50(int64_t param_1)
       if (*(void **)(lVar2 + 0x18) != (void *)0x0) {
         puVar9 = *(void **)(lVar2 + 0x18);
       }
-      FUN_180627020(&processed_var_7872_ptr,puVar9);
+      SystemCore_Allocator(&processed_var_7872_ptr,puVar9);
       return 0;
     }
     *(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) =
@@ -1003,7 +1008,7 @@ uint64_t FUN_180560fa0(int64_t param_1)
     FUN_18053df50(0x180c95f38,alStack_38,uVar7,lVar3 + 0x10,uVar4);
     *(int *)(alStack_38[0] + 0x58) = iVar2;
     auStackX_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
-    FUN_1800571e0(&system_memory_5f68,auStackX_8);
+    SystemDatabaseProcessor(&system_memory_5f68,auStackX_8);
     *(int *)(lVar3 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
     SystemInitializer(&system_memory_5f88,&lStackX_10);
@@ -1014,7 +1019,7 @@ uint64_t FUN_180560fa0(int64_t param_1)
       if (*(void **)(lVar3 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(lVar3 + 0x18);
       }
-      FUN_180627020(&processed_var_7872_ptr,puVar6);
+      SystemCore_Allocator(&processed_var_7872_ptr,puVar6);
       return 0;
     }
     *(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) =

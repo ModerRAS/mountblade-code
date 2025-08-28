@@ -54,8 +54,8 @@ void FUN_180259b10(int32_t *param_1,int64_t *param_2)
   puVar7[2] = uVar5;
   puVar7[3] = uVar6;
   param_2[1] = param_2[1] + 0x10;
-  FUN_180639fd0(param_2,param_1 + 0x11);
-  FUN_180639fd0(param_2,param_1 + 0x15);
+  Audio_SoundManager(param_2,param_1 + 0x11);
+  Audio_SoundManager(param_2,param_1 + 0x15);
   puVar7 = (int32_t *)param_2[1];
   uVar1 = param_1[0x19];
   if ((uint64_t)((*param_2 - (int64_t)puVar7) + param_2[2]) < 5) {
@@ -847,7 +847,7 @@ void FUN_18025a7b0(int64_t *param_1,int64_t param_2,uint *param_3)
       lVar8 = 0;
       plVar9 = param_1;
       if (uVar3 != 0) {
-        FUN_180045f60(&puStack_468,puVar1,uVar3);
+        SystemManager_Executor(&puStack_468,puVar1,uVar3);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
       }
       do {
@@ -921,7 +921,7 @@ void FUN_18025a940(uint64_t *param_1,uint param_2,int64_t *param_3)
   param_3[1] = lVar2 + 4;
   do {
     if ((*(uint *)(param_1 + 1) & param_2) != 0) {
-      FUN_180639de0(param_3,*param_1);
+      UtilitiesSystem_ThreadManager(param_3,*param_1);
       iVar4 = iVar4 + 1;
     }
     param_1 = param_1 + 2;

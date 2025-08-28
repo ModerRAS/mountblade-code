@@ -154,7 +154,7 @@ void FUN_18057dfdb(int64_t param_1,uint64_t param_2,float param_3)
     _fStack0000000000000068 =
          CONCAT44(fVar13 + fStack000000000000006c * 0.0 + fVar7,
                   fVar12 + fStack0000000000000068 * 0.0 + fVar9);
-    FUN_18063b470(&stack0x00000030,&stack0x00000050);
+    AdvancedProcessor_StateManager0(&stack0x00000030,&stack0x00000050);
     lVar2 = *plVar5;
     unaff_RBP[-0x18] = fStack0000000000000034;
     unaff_RBP[-0x16] = uStack000000000000003c;
@@ -345,7 +345,7 @@ void FUN_18057e23a(int64_t param_1,uint64_t param_2,float *param_3)
       _fStack0000000000000068 =
            CONCAT44(fVar13 + fStack000000000000006c * 0.0 + fVar7,
                     fVar12 + fStack0000000000000068 * 0.0 + fVar9);
-      FUN_18063b470(&stack0x00000030,&stack0x00000050);
+      AdvancedProcessor_StateManager0(&stack0x00000030,&stack0x00000050);
       lVar2 = *plVar5;
       unaff_RBP[-0x18] = fStack0000000000000034;
       unaff_RBP[-0x16] = uStack000000000000003c;
@@ -455,7 +455,7 @@ void FUN_18057e243(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     param_14._4_4_ = fVar4 + fVar8 + param_14._4_4_ * 0.0;
     param_15._0_4_ = fVar5 + fVar9 + (float)param_15 * 0.0;
     param_15._4_4_ = fVar6 + fVar10 + param_15._4_4_ * 0.0;
-    FUN_18063b470(&param_6,&param_10);
+    AdvancedProcessor_StateManager0(&param_6,&param_10);
     lVar1 = *plVar2;
     unaff_RBP[-0x18] = param_6._4_4_;
     unaff_RBP[-0x16] = param_7._4_4_;
@@ -556,7 +556,7 @@ void FUN_18057e2b9(uint64_t param_1,uint param_2,uint64_t param_3,uint64_t param
     param_14._4_4_ = fVar4 + fVar8 + param_14._4_4_ * 0.0;
     param_15._0_4_ = fVar5 + fVar9 + (float)param_15 * 0.0;
     param_15._4_4_ = fVar6 + fVar10 + param_15._4_4_ * 0.0;
-    FUN_18063b470(&param_6,&param_10);
+    AdvancedProcessor_StateManager0(&param_6,&param_10);
     lVar1 = *plVar2;
     unaff_RBP[-0x18] = param_6._4_4_;
     unaff_RBP[-0x16] = param_7._4_4_;
@@ -851,7 +851,7 @@ void FUN_18057e840(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }

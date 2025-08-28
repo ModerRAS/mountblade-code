@@ -1,8 +1,20 @@
+n//  的语义化别名
+#define SystemCore_DecryptionManager 
+
+n//  的语义化别名
+#define SystemCore_GarbageCollector 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 /**
  * @file 99_part_06_part009_sub002_sub002.c
@@ -295,17 +307,17 @@ void CoreEngineMemoryPoolCleaner(void* param_1, void* param_2);
 uint32_t FUN_180418550(uint64_t param_1, void* param_2, uint32_t param_3);
 void* FUN_1802bfbb0(void* param_1, void* param_2, float param_3);
 void FUN_180417a90(void* param_1, void* param_2, uint32_t param_3);
-void FUN_1800b08e0(void* param_1, void* param_2, void* param_3, int param_4);
+void SystemCore_GarbageCollector(void* param_1, void* param_2, void* param_3, int param_4);
 void FUN_1803aef00(void* param_1, void* param_2);
 void SystemCore_EncryptionEngine0(void* param_1, void* param_2);
 void FUN_180080810(void* param_1, void* param_2);
 void FUN_180417b70(void* param_1, void* param_2, uint32_t param_3);
-void* FUN_180049b30(void* param_1, int64_t param_2);
-void FUN_1800b8300(void* param_1, void* param_2);
-void FUN_180060b80(void* param_1, void* param_2);
-void FUN_18023c450(void* param_1, int param_2, int param_3, void* param_4);
+void* SystemCore_EventHandler(void* param_1, int64_t param_2);
+void DataDeserializer0(void* param_1, void* param_2);
+void SystemCore_ChecksumValidator(void* param_1, void* param_2);
+void SystemCore_DecryptionManager(void* param_1, int param_2, int param_3, void* param_4);
 void* CoreEngineMemoryPoolReallocator(void* param_1, int param_2, int param_3, int param_4);
-void* FUN_18006b640(void* param_1, void* param_2);
+void* SystemCore_ErrorHandler(void* param_1, void* param_2);
 void FUN_18005e300(void* param_1, void* param_2);
 void SystemSecurityChecker(uint64_t param_1);
 
@@ -332,7 +344,7 @@ void SystemSecurityChecker(uint64_t param_1);
 #define SystemAllocate FUN_180417a90
 
 /** 系统创建函数别名 */
-#define SystemCreate FUN_1800b08e0
+#define SystemCreate SystemCore_GarbageCollector
 
 /** 系统执行函数别名 */
 #define SystemExecute FUN_1803aef00
@@ -347,22 +359,22 @@ void SystemSecurityChecker(uint64_t param_1);
 #define SystemDataExtract FUN_180417b70
 
 /** 系统字符串处理函数别名 */
-#define SystemStringProcess FUN_180049b30
+#define SystemStringProcess SystemCore_EventHandler
 
 /** 系统缓冲区处理函数别名 */
-#define SystemBufferProcess FUN_1800b8300
+#define SystemBufferProcess DataDeserializer0
 
 /** 系统数据传输函数别名 */
-#define SystemDataTransfer FUN_180060b80
+#define SystemDataTransfer SystemCore_ChecksumValidator
 
 /** 系统调用函数别名 */
-#define SystemCall FUN_18023c450
+#define SystemCall SystemCore_DecryptionManager
 
 /** 系统资源创建函数别名 */
 #define SystemResourceCreate CoreEngineMemoryPoolReallocator
 
 /** 系统资源初始化函数别名 */
-#define SystemResourceInitialize FUN_18006b640
+#define SystemResourceInitialize SystemCore_ErrorHandler
 
 /** 系统资源处理函数别名 */
 #define SystemResourceProcess FUN_18005e300

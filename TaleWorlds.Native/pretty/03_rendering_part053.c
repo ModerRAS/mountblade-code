@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part053.c - 9 个函数
 
 // 函数: void FUN_180297321(void)
@@ -19,7 +23,7 @@ uint64_t FUN_180297337(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-float * FUN_180297340(float *param_1,float *param_2,float param_3,float param_4,float param_5,
+float * SystemCore_StateController(float *param_1,float *param_2,float param_3,float param_4,float param_5,
                      char *param_6,char *param_7,uint64_t *param_8)
 
 {
@@ -594,7 +598,7 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,uint64_t param_4,fl
       iVar7 = param_2[4];
       iVar20 = (int)pcVar19 - (int)pcVar14;
       iVar8 = iVar20 * 6;
-      FUN_1802921e0(param_2,iVar8,iVar20 * 4);
+      NetworkSystem_PacketSerializer(param_2,iVar8,iVar20 * 4);
       pfVar16 = *(float **)(param_2 + 0x14);
       psVar22 = *(short **)(param_2 + 0x16);
       iVar20 = param_2[0x12];
@@ -742,7 +746,7 @@ FUN_180297b6f:
         if (iVar10 < (int)uVar11) {
           uVar15 = (uint64_t)uVar11;
         }
-        FUN_18011dd10(param_2 + 4,uVar15);
+        Memory_CacheManager(param_2 + 4,uVar15);
       }
       param_2[4] = iVar10;
       piVar1 = (int *)(*(int64_t *)(param_2 + 2) + -0x30 + (int64_t)*param_2 * 0x30);
@@ -848,7 +852,7 @@ void FUN_180297648(float *param_1,float param_2)
     iVar13 = (int)pcVar12 - (int)unaff_RBX;
     iVar15 = iVar13 * 6;
     iStack0000000000000034 = *(int *)(unaff_R13 + 0x10) + iVar15;
-    FUN_1802921e0(fVar17,iVar15,iVar13 * 4);
+    NetworkSystem_PacketSerializer(fVar17,iVar15,iVar13 * 4);
     pfVar11 = *(float **)(unaff_R13 + 0x50);
     psVar16 = *(short **)(unaff_R13 + 0x58);
     iVar15 = *(int *)(unaff_R13 + 0x48);
@@ -1009,7 +1013,7 @@ FUN_180297b6f:
       if (iVar13 < (int)uVar6) {
         uVar10 = (uint64_t)uVar6;
       }
-      FUN_18011dd10(in_stack_00000138 + 4,uVar10);
+      Memory_CacheManager(in_stack_00000138 + 4,uVar10);
     }
     in_stack_00000138[4] = iVar13;
     piVar1 = (int *)(*(int64_t *)(in_stack_00000138 + 2) + -0x30 +

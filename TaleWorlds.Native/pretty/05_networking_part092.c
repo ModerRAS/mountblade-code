@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 05_networking_part092.c - 4 个函数
 
 // 函数: void FUN_180895360(int64_t param_1,int8_t *param_2,int *param_3)
@@ -488,7 +492,7 @@ uint64_t FUN_180895d30(int64_t *param_1,uint *param_2,uint64_t *param_3)
         else if (iVar12 < iVar7) {
           iVar12 = iVar7;
         }
-        uVar5 = FUN_1807d3f50(param_1 + 2,iVar12);
+        uVar5 = SystemCore_SecurityHandler(param_1 + 2,iVar12);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -567,7 +571,7 @@ uint64_t FUN_180895d62(uint64_t param_1,int param_2)
       else if (iVar10 < iVar6) {
         iVar10 = iVar6;
       }
-      uVar4 = FUN_1807d3f50(unaff_RDI + 2,iVar10);
+      uVar4 = SystemCore_SecurityHandler(unaff_RDI + 2,iVar10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -627,7 +631,7 @@ uint64_t FUN_180895d9c(uint64_t param_1,int32_t param_2)
       else if (iVar7 < iVar4) {
         iVar7 = iVar4;
       }
-      uVar2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
+      uVar2 = SystemCore_SecurityHandler(unaff_RDI + 0x10,iVar7);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -677,7 +681,7 @@ FUN_180895e19(int param_1,int param_2,uint64_t param_3,uint64_t param_4,uint64_t
   if (param_2 < param_1) {
     param_2 = param_1;
   }
-  uVar1 = FUN_1807d3f50(unaff_RDI + 0x10,param_2);
+  uVar1 = SystemCore_SecurityHandler(unaff_RDI + 0x10,param_2);
   if ((int)uVar1 == 0) {
     puVar2 = (uint64_t *)
              ((int64_t)*(int *)(unaff_RDI + 0x18) * 0x10 + *(int64_t *)(unaff_RDI + 0x10));

@@ -825,7 +825,7 @@ LAB_180819751:
       if (iVar6 == 0) {
         if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_1807c41d0(param_1,lVar3);
+          RenderingSystem_CoreProcessor0(param_1,lVar3);
         }
         lVar8 = lVar8 + 1;
         *(int64_t *)(param_2[9] + lVar8 * 8) = lVar10;
@@ -872,15 +872,15 @@ LAB_1808194c3:
   *(int *)(param_2 + 8) = param_10 + 1;
   if (param_2[9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[0xb] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   if (param_2[10] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1);
+    RenderingSystem_CoreProcessor0(param_1);
   }
   lVar8 = FUN_1807c4200(param_1,(int)param_2[8] * 8 + 8);
   param_2[9] = lVar8;

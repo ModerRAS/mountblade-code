@@ -135,7 +135,7 @@ uint64_t FUN_1807b1890(int64_t param_1)
     *piVar1 = *piVar1 + *(int *)(param_1 + 0x854);
     cVar2 = *(char *)(param_1 + 0xbe9);
   }
-  FUN_18080d690(param_1);
+  RenderingSystem_BufferManager0(param_1);
   return 0;
 }
 

@@ -123,7 +123,7 @@ void FUN_180341be0(void)
     CoreMemoryPoolProcessor(&puStack_118,uVar5 + 0xc);
     *(int16_t *)(puStack_110 + uStack_108) = 0x20;
     uStack_108 = uVar5 + 0xc;
-    FUN_180060680(acStack_88,&processed_var_4576_ptr,iVar13);
+    RenderingEngine_BufferManager(acStack_88,&processed_var_4576_ptr,iVar13);
     uVar7 = uStack_108;
     lVar1 = lVar11;
     do {
@@ -174,7 +174,7 @@ void FUN_180341be0(void)
     *(int16_t *)(puStack_110 + uStack_108) = 0x7320;
     *(int8_t *)((int64_t)(puStack_110 + uStack_108) + 2) = 0;
     uStack_108 = uVar7 + 0xc;
-    FUN_180060680(acStack_78,&processed_var_4576_ptr,iVar13);
+    RenderingEngine_BufferManager(acStack_78,&processed_var_4576_ptr,iVar13);
     uVar5 = uStack_108;
     lVar1 = lVar11;
     do {
@@ -238,7 +238,7 @@ void FUN_180341be0(void)
     *(int16_t *)(puStack_110 + uStack_108) = 0x7420;
     *(int8_t *)((int64_t)(puStack_110 + uStack_108) + 2) = 0;
     uStack_108 = uVar5 + 0xc;
-    FUN_180060680(acStack_68,&processed_var_4576_ptr,iVar13);
+    RenderingEngine_BufferManager(acStack_68,&processed_var_4576_ptr,iVar13);
     uVar7 = uStack_108;
     lVar1 = lVar11;
     do {
@@ -289,7 +289,7 @@ void FUN_180341be0(void)
     *(int16_t *)(puStack_110 + uStack_108) = 0x7520;
     *(int8_t *)((int64_t)(puStack_110 + uStack_108) + 2) = 0;
     uStack_108 = uVar7 + 0xc;
-    FUN_180060680(acStack_58,&processed_var_4576_ptr,iVar13);
+    RenderingEngine_BufferManager(acStack_58,&processed_var_4576_ptr,iVar13);
     uVar5 = uStack_108;
     lVar1 = lVar11;
     do {
@@ -344,7 +344,7 @@ void FUN_180341be0(void)
     *(int16_t *)(puStack_110 + uStack_108) = 0x6220;
     *(int8_t *)((int64_t)(puStack_110 + uStack_108) + 2) = 0;
     uStack_108 = uVar5 + 0xc;
-    FUN_180060680(acStack_48,&processed_var_4576_ptr,iVar14);
+    RenderingEngine_BufferManager(acStack_48,&processed_var_4576_ptr,iVar14);
     uVar7 = uStack_108;
     lVar1 = lVar11;
     do {
@@ -421,7 +421,7 @@ void FUN_180341be0(void)
     puVar4 = puStack_e8;
   }
   uStack_e0 = iVar13;
-  FUN_18062dee0(&uStack_d0,puVar4,&system_data_c7ec);
+  SystemCore_Validator(&uStack_d0,puVar4,&system_data_c7ec);
   lVar11 = lStack_c8;
   puVar3 = &system_buffer_ptr;
   if (puStack_110 != (void *)0x0) {
@@ -606,7 +606,7 @@ void FUN_1803427a0(void)
     puVar3[3] = 0x6e696172;
     *(int16_t *)(puVar3 + 4) = 0x5f;
     uStack_c8 = uVar6 + 0x11;
-    FUN_180060680(acStack_48,&processed_var_4576_ptr,iVar12);
+    RenderingEngine_BufferManager(acStack_48,&processed_var_4576_ptr,iVar12);
     uVar6 = uStack_c8;
     lVar1 = lVar11;
     do {
@@ -750,7 +750,7 @@ void FUN_1803427a0(void)
     puVar5 = puStack_a8;
   }
   uStack_a0 = iVar12;
-  FUN_18062dee0(&uStack_90,puVar5,&system_data_c7ec);
+  SystemCore_Validator(&uStack_90,puVar5,&system_data_c7ec);
   lVar11 = lStack_88;
   puVar4 = &system_buffer_ptr;
   if (puStack_d0 != (void *)0x0) {

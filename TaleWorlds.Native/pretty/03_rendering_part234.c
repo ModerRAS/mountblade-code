@@ -226,7 +226,7 @@ LAB_18039c19f:
             }
             uStack_120 = uStack_120 & 0xffffffff;
           }
-          uVar6 = FUN_180627ce0(&puStack_f8,auStack_88,&puStack_138);
+          uVar6 = UtilitiesSystem_FileHandler(&puStack_f8,auStack_88,&puStack_138);
           puStack_118 = &system_data_buffer_ptr;
           uStack_100 = 0;
           puStack_110 = (uint64_t *)0x0;
@@ -240,7 +240,7 @@ LAB_18039c19f:
           *(int32_t *)(puVar8 + 1) = 0x3f746920;
           *(int8_t *)((int64_t)puVar8 + 0xc) = 0;
           uStack_108 = 0xc;
-          FUN_180627ce0(uVar6,auStack_d0,&puStack_118);
+          UtilitiesSystem_FileHandler(uVar6,auStack_d0,&puStack_118);
           puStack_118 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(puVar8);
@@ -487,7 +487,7 @@ LAB_18039c98d:
   if (ppppppplStack_158 == (int64_t *******)0x0) {
     return;
   }
-  FUN_180058370(&ppppppplStack_168,*ppppppplStack_158);
+  RenderingSystem_CameraSystem(&ppppppplStack_168,*ppppppplStack_158);
   ppppppplVar10[4] = (int64_t ******)&system_data_buffer_ptr;
   if (ppppppplVar10[5] != (int64_t ******)0x0) {
                     // WARNING: Subroutine does not return

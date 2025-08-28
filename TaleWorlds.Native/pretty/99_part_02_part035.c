@@ -1,5 +1,10 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_02_part035.c - 2 个函数
 
@@ -234,7 +239,7 @@ LAB_1801a868a:
     *(int32_t *)((int32_t ***)apppuStack_78[0] + 1) = (int32_t)uStack_110;
     *(int32_t *)((int64_t)apppuStack_78[0] + 0xc) = uStack_110._4_4_;
     ((int32_t ***)apppuStack_78[0])[2] = (int32_t **)pppuStack_108;
-    ppppuVar13 = (uint64_t ****)FUN_18006b640(uVar12,apppuStack_78);
+    ppppuVar13 = (uint64_t ****)SystemCore_ErrorHandler(uVar12,apppuStack_78);
     ppppuStack_80 = ppppuVar13;
     if (ppppuVar13 != (uint64_t ****)0x0) {
       (*(code *)(*ppppuVar13)[5])(ppppuVar13);
@@ -246,7 +251,7 @@ LAB_1801a868a:
     pcStack_100 = FUN_1801bc4e0;
     uStack_118 = (int32_t *****)pppppuStack_d8;
     uStack_110 = pppuStack_d0;
-    ppppuVar14 = (uint64_t ****)FUN_18006b640(uVar12,&uStack_118);
+    ppppuVar14 = (uint64_t ****)SystemCore_ErrorHandler(uVar12,&uStack_118);
     ppppuStack_88 = ppppuVar14;
     if (ppppuVar14 != (uint64_t ****)0x0) {
       (*(code *)(*ppppuVar14)[5])(ppppuVar14);
@@ -255,26 +260,26 @@ LAB_1801a868a:
     pppppuStackX_20 = (int32_t *****)&ppppuStackX_18;
     ppppuStackX_18 = ppppuVar13;
     (*(code *)(*ppppuVar13)[5])(ppppuVar13);
-    FUN_18005e110(uVar12,&ppppuStackX_18);
+    SystemCore_TimerManager(uVar12,&ppppuStackX_18);
     uVar12 = system_context_ptr;
     pppppuStack_d8 = (uint64_t *****)&pppppuStackX_20;
     pppppuStackX_20 = (int32_t *****)ppppuVar14;
     if (ppppuVar14 != (uint64_t ****)0x0) {
       (*(code *)(*ppppuVar14)[5])(ppppuVar14);
     }
-    FUN_18005e110(uVar12,&pppppuStackX_20);
+    SystemCore_TimerManager(uVar12,&pppppuStackX_20);
     uVar12 = system_context_ptr;
     pppppuStack_d8 = &ppppuStackX_18;
     ppppuStackX_18 = ppppuVar13;
     (*(code *)(*ppppuVar13)[5])(ppppuVar13);
-    FUN_18005e6a0(uVar12,&ppppuStackX_18,0);
+    SystemCore_ErrorHandler(uVar12,&ppppuStackX_18,0);
     uVar12 = system_context_ptr;
     pppppuStack_d8 = (uint64_t *****)&pppppuStackX_20;
     pppppuStackX_20 = (int32_t *****)ppppuVar14;
     if (ppppuVar14 != (uint64_t ****)0x0) {
       (*(code *)(*ppppuVar14)[5])(ppppuVar14);
     }
-    FUN_18005e6a0(uVar12,&pppppuStackX_20,0);
+    SystemCore_ErrorHandler(uVar12,&pppppuStackX_20,0);
     if (*(int64_t *)(param_1[1] + 600) != 0) {
       uStack_118 = (int32_t *****)0x0;
       uStack_110 = (int32_t ***)0x0;
@@ -318,7 +323,7 @@ LAB_1801a868a:
             uStack_118 = (int32_t *****)pppuVar15;
           }
           uStack_110 = pppuVar15 + 1;
-          FUN_1802e8c60(ppuVar4,&uStack_118);
+          NetworkSystem_SecurityManager(ppuVar4,&uStack_118);
           iVar20 = 0;
           pppuVar15 = (int32_t ***)uStack_118;
           if ((int64_t)uStack_110 - (int64_t)uStack_118 >> 3 != 0) {
@@ -387,7 +392,7 @@ LAB_1801a868a:
               if (pppppuStackX_20 != (int32_t *****)0x0) {
                 (*(code *)(*pppppuStackX_20)[5])();
               }
-              FUN_1802edcd0(lVar26,ppppuStackX_18);
+              PhysicsSystem_TerrainCollider(lVar26,ppppuStackX_18);
               if (ppppuStackX_18 != (uint64_t ****)0x0) {
                 (*(code *)(*ppppuStackX_18)[7])();
               }
@@ -509,10 +514,10 @@ LAB_1801a868a:
     *(uint *)(lVar17 + 0x2c4) = uVar2 | 4;
     if (((*(int64_t *)(lVar17 + 0x20) != 0) &&
         (*(char *)(*(int64_t *)(lVar17 + 0x20) + 0x60cb0) == '\0')) && ((uVar2 & 2) != 0)) {
-      FUN_1802ee720(lVar17,0);
+      RenderingSystem_UpdateCamera(lVar17,0);
     }
   }
-  FUN_1802ea790(*(uint64_t *)(param_1[1] + 0x8208),&system_data_0300);
+  NetworkProtocol_Transmitter(*(uint64_t *)(param_1[1] + 0x8208),&system_data_0300);
   FUN_1803986d0(param_1[1] + 0x607e0);
   if ((*(char *)(*param_1 + 0x46) == '\0') &&
      (plVar23 = *(int64_t **)(system_operation_state + 0x1860), plVar23 != (int64_t *)0x0)) {
@@ -541,7 +546,7 @@ void FUN_1801a8f60(int64_t *param_1)
     FUN_1801ba230(param_1[1] + 0x608);
     FUN_1801ba230(param_1[1] + 0x628);
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&system_data_buffer_ptr,
+    SystemParameterHandler(system_message_context,&system_data_buffer_ptr,
                   ((int64_t *)*param_1)[1] - *(int64_t *)*param_1 >> 3);
   }
   return;

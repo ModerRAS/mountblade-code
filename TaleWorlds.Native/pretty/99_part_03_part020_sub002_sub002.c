@@ -1,3 +1,16 @@
+/* FUN_函数别名定义 */
+#define DataValidator_CheckIntegrity DataValidator_CheckIntegrity  // DataValidator_CheckIntegrity 的语义化别名
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#define DataProcessor_HandleOperation DataProcessor_HandleOperation  // DataProcessor_HandleOperation 的语义化别名
+#include "ultra_high_freq_fun_definitions.h"
+/* NetworkSystem_ProtocolParser - RenderingSystem_StringParser */
+#define RenderingSystem_StringParser NetworkSystem_ProtocolParser
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -206,13 +219,13 @@ void System_DataProcessor(int64_t param_1)
   uStack_88 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_658;
   uStack_600 = 0;
   lStack_408 = param_1;
-  cVar6 = FUN_180624a00(param_1 + 0xf0);
+  cVar6 = UltraHighFreq_LogManager1(param_1 + 0xf0);
   uVar38 = extraout_XMM0_Da;
   if (cVar6 == '\0') {
-    uVar38 = FUN_180624910(param_1 + 0xf0);
+    uVar38 = SystemManager_Processor(param_1 + 0xf0);
   }
   *(int8_t *)(system_global_data_ptr + 9) = 1;
-  uVar10 = FUN_1801c5bb0(uVar38,param_1 + 0x110,param_1 + 0x130);
+  uVar10 = DataProcessor_HandleOperation(uVar38,param_1 + 0x110,param_1 + 0x130);
   CoreMemoryPoolValidator(&puStack_350,uVar10);
   lVar37 = param_1 + 0xc0;
   lVar35 = *(int64_t *)(param_1 + 200);
@@ -227,7 +240,7 @@ void System_DataProcessor(int64_t param_1)
          (lVar25 = *(int64_t *)(*system_main_module_state + 0x888),
          (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar25 >> 5) <=
          (uint64_t)(int64_t)iVar7)) {
-        lVar25 = FUN_180628ca0();
+        lVar25 = MemoryDebugger0();
       }
       else {
         lVar25 = (int64_t)iVar7 * 0x20 + lVar25;
@@ -264,7 +277,7 @@ void System_DataProcessor(int64_t param_1)
       auStack_f0[0] = 0;
       uStack_f8 = 9;
       strcpy_s(auStack_f0,0x10,&system_data_2fe8);
-      iVar7 = FUN_180628d60(&puStack_5f0,&puStack_108);
+      iVar7 = DataValidator_CheckIntegrity(&puStack_5f0,&puStack_108);
       puStack_108 = &system_state_ptr;
       uVar34 = iVar7 + 9;
       puStack_5d0 = &system_data_buffer_ptr;
@@ -416,7 +429,7 @@ void System_DataProcessor(int64_t param_1)
 LAB_1801dfa13:
           lStack_378 = uVar12 * 0x20;
           lStack_3b0 = lVar35;
-          FUN_180629a40(lStack_450 + lStack_378,&puStack_430,0,iVar7);
+          RenderingSystem_StringParser(lStack_450 + lStack_378,&puStack_430,0,iVar7);
           iVar31 = iStack_420 + -1;
           lVar37 = (int64_t)iVar31;
           if (-1 < iVar31) {
@@ -428,7 +441,7 @@ LAB_1801dfa13:
           }
           iVar31 = -1;
 LAB_1801dfa65:
-          FUN_180629a40(&puStack_430,&puStack_3e0,iVar31 + 1,iVar7);
+          RenderingSystem_StringParser(&puStack_430,&puStack_3e0,iVar31 + 1,iVar7);
           puStack_558 = &system_data_buffer_ptr;
           uStack_540 = 0;
           puStack_550 = (void *)0x0;
@@ -459,9 +472,9 @@ LAB_1801dfa65:
             puVar23 = puStack_550;
           }
           System_DataHandler(&puStack_578,&system_param2_ptr,puVar23,puVar24);
-          if ((*(int *)(lVar25 + 0x100) < 1) || (cVar6 = FUN_180624a00(&puStack_578), cVar6 == '\0')
+          if ((*(int *)(lVar25 + 0x100) < 1) || (cVar6 = UltraHighFreq_LogManager1(&puStack_578), cVar6 == '\0')
              ) {
-            FUN_18062c1e0(&puStack_578,1);
+            ResourceManager_Allocate(&puStack_578,1);
             uStack_458 = 3;
             pppppppuStack_480 = &pppppppuStack_480;
             pppppppuStack_478 = &pppppppuStack_480;
@@ -597,7 +610,7 @@ LAB_1801dfdfe:
               uStack_358 = 3;
               auStack_624[0] = 0x2f;
               if (*(int64_t *)(lStack_450 + lVar35 + 8) != 0) {
-                FUN_180057980(lStack_450 + lVar35,&lStack_370,auStack_624);
+                CoreSystem_DataCollector(lStack_450 + lVar35,&lStack_370,auStack_624);
               }
               puVar24 = *(void **)
                          (((lStack_368 - lStack_370 >> 5) + -2) * 0x20 + lStack_370 + 8);
@@ -644,7 +657,7 @@ LAB_1801dfdfe:
               pcStack_638 = (code *)CONCAT44(pcStack_638._4_4_,0xffffffff);
               fVar39 = (float)FUN_1801a6440(plVar14,system_system_data_memory,lStack_450 + lVar37,&uStack_2f8);
               if (fVar39 == -1.0) {
-                FUN_18005d580(&lStack_370);
+                DataSerializationEngine(&lStack_370);
                 (**(code **)(*plVar14 + 0x38))(plVar14);
                 ppuStack_530 = &puStack_5a8;
                 puStack_5a8 = &system_data_buffer_ptr;
@@ -766,7 +779,7 @@ LAB_1801dfdfe:
                 plStack_330 = (int64_t *)0x0;
                 plStack_328 = plVar14;
                 (**(code **)(*plVar14 + 0x38))(plVar14);
-                FUN_18005d580(&lStack_370);
+                DataSerializationEngine(&lStack_370);
                 ppuStack_530 = &puStack_5a8;
                 puStack_5a8 = &system_data_buffer_ptr;
                 if (lStack_5a0 != 0) {
@@ -890,7 +903,7 @@ LAB_1801e0603:
                   *(uint64_t *)(puVar22 + 4) = 0x6873722e61746164;
                   *(int8_t *)(puVar22 + 6) = 0;
                   uStack_3f0 = uVar34;
-                  FUN_18062c1e0(&puStack_4a0,1);
+                  ResourceManager_Allocate(&puStack_4a0,1);
                   FUN_180637560(apuStack_1c8);
                   uStack_118 = 1;
                   uStack_1a0 = 0;
@@ -1137,7 +1150,7 @@ LAB_1801e0603:
         } while (uVar12 < (uint64_t)(lStack_448 - lStack_450 >> 5));
       }
       _Mtx_destroy_in_situ(auStack_d8);
-      FUN_18005d580(&lStack_450);
+      DataSerializationEngine(&lStack_450);
       puStack_5f0 = &system_data_buffer_ptr;
       if (puVar13 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return

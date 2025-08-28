@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part006.c - 1 个函数
 
 // 函数: void FUN_1801ca670(int64_t *param_1,uint64_t param_2)
@@ -87,7 +91,7 @@ void FUN_1801ca670(int64_t *param_1,uint64_t param_2)
       puVar3 = *(uint64_t **)((int64_t)plStackX_18 + (int64_t)pppplStack_1e0[0x158]);
       pppplStackX_20 = (int64_t ****)uVar6;
       puStack_1d8 = puVar3;
-      FUN_1800b31f0(system_resource_state,&plStackX_8,puVar3 + 6,0);
+      SystemCore_EncryptionManager(system_resource_state,&plStackX_8,puVar3 + 6,0);
       if (plStackX_8 != (int64_t *)0x0) {
         puVar10 = (uint64_t *)puVar3[1];
         pauVar29 = (int8_t (*) [16])*puVar10;
@@ -127,7 +131,7 @@ void FUN_1801ca670(int64_t *param_1,uint64_t param_2)
     do {
       pppplStackX_20 = (int64_t ****)ppppplVar13;
       pppplStack_1e0 = (int64_t ****)(ppppplVar13 + 8);
-      FUN_1800b31f0(system_resource_state,&plStackX_18,ppppplVar13 + 4,0);
+      SystemCore_EncryptionManager(system_resource_state,&plStackX_18,ppppplVar13 + 4,0);
       if (plStackX_18 != (int64_t *)0x0) {
         plVar11 = (int64_t *)FUN_180240a60();
         pppplVar7 = (int64_t ****)&system_buffer_ptr;
@@ -416,7 +420,7 @@ LAB_1801cad0b:
   if (puStack_1f8 != (void *)0x0) {
     puVar25 = puStack_1f8;
   }
-  uVar27 = FUN_1800a1160(&lStack_158,puVar25);
+  uVar27 = SystemCore_Synchronizer(&lStack_158,puVar25);
   __6__basic_ostream_DU__char_traits_D_std___std__QEAAAEAV01_P6AAEAV01_AEAV01__Z_Z
             (uVar27,FUN_1801e7680);
   lVar22 = FUN_1800a19c0(auStack_150);

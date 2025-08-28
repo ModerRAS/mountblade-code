@@ -761,7 +761,7 @@ CoreEngineSystemStateHandler(uint64_t param_1,uint64_t *param_2,uint64_t param_3
         if (lVar4 == 0) break;
       }
     }
-    FUN_18020f150(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
+    CoreEngine_SystemInitializer(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
     lVar4 = system_message_buffer + 0x20;
     iVar2 = _Mtx_lock(lVar4);
     if (iVar2 != 0) {
@@ -774,7 +774,7 @@ CoreEngineSystemStateHandler(uint64_t param_1,uint64_t *param_2,uint64_t param_3
     if (core_system_data_memory != 0) {
       FUN_18006eb30();
     }
-    FUN_18020f150(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
+    CoreEngine_SystemInitializer(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
     lVar4 = system_message_buffer + 0x20;
     iVar2 = _Mtx_lock(lVar4);
     if (iVar2 != 0) {
@@ -785,7 +785,7 @@ CoreEngineSystemStateHandler(uint64_t param_1,uint64_t *param_2,uint64_t param_3
       __Throw_C_error_std__YAXH_Z(iVar2);
     }
   }
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   *(int32_t *)(core_system_data_memory + 0x60) = 1;
   *param_2 = &system_state_ptr;
   param_2[1] = 0;

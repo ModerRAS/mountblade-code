@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -115,7 +116,7 @@ LAB_1802135b0:
   if (puVar4 != (int32_t *)0x0) {
     puVar5 = puVar4;
   }
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar5);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar5);
   if (puVar4 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar4);
@@ -132,7 +133,7 @@ LAB_180213627:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }
-  FUN_180211a30(uVar3,puVar6);
+  SystemCore_NetworkHandler(uVar3,puVar6);
   if (param_3 == '\0') {
     if (6 < *(uint *)(param_2 + 0x10)) {
       do {
@@ -152,7 +153,7 @@ LAB_180213627:
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar6 = *(void **)(param_2 + 8);
     }
-    FUN_180211a30(uVar3,puVar6);
+    SystemCore_NetworkHandler(uVar3,puVar6);
   }
   return uStackX_10;
 }
@@ -188,7 +189,7 @@ int64_t FUN_180213700(int64_t param_1,int param_2,char param_3)
   puStack_48[3] = 0x206373;
   uStack_40 = 0xf;
   uStack_38._0_4_ = uVar1;
-  FUN_180628380(&puStack_50,param_2);
+  RenderingSystem_CameraController(&puStack_50,param_2);
   iVar4 = uStack_40 + 1;
   if (iVar4 != 0) {
     uVar1 = uStack_40 + 2;
@@ -212,7 +213,7 @@ LAB_180213823:
     puVar3 = puStack_48;
   }
   uStack_40 = iVar4;
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar3);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar3);
   puStack_50 = &system_data_buffer_ptr;
   if (puStack_48 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -225,10 +226,10 @@ LAB_180213890:
   lStackX_8 = 0;
   uVar2 = FUN_180845d20(*(uint64_t *)(param_1 + 0x368),
                         (int64_t)param_2 * 0x10 + *(int64_t *)(param_1 + 0x3b8),&lStackX_8);
-  FUN_180211a30(uVar2,&system_buffer_ptr);
+  SystemCore_NetworkHandler(uVar2,&system_buffer_ptr);
   if ((lStackX_8 != 0) && (param_3 != '\0')) {
     uVar2 = FUN_1808496c0(lStackX_8,&ui_system_data_1504_ptr,0xffffffff);
-    FUN_180211a30(uVar2,&system_buffer_ptr);
+    SystemCore_NetworkHandler(uVar2,&system_buffer_ptr);
   }
   return lStackX_8;
 }
@@ -290,7 +291,7 @@ LAB_180213aaa:
   if (puVar3 != (int32_t *)0x0) {
     puVar4 = puVar3;
   }
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar4);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar4);
   if (puVar3 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar3);
@@ -302,9 +303,9 @@ LAB_180213b20:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }
-  FUN_180211a30(iVar2,puVar6);
+  SystemCore_NetworkHandler(iVar2,puVar6);
   if (iVar2 != 0) {
-    FUN_1800623b0(system_message_context,0,0,3,&memory_allocator_3528_ptr,uStackX_8,uVar7);
+    SystemConfigurationManager(system_message_context,0,0,3,&memory_allocator_3528_ptr,uStackX_8,uVar7);
     return 0;
   }
   return uStackX_8;
@@ -350,7 +351,7 @@ uint64_t FUN_180213bb0(int64_t param_1,int32_t param_2)
   *(int16_t *)(puStack_58 + 5) = 0x20;
   uStack_50 = 0x15;
   uStack_48._0_4_ = uVar2;
-  FUN_180628380(&puStack_60,param_2);
+  RenderingSystem_CameraController(&puStack_60,param_2);
   iVar1 = uStack_50 + 1;
   if (iVar1 != 0) {
     uVar2 = uStack_50 + 2;
@@ -374,7 +375,7 @@ LAB_180213d0d:
     puVar4 = puStack_58;
   }
   uStack_50 = iVar1;
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar4);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar4);
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -386,10 +387,10 @@ LAB_180213d0d:
 LAB_180213d73:
   uVar3 = FUN_180213700(param_1,param_2,0);
   iVar1 = FUN_180840490(uVar3,&uStackX_8);
-  FUN_180211a30(iVar1,&system_buffer_ptr);
+  SystemCore_NetworkHandler(iVar1,&system_buffer_ptr);
   uVar3 = uStackX_8;
   if (iVar1 != 0) {
-    FUN_1800623b0(system_message_context,0,0x1000000000000,3,&system_handler1_ptr,uStackX_8);
+    SystemConfigurationManager(system_message_context,0,0x1000000000000,3,&system_handler1_ptr,uStackX_8);
     uVar3 = 0;
   }
   iVar1 = _Mtx_unlock(param_1 + 0x318);
@@ -436,7 +437,7 @@ void FUN_180213e10(int64_t param_1,uint64_t param_2)
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
-  uVar4 = FUN_180624440(apuStack_258,param_2);
+  uVar4 = SystemCore_EncryptionEngine(apuStack_258,param_2);
   SystemCore_EncryptionEngine0(&puStack_290,uVar4);
   apuStack_258[0] = &system_state_ptr;
   uStack_298 = 0;
@@ -449,7 +450,7 @@ void FUN_180213e10(int64_t param_1,uint64_t param_2)
   if (puStack_288 != (void *)0x0) {
     puVar7 = puStack_288;
   }
-  FUN_180211a30(iVar2,puVar7);
+  SystemCore_NetworkHandler(iVar2,puVar7);
   if (iVar2 != 0) {
     puVar7 = &system_buffer_ptr;
     if (puStack_288 != (void *)0x0) {
@@ -484,9 +485,9 @@ LAB_180213f5f:
     if (puStack_288 != (void *)0x0) {
       puVar7 = puStack_288;
     }
-    FUN_180211a30(uVar3,puVar7);
+    SystemCore_NetworkHandler(uVar3,puVar7);
     uVar3 = FUN_180840c00(*(uint64_t *)(param_1 + 0x368));
-    FUN_180211a30(uVar3,&system_buffer_ptr);
+    SystemCore_NetworkHandler(uVar3,&system_buffer_ptr);
   }
   puVar9 = *(uint64_t **)(param_1 + 0x380);
   if (puVar9 < *(uint64_t **)(param_1 + 0x388)) {

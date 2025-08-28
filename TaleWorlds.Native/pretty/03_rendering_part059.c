@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part059.c - 12 个函数
 
 // 函数: void FUN_18029aa23(void)
@@ -175,9 +179,9 @@ void FUN_18029ace0(uint64_t *param_1)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar2);
   }
-  FUN_180058370(param_1 + 0x103b,param_1[0x103d]);
-  FUN_180058370(param_1 + 0x1035,param_1[0x1037]);
-  FUN_180058370(param_1 + 0x102f,param_1[0x1031]);
+  RenderingSystem_CameraSystem(param_1 + 0x103b,param_1[0x103d]);
+  RenderingSystem_CameraSystem(param_1 + 0x1035,param_1[0x1037]);
+  RenderingSystem_CameraSystem(param_1 + 0x102f,param_1[0x1031]);
   SystemDataValidator(param_1 + 0x101b,0x20,5,FUN_180046860);
   if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -199,8 +203,8 @@ void FUN_18029ace0(uint64_t *param_1)
 
 
 
-// 函数: void FUN_18029ad30(int64_t *param_1,int param_2,int64_t *param_3)
-void FUN_18029ad30(int64_t *param_1,int param_2,int64_t *param_3)
+// 函数: void SystemCore_MemoryManager(int64_t *param_1,int param_2,int64_t *param_3)
+void SystemCore_MemoryManager(int64_t *param_1,int param_2,int64_t *param_3)
 
 {
   if ((param_3 != (int64_t *)0x0) && (*param_3 != 0)) {
@@ -773,7 +777,7 @@ void FUN_18029b1d0(int64_t *param_1,uint64_t param_2,int32_t param_3,int64_t *pa
       (**(code **)(*param_4 + 0x28))(param_4);
     }
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    ppuVar5 = (void **)FUN_18005ce30(uVar4,&puStack_128);
+    ppuVar5 = (void **)SystemCore_StreamController(uVar4,&puStack_128);
     ppuStack_130 = ppuVar5;
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
@@ -784,7 +788,7 @@ void FUN_18029b1d0(int64_t *param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    FUN_18005e370(lVar2,&ppuStack_148);
+    SystemPerformance_Monitor(lVar2,&ppuStack_148);
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x38))(ppuVar5);
     }
@@ -852,7 +856,7 @@ void FUN_18029b390(int64_t *param_1,uint64_t param_2,int64_t *param_3)
       (**(code **)(*param_3 + 0x28))(param_3);
     }
     uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    ppuVar5 = (void **)FUN_18005ce30(uVar4,&puStack_108);
+    ppuVar5 = (void **)SystemCore_StreamController(uVar4,&puStack_108);
     ppuStack_110 = ppuVar5;
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
@@ -863,7 +867,7 @@ void FUN_18029b390(int64_t *param_1,uint64_t param_2,int64_t *param_3)
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    FUN_18005e370(lVar2,&ppuStack_128);
+    SystemPerformance_Monitor(lVar2,&ppuStack_128);
     if (ppuVar5 != (void **)0x0) {
       (**(code **)(*ppuVar5 + 0x38))(ppuVar5);
     }

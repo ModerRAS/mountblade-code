@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part046.c - 2 个函数
@@ -208,7 +212,7 @@ bool FUN_1806c3420(uint64_t *param_1,int64_t *param_2,uint64_t param_3,int64_t *
   uStack_248 = param_3;
   plStack_240 = param_4;
   uStack_238 = uVar4;
-  FUN_1806d7000(&ppuStack_278,uStack_b0);
+  MemoryPoolManager0(&ppuStack_278,uStack_b0);
   if (piStack_220 != (int *)0x0) {
     *piStack_220 = *piStack_220 + 1;
   }
@@ -289,7 +293,7 @@ bool FUN_1806c36a0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   lStack_98 = param_2;
   uStack_90 = param_3;
   plStack_70 = param_4;
-  FUN_1806d7080(&lStack_98,*param_8);
+  SystemCore_MemoryManager(&lStack_98,*param_8);
   if (piStack_40 != (int *)0x0) {
     *piStack_40 = *piStack_40 + 1;
   }
@@ -314,7 +318,7 @@ bool FUN_1806c36a0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_14 = *(int32_t *)((int64_t)puVar1 + 0x34);
   uStack_10 = *(int32_t *)(puVar1 + 7);
   uStack_c = *(int32_t *)((int64_t)puVar1 + 0x3c);
-  FUN_1806d7080(&lStack_98,puVar1[4]);
+  SystemCore_MemoryManager(&lStack_98,puVar1[4]);
   if (piStack_40 != (int *)0x0) {
     *piStack_40 = *piStack_40 + 1;
   }
@@ -393,7 +397,7 @@ bool FUN_1806c3840(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_c0 = uVar3;
   uStack_b8 = uVar1;
   plStack_b0 = param_4;
-  FUN_1806d7080(&lStack_d8,*param_8);
+  SystemCore_MemoryManager(&lStack_d8,*param_8);
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -418,7 +422,7 @@ bool FUN_1806c3840(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_54 = *(int32_t *)((int64_t)puVar6 + 0x34);
   uStack_50 = *(int32_t *)(puVar6 + 7);
   uStack_4c = *(int32_t *)((int64_t)puVar6 + 0x3c);
-  FUN_1806d7080(&lStack_d8,puVar6[4]);
+  SystemCore_MemoryManager(&lStack_d8,puVar6[4]);
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -527,7 +531,7 @@ bool FUN_1806c3a70(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_c0 = uVar3;
   uStack_b8 = uVar1;
   plStack_b0 = param_4;
-  FUN_1806d7080(&lStack_d8,*(uint64_t *)(lVar7 + 0x1d8));
+  SystemCore_MemoryManager(&lStack_d8,*(uint64_t *)(lVar7 + 0x1d8));
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -552,7 +556,7 @@ bool FUN_1806c3a70(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_54 = *(int32_t *)(lVar7 + 0x20c);
   uStack_50 = *(int32_t *)(lVar7 + 0x210);
   uStack_4c = *(int32_t *)(lVar7 + 0x214);
-  FUN_1806d7080(&lStack_d8,*(uint64_t *)(lVar7 + 0x1f8));
+  SystemCore_MemoryManager(&lStack_d8,*(uint64_t *)(lVar7 + 0x1f8));
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -648,7 +652,7 @@ bool FUN_1806c3ca0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_c0 = uVar3;
   uStack_b8 = uVar1;
   plStack_b0 = param_4;
-  FUN_1806d7080(&lStack_d8,*(uint64_t *)(lVar7 + 0xa0));
+  SystemCore_MemoryManager(&lStack_d8,*(uint64_t *)(lVar7 + 0xa0));
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -673,7 +677,7 @@ bool FUN_1806c3ca0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int64_t *p
   uStack_54 = *(int32_t *)(lVar7 + 0xd4);
   uStack_50 = *(int32_t *)(lVar7 + 0xd8);
   uStack_4c = *(int32_t *)(lVar7 + 0xdc);
-  FUN_1806d7080(&lStack_d8,*(uint64_t *)(lVar7 + 0xc0));
+  SystemCore_MemoryManager(&lStack_d8,*(uint64_t *)(lVar7 + 0xc0));
   if (piStack_80 != (int *)0x0) {
     *piStack_80 = *piStack_80 + 1;
   }
@@ -889,7 +893,7 @@ void FUN_1806c4180(int64_t *param_1,uint64_t param_2,int64_t param_3)
   uStack_c8 = param_2;
   lStack_c0 = lVar5;
   lStack_b8 = lVar6;
-  FUN_1806d7080(&lStack_f8,*(uint64_t *)(param_3 + 0xa0));
+  SystemCore_MemoryManager(&lStack_f8,*(uint64_t *)(param_3 + 0xa0));
   if (piStack_a0 != (int *)0x0) {
     *piStack_a0 = *piStack_a0 + 1;
   }
@@ -918,7 +922,7 @@ void FUN_1806c4180(int64_t *param_1,uint64_t param_2,int64_t param_3)
 
 
 
-uint64_t FUN_1806c4320(int64_t *param_1,int32_t *param_2)
+uint64_t UISystem_DataProcessor(int64_t *param_1,int32_t *param_2)
 
 {
   int iVar1;

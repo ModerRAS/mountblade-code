@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_01_part001.c - 61个函数
@@ -66,7 +70,7 @@
 #define ConfigManager_Load FUN_1802ab780
 #define ConfigManager_Save FUN_18023e120
 #define ConfigManager_GetValue FUN_1800c0da0
-#define ConfigManager_SetValue FUN_1800ea6f0
+#define ConfigManager_SetValue CoreEngine_MemoryHandler
 
 // 基础工具函数组
 #define Utility_StringCopy FUN_1800e7f20
@@ -92,7 +96,7 @@
 
 // 错误处理函数组
 #define ErrorHandler_GetLastError FUN_1806d84a0
-#define ErrorHandler_ClearError FUN_1800b8300
+#define ErrorHandler_ClearError DataDeserializer0
 #define ErrorHandler_SetHandler FUN_1801b99e0
 #define ErrorHandler_LogError FUN_1801bc9a0
 #define ErrorHandler_Panic FUN_1801bc8d0

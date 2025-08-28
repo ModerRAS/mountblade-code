@@ -1,3 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
+#include "SystemAdvancedValidator_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -100,12 +110,12 @@ void FUN_1800bf9e0(uint64_t param_1,uint64_t *param_2)
     lVar14 = *(int64_t *)(lVar2 + 0x340);
     if (*(char *)(lVar14 + 0xfa) != '\x01') {
       *(int8_t *)(lVar14 + 0xfa) = 1;
-      FUN_180079520();
+      SystemInitializer();
       lVar14 = *(int64_t *)(lVar2 + 0x340);
     }
     if (*(char *)(lVar14 + 0xfb) != '\x01') {
       *(int8_t *)(lVar14 + 0xfb) = 1;
-      FUN_180079520();
+      SystemInitializer();
       lVar14 = *(int64_t *)(lVar2 + 0x340);
     }
     FUN_180076a20(lVar14);
@@ -150,11 +160,11 @@ void FUN_1800bf9e0(uint64_t param_1,uint64_t *param_2)
     FUN_1800c0ef0(*(uint64_t *)(lVar2 + 0x340),uVar7,uVar9,uVar10);
     uVar11 = *(uint64_t *)(lVar2 + 0x340);
     uVar13 = FUN_1800be9a0(system_system_data_memory,&uStack_120,0);
-    FUN_180076910(uVar11,uVar13);
+    UltraHighFreq_SecurityValidator1(uVar11,uVar13);
     if (uStack_120 != (int64_t *)0x0) {
       (**(code **)(*uStack_120 + 0x38))();
     }
-    FUN_180075b70(*(uint64_t *)(lVar2 + 0x340));
+    SystemConfig_Manager(*(uint64_t *)(lVar2 + 0x340));
     plVar12 = *(int64_t **)(lVar2 + 0x340);
   }
   *param_2 = plVar12;
@@ -394,7 +404,7 @@ void FUN_1800c0230(uint64_t param_1,int64_t *param_2)
   uStack_58 = 0;
   plStack_40 = param_2;
   if (*(int64_t *)(system_system_data_memory + 0x290) == 0) {
-    puVar7 = (uint64_t *)FUN_180095000(param_1,&plStack_38,&processed_var_944_ptr,1);
+    puVar7 = (uint64_t *)InitializationSystem_CoreLoader(param_1,&plStack_38,&processed_var_944_ptr,1);
     uVar3 = *puVar7;
     *puVar7 = 0;
     plStack_50 = *(int64_t **)(lVar6 + 0x290);
@@ -564,7 +574,7 @@ void FUN_1800c0570(int64_t param_1,uint64_t *param_2)
     auStack_48[0] = 0;
     uStack_50 = 0xb;
     strcpy_s(auStack_48,0x20,&processed_var_768_ptr);
-    uVar4 = FUN_1800b8300(auStack_b8,&puStack_60);
+    uVar4 = DataDeserializer0(auStack_b8,&puStack_60);
     FUN_18022ccc0(uVar2,uVar4);
     puStack_60 = &system_state_ptr;
     puVar1 = (uint *)(*(int64_t *)(param_1 + 0x2d0) + 0x138);
@@ -697,7 +707,7 @@ FUN_1800c08e0(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
       plVar3 = (int64_t *)plVar3[2];
     } while (plVar3 != (int64_t *)0x0);
   }
-  FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   plVar4 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x2c));
   *plVar4 = *param_4;

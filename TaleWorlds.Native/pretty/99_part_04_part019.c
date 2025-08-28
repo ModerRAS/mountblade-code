@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_04_part019.c - 3 个函数
 
 // 函数: void FUN_180268e8b(void)
@@ -609,7 +613,7 @@ void FUN_1802696df(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_180269810(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+int64_t SystemCore_NetworkProtocol(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t *plVar1;

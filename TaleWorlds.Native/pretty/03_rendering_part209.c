@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -53,7 +54,7 @@ uint64_t * FUN_18038b490(int64_t param_1,float *param_2,float *param_3,char para
   uint64_t *puVar6;
   
   puVar6 = (uint64_t *)0x0;
-  cVar2 = FUN_18038d0a0();
+  cVar2 = SystemCore_PerformanceMonitor();
   puVar8 = puVar6;
   if (cVar2 == '\0') {
     if (param_4 == '\0') {
@@ -552,7 +553,7 @@ void FUN_18038bfe0(int64_t param_1)
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
   SystemDataValidator(param_1 + 8,0x20,0x20,FUN_180046860,uVar1);
   return;
 }
@@ -568,7 +569,7 @@ void FUN_18038c180(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5304_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5304_ptr);
 }
 
 
@@ -729,7 +730,7 @@ void FUN_18038c3d0(int64_t param_1)
     }
     puVar5 = puStack_60;
     if (puStack_60 != (uint64_t *)0x0) {
-      FUN_18004b790(&pppuStack_70,*puStack_60);
+      SystemCache_Manager(&pppuStack_70,*puStack_60);
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar5);
     }

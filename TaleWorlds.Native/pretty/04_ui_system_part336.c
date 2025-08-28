@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 04_ui_system_part336.c - 3 个函数
 
@@ -224,7 +231,7 @@ LAB_180850eb0:
     if ((iVar5 != 0) || (iVar7 != 0)) {
       iStack_100 = 0;
       uStack_98 = 0;
-      iVar6 = FUN_18073c380(plStack_118[0xf],0xfffffffe,&uStack_98);
+      iVar6 = UltraHighFreq_PhysicsEngine1(plStack_118[0xf],0xfffffffe,&uStack_98);
       lVar13 = lStack_b0;
       lVar15 = lStack_d8;
       lVar17 = lStack_b8;
@@ -236,7 +243,7 @@ LAB_180850eb0:
           iVar6 == 0)) &&
          ((uVar11 = (int)*(uint *)((int64_t)plStack_118 + 0x8c) >> 0x1f,
           iVar5 <= (int)((*(uint *)((int64_t)plStack_118 + 0x8c) ^ uVar11) - uVar11) ||
-          (iVar6 = FUN_180747f10(plStack_118 + 0x10,iVar5), lVar13 = lStack_b0, lVar15 = lStack_d8,
+          (iVar6 = RenderingTextureManager0(plStack_118 + 0x10,iVar5), lVar13 = lStack_b0, lVar15 = lStack_d8,
           lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar6 == 0)))) {
         uVar10 = 0;
         uVar19 = uVar10;
@@ -274,7 +281,7 @@ LAB_180850eb0:
         }
         uVar11 = (int)*(uint *)((int64_t)plStack_118 + 0x9c) >> 0x1f;
         if ((iVar7 <= (int)((*(uint *)((int64_t)plStack_118 + 0x9c) ^ uVar11) - uVar11)) ||
-           (iVar5 = FUN_180747f10(plStack_118 + 0x12,iVar7), lVar13 = lStack_b0, lVar15 = lStack_d8,
+           (iVar5 = RenderingTextureManager0(plStack_118 + 0x12,iVar7), lVar13 = lStack_b0, lVar15 = lStack_d8,
            lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 == 0)) {
           uVar10 = 0;
           lVar16 = lStack_a0;
@@ -326,9 +333,9 @@ LAB_1808511a4:
                                        0xffffff01), iVar5 != 0)) &&
         (lVar13 = lStack_b0, lVar15 = lStack_d8, lVar17 = lStack_b8, lVar18 = lStack_e0,
         plVar20 = plStack_88, iVar5 != 0)) ||
-       (((iVar5 = FUN_1808b2f30(plStack_118,1), lVar13 = lStack_b0, lVar15 = lStack_d8,
+       (((iVar5 = SystemDataFlowProcessor(plStack_118,1), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0 ||
-         (iVar5 = FUN_1808b2f30(plStack_118,0), lVar13 = lStack_b0, lVar15 = lStack_d8,
+         (iVar5 = SystemDataFlowProcessor(plStack_118,0), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
         ((iVar5 = FUN_18084ec10(plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0 ||
@@ -423,19 +430,19 @@ LAB_1808513a8:
   }
   if ((char)uStack_fc == '\0') {
     *(int32_t *)(lVar15 + 0x60) = 0;
-    FUN_18084f560(lVar15 + 0x30);
+    RenderingEngine_ShaderProcessor(lVar15 + 0x30);
   }
   if ((char)uStack_f8 == '\0') {
     *(int32_t *)(lVar13 + 0x60) = 0;
-    FUN_18084f040(lVar13 + 0x30);
+    SystemCore_CacheManager(lVar13 + 0x30);
   }
   if ((char)uStack_f4 == '\0') {
     *(int32_t *)(lVar18 + 0x1d0) = 0;
-    FUN_18084f040(lVar18 + 0x1a0);
+    SystemCore_CacheManager(lVar18 + 0x1a0);
   }
   if ((char)uStack_f0 == '\0') {
     *(int32_t *)(lVar17 + 0x60) = 0;
-    FUN_18084f2d0(lVar17 + 0x30);
+    SystemCore_NetworkProcessor(lVar17 + 0x30);
   }
 LAB_180851437:
                     // WARNING: Subroutine does not return
@@ -604,13 +611,13 @@ LAB_180850eb0:
     if ((iVar7 != 0) || (iVar9 != 0)) {
       iStack0000000000000048 = 0;
       *(uint64_t *)(unaff_RBP + -0x50) = 0;
-      iVar8 = FUN_18073c380(in_stack_00000030[0xf],0xfffffffe,unaff_RBP + -0x50);
+      iVar8 = UltraHighFreq_PhysicsEngine1(in_stack_00000030[0xf],0xfffffffe,unaff_RBP + -0x50);
       if (((iVar8 == 0) &&
           (iVar8 = FUN_18073c5f0(in_stack_00000030[0xf],*(uint64_t *)(unaff_RBP + -0x50),
                                  &stack0x00000048), iVar8 == 0)) &&
          ((uVar12 = (int)*(uint *)((int64_t)in_stack_00000030 + 0x8c) >> 0x1f,
           iVar7 <= (int)((*(uint *)((int64_t)in_stack_00000030 + 0x8c) ^ uVar12) - uVar12) ||
-          (iVar8 = FUN_180747f10(in_stack_00000030 + 0x10,iVar7), iVar8 == 0)))) {
+          (iVar8 = RenderingTextureManager0(in_stack_00000030 + 0x10,iVar7), iVar8 == 0)))) {
         uVar11 = 0;
         uVar18 = uVar11;
         if (0 < iVar7) {
@@ -636,7 +643,7 @@ LAB_180850eb0:
         }
         uVar12 = (int)*(uint *)((int64_t)in_stack_00000030 + 0x9c) >> 0x1f;
         if ((iVar9 <= (int)((*(uint *)((int64_t)in_stack_00000030 + 0x9c) ^ uVar12) - uVar12)) ||
-           (iVar7 = FUN_180747f10(in_stack_00000030 + 0x12,iVar9), iVar7 == 0)) {
+           (iVar7 = RenderingTextureManager0(in_stack_00000030 + 0x12,iVar9), iVar7 == 0)) {
           uVar11 = 0;
           uVar18 = uVar11;
           if (0 < iVar9) {
@@ -673,8 +680,8 @@ LAB_1808511a4:
                                 CONCAT31((uint3)(*(uint *)(in_stack_00000030 + 0x18) >> 9),
                                          (char)(*(uint *)(in_stack_00000030 + 0x18) >> 1)) &
                                 0xffffff01), iVar7 != 0)) && (iVar7 != 0)) ||
-       (((iVar7 = FUN_1808b2f30(in_stack_00000030,1), iVar7 != 0 ||
-         (iVar7 = FUN_1808b2f30(in_stack_00000030,0), iVar7 != 0)) ||
+       (((iVar7 = SystemDataFlowProcessor(in_stack_00000030,1), iVar7 != 0 ||
+         (iVar7 = SystemDataFlowProcessor(in_stack_00000030,0), iVar7 != 0)) ||
         ((iVar7 = FUN_18084ec10(in_stack_00000030), iVar7 != 0 ||
          (iVar7 = FUN_18073dc80(in_stack_00000030[0xf],1), iVar7 != 0)))))) goto LAB_180851223;
     lVar19 = 0;
@@ -774,19 +781,19 @@ FUN_180851421:
 LAB_1808513bf:
   if (cStack000000000000004c == '\0') {
     *(int32_t *)(lVar14 + 0x60) = 0;
-    FUN_18084f560(lVar14 + 0x30);
+    RenderingEngine_ShaderProcessor(lVar14 + 0x30);
   }
   if (cStack0000000000000050 == '\0') {
     *(int32_t *)(lVar10 + 0x60) = 0;
-    FUN_18084f040(lVar10 + 0x30);
+    SystemCore_CacheManager(lVar10 + 0x30);
   }
   if (cStack0000000000000054 == '\0') {
     *(int32_t *)(lVar17 + 0x1d0) = 0;
-    FUN_18084f040(lVar17 + 0x1a0);
+    SystemCore_CacheManager(lVar17 + 0x1a0);
   }
   if (cStack0000000000000058 == '\0') {
     *(int32_t *)(lVar16 + 0x60) = 0;
-    FUN_18084f2d0(lVar16 + 0x30);
+    SystemCore_NetworkProcessor(lVar16 + 0x30);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -8) ^ (uint64_t)&stack0x00000000);
@@ -815,19 +822,19 @@ void FUN_180851421(void)
   **(uint64_t **)(unaff_RBP + -0x38) = in_stack_00000030;
   if (in_stack_00000048._4_1_ == '\0') {
     *(int32_t *)(unaff_RDI + 0x60) = unaff_R12D;
-    FUN_18084f560(unaff_RDI + 0x30);
+    RenderingEngine_ShaderProcessor(unaff_RDI + 0x30);
   }
   if (cStack0000000000000050 == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = unaff_R12D;
-    FUN_18084f040(unaff_RSI + 0x30);
+    SystemCore_CacheManager(unaff_RSI + 0x30);
   }
   if (cStack0000000000000054 == '\0') {
     *(int32_t *)(unaff_R14 + 0x1d0) = unaff_R12D;
-    FUN_18084f040(unaff_R14 + 0x1a0);
+    SystemCore_CacheManager(unaff_R14 + 0x1a0);
   }
   if (in_stack_00000058 == '\0') {
     *(int32_t *)(unaff_R13 + 0x60) = unaff_R12D;
-    FUN_18084f2d0(unaff_R13 + 0x30);
+    SystemCore_NetworkProcessor(unaff_R13 + 0x30);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -8) ^ (uint64_t)&stack0x00000000);

@@ -1,10 +1,16 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part159.c - 11 个函数
 
@@ -175,7 +181,7 @@ uint64_t * FUN_180142b20(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x1d) = 0;
   *(int32_t *)((int64_t)param_1 + 0xec) = 0;
   *(int32_t *)(param_1 + 0x1e) = 0x7f7fffff;
-  uVar7 = FUN_180628ca0();
+  uVar7 = MemoryDebugger0();
   SystemCore_ConfigurationHandler0(puVar1,uVar7);
   *(int32_t *)(param_1 + 7) = 0;
   *(int16_t *)((int64_t)param_1 + 0x304) = 0;
@@ -292,7 +298,7 @@ uint64_t * FUN_180142b20(uint64_t *param_1)
   *(uint64_t *)((int64_t)param_1 + 0x2e4) = 0;
   *(uint64_t *)((int64_t)param_1 + 0x2c) = 0x41400000;
   *(int32_t *)((int64_t)param_1 + 0x34) = 0;
-  uVar7 = FUN_180628ca0();
+  uVar7 = MemoryDebugger0();
   SystemCore_ConfigurationHandler0(param_1 + 100,uVar7);
   *(int32_t *)(param_1 + 0x3c) = 0x3f59999a;
   *(int32_t *)((int64_t)param_1 + 0x1e4) = 0x40a00000;
@@ -448,7 +454,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0,param_3,param_4,uVar1);
+    SystemCore_NetworkHandler(plStackX_8,0,param_3,param_4,uVar1);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -459,7 +465,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0,param_3,param_4,uVar1);
+    SystemCore_NetworkHandler(plStackX_8,0,param_3,param_4,uVar1);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -470,7 +476,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0);
+    SystemCore_NetworkHandler(plStackX_8,0);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -481,7 +487,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0);
+    SystemCore_NetworkHandler(plStackX_8,0);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -492,7 +498,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0);
+    SystemCore_NetworkHandler(plStackX_8,0);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -503,7 +509,7 @@ void FUN_180143430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   pplStackX_10 = &plStackX_8;
   if ((plStackX_8 != (int64_t *)0x0) && ((*(uint *)(plStackX_8 + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(plStackX_8,0);
+    SystemCore_NetworkHandler(plStackX_8,0);
   }
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -954,7 +960,7 @@ LAB_18014961e:
   do {
     if (puVar5 == (uint64_t *)0x0) {
 LAB_1801496a3:
-      puVar5 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStackX_18,param_1 + 0x188,1);
+      puVar5 = (uint64_t *)SystemCore_GarbageCollector(system_resource_state,&plStackX_18,param_1 + 0x188,1);
       uVar1 = *puVar5;
       *puVar5 = 0;
       plVar2 = *(int64_t **)(param_1 + 0x1a8);

@@ -176,7 +176,7 @@ uint64_t FUN_180772f60(int64_t param_1,int *param_2,uint param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t
-FUN_180772fe0(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+SystemMemory_Controller(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
              int32_t param_5,int32_t param_6,int8_t param_7)
 
 {
@@ -206,7 +206,7 @@ FUN_180772fe0(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
       return 0x26;
     }
   }
-  uVar2 = FUN_1807d84c0(lVar3,param_2,param_3,param_4,param_5,param_6,param_7);
+  uVar2 = NetworkSystem_DataManager(lVar3,param_2,param_3,param_4,param_5,param_6,param_7);
   return uVar2;
 }
 
@@ -245,7 +245,7 @@ uint64_t FUN_18077302d(int64_t param_1)
     uVar2 = 0x26;
   }
   else {
-    uVar2 = FUN_1807d84c0(lVar3,unaff_EBP);
+    uVar2 = NetworkSystem_DataManager(lVar3,unaff_EBP);
   }
   return uVar2;
 }
@@ -819,7 +819,7 @@ uint64_t FUN_180773410(int64_t param_1,char param_2)
     (**(code **)(param_1 + 0x58))(param_1);
   }
   if (*(int64_t *)(param_1 + 0x170) != 0) {
-    FUN_180769080();
+    UISystem_Renderer();
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 0x170),
                   &rendering_buffer_2992_ptr,0x3f,1);

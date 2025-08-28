@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /**
  * @file 02_core_engine_part061.c
  * @brief 核心引擎系统模块 - 系统初始化和数据处理器
@@ -483,7 +484,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
         }
       }
       plVar19[0x1077] = (int64_t)plVar22;
-      FUN_18029de40(*(uint64_t *)(lVar17 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar17 + 0x1cd8),1);
       *(int32_t *)(param_1 + 0x84) =
            *(int32_t *)(*(int64_t *)(system_message_buffer + 0x121e0) + 0x324);
       *(int32_t *)(param_1 + 0xa4) = 1;
@@ -636,7 +637,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
       *(int32_t *)(lVar17 + 0xb8) = uVar15;
       *(int32_t *)(lVar17 + 0xbc) = uVar16;
       lVar17 = *(int64_t *)(lVar24 + 0x1cd8);
-      FUN_18029fc10(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
+      UltraHighFreq_DatabaseHandler1(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
       iVar33 = 0;
       iStack_2c8 = 0;
       iStack_2c4 = 0;
@@ -655,7 +656,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
               if ((*(uint *)(*(int64_t *)(puVar36 + 6) + 0x328) >> 0xd & 1) == 0) {
                 FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8));
                 lVar17 = *(int64_t *)(system_message_buffer + 0x1cd8);
-                plVar18 = (int64_t *)FUN_18023a940();
+                plVar18 = (int64_t *)SystemCore_Scheduler();
                 plVar22 = plVar19;
                 if (((plVar18 != (int64_t *)0x0) && (plVar22 = plVar18, plVar18[1] == 0)) &&
                    (plVar18[2] == 0)) {
@@ -679,7 +680,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
               else {
                 FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),param_1 + 0xa8);
                 lVar17 = *(int64_t *)(system_message_buffer + 0x1cd8);
-                plVar18 = (int64_t *)FUN_18023a940();
+                plVar18 = (int64_t *)SystemCore_Scheduler();
                 plVar22 = plVar19;
                 if (((plVar18 != (int64_t *)0x0) && (plVar22 = plVar18, plVar18[1] == 0)) &&
                    (plVar18[2] == 0)) {
@@ -707,7 +708,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
                 *(float *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0xc0) = (float)iVar33;
                 lVar17 = *(int64_t *)(lVar24 + 0x1cd8);
                 iStack_2c4 = iVar25;
-                FUN_18029fc10(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
+                UltraHighFreq_DatabaseHandler1(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
               }
               if (*(code **)(puVar36 + 8) == (code *)0x0) {
                 lVar17 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -903,7 +904,7 @@ SystemMemoryAllocator(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
       
       // 调用系统配置函数
       FUN_1808fc820(FUN_1809419e0);  // 配置系统参数
-      FUN_1808fcb30(&system_ptr_9210); // 完成系统初始化
+      SystemCore_StateController(&system_ptr_9210); // 完成系统初始化
     }
   }
   

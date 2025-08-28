@@ -1,8 +1,10 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_13_part027.c - 10 个函数
 
@@ -371,19 +373,19 @@ void FUN_1808b6fd0(uint64_t *param_1,int64_t param_2,int32_t param_3,uint64_t pa
 LAB_1808b7425:
   if (cStack_98 == '\0') {
     *(int32_t *)(lStack_90 + 0x60) = 0;
-    FUN_18084f560(lStack_90 + 0x30);
+    RenderingEngine_ShaderProcessor(lStack_90 + 0x30);
   }
   if (cStack_a8 == '\0') {
     *(int32_t *)(lStack_a0 + 0x60) = 0;
-    FUN_18084f040(lStack_a0 + 0x30);
+    SystemCore_CacheManager(lStack_a0 + 0x30);
   }
   if (cStack_b8 == '\0') {
     *(int32_t *)(lStack_b0 + 0x60) = 0;
-    FUN_18084f040(lStack_b0 + 0x30);
+    SystemCore_CacheManager(lStack_b0 + 0x30);
   }
   if (acStack_c8[0] == '\0') {
     *(int32_t *)(lStack_c0 + 0x60) = 0;
-    FUN_18084f2d0(lStack_c0 + 0x30);
+    SystemCore_NetworkProcessor(lStack_c0 + 0x30);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_138);
@@ -554,21 +556,21 @@ LAB_1808b7425:
   if (*(char *)(unaff_RBP + -0x60) == '\0') {
     lVar3 = *(int64_t *)(unaff_RBP + -0x58);
     *(int32_t *)(lVar3 + 0x60) = 0;
-    FUN_18084f560(lVar3 + 0x30);
+    RenderingEngine_ShaderProcessor(lVar3 + 0x30);
   }
   if (*(char *)(unaff_RBP + -0x70) == '\0') {
     lVar3 = *(int64_t *)(unaff_RBP + -0x68);
     *(int32_t *)(lVar3 + 0x60) = 0;
-    FUN_18084f040(lVar3 + 0x30);
+    SystemCore_CacheManager(lVar3 + 0x30);
   }
   if (*(char *)(unaff_RBP + -0x80) == '\0') {
     lVar3 = *(int64_t *)(unaff_RBP + -0x78);
     *(int32_t *)(lVar3 + 0x60) = 0;
-    FUN_18084f040(lVar3 + 0x30);
+    SystemCore_CacheManager(lVar3 + 0x30);
   }
   if (cStack0000000000000070 == '\0') {
     *(int32_t *)(lStack0000000000000078 + 0x60) = 0;
-    FUN_18084f2d0(lStack0000000000000078 + 0x30);
+    SystemCore_NetworkProcessor(lStack0000000000000078 + 0x30);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x18) ^ (uint64_t)&stack0x00000000);
@@ -591,20 +593,20 @@ void FUN_1808b7453(void)
   
   lVar1 = *(int64_t *)(unaff_RBP + -0x58);
   *(int32_t *)(lVar1 + 0x60) = unaff_EDI;
-  FUN_18084f560(lVar1 + 0x30);
+  RenderingEngine_ShaderProcessor(lVar1 + 0x30);
   if (*(char *)(unaff_RBP + -0x70) == '\0') {
     lVar1 = *(int64_t *)(unaff_RBP + -0x68);
     *(int32_t *)(lVar1 + 0x60) = unaff_EDI;
-    FUN_18084f040(lVar1 + 0x30);
+    SystemCore_CacheManager(lVar1 + 0x30);
   }
   if (*(char *)(unaff_RBP + -0x80) == '\0') {
     lVar1 = *(int64_t *)(unaff_RBP + -0x78);
     *(int32_t *)(lVar1 + 0x60) = unaff_EDI;
-    FUN_18084f040(lVar1 + 0x30);
+    SystemCore_CacheManager(lVar1 + 0x30);
   }
   if (in_stack_00000070 == '\0') {
     *(int32_t *)(in_stack_00000078 + 0x60) = unaff_EDI;
-    FUN_18084f2d0(in_stack_00000078 + 0x30);
+    SystemCore_NetworkProcessor(in_stack_00000078 + 0x30);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x18) ^ (uint64_t)&stack0x00000000);

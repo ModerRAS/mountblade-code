@@ -422,7 +422,7 @@ void FUN_1806ed5a0(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_t *pa
   }
   uStack_e8 = uVar8;
   if (sVar3 != -1) {
-    puVar9 = (int16_t *)thunk_FUN_1808fc418();
+    puVar9 = (int16_t *)thunk_SystemRenderer();
     uVar13 = 0;
     puVar14 = puVar9;
     if (uVar6 != 0) {
@@ -735,7 +735,7 @@ void FUN_1806edd50(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_t *pa
   }
   uStack_e8 = uVar8;
   if (sVar3 != -1) {
-    puVar9 = (int16_t *)thunk_FUN_1808fc418();
+    puVar9 = (int16_t *)thunk_SystemRenderer();
     uVar13 = 0;
     puVar14 = puVar9;
     if (uVar6 != 0) {

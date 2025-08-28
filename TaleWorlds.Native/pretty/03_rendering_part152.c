@@ -1,5 +1,21 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_DataSerializer 
+
+n//  的语义化别名
+#define SystemCore_Decoder 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 /**
  * @file 03_rendering_part152.c
@@ -184,7 +200,7 @@ typedef struct {
 #define RenderingSystem_ConfigurationManager FUN_18035fff0
 
 /** 渲染系统数据采样器 */
-#define RenderingSystem_DataSampler FUN_1802a11e0
+#define RenderingSystem_DataSampler SystemCore_DataConverter
 
 /** 渲染系统内存池分配器 */
 #define RenderingSystem_MemoryPoolAllocator CoreMemoryPoolAllocator
@@ -202,34 +218,34 @@ typedef struct {
 #define RenderingSystem_MemoryAllocator CoreMemoryPoolReallocator
 
 /** 渲染系统资源管理器 */
-#define RenderingSystem_ResourceManager FUN_180275090
+#define RenderingSystem_ResourceManager RenderingSystem_ShaderManager
 
 /** 渲染系统渲染队列管理器 */
-#define RenderingSystem_RenderQueueManager FUN_1802edcd0
+#define RenderingSystem_RenderQueueManager PhysicsSystem_TerrainCollider
 
 /** 渲染系统缓冲区管理器 */
 #define RenderingSystem_BufferManager FUN_180075030
 
 /** 渲染系统资源状态管理器 */
-#define RenderingSystem_ResourceStateManager FUN_1800b30d0
+#define RenderingSystem_ResourceStateManager SystemCore_PerformanceMonitor
 
 /** 渲染系统数据处理器 */
-#define RenderingSystem_DataProcessor FUN_180076910
+#define RenderingSystem_DataProcessor SystemCore_LoggingSystem
 
 /** 渲染系统数据管理器 */
-#define RenderingSystem_DataManager FUN_18022f2e0
+#define RenderingSystem_DataManager RenderingSystem_MaterialProcessor
 
 /** 渲染系统坐标转换器 */
 #define RenderingSystem_CoordinateTransformer FUN_1803a5130
 
 /** 渲染系统几何处理器 */
-#define RenderingSystem_GeometryProcessor FUN_180235000
+#define RenderingSystem_GeometryProcessor SystemCore_DataSerializer
 
 /** 渲染系统几何优化器 */
-#define RenderingSystem_GeometryOptimizer FUN_1802350e0
+#define RenderingSystem_GeometryOptimizer SystemCore_Decoder
 
 /** 渲染系统几何渲染器 */
-#define RenderingSystem_GeometryRenderer FUN_180235410
+#define RenderingSystem_GeometryRenderer SystemCore_RenderFrame
 
 /** 渲染系统状态管理器 */
 #define RenderingSystem_StateManager FUN_180234880
@@ -238,22 +254,22 @@ typedef struct {
 #define RenderingSystem_DataFlowProcessor FUN_18040fa30
 
 /** 渲染系统消息处理器 */
-#define RenderingSystem_MessageProcessor FUN_1800623b0
+#define RenderingSystem_MessageProcessor SystemConfigurationManager
 
 /** 渲染系统错误处理器 */
-#define RenderingSystem_ErrorHandler FUN_180075b70
+#define RenderingSystem_ErrorHandler SystemConfig_Manager
 
 /** 渲染系统资源清理器 */
-#define RenderingSystem_ResourceCleaner FUN_18007f6a0
+#define RenderingSystem_ResourceCleaner SystemSecurityManager
 
 /** 渲染系统状态清理器 */
-#define RenderingSystem_StateCleaner FUN_180079520
+#define RenderingSystem_StateCleaner SystemInitializer
 
 /** 渲染系统资源释放器 */
 #define RenderingSystem_ResourceReleaser FUN_180275cf0
 
 /** 渲染系统资源分配器 */
-#define RenderingSystem_ResourceAllocator FUN_180276f30
+#define RenderingSystem_ResourceAllocator SystemCore_UpdateState
 
 /** 渲染系统资源初始化器 */
 #define RenderingSystem_ResourceInitializer FUN_18007c860
@@ -262,16 +278,16 @@ typedef struct {
 #define RenderingSystem_DataManager2 FUN_18022f390
 
 /** 渲染系统字符串处理器 */
-#define RenderingSystem_StringProcessor FUN_1800b8300
+#define RenderingSystem_StringProcessor DataDeserializer0
 
 /** 渲染系统数组管理器 */
-#define RenderingSystem_ArrayManager FUN_180180730
+#define RenderingSystem_ArrayManager MathOptimizationEngine0
 
 /** 渲染系统安全检查器 */
 #define RenderingSystem_SecurityChecker SystemSecurityChecker
 
 /** 渲染系统内存管理器 */
-#define RenderingSystem_MemoryManager FUN_180627020
+#define RenderingSystem_MemoryManager SystemManager_StateHandler0
 
 /** 渲染系统回调管理器 */
 #define RenderingSystem_CallbackManager FUN_180360210

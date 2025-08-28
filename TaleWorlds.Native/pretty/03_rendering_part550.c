@@ -37,11 +37,11 @@ int8_t FUN_18056eb00(uint64_t param_1,int32_t *param_2,int64_t param_3)
 {
   char cVar1;
   
-  cVar1 = FUN_180645fa0(param_1,*param_2);
+  cVar1 = UI_LayoutManager(param_1,*param_2);
   if (cVar1 != '\0') {
-    cVar1 = FUN_180645fa0(param_1,param_2[1],param_3);
+    cVar1 = UI_LayoutManager(param_1,param_2[1],param_3);
     if (cVar1 != '\0') {
-      cVar1 = FUN_180645fa0(param_1,param_2[2],param_3 + 0x10);
+      cVar1 = UI_LayoutManager(param_1,param_2[2],param_3 + 0x10);
       if (cVar1 != '\0') {
         return 1;
       }

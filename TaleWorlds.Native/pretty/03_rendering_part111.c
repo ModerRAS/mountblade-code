@@ -316,7 +316,7 @@ void RenderingSystem_DataTransformer(int64_t render_context, int64_t output_hand
         result_w = target_w;
         
         // 调用处理函数
-        FUN_1802feba0(output_handle, (int64_t)(uint64_t)(uint)((int)output_buffer - *(int *)(output_handle + 0x18)) >> 8);
+        RenderingSystem_DrawPrimitive(output_handle, (int64_t)(uint64_t)(uint)((int)output_buffer - *(int *)(output_handle + 0x18)) >> 8);
         
         // 恢复上下文
         render_context = saved_context_1;
@@ -565,7 +565,7 @@ void RenderingSystem_MatrixProcessor(uint64_t matrix_context, uint64_t transform
       *target_matrix = 0;
       
       // 调用处理函数
-      FUN_1802feba0(source_x, (int64_t)(uint64_t)(uint)((int)target_matrix - *(int *)(unaff_R15 + 0x18)) >> 8);
+      RenderingSystem_DrawPrimitive(source_x, (int64_t)(uint64_t)(uint)((int)target_matrix - *(int *)(unaff_R15 + 0x18)) >> 8);
       
       // 更新循环变量
       matrix_counter = (uint64_t)*(uint *)(unaff_RBP + 200);

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -141,7 +145,7 @@ LAB_180280743:
               puVar25[3] = 0;
               puStack_60 = (uint64_t *)uVar16;
               uStack_58 = uVar6;
-              FUN_18066c220(lVar23 + 0x20,acStack_a0,*(int32_t *)(lVar23 + 0x10),
+              RenderingShaderProcessor0(lVar23 + 0x20,acStack_a0,*(int32_t *)(lVar23 + 0x10),
                             *(int32_t *)(lVar23 + 0x18));
               if (acStack_a0[0] != '\0') {
                 uVar22 = uVar33 % (uint64_t)uStack_9c;
@@ -410,7 +414,7 @@ LAB_180280743:
             puVar25[3] = 0;
             param_15 = (uint64_t *)uVar16;
             param_16 = uVar6;
-            FUN_18066c220(lVar23 + 0x20,&param_7,*(int32_t *)(lVar23 + 0x10),
+            RenderingShaderProcessor0(lVar23 + 0x20,&param_7,*(int32_t *)(lVar23 + 0x10),
                           *(int32_t *)(lVar23 + 0x18),1);
             if ((char)param_7 != '\0') {
               uVar22 = uVar33 % (uint64_t)param_7._4_4_;

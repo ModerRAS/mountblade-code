@@ -1,3 +1,5 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -267,7 +269,7 @@ void FUN_1804b2750(int64_t param_1,int64_t *param_2,uint64_t param_3,float *para
   plStack_a0 = (int64_t *)0x0;
   uStack_b0 = 0;
   auStack_b8[0] = 0;
-  uVar23 = FUN_18022f2e0(&plStack_c8,param_2,0);
+  uVar23 = RenderingSystem_MaterialProcessor(&plStack_c8,param_2,0);
   if (param_2 != (int64_t *)0x0) {
     uVar23 = (**(code **)(*param_2 + 0x38))(param_2);
   }
@@ -425,14 +427,14 @@ LAB_1804b28aa:
   }
   if ((plStack_c8 != (int64_t *)0x0) && (plStack_c0 != (int64_t *)0x0)) {
     if (cStack_96 != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_b8);
+    SystemSecurityManager(auStack_b8);
     if (cStack_98 != '\0') {
-      FUN_180079520(plStack_c8);
+      SystemInitializer(plStack_c8);
     }
     if (cStack_97 != '\0') {
-      FUN_180079520(plStack_c8);
+      SystemInitializer(plStack_c8);
     }
     plVar8 = plStack_c0;
     plStack_c0 = (int64_t *)0x0;
@@ -440,7 +442,7 @@ LAB_1804b28aa:
       (**(code **)(*plVar8 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_b8);
+  SystemSecurityManager(auStack_b8);
   if (plStack_a0 != (int64_t *)0x0) {
     (**(code **)(*plStack_a0 + 0x38))();
   }
@@ -692,7 +694,7 @@ LAB_1804b2fc9:
     }
   }
   if ((puVar6 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_10,auStackX_8[0],puVar6,auStackX_8);
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_10,auStackX_8[0],puVar6,auStackX_8);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar8 = puVar6[5];

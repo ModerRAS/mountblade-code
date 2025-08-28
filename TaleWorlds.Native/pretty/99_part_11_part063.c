@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -153,7 +157,7 @@ void FUN_1807c2a7a(void)
   int32_t in_stack_00000050;
   
 code_r0x0001807c2a7a:
-  iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),iStack0000000000000030,1);
+  iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),iStack0000000000000030,1);
   if (iVar4 == 0) {
     iVar4 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),&stack0x00000040,1,4);
     iVar5 = (int)unaff_R15;
@@ -169,7 +173,7 @@ code_r0x0001807c2a7a:
         if (unaff_EDI < uVar7) {
           uVar3 = *(int32_t *)(unaff_RBX + 0x110);
           do {
-            iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),uVar3,0);
+            iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),uVar3,0);
             if (iVar4 == 0) {
               iVar4 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),&stack0x00000040,1);
               if (iVar4 != 0) goto LAB_1807c2a43;
@@ -375,7 +379,7 @@ uint64_t FUN_1807c32f0(int64_t param_1,uint64_t param_2,uint param_3,int param_4
   if (uVar8 + iVar6 <= *(int *)(*(int64_t *)(param_1 + 8) + 0x14) + uVar8) {
     uVar8 = uVar8 + iVar6;
   }
-  uVar5 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),uVar8,0);
+  uVar5 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),uVar8,0);
   if ((int)uVar5 == 0) {
     if ((*(uint *)(param_1 + 0x2c) & 2) == 0) {
       *(uint *)(param_1 + 0x2c) = *(uint *)(param_1 + 0x2c) | 4;
@@ -710,7 +714,7 @@ LAB_1807c39d6:
     }
   }
 LAB_1807c3a4b:
-  FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),*(int32_t *)(unaff_RDI + 0x110),0);
+  MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),*(int32_t *)(unaff_RDI + 0x110),0);
   iVar4 = SystemDataAnalyzer(*(uint64_t *)(unaff_RDI + 0x170),&stack0x0000004c,1);
   if ((iVar4 == 0) && (iVar4 = func_0x00018076b6b0(&stack0x0000004c,&system_data_c5d0,4), iVar4 == 0))
   {
@@ -755,7 +759,7 @@ void FUN_1807c3bd2(void)
           if (cVar3 == '=') {
             *pcVar9 = '\0';
             func_0x00018076b690(pcVar9 + 1);
-            iVar4 = FUN_180772fe0();
+            iVar4 = SystemMemory_Controller();
             if (iVar4 != 0) goto LAB_1807c3d6b;
             break;
           }

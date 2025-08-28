@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part049.c - 3 个函数
 
 // 函数: void FUN_1805d3770(int64_t *param_1)
@@ -55,7 +63,7 @@ void FUN_1805d3770(int64_t *param_1)
       )))) {
     uVar12 = *(uint *)(param_1 + 1);
     if ((uVar12 & 1) == 0) {
-      FUN_1805d3210(param_1);
+      SystemCore_ThreadManager(param_1);
       uVar12 = *(uint *)(param_1 + 1);
       lVar13 = *(int64_t *)*param_1;
     }
@@ -107,7 +115,7 @@ void FUN_1805d3770(int64_t *param_1)
        (uVar4 >> 9 & 1) == 0 || (0 < *(short *)(lVar13 + 8))))) && ((uVar4 >> 1 & 1) != 0))
   goto FUN_1805d3fdb;
   if ((uVar12 & 1) == 0) {
-    FUN_1805d3210(param_1);
+    SystemCore_ThreadManager(param_1);
   }
   pfVar9 = (float *)FUN_1805b6cc0(param_1);
   uVar12 = *(uint *)(param_1 + 1);
@@ -138,7 +146,7 @@ void FUN_1805d3770(int64_t *param_1)
     goto FUN_1805d3fdb;
   }
   if (fVar30 <= 0.0) goto FUN_1805d3fdb;
-  lVar10 = FUN_1805b74c0(param_1);
+  lVar10 = SystemCore_MemoryAllocator(param_1);
   plVar17 = (int64_t *)*param_1;
   lVar13 = *(int64_t *)(*plVar17 + 0x20);
   lVar18 = *(int64_t *)(lVar10 + 0x20);
@@ -331,7 +339,7 @@ void FUN_1805d3985(uint64_t param_1,uint64_t param_2)
   float fStack00000000000000f4;
   
   if ((param_2 & 1) == 0) {
-    FUN_1805d3210();
+    SystemCore_ThreadManager();
   }
   pfVar9 = (float *)FUN_1805b6cc0();
   uVar12 = *(uint *)(unaff_RBX + 1);
@@ -363,7 +371,7 @@ void FUN_1805d3985(uint64_t param_1,uint64_t param_2)
     goto FUN_1805d3fc7;
   }
   if (fVar31 <= 0.0) goto FUN_1805d3fc7;
-  lVar10 = FUN_1805b74c0();
+  lVar10 = SystemCore_MemoryAllocator();
   plVar16 = (int64_t *)*unaff_RBX;
   lVar3 = *(int64_t *)(*plVar16 + 0x20);
   lVar4 = *(int64_t *)(lVar10 + 0x20);
@@ -556,7 +564,7 @@ void FUN_1805d3a7b(void)
   float fStack00000000000000f0;
   float fStack00000000000000f4;
   
-  lVar8 = FUN_1805b74c0();
+  lVar8 = SystemCore_MemoryAllocator();
   plVar14 = (int64_t *)*unaff_RBX;
   lVar2 = *(int64_t *)(*plVar14 + 0x20);
   lVar3 = *(int64_t *)(lVar8 + 0x20);

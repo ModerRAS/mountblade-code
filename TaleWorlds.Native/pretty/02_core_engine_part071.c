@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -32,7 +33,7 @@ void FUN_180103970(int64_t *param_1,int8_t param_2)
   uStack_30._0_4_ = uStack_40;
   uStack_30._4_4_ = uStack_3c;
   uStack_28 = uStack_38;
-  plVar4 = (int64_t *)FUN_18006b640(uVar3,&uStack_30);
+  plVar4 = (int64_t *)SystemCore_ErrorHandler(uVar3,&uStack_30);
   plVar2 = plVar4;
   uVar1 = system_context_ptr;
   if (plVar4 != (int64_t *)0x0) {
@@ -109,7 +110,7 @@ uint64_t FUN_180103a60(int64_t *param_1)
     UNLOCK();
                     // WARNING: Subroutine does not return
     puStack_30 = &processed_var_4713_ptr;
-    FUN_180062300(system_message_context,&processed_var_6584_ptr,iVar6,iVar7);
+    SystemParameterHandler(system_message_context,&processed_var_6584_ptr,iVar6,iVar7);
   }
   lVar4 = *param_1;
   if ((*(int *)(lVar4 + 900) != *(int *)(lVar4 + 0x380)) ||
@@ -194,7 +195,7 @@ LAB_180103c39:
       puVar5 = puStack_28;
     }
     uStack_20 = iVar6;
-    FUN_18062dee0(&uStack_48,puVar5,&system_data_c7ec);
+    SystemCore_Validator(&uStack_48,puVar5,&system_data_c7ec);
     plVar1 = SYSTEM_STATE_MANAGER;
     if (lStack_40 == 0) {
       uVar8 = 3;
@@ -268,7 +269,7 @@ void FUN_180103abc(void)
   *(int8_t *)(lVar1 + 0x3c8) = 1;
   UNLOCK();
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_6584_ptr,iVar3,iVar2);
+  SystemParameterHandler(system_message_context,&processed_var_6584_ptr,iVar3,iVar2);
 }
 
 
@@ -374,7 +375,7 @@ LAB_180103c39:
     if (unaff_retaddr != (void *)0x0) {
       puVar5 = unaff_retaddr;
     }
-    FUN_18062dee0(&uStack_20,puVar5,&system_data_c7ec);
+    SystemCore_Validator(&uStack_20,puVar5,&system_data_c7ec);
     plVar1 = SYSTEM_STATE_MANAGER;
     if (lStack_18 == 0) {
       uVar6 = 3;

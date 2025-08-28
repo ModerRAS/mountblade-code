@@ -974,7 +974,7 @@ int64_t FUN_18006e0b0(int64_t param_1,uint64_t param_2)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   FUN_18006e4a0(param_1 + 200);
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x408);
   }

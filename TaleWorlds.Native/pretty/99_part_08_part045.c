@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -133,8 +138,8 @@ void FUN_1805a68af(void)
 
 
 
-// 函数: void FUN_1805a6b33(void)
-void FUN_1805a6b33(void)
+// 函数: void SystemCore_StateProcessor(void)
+void SystemCore_StateProcessor(void)
 
 {
   int64_t unaff_RBP;
@@ -206,7 +211,7 @@ uint64_t FUN_1805a6bb0(int64_t param_1,int32_t *param_2)
   uStack_44 = uVar10;
   uStack_3c = uVar9;
   uStack_30 = uVar8;
-  uVar5 = FUN_18051ec50(*(uint64_t *)(param_1 + 0x1c8),&uStack_58);
+  uVar5 = CoreSystemThreadManager(*(uint64_t *)(param_1 + 0x1c8),&uStack_58);
   if ((char)uVar5 == '\0') {
     uVar5 = uVar5 & 0xffffffffffffff00;
   }
@@ -757,7 +762,7 @@ void FUN_1805a7550(uint64_t param_1,int64_t param_2,int param_3,float param_4)
     if ((*(int64_t *)(param_2 + 0x288) == 0) ||
        (iVar1 = *(int *)(*(int64_t *)(param_2 + 0x288) + 0x10), iVar1 == -1)) goto LAB_1805a7803;
     fVar9 = *(float *)(*(int64_t *)(param_2 + 0x590) + 0x24d4);
-    iVar2 = FUN_18053a410(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),
+    iVar2 = SystemCacheManager(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),
                           iVar1,param_4,0xfffffffffffffffe);
     iVar2 = *(int *)(system_system_config + (int64_t)iVar2 * 4);
     lVar4 = lVar6;
@@ -778,7 +783,7 @@ void FUN_1805a7550(uint64_t param_1,int64_t param_2,int param_3,float param_4)
   }
   if ((((param_3 - 9U & 0xfffffff7) != 0) || (*(int64_t *)(param_2 + 0x288) == 0)) ||
      (iVar1 = *(int *)(*(int64_t *)(param_2 + 0x288) + 0x14), iVar1 == -1)) goto LAB_1805a7803;
-  iVar2 = FUN_18053a410(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),iVar1,
+  iVar2 = SystemCacheManager(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac),iVar1,
                         param_4,0xfffffffffffffffe);
   iVar2 = *(int *)(system_system_config + (int64_t)iVar2 * 4);
   lVar4 = lVar6;
@@ -790,7 +795,7 @@ void FUN_1805a7550(uint64_t param_1,int64_t param_2,int param_3,float param_4)
   uStack_80._4_4_ = iVar1;
   if ((*(uint *)(lVar4 + 0x1d0) >> 0x14 & 1) == 0) {
     fVar10 = system_system_config + param_4;
-    lVar5 = FUN_18053a5a0(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac));
+    lVar5 = SystemCore_Initializer(&system_ptr_5f30,*(int32_t *)(*(int64_t *)(param_2 + 0x590) + 0xac));
     fVar9 = *(float *)(lVar4 + 0x188) - *(float *)(lVar4 + 0x1e8);
     fVar9 = (fVar10 - fVar9) / ((*(float *)(lVar5 + 0x188) - *(float *)(lVar5 + 0x1e8)) - fVar9);
     fStack_6c = 0.05;
@@ -823,7 +828,7 @@ LAB_1805a7759:
     uStack_58 = 0;
   }
   puStack_78 = (int32_t *)lVar6;
-  FUN_18051ec50(param_2,&uStack_80);
+  CoreSystemThreadManager(param_2,&uStack_80);
   if ((0.0 < param_4) &&
      ((float)(*(int64_t *)(&system_error_code + (int64_t)*(int *)(param_2 + 0x228) * 8) -
              *(int64_t *)(param_2 + 0x220)) * -1e-05 < param_4)) {

@@ -1,10 +1,14 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 02_core_engine_part154.c - 10 个函数
 
-// 函数: void FUN_18013c800(int64_t param_1,char *param_2,char *param_3)
-void FUN_18013c800(int64_t param_1,char *param_2,char *param_3)
+// 函数: void SystemCore_ThreadController(int64_t param_1,char *param_2,char *param_3)
+void SystemCore_ThreadController(int64_t param_1,char *param_2,char *param_3)
 
 {
   int64_t lVar1;
@@ -546,7 +550,7 @@ LAB_18013cd32:
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(in_stack_00000058,SYSTEM_DATA_MANAGER_B);
+      DataValidator0(in_stack_00000058,SYSTEM_DATA_MANAGER_B);
     }
   } while( true );
 }
@@ -567,7 +571,7 @@ void FUN_18013cd49(void)
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0();
+  DataValidator0();
 }
 
 
@@ -584,7 +588,7 @@ void FUN_18013cd62(void)
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0();
+  DataValidator0();
 }
 
 
@@ -675,7 +679,7 @@ LAB_18013cd32:
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(in_stack_00000058,SYSTEM_DATA_MANAGER_B);
+        DataValidator0(in_stack_00000058,SYSTEM_DATA_MANAGER_B);
       }
     }
   } while( true );

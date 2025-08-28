@@ -1,9 +1,15 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_05_part021.c - 9 个函数
 
@@ -206,9 +212,9 @@ void FUN_1802e5f00(uint64_t param_1,int64_t *param_2)
       uStack_376 = 0;
       uStack_380 = 0x100;
       uStack_34c = 1;
-      lVar16 = FUN_180244ff0(param_1);
+      lVar16 = SystemOptimizer(param_1);
       uStack_36c = CONCAT44(uStack_36c._4_4_,*(int32_t *)(lVar16 + 0x324));
-      lVar16 = FUN_180245280(param_1);
+      lVar16 = SystemLog_Manager(param_1);
       uStack_370 = *(int32_t *)(lVar16 + 0x324);
       auStack_3b8[0] = 0;
       puStack_288 = &processed_var_672_ptr;
@@ -216,7 +222,7 @@ void FUN_1802e5f00(uint64_t param_1,int64_t *param_2)
       auStack_270[0] = auStack_270[0] & 0xffffff00;
       uStack_278 = 0xe;
       strcpy_s(auStack_270,0x20,&rendering_buffer_232_ptr);
-      plVar17 = (int64_t *)FUN_1800b31f0(system_resource_state,&ppuStack_3b0,&puStack_288,1);
+      plVar17 = (int64_t *)SystemCore_EncryptionManager(system_resource_state,&ppuStack_3b0,&puStack_288,1);
       puVar5 = (void *)*plVar17;
       if (ppuStack_3b0 != (void **)0x0) {
         (**(code **)(*ppuStack_3b0 + 0x38))();
@@ -259,7 +265,7 @@ void FUN_1802e5f00(uint64_t param_1,int64_t *param_2)
       if (plStack_2d0 != (int64_t *)0x0) {
         (**(code **)(*plStack_2d0 + 0x28))();
       }
-      lStack_388 = FUN_180299eb0(uVar6,0,&puStack_288,auStack_3b8);
+      lStack_388 = UIRenderingEngine(uVar6,0,&puStack_288,auStack_3b8);
       if (lStack_388 != 0) {
         FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&lStack_388);
         pcStack_3c8 = (code *)CONCAT44(pcStack_3c8._4_4_,0xffffffff);
@@ -873,13 +879,13 @@ void FUN_1802e6ff0(uint64_t *param_1)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_180057830();
-  FUN_180057830();
-  FUN_180057830();
+  DataTransformer0();
+  DataTransformer0();
+  DataTransformer0();
   FUN_1802f4b20(param_1 + 0x32,param_1[0x34]);
   FUN_180226750(param_1 + 0x2e);
   FUN_1802e6f20(param_1 + 0x22);
-  FUN_180057830();
+  DataTransformer0();
   param_1[0x1a] = &system_data_buffer_ptr;
   if (param_1[0x1b] != 0) {
                     // WARNING: Subroutine does not return
@@ -918,10 +924,10 @@ int FUN_1802e73b0(int64_t param_1,uint64_t param_2,int64_t param_3)
   if ((param_3 == 0) || ((*(uint *)(param_3 + 4) & 0x200000) == 0)) {
     uVar2 = *(uint *)(param_1 + 0x2ac) >> 4 & 0xf;
     if (uVar2 == 0) {
-      FUN_1801c0d90(param_1);
-      FUN_1801c0d90(param_1);
+      UtilitiesSystem_CacheManager(param_1);
+      UtilitiesSystem_CacheManager(param_1);
       if (2.0 < *(float *)(*(int64_t *)(param_1 + 0x28) + 0xb0)) {
-        FUN_1801c0d90(param_1);
+        UtilitiesSystem_CacheManager(param_1);
       }
       fVar3 = (float)func_0x0001802e7320();
       fVar3 = fVar3 + *(float *)(param_1 + 700);
@@ -952,10 +958,10 @@ int FUN_1802e7460(void)
   int64_t unaff_RBX;
   float fVar3;
   
-  FUN_1801c0d90();
-  FUN_1801c0d90();
+  UtilitiesSystem_CacheManager();
+  UtilitiesSystem_CacheManager();
   if (2.0 < *(float *)(*(int64_t *)(unaff_RBX + 0x28) + 0xb0)) {
-    FUN_1801c0d90();
+    UtilitiesSystem_CacheManager();
   }
   fVar3 = (float)func_0x0001802e7320();
   fVar3 = fVar3 + *(float *)(unaff_RBX + 700);
@@ -979,10 +985,10 @@ int FUN_1802e7468(void)
   int64_t unaff_RBX;
   float fVar3;
   
-  FUN_1801c0d90();
-  FUN_1801c0d90();
+  UtilitiesSystem_CacheManager();
+  UtilitiesSystem_CacheManager();
   if (2.0 < *(float *)(*(int64_t *)(unaff_RBX + 0x28) + 0xb0)) {
-    FUN_1801c0d90();
+    UtilitiesSystem_CacheManager();
   }
   fVar3 = (float)func_0x0001802e7320();
   fVar3 = fVar3 + *(float *)(unaff_RBX + 700);
@@ -1006,7 +1012,7 @@ int FUN_1802e74e2(void)
   int64_t unaff_RBX;
   float fVar3;
   
-  FUN_1801c0d90();
+  UtilitiesSystem_CacheManager();
   fVar3 = (float)func_0x0001802e7320();
   fVar3 = fVar3 + *(float *)(unaff_RBX + 700);
   uVar1 = (uint)fVar3;

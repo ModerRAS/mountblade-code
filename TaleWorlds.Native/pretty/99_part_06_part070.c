@@ -1,3 +1,8 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -178,7 +183,7 @@ LAB_1803ea221:
   uStack_4d8 = 0xf;
   uStack_4f0 = 0;
   puStack_4f8 = puVar6;
-  FUN_1800671b0(&uStack_4f0,&processed_var_552_ptr,7);
+  MathCoreCalculator0(&uStack_4f0,&processed_var_552_ptr,7);
   puStack_590 = (int32_t *)&uStack_4f0;
   FUN_1803f2eb0(auStack_2f8);
   puStack_588 = &uStack_4c8;
@@ -231,7 +236,7 @@ LAB_1803ea221:
   do {
     lVar11 = lVar11 + 1;
   } while (puVar9[lVar11] != '\0');
-  FUN_1800671b0(auStack_4a8);
+  MathCoreCalculator0(auStack_4a8);
   uVar7 = FUN_1803f3ac0(auStack_338,auStack_4a8,uVar7);
   auStack_597[0] = 0;
   puStack_590 = (int32_t *)auStack_3b0;
@@ -251,7 +256,7 @@ LAB_1803ea221:
   uStack_478 = 0;
   uStack_470 = 0xf;
   auStack_488[0] = 0;
-  FUN_1800671b0(auStack_488,&processed_var_752_ptr,4);
+  MathCoreCalculator0(auStack_488,&processed_var_752_ptr,4);
   ppuStack_5b8 = (void **)auStack_597;
   FUN_1803f3bc0(auStack_378,auStack_488,uVar7);
   iVar5 = _Mtx_lock(param_1 + 0x520);
@@ -365,7 +370,7 @@ LAB_1803ea221:
   do {
     lVar11 = lVar11 + 1;
   } while (puVar12[lVar11] != '\0');
-  FUN_1800671b0(&uStack_2b8,puVar12);
+  MathCoreCalculator0(&uStack_2b8,puVar12);
   ppuStack_5b8 = (void **)0x0;
   FUN_1803e8510(*(uint64_t *)(param_1 + 0x188),2,&uStack_2b8,auStack_4b8);
   if (0xf < uStack_2a0) {
@@ -508,7 +513,7 @@ void FUN_1803eaa70(int64_t param_1)
   uStack_a8 = 0;
   uStack_a0 = 0xf;
   uStack_b8 = 0;
-  FUN_1800671b0(&uStack_b8,&system_data_e2c8,1);
+  MathCoreCalculator0(&uStack_b8,&system_data_e2c8,1);
   uStack_158 = 0;
   FUN_1803e8510(*(uint64_t *)(param_1 + 0x188),1,&uStack_b8,auStack_110);
   if (0xf < uStack_a0) {
@@ -561,14 +566,14 @@ void FUN_1803eaa70(int64_t param_1)
     if (0xf < uStack_70) {
       pppuVar7 = (uint64_t ***)appuStack_88[0];
     }
-    FUN_180626ee0(&processed_var_784_ptr,pppuVar7);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_784_ptr,pppuVar7);
   }
   plVar10 = (int64_t *)(param_1 + 0x440);
   if (0xf < *(uint64_t *)(param_1 + 0x458)) {
     plVar10 = (int64_t *)*plVar10;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_832_ptr,plVar10);
+  SystemParameterHandler(system_message_context,&processed_var_832_ptr,plVar10);
 }
 
 

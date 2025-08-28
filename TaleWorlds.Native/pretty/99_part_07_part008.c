@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -40,7 +41,7 @@ void FUN_1804a1800(uint64_t param_1,uint64_t *param_2)
   if (puStack_468 != (void *)0x0) {
     puVar5 = puStack_468;
   }
-  FUN_180060680(acStack_438,&ui_system_data_128_ptr,&system_data_d0f8,puVar5);
+  RenderingEngine_BufferManager(acStack_438,&ui_system_data_128_ptr,&system_data_d0f8,puVar5);
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -50,11 +51,11 @@ void FUN_1804a1800(uint64_t param_1,uint64_t *param_2)
   *(int32_t *)(param_2 + 2) = 0;
   uStack_478 = 1;
   fVar6 = (float)FUN_180623d40();
-  FUN_180060680(acStack_238,&ui_system_data_152_ptr,(double)fVar6);
+  RenderingEngine_BufferManager(acStack_238,&ui_system_data_152_ptr,(double)fVar6);
   pcStack_488 = acStack_238;
-  FUN_1800622d0(system_message_context,0,7,&ui_system_data_176_ptr);
+  SystemManager_DataHandler(system_message_context,0,7,&ui_system_data_176_ptr);
   pcStack_488 = acStack_438;
-  FUN_1800622d0(system_message_context,0,7,&processed_var_4720_ptr);
+  SystemManager_DataHandler(system_message_context,0,7,&processed_var_4720_ptr);
   lVar1 = -1;
   do {
     lVar4 = lVar1;
@@ -286,7 +287,7 @@ FUN_1804a1c00(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param
         uStack_60 = 0;
         fStack_a8 = (float)dVar7;
         fStack_a4 = (float)dVar8;
-        FUN_1801aa0f0(plVar6[0xcc],&fStack_a8,0,auStack_88,0x51b189,
+        PhysicsSystem_JointManager(plVar6[0xcc],&fStack_a8,0,auStack_88,0x51b189,
                       (byte)((uint)*(int32_t *)((int64_t)plVar6 + 0x56c) >> 8) & 1,uVar12,uVar13
                      );
         if (cStack_54 != '\0') {
@@ -603,7 +604,7 @@ FUN_1804a25a0(uint64_t param_1,uint64_t *param_2,int32_t param_3,uint64_t param_
     FUN_180085c10(&uStack_38,system_system_config);
     FUN_180085970(&uStack_38,system_system_config);
     FUN_180085ac0(&uStack_38,system_system_config);
-    FUN_18063b470(&uStack_48,&uStack_38);
+    AdvancedProcessor_StateManager0(&uStack_48,&uStack_38);
     system_system_config = uStack_48;
     uRam0000000180c96374 = uStack_44;
     uRam0000000180c96378 = uStack_40;
@@ -746,7 +747,7 @@ FUN_1804a2770(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
       }
     }
     else if (*(char *)(system_message_context + 0x18) != '\0') {
-      FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd,&processed_var_6936_ptr,&processed_var_672_ptr,
+      SystemConfigurationManager(system_message_context,3,0xffffffff00000000,0xd,&processed_var_6936_ptr,&processed_var_672_ptr,
                     &processed_var_704_ptr);
     }
     *param_2 = &system_state_ptr;
@@ -915,7 +916,7 @@ FUN_1804a2b20(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
       }
     }
     else if (*(char *)(system_message_context + 0x18) != '\0') {
-      FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd,&processed_var_6936_ptr,&ui_system_data_1152_ptr,
+      SystemConfigurationManager(system_message_context,3,0xffffffff00000000,0xd,&processed_var_6936_ptr,&ui_system_data_1152_ptr,
                     &ui_system_data_1184_ptr);
     }
     *param_2 = &system_state_ptr;

@@ -1,4 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_04_part043_sub002_sub002.c - 1 个函数
 
@@ -282,7 +287,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
       *(int64_t *)(lVar22 + 0x118) = lVar24;
       *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 0x120) =
            *(uint64_t *)(*(int64_t *)(param_1 + 0x18) + 0x10);
-      FUN_180056f10(*(int64_t *)(param_1 + 0x20) + 0x128,0);
+      SystemCore_PointerManager(*(int64_t *)(param_1 + 0x20) + 0x128,0);
       *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 0x138) =
            *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 0x130);
       *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 0x60) =
@@ -308,7 +313,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
               if (uStack_208 != (int64_t *)0x0) {
                 (**(code **)(*uStack_208 + 0x28))();
               }
-              FUN_180076910(uVar7,&uStack_208);
+              UltraHighFreq_SecurityValidator1(uVar7,&uStack_208);
               DataCacheManager(&uStack_208);
             }
             lVar24 = lVar24 + 0x10;
@@ -549,7 +554,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
           fVar27 = (float)uVar14 * 2.3283064e-10 * (1.0 - fVar27) + fVar27;
           func_0x0001800ba030(1.0 - fVar27 * fVar27);
                     // WARNING: Subroutine does not return
-          FUN_1808fd400();
+          RenderingSystem_Renderer0();
         }
         uVar14 = func_0x0001800ba030(param_1 + 0x60);
         uStack_248 = CONCAT44(uStack_248._4_4_,
@@ -587,7 +592,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
           fStack_1e4 = uStack_230._4_4_ - uStack_178._4_4_;
           fStack_1e0 = (float)uStack_228 - (float)uStack_170;
           uStack_1dc = 0x7f7fffff;
-          FUN_1801c24a0(&fStack_1e8);
+          UtilitiesSystem_CryptoHandler(&fStack_1e8);
           lVar22 = *(int64_t *)(param_1 + 0x18);
           if ((*(byte *)(lVar22 + 0x21) & 2) == 0) {
             fVar55 = (float)uStack_240;

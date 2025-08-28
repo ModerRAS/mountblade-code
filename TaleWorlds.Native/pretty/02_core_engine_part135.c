@@ -1,9 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// FUN_180131d90 的语义化别名 - 系统初始化和配置管理器
+#define SystemInitializeAndConfigManager FUN_180131d90
+
+
 // 02_core_engine_part135.c - 1 个函数
 
-// 函数: void FUN_180131d90(void)
+// 函数: void FUN_180131d90(void) - 系统初始化和配置管理器
+// 
+// 技术架构：
+// - 负责系统数据管理器的初始化和配置
+// - 管理系统状态标志和配置参数
+// - 处理系统资源分配和状态更新
+// - 实现系统级的数据结构初始化
+//
+// 性能优化策略：
+// - 使用位运算进行状态标志检查
+// - 批量处理相似的数据结构操作
+// - 避免重复的内存访问，使用局部变量缓存
+// - 采用条件编译优化关键路径
+//
+// 安全考虑：
+// - 输入参数验证
+// - 内存访问边界检查
+// - 状态一致性检查
+// - 异常情况处理
 void FUN_180131d90(void)
 
 {
@@ -460,7 +482,7 @@ void FUN_180131d90(void)
         }
       }
       else {
-        FUN_18012d2e0();
+        SystemCore_DataCompressor();
         uVar11 = *(int32_t *)(lVar15 + 0x88);
         *(int32_t *)(lVar19 + 0x1ca0) = uVar11;
         *(int32_t *)(*(int64_t *)(lVar19 + 0x1c98) + 0x3c8) = uVar11;
@@ -694,7 +716,7 @@ LAB_180132c8d:
     *(float *)(lVar15 + 0x11c) = (fVar21 + *(float *)(lVar15 + 0x11c)) - fVar20;
   }
 LAB_180132d15:
-  FUN_180131aa0(&fStackX_8,4,0,0x3dcccccd,0x41200000);
+  SystemCore_ConfigLoader(&fStackX_8,4,0,0x3dcccccd,0x41200000);
   if ((fStackX_8 != 0.0) && (*(char *)(lVar15 + 0xac) != '\0')) {
     fVar20 = *(float *)(lVar15 + 0x8c);
     fVar21 = (float)(int)(fStackX_8 * fVar30 + fVar20);

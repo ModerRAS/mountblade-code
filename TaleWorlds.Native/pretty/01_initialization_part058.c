@@ -324,7 +324,7 @@ void FUN_18007c8e0(int64_t param_1,byte param_2,int64_t *param_3,int64_t *param_
     if (plVar6 != (int64_t *)0x0) {
       (**(code **)(*plVar6 + 0x28))(plVar6);
     }
-    FUN_18005e370(system_context_ptr,&plStack_b0);
+    SystemPerformance_Monitor(system_context_ptr,&plStack_b0);
     pcVar2 = (char *)(*(int64_t *)(param_1 + 0x1e0) + 0x15 + (uint64_t)param_2 * 0x18);
     LOCK();
     if (*pcVar2 == '\x01') {

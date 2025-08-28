@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -102,7 +103,7 @@ LAB_1804c2086:
       else {
         uStack_18 = *param_2;
         uStack_10 = param_1;
-        FUN_18062e140(&processed_var_8120_ptr,&uStack_18);
+        SystemTools_DataProcessor(&processed_var_8120_ptr,&uStack_18);
       }
     }
     else {
@@ -159,7 +160,7 @@ void FUN_1804c21a0(uint64_t param_1,int64_t *param_2,uint param_3)
     return;
   }
   uStack_10 = param_1;
-  FUN_18062e140(&processed_var_8080_ptr,&pbStack_18);
+  SystemTools_DataProcessor(&processed_var_8080_ptr,&pbStack_18);
   return;
 }
 
@@ -267,7 +268,7 @@ LAB_1804c23d6:
       else {
         uStack_18 = *param_2;
         uStack_10 = param_1;
-        FUN_18062e140(&processed_var_8120_ptr,&uStack_18);
+        SystemTools_DataProcessor(&processed_var_8120_ptr,&uStack_18);
       }
     }
     else {
@@ -476,7 +477,7 @@ LAB_1804c2774:
     uVar10 = (uint64_t)uStack_118;
     if (0 < (int)uStack_118) {
       if (lStack_120 != 0) {
-        FUN_1806277c0(param_1 + 0x68,uStack_118);
+        SystemManager_ConfigManager0(param_1 + 0x68,uStack_118);
       }
       if (uVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -508,7 +509,7 @@ LAB_1804c2774:
       }
     }
     acStackX_10[0] = '\0';
-    FUN_180631000(param_2,&processed_var_928_ptr,acStackX_10);
+    UltraHighFreq_CacheSystem1(param_2,&processed_var_928_ptr,acStackX_10);
     if (acStackX_10[0] != '\0') {
       *(char *)(param_1 + 0x30) = acStackX_10[0];
     }
@@ -553,7 +554,7 @@ LAB_1804c2914:
     uVar10 = (uint64_t)uStack_b8;
     if (0 < (int)uStack_b8) {
       if (lStack_c0 != 0) {
-        FUN_1806277c0(param_1 + 0x88,uStack_b8);
+        SystemManager_ConfigManager0(param_1 + 0x88,uStack_b8);
       }
       if (uVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -607,7 +608,7 @@ LAB_1804c2a24:
     uVar10 = (uint64_t)uStack_d8;
     if (0 < (int)uStack_d8) {
       if (lStack_e0 != 0) {
-        FUN_1806277c0(param_1 + 0xa8,uStack_d8);
+        SystemManager_ConfigManager0(param_1 + 0xa8,uStack_d8);
       }
       if (uVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -685,7 +686,7 @@ LAB_1804c2b24:
     uStack_a4 = 0;
     uStack_a0 = 0;
     uStack_9c = 0;
-    lVar9 = FUN_180631960(param_2,&processed_var_840_ptr,&uStack_90);
+    lVar9 = StringProcessor(param_2,&processed_var_840_ptr,&uStack_90);
     if (lVar9 == 0) {
       *(int8_t *)(param_1 + 0x32) = 1;
     }
@@ -695,9 +696,9 @@ LAB_1804c2b24:
       *(int32_t *)(param_1 + 0x14) = uStack_88;
       *(int32_t *)(param_1 + 0x18) = uStack_84;
     }
-    lVar9 = FUN_180631960(param_2,&processed_var_816_ptr,&uStack_a8);
+    lVar9 = StringProcessor(param_2,&processed_var_816_ptr,&uStack_a8);
     if (lVar9 == 0) {
-      lVar9 = FUN_180631960(param_2,&processed_var_880_ptr,&uStack_a8);
+      lVar9 = StringProcessor(param_2,&processed_var_880_ptr,&uStack_a8);
       if (lVar9 == 0) {
         *(int8_t *)(param_1 + 0x31) = 1;
       }
@@ -770,7 +771,7 @@ LAB_1804c2e95:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
+      uVar6 = SystemFile_Manager(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x34) = uVar6;
     }
     pcVar11 = "equip_action_left_stance";
@@ -807,7 +808,7 @@ LAB_1804c2f30:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
+      uVar6 = SystemFile_Manager(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x38) = uVar6;
     }
     pcVar11 = "unequip_action";
@@ -844,7 +845,7 @@ LAB_1804c2fd0:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
+      uVar6 = SystemFile_Manager(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x3c) = uVar6;
     }
     pcVar11 = "unequip_action_left_stance";
@@ -881,7 +882,7 @@ LAB_1804c3074:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
+      uVar6 = SystemFile_Manager(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x40) = uVar6;
     }
     puStack_168 = &system_data_buffer_ptr;

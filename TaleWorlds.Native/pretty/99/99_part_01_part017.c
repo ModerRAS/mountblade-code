@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // ============================================================================
 // TaleWorlds.Native - 99_part_01_part017.c
 // ============================================================================
@@ -313,7 +317,7 @@ process_data:
             
             // 执行异步操作
             temp_long1 = ((MemoryAllocatorFunc)CoreMemoryPoolReallocator)(GLOBAL_DATA_PTR_180c8ed18, 0x100, 8, 3);
-            long_ptr3 = (void*)((DataProcessorFunc)FUN_18005ce30)(temp_long1, &stack_ptr8);
+            long_ptr3 = (void*)((DataProcessorFunc)SystemCore_StreamController)(temp_long1, &stack_ptr8);
             stack_indirect_ptr2 = (void**)long_ptr3;
             if (long_ptr3 != (void*)0x0) {
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x28)))(long_ptr3);
@@ -326,7 +330,7 @@ process_data:
             if (long_ptr3 != (void*)0x0) {
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x28)))(long_ptr3);
             }
-            ((void(*)(long long, void**))FUN_18005e370)(temp_long1, &stack_long_ptr6);
+            ((void(*)(long long, void**))SystemPerformance_Monitor)(temp_long1, &stack_long_ptr6);
             if (long_ptr3 != (void*)0x0) {
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x38)))(long_ptr3);
             }

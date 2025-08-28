@@ -47,7 +47,7 @@ void FUN_18046c0ed(int64_t *param_1)
     while( true ) {
       uStackX_20 = *(int32_t *)(*(int64_t *)(unaff_R14 + 0x28) + 0x70);
       uStackX_24 = *(int32_t *)(*(int64_t *)(unaff_R14 + 0x28) + 0x74);
-      FUN_180084760(&uStackX_20,unaff_RBP + 6);
+      SystemCore_PerformanceMonitor(&uStackX_20,unaff_RBP + 6);
       in_stack_00000060 = unaff_RBP[-0xb];
       in_stack_00000070 = unaff_RBP[-9];
       in_stack_00000068 = unaff_RBP[-10] & 0xffffffff;
@@ -62,7 +62,7 @@ void FUN_18046c0ed(int64_t *param_1)
       *(int32_t *)((int64_t)unaff_RBP + -100) = *(int32_t *)((int64_t)unaff_RBP + -0x1c);
       *(int32_t *)((int64_t)unaff_RBP + -0x74) = 0;
       *(int32_t *)((int64_t)unaff_RBP + -100) = 0x3f800000;
-      puVar14 = (uint64_t *)FUN_1800946d0(&stack0x00000060,&uStackX_20,unaff_RBP + 6);
+      puVar14 = (uint64_t *)ErrorRecoverySystem(&stack0x00000060,&uStackX_20,unaff_RBP + 6);
       uVar10 = puVar14[1];
       uVar11 = puVar14[2];
       uVar12 = puVar14[3];
@@ -93,7 +93,7 @@ void FUN_18046c0ed(int64_t *param_1)
       else {
         lVar15 = (**(code **)(lVar15 + 0x198))(param_1);
       }
-      FUN_18063a240(unaff_R14 + 0x50,lVar15,unaff_RBP + -2);
+      UI_WidgetHandler(unaff_R14 + 0x50,lVar15,unaff_RBP + -2);
       unaff_RBX = puVar16 + 10;
       if (unaff_RBX == unaff_R15) {
         pfVar1 = (float *)(unaff_R14 + 0x50);
@@ -152,7 +152,7 @@ void FUN_18046c0ed(int64_t *param_1)
       *(int32_t *)((int64_t)unaff_RBP + -0x14) = uVar9;
       unaff_RDI = param_1;
       if (in_RAX != unaff_R12) break;
-      FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
+      SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,0);
       puVar16 = unaff_RBX;
     }
   } while( true );
@@ -867,7 +867,7 @@ void FUN_18046d1a0(int64_t param_1)
   *(int32_t *)((int64_t)apuStack_50[0] + 0xc) = uStack_64;
   apuStack_50[0][2] = &uStackX_10;
   apuStack_50[0][3] = param_1 + 200;
-  FUN_18015b810(uStack_70,0,lVar4 - lVar1 >> 3 & 0xffffffff,1,0xffffffffffffffff,apuStack_50,uVar7);
+  SystemCore_DataTransformer(uStack_70,0,lVar4 - lVar1 >> 3 & 0xffffffff,1,0xffffffffffffffff,apuStack_50,uVar7);
   lVar5 = render_system_data_config;
   if (render_system_data_config == 0) {
     QueryPerformanceCounter(&lStackX_8);

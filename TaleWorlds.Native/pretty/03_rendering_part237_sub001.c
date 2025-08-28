@@ -25,7 +25,7 @@ void FUN_18039e97f(uint64_t param_1,int64_t param_2)
     if (cVar1 == '\0') {
       uVar2 = (**(code **)(**(int64_t **)(uVar5 + *(int64_t *)(unaff_RSI + 0x30)) + 0x158))();
       uVar3 = (**(code **)(**(int64_t **)(uVar5 + *(int64_t *)(unaff_RSI + 0x30)) + 0x198))();
-      FUN_18063a240(unaff_RSI + 0x70,uVar3,uVar2);
+      UI_WidgetHandler(unaff_RSI + 0x70,uVar3,uVar2);
     }
     param_2 = *(int64_t *)(unaff_RSI + 0x30);
     uVar4 = (int)unaff_RBP + 1;
@@ -402,8 +402,8 @@ void FUN_18039eda0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   uStack_238 = 0;
   uStack_230 = 3;
   aplStackX_18[0] = param_3;
-  FUN_1802e8c60(param_3,&lStack_248);
-  FUN_18005ea90(&lStack_248,aplStackX_18);
+  NetworkSystem_SecurityManager(param_3,&lStack_248);
+  SystemSecurity_Manager(&lStack_248,aplStackX_18);
   uStack_1d8 = param_3[0xe];
   lStack_1d0 = param_3[0xf];
   lVar14 = param_3[0x10];
@@ -463,7 +463,7 @@ void FUN_18039eda0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
           uStack_208 = uVar2;
           uStack_204 = uVar3;
           uStack_200 = uVar4;
-          FUN_180084760(&uStack_228,auStack_108);
+          SystemCore_PerformanceMonitor(&uStack_228,auStack_108);
           uStack_198 = *(uint64_t *)(lVar1 + 0x70);
           uStack_188 = *(uint64_t *)(lVar1 + 0x80);
           uStack_178 = *(int32_t *)(lVar1 + 0x90);
@@ -476,7 +476,7 @@ void FUN_18039eda0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
           uStack_180 = *(uint64_t *)(lVar1 + 0x88) & 0xffffffff;
           uStack_16c = 0;
           uStack_15c = 0x3f800000;
-          puVar13 = (uint64_t *)FUN_1800946d0(&uStack_198,&uStack_228,auStack_108);
+          puVar13 = (uint64_t *)ErrorRecoverySystem(&uStack_198,&uStack_228,auStack_108);
           uStack_150 = *puVar13;
           uStack_148 = puVar13[1];
           uStack_140 = puVar13[2];

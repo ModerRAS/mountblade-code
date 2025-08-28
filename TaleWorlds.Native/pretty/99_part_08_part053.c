@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -169,7 +173,7 @@ void FUN_1805ad601(uint64_t param_1,int64_t param_2,int64_t param_3)
   unaff_RBP[-0xb] = fVar21;
   unaff_RBP[-10] = fVar19;
   unaff_RBP[-9] = fVar20;
-  FUN_18063b5f0(unaff_RBP + -8,unaff_RBP + -0x10);
+  SystemSecurityManager(unaff_RBP + -8,unaff_RBP + -0x10);
   fVar22 = *unaff_RBP;
   fVar23 = unaff_RBP[1];
   fVar5 = unaff_RBP[-4];
@@ -634,7 +638,7 @@ LAB_1805add23:
       if (*(int64_t **)(lVar10 + 0x68) != (int64_t *)0x0) {
         (**(code **)(**(int64_t **)(lVar10 + 0x68) + 0x38))();
       }
-      FUN_180057830();
+      DataTransformer0();
       lVar10 = lVar10 + 0xb0;
     } while (lVar10 != lVar11);
     lVar10 = *param_1;

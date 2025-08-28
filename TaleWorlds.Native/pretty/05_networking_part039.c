@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -193,7 +195,7 @@ uint64_t FUN_180861720(int64_t param_1,uint64_t param_2)
     }
     lVar5 = *(int64_t *)(param_1 + 0x80);
     if (lVar5 != 0) {
-      uVar4 = FUN_1808605e0(param_1);
+      uVar4 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar5 + 0x80) = uVar4;
     }
   }
@@ -212,7 +214,7 @@ void FUN_180861780(int64_t param_1,uint64_t param_2)
   uint64_t auStackX_8 [4];
   
   auStackX_8[0] = 0;
-  iVar1 = FUN_18073c380(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),0xffffffff,auStackX_8
+  iVar1 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),0xffffffff,auStackX_8
                        );
   if (iVar1 == 0) {
     FUN_180740410(auStackX_8[0],param_2);
@@ -399,8 +401,8 @@ uint64_t FUN_180861a70(int64_t param_1,uint64_t param_2)
   *(int32_t *)(param_1 + 0x2e4) = 1;
   uVar4 = FUN_18073ced0(*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x78),0,0xffffffffffffffff)
   ;
-  if ((((((int)uVar4 == 0) && (uVar4 = FUN_1808b2f30(param_1 + 8,0x1e), (int)uVar4 == 0)) &&
-       (uVar4 = FUN_1808b2f30(param_1 + 8,0x1f), (int)uVar4 == 0)) &&
+  if ((((((int)uVar4 == 0) && (uVar4 = SystemDataFlowProcessor(param_1 + 8,0x1e), (int)uVar4 == 0)) &&
+       (uVar4 = SystemDataFlowProcessor(param_1 + 8,0x1f), (int)uVar4 == 0)) &&
       ((uVar4 = FUN_180863bd0(param_1), (int)uVar4 == 0 &&
        (uVar4 = FUN_180864780(param_1), (int)uVar4 == 0)))) &&
      (uVar4 = FUN_18085ef10(param_1), (int)uVar4 == 0)) {
@@ -439,7 +441,7 @@ uint64_t FUN_180861a70(int64_t param_1,uint64_t param_2)
       }
       uVar4 = FUN_18085c230(param_1 + 200,uVar2);
       if ((((int)uVar4 == 0) && (uVar4 = FUN_1808d52a0(param_1 + 0x280,uVar2), (int)uVar4 == 0)) &&
-         (uVar4 = FUN_1808b2f30(param_1 + 8,10), (int)uVar4 == 0)) {
+         (uVar4 = SystemDataFlowProcessor(param_1 + 8,10), (int)uVar4 == 0)) {
         plVar6 = (int64_t *)(param_1 + 0x250);
         plVar5 = (int64_t *)(*plVar6 + -8);
         if (*plVar6 == 0) {
@@ -516,8 +518,8 @@ uint64_t FUN_180861aa8(void)
   int64_t unaff_RBP;
   int64_t *plVar7;
   
-  uVar4 = FUN_1808b2f30(unaff_RBP + 8);
-  if (((((int)uVar4 == 0) && (uVar4 = FUN_1808b2f30(unaff_RBP + 8,0x1f), (int)uVar4 == 0)) &&
+  uVar4 = SystemDataFlowProcessor(unaff_RBP + 8);
+  if (((((int)uVar4 == 0) && (uVar4 = SystemDataFlowProcessor(unaff_RBP + 8,0x1f), (int)uVar4 == 0)) &&
       (uVar4 = FUN_180863bd0(), (int)uVar4 == 0)) &&
      ((uVar4 = FUN_180864780(), (int)uVar4 == 0 && (uVar4 = FUN_18085ef10(), (int)uVar4 == 0)))) {
     uVar2 = *(uint64_t *)(*(int64_t *)(unaff_RBP + 0x2b0) + 0x30);
@@ -555,7 +557,7 @@ uint64_t FUN_180861aa8(void)
       }
       uVar4 = FUN_18085c230(unaff_RBP + 200,uVar2);
       if ((((int)uVar4 == 0) && (uVar4 = FUN_1808d52a0(unaff_RBP + 0x280,uVar2), (int)uVar4 == 0))
-         && (uVar4 = FUN_1808b2f30(unaff_RBP + 8,10), (int)uVar4 == 0)) {
+         && (uVar4 = SystemDataFlowProcessor(unaff_RBP + 8,10), (int)uVar4 == 0)) {
         plVar6 = (int64_t *)(unaff_RBP + 0x250);
         plVar5 = (int64_t *)(*plVar6 + -8);
         if (*plVar6 == 0) {
@@ -667,7 +669,7 @@ uint64_t FUN_180861b0c(int64_t param_1)
     }
     uVar3 = FUN_18085c230(unaff_RBP + 200,uVar4);
     if ((((int)uVar3 == 0) && (uVar3 = FUN_1808d52a0(unaff_RBP + 0x280,uVar4), (int)uVar3 == 0)) &&
-       (uVar3 = FUN_1808b2f30(unaff_RBP + 8,10), (int)uVar3 == 0)) {
+       (uVar3 = SystemDataFlowProcessor(unaff_RBP + 8,10), (int)uVar3 == 0)) {
       plVar6 = (int64_t *)(unaff_RBP + 0x250);
       plVar5 = (int64_t *)(*plVar6 + -8);
       if (*plVar6 == 0) {
@@ -773,7 +775,7 @@ uint64_t FUN_180861b29(void)
   }
   uVar3 = FUN_18085c230(unaff_RBP + 200);
   if ((((int)uVar3 == 0) && (uVar3 = FUN_1808d52a0(unaff_RBP + 0x280), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_1808b2f30(unaff_RBP + 8,10), (int)uVar3 == 0)) {
+     (uVar3 = SystemDataFlowProcessor(unaff_RBP + 8,10), (int)uVar3 == 0)) {
     plVar5 = (int64_t *)(unaff_RBP + 0x250);
     plVar4 = (int64_t *)(*plVar5 + -8);
     if (*plVar5 == 0) {

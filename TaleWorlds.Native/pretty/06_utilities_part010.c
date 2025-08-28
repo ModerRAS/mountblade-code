@@ -47,7 +47,7 @@
 #define UtilitiesSystem_StateManager FUN_180896e11
 
 // 工具系统资源清理器
-#define UtilitiesSystem_ResourceCleaner FUN_1808974f4
+#define UtilitiesSystem_ResourceCleaner NetworkPacketProcessor
 
 // 工具系统参数验证器
 #define UtilitiesSystem_ParameterValidator SystemNetworkProcessor

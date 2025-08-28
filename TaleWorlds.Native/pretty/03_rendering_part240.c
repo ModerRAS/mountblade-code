@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -101,7 +102,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
   if (puStack_f0 != (void *)0x0) {
     puVar7 = puStack_f0;
   }
-  FUN_1802c22a0(acStack_258,puVar7);
+  SystemData_Processor(acStack_258,puVar7);
   puVar7 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x18) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 0x18);
@@ -113,7 +114,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
   auStack_140[0] = 0;
   if (puVar7 != (void *)0x0) {
     DataStructureManager0(&puStack_158,puVar7);
-    FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_158);
+    SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_158);
   }
   lVar4 = system_main_module_state;
   if (*(int *)(param_1 + 0x48) < 1) {
@@ -152,17 +153,17 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
     else if (lVar4 != 0) {
       *(int64_t *)(lVar6 + 0x340) = (int64_t)*(int *)(lVar4 + 0x224);
     }
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar12);
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),1,lVar14);
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),2,lVar10);
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),3,lVar11);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar12);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),1,lVar14);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),2,lVar10);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),3,lVar11);
     plVar3 = *(int64_t **)(system_message_buffer + 0x1cd8);
     if ((plVar9 != (int64_t *)0x0) && (*plVar9 != 0)) {
       (**(code **)(*plVar3 + 0x70))(plVar3,*plVar9,2);
     }
     lVar4 = system_message_buffer;
     plVar3[0x107e] = (int64_t)plVar9;
-    FUN_18029de40(*(uint64_t *)(lVar4 + 0x1cd8),4);
+    SystemCore_ProcessorEx(*(uint64_t *)(lVar4 + 0x1cd8),4);
     if (*(char *)(param_1 + 0x4d) == '\0') {
       uVar13 = (uint)*(ushort *)(*(int64_t *)(param_1 + 0x428) + 0x32c);
       uVar15 = (uint)*(ushort *)(*(int64_t *)(param_1 + 0x428) + 0x32e);
@@ -218,7 +219,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
       *(int32_t *)(*(int64_t *)(lVar6 + 0x1cd8) + 0x1c74) = *(int32_t *)(lVar4 + 0x1300);
       *(int32_t *)(*(int64_t *)(lVar6 + 0x1cd8) + 0x1bfc) = *(int32_t *)(lVar4 + 0x1308);
     }
-    FUN_18029fc10(*(int64_t *)(lVar6 + 0x1cd8),*(uint64_t *)(lVar6 + 0x1c88),
+    UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar6 + 0x1cd8),*(uint64_t *)(lVar6 + 0x1c88),
                   *(int64_t *)(lVar6 + 0x1cd8) + 0x1be0,0x230);
     iVar16 = 0;
     uStack_180 = (void **)0x0;
@@ -253,7 +254,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
     if (plStack_1f0 != (int64_t *)0x0) {
       (**(code **)(*plStack_1f0 + 0x28))();
     }
-    uVar5 = FUN_180299eb0(uVar5,param_3,&uStack_1e0,acStack_258);
+    uVar5 = UIRenderingEngine(uVar5,param_3,&uStack_1e0,acStack_258);
     if (acStack_258[0] == '\0') {
       *(uint64_t *)(param_1 + 0xf8) = uVar5;
       *(int32_t *)(param_1 + 0x134) = 4;
@@ -302,7 +303,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
       *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83c8) = 0;
       *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83d0) = 0;
       *(uint64_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x83f0) = 0;
-      FUN_18029de40(*(uint64_t *)(lVar4 + 0x1cd8),4);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar4 + 0x1cd8),4);
     }
     if (plStack_1f0 != (int64_t *)0x0) {
       (**(code **)(*plStack_1f0 + 0x38))();
@@ -323,7 +324,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
   else {
     *(int *)(param_1 + 0x48) = *(int *)(param_1 + 0x48) + -1;
   }
-  FUN_1802c2ac0(&puStack_158);
+  SystemCore_Synchronizer(&puStack_158);
   render_system_data_memory = render_system_data_memory + -1;
   (**(code **)(*render_system_data_memory + 0x20))();
   puStack_f8 = &system_state_ptr;
@@ -361,7 +362,7 @@ void FUN_180403440(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   FUN_1801f6650();
   uVar11 = system_parameter_buffer;
   lVar6 = *(int64_t *)(param_1 + 0x428);
-  FUN_1802c22a0(auStackX_8,&processed_var_4424_ptr);
+  SystemData_Processor(auStackX_8,&processed_var_4424_ptr);
   lVar13 = system_message_buffer;
   plVar7 = *(int64_t **)(system_message_buffer + 0x1cd8);
   plVar8 = *(int64_t **)(lVar6 + 0x1d8);
@@ -375,7 +376,7 @@ void FUN_180403440(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
     }
   }
   plVar7[0x1077] = (int64_t)plVar8;
-  FUN_18029de40(*(uint64_t *)(lVar13 + 0x1cd8),1);
+  SystemCore_ProcessorEx(*(uint64_t *)(lVar13 + 0x1cd8),1);
   for (uVar14 = 0; (uint64_t)(int64_t)(int)uVar14 < (uint64_t)*(uint *)(param_3 + 0x2480);
       uVar14 = uVar14 + 1) {
     lVar13 = (uint64_t)(uVar14 >> 0xb) * 8;
@@ -391,7 +392,7 @@ void FUN_180403440(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
       *(int8_t *)(lVar9 + 0xc0) = 0;
       *(int32_t *)(lVar9 + 0xc4) = 1;
       *(int32_t *)(lVar9 + 0xa4) = *(int32_t *)(lVar6 + 0x324);
-      lVar12 = FUN_180245280(param_3);
+      lVar12 = SystemLog_Manager(param_3);
       *(int32_t *)(lVar9 + 0xa0) = *(int32_t *)(lVar12 + 0x324);
       *(int32_t *)(lVar9 + 0x21c) = 1;
       FUN_1800e8640(uVar11,*(uint64_t *)(*(int64_t *)(lVar13 + 0x2488 + param_3) + lVar1 + 0x10))
@@ -452,8 +453,8 @@ void FUN_180403680(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   uStack_78 = 0;
   auStack_70[0] = 0;
   DataStructureManager0(&puStack_88,&rendering_buffer_2080_ptr);
-  FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_88);
-  FUN_1802c22a0(auStack_a8,&rendering_buffer_2064_ptr);
+  SystemCore_Analyzer(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_88);
+  SystemData_Processor(auStack_a8,&rendering_buffer_2064_ptr);
   lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
   if (((*(int64_t *)(lVar1 + 0x84b8) != 0) || (*(int *)(lVar1 + 0x8878) != -1)) ||
      (*(int *)(lVar1 + 0x8a78) != 0x10)) {
@@ -484,7 +485,7 @@ void FUN_180403680(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   FUN_1800d0950(system_parameter_buffer,param_3,1,0);
   render_system_data_memory = render_system_data_memory + -1;
   (**(code **)(*render_system_data_memory + 0x20))();
-  FUN_1802c2ac0(&puStack_88);
+  SystemCore_Synchronizer(&puStack_88);
   if ((void *)*param_1 != &processed_var_7424_ptr) {
     (**(code **)((void *)*param_1 + 0x28))(param_1);
   }
@@ -496,8 +497,8 @@ void FUN_180403680(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-// 函数: void FUN_180403910(int64_t param_1,int64_t param_2,uint64_t param_3,float param_4,float param_5,
-void FUN_180403910(int64_t param_1,int64_t param_2,uint64_t param_3,float param_4,float param_5,
+// 函数: void MemoryManager_Optimizer(int64_t param_1,int64_t param_2,uint64_t param_3,float param_4,float param_5,
+void MemoryManager_Optimizer(int64_t param_1,int64_t param_2,uint64_t param_3,float param_4,float param_5,
                   int64_t param_6)
 
 {

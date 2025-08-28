@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -266,7 +271,7 @@ LAB_18056d148:
           bVar14 = cVar7 != '\0';
           if (0x16 < (ushort)uStackX_20) goto LAB_18056d148;
           uVar11 = (uint)uStackX_20 & 0xffff;
-          FUN_1800623b0(system_message_context,0,0x40000000000,0xc,&processed_var_8888_ptr,
+          SystemConfigurationManager(system_message_context,0,0x40000000000,0xc,&processed_var_8888_ptr,
                         *(uint64_t *)(&processed_var_8272_ptr + (uint64_t)uVar11 * 8));
           lVar12 = (uint64_t)uVar11 * 0x10;
           if ((*(int64_t *)(lVar12 + 0x180c95bf8) != 0) ||
@@ -331,12 +336,12 @@ LAB_18056d242:
   if (bVar15) {
     if ((((((bVar14 == false) ||
            (cVar6 = FUN_180646610(param_2,param_1 + 0x4c4d0,&processed_var_6840_ptr), cVar6 == '\0')) ||
-          (cVar6 = FUN_180646700(param_2,param_1 + 0x4c4a8,&processed_var_8568_ptr), cVar6 == '\0')) ||
-         ((cVar6 = FUN_180646700(param_2,param_1 + 0x4c4ac,&processed_var_8568_ptr), cVar6 == '\0' ||
-          (cVar6 = FUN_180646700(param_2,param_1 + 0x4c4b0,&processed_var_8584_ptr), cVar6 == '\0')))) ||
-        (((cVar6 = FUN_180646700(param_2,param_1 + 0x4c4c8,&processed_var_8680_ptr), cVar6 == '\0' ||
-          ((cVar6 = FUN_180646700(param_2,param_1 + 0x4c4cc,&processed_var_8664_ptr), cVar6 == '\0' ||
-           (cVar6 = FUN_180646700(param_2,param_1 + 0x4c4d8,&processed_var_8712_ptr), cVar6 == '\0')))) ||
+          (cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4a8,&processed_var_8568_ptr), cVar6 == '\0')) ||
+         ((cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4ac,&processed_var_8568_ptr), cVar6 == '\0' ||
+          (cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4b0,&processed_var_8584_ptr), cVar6 == '\0')))) ||
+        (((cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4c8,&processed_var_8680_ptr), cVar6 == '\0' ||
+          ((cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4cc,&processed_var_8664_ptr), cVar6 == '\0' ||
+           (cVar6 = RenderingBufferHandler0(param_2,param_1 + 0x4c4d8,&processed_var_8712_ptr), cVar6 == '\0')))) ||
          (cVar6 = SystemSynchronizationProcessor(param_2,param_1 + 0x4c4dc,&processed_var_8696_ptr), cVar6 == '\0')))) ||
        (cVar6 = SystemSynchronizationProcessor(param_2,param_1 + 0x4c4e0,&processed_var_8648_ptr), cVar6 == '\0')) {
       bVar14 = false;
@@ -591,7 +596,7 @@ LAB_18056d148:
           bVar17 = cVar6 != '\0';
           uVar1 = *(uint *)(unaff_RBP + 0x40);
           if (0x16 < (ushort)uVar1) goto LAB_18056d148;
-          FUN_1800623b0(system_message_context,0,0x40000000000,0xc,&processed_var_8888_ptr);
+          SystemConfigurationManager(system_message_context,0,0x40000000000,0xc,&processed_var_8888_ptr);
           lVar12 = (uint64_t)(uVar1 & 0xffff) * 0x10;
           if ((*(int64_t *)(lVar12 + 0x180c95bf8) != 0) ||
              (*(int64_t *)(lVar12 + 0x180c95c00) != unaff_R12)) {
@@ -668,17 +673,17 @@ LAB_18056d242:
     if ((((((bVar14 == 0) ||
            (cVar5 = FUN_180646610(uVar19,unaff_R14 + 0x4c4d0,&processed_var_6840_ptr),
            uVar19 = extraout_XMM0_Da_10, cVar5 == '\0')) ||
-          (cVar5 = FUN_180646700(extraout_XMM0_Da_10,unaff_R14 + 0x4c4a8,&processed_var_8568_ptr),
+          (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_10,unaff_R14 + 0x4c4a8,&processed_var_8568_ptr),
           uVar19 = extraout_XMM0_Da_11, cVar5 == '\0')) ||
-         ((cVar5 = FUN_180646700(extraout_XMM0_Da_11,unaff_R14 + 0x4c4ac,&processed_var_8568_ptr),
+         ((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_11,unaff_R14 + 0x4c4ac,&processed_var_8568_ptr),
           uVar19 = extraout_XMM0_Da_12, cVar5 == '\0' ||
-          (cVar5 = FUN_180646700(extraout_XMM0_Da_12,unaff_R14 + 0x4c4b0,&processed_var_8584_ptr),
+          (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_12,unaff_R14 + 0x4c4b0,&processed_var_8584_ptr),
           uVar19 = extraout_XMM0_Da_13, cVar5 == '\0')))) ||
-        (((cVar5 = FUN_180646700(extraout_XMM0_Da_13,unaff_R14 + 0x4c4c8,&processed_var_8680_ptr),
+        (((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_13,unaff_R14 + 0x4c4c8,&processed_var_8680_ptr),
           uVar19 = extraout_XMM0_Da_14, cVar5 == '\0' ||
-          ((cVar5 = FUN_180646700(extraout_XMM0_Da_14,unaff_R14 + 0x4c4cc,&processed_var_8664_ptr),
+          ((cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_14,unaff_R14 + 0x4c4cc,&processed_var_8664_ptr),
            uVar19 = extraout_XMM0_Da_15, cVar5 == '\0' ||
-           (cVar5 = FUN_180646700(extraout_XMM0_Da_15,unaff_R14 + 0x4c4d8,&processed_var_8712_ptr),
+           (cVar5 = RenderingBufferHandler0(extraout_XMM0_Da_15,unaff_R14 + 0x4c4d8,&processed_var_8712_ptr),
            uVar19 = extraout_XMM0_Da_16, cVar5 == '\0')))) ||
          (cVar5 = SystemSynchronizationProcessor(extraout_XMM0_Da_16,unaff_R14 + 0x4c4dc,&processed_var_8696_ptr),
          uVar19 = extraout_XMM0_Da_17, cVar5 == '\0')))) ||

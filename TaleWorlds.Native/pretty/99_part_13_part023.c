@@ -1,8 +1,13 @@
+n//  的语义化别名
+#define SystemCore_SecurityHandler 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_13_part023.c - 4 个函数
 
@@ -257,7 +262,7 @@ uint64_t FUN_1808b3fc0(int64_t param_1,int64_t param_2)
 LAB_1808b4011:
   uVar5 = (int)*(uint *)(param_1 + 0x6c) >> 0x1f;
   if ((iVar6 + 1 <= (int)((*(uint *)(param_1 + 0x6c) ^ uVar5) - uVar5)) ||
-     (uVar3 = FUN_1807d3f50(param_1 + 0x60), (int)uVar3 == 0)) {
+     (uVar3 = SystemCore_SecurityHandler(param_1 + 0x60), (int)uVar3 == 0)) {
     lVar2 = *(int64_t *)(param_1 + 0x60);
     lVar4 = (int64_t)iVar6 * 0x10;
     *(uint64_t *)(lVar4 + lVar2) = 0;
@@ -340,7 +345,7 @@ uint64_t FUN_1808b41e0(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_1807d3f50(param_1,0), (int)uVar2 != 0)) {
+     (uVar2 = SystemCore_SecurityHandler(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;
@@ -361,7 +366,7 @@ uint64_t FUN_1808b42b0(int64_t param_1)
       return uVar1;
     }
     if (aiStackX_8[0] == 0x1b) {
-      uVar1 = FUN_180763070(*(uint64_t *)(param_1 + 0x30),alStackX_10,0);
+      uVar1 = UISystem_LayoutManager(*(uint64_t *)(param_1 + 0x30),alStackX_10,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -831,19 +836,19 @@ LAB_1808b4bdb:
   else {
 LAB_1808b4bef:
     *(int32_t *)(lVar12 + 0x60) = 0;
-    FUN_18084f560(lVar12 + 0x30);
+    RenderingEngine_ShaderProcessor(lVar12 + 0x30);
   }
   if ((char)uStack_dc == '\0') {
     *(int32_t *)(lStack_b8 + 0x60) = 0;
-    FUN_18084f040(lStack_b8 + 0x30);
+    SystemCore_CacheManager(lStack_b8 + 0x30);
   }
   if ((char)uStack_d8 == '\0') {
     *(int32_t *)(lStack_b0 + 0x60) = 0;
-    FUN_18084f040(lStack_b0 + 0x30);
+    SystemCore_CacheManager(lStack_b0 + 0x30);
   }
   if ((char)uStack_d4 == '\0') {
     *(int32_t *)(lVar13 + 0x60) = 0;
-    FUN_18084f2d0(lVar13 + 0x30);
+    SystemCore_NetworkProcessor(lVar13 + 0x30);
   }
 FUN_1808b4c5a:
                     // WARNING: Subroutine does not return

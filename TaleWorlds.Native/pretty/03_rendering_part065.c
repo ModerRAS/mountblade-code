@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 03_rendering_part065.c - 10 个函数
 
@@ -245,8 +251,8 @@ void FUN_180302270(int64_t param_1,uint64_t param_2)
         return;
       }
     }
-    FUN_1800571e0(param_2,lVar2 + 0xa0);
-    FUN_1800571e0(param_2,*(int64_t *)(param_1 + 0x6d0) + 0xa4);
+    SystemDatabaseProcessor(param_2,lVar2 + 0xa0);
+    SystemDatabaseProcessor(param_2,*(int64_t *)(param_1 + 0x6d0) + 0xa4);
   }
   return;
 }
@@ -467,7 +473,7 @@ void FUN_180302370(int64_t *param_1,int64_t *param_2)
         uStack_218 = uVar10;
         uStack_214 = uVar11;
         strcpy_s(auStack_180,0x80,&rendering_buffer_2744_ptr);
-        plVar12 = (int64_t *)FUN_1800b1230(system_resource_state,&plStack_1b8,&puStack_198,&uStack_218);
+        plVar12 = (int64_t *)SystemInitializer(system_resource_state,&plStack_1b8,&puStack_198,&uStack_218);
         lVar2 = *plVar12;
         *plVar12 = 0;
         plStack_1c0 = (int64_t *)param_1[0xca];
@@ -592,7 +598,7 @@ void FUN_180302370(int64_t *param_1,int64_t *param_2)
         if (uStack_258 != (int64_t *)0x0) {
           (**(code **)(*uStack_258 + 0x28))();
         }
-        FUN_18005e6a0(uVar19,&uStack_258,0);
+        SystemCore_ErrorHandler(uVar19,&uStack_258,0);
       }
     }
     FUN_18024cb50(param_2,lVar1);
@@ -600,8 +606,8 @@ void FUN_180302370(int64_t *param_1,int64_t *param_2)
   }
   else {
     if ((char)param_1[0x104] != '\0') {
-      uVar19 = FUN_180244ff0(lVar1);
-      FUN_180056f10(param_1 + 0xcd,uVar19);
+      uVar19 = SystemOptimizer(lVar1);
+      SystemCore_PointerManager(param_1 + 0xcd,uVar19);
     }
     LOCK();
     plVar12 = param_2 + 0x2349;

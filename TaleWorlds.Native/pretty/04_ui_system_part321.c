@@ -38,7 +38,7 @@ int FUN_180840e00(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
+  iVar4 = RenderingSystem_ShaderCompiler(iVar3 + param_2,param_3 - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
@@ -76,7 +76,7 @@ int FUN_180840f80(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + 0x10));
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -237,7 +237,7 @@ int FUN_180841320(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -264,7 +264,7 @@ int FUN_180841410(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -291,7 +291,7 @@ int FUN_1808414f0(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -316,7 +316,7 @@ int FUN_1808415e0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -361,7 +361,7 @@ int FUN_180841790(int64_t param_1,int64_t param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b650(param_2,param_3,&uStack_18);
+  iVar2 = RenderingSystem_ShaderCompiler(param_2,param_3,&uStack_18);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -546,7 +546,7 @@ int FUN_180841bc0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -588,7 +588,7 @@ int FUN_180841d30(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -611,7 +611,7 @@ int FUN_180841df0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -634,7 +634,7 @@ int FUN_180841ea0(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -655,7 +655,7 @@ int FUN_180841f50(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = DataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -718,7 +718,7 @@ int FUN_1808420a0(int64_t param_1,int64_t param_2,int param_3)
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
+  iVar5 = RenderingSystem_ShaderCompiler(iVar4 + param_2,param_3 - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
@@ -785,7 +785,7 @@ int FUN_180842230(int64_t param_1,int64_t param_2,int param_3)
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
+  iVar5 = RenderingSystem_ShaderCompiler(iVar4 + param_2,param_3 - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
@@ -878,7 +878,7 @@ int FUN_180842420(int64_t param_1,int64_t param_2,int param_3)
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
+  iVar5 = RenderingSystem_ShaderCompiler(iVar4 + param_2,param_3 - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
   iVar5 = DataProcessor(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;

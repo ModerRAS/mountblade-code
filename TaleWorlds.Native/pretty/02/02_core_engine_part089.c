@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part089.c - 核心引擎模块第089部分
 // 包含文本处理、数值计算和渲染相关的函数
 
@@ -91,7 +95,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   }
   
   // 格式化文本
-  FUN_180121200(format_buffer, 0x20, param_6, (double)*param_5);
+  SystemCore_LoggingSystem(format_buffer, 0x20, param_6, (double)*param_5);
   
   // 去除前后空白字符
   for (text_start = format_buffer; (current_char = *text_start, current_char == ' ' || (current_char == '\t')); 
@@ -190,10 +194,10 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
   
   // 格式化数值
   if (param_2 < 2) {
-    FUN_180121200(temp_buffer, 0x40, param_6, *(float *)param_3);
+    SystemCore_LoggingSystem(temp_buffer, 0x40, param_6, *(float *)param_3);
   }
   else if (param_2 - 2 < 2) {
-    FUN_180121200(temp_buffer, 0x40, param_6, *param_3);
+    SystemCore_LoggingSystem(temp_buffer, 0x40, param_6, *param_3);
   }
   else {
     if (param_2 == 4) {
@@ -203,7 +207,7 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
       if (param_2 != 5) goto skip_format_conversion;
       converted_value = *param_3;
     }
-    FUN_180121200(temp_buffer, 0x40, param_6, converted_value);
+    SystemCore_LoggingSystem(temp_buffer, 0x40, param_6, converted_value);
   }
   
 skip_format_conversion:
@@ -361,10 +365,10 @@ void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *par
   
   // 格式化数值
   if (data_type < 2) {
-    param_1 = FUN_180121200(&stack0x00000050, 0x40, stack_param5, *(float *)param_3);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050, 0x40, stack_param5, *(float *)param_3);
   }
   else if (data_type - 2 < 2) {
-    param_1 = FUN_180121200(&stack0x00000050, 0x40, stack_param5, *param_3);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050, 0x40, stack_param5, *param_3);
   }
   else {
     if (data_type == 4) {
@@ -374,7 +378,7 @@ void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *par
       if (data_type != 5) goto skip_format;
       converted_value = *param_3;
     }
-    param_1 = FUN_180121200(&stack0x00000050, 0x40, stack_param5, converted_value);
+    param_1 = SystemCore_LoggingSystem(&stack0x00000050, 0x40, stack_param5, converted_value);
   }
   
 skip_format:

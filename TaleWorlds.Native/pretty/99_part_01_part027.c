@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 99_part_01_part027.c - 15 个函数
 
@@ -358,8 +364,8 @@ void FUN_1800b9e60(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
 
 
 
-// 函数: void FUN_1800b9f60(float *param_1)
-void FUN_1800b9f60(float *param_1)
+// 函数: void SystemCore_Parser(float *param_1)
+void SystemCore_Parser(float *param_1)
 
 {
   float fVar1;
@@ -535,7 +541,7 @@ void FUN_1800ba180(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -576,7 +582,7 @@ void FUN_1800ba1b0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -617,7 +623,7 @@ void FUN_1800ba1f0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -696,7 +702,7 @@ int64_t FUN_1800ba340(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   if (*(int64_t **)(param_1 + 0xe8) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xe8) + 0x38))();
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x100,param_3,param_4,uVar1);
   }
@@ -771,7 +777,7 @@ void FUN_1800ba6f0(uint64_t param_1)
   iVar2 = GetModuleFileNameW(0,asStack_378,0x118);
   if (iVar2 == 0) {
     FUN_180627160(&processed_var_8696_ptr);
-    uVar3 = FUN_180628ca0();
+    uVar3 = MemoryDebugger0();
     SystemCore_NetworkHandler0(param_1,uVar3);
     uStack_398 = 1;
                     // WARNING: Subroutine does not return

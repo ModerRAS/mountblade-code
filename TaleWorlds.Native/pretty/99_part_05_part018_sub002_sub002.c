@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_EventHandler - RenderingSystem_DataBlockCopier */
+#define RenderingSystem_DataBlockCopier SystemCore_EventHandler
+
+
 
 // 99_part_05_part018_sub002_sub002.c - 1 个函数
 
@@ -180,7 +186,7 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
         CoreMemoryPoolValidator(&uStack_188,&processed_var_9960_ptr);
         FUN_180628320(&uStack_188,param_2 + 0x3520);
         uStack_4a0 = CONCAT44(uStack_4a0._4_4_,4);
-        FUN_180049b30(apuStack_368,&uStack_188);
+        RenderingSystem_DataBlockCopier(apuStack_368,&uStack_188);
         puVar7 = (uint64_t *)FUN_1800b1d80(system_resource_state,&uStack_528,apuStack_368,&puStack_4a8);
         uStack_4e8 = *puVar7;
         *puVar7 = 0;
@@ -191,7 +197,7 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
       else {
         CoreMemoryPoolValidator(&uStack_188,&processed_var_9976_ptr);
         FUN_180628320(&uStack_188,param_2 + 0x3520);
-        FUN_180049b30(apuStack_368,&uStack_188);
+        RenderingSystem_DataBlockCopier(apuStack_368,&uStack_188);
         puVar7 = (uint64_t *)FUN_1800b1d80(system_resource_state,&uStack_528,apuStack_368,&puStack_4a8);
         uStack_4e8 = *puVar7;
         *puVar7 = 0;
@@ -200,7 +206,7 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
         SystemTimer(&uStack_528);
       }
       apuStack_368[0] = &system_state_ptr;
-      FUN_180627b90(&uStack_188);
+      SystemValidator(&uStack_188);
     }
     if (1 < *param_1) {
       pfVar13 = (float *)&uStack_188;
@@ -866,13 +872,13 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
       *(int *)(lVar11 + 0x178) = (int)uVar16;
       *(int32_t *)(lVar11 + 0x124e4) = *(int32_t *)(*(int64_t *)(param_1 + 10) + 0x5b9c);
       *(int *)(lVar11 + 0x357c) = (int)uVar16;
-      FUN_180056f10(lVar11 + 0x96a8,*(uint64_t *)(param_1 + 6));
+      SystemCore_PointerManager(lVar11 + 0x96a8,*(uint64_t *)(param_1 + 6));
       *(uint64_t *)(lVar11 + 0x993c) = uStack_4c8;
       *(uint64_t *)(lVar11 + 0x9944) = uStack_4c0;
       *(uint64_t *)(lVar11 + 0x994c) = CONCAT44(fStack_464,fStack_468);
       *(uint64_t *)(lVar11 + 0x9954) = CONCAT44(uStack_45c,fStack_460);
       *(bool *)(lVar11 + 0x9710) = (char)param_1[0x2c] != '\0';
-      FUN_180627b90(&puStack_4a8);
+      SystemValidator(&puStack_4a8);
     }
   }
                     // WARNING: Subroutine does not return
@@ -890,7 +896,7 @@ int32_t * FUN_1802e3860(uint64_t param_1,int64_t param_2,int32_t param_3)
   int32_t *puVar2;
   
   puVar2 = (int32_t *)FUN_1800daa50();
-  FUN_180094b30(puVar2,&processed_var_64_ptr);
+  SystemCore_NetworkHandler(puVar2,&processed_var_64_ptr);
   puVar2[1] = 0x120000;
   puVar2[0x473c] = 0xffffff;
   *puVar2 = 0x20;

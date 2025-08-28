@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -157,7 +161,7 @@ LAB_1801cb5d2:
           lVar20 = lVar20 * 2;
           if (lVar20 != 0) goto LAB_1801cb5d2;
         }
-        lVar12 = FUN_180059780(puStack_2b8,puStack_2b0);
+        lVar12 = SystemCore_Initializer(puStack_2b8,puStack_2b0);
         SystemCore_NetworkHandler0(lVar12,lVar13 + 0x20);
         puVar7 = puStack_2b0;
         for (puVar23 = puStack_2b8; puVar23 != puVar7; puVar23 = puVar23 + 4) {

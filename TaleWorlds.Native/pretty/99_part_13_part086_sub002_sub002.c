@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -86,7 +87,7 @@ LAB_1808e4bda:
           else if (iVar11 < iVar9) {
             iVar11 = iVar9;
           }
-          uVar7 = FUN_180748010(param_1 + 0x38,iVar11);
+          uVar7 = UltraHighFreq_StateController1(param_1 + 0x38,iVar11);
           if ((int)uVar7 != 0) {
             return uVar7;
           }
@@ -116,7 +117,7 @@ LAB_1808e4bda:
           else if (iVar11 < iVar9) {
             iVar11 = iVar9;
           }
-          uVar5 = FUN_180747e10(param_1 + 0x48,iVar11);
+          uVar5 = SystemCore_Initializer(param_1 + 0x48,iVar11);
           if ((int)uVar5 != 0) {
             return uVar5;
           }
@@ -241,7 +242,7 @@ LAB_1808e4bda:
           else if (iVar11 < iVar9) {
             iVar11 = iVar9;
           }
-          uVar7 = FUN_180748010(unaff_RSI + 0x38,iVar11);
+          uVar7 = UltraHighFreq_StateController1(unaff_RSI + 0x38,iVar11);
           if ((int)uVar7 != 0) {
             return uVar7;
           }
@@ -271,7 +272,7 @@ LAB_1808e4bda:
           else if (iVar11 < iVar9) {
             iVar11 = iVar9;
           }
-          uVar5 = FUN_180747e10(unaff_RSI + 0x48,iVar11);
+          uVar5 = SystemCore_Initializer(unaff_RSI + 0x48,iVar11);
           if ((int)uVar5 != 0) {
             return uVar5;
           }
@@ -643,7 +644,7 @@ uint64_t FUN_1808e5210(int64_t param_1,int param_2)
     else if (iVar4 < param_2) {
       iVar4 = param_2;
     }
-    uVar2 = FUN_180747e10(fVar5,iVar4);
+    uVar2 = SystemCore_Initializer(fVar5,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -677,7 +678,7 @@ uint64_t FUN_1808e5270(int64_t param_1,int param_2)
     else if (iVar4 < param_2) {
       iVar4 = param_2;
     }
-    uVar2 = FUN_180748010(fVar5,iVar4);
+    uVar2 = UltraHighFreq_StateController1(fVar5,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -960,7 +961,7 @@ uint64_t FUN_1808e54e0(int64_t param_1,int *param_2,int *param_3)
     }
   }
   else {
-    uVar1 = FUN_18073c380(param_1,0xffffffff,&uStack_30);
+    uVar1 = UltraHighFreq_PhysicsEngine1(param_1,0xffffffff,&uStack_30);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -972,7 +973,7 @@ uint64_t FUN_1808e54e0(int64_t param_1,int *param_2,int *param_3)
     if (param_3 != (int *)0x0) {
       aiStackX_20[0] = 0;
       aiStack_38[0] = 0;
-      uVar1 = FUN_18073c380(param_1,0xfffffffd,auStack_28);
+      uVar1 = UltraHighFreq_PhysicsEngine1(param_1,0xfffffffd,auStack_28);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -1067,7 +1068,7 @@ uint64_t FUN_1808e55b0(int64_t *param_1,int64_t param_2,int8_t param_3)
   *(int32_t *)(param_1 + 8) = 0;
   uVar4 = (int)*(uint *)((int64_t)param_1 + 0x54) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_1 + 0x54) ^ uVar4) - uVar4) < 0) &&
-     (uVar2 = FUN_180747e10(param_1 + 9,0), (int)uVar2 != 0)) {
+     (uVar2 = SystemCore_Initializer(param_1 + 9,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[10];

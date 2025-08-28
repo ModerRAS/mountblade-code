@@ -514,7 +514,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
         param_1[0x18] = &system_state_ptr;
         
         /* 执行资源初始化 */
-        FUN_180049470(param_1);
+        SystemCore_SecurityManager(param_1);
         
         /* 根据标志决定是否释放资源 */
         if ((param_2 & 1) != 0) {
@@ -549,7 +549,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
  * @param param_1 数据参数指针
  * @return void
  */
-void FUN_180244ff0(int64_t param_1)
+void SystemOptimizer(int64_t param_1)
 {
     int iVar1;                         /**< 整数变量1 */
     int iVar2;                         /**< 整数变量2 */
@@ -652,7 +652,7 @@ void FUN_180244ff0(int64_t param_1)
             cVar5 == '\0')) || (*(int *)(lVar7 + 0x380) == 0)) {
             
             /* 分配新资源 */
-            puVar8 = (uint64_t *)FUN_1800b1230(uVar10, aplStack_f8, &puStack_d8, &uStack_138);
+            puVar8 = (uint64_t *)SystemInitializer(uVar10, aplStack_f8, &puStack_d8, &uStack_138);
             uVar4 = *puVar8;
             *puVar8 = 0;
             
@@ -688,7 +688,7 @@ void FUN_180244ff0(int64_t param_1)
  * @param param_1 系统参数指针
  * @return void
  */
-void FUN_180245280(int64_t param_1)
+void SystemLog_Manager(int64_t param_1)
 {
     uint64_t uVar1;                  /**< 未定义8位变量 */
     int64_t lVar2;                     /**< 长整数变量 */
@@ -720,7 +720,7 @@ void FUN_180245280(int64_t param_1)
     if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(int64_t *)(param_1 + 0x96a8) == 0)) {
         /* 初始化资源参数 */
         uVar4 = 1;
-        lVar2 = FUN_180244ff0();
+        lVar2 = SystemOptimizer();
         
         /* 根据资源状态设置参数 */
         if (lVar2 == 0) {

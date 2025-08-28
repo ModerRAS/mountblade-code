@@ -50,190 +50,190 @@ void FUN_1806478d0(uint64_t param_1,uint64_t param_2)
   puStack_200 = &processed_var_7584_ptr;
   puStack_208 = (uint64_t *)&processed_var_7592_ptr;
   uStack_1d8 = param_2;
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7768_ptr,&processed_var_7752_ptr);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7720_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7768_ptr,&processed_var_7752_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7720_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(1,1);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
+  RenderingSystem_VertexProcessor(1,1);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7736_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7736_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(1,1);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
+  RenderingSystem_VertexProcessor(1,1);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&system_memory_d228);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&system_memory_d228);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(1,1);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
+  RenderingSystem_VertexProcessor(1,1);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7696_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7696_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,1);
+  RenderingSystem_VertexProcessor(render_system_data_memory,1);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(1,1);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
+  RenderingSystem_VertexProcessor(1,1);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7532_ptr,&system_memory_c8e4);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7704_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7704_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7672_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7672_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7688_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7688_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7876_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7876_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7672_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7672_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7888_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7888_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7856_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&system_memory_cc18);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7856_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7868_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&system_memory_cc18);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7868_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7840_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&system_memory_cc18);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7840_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7848_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&system_memory_cc18);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7540_ptr,&processed_var_7848_ptr);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
   puStack_208 = (uint64_t *)0x0;
-  FUN_180647600(render_system_data_memory,0xffffffffffffffff);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
+  RenderingSystem_VertexProcessor(render_system_data_memory,0xffffffffffffffff);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7640_ptr,&system_buffer_ptr);
   puVar4 = &processed_var_7504_ptr;
   if (render_system_data_memory <= render_system_data_memory) {
     puVar4 = &processed_var_7524_ptr;
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,puVar4);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,puVar4);
   if (render_system_data_memory != 0) {
     lVar2 = (render_system_data_memory * 10) / render_system_data_memory;
   }
   iVar1 = (int)(lVar2 / 10);
   puStack_200 = (void *)CONCAT44(puStack_200._4_4_,(int)lVar2 + iVar1 * -10);
   puStack_208 = (uint64_t *)CONCAT44(puStack_208._4_4_,iVar1);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_7648_ptr,&processed_var_7808_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_7648_ptr,&processed_var_7808_ptr);
   puStack_208 = (uint64_t *)FUN_180646f40();
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_8184_ptr,&processed_var_7824_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_8184_ptr,&processed_var_7824_ptr);
   lVar2 = render_system_memory;
   QueryPerformanceCounter(&lStack_1b0);
   if (render_system_config_memory == 0) {
@@ -251,21 +251,21 @@ void FUN_1806478d0(uint64_t param_1,uint64_t param_2)
   K32GetProcessMemoryInfo(uVar3,auStack_178,0x48);
   puStack_208 = (uint64_t *)(lVar2 / 1000);
   puStack_200 = (void *)(lVar2 % 1000);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_8152_ptr,&processed_var_8200_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_8152_ptr,&processed_var_8200_ptr);
   puStack_1f8 = (void *)((auStack_198[0] / 10000) / 1000);
   puStack_208 = (uint64_t *)((uStack_1a0 / 10000) / 1000);
   puStack_1f0 = (void *)((auStack_198[0] / 10000) % 1000);
   puStack_200 = (void *)((uStack_1a0 / 10000) % 1000);
   puStack_1e8 = (void *)CONCAT44(puStack_1e8._4_4_,uStack_174);
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_8064_ptr,&processed_var_8176_ptr);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_8064_ptr,&processed_var_8176_ptr);
   puStack_208 = (uint64_t *)&processed_var_552_ptr;
-  FUN_180647600(uStack_170,1);
+  RenderingSystem_VertexProcessor(uStack_170,1);
   if (lStack_138 != 0) {
-    FUN_1806502b0(FUN_180647850,&uStack_1d8,&processed_var_8136_ptr);
+    RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&processed_var_8136_ptr);
     puStack_208 = (uint64_t *)&processed_var_552_ptr;
-    FUN_180647600(lStack_138,1);
+    RenderingSystem_VertexProcessor(lStack_138,1);
   }
-  FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,&uStack_1d8,&system_memory_cc18);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_228);
 }
@@ -453,7 +453,7 @@ int64_t FUN_1806488f0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t 
                0x10);
       iVar7 = *(int *)(lVar8 + 0xbc0);
       if (*(int *)(lVar8 + 0xbc0) < 1) {
-        FUN_18064ed50(lVar8 + 0xb40);
+        UISystem_RenderController(lVar8 + 0xb40);
         *(int32_t *)(lVar8 + 0xbc0) = 0x10;
         iVar7 = 0x10;
       }
@@ -462,7 +462,7 @@ int64_t FUN_1806488f0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t 
       iVar7 = *(int *)(lVar8 + 0xbc0) + -1;
       *(int *)(lVar8 + 0xbc0) = iVar7;
       if (iVar7 < 1) {
-        FUN_18064ed50(lVar8 + 0xb40);
+        UISystem_RenderController(lVar8 + 0xb40);
         *(int32_t *)(lVar8 + 0xbc0) = 0x10;
         iVar7 = 0x10;
       }
@@ -524,7 +524,7 @@ int64_t FUN_18064896e(int64_t param_1)
   lVar5 = *(int64_t *)(*(int64_t *)(in_RAX + param_1 * 8) + 0x10);
   iVar4 = *(int *)(lVar5 + 0xbc0);
   if (*(int *)(lVar5 + 0xbc0) < 1) {
-    FUN_18064ed50(lVar5 + 0xb40);
+    UISystem_RenderController(lVar5 + 0xb40);
     *(int *)(lVar5 + 0xbc0) = iVar6;
     iVar4 = iVar6;
   }
@@ -533,7 +533,7 @@ int64_t FUN_18064896e(int64_t param_1)
   iVar4 = *(int *)(lVar5 + 0xbc0) + -1;
   *(int *)(lVar5 + 0xbc0) = iVar4;
   if (iVar4 < 1) {
-    FUN_18064ed50(lVar5 + 0xb40);
+    UISystem_RenderController(lVar5 + 0xb40);
     *(int *)(lVar5 + 0xbc0) = iVar6;
     iVar4 = iVar6;
   }

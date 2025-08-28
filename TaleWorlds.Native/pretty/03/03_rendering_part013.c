@@ -1,5 +1,11 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part013.c - 渲染系统组件 (7个函数)
 // 渲染数据初始化、材质管理、碰撞检测、渲染优化等功能的实现
@@ -134,7 +140,7 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
       buffer_offset = 0;
       do {
         shader_ptr = (uint64_t *)
-                 FUN_1800763c0(*(uint64_t *)(buffer_offset + *(int64_t *)(src_data_ptr + 0x38)), &buffer_ptr)
+                 SystemCore_BufferManager(*(uint64_t *)(buffer_offset + *(int64_t *)(src_data_ptr + 0x38)), &buffer_ptr)
         ;
         texture_offset = dest_data_ptr[7];
         texture_data = *shader_ptr;
@@ -199,7 +205,7 @@ void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index
   // 执行更新操作
   if (update_flag != '\0') {
     if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
-      FUN_180276f30(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
+      SystemCore_UpdateState(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
     }
     else {
       (**(code **)(*render_context_ptr + 0x160))(render_context_ptr);
@@ -271,7 +277,7 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
   // 执行更新操作
   if (update_flag != '\0') {
     if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
-      FUN_180276f30(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
+      SystemCore_UpdateState(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
     }
     else {
       (**(code **)(*render_context_ptr + 0x160))(render_context_ptr);
@@ -487,7 +493,7 @@ LAB_180276376:
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(temp_float2 + 0x100) & 0x400000) != 0)) {
               *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
-            collision_result = FUN_180077750(temp_float2, render_flags, &stack_vertices[0], collision_param, &stack_transform[0]);
+            collision_result = SystemHealthMonitor(temp_float2, render_flags, &stack_vertices[0], collision_param, &stack_transform[0]);
             object_type = object_type & collision_result;
           }
           object_index = object_index + 0x10;
@@ -525,7 +531,7 @@ LAB_180276376:
               *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
             if ((*(byte *)(temp_float2 + 0x100) & 0x20) == 0) {
-              collision_result = FUN_180077750(temp_float2, render_flags, position_data, collision_param, &stack_transform[0]);
+              collision_result = SystemHealthMonitor(temp_float2, render_flags, position_data, collision_param, &stack_transform[0]);
               object_type = object_type & collision_result;
             }
             else {
@@ -667,7 +673,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
            ((*(uint *)(context_ptr + 0x100) & 0x400000) != 0)) {
           *(int32_t *)(transform_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
-        collision_result = FUN_180077750();
+        collision_result = SystemHealthMonitor();
         visibility_flag = visibility_flag & collision_result;
       }
       render_context = render_context + 0x10;
@@ -741,7 +747,7 @@ uint64_t optimize_rendering_objects(void)
            ((*(uint *)(object_ptr + 0x100) & 0x400000) != 0)) {
           *(int32_t *)(render_context + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
-        optimization_result = FUN_180077750();
+        optimization_result = SystemHealthMonitor();
         visibility_flag = visibility_flag & optimization_result;
       }
       render_index = render_index + 0x10;
@@ -787,7 +793,7 @@ byte update_rendering_state(void)
           *(int32_t *)(render_context + 0x328) = *(int32_t *)(system_main_module_state + 0x224);
         }
         if ((*(byte *)(object_ptr + 0x100) & 0x20) == 0) {
-          update_result = FUN_180077750();
+          update_result = SystemHealthMonitor();
           visibility_flag = visibility_flag & update_result;
         }
         else {
@@ -1015,21 +1021,21 @@ void update_rendering_materials(int64_t material_context, int32_t material_updat
       texture_index2 = CONCAT11(texture_index2._1_1_, 1);
       if ((material_ptr != (int64_t *)0x0) && (texture_ptr != (int64_t *)0x0)) {
         if (update_flag != '\0') {
-          FUN_180075b70();
+          SystemConfig_Manager();
         }
-        FUN_18007f6a0(material_params);
+        SystemSecurityManager(material_params);
         if ((char)texture_index2 != '\0') {
-          FUN_180079520(material_ptr);
+          SystemInitializer(material_ptr);
         }
         if (texture_index2._1_1_ != '\0') {
-          FUN_180079520(material_ptr);
+          SystemInitializer(material_ptr);
         }
         texture_data = (int64_t *)0x0;
         if (texture_ptr != (int64_t *)0x0) {
           (**(code **)(*texture_ptr + 0x38))();
         }
       }
-      FUN_18007f6a0(material_params);
+      SystemSecurityManager(material_params);
       if (texture_buffer != (int64_t *)0x0) {
         (**(code **)(*texture_buffer + 0x38))();
       }

@@ -1,5 +1,10 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part208.c - 12 个函数
 
@@ -380,7 +385,7 @@ void FUN_18038aae0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     } while ((int)uVar6 < (int)(uint)*(byte *)(param_2 + 0xa8));
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5280_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5280_ptr);
 }
 
 
@@ -475,8 +480,8 @@ uint64_t * FUN_18038ad70(uint64_t *param_1)
 
 
 
-// 函数: void FUN_18038af00(int64_t param_1)
-void FUN_18038af00(int64_t param_1)
+// 函数: void SystemCore_PerformanceMonitor(int64_t param_1)
+void SystemCore_PerformanceMonitor(int64_t param_1)
 
 {
   float *pfVar1;
@@ -526,8 +531,8 @@ void FUN_18038af00(int64_t param_1)
 
 
 
-// 函数: void FUN_18038b160(uint64_t param_1)
-void FUN_18038b160(uint64_t param_1)
+// 函数: void SystemCore_ProcessManager(uint64_t param_1)
+void SystemCore_ProcessManager(uint64_t param_1)
 
 {
   byte bVar1;

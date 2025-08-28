@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -414,7 +419,7 @@ FUN_180069f00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
-  uVar1 = FUN_180628ca0();
+  uVar1 = MemoryDebugger0();
   CoreEngineDataTransformer(param_2,uVar1,param_3,param_4,uVar2,uVar3);
   return param_2;
 }
@@ -483,7 +488,7 @@ uint64_t * FUN_18006a090(uint64_t *param_1,uint64_t param_2)
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1b) = 0;
   param_1[0x18] = &system_state_ptr;
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xe8);
   }
@@ -525,7 +530,7 @@ void FUN_18006a130(int64_t param_1)
   FUN_180055050();
   FUN_18004d020();
   if ((*(char *)(init_system_data_config + 0x20) == '\0') && (*(char *)(init_system_data_config + 0x21) == '\0')) {
-    uVar3 = FUN_1808fc418(0x428);
+    uVar3 = SystemRenderer(0x428);
     plStack_250 = (int64_t *)FUN_18049d530(uVar3);
   }
   else {
@@ -777,7 +782,7 @@ int64_t FUN_18006b5c0(int64_t param_1,uint param_2,uint64_t param_3,uint64_t par
   if (*(code **)(param_1 + 0xd0) != (code *)0x0) {
     (**(code **)(param_1 + 0xd0))(param_1 + 0xc0,0,0,param_4,0xfffffffffffffffe);
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xe0);
   }
@@ -787,14 +792,14 @@ int64_t FUN_18006b5c0(int64_t param_1,uint param_2,uint64_t param_3,uint64_t par
 
 
 uint64_t *
-FUN_18006b640(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+SystemCore_ErrorHandler(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   code *pcVar1;
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &rendering_buffer_2528_ptr;
   param_1[0x1a] = 0;
   param_1[0x1b] = _guard_check_icall;

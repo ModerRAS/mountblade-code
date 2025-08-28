@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 // 99_part_07_part014.c - 11 个函数
 
@@ -29,7 +39,7 @@ void FUN_1804a7c00(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -149,7 +159,7 @@ void FUN_1804a7db0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -281,7 +291,7 @@ void FUN_1804a7ea0(int64_t param_1)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -326,8 +336,8 @@ void FUN_1804a7f00(uint64_t *param_1)
   }
   _Mtx_destroy_in_situ();
   FUN_18017b400(param_1 + 0x577,param_1[0x579]);
-  FUN_18004b730();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
   FUN_18015b4f0();
   FUN_1804a7ac0(param_1 + 0x559);
   if (param_1[0x55f] != 0) {
@@ -425,7 +435,7 @@ uint64_t * FUN_1804a8200(uint64_t *param_1,uint64_t param_2)
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
   param_1[0xe] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x118);
   }
@@ -454,7 +464,7 @@ void FUN_1804a8340(uint64_t *param_1)
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &processed_var_4296_ptr;
   puVar3[0xe] = &system_state_ptr;
   puVar3[0xf] = 0;
@@ -504,7 +514,7 @@ void FUN_1804a8340(uint64_t *param_1)
   *puVar2 = 0x656d614e6873654d;
   *(int8_t *)(puVar2 + 1) = 0;
   uStack_90 = 8;
-  FUN_1803460a0(param_1,&puStack_a0,puVar3,0,uVar4);
+  SystemNetwork_Processor(param_1,&puStack_a0,puVar3,0,uVar4);
   puStack_a0 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager(puVar2);
@@ -909,10 +919,10 @@ void FUN_1804a8e90(uint64_t param_1)
   auStack_130[0] = 0;
   uStack_138 = 8;
   strcpy_s(auStack_130,0x40,&system_data_dca0);
-  FUN_1800b8300(apuStack_1a8,&puStack_148);
+  DataDeserializer0(apuStack_1a8,&puStack_148);
   uStack_150 = 0;
   uStack_1c8 = 1;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -922,10 +932,10 @@ void FUN_1804a8e90(uint64_t param_1)
   auStack_d0[0] = 0;
   uStack_d8 = 0xc;
   strcpy_s(auStack_d0,0x40,&system_data_dc90);
-  FUN_1800b8300(apuStack_1a8,&puStack_e8);
+  DataDeserializer0(apuStack_1a8,&puStack_e8);
   uStack_150 = 0;
   uStack_1c8 = 2;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -935,10 +945,10 @@ void FUN_1804a8e90(uint64_t param_1)
   auStack_70[0] = 0;
   uStack_78 = 0xd;
   strcpy_s(auStack_70,0x40,&system_data_dcb0);
-  FUN_1800b8300(apuStack_1a8,&puStack_88);
+  DataDeserializer0(apuStack_1a8,&puStack_88);
   uStack_150 = 0;
   uStack_1c8 = 4;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  MathOptimizationEngine0(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -957,7 +967,7 @@ FUN_1804a90a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_4704_ptr;
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x78,param_3,param_4,uVar1);
   }

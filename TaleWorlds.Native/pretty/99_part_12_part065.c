@@ -298,7 +298,7 @@ int FUN_1807f7cb0(uint64_t *param_1)
              ((puVar7 = param_1 + 0x2c, (uint64_t *)*puVar7 != puVar7 ||
               ((uint64_t *)param_1[0x2d] != puVar7)))) {
             while ((*(uint *)(param_1 + 0xb) & 0x40) == 0) {
-              FUN_180768bf0(2);
+              UIComponent_EventHandler(2);
             }
           }
           func_0x000180743c20(param_1[0x1b],10);

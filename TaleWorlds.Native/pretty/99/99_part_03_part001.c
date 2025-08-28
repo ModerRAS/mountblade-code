@@ -1,5 +1,13 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "SystemDataAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 /**
  * @file 99_part_03_part001.c
@@ -142,7 +150,7 @@ void string_comparison_processor(uint64_t **param_1, int64_t param_2)
     match_flag = 1;
 final_mismatch:
     // 执行系统初始化
-    FUN_18005e630(system_context_ptr);
+    SystemCore_FileSystem(system_context_ptr);
     FUN_1801c9940(global_ptr);
     
     // 分配内存资源
@@ -198,7 +206,7 @@ final_mismatch:
     stack_long1 = 0;
     stack_uint1 = 0;
     stack_ptr4 = &global_config_720_ptr;
-    temp_ptr1 = (uint64_t **)FUN_18006b640(temp_var, ptr_array);
+    temp_ptr1 = (uint64_t **)SystemCore_ErrorHandler(temp_var, ptr_array);
     
     // 执行回调处理
     if (temp_ptr1 != (uint64_t **)0x0) {
@@ -222,7 +230,7 @@ final_mismatch:
     }
     
     // 清理资源
-    FUN_18005e110(temp_var, &temp_ptr2);
+    SystemCore_TimerManager(temp_var, &temp_ptr2);
     return;
 }
 
@@ -377,7 +385,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         temp_ptr6 = stack_ptr2;
     }
     stack_uint1 = temp_int;
-    temp_int = FUN_18062dee0(&stack_var7, temp_ptr6, &global_config_4880_ptr);
+    temp_int = SystemCore_Validator(&stack_var7, temp_ptr6, &global_config_4880_ptr);
     temp_long3 = stack_long5;
     
     if (temp_int == 0) {
@@ -750,7 +758,7 @@ bool file_validator(int64_t param_1)
             MessageBoxA(0, &global_config_9600_ptr, &global_config_9792_ptr, 0x41040);
         }
         else if (*(char *)(system_message_context + 0x18) != '\0') {
-            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_config_6936_ptr, &global_config_9792_ptr,
+            SystemConfigurationManager(system_message_context, 3, 0xffffffff00000000, 0xd, &global_config_6936_ptr, &global_config_9792_ptr,
                           &global_config_9600_ptr);
         }
     }
@@ -834,7 +842,7 @@ void shader_cache_processor(uint64_t param_1)
         temp_ptr2 = stack_ptr2;
     }
     stack_uint1 = temp_int;
-    FUN_18062dee0(&stack_var1, temp_ptr2, &global_config_4880_ptr);
+    SystemCore_Validator(&stack_var1, temp_ptr2, &global_config_4880_ptr);
     temp_long1 = stack_long1;
     temp_array1[0] = 0;
     
@@ -962,20 +970,20 @@ void configuration_file_handler(void)
         *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
         
         stack_uint1 = temp_int;
-        temp_char = FUN_180624af0(&stack_ptr1);
+        temp_char = RenderingSystem_RenderQueue(&stack_ptr1);
         if (temp_char == '\0') {
-            FUN_18062c1e0(&stack_ptr3, 1);
+            ResourceManager_Allocate(&stack_ptr3, 1);
             stack_var1 = 0;
             stack_long2 = 0;
             temp_ptr2 = &system_buffer_ptr;
             if (stack_ptr2 != (int8_t *)0x0) {
                 temp_ptr2 = stack_ptr2;
             }
-            FUN_18062dee0(&stack_var1, temp_ptr2, &global_config_9772_ptr);
+            SystemCore_Validator(&stack_var1, temp_ptr2, &global_config_9772_ptr);
             temp_long1 = stack_long2;
             
             if (stack_long2 == 0) {
-                FUN_180062300(system_message_context, &global_config_9856_ptr);
+                SystemParameterHandler(system_message_context, &global_config_9856_ptr);
             }
             
             // 写入文件头
@@ -1087,7 +1095,7 @@ void path_builder(int64_t *param_1, int64_t param_2)
         *(int16_t *)(temp_ptr1 + 1) = 0x2f31; // "/1"
         *(int8_t *)((int64_t)temp_ptr1 + 6) = 0;
         *(int *)(param_1 + 2) = temp_int;
-        FUN_18062c1e0(param_1, 1);
+        ResourceManager_Allocate(param_1, 1);
     }
     else {
         // 使用自定义路径
@@ -1124,7 +1132,7 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
     if (param_2 == 0) {
         // 使用默认字符串
         temp_var1 = FUN_1800baa80(&stack_ptr1);
-        FUN_18005d190(param_1, temp_var1);
+        SystemScheduler(param_1, temp_var1);
         stack_ptr1 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
             CoreEngine_MemoryPoolManager();

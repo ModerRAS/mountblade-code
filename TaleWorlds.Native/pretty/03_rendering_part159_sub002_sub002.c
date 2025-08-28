@@ -1,3 +1,11 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -428,7 +436,7 @@ LAB_18036764f:
               }
               else {
                 lStack_3b0 = lStack_3b8;
-                FUN_1802e8c60(puVar17,&lStack_3b8);
+                NetworkSystem_SecurityManager(puVar17,&lStack_3b8);
                 cStack_468 = '\0';
                 puStack_d8 = &memory_allocator_3480_ptr;
                 puStack_d0 = auStack_c0;
@@ -549,7 +557,7 @@ LAB_1803678fd:
                             ppppuStack_2d0 = &ppppuStack_398;
                             (*(code *)(*ppppuVar14)[5])(ppppuVar14);
                             ppppuStack_3f0 = &ppppuStack_398;
-                            FUN_1802edcd0(plVar11);
+                            PhysicsSystem_TerrainCollider(plVar11);
                             if (ppppuStack_398 != (uint64_t ****)0x0) {
                               (*(code *)(*ppppuStack_398)[7])();
                             }
@@ -582,7 +590,7 @@ LAB_1803678fd:
                             puVar15[6] = 0;
                             puVar15[7] = 0;
                             uStack_478 = 1;
-                            FUN_18066c220(&uStack_3c8);
+                            RenderingShaderProcessor0(&uStack_3c8);
                             if (cStack_2e8 != '\0') {
                               uVar38 = uVar34 % (uint64_t)uStack_2e4;
                               FUN_180368e80(auStack_3e8,uStack_2e4);
@@ -928,7 +936,7 @@ LAB_18036813f:
                     }
                   } while (lVar22 != plStack_3e0[uStack_3d8]);
                 }
-                FUN_1802e8c60(puVar17);
+                NetworkSystem_SecurityManager(puVar17);
                 if (puStack_438 < puStack_430) {
                   *puStack_438 = puVar17;
                   plVar28 = plVar11;
@@ -1015,8 +1023,8 @@ LAB_180368378:
         CoreEngineMemoryPoolCleaner();
       }
       if (puVar10 == (uint64_t *)0x0) {
-        FUN_18004b730(&pppppppuStack_370);
-        FUN_180057830(&puStack_268);
+        UtilitiesSystem_Processor(&pppppppuStack_370);
+        DataTransformer0(&puStack_268);
                     // WARNING: Subroutine does not return
         SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_498);
       }

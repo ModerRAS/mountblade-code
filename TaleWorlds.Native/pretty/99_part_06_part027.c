@@ -25,12 +25,12 @@
   依赖关系:
   - TaleWorlds.Native.Split.h: 核心系统定义
   - CoreSystem_ConfigValidator0: 数据处理函数
-  - FUN_180631000: 系统配置函数
+  - SystemCore_CacheManager: 系统配置函数
   - FUN_180631b90: 参数处理函数
   - CoreMemoryPoolInitializer: 资源清理函数
-  - FUN_1800b6de0: 数据管理函数
+  - RenderingSystem_VertexProcessor: 数据管理函数
   - CoreMemoryPoolAllocator: 内存分配函数
-  - FUN_180275090: 对象创建函数
+  - RenderingSystem_ShaderManager: 对象创建函数
   - FUN_180275a60: 对象管理函数
   - FUN_1802759e0: 系统处理函数
   - FUN_18030b420: 高级处理函数
@@ -177,12 +177,12 @@ typedef struct {
 #define SystemFeatureProcessor FUN_1803be690
 #define SystemConfigManager UtilitiesSystemManager
 #define SystemDataProcessor CoreSystem_ConfigValidator0
-#define SystemConfigValidator FUN_180631000
+#define SystemConfigValidator SystemCore_CacheManager
 #define SystemParameterHandler FUN_180631b90
 #define SystemResourceCleaner CoreMemoryPoolInitializer
-#define SystemDataManager FUN_1800b6de0
+#define SystemDataManager RenderingSystem_VertexProcessor
 #define SystemMemoryAllocator CoreMemoryPoolAllocator
-#define SystemObjectCreator FUN_180275090
+#define SystemObjectCreator RenderingSystem_ShaderManager
 #define SystemObjectManager FUN_180275a60
 #define SystemSystemProcessor FUN_1802759e0
 #define SystemAdvancedProcessor FUN_18030b420

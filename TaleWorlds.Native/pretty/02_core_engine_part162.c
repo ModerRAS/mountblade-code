@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part162.c - 3 个函数
 
 // 函数: void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
@@ -185,7 +189,7 @@ void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
   *(int32_t *)(unaff_RBP + -0x25) = uVar18;
   *(int32_t *)(unaff_RBP + -0x21) = uVar19;
   *(int32_t *)(unaff_RBP + -0x1d) = uVar20;
-  FUN_1800b9f60(unaff_RBP + -0x39);
+  SystemCore_Parser(unaff_RBP + -0x39);
   uVar3 = *(uint64_t *)(unaff_RBP + -0x31);
   uVar17 = *(int32_t *)(unaff_RBP + -9);
   uVar4 = *(uint64_t *)(unaff_RBP + -0x29);
@@ -309,7 +313,7 @@ void FUN_18014b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(unaff_RBP + -0x25) = uVar16;
   *(int32_t *)(unaff_RBP + -0x21) = in_XMM2_Dc;
   *(int32_t *)(unaff_RBP + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(unaff_RBP + -0x39);
+  SystemCore_Parser(unaff_RBP + -0x39);
   uVar3 = *(uint64_t *)(unaff_RBP + -0x31);
   uVar15 = *(int32_t *)(unaff_RBP + -9);
   uVar4 = *(uint64_t *)(unaff_RBP + -0x29);

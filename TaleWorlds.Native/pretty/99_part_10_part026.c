@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part026.c - 34 个函数
@@ -29,7 +30,7 @@ void FUN_1806b50c0(int64_t param_1,uint64_t param_2)
     }
     lVar2 = *(int64_t *)(param_1 + 0x90);
     uStackX_10 = param_2;
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     uStackX_9 = (int8_t)(uVar4 >> 8);
     *puVar3 = (char)uVar4;
@@ -77,7 +78,7 @@ void FUN_1806b50ce(int64_t param_1,uint64_t param_2)
   lVar2 = *(int64_t *)(param_1 + 0x90);
   uStack0000000000000040 = uVar4;
   uStack0000000000000048 = param_2;
-  FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+  SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
   puVar3 = *(int8_t **)(lVar2 + 0x18);
   *puVar3 = (char)uVar4;
   puVar3[1] = uStack0000000000000040._1_1_;
@@ -867,8 +868,8 @@ void FUN_1806b5530(int64_t param_1,int64_t *param_2)
 
 
 
-// 函数: void FUN_1806b5600(uint64_t *param_1,uint param_2)
-void FUN_1806b5600(uint64_t *param_1,uint param_2)
+// 函数: void SystemController(uint64_t *param_1,uint param_2)
+void SystemController(uint64_t *param_1,uint param_2)
 
 {
   uint uVar1;

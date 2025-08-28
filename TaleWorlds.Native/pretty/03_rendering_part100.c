@@ -20,14 +20,14 @@ void FUN_1803276a0(int64_t param_1,int64_t *param_2,int64_t param_3)
   int32_t uStack_10;
   
   uStack_30 = 0xfffffffffffffffe;
-  FUN_1800b30d0(system_resource_state,&plStackX_20,param_3,0);
+  SystemCore_PerformanceMonitor(system_resource_state,&plStackX_20,param_3,0);
   if (plStackX_20 == (int64_t *)0x0) {
     puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
     CoreMemoryPoolValidator(&puStack_28,puVar3);
-    FUN_180058080(param_1 + 0xbf8,&plStack_38,&puStack_28);
+    HighFreq_AnimationSystem1(param_1 + 0xbf8,&plStack_38,&puStack_28);
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
@@ -233,7 +233,7 @@ uint64_t FUN_1803277f0(int64_t param_1)
   puStack_40 = &processed_var_6576_ptr;
   pcStack_38 = FUN_18033ced0;
   lStack_50 = param_1;
-  FUN_18015b810(&lStack_50,0,(int64_t)puStack_88 - (int64_t)puStack_90 >> 2 & 0xffffffff,0x10,
+  SystemCore_DataTransformer(&lStack_50,0,(int64_t)puStack_88 - (int64_t)puStack_90 >> 2 & 0xffffffff,0x10,
                 0xffffffffffffffff,&lStack_50);
   if (puStack_70 != (uint *)0x0) {
                     // WARNING: Subroutine does not return
@@ -470,7 +470,7 @@ uint64_t FUN_180327e70(int64_t param_1,uint64_t param_2,int64_t *param_3,char pa
     uStack_5c = uStack_6c;
     uStack_58 = uStack_68;
     uStack_54 = uStack_64;
-    uVar2 = FUN_18015b810(&uStack_60,0,uVar2 & 0xffffffff,0x10,0xffffffffffffffff,&uStack_60);
+    uVar2 = SystemCore_DataTransformer(&uStack_60,0,uVar2 & 0xffffffff,0x10,0xffffffffffffffff,&uStack_60);
   }
   return uVar2 & 0xffffffffffffff00;
 }

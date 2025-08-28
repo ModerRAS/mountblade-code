@@ -979,7 +979,7 @@ uint FUN_18010e4b0(int64_t param_1)
 void FUN_18010e4e0(int64_t param_1,int32_t param_2,int8_t param_3,int32_t param_4)
 
 {
-  FUN_1802923e0(param_1,*(uint64_t *)(param_1 + 0x88),*(int32_t *)(param_1 + 0x80),param_2,
+  RenderingSystem_LightManager(param_1,*(uint64_t *)(param_1 + 0x88),*(int32_t *)(param_1 + 0x80),param_2,
                 param_3,param_4);
   *(int32_t *)(param_1 + 0x80) = 0;
   return;

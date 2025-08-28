@@ -49,7 +49,7 @@ void FUN_180670c6a(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(int)(unaff_ESI + 0x40));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(int)(unaff_ESI + 0x40));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) == 0) {
         SystemInitializationProcessor();
@@ -68,7 +68,7 @@ void FUN_180670c6a(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) = uVar3;
       if (*(int64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) == 0) {
         SystemInitializationProcessor();
@@ -87,7 +87,7 @@ void FUN_180670c6a(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) == 0) {
         SystemInitializationProcessor();
@@ -207,7 +207,7 @@ void FUN_180670c6f(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(int)(unaff_ESI + 0x40));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(int)(unaff_ESI + 0x40));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43b0)) == 0) {
         SystemInitializationProcessor();
@@ -226,7 +226,7 @@ void FUN_180670c6f(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) = uVar3;
       if (*(int64_t *)(uVar7 + *(int64_t *)(unaff_RDI + 0x43b8)) == 0) {
         SystemInitializationProcessor();
@@ -245,7 +245,7 @@ void FUN_180670c6f(void)
     uVar5 = uVar4;
     uVar7 = uVar4;
     do {
-      uVar3 = FUN_18066e960(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
+      uVar3 = RenderingSystem_RenderTarget(0x10,(int64_t)(((int)unaff_ESI >> 1) + 0x20));
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c0)) == 0) {
         SystemInitializationProcessor();

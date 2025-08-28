@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 
 // 03_rendering_part164.c - 9 个函数
 
@@ -317,10 +324,10 @@ int64_t * FUN_18036d170(int64_t param_1,int64_t *param_2,int64_t param_3,uint64_
                         0xfffffffffffffffe);
   puVar1 = (uint64_t *)(lVar4 + 0x20);
   puStackX_8 = puVar1;
-  FUN_180049b30(puVar1,param_3);
+  SystemCore_EventHandler(puVar1,param_3);
   *(int32_t *)(lVar4 + 0xb8) = *(int32_t *)(param_3 + 0x20);
   lStackX_10 = lVar4;
-  lVar5 = FUN_1800590b0(param_1,&puStackX_8,puVar1);
+  lVar5 = SystemCore_SecurityValidator(param_1,&puStackX_8,puVar1);
   if ((char)puStackX_8 == '\0') {
     *puVar1 = &system_state_ptr;
     if (lVar4 != 0) {
@@ -370,7 +377,7 @@ uint64_t * FUN_18036d290(uint64_t *param_1,uint64_t param_2)
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
   param_1[0xe] = &system_state_ptr;
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x98);
   }
@@ -398,7 +405,7 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   
   puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x98,8,3,0xfffffffffffffffe);
   puVar4 = puVar3;
-  FUN_1803456e0(puVar3,param_2,param_1);
+  SystemCore_SyncController(puVar3,param_2,param_1);
   *puVar4 = &rendering_buffer_2088_ptr;
   plVar1 = puVar4 + 0xe;
   *plVar1 = (int64_t)&system_state_ptr;
@@ -423,7 +430,7 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   *(int32_t *)(puVar4 + 1) = 0x62616665;
   *(int8_t *)((int64_t)puVar4 + 0xc) = 0;
   uStack_40 = 0xc;
-  FUN_1803460a0(puVar3,&puStack_50,plVar1,9);
+  SystemNetwork_Processor(puVar3,&puStack_50,plVar1,9);
   puStack_50 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);
@@ -453,7 +460,7 @@ void FUN_18036d4a0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     for (lVar3 = *(int64_t *)(lVar3 + 0xb0); lVar3 != lVar1; lVar3 = lVar3 + 0x110) {
       if (*(char *)(lVar3 + 0x108) == '\0') {
         SystemCore_EncryptionEngine0(&puStack_40,lVar3);
-        FUN_180066df0(param_3,&puStack_40);
+        DataEncryptionHandler0(param_3,&puStack_40);
         puStack_40 = &system_data_buffer_ptr;
         if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
@@ -525,7 +532,7 @@ void FUN_18036d5a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         if (plVar2 != (int64_t *)0x0) {
           (**(code **)(*plVar2 + 0x28))(plVar2);
         }
-        FUN_180076910(uVar11,&plStackX_8);
+        UltraHighFreq_SecurityValidator1(uVar11,&plStackX_8);
         if (plVar2 != (int64_t *)0x0) {
           (**(code **)(*plVar2 + 0x38))(plVar2);
         }
@@ -665,7 +672,7 @@ LAB_18036d8be:
             if (iVar12 == 0) {
               lStack_40 = 0x18036d8e6;
               puVar11 = (uint64_t *)
-                        FUN_1800b30d0(system_resource_state,&plStackX_10,lVar18 + 0x58,
+                        SystemCore_PerformanceMonitor(system_resource_state,&plStackX_10,lVar18 + 0x58,
                                       CONCAT71((int7)((uint64_t)lVar18 >> 8),1));
               *(uint64_t *)(param_1 + 0x90) = *puVar11;
               if (plStackX_10 != (int64_t *)0x0) {
@@ -710,7 +717,7 @@ LAB_18036d8be:
             if (plVar3 != (int64_t *)0x0) {
               (**(code **)(*plVar3 + 0x28))(plVar3);
             }
-            FUN_180076910(uVar4,&plStackX_8);
+            UltraHighFreq_SecurityValidator1(uVar4,&plStackX_8);
             if (plVar3 != (int64_t *)0x0) {
               (**(code **)(*plVar3 + 0x38))(plVar3);
             }
@@ -773,7 +780,7 @@ void FUN_18036d920(uint64_t *param_1)
   
   uStack_48 = 0xfffffffffffffffe;
   puVar7 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar7 = &rendering_buffer_2456_ptr;
   lVar4 = 0;
   puVar7[0x10] = 0;
@@ -866,7 +873,7 @@ LAB_18036dafe:
   *puVar6 = 0x64656553;
   *(int8_t *)(puVar6 + 1) = 0;
   uStack_228 = 4;
-  FUN_1803460a0(param_1,&puStack_238,param_1 + 0x18,2);
+  SystemNetwork_Processor(param_1,&puStack_238,param_1 + 0x18,2);
   puStack_238 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar6);
@@ -897,7 +904,7 @@ int64_t FUN_18036e600(int64_t param_1,uint64_t param_2)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_1803457d0(param_1);
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x130);
   }
@@ -936,7 +943,7 @@ void FUN_18036e6e0(uint64_t param_1,uint64_t param_2)
   puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x130,8,3);
   uStack_48 = 0xfffffffffffffffe;
   puVar8 = puVar7;
-  FUN_1803456e0(puVar7,param_2,param_1);
+  SystemCore_SyncController(puVar7,param_2,param_1);
   *puVar8 = &rendering_buffer_2456_ptr;
   lVar4 = 0;
   puVar8[0x10] = 0;
@@ -1029,7 +1036,7 @@ LAB_18036dafe:
   *puVar6 = 0x64656553;
   *(int8_t *)(puVar6 + 1) = 0;
   uStack_228 = 4;
-  FUN_1803460a0(puVar7,&puStack_238,puVar7 + 0x18,2);
+  SystemNetwork_Processor(puVar7,&puStack_238,puVar7 + 0x18,2);
   puStack_238 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar6);

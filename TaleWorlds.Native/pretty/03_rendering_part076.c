@@ -402,7 +402,7 @@ LAB_18030c2f0:
       }
     }
   }
-  FUN_180631960(puVar9,&processed_var_4344_ptr,&uStack_c4);
+  StringProcessor(puVar9,&processed_var_4344_ptr,&uStack_c4);
   FUN_180631f30(puVar9,&rendering_buffer_2248_ptr,&uStack_b4);
   pcVar21 = "points";
   do {

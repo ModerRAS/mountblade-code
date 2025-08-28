@@ -48,14 +48,14 @@ void FUN_1800582b0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 
 
 
-// 函数: void FUN_180058370(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180058370(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void RenderingSystem_CameraSystem(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+void RenderingSystem_CameraSystem(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if (param_2 == (uint64_t *)0x0) {
     return;
   }
-  FUN_180058370(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
   param_2[4] = &system_data_buffer_ptr;
   if (param_2[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -850,9 +850,9 @@ void FUN_180058db0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   
   uVar1 = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(param_1 + 0xf0,*(uint64_t *)(param_1 + 0x100),param_3,param_4,uVar1);
-  FUN_180058370(param_1 + 0xc0,*(uint64_t *)(param_1 + 0xd0));
-  FUN_180058370(param_1 + 0x90,*(uint64_t *)(param_1 + 0xa0));
+  RenderingSystem_CameraSystem(param_1 + 0xf0,*(uint64_t *)(param_1 + 0x100),param_3,param_4,uVar1);
+  RenderingSystem_CameraSystem(param_1 + 0xc0,*(uint64_t *)(param_1 + 0xd0));
+  RenderingSystem_CameraSystem(param_1 + 0x90,*(uint64_t *)(param_1 + 0xa0));
   FUN_1800593f0(param_1 + 0x60,*(uint64_t *)(param_1 + 0x70));
   FUN_180058710(param_1 + 0x30,*(uint64_t *)(param_1 + 0x40));
   FUN_1800593f0(param_1,*(uint64_t *)(param_1 + 0x10));

@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_12_part078_sub001.c - 高级系统状态管理和控制模块
 // 包含7个核心函数，涵盖系统状态管理、参数配置、资源分配、内存管理、数据验证等高级系统功能
@@ -182,14 +187,14 @@ uint64_t System_StateConfigurationManager(int64_t *system_config)
     }
     
     // 验证系统资源
-    if ((system_config[0x5d] != 0) && (status_code = FUN_18075dbf0(system_config[0x5d], 0, 0, 4), (int)status_code != 0)) {
+    if ((system_config[0x5d] != 0) && (status_code = SystemCore_ConfigurationManager(system_config[0x5d], 0, 0, 4), (int)status_code != 0)) {
       return status_code;
     }
-    if ((system_config[0x5e] != 0) && (status_code = FUN_18075dbf0(system_config[0x5e], 0, 0, 4), (int)status_code != 0)) {
+    if ((system_config[0x5e] != 0) && (status_code = SystemCore_ConfigurationManager(system_config[0x5e], 0, 0, 4), (int)status_code != 0)) {
       return status_code;
     }
     
-    status_code = FUN_18075dbf0(system_config + MEMORY_OFFSET_0x0E, 0, 0, 4);
+    status_code = SystemCore_ConfigurationManager(system_config + MEMORY_OFFSET_0x0E, 0, 0, 4);
     if ((int)status_code != 0) {
       return status_code;
     }
@@ -207,39 +212,39 @@ uint64_t System_StateConfigurationManager(int64_t *system_config)
     
     // 激活系统资源
     if (system_config[0x5d] != 0) {
-      FUN_180762070(system_config[0x5d], 0, 1);
+      SystemCore_Initializer(system_config[0x5d], 0, 1);
     }
     if (system_config[0x5e] != 0) {
-      FUN_180762070(system_config[0x5e], 0, 1);
+      SystemCore_Initializer(system_config[0x5e], 0, 1);
     }
     
     // 配置系统资源分配
     if (system_config[0x5d] == 0) {
       system_config[0x4d] = system_config[3];
-      status_code = FUN_180759220(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
+      status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
     } else {
       *(int64_t *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
-      status_code = FUN_180759220(resource_handle, system_config[0x5d], 0, 0, 0, 0);
+      status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5d], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
       if (system_config[0x5e] == 0) {
         system_config[0x4d] = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
       } else {
         *(int64_t *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config[0x5e], 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5e], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
         system_config[0x4d] = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config + MEMORY_OFFSET_0x0E, 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
@@ -247,13 +252,13 @@ uint64_t System_StateConfigurationManager(int64_t *system_config)
     }
   } else {
     // 替代配置路径
-    if ((system_config[0x5d] != 0) && (status_code = FUN_18075dbf0(system_config[0x5d], 0, 0, 4), (int)status_code != 0)) {
+    if ((system_config[0x5d] != 0) && (status_code = SystemCore_ConfigurationManager(system_config[0x5d], 0, 0, 4), (int)status_code != 0)) {
       return status_code;
     }
-    if ((system_config[0x5e] != 0) && (status_code = FUN_18075dbf0(system_config[0x5e], 0, 0, 4), (int)status_code != 0)) {
+    if ((system_config[0x5e] != 0) && (status_code = SystemCore_ConfigurationManager(system_config[0x5e], 0, 0, 4), (int)status_code != 0)) {
       return status_code;
     }
-    if ((system_config[0x52] != 0) && (status_code = FUN_18075dbf0(system_config + MEMORY_OFFSET_0x0E, 0, 0, 4), (int)status_code != 0)) {
+    if ((system_config[0x52] != 0) && (status_code = SystemCore_ConfigurationManager(system_config + MEMORY_OFFSET_0x0E, 0, 0, 4), (int)status_code != 0)) {
       return status_code;
     }
     
@@ -282,30 +287,30 @@ uint64_t System_StateConfigurationManager(int64_t *system_config)
     // 配置系统资源分配
     if (system_config[0x5d] == 0) {
       *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
-      status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
+      status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5c], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
     } else {
       *(int64_t *)(system_config[0x5d] + MEMORY_OFFSET_0x1F8) = system_config[3];
-      status_code = FUN_180759220(resource_handle, system_config[0x5d], 0, 0, 0, 0);
+      status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5d], 0, 0, 0, 0);
       if ((int)status_code != 0) {
         return status_code;
       }
       if (system_config[0x5e] == 0) {
         *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5c], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
       } else {
         *(int64_t *)(system_config[0x5e] + MEMORY_OFFSET_0x1F8) = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config[0x5e], 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5e], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }
         *(int64_t *)(system_config[0x5c] + MEMORY_OFFSET_0x1F8) = system_config[3];
-        status_code = FUN_180759220(resource_handle, system_config[0x5c], 0, 0, 0, 0);
+        status_code = UltraHighFreq_AudioSystem1(resource_handle, system_config[0x5c], 0, 0, 0, 0);
         if ((int)status_code != 0) {
           return status_code;
         }

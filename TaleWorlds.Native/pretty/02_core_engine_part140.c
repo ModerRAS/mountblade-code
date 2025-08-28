@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part140.c - 11 个函数
 
 // 函数: void FUN_180133b38(float param_1)
@@ -66,7 +70,7 @@ void FUN_180133b38(float param_1)
         puVar9 = &stack0x000000a0;
         uVar11 = unaff_R12D;
 LAB_180133c1e:
-        pfVar6 = (float *)FUN_180131aa0(puVar9,uVar11,0,0);
+        pfVar6 = (float *)SystemCore_ConfigLoader(puVar9,uVar11,0,0);
         fVar2 = pfVar6[1];
         if ((*pfVar6 != unaff_XMM6_Da) || (fVar2 != unaff_XMM6_Da)) {
           fVar16 = *(float *)(unaff_RBX + 0xbc);
@@ -101,7 +105,7 @@ LAB_180133ce2:
       unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
     }
     FUN_18012ed10(unaff_RDI);
-    FUN_18012d2e0(unaff_RDI);
+    SystemCore_DataCompressor(unaff_RDI);
     if (*(int *)(unaff_RDI + 0x3c8) == iVar15) {
       func_0x000180131810(unaff_RDI,0);
     }
@@ -130,7 +134,7 @@ LAB_180133d4a:
       uVar10 = *puVar1;
     }
     if (uVar4 != uVar12) {
-      FUN_18012d2e0(uVar4);
+      SystemCore_DataCompressor(uVar4);
       *(uint64_t *)(uVar4 + 0x3c0) = uVar12;
       uVar12 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -181,7 +185,7 @@ void FUN_180133cc4(void)
     unaff_RDI = *(int64_t *)(unaff_RDI + 0x3c0);
   }
   FUN_18012ed10(unaff_RDI);
-  FUN_18012d2e0(unaff_RDI);
+  SystemCore_DataCompressor(unaff_RDI);
   if (*(int *)(unaff_RDI + 0x3c8) == (int)unaff_R15) {
     func_0x000180131810(unaff_RDI,0);
   }
@@ -205,7 +209,7 @@ LAB_180133d43:
       uVar5 = *puVar1;
     }
     if (uVar3 != uVar6) {
-      FUN_18012d2e0(uVar3);
+      SystemCore_DataCompressor(uVar3);
       *(uint64_t *)(uVar3 + 0x3c0) = uVar6;
       uVar6 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -253,7 +257,7 @@ void FUN_180133d58(void)
       uVar4 = *puVar1;
     }
     if (uVar2 != uVar5) {
-      FUN_18012d2e0(uVar2);
+      SystemCore_DataCompressor(uVar2);
       *(uint64_t *)(uVar2 + 0x3c0) = uVar5;
       uVar5 = *(uint64_t *)(unaff_RBX + 0x1c98);
     }
@@ -339,7 +343,7 @@ void FUN_180133e10(void)
     FUN_18013e000(lVar7 + 0x1b90,&uStack_38);
     *(float *)(lVar7 + 0x162c) = fVar1 + fVar1;
     *(float *)(lVar7 + 0x1630) = fVar2 + fVar2;
-    FUN_1801299b0(&rendering_buffer_2656_ptr,0,0xc1347);
+    CoreSystem_Validator(&rendering_buffer_2656_ptr,0,0xc1347);
     iVar8 = *(int *)(lVar7 + 0x1ab0) + -1;
     lVar13 = (int64_t)iVar8;
     if (-1 < iVar8) {
@@ -385,7 +389,7 @@ LAB_180134065:
         lVar13 = lVar13 + -1;
       } while (-1 < lVar13);
     }
-    FUN_18012cfe0();
+    RenderingSystem_MeshProcessor();
     lVar13 = SYSTEM_DATA_MANAGER_A;
     lVar11 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
     lVar7 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -471,7 +475,7 @@ void FUN_180133e3a(void)
   FUN_18013e000(unaff_RDI + 0x1b90,&stack0x00000020);
   *(float *)(unaff_RDI + 0x162c) = fVar1 + fVar1;
   *(float *)(unaff_RDI + 0x1630) = fVar2 + fVar2;
-  FUN_1801299b0(&rendering_buffer_2656_ptr,0,0xc1347);
+  CoreSystem_Validator(&rendering_buffer_2656_ptr,0,0xc1347);
   iVar8 = *(int *)(unaff_RDI + 0x1ab0) + -1;
   lVar13 = (int64_t)iVar8;
   if (-1 < iVar8) {
@@ -517,7 +521,7 @@ LAB_180134065:
       lVar13 = lVar13 + -1;
     } while (-1 < lVar13);
   }
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar7 = SYSTEM_DATA_MANAGER_A;
   lVar11 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar13 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -602,7 +606,7 @@ void FUN_180133e3f(void)
   FUN_18013e000(unaff_RDI + 0x1b90,&stack0x00000020);
   *(float *)(unaff_RDI + 0x162c) = fVar1 + fVar1;
   *(float *)(unaff_RDI + 0x1630) = fVar2 + fVar2;
-  FUN_1801299b0(&rendering_buffer_2656_ptr,0,0xc1347);
+  CoreSystem_Validator(&rendering_buffer_2656_ptr,0,0xc1347);
   iVar8 = *(int *)(unaff_RDI + 0x1ab0) + -1;
   lVar13 = (int64_t)iVar8;
   if (-1 < iVar8) {
@@ -648,7 +652,7 @@ LAB_180134065:
       lVar13 = lVar13 + -1;
     } while (-1 < lVar13);
   }
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar7 = SYSTEM_DATA_MANAGER_A;
   lVar11 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar13 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -735,7 +739,7 @@ LAB_180134065:
     }
     unaff_RSI = unaff_RSI + -1;
     if (unaff_RSI < 0) {
-      FUN_18012cfe0();
+      RenderingSystem_MeshProcessor();
       lVar4 = SYSTEM_DATA_MANAGER_A;
       lVar7 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
       lVar3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -776,7 +780,7 @@ void FUN_18013409c(void)
   int64_t lVar4;
   uint64_t uVar5;
   
-  FUN_18012cfe0();
+  RenderingSystem_MeshProcessor();
   lVar2 = SYSTEM_DATA_MANAGER_A;
   lVar3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   lVar1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);

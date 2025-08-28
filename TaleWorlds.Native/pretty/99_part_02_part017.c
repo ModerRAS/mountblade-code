@@ -984,7 +984,7 @@ int64_t FUN_1800f6490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   if (*(int64_t **)(param_1 + 0xc0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc0) + 0x38))();
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xd0,param_3,param_4,uVar1);
   }
@@ -1064,7 +1064,7 @@ int64_t FUN_1800f66b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   if (*(int64_t **)(param_1 + 0xc0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc0) + 0x38))();
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,200,param_3,param_4,uVar1);
   }

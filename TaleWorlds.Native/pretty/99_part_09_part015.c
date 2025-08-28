@@ -1,7 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part015.c - 15 个函数
 
@@ -21,7 +25,7 @@ void FUN_1805c3976(int64_t param_1)
   fVar4 = (float)(*(int64_t *)(unaff_R14 + (int64_t)*(int *)(param_1 + 0x6c0) * 8) -
                  *(int64_t *)(param_1 + 0x6b8)) * 1e-05;
   if (*(float *)(unaff_RBX + 0x290) <= fVar4 && fVar4 != *(float *)(unaff_RBX + 0x290)) {
-    lVar2 = FUN_18065cec0(*(int64_t *)
+    lVar2 = UtilitiesSystem_FormatConverter(*(int64_t *)
                            (*(int64_t *)(*(int64_t *)(param_1 + 0x590) + 0x2590) + 0xc78) + 0x60,0
                          );
     *(float *)((int64_t)unaff_RBX + 0x2204) = *(float *)(lVar2 + 0x10) * 0.9;
@@ -198,7 +202,7 @@ void FUN_1805c3cfe(uint64_t param_1)
       return;
     }
   }
-  puVar3 = (uint64_t *)FUN_180516f50(in_R11,&stack0x00000040);
+  puVar3 = (uint64_t *)UltraHighFreq_MemoryManager1(in_R11,&stack0x00000040);
   *unaff_RDI = *puVar3;
   uVar1 = puVar3[4];
   unaff_RDI[3] = puVar3[3];
@@ -257,7 +261,7 @@ void FUN_1805c3ee0(int64_t *param_1,int64_t *param_2,uint64_t param_3)
     else {
       lVar9 = *(int64_t *)(lVar10 + 0x9d8);
       lVar11 = *(int64_t *)(lVar10 + 0x20);
-      if ((lVar9 == 0) || (cVar5 = FUN_18038d0a0(lVar9,lVar11 + 0xc), lVar12 = lVar9, cVar5 == '\0')
+      if ((lVar9 == 0) || (cVar5 = SystemCore_PerformanceMonitor(lVar9,lVar11 + 0xc), lVar12 = lVar9, cVar5 == '\0')
          ) {
         lVar12 = 0;
       }
@@ -337,7 +341,7 @@ void FUN_1805c3ee0(int64_t *param_1,int64_t *param_2,uint64_t param_3)
                     // WARNING: Subroutine does not return
           AdvancedSystemController(*(int32_t *)(lVar9 + 0x34));
         }
-        plVar7 = (int64_t *)FUN_180516f50(lVar10,auStack_98);
+        plVar7 = (int64_t *)UltraHighFreq_MemoryManager1(lVar10,auStack_98);
         *param_2 = *plVar7;
         lVar10 = plVar7[4];
         param_2[3] = plVar7[3];
@@ -459,7 +463,7 @@ void FUN_1805c40dc(uint64_t param_1,uint param_2)
                     // WARNING: Subroutine does not return
       AdvancedSystemController(*(int32_t *)(lVar4 + 0x34));
     }
-    plVar3 = (int64_t *)FUN_180516f50(lVar1,unaff_RBP + -0x39);
+    plVar3 = (int64_t *)UltraHighFreq_MemoryManager1(lVar1,unaff_RBP + -0x39);
     *unaff_RBX = *plVar3;
     lVar1 = plVar3[4];
     unaff_RBX[3] = plVar3[3];
@@ -590,7 +594,7 @@ void FUN_1805c42f3(int64_t param_1)
   *(float *)(unaff_RBP + 0x7b) = fVar4 * 20.0;
   cVar2 = FUN_1805d94e0(unaff_RDI + 0x2f,unaff_RBP + 0x77);
   if (cVar2 == '\0') {
-    puVar3 = (uint64_t *)FUN_180516f50(*unaff_RDI,unaff_RBP + -0x39);
+    puVar3 = (uint64_t *)UltraHighFreq_MemoryManager1(*unaff_RDI,unaff_RBP + -0x39);
     *unaff_RBX = *puVar3;
     uVar1 = puVar3[4];
     unaff_RBX[3] = puVar3[3];
@@ -631,7 +635,7 @@ void FUN_1805c4415(void)
   *(float *)(unaff_RBP + 0x7b) = unaff_XMM7_Da * 20.0;
   cVar2 = FUN_1805d94e0(unaff_RDI + 0x2f,unaff_RBP + 0x77,0x3e4ccccd,0x3e4ccccd);
   if (cVar2 == '\0') {
-    puVar3 = (uint64_t *)FUN_180516f50(*unaff_RDI,unaff_RBP + -0x39);
+    puVar3 = (uint64_t *)UltraHighFreq_MemoryManager1(*unaff_RDI,unaff_RBP + -0x39);
     *unaff_RBX = *puVar3;
     uVar1 = puVar3[4];
     unaff_RBX[3] = puVar3[3];
@@ -795,7 +799,7 @@ void FUN_1805c4650(int64_t *param_1,uint64_t *param_2,int8_t *param_3,char param
       }
       if (bVar7 == 0) {
         if ((*(uint *)(param_1 + 2) & 1) == 0) {
-          FUN_1805d3210(param_1 + 1);
+          SystemCore_ThreadManager(param_1 + 1);
         }
         fVar17 = *(float *)(*(int64_t *)(*param_1 + 0x20) + 0x10) -
                  *(float *)((int64_t)param_1 + 0x54);
@@ -826,7 +830,7 @@ void FUN_1805c4650(int64_t *param_1,uint64_t *param_2,int8_t *param_3,char param
     lVar1 = *(int64_t *)(lVar10 + 0x20);
     lVar13 = 0;
     if (lVar14 != 0) {
-      cVar8 = FUN_18038d0a0(lVar14,lVar1 + 0xc);
+      cVar8 = SystemCore_PerformanceMonitor(lVar14,lVar1 + 0xc);
       if (cVar8 != '\0') {
         lVar13 = lVar14;
       }

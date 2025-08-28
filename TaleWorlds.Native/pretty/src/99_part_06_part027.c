@@ -248,10 +248,10 @@ typedef struct SystemState {
 #define SystemMemoryZero memset
 
 /** 系统工具函数别名 */
-#define SystemLogOutput FUN_180627020
+#define SystemLogOutput SystemManager_StateHandler0
 #define SystemTimeGet CoreEngineSystemCleanup
 #define SystemProcessCreate CoreSystem_ConfigValidator0
-#define SystemProcessExecute FUN_1800b6de0
+#define SystemProcessExecute RenderingSystem_VertexProcessor
 #define SystemProcessWait FUN_180275a60
 
 /** 配置管理函数别名 */
@@ -271,7 +271,7 @@ typedef struct SystemState {
 #define SystemDataMerge FUN_1802f6cc0
 
 /** 系统内部函数别名 */
-#define SystemInternalValidator FUN_180631000
+#define SystemInternalValidator SystemCore_CacheManager
 #define SystemInternalProcessor FUN_180631b90
 
 // ===========================================

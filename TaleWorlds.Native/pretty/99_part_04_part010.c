@@ -460,7 +460,7 @@ void FUN_18025fe70(int64_t *param_1,int64_t param_2,uint64_t param_3)
       lVar15 = system_system_data_config;
       uVar26 = param_3;
       if ((param_3 == 0) &&
-         (iVar8 = FUN_180191c00(system_system_data_config,lVar12 + 0x28 + uVar27), uVar26 = uVar11, iVar8 != -1
+         (iVar8 = RenderingSystem_PostProcessor(system_system_data_config,lVar12 + 0x28 + uVar27), uVar26 = uVar11, iVar8 != -1
          )) {
         uVar26 = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar15 + 0x38);
       }
@@ -498,7 +498,7 @@ void FUN_18025fe70(int64_t *param_1,int64_t param_2,uint64_t param_3)
       lVar24 = system_system_data_config;
       uVar13 = param_3;
       if (param_3 == 0) {
-        iVar8 = FUN_180191c00(system_system_data_config,lVar15 + 0x18 + lVar20);
+        iVar8 = RenderingSystem_PostProcessor(system_system_data_config,lVar15 + 0x18 + lVar20);
         if (iVar8 == -1) {
           uVar13 = 0;
         }
@@ -589,7 +589,7 @@ void FUN_18025fe70(int64_t *param_1,int64_t param_2,uint64_t param_3)
         if (plVar18[1] - lVar12 >> 5 != 0) {
           do {
             lVar20 = system_system_data_config;
-            iVar8 = FUN_180191c00(system_system_data_config,lVar12 + uVar11 * 0x20);
+            iVar8 = RenderingSystem_PostProcessor(system_system_data_config,lVar12 + uVar11 * 0x20);
             if ((iVar8 == -1) ||
                (lVar12 = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar20 + 0x38), lVar12 == 0)) {
               lVar12 = *(int64_t *)(lVar20 + 0x28);

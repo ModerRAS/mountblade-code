@@ -433,7 +433,7 @@ uint64_t FUN_1808cd190(void)
     return uVar1;
   }
   if (*in_stack_00000028 != 0) {
-    uVar1 = FUN_18073d8a0(*(uint64_t *)(*(int64_t *)(*in_stack_00000028 + 0x2b0) + 0x78),1);
+    uVar1 = SystemCore_StateController(*(uint64_t *)(*(int64_t *)(*in_stack_00000028 + 0x2b0) + 0x78),1);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -662,7 +662,7 @@ uint64_t FUN_1808cd610(int64_t param_1,uint param_2,int32_t param_3)
             if (*(int64_t *)(lVar3 + 0x40) != 0) {
               return 0;
             }
-            uVar4 = FUN_1808d73b0(lVar3,param_3,0);
+            uVar4 = UtilitiesSystem_StringProcessor(lVar3,param_3,0);
             if ((int)uVar4 == 0) {
               return 0;
             }
@@ -859,7 +859,7 @@ uint64_t FUN_1808cd900(int64_t param_1)
 {
   if (*(char *)(param_1 + 0xc0) != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(float *)(param_1 + 0x224) * 0.017453292);
+    RenderingSystem_Renderer0(*(float *)(param_1 + 0x224) * 0.017453292);
   }
   return 0;
 }
@@ -874,7 +874,7 @@ void FUN_1808cd926(uint64_t param_1,int32_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  RenderingSystem_Renderer0(param_2);
 }
 
 

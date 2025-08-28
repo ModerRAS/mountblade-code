@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part058.c - 9 个函数
 
 // 函数: void FUN_1803e11f0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
@@ -35,7 +43,7 @@ void FUN_1803e11f0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   }
   *puVar4 = (int)lVar5;
   param_2[1] = param_2[1] + 4;
-  FUN_180639fd0(param_2,(int64_t)param_1 + 0xd4);
+  Audio_SoundManager(param_2,(int64_t)param_1 + 0xd4);
   uVar1 = *(int32_t *)((int64_t)param_1 + 0xe4);
   puVar4 = (int32_t *)param_2[1];
   if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 5) {
@@ -236,7 +244,7 @@ void FUN_1803e1550(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t *par
     plVar18 = (int64_t *)(param_1 + 0x408);
     param_4 = (int64_t *)CONCAT71((int7)((uint64_t)param_4 >> 8),1);
     puVar8 = (uint64_t *)
-             FUN_1800b08e0(system_resource_state,&stack0x00000010,plVar18,param_4,0,0xfffffffffffffffe);
+             SystemCore_GarbageCollector(system_resource_state,&stack0x00000010,plVar18,param_4,0,0xfffffffffffffffe);
     uVar5 = *puVar8;
     *puVar8 = 0;
     plVar9 = *(int64_t **)(param_1 + 0x400);
@@ -254,7 +262,7 @@ void FUN_1803e1550(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t *par
   }
   else {
     plVar18 = (int64_t *)(param_1 + 0x118);
-    puVar8 = (uint64_t *)FUN_1800b33d0(system_resource_state,&plStackX_18);
+    puVar8 = (uint64_t *)RenderingSystem_ShaderCompiler0(system_resource_state,&plStackX_18);
     uVar5 = *puVar8;
     *puVar8 = 0;
     plVar9 = *(int64_t **)(param_1 + 0x108);
@@ -266,7 +274,7 @@ void FUN_1803e1550(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t *par
       (**(code **)(*plStackX_18 + 0x38))();
     }
     if (*(int64_t *)(param_1 + 0x108) == 0) goto LAB_1803e0d25;
-    puVar8 = (uint64_t *)FUN_1800763c0(*(int64_t *)(param_1 + 0x108),&plStackX_20);
+    puVar8 = (uint64_t *)SystemCore_BufferManager(*(int64_t *)(param_1 + 0x108),&plStackX_20);
     uVar5 = *puVar8;
     *puVar8 = 0;
     plVar9 = *(int64_t **)(param_1 + 0x108);
@@ -394,7 +402,7 @@ void FUN_1803e1720(int64_t param_1,int64_t param_2)
       } while (puVar5 != (uint64_t *)0x0);
     }
     if ((puVar3 == puVar1) || (*puVar2 < (uint64_t)puVar3[4])) {
-      puVar3 = (uint64_t *)FUN_180387860(puVar1,auStackX_8);
+      puVar3 = (uint64_t *)RenderingSystem_MaterialProcessor(puVar1,auStackX_8);
       puVar3 = (uint64_t *)*puVar3;
     }
     if (*(int64_t *)(lVar7 + (int64_t)puVar3) == 0) {
@@ -413,7 +421,7 @@ void FUN_1803e1720(int64_t param_1,int64_t param_2)
         } while (puVar5 != (uint64_t *)0x0);
       }
       if ((puVar3 == puVar1) || (*puVar2 < (uint64_t)puVar3[4])) {
-        puVar3 = (uint64_t *)FUN_180387860(puVar1,auStackX_18);
+        puVar3 = (uint64_t *)RenderingSystem_MaterialProcessor(puVar1,auStackX_18);
         puVar3 = (uint64_t *)*puVar3;
       }
       *(uint64_t *)(lVar7 + (int64_t)puVar3) = uVar4;
@@ -431,7 +439,7 @@ void FUN_1803e1720(int64_t param_1,int64_t param_2)
         } while (puVar5 != (uint64_t *)0x0);
       }
       if ((puVar3 == puVar1) || (*puVar2 < (uint64_t)puVar3[4])) {
-        puVar3 = (uint64_t *)FUN_180387860(puVar1,auStackX_20);
+        puVar3 = (uint64_t *)RenderingSystem_MaterialProcessor(puVar1,auStackX_20);
         puVar3 = (uint64_t *)*puVar3;
       }
       if (*(int64_t *)(lVar7 + (int64_t)puVar3) == 0) {
@@ -452,7 +460,7 @@ void FUN_1803e1720(int64_t param_1,int64_t param_2)
         } while (puVar5 != (uint64_t *)0x0);
       }
       if ((puVar3 == puVar1) || (*puVar2 < (uint64_t)puVar3[4])) {
-        puVar3 = (uint64_t *)FUN_180387860(puVar1,auStack_48);
+        puVar3 = (uint64_t *)RenderingSystem_MaterialProcessor(puVar1,auStack_48);
         puVar3 = (uint64_t *)*puVar3;
       }
       *(int8_t *)(*(int64_t *)(lVar7 + (int64_t)puVar3) + 0x2d) = 1;

@@ -83,8 +83,8 @@ void FUN_1800d36c0(uint64_t param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_1800d40d0(int *param_1,uint64_t *param_2)
-void FUN_1800d40d0(int *param_1,uint64_t *param_2)
+// 函数: void CoreEngine_DataValidator(int *param_1,uint64_t *param_2)
+void CoreEngine_DataValidator(int *param_1,uint64_t *param_2)
 
 {
   int iVar1;

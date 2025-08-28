@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -96,7 +100,7 @@ void FUN_180476030(uint64_t param_1,int64_t param_2,uint64_t param_3)
     uStack_408 = 0;
     uStack_400 = 0xf;
     uStack_418 = 0;
-    FUN_1800671b0(&uStack_418,&memory_allocator_3880_ptr,0x13);
+    MathCoreCalculator0(&uStack_418,&memory_allocator_3880_ptr,0x13);
     FUN_180472d60(param_2,param_1,&uStack_418,0);
     uStack_448 = 1;
     if (0xf < uStack_400) {
@@ -537,7 +541,7 @@ void FUN_180476690(char *param_1,char *param_2,uint64_t param_3)
       uStack_150 = 0xf;
       uStack_168 = 0;
       uVar6 = 0xc;
-      FUN_1800671b0(&uStack_168,&memory_allocator_3920_ptr,0xc);
+      MathCoreCalculator0(&uStack_168,&memory_allocator_3920_ptr,0xc);
       uStack_1a8 = 4;
       uVar3 = FUN_180472d60(&pcStack_198,acStack_e8,&uStack_168,0);
     }
@@ -637,7 +641,7 @@ void FUN_180476990(uint64_t param_1,byte *param_2)
   uStack_28 = 0x3030755c;
   uStack_24 = 0x4848;
   uStack_22 = 0;
-  FUN_1800a0e50(param_1,0x22);
+  SystemCore_ResourceManager(param_1,0x22);
   pbVar4 = param_2;
   if (0xf < *(uint64_t *)(param_2 + 0x18)) {
     pbVar4 = *(byte **)param_2;
@@ -680,10 +684,10 @@ void FUN_180476990(uint64_t param_1,byte *param_2)
         puVar5 = (int32_t *)&memory_allocator_3952_ptr;
       }
     }
-    FUN_1800a1160(param_1,puVar5);
+    SystemCore_Synchronizer(param_1,puVar5);
     pbVar4 = pbVar6 + 1;
   }
-  FUN_1800a0e50(param_1,0x22);
+  SystemCore_ResourceManager(param_1,0x22);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_20 ^ (uint64_t)auStack_48);
 }
@@ -710,10 +714,10 @@ void FUN_1804769f3(byte *param_1)
     }
     _write___basic_ostream_DU__char_traits_D_std___std__QEAAAEAV12_PEBD_J_Z();
     if (param_1 == unaff_RSI) break;
-    FUN_1800a1160();
+    SystemCore_Synchronizer();
     param_1 = param_1 + 1;
   } while (param_1 != unaff_RSI);
-  FUN_1800a0e50();
+  SystemCore_ResourceManager();
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000028 ^ (uint64_t)&stack0x00000000);
 }
@@ -728,7 +732,7 @@ void FUN_180476ae6(void)
 {
   uint64_t in_stack_00000028;
   
-  FUN_1800a0e50();
+  SystemCore_ResourceManager();
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000028 ^ (uint64_t)&stack0x00000000);
 }
@@ -774,7 +778,7 @@ void FUN_180476b10(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
     if (((plVar7 != (int64_t *)0x0) &&
         (plVar7 = (int64_t *)(**(code **)(*plVar7 + 8))(plVar7,0x180d48ef8),
         plVar7 != (int64_t *)0x0)) && (plVar7 != (int64_t *)0x180d49d90)) {
-      FUN_1800a0e50(param_1,0x5b);
+      SystemCore_ResourceManager(param_1,0x5b);
       lVar13 = plVar7[1] - *plVar7 >> 4;
       if (lVar13 != 0) {
         do {
@@ -806,31 +810,31 @@ void FUN_180476b10(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
             }
           }
           if (lVar12 != lVar13 + -1) {
-            FUN_1800a0e50(param_1,0x2c);
+            SystemCore_ResourceManager(param_1,0x2c);
           }
           lVar12 = lVar12 + 1;
         } while (lVar12 != lVar13);
       }
-      FUN_1800a0e50(param_1,0x5d);
+      SystemCore_ResourceManager(param_1,0x5d);
       return;
     }
     plVar7 = (int64_t *)*param_2;
     if (((plVar7 != (int64_t *)0x0) &&
         (lVar13 = (**(code **)(*plVar7 + 8))(plVar7,0x180d48ef0), lVar13 != 0)) &&
        (lVar13 != 0x180d49d50)) {
-      FUN_1800a0e50(param_1,0x7b);
+      SystemCore_ResourceManager(param_1,0x7b);
       lVar11 = *(int64_t *)(lVar13 + 0x10);
       puVar6 = *(uint64_t **)(lVar13 + 8);
       for (puVar4 = (uint64_t *)*puVar6; puVar4 != puVar6; puVar4 = (uint64_t *)*puVar4) {
         FUN_180476990(param_1,puVar4 + 2);
-        FUN_1800a0e50(param_1,0x3a);
+        SystemCore_ResourceManager(param_1,0x3a);
         FUN_180476b10(param_1,puVar4 + 6);
         lVar12 = lVar12 + 1;
         if (lVar12 != lVar11) {
-          FUN_1800a0e50(param_1,0x2c);
+          SystemCore_ResourceManager(param_1,0x2c);
         }
       }
-      FUN_1800a0e50(param_1,0x7d);
+      SystemCore_ResourceManager(param_1,0x7d);
       return;
     }
     param_2 = (int64_t *)*param_2;
@@ -848,7 +852,7 @@ void FUN_180476b10(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
       puVar10 = &rendering_buffer_2328_ptr;
     }
   }
-  FUN_1800a1160(param_1,puVar10);
+  SystemCore_Synchronizer(param_1,puVar10);
   return;
 }
 

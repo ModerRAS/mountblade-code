@@ -1,4 +1,4 @@
-#include "FUN_1806d7170_definition.h"
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part056.c - 10 个函数
@@ -89,7 +89,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar2 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar2,uVar10);
+  SystemCore_CleanupManager(puVar2,uVar10);
   auStackX_18[0] = auStackX_18[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar2[4]);
@@ -125,7 +125,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar2 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar2,uVar10);
+  SystemCore_CleanupManager(puVar2,uVar10);
   auStackX_18[0] = auStackX_18[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar2[4]);
@@ -191,7 +191,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar2 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar2,uVar10);
+  SystemCore_CleanupManager(puVar2,uVar10);
   auStackX_18[0] = auStackX_18[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar2[4]);
@@ -269,7 +269,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar2 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar2,uVar10);
+  SystemCore_CleanupManager(puVar2,uVar10);
   auStackX_18[0] = auStackX_18[0] & 0xffffff00;
   (**(code **)*puVar2)(puVar2,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar8,puVar2[4]);
@@ -459,7 +459,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar4 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar4,uVar11);
+  SystemCore_CleanupManager(puVar4,uVar11);
   auStackX_18[0] = 0;
   (**(code **)*puVar4)(puVar4,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar4[4]);
@@ -492,7 +492,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar4 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar4,uVar11);
+  SystemCore_CleanupManager(puVar4,uVar11);
   auStackX_18[0] = 0;
   (**(code **)*puVar4)(puVar4,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar4[4]);
@@ -525,7 +525,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar4 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar4,uVar11);
+  SystemCore_CleanupManager(puVar4,uVar11);
   auStackX_18[0] = 0;
   (**(code **)*puVar4)(puVar4,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar4[4]);
@@ -558,7 +558,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   }
   puVar4 = (uint64_t *)param_2[3];
   plVar3 = (int64_t *)param_2[1];
-  FUN_1806d3300(puVar4,uVar11);
+  SystemCore_CleanupManager(puVar4,uVar11);
   auStackX_18[0] = 0;
   (**(code **)*puVar4)(puVar4,auStackX_18,1);
   (**(code **)(*plVar3 + 0x10))(plVar3,puVar9,puVar4[4]);

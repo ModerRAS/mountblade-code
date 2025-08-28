@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part317.c - 2 个函数
 
 // 函数: void FUN_180436410(int64_t *param_1,float *param_2)
@@ -332,7 +336,7 @@ void FUN_180436410(int64_t *param_1,float *param_2)
   fStack_68 = fStack_98;
   fStack_64 = fStack_94;
   fStack_60 = fStack_90;
-  FUN_1800b9f60(&fStack_78);
+  SystemCore_Parser(&fStack_78);
   param_1[0x1f] = CONCAT44(fStack_74,fStack_78);
   param_1[0x20] = CONCAT44(uStack_6c,fStack_70);
   param_1[0x21] = CONCAT44(fStack_64,fStack_68);
@@ -719,7 +723,7 @@ void FUN_180436446(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   *(int32_t *)(unaff_RBP + -5) = uVar26;
   *(int32_t *)(unaff_RBP + -1) = in_XMM2_Dc;
   *(int32_t *)(unaff_RBP + 3) = in_XMM2_Dd;
-  FUN_1800b9f60(unaff_RBP + -0x19);
+  SystemCore_Parser(unaff_RBP + -0x19);
   lVar17 = *(int64_t *)(unaff_RBP + -0x11);
   uVar25 = *(int32_t *)(unaff_RBP + 0x17);
   lVar3 = *(int64_t *)(unaff_RBP + -9);

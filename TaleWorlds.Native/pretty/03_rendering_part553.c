@@ -316,9 +316,9 @@ LAB_180572fb3:
   *(uint64_t *)(param_1 + 0x2510) = 0;
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
-  FUN_180431730(param_1 + 0xf0,uVar4,fVar18,cVar14,unaff_RDI);
+  RenderingSystem_GeometryProcessor0(param_1 + 0xf0,uVar4,fVar18,cVar14,unaff_RDI);
   FUN_180431680(param_1 + 0xf0,uVar4,0);
-  FUN_180431730(param_1 + 0x12a0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
@@ -480,9 +480,9 @@ LAB_180572fb3:
   *(uint64_t *)(param_1 + 0x2510) = 0;
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
-  FUN_180431730(param_1 + 0xf0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0xf0);
   FUN_180431680(param_1 + 0xf0,uVar4,0);
-  FUN_180431730(param_1 + 0x12a0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
@@ -645,9 +645,9 @@ LAB_180572fb3:
   *(uint64_t *)(param_1 + 0x2510) = 0;
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
-  FUN_180431730(param_1 + 0xf0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0xf0);
   FUN_180431680(param_1 + 0xf0,uVar4,0);
-  FUN_180431730(param_1 + 0x12a0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
@@ -703,9 +703,9 @@ LAB_180572fb3:
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
   uStack0000000000000050 = in_stack_00000040;
-  FUN_180431730(unaff_RSI + 0xf0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
   FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
-  FUN_180431730(unaff_RSI + 0x12a0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
@@ -762,9 +762,9 @@ LAB_180572fb3:
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
   uStack0000000000000050 = in_stack_00000040;
-  FUN_180431730(unaff_RSI + 0xf0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
   FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
-  FUN_180431730(unaff_RSI + 0x12a0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
@@ -796,9 +796,9 @@ void FUN_180572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
   uStack0000000000000050 = in_stack_00000040;
-  FUN_180431730(unaff_RSI + 0xf0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
   FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
-  FUN_180431730(unaff_RSI + 0x12a0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
@@ -826,9 +826,9 @@ void FUN_180572fd9(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
   uStack0000000000000050 = in_stack_00000040;
-  FUN_180431730(unaff_RSI + 0xf0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
   FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
-  FUN_180431730(unaff_RSI + 0x12a0);
+  RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }

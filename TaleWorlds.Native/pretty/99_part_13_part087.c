@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -115,7 +116,7 @@ void FUN_1808e5800(int64_t *param_1,int64_t param_2,int param_3,int32_t param_4)
             else if (iVar10 < iVar7) {
               iVar10 = iVar7;
             }
-            iVar9 = FUN_180748010(param_1 + 7,iVar10);
+            iVar9 = UltraHighFreq_StateController1(param_1 + 7,iVar10);
             if (iVar9 != 0) break;
           }
           puVar6 = (uint64_t *)((int64_t)(int)param_1[8] * 0x10 + param_1[7]);
@@ -214,7 +215,7 @@ void FUN_1808e591e(uint param_1)
           else if (iVar9 < iVar8) {
             iVar9 = iVar8;
           }
-          iVar6 = FUN_180748010(unaff_R15 + 7,iVar9);
+          iVar6 = UltraHighFreq_StateController1(unaff_R15 + 7,iVar9);
           if (iVar6 != 0) break;
         }
         puVar5 = (uint64_t *)((int64_t)(int)unaff_R15[8] * 0x10 + unaff_R15[7]);

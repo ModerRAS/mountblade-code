@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part264.c - 7 个函数
 
 // 函数: void FUN_18022aff8(void)
@@ -150,7 +154,7 @@ void FUN_18022b240(uint64_t *param_1,char param_2,float *param_3,int64_t param_4
     param_1[0x100] = param_1[0x100] & 0xfffffffffffffffe;
   }
   else {
-    pfVar10 = (float *)FUN_18022a890(param_1,*(int8_t *)(lVar11 + 0xf0),param_4);
+    pfVar10 = (float *)CoreSystem_AuthenticationHandler0(param_1,*(int8_t *)(lVar11 + 0xf0),param_4);
     fVar1 = *param_3;
     fVar2 = param_3[1];
     fVar3 = param_3[2];
@@ -223,7 +227,7 @@ uint64_t * FUN_18022b590(uint64_t *param_1)
   DataStructureManager(plVar3,8,0x10,&SUB_18005d5f0,SystemTimer);
   puVar2 = param_1 + 0x29;
   plVar1 = param_1 + 0x2c;
-  DataStructureManager(plVar1,0x38,2,FUN_180046480,FUN_180044a30);
+  DataStructureManager(plVar1,0x38,2,FUN_180046480,CoreSystem_MessageHandler);
   puVar7 = param_1 + 0x2b;
   lVar5 = 2;
   plVar6 = plVar1;
@@ -345,7 +349,7 @@ uint64_t FUN_18022b980(uint64_t param_1,uint64_t param_2)
 void FUN_18022b9c0(int64_t param_1)
 
 {
-  SystemDataValidator(param_1 + 0x18,0x38,2,FUN_180044a30,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x18,0x38,2,CoreSystem_MessageHandler,0xfffffffffffffffe);
   return;
 }
 
@@ -403,7 +407,7 @@ void FUN_18022ba40(uint64_t *param_1)
   if ((int64_t *)param_1[0x3c] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x3c] + 0x38))();
   }
-  SystemDataValidator(param_1 + 0x2c,0x38,2,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x2c,0x38,2,CoreSystem_MessageHandler);
   SystemDataValidator(param_1 + 0x17,8,0x10,SystemTimer);
   *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
@@ -653,7 +657,7 @@ void FUN_18022bf70(int64_t param_1,char param_2)
   uStack_240 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2c8;
   lStack_280 = param_1;
-  plVar9 = (int64_t *)FUN_1800b31f0(system_resource_state,&plStack_268,param_1 + 0x2d0,0);
+  plVar9 = (int64_t *)SystemCore_EncryptionManager(system_resource_state,&plStack_268,param_1 + 0x2d0,0);
   plVar9 = (int64_t *)*plVar9;
   plStack_288 = plVar9;
   if (plStack_268 != (int64_t *)0x0) {
@@ -738,7 +742,7 @@ LAB_18022c3ff:
                 }
 LAB_18022c20f:
                 if (iVar17 == 0) {
-                  FUN_1800b8370(plVar9,plStack_278 + uVar27 * 0xb);
+                  SystemCore_ConfigManager(plVar9,plStack_278 + uVar27 * 0xb);
                   break;
                 }
               }
@@ -835,7 +839,7 @@ LAB_18022c20f:
   if (*(void **)(param_1 + 0x2d8) != (void *)0x0) {
     puVar16 = *(void **)(param_1 + 0x2d8);
   }
-  FUN_180627020(&processed_var_7320_ptr,puVar16,puVar22);
+  SystemCore_Allocator(&processed_var_7320_ptr,puVar16,puVar22);
   FUN_1800be9a0(core_system_data_config,&plStack_290,0);
   plVar9 = (int64_t *)plStack_290[0x3c];
   if (plStack_290 != (int64_t *)0x0) {

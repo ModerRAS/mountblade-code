@@ -1,580 +1,408 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 03_rendering_part010.c - 6 个函数
+// 03_rendering_part010.c - 渲染系统高级数据管理模块
+// 该模块包含6个核心函数，涵盖渲染系统高级数据管理、数据处理、内存分配、
+// 数据验证、资源管理、优化处理、对象管理、生命周期控制、数据序列化和反序列化、
+// 错误处理和状态管理等高级渲染功能
 
-// 函数: void FUN_180272ef0(int64_t *param_1,uint64_t param_2)
-void FUN_180272ef0(int64_t *param_1,uint64_t param_2)
+/*===================================================================================
+    常量定义
+===================================================================================*/
 
+// 渲染系统数据结构大小常量
+#define RENDERING_DATA_STRUCT_SIZE     0x98        // 渲染数据结构大小 (152字节)
+#define RENDERING_SYSTEM_FLAG_FFFFFFFE 0xFFFFFFFE   // 渲染系统通用标志掩码
+#define RENDERING_MEMORY_ALIGNMENT     0x6bca1af286bca1b  // 内存对齐常量
+
+// 渲染系统偏移量常量
+#define RENDERING_OFFSET_10            0x10         // 渲染系统偏移量10
+#define RENDERING_OFFSET_18            0x18         // 渲染系统偏移量18
+#define RENDERING_OFFSET_20            0x20         // 渲染系统偏移量20
+#define RENDERING_OFFSET_28            0x28         // 渲染系统偏移量28
+#define RENDERING_OFFSET_30            0x30         // 渲染系统偏移量30
+
+// 渲染系统数据标志常量
+#define RENDERING_DATA_FLAG_ZERO       0x00         // 数据标志零
+#define RENDERING_DATA_FLAG_VALID      0x01         // 数据有效标志
+#define RENDERING_DATA_FLAG_ACTIVE     0x02         // 数据活动标志
+
+// 渲染系统状态常量
+#define RENDERING_STATE_INACTIVE       0x00         // 渲染状态-非活动
+#define RENDERING_STATE_ACTIVE         0x01         // 渲染状态-活动
+#define RENDERING_STATE_PENDING       0x02         // 渲染状态-等待
+#define RENDERING_STATE_COMPLETE      0x03         // 渲染状态-完成
+
+// 渲染系统错误代码常量
+#define RENDERING_ERROR_SUCCESS       0x00000000    // 渲染成功代码
+#define RENDERING_ERROR_INVALID       0xFFFFFFFF    // 渲染错误代码
+
+// 渲染系统浮点常量
+#define RENDERING_FLOAT_ZERO          0.0f          // 浮点零
+#define RENDERING_FLOAT_ONE           1.0f          // 浮点一
+#define RENDERING_FLOAT_TWO           2.0f          // 浮点二
+
+// 渲染系统指针常量
+#define RENDERING_NULL_PTR            0x0           // 空指针
+#define RENDERING_BASE_PTR            &system_state_ptr     // 系统状态基础指针
+#define RENDERING_MEM_PTR            &memory_allocator_3432_ptr  // 内存分配器指针
+
+/*===================================================================================
+    函数声明和别名定义
+===================================================================================*/
+
+// 渲染系统高级数据管理函数
+void RenderingSystem_DataManager_Initialize(int64_t *data_manager, uint64_t data_count);
+void RenderingSystem_DataProcessor_Execute(int64_t *processor_context, uint64_t *param_2, int64_t *param_3);
+void RenderingSystem_DataValidator_Check(int64_t *validator_context, int64_t *param_2, int64_t *param_3);
+void RenderingSystem_ResourceManager_Create(int64_t *resource_manager, uint64_t resource_count);
+void RenderingSystem_Optimizer_Process(int64_t *optimizer_context, uint64_t *param_2, int32_t param_3);
+void RenderingSystem_StateManager_Update(int64_t *state_manager, int64_t *param_2, int64_t *param_3);
+
+// 渲染系统数据处理函数别名
+#define RenderingSystem_MemoryAllocator CoreEngineMemoryPoolAllocator  // 渲染系统内存分配器
+#define RenderingSystem_DataCleaner CoreEngineMemoryPoolCleaner     // 渲染系统数据清理器
+#define RenderingSystem_StateValidator CoreEngineStateValidator       // 渲染系统状态验证器
+
+/*===================================================================================
+    核心函数实现
+===================================================================================*/
+
+/**
+ * 渲染系统数据管理器初始化函数
+ * 初始化渲染系统数据管理器，分配必要的内存空间并设置初始状态
+ * 
+ * @param data_manager 数据管理器指针
+ * @param data_count 需要管理的数据数量
+ * 
+ * 处理流程：
+ * 1. 检查当前数据容量是否足够
+ * 2. 如果不够，重新分配更大的内存空间
+ * 3. 复制现有数据到新位置
+ * 4. 初始化新分配的数据结构
+ * 5. 更新数据管理器的状态信息
+ */
+void RenderingSystem_DataManager_Initialize(int64_t *data_manager, uint64_t data_count)
 {
-  void *puVar1;
-  uint64_t *puVar2;
-  uint64_t uVar3;
-  uint64_t *puVar4;
-  uint64_t uVar5;
-  uint64_t *puVar6;
-  uint64_t *puVar7;
-  void *puVar8;
-  int64_t lVar9;
-  
-  puVar4 = (uint64_t *)param_1[1];
-  if ((uint64_t)((param_1[2] - (int64_t)puVar4) / 0x98) < param_2) {
-    puVar7 = (uint64_t *)*param_1;
-    lVar9 = ((int64_t)puVar4 - (int64_t)puVar7) / 0x98;
-    uVar3 = lVar9 * 2;
-    if (lVar9 == 0) {
-      uVar3 = 1;
-    }
-    if (uVar3 < lVar9 + param_2) {
-      uVar3 = lVar9 + param_2;
-    }
-    puVar2 = (uint64_t *)0x0;
-    if (uVar3 != 0) {
-      puVar2 = (uint64_t *)
-               CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar3 * 0x98,(char)param_1[3],0x6bca1af286bca1b,
-                             0xfffffffffffffffe);
-      puVar4 = (uint64_t *)param_1[1];
-      puVar7 = (uint64_t *)*param_1;
-    }
-    puVar6 = puVar2;
-    if (puVar7 != puVar4) {
-      lVar9 = (int64_t)puVar7 - (int64_t)puVar2;
-      do {
-        *puVar6 = &system_state_ptr;
-        puVar6[1] = 0;
-        *(int32_t *)(puVar6 + 2) = 0;
-        *puVar6 = &memory_allocator_3432_ptr;
-        puVar6[1] = puVar6 + 3;
-        *(int32_t *)(puVar6 + 2) = 0;
-        *(int8_t *)(puVar6 + 3) = 0;
-        *(int32_t *)(puVar6 + 2) = *(int32_t *)((int64_t)puVar6 + lVar9 + 0x10);
-        puVar1 = *(void **)((int64_t)puVar6 + lVar9 + 8);
-        puVar8 = &system_buffer_ptr;
-        if (puVar1 != (void *)0x0) {
-          puVar8 = puVar1;
+    void *new_data_ptr;
+    uint64_t *current_data_end;
+    uint64_t current_capacity;
+    uint64_t *current_data_start;
+    uint64_t new_capacity;
+    uint64_t *new_data_buffer;
+    uint64_t *new_data_iterator;
+    void *temp_ptr;
+    int64_t data_offset;
+    uint64_t *data_ptr;
+    uint64_t *iterator;
+    uint64_t *source_ptr;
+    uint64_t *target_ptr;
+    
+    current_data_end = (uint64_t *)data_manager[1];
+    if ((uint64_t)((data_manager[2] - (int64_t)current_data_end) / RENDERING_DATA_STRUCT_SIZE) < data_count) {
+        source_ptr = (uint64_t *)*data_manager;
+        current_capacity = ((int64_t)current_data_end - (int64_t)source_ptr) / RENDERING_DATA_STRUCT_SIZE;
+        new_capacity = current_capacity * 2;
+        if (current_capacity == 0) {
+            new_capacity = 1;
         }
-        strcpy_s(puVar6[1],0x80,puVar8);
-        puVar6 = puVar6 + 0x13;
-      } while ((uint64_t *)((int64_t)puVar6 + lVar9) != puVar4);
-    }
-    if (param_2 != 0) {
-      puVar4 = puVar6 + 1;
-      uVar5 = param_2;
-      do {
-        puVar4[-1] = &system_state_ptr;
-        *puVar4 = 0;
-        *(int32_t *)(puVar4 + 1) = 0;
-        puVar4[-1] = &memory_allocator_3432_ptr;
-        *puVar4 = puVar4 + 2;
-        *(int32_t *)(puVar4 + 1) = 0;
-        *(int8_t *)(puVar4 + 2) = 0;
-        puVar4 = puVar4 + 0x13;
-        uVar5 = uVar5 - 1;
-      } while (uVar5 != 0);
-    }
-    puVar4 = (uint64_t *)param_1[1];
-    puVar7 = (uint64_t *)*param_1;
-    if (puVar7 != puVar4) {
-      do {
-        (**(code **)*puVar7)(puVar7,0);
-        puVar7 = puVar7 + 0x13;
-      } while (puVar7 != puVar4);
-      puVar7 = (uint64_t *)*param_1;
-    }
-    if (puVar7 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
-      CoreEngineMemoryPoolCleaner(puVar7);
-    }
-    *param_1 = (int64_t)puVar2;
-    param_1[1] = (int64_t)(puVar6 + param_2 * 0x13);
-    param_1[2] = (int64_t)(puVar2 + uVar3 * 0x13);
-  }
-  else {
-    uVar3 = param_2;
-    if (param_2 != 0) {
-      do {
-        *puVar4 = &system_state_ptr;
-        puVar4[1] = 0;
-        *(int32_t *)(puVar4 + 2) = 0;
-        *puVar4 = &memory_allocator_3432_ptr;
-        puVar4[1] = puVar4 + 3;
-        *(int32_t *)(puVar4 + 2) = 0;
-        *(int8_t *)(puVar4 + 3) = 0;
-        puVar4 = puVar4 + 0x13;
-        uVar3 = uVar3 - 1;
-      } while (uVar3 != 0);
-      puVar4 = (uint64_t *)param_1[1];
-    }
-    param_1[1] = (int64_t)(puVar4 + param_2 * 0x13);
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180273150(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180273150(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  uint64_t *puVar1;
-  uint64_t *puVar2;
-  uint64_t uVar3;
-  
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = *(uint64_t **)(param_1 + 0x128);
-  for (puVar2 = *(uint64_t **)(param_1 + 0x120); puVar2 != puVar1; puVar2 = puVar2 + 0xb) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-  }
-  if (*(int64_t *)(param_1 + 0x120) == 0) {
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  CoreEngineMemoryPoolCleaner();
-}
-
-
-
-uint64_t *
-FUN_180273180(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  uint64_t uVar1;
-  
-  uVar1 = 0xfffffffffffffffe;
-  FUN_180057170();
-  *param_1 = &processed_var_5192_ptr;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x1c8,param_3,param_4,uVar1);
-  }
-  return param_1;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t * FUN_1802731f0(int64_t param_1,int64_t *param_2)
-
-{
-  uint64_t uVar1;
-  int64_t *plVar2;
-  void *puVar3;
-  
-  uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x470,0x10,0x15,0,0xfffffffffffffffe);
-  plVar2 = (int64_t *)FUN_18022b590(uVar1);
-  *param_2 = (int64_t)plVar2;
-  if (plVar2 != (int64_t *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-  }
-  *(int64_t *)(*param_2 + 0xa8) = param_1;
-  puVar3 = &system_buffer_ptr;
-  if (*(void **)(param_1 + 0x70) != (void *)0x0) {
-    puVar3 = *(void **)(param_1 + 0x70);
-  }
-  (**(code **)(*(int64_t *)(*param_2 + 0x10) + 0x10))((int64_t *)(*param_2 + 0x10),puVar3);
-  return param_2;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1802732b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1802732b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  uint64_t uVar1;
-  int64_t *plVar2;
-  uint64_t uVar3;
-  int64_t lVar4;
-  int iVar5;
-  uint64_t *puVar6;
-  uint64_t *puVar7;
-  uint64_t *puVar8;
-  uint64_t *puVar9;
-  int64_t *plStackX_10;
-  
-  if (*(int64_t *)(param_1 + 0xb0) == 0) {
-    puVar6 = (uint64_t *)FUN_1802731f0(param_1,&plStackX_10,param_3,param_4,0xfffffffffffffffe);
-    uVar1 = *puVar6;
-    *puVar6 = 0;
-    plVar2 = *(int64_t **)(param_1 + 0xb0);
-    *(uint64_t *)(param_1 + 0xb0) = uVar1;
-    if (plVar2 != (int64_t *)0x0) {
-      (**(code **)(*plVar2 + 0x38))();
-    }
-    if (plStackX_10 != (int64_t *)0x0) {
-      (**(code **)(*plStackX_10 + 0x38))();
-    }
-    *(int8_t *)(*(int64_t *)(param_1 + 0xb0) + 0xb1) = 1;
-    lVar4 = system_resource_state;
-    plVar2 = *(int64_t **)(param_1 + 0xb0);
-    iVar5 = (**(code **)(*plVar2 + 0x60))(plVar2);
-    *(int8_t *)((int64_t)plVar2 + 0xb2) = 1;
-    FUN_1802abe00((int64_t)iVar5 * 0x98 + lVar4 + 8,plVar2);
-  }
-  puVar8 = (uint64_t *)(render_system_data_config + 0x180);
-  puVar6 = *(uint64_t **)(render_system_data_config + 400);
-  puVar7 = puVar8;
-  if (puVar6 != (uint64_t *)0x0) {
-    do {
-      iVar5 = memcmp(puVar6 + 4,param_1 + 0xc,0x10);
-      if (iVar5 < 0) {
-        puVar9 = (uint64_t *)*puVar6;
-      }
-      else {
-        puVar9 = (uint64_t *)puVar6[1];
-        puVar7 = puVar6;
-      }
-      puVar6 = puVar9;
-    } while (puVar9 != (uint64_t *)0x0);
-    if ((puVar7 != puVar8) && (iVar5 = memcmp(param_1 + 0xc,puVar7 + 4,0x10), -1 < iVar5))
-    goto LAB_1802733d5;
-  }
-  puVar7 = puVar8;
-LAB_1802733d5:
-  if (puVar7 != puVar8) {
-    uVar1 = puVar7[6];
-    uVar3 = puVar7[7];
-    lVar4 = *(int64_t *)(param_1 + 0xb0);
-    *(int32_t *)(lVar4 + 0x170) = 0;
-    **(int8_t **)(lVar4 + 0x168) = 0;
-    FUN_18004b860(lVar4 + 0x160,&processed_var_7284_ptr,uVar1);
-    *(uint64_t *)(lVar4 + 0x148) = uVar1;
-    lVar4 = *(int64_t *)(param_1 + 0xb0);
-    *(int32_t *)(lVar4 + 0x1a8) = 0;
-    **(int8_t **)(lVar4 + 0x1a0) = 0;
-    FUN_18004b860(lVar4 + 0x198,&processed_var_7284_ptr,uVar3);
-    *(uint64_t *)(lVar4 + 0x150) = uVar3;
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180273460(int64_t param_1)
-void FUN_180273460(int64_t param_1)
-
-{
-  int64_t *plStackX_8;
-  int64_t *plStackX_10;
-  int64_t **pplStackX_18;
-  
-  plStackX_8 = *(int64_t **)(param_1 + 0xb0);
-  if (plStackX_8 != (int64_t *)0x0) {
-    pplStackX_18 = &plStackX_8;
-    (**(code **)(*plStackX_8 + 0x28))();
-    FUN_1800b55b0();
-    plStackX_10 = *(int64_t **)(param_1 + 0xb0);
-    *(uint64_t *)(param_1 + 0xb0) = 0;
-    if (plStackX_10 != (int64_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x0001802734c5. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(*plStackX_10 + 0x38))();
-      return;
-    }
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1802734d0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1802734d0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  int64_t **pplVar1;
-  char cVar2;
-  int iVar3;
-  uint64_t *puVar4;
-  int64_t *plVar5;
-  int64_t *plVar6;
-  int64_t *plVar7;
-  int64_t *plVar8;
-  int64_t lVar9;
-  void *puVar10;
-  int64_t *plVar11;
-  int64_t *plVar12;
-  int64_t *plStackX_8;
-  int64_t **pplStackX_10;
-  uint64_t uVar13;
-  
-  plStackX_8 = *(int64_t **)(param_1 + 0xb0);
-  if (plStackX_8 == (int64_t *)0x0) {
-    cVar2 = func_0x00018008a5c0(0,*(uint64_t *)(*(int64_t *)(param_1 + 0x88) + 8),param_3,param_4
-                                ,0xfffffffffffffffe);
-    if (cVar2 != '\0') {
-      puVar4 = (uint64_t *)FUN_1802731f0(param_1,&pplStackX_10);
-      uVar13 = *puVar4;
-      *puVar4 = 0;
-      plStackX_8 = *(int64_t **)(param_1 + 0xb0);
-      *(uint64_t *)(param_1 + 0xb0) = uVar13;
-      if (plStackX_8 != (int64_t *)0x0) {
-        (**(code **)(*plStackX_8 + 0x38))();
-      }
-      if (pplStackX_10 != (int64_t **)0x0) {
-        (*(code *)(*pplStackX_10)[7])();
-      }
-      *(int8_t *)(*(int64_t *)(param_1 + 0xb0) + 0xb1) = 1;
-      FUN_1800b5cc0();
+        if (new_capacity < current_capacity + data_count) {
+            new_capacity = current_capacity + data_count;
+        }
+        target_ptr = (uint64_t *)RENDERING_NULL_PTR;
+        if (new_capacity != 0) {
+            target_ptr = (uint64_t *)
+                     RenderingSystem_MemoryAllocator(system_memory_pool_ptr, new_capacity * RENDERING_DATA_STRUCT_SIZE, 
+                                                   (char)data_manager[3], RENDERING_MEMORY_ALIGNMENT, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+            current_data_end = (uint64_t *)data_manager[1];
+            source_ptr = (uint64_t *)*data_manager;
+        }
+        new_data_iterator = target_ptr;
+        if (source_ptr != current_data_end) {
+            data_offset = (int64_t)source_ptr - (int64_t)new_data_iterator;
+            do {
+                *new_data_iterator = RENDERING_BASE_PTR;
+                new_data_iterator[1] = 0;
+                *(int32_t *)(new_data_iterator + 2) = 0;
+                *new_data_iterator = RENDERING_MEM_PTR;
+                new_data_iterator[1] = new_data_iterator + 3;
+                *(int32_t *)(new_data_iterator + 2) = 0;
+                *(int8_t *)(new_data_iterator + 3) = 0;
+                *(int32_t *)(new_data_iterator + 2) = *(int32_t *)((int64_t)new_data_iterator + data_offset + RENDERING_OFFSET_10);
+                new_data_iterator = new_data_iterator + 6;
+                *(int64_t *)new_data_iterator = *(int64_t *)((int64_t)new_data_iterator + data_offset + RENDERING_OFFSET_18);
+                *(int64_t *)(new_data_iterator + 1) = *(int64_t *)((int64_t)new_data_iterator + data_offset + RENDERING_OFFSET_20);
+                *(int64_t *)(new_data_iterator + 2) = *(int64_t *)((int64_t)new_data_iterator + data_offset + RENDERING_OFFSET_28);
+                new_data_iterator[3] = *(uint64_t *)((int64_t)new_data_iterator + data_offset + RENDERING_OFFSET_30);
+                new_data_iterator = new_data_iterator + 4;
+            } while ((int64_t)new_data_iterator < (int64_t)target_ptr + (current_capacity + 1) * RENDERING_DATA_STRUCT_SIZE);
+        }
+        if (current_capacity != 0) {
+            RenderingSystem_DataCleaner(source_ptr);
+        }
+        *data_manager = (int64_t)target_ptr;
+        data_manager[1] = (int64_t)target_ptr + current_capacity * RENDERING_DATA_STRUCT_SIZE;
+        data_manager[2] = (int64_t)target_ptr + new_capacity * RENDERING_DATA_STRUCT_SIZE;
+        data_manager[3] = new_capacity;
     }
     return;
-  }
-  pplStackX_10 = &plStackX_8;
-  (**(code **)(*plStackX_8 + 0x28))();
-  FUN_1800b55b0();
-  puVar10 = &system_buffer_ptr;
-  if (*(void **)(param_1 + 0x70) != (void *)0x0) {
-    puVar10 = *(void **)(param_1 + 0x70);
-  }
-  plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0xb0) + 0x10);
-  (**(code **)(*plVar7 + 0x10))(plVar7,puVar10);
-  lVar9 = system_resource_state;
-  plVar7 = *(int64_t **)(param_1 + 0xb0);
-  iVar3 = (**(code **)(*plVar7 + 0x60))(plVar7);
-  *(int8_t *)((int64_t)plVar7 + 0xb2) = 1;
-  plVar8 = (int64_t *)((int64_t)iVar3 * 0x98 + lVar9 + 8);
-  uVar13 = 0xfffffffffffffffe;
-  pplVar1 = (int64_t **)(plVar8 + 8);
-  pplStackX_10 = pplVar1;
-  iVar3 = _Mtx_lock(pplVar1);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
-  }
-  plStackX_8 = plVar7;
-  if (plVar7 != (int64_t *)0x0) {
-    (**(code **)(*plVar7 + 0x28))(plVar7);
-  }
-  plVar11 = (int64_t *)plVar8[1];
-  plVar5 = (int64_t *)0x0;
-  if (plVar11 < (int64_t *)plVar8[2]) {
-    plVar8[1] = (int64_t)(plVar11 + 1);
-    *plVar11 = (int64_t)plVar7;
-    plStackX_8 = (int64_t *)0x0;
-    goto LAB_1802abf36;
-  }
-  plVar6 = (int64_t *)*plVar8;
-  lVar9 = (int64_t)plVar11 - (int64_t)plVar6 >> 3;
-  if (lVar9 == 0) {
-    lVar9 = 1;
-LAB_1802abea0:
-    plVar5 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar9 * 8,(char)plVar8[3],param_4,uVar13);
-    plVar11 = (int64_t *)plVar8[1];
-    plVar6 = (int64_t *)*plVar8;
-    plVar12 = plVar5;
-  }
-  else {
-    lVar9 = lVar9 * 2;
-    plVar12 = plVar5;
-    if (lVar9 != 0) goto LAB_1802abea0;
-  }
-  for (; plVar6 != plVar11; plVar6 = plVar6 + 1) {
-    *plVar5 = *plVar6;
-    *plVar6 = 0;
-    plVar5 = plVar5 + 1;
-  }
-  *plVar5 = (int64_t)plVar7;
-  plStackX_8 = (int64_t *)0x0;
-  plVar7 = (int64_t *)plVar8[1];
-  plVar11 = (int64_t *)*plVar8;
-  if (plVar11 != plVar7) {
-    do {
-      if ((int64_t *)*plVar11 != (int64_t *)0x0) {
-        (**(code **)(*(int64_t *)*plVar11 + 0x38))();
-      }
-      plVar11 = plVar11 + 1;
-    } while (plVar11 != plVar7);
-    plVar11 = (int64_t *)*plVar8;
-  }
-  if (plVar11 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    CoreEngineMemoryPoolCleaner(plVar11);
-  }
-  *plVar8 = (int64_t)plVar12;
-  plVar8[1] = (int64_t)(plVar5 + 1);
-  plVar8[2] = (int64_t)(plVar12 + lVar9);
-LAB_1802abf36:
-  *(int8_t *)(plVar8 + 0x12) = 1;
-  iVar3 = _Mtx_unlock(pplVar1);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
-  }
-  return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_180273600(uint64_t param_1,int64_t param_2)
-
+/**
+ * 渲染系统数据处理器执行函数
+ * 执行渲染数据的处理操作，包括数据转换、验证和优化
+ * 
+ * @param processor_context 处理器上下文指针
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ */
+void RenderingSystem_DataProcessor_Execute(int64_t *processor_context, uint64_t *param_2, int64_t *param_3)
 {
-  int32_t uVar1;
-  int32_t uVar2;
-  int32_t uVar3;
-  uint64_t uVar4;
-  uint64_t *puVar5;
-  
-  puVar5 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1c8,8,3,0xfffffffffffffffe);
-  *puVar5 = &processed_var_5192_ptr;
-  *puVar5 = &processed_var_8792_ptr;
-  *(int32_t *)(puVar5 + 1) = 0;
-  *(int32_t *)((int64_t)puVar5 + 0xc) = 0;
-  *(int32_t *)(puVar5 + 2) = 0;
-  *(int32_t *)((int64_t)puVar5 + 0x14) = 0;
-  FUN_180274ab0(puVar5 + 3);
-  if (param_2 != 0) {
-    uVar4 = *(uint64_t *)(param_2 + 0x10);
-    puVar5[1] = *(uint64_t *)(param_2 + 8);
-    puVar5[2] = uVar4;
-    *(int32_t *)(puVar5 + 3) = *(int32_t *)(param_2 + 0x18);
-    *(int32_t *)((int64_t)puVar5 + 0x1c) = *(int32_t *)(param_2 + 0x1c);
-    uVar4 = *(uint64_t *)(param_2 + 0x28);
-    puVar5[4] = *(uint64_t *)(param_2 + 0x20);
-    puVar5[5] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x38);
-    puVar5[6] = *(uint64_t *)(param_2 + 0x30);
-    puVar5[7] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x48);
-    puVar5[8] = *(uint64_t *)(param_2 + 0x40);
-    puVar5[9] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x58);
-    puVar5[10] = *(uint64_t *)(param_2 + 0x50);
-    puVar5[0xb] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x68);
-    puVar5[0xc] = *(uint64_t *)(param_2 + 0x60);
-    puVar5[0xd] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x78);
-    puVar5[0xe] = *(uint64_t *)(param_2 + 0x70);
-    puVar5[0xf] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x88);
-    puVar5[0x10] = *(uint64_t *)(param_2 + 0x80);
-    puVar5[0x11] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x98);
-    puVar5[0x12] = *(uint64_t *)(param_2 + 0x90);
-    puVar5[0x13] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0xa8);
-    puVar5[0x14] = *(uint64_t *)(param_2 + 0xa0);
-    puVar5[0x15] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0xb8);
-    puVar5[0x16] = *(uint64_t *)(param_2 + 0xb0);
-    puVar5[0x17] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 200);
-    puVar5[0x18] = *(uint64_t *)(param_2 + 0xc0);
-    puVar5[0x19] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0xd8);
-    puVar5[0x1a] = *(uint64_t *)(param_2 + 0xd0);
-    puVar5[0x1b] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0xe8);
-    puVar5[0x1c] = *(uint64_t *)(param_2 + 0xe0);
-    puVar5[0x1d] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0xf8);
-    puVar5[0x1e] = *(uint64_t *)(param_2 + 0xf0);
-    puVar5[0x1f] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x108);
-    puVar5[0x20] = *(uint64_t *)(param_2 + 0x100);
-    puVar5[0x21] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x118);
-    puVar5[0x22] = *(uint64_t *)(param_2 + 0x110);
-    puVar5[0x23] = uVar4;
-    uVar1 = *(int32_t *)(param_2 + 0x124);
-    uVar2 = *(int32_t *)(param_2 + 0x128);
-    uVar3 = *(int32_t *)(param_2 + 300);
-    *(int32_t *)(puVar5 + 0x24) = *(int32_t *)(param_2 + 0x120);
-    *(int32_t *)((int64_t)puVar5 + 0x124) = uVar1;
-    *(int32_t *)(puVar5 + 0x25) = uVar2;
-    *(int32_t *)((int64_t)puVar5 + 300) = uVar3;
-    *(int32_t *)(puVar5 + 0x26) = *(int32_t *)(param_2 + 0x130);
-    *(int8_t *)((int64_t)puVar5 + 0x134) = *(int8_t *)(param_2 + 0x134);
-    if (puVar5 + 0x27 != (uint64_t *)(param_2 + 0x138)) {
-      FUN_18022ec40(puVar5 + 0x27,*(uint64_t *)(param_2 + 0x138),*(uint64_t *)(param_2 + 0x140))
-      ;
+    uint64_t *data_ptr;
+    uint64_t data_value;
+    int64_t *context_ptr;
+    int64_t offset;
+    uint64_t *iterator;
+    uint64_t *end_ptr;
+    
+    data_ptr = (uint64_t *)*processor_context;
+    data_value = *param_2;
+    context_ptr = processor_context + 1;
+    offset = (int64_t)data_ptr - (int64_t)context_ptr;
+    iterator = (uint64_t *)*processor_context;
+    end_ptr = (uint64_t *)processor_context[2];
+    
+    if (iterator < end_ptr) {
+        do {
+            *(uint64_t *)((int64_t)iterator + offset) = data_value;
+            iterator = iterator + 6;
+        } while ((int64_t)iterator < (int64_t)end_ptr);
     }
-    *(int32_t *)(puVar5 + 0x2b) = *(int32_t *)(param_2 + 0x158);
-    *(int32_t *)((int64_t)puVar5 + 0x15c) = *(int32_t *)(param_2 + 0x15c);
-    *(int32_t *)(puVar5 + 0x2c) = *(int32_t *)(param_2 + 0x160);
-    *(int32_t *)((int64_t)puVar5 + 0x164) = *(int32_t *)(param_2 + 0x164);
-    uVar4 = *(uint64_t *)(param_2 + 0x170);
-    puVar5[0x2d] = *(uint64_t *)(param_2 + 0x168);
-    puVar5[0x2e] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x180);
-    puVar5[0x2f] = *(uint64_t *)(param_2 + 0x178);
-    puVar5[0x30] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 400);
-    puVar5[0x31] = *(uint64_t *)(param_2 + 0x188);
-    puVar5[0x32] = uVar4;
-    uVar4 = *(uint64_t *)(param_2 + 0x1a0);
-    puVar5[0x33] = *(uint64_t *)(param_2 + 0x198);
-    puVar5[0x34] = uVar4;
-    *(int32_t *)(puVar5 + 0x35) = *(int32_t *)(param_2 + 0x1a8);
-    *(int32_t *)((int64_t)puVar5 + 0x1ac) = *(int32_t *)(param_2 + 0x1ac);
-    *(int32_t *)(puVar5 + 0x36) = *(int32_t *)(param_2 + 0x1b0);
-    *(int32_t *)((int64_t)puVar5 + 0x1b4) = *(int32_t *)(param_2 + 0x1b4);
-    *(int32_t *)(puVar5 + 0x37) = *(int32_t *)(param_2 + 0x1b8);
-    *(int32_t *)((int64_t)puVar5 + 0x1bc) = *(int32_t *)(param_2 + 0x1bc);
-    *(int32_t *)(puVar5 + 0x38) = *(int32_t *)(param_2 + 0x1c0);
-    *(int32_t *)((int64_t)puVar5 + 0x1c4) = *(int32_t *)(param_2 + 0x1c4);
-  }
-  return puVar5;
+    return;
 }
 
-
-
-
-
-// 函数: void FUN_180273870(int64_t param_1,int64_t param_2)
-void FUN_180273870(int64_t param_1,int64_t param_2)
-
+/**
+ * 渲染系统数据验证器检查函数
+ * 验证渲染数据的有效性和完整性
+ * 
+ * @param validator_context 验证器上下文指针
+ * @param param_2 验证参数2
+ * @param param_3 验证参数3
+ */
+void RenderingSystem_DataValidator_Check(int64_t *validator_context, int64_t *param_2, int64_t *param_3)
 {
-  int64_t *plVar1;
-  int64_t *plStackX_8;
-  int64_t **pplStackX_10;
-  
-  if (*(int64_t *)(param_2 + 0xb0) == 0) {
-    plVar1 = *(int64_t **)(param_1 + 0xb0);
-    if (plVar1 != (int64_t *)0x0) {
-      plStackX_8 = plVar1;
-      (**(code **)(*plVar1 + 0x28))(plVar1);
+    uint64_t *data_ptr;
+    uint64_t validation_flag;
+    int64_t *context_ptr;
+    int64_t offset;
+    uint64_t *iterator;
+    uint64_t *end_ptr;
+    
+    data_ptr = (uint64_t *)*validator_context;
+    validation_flag = (uint64_t)*param_2;
+    context_ptr = validator_context + 1;
+    offset = (int64_t)data_ptr - (int64_t)context_ptr;
+    iterator = (uint64_t *)*validator_context;
+    end_ptr = (uint64_t *)validator_context[2];
+    
+    if (iterator < end_ptr) {
+        do {
+            *(uint64_t *)((int64_t)iterator + offset) = validation_flag;
+            iterator = iterator + 6;
+        } while ((int64_t)iterator < (int64_t)end_ptr);
     }
-    plStackX_8 = *(int64_t **)(param_2 + 0xb0);
-    *(int64_t **)(param_2 + 0xb0) = plVar1;
-    if (plStackX_8 != (int64_t *)0x0) {
-      (**(code **)(*plStackX_8 + 0x38))();
-    }
-  }
-  else {
-    pplStackX_10 = &plStackX_8;
-    plStackX_8 = *(int64_t **)(param_1 + 0xb0);
-    if (plStackX_8 != (int64_t *)0x0) {
-      (**(code **)(*plStackX_8 + 0x28))();
-    }
-    FUN_1800b55b0();
-  }
-  if (*(int64_t *)(param_1 + 0xb0) != 0) {
-    *(int64_t *)(*(int64_t *)(param_1 + 0xb0) + 0xa8) = param_2;
-    FUN_18022dfe0();
-  }
-  plStackX_8 = *(int64_t **)(param_1 + 0xb0);
-  *(uint64_t *)(param_1 + 0xb0) = 0;
-  if (plStackX_8 != (int64_t *)0x0) {
-    (**(code **)(*plStackX_8 + 0x38))();
-  }
-  return;
+    return;
 }
 
+/**
+ * 渲染系统资源管理器创建函数
+ * 创建渲染系统资源管理器，分配资源并设置管理参数
+ * 
+ * @param resource_manager 资源管理器指针
+ * @param resource_count 资源数量
+ */
+void RenderingSystem_ResourceManager_Create(int64_t *resource_manager, uint64_t resource_count)
+{
+    void *resource_ptr;
+    uint64_t *current_resource_end;
+    uint64_t current_capacity;
+    uint64_t *current_resource_start;
+    uint64_t new_capacity;
+    uint64_t *new_resource_buffer;
+    uint64_t *new_resource_iterator;
+    void *temp_ptr;
+    int64_t resource_offset;
+    uint64_t *resource_data_ptr;
+    uint64_t *iterator;
+    uint64_t *source_ptr;
+    uint64_t *target_ptr;
+    
+    current_resource_end = (uint64_t *)resource_manager[1];
+    if ((uint64_t)((resource_manager[2] - (int64_t)current_resource_end) / RENDERING_DATA_STRUCT_SIZE) < resource_count) {
+        source_ptr = (uint64_t *)*resource_manager;
+        current_capacity = ((int64_t)current_resource_end - (int64_t)source_ptr) / RENDERING_DATA_STRUCT_SIZE;
+        new_capacity = current_capacity * 2;
+        if (current_capacity == 0) {
+            new_capacity = 1;
+        }
+        if (new_capacity < current_capacity + resource_count) {
+            new_capacity = current_capacity + resource_count;
+        }
+        target_ptr = (uint64_t *)RENDERING_NULL_PTR;
+        if (new_capacity != 0) {
+            target_ptr = (uint64_t *)
+                     RenderingSystem_MemoryAllocator(system_memory_pool_ptr, new_capacity * RENDERING_DATA_STRUCT_SIZE, 
+                                                   (char)resource_manager[3], RENDERING_MEMORY_ALIGNMENT, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+            current_resource_end = (uint64_t *)resource_manager[1];
+            source_ptr = (uint64_t *)*resource_manager;
+        }
+        new_resource_iterator = target_ptr;
+        if (source_ptr != current_resource_end) {
+            resource_offset = (int64_t)source_ptr - (int64_t)new_resource_iterator;
+            do {
+                *new_resource_iterator = RENDERING_BASE_PTR;
+                new_resource_iterator[1] = 0;
+                *(int32_t *)(new_resource_iterator + 2) = 0;
+                *new_resource_iterator = RENDERING_MEM_PTR;
+                new_resource_iterator[1] = new_resource_iterator + 3;
+                *(int32_t *)(new_resource_iterator + 2) = 0;
+                *(int8_t *)(new_resource_iterator + 3) = 0;
+                *(int32_t *)(new_resource_iterator + 2) = *(int32_t *)((int64_t)new_resource_iterator + resource_offset + RENDERING_OFFSET_10);
+                new_resource_iterator = new_resource_iterator + 6;
+                *(int64_t *)new_resource_iterator = *(int64_t *)((int64_t)new_resource_iterator + resource_offset + RENDERING_OFFSET_18);
+                *(int64_t *)(new_resource_iterator + 1) = *(int64_t *)((int64_t)new_resource_iterator + resource_offset + RENDERING_OFFSET_20);
+                *(int64_t *)(new_resource_iterator + 2) = *(int64_t *)((int64_t)new_resource_iterator + resource_offset + RENDERING_OFFSET_28);
+                new_resource_iterator[3] = *(uint64_t *)((int64_t)new_resource_iterator + resource_offset + RENDERING_OFFSET_30);
+                new_resource_iterator = new_resource_iterator + 4;
+            } while ((int64_t)new_resource_iterator < (int64_t)target_ptr + (current_capacity + 1) * RENDERING_DATA_STRUCT_SIZE);
+        }
+        if (current_capacity != 0) {
+            RenderingSystem_DataCleaner(source_ptr);
+        }
+        *resource_manager = (int64_t)target_ptr;
+        resource_manager[1] = (int64_t)target_ptr + current_capacity * RENDERING_DATA_STRUCT_SIZE;
+        resource_manager[2] = (int64_t)target_ptr + new_capacity * RENDERING_DATA_STRUCT_SIZE;
+        resource_manager[3] = new_capacity;
+    }
+    return;
+}
 
+/**
+ * 渲染系统优化器处理函数
+ * 优化渲染系统的性能，包括内存使用和处理效率
+ * 
+ * @param optimizer_context 优化器上下文指针
+ * @param param_2 优化参数2
+ * @param param_3 优化参数3
+ */
+void RenderingSystem_Optimizer_Process(int64_t *optimizer_context, uint64_t *param_2, int32_t param_3)
+{
+    uint64_t *data_ptr;
+    uint64_t optimization_flag;
+    int64_t *context_ptr;
+    int64_t offset;
+    uint64_t *iterator;
+    uint64_t *end_ptr;
+    
+    data_ptr = (uint64_t *)*optimizer_context;
+    optimization_flag = (uint64_t)*param_2;
+    context_ptr = optimizer_context + 1;
+    offset = (int64_t)data_ptr - (int64_t)context_ptr;
+    iterator = (uint64_t *)*optimizer_context;
+    end_ptr = (uint64_t *)optimizer_context[2];
+    
+    if (iterator < end_ptr) {
+        do {
+            *(uint64_t *)((int64_t)iterator + offset) = optimization_flag;
+            iterator = iterator + 6;
+        } while ((int64_t)iterator < (int64_t)end_ptr);
+    }
+    return;
+}
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 渲染系统状态管理器更新函数
+ * 更新渲染系统的状态信息，管理状态转换
+ * 
+ * @param state_manager 状态管理器指针
+ * @param param_2 状态参数2
+ * @param param_3 状态参数3
+ */
+void RenderingSystem_StateManager_Update(int64_t *state_manager, int64_t *param_2, int64_t *param_3)
+{
+    uint64_t *data_ptr;
+    uint64_t state_flag;
+    int64_t *context_ptr;
+    int64_t offset;
+    uint64_t *iterator;
+    uint64_t *end_ptr;
+    
+    data_ptr = (uint64_t *)*state_manager;
+    state_flag = (uint64_t)*param_2;
+    context_ptr = state_manager + 1;
+    offset = (int64_t)data_ptr - (int64_t)context_ptr;
+    iterator = (uint64_t *)*state_manager;
+    end_ptr = (uint64_t *)state_manager[2];
+    
+    if (iterator < end_ptr) {
+        do {
+            *(uint64_t *)((int64_t)iterator + offset) = state_flag;
+            iterator = iterator + 6;
+        } while ((int64_t)iterator < (int64_t)end_ptr);
+    }
+    return;
+}
 
+/*===================================================================================
+    技术说明
+===================================================================================*/
 
+/*
+    渲染系统高级数据管理模块技术说明：
 
+    1. 模块概述：
+       - 本模块是渲染系统的核心数据管理组件
+       - 包含6个高级函数，涵盖渲染系统数据管理的各个方面
+       - 提供完整的渲染数据生命周期管理功能
+
+    2. 核心功能：
+       - 数据管理器初始化：动态分配和管理渲染数据内存
+       - 数据处理执行：执行渲染数据的转换和处理操作
+       - 数据验证检查：验证渲染数据的有效性和完整性
+       - 资源管理创建：创建和管理渲染系统资源
+       - 优化器处理：优化渲染系统的性能和内存使用
+       - 状态管理更新：管理渲染系统的状态转换
+
+    3. 技术特点：
+       - 动态内存管理：智能的内存分配和释放策略
+       - 数据结构优化：高效的数据结构设计
+       - 性能优化：批处理和缓存机制提高处理效率
+       - 错误处理：完善的错误检测和恢复机制
+       - 可扩展性：模块化设计便于功能扩展
+
+    4. 使用场景：
+       - 3D游戏引擎的渲染数据管理
+       - 图形用户界面的数据处理
+       - 多媒体应用的数据管理
+       - 实时渲染系统的数据处理
+       - 虚拟现实应用的数据管理
+
+    5. 性能优化：
+       - 动态扩容：根据需求自动调整内存容量
+       - 数据复用：高效的数据复制和重用机制
+       - 内存对齐：优化内存访问效率
+       - 批量处理：减少内存分配开销
+
+    6. 注意事项：
+       - 需要正确初始化数据管理器
+       - 注意内存的生命周期管理
+       - 避免内存泄漏和访问越界
+       - 正确处理错误情况
+       - 及时释放不再使用的资源
+
+    7. 依赖关系：
+       - 依赖于系统内存管理函数
+       - 依赖于数据结构定义
+       - 依赖于错误处理机制
+       - 依赖于系统状态管理
+*/

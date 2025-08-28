@@ -543,7 +543,7 @@ void FUN_1804f0d70(int64_t param_1)
     } while ((uint64_t)(int64_t)(int)uVar10 <
              (uint64_t)(*(int64_t *)(param_1 + 0x87b6e0) - lVar16 >> 2));
   }
-  FUN_1800b8500((int64_t *)(param_1 + 0x87b6b8));
+  SystemCore_Controller((int64_t *)(param_1 + 0x87b6b8));
   *(uint64_t *)(param_1 + 0x87b6e0) = *(uint64_t *)(param_1 + 0x87b6d8);
   return;
 }

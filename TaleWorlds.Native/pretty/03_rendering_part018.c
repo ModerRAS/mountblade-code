@@ -247,7 +247,7 @@ LAB_180278a68:
 LAB_18027916b:
         lVar8 = lStack_330;
         uStack_334 = 0;
-        lVar7 = FUN_1800a02a0(lStack_330,&processed_var_8904_ptr);
+        lVar7 = SystemCore_DataManager(lStack_330,&processed_var_8904_ptr);
         if (lVar7 != 0) {
           pcVar14 = (char *)0x180d48d24;
           if (*(char **)(lVar7 + 8) != (char *)0x0) {
@@ -283,7 +283,7 @@ LAB_18027916b:
           *(int64_t **)(param_2 + 0x10) = plVar6;
           *(int64_t *)(param_2 + 0x20) = *(int64_t *)(param_2 + 0x20) + 1;
         }
-        lVar7 = FUN_1800a02a0(lVar8,&processed_var_8928_ptr);
+        lVar7 = SystemCore_DataManager(lVar8,&processed_var_8928_ptr);
         if (lVar7 != 0) {
           lVar8 = 0x180d48d24;
           if (*(int64_t *)(lVar7 + 8) != 0) {
@@ -292,7 +292,7 @@ LAB_18027916b:
           (**(code **)(puStack_228 + 0x10))(&puStack_228,lVar8);
           puVar4 = (int32_t *)FUN_18039ffc0(param_1);
           *puVar4 = 2;
-          puVar5 = (uint64_t *)FUN_1800b30d0(system_resource_state,&plStack_2a0,&puStack_228,1);
+          puVar5 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&plStack_2a0,&puStack_228,1);
           *(uint64_t *)(puVar4 + 2) = *puVar5;
           if (plStack_2a0 != (int64_t *)0x0) {
             (**(code **)(*plStack_2a0 + 0x38))();
@@ -331,10 +331,10 @@ LAB_18027916b:
         uStack_280 = 0;
         uStack_27c = 0x3f800000;
         FUN_1801c1720(&uStack_328,&uStack_2d8);
-        FUN_180085020(&uStack_328,&fStack_2c8);
-        lVar7 = FUN_180631960(lVar8,&processed_var_8872_ptr,&uStack_288);
-        if (((lVar7 != 0) || (lVar7 = FUN_180631960(lVar8,&processed_var_8888_ptr,&uStack_2d8), lVar7 != 0))
-           || (lVar7 = FUN_180631960(lVar8,&processed_var_8408_ptr,&fStack_2c8), lVar7 != 0)) {
+        RenderingSystem_LightSystem(&uStack_328,&fStack_2c8);
+        lVar7 = StringProcessor(lVar8,&processed_var_8872_ptr,&uStack_288);
+        if (((lVar7 != 0) || (lVar7 = StringProcessor(lVar8,&processed_var_8888_ptr,&uStack_2d8), lVar7 != 0))
+           || (lVar7 = StringProcessor(lVar8,&processed_var_8408_ptr,&fStack_2c8), lVar7 != 0)) {
           lStack_2f8 = CONCAT44(uStack_284,uStack_288);
           uStack_2f0 = CONCAT44(uStack_27c,uStack_280);
           uStack_278 = 0x3f800000;
@@ -707,7 +707,7 @@ LAB_1802789a4:
         FUN_18004a180(&puStack_228,lVar8);
         puVar4 = (int32_t *)FUN_18039ffc0(param_1);
         *puVar4 = 1;
-        puVar5 = (uint64_t *)FUN_1800b30d0(system_resource_state,aplStack_2b0,&puStack_228,1);
+        puVar5 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,aplStack_2b0,&puStack_228,1);
         *(uint64_t *)(puVar4 + 2) = *puVar5;
         if (aplStack_2b0[0] != (int64_t *)0x0) {
           (**(code **)(*aplStack_2b0[0] + 0x38))();

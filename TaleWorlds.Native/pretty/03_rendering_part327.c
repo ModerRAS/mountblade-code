@@ -75,7 +75,7 @@ void FUN_18043c060(int32_t *param_1,uint64_t *param_2,int32_t param_3,int8_t par
   uStack_14 = param_1[1];
   uStack_10 = param_1[2];
   uStack_c = param_1[3];
-  FUN_180633110(render_system_data_memory,&uStack_18,&uStack_28,param_3,param_4,param_5);
+  RenderingSystem_VertexBuffer(render_system_data_memory,&uStack_18,&uStack_28,param_3,param_4,param_5);
   return;
 }
 

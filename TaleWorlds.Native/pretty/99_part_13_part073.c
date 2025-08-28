@@ -1,9 +1,13 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
 // 系统初始化和清理函数
 #define SystemInitializer System_Initializer2  // 系统初始化器
-#define SystemStateCleaner FUN_1808fcb30  // 系统状态清理器
+#define SystemStateCleaner RenderingSystem_MemoryManager0  // 系统状态清理器
 
 // 资源管理函数
 #define ResourceManager FUN_1808db3f0    // 资源管理器
@@ -11,7 +15,7 @@
 #define ResourceAllocator SystemMemoryAllocator   // 资源分配器
 #define ResourcePoolManager SystemDataValidator  // 资源池管理器
 #define ResourceSystemController SystemResourceManager  // 资源系统控制器
-#define ResourceReferenceManager FUN_18084c220  // 资源引用管理器
+#define ResourceReferenceManager SystemCore_NetworkProtocol  // 资源引用管理器
 #define ResourceReleaseHandler FUN_1808b02a0  // 资源释放处理器
 
 // 系统控制函数
@@ -23,15 +27,15 @@
 
 // 事件和状态管理函数
 #define EventManager AdvancedSystemProcessor       // 事件管理器
-#define EventHandler FUN_18088c740      // 事件处理器
+#define EventHandler RenderingSystemOptimizer      // 事件处理器
 #define EventDispatcher FUN_18088c620   // 事件分发器
 #define EventInitializer FUN_18088a0c0  // 事件初始化器
 #define StateManager FUN_180867d60      // 状态管理器
 
 // 资源操作函数
-#define ResourceOperationHandler FUN_18085dbf0  // 资源操作处理器
-#define ResourceAccessController FUN_180747f10  // 资源访问控制器
-#define ResourceDataProcessor FUN_180741df0  // 资源数据处理器
+#define ResourceOperationHandler SystemController  // 资源操作处理器
+#define ResourceAccessController RenderingTextureManager0  // 资源访问控制器
+#define ResourceDataProcessor RenderingSystem_MaterialHandler  // 资源数据处理器
 #define ResourceQueryHandler FUN_180741d10  // 资源查询处理器
 #define ResourceValidator FUN_180739cc0  // 资源验证器
 #define ResourceChecker FUN_180739b90   // 资源检查器

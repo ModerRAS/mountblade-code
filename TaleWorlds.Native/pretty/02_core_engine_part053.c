@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part053.c - 10 个函数
 
 // 函数: void FUN_18008edcf(int64_t *param_1,int64_t *param_2,int64_t param_3,int8_t param_4)
@@ -562,7 +566,7 @@ void FUN_18008f430(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_180067110(0x58);
+  puVar1 = (uint64_t *)SystemCore_SyscallHandler(0x58);
   *puVar1 = *param_1;
   puVar1[1] = *param_1;
   puVar1[2] = *param_1;

@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_08_part031.c - 6 个函数
 
@@ -45,13 +50,13 @@ void FUN_1804fe960(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
   }
   else {
     (**(code **)(*plVar5 + 0x70))(plVar5,&system_data_c8e4);
-    FUN_180627910(&puStack_160,&processed_var_4080_ptr);
+    SystemCore_CacheManager(&puStack_160,&processed_var_4080_ptr);
     puStack_120 = (uint64_t *)0x0;
     puStack_118 = (uint64_t *)0x0;
     uStack_110 = 0;
     uStack_108 = 3;
     if (lStack_158 != 0) {
-      FUN_180057980(&puStack_160,&puStack_120,&system_data_d518);
+      CoreSystem_DataCollector(&puStack_160,&puStack_120,&system_data_d518);
     }
     puVar3 = puStack_120;
     pcVar1 = *(code **)(alStack_e8[0] + 0x78);
@@ -98,7 +103,7 @@ void FUN_1804fe960(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
     puStack_170 = puStack_a8;
   }
   puStack_178 = &processed_var_5184_ptr;
-  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
+  SystemConfigurationManager(system_message_context,0,0x40000000000,0xc);
   puStack_f8 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -159,13 +164,13 @@ void FUN_1804fec00(uint64_t param_1,char param_2,uint64_t param_3,int8_t *param_
   }
   else {
     (**(code **)(*plVar5 + 0x70))(plVar5,&system_data_c8e4);
-    FUN_180627910(&puStack_150,&processed_var_4608_ptr);
+    SystemCore_CacheManager(&puStack_150,&processed_var_4608_ptr);
     puStack_110 = (uint64_t *)0x0;
     puStack_108 = (uint64_t *)0x0;
     uStack_100 = 0;
     uStack_f8 = 3;
     if (lStack_148 != 0) {
-      FUN_180057980(&puStack_150,&puStack_110,&system_data_d518);
+      CoreSystem_DataCollector(&puStack_150,&puStack_110,&system_data_d518);
     }
     puVar3 = puStack_110;
     pcVar1 = *(code **)(alStack_e8[0] + 0x78);
@@ -214,7 +219,7 @@ void FUN_1804fec00(uint64_t param_1,char param_2,uint64_t param_3,int8_t *param_
     puStack_180 = puStack_a8;
   }
   puStack_188 = &processed_var_5184_ptr;
-  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
+  SystemConfigurationManager(system_message_context,0,0x40000000000,0xc);
   puStack_160 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -271,13 +276,13 @@ void FUN_1804feec0(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
   }
   else {
     (**(code **)(*plVar5 + 0x70))(plVar5,&system_data_c8e4);
-    FUN_180627910(&puStack_160,&processed_var_4424_ptr);
+    SystemCore_CacheManager(&puStack_160,&processed_var_4424_ptr);
     puStack_120 = (uint64_t *)0x0;
     puStack_118 = (uint64_t *)0x0;
     uStack_110 = 0;
     uStack_108 = 3;
     if (lStack_158 != 0) {
-      FUN_180057980(&puStack_160,&puStack_120,&system_data_d518);
+      CoreSystem_DataCollector(&puStack_160,&puStack_120,&system_data_d518);
     }
     puVar3 = puStack_120;
     pcVar1 = *(code **)(alStack_e8[0] + 0x78);
@@ -323,7 +328,7 @@ void FUN_1804feec0(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
     puStack_170 = puStack_a8;
   }
   puStack_178 = &processed_var_5184_ptr;
-  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
+  SystemConfigurationManager(system_message_context,0,0x40000000000,0xc);
   puStack_f8 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -373,13 +378,13 @@ void FUN_1804ff150(uint64_t param_1,char param_2,uint64_t param_3,uint64_t param
   }
   else {
     (**(code **)(*plVar3 + 0x70))(plVar3,&system_data_c8e4);
-    FUN_180627910(&puStack_118,&processed_var_4504_ptr);
+    SystemCore_CacheManager(&puStack_118,&processed_var_4504_ptr);
     puStack_f8 = (uint64_t *)0x0;
     puStack_f0 = (uint64_t *)0x0;
     uStack_e8 = 0;
     uStack_e0 = 3;
     if (lStack_110 != 0) {
-      FUN_180057980(&puStack_118,&puStack_f8,&system_data_d518);
+      CoreSystem_DataCollector(&puStack_118,&puStack_f8,&system_data_d518);
     }
     puStack_128 = (void *)param_5;
     FUN_180500ee0(alStack_c8,&puStack_f8);
@@ -406,7 +411,7 @@ void FUN_1804ff150(uint64_t param_1,char param_2,uint64_t param_3,uint64_t param
     puStack_120 = puStack_88;
   }
   puStack_128 = &processed_var_5184_ptr;
-  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
+  SystemConfigurationManager(system_message_context,0,0x40000000000,0xc);
   puStack_d0 = auStack_70;
   _Mtx_destroy_in_situ(auStack_70);
   FUN_1805065c0(alStack_c8);

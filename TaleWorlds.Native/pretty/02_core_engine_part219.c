@@ -1,5 +1,16 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 02_core_engine_part219.c - 8 个函数
 
@@ -726,7 +737,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   *(int8_t *)(param_1 + 0xc0e7) = 0;
   *(int8_t *)(param_1 + 0xc0f4) = 0;
   uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
-  plVar7 = (int64_t *)FUN_180275090(uVar5);
+  plVar7 = (int64_t *)RenderingSystem_ShaderManager(uVar5);
   if (plVar7 != (int64_t *)0x0) {
     plStack_110 = plVar7;
     (**(code **)(*plVar7 + 0x28))(plVar7);
@@ -737,7 +748,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
     (**(code **)(*plStack_110 + 0x38))();
   }
   uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x300,0x10,3);
-  plVar7 = (int64_t *)FUN_180075030(uVar5,1);
+  plVar7 = (int64_t *)InitializationSystem_EventInit(uVar5,1);
   plStack_f0 = plVar7;
   if (plVar7 != (int64_t *)0x0) {
     (**(code **)(*plVar7 + 0x28))(plVar7);
@@ -748,7 +759,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   plStack_168 = (int64_t *)0x0;
   uStack_178 = 0;
   auStack_180[0] = 0;
-  FUN_18022f2e0(&plStack_190,plVar7,0);
+  RenderingSystem_MaterialProcessor(&plStack_190,plVar7,0);
   auStackX_18[0] = 0xffffffff;
   uStack_158 = 0x3f800000;
   uStack_154 = 0x3f800000;
@@ -762,14 +773,14 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   FUN_1802356b0(&plStack_190,&uStack_e8,&uStack_148,&uStack_150,&uStack_158,auStackX_18);
   if ((plStack_190 != (int64_t *)0x0) && (plStack_188 != (int64_t *)0x0)) {
     if (cStack_15e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_180);
+    SystemSecurityManager(auStack_180);
     if (cStack_160 != '\0') {
-      FUN_180079520(plStack_190);
+      SystemInitializer(plStack_190);
     }
     if (cStack_15f != '\0') {
-      FUN_180079520(plStack_190);
+      SystemInitializer(plStack_190);
     }
     plVar1 = plStack_188;
     plStack_108 = plStack_188;
@@ -778,7 +789,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  uVar4 = FUN_18007f6a0(auStack_180);
+  uVar4 = SystemSecurityManager(auStack_180);
   if (plStack_168 != (int64_t *)0x0) {
     uVar4 = (**(code **)(*plStack_168 + 0x38))();
   }
@@ -788,8 +799,8 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   if (plStack_190 != (int64_t *)0x0) {
     uVar4 = (**(code **)(*plStack_190 + 0x38))();
   }
-  uVar5 = FUN_180095000(uVar4,&plStack_100,&rendering_buffer_2232_ptr,0);
-  FUN_180076910(plVar7,uVar5);
+  uVar5 = InitializationSystem_CoreLoader(uVar4,&plStack_100,&rendering_buffer_2232_ptr,0);
+  UltraHighFreq_SecurityValidator1(plVar7,uVar5);
   if (plStack_100 != (int64_t *)0x0) {
     (**(code **)(*plStack_100 + 0x38))();
   }
@@ -810,10 +821,10 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
     uVar9 = uVar9 + 1;
     puVar11 = puVar11 + 4;
   } while (uVar9 < 0x20);
-  FUN_18005d580(&uStack_d8);
+  DataSerializationEngine(&uStack_d8);
   uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x2f0,0x10,3);
   uVar5 = FUN_1802e6b00(uVar5,4);
-  FUN_180056f10(param_1 + 0x12,uVar5);
+  SystemCore_PointerManager(param_1 + 0x12,uVar5);
   param_1[0x13] = 0;
   FUN_1801afbc0(param_1);
   if (*(char *)((int64_t)param_1 + 0x564) != '\0') {
@@ -898,7 +909,7 @@ void FUN_180196b10(int64_t param_1)
     pplStackX_18 = &plStackX_10;
     plStackX_10 = plVar1;
     (**(code **)(*plVar1 + 0x28))();
-    FUN_18005e6a0(lVar3,&plStackX_10,0);
+    SystemCore_ErrorHandler(lVar3,&plStackX_10,0);
   }
   puVar2 = *(uint64_t **)(param_1 + 0x10);
   if (puVar2 != (uint64_t *)0x0) {
@@ -1017,7 +1028,7 @@ void FUN_180196c40(int64_t param_1)
 void FUN_180196cf0(int64_t param_1)
 
 {
-  SystemMemoryManager(param_1 + 8,0x20,0x20,FUN_18004a130,0xfffffffffffffffe);
+  SystemMemoryManager(param_1 + 8,0x20,0x20,SystemCore_MemoryManager,0xfffffffffffffffe);
   return;
 }
 

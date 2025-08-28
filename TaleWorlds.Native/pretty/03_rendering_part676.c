@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -94,7 +98,7 @@ void FUN_180653ef0(void)
   *puVar5 = 0x2f6e6962;
   *(int8_t *)(puVar5 + 1) = 0;
   uStack_2c8 = 4;
-  lVar6 = FUN_180627ce0(&puStack_270,&puStack_180,&puStack_2d8);
+  lVar6 = UtilitiesSystem_FileHandler(&puStack_270,&puStack_180,&puStack_2d8);
   puStack_2b8 = &system_data_buffer_ptr;
   uStack_2a0 = 0;
   puStack_2b0 = (int8_t *)0x0;
@@ -166,7 +170,7 @@ LAB_1806541f1:
   uStack_2e0 = CONCAT44(uStack_2e0._4_4_,uVar2);
   *puVar8 = 0x2f;
   uStack_2e8 = 1;
-  FUN_180627ce0(&puStack_2b8,auStack_210,&puStack_2f8);
+  UtilitiesSystem_FileHandler(&puStack_2b8,auStack_210,&puStack_2f8);
   puStack_2f8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar8);
@@ -867,10 +871,10 @@ FUN_180655f50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   alStack_30[2] = 0;
   uStack_18 = 3;
   uStackX_8 = (int64_t *)((uint64_t)alStack_30 & 0xffffffff00000000);
-  FUN_180194a50(alStack_30,&uStackX_8,param_3,param_4,0xfffffffffffffffe,&processed_var_8624_ptr,0);
-  FUN_180194a50(alStack_30,(int64_t)&uStackX_8 + 1);
-  FUN_180194a50(alStack_30,(int64_t)&uStackX_8 + 2);
-  FUN_180194a50(alStack_30,(int64_t)&uStackX_8 + 3);
+  NetworkSystem_StreamProcessor(alStack_30,&uStackX_8,param_3,param_4,0xfffffffffffffffe,&processed_var_8624_ptr,0);
+  NetworkSystem_StreamProcessor(alStack_30,(int64_t)&uStackX_8 + 1);
+  NetworkSystem_StreamProcessor(alStack_30,(int64_t)&uStackX_8 + 2);
+  NetworkSystem_StreamProcessor(alStack_30,(int64_t)&uStackX_8 + 3);
   uStackX_8 = alStack_30;
   if (alStack_30[0] != 0) {
                     // WARNING: Subroutine does not return
@@ -931,10 +935,10 @@ void FUN_180656110(int64_t param_1,int32_t param_2)
   
   param_1 = param_1 + 0x10;
   uStackX_10 = param_2;
-  FUN_180194a50(param_1,&uStackX_10);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 1);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 2);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 3);
+  NetworkSystem_StreamProcessor(param_1,&uStackX_10);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 1);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 2);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 3);
   return;
 }
 
@@ -950,10 +954,10 @@ void FUN_180656160(int64_t param_1,int32_t param_2)
   
   param_1 = param_1 + 0x10;
   uStackX_10 = param_2;
-  FUN_180194a50(param_1,&uStackX_10);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 1);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 2);
-  FUN_180194a50(param_1,(int64_t)&uStackX_10 + 3);
+  NetworkSystem_StreamProcessor(param_1,&uStackX_10);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 1);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 2);
+  NetworkSystem_StreamProcessor(param_1,(int64_t)&uStackX_10 + 3);
   return;
 }
 
@@ -1006,7 +1010,7 @@ FUN_1806562b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180057830();
+  DataTransformer0();
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part350.c - 19 个函数
 
 // 函数: void FUN_1804578be(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t param_4)
@@ -54,7 +58,7 @@ void FUN_1804578be(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t p
   uStack000000000000007c = uStack000000000000002c;
   uStack0000000000000080 = uVar2;
   uStack0000000000000088 = uVar3;
-  FUN_18063b5f0(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
+  SystemSecurityManager(&stack0x00000040,&stack0x00000020,param_3,param_4,uStack0000000000000070);
   *param_3 = uStack0000000000000040;
   param_3[1] = uStack0000000000000044;
   param_3[2] = uStack0000000000000048;
@@ -193,7 +197,7 @@ void FUN_180457be0(int64_t param_1,uint64_t param_2,int32_t param_3,int8_t param
       else {
         lVar1 = *(int64_t *)(param_1 + 0x28);
         if ((lVar1 != 0) && ((*(byte *)(lVar1 + 0xa8) & 1) == 0)) {
-          FUN_1802fac00(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000);
+          SystemCore_FileSystem(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000);
         }
         if ((*(byte *)(param_1 + 0xa8) & 1) != 0) {
           return;
@@ -567,8 +571,8 @@ void FUN_180457fb0(void)
       } while ((char)bVar16 < cVar15);
     }
   }
-  uVar17 = FUN_18022a890(unaff_RBP + 8,unaff_R12B);
-  FUN_18063b5f0(unaff_RBP + -4,uVar17);
+  uVar17 = CoreSystem_AuthenticationHandler0(unaff_RBP + 8,unaff_R12B);
+  SystemSecurityManager(unaff_RBP + -4,uVar17);
   uVar4 = unaff_RBP[-3];
   uVar5 = unaff_RBP[-2];
   uVar6 = unaff_RBP[-1];
@@ -658,8 +662,8 @@ void FUN_180458085(void)
       bVar14 = bVar14 + 1;
     } while ((char)bVar14 < cVar16);
   }
-  uVar15 = FUN_18022a890(unaff_RBP + 8,unaff_R12B);
-  FUN_18063b5f0(unaff_RBP + -4,uVar15);
+  uVar15 = CoreSystem_AuthenticationHandler0(unaff_RBP + 8,unaff_R12B);
+  SystemSecurityManager(unaff_RBP + -4,uVar15);
   uVar3 = unaff_RBP[-3];
   uVar4 = unaff_RBP[-2];
   uVar5 = unaff_RBP[-1];
@@ -1002,7 +1006,7 @@ void FUN_180458740(int32_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_c;
   
   if (*(char *)(render_system_data_config + 0x210) == '\0') {
-    FUN_180158990(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+    RenderingSystem_MaterialHandler(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
     if (aplStackX_10[0] != (int64_t *)0x0) {
       uStack_18 = *param_2;
       uStack_14 = param_2[1];
@@ -1045,7 +1049,7 @@ FUN_180458800(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   uint64_t uVar2;
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     cVar1 = (**(code **)(*aplStackX_10[0] + 0xd8))();
     if (cVar1 != '\0') {
@@ -1073,7 +1077,7 @@ void FUN_180458860(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   int64_t *aplStackX_10 [3];
   
-  FUN_180158990(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
+  RenderingSystem_MaterialHandler(render_system_data_config,aplStackX_10,param_1,param_4,0xfffffffffffffffe);
   if (aplStackX_10[0] != (int64_t *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x38))();
   }

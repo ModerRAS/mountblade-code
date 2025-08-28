@@ -921,7 +921,7 @@ void * FUN_1803975b0(void)
       uVar1 = nanf(&system_ptr_89e8);
       render_system_config_config = nanf(&system_ptr_89e8);
       render_system_config_config = uVar1;
-      FUN_1808fcb30(&system_ptr_8ee8);
+      SystemCore_StateController(&system_ptr_8ee8);
       return &system_ptr_8ee0;
     }
   }

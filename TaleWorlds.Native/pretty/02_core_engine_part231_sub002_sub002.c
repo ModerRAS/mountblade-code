@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -137,7 +142,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
     pfVar4 = pfStack_1d8;
     for (lVar27 = *(int64_t *)(lVar5 + 0x68); pfStack_1e0 = pfVar22, pfStack_1d8 = pfVar4,
         lVar27 != lVar11; lVar27 = lVar27 + 4) {
-      FUN_1800571e0(&pfStack_1e0,lVar27);
+      SystemDatabaseProcessor(&pfStack_1e0,lVar27);
       pfVar22 = pfStack_1e0;
       pfVar4 = pfStack_1d8;
     }
@@ -210,7 +215,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
     pfVar4 = pfStack_1e0;
     for (lVar27 = *(int64_t *)(lVar5 + 0x88); pfStack_1e0 = pfVar4, pfStack_1d8 = pfVar22,
         lVar27 != lVar11; lVar27 = lVar27 + 4) {
-      FUN_1800571e0(&pfStack_1e0,lVar27);
+      SystemDatabaseProcessor(&pfStack_1e0,lVar27);
       pfVar22 = pfStack_1d8;
       pfVar4 = pfStack_1e0;
     }
@@ -1026,7 +1031,7 @@ LAB_1802016f7:
       if (0x14 < lVar27) {
         lVar30 = 0x14;
         do {
-          FUN_1806284c0(&puStack_208,*(int32_t *)(*(int64_t *)(lVar5 + 0x68) + lVar30 * 4));
+          NetworkSystem_DataProcessor(&puStack_208,*(int32_t *)(*(int64_t *)(lVar5 + 0x68) + lVar30 * 4));
           uVar18 = uStack_1f8 + 1;
           CoreMemoryPoolProcessor(&puStack_208,uVar18);
           *(int16_t *)(puStack_200 + uStack_1f8) = 0x2c;
@@ -1034,7 +1039,7 @@ LAB_1802016f7:
           uStack_1f8 = uVar18;
         } while (lVar30 < lVar27);
       }
-      FUN_1806284c0(&puStack_208,
+      NetworkSystem_DataProcessor(&puStack_208,
                     *(int32_t *)(*(int64_t *)(lVar5 + 0x68) + -4 + (int64_t)iVar7 * 4));
       uVar18 = uStack_1f8 + 0x11;
       CoreMemoryPoolProcessor(&puStack_208,uVar18);
@@ -1045,7 +1050,7 @@ LAB_1802016f7:
       uStack_1f8 = uVar18;
       if (0x14 < lVar27) {
         do {
-          FUN_1806284c0(&puStack_208,*(int32_t *)(*(int64_t *)(lVar5 + 0x88) + lVar11 * 4));
+          NetworkSystem_DataProcessor(&puStack_208,*(int32_t *)(*(int64_t *)(lVar5 + 0x88) + lVar11 * 4));
           uVar18 = uStack_1f8 + 1;
           CoreMemoryPoolProcessor(&puStack_208,uVar18);
           *(int16_t *)(puStack_200 + uStack_1f8) = 0x2c;
@@ -1053,7 +1058,7 @@ LAB_1802016f7:
           uStack_1f8 = uVar18;
         } while (lVar11 < lVar27);
       }
-      FUN_1806284c0(&puStack_208,
+      NetworkSystem_DataProcessor(&puStack_208,
                     *(int32_t *)(*(int64_t *)(lVar5 + 0x88) + -4 + (int64_t)iVar7 * 4));
       FUN_1800ba4b0(auStack_1b8,&ui_system_data_1112_ptr);
       uVar18 = uStack_1a8 + 6;
@@ -1199,7 +1204,7 @@ LAB_180201e1d:
         *(int32_t *)(puVar17 + uVar14) = *puStack_140;
         puVar17[uVar14 + 4] = *(int8_t *)(puStack_140 + 1);
         uStack_1d0 = CONCAT44(uStack_1d0._4_4_,uVar18 + 4);
-        cVar6 = FUN_180624af0(&pfStack_1e0);
+        cVar6 = RenderingSystem_RenderQueue(&pfStack_1e0);
         iVar7 = iStack_178;
         uStack_1c0 = 1;
         pfStack_1e0 = (float *)&system_data_buffer_ptr;
@@ -1274,7 +1279,7 @@ LAB_180201ee2:
     }
     *puVar23 = 0;
     *(int8_t *)(puVar23 + 2) = 0;
-    FUN_18062dee0(puVar23,puVar26,&system_data_c7ec);
+    SystemCore_Validator(puVar23,puVar26,&system_data_c7ec);
     puVar28 = &system_buffer_ptr;
     if (puStack_200 != (void *)0x0) {
       puVar28 = puStack_200;

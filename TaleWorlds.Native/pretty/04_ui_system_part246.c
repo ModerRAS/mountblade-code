@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part246.c - 7 个函数
 
 // 函数: void FUN_18080b1b0(int64_t param_1,int32_t *param_2,uint64_t param_3)
@@ -128,7 +132,7 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
   if (lVar2 == 0) {
     return 0xffffff7f;
   }
-  iVar4 = FUN_18080b990(param_2,8);
+  iVar4 = SystemCore_DatabaseManager(param_2,8);
   *(int *)(lVar2 + 0x18) = iVar4 + 1;
   uVar6 = func_0x0001807b1830(0x10,(iVar4 + 1) * 0x78);
   uVar7 = 0;
@@ -142,11 +146,11 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
       uVar9 = (uint64_t)uVar8;
     } while ((int)uVar8 < *(int *)(lVar2 + 0x18));
   }
-  for (iVar4 = FUN_18080b990(param_2,6); -1 < iVar4; iVar4 = iVar4 + -1) {
-    iVar5 = FUN_18080b990(param_2,0x10);
+  for (iVar4 = SystemCore_DatabaseManager(param_2,6); -1 < iVar4; iVar4 = iVar4 + -1) {
+    iVar5 = SystemCore_DatabaseManager(param_2,0x10);
     if (iVar5 != 0) goto LAB_18080b6e2;
   }
-  iVar4 = FUN_18080b990(param_2,6);
+  iVar4 = SystemCore_DatabaseManager(param_2,6);
   *(int *)(lVar2 + 0x10) = iVar4 + 1;
   uVar6 = func_0x0001807b17e0((iVar4 + 1) * 8);
   *(uint64_t *)(lVar2 + 0x38) = uVar6;
@@ -156,7 +160,7 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
   uVar10 = uVar7;
   if (0 < *(int *)(lVar2 + 0x10)) {
     do {
-      uVar3 = FUN_18080b990(param_2,0x10);
+      uVar3 = SystemCore_DatabaseManager(param_2,0x10);
       *(int8_t *)(uVar9 + *(int64_t *)(lVar2 + 0x30)) = uVar3;
       bVar1 = *(byte *)(uVar9 + *(int64_t *)(lVar2 + 0x30));
       if (1 < bVar1) goto LAB_18080b6e2;
@@ -170,7 +174,7 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
       uVar10 = (uint64_t)uVar8;
     } while ((int)uVar8 < *(int *)(lVar2 + 0x10));
   }
-  iVar4 = FUN_18080b990(param_2,6);
+  iVar4 = SystemCore_DatabaseManager(param_2,6);
   *(int *)(lVar2 + 0x14) = iVar4 + 1;
   uVar6 = func_0x0001807b17e0((iVar4 + 1) * 0x28);
   *(uint64_t *)(lVar2 + 0x40) = uVar6;
@@ -184,14 +188,14 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
       uVar9 = (uint64_t)uVar8;
     } while ((int)uVar8 < *(int *)(lVar2 + 0x14));
   }
-  iVar4 = FUN_18080b990(param_2,6);
+  iVar4 = SystemCore_DatabaseManager(param_2,6);
   *(int *)(lVar2 + 0xc) = iVar4 + 1;
   uVar6 = func_0x0001807b17e0((iVar4 + 1) * 0x28);
   *(uint64_t *)(lVar2 + 0x28) = uVar6;
   uVar9 = uVar7;
   if (0 < *(int *)(lVar2 + 0xc)) {
     do {
-      iVar4 = FUN_18080b990(param_2,0x10);
+      iVar4 = SystemCore_DatabaseManager(param_2,0x10);
       if (iVar4 != 0) goto LAB_18080b6e2;
       iVar4 = FUN_18082aca0(*(int64_t *)(lVar2 + 0x28) + (int64_t)(int)uVar9 * 0x28,param_1,
                             param_2);
@@ -200,18 +204,18 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
       uVar9 = (uint64_t)uVar8;
     } while ((int)uVar8 < *(int *)(lVar2 + 0xc));
   }
-  iVar4 = FUN_18080b990(param_2,6);
+  iVar4 = SystemCore_DatabaseManager(param_2,6);
   *(int *)(lVar2 + 8) = iVar4 + 1;
   uVar6 = func_0x0001807b17e0((iVar4 + 1) * 2);
   *(uint64_t *)(lVar2 + 0x20) = uVar6;
   uVar9 = uVar7;
   if (0 < *(int *)(lVar2 + 8)) {
     do {
-      uVar3 = FUN_18080b990(param_2,1);
+      uVar3 = SystemCore_DatabaseManager(param_2,1);
       *(int8_t *)(uVar9 + *(int64_t *)(lVar2 + 0x20)) = uVar3;
-      iVar4 = FUN_18080b990(param_2,0x10);
-      if ((iVar4 != 0) || (iVar4 = FUN_18080b990(param_2,0x10), iVar4 != 0)) goto LAB_18080b6e2;
-      uVar3 = FUN_18080b990(param_2,8);
+      iVar4 = SystemCore_DatabaseManager(param_2,0x10);
+      if ((iVar4 != 0) || (iVar4 = SystemCore_DatabaseManager(param_2,0x10), iVar4 != 0)) goto LAB_18080b6e2;
+      uVar3 = SystemCore_DatabaseManager(param_2,8);
       *(int8_t *)(uVar9 + 1 + *(int64_t *)(lVar2 + 0x20)) = uVar3;
       if (*(int *)(lVar2 + 0xc) <= (int)(uint)*(byte *)(uVar9 + 1 + *(int64_t *)(lVar2 + 0x20)))
       goto LAB_18080b6e2;
@@ -220,7 +224,7 @@ uint64_t FUN_18080b430(int64_t param_1,uint64_t param_2)
       uVar9 = uVar9 + 2;
     } while ((int)uVar8 < *(int *)(lVar2 + 8));
   }
-  iVar4 = FUN_18080b990(param_2,1);
+  iVar4 = SystemCore_DatabaseManager(param_2,1);
   if (iVar4 == 1) {
     uVar6 = 0;
   }
@@ -251,7 +255,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
   uint uVar13;
   uint uVar14;
   
-  iVar2 = FUN_18080b990(param_2,8);
+  iVar2 = SystemCore_DatabaseManager(param_2,8);
   iVar9 = 0;
   iVar8 = 0;
   iVar2 = iVar2 + 1;
@@ -266,7 +270,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
       iVar11 = (iVar11 + 0xfU & 0xfffffff0) + iVar3;
     } while (iVar8 < iVar2);
   }
-  iVar2 = FUN_18080b990(param_2,6);
+  iVar2 = SystemCore_DatabaseManager(param_2,6);
   if (-1 < iVar2) {
     uVar7 = *(uint *)(param_2 + 2);
     do {
@@ -277,13 +281,13 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
     } while (-1 < iVar2);
     *(uint *)(param_2 + 2) = uVar7;
   }
-  iVar2 = FUN_18080b990(param_2,6);
+  iVar2 = SystemCore_DatabaseManager(param_2,6);
   iVar2 = iVar2 + 1;
   iVar8 = 0;
   uVar7 = iVar2 * 9 + 3 + (iVar11 + 3U & 0xfffffffc) & 0xfffffffc;
   if (0 < iVar2) {
     do {
-      FUN_18080b990(param_2,0x10);
+      SystemCore_DatabaseManager(param_2,0x10);
       iVar11 = FUN_180829400(param_1,param_2);
       if (iVar11 < 0) {
         return 0xffffffff;
@@ -292,7 +296,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
       uVar7 = uVar7 + (iVar11 + 3U & 0xfffffffc);
     } while (iVar8 < iVar2);
   }
-  iVar2 = FUN_18080b990(param_2,6);
+  iVar2 = SystemCore_DatabaseManager(param_2,6);
   iVar2 = iVar2 + 1;
   uVar7 = iVar2 * 0x28 + uVar7;
   if (0 < iVar2) {
@@ -305,7 +309,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
       uVar7 = uVar7 + 3 + iVar8 & 0xfffffffc;
     } while (iVar9 < iVar2);
   }
-  iVar2 = FUN_18080b990(param_2,6);
+  iVar2 = SystemCore_DatabaseManager(param_2,6);
   uVar4 = iVar2 + 1;
   uVar7 = uVar7 + uVar4 * 0x28;
   if (0 < (int)uVar4) {
@@ -319,7 +323,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
       uVar10 = uVar10 - 1;
     } while (uVar10 != 0);
   }
-  iVar2 = FUN_18080b990(param_2,6);
+  iVar2 = SystemCore_DatabaseManager(param_2,6);
   uVar4 = iVar2 + 1;
   if (0 < (int)uVar4) {
     uVar14 = *(uint *)(param_2 + 2);
@@ -343,7 +347,7 @@ uint FUN_18080b710(uint64_t param_1,int64_t *param_2)
 
 
 
-uint FUN_18080b990(int64_t *param_1,int param_2)
+uint SystemCore_DatabaseManager(int64_t *param_1,int param_2)
 
 {
   int iVar1;

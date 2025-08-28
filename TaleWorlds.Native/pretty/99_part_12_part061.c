@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -50,7 +54,7 @@ void FUN_1807f4270(int64_t param_1)
   if (iVar1 == 0) {
     uStack_70 = (uint64_t)uStack_88;
     uVar6 = 0;
-    while (iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),uVar6 & 0xffffffff,0), iVar1 == 0)
+    while (iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),uVar6 & 0xffffffff,0), iVar1 == 0)
     {
       puStack_d8 = &uStack_b8;
       iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&lStack_50);
@@ -63,11 +67,11 @@ void FUN_1807f4270(int64_t param_1)
         uVar9 = 0;
         if (0 < aiStack_84[0]) {
           do {
-            iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),(int)uVar6 + (int)lStack_78,0);
-            if (iVar1 != 0) goto FUN_1807f4c16;
+            iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),(int)uVar6 + (int)lStack_78,0);
+            if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
             puStack_d8 = &uStack_b8;
             iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&lStack_68);
-            if ((iVar1 != 0) || (uStack_b8 != 0x18)) goto FUN_1807f4c16;
+            if ((iVar1 != 0) || (uStack_b8 != 0x18)) goto NetworkSystem_ConnectionHandler;
             if ((lStack_68 == 0x11cf668e75b22633) && (lStack_60 == 0x6cce6200aa00d9a6)) {
               puStack_d8 = &uStack_b8;
               uStack_a8 = 0;
@@ -76,23 +80,23 @@ void FUN_1807f4270(int64_t param_1)
               uStack_9c = 0;
               uStack_98 = 0;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&uStack_a8,2);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               puStack_d8 = &uStack_b8;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&uStack_a4,2);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               puStack_d8 = &uStack_b8;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&uStack_a0,2);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               puStack_d8 = &uStack_b8;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&uStack_9c,2);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               puStack_d8 = &uStack_b8;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),&uStack_98);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               if (uStack_a8 != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),0x180c312d0,1);
-                if ((iVar1 != 0) || (uStack_b8 != uStack_a8)) goto FUN_1807f4c16;
+                if ((iVar1 != 0) || (uStack_b8 != uStack_a8)) goto NetworkSystem_ConnectionHandler;
                 uVar4 = uStack_a8;
                 if ((int)uStack_a8 < 0) {
                   uVar4 = uStack_a8 + 1;
@@ -112,13 +116,13 @@ void FUN_1807f4270(int64_t param_1)
                 if (iVar2 != iVar1) {
                   uVar7 = 0x180c312d0;
                 }
-                iVar1 = FUN_180772fe0(param_1,6,&rendering_buffer_2136_ptr,uVar7);
-                if (iVar1 != 0) goto FUN_1807f4c16;
+                iVar1 = SystemMemory_Controller(param_1,6,&rendering_buffer_2136_ptr,uVar7);
+                if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
               }
               if (uStack_a4 != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),0x180c312d0,1);
-                if ((iVar1 != 0) || (uStack_b8 != uStack_a4)) goto FUN_1807f4c16;
+                if ((iVar1 != 0) || (uStack_b8 != uStack_a4)) goto NetworkSystem_ConnectionHandler;
                 uVar4 = uStack_a4;
                 if ((int)uStack_a4 < 0) {
                   uVar4 = uStack_a4 + 1;
@@ -138,13 +142,13 @@ void FUN_1807f4270(int64_t param_1)
                 if (iVar2 != iVar1) {
                   uVar7 = 0x180c312d0;
                 }
-                iVar1 = FUN_180772fe0(param_1,6,&processed_var_4148_ptr,uVar7);
-                if (iVar1 != 0) goto FUN_1807f4c16;
+                iVar1 = SystemMemory_Controller(param_1,6,&processed_var_4148_ptr,uVar7);
+                if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
               }
               if (uStack_a0 != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),0x180c312d0,1);
-                if ((iVar1 != 0) || (uStack_b8 != uStack_a0)) goto FUN_1807f4c16;
+                if ((iVar1 != 0) || (uStack_b8 != uStack_a0)) goto NetworkSystem_ConnectionHandler;
                 uVar4 = uStack_a0;
                 if ((int)uStack_a0 < 0) {
                   uVar4 = uStack_a0 + 1;
@@ -164,13 +168,13 @@ void FUN_1807f4270(int64_t param_1)
                 if (iVar2 != iVar1) {
                   uVar7 = 0x180c312d0;
                 }
-                iVar1 = FUN_180772fe0(param_1,6,&processed_var_4160_ptr,uVar7);
-                if (iVar1 != 0) goto FUN_1807f4c16;
+                iVar1 = SystemMemory_Controller(param_1,6,&processed_var_4160_ptr,uVar7);
+                if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
               }
               if (uStack_9c != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),0x180c312d0,1);
-                if ((iVar1 != 0) || (uStack_b8 != uStack_9c)) goto FUN_1807f4c16;
+                if ((iVar1 != 0) || (uStack_b8 != uStack_9c)) goto NetworkSystem_ConnectionHandler;
                 uVar4 = uStack_9c;
                 if ((int)uStack_9c < 0) {
                   uVar4 = uStack_9c + 1;
@@ -190,14 +194,14 @@ void FUN_1807f4270(int64_t param_1)
                 if (iVar2 != iVar1) {
                   uVar7 = 0x180c312d0;
                 }
-                iVar1 = FUN_180772fe0(param_1,6,&processed_var_4176_ptr,uVar7);
-                if (iVar1 != 0) goto FUN_1807f4c16;
+                iVar1 = SystemMemory_Controller(param_1,6,&processed_var_4176_ptr,uVar7);
+                if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
               }
               uVar6 = uStack_90;
               if (uStack_98 != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),0x180c312d0,1);
-                if ((iVar1 != 0) || (uStack_b8 != uStack_98)) goto FUN_1807f4c16;
+                if ((iVar1 != 0) || (uStack_b8 != uStack_98)) goto NetworkSystem_ConnectionHandler;
                 uVar4 = uStack_98;
                 if ((int)uStack_98 < 0) {
                   uVar4 = uStack_98 + 1;
@@ -217,15 +221,15 @@ void FUN_1807f4270(int64_t param_1)
                 if (iVar2 != iVar1) {
                   uVar7 = 0x180c312d0;
                 }
-                iVar1 = FUN_180772fe0(param_1,6,&processed_var_4188_ptr,uVar7);
+                iVar1 = SystemMemory_Controller(param_1,6,&processed_var_4188_ptr,uVar7);
                 uVar6 = uStack_90;
-                if (iVar1 != 0) goto FUN_1807f4c16;
+                if (iVar1 != 0) goto NetworkSystem_ConnectionHandler;
               }
             }
             else if ((lStack_68 == 0x11d2e307d2d0a440) && (lStack_60 == 0x50a85ec9a000f097)) {
               puStack_d8 = &uStack_b8;
               iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),asStack_ac);
-              if ((iVar1 != 0) || (uStack_b8 != 1)) goto FUN_1807f4c16;
+              if ((iVar1 != 0) || (uStack_b8 != 1)) goto NetworkSystem_ConnectionHandler;
               if (asStack_ac[0] != 0) {
                 puStack_d8 = &uStack_b8;
                 iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),auStack_b0,2);
@@ -264,24 +268,24 @@ void FUN_1807f4270(int64_t param_1)
                                 iVar5 = uVar4 - 2;
                               }
                               puStack_d8 = (uint *)CONCAT44(puStack_d8._4_4_,iVar5);
-                              iVar1 = FUN_180772fe0(param_1,6,0x180c332f0,lVar8);
+                              iVar1 = SystemMemory_Controller(param_1,6,0x180c332f0,lVar8);
                             }
                             else {
                               uStack_c8 = 0;
                               if (auStack_94[0] == 2) {
                                 iStack_d0 = 0;
                                 puStack_d8 = (uint *)CONCAT44(puStack_d8._4_4_,uVar4);
-                                iVar1 = FUN_180772fe0(param_1,6,0x180c332f0,lVar3);
+                                iVar1 = SystemMemory_Controller(param_1,6,0x180c332f0,lVar3);
                               }
                               else if (auStack_94[0] - 3 < 3) {
                                 iStack_d0 = 1;
                                 puStack_d8 = (uint *)CONCAT44(puStack_d8._4_4_,uVar4);
-                                iVar1 = FUN_180772fe0(param_1,6,0x180c332f0,lVar3);
+                                iVar1 = SystemMemory_Controller(param_1,6,0x180c332f0,lVar3);
                               }
                               else {
                                 iStack_d0 = 3;
                                 puStack_d8 = (uint *)CONCAT44(puStack_d8._4_4_,uVar4);
-                                iVar1 = FUN_180772fe0(param_1,6,0x180c332f0,lVar3);
+                                iVar1 = SystemMemory_Controller(param_1,6,0x180c332f0,lVar3);
                               }
                             }
                             if (iVar1 == 0) {
@@ -297,7 +301,7 @@ void FUN_1807f4270(int64_t param_1)
                     }
                   }
                 }
-                goto FUN_1807f4c16;
+                goto NetworkSystem_ConnectionHandler;
               }
             }
             uVar4 = (int)uVar9 + 1;
@@ -311,7 +315,7 @@ void FUN_1807f4270(int64_t param_1)
       if ((uStack_70 <= uVar6) || (lStack_40 == 0)) break;
     }
   }
-FUN_1807f4c16:
+NetworkSystem_ConnectionHandler:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_f8);
 }
@@ -340,7 +344,7 @@ void FUN_1807f42bc(uint64_t param_1)
   
   *(uint64_t *)(unaff_RBP + -0x11) = in_RAX;
   do {
-    iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),param_1 & 0xffffffff,0);
+    iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),param_1 & 0xffffffff,0);
     if (((iVar3 != 0) ||
         (iVar3 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + 0xf,1,0x18,
                                unaff_RBP + -0x59), iVar3 != 0)) ||
@@ -359,7 +363,7 @@ LAB_1807f4bf6:
       iVar3 = unaff_R14D;
       if (0 < *(int *)(unaff_RBP + -0x25)) {
         do {
-          iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RBX + 0x170),(int)unaff_RDI + (int)lVar5,0);
+          iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RBX + 0x170),(int)unaff_RDI + (int)lVar5,0);
           if (((iVar4 != 0) ||
               (iVar4 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -9,1,0x18,
                                      unaff_RBP + -0x59), iVar4 != 0)) ||
@@ -392,7 +396,7 @@ LAB_1807f4bf6:
               if ((iVar4 != 0) || (*(int *)(unaff_RBP + -0x59) != *(int *)(unaff_RBP + -0x49)))
               goto LAB_1807f4bf6;
               wcstombs(0x180c322e0,0x180c312d0,0x1000);
-              iVar4 = FUN_180772fe0();
+              iVar4 = SystemMemory_Controller();
               if (iVar4 != 0) goto LAB_1807f4bf6;
             }
             if (*(int *)(unaff_RBP + -0x45) != 0) {
@@ -401,7 +405,7 @@ LAB_1807f4bf6:
               if ((iVar4 != 0) || (*(int *)(unaff_RBP + -0x59) != *(int *)(unaff_RBP + -0x45)))
               goto LAB_1807f4bf6;
               wcstombs(0x180c322e0,0x180c312d0,0x1000);
-              iVar4 = FUN_180772fe0();
+              iVar4 = SystemMemory_Controller();
               if (iVar4 != 0) goto LAB_1807f4bf6;
             }
             if (*(int *)(unaff_RBP + -0x41) != 0) {
@@ -410,7 +414,7 @@ LAB_1807f4bf6:
               if ((iVar4 != 0) || (*(int *)(unaff_RBP + -0x59) != *(int *)(unaff_RBP + -0x41)))
               goto LAB_1807f4bf6;
               wcstombs(0x180c322e0,0x180c312d0,0x1000);
-              iVar4 = FUN_180772fe0();
+              iVar4 = SystemMemory_Controller();
               if (iVar4 != 0) goto LAB_1807f4bf6;
             }
             if (*(int *)(unaff_RBP + -0x3d) != 0) {
@@ -419,7 +423,7 @@ LAB_1807f4bf6:
               if ((iVar4 != 0) || (*(int *)(unaff_RBP + -0x59) != *(int *)(unaff_RBP + -0x3d)))
               goto LAB_1807f4bf6;
               wcstombs(0x180c322e0,0x180c312d0,0x1000);
-              iVar4 = FUN_180772fe0();
+              iVar4 = SystemMemory_Controller();
               if (iVar4 != 0) goto LAB_1807f4bf6;
             }
             if (*(int *)(unaff_RBP + -0x39) != 0) {
@@ -428,7 +432,7 @@ LAB_1807f4bf6:
               if ((iVar4 != 0) || (*(int *)(unaff_RBP + -0x59) != *(int *)(unaff_RBP + -0x39)))
               goto LAB_1807f4bf6;
               wcstombs(0x180c322e0,0x180c312d0,0x1000);
-              iVar4 = FUN_180772fe0();
+              iVar4 = SystemMemory_Controller();
               if (iVar4 != 0) goto LAB_1807f4bf6;
             }
             unaff_RDI = *(uint64_t *)(unaff_RBP + -0x31);
@@ -463,16 +467,16 @@ LAB_1807f4bf6:
                   uVar1 = *(ushort *)(unaff_RBP + -0x35);
                   if (uVar1 == 0) {
                     wcstombs(0x180c34300,lVar5,0x1000);
-                    iVar3 = FUN_180772fe0();
+                    iVar3 = SystemMemory_Controller();
                   }
                   else if (uVar1 == 2) {
-                    iVar3 = FUN_180772fe0();
+                    iVar3 = SystemMemory_Controller();
                   }
                   else if (uVar1 - 3 < 3) {
-                    iVar3 = FUN_180772fe0();
+                    iVar3 = SystemMemory_Controller();
                   }
                   else {
-                    iVar3 = FUN_180772fe0();
+                    iVar3 = SystemMemory_Controller();
                   }
                   if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
@@ -502,8 +506,8 @@ LAB_1807f4bf6:
 
 
 
-// 函数: void FUN_1807f4c16(void)
-void FUN_1807f4c16(void)
+// 函数: void NetworkSystem_ConnectionHandler(void)
+void NetworkSystem_ConnectionHandler(void)
 
 {
   int64_t unaff_RBP;
@@ -567,7 +571,7 @@ void FUN_1807f4c40(int64_t param_1)
       uStack_58 = 0;
       uStack_60 = 3;
       piStack_68 = (int *)CONCAT44(piStack_68._4_4_,iVar1 + 1);
-      FUN_180772fe0(param_1,1,&rendering_buffer_2136_ptr,auStack_40);
+      SystemMemory_Controller(param_1,1,&rendering_buffer_2136_ptr,auStack_40);
     }
     auStack_40[0] = 0;
     auStack_40[1] = 0;
@@ -584,7 +588,7 @@ void FUN_1807f4c40(int64_t param_1)
         uStack_58 = 0;
         uStack_60 = 3;
         piStack_68 = (int *)CONCAT44(piStack_68._4_4_,iVar1 + 1);
-        FUN_180772fe0(param_1,1,&memory_allocator_3984_ptr,auStack_40);
+        SystemMemory_Controller(param_1,1,&memory_allocator_3984_ptr,auStack_40);
       }
       auStack_40[0] = 0;
       auStack_40[1] = 0;
@@ -601,7 +605,7 @@ void FUN_1807f4c40(int64_t param_1)
           uStack_58 = 0;
           uStack_60 = 3;
           piStack_68 = (int *)CONCAT44(piStack_68._4_4_,iVar1 + 1);
-          FUN_180772fe0(param_1,1,&memory_allocator_3992_ptr,auStack_40);
+          SystemMemory_Controller(param_1,1,&memory_allocator_3992_ptr,auStack_40);
         }
         auStack_40[0] = 0;
         auStack_40[1] = 0;
@@ -618,7 +622,7 @@ void FUN_1807f4c40(int64_t param_1)
             uStack_58 = 0;
             uStack_60 = 3;
             piStack_68 = (int *)CONCAT44(piStack_68._4_4_,iVar1 + 1);
-            FUN_180772fe0(param_1,1,&processed_var_4000_ptr,auStack_40);
+            SystemMemory_Controller(param_1,1,&processed_var_4000_ptr,auStack_40);
           }
           auStack_40[0] = 0;
           auStack_40[1] = 0;
@@ -635,7 +639,7 @@ void FUN_1807f4c40(int64_t param_1)
               uStack_58 = 0;
               uStack_60 = 3;
               piStack_68 = (int *)CONCAT44(piStack_68._4_4_,iVar1 + 1);
-              FUN_180772fe0(param_1,1,&processed_var_4008_ptr,auStack_40);
+              SystemMemory_Controller(param_1,1,&processed_var_4008_ptr,auStack_40);
             }
             if (((char)uStack_24 == '\0') && (uStack_24._1_1_ != '\0')) {
                     // WARNING: Subroutine does not return

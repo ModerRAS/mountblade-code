@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 
 // 99_part_13_part013.c - 5 个函数
 
@@ -37,14 +43,14 @@ uint64_t FUN_1808ac500(int64_t param_1,int64_t param_2,int32_t param_3)
   if ((int)uVar2 == 0) {
     iVar6 = 0;
     aiStack_78[0] = 0;
-    uVar1 = FUN_1808de650(param_1,aiStack_78);
+    uVar1 = SystemCore_EncryptionManager(param_1,aiStack_78);
     if (aiStack_78[0] < 0) {
       uVar2 = 0xd;
     }
     else {
       uVar5 = (int)*(uint *)(param_2 + 0xc) >> 0x1f;
       if ((aiStack_78[0] <= (int)((*(uint *)(param_2 + 0xc) ^ uVar5) - uVar5)) ||
-         (uVar2 = FUN_180747f10(param_2,aiStack_78[0]), (int)uVar2 == 0)) {
+         (uVar2 = RenderingTextureManager0(param_2,aiStack_78[0]), (int)uVar2 == 0)) {
         if (uVar1 != 0x12) {
           if (uVar1 != 0) {
             return (uint64_t)uVar1;
@@ -131,14 +137,14 @@ uint64_t FUN_1808ac52c(void)
   
   iVar6 = 0;
   iStack0000000000000040 = 0;
-  uVar1 = FUN_1808de650();
+  uVar1 = SystemCore_EncryptionManager();
   if (iStack0000000000000040 < 0) {
     uVar2 = 0xd;
   }
   else {
     uVar5 = (int)*(uint *)(unaff_R14 + 0xc) >> 0x1f;
     if ((iStack0000000000000040 <= (int)((*(uint *)(unaff_R14 + 0xc) ^ uVar5) - uVar5)) ||
-       (uVar2 = FUN_180747f10(), (int)uVar2 == 0)) {
+       (uVar2 = RenderingTextureManager0(), (int)uVar2 == 0)) {
       if (uVar1 != 0x12) {
         if (uVar1 != 0) {
           return (uint64_t)uVar1;
@@ -365,24 +371,24 @@ uint64_t FUN_1808ac750(int64_t param_1,int64_t *param_2)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808b0010(param_1,lVar4 + 0x14);
+        uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x14);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808b0010(param_1,lVar4 + 0x18);
+        uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x18);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
         if (*(int *)(lVar4 + 0x18) != 0) {
-          uVar3 = FUN_1808b0010(param_1,lVar4 + 0x1c);
+          uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x1c);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar3 = FUN_1808b0010(param_1,lVar4 + 0x20);
+          uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x20);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar3 = FUN_1808b0010(param_1,lVar4 + 0x24);
+          uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x24);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
@@ -435,24 +441,24 @@ uint64_t FUN_1808ac783(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808b0010();
+      uVar3 = ResourceLoadingManager();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808b0010();
+      uVar3 = ResourceLoadingManager();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
       if (*(int *)(lVar2 + lVar6 + 0x18) != 0) {
-        uVar3 = FUN_1808b0010();
+        uVar3 = ResourceLoadingManager();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808b0010();
+        uVar3 = ResourceLoadingManager();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808b0010();
+        uVar3 = ResourceLoadingManager();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -666,7 +672,7 @@ uint64_t FUN_1808aca30(int64_t param_1,int64_t *param_2)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808b0010(param_1,lVar5 + 0x10);
+        uVar3 = ResourceLoadingManager(param_1,lVar5 + 0x10);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -693,7 +699,7 @@ uint64_t FUN_1808aca30(int64_t param_1,int64_t *param_2)
             if ((int)uVar3 != 0) {
               return uVar3;
             }
-            uVar3 = FUN_1808b0010(param_1,lVar4 + 0x10);
+            uVar3 = ResourceLoadingManager(param_1,lVar4 + 0x10);
             if ((int)uVar3 != 0) {
               return uVar3;
             }
@@ -740,7 +746,7 @@ uint64_t FUN_1808aca66(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      uVar3 = FUN_1808b0010();
+      uVar3 = ResourceLoadingManager();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -766,7 +772,7 @@ uint64_t FUN_1808aca66(void)
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar3 = FUN_1808b0010();
+          uVar3 = ResourceLoadingManager();
           if ((int)uVar3 != 0) {
             return uVar3;
           }

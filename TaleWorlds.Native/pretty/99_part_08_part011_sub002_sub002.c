@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part011_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1804e93e0(int *param_1,float param_2)
@@ -364,7 +372,7 @@ LAB_1804e9887:
   *(char **)(apiStack_3f0[0] + 4) = pcStack_448;
   ppiStack_540 = apiStack_3f0;
   piStack_548 = (int *)0xffffffffffffffff;
-  FUN_18015b810((int)uStack_458,0,uVar31 & 0xffffffff,0x10);
+  SystemCore_DataTransformer((int)uStack_458,0,uVar31 & 0xffffffff,0x10);
   if (0.0 < afStack_528[0]) {
     FUN_1804f1e70(param_1);
     uStack_4e8 = param_1[0x26364c];
@@ -441,7 +449,7 @@ LAB_1804e9887:
     *(int8_t **)(apuStack_3d0[0] + 6) = puStack_4f0;
     ppiStack_540 = apuStack_3d0;
     piStack_548 = (int *)0xffffffffffffffff;
-    FUN_18015b810((int)uStack_508,0,iVar29,0x40);
+    SystemCore_DataTransformer((int)uStack_508,0,iVar29,0x40);
     lVar18 = (int64_t)(int)auStack_4e0._8_4_;
     uVar31 = uVar28;
     if (0 < (int)auStack_4e0._8_4_) {
@@ -483,7 +491,7 @@ LAB_1804e9887:
     piStack_548 = (int *)0xffffffffffffffff;
     uStack_508 = param_1;
     uStack_3a8 = uStack_500;
-    FUN_18015b810(ppiStack_540,0,iVar29,0x10);
+    SystemCore_DataTransformer(ppiStack_540,0,iVar29,0x10);
     if ((char)param_1[0x21ca5b] == '\0') {
       uVar27 = (uint)(*(int64_t *)(param_1 + 0x21ca54) - *(int64_t *)(param_1 + 0x21ca52) >> 3);
     }
@@ -594,7 +602,7 @@ LAB_1804e9faf:
     piStack_548 = (int *)0xffffffffffffffff;
     uStack_508 = param_1;
     uStack_388 = uStack_500;
-    FUN_18015b810(ppiStack_540,0,iVar29,0x10);
+    SystemCore_DataTransformer(ppiStack_540,0,iVar29,0x10);
     if ((system_status_flag == 0) || (system_status_flag == 5)) {
       uVar13 = 1;
     }
@@ -677,7 +685,7 @@ LAB_1804e9faf:
     *(float **)(apuStack_370[0] + 4) = pfStack_4f8;
     ppiStack_540 = apuStack_370;
     piStack_548 = (int *)0xffffffffffffffff;
-    FUN_18015b810((int)uStack_508,0,iVar29,0x10);
+    SystemCore_DataTransformer((int)uStack_508,0,iVar29,0x10);
     if ((char)param_1[0x21ea4f] == '\0') {
       iVar29 = (int)(*(int64_t *)(param_1 + 0x21ea48) - *(int64_t *)(param_1 + 0x21ea46) >> 3);
     }
@@ -698,7 +706,7 @@ LAB_1804e9faf:
     *(float **)(apiStack_350[0] + 4) = pfStack_4f8;
     ppiStack_540 = apiStack_350;
     piStack_548 = (int *)0xffffffffffffffff;
-    FUN_18015b810((int)uStack_508,0,iVar29,0x10);
+    SystemCore_DataTransformer((int)uStack_508,0,iVar29,0x10);
     lVar20 = (int64_t)iStack_4a8;
     lVar26 = lVar18;
     if (0 < iStack_4a8) {
@@ -736,7 +744,7 @@ LAB_1804e9faf:
       piStack_548 = (int *)0xffffffffffffffff;
       uStack_508 = param_1;
       uStack_328 = uStack_500;
-      FUN_18015b810(system_status_flag,0,iVar29,1);
+      SystemCore_DataTransformer(system_status_flag,0,iVar29,1);
       LOCK();
       param_1[0x21ea7c] = 0;
       UNLOCK();
@@ -756,7 +764,7 @@ LAB_1804e9faf:
       piStack_548 = (int *)0xffffffffffffffff;
       uStack_508 = param_1;
       uStack_308 = uStack_500;
-      FUN_18015b810(ppiStack_540,0,iVar16,1);
+      SystemCore_DataTransformer(ppiStack_540,0,iVar16,1);
       ppiStack_518 = (int **)&uStack_2f0;
       uStack_500 = afStack_528;
       puStack_2e0 = &processed_var_6208_ptr;
@@ -773,7 +781,7 @@ LAB_1804e9faf:
       piStack_548 = (int *)0xffffffffffffffff;
       uStack_508 = param_1;
       uStack_2e8 = uStack_500;
-      FUN_18015b810(ppiStack_540,0,iVar16,1);
+      SystemCore_DataTransformer(ppiStack_540,0,iVar16,1);
       ppiStack_518 = apuStack_410;
       uStack_500 = afStack_528;
       pfStack_4f8 = (float *)auStack_51f;
@@ -788,7 +796,7 @@ LAB_1804e9faf:
       *(float **)(apuStack_410[0] + 4) = pfStack_4f8;
       ppiStack_540 = apuStack_410;
       piStack_548 = (int *)0xffffffffffffffff;
-      uVar34 = FUN_18015b810((int)uStack_508,0,iVar29,1);
+      uVar34 = SystemCore_DataTransformer((int)uStack_508,0,iVar29,1);
       piVar24 = param_1 + 0x21eb9c;
       uVar28 = 0;
       if (0 < *piVar24) {
@@ -812,14 +820,14 @@ LAB_1804e9faf:
       ppiStack_540 = apiStack_2d0;
       piStack_548 = (int *)0xffffffffffffffff;
       apiStack_2d0[0] = param_1;
-      uVar34 = FUN_18015b810(uVar34,0,param_1[0x21ea7c],1);
+      uVar34 = SystemCore_DataTransformer(uVar34,0,param_1[0x21ea7c],1);
       ppiStack_518 = apiStack_2b0;
       puStack_2a0 = &processed_var_5648_ptr;
       pcStack_298 = FUN_180502cf0;
       ppiStack_540 = apiStack_2b0;
       piStack_548 = (int *)0xffffffffffffffff;
       apiStack_2b0[0] = param_1;
-      FUN_18015b810(uVar34,0,iVar29,2);
+      SystemCore_DataTransformer(uVar34,0,iVar29,2);
       iVar29 = *piVar24;
       uStack_500 = (float *)CONCAT44(uStack_500._4_4_,iVar29);
       uVar17 = uStack_500;
@@ -942,7 +950,7 @@ LAB_1804e9faf:
         }
       }
       plStack_4b8 = alStack_1a0;
-      SystemDataValidator(alStack_1a0,0x30,4,FUN_18004a130);
+      SystemDataValidator(alStack_1a0,0x30,4,SystemCore_MemoryManager);
       pplStack_488 = (int64_t **)0x0;
       while( true ) {
         cVar14 = FUN_1805012c0(param_1 + 0x263576,&pplStack_488);
@@ -961,7 +969,7 @@ LAB_1804e9faf:
       uStack_42c = uVar12;
       uStack_508 = param_1;
       uStack_428 = uStack_500;
-      plVar21 = (int64_t *)FUN_18006b640(uVar17,&uStack_430);
+      plVar21 = (int64_t *)SystemCore_ErrorHandler(uVar17,&uStack_430);
       plStack_278 = plVar21;
       if (plVar21 != (int64_t *)0x0) {
         (**(code **)(*plVar21 + 0x28))(plVar21);
@@ -972,7 +980,7 @@ LAB_1804e9faf:
       if (plVar21 != (int64_t *)0x0) {
         (**(code **)(*plVar21 + 0x28))(plVar21);
       }
-      FUN_18005e110(uVar17,&plStack_4b8);
+      SystemCore_TimerManager(uVar17,&plStack_4b8);
       lVar26 = *(int64_t *)(*(int64_t *)(param_1 + 6) + 0x260);
       plStack_478 = plVar21;
       if (plVar21 != (int64_t *)0x0) {
@@ -1074,7 +1082,7 @@ LAB_1804e9faf:
             }
             else {
               if ((*(char *)(lVar18 + 0x20) == '\0') || (plVar7[4] == 0)) {
-                FUN_1802ee720(plVar7,0);
+                RenderingSystem_UpdateCamera(plVar7,0);
               }
               else {
                 uVar17 = *(uint64_t *)(*(int64_t *)(lVar18 + 0x10) + 0x18);

@@ -1,4 +1,8 @@
-#include "FUN_1806d7170_definition.h"
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part042.c - 14 个函数
@@ -19,7 +23,7 @@ void FUN_1806c21de(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   int in_stack_00000050;
   char *in_stack_00000068;
   
-  FUN_1806d7000();
+  MemoryPoolManager0();
   in_stack_00000050 = 0x16c;
   piVar7 = &stack0x00000050;
   if ((int *)unaff_RBX[0xb] != (int *)0x0) {
@@ -27,7 +31,7 @@ void FUN_1806c21de(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   }
   lVar8 = *param_4;
   while (lVar8 != 0) {
-    FUN_1806d7000();
+    MemoryPoolManager0();
     lVar8 = param_4[1];
     in_stack_00000068 = (char *)0x0;
     if ((char)unaff_RBX[9] != '\0') {
@@ -116,7 +120,7 @@ void FUN_1806c221f(void)
   char *in_stack_00000068;
   
   do {
-    FUN_1806d7000();
+    MemoryPoolManager0();
     lVar6 = unaff_RDI[1];
     cVar7 = (char)unaff_R15;
     in_stack_00000068 = unaff_R15;
@@ -285,10 +289,10 @@ void FUN_1806c2390(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   int32_t uStack_2c;
   int64_t lStack_28;
   
-  FUN_1806d7000(param_1,*param_3);
+  MemoryPoolManager0(param_1,*param_3);
   lVar6 = *param_4;
   while (lVar6 != 0) {
-    FUN_1806d7000(param_1,lVar6);
+    MemoryPoolManager0(param_1,lVar6);
     lVar6 = param_4[1];
     cVar2 = FUN_1806d56e0(param_1);
     if (cVar2 != '\0') {
@@ -395,10 +399,10 @@ void FUN_1806c23a3(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   
   *(uint64_t *)(in_RAX + 0x18) = unaff_RDI;
   *(uint64_t *)(in_RAX + -0x18) = unaff_R14;
-  uVar7 = FUN_1806d7000();
+  uVar7 = MemoryPoolManager0();
   lVar6 = *param_4;
   while (lVar6 != 0) {
-    FUN_1806d7000(uVar7,lVar6);
+    MemoryPoolManager0(uVar7,lVar6);
     lVar6 = param_4[1];
     cVar2 = FUN_1806d56e0();
     uVar7 = extraout_XMM0_Da;
@@ -504,7 +508,7 @@ void FUN_1806c23c5(int32_t param_1)
   int64_t in_stack_00000080;
   
   do {
-    FUN_1806d7000(param_1,in_RAX);
+    MemoryPoolManager0(param_1,in_RAX);
     uVar1 = *(int32_t *)(unaff_RDI + 8);
     cVar2 = FUN_1806d56e0();
     param_1 = extraout_XMM0_Da;

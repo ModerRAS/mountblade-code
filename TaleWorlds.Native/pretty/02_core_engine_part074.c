@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part074.c - 1 个函数
@@ -427,10 +431,10 @@ LAB_1801080f5:
   lVar3 = param_1 + 0x460;
   (**(code **)(*(int64_t *)(param_1 + 0x4a0) + 0x10))((int64_t *)(param_1 + 0x4a0),&processed_var_520_ptr)
   ;
-  uVar5 = FUN_180628ca0();
-  FUN_18005c8a0(lVar3,uVar5);
-  uVar5 = FUN_180628ca0();
-  FUN_1800b0680(lVar3,uVar5);
+  uVar5 = MemoryDebugger0();
+  SystemCore_MemoryManager(lVar3,uVar5);
+  uVar5 = MemoryDebugger0();
+  SystemCore_DataHandler(lVar3,uVar5);
   uStackX_8 = (int32_t *)lVar3;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   *(int32_t *)(param_1 + 0x88) = 1;

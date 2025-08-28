@@ -579,7 +579,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_array_a8[0][7] = stack_val_f0._4_4_;
     
     // 执行批处理提交
-    FUN_18015b810((uint32_t)stack_val108, 0, long_val2 >> 2 & 0xffffffff, RENDER_RESOURCE_POOL_SIZE, 0xffffffffffffffff, stack_array_a8);
+    SystemCore_DataTransformer((uint32_t)stack_val108, 0, long_val2 >> 2 & 0xffffffff, RENDER_RESOURCE_POOL_SIZE, 0xffffffffffffffff, stack_array_a8);
     
     // 清理批处理资源
     if (stack_val140 != (void**)0x0) {
@@ -613,7 +613,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_array88[0][7] = stack_val128._4_4_;
     
     // 提交第二轮批处理
-    FUN_18015b810((uint32_t)stack_val140, 0, long_val2 >> 2 & 0xffffffff, RENDER_RESOURCE_POOL_SIZE, 0xffffffffffffffff, stack_array88);
+    SystemCore_DataTransformer((uint32_t)stack_val140, 0, long_val2 >> 2 & 0xffffffff, RENDER_RESOURCE_POOL_SIZE, 0xffffffffffffffff, stack_array88);
     
     // 清理第二轮批处理资源
     if (stack_val_e8 != 0) {
@@ -822,7 +822,7 @@ LAB_180324489:
                 __Throw_C_error_std__YAXH_Z(int_val2);
             }
             if (long_val2 != 0) {
-                FUN_1802ee720(long_val2, 0);
+                RenderingSystem_UpdateCamera(long_val2, 0);
             }
             int_val = int_val + 1;
             long_val5 = long_val5 + 4;

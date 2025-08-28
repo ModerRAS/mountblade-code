@@ -1,3 +1,7 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "SystemDataAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -244,7 +248,7 @@ void FUN_1802a8080(int64_t param_1,int64_t *param_2,int param_3)
   iVar3 = (int)(iVar3 + (iVar3 >> 0x1f & 7U)) >> 3;
   if (param_3 == 1) {
     uVar5 = FUN_18062c100(&puStack_268,param_1);
-    FUN_18062c1e0(uVar5,1);
+    ResourceManager_Allocate(uVar5,1);
     puStack_268 = &system_data_buffer_ptr;
     if (puStack_260 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -275,7 +279,7 @@ void FUN_1802a8080(int64_t param_1,int64_t *param_2,int param_3)
     if (param_3 != 2) {
       if (param_3 == 3) {
         uVar5 = FUN_18062c100(&puStack_268,param_1);
-        FUN_18062c1e0(uVar5,1);
+        ResourceManager_Allocate(uVar5,1);
         puStack_268 = &system_data_buffer_ptr;
         if (puStack_260 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -359,7 +363,7 @@ void FUN_1802a83f0(uint64_t param_1,uint64_t param_2)
   uStack_298 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_318;
   uVar10 = 0;
-  uVar4 = FUN_180624440(apuStack_268,param_1);
+  uVar4 = SystemCore_EncryptionEngine(apuStack_268,param_1);
   SystemCore_EncryptionEngine0(&puStack_2c0,uVar4);
   apuStack_268[0] = &system_state_ptr;
   uVar4 = FUN_180627490(apuStack_290,&puStack_2c0);
@@ -749,7 +753,7 @@ LAB_1802a8ef5:
         puVar8 = *(void **)(param_1 + 8);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,puVar7,puVar8,uVar4);
+      SystemParameterHandler(system_message_context,puVar7,puVar8,uVar4);
     }
   }
   else {
@@ -782,7 +786,7 @@ LAB_1802a8f12:
         puVar7 = *(void **)(param_1 + 8);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&memory_allocator_3384_ptr,puVar7);
+      SystemParameterHandler(system_message_context,&memory_allocator_3384_ptr,puVar7);
     }
     plStack_2b8 = alStack_288;
     if (alStack_288[0] != 0) {
@@ -797,7 +801,7 @@ LAB_1802a8f12:
       puStack_2d0 = *(void **)(param_1 + 8);
     }
     puStack_2d8 = &memory_allocator_3280_ptr;
-    FUN_1800623b0(system_message_context,0,0x10000000000,8);
+    SystemConfigurationManager(system_message_context,0,0x10000000000,8);
     uVar1 = *(uint *)(param_3 + 0x54);
     if ((uVar1 < 0xe) || ((0x12 < uVar1 && (2 < uVar1 - 0x14)))) {
       if (system_data_8daa == '\0') {

@@ -79,11 +79,11 @@
 #define parameter_calculator FUN_1807c4087
 #define data_validator FUN_1807c4100
 #define data_multiplier FUN_1807c4170
-#define data_handler FUN_1807c41d0
+#define data_handler RenderingSystem_CoreProcessor0
 #define data_incrementer FUN_1807c4200
 #define data_processor_advanced FUN_1807c4260
 #define xml_parser FUN_1807c4340
-#define config_parser FUN_1807c44f0
+#define config_parser SystemCore_MemoryManager0
 #define line_processor FUN_1807c4570
 #define empty_function_1 FUN_1807c4771
 #define line_end_checker FUN_1807c4780

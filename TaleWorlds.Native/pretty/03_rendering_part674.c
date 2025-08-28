@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -175,7 +179,7 @@ uint64_t FUN_180650b30(int64_t param_1, int64_t param_2, int64_t param_3)
   // 处理数组索引和数据访问
   if ((int)uVar7 < (int)uVar5) {
     // 扩展数组大小
-    uVar9 = FUN_180747f10(param_1 + 8, uVar5);
+    uVar9 = RenderingTextureManager0(param_1 + 8, uVar5);
     if ((int)uVar9 == 0) {
       return 0x26;  // 内存分配失败
     }

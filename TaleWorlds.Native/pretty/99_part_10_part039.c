@@ -1,4 +1,4 @@
-#include "FUN_1806d7170_definition.h"
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part039.c - 19 个函数
@@ -498,7 +498,7 @@ void FUN_1806c10d0(int64_t *param_1,uint64_t *param_2)
   }
   puVar5 = (uint64_t *)param_1[3];
   plVar6 = (int64_t *)param_1[1];
-  FUN_1806d3300(puVar5,uVar10);
+  SystemCore_CleanupManager(puVar5,uVar10);
   auStackX_8[0] = 0;
   (**(code **)*puVar5)(puVar5,auStackX_8,1);
   (**(code **)(*plVar6 + 0x10))(plVar6,puVar9,puVar5[4]);
@@ -1033,7 +1033,7 @@ void FUN_1806c1670(int64_t *param_1,uint64_t param_2)
     puVar6 = *(void **)
               (*(int64_t *)(lVar1 + 8) + (uint64_t)(*(int *)(lVar1 + 0x10) - 1) * 0x10);
   }
-  FUN_1806d3300(puVar3,uVar7);
+  SystemCore_CleanupManager(puVar3,uVar7);
   auStackX_8[0] = 0;
   (**(code **)*puVar3)(puVar3,auStackX_8,1);
   (**(code **)(*plVar2 + 0x10))(plVar2,puVar6,puVar3[4]);

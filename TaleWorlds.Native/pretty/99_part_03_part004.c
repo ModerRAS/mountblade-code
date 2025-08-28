@@ -643,7 +643,7 @@ void FUN_1801c8840(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t *p
   puStack_c0 = (void *)0x0;
   uStack_b8 = 0;
   iVar5 = FUN_1801d9b10(uVar8,&puStack_a8,&puStack_c8);
-  FUN_180629a40(&puStack_a8,&puStack_80,iVar5,iVar5 + 2);
+  NetworkSystem_ProtocolParser(&puStack_a8,&puStack_80,iVar5,iVar5 + 2);
   if (iStack_70 == 2) {
     if (((*pcStack_78 == 'v') && (pcStack_78[1] == 's')) && (pcStack_78[2] == '\0')) {
       *param_4 = 0;
@@ -669,7 +669,7 @@ void FUN_1801c8840(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t *p
     uStack_50 = 0;
     uStack_48 = 3;
     if (lStack_a0 != 0) {
-      FUN_180057980(&puStack_a8,&puStack_60,&system_flag_ccb0);
+      CoreSystem_DataCollector(&puStack_a8,&puStack_60,&system_flag_ccb0);
     }
     puVar4 = puStack_58;
     puVar3 = puStack_60;

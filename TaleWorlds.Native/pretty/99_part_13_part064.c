@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -40,17 +41,17 @@ void FUN_1808d3d30(int64_t *param_1,uint64_t *param_2)
   cVar2 = func_0x0001808d2c80(param_2,lVar4);
   if (cVar2 == '\0') goto LAB_1808d3e51;
   if (*(int *)(param_1[0x14] + 0x44) == 0) {
-    iVar3 = FUN_1808b2f30(param_1 + 9,0xc);
+    iVar3 = SystemDataFlowProcessor(param_1 + 9,0xc);
 joined_r0x0001808d3e0e:
     if (iVar3 != 0) goto LAB_1808d3e51;
   }
   else if (*(int *)(param_1[0x14] + 0x44) == 1) {
-    iVar3 = FUN_1808b2f30(param_1 + 9,0xd);
+    iVar3 = SystemDataFlowProcessor(param_1 + 9,0xd);
     goto joined_r0x0001808d3e0e;
   }
-  iVar3 = FUN_1808b2f30(param_1 + 9,0x1b);
-  if (((iVar3 == 0) && (iVar3 = FUN_1808b2f30(param_1 + 9,0xb), iVar3 == 0)) &&
-     (iVar3 = FUN_1808b2f30(param_1 + 9,0x1c), iVar3 == 0)) {
+  iVar3 = SystemDataFlowProcessor(param_1 + 9,0x1b);
+  if (((iVar3 == 0) && (iVar3 = SystemDataFlowProcessor(param_1 + 9,0xb), iVar3 == 0)) &&
+     (iVar3 = SystemDataFlowProcessor(param_1 + 9,0x1c), iVar3 == 0)) {
     (**(code **)(*param_1 + 0x30))(param_1);
   }
 LAB_1808d3e51:
@@ -845,45 +846,45 @@ uint64_t FUN_1808d4ea0(int64_t param_1)
   *(int32_t *)(param_1 + 0x68) = 4;
   iVar1 = *(int *)(*(int64_t *)(param_1 + 0x98) + 0x44);
   if (iVar1 == 0) {
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0xe);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0xe);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0xf);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0xf);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x10);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x10);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x11);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x11);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
   }
   else if (iVar1 == 1) {
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x12);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x12);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x13);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x13);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x14);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x14);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    uVar2 = FUN_1808b2f30(param_1 + 0x48,0x15);
+    uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x15);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
   }
-  uVar2 = FUN_1808b2f30(param_1 + 0x48,0x17);
-  if (((((int)uVar2 == 0) && (uVar2 = FUN_1808b2f30(param_1 + 0x48,0x18), (int)uVar2 == 0)) &&
-      (uVar2 = FUN_1808b2f30(param_1 + 0x48,0x19), (int)uVar2 == 0)) &&
-     (uVar2 = FUN_1808b2f30(param_1 + 0x48,0x1a), (int)uVar2 == 0)) {
+  uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x17);
+  if (((((int)uVar2 == 0) && (uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x18), (int)uVar2 == 0)) &&
+      (uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x19), (int)uVar2 == 0)) &&
+     (uVar2 = SystemDataFlowProcessor(param_1 + 0x48,0x1a), (int)uVar2 == 0)) {
     uVar3 = func_0x0001808d3880(param_1);
     *(int32_t *)(param_1 + 0xd4) = *(int32_t *)(param_1 + 0xb0);
     *(int32_t *)(param_1 + 0xc0) = uVar3;

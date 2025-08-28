@@ -80,7 +80,7 @@ uint64_t FUN_18055d960(int64_t param_1,int param_2,uint64_t param_3,int32_t *par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18055db10(int64_t param_1,int param_2,int param_3,int32_t param_4,
+uint64_t UtilitiesSystem_RenderHelper(int64_t param_1,int param_2,int param_3,int32_t param_4,
                        uint64_t param_5,char param_6)
 
 {

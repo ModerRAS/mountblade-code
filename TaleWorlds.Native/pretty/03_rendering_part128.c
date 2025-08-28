@@ -563,7 +563,7 @@ void FUN_180343a00(uint64_t param_1,int64_t param_2,uint64_t param_3)
     puVar2 = puStack_b8;
   }
   uStack_b0 = iVar4;
-  FUN_18062dee0(&uStack_a0,puVar2,&system_data_c7ec);
+  SystemCore_Validator(&uStack_a0,puVar2,&system_data_c7ec);
   lVar5 = lStack_98;
   puVar2 = &system_buffer_ptr;
   if (puStack_80 != (void *)0x0) {
@@ -685,7 +685,7 @@ void FUN_180343c70(uint64_t param_1,int64_t param_2,uint64_t param_3)
     puVar3 = puStack_b8;
   }
   uStack_b0 = iVar5;
-  FUN_18062dee0(&uStack_a0,puVar3,&system_data_c7ec);
+  SystemCore_Validator(&uStack_a0,puVar3,&system_data_c7ec);
   lVar6 = lStack_98;
   puVar3 = &system_buffer_ptr;
   if (puStack_80 != (void *)0x0) {

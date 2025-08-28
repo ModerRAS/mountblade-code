@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part153.c - 14 个函数
 
 // 函数: void FUN_18013baf0(int64_t param_1)
@@ -56,7 +60,7 @@ void FUN_18013baf0(int64_t param_1)
      (*(int64_t *)(lVar12 + 0x3a0) != *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b10) + 0x3a0)
      )) goto LAB_18013bf0b;
   uVar17 = 1;
-  cVar9 = FUN_180128040(&uStack_2c8,&uStack_2c0);
+  cVar9 = SystemCore_HashCalculator(&uStack_2c8,&uStack_2c0);
   if ((cVar9 == '\0') ||
      ((iVar10 == *(int *)(lVar15 + 0x1dec) || (*(char *)(lVar12 + 0xb4) != '\0'))))
   goto LAB_18013bf0b;
@@ -96,7 +100,7 @@ LAB_18013bc7c:
         uStack_2c0 = *(uint64_t *)(lVar13 + 0x30);
       }
       if ((*(char *)(lVar15 + 0xc1) == '\0') &&
-         (cVar9 = FUN_180128040(&uStack_2c8,&uStack_2c0,1), cVar9 == '\0')) {
+         (cVar9 = SystemCore_HashCalculator(&uStack_2c8,&uStack_2c0,1), cVar9 == '\0')) {
         uVar17 = 0;
       }
       else {

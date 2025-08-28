@@ -1,3 +1,8 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -68,7 +73,7 @@ void FUN_1807afd30(int64_t param_1,uint param_2,int64_t param_3)
   }
   if (*(int64_t *)(param_1 + 0x178) == 0) {
     uStack_f8 = 0;
-    iVar5 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_98,1);
+    iVar5 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_98,1);
     if ((((((iVar5 != 0) || (iVar5 = func_0x00018076b6b0(auStack_98,&processed_var_9944_ptr,4), iVar5 == 0))
           || (iVar5 = func_0x00018076b6b0(auStack_98,&processed_var_9952_ptr), iVar5 != 0)) ||
          (((iStack_94 == 0 || (iStack_94 != 1)) ||
@@ -154,7 +159,7 @@ LAB_1807b009b:
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar14,&processed_var_9968_ptr,0x280);
           }
           uStack_f8 = 0;
-          iVar6 = FUN_180769ed0(uVar7,lVar10,1,iStack_88);
+          iVar6 = SystemPerformanceOptimizer(uVar7,lVar10,1,iStack_88);
           if (iVar6 != 0) goto LAB_1807b009b;
           *(int64_t *)(lVar11 + 0x48) = lVar10;
         }
@@ -329,7 +334,7 @@ FUN_1807b04d0(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
                                  in_stack_ffffffffffffff48 & 0xffffffff00000000,0,1);
   if (puVar7 != (uint *)0x0) {
     uVar17 = 0;
-    uVar8 = FUN_180769ed0(param_1,puVar7,1,*(int32_t *)(param_2 + 0xc),0);
+    uVar8 = SystemPerformanceOptimizer(param_1,puVar7,1,*(int32_t *)(param_2 + 0xc),0);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
@@ -547,7 +552,7 @@ uint64_t FUN_1807b0830(int64_t param_1,uint64_t param_2,int param_3,int32_t para
   uVar2 = FUN_1807afa40(param_1,param_2,0,aiStack_18);
   if ((int)uVar2 == 0) {
     if (*(int64_t *)(param_1 + 0x120) == 0) {
-      uVar2 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),aiStack_18[0] + param_3,0);
+      uVar2 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),aiStack_18[0] + param_3,0);
       iVar1 = (int)uVar2;
     }
     else {
@@ -697,7 +702,7 @@ void FUN_1807b0f30(int64_t param_1,int64_t param_2,int *param_3,int *param_4)
   
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
   lStack_80 = 0;
-  iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_88,1,2,0);
+  iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_88,1,2,0);
   if (iVar1 == 0) {
     uVar4 = (uint)auStack_88[0];
     iVar1 = (**(code **)(**(int64_t **)(param_1 + 0x170) + 0x18))
@@ -849,18 +854,18 @@ void FUN_1807b1350(int64_t param_1,uint64_t param_2,uint param_3)
     iVar1 = *(int *)(param_1 + 0x110);
     uVar6 = 0;
   }
-  FUN_18076a440(*(uint64_t *)(param_1 + 0x170),iVar1,0);
+  MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),iVar1,0);
   uVar8 = 0;
   while( true ) {
     uStack_64 = 0;
     uStack_78 = 0;
-    iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_68,1);
+    iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),auStack_68,1);
     if (iVar1 != 0) break;
     uVar9 = (uint)auStack_68[0];
     uStack_78 = 0;
-    iVar1 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),&uStack_64,1);
+    iVar1 = SystemPerformanceOptimizer(*(uint64_t *)(param_1 + 0x170),&uStack_64,1);
     if ((iVar1 != 0) ||
-       (iVar1 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),uVar9 - 4,1), iVar1 != 0)) break;
+       (iVar1 = MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),uVar9 - 4,1), iVar1 != 0)) break;
     func_0x00018080b970(auStack_60,&uStack_64,4);
     uVar5 = FUN_18080c770(param_1 + 0x178,auStack_60);
     iVar1 = (int)uVar5;
@@ -878,7 +883,7 @@ void FUN_1807b1350(int64_t param_1,uint64_t param_2,uint param_3)
           iVar1 = 0;
         }
         iVar1 = (int)uVar6 - iVar1;
-        FUN_18076a440(*(uint64_t *)(param_1 + 0x170),-2 - uVar9,1);
+        MathTrigonometryFunction0(*(uint64_t *)(param_1 + 0x170),-2 - uVar9,1);
         goto joined_r0x0001807b1542;
       }
       func_0x00018080b970(auStack_60,&uStack_64,4);

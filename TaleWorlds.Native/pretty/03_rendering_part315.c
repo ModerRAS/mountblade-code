@@ -612,7 +612,7 @@ void FUN_18043475a(void)
       puVar54[8] = (uint)fVar22;
       *puVar54 = 0;
       if (bVar49) {
-        FUN_1802feba0();
+        RenderingSystem_DrawPrimitive();
       }
       lVar55 = lVar55 + 1;
       pfVar52 = pfVar52 + 4;
@@ -738,7 +738,7 @@ void FUN_180434f18(void)
       puVar17[8] = uVar9;
       *puVar17 = 0;
       if (bVar14) {
-        FUN_1802feba0();
+        RenderingSystem_DrawPrimitive();
       }
       lVar18 = lVar18 + 1;
       puVar19 = puVar19 + 2;
@@ -859,7 +859,7 @@ void FUN_180434f39(void)
       puVar17[8] = uVar10;
       *puVar17 = 0;
       if (lVar4 != 0) {
-        FUN_1802feba0();
+        RenderingSystem_DrawPrimitive();
       }
       lVar18 = lVar18 + 1;
       puVar19 = puVar19 + 2;

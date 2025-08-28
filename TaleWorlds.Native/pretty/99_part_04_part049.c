@@ -1,5 +1,14 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_04_part049.c - 6 个函数
 
@@ -175,7 +184,7 @@ LAB_1802b515c:
       puVar14 = *(void **)(unaff_RSI + 0x50);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5104_ptr,puVar14,puVar17);
+    SystemParameterHandler(system_message_context,&processed_var_5104_ptr,puVar14,puVar17);
   }
   pcVar10 = "emitters";
   do {
@@ -882,7 +891,7 @@ LAB_1802b5635:
     uStack_100 = (uint)auVar1[0xf];
     uStack_138 = (uint)auVar1[8];
     uStack_140 = (uint)auVar1._6_2_;
-    FUN_180626eb0(auStack_68,0x28,&processed_var_6672_ptr);
+    SystemCore_CacheManager(auStack_68,0x28,&processed_var_6672_ptr);
     (**(code **)(puStack_c8 + 0x18))(&puStack_c8,auStack_68,0x26);
     param_2 = lStack_f0;
     puVar11 = &system_buffer_ptr;
@@ -924,7 +933,7 @@ LAB_1802b58d6:
     uStack_100 = (uint)auVar1[0xf];
     uStack_138 = (uint)auVar1[8];
     uStack_140 = (uint)auVar1._6_2_;
-    FUN_180626eb0(auStack_68,0x28,&processed_var_6672_ptr);
+    SystemCore_CacheManager(auStack_68,0x28,&processed_var_6672_ptr);
     (**(code **)(puStack_c8 + 0x18))(&puStack_c8,auStack_68,0x26);
     puVar5 = puStack_e0;
     puVar11 = &system_buffer_ptr;
@@ -983,7 +992,7 @@ uint64_t * FUN_1802b5ac0(int64_t *param_1,uint64_t *param_2)
     }
   }
   else if ((int)param_1[0xe] == 2) {
-    FUN_180056f10(plVar3 + 0xd,param_1);
+    SystemCore_PointerManager(plVar3 + 0xd,param_1);
   }
   else {
     FUN_180080810(plVar3 + 0xd,param_1 + 0xd);

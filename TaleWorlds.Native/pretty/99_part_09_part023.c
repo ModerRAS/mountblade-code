@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -53,7 +54,7 @@ void FUN_1805c8252(void)
     else {
       bVar1 = *(byte *)((int64_t)unaff_RBX + 0x11c);
     }
-    if ((bVar1 != 0) && (pfVar3 = (float *)FUN_1805b6e50(unaff_RBX + 1), 2.0 < *pfVar3)) {
+    if ((bVar1 != 0) && (pfVar3 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1), 2.0 < *pfVar3)) {
       unaff_XMM6_Da = unaff_XMM6_Da * 1.25;
     }
     unaff_XMM8_Da = (unaff_XMM13_Da / (unaff_XMM6_Da + unaff_XMM11_Da)) * unaff_XMM7_Da;
@@ -102,7 +103,7 @@ LAB_1805c855d:
     *(uint *)(unaff_RBX + 0x272) = uVar4;
   }
   else {
-    pfVar3 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar3 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     uVar4 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
     if (unaff_XMM13_Da <= *pfVar3) {
       uVar4 = uVar4 >> 0x11 ^ uVar4;
@@ -200,7 +201,7 @@ void FUN_1805c8278(void)
     else {
       bVar1 = *(byte *)((int64_t)unaff_RBX + 0x11c);
     }
-    if ((bVar1 != 0) && (pfVar3 = (float *)FUN_1805b6e50(unaff_RBX + 1), 2.0 < *pfVar3)) {
+    if ((bVar1 != 0) && (pfVar3 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1), 2.0 < *pfVar3)) {
       unaff_XMM6_Da = unaff_XMM6_Da * 1.25;
     }
     unaff_XMM8_Da = (unaff_XMM13_Da / (unaff_XMM6_Da + unaff_XMM11_Da)) * unaff_XMM7_Da;
@@ -249,7 +250,7 @@ LAB_1805c855d:
     *(uint *)(unaff_RBX + 0x272) = uVar4;
   }
   else {
-    pfVar3 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar3 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     uVar4 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
     if (unaff_XMM13_Da <= *pfVar3) {
       uVar4 = uVar4 >> 0x11 ^ uVar4;
@@ -360,7 +361,7 @@ LAB_1805c855d:
     *(uint *)(unaff_RBX + 0x272) = uVar2;
   }
   else {
-    pfVar1 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar1 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     uVar2 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
     if (unaff_XMM13_Da <= *pfVar1) {
       uVar2 = uVar2 >> 0x11 ^ uVar2;

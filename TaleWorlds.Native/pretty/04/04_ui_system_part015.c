@@ -39,8 +39,8 @@
 
 // 函数别名定义
 #define ui_system_advanced_particle_system_update FUN_18065aad0
-#define ui_system_get_particle_data FUN_18022a890
-#define ui_system_apply_transform FUN_1801aa0f0
+#define ui_system_get_particle_data CoreSystem_AuthenticationHandler0
+#define ui_system_apply_transform PhysicsSystem_JointManager
 #define ui_system_execute_particle_effect AdvancedSystemController
 #define ui_system_cleanup_particle_resources SystemSecurityChecker
 

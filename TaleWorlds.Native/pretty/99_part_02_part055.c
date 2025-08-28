@@ -1,10 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 99_part_02_part055.c - 9 个函数
 
-// 函数: void FUN_1801c0d90(int64_t param_1)
-void FUN_1801c0d90(int64_t param_1)
+// 函数: void UtilitiesSystem_CacheManager(int64_t param_1)
+void UtilitiesSystem_CacheManager(int64_t param_1)
 
 {
   if (*(short *)(param_1 + 0x2b2) != *(short *)(param_1 + 0x2b6)) {
@@ -14,14 +15,14 @@ void FUN_1801c0d90(int64_t param_1)
           FUN_1802e7e20();
         }
         else {
-          FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
+          UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,
                         param_1 + 0x70);
         }
         *(int16_t *)(param_1 + 0x2b0) = *(int16_t *)(param_1 + 0x2b4);
       }
       return;
     }
-    FUN_18063ad30(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70)
+    UltraHighFreq_DataProcessor1(*(int64_t *)(param_1 + 0x28),*(int64_t *)(param_1 + 0x28) + 0xf8,param_1 + 0x70)
     ;
     *(int16_t *)(param_1 + 0x2b6) = *(int16_t *)(param_1 + 0x2b2);
   }
@@ -133,7 +134,7 @@ void FUN_1801c0f9b(void)
 
 
 
-float * FUN_1801c0fb0(float *param_1,float *param_2,float *param_3)
+float * SystemFileHandler(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -171,7 +172,7 @@ float * FUN_1801c0fb0(float *param_1,float *param_2,float *param_3)
 
 
 
-float * FUN_1801c10f0(int64_t param_1,float *param_2)
+float * UltraHighFreq_ConfigManager1(int64_t param_1,float *param_2)
 
 {
   float fVar1;
@@ -181,7 +182,7 @@ float * FUN_1801c10f0(int64_t param_1,float *param_2)
   float *pfVar5;
   int8_t auStack_18 [24];
   
-  pfVar5 = (float *)FUN_1801c0fb0(param_1,auStack_18);
+  pfVar5 = (float *)SystemFileHandler(param_1,auStack_18);
   fVar1 = *(float *)(param_1 + 0x14);
   param_2[3] = 3.4028235e+38;
   fVar2 = pfVar5[1];
@@ -303,7 +304,7 @@ float * FUN_1801c13c0(int32_t *param_1,float *param_2,float *param_3)
   uStack_8c = 0;
   uStack_7c = 0;
   uStack_6c = 0;
-  FUN_180084760(&uStack_98,&fStack_58);
+  SystemCore_PerformanceMonitor(&uStack_98,&fStack_58);
   fVar1 = param_3[2];
   fVar2 = *param_3;
   fVar3 = param_3[1];
@@ -589,7 +590,7 @@ void FUN_1801c1880(void *param_1,int64_t param_2,uint64_t param_3,int8_t *param_
   if (plStack_b0 != (int64_t *)0x0) {
     (**(code **)(*plStack_b0 + 0x28))();
   }
-  lVar2 = FUN_180299eb0(uVar1,0,&puStack_90,auStack_118);
+  lVar2 = UIRenderingEngine(uVar1,0,&puStack_90,auStack_118);
   if ((param_4 != (int8_t *)0x0) && (lVar2 == 0)) {
     *param_4 = 0;
   }
@@ -622,7 +623,7 @@ FUN_1801c1aa0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_6552_ptr;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0xe8,param_3,param_4,uVar1);
   }

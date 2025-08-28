@@ -893,7 +893,7 @@ int8_t FUN_180532232(void)
 
 
 
-uint64_t FUN_180532320(int64_t param_1)
+uint64_t InitializationSystem_ConfigManager(int64_t param_1)
 
 {
   int iVar1;

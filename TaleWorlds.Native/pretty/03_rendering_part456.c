@@ -68,7 +68,7 @@ void FUN_180513335(float param_1)
   fVar26 = unaff_R15[2];
   unaff_RBP[0x17] = 3.4028235e+38;
   unaff_RBP[0x16] = unaff_XMM6_Da + fVar26;
-  FUN_180534930();
+  SystemCore_CleanupHandler0();
   fVar26 = *(float *)(*(int64_t *)(unaff_RDI + 0x6d8) + 0x8c0);
   fVar24 = unaff_RBP[-10] - unaff_XMM6_Da / fVar26;
   fVar24 = SQRT(fVar24 * fVar24 -
@@ -127,7 +127,7 @@ void FUN_180513335(float param_1)
   unaff_RBP[0x31] = fVar19;
   unaff_RBP[0x32] = fVar28;
   unaff_RBP[0x33] = fVar21;
-  FUN_18063b5f0(unaff_RBP + 0x34,unaff_RBP + 0x2c);
+  SystemSecurityManager(unaff_RBP + 0x34,unaff_RBP + 0x2c);
   fVar25 = unaff_RBP[0x3c];
   fVar29 = unaff_RBP[0x3d];
   fVar30 = unaff_RBP[0x38];
@@ -356,7 +356,7 @@ void FUN_180513335(float param_1)
            fVar17 * fVar26 * *(float *)(unaff_RDI + 0x530) +
            fVar17 * fVar24 * *(float *)(unaff_RDI + 0x520);
       unaff_RBP[-0x11] = fVar17 * fVar26 * fVar18 + fVar17 * fVar24 * fVar27;
-      pfVar7 = (float *)FUN_180534b00(unaff_RBP + -0x1e,unaff_RBP + 0x44,unaff_RBP + -0x12,fVar35);
+      pfVar7 = (float *)SystemCore_ConfigManager(unaff_RBP + -0x1e,unaff_RBP + 0x44,unaff_RBP + -0x12,fVar35);
       fVar26 = pfVar7[1];
       fVar24 = pfVar7[2];
       fVar27 = pfVar7[3];
@@ -364,7 +364,7 @@ void FUN_180513335(float param_1)
       unaff_RBP[-0x1d] = fVar26;
       unaff_RBP[-0x1c] = fVar24;
       unaff_RBP[-0x1b] = fVar27;
-      pfVar7 = (float *)FUN_180534b00(unaff_RBP + -0x1a,unaff_RBP + 0x48,unaff_RBP + -0x12,fVar35);
+      pfVar7 = (float *)SystemCore_ConfigManager(unaff_RBP + -0x1a,unaff_RBP + 0x48,unaff_RBP + -0x12,fVar35);
       fVar26 = pfVar7[1];
       fVar24 = pfVar7[2];
       fVar27 = pfVar7[3];
@@ -372,7 +372,7 @@ void FUN_180513335(float param_1)
       unaff_RBP[-0x19] = fVar26;
       unaff_RBP[-0x18] = fVar24;
       unaff_RBP[-0x17] = fVar27;
-      pfVar7 = (float *)FUN_180534b00(unaff_RBP + -0x16,unaff_RBP + 0x4c,unaff_RBP + -0x12,fVar35);
+      pfVar7 = (float *)SystemCore_ConfigManager(unaff_RBP + -0x16,unaff_RBP + 0x4c,unaff_RBP + -0x12,fVar35);
       fVar26 = pfVar7[1];
       fVar24 = pfVar7[2];
       fVar27 = pfVar7[3];
@@ -384,7 +384,7 @@ void FUN_180513335(float param_1)
   }
   *(int8_t *)(*(int64_t *)(unaff_RDI + 0x728) + 0x20) = unaff_BL;
   uVar8 = FUN_180534800(unaff_RDI + 0x520,unaff_RBP + 0x7c,unaff_RBP + -0x1e);
-  FUN_18063b470(unaff_RBP + 0x18,uVar8);
+  AdvancedProcessor_StateManager0(unaff_RBP + 0x18,uVar8);
   in_stack_00000060 = *(uint64_t *)(unaff_RBP + 0x18);
   in_stack_00000068 = *(uint64_t *)(unaff_RBP + 0x1a);
   if (bVar6) {

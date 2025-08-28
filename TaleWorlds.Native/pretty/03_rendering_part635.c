@@ -404,7 +404,7 @@ void FUN_180621b60(int64_t param_1,int param_2,uint64_t param_3)
   uVar4 = (uint8_t)((uint64_t)param_3 >> 8);
   uVar3 = (int8_t)param_3;
   lVar5 = (int64_t)*(int *)(*(int64_t *)(param_1 + 0x1e0) + (int64_t)param_2 * 4);
-  FUN_18063b5f0(&uStack_38,param_3);
+  SystemSecurityManager(&uStack_38,param_3);
   uStack_78 = uStack_38;
   uStack_70 = uStack_30;
   uStack_68 = uStack_28;
@@ -418,7 +418,7 @@ void FUN_180621b60(int64_t param_1,int param_2,uint64_t param_3)
   uStack_54 = uStack_14;
   uStack_50 = uStack_10;
   uStack_4c = uStack_c;
-  FUN_18063b470(&uStack_88,&uStack_78);
+  AdvancedProcessor_StateManager0(&uStack_88,&uStack_78);
   uStack_a8 = uStack_84;
   uStack_a0 = uStack_7c;
   uStack_a4 = uStack_80;

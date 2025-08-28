@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part520.c - 30 个函数
 
 // 函数: void FUN_18054a310(int64_t param_1,uint64_t param_2)
@@ -176,7 +180,7 @@ void FUN_18054a3b0(int64_t param_1,uint64_t param_2,int32_t param_3)
     }
   }
   if ((puVar3 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStackX_20,0,puVar3,auStackX_8);
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStackX_20,0,puVar3,auStackX_8);
     puVar3 = (uint64_t *)*puVar3;
   }
   FUN_1804b2300(puVar3[5],param_2,lVar1 + 0x3c,auStackX_18);
@@ -209,8 +213,8 @@ void FUN_18054a450(int64_t param_1)
 
 
 
-// 函数: void FUN_18054a4b0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18054a4b0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemCore_ResourceManager(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemCore_ResourceManager(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -500,7 +504,7 @@ void FUN_18054aab0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   }
   pplStackX_18 = &plStackX_8;
   if (*(code **)(*plStackX_8 + 0x160) == (code *)&processed_var_6368_ptr) {
-    FUN_180276f30(plStackX_8,(int64_t)plStackX_8 + 0x214,0,param_4,uVar3);
+    SystemCore_UpdateState(plStackX_8,(int64_t)plStackX_8 + 0x214,0,param_4,uVar3);
   }
   else {
     (**(code **)(*plStackX_8 + 0x160))();

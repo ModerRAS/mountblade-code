@@ -123,7 +123,7 @@ typedef enum {
 #define SystemDataTransformer                 FUN_18009f9d0
 
 // 资源分配和管理函数
-#define SystemResourceManager                 FUN_1800b6de0
+#define SystemResourceManager                 RenderingSystem_VertexProcessor
 
 // 系统配置应用函数
 #define SystemConfigApplier                    FUN_1802759e0

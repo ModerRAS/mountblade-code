@@ -146,9 +146,9 @@ FUN_1804f5600(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,float param_4
           aiStackX_18[0] = iVar5;
         }
         cVar2 = FUN_1804f6190(param_1,&uStack_160);
-        if (((cVar2 != '\0') && (FUN_180487c70(&uStack_178,1), iVar5 = iStack_138, 0 < iStack_138))
+        if (((cVar2 != '\0') && (SystemCore_Validator(&uStack_178,1), iVar5 = iStack_138, 0 < iStack_138))
            && (lStack_170 != 0)) {
-          FUN_180487c70(&uStack_178,1);
+          SystemCore_Validator(&uStack_178,1);
           pfVar3 = &fStack_150;
           fVar13 = *(float *)(param_5 + 0x18) - (float)uStack_160;
           fVar14 = *(float *)(param_5 + 0x1c) - uStack_160._4_4_;
@@ -183,12 +183,12 @@ FUN_1804f5600(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,float param_4
               fVar13 = fVar13 * 0.576 + 0.031999998;
             }
             if ((20.0 < ABS(fVar11)) || (20.0 < ABS(fVar21))) {
-              FUN_180487c70(&uStack_178,1);
+              SystemCore_Validator(&uStack_178,1);
               fVar14 = fStack_158;
               if (iStack_138 < 1) {
                 fVar14 = -NAN;
               }
-              FUN_180487c70(param_5,3);
+              SystemCore_Validator(param_5,3);
               if (*(int *)(param_5 + 0x40) < 3) {
                 fVar7 = -NAN;
               }
@@ -347,9 +347,9 @@ void FUN_1804f577b(float param_1,int param_2,float param_3)
         }
         cVar3 = FUN_1804f6190(*(uint64_t *)(unaff_RBP + 0xb0),&stack0x00000048);
         if (((cVar3 != '\0') &&
-            (FUN_180487c70(&stack0x00000030,1), param_2 = iStack0000000000000070,
+            (SystemCore_Validator(&stack0x00000030,1), param_2 = iStack0000000000000070,
             0 < iStack0000000000000070)) && (lStack0000000000000038 != 0)) {
-          FUN_180487c70(&stack0x00000030,1);
+          SystemCore_Validator(&stack0x00000030,1);
           pfVar4 = &stack0x00000058;
           fVar7 = *(float *)(lVar1 + 0x18) - fStack0000000000000048;
           fVar10 = *(float *)(lVar1 + 0x1c) - fStack000000000000004c;
@@ -384,12 +384,12 @@ void FUN_1804f577b(float param_1,int param_2,float param_3)
               fVar7 = fVar7 * 0.576 + 0.031999998;
             }
             if ((20.0 < ABS(unaff_XMM7_Da)) || (20.0 < ABS(param_3))) {
-              FUN_180487c70(&stack0x00000030,1);
+              SystemCore_Validator(&stack0x00000030,1);
               fVar10 = fStack0000000000000050;
               if (iStack0000000000000070 < 1) {
                 fVar10 = -NAN;
               }
-              FUN_180487c70(lVar1,3);
+              SystemCore_Validator(lVar1,3);
               if (*(int *)(lVar1 + 0x40) < 3) {
                 fVar5 = -NAN;
               }

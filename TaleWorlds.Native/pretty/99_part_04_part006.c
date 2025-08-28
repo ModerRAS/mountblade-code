@@ -743,7 +743,7 @@ void FUN_18025bfa0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uStackX_20;
   
   lVar1 = *(int64_t *)(param_1 + 0x20);
-  cVar2 = FUN_180624af0(lVar1 + 0x40);
+  cVar2 = RenderingSystem_RenderQueue(lVar1 + 0x40);
   if (cVar2 != '\0') {
     cVar2 = FUN_18062da70(lVar1 + 0x40);
     if (cVar2 == '\0') {
@@ -766,8 +766,8 @@ void FUN_18025bfa0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_18025c000(uint64_t param_1,int32_t param_2,uint64_t param_3)
-void FUN_18025c000(uint64_t param_1,int32_t param_2,uint64_t param_3)
+// 函数: void HighFreq_ConfigManager1(uint64_t param_1,int32_t param_2,uint64_t param_3)
+void HighFreq_ConfigManager1(uint64_t param_1,int32_t param_2,uint64_t param_3)
 
 {
   int8_t auStack_a8 [32];

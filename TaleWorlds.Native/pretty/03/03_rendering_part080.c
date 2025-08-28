@@ -505,7 +505,7 @@ void rendering_system_set_render_mode(void) {
 }
 
 // 渲染系统纹理参数设置函数
-// 原始函数名: FUN_1803109a0
+// 原始函数名: PhysicsSystem_SpatialPartitioning
 void rendering_system_set_texture_parameter(int32_t texture_data, int8_t param_type, char param_value) {
     int8_t render_stack[4];
     int8_t stack_param;

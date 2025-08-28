@@ -1,3 +1,4 @@
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -76,7 +77,7 @@ void FUN_180274c70(int64_t param_1,int64_t *param_2)
   uVar13 = uVar16;
   do {
     if ((*(uint *)(puVar14 + 1) & uVar12) != 0) {
-      FUN_180639de0(param_2,*puVar14);
+      UtilitiesSystem_ThreadManager(param_2,*puVar14);
       uVar13 = (uint64_t)((int)uVar13 + 1);
     }
     puVar14 = puVar14 + 2;
@@ -86,7 +87,7 @@ void FUN_180274c70(int64_t param_1,int64_t *param_2)
   uVar8 = uVar16;
   do {
     if (*pcVar5 == *(char *)(param_1 + 0x134)) {
-      FUN_180639de0(param_2,*(uint64_t *)((int64_t)(int)uVar8 * 0x10 + 0x180bf8ff0));
+      UtilitiesSystem_ThreadManager(param_2,*(uint64_t *)((int64_t)(int)uVar8 * 0x10 + 0x180bf8ff0));
       break;
     }
     uVar8 = (uint64_t)((int)uVar8 + 1);
@@ -431,7 +432,7 @@ FUN_180275010(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 
 
 
-uint64_t * FUN_180275090(uint64_t *param_1)
+uint64_t * RenderingSystem_ShaderManager(uint64_t *param_1)
 
 {
   *param_1 = &system_handler1_ptr;
@@ -717,7 +718,7 @@ FUN_180275540(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x79] = 0;
   FUN_1802786d0(param_1);
   *(int32_t *)(param_1 + 1) = 0;
-  lVar1 = FUN_1800b6de0(system_resource_state,param_2,1);
+  lVar1 = RenderingSystem_VertexProcessor(system_resource_state,param_2,1);
   if (lVar1 != 0) {
     FUN_180275a60(lVar1,param_1,1);
   }
@@ -820,7 +821,7 @@ void FUN_1802758c0(int64_t param_1,char param_2)
         if (*(char *)(lVar4 + 0xfa) != '\0') {
           *(int8_t *)(lVar4 + 0xfa) = 0;
 LAB_18027591d:
-          FUN_180079520();
+          SystemInitializer();
         }
       }
       else if (*(char *)(lVar4 + 0xfa) != '\x01') {
@@ -858,7 +859,7 @@ void FUN_1802758eb(uint64_t param_1,uint64_t param_2,int64_t param_3)
       if (*(char *)(lVar1 + 0xfa) != '\0') {
         *(int8_t *)(lVar1 + 0xfa) = 0;
 LAB_18027591d:
-        FUN_180079520();
+        SystemInitializer();
       }
     }
     else if (*(char *)(lVar1 + 0xfa) != '\x01') {
@@ -930,7 +931,7 @@ uint64_t * FUN_1802759e0(uint64_t param_1,uint64_t *param_2)
   int64_t *plVar2;
   
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16,0,0xfffffffffffffffe);
-  plVar2 = (int64_t *)FUN_180275090(uVar1);
+  plVar2 = (int64_t *)RenderingSystem_ShaderManager(uVar1);
   *param_2 = plVar2;
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);

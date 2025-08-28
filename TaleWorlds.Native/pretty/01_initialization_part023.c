@@ -1,3 +1,11 @@
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -41,7 +49,7 @@ void FUN_180057550(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -97,7 +105,7 @@ void FUN_180057556(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -151,7 +159,7 @@ void FUN_180057580(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -193,7 +201,7 @@ void FUN_1800575b6(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -235,7 +243,7 @@ void FUN_1800575d4(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -386,7 +394,7 @@ void FUN_180057790(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -442,7 +450,7 @@ void FUN_180057796(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -496,7 +504,7 @@ void FUN_1800577c0(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -538,7 +546,7 @@ void FUN_1800577f6(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -580,7 +588,7 @@ void FUN_180057814(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -596,8 +604,8 @@ void FUN_180057814(void)
 
 
 
-// 函数: void FUN_180057830(int64_t *param_1)
-void FUN_180057830(int64_t *param_1)
+// 函数: void DataTransformer0(int64_t *param_1)
+void DataTransformer0(int64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -635,7 +643,7 @@ void FUN_1800578a0(void)
   if (system_operation_state == (uint64_t *)0x0) {
     return;
   }
-  FUN_180057830();
+  DataTransformer0();
   if ((int64_t *)puVar2[0x30b] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar2[0x30b] + 0x38))();
   }
@@ -665,7 +673,7 @@ void FUN_1800578a0(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -681,8 +689,8 @@ void FUN_1800578a0(void)
 
 
 
-// 函数: void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   char cVar1;
@@ -714,7 +722,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
           SystemCore_NetworkHandler0();
         }
         else {
-          FUN_180059820(param_2,&puStack_50);
+          SystemCore_BackupSystem(param_2,&puStack_50);
         }
         puStack_50 = &system_data_buffer_ptr;
         if (lStack_48 != 0) {
@@ -739,7 +747,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         SystemCore_NetworkHandler0();
       }
       else {
-        FUN_180059820(param_2,&puStack_50);
+        SystemCore_BackupSystem(param_2,&puStack_50);
       }
       puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 != 0) {
@@ -769,7 +777,7 @@ int64_t * FUN_180057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
   
   lVar3 = SystemMemoryManager(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
   SystemCore_NetworkHandler0(lVar3 + 0x20,param_3);
-  lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
+  lVar4 = SystemCore_SecurityValidator(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
     FUN_18005d1f0();
     *param_2 = lVar4;
@@ -883,10 +891,10 @@ void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   param_1[0x124] = 0;
   *(int32_t *)(param_1 + 0x126) = 0;
   param_1[0x123] = (int64_t)&system_state_ptr;
-  FUN_180058370(param_1 + 0x11d,param_1[0x11f],param_3,param_4,uVar3);
+  RenderingSystem_CameraSystem(param_1 + 0x11d,param_1[0x11f],param_3,param_4,uVar3);
   if (param_1[0x119] == 0) {
-    FUN_18005d580();
-    FUN_18005d580();
+    DataSerializationEngine();
+    DataSerializationEngine();
     FUN_180058710(param_1 + 0x10b,param_1[0x10d]);
     param_1[0x87] = (int64_t)&system_state_ptr;
     param_1[4] = (int64_t)&system_state_ptr;
@@ -985,7 +993,7 @@ void FUN_180057f30(int64_t *param_1)
   int64_t lVar6;
   uint64_t *puVar7;
   
-  FUN_180057110();
+  SystemCore_ConfigValidator();
   lVar1 = *param_1;
   *param_1 = 0;
   lVar2 = param_1[1];
@@ -1044,7 +1052,7 @@ void FUN_180058020(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-uint64_t * FUN_180058080(uint64_t *param_1,uint64_t *param_2,int64_t param_3)
+uint64_t * > HighFreq_AnimationSystem1(uint64_t *param_1,uint64_t *param_2,int64_t param_3)
 
 {
   byte bVar1;
@@ -1161,7 +1169,7 @@ void FUN_180058160(uint64_t *param_1)
       piVar1 = (int *)(lVar6 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }

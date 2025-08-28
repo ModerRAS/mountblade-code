@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -634,7 +639,7 @@ void FUN_1804d3d10(int64_t param_1,int64_t param_2)
                     *(int64_t *)(*(int64_t *)(param_1 + 0x2c68) + lVar4));
     auStackX_8[0] = uVar5;
     if ((uVar5 != 0xffffffff) && (*piVar9 != -1)) {
-      FUN_1800571e0(param_1 + 0x2c48,auStackX_8);
+      SystemDatabaseProcessor(param_1 + 0x2c48,auStackX_8);
       FUN_1804a7c60(piVar9 + 2);
       *piVar9 = -1;
     }
@@ -679,7 +684,7 @@ LAB_1804d3e91:
   if (puVar8 != puVar3) {
     *(int64_t *)(param_1 + 0x2ba8) = *(int64_t *)(param_1 + 0x2ba8) + -1;
     func_0x00018066bd70(puVar8);
-    FUN_18066ba00(puVar8,puVar3);
+    RenderingSystem_BufferHandler(puVar8,puVar3);
     if (puVar8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar8);
@@ -721,7 +726,7 @@ void FUN_1804d3d17(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
                     *(int64_t *)(*(int64_t *)(param_1 + 0x2c68) + lVar4));
     in_stack_00000050 = uVar5;
     if ((uVar5 != 0xffffffff) && (*piVar9 != -1)) {
-      FUN_1800571e0(param_1 + 0x2c48,&stack0x00000050);
+      SystemDatabaseProcessor(param_1 + 0x2c48,&stack0x00000050);
       FUN_1804a7c60(piVar9 + 2);
       *piVar9 = -1;
     }
@@ -766,7 +771,7 @@ LAB_1804d3e91:
   if (puVar8 != puVar3) {
     *(int64_t *)(param_1 + 0x2ba8) = *(int64_t *)(param_1 + 0x2ba8) + -1;
     func_0x00018066bd70(puVar8);
-    FUN_18066ba00(puVar8,puVar3);
+    RenderingSystem_BufferHandler(puVar8,puVar3);
     if (puVar8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar8);
@@ -803,7 +808,7 @@ void FUN_1804d3d5d(void)
                   *(int64_t *)(*(int64_t *)(unaff_R14 + 0x2c68) + lVar3));
   in_stack_00000050 = uVar4;
   if ((uVar4 != 0xffffffff) && (*piVar6 != -1)) {
-    FUN_1800571e0(unaff_R14 + 0x2c48,&stack0x00000050);
+    SystemDatabaseProcessor(unaff_R14 + 0x2c48,&stack0x00000050);
     FUN_1804a7c60(piVar6 + 2);
     *piVar6 = -1;
   }

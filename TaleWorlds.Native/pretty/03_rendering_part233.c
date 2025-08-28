@@ -31,7 +31,7 @@ void FUN_18039b3a0(int64_t param_1,uint64_t param_2)
   *(int32_t *)(puVar7 + 1) = 0x7364642e;
   *(int8_t *)((int64_t)puVar7 + 0xc) = 0;
   uStack_40 = iVar6;
-  cVar3 = FUN_180624af0(&puStack_50);
+  cVar3 = RenderingSystem_RenderQueue(&puStack_50);
   if (cVar3 != '\0') {
     puStack_70 = &system_data_buffer_ptr;
     uStack_58 = 0;
@@ -188,7 +188,7 @@ LAB_18039b640:
         uStack_188 = 0;
         do {
           if (pcVar10 == (char *)0x0) {
-            FUN_180058370(&pppuStack_1a8,pppuStack_198);
+            RenderingSystem_CameraSystem(&pppuStack_1a8,pppuStack_198);
             return;
           }
           pcVar16 = (char *)0x0;
@@ -301,7 +301,7 @@ LAB_18039b85d:
               uStack_100 = 0;
               uStack_110 = 0;
               uStack_108 = 0;
-              uVar4 = FUN_180627ce0(&puStack_158,auStack_80,&puStack_118);
+              uVar4 = UtilitiesSystem_FileHandler(&puStack_158,auStack_80,&puStack_118);
               puStack_178 = &system_data_buffer_ptr;
               uStack_160 = 0;
               puStack_170 = (uint64_t *)0x0;
@@ -315,7 +315,7 @@ LAB_18039b85d:
               *(int32_t *)(puVar8 + 1) = 0x3f746920;
               *(int8_t *)((int64_t)puVar8 + 0xc) = 0;
               uStack_168 = 0xc;
-              FUN_180627ce0(uVar4,auStack_a0,&puStack_178);
+              UtilitiesSystem_FileHandler(uVar4,auStack_a0,&puStack_178);
               puStack_178 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
               CoreEngine_MemoryPoolManager(puVar8);

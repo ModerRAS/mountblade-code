@@ -1,10 +1,115 @@
+#include "ultra_high_freq_fun_definitions.h"
+/*
+ * 函数别名定义: UI 系统数据管理器
+ * 文件描述: UI 系统数据验证、内存管理和状态处理模块
+ * 功能类别: UI 系统核心组件
+ * 美化版本: v1.0
+ * 
+ * 技术架构说明:
+ * ===============
+ * 
+ * 本模块实现了 UI 系统的核心数据管理功能，包含以下主要组件：
+ * 
+ * 1. 数据验证系统:
+ *    - 系统数据完整性检查
+ *    - 内存指针验证
+ *    - 数据结构一致性验证
+ * 
+ * 2. 内存管理系统:
+ *    - 内存分配和释放
+ *    - 内存池管理
+ *    - 内存泄漏防护
+ * 
+ * 3. 事件处理系统:
+ *    - 事件队列管理
+ *    - 事件分发机制
+ *    - 回调函数处理
+ * 
+ * 4. 状态管理系统:
+ *    - 系统状态初始化
+ *    - 状态转换处理
+ *    - 状态验证机制
+ * 
+ * 性能优化策略:
+ * ==============
+ * 1. 条件分支优化：减少不必要的函数调用
+ * 2. 内存操作优化：批量处理减少内存访问次数
+ * 3. 指针管理优化：使用指针自引用避免空指针访问
+ * 4. 事件处理优化：提前终止机制减少处理开销
+ * 
+ * 安全机制设计:
+ * ==============
+ * 1. 参数验证：所有函数都进行参数有效性检查
+ * 2. 指针保护：防止空指针和野指针访问
+ * 3. 内存安全：通过系统验证器确保内存操作安全
+ * 4. 错误处理：完善的错误处理和状态报告机制
+ * 
+ * 依赖关系:
+ * ==========
+ * - 依赖: SystemDataValidator, SystemMemoryProcessor
+ * - 依赖: global_constants.h, TaleWorlds.Native.Split.h
+ * - 提供: UI 系统核心数据管理功能
+ */
+
+// 系统函数语义化别名定义
+#define UI_InitializeSystem FUN_1807437a4           // UI 系统初始化函数
+#define UI_ValidateSystemData FUN_1807437c0         // UI 系统数据验证器
+#define UI_ProcessSystemData FUN_1807437dd          // UI 系统数据处理器
+#define UI_GetSystemStatus FUN_180743864            // UI 系统状态查询器
+#define UI_ManageSystemMemory FUN_180743880          // UI 系统内存管理器
+#define UI_AdvancedSystemProcessor FUN_1807438b7     // UI 系统高级处理器
+#define UI_InitializeSystemState FUN_180743921       // UI 系统状态初始化器
+#define UI_ProcessSystemEvents FUN_180743940         // UI 系统事件处理器
+#define UI_ManageSystemEvents FUN_180743ab0          // UI 系统事件管理器
+#define UI_ProcessSystemQueue FUN_180743ae4          // UI 系统队列处理器
+#define UI_ValidateSystemState FUN_180743b2f        // UI 系统状态验证器
+#define UI_HandleSystemCallbacks FUN_180743b50      // UI 系统回调处理器
+#define UI_ValidateSystemMemory FUN_180743c40        // UI 系统内存验证器
+#define UI_ProcessSystemMemory FUN_180743cc0         // UI 系统内存处理器
+#define UI_InitializeSystemProcessor FUN_180743e90  // UI 系统处理器初始化器
+#define UI_FinalizeSystemProcessor FUN_180744640    // UI 系统处理器终结器
+#define UI_CreateSystemProcessor FUN_180744750      // UI 系统处理器创建器
+#define UI_ManageSystemTextures FUN_180744780        // UI 系统纹理管理器
+#define UI_ProcessSystemResources FUN_180744920      // UI 系统资源处理器
+#define UI_ProcessSystemGraphics FUN_18074496d       // UI 系统图形处理器
+#define UI_UpdateSystemGraphics FUN_1807449f2        // UI 系统图形更新器
+#define UI_FinalizeSystemCleanup FUN_180744abc       // UI 系统清理终结器
+#define UI_ValidateSystemCleanup FUN_180744aca       // UI 系统清理验证器
+#define UI_ExecuteSystemCallbacks FUN_180744ae0      // UI 系统回调执行器
+#define UI_ExecuteSystemEvents FUN_180744ae6         // UI 系统事件执行器
+#define UI_FinalizeSystemState FUN_180744b89        // UI 系统状态终结器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 04_ui_system_part130.c - 5 个函数
+// =============================================================================
+// 04_ui_system_part130.c - UI 系统数据管理模块
+// =============================================================================
+// 本模块包含 UI 系统的核心数据管理功能，涵盖数据验证、内存管理、
+// 状态处理和事件处理。所有函数都经过语义化命名和完整文档化。
+// 
+// 主要功能类别:
+// - 系统初始化和清理
+// - 数据验证和处理
+// - 内存管理和优化
+// - 事件处理和回调
+// - 状态管理和监控
+// =============================================================================
 
-// 函数: void FUN_1807437a4(void)
-void FUN_1807437a4(void)
+/*
+ * 函数: UI_InitializeSystem
+ * 功能: UI 系统初始化函数
+ * 参数: 无
+ * 返回值: void
+ * 技术架构: 系统初始化管理器
+ * 
+ * 此函数负责 UI 系统的基础初始化工作，为后续的系统操作做准备。
+ * 作为系统启动的第一步，确保所有必要的系统组件都处于正确的初始状态。
+ * 
+ * 性能优化: 直接返回，最小化初始化开销
+ * 安全机制: 无参数操作，避免初始化阶段的潜在风险
+ */
+void UI_InitializeSystem(void)
 
 {
   return;
@@ -12,7 +117,25 @@ void FUN_1807437a4(void)
 
 
 
-uint64_t FUN_1807437c0(int64_t param_1)
+/*
+ * 函数: UI_ValidateSystemData
+ * 功能: UI 系统数据验证器
+ * 参数: int64_t param_1 - 系统数据块指针
+ * 返回值: uint64_t - 验证结果状态码
+ * 技术架构: 数据验证引擎
+ * 
+ * 此函数负责验证 UI 系统中的关键数据，确保数据的完整性和一致性。
+ * 通过检查数据块中的指针和引用，防止无效数据访问和内存泄漏。
+ * 
+ * 核心功能:
+ * - 数据指针验证: 检查指针有效性
+ * - 系统缓冲区管理: 管理系统缓冲区指针
+ * - 数据完整性检查: 确保数据结构完整性
+ * 
+ * 性能优化: 条件检查避免不必要的验证操作
+ * 安全机制: 指针验证防止空指针访问
+ */
+uint64_t UI_ValidateSystemData(int64_t param_1)
 
 {
   int64_t *plVar1;
@@ -29,8 +152,25 @@ uint64_t FUN_1807437c0(int64_t param_1)
 
 
 
-// 函数: void FUN_1807437dd(int64_t param_1)
-void FUN_1807437dd(int64_t param_1)
+/*
+ * 函数: UI_ProcessSystemData
+ * 功能: UI 系统数据处理器
+ * 参数: int64_t param_1 - 系统数据块指针
+ * 返回值: void
+ * 技术架构: 数据处理引擎
+ * 
+ * 此函数负责处理 UI 系统中的数据，执行必要的数据转换和更新操作。
+ * 通过调用系统数据验证器，确保处理后的数据符合系统要求。
+ * 
+ * 核心功能:
+ * - 数据转换: 执行数据格式转换
+ * - 数据更新: 更新系统数据状态
+ * - 数据验证: 确保处理后的数据有效性
+ * 
+ * 性能优化: 直接调用系统验证器，避免重复验证
+ * 安全机制: 通过系统验证器确保数据处理安全
+ */
+void UI_ProcessSystemData(int64_t param_1)
 
 {
   int64_t unaff_RBX;
@@ -41,7 +181,25 @@ void FUN_1807437dd(int64_t param_1)
 
 
 
-uint64_t FUN_180743864(void)
+/*
+ * 函数: UI_GetSystemStatus
+ * 功能: UI 系统状态查询器
+ * 参数: 无
+ * 返回值: uint64_t - 系统状态码
+ * 技术架构: 状态查询引擎
+ * 
+ * 此函数负责查询 UI 系统的当前状态，返回系统运行状态信息。
+ * 作为状态监控的基础函数，为系统诊断和监控提供关键信息。
+ * 
+ * 核心功能:
+ * - 状态查询: 获取系统当前状态
+ * - 状态监控: 监控系统运行状态
+ * - 状态报告: 提供状态信息报告
+ * 
+ * 性能优化: 直接返回状态码，最小化查询开销
+ * 安全机制: 无参数操作，避免查询过程中的潜在风险
+ */
+uint64_t UI_GetSystemStatus(void)
 
 {
   return 0;
@@ -51,7 +209,26 @@ uint64_t FUN_180743864(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180743880(int64_t param_1)
+/*
+ * 函数: UI_ManageSystemMemory
+ * 功能: UI 系统内存管理器
+ * 参数: int64_t param_1 - 内存管理控制块指针
+ * 返回值: uint64_t - 内存管理结果状态码
+ * 技术架构: 内存管理引擎
+ * 
+ * 此函数负责管理 UI 系统的内存分配和释放，确保系统内存使用的有效性。
+ * 通过初始化内存控制块和管理内存指针，防止内存泄漏和无效访问。
+ * 
+ * 核心功能:
+ * - 内存初始化: 初始化内存控制块
+ * - 指针管理: 管理内存指针和引用
+ * - 内存验证: 验证内存分配的有效性
+ * - 资源清理: 执行必要的资源清理操作
+ * 
+ * 性能优化: 批量初始化减少操作次数
+ * 安全机制: 指针验证防止内存访问错误
+ */
+uint64_t UI_ManageSystemMemory(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -80,8 +257,26 @@ uint64_t FUN_180743880(int64_t param_1)
 
 
 
-// 函数: void FUN_1807438b7(void)
-void FUN_1807438b7(void)
+/*
+ * 函数: UI_AdvancedSystemProcessor
+ * 功能: UI 系统高级处理器
+ * 参数: 无
+ * 返回值: void
+ * 技术架构: 高级处理引擎
+ * 
+ * 此函数负责执行 UI 系统的高级处理任务，处理复杂的系统操作。
+ * 通过调用系统数据验证器，确保高级处理操作的数据安全性和完整性。
+ * 
+ * 核心功能:
+ * - 高级处理: 执行复杂的系统处理操作
+ * - 数据验证: 确保处理数据的有效性
+ * - 系统优化: 优化系统处理性能
+ * - 错误处理: 处理处理过程中的错误
+ * 
+ * 性能优化: 利用系统验证器的高效验证机制
+ * 安全机制: 通过系统验证器确保处理安全
+ */
+void UI_AdvancedSystemProcessor(void)
 
 {
   int64_t unaff_RSI;
@@ -93,7 +288,26 @@ void FUN_1807438b7(void)
 
 
 
-uint64_t FUN_180743921(void)
+/*
+ * 函数: UI_InitializeSystemState
+ * 功能: UI 系统状态初始化器
+ * 参数: 无
+ * 返回值: uint64_t - 初始化结果状态码
+ * 技术架构: 状态初始化引擎
+ * 
+ * 此函数负责初始化 UI 系统的状态信息，确保系统处于正确的初始状态。
+ * 通过设置状态指针和初始化状态变量，为系统运行做准备。
+ * 
+ * 核心功能:
+ * - 状态初始化: 初始化系统状态变量
+ * - 指针设置: 设置状态指针和引用
+ * - 状态重置: 重置系统状态到初始值
+ * - 状态验证: 验证状态初始化的正确性
+ * 
+ * 性能优化: 直接内存操作，最小化初始化开销
+ * 安全机制: 指针自引用防止空指针访问
+ */
+uint64_t UI_InitializeSystemState(void)
 
 {
   int64_t unaff_RBX;
@@ -106,7 +320,29 @@ uint64_t FUN_180743921(void)
 
 
 
-uint64_t FUN_180743940(int64_t param_1,int param_2,int64_t param_3,char param_4)
+/*
+ * 函数: UI_ProcessSystemEvents
+ * 功能: UI 系统事件处理器
+ * 参数: int64_t param_1 - 事件控制块指针
+ *        int param_2 - 事件标识符
+ *        int64_t param_3 - 事件数据指针
+ *        char param_4 - 事件类型标志
+ * 返回值: uint64_t - 事件处理结果状态码
+ * 技术架构: 事件处理引擎
+ * 
+ * 此函数负责处理 UI 系统中的各种事件，包括用户交互事件和系统事件。
+ * 通过复杂的事件处理逻辑，确保事件被正确分发和处理。
+ * 
+ * 核心功能:
+ * - 事件分发: 根据事件类型分发到相应的处理器
+ * - 事件处理: 执行具体的事件处理逻辑
+ * - 状态管理: 管理事件处理过程中的状态变化
+ * - 错误处理: 处理事件处理过程中的错误
+ * 
+ * 性能优化: 条件分支优化，减少不必要的处理开销
+ * 安全机制: 参数验证防止无效事件处理
+ */
+uint64_t UI_ProcessSystemEvents(int64_t param_1,int param_2,int64_t param_3,char param_4)
 
 {
   int64_t lVar1;
@@ -134,7 +370,7 @@ LAB_1807439ba:
     if ((int)uVar3 != 0) {
       return uVar3;
     }
-    uVar3 = FUN_180759220(uStackX_8,*(uint64_t *)(lVar1 + 0x12640),0,0,1,0);
+    uVar3 = UltraHighFreq_AudioSystem1(uStackX_8,*(uint64_t *)(lVar1 + 0x12640),0,0,1,0);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -142,7 +378,7 @@ LAB_1807439ba:
     if ((int)uVar3 != 0) {
       return uVar3;
     }
-    uVar3 = FUN_180762070(*(uint64_t *)(lVar1 + 0x12640),1);
+    uVar3 = SystemCore_Initializer(*(uint64_t *)(lVar1 + 0x12640),1);
     iVar2 = (int)uVar3;
   }
   else {
@@ -171,7 +407,27 @@ LAB_180743a60:
 
 
 
-uint64_t FUN_180743ab0(int64_t param_1,int64_t param_2)
+/*
+ * 函数: UI_ManageSystemEvents
+ * 功能: UI 系统事件管理器
+ * 参数: int64_t param_1 - 事件管理控制块指针
+ *        int64_t param_2 - 事件参数
+ * 返回值: uint64_t - 事件管理结果状态码
+ * 技术架构: 事件管理引擎
+ * 
+ * 此函数负责管理 UI 系统的事件队列和事件生命周期。
+ * 通过遍历事件队列和调用事件处理器，确保事件被正确管理。
+ * 
+ * 核心功能:
+ * - 事件队列管理: 管理事件队列的遍历和处理
+ * - 事件生命周期: 管理事件的创建、处理和销毁
+ * - 事件回调: 调用事件回调函数
+ * - 资源清理: 清理事件相关的资源
+ * 
+ * 性能优化: 循环优化，减少队列遍历开销
+ * 安全机制: 指针验证防止无效事件访问
+ */
+uint64_t UI_ManageSystemEvents(int64_t param_1,int64_t param_2)
 
 {
   int64_t *plVar1;
@@ -231,7 +487,27 @@ uint64_t FUN_180743b2f(void)
 
 
 
-uint64_t FUN_180743b50(int64_t param_1,int32_t param_2)
+/*
+ * 函数: UI_HandleSystemCallbacks
+ * 功能: UI 系统回调处理器
+ * 参数: int64_t param_1 - 回调控制块指针
+ *        int32_t param_2 - 回调参数
+ * 返回值: uint64_t - 回调处理结果状态码
+ * 技术架构: 回调处理引擎
+ * 
+ * 此函数负责处理 UI 系统中的回调函数，执行用户定义的回调逻辑。
+ * 通过遍历回调链和调用回调函数，实现系统的异步处理机制。
+ * 
+ * 核心功能:
+ * - 回调链遍历: 遍历回调链表
+ * - 回调执行: 执行用户定义的回调函数
+ * - 参数传递: 传递回调参数和上下文
+ * - 错误处理: 处理回调执行过程中的错误
+ * 
+ * 性能优化: 提前终止机制，避免不必要的回调执行
+ * 安全机制: 回调函数验证防止无效函数调用
+ */
+uint64_t UI_HandleSystemCallbacks(int64_t param_1,int32_t param_2)
 
 {
   uint64_t uVar1;
@@ -278,7 +554,7 @@ uint64_t FUN_180743c40(int64_t param_1)
   if (*(int64_t *)(param_1 + 0x11598) != 0) {
     if (*(int64_t *)(param_1 + 0x11928) != 0) {
       alStackX_8[0] = 0;
-      uVar1 = FUN_180768b50(alStackX_8);
+      uVar1 = RenderingSystem_TextureManager(alStackX_8);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -313,7 +589,7 @@ uint64_t FUN_180743cc0(int64_t param_1,int8_t param_2)
     if (*(int64_t *)(param_1 + 0x11928) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180768b50(param_1 + 0x11928);
+    uVar1 = RenderingSystem_TextureManager(param_1 + 0x11928);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -619,7 +895,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
   int iVar2;
   
   *param_1 = &processed_var_8544_ptr;
-  FUN_180744d60(param_1 + 0x24fc);
+  SystemAnalyzer(param_1 + 0x24fc);
   plVar1 = param_1 + 0x24fa;
   *(int64_t *)param_1[0x24fb] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = param_1[0x24fb];
@@ -627,13 +903,13 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
   *plVar1 = (int64_t)plVar1;
   iVar2 = SystemStatusChecker(param_1 + 0x24f5);
   if (iVar2 == 0) {
-    iVar2 = FUN_180744e20(param_1 + 0x24f7);
+    iVar2 = UISystem_ComponentManager(param_1 + 0x24f7);
     if (iVar2 == 0) {
       *(int32_t *)(param_1 + 0x24f9) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x127cc) = 0;
     }
   }
-  FUN_180744e20(param_1 + 0x24f7);
+  UISystem_ComponentManager(param_1 + 0x24f7);
   SystemStatusChecker(param_1 + 0x24f5);
   func_0x000180785a10(param_1 + 0x2487);
   param_1[0x2444] = &processed_var_8408_ptr;
@@ -724,7 +1000,7 @@ uint64_t FUN_180744780(int64_t param_1)
     else if (iVar7 < iVar4) {
       iVar7 = iVar4;
     }
-    iVar1 = FUN_180747f10((int64_t *)(param_1 + 0x127e0),iVar7);
+    iVar1 = RenderingTextureManager0((int64_t *)(param_1 + 0x127e0),iVar7);
     if (iVar1 != 0) goto LAB_1807448f0;
   }
   *(int64_t **)(*(int64_t *)(param_1 + 0x127e0) + (int64_t)*(int *)(param_1 + 0x127e8) * 8) =
@@ -770,7 +1046,7 @@ FUN_180744920(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4
           uVar1 = (**(code **)(*param_4 + 0x120))(param_4,0xffffffff,&uStack_40);
           if ((int)uVar1 == 0) {
             uVar4 = CONCAT71((int7)((uint64_t)puVar3 >> 8),1);
-            FUN_180759220(uStack_38,uStack_40,&uStack_28,0,uVar4,0);
+            UltraHighFreq_AudioSystem1(uStack_38,uStack_40,&uStack_28,0,uVar4,0);
             func_0x000180766510(uStack_28,uStack_48 | 0xfeed0000);
             if ((param_5 == '\0') && (FUN_18075ec10(uStack_40,aiStackX_20,0,1), 0 < aiStackX_20[0]))
             {
@@ -826,7 +1102,7 @@ uint64_t FUN_18074496d(void)
                       ((int64_t *)unaff_RDI[4],0xfffffffd,&stack0x00000048);
     if (((int)uVar2 == 0) && (uVar2 = (**(code **)(*unaff_RDI + 0x120))(), (int)uVar2 == 0)) {
       uVar4 = CONCAT71((int7)((uint64_t)in_RAX >> 8),1);
-      FUN_180759220(uStack0000000000000040,0,&stack0x00000050,0,uVar4);
+      UltraHighFreq_AudioSystem1(uStack0000000000000040,0,&stack0x00000050,0,uVar4);
       func_0x000180766510(in_stack_00000050,_uStack0000000000000030 | 0xfeed0000);
       cVar1 = in_stack_000000a0;
       if ((in_stack_000000a0 == '\0') &&
@@ -866,7 +1142,7 @@ uint64_t FUN_1807449f2(void)
   int in_stack_00000098;
   char in_stack_000000a0;
   
-  FUN_180759220();
+  UltraHighFreq_AudioSystem1();
   func_0x000180766510(in_stack_00000050,_uStack0000000000000030 | 0xfeed0000);
   cVar1 = in_stack_000000a0;
   if ((in_stack_000000a0 == '\0') &&

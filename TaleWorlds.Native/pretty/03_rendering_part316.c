@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part316.c - 22 个函数
 
 // 函数: void FUN_180435038(void)
@@ -269,7 +273,7 @@ void FUN_1804355b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x28))();
   }
-  FUN_18005e110(uVar1,&plStackX_8,param_3,param_4,uVar2);
+  SystemCore_TimerManager(uVar1,&plStackX_8,param_3,param_4,uVar2);
   return;
 }
 
@@ -296,7 +300,7 @@ void FUN_180435630(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x28))();
     }
-    FUN_18005e6a0(uVar1,&plStackX_8,0,param_4,uVar2);
+    SystemCore_ErrorHandler(uVar1,&plStackX_8,0,param_4,uVar2);
   }
   return;
 }
@@ -416,7 +420,7 @@ void FUN_180435860(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         *(uint64_t *)(lVar4 + 0x20) = 0;
         return;
       }
-      FUN_18004b790(lVar4,*puVar3,param_3,param_4,uVar9);
+      SystemCache_Manager(lVar4,*puVar3,param_3,param_4,uVar9);
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar3);
     }
@@ -617,7 +621,7 @@ void FUN_180435e20(int64_t param_1,uint64_t *param_2,int32_t *param_3,int param_
   *(int32_t *)(param_2 + 1) = uVar2;
   *(int32_t *)((int64_t)param_2 + 0xc) = uVar3;
   *(int32_t *)(param_2 + 2) = *puVar8;
-  iVar6 = FUN_180191c00(lVar5,puVar8 + 6);
+  iVar6 = RenderingSystem_PostProcessor(lVar5,puVar8 + 6);
   if (((iVar6 == -1) || (lVar7 = (int64_t)iVar6 * 0x68 + *(int64_t *)(lVar5 + 0x38), lVar7 == 0))
      && (lVar7 = *(int64_t *)(lVar5 + 0x28), lVar7 == 0)) {
     *param_3 = 0xffffffff;
@@ -656,7 +660,7 @@ void FUN_180435e6f(int64_t param_1,int64_t param_2,int32_t *param_3)
   param_3[2] = uVar2;
   param_3[3] = uVar3;
   param_3[4] = *puVar7;
-  iVar5 = FUN_180191c00(lVar4,puVar7 + 6);
+  iVar5 = RenderingSystem_PostProcessor(lVar4,puVar7 + 6);
   if (((iVar5 == -1) || (lVar6 = (int64_t)iVar5 * 0x68 + *(int64_t *)(lVar4 + 0x38), lVar6 == 0))
      && (lVar6 = *(int64_t *)(lVar4 + 0x28), lVar6 == 0)) {
     *unaff_RBX = 0xffffffff;
@@ -872,7 +876,7 @@ void FUN_180436160(int64_t param_1,uint64_t *param_2,int32_t *param_3,int param_
   uVar2 = *(int32_t *)(lVar3 + -0x28 + lVar10 * 8);
   *(int32_t *)(param_2 + 4) = uVar2;
   *(int32_t *)((int64_t)param_2 + 0x44) = uVar2;
-  iVar8 = FUN_180191c00(lVar7,lVar3 + lVar10 * 8);
+  iVar8 = RenderingSystem_PostProcessor(lVar7,lVar3 + lVar10 * 8);
   if (((iVar8 == -1) || (lVar10 = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar7 + 0x38), lVar10 == 0)
       ) && (lVar10 = *(int64_t *)(lVar7 + 0x28), lVar10 == 0)) {
     *param_3 = 0xffffffff;
@@ -930,7 +934,7 @@ void FUN_1804361d7(uint64_t param_1,int64_t param_2)
   uVar3 = *(int32_t *)(lVar9 + -0x28 + param_2 * 8);
   *(int32_t *)(in_R10 + 4) = uVar3;
   *(int32_t *)((int64_t)in_R10 + 0x44) = uVar3;
-  iVar8 = FUN_180191c00(lVar7,lVar9 + param_2 * 8);
+  iVar8 = RenderingSystem_PostProcessor(lVar7,lVar9 + param_2 * 8);
   if (((iVar8 == -1) || (lVar9 = (int64_t)iVar8 * 0x68 + *(int64_t *)(lVar7 + 0x38), lVar9 == 0))
      && (lVar9 = *(int64_t *)(lVar7 + 0x28), lVar9 == 0)) {
     *unaff_RBX = 0xffffffff;

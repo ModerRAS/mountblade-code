@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part521.c - 4 个函数
 
@@ -483,17 +488,17 @@ LAB_18054bfb4:
 LAB_18054c005:
   puVar16[1] = auStackX_18[0];
   acStackX_10[0] = '\0';
-  FUN_180631000(pcVar18,&processed_var_840_ptr,acStackX_10);
+  UltraHighFreq_CacheSystem1(pcVar18,&processed_var_840_ptr,acStackX_10);
   if (acStackX_10[0] != '\0') {
     puVar16[2] = puVar16[2] | 2;
   }
   acStackX_10[0] = '\0';
-  FUN_180631000(pcVar18,&processed_var_912_ptr,acStackX_10);
+  UltraHighFreq_CacheSystem1(pcVar18,&processed_var_912_ptr,acStackX_10);
   if (acStackX_10[0] != '\0') {
     puVar16[2] = puVar16[2] | 1;
   }
   acStackX_10[0] = '\0';
-  FUN_180631000(pcVar18,&processed_var_872_ptr,acStackX_10);
+  UltraHighFreq_CacheSystem1(pcVar18,&processed_var_872_ptr,acStackX_10);
   if (acStackX_10[0] != '\0') {
     puVar16[2] = puVar16[2] | 4;
   }
@@ -879,7 +884,7 @@ LAB_18054c864:
       if (puVar1 != (void *)0x0) {
         puVar10 = puVar1;
       }
-      FUN_180626eb0(auStack_448,0x400,&ui_system_data_1176_ptr,puVar10);
+      SystemCore_CacheManager(auStack_448,0x400,&ui_system_data_1176_ptr,puVar10);
     }
     else {
       if (iStack_468 == 0x11) {

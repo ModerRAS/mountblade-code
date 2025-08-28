@@ -266,7 +266,7 @@ typedef struct {
 
 /** 渲染系统核心函数别名 */
 #define RenderingSystemAdvancedInitializer FUN_18051ebd0    // 渲染系统高级初始化器
-#define RenderingSystemAdvancedStateProcessor FUN_18051ec50 // 渲染系统高级状态处理器
+#define RenderingSystemAdvancedStateProcessor CoreSystemThreadManager // 渲染系统高级状态处理器
 #define RenderingSystemAdvancedDataManager FUN_18051ec9f    // 渲染系统高级数据管理器
 
 /** 渲染系统辅助函数别名 */
@@ -274,7 +274,7 @@ typedef struct {
 #define RenderingSystemContextManager FUN_18055dcf0        // 渲染系统上下文管理器
 #define RenderingSystemResourceAllocator FUN_180516bd0      // 渲染系统资源分配器
 #define RenderingSystemMemoryCleanup SystemSecurityChecker          // 渲染系统内存清理器
-#define RenderingSystemSystemInitializer FUN_1808fd400      // 渲染系统系统初始化器
+#define RenderingSystemSystemInitializer RenderingSystem_Renderer0      // 渲染系统系统初始化器
 
 // ============================================================================
 // 核心函数实现

@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_06_part047.c - 6 个函数
@@ -218,12 +224,12 @@ void FUN_1803d82f1(void)
       unaff_RBP[5] = 0;
       unaff_RBP[6] = 0;
       unaff_RBP[7] = 0;
-      FUN_18063ad30(&stack0x00000070,lVar10 + 0x100,&stack0x00000030,in_R9);
+      UltraHighFreq_DataProcessor1(&stack0x00000070,lVar10 + 0x100,&stack0x00000030,in_R9);
       cVar37 = FUN_18063c5e0(in_R9,&stack0x00000070);
       in_R9 = in_stack_00000028;
       if (cVar37 != '\0') {
         aiStackX_20[0] = unaff_R12D + unaff_R14D * 6;
-        FUN_1800571e0(((int64_t)*(int *)(lVar10 + 0x18) * 0x10 + (int64_t)*(int *)(lVar10 + 0x1c))
+        SystemDatabaseProcessor(((int64_t)*(int *)(lVar10 + 0x18) * 0x10 + (int64_t)*(int *)(lVar10 + 0x1c))
                       * 0x20 + 0x70 + unaff_R13,aiStackX_20);
       }
     }
@@ -401,12 +407,12 @@ void FUN_1803d833e(void)
       unaff_RBP[5] = 0;
       unaff_RBP[6] = 0;
       unaff_RBP[7] = 0;
-      FUN_18063ad30(&stack0x00000070,0,&stack0x00000030,in_R9);
+      UltraHighFreq_DataProcessor1(&stack0x00000070,0,&stack0x00000030,in_R9);
       cVar19 = FUN_18063c5e0(in_R9,&stack0x00000070);
       in_R9 = in_stack_00000028;
       if (cVar19 != '\0') {
         aiStackX_20[0] = unaff_R12D + unaff_R14D * 6;
-        FUN_1800571e0(((int64_t)*(int *)(lVar9 + 0x18) * 0x10 + (int64_t)*(int *)(lVar9 + 0x1c)) *
+        SystemDatabaseProcessor(((int64_t)*(int *)(lVar9 + 0x18) * 0x10 + (int64_t)*(int *)(lVar9 + 0x1c)) *
                       0x20 + 0x70 + unaff_R13,aiStackX_20);
       }
     }

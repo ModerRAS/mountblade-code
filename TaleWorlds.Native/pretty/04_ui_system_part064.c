@@ -34,7 +34,7 @@ void FUN_18069bb20(int64_t param_1)
 
 
 
-bool FUN_18069bbd0(int64_t param_1,int param_2)
+bool SystemCore_Monitor(int64_t param_1,int param_2)
 
 {
   byte bVar1;
@@ -45,7 +45,7 @@ bool FUN_18069bbd0(int64_t param_1,int param_2)
   
   uVar4 = ((uint)((*(int *)(param_1 + 0x1c) + -1) * param_2) >> 8) + 1;
   if (*(int *)(param_1 + 0x18) < 0) {
-    FUN_18069ec80();
+    SystemCore_Handler();
   }
   uVar3 = *(uint64_t *)(param_1 + 0x10);
   uVar2 = (uint64_t)uVar4 << 0x38;

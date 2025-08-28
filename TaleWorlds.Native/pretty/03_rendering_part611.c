@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -66,11 +70,11 @@ void FUN_180601310(int64_t param_1,int param_2)
   cVar1 = FUN_18061ca10(*(uint64_t *)(param_1 + 0x8d8),param_2);
   if (cVar1 != '\0') {
     if (-1 < *(int *)(param_1 + 0x564)) {
-      FUN_18052e130((int64_t)*(int *)(param_1 + 0x564) * 0xa60 +
+      SystemCore_Validator0((int64_t)*(int *)(param_1 + 0x564) * 0xa60 +
                     *(int64_t *)(param_1 + 0x8d8) + 0x30a0,0xffffffff,1);
     }
     if (-1 < param_2) {
-      FUN_18052e130((int64_t)param_2 * 0xa60 + *(int64_t *)(param_1 + 0x8d8) + 0x30a0,
+      SystemCore_Validator0((int64_t)param_2 * 0xa60 + *(int64_t *)(param_1 + 0x8d8) + 0x30a0,
                     *(int32_t *)(param_1 + 0x10),1);
     }
     FUN_18052e450(param_1,param_2,1,0);
@@ -131,7 +135,7 @@ FUN_180601520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_28;
   
   uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = FUN_18055b2f0(&system_data_6150,uVar2);
+  uVar1 = SystemFile_Manager(&system_data_6150,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -505,7 +509,7 @@ uint64_t * FUN_180601db0(uint64_t *param_1,int64_t param_2)
   lVar6 = *(int64_t *)(param_2 + 0x9d8);
   lVar7 = *(int64_t *)(param_2 + 0x20);
   lVar8 = lVar6;
-  if ((lVar6 == 0) || (cVar5 = FUN_18038d0a0(lVar6), lVar8 = lVar6, cVar5 == '\0')) {
+  if ((lVar6 == 0) || (cVar5 = SystemCore_PerformanceMonitor(lVar6), lVar8 = lVar6, cVar5 == '\0')) {
     lVar6 = 0;
   }
   uVar1 = *(uint64_t *)(lVar7 + 0xc);
@@ -668,7 +672,7 @@ void FUN_1806021d0(int64_t param_1)
               (system_cache_buffer,(int64_t)*(int *)(lVar1 + 0x8b4) * 0x60 + render_system_config);
     return;
   }
-  uVar2 = FUN_180628ca0();
+  uVar2 = MemoryDebugger0();
                     // WARNING: Could not recover jumptable at 0x00018060223f. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE_00)(system_cache_buffer,uVar2);
@@ -723,7 +727,7 @@ void FUN_180602490(int64_t param_1,int64_t *param_2,int8_t param_3)
   int64_t *plStackX_10;
   
   uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16,0xfffffffffffffffe);
-  plVar3 = (int64_t *)FUN_180275090(uVar2);
+  plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
   plStackX_10 = plVar3;
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);

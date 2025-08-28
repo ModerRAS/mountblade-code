@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part037.c - 6 个函数
 
 // 函数: void FUN_1805ce220(int64_t *param_1)
@@ -43,7 +47,7 @@ void FUN_1805ce220(int64_t *param_1)
     *(uint *)((int64_t)param_1 + 0x159c) = *(uint *)((int64_t)param_1 + 0x159c) | 0x4000;
   }
   plVar1 = param_1 + 1;
-  piVar4 = (int *)FUN_1805b7660(plVar1);
+  piVar4 = (int *)SystemCore_Executor(plVar1);
   if (*piVar4 == 2) goto FUN_1805ce79d;
   if ((0.0 < (float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2ec] * 8) -
                     param_1[0x2eb]) * 1e-05) &&
@@ -51,10 +55,10 @@ void FUN_1805ce220(int64_t *param_1)
     *(uint *)((int64_t)param_1 + 0x158c) =
          *(uint *)((int64_t)param_1 + 0x158c) & 0xfffffc3f | 0x4000;
   }
-  piVar4 = (int *)FUN_1805b7660(plVar1);
+  piVar4 = (int *)SystemCore_Executor(plVar1);
   if (*piVar4 == 1) {
     if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-      FUN_1805d4440(plVar1);
+      SystemCore_Validator(plVar1);
     }
     if (((*(char *)((int64_t)param_1 + 0xd5) != '\0') &&
         (0.0 < (float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2dd] * 8) -
@@ -73,7 +77,7 @@ void FUN_1805ce220(int64_t *param_1)
       uVar5 = uVar5 >> 0x11 ^ uVar5;
       uVar5 = uVar5 << 5 ^ uVar5;
       *(uint *)(param_1 + 0x272) = uVar5;
-      FUN_1805b7740(plVar1);
+      SystemCore_ResourceHandler0(plVar1);
       fVar6 = (float)powf((float)(uVar5 - 1) * 2.3283064e-10);
       if ((1.0 - fVar6 < fVar7) &&
          ((cVar2 = func_0x0001805b7bd0(param_1), cVar2 != '\0' ||
@@ -91,7 +95,7 @@ void FUN_1805ce220(int64_t *param_1)
     goto FUN_1805ce79d;
   }
   if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-    FUN_1805d4440(plVar1);
+    SystemCore_Validator(plVar1);
   }
   if (*(char *)((int64_t)param_1 + 0xd5) != '\0') {
     if ((*(uint *)(param_1 + 2) & 0x10000000) == 0) {
@@ -111,7 +115,7 @@ void FUN_1805ce220(int64_t *param_1)
          == 0)))))) {
       if (0.0 < (float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x2df] * 8) -
                        param_1[0x2de]) * 1e-05) {
-        piVar4 = (int *)FUN_1805b7660(plVar1);
+        piVar4 = (int *)SystemCore_Executor(plVar1);
         if (*piVar4 == 3) {
           fVar7 = *(float *)(*param_1 + 0x350);
         }
@@ -122,7 +126,7 @@ void FUN_1805ce220(int64_t *param_1)
         uVar5 = uVar5 >> 0x11 ^ uVar5;
         uVar5 = uVar5 << 5 ^ uVar5;
         *(uint *)(param_1 + 0x272) = uVar5;
-        FUN_1805b7740(plVar1);
+        SystemCore_ResourceHandler0(plVar1);
         fVar6 = (float)powf((float)(uVar5 - 1) * 2.3283064e-10);
         if (fVar7 <= 1.0 - fVar6) goto LAB_1805ce5b6;
       }
@@ -202,11 +206,11 @@ void FUN_1805ce3c5(void)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   
-  piVar3 = (int *)FUN_1805b7660();
+  piVar3 = (int *)SystemCore_Executor();
   cVar2 = (char)unaff_EBP;
   if (*piVar3 == 1) {
     if ((*(byte *)(unaff_RSI + 8) & 0x80) == 0) {
-      FUN_1805d4440();
+      SystemCore_Validator();
     }
     if (((*(char *)(unaff_RSI + 0xcd) != cVar2) &&
         (unaff_XMM8_Da <
@@ -226,7 +230,7 @@ void FUN_1805ce3c5(void)
       uVar5 = uVar5 >> 0x11 ^ uVar5;
       uVar5 = uVar5 << 5 ^ uVar5;
       *(uint *)(unaff_RDI + 0x272) = uVar5;
-      FUN_1805b7740();
+      SystemCore_ResourceHandler0();
       fVar6 = (float)powf((float)(uVar5 - 1) * 2.3283064e-10);
       if ((unaff_XMM9_Da - fVar6 < fVar7) &&
          ((cVar1 = func_0x0001805b7bd0(), cVar1 != '\0' || (cVar1 = FUN_1805d06b0(), cVar1 == '\0'))
@@ -244,7 +248,7 @@ void FUN_1805ce3c5(void)
     goto LAB_1805ce793;
   }
   if ((*(byte *)(unaff_RSI + 8) & 0x80) == 0) {
-    FUN_1805d4440();
+    SystemCore_Validator();
   }
   if (*(char *)(unaff_RSI + 0xcd) != cVar2) {
     if ((*(uint *)(unaff_RSI + 8) & 0x10000000) == 0) {
@@ -266,7 +270,7 @@ void FUN_1805ce3c5(void)
       if (unaff_XMM8_Da <
           (float)(*(int64_t *)(unaff_R14 + (int64_t)(int)unaff_RDI[0x2df] * 8) - unaff_RDI[0x2de])
           * unaff_XMM7_Da) {
-        piVar3 = (int *)FUN_1805b7660();
+        piVar3 = (int *)SystemCore_Executor();
         if (*piVar3 == 3) {
           fVar7 = *(float *)(*unaff_RDI + 0x350);
         }
@@ -277,7 +281,7 @@ void FUN_1805ce3c5(void)
         uVar5 = uVar5 >> 0x11 ^ uVar5;
         uVar5 = uVar5 << 5 ^ uVar5;
         *(uint *)(unaff_RDI + 0x272) = uVar5;
-        FUN_1805b7740();
+        SystemCore_ResourceHandler0();
         fVar6 = (float)powf((float)(uVar5 - 1) * 2.3283064e-10);
         if (fVar7 <= unaff_XMM9_Da - fVar6) goto LAB_1805ce5b6;
       }
@@ -431,7 +435,7 @@ void FUN_1805ce8c0(int64_t *param_1)
          uVar5 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272),
          uVar5 = uVar5 >> 0x11 ^ uVar5, uVar5 = uVar5 << 5 ^ uVar5,
          *(uint *)(param_1 + 0x272) = uVar5, (float)(uVar5 - 1) * 2.3283064e-10 < fVar9)) {
-        lVar3 = FUN_1805b74c0(param_1 + 1);
+        lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
         iVar1 = *(int *)(lVar3 + 0x228);
         lVar3 = *(int64_t *)(lVar3 + 0x220);
         fVar9 = *(float *)(*param_1 + 0x378);
@@ -463,31 +467,31 @@ void FUN_1805ce8c0(int64_t *param_1)
             uVar5 = uVar5 >> 0x11 ^ uVar5, uVar5 = uVar5 << 5 ^ uVar5,
             *(uint *)(param_1 + 0x272) = uVar5, (float)(uVar5 - 1) * 2.3283064e-10 < fVar9)) {
       fVar9 = 0.0;
-      lVar3 = FUN_1805b74c0(param_1 + 1);
+      lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
       iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2450);
       if ((iVar1 == -1) || (*(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) {
 LAB_1805ceb8f:
-        lVar3 = FUN_1805b74c0(param_1 + 1);
+        lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
         iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2498);
         if ((iVar1 != -1) && (0x2e < *(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config))) {
-          lVar3 = FUN_1805b74c0(param_1 + 1);
+          lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
           iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2498);
           if ((iVar1 == -1) || (*(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config) < 0x33)) {
-            lVar3 = FUN_1805b74c0(param_1 + 1);
+            lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
             uVar7 = 1;
             goto LAB_1805cebf9;
           }
         }
       }
       else {
-        lVar3 = FUN_1805b74c0(param_1 + 1);
+        lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
         iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2450);
         if ((iVar1 != -1) && (0x32 < *(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config)))
         goto LAB_1805ceb8f;
-        lVar3 = FUN_1805b74c0(param_1 + 1);
+        lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
         uVar4 = func_0x000180534e20(*(uint64_t *)(lVar3 + 0x590),0);
         if ((uVar4 & 0x2000000000) == 0) goto LAB_1805ceb8f;
-        lVar3 = FUN_1805b74c0(param_1 + 1);
+        lVar3 = SystemCore_MemoryAllocator(param_1 + 1);
         uVar7 = 0;
 LAB_1805cebf9:
         fVar9 = (float)(**(code **)(**(int64_t **)(lVar3 + 0x590) + 0xb8))
@@ -634,7 +638,7 @@ void FUN_1805ce8f7(void)
          uVar5 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
          uVar5 = uVar5 >> 0x11 ^ uVar5, uVar5 = uVar5 << 5 ^ uVar5,
          *(uint *)(unaff_RBX + 0x272) = uVar5, (float)(uVar5 - 1) * 2.3283064e-10 < fVar9)) {
-        lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+        lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
         iVar1 = *(int *)(lVar3 + 0x228);
         lVar3 = *(int64_t *)(lVar3 + 0x220);
         fVar9 = *(float *)(*unaff_RBX + 0x378);
@@ -666,31 +670,31 @@ void FUN_1805ce8f7(void)
             uVar5 = uVar5 >> 0x11 ^ uVar5, uVar5 = uVar5 << 5 ^ uVar5,
             *(uint *)(unaff_RBX + 0x272) = uVar5, (float)(uVar5 - 1) * 2.3283064e-10 < fVar9)) {
       fVar9 = 0.0;
-      lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+      lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
       iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2450);
       if ((iVar1 == -1) || (*(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) {
 LAB_1805ceb8f:
-        lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+        lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
         iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2498);
         if ((iVar1 != -1) && (0x2e < *(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config))) {
-          lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+          lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
           iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2498);
           if ((iVar1 == -1) || (*(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config) < 0x33)) {
-            lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+            lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
             uVar7 = 1;
             goto LAB_1805cebf9;
           }
         }
       }
       else {
-        lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+        lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
         iVar1 = *(int *)(*(int64_t *)(lVar3 + 0x590) + 0x2450);
         if ((iVar1 != -1) && (0x32 < *(int *)((int64_t)iVar1 * 0x68 + 0x58 + system_system_config)))
         goto LAB_1805ceb8f;
-        lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+        lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
         uVar4 = func_0x000180534e20(*(uint64_t *)(lVar3 + 0x590),0);
         if ((uVar4 & 0x2000000000) == 0) goto LAB_1805ceb8f;
-        lVar3 = FUN_1805b74c0(unaff_RBX + 1);
+        lVar3 = SystemCore_MemoryAllocator(unaff_RBX + 1);
         uVar7 = 0;
 LAB_1805cebf9:
         fVar9 = (float)(**(code **)(**(int64_t **)(lVar3 + 0x590) + 0xb8))

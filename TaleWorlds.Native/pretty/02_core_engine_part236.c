@@ -679,7 +679,7 @@ uint64_t * FUN_1802064e0(int64_t param_1,uint64_t *param_2,int32_t param_3,int p
   uVar6 = *(int32_t *)*param_2;
   uVar3 = func_0x0001802063e0(param_4);
   puVar5 = (uint64_t *)
-           FUN_1800b0a10(&system_data_7370,&plStack_50,*(int32_t *)(param_1 + 0x298),
+           SystemCore_ConfigManager(&system_data_7370,&plStack_50,*(int32_t *)(param_1 + 0x298),
                          &system_data_7370 + (int64_t)param_4 * 0x98,uVar7 | 4,0,uVar2,uVar3,uVar6,0,0
                          ,1,uVar8);
   uVar1 = *puVar5;

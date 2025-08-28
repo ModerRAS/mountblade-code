@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -373,7 +374,7 @@ void PhysicsAnimationController(int64_t param_1, float param_2)
       uVar12 = *(uint64_t *)((int64_t)unaff_RSI + 0x14dc);
       lVar14 = (int64_t)*(int *)((int64_t)unaff_RSI + 0x173c) * 0xa60;
       uVar24 = *(uint64_t *)(*(int64_t *)(lVar14 + 0x30c0 + unaff_RSI[0x291]) + 0x24);
-      plVar13 = (int64_t *)FUN_180516f50(lVar14 + unaff_RSI[0x291] + 0x30a0,unaff_RBP + -0x79);
+      plVar13 = (int64_t *)UltraHighFreq_MemoryManager1(lVar14 + unaff_RSI[0x291] + 0x30a0,unaff_RBP + -0x79);
       fVar20 = extraout_XMM0_Da;
     }
     FUN_1805b93a0(fVar20,1,plVar13,uVar12,uVar24);
@@ -472,7 +473,7 @@ LAB_1805d1360:
     else {
       if (!bVar2) {
         if ((*(byte *)(unaff_RSI + 2) & 0x80) == 0) {
-          fVar22 = (float)FUN_1805d4440(unaff_RSI + 1);
+          fVar22 = (float)SystemCore_Validator(unaff_RSI + 1);
         }
         if (*(char *)((int64_t)unaff_RSI + 0xd5) != '\0') goto LAB_1805d1360;
       }

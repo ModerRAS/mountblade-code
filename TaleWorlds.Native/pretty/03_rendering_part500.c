@@ -1,10 +1,15 @@
+n//  的语义化别名
+#define SystemCore_FileSystem 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part500.c - 10 个函数
 
@@ -76,7 +81,7 @@ void FUN_180534410(int64_t param_1,uint64_t *param_2)
     *(int32_t *)((int64_t)puVar37 + 0x34) = uVar30;
     *(int32_t *)(puVar37 + 7) = uVar31;
     *(int32_t *)((int64_t)puVar37 + 0x3c) = uVar32;
-    FUN_180254610();
+    RenderingSystem_CameraController();
     *(byte *)(lVar38 + 0x2e8) = *(byte *)(lVar38 + 0x2e8) | 0x10;
     if (((*(uint *)(lVar38 + 0x2ac) & 0x10000000) == 0) && (*(int64_t *)(lVar38 + 0x20) != 0)) {
       FUN_1801b01f0(*(int64_t *)(lVar38 + 0x20),lVar38);
@@ -141,7 +146,7 @@ void FUN_180534410(int64_t param_1,uint64_t *param_2)
           *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
           *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
           *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-          FUN_1802eace0(lVar13);
+          UtilitiesSystem_StringProcessor(lVar13);
         }
         lVar39 = lVar39 + 1;
       } while (lVar39 < iVar36);
@@ -166,7 +171,7 @@ int32_t FUN_1805344c0(uint64_t param_1,int64_t param_2)
   if (*(int *)(param_2 + 0x10) != 0) {
     lVar3 = render_system_data_config + 0x50;
     uStackX_8 = param_1;
-    plVar1 = (int64_t *)FUN_180058080(lVar3,&uStackX_8,param_2);
+    plVar1 = (int64_t *)HighFreq_AnimationSystem1(lVar3,&uStackX_8,param_2);
     if (*plVar1 != lVar3) {
       return *(int32_t *)(*plVar1 + 0x40);
     }
@@ -174,7 +179,7 @@ int32_t FUN_1805344c0(uint64_t param_1,int64_t param_2)
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar2 = *(void **)(param_2 + 8);
     }
-    FUN_180627020(&processed_var_7152_ptr,puVar2);
+    SystemCore_Allocator(&processed_var_7152_ptr,puVar2);
   }
   return 0xffffffff;
 }
@@ -230,7 +235,7 @@ uint64_t FUN_1805346e0(void)
     if (render_system_config_config == -1) {
       FUN_18058f390(0x180d48f30);
       FUN_1808fc820(&rendering_buffer_2656_ptr);
-      FUN_1808fcb30(&system_ptr_9128);
+      SystemCore_StateController(&system_ptr_9128);
       return 0x180d48f30;
     }
   }
@@ -262,7 +267,7 @@ void FUN_180534770(int64_t param_1,uint *param_2,char param_3)
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000);
   }
   puVar2 = (uint *)((int64_t)param_3 * 0x100 + *(int64_t *)(param_1 + 0x18));
   do {
@@ -339,7 +344,7 @@ float * FUN_180534800(float *param_1,float *param_2,float *param_3)
 
 
 
-float * FUN_180534930(int32_t *param_1,float *param_2,float *param_3)
+float * SystemCore_CleanupHandler0(int32_t *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -409,8 +414,8 @@ float * FUN_180534930(int32_t *param_1,float *param_2,float *param_3)
 
 
 
-// 函数: void FUN_180534b00(void)
-void FUN_180534b00(void)
+// 函数: void SystemCore_ConfigManager(void)
+void SystemCore_ConfigManager(void)
 
 {
   int32_t in_XMM3_Da;
@@ -432,7 +437,7 @@ uint64_t FUN_180534d00(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
       __Throw_C_error_std__YAXH_Z(iVar1);
     }
     if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(param_1,*(int64_t *)(param_1 + 0x10) + 0x70,0xbf800000);
     }
     iVar1 = _Mtx_unlock(param_1 + 0xe0);
     if (iVar1 != 0) {
@@ -769,14 +774,14 @@ void FUN_1805358d0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
           do {
             lVar2 = *(int64_t *)(lVar5 + lVar6 * 8);
             if ((lVar2 != 0) && (*(char *)(*(int64_t *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-              FUN_1805b59d0(lVar2,0x180c95578);
+              NetworkSystem_SecurityManager(lVar2,0x180c95578);
               lVar5 = render_system_config;
             }
             lVar6 = lVar6 + 1;
           } while (lVar6 < iVar4);
         }
         if (render_system_config != 0) {
-          FUN_180567f30(render_system_config,0x180c95578);
+          SystemCore_DatabaseHandler(render_system_config,0x180c95578);
         }
         render_system_config = 0;
                     // WARNING: Subroutine does not return
@@ -844,14 +849,14 @@ void FUN_1805358ec(void)
         do {
           lVar2 = *(int64_t *)(lVar5 + lVar6 * 8);
           if ((lVar2 != 0) && (*(char *)(*(int64_t *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(lVar2,0x180c95578);
+            NetworkSystem_SecurityManager(lVar2,0x180c95578);
             lVar5 = render_system_config;
           }
           lVar6 = lVar6 + 1;
         } while (lVar6 < iVar4);
       }
       if (render_system_config != 0) {
-        FUN_180567f30(render_system_config,0x180c95578);
+        SystemCore_DatabaseHandler(render_system_config,0x180c95578);
       }
       render_system_config = 0;
                     // WARNING: Subroutine does not return
@@ -916,14 +921,14 @@ void FUN_180535925(void)
         do {
           lVar2 = *(int64_t *)(lVar6 + lVar7 * 8);
           if ((lVar2 != 0) && (*(char *)(*(int64_t *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(lVar2,0x180c95578);
+            NetworkSystem_SecurityManager(lVar2,0x180c95578);
             lVar6 = render_system_config;
           }
           lVar7 = lVar7 + 1;
         } while (lVar7 < iVar5);
       }
       if (render_system_config != 0) {
-        FUN_180567f30(render_system_config,0x180c95578);
+        SystemCore_DatabaseHandler(render_system_config,0x180c95578);
       }
       render_system_config = 0;
                     // WARNING: Subroutine does not return

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 /**
  * 03_rendering_part639.c - 渲染系统高级字符串处理和路径管理模块
  * 
@@ -92,10 +96,10 @@ typedef struct {
 #define RenderingSystem_DebugStringGenerator4 FUN_1806268d0
 #define RenderingSystem_StringFormatProcessor FUN_180626a10
 #define RenderingSystem_DebugStringGenerator5 FUN_180626a80
-#define RenderingSystem_StringLengthCalculator FUN_180626eb0
-#define RenderingSystem_DebugStringFormatter3 FUN_180626ee0
+#define RenderingSystem_StringLengthCalculator SystemCore_CacheManager
+#define RenderingSystem_DebugStringFormatter3 UtilitiesSystem_PerformanceMonitor
 #define RenderingSystem_DebugFunctionExecutor1 SystemCore_ResourceManager0
-#define RenderingSystem_DebugStringFormatter4 FUN_180627020
+#define RenderingSystem_DebugStringFormatter4 SystemManager_StateHandler0
 #define RenderingSystem_DebugStringFormatter5 FUN_1806270c0
 #define RenderingSystem_DebugFunctionExecutor2 FUN_180627160
 #define RenderingSystem_DebugStringFormatter6 FUN_1806272a0
@@ -183,7 +187,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     puStack_b8 = &system_state_ptr;
     
     /* 执行最终清理 */
-    SystemDataValidator(auStack_88, 0x20, 3, FUN_180627b90);
+    SystemDataValidator(auStack_88, 0x20, 3, SystemValidator);
     
     /* 执行安全退出 */
     SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_d8);
@@ -267,7 +271,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     puStack_d8 = &system_state_ptr;
     
     /* 执行最终清理 */
-    SystemDataValidator(auStack_a8, 0x20, 4, FUN_180627b90);
+    SystemDataValidator(auStack_a8, 0x20, 4, SystemValidator);
     
     /* 执行安全退出 */
     SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_f8);
@@ -1132,7 +1136,7 @@ void RenderingSystem_DebugStringGenerator5(void)
         puVar4 = puStack_158;
     }
     uStack_150 = uVar1 + 0x1b;
-    FUN_18062dee0(&uStack_100, puVar4, &processed_var_4348_ptr);
+    SystemCore_Validator(&uStack_100, puVar4, &processed_var_4348_ptr);
     bVar6 = lStack_f8 == 0;
     
     /* 清理文件资源 */
@@ -1191,7 +1195,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 puVar4 = puStack_138;
             }
             uStack_130 = uVar1 + 0x1a;
-            FUN_18062dee0(&uStack_e8, puVar4, &processed_var_4348_ptr);
+            SystemCore_Validator(&uStack_e8, puVar4, &processed_var_4348_ptr);
             bVar6 = lStack_e0 == 0;
             
             /* 清理备用文件资源 */
@@ -1254,7 +1258,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                     puVar4 = puStack_118;
                 }
                 uStack_110 = uVar1 + 0x19;
-                FUN_18062dee0(&uStack_d0, puVar4, &processed_var_4348_ptr);
+                SystemCore_Validator(&uStack_d0, puVar4, &processed_var_4348_ptr);
                 
                 /* 清理第三备用文件资源 */
                 if (lStack_c8 != 0) {

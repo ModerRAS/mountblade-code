@@ -204,8 +204,8 @@ FUN_1800e9840(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 
 
 
-// 函数: void FUN_1800e98d0(int64_t *param_1,uint64_t *param_2)
-void FUN_1800e98d0(int64_t *param_1,uint64_t *param_2)
+// 函数: void CoreEngine_SystemInitializer(int64_t *param_1,uint64_t *param_2)
+void CoreEngine_SystemInitializer(int64_t *param_1,uint64_t *param_2)
 
 {
   uint64_t *puVar1;

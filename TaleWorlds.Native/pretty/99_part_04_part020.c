@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -13,7 +17,7 @@ void FUN_180269f00(int64_t param_1)
   uint64_t uVar4;
   
   *(void **)(param_1 + 8) = &processed_var_7440_ptr;
-  FUN_1802708b0((uint64_t *)(param_1 + 0x10));
+  MemoryBufferManager((uint64_t *)(param_1 + 0x10));
   puVar2 = *(uint64_t **)(param_1 + 0x10);
   if (puVar2 == (uint64_t *)0x0) {
     return;
@@ -50,13 +54,13 @@ void FUN_180269f50(int64_t param_1)
 
 {
   *(void **)(param_1 + 0x38) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x40));
+  MemoryBufferManager((int64_t *)(param_1 + 0x40));
   if (*(int64_t *)(param_1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   *(void **)(param_1 + 8) = &processed_var_7440_ptr;
-  FUN_1802708b0((int64_t *)(param_1 + 0x10));
+  MemoryBufferManager((int64_t *)(param_1 + 0x10));
   if (*(int64_t *)(param_1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -641,12 +645,12 @@ void FUN_18026a5b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     lVar1 = system_system_data_config;
     pplStackX_18 = &plStackX_8;
     pplVar3 = (int64_t **)(system_system_data_config + 0x20);
-    FUN_180058080(pplVar3,&pplStackX_10,plStackX_8 + 9,param_4,uVar4);
+    HighFreq_AnimationSystem1(pplVar3,&pplStackX_10,plStackX_8 + 9,param_4,uVar4);
     pplVar2 = pplStackX_10;
     if (pplStackX_10 != pplVar3) {
       *(int64_t *)(lVar1 + 0x40) = *(int64_t *)(lVar1 + 0x40) + -1;
       func_0x00018066bd70(pplStackX_10);
-      FUN_18066ba00(pplVar2,pplVar3);
+      RenderingSystem_BufferHandler(pplVar2,pplVar3);
       FUN_1800c2c20();
       *(int32_t *)(plStackX_8 + 0xe) = 0;
     }
@@ -697,7 +701,7 @@ void FUN_18026a670(int64_t param_1,int64_t param_2)
   lVar8 = *plVar10;
   if (lVar8 != lVar11) {
     do {
-      FUN_180057830();
+      DataTransformer0();
       lVar8 = lVar8 + 0x28;
     } while (lVar8 != lVar11);
     lVar8 = *plVar10;
@@ -785,7 +789,7 @@ LAB_18026a7db:
     lVar5 = lVar4 + uVar13 * 0x28;
     if (lVar5 != lVar8) {
       do {
-        FUN_180057830();
+        DataTransformer0();
         lVar5 = lVar5 + 0x28;
       } while (lVar5 != lVar8);
       lVar4 = *plVar10;

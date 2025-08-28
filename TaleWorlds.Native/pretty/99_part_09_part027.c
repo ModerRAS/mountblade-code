@@ -1,7 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 #define StringProcessor System_StringProcessor  // 字符串处理器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_09_part027.c - 7 个函数
 
@@ -77,7 +80,7 @@ int32_t FUN_1805c9f10(int64_t *param_1)
         cVar9 = func_0x0001805d1da0(param_1);
         if (cVar9 == '\0') {
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(lVar8 + 0x34));
+          RenderingSystem_Renderer0(*(int32_t *)(lVar8 + 0x34));
         }
         pfVar4 = (float *)FUN_1805b6cc0(param_1 + 1);
         pfVar5 = (float *)FUN_1805b6920(param_1 + 1);
@@ -87,9 +90,9 @@ int32_t FUN_1805c9f10(int64_t *param_1)
                  (pfVar5[1] * pfVar4[1] + *pfVar5 * *pfVar4);
         if ((0.001 <= fVar10) &&
            ((fVar10 = *pfVar6 / fVar10, fVar10 < 7.0 || ((fVar10 < 21.0 && (*pfVar6 < 50.0)))))) {
-          FUN_1805b74c0(param_1 + 1);
+          SystemCore_MemoryAllocator(param_1 + 1);
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
+          RenderingSystem_Renderer0(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
         }
       }
       return 0x3f19999a;
@@ -117,9 +120,9 @@ uint64_t FUN_1805ca08f(void)
           (pfVar2[1] * pfVar1[1] + *pfVar2 * *pfVar1);
   if ((0.001 <= fVar4) &&
      ((fVar4 = *pfVar3 / fVar4, fVar4 < 7.0 || ((fVar4 < 21.0 && (*pfVar3 < 50.0)))))) {
-    FUN_1805b74c0(unaff_RSI + 1);
+    SystemCore_MemoryAllocator(unaff_RSI + 1);
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
+    RenderingSystem_Renderer0(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
   }
   return 0x3f19999a;
 }
@@ -137,9 +140,9 @@ uint64_t FUN_1805ca0fc(void)
      ((21.0 <= in_XMM4_Da / in_XMM3_Da || (50.0 <= in_XMM4_Da)))) {
     return 0x3f19999a;
   }
-  FUN_1805b74c0(unaff_RSI + 1);
+  SystemCore_MemoryAllocator(unaff_RSI + 1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
+  RenderingSystem_Renderer0(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
 }
 
 
@@ -153,9 +156,9 @@ void FUN_1805ca126(void)
 {
   int64_t *unaff_RSI;
   
-  FUN_1805b74c0(unaff_RSI + 1);
+  SystemCore_MemoryAllocator(unaff_RSI + 1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
+  RenderingSystem_Renderer0(*(int32_t *)(*(int64_t *)(*unaff_RSI + 0x20) + 0x34));
 }
 
 
@@ -260,7 +263,7 @@ void FUN_1805ca260(int64_t *param_1,int64_t param_2,uint param_3,float param_4,c
   if (bVar13 == 0) {
     if (param_5 != '\0') {
       cVar5 = func_0x0001805d1da0(param_1);
-      if ((cVar5 != '\0') && (pfVar6 = (float *)FUN_1805b6e50(param_1 + 1), *pfVar6 <= 4.0)) {
+      if ((cVar5 != '\0') && (pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1), *pfVar6 <= 4.0)) {
         pfVar6 = (float *)FUN_1805b6cc0(param_1 + 1);
         fVar16 = *pfVar6 * *pfVar6 + pfVar6[1] * pfVar6[1] + pfVar6[2] * pfVar6[2];
         fVar15 = (float)func_0x00018051f9a0(*param_1);
@@ -280,7 +283,7 @@ LAB_1805ca610:
          *(float *)(lVar8 + 0x28) * *(float *)(lVar8 + 0x28) +
          *(float *)(lVar8 + 0x2c) * *(float *)(lVar8 + 0x2c))) ||
         (cVar5 = func_0x0001805d1da0(param_1), cVar5 == '\0')) ||
-       ((pfVar6 = (float *)FUN_1805b6e50(param_1 + 1), 4.0 < *pfVar6 &&
+       ((pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1), 4.0 < *pfVar6 &&
         (((int)param_1[0x295] != 1 ||
          (fVar15 = *(float *)(*(int64_t *)(*param_1 + 0x20) + 0x84),
          pfVar6 = (float *)FUN_1805b6980(param_1 + 1), fVar15 < *pfVar6)))))) {
@@ -297,7 +300,7 @@ LAB_1805ca608:
   if (((*(byte *)(lVar10 + 0x50 + lVar8) >> 4 & 1) != 0) &&
      ((((param_5 == '\0' && (bVar13 == 0)) && (20.0 < fStackX_20)) ||
       ((cVar5 = func_0x0001805d1da0(param_1), cVar5 == '\0' ||
-       (pfVar6 = (float *)FUN_1805b6e50(param_1 + 1), 4.0 < *pfVar6)))))) {
+       (pfVar6 = (float *)UltraHighFreq_RenderingProcessor1(param_1 + 1), 4.0 < *pfVar6)))))) {
     func_0x00018051f640(*param_1);
   }
   if ((*(uint *)(param_1 + 2) & 0x200) == 0) {
@@ -355,9 +358,9 @@ LAB_1805ca818:
         uStack_e0 = 0;
         fStack_e8 = *(float *)(*(int64_t *)(lVar8 + 0x20) + 0xc) - *(float *)(lVar12 + 0xc);
         fStack_e4 = *(float *)(*(int64_t *)(lVar8 + 0x20) + 0x10) - *(float *)(lVar12 + 0x10);
-        FUN_1801c24a0(&fStack_e8);
+        UtilitiesSystem_CryptoHandler(&fStack_e8);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400();
+        RenderingSystem_Renderer0();
       }
       if (((*(byte *)((int64_t)*(int *)(lVar8 + 100 + lVar10) * 0x170 + 0x140 + lVar7) & 0x10) != 0
           ) && (1 < *(int *)(lVar2 + 0x1fc) - 1U)) {
@@ -450,7 +453,7 @@ void FUN_1805ca439(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   if (bVar10 == 0) {
     if (unaff_R13B != '\0') {
       cVar3 = func_0x0001805d1da0();
-      if ((cVar3 != '\0') && (pfVar4 = (float *)FUN_1805b6e50(unaff_RDI + 1), *pfVar4 <= 4.0)) {
+      if ((cVar3 != '\0') && (pfVar4 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), *pfVar4 <= 4.0)) {
         pfVar4 = (float *)FUN_1805b6cc0(unaff_RDI + 1);
         fVar13 = *pfVar4 * *pfVar4 + pfVar4[1] * pfVar4[1] + pfVar4[2] * pfVar4[2];
         fVar12 = (float)func_0x00018051f9a0(*unaff_RDI);
@@ -470,7 +473,7 @@ LAB_1805ca610:
          *(float *)(lVar6 + 0x28) * *(float *)(lVar6 + 0x28) +
          *(float *)(lVar6 + 0x2c) * *(float *)(lVar6 + 0x2c))) ||
         (cVar3 = func_0x0001805d1da0(), cVar3 == '\0')) ||
-       ((pfVar4 = (float *)FUN_1805b6e50(unaff_RDI + 1), 4.0 < *pfVar4 &&
+       ((pfVar4 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), 4.0 < *pfVar4 &&
         (((int)unaff_RDI[0x295] != 1 ||
          (fVar12 = *(float *)(*(int64_t *)(*unaff_RDI + 0x20) + 0x84),
          pfVar4 = (float *)FUN_1805b6980(unaff_RDI + 1), fVar12 < *pfVar4)))))) {
@@ -487,7 +490,7 @@ LAB_1805ca608:
   if (((*(byte *)(unaff_RSI + 0x50 + lVar6) >> 4 & 1) != 0) &&
      ((((unaff_R13B == '\0' && (bVar10 == 0)) && (20.0 < in_stack_00000128)) ||
       ((cVar3 = func_0x0001805d1da0(), cVar3 == '\0' ||
-       (pfVar4 = (float *)FUN_1805b6e50(unaff_RDI + 1), 4.0 < *pfVar4)))))) {
+       (pfVar4 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), 4.0 < *pfVar4)))))) {
     func_0x00018051f640(*unaff_RDI);
   }
   if ((*(uint *)(unaff_RDI + 2) & 0x200) == 0) {
@@ -545,9 +548,9 @@ LAB_1805ca818:
         uStack000000000000002c = 0x7f7fffff;
         fStackX_20 = *(float *)(*(int64_t *)(lVar6 + 0x20) + 0xc) - *(float *)(lVar9 + 0xc);
         fStackX_24 = *(float *)(*(int64_t *)(lVar6 + 0x20) + 0x10) - *(float *)(lVar9 + 0x10);
-        FUN_1801c24a0(&fStackX_20);
+        UtilitiesSystem_CryptoHandler(&fStackX_20);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400();
+        RenderingSystem_Renderer0();
       }
       if (((*(byte *)((int64_t)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + lVar7) & 0x10)
            != 0) && (1 < *(int *)(lVar1 + 0x1fc) - 1U)) {
@@ -626,7 +629,7 @@ void FUN_1805ca487(void)
   if (bVar9 == 0) {
     if (unaff_R13B != '\0') {
       cVar4 = func_0x0001805d1da0();
-      if ((cVar4 != '\0') && (pfVar5 = (float *)FUN_1805b6e50(unaff_RDI + 1), *pfVar5 <= 4.0)) {
+      if ((cVar4 != '\0') && (pfVar5 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), *pfVar5 <= 4.0)) {
         pfVar5 = (float *)FUN_1805b6cc0(unaff_RDI + 1);
         fVar12 = *pfVar5 * *pfVar5 + pfVar5[1] * pfVar5[1] + pfVar5[2] * pfVar5[2];
         fVar11 = (float)func_0x00018051f9a0(*unaff_RDI);
@@ -646,7 +649,7 @@ LAB_1805ca610:
          *(float *)(lVar7 + 0x28) * *(float *)(lVar7 + 0x28) +
          *(float *)(lVar7 + 0x2c) * *(float *)(lVar7 + 0x2c))) ||
         (cVar4 = func_0x0001805d1da0(), cVar4 == '\0')) ||
-       ((pfVar5 = (float *)FUN_1805b6e50(unaff_RDI + 1), 4.0 < *pfVar5 &&
+       ((pfVar5 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), 4.0 < *pfVar5 &&
         (((int)unaff_RDI[0x295] != 1 ||
          (fVar11 = *(float *)(*(int64_t *)(*unaff_RDI + 0x20) + 0x84),
          pfVar5 = (float *)FUN_1805b6980(unaff_RDI + 1), fVar11 < *pfVar5)))))) {
@@ -663,7 +666,7 @@ LAB_1805ca608:
   if (((*(byte *)(unaff_RSI + 0x50 + lVar7) >> 4 & 1) != 0) &&
      ((((unaff_R13B == '\0' && (bVar9 == 0)) && (20.0 < in_stack_00000128)) ||
       ((cVar4 = func_0x0001805d1da0(), cVar4 == '\0' ||
-       (pfVar5 = (float *)FUN_1805b6e50(unaff_RDI + 1), 4.0 < *pfVar5)))))) {
+       (pfVar5 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), 4.0 < *pfVar5)))))) {
     func_0x00018051f640(*unaff_RDI);
   }
   if ((*(uint *)(unaff_RDI + 2) & 0x200) == 0) {
@@ -721,9 +724,9 @@ LAB_1805ca818:
         uStack000000000000002c = 0x7f7fffff;
         fStackX_20 = *(float *)(*(int64_t *)(lVar7 + 0x20) + 0xc) - *(float *)(lVar8 + 0xc);
         fStackX_24 = *(float *)(*(int64_t *)(lVar7 + 0x20) + 0x10) - *(float *)(lVar8 + 0x10);
-        FUN_1801c24a0(&fStackX_20);
+        UtilitiesSystem_CryptoHandler(&fStackX_20);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400();
+        RenderingSystem_Renderer0();
       }
       if (((*(byte *)((int64_t)*(int *)(lVar7 + 100 + unaff_RSI) * 0x170 + 0x140 + lVar6) & 0x10)
            != 0) && (1 < *(int *)(lVar2 + 0x1fc) - 1U)) {
@@ -806,7 +809,7 @@ LAB_1805ca610:
   else {
     cVar3 = func_0x0001805d1da0();
     if ((cVar3 == '\0') ||
-       (pfVar4 = (float *)FUN_1805b6e50(unaff_RDI + 1), unaff_XMM13_Da < *pfVar4)) {
+       (pfVar4 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), unaff_XMM13_Da < *pfVar4)) {
 LAB_1805ca54f:
       unaff_R15B = '\0';
     }
@@ -824,7 +827,7 @@ LAB_1805ca54f:
   if (((*(byte *)(unaff_RSI + 0x50 + lVar6) >> 4 & 1) != 0) &&
      ((((unaff_R13B == '\0' && (unaff_R14B == '\0')) && (20.0 < in_stack_00000128)) ||
       ((cVar3 = func_0x0001805d1da0(), cVar3 == '\0' ||
-       (pfVar4 = (float *)FUN_1805b6e50(unaff_RDI + 1), unaff_XMM13_Da < *pfVar4)))))) {
+       (pfVar4 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RDI + 1), unaff_XMM13_Da < *pfVar4)))))) {
     func_0x00018051f640(*unaff_RDI);
   }
   if ((*(uint *)(unaff_RDI + 2) & 0x200) == 0) {
@@ -882,9 +885,9 @@ LAB_1805ca818:
         uStack000000000000002c = 0x7f7fffff;
         fStackX_20 = *(float *)(*(int64_t *)(lVar6 + 0x20) + 0xc) - *(float *)(lVar7 + 0xc);
         fStackX_24 = *(float *)(*(int64_t *)(lVar6 + 0x20) + 0x10) - *(float *)(lVar7 + 0x10);
-        FUN_1801c24a0(&fStackX_20);
+        UtilitiesSystem_CryptoHandler(&fStackX_20);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400();
+        RenderingSystem_Renderer0();
       }
       if (((*(byte *)((int64_t)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + lVar5) & 0x10)
            != 0) && (1 < *(int *)(lVar2 + 0x1fc) - 1U)) {

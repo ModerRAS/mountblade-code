@@ -1,5 +1,11 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part394.c - 6 个函数
 
@@ -28,21 +34,21 @@ void FUN_180487870(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plStack_28 = (int64_t *)0x0;
   uStack_38 = 0;
   auStack_40[0] = 0;
-  FUN_18022f2e0(&plStack_50,param_1,0);
+  RenderingSystem_MaterialProcessor(&plStack_50,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
   FUN_180232d10(&plStack_50,param_2,param_3,param_4,param_5,param_6,uVar2);
   if ((plStack_50 != (int64_t *)0x0) && (plStack_48 != (int64_t *)0x0)) {
     if (cStack_1e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_40);
+    SystemSecurityManager(auStack_40);
     if (cStack_20 != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     if (cStack_1f != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     plVar1 = plStack_48;
     plStack_48 = (int64_t *)0x0;
@@ -50,7 +56,7 @@ void FUN_180487870(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_40);
+  SystemSecurityManager(auStack_40);
   if (plStack_28 != (int64_t *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -92,21 +98,21 @@ void FUN_1804879d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plStack_28 = (int64_t *)0x0;
   uStack_38 = 0;
   auStack_40[0] = 0;
-  FUN_18022f2e0(&plStack_50,param_1,0);
+  RenderingSystem_MaterialProcessor(&plStack_50,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
   FUN_1802325e0(&plStack_50,param_2,param_3,param_4,param_5,param_6,uVar2);
   if ((plStack_50 != (int64_t *)0x0) && (plStack_48 != (int64_t *)0x0)) {
     if (cStack_1e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_40);
+    SystemSecurityManager(auStack_40);
     if (cStack_20 != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     if (cStack_1f != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     plVar1 = plStack_48;
     plStack_48 = (int64_t *)0x0;
@@ -114,7 +120,7 @@ void FUN_1804879d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_40);
+  SystemSecurityManager(auStack_40);
   if (plStack_28 != (int64_t *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -155,21 +161,21 @@ void FUN_180487b30(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plStack_28 = (int64_t *)0x0;
   uStack_38 = 0;
   auStack_40[0] = 0;
-  FUN_18022f2e0(&plStack_50,param_1,0,param_4,uVar2);
+  RenderingSystem_MaterialProcessor(&plStack_50,param_1,0,param_4,uVar2);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
   FUN_180230c90(&plStack_50,param_2,param_3);
   if ((plStack_50 != (int64_t *)0x0) && (plStack_48 != (int64_t *)0x0)) {
     if (cStack_1e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_40);
+    SystemSecurityManager(auStack_40);
     if (cStack_20 != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     if (cStack_1f != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     plVar1 = plStack_48;
     plStack_48 = (int64_t *)0x0;
@@ -177,7 +183,7 @@ void FUN_180487b30(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_40);
+  SystemSecurityManager(auStack_40);
   if (plStack_28 != (int64_t *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -196,8 +202,8 @@ void FUN_180487b30(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_180487c70(int32_t param_1,int param_2)
-void FUN_180487c70(int32_t param_1,int param_2)
+// 函数: void SystemCore_Validator(int32_t param_1,int param_2)
+void SystemCore_Validator(int32_t param_1,int param_2)
 
 {
   int64_t *plVar1;
@@ -296,7 +302,7 @@ void FUN_180487c70(int32_t param_1,int param_2)
     if (lVar10 != 0) {
       if ((*(byte *)(lVar10 + 0x139) & 1) == 0) goto LAB_180487d3e;
       if ((*(byte *)(lVar10 + 0x139) & 4) != 0) {
-        cVar6 = FUN_18038d0a0(lVar10,in_RCX + 7);
+        cVar6 = SystemCore_PerformanceMonitor(lVar10,in_RCX + 7);
         param_1 = extraout_XMM0_Da_00;
         goto joined_r0x000180487d3c;
       }
@@ -309,7 +315,7 @@ LAB_180487d3e:
     *(int32_t *)(in_RCX + 8) = 0;
   }
   else if ((*(byte *)(lVar10 + 0x139) & 4) != 0) {
-    cVar6 = FUN_18038d0a0(lVar10,in_RCX + 7);
+    cVar6 = SystemCore_PerformanceMonitor(lVar10,in_RCX + 7);
     param_1 = extraout_XMM0_Da;
 joined_r0x000180487d3c:
     if (cVar6 == '\0') goto LAB_180487d3e;
@@ -328,7 +334,7 @@ joined_r0x000180487d3c:
       uStack_1d8 = 0;
       uStack_270 = CONCAT31(uStack_270._1_3_,1);
       pfStack_278 = (float *)CONCAT44(pfStack_278._4_4_,0x51b189);
-      param_1 = FUN_1801aa0f0(lVar10,in_RCX + 3);
+      param_1 = PhysicsSystem_JointManager(lVar10,in_RCX + 3);
       if (cStack_1cc == '\0') goto LAB_180488626;
       *(int32_t *)(in_RCX + 4) = uStack_1d0;
       in_RCX[7] = in_RCX[3];
@@ -395,7 +401,7 @@ joined_r0x000180487d3c:
                 uStack_1d8 = 0;
                 uStack_270 = CONCAT31(uStack_270._1_3_,1);
                 pfStack_278 = (float *)CONCAT44(pfStack_278._4_4_,0x51b189);
-                param_1 = FUN_1801aa0f0(*in_RCX);
+                param_1 = PhysicsSystem_JointManager(*in_RCX);
                 if (cStack_1cc != '\0') {
                   *(int32_t *)(in_RCX + 4) = uStack_1d0;
                   in_RCX[5] = uStack_1f0;
@@ -428,7 +434,7 @@ joined_r0x000180487d3c:
                 ppuStack_1c8 = ppuVar17;
                 if ((((*(uint *)((int64_t)ppuVar17 + 0x134) & uVar16 & 0xfffffffe) ==
                       (uVar16 & 0xfffffffe)) || ((*(uint *)((int64_t)ppuVar17 + 0x134) & 1) != 0))
-                   && (cVar6 = FUN_18038d0a0(ppuVar17,in_RCX + 3), param_1 = extraout_XMM0_Da_02,
+                   && (cVar6 = SystemCore_PerformanceMonitor(ppuVar17,in_RCX + 3), param_1 = extraout_XMM0_Da_02,
                       cVar6 != '\0')) {
                   if (bStack_d4 != 0) {
                     if (iStack_d8 + 1 < 9) {
@@ -598,7 +604,7 @@ LAB_18048800e:
             uStack_1d8 = 0;
             uStack_270 = CONCAT31(uStack_270._1_3_,1);
             pfStack_278 = (float *)CONCAT44(pfStack_278._4_4_,0x51b189);
-            param_1 = FUN_1801aa0f0(*in_RCX,&uStack_1b8);
+            param_1 = PhysicsSystem_JointManager(*in_RCX,&uStack_1b8);
             if (cStack_1cc == '\0') {
               cStack_238 = '\0';
               *(int32_t *)(in_RCX + 8) = 0;
@@ -644,7 +650,7 @@ LAB_18048800e:
       uStack_1d8 = 0;
       uStack_270 = CONCAT31(uStack_270._1_3_,1);
       pfStack_278 = (float *)CONCAT44(pfStack_278._4_4_,0x51b189);
-      param_1 = FUN_1801aa0f0(lVar10,in_RCX + 3);
+      param_1 = PhysicsSystem_JointManager(lVar10,in_RCX + 3);
       if (cStack_1cc == '\0') {
         *(int32_t *)(in_RCX + 8) = 0;
         goto LAB_180488626;
@@ -666,7 +672,7 @@ LAB_180488626:
 
 
 
-int64_t FUN_180488690(int64_t *param_1)
+int64_t SystemCore_ErrorHandler(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -685,13 +691,13 @@ int64_t FUN_180488690(int64_t *param_1)
     auStackX_8[0] = *(int32_t *)((int64_t)param_1 + 0x1c);
     sVar2 = _fdtest(auStackX_8);
     if (sVar2 != 2) {
-      FUN_180487c70(param_1,2);
+      SystemCore_Validator(param_1,2);
       if (1 < (int)param_1[8]) {
         lVar3 = param_1[2];
         if ((lVar3 == 0) &&
            (lVar1 = *param_1, *(int64_t *)(lVar1 + 0x2ee8) - *(int64_t *)(lVar1 + 12000) >> 3 != 0
            )) {
-          FUN_180487c70(param_1,2);
+          SystemCore_Validator(param_1,2);
           if ((int)param_1[8] < 2) {
             uStack_10 = 0xffc00000;
           }
@@ -721,7 +727,7 @@ uint64_t FUN_18048871e(int32_t param_1,uint64_t param_2,int64_t param_3)
   int64_t unaff_RBX;
   int32_t uStack000000000000002c;
   
-  FUN_180487c70(param_1,in_ECX + 2);
+  SystemCore_Validator(param_1,in_ECX + 2);
   uStack000000000000002c = 0x7f7fffff;
   uVar1 = FUN_180396100(param_3 + 0x2a68,&stack0x00000020,param_3 + 0x28c8,0,
                         *(int32_t *)(unaff_RBX + 0x18));
@@ -786,7 +792,7 @@ void FUN_1804887f0(int64_t param_1)
 int32_t FUN_180488840(int64_t param_1,int param_2)
 
 {
-  FUN_180487c70();
+  SystemCore_Validator();
   if (*(int *)(param_1 + 0x40) < param_2) {
     return 0xffc00000;
   }

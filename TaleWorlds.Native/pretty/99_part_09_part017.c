@@ -1,7 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
+n//  的语义化别名
+#define SystemCore_MemoryAllocator 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part017.c - 7 个函数
 
@@ -42,12 +49,12 @@ void FUN_1805c4fc0(int64_t *param_1,int64_t *param_2,int8_t *param_3)
         lVar3 = *param_1;
         uVar5 = *(uint *)(param_1 + 2);
         if ((uVar5 >> 0xc & 1) == 0) {
-          FUN_1805d4df0(param_1 + 1);
+          SystemCore_Initializer0(param_1 + 1);
           lVar3 = *param_1;
           uVar5 = *(uint *)(param_1 + 2);
         }
         if ((uVar5 & 1) == 0) {
-          FUN_1805d3210(param_1 + 1);
+          SystemCore_ThreadManager(param_1 + 1);
           lVar3 = *param_1;
         }
         uVar5 = *(uint *)(*(int64_t *)(lVar3 + 0x20) + 0x34);
@@ -89,12 +96,12 @@ void FUN_1805c50cd(int64_t param_1,uint param_2)
   uint uVar1;
   
   if ((param_2 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(unaff_RDI + 1);
+    SystemCore_Initializer0(unaff_RDI + 1);
     param_1 = *unaff_RDI;
     param_2 = *(uint *)(unaff_RDI + 2);
   }
   if ((param_2 & 1) == 0) {
-    FUN_1805d3210(unaff_RDI + 1);
+    SystemCore_ThreadManager(unaff_RDI + 1);
     param_1 = *unaff_RDI;
   }
   uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x20) + 0x34);
@@ -116,12 +123,12 @@ void FUN_1805c50e5(int64_t param_1,uint param_2)
   uint uVar1;
   
   if ((param_2 >> 0xc & 1) == 0) {
-    FUN_1805d4df0(unaff_RDI + 1);
+    SystemCore_Initializer0(unaff_RDI + 1);
     param_1 = *unaff_RDI;
     param_2 = *(uint *)(unaff_RDI + 2);
   }
   if ((param_2 & 1) == 0) {
-    FUN_1805d3210(unaff_RDI + 1);
+    SystemCore_ThreadManager(unaff_RDI + 1);
     param_1 = *unaff_RDI;
   }
   uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x20) + 0x34);
@@ -165,7 +172,7 @@ void FUN_1805c5331(void)
   fVar3 = *(float *)(lVar5 + 0xc);
   fVar4 = *(float *)(lVar5 + 0x10);
   if ((*(byte *)(unaff_RDI + 2) & 1) == 0) {
-    FUN_1805d3210(unaff_RDI + 1);
+    SystemCore_ThreadManager(unaff_RDI + 1);
   }
   in_stack_00000120 =
        (((fVar1 + fVar3) - unaff_XMM11_Da * *(float *)(unaff_RDI + 0xc)) +
@@ -178,7 +185,7 @@ void FUN_1805c5331(void)
     if ((*(uint *)(unaff_RDI + 2) & 0x200) == 0) {
       func_0x0001805d4cd0(unaff_RDI + 1);
     }
-    puVar9 = (uint64_t *)FUN_180516f50(unaff_RDI[0x1d],&stack0x00000040);
+    puVar9 = (uint64_t *)UltraHighFreq_MemoryManager1(unaff_RDI[0x1d],&stack0x00000040);
     *unaff_R14 = *puVar9;
     uVar6 = puVar9[4];
     unaff_R14[3] = puVar9[3];
@@ -217,7 +224,7 @@ void FUN_1805c536f(void)
   float in_stack_00000120;
   float fStack0000000000000124;
   
-  FUN_1805d3210(unaff_RDI + 1);
+  SystemCore_ThreadManager(unaff_RDI + 1);
   in_stack_00000120 =
        ((unaff_XMM6_Da - unaff_XMM11_Da * *(float *)(unaff_RDI + 0xc)) +
        unaff_XMM12_Da * unaff_XMM13_Da * 3.0) - *(float *)(*(int64_t *)(*unaff_RDI + 0x20) + 0xc);
@@ -229,7 +236,7 @@ void FUN_1805c536f(void)
     if ((*(uint *)(unaff_RDI + 2) & 0x200) == 0) {
       func_0x0001805d4cd0(unaff_RDI + 1);
     }
-    puVar3 = (uint64_t *)FUN_180516f50(unaff_RDI[0x1d],&stack0x00000040);
+    puVar3 = (uint64_t *)UltraHighFreq_MemoryManager1(unaff_RDI[0x1d],&stack0x00000040);
     *unaff_R14 = *puVar3;
     uVar1 = puVar3[4];
     unaff_R14[3] = puVar3[3];
@@ -262,7 +269,7 @@ void FUN_1805c543e(void)
   if ((*(uint *)(unaff_RDI + 0x10) & 0x200) == 0) {
     func_0x0001805d4cd0(unaff_RDI + 8);
   }
-  puVar2 = (uint64_t *)FUN_180516f50(*(uint64_t *)(unaff_RDI + 0xe8),&stack0x00000040);
+  puVar2 = (uint64_t *)UltraHighFreq_MemoryManager1(*(uint64_t *)(unaff_RDI + 0xe8),&stack0x00000040);
   *unaff_R14 = *puVar2;
   uVar1 = puVar2[4];
   unaff_R14[3] = puVar2[3];
@@ -345,7 +352,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
     }
     lVar14 = *(int64_t *)(lVar12 + 0x9d8);
     lVar1 = *(int64_t *)(lVar12 + 0x20);
-    if ((lVar14 == 0) || (cVar7 = FUN_18038d0a0(lVar14,lVar1 + 0xc), lVar13 = lVar14, cVar7 == '\0')
+    if ((lVar14 == 0) || (cVar7 = SystemCore_PerformanceMonitor(lVar14,lVar1 + 0xc), lVar13 = lVar14, cVar7 == '\0')
        ) {
       lVar13 = 0;
     }
@@ -419,8 +426,8 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
           }
           if (((float)(*(int64_t *)(&system_error_code + (int64_t)(int)param_1[0x279] * 8) -
                       param_1[0x278]) * 1e-05 < 5.0) &&
-             (lVar12 = FUN_1805b74c0(param_1 + 1), lVar12 != 0)) {
-            uVar10 = FUN_1805b74c0(param_1 + 1);
+             (lVar12 = SystemCore_MemoryAllocator(param_1 + 1), lVar12 != 0)) {
+            uVar10 = SystemCore_MemoryAllocator(param_1 + 1);
             cVar7 = FUN_1805dbed0(param_1 + 0x2f,uVar10);
             if (cVar7 != '\0') {
               *(int32_t *)(param_1 + 0x284) = 1;
@@ -485,7 +492,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
               uStack_a8 = 0;
               uStack_a0 = 0x7f7fffff3f800000;
               uStack_88 = 0;
-              FUN_1801aa0f0(*(uint64_t *)(lVar12 + 0x660),&fStack_c8,lVar12,aplStack_b8,0x51b189,
+              PhysicsSystem_JointManager(*(uint64_t *)(lVar12 + 0x660),&fStack_c8,lVar12,aplStack_b8,0x51b189,
                             (byte)((uint)*(int32_t *)(lVar12 + 0x56c) >> 8) & 1);
               fVar17 = *(float *)(param_1 + 0x25f);
               fVar19 = *(float *)((int64_t)param_1 + 0x12fc);
@@ -496,7 +503,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
               lVar12 = FUN_180396100(*(int64_t *)(param_1[0x291] + 0x18) + 0x2a68,&fStack_c8,
                                      *(int64_t *)(param_1[0x291] + 0x18) + 0x28c8,1);
               if (lVar12 == 0) {
-                plVar9 = (int64_t *)FUN_180516f50(*param_1,aplStack_b8);
+                plVar9 = (int64_t *)UltraHighFreq_MemoryManager1(*param_1,aplStack_b8);
                 *param_2 = *plVar9;
                 lVar12 = plVar9[4];
                 param_2[3] = plVar9[3];
@@ -510,7 +517,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
                 *(int *)(param_2 + 8) = (int)plVar9[8];
               }
               else {
-                plVar9 = (int64_t *)FUN_180516f50(*param_1,aplStack_b8);
+                plVar9 = (int64_t *)UltraHighFreq_MemoryManager1(*param_1,aplStack_b8);
                 *param_2 = *plVar9;
                 lVar14 = plVar9[4];
                 param_2[3] = plVar9[3];
@@ -543,7 +550,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
           }
         }
         *(int32_t *)(param_1 + 0x284) = 0;
-        lVar12 = FUN_1805b74c0(param_1 + 1);
+        lVar12 = SystemCore_MemoryAllocator(param_1 + 1);
         FUN_1805d9040(param_1 + 0x2f,*(int32_t *)(lVar12 + 0x10));
       }
 LAB_1805c5c98:
@@ -561,15 +568,15 @@ LAB_1805c5c98:
           fVar18 = fVar15 * 0.5 * ((float)system_data_01f0 - fVar18 * fVar15 * fVar15);
           _fStackX_8 = CONCAT44(fStackX_c * fVar18,fStackX_8 * fVar18);
           if ((*(byte *)(param_1 + 2) & 1) == 0) {
-            FUN_1805d3210(param_1 + 1);
+            SystemCore_ThreadManager(param_1 + 1);
           }
           if ((*(float *)(param_1 + 0xd) <= fVar19 * 0.5 &&
                fVar19 * 0.5 != *(float *)(param_1 + 0xd)) &&
              (pfVar11 = (float *)FUN_1805b6d50(param_1 + 1), fVar17 * 0.7 < *pfVar11)) {
             if ((*(byte *)(param_1 + 2) & 1) == 0) {
-              FUN_1805d3210(param_1 + 1);
+              SystemCore_ThreadManager(param_1 + 1);
             }
-            lVar12 = FUN_1805b74c0(param_1 + 1);
+            lVar12 = SystemCore_MemoryAllocator(param_1 + 1);
                     // WARNING: Subroutine does not return
             AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar12 + 0x20) + 0x34));
           }
@@ -594,7 +601,7 @@ LAB_1805c5c98:
         cVar7 = FUN_1805d94e0(param_1 + 0x2f,pfVar11);
         if (cVar7 == '\0') {
           *(int32_t *)(param_1 + 0x284) = 0;
-          lVar12 = FUN_1805b74c0(param_1 + 1);
+          lVar12 = SystemCore_MemoryAllocator(param_1 + 1);
           FUN_1805d9040(param_1 + 0x2f,*(int32_t *)(lVar12 + 0x10));
         }
         else {

@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part221.c - 3 个函数
 
 // 函数: void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,int64_t param_5,
@@ -101,7 +109,7 @@ void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,int
                       if (plVar17[2] != unaff_RBP) {
                         *(int8_t *)(plVar17 + 4) = 1;
                       }
-                      FUN_18038b160(plVar17[2]);
+                      SystemCore_ProcessManager(plVar17[2]);
                     }
                     else {
                       FUN_18038d8f0(unaff_R14,plVar17);
@@ -140,7 +148,7 @@ void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,int
                           *(int8_t *)(plVar8 + 4) = 2;
                           plVar8[3] = param_8;
                           *plVar18 = (int64_t)plVar8;
-                          FUN_18038b160(plVar8[2]);
+                          SystemCore_ProcessManager(plVar8[2]);
                           lVar19 = lStack0000000000000050;
                           in_R10 = param_8;
                           goto LAB_1803922c3;
@@ -261,8 +269,8 @@ LAB_180392028:
         in_R10 = param_8;
       } while ((int)uVar13 < (int)(uint)bVar1);
     }
-    FUN_18038b160(unaff_RDI);
-    FUN_18038af00(unaff_RDI);
+    SystemCore_ProcessManager(unaff_RDI);
+    SystemCore_PerformanceMonitor(unaff_RDI);
     uVar13 = uVar11;
     if (*(int64_t *)(unaff_RDI + 0xb0) != 0) {
       uVar13 = *(uint *)(*(int64_t *)(unaff_RDI + 0xb0) + 0x134);
@@ -281,8 +289,8 @@ LAB_180392028:
       uVar10 = uVar13;
     }
     *(uint *)(unaff_RDI + 0x134) = uVar10;
-    FUN_18038b160(in_stack_00000068);
-    FUN_18038af00(in_stack_00000068);
+    SystemCore_ProcessManager(in_stack_00000068);
+    SystemCore_PerformanceMonitor(in_stack_00000068);
     uVar13 = uVar11;
     if (*(int64_t *)(in_stack_00000068 + 0xb0) != 0) {
       uVar13 = *(uint *)(*(int64_t *)(in_stack_00000068 + 0xb0) + 0x134);
@@ -301,8 +309,8 @@ LAB_180392028:
       uVar10 = uVar13;
     }
     *(uint *)(in_stack_00000068 + 0x134) = uVar10;
-    FUN_18038b160(in_stack_00000070);
-    FUN_18038af00(in_stack_00000070);
+    SystemCore_ProcessManager(in_stack_00000070);
+    SystemCore_PerformanceMonitor(in_stack_00000070);
     if (*(int64_t *)(in_stack_00000070 + 0xb0) != 0) {
       uVar11 = *(uint *)(*(int64_t *)(in_stack_00000070 + 0xb0) + 0x134);
     }
@@ -320,8 +328,8 @@ LAB_180392028:
       uVar13 = uVar11;
     }
     *(uint *)(in_stack_00000070 + 0x134) = uVar13;
-    FUN_18038b160(param_8);
-    FUN_18038af00(param_8);
+    SystemCore_ProcessManager(param_8);
+    SystemCore_PerformanceMonitor(param_8);
     if (*(int64_t *)(param_8 + 0xb0) != 0) {
       unaff_RBP = (uint64_t)*(uint *)(*(int64_t *)(param_8 + 0xb0) + 0x134);
     }
@@ -340,14 +348,14 @@ LAB_180392028:
       uVar13 = uVar11;
     }
     *(uint *)(param_8 + 0x134) = uVar13;
-    FUN_18038ee20();
-    FUN_18038ee20();
-    FUN_18038ee20();
-    FUN_18038ee20();
+    SystemCore_Encoder();
+    SystemCore_Encoder();
+    SystemCore_Encoder();
+    SystemCore_Encoder();
     *(int *)(unaff_R14 + 0x530) = *(int *)(unaff_R14 + 0x530) + 1;
-    FUN_18038ee20();
+    SystemCore_Encoder();
     *(int *)(unaff_R14 + 0x530) = *(int *)(unaff_R14 + 0x530) + 1;
-    FUN_18038ee20();
+    SystemCore_Encoder();
   }
   return;
 }

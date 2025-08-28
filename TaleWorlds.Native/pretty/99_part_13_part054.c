@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -30,11 +31,11 @@ void FUN_1808cc0e7(int64_t *param_1)
   *(int64_t *)(unaff_RBX + 0x218) = lVar2;
   iVar1 = FUN_1808ccd40();
   if (iVar1 == 0) {
-    iVar1 = FUN_1808b2f30();
+    iVar1 = SystemDataFlowProcessor();
     if (iVar1 == 0) {
-      iVar1 = FUN_1808b2f30();
+      iVar1 = SystemDataFlowProcessor();
       if (iVar1 == 0) {
-        FUN_1808b2f30();
+        SystemDataFlowProcessor();
       }
     }
   }
@@ -56,11 +57,11 @@ void FUN_1808cc129(void)
   
   iVar1 = FUN_1808ccd40();
   if (iVar1 == 0) {
-    iVar1 = FUN_1808b2f30();
+    iVar1 = SystemDataFlowProcessor();
     if (iVar1 == 0) {
-      iVar1 = FUN_1808b2f30();
+      iVar1 = SystemDataFlowProcessor();
       if (iVar1 == 0) {
-        FUN_1808b2f30();
+        SystemDataFlowProcessor();
       }
     }
   }
@@ -80,11 +81,11 @@ void FUN_1808cc145(void)
   int iVar1;
   uint64_t in_stack_00000048;
   
-  iVar1 = FUN_1808b2f30();
+  iVar1 = SystemDataFlowProcessor();
   if (iVar1 == 0) {
-    iVar1 = FUN_1808b2f30();
+    iVar1 = SystemDataFlowProcessor();
     if (iVar1 == 0) {
-      FUN_1808b2f30();
+      SystemDataFlowProcessor();
     }
   }
                     // WARNING: Subroutine does not return
@@ -328,8 +329,8 @@ void FUN_1808cc360(int64_t param_1,uint64_t *param_2)
       }
       iVar2 = -1;
 LAB_1808cc48b:
-      if ((iVar2 != -1) && (iVar2 = FUN_1808b2f30(param_1,0x16), iVar2 == 0)) {
-        FUN_1808b2f30(param_1,0x20);
+      if ((iVar2 != -1) && (iVar2 = SystemDataFlowProcessor(param_1,0x16), iVar2 == 0)) {
+        SystemDataFlowProcessor(param_1,0x20);
       }
     }
   }
@@ -395,8 +396,8 @@ void FUN_1808cc378(int64_t param_1,uint64_t *param_2)
       }
       iVar2 = -1;
 LAB_1808cc48b:
-      if ((iVar2 != -1) && (iVar2 = FUN_1808b2f30(param_1,0x16), iVar2 == 0)) {
-        FUN_1808b2f30(param_1,0x20);
+      if ((iVar2 != -1) && (iVar2 = SystemDataFlowProcessor(param_1,0x16), iVar2 == 0)) {
+        SystemDataFlowProcessor(param_1,0x20);
       }
     }
   }
@@ -459,8 +460,8 @@ void FUN_1808cc394(int64_t *param_1)
       }
       iVar2 = -1;
 LAB_1808cc48b:
-      if ((iVar2 != -1) && (iVar2 = FUN_1808b2f30(), iVar2 == 0)) {
-        FUN_1808b2f30();
+      if ((iVar2 != -1) && (iVar2 = SystemDataFlowProcessor(), iVar2 == 0)) {
+        SystemDataFlowProcessor();
       }
     }
   }
@@ -510,8 +511,8 @@ void FUN_1808cc3d3(void)
       }
       iVar3 = -1;
 LAB_1808cc48b:
-      if ((iVar3 != -1) && (iVar3 = FUN_1808b2f30(), iVar3 == 0)) {
-        FUN_1808b2f30();
+      if ((iVar3 != -1) && (iVar3 = SystemDataFlowProcessor(), iVar3 == 0)) {
+        SystemDataFlowProcessor();
       }
     }
   }
@@ -561,8 +562,8 @@ void FUN_1808cc3f1(void)
       }
       iVar3 = -1;
 LAB_1808cc48b:
-      if ((iVar3 != -1) && (iVar3 = FUN_1808b2f30(), iVar3 == 0)) {
-        FUN_1808b2f30();
+      if ((iVar3 != -1) && (iVar3 = SystemDataFlowProcessor(), iVar3 == 0)) {
+        SystemDataFlowProcessor();
       }
     }
   }
@@ -612,7 +613,7 @@ void FUN_1808cc4d0(int64_t *param_1,uint64_t *param_2)
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
   puStack_80 = param_2;
   iVar4 = FUN_1808cbf60();
-  if (iVar4 != 0) goto FUN_1808cc913;
+  if (iVar4 != 0) goto SystemCore_AdvancedController;
   cStack_98 = '\0';
   uVar5 = (**(code **)*param_1)(param_1);
   cVar2 = func_0x0001808c57f0(param_2,uVar5);
@@ -655,7 +656,7 @@ LAB_1808cc7cb:
       lVar6 = (**(code **)*param_1)(param_1);
       auStack_90 = *(int8_t (*) [16])(lVar6 + 0x40);
       if ((((auStack_90._0_4_ == 0) && (auStack_90._4_4_ == 0)) && (auStack_90._8_4_ == 0)) &&
-         (auStack_90._12_4_ == 0)) goto FUN_1808cc913;
+         (auStack_90._12_4_ == 0)) goto SystemCore_AdvancedController;
       lStack_78 = *(int64_t *)(param_1[0x15] + 0x10);
       lStack_70 = *(int64_t *)(param_1[0x15] + 0x18);
       if ((auStack_90._0_8_ != lStack_78) || (auStack_90._8_8_ != lStack_70)) {
@@ -675,21 +676,21 @@ LAB_1808cc7cb:
           SystemDataValidator(auStack_68,0x27,&processed_var_8960_ptr,auStack_90._0_4_);
         }
         param_1[0x15] = lVar6;
-        if (lVar6 == 0) goto FUN_1808cc913;
+        if (lVar6 == 0) goto SystemCore_AdvancedController;
         lVar6 = (**(code **)(*param_1 + 0x30))(param_1);
         if ((((auStack_90._0_4_ == 0) && (auStack_90._4_4_ == 0)) &&
             ((auStack_90._8_4_ == 0 && (auStack_90._12_4_ == 0)))) ||
-           ((lVar6 == 0 || (*(int64_t *)(lVar6 + 0x18) == 0)))) goto FUN_1808cc913;
+           ((lVar6 == 0 || (*(int64_t *)(lVar6 + 0x18) == 0)))) goto SystemCore_AdvancedController;
         lStack_78 = 0;
         iVar4 = FUN_180860650(*(int64_t *)(lVar6 + 0x18),auStack_90,&lStack_78);
         if ((iVar4 != 0) || (iVar4 = (**(code **)(*param_1 + 0x120))(param_1,lStack_78), iVar4 != 0)
-           ) goto FUN_1808cc913;
+           ) goto SystemCore_AdvancedController;
         cStack_98 = '\x01';
       }
     }
     iVar4 = FUN_1808cba60(param_1);
 joined_r0x0001808cc7da:
-    if (iVar4 != 0) goto FUN_1808cc913;
+    if (iVar4 != 0) goto SystemCore_AdvancedController;
   }
   lVar6 = param_1[0x15];
   if (lVar6 != 0) {
@@ -721,7 +722,7 @@ joined_r0x0001808cc7da:
   if ((cVar3 != '\0') || (cVar2 != '\0')) {
     FUN_1808c9e60(param_1);
   }
-FUN_1808cc913:
+SystemCore_AdvancedController:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_108);
 }
@@ -767,7 +768,7 @@ void FUN_1808cc510(int64_t *param_1,uint64_t *param_2)
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
   puStack_80 = param_2;
   iVar4 = FUN_1808cbf60();
-  if (iVar4 != 0) goto FUN_1808cc913;
+  if (iVar4 != 0) goto SystemCore_AdvancedController;
   cStack_98 = '\0';
   uVar5 = (**(code **)*param_1)(param_1);
   cVar2 = func_0x0001808c57f0(param_2,uVar5);
@@ -810,7 +811,7 @@ LAB_1808cc7cb:
       lVar6 = (**(code **)*param_1)(param_1);
       auStack_90 = *(int8_t (*) [16])(lVar6 + 0x40);
       if ((((auStack_90._0_4_ == 0) && (auStack_90._4_4_ == 0)) && (auStack_90._8_4_ == 0)) &&
-         (auStack_90._12_4_ == 0)) goto FUN_1808cc913;
+         (auStack_90._12_4_ == 0)) goto SystemCore_AdvancedController;
       lStack_78 = *(int64_t *)(param_1[0x15] + 0x10);
       lStack_70 = *(int64_t *)(param_1[0x15] + 0x18);
       if ((auStack_90._0_8_ != lStack_78) || (auStack_90._8_8_ != lStack_70)) {
@@ -830,21 +831,21 @@ LAB_1808cc7cb:
           SystemDataValidator(auStack_68,0x27,&processed_var_8960_ptr,auStack_90._0_4_);
         }
         param_1[0x15] = lVar6;
-        if (lVar6 == 0) goto FUN_1808cc913;
+        if (lVar6 == 0) goto SystemCore_AdvancedController;
         lVar6 = (**(code **)(*param_1 + 0x30))(param_1);
         if ((((auStack_90._0_4_ == 0) && (auStack_90._4_4_ == 0)) &&
             ((auStack_90._8_4_ == 0 && (auStack_90._12_4_ == 0)))) ||
-           ((lVar6 == 0 || (*(int64_t *)(lVar6 + 0x18) == 0)))) goto FUN_1808cc913;
+           ((lVar6 == 0 || (*(int64_t *)(lVar6 + 0x18) == 0)))) goto SystemCore_AdvancedController;
         lStack_78 = 0;
         iVar4 = FUN_180860650(*(int64_t *)(lVar6 + 0x18),auStack_90,&lStack_78);
         if ((iVar4 != 0) || (iVar4 = (**(code **)(*param_1 + 0x120))(param_1,lStack_78), iVar4 != 0)
-           ) goto FUN_1808cc913;
+           ) goto SystemCore_AdvancedController;
         cStack_98 = '\x01';
       }
     }
     iVar4 = FUN_1808cba60(param_1);
 joined_r0x0001808cc7da:
-    if (iVar4 != 0) goto FUN_1808cc913;
+    if (iVar4 != 0) goto SystemCore_AdvancedController;
   }
   lVar6 = param_1[0x15];
   if (lVar6 != 0) {
@@ -876,7 +877,7 @@ joined_r0x0001808cc7da:
   if ((cVar3 != '\0') || (cVar2 != '\0')) {
     FUN_1808c9e60(param_1);
   }
-FUN_1808cc913:
+SystemCore_AdvancedController:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_108);
 }

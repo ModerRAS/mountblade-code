@@ -1,3 +1,8 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -64,7 +69,7 @@ void FUN_180184da0(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
           do {
             lVar6 = lVar6 + 1;
           } while (*(char *)(*(int64_t *)(uVar4 + *param_3) + lVar6) != '\0');
-          FUN_1800671b0(&uStack_58);
+          MathCoreCalculator0(&uStack_58);
           uStack_38 = *(int8_t *)(*param_3 + 8 + uVar4);
           if (puStack_70 == puStack_78) {
             FUN_180188d20(&puStack_80,puStack_78,&uStack_58);
@@ -279,7 +284,7 @@ void FUN_180185120(int64_t param_1,uint64_t *param_2,int64_t *param_3,uint64_t p
   lStack_d0 = lStack_100;
   lStack_c8 = (int64_t)puStack_f8 - lStack_100 >> 4;
   puStack_d8 = param_2;
-  lVar6 = FUN_1808fc418(0x48);
+  lVar6 = SystemRenderer(0x48);
   plStack_70 = (int64_t *)0x0;
   puVar2 = (uint64_t *)param_3[7];
   lStack_b0 = lVar6;
@@ -374,7 +379,7 @@ void FUN_1801853d0(int64_t param_1,uint64_t *param_2,int64_t *param_3,uint64_t p
   }
   uStack_c0 = *(int8_t *)(param_2 + 4);
   plStack_b0 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_3[7];
   lStack_a8 = lVar3;
@@ -456,7 +461,7 @@ void FUN_180185540(int64_t param_1,uint64_t *param_2,int64_t *param_3,uint64_t p
     lStack_c0 = *(int64_t *)lStack_c0;
   }
   plStack_b0 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_3[7];
   lStack_a8 = lVar3;
@@ -543,7 +548,7 @@ void FUN_1801856c0(int64_t param_1,uint64_t *param_2,int64_t *param_3,uint64_t p
   uStack_b8 = *(int32_t *)(param_2 + 8);
   uStack_b4 = *(int32_t *)((int64_t)param_2 + 0x44);
   plStack_a8 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_3[7];
   lStack_a0 = lVar3;
@@ -660,7 +665,7 @@ void FUN_180185840(int64_t param_1,int64_t *param_2,int64_t *param_3,uint64_t pa
   lVar2 = lStack_f0;
   lStack_c8 = lStack_f0;
   lStack_c0 = (int64_t)puStack_e8 - lStack_f0 >> 4;
-  lVar4 = FUN_1808fc418(0x48);
+  lVar4 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar6 = (uint64_t *)param_3[7];
   lStack_a8 = lVar4;
@@ -757,7 +762,7 @@ void FUN_180185a90(int64_t param_1,uint64_t *param_2,int64_t *param_3,uint64_t p
   uStack_c0 = *(int32_t *)(param_2 + 4);
   uStack_bc = *(int32_t *)((int64_t)param_2 + 0x24);
   plStack_b0 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_3[7];
   lStack_a8 = lVar3;
@@ -939,7 +944,7 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
     do {
       lVar2 = lVar2 + 1;
     } while (*(char *)(param_2 + lVar2) != '\0');
-    FUN_1800671b0(auStack_178,param_2);
+    MathCoreCalculator0(auStack_178,param_2);
     uStack_140 = 1;
     puStack_198 = (uint64_t *)0x100000000;
     uStack_190 = 2;
@@ -958,11 +963,11 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
     if (-1 < aiStack_1d0[0]) {
       uVar1 = func_0x0001801836e0();
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_9712_ptr,uVar1);
+      SystemParameterHandler(system_message_context,&processed_var_9712_ptr,uVar1);
     }
     uVar1 = func_0x0001801836e0();
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_9856_ptr,uVar1);
+    SystemParameterHandler(system_message_context,&processed_var_9856_ptr,uVar1);
   }
   puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -23,13 +24,13 @@ void FUN_1801d7420(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar6 = 0x19;
     do {
       uVar2 = system_context_ptr;
-      lVar4 = FUN_18005e890(system_context_ptr);
+      lVar4 = PerformanceOptimizer(system_context_ptr);
       if (lVar4 == 0) {
 LAB_1801d748f:
         Sleep(1);
       }
       else {
-        plVar5 = (int64_t *)FUN_18005e890(uVar2);
+        plVar5 = (int64_t *)PerformanceOptimizer(uVar2);
         cVar3 = (**(code **)(*plVar5 + 0x20))(plVar5,0,*(code **)(*plVar5 + 0x20),param_4,uVar7);
         if (cVar3 == '\0') goto LAB_1801d748f;
       }
@@ -41,7 +42,7 @@ LAB_1801d748f:
       if (plVar5 != (int64_t *)0x0) {
         plStackX_8 = plVar5;
         (**(code **)(*plVar5 + 0x28))();
-        FUN_18005e6a0(uVar2,&plStackX_8,0);
+        SystemCore_ErrorHandler(uVar2,&plStackX_8,0);
       }
       plVar1 = (int64_t *)*plVar1;
       if (plVar1 != (int64_t *)0x0) {
@@ -68,9 +69,9 @@ void FUN_1801d7510(int64_t param_1)
   int64_t *plVar3;
   
   while (uVar1 = system_context_ptr, *(int *)(param_1 + 0x30c) != 0) {
-    lVar2 = FUN_18005e890(system_context_ptr);
+    lVar2 = PerformanceOptimizer(system_context_ptr);
     if (lVar2 != 0) {
-      plVar3 = (int64_t *)FUN_18005e890(uVar1);
+      plVar3 = (int64_t *)PerformanceOptimizer(uVar1);
       (**(code **)(*plVar3 + 0x20))(plVar3,0);
     }
   }
@@ -143,7 +144,7 @@ void FUN_1801d7560(void)
   puVar6[3] = 0x2f736563;
   *(int8_t *)(puVar6 + 4) = 0;
   uStack_2c0 = iVar8;
-  lVar4 = FUN_180624440(apuStack_258,&puStack_2d0);
+  lVar4 = SystemCore_EncryptionEngine(apuStack_258,&puStack_2d0);
   puVar7 = &system_buffer_ptr;
   if (*(void **)(lVar4 + 8) != (void *)0x0) {
     puVar7 = *(void **)(lVar4 + 8);
@@ -155,7 +156,7 @@ void FUN_1801d7560(void)
   uStack_2a0 = 0;
   uStack_298 = 3;
   FUN_18062d0d0(&puStack_2d0,&puStack_2b0);
-  cVar3 = FUN_180624a00(&puStack_2d0);
+  cVar3 = UltraHighFreq_LogManager1(&puStack_2d0);
   puVar2 = puStack_2a8;
   puVar1 = puStack_2b0;
   if (cVar3 != '\0') {
@@ -209,7 +210,7 @@ void FUN_1801d7560(void)
   *(int16_t *)(puVar6 + 7) = 0x682e;
   *(int8_t *)((int64_t)puVar6 + 0x1e) = 0;
   uStack_2e0 = iVar8;
-  cVar3 = FUN_180624af0(&puStack_2f0);
+  cVar3 = RenderingSystem_RenderQueue(&puStack_2f0);
   if (cVar3 != '\0') {
     FUN_18062d860(&puStack_2f0);
   }

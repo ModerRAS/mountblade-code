@@ -813,7 +813,7 @@ LAB_18064aff4:
     else {
       lVar10 = *(int64_t *)((uVar9 & 0xff) * 8 + 0x180c9e938);
       if (lVar10 == 0) {
-        FUN_1806503d0(0x16,&processed_var_8208_ptr);
+        UtilitiesSystem_MemoryAllocator(0x16,&processed_var_8208_ptr);
       }
       else if (uVar9 >> 0xe < *(uint64_t *)(lVar10 + 0x10)) {
         if (*(char *)(lVar10 + 0x1d) == '\0') {
@@ -822,11 +822,11 @@ LAB_18064aff4:
         }
         cVar4 = FUN_1806497b0(lVar10 + 0x38);
         if (cVar4 == '\0') {
-          FUN_1806503d0(0xb,&processed_var_8520_ptr);
+          UtilitiesSystem_MemoryAllocator(0xb,&processed_var_8520_ptr);
         }
       }
       else {
-        FUN_1806503d0(0x16,&processed_var_8288_ptr);
+        UtilitiesSystem_MemoryAllocator(0x16,&processed_var_8288_ptr);
       }
     }
   }
@@ -942,7 +942,7 @@ LAB_18064aff4:
     else {
       lVar7 = *(int64_t *)((uVar6 & 0xff) * 8 + 0x180c9e938);
       if (lVar7 == 0) {
-        FUN_1806503d0(0x16,&processed_var_8208_ptr);
+        UtilitiesSystem_MemoryAllocator(0x16,&processed_var_8208_ptr);
       }
       else if (uVar6 >> 0xe < *(uint64_t *)(lVar7 + 0x10)) {
         if (*(char *)(lVar7 + 0x1d) == '\0') {
@@ -951,11 +951,11 @@ LAB_18064aff4:
         }
         cVar3 = FUN_1806497b0(lVar7 + 0x38);
         if (cVar3 == '\0') {
-          FUN_1806503d0(0xb,&processed_var_8520_ptr);
+          UtilitiesSystem_MemoryAllocator(0xb,&processed_var_8520_ptr);
         }
       }
       else {
-        FUN_1806503d0(0x16,&processed_var_8288_ptr);
+        UtilitiesSystem_MemoryAllocator(0x16,&processed_var_8288_ptr);
       }
     }
   }

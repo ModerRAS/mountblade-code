@@ -1,5 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part204.c - 15 个函数
 
@@ -48,8 +57,8 @@ void FUN_180386f4d(void)
       uStack0000000000000064 = 0x7f7fffff;
       uStack0000000000000070 = uStack0000000000000068;
       uStack000000000000006c = uStack0000000000000068;
-      FUN_1800b9f60(&stack0x00000058);
-      FUN_18063ad30(unaff_RBP + -0x30,&stack0x00000058,unaff_RBP + -0x70);
+      SystemCore_Parser(&stack0x00000058);
+      UltraHighFreq_DataProcessor1(unaff_RBP + -0x30,&stack0x00000058,unaff_RBP + -0x70);
       lVar10 = *(int64_t *)(unaff_R14 + 0x90);
       if (*(float *)(unaff_RBP + 0x80) <= 2.0) {
         cVar4 = func_0x0001801be000(unaff_R13 + 0x30,unaff_RBP + -0x10);
@@ -286,7 +295,7 @@ uint64_t * FUN_180387380(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   if ((puVar3 != param_1) && ((uint64_t)puVar3[4] <= *param_2)) {
     return puVar3 + 5;
   }
-  plVar2 = (int64_t *)FUN_180387860(param_1,auStackX_8,param_3,puVar3,param_2);
+  plVar2 = (int64_t *)RenderingSystem_MaterialProcessor(param_1,auStackX_8,param_3,puVar3,param_2);
   return (uint64_t *)(*plVar2 + 0x28);
 }
 
@@ -693,7 +702,7 @@ void FUN_180387847(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_180387860(int64_t *param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4,
+RenderingSystem_MaterialProcessor(int64_t *param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4,
              uint64_t *param_5)
 
 {
@@ -990,7 +999,7 @@ bool FUN_180387e60(int64_t param_1,uint64_t param_2)
 
 {
   if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,param_2,0xbf800000);
+    SystemCore_FileSystem(param_1,param_2,0xbf800000);
   }
   if ((*(byte *)(param_1 + 0xa8) >> 3 & 1) != 0) {
     (**(code **)(**(int64_t **)(param_1 + 0x210) + 0xd0))(*(int64_t **)(param_1 + 0x210),param_1);

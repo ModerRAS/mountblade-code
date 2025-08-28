@@ -80,7 +80,7 @@
 
 // 控件属性管理函数
 #define UISystem_PropertySetter FUN_18076203a  // UI系统属性设置器
-#define UISystem_PropertyValidator FUN_180762070  // UI系统属性验证器
+#define UISystem_PropertyValidator SystemCore_Initializer  // UI系统属性验证器
 #define UISystem_PropertyInitializer FUN_1807621f0  // UI系统属性初始化器
 #define UISystem_PropertyUpdater FUN_180762250  // UI系统属性更新器
 #define UISystem_PropertyCleaner FUN_180762360  // UI系统属性清理器
@@ -240,7 +240,7 @@ static void ui_system_handle_exception(void)
 
 /**
  * UI控件状态更新函数
- * 原始实现：FUN_180762070
+ * 原始实现：SystemCore_Initializer
  * 
  * 更新UI控件的状态标志，支持线程安全的操作。
  * 处理控件状态变更，包括可见性、启用状态等。

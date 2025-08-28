@@ -60,7 +60,7 @@ uint64_t FUN_1808a3b80(int64_t param_1,uint64_t *param_2)
       if ((int)uVar1 != 0) {
         return uVar1;
       }
-      uVar1 = FUN_180899360(param_2,param_1 + 0x70);
+      uVar1 = SystemCore_ConfigManager(param_2,param_1 + 0x70);
       if ((int)uVar1 != 0) {
         return uVar1;
       }

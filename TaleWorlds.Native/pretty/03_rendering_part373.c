@@ -469,7 +469,7 @@ void FUN_18046f860(int64_t param_1,int64_t param_2,uint param_3)
   lStack_100 = param_1;
   lStack_e8 = param_1;
   puStack_e0 = puStack_f8;
-  FUN_18015b810(uVar3,0,0x20,1);
+  SystemCore_DataTransformer(uVar3,0,0x20,1);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_148);
 }

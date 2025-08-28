@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part620.c - 13 个函数
 
 // 函数: void RenderingSystemBuffer(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
@@ -13,7 +17,7 @@ void RenderingSystemBuffer(uint64_t param_1,int param_2,uint64_t param_3,uint64_
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_CacheManager(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   aiStackX_10[0] = -1;
   if (param_2 != 0) {
     aiStackX_10[0] = param_2;
@@ -108,7 +112,7 @@ void FUN_18060f5e0(void)
         if (lVar3 == 0) break;
       }
     }
-    FUN_18020f150(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
+    CoreEngine_SystemInitializer(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
     lVar3 = system_message_buffer + 0x20;
     iVar1 = _Mtx_lock(lVar3);
     if (iVar1 != 0) {
@@ -121,7 +125,7 @@ void FUN_18060f5e0(void)
     if (render_system_data_memory != 0) {
       FUN_18006eb30();
     }
-    FUN_18020f150(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
+    CoreEngine_SystemInitializer(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
     lVar3 = system_message_buffer + 0x20;
     iVar1 = _Mtx_lock(lVar3);
     if (iVar1 != 0) {
@@ -132,7 +136,7 @@ void FUN_18060f5e0(void)
       __Throw_C_error_std__YAXH_Z(iVar1);
     }
   }
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   *(int32_t *)(render_system_data_memory + 0x60) = 1;
   return;
 }
@@ -630,7 +634,7 @@ uint64_t FUN_18060fe80(int64_t param_1,uint64_t param_2)
   auStackX_8[0] = param_2;
   if (puVar2 != puVar3) {
     do {
-      cVar1 = FUN_18038d0a0(*puVar2,auStackX_8);
+      cVar1 = SystemCore_PerformanceMonitor(*puVar2,auStackX_8);
       if (cVar1 != '\0') {
         return 1;
       }
@@ -704,7 +708,7 @@ FUN_18060fed0(uint64_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t *par
       }
       uStack_d0 = uStackX_8;
     }
-    FUN_180487c70(&uStack_e8,2);
+    SystemCore_Validator(&uStack_e8,2);
     iStack_f8 = iStack_a8;
     lStack_130 = lStack_e0;
     if ((1 < iStack_a8) && (lStack_e0 != 0)) {
@@ -761,7 +765,7 @@ void FUN_180610190(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   int64_t lStack_28;
   
   if (*(char *)(param_1 + 0x98d92c) != '\0') {
-    FUN_180627910(&puStack_30,param_2 + 0x1c,param_3,param_4,0xfffffffffffffffe);
+    SystemCore_CacheManager(&puStack_30,param_2 + 0x1c,param_3,param_4,0xfffffffffffffffe);
     FUN_1804f6330(param_1,&puStack_30,param_2);
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
@@ -803,7 +807,7 @@ void FUN_180610210(int64_t *param_1)
     pplStackX_18 = &plStackX_8;
     plStackX_8 = plVar3;
     (**(code **)(*plVar3 + 0x28))();
-    FUN_18005e6a0(uVar4,&plStackX_8,0);
+    SystemCore_ErrorHandler(uVar4,&plStackX_8,0);
     plStackX_10 = *(int64_t **)(render_system_data_memory + 0x228);
     *(uint64_t *)(render_system_data_memory + 0x228) = 0;
     if (plStackX_10 != (int64_t *)0x0) {
@@ -832,7 +836,7 @@ void FUN_180610210(int64_t *param_1)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    FUN_18033ad00(lVar8 + 0x328);
+    RenderingSystem_CameraController0(lVar8 + 0x328);
     iVar6 = _Mtx_unlock(plVar3);
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
@@ -843,7 +847,7 @@ void FUN_180610210(int64_t *param_1)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    FUN_18033ad00(lVar8 + 0x3a8);
+    RenderingSystem_CameraController0(lVar8 + 0x3a8);
     iVar6 = _Mtx_unlock(plVar3);
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
@@ -1068,7 +1072,7 @@ void FUN_180610a30(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t par
   int64_t lStack_28;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  SystemCore_CacheManager(&puStack_30);
   uVar1 = FUN_1800c17c0();
   FUN_1804ebb80(param_1,uVar1,param_3,param_4,uVar2);
   puStack_30 = &system_data_buffer_ptr;

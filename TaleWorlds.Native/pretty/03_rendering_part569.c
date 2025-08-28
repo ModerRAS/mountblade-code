@@ -94,7 +94,7 @@ void FUN_18057be32(void)
            *(float *)(unaff_RBX + 0x60);
     }
   }
-  uVar16 = FUN_18063b5f0(unaff_RBP + 0x30,&stack0x00000030);
+  uVar16 = SystemSecurityManager(unaff_RBP + 0x30,&stack0x00000030);
   fVar32 = *(float *)(unaff_RBP + -0x20);
   fVar33 = *(float *)(unaff_RBP + -0x1c);
   fVar34 = *(float *)(unaff_RBP + -0x18);
@@ -708,9 +708,9 @@ void FUN_18057c630(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 {
   uint64_t unaff_RDI;
   
-  FUN_180431730(param_1 + 0xf0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0xf0);
   FUN_180431680(param_1 + 0xf0,param_2,0);
-  FUN_180431730(param_1 + 0x12a0);
+  RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
                     // WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050,param_4,unaff_RDI);
 }

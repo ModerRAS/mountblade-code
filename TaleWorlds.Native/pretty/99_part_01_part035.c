@@ -482,7 +482,7 @@ void FUN_1800c37f0(int64_t param_1)
   *(int32_t *)((int64_t)puVar2 + 0x3c) = 0x2e797469;
   *(int32_t *)(puVar2 + 8) = 0x747874;
   uStack_420 = 0x43;
-  FUN_180624440(auStack_2d8,&puStack_430);
+  SystemCore_EncryptionEngine(auStack_2d8,&puStack_430);
   puVar4 = &system_buffer_ptr;
   if (puStack_2d0 != (void *)0x0) {
     puVar4 = puStack_2d0;

@@ -50,7 +50,7 @@ uint64_t FUN_18041eef0(int64_t param_1,uint64_t param_2,int param_3)
 
 
 
-int FUN_18041efc0(int64_t param_1)
+int RenderingSystem_Renderer(int64_t param_1)
 
 {
   byte bVar1;
@@ -95,14 +95,14 @@ int FUN_18041f070(uint64_t param_1)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18041efc0();
-  iVar2 = FUN_18041efc0(param_1);
+  iVar1 = RenderingSystem_Renderer();
+  iVar2 = RenderingSystem_Renderer(param_1);
   return iVar2 + iVar1 * 0x10000;
 }
 
 
 
-uint FUN_18041f0a0(int64_t param_1)
+uint SystemCore_MemoryManager(int64_t param_1)
 
 {
   byte bVar1;
@@ -141,14 +141,14 @@ uint FUN_18041f0a0(int64_t param_1)
 
 
 
-int FUN_18041f150(uint64_t param_1)
+int UtilitiesSystem_MemoryManager(uint64_t param_1)
 
 {
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18041f0a0();
-  iVar2 = FUN_18041f0a0(param_1);
+  iVar1 = SystemCore_MemoryManager();
+  iVar2 = SystemCore_MemoryManager(param_1);
   return iVar2 * 0x10000 + iVar1;
 }
 

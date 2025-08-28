@@ -54,7 +54,7 @@
 // ============================================================================
 
 #define system_data_processor                 FUN_1800a023d
-#define string_hash_table_searcher            FUN_1800a02a0
+#define string_hash_table_searcher            SystemCore_DataManager
 #define string_comparator                    FUN_1800a02d0
 #define string_matcher                       FUN_1800a0324
 #define data_structure_accessor              FUN_1800a0338

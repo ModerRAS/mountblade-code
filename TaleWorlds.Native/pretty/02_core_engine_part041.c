@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 02_core_engine_part041.c - 24 个函数
 
@@ -58,7 +64,7 @@ void FUN_180080060(int64_t *param_1)
       uStack_160 = 0x24;
       lStack_158 = lVar1;
       uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      ppuVar3 = (void **)FUN_18005ce30(uVar2,&puStack_1f8);
+      ppuVar3 = (void **)SystemCore_StreamController(uVar2,&puStack_1f8);
       ppuStack_208 = ppuVar3;
       if (ppuVar3 != (void **)0x0) {
         (**(code **)(*ppuVar3 + 0x28))(ppuVar3);
@@ -69,7 +75,7 @@ void FUN_180080060(int64_t *param_1)
       if (ppuVar3 != (void **)0x0) {
         (**(code **)(*ppuVar3 + 0x28))(ppuVar3);
       }
-      FUN_18005e370(uVar2,&ppuStack_220);
+      SystemPerformance_Monitor(uVar2,&ppuStack_220);
       if (ppuVar3 != (void **)0x0) {
         (**(code **)(*ppuVar3 + 0x38))(ppuVar3);
       }
@@ -85,7 +91,7 @@ void FUN_180080060(int64_t *param_1)
       auStack_100[0] = 0;
       uStack_80 = 0x26;
       uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      plVar4 = (int64_t *)FUN_18005ce30(uVar2,&puStack_118);
+      plVar4 = (int64_t *)SystemCore_StreamController(uVar2,&puStack_118);
       plStack_200 = plVar4;
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -96,7 +102,7 @@ void FUN_180080060(int64_t *param_1)
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x28))(plVar4);
       }
-      FUN_18005e370(uVar2,&plStack_218);
+      SystemPerformance_Monitor(uVar2,&plStack_218);
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x38))(plVar4);
       }
@@ -543,7 +549,7 @@ void FUN_180080650(int *param_1,int64_t param_2)
     else {
       param_1[1] = iVar1;
     }
-    FUN_1800846d0(param_1);
+    CoreEngine_DataProcessor(param_1);
   }
   *param_1 = iVar1;
                     // WARNING: Subroutine does not return
@@ -731,7 +737,7 @@ void FUN_180080870(int64_t *param_1)
     if (plStackX_18 != (int64_t *)0x0) {
       (**(code **)(*plStackX_18 + 0x38))();
     }
-    FUN_1800571e0(lVar3 + 0x100,&plStackX_8);
+    SystemDatabaseProcessor(lVar3 + 0x100,&plStackX_8);
     *(int32_t *)((int64_t)param_1 + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(lVar1);
     *(int32_t *)((int64_t)param_1 + 0xc) = 0xffffffff;
@@ -772,7 +778,7 @@ void FUN_1800809a0(int64_t *param_1)
     **(int8_t **)(*(int64_t *)(puVar2 + 0x140) + lVar3 * 8) = 0;
     *(uint64_t *)(*(int64_t *)(*(int64_t *)(puVar2 + 0x140) + lVar3 * 8) + 0x1a8) = 0;
     FUN_1800f8a50(*(int64_t *)(*(int64_t *)(puVar2 + 0x140) + lVar3 * 8) + 8);
-    FUN_1800571e0(puVar2 + 0xc0,aiStackX_8);
+    SystemDatabaseProcessor(puVar2 + 0xc0,aiStackX_8);
     *(int32_t *)((int64_t)param_1 + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(puVar1);
     *(int32_t *)((int64_t)param_1 + 0xc) = 0xffffffff;

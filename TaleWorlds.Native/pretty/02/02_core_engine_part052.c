@@ -609,11 +609,11 @@ void FUN_18008e5f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(param_1 + 0x40,*(uint64_t *)(param_1 + 0x50),param_3,param_4,uVar2);
+  UtilitiesSystem_Processor();
+  RenderingSystem_CameraSystem(param_1 + 0x40,*(uint64_t *)(param_1 + 0x50),param_3,param_4,uVar2);
   puVar1 = *(uint64_t **)(param_1 + 0x20);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1 + 0x10,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    SystemCache_Manager(param_1 + 0x10,*puVar1,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(puVar1);
   }
@@ -632,11 +632,11 @@ void FUN_18008e640(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(param_1 + 0x30,*(uint64_t *)(param_1 + 0x40),param_3,param_4,uVar2);
+  UtilitiesSystem_Processor();
+  RenderingSystem_CameraSystem(param_1 + 0x30,*(uint64_t *)(param_1 + 0x40),param_3,param_4,uVar2);
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    SystemCache_Manager(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(puVar1);
   }

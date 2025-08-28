@@ -706,7 +706,7 @@ void FUN_1808e2960(int64_t param_1)
   uStack_70 = 0xffffffffffffffff;
   aiStack_68[0] = -1;
   lVar5 = *(int64_t *)(lVar3 + 0x90);
-  FUN_1808741f0((int64_t *)(lVar5 + 0x108),&uStack_70,aiStack_68);
+  SystemResource_Manager((int64_t *)(lVar5 + 0x108),&uStack_70,aiStack_68);
   if (aiStack_68[0] != -1) {
     iVar8 = aiStack_68[0];
     iVar9 = (int)uStack_70;
@@ -715,7 +715,7 @@ void FUN_1808e2960(int64_t param_1)
         uStack_58 = 0xffffffffffffffff;
         aiStack_50[0] = -1;
         plStack_60 = *(int64_t **)(*(int64_t *)(lVar5 + 0x118) + 0x18 + (int64_t)iVar8 * 0x20);
-        FUN_1807d1650(plStack_60,&uStack_58,aiStack_50);
+        NetworkSystem_ConnectionHandler(plStack_60,&uStack_58,aiStack_50);
         plVar2 = plStack_60;
         if (aiStack_50[0] != -1) {
           iVar7 = aiStack_50[0];
@@ -779,7 +779,7 @@ LAB_1808e2b22:
   lVar3 = *(int64_t *)(lVar3 + 0x90);
   uStack_70 = 0xffffffffffffffff;
   aiStack_68[0] = -1;
-  FUN_1808741f0((int64_t *)(lVar3 + 0x38),&uStack_70,aiStack_68);
+  SystemResource_Manager((int64_t *)(lVar3 + 0x38),&uStack_70,aiStack_68);
   if (aiStack_68[0] != -1) {
     iVar8 = aiStack_68[0];
     iVar9 = (int)uStack_70;
@@ -787,7 +787,7 @@ LAB_1808e2b22:
       uStack_58 = 0xffffffffffffffff;
       aiStack_50[0] = -1;
       plStack_60 = *(int64_t **)(*(int64_t *)(lVar3 + 0x48) + 0x18 + (int64_t)iVar8 * 0x20);
-      FUN_1807d1650(plStack_60,&uStack_58,aiStack_50);
+      NetworkSystem_ConnectionHandler(plStack_60,&uStack_58,aiStack_50);
       plVar2 = plStack_60;
       if (aiStack_50[0] != -1) {
         iVar7 = aiStack_50[0];

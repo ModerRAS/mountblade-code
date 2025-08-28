@@ -136,7 +136,7 @@ void rendering_system_time_controller(float param_1)
                 *(unsigned int64_t *)(register_rbp + -0x31) = 0x2002;
                 
                 // 执行渲染参数设置
-                FUN_18051ec50(0, register_rbp + -0x39);
+                CoreSystemThreadManager(0, register_rbp + -0x39);
                 
                 if (int_variable_5 != -1) {
                     *(unsigned int *)(register_rbp + -0x21) = *(unsigned int *)(register_rbp + 0x67);
@@ -149,7 +149,7 @@ void rendering_system_time_controller(float param_1)
                     *(unsigned char *)(register_rbp + -0xd) = 0;
                     *(unsigned int *)(register_rbp + -0x39) = 0;
                     *(int *)(register_rbp + -0x35) = int_variable_5;
-                    FUN_18051ec50(*(unsigned int *)(register_rbp + 0x67), register_rbp + -0x39);
+                    CoreSystemThreadManager(*(unsigned int *)(register_rbp + 0x67), register_rbp + -0x39);
                 }
             }
         }
@@ -198,7 +198,7 @@ label_update_rendering_state:
                          ((int64_t)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_7 + 0xd0));
             }
             
-            long_variable_7 = FUN_18054f900(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
+            long_variable_7 = Timer_GetElapsed(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
             if (long_variable_7 == 0) goto label_animation_flow_control;
             
             int_variable_5 = *(int *)(long_variable_7 + 0x1c);
@@ -236,7 +236,7 @@ label_update_rendering_state:
                 }
                 
                 *(float *)(register_rbp + -0x25) = float_variable_11;
-                char_variable_3 = FUN_18051ec50(float_variable_11, register_rbp + -0x39);
+                char_variable_3 = CoreSystemThreadManager(float_variable_11, register_rbp + -0x39);
                 
                 if (char_variable_3 != '\0') {
                     if (int_variable_10 != 0x20) {
@@ -405,7 +405,7 @@ void rendering_system_animation_manager(float param_1)
                 *(unsigned int64_t *)(register_rbp + -0x31) = 0x2002;
                 
                 // 执行动画参数设置
-                FUN_18051ec50(0, register_rbp + -0x39);
+                CoreSystemThreadManager(0, register_rbp + -0x39);
                 
                 if (int_variable_5 != -1) {
                     *(unsigned int *)(register_rbp + -0x21) = *(unsigned int *)(register_rbp + 0x67);
@@ -418,7 +418,7 @@ void rendering_system_animation_manager(float param_1)
                     *(unsigned char *)(register_rbp + -0xd) = 0;
                     *(unsigned int *)(register_rbp + -0x39) = 0;
                     *(int *)(register_rbp + -0x35) = int_variable_5;
-                    FUN_18051ec50(*(unsigned int *)(register_rbp + 0x67), register_rbp + -0x39);
+                    CoreSystemThreadManager(*(unsigned int *)(register_rbp + 0x67), register_rbp + -0x39);
                 }
             }
         }
@@ -468,7 +468,7 @@ label_update_animation_state:
                          ((int64_t)*(int *)(long_variable_7 + 0xf0) * 0xa0 + 100 + *(int64_t *)(long_variable_7 + 0xd0));
             }
             
-            long_variable_7 = FUN_18054f900(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
+            long_variable_7 = Timer_GetElapsed(long_variable_9, 9, register_r15b, uint_variable_6, byte_variable_4);
             if (long_variable_7 == 0) goto label_animation_flow_control;
             
             int_variable_5 = *(int *)(long_variable_7 + 0x1c);
@@ -506,7 +506,7 @@ label_update_animation_state:
                 }
                 
                 *(float *)(register_rbp + -0x25) = float_variable_11;
-                char_variable_3 = FUN_18051ec50(float_variable_11, register_rbp + -0x39);
+                char_variable_3 = CoreSystemThreadManager(float_variable_11, register_rbp + -0x39);
                 
                 if (char_variable_3 != '\0') {
                     register_rsi = &system_error_code;

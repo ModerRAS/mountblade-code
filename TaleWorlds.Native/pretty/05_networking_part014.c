@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 05_networking_part014.c - 5 个函数
 
 // 函数: void FUN_18084ee9a(void)
@@ -56,7 +60,7 @@ uint64_t FUN_18084efe0(int64_t param_1,uint64_t param_2)
   uint64_t uVar2;
   uint64_t *puVar3;
   
-  uVar2 = FUN_18073c4c0(*(uint64_t *)(param_1 + 0x78),param_1 + 0x30,param_2);
+  uVar2 = UtilitiesSystem_MathCalculator(*(uint64_t *)(param_1 + 0x78),param_1 + 0x30,param_2);
   if ((int)uVar2 == 0) {
     puVar3 = (uint64_t *)(param_1 + 0x50);
     for (puVar1 = (uint64_t *)*puVar3; puVar1 != puVar3; puVar1 = (uint64_t *)*puVar1) {
@@ -110,7 +114,7 @@ void FUN_18084f033(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18084f040(int64_t *param_1)
+uint64_t SystemCore_CacheManager(int64_t *param_1)
 
 {
   uint *puVar1;
@@ -202,7 +206,7 @@ LAB_18084f0bc:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -324,7 +328,7 @@ LAB_18084f0bc:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -376,7 +380,7 @@ int32_t FUN_18084f2ae(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18084f2d0(int64_t *param_1)
+uint64_t SystemCore_NetworkProcessor(int64_t *param_1)
 
 {
   uint *puVar1;
@@ -468,7 +472,7 @@ LAB_18084f34c:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -590,7 +594,7 @@ LAB_18084f34c:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -642,7 +646,7 @@ int32_t FUN_18084f53e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18084f560(int64_t *param_1)
+uint64_t RenderingEngine_ShaderProcessor(int64_t *param_1)
 
 {
   uint *puVar1;
@@ -734,7 +738,7 @@ LAB_18084f5dc:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -856,7 +860,7 @@ LAB_18084f5dc:
     *(int32_t *)(param_1 + 3) = 0;
     uVar6 = (uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f);
     uVar8 = (uint64_t)uVar6;
-    if (((int)uVar6 < 1) || (uVar8 = FUN_1808532e0(param_1 + 2,0), (int)uVar8 == 0)) {
+    if (((int)uVar6 < 1) || (uVar8 = Physics_AnimationProcessor(param_1 + 2,0), (int)uVar8 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }

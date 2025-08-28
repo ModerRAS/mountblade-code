@@ -335,7 +335,7 @@ byte FUN_1805377e0(int64_t param_1,int param_2,int param_3,char param_4,uint par
   
   if (-1 < param_2) {
     lVar10 = param_1 + 8 + (int64_t)param_2 * 0x1f8;
-    cVar4 = FUN_18058f970(lVar10);
+    cVar4 = SystemCore_EventHandler(lVar10);
     if (cVar4 != '\0') {
       if (param_3 == 0) {
         lVar8 = (int64_t)*(int *)(lVar10 + 0xf0) * 0xa0;

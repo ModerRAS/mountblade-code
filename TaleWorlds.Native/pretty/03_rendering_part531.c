@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part531.c - 2 个函数
@@ -216,7 +217,7 @@ LAB_180558be4:
 LAB_180558c5d:
     param_1[3] = 0xffffffff;
   }
-  FUN_180631000(param_2,&processed_var_4576_ptr,param_1 + 4);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4576_ptr,param_1 + 4);
   puStack_78 = &system_data_buffer_ptr;
   uStack_60 = 0;
   lStack_70 = 0;
@@ -256,7 +257,7 @@ LAB_180558d04:
     }
   }
   if (0 < iStack_68) {
-    uVar3 = FUN_18055b2f0(&system_state_6150,&puStack_78);
+    uVar3 = SystemFile_Manager(&system_state_6150,&puStack_78);
     param_1[5] = uVar3;
   }
   puStack_98 = &system_data_buffer_ptr;
@@ -613,12 +614,12 @@ LAB_180559354:
     }
   }
   if (0 < iStack_88) {
-    uVar2 = FUN_18055b2f0(&system_state_6150,&puStack_98);
+    uVar2 = SystemFile_Manager(&system_state_6150,&puStack_98);
     param_1[4] = uVar2;
   }
-  FUN_180631000(param_2,&ui_system_data_1800_ptr,param_1 + 3);
-  FUN_180631000(param_2,&processed_var_4512_ptr,(int64_t)param_1 + 0xd);
-  FUN_180631000(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0xe);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr,param_1 + 3);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4512_ptr,(int64_t)param_1 + 0xd);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0xe);
   puStack_b8 = &system_data_buffer_ptr;
   uStack_a0 = 0;
   lStack_b0 = 0;

@@ -1,3 +1,11 @@
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -90,7 +98,7 @@ void FUN_1804a90f0(int64_t param_1,float param_2)
     system_system_config_memory = 0;
     system_system_config_memory = 0;
     FUN_1808fc820(FUN_180942aa0);
-    FUN_1808fcb30(&system_ptr_9e00);
+    SystemCore_StateController(&system_ptr_9e00);
   }
   lVar1 = *(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2908);
   if (lVar1 != 0) {
@@ -98,7 +106,7 @@ void FUN_1804a90f0(int64_t param_1,float param_2)
     lStack_140 = 0;
     uStack_138 = 0;
     uStack_130 = 3;
-    FUN_1802e8c60(*(uint64_t *)(param_1 + 0x18),&lStack_148);
+    NetworkSystem_SecurityManager(*(uint64_t *)(param_1 + 0x18),&lStack_148);
     iVar20 = 0;
     if (lStack_140 - lStack_148 >> 3 != 0) {
       fVar33 = (float)system_ptr_01f0;
@@ -228,7 +236,7 @@ void FUN_1804a90f0(int64_t param_1,float param_2)
             uStack_100 = 5;
             strcpy_s(auStack_f8,0x20,&processed_var_4688_ptr);
             lVar14 = system_system_data_memory;
-            iVar11 = FUN_180191c00(system_system_data_memory,&puStack_110);
+            iVar11 = RenderingSystem_PostProcessor(system_system_data_memory,&puStack_110);
             if ((iVar11 == -1) ||
                (lVar17 = (int64_t)iVar11 * 0x68 + *(int64_t *)(lVar14 + 0x38), lVar17 == 0)) {
               lVar17 = *(int64_t *)(lVar14 + 0x28);
@@ -460,10 +468,10 @@ void FUN_1804a9a20(uint64_t param_1)
   auStack_c0[0] = 0;
   uStack_c8 = 0xc;
   strcpy_s(auStack_c0,0x40,&system_ptr_de40);
-  FUN_1800b8300(apuStack_78,&puStack_d8);
+  DataDeserializer0(apuStack_78,&puStack_d8);
   uStack_20 = 0xb;
   uStack_f8 = 1;
-  FUN_180180730(param_1,appuStack_e8,apuStack_78);
+  MathOptimizationEngine0(param_1,appuStack_e8,apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
   apuStack_78[0] = &system_state_ptr;
@@ -895,7 +903,7 @@ void FUN_1804a9f00(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -958,7 +966,7 @@ void FUN_1804a9f04(int64_t *param_1)
       piVar1 = (int *)(lVar4 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -1031,7 +1039,7 @@ void FUN_1804a9f6f(void)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -1068,7 +1076,7 @@ void FUN_1804a9fd0(uint64_t *param_1)
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }

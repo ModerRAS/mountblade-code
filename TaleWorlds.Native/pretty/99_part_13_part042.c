@@ -78,7 +78,7 @@ uint64_t FUN_1808c07f7(int param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      uVar2 = FUN_18073c4c0(0,unaff_RBX + 0x4d0,0);
+      uVar2 = UtilitiesSystem_MathCalculator(0,unaff_RBX + 0x4d0,0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -141,7 +141,7 @@ uint64_t FUN_1808c08e3(void)
         if ((int)uVar1 == 0) {
           uVar1 = FUN_18073a200();
           if ((int)uVar1 == 0) {
-            uVar1 = FUN_18073c4c0(unaff_R14,unaff_RBX + 0x4d0,0);
+            uVar1 = UtilitiesSystem_MathCalculator(unaff_R14,unaff_RBX + 0x4d0,0);
             if ((int)uVar1 == 0) {
               uVar1 = FUN_18073a840();
               if ((int)uVar1 == 0) {
@@ -280,7 +280,7 @@ int FUN_1808c0ad0(int64_t *param_1,int32_t *param_2,uint64_t *param_3)
     puVar6 = puVar7;
   }
   auStackX_20[0] = *(int32_t *)(param_3 + 6);
-  iVar10 = FUN_1807d28c0(puVar6,auStackX_20,&puStackX_18);
+  iVar10 = RenderingSystem_Renderer(puVar6,auStackX_20,&puStackX_18);
   if (iVar10 != 0) goto LAB_1808c0d29;
   if (!bVar4) {
     return 0;
@@ -344,11 +344,11 @@ LAB_1808c0d29:
     return iVar10;
   }
   iVar10 = SystemLockProcessor(puVar7);
-  if ((iVar10 == 0) && (iVar10 = FUN_180744e20(puVar7 + 2), iVar10 == 0)) {
+  if ((iVar10 == 0) && (iVar10 = UISystem_ComponentManager(puVar7 + 2), iVar10 == 0)) {
     *(int32_t *)(puVar7 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)puVar7 + 0x24) = 0;
   }
-  FUN_180744e20(puVar7 + 2);
+  UISystem_ComponentManager(puVar7 + 2);
   SystemLockProcessor(puVar7);
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&rendering_buffer_2144_ptr,0xc6,1);
@@ -426,7 +426,7 @@ int FUN_1808c0b06(void)
     puVar6 = puVar7;
   }
   in_stack_000000a8 = *(int32_t *)(unaff_R13 + 0x30);
-  iVar10 = FUN_1807d28c0(puVar6,&stack0x000000a8,&stack0x000000a0);
+  iVar10 = RenderingSystem_Renderer(puVar6,&stack0x000000a8,&stack0x000000a0);
   if (iVar10 != 0) goto LAB_1808c0d29;
   if (!bVar5) {
     return 0;
@@ -493,11 +493,11 @@ LAB_1808c0d29:
     return iVar10;
   }
   iVar10 = SystemLockProcessor(puVar7);
-  if ((iVar10 == 0) && (iVar10 = FUN_180744e20(puVar7 + 2), iVar10 == 0)) {
+  if ((iVar10 == 0) && (iVar10 = UISystem_ComponentManager(puVar7 + 2), iVar10 == 0)) {
     *(int32_t *)(puVar7 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)puVar7 + 0x24) = 0;
   }
-  FUN_180744e20(puVar7 + 2);
+  UISystem_ComponentManager(puVar7 + 2);
   SystemLockProcessor(puVar7);
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&rendering_buffer_2144_ptr,0xc6,1);
@@ -525,11 +525,11 @@ int32_t FUN_1808c0cf8(void)
     return 0x1c;
   }
   iVar1 = SystemLockProcessor();
-  if ((iVar1 == 0) && (iVar1 = FUN_180744e20(unaff_RBX + 0x10), iVar1 == 0)) {
+  if ((iVar1 == 0) && (iVar1 = UISystem_ComponentManager(unaff_RBX + 0x10), iVar1 == 0)) {
     *(int32_t *)(unaff_RBX + 0x20) = 0xffffffff;
     *(int32_t *)(unaff_RBX + 0x24) = unaff_R12D;
   }
-  FUN_180744e20(unaff_RBX + 0x10);
+  UISystem_ComponentManager(unaff_RBX + 0x10);
   SystemLockProcessor();
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
@@ -587,7 +587,7 @@ uint64_t FUN_1808c0e50(int64_t param_1,int64_t param_2)
       for (iVar3 = *(int *)(lVar1 + 0x24); 0 < iVar3; iVar3 = iVar3 + -1) {
         uStack_30 = 0xffffffffffffffff;
         aiStack_28[0] = -1;
-        FUN_1807d1650(lVar1,&uStack_30,aiStack_28);
+        NetworkSystem_ConnectionHandler(lVar1,&uStack_30,aiStack_28);
         if ((*(char *)(param_1 + 0x780) == '\0') &&
            (uVar2 = FUN_1808b81c0(param_1 + 0x3c8,
                                   *(uint64_t *)

@@ -1,4 +1,4 @@
-#include "FUN_1808555a0_definition.h"
+#include "SystemAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -77,16 +77,16 @@ void FUN_18085dff0(uint64_t *param_1)
         *(uint *)(param_1 + 0x5b) = *(uint *)(param_1 + 0x5b) & 0xfffffffe;
       }
       FUN_18085dca0(param_1 + 0x9c);
-      FUN_18085dbf0(param_1 + 0x9a);
-      FUN_18085dbf0(param_1 + 0x98);
-      FUN_18085dbf0(param_1 + 0x96);
+      SystemController(param_1 + 0x9a);
+      SystemController(param_1 + 0x98);
+      SystemController(param_1 + 0x96);
       func_0x00018085de10(plVar1);
       func_0x00018085dda0(plVar5);
       func_0x00018085e3f0(param_1 + 0x7f);
       func_0x00018085e3f0(param_1 + 0x6f);
       func_0x00018085deb0(param_1 + 0x54);
-      FUN_180744d60(param_1 + 0x4e);
-      FUN_180744d60(param_1 + 0x4c);
+      SystemAnalyzer(param_1 + 0x4e);
+      SystemAnalyzer(param_1 + 0x4c);
       plVar1 = param_1 + 0x4a;
       func_0x00018085f3d0(plVar1);
       *(int64_t *)param_1[0x4b] = *plVar1;
@@ -241,16 +241,16 @@ void FUN_18085e003(uint64_t *param_1)
         *(uint *)(param_1 + 0x5b) = *(uint *)(param_1 + 0x5b) & 0xfffffffe;
       }
       FUN_18085dca0(param_1 + 0x9c);
-      FUN_18085dbf0(param_1 + 0x9a);
-      FUN_18085dbf0(param_1 + 0x98);
-      FUN_18085dbf0(param_1 + 0x96);
+      SystemController(param_1 + 0x9a);
+      SystemController(param_1 + 0x98);
+      SystemController(param_1 + 0x96);
       func_0x00018085de10();
       func_0x00018085dda0(plVar4);
       func_0x00018085e3f0(param_1 + 0x7f);
       func_0x00018085e3f0(param_1 + 0x6f);
       func_0x00018085deb0(param_1 + 0x54);
-      FUN_180744d60(param_1 + 0x4e);
-      FUN_180744d60(param_1 + 0x4c);
+      SystemAnalyzer(param_1 + 0x4e);
+      SystemAnalyzer(param_1 + 0x4c);
       plVar4 = param_1 + 0x4a;
       func_0x00018085f3d0(plVar4);
       *(int64_t *)param_1[0x4b] = *plVar4;
@@ -358,16 +358,16 @@ void FUN_18085e112(void)
         *(uint *)(unaff_R15 + 0x2d8) = *(uint *)(unaff_R15 + 0x2d8) & 0xfffffffe;
       }
       FUN_18085dca0(unaff_R15 + 0x4e0);
-      FUN_18085dbf0(unaff_R15 + 0x4d0);
-      FUN_18085dbf0(unaff_R15 + 0x4c0);
-      FUN_18085dbf0(unaff_R15 + 0x4b0);
+      SystemController(unaff_R15 + 0x4d0);
+      SystemController(unaff_R15 + 0x4c0);
+      SystemController(unaff_R15 + 0x4b0);
       func_0x00018085de10();
       func_0x00018085dda0();
       func_0x00018085e3f0(unaff_R15 + 0x3f8);
       func_0x00018085e3f0(unaff_R15 + 0x378);
       func_0x00018085deb0(unaff_R15 + 0x2a0);
-      FUN_180744d60(unaff_R15 + 0x270);
-      FUN_180744d60(unaff_R15 + 0x260);
+      SystemAnalyzer(unaff_R15 + 0x270);
+      SystemAnalyzer(unaff_R15 + 0x260);
       plVar2 = (int64_t *)(unaff_R15 + 0x250);
       func_0x00018085f3d0(plVar2);
       **(int64_t **)(unaff_R15 + 600) = *plVar2;

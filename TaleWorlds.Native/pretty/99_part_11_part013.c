@@ -407,7 +407,7 @@ FUN_1806e6b00(uint64_t *param_1,int16_t param_2,int16_t *param_3,uint64_t param_
   fVar19 = (fVar16 * fVar17 - fVar13 * fVar20) * fStack_bc;
   fVar14 = (fVar11 * fVar20 - fVar16 * fVar18) * fStack_bc;
   fVar21 = (fVar13 * fVar18 - fVar11 * fVar17) * fStack_bc;
-  puVar9 = (int32_t *)FUN_1800fcb90(&fStack_c8,auStack_b8,param_5);
+  puVar9 = (int32_t *)SystemCore_Initializer(&fStack_c8,auStack_b8,param_5);
   uVar2 = puVar9[1];
   uVar3 = puVar9[2];
   uVar4 = puVar9[3];
@@ -434,7 +434,7 @@ FUN_1806e6b00(uint64_t *param_1,int16_t param_2,int16_t *param_3,uint64_t param_
   fVar13 = fStack_c4 * fVar13;
   fVar17 = (fStack_c0 * fVar15 - fStack_c8 * fVar14) * fStack_bc;
   fVar20 = (fStack_c8 * fVar12 - fStack_c4 * fVar15) * fStack_bc;
-  puVar10 = (uint64_t *)FUN_1800fcb90(&fStack_c8,auStack_b8,param_7);
+  puVar10 = (uint64_t *)SystemCore_Initializer(&fStack_c8,auStack_b8,param_7);
   uVar5 = puVar10[1];
   *(uint64_t *)(puVar7 + 0xb) = *puVar10;
   *(uint64_t *)(puVar7 + 0xd) = uVar5;
@@ -1092,7 +1092,7 @@ void FUN_1806e7c90(int64_t param_1,uint64_t param_2,uint64_t param_3)
   
   FUN_1806dee40(param_1,param_2,param_3,auStack_e0,auStack_110,auStack_130,1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(param_1 + 0x54) * 0.5);
+  RenderingSystem_Renderer0(*(float *)(param_1 + 0x54) * 0.5);
 }
 
 
@@ -1130,7 +1130,7 @@ void FUN_1806e7ceb(void)
   }
   fStack000000000000006c = fStack000000000000005c;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(unaff_RBX + 0x54) * 0.5);
+  RenderingSystem_Renderer0(*(float *)(unaff_RBX + 0x54) * 0.5);
 }
 
 

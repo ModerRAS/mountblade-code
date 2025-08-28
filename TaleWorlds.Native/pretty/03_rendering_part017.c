@@ -1,3 +1,5 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -29,7 +31,7 @@ void FUN_1802776ad(void)
               && ((*(uint *)(lVar4 + 0x328) & 0x20000000) == 0)) &&
              (*(int64_t *)(lVar4 + 0x370) == 0)) {
             if (*(int64_t *)(lVar4 + 0x1d8) == 0) {
-              FUN_18023b050(lVar4,0);
+              SystemCore_NetworkHandler(lVar4,0);
               lVar5 = system_main_module_state;
               piVar1 = (int *)(*(int64_t *)(lVar6 + *(int64_t *)(lVar3 + 0x1b8)) + 0x3a8);
               *piVar1 = *piVar1 + 1;
@@ -106,7 +108,7 @@ void FUN_1802777f0(int64_t param_1)
         plVar1[0x3f] = 0;
         plVar1[0x40] = 0;
         *(int32_t *)(plVar1 + 0x41) = 0;
-        FUN_180079520(plVar1);
+        SystemInitializer(plVar1);
       }
       else {
         (**(code **)(*plVar1 + 0x28))();
@@ -141,21 +143,21 @@ void FUN_1802777f0(int64_t param_1)
         uStack_48 = 0x101;
         if ((plVar1 != (int64_t *)0x0) && (plVar2 != (int64_t *)0x0)) {
           if (cStack_46 != '\0') {
-            FUN_180075b70();
+            SystemConfig_Manager();
           }
-          FUN_18007f6a0(auStack_68);
+          SystemSecurityManager(auStack_68);
           if ((char)uStack_48 != '\0') {
-            FUN_180079520(plVar1);
+            SystemInitializer(plVar1);
           }
           if (uStack_48._1_1_ != '\0') {
-            FUN_180079520(plVar1);
+            SystemInitializer(plVar1);
           }
           plStack_70 = (int64_t *)0x0;
           if (plVar2 != (int64_t *)0x0) {
             (**(code **)(*plVar2 + 0x38))();
           }
         }
-        FUN_18007f6a0(auStack_68);
+        SystemSecurityManager(auStack_68);
         if (plStack_50 != (int64_t *)0x0) {
           (**(code **)(*plStack_50 + 0x38))();
         }

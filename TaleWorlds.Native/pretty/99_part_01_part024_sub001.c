@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -34,13 +39,13 @@ void FUN_1800b7a70(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
   lVar6 = lVar3 + 0xa90;
-  FUN_180058080(lVar6,&lStackX_8,*param_2 + 0x1f0,param_4,uVar7);
+  HighFreq_AnimationSystem1(lVar6,&lStackX_8,*param_2 + 0x1f0,param_4,uVar7);
   lVar4 = lStackX_8;
   if (lStackX_8 != lVar6) {
     plVar1 = (int64_t *)(lVar3 + 0xab0);
     *plVar1 = *plVar1 + -1;
     func_0x00018066bd70(lStackX_8);
-    FUN_18066ba00(lVar4,lVar6);
+    RenderingSystem_BufferHandler(lVar4,lVar6);
     FUN_1800b94f0(lVar4);
     if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -376,7 +381,7 @@ void FUN_1800b8090(int64_t *param_1)
   FUN_1800c0570(system_system_data_config,&plStack_148);
   do {
     (**(code **)(puStack_e8 + 0x10))(&puStack_e8,&processed_var_8408_ptr);
-    FUN_180060680(acStack_48,&processed_var_4576_ptr,iVar8);
+    RenderingEngine_BufferManager(acStack_48,&processed_var_4576_ptr,iVar8);
     lVar4 = -1;
     do {
       lVar3 = lVar4 + 1;
@@ -400,7 +405,7 @@ void FUN_1800b8090(int64_t *param_1)
     }
     (**(code **)(plVar6[2] + 0x10))(plVar6 + 2,puVar7);
     *(uint *)(plVar6 + 0x20) = *(uint *)(plVar6 + 0x20) | 0x40080;
-    FUN_180076910(plVar6,&plStack_148);
+    UltraHighFreq_SecurityValidator1(plVar6,&plStack_148);
     *(int32_t *)(plVar6 + 0x4e) = 0x31;
     uStack_f8 = 0x443504f3;
     *(int32_t *)((int64_t)plVar6 + 0x274) = 0;
@@ -459,7 +464,7 @@ void FUN_1800b82b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 uint64_t *
-FUN_1800b8300(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+DataDeserializer0(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   void *puVar1;
@@ -488,8 +493,8 @@ FUN_1800b8300(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
 
 
 
-// 函数: void FUN_1800b8370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1800b8370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemCore_ConfigManager(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemCore_ConfigManager(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   void *puVar1;
@@ -506,7 +511,7 @@ void FUN_1800b8370(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uVar6 = param_1[1];
   if (uVar6 < param_1[2]) {
     param_1[1] = uVar6 + 0x58;
-    FUN_1800b8300(uVar6);
+    DataDeserializer0(uVar6);
     return;
   }
   uVar8 = *param_1;
@@ -545,7 +550,7 @@ LAB_1800b8417:
       puVar4 = puVar4 + 0xb;
     } while (lVar9 + (int64_t)puVar4 != uVar6);
   }
-  FUN_1800b8300(puVar4,param_2);
+  DataDeserializer0(puVar4,param_2);
   puVar2 = (uint64_t *)param_1[1];
   puVar5 = (uint64_t *)*param_1;
   if (puVar5 != puVar2) {
@@ -571,8 +576,8 @@ LAB_1800b8417:
 
 
 
-// 函数: void FUN_1800b8500(int64_t *param_1)
-void FUN_1800b8500(int64_t *param_1)
+// 函数: void SystemCore_Controller(int64_t *param_1)
+void SystemCore_Controller(int64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -1017,8 +1022,8 @@ joined_r0x0001800b8850:
 
 
 
-// 函数: void FUN_1800b88d0(int64_t *param_1,int64_t *param_2)
-void FUN_1800b88d0(int64_t *param_1,int64_t *param_2)
+// 函数: void PhysicsSystem_TriggersProcessor(int64_t *param_1,int64_t *param_2)
+void PhysicsSystem_TriggersProcessor(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t *plVar1;

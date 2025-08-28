@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -117,7 +121,7 @@ void FUN_180206950(uint64_t param_1,int64_t *param_2,int64_t param_3)
     *puVar9 = piVar8;
     puVar9[1] = 0;
     iStack_158 = 1;
-    FUN_18066c220(lVar7 + 0x50,&uStack_130,*(int32_t *)(lVar7 + 0x40),
+    RenderingShaderProcessor0(lVar7 + 0x50,&uStack_130,*(int32_t *)(lVar7 + 0x40),
                   *(int32_t *)(lVar7 + 0x48));
     if ((char)uStack_130 != '\0') {
       uVar10 = (uint64_t)piVar8 % (uint64_t)uStack_130._4_4_;
@@ -303,7 +307,7 @@ void FUN_180206da0(uint64_t param_1,int64_t param_2,char *param_3,int64_t param_
           uStack_a8 = 0;
           iVar2 = (**(code **)(*plVar3 + 0x70))(plVar3,*(uint64_t *)(lVar6 + 0x10),0,4);
           if (iVar2 < 0) {
-            FUN_180220810(iVar2,&ui_system_data_1768_ptr);
+            SystemCore_Loader(iVar2,&ui_system_data_1768_ptr);
           }
           *puVar8 = auStack_68[0];
           plVar3 = (int64_t *)FUN_1800e81f0();
@@ -446,7 +450,7 @@ void FUN_1802072b0(int64_t *param_1,int *param_2,int64_t *param_3,uint64_t param
     iVar3 = (**(code **)(*plVar4 + 0x70))
                       (plVar4,*(uint64_t *)(lVar2 + 0x10),0,4,0,auStack_18,0,0xfffffffffffffffe);
     if (iVar3 < 0) {
-      FUN_180220810(iVar3,&ui_system_data_1768_ptr);
+      SystemCore_Loader(iVar3,&ui_system_data_1768_ptr);
     }
     *(uint64_t *)(param_5 + 8) = auStack_18[0];
     plVar4 = (int64_t *)FUN_1800e81f0();
@@ -558,7 +562,7 @@ void FUN_180207530(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   apuStack_30[0][5] = uStack_3c;
   apuStack_30[0][6] = uStack_38;
   apuStack_30[0][7] = uStack_34;
-  FUN_18005c650(apuStack_30);
+  SystemCore_SecurityManager(apuStack_30);
   return;
 }
 

@@ -42,7 +42,7 @@ void FUN_180881fa0(int64_t param_1,uint64_t param_2,int32_t *param_3)
     uStack_58 = (int64_t *)(param_1 + 0x898);
     uStack_50 = 0xffffffffffffffff;
     aiStack_48[0] = -1;
-    FUN_1808741f0(uStack_58,&uStack_50,aiStack_48);
+    SystemResource_Manager(uStack_58,&uStack_50,aiStack_48);
     plVar5 = uStack_58;
     if (aiStack_48[0] != -1) {
       iVar6 = aiStack_48[0];
@@ -133,7 +133,7 @@ void FUN_180881fbc(int64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t pa
     uStackX_20 = (int64_t *)(param_1 + 0x898);
     param_5 = 0xffffffffffffffff;
     param_6 = -1;
-    FUN_1808741f0(uStackX_20,&param_5,&param_6);
+    SystemResource_Manager(uStackX_20,&param_5,&param_6);
     plVar4 = uStackX_20;
     if (param_6 != -1) {
       iVar5 = param_6;
@@ -288,7 +288,7 @@ int FUN_180882160(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t para
   }
   uStack_50 = 0xffffffffffffffff;
   aiStack_48[0] = -1;
-  FUN_1808741f0((int64_t *)(param_1 + 0x898),&uStack_50,aiStack_48);
+  SystemResource_Manager((int64_t *)(param_1 + 0x898),&uStack_50,aiStack_48);
   if (aiStack_48[0] != -1) {
     iVar6 = aiStack_48[0];
     iVar5 = (int)uStack_50;
@@ -370,7 +370,7 @@ int FUN_18088217c(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t para
   }
   param_7 = 0xffffffffffffffff;
   param_8 = -1;
-  FUN_1808741f0((int64_t *)(param_1 + 0x898),&param_7,&param_8);
+  SystemResource_Manager((int64_t *)(param_1 + 0x898),&param_7,&param_8);
   if (param_8 != -1) {
     iVar5 = param_8;
     iVar4 = (int)param_7;
@@ -507,9 +507,9 @@ uint64_t FUN_180882330(int64_t param_1,uint64_t param_2)
   
   uVar1 = FUN_18088f1a0(param_2,param_1 + 0x10);
   if ((int)uVar1 == 0) {
-    uVar1 = FUN_18088ee60(param_2,param_1 + 0x20);
+    uVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x20);
     if ((int)uVar1 == 0) {
-      uVar1 = FUN_18088ee20(param_2,auStackX_8);
+      uVar1 = UISystem_LayoutEngine(param_2,auStackX_8);
       if ((int)uVar1 == 0) {
         *(int32_t *)(param_1 + 0x24) = auStackX_8[0];
         uVar1 = 0;

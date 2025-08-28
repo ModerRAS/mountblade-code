@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -190,7 +191,7 @@ LAB_18039a6a1:
                     // WARNING: Subroutine does not return
     memset(uVar7,0,0x6c00);
   }
-  FUN_180631000(puVar14,&processed_var_6864_ptr,lVar9 + 0x68);
+  UltraHighFreq_CacheSystem1(puVar14,&processed_var_6864_ptr,lVar9 + 0x68);
   if (*(int *)(param_1 + 0x224) == 0) {
     puVar1 = (uint *)(lVar9 + 0x4c);
     pcVar16 = "layer_is_used_mask";
@@ -730,7 +731,7 @@ LAB_18039b05f:
                 lVar11 = 0x10;
                 do {
                   aiStack_68[0] = -1;
-                  lVar12 = FUN_1800a02a0(puVar8,&processed_var_7100_ptr);
+                  lVar12 = SystemCore_DataManager(puVar8,&processed_var_7100_ptr);
                   if (lVar12 != 0) {
                     pcVar16 = (char *)0x180d48d24;
                     if (*(char **)(lVar12 + 8) != (char *)0x0) {

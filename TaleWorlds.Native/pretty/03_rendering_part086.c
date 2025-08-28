@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part086.c - 2 个函数
 
@@ -117,25 +122,25 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
   puVar8 = (int32_t *)FUN_1800daa50();
   switch(param_7) {
   case 0:
-    FUN_180094b30(puVar8,&processed_var_5760_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5760_ptr);
     break;
   case 1:
-    FUN_180094b30(puVar8,&processed_var_6008_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_6008_ptr);
     break;
   case 2:
-    FUN_180094b30(puVar8,&processed_var_5976_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5976_ptr);
     break;
   case 3:
-    FUN_180094b30(puVar8,&processed_var_5944_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5944_ptr);
     break;
   case 4:
-    FUN_180094b30(puVar8,&processed_var_5912_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_5912_ptr);
     break;
   case 5:
-    FUN_180094b30(puVar8,&processed_var_6144_ptr);
+    SystemCore_NetworkHandler(puVar8,&processed_var_6144_ptr);
     break;
   default:
-    FUN_180626ee0(&processed_var_6088_ptr);
+    UtilitiesSystem_PerformanceMonitor(&processed_var_6088_ptr);
   }
   *puVar8 = 0x41;
   *(uint64_t *)(puVar8 + 0x4706) = 0;
@@ -398,7 +403,7 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
       *(int32_t *)(puVar11 + 0x17) = uVar3;
       *(int32_t *)((int64_t)puVar11 + 0xbc) = uVar4;
       FUN_18024b8d0(puVar8);
-      FUN_1800763c0(*(uint64_t *)(*(int64_t *)(param_1 + 0x38) + 0x398),&plStack_478);
+      SystemCore_BufferManager(*(uint64_t *)(*(int64_t *)(param_1 + 0x38) + 0x398),&plStack_478);
       FUN_18022cb40(*(uint64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x38) + 0x398) + 0x1b8),
                     &plStack_480);
       lVar14 = plStack_480[0x3c];
@@ -413,7 +418,7 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
       plStack_480[0x28] = plStack_480[0x28] | uVar12;
       FUN_18022dd60(plStack_480);
       *(int16_t *)(plVar10 + 0x78) = 0xffff;
-      FUN_180076910(plStack_478,&plStack_480);
+      UltraHighFreq_SecurityValidator1(plStack_478,&plStack_480);
       lVar14 = *(int64_t *)(*(int64_t *)(param_1 + 0x38) + 0x8218);
       uStack_2a8 = *(uint64_t *)(lVar14 + 0x70);
       uStack_2a0 = *(uint64_t *)(lVar14 + 0x78);
@@ -442,7 +447,7 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
       uStack_314 = 0;
       uStack_300 = 0;
       puStack_498 = &uStack_368;
-      FUN_180077750(plStack_478,puVar8,&uStack_2a8);
+      SystemHealthMonitor(plStack_478,puVar8,&uStack_2a8);
       if (*(char *)(*(int64_t *)(param_1 + 0x38) + 0x27b8) != '\0') {
         uStack_3d8 = 0;
         uStack_3cc = 0xff00;
@@ -511,7 +516,7 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
   *puVar9 = 0x616d776f64616873;
   puVar9[1] = 0x68706172675f70;
   uStack_460 = 0xf;
-  plVar10 = (int64_t *)FUN_1801f20c0();
+  plVar10 = (int64_t *)Network_DataSerializer();
   if (plVar10 != (int64_t *)0x0) {
     plStack_418 = plVar10;
     (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -630,14 +635,14 @@ int64_t * FUN_180319320(int64_t param_1,int64_t *param_2,int32_t *param_3,uint64
   uStack_14 = param_3[1];
   uStack_10 = param_3[2];
   uStack_c = param_3[3];
-  FUN_1802ea790(*param_2,&puStack_48);
+  NetworkProtocol_Transmitter(*param_2,&puStack_48);
   FUN_180170ac0(*param_2,&processed_var_6072_ptr);
   lVar1 = *param_2;
   if ((*(uint *)(lVar1 + 0x2c4) & 2) == 0) {
     *(uint *)(lVar1 + 0x2c4) = *(uint *)(lVar1 + 0x2c4) | 2;
     if ((*(int64_t *)(lVar1 + 0x20) != 0) &&
        (*(char *)(*(int64_t *)(lVar1 + 0x20) + 0x60cb0) == '\0')) {
-      FUN_1802ee720(lVar1,0);
+      RenderingSystem_UpdateCamera(lVar1,0);
     }
   }
   puStack_48 = &system_data_buffer_ptr;
@@ -708,7 +713,7 @@ int64_t * FUN_180319490(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
     *(uint *)(lVar4 + 0x2c4) = uVar1 | 4;
     if (((*(int64_t *)(lVar4 + 0x20) != 0) &&
         (*(char *)(*(int64_t *)(lVar4 + 0x20) + 0x60cb0) == '\0')) && ((uVar1 & 2) != 0)) {
-      FUN_1802ee720(lVar4,0);
+      RenderingSystem_UpdateCamera(lVar4,0);
     }
   }
   lVar4 = *(int64_t *)(param_1 + 0x38);
@@ -733,7 +738,7 @@ int64_t * FUN_180319490(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
     *(uint *)(lVar4 + 0x2c4) = *(uint *)(lVar4 + 0x2c4) | 2;
     if ((*(int64_t *)(lVar4 + 0x20) != 0) &&
        (*(char *)(*(int64_t *)(lVar4 + 0x20) + 0x60cb0) == '\0')) {
-      FUN_1802ee720(lVar4,0);
+      RenderingSystem_UpdateCamera(lVar4,0);
     }
   }
   puStack_90 = &system_data_buffer_ptr;
@@ -763,7 +768,7 @@ int64_t * FUN_180319490(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
   }
   _fStack_38 = CONCAT44(fStackX_c * 0.5,fStackX_8);
   uStack_30 = (uint64_t)*(uint *)(lVar4 + 0x3ec4);
-  FUN_1802ea790(*param_2,&uStack_68);
+  NetworkProtocol_Transmitter(*param_2,&uStack_68);
   if (*(char *)(lVar3 + 0x90) != '\0') {
     *(int8_t *)(lVar3 + 0x90) = 0;
     *(int8_t *)(*(int64_t *)(lVar3 + 0x70) + 0x148) = 0;

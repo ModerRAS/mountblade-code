@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part076.c - 2 个函数
 
 // 函数: void FUN_1805ef690(int64_t *param_1)
@@ -265,7 +269,7 @@ LAB_1805ef98b:
       fStack_150 = fStack_110 - *(float *)(lVar28 + 0x38);
       fStack_154 = fStack_114 - *(float *)(lVar28 + 0x34);
       fStack_158 = fStack_118 - *(float *)(lVar28 + 0x30);
-      FUN_180285b40(&uStack_148,&fStack_168,&fStack_158);
+      SystemCore_EventHandler(&uStack_148,&fStack_168,&fStack_158);
       lVar28 = *plVar21;
       pfVar1 = (float *)(lVar28 + 0x10 + lVar30);
       *pfVar1 = fVar37 * fVar33 * 1.0 + fVar34 * fVar10 * 1.0 + fVar6 * fVar35 + fVar7 * fVar36;
@@ -335,7 +339,7 @@ LAB_1805ef98b:
       fStack_e4 = fVar6;
       fStack_e0 = fVar7;
       fStack_dc = fVar34;
-      FUN_180285b40(&fStack_e8,&uStack_c0,&fStack_158);
+      SystemCore_EventHandler(&fStack_e8,&uStack_c0,&fStack_158);
       lVar31 = lVar31 * 0x40;
       lVar30 = param_1[0x21];
       pfVar1 = (float *)(lVar31 + lVar30);
@@ -357,7 +361,7 @@ LAB_1805ef98b:
       fStack_160 = *(float *)(lVar26 + 0x38) - fStack_110;
       fStack_164 = *(float *)(lVar26 + 0x34) - fStack_114;
       fStack_168 = *(float *)(lVar26 + 0x30) - fStack_118;
-      FUN_180285b40(&fStack_128,&uStack_148,&fStack_168);
+      SystemCore_EventHandler(&fStack_128,&uStack_148,&fStack_168);
       lVar30 = param_1[0x21];
       pfVar1 = (float *)(lVar31 + 0x20 + lVar30);
       *pfVar1 = fVar37 * fStack_128 * 1.0 + fVar34 * fStack_11c * 1.0 +
@@ -442,7 +446,7 @@ LAB_1805ef98b:
   fStack_e4 = fVar6;
   fStack_e0 = fVar7;
   fStack_dc = fVar34;
-  FUN_180285b40(&fStack_e8,&uStack_148,&fStack_168);
+  SystemCore_EventHandler(&fStack_e8,&uStack_148,&fStack_168);
   *(float *)(param_1 + 0x2e) =
        fStack_104 * fVar6 + fStack_100 * fVar7 +
        fStack_108 * fVar37 * 1.0 + fStack_fc * fVar34 * 1.0;
@@ -481,7 +485,7 @@ LAB_1805ef98b:
   fStack_e4 = fVar6;
   fStack_e0 = fVar7;
   fStack_dc = fVar34;
-  FUN_180285b40(&fStack_e8,&uStack_148,&fStack_168);
+  SystemCore_EventHandler(&fStack_e8,&uStack_148,&fStack_168);
   *(float *)(param_1 + 0x32) =
        fStack_108 * fVar37 * 1.0 + fStack_fc * fVar34 * 1.0 +
        fStack_104 * fVar6 + fStack_100 * fVar7;

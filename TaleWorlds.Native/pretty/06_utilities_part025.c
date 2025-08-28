@@ -1,4 +1,12 @@
-#include "FUN_1808de000_definition.h"
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
+
+
+/* 函数别名定义: DataCompressor */
+#define DataCompressor DataCompressor
+
+
+#include "SystemInputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 06_utilities_part025.c - 8 个函数
@@ -45,12 +53,12 @@ uint64_t FUN_18089ef40(int64_t param_1,int64_t *param_2)
         auStackX_10[0] = *(int32_t *)(param_1 + 0x60);
         uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
                           (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
-        if (((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 100), (int)uVar1 == 0))
-            && (uVar1 = FUN_180898eb0(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
-           (((uVar1 = FUN_180898eb0(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
-            ((uVar1 = FUN_180898eb0(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
+        if (((((int)uVar1 == 0) && (uVar1 = NetworkSecurityManager(param_2,param_1 + 100), (int)uVar1 == 0))
+            && (uVar1 = NetworkSecurityManager(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
+           (((uVar1 = NetworkSecurityManager(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
+             (uVar1 = NetworkSecurityManager(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
+            ((uVar1 = NetworkSecurityManager(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
+             (uVar1 = NetworkSecurityManager(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
           uVar1 = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
         }
       }
@@ -69,9 +77,9 @@ uint64_t FUN_18089f0b0(int64_t param_1,int64_t *param_2)
   int8_t auStack_68 [64];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
+  uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x46464542);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)uVar1 == 0)) {
+     (uVar1 = DataCompressor0(param_2,auStack_68,0,0x42464542,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
       if (((int)uVar1 == 0) &&
@@ -382,7 +390,7 @@ void FUN_18089f31e(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 8) < 0x40)) {
-    iVar1 = FUN_1808ddd30();
+    iVar1 = DataCompressor0();
     if (iVar1 != 0) {
       return;
     }
@@ -459,8 +467,8 @@ uint64_t FUN_18089f530(int64_t param_1,uint64_t *param_2,int32_t param_3,int32_t
   int8_t auStack_70 [64];
   int8_t auStack_30 [40];
   
-  uVar2 = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
-  if (((int)uVar2 == 0) && (uVar2 = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
+  uVar2 = DataCompressor0(param_2,auStack_30,1,0x5453494c,param_3);
+  if (((int)uVar2 == 0) && (uVar2 = DataCompressor0(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
@@ -489,7 +497,7 @@ uint64_t FUN_18089f571(void)
   int64_t unaff_RBP;
   char in_stack_000000d0;
   
-  uVar2 = FUN_1808ddd30();
+  uVar2 = DataCompressor0();
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       uVar1 = SystemCleanupProcessor(*unaff_RBX,unaff_RBP + 0x10);
@@ -529,9 +537,9 @@ uint64_t FUN_18089f830(int64_t param_1,int64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
+  uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x49444d43);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42444d43,0), (int)uVar1 == 0)) {
+     (uVar1 = DataCompressor0(param_2,auStack_48,0,0x42444d43,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -582,7 +590,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
   uStack_4c = puVar3[1];
   uStack_48 = puVar3[2];
   uStack_44 = puVar3[3];
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
+  uVar4 = DataCompressor0(param_2,auStack_40,0,0x4c525443,0);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -625,7 +633,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
           uVar2 = SystemCleanupProcessor(*param_2,param_1 + 0x30);
           uVar4 = (uint64_t)uVar2;
           if (uVar2 == 0) {
-            uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
+            uVar4 = UISystem_WindowManager(param_2,param_1 + 0x40);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
@@ -701,7 +709,7 @@ uint64_t FUN_18089f9b3(void)
         uVar2 = SystemCleanupProcessor(*unaff_RDI,unaff_RBP + 0x30);
         uVar3 = (uint64_t)uVar2;
         if (uVar2 == 0) {
-          uVar3 = FUN_180898e70();
+          uVar3 = UISystem_WindowManager();
           if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
             SystemThreadManager();
@@ -765,7 +773,7 @@ uint64_t FUN_18089f9f6(void)
       uVar2 = SystemCleanupProcessor(*unaff_RDI,unaff_RBP + 0x30);
       uVar3 = (uint64_t)uVar2;
       if (uVar2 == 0) {
-        uVar3 = FUN_180898e70();
+        uVar3 = UISystem_WindowManager();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -815,7 +823,7 @@ uint64_t FUN_18089fa3c(void)
     uVar2 = SystemCleanupProcessor(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (uint64_t)uVar2;
     if (uVar2 == 0) {
-      uVar3 = FUN_180898e70();
+      uVar3 = UISystem_WindowManager();
       if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
         SystemThreadManager();
@@ -845,7 +853,7 @@ uint64_t FUN_18089fac2(void)
     uVar1 = SystemCleanupProcessor(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (uint64_t)uVar1;
     if (uVar1 == 0) {
-      uVar2 = FUN_180898e70();
+      uVar2 = UISystem_WindowManager();
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
         SystemThreadManager();
@@ -871,7 +879,7 @@ uint64_t FUN_18089fad8(void)
     uVar1 = SystemCleanupProcessor(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (uint64_t)uVar1;
     if (uVar1 == 0) {
-      uVar2 = FUN_180898e70();
+      uVar2 = UISystem_WindowManager();
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
         SystemThreadManager();
@@ -892,7 +900,7 @@ void FUN_18089fb06(void)
 {
   int iVar1;
   
-  iVar1 = FUN_180898e70();
+  iVar1 = UISystem_WindowManager();
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
     SystemThreadManager();
@@ -922,7 +930,7 @@ void FUN_18089fb40(int64_t param_1,uint64_t param_2)
   int iVar1;
   int8_t auStack_28 [32];
   
-  iVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x4f525443,0);
+  iVar1 = DataCompressor0(param_2,auStack_28,0,0x4f525443,0);
   if (iVar1 == 0) {
     iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
     if (iVar1 == 0) {
@@ -941,7 +949,7 @@ uint64_t FUN_18089fba0(int64_t param_1,uint64_t *param_2)
   uint64_t uVar1;
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
+  uVar1 = DataCompressor0(param_2,auStack_28,0,0x56525543,0);
   if ((int)uVar1 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -971,9 +979,9 @@ uint64_t FUN_18089fc50(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
+  uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x54494645);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42494645,0), (int)uVar1 == 0)) {
+     (uVar1 = DataCompressor0(param_2,auStack_48,0,0x42494645,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -1057,11 +1065,11 @@ uint64_t FUN_18089fd30(int64_t param_1,int64_t *param_2)
       }
     }
     else {
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x70);
+      uVar1 = NetworkSecurityManager(param_2,param_1 + 0x70);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x74);
+      uVar1 = NetworkSecurityManager(param_2,param_1 + 0x74);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -1081,9 +1089,9 @@ uint64_t FUN_18089fed0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
+  uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x54495645);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42495645,0), (int)uVar1 == 0)) {
+     (uVar1 = DataCompressor0(param_2,auStack_48,0,0x42495645,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -1093,7 +1101,7 @@ uint64_t FUN_18089fed0(int64_t param_1,uint64_t *param_2)
         return 0x1c;
       }
       uVar1 = SystemCleanupProcessor(*param_2,param_1 + 0xd8);
-      if ((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
+      if ((((int)uVar1 == 0) && (uVar1 = NetworkSecurityManager(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
          (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
         SystemThreadManager(param_2,auStack_48);
@@ -1118,7 +1126,7 @@ uint64_t FUN_18089ffe0(uint64_t param_1,int64_t param_2)
     }
   }
   else {
-    uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
+    uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x544e5645);
     if ((int)uVar1 == 0) {
       uVar1 = FUN_1808a3d50(param_1,param_2,0x42545645);
       if ((int)uVar1 == 0) {

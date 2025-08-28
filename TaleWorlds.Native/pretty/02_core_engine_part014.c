@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -59,7 +64,7 @@ void FUN_1800533d0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(int16_t *)(uVar8 + 4 + lStack_e8) = 0x203a;
   *(int8_t *)(uVar8 + 6 + lStack_e8) = 0;
   uStack_e0 = 6;
-  FUN_180060680(acStack_58,&processed_var_4576_ptr,uVar3);
+  > MedHighFreq_StateMachine1(acStack_58,&processed_var_4576_ptr,uVar3);
   lVar2 = -1;
   do {
     lVar10 = lVar2;
@@ -409,7 +414,7 @@ void FUN_180054360(int64_t *param_1,int64_t param_2)
   if ((iVar2 < 0) ||
      (lVar6 = *(int64_t *)(*param_1 + 0x888),
      (uint64_t)(*(int64_t *)(*param_1 + 0x890) - lVar6 >> 5) <= (uint64_t)(int64_t)iVar2)) {
-    lVar6 = FUN_180628ca0();
+    lVar6 = MemoryDebugger0();
   }
   else {
     lVar6 = (int64_t)iVar2 * 0x20 + lVar6;
@@ -563,7 +568,7 @@ void FUN_1800547b0(void)
       iVar13 = 0;
       if (iStack_f8 < 0) {
 LAB_18005485e:
-        lVar10 = FUN_180628ca0();
+        lVar10 = MemoryDebugger0();
       }
       else {
         lVar10 = *(int64_t *)(*system_main_module_state + 0x888);
@@ -589,7 +594,7 @@ LAB_18005485e:
       }
       if (iVar9 < 0) {
 LAB_180054912:
-        lVar10 = FUN_180628ca0();
+        lVar10 = MemoryDebugger0();
       }
       else {
         lVar10 = *(int64_t *)(*system_main_module_state + 0x8a8);
@@ -618,7 +623,7 @@ LAB_180054912:
       *(uint64_t *)(puStack_130 + uStack_128) = 0x6a624f656e656353;
       *(int8_t *)((int64_t)(puStack_130 + uStack_128) + 8) = 0;
       uStack_128 = iVar8;
-      cVar4 = FUN_180624a00(&puStack_138);
+      cVar4 = UltraHighFreq_LogManager1(&puStack_138);
       if (cVar4 == '\0') {
         puStack_118 = &system_data_buffer_ptr;
         if (puStack_110 != (int8_t *)0x0) {
@@ -649,9 +654,9 @@ LAB_180054912:
           puVar6 = puStack_110;
         }
         System_DataHandler(&puStack_d0,&processed_var_6404_ptr,puVar6);
-        cVar4 = FUN_180624a00(&puStack_d0);
+        cVar4 = UltraHighFreq_LogManager1(&puStack_d0);
         if (cVar4 == '\0') {
-          FUN_180624910(&puStack_d0);
+          SystemManager_Processor(&puStack_d0);
         }
         plVar2 = plStack_a8;
         iVar8 = (int)(lVar10 >> 5);
@@ -715,7 +720,7 @@ LAB_180054912:
               }
               lVar14 = strstr(puVar6,&processed_var_6536_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
-              cVar4 = FUN_180624af0(&puStack_158);
+              cVar4 = RenderingSystem_RenderQueue(&puStack_158);
               if (cVar4 == '\0') {
                 uStack_148 = 0;
                 if (puStack_150 != (int8_t *)0x0) {
@@ -744,7 +749,7 @@ LAB_180054912:
                 *(int16_t *)(puVar7 + 4) = 0x656e;
                 *(int8_t *)((int64_t)puVar7 + 0x12) = 0;
                 uStack_148 = 0x12;
-                cVar4 = FUN_180624af0(&puStack_158);
+                cVar4 = RenderingSystem_RenderQueue(&puStack_158);
                 if (cVar4 != '\0') goto LAB_180054d28;
                 puStack_158 = &system_data_buffer_ptr;
                 if (puStack_150 != (int8_t *)0x0) {
@@ -766,7 +771,7 @@ LAB_180054d28:
                 }
                 iVar9 = -1;
 LAB_180054d57:
-                FUN_180629a40(puVar3 + (int64_t)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
+                NetworkSystem_ProtocolParser(puVar3 + (int64_t)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
                 uVar17 = FUN_180054360(plVar2,&puStack_98);
                 if (core_system_data_memory != 0) {
                   FUN_18005c1c0(uVar17,&puStack_78);

@@ -149,7 +149,7 @@ LAB_1803bb784:
                 if (*plVar6 == lVar11) {
                   uVar7 = CoreEngineDataTransformer(auStack_80,&puStack_108);
                   uVar7 = FUN_180354db0(&puStack_e8,uVar7);
-                  FUN_18005d190(&puStack_108,uVar7);
+                  SystemScheduler(&puStack_108,uVar7);
                   puStack_e8 = &system_data_buffer_ptr;
                   if (lStack_e0 != 0) {
                     // WARNING: Subroutine does not return

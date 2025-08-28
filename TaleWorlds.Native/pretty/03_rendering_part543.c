@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part543.c - 12 个函数
 
 // 函数: void FUN_1805655d2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -87,7 +91,7 @@ void FUN_1805655d2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         if (((((*(uint *)(lVar9 + 0x134) & uVar2 & 0xfffffffe) == (uVar2 & 0xfffffffe)) ||
              ((*(uint *)(lVar9 + 0x134) & 1) != 0)) && ((*(byte *)(lVar9 + 0x139) & 1) != 0)) &&
            (((*(byte *)(lVar9 + 0x139) & 2) == 0 &&
-            (cVar5 = FUN_18038d0a0(lVar9,&stack0x00000020), cVar5 != '\0')))) {
+            (cVar5 = SystemCore_PerformanceMonitor(lVar9,&stack0x00000020), cVar5 != '\0')))) {
           if (cVar1 != '\0') break;
           fVar12 = (float)func_0x00018038d2f0(lVar9,&stack0x00000020);
           fVar12 = ABS(fVar12);
@@ -187,7 +191,7 @@ void FUN_1805657d0(uint64_t *param_1,int param_2,int param_3)
           lVar9 = *plVar10;
           if ((((*(uint *)(lVar9 + 0x134) & uVar2 & 0xfffffffe) == (uVar2 & 0xfffffffe)) ||
               ((*(uint *)(lVar9 + 0x134) & 1) != 0)) &&
-             (cVar5 = FUN_18038d0a0(lVar9,&uStack_78), cVar5 != '\0')) {
+             (cVar5 = SystemCore_PerformanceMonitor(lVar9,&uStack_78), cVar5 != '\0')) {
             if (cVar1 != '\0') break;
             fVar13 = (float)func_0x00018038d2f0(lVar9,&uStack_78);
             fVar13 = ABS(fVar13);
@@ -313,7 +317,7 @@ void FUN_1805657f2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         lVar9 = *plVar10;
         if ((((*(uint *)(lVar9 + 0x134) & uVar2 & 0xfffffffe) == (uVar2 & 0xfffffffe)) ||
             ((*(uint *)(lVar9 + 0x134) & 1) != 0)) &&
-           (cVar5 = FUN_18038d0a0(lVar9,&stack0x00000020), cVar5 != '\0')) {
+           (cVar5 = SystemCore_PerformanceMonitor(lVar9,&stack0x00000020), cVar5 != '\0')) {
           if (cVar1 != '\0') break;
           fVar12 = (float)func_0x00018038d2f0(lVar9,&stack0x00000020);
           fVar12 = ABS(fVar12);
@@ -649,7 +653,7 @@ void FUN_180565d50(int64_t param_1,int64_t *param_2,int64_t param_3)
     uStack_58 = (int32_t)lVar2;
     strcpy_s(auStack_50,0x20);
   }
-  plVar3 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_120,&puStack_68,1);
+  plVar3 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_120,&puStack_68,1);
   plVar3 = (int64_t *)*plVar3;
   if (plVar3 != (int64_t *)0x0) {
     plStack_110 = plVar3;
@@ -786,7 +790,7 @@ void FUN_180566010(int64_t param_1,uint *param_2,uint *param_3)
   auStack_68[0] = 0;
   uStack_70 = 0x1a;
   strcpy_s(auStack_68,0x20,&processed_var_8592_ptr);
-  plVar1 = (int64_t *)FUN_1800b08e0(system_resource_state,aplStack_108,&puStack_80,1);
+  plVar1 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,aplStack_108,&puStack_80,1);
   plVar1 = (int64_t *)*plVar1;
   if (plVar1 != (int64_t *)0x0) {
     plStack_118 = plVar1;
@@ -884,7 +888,7 @@ void FUN_1805661a0(int64_t param_1,int64_t *param_2)
   auStack_50[0] = 0;
   uStack_58 = 0x1a;
   strcpy_s(auStack_50,0x20,&processed_var_8592_ptr);
-  plVar2 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_e8,&puStack_68,1);
+  plVar2 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_e8,&puStack_68,1);
   plVar2 = (int64_t *)*plVar2;
   if (plVar2 != (int64_t *)0x0) {
     plStack_f8 = plVar2;

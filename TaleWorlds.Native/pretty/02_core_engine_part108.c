@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part108.c - 6 个函数
 
 // 函数: void FUN_180123f30(int param_1,int64_t param_2)
@@ -51,7 +59,7 @@ void FUN_180123f30(int param_1,int64_t param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180124190(float *param_1,int param_2,float *param_3)
+uint64_t Memory_GarbageCollector(float *param_1,int param_2,float *param_3)
 
 {
   int64_t lVar1;
@@ -91,7 +99,7 @@ uint64_t FUN_180124190(float *param_1,int param_2,float *param_3)
      || (((param_2 != 0 && (param_2 == *(int *)(lVar5 + 0x1b2c))) ||
          (*(char *)(lVar5 + 0x2e38) != '\0')))) {
     uVar8 = 1;
-    cVar6 = FUN_180128040(param_1,param_1 + 2,1);
+    cVar6 = SystemCore_HashCalculator(param_1,param_1 + 2,1);
     if (cVar6 != '\0') {
       *(uint *)(lVar1 + 0x148) = *(uint *)(lVar1 + 0x148) | 1;
     }
@@ -175,7 +183,7 @@ uint64_t FUN_1801243a0(int64_t param_1,int param_2)
     if (((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == 0) || (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == param_2))
        || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) != '\0')) {
       lVar3 = SYSTEM_DATA_MANAGER_A;
-      cVar2 = FUN_180128040(param_1,param_1 + 8,1);
+      cVar2 = SystemCore_HashCalculator(param_1,param_1 + 8,1);
       if ((cVar2 != '\0') && (*(char *)(lVar3 + 0x1d07) == '\0')) {
         cVar2 = func_0x000180124000(lVar1,0);
         if ((cVar2 != '\0') && ((*(byte *)(lVar1 + 0x1a8) & 4) == 0)) {
@@ -371,7 +379,7 @@ uint64_t FUN_1801247c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   }
   if (*(int *)(param_1 + 0x58) != *(int *)(lVar1 + 0x1a90)) {
     FUN_180291500(*(uint64_t *)(param_1 + 0x80));
-    FUN_180291c70(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(*(int64_t *)(lVar1 + 0xa0) + 8));
+    RenderingSystem_TextureLoader(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(*(int64_t *)(lVar1 + 0xa0) + 8));
     FUN_180291b40(*(uint64_t *)(param_1 + 0x80),*(uint64_t *)(param_1 + 8),
                   CONCAT44(*(float *)(param_1 + 0xc) + *(float *)(param_1 + 0x14),
                            *(float *)(param_1 + 8) + *(float *)(param_1 + 0x10)),0);
@@ -396,7 +404,7 @@ void FUN_1801248f0(int64_t param_1)
   int64_t lVar2;
   
   lVar2 = SYSTEM_DATA_MANAGER_A;
-  FUN_18012d2e0();
+  SystemCore_DataCompressor();
   func_0x000180123e90(*(int32_t *)(param_1 + 0x84),param_1);
   *(int8_t *)(lVar2 + 0x1d06) = 1;
   fVar1 = *(float *)(*(int64_t *)(param_1 + 0x3a0) + 0x44);
@@ -686,7 +694,7 @@ LAB_18012edb4:
             if (iVar7 < iVar4) {
               iVar2 = iVar4;
             }
-            FUN_18013e760(SYSTEM_DATA_MANAGER_A + 0x1bb0,iVar2);
+            RenderingEngine_Renderer(SYSTEM_DATA_MANAGER_A + 0x1bb0,iVar2);
           }
           *(int *)(lVar3 + 0x1bb0) = iVar7;
         }

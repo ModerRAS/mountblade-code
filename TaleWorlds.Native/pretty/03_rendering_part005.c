@@ -97,10 +97,10 @@ typedef struct {
 // 作用：将字符串转换为数值或其他格式
 #define string_converter AdvancedSystemOptimizer
 
-// 原始函数：FUN_180631850
+// 原始函数：SystemManager_Controller
 // 功能：数据提取器
 // 作用：从数据结构中提取特定信息
-#define data_extractor FUN_180631850
+#define data_extractor SystemManager_Controller
 
 // 原始函数：FUN_1802b6e50
 // 功能：关键帧处理器

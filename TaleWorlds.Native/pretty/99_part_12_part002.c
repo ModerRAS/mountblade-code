@@ -936,7 +936,7 @@ void FUN_1807c62aa(void)
 // 返回值：
 //   uint64_t - 操作结果状态
 //------------------------------------------------------------------------------
-uint64_t FUN_1807c62b0(int64_t param_1, int *param_2)
+uint64_t UIComponent_AdvancedManager(int64_t param_1, int *param_2)
 {
     uint64_t result;                              // 操作结果
     int charCount;                                  // 字符计数器

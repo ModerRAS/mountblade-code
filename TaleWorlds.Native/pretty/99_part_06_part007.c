@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 //==============================================================================
 // 文件名称：99_part_06_part007.c
@@ -313,7 +323,7 @@ void SystemInitialize(SystemHandle param_1, SystemHandle param_2)
                 
                 // 如果引用计数为零，执行清理
                 if (*ref_count_ptr == 0) {
-                    FUN_18064d630();
+                    SystemCore_DebugHandler();
                     return;
                 }
             }
@@ -439,7 +449,7 @@ ObjectPointer* HashTableInsert(SystemHandle param_1, ObjectPointer* param_2,
     }
     
     // 键不存在，执行插入操作
-    FUN_18066c220(param_1 + 0x20, &param_5, 
+    RenderingShaderProcessor0(param_1 + 0x20, &param_5, 
                   (HashKey)*(uint*)(param_1 + 0x10),
                   *(ObjectPointer*)(param_1 + 0x18), 1);
     
@@ -650,7 +660,7 @@ BUILD_STRING:
     string_length = 0x13;
     
     // 格式化字符串参数
-    FUN_180628380(&string_allocator, param_3);
+    RenderingSystem_CameraController(&string_allocator, param_3);
     temp_key = hash_key;
     
     // 处理字符串中的特殊字符
@@ -665,7 +675,7 @@ BUILD_STRING:
     }
     
     // 执行查找操作
-    result_ptr = (ObjectPointer*)FUN_1800b08e0(system_resource_state, &context_ptr, &string_allocator, 0);
+    result_ptr = (ObjectPointer*)SystemCore_GarbageCollector(system_resource_state, &context_ptr, &string_allocator, 0);
     result_value = *result_ptr;
     
     // 清理上下文
@@ -803,7 +813,7 @@ BUILD_STRING:
     string_length = 0x16;
     
     // 格式化字符串参数
-    FUN_180628380(&string_allocator, param_3);
+    RenderingSystem_CameraController(&string_allocator, param_3);
     temp_key = hash_key;
     
     // 处理字符串中的特殊字符
@@ -818,7 +828,7 @@ BUILD_STRING:
     }
     
     // 执行清理操作
-    target_node = (ObjectPointer*)FUN_1800b08e0(system_resource_state, &context_ptr, &string_allocator, 0);
+    target_node = (ObjectPointer*)SystemCore_GarbageCollector(system_resource_state, &context_ptr, &string_allocator, 0);
     result_value = *target_node;
     
     // 清理上下文
@@ -1035,7 +1045,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     operation_stack[0][7] = resource_buffer_5._4_4_;
     
     // 执行批量操作
-    FUN_18015b810((int32_t)resource_buffer_2, 0, 3, 1, 0xffffffffffffffff, operation_stack);
+    SystemCore_DataTransformer((int32_t)resource_buffer_2, 0, 3, 1, 0xffffffffffffffff, operation_stack);
     
     return;
 }
@@ -1071,7 +1081,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
  * 
  * 依赖项:
  * - FUN_1802705c0: 组件初始化函数
- * - FUN_1800b8300: 事件处理函数
+ * - DataDeserializer0: 事件处理函数
  * - CoreEngine_MemoryAllocator: 内存分配函数
  * - CoreEngine_MemoryPoolManager: 异常处理函数
  * - SystemSecurityChecker: 系统完整性检查函数
@@ -1251,7 +1261,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
                 
                 if (EVENT_REGISTRY_CURRENT < EVENT_REGISTRY_LIMIT) {
                     EVENT_REGISTRY_CURRENT = EVENT_REGISTRY_CURRENT + EVENT_ENTRY_SIZE;
-                    FUN_1800b8300(component_ptr_3, &callback_data);
+                    DataDeserializer0(component_ptr_3, &callback_data);
                 }
                 else {
                     // 处理事件注册表扩展
@@ -1291,7 +1301,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
                     }
                     
                     EVENT_REGISTRY_CURRENT = event_handler;
-                    FUN_1800b8300(memory_block, &callback_data);
+                    DataDeserializer0(memory_block, &callback_data);
                     event_handler = EVENT_REGISTRY_CURRENT;
                     
                     // 执行事件处理器

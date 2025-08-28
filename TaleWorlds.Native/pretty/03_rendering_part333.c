@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part333.c - 17 个函数
 
 // 函数: void FUN_1804429f0(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4)
@@ -319,7 +323,7 @@ void FUN_180443000(int64_t param_1,int32_t param_2,int32_t param_3)
       fVar3 = *(float *)(lVar1 + 0x3c) + 1.1920929e-07;
     }
     *(float *)(lVar1 + 0x34) = fVar3;
-    FUN_1802fac00(lVar1,param_1 + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar1,param_1 + 0x70,0xbf800000);
   }
   return;
 }
@@ -343,7 +347,7 @@ void FUN_180443080(int64_t param_1,int64_t *param_2,int8_t param_3)
   if (param_2 != (int64_t *)0x0) {
     uVar1 = *(uint64_t *)(param_1 + 0x260);
     uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16,0xfffffffffffffffe);
-    plVar3 = (int64_t *)FUN_180275090(uVar2);
+    plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
     plStackX_10 = plVar3;
     if (plVar3 != (int64_t *)0x0) {
       (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -434,7 +438,7 @@ void FUN_1804431c0(int64_t param_1,char param_2,uint64_t *param_3)
     }
     else {
       if ((*(byte *)(lVar2 + 0xa8) & 1) == 0) {
-        FUN_1802fac00(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
+        SystemCore_FileSystem(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
       }
       puVar5 = (uint *)((int64_t)param_2 * 0x100 + *(int64_t *)(lVar2 + 0x18));
       do {
@@ -458,7 +462,7 @@ void FUN_1804431c0(int64_t param_1,char param_2,uint64_t *param_3)
       uStack_4c = uStack_9c;
       uStack_48 = uVar3;
       uStack_40 = uVar4;
-      FUN_18063b5f0(&uStack_88,&uStack_a8);
+      SystemSecurityManager(&uStack_88,&uStack_a8);
       *(int32_t *)param_3 = uStack_88;
       *(int32_t *)((int64_t)param_3 + 4) = uStack_84;
       *(int32_t *)(param_3 + 1) = uStack_80;
@@ -546,7 +550,7 @@ void FUN_1804431ed(int64_t param_1,uint64_t param_2,uint64_t *param_3)
     *(int32_t *)(in_R11 + -0x20) = unaff_XMM6_Dc;
     *(int32_t *)(in_R11 + -0x1c) = unaff_XMM6_Dd;
     if ((bVar2 & 1) == 0) {
-      FUN_1802fac00(lVar3,*(int64_t *)(lVar3 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar3,*(int64_t *)(lVar3 + 0x10) + 0x70,0xbf800000);
     }
     puVar6 = (uint *)((int64_t)unaff_SIL * 0x100 + *(int64_t *)(lVar3 + 0x18));
     do {
@@ -566,7 +570,7 @@ void FUN_1804431ed(int64_t param_1,uint64_t param_2,uint64_t *param_3)
     uStack0000000000000074 = uStackX_24;
     in_stack_00000080 = uVar4;
     in_stack_00000088 = uVar5;
-    FUN_18063b5f0(&stack0x00000040,&uStackX_20);
+    SystemSecurityManager(&stack0x00000040,&uStackX_20);
     *unaff_RBX = uStack0000000000000040;
     unaff_RBX[1] = uStack0000000000000044;
     unaff_RBX[2] = uStack0000000000000048;
@@ -635,7 +639,7 @@ void FUN_180443208(int32_t param_1)
   *(int32_t *)(in_R11 + -0x20) = unaff_XMM6_Dc;
   *(int32_t *)(in_R11 + -0x1c) = unaff_XMM6_Dd;
   if (in_ZF) {
-    FUN_1802fac00(param_1,*(int64_t *)(unaff_RDI + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(param_1,*(int64_t *)(unaff_RDI + 0x10) + 0x70,0xbf800000);
   }
   puVar4 = (uint *)((int64_t)unaff_SIL * 0x100 + *(int64_t *)(unaff_RDI + 0x18));
   do {
@@ -656,7 +660,7 @@ void FUN_180443208(int32_t param_1)
   uStack000000000000007c = uStack000000000000002c;
   in_stack_00000080 = uVar2;
   in_stack_00000088 = uVar3;
-  FUN_18063b5f0(&stack0x00000040,&uStackX_20);
+  SystemSecurityManager(&stack0x00000040,&uStackX_20);
   *unaff_RBX = uStack0000000000000040;
   unaff_RBX[1] = uStack0000000000000044;
   unaff_RBX[2] = uStack0000000000000048;
@@ -845,7 +849,7 @@ void FUN_180443320(int64_t param_1,uint64_t param_2,uint64_t *param_3)
       param_3[7] = 0x3f80000000000000;
     }
     if ((*(byte *)(lVar2 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar2,*(int64_t *)(lVar2 + 0x10) + 0x70,0xbf800000);
     }
     puVar8 = (uint *)((int64_t)cVar6 * 0x100 + *(int64_t *)(lVar2 + 0x18));
     do {
@@ -869,7 +873,7 @@ void FUN_180443320(int64_t param_1,uint64_t param_2,uint64_t *param_3)
     uStack_4c = uStack_9c;
     uStack_48 = uVar4;
     uStack_40 = uVar5;
-    FUN_18063b5f0(&uStack_88,&uStack_a8);
+    SystemSecurityManager(&uStack_88,&uStack_a8);
     *(int32_t *)param_3 = uStack_88;
     *(int32_t *)((int64_t)param_3 + 4) = uStack_84;
     *(int32_t *)(param_3 + 1) = uStack_80;

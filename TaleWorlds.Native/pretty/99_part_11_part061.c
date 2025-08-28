@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "SystemCore_ConfigManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -26,9 +32,9 @@ void FUN_1807bf5f8(void)
          *(uint *)(*(int64_t *)(unaff_RDI + 0x170) + 0x194) & 0xfffffffb;
   }
   else {
-    iVar3 = FUN_180772fe0();
+    iVar3 = SystemMemory_Controller();
     if (iVar3 == 0) {
-      iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0);
+      iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),0,0);
       if (iVar3 == 0) {
         *(uint64_t *)(unaff_RDI + 0x3d0) = unaff_R14;
         *(uint64_t *)(unaff_RDI + 0x3d8) = unaff_R14;
@@ -129,7 +135,7 @@ void FUN_1807bf5f8(void)
                 do {
                   if (*(char *)(unaff_RBP + 0xb0 + uVar5) < ' ') {
                     if (0x15 < uVar5) {
-                      FUN_1808fcdc8(uVar7,0);
+                      UltraHighFreq_ThreadManager1(uVar7,0);
                       pcVar2 = (code *)swi(3);
                       (*pcVar2)();
                       return;
@@ -150,7 +156,7 @@ void FUN_1807bf5f8(void)
               iVar3 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x8ec);
               lVar4 = *(int64_t *)(unaff_RDI + 0x170);
               if (iVar3 == 0) {
-                iVar3 = FUN_180769720(lVar4,0);
+                iVar3 = SystemMonitor(lVar4,0);
                 if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
                   memset(unaff_RDI + 0x290,0,0x100);
@@ -300,7 +306,7 @@ void FUN_1807bf683(void)
           do {
             if (*(char *)(unaff_RBP + 0xb0 + uVar5) < ' ') {
               if (0x15 < uVar5) {
-                FUN_1808fcdc8(uVar7,0);
+                UltraHighFreq_ThreadManager1(uVar7,0);
                 pcVar2 = (code *)swi(3);
                 (*pcVar2)();
                 return;
@@ -321,7 +327,7 @@ void FUN_1807bf683(void)
         iVar3 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x8ec);
         lVar4 = *(int64_t *)(unaff_RDI + 0x170);
         if (iVar3 == 0) {
-          iVar3 = FUN_180769720(lVar4,0);
+          iVar3 = SystemMonitor(lVar4,0);
           if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
             memset(unaff_RDI + 0x290,0,0x100);
@@ -385,7 +391,7 @@ void FUN_1807bf8f8(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
         do {
           if (*(char *)(unaff_RBP + 0xb0 + uVar5) < ' ') {
             if (0x15 < uVar5) {
-              FUN_1808fcdc8(uVar7,0);
+              UltraHighFreq_ThreadManager1(uVar7,0);
               pcVar2 = (code *)swi(3);
               (*pcVar2)();
               return;
@@ -406,7 +412,7 @@ void FUN_1807bf8f8(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
       iVar3 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x8ec);
       lVar4 = *(int64_t *)(unaff_RDI + 0x170);
       if (iVar3 == 0) {
-        iVar3 = FUN_180769720(lVar4,0);
+        iVar3 = SystemMonitor(lVar4,0);
         if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
           memset(unaff_RDI + 0x290,0,0x100);
@@ -530,7 +536,7 @@ void FUN_1807c0619(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;

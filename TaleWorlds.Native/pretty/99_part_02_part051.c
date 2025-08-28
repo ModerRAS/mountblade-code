@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemScheduler - RenderingSystem_ResourceBinder */
+#define RenderingSystem_ResourceBinder SystemScheduler
+
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 99_part_02_part051.c - 18 个函数
 
@@ -60,7 +70,7 @@ void FUN_1801bbfb0(int param_1,int param_2,int64_t *param_3)
       *(int32_t *)((int64_t)aplStack_90[0] + 0x24) = uStack_50._4_4_;
       *(int32_t *)(aplStack_90[0] + 5) = (int32_t)uStack_48;
       *(int32_t *)((int64_t)aplStack_90[0] + 0x2c) = uStack_48._4_4_;
-      FUN_18015b810((int32_t)uStack_50,0,(int)((lVar1 - lVar2) / 0xbc),0x80,0xffffffffffffffff,
+      SystemCore_DataTransformer((int32_t)uStack_50,0,(int)((lVar1 - lVar2) / 0xbc),0x80,0xffffffffffffffff,
                     aplStack_90);
       lVar4 = lVar4 + 8;
       lVar3 = lVar3 + -1;
@@ -183,7 +193,7 @@ void FUN_1801bc3a0(int64_t *param_1)
     uVar2 = FUN_1802ca920(uVar2);
     *(uint64_t *)(*param_1 + 0x358) = uVar2;
   }
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   if ((*(char *)(param_1[1] + 0x46) == '\0') &&
      (plVar1 = *(int64_t **)(system_operation_state + 0x1860), plVar1 != (int64_t *)0x0)) {
                     // WARNING: Could not recover jumptable at 0x0001801bc445. Too many branches
@@ -484,9 +494,9 @@ LAB_1801bcb44:
       *(uint64_t *)(uVar6 + 8) = 0;
       *(uint64_t *)(uVar6 + 0x18) = 0;
       uStack_70 = *(int32_t *)(uVar6 + 0x20);
-      FUN_18005d190(uVar6,uVar7);
+      RenderingSystem_ResourceBinder(uVar6,uVar7);
       *(int32_t *)(uVar6 + 0x20) = *(int32_t *)(uVar8 - 8);
-      FUN_18005d190(uVar7,&puStack_90);
+      RenderingSystem_ResourceBinder(uVar7,&puStack_90);
       *(int32_t *)(uVar8 - 8) = uStack_70;
       puStack_90 = &system_data_buffer_ptr;
       if (lStack_88 != 0) {
@@ -540,7 +550,7 @@ bool FUN_1801bcce0(float param_1,int64_t param_2,int64_t param_3,float param_4)
     else {
       param_4 = -1.0;
     }
-    FUN_1802fac00(param_1,in_XMM1_Da,param_4);
+    SystemCore_FileSystem(param_1,in_XMM1_Da,param_4);
   }
 LAB_1801bcd78:
   if ((*(byte *)(in_RCX + 0xa8) >> 3 & 1) != 0) {
@@ -580,7 +590,7 @@ bool FUN_1801bcdd0(int64_t param_1,float param_2,int64_t param_3,float param_4)
     else {
       param_4 = -1.0;
     }
-    FUN_1802fac00(in_XMM0_Da,param_2,param_4);
+    SystemCore_FileSystem(in_XMM0_Da,param_2,param_4);
   }
 LAB_1801bce68:
   if ((*(byte *)(param_1 + 0xa8) >> 3 & 1) != 0) {
@@ -607,7 +617,7 @@ FUN_1801bcec0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   uint64_t auStackX_18 [2];
   
   auStackX_18[0] = param_3;
-  FUN_18066c220(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
+  RenderingShaderProcessor0(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)auStackX_18[0] != '\0') {
     lVar1 = (auStackX_18[0] >> 0x20) * 8;
@@ -1054,7 +1064,7 @@ void FUN_1801bd4e0(int64_t param_1,int64_t *param_2,int64_t *param_3,int8_t para
         *plVar4 = 0;
         plVar4[2] = 0;
         uStack_48 = (int32_t)plVar4[3];
-        FUN_18005d190(plVar4 + -1,param_1);
+        RenderingSystem_ResourceBinder(plVar4 + -1,param_1);
         *(int32_t *)(plVar4 + 3) = *(int32_t *)(param_1 + 0x20);
         FUN_1801bd850(param_1,0,lVar2,0,&puStack_68,param_4);
         puStack_68 = &system_data_buffer_ptr;
@@ -1078,7 +1088,7 @@ void FUN_1801bd4e0(int64_t param_1,int64_t *param_2,int64_t *param_3,int8_t para
       param_2[-1] = 0;
       param_2[1] = 0;
       uStack_48 = (int32_t)param_2[2];
-      FUN_18005d190(param_2 + -2,param_1);
+      RenderingSystem_ResourceBinder(param_2 + -2,param_1);
       *(int32_t *)(param_2 + 2) = *(int32_t *)(param_1 + 0x20);
       FUN_1801bd850(param_1,0,((0x18 - param_1) + (int64_t)param_2) / 0x28 + -1,0,&puStack_68,
                     param_4,uVar5);
@@ -1115,7 +1125,7 @@ void FUN_1801bd850(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     }
     lVar1 = param_1 + lVar3 * 0x28;
     lVar2 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar2,lVar1);
+    RenderingSystem_ResourceBinder(lVar2,lVar1);
     *(int32_t *)(lVar2 + 0x20) = *(int32_t *)(lVar1 + 0x20);
     param_4 = lVar3;
     lVar1 = lVar3 * 2;
@@ -1123,7 +1133,7 @@ void FUN_1801bd850(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   if (lVar2 == param_3) {
     lVar2 = param_1 + lVar2 * 0x28;
     lVar3 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar3,lVar2 + -0x28);
+    RenderingSystem_ResourceBinder(lVar3,lVar2 + -0x28);
     param_4 = lVar1 + 1;
     *(int32_t *)(lVar3 + 0x20) = *(int32_t *)(lVar2 + -8);
   }
@@ -1132,12 +1142,12 @@ void FUN_1801bd850(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     lVar1 = param_1 + lVar2 * 0x28;
     if (*(int *)(lVar1 + 0x20) <= *(int *)(param_5 + 0x20)) break;
     lVar3 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar3,lVar1);
+    RenderingSystem_ResourceBinder(lVar3,lVar1);
     *(int32_t *)(lVar3 + 0x20) = *(int32_t *)(lVar1 + 0x20);
     param_4 = lVar2;
   }
   param_1 = param_1 + param_4 * 0x28;
-  FUN_18005d190(param_1,param_5);
+  RenderingSystem_ResourceBinder(param_1,param_5);
   *(int32_t *)(param_1 + 0x20) = *(int32_t *)(param_5 + 0x20);
   return;
 }

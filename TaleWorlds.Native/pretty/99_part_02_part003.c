@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -108,8 +109,8 @@ void FUN_1800ea6d8(void)
 
 
 
-// 函数: void FUN_1800ea6f0(int param_1,int param_2,uint64_t *param_3)
-void FUN_1800ea6f0(int param_1,int param_2,uint64_t *param_3)
+// 函数: void CoreEngine_MemoryHandler(int param_1,int param_2,uint64_t *param_3)
+void CoreEngine_MemoryHandler(int param_1,int param_2,uint64_t *param_3)
 
 {
   int64_t lVar1;
@@ -141,7 +142,7 @@ void FUN_1800ea780(int64_t *param_1)
   
   plVar4 = (int64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_18 = plVar4;
-  FUN_180049830(plVar4);
+  UltraHighFreq_PerformanceMonitor1(plVar4);
   *plVar4 = (int64_t)&processed_var_5408_ptr;
   *(int8_t *)(plVar4 + 0x18) = 1;
   lVar1 = *param_1;

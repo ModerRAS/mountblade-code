@@ -1,3 +1,8 @@
+#include "high_freq_fun_definitions.h"
+/*
+ * 高频FUN_函数语义化定义
+ * 本文件中的FUN_函数已替换为语义化别名，提升代码可读性
+ */
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 

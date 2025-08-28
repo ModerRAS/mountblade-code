@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part044.c - 渲染系统管线处理与边界计算模块
@@ -274,7 +278,7 @@ void render_data_processor(void *render_context, int64_t data_ptr, int *vertex_d
     }
     
     // 释放资源
-    FUN_180059ba0(output_buffer, *(void **)0x180c8a9a8);
+    DataValidator0(output_buffer, *(void **)0x180c8a9a8);
 }
 
 /**
@@ -411,7 +415,7 @@ void render_pipeline_optimizer(float tolerance)
     }
     
     // 释放资源
-    FUN_180059ba0(vertex_flags, *(void **)0x180c8a9a8);
+    DataValidator0(vertex_flags, *(void **)0x180c8a9a8);
 }
 
 /**
@@ -548,7 +552,7 @@ void render_adaptive_processor(float threshold)
     }
     
     // 释放资源
-    FUN_180059ba0(vertex_flags, *(void **)0x180c8a9a8);
+    DataValidator0(vertex_flags, *(void **)0x180c8a9a8);
 }
 
 /**
@@ -680,7 +684,7 @@ void render_advanced_bounds_processor(float param_1, void *param_2, float param_
     }
     
     // 释放资源
-    FUN_180059ba0(vertex_flags, *(void **)0x180c8a9a8);
+    DataValidator0(vertex_flags, *(void **)0x180c8a9a8);
 }
 
 /**
@@ -749,7 +753,7 @@ void render_quick_sorter(uint flags)
     }
     
     // 释放资源
-    FUN_180059ba0(temp_vertex, *(void **)0x180c8a9a8);
+    DataValidator0(temp_vertex, *(void **)0x180c8a9a8);
 }
 
 /**
@@ -825,7 +829,7 @@ void render_optimized_sorter(uint flags, float param_2)
             }
             
             // 释放资源
-            FUN_180059ba0(temp_flags, *(void **)0x180c8a9a8);
+            DataValidator0(temp_flags, *(void **)0x180c8a9a8);
         }
     } while( true );
 }
@@ -844,7 +848,7 @@ void render_statistics_updater(void)
     *(int *)(context_ptr + 0x3a8) -= 1;
     
     // 释放资源
-    FUN_180059ba0();
+    DataValidator0();
 }
 
 /**

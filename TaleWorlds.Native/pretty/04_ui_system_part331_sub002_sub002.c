@@ -35,7 +35,7 @@ void FUN_18084d068(void)
     SystemInitializer(&system_ptr_ea98);
     if (ui_system_ui == -1) {
       ui_system_ui = unaff_R12D;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
     do {
       uVar3 = (uint)unaff_RBP;
@@ -413,7 +413,7 @@ LAB_18084d22e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18084d3f0(int64_t *param_1,int param_2)
+uint64_t RenderingSystem_TextureManager(int64_t *param_1,int param_2)
 
 {
   int32_t *puVar1;
@@ -1103,7 +1103,7 @@ void * MemoryCacheController0(void)
     SystemInitializer(&system_ptr_ea98);
     if (ui_system_ui == -1) {
       ui_system_ui = 0;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
   }
   return &system_ptr_ea94;

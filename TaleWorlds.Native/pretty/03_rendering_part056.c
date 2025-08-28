@@ -1,3 +1,7 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
@@ -129,10 +133,10 @@ void FUN_18029833b(uint64_t param_1,float param_2,float param_3,float param_4)
   else if ((fVar9 == unaff_XMM8_Da) && (fVar11 == 1.5707964)) {
     *(float *)(unaff_RBP + -0x79) = fVar13;
     *(float *)(unaff_RBP + -0x75) = unaff_XMM14_Da - unaff_XMM7_Da;
-    FUN_180293730(unaff_XMM14_Da - unaff_XMM7_Da,unaff_RBP + -0x79,unaff_XMM7_Da,3,6);
+    UtilitiesSystem_FileHandler(unaff_XMM14_Da - unaff_XMM7_Da,unaff_RBP + -0x79,unaff_XMM7_Da,3,6);
     *(float *)(unaff_RBP + -0x79) = fVar13;
     *(float *)(unaff_RBP + -0x75) = unaff_XMM13_Da + unaff_XMM7_Da;
-    FUN_180293730(unaff_XMM13_Da + unaff_XMM7_Da,unaff_RBP + -0x79,unaff_XMM7_Da,6,9);
+    UtilitiesSystem_FileHandler(unaff_XMM13_Da + unaff_XMM7_Da,unaff_RBP + -0x79,unaff_XMM7_Da,6,9);
   }
   else {
     *(float *)(unaff_RBP + -0x79) = fVar13;
@@ -224,10 +228,10 @@ void FUN_18029833b(uint64_t param_1,float param_2,float param_3,float param_4)
     else if ((fVar10 == unaff_XMM8_Da) && (fVar14 == 1.5707964)) {
       *(float *)(unaff_RBP + 0x67) = fVar12;
       *(float *)(unaff_RBP + 0x6b) = unaff_XMM13_Da + unaff_XMM7_Da;
-      uVar8 = FUN_180293730(fVar11,unaff_RBP + 0x67,unaff_XMM7_Da,9,0xc);
+      uVar8 = UtilitiesSystem_FileHandler(fVar11,unaff_RBP + 0x67,unaff_XMM7_Da,9,0xc);
       *(float *)(unaff_RBP + 0x67) = fVar12;
       *(float *)(unaff_RBP + 0x6b) = unaff_XMM14_Da - unaff_XMM7_Da;
-      fVar11 = (float)FUN_180293730(uVar8,unaff_RBP + 0x67,unaff_XMM7_Da,0,3);
+      fVar11 = (float)UtilitiesSystem_FileHandler(uVar8,unaff_RBP + 0x67,unaff_XMM7_Da,0,3);
     }
     else {
       *(float *)(unaff_RBP + 0x67) = fVar12;
@@ -300,28 +304,28 @@ void FUN_180298890(uint64_t param_1,float *param_2,float *param_3,uint64_t param
     fStackX_14 = fVar1;
     fStackX_18 = fVar8;
     fStackX_1c = fVar3;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,param_4,param_5,!bVar11 | bVar12 << 2);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,param_4,param_5,!bVar11 | bVar12 << 2);
   }
   if (!bVar10) {
     fStackX_10 = fVar7;
     fStackX_14 = fVar1;
     fStackX_18 = fVar2;
     fStackX_1c = fVar3;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar11 * '\x02' | bVar12 << 3);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar11 * '\x02' | bVar12 << 3);
   }
   if (bVar11) {
     fStackX_10 = fVar2;
     fStackX_14 = fVar3;
     fStackX_18 = fVar4;
     fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar9 | bVar10 * '\x02');
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar9 | bVar10 * '\x02');
   }
   if (!bVar12) {
     fStackX_10 = fVar2;
     fStackX_14 = fVar5;
     fStackX_18 = fVar4;
     fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,
                   (bVar9 ^ 1) << 2 | (uint)bVar10 << 3);
   }
   if ((bVar9) && (bVar11)) {
@@ -329,28 +333,28 @@ void FUN_180298890(uint64_t param_1,float *param_2,float *param_3,uint64_t param
     fStackX_14 = fVar3;
     fStackX_18 = fVar8;
     fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,1);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,1);
   }
   if ((!bVar10) && (bVar11)) {
     fStackX_10 = fVar7;
     fStackX_14 = fVar3;
     fStackX_18 = fVar2;
     fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,2);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,2);
   }
   if ((bVar9) && (!bVar12)) {
     fStackX_10 = fVar4;
     fStackX_14 = fVar5;
     fStackX_18 = fVar8;
     fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,4);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,4);
   }
   if ((!bVar10) && (!bVar12)) {
     fStackX_10 = fVar7;
     fStackX_14 = fVar5;
     fStackX_18 = fVar2;
     fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,8);
+    MathInterpolationCalculator0(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,8);
   }
   return;
 }

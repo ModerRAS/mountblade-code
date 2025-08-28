@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_08_part021.c - 7 个函数
@@ -55,7 +59,7 @@ void FUN_1804f4a40(int64_t param_1,uint64_t param_2,uint64_t param_3)
         cVar2 = SystemSynchronizationProcessor(param_3,&uStack_64,&system_data_bc90);
         uVar5 = extraout_XMM0_Da_02;
         if (cVar2 != '\0') {
-          cVar2 = FUN_180646700(param_3,afStack_60,&memory_allocator_3232_ptr);
+          cVar2 = RenderingBufferHandler0(param_3,afStack_60,&memory_allocator_3232_ptr);
           uVar5 = extraout_XMM0_Da_03;
           if (cVar2 != '\0') {
             cVar2 = '\x01';
@@ -77,7 +81,7 @@ LAB_1804f4aed:
        (-1 < *(short *)(param_1 + 0x52dda0 + (int64_t)iStack_68 * 2))) {
       lVar3 = param_1 + 0x30a0 + (int64_t)iStack_68 * 0xa60;
       if ((char)uStackX_10 == '\0') {
-        FUN_18052e130(lVar3,aiStackX_20[0],1);
+        SystemCore_Validator0(lVar3,aiStackX_20[0],1);
       }
       else {
         iVar1 = *(int *)(lVar3 + 0x564);
@@ -106,7 +110,7 @@ LAB_1804f4aed:
               uStack_58 = 1;
               uStack_54 = 0xffffffff;
               uStack_50 = 0x21;
-              FUN_18051ec50(lVar3,&uStack_58);
+              CoreSystemThreadManager(lVar3,&uStack_58);
               uStack_54 = uStack_64;
               uStack_50 = 0x80000000;
               uStack_48 = 0;
@@ -118,7 +122,7 @@ LAB_1804f4aed:
               uStack_34 = 0x3ecccccd;
               uStack_2c = 0;
               uStack_58 = 0;
-              FUN_18051ec50(lVar3,&uStack_58);
+              CoreSystemThreadManager(lVar3,&uStack_58);
             }
           }
           fVar6 = 0.0;
@@ -176,7 +180,7 @@ void FUN_1804f4b7b(void)
       *(int32_t *)(unaff_RBP + 7) = 1;
       *(int32_t *)(unaff_RBP + 0xb) = 0xffffffff;
       *(uint64_t *)(unaff_RBP + 0xf) = 0x21;
-      FUN_18051ec50(0,unaff_RBP + 7);
+      CoreSystemThreadManager(0,unaff_RBP + 7);
       *(int32_t *)(unaff_RBP + 0xb) = *(int32_t *)(unaff_RBP + -5);
       *(uint64_t *)(unaff_RBP + 0xf) = 0x80000000;
       *(int32_t *)(unaff_RBP + 0x17) = uVar2;
@@ -188,7 +192,7 @@ void FUN_1804f4b7b(void)
       *(int32_t *)(unaff_RBP + 0x2b) = 0x3ecccccd;
       *(char *)(unaff_RBP + 0x33) = (char)unaff_RSI;
       *(int32_t *)(unaff_RBP + 7) = uVar2;
-      FUN_18051ec50(0,unaff_RBP + 7);
+      CoreSystemThreadManager(0,unaff_RBP + 7);
     }
   }
   fVar1 = *(float *)(unaff_RBP + -1);
@@ -209,7 +213,7 @@ void FUN_1804f4b7b(void)
 void FUN_1804f4cb9(void)
 
 {
-  FUN_18052e130();
+  SystemCore_Validator0();
   return;
 }
 
@@ -243,9 +247,9 @@ void FUN_1804f4ce0(int64_t param_1,uint64_t param_2,uint64_t param_3)
     aiStackX_20[0] = (int)(char)uStackX_10;
     cVar1 = SystemSynchronizationProcessor(param_3,aiStackX_20,&memory_allocator_3248_ptr);
     if (((cVar1 != '\0') &&
-        (((cVar1 = FUN_180646700(param_3,auStack_30,&memory_allocator_3360_ptr), cVar1 != '\0' &&
-          (cVar1 = FUN_180646700(param_3,auStack_2c,&memory_allocator_3360_ptr), cVar1 != '\0')) &&
-         (cVar1 = FUN_180646700(param_3,auStack_28,&memory_allocator_3376_ptr), cVar1 != '\0')))) &&
+        (((cVar1 = RenderingBufferHandler0(param_3,auStack_30,&memory_allocator_3360_ptr), cVar1 != '\0' &&
+          (cVar1 = RenderingBufferHandler0(param_3,auStack_2c,&memory_allocator_3360_ptr), cVar1 != '\0')) &&
+         (cVar1 = RenderingBufferHandler0(param_3,auStack_28,&memory_allocator_3376_ptr), cVar1 != '\0')))) &&
        (((cVar1 = SystemSynchronizationProcessor(param_3,&uStack_40,&system_data_bca0), cVar1 != '\0' &&
          (cVar1 = SystemSynchronizationProcessor(param_3,(int64_t)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
         (cVar1 = SystemSynchronizationProcessor(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {
@@ -470,8 +474,8 @@ FUN_1804f4f20(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t param
             if (((param_7 <=
                   ((float)uStack_1d0 - *pfVar5) * ((float)uStack_1d0 - *pfVar5) +
                   (uStack_1d0._4_4_ - pfVar5[1]) * (uStack_1d0._4_4_ - pfVar5[1])) &&
-                (FUN_180487c70(&uStack_1e8,2), 1 < iStack_1a8)) && (lStack_1e0 != 0)) {
-              FUN_180487c70(&uStack_1e8,3);
+                (SystemCore_Validator(&uStack_1e8,2), 1 < iStack_1a8)) && (lStack_1e0 != 0)) {
+              SystemCore_Validator(&uStack_1e8,3);
               pfVar5 = (float *)&uStack_1c0;
               fVar17 = *(float *)(param_3 + 3) - (float)uStack_1d0;
               fVar19 = *(float *)((int64_t)param_3 + 0x1c) - uStack_1d0._4_4_;
@@ -501,14 +505,14 @@ FUN_1804f4f20(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t param
                 if (fVar19 <= fVar17) {
                   fVar18 = fVar18 * param_14;
                 }
-                FUN_180487c70(&uStack_1e8,2);
+                SystemCore_Validator(&uStack_1e8,2);
                 if (iStack_1a8 < 2) {
                   fVar14 = -NAN;
                 }
                 else {
                   fVar14 = (float)uStack_1c8;
                 }
-                FUN_180487c70(param_3,2);
+                SystemCore_Validator(param_3,2);
                 if (*(int *)(param_3 + 8) < 2) {
                   fVar12 = -NAN;
                 }
@@ -660,9 +664,9 @@ void FUN_1804f511b(uint param_1,int param_2,int param_3,float param_4,float para
           if (((*(float *)(unaff_RBP + 0x2c) <=
                 (fStack0000000000000058 - *pfVar7) * (fStack0000000000000058 - *pfVar7) +
                 (fStack000000000000005c - pfVar7[1]) * (fStack000000000000005c - pfVar7[1])) &&
-              (FUN_180487c70(&stack0x00000040,2), 1 < *(int *)(unaff_RBP + -0x10))) &&
+              (SystemCore_Validator(&stack0x00000040,2), 1 < *(int *)(unaff_RBP + -0x10))) &&
              (lStack0000000000000048 != 0)) {
-            FUN_180487c70(&stack0x00000040,3);
+            SystemCore_Validator(&stack0x00000040,3);
             pfVar7 = (float *)&stack0x00000068;
             fVar14 = *(float *)(unaff_R15 + 0x18) - fStack0000000000000058;
             fVar17 = *(float *)(unaff_R15 + 0x1c) - fStack000000000000005c;
@@ -696,14 +700,14 @@ LAB_1804f5535:
               if (fVar17 <= fVar14) {
                 fVar10 = fVar10 * *(float *)(unaff_RBP + 0x33);
               }
-              uVar11 = FUN_180487c70(&stack0x00000040,2);
+              uVar11 = SystemCore_Validator(&stack0x00000040,2);
               if (*(int *)(unaff_RBP + -0x10) < 2) {
                 fVar15 = -NAN;
               }
               else {
                 fVar15 = fStack0000000000000060;
               }
-              FUN_180487c70(uVar11,2);
+              SystemCore_Validator(uVar11,2);
               if (*(int *)(unaff_R15 + 0x40) < 2) {
                 fVar12 = -NAN;
               }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part133_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_180347ca0(int64_t param_1,int64_t param_2,uint64_t *param_3,float *param_4,
@@ -768,14 +772,14 @@ LAB_18034826e:
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }
-      FUN_180627020(&processed_var_5584_ptr,puVar22);
+      SystemCore_Allocator(&processed_var_5584_ptr,puVar22);
     }
     if ((int64_t)appppplStackX_10[0][0x17][5] - (int64_t)appppplStackX_10[0][0x17][4] >> 5 != 0) {
       puVar22 = &system_buffer_ptr;
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }
-      FUN_180627020(&processed_var_5504_ptr,puVar22);
+      SystemCore_Allocator(&processed_var_5504_ptr,puVar22);
     }
     if ((int64_t ******)appppplStackX_10[0] != (int64_t ******)0x0) {
       (*(code *)(*appppplStackX_10[0])[7])();
@@ -843,7 +847,7 @@ LAB_180348b85:
     uStack_28c = uVar41;
     uStack_298._0_4_ = fVar38;
     uStack_298._4_4_ = fVar39;
-    FUN_1800b9f60(&uStack_2a8);
+    SystemCore_Parser(&uStack_2a8);
     lVar23 = *(int64_t *)(param_2 + 0x28);
     *(int64_t **)(lVar23 + 0xf8) = uStack_2a8;
     *(int64_t **)(lVar23 + 0x100) = uStack_2a0;
@@ -858,7 +862,7 @@ LAB_180348b85:
     *(int32_t *)(lVar23 + 0x128) = uStack_278;
     *(int16_t *)(param_2 + 0x2b0) = *(int16_t *)(param_2 + 0x2b4);
     *(short *)(param_2 + 0x2b2) = *(short *)(param_2 + 0x2b2) + 1;
-    FUN_1801c0d90(param_2);
+    UtilitiesSystem_CacheManager(param_2);
     fVar35 = *param_4;
     if (fStack_378 <= *param_4) {
       fVar35 = fStack_378;

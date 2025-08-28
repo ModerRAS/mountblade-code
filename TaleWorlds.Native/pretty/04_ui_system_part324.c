@@ -25,7 +25,7 @@ void FUN_180845ef0(uint64_t param_1,uint *param_2)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
-    FUN_18074b930(auStack_118,0x100,0);
+    UIAnimationController(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_736_ptr);
@@ -263,7 +263,7 @@ void FUN_1808464f0(uint64_t param_1,int32_t *param_2)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
-    FUN_18074b930(auStack_118,0x100,0);
+    UIAnimationController(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_592_ptr);
@@ -350,7 +350,7 @@ void FUN_180846610(uint64_t param_1,int8_t *param_2,int param_3,int32_t *param_4
   iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
+  UIAnimationController(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
   DataTransformer(0x1f,0xc,param_1,&processed_var_560_ptr);
@@ -375,7 +375,7 @@ void FUN_180846730(void)
   iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  UIAnimationController(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,0xc);
 }
@@ -644,7 +644,7 @@ LAB_180846df9:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_6264_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -688,7 +688,7 @@ void FUN_180846e90(uint64_t param_1,uint *param_2)
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
-    FUN_18074b930(auStack_128,0x100,0);
+    UIAnimationController(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xd,param_1,&ui_system_data_1208_ptr);

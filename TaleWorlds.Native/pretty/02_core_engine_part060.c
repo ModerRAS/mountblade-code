@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -96,7 +101,7 @@ typedef struct {
 #define SystemInitializerEx FUN_180099100
 
 // 语义别名定义 - 数据结构和队列管理
-#define DataStructureComparator FUN_1800988e0
+#define DataStructureComparator CoreEngine_StateProcessor
 #define DataStructureCopier FUN_180098980
 #define DataArrayProcessor FUN_180098a22
 #define DataArrayCleaner FUN_180098abe
@@ -302,7 +307,7 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
         system_buffer = *(void **)(param_2 + 8);
     }
     
-    FUN_1801299b0(system_buffer, 0, 0);
+    CoreSystem_Validator(system_buffer, 0, 0);
     
     // 数据数组初始化
     data_array[0] = 0;
@@ -357,7 +362,7 @@ LAB_180096e94:
     
     // 核心处理调用
     FUN_180095da0(core_data_ptr, param_3, processing_context);
-    FUN_18012cfe0();
+    > HighFreq_CacheSystem1();
     
     // 数据处理扩展
     if (*(char *)(processing_context + 0x126) != '\0') {
@@ -375,7 +380,7 @@ LAB_180096e94:
             system_buffer = data_ptr;
         }
         data_index = lock_result;
-        FUN_1801299b0(system_buffer, 0, 0);
+        CoreSystem_Validator(system_buffer, 0, 0);
         
         // 数据迭代处理
         data_iterator = &processing_data1;
@@ -406,7 +411,7 @@ LAB_180096e94:
         
         SystemDataInitializer(system_resource_data_ptr);
         processing_value = (float)core_system_memory;
-        FUN_1800571e0(core_data_ptr + 3, &processing_value);
+        SystemDatabaseProcessor(core_data_ptr + 3, &processing_value);
         system_ptr3 = system_sync_data_ptr;
         queue_data4 = 0x3f4ccccd3e4ccccd;
         queue_data5 = 0x3f8000003f000000;
@@ -430,8 +435,8 @@ LAB_180096e94:
         *data_buffer = 0x6c6c41;
         buffer_capacity = 3;
         
-        manager_ptr = (int64_t *)FUN_180058080(processing_context + 0xf0, temp_buffer1, &buffer_ptr);
-        FUN_180058080(processing_context + 0x30, temp_buffer2, *manager_ptr + 0x20);
+        manager_ptr = (int64_t *)> HighFreq_AnimationSystem1(processing_context + 0xf0, temp_buffer1, &buffer_ptr);
+        > HighFreq_AnimationSystem1(processing_context + 0x30, temp_buffer2, *manager_ptr + 0x20);
         buffer_ptr = &system_data_buffer_ptr;
         
         // 错误处理
@@ -441,7 +446,7 @@ LAB_180096e94:
     // 完成标志处理
     if ((char)completion_flag != '\0') {
         system_manager = processing_context + 0x90;
-        FUN_180058370(system_manager, *(uint64_t *)(processing_context + 0xa0));
+        RenderingSystem_CameraSystem(system_manager, *(uint64_t *)(processing_context + 0xa0));
         *(int64_t *)system_manager = system_manager;
         *(int64_t *)(processing_context + 0x98) = system_manager;
         *(uint64_t *)(processing_context + 0xa0) = 0;

@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -216,7 +217,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5352_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -300,7 +301,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5352_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -383,7 +384,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5352_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -452,7 +453,7 @@ LAB_18038cff2:
     if ((int)(uint)*(byte *)(unaff_RBX + 0xa8) <= unaff_EDI) {
       if (0 < unaff_EBP) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_5352_ptr);
+        SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
       }
       if (0 < unaff_EBP) {
         FUN_180057340();
@@ -476,7 +477,7 @@ void FUN_18038d022(void)
   
   if (0 < unaff_EBP) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_5352_ptr);
+    SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
   }
   if (0 < unaff_EBP) {
     FUN_180057340();
@@ -495,7 +496,7 @@ void FUN_18038d02e(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_5352_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -512,7 +513,7 @@ void FUN_18038d081(void)
 
 
 
-int8_t FUN_18038d0a0(int64_t param_1,float *param_2)
+int8_t SystemCore_PerformanceMonitor(int64_t param_1,float *param_2)
 
 {
   float fVar1;
@@ -628,7 +629,7 @@ bool FUN_18038d290(uint64_t param_1,int64_t param_2,float param_3)
   char cVar1;
   float fVar2;
   
-  cVar1 = FUN_18038d0a0();
+  cVar1 = SystemCore_PerformanceMonitor();
   if (cVar1 != '\0') {
     fVar2 = (float)func_0x00018038d2f0(param_1,param_2);
     return ABS(*(float *)(param_2 + 8) - fVar2) < param_3;

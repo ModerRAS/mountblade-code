@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -46,7 +50,7 @@ uint64_t FUN_1808dce80(uint64_t *param_1,uint64_t param_2,int32_t param_3,int *p
   uint64_t uVar1;
   
   if (*(int *)(param_1 + 1) != *(int *)((int64_t)param_1 + 0xc)) {
-    uVar1 = FUN_18076a440(*param_1,*(int *)((int64_t)param_1 + 0xc),0);
+    uVar1 = MathTrigonometryFunction0(*param_1,*(int *)((int64_t)param_1 + 0xc),0);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -720,7 +724,7 @@ LAB_1808ddb17:
         if (param_1[2] == 0) {
           return 0x1c;
         }
-        uVar3 = FUN_18076a440(*(uint64_t *)*param_1,(uint64_t)*(uint *)(param_1 + 3) + param_1[2]
+        uVar3 = MathTrigonometryFunction0(*(uint64_t *)*param_1,(uint64_t)*(uint *)(param_1 + 3) + param_1[2]
                               ,0);
         if ((int)uVar3 != 0) {
           return uVar3;
@@ -821,7 +825,7 @@ LAB_1808ddb17:
       if (unaff_RBX[2] == 0) {
         return 0x1c;
       }
-      uVar4 = FUN_18076a440(*(uint64_t *)*unaff_RBX,
+      uVar4 = MathTrigonometryFunction0(*(uint64_t *)*unaff_RBX,
                             (uint64_t)*(uint *)(unaff_RBX + 3) + unaff_RBX[2],0);
       if ((int)uVar4 != 0) {
         return uVar4;
@@ -888,7 +892,7 @@ uint64_t DataFlowProcessor(int64_t *param_1,int *param_2,int param_3,int param_4
           return 0;
         }
         uVar2 = ((uint64_t)(param_2[1] + 1) & 0xfffffffe) + *(int64_t *)(param_2 + 2);
-        uVar1 = FUN_18076a440(*(uint64_t *)*param_1,uVar2 & 0xffffffff,0);
+        uVar1 = MathTrigonometryFunction0(*(uint64_t *)*param_1,uVar2 & 0xffffffff,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -929,7 +933,7 @@ uint64_t FUN_1808ddc74(uint64_t param_1,uint64_t param_2)
         return 0;
       }
       uVar2 = ((uint64_t)(unaff_RBX[1] + 1) & 0xfffffffe) + *(int64_t *)(unaff_RBX + 2);
-      uVar1 = FUN_18076a440(*(uint64_t *)*unaff_RDI,uVar2 & 0xffffffff,0);
+      uVar1 = MathTrigonometryFunction0(*(uint64_t *)*unaff_RDI,uVar2 & 0xffffffff,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }

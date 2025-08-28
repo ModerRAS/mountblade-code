@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 
 // 03_rendering_part028.c - 渲染系统哈希表和资源管理模块
 // 本文件包含渲染系统的核心功能，包括哈希表管理、资源分配和矩阵变换操作
@@ -147,7 +154,7 @@ LAB_180280743:
             puVar23[3] = 0;
             param_15 = (uint64_t *)uVar16;
             param_16 = uVar6;
-            FUN_18066c220(lVar19 + 0x20,&param_7,*(int32_t *)(lVar19 + 0x10),
+            RenderingShaderProcessor0(lVar19 + 0x20,&param_7,*(int32_t *)(lVar19 + 0x10),
                           *(int32_t *)(lVar19 + 0x18),1);
             if ((char)param_7 != '\0') {
               uVar22 = uVar31 % (uint64_t)param_7._4_4_;
@@ -529,7 +536,7 @@ LAB_180280e02:
     *(int *)(param_1 + 0xb) = (int)param_2[0xb];
   }
   if (*(code **)(*param_1 + 0x160) == (code *)&processed_var_6368_ptr) {
-    FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
+    SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,0);
   }
   else {
     (**(code **)(*param_1 + 0x160))(param_1);
@@ -675,7 +682,7 @@ execute_render_pipeline(int64_t param_1,uint64_t param_2,int64_t param_3)
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_128;
   uVar13 = 0;
   if (0 < *(int *)(param_3 + 0xc0)) {
-    lVar3 = FUN_1800b6de0(system_resource_state,param_3 + 0xb0,0);
+    lVar3 = RenderingSystem_VertexProcessor(system_resource_state,param_3 + 0xb0,0);
     pplVar1 = render_system_data_config;
     if (lVar3 != 0) {
       if (*(float *)(param_3 + 0x1b8) <= -1.0) {
@@ -733,7 +740,7 @@ execute_render_pipeline(int64_t param_1,uint64_t param_2,int64_t param_3)
       if (*(int *)(uVar6 + 0x70 + lVar3) == 0) {
         uStack_108 = 0;
         FUN_1800b32c0(system_resource_state,&plStack_c8,(int64_t)iVar9 * 0x1a0 + lVar3,1);
-        FUN_1800763c0(plStack_c8,&plStack_d0);
+        SystemCore_BufferManager(plStack_c8,&plStack_d0);
         pplStack_c0 = &plStack_d8;
         plStack_d8 = plStack_d0;
         if (plStack_d0 != (int64_t *)0x0) {
@@ -749,7 +756,7 @@ execute_render_pipeline(int64_t param_1,uint64_t param_2,int64_t param_3)
       }
       else {
         uVar5 = FUN_180334930(param_2,(int64_t)iVar9 * 0x1a0 + lVar3);
-        FUN_1800763c0(uVar5,&plStack_e0);
+        SystemCore_BufferManager(uVar5,&plStack_e0);
         pplStack_c0 = &plStack_e8;
         plStack_e8 = plStack_e0;
         if (plStack_e0 != (int64_t *)0x0) {
@@ -785,7 +792,7 @@ LAB_18028135c:
         FUN_18022dd60(plVar8);
         *(int16_t *)(plVar8 + 0x78) = 0xffff;
         puStack_a8 = &system_state_ptr;
-        FUN_180076910(lVar3,&plStack_f0);
+        UltraHighFreq_SecurityValidator1(lVar3,&plStack_f0);
         if (plStack_f0 != (int64_t *)0x0) {
           (**(code **)(*plStack_f0 + 0x38))();
         }

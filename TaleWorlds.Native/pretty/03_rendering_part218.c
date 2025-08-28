@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part218.c - 1 个函数
 
 // 函数: void FUN_180391a3a(void)
@@ -260,7 +268,7 @@ void FUN_180391a3a(void)
                         if (plVar21[2] != unaff_RBP) {
                           *(int8_t *)(plVar21 + 4) = 1;
                         }
-                        FUN_18038b160(plVar21[2]);
+                        SystemCore_ProcessManager(plVar21[2]);
                       }
                       else {
                         FUN_18038d8f0(in_stack_00000150,plVar21);
@@ -299,7 +307,7 @@ void FUN_180391a3a(void)
                             *(int8_t *)(plVar9 + 4) = 2;
                             plVar9[3] = uVar45;
                             *plVar23 = (int64_t)plVar9;
-                            FUN_18038b160(plVar9[2]);
+                            SystemCore_ProcessManager(plVar9[2]);
                             puVar10 = puStack0000000000000058;
                             lVar26 = lStack0000000000000050;
                             uVar11 = uVar45;
@@ -421,8 +429,8 @@ LAB_180392028:
           uVar11 = uVar45;
         } while ((int)uVar15 < (int)(uint)bVar1);
       }
-      FUN_18038b160(unaff_RDI);
-      FUN_18038af00(unaff_RDI);
+      SystemCore_ProcessManager(unaff_RDI);
+      SystemCore_PerformanceMonitor(unaff_RDI);
       uVar15 = uVar12;
       if (*(int64_t *)(unaff_RDI + 0xb0) != 0) {
         uVar15 = *(uint *)(*(int64_t *)(unaff_RDI + 0xb0) + 0x134);
@@ -441,8 +449,8 @@ LAB_180392028:
         uVar14 = uVar15;
       }
       *(uint *)(unaff_RDI + 0x134) = uVar14;
-      FUN_18038b160(in_stack_00000068);
-      FUN_18038af00(in_stack_00000068);
+      SystemCore_ProcessManager(in_stack_00000068);
+      SystemCore_PerformanceMonitor(in_stack_00000068);
       uVar15 = uVar12;
       if (*(int64_t *)(in_stack_00000068 + 0xb0) != 0) {
         uVar15 = *(uint *)(*(int64_t *)(in_stack_00000068 + 0xb0) + 0x134);
@@ -461,8 +469,8 @@ LAB_180392028:
         uVar14 = uVar15;
       }
       *(uint *)(in_stack_00000068 + 0x134) = uVar14;
-      FUN_18038b160(in_stack_00000070);
-      FUN_18038af00(in_stack_00000070);
+      SystemCore_ProcessManager(in_stack_00000070);
+      SystemCore_PerformanceMonitor(in_stack_00000070);
       if (*(int64_t *)(in_stack_00000070 + 0xb0) != 0) {
         uVar12 = *(uint *)(*(int64_t *)(in_stack_00000070 + 0xb0) + 0x134);
       }
@@ -480,8 +488,8 @@ LAB_180392028:
         uVar15 = uVar12;
       }
       *(uint *)(in_stack_00000070 + 0x134) = uVar15;
-      FUN_18038b160(uVar45);
-      uVar32 = FUN_18038af00(uVar45);
+      SystemCore_ProcessManager(uVar45);
+      uVar32 = SystemCore_PerformanceMonitor(uVar45);
       if (*(int64_t *)(uVar45 + 0xb0) != 0) {
         unaff_RBP = (uint64_t)*(uint *)(*(int64_t *)(uVar45 + 0xb0) + 0x134);
       }
@@ -500,14 +508,14 @@ LAB_180392028:
         uVar15 = uVar12;
       }
       *(uint *)(uVar45 + 0x134) = uVar15;
-      uVar32 = FUN_18038ee20(uVar32,in_stack_00000028,0xffffffff);
-      uVar32 = FUN_18038ee20(uVar32,in_stack_00000068,0xffffffff);
-      uVar32 = FUN_18038ee20(uVar32,in_stack_00000070,0xffffffff);
-      uVar32 = FUN_18038ee20(uVar32,uVar45,0xffffffff);
+      uVar32 = SystemCore_Encoder(uVar32,in_stack_00000028,0xffffffff);
+      uVar32 = SystemCore_Encoder(uVar32,in_stack_00000068,0xffffffff);
+      uVar32 = SystemCore_Encoder(uVar32,in_stack_00000070,0xffffffff);
+      uVar32 = SystemCore_Encoder(uVar32,uVar45,0xffffffff);
       *(int *)(in_stack_00000150 + 0x530) = *(int *)(in_stack_00000150 + 0x530) + 1;
-      uVar32 = FUN_18038ee20(uVar32,in_stack_00000028,*(int32_t *)(in_stack_00000150 + 0x530));
+      uVar32 = SystemCore_Encoder(uVar32,in_stack_00000028,*(int32_t *)(in_stack_00000150 + 0x530));
       *(int *)(in_stack_00000150 + 0x530) = *(int *)(in_stack_00000150 + 0x530) + 1;
-      FUN_18038ee20(uVar32,in_stack_00000068,*(int32_t *)(in_stack_00000150 + 0x530));
+      SystemCore_Encoder(uVar32,in_stack_00000068,*(int32_t *)(in_stack_00000150 + 0x530));
     }
   }
   return;

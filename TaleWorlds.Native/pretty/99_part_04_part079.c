@@ -1,9 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_04_part079.c - 5 个函数
 
@@ -260,7 +263,7 @@ void FUN_1802d0150(int64_t param_1,int64_t param_2,uint param_3)
   uStack_440 = 3;
   uStack_448 = 0x21;
   iStack_428 = (((int)(((int)param_3 >> 0x1f & 0xfffU) + param_3) >> 0xc) + 1) * 0x1000;
-  plVar7 = (int64_t *)FUN_1800b0a10();
+  plVar7 = (int64_t *)SystemCore_ConfigManager();
   lVar16 = *plVar7;
   *plVar7 = 0;
   plStack_308 = (int64_t *)*plVar14;
@@ -506,7 +509,7 @@ LAB_1802d0862:
         (**(code **)(*plStack_200 + 0x28))();
       }
       uVar13 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      plVar14 = (int64_t *)FUN_18005ce30(uVar13,&puStack_2a8);
+      plVar14 = (int64_t *)SystemCore_StreamController(uVar13,&puStack_2a8);
       ppuStack_2c8 = (void **)plVar14;
       if (plVar14 != (int64_t *)0x0) {
         (**(code **)(*plVar14 + 0x28))(plVar14);
@@ -623,13 +626,13 @@ void FUN_1802d0d30(uint64_t param_1,int64_t param_2)
       *(int64_t *)(*(int64_t *)(param_2 + 0x9698) + 0x340) =
            (int64_t)*(int *)(system_main_module_state + 0x224);
     }
-    FUN_18029ad30(uVar1,0,lVar6);
+    SystemCore_MemoryManager(uVar1,0,lVar6);
     lVar6 = system_message_buffer;
     *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
     uStack_110 = 0;
     uStack_118 = 0;
-    FUN_18029c8a0(*(uint64_t *)(lVar6 + 0x1cd8),1,0xff000000,0);
-    FUN_18029de40(*(uint64_t *)(system_message_buffer + 0x1cd8),1);
+    UtilitiesSystem_MathCalculator(*(uint64_t *)(lVar6 + 0x1cd8),1,0xff000000,0);
+    SystemCore_ProcessorEx(*(uint64_t *)(system_message_buffer + 0x1cd8),1);
     fVar11 = (float)((int)*(float *)(param_2 + 0x11c20) / 2);
     fVar10 = (float)((int)*(float *)(param_2 + 0x11c24) / 2);
     fStack_98 = (float)(int)*(float *)(param_2 + 0x11c18);
@@ -655,7 +658,7 @@ void FUN_1802d0d30(uint64_t param_1,int64_t param_2)
     *(float *)(lVar6 + 0x1518) = 1.0 / fVar11;
     *(float *)(lVar6 + 0x151c) = 1.0 / fVar10;
     lVar6 = *(int64_t *)(lVar4 + 0x1cd8);
-    FUN_18029fc10(lVar6,*(uint64_t *)(lVar4 + 0x1c70),lVar6 + 0x1100,0x6d0);
+    UltraHighFreq_DatabaseHandler1(lVar6,*(uint64_t *)(lVar4 + 0x1c70),lVar6 + 0x1100,0x6d0);
     while (lVar6 = system_message_buffer, uVar8 = (uint)uVar9,
           (uint64_t)(int64_t)(int)uVar8 < (uint64_t)*(uint *)(param_2 + 0x27f8)) {
       uVar9 = uVar9 >> 0xb;
@@ -674,7 +677,7 @@ void FUN_1802d0d30(uint64_t param_1,int64_t param_2)
     *(uint64_t *)(lVar4 + 0x1510) = uVar1;
     *(uint64_t *)(lVar4 + 0x1518) = uVar5;
     lVar4 = *(int64_t *)(lVar6 + 0x1cd8);
-    FUN_18029fc10(lVar4,*(uint64_t *)(lVar6 + 0x1c70),lVar4 + 0x1100,0x6d0);
+    UltraHighFreq_DatabaseHandler1(lVar4,*(uint64_t *)(lVar6 + 0x1c70),lVar4 + 0x1100,0x6d0);
     lVar6 = *(int64_t *)(system_message_buffer + 0x1cd8);
     if (((*(int64_t *)(lVar6 + 0x84b8) != 0) || (*(int *)(lVar6 + 0x8878) != -1)) ||
        (*(int *)(lVar6 + 0x8a78) != 0x10)) {
@@ -964,7 +967,7 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
 void FUN_1802d18a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058370(param_1 + 0x20,*(uint64_t *)(param_1 + 0x30),param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(param_1 + 0x20,*(uint64_t *)(param_1 + 0x30),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 

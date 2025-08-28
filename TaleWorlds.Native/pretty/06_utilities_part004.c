@@ -269,7 +269,7 @@ void UtilitiesSystem_Terminator(void)
     
     // 调用底层终止函数
     // 这是一个不返回的函数调用，会直接终止系统
-    FUN_180862e00();
+    SystemCore_OperationHandler();
     
     // 理论上不会执行到这里
     return;
@@ -409,7 +409,7 @@ uint64_t UtilitiesSystem_ParameterProcessor2(int64_t param_1)
         
         for (int i = 0; i < array_size; i++) {
             // 处理数组元素
-            process_status = FUN_1808d73b0(array_pointer[i], parameter_value, 0);
+            process_status = UtilitiesSystem_StringProcessor(array_pointer[i], parameter_value, 0);
             if (process_status != UTIL_SUCCESS) {
                 return process_status;
             }
@@ -622,7 +622,7 @@ uint64_t UtilitiesSystem_ResultProcessor1(int64_t param_1, uint64_t param_2)
                 result_flags = UTIL_SUCCESS;
             } else if (data_pointer != 0) {
                 // 执行清理操作
-                FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+                RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                              data_pointer, 
                              &processed_var_8432_ptr, 
                              0xe9);
@@ -685,7 +685,7 @@ int UtilitiesSystem_ConfigValidator1(int32_t param_1)
         validation_status = UTIL_SUCCESS;
     } else if (config_pointer != 0) {
         // 执行配置清理
-        FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+        RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      config_pointer, 
                      &processed_var_8432_ptr, 
                      0xe9, 
@@ -943,7 +943,7 @@ void UtilitiesSystem_DataHandler2(int64_t param_1, int64_t param_2)
     stack_data[0] = 0;
     
     // 调用处理函数
-    process_status = FUN_18088c740(stack_data);
+    process_status = RenderingSystemOptimizer(stack_data);
     
     // 检查处理结果
     if ((process_status == UTIL_SUCCESS) && 
@@ -1083,14 +1083,14 @@ void UtilitiesSystem_Controller1(int64_t param_1, int64_t param_2)
             control_status = func_0x00018088c500(stack_data, param_1 + 0x2c);
             if (control_status == UTIL_SUCCESS) {
                 // 执行系统操作
-                FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+                CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
             }
         }
         return;
     }
     
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+    CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1136,7 +1136,7 @@ void UtilitiesSystem_Controller2(int64_t param_1, int64_t param_2)
     }
     
     // 执行系统操作
-    FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
+    RenderingSystem_TextureManager(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1175,7 +1175,7 @@ void UtilitiesSystem_Controller3(int64_t param_1, int64_t param_2)
         *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(stack_data + 0x34);
         
         // 执行系统操作
-        FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
+        RenderingSystem_TextureManager(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回控制状态
@@ -1213,7 +1213,7 @@ void UtilitiesSystem_Controller4(int64_t param_1, int64_t param_2)
         control_status = FUN_1808deb90(stack_data, param_1 + 0x18);
         if (control_status == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
+            RenderingSystem_TextureManager(*(uint64_t *)(param_2 + 0x98), param_1);
         }
     }
     
@@ -1254,14 +1254,14 @@ void UtilitiesSystem_Controller5(int64_t param_1, int64_t param_2)
             control_status = func_0x00018088c500(stack_data, param_1 + 0x2c);
             if (control_status == UTIL_SUCCESS) {
                 // 执行系统操作
-                FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+                CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
             }
         }
         return;
     }
     
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+    CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1308,7 +1308,7 @@ uint64_t UtilitiesSystem_StateManager1(int64_t param_1, int64_t param_2)
         // 检查状态值
         if (state_value == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+            CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
         }
         
         management_status = UTIL_SUCCESS;
@@ -1350,7 +1350,7 @@ void UtilitiesSystem_StateManager2(int64_t param_1, int64_t param_2)
         *(int32_t *)(stack_data + 0x30) = UTIL_SUCCESS;
         
         // 执行系统操作
-        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+        CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回管理状态
@@ -1405,7 +1405,7 @@ uint64_t UtilitiesSystem_StateManager3(int64_t param_1, int64_t param_2)
         *(int *)(stack_data + 0x28) = state_value + -1;
         if (state_value == 1) {
             // 执行系统操作
-            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+            CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
         }
         
         management_status = UTIL_SUCCESS;
@@ -1453,7 +1453,7 @@ uint64_t UtilitiesSystem_Accessor1(int64_t param_1, int64_t param_2)
             *(uint64_t *)(*(int64_t *)(stack_data + 8) + 0x78);
         
         // 执行系统操作
-        access_status = FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
+        access_status = RenderingSystem_TextureManager(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回访问结果
@@ -1500,7 +1500,7 @@ uint64_t UtilitiesSystem_Accessor2(int64_t param_1, int64_t param_2)
     *(int8_t *)(stack_data + 0x2c) = 1;
     
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+    CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回访问结果
     return access_status;
@@ -1538,7 +1538,7 @@ void UtilitiesSystem_ConfigHandler1(int64_t param_1, int64_t param_2)
         *(int8_t *)(stack_data + 0x29) = *(int8_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+        CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回配置状态
@@ -1577,7 +1577,7 @@ void UtilitiesSystem_ConfigHandler2(int64_t param_1, int64_t param_2)
         *(int8_t *)(stack_data + 0x28) = *(int8_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+        CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回配置状态
@@ -1627,7 +1627,7 @@ uint64_t UtilitiesSystem_DataValidator1(int64_t param_1, int64_t param_2)
             *(int32_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+        CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回验证结果
@@ -1674,7 +1674,7 @@ uint64_t UtilitiesSystem_StateController1(int64_t param_1, int64_t param_2)
     *(int8_t *)(stack_data + 0x2c) = 0;
     
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+    CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制结果
     return control_status;
@@ -1798,7 +1798,7 @@ void UtilitiesSystem_ArrayProcessor1(int64_t param_1, int64_t param_2)
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+    CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回处理状态
     return;
@@ -1920,7 +1920,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
+    CoreSystem_NetworkManager0(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -2034,7 +2034,7 @@ void UtilitiesSystem_ArrayProcessor3(int64_t in_RAX, uint64_t in_stack_00000060,
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
+    CoreSystem_NetworkManager0(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -2133,7 +2133,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
+    CoreSystem_NetworkManager0(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -2281,7 +2281,7 @@ void UtilitiesSystem_OperationHandler2(int64_t param_1, int64_t param_2)
         }
         
         // 执行系统操作
-        FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
+        RenderingSystem_TextureManager(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回操作状态
@@ -2332,7 +2332,7 @@ void UtilitiesSystem_OperationHandler3(uint64_t in_stack_00000030,
     }
     
     // 执行系统操作
-    FUN_18088d7c0(*(uint64_t *)(unaff_RBP + 0x98));
+    RenderingSystem_TextureManager(*(uint64_t *)(unaff_RBP + 0x98));
     
     // 返回操作状态
     return;
@@ -2401,7 +2401,7 @@ void UtilitiesSystem_OperationHandler4(int64_t param_1, int64_t param_2)
         operation_status = func_0x0001808c8470(stack_data);
         if (operation_status == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+            CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
         }
     }
     
@@ -2438,7 +2438,7 @@ void UtilitiesSystem_OperationHandler5(int64_t param_1, int64_t param_2)
     // 检查验证结果
     if (operation_status == UTIL_SUCCESS) {
         // 执行系统操作
-        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
+        CoreSystem_NetworkManager0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回操作状态

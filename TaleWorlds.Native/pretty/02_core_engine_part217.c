@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -109,19 +114,19 @@ LAB_180193610:
   }
   SystemCore_ConfigurationHandler0(param_1 + 0x28,param_1 + 8);
 LAB_18019368b:
-  lVar4 = FUN_180631000(param_2,&ui_system_data_1992_ptr,acStackX_8);
+  lVar4 = UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1992_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(param_1 + 0x48) = *(byte *)(param_1 + 0x48) | 1;
   }
-  lVar4 = FUN_180631000(param_2,&ui_system_data_1968_ptr,acStackX_8);
+  lVar4 = UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1968_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(param_1 + 0x48) = *(byte *)(param_1 + 0x48) | 4;
   }
-  lVar4 = FUN_180631000(param_2,&rendering_buffer_2048_ptr,acStackX_8);
+  lVar4 = UltraHighFreq_CacheSystem1(param_2,&rendering_buffer_2048_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(param_1 + 0x48) = *(byte *)(param_1 + 0x48) | 2;
   }
-  lVar4 = FUN_180631000(param_2,&rendering_buffer_2016_ptr,acStackX_8);
+  lVar4 = UltraHighFreq_CacheSystem1(param_2,&rendering_buffer_2016_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(param_1 + 0x48) = *(byte *)(param_1 + 0x48) | 8;
   }
@@ -633,7 +638,7 @@ void FUN_180193d00(int64_t *param_1,uint64_t param_2,uint64_t param_3)
     lVar3 = *param_1;
     lVar5 = param_1[1];
   }
-  lVar3 = FUN_180059780(lVar3,lVar5,lVar2);
+  lVar3 = SystemCore_Initializer(lVar3,lVar5,lVar2);
   lVar5 = lVar3;
   uVar7 = param_2;
   if (param_2 != 0) {
@@ -700,7 +705,7 @@ void FUN_180193d33(int64_t param_1)
     param_1 = *unaff_R14;
     unaff_RBX = unaff_R14[1];
   }
-  lVar3 = FUN_180059780(param_1,unaff_RBX,lVar2);
+  lVar3 = SystemCore_Initializer(param_1,unaff_RBX,lVar2);
   lVar4 = lVar3;
   lVar7 = unaff_RSI;
   if (unaff_RSI != 0) {
@@ -766,7 +771,7 @@ void FUN_180193d44(int64_t param_1)
     param_1 = *unaff_R14;
     unaff_RBX = unaff_R14[1];
   }
-  lVar3 = FUN_180059780(param_1,unaff_RBX,lVar2);
+  lVar3 = SystemCore_Initializer(param_1,unaff_RBX,lVar2);
   lVar4 = lVar3;
   lVar7 = unaff_RSI;
   if (unaff_RSI != 0) {

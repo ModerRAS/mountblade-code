@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -90,7 +94,7 @@ void SystemResourceProcessor(int64_t param_1, int64_t param_2)
     uStack_28 = 3;
     
     // 初始化系统资源池
-    FUN_1802e8c60(0, &lStack_40);
+    NetworkSystem_SecurityManager(0, &lStack_40);
     lStackX_8 = param_1;
     
     // 添加资源到处理队列
@@ -205,7 +209,7 @@ BADSPACEBASE *SystemResourceValidator(int64_t param_1, int64_t param_2, uint64_t
         lStack_30 = lVar4 + 0x400;
         lStack_40 = lVar4;
         lStack_38 = lVar4;
-        FUN_1802e8c60(param_1, &lStack_40);
+        NetworkSystem_SecurityManager(param_1, &lStack_40);
         uVar8 = lStack_38 - lStack_40 >> 3;
         uVar9 = 0;
         
@@ -499,7 +503,7 @@ void SystemDataManager(int64_t *param_1, int64_t param_2)
     
     // 获取数据信息
     plVar12 = param_1 + 0xe;
-    puVar8 = (int32_t *)FUN_180085020(plVar12, auStack_50);
+    puVar8 = (int32_t *)RenderingSystem_LightSystem(plVar12, auStack_50);
     fVar1 = (float)puVar8[1];
     uVar2 = puVar8[2];
     uVar3 = puVar8[3];
@@ -887,7 +891,7 @@ int *SystemMemoryAllocator(int64_t param_1, int param_2, uint64_t param_3, int64
             piVar11[3] = iStack_1c;
             piVar11[4] = 0;
             piVar11[5] = 0;
-            FUN_18066c220(lVar7 + 0x20, acStackX_8, *(int32_t *)(lVar7 + 0x10),
+            RenderingShaderProcessor0(lVar7 + 0x20, acStackX_8, *(int32_t *)(lVar7 + 0x10),
                           *(int32_t *)(lVar7 + 0x18), 1);
             if (acStackX_8[0] != '\0') {
                 uVar9 = uVar12 % (uint64_t)uStackX_c;

@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part516.c - 8 个函数
 
 // 函数: void FUN_180544700(int64_t param_1,float param_2,int64_t param_3)
@@ -279,7 +287,7 @@ void FUN_180544c30(int64_t param_1,float *param_2)
   fStack_34 = fVar20;
   fStack_30 = fVar3;
   uStack_2c = uStack_5c;
-  pfVar15 = (float *)FUN_1801c0fb0(&uStack_78,auStack_58,param_1 + 0x920);
+  pfVar15 = (float *)SystemFileHandler(&uStack_78,auStack_58,param_1 + 0x920);
   fVar4 = *(float *)(lVar17 + 0x84);
   fVar5 = *(float *)(lVar17 + 0x88);
   fVar6 = *(float *)(lVar17 + 0x8c);
@@ -507,7 +515,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
   uStack_68 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_208;
   uVar8 = (uint64_t)(int)param_2;
   uStack_1c8 = param_9;
-  pcStack_1e8 = FUN_18004a130;
+  pcStack_1e8 = SystemCore_MemoryManager;
   cStack_1d8 = param_4;
   uStack_1d0 = param_2;
   DataStructureManager(auStack_138,0x30,4,FUN_1801c2890);
@@ -678,7 +686,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
     }
   }
 LAB_180545885:
-  SystemDataValidator(auStack_138,0x30,4,FUN_18004a130);
+  SystemDataValidator(auStack_138,0x30,4,SystemCore_MemoryManager);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_208);
 }
@@ -717,7 +725,7 @@ void FUN_1805458e0(uint64_t *param_1,int param_2,int64_t param_3,float *param_4,
   uStack_138 = 0xfffffffffffffffe;
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   fVar1 = *(float *)(*(int64_t *)*param_1 + 4 + (int64_t)param_2 * 0x14);
-  pcStack_158 = FUN_18004a130;
+  pcStack_158 = SystemCore_MemoryManager;
   DataStructureManager(auStack_128,0x30,4,FUN_1801c2890);
   iStack_68 = 0;
   if (param_3 != 0) {
@@ -783,7 +791,7 @@ void FUN_1805458e0(uint64_t *param_1,int param_2,int64_t param_3,float *param_4,
             FUN_1805b5840(lVar2,0x180c95578);
           }
           else {
-            FUN_1805b59d0();
+            NetworkSystem_SecurityManager();
           }
         }
       }
@@ -791,7 +799,7 @@ void FUN_1805458e0(uint64_t *param_1,int param_2,int64_t param_3,float *param_4,
     } while (lVar6 < iVar7);
   }
   if (render_system_memory != 0) {
-    FUN_180567f30(render_system_memory,0x180c95578);
+    SystemCore_DatabaseHandler(render_system_memory,0x180c95578);
   }
   render_system_memory = 0;
                     // WARNING: Subroutine does not return

@@ -1,3 +1,7 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -107,7 +111,7 @@ LAB_180137b1b:
     *(float *)(unaff_RBP + -0x1d) = fVar15 * fVar14;
     *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
     uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
-    FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
     unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
 LAB_180137cc2:
@@ -157,7 +161,7 @@ LAB_180137cc2:
       *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
       *(float *)(unaff_RBP + -0x55) = fVar11 + fVar12;
       uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
-      FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
+      MathInterpolationCalculator0(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
     }
     FUN_180291f60(*(uint64_t *)(unaff_RSI + 0x2e8));
   }
@@ -191,7 +195,7 @@ LAB_180137cc2:
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return
@@ -271,7 +275,7 @@ void FUN_180137d3b(int32_t param_1,uint64_t param_2,int32_t param_3,float param_
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return
@@ -326,7 +330,7 @@ void FUN_180137dd7(int32_t param_1)
     *(float *)(unaff_RBP + -0x1d) = fVar6 * fVar3;
     *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
     uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
-    FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
     unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
 LAB_180137cc2:
@@ -345,7 +349,7 @@ LAB_180137cc2:
     *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
     *(float *)(unaff_RBP + -0x55) = fVar1 + fVar2;
     uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
-    FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
+    MathInterpolationCalculator0(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
     FUN_180291f60(*(uint64_t *)(unaff_RSI + 0x2e8));
   }
   if ((unaff_RSI == 0) || (*(int *)(unaff_RDI + 0x20) < 1)) {
@@ -378,7 +382,7 @@ LAB_180137cc2:
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return
@@ -430,7 +434,7 @@ void FUN_180137e56(void)
       FUN_1801373f0();
     }
     if (*(char *)(unaff_RBP + -0x68) != '\0') {
-      FUN_18012cfe0();
+      HighFreq_CacheSystem1();
     }
   }
                     // WARNING: Subroutine does not return
@@ -455,7 +459,7 @@ void FUN_180137ef1(void)
     FUN_1801373f0();
   }
   if (*(char *)(unaff_RBP + -0x68) != '\0') {
-    FUN_18012cfe0();
+    HighFreq_CacheSystem1();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -1) ^ (uint64_t)&stack0x00000000);

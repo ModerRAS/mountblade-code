@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -89,7 +94,7 @@ int FUN_180852d40(int64_t *param_1,int32_t *param_2,uint64_t *param_3)
     puVar6 = puVar7;
   }
   auStackX_20[0] = *(int32_t *)((int64_t)param_3 + 0xe4);
-  iVar10 = FUN_1807d28c0(puVar6,auStackX_20,&puStackX_18);
+  iVar10 = RenderingSystem_Renderer(puVar6,auStackX_20,&puStackX_18);
   if (iVar10 != 0) goto LAB_180852f9c;
   if (!bVar4) {
     return 0;
@@ -229,7 +234,7 @@ int FUN_180852d79(void)
     puVar6 = puVar7;
   }
   in_stack_000000a8 = *(int32_t *)(unaff_R13 + 0xe4);
-  iVar10 = FUN_1807d28c0(puVar6,&stack0x000000a8,&stack0x000000a0);
+  iVar10 = RenderingSystem_Renderer(puVar6,&stack0x000000a8,&stack0x000000a0);
   if (iVar10 != 0) goto LAB_180852f9c;
   if (!bVar5) {
     return 0;
@@ -336,7 +341,7 @@ void FUN_180853000(int64_t param_1,uint64_t param_2)
   uint64_t auStackX_8 [4];
   
   auStackX_8[0] = 0;
-  iVar1 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xffffffff,auStackX_8);
+  iVar1 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xffffffff,auStackX_8);
   if (iVar1 == 0) {
     FUN_180740410(auStackX_8[0],param_2);
   }
@@ -484,7 +489,7 @@ void FUN_180853230(int64_t param_1)
     if (iVar2 == 0) goto LAB_18073d93d;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    FUN_18074be90(auStack_118,0x100,1);
+    SystemCore_Cleanup(auStack_118,0x100,1);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar2,4,uVar1,&processed_var_6016_ptr);
@@ -518,7 +523,7 @@ uint64_t FUN_180853260(int64_t *param_1,uint64_t *param_2)
     if (iVar3 < 8) {
       iVar3 = 8;
     }
-    uVar2 = FUN_180747f10(param_1,iVar3);
+    uVar2 = RenderingTextureManager0(param_1,iVar3);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -532,7 +537,7 @@ uint64_t FUN_180853260(int64_t *param_1,uint64_t *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808532e0(int64_t *param_1,int param_2)
+uint64_t Physics_AnimationProcessor(int64_t *param_1,int param_2)
 
 {
   int64_t lVar1;
@@ -882,7 +887,7 @@ uint64_t FUN_180853980(int64_t param_1)
   
   if (*(int *)(param_1 + 0x98) == 0) {
     uStackX_8 = 0;
-    iVar2 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
+    iVar2 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
     uVar4 = uStackX_8;
     if (iVar2 != 0) {
       uVar4 = 0;
@@ -898,7 +903,7 @@ uint64_t FUN_180853980(int64_t param_1)
   if ((int)uVar3 == 0) {
     if (*(int *)(param_1 + 0x88) == 0) {
       uStackX_8 = 0;
-      iVar2 = FUN_18073c380(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
+      iVar2 = UltraHighFreq_PhysicsEngine1(*(uint64_t *)(param_1 + 0x78),0xfffffffe,&uStackX_8);
       uVar4 = uStackX_8;
       if (iVar2 != 0) {
         uVar4 = 0;

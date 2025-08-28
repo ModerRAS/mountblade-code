@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part150.c - 1 个函数
 
@@ -151,12 +156,12 @@ uint64_t FUN_1807556b0(int64_t param_1,int64_t param_2,char param_3)
     *(uint64_t *)(param_1 + 0x130) = 0;
     *(int8_t *)(param_1 + 0x138) = 0;
   }
-  uVar3 = FUN_180762070(*(uint64_t *)(param_1 + 0x60),0,1);
+  uVar3 = SystemCore_Initializer(*(uint64_t *)(param_1 + 0x60),0,1);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (param_3 != '\0') {
-    uVar3 = FUN_18075dbf0(*(uint64_t *)(param_1 + 0x60),0,0,4);
+    uVar3 = SystemCore_ConfigurationManager(*(uint64_t *)(param_1 + 0x60),0,0,4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -169,7 +174,7 @@ uint64_t FUN_1807556b0(int64_t param_1,int64_t param_2,char param_3)
     if ((int)uVar3 != 0) {
       return uVar3;
     }
-    uVar3 = FUN_180759220(uStackX_8,*(uint64_t *)(param_1 + 0x60),0,0,0,0);
+    uVar3 = UltraHighFreq_AudioSystem1(uStackX_8,*(uint64_t *)(param_1 + 0x60),0,0,0,0);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -246,7 +251,7 @@ uint64_t FUN_180755930(int64_t param_1,int64_t param_2,char param_3)
     LOCK();
     *(uint *)(param_2 + 0x58) = *(uint *)(param_2 + 0x58) & 0xfffff7ff;
     UNLOCK();
-    uVar2 = FUN_180762070(*(uint64_t *)(param_1 + 0x60),0,1);
+    uVar2 = SystemCore_Initializer(*(uint64_t *)(param_1 + 0x60),0,1);
     if ((int)uVar2 == 0) {
       if (param_3 != '\0') {
         if ((*(uint *)(*(int64_t *)(param_1 + 0x1d8) + 0x3c) & 0x10000) != 0) {
@@ -255,7 +260,7 @@ uint64_t FUN_180755930(int64_t param_1,int64_t param_2,char param_3)
           *puVar1 = *puVar1 | 0x100;
           UNLOCK();
         }
-        uVar2 = FUN_18075dbf0(*(uint64_t *)(param_1 + 0x60),0,0,4);
+        uVar2 = SystemCore_ConfigurationManager(*(uint64_t *)(param_1 + 0x60),0,0,4);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -268,7 +273,7 @@ uint64_t FUN_180755930(int64_t param_1,int64_t param_2,char param_3)
         if ((int)uVar2 != 0) {
           return uVar2;
         }
-        uVar2 = FUN_180759220(uStackX_20,*(uint64_t *)(param_1 + 0x60),0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(uStackX_20,*(uint64_t *)(param_1 + 0x60),0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -299,7 +304,7 @@ uint64_t FUN_180755c10(int64_t param_1)
   uint *puVar1;
   uint64_t uVar2;
   
-  FUN_180758220(param_1,0x53);
+  UIComponent_Renderer(param_1,0x53);
   if (*(int64_t *)(param_1 + 0x70) != 0) {
     LOCK();
     puVar1 = (uint *)(*(int64_t *)(param_1 + 0x70) + 100);
@@ -414,7 +419,7 @@ LAB_180755ce8:
   }
   (**(code **)(*param_1 + 0x18))(param_1,auStack_2c);
   *(uint *)(lStack_38 + 0x3c) = *(uint *)(lStack_38 + 0x3c) | 0x8000;
-  FUN_180758220(param_1,4);
+  UIComponent_Renderer(param_1,4);
   param_1[0x3b] = lStackX_20;
   if (lVar5 == 0) {
     if (lVar4 == 0) goto LAB_180755ea0;
@@ -461,7 +466,7 @@ uint64_t FUN_180755d89(uint64_t *param_1)
   }
   (**(code **)(*unaff_RBX + 0x18))();
   *(uint *)(lVar3 + 0x3c) = *(uint *)(lVar3 + 0x3c) | 0x8000;
-  FUN_180758220();
+  UIComponent_Renderer();
   unaff_RBX[0x3b] = in_stack_00000098;
   if (unaff_R14 == 0) {
     if (unaff_RSI == 0) goto LAB_180755ea0;

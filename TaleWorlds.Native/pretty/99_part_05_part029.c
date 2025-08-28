@@ -499,7 +499,7 @@ void FUN_1802ea6d0(int64_t param_1,float *param_2)
   *(float *)(param_1 + 100) = fVar2;
   *(float *)(param_1 + 0x68) = fVar3;
   *(float *)(param_1 + 0x6c) = fVar4;
-  FUN_180254610();
+  RenderingSystem_CameraController();
   *(byte *)(param_1 + 0x2e8) = *(byte *)(param_1 + 0x2e8) | 0x10;
   if (((*(uint *)(param_1 + 0x2ac) & 0x10000000) == 0) && (*(int64_t *)(param_1 + 0x20) != 0)) {
     FUN_1801b01f0(*(int64_t *)(param_1 + 0x20),param_1);
@@ -564,7 +564,7 @@ void FUN_1802ea6d0(int64_t param_1,float *param_2)
         *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
         *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
         *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-        FUN_1802eace0(lVar13);
+        UtilitiesSystem_StringProcessor(lVar13);
       }
       lVar33 = lVar33 + 1;
     } while (lVar33 < iVar32);
@@ -577,8 +577,8 @@ void FUN_1802ea6d0(int64_t param_1,float *param_2)
 
 
 
-// 函数: void FUN_1802ea790(int64_t param_1,uint64_t *param_2)
-void FUN_1802ea790(int64_t param_1,uint64_t *param_2)
+// 函数: void NetworkProtocol_Transmitter(int64_t param_1,uint64_t *param_2)
+void NetworkProtocol_Transmitter(int64_t param_1,uint64_t *param_2)
 
 {
   int64_t lVar1;
@@ -699,7 +699,7 @@ void FUN_1802ea790(int64_t param_1,uint64_t *param_2)
     *(int32_t *)(param_1 + 0xa4) = uVar10;
     *(int32_t *)(param_1 + 0xa8) = uVar11;
     *(int32_t *)(param_1 + 0xac) = uVar12;
-    FUN_1802eace0(param_1);
+    UtilitiesSystem_StringProcessor(param_1);
   }
   return;
 }

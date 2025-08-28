@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_09_part056.c - 7 个函数
 
 // 函数: void FUN_1805d98c0(int32_t *param_1)
@@ -68,7 +72,7 @@ void FUN_1805d98c0(int32_t *param_1)
   }
   lVar3 = lStackX_20;
   auStack_58[0] = *(uint64_t *)(param_1 + 0x18);
-  lVar8 = FUN_180488690(param_1 + 0x12);
+  lVar8 = SystemCore_ErrorHandler(param_1 + 0x12);
   puVar11 = (uint64_t *)(param_1 + 0x46);
   if (*(char *)(param_1 + 0x44f) == '\0') {
     *(uint64_t *)(param_1 + 0x448) = *(uint64_t *)(param_1 + 0x446);
@@ -231,7 +235,7 @@ void FUN_1805d98d4(void)
   }
   lVar3 = lStack00000000000000d8;
   in_stack_00000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar8 = FUN_180488690(unaff_R14 + 0x12);
+  lVar8 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar11 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);
@@ -392,7 +396,7 @@ void FUN_1805d98da(void)
   }
   lVar3 = lStack00000000000000d8;
   in_stack_00000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar8 = FUN_180488690(unaff_R14 + 0x12);
+  lVar8 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar11 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);
@@ -541,7 +545,7 @@ void FUN_1805d9908(void)
     }
   }
   in_stack_00000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar6 = FUN_180488690(unaff_R14 + 0x12);
+  lVar6 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar10 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);
@@ -682,7 +686,7 @@ void FUN_1805d992f(int *param_1,int *param_2)
     } while (param_1 != param_2);
   }
   in_stack_00000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar5 = FUN_180488690(unaff_R14 + 0x12);
+  lVar5 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar8 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);
@@ -792,7 +796,7 @@ void FUN_1805d9a2b(void)
   uint64_t uStack0000000000000060;
   
   uStack0000000000000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar4 = FUN_180488690(unaff_R14 + 0x12);
+  lVar4 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar7 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);
@@ -903,7 +907,7 @@ void FUN_1805d9a33(void)
   uint64_t uStack0000000000000060;
   
   uStack0000000000000060 = *(uint64_t *)(unaff_R14 + 0x18);
-  lVar4 = FUN_180488690(unaff_R14 + 0x12);
+  lVar4 = SystemCore_ErrorHandler(unaff_R14 + 0x12);
   puVar7 = (uint64_t *)(unaff_R14 + 0x46);
   if (*(char *)(unaff_R14 + 0x44f) == '\0') {
     *(uint64_t *)(unaff_R14 + 0x448) = *(uint64_t *)(unaff_R14 + 0x446);

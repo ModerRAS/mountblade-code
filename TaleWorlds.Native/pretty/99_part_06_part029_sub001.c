@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_06_part029_sub001.c - 7 个函数
@@ -612,7 +613,7 @@ LAB_1803c13fe:
       } while (*pcVar6 != '\0');
       *puVar8 = &ui_system_data_1456_ptr;
       puVar8[2] = pcVar7 + -0x180a2356f;
-      lVar9 = FUN_180629a40(*(int64_t *)(param_1 + 8) + 0xd0,&puStack_50,uVar12,uVar11);
+      lVar9 = NetworkSystem_ProtocolParser(*(int64_t *)(param_1 + 8) + 0xd0,&puStack_50,uVar12,uVar11);
       puVar14 = &system_buffer_ptr;
       if (*(void **)(lVar9 + 8) != (void *)0x0) {
         puVar14 = *(void **)(lVar9 + 8);
@@ -695,7 +696,7 @@ void FUN_1803c1470(int64_t param_1,int64_t param_2,int64_t param_3)
   *puVar4 = &ui_system_data_1424_ptr;
   lVar9 = *(int64_t *)(param_1 + 8);
   if (lVar10 == 0) {
-    FUN_18062fb40(param_2,puVar4,&processed_var_8872_ptr);
+    UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_8872_ptr);
     lVar9 = *(int64_t *)(param_1 + 8);
   }
   else {
@@ -706,7 +707,7 @@ void FUN_1803c1470(int64_t param_1,int64_t param_2,int64_t param_3)
         goto LAB_1803c1588;
       }
 LAB_1803c1590:
-      FUN_18062fb40(param_2,puVar4,&processed_var_8872_ptr);
+      UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_8872_ptr);
     }
     else {
       if ((0.01 <= ABS(*(float *)(lVar9 + 0x60) - *(float *)(lVar1 + 0x60))) ||
@@ -761,11 +762,11 @@ LAB_1803c1588:
     }
     else {
       FUN_1801c1720(&uStack_58,&fStack_78);
-      FUN_18062fb40(param_2,puVar4,&ui_system_data_1352_ptr,&fStack_78);
+      UltraHighFreq_NetworkHandler1(param_2,puVar4,&ui_system_data_1352_ptr,&fStack_78);
     }
     lVar9 = *(int64_t *)(param_1 + 8) + 0x30;
     if (lVar10 == 0) {
-      FUN_180085020(lVar9,&fStack_78);
+      RenderingSystem_LightSystem(lVar9,&fStack_78);
       if (((ABS(fStack_78 - 1.0) < 1e-06) && (ABS(fStack_74 - 1.0) < 1e-06)) &&
          (ABS(fStack_70 - 1.0) < 1e-06)) goto LAB_1803c180c;
       pfVar7 = &fStack_78;
@@ -773,7 +774,7 @@ LAB_1803c1588:
     else {
       lVar10 = *(int64_t *)(*(int64_t *)(param_1 + 8) + 0x268);
       if (lVar10 == 0) {
-        FUN_180085020(lVar9,&fStack_78);
+        RenderingSystem_LightSystem(lVar9,&fStack_78);
         pfVar7 = afStack_68;
         afStack_68[0] = 1.0;
         afStack_68[1] = 1.0;
@@ -782,17 +783,17 @@ LAB_1803c1588:
         pfVar8 = &fStack_78;
       }
       else {
-        FUN_180085020(lVar9,afStack_68);
-        FUN_180085020(lVar10 + 0x30,&fStack_78);
+        RenderingSystem_LightSystem(lVar9,afStack_68);
+        RenderingSystem_LightSystem(lVar10 + 0x30,&fStack_78);
         pfVar7 = &fStack_78;
         pfVar8 = afStack_68;
       }
       cVar3 = func_0x00018022a7c0(pfVar8,pfVar7);
       if (cVar3 != '\0') goto LAB_1803c180c;
-      FUN_180085020(lVar9,afStack_68);
+      RenderingSystem_LightSystem(lVar9,afStack_68);
       pfVar7 = afStack_68;
     }
-    FUN_18062fb40(param_2,puVar4,&processed_var_8408_ptr,pfVar7);
+    UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_8408_ptr,pfVar7);
   }
 LAB_1803c180c:
   if ((puVar4[6] != 0) || (puVar4[8] != 0)) {

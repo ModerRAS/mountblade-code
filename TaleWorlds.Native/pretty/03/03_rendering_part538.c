@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
@@ -1059,10 +1064,10 @@ int InitializeRenderContext(RenderObject* render_object)
     FUN_18053df50(0x180c95f38, call_stack, name_length, context + 0x10, hash_value);
     *(int *)(call_stack[0] + 0x58) = context_id;
     stack_buffer[0] = (int32_t)(render_system_resource - render_system_resource >> 3);
-    FUN_1800571e0(&system_memory_5f68, stack_buffer);
+    SystemDatabaseProcessor(&system_memory_5f68, stack_buffer);
     *(int *)(context + 0x68) = render_system_resource;
     render_system_resource = render_system_resource + 1;
-    FUN_18005ea90(&system_memory_5f88, &context_ref);
+    SystemSecurity_Manager(&system_memory_5f88, &context_ref);
   }
   else {
     // 检查哈希冲突
@@ -1071,13 +1076,13 @@ int InitializeRenderContext(RenderObject* render_object)
       if (*(void **)(context + 0x18) != (void *)0x0) {
         object_name = *(void **)(context + 0x18);
       }
-      FUN_180627020(&processed_var_7872_ptr, object_name);
+      SystemCore_Allocator(&processed_var_7872_ptr, object_name);
       return 0;
     }
     // 更新哈希表索引
     *(int *)(render_system_resource + (int64_t)*(int *)(call_stack[0] + 0x58) * 4) =
          (int)(render_system_resource - render_system_resource >> 3);
-    FUN_18005ea90(&system_memory_5f88, &context_ref);
+    SystemSecurity_Manager(&system_memory_5f88, &context_ref);
   }
   return 1;
 }
@@ -1289,12 +1294,12 @@ int EnsureRenderContext(RenderObject* render_object)
     
     // 更新哈希表索引
     hash_index = (int32_t)(render_system_resource - render_system_resource >> 3);
-    FUN_1800571e0(&system_memory_5f68, &hash_index);
+    SystemDatabaseProcessor(&system_memory_5f68, &hash_index);
     
     // 设置上下文ID并更新全局计数器
     *(int *)(context + 0x68) = render_system_resource;
     render_system_resource = render_system_resource + 1;
-    FUN_18005ea90(&system_memory_5f88, &context_ref);
+    SystemSecurity_Manager(&system_memory_5f88, &context_ref);
   }
   else {
     // 检查哈希冲突
@@ -1305,14 +1310,14 @@ int EnsureRenderContext(RenderObject* render_object)
         object_name = *(void **)(context + 0x18);
       }
       // 记录哈希冲突错误
-      FUN_180627020(&processed_var_7872_ptr, object_name);
+      SystemCore_Allocator(&processed_var_7872_ptr, object_name);
       return 0;
     }
     
     // 更新现有哈希表条目
     *(int *)(render_system_resource + (int64_t)*(int *)(call_stack[0] + 0x58) * 4) =
          (int)(render_system_resource - render_system_resource >> 3);
-    FUN_18005ea90(&system_memory_5f88, &context_ref);
+    SystemSecurity_Manager(&system_memory_5f88, &context_ref);
   }
   
   return 1;

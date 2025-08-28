@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -412,7 +418,7 @@ void rendering_system_process_render_pipeline(
                     frame_counter = frame_counter & 0xffffff00;
                     render_settings = (void *)
                                  ((uint64_t)*(uint *)(*(int64_t *)(render_context + 0x598) + 0x1a4) << 0x20);
-                    FUN_18051ec50(render_context, &render_settings);
+                    CoreSystemThreadManager(render_context, &render_settings);
                     return;
                 }
             }
@@ -469,7 +475,7 @@ void rendering_system_process_render_pipeline(
                          shader_source, vertex_shader, &render_settings);
             render_state = (int32_t)((uint64_t)shader_source >> 0x20);
             if (texture_filter[0] != '\0') {
-                render_pass_count = FUN_18053a410(&system_memory_5f30, *(int32_t *)(*(int64_t *)(render_context + 0x590) + 0xac),
+                render_pass_count = SystemCacheManager(&system_memory_5f30, *(int32_t *)(*(int64_t *)(render_context + 0x590) + 0xac),
                               render_targets[0]);
                 render_pass_count = *(int *)(render_system_render + (int64_t)render_pass_count * 4);
                 if (render_pass_count != -1) {
@@ -492,7 +498,7 @@ void rendering_system_process_render_pipeline(
                      *(int64_t *)(&system_error_code + (int64_t)*(int *)(frame_buffer_ptr + 0x6c0) * 8) + 200000;
                 *(int32_t *)(render_context + 0x670) = 0xffffffff;
                 *(uint *)(render_context + 0x584) = *(uint *)(texture_handle + 0x1d8) ^ 0x80000000;
-                FUN_18052e130(frame_buffer_ptr, 0xffffffff, 0x180c8ed01);
+                SystemCore_Validator0(frame_buffer_ptr, 0xffffffff, 0x180c8ed01);
                 if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
                     FUN_1805ed670(system_status_flag, 0, *(int32_t *)(render_context + 0x564), 0xffffffff,
                                 CONCAT44(render_state, 0xffffffff), (uint64_t)vertex_shader & 0xffffffff00000000);
@@ -500,7 +506,7 @@ void rendering_system_process_render_pipeline(
                 FUN_1805b8920(*(uint64_t *)(frame_buffer_ptr + 0x6e0));
                 *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x738) + 0xa4) =
                      *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x6e0) + 0x14a8);
-                FUN_180516f50(frame_buffer_ptr, &render_settings);
+                UltraHighFreq_MemoryManager1(frame_buffer_ptr, &render_settings);
                 AdvancedSystemController();
             }
         } else {
@@ -556,9 +562,9 @@ void rendering_system_process_render_pipeline(
                     }
                     texture_format = SystemCore_ThreadManager0(material_data, 0, &system_param1_ptr);
                     if (((texture_format != '\0') && (texture_format = SystemCore_ThreadManager0(material_data, 5, &memory_allocator_3472_ptr), texture_format != '\0')) &&
-                       ((texture_format = FUN_180645fa0(material_data), texture_format != '\0' &&
-                        (texture_format = FUN_180645fa0(material_data), texture_format != '\0')))) {
-                        FUN_180645fa0(material_data);
+                       ((texture_format = RenderingSystem_VertexBufferManager(material_data), texture_format != '\0' &&
+                        (texture_format = RenderingSystem_VertexBufferManager(material_data), texture_format != '\0')))) {
+                        RenderingSystem_VertexBufferManager(material_data);
                     }
                     if (*(char *)(frame_buffer_ptr + 0x31) == '\0') {
                         FUN_1805faa20(frame_buffer_ptr + 0x50);
@@ -587,7 +593,7 @@ void rendering_system_process_render_pipeline(
             lod_threshold = fov;
             mip_level = aspect_ratio;
             if ((-1 < *(char *)(pipeline_data + 0xb4)) && ((*(uint *)(render_context + 0x56c) & 0x800) != 0)) {
-                vertex_buffer = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(render_context + 0x6d8) + 0x8a8) +
+                vertex_buffer = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(render_context + 0x6d8) + 0x8a8) +
                                          0x70, &render_settings, pipeline_data + 0x58);
                 anisotropy_level = *vertex_buffer;
                 shadow_bias = vertex_buffer[1];
@@ -694,7 +700,7 @@ void rendering_system_process_render_pipeline(
                 texture_quality = render_pass_count;
                 anti_aliasing = render_state;
                 debug_value = memory_usage;
-                FUN_1805a4a20(render_context + 0x28, 1, &frame_buffer);
+                UISystem_InputHandler(render_context + 0x28, 1, &frame_buffer);
             }
         }
     }
@@ -908,7 +914,7 @@ void rendering_system_execute_render_command(
         status_flags = 0x3f7d70a4;
         resource_data = 0x80000000;
         command_status = command_params;
-        FUN_18051ec50(render_context, &command_buffer);
+        CoreSystemThreadManager(render_context, &command_buffer);
         
         /* 配置高级渲染特性 */
         if (((*(uint *)(render_context + 0x56c) & 0x800) != 0) && (*(int64_t *)(render_context + 0x590) != 0)) {

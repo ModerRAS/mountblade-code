@@ -1,5 +1,10 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 06_utilities_part020_sub002_sub002.c - 1 个函数
 
@@ -40,7 +45,7 @@ uint64_t FUN_18089c630(int64_t param_1,int64_t *param_2)
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-  uVar3 = FUN_180899360(param_2,param_1 + 0x10);
+  uVar3 = SystemCore_ConfigManager(param_2,param_1 + 0x10);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -71,7 +76,7 @@ uint64_t FUN_18089c630(int64_t param_1,int64_t *param_2)
     }
     else if (plVar1[2] == 0) {
 LAB_18089c743:
-      uVar9 = FUN_180769ed0(*plVar1,auStackX_18,1,1,0);
+      uVar9 = SystemPerformanceOptimizer(*plVar1,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
@@ -121,7 +126,7 @@ LAB_18089c78f:
         goto LAB_18089c808;
       }
     }
-    uVar3 = FUN_180769ed0(*plVar1,&uStack_84,1,4,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar1,&uStack_84,1,4,0);
   }
 LAB_18089c808:
   if ((int)uVar3 != 0) {
@@ -170,7 +175,7 @@ LAB_18089c878:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808a2740(*param_2,param_1 + 0x50);
+  uVar3 = SystemCore_Validator(*param_2,param_1 + 0x50);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -221,7 +226,7 @@ LAB_18089c878:
     }
     else if (plVar1[2] == 0) {
 LAB_18089c9a8:
-      uVar2 = FUN_180769ed0(*plVar1,auStackX_18,1,1,0);
+      uVar2 = SystemPerformanceOptimizer(*plVar1,auStackX_18,1,1,0);
     }
     else {
       uStack_84 = 0;
@@ -277,7 +282,7 @@ LAB_18089c9ee:
       }
       else if (plVar1[2] == 0) {
 LAB_18089ca9c:
-        uVar2 = FUN_180769ed0(*plVar1,auStackX_18,1,1,0);
+        uVar2 = SystemPerformanceOptimizer(*plVar1,auStackX_18,1,1,0);
       }
       else {
         uStack_84 = 0;
@@ -320,7 +325,7 @@ LAB_18089cbf6:
       AdvancedSystemManager(param_2,auStack_80);
     }
     auStackX_20[0] = 0;
-    uVar3 = FUN_1808afe30(*param_2,auStackX_20);
+    uVar3 = SystemCore_Manager(*param_2,auStackX_20);
     uVar5 = auStackX_20[0];
     if ((int)uVar3 == 0) {
       uVar8 = auStackX_20[0] & 1;
@@ -331,12 +336,12 @@ LAB_18089cbf6:
         uVar3 = uVar6;
         if (uVar5 >> 1 != 0) {
           do {
-            uVar3 = FUN_1808dde10(param_2,uVar3);
+            uVar3 = UISystemEventHandler(param_2,uVar3);
             if ((int)uVar3 != 0) {
               return uVar3;
             }
             if (*(int *)(param_2[1] + 0x18) == 0) {
-              uVar3 = FUN_1808a2740(*param_2,(int64_t)(int)uVar6 * 0x10 +
+              uVar3 = SystemCore_Validator(*param_2,(int64_t)(int)uVar6 * 0x10 +
                                              *(int64_t *)(param_1 + 0x60));
             }
             else {
@@ -345,7 +350,7 @@ LAB_18089cbf6:
             if ((int)uVar3 != 0) {
               return uVar3;
             }
-            uVar3 = FUN_1808de0e0(param_2,auStackX_18);
+            uVar3 = SystemCore_Initializer(param_2,auStackX_18);
             if ((int)uVar3 != 0) {
               return uVar3;
             }
@@ -422,7 +427,7 @@ uint64_t FUN_18089c69d(void)
     }
     else if (plVar1[2] == 0) {
 LAB_18089c743:
-      uVar8 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
+      uVar8 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
     }
     else {
       *(int32_t *)(unaff_RBP + 0x7f) = 0;
@@ -473,7 +478,7 @@ LAB_18089c78f:
         goto LAB_18089c808;
       }
     }
-    uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + -0x25,unaff_R14D,uVar5,0);
+    uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + -0x25,unaff_R14D,uVar5,0);
   }
 LAB_18089c808:
   if ((int)uVar4 != 0) {
@@ -522,7 +527,7 @@ LAB_18089c878:
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar4 = SystemCore_Validator(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -574,7 +579,7 @@ LAB_18089c878:
       }
       else if (plVar1[2] == 0) {
 LAB_18089c9a8:
-        uVar3 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
+        uVar3 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
@@ -637,7 +642,7 @@ LAB_18089c9a8:
   }
   else if (plVar1[2] == 0) {
 LAB_18089ca9c:
-    uVar3 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
@@ -678,7 +683,7 @@ LAB_18089cad8:
   if (0x8a < uVar3) {
     lVar2 = *unaff_RBX;
     *(int32_t *)(unaff_RBP + 0x7f) = 0;
-    uVar4 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
+    uVar4 = SystemCore_Manager(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -692,12 +697,12 @@ LAB_18089cad8:
     fVar9 = extraout_XMM0_Da_06;
     if (uVar5 >> 1 != 0) {
       do {
-        uVar4 = FUN_1808dde10(fVar9,uVar4);
+        uVar4 = UISystemEventHandler(fVar9,uVar4);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar4 = FUN_1808a2740(*unaff_RBX,
+          uVar4 = SystemCore_Validator(*unaff_RBX,
                                 (int64_t)(int)uVar7 * 0x10 + *(int64_t *)(unaff_R13 + 0x60));
           uVar10 = extraout_XMM0_Da_08;
         }
@@ -708,7 +713,7 @@ LAB_18089cad8:
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808de0e0(uVar10,unaff_RBP + 0x77);
+        uVar4 = SystemCore_Initializer(uVar10,unaff_RBP + 0x77);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -767,7 +772,7 @@ uint64_t FUN_18089c86d(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar5 = SystemCore_Validator(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -820,7 +825,7 @@ uint64_t FUN_18089c86d(void)
       }
       else if (plVar1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -887,7 +892,7 @@ LAB_18089c9a8:
   }
   else if (plVar1[2] == unaff_RDI) {
 LAB_18089ca9c:
-    uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+    uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -927,7 +932,7 @@ LAB_18089cad8:
   if (0x8a < uVar4) {
     lVar2 = *unaff_RBX;
     *(int32_t *)(unaff_RBP + 0x7f) = 0;
-    uVar5 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
+    uVar5 = SystemCore_Manager(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -941,12 +946,12 @@ LAB_18089cad8:
     fVar12 = extraout_XMM0_Da_06;
     if (uVar4 >> 1 != 0) {
       do {
-        uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        uVar6 = UISystemEventHandler(fVar12,unaff_RDI & 0xffffffff);
         if ((int)uVar6 != 0) {
           return uVar6;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*unaff_RBX,
+          uVar6 = SystemCore_Validator(*unaff_RBX,
                                 (int64_t)(int)uVar5 * 0x10 + *(int64_t *)(unaff_R13 + 0x60));
           uVar13 = extraout_XMM0_Da_08;
         }
@@ -957,7 +962,7 @@ LAB_18089cad8:
         if ((int)uVar6 != 0) {
           return uVar6;
         }
-        uVar6 = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        uVar6 = SystemCore_Initializer(uVar13,unaff_RBP + 0x77);
         if ((int)uVar6 != 0) {
           return uVar6;
         }
@@ -1017,7 +1022,7 @@ uint64_t FUN_18089c872(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808a2740(*unaff_RBX,unaff_R13 + 0x50);
+  uVar5 = SystemCore_Validator(*unaff_RBX,unaff_R13 + 0x50);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -1070,7 +1075,7 @@ uint64_t FUN_18089c872(void)
       }
       else if (plVar1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -1137,7 +1142,7 @@ LAB_18089c9a8:
   }
   else if (plVar1[2] == unaff_RDI) {
 LAB_18089ca9c:
-    uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+    uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -1177,7 +1182,7 @@ LAB_18089cad8:
   if (0x8a < uVar4) {
     lVar2 = *unaff_RBX;
     *(int32_t *)(unaff_RBP + 0x7f) = 0;
-    uVar5 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
+    uVar5 = SystemCore_Manager(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -1191,12 +1196,12 @@ LAB_18089cad8:
     fVar12 = extraout_XMM0_Da_06;
     if (uVar4 >> 1 != 0) {
       do {
-        uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        uVar6 = UISystemEventHandler(fVar12,unaff_RDI & 0xffffffff);
         if ((int)uVar6 != 0) {
           return uVar6;
         }
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*unaff_RBX,
+          uVar6 = SystemCore_Validator(*unaff_RBX,
                                 (int64_t)(int)uVar5 * 0x10 + *(int64_t *)(unaff_R13 + 0x60));
           uVar13 = extraout_XMM0_Da_08;
         }
@@ -1207,7 +1212,7 @@ LAB_18089cad8:
         if ((int)uVar6 != 0) {
           return uVar6;
         }
-        uVar6 = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        uVar6 = SystemCore_Initializer(uVar13,unaff_RBP + 0x77);
         if ((int)uVar6 != 0) {
           return uVar6;
         }
@@ -1273,7 +1278,7 @@ uint64_t FUN_18089c94a(float param_1)
       }
       else if (plVar1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         param_1 = extraout_XMM0_Da_00;
       }
       else {
@@ -1335,7 +1340,7 @@ LAB_18089c9a8:
       }
       else if (plVar1[2] == unaff_RDI) {
 LAB_18089ca9c:
-        uVar4 = FUN_180769ed0(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        uVar4 = SystemPerformanceOptimizer(*plVar1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         param_1 = extraout_XMM0_Da_04;
       }
       else {
@@ -1385,7 +1390,7 @@ LAB_18089cbf6:
     }
     lVar2 = *unaff_RBX;
     *(int *)(unaff_RBP + 0x7f) = iVar9;
-    uVar6 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
+    uVar6 = SystemCore_Manager(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar6 == 0) {
       uVar4 = *(uint *)(unaff_RBP + 0x7f);
       uVar6 = FUN_1808af8b0(unaff_R13 + 0x60,uVar4 >> 1);
@@ -1396,12 +1401,12 @@ LAB_18089cbf6:
         fVar13 = extraout_XMM0_Da_05;
         if (uVar4 >> 1 != 0) {
           do {
-            uVar5 = FUN_1808dde10(fVar13,unaff_RDI & 0xffffffff);
+            uVar5 = UISystemEventHandler(fVar13,unaff_RDI & 0xffffffff);
             if ((int)uVar5 != 0) {
               return uVar5;
             }
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar5 = FUN_1808a2740(*unaff_RBX,
+              uVar5 = SystemCore_Validator(*unaff_RBX,
                                     (int64_t)(int)uVar6 * 0x10 + *(int64_t *)(unaff_R13 + 0x60));
               uVar14 = extraout_XMM0_Da_07;
             }
@@ -1412,7 +1417,7 @@ LAB_18089cbf6:
             if ((int)uVar5 != 0) {
               return uVar5;
             }
-            uVar5 = FUN_1808de0e0(uVar14,unaff_RBP + 0x77);
+            uVar5 = SystemCore_Initializer(uVar14,unaff_RBP + 0x77);
             if ((int)uVar5 != 0) {
               return uVar5;
             }

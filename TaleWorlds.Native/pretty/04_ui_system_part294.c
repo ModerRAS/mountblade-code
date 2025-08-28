@@ -175,13 +175,13 @@ void FUN_18082e110(uint64_t param_1, uint64_t *param_2)
         if (param_2[5] != 0) {
             // WARNING: 子程序不返回
             // 执行组件清理操作
-            FUN_1807c41d0();
+            RenderingSystem_CoreProcessor0();
         }
         // 检查组件1的有效性
         if (param_2[1] != 0) {
             // WARNING: 子程序不返回
             // 执行组件清理操作
-            FUN_1807c41d0(param_1);
+            RenderingSystem_CoreProcessor0(param_1);
         }
         
         // 重置所有数据字段
@@ -229,14 +229,14 @@ void FUN_18082e170(uint64_t param_1, uint64_t *param_2)
     if (param_2[5] != 0) {
         // WARNING: 子程序不返回
         // 执行组件清理操作
-        FUN_1807c41d0();
+        RenderingSystem_CoreProcessor0();
     }
     
     // 检查组件1的有效性
     if (param_2[1] != 0) {
         // WARNING: 子程序不返回
         // 执行组件清理操作
-        FUN_1807c41d0(param_1);
+        RenderingSystem_CoreProcessor0(param_1);
     }
     
     // 重置所有数据字段
@@ -250,7 +250,7 @@ void FUN_18082e170(uint64_t param_1, uint64_t *param_2)
     
     // WARNING: 子程序不返回
     // 调用系统清理函数
-    FUN_1807c41d0(param_1, param_2);
+    RenderingSystem_CoreProcessor0(param_1, param_2);
 }
 
 /**
@@ -868,7 +868,7 @@ void FUN_18082e7ab(void)
 {
     // WARNING: 子程序不返回
     // 执行关键错误处理
-    FUN_1807c41d0();
+    RenderingSystem_CoreProcessor0();
 }
 
 /**

@@ -66,7 +66,7 @@ void FUN_1804cb300(int64_t param_1,uint param_2)
         uVar8 = (uint64_t)(ushort)puVar15[5];
         lVar9 = *(int64_t *)(param_1 + 0xe0);
       }
-      FUN_1800b8500(uVar8 * 0x50 + lVar9 + 8);
+      SystemCore_Controller(uVar8 * 0x50 + lVar9 + 8);
       FUN_1804cdfe0((uint64_t)(ushort)puVar15[5] * 0x50 + 8 + *(int64_t *)(param_1 + 0xe0));
       uVar8 = (uint64_t)(ushort)puVar15[5];
       if ((*(uint64_t *)(*(int64_t *)(param_1 + 0xe0) + uVar8 * 0x50) & 0xffffffff00000000) != 0)
@@ -463,7 +463,7 @@ void FUN_1804cb810(int64_t param_1,int64_t param_2,int8_t param_3)
   puVar1[1] = uVar17;
   puVar1[2] = uVar18;
   puVar1[3] = uVar19;
-  FUN_1801c0d90(param_2);
+  UtilitiesSystem_CacheManager(param_2);
   puStack_200 = *(uint64_t **)(param_2 + 0x28);
   uStack_108 = *puStack_200;
   uStack_100 = puStack_200[1];

@@ -82,7 +82,7 @@ void FUN_18026c3f0(uint64_t *param_1,int64_t param_2)
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar2 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar2);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar2);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
   plVar18 = (int64_t *)0x180bf8eb0;
@@ -122,7 +122,7 @@ LAB_18026c58e:
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar2 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar2);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar2);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
   plVar18 = (int64_t *)0x180bf8ed0;
@@ -247,7 +247,7 @@ LAB_18026c687:
   *(int32_t *)((int64_t)param_1 + 0x104) = *(int32_t *)(lVar14 + 0x2c);
   *(int32_t *)(param_1 + 0x20) = *(int32_t *)(lVar14 + 0x30);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x34;
-  FUN_180270120(param_1 + 0x21);
+  NetworkSystem_AdvancedHandler(param_1 + 0x21);
   puVar10 = *(int32_t **)(param_2 + 8);
   uVar4 = puVar10[1];
   uVar5 = puVar10[2];
@@ -265,7 +265,7 @@ LAB_18026c687:
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar2 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar2);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar2);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
   plVar18 = (int64_t *)0x180bf8f70;
@@ -305,7 +305,7 @@ LAB_18026ca07:
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar2 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar2);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar2);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
   plVar18 = (int64_t *)0x180bf8f00;
@@ -346,7 +346,7 @@ LAB_18026cafa:
     puVar13 = *(uint **)(param_2 + 8) + 1;
     *(uint **)(param_2 + 8) = puVar13;
     if (uVar2 != 0) {
-      FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar2);
+      SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar2);
       *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
     }
     plVar18 = (int64_t *)0x180bf8fd0;
@@ -384,69 +384,69 @@ LAB_18026cbfa:
   *(int32_t *)((int64_t)param_1 + 0x15c) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x2b) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x2c);
+  NetworkSystem_AdvancedHandler(param_1 + 0x2c);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x194) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x32) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x33);
+  NetworkSystem_AdvancedHandler(param_1 + 0x33);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x1cc) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x39) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x3a);
+  NetworkSystem_AdvancedHandler(param_1 + 0x3a);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x204) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x40) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x41);
+  NetworkSystem_AdvancedHandler(param_1 + 0x41);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x23c) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x47) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x48);
+  NetworkSystem_AdvancedHandler(param_1 + 0x48);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x274) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x4e) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x4f);
-  FUN_180270120(param_1 + 0x55);
+  NetworkSystem_AdvancedHandler(param_1 + 0x4f);
+  NetworkSystem_AdvancedHandler(param_1 + 0x55);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x2dc) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x5b) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x5c);
+  NetworkSystem_AdvancedHandler(param_1 + 0x5c);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x314) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x62) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 99);
+  NetworkSystem_AdvancedHandler(param_1 + 99);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x34c) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x69) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x6a);
+  NetworkSystem_AdvancedHandler(param_1 + 0x6a);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 900) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x70) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x71);
+  NetworkSystem_AdvancedHandler(param_1 + 0x71);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x3bc) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x77) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x78);
+  NetworkSystem_AdvancedHandler(param_1 + 0x78);
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x3f4) = *(int32_t *)(lVar14 + 8);
   *(int32_t *)(param_1 + 0x7e) = *(int32_t *)(lVar14 + 0xc);
   *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-  FUN_180270120(param_1 + 0x7f);
+  NetworkSystem_AdvancedHandler(param_1 + 0x7f);
   if (uVar16 != 0) {
     lVar14 = *(int64_t *)(param_2 + 8);
     *(int32_t *)((int64_t)param_1 + 0x42c) = *(int32_t *)(lVar14 + 8);
     *(int32_t *)(param_1 + 0x85) = *(int32_t *)(lVar14 + 0xc);
     *(int64_t *)(param_2 + 8) = lVar14 + 0x10;
-    FUN_180270120(param_1 + 0x86);
+    NetworkSystem_AdvancedHandler(param_1 + 0x86);
   }
   lVar14 = *(int64_t *)(param_2 + 8);
   *(int32_t *)((int64_t)param_1 + 0x464) = *(int32_t *)(lVar14 + 4);
@@ -464,7 +464,7 @@ LAB_18026cbfa:
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar16 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar16);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar16);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar16;
   }
   plVar18 = (int64_t *)0x180bf8f20;
@@ -504,7 +504,7 @@ LAB_18026cf9a:
   puVar13 = *(uint **)(param_2 + 8) + 1;
   *(uint **)(param_2 + 8) = puVar13;
   if (uVar16 != 0) {
-    FUN_180045f60(&puStack_468,puVar13,(uint64_t)uVar16);
+    SystemManager_Executor(&puStack_468,puVar13,(uint64_t)uVar16);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar16;
   }
   plVar18 = (int64_t *)0x180bf8fa0;

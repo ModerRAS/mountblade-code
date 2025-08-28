@@ -764,8 +764,8 @@ void FUN_18028e537(void)
 
 
 
-// 函数: void FUN_18028e550(int64_t param_1,int param_2,int64_t param_3,float param_4,float param_5,
-void FUN_18028e550(int64_t param_1,int param_2,int64_t param_3,float param_4,float param_5,
+// 函数: void SystemCore_ProcessEvents(int64_t param_1,int param_2,int64_t param_3,float param_4,float param_5,
+void SystemCore_ProcessEvents(int64_t param_1,int param_2,int64_t param_3,float param_4,float param_5,
                   float param_6,float param_7)
 
 {
@@ -936,11 +936,11 @@ void FUN_18028e690(int64_t param_1,int64_t param_2,int param_3,int64_t *param_4,
       if (fVar16 == 0.0) {
         if (fVar11 < (float)param_3) {
           if (fVar11 < 0.0) {
-            FUN_18028e550(param_2 + -4,0,param_4,fVar11,param_5,fVar11,fVar21);
+            SystemCore_ProcessEvents(param_2 + -4,0,param_4,fVar11,param_5,fVar11,fVar21);
           }
           else {
-            FUN_18028e550(param_1,(int)fVar11,param_4,fVar11,param_5,fVar11,fVar21);
-            FUN_18028e550(param_2 + -4);
+            SystemCore_ProcessEvents(param_1,(int)fVar11,param_4,fVar11,param_5,fVar11,fVar21);
+            SystemCore_ProcessEvents(param_2 + -4);
           }
         }
       }
@@ -976,27 +976,27 @@ void FUN_18028e690(int64_t param_1,int64_t param_2,int param_3,int64_t *param_4,
                 if ((fVar15 <= fVar20) || (fVar11 <= fVar17)) {
                   if (((fVar11 < fVar15) && (fVar15 < fVar20)) ||
                      ((fVar20 < fVar15 && (fVar15 < fVar11)))) {
-                    FUN_18028e550(param_1,uVar5,param_4,fVar11,param_5,fVar15,fVar18);
+                    SystemCore_ProcessEvents(param_1,uVar5,param_4,fVar11,param_5,fVar15,fVar18);
                   }
                   else if ((fVar17 <= fVar11) || (fVar20 <= fVar17)) {
                     if ((fVar20 < fVar17) && (fVar17 < fVar11)) {
-                      FUN_18028e550(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
+                      SystemCore_ProcessEvents(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
                     }
                   }
                   else {
-                    FUN_18028e550(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
+                    SystemCore_ProcessEvents(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
                   }
                 }
                 else {
-                  FUN_18028e550(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
-                  FUN_18028e550();
+                  SystemCore_ProcessEvents(param_1,uVar5,param_4,fVar11,param_5,fVar17,fVar19);
+                  SystemCore_ProcessEvents();
                 }
               }
               else {
-                FUN_18028e550(param_1,uVar5,param_4,fVar11,param_5,fVar15,fVar18);
-                FUN_18028e550();
+                SystemCore_ProcessEvents(param_1,uVar5,param_4,fVar11,param_5,fVar15,fVar18);
+                SystemCore_ProcessEvents();
               }
-              FUN_18028e550(param_1);
+              SystemCore_ProcessEvents(param_1);
               uVar5 = uVar9 & 0xffffffff;
             } while ((int)uVar9 < param_3);
           }

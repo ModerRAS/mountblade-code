@@ -1,3 +1,11 @@
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 /**
  * @file 02_core_engine_part184.c
  * @brief 核心引擎高级数据处理和配置管理模块
@@ -148,14 +156,14 @@
 /* CoreEngineSystemCleanup - 格式化处理函数 */
 #define FormatProcessor CoreEngineSystemCleanup
 
-/* FUN_180627ce0 - 数据上下文创建函数 */
-#define DataContextCreator FUN_180627ce0
+/* UtilitiesSystem_FileHandler - 数据上下文创建函数 */
+#define DataContextCreator UtilitiesSystem_FileHandler
 
-/* FUN_180057110 - 配置验证函数 */
-#define ConfigValidator FUN_180057110
+/* SystemCore_ConfigValidator - 配置验证函数 */
+#define ConfigValidator SystemCore_ConfigValidator
 
-/* FUN_180059820 - 配置处理函数 */
-#define ConfigProcessor FUN_180059820
+/* SystemCore_BackupSystem - 配置处理函数 */
+#define ConfigProcessor SystemCore_BackupSystem
 
 /* CoreMemoryPoolValidator - 上下文初始化函数 */
 #define ContextInitializer CoreMemoryPoolValidator
@@ -172,14 +180,14 @@
 /* CoreEngineDataBufferProcessor - 配置块初始化函数 */
 #define ConfigBlockInitializer CoreEngineDataBufferProcessor
 
-/* FUN_180059780 - 数据大小计算函数 */
-#define DataSizeCalculator FUN_180059780
+/* SystemCore_Initializer - 数据大小计算函数 */
+#define DataSizeCalculator SystemCore_Initializer
 
 /* FUN_18016cff0 - 资源清理函数 */
 #define ResourceCleaner FUN_18016cff0
 
-/* FUN_180057980 - 资源初始化函数 */
-#define ResourceInitializer FUN_180057980
+/* CoreSystem_DataCollector - 资源初始化函数 */
+#define ResourceInitializer CoreSystem_DataCollector
 
 /* FUN_180057f30 - 资源释放函数 */
 #define ResourceReleaser FUN_180057f30

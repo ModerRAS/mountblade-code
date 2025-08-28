@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -62,7 +66,7 @@ LAB_1804b3f44:
         (**(code **)(param_1[4] + 0x10))(param_1 + 4,lVar6,pcVar5,puVar9,0xfffffffffffffffe);
         pcVar10 = pcVar2;
         if (0 < (int)param_1[6]) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,param_1 + 4,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,param_1 + 4,1);
         }
         param_1[8] = (int64_t)pcVar10;
         break;
@@ -100,7 +104,7 @@ LAB_1804b3fe0:
         (**(code **)(puStack_70 + 0x10))(&puStack_70,lVar6);
         pcVar10 = pcVar2;
         if (0 < iStack_60) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,&puStack_70,1);
         }
         param_1[9] = (int64_t)pcVar10;
         break;
@@ -138,7 +142,7 @@ LAB_1804b4080:
         (**(code **)(puStack_70 + 0x10))(&puStack_70,lVar6);
         pcVar10 = pcVar2;
         if (0 < iStack_60) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,&puStack_70,1);
         }
         param_1[10] = (int64_t)pcVar10;
         break;
@@ -176,7 +180,7 @@ LAB_1804b4120:
         (**(code **)(puStack_70 + 0x10))(&puStack_70,lVar6);
         pcVar10 = pcVar2;
         if (0 < iStack_60) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,&puStack_70,1);
         }
         param_1[0xb] = (int64_t)pcVar10;
         break;
@@ -214,7 +218,7 @@ LAB_1804b41c0:
         (**(code **)(puStack_70 + 0x10))(&puStack_70,lVar6);
         pcVar10 = pcVar2;
         if (0 < iStack_60) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,&puStack_70,1);
         }
         param_1[0xc] = (int64_t)pcVar10;
         break;
@@ -252,7 +256,7 @@ LAB_1804b4260:
         (**(code **)(puStack_70 + 0x10))(&puStack_70,lVar6);
         pcVar10 = pcVar2;
         if (0 < iStack_60) {
-          pcVar10 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
+          pcVar10 = (char *)RenderingSystem_VertexProcessor(system_resource_state,&puStack_70,1);
         }
         param_1[0xd] = (int64_t)pcVar10;
         break;
@@ -429,7 +433,7 @@ LAB_1804b4557:
               lVar8 = lVar8 * 2;
               if (lVar8 != 0) goto LAB_1804b4557;
             }
-            lVar6 = FUN_180059780(lVar6,uVar4,pcVar2);
+            lVar6 = SystemCore_Initializer(lVar6,uVar4,pcVar2);
             CoreEngineDataTransformer(lVar6,&puStack_50);
             puVar9 = (uint64_t *)param_1[1];
             puVar7 = (uint64_t *)*param_1;
@@ -526,7 +530,7 @@ FUN_1804b4700(int64_t param_1,int64_t *param_2,uint64_t param_3,int param_4,uint
   lVar1 = *(int64_t *)(param_1 + 0x40 + (int64_t)param_4 * 8);
   if (lVar1 != 0) {
     uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar4 = (int64_t *)FUN_180275090(uVar3);
+    plVar4 = (int64_t *)RenderingSystem_ShaderManager(uVar3);
     if (plVar4 != (int64_t *)0x0) {
       (**(code **)(*plVar4 + 0x28))(plVar4);
     }
@@ -722,7 +726,7 @@ void FUN_1804b4ce0(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x30) {
-    FUN_18004b730(lVar2);
+    UtilitiesSystem_Processor(lVar2);
   }
   if (*param_1 == 0) {
     return;

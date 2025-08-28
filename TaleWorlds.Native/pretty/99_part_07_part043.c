@@ -182,7 +182,7 @@ LAB_1804c3537:
               CoreEngineDataTransformer(uVar10);
             }
             else {
-              FUN_180059820(param_3,&puStack_50);
+              SystemCore_BackupSystem(param_3,&puStack_50);
             }
           }
 LAB_1804c3580:

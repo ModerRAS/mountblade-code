@@ -182,7 +182,7 @@ typedef UI_SYSTEM_RESULT (*CONTROL_PROCESSOR)(CONTROL_STATE* control, void* user
 // =============================================================================
 
 /** UI系统资源清理函数 */
-#define UISystem_ResourceCleanup FUN_1807c41d0
+#define UISystem_ResourceCleanup RenderingSystem_CoreProcessor0
 
 /** UI系统内存分配函数 */
 #define UISystem_MemoryAllocate FUN_1807c4200

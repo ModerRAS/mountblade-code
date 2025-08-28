@@ -829,12 +829,12 @@ LAB_18050dd9a:
   bVar13 = (byte)((uint)*(int32_t *)(param_1 + 0x564) >> 0x1f) ^ 1;
   uVar1 = *(int8_t *)(*(int64_t *)(param_1 + 0x590) + 0x34bc);
   uStack_68 = uVar1;
-  lVar11 = FUN_18054f900(lVar7,iVar6,bVar13,uVar12);
+  lVar11 = Timer_GetElapsed(lVar7,iVar6,bVar13,uVar12);
   if (((lVar11 == 0) || (*(int *)(lVar11 + 0x104) == -1)) &&
-     ((uStack_68 = uVar1, lVar11 = FUN_18054f900(lVar7,iVar8,bVar13,uVar12), lVar11 == 0 ||
+     ((uStack_68 = uVar1, lVar11 = Timer_GetElapsed(lVar7,iVar8,bVar13,uVar12), lVar11 == 0 ||
       (*(int *)(lVar11 + 0x104) == -1)))) {
     uStack_68 = uVar1;
-    FUN_18054f900(lVar7,iVar9,bVar13,uVar12);
+    Timer_GetElapsed(lVar7,iVar9,bVar13,uVar12);
   }
 FUN_18050dec2:
                     // WARNING: Subroutine does not return
@@ -982,11 +982,11 @@ LAB_18050dd9f:
   }
   bVar9 = (byte)((uint)*(int32_t *)(in_R11 + 0x564) >> 0x1f) ^ 1;
   uVar1 = *(int8_t *)(*(int64_t *)(in_R11 + 0x590) + 0x34bc);
-  lVar2 = FUN_18054f900(lVar7,iVar4,bVar9,uVar8,uVar1);
+  lVar2 = Timer_GetElapsed(lVar7,iVar4,bVar9,uVar8,uVar1);
   if (((lVar2 == 0) || (*(int *)(lVar2 + 0x104) == -1)) &&
-     ((lVar2 = FUN_18054f900(lVar7,iVar5,bVar9,uVar8,uVar1), lVar2 == 0 ||
+     ((lVar2 = Timer_GetElapsed(lVar7,iVar5,bVar9,uVar8,uVar1), lVar2 == 0 ||
       (*(int *)(lVar2 + 0x104) == -1)))) {
-    FUN_18054f900(lVar7,iVar6,bVar9,uVar8,uVar1);
+    Timer_GetElapsed(lVar7,iVar6,bVar9,uVar8,uVar1);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(param_8 ^ (uint64_t)&stack0x00000000);

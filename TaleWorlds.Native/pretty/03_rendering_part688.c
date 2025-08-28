@@ -1,3 +1,8 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part688.c - 9 个函数
@@ -65,7 +70,7 @@ void FUN_18065d7f0(int64_t param_1,int64_t param_2)
             goto LAB_18065da24;
           }
           if (0.001 < (1.0 - fVar10) * fVar9 * fVar11) {
-            FUN_180403910(*puVar6,param_2);
+            MemoryManager_Optimizer(*puVar6,param_2);
           }
 LAB_18065da24:
           iVar4 = iVar4 + 1;
@@ -98,7 +103,7 @@ LAB_18065da24:
             goto LAB_18065dae7;
           }
           if (0.001 < fVar10 * fVar9 * fVar11) {
-            FUN_180403910(*puVar6,param_2);
+            MemoryManager_Optimizer(*puVar6,param_2);
           }
 LAB_18065dae7:
           iVar4 = iVar4 + 1;
@@ -144,7 +149,7 @@ LAB_18065dae7:
           fVar9 = fVar7;
         }
         if (0.001 < fVar7) {
-          FUN_180403910(*puVar6,param_2);
+          MemoryManager_Optimizer(*puVar6,param_2);
         }
         iVar5 = iVar5 + 1;
         puVar6 = puVar6 + 1;
@@ -181,7 +186,7 @@ LAB_18065dae7:
           fVar10 = fVar8;
         }
         if (0.001 < fVar8) {
-          FUN_180403910(*puVar6,param_2);
+          MemoryManager_Optimizer(*puVar6,param_2);
         }
         iVar5 = iVar5 + 1;
         puVar6 = puVar6 + 1;
@@ -322,7 +327,7 @@ void FUN_18065d804(int64_t param_1,float param_2)
             goto LAB_18065da24;
           }
           if (0.001 < (1.0 - fVar10) * fVar9 * fVar11) {
-            FUN_180403910(*puVar6);
+            MemoryManager_Optimizer(*puVar6);
           }
 LAB_18065da24:
           iVar4 = iVar4 + 1;
@@ -355,7 +360,7 @@ LAB_18065da24:
             goto LAB_18065dae7;
           }
           if (0.001 < fVar10 * fVar9 * fVar11) {
-            FUN_180403910(*puVar6);
+            MemoryManager_Optimizer(*puVar6);
           }
 LAB_18065dae7:
           iVar4 = iVar4 + 1;
@@ -400,7 +405,7 @@ LAB_18065dae7:
           fVar9 = fVar7;
         }
         if (0.001 < fVar7) {
-          FUN_180403910(*puVar6);
+          MemoryManager_Optimizer(*puVar6);
         }
         iVar5 = iVar5 + 1;
         puVar6 = puVar6 + 1;
@@ -437,7 +442,7 @@ LAB_18065dae7:
           fVar10 = fVar8;
         }
         if (0.001 < fVar8) {
-          FUN_180403910(*puVar6);
+          MemoryManager_Optimizer(*puVar6);
         }
         iVar5 = iVar5 + 1;
         puVar6 = puVar6 + 1;
@@ -557,7 +562,7 @@ void FUN_18065d902(int32_t param_1)
           fVar8 = fVar7;
         }
         if (0.001 < fVar7) {
-          FUN_180403910(*puVar6);
+          MemoryManager_Optimizer(*puVar6);
         }
         param_1 = 0x3f800000;
         uVar5 = uVar5 + 1;
@@ -583,7 +588,7 @@ void FUN_18065d902(int32_t param_1)
           *(uint *)(unaff_RBX + 0xc84) = uVar5;
         }
         if (unaff_XMM14_Da < 0.0) {
-          FUN_180403910(*puVar6);
+          MemoryManager_Optimizer(*puVar6);
         }
         param_1 = 0x3f800000;
         uVar5 = uVar5 + 1;
@@ -655,13 +660,13 @@ void FUN_18065df80(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   param_1[0xf] = param_4[0xf];
   param_1[0x10] = param_4[0x10];
   param_1[0x11] = param_4[0x11];
-  lVar1 = FUN_18065fd40();
+  lVar1 = MathStatisticsProcessor0();
   fVar9 = *(float *)(lVar1 + 8) / (param_6 * *(float *)(param_1[3] + 0x188));
-  lVar1 = FUN_18065fd40(param_1[4]);
+  lVar1 = MathStatisticsProcessor0(param_1[4]);
   fVar10 = *(float *)(lVar1 + 8) / (param_6 * *(float *)(param_1[4] + 0x188));
-  lVar1 = FUN_18065fd40(param_1[1]);
+  lVar1 = MathStatisticsProcessor0(param_1[1]);
   fVar4 = *(float *)(lVar1 + 8) / *(float *)(param_1[1] + 0x188);
-  lVar1 = FUN_18065fd40(param_1[2]);
+  lVar1 = MathStatisticsProcessor0(param_1[2]);
   param_5 = param_5 * *(float *)(param_1[2] + 0x188);
   fVar2 = fVar10;
   if (fVar9 <= fVar10) {
@@ -686,15 +691,15 @@ void FUN_18065df80(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if (fVar2 < fVar3) {
     fVar5 = (param_5 * fVar2) / *(float *)(lVar1 + 8);
   }
-  lVar1 = FUN_18065fd40(param_1[3]);
+  lVar1 = MathStatisticsProcessor0(param_1[3]);
   *(float *)(param_1 + 0x12) = (fVar6 * *(float *)(lVar1 + 8)) / *(float *)(param_1[3] + 0x188);
-  lVar1 = FUN_18065fd40(param_1[4]);
+  lVar1 = MathStatisticsProcessor0(param_1[4]);
   *(float *)((int64_t)param_1 + 0x94) =
        (fVar8 * *(float *)(lVar1 + 8)) / *(float *)(param_1[4] + 0x188);
-  lVar1 = FUN_18065fd40(param_1[1]);
+  lVar1 = MathStatisticsProcessor0(param_1[1]);
   *(float *)((int64_t)param_1 + 0x9c) =
        (fVar7 * *(float *)(lVar1 + 8)) / *(float *)(param_1[1] + 0x188);
-  lVar1 = FUN_18065fd40(param_1[2]);
+  lVar1 = MathStatisticsProcessor0(param_1[2]);
   *(float *)(param_1 + 0x13) = (fVar5 * *(float *)(lVar1 + 8)) / *(float *)(param_1[2] + 0x188);
   return;
 }
@@ -778,7 +783,7 @@ void FUN_18065e276(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   do {
     pfVar5 = pfVar5 + 1;
     if ((*plVar2 != 0) && (unaff_XMM15_Da < unaff_XMM12_Da * *pfVar5)) {
-      FUN_180403910(*plVar2,param_4);
+      MemoryManager_Optimizer(*plVar2,param_4);
     }
     iVar1 = iVar1 + 1;
     plVar2 = plVar2 + 1;
@@ -880,7 +885,7 @@ void FUN_18065e9a5(void)
       do {
         bVar8 = *(byte *)(in_stack_00000040 + lVar13);
         if ((*(uint64_t *)(unaff_RBP + 0x770) >> ((uint64_t)bVar8 & 0x3f) & 1) != 0) {
-          FUN_18022a890(&stack0x00000060);
+          SystemErrorHandler(&stack0x00000060);
           fVar22 = pfVar3[1];
           fVar15 = *pfVar3;
           pfVar1 = (float *)(unaff_RBP + 0x360 + (int64_t)(char)bVar8 * 0x10);
@@ -966,7 +971,7 @@ void FUN_18065e9a5(void)
   do {
     pfVar9 = pfVar9 + 1;
     if ((*plVar10 != 0) && (unaff_XMM15_Da < fVar25 * *pfVar9)) {
-      FUN_180403910(*plVar10,in_stack_00000058);
+      MemoryManager_Optimizer(*plVar10,in_stack_00000058);
     }
     iVar6 = iVar6 + 1;
     plVar10 = plVar10 + 1;
@@ -998,7 +1003,7 @@ void FUN_18065ed75(void)
   do {
     pfVar3 = pfVar3 + 1;
     if ((*plVar2 != 0) && (unaff_XMM15_Da < unaff_XMM12_Da * *pfVar3)) {
-      FUN_180403910(*plVar2,in_stack_00000058);
+      MemoryManager_Optimizer(*plVar2,in_stack_00000058);
     }
     iVar1 = iVar1 + 1;
     plVar2 = plVar2 + 1;

@@ -40,7 +40,7 @@ void FUN_1806b9030(int64_t *param_1,float *param_2,float *param_3,float *param_4
   param_4[2] = fVar4 * fVar2;
   (**(code **)(*param_1 + 0x90))(param_1,auStack_f8);
   (**(code **)(*param_1 + 0xd8))(param_1,auStack_118);
-  pfVar3 = (float *)FUN_1800fcb90(auStack_f8,auStack_d8,auStack_118);
+  pfVar3 = (float *)SystemCore_Initializer(auStack_f8,auStack_d8,auStack_118);
   fVar1 = pfVar3[2];
   fVar2 = pfVar3[1];
   fVar4 = pfVar3[3];

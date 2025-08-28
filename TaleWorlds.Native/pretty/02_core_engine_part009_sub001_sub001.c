@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* CoreSystem_MessageHandler - RenderingSystem_DataValidator */
+#define RenderingSystem_DataValidator CoreSystem_MessageHandler
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -99,7 +105,7 @@ void FUN_180043690(void)
   auStack_88[0] = 0;
   uStack_90 = 0x10;
   strcpy_s(auStack_88,0x80,&memory_allocator_384_ptr,in_R9,0xfffffffffffffffe);
-  core_system_memory = FUN_180623800(&puStack_a0);
+  core_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -166,7 +172,7 @@ void FUN_180043790(void)
   auStack_88[0] = 0;
   uStack_90 = 0x17;
   strcpy_s(auStack_88,0x80,&ui_system_data_1640_ptr,in_R9,0xfffffffffffffffe);
-  core_system_memory = FUN_180623800(&puStack_a0);
+  core_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -193,7 +199,7 @@ void FUN_180043820(void)
   auStack_88[0] = 0;
   uStack_90 = 0x11;
   strcpy_s(auStack_88,0x80,&ui_system_data_1664_ptr,in_R9,0xfffffffffffffffe);
-  core_system_memory = FUN_180623800(&puStack_a0);
+  core_system_memory = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -264,7 +270,7 @@ void FUN_1800439e0(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be14a8;
   if (iVar1 != 0) {
     core_system_memory = 0x180be14c0;
@@ -286,12 +292,12 @@ void FUN_180043a10(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(1);
+  iVar1 = RenderingEngine_ShaderProcessor(1);
   if (iVar1 != 0) {
     core_system_memory = 0x180be15c0;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be14e0;
   if (iVar1 != 0) {
     core_system_memory = 0x180be1550;
@@ -313,7 +319,7 @@ void FUN_180043a90(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be1c00;
   if (iVar1 != 0) {
     core_system_memory = 0x180be1c08;
@@ -335,7 +341,7 @@ void FUN_180043ac0(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be23a0;
   if (iVar1 != 0) {
     core_system_memory = 0x180be23c0;
@@ -357,7 +363,7 @@ void FUN_180043af0(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be2ad8;
   if (iVar1 != 0) {
     core_system_memory = 0x180be2af8;
@@ -379,7 +385,7 @@ void FUN_180043b20(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be4710;
   if (iVar1 != 0) {
     core_system_memory = 0x180be4728;
@@ -401,12 +407,12 @@ void FUN_180043b50(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(1);
+  iVar1 = RenderingEngine_ShaderProcessor(1);
   if (iVar1 != 0) {
     core_system_memory = 0x180be6078;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180be6068;
   if (iVar1 != 0) {
     core_system_memory = 0x180be6070;
@@ -448,7 +454,7 @@ void FUN_180043c00(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180bebac8;
   if (iVar1 != 0) {
     core_system_memory = 0x180bebad8;
@@ -470,17 +476,17 @@ void FUN_180043c30(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1807681a0(3);
+  iVar1 = RenderingEngine_ShaderProcessor(3);
   if (iVar1 != 0) {
     core_system_memory = 0x180bebc10;
     return;
   }
-  iVar1 = FUN_1807681a0(2);
+  iVar1 = RenderingEngine_ShaderProcessor(2);
   if (iVar1 != 0) {
     core_system_memory = 0x180bebbb0;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  iVar1 = RenderingEngine_ShaderProcessor(0);
   core_system_memory = 0x180bebaf0;
   if (iVar1 != 0) {
     core_system_memory = 0x180bebb50;
@@ -552,7 +558,7 @@ void FUN_180043d40(int64_t param_1)
   }
   plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xc0,8,3,uVar4);
   plStackX_20 = plVar2;
-  FUN_180049830(plVar2);
+  UltraHighFreq_PerformanceMonitor1(plVar2);
   *plVar2 = (int64_t)&processed_var_8768_ptr;
   plVar2[3] = -4;
   pplStackX_10 = (int64_t **)plVar2;
@@ -641,8 +647,8 @@ void FUN_180043f90(void)
 
 
 
-// 函数: void FUN_180044a30(uint64_t *param_1)
-void FUN_180044a30(uint64_t *param_1)
+// 函数: void RenderingSystem_DataValidator(uint64_t *param_1)
+void RenderingSystem_DataValidator(uint64_t *param_1)
 
 {
   *param_1 = &system_state_ptr;
@@ -743,9 +749,9 @@ void FUN_180044a50(void)
     }
     else {
       if (0x100 < ((uint64_t)plStack_208 & 0xffffffff)) {
-        FUN_1808fcdc8();
+        UltraHighFreq_ThreadManager1();
 LAB_180044db8:
-        FUN_1808fcdc8();
+        UltraHighFreq_ThreadManager1();
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
         return;
@@ -762,7 +768,7 @@ LAB_180044db8:
       puStack_220 = puStack_1d0;
     }
     puStack_228 = &rendering_buffer_208_ptr;
-    FUN_1800623b0(system_message_context,5,0xffffffffffffffff,4);
+    SystemConfigurationManager(system_message_context,5,0xffffffffffffffff,4);
     puStack_188 = &processed_var_672_ptr;
     puStack_180 = auStack_170;
     uStack_178 = 0;
@@ -774,7 +780,7 @@ LAB_180044db8:
       puStack_220 = puStack_180;
     }
     puStack_228 = &rendering_buffer_232_ptr;
-    FUN_1800623b0(system_message_context,5,0xffffffffffffffff,4);
+    SystemConfigurationManager(system_message_context,5,0xffffffffffffffff,4);
     uStack_200 = 0;
     puStack_188 = &system_state_ptr;
     puStack_1f8 = &system_data_buffer_ptr;
@@ -1037,7 +1043,7 @@ int32_t FUN_180045580(void)
   }
   pppplVar6 = (int64_t ****)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xc0,8,3,uVar12);
   pppplStackX_8 = pppplVar6;
-  FUN_180049830(pppplVar6);
+  UltraHighFreq_PerformanceMonitor1(pppplVar6);
   *pppplVar6 = (int64_t ***)&memory_allocator_3368_ptr;
   ppplStackX_20 = (int64_t ***)pppplVar6;
   (*(code *)(*pppplVar6)[5])(pppplVar6);
@@ -1085,7 +1091,7 @@ int32_t FUN_180045580(void)
     (*(code *)(*ppplVar9)[5])(ppplVar9);
   }
   (*pcVar2)(puVar1,&pplStackX_18);
-  FUN_18020f150(*(uint64_t *)(lVar10 + 400));
+  CoreEngine_SystemInitializer(*(uint64_t *)(lVar10 + 400));
   if (ppplVar9 != (int64_t ***)0x0) {
     (*(code *)(*ppplVar9)[7])(ppplVar9);
   }

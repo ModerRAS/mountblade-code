@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -595,16 +596,16 @@ void FUN_1800ed380(int64_t *param_1)
 
 {
   if (param_1[4] != 0) {
-    FUN_18023b050(param_1[4],0);
+    SystemCore_NetworkHandler(param_1[4],0);
   }
   if (param_1[3] != 0) {
-    FUN_18023b050(param_1[3],0);
+    SystemCore_NetworkHandler(param_1[3],0);
   }
   if (*param_1 != 0) {
-    FUN_18023b050(*param_1,0);
+    SystemCore_NetworkHandler(*param_1,0);
   }
   if (param_1[1] != 0) {
-    FUN_18023b050(param_1[1],0);
+    SystemCore_NetworkHandler(param_1[1],0);
   }
   *(int32_t *)(param_1 + 6) = 0x461c4000;
   param_1[4] = 0;
@@ -825,7 +826,7 @@ FUN_1800ed900(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  FUN_180049830();
+  UltraHighFreq_PerformanceMonitor1();
   *param_1 = &processed_var_5264_ptr;
   puVar1 = param_1 + 0x18;
   param_1[0x1a] = 0;

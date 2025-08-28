@@ -733,8 +733,8 @@ void FUN_1803393b0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
   }
   *puVar5 = uVar2;
   param_2[1] = param_2[1] + 4;
-  FUN_180639fd0(param_2,param_1 + 0xd8);
-  FUN_180639fd0(param_2,param_1 + 0xe8);
+  Audio_SoundManager(param_2,param_1 + 0xd8);
+  Audio_SoundManager(param_2,param_1 + 0xe8);
   System_QueueProcessor(param_2,param_1 + 0xf8);
   System_QueueProcessor(param_2,param_1 + 0x150);
   uVar3 = *(uint *)(param_1 + 0x1b8);

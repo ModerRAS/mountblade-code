@@ -320,7 +320,7 @@ int32_t * FUN_180272880(int32_t *param_1)
   *(uint64_t *)(param_1 + 0x90) = 0;
   *(uint64_t *)(param_1 + 0x8c) = 0;
   param_1[0x8e] = 0;
-  DataStructureManager(param_1 + 0x92,0x58,0x10,FUN_180049cd0,FUN_180044a30);
+  DataStructureManager(param_1 + 0x92,0x58,0x10,FUN_180049cd0,CoreSystem_MessageHandler);
   FUN_180241f10(param_1 + 500);
   *param_1 = 0;
   param_1[0x1f2] = 0;
@@ -661,7 +661,7 @@ void FUN_180272bd0(int64_t *param_1,int64_t param_2,uint *param_3)
       lVar8 = 0;
       plVar9 = param_1;
       if (uVar3 != 0) {
-        FUN_180045f60(&puStack_468,puVar1,uVar3);
+        SystemManager_Executor(&puStack_468,puVar1,uVar3);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar3;
       }
       do {
@@ -734,7 +734,7 @@ void System_DataSerializer(uint64_t *param_1,uint param_2,int64_t *param_3)
   param_3[1] = lVar2 + 4;
   do {
     if ((*(uint *)(param_1 + 1) & param_2) != 0) {
-      FUN_180639de0(param_3,*param_1);
+      UtilitiesSystem_ThreadManager(param_3,*param_1);
       iVar4 = iVar4 + 1;
     }
     param_1 = param_1 + 2;

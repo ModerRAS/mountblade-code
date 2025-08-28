@@ -595,7 +595,7 @@ void FUN_18065cc10(int64_t param_1)
 
 
 
-uint64_t FUN_18065cec0(int64_t param_1,int param_2)
+uint64_t UtilitiesSystem_FormatConverter(int64_t param_1,int param_2)
 
 {
   int64_t lVar1;
@@ -863,7 +863,7 @@ LAB_18065d446:
     fVar10 = 0.0;
   }
   else {
-    lVar3 = FUN_18065cec0((int64_t)*(int *)(param_1 + 0x10) * 0x30 + *(int64_t *)(param_1 + 0xc78)
+    lVar3 = UtilitiesSystem_FormatConverter((int64_t)*(int *)(param_1 + 0x10) * 0x30 + *(int64_t *)(param_1 + 0xc78)
                           ,0);
     fVar10 = *(float *)(lVar3 + 8) / fVar9;
     if ((fVar10 == 0.0) ||
@@ -874,7 +874,7 @@ LAB_18065d446:
     }
   }
   if ((*(char *)(param_1 + 0x28) == '\0') && ((fVar6 != 0.0 || (fVar11 != 0.0)))) {
-    lVar3 = FUN_18065cec0((int64_t)*(int *)(param_1 + 0x10) * 0x30 + *(int64_t *)(param_1 + 0xc78)
+    lVar3 = UtilitiesSystem_FormatConverter((int64_t)*(int *)(param_1 + 0x10) * 0x30 + *(int64_t *)(param_1 + 0xc78)
                           ,2);
     fVar9 = (*(float *)(param_1 + 0x18) * fVar9) / *(float *)(lVar3 + 8);
     if (0.0 <= *(float *)(param_1 + 0x18)) {
@@ -995,7 +995,7 @@ LAB_18065d55b:
       fVar6 = *(float *)(param_1 + 0x20);
       lVar3 = (int64_t)*(int *)(param_1 + 0x10) * 0x30 + *(int64_t *)(param_1 + 0xc78);
       fVar11 = *(float *)(*(int64_t *)(lVar3 + 0x20) + 0x188);
-      lVar3 = FUN_18065cec0(lVar3,4);
+      lVar3 = UtilitiesSystem_FormatConverter(lVar3,4);
       fVar6 = (ABS(fVar6) / (fVar11 * *(float *)(lVar3 + 8))) * param_2;
     }
     fVar6 = fVar6 + *(float *)(param_1 + 0x24);

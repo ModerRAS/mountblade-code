@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -113,7 +115,7 @@ LAB_1802c14d5:
   auStack_150[0] = 0;
   for (; pcVar14 != (char *)0x0; pcVar14 = *(char **)(pcVar14 + 0x58)) {
     cStack_1a8 = '\0';
-    FUN_180631000(pcVar14);
+    UltraHighFreq_CacheSystem1(pcVar14);
     if (cStack_1a8 != '\0') {
       pcVar7 = "name";
       do {
@@ -508,7 +510,7 @@ LAB_1802c1ccf:
                 puVar7 = puVar1;
               }
                     // WARNING: Subroutine does not return
-              FUN_180062300(system_message_context,&processed_var_7368_ptr,puVar7);
+              SystemParameterHandler(system_message_context,&processed_var_7368_ptr,puVar7);
             }
             *(uint *)(param_1 + 0x60) = *(uint *)(param_1 + 0x60) | 0x8000000;
           }
@@ -824,8 +826,8 @@ LAB_1802c2213:
 
 
 
-// 函数: void FUN_1802c22a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1802c22a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemData_Processor(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemData_Processor(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
@@ -850,12 +852,12 @@ void FUN_1802c22a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   lVar3 = (int64_t)system_system_data_config * 0x200 + 0x180c86980;
   if (system_system_data_config == 0) {
     system_system_data_config = system_system_data_config + 1;
-    FUN_180060680(lVar3,&processed_var_552_ptr,auStack_628);
+    RenderingEngine_BufferManager(lVar3,&processed_var_552_ptr,auStack_628);
   }
   else {
     iVar1 = system_system_data_config + -1;
     system_system_data_config = system_system_data_config + 1;
-    FUN_180060680(lVar3,&processed_var_7560_ptr,(int64_t)iVar1 * 0x200 + 0x180c86980,auStack_628);
+    RenderingEngine_BufferManager(lVar3,&processed_var_7560_ptr,(int64_t)iVar1 * 0x200 + 0x180c86980,auStack_628);
   }
   mbstowcs(auStack_428,lVar3,0x200);
   (**(code **)(*system_system_data_config + 0x18))(system_system_data_config,auStack_428);

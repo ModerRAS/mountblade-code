@@ -1,4 +1,13 @@
-#include "FUN_1808de000_definition.h"
+#include "ultra_high_freq_fun_definitions.h"
+/* UISystem_Controller - UISystem_Controller */
+#define UISystem_Controller UISystem_Controller
+
+
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
+
+
+#include "SystemInputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part078_sub002.c - 1 个函数
@@ -31,7 +40,7 @@ void FUN_1808a0552(int32_t param_1)
                     // WARNING: Subroutine does not return
         SystemThreadManager(param_1,&stack0x00000040);
       }
-      iVar3 = FUN_1808ddf00(param_1,uStack0000000000000098);
+      iVar3 = UltraHighFreq_ResourceLoader1(param_1,uStack0000000000000098);
       if ((iVar3 != 0) || (*(int *)(unaff_RDI[1] + 0x18) != 0)) break;
       lVar1 = *unaff_RDI;
       in_stack_00000030._4_4_ = *puVar4;
@@ -46,7 +55,7 @@ void FUN_1808a0552(int32_t param_1)
       if (iVar3 != 0) {
         return;
       }
-      iVar3 = FUN_1808de160(extraout_XMM0_Da,&stack0x00000098);
+      iVar3 = UISystem_Controller(extraout_XMM0_Da,&stack0x00000098);
       if (iVar3 != 0) {
         return;
       }

@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -295,7 +296,7 @@ uint64_t FUN_1808b5eb0(int64_t param_1,int64_t param_2,int64_t param_3)
       }
       iVar4 = *(int *)(lVar1 + 0x10);
       if (iVar4 == 0) {
-        uVar6 = FUN_1808b2f30(param_1,iVar9 + 1000);
+        uVar6 = SystemDataFlowProcessor(param_1,iVar9 + 1000);
 LAB_1808b6046:
         if (((int)uVar6 != 0x44) && ((int)uVar6 != 0)) {
           return uVar6;
@@ -878,7 +879,7 @@ int32_t FUN_1808b68c0(uint64_t *param_1,int64_t param_2,uint64_t *param_3)
   }
   plVar10 = (int64_t *)0x0;
   auStack_38[0] = 0;
-  iVar3 = FUN_18088c740(auStack_38,lVar4);
+  iVar3 = RenderingSystemOptimizer(auStack_38,lVar4);
   if (iVar3 == 0) {
     lVar5 = (*(code *)**(uint64_t **)(param_2 + 8))(param_2 + 8);
     if (**(int **)(lVar5 + 0xd0) == 0) {
@@ -969,7 +970,7 @@ void FUN_1808b68ee(void)
   
   plVar8 = (int64_t *)0x0;
   uStackX_20 = 0;
-  iVar3 = FUN_18088c740(&uStackX_20);
+  iVar3 = RenderingSystemOptimizer(&uStackX_20);
   if (iVar3 == 0) {
     lVar4 = (*(code *)**(uint64_t **)(unaff_RBP + 8))(unaff_RBP + 8);
     if (**(int **)(lVar4 + 0xd0) == 0) {

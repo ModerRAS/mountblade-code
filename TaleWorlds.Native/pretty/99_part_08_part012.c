@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part012.c - 6 个函数
 
 // 函数: void FUN_1804eb500(int64_t *param_1,int param_2,int param_3)
@@ -438,12 +442,12 @@ uint64_t FUN_1804ebb80(int64_t param_1,int32_t param_2,int64_t param_3,char para
   lVar9 = 0;
   FUN_1800c1750(param_1,&plStack_c8,param_2);
   if (plStack_c8 == (int64_t *)0x0) {
-    FUN_180627020(&processed_var_9528_ptr,param_2);
+    SystemCore_Allocator(&processed_var_9528_ptr,param_2);
     uVar8 = 0;
   }
   else {
     if (((param_4 != '\0') && ((system_status_flag - 2U & 0xfffffffc) == 0)) && (system_status_flag != 4)) {
-      FUN_18063b470(applStack_b8,param_3);
+      AdvancedProcessor_StateManager0(applStack_b8,param_3);
       iStack_a8 = (int)applStack_b8[0];
       uStack_a4 = (int32_t)((uint64_t)applStack_b8[0] >> 0x20);
       uStack_a0 = SUB84(applStack_b8[1],0);
@@ -462,9 +466,9 @@ uint64_t FUN_1804ebb80(int64_t param_1,int32_t param_2,int64_t param_3,char para
       if ((((cVar5 != '\0') &&
            (cVar5 = SystemBufferProcessor(0x180c95578,0x10,&memory_allocator_3472_ptr), cVar5 != '\0')) &&
           ((cVar5 = SystemBufferProcessor(0x180c95578,param_2,&system_data_bca0), cVar5 != '\0' &&
-           ((cVar5 = FUN_180645fa0(0x180c95578,fVar2,&memory_allocator_3312_ptr), cVar5 != '\0' &&
-            (cVar5 = FUN_180645fa0(0x180c95578,fVar3,&memory_allocator_3312_ptr), cVar5 != '\0')))))) &&
-         (cVar5 = FUN_180645fa0(0x180c95578,fVar4,&memory_allocator_3328_ptr), cVar5 != '\0')) {
+           ((cVar5 = RenderingSystem_VertexBufferManager(0x180c95578,fVar2,&memory_allocator_3312_ptr), cVar5 != '\0' &&
+            (cVar5 = RenderingSystem_VertexBufferManager(0x180c95578,fVar3,&memory_allocator_3312_ptr), cVar5 != '\0')))))) &&
+         (cVar5 = RenderingSystem_VertexBufferManager(0x180c95578,fVar4,&memory_allocator_3328_ptr), cVar5 != '\0')) {
         FUN_1805aed50(0x180c95578,&iStack_a8);
       }
       system_system_memory = system_system_memory & 0xffffffff00000000;
@@ -486,7 +490,7 @@ uint64_t FUN_1804ebb80(int64_t param_1,int32_t param_2,int64_t param_3,char para
         } while (lVar9 < iVar6);
       }
       if (system_system_memory != 0) {
-        FUN_180567f30(system_system_memory,0x180c95578);
+        SystemCore_DatabaseHandler(system_system_memory,0x180c95578);
       }
       system_system_memory = 0;
                     // WARNING: Subroutine does not return
@@ -611,7 +615,7 @@ void FUN_1804ebef0(int64_t param_1,int32_t param_2,int64_t *param_3,int param_4,
   lStack_198 = param_1;
   FUN_1800c1750(param_1,&plStack_1a8,param_2);
   if (plStack_1a8 == (int64_t *)0x0) {
-    FUN_180627020(&processed_var_9528_ptr,param_2);
+    SystemCore_Allocator(&processed_var_9528_ptr,param_2);
   }
   else {
     lVar14 = (int64_t)param_4 * 0xa60;
@@ -639,7 +643,7 @@ void FUN_1804ebef0(int64_t param_1,int32_t param_2,int64_t *param_3,int param_4,
     uStack_a8 = CONCAT44(0x7f7fffff,fVar19);
     lStack_190 = lVar14;
     if (((param_6 != '\0') && ((system_status_flag - 2U & 0xfffffffc) == 0)) && (system_status_flag != 4)) {
-      FUN_18063b470(&uStack_128,param_3);
+      AdvancedProcessor_StateManager0(&uStack_128,param_3);
       uStack_118 = (int32_t)uStack_128;
       uStack_114 = uStack_128._4_4_;
       uStack_110 = uStack_120;
@@ -656,9 +660,9 @@ void FUN_1804ebef0(int64_t param_1,int32_t param_2,int64_t *param_3,int param_4,
       if ((((cVar6 != '\0') &&
            (cVar6 = SystemBufferProcessor(0x180c95578,0x11,&memory_allocator_3472_ptr), cVar6 != '\0')) &&
           ((cVar6 = SystemBufferProcessor(0x180c95578,param_2,&system_data_bca0), cVar6 != '\0' &&
-           ((cVar6 = FUN_180645fa0(0x180c95578,uStack_108,&memory_allocator_3360_ptr), cVar6 != '\0' &&
-            (cVar6 = FUN_180645fa0(0x180c95578,uStack_104,&memory_allocator_3360_ptr), cVar6 != '\0')))))) &&
-         ((cVar6 = FUN_180645fa0(0x180c95578,uStack_100,&memory_allocator_3376_ptr), cVar6 != '\0' &&
+           ((cVar6 = RenderingSystem_VertexBufferManager(0x180c95578,uStack_108,&memory_allocator_3360_ptr), cVar6 != '\0' &&
+            (cVar6 = RenderingSystem_VertexBufferManager(0x180c95578,uStack_104,&memory_allocator_3360_ptr), cVar6 != '\0')))))) &&
+         ((cVar6 = RenderingSystem_VertexBufferManager(0x180c95578,uStack_100,&memory_allocator_3376_ptr), cVar6 != '\0' &&
           ((cVar6 = FUN_1805aed50(0x180c95578,&uStack_118), cVar6 != '\0' &&
            (cVar6 = SystemBufferProcessor(0x180c95578,param_4,&memory_allocator_3424_ptr), cVar6 != '\0')))))) {
         SystemBufferProcessor(0x180c95578,(int)param_5,&memory_allocator_3248_ptr);
@@ -683,7 +687,7 @@ void FUN_1804ebef0(int64_t param_1,int32_t param_2,int64_t *param_3,int param_4,
         } while (lVar12 < iVar7);
       }
       if (system_system_memory != 0) {
-        FUN_180567f30(system_system_memory,0x180c95578);
+        SystemCore_DatabaseHandler(system_system_memory,0x180c95578);
       }
       system_system_memory = 0;
                     // WARNING: Subroutine does not return

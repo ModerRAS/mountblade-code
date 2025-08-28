@@ -1,3 +1,7 @@
+/* SystemCore_BackupSystem - RenderingSystem_ConfigProcessor */
+#define RenderingSystem_ConfigProcessor SystemCore_BackupSystem
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part007.c - UI系统高级功能模块
@@ -192,7 +196,7 @@ uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, uint64_t alloc_flag,
     *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_2;
     
     // 执行系统初始化
-    FUN_18005d580();
+    DataSerializationEngine();
     *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_1;
     
     // 根据分配标志释放内存
@@ -307,7 +311,7 @@ void ui_system_data_structure_processor(int64_t data_source, int64_t data_target
             }
             else {
                 // 处理目标数据结构
-                FUN_180059820(data_target, &stack_data_ptr);
+                RenderingSystem_ConfigProcessor(data_target, &stack_data_ptr);
             }
             
             // 重置数据结构指针

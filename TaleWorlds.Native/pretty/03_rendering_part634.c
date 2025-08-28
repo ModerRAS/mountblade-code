@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -39,7 +44,7 @@ int32_t * FUN_18061e860(int64_t param_1,int32_t *param_2,int32_t param_3,float p
   uVar2 = *(uint64_t *)(render_system_data_memory + 0xd0);
   uVar5 = (int32_t)(*(int64_t *)(param_1 + 0x50) - *(int64_t *)(param_1 + 0x48) >> 3);
   auStackX_18[0] = uVar5;
-  FUN_1800571e0(param_1 + 0x1e0,auStackX_18);
+  SystemDatabaseProcessor(param_1 + 0x1e0,auStackX_18);
   uStack_7c = 0;
   uStack_78 = 0;
   uStack_74 = 0;
@@ -57,7 +62,7 @@ int32_t * FUN_18061e860(int64_t param_1,int32_t *param_2,int32_t param_3,float p
   ;
   (**(code **)(*plVar3 + 0xa0))(plVar3,puVar4);
   (**(code **)*puVar4)(puVar4);
-  FUN_18005ea90(param_1 + 0x48,&plStackX_10);
+  SystemSecurity_Manager(param_1 + 0x48,&plStackX_10);
   *(int *)(param_1 + 0x1ac) = *(int *)(param_1 + 0x1ac) + 1;
   FUN_18061d270(param_1);
   FUN_18061d1b0(param_1);
@@ -506,7 +511,7 @@ LAB_18061f4c2:
                                 (plStack_340,&uStack_2a8,&uStack_310,1,1,&uStack_358);
             goto LAB_18061f4c2;
           }
-          FUN_18063b470(&uStack_248,&fStack_1c8);
+          AdvancedProcessor_StateManager0(&uStack_248,&fStack_1c8);
           plVar17 = plStack_340;
           uStack_338 = CONCAT44(uStack_240,uStack_244);
           uStack_330 = CONCAT44(uStack_248,uStack_23c);
@@ -778,14 +783,14 @@ LAB_18061fb27:
     } while (uStack_308 != 0);
   }
   *(int *)(param_1 + 0x35) = (int)(param_1[10] - *plVar1 >> 3);
-  puVar13 = (uint64_t *)FUN_1808fc418(0x80);
+  puVar13 = (uint64_t *)SystemRenderer(0x80);
   *puVar13 = &memory_allocator_3672_ptr;
   *puVar13 = &rendering_buffer_2488_ptr;
   puStackX_18 = puVar13;
   DataStructureManager(puVar13 + 1,0x38,2,FUN_18061cb70,FUN_18061cd80);
   *(int32_t *)(puVar13 + 0xf) = 0;
   param_1[0x48] = puVar13;
-  puVar13 = (uint64_t *)FUN_1808fc418(0xb8);
+  puVar13 = (uint64_t *)SystemRenderer(0xb8);
   *puVar13 = &rendering_buffer_2456_ptr;
   *puVar13 = &rendering_buffer_2376_ptr;
   puStackX_20 = puVar13 + 1;
@@ -815,7 +820,7 @@ LAB_18061fb27:
   FUN_18061d1b0(param_1);
   ppppuVar14 = ppppuStack_2f0;
   if ((uint64_t *****)ppppuStack_2f0 != (uint64_t *****)0x0) {
-    FUN_18004b790(&ppppuStack_300,*ppppuStack_2f0);
+    SystemCache_Manager(&ppppuStack_300,*ppppuStack_2f0);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(ppppuVar14);
   }

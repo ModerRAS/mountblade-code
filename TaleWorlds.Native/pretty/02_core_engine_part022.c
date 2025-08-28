@@ -1,3 +1,16 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -56,7 +69,7 @@ void FUN_180064c00(int64_t *param_1,int64_t param_2,int64_t param_3)
   uStack_d8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
   uStack_e8 = 0;
-  FUN_180057110();
+  SystemCore_ConfigValidator();
   puVar6 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
@@ -69,7 +82,7 @@ void FUN_180064c00(int64_t *param_1,int64_t param_2,int64_t param_3)
   do {
     lVar12 = lVar12 + 1;
   } while (puVar6[lVar12] != '\0');
-  FUN_1800671b0(&uStack_c8);
+  MathCoreCalculator0(&uStack_c8);
   puVar6 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_3 + 8);
@@ -80,7 +93,7 @@ void FUN_180064c00(int64_t *param_1,int64_t param_2,int64_t param_3)
   do {
     lVar10 = lVar10 + 1;
   } while (puVar6[lVar10] != '\0');
-  FUN_1800671b0(&uStack_88,puVar6,lVar10);
+  MathCoreCalculator0(&uStack_88,puVar6,lVar10);
   lVar12 = lStack_78;
   uVar1 = uStack_a8;
   uStack_98 = 0;
@@ -159,7 +172,7 @@ void FUN_180064c00(int64_t *param_1,int64_t param_2,int64_t param_3)
   if (0xf < uStack_b0) {
     puVar5 = (int8_t *)CONCAT71(uStack_c7,uStack_c8);
   }
-  FUN_1800671b0(&uStack_68,puVar5,puVar4);
+  MathCoreCalculator0(&uStack_68,puVar5,puVar4);
   uStack_e8 = 1;
   SystemResourceAllocator(&uStack_a8);
   uVar9 = uStack_58;
@@ -229,7 +242,7 @@ LAB_180064eed:
       lVar11 = lVar11 * 2;
       if (lVar11 != 0) goto LAB_180064eed;
     }
-    puStack_d0 = (uint64_t *)FUN_180059780(lVar12,puVar4,lVar10);
+    puStack_d0 = (uint64_t *)SystemCore_Initializer(lVar12,puVar4,lVar10);
     *puStack_d0 = &system_state_ptr;
     puStack_d0[1] = 0;
     *(int32_t *)(puStack_d0 + 2) = 0;
@@ -401,14 +414,14 @@ void FUN_180065160(uint64_t param_1)
   uStack_120 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_368;
   uStack_310 = 0;
-  FUN_180627e10(param_1,&puStack_180,&processed_var_816_ptr);
+  UtilitiesSystem_CacheManager(param_1,&puStack_180,&processed_var_816_ptr);
   uStack_280 = 0;
   lStack_278 = 0;
   puVar16 = &system_buffer_ptr;
   if (puStack_178 != (void *)0x0) {
     puVar16 = puStack_178;
   }
-  uVar20 = FUN_18062dee0(&uStack_280,puVar16,&processed_var_572_ptr);
+  uVar20 = SystemCore_Validator(&uStack_280,puVar16,&processed_var_572_ptr);
   puStack_330 = &system_data_buffer_ptr;
   uStack_318 = 0;
   lStack_328 = 0;
@@ -603,7 +616,7 @@ void FUN_180065160(uint64_t param_1)
     uStack_248 = 3;
     auStack_338[0] = 10;
     if (lStack_238 != 0) {
-      FUN_180057980(&puStack_240,&puStack_260,auStack_338);
+      CoreSystem_DataCollector(&puStack_240,&puStack_260,auStack_338);
     }
     uVar12 = (int64_t)puStack_258 - (int64_t)puStack_260 >> 5;
     puVar19 = puStack_260;
@@ -618,7 +631,7 @@ void FUN_180065160(uint64_t param_1)
         uStack_128 = 3;
         auStack_334[0] = 0x23;
         if (puVar19[1] != 0) {
-          FUN_180057980(puVar19,&puStack_140,auStack_334);
+          CoreSystem_DataCollector(puVar19,&puStack_140,auStack_334);
         }
         puVar5 = puStack_138;
         puVar17 = puStack_140;
@@ -905,9 +918,9 @@ void FUN_180065f00(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   CoreEngineDataBufferProcessor(&puStack_a8,iVar5);
   *(int32_t *)((uint64_t)uStack_98 + lStack_a0) = 0x706d74;
   uStack_98 = iVar5;
-  cVar2 = FUN_180624a00(&puStack_a8);
+  cVar2 = UltraHighFreq_LogManager1(&puStack_a8);
   if (cVar2 == '\0') {
-    FUN_180624910(&puStack_a8);
+    SystemManager_Processor(&puStack_a8);
   }
   ppuStack_68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
@@ -936,7 +949,7 @@ void FUN_180065f00(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   uStack_70 = 0;
   puStack_88 = &system_state_ptr;
   if (param_2 == 0) {
-    lVar4 = FUN_18005e890(system_context_ptr);
+    lVar4 = PerformanceOptimizer(system_context_ptr);
     (**(code **)(*plStack_b0 + 8))(plStack_b0,param_1,*(int32_t *)(lVar4 + 0x38));
   }
   else {

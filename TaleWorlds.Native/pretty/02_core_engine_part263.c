@@ -1,3 +1,4 @@
+#include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -323,7 +324,7 @@ FUN_18022a810(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 
 
 
-int64_t FUN_18022a890(int64_t param_1,char param_2,int64_t param_3)
+int64_t SystemErrorHandler(int64_t param_1,char param_2,int64_t param_3)
 
 {
   uint64_t *puVar1;

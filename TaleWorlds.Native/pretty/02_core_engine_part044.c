@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part044.c - 16 个函数
 
 // 函数: void FUN_180084000(float *param_1)
@@ -158,7 +162,7 @@ void FUN_180084320(uint64_t *param_1,uint param_2)
     uStack_70 = 0x25;
     uStack_68 = param_1[3];
     uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    ppuVar2 = (void **)FUN_18005ce30(uVar1,&puStack_108);
+    ppuVar2 = (void **)SystemCore_StreamController(uVar1,&puStack_108);
     ppuStack_118 = ppuVar2;
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
@@ -169,7 +173,7 @@ void FUN_180084320(uint64_t *param_1,uint param_2)
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
     }
-    FUN_18005e370(uVar1,&ppuStack_138);
+    SystemPerformance_Monitor(uVar1,&ppuStack_138);
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
     }
@@ -224,7 +228,7 @@ void FUN_1800844c0(uint64_t *param_1,uint param_2)
     uStack_70 = 0x23;
     uStack_68 = param_1[3];
     uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    ppuVar2 = (void **)FUN_18005ce30(uVar1,&puStack_108);
+    ppuVar2 = (void **)SystemCore_StreamController(uVar1,&puStack_108);
     ppuStack_118 = ppuVar2;
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
@@ -235,7 +239,7 @@ void FUN_1800844c0(uint64_t *param_1,uint param_2)
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
     }
-    FUN_18005e370(uVar1,&ppuStack_138);
+    SystemPerformance_Monitor(uVar1,&ppuStack_138);
     if (ppuVar2 != (void **)0x0) {
       (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
     }
@@ -295,8 +299,8 @@ void FUN_1800846a0(int64_t param_1)
 
 
 
-// 函数: void FUN_1800846d0(int *param_1)
-void FUN_1800846d0(int *param_1)
+// 函数: void CoreEngine_DataProcessor(int *param_1)
+void CoreEngine_DataProcessor(int *param_1)
 
 {
   uint64_t uVar1;
@@ -361,8 +365,8 @@ void FUN_180084736(int64_t param_1)
 
 
 
-// 函数: void FUN_180084760(float *param_1,float *param_2)
-void FUN_180084760(float *param_1,float *param_2)
+// 函数: void SystemCore_PerformanceMonitor(float *param_1,float *param_2)
+void SystemCore_PerformanceMonitor(float *param_1,float *param_2)
 
 {
   float fVar1;
@@ -457,8 +461,8 @@ void FUN_180084760(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_180084ae0(float *param_1)
-void FUN_180084ae0(float *param_1)
+// 函数: void Utilities_DataValidator(float *param_1)
+void Utilities_DataValidator(float *param_1)
 
 {
   float fVar1;
@@ -621,7 +625,7 @@ bool FUN_180084fa0(float *param_1)
 
 
 
-float * FUN_180085020(float *param_1,float *param_2)
+float * > HighFreq_MeshManager1(float *param_1,float *param_2)
 
 {
   float fVar1;
@@ -751,7 +755,7 @@ void FUN_180085190(float *param_1,int64_t param_2,char param_3,uint64_t *param_4
     param_1[0xf] = 1.0;
     return;
   }
-  FUN_180085020(param_4,&fStack_68);
+  > HighFreq_MeshManager1(param_4,&fStack_68);
   uVar1 = *(uint64_t *)(param_2 + 200);
   uVar2 = *(uint64_t *)(param_2 + 0xd0);
   uVar3 = *(uint64_t *)(param_2 + 0xd8);
@@ -874,7 +878,7 @@ void FUN_1800853fd(void)
   float fStackX_24;
   float in_stack_00000028;
   
-  FUN_180085020(in_R9,&fStackX_20);
+  > HighFreq_MeshManager1(in_R9,&fStackX_20);
   uVar1 = *(uint64_t *)(in_R11 + 200);
   uVar2 = *(uint64_t *)(in_R11 + 0xd0);
   uVar3 = *(uint64_t *)(in_R11 + 0xd8);
@@ -1039,7 +1043,7 @@ void FUN_180085680(int64_t *param_1,int64_t *param_2)
         else {
           puVar12[1] = uVar11;
         }
-        FUN_1800846d0(puVar12);
+        CoreEngine_DataProcessor(puVar12);
       }
       *puVar12 = uVar11;
       if (*puVar14 != 0) {
@@ -1071,7 +1075,7 @@ void FUN_180085680(int64_t *param_1,int64_t *param_2)
         else {
           puVar12[0xb] = uVar11;
         }
-        FUN_1800846d0(puVar12 + 10);
+        CoreEngine_DataProcessor(puVar12 + 10);
       }
       puVar12[10] = uVar11;
       uVar11 = 0;

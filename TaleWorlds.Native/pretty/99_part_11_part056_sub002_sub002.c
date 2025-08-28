@@ -47,7 +47,7 @@ uint64_t FUN_1807ba360(int64_t param_1,char param_2)
       *(int64_t *)lVar1 = lVar1;
       *(uint64_t *)(lVar1 + 0x10) = 0;
       plVar4 = (int64_t *)(*(int64_t *)(param_1 + 0x420) + (int64_t)iVar2 * 800);
-      FUN_180758220(plVar4 + 4,0);
+      UIComponent_Renderer(plVar4 + 4,0);
       iVar2 = iVar2 + 1;
       plVar4[0x4a] = 0;
       *(int8_t *)((int64_t)plVar4 + 0x304) = 0;
@@ -128,7 +128,7 @@ uint64_t FUN_1807ba373(uint64_t param_1,char param_2)
       *(int64_t *)lVar1 = lVar1;
       *(uint64_t *)(lVar1 + 0x10) = 0;
       plVar4 = (int64_t *)(*(int64_t *)(unaff_RDI + 0x420) + (int64_t)iVar2 * 800);
-      FUN_180758220(plVar4 + 4,0);
+      UIComponent_Renderer(plVar4 + 4,0);
       iVar2 = iVar2 + 1;
       plVar4[0x4a] = 0;
       *(int8_t *)((int64_t)plVar4 + 0x304) = 0;
@@ -194,7 +194,7 @@ uint64_t FUN_1807ba3ff(void)
     *(int64_t *)lVar1 = lVar1;
     *(uint64_t *)(lVar1 + 0x10) = unaff_R14;
     plVar4 = (int64_t *)(*(int64_t *)(unaff_RDI + 0x420) + (int64_t)unaff_ESI * 800);
-    FUN_180758220(plVar4 + 4,0);
+    UIComponent_Renderer(plVar4 + 4,0);
     unaff_ESI = unaff_ESI + 1;
     plVar4[0x4a] = unaff_R14;
     *(char *)((int64_t)plVar4 + 0x304) = (char)unaff_R14;

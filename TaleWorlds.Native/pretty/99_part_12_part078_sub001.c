@@ -1,9 +1,23 @@
-#include "FUN_1808de000_definition.h"
-#include "TaleWorlds.Native.Split.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* UISystem_Controller - UISystem_Controller */
+#define UISystem_Controller UISystem_Controller
+
+
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
+
+
+/* 函数别名定义: DataCompressor */
+#define DataCompressor DataCompressor
+
+
 
 // 99_part_12_part078_sub001.c - 4 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part078.c - 4 个函数
 
@@ -38,13 +52,13 @@ uint64_t FUN_1807ffdf0(int64_t *param_1)
       *(uint *)((int64_t)param_1 + 0xd4) = *(uint *)((int64_t)param_1 + 0xd4) | 0x100;
       UNLOCK();
     }
-    if ((param_1[0x5d] != 0) && (uVar1 = FUN_18075dbf0(param_1[0x5d],0,0,4), (int)uVar1 != 0)) {
+    if ((param_1[0x5d] != 0) && (uVar1 = SystemCore_ConfigurationManager(param_1[0x5d],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((param_1[0x5e] != 0) && (uVar1 = FUN_18075dbf0(param_1[0x5e],0,0,4), (int)uVar1 != 0)) {
+    if ((param_1[0x5e] != 0) && (uVar1 = SystemCore_ConfigurationManager(param_1[0x5e],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    uVar1 = FUN_18075dbf0(param_1 + 0xe,0,0,4);
+    uVar1 = SystemCore_ConfigurationManager(param_1 + 0xe,0,0,4);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -57,39 +71,39 @@ uint64_t FUN_1807ffdf0(int64_t *param_1)
     *(uint *)(param_1 + 0xd) = *(uint *)((int64_t)param_1 + 100) ^ 0x80000000;
     (**(code **)(param_1[0xe] + 0x20))(param_1 + 0xe,param_1[5],param_1);
     if (param_1[0x5d] != 0) {
-      FUN_180762070(param_1[0x5d],0,1);
+      SystemCore_Initializer(param_1[0x5d],0,1);
     }
     if (param_1[0x5e] != 0) {
-      FUN_180762070(param_1[0x5e],0,1);
+      SystemCore_Initializer(param_1[0x5e],0,1);
     }
     if (param_1[0x5d] == 0) {
       param_1[0x4d] = param_1[3];
-      uVar2 = FUN_180759220(uVar2,param_1 + 0xe,0,0,0,0);
+      uVar2 = UltraHighFreq_AudioSystem1(uVar2,param_1 + 0xe,0,0,0,0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
     }
     else {
       *(int64_t *)(param_1[0x5d] + 0x1f8) = param_1[3];
-      uVar2 = FUN_180759220(uVar2,param_1[0x5d],0,0,0,0);
+      uVar2 = UltraHighFreq_AudioSystem1(uVar2,param_1[0x5d],0,0,0,0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
       if (param_1[0x5e] == 0) {
         param_1[0x4d] = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5d],param_1 + 0xe,0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5d],param_1 + 0xe,0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
       }
       else {
         *(int64_t *)(param_1[0x5e] + 0x1f8) = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5d],param_1[0x5e],0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5d],param_1[0x5e],0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
         param_1[0x4d] = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5e],param_1 + 0xe,0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5e],param_1 + 0xe,0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -97,13 +111,13 @@ uint64_t FUN_1807ffdf0(int64_t *param_1)
     }
   }
   else {
-    if ((param_1[0x5d] != 0) && (uVar1 = FUN_18075dbf0(param_1[0x5d],0,0,4), (int)uVar1 != 0)) {
+    if ((param_1[0x5d] != 0) && (uVar1 = SystemCore_ConfigurationManager(param_1[0x5d],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((param_1[0x5e] != 0) && (uVar1 = FUN_18075dbf0(param_1[0x5e],0,0,4), (int)uVar1 != 0)) {
+    if ((param_1[0x5e] != 0) && (uVar1 = SystemCore_ConfigurationManager(param_1[0x5e],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((param_1[0x52] != 0) && (uVar1 = FUN_18075dbf0(param_1 + 0xe,0,0,4), (int)uVar1 != 0)) {
+    if ((param_1[0x52] != 0) && (uVar1 = SystemCore_ConfigurationManager(param_1 + 0xe,0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
     uVar1 = func_0x000180742ca0(param_1[1],*(int32_t *)(*(int64_t *)(param_1[5] + 0x60) + 0xa4),
@@ -125,32 +139,32 @@ uint64_t FUN_1807ffdf0(int64_t *param_1)
     }
     if (param_1[0x5d] == 0) {
       *(int64_t *)(param_1[0x5c] + 0x1f8) = param_1[3];
-      uVar2 = FUN_180759220(uVar2,param_1[0x5c],0,0,0,0);
+      uVar2 = UltraHighFreq_AudioSystem1(uVar2,param_1[0x5c],0,0,0,0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
     }
     else {
       *(int64_t *)(param_1[0x5d] + 0x1f8) = param_1[3];
-      uVar2 = FUN_180759220(uVar2,param_1[0x5d],0,0,0,0);
+      uVar2 = UltraHighFreq_AudioSystem1(uVar2,param_1[0x5d],0,0,0,0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
       if (param_1[0x5e] == 0) {
         *(int64_t *)(param_1[0x5c] + 0x1f8) = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5d],param_1[0x5c],0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5d],param_1[0x5c],0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
       }
       else {
         *(int64_t *)(param_1[0x5e] + 0x1f8) = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5d],param_1[0x5e],0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5d],param_1[0x5e],0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
         *(int64_t *)(param_1[0x5c] + 0x1f8) = param_1[3];
-        uVar2 = FUN_180759220(param_1[0x5e],param_1[0x5c],0,0,0,0);
+        uVar2 = UltraHighFreq_AudioSystem1(param_1[0x5e],param_1[0x5c],0,0,0,0);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -201,13 +215,13 @@ uint64_t FUN_1807ffe16(void)
       *(uint *)((int64_t)unaff_RBX + 0xd4) = *(uint *)((int64_t)unaff_RBX + 0xd4) | 0x100;
       UNLOCK();
     }
-    if ((unaff_RBX[0x5d] != 0) && (uVar1 = FUN_18075dbf0(unaff_RBX[0x5d],0,0,4), (int)uVar1 != 0)) {
+    if ((unaff_RBX[0x5d] != 0) && (uVar1 = SystemCore_ConfigurationManager(unaff_RBX[0x5d],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((unaff_RBX[0x5e] != 0) && (uVar1 = FUN_18075dbf0(unaff_RBX[0x5e],0,0,4), (int)uVar1 != 0)) {
+    if ((unaff_RBX[0x5e] != 0) && (uVar1 = SystemCore_ConfigurationManager(unaff_RBX[0x5e],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    uVar1 = FUN_18075dbf0(unaff_RBX + 0xe,0,0,4);
+    uVar1 = SystemCore_ConfigurationManager(unaff_RBX + 0xe,0,0,4);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -220,39 +234,39 @@ uint64_t FUN_1807ffe16(void)
     *(uint *)(unaff_RBX + 0xd) = *(uint *)((int64_t)unaff_RBX + 100) ^ 0x80000000;
     uVar3 = (**(code **)(unaff_RBX[0xe] + 0x20))(unaff_RBX + 0xe,unaff_RBX[5]);
     if (unaff_RBX[0x5d] != 0) {
-      uVar3 = FUN_180762070(unaff_RBX[0x5d],0,1);
+      uVar3 = SystemCore_Initializer(unaff_RBX[0x5d],0,1);
     }
     if (unaff_RBX[0x5e] != 0) {
-      uVar3 = FUN_180762070(unaff_RBX[0x5e],0,1);
+      uVar3 = SystemCore_Initializer(unaff_RBX[0x5e],0,1);
     }
     if (unaff_RBX[0x5d] == 0) {
       unaff_RBX[0x4d] = unaff_RBX[3];
-      uVar1 = FUN_180759220(uVar3,unaff_RBX + 0xe,0,0,0);
+      uVar1 = UltraHighFreq_AudioSystem1(uVar3,unaff_RBX + 0xe,0,0,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
     }
     else {
       *(int64_t *)(unaff_RBX[0x5d] + 0x1f8) = unaff_RBX[3];
-      uVar1 = FUN_180759220(uVar3,unaff_RBX[0x5d],0,0,0);
+      uVar1 = UltraHighFreq_AudioSystem1(uVar3,unaff_RBX[0x5d],0,0,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
       if (unaff_RBX[0x5e] == 0) {
         unaff_RBX[0x4d] = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5d],unaff_RBX + 0xe,0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5d],unaff_RBX + 0xe,0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
       }
       else {
         *(int64_t *)(unaff_RBX[0x5e] + 0x1f8) = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5d],unaff_RBX[0x5e],0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5d],unaff_RBX[0x5e],0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
         unaff_RBX[0x4d] = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5e],unaff_RBX + 0xe,0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5e],unaff_RBX + 0xe,0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -260,13 +274,13 @@ uint64_t FUN_1807ffe16(void)
     }
   }
   else {
-    if ((unaff_RBX[0x5d] != 0) && (uVar1 = FUN_18075dbf0(unaff_RBX[0x5d],0,0,4), (int)uVar1 != 0)) {
+    if ((unaff_RBX[0x5d] != 0) && (uVar1 = SystemCore_ConfigurationManager(unaff_RBX[0x5d],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((unaff_RBX[0x5e] != 0) && (uVar1 = FUN_18075dbf0(unaff_RBX[0x5e],0,0,4), (int)uVar1 != 0)) {
+    if ((unaff_RBX[0x5e] != 0) && (uVar1 = SystemCore_ConfigurationManager(unaff_RBX[0x5e],0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
-    if ((unaff_RBX[0x52] != 0) && (uVar1 = FUN_18075dbf0(unaff_RBX + 0xe,0,0,4), (int)uVar1 != 0)) {
+    if ((unaff_RBX[0x52] != 0) && (uVar1 = SystemCore_ConfigurationManager(unaff_RBX + 0xe,0,0,4), (int)uVar1 != 0)) {
       return uVar1;
     }
     uVar1 = func_0x000180742ca0(unaff_RBX[1],
@@ -289,32 +303,32 @@ uint64_t FUN_1807ffe16(void)
     }
     if (unaff_RBX[0x5d] == 0) {
       *(int64_t *)(unaff_RBX[0x5c] + 0x1f8) = unaff_RBX[3];
-      uVar1 = FUN_180759220(0x42c80000,unaff_RBX[0x5c],0,0,0);
+      uVar1 = UltraHighFreq_AudioSystem1(0x42c80000,unaff_RBX[0x5c],0,0,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
     }
     else {
       *(int64_t *)(unaff_RBX[0x5d] + 0x1f8) = unaff_RBX[3];
-      uVar1 = FUN_180759220(0x42c80000,unaff_RBX[0x5d],0,0,0);
+      uVar1 = UltraHighFreq_AudioSystem1(0x42c80000,unaff_RBX[0x5d],0,0,0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
       if (unaff_RBX[0x5e] == 0) {
         *(int64_t *)(unaff_RBX[0x5c] + 0x1f8) = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5d],unaff_RBX[0x5c],0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5d],unaff_RBX[0x5c],0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
       }
       else {
         *(int64_t *)(unaff_RBX[0x5e] + 0x1f8) = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5d],unaff_RBX[0x5e],0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5d],unaff_RBX[0x5e],0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
         *(int64_t *)(unaff_RBX[0x5c] + 0x1f8) = unaff_RBX[3];
-        uVar1 = FUN_180759220(unaff_RBX[0x5e],unaff_RBX[0x5c],0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(unaff_RBX[0x5e],unaff_RBX[0x5c],0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -354,7 +368,7 @@ uint64_t FUN_1807fffde(uint64_t param_1)
   int unaff_EDI;
   
   *(uint64_t *)(unaff_RBX + 0x268) = param_1;
-  uVar1 = FUN_180759220(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBX + 0x70);
+  uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBX + 0x70);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -388,7 +402,7 @@ uint64_t FUN_18080000e(uint64_t param_1,uint64_t param_2)
   int unaff_EDI;
   
   *(uint64_t *)(unaff_RBX + 0x268) = param_2;
-  uVar1 = FUN_180759220(param_1,unaff_RBX + 0x70);
+  uVar1 = UltraHighFreq_AudioSystem1(param_1,unaff_RBX + 0x70);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -427,15 +441,15 @@ uint64_t FUN_180800037(void)
   int64_t *in_stack_00000058;
   
   if ((*(int64_t *)(unaff_RBX + 0x2e8) != 0) &&
-     (uVar1 = FUN_18075dbf0(*(int64_t *)(unaff_RBX + 0x2e8),0,0,4), (int)uVar1 != 0)) {
+     (uVar1 = SystemCore_ConfigurationManager(*(int64_t *)(unaff_RBX + 0x2e8),0,0,4), (int)uVar1 != 0)) {
     return uVar1;
   }
   if ((*(int64_t *)(unaff_RBX + 0x2f0) != 0) &&
-     (uVar1 = FUN_18075dbf0(*(int64_t *)(unaff_RBX + 0x2f0),0,0,4), (int)uVar1 != 0)) {
+     (uVar1 = SystemCore_ConfigurationManager(*(int64_t *)(unaff_RBX + 0x2f0),0,0,4), (int)uVar1 != 0)) {
     return uVar1;
   }
   if ((*(int64_t *)(unaff_RBX + 0x290) != 0) &&
-     (uVar1 = FUN_18075dbf0(unaff_RBX + 0x70,0,0,4), (int)uVar1 != 0)) {
+     (uVar1 = SystemCore_ConfigurationManager(unaff_RBX + 0x70,0,0,4), (int)uVar1 != 0)) {
     return uVar1;
   }
   uVar1 = func_0x000180742ca0(*(uint64_t *)(unaff_RBX + 8),
@@ -455,7 +469,7 @@ uint64_t FUN_180800037(void)
       if (*(int64_t *)(unaff_RBX + 0x2e8) == 0) {
         *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e0) + 0x1f8) =
              *(uint64_t *)(unaff_RBX + 0x18);
-        uVar1 = FUN_180759220(0x42c80000,*(uint64_t *)(unaff_RBX + 0x2e0),0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(0x42c80000,*(uint64_t *)(unaff_RBX + 0x2e0),0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -463,14 +477,14 @@ uint64_t FUN_180800037(void)
       else {
         *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x1f8) =
              *(uint64_t *)(unaff_RBX + 0x18);
-        uVar1 = FUN_180759220(0x42c80000,*(uint64_t *)(unaff_RBX + 0x2e8),0,0,0);
+        uVar1 = UltraHighFreq_AudioSystem1(0x42c80000,*(uint64_t *)(unaff_RBX + 0x2e8),0,0,0);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
         if (*(int64_t *)(unaff_RBX + 0x2f0) == 0) {
           *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e0) + 0x1f8) =
                *(uint64_t *)(unaff_RBX + 0x18);
-          uVar1 = FUN_180759220(*(uint64_t *)(unaff_RBX + 0x2e8),
+          uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBX + 0x2e8),
                                 *(uint64_t *)(unaff_RBX + 0x2e0),0,0,0);
           if ((int)uVar1 != 0) {
             return uVar1;
@@ -479,14 +493,14 @@ uint64_t FUN_180800037(void)
         else {
           *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2f0) + 0x1f8) =
                *(uint64_t *)(unaff_RBX + 0x18);
-          uVar1 = FUN_180759220(*(uint64_t *)(unaff_RBX + 0x2e8),
+          uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBX + 0x2e8),
                                 *(uint64_t *)(unaff_RBX + 0x2f0),0,0,0);
           if ((int)uVar1 != 0) {
             return uVar1;
           }
           *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e0) + 0x1f8) =
                *(uint64_t *)(unaff_RBX + 0x18);
-          uVar1 = FUN_180759220(*(uint64_t *)(unaff_RBX + 0x2f0),
+          uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBX + 0x2f0),
                                 *(uint64_t *)(unaff_RBX + 0x2e0),0,0,0);
           if ((int)uVar1 != 0) {
             return uVar1;
@@ -528,7 +542,7 @@ uint64_t FUN_1808001e4(uint64_t param_1)
   int unaff_EDI;
   
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e0) + 0x1f8) = param_1;
-  uVar1 = FUN_180759220(*(uint64_t *)(unaff_RBX + 0x2e8),*(uint64_t *)(unaff_RBX + 0x2e0));
+  uVar1 = UltraHighFreq_AudioSystem1(*(uint64_t *)(unaff_RBX + 0x2e8),*(uint64_t *)(unaff_RBX + 0x2e0));
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -562,7 +576,7 @@ uint64_t FUN_18080021a(uint64_t param_1)
   int unaff_EDI;
   
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2e0) + 0x1f8) = param_1;
-  uVar1 = FUN_180759220();
+  uVar1 = UltraHighFreq_AudioSystem1();
   if ((int)uVar1 == 0) {
     if ((*(uint *)(unaff_RBX + 0x3c) & 0x10000) == 0) {
       uVar1 = (**(code **)(**(int64_t **)(unaff_RBX + 0x18) + 0x120))
@@ -626,7 +640,7 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
   int32_t auStackX_20 [2];
   int8_t auStack_28 [32];
   
-  uVar3 = FUN_1808ddd30(param_2,auStack_28,0,0x54534e49,0);
+  uVar3 = DataCompressor0(param_2,auStack_28,0,0x54534e49,0);
   if ((int)uVar3 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -646,13 +660,13 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
         auStackX_18[0] = *(int32_t *)(param_1 + 0xa4);
         uVar3 = (**(code **)**(uint64_t **)(*param_2 + 8))
                           (*(uint64_t **)(*param_2 + 8),auStackX_18,4);
-        if (((int)uVar3 == 0) && (uVar3 = FUN_180898e70(param_2,param_1 + 0xb0), (int)uVar3 == 0)) {
+        if (((int)uVar3 == 0) && (uVar3 = UISystem_WindowManager(param_2,param_1 + 0xb0), (int)uVar3 == 0)) {
           if ((0x81 < *(uint *)(param_2 + 8)) &&
-             (uVar3 = FUN_180898e70(param_2,param_1 + 0xb8), (int)uVar3 != 0)) {
+             (uVar3 = UISystem_WindowManager(param_2,param_1 + 0xb8), (int)uVar3 != 0)) {
             return uVar3;
           }
-          uVar3 = FUN_180898eb0(param_2,param_1 + 0x94);
-          if (((int)uVar3 == 0) && (uVar3 = FUN_180898eb0(param_2,param_1 + 0x98), (int)uVar3 == 0))
+          uVar3 = NetworkSecurityManager(param_2,param_1 + 0x94);
+          if (((int)uVar3 == 0) && (uVar3 = NetworkSecurityManager(param_2,param_1 + 0x98), (int)uVar3 == 0))
           {
             if (*(int *)(param_2[1] + 0x18) != 0) {
               return 0x1c;
@@ -673,9 +687,9 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
               }
               uVar3 = SystemCleanupProcessor(*param_2,param_1 + 0x70);
               if (((((((int)uVar3 == 0) &&
-                     (uVar3 = FUN_180898eb0(param_2,param_1 + 0xa8), (int)uVar3 == 0)) &&
-                    (uVar3 = FUN_180898eb0(param_2,param_1 + 0x9c), (int)uVar3 == 0)) &&
-                   ((uVar3 = FUN_180898e70(param_2,param_1 + 0xb4), (int)uVar3 == 0 &&
+                     (uVar3 = NetworkSecurityManager(param_2,param_1 + 0xa8), (int)uVar3 == 0)) &&
+                    (uVar3 = NetworkSecurityManager(param_2,param_1 + 0x9c), (int)uVar3 == 0)) &&
+                   ((uVar3 = UISystem_WindowManager(param_2,param_1 + 0xb4), (int)uVar3 == 0 &&
                     (uVar3 = FUN_1808a1870(param_1 + 0x30,param_2), (int)uVar3 == 0)))) &&
                   ((uVar3 = FUN_1808a7bf0(param_2,param_1 + 0xbc,0x35), (int)uVar3 == 0 &&
                    ((uVar3 = FUN_1808a7bf0(param_2,param_1 + 0xc0,0x47), (int)uVar3 == 0 &&
@@ -741,9 +755,9 @@ uint64_t FUN_1808a021e(void)
     }
     uVar3 = SystemCleanupProcessor(*unaff_RBX,unaff_RDI + 0x70);
     if (((((((int)uVar3 == 0) &&
-           (uVar3 = FUN_180898eb0(extraout_XMM0_Da_01,unaff_RDI + 0xa8), (int)uVar3 == 0)) &&
-          (uVar3 = FUN_180898eb0(extraout_XMM0_Da_02,unaff_RDI + 0x9c), (int)uVar3 == 0)) &&
-         ((uVar3 = FUN_180898e70(extraout_XMM0_Da_03,unaff_RDI + 0xb4), (int)uVar3 == 0 &&
+           (uVar3 = NetworkSecurityManager(extraout_XMM0_Da_01,unaff_RDI + 0xa8), (int)uVar3 == 0)) &&
+          (uVar3 = NetworkSecurityManager(extraout_XMM0_Da_02,unaff_RDI + 0x9c), (int)uVar3 == 0)) &&
+         ((uVar3 = UISystem_WindowManager(extraout_XMM0_Da_03,unaff_RDI + 0xb4), (int)uVar3 == 0 &&
           (uVar3 = FUN_1808a1870(unaff_RDI + 0x30), (int)uVar3 == 0)))) &&
         ((uVar3 = FUN_1808a7bf0(extraout_XMM0_Da_04,unaff_RDI + 0xbc,0x35), (int)uVar3 == 0 &&
          ((uVar3 = FUN_1808a7bf0(extraout_XMM0_Da_05,unaff_RDI + 0xc0,0x47), (int)uVar3 == 0 &&
@@ -782,9 +796,9 @@ uint64_t FUN_1808a0262(void)
       return 0x1c;
     }
     uVar1 = SystemCleanupProcessor(*unaff_RBX,unaff_RDI + 0x70);
-    if (((((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(), (int)uVar1 == 0)) &&
-          (uVar1 = FUN_180898eb0(), (int)uVar1 == 0)) &&
-         ((uVar1 = FUN_180898e70(), (int)uVar1 == 0 &&
+    if (((((((int)uVar1 == 0) && (uVar1 = NetworkSecurityManager(), (int)uVar1 == 0)) &&
+          (uVar1 = NetworkSecurityManager(), (int)uVar1 == 0)) &&
+         ((uVar1 = UISystem_WindowManager(), (int)uVar1 == 0 &&
           (uVar1 = FUN_1808a1870(unaff_RDI + 0x30), (int)uVar1 == 0)))) &&
         ((uVar1 = FUN_1808a7bf0(), (int)uVar1 == 0 &&
          ((uVar1 = FUN_1808a7bf0(), (int)uVar1 == 0 && (uVar1 = FUN_1808a7c40(), (int)uVar1 == 0))))
@@ -814,7 +828,7 @@ uint64_t FUN_1808a03b0(int64_t param_1,int64_t *param_2)
   int32_t auStackX_18 [4];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x5641574c,0);
+  uVar1 = DataCompressor0(param_2,auStack_28,0,0x5641574c,0);
   if ((int)uVar1 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -866,7 +880,7 @@ uint64_t FUN_1808a04a0(int64_t param_1,int64_t *param_2)
   int32_t auStack_40 [2];
   int8_t auStack_38 [32];
   
-  uVar4 = FUN_1808ddd30(param_2,auStack_38,0,0x2050414d,0);
+  uVar4 = DataCompressor0(param_2,auStack_38,0,0x2050414d,0);
   if ((int)uVar4 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -896,7 +910,7 @@ uint64_t FUN_1808a04a0(int64_t param_1,int64_t *param_2)
                     // WARNING: Subroutine does not return
             SystemThreadManager(param_2,auStack_38);
           }
-          uVar4 = FUN_1808ddf00(param_2,auStackX_20[0]);
+          uVar4 = UltraHighFreq_ResourceLoader1(param_2,auStackX_20[0]);
           if ((int)uVar4 != 0) {
             return uVar4;
           }
@@ -914,7 +928,7 @@ uint64_t FUN_1808a04a0(int64_t param_1,int64_t *param_2)
           if ((int)uVar4 != 0) {
             return uVar4;
           }
-          uVar4 = FUN_1808de160(param_2,auStackX_20);
+          uVar4 = UISystem_Controller(param_2,auStackX_20);
           if ((int)uVar4 != 0) {
             return uVar4;
           }

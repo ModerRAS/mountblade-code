@@ -386,7 +386,7 @@ void FUN_1801eeb30(uint64_t param_1,int64_t param_2)
   *(int32_t *)(puVar11 + 0xb) = uStack_64._4_4_;
   *(int32_t *)((int64_t)puVar11 + 0x5c) = uStack_5c;
   *(int16_t *)(lVar6 + 0xe8) = 0x101;
-  FUN_18007f840(&lStack_a0);
+  SystemManager_Validator(&lStack_a0);
 LAB_1801ef2d7:
   iVar8 = _Mtx_unlock(lVar22);
   if (iVar8 != 0) {
@@ -809,7 +809,7 @@ void FUN_1801efe50(void)
     uStack_110 = 0;
     uStack_118 = 1;
     iStack_f8 = iVar5;
-    puVar7 = (uint64_t *)FUN_1800b0a10();
+    puVar7 = (uint64_t *)SystemCore_ConfigManager();
     uVar2 = *puVar7;
     *puVar7 = 0;
     plStack_c8 = *(int64_t **)(lVar3 + 0xd0);
@@ -835,7 +835,7 @@ void FUN_1801efe50(void)
     uStack_110 = 1;
     uStack_118 = 1;
     iStack_f8 = iVar8;
-    puVar7 = (uint64_t *)FUN_1800b0a10();
+    puVar7 = (uint64_t *)SystemCore_ConfigManager();
     uVar2 = *puVar7;
     *puVar7 = 0;
     plStack_c8 = *(int64_t **)(lVar3 + 0xd8);

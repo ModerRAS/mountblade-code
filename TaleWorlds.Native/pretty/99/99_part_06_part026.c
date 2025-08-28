@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /**
  * @file 99_part_06_part026.c
  * @brief 模块99未匹配函数第6部分第26个文件
@@ -316,7 +317,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                             current_attr_value = attr_value;
                         }
                         
-                        FUN_180627020(&rendering_buffer_2528_ptr, current_attr_value, error_handler);
+                        SystemCore_Allocator(&rendering_buffer_2528_ptr, current_attr_value, error_handler);
                         ((char*)prefab_data)[0x39] = 1;
                         
                         // 清理属性数据
@@ -850,17 +851,17 @@ config_complete:
             final_value = guid_attr_value;
         }
         
-        FUN_180627020(&rendering_buffer_2696_ptr, final_value, final_processor);
+        SystemCore_Allocator(&rendering_buffer_2696_ptr, final_value, final_processor);
         config_data = (void*)config_offset;
     }
     
     // 处理最终配置数据
     uint32_t final_config[1];
     final_config[0] = 1;
-    long long final_result = FUN_180631000(config_data, &rendering_buffer_2688_ptr, final_config);
+    long long final_result = UltraHighFreq_CacheSystem1(config_data, &rendering_buffer_2688_ptr, final_config);
     
     if (final_result != 0) {
-        FUN_1802ee720(*(void**)((char*)prefab_data + SCENE_DATA_OFFSET), final_config[0]);
+        RenderingSystem_UpdateCamera(*(void**)((char*)prefab_data + SCENE_DATA_OFFSET), final_config[0]);
     }
 }
 

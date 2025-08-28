@@ -246,7 +246,7 @@ void FUN_1803dc4c0(int64_t param_1)
   pfVar5 = (float *)(param_1 + 0x58);
   cVar4 = FUN_1801be0f0();
   if (cVar4 == '\0') {
-    FUN_180085020(extraout_XMM0_Da,&fStack_38);
+    RenderingSystem_LightSystem(extraout_XMM0_Da,&fStack_38);
     fVar1 = *pfVar5;
     fVar2 = pfVar5[1];
     fVar3 = pfVar5[2];
@@ -277,7 +277,7 @@ void FUN_1803dc4c0(int64_t param_1)
     *(float *)(param_1 + 0x78) = fVar1 * fVar6;
     *(float *)(param_1 + 0x7c) = fVar2 * fVar6;
     *(float *)(param_1 + 0x80) = fVar3 * fVar6;
-    FUN_180084ae0();
+    Utilities_DataValidator();
     *pfVar5 = fStack_38 * *pfVar5;
     pfVar5[1] = fStack_38 * pfVar5[1];
     pfVar5[2] = fStack_38 * pfVar5[2];
@@ -310,7 +310,7 @@ void FUN_1803dc4d8(float *param_1,uint64_t param_2,int64_t param_3,uint64_t para
   float fStackX_20;
   float fStackX_24;
   
-  FUN_180085020(param_1,&fStackX_20);
+  RenderingSystem_LightSystem(param_1,&fStackX_20);
   fVar1 = *param_1;
   fVar2 = param_1[1];
   fVar3 = param_1[2];
@@ -341,7 +341,7 @@ void FUN_1803dc4d8(float *param_1,uint64_t param_2,int64_t param_3,uint64_t para
   *(float *)(param_3 + 0x78) = fVar1 * fVar4;
   *(float *)(param_3 + 0x7c) = fVar2 * fVar4;
   *(float *)(param_3 + 0x80) = fVar3 * fVar4;
-  FUN_180084ae0();
+  Utilities_DataValidator();
   *param_1 = fStackX_20 * *param_1;
   param_1[1] = fStackX_20 * param_1[1];
   param_1[2] = fStackX_20 * param_1[2];

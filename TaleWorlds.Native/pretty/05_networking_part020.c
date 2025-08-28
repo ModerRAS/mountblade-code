@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -47,10 +53,10 @@ void FUN_18085219c(void)
   
   cVar1 = func_0x0001808c5700();
   if (cVar1 != '\0') {
-    iVar3 = FUN_1808b2f30(extraout_XMM0_Qa,0);
-    if ((iVar3 != 0) || (iVar3 = FUN_1808b2f30(extraout_XMM0_Qa_00,1), iVar3 != 0))
+    iVar3 = SystemDataFlowProcessor(extraout_XMM0_Qa,0);
+    if ((iVar3 != 0) || (iVar3 = SystemDataFlowProcessor(extraout_XMM0_Qa_00,1), iVar3 != 0))
     goto LAB_180852a9a;
-    iVar3 = FUN_180744d60(unaff_R15 + 0x1f);
+    iVar3 = SystemAnalyzer(unaff_R15 + 0x1f);
     puVar10 = (uint64_t *)0x0;
     if (iVar3 == 0) {
       lVar4 = (**(code **)*unaff_R15)();
@@ -62,7 +68,7 @@ void FUN_18085219c(void)
         iVar3 = FUN_1808bf350(uVar23);
         if (iVar3 != 0) {
 LAB_1808522f9:
-          FUN_180744d60(unaff_RBP + -0x50);
+          SystemAnalyzer(unaff_RBP + -0x50);
           goto LAB_180852302;
         }
         iVar3 = *(int *)(unaff_RBP + -0x48);
@@ -94,7 +100,7 @@ LAB_180852282:
             } while (-1 < lVar4);
           }
         }
-        FUN_180744d60(unaff_RBP + -0x50);
+        SystemAnalyzer(unaff_RBP + -0x50);
       }
     }
     else {
@@ -235,7 +241,7 @@ LAB_180852518:
           else if (iVar17 < iVar8) {
             iVar17 = iVar8;
           }
-          iVar3 = FUN_180747f10(&stack0x00000070,iVar17);
+          iVar3 = RenderingTextureManager0(&stack0x00000070,iVar17);
           if (iVar3 != 0) goto LAB_180852943;
           uVar14 = _iStack0000000000000078 >> 0x20;
           puVar10 = in_stack_00000070;
@@ -267,7 +273,7 @@ LAB_180852518:
         goto LAB_1808526bf;
       }
 LAB_180852954:
-      FUN_180744d60(&stack0x00000070);
+      SystemAnalyzer(&stack0x00000070);
       goto LAB_180852a9a;
     }
 LAB_1808526bf:
@@ -306,7 +312,7 @@ LAB_1808526bf:
           else if (iVar17 < iVar8) {
             iVar17 = iVar8;
           }
-          iVar3 = FUN_180747f10(&stack0x00000070,iVar17);
+          iVar3 = RenderingTextureManager0(&stack0x00000070,iVar17);
           if (iVar3 != 0) goto LAB_180852943;
           uVar14 = _iStack0000000000000078 >> 0x20;
           puVar10 = in_stack_00000070;
@@ -338,7 +344,7 @@ LAB_1808526bf:
       memset(*plVar12 + (int64_t)iVar3 * 8,0,(int64_t)-iVar3 << 3);
     }
     *(int32_t *)(unaff_R15 + 0x13) = 0;
-    iVar3 = FUN_18073c380(unaff_R15[0xf],0xfffffffe,unaff_RBP + -0x60);
+    iVar3 = UltraHighFreq_PhysicsEngine1(unaff_R15[0xf],0xfffffffe,unaff_RBP + -0x60);
     if ((((iVar3 == 0) &&
          (iVar3 = FUN_18073c5f0(unaff_R15[0xf],*(uint64_t *)(unaff_RBP + -0x60),unaff_RBP + -0x80)
          , iVar3 == 0)) &&
@@ -363,12 +369,12 @@ LAB_1808526bf:
       iVar3 = FUN_18084ead0(uVar23,CONCAT31((uint3)(*(uint *)(unaff_R15 + 0x18) >> 9),
                                             (char)(*(uint *)(unaff_R15 + 0x18) >> 1)) & 0xffffff01);
       if (iVar3 == 0) {
-        FUN_180744d60(&stack0x00000070);
+        SystemAnalyzer(&stack0x00000070);
         goto LAB_180852980;
       }
     }
 LAB_180852943:
-    FUN_180744d60(&stack0x00000070);
+    SystemAnalyzer(&stack0x00000070);
     goto LAB_180852a9a;
   }
 LAB_180852980:
@@ -424,8 +430,8 @@ LAB_180852a9a:
 
 
 
-// 函数: void FUN_180852aaa(void)
-void FUN_180852aaa(void)
+// 函数: void NetworkSystem_ConnectionHandler(void)
+void NetworkSystem_ConnectionHandler(void)
 
 {
   int64_t unaff_RBP;
@@ -492,7 +498,7 @@ uint64_t FUN_180852b00(int64_t *param_1,uint *param_2,uint64_t *param_3)
       if (iVar8 < 2) {
         iVar8 = 2;
       }
-      uVar4 = FUN_1808532e0(param_1 + 2,iVar8);
+      uVar4 = Physics_AnimationProcessor(param_1 + 2,iVar8);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -580,7 +586,7 @@ uint64_t FUN_180852bb0(int64_t *param_1,uint *param_2,uint64_t *param_3)
         else if (iVar12 < iVar8) {
           iVar12 = iVar8;
         }
-        uVar6 = FUN_1808532e0(param_1 + 2,iVar12);
+        uVar6 = Physics_AnimationProcessor(param_1 + 2,iVar12);
         if ((int)uVar6 != 0) {
           return uVar6;
         }
@@ -671,7 +677,7 @@ uint64_t FUN_180852bd2(void)
       else if (iVar11 < iVar7) {
         iVar11 = iVar7;
       }
-      uVar5 = FUN_1808532e0(unaff_RSI + 2,iVar11);
+      uVar5 = Physics_AnimationProcessor(unaff_RSI + 2,iVar11);
       if ((int)uVar5 != 0) {
         return uVar5;
       }

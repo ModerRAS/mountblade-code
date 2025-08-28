@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -132,7 +133,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
     uStack_4cc = uStack_4ec;
     uStack_4c8 = uStack_4e8;
     uStack_4c0 = uStack_4e0;
-    FUN_18063b5f0(&fStack_538,&uStack_4f8);
+    SystemSecurityManager(&fStack_538,&uStack_4f8);
     fVar4 = *(float *)(lVar16 + 0x30);
     fVar5 = *(float *)(lVar16 + 0x34);
     fVar6 = *(float *)(lVar16 + 0x38);
@@ -210,7 +211,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
     do {
       if (0x7f < lVar16) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_4288_ptr);
+        SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
       }
       lVar3 = *(int64_t *)(param_1 + 8);
       *(uint64_t *)(&iStack_4b8 + lVar16 * 2) = *(uint64_t *)(lVar3 + lVar16 * 8);
@@ -222,7 +223,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   if (0.001 < fVar26) {
     if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4288_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
     }
     (&iStack_4b8)[(int64_t)iVar15 * 2] = 0x3c;
     afStack_4b4[(int64_t)iVar15 * 2] = fVar26;
@@ -231,7 +232,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   if (0.001 < fVar28) {
     if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4288_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
     }
     (&iStack_4b8)[(int64_t)iVar15 * 2] = 0x3d;
     afStack_4b4[(int64_t)iVar15 * 2] = fVar28;
@@ -240,7 +241,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   if (0.001 < fVar27) {
     if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4288_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
     }
     (&iStack_4b8)[(int64_t)iVar15 * 2] = 0x3f;
     afStack_4b4[(int64_t)iVar15 * 2] = fVar27;
@@ -249,7 +250,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   if (0.001 < fVar29) {
     if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4288_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
     }
     (&iStack_4b8)[(int64_t)iVar15 * 2] = 0x3e;
     afStack_4b4[(int64_t)iVar15 * 2] = fVar29;
@@ -258,7 +259,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   if (0.0 < fVar25) {
     if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_4288_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
     }
     (&iStack_4b8)[(int64_t)iVar15 * 2] = 0x58;
     afStack_4b4[(int64_t)iVar15 * 2] = fVar25;
@@ -275,10 +276,10 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
         *(int32_t *)(lVar16 + 0x3438) = 0;
       }
       uVar2 = *(int32_t *)(lVar16 + 0x3428);
-      FUN_180158990(system_system_data_memory,&plStack_548,uVar2);
+      RenderingSystem_MaterialHandler(system_system_data_memory,&plStack_548,uVar2);
       if (plStack_548 == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&rendering_buffer_256_ptr,uVar2);
+        SystemParameterHandler(system_message_context,&rendering_buffer_256_ptr,uVar2);
       }
       fVar25 = (float)(**(code **)(*plStack_548 + 0xc0))();
       *(float *)(lVar16 + 0x3438) = fVar25;
@@ -298,7 +299,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
       FUN_1805727f0(*(int64_t *)(param_2 + 0x210),&fStack_540);
       if (0x7f < iVar15) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_4288_ptr);
+        SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
       }
       lVar16 = (int64_t)iVar15;
       cVar13 = func_0x000180371ba0(uStack_53c);
@@ -306,7 +307,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
       afStack_4b4[lVar16 * 2] = fStack_540;
       if (0x7f < iVar15 + 1) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_4288_ptr);
+        SystemParameterHandler(system_message_context,&processed_var_4288_ptr);
       }
       lVar16 = (int64_t)(iVar15 + 1);
       cVar13 = func_0x000180371ba0(uStack_53b);
@@ -419,7 +420,7 @@ void FUN_1805eebb0(int64_t param_1,int64_t param_2,int param_3,uint param_4,floa
       }
     }
     if ((puVar8 == (uint64_t *)0x180c95e98) || (uVar13 < *(uint *)(puVar8 + 4))) {
-      puVar8 = (uint64_t *)FUN_1804c0610(0x180c95e98,&lStackX_8,0x180c95e98,puVar8,&param_5);
+      puVar8 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,&lStackX_8,0x180c95e98,puVar8,&param_5);
       puVar8 = (uint64_t *)*puVar8;
     }
     lStackX_8 = (uint64_t)*(uint *)(lVar3 + 0x178) * 0x30 + 0x70 +
@@ -453,7 +454,7 @@ void FUN_1805eebb0(int64_t param_1,int64_t param_2,int param_3,uint param_4,floa
       }
     }
     if ((puVar8 == (uint64_t *)0x180c95e98) || (uVar13 < *(uint *)(puVar8 + 4))) {
-      puVar8 = (uint64_t *)FUN_1804c0610(0x180c95e98,&plStack_a0,0x180c95e98,puVar8,&param_5);
+      puVar8 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,&plStack_a0,0x180c95e98,puVar8,&param_5);
       puVar8 = (uint64_t *)*puVar8;
     }
     lStack_a8 = (int64_t)iVar2 * 0x58 + 0x28 + *(int64_t *)(puVar8[5] + 0x398);
@@ -476,7 +477,7 @@ void FUN_1805eebb0(int64_t param_1,int64_t param_2,int param_3,uint param_4,floa
       }
     }
     if ((puVar8 == (uint64_t *)0x180c95e98) || ((uint)param_5 < *(uint *)(puVar8 + 4))) {
-      puVar8 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStack_90);
+      puVar8 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98,auStack_90);
       puVar8 = (uint64_t *)*puVar8;
     }
     plVar18 = (int64_t *)
@@ -783,7 +784,7 @@ LAB_1805ef418:
     if (pbStack_48 != (byte *)0x0) {
       pbVar4 = pbStack_48;
     }
-    FUN_180627020(&processed_var_7152_ptr,pbVar4);
+    SystemCore_Allocator(&processed_var_7152_ptr,pbVar4);
   }
   iVar8 = -1;
 LAB_1805ef490:

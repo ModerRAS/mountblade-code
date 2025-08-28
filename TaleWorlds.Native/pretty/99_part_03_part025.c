@@ -395,7 +395,7 @@ LAB_1801e4658:
         if (puStack_160 != puVar20) {
           *(int64_t *)(puVar20 + 8) = *(int64_t *)(puVar20 + 8) + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar22,puVar20);
+          RenderingSystem_BufferHandler(puVar22,puVar20);
         }
       }
       else {
@@ -411,7 +411,7 @@ LAB_1801e4658:
           plVar15 = (int64_t *)(lVar12 + 0x348);
           *plVar15 = *plVar15 + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar20,puVar22);
+          RenderingSystem_BufferHandler(puVar20,puVar22);
           if (puVar20 != (uint *)0x0) {
                     // WARNING: Subroutine does not return
             CoreMemoryPoolInitializer(puVar20);

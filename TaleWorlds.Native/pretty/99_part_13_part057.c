@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -84,7 +85,7 @@ uint64_t FUN_1808cdbd0(int64_t param_1)
         else if (iVar7 < iVar3) {
           iVar7 = iVar3;
         }
-        uVar5 = FUN_180748010((int64_t *)(param_1 + 0x170),iVar7);
+        uVar5 = UltraHighFreq_StateController1((int64_t *)(param_1 + 0x170),iVar7);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -197,7 +198,7 @@ uint64_t FUN_1808cdd0a(void)
       else if (iVar6 < iVar4) {
         iVar6 = iVar4;
       }
-      uVar3 = FUN_180748010((int64_t *)(unaff_RDI + 0x170),iVar6);
+      uVar3 = UltraHighFreq_StateController1((int64_t *)(unaff_RDI + 0x170),iVar6);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -247,7 +248,7 @@ uint64_t FUN_1808cdd8e(void)
       else if (iVar6 < iVar4) {
         iVar6 = iVar4;
       }
-      uVar3 = FUN_180748010((int64_t *)(unaff_RDI + 0x170),iVar6);
+      uVar3 = UltraHighFreq_StateController1((int64_t *)(unaff_RDI + 0x170),iVar6);
       if ((int)uVar3 != 0) {
         return uVar3;
       }

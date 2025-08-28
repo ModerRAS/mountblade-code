@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -33,7 +37,7 @@ void FUN_180183a20(uint64_t *param_1)
   uStack_1b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
   uStack_228 = 0;
-  plVar3 = (int64_t *)FUN_1808fc418(0x18);
+  plVar3 = (int64_t *)SystemRenderer(0x18);
   *plVar3 = (int64_t)&ui_system_data_1080_ptr;
   *plVar3 = (int64_t)&ui_system_data_1032_ptr;
   plVar3[2] = 0;
@@ -56,7 +60,7 @@ void FUN_180183a20(uint64_t *param_1)
   plStack_220 = plVar3;
   if (param_1[0xf] != 0) {
     pcStack_1d8 = FUN_180184320;
-    lVar4 = FUN_1808fc418(0x48);
+    lVar4 = SystemRenderer(0x48);
     plStack_170 = (int64_t *)0x0;
     puVar1 = (uint64_t *)param_1[0xf];
     plStack_220 = (int64_t *)lVar4;
@@ -144,7 +148,7 @@ void FUN_180183e30(int64_t param_1,int64_t *param_2,int64_t *param_3,uint64_t pa
   lStack_c8 = *param_2;
   lStack_c0 = param_2[1] - lStack_c8 >> 2;
   plStack_b0 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_60 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_3[7];
   lStack_a8 = lVar3;
@@ -216,7 +220,7 @@ void FUN_180183fa0(int64_t param_1,int64_t *param_2,uint64_t param_3)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
   uStack_b8 = 0;
   plStack_a0 = param_2;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_50 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_2[7];
   lStack_98 = lVar3;
@@ -301,7 +305,7 @@ void FUN_180184120(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
       do {
         lVar3 = lVar3 + 1;
       } while (*(char *)(*param_3 + lVar3) != '\0');
-      FUN_1800671b0(auStack_30);
+      MathCoreCalculator0(auStack_30);
       alStack_40[0] = param_4[8];
       puStack_48 = auStack_30;
       plVar1 = (int64_t *)param_4[7];
@@ -794,7 +798,7 @@ void FUN_180184740(int64_t param_1,int64_t *param_2,int64_t *param_3,uint64_t pa
   if (0xf < (uint64_t)param_2[6]) {
     lStack_d0 = *(int64_t *)lStack_d0;
   }
-  lVar7 = FUN_1808fc418(0x48);
+  lVar7 = SystemRenderer(0x48);
   ppuStack_70 = (uint64_t **)0x0;
   puVar11 = (uint64_t *)param_3[7];
   lStack_b8 = lVar7;
@@ -901,7 +905,7 @@ void FUN_180184c20(int64_t param_1,int64_t *param_2,uint64_t param_3)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
   uStack_b8 = 0;
   plStack_a0 = param_2;
-  lVar3 = FUN_1808fc418(0x48);
+  lVar3 = SystemRenderer(0x48);
   plStack_50 = (int64_t *)0x0;
   puVar1 = (uint64_t *)param_2[7];
   lStack_98 = lVar3;

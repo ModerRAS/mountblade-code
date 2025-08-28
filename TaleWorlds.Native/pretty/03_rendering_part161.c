@@ -1,5 +1,15 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 /**
  * @file 03_rendering_part161.c
@@ -59,10 +69,10 @@
  * @defgroup system_function_aliases 系统函数别名
  * @{
  */
-#define SystemResourceInitializer FUN_1800b8300
-#define SystemContextProcessor FUN_180180730
+#define SystemResourceInitializer DataDeserializer0
+#define SystemContextProcessor MathOptimizationEngine0
 #define SystemSecurityChecker SystemSecurityChecker
-#define SystemBaseInitializer FUN_1803456e0
+#define SystemBaseInitializer SystemCore_SyncController
 #define SystemMemoryAllocator CoreEngineMemoryPoolAllocator
 #define SystemStringHashCalculator CoreEngineSystemCleanup
 #define SystemContextManager SystemContextManager

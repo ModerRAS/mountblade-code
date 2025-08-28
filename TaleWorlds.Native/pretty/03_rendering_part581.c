@@ -896,7 +896,7 @@ void FUN_180588970(int64_t param_1)
     puVar1[0xb] = 0xbe4ccccd;
     *(uint64_t *)(puVar1 + 0xc) = 0x3ecccccd;
     *(int16_t *)(puVar1 + 0xe) = 0x100;
-    FUN_180431730(lVar3);
+    RenderingSystem_GeometryProcessor0(lVar3);
     lVar3 = lVar3 + 0x11b0;
     puVar1 = puVar1 + 0x12;
     lVar2 = lVar2 + -1;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_12_part068.c - 9 个函数
 
 // 函数: void FUN_1807f93ae(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
@@ -20,7 +24,7 @@ void FUN_1807f93ae(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
   *piVar2 = *piVar2 + -1;
   lVar1 = lVar3 + (uint64_t)*(uint *)(*(int64_t *)(unaff_RBX + 8) + 0x116b8) * 2;
   if (*(int *)(unaff_R12 + 0xc36b1c + lVar1 * 0x10) == unaff_R15D) {
-    FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+    RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                   *(uint64_t *)(unaff_R12 + 0xc36b10 + lVar1 * 0x10),&processed_var_6448_ptr,0x102);
     *(uint64_t *)
      (unaff_R12 + 0xc36b10 +
@@ -68,7 +72,7 @@ void FUN_1807f945a(void)
   FUN_180767ad0(((int64_t)*(int *)(unaff_RBX + 0xa8) +
                 (uint64_t)*(uint *)(*(int64_t *)(unaff_RBX + 8) + 0x116b8) * 2) * 0x158 +
                 0x180c35590);
-  FUN_180768380(*(uint64_t *)
+  SystemCore_DataHandler(*(uint64_t *)
                  (unaff_R12 + 0xc36c10 +
                  ((int64_t)*(int *)(unaff_RBX + 0xa8) +
                  (uint64_t)*(uint *)(*(int64_t *)(unaff_RBX + 8) + 0x116b8) * 2) * 8),0);
@@ -90,7 +94,7 @@ void FUN_1807f945a(void)
 void FUN_1807f94f0(int64_t param_1)
 
 {
-  FUN_180768380(*(uint64_t *)((int64_t)*(int *)(param_1 + 0x30) * 8 + 0x180c36c90),0);
+  SystemCore_DataHandler(*(uint64_t *)((int64_t)*(int *)(param_1 + 0x30) * 8 + 0x180c36c90),0);
   *(uint64_t *)((int64_t)*(int *)(param_1 + 0x30) * 8 + 0x180c36c90) = 0;
   return;
 }
@@ -136,7 +140,7 @@ LAB_1807f9847:
   *(int *)(param_1 + 0xa8) = param_8 + -1;
   lVar8 = lVar9 * 2;
   if ((*(int64_t *)((lVar8 + param_8) * 8 + 0x180c36c08) == 0) &&
-     (iVar4 = FUN_1807682e0((lVar8 + param_8) * 8 + 0x180c36c08,0), iVar4 != 0)) goto LAB_1807f9847;
+     (iVar4 = SystemCore_DataProcessor((lVar8 + param_8) * 8 + 0x180c36c08,0), iVar4 != 0)) goto LAB_1807f9847;
   uVar3 = *(uint64_t *)((*(int *)(param_1 + 0xa8) + lVar8) * 8 + 0x180c36c10);
   SystemStateManager(uVar3);
   iVar4 = *(int *)(param_1 + 0xa8);

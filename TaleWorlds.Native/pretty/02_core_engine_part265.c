@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part265.c - 7 个函数
 
 // 函数: void FUN_18022c770(int64_t param_1,int64_t param_2)
@@ -795,7 +799,7 @@ uint FUN_18022d470(int64_t param_1,int64_t *param_2)
           uStack_48 = 0;
           pcStack_40 = (code *)0x0;
           pcStack_38 = _guard_check_icall;
-          FUN_18023c450(*plVar2,0,*(int32_t *)((int64_t)param_2 + 0x14),&uStack_50);
+          SystemCore_DecryptionManager(*plVar2,0,*(int32_t *)((int64_t)param_2 + 0x14),&uStack_50);
           if (pcStack_40 != (code *)0x0) {
             (*pcStack_40)(&uStack_50,0,0);
           }

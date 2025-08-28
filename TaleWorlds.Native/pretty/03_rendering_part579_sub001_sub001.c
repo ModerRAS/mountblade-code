@@ -497,7 +497,7 @@ void FUN_180586470(int64_t param_1,uint64_t *param_2,int32_t param_3,int param_4
     fStack_104 = fVar7;
     fStack_100 = fVar19;
     uStack_fc = uStack_2cc;
-    FUN_18063b5f0(&fStack_2a8,&uStack_2e8);
+    SystemSecurityManager(&fStack_2a8,&uStack_2e8);
     fStack_218 = *(float *)(lVar16 + 0x98);
     fStack_270 = fVar19 * fStack_218 + *(float *)(lVar16 + 0xa8);
     fVar19 = *(float *)(lVar16 + 0x84);
@@ -801,7 +801,7 @@ void FUN_180586ae0(int64_t param_1,float *param_2)
   fStack_104 = fVar13;
   fStack_100 = fVar8;
   uStack_fc = uVar1;
-  FUN_18063b5f0(&fStack_288,&uStack_348);
+  SystemSecurityManager(&fStack_288,&uStack_348);
   fStack_248 = fStack_288;
   fStack_244 = fStack_284;
   fStack_240 = fStack_280;
@@ -965,7 +965,7 @@ void FUN_180586ae0(int64_t param_1,float *param_2)
     fStack_e4 = fVar13;
     fStack_e0 = fVar8;
     uStack_dc = uStack_30c;
-    FUN_18063b5f0(&fStack_388,&uStack_328);
+    SystemSecurityManager(&fStack_388,&uStack_328);
     fVar12 = *(float *)(lVar3 + 0x80);
     fVar18 = *(float *)(lVar3 + 0x70);
     fStack_298 = fVar14 * fVar18 + fVar13 * fVar12 + *(float *)(lVar3 + 0xa0);

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part036_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1805a1630(int64_t *param_1,uint64_t param_2,uint64_t param_3)
@@ -418,7 +422,7 @@ void FUN_1805a1630(int64_t *param_1,uint64_t param_2,uint64_t param_3)
     goto FUN_1805a18e3;
   }
   else {
-    cVar7 = FUN_1805a3ab0(lVar2 + 0x28);
+    cVar7 = RenderingSystem_ConfigValidator0(lVar2 + 0x28);
     if (cVar7 == '\0') goto FUN_1805a18e3;
   }
   lVar23 = lVar2 + 0x28;
@@ -468,7 +472,7 @@ LAB_1805a186c:
         goto LAB_1805a186c;
       }
       else {
-        cVar7 = FUN_1805a3ab0(lVar3 + 0x28);
+        cVar7 = RenderingSystem_ConfigValidator0(lVar3 + 0x28);
         if (cVar7 == '\0') goto LAB_1805a186c;
       }
       lVar3 = *param_1;
@@ -708,13 +712,13 @@ LAB_1805a1b4d:
           fStack_c4 = fVar28;
           fStack_c0 = fVar29;
           uStack_bc = uStack_21c;
-          pfVar9 = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(lVar26 + 0x6d8) + 0x8a8) +
+          pfVar9 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(lVar26 + 0x6d8) + 0x8a8) +
                                           0x70,auStack_1b8,lVar3 + 0xc28 + lVar12);
           uStack_7c4 = 0x7f7fffff;
           fStack_7d0 = *pfVar9 - fVar27;
           fStack_7cc = pfVar9[1] - fVar28;
           fStack_7c8 = pfVar9[2] - fVar29;
-          FUN_180285b40(&uStack_238,&uStack_248,&fStack_7d0);
+          SystemCore_EventHandler(&uStack_238,&uStack_248,&fStack_7d0);
           lVar19 = lVar12 + lVar3;
           uStack_7b4 = 0x7f7fffff;
           fStack_7c0 = *(float *)(lVar19 + 0xc3c) * *(float *)(lVar26 + 0x524) +
@@ -722,7 +726,7 @@ LAB_1805a1b4d:
           uStack_7b8 = *(int32_t *)(lVar19 + 0xc40);
           fStack_7bc = *(float *)(lVar19 + 0xc38) * *(float *)(lVar26 + 0x530) +
                        *(float *)(lVar19 + 0xc3c) * *(float *)(lVar26 + 0x534);
-          FUN_180285b40(&uStack_238,&fStack_778);
+          SystemCore_EventHandler(&uStack_238,&fStack_778);
           fStack_7a8 = (float)iStack_670 * 0.3;
           if (-1.0 <= fStack_7a8) {
             if (1.0 <= fStack_7a8) {
@@ -824,13 +828,13 @@ LAB_1805a2073:
         fStack_a4 = fVar28;
         fStack_a0 = fVar29;
         uStack_9c = uStack_1fc;
-        pfVar9 = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(lVar19 + 0x6d8) + 0x8a8) + 0x70,
+        pfVar9 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(lVar19 + 0x6d8) + 0x8a8) + 0x70,
                                         auStack_1a8,puVar21);
         uStack_794 = 0x7f7fffff;
         fStack_7a0 = *pfVar9 - fVar27;
         fStack_79c = pfVar9[1] - fVar28;
         fStack_798 = pfVar9[2] - fVar29;
-        FUN_180285b40(&uStack_218,auStack_268,&fStack_7a0);
+        SystemCore_EventHandler(&uStack_218,auStack_268,&fStack_7a0);
         uStack_860 = CONCAT31(uStack_860._1_3_,(int)plVar24[3] == 0);
         puStack_868 = (uint *)CONCAT71(puStack_868._1_7_,*(int *)((int64_t)plVar24 + 0x1c) == 1);
         puStack_870 = &uStack_7f0;
@@ -1151,7 +1155,7 @@ LAB_1805a271b:
             uStack_29c = uVar32;
             uStack_298 = uVar33;
 LAB_1805a2c68:
-            FUN_1805a4a20(lVar19,1,puVar10);
+            UISystem_InputHandler(lVar19,1,puVar10);
             plVar22 = plStack_820;
           }
         }

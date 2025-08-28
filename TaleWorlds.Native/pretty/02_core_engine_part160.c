@@ -976,7 +976,7 @@ void FUN_18014ab60(uint64_t *param_1,uint64_t param_2)
   uStack_38 = 0xfffffffffffffffe;
   lVar3 = 0;
   if (*(int *)(*(int64_t *)(*(int64_t *)*param_1 + 0x20) + 0x20) != 0) {
-    iVar2 = FUN_180191c00(core_system_data_config,*(int64_t *)(*(int64_t *)*param_1 + 0x20) + 0x10);
+    iVar2 = RenderingSystem_PostProcessor(core_system_data_config,*(int64_t *)(*(int64_t *)*param_1 + 0x20) + 0x10);
     lVar3 = 0;
     if (iVar2 != -1) {
       lVar3 = (int64_t)iVar2 * 0x68 + *(int64_t *)(lVar1 + 0x38);

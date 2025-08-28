@@ -30,7 +30,7 @@ int32_t * FUN_180449930(int32_t *param_1,int64_t param_2)
   int32_t uStack_14;
   
   uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16,0xfffffffffffffffe);
-  plVar3 = (int64_t *)FUN_180275090(uVar2);
+  plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
@@ -123,7 +123,7 @@ uint64_t * FUN_180449a80(uint64_t *param_1,uint64_t param_2,float param_3,int8_t
       uVar4 = (uint64_t)uVar3;
     } while (uVar3 < uStack_28);
   }
-  uVar1 = FUN_1800b6de0(system_resource_state,&puStack_38,param_4);
+  uVar1 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_38,param_4);
   FUN_180193fc0(extraout_XMM0_Da,&plStackX_8,uVar1,(int)param_3);
   plStack_48 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -904,7 +904,7 @@ uint64_t * FUN_18044a590(uint64_t *param_1,uint64_t param_2,int8_t param_3,char 
   if (param_4 == '\0') {
     if (plStackX_8 == (int64_t *)0x0) {
       uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-      plVar3 = (int64_t *)FUN_180275090(uVar2);
+      plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
       if (plVar3 != (int64_t *)0x0) {
         (**(code **)(*plVar3 + 0x28))(plVar3);
       }
@@ -1017,7 +1017,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
       uVar7 = (uint64_t)uVar6;
     } while (uVar6 < uStack_48);
   }
-  lVar3 = FUN_1800b6de0(system_resource_state,&puStack_58,0);
+  lVar3 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_58,0);
   if (lVar3 == 0) {
     SystemCore_ResourceManager0(&ui_system_data_104_ptr,param_1);
   }

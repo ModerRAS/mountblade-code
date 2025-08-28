@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -495,7 +496,7 @@ LAB_1803bdd14:
             if (puStack_60 != (void *)0x0) {
               puVar5 = puStack_60;
             }
-            FUN_180627020(&rendering_buffer_2528_ptr,puVar5,puVar9);
+            SystemCore_Allocator(&rendering_buffer_2528_ptr,puVar5,puVar9);
             param_1[0x39] = 1;
             puStack_68 = &system_data_buffer_ptr;
             if (puStack_60 != (void *)0x0) {
@@ -705,9 +706,9 @@ LAB_1803be065:
   param_2 = lStack_160;
 LAB_1803be163:
   auStack_198[0] = 1;
-  lVar8 = FUN_180631000(param_2,&rendering_buffer_2688_ptr,auStack_198);
+  lVar8 = UltraHighFreq_CacheSystem1(param_2,&rendering_buffer_2688_ptr,auStack_198);
   if (lVar8 != 0) {
-    FUN_1802ee720(*(uint64_t *)(param_1 + 0x28),auStack_198[0]);
+    RenderingSystem_UpdateCamera(*(uint64_t *)(param_1 + 0x28),auStack_198[0]);
   }
   pcVar15 = (char *)0x0;
   uStack_190 = 0;
@@ -956,7 +957,7 @@ LAB_1803be12a:
     if (puVar9 != (void *)0x0) {
       puVar17 = puVar9;
     }
-    FUN_180627020(&rendering_buffer_2696_ptr,puVar17,puVar5);
+    SystemCore_Allocator(&rendering_buffer_2696_ptr,puVar17,puVar5);
     param_2 = lStack_160;
   }
   goto LAB_1803be163;

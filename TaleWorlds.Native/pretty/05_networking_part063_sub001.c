@@ -1,15 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 05_networking_part063_sub001.c - 4 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 05_networking_part063.c - 4 个函数
 
 
-// 函数: void FUN_180874760(int64_t *param_1)
-void FUN_180874760(int64_t *param_1)
+// 函数: void SystemCore_AuthenticationHandler(int64_t *param_1)
+void SystemCore_AuthenticationHandler(int64_t *param_1)
 
 {
   uint *puVar1;
@@ -140,7 +147,7 @@ uint64_t FUN_180874940(int64_t *param_1)
   }
   lStack_30 = -1;
   aiStack_28[0] = -1;
-  FUN_1808741f0(param_1,&lStack_30,aiStack_28);
+  SystemResource_Manager(param_1,&lStack_30,aiStack_28);
   puVar2 = *(uint64_t **)((int64_t)aiStack_28[0] * 0x20 + 0x18 + param_1[2]);
   puVar1 = (uint *)((int64_t)aiStack_28[0] * 0x20 + param_1[2]);
   lStack_30 = *(int64_t *)(puVar1 + 2);
@@ -230,7 +237,7 @@ uint64_t FUN_18087494c(int64_t *param_1)
   }
   in_stack_00000038 = 0xffffffffffffffff;
   in_stack_00000040 = -1;
-  FUN_1808741f0(param_1,&stack0x00000038,&stack0x00000040);
+  SystemResource_Manager(param_1,&stack0x00000038,&stack0x00000040);
   puVar2 = *(uint64_t **)((int64_t)in_stack_00000040 * 0x20 + 0x18 + param_1[2]);
   puVar1 = (uint *)((int64_t)in_stack_00000040 * 0x20 + param_1[2]);
   in_stack_00000038 = *(int64_t *)(puVar1 + 2);
@@ -288,7 +295,7 @@ void FUN_180874980(int32_t param_1)
   
   lStack0000000000000038 = 0xffffffffffffffff;
   iStack0000000000000040 = -1;
-  FUN_1808741f0(param_1,&stack0x00000038,&stack0x00000040);
+  SystemResource_Manager(param_1,&stack0x00000038,&stack0x00000040);
   puVar2 = *(uint64_t **)((int64_t)iStack0000000000000040 * 0x20 + 0x18 + unaff_RBX[2]);
   puVar1 = (uint *)((int64_t)iStack0000000000000040 * 0x20 + unaff_RBX[2]);
   lStack0000000000000038 = *(int64_t *)(puVar1 + 2);
@@ -608,7 +615,7 @@ uint64_t FUN_180874b30(int64_t param_1)
               *(int32_t *)(param_1 + 0x18) = 0xffffffff;
             }
             if (*(int64_t *)(param_1 + 0xa0) != 0) {
-              uVar6 = FUN_180768380(*(int64_t *)(param_1 + 0xa0),0);
+              uVar6 = SystemCore_DataHandler(*(int64_t *)(param_1 + 0xa0),0);
               if ((int)uVar6 != 0) {
                 return uVar6;
               }
@@ -632,7 +639,7 @@ uint64_t FUN_180874b30(int64_t param_1)
       }
       uStack_20 = 0xffffffffffffffff;
       aiStack_18[0] = -1;
-      FUN_1808741f0(param_1 + 0x898,&uStack_20,aiStack_18);
+      SystemResource_Manager(param_1 + 0x898,&uStack_20,aiStack_18);
       uVar6 = FUN_18088aca0(param_1,*(uint64_t *)
                                      ((int64_t)aiStack_18[0] * 0x20 +
                                       *(int64_t *)(param_1 + 0x8a8) + 0x18));
@@ -676,7 +683,7 @@ uint64_t FUN_180874ce3(void)
     if (*(int *)(unaff_RBX + 0x8bc) == 0) break;
     in_stack_00000038 = 0xffffffffffffffff;
     in_stack_00000040 = 0xffffffff;
-    FUN_1808741f0(unaff_RBX + 0x898,&stack0x00000038,&stack0x00000040);
+    SystemResource_Manager(unaff_RBX + 0x898,&stack0x00000038,&stack0x00000040);
     uVar5 = FUN_18088aca0();
     if ((int)uVar5 != 0) {
       return uVar5;
@@ -825,7 +832,7 @@ uint64_t FUN_180874ce3(void)
         *(int32_t *)(unaff_RBX + 0x18) = 0xffffffff;
       }
       if (*(int64_t *)(unaff_RBX + 0xa0) != 0) {
-        uVar5 = FUN_180768380(*(int64_t *)(unaff_RBX + 0xa0),0);
+        uVar5 = SystemCore_DataHandler(*(int64_t *)(unaff_RBX + 0xa0),0);
         if ((int)uVar5 != 0) {
           return uVar5;
         }

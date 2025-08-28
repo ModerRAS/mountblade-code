@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 
 // 03_rendering_part381.c - 21 个函数
 
@@ -49,7 +55,7 @@ int8_t * FUN_180476f30(int64_t param_1,int8_t *param_2)
     lVar1 = **(int64_t **)(param_1 + 0x20);
     lVar3 = (**(int **)(param_1 + 0x58) - lVar1) + uVar4;
   }
-  FUN_1800671b0(param_2,lVar1,lVar3,uVar4,2);
+  MathCoreCalculator0(param_2,lVar1,lVar3,uVar4,2);
   return param_2;
 }
 
@@ -237,7 +243,7 @@ int FUN_1804773c0(int64_t param_1,int param_2)
         return -1;
       }
     }
-    uVar4 = FUN_180067110(lVar6);
+    uVar4 = SystemCore_SyscallHandler(lVar6);
                     // WARNING: Subroutine does not return
     memcpy(uVar4,lVar2,uVar5);
   }
@@ -254,7 +260,7 @@ void FUN_180477468(void)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180067110();
+  uVar1 = SystemCore_SyscallHandler();
                     // WARNING: Subroutine does not return
   memcpy(uVar1);
 }
@@ -495,7 +501,7 @@ void FUN_180477750(int64_t *param_1)
 void * FUN_1804777d0(void)
 
 {
-  render_system_config = (uint64_t *)FUN_1808fc418(0x20);
+  render_system_config = (uint64_t *)SystemRenderer(0x20);
   *(int32_t *)(render_system_config + 1) = 1;
   *(int32_t *)((int64_t)render_system_config + 0xc) = 1;
   *render_system_config = &processed_var_4400_ptr;
@@ -513,7 +519,7 @@ uint64_t * FUN_180477890(uint64_t *param_1,int8_t *param_2)
   uint64_t *puVar1;
   uint64_t *puVar2;
   
-  puVar2 = (uint64_t *)FUN_1808fc418(0x20);
+  puVar2 = (uint64_t *)SystemRenderer(0x20);
   *(int32_t *)(puVar2 + 1) = 1;
   *(int32_t *)((int64_t)puVar2 + 0xc) = 1;
   *puVar2 = &processed_var_4440_ptr;
@@ -601,7 +607,7 @@ uint64_t * FUN_180477a30(int64_t *param_1,int64_t param_2,uint64_t *param_3)
   if (0xfffffffffffffff < uVar3) {
     lVar8 = -1;
   }
-  puVar4 = (uint64_t *)FUN_180067110(lVar8);
+  puVar4 = (uint64_t *)SystemCore_SyscallHandler(lVar8);
   puVar7 = (uint64_t *)((param_2 - lVar6 & 0xfffffffffffffff0U) + (int64_t)puVar4);
   *puVar7 = 0;
   puVar7[1] = 0;
@@ -1205,7 +1211,7 @@ void FUN_180478290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
      (uVar1 = (uVar2 >> 1) + uVar2, uVar6 = uVar5, uVar5 < uVar1)) {
     uVar6 = uVar1;
   }
-  uVar4 = FUN_180067110(uVar6 + 1);
+  uVar4 = SystemCore_SyscallHandler(uVar6 + 1);
   param_1[3] = uVar6;
   param_1[2] = param_2;
   if (0xf < uVar2) {
@@ -1238,7 +1244,7 @@ void FUN_1804782bd(int64_t param_1,int64_t param_2)
      (uVar1 = (uVar2 >> 1) + uVar2, unaff_RBX = uVar4, uVar4 < uVar1)) {
     unaff_RBX = uVar1;
   }
-  uVar3 = FUN_180067110(unaff_RBX + 1);
+  uVar3 = SystemCore_SyscallHandler(unaff_RBX + 1);
   unaff_RDI[3] = unaff_RBX;
   unaff_RDI[2] = unaff_RSI + param_2;
   if (0xf < uVar2) {

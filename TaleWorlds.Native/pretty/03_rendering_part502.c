@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 //==============================================================================
 // 文件信息：03_rendering_part502.c
 // 模块功能：渲染系统高级资源管理模块 - 第502部分
@@ -235,14 +239,14 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         do {
           resource_config_ptr = *(int64_t *)(render_context + resource_block_ptr * 8);
           if ((resource_config_ptr != 0) && (*(char *)(*(int64_t *)(resource_config_ptr + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(resource_config_ptr, 0x180c95578);
+            NetworkSystem_SecurityManager(resource_config_ptr, 0x180c95578);
             render_context = render_system_resource;
           }
           resource_block_ptr = resource_block_ptr + 1;
         } while (resource_block_ptr < resource_id);
       }
       if (render_system_resource != 0) {
-        FUN_180567f30(render_system_resource, 0x180c95578);
+        SystemCore_DatabaseHandler(render_system_resource, 0x180c95578);
       }
       render_system_resource = 0;
       // WARNING: Subroutine does not return
@@ -585,14 +589,14 @@ void FUN_180535c78(int32_t param_1)
         do {
           resource_config_ptr = *(int64_t *)(resource_block_ptr + resource_system_ptr * 8);
           if ((resource_config_ptr != 0) && (*(char *)(*(int64_t *)(resource_config_ptr + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(resource_config_ptr, 0x180c95578);
+            NetworkSystem_SecurityManager(resource_config_ptr, 0x180c95578);
             resource_block_ptr = render_system_resource;
           }
           resource_system_ptr = resource_system_ptr + 1;
         } while (resource_system_ptr < resource_id);
       }
       if (render_system_resource != 0) {
-        FUN_180567f30(render_system_resource, 0x180c95578);
+        SystemCore_DatabaseHandler(render_system_resource, 0x180c95578);
       }
       render_system_resource = 0;
       // WARNING: Subroutine does not return
@@ -888,7 +892,7 @@ void FUN_180535c78(int32_t param_1)
  *    ├── FUN_1804fe350 - 资源参数验证
  *    ├── FUN_1804fc920 - 资源池操作
  *    ├── SystemBufferProcessor - 资源同步控制
- *    ├── FUN_1805b59d0 - 资源清理操作
+ *    ├── NetworkSystem_SecurityManager - 资源清理操作
  *    ├── FUN_1805b32b0 - 资源批处理
  *    ├── FUN_180506ae0 - 资源数据操作
  *    ├── FUN_18051aff0 - 资源状态更新
@@ -899,7 +903,7 @@ void FUN_180535c78(int32_t param_1)
  *    ├── FUN_1804fe350 - 状态验证处理
  *    ├── FUN_1804fc920 - 状态管理操作
  *    ├── SystemBufferProcessor - 状态同步控制
- *    ├── FUN_1805b59d0 - 状态清理操作
+ *    ├── NetworkSystem_SecurityManager - 状态清理操作
  *    ├── FUN_1805b32b0 - 状态批处理
  *    ├── FUN_180506ae0 - 状态数据操作
  *    ├── FUN_18051aff0 - 状态更新操作

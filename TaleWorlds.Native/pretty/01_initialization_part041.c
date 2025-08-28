@@ -1,3 +1,8 @@
+/* FUN_1806272a0 - RenderingSystem_ResourceRegistrar */
+#define RenderingSystem_ResourceRegistrar FUN_1806272a0
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
 
@@ -387,11 +392,11 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
             MessageBoxA(0, param_2, &global_state_4072_ptr, DEBUG_OUTPUT_FLAGS);
         }
         else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
-            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4072_ptr, param_2);
+            SystemConfigurationManager(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4072_ptr, param_2);
         }
     }
     else if (system_debug_flag == '\0') {
-        FUN_1806272a0(debug_output);
+        RenderingSystem_ResourceRegistrar(debug_output);
     }
     
     // 处理系统验证
@@ -539,11 +544,11 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
             MessageBoxA(0, param_2, event_data, 0x41030);
         }
         else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
-            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, event_data, param_2);
+            SystemConfigurationManager(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, event_data, param_2);
         }
     }
     else if (system_debug_flag == '\0') {
-        FUN_1806272a0(&global_state_4096_ptr, param_2);
+        RenderingSystem_ResourceRegistrar(&global_state_4096_ptr, param_2);
     }
     
     // 验证系统状态
@@ -733,11 +738,11 @@ resource_cleanup:
                 MessageBoxA(0, param_2, &global_state_4192_ptr, 0x41030);
             }
             else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
-                FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4192_ptr, param_2);
+                SystemConfigurationManager(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4192_ptr, param_2);
             }
         }
         else if (system_debug_flag == '\0') {
-            FUN_1806272a0(&global_state_4160_ptr, param_2);
+            RenderingSystem_ResourceRegistrar(&global_state_4160_ptr, param_2);
         }
         
         // 验证资源状态
@@ -799,7 +804,7 @@ resource_cleanup:
     else {
         // 处理替代资源路径
         if (*(int*)((uint8_t*)system_module_state + 0x460) == 1) {
-            FUN_1806272a0(&global_state_4160_ptr, param_2);
+            RenderingSystem_ResourceRegistrar(&global_state_4160_ptr, param_2);
         }
         resource_result = (uint64_t)resource_allocated;
     }
@@ -886,7 +891,7 @@ void FUN_180070680(uint64_t param_1, uint64_t param_2)
     }
     else {
         cleanup_result = func_0x0001800464d0(&debug_output);
-        FUN_1806272a0(cleanup_result);
+        RenderingSystem_ResourceRegistrar(cleanup_result);
     }
     
     // 释放信号量并退出

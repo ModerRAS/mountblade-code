@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -341,7 +342,7 @@ int64_t FUN_1801bb150(int64_t param_1,int64_t param_2,uint64_t param_3,uint para
       lVar5 = *plVar6;
       if ((((*(uint *)(lVar5 + 0x134) & param_4 & 0xfffffffe) == (param_4 & 0xfffffffe)) ||
           ((*(uint *)(lVar5 + 0x134) & 1) != 0)) &&
-         (cVar2 = FUN_18038d0a0(lVar5,param_2), cVar2 != '\0')) {
+         (cVar2 = SystemCore_PerformanceMonitor(lVar5,param_2), cVar2 != '\0')) {
         if (param_5 != '\0') {
           return lVar5;
         }
@@ -425,13 +426,13 @@ void FUN_1801bb3a0(int64_t param_1,int64_t param_2,int8_t param_3)
         lVar1 = lVar4;
         if (*piVar3 < iStack_40) {
           do {
-            FUN_18005d190(lVar1,piVar3 + -8);
+            SystemScheduler(lVar1,piVar3 + -8);
             piVar3[10] = *piVar3;
             lVar1 = lVar1 + -0x28;
             piVar3 = piVar3 + -10;
           } while (*piVar3 < iStack_40);
         }
-        FUN_18005d190(lVar1,&puStack_60);
+        SystemScheduler(lVar1,&puStack_60);
         *(int *)(lVar1 + 0x20) = iStack_40;
         puStack_60 = &system_data_buffer_ptr;
         if (lStack_58 != 0) {
@@ -648,12 +649,12 @@ void FUN_1801bb890(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       lVar1 = lVar2;
       lVar3 = lVar2;
       while ((lVar1 != param_1 && (*(int *)(lVar1 + -8) < iStack_40))) {
-        FUN_18005d190(lVar3,lVar1 + -0x28,param_3,param_4,uVar4);
+        SystemScheduler(lVar3,lVar1 + -0x28,param_3,param_4,uVar4);
         *(int32_t *)(lVar3 + 0x20) = *(int32_t *)(lVar1 + -8);
         lVar3 = lVar3 + -0x28;
         lVar1 = lVar1 + -0x28;
       }
-      FUN_18005d190(lVar3,&puStack_60,param_3,param_4,uVar4);
+      SystemScheduler(lVar3,&puStack_60,param_3,param_4,uVar4);
       *(int *)(lVar3 + 0x20) = iStack_40;
       puStack_60 = &system_data_buffer_ptr;
       if (lStack_58 != 0) {
@@ -767,7 +768,7 @@ void FUN_1801bbb10(int param_1,int param_2,int64_t *param_3)
         FUN_1802e7e20(lVar1);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
       }
       *(int16_t *)(lVar1 + 0x2b0) = *(int16_t *)(lVar1 + 0x2b4);
     }
@@ -796,7 +797,7 @@ void FUN_1801bbb2e(void)
         FUN_1802e7e20(lVar1);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
       }
       *(int16_t *)(lVar1 + 0x2b0) = *(int16_t *)(lVar1 + 0x2b4);
     }
@@ -996,7 +997,7 @@ void FUN_1801bbe30(int param_1,int param_2,uint64_t *param_3)
         FUN_1802e7e20(lVar1);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
       }
       *(int16_t *)(lVar1 + 0x2b0) = *(int16_t *)(lVar1 + 0x2b4);
     }
@@ -1025,7 +1026,7 @@ void FUN_1801bbe4e(void)
         FUN_1802e7e20(lVar1);
       }
       else {
-        FUN_18063ad30(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
+        UltraHighFreq_DataProcessor1(*(int64_t *)(lVar1 + 0x28),*(int64_t *)(lVar1 + 0x28) + 0xf8,lVar1 + 0x70);
       }
       *(int16_t *)(lVar1 + 0x2b0) = *(int16_t *)(lVar1 + 0x2b4);
     }

@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_MemoryManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
 
 // 03_rendering_part626.c - 13 个函数
 
@@ -16,7 +25,7 @@ void FUN_180616ba0(char param_1)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
   if (render_system_memory == 0) {
-    FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&ui_system_data_1408_ptr);
+    SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1952_ptr,&ui_system_data_1408_ptr);
     FUN_18061c7a0(auStack_218);
   }
   else {
@@ -512,7 +521,7 @@ void FUN_180617580(int64_t param_1,int8_t param_2,int param_3,int32_t param_4,
       uVar4 = *(uint64_t *)(render_system_memory + (int64_t)iVar1 * 8);
     }
     lVar3 = FUN_18040c880(*(uint64_t *)(param_1 + 0x208),auStack_58,uVar4,param_2,param_4,0);
-    FUN_18063b5f0(&uStack_38);
+    SystemSecurityManager(&uStack_38);
     uVar4 = *(uint64_t *)(lVar3 + 0x10);
     uVar2 = *(uint64_t *)(lVar3 + 0x18);
     *param_5 = uStack_38;
@@ -635,7 +644,7 @@ void FUN_180617650(int64_t param_1,char param_2,char param_3,char param_4,uint64
       uStack_3c = uStack_dc;
       uStack_38 = uVar6;
       uStack_30 = uVar7;
-      FUN_18063b5f0(&uStack_98,&uStack_e8);
+      SystemSecurityManager(&uStack_98,&uStack_e8);
       *(int32_t *)param_5 = uStack_98;
       *(int32_t *)((int64_t)param_5 + 4) = uStack_94;
       *(int32_t *)(param_5 + 1) = uStack_90;
@@ -653,7 +662,7 @@ void FUN_180617650(int64_t param_1,char param_2,char param_3,char param_4,uint64
     }
     else {
       lVar8 = FUN_180534770(param_1,auStack_68,param_2);
-      FUN_18063b5f0(&uStack_c8);
+      SystemSecurityManager(&uStack_c8);
       uVar2 = *(int32_t *)(lVar8 + 0x10);
       uVar3 = *(int32_t *)(lVar8 + 0x14);
       uVar4 = *(int32_t *)(lVar8 + 0x18);
@@ -734,7 +743,7 @@ void FUN_1806176f0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   uStack00000000000000cc = uStack000000000000002c;
   uStack00000000000000d0 = uVar2;
   uStack00000000000000d8 = uVar3;
-  FUN_18063b5f0(&stack0x00000070,&stack0x00000020,param_3,param_4,uStack00000000000000c0);
+  SystemSecurityManager(&stack0x00000070,&stack0x00000020,param_3,param_4,uStack00000000000000c0);
   *unaff_RBX = uStack0000000000000070;
   unaff_RBX[1] = uStack0000000000000074;
   unaff_RBX[2] = uStack0000000000000078;
@@ -908,7 +917,7 @@ uint64_t FUN_180617a30(int64_t param_1,int param_2,int param_3)
     return in_RAX & 0xffffffffffffff00;
   }
   lVar1 = *(int64_t *)(param_1 + 0x210);
-  iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)(lVar1 + 0xac));
+  iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)(lVar1 + 0xac));
   iVar3 = *(int *)(render_system_memory + (int64_t)iVar3 * 4);
   uVar4 = render_system_memory;
   if (iVar3 != -1) {
@@ -935,7 +944,7 @@ uint64_t FUN_180617a43(int64_t param_1)
   int64_t unaff_RBX;
   
   lVar1 = *(int64_t *)(param_1 + 0x210);
-  iVar3 = FUN_18053a410(&system_data_5f30,*(int32_t *)(lVar1 + 0xac));
+  iVar3 = SystemCacheManager(&system_data_5f30,*(int32_t *)(lVar1 + 0xac));
   iVar3 = *(int *)(render_system_memory + (int64_t)iVar3 * 4);
   if (iVar3 != -1) {
     lVar2 = *(int64_t *)(render_system_memory + (int64_t)iVar3 * 8);
@@ -1090,7 +1099,7 @@ void FUN_180617cd0(uint param_1,int32_t param_2,int32_t param_3,uint64_t *param_
   
   uStack_100 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
-  pcStack_168 = FUN_18004a130;
+  pcStack_168 = SystemCore_MemoryManager;
   DataStructureManager(auStack_f8,0x30,4,FUN_1801c2890);
   uStack_38 = 0;
   uStack_e8 = 0;
@@ -1127,7 +1136,7 @@ void FUN_180617cd0(uint param_1,int32_t param_2,int32_t param_3,uint64_t *param_
     pcStack_168 = (code *)CONCAT44(pcStack_168._4_4_,uStack_110);
     FUN_180545230(&system_data_6110,uStack_138,&uStack_134,uStack_124._3_1_);
   }
-  SystemDataValidator(auStack_f8,0x30,4,FUN_18004a130);
+  SystemDataValidator(auStack_f8,0x30,4,SystemCore_MemoryManager);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_188);
 }

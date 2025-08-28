@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -33,7 +36,7 @@
 // ============================================================================
 
 /** 系统内存分配和注册函数 */
-#define FUN_180623800 SystemMemoryAllocatorAndRegistrar
+#define SystemCore_ConfigManager SystemMemoryAllocatorAndRegistrar
 
 /** 系统注册表管理器函数 */
 #define NetworkDataProcessor SystemRegistryManager
@@ -45,7 +48,7 @@
 #define NetworkProtocolHandler SystemMemoryAllocatorAndInserter
 
 /** 系统函数指针设置函数 */
-#define FUN_18007fcd0 SystemFunctionPointerSetter1
+#define SystemCore_Compression SystemFunctionPointerSetter1
 
 /** 系统函数指针设置函数 */
 #define FUN_180073930 SystemFunctionPointerSetter2
@@ -99,7 +102,7 @@
  * 
  * 技术实现：
  * - 使用strcpy_s进行安全的字符串复制
- * - 调用FUN_180623800进行内存分配和注册
+ * - 调用SystemCore_ConfigManager进行内存分配和注册
  * - 设置配置标志为0x16
  * 
  * 注意事项：
@@ -119,7 +122,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&processed_var_7304_ptr,in_R9,0xfffffffffffffffe);
-  init_system_ui = FUN_180623800(&puStack_a0);
+  init_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -171,7 +174,7 @@ int InitializationSystem_GlobalDataInitializer1(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 设置函数指针为FUN_18007fcd0
+ * - 设置函数指针为SystemCore_Compression
  * 
  * 注意事项：
  * - 算法复杂度为O(n)，适用于中小规模注册表
@@ -193,7 +196,7 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
+  pcStackX_18 = SystemCore_Compression;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -772,7 +775,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
  * 
  * 技术实现：
  * - 使用strcpy_s进行安全的字符串复制
- * - 调用FUN_180623800进行内存分配和注册
+ * - 调用SystemCore_ConfigManager进行内存分配和注册
  * - 设置配置标志为0x12
  * 
  * 注意事项：
@@ -792,7 +795,7 @@ void InitializationSystem_ConfigRegistrationManager2(void)
   auStack_88[0] = 0;
   uStack_90 = 0x12;
   strcpy_s(auStack_88,0x80,&processed_var_4992_ptr,in_R9,0xfffffffffffffffe);
-  init_system_ui = FUN_180623800(&puStack_a0);
+  init_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 
@@ -810,7 +813,7 @@ void InitializationSystem_ConfigRegistrationManager2(void)
  * 
  * 技术实现：
  * - 使用strcpy_s进行安全的字符串复制
- * - 调用FUN_180623800进行内存分配和注册
+ * - 调用SystemCore_ConfigManager进行内存分配和注册
  * - 设置配置标志为8
  * 
  * 注意事项：
@@ -830,7 +833,7 @@ void InitializationSystem_ConfigRegistrationManager3(void)
   auStack_88[0] = 0;
   uStack_90 = 8;
   strcpy_s(auStack_88,0x80,&processed_var_6248_ptr,in_R9,0xfffffffffffffffe);
-  init_system_ui = FUN_180623800(&puStack_a0);
+  init_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 

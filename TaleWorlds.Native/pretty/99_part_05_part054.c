@@ -146,7 +146,7 @@ void FUN_1802fbc50(int64_t param_1)
         fStack_64 = fVar7;
         fStack_60 = fVar8;
         uStack_5c = uStack_9c;
-        pfVar18 = (float *)FUN_1801c0fb0(&fStack_b8,auStack_98,puVar22 + 0x10);
+        pfVar18 = (float *)SystemFileHandler(&fStack_b8,auStack_98,puVar22 + 0x10);
         fVar9 = (float)puVar22[0xc];
         fVar10 = (float)puVar22[0xd];
         fVar11 = (float)puVar22[0xe];
@@ -185,7 +185,7 @@ void FUN_1802fbc50(int64_t param_1)
       }
       *puVar22 = 0;
       if (bVar17) {
-        FUN_1802feba0(param_1,(int64_t)(uint64_t)(uint)((int)puVar22 - *(int *)(param_1 + 0x18))
+        RenderingSystem_DrawPrimitive(param_1,(int64_t)(uint64_t)(uint)((int)puVar22 - *(int *)(param_1 + 0x18))
                               >> 8);
       }
       iVar21 = iVar21 + 1;
@@ -317,7 +317,7 @@ void FUN_1802fbc9d(void)
       fStack00000000000000c4 = fVar10;
       fStack00000000000000c8 = fVar11;
       uStack00000000000000cc = uStack000000000000008c;
-      pfVar16 = (float *)FUN_1801c0fb0(&stack0x00000070,&stack0x00000090,puVar19 + 0x10);
+      pfVar16 = (float *)SystemFileHandler(&stack0x00000070,&stack0x00000090,puVar19 + 0x10);
       fVar12 = (float)puVar19[0xc];
       fVar13 = (float)puVar19[0xd];
       fVar14 = (float)puVar19[0xe];
@@ -351,7 +351,7 @@ void FUN_1802fbc9d(void)
     }
     *puVar19 = unaff_R14D;
     if (unaff_BPL != '\0') {
-      FUN_1802feba0(fStack0000000000000050,
+      RenderingSystem_DrawPrimitive(fStack0000000000000050,
                     (int64_t)(uint64_t)(uint)((int)puVar19 - *(int *)(unaff_RBX + 0x18)) >> 8);
     }
     unaff_EDI = unaff_EDI + 1;
@@ -579,11 +579,11 @@ void FUN_1802fc0f0(int64_t param_1,int64_t *param_2,uint64_t param_3,int8_t para
     }
   }
   (**(code **)(*plVar7 + 0x1e0))(plVar7,*(uint64_t *)(param_1 + 0x10));
-  FUN_1800b88d0(param_1 + 0x1a8,&plStackX_8);
+  PhysicsSystem_TriggersProcessor(param_1 + 0x1a8,&plStackX_8);
   plVar7 = plStackX_8;
   cVar4 = (**(code **)(*plStackX_8 + 0xa0))(plStackX_8);
   if (cVar4 != '\0') {
-    FUN_1800b88d0(param_1 + 0x1c8,&plStackX_8);
+    PhysicsSystem_TriggersProcessor(param_1 + 0x1c8,&plStackX_8);
     plVar7 = plStackX_8;
   }
   if (*(int64_t *)(param_1 + 0x10) != 0) {
@@ -668,8 +668,8 @@ void FUN_1802fc320(int64_t param_1)
     } while ((uint64_t)(int64_t)iVar3 < (uint64_t)(*(int64_t *)(param_1 + 0x1b0) - *plVar4 >> 3)
             );
   }
-  FUN_1800b8500(plVar4);
-  FUN_1800b8500(param_1 + 0x1c8);
+  SystemCore_Controller(plVar4);
+  SystemCore_Controller(param_1 + 0x1c8);
   iVar3 = 0;
   if ('\0' < *(char *)(param_1 + 0x20)) {
     lVar5 = 0;
@@ -752,8 +752,8 @@ void FUN_1802fc326(int64_t param_1)
     } while ((uint64_t)(int64_t)iVar3 < (uint64_t)(*(int64_t *)(param_1 + 0x1b0) - *plVar4 >> 3)
             );
   }
-  FUN_1800b8500(plVar4);
-  FUN_1800b8500(param_1 + 0x1c8);
+  SystemCore_Controller(plVar4);
+  SystemCore_Controller(param_1 + 0x1c8);
   iVar3 = 0;
   if ('\0' < *(char *)(param_1 + 0x20)) {
     lVar5 = 0;

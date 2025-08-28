@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -622,7 +626,7 @@ void FUN_180294c20(uint64_t param_1,char *param_2,int32_t param_3,uint64_t *para
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar2,SYSTEM_DATA_MANAGER_B);
+  DataValidator0(lVar2,SYSTEM_DATA_MANAGER_B);
 }
 
 

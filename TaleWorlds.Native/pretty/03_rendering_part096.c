@@ -277,7 +277,7 @@ uint64_t FUN_180323d00(int64_t param_1,int32_t param_2,int32_t param_3)
   apuStack_a8[0][5] = uStack_f8._4_4_;
   apuStack_a8[0][6] = (int32_t)uStack_f0;
   apuStack_a8[0][7] = uStack_f0._4_4_;
-  FUN_18015b810((int32_t)uStack_108,0,lVar10 >> 2 & 0xffffffff,0x20,0xffffffffffffffff,
+  SystemCore_DataTransformer((int32_t)uStack_108,0,lVar10 >> 2 & 0xffffffff,0x20,0xffffffffffffffff,
                 apuStack_a8);
   if (uStack_140 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -305,7 +305,7 @@ uint64_t FUN_180323d00(int64_t param_1,int32_t param_2,int32_t param_3)
   apuStack_88[0][5] = uStack_130._4_4_;
   apuStack_88[0][6] = (int32_t)uStack_128;
   apuStack_88[0][7] = uStack_128._4_4_;
-  FUN_18015b810((int32_t)uStack_140,0,lVar10 >> 2 & 0xffffffff,0x20,0xffffffffffffffff,
+  SystemCore_DataTransformer((int32_t)uStack_140,0,lVar10 >> 2 & 0xffffffff,0x20,0xffffffffffffffff,
                 apuStack_88);
   if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -496,7 +496,7 @@ LAB_180324528:
         __Throw_C_error_std__YAXH_Z(iVar6);
       }
       if (lVar10 != 0) {
-        FUN_1802ee720(lVar10,0);
+        RenderingSystem_UpdateCamera(lVar10,0);
       }
       iVar5 = iVar5 + 1;
       lVar13 = lVar13 + 4;

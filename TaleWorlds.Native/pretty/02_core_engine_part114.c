@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part114.c - 9 个函数
 
@@ -108,7 +110,7 @@ void FUN_180127648(void)
     if (0 < iVar8) {
       iVar7 = iVar8;
     }
-    FUN_18011dd10(unaff_RBX + 0x1530,iVar7);
+    Memory_CacheManager(unaff_RBX + 0x1530,iVar7);
   }
   *(uint *)(unaff_RBX + 0x1530) = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
                     // WARNING: Subroutine does not return
@@ -186,7 +188,7 @@ void FUN_18012770c(void)
     if (0 < iVar5) {
       iVar6 = iVar5;
     }
-    FUN_18011dd10(unaff_RBX + 0x1530,iVar6);
+    Memory_CacheManager(unaff_RBX + 0x1530,iVar6);
   }
   *(uint *)(unaff_RBX + 0x1530) = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
                     // WARNING: Subroutine does not return
@@ -248,7 +250,7 @@ void FUN_180127733(void)
     if (0 < iVar3) {
       iVar4 = iVar3;
     }
-    FUN_18011dd10(unaff_RBX + 0x1530,iVar4);
+    Memory_CacheManager(unaff_RBX + 0x1530,iVar4);
   }
   *(int *)(unaff_RBX + 0x1530) = unaff_R12D;
                     // WARNING: Subroutine does not return
@@ -272,7 +274,7 @@ void FUN_18012780c(int param_1)
   if (0 < param_1) {
     iVar1 = param_1;
   }
-  FUN_18011dd10(unaff_RBX + 0x1530,iVar1);
+  Memory_CacheManager(unaff_RBX + 0x1530,iVar1);
   *(int *)(unaff_RBX + 0x1530) = unaff_R12D;
                     // WARNING: Subroutine does not return
   memset(unaff_RBX + 0x338,0,0x54);
@@ -725,7 +727,7 @@ void FUN_180127c43(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_180127c60(uint64_t *param_1,char *param_2,char *param_3,char param_4,int32_t param_5)
+SystemCore_Controller(uint64_t *param_1,char *param_2,char *param_3,char param_4,int32_t param_5)
 
 {
   float fVar1;
@@ -750,7 +752,7 @@ FUN_180127c60(uint64_t *param_1,char *param_2,char *param_3,char param_4,int32_t
   pfVar2 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
   fVar1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
   if (param_2 != param_3) {
-    FUN_180297340(pfVar2,&fStackX_10,fVar1,0x7f7fffff,param_5,param_2,param_3,0);
+    SystemCore_StateController(pfVar2,&fStackX_10,fVar1,0x7f7fffff,param_5,param_2,param_3,0);
     if (0.0 < fStackX_10) {
       fStackX_10 = fStackX_10 - fVar1 / *pfVar2;
     }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part613.c - 4 个函数
 
 // 函数: void FUN_180603f3b(uint64_t param_1,uint64_t param_2,int32_t param_3)
@@ -87,7 +91,7 @@ FUN_180604440(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,floa
       }
     }
     else {
-      param_5 = (float *)FUN_180488690(param_1 + 0x48);
+      param_5 = (float *)SystemCore_ErrorHandler(param_1 + 0x48);
     }
     cVar15 = *(char *)(param_1 + 0x113c);
     lVar1 = param_1 + 0x118;
@@ -252,7 +256,7 @@ LAB_1806047f8:
     lVar2 = *(int64_t *)(lVar2 + 0x18);
     param_5._0_4_ = fVar18;
     param_5._4_4_ = fVar17;
-    lVar9 = FUN_180488690(param_1 + 0x48);
+    lVar9 = SystemCore_ErrorHandler(param_1 + 0x48);
     if (lVar3 == 0) {
       return 0;
     }
@@ -329,7 +333,7 @@ uint64_t FUN_180604a00(int64_t param_1,int param_2,int param_3,int param_4,float
         }
       }
       else {
-        lStack_78 = FUN_180488690(param_1 + 0x48);
+        lStack_78 = SystemCore_ErrorHandler(param_1 + 0x48);
         pfVar15 = (float *)CONCAT44(param_5._4_4_,param_5._0_4_);
       }
       cVar4 = *(char *)(param_1 + 0x113c);
@@ -488,7 +492,7 @@ LAB_180604dcc:
       lVar7 = *(int64_t *)(lStack_68 + 0x18);
       param_5._0_4_ = fVar17;
       param_5._4_4_ = fVar16;
-      uVar9 = FUN_180488690(param_1 + 0x48);
+      uVar9 = SystemCore_ErrorHandler(param_1 + 0x48);
       if (lVar2 == 0) {
         return 0;
       }
@@ -770,7 +774,7 @@ void FUN_180605670(int64_t *param_1,uint64_t param_2,char param_3)
     puStack_18 = &processed_var_4208_ptr;
     pcStack_10 = FUN_180607bb0;
     aplStack_28[0] = param_1;
-    pplVar6 = (int64_t **)FUN_18006b640(uVar9,aplStack_28);
+    pplVar6 = (int64_t **)SystemCore_ErrorHandler(uVar9,aplStack_28);
     pplVar4 = pplVar6;
     uVar9 = system_context_ptr;
     if (pplVar6 != (int64_t **)0x0) {
@@ -809,7 +813,7 @@ void FUN_180605670(int64_t *param_1,uint64_t param_2,char param_3)
             piVar1 = (int *)(lVar7 + 0x18);
             *piVar1 = *piVar1 + -1;
             if (*piVar1 == 0) {
-              FUN_18064d630();
+              SystemCore_DebugHandler();
               return;
             }
           }
@@ -978,7 +982,7 @@ void FUN_180605930(int64_t param_1,int64_t param_2,uint64_t param_3,char param_4
         if (lVar7 != 0) {
           lVar9 = *(int64_t *)(lVar7 + 0x260);
         }
-        FUN_180085020(lVar7 + 0x70,auStack_68);
+        RenderingSystem_LightSystem(lVar7 + 0x70,auStack_68);
         uVar8 = *(uint64_t *)(lVar9 + 0x210);
       }
       FUN_180577110(plVar3,uVar8,uVar10);

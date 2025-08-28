@@ -179,7 +179,7 @@ void FUN_1801762b0(int64_t param_1,void **param_2,int64_t param_3,void **param_4
   uStack_6d0 = 0;
   __0TileSetCreationParameters_Granite_Graphine__QEAA_XZ(&ppuStack_6c8);
   ppuVar1 = appuStack_680[0];
-  lVar5 = FUN_180624440(apuStack_668,appuStack_680[0]);
+  lVar5 = SystemCore_EncryptionEngine(apuStack_668,appuStack_680[0]);
   puStack_6f8 = &system_data_buffer_ptr;
   uStack_6e0 = 0;
   puStack_6f0 = (int8_t *)0x0;
@@ -528,7 +528,7 @@ LAB_180176af7:
   lVar4 = param_1 + 0x1b0;
   puVar14 = *(uint64_t **)(param_1 + 0x1c0);
   if (puVar14 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar4,*puVar14);
+    SystemCache_Manager(lVar4,*puVar14);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(puVar14);
   }

@@ -41,19 +41,19 @@ void FUN_1803162f0(int64_t param_1)
   }
   lVar2 = *(int64_t *)(param_1 + 0x30);
   if ((lVar2 != 0) && ((*(uint *)(lVar2 + 0x328) & 0x20000000) == 0)) {
-    FUN_18023b050(lVar2,0);
+    SystemCore_NetworkHandler(lVar2,0);
   }
   lVar2 = *(int64_t *)(param_1 + 0x38);
   if ((lVar2 != 0) && ((*(uint *)(lVar2 + 0x328) & 0x20000000) == 0)) {
-    FUN_18023b050(lVar2,0);
+    SystemCore_NetworkHandler(lVar2,0);
   }
   lVar2 = *(int64_t *)(param_1 + 0x18);
   if ((lVar2 != 0) && ((*(uint *)(lVar2 + 0x328) & 0x20000000) == 0)) {
-    FUN_18023b050(lVar2,0);
+    SystemCore_NetworkHandler(lVar2,0);
   }
   lVar2 = *(int64_t *)(param_1 + 0x20);
   if ((lVar2 != 0) && ((*(uint *)(lVar2 + 0x328) & 0x20000000) == 0)) {
-    FUN_18023b050(lVar2,0);
+    SystemCore_NetworkHandler(lVar2,0);
   }
   plVar1 = *(int64_t **)(param_1 + 0x30);
   *(uint64_t *)(param_1 + 0x30) = 0;

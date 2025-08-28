@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 /**
  * @brief 高级数据处理和内存管理模块
@@ -246,20 +248,20 @@ typedef struct {
 #define SystemCleanup                      FUN_1801f9270      // 系统清理函数
 #define MemoryAllocate                     CoreEngineMemoryPoolAllocator      // 内存分配函数
 #define MemoryFree                         CoreEngineMemoryPoolCleaner      // 内存释放函数
-#define StringCopy                         FUN_1802c22a0      // 字符串复制函数
-#define StringLength                       FUN_1802c2560      // 字符串长度函数
-#define ResourceCreate                     FUN_1800b1230      // 资源创建函数
+#define StringCopy                         SystemData_Processor      // 字符串复制函数
+#define StringLength                       SystemCore_Analyzer      // 字符串长度函数
+#define ResourceCreate                     SystemInitializer      // 资源创建函数
 #define ResourceDestroy                    FUN_1800b1d80      // 资源销毁函数
 #define ProcessData                        FUN_1801f7d20      // 数据处理函数
-#define ValidateParameters                 FUN_180299eb0      // 参数验证函数
-#define ExecuteOperation                   FUN_18029fc10      // 操作执行函数
+#define ValidateParameters                 UIRenderingEngine      // 参数验证函数
+#define ExecuteOperation                   SystemCore_ThreadManager      // 操作执行函数
 #define FormatData                         RenderingEngineCore0      // 数据格式化函数
-#define TransformData                      FUN_18029d760      // 数据变换函数
+#define TransformData                      CoreSystem_Initializer      // 数据变换函数
 #define ConfigureSystem                    CoreEngineDataTransformer      // 系统配置函数
 #define ControlResource                    SystemDataInitializer      // 资源控制函数
-#define QueryResource                      FUN_180244ff0      // 资源查询函数
+#define QueryResource                      SystemOptimizer      // 资源查询函数
 #define ProcessCommand                     FUN_1801f9aa0      // 命令处理函数
-#define UpdateResource                     FUN_180060b80      // 资源更新函数
+#define UpdateResource                     SystemCore_ChecksumValidator      // 资源更新函数
 
 // ============================================================================
 // 枚举定义

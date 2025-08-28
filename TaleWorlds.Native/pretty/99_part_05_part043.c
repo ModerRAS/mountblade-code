@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -350,7 +354,7 @@ void FUN_1802f4b90(int64_t param_1,uint64_t *param_2,uint64_t param_3)
         uVar1 = param_2[1];
         if (uVar1 < param_2[2]) {
           param_2[1] = uVar1 + 0x58;
-          FUN_1800b8300(uVar1,&puStack_a8);
+          DataDeserializer0(uVar1,&puStack_a8);
         }
         else {
           uVar2 = *param_2;
@@ -390,7 +394,7 @@ LAB_1802f4d0f:
             } while (lVar5 + (int64_t)puVar6 != uVar1);
           }
           lVar5 = lStack_e8;
-          FUN_1800b8300(puVar6,&puStack_a8);
+          DataDeserializer0(puVar6,&puStack_a8);
           puVar3 = (uint64_t *)param_2[1];
           pcVar8 = pcStack_d0;
           for (puVar7 = (uint64_t *)*param_2; pcStack_d0 = pcVar8, puVar7 != puVar3;
@@ -655,7 +659,7 @@ void FUN_1802f52c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uVar1 = param_1[1];
   if (uVar1 < param_1[2]) {
     param_1[1] = uVar1 + 0x58;
-    FUN_1800b8300(uVar1);
+    DataDeserializer0(uVar1);
     return;
   }
   uVar2 = *param_1;
@@ -692,7 +696,7 @@ LAB_1802f5364:
       puVar5 = puVar5 + 0xb;
     } while (lVar9 + (int64_t)puVar5 != uVar1);
   }
-  FUN_1800b8300(puVar5,param_2);
+  DataDeserializer0(puVar5,param_2);
   puVar4 = (uint64_t *)param_1[1];
   for (puVar6 = (uint64_t *)*param_1; puVar6 != puVar4; puVar6 = puVar6 + 0xb) {
     (**(code **)*puVar6)(puVar6,0);

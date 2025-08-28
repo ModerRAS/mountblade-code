@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_04_part071.c - 13 个函数
 
 // 函数: void FUN_1802c7e40(int64_t param_1,int64_t param_2,uint64_t param_3,float *param_4,
@@ -381,7 +385,7 @@ void FUN_1802c84d0(int64_t param_1,int64_t param_2)
         case 0xffffffea:
           plVar6 = *(int64_t **)(param_2 + 0x9968);
           if (plVar6 == (int64_t *)0x0) {
-            plVar6 = (int64_t *)FUN_180245280(param_2);
+            plVar6 = (int64_t *)SystemLog_Manager(param_2);
           }
           if (plVar6 != (int64_t *)0x0) {
             plStack_a0 = plVar6;
@@ -422,7 +426,7 @@ void FUN_1802c84d0(int64_t param_1,int64_t param_2)
           plStack_d0 = plVar3;
           break;
         case 0xffffffee:
-          plVar6 = (int64_t *)FUN_180245280(param_2);
+          plVar6 = (int64_t *)SystemLog_Manager(param_2);
           if (plVar6 != (int64_t *)0x0) {
             plStack_98 = plVar6;
             (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -532,7 +536,7 @@ void FUN_1802c84d0(int64_t param_1,int64_t param_2)
           plStack_90 = plVar3;
           break;
         case 0xfffffff7:
-          plVar6 = (int64_t *)FUN_180245280(param_2);
+          plVar6 = (int64_t *)SystemLog_Manager(param_2);
           if (plVar6 != (int64_t *)0x0) {
             plStack_a8 = plVar6;
             (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -694,7 +698,7 @@ void FUN_1802c8c60(int64_t param_1)
     auStack_e0[0] = 0;
     uStack_60 = 0x28;
     uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-    ppuVar4 = (void **)FUN_18005ce30(uVar3,&puStack_f8);
+    ppuVar4 = (void **)SystemCore_StreamController(uVar3,&puStack_f8);
     ppuStack_100 = ppuVar4;
     if (ppuVar4 != (void **)0x0) {
       (**(code **)(*ppuVar4 + 0x28))(ppuVar4);
@@ -705,7 +709,7 @@ void FUN_1802c8c60(int64_t param_1)
     if (ppuVar4 != (void **)0x0) {
       (**(code **)(*ppuVar4 + 0x28))(ppuVar4);
     }
-    FUN_18005e370(uVar3,&ppuStack_118);
+    SystemPerformance_Monitor(uVar3,&ppuStack_118);
     if (ppuVar4 != (void **)0x0) {
       (**(code **)(*ppuVar4 + 0x38))(ppuVar4);
     }

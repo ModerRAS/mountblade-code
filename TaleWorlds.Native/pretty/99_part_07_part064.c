@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_07_part064.c - 5 个函数
 
 // 函数: void FUN_1804d6ba0(void)
@@ -272,7 +276,7 @@ LAB_1804d6c16:
         unaff_RBP[-0x13] = fVar19;
         unaff_RBP[-0x12] = fVar20;
         unaff_RBP[-0x11] = fVar26;
-        FUN_18063b5f0(&stack0x00000070,unaff_RBP + -0x18);
+        SystemSecurityManager(&stack0x00000070,unaff_RBP + -0x18);
         pfVar9 = (float *)(lVar4 + 8 + lVar12 * 0x48);
         fVar22 = *pfVar9;
         fVar24 = pfVar9[1];
@@ -534,7 +538,7 @@ LAB_1804d7222:
   uStack_30 = uStack_40;
   ppuStack_28 = &puStackX_8;
   puStackX_18 = &uStack_30;
-  FUN_18015b810(lVar2,0,uVar3,4,0xffffffffffffffff,puStackX_18,0xfffffffffffffffe);
+  SystemCore_DataTransformer(lVar2,0,uVar3,4,0xffffffffffffffff,puStackX_18,0xfffffffffffffffe);
 LAB_1804d7287:
   puStackX_8 = &uStack_30;
   ppuStack_28 = (int32_t **)&lStackX_10;
@@ -542,7 +546,7 @@ LAB_1804d7287:
   pcStack_18 = FUN_1804dee90;
   uStack_30 = uStack_40;
   uStack_2c = uStack_3c;
-  FUN_18015b810(uStack_40,0,*(int32_t *)(param_1 + 0x2c3c),4,0xffffffffffffffff,&uStack_30,uVar4)
+  SystemCore_DataTransformer(uStack_40,0,*(int32_t *)(param_1 + 0x2c3c),4,0xffffffffffffffff,&uStack_30,uVar4)
   ;
   return;
 }
@@ -607,7 +611,7 @@ void FUN_1804d72f0(int64_t *param_1,int param_2,int param_3)
             puStack_50 = &ui_system_data_1168_ptr;
             pcStack_48 = FUN_18054afe0;
             apiStack_60[0] = aiStackX_10;
-            FUN_18054a4b0(*(int64_t *)(puVar11 + 2) + 0xe0,apiStack_60,(int64_t)(int)uVar2,lVar6,
+            SystemCore_ResourceManager(*(int64_t *)(puVar11 + 2) + 0xe0,apiStack_60,(int64_t)(int)uVar2,lVar6,
                           uVar12);
             lVar5 = *(int64_t *)(puVar11 + 2);
             if ((((iVar3 == iVar4) && (cVar1 == '\0')) && (*(int *)(lVar5 + 0x154) == iVar3 - iVar4)
@@ -759,7 +763,7 @@ void FUN_1804d7500(int64_t param_1,uint param_2,int32_t param_3)
           if (((*(ushort *)(lVar9 + 8 + (int64_t)(int)(uVar5 & uVar6) * 0xc) &
                1 << ((byte)uVar14 & 0x1f)) != 0) &&
              (1 < *(int *)(*(int64_t *)(uVar15 + lVar13) + 0x178))) {
-            FUN_180077750(lVar10,*(int64_t *)(uVar15 + lVar13),&fStack_78,0,&uStack_e8);
+            SystemHealthMonitor(lVar10,*(int64_t *)(uVar15 + lVar13),&fStack_78,0,&uStack_e8);
           }
           lVar13 = *(int64_t *)(param_1 + 8);
           uVar12 = (int)uVar14 + 1;

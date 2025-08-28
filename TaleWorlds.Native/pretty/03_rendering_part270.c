@@ -114,7 +114,7 @@ LAB_180417e76:
                               if (puVar6[1] != 0) {
                                 lVar5 = puVar6[1];
                               }
-                              FUN_18010cbc0(lVar5,&system_data_6430,auStack_b8);
+                              SystemCore_NetworkHandler(lVar5,&system_data_6430,auStack_b8);
                               break;
                             }
                             lVar5 = (int64_t)&processed_var_5276_ptr - (int64_t)pcVar2;
@@ -587,7 +587,7 @@ void FUN_1804182d0(int64_t param_1)
   uStack_a8 = 0;
   ppuStackX_8 = ppuVar2;
   FUN_18041afd0(lVar5 + 0x40,auStack_a0);
-  lVar6 = FUN_1800590b0(lVar1,&ppuStackX_8,ppuVar2);
+  lVar6 = SystemCore_SecurityValidator(lVar1,&ppuStackX_8,ppuVar2);
   if ((char)ppuStackX_8 == '\0') {
     FUN_18041b200(extraout_XMM0_Da,lVar5);
     FUN_18041aa70(auStack_a0);

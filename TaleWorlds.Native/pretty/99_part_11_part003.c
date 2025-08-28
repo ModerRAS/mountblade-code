@@ -1,4 +1,8 @@
-#include "FUN_1806d7170_definition.h"
+/* 函数别名定义: MemoryPoolManager */
+#define MemoryPoolManager MemoryPoolManager
+
+
+#include "SystemAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_11_part003.c - 29 个函数
@@ -386,8 +390,8 @@ void SystemResourceProcessor(int64_t *param_1)
 
 
 
-// 函数: void FUN_1806d7000(int64_t *param_1,uint64_t param_2)
-void FUN_1806d7000(int64_t *param_1,uint64_t param_2)
+// 函数: void MemoryPoolManager0(int64_t *param_1,uint64_t param_2)
+void MemoryPoolManager0(int64_t *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -424,8 +428,8 @@ void FUN_1806d7000(int64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_1806d7080(int64_t *param_1,uint64_t param_2)
-void FUN_1806d7080(int64_t *param_1,uint64_t param_2)
+// 函数: void SystemCore_MemoryManager(int64_t *param_1,uint64_t param_2)
+void SystemCore_MemoryManager(int64_t *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;

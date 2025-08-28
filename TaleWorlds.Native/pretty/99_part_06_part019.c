@@ -1,3 +1,6 @@
+/* FUN_函数别名定义 */
+#define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -295,10 +298,10 @@ void FUN_1803b7060(int64_t param_1)
   uStack_d8 = 0xfffffffffffffffe;
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   CoreEngineDataTransformer(&puStack_f8,*(int64_t *)(param_1 + 0x70) + 0x2d0);
-  cVar3 = FUN_180624a00(&puStack_f8);
+  cVar3 = UltraHighFreq_LogManager1(&puStack_f8);
   uVar10 = extraout_XMM0_Da;
   if (cVar3 == '\0') {
-    uVar10 = FUN_180624910(&puStack_f8);
+    uVar10 = SystemManager_Processor(&puStack_f8);
   }
   FUN_1801c2d00(uVar10,*(uint64_t *)(param_1 + 0x70));
   uVar7 = 0;
@@ -336,7 +339,7 @@ void FUN_1803b7060(int64_t param_1)
   uStack_110 = 0;
   uStack_108 = 0;
   uStack_148 = 0x1f;
-  cVar3 = FUN_180624af0(&puStack_158);
+  cVar3 = RenderingSystem_RenderQueue(&puStack_158);
   if (cVar3 != '\0') {
     uStack_138 = 0;
     uStack_130 = 0;
@@ -351,7 +354,7 @@ void FUN_1803b7060(int64_t param_1)
     }
     *puVar6 = 0;
     *(int8_t *)(puVar6 + 2) = 0;
-    FUN_18062dee0(puVar6,puVar8,&processed_var_4880_ptr);
+    SystemCore_Validator(puVar6,puVar8,&processed_var_4880_ptr);
     iVar4 = FUN_18062e090(puVar6);
     if (iVar4 != 0) {
       uVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar4,3);
@@ -495,7 +498,7 @@ void FUN_1803b7530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   *puVar2 = 0;
   *(int8_t *)(puVar2 + 2) = 0;
-  FUN_18062dee0(puVar2,puVar3,&processed_var_9772_ptr);
+  SystemCore_Validator(puVar2,puVar3,&processed_var_9772_ptr);
   if (puVar2[1] != 0) {
     lVar4 = lStack_38 - lStack_40;
     if (lStack_40 == 0) {
@@ -577,7 +580,7 @@ void FUN_1803b7760(int64_t param_1,uint64_t param_2)
     *(int8_t *)(uVar6 + *(int64_t *)(lVar2 + 0x2d8)) = 0;
   }
   *(int32_t *)(lVar2 + 0x2ec) = uStack_58._4_4_;
-  FUN_18062c1e0(&puStack_70,1);
+  ResourceManager_Allocate(&puStack_70,1);
   puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   lStack_48 = 0;
@@ -633,7 +636,7 @@ void FUN_1803b7950(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   int32_t uStack_10;
   
   uVar2 = CoreEngineDataTransformer(&puStack_28,param_2 + 0x27c8,param_3,param_4,0,0xfffffffffffffffe);
-  FUN_18005d190(param_1,uVar2);
+  SystemScheduler(param_1,uVar2);
   puStack_28 = &system_data_buffer_ptr;
   if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
@@ -745,7 +748,7 @@ void FUN_1803b7ae0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   
   uStack_30 = 0xfffffffffffffffe;
   uVar2 = CoreEngineDataTransformer(&puStack_110,param_2 + 0x27c8,param_3,param_4,0);
-  FUN_18005d190(param_1,uVar2);
+  SystemScheduler(param_1,uVar2);
   puStack_110 = &system_data_buffer_ptr;
   if (lStack_108 != 0) {
                     // WARNING: Subroutine does not return
@@ -757,7 +760,7 @@ void FUN_1803b7ae0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   FUN_180141820(*system_main_module_state,param_1);
   CoreEngineDataTransformer(auStack_90,param_2 + 0x27c8);
   uVar10 = 2;
-  lVar3 = FUN_180629a40(auStack_90,&puStack_110,0,iStack_80 + -1,2);
+  lVar3 = NetworkSystem_ProtocolParser(auStack_90,&puStack_110,0,iStack_80 + -1,2);
   iVar7 = *(int *)(lVar3 + 0x10) + -1;
   if (-1 < iVar7) {
     lVar4 = (int64_t)iVar7;
@@ -777,7 +780,7 @@ LAB_1803b7bdb:
   lStack_108 = 0;
   uStack_f8._0_4_ = 0;
   puStack_110 = &system_state_ptr;
-  lVar3 = FUN_180629a40(auStack_90,&puStack_110,iVar7 + 1,iStack_80 + -1,uVar10);
+  lVar3 = NetworkSystem_ProtocolParser(auStack_90,&puStack_110,iVar7 + 1,iStack_80 + -1,uVar10);
   if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -934,7 +937,7 @@ void FUN_1803b8120(int64_t param_1,int param_2)
     puStack_140[3] = 0x5f6f6465;
     puStack_140[4] = 0x5f7472;
     uStack_138 = 0x13;
-    FUN_180628380(&puStack_148,param_2);
+    RenderingSystem_CameraController(&puStack_148,param_2);
     uStack_f8 = *(int32_t *)(*(int64_t *)(param_1 + 0x68) + 0xa4);
     puStack_d8 = &memory_allocator_3432_ptr;
     puStack_d0 = auStack_c0;
@@ -945,7 +948,7 @@ void FUN_1803b8120(int64_t param_1,int param_2)
       puVar6 = puStack_140;
     }
     strcpy_s(auStack_c0,0x80,puVar6);
-    puVar4 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_e8,&puStack_d8,&uStack_128);
+    puVar4 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_e8,&puStack_d8,&uStack_128);
     uVar2 = *puVar4;
     *puVar4 = 0;
     plStack_f0 = *(int64_t **)(param_1 + 0x138 + lVar5 * 8);

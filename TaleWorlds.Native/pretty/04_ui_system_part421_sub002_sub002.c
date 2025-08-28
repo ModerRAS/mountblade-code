@@ -32,7 +32,7 @@ uint64_t FUN_18089c030(int64_t param_1,uint64_t *param_2)
     return uVar4;
   }
   aiStackX_10[0] = 0;
-  uVar4 = FUN_1808afe30(*param_2,aiStackX_10);
+  uVar4 = SystemCore_Manager(*param_2,aiStackX_10);
   iVar2 = aiStackX_10[0];
   uVar3 = 0x1c;
   if ((int)uVar4 != 0) {
@@ -128,14 +128,14 @@ uint64_t FUN_18089c190(int64_t param_1,uint64_t *param_2)
   if ((int)uVar7 != 0) {
     return uVar7;
   }
-  uVar7 = FUN_180899360(param_2,param_1 + 0x10);
+  uVar7 = SystemCore_ConfigManager(param_2,param_1 + 0x10);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar7 = FUN_180899090(*param_2,param_1 + 0x38);
+  uVar7 = UIEventHandler(*param_2,param_1 + 0x38);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
@@ -229,7 +229,7 @@ LAB_18089c40a:
       if (uVar9 == 0) {
         return uVar7;
       }
-      FUN_1808aef40(&puStack_88,0);
+      Physics_RigidBodyHandler(&puStack_88,0);
       return uVar7;
     }
     if ((int)uStack_80 == 0) {
@@ -299,7 +299,7 @@ LAB_18089c40a:
       uVar9 = -uVar9;
     }
     if (uVar9 != 0) {
-      FUN_1808aef40(&puStack_88,0);
+      Physics_RigidBodyHandler(&puStack_88,0);
     }
   }
   else {
@@ -368,7 +368,7 @@ uint64_t * FUN_18089c1fb(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return (uint64_t *)0x1c;
   }
-  puVar11 = (uint64_t *)FUN_180899090(*unaff_RDI,unaff_RSI + 0x38);
+  puVar11 = (uint64_t *)UIEventHandler(*unaff_RDI,unaff_RSI + 0x38);
   if ((int)puVar11 != 0) {
     return puVar11;
   }
@@ -474,7 +474,7 @@ LAB_18089c40a:
       if (uVar9 == 0) {
         return puVar13;
       }
-      FUN_1808aef40(unaff_RBP + -0x29,0);
+      Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
       return puVar13;
     }
     iVar19 = *(int *)(unaff_RBP + -0x21);
@@ -552,7 +552,7 @@ LAB_18089c40a:
       uVar9 = -uVar9;
     }
     if (uVar9 != 0) {
-      fVar21 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
+      fVar21 = (float)Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
     }
   }
   else {
@@ -721,7 +721,7 @@ LAB_18089c40a:
       if (uVar9 == 0) {
         return puVar12;
       }
-      FUN_1808aef40(unaff_RBP + -0x29,0);
+      Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
       return puVar12;
     }
     iVar19 = *(int *)(unaff_RBP + -0x21);
@@ -799,7 +799,7 @@ LAB_18089c40a:
       uVar9 = -uVar9;
     }
     if (uVar9 != 0) {
-      fVar21 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
+      fVar21 = (float)Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
     }
   }
   else {
@@ -933,7 +933,7 @@ LAB_18089c40a:
       if (uVar9 == 0) {
         return uVar11;
       }
-      FUN_1808aef40(unaff_RBP + -0x29,0);
+      Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
       return uVar11;
     }
     iVar18 = *(int *)(unaff_RBP + -0x21);
@@ -1011,7 +1011,7 @@ LAB_18089c40a:
       uVar9 = -uVar9;
     }
     if (uVar9 != 0) {
-      fVar20 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
+      fVar20 = (float)Physics_RigidBodyHandler(unaff_RBP + -0x29,0);
     }
   }
   else {

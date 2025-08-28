@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -327,7 +331,7 @@ LAB_18078e63c:
     *(int32_t *)((int64_t)unaff_RBP + 0x214) = uVar24;
     *(int32_t *)(unaff_RBP + 0x43) = uVar3;
     *(int32_t *)((int64_t)unaff_RBP + 0x21c) = uVar4;
-    in_stack_00000050 = FUN_18076a440(uVar26,0,0);
+    in_stack_00000050 = MathTrigonometryFunction0(uVar26,0,0);
     plVar31 = plVar17;
     plVar33 = plVar17;
     if ((in_stack_00000050 == 0) &&
@@ -1009,7 +1013,7 @@ LAB_18078fd4b:
                   if ((*(uint *)(lStack0000000000000070 + 0x78) & 0x100000) == 0) {
                     func_0x000180743c20(lStack0000000000000070,0xc);
                   }
-                  FUN_180769080(in_stack_00000068[0x2e]);
+                  UISystem_Renderer(in_stack_00000068[0x2e]);
                     // WARNING: Subroutine does not return
                   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),in_stack_00000068[0x2e],
                                 &ui_system_data_1936_ptr,0x752,1);
@@ -1068,7 +1072,7 @@ LAB_18078fd4b:
 LAB_1807900e3:
                       cStack0000000000000054 = '\0';
 LAB_1807900eb:
-                      FUN_1807d84c0(plVar17[0x2d],*(int32_t *)(unaff_RBP + 6),unaff_RBP[7],
+                      NetworkSystem_DataManager(plVar17[0x2d],*(int32_t *)(unaff_RBP + 6),unaff_RBP[7],
                                     unaff_RBP[8],CONCAT44(uVar10,*(int32_t *)(unaff_RBP + 9)));
                       if (cStack0000000000000054 == '\0') goto LAB_1807901bd;
                       goto LAB_18079011d;
@@ -1157,7 +1161,7 @@ FUN_1807901fa:
   }
 LAB_180790207:
   if (plVar31 != (int64_t *)0x0) {
-    FUN_180769080(plVar31);
+    UISystem_Renderer(plVar31);
   }
   if (plVar34 == (int64_t *)0x0) {
     if (plVar29 != (int64_t *)0x0) {

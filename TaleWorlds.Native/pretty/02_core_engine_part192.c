@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
 
@@ -10,9 +14,9 @@
 // 功能: CoreEngineFileManager - 核心引擎函数的语义化别名
 #define FUN_18063bc80 CoreEngineFileManager
 
-// FUN_18062b8b0 的别名定义
+// SystemCore_NetworkHandler 的别名定义
 // 功能: CoreEngineMemoryPoolManager - 核心引擎函数的语义化别名
-#define FUN_18062b8b0 CoreEngineMemoryPoolManager
+#define SystemCore_NetworkHandler CoreEngineMemoryPoolManager
 
 // FUN_18004ca00 的别名定义
 // 功能: CoreEngineSystemCallback - 核心引擎函数的语义化别名
@@ -30,17 +34,17 @@
 // 功能: CoreEngineDataProcessor - 核心引擎函数的语义化别名
 #define FUN_180175f80 CoreEngineDataProcessor
 
-// FUN_18023a940 的别名定义
+// SystemCore_Scheduler 的别名定义
 // 功能: CoreEngineStateManager - 核心引擎函数的语义化别名
-#define FUN_18023a940 CoreEngineStateManager
+#define SystemCore_Scheduler CoreEngineStateManager
 
 // FUN_1800b2450 的别名定义
 // 功能: CoreEngineDataTransformer - 核心引擎函数的语义化别名
 #define FUN_1800b2450 CoreEngineDataTransformer
 
-// FUN_180628ca0 的别名定义
+// MemoryDebugger0 的别名定义
 // 功能: CoreEngineSystemCleanup - 核心引擎函数的语义化别名
-#define FUN_180628ca0 CoreEngineSystemCleanup
+#define MemoryDebugger0 CoreEngineSystemCleanup
 
 // FUN_180176060 的别名定义
 // 功能: CoreEngineThreadManager - 核心引擎函数的语义化别名
@@ -50,9 +54,9 @@
 // 功能: CoreEngineMessageHandler - 核心引擎函数的语义化别名
 #define FUN_18029e450 CoreEngineMessageHandler
 
-// FUN_180220810 的别名定义
+// SystemCore_Loader 的别名定义
 // 功能: CoreEngineErrorHandler - 核心引擎函数的语义化别名
-#define FUN_180220810 CoreEngineErrorHandler
+#define SystemCore_Loader CoreEngineErrorHandler
 
 // FUN_180179e40 的别名定义
 // 功能: CoreEngineEventHandler - 核心引擎函数的语义化别名
@@ -90,9 +94,9 @@
 // 功能: CoreEngineMemoryAllocator - 核心引擎函数的语义化别名
 #define FUN_18006d0b0 CoreEngineMemoryAllocator
 
-// FUN_180626ee0 的别名定义
+// UtilitiesSystem_PerformanceMonitor 的别名定义
 // 功能: CoreEngineSystemValidator - 核心引擎函数的语义化别名
-#define FUN_180626ee0 CoreEngineSystemValidator
+#define UtilitiesSystem_PerformanceMonitor CoreEngineSystemValidator
 // 包含13个关键函数，负责系统核心数据处理、内存管理、安全检查等功能
 
 // 函数: void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)

@@ -1,5 +1,10 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 01_initialization_part060.c - 18 个函数
 
@@ -71,7 +76,7 @@ void FUN_18007e080(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *pa
           FUN_18007f770(&lStack_58);
           FUN_18007cbb0(8,uStack_48,*param_3 + 0x18 + (int64_t)iVar6 * 8);
           FUN_18007cbb0(9,uStack_48,*param_3 + 0x18 + (int64_t)iVar4 * 8);
-          FUN_18007f840(&lStack_58);
+          SystemManager_Validator(&lStack_58);
         }
       }
       if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
@@ -79,7 +84,7 @@ void FUN_18007e080(int64_t param_1,uint64_t param_2,int64_t *param_3,int64_t *pa
       }
       FUN_18007df50(lStack_60,*param_4 + 0x20,0xffff < *(int *)(param_1 + 0x200));
     }
-    FUN_18007f840(&lStack_70);
+    SystemManager_Validator(&lStack_70);
   }
   if ((int64_t *)*param_3 != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*param_3 + 0x38))();
@@ -402,7 +407,7 @@ void FUN_18007ea10(int64_t param_1,char param_2)
   }
 LAB_18007eb55:
   *(char *)(param_1 + 0xf4) = param_2;
-  FUN_18007f6a0(auStack_40);
+  SystemSecurityManager(auStack_40);
   if (plStack_28 != (int64_t *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -435,7 +440,7 @@ code * FUN_18007eb80(int64_t param_1,char param_2)
         FUN_18007f770(&lStack_30);
         uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xf0,8,3);
         uVar2 = FUN_18007f2f0(uVar2);
-        FUN_180056f10(pcVar3,uVar2);
+        SystemCore_PointerManager(pcVar3,uVar2);
         FUN_1800860f0(*(int64_t *)pcVar3 + 0x10,(int64_t)pcStack_20 + 0x10);
         FUN_1800860f0(*(int64_t *)pcVar3 + 0x38,(int64_t)pcStack_20 + 0x38);
         FUN_180086090(*(int64_t *)pcVar3 + 0x60,(int64_t)pcStack_20 + 0x60);
@@ -445,7 +450,7 @@ code * FUN_18007eb80(int64_t param_1,char param_2)
           FUN_180085ec0(*(int64_t *)pcVar3 + 200,(int64_t)pcStack_20 + 200);
           FUN_180085680(*(int64_t *)pcVar3 + 0xb0,(int64_t)pcStack_20 + 0xb0);
         }
-        pcVar3 = (code *)FUN_18007f840(&lStack_30);
+        pcVar3 = (code *)SystemManager_Validator(&lStack_30);
         return pcVar3;
       }
     }

@@ -123,7 +123,7 @@ uint64_t FUN_1807865b0(int64_t param_1,int param_2)
      (int)uVar3 != 0)) {
     return uVar3;
   }
-  uVar3 = FUN_18075d600(plVar1[2],1);
+  uVar3 = UISystem_ComponentHandler(plVar1[2],1);
   if ((int)uVar3 != 0) {
     return uVar3;
   }

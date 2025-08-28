@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part239_sub002_sub002.c - 1 个函数
 
 // 函数: void FUN_1808043c0(uint64_t param_1,int64_t param_2,int32_t *param_3)
@@ -370,7 +374,7 @@ uint64_t FUN_1808047e0(int64_t param_1,int32_t *param_2,int32_t *param_3)
   lVar1 = *(int64_t *)(lVar3 + 0x758);
   if (*(int *)(lVar1 + 8) != 0) {
     aiStackX_8[0] = 0;
-    FUN_180768b70(aiStackX_8);
+    SystemCore_PerformanceMonitor(aiStackX_8);
     if (1000 < (uint)(aiStackX_8[0] - *(int *)(lVar1 + 8))) {
       *(int32_t *)(lVar1 + 8) = 0;
       *param_3 = 1;

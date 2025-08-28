@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -158,7 +162,7 @@ uint64_t FUN_1808b1a30(uint64_t *param_1)
   if (-1 < (int)uVar7) {
     uVar4 = uVar7;
   }
-  if ((0 < (int)uVar4) && (uVar6 = FUN_180747f10(plVar1,0), (int)uVar6 != 0)) {
+  if ((0 < (int)uVar4) && (uVar6 = RenderingTextureManager0(plVar1,0), (int)uVar6 != 0)) {
     return uVar6;
   }
   return 0;
@@ -408,7 +412,7 @@ void FUN_1808b1be0(int64_t param_1,uint64_t param_2)
     if (iVar3 < 8) {
       iVar3 = 8;
     }
-    iVar3 = FUN_180747f10(param_1 + 0x10,iVar3);
+    iVar3 = RenderingTextureManager0(param_1 + 0x10,iVar3);
     if (iVar3 != 0) {
       return;
     }
@@ -617,7 +621,7 @@ uint64_t FUN_1808b2020(int64_t *param_1)
   if (-1 < (int)uVar3) {
     uVar1 = uVar3;
   }
-  if ((0 < (int)uVar1) && (uVar2 = FUN_180747f10(param_1,0), (int)uVar2 != 0)) {
+  if ((0 < (int)uVar1) && (uVar2 = RenderingTextureManager0(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;

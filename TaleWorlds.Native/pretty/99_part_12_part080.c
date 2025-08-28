@@ -1,4 +1,17 @@
-#include "FUN_1808de000_definition.h"
+#include "ultra_high_freq_fun_definitions.h"
+/* UISystem_Controller - UISystem_Controller */
+#define UISystem_Controller UISystem_Controller
+
+
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
+
+
+/* 函数别名定义: DataCompressor */
+#define DataCompressor DataCompressor
+
+
+#include "SystemInputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part080.c - 1 个函数
@@ -245,9 +258,9 @@ uint64_t FUN_1808a0bf0(int64_t param_1,int64_t *param_2)
   int8_t auStack_60 [32];
   int8_t auStack_40 [40];
   
-  uVar2 = FUN_1808ddd30(param_2,auStack_40,1,0x5453494c,0x4d524150);
+  uVar2 = DataCompressor0(param_2,auStack_40,1,0x5453494c,0x4d524150);
   if (((int)uVar2 == 0) &&
-     (uVar2 = FUN_1808ddd30(param_2,auStack_60,0,0x424d5250,0), (int)uVar2 == 0)) {
+     (uVar2 = DataCompressor0(param_2,auStack_60,0,0x424d5250,0), (int)uVar2 == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
       uVar2 = (uint64_t)uVar1;
@@ -316,11 +329,11 @@ uint64_t FUN_1808a0bf0(int64_t param_1,int64_t *param_2)
                               (*(uint64_t **)(*param_2 + 8),auStackX_18,4);
             if ((((((int)uVar2 == 0) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) &&
                  (uVar2 = FUN_1808a27f0(*param_2,param_1 + 0x50), (int)uVar2 == 0)) &&
-                ((uVar2 = FUN_180898eb0(param_2,param_1 + 0x38), (int)uVar2 == 0 &&
-                 (uVar2 = FUN_180898eb0(param_2,param_1 + 0x3c), (int)uVar2 == 0)))) &&
-               ((uVar2 = FUN_180898eb0(param_2,param_1 + 0x4c), (int)uVar2 == 0 &&
-                ((uVar2 = FUN_180898eb0(param_2,param_1 + 0x40), (int)uVar2 == 0 &&
-                 (uVar2 = FUN_180898eb0(param_2,param_1 + 0x44), (int)uVar2 == 0)))))) {
+                ((uVar2 = NetworkSecurityManager(param_2,param_1 + 0x38), (int)uVar2 == 0 &&
+                 (uVar2 = NetworkSecurityManager(param_2,param_1 + 0x3c), (int)uVar2 == 0)))) &&
+               ((uVar2 = NetworkSecurityManager(param_2,param_1 + 0x4c), (int)uVar2 == 0 &&
+                ((uVar2 = NetworkSecurityManager(param_2,param_1 + 0x40), (int)uVar2 == 0 &&
+                 (uVar2 = NetworkSecurityManager(param_2,param_1 + 0x44), (int)uVar2 == 0)))))) {
               if (*(uint *)(param_2 + 8) < 0x70) {
                 if (*(int *)(param_2[1] + 0x18) == 0) {
                   auStackX_18[0] = auStackX_18[0] & 0xffffff00;
@@ -391,7 +404,7 @@ uint64_t FUN_1808a0bf0(int64_t param_1,int64_t *param_2)
                         if ((uVar2 < *(uint64_t *)(param_1 + 0x60)) ||
                            ((int64_t)*(int *)(param_1 + 0x68) * 0x10 +
                             *(uint64_t *)(param_1 + 0x60) <= uVar2)) break;
-                        uVar3 = FUN_1808ddf00(param_2,0);
+                        uVar3 = UltraHighFreq_ResourceLoader1(param_2,0);
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
@@ -402,7 +415,7 @@ uint64_t FUN_1808a0bf0(int64_t param_1,int64_t *param_2)
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
-                        uVar3 = FUN_1808de160(param_2,auStackX_20);
+                        uVar3 = UISystem_Controller(param_2,auStackX_20);
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
@@ -456,7 +469,7 @@ uint64_t FUN_1808a0c29(int32_t param_1)
   uint in_stack_000000b0;
   int32_t in_stack_000000b8;
   
-  uVar2 = FUN_1808ddd30(param_1,&stack0x00000038,0,0x424d5250,0);
+  uVar2 = DataCompressor0(param_1,&stack0x00000038,0,0x424d5250,0);
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       uVar1 = SystemCleanupProcessor(*unaff_RBX,unaff_RSI + 0x10);
@@ -526,11 +539,11 @@ uint64_t FUN_1808a0c29(int32_t param_1)
                               (*(uint64_t **)(*unaff_RBX + 8),&stack0x000000b0,4);
             if ((((((int)uVar2 == 0) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
                  (uVar2 = FUN_1808a27f0(*unaff_RBX,unaff_RSI + 0x50), (int)uVar2 == 0)) &&
-                ((uVar2 = FUN_180898eb0(extraout_XMM0_Da,unaff_RSI + 0x38), (int)uVar2 == 0 &&
-                 (uVar2 = FUN_180898eb0(extraout_XMM0_Da_00,unaff_RSI + 0x3c), (int)uVar2 == 0))))
-               && ((uVar2 = FUN_180898eb0(extraout_XMM0_Da_01,unaff_RSI + 0x4c), (int)uVar2 == 0 &&
-                   ((uVar2 = FUN_180898eb0(extraout_XMM0_Da_02,unaff_RSI + 0x40), (int)uVar2 == 0 &&
-                    (uVar2 = FUN_180898eb0(extraout_XMM0_Da_03,unaff_RSI + 0x44), (int)uVar2 == 0)))
+                ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da,unaff_RSI + 0x38), (int)uVar2 == 0 &&
+                 (uVar2 = NetworkSecurityManager(extraout_XMM0_Da_00,unaff_RSI + 0x3c), (int)uVar2 == 0))))
+               && ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da_01,unaff_RSI + 0x4c), (int)uVar2 == 0 &&
+                   ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da_02,unaff_RSI + 0x40), (int)uVar2 == 0 &&
+                    (uVar2 = NetworkSecurityManager(extraout_XMM0_Da_03,unaff_RSI + 0x44), (int)uVar2 == 0)))
                    ))) {
               uVar6 = extraout_XMM0_Da_04;
               if (*(uint *)(unaff_RBX + 8) < 0x70) {
@@ -607,7 +620,7 @@ uint64_t FUN_1808a0c29(int32_t param_1)
                         if ((uVar2 < *(uint64_t *)(unaff_RSI + 0x60)) ||
                            ((int64_t)*(int *)(unaff_RSI + 0x68) * 0x10 +
                             *(uint64_t *)(unaff_RSI + 0x60) <= uVar2)) break;
-                        uVar3 = FUN_1808ddf00(uVar6,0);
+                        uVar3 = UltraHighFreq_ResourceLoader1(uVar6,0);
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
@@ -618,7 +631,7 @@ uint64_t FUN_1808a0c29(int32_t param_1)
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
-                        uVar3 = FUN_1808de160(extraout_XMM0_Da_10,&stack0x000000b8);
+                        uVar3 = UISystem_Controller(extraout_XMM0_Da_10,&stack0x000000b8);
                         if ((int)uVar3 != 0) {
                           return uVar3;
                         }
@@ -745,11 +758,11 @@ uint64_t FUN_1808a0c5b(void)
                             (*(uint64_t **)(*unaff_RBX + 8),&stack0x000000b0,4);
           if ((((((int)uVar2 == 0) && (uVar2 = 0x1c, *(uint *)(unaff_RBX[1] + 0x18) == unaff_R14D))
                && (uVar2 = FUN_1808a27f0(*unaff_RBX,unaff_RSI + 0x50), (int)uVar2 == 0)) &&
-              ((uVar2 = FUN_180898eb0(extraout_XMM0_Da,unaff_RSI + 0x38), (int)uVar2 == 0 &&
-               (uVar2 = FUN_180898eb0(extraout_XMM0_Da_00,unaff_RSI + 0x3c), (int)uVar2 == 0)))) &&
-             ((uVar2 = FUN_180898eb0(extraout_XMM0_Da_01,unaff_RSI + 0x4c), (int)uVar2 == 0 &&
-              ((uVar2 = FUN_180898eb0(extraout_XMM0_Da_02,unaff_RSI + 0x40), (int)uVar2 == 0 &&
-               (uVar2 = FUN_180898eb0(extraout_XMM0_Da_03,unaff_RSI + 0x44), (int)uVar2 == 0)))))) {
+              ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da,unaff_RSI + 0x38), (int)uVar2 == 0 &&
+               (uVar2 = NetworkSecurityManager(extraout_XMM0_Da_00,unaff_RSI + 0x3c), (int)uVar2 == 0)))) &&
+             ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da_01,unaff_RSI + 0x4c), (int)uVar2 == 0 &&
+              ((uVar2 = NetworkSecurityManager(extraout_XMM0_Da_02,unaff_RSI + 0x40), (int)uVar2 == 0 &&
+               (uVar2 = NetworkSecurityManager(extraout_XMM0_Da_03,unaff_RSI + 0x44), (int)uVar2 == 0)))))) {
             uVar7 = extraout_XMM0_Da_04;
             if (*(uint *)(unaff_RBX + 8) < 0x70) {
               if (*(uint *)(unaff_RBX[1] + 0x18) == unaff_R14D) {
@@ -823,7 +836,7 @@ uint64_t FUN_1808a0c5b(void)
                         (in_stack_000000b8 = unaff_R14D, *(uint64_t *)(unaff_RSI + 0x60) <= uVar2
                         && (uVar2 < (int64_t)*(int *)(unaff_RSI + 0x68) * 0x10 +
                                     *(uint64_t *)(unaff_RSI + 0x60))); uVar2 = uVar2 + 0x10) {
-                      uVar3 = FUN_1808ddf00(uVar7,0);
+                      uVar3 = UltraHighFreq_ResourceLoader1(uVar7,0);
                       if ((int)uVar3 != 0) {
                         return uVar3;
                       }
@@ -834,7 +847,7 @@ uint64_t FUN_1808a0c5b(void)
                       if ((int)uVar3 != 0) {
                         return uVar3;
                       }
-                      uVar3 = FUN_1808de160(extraout_XMM0_Da_10,&stack0x000000b8);
+                      uVar3 = UISystem_Controller(extraout_XMM0_Da_10,&stack0x000000b8);
                       if ((int)uVar3 != 0) {
                         return uVar3;
                       }

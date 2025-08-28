@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_DatabaseHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -87,7 +89,7 @@ LAB_1804ae840:
       }
     }
   }
-  lVar7 = FUN_180631000(param_2,&processed_var_5832_ptr,param_1 + 0x368);
+  lVar7 = UltraHighFreq_CacheSystem1(param_2,&processed_var_5832_ptr,param_1 + 0x368);
   if (lVar7 == 0) {
     *(int8_t *)(param_1 + 0x368) = 1;
   }
@@ -276,7 +278,7 @@ LAB_1804aeba4:
         }
         FUN_1800b3970();
         *(int64_t **)(param_1 + 0xa78) = plStack_f0;
-        pcStack_178 = FUN_180627b90;
+        pcStack_178 = SystemValidator;
         DataStructureManager(&lStack_b8,0x20,3,FUN_180627850);
         (**(code **)(lStack_b8 + 0x10))(&lStack_b8,&processed_var_5744_ptr);
         (**(code **)(alStack_b0[3] + 0x10))(alStack_b0 + 3,&processed_var_5960_ptr);
@@ -292,7 +294,7 @@ LAB_1804aeba4:
           if ((void *)*plVar16 != (void *)0x0) {
             puVar8 = (void *)*plVar16;
           }
-          lVar7 = FUN_1800a02a0(param_2,puVar8);
+          lVar7 = SystemCore_DataManager(param_2,puVar8);
           if (lVar7 != 0) {
             lVar9 = 0x180d48d24;
             if (*(int64_t *)(lVar7 + 8) != 0) {
@@ -304,7 +306,7 @@ LAB_1804aeba4:
               puVar8 = puStack_158;
             }
                     // WARNING: Subroutine does not return
-            FUN_180062300(system_message_context,&processed_var_6024_ptr,puVar8,pcVar15);
+            SystemParameterHandler(system_message_context,&processed_var_6024_ptr,puVar8,pcVar15);
           }
           if ((int)pcVar15 != 0) {
             plVar1 = *(int64_t **)(param_1 + 0x2a0);
@@ -358,7 +360,7 @@ LAB_1804aee40:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
+        uVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_160,1);
         lVar7 = lStack_d0;
         *(uint64_t *)(lStack_d0 + 0x2d0) = uVar5;
         pcVar14 = "hands_mesh";
@@ -394,7 +396,7 @@ LAB_1804aeee4:
             }
           }
         }
-        lVar9 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
+        lVar9 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_160,1);
         *(int64_t *)(lVar7 + 0x2b8) = lVar9;
         pcVar14 = (char *)0x0;
         if ((lVar9 != 0) &&
@@ -446,7 +448,7 @@ LAB_1804aeff0:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
+        uVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x2c0) = uVar5;
         pcVar15 = "underwear_top_mesh";
         do {
@@ -481,7 +483,7 @@ LAB_1804af090:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
+        uVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x2c8) = uVar5;
         pcVar15 = "face_meta_mesh";
         do {
@@ -516,7 +518,7 @@ LAB_1804af134:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
+        uVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x370) = uVar5;
         FUN_180283e70(uVar5);
         if (*(int *)(*(int64_t *)(lVar7 + 0x370) + 0x58) == 0) {
@@ -524,7 +526,7 @@ LAB_1804af134:
           if (puStack_158 != (void *)0x0) {
             puVar8 = puStack_158;
           }
-          FUN_180626ee0(&processed_var_6136_ptr,puVar8);
+          UtilitiesSystem_PerformanceMonitor(&processed_var_6136_ptr,puVar8);
         }
         FUN_1804b6de0(lVar7,param_2);
         FUN_1804b58f0(lVar7,param_2);
@@ -623,7 +625,7 @@ LAB_1804af38e:
           puStack_158 = (void *)0x0;
           uStack_148 = uStack_148 & 0xffffffff00000000;
           puStack_160 = &system_state_ptr;
-          SystemDataValidator(&lStack_b8,0x20,3,FUN_180627b90);
+          SystemDataValidator(&lStack_b8,0x20,3,SystemValidator);
           if (plStack_f0 != (int64_t *)0x0) {
             (**(code **)(*plStack_f0 + 0x38))();
           }

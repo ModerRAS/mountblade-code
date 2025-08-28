@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part266.c - 4 个函数
 
 // 函数: void FUN_18022d860(int64_t param_1)
@@ -330,7 +338,7 @@ void FUN_18022dfe0(int64_t param_1,uint64_t param_2,int64_t param_3)
     if (*(void **)(param_1 + 0x18) != (void *)0x0) {
       puVar13 = *(void **)(param_1 + 0x18);
     }
-    FUN_180627020(&processed_var_7672_ptr,puVar13);
+    SystemCore_Allocator(&processed_var_7672_ptr,puVar13);
   }
   else {
     plVar15 = *(int64_t **)(lVar10 + 0xb0);
@@ -385,11 +393,11 @@ void FUN_18022dfe0(int64_t param_1,uint64_t param_2,int64_t param_3)
         uStack_e8 = 0;
         pcStack_e0 = (code *)0x0;
         pcStack_d8 = _guard_check_icall;
-        FUN_18023c450(*(uint64_t *)(lVar7 + 0x98),0,*(int32_t *)(lVar7 + 0x468),&uStack_f0);
+        SystemCore_DecryptionManager(*(uint64_t *)(lVar7 + 0x98),0,*(int32_t *)(lVar7 + 0x468),&uStack_f0);
         if (pcStack_e0 != (code *)0x0) {
           (*pcStack_e0)(&uStack_f0,0,0);
         }
-        FUN_180056f10(param_1 + 0xb8 + lVar20,*(uint64_t *)(lVar7 + 0x98));
+        SystemCore_PointerManager(param_1 + 0xb8 + lVar20,*(uint64_t *)(lVar7 + 0x98));
         puStack_a8 = &memory_allocator_3480_ptr;
         puStack_a0 = auStack_90;
         auStack_90[0] = 0;
@@ -413,7 +421,7 @@ void FUN_18022dfe0(int64_t param_1,uint64_t param_2,int64_t param_3)
             puVar14 = puStack_a0;
           }
         }
-        FUN_180627020(&processed_var_7608_ptr,puVar14,puVar13);
+        SystemCore_Allocator(&processed_var_7608_ptr,puVar14,puVar13);
         puStack_a8 = &system_state_ptr;
       }
       else {

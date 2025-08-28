@@ -273,7 +273,7 @@ void FUN_18049a360(int64_t param_1,char *param_2,int64_t param_3)
           fStack_128 = fVar38;
           fStack_124 = fVar36;
           fStack_120 = fVar37;
-          pfVar19 = (float *)FUN_1801c0fb0(&fStack_138,auStack_118,&fStack_188);
+          pfVar19 = (float *)SystemFileHandler(&fStack_138,auStack_118,&fStack_188);
           fStack_17c = fStack_15c;
           fStack_188 = fVar38 + *pfVar19;
           fStack_184 = fVar36 + pfVar19[1];

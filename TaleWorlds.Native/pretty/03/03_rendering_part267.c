@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // ============================================================================
@@ -283,7 +287,7 @@ time_value_processing:
                                 }
                                 
                                 // 清理颜色数据
-                                FUN_180631960(render_state_ptr2);
+                                StringProcessor(render_state_ptr2);
                                 uint_ptr2 = *(int32_t **)(param_1 + 0xca);
                                 if (uint_ptr2 < *(int32_t **)(param_1 + 0xcc)) {
                                     // 直接写入颜色数据
@@ -1129,8 +1133,8 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
         render_state_ptr1[2] = string_ptr2 + -0x180a180f3;
         SystemMemoryManager(param_3, render_state_ptr1, &DAT, param_2);
         FUN_180630c80(param_3, render_state_ptr1, &rendering_buffer_2256_ptr, 1);
-        FUN_18062f990(param_3, render_state_ptr1, &DAT);
-        FUN_18062f990(param_3, render_state_ptr1, &processed_var_5184_ptr);
+        MemoryDeallocationHandler0(param_3, render_state_ptr1, &DAT);
+        MemoryDeallocationHandler0(param_3, render_state_ptr1, &processed_var_5184_ptr);
         
         // 链接曲线节点
         if (*(int64_t *)(param_4 + 0x30) == 0) {
@@ -1205,10 +1209,10 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
                 
                 *render_state_ptr1 = &processed_var_5272_ptr;
                 render_state_ptr1[2] = string_ptr2 + -0x180a18107;
-                FUN_18062f990(param_3, render_state_ptr1, &processed_var_5276_ptr, (float)temp_int1 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_18062f990(param_3, render_state_ptr1, &memory_allocator_3692_ptr);
+                MemoryDeallocationHandler0(param_3, render_state_ptr1, &processed_var_5276_ptr, (float)temp_int1 * ANIMATION_NORMALIZATION_FACTOR);
+                MemoryDeallocationHandler0(param_3, render_state_ptr1, &memory_allocator_3692_ptr);
                 stack_float1 = CONCAT44(temp_int2, temp_float1 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_1806307a0(param_3, render_state_ptr1, &processed_var_5264_ptr, &stack_float1);
+                NetworkSystem_PacketProcessor(param_3, render_state_ptr1, &processed_var_5264_ptr, &stack_float1);
                 
                 // 链接时间关键帧
                 if (render_state_ptr2[6] == 0) {
@@ -1240,10 +1244,10 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
                 
                 *render_state_ptr1 = &processed_var_5272_ptr;
                 render_state_ptr1[2] = string_ptr2 + -0x180a18107;
-                FUN_18062f990(param_3, render_state_ptr1, &processed_var_5276_ptr, (float)temp_int3 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_18062f990(param_3, render_state_ptr1, &memory_allocator_3692_ptr);
+                MemoryDeallocationHandler0(param_3, render_state_ptr1, &processed_var_5276_ptr, (float)temp_int3 * ANIMATION_NORMALIZATION_FACTOR);
+                MemoryDeallocationHandler0(param_3, render_state_ptr1, &memory_allocator_3692_ptr);
                 stack_float1 = CONCAT44(temp_int4, temp_float2 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_1806307a0(param_3, render_state_ptr1, &processed_var_5264_ptr, &stack_float1);
+                NetworkSystem_PacketProcessor(param_3, render_state_ptr1, &processed_var_5264_ptr, &stack_float1);
                 
                 // 链接数值关键帧
                 if (render_state_ptr2[6] == 0) {

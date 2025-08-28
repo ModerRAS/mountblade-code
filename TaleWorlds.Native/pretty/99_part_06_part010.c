@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 // 99_part_06_part010.c - 15 个函数
 
@@ -79,7 +86,7 @@ void FUN_1803addf0(int64_t param_1,int64_t param_2)
             uStack_100 = 0;
             pcStack_f8 = (code *)0x0;
             pcStack_f0 = _guard_check_icall;
-            FUN_18023c450(lVar5,0,0xffffffff,&uStack_108);
+            SystemCore_DecryptionManager(lVar5,0,0xffffffff,&uStack_108);
             if (pcStack_f8 != (code *)0x0) {
               (*pcStack_f8)(&uStack_108,0,0);
             }
@@ -91,7 +98,7 @@ void FUN_1803addf0(int64_t param_1,int64_t param_2)
             uStack_e0 = 0;
             pcStack_d8 = (code *)0x0;
             pcStack_d0 = _guard_check_icall;
-            FUN_18023c450(lVar5,0,0xffffffff,&uStack_e8);
+            SystemCore_DecryptionManager(lVar5,0,0xffffffff,&uStack_e8);
             if (pcStack_d8 != (code *)0x0) {
               (*pcStack_d8)(&uStack_e8,0,0);
             }
@@ -200,55 +207,55 @@ void FUN_1803ae160(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
     param_2[1] = (uint64_t)puVar4;
     param_2[2] = (uint64_t)(puVar2 + 0x2c0);
   }
-  FUN_1800b8370(param_2,&system_data_9210);
-  FUN_1800b8370(param_2,&system_data_9270);
-  FUN_1800b8370(param_2,&system_data_9450);
-  FUN_1800b8370(param_2,&system_data_93f0);
-  FUN_1800b8370(param_2,&system_data_94b0);
-  FUN_1800b8370(param_2,&system_data_91b0);
-  FUN_1800b8370(param_2,&system_data_9390);
-  FUN_1800b8370(param_2,&system_data_92d0);
-  FUN_1800b8370(param_2,&system_data_9510);
-  FUN_1800b8370(param_2,&system_data_9330);
-  FUN_1800b8370(param_2,&system_data_9570);
-  FUN_1800b8370(param_2,&system_data_95d0);
-  FUN_1800b8370(param_2,&system_data_9690);
-  FUN_1800b8370(param_2,&system_data_96f0);
-  FUN_1800b8370(param_2,&system_data_9750);
-  FUN_1800b8370(param_2,&system_data_97b0);
-  FUN_1800b8370(param_2,&system_data_9810);
-  FUN_1800b8370(param_2,&system_data_9870);
-  FUN_1800b8370(param_2,&system_data_98d0);
-  FUN_1800b8370(param_2,&system_data_9930);
-  FUN_1800b8370(param_2,&system_data_9990);
-  FUN_1800b8370(param_2,&system_data_99f0);
-  FUN_1800b8370(param_2,&system_data_9a50);
-  FUN_1800b8370(param_2,&system_data_9ab0);
-  FUN_1800b8370(param_2,&system_data_9b70);
-  FUN_1800b8370(param_2,&system_data_9bd0);
-  FUN_1800b8370(param_2,&system_data_9c30);
-  FUN_1800b8370(param_2,&system_data_9c90);
-  FUN_1800b8370(param_2,&system_data_9cf0);
-  FUN_1800b8370(param_2,&system_data_9d50);
-  FUN_1800b8370(param_2,&system_data_9db0);
-  FUN_1800b8370(param_2,&system_data_9e10);
-  FUN_1800b8370(param_2,&system_data_9e70);
-  FUN_1800b8370(param_2,&system_data_9ed0);
-  FUN_1800b8370(param_2,&system_data_9f30);
-  FUN_1800b8370(param_2,&system_data_9f90);
-  FUN_1800b8370(param_2,&system_data_9ff0);
-  FUN_1800b8370(param_2,&system_data_a050);
-  FUN_1800b8370(param_2,&system_data_a0b0);
-  FUN_1800b8370(param_2,&system_data_a110);
-  FUN_1800b8370(param_2,&system_data_a170);
-  FUN_1800b8370(param_2,&system_data_a1d0);
-  FUN_1800b8370(param_2,&system_data_a230);
-  FUN_1800b8370(param_2,&system_data_a290);
-  FUN_1800b8370(param_2,&system_data_9b10);
+  SystemCore_ConfigManager(param_2,&system_data_9210);
+  SystemCore_ConfigManager(param_2,&system_data_9270);
+  SystemCore_ConfigManager(param_2,&system_data_9450);
+  SystemCore_ConfigManager(param_2,&system_data_93f0);
+  SystemCore_ConfigManager(param_2,&system_data_94b0);
+  SystemCore_ConfigManager(param_2,&system_data_91b0);
+  SystemCore_ConfigManager(param_2,&system_data_9390);
+  SystemCore_ConfigManager(param_2,&system_data_92d0);
+  SystemCore_ConfigManager(param_2,&system_data_9510);
+  SystemCore_ConfigManager(param_2,&system_data_9330);
+  SystemCore_ConfigManager(param_2,&system_data_9570);
+  SystemCore_ConfigManager(param_2,&system_data_95d0);
+  SystemCore_ConfigManager(param_2,&system_data_9690);
+  SystemCore_ConfigManager(param_2,&system_data_96f0);
+  SystemCore_ConfigManager(param_2,&system_data_9750);
+  SystemCore_ConfigManager(param_2,&system_data_97b0);
+  SystemCore_ConfigManager(param_2,&system_data_9810);
+  SystemCore_ConfigManager(param_2,&system_data_9870);
+  SystemCore_ConfigManager(param_2,&system_data_98d0);
+  SystemCore_ConfigManager(param_2,&system_data_9930);
+  SystemCore_ConfigManager(param_2,&system_data_9990);
+  SystemCore_ConfigManager(param_2,&system_data_99f0);
+  SystemCore_ConfigManager(param_2,&system_data_9a50);
+  SystemCore_ConfigManager(param_2,&system_data_9ab0);
+  SystemCore_ConfigManager(param_2,&system_data_9b70);
+  SystemCore_ConfigManager(param_2,&system_data_9bd0);
+  SystemCore_ConfigManager(param_2,&system_data_9c30);
+  SystemCore_ConfigManager(param_2,&system_data_9c90);
+  SystemCore_ConfigManager(param_2,&system_data_9cf0);
+  SystemCore_ConfigManager(param_2,&system_data_9d50);
+  SystemCore_ConfigManager(param_2,&system_data_9db0);
+  SystemCore_ConfigManager(param_2,&system_data_9e10);
+  SystemCore_ConfigManager(param_2,&system_data_9e70);
+  SystemCore_ConfigManager(param_2,&system_data_9ed0);
+  SystemCore_ConfigManager(param_2,&system_data_9f30);
+  SystemCore_ConfigManager(param_2,&system_data_9f90);
+  SystemCore_ConfigManager(param_2,&system_data_9ff0);
+  SystemCore_ConfigManager(param_2,&system_data_a050);
+  SystemCore_ConfigManager(param_2,&system_data_a0b0);
+  SystemCore_ConfigManager(param_2,&system_data_a110);
+  SystemCore_ConfigManager(param_2,&system_data_a170);
+  SystemCore_ConfigManager(param_2,&system_data_a1d0);
+  SystemCore_ConfigManager(param_2,&system_data_a230);
+  SystemCore_ConfigManager(param_2,&system_data_a290);
+  SystemCore_ConfigManager(param_2,&system_data_9b10);
   uVar5 = param_2[1];
   if (uVar5 < param_2[2]) {
     param_2[1] = uVar5 + 0x58;
-    FUN_1800b8300(uVar5);
+    DataDeserializer0(uVar5);
     return;
   }
   uVar8 = *param_2;
@@ -287,7 +294,7 @@ LAB_1800b8417:
       puVar3 = puVar3 + 0xb;
     } while (lVar9 + (int64_t)puVar3 != uVar5);
   }
-  FUN_1800b8300(puVar3,&system_data_9630);
+  DataDeserializer0(puVar3,&system_data_9630);
   puVar4 = (uint64_t *)param_2[1];
   puVar2 = (uint64_t *)*param_2;
   if (puVar2 != puVar4) {
@@ -349,14 +356,14 @@ void FUN_1803ae570(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(uint64_t *)(puVar3 + 4) = 0x646574616c6f7072;
   *(int16_t *)(puVar3 + 6) = 0x2f;
   uStack_4a8 = uVar5;
-  lVar2 = FUN_180624440(&puStack_488,&puStack_4b8);
+  lVar2 = SystemCore_EncryptionEngine(&puStack_488,&puStack_4b8);
   puVar4 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar4 = *(void **)(lVar2 + 8);
   }
   (**(code **)(puStack_4b8 + 0x10))(&puStack_4b8,puVar4);
   puStack_488 = &system_state_ptr;
-  cVar1 = FUN_180624a00(&puStack_4b8);
+  cVar1 = UltraHighFreq_LogManager1(&puStack_4b8);
   if (cVar1 == '\0') {
 LAB_1803ae6c2:
     puStack_488 = &rendering_buffer_2008_ptr;
@@ -364,7 +371,7 @@ LAB_1803ae6c2:
     auStack_470[0] = 0;
     uStack_478 = 0x2e;
     strcpy_s(auStack_470,0x100,&rendering_buffer_288_ptr);
-    lVar2 = FUN_180624440(apuStack_268,&puStack_488);
+    lVar2 = SystemCore_EncryptionEngine(apuStack_268,&puStack_488);
     puVar4 = &system_buffer_ptr;
     if (*(void **)(lVar2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(lVar2 + 8);
@@ -372,7 +379,7 @@ LAB_1803ae6c2:
     (**(code **)(puStack_4b8 + 0x10))(&puStack_4b8,puVar4);
     apuStack_268[0] = &system_state_ptr;
     puStack_488 = &system_state_ptr;
-    cVar1 = FUN_180624a00(&puStack_4b8);
+    cVar1 = UltraHighFreq_LogManager1(&puStack_4b8);
     if (cVar1 == '\0') goto LAB_1803ae7d0;
     if (0 < *(int *)(param_3 + 0x10)) {
       CoreMemoryPoolProcessor(&puStack_4b8,uStack_4a8 + *(int *)(param_3 + 0x10));
@@ -398,7 +405,7 @@ LAB_1803ae6c2:
     *(int32_t *)((uint64_t)uStack_4a8 + lStack_4b0) = 0x6c6d782e;
     *(int8_t *)((int32_t *)((uint64_t)uStack_4a8 + lStack_4b0) + 1) = 0;
     uStack_4a8 = uVar5;
-    cVar1 = FUN_180624af0(&puStack_4b8);
+    cVar1 = RenderingSystem_RenderQueue(&puStack_4b8);
     if (cVar1 == '\0') goto LAB_1803ae6c2;
   }
   FUN_1803aa2e0(param_1,&puStack_4b8);
@@ -457,21 +464,21 @@ void FUN_1803ae820(uint64_t param_1,int64_t param_2)
   *(uint64_t *)(puVar3 + 4) = 0x646574616c6f7072;
   *(int16_t *)(puVar3 + 6) = 0x2f;
   uStack_488 = uVar5;
-  lVar2 = FUN_180624440(&puStack_468,&puStack_498);
+  lVar2 = SystemCore_EncryptionEngine(&puStack_468,&puStack_498);
   puVar4 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar4 = *(void **)(lVar2 + 8);
   }
   (**(code **)(puStack_498 + 0x10))(&puStack_498,puVar4);
   puStack_468 = &system_state_ptr;
-  cVar1 = FUN_180624a00(&puStack_498);
+  cVar1 = UltraHighFreq_LogManager1(&puStack_498);
   if (cVar1 == '\0') {
     puStack_468 = &rendering_buffer_2008_ptr;
     puStack_460 = auStack_450;
     auStack_450[0] = 0;
     uStack_458 = 0x2e;
     strcpy_s(auStack_450,0x100,&rendering_buffer_288_ptr);
-    lVar2 = FUN_180624440(apuStack_248,&puStack_468);
+    lVar2 = SystemCore_EncryptionEngine(apuStack_248,&puStack_468);
     puVar4 = &system_buffer_ptr;
     if (*(void **)(lVar2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(lVar2 + 8);
@@ -479,7 +486,7 @@ void FUN_1803ae820(uint64_t param_1,int64_t param_2)
     (**(code **)(puStack_498 + 0x10))(&puStack_498,puVar4);
     apuStack_248[0] = &system_state_ptr;
     puStack_468 = &system_state_ptr;
-    cVar1 = FUN_180624a00(&puStack_498);
+    cVar1 = UltraHighFreq_LogManager1(&puStack_498);
     if (cVar1 == '\0') goto LAB_1803aea10;
   }
   if (0 < *(int *)(param_2 + 0x10)) {
@@ -493,7 +500,7 @@ void FUN_1803ae820(uint64_t param_1,int64_t param_2)
   *(int32_t *)((uint64_t)uStack_488 + lStack_490) = 0x6c6d782e;
   *(int8_t *)((int32_t *)((uint64_t)uStack_488 + lStack_490) + 1) = 0;
   uStack_488 = uVar5;
-  FUN_180624af0(&puStack_498);
+  RenderingSystem_RenderQueue(&puStack_498);
 LAB_1803aea10:
   puStack_498 = &system_data_buffer_ptr;
   if (lStack_490 == 0) {
@@ -817,7 +824,7 @@ void FUN_1803aef00(int64_t param_1,int64_t *param_2)
     uStack_28 = 0;
     pcStack_20 = (code *)0x0;
     pcStack_18 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(param_1 + 0x150),0,0xffffffff,&uStack_30,uVar4);
+    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 0x150),0,0xffffffff,&uStack_30,uVar4);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&uStack_30,0,0);
     }
@@ -954,20 +961,20 @@ void FUN_1803af240(int64_t param_1)
   }
   *(uint64_t *)(param_1 + 0x188) = 0;
   _Mtx_destroy_in_situ();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
   if (*(int64_t *)(param_1 + 0x130) != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
-  FUN_18005d580();
+  DataSerializationEngine();
   if (*(int64_t *)(param_1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
-  FUN_18004b730();
-  FUN_18004b730();
-  FUN_18004b730();
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
+  UtilitiesSystem_Processor();
   FUN_1803b9430(param_1,*(uint64_t *)(param_1 + 0x10));
   return;
 }

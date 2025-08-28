@@ -117,7 +117,7 @@ void UISystem_ContextManager(int64_t param_1, int param_2);
 int UISystem_CheckComponentStatus(int64_t context, int flag);
 int UISystem_ReleaseResource(int64_t resource, int mode);
 int UISystem_CheckSystemStatus(int64_t status);
-void UISystem_ExecuteCleanup(int64_t handle, int64_t context, void* unknown_var, int param, int flag);
+void UISystem_ExecuteCleanup(int64_t handle, int64_t context, void* cleanup_data, int param, int flag);
 
 // ============================================================================
 // 函数别名定义

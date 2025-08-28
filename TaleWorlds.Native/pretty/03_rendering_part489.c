@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part489.c - 6 个函数
 
 // 函数: void FUN_18052af20(int64_t param_1)
@@ -123,14 +127,14 @@ void FUN_18052af20(int64_t param_1)
           do {
             lVar22 = *(int64_t *)(lVar12 + lVar14 * 8);
             if ((lVar22 != 0) && (*(char *)(*(int64_t *)(lVar22 + 0x58f8) + 0x1c) != '\0')) {
-              FUN_1805b59d0(lVar22,0x180c95578);
+              NetworkSystem_SecurityManager(lVar22,0x180c95578);
               lVar12 = render_system_config;
             }
             lVar14 = lVar14 + 1;
           } while (lVar14 < iVar6);
         }
         if (render_system_config != 0) {
-          FUN_180567f30(render_system_config,0x180c95578);
+          SystemCore_DatabaseHandler(render_system_config,0x180c95578);
         }
         render_system_config = 0;
                     // WARNING: Subroutine does not return
@@ -772,7 +776,7 @@ void FUN_18052b4f0(int64_t param_1)
           fStack_d8 = 0.0;
           uStack_e8 = 0;
           uStack_e0 = 0;
-          FUN_1801aa0f0(*(uint64_t *)(param_1 + 0x660),auStack_128,0,auStack_108,0x51b189,
+          PhysicsSystem_JointManager(*(uint64_t *)(param_1 + 0x660),auStack_128,0,auStack_108,0x51b189,
                         (byte)((uint)*(int32_t *)(param_1 + 0x56c) >> 8) & 1);
           fVar12 = fStack_d8;
           if ((cStack_d4 == '\0') &&
@@ -855,7 +859,7 @@ void FUN_18052b556(void)
         fStack0000000000000080 = 0.0;
         in_stack_00000070 = 0;
         in_stack_00000078 = 0;
-        FUN_1801aa0f0(*(uint64_t *)(unaff_RBX + 0x660),&stack0x00000030,0,&stack0x00000050,
+        PhysicsSystem_JointManager(*(uint64_t *)(unaff_RBX + 0x660),&stack0x00000030,0,&stack0x00000050,
                       0x51b189);
         fVar8 = fStack0000000000000080;
         if ((cStack0000000000000084 == '\0') &&

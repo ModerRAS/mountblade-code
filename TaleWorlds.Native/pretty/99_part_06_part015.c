@@ -792,7 +792,7 @@ void FUN_1803b27a0(int64_t param_1)
   *(int8_t *)((int64_t)puVar5 + 0xc) = 0;
   uStack_228 = iVar7;
   uVar3 = FUN_18062bed0(&puStack_238);
-  cVar2 = FUN_180624af0(&puStack_238);
+  cVar2 = RenderingSystem_RenderQueue(&puStack_238);
   if (cVar2 == '\0') {
     LOCK();
     *(int8_t *)(param_1 + 0x1c41) = 0;
@@ -912,7 +912,7 @@ void FUN_1803b2b80(int64_t param_1)
   plStack_240 = alStack_100;
   uStack_248 = 0xffffffffffffffff;
   alStack_100[0] = param_1;
-  FUN_18015b810(param_1,0,*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x14),1);
+  SystemCore_DataTransformer(param_1,0,*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x14),1);
                     // WARNING: Subroutine does not return
   memset(auStack_a8,0,0x6c);
 }

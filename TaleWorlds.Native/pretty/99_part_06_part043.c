@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -98,7 +102,7 @@ FUN_1803d06e0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = (int32_t *)FUN_1800daa50();
-  FUN_180094b30(puVar3,&processed_var_5016_ptr);
+  SystemCore_NetworkHandler(puVar3,&processed_var_5016_ptr);
   *puVar3 = 0x20;
   iVar1 = *(int *)(param_1 + 0x1c);
   puVar3[0x4706] = 0;
@@ -226,7 +230,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   int64_t lVar9;
   int64_t lVar10;
   
-  uVar1 = FUN_180628ca0();
+  uVar1 = MemoryDebugger0();
   CoreEngineDataTransformer(param_2,uVar1);
   iVar4 = *(int *)(param_2 + 0x10) + 0x2a;
   CoreEngineDataBufferProcessor(param_2,iVar4);
@@ -239,7 +243,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int16_t *)(puVar2 + 5) = 0x7b20;
   *(int8_t *)((int64_t)puVar2 + 0x2a) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_180628380(param_2,*(int32_t *)(param_1 + 0x180));
+  RenderingSystem_CameraController(param_2,*(int32_t *)(param_1 + 0x180));
   puVar8 = (int32_t *)(param_1 + 0x184);
   lVar9 = 0xf;
   lVar6 = 0xf;
@@ -250,7 +254,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_180628380(param_2,*puVar8);
+    RenderingSystem_CameraController(param_2,*puVar8);
     puVar8 = puVar8 + 1;
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
@@ -279,7 +283,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x7b;
     *(int *)(param_2 + 0x10) = iVar4 + 1;
     lVar10 = lVar6 * 0x1a0;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     puVar8 = (int32_t *)(param_3 + 0xb4 + lVar10);
     lVar7 = 3;
     do {
@@ -287,7 +291,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
       CoreEngineDataBufferProcessor(param_2,iVar4);
       *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
       *(int *)(param_2 + 0x10) = iVar4;
-      FUN_180628380(param_2,*puVar8);
+      RenderingSystem_CameraController(param_2,*puVar8);
       puVar8 = puVar8 + 1;
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
@@ -298,7 +302,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
       CoreEngineDataBufferProcessor(param_2,iVar4);
       *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
       *(int *)(param_2 + 0x10) = iVar4;
-      FUN_180628380(param_2,*puVar8);
+      RenderingSystem_CameraController(param_2,*puVar8);
       puVar8 = puVar8 + 1;
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
@@ -309,7 +313,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
       CoreEngineDataBufferProcessor(param_2,iVar4);
       *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
       *(int *)(param_2 + 0x10) = iVar4;
-      FUN_180628380(param_2,*puVar8);
+      RenderingSystem_CameraController(param_2,*puVar8);
       puVar8 = puVar8 + 1;
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
@@ -320,7 +324,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
       CoreEngineDataBufferProcessor(param_2,iVar4);
       *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
       *(int *)(param_2 + 0x10) = iVar4;
-      FUN_180628380(param_2,*puVar8);
+      RenderingSystem_CameraController(param_2,*puVar8);
       puVar8 = puVar8 + 1;
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
@@ -353,7 +357,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)(puVar2 + 5) = 0x205d3631;
   *(int32_t *)((int64_t)puVar2 + 0x2c) = 0x7b203d;
   *(int *)(param_2 + 0x10) = iVar4 + 0x32;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   lVar6 = 0xf;
   do {
     iVar4 = *(int *)(param_2 + 0x10) + 2;
@@ -362,7 +366,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   iVar4 = *(int *)(param_2 + 0x10);
@@ -381,7 +385,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)(puVar2 + 5) = 0x3d20746e;
   *(int16_t *)((int64_t)puVar2 + 0x2c) = 0x20;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   iVar4 = *(int *)(param_2 + 0x10);
   iVar5 = iVar4 + 1;
   CoreEngineDataBufferProcessor(param_2,iVar5);
@@ -401,7 +405,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)(puVar2 + 6) = 0x203d2065;
   *(int8_t *)((int64_t)puVar2 + 0x34) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   iVar4 = *(int *)(param_2 + 0x10);
   iVar5 = iVar4 + 1;
   CoreEngineDataBufferProcessor(param_2,iVar5);
@@ -420,7 +424,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)((int64_t)puVar2 + 0x2c) = 0x203d2072;
   *(int8_t *)(puVar2 + 6) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   iVar4 = *(int *)(param_2 + 0x10);
   iVar5 = iVar4 + 1;
   CoreEngineDataBufferProcessor(param_2,iVar5);
@@ -437,7 +441,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int16_t *)(puVar2 + 5) = 0x203d;
   *(int8_t *)((int64_t)puVar2 + 0x2a) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   iVar4 = *(int *)(param_2 + 0x10);
   iVar5 = iVar4 + 1;
   CoreEngineDataBufferProcessor(param_2,iVar5);
@@ -456,7 +460,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)((int64_t)puVar2 + 0x2c) = 0x7b203d20;
   *(int8_t *)(puVar2 + 6) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   lVar6 = 0xf;
   do {
     iVar4 = *(int *)(param_2 + 0x10) + 2;
@@ -465,7 +469,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   iVar4 = *(int *)(param_2 + 0x10);
@@ -484,7 +488,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)(puVar2 + 5) = 0x203d205d;
   *(int16_t *)((int64_t)puVar2 + 0x2c) = 0x7b;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   lVar6 = 0xf;
   do {
     iVar4 = *(int *)(param_2 + 0x10) + 2;
@@ -493,7 +497,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   iVar4 = *(int *)(param_2 + 0x10);
@@ -513,7 +517,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int16_t *)((int64_t)puVar2 + 0x2c) = 0x7b20;
   *(int8_t *)((int64_t)puVar2 + 0x2e) = 0;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   lVar6 = 0xf;
   do {
     iVar4 = *(int *)(param_2 + 0x10) + 2;
@@ -522,7 +526,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   iVar4 = *(int *)(param_2 + 0x10);
@@ -543,7 +547,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)((int64_t)puVar2 + 0x2c) = 0x203d205d;
   *(int16_t *)(puVar2 + 6) = 0x7b;
   *(int *)(param_2 + 0x10) = iVar4;
-  FUN_1806284c0(param_2);
+  NetworkSystem_DataProcessor(param_2);
   do {
     iVar4 = *(int *)(param_2 + 0x10) + 2;
     CoreEngineDataBufferProcessor(param_2,iVar4);
@@ -551,7 +555,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *puVar3 = 0x202c;
     *(int8_t *)(puVar3 + 1) = 0;
     *(int *)(param_2 + 0x10) = iVar4;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar9 = lVar9 + -1;
   } while (lVar9 != 0);
   iVar4 = *(int *)(param_2 + 0x10);
@@ -578,14 +582,14 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     CoreEngineDataBufferProcessor(param_2,iVar4 + 1);
     *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x7b;
     *(int *)(param_2 + 0x10) = iVar4 + 1;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar9 = 3;
     do {
       iVar4 = *(int *)(param_2 + 0x10) + 1;
       CoreEngineDataBufferProcessor(param_2,iVar4);
       *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
       *(int *)(param_2 + 0x10) = iVar4;
-      FUN_1806284c0(param_2);
+      NetworkSystem_DataProcessor(param_2);
       lVar9 = lVar9 + -1;
     } while (lVar9 != 0);
     if (lVar6 == 0xf) {
@@ -625,7 +629,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     CoreEngineDataBufferProcessor(param_2,iVar4 + 1);
     *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x7b;
     *(int *)(param_2 + 0x10) = iVar4 + 1;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar9 = 0;
     do {
       lVar7 = 0;
@@ -635,7 +639,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
           CoreEngineDataBufferProcessor(param_2,iVar4);
           *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
           *(int *)(param_2 + 0x10) = iVar4;
-          FUN_1806284c0(param_2);
+          NetworkSystem_DataProcessor(param_2);
         }
         lVar7 = lVar7 + 1;
       } while (lVar7 < 4);
@@ -679,7 +683,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     CoreEngineDataBufferProcessor(param_2,iVar4 + 1);
     *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x7b;
     *(int *)(param_2 + 0x10) = iVar4 + 1;
-    FUN_1806284c0(param_2);
+    NetworkSystem_DataProcessor(param_2);
     lVar9 = 0;
     do {
       lVar7 = 0;
@@ -689,7 +693,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
           CoreEngineDataBufferProcessor(param_2,iVar4);
           *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 0x2c;
           *(int *)(param_2 + 0x10) = iVar4;
-          FUN_1806284c0(param_2);
+          NetworkSystem_DataProcessor(param_2);
         }
         lVar7 = lVar7 + 1;
       } while (lVar7 < 4);
@@ -735,7 +739,7 @@ int64_t FUN_1803d0880(int64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar4 + 7;
     lVar9 = 0;
     do {
-      FUN_1806284c0(param_2);
+      NetworkSystem_DataProcessor(param_2);
       iVar5 = *(int *)(param_2 + 0x10);
       if (lVar9 != 3) {
         iVar5 = iVar5 + 1;

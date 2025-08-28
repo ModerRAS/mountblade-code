@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_08_part050.c - 3 个函数
 
@@ -524,7 +530,7 @@ void FUN_1805ab940(int64_t param_1,int8_t *param_2,int64_t param_3,char param_4,
             fVar13 = *(float *)(lVar5 + 0xc) - *(float *)(lVar6 + 0x5900);
             fVar11 = *(float *)(lVar5 + 0x14) - *(float *)(lVar6 + 0x5908);
             if (fVar13 * fVar13 + fVar12 * fVar12 + fVar11 * fVar11 < 400.0) {
-              FUN_1805b59d0(lVar6,0x180c95578);
+              NetworkSystem_SecurityManager(lVar6,0x180c95578);
               lVar9 = system_system_config;
             }
           }
@@ -532,7 +538,7 @@ void FUN_1805ab940(int64_t param_1,int8_t *param_2,int64_t param_3,char param_4,
         } while (lVar10 < iVar8);
       }
       if (system_system_config != 0) {
-        FUN_180567f30(system_system_config,0x180c95578);
+        SystemCore_DatabaseHandler(system_system_config,0x180c95578);
       }
       system_system_config = 0;
                     // WARNING: Subroutine does not return
@@ -555,7 +561,7 @@ void FUN_1805ab940(int64_t param_1,int8_t *param_2,int64_t param_3,char param_4,
         (**(code **)(*plStack_b0 + 0x38))();
       }
       puStack_128 = auStack_d0;
-      FUN_180057830(auStack_d0);
+      DataTransformer0(auStack_d0);
     }
   }
                     // WARNING: Subroutine does not return

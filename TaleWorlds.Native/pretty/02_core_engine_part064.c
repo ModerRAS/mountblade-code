@@ -875,8 +875,8 @@ void FUN_18009d140(int64_t *param_1,int64_t *param_2,int64_t param_3)
       while (plVar11 != param_1) {
         lVar3 = plVar11[-1];
         plVar11 = plVar11 + -1;
-        plVar5 = (int64_t *)FUN_180058080(param_3 + 0x90,auStackX_8,lVar2 + 0x20);
-        plVar5 = (int64_t *)FUN_180058080(*(int32_t *)(*plVar5 + 0x40),auStackX_20,lVar3 + 0x20)
+        plVar5 = (int64_t *)> HighFreq_AnimationSystem1(param_3 + 0x90,auStackX_8,lVar2 + 0x20);
+        plVar5 = (int64_t *)> HighFreq_AnimationSystem1(*(int32_t *)(*plVar5 + 0x40),auStackX_20,lVar3 + 0x20)
         ;
         if (extraout_XMM0_Da == *(float *)(*plVar5 + 0x40)) {
           if (*(int *)(lVar2 + 0x30) == 0) {
@@ -960,9 +960,9 @@ void FUN_18009d15b(int64_t *param_1,int64_t *param_2,int64_t param_3)
       while (plVar11 != param_1) {
         lVar3 = plVar11[-1];
         plVar11 = plVar11 + -1;
-        plVar5 = (int64_t *)FUN_180058080(param_3 + 0x90,&stack0x00000070,lVar2 + 0x20);
+        plVar5 = (int64_t *)> HighFreq_AnimationSystem1(param_3 + 0x90,&stack0x00000070,lVar2 + 0x20);
         plVar5 = (int64_t *)
-                 FUN_180058080(*(int32_t *)(*plVar5 + 0x40),&stack0x00000088,lVar3 + 0x20);
+                 > HighFreq_AnimationSystem1(*(int32_t *)(*plVar5 + 0x40),&stack0x00000088,lVar3 + 0x20);
         if (extraout_XMM0_Da == *(float *)(*plVar5 + 0x40)) {
           if (*(int *)(lVar2 + 0x30) == 0) {
             bVar4 = false;
@@ -1044,8 +1044,8 @@ void FUN_18009d175(void)
     while (plVar10 != unaff_R13) {
       lVar3 = plVar10[-1];
       plVar10 = plVar10 + -1;
-      FUN_180058080(unaff_RBX + 0x90,&stack0x00000070,lVar2 + 0x20);
-      plVar5 = (int64_t *)FUN_180058080(unaff_RBX + 0x90,&stack0x00000088,lVar3 + 0x20);
+      > HighFreq_AnimationSystem1(unaff_RBX + 0x90,&stack0x00000070,lVar2 + 0x20);
+      plVar5 = (int64_t *)> HighFreq_AnimationSystem1(unaff_RBX + 0x90,&stack0x00000088,lVar3 + 0x20);
       if (extraout_XMM0_Da == *(float *)(*plVar5 + 0x40)) {
         if (*(int *)(lVar2 + 0x30) == 0) {
           bVar4 = false;

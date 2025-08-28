@@ -88,7 +88,7 @@ uint64_t FUN_1808987e0(int64_t *param_1,char param_2)
   
   *(int8_t *)(param_1 + 4) = 1;
   uVar2 = FUN_18073a200(*(uint64_t *)(param_1[1] + 0x78),&uStackX_8);
-  if ((((int)uVar2 == 0) && (uVar2 = FUN_18073c4c0(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
+  if ((((int)uVar2 == 0) && (uVar2 = UtilitiesSystem_MathCalculator(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
      (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
     uVar3 = (uint64_t)(alStackX_18[0] * 48000) / (uint64_t)*(uint *)((int64_t)param_1 + 0x1c);
     lVar1 = param_1[2];
@@ -800,7 +800,7 @@ uint64_t FUN_180898e56(void)
 
 
 
-uint64_t FUN_180898e70(int64_t *param_1,int32_t *param_2)
+uint64_t UISystem_WindowManager(int64_t *param_1,int32_t *param_2)
 
 {
   uint64_t uVar1;
@@ -816,7 +816,7 @@ uint64_t FUN_180898e70(int64_t *param_1,int32_t *param_2)
 
 
 
-uint64_t FUN_180898eb0(int64_t *param_1,int32_t *param_2)
+uint64_t NetworkSecurityManager(int64_t *param_1,int32_t *param_2)
 
 {
   uint64_t uVar1;
@@ -911,13 +911,13 @@ void FUN_180899040(uint64_t param_1,int64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_180899100();
+  iVar1 = SystemCore_StateManager();
   if (iVar1 == 0) {
-    iVar1 = FUN_180899100(param_1,param_2 + 0xc);
+    iVar1 = SystemCore_StateManager(param_1,param_2 + 0xc);
     if (iVar1 == 0) {
-      iVar1 = FUN_180899100(param_1,param_2 + 0x18);
+      iVar1 = SystemCore_StateManager(param_1,param_2 + 0x18);
       if (iVar1 == 0) {
-        FUN_180899100(param_1,param_2 + 0x24);
+        SystemCore_StateManager(param_1,param_2 + 0x24);
       }
     }
   }
@@ -928,8 +928,8 @@ void FUN_180899040(uint64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180899090(uint64_t param_1,int64_t param_2)
-void FUN_180899090(uint64_t param_1,int64_t param_2)
+// 函数: void UIEventHandler(uint64_t param_1,int64_t param_2)
+void UIEventHandler(uint64_t param_1,int64_t param_2)
 
 {
   int iVar1;
@@ -951,8 +951,8 @@ void FUN_180899090(uint64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180899100(int64_t param_1,int32_t *param_2)
-void FUN_180899100(int64_t param_1,int32_t *param_2)
+// 函数: void SystemCore_StateManager(int64_t param_1,int32_t *param_2)
+void SystemCore_StateManager(int64_t param_1,int32_t *param_2)
 
 {
   int iVar1;
@@ -1007,7 +1007,7 @@ uint64_t FUN_180899180(uint64_t *param_1,int64_t param_2)
 
 
 
-uint64_t FUN_180899220(int64_t *param_1,uint *param_2)
+uint64_t CoreSystem_StateManager(int64_t *param_1,uint *param_2)
 
 {
   uint64_t uVar1;
@@ -1125,7 +1125,7 @@ uint64_t FUN_1808992f0(int64_t *param_1,int32_t *param_2)
 
 
 
-uint64_t FUN_180899360(uint64_t *param_1,int64_t param_2)
+uint64_t SystemCore_ConfigManager(uint64_t *param_1,int64_t param_2)
 
 {
   uint64_t uVar1;
@@ -1179,7 +1179,7 @@ uint64_t FUN_1808993e0(uint64_t *param_1,int64_t *param_2)
   }
 LAB_180899456:
   if ((int)uVar1 == 0) {
-    FUN_1808b0fb0(param_1,aiStackX_8[0]);
+    RenderingSystem_ShaderManager0(param_1,aiStackX_8[0]);
     puVar3 = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
       uVar1 = SystemErrorHandler(param_2,puVar3,4);
@@ -1207,7 +1207,7 @@ LAB_180899456:
         aiStackX_8[0] = aiStackX_8[0] + -8;
         break;
       case 0x11:
-        uVar1 = FUN_180899090(param_2,puVar3 + 1);
+        uVar1 = UIEventHandler(param_2,puVar3 + 1);
         if ((int)uVar1 != 0) {
           return uVar1;
         }

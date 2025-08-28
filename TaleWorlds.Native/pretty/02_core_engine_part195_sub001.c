@@ -1,9 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part195_sub001.c - 18 个函数
 
-#include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part195.c - 18 个函数
 
@@ -279,7 +283,7 @@ uint64_t FUN_1801790a0(uint64_t param_1,uint64_t *param_2)
   if (*(int *)(core_system_data_config + 0x380) == 0) {
     plVar2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
     plStackX_18 = plVar2;
-    FUN_180049830(plVar2);
+    UltraHighFreq_PerformanceMonitor1(plVar2);
     *plVar2 = (int64_t)&processed_var_4624_ptr;
     plVar2[0x18] = (int64_t)param_2;
     plVar2[3] = -4;
@@ -288,7 +292,7 @@ uint64_t FUN_1801790a0(uint64_t param_1,uint64_t *param_2)
     uVar1 = system_context_ptr;
     plStackX_18 = plVar2;
     (**(code **)(*plVar2 + 0x28))(plVar2);
-    FUN_18005e110(uVar1,&plStackX_18);
+    SystemCore_TimerManager(uVar1,&plStackX_18);
     (**(code **)(*plVar2 + 0x38))(plVar2);
     return 1;
   }
@@ -342,7 +346,7 @@ uint64_t FUN_180179180(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_
         puVar5 = (uint64_t *)*puVar5;
         plVar6 = plStack_38;
       }
-      FUN_1800863a0(puVar5 + 5,&uStack_28);
+      AudioMixer(puVar5 + 5,&uStack_28);
     }
     (**(code **)(*plVar6 + 0x28))(plVar6,&processed_var_7240_ptr,7,&system_data_89b0);
   }
@@ -385,7 +389,7 @@ int32_t FUN_1801791c0(void)
       puVar3 = (uint64_t *)FUN_180179770(puVar1,&stack0x00000038,puVar1,puVar3,&stack0x00000030);
       puVar3 = (uint64_t *)*puVar3;
     }
-    FUN_1800863a0(puVar3 + 5,&stack0x00000040);
+    AudioMixer(puVar3 + 5,&stack0x00000040);
   }
   (**(code **)(*unaff_RBX + 0x28))(unaff_RBX,&processed_var_7240_ptr,7,&system_data_89b0);
   return unaff_ESI;
@@ -469,7 +473,7 @@ LAB_18017931c:
   if (puVar3 != puVar1) {
     *(int64_t *)(param_1 + 0x28) = *(int64_t *)(param_1 + 0x28) + -1;
     func_0x00018066bd70(puVar3);
-    FUN_18066ba00(puVar3,puVar1,param_3,param_4,uVar7);
+    RenderingSystem_BufferHandler(puVar3,puVar1,param_3,param_4,uVar7);
     if (puVar3[5] != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();
@@ -578,7 +582,7 @@ LAB_1801794f5:
       puVar2 = (uint64_t *)*puVar2;
       plVar1 = plStack_98;
     }
-    FUN_1800863a0(puVar2 + 5,&uStack_88);
+    AudioMixer(puVar2 + 5,&uStack_88);
   }
   else {
     iVar6 = 0;
@@ -653,7 +657,7 @@ LAB_1801794f5:
     puVar4 = (uint64_t *)FUN_180179770(puVar7,auStack_78);
     puVar4 = (uint64_t *)*puVar4;
   }
-  FUN_1800863a0(puVar4 + 5,&uStack_88);
+  AudioMixer(puVar4 + 5,&uStack_88);
 LAB_180179745:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_20 ^ (uint64_t)auStack_c8);

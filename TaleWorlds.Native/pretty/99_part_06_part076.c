@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 
 // 99_part_06_part076.c - 30 个函数
 
@@ -479,7 +485,7 @@ uint64_t FUN_1803f3350(int64_t *param_1,uint64_t param_2)
       uVar3 = (*pcVar1)();
       return uVar3;
     }
-    lVar2 = FUN_180067110(param_2 * 0x20);
+    lVar2 = SystemCore_SyscallHandler(param_2 * 0x20);
     *param_1 = lVar2;
     param_1[1] = lVar2;
     lVar2 = lVar2 + param_2 * 0x20;
@@ -619,7 +625,7 @@ FUN_1803f3688:
     param_1[2] = 0;
     if (uVar6 != 0) {
       if (0x1fffffffffffffff < uVar6) goto FUN_1803f3688;
-      puVar2 = (uint64_t *)FUN_180067110(uVar6 * 8);
+      puVar2 = (uint64_t *)SystemCore_SyscallHandler(uVar6 * 8);
       *param_1 = (int64_t)puVar2;
       param_1[1] = (int64_t)puVar2;
       param_1[2] = (int64_t)(puVar2 + uVar6);
@@ -694,7 +700,7 @@ FUN_1803f3688:
   unaff_R14[2] = 0;
   if (uVar4 != 0) {
     if (0x1fffffffffffffff < uVar4) goto FUN_1803f3688;
-    puVar2 = (uint64_t *)FUN_180067110(uVar4 * 8);
+    puVar2 = (uint64_t *)SystemCore_SyscallHandler(uVar4 * 8);
     *unaff_R14 = puVar2;
     unaff_R14[1] = puVar2;
     unaff_R14[2] = puVar2 + uVar4;
@@ -852,7 +858,7 @@ void FUN_1803f3720(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (0x1fffffffffffffff < param_2) {
     lVar5 = -1;
   }
-  puVar4 = (uint64_t *)FUN_180067110(lVar5);
+  puVar4 = (uint64_t *)SystemCore_SyscallHandler(lVar5);
   puVar3 = (uint64_t *)param_1[1];
   puVar8 = puVar4;
   for (puVar6 = (uint64_t *)*param_1; puVar6 != puVar3; puVar6 = puVar6 + 1) {
@@ -1201,7 +1207,7 @@ void FUN_1803f3bc0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   uStack_b8 = 0;
   uStack_b0 = 0xf;
   auStack_c8[0] = 0;
-  FUN_1800671b0(auStack_c8,&processed_var_560_ptr,0x19);
+  MathCoreCalculator0(auStack_c8,&processed_var_560_ptr,0x19);
   FUN_1804726c0(param_1,auStack_c8,uVar10);
   SystemResourceAllocator(&uStack_f8);
   plVar4 = plStack_110;

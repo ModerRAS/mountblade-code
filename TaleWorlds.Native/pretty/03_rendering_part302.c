@@ -460,10 +460,10 @@ LAB_18042bac0:
     if (cVar3 != '!') {
       if (cVar3 == ',') {
         uVar12 = 0xffffffff;
-        iVar4 = FUN_18041f0a0(param_1);
-        iVar5 = FUN_18041f0a0(param_1);
-        iVar6 = FUN_18041f0a0(param_1);
-        iVar7 = FUN_18041f0a0(param_1);
+        iVar4 = SystemCore_MemoryManager(param_1);
+        iVar5 = SystemCore_MemoryManager(param_1);
+        iVar6 = SystemCore_MemoryManager(param_1);
+        iVar7 = SystemCore_MemoryManager(param_1);
         if ((iVar6 + iVar4 <= *param_2) && (iVar7 + iVar5 <= param_2[1])) {
           iVar2 = *param_2 * 4;
           param_2[0x1217] = iVar2;
@@ -572,7 +572,7 @@ LAB_18042bb29:
           *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
         }
         param_2[10] = (uint)bVar13;
-        iVar4 = FUN_18041f0a0();
+        iVar4 = SystemCore_MemoryManager();
         param_2[0xb] = iVar4;
         pbVar10 = *(byte **)(param_1 + 0xb8);
         if (pbVar10 < *(byte **)(param_1 + 0xc0)) {

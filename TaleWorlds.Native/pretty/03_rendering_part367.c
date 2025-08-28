@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -418,7 +422,7 @@ void FUN_180469c50(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if ((int64_t *)param_1[0x27] != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)param_1[0x27] + 0x38))();
     }
-    FUN_180057830();
+    DataTransformer0();
     if (param_1[0x1f] == 0) {
       if (*plVar1 == 0) {
         param_1[0xf] = &system_state_ptr;
@@ -442,7 +446,7 @@ void FUN_180469c50(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     CoreMemoryPoolInitializer();
   }
   FUN_1801e85e0(param_1 + 0x30,*puVar2,param_3,param_4,0xfffffffffffffffe);
-  FUN_18004b730();
+  UtilitiesSystem_Processor();
                     // WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(puVar2);
 }
@@ -748,7 +752,7 @@ void FUN_18046a580(int64_t param_1,int64_t param_2,uint64_t param_3)
   CoreMemoryPoolValidator(&puStack_30,puVar4);
   auStackX_8[0] = 0x20;
   if (lStack_28 != 0) {
-    FUN_180057980(&puStack_30,param_3,auStackX_8);
+    CoreSystem_DataCollector(&puStack_30,param_3,auStackX_8);
   }
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

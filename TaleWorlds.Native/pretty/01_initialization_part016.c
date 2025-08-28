@@ -576,7 +576,7 @@ bool check_engine_configuration(void)
     temp_ptr = file_path;
   }
   path_length = buffer_size;
-  FUN_18062dee0(&file_handle, temp_ptr, &config_file_path_1809fcfbc);
+  SystemCore_Validator(&file_handle, temp_ptr, &config_file_path_1809fcfbc);
   if (file_size == 0) {
     has_config = false;
   }
@@ -651,7 +651,7 @@ void initialize_engine_system(void)
   }
   *config_file = 0;
   *(unsigned char *)((char *)config_file + 2) = 0;
-  FUN_18062dee0(config_file, temp_ptr, &config_file_path_1809fcfbc);
+  SystemCore_Validator(config_file, temp_ptr, &config_file_path_1809fcfbc);
   if (((void **)config_file)[1] == 0) {
     // 释放配置文件
     CoreEngineMemoryPoolCleaner(config_file);
@@ -785,7 +785,7 @@ void shutdown_engine_system(void)
   }
   engine_state = init_system_data_string;
   if (init_system_data_string != 0) {
-    FUN_18004b730();
+    > HighFreq_ParticleSystem1();
     *(void **)(engine_state + 192) = &global_vtable_1809fcc88;
     cleanup_thread_container(engine_state + 72);
     *(void **)(engine_state + 16) = &global_vtable_1809fccc0;
@@ -893,7 +893,7 @@ void load_configuration_file(char config_type)
     temp_ptr = file_path;
   }
   path_length = buffer_size;
-  FUN_18062dee0(&file_handle, temp_ptr, &config_file_data_1809fc7ec);
+  SystemCore_Validator(&file_handle, temp_ptr, &config_file_data_1809fc7ec);
   config_ptr = SYSTEM_STATE_MANAGER;
   if (file_size == 0) {
     version_info = 3;
@@ -1077,7 +1077,7 @@ void cleanup_module_container(int64_t container, void *attr1, void *attr2, void 
   
   module_ptr = *(void **)(container + 16);
   if (module_ptr != (void *)0x0) {
-    FUN_18004b790(container, *module_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
+    SystemCache_Manager(container, *module_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
     // 释放模块
     CoreEngineMemoryPoolCleaner(module_ptr);
   }
@@ -1091,7 +1091,7 @@ void cleanup_resource_container(int64_t container, void *attr1, void *attr2, voi
   
   resource_ptr = *(void **)(container + 16);
   if (resource_ptr != (void *)0x0) {
-    FUN_18004b790(container, *resource_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
+    SystemCache_Manager(container, *resource_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
     // 释放资源
     CoreEngineMemoryPoolCleaner(resource_ptr);
   }

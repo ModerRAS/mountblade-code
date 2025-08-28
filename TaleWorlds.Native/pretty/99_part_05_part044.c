@@ -329,7 +329,7 @@ uint64_t * FUN_1802f5d10(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   uStack_b0 = (uint64_t)*(uint *)(param_1 + 3);
   uStack_9c = 0;
   uStack_8c = 0x3f800000;
-  FUN_180084760(&uStack_c8,auStack_88);
+  SystemCore_PerformanceMonitor(&uStack_c8,auStack_88);
   uStack_c8 = *param_3;
   uStack_b8 = param_3[2];
   uStack_a8 = *(int32_t *)(param_3 + 4);
@@ -342,7 +342,7 @@ uint64_t * FUN_1802f5d10(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
   uStack_b0 = param_3[3] & 0xffffffff;
   uStack_9c = 0;
   uStack_8c = 0x3f800000;
-  puVar5 = (uint64_t *)FUN_1800946d0(&uStack_c8,auStack_48,auStack_88);
+  puVar5 = (uint64_t *)ErrorRecoverySystem(&uStack_c8,auStack_48,auStack_88);
   uVar1 = puVar5[1];
   uVar2 = puVar5[2];
   uVar3 = puVar5[3];

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part248.c - 3 个函数
 
 // 函数: void FUN_18080c4a0(int64_t *param_1,int param_2,int param_3,int *param_4,int *param_5,int *param_6,
@@ -227,12 +231,12 @@ int32_t FUN_18080c770(int64_t param_1,uint64_t param_2)
   lVar1 = *(int64_t *)(param_1 + 0x20);
   iVar5 = 0;
   iVar4 = *(int *)(lVar1 + 8);
-  iVar2 = FUN_18080b990(param_2,1);
+  iVar2 = SystemCore_DatabaseManager(param_2,1);
   if (iVar2 == 0) {
     for (; 1 < iVar4; iVar4 = iVar4 >> 1) {
       iVar5 = iVar5 + 1;
     }
-    iVar4 = FUN_18080b990(param_2,iVar5);
+    iVar4 = SystemCore_DatabaseManager(param_2,iVar5);
     if (iVar4 == -1) {
       uVar3 = 0xffffff78;
     }
@@ -263,7 +267,7 @@ uint64_t FUN_18080c800(int64_t *param_1)
     return 0;
   }
   if (param_1[4] != 0) {
-    FUN_180758220(param_1[4],0x80);
+    UIComponent_Renderer(param_1[4],0x80);
     if (*(int64_t *)(param_1[6] + 0x5f0) != 0) {
       plVar1 = (int64_t *)param_1[4];
       (**(code **)(*plVar1 + 0x118))
@@ -301,7 +305,7 @@ uint64_t FUN_18080c8a0(int64_t param_1)
     uVar5 = uVar4;
     if (0 < *(int *)(param_1 + 0x3cc)) {
       do {
-        FUN_180758220((int64_t)(int)uVar5 * 0x230 + lVar2,0x80);
+        UIComponent_Renderer((int64_t)(int)uVar5 * 0x230 + lVar2,0x80);
         lVar2 = *(int64_t *)(param_1 + 0x5e0);
         lVar3 = *(int64_t *)(uVar4 + 0x70 + lVar2);
         if (lVar3 != 0) {
@@ -503,7 +507,7 @@ uint64_t FUN_18080d060(int64_t param_1,char param_2)
   uint *puVar6;
   float fVar7;
   
-  uVar4 = FUN_18080d690();
+  uVar4 = RenderingSystem_BufferManager0();
   if ((int)uVar4 == 0) {
     *(uint *)(param_1 + 0xbe0) = (uint)*(byte *)(param_1 + 0x8e8);
     *(int32_t *)(param_1 + 0xbf0) = *(int32_t *)(param_1 + 0x860);
@@ -731,7 +735,7 @@ uint64_t FUN_18080d310(int64_t param_1,uint64_t *param_2,int64_t param_3,char pa
     *puVar1 = *puVar1 | 0x100;
     UNLOCK();
   }
-  uVar4 = FUN_180758220(plVar5,0x80);
+  uVar4 = UIComponent_Renderer(plVar5,0x80);
   if ((int)uVar4 == 0) {
     if (param_5 == 0) {
       param_5 = param_1 + 0x5f8;
@@ -757,7 +761,7 @@ uint64_t FUN_18080d310(int64_t param_1,uint64_t *param_2,int64_t param_3,char pa
       uVar4 = (**(code **)(*plVar5 + 0x10))(plVar5,0);
     }
     else {
-      FUN_180758220(plVar5,0x80);
+      UIComponent_Renderer(plVar5,0x80);
       *(uint64_t *)(param_3 + 0x20) = 0;
     }
   }
@@ -798,7 +802,7 @@ uint64_t FUN_18080d3c2(uint64_t param_1,uint64_t param_2,int64_t param_3)
     uVar2 = (**(code **)(*unaff_RBX + 0x10))();
   }
   else {
-    FUN_180758220();
+    UIComponent_Renderer();
     *(uint64_t *)(unaff_RDI + 0x20) = 0;
   }
   return uVar2;

@@ -349,7 +349,7 @@ LAB_180408104:
         }
       }
     }
-    iVar1 = FUN_180191c00(render_system_data_memory,&puStack_158);
+    iVar1 = RenderingSystem_PostProcessor(render_system_data_memory,&puStack_158);
     if (iVar1 == -1) {
       puVar13 = &system_buffer_ptr;
       if (puStack_150 != (void *)0x0) {
@@ -470,7 +470,7 @@ LAB_180408330:
               *puStack_210 = 0;
             }
           }
-          iVar2 = FUN_180191c00(render_system_data_memory,&puStack_218);
+          iVar2 = RenderingSystem_PostProcessor(render_system_data_memory,&puStack_218);
           if (iVar2 == -1) {
             puVar11 = &system_buffer_ptr;
             if (puStack_210 != (int8_t *)0x0) {

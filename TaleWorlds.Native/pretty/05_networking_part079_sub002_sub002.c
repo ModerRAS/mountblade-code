@@ -340,7 +340,7 @@ PROCESS_PACKET:
  * 网络数据包哈希表查找和处理函数（变体2）
  * 
  * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作
- *       这是FUN_180883a80的变体版本，使用不同的处理函数FUN_18086f8b0
+ *       这是NetworkSystem_ProtocolProcessor的变体版本，使用不同的处理函数FUN_18086f8b0
  * 
  * 参数：
  *   param_1 - 网络哈希表上下文指针
@@ -353,7 +353,7 @@ PROCESS_PACKET:
  *   非0 - 错误代码
  * 
  * 技术说明：
- * - 使用与FUN_180883a80相同的哈希表算法
+ * - 使用与NetworkSystem_ProtocolProcessor相同的哈希表算法
  * - 区别在于使用FUN_18086f8b0而不是FUN_18086f7c0进行数据包处理
  * - 适用于不同类型的网络数据包处理场景
  =============================================================================*/
@@ -623,7 +623,7 @@ PROCESS_PACKET:
  * 网络数据包哈希表查找和处理函数（变体3）
  * 
  * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作
- *       这是FUN_180883a80的变体版本，使用不同的处理函数FUN_18086f9a0
+ *       这是NetworkSystem_ProtocolProcessor的变体版本，使用不同的处理函数FUN_18086f9a0
  * 
  * 参数：
  *   param_1 - 网络哈希表上下文指针
@@ -636,7 +636,7 @@ PROCESS_PACKET:
  *   非0 - 错误代码
  * 
  * 技术说明：
- * - 使用与FUN_180883a80相同的哈希表算法
+ * - 使用与NetworkSystem_ProtocolProcessor相同的哈希表算法
  * - 区别在于使用FUN_18086f9a0进行数据包处理
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
@@ -907,7 +907,7 @@ PROCESS_PACKET:
  * 网络数据包哈希表查找和处理函数（变体4）
  * 
  * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作
- *       这是FUN_180883a80的变体版本，使用不同的处理函数FUN_18086fa90
+ *       这是NetworkSystem_ProtocolProcessor的变体版本，使用不同的处理函数FUN_18086fa90
  * 
  * 参数：
  *   param_1 - 网络哈希表上下文指针
@@ -920,17 +920,17 @@ PROCESS_PACKET:
  *   非0 - 错误代码
  * 
  * 技术说明：
- * - 使用与FUN_180883a80相同的哈希表算法
+ * - 使用与NetworkSystem_ProtocolProcessor相同的哈希表算法
  * - 区别在于使用FUN_18086fa90进行数据包处理
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
  =============================================================================*/
 uint64_t FUN_180884500(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint64_t *param_4)
 {
-  // 注意：此函数与FUN_180883a80具有相同的哈希表算法结构
+  // 注意：此函数与NetworkSystem_ProtocolProcessor具有相同的哈希表算法结构
   // 主要区别在于使用FUN_18086fa90进行数据包处理
   // 为保持代码简洁性，此处省略详细的变量注释
-  // 请参考FUN_180883a80函数的详细注释
+  // 请参考NetworkSystem_ProtocolProcessor函数的详细注释
   
   int64_t *hash_table_context;
   int64_t *lock_context;
@@ -5923,7 +5923,7 @@ LAB_180889519:
  * 网络数据包哈希表查找和处理函数（变体5）
  * 
  * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作
- *       这是FUN_180883a80的变体版本，使用不同的处理函数FUN_180871040
+ *       这是NetworkSystem_ProtocolProcessor的变体版本，使用不同的处理函数FUN_180871040
  * 
  * 参数：
  *   param_1 - 网络哈希表上下文指针
@@ -5936,17 +5936,17 @@ LAB_180889519:
  *   非0 - 错误代码
  * 
  * 技术说明：
- * - 使用与FUN_180883a80相同的哈希表算法
+ * - 使用与NetworkSystem_ProtocolProcessor相同的哈希表算法
  * - 区别在于使用FUN_180871040进行数据包处理
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
  =============================================================================*/
 uint64_t FUN_180889580(int64_t *param_1,int64_t *param_2,uint64_t *param_3,uint64_t *param_4)
 {
-  // 注意：此函数与FUN_180883a80具有相同的哈希表算法结构
+  // 注意：此函数与NetworkSystem_ProtocolProcessor具有相同的哈希表算法结构
   // 主要区别在于使用FUN_180871040进行数据包处理
   // 为保持代码简洁性，此处省略详细的变量注释
-  // 请参考FUN_180883a80函数的详细注释
+  // 请参考NetworkSystem_ProtocolProcessor函数的详细注释
   
   int64_t *hash_table_context;
   int64_t *lock_context;
@@ -6427,7 +6427,7 @@ LAB_180889c19:
  *    - FUN_180883a30: 网络系统状态检查和错误处理
  * 
  * 2. 网络数据包哈希表处理函数族
- *    - FUN_180883a80: 基础哈希表查找和处理函数
+ *    - NetworkSystem_ProtocolProcessor: 基础哈希表查找和处理函数
  *    - FUN_180883e00: 变体2，使用FUN_18086f8b0处理
  *    - FUN_180884180: 变体3，使用FUN_18086f9a0处理
  *    - FUN_180884500: 变体4，使用FUN_18086fa90处理
@@ -6514,7 +6514,7 @@ int32_t NetworkStatusChecker_GetStatus(int64_t param_1)
   plStack_68 = (int64_t *)(param_1 + 0x898);
   uStack_60 = 0xffffffffffffffff;
   aiStack_58[0] = -1;
-  FUN_1808741f0(plStack_68,&uStack_60,aiStack_58);
+  SystemResource_Manager(plStack_68,&uStack_60,aiStack_58);
   if (aiStack_58[0] != -1) {
     iVar10 = aiStack_58[0];
     iVar9 = (int)uStack_60;
@@ -6633,7 +6633,7 @@ int32_t FUN_180889cf9(int64_t param_1)
   *(uint64_t *)(unaff_RBP + -0x40) = 0xffffffffffffffff;
   *(int64_t *)(unaff_RBP + -0x48) = param_1 + 0x898;
   *(int32_t *)(unaff_RBP + -0x38) = 0xffffffff;
-  FUN_1808741f0(param_1 + 0x898,unaff_RBP + -0x40,unaff_RBP + -0x38);
+  SystemResource_Manager(param_1 + 0x898,unaff_RBP + -0x40,unaff_RBP + -0x38);
   iVar13 = *(int *)(unaff_RBP + -0x38);
   if (iVar13 != -1) {
     iVar11 = *(int *)(unaff_RBP + -0x40);
@@ -6951,7 +6951,7 @@ int32_t FUN_180889eb2(void)
  *    - FUN_180883a30: 网络系统错误处理和初始化
  * 
  * 2. 网络数据包哈希表处理函数族（26个变体）
- *    基础函数：FUN_180883a80
+ *    基础函数：NetworkSystem_ProtocolProcessor
  *    变体函数：FUN_180883e00 ~ FUN_180889200
  *    每个变体使用不同的处理函数，但核心哈希表逻辑相同
  * 

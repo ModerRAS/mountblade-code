@@ -374,8 +374,8 @@ void FUN_1801edd6c(void)
 
 
 
-// 函数: void FUN_1801edeb0(uint64_t param_1,uint64_t *param_2)
-void FUN_1801edeb0(uint64_t param_1,uint64_t *param_2)
+// 函数: void CoreEngine_MemoryManager(uint64_t param_1,uint64_t *param_2)
+void CoreEngine_MemoryManager(uint64_t param_1,uint64_t *param_2)
 
 {
   uint64_t auStackX_8 [4];

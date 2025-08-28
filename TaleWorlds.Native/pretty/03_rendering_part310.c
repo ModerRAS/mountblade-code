@@ -167,7 +167,7 @@ FUN_180431180(int64_t param_1,int64_t param_2,char param_3,uint64_t param_4,int3
   *(int32_t *)((int64_t)puVar5 + 0x3c) = uStack_74;
   *(int32_t *)(puVar5 + 8) = uStack_70;
   *(int32_t *)((int64_t)puVar5 + 0x44) = uStack_6c;
-  FUN_180084760(&uStack_a8,puVar5 + 9);
+  SystemCore_PerformanceMonitor(&uStack_a8,puVar5 + 9);
   *(uint64_t **)(param_1 + 8 + (int64_t)cVar1 * 8) = puVar5;
   if (plStackX_10 != (int64_t *)0x0) {
     (**(code **)(*plStackX_10 + 0x38))();
@@ -368,8 +368,8 @@ void FUN_180431680(int64_t param_1)
 
 
 
-// 函数: void FUN_180431730(int64_t param_1)
-void FUN_180431730(int64_t param_1)
+// 函数: void RenderingSystem_GeometryProcessor0(int64_t param_1)
+void RenderingSystem_GeometryProcessor0(int64_t param_1)
 
 {
   int64_t lVar1;

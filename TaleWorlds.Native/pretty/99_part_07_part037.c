@@ -98,7 +98,7 @@ void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
     }
   }
   if ((puVar6 == puVar15) || (uVar4 < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)FUN_1804c0610(puVar15,auStackX_10);
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar15,auStackX_10);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar1 = puVar6[5];

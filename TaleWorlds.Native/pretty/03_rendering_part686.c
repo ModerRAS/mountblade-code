@@ -233,7 +233,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
         fVar46 = pfVar13[2];
         fVar48 = pfVar13[3];
         fStack_194 = fVar39;
-        pfVar13 = (float *)FUN_18022a890(lStack_190,*(int8_t *)(uVar18 + 0x100 + lStack_188),
+        pfVar13 = (float *)CoreSystem_AuthenticationHandler0(lStack_190,*(int8_t *)(uVar18 + 0x100 + lStack_188),
                                          lStack_188);
         fVar47 = *pfVar13;
         fVar41 = pfVar13[1];
@@ -413,7 +413,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
         fVar44 = pfVar13[1];
         fVar46 = pfVar13[2];
         fVar48 = pfVar13[3];
-        pfVar13 = (float *)FUN_18022a890(lStack_190,*(int8_t *)(uVar19 + 0x100 + lStack_188),
+        pfVar13 = (float *)CoreSystem_AuthenticationHandler0(lStack_190,*(int8_t *)(uVar19 + 0x100 + lStack_188),
                                          lStack_188);
         fVar47 = *pfVar13;
         fVar41 = pfVar13[1];
@@ -661,7 +661,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
       afStack_130[0xb] = 0.0;
       afStack_130[0xc] = 0.0;
       afStack_130[0xd] = 0.0;
-      FUN_18022a890(lVar12,cVar5,lStack_188);
+      CoreSystem_AuthenticationHandler0(lVar12,cVar5,lStack_188);
       uStack_1a0 = 1;
       uStack_1a8 = 0x51b189;
       pfVar13 = (float *)(lVar12 + ((int64_t)cVar5 + 0x40) * 0x10);
@@ -676,7 +676,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
                             + *(float *)(lVar16 + 0x94) * fVar28 + *(float *)(lVar16 + 0xa4),
                             *(float *)(lVar16 + 0x80) * fVar24 + *(float *)(lVar16 + 0x70) * fVar39
                             + *(float *)(lVar16 + 0x90) * fVar28 + *(float *)(lVar16 + 0xa0));
-      FUN_1801aa0f0(uVar6,&uStack_178);
+      PhysicsSystem_JointManager(uVar6,&uStack_178);
       fVar28 = -afStack_130[7];
       fVar24 = afStack_130[6] * afStack_130[6] + fVar28 * fVar28;
       lVar16 = lStack_158;
@@ -720,7 +720,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
         else {
           fVar24 = -0.47123894;
         }
-        FUN_18022a890(lVar12,*puVar22,lStack_188,fVar23);
+        CoreSystem_AuthenticationHandler0(lVar12,*puVar22,lStack_188,fVar23);
                     // WARNING: Subroutine does not return
         AdvancedSystemController(fVar24 * fVar27 * fStack_168 * 0.5);
       }

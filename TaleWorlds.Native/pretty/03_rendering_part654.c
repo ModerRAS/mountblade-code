@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
 
 // 03_rendering_part654.c - 8 个函数
 
@@ -687,7 +693,7 @@ void FUN_18063d4e0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     CoreEngineDataTransformer();
   }
   else {
-    FUN_180059820(param_1,&puStack_50);
+    SystemCore_BackupSystem(param_1,&puStack_50);
   }
   puStack_50 = &system_data_buffer_ptr;
   if (lStack_48 != 0) {
@@ -717,7 +723,7 @@ void FUN_18063d700(uint64_t param_1,int64_t *param_2)
   
   uStack_d10 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_de8;
-  FUN_180057110();
+  SystemCore_ConfigValidator();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
   if (iVar1 != 0) {
@@ -760,7 +766,7 @@ FUN_18063dda0(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   uVar3 = param_1[1] - *param_1 >> 5;
   iVar2 = (int)uVar3;
   if (iVar2 == 0) {
-    FUN_180627910(param_2,&processed_var_7104_ptr);
+    SystemCore_CacheManager(param_2,&processed_var_7104_ptr);
   }
   else {
     puStack_48 = &system_data_buffer_ptr;

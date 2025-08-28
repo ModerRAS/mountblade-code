@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part366.c - 2 个函数
 
 // 函数: void FUN_180865a0f(void)
@@ -126,7 +134,7 @@ uint64_t * FUN_180865b00(uint64_t *param_1)
 uint64_t * FUN_180865bc0(uint64_t *param_1,uint64_t param_2)
 
 {
-  FUN_180840270(param_1 + 0x11);
+  SystemCore_MemoryManager(param_1 + 0x11);
   func_0x00018085deb0(param_1 + 10);
   FUN_180865ec0(param_1 + 5);
   *param_1 = &processed_var_9984_ptr;
@@ -230,7 +238,7 @@ uint64_t FUN_180865c20(int64_t param_1,int64_t param_2,uint64_t param_3)
       if ((3 < iVar5) && (iVar12 = iVar11, iVar11 < iVar9)) {
         iVar12 = iVar9;
       }
-      uVar7 = FUN_1807d3f50(param_1 + 0x28,iVar12);
+      uVar7 = SystemCore_SecurityHandler(param_1 + 0x28,iVar12);
       if ((int)uVar7 != 0) {
         return uVar7;
       }
@@ -336,7 +344,7 @@ uint64_t FUN_180865ec0(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(param_1,0), (int)uVar3 != 0)) {
+     (uVar3 = SystemCore_SecurityHandler(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -439,7 +447,7 @@ uint64_t FUN_180865fc0(int64_t param_1,int16_t param_2,uint64_t param_3,char par
     else if (iVar10 < iVar8) {
       iVar10 = iVar8;
     }
-    uVar5 = FUN_1807d3f50(param_1 + 0x28,iVar10);
+    uVar5 = SystemCore_SecurityHandler(param_1 + 0x28,iVar10);
     if ((int)uVar5 == 0) goto LAB_18086615c;
   }
   else {
@@ -449,7 +457,7 @@ LAB_18086615c:
     *puVar7 = puVar6;
     puVar7[1] = 0;
     *(int *)(param_1 + 0x30) = *(int *)(param_1 + 0x30) + 1;
-    uVar5 = FUN_180768b70(param_1 + 0x74);
+    uVar5 = SystemCore_PerformanceMonitor(param_1 + 0x74);
     if ((int)uVar5 == 0) {
       *(int32_t *)(param_1 + 0x38) = 1;
       *(int32_t *)(param_1 + 0x6c) = 2;
@@ -460,7 +468,7 @@ LAB_18086615c:
     return uVar5;
   }
 LAB_180866197:
-  uVar5 = FUN_180768b70(param_1 + 0x74);
+  uVar5 = SystemCore_PerformanceMonitor(param_1 + 0x74);
   return uVar5;
 }
 
@@ -628,7 +636,7 @@ uint64_t FUN_180866820(int64_t *param_1,uint64_t *param_2)
     else if (iVar6 < iVar4) {
       iVar6 = iVar4;
     }
-    uVar2 = FUN_1807d3f50(param_1,iVar6);
+    uVar2 = SystemCore_SecurityHandler(param_1,iVar6);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -856,7 +864,7 @@ uint64_t FUN_180866ba0(int64_t param_1,uint64_t param_2)
     else if (iVar7 < iVar5) {
       iVar7 = iVar5;
     }
-    uVar3 = FUN_1807d3f50(param_1 + 0x28,iVar7);
+    uVar3 = SystemCore_SecurityHandler(param_1 + 0x28,iVar7);
     if ((int)uVar3 != 0) {
       return uVar3;
     }

@@ -719,8 +719,8 @@ void FUN_1808fb730(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_1808fb790(void)
-void FUN_1808fb790(void)
+// 函数: void NetworkSystem_ConnectionHandler(void)
+void NetworkSystem_ConnectionHandler(void)
 
 {
   FUN_1808fb7b0();
@@ -770,7 +770,7 @@ void FUN_1808fb7b0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
     }
     if (puVar6 == (int8_t *)0x0) {
       puStack_88 = &processed_var_9168_ptr;
-      FUN_1808fb790(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr);
+      NetworkSystem_ConnectionHandler(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr);
       if (system_data_21c0 != '\0') {
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
@@ -845,7 +845,7 @@ void FUN_1808fb7fc(void)
   }
   if (puVar6 == (int8_t *)0x0) {
     puVar9 = &processed_var_9168_ptr;
-    FUN_1808fb790(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr,&processed_var_9168_ptr);
+    NetworkSystem_ConnectionHandler(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr,&processed_var_9168_ptr);
     if (system_data_21c0 != '\0') {
       pcVar2 = (code *)swi(3);
       (*pcVar2)();

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -145,7 +146,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
       unaff_RBP[0xdd] = fVar26;
       unaff_RBP[0xde] = fVar29;
       unaff_RBP[0xdf] = fVar33;
-      uVar12 = FUN_180300bf0(unaff_RBP + 0xd8,unaff_RBP + 0x19c,unaff_RSI + 0x90);
+      uVar12 = UltraHighFreq_FileSystem1(unaff_RBP + 0xd8,unaff_RBP + 0x19c,unaff_RSI + 0x90);
       puVar16 = (uint64_t *)FUN_180300b10(&stack0x00000070,unaff_RBP + 0x1a4,uVar12);
       uVar12 = puVar16[1];
       *(uint64_t *)(unaff_RSI + 0x90) = *puVar16;
@@ -194,7 +195,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
       unaff_RBP[0xe5] = fVar26;
       unaff_RBP[0xe6] = fVar29;
       unaff_RBP[0xe7] = fVar33;
-      uVar12 = FUN_180300bf0(unaff_RBP + 0xe0,unaff_RBP + 0x1ac,unaff_RSI + 0xb0);
+      uVar12 = UltraHighFreq_FileSystem1(unaff_RBP + 0xe0,unaff_RBP + 0x1ac,unaff_RSI + 0xb0);
       puVar16 = (uint64_t *)FUN_180300b10(&stack0x00000070,unaff_RBP + 0x1b4,uVar12);
       unaff_XMM12_Da = unaff_RBP[0x10];
       unaff_XMM12_Db = unaff_RBP[0x11];
@@ -355,7 +356,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
     *(float *)(unaff_RSI + 0xb4) = fVar22;
     *(float *)(unaff_RSI + 0xb8) = fVar37;
     *(float *)(unaff_RSI + 0xbc) = fVar23;
-    puVar16 = (uint64_t *)FUN_180300bf0(&stack0x00000070,unaff_RBP + 0x1bc,pfVar14);
+    puVar16 = (uint64_t *)UltraHighFreq_FileSystem1(&stack0x00000070,unaff_RBP + 0x1bc,pfVar14);
     in_stack_00000070 = *puVar16;
     in_stack_00000078 = puVar16[1];
     fVar28 = *(float *)((int64_t)puVar16 + 0x14);
@@ -365,7 +366,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
     unaff_RBP[-0x1f] = fVar28;
     unaff_RBP[-0x1e] = fVar30;
     unaff_RBP[-0x1d] = fVar31;
-    puVar16 = (uint64_t *)FUN_180300bf0(unaff_RBP + -0x18,unaff_RBP + 0x1c4,pfVar13);
+    puVar16 = (uint64_t *)UltraHighFreq_FileSystem1(unaff_RBP + -0x18,unaff_RBP + 0x1c4,pfVar13);
     uVar12 = puVar16[1];
     *(uint64_t *)(unaff_RBP + -0x18) = *puVar16;
     *(uint64_t *)(unaff_RBP + -0x16) = uVar12;
@@ -449,7 +450,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
       unaff_RBP[0xed] = fVar22;
       unaff_RBP[0xee] = fVar37;
       unaff_RBP[0xef] = fVar23;
-      pfVar13 = (float *)FUN_1801c0fb0(unaff_RBP + 0xe8,unaff_RBP + 0x110,lVar18 + 0x20 + lVar19);
+      pfVar13 = (float *)SystemFileHandler(unaff_RBP + 0xe8,unaff_RBP + 0x110,lVar18 + 0x20 + lVar19);
       pfVar14 = (float *)(lVar19 + 0x10 + lVar18);
       fVar23 = *pfVar14;
       fVar24 = pfVar14[1];
@@ -480,7 +481,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
       unaff_RBP[0x109] = fVar39;
       unaff_RBP[0x10a] = fVar40;
       unaff_RBP[0x10b] = fVar41;
-      pfVar14 = (float *)FUN_1801c0fb0(unaff_RBP + 0x108,unaff_RBP + 0x118,pfVar21 + 4);
+      pfVar14 = (float *)SystemFileHandler(unaff_RBP + 0x108,unaff_RBP + 0x118,pfVar21 + 4);
       fVar33 = *pfVar21;
       fVar23 = pfVar21[1];
       fVar24 = pfVar21[2];
@@ -510,7 +511,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
       unaff_RBP[0x59] = fVar35;
       unaff_RBP[0x5a] = fVar36;
       unaff_RBP[0x5b] = fVar38;
-      pfVar14 = (float *)FUN_1801c0fb0(unaff_RBP + 0x44,unaff_RBP + 0x11c,unaff_RBP + 0x5c);
+      pfVar14 = (float *)SystemFileHandler(unaff_RBP + 0x44,unaff_RBP + 0x11c,unaff_RBP + 0x5c);
       plVar2 = *(int64_t **)(unaff_RSI + 0xd8);
       fVar25 = *pfVar14;
       fVar26 = pfVar14[1];
@@ -598,7 +599,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
         unaff_RBP[0x105] = fVar27;
         unaff_RBP[0x106] = fVar22;
         unaff_RBP[0x107] = fVar28;
-        pfVar13 = (float *)FUN_1801c0fb0(unaff_RBP + 0x100,unaff_RBP + 0x15c,lVar18 + 0x20 + lVar20)
+        pfVar13 = (float *)SystemFileHandler(unaff_RBP + 0x100,unaff_RBP + 0x15c,lVar18 + 0x20 + lVar20)
         ;
         pfVar14 = (float *)(lVar20 + 0x10 + lVar18);
         fVar37 = *pfVar14;
@@ -654,7 +655,7 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
         puVar17[7] = (uint)fVar26;
         puVar17[8] = (uint)fVar29;
         *puVar17 = 0;
-        FUN_1802feba0(unaff_R14,
+        RenderingSystem_DrawPrimitive(unaff_R14,
                       (int64_t)(uint64_t)(uint)((int)puVar17 - *(int *)(unaff_R14 + 0x18)) >> 8);
         cVar9 = cVar9 + '\x01';
       } while (cVar9 < *(char *)(lVar1 + 0x148));

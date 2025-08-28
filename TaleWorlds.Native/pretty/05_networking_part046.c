@@ -1,4 +1,9 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 05_networking_part046.c - 3 个函数
 
@@ -152,12 +157,12 @@ uint64_t FUN_1808650a0(int64_t param_1,byte param_2)
         return 0;
       }
       *(int32_t *)(param_1 + 0x2e4) = 2;
-      FUN_180768b70(param_1 + 0x2ec);
+      SystemCore_PerformanceMonitor(param_1 + 0x2ec);
       lVar7 = *(int64_t *)(param_1 + 0x80);
       if (lVar7 == 0) {
         return 0;
       }
-      uVar6 = FUN_1808605e0(param_1);
+      uVar6 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar7 + 0x80) = uVar6;
       return 0;
     }
@@ -223,15 +228,15 @@ uint64_t FUN_1808650a0(int64_t param_1,byte param_2)
       plVar3 = plVar10 + 3;
     }
   }
-  uVar8 = FUN_1808b2f30(param_1 + 8,10);
+  uVar8 = SystemDataFlowProcessor(param_1 + 8,10);
   if ((int)uVar8 != 0) {
     return uVar8;
   }
-  uVar8 = FUN_1808b2f30(param_1 + 8,0x1e);
+  uVar8 = SystemDataFlowProcessor(param_1 + 8,0x1e);
   if ((int)uVar8 != 0) {
     return uVar8;
   }
-  uVar8 = FUN_1808b2f30(param_1 + 8,0x1f);
+  uVar8 = SystemDataFlowProcessor(param_1 + 8,0x1f);
   if ((int)uVar8 != 0) {
     return uVar8;
   }
@@ -295,7 +300,7 @@ uint64_t FUN_1808650a0(int64_t param_1,byte param_2)
   if ((int)uVar8 == 0) {
     lVar7 = *(int64_t *)(param_1 + 0x80);
     if (lVar7 != 0) {
-      uVar6 = FUN_1808605e0(param_1);
+      uVar6 = SystemCore_StateController(param_1);
       *(int32_t *)(lVar7 + 0x80) = uVar6;
     }
     puVar11 = *(uint64_t **)(param_1 + 0x480);
@@ -369,7 +374,7 @@ uint64_t FUN_180865286(void)
         if ((int)uVar6 == 0) {
           lVar2 = *(int64_t *)(unaff_RDI + 0x80);
           if (lVar2 != 0) {
-            uVar5 = FUN_1808605e0();
+            uVar5 = SystemCore_StateController();
             *(int32_t *)(lVar2 + 0x80) = uVar5;
           }
           if ((*(uint64_t **)(unaff_RDI + 0x480) == (uint64_t *)0x0) ||
@@ -429,7 +434,7 @@ uint64_t FUN_1808652fd(void)
         if ((int)uVar3 == 0) {
           lVar1 = *(int64_t *)(unaff_RDI + 0x80);
           if (lVar1 != 0) {
-            uVar2 = FUN_1808605e0();
+            uVar2 = SystemCore_StateController();
             *(int32_t *)(lVar1 + 0x80) = uVar2;
           }
           if ((*(uint64_t **)(unaff_RDI + 0x480) != (uint64_t *)0x0) &&
@@ -645,7 +650,7 @@ uint64_t FUN_180865550(int64_t param_1,char param_2)
   uStackX_20 = 0;
   uStackX_18 = 0;
   uVar9 = FUN_18073a200(*(uint64_t *)(*(int64_t *)(param_1 + 0x2c8) + 0x4c0),&uStackX_18);
-  if (((int)uVar9 == 0) && (uVar9 = FUN_18073c4c0(uStackX_18,&uStackX_20,0), (int)uVar9 == 0)) {
+  if (((int)uVar9 == 0) && (uVar9 = UtilitiesSystem_MathCalculator(uStackX_18,&uStackX_20,0), (int)uVar9 == 0)) {
     puVar16 = (uint64_t *)(lVar17 + 0x20);
     while( true ) {
       puVar1 = puVar16 + -4;
@@ -668,7 +673,7 @@ uint64_t FUN_180865550(int64_t param_1,char param_2)
         if ((iVar4 < 0) || (*(int *)(param_1 + 0x4e8) <= iVar4)) {
           return 0x1c;
         }
-        FUN_180840270(*(int64_t *)(param_1 + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
+        SystemCore_MemoryManager(*(int64_t *)(param_1 + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
         iVar11 = *(int *)(param_1 + 0x4e8);
         iVar12 = (iVar11 - iVar4) + -1;
         if (0 < iVar12) {
@@ -699,7 +704,7 @@ uint64_t FUN_180865550(int64_t param_1,char param_2)
               FUN_18084e110(lVar14 + -0xc,puVar13);
               *(uint64_t *)(lVar14 + 4) = *(uint64_t *)(lVar10 + 4 + lVar14);
               *(int32_t *)(lVar14 + 0xc) = *(int32_t *)(lVar10 + 0xc + lVar14);
-              FUN_180840270((int64_t)iVar15 * 0x38 + 0x10 + lVar17 + 0x38);
+              SystemCore_MemoryManager((int64_t)iVar15 * 0x38 + 0x10 + lVar17 + 0x38);
               iVar15 = iVar15 + 1;
               lVar14 = lVar14 + 0x38;
               lVar18 = lVar18 + -1;
@@ -769,7 +774,7 @@ uint64_t FUN_1808655bb(void)
     if ((iVar4 < 0) || (*(int *)(unaff_RDI + 0x4e8) <= iVar4)) {
       return 0x1c;
     }
-    FUN_180840270(*(int64_t *)(unaff_RDI + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
+    SystemCore_MemoryManager(*(int64_t *)(unaff_RDI + 0x4e0) + 0x10 + (int64_t)iVar4 * 0x38);
     iVar11 = *(int *)(unaff_RDI + 0x4e8);
     iVar12 = (iVar11 - iVar4) + -1;
     if (0 < iVar12) {
@@ -801,7 +806,7 @@ uint64_t FUN_1808655bb(void)
           FUN_18084e110(lVar14 + -0xc,puVar13);
           *(uint64_t *)(lVar14 + 4) = *(uint64_t *)(lVar10 + 4 + lVar14);
           *(int32_t *)(lVar14 + 0xc) = *(int32_t *)(lVar10 + 0xc + lVar14);
-          FUN_180840270((int64_t)iVar15 * 0x38 + 0x10 + lVar17 + 0x38);
+          SystemCore_MemoryManager((int64_t)iVar15 * 0x38 + 0x10 + lVar17 + 0x38);
           iVar15 = iVar15 + 1;
           lVar14 = lVar14 + 0x38;
           lVar18 = lVar18 + -1;

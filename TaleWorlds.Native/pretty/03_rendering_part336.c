@@ -1,5 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part336.c - 12 个函数
 
@@ -108,8 +116,8 @@ void FUN_180447220(int64_t param_1)
   
   if (param_1 != 0) {
     CoreMemoryPoolValidator(&puStack_28);
-    FUN_1800b30d0(system_resource_state,aplStackX_8,&puStack_28,1);
-    FUN_180076910(param_1,aplStackX_8);
+    SystemCore_PerformanceMonitor(system_resource_state,aplStackX_8,&puStack_28,1);
+    UltraHighFreq_SecurityValidator1(param_1,aplStackX_8);
     if (aplStackX_8[0] != (int64_t *)0x0) {
       (**(code **)(*aplStackX_8[0] + 0x38))();
     }
@@ -139,7 +147,7 @@ void FUN_1804472c0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     if (param_2 != (int64_t *)0x0) {
       (**(code **)(*param_2 + 0x28))(param_2);
     }
-    FUN_180076910(param_1,&plStackX_8,param_3,param_4,uVar1);
+    UltraHighFreq_SecurityValidator1(param_1,&plStackX_8,param_3,param_4,uVar1);
     if (param_2 != (int64_t *)0x0) {
       (**(code **)(*param_2 + 0x38))(param_2);
     }
@@ -247,14 +255,14 @@ LAB_18044751c:
     }
   }
   else {
-    plVar1 = (int64_t *)FUN_1800b33d0(system_resource_state,&plStackX_20,&puStack_48,param_4,uVar4,uVar5);
+    plVar1 = (int64_t *)RenderingSystem_ShaderCompiler0(system_resource_state,&plStackX_20,&puStack_48,param_4,uVar4,uVar5);
     plVar3 = (int64_t *)*plVar1;
     *plVar1 = 0;
     if (plStackX_20 != (int64_t *)0x0) {
       (**(code **)(*plStackX_20 + 0x38))();
     }
     if (plVar3 == (int64_t *)0x0) {
-      FUN_180627020(&processed_var_9992_ptr,param_2);
+      SystemCore_Allocator(&processed_var_9992_ptr,param_2);
       puVar2 = (uint64_t *)FUN_1800befa0(render_system_data_config,&plStackX_20);
       plVar3 = (int64_t *)*puVar2;
       *puVar2 = 0;
@@ -296,7 +304,7 @@ FUN_1804475e0(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int32_t uStack_1c;
   int32_t uStack_14;
   
-  FUN_1800763c0(param_2,&plStackX_8,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_BufferManager(param_2,&plStackX_8,param_3,param_4,0xfffffffffffffffe);
   plVar1 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
     uVar2 = 0xffffffff;
@@ -376,7 +384,7 @@ int32_t * FUN_180447710(int32_t *param_1,int64_t *param_2)
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
   }
-  FUN_180076910(plVar3,&plStackX_8);
+  UltraHighFreq_SecurityValidator1(plVar3,&plStackX_8);
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x38))(param_2);
   }
@@ -502,7 +510,7 @@ FUN_180447990(int32_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t *para
   plStack_28 = (int64_t *)0x0;
   uStack_38 = 0;
   auStack_40[0] = 0;
-  FUN_18022f2e0(&plStack_50,plStackX_8,0);
+  RenderingSystem_MaterialProcessor(&plStack_50,plStackX_8,0);
   param_5 = (int64_t *)0x3f8000003f800000;
   uStackX_18 = 0;
   FUN_180230c90(&plStack_50,&uStackX_18,&param_5);
@@ -522,14 +530,14 @@ FUN_180447990(int32_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t *para
   param_1[3] = uStack_74;
   if ((plStack_50 != (int64_t *)0x0) && (plStack_48 != (int64_t *)0x0)) {
     if (cStack_1e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_40);
+    SystemSecurityManager(auStack_40);
     if (cStack_20 != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     if (cStack_1f != '\0') {
-      FUN_180079520(plStack_50);
+      SystemInitializer(plStack_50);
     }
     plVar1 = plStack_48;
     param_5 = plStack_48;
@@ -539,7 +547,7 @@ FUN_180447990(int32_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t *para
     }
   }
   param_5 = (int64_t *)auStack_40;
-  FUN_18007f6a0(auStack_40);
+  SystemSecurityManager(auStack_40);
   if (plStack_28 != (int64_t *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -725,21 +733,21 @@ void FUN_180447e40(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plStack_18 = (int64_t *)0x0;
   uStack_28 = 0;
   auStack_30[0] = 0;
-  FUN_18022f2e0(&plStack_40,param_1,0,param_4,uVar2);
+  RenderingSystem_MaterialProcessor(&plStack_40,param_1,0,param_4,uVar2);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
   FUN_180234a10(&plStack_40,0,1);
   if ((plStack_40 != (int64_t *)0x0) && (plStack_38 != (int64_t *)0x0)) {
     if (cStack_e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     plVar1 = plStack_38;
     plStack_38 = (int64_t *)0x0;
@@ -747,7 +755,7 @@ void FUN_180447e40(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_30);
+  SystemSecurityManager(auStack_30);
   if (plStack_18 != (int64_t *)0x0) {
     (**(code **)(*plStack_18 + 0x38))();
   }
@@ -792,7 +800,7 @@ void FUN_180447f70(int64_t *param_1)
   plStack_18 = (int64_t *)0x0;
   uStack_28 = 0;
   auStack_30[0] = 0;
-  FUN_18022f2e0(&plStack_40,param_1,0);
+  RenderingSystem_MaterialProcessor(&plStack_40,param_1,0);
   if (param_1 != (int64_t *)0x0) {
     (**(code **)(*param_1 + 0x38))(param_1);
   }
@@ -803,20 +811,20 @@ void FUN_180447f70(int64_t *param_1)
     if ((void *)plStack_40[3] != (void *)0x0) {
       puVar3 = (void *)plStack_40[3];
     }
-    FUN_1800623b0(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar2,puVar3,(int)plStack_38[0xc],
+    SystemConfigurationManager(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar2,puVar3,(int)plStack_38[0xc],
                   uVar4);
   }
   cStack_10 = '\x01';
   if ((plStack_40 != (int64_t *)0x0) && (plStack_38 != (int64_t *)0x0)) {
     if (cStack_e != '\0') {
-      FUN_180075b70();
+      SystemConfig_Manager();
     }
-    FUN_18007f6a0(auStack_30);
+    SystemSecurityManager(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      SystemInitializer(plStack_40);
     }
     plVar1 = plStack_38;
     plStack_38 = (int64_t *)0x0;
@@ -824,7 +832,7 @@ void FUN_180447f70(int64_t *param_1)
       (**(code **)(*plVar1 + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_30);
+  SystemSecurityManager(auStack_30);
   if (plStack_18 != (int64_t *)0x0) {
     (**(code **)(*plStack_18 + 0x38))();
   }
@@ -871,7 +879,7 @@ void FUN_180448110(int64_t *param_1,int64_t param_2,uint64_t param_3)
     plStack_30 = (int64_t *)0x0;
     uStack_40 = 0;
     auStack_48[0] = 0;
-    FUN_18022f2e0(&plStack_58,param_1,0);
+    RenderingSystem_MaterialProcessor(&plStack_58,param_1,0);
     if (param_1 != (int64_t *)0x0) {
       (**(code **)(*param_1 + 0x38))(param_1);
     }
@@ -882,14 +890,14 @@ void FUN_180448110(int64_t *param_1,int64_t param_2,uint64_t param_3)
     FUN_180235ca0(&plStack_58,param_2,param_3,0xff,&uStack_68,1,0,0,1);
     if ((plStack_58 != (int64_t *)0x0) && (plStack_50 != (int64_t *)0x0)) {
       if (cStack_26 != '\0') {
-        FUN_180075b70();
+        SystemConfig_Manager();
       }
-      FUN_18007f6a0(auStack_48);
+      SystemSecurityManager(auStack_48);
       if (cStack_28 != '\0') {
-        FUN_180079520(plStack_58);
+        SystemInitializer(plStack_58);
       }
       if (cStack_27 != '\0') {
-        FUN_180079520(plStack_58);
+        SystemInitializer(plStack_58);
       }
       plVar1 = plStack_50;
       plStack_50 = (int64_t *)0x0;
@@ -897,7 +905,7 @@ void FUN_180448110(int64_t *param_1,int64_t param_2,uint64_t param_3)
         (**(code **)(*plVar1 + 0x38))();
       }
     }
-    FUN_18007f6a0(auStack_48);
+    SystemSecurityManager(auStack_48);
     if (plStack_30 != (int64_t *)0x0) {
       (**(code **)(*plStack_30 + 0x38))();
     }

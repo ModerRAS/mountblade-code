@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -247,8 +248,8 @@ LAB_1804adac7:
     }
     AdvancedSystemOptimizer(pcVar15,puVar12,param_1 + 8);
   }
-  FUN_180631000(param_2,&processed_var_5664_ptr,param_1 + 10);
-  FUN_180631000(param_2,&processed_var_5624_ptr,(int64_t)param_1 + 0x51);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_5664_ptr,param_1 + 10);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_5624_ptr,(int64_t)param_1 + 0x51);
   *(int8_t *)((int64_t)param_1 + 0x52) = 0;
   *(int32_t *)((int64_t)param_1 + 0x54) = 0;
   *(int32_t *)(param_1 + 0xb) = 0;
@@ -258,11 +259,11 @@ LAB_1804adac7:
   *(int32_t *)(param_1 + 0xd) = 0;
   *(int32_t *)((int64_t)param_1 + 0x6c) = 0;
   *(int32_t *)(param_1 + 0xe) = 0x7f7fffff;
-  lVar11 = FUN_180631960(param_2,0);
+  lVar11 = StringProcessor(param_2,0);
   if (lVar11 != 0) {
     *(int8_t *)((int64_t)param_1 + 0x52) = 1;
   }
-  lVar11 = FUN_180631960(param_2,&processed_var_5496_ptr,(int64_t)param_1 + 100);
+  lVar11 = StringProcessor(param_2,&processed_var_5496_ptr,(int64_t)param_1 + 100);
   if (lVar11 != 0) {
     *(int8_t *)((int64_t)param_1 + 0x52) = 1;
   }

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataEncryptionHandler */
+#define DataEncryptionHandler DataEncryptionHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -47,7 +51,7 @@ void FUN_18036ae60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int8_t *)((int64_t)puVar3 + 10) = 0;
     uStack_50 = 10;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -68,7 +72,7 @@ void FUN_18036ae60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int32_t *)(puVar3 + 1) = 0x73746e;
     uStack_30 = 0xb;
     uStack_28._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -91,7 +95,7 @@ void FUN_18036ae60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int8_t *)((int64_t)puVar3 + 0xe) = 0;
     uStack_50 = 0xe;
     uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
+    DataEncryptionHandler0(param_3,&puStack_60);
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -117,7 +121,7 @@ void FUN_18036ae60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     *(int16_t *)(puVar4 + 5) = 0x6565;
     *(int8_t *)((int64_t)puVar4 + 0x16) = 0;
     uStack_30 = 0x16;
-    FUN_180066df0(param_3,&puStack_40);
+    DataEncryptionHandler0(param_3,&puStack_40);
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -183,7 +187,7 @@ void FUN_18036b140(int64_t param_1)
   if (plVar8[0x4d] == 0) {
     FUN_180170ac0(plVar8,&processed_var_4472_ptr);
   }
-  FUN_1802ea790(plVar8,&system_data_0300);
+  NetworkProtocol_Transmitter(plVar8,&system_data_0300);
   pplStackX_20 = &plStackX_8;
   plStackX_8 = plVar8;
   (**(code **)(*plVar8 + 0x28))(plVar8);
@@ -248,7 +252,7 @@ void FUN_18036b140(int64_t param_1)
     FUN_180198980(lVar9,plVar8,1,0,0x1a);
   }
   if ((*(uint *)((int64_t)plVar8 + 0x2ac) & 0x20000) == 0) {
-    FUN_1802ed990(lVar13,1);
+    PhysicsSystem_CharacterController(lVar13,1);
   }
   plVar8[0x2d] = lVar13;
   lVar9 = lVar13;
@@ -288,10 +292,10 @@ void FUN_18036b140(int64_t param_1)
     *(int32_t *)((int64_t)plVar8 + 100) = uVar2;
     *(int *)(plVar8 + 0xd) = (int)lVar9;
     *(int32_t *)((int64_t)plVar8 + 0x6c) = uVar3;
-    FUN_180254610(plVar8);
-    FUN_1802eace0();
+    RenderingSystem_CameraController(plVar8);
+    UtilitiesSystem_StringProcessor();
   }
-  FUN_1802eace0(plVar8);
+  UtilitiesSystem_StringProcessor(plVar8);
   *(short *)(plVar8 + 0x56) = (short)plVar8[0x56] + 1;
   if (plVar8[0x2d] != 0) {
     func_0x0001802eeba0();

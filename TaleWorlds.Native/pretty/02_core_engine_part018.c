@@ -455,7 +455,7 @@ void FUN_180059000(int64_t *param_1)
     lVar12 = lStack_310;
     lStack_368 = lVar10;
     do {
-      plVar15 = (int64_t *)FUN_180058080(lVar10,&puStack_2a0,pppppppuVar14 + 4);
+      plVar15 = (int64_t *)> HighFreq_AnimationSystem1(lVar10,&puStack_2a0,pppppppuVar14 + 4);
       if (*plVar15 != lVar10) {
         bVar26 = false;
         uVar23 = 0;
@@ -540,7 +540,7 @@ void FUN_180059000(int64_t *param_1)
                    (uint64_t)(*(int64_t *)(lStack_310 + 200) - lVar18 >> 3));
         }
         if (!bVar26) {
-          uVar9 = FUN_180624440(&uStack_268,pppppppuVar14 + 8);
+          uVar9 = SystemCore_EncryptionEngine(&uStack_268,pppppppuVar14 + 8);
           SystemCore_EncryptionEngine0(&puStack_330,uVar9);
           uStack_268 = &system_state_ptr;
           ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
@@ -590,7 +590,7 @@ void FUN_180059000(int64_t *param_1)
 
 
 
-uint64_t * FUN_1800590b0(uint64_t *param_1,int8_t *param_2,int64_t param_3)
+uint64_t * SystemCore_SecurityValidator(uint64_t *param_1,int8_t *param_2,int64_t param_3)
 
 {
   byte bVar1;
@@ -840,7 +840,7 @@ void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
     return;
   }
   FUN_1800593f0(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-  FUN_18004b730();
+  > HighFreq_ParticleSystem1();
   param_2[4] = &system_data_buffer_ptr;
   if (param_2[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -861,8 +861,8 @@ void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 void FUN_1800594b0(uint64_t *param_1)
 
 {
-  SystemDataValidator(param_1 + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
-  SystemDataValidator(param_1 + 0x51,0x58,4,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x7d,0x58,4,CoreSystem_MessageHandler,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x51,0x58,4,CoreSystem_MessageHandler);
   SystemDataValidator(param_1 + 0x11,0x20,0x10,FUN_180059620);
   param_1[8] = &system_data_buffer_ptr;
   if (param_1[9] != 0) {
@@ -899,7 +899,7 @@ void FUN_1800594b0(uint64_t *param_1)
 void FUN_1800595c0(uint64_t *param_1)
 
 {
-  FUN_18004b730();
+  > HighFreq_ParticleSystem1();
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return

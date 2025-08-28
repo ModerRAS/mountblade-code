@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part025.c - 22 个函数
@@ -213,8 +214,8 @@ void FUN_1806b43d5(void)
 
 
 
-// 函数: void FUN_1806b4470(int64_t *param_1)
-void FUN_1806b4470(int64_t *param_1)
+// 函数: void RenderingSystem_ShaderProcessor(int64_t *param_1)
+void RenderingSystem_ShaderProcessor(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -635,7 +636,7 @@ int FUN_1806b4950(int64_t *param_1,byte *param_2)
     *(int *)(puVar8 + 1) = iVar12;
   }
   lVar5 = param_1[0xf];
-  FUN_1806b5600(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 2);
+  SystemController(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 2);
   **(int16_t **)(lVar5 + 0x18) = 0x3ff1;
   lVar11 = -1;
   *(int64_t *)(lVar5 + 0x18) = *(int64_t *)(lVar5 + 0x18) + 2;
@@ -646,7 +647,7 @@ int FUN_1806b4950(int64_t *param_1,byte *param_2)
   lVar5 = param_1[0xf];
   iVar13 = (int)lVar11 + 1;
   uStackX_8 = iVar13;
-  FUN_1806b5600(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 4);
+  SystemController(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 4);
   puVar6 = *(int8_t **)(lVar5 + 0x18);
   puVar6[1] = uStackX_8._1_1_;
   puVar6[2] = uStackX_8._2_1_;
@@ -655,12 +656,12 @@ int FUN_1806b4950(int64_t *param_1,byte *param_2)
   *(int64_t *)(lVar5 + 0x18) = *(int64_t *)(lVar5 + 0x18) + 4;
   lVar11 = param_1[0xf];
   if ((pbVar10 != (byte *)0x0) && (iVar13 != 0)) {
-    FUN_1806b5600(lVar11,(iVar13 - *(int *)(lVar11 + 0x10)) + *(int *)(lVar11 + 0x18));
+    SystemController(lVar11,(iVar13 - *(int *)(lVar11 + 0x10)) + *(int *)(lVar11 + 0x18));
                     // WARNING: Subroutine does not return
     memcpy((uint64_t)(uint)(*(int *)(lVar11 + 0x18) - *(int *)(lVar11 + 0x10)) +
            *(int64_t *)(lVar11 + 0x10),pbVar10,iVar13);
   }
-  FUN_1806b5600(lVar11,(*(int *)(lVar11 + 0x18) - *(int *)(lVar11 + 0x10)) + 4);
+  SystemController(lVar11,(*(int *)(lVar11 + 0x18) - *(int *)(lVar11 + 0x10)) + 4);
   puVar6 = *(int8_t **)(lVar11 + 0x18);
   puVar6[1] = uStackX_10._1_1_;
   puVar6[2] = uStackX_10._2_1_;
@@ -704,7 +705,7 @@ int FUN_1806b4a0f(void)
     *(int *)(plVar4 + 1) = iVar6;
   }
   lVar2 = unaff_RDI[0xf];
-  FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+  SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
   **(int16_t **)(lVar2 + 0x18) = 0x3ff1;
   lVar5 = -1;
   *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 2;
@@ -715,7 +716,7 @@ int FUN_1806b4a0f(void)
   lVar2 = unaff_RDI[0xf];
   iVar7 = (int)lVar5 + 1;
   _cStack0000000000000050 = iVar7;
-  FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 4);
+  SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 4);
   puVar3 = *(int8_t **)(lVar2 + 0x18);
   puVar3[1] = uStack0000000000000051;
   puVar3[2] = uStack0000000000000052;
@@ -724,12 +725,12 @@ int FUN_1806b4a0f(void)
   *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 4;
   lVar5 = unaff_RDI[0xf];
   if ((unaff_RSI != 0) && (iVar7 != 0)) {
-    FUN_1806b5600(lVar5,(iVar7 - *(int *)(lVar5 + 0x10)) + *(int *)(lVar5 + 0x18));
+    SystemController(lVar5,(iVar7 - *(int *)(lVar5 + 0x10)) + *(int *)(lVar5 + 0x18));
                     // WARNING: Subroutine does not return
     memcpy((uint64_t)(uint)(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) +
            *(int64_t *)(lVar5 + 0x10));
   }
-  FUN_1806b5600(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 4);
+  SystemController(lVar5,(*(int *)(lVar5 + 0x18) - *(int *)(lVar5 + 0x10)) + 4);
   puVar3 = *(int8_t **)(lVar5 + 0x18);
   puVar3[1] = iStack0000000000000058._1_1_;
   puVar3[2] = iStack0000000000000058._2_1_;
@@ -924,7 +925,7 @@ void FUN_1806b4e10(int64_t *param_1,int64_t param_2,uint param_3)
       uVar2 = *(uint *)(param_1 + 10);
     }
     if (param_3 < uVar2) {
-      FUN_1806b5600(param_1 + 2,((int)param_1[5] - (int)param_1[4]) + param_3);
+      SystemController(param_1 + 2,((int)param_1[5] - (int)param_1[4]) + param_3);
                     // WARNING: Subroutine does not return
       memcpy((uint64_t)(uint)((int)param_1[5] - (int)param_1[4]) + param_1[4],param_2,param_3);
     }
@@ -960,7 +961,7 @@ void FUN_1806b4ed0(int64_t *param_1,int64_t param_2,uint param_3)
     uVar1 = *(uint *)(param_1 + 10);
   }
   if (param_3 < uVar1) {
-    FUN_1806b5600(param_1 + 2,((int)param_1[5] - (int)param_1[4]) + param_3);
+    SystemController(param_1 + 2,((int)param_1[5] - (int)param_1[4]) + param_3);
                     // WARNING: Subroutine does not return
     memcpy((uint64_t)(uint)((int)param_1[5] - (int)param_1[4]) + param_1[4],param_2,param_3);
   }

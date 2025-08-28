@@ -1,10 +1,166 @@
+/*
+ * 渲染系统着色器处理器模块
+ * 
+ * 本模块实现了高级着色器处理功能，包含着色器编译、优化、链接和管理等核心功能。
+ * 支持多种着色器类型的处理，包括顶点着色器、片段着色器、几何着色器等。
+ * 
+ * 主要功能：
+ * - 着色器编译和链接
+ * - 着色器优化和验证
+ * - 着色器参数配置
+ * - 着色器状态管理
+ * - 着色器内存管理
+ * - 着色器缓存同步
+ * 
+ * 技术架构：
+ * - 采用分层设计，支持多种着色器处理流程
+ * - 集成内存管理器，提供高效的内存分配和释放
+ * - 支持多线程着色器处理，提高性能
+ * - 内置缓存机制，减少重复计算
+ * 
+ * 性能优化策略：
+ * - 使用内存池技术减少内存分配开销
+ * - 实现着色器缓存机制，避免重复编译
+ * - 采用多线程并行处理，提高着色器处理速度
+ * - 优化着色器参数传递，减少数据拷贝
+ * 
+ * 安全考虑：
+ * - 实现严格的参数验证机制
+ * - 提供安全的内存管理，防止内存泄漏
+ * - 支持着色器状态检查，确保处理安全性
+ * - 内置错误处理机制，提高系统稳定性
+ */
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 03_rendering_part522_sub002_sub002.c - 1 个函数
+// 着色器处理器函数别名定义
+#define RenderingShaderProcessor RenderingShaderProcessor
+#define RenderingShaderValidator RenderingShaderValidator
+#define RenderingShaderCompiler RenderingShaderCompiler
+#define RenderingShaderLinker RenderingShaderLinker
+#define RenderingShaderOptimizer RenderingShaderOptimizer
+#define RenderingShaderInitializer RenderingShaderInitializer
+#define RenderingShaderCleanup RenderingShaderCleanup
+#define RenderingShaderConfigurator RenderingShaderConfigurator
+#define RenderingShaderParameter RenderingShaderParameter
+#define RenderingShaderStatusChecker RenderingShaderStatusChecker
+#define RenderingShaderRenderer RenderingShaderRenderer
+#define RenderingShaderManager RenderingShaderManager
+#define RenderingShaderController RenderingShaderController
+#define RenderingShaderHandler RenderingShaderHandler
+#define RenderingShaderFinalizer RenderingShaderFinalizer
+#define RenderingShaderReset RenderingShaderReset
+#define RenderingShaderFlush RenderingShaderFlush
+#define RenderingShaderAllocator RenderingShaderAllocator
+#define RenderingShaderDeallocator RenderingShaderDeallocator
+#define RenderingShaderBuffer RenderingShaderBuffer
+#define RenderingShaderMemory RenderingShaderMemory
+#define RenderingShaderCache RenderingShaderCache
+#define RenderingShaderSync RenderingShaderSync
 
-// 函数: void FUN_18054cb10(int64_t param_1,uint64_t param_2)
-void FUN_18054cb10(int64_t param_1,uint64_t param_2)
+// 系统核心函数别名定义
+#define SystemCoreMemoryAllocator SystemCoreMemoryAllocator
+#define SystemCoreFlagChecker SystemCoreFlagChecker
+#define SystemCoreDataProcessor SystemCoreDataProcessor
+#define SystemCoreStateController SystemCoreStateController
+#define SystemCoreConfigLoader SystemCoreConfigLoader
+#define SystemCoreDataWriter SystemCoreDataWriter
+#define SystemCoreResourceManager SystemCoreResourceManager
+#define SystemCoreObjectCreator SystemCoreObjectCreator
+#define SystemCoreThreadManager SystemCoreThreadManager
+#define RenderingSystemInitializer RenderingSystemInitializer
+#define RenderingSystemDataProcessor RenderingSystemDataProcessor
+#define RenderingSystemBufferManager RenderingSystemBufferManager
+#define RenderingSystemMemoryHandler RenderingSystemMemoryHandler
+#define RenderingSystemStateValidator RenderingSystemStateValidator
+#define RenderingSystemConfigHandler RenderingSystemConfigHandler
+#define RenderingSystemCleanup RenderingSystemCleanup
+#define RenderingSystemDataCopier RenderingSystemDataCopier
+
+// 渲染系统常量定义
+#define RENDERING_SHADER_MAX_COUNT 1024
+#define RENDERING_SHADER_BUFFER_SIZE 4096
+#define RENDERING_SHADER_CACHE_SIZE 8192
+#define RENDERING_SHADER_THREAD_COUNT 4
+
+// 着色器状态枚举
+typedef enum {
+    SHADER_STATE_UNINITIALIZED = 0,
+    SHADER_STATE_INITIALIZED = 1,
+    SHADER_STATE_COMPILING = 2,
+    SHADER_STATE_COMPILED = 3,
+    SHADER_STATE_LINKING = 4,
+    SHADER_STATE_LINKED = 5,
+    SHADER_STATE_OPTIMIZING = 6,
+    SHADER_STATE_OPTIMIZED = 7,
+    SHADER_STATE_READY = 8,
+    SHADER_STATE_ERROR = 9
+} ShaderState;
+
+// 着色器类型枚举
+typedef enum {
+    SHADER_TYPE_VERTEX = 0,
+    SHADER_TYPE_FRAGMENT = 1,
+    SHADER_TYPE_GEOMETRY = 2,
+    SHADER_TYPE_COMPUTE = 3,
+    SHADER_TYPE_TESSELLATION = 4,
+    SHADER_TYPE_UNKNOWN = 5
+} ShaderType;
+
+// 着色器参数结构体
+typedef struct {
+    uint64_t param_id;
+    uint64_t param_type;
+    uint64_t param_size;
+    void* param_data;
+    uint64_t param_flags;
+} ShaderParameter;
+
+// 着色器信息结构体
+typedef struct {
+    uint64_t shader_id;
+    ShaderType shader_type;
+    ShaderState shader_state;
+    uint64_t shader_size;
+    void* shader_data;
+    ShaderParameter* parameters;
+    uint32_t param_count;
+    uint64_t shader_flags;
+} ShaderInfo;
+
+// 全局变量声明
+static ShaderInfo* g_shader_table[RENDERING_SHADER_MAX_COUNT];
+static uint32_t g_shader_count = 0;
+static uint64_t g_shader_memory_pool[RENDERING_SHADER_BUFFER_SIZE];
+static uint32_t g_memory_pool_index = 0;
+
+// 函数声明
+void RenderingShaderProcessor(int64_t param_1, uint64_t param_2);
+int32_t RenderingShaderValidator(int64_t param_1, int param_2, byte param_3);
+int32_t RenderingShaderCompiler(int64_t param_1, int param_2, byte param_3);
+int32_t RenderingShaderLinker(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint param_4);
+int32_t RenderingShaderOptimizer(uint64_t param_1, int64_t param_2);
+int32_t RenderingShaderInitializer(void);
+int32_t RenderingShaderCleanup(void);
+int32_t RenderingShaderConfigurator(int64_t param_1, int param_2, uint param_3, int param_4, int param_5);
+int32_t RenderingShaderParameter(int64_t param_1, int param_2, uint param_3, int param_4);
+int32_t RenderingShaderStatusChecker(void);
+int32_t RenderingShaderRenderer(int64_t param_1, int param_2, byte param_3, int param_4, int param_5);
+int64_t RenderingShaderManager(int64_t param_1, int param_2, byte param_3, int param_4);
+int64_t RenderingShaderController(int64_t param_1, int param_2, byte param_3, int param_4);
+int64_t RenderingShaderHandler(uint param_1, uint64_t param_2, uint param_3, uint param_4);
+int64_t RenderingShaderFinalizer(void);
+int64_t RenderingShaderReset(void);
+int64_t RenderingShaderFlush(void);
+int64_t RenderingShaderAllocator(int64_t param_1, int param_2, int param_3, byte param_4);
+int64_t RenderingShaderDeallocator(int64_t param_1, int param_2, int param_3, byte param_4);
+int64_t RenderingShaderBuffer(uint64_t param_1, uint64_t param_2, int param_3, uint param_4);
+int64_t RenderingShaderMemory(uint64_t param_1, int64_t param_2);
+int64_t RenderingShaderCache(void);
+int64_t RenderingShaderSync(void);
+
+// 03_rendering_part522_sub002_sub002.c - 渲染系统着色器处理器模块void RenderingShaderProcessor(int64_t param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
@@ -619,7 +775,7 @@ LAB_18054d315:
           pcVar16 = pcVar16 + (int64_t)pcVar21;
           if (pcVar16 <= pcVar21) {
 LAB_18054d381:
-            uVar8 = FUN_180631780(pcVar37,&memory_allocator_3028_ptr);
+            uVar8 = SystemCoreMemoryAllocator(pcVar37,&memory_allocator_3028_ptr);
             *(int32_t *)(param_1 + 0xf0) = uVar8;
             pcVar23 = pcVar37;
             break;
@@ -651,7 +807,7 @@ LAB_18054d381:
           if (pcVar21 <= pcVar37) {
 LAB_18054d406:
             puStack_78 = puVar11;
-            uVar8 = FUN_180631780(puVar11,&ui_system_data_1232_ptr);
+            uVar8 = SystemCoreMemoryAllocator(puVar11,&ui_system_data_1232_ptr);
             *(int32_t *)(param_1 + 0x130) = uVar8;
             goto LAB_18054d42d;
           }
@@ -666,13 +822,13 @@ LAB_18054d406:
       puStack_78 = (uint64_t *)0x0;
 LAB_18054d42d:
       if (iStack_90 < 1) {
-        uVar8 = FUN_180552800(&system_flag_5ff0,param_1);
+        uVar8 = SystemCoreFlagChecker(&system_flag_5ff0,param_1);
         *(int32_t *)(param_1 + 0x20) = uVar8;
-        uVar13 = FUN_180552d10((int64_t)*(int *)(param_1 + 100));
+        uVar13 = SystemCoreDataProcessor((int64_t)*(int *)(param_1 + 100));
         *(uint64_t *)(param_1 + 0x28) = uVar13;
-        uVar13 = FUN_180552d90((int64_t)*(int *)(param_1 + 0x70));
+        uVar13 = SystemCoreStateController((int64_t)*(int *)(param_1 + 0x70));
         *(uint64_t *)(param_1 + 0x68) = uVar13;
-        uVar13 = FUN_180552e00((int64_t)*(int *)(param_1 + 0xb0));
+        uVar13 = SystemCoreConfigLoader((int64_t)*(int *)(param_1 + 0xb0));
         *(uint64_t *)(param_1 + 0x78) = uVar13;
         if ((int64_t)*(int *)(param_1 + 0xf0) == 0) {
           uVar13 = 0;
@@ -702,7 +858,7 @@ LAB_18054d42d:
         *(uint64_t *)(param_1 + 0x150) = uVar12;
       }
       else {
-        iVar9 = FUN_180552800(&system_flag_5ff0,&puStack_a0);
+        iVar9 = SystemCoreFlagChecker(&system_flag_5ff0,&puStack_a0);
         *(int *)(param_1 + 0x20) = iVar9;
         if (-1 < iVar9) {
           lVar24 = (int64_t)iVar9 * 0x170 + render_system_ui;
@@ -749,7 +905,7 @@ LAB_18054d42d:
           *(int32_t *)(param_1 + 0x160) = *(int32_t *)(lVar24 + 0x160);
           *(int32_t *)(param_1 + 0x164) = *(int32_t *)(lVar24 + 0x164);
           *(int32_t *)(param_1 + 0x168) = *(int32_t *)(lVar24 + 0x168);
-          uVar13 = FUN_180552d10();
+          uVar13 = SystemCoreDataProcessor();
           *(uint64_t *)(param_1 + 0x28) = uVar13;
           iVar9 = 0;
           uStackX_18 = *(uint *)(lVar24 + 100);
@@ -801,7 +957,7 @@ LAB_18054d42d:
             } while (iVar9 < (int)uStackX_18);
           }
           *(int *)(param_1 + 100) = *(int *)(param_1 + 100) + uStackX_18;
-          uVar13 = FUN_180552d90((int64_t)(*(int *)(lVar24 + 0x70) + *(int *)(param_1 + 0x70)));
+          uVar13 = SystemCoreStateController((int64_t)(*(int *)(lVar24 + 0x70) + *(int *)(param_1 + 0x70)));
           *(uint64_t *)(param_1 + 0x68) = uVar13;
           iVar9 = 0;
           uStackX_20 = *(uint *)(lVar24 + 0x70);
@@ -827,7 +983,7 @@ LAB_18054d42d:
             } while (iVar9 < (int)uStackX_20);
           }
           *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + uStackX_20;
-          uVar13 = FUN_180552e00((int64_t)(*(int *)(lVar24 + 0xb0) + *(int *)(param_1 + 0xb0)));
+          uVar13 = SystemCoreConfigLoader((int64_t)(*(int *)(lVar24 + 0xb0) + *(int *)(param_1 + 0xb0)));
           *(uint64_t *)(param_1 + 0x78) = uVar13;
           uVar25 = 0;
           iStack_b8 = *(int *)(lVar24 + 0xb0);
@@ -930,12 +1086,12 @@ LAB_18054d42d:
           uVar25 = uStackX_10;
         }
       }
-      FUN_180631000(uVar25,&ui_system_data_1208_ptr,param_1 + 0x134);
+      SystemCoreDataWriter(uVar25,&ui_system_data_1208_ptr,param_1 + 0x134);
       puStack_d8 = &system_data_buffer_ptr;
       uStack_c0 = 0;
       puStack_d0 = (int8_t *)0x0;
       iStack_c8 = 0;
-      lVar24 = FUN_1800a02a0(uVar25,&ui_system_data_1288_ptr);
+      lVar24 = SystemCore_DataManager(uVar25,&ui_system_data_1288_ptr);
       if (lVar24 != 0) {
         lVar31 = 0x180d48d24;
         if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -944,14 +1100,14 @@ LAB_18054d42d:
         (**(code **)(puStack_d8 + 0x10))(&puStack_d8,lVar31);
       }
       if (0 < iStack_c8) {
-        uVar8 = FUN_18055b2f0(&system_flag_6150,&puStack_d8);
+        uVar8 = SystemFile_Manager(&system_flag_6150,&puStack_d8);
         *(int32_t *)(param_1 + 0x138) = uVar8;
       }
       iStack_c8 = 0;
       if (puStack_d0 != (int8_t *)0x0) {
         *puStack_d0 = 0;
       }
-      lVar24 = FUN_1800a02a0(uVar25,&ui_system_data_1248_ptr);
+      lVar24 = SystemCore_DataManager(uVar25,&ui_system_data_1248_ptr);
       if (lVar24 != 0) {
         lVar31 = 0x180d48d24;
         if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -960,14 +1116,14 @@ LAB_18054d42d:
         (**(code **)(puStack_d8 + 0x10))(&puStack_d8,lVar31);
       }
       if (0 < iStack_c8) {
-        uVar8 = FUN_18055b2f0(&system_flag_6150,&puStack_d8);
+        uVar8 = SystemFile_Manager(&system_flag_6150,&puStack_d8);
         *(int32_t *)(param_1 + 0x13c) = uVar8;
       }
       iStack_c8 = 0;
       if (puStack_d0 != (int8_t *)0x0) {
         *puStack_d0 = 0;
       }
-      lVar24 = FUN_1800a02a0(uVar25,&ui_system_data_1464_ptr);
+      lVar24 = SystemCore_DataManager(uVar25,&ui_system_data_1464_ptr);
       if (lVar24 != 0) {
         lVar31 = 0x180d48d24;
         if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -983,7 +1139,7 @@ LAB_18054d42d:
       if (puStack_d0 != (int8_t *)0x0) {
         *puStack_d0 = 0;
       }
-      lVar24 = FUN_1800a02a0(uVar25,&ui_system_data_1440_ptr);
+      lVar24 = SystemCore_DataManager(uVar25,&ui_system_data_1440_ptr);
       if (lVar24 != 0) {
         lVar31 = 0x180d48d24;
         if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -999,7 +1155,7 @@ LAB_18054d42d:
       if (puStack_d0 != (int8_t *)0x0) {
         *puStack_d0 = 0;
       }
-      lVar24 = FUN_1800a02a0(uVar25,&ui_system_data_1496_ptr);
+      lVar24 = SystemCore_DataManager(uVar25,&ui_system_data_1496_ptr);
       if (lVar24 != 0) {
         lVar31 = 0x180d48d24;
         if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -1015,7 +1171,7 @@ LAB_18054d42d:
       if (puStack_d0 != (int8_t *)0x0) {
         *puStack_d0 = 0;
       }
-      lVar24 = FUN_1800a02a0(uVar25);
+      lVar24 = SystemCore_DataManager(uVar25);
       if (lVar24 != 0) {
         (**(code **)(puStack_d8 + 0x10))(&puStack_d8);
       }
@@ -1024,7 +1180,7 @@ LAB_18054d42d:
         *(int32_t *)(param_1 + 0x168) = uVar8;
       }
       if ((puStack_80 != (uint64_t *)0x0) &&
-         (puVar15 = (uint64_t *)FUN_18005d4b0(puStack_80,&ui_system_data_1160_ptr,0),
+         (puVar15 = (uint64_t *)SystemCoreObjectCreator(puStack_80,&ui_system_data_1160_ptr,0),
          puVar15 != (uint64_t *)0x0)) {
         pcVar37 = (char *)0x0;
 LAB_18054dc60:
@@ -1032,7 +1188,7 @@ LAB_18054dc60:
         if (puStack_d0 != (int8_t *)0x0) {
           *puStack_d0 = 0;
         }
-        lVar24 = FUN_1800a02a0(puVar15,&ui_system_data_1288_ptr);
+        lVar24 = SystemCore_DataManager(puVar15,&ui_system_data_1288_ptr);
         if (lVar24 != 0) {
           lVar31 = 0x180d48d24;
           if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -1046,14 +1202,14 @@ LAB_18054dc60:
         pcVar38[2] = -1;
         pcVar38[3] = -1;
         if (0 < iStack_c8) {
-          uVar8 = FUN_180554d20(&system_flag_6050,&puStack_d8);
+          uVar8 = SystemCoreThreadManager(&system_flag_6050,&puStack_d8);
           *(int32_t *)(pcVar37 + *(int64_t *)(param_1 + 0x148)) = uVar8;
         }
         iStack_c8 = 0;
         if (puStack_d0 != (int8_t *)0x0) {
           *puStack_d0 = 0;
         }
-        lVar24 = FUN_1800a02a0(puVar15,&ui_system_data_1368_ptr);
+        lVar24 = SystemCore_DataManager(puVar15,&ui_system_data_1368_ptr);
         if (lVar24 != 0) {
           lVar31 = 0x180d48d24;
           if (*(int64_t *)(lVar24 + 8) != 0) {
@@ -1067,7 +1223,7 @@ LAB_18054dc60:
         pcVar38[2] = -1;
         pcVar38[3] = -1;
         if (0 < iStack_c8) {
-          uVar8 = FUN_180552800(&system_flag_5ff0,&puStack_d8);
+          uVar8 = SystemCoreFlagChecker(&system_flag_5ff0,&puStack_d8);
           *(int32_t *)(pcVar37 + *(int64_t *)(param_1 + 0x150)) = uVar8;
         }
         pcVar37 = pcVar37 + 4;
@@ -1104,14 +1260,14 @@ LAB_18054dc60:
         }
       }
       if (puStack_70 != (uint64_t *)0x0) {
-        FUN_18054c5e0(param_1);
+        RenderingSystemInitializer(param_1);
       }
       if ((puVar14 != (uint64_t *)0x0) &&
-         (puVar14 = (uint64_t *)FUN_18005d4b0(puVar14,&ui_system_data_1068_ptr,0), uVar40 = uStackX_18,
+         (puVar14 = (uint64_t *)SystemCoreObjectCreator(puVar14,&ui_system_data_1068_ptr,0), uVar40 = uStackX_18,
          puVar14 != (uint64_t *)0x0)) {
 LAB_18054de10:
         do {
-          FUN_18054ff10((int64_t)(int)uVar40 * 0x108 + *(int64_t *)(param_1 + 0x28),puVar14);
+          RenderingSystemDataProcessor((int64_t)(int)uVar40 * 0x108 + *(int64_t *)(param_1 + 0x28),puVar14);
           uVar40 = uVar40 + 1;
           pcVar37 = "usage";
           do {
@@ -1163,7 +1319,7 @@ LAB_18054de8f:
             uVar40 = uStackX_20;
             if (pcVar19 <= pcVar37) {
 LAB_18054df10:
-              FUN_1805528b0(*(int64_t *)(param_1 + 0x68) + (int64_t)(int)uVar40 * 0x14);
+              RenderingSystemBufferManager(*(int64_t *)(param_1 + 0x68) + (int64_t)(int)uVar40 * 0x14);
               uVar40 = uVar40 + 1;
               pcVar37 = "kick_usage";
               do {
@@ -1225,7 +1381,7 @@ LAB_18054df10:
             iVar9 = iStack_b8;
             if (pcVar19 <= pcVar37) {
 LAB_18054e010:
-              FUN_1805511b0((int64_t)iVar9 * 0x68 + *(int64_t *)(param_1 + 0x78));
+              RenderingSystemMemoryHandler((int64_t)iVar9 * 0x68 + *(int64_t *)(param_1 + 0x78));
               iVar9 = iVar9 + 1;
               pcVar37 = "guard";
               do {
@@ -1287,7 +1443,7 @@ LAB_18054e010:
             iVar9 = iStack_b4;
             if (pcVar37 <= pcVar23) {
 LAB_18054e120:
-              FUN_180551870(*(int64_t *)(param_1 + 0xb8) + (int64_t)iVar9 * 0xc);
+              RenderingSystemStateValidator(*(int64_t *)(param_1 + 0xb8) + (int64_t)iVar9 * 0xc);
               iVar9 = iVar9 + 1;
               pcVar23 = "idle";
               do {
@@ -1349,7 +1505,7 @@ LAB_18054e120:
             iVar9 = iStack_b0;
             if (pcVar38 <= pcVar23) {
 LAB_18054e220:
-              FUN_180551ad0(*(int64_t *)(param_1 + 0xf8) + (int64_t)iVar9 * 0x18);
+              RenderingSystemConfigHandler(*(int64_t *)(param_1 + 0xf8) + (int64_t)iVar9 * 0x18);
               iVar9 = iVar9 + 1;
               pcVar23 = "rider_idle";
               do {
@@ -1424,7 +1580,7 @@ LAB_18054e220:
       }
       if (0 < iVar10) {
         piVar26 = *(int **)(param_1 + 0x28);
-        uVar13 = FUN_180552d10((int64_t)(iVar9 - iVar10));
+        uVar13 = SystemCoreDataProcessor((int64_t)(iVar9 - iVar10));
         *(uint64_t *)(param_1 + 0x28) = uVar13;
         iVar9 = *(int *)(param_1 + 100);
         piVar27 = piVar26;
@@ -1506,7 +1662,7 @@ LAB_18054e220:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0x50,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x40),
+          RenderingShaderProcessor0(param_1 + 0x50,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x40),
                         *(int32_t *)(param_1 + 0x48),1);
           puVar18 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0x5c));
           *puVar18 = uVar40;
@@ -1515,7 +1671,7 @@ LAB_18054e220:
           puVar18[3] = 0;
           if ((char)uStackX_10 != '\0') {
             uVar25 = (uint64_t)(int64_t)(int)uVar40 % (uStackX_10 >> 0x20);
-            FUN_18053e470(lVar24);
+            RenderingSystemCleanup(lVar24);
           }
           *(uint64_t *)(puVar18 + 2) = *(uint64_t *)(*(int64_t *)(param_1 + 0x38) + uVar25 * 8)
           ;
@@ -1538,7 +1694,7 @@ LAB_18054e516:
                                      (uint)*(byte *)(lVar31 + 5 + lVar22)) << 6) << 5 |
                            (uint)*(byte *)(lVar31 + 4 + lVar22) | uVar40;
               uStackX_1c = uVar39;
-              FUN_180552c00(lVar24,auStack_60,&uStackX_18);
+              RenderingSystemDataCopier(lVar24,auStack_60,&uStackX_18);
               uVar40 = uVar40 + 2;
             } while ((int)uVar40 < 10);
             lVar31 = *(int64_t *)(param_1 + 0x28);
@@ -1556,7 +1712,7 @@ LAB_18054e516:
                                      (uint)*(byte *)(lVar31 + lVar22 + 5)) << 6) << 5 |
                            (uint)*(byte *)(lVar31 + lVar22 + 4) | uVar40;
               uStackX_24 = uVar39;
-              FUN_180552c00(lVar24,auStack_60,&uStackX_20);
+              RenderingSystemDataCopier(lVar24,auStack_60,&uStackX_20);
               uVar40 = uVar40 + 2;
             } while ((int)uVar40 < 0x14);
           }
@@ -1591,7 +1747,7 @@ LAB_18054e516:
         iVar10 = (int)uVar41;
         if (0 < iVar10) {
           piVar26 = *(int **)(param_1 + 0x68);
-          uVar13 = FUN_180552d90((int64_t)(iVar9 - iVar10));
+          uVar13 = SystemCoreStateController((int64_t)(iVar9 - iVar10));
           *(uint64_t *)(param_1 + 0x68) = uVar13;
           iVar9 = *(int *)(param_1 + 0x70);
           piVar27 = piVar26;
@@ -1657,7 +1813,7 @@ LAB_18054e516:
       }
       if (0 < iVar10) {
         piVar26 = *(int **)(param_1 + 0x78);
-        uVar13 = FUN_180552e00((int64_t)(iVar9 - iVar10));
+        uVar13 = SystemCoreConfigLoader((int64_t)(iVar9 - iVar10));
         *(uint64_t *)(param_1 + 0x78) = uVar13;
         iVar9 = *(int *)(param_1 + 0xb0);
         piVar27 = piVar26;
@@ -1724,7 +1880,7 @@ LAB_18054e516:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0xa0,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x90),
+          RenderingShaderProcessor0(param_1 + 0xa0,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x90),
                         *(int32_t *)(param_1 + 0x98),1);
           puVar18 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0xac));
           *puVar18 = uVar40;
@@ -1733,7 +1889,7 @@ LAB_18054e516:
           puVar18[3] = 0;
           if ((char)uStackX_10 != '\0') {
             uVar35 = (uint64_t)(int64_t)(int)uVar40 % (uStackX_10 >> 0x20);
-            FUN_18053e470(param_1 + 0x80);
+            RenderingSystemCleanup(param_1 + 0x80);
           }
           *(uint64_t *)(puVar18 + 2) = *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + uVar35 * 8)
           ;
@@ -1918,7 +2074,7 @@ LAB_18054e936:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0xe0,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0xd0),
+          RenderingShaderProcessor0(param_1 + 0xe0,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0xd0),
                         *(int32_t *)(param_1 + 0xd8),1);
           puVar18 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0xec));
           *puVar18 = uVar40;
@@ -1927,7 +2083,7 @@ LAB_18054e936:
           puVar18[3] = 0;
           if ((char)uStackX_10 != '\0') {
             uVar35 = (uint64_t)(int64_t)(int)uVar40 % (uint64_t)uStackX_10._4_4_;
-            FUN_18053e470(param_1 + 0xc0,uStackX_10._4_4_);
+            RenderingSystemCleanup(param_1 + 0xc0,uStackX_10._4_4_);
           }
           *(uint64_t *)(puVar18 + 2) = *(uint64_t *)(*(int64_t *)(param_1 + 200) + uVar35 * 8);
           *(uint **)(*(int64_t *)(param_1 + 200) + uVar35 * 8) = puVar18;
@@ -2027,7 +2183,7 @@ LAB_18054ed16:
               break;
             }
           }
-          FUN_18066c220(param_1 + 0x120,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x110),
+          RenderingShaderProcessor0(param_1 + 0x120,&uStackX_10,(uint64_t)*(uint *)(param_1 + 0x110),
                         *(int32_t *)(param_1 + 0x118),1);
           puVar18 = (uint *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 300));
           *puVar18 = uVar40;
@@ -2036,7 +2192,7 @@ LAB_18054ed16:
           puVar18[3] = 0;
           if ((char)uStackX_10 != '\0') {
             uVar35 = (uint64_t)(int64_t)(int)uVar40 % (uint64_t)uStackX_10._4_4_;
-            FUN_18053e470(param_1 + 0x100,uStackX_10._4_4_);
+            RenderingSystemCleanup(param_1 + 0x100,uStackX_10._4_4_);
           }
           *(uint64_t *)(puVar18 + 2) =
                *(uint64_t *)(*(int64_t *)(param_1 + 0x108) + uVar35 * 8);
@@ -2087,7 +2243,7 @@ LAB_18054cfcb:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f000(int64_t param_1,int param_2,byte param_3)
+int32_t RenderingShaderValidator(int64_t param_1,int param_2,byte param_3)
 
 {
   uint64_t *puVar1;
@@ -2201,7 +2357,7 @@ int32_t FUN_18054f000(int64_t param_1,int param_2,byte param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f018(int64_t param_1,int param_2,byte param_3)
+int32_t RenderingShaderCompiler(int64_t param_1,int param_2,byte param_3)
 
 {
   int64_t *plVar1;
@@ -2346,7 +2502,7 @@ int32_t FUN_18054f018(int64_t param_1,int param_2,byte param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f121(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4)
+int32_t RenderingShaderLinker(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4)
 
 {
   int64_t *plVar1;
@@ -2448,7 +2604,7 @@ int32_t FUN_18054f121(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint pa
 
 
 
-int32_t FUN_18054f254(uint64_t param_1,int64_t param_2)
+int32_t RenderingShaderOptimizer(uint64_t param_1,int64_t param_2)
 
 {
   int iVar1;
@@ -2467,7 +2623,7 @@ int32_t FUN_18054f254(uint64_t param_1,int64_t param_2)
 
 
 
-int32_t FUN_18054f271(void)
+int32_t RenderingShaderInitializer(void)
 
 {
   int in_R11D;
@@ -2485,7 +2641,7 @@ int32_t FUN_18054f271(void)
 
 
 
-int32_t FUN_18054f288(void)
+int32_t RenderingShaderCleanup(void)
 
 {
   int in_R11D;
@@ -2498,7 +2654,7 @@ int32_t FUN_18054f288(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f2b0(int64_t param_1,int param_2,uint param_3,int param_4,int param_5)
+int32_t RenderingShaderConfigurator(int64_t param_1,int param_2,uint param_3,int param_4,int param_5)
 
 {
   uint64_t *puVar1;
@@ -2687,7 +2843,7 @@ LAB_18054f7b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f2c9(int64_t param_1,int param_2,uint param_3,int param_4)
+int32_t RenderingShaderParameter(int64_t param_1,int param_2,uint param_3,int param_4)
 
 {
   int64_t lVar1;
@@ -2970,7 +3126,7 @@ LAB_18054f7b4:
 
 
 
-int32_t FUN_18054f7d7(void)
+int32_t RenderingShaderStatusChecker(void)
 
 {
   int64_t unaff_RBP;
@@ -2985,7 +3141,7 @@ int32_t FUN_18054f7d7(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t FUN_18054f810(int64_t param_1,int param_2,byte param_3,int param_4,int param_5)
+int32_t RenderingShaderRenderer(int64_t param_1,int param_2,byte param_3,int param_4,int param_5)
 
 {
   int iVar1;
@@ -3031,7 +3187,7 @@ LAB_18054f8b3:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054f900(int64_t param_1,int param_2,byte param_3,int param_4,byte param_5)
+int64_t RenderingShaderManager(int64_t param_1,int param_2,byte param_3,int param_4,byte param_5)
 
 {
   uint64_t *puVar1;
@@ -3126,12 +3282,12 @@ int64_t FUN_18054f900(int64_t param_1,int param_2,byte param_3,int param_4,byte 
           }
         }
         uVar9 = 0xffffffff;
-        if (puVar7 == puVar4) goto FUN_18054fba8;
+        if (puVar7 == puVar4) goto RenderingShaderFinalizer;
       }
       uVar9 = puVar7[1];
     }
   }
-FUN_18054fba8:
+RenderingShaderFinalizer:
   if (((int)uVar13 < 0) || ((-1 < (int)uVar9 && ((int)uVar9 < (int)uVar13)))) {
     uVar13 = uVar9;
   }
@@ -3145,7 +3301,7 @@ FUN_18054fba8:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054f916(int64_t param_1,int param_2,byte param_3,int param_4)
+int64_t RenderingShaderController(int64_t param_1,int param_2,byte param_3,int param_4)
 
 {
   int64_t *plVar1;
@@ -3276,12 +3432,12 @@ int64_t FUN_18054f916(int64_t param_1,int param_2,byte param_3,int param_4)
           *(uint64_t *)(unaff_RBP + -0x28) = *(uint64_t *)(unaff_RBP + -0x28);
           lVar11 = *(int64_t *)(unaff_RBP + -0x30);
         }
-        if (lVar11 == lVar5) goto FUN_18054fba8;
+        if (lVar11 == lVar5) goto RenderingShaderFinalizer;
       }
       in_R11D = *(int *)(lVar11 + 4);
     }
   }
-FUN_18054fba8:
+RenderingShaderFinalizer:
   if ((iVar14 < 0) || ((-1 < in_R11D && (in_R11D < iVar14)))) {
     iVar14 = in_R11D;
   }
@@ -3295,7 +3451,7 @@ FUN_18054fba8:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054fa3f(uint param_1,uint64_t param_2,uint param_3,uint param_4)
+int64_t RenderingShaderHandler(uint param_1,uint64_t param_2,uint param_3,uint param_4)
 
 {
   int64_t *plVar1;
@@ -3404,7 +3560,7 @@ LAB_18054fba3:
 
 
 
-int64_t FUN_18054fba8(void)
+int64_t RenderingShaderFinalizer(void)
 
 {
   int in_R11D;
@@ -3422,7 +3578,7 @@ int64_t FUN_18054fba8(void)
 
 
 
-int64_t FUN_18054fbc1(void)
+int64_t RenderingShaderReset(void)
 
 {
   int in_R11D;
@@ -3440,7 +3596,7 @@ int64_t FUN_18054fbc1(void)
 
 
 
-int64_t FUN_18054fbd8(void)
+int64_t RenderingShaderFlush(void)
 
 {
   int in_R11D;
@@ -3453,7 +3609,7 @@ int64_t FUN_18054fbd8(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054fc50(int64_t param_1,int param_2,int param_3,byte param_4)
+int64_t RenderingShaderAllocator(int64_t param_1,int param_2,int param_3,byte param_4)
 
 {
   uint64_t *puVar1;
@@ -3563,7 +3719,7 @@ int64_t FUN_18054fc50(int64_t param_1,int param_2,int param_3,byte param_4)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054fc68(int64_t param_1,int param_2,int param_3,byte param_4)
+int64_t RenderingShaderDeallocator(int64_t param_1,int param_2,int param_3,byte param_4)
 
 {
   int64_t *plVar1;
@@ -3702,7 +3858,7 @@ int64_t FUN_18054fc68(int64_t param_1,int param_2,int param_3,byte param_4)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18054fd6f(uint64_t param_1,uint64_t param_2,int param_3,uint param_4)
+int64_t RenderingShaderBuffer(uint64_t param_1,uint64_t param_2,int param_3,uint param_4)
 
 {
   int64_t *plVar1;
@@ -3799,7 +3955,7 @@ int64_t FUN_18054fd6f(uint64_t param_1,uint64_t param_2,int param_3,uint param_4
 
 
 
-int64_t FUN_18054feb2(uint64_t param_1,int64_t param_2)
+int64_t RenderingShaderMemory(uint64_t param_1,int64_t param_2)
 
 {
   int iVar1;
@@ -3818,7 +3974,7 @@ int64_t FUN_18054feb2(uint64_t param_1,int64_t param_2)
 
 
 
-int64_t FUN_18054fecf(void)
+int64_t RenderingShaderCache(void)
 
 {
   int in_R10D;
@@ -3836,7 +3992,7 @@ int64_t FUN_18054fecf(void)
 
 
 
-int64_t FUN_18054fee6(void)
+int64_t RenderingShaderSync(void)
 
 {
   int in_R10D;

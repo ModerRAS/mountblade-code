@@ -150,7 +150,7 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   goto LAB_18087dbb3;
   bVar14 = ~(byte)(uVar10 >> 2) & 1;
   iVar4 = FUN_18088c380(*(int32_t *)(param_1 + 0x18),*(int32_t *)(param_1 + 0x2c8));
-  if ((iVar4 != 0) || (iVar4 = FUN_1807682e0(param_1 + 0xa0,0), iVar4 != 0)) goto LAB_18087dbb3;
+  if ((iVar4 != 0) || (iVar4 = SystemCore_DataProcessor(param_1 + 0xa0,0), iVar4 != 0)) goto LAB_18087dbb3;
   func_0x00018088a120(param_1);
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   uVar11 = 0;
@@ -469,7 +469,7 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   *(int64_t *)(*(int64_t *)(param_1 + 800) + 8) = param_1;
   if ((uVar12 & 0x10000) != 0) {
     alStack_38[0] = 0;
-    iVar4 = FUN_180749e60(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
+    iVar4 = SystemState_Manager(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
     if ((iVar4 != 0) ||
        (iVar4 = FUN_1808e27f0(*(uint64_t *)(alStack_38[0] + 0x12770),param_1,param_1 + 0xac0),
        iVar4 != 0)) goto LAB_18087dbb3;
@@ -481,12 +481,12 @@ LAB_18087d6de:
   else {
     *(int8_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) = 1;
     alStack_38[0] = 0;
-    iVar4 = FUN_180749e60(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
+    iVar4 = SystemState_Manager(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
     if ((iVar4 != 0) || (iVar4 = FUN_1807455f0(alStack_38[0]), iVar4 != 0)) goto LAB_18087dbb3;
     if ((*(byte *)(param_1 + 0x24) & 1) == 0) goto LAB_18087d6de;
 LAB_18087d6e3:
     alStack_38[0] = 0;
-    iVar4 = FUN_180749e60(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
+    iVar4 = SystemState_Manager(*(uint64_t *)(param_1 + 0x78),alStack_38,0);
     if (iVar4 != 0) goto LAB_18087dbb3;
     if (*(int64_t *)(param_1 + 0x88) != 0) {
       iVar4 = 0x1c;

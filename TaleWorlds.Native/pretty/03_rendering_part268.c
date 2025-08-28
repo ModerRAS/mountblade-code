@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part268.c - 4 个函数
@@ -51,8 +55,8 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
   puVar5[2] = pcVar8 + -0x180a180f3;
   uVar10 = SystemAllocationProcessor(extraout_XMM0_Da,puVar5,&system_data_3a84);
   uVar10 = FUN_180630c80(uVar10,puVar5,&rendering_buffer_2256_ptr,1);
-  uVar10 = FUN_18062f990(uVar10,puVar5,&system_data_b1c0);
-  FUN_18062f990(uVar10,puVar5,&processed_var_5184_ptr);
+  uVar10 = MemoryDeallocationHandler0(uVar10,puVar5,&system_data_b1c0);
+  MemoryDeallocationHandler0(uVar10,puVar5,&processed_var_5184_ptr);
   if (*(int64_t *)(unaff_RDI + 0x30) == 0) {
     puVar5[10] = 0;
     *(uint64_t **)(unaff_RDI + 0x30) = puVar5;
@@ -114,10 +118,10 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
       } while (*pcVar6 != '\0');
       *puVar5 = &processed_var_5272_ptr;
       puVar5[2] = pcVar8 + -0x180a18107;
-      uVar10 = FUN_18062f990(extraout_XMM0_Da_00,puVar5,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
-      FUN_18062f990(uVar10,puVar5,&memory_allocator_3692_ptr);
+      uVar10 = MemoryDeallocationHandler0(extraout_XMM0_Da_00,puVar5,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
+      MemoryDeallocationHandler0(uVar10,puVar5,&memory_allocator_3692_ptr);
       in_stack_00000090 = CONCAT44(iStack000000000000003c,fVar2 * 0.03448276);
-      FUN_1806307a0(fVar2 * 0.03448276,puVar5,&processed_var_5264_ptr,&stack0x00000090);
+      NetworkSystem_PacketProcessor(fVar2 * 0.03448276,puVar5,&processed_var_5264_ptr,&stack0x00000090);
       if (puVar7[6] == 0) {
         puVar5[10] = 0;
         puVar7[6] = puVar5;
@@ -143,10 +147,10 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
       } while (*pcVar6 != '\0');
       *puVar5 = &processed_var_5272_ptr;
       puVar5[2] = pcVar8 + -0x180a18107;
-      uVar10 = FUN_18062f990(extraout_XMM0_Da_01,puVar5,&processed_var_5276_ptr,(float)iVar3 * 0.03448276);
-      FUN_18062f990(uVar10,puVar5,&memory_allocator_3692_ptr);
+      uVar10 = MemoryDeallocationHandler0(extraout_XMM0_Da_01,puVar5,&processed_var_5276_ptr,(float)iVar3 * 0.03448276);
+      MemoryDeallocationHandler0(uVar10,puVar5,&memory_allocator_3692_ptr);
       in_stack_00000090 = CONCAT44(iStack000000000000004c,fVar4 * 0.03448276);
-      FUN_1806307a0(fVar4 * 0.03448276,puVar5,&processed_var_5264_ptr,&stack0x00000090);
+      NetworkSystem_PacketProcessor(fVar4 * 0.03448276,puVar5,&processed_var_5264_ptr,&stack0x00000090);
       if (puVar7[6] == 0) {
         puVar5[10] = 0;
         puVar7[6] = puVar5;
@@ -216,11 +220,11 @@ void FUN_180416a8c(void)
     } while (*pcVar2 != (char)unaff_R12);
     *plVar1 = (int64_t)&processed_var_5272_ptr;
     plVar1[2] = (int64_t)(pcVar3 + -0x180a18107);
-    uVar4 = FUN_18062f990(extraout_XMM0_Da,plVar1,&processed_var_5276_ptr,
+    uVar4 = MemoryDeallocationHandler0(extraout_XMM0_Da,plVar1,&processed_var_5276_ptr,
                           (float)iStack0000000000000030 * 0.03448276);
-    FUN_18062f990(uVar4,plVar1,&memory_allocator_3692_ptr);
+    MemoryDeallocationHandler0(uVar4,plVar1,&memory_allocator_3692_ptr);
     in_stack_00000090 = CONCAT44(iStack000000000000003c,fStack0000000000000038 * 0.03448276);
-    FUN_1806307a0(fStack0000000000000038 * 0.03448276,plVar1,&processed_var_5264_ptr,&stack0x00000090);
+    NetworkSystem_PacketProcessor(fStack0000000000000038 * 0.03448276,plVar1,&processed_var_5264_ptr,&stack0x00000090);
     if (*(int64_t *)(unaff_RDI + 0x30) == unaff_R12) {
       plVar1[10] = unaff_R12;
       *(int64_t **)(unaff_RDI + 0x30) = plVar1;
@@ -246,11 +250,11 @@ void FUN_180416a8c(void)
     } while (*pcVar2 != (char)unaff_R12);
     *plVar1 = (int64_t)&processed_var_5272_ptr;
     plVar1[2] = (int64_t)(pcVar3 + -0x180a18107);
-    uVar4 = FUN_18062f990(extraout_XMM0_Da_00,plVar1,&processed_var_5276_ptr,
+    uVar4 = MemoryDeallocationHandler0(extraout_XMM0_Da_00,plVar1,&processed_var_5276_ptr,
                           (float)iStack0000000000000040 * 0.03448276);
-    FUN_18062f990(uVar4,plVar1,&memory_allocator_3692_ptr);
+    MemoryDeallocationHandler0(uVar4,plVar1,&memory_allocator_3692_ptr);
     in_stack_00000090 = CONCAT44(iStack000000000000004c,fStack0000000000000048 * 0.03448276);
-    FUN_1806307a0(fStack0000000000000048 * 0.03448276,plVar1,&processed_var_5264_ptr,&stack0x00000090);
+    NetworkSystem_PacketProcessor(fStack0000000000000048 * 0.03448276,plVar1,&processed_var_5264_ptr,&stack0x00000090);
     if (*(int64_t *)(unaff_RDI + 0x30) == unaff_R12) {
       plVar1[10] = unaff_R12;
       *(int64_t **)(unaff_RDI + 0x30) = plVar1;

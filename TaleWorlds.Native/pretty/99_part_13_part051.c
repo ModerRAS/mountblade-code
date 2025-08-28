@@ -1023,7 +1023,7 @@ uint64_t FUN_1808ca1c0(int64_t param_1)
   int64_t *plVar4;
   int64_t *plVar5;
   
-  uVar2 = FUN_18073c4c0(*(uint64_t *)(param_1 + 0xf0),param_1 + 0x1c0,param_1 + 0x38);
+  uVar2 = UtilitiesSystem_MathCalculator(*(uint64_t *)(param_1 + 0xf0),param_1 + 0x1c0,param_1 + 0x38);
   if (((uint)uVar2 < 0x1f) && ((0x40000009U >> ((uint)uVar2 & 0x1f) & 1) != 0)) {
     plVar5 = (int64_t *)(param_1 + 0x120);
     plVar4 = (int64_t *)0x0;

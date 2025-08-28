@@ -197,12 +197,12 @@ void FUN_18037fe30(int64_t param_1,int64_t param_2,code *param_3)
         lVar3 = lVar1 + -0x28;
         cVar2 = (*param_3)(&puStack_60,lVar3);
         if (cVar2 == '\0') break;
-        FUN_18005d190(lVar5,lVar3);
+        SystemScheduler(lVar5,lVar3);
         *(int32_t *)(lVar5 + 0x20) = *(int32_t *)(lVar1 + -8);
         lVar5 = lVar5 + -0x28;
         lVar1 = lVar3;
       }
-      FUN_18005d190(lVar5,&puStack_60);
+      SystemScheduler(lVar5,&puStack_60);
       *(int32_t *)(lVar5 + 0x20) = uStack_40;
       puStack_60 = &system_data_buffer_ptr;
       if (lStack_58 != 0) {
@@ -808,9 +808,9 @@ LAB_180380a8a:
       *(uint64_t *)(uVar5 + 8) = 0;
       *(uint64_t *)(uVar5 + 0x18) = 0;
       uStack_70 = *(int32_t *)(uVar5 + 0x20);
-      FUN_18005d190(uVar5,uVar4);
+      SystemScheduler(uVar5,uVar4);
       *(int32_t *)(uVar5 + 0x20) = *(int32_t *)(uVar4 + 0x20);
-      FUN_18005d190(uVar4,&puStack_90);
+      SystemScheduler(uVar4,&puStack_90);
       *(int32_t *)(uVar4 + 0x20) = uStack_70;
       puStack_90 = &system_data_buffer_ptr;
       if (lStack_88 != 0) {
@@ -900,7 +900,7 @@ void FUN_180380c60(int64_t param_1,int64_t *param_2,int64_t *param_3,code *param
         *plVar4 = 0;
         plVar4[2] = 0;
         uStack_48 = (int32_t)plVar4[3];
-        FUN_18005d190(plVar4 + -1,param_1);
+        SystemScheduler(plVar4 + -1,param_1);
         *(int32_t *)(plVar4 + 3) = *(int32_t *)(param_1 + 0x20);
         FUN_180380ff0(param_1,0,lVar2,0,&puStack_68,param_4);
         puStack_68 = &system_data_buffer_ptr;
@@ -927,7 +927,7 @@ void FUN_180380c60(int64_t param_1,int64_t *param_2,int64_t *param_3,code *param
       param_2[-1] = 0;
       param_2[1] = 0;
       uStack_48 = (int32_t)param_2[2];
-      FUN_18005d190(param_2 + -2,param_1);
+      SystemScheduler(param_2 + -2,param_1);
       *(int32_t *)(param_2 + 2) = *(int32_t *)(param_1 + 0x20);
       FUN_180380ff0(param_1,0,((0x18 - param_1) + (int64_t)param_2) / 0x28 + -1,0,&puStack_68,
                     param_4,uVar6);
@@ -977,7 +977,7 @@ void FUN_180380ff0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     }
     lVar2 = param_1 + lVar4 * 0x28;
     lVar1 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar1,lVar2);
+    SystemScheduler(lVar1,lVar2);
     *(int32_t *)(lVar1 + 0x20) = *(int32_t *)(lVar2 + 0x20);
     param_4 = lVar4;
     lVar2 = lVar4 * 2;
@@ -985,7 +985,7 @@ void FUN_180380ff0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   if (lVar4 == param_3) {
     lVar4 = param_1 + lVar4 * 0x28;
     lVar1 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar1,lVar4 + -0x28);
+    SystemScheduler(lVar1,lVar4 + -0x28);
     *(int32_t *)(lVar1 + 0x20) = *(int32_t *)(lVar4 + -8);
     param_4 = lVar2 + 1;
   }
@@ -995,12 +995,12 @@ void FUN_180380ff0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     cVar3 = (*param_6)(lVar2,param_5);
     if (cVar3 == '\0') break;
     lVar1 = param_1 + param_4 * 0x28;
-    FUN_18005d190(lVar1,lVar2);
+    SystemScheduler(lVar1,lVar2);
     *(int32_t *)(lVar1 + 0x20) = *(int32_t *)(lVar2 + 0x20);
     param_4 = lVar4;
   }
   param_1 = param_1 + param_4 * 0x28;
-  FUN_18005d190(param_1,param_5);
+  SystemScheduler(param_1,param_5);
   *(int32_t *)(param_1 + 0x20) = *(int32_t *)(param_5 + 0x20);
   return;
 }

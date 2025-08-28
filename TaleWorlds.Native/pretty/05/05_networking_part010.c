@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -194,16 +195,16 @@ void NetworkLinkedList_CleanupList(LinkListNode* head);
 /** 外部函数引用 */
 extern void FUN_18088c8a0(void);                     /**< 网络系统初始化函数 */
 extern void FUN_18084c150(void* buffer);              /**< 缓冲区初始化函数 */
-extern void FUN_18084c220(void* buffer);              /**< 缓冲区清理函数 */
+extern void UltraHighFreq_InputHandler1(void* buffer);              /**< 缓冲区清理函数 */
 extern void func_0x00018085dda0(void* data);          /**< 数据处理函数 */
 extern void SystemInitializer(void* context, void* data, void* info, int size, int flags); /**< 内存分配函数 */
 extern void SystemCore_DatabaseManager0(void* context, int size, void* info, int flags, int param1, int param2, int param3); /**< 扩展内存分配函数 */
 extern void FUN_1808b02a0(void* connection);          /**< 连接处理函数 */
-extern void FUN_1808b0fb0(void* connection, int flags);/**< 连接标志设置函数 */
+extern void RenderingSystem_ShaderManager0(void* connection, int flags);/**< 连接标志设置函数 */
 extern void SystemCoreProcessor(void);                     /**< 数据生成函数 */
 extern void MemoryCacheController0(void);                     /**< 数据验证函数 */
-extern void FUN_180840270(void* buffer);             /**< 缓冲区重置函数 */
-extern void FUN_18084d3f0(void* buffer, int flags);    /**< 缓冲区处理函数 */
+extern void SystemCore_MemoryManager(void* buffer);             /**< 缓冲区重置函数 */
+extern void RenderingSystem_TextureManager(void* buffer, int flags);    /**< 缓冲区处理函数 */
 extern void FUN_18084d620(void* buffer, int flags);    /**< 缓冲区管理函数 */
 extern void FUN_18084d520(void* buffer, int flags);    /**< 缓冲区操作函数 */
 
@@ -242,9 +243,9 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     // 初始化各个缓冲区
     FUN_18084c150(packet_ptr + 0x16);
     FUN_18084c150(packet_ptr + 0x14);
-    FUN_18084c220(packet_ptr + 0x12);
-    FUN_18084c220(packet_ptr + 0x10);
-    FUN_18084c220(packet_ptr + 7);
+    UltraHighFreq_InputHandler1(packet_ptr + 0x12);
+    UltraHighFreq_InputHandler1(packet_ptr + 0x10);
+    UltraHighFreq_InputHandler1(packet_ptr + 7);
     
     // 设置网络配置
     *packet_ptr = &global_state_936_ptr;
@@ -266,8 +267,8 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     *(int32_t*)((int64_t)link_data + 0x44) = 0xffffffff;
     
     // 初始化链表操作
-    FUN_18084c220(link_data + 4);
-    FUN_18084c220(link_data + 2);
+    UltraHighFreq_InputHandler1(link_data + 4);
+    UltraHighFreq_InputHandler1(link_data + 2);
     
     // 设置链表指针
     *(int64_t*)link_data[1] = *link_data;
@@ -328,7 +329,7 @@ uint64_t NetworkPacketManager_DestroyPacket(uint64_t packet, uint64_t flags) {
  */
 int64_t NetworkConnectionManager_HandleConnection(int64_t connection, uint64_t flags) {
     // 清理连接缓冲区
-    FUN_18084c220(connection + 0x38);
+    UltraHighFreq_InputHandler1(connection + 0x38);
     
     // 处理连接
     FUN_1808b02a0(connection);
@@ -560,7 +561,7 @@ void NetworkConnectionManager_CleanupConnection(int64_t* connection) {
     // 重置连接状态
     *(int32_t*)(connection + 1) = 0;
     if (0 < (int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f))) {
-        FUN_18084d3f0(connection, 0);
+        RenderingSystem_TextureManager(connection, 0);
     }
 }
 
@@ -612,7 +613,7 @@ void NetworkPacketManager_ProcessPacketList(int32_t param1, int param2, uint par
     // 更新列表状态
     *(int*)(unaff_RDI + 8) = (int)unaff_RBP;
     if (0 < (int)((param3 ^ (int)param3 >> 0x1f) - ((int)param3 >> 0x1f))) {
-        FUN_18084d3f0(param1, 0);
+        RenderingSystem_TextureManager(param1, 0);
     }
 }
 
@@ -658,7 +659,7 @@ void NetworkPacketManager_ProcessPackets(int64_t param1) {
     *(int*)(unaff_RDI + 8) = (int)unaff_RBP;
     buffer_size = (int)*(uint*)(unaff_RDI + 0xc) >> 0x1f;
     if (0 < (int)((*(uint*)(unaff_RDI + 0xc) ^ buffer_size) - buffer_size)) {
-        FUN_18084d3f0(item1, 0);
+        RenderingSystem_TextureManager(item1, 0);
     }
 }
 
@@ -682,7 +683,7 @@ void NetworkConnectionManager_UpdateConnection(uint64_t param1, uint64_t param2,
     // 更新连接状态
     *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
     if (0 < (int)((param3 ^ (int)param3 >> 0x1f) - ((int)param3 >> 0x1f))) {
-        FUN_18084d3f0();
+        RenderingSystem_TextureManager();
     }
 }
 
@@ -706,7 +707,7 @@ void NetworkConnectionManager_ResetConnection(uint64_t param1, uint64_t param2, 
     // 重置连接状态
     *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
     if (0 < (int)((param3 ^ (int)param3 >> 0x1f) - ((int)param3 >> 0x1f))) {
-        FUN_18084d3f0();
+        RenderingSystem_TextureManager();
     }
 }
 
@@ -799,7 +800,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         NetworkConnectionManager_CleanupConnection(cleanup_ptr + 0x10);
         NetworkLinkedList_CleanupNode(cleanup_ptr + 0xe);
         NetworkLinkedList_CleanupNode(cleanup_ptr + 0xc);
-        FUN_1808b0fb0(cleanup_ptr + 8, 0);
+        RenderingSystem_ShaderManager0(cleanup_ptr + 8, 0);
         
         // 清理链表指针
         *(int64_t*)cleanup_ptr[1] = *cleanup_ptr;
@@ -822,7 +823,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         if (link_data != link_ptr) {
             cleanup_ptr = link_data;
         }
-        FUN_1808b0fb0(cleanup_ptr + 3, 0);
+        RenderingSystem_ShaderManager0(cleanup_ptr + 3, 0);
         *(int64_t*)cleanup_ptr[1] = *cleanup_ptr;
         *(int64_t*)(*cleanup_ptr + 8) = cleanup_ptr[1];
         cleanup_ptr[1] = (int64_t)cleanup_ptr;
@@ -923,7 +924,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     } else if (0 < (int)buffer_size) {
         remaining_items = packet[0xf] + 0x10;
         do {
-            FUN_180840270(remaining_items);
+            SystemCore_MemoryManager(remaining_items);
             remaining_items = remaining_items + 0x28;
             item_count64 = item_count64 - 1;
         } while (item_count64 != 0);
@@ -981,7 +982,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     // 清理连接和缓冲区
     NetworkConnectionManager_CleanupConnection(packet + 9);
     NetworkConnectionManager_CleanupConnection(packet + 7);
-    FUN_18084c220(packet + 5);
+    UltraHighFreq_InputHandler1(packet + 5);
     
     // 设置结束标志
     *(int32_t*)(packet + 1) = MAGIC_DEADFOOD;
@@ -1079,7 +1080,7 @@ uint64_t FUN_18084c55b(void) {
 }
 
 /**
- * @brief 原始函数映射 - FUN_18084c5a0
+ * @brief 原始函数映射 - UISystem_EventDispatcher
  * 
  * 这是原始的函数，映射到新的网络连接清理系统
  * 
@@ -1087,7 +1088,7 @@ uint64_t FUN_18084c55b(void) {
  * 
  * @return void
  */
-void FUN_18084c5a0(int64_t* param_1) {
+void UISystem_EventDispatcher(int64_t* param_1) {
     // 调用新的网络连接清理系统
     NetworkConnectionManager_CleanupConnection(param_1);
 }
@@ -1155,7 +1156,7 @@ void FUN_18084c658(uint64_t param_1, uint64_t param_2, uint param_3) {
 }
 
 /**
- * @brief 原始函数映射 - FUN_18084c680
+ * @brief 原始函数映射 - UIComponent_StateProcessor
  * 
  * 这是原始的函数，映射到新的网络链表节点清理系统
  * 
@@ -1163,7 +1164,7 @@ void FUN_18084c658(uint64_t param_1, uint64_t param_2, uint param_3) {
  * 
  * @return void
  */
-void FUN_18084c680(int64_t* param_1) {
+void UIComponent_StateProcessor(int64_t* param_1) {
     // 调用新的网络链表节点清理系统
     NetworkLinkedList_CleanupNode(param_1);
 }
@@ -1283,12 +1284,12 @@ void FUN_18084c744(uint64_t* param_1) {
 
 /** 辅助函数别名 */
 #define NetworkErrorHandler_GetError FUN_18084c55b
-#define NetworkConnectionManager_Cleanup FUN_18084c5a0
+#define NetworkConnectionManager_Cleanup UISystem_EventDispatcher
 #define NetworkPacketManager_ProcessList FUN_18084c612
 #define NetworkPacketManager_ProcessBatch FUN_18084c61e
 #define NetworkConnectionManager_UpdateState FUN_18084c653
 #define NetworkConnectionManager_Reset FUN_18084c658
-#define NetworkLinkedList_Cleanup FUN_18084c680
+#define NetworkLinkedList_Cleanup UIComponent_StateProcessor
 #define NetworkPacketManager_DestroyFull FUN_18084c730
 #define NetworkPacketManager_DestroyFullVariant1 FUN_18084c738
 #define NetworkPacketManager_DestroyFullVariant2 FUN_18084c744

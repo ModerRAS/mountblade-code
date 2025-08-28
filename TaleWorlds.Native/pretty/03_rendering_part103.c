@@ -1,3 +1,8 @@
+#include "CoreSystem_DatabaseHandler0_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -185,7 +190,7 @@ LAB_18032b0f4:
   // 清理资源收集器内存
   pppplVar3 = pppplStack_48;
   if ((int64_t *****)pppplStack_48 != (int64_t *****)0x0) {
-    FUN_18004b790(&pppplStack_58,*pppplStack_48);
+    SystemCache_Manager(&pppplStack_58,*pppplStack_48);
     CoreEngineMemoryPoolCleaner(pppplVar3);
   }
   
@@ -339,7 +344,7 @@ LAB_18032b314:
     return;
   }
   
-  FUN_18004b790(&ppuStack_68,*ppuStack_58);
+  SystemCache_Manager(&ppuStack_68,*ppuStack_58);
   CoreEngineMemoryPoolCleaner(ppuVar3);
 }
 
@@ -517,7 +522,7 @@ LAB_18032b522:
     puVar5[2] = 0;
     
     // 更新哈希表
-    FUN_18066c220(param_1 + 0x348,acStackX_8,*(int32_t *)(param_1 + 0x338),
+    RenderingShaderProcessor0(param_1 + 0x348,acStackX_8,*(int32_t *)(param_1 + 0x338),
                   *(int32_t *)(param_1 + 0x340),1);
     
     // 检查是否需要重新哈希
@@ -627,7 +632,7 @@ LAB_18032b6ff:
     puVar5[5] = 0;
     
     // 更新资源表
-    FUN_18066c220(param_1 + 0xa10,acStackX_8,*(int32_t *)(param_1 + 0xa00),
+    RenderingShaderProcessor0(param_1 + 0xa10,acStackX_8,*(int32_t *)(param_1 + 0xa00),
                   *(int32_t *)(param_1 + 0xa08),1);
     
     // 检查是否需要重新哈希
@@ -728,7 +733,7 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   // 初始化文件结构
   *puVar1 = 0;
   *(int8_t *)(puVar1 + 2) = 0;
-  FUN_18062dee0(puVar1,puVar4,&processed_var_9772_ptr);
+  SystemCore_Validator(puVar1,puVar4,&processed_var_9772_ptr);
   
   // 设置文件操作参数
   puStack_68 = &system_data_buffer_ptr;
@@ -800,10 +805,10 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   
   // 清理渲染系统资源
   FUN_18033ae70(param_1 + 0x4a8);
-  FUN_18033ad00(param_1 + 0x9f0);
-  FUN_18033ad00(param_1 + 0x568);
+  RenderingSystem_CameraController0(param_1 + 0x9f0);
+  RenderingSystem_CameraController0(param_1 + 0x568);
   FUN_18033ae70(param_1 + 0x638);
-  FUN_18033ad00(param_1 + 0x6b8);
+  RenderingSystem_CameraController0(param_1 + 0x6b8);
   
   // 初始化资源管理器
   lVar4 = param_1 + 0x848;
@@ -819,7 +824,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   lVar4 = param_1 + 0x958;
   puVar3 = *(uint64_t **)(param_1 + 0x968);
   if (puVar3 != (uint64_t *)0x0) {
-    FUN_18004b790(lVar4,*puVar3);
+    SystemCache_Manager(lVar4,*puVar3);
     CoreEngineMemoryPoolCleaner(puVar3);
   }
   *(int64_t *)lVar4 = lVar4;
@@ -864,7 +869,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   }
   
   // 清理资源管理器
-  FUN_18033ad00(param_1 + 0x3a8);
+  RenderingSystem_CameraController0(param_1 + 0x3a8);
   iVar2 = _Mtx_unlock(lVar4);
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
@@ -894,7 +899,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   // 初始化文件结构
   *puVar3 = 0;
   *(int8_t *)(puVar3 + 2) = 0;
-  FUN_18062dee0(puVar3,puVar8,&processed_var_4880_ptr);
+  SystemCore_Validator(puVar3,puVar8,&processed_var_4880_ptr);
   
   // 检查文件是否打开
   if (puVar3[1] == 0) {
@@ -983,7 +988,7 @@ LAB_18032c711:
       }
       
       // 创建新的资源索引条目
-      FUN_18066c220(param_1 + 0x9a8,acStackX_18,(uint64_t)*(uint *)(param_1 + 0x998),
+      RenderingShaderProcessor0(param_1 + 0x9a8,acStackX_18,(uint64_t)*(uint *)(param_1 + 0x998),
                     *(int32_t *)(param_1 + 0x9a0),1);
       piVar6 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0x9b4));
       *piVar6 = iVar2;
@@ -1234,7 +1239,7 @@ void FUN_18032c9f0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
   
   // 记录导出信息
   lVar7 = _ftelli64(*(uint64_t *)(param_2 + 8));
-  FUN_180062300(system_message_context,&processed_var_7576_ptr,param_4,lVar7 - param_3,
+  SystemParameterHandler(system_message_context,&processed_var_7576_ptr,param_4,lVar7 - param_3,
                 *(uint64_t *)(param_1 + 0x2d0));
 }
 

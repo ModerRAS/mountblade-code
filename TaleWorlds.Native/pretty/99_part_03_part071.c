@@ -105,7 +105,7 @@ uint64_t * FUN_18023cff0(uint64_t *param_1,uint64_t param_2)
   if ((int64_t *)param_1[0x18] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x18] + 0x38))();
   }
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x108);
   }

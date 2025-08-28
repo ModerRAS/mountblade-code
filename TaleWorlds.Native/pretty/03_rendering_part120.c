@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -35,7 +39,7 @@ void FUN_18033ce60(uint64_t *param_1)
   uint64_t uStack_30;
   
   uStack_30 = 0x18033ce79;
-  uVar3 = FUN_18023a940(*(uint64_t *)(*(int64_t *)param_1[1] + 8));
+  uVar3 = SystemCore_Scheduler(*(uint64_t *)(*(int64_t *)param_1[1] + 8));
   plVar2 = system_message_buffer;
   uVar1 = *param_1;
   uStack_b8 = 0xfffffffffffffffe;
@@ -363,9 +367,9 @@ void FUN_18033d450(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
         lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar8 << 5,(char)param_1[3]);
         lVar9 = *param_1;
       }
-      uVar4 = FUN_180059780(lVar9,param_2,lVar7);
+      uVar4 = SystemCore_Initializer(lVar9,param_2,lVar7);
       uVar4 = FUN_180059300(param_3,param_4,uVar4);
-      lVar9 = FUN_180059780(param_2,param_1[1],uVar4);
+      lVar9 = SystemCore_Initializer(param_2,param_1[1],uVar4);
       puVar3 = (uint64_t *)param_1[1];
       puVar6 = (uint64_t *)*param_1;
       if (puVar6 != puVar3) {
@@ -386,7 +390,7 @@ void FUN_18033d450(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
     else {
       uVar8 = lVar7 - param_2 >> 5;
       if (uVar11 < uVar8) {
-        FUN_180059780(lVar7 + uVar11 * -0x20);
+        SystemCore_Initializer(lVar7 + uVar11 * -0x20);
         FUN_18016fec0(param_2,param_1[1] + uVar11 * -0x20);
         FUN_180059250(param_3,param_4,param_2);
         param_1[1] = param_1[1] + uVar11 * 0x20;
@@ -395,7 +399,7 @@ void FUN_18033d450(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
         lVar9 = uVar8 * 0x20;
         param_3 = param_3 + lVar9;
         FUN_180059300(param_3,param_4,lVar7);
-        FUN_180059780(param_2,param_1[1],(uVar11 - uVar8) * 0x20 + param_1[1]);
+        SystemCore_Initializer(param_2,param_1[1],(uVar11 - uVar8) * 0x20 + param_1[1]);
         lVar7 = lVar9 + param_2;
         if (0 < (int64_t)uVar8) {
           param_2 = param_2 + (lVar9 - param_3);
@@ -470,9 +474,9 @@ void FUN_18033d472(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
       lVar8 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar7 << 5,(char)param_1[3]);
       lVar6 = *param_1;
     }
-    FUN_180059780(lVar6);
+    SystemCore_Initializer(lVar6);
     FUN_180059300(param_3);
-    lVar6 = FUN_180059780();
+    lVar6 = SystemCore_Initializer();
     puVar3 = (uint64_t *)param_1[1];
     puVar5 = (uint64_t *)*param_1;
     if (puVar5 != puVar3) {
@@ -493,7 +497,7 @@ void FUN_18033d472(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
   else {
     uVar7 = param_2 - unaff_R12 >> 5;
     if (uVar10 < uVar7) {
-      FUN_180059780(param_2 + uVar10 * -0x20);
+      SystemCore_Initializer(param_2 + uVar10 * -0x20);
       FUN_18016fec0();
       FUN_180059250(param_3);
       param_1[1] = param_1[1] + uVar10 * 0x20;
@@ -502,7 +506,7 @@ void FUN_18033d472(int64_t *param_1,int64_t param_2,int64_t param_3,int64_t para
       lVar8 = uVar7 * 0x20;
       param_3 = param_3 + lVar8;
       FUN_180059300(param_3);
-      FUN_180059780();
+      SystemCore_Initializer();
       lVar6 = lVar8 + unaff_R12;
       if (0 < (int64_t)uVar7) {
         lVar8 = unaff_R12 + (lVar8 - param_3);

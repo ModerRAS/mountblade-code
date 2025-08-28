@@ -386,7 +386,7 @@ LAB_1803bc66a:
             uStack_a0._0_4_ = (float)uVar3;
             dVar26 = (double)(float)uStack_a0;
             uStack_a0 = (int64_t *)uVar3;
-            FUN_180627020(&ui_system_data_1728_ptr,puVar14,puVar18,puVar20,puVar13,dVar26,dVar25,
+            SystemCore_Allocator(&ui_system_data_1728_ptr,puVar14,puVar18,puVar20,puVar13,dVar26,dVar25,
                           (double)(float)uStack_98);
           }
         }
@@ -689,10 +689,10 @@ LAB_1803bcb04:
             if (*(void **)(lVar9 + 0x290) != (void *)0x0) {
               puVar10 = *(void **)(lVar9 + 0x290);
             }
-            FUN_180627020(&ui_system_data_1616_ptr,puVar10,
+            SystemCore_Allocator(&ui_system_data_1616_ptr,puVar10,
                           *(int64_t *)(lVar9 + 0xf8) - *(int64_t *)(lVar9 + 0xf0) >> 3,puVar15,
                           lVar7);
-            FUN_1802ed990(*(uint64_t *)(param_1 + 0x28),1);
+            PhysicsSystem_CharacterController(*(uint64_t *)(param_1 + 0x28),1);
             return;
           }
           plStack_48 = (int64_t *)0x0;
@@ -719,7 +719,7 @@ LAB_1803bcb04:
                   plStackX_20 = plVar8;
                   (**(code **)(*plVar8 + 0x28))();
                   pplStack_58 = &plStackX_20;
-                  FUN_1802edcd0(uVar2,plStackX_20,1);
+                  PhysicsSystem_TerrainCollider(uVar2,plStackX_20,1);
                   if (plStackX_20 != (int64_t *)0x0) {
                     (**(code **)(*plStackX_20 + 0x38))();
                   }
@@ -751,7 +751,7 @@ LAB_1803bcb04:
                     (**(code **)(*plVar8 + 0x28))();
                   }
                   pplStack_50 = &plStackX_20;
-                  FUN_1802edcd0(uVar2,plStackX_20,1);
+                  PhysicsSystem_TerrainCollider(uVar2,plStackX_20,1);
                   plVar8 = plStackX_20;
                 }
                 if (plVar8 != (int64_t *)0x0) {

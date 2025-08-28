@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part021.c - 12 个函数
@@ -210,7 +211,7 @@ uint64_t * FUN_1806b21e0(int64_t *param_1,int param_2)
     puVar3[0x10] = 0;
     *(int8_t *)(puVar3 + 0x11) = 0;
     puVar3[0x12] = puVar1;
-    FUN_1806b5600(puVar1,param_2 + 0x44);
+    SystemController(puVar1,param_2 + 0x44);
     puVar3[3] = &processed_var_5952_ptr;
     puVar3[0x13] = puVar2;
     puVar3[0x14] = &processed_var_6416_ptr;
@@ -260,7 +261,7 @@ void FUN_1806b222a(uint64_t *param_1)
   unaff_RSI[0x10] = 0;
   *(int8_t *)(unaff_RSI + 0x11) = 0;
   unaff_RSI[0x12] = param_1;
-  FUN_1806b5600(param_1,unaff_EBP + 0x44);
+  SystemController(param_1,unaff_EBP + 0x44);
   unaff_RSI[3] = &processed_var_5952_ptr;
   unaff_RSI[0x13] = puVar1;
   unaff_RSI[0x14] = &processed_var_6416_ptr;
@@ -354,7 +355,7 @@ void FUN_1806b2330(int64_t *param_1,uint64_t *param_2)
   }
   lVar2 = param_1[0xf];
   bStackX_9 = bVar4 | (byte)(uVar7 >> 8) | (byte)(uVar8 >> 8);
-  FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+  SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
   pbVar3 = *(byte **)(lVar2 + 0x18);
   *pbVar3 = (byte)uVar5 & 0xcf | (byte)uVar6;
   pbVar3[1] = bStackX_9;
@@ -381,7 +382,7 @@ uint64_t FUN_1806b2560(int64_t *param_1,uint64_t param_2,int8_t *param_3)
   int8_t *puVar2;
   
   lVar1 = *param_1;
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 4);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 4);
   puVar2 = *(int8_t **)(lVar1 + 0x18);
   *puVar2 = *param_3;
   puVar2[1] = param_3[1];
@@ -404,7 +405,7 @@ int FUN_1806b25c0(int64_t param_1,int64_t *param_2,int64_t param_3)
   iVar3 = FUN_1806b6980(param_2,&system_data_d7b0,param_1,*(byte *)(param_3 + 1) & 3);
   iVar4 = FUN_1806b6980(param_2,&processed_var_6632_ptr,param_1 + 8,*(byte *)(param_3 + 1) >> 2 & 3);
   lVar1 = *param_2;
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 4);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 4);
   puVar2 = *(int8_t **)(lVar1 + 0x18);
   *puVar2 = *(int8_t *)(param_1 + 0x10);
   puVar2[1] = *(int8_t *)(param_1 + 0x11);
@@ -428,7 +429,7 @@ int FUN_1806b2670(int64_t param_1,int64_t *param_2,int64_t param_3)
   
   lVar3 = *param_2;
   bVar1 = *(byte *)(param_3 + 1);
-  FUN_1806b5600(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 4);
+  SystemController(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 4);
   puVar4 = *(int8_t **)(lVar3 + 0x18);
   *puVar4 = *(int8_t *)(param_1 + 8);
   puVar4[1] = *(int8_t *)(param_1 + 9);
@@ -438,12 +439,12 @@ int FUN_1806b2670(int64_t param_1,int64_t *param_2,int64_t param_3)
   iVar5 = FUN_1806b6980(param_2,&processed_var_6632_ptr,param_1,bVar1 >> 2 & 3);
   lVar3 = *param_2;
   uVar2 = *(int8_t *)(param_1 + 0xc);
-  FUN_1806b5600(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 1);
+  SystemController(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 1);
   **(int8_t **)(lVar3 + 0x18) = uVar2;
   *(int64_t *)(lVar3 + 0x18) = *(int64_t *)(lVar3 + 0x18) + 1;
   lVar3 = *param_2;
   uVar2 = *(int8_t *)(param_1 + 0xd);
-  FUN_1806b5600(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 1);
+  SystemController(lVar3,(*(int *)(lVar3 + 0x18) - *(int *)(lVar3 + 0x10)) + 1);
   **(int8_t **)(lVar3 + 0x18) = uVar2;
   *(int64_t *)(lVar3 + 0x18) = *(int64_t *)(lVar3 + 0x18) + 1;
   iVar6 = FUN_1806b6980(param_2,&processed_var_6648_ptr,param_1 + 0x10,*(byte *)(param_3 + 1) & 3);
@@ -493,7 +494,7 @@ FUN_1806b2770(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int param_4,in
   param_1[0xd] = 0;
   *(int8_t *)(param_1 + 0xe) = 0;
   param_1[0xf] = puVar10;
-  FUN_1806b5600(puVar10,param_4 + 0x44);
+  SystemController(puVar10,param_4 + 0x44);
   param_1[0x12] = 0;
   param_1[0x10] = 0;
   puVar10 = param_1 + 0x18;

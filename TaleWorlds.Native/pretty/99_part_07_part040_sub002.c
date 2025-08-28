@@ -2,8 +2,8 @@
 
 // 99_part_07_part040_sub002.c - 1 个函数
 
-// 函数: void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
-void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
+// 函数: void SystemCore_Controller(uint64_t param_1,int32_t param_2,char *param_3)
+void SystemCore_Controller(uint64_t param_1,int32_t param_2,char *param_3)
 
 {
   char cVar1;
@@ -46,9 +46,9 @@ int64_t DataPipelineManager(int64_t *param_1,uint64_t param_2)
       uVar2 = 0x3ffea;
     }
     if ((code *)param_1[0x603] == (code *)0x0) {
-      lVar3 = thunk_FUN_1808fc418(uVar2 + 0x16);
+      lVar3 = thunk_SystemRenderer(uVar2 + 0x16);
       if (lVar3 == 0) {
-        FUN_18062e140(&processed_var_8136_ptr,0);
+        SystemTools_DataProcessor(&processed_var_8136_ptr,0);
       }
     }
     else {
@@ -79,9 +79,9 @@ int64_t FUN_1804c132d(int64_t param_1,uint64_t param_2)
     param_2 = 0x3ffea;
   }
   if (*(code **)(param_1 + 0x3018) == (code *)0x0) {
-    lVar1 = thunk_FUN_1808fc418(param_2 + 0x16);
+    lVar1 = thunk_SystemRenderer(param_2 + 0x16);
     if (lVar1 == 0) {
-      FUN_18062e140(&processed_var_8136_ptr,0);
+      SystemTools_DataProcessor(&processed_var_8136_ptr,0);
     }
   }
   else {

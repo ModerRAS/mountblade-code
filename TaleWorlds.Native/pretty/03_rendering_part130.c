@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 
 // 03_rendering_part130.c - 12 个函数
 
@@ -271,7 +277,7 @@ FUN_180345660(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 
 
 
-uint64_t * FUN_1803456e0(uint64_t *param_1,int64_t param_2,uint64_t param_3)
+uint64_t * SystemCore_SyncController(uint64_t *param_1,int64_t param_2,uint64_t param_3)
 
 {
   uint64_t *puVar1;
@@ -309,7 +315,7 @@ uint64_t * FUN_1803456e0(uint64_t *param_1,int64_t param_2,uint64_t param_3)
 uint64_t FUN_180345790(uint64_t param_1,uint64_t param_2)
 
 {
-  FUN_1803457d0();
+  UIComponent_Manager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x70);
   }
@@ -320,8 +326,8 @@ uint64_t FUN_180345790(uint64_t param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_1803457d0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1803457d0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void UIComponent_Manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void UIComponent_Manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -445,7 +451,7 @@ void FUN_180345a10(int64_t param_1,uint64_t *param_2)
       uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar5 * 0x20,(char)param_2[3]);
       uVar3 = *param_2;
     }
-    uVar3 = FUN_180059780(uVar3,param_2[1],uVar2);
+    uVar3 = SystemCore_Initializer(uVar3,param_2[1],uVar2);
     puVar1 = (uint64_t *)param_2[1];
     puVar7 = (uint64_t *)*param_2;
     if (puVar7 != puVar1) {
@@ -471,7 +477,7 @@ void FUN_180345a10(int64_t param_1,uint64_t *param_2)
         CoreEngineDataTransformer();
       }
       else {
-        FUN_180059820(param_2,uVar4 * 0x30 + *(int64_t *)(param_1 + 0x50));
+        SystemCore_BackupSystem(param_2,uVar4 * 0x30 + *(int64_t *)(param_1 + 0x50));
       }
       uVar6 = (int)uVar3 + 1;
       uVar4 = (uint64_t)(int)uVar6;
@@ -505,7 +511,7 @@ void FUN_180345a5f(uint64_t param_1)
     uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,unaff_RBP << 5,(char)unaff_RBX[3]);
     param_1 = *unaff_RBX;
   }
-  uVar3 = FUN_180059780(param_1,unaff_RBX[1],uVar2);
+  uVar3 = SystemCore_Initializer(param_1,unaff_RBX[1],uVar2);
   puVar1 = (uint64_t *)unaff_RBX[1];
   puVar5 = (uint64_t *)*unaff_RBX;
   if (puVar5 != puVar1) {
@@ -526,7 +532,7 @@ void FUN_180345a5f(uint64_t param_1)
           CoreEngineDataTransformer();
         }
         else {
-          FUN_180059820();
+          SystemCore_BackupSystem();
         }
         uVar4 = (int)unaff_RSI + 1;
         unaff_RSI = (uint64_t)uVar4;
@@ -562,7 +568,7 @@ void FUN_180345a69(uint64_t param_1)
     uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,unaff_RBP << 5,(char)unaff_RBX[3]);
     param_1 = *unaff_RBX;
   }
-  uVar3 = FUN_180059780(param_1,unaff_RBX[1],uVar2);
+  uVar3 = SystemCore_Initializer(param_1,unaff_RBX[1],uVar2);
   puVar1 = (uint64_t *)unaff_RBX[1];
   puVar5 = (uint64_t *)*unaff_RBX;
   if (puVar5 != puVar1) {
@@ -583,7 +589,7 @@ void FUN_180345a69(uint64_t param_1)
           CoreEngineDataTransformer();
         }
         else {
-          FUN_180059820();
+          SystemCore_BackupSystem();
         }
         uVar4 = (int)unaff_RSI + 1;
         unaff_RSI = (uint64_t)uVar4;
@@ -626,7 +632,7 @@ void FUN_180345b0d(void)
         CoreEngineDataTransformer();
       }
       else {
-        FUN_180059820();
+        SystemCore_BackupSystem();
       }
       unaff_ESI = unaff_ESI + 1;
     } while ((uint64_t)(int64_t)unaff_ESI < unaff_RBP);
@@ -673,7 +679,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
     lVar19 = (uint64_t)*(uint *)(&system_data_5f30 + (int64_t)(int)param_4 * 4) + 0x180000000;
     switch(param_4) {
     case 0:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       CoreEngineDataTransformer(&uStack_48,*(uint64_t *)(lVar19 + 0x20));
       puVar18 = &system_buffer_ptr;
       if ((void *)CONCAT44(uStack_3c,uStack_40) != (void *)0x0) {
@@ -682,24 +688,24 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
                     // WARNING: Subroutine does not return
       memcpy(param_3 + 0x20,puVar18,(int64_t)iStack_38);
     case 1:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       *(uint64_t *)(param_3 + 0xa0) = **(uint64_t **)(lVar19 + 0x20);
       break;
     case 2:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       param_3[0xa2] = **(int32_t **)(lVar19 + 0x20);
       break;
     case 3:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       param_3[0xa3] = (uint)**(byte **)(lVar19 + 0x20);
       break;
     case 4:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       param_3[0xa4] = **(int32_t **)(lVar19 + 0x20);
       break;
     case 5:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uStack_48 = *puVar1;
       uStack_44 = puVar1[1];
@@ -716,12 +722,12 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       param_3[0x17] = uStack_3c;
       break;
     case 6:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       *(uint64_t *)(param_3 + 0x18) = **(uint64_t **)(lVar19 + 0x20);
       break;
     case 7:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1a) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
       if (lStack_20 != 0) {
@@ -731,7 +737,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       break;
     case 8:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1c) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
       if (lStack_20 != 0) {
@@ -740,7 +746,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       }
       break;
     case 9:
-      lVar19 = FUN_1803466a0(param_1);
+      lVar19 = RenderingSystem_LightingEngine0(param_1);
       CoreEngineDataTransformer(&uStack_48,*(uint64_t *)(lVar19 + 0x20));
       puVar18 = &system_buffer_ptr;
       if ((void *)CONCAT44(uStack_3c,uStack_40) != (void *)0x0) {
@@ -750,7 +756,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       memcpy(param_3 + 0x60,puVar18,(int64_t)iStack_38);
     case 10:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1e) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
       if (lStack_20 != 0) {
@@ -760,7 +766,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       break;
     case 0xc:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uStack_48 = *puVar1;
       uStack_44 = puVar1[1];
@@ -778,7 +784,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       break;
     case 0xd:
       uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
-      lVar19 = FUN_1803466a0(param_1,uVar17);
+      lVar19 = RenderingSystem_LightingEngine0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uVar2 = puVar1[1];
       uVar3 = puVar1[2];
@@ -882,7 +888,7 @@ bool FUN_180346080(void)
 {
   int64_t lVar1;
   
-  lVar1 = FUN_1803466a0();
+  lVar1 = RenderingSystem_LightingEngine0();
   return lVar1 != 0;
 }
 
@@ -890,8 +896,8 @@ bool FUN_180346080(void)
 
 
 
-// 函数: void FUN_1803460a0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t param_4)
-void FUN_1803460a0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t param_4)
+// 函数: void SystemNetwork_Processor(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t param_4)
+void SystemNetwork_Processor(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t param_4)
 
 {
   uint64_t *puVar1;

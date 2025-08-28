@@ -126,8 +126,8 @@ typedef struct {
 #define SystemDataOrganizer SystemDataOrganizer
 #define SystemDataHandler AdvancedSystemOptimizer
 #define SystemDataConfigurator FUN_180631330
-#define SystemDataModifier FUN_180631850
-#define SystemDataAllocator FUN_180631000
+#define SystemDataModifier SystemManager_Controller
+#define SystemDataAllocator SystemCore_CacheManager
 
 // 资源管理函数
 #define SystemResourceAllocator FUN_1803a6db0

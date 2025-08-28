@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 #include "TaleWorlds.Native.Split.h"
 
 //==============================================================================
@@ -42,7 +45,7 @@
 //------------------------------------------------------------------------------
 
 // 系统初始化相关变量
-uint8_t FUN_18007fcd0;                           // 系统初始化函数指针 - 主要初始化入口
+uint8_t SystemCore_Compression;                           // 系统初始化函数指针 - 主要初始化入口
 uint8_t system_memory_c768;                           // 系统配置数据块 - 存储核心配置信息
 uint8_t memory_allocator_3520;                           // 系统环境变量 - 存储环境配置
 uint8_t system_memory_c9b8;                           // 系统状态数据 - 当前系统状态信息
@@ -159,7 +162,7 @@ typedef uint64_t LogHandle;                       // 日志句柄 - 用于标识
 //------------------------------------------------------------------------------
 
 // 系统初始化函数别名
-#define SystemInitializer                           FUN_18007fcd0  // 系统初始化器 - 主要初始化入口
+#define SystemInitializer                           SystemCore_Compression  // 系统初始化器 - 主要初始化入口
 #define SystemStartupHandler                        FUN_18005ab20  // 系统启动处理器 - 启动序列控制
 #define SystemConfigurator                          FUN_1800637c0  // 系统配置器 - 配置文件解析
 #define SystemStateManager                          FUN_1800637f0  // 系统状态管理器 - 状态转换控制
@@ -204,7 +207,7 @@ typedef uint64_t LogHandle;                       // 日志句柄 - 用于标识
  * - 需要正确处理依赖关系
  * - 需要正确处理错误情况
  */
-uint8_t FUN_18007fcd0(void)
+uint8_t SystemCore_Compression(void)
 {
     // 系统初始化实现
     // 注意：由于这是系统级初始化函数，具体实现需要根据系统架构进行详细设计

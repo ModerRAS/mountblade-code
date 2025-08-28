@@ -360,7 +360,7 @@ LAB_180417650:
                           }
                         }
                       }
-                      FUN_180631850(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                      SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
                       (**(code **)(*param_1 + 8))
                                 (param_1,(int)afStack_80[0],afStack_88[0],uStackX_8,0);
                       pcVar8 = "key";
@@ -530,7 +530,7 @@ LAB_180417224:
                     }
                   }
                 }
-                FUN_180631850(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
                 iStack_70 = (int)(afStack_88[0] * 29.0);
                 fStack_6c = afStack_80[0];
                 fStack_68 = (float)uStackX_8;
@@ -628,7 +628,7 @@ LAB_1804173c4:
                     }
                   }
                 }
-                FUN_180631850(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
                 iStack_60 = (int)(afStack_88[0] * 29.0);
                 fStack_5c = afStack_80[0];
                 fStack_58 = (float)uStackX_8;

@@ -1,3 +1,13 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -166,7 +176,7 @@ void FUN_1803d69ed(int64_t *param_1,int param_2,int param_3)
       if ((iStack0000000000000038 == *piVar26) && (iStack000000000000003c == piVar26[1]))
       goto LAB_1803d6b64;
     }
-    FUN_18066c220(lVar10 + 0x58,&stack0x00000040,(uint64_t)*(uint *)(lVar10 + 0x48),
+    RenderingShaderProcessor0(lVar10 + 0x58,&stack0x00000040,(uint64_t)*(uint *)(lVar10 + 0x48),
                   *(int32_t *)(lVar10 + 0x50),1);
     piVar26 = (int *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(lVar10 + 100));
     *(uint64_t *)piVar26 = CONCAT44(iStack000000000000003c,iStack0000000000000038);
@@ -292,7 +302,7 @@ LAB_1803d6b64:
         unaff_RBP[0x29] = 0;
         unaff_RBP[0x2a] = 0;
         unaff_RBP[0x2b] = 0;
-        FUN_18063ad30(0,lVar10 + 0x100,unaff_RBP + -0x10,lVar30);
+        UltraHighFreq_DataProcessor1(0,lVar10 + 0x100,unaff_RBP + -0x10,lVar30);
         lVar31 = *(int64_t *)param_1[3];
         bVar9 = *(byte *)(*(int64_t *)(uVar27 + *plVar32) + 0x1bd8);
         fVar1 = (float)unaff_RBP[0x2c];
@@ -384,7 +394,7 @@ void FUN_1803d7b80(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   if (plStackX_8 != (int64_t *)0x0) {
     pplVar4 = &plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
-    FUN_18005e6a0(uVar2,&plStackX_8,0,param_4,uVar3,pplVar4);
+    SystemCore_ErrorHandler(uVar2,&plStackX_8,0,param_4,uVar3,pplVar4);
     plVar1 = *(int64_t **)(param_1 + 0x2070);
     *(uint64_t *)(param_1 + 0x2070) = 0;
     if (plVar1 != (int64_t *)0x0) {
@@ -460,7 +470,7 @@ void FUN_1803d7c00(int64_t param_1,int64_t param_2,int64_t param_3)
                     // WARNING: Subroutine does not return
             memcpy(lVar4 + 0x1d0,*(int64_t *)(param_1 + 0x68) + 0x1f0,0x1a00);
           }
-          FUN_18005ea90(&plStack_98,&lStackX_8);
+          SystemSecurity_Manager(&plStack_98,&lStackX_8);
         }
         uVar5 = (int)uVar6 + 1;
         uVar6 = (uint64_t)uVar5;
@@ -492,7 +502,7 @@ void FUN_1803d7c00(int64_t param_1,int64_t param_2,int64_t param_3)
     *(int64_t **)(apuStack_78[0] + 2) = &lStackX_8;
     *(int64_t ***)(apuStack_78[0] + 4) = &plStack_98;
     *(int64_t **)(apuStack_78[0] + 6) = &lStackX_20;
-    FUN_18015b810(uStack_b8,0,iVar3 * iVar1,1,0xfffffffffffffffe,apuStack_78);
+    SystemCore_DataTransformer(uStack_b8,0,iVar3 * iVar1,1,0xfffffffffffffffe,apuStack_78);
     if (plStack_98 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
@@ -877,12 +887,12 @@ void FUN_1803d82b0(int64_t param_1,int param_2,int param_3,uint64_t param_4)
         uStack_a4 = 0;
         uStack_a0 = 0;
         uStack_9c = 0;
-        FUN_18063ad30(&uStack_148,0,&fStack_188,param_4);
+        UltraHighFreq_DataProcessor1(&uStack_148,0,&fStack_188,param_4);
         cVar21 = FUN_18063c5e0(param_4,&uStack_148);
         param_4 = uStack_190;
         if (cVar21 != '\0') {
           aiStack_198[0] = param_3 + param_2 * 6;
-          FUN_1800571e0(((int64_t)*(int *)(lVar10 + 0x18) * 0x10 +
+          SystemDatabaseProcessor(((int64_t)*(int *)(lVar10 + 0x18) * 0x10 +
                         (int64_t)*(int *)(lVar10 + 0x1c)) * 0x20 + 0x70 + param_1,aiStack_198);
           param_4 = uStack_190;
         }

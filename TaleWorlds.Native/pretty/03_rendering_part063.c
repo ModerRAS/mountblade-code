@@ -1,7 +1,14 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part063.c - 10 个函数
 
@@ -13,7 +20,7 @@ void FUN_18029fab0(int64_t param_1,int32_t param_2,int64_t param_3,uint param_4,
   int64_t *plVar1;
   code *pcVar2;
   
-  FUN_18029fc10(param_1,param_3,param_5,param_6);
+  UltraHighFreq_DatabaseHandler1(param_1,param_3,param_5,param_6);
   if ((param_4 & 1) != 0) {
     plVar1 = *(int64_t **)(param_1 + 0x8400);
     pcVar2 = *(code **)(*plVar1 + 0x38);
@@ -93,8 +100,8 @@ void FUN_18029fb10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_
 
 
 
-// 函数: void FUN_18029fc10(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
-void FUN_18029fc10(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
+// 函数: void UltraHighFreq_DatabaseHandler1(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
+void UltraHighFreq_DatabaseHandler1(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4)
 
 {
   int iVar1;
@@ -105,7 +112,7 @@ void FUN_18029fc10(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t para
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(param_2 + 0x10),0,4,0,
                      auStack_18);
   if (iVar1 < 0) {
-    FUN_180220810(iVar1,&ui_system_data_1768_ptr);
+    SystemCore_Loader(iVar1,&ui_system_data_1768_ptr);
   }
                     // WARNING: Subroutine does not return
   memcpy(auStack_18[0],param_3,param_4);
@@ -486,8 +493,8 @@ void FUN_1803001a0(int64_t param_1)
           *(uint64_t *)(lVar1 + 0xa8) = 0;
         }
         *(uint64_t *)(lVar1 + 0xf0) = 0;
-        FUN_180057830();
-        FUN_180057830();
+        DataTransformer0();
+        DataTransformer0();
         uVar2 = (int)uVar3 + 1;
         uVar3 = (uint64_t)uVar2;
         uVar4 = uVar4 + 0x100;
@@ -677,7 +684,7 @@ void FUN_180300290(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
           uStack_7c = uStack_cc;
           uStack_78 = uVar6;
           uStack_70 = uVar7;
-          FUN_18063b5f0(&uStack_b8,&uStack_d8);
+          SystemSecurityManager(&uStack_b8,&uStack_d8);
           uStack_178 = uStack_b8;
           uStack_174 = uStack_b4;
           uStack_170 = uStack_b0;
@@ -791,7 +798,7 @@ void FUN_1803003aa(void)
         unaff_RBP[-9] = uVar9;
         *(uint64_t *)(unaff_RBP + -8) = uVar10;
         *(uint64_t *)(unaff_RBP + -6) = uVar11;
-        FUN_18063b5f0(unaff_RBP + -4,unaff_RBP + -0xc);
+        SystemSecurityManager(unaff_RBP + -4,unaff_RBP + -0xc);
         uStack0000000000000030 = unaff_RBP[-4];
         uStack0000000000000034 = unaff_RBP[-3];
         uStack0000000000000038 = unaff_RBP[-2];
@@ -909,7 +916,7 @@ void FUN_1803005b0(int64_t param_1)
   else {
     lVar1 = *(int64_t *)(param_1 + 0x28);
     if ((lVar1 != 0) && ((*(byte *)(lVar1 + 0xa8) & 1) == 0)) {
-      FUN_1802fac00(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000);
+      SystemCore_FileSystem(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000);
     }
     if ((*(byte *)(param_1 + 0xa8) & 1) != 0) {
       return;
@@ -948,7 +955,7 @@ void FUN_180300650(int64_t param_1,int64_t param_2)
      render_system_config_config == -1)) {
     _Mtx_init_in_situ(0x180d49680,2);
     FUN_1808fc820(FUN_180941da0);
-    FUN_1808fcb30(&system_ptr_9678);
+    SystemCore_StateController(&system_ptr_9678);
   }
   if (*(int64_t *)(param_1 + 0x28) == 0) {
     if (param_2 == 0) goto LAB_18030083c;

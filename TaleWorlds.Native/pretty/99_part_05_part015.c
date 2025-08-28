@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -318,7 +322,7 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
     System_DataHandler(&puStack_88,&processed_var_9928_ptr);
   }
   if (1 < iStack_78) {
-    lVar7 = FUN_180629a40(&puStack_88,&puStack_68,0,iStack_78 + -1);
+    lVar7 = NetworkSystem_ProtocolParser(&puStack_88,&puStack_68,0,iStack_78 + -1);
     if (puStack_80 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
@@ -343,7 +347,7 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
     }
     System_DataHandler(plVar2,&processed_var_9920_ptr,puVar15);
   }
-  uVar8 = FUN_180628ca0();
+  uVar8 = MemoryDebugger0();
   SystemCore_ConfigurationHandler0(puVar3,uVar8);
   System_DataHandler(puVar3,&processed_var_9904_ptr,uStackX_18,uVar11);
   *(int *)(param_2 + 0x88) = iVar10;

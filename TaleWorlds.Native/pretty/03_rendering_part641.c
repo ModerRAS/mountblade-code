@@ -1,3 +1,13 @@
+/* FUN_函数别名定义 */
+#define DataValidator_CheckIntegrity DataValidator_CheckIntegrity  // DataValidator_CheckIntegrity 的语义化别名
+/* NetworkSystem_ProtocolParser - RenderingSystem_StringParser */
+#define RenderingSystem_StringParser NetworkSystem_ProtocolParser
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -102,7 +112,7 @@ void FUN_1806288c0(int64_t param_1,int param_2,int64_t param_3)
   int64_t lStack_28;
   int iStack_20;
   
-  FUN_180629a40(param_1,&puStack_30,param_2,*(int32_t *)(param_1 + 0x10),0xfffffffffffffffe);
+  RenderingSystem_StringParser(param_1,&puStack_30,param_2,*(int32_t *)(param_1 + 0x10),0xfffffffffffffffe);
   *(int *)(param_1 + 0x10) = param_2;
   if (0 < *(int *)(param_3 + 0x10)) {
     CoreEngineDataBufferProcessor(param_1,param_2 + *(int *)(param_3 + 0x10));
@@ -136,7 +146,7 @@ void FUN_1806289a0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   int64_t lStack_28;
   int iStack_20;
   
-  FUN_180629a40(param_1,&puStack_30,param_3,*(int32_t *)(param_1 + 0x10),0xfffffffffffffffe);
+  RenderingSystem_StringParser(param_1,&puStack_30,param_3,*(int32_t *)(param_1 + 0x10),0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x10) = 0;
   if (0 < iStack_20) {
     CoreEngineDataBufferProcessor(param_1,iStack_20);
@@ -191,7 +201,7 @@ void FUN_180628a40(int64_t param_1)
       lVar2 = lVar2 + -1;
     } while (-1 < lVar2);
   }
-  FUN_180629a40(param_1,&puStack_30,iVar6,uVar5,0xfffffffffffffffe);
+  RenderingSystem_StringParser(param_1,&puStack_30,iVar6,uVar5,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x10) = 0;
   if (0 < iStack_20) {
     CoreEngineDataBufferProcessor(param_1,iStack_20);
@@ -249,7 +259,7 @@ uint64_t FUN_180628ba0(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void * FUN_180628ca0(void)
+void * MemoryDebugger0(void)
 
 {
   if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
@@ -261,7 +271,7 @@ void * FUN_180628ca0(void)
       render_system_config_config = 0;
       render_system_config_config = 0;
       FUN_1808fc820(FUN_1809430e0);
-      FUN_1808fcb30(&system_ptr_a060);
+      SystemCore_StateController(&system_ptr_a060);
       return &system_ptr_a068;
     }
   }
@@ -270,7 +280,7 @@ void * FUN_180628ca0(void)
 
 
 
-int FUN_180628d60(int64_t param_1,int64_t param_2)
+int DataValidator_CheckIntegrity(int64_t param_1,int64_t param_2)
 
 {
   byte *pbVar1;
@@ -463,7 +473,7 @@ void FUN_180629770(void)
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  puVar1 = (uint64_t *)FUN_1808fc418(0x30);
+  puVar1 = (uint64_t *)SystemRenderer(0x30);
   *puVar1 = &processed_var_4776_ptr;
   puVar1[4] = 0;
   puVar1[5] = _guard_check_icall;

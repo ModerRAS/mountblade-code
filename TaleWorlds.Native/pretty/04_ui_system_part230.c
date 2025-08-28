@@ -73,7 +73,7 @@ uint64_t FUN_18079cfc0(int64_t param_1,int param_2)
       *(int32_t *)(plVar7 + 1) = puVar8[1];
       iVar2 = puVar8[-3];
       if ((iVar2 == 3) || (iVar2 == 6)) {
-        iVar2 = FUN_1807681a0(0);
+        iVar2 = RenderingSystem_ShaderCompiler(0);
         pcVar6 = FUN_18079c2e0;
         pcVar4 = FUN_1807f9910;
 LAB_18079d0af:
@@ -83,12 +83,12 @@ LAB_18079d0af:
       }
       else {
         if ((iVar2 == 2) || (iVar2 == 5)) {
-          iVar2 = FUN_1807681a0(0);
+          iVar2 = RenderingSystem_ShaderCompiler(0);
           pcVar6 = FUN_18079bc20;
           pcVar4 = FUN_1807f98c0;
           goto LAB_18079d0af;
         }
-        iVar2 = FUN_1807681a0(0);
+        iVar2 = RenderingSystem_ShaderCompiler(0);
         pcVar6 = FUN_18079b740;
         if (iVar2 != 0) {
           pcVar6 = FUN_1807f9870;
@@ -156,7 +156,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1734);
+      SystemCore_StateController(&system_ptr_1734);
     }
   }
   ui_system_buffer_config = 0x180be3470;
@@ -172,7 +172,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1738);
+      SystemCore_StateController(&system_ptr_1738);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET1,ui_system_buffer_config);
@@ -188,7 +188,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_173c);
+      SystemCore_StateController(&system_ptr_173c);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET2,ui_system_buffer_config);
@@ -204,7 +204,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1740);
+      SystemCore_StateController(&system_ptr_1740);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET3,ui_system_config);
@@ -222,7 +222,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1744);
+      SystemCore_StateController(&system_ptr_1744);
     }
   }
   ui_system_buffer_config = 0x180be3470;
@@ -238,7 +238,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1748);
+      SystemCore_StateController(&system_ptr_1748);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET4,ui_system_buffer_config);
@@ -254,7 +254,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_174c);
+      SystemCore_StateController(&system_ptr_174c);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET5,ui_system_buffer_config);
@@ -270,7 +270,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1750);
+      SystemCore_StateController(&system_ptr_1750);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET6,ui_system_config);
@@ -288,7 +288,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1754);
+      SystemCore_StateController(&system_ptr_1754);
     }
   }
   ui_system_buffer_config = 0x180be3470;
@@ -304,7 +304,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1758);
+      SystemCore_StateController(&system_ptr_1758);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET7,ui_system_buffer_config);
@@ -320,7 +320,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_175c);
+      SystemCore_StateController(&system_ptr_175c);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET8,ui_system_buffer_config);
@@ -336,7 +336,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1760);
+      SystemCore_StateController(&system_ptr_1760);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET9,ui_system_config);
@@ -354,7 +354,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1764);
+      SystemCore_StateController(&system_ptr_1764);
     }
   }
   ui_system_buffer_config = 0x180be3470;
@@ -370,7 +370,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1768);
+      SystemCore_StateController(&system_ptr_1768);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET10,ui_system_buffer_config);
@@ -386,7 +386,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_176c);
+      SystemCore_StateController(&system_ptr_176c);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET11,ui_system_buffer_config);
@@ -402,7 +402,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1770);
+      SystemCore_StateController(&system_ptr_1770);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET12,ui_system_config);
@@ -420,7 +420,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1774);
+      SystemCore_StateController(&system_ptr_1774);
     }
   }
   ui_system_buffer_config = 0x180be3470;
@@ -436,7 +436,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1778);
+      SystemCore_StateController(&system_ptr_1778);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET13,ui_system_buffer_config);
@@ -452,7 +452,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_177c);
+      SystemCore_StateController(&system_ptr_177c);
     }
   }
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET14,ui_system_buffer_config);
@@ -468,7 +468,7 @@ uint64_t FUN_18079d1f0(void)
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
       ui_system_buffer_config = 0;
-      FUN_1808fcb30(&system_ptr_1780);
+      SystemCore_StateController(&system_ptr_1780);
     }
   }
   ui_system_buffer_config = 0x180be3c80;

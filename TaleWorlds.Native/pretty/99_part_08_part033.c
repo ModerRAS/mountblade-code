@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part033.c - 1 个函数
 
 // 函数: void FUN_1805a0c50(int64_t *param_1)
@@ -359,13 +363,13 @@ LAB_1805a0e8e:
             fStack_64 = fVar7;
             fStack_60 = fVar8;
             uStack_5c = uStack_8c;
-            pfVar15 = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(lVar20 + 0x6d8) + 0x8a8) +
+            pfVar15 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(lVar20 + 0x6d8) + 0x8a8) +
                                              0x70,auStack_88,puVar27);
             uStack_14c = 0x7f7fffff;
             fStack_158 = *pfVar15 - fVar6;
             fStack_154 = pfVar15[1] - fVar7;
             fStack_150 = pfVar15[2] - fVar8;
-            FUN_180285b40(&uStack_a8,auStack_b8,&fStack_158);
+            SystemCore_EventHandler(&uStack_a8,auStack_b8,&fStack_158);
             uStack_2b0 = uStack_2b0 & 0xffffff00;
             piStack_2b8 = (int *)CONCAT71(piStack_2b8._1_7_,
                                           *(int *)((int64_t)plStack_270 + 0x3c) == 1);
@@ -419,7 +423,7 @@ LAB_1805a0e8e:
               uStack_d0 = 0xffffffff;
               uStack_bc = 0x3f800000;
               iStack_d4 = iVar18;
-              FUN_1805a4a20(lVar4 + 0x28,uStack_f8,&uStack_148,0);
+              UISystem_InputHandler(lVar4 + 0x28,uStack_f8,&uStack_148,0);
             }
           }
           if ((*(int *)(lVar21 + 0xc20 + lVar16) == 2) &&

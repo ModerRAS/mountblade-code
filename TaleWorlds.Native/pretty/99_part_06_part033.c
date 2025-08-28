@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -295,7 +299,7 @@ static void* system_data_fc60 = NULL;
 #define SystemCleanupFunction CoreEngineMemoryPoolCleaner
 
 /** 系统ID生成器 - 生成系统唯一ID */
-#define SystemIDGenerator FUN_180628ca0
+#define SystemIDGenerator MemoryDebugger0
 
 /** 系统ID设置器 - 设置系统ID */
 #define SystemIDSetter CoreEngineDataTransformer
@@ -304,7 +308,7 @@ static void* system_data_fc60 = NULL;
 #define SystemFunctionCaller FUN_1800f6ad0
 
 /** 系统数据复制器 - 复制系统数据 */
-#define SystemDataCopier FUN_18005d190
+#define SystemDataCopier SystemScheduler
 
 /** 系统配置处理器 - 处理系统配置 */
 #define SystemConfigProcessor SystemInitializer

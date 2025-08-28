@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -562,7 +566,7 @@ void FUN_1802ac200(uint64_t param_1,int64_t *param_2,int64_t param_3)
   uStack_e8 = 1;
   puStack_c8 = &system_state_ptr;
   if (*param_2 == 0) {
-    FUN_180627020(&processed_var_4520_ptr,param_3);
+    SystemCore_Allocator(&processed_var_4520_ptr,param_3);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_108);
@@ -693,7 +697,7 @@ void FUN_1802ac500(float *param_1,float *param_2,uint64_t *param_3)
   *pfVar9 = *param_1 - param_1[4];
   param_2[9] = param_1[1] - param_1[5];
   param_2[10] = param_1[2] - param_1[6];
-  puVar8 = (int32_t *)FUN_1801c24a0();
+  puVar8 = (int32_t *)UtilitiesSystem_CryptoHandler();
   if (extraout_XMM0_Da < 0.0001) {
     pfVar9[0] = 0.0;
     pfVar9[1] = 0.0;
@@ -815,7 +819,7 @@ void FUN_1802ac800(uint64_t *param_1)
     (**(code **)(*plVar3 + 0x38))();
   }
   FUN_1802b7240(plVar1);
-  FUN_180057830();
+  DataTransformer0();
   if ((int64_t *)param_1[0x21] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x21] + 0x38))();
   }

@@ -1,5 +1,27 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
+#define SystemCore_ConfigValidator SystemCore_ConfigValidator
+
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* SystemCore_BackupSystem - RenderingSystem_ConfigProcessor */
+#define RenderingSystem_ConfigProcessor SystemCore_BackupSystem
+
+
+/* NetworkSystem_ProtocolParser - RenderingSystem_StringParser */
+#define RenderingSystem_StringParser NetworkSystem_ProtocolParser
+
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 03_rendering_part037.c - 1 个函数
 
@@ -204,7 +226,7 @@ LAB_1802891fc:
             lVar12 = lVar12 * 2;
             if (lVar12 != 0) goto LAB_1802891fc;
           }
-          puVar13 = (uint64_t *)FUN_180059780(puStack_1f0,puStack_1e8,puVar22);
+          puVar13 = (uint64_t *)SystemCore_Initializer(puStack_1f0,puStack_1e8,puVar22);
           puVar20 = puStack_1e8;
           *puVar13 = &system_state_ptr;
           puVar13[1] = 0;
@@ -349,7 +371,7 @@ LAB_1802899a4:
           lVar12 = lVar12 * 2;
           if (lVar12 != 0) goto LAB_1802899a4;
         }
-        lVar27 = FUN_180059780(puStack_210,puStack_208,puVar13);
+        lVar27 = SystemCore_Initializer(puStack_210,puStack_208,puVar13);
         SystemCore_NetworkHandler0(lVar27,puVar22);
         puVar17 = puStack_208;
         for (puVar22 = puStack_210; puVar22 != puVar17; puVar22 = puVar22 + 4) {
@@ -417,7 +439,7 @@ LAB_1802899a4:
     goto LAB_180289e47;
   }
   plVar1 = (int64_t *)(lStack_128 + 0x138);
-  FUN_180057110(plVar1);
+  SystemCore_ConfigValidator(plVar1);
   uVar21 = uVar21 ^ uVar21 << 0xd;
   uVar21 = uVar21 ^ uVar21 >> 0x11;
   uVar21 = uVar21 ^ uVar21 << 5;
@@ -502,7 +524,7 @@ LAB_180289c37:
       SystemCore_NetworkHandler0();
     }
     else {
-      FUN_180059820(plVar1);
+      RenderingSystem_ConfigProcessor(plVar1);
     }
   }
   uVar21 = uVar21 ^ uVar21 << 0xd;
@@ -567,7 +589,7 @@ LAB_180289e47:
   uVar21 = *(uint *)((int64_t)puVar22 + 0x1c);
   *(float *)(lStack_128 + 0x15c) = (float)system_error_code * 1e-05;
   uStack_220._4_4_ = uVar21;
-  FUN_1800b08e0(system_resource_state,uStack_100,&puStack_238,1);
+  SystemCore_GarbageCollector(system_resource_state,uStack_100,&puStack_238,1);
   uStack_178 = 1;
   puStack_238 = &system_data_buffer_ptr;
   if (puVar10 != (int8_t *)0x0) {
@@ -586,10 +608,10 @@ LAB_180289e47:
   uStack_240 = uStack_240 & 0xffffffff00000000;
   puStack_258 = &system_state_ptr;
   FUN_180058020(&pppppppuStack_1a8);
-  FUN_18005d580(&puStack_210);
-  FUN_18005d580(&puStack_1c8);
-  FUN_18005d580(&puStack_1f0);
-  FUN_180057830(&lStack_120);
+  DataSerializationEngine(&puStack_210);
+  DataSerializationEngine(&puStack_1c8);
+  DataSerializationEngine(&puStack_1f0);
+  DataTransformer0(&lStack_120);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_288);
   while( true ) {
@@ -626,7 +648,7 @@ LAB_1802895f6:
   }
   iVar7 = -1;
 LAB_180289618:
-  FUN_180629a40(puVar22,&puStack_238,uVar31 + 1,iVar7);
+  RenderingSystem_StringParser(puVar22,&puStack_238,uVar31 + 1,iVar7);
   puVar17 = puStack_1c0;
   if (puStack_1c0 < puStack_1b8) {
     ppuStack_170 = (void **)puStack_1c0;
@@ -662,7 +684,7 @@ LAB_1802896e8:
       lVar12 = lVar12 * 2;
       if (lVar12 != 0) goto LAB_1802896e8;
     }
-    lVar27 = FUN_180059780(puStack_1c8,puStack_1c0,puVar13);
+    lVar27 = SystemCore_Initializer(puStack_1c8,puStack_1c0,puVar13);
     SystemCore_NetworkHandler0(lVar27,&puStack_238);
     puVar20 = puStack_1c0;
     for (puVar17 = puStack_1c8; puVar17 != puVar20; puVar17 = puVar17 + 4) {

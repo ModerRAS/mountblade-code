@@ -238,7 +238,7 @@ typedef struct {
 
 // 主要处理函数别名
 #define RenderingSystem_AdvancedDataFlowProcessor FUN_1805610e0
-#define RenderingSystem_DataStreamHandler FUN_180045f60
+#define RenderingSystem_DataStreamHandler SystemManager_Executor
 #define RenderingSystem_StringComparator strcmp
 #define RenderingSystem_MemoryAllocator CoreEngineMemoryPoolReallocator
 #define RenderingSystem_MemoryReallocator CoreEngineMemoryPoolAllocator
@@ -248,7 +248,7 @@ typedef struct {
 
 // 数据处理函数别名
 #define RenderingSystem_DataProcessor FUN_180046400
-#define RenderingSystem_ParameterProcessor FUN_180045f60
+#define RenderingSystem_ParameterProcessor SystemManager_Executor
 
 //============================================================================
 // 核心功能实现

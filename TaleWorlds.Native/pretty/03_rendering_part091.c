@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -158,7 +159,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   depth_stencil_state._4_4_ = 4;
   
   // 配置输入装配器
-  FUN_1800b0a10(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+  SystemCore_ConfigManager(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
   pipeline_config = render_system_data_texture;
   vertex_shader = (code *)&system_state_ptr;
   shader_program = render_context_ptr[0x11];
@@ -234,13 +235,13 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       }
       
       // 执行材质绑定
-      pipeline_config = FUN_180299eb0(render_target, 0, &vertex_shader, padding_buffer);
+      pipeline_config = UIRenderingEngine(render_target, 0, &vertex_shader, padding_buffer);
       pipeline_config = system_message_buffer;
       *(int32_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1d88) =
            *(int32_t *)(render_context_ptr[0x11] + 0x30b0);
       blend_state = powf(0x40000000, *(int32_t *)(render_context_ptr[0x11] + 0x320c));
       *(int32_t *)(*(int64_t *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
-      FUN_18029fc10(*(int64_t *)(pipeline_config + 0x1cd8), *(uint64_t *)(pipeline_config + 0x1c88),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(pipeline_config + 0x1cd8), *(uint64_t *)(pipeline_config + 0x1c88),
                     *(int64_t *)(pipeline_config + 0x1cd8) + 0x1be0, 0x230);
       pipeline_config = *(int64_t *)(system_message_buffer + 0x1c88);
       state_block = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
@@ -285,7 +286,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       rasterizer_state = 0x10;
       stencil_ref = 0x21;
       depth_stencil_state._4_4_ = 0x10;
-      FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+      SystemCore_ConfigManager(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
       vertex_shader = (code *)&system_state_ptr;
       render_pass = (code **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x48, 8, 3);
       shader_program = domain_shader;
@@ -534,7 +535,7 @@ void RenderingSystem_ObjectProcessor(int64_t render_object)
       blend_state = 0x41;
       state_index = render_state * 7;
       state_block = render_context;
-      resource_ptr = (uint64_t *)FUN_1800b0a10();
+      resource_ptr = (uint64_t *)SystemCore_ConfigManager();
       shader_handle = *resource_ptr;
       *resource_ptr = 0;
       vertex_shader = *(int64_t **)(render_object + 0x1c8);
@@ -928,7 +929,7 @@ void RenderingSystem_DataTransfer(int64_t source_context, int64_t target_context
   if (0 < texture_index) {
     if ((texture_index != -0x1b) && (buffer_size < texture_index + 0x1cU)) {
       user_flag = 0x13;
-      vertex_buffer = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, vertex_buffer, texture_index + 0x1cU, 0x10);
+      vertex_buffer = (uint64_t *)SystemCore_NetworkHandler(system_memory_pool_ptr, vertex_buffer, texture_index + 0x1cU, 0x10);
       constant_buffer = vertex_buffer;
       frame_buffer._0_4_ = CoreEngineSystemCleanup(vertex_buffer);
       texture_index = *(int *)(shader_program + 0x4e8);
@@ -968,7 +969,7 @@ void RenderingSystem_DataTransfer(int64_t source_context, int64_t target_context
   shader_program = *(int64_t *)(source_context + 0x230);
   if (shader_program == 0) {
 LAB_18031eaf0:
-    index_buffer = (uint64_t *)FUN_1800b1230(system_resource_state, &stream_output, &frame_buffer_ptr, &texture_depth);
+    index_buffer = (uint64_t *)SystemInitializer(system_resource_state, &stream_output, &frame_buffer_ptr, &texture_depth);
     texture_handle = *index_buffer;
     *index_buffer = 0;
     compute_shader = *(int64_t **)(source_context + 0x230);

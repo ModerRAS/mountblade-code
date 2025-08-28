@@ -1,3 +1,7 @@
+/* 函数别名定义: MathStatisticsProcessor */
+#define MathStatisticsProcessor MathStatisticsProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part689.c - 9 个函数
@@ -15,7 +19,7 @@ void FUN_18065edd0(void)
   
   do {
     if ((*unaff_RDI != 0) && (unaff_XMM15_Da < unaff_XMM12_Da * *unaff_R14)) {
-      FUN_180403910();
+      MemoryManager_Optimizer();
     }
     unaff_EBX = unaff_EBX + 1;
     unaff_R14 = unaff_R14 + 1;
@@ -66,31 +70,31 @@ void FUN_18065ee60(int64_t param_1,float *param_2,int32_t param_3,int32_t param_
   fVar9 = *param_2;
   fVar10 = param_2[9];
   if (0.0 < fVar10) {
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     fVar11 = *(float *)(lVar5 + 0x14) - *(float *)(lVar5 + 0x1c);
     if (fVar11 < 0.0) {
       fVar11 = fVar11 + 1.0;
     }
     fVar1 = *(float *)(lVar5 + 0xc);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     fVar2 = *(float *)(lVar5 + 0x14);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     param_6._0_4_ = fVar2;
     param_6._4_4_ = fmodf(fVar2 + *(float *)(lVar5 + 0xc),0x3f800000);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     func_0x000180669850(pfVar4,*(int32_t *)(lVar5 + 0xc),&param_6,fVar11 + fVar1,param_4,fVar10);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     fVar11 = *(float *)(lVar5 + 0x18) - *(float *)(lVar5 + 0x20);
     if (fVar11 < 0.0) {
       fVar11 = fVar11 + 1.0;
     }
     fVar1 = *(float *)(lVar5 + 0x10);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     fVar2 = *(float *)(lVar5 + 0x18);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     param_6._0_4_ = fVar2;
     param_6._4_4_ = fmodf(fVar2 + *(float *)(lVar5 + 0x10),0x3f800000);
-    lVar5 = FUN_18065fd40(*(uint64_t *)(param_1 + 0x48));
+    lVar5 = MathStatisticsProcessor0(*(uint64_t *)(param_1 + 0x48));
     func_0x000180669850(pfVar4 + 6,*(int32_t *)(lVar5 + 0x10),&param_6,fVar11 + fVar1,param_4,
                         fVar10);
   }
@@ -105,33 +109,33 @@ void FUN_18065ee60(int64_t param_1,float *param_2,int32_t param_3,int32_t param_
         if (1 < iVar8 - 7U) {
           uVar12 = param_3;
         }
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         fVar10 = *(float *)(lVar5 + 0x14) - *(float *)(lVar5 + 0x1c);
         if (fVar10 < 0.0) {
           fVar10 = fVar10 + 1.0;
         }
         fVar11 = *(float *)(lVar5 + 0xc);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         fVar1 = *(float *)(lVar5 + 0x14);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         param_6._0_4_ = fVar1;
         param_6._4_4_ = fmodf(fVar1 + *(float *)(lVar5 + 0xc),0x3f800000);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         func_0x000180669850(pfVar4,*(int32_t *)(lVar5 + 0xc),&param_6,fVar10 + fVar11,uVar12,
                             fVar9);
         fVar9 = *param_2;
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         fVar10 = *(float *)(lVar5 + 0x18) - *(float *)(lVar5 + 0x20);
         if (fVar10 < 0.0) {
           fVar10 = fVar10 + 1.0;
         }
         fVar11 = *(float *)(lVar5 + 0x10);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         fVar1 = *(float *)(lVar5 + 0x18);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         fStackX_10 = fVar1;
         uStackX_14 = fmodf(fVar1 + *(float *)(lVar5 + 0x10),0x3f800000);
-        lVar5 = FUN_18065fd40(*puVar7);
+        lVar5 = MathStatisticsProcessor0(*puVar7);
         func_0x000180669850(pfVar4 + 6,*(int32_t *)(lVar5 + 0x10),&fStackX_10,fVar10 + fVar11,
                             uVar12,fVar9);
       }
@@ -213,32 +217,32 @@ void FUN_18065f057(void)
       if (1 < iVar7 - 7U) {
         uVar10 = unaff_XMM13_Da;
       }
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fVar9 = *(float *)(lVar4 + 0x14) - *(float *)(lVar4 + 0x1c);
       if (fVar9 < unaff_XMM10_Da) {
         fVar9 = fVar9 + unaff_XMM8_Da;
       }
       fVar8 = *(float *)(lVar4 + 0xc);
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fVar1 = *(float *)(lVar4 + 0x14);
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fStack00000000000000f8 = fVar1;
       uStack00000000000000fc = fmodf(fVar1 + *(float *)(lVar4 + 0xc));
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       func_0x000180669850(extraout_XMM0_Da,*(int32_t *)(lVar4 + 0xc),&stack0x000000f8,
                           fVar9 + fVar8,uVar10);
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fVar9 = *(float *)(lVar4 + 0x18) - *(float *)(lVar4 + 0x20);
       if (fVar9 < unaff_XMM10_Da) {
         fVar9 = fVar9 + unaff_XMM8_Da;
       }
       fVar8 = *(float *)(lVar4 + 0x10);
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fVar1 = *(float *)(lVar4 + 0x18);
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       fStack00000000000000d8 = fVar1;
       uStack00000000000000dc = fmodf(fVar1 + *(float *)(lVar4 + 0x10));
-      lVar4 = FUN_18065fd40(*unaff_RBX);
+      lVar4 = MathStatisticsProcessor0(*unaff_RBX);
       func_0x000180669850(unaff_R15 + 6,*(int32_t *)(lVar4 + 0x10),&stack0x000000d8,fVar9 + fVar8
                           ,uVar10);
     }
@@ -411,11 +415,11 @@ joined_r0x00018065fb15:
       }
       uVar9 = (uint64_t)(uint)fVar6;
       uVar10 = uVar1;
-      FUN_180403910(*param_1,param_3,param_3,fVar8,uVar9,uVar1);
+      MemoryManager_Optimizer(*param_1,param_3,param_3,fVar8,uVar9,uVar1);
       if (*(int64_t *)(param_4 + 0x810) != 0) {
         uVar9 = (uint64_t)(uint)fVar6;
         uVar10 = uVar1;
-        FUN_180403910(param_1[6],param_4);
+        MemoryManager_Optimizer(param_1[6],param_4);
       }
       cVar3 = func_0x000180435420(param_5,0);
       param_3 = uStackX_18;
@@ -455,7 +459,7 @@ LAB_18065fce5:
 
 
 
-uint64_t FUN_18065fd40(int64_t param_1)
+uint64_t MathStatisticsProcessor0(int64_t param_1)
 
 {
   int iVar1;
@@ -536,7 +540,7 @@ LAB_18065fef9:
       if (iVar2 - 2U < 4) {
         uVar4 = param_7;
       }
-      FUN_180403910(*param_1,param_2,param_3,uVar4,fVar3,uVar1);
+      MemoryManager_Optimizer(*param_1,param_2,param_3,uVar4,fVar3,uVar1);
     }
     iVar2 = iVar2 + 1;
     param_1 = param_1 + 1;
@@ -558,11 +562,11 @@ float FUN_18065ffa0(int64_t *param_1,float param_2)
   float fVar5;
   float fVar6;
   
-  lVar2 = FUN_18065cec0(param_1,0);
+  lVar2 = UtilitiesSystem_FormatConverter(param_1,0);
   fVar6 = *(float *)(*param_1 + 0x188);
   if (*(float *)(lVar2 + 8) != 0.0) {
     fVar1 = *(float *)(param_1[1] + 0x188);
-    lVar2 = FUN_18065cec0(param_1,0);
+    lVar2 = UtilitiesSystem_FormatConverter(param_1,0);
     fVar5 = *(float *)(lVar2 + 0xc);
     fVar3 = *(float *)(lVar2 + 0x10);
     fVar4 = fVar5;
@@ -600,7 +604,7 @@ float FUN_18065ffdf(void)
   float unaff_XMM8_Da;
   
   fVar1 = *(float *)(in_RAX + 0x188);
-  lVar2 = FUN_18065cec0();
+  lVar2 = UtilitiesSystem_FormatConverter();
   fVar5 = *(float *)(lVar2 + 0xc);
   fVar3 = *(float *)(lVar2 + 0x10);
   fVar4 = fVar5;
@@ -643,7 +647,7 @@ float FUN_180660070(int64_t param_1,float param_2)
   
   fVar1 = *(float *)(*(int64_t *)(param_1 + 0x10) + 0x188);
   if (0.0 < param_2) {
-    lVar2 = FUN_18065cec0(param_1,2);
+    lVar2 = UtilitiesSystem_FormatConverter(param_1,2);
     fVar4 = *(float *)(lVar2 + 8) / (fVar1 * param_2);
     fVar3 = fVar1 * 0.7;
     if ((fVar1 * 0.7 <= fVar4) && (fVar3 = fVar1 * 1.3, fVar4 <= fVar1 * 1.3)) {

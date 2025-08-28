@@ -1,3 +1,12 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
+#include "SystemDataAdvancedValidator_definition.h"
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -100,7 +109,7 @@ void SystemEventManager(uint64_t *event_system)
           break;
         }
       }
-      FUN_18066c220(param_1 + 10,&plStackX_10,(uint64_t)*(uint *)(param_1 + 8),
+      RenderingShaderProcessor0(param_1 + 10,&plStackX_10,(uint64_t)*(uint *)(param_1 + 8),
                     *(int32_t *)(param_1 + 9),1);
       piVar6 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)((int64_t)param_1 + 0x5c));
       *piVar6 = iVar5;
@@ -156,7 +165,7 @@ LAB_1801571ef:
     (**(code **)(*(int64_t *)param_1[0x3d] + 0x38))();
   }
   plStackX_10 = plVar3;
-  FUN_180057830(plVar3);
+  DataTransformer0(plVar3);
   plStackX_10 = param_1 + 0x28;
   FUN_180048980();
   plStackX_10 = param_1 + 0x24;
@@ -301,7 +310,7 @@ LAB_180157585:
     if (puVar7 != (uint64_t *)0x0) {
       puVar8 = puVar7;
     }
-    FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar8);
+    SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar8);
     puStack_c8 = &system_data_buffer_ptr;
     if (puVar7 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -352,7 +361,7 @@ LAB_180157585:
     *(int8_t *)((int64_t)puStack_c0 + 0x14) = 0;
     uStack_b8 = 0x14;
     uStack_b0._0_4_ = uVar5;
-    FUN_180628380(&puStack_c8,iVar4);
+    RenderingSystem_CameraController(&puStack_c8,iVar4);
     uVar5 = uStack_b8 + 0xe;
     if (uVar5 != 0) {
       uVar6 = uStack_b8 + 0xf;
@@ -376,7 +385,7 @@ LAB_1801577b2:
     *(int16_t *)((int64_t)puVar7 + 0xc) = 0x2065;
     *(int8_t *)((int64_t)puVar7 + 0xe) = 0;
     uStack_b8 = uVar5;
-    FUN_180628380(&puStack_c8,(int)plStackX_8[10]);
+    RenderingSystem_CameraController(&puStack_c8,(int)plStackX_8[10]);
     iVar4 = uStack_b8 + 1;
     if (iVar4 != 0) {
       uVar5 = uStack_b8 + 2;
@@ -400,7 +409,7 @@ LAB_180157862:
       puVar7 = puStack_c0;
     }
     uStack_b8 = iVar4;
-    FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar7);
+    SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar7);
     puStack_c8 = &system_data_buffer_ptr;
     if (puStack_c0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -610,7 +619,7 @@ int64_t * EventHandler(int64_t *event_system, int64_t *handler_result, int event
     *(int16_t *)(puStack_a8 + 5) = 0x22;
     uStack_a0 = 0x15;
     uStack_98._0_4_ = uVar6;
-    FUN_180628380(&puStack_b0,param_3);
+    RenderingSystem_CameraController(&puStack_b0,param_3);
     iVar5 = uStack_a0 + 0x19;
     if (iVar5 != 0) {
       uVar6 = uStack_a0 + 0x1a;
@@ -1001,7 +1010,7 @@ void EventHandlerCleanup(uint64_t event_system, int handler_id)
   *(int8_t *)((int64_t)puStack_58 + 0xe) = 0;
   uStack_50 = 0xe;
   uStack_48._0_4_ = uVar3;
-  FUN_180628380(&puStack_60,param_2);
+  RenderingSystem_CameraController(&puStack_60,param_2);
   iVar8 = uStack_50 + 1;
   if (iVar8 != 0) {
     uVar3 = uStack_50 + 2;
@@ -1025,7 +1034,7 @@ LAB_18015860c:
     puVar6 = puStack_58;
   }
   uStack_50 = iVar8;
-  FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar6);
+  SystemConfigurationManager(system_message_context,0,0x1000000000000,3,puVar6);
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return

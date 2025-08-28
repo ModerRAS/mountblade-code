@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_11_part044.c - 8 个函数
 
 // 函数: void FUN_1807aa611(void)
@@ -284,7 +288,7 @@ uint64_t FUN_1807aa900(uint64_t param_1,int64_t param_2,int param_3)
   int aiStack_14 [3];
   
   iStack_18 = 0;
-  FUN_180768b70(&iStack_18);
+  SystemCore_PerformanceMonitor(&iStack_18);
   auStackX_20[0] = 0;
   uVar2 = FUN_1807ff640(param_1,param_2,param_3,auStackX_20);
   iVar1 = (int)uVar2;
@@ -294,8 +298,8 @@ uint64_t FUN_1807aa900(uint64_t param_1,int64_t param_2,int param_3)
     }
     param_2 = param_2 + (uint64_t)auStackX_20[0];
     param_3 = param_3 - auStackX_20[0];
-    FUN_180768bf0(1);
-    FUN_180768b70(aiStack_14);
+    UIComponent_EventHandler(1);
+    SystemCore_PerformanceMonitor(aiStack_14);
     if (system_system_buffer_config <= aiStack_14[0] - iStack_18) break;
     auStackX_20[0] = 0;
     uVar2 = FUN_1807ff640(param_1,param_2,param_3,auStackX_20);
@@ -333,15 +337,15 @@ uint64_t FUN_1807aa9c0(uint64_t param_1,int8_t *param_2,int param_3)
       iVar6 = 1;
       iStack_38 = 0;
       pcVar4 = acStackX_10;
-      FUN_180768b70(&iStack_38);
+      SystemCore_PerformanceMonitor(&iStack_38);
       auStackX_20[0] = 0;
       uVar2 = FUN_1807ff640(param_1,acStackX_10,1,auStackX_20);
       iVar1 = (int)uVar2;
       while (iVar1 == 0x2d) {
         pcVar4 = pcVar4 + auStackX_20[0];
         iVar6 = iVar6 - auStackX_20[0];
-        FUN_180768bf0(1);
-        FUN_180768b70(aiStack_34);
+        UIComponent_EventHandler(1);
+        SystemCore_PerformanceMonitor(aiStack_34);
         if (system_system_buffer_config <= aiStack_34[0] - iStack_38) {
           return 0x2b;
         }
@@ -386,12 +390,12 @@ uint64_t FUN_1807aa9e9(uint64_t param_1,int8_t *param_2,int param_3)
     do {
       iStackX_20 = unaff_R12D;
       cStack0000000000000068 = (char)unaff_R12D;
-      FUN_180768b70(&iStackX_20);
+      SystemCore_PerformanceMonitor(&iStackX_20);
       uVar2 = FUN_1807ff640();
       iVar1 = (int)uVar2;
       while (iVar1 == 0x2d) {
-        FUN_180768bf0(1);
-        FUN_180768b70(&iStackX_24);
+        UIComponent_EventHandler(1);
+        SystemCore_PerformanceMonitor(&iStackX_24);
         if (system_system_buffer_config <= iStackX_24 - iStackX_20) {
           return 0x2b;
         }

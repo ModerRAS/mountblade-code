@@ -1032,7 +1032,7 @@ void FUN_180382d30(int64_t *param_1,int64_t param_2,uint64_t param_3)
     if ((((cVar2 == '\0') || (*(char *)(lVar4 + 0x2a62) == '\0')) ||
         ((*(byte *)(param_2 + 0x2e8) & 0x10) != 0)) ||
        (cVar2 = (**(code **)(*(int64_t *)*param_1 + 0x78))(), cVar2 == '\0')) {
-      pfVar3 = (float *)FUN_180085020(param_3,auStack_98);
+      pfVar3 = (float *)RenderingSystem_LightSystem(param_3,auStack_98);
       if (((0.001 <= ABS(*(float *)(param_2 + 0x138) - *pfVar3)) ||
           (0.001 <= ABS(*(float *)(param_2 + 0x13c) - pfVar3[1]))) ||
          (0.001 <= ABS(*(float *)(param_2 + 0x140) - pfVar3[2]))) {
@@ -1083,7 +1083,7 @@ void FUN_180382d30(int64_t *param_1,int64_t param_2,uint64_t param_3)
       fStack_64 = fVar10 * fStack_64 + fVar13 + fVar7;
       fStack_60 = fVar10 * fStack_60 + fVar14 + fVar8;
       fStack_5c = fVar10 * fStack_5c + fVar15 + fVar9;
-      FUN_1802ea790(param_2,&fStack_88);
+      NetworkProtocol_Transmitter(param_2,&fStack_88);
       *(byte *)(param_2 + 0x2e8) = *(byte *)(param_2 + 0x2e8) & 0xef;
     }
   }

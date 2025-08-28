@@ -299,8 +299,8 @@ void * FUN_1806470a0(uint64_t param_1,int64_t *param_2)
 
 
 
-// 函数: void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void RenderingSystem_VertexProcessor(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4,
+void RenderingSystem_VertexProcessor(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4,
                   void *param_5)
 
 {
@@ -368,7 +368,7 @@ void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   if (param_5 == (void *)0x0) {
     param_5 = &processed_var_7532_ptr;
   }
-  FUN_1806502b0(FUN_180647850,param_4,param_5,auStack_38);
+  RenderingSystem_ShaderCompiler(RenderingSystem_MaterialManager,param_4,param_5,auStack_38);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_78);
 }
@@ -424,8 +424,8 @@ LAB_180647824:
 
 
 
-// 函数: void FUN_180647850(char *param_1,int64_t param_2)
-void FUN_180647850(char *param_1,int64_t param_2)
+// 函数: void RenderingSystem_MaterialManager(char *param_1,int64_t param_2)
+void RenderingSystem_MaterialManager(char *param_1,int64_t param_2)
 
 {
   char *pcVar1;

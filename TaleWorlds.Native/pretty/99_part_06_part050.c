@@ -386,7 +386,7 @@ LAB_1803d9ee5:
         uStack_15c = 0;
         uStack_14c = 0;
         uStack_13c = 0x3f800000;
-        FUN_180084760(&uStack_178);
+        SystemCore_PerformanceMonitor(&uStack_178);
         uStack_98 = CONCAT44(fVar34 * fStack_134 + fVar32 * fStack_124 + fVar33 * fStack_114 +
                              fStack_104,
                              fVar34 * fStack_138 + fVar32 * fStack_128 + fVar33 * fStack_118 +

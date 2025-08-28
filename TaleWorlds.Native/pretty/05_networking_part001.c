@@ -184,7 +184,7 @@ typedef struct {
 #define NetworkingSystem_Disconnect FUN_1808793e0
 
 /** 网络数据发送器 */
-#define NetworkingSystem_SendData FUN_1808777c0
+#define NetworkingSystem_SendData RenderingSystem_TextureHandler0
 
 /** 网络数据接收器 */
 #define NetworkingSystem_ReceiveData FUN_180877810
@@ -229,7 +229,7 @@ typedef struct {
 #define NetworkingSystem_InitializeManager FUN_1808401c0
 
 /** 网络系统连接管理器 */
-#define NetworkingSystem_ManageConnection FUN_180840270
+#define NetworkingSystem_ManageConnection RenderingSystem_ConfigLoader0
 
 /** 网络系统连接建立管理器 */
 #define NetworkingSystem_EstablishConnection FUN_180840330
@@ -1280,7 +1280,7 @@ uint8_t processed_var_5984;
 uint8_t FUN_180873f80;
 uint8_t processed_var_6824;
 uint8_t FUN_1808793e0;
-uint8_t FUN_1808777c0;
+uint8_t RenderingSystem_TextureHandler0;
 uint8_t processed_var_6608;
 uint8_t FUN_180877810;
 uint8_t FUN_180877f00;

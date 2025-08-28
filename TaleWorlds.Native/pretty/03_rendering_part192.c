@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 /*=============================================================================
  TaleWorlds.Native 渲染系统 - 渲染缓冲区管理模块
  =============================================================================
@@ -134,14 +142,14 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
 #define RenderSystem_FreeRenderResource        CoreEngineMemoryPoolCleaner
 #define RenderSystem_AllocateMemory            CoreEngineMemoryPoolAllocator
 #define RenderSystem_ProcessRenderObject        FUN_18037ae90
-#define RenderSystem_ExecuteRenderCommand      FUN_18005c650
-#define RenderSystem_InitializeRenderContext    FUN_180372430
-#define RenderSystem_CreateRenderState          FUN_18037f020
+#define RenderSystem_ExecuteRenderCommand      SystemCore_SecurityManager
+#define RenderSystem_InitializeRenderContext    SystemCore_SignalHandler
+#define RenderSystem_CreateRenderState          SystemCore_MessageQueueManager
 #define RenderSystem_UpdateRenderStatistics     System_DataHandler
 #define RenderSystem_CleanupRenderData          FUN_18037f790
 #define RenderSystem_LinkRenderResource        SystemNetworkHandler
 #define RenderSystem_FindRenderResource        FUN_180048980
-#define RenderSystem_ReleaseRenderMemory       FUN_18004b790
+#define RenderSystem_ReleaseRenderMemory       SystemCache_Manager
 #define RenderSystem_GetRenderData             CoreEngineDataTransformer
 #define RenderSystem_NextRenderNode            func_0x00018066bd70
 #define RenderSystem_PrevRenderNode            func_0x00018066b9a0

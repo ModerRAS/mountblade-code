@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -150,7 +151,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
           puVar12 = (int32_t *)(*param_2 + 0x330);
         }
         (**(code **)(*param_1 + 0x148))(param_1,puVar12);
-        FUN_180276f30(param_1,(int64_t)param_1 + 0x214,1);
+        SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,1);
         param_2 = plStack_468;
         break;
       case 4:
@@ -242,7 +243,7 @@ code_r0x000180279aee:
                   if (plVar10 != (int64_t *)0x0) {
                     (**(code **)(*plVar10 + 0x28))(plVar10);
                   }
-                  FUN_180076910(lVar13,&plStack_430);
+                  UltraHighFreq_SecurityValidator1(lVar13,&plStack_430);
                   if (plVar10 != (int64_t *)0x0) {
                     (**(code **)(*plVar10 + 0x38))(plVar10);
                   }
@@ -305,7 +306,7 @@ code_r0x000180279aee:
                 }
 code_r0x0001802799ad:
                 if (iVar11 == 0) {
-                  FUN_180076910(lVar13,*(int64_t *)
+                  UltraHighFreq_SecurityValidator1(lVar13,*(int64_t *)
                                         (*(int64_t *)(*plStack_468 + 0x38) + uVar17 * 0x10) + 0x1b8
                                );
                   puStack_418 = &system_state_ptr;

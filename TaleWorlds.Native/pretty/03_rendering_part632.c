@@ -371,7 +371,7 @@ void FUN_18061e100(int64_t param_1,int64_t param_2)
         pfVar6 = (float *)(**(code **)(*plStack_1d8 + 0x90))(plStack_1d8,&fStack_148);
         plVar5 = *(int64_t **)(uVar9 + *(int64_t *)(param_1 + 0x1c0));
         lVar7 = (**(code **)(*plVar5 + 0x40))(plVar5,auStack_128,0);
-        pfVar8 = (float *)FUN_1800fcb90(pfVar6,auStack_10c,lVar7);
+        pfVar8 = (float *)SystemCore_Initializer(pfVar6,auStack_10c,lVar7);
         fVar1 = pfVar6[3];
         fVar13 = pfVar6[1];
         fVar14 = *pfVar6;
@@ -413,7 +413,7 @@ void FUN_18061e100(int64_t param_1,int64_t param_2)
         pfVar6 = (float *)(**(code **)(*plStack_1d0 + 0x90))(plStack_1d0,auStack_128);
         plVar5 = *(int64_t **)(uVar9 + *(int64_t *)(param_1 + 0x1c0));
         lVar7 = (**(code **)(*plVar5 + 0x40))(plVar5,auStack_ec,1);
-        pfVar8 = (float *)FUN_1800fcb90(pfVar6,auStack_fc,lVar7);
+        pfVar8 = (float *)SystemCore_Initializer(pfVar6,auStack_fc,lVar7);
         fVar1 = pfVar6[3];
         fVar13 = pfVar6[1];
         fVar14 = *pfVar6;
@@ -591,7 +591,7 @@ void FUN_18061e13c(int64_t param_1)
                                   (in_stack_00000040,unaff_RBP + -0x30);
       plVar7 = *(int64_t **)(uVar14 + *(int64_t *)(unaff_RSI + 0x1c0));
       lVar9 = (**(code **)(*plVar7 + 0x40))(plVar7,unaff_RBP + -0x10,0);
-      pfVar10 = (float *)FUN_1800fcb90(pfVar8,unaff_RBP + 0xc,lVar9);
+      pfVar10 = (float *)SystemCore_Initializer(pfVar8,unaff_RBP + 0xc,lVar9);
       fVar15 = pfVar8[3];
       fVar20 = pfVar8[1];
       fVar23 = *pfVar8;
@@ -637,7 +637,7 @@ void FUN_18061e13c(int64_t param_1)
                                   (in_stack_00000048,unaff_RBP + -0x10);
       plVar7 = *(int64_t **)(uVar14 + *(int64_t *)(unaff_RSI + 0x1c0));
       lVar9 = (**(code **)(*plVar7 + 0x40))(plVar7,unaff_RBP + 0x2c,1);
-      pfVar10 = (float *)FUN_1800fcb90(pfVar8,unaff_RBP + 0x1c,lVar9);
+      pfVar10 = (float *)SystemCore_Initializer(pfVar8,unaff_RBP + 0x1c,lVar9);
       fVar15 = pfVar8[3];
       fVar20 = pfVar8[1];
       fVar23 = *pfVar8;

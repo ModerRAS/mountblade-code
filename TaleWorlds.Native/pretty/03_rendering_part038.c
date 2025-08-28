@@ -203,7 +203,7 @@ int64_t FUN_18028a2c0(int64_t param_1,int64_t param_2)
   
   uStack_d8 = 0xfffffffffffffffe;
   lVar11 = FUN_1800daa50();
-  FUN_180094b30(lVar11,&system_data_6c38);
+  SystemCore_NetworkHandler(lVar11,&system_data_6c38);
   plVar3 = *(int64_t **)(system_message_buffer + 0x121e0);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -329,7 +329,7 @@ int64_t FUN_18028a2c0(int64_t param_1,int64_t param_2)
   uStack_64 = uStack_a4;
   uStack_60 = uStack_a0;
   uStack_5c = uStack_9c;
-  FUN_180077750(*(int64_t *)(param_1 + 0xf0),lVar11,&fStack_c8,0,&uStack_148);
+  SystemHealthMonitor(*(int64_t *)(param_1 + 0xf0),lVar11,&fStack_c8,0,&uStack_148);
   LOCK();
   piVar1 = (int *)(param_2 + 0x11a48);
   iVar2 = *piVar1;

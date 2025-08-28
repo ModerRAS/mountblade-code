@@ -161,7 +161,7 @@ void FUN_1802ec3d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
   uint64_t uVar2;
   int64_t *plVar3;
   
-  FUN_1802ed990(param_1,1,param_3,param_4,0xfffffffffffffffe);
+  PhysicsSystem_CharacterController(param_1,1,param_3,param_4,0xfffffffffffffffe);
   uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x240,0x10,3);
   plVar3 = (int64_t *)FUN_1802fb620(uVar2,param_2,param_3);
   if (plVar3 != (int64_t *)0x0) {
@@ -428,7 +428,7 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
       lStack_a0 = lVar10 + 0x200;
       lStack_b0 = lVar10;
       lStack_a8 = lVar10;
-      FUN_1802e8c60(param_1,&lStack_b0);
+      NetworkSystem_SecurityManager(param_1,&lStack_b0);
       iVar21 = 0;
       if (lStack_a8 - lStack_b0 >> 3 != 0) {
         lVar10 = 0;
@@ -497,8 +497,8 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
       *(int32_t *)((int64_t)puVar13 + 0x34) = uVar3;
       *(int32_t *)(puVar13 + 7) = uVar4;
       *(int32_t *)((int64_t)puVar13 + 0x3c) = uVar5;
-      FUN_180254610(param_1);
-      FUN_1802eace0();
+      RenderingSystem_CameraController(param_1);
+      UtilitiesSystem_StringProcessor();
     }
     if ((*(uint *)(param_1 + 0x2ac) & 0x8000) == 0) {
       FUN_1802eced0(param_1,param_2 + 0x110);
@@ -545,8 +545,8 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
           *(int32_t *)((int64_t)plVar14 + 0x34) = uVar3;
           *(int *)(plVar14 + 7) = (int)lVar9;
           *(int32_t *)((int64_t)plVar14 + 0x3c) = uVar4;
-          FUN_180254610(plVar11);
-          FUN_1802eace0();
+          RenderingSystem_CameraController(plVar11);
+          UtilitiesSystem_StringProcessor();
         }
         FUN_1802e8a50(param_1,plVar11,0,1);
         FUN_1802ec6e0(plVar11,lVar10,0,param_4,param_5);
@@ -608,7 +608,7 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
           lStack_a0 = lVar10 + 0x200;
           lStack_b0 = lVar10;
           lStack_a8 = lVar10;
-          FUN_1802e8c60(param_1,&lStack_b0);
+          NetworkSystem_SecurityManager(param_1,&lStack_b0);
           lStack_88 = 0;
           lStack_80 = 0;
           lStack_78 = 0;
@@ -625,7 +625,7 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
           lStack_78 = lVar10 + 0x200;
           lStack_88 = lVar10;
           lStack_80 = lVar10;
-          FUN_1802e8c60(param_2,&lStack_88);
+          NetworkSystem_SecurityManager(param_2,&lStack_88);
           iVar21 = (int)(lStack_a8 - lStack_b0 >> 3) + -1;
           lVar10 = (int64_t)iVar21;
           if (-1 < iVar21) {
@@ -672,7 +672,7 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
   puStack_68 = puStack_58;
   strcpy_s(*(uint64_t *)(lVar9 + 0x28),0x40,puVar16);
   puStack_68 = (uint64_t *)lVar9;
-  lVar10 = FUN_1800590b0(lVar24,acStack_b8,puStack_58);
+  lVar10 = SystemCore_SecurityValidator(lVar24,acStack_b8,puStack_58);
   if (acStack_b8[0] == '\0') {
     *puStack_58 = &system_state_ptr;
                     // WARNING: Subroutine does not return

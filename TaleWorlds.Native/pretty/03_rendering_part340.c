@@ -1,3 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* FUN_1806272a0 - RenderingSystem_ResourceRegistrar */
+#define RenderingSystem_ResourceRegistrar FUN_1806272a0
+
+
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -28,7 +36,7 @@ void FUN_18044baf0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         if (*(void **)(param_1 + 0x1f8) != (void *)0x0) {
           puVar3 = *(void **)(param_1 + 0x1f8);
         }
-        FUN_1806272a0(&memory_allocator_32_ptr,puVar3,puVar4,param_4,0,0xfffffffffffffffe);
+        RenderingSystem_ResourceRegistrar(&memory_allocator_32_ptr,puVar3,puVar4,param_4,0,0xfffffffffffffffe);
       }
       else {
         (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -192,7 +200,7 @@ void FUN_18044be30(int64_t param_1)
         plVar1[0x3f] = 0;
         plVar1[0x40] = 0;
         *(int32_t *)(plVar1 + 0x41) = 0;
-        FUN_180079520(plVar1);
+        SystemInitializer(plVar1);
       }
       else {
         (**(code **)(*plVar1 + 0x28))();
@@ -227,21 +235,21 @@ void FUN_18044be30(int64_t param_1)
         uStack_48 = 0x101;
         if ((plVar1 != (int64_t *)0x0) && (plVar2 != (int64_t *)0x0)) {
           if (cStack_46 != '\0') {
-            FUN_180075b70();
+            SystemConfig_Manager();
           }
-          FUN_18007f6a0(auStack_68);
+          SystemSecurityManager(auStack_68);
           if ((char)uStack_48 != '\0') {
-            FUN_180079520(plVar1);
+            SystemInitializer(plVar1);
           }
           if (uStack_48._1_1_ != '\0') {
-            FUN_180079520(plVar1);
+            SystemInitializer(plVar1);
           }
           plStack_70 = (int64_t *)0x0;
           if (plVar2 != (int64_t *)0x0) {
             (**(code **)(*plVar2 + 0x38))();
           }
         }
-        FUN_18007f6a0(auStack_68);
+        SystemSecurityManager(auStack_68);
         if (plStack_50 != (int64_t *)0x0) {
           (**(code **)(*plStack_50 + 0x38))();
         }
@@ -384,7 +392,7 @@ void FUN_18044c190(int64_t param_1,int64_t *param_2,int64_t param_3)
         if (param_2 != (int64_t *)0x0) {
           (**(code **)(*param_2 + 0x28))(param_2);
         }
-        FUN_180076910(lVar5,&plStack_88);
+        UltraHighFreq_SecurityValidator1(lVar5,&plStack_88);
         if (param_2 != (int64_t *)0x0) {
           (**(code **)(*param_2 + 0x38))(param_2);
         }
@@ -539,7 +547,7 @@ void FUN_18044c840(int32_t param_1,int64_t param_2)
   plStackX_10 = plVar4;
   (**(code **)(*plVar4 + 0x28))(plVar4);
   (*pcVar3)(puVar2,&plStackX_10);
-  FUN_18020f150(*(uint64_t *)(lVar1 + 0x140));
+  CoreEngine_SystemInitializer(*(uint64_t *)(lVar1 + 0x140));
                     // WARNING: Could not recover jumptable at 0x00018044c92e. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar4 + 0x38))(plVar4);
@@ -573,7 +581,7 @@ void FUN_18044c9c0(float param_1,float param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_9840_ptr,*(int *)(pcVar1 + 4),*(int32_t *)(pcVar1 + 8),iVar3
+  SystemParameterHandler(system_message_context,&processed_var_9840_ptr,*(int *)(pcVar1 + 4),*(int32_t *)(pcVar1 + 8),iVar3
                 ,iVar2);
 }
 
@@ -631,7 +639,7 @@ FUN_18044cc30(uint64_t *param_1,int32_t param_2,uint64_t param_3,int8_t param_4)
   
   FUN_1800c1750(param_1,&plStackX_18,param_2,param_4,0);
   if (plStackX_18 == (int64_t *)0x0) {
-    FUN_180627020(&memory_allocator_336_ptr,param_2);
+    SystemCore_Allocator(&memory_allocator_336_ptr,param_2);
     *param_1 = 0;
   }
   else {
@@ -763,7 +771,7 @@ FUN_18044ce10(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int64_t *param
       (**(code **)(*plStackX_8 + 0x28))();
     }
     pplStack_18 = &plStack_28;
-    FUN_1802edcd0(param_3,plStack_28,1);
+    PhysicsSystem_TerrainCollider(param_3,plStack_28,1);
     if (plStack_28 != (int64_t *)0x0) {
       (**(code **)(*plStack_28 + 0x38))();
     }

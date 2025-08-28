@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part623.c - 13 个函数
 
 // 函数: void FUN_18061346a(uint64_t param_1,int param_2,int param_3,int64_t *param_4)
@@ -162,7 +166,7 @@ void FUN_1806136e0(int64_t param_1,int param_2,int64_t param_3,int32_t param_4,f
       iVar1 = *(int *)(param_3 + lVar2 * 4);
       if ((param_1 == 0) || (iVar1 < 0)) {
         puStack_278 = &processed_var_8960_ptr;
-        FUN_180626eb0(auStack_268,0x200,&ui_system_data_1912_ptr);
+        SystemCore_CacheManager(auStack_268,0x200,&ui_system_data_1912_ptr);
         FUN_18061c7a0(auStack_268);
       }
       else if (0.0 <= param_5) {
@@ -217,7 +221,7 @@ void FUN_18061370d(int64_t param_1,int param_2,int64_t param_3,int32_t param_4)
   do {
     iVar1 = *(int *)(param_3 + lVar2 * 4);
     if ((param_1 == 0) || (iVar1 < 0)) {
-      FUN_180626eb0(&stack0x00000030,0x200,&ui_system_data_1912_ptr,(int64_t)iVar1,&processed_var_8960_ptr);
+      SystemCore_CacheManager(&stack0x00000030,0x200,&ui_system_data_1912_ptr,(int64_t)iVar1,&processed_var_8960_ptr);
       FUN_18061c7a0(&stack0x00000030);
     }
     else if (0.0 <= in_stack_000002c0) {
@@ -322,7 +326,7 @@ void FUN_180613860(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2e8;
   if (param_5 < 1) {
-    FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8848_ptr);
+    SystemCore_CacheManager(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8848_ptr);
     FUN_18061c7a0(auStack_218);
     uVar1 = param_4[1];
     uVar2 = param_4[2];

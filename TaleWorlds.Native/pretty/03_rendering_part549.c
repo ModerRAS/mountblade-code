@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -372,7 +373,7 @@ FUN_18056e468:
       bVar8 = true;
       if ((ushort)auStackX_18[0] < 0x17) {
         uVar7 = (uint64_t)(auStackX_18[0] & 0xffff);
-        FUN_1800623b0(system_message_context,0,0x40000000000,0xc,&processed_var_8832_ptr,
+        SystemConfigurationManager(system_message_context,0,0x40000000000,0xc,&processed_var_8832_ptr,
                       *(uint64_t *)(&processed_var_8272_ptr + uVar7 * 8));
         uVar4 = 0x180c95bf8;
         lVar1 = *(int64_t *)(uVar7 * 0x10 + 0x180c95bf8);
@@ -619,7 +620,7 @@ LAB_18056e777:
       if ((bVar6) && (bVar5)) {
         *(uint64_t *)(param_1 + 0x730 + (int64_t)*(int *)(param_1 + 0x72c) * 8) = uStack_628;
         *(int *)(param_1 + 0x72c) = (*(int *)(param_1 + 0x72c) + 1) % 36000;
-        FUN_18005ea90((int64_t *)(param_1 + 0x46c30),&uStack_628);
+        SystemSecurity_Manager((int64_t *)(param_1 + 0x46c30),&uStack_628);
         iVar8 = (int)(*(int64_t *)(param_1 + 0x46c38) - *(int64_t *)(param_1 + 0x46c30) >> 3);
         iVar14 = 0xff;
         if (iVar8 < 0xff) {

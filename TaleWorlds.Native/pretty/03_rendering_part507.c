@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -326,7 +330,7 @@ LAB_18053afe4:
               }
             }
           }
-          iVar1 = FUN_18055b2f0(&system_counter_6150,&puStack_180);
+          iVar1 = SystemFile_Manager(&system_counter_6150,&puStack_180);
           if (iVar1 == -1) {
             puVar12 = &system_buffer_ptr;
             if (puStack_178 != (void *)0x0) {
@@ -420,7 +424,7 @@ LAB_18053b194:
               iVar3 = -1;
               if ((iStack_f8 != 0) && (iVar3 = FUN_180371910(param_3,&puStack_108), iVar3 == -1)) {
                 iVar3 = (int)((param_3[1] - *param_3) / 0x58);
-                FUN_1800b8370(param_3,&puStack_108);
+                SystemCore_ConfigManager(param_3,&puStack_108);
               }
               *(uint64_t *)(param_1[0xf] + (int64_t)iVar1 * 8) = CONCAT44(iVar3,iVar2);
               puStack_108 = &system_state_ptr;
@@ -713,7 +717,7 @@ LAB_18053b7c3:
               break;
             }
           }
-          FUN_18066c220(&uStack_58,&uStackX_18,uStack_68 & 0xffffffff,uStack_60 & 0xffffffff,1);
+          RenderingShaderProcessor0(&uStack_58,&uStackX_18,uStack_68 & 0xffffffff,uStack_60 & 0xffffffff,1);
           piVar6 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,(int8_t)uStack_4c);
           *piVar6 = *(int *)(lVar13 + 4 + uVar14 * 8);
           piVar6[1] = 0;

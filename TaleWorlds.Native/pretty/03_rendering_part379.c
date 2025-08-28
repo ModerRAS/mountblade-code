@@ -1,3 +1,7 @@
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -97,7 +101,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
     uStack_218 = 0;
     uStack_210 = 0xf;
     uStack_228 = 0;
-    FUN_1800671b0(&uStack_228,&memory_allocator_3272_ptr,0x2a);
+    MathCoreCalculator0(&uStack_228,&memory_allocator_3272_ptr,0x2a);
     FUN_180472d60(param_2,param_1,&uStack_228,0);
     uStack_468 = 1;
     if (0xf < uStack_210) {
@@ -124,7 +128,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
       uStack_178 = 0;
       uStack_170 = 0xf;
       uStack_188 = 0;
-      FUN_1800671b0(&uStack_188,&memory_allocator_3808_ptr,0xc);
+      MathCoreCalculator0(&uStack_188,&memory_allocator_3808_ptr,0xc);
       FUN_180472d60(param_2,param_1,&uStack_188,0);
       uStack_468 = 1;
       if (0xf < uStack_170) {
@@ -167,7 +171,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
         uStack_1f8 = 0;
         uStack_1f0 = 0xf;
         cStack_208 = cVar5;
-        FUN_1800671b0(&cStack_208,&memory_allocator_3824_ptr,0x24);
+        MathCoreCalculator0(&cStack_208,&memory_allocator_3824_ptr,0x24);
         FUN_180472d60(param_2,param_1,&cStack_208,0);
         uStack_468 = 1;
         if (0xf < uStack_1f0) {
@@ -272,7 +276,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
             uStack_198 = 0;
             uStack_190 = 0xf;
             uStack_1a8 = 0;
-            FUN_1800671b0(&uStack_1a8,&memory_allocator_3824_ptr,0x24);
+            MathCoreCalculator0(&uStack_1a8,&memory_allocator_3824_ptr,0x24);
             FUN_180472d60(param_2,param_1,&uStack_1a8,0);
             uStack_468 = uVar11 | 1;
             if (0xf < uStack_190) {
@@ -359,7 +363,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
             uStack_1b8 = 0;
             uStack_1b0 = 0xf;
             uStack_1c8 = 0;
-            FUN_1800671b0(&uStack_1c8,&memory_allocator_3632_ptr,0xc);
+            MathCoreCalculator0(&uStack_1c8,&memory_allocator_3632_ptr,0xc);
             FUN_180472d60(param_2,param_1,&uStack_1c8,0);
             uStack_468 = uVar11 | 1;
             if (0xf < uStack_1b0) {
@@ -512,7 +516,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
             uStack_1d8 = 0;
             uStack_1d0 = 0xf;
             uStack_1e8 = 0;
-            FUN_1800671b0(&uStack_1e8,&memory_allocator_3648_ptr,0x13);
+            MathCoreCalculator0(&uStack_1e8,&memory_allocator_3648_ptr,0x13);
             FUN_180472d60(param_2,param_1,&uStack_1e8,0);
             uStack_468 = uVar11 | 1;
             if (0xf < uStack_1d0) {
@@ -602,7 +606,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
         uStack_158 = 0;
         uStack_150 = 0xf;
         auStack_168[0] = 0;
-        FUN_1800671b0(auStack_168,&memory_allocator_3648_ptr,0x13);
+        MathCoreCalculator0(auStack_168,&memory_allocator_3648_ptr,0x13);
         FUN_180472d60(param_2,param_1,auStack_168,0);
         uStack_468 = uVar11 | 1;
         SystemResourceAllocator(auStack_168);
@@ -732,7 +736,7 @@ LAB_180475d76:
     uStack_50 = 0;
     uStack_48 = 0xf;
     uStack_60 = 0;
-    FUN_1800671b0(&uStack_60,&memory_allocator_3672_ptr,0x1c);
+    MathCoreCalculator0(&uStack_60,&memory_allocator_3672_ptr,0x1c);
     FUN_180472d60(param_2,param_1,&uStack_60,0);
     uStack_e8 = 1;
     if (0xf < uStack_48) {
@@ -757,7 +761,7 @@ LAB_180475d76:
     uStack_70 = 0;
     uStack_68 = 0xf;
     uStack_80 = 0;
-    FUN_1800671b0(&uStack_80,&memory_allocator_3704_ptr,0x28);
+    MathCoreCalculator0(&uStack_80,&memory_allocator_3704_ptr,0x28);
     FUN_180472d60(param_2,param_1,&uStack_80,0);
     uStack_e8 = 1;
     if (0xf < uStack_68) {
@@ -781,7 +785,7 @@ LAB_180475d76:
   else {
     *(char **)(param_2 + 8) = pcStack_e0;
     pplStack_98 = &plStack_d8;
-    plStack_d0 = (int64_t *)FUN_1808fc418(0x20);
+    plStack_d0 = (int64_t *)SystemRenderer(0x20);
     *(int32_t *)(plStack_d0 + 1) = 1;
     *(int32_t *)((int64_t)plStack_d0 + 0xc) = 1;
     *plStack_d0 = (int64_t)&processed_var_4104_ptr;

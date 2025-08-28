@@ -27,7 +27,7 @@ void FUN_1807426bf(void)
   bool bVar14;
   uint64_t in_stack_00000160;
   
-  if ((in_ZF) && (iVar1 = FUN_1807682e0(unaff_RBX + 0x6f,1), iVar1 != 0)) {
+  if ((in_ZF) && (iVar1 = SystemCore_DataProcessor(unaff_RBX + 0x6f,1), iVar1 != 0)) {
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
   }

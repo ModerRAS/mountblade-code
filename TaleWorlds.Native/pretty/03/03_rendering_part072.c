@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -652,7 +657,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
   *(int8_t *)(resource_table + 1) = 1;
   *(int8_t *)(*(int64_t *)(resource_table + 0x180) + resource_ptr * 0x30) = 0;
   // 调用资源管理函数
-  FUN_1800571e0(resource_table + 0xe0, resource_indices, resource_config, resource_options, temp_var4, lock_handle, 1);
+  SystemDatabaseProcessor(resource_table + 0xe0, resource_indices, resource_config, resource_options, temp_var4, lock_handle, 1);
   *(int32_t *)(resource_context + 2) = 0xffffffff;
   // 释放独占锁
   ReleaseSRWLockExclusive(lock_address);

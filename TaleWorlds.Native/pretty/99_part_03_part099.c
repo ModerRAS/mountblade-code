@@ -105,7 +105,7 @@ FUN_180254e90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
       uRam0000000180d48d88 = 0;
       system_system_config_memory = 0;
       uRam0000000180d48d98 = 0;
-      FUN_1808fcb30(&system_ptr_8da4,0,param_3,param_4,uVar1);
+      SystemCore_StateController(&system_ptr_8da4,0,param_3,param_4,uVar1);
       return &system_ptr_8d70;
     }
   }
@@ -463,7 +463,7 @@ LAB_1802552ca:
     *(int8_t *)(lVar28 + 0x48) = 3;
     if (*(int *)(lVar28 + 0x2c) < (int)uVar32) {
       *(uint *)(lVar28 + 0x2c) = uVar32;
-      FUN_1800846d0(lVar28 + 0x28);
+      CoreEngine_DataProcessor(lVar28 + 0x28);
       uStack_198 = *(uint *)(lVar28 + 0x28);
     }
                     // WARNING: Subroutine does not return
@@ -577,7 +577,7 @@ void FUN_180255880(uint64_t param_1,int64_t *param_2)
       pppppplVar3 = (int64_t ******)ppppplStackX_18;
     }
     ppppplStackX_18 = (int64_t *****)pppppplVar3;
-    FUN_18005e370(lVar2,&ppppplStackX_18);
+    SystemPerformance_Monitor(lVar2,&ppppplStackX_18);
     if (pppppplVar5 != (int64_t ******)0x0) {
       (*(code *)(*pppppplVar5)[7])(pppppplVar5);
     }
@@ -736,7 +736,7 @@ void FUN_180255b70(uint64_t param_1,int64_t *param_2)
       pppppplVar3 = (int64_t ******)ppppplStackX_18;
     }
     ppppplStackX_18 = (int64_t *****)pppppplVar3;
-    FUN_18005e370(lVar2,&ppppplStackX_18);
+    SystemPerformance_Monitor(lVar2,&ppppplStackX_18);
     if (pppppplVar5 != (int64_t ******)0x0) {
       (*(code *)(*pppppplVar5)[7])(pppppplVar5);
     }

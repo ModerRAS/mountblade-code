@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -16,8 +20,8 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   char *pcVar6;
   int *piVar7;
   
-  FUN_18062f990(param_4,param_5,&system_data_4ee4);
-  FUN_18062f990(param_4,param_5,&processed_var_7472_ptr);
+  MemoryDeallocationHandler0(param_4,param_5,&system_data_4ee4);
+  MemoryDeallocationHandler0(param_4,param_5,&processed_var_7472_ptr);
   FUN_180416900(param_1 + 8,&processed_var_5648_ptr,param_4,param_5);
   if (*(int64_t *)(param_1 + 0x40) != *(int64_t *)(param_1 + 0x48)) {
     puVar3 = (uint64_t *)DataPipelineManager(param_4 + 0x60,0x60);
@@ -36,8 +40,8 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
     puVar3[2] = pcVar6 + -0x180a180f3;
     SystemAllocationProcessor(param_4,puVar3,&system_data_3a84,&processed_var_6808_ptr);
     FUN_180630c80(param_4,puVar3,&rendering_buffer_2256_ptr,1);
-    FUN_18062f990(param_4,puVar3,&system_data_b1c0);
-    FUN_18062f990(param_4,puVar3,&processed_var_5184_ptr);
+    MemoryDeallocationHandler0(param_4,puVar3,&system_data_b1c0);
+    MemoryDeallocationHandler0(param_4,puVar3,&processed_var_5184_ptr);
     if (*(int64_t *)(param_5 + 0x30) == 0) {
       puVar3[10] = 0;
       *(uint64_t **)(param_5 + 0x30) = puVar3;
@@ -93,9 +97,9 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
         } while (*pcVar4 != '\0');
         *puVar3 = &processed_var_5272_ptr;
         puVar3[2] = pcVar6 + -0x180a18107;
-        FUN_18062f990(param_4,puVar3,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
-        FUN_18062f990(param_4,puVar3,&memory_allocator_3692_ptr);
-        FUN_1806307a0(param_4,puVar3,&processed_var_5264_ptr,&stack0x00000008);
+        MemoryDeallocationHandler0(param_4,puVar3,&processed_var_5276_ptr,(float)iVar1 * 0.03448276);
+        MemoryDeallocationHandler0(param_4,puVar3,&memory_allocator_3692_ptr);
+        NetworkSystem_PacketProcessor(param_4,puVar3,&processed_var_5264_ptr,&stack0x00000008);
         if (puVar5[6] == 0) {
           puVar3[10] = 0;
           puVar5[6] = puVar3;
@@ -121,9 +125,9 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
         } while (*pcVar4 != '\0');
         *puVar3 = &processed_var_5272_ptr;
         puVar3[2] = pcVar6 + -0x180a18107;
-        FUN_18062f990(param_4,puVar3,&processed_var_5276_ptr,(float)iVar2 * 0.03448276);
-        FUN_18062f990(param_4,puVar3,&memory_allocator_3692_ptr);
-        FUN_1806307a0(param_4,puVar3,&processed_var_5264_ptr,&stack0x00000008);
+        MemoryDeallocationHandler0(param_4,puVar3,&processed_var_5276_ptr,(float)iVar2 * 0.03448276);
+        MemoryDeallocationHandler0(param_4,puVar3,&memory_allocator_3692_ptr);
+        NetworkSystem_PacketProcessor(param_4,puVar3,&processed_var_5264_ptr,&stack0x00000008);
         if (puVar5[6] == 0) {
           puVar3[10] = 0;
           puVar5[6] = puVar3;
@@ -147,12 +151,12 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
 
 
 
-// 函数: void FUN_1802bf620(int32_t *param_1,uint64_t param_2,uint64_t param_3)
-void FUN_1802bf620(int32_t *param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void NetworkSystem_ConnectionManager0(int32_t *param_1,uint64_t param_2,uint64_t param_3)
+void NetworkSystem_ConnectionManager0(int32_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  FUN_18062f990(param_2,param_3,&system_data_4ee4,param_1[1]);
-  FUN_18062f990(param_2,param_3,&processed_var_7472_ptr,*param_1);
+  MemoryDeallocationHandler0(param_2,param_3,&system_data_4ee4,param_1[1]);
+  MemoryDeallocationHandler0(param_2,param_3,&processed_var_7472_ptr,*param_1);
   return;
 }
 

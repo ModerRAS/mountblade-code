@@ -1,10 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 03_rendering_part646.c - 7 个函数
 
-// 函数: void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param_4)
-void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param_4)
+// 函数: void NetworkSystem_PacketProcessor(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param_4)
+void NetworkSystem_PacketProcessor(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param_4)
 
 {
   char cVar1;
@@ -52,7 +53,7 @@ void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param
       pcVar8 = pcVar8 + -1;
     } while (pcVar8 != (char *)0x0);
   }
-  lVar5 = FUN_1800a02a0(param_2,param_3);
+  lVar5 = SystemCore_DataManager(param_2,param_3);
   if (lVar5 == 0) {
     cVar1 = *param_3;
     pcVar8 = param_3;
@@ -87,7 +88,7 @@ void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param
     }
   }
   else {
-    lVar5 = FUN_1800a02a0(param_2,param_3);
+    lVar5 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar4;
     pcVar8 = pcVar4;
     while (cVar1 != '\0') {
@@ -142,7 +143,7 @@ void FUN_180630980(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t *par
       pcVar5 = pcVar5 + -1;
     } while (pcVar5 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,&memory_allocator_3692_ptr);
+  lVar3 = SystemCore_DataManager(param_2,&memory_allocator_3692_ptr);
   if (lVar3 == 0) {
     pcVar5 = "value";
     do {
@@ -176,7 +177,7 @@ void FUN_180630980(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t *par
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,&memory_allocator_3692_ptr);
+    lVar3 = SystemCore_DataManager(param_2,&memory_allocator_3692_ptr);
     cVar1 = *pcVar2;
     pcVar5 = pcVar2;
     while (cVar1 != '\0') {
@@ -223,7 +224,7 @@ void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,cha
       pcVar6 = pcVar6 + -1;
     } while (pcVar6 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     pcVar6 = param_3;
     if (*param_3 != (char)lVar3) {
@@ -258,7 +259,7 @@ void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,cha
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     cVar1 = *pcVar2;
     pcVar6 = pcVar2;
     while (cVar1 != '\0') {
@@ -310,7 +311,7 @@ void FUN_180630c80(int64_t param_1,int64_t param_2,char *param_3)
       pcVar5 = pcVar5 + -1;
     } while (pcVar5 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar5 = param_3;
@@ -345,7 +346,7 @@ void FUN_180630c80(int64_t param_1,int64_t param_2,char *param_3)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     pcVar5 = acStack_78;
     while (acStack_78[0] != '\0') {
       pcVar5 = pcVar5 + 1;
@@ -397,7 +398,7 @@ void FUN_180630e10(int64_t param_1,int64_t param_2,char *param_3)
       pcVar5 = pcVar5 + -1;
     } while (pcVar5 != (char *)0x0);
   }
-  lVar3 = FUN_1800a02a0(param_2,param_3);
+  lVar3 = SystemCore_DataManager(param_2,param_3);
   if (lVar3 == 0) {
     cVar1 = *param_3;
     pcVar5 = param_3;
@@ -432,7 +433,7 @@ void FUN_180630e10(int64_t param_1,int64_t param_2,char *param_3)
     }
   }
   else {
-    lVar3 = FUN_1800a02a0(param_2,param_3);
+    lVar3 = SystemCore_DataManager(param_2,param_3);
     pcVar5 = acStack_78;
     while (acStack_78[0] != '\0') {
       pcVar5 = pcVar5 + 1;
@@ -453,7 +454,7 @@ int64_t FUN_180630fb0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   int64_t lVar1;
   int64_t lVar2;
   
-  lVar1 = FUN_1800a02a0();
+  lVar1 = SystemCore_DataManager();
   if (lVar1 != 0) {
     lVar2 = 0x180d48d24;
     if (*(int64_t *)(lVar1 + 8) != 0) {
@@ -496,7 +497,7 @@ void FUN_180630ff5(void)
 
 // WARNING: Type propagation algorithm not settling
 
-int64_t FUN_180631000(uint64_t param_1,uint64_t param_2,int8_t *param_3)
+int64_t UltraHighFreq_CacheSystem1(uint64_t param_1,uint64_t param_2,int8_t *param_3)
 
 {
   char cVar1;
@@ -513,7 +514,7 @@ int64_t FUN_180631000(uint64_t param_1,uint64_t param_2,int8_t *param_3)
   uint uStack_20;
   
   uVar9 = 0xfffffffffffffffe;
-  lVar2 = FUN_1800a02a0();
+  lVar2 = SystemCore_DataManager();
   uVar5 = 0;
   if (lVar2 == 0) {
     return 0;
@@ -626,7 +627,7 @@ int64_t FUN_180631290(void)
   int64_t lVar1;
   int64_t lVar2;
   
-  lVar1 = FUN_1800a02a0();
+  lVar1 = SystemCore_DataManager();
   if (lVar1 != 0) {
     lVar2 = 0x180d48d24;
     if (*(int64_t *)(lVar1 + 8) != 0) {
@@ -647,7 +648,7 @@ char * FUN_180631330(uint64_t param_1,uint64_t param_2,int64_t param_3)
   void *puVar3;
   char *pcVar4;
   
-  lVar1 = FUN_1800a02a0();
+  lVar1 = SystemCore_DataManager();
   pcVar4 = (char *)0x0;
   if (lVar1 != 0) {
     pcVar4 = (char *)0x180d48d24;
@@ -677,7 +678,7 @@ int64_t FUN_1806313c0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   int64_t lVar1;
   int64_t lVar2;
   
-  lVar1 = FUN_1800a02a0();
+  lVar1 = SystemCore_DataManager();
   lVar2 = 0;
   if (lVar1 != 0) {
     lVar2 = 0x180d48d24;
@@ -745,7 +746,7 @@ void FUN_180631420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   } while (*(char *)(lVar3 + param_1) != '\0');
   uStack_378 = (int32_t)lVar3;
   strcpy_s(auStack_370,0x100,param_1);
-  uVar4 = FUN_180624440(apuStack_268,&puStack_388);
+  uVar4 = SystemCore_EncryptionEngine(apuStack_268,&puStack_388);
   SystemCore_EncryptionEngine0(&puStack_3b0,uVar4);
   apuStack_268[0] = &system_state_ptr;
   puStack_388 = &system_state_ptr;

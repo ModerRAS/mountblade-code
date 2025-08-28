@@ -1,3 +1,10 @@
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+#include "fun_aliases_batch.txt"
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part288_sub001_sub001.c - 151 个函数
@@ -727,8 +734,8 @@ uint8_t processed_var_7576;
 
 
 
-// 函数: uint8_t FUN_180647850;
-uint8_t FUN_180647850;
+// 函数: uint8_t RenderingSystem_MaterialManager;
+uint8_t RenderingSystem_MaterialManager;
 uint8_t system_data_8bc8;
 uint8_t system_data_e8c8;
 uint8_t system_data_a090;

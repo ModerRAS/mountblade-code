@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -80,7 +81,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
     iVar13 = (int)((*(int64_t *)(param_1 + 0x10) - *(int64_t *)(param_1 + 8)) / 0x28);
     iVar20 = 0;
     if (0 < iVar13) {
-      FUN_1802c22a0(&uStack_688,&processed_var_9884_ptr);
+      SystemData_Processor(&uStack_688,&processed_var_9884_ptr);
       uStack_660 = 0;
       uStack_65c = 0;
       uStack_668 = 0x100000001;
@@ -191,7 +192,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
     }
     iVar13 = (int)((*(int64_t *)(param_1 + 0x30) - *(int64_t *)(param_1 + 0x28)) / 0x34);
     if (0 < iVar13) {
-      FUN_1802c22a0(&uStack_687,&processed_var_9872_ptr);
+      SystemData_Processor(&uStack_687,&processed_var_9872_ptr);
       *(int8_t *)((int64_t)param_3 + 0x17) = 4;
       uStack_650 = 0;
       uStack_64c = 0;
@@ -326,7 +327,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
              (*(int64_t *)(param_1 + 0x50) - *(int64_t *)(param_1 + 0x48) >> 0x3f);
     iVar13 = (int)(lVar11 >> 3) - (int)(lVar11 >> 0x3f);
     if (0 < iVar13) {
-      FUN_1802c22a0(auStack_686,&processed_var_9860_ptr);
+      SystemData_Processor(auStack_686,&processed_var_9860_ptr);
       *(int16_t *)(param_3 + 1) = 0x101;
       *(int8_t *)((int64_t)param_3 + 0xb) = 1;
       pcStack_6a8 = DataCacheManager;
@@ -455,7 +456,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
       *(float *)(lVar11 + 0xf4) = fVar29;
       *(int32_t *)(lVar11 + 0xf8) = 0;
       *(int32_t *)(lVar11 + 0xfc) = 0;
-      FUN_18029fc10(*(int64_t *)(lVar6 + 0x1cd8),*(uint64_t *)(lVar6 + 0x1ca8),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar6 + 0x1cd8),*(uint64_t *)(lVar6 + 0x1ca8),
                     *(int64_t *)(lVar6 + 0x1cd8) + 0x80,0x80);
       FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8),4);
       lVar11 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -466,7 +467,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
       else {
         lVar6 = FUN_1800bdbb0();
       }
-      if ((lVar6 == 0) || (lVar6 = FUN_18023a940(), lVar6 == 0)) {
+      if ((lVar6 == 0) || (lVar6 = SystemCore_Scheduler(), lVar6 == 0)) {
         lVar6 = 0;
       }
       else if ((*(int64_t *)(lVar6 + 8) == 0) && (*(int64_t *)(lVar6 + 0x10) == 0)) {

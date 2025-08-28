@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #define StatusChecker System_StatusChecker  // 状态检查器
 
 #include "TaleWorlds.Native.Split.h"
@@ -106,7 +107,7 @@ LAB_1805cf0ab:
   if (bVar3) {
 LAB_1805cf433:
     if (((char)unaff_RBX[0x2e4] != '\0') &&
-       (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1)) {
+       (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 1)) {
 LAB_1805cf44a:
       unaff_RBX[0x2e2] = *(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2e3] * 8);
     }
@@ -116,7 +117,7 @@ LAB_1805cf44a:
     lVar10 = unaff_RBX[0x1d];
     if (lVar10 == 0) {
 LAB_1805cf57f:
-      if ((!bVar3) && (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 7)) {
+      if ((!bVar3) && (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 7)) {
         if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
           func_0x0001805d4cd0(unaff_RBX + 1);
         }
@@ -172,10 +173,10 @@ LAB_1805cf6a5:
       lVar10 = *unaff_RBX;
       uVar12 = (uVar12 - 1) % 100;
       bVar2 = 0x32 < uVar12;
-      iVar6 = FUN_1805a0a20(lVar10 + 0x28,bVar2);
+      iVar6 = CoreSystem_OperationHandler(lVar10 + 0x28,bVar2);
       if (iVar6 == -1) {
         bVar2 = uVar12 < 0x33;
-        iVar6 = FUN_1805a0a20(lVar10 + 0x28,bVar2);
+        iVar6 = CoreSystem_OperationHandler(lVar10 + 0x28,bVar2);
         if (iVar6 == -1) goto LAB_1805cf57f;
         if (bVar2) {
           if (!bVar2) {
@@ -206,14 +207,14 @@ LAB_1805cf6b1:
   }
   else {
     if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-      FUN_1805d4440(unaff_RBX + 1);
+      SystemCore_Validator(unaff_RBX + 1);
     }
     if ((*(char *)((int64_t)unaff_RBX + 0xd5) != '\0') ||
-       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1 &&
-        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 2)))) {
+       ((piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 != 1 &&
+        (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 != 2)))) {
 LAB_1805cf23d:
       if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-        FUN_1805d4440(unaff_RBX + 1);
+        SystemCore_Validator(unaff_RBX + 1);
       }
       if (*(float *)(unaff_RBX + 0x1b) != 0.0) {
         uVar12 = *(uint *)(unaff_RBX + 2) & 0x8000000;
@@ -235,7 +236,7 @@ LAB_1805cf23d:
           }
           if (bVar4 != *(byte *)(unaff_RBX + 0x20)) goto LAB_1805cf32d;
         }
-        piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1);
+        piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1);
         if ((*piVar7 == 2) && (*(int *)(*unaff_RBX + 0x1fc) != 2)) {
           fVar16 = *(float *)(*unaff_RBX + 0x2f4);
           uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
@@ -250,11 +251,11 @@ LAB_1805cf23d:
       }
 LAB_1805cf32d:
       if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-        FUN_1805d4440(unaff_RBX + 1);
+        SystemCore_Validator(unaff_RBX + 1);
       }
       if ((*(float *)(unaff_RBX + 0x1b) == 0.0) ||
-         (((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1 &&
-           (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 2)) ||
+         (((piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 != 1 &&
+           (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 != 2)) ||
           (fVar16 = *(float *)(*unaff_RBX + 0x2f0),
           uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
           uVar12 = uVar12 >> 0x11 ^ uVar12, uVar12 = uVar12 << 5 ^ uVar12,
@@ -272,11 +273,11 @@ LAB_1805cf32d:
           *(byte *)((int64_t)unaff_RBX + 0x11c) =
                (byte)((uint)*(int32_t *)(*(int64_t *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
         }
-        pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1);
+        pcVar8 = (char *)SystemCore_NetworkHandler(unaff_RBX + 1);
         if (*(char *)((int64_t)unaff_RBX + 0x11c) != *pcVar8) goto LAB_1805cf433;
       }
       if (((char)unaff_RBX[0x2e4] == '\0') ||
-         (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1)) {
+         (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 != 1)) {
         func_0x0001805cef70();
         goto FUN_1805cf6c9;
       }
@@ -304,7 +305,7 @@ LAB_1805cf32d:
     }
     if ((bVar4 != 0) &&
        (((int)unaff_RBX[0x295] == 3 ||
-        (pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar8 == '\0')))) goto LAB_1805cf23d;
+        (pcVar8 = (char *)SystemCore_NetworkHandler(unaff_RBX + 1), *pcVar8 == '\0')))) goto LAB_1805cf23d;
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 6;
     uVar12 = *(uint *)(unaff_RBX + 0x272);
 LAB_1805cf1e8:
@@ -318,9 +319,9 @@ LAB_1805cf1e8:
   }
 FUN_1805cf6c9:
   if (((*(int *)(*unaff_RBX + 0x1fc) == 3) || (*(int *)((int64_t)unaff_RBX + 0x178c) != 7)) ||
-     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto FUN_1805cfbdd;
+     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto DataEncryptionEngine;
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if (*(char *)((int64_t)unaff_RBX + 0xd5) != '\0') {
     lVar10 = *unaff_RBX;
@@ -333,10 +334,10 @@ FUN_1805cf6c9:
     bVar4 = (byte)((uint)*(int *)(lVar10 + 0x564) >> 0x1f) ^ 1;
     if (*(int *)(lVar10 + 0x564) < 0) {
       if ((float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2dd] * 8) -
-                 unaff_RBX[0x2dc]) * 1e-05 <= 0.0) goto FUN_1805cfbdd;
+                 unaff_RBX[0x2dc]) * 1e-05 <= 0.0) goto DataEncryptionEngine;
       if (bVar3) {
         pcVar8 = (char *)func_0x000180507f80(unaff_RBX + 1);
-        if (*pcVar8 != '\0') goto FUN_1805cfbdd;
+        if (*pcVar8 != '\0') goto DataEncryptionEngine;
         lVar10 = *unaff_RBX;
       }
 LAB_1805cf801:
@@ -376,13 +377,13 @@ LAB_1805cf801:
            (int64_t)(fVar15 * fVar17);
     }
     else {
-      if (bVar3) goto FUN_1805cfbdd;
+      if (bVar3) goto DataEncryptionEngine;
       fVar14 = *(float *)(*(int64_t *)(lVar10 + 0x20) + 0x84) * 0.2;
       pfVar11 = (float *)(*(int64_t *)(lVar10 + 0x20) + 0x234);
       if (*pfVar11 <= fVar14 && fVar14 != *pfVar11) goto LAB_1805cf801;
     }
     *(uint *)((int64_t)unaff_RBX + 0x1794) = *(uint *)((int64_t)unaff_RBX + 0x1794) & 0xfffffc3f;
-    if ((bVar4 == 0) && (pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar8 == '\0')) {
+    if ((bVar4 == 0) && (pcVar8 = (char *)SystemCore_NetworkHandler(unaff_RBX + 1), *pcVar8 == '\0')) {
       if ((char)unaff_RBX[0x2e4] == '\0') {
         uVar13 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
         fVar14 = *(float *)(*unaff_RBX + 0x380);
@@ -396,21 +397,21 @@ LAB_1805cf801:
                *(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2e3] * 8) -
                (int64_t)(fVar16 * fVar17);
           *(int8_t *)(unaff_RBX + 0x2e4) = 1;
-          goto FUN_1805cfbdd;
+          goto DataEncryptionEngine;
         }
       }
       else if ((float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2e3] * 8) -
-                      unaff_RBX[0x2e2]) * 1e-05 < 0.0) goto FUN_1805cfbdd;
+                      unaff_RBX[0x2e2]) * 1e-05 < 0.0) goto DataEncryptionEngine;
     }
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 8;
-    goto FUN_1805cfbdd;
+    goto DataEncryptionEngine;
   }
   if (0.5 < (float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ea] * 8) -
                    unaff_RBX[0x2e9]) * 1e-05) {
-    pfVar11 = (float *)FUN_1805b7450();
+    pfVar11 = (float *)SystemCore_ConfigLoader();
     if ((*pfVar11 != 0.0) &&
-       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1 ||
-        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 2)))) {
+       ((piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 1 ||
+        (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 2)))) {
       *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 6;
       uVar13 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar13 = uVar13 >> 0x11 ^ uVar13;
@@ -421,9 +422,9 @@ LAB_1805cf801:
            (int64_t)(-60000.004 - (float)(uVar13 - 1) * 1.1641532e-05);
     }
     func_0x0001805cef70();
-    goto FUN_1805cfbdd;
+    goto DataEncryptionEngine;
   }
-  pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1);
+  pfVar11 = (float *)SystemCore_StateManager(unaff_RBX + 1);
   fVar16 = *pfVar11;
   if (fVar16 * -2.25 <=
       (float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]
@@ -433,9 +434,9 @@ LAB_1805cfb42:
        ((lVar10 = *(int64_t *)(*unaff_RBX + 0x20),
         *(float *)(lVar10 + 0x234) <= *(float *)(lVar10 + 0x84) * 0.3 ||
         (lVar10 = *(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ea] * 8),
-        lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b6e50(unaff_RBX + 1),
+        lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1),
         fVar17 = (0.5 - (float)(lVar10 - lVar9) * 1e-05) + fVar16,
-        fVar17 < *pfVar11 || fVar17 == *pfVar11)))) goto FUN_1805cfbdd;
+        fVar17 < *pfVar11 || fVar17 == *pfVar11)))) goto DataEncryptionEngine;
   }
   else {
     lVar10 = func_0x0001805b7270(unaff_RBX + 1);
@@ -445,7 +446,7 @@ LAB_1805cfb42:
     else {
       fVar17 = 2.5;
     }
-    pfVar11 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar11 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     if ((*pfVar11 <= fVar17 * fVar16) ||
        (fVar17 = *(float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x84) * 0.1,
        pfVar11 = (float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x234),
@@ -454,14 +455,14 @@ LAB_1805cfb42:
   unaff_RBX[0x2e9] =
        *(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ea] * 8) -
        (int64_t)(50000.0 - fVar16 * 100000.0);
-FUN_1805cfbdd:
+DataEncryptionEngine:
   if (*(int *)((int64_t)unaff_RBX + 0x178c) == 7) {
     if (0.0 < (float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2dd] * 8) -
                      unaff_RBX[0x2dc]) * 1e-05) {
       if (*(int *)(*unaff_RBX + 0x1fc) == 1) {
         uVar13 = *(uint *)(unaff_RBX + 2);
         if ((uVar13 & 0x10) == 0) {
-          FUN_1805d3770(unaff_RBX + 1);
+          SystemCore_CleanupHandler(unaff_RBX + 1);
           uVar13 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar13 >> 8 & 1) == 0) {
@@ -469,7 +470,7 @@ FUN_1805cfbdd:
         }
         if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) &&
            (lVar10 = *(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ea] * 8),
-           lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1),
+           lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)SystemCore_StateManager(unaff_RBX + 1),
            *pfVar11 * 3.0 < (float)(lVar10 - lVar9) * 1e-05)) {
           func_0x0001805cef70();
         }
@@ -490,7 +491,7 @@ FUN_1805cfbdd:
        ((float)(*(int64_t *)(&system_error_code + (int64_t)(int)unaff_RBX[0x2ee] * 8) -
                unaff_RBX[0x2ed]) * 1e-05 < -100.0)) || (9 < *(uint *)((int64_t)unaff_RBX + 0x178c))
       ) || ((0x241U >> (*(uint *)((int64_t)unaff_RBX + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -530,7 +531,7 @@ void FUN_1805cf472(void)
   
   if (in_R9 == 0) {
 LAB_1805cf57f:
-    if ((unaff_R12B == '\0') && (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 7)) {
+    if ((unaff_R12B == '\0') && (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 7)) {
       if ((*(uint *)(unaff_RBX + 2) & unaff_ESI) == 0) {
         func_0x0001805d4cd0(unaff_RBX + 1);
       }
@@ -581,10 +582,10 @@ LAB_1805cf652:
     lVar8 = *unaff_RBX;
     uVar10 = (uVar10 - 1) % 100;
     bVar2 = 0x32 < uVar10;
-    iVar4 = FUN_1805a0a20(lVar8 + 0x28,bVar2);
+    iVar4 = CoreSystem_OperationHandler(lVar8 + 0x28,bVar2);
     if (iVar4 == -1) {
       bVar2 = uVar10 < 0x33;
-      iVar4 = FUN_1805a0a20(lVar8 + 0x28,bVar2);
+      iVar4 = CoreSystem_OperationHandler(lVar8 + 0x28,bVar2);
       if (iVar4 == -1) goto LAB_1805cf57f;
       if (bVar2) {
         if (!bVar2) {
@@ -618,9 +619,9 @@ LAB_1805cf6b1:
     *(uint *)((int64_t)unaff_RBX + 0x158c) = *(uint *)((int64_t)unaff_RBX + 0x158c) | unaff_ESI;
   }
   if (((*(int *)(*unaff_RBX + 0x1fc) == 3) || (*(int *)((int64_t)unaff_RBX + 0x178c) != 7)) ||
-     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto FUN_1805cfbdd;
+     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto DataEncryptionEngine;
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
-    FUN_1805d4440(unaff_RBX + 1);
+    SystemCore_Validator(unaff_RBX + 1);
   }
   if (*(char *)((int64_t)unaff_RBX + 0xd5) != '\0') {
     lVar8 = *unaff_RBX;
@@ -633,10 +634,10 @@ LAB_1805cf6b1:
     bVar11 = (byte)((uint)*(int *)(lVar8 + 0x564) >> 0x1f) ^ 1;
     if (*(int *)(lVar8 + 0x564) < 0) {
       if ((float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc])
-          * 1e-05 <= unaff_XMM10_Da) goto FUN_1805cfbdd;
+          * 1e-05 <= unaff_XMM10_Da) goto DataEncryptionEngine;
       if (bVar2) {
         pcVar6 = (char *)func_0x000180507f80(unaff_RBX + 1);
-        if (*pcVar6 != '\0') goto FUN_1805cfbdd;
+        if (*pcVar6 != '\0') goto DataEncryptionEngine;
         lVar8 = *unaff_RBX;
       }
 LAB_1805cf801:
@@ -676,13 +677,13 @@ LAB_1805cf801:
            (int64_t)(fVar13 * fVar15);
     }
     else {
-      if (bVar2) goto FUN_1805cfbdd;
+      if (bVar2) goto DataEncryptionEngine;
       fVar12 = *(float *)(*(int64_t *)(lVar8 + 0x20) + 0x84) * 0.2;
       pfVar9 = (float *)(*(int64_t *)(lVar8 + 0x20) + 0x234);
       if (*pfVar9 <= fVar12 && fVar12 != *pfVar9) goto LAB_1805cf801;
     }
     *(uint *)((int64_t)unaff_RBX + 0x1794) = *(uint *)((int64_t)unaff_RBX + 0x1794) & 0xfffffc3f;
-    if ((bVar11 == 0) && (pcVar6 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar6 == '\0')) {
+    if ((bVar11 == 0) && (pcVar6 = (char *)SystemCore_NetworkHandler(unaff_RBX + 1), *pcVar6 == '\0')) {
       if ((char)unaff_RBX[0x2e4] == '\0') {
         uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
         fVar12 = *(float *)(*unaff_RBX + 0x380);
@@ -696,21 +697,21 @@ LAB_1805cf801:
                *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2e3] * 8) -
                (int64_t)(fVar14 * fVar15);
           *(int8_t *)(unaff_RBX + 0x2e4) = 1;
-          goto FUN_1805cfbdd;
+          goto DataEncryptionEngine;
         }
       }
       else if ((float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2e3] * 8) -
-                      unaff_RBX[0x2e2]) * 1e-05 < unaff_XMM10_Da) goto FUN_1805cfbdd;
+                      unaff_RBX[0x2e2]) * 1e-05 < unaff_XMM10_Da) goto DataEncryptionEngine;
     }
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 8;
-    goto FUN_1805cfbdd;
+    goto DataEncryptionEngine;
   }
   if (0.5 < (float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8) -
                    unaff_RBX[0x2e9]) * 1e-05) {
-    pfVar9 = (float *)FUN_1805b7450();
+    pfVar9 = (float *)SystemCore_ConfigLoader();
     if ((unaff_XMM10_Da != *pfVar9) &&
-       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1 ||
-        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 2)))) {
+       ((piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 1 ||
+        (piVar7 = (int *)SystemCore_Executor(unaff_RBX + 1), *piVar7 == 2)))) {
       *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 6;
       uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar10 = uVar10 >> 0x11 ^ uVar10;
@@ -721,9 +722,9 @@ LAB_1805cf801:
            (int64_t)(unaff_XMM6_Da - (float)(uVar10 - 1) * 1.1641532e-05);
     }
     func_0x0001805cef70();
-    goto FUN_1805cfbdd;
+    goto DataEncryptionEngine;
   }
-  pfVar9 = (float *)FUN_1805b7480(unaff_RBX + 1);
+  pfVar9 = (float *)SystemCore_StateManager(unaff_RBX + 1);
   fVar14 = *pfVar9;
   if (fVar14 * -2.25 <=
       (float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]) *
@@ -733,9 +734,9 @@ LAB_1805cfb42:
        ((lVar8 = *(int64_t *)(*unaff_RBX + 0x20),
         *(float *)(lVar8 + 0x234) <= *(float *)(lVar8 + 0x84) * 0.3 ||
         (lVar8 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8),
-        lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)FUN_1805b6e50(unaff_RBX + 1),
+        lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1),
         fVar15 = (0.5 - (float)(lVar8 - lVar5) * 1e-05) + fVar14,
-        fVar15 < *pfVar9 || fVar15 == *pfVar9)))) goto FUN_1805cfbdd;
+        fVar15 < *pfVar9 || fVar15 == *pfVar9)))) goto DataEncryptionEngine;
   }
   else {
     lVar8 = func_0x0001805b7270(unaff_RBX + 1);
@@ -745,7 +746,7 @@ LAB_1805cfb42:
     else {
       fVar15 = 2.5;
     }
-    pfVar9 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    pfVar9 = (float *)UltraHighFreq_RenderingProcessor1(unaff_RBX + 1);
     if ((*pfVar9 <= fVar15 * fVar14) ||
        (fVar15 = *(float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x84) * 0.1,
        pfVar9 = (float *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x234),
@@ -754,7 +755,7 @@ LAB_1805cfb42:
   unaff_RBX[0x2e9] =
        *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8) -
        (int64_t)(50000.0 - fVar14 * 100000.0);
-FUN_1805cfbdd:
+DataEncryptionEngine:
   if (*(int *)((int64_t)unaff_RBX + 0x178c) == 7) {
     if (unaff_XMM10_Da <
         (float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc]) *
@@ -762,7 +763,7 @@ FUN_1805cfbdd:
       if (*(int *)(*unaff_RBX + 0x1fc) == 1) {
         uVar10 = *(uint *)(unaff_RBX + 2);
         if ((uVar10 & 0x10) == 0) {
-          FUN_1805d3770(unaff_RBX + 1);
+          SystemCore_CleanupHandler(unaff_RBX + 1);
           uVar10 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar10 >> 8 & 1) == 0) {
@@ -770,7 +771,7 @@ FUN_1805cfbdd:
         }
         if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) &&
            (lVar8 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8),
-           lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)FUN_1805b7480(unaff_RBX + 1),
+           lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)SystemCore_StateManager(unaff_RBX + 1),
            *pfVar9 * 3.0 < (float)(lVar8 - lVar5) * 1e-05)) {
           func_0x0001805cef70();
         }
@@ -791,7 +792,7 @@ FUN_1805cfbdd:
        ((float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ee] * 8) - unaff_RBX[0x2ed]) *
         1e-05 < -100.0)) || (9 < *(uint *)((int64_t)unaff_RBX + 0x178c))) ||
      ((0x241U >> (*(uint *)((int64_t)unaff_RBX + 0x178c) & 0x1f) & 1) == 0)) {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }

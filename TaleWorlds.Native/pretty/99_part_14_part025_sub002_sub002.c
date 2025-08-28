@@ -136,10 +136,10 @@ typedef struct {
 #define SystemListNodeHandler       FUN_1808ffb84           /**< 系统链表节点处理器 */
 
 /** @brief 系统调用包装器函数别名 */
-#define SystemCallWrapper           FUN_1808fc418           /**< 系统调用包装器 */
-#define SystemServiceDispatcher     FUN_1808fc418           /**< 系统服务分发器 */
-#define SystemFunctionInvoker       FUN_1808fc418           /**< 系统函数调用器 */
-#define SystemOperationHandler      FUN_1808fc418           /**< 系统操作处理器 */
+#define SystemCallWrapper           SystemRenderer           /**< 系统调用包装器 */
+#define SystemServiceDispatcher     SystemRenderer           /**< 系统服务分发器 */
+#define SystemFunctionInvoker       SystemRenderer           /**< 系统函数调用器 */
+#define SystemOperationHandler      SystemRenderer           /**< 系统操作处理器 */
 
 /** @brief 线程同步函数别名 */
 #define ThreadLockAcquirer          AcquireSRWLockExclusive  /**< 线程锁获取器 */

@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part093.c - 23 个函数
 
@@ -9,7 +14,7 @@ void FUN_180320050(uint64_t *param_1)
 {
   *param_1 = &processed_var_7872_ptr;
   if (*(int *)(render_system_data_config + 0x9a0) != 0) {
-    FUN_1800623b0(system_message_context,0,0x1000000000000,3,&processed_var_7272_ptr);
+    SystemConfigurationManager(system_message_context,0,0x1000000000000,3,&processed_var_7272_ptr);
   }
   *(int32_t *)(param_1 + 10) = 0xffffffff;
   param_1[3] = &system_data_buffer_ptr;
@@ -165,7 +170,7 @@ int32_t * FUN_1803201f0(int32_t *param_1)
   *(uint64_t *)(param_1 + 0xc) = 0;
   *(uint64_t *)(param_1 + 8) = 0;
   param_1[10] = 0;
-  DataStructureManager(param_1 + 0xe,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1 + 0xe,0x30,4,FUN_1801c2890,SystemCore_MemoryManager);
   param_1[0x3e] = 0;
   *param_1 = 0;
   (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);
@@ -1062,7 +1067,7 @@ void FUN_1803211e0(int64_t param_1)
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_1 + 8);
   }
-  FUN_18062dee0(&uStack_8c0,puVar3,&processed_var_4348_ptr);
+  SystemCore_Validator(&uStack_8c0,puVar3,&processed_var_4348_ptr);
   lVar1 = lStack_8b8;
   if (lStack_8b8 == 0) {
     FUN_180627160(&processed_var_7352_ptr);

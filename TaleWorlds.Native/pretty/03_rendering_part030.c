@@ -1,3 +1,5 @@
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -202,7 +204,7 @@ void FUN_180282110(int64_t ******param_1,int64_t *******param_2)
           }
           ppppppplStack_98 = (int64_t *******)0x0;
           ppppppplStackX_18 = ppppppplVar10;
-          FUN_180079520(ppppppplVar10);
+          SystemInitializer(ppppppplVar10);
         }
         ppppppplVar10[0x15] = (int64_t ******)param_1[6];
         lVar20 = system_resource_state;
@@ -272,7 +274,7 @@ void FUN_180282110(int64_t ******param_1,int64_t *******param_2)
   FUN_180278270(param_1);
   ppppppplVar10 = ppppppplVar8;
   if ((*param_1)[0x2c] == (int64_t ****)&processed_var_6368_ptr) {
-    FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
+    SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,0);
   }
   else {
     (*(code *)(*param_1)[0x2c])(param_1);
@@ -309,7 +311,7 @@ uint64_t FUN_1802828a0(int64_t *param_1,int64_t param_2)
         *(uint64_t *)(param_2 + 0x1c8) = 0;
         FUN_180284450(param_1 + 7,(int64_t)iVar4 * 0x10 + param_1[7]);
         if (*(code **)(*param_1 + 0x160) == (code *)&processed_var_6368_ptr) {
-          FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
+          SystemCore_UpdateState(param_1,(int64_t)param_1 + 0x214,0);
         }
         else {
           (**(code **)(*param_1 + 0x160))(param_1);
@@ -618,7 +620,7 @@ void FUN_180282e00(int64_t param_1,int64_t param_2)
     FUN_180628f30(&puStack_f8,puVar11,uVar2);
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
   }
-  lVar5 = FUN_1800b6de0(system_resource_state,&puStack_f8,1);
+  lVar5 = RenderingSystem_VertexProcessor(system_resource_state,&puStack_f8,1);
   uVar2 = uStack_e8;
   if (lVar5 == 0) {
     uVar13 = (uint64_t)uStack_e8;
@@ -669,7 +671,7 @@ void FUN_180282e00(int64_t param_1,int64_t param_2)
       FUN_180628f30(&puStack_d8,pcVar9 + 0x15,uVar2);
       *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
     }
-    plVar6 = (int64_t *)FUN_1800b30d0(system_resource_state,&plStackX_10,&puStack_d8,1);
+    plVar6 = (int64_t *)SystemCore_PerformanceMonitor(system_resource_state,&plStackX_10,&puStack_d8,1);
     plVar6 = (int64_t *)*plVar6;
     if (plVar6 != (int64_t *)0x0) {
       plStackX_8 = plVar6;
@@ -729,8 +731,8 @@ void FUN_180282e00(int64_t param_1,int64_t param_2)
         FUN_180628f30(&puStack_b8,puVar11,uVar2);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar2;
       }
-      uVar8 = FUN_1800b30d0(system_resource_state,&plStackX_8,&puStack_b8,1);
-      FUN_180076910(lVar7,uVar8);
+      uVar8 = SystemCore_PerformanceMonitor(system_resource_state,&plStackX_8,&puStack_b8,1);
+      UltraHighFreq_SecurityValidator1(lVar7,uVar8);
       if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
       }

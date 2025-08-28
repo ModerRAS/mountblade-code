@@ -183,7 +183,7 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
                  ((int64_t)*(int *)(lVar3 + 0x564) * 0xa60 + 0x3638 + *(int64_t *)(lVar3 + 0x8d8))
                + 0x20);
     }
-    iStack_34 = FUN_180557b40(*(uint64_t *)(lVar3 + 0x598),uVar2,0,uVar7,0,0,
+    iStack_34 = RenderingSystem_EffectProcessor0(*(uint64_t *)(lVar3 + 0x598),uVar2,0,uVar7,0,0,
                               1.0 < fVar10 * fVar10 + fVar9 * fVar9);
     if (*(int *)(*(int64_t *)
                   ((int64_t)*(int *)(*(int64_t *)(lVar3 + 0x590) + 0xac) * 0xe0 + 0x78 +
@@ -264,8 +264,8 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
     if (fVar9 < -0.8) {
       uVar4 = 1.0 < fVar9 * fVar9 + fVar10;
       uVar2 = func_0x00018052dcc0(lVar3);
-      iStack_34 = FUN_180557b40(uVar7,uVar2,0,0,0,0,uVar4);
-      FUN_18051ec50(lVar3,&uStack_38);
+      iStack_34 = RenderingSystem_EffectProcessor0(uVar7,uVar2,0,0,0,0,uVar4);
+      CoreSystemThreadManager(lVar3,&uStack_38);
       if (*(int *)(lVar3 + 0x1fc) == 2) {
         return;
       }
@@ -278,8 +278,8 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
     if (0.8 < fVar9) {
       uVar4 = 1.0 < fVar9 * fVar9 + fVar10;
       uVar2 = func_0x00018052dcc0(lVar3);
-      iStack_34 = FUN_180557b40(uVar7,uVar2,0,1,0,0,uVar4);
-      FUN_18051ec50(lVar3,&uStack_38);
+      iStack_34 = RenderingSystem_EffectProcessor0(uVar7,uVar2,0,1,0,0,uVar4);
+      CoreSystemThreadManager(lVar3,&uStack_38);
       if (*(int *)(lVar3 + 0x1fc) == 2) {
         return;
       }
@@ -324,9 +324,9 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 LAB_18052449f:
     uVar7 = *(uint64_t *)(lVar3 + 0x598);
   }
-  iStack_34 = FUN_180557b40(uVar7,uVar2,0);
+  iStack_34 = RenderingSystem_EffectProcessor0(uVar7,uVar2,0);
 LAB_18052490a:
-  FUN_18051ec50(lVar3,&uStack_38);
+  CoreSystemThreadManager(lVar3,&uStack_38);
   return;
 }
 
@@ -425,7 +425,7 @@ void FUN_18053598c(int32_t param_1)
     }
     
     // 步骤5.4：执行渲染数据处理
-    render_result_code = FUN_180557b40(*(uint64_t *)(render_context_ptr + 0x598), render_parameter_id, 0, render_mode_config, 0, 0,
+    render_result_code = RenderingSystem_EffectProcessor0(*(uint64_t *)(render_context_ptr + 0x598), render_parameter_id, 0, render_mode_config, 0, 0,
                              1.0 < render_coord_y * render_coord_y + render_coord_x * render_coord_x);
     
     // 步骤5.5：检查渲染结果状态
@@ -511,8 +511,8 @@ void FUN_18053598c(int32_t param_1)
       // 步骤9.4：处理下限范围
       render_condition_flag = 1.0 < render_coord_y * render_coord_y + render_coord_x;
       render_parameter_id = func_0x00018052dcc0(render_context_ptr);
-      render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0, 0, 0, 0, render_condition_flag);
-      FUN_18051ec50(render_context_ptr, &render_stack_param);
+      render_result_code = RenderingSystem_EffectProcessor0(render_mode_config, render_parameter_id, 0, 0, 0, 0, render_condition_flag);
+      CoreSystemThreadManager(render_context_ptr, &render_stack_param);
       
       // 检查渲染状态码
       if (*(int *)(render_context_ptr + 0x1fc) == 2) {
@@ -529,8 +529,8 @@ void FUN_18053598c(int32_t param_1)
       // 步骤9.5：处理上限范围
       render_condition_flag = 1.0 < render_coord_y * render_coord_y + render_coord_x;
       render_parameter_id = func_0x00018052dcc0(render_context_ptr);
-      render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0, 1, 0, 0, render_condition_flag);
-      FUN_18051ec50(render_context_ptr, &render_stack_param);
+      render_result_code = RenderingSystem_EffectProcessor0(render_mode_config, render_parameter_id, 0, 1, 0, 0, render_condition_flag);
+      CoreSystemThreadManager(render_context_ptr, &render_stack_param);
       
       // 检查渲染状态码
       if (*(int *)(render_context_ptr + 0x1fc) == 2) {
@@ -575,9 +575,9 @@ LAB_18052449f:
   }
   
   // 步骤10：执行最终的渲染处理
-  render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0);
+  render_result_code = RenderingSystem_EffectProcessor0(render_mode_config, render_parameter_id, 0);
 LAB_18052490a:
-  FUN_18051ec50(render_context_ptr, &render_stack_param);
+  CoreSystemThreadManager(render_context_ptr, &render_stack_param);
   return;
 }
 
@@ -665,7 +665,7 @@ void FUN_1805359c5(void)
     }
     
     // 步骤3.4：执行渲染数据处理
-    render_status_result = FUN_180557b40(*(uint64_t *)(render_context_base + 0x598), render_param_value, 0, render_mode_value, 0, 0,
+    render_status_result = RenderingSystem_EffectProcessor0(*(uint64_t *)(render_context_base + 0x598), render_param_value, 0, render_mode_value, 0, 0,
                              1.0 < render_position_y * render_position_y + render_position_x * render_position_x);
     
     // 步骤3.5：检查渲染结果状态
@@ -751,8 +751,8 @@ void FUN_1805359c5(void)
       // 步骤7.4：处理下限范围
       render_condition = 1.0 < render_position_y * render_position_y + render_position_x;
       render_param_value = func_0x00018052dcc0(render_context_base);
-      render_status_result = FUN_180557b40(render_mode_value, render_param_value, 0, 0, 0, 0, render_condition);
-      FUN_18051ec50(render_context_base, &render_stack_value);
+      render_status_result = RenderingSystem_EffectProcessor0(render_mode_value, render_param_value, 0, 0, 0, 0, render_condition);
+      CoreSystemThreadManager(render_context_base, &render_stack_value);
       
       // 检查渲染状态码
       if (*(int *)(render_context_base + 0x1fc) == 2) {
@@ -769,8 +769,8 @@ void FUN_1805359c5(void)
       // 步骤7.5：处理上限范围
       render_condition = 1.0 < render_position_y * render_position_y + render_position_x;
       render_param_value = func_0x00018052dcc0(render_context_base);
-      render_status_result = FUN_180557b40(render_mode_value, render_param_value, 0, 1, 0, 0, render_condition);
-      FUN_18051ec50(render_context_base, &render_stack_value);
+      render_status_result = RenderingSystem_EffectProcessor0(render_mode_value, render_param_value, 0, 1, 0, 0, render_condition);
+      CoreSystemThreadManager(render_context_base, &render_stack_value);
       
       // 检查渲染状态码
       if (*(int *)(render_context_base + 0x1fc) == 2) {
@@ -815,9 +815,9 @@ LAB_18052449f:
   }
   
   // 步骤8：执行最终的渲染处理
-  render_status_result = FUN_180557b40(render_mode_value, render_param_value, 0);
+  render_status_result = RenderingSystem_EffectProcessor0(render_mode_value, render_param_value, 0);
 LAB_18052490a:
-  FUN_18051ec50(render_context_base, &render_stack_value);
+  CoreSystemThreadManager(render_context_base, &render_stack_value);
   return;
 }
 
@@ -1336,20 +1336,20 @@ LAB_180535c06:
  * 1. FUN_180535970 - 主渲染处理器
  *    ├── SystemSynchronizationProcessor - 状态初始化
  *    ├── FUN_1804fe350 - 参数验证
- *    ├── FUN_180557b40 - 数据处理
+ *    ├── RenderingSystem_EffectProcessor0 - 数据处理
  *    ├── FUN_1805ed8d0 - 系统调用
  *    ├── FUN_18052dcc0 - 参数处理
- *    └── FUN_18051ec50 - 渲染执行
+ *    └── CoreSystemThreadManager - 渲染执行
  * 
  * 2. FUN_18053598c - 状态验证器
  *    ├── SystemSynchronizationProcessor - 状态检查
  *    ├── FUN_1804fe350 - 验证处理
- *    └── FUN_18051ec50 - 结果处理
+ *    └── CoreSystemThreadManager - 结果处理
  * 
  * 3. FUN_1805359c5 - 标志检查器
  *    ├── SystemSynchronizationProcessor - 标志初始化
  *    ├── FUN_1804fe350 - 标志验证
- *    └── FUN_18051ec50 - 标志更新
+ *    └── CoreSystemThreadManager - 标志更新
  * 
  * 4. FUN_180535a30 - 条件处理器
  *    ├── SystemSynchronizationProcessor - 条件检查

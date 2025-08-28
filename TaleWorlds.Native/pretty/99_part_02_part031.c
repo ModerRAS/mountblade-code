@@ -47,7 +47,7 @@ void FUN_1801a2410(int64_t param_1)
     }
     FUN_1802eaec0(lVar7,0,1,1,0,0,1,0x17);
   }
-  FUN_1800b8500(param_1 + 0x60d10);
+  SystemCore_Controller(param_1 + 0x60d10);
   if (*(int64_t *)(param_1 + 0x2838) != 0) {
     FUN_1803a89f0(*(int64_t *)(param_1 + 0x2838) + 0x4c0);
     *(uint64_t *)(param_1 + 0x2838) = 0;
@@ -197,7 +197,7 @@ void FUN_1801a29f0(int64_t param_1,char param_2,char param_3,uint64_t param_4)
   
   uVar10 = 0xfffffffffffffffe;
   if (system_context_ptr != 0) {
-    FUN_18005e630();
+    SystemCore_FileSystem();
   }
   uVar7 = 0;
   lVar5 = *(int64_t *)(param_1 + 0x60858);
@@ -254,11 +254,11 @@ void FUN_1801a29f0(int64_t param_1,char param_2,char param_3,uint64_t param_4)
   if (lVar5 != 0) {
     for (lVar4 = *(int64_t *)(lVar5 + 0xe48); lVar4 != lVar5 + 0xe40;
         lVar4 = func_0x00018066bd70(lVar4)) {
-      FUN_18023b050(*(uint64_t *)(lVar4 + 0x28),0);
+      SystemCore_NetworkHandler(*(uint64_t *)(lVar4 + 0x28),0);
     }
     for (lVar4 = *(int64_t *)(lVar5 + 0xe78); lVar4 != lVar5 + 0xe70;
         lVar4 = func_0x00018066bd70(lVar4)) {
-      FUN_18023b050(*(uint64_t *)(lVar4 + 0x28),0);
+      SystemCore_NetworkHandler(*(uint64_t *)(lVar4 + 0x28),0);
     }
     FUN_1800572d0(lVar5 + 0xe40);
     FUN_1800572d0(lVar5 + 0xe70);
@@ -332,7 +332,7 @@ void FUN_1801a29f0(int64_t param_1,char param_2,char param_3,uint64_t param_4)
   *(int32_t *)(param_1 + 0x27c0) = 1;
   *(int8_t *)(param_1 + 0x3f31) = 1;
   if (system_context_ptr != 0) {
-    FUN_18020f150(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
+    RenderingSystem_CameraProcessor(*(uint64_t *)(*(int64_t *)(system_context_ptr + 8) + 8));
     lVar5 = system_message_buffer + 0x20;
     iVar3 = _Mtx_lock(lVar5);
     if (iVar3 != 0) {
@@ -552,7 +552,7 @@ void FUN_1801a2ea0(int64_t param_1)
     }
     *(uint64_t *)(param_1 + 0x330) = 0;
   }
-  FUN_1800b8500(param_1 + 0x81b0);
+  SystemCore_Controller(param_1 + 0x81b0);
   *(int32_t *)(param_1 + 0x36a8) = 0xffffffff;
   FUN_1801b9920(param_1 + 0x60c80);
   iVar4 = (int)(*(int64_t *)(param_1 + 0x29b8) - *(int64_t *)(param_1 + 0x29b0) >> 3) + -1;
@@ -585,7 +585,7 @@ void FUN_1801a2ea0(int64_t param_1)
     plVar13 = plVar13 + 1;
     lVar5 = lVar5 + -1;
   } while (lVar5 != 0);
-  FUN_1800b8500(param_1 + 0x2970);
+  SystemCore_Controller(param_1 + 0x2970);
   FUN_18024e890(param_1 + 0x570);
   if ((*(int *)(param_1 + 0x286c) != 0) && (system_cache_buffer != 0)) {
     (**(code **)(system_cache_buffer + 0x18))();

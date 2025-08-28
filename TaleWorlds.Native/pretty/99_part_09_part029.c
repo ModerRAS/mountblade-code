@@ -94,12 +94,12 @@ LAB_1805cb95a:
         (*plVar11 != 0)) && (0 < *(short *)(*plVar11 + 8))))))) {
     uVar12 = *(uint *)(param_1 + 2);
     if ((uVar12 >> 0xc & 1) == 0) {
-      FUN_1805d4df0(param_1 + 1);
+      SystemCore_Initializer0(param_1 + 1);
       uVar12 = *(uint *)(param_1 + 2);
     }
     fVar13 = *(float *)(param_1 + 0x22);
     if ((uVar12 >> 0xc & 1) == 0) {
-      FUN_1805d4df0(param_1 + 1);
+      SystemCore_Initializer0(param_1 + 1);
     }
     fVar15 = 0.0;
     if ((int)param_1[0x295] == 0) {
@@ -157,9 +157,9 @@ LAB_1805cb95a:
             }
             else {
               *(int32_t *)((int64_t)param_1 + 0x178c) = 2;
-              lVar6 = FUN_1805a0610(*param_1 + 0x28,1);
+              lVar6 = PhysicsSystem_ForceCalculator(*param_1 + 0x28,1);
               if (lVar6 != 0) {
-                lVar9 = FUN_18053a5a0(&system_data_5f30,
+                lVar9 = SystemCore_Initializer(&system_data_5f30,
                                       *(int32_t *)(*(int64_t *)(*param_1 + 0x590) + 0xac),
                                       *(int32_t *)(lVar6 + 0x1c));
                 lVar6 = *param_1;
@@ -224,7 +224,7 @@ LAB_1805cb95a:
 LAB_1805cbf5f:
   cVar4 = func_0x0001805b7d30(param_1);
   if (cVar4 == '\0') {
-    FUN_1805caef0(param_1);
+    RenderingSystem_DrawCallManager(param_1);
   }
   return;
 }
@@ -350,12 +350,12 @@ LAB_1805cb95a:
     in_stack_00000090 = unaff_XMM6_Da;
     in_stack_00000098 = unaff_XMM6_Dc;
     if ((uVar10 >> 0xc & 1) == 0) {
-      FUN_1805d4df0(unaff_RDI + 1);
+      SystemCore_Initializer0(unaff_RDI + 1);
       uVar10 = *(uint *)(unaff_RDI + 2);
     }
     fVar13 = *(float *)(unaff_RDI + 0x22);
     if ((uVar10 >> 0xc & 1) == 0) {
-      FUN_1805d4df0(unaff_RDI + 1);
+      SystemCore_Initializer0(unaff_RDI + 1);
     }
     fVar15 = 0.0;
     if ((int)unaff_RDI[0x295] == 0) {
@@ -415,9 +415,9 @@ LAB_1805cb95a:
             }
             else {
               *(int32_t *)((int64_t)unaff_RDI + 0x178c) = 2;
-              lVar5 = FUN_1805a0610(*unaff_RDI + 0x28,1);
+              lVar5 = PhysicsSystem_ForceCalculator(*unaff_RDI + 0x28,1);
               if (lVar5 != 0) {
-                lVar8 = FUN_18053a5a0(&system_data_5f30,
+                lVar8 = SystemCore_Initializer(&system_data_5f30,
                                       *(int32_t *)(*(int64_t *)(*unaff_RDI + 0x590) + 0xac),
                                       *(int32_t *)(lVar5 + 0x1c));
                 lVar5 = *unaff_RDI;
@@ -483,7 +483,7 @@ LAB_1805cb95a:
 LAB_1805cbf5f:
   cVar3 = func_0x0001805b7d30();
   if (cVar3 == '\0') {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -523,12 +523,12 @@ void FUN_1805cba86(void)
   uint64_t in_stack_000000c0;
   
   if ((in_EAX >> 0xc & 1) == 0) {
-    FUN_1805d4df0(unaff_RDI + 1);
+    SystemCore_Initializer0(unaff_RDI + 1);
     in_EAX = *(uint *)(unaff_RDI + 2);
   }
   fVar1 = *(float *)(unaff_RDI + 0x22);
   if ((in_EAX >> 0xc & 1) == 0) {
-    FUN_1805d4df0(unaff_RDI + 1);
+    SystemCore_Initializer0(unaff_RDI + 1);
   }
   fVar14 = 0.0;
   if ((int)unaff_RDI[0x295] == 0) {
@@ -591,9 +591,9 @@ void FUN_1805cba86(void)
             }
             else {
               *(int32_t *)((int64_t)unaff_RDI + 0x178c) = 2;
-              lVar8 = FUN_1805a0610(*unaff_RDI + 0x28,1);
+              lVar8 = PhysicsSystem_ForceCalculator(*unaff_RDI + 0x28,1);
               if (lVar8 != 0) {
-                lVar9 = FUN_18053a5a0(&system_data_5f30,
+                lVar9 = SystemCore_Initializer(&system_data_5f30,
                                       *(int32_t *)(*(int64_t *)(*unaff_RDI + 0x590) + 0xac),
                                       *(int32_t *)(lVar8 + 0x1c));
                 lVar8 = *unaff_RDI;
@@ -666,7 +666,7 @@ LAB_1805cbf10:
   }
   cVar4 = func_0x0001805b7d30();
   if (cVar4 == '\0') {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -695,7 +695,7 @@ void FUN_1805cbf26(void)
   }
   cVar2 = func_0x0001805b7d30();
   if (cVar2 == '\0') {
-    FUN_1805caef0();
+    RenderingSystem_DrawCallManager();
   }
   return;
 }
@@ -709,7 +709,7 @@ void FUN_1805cbf26(void)
 void FUN_1805cbf7b(void)
 
 {
-  FUN_1805caef0();
+  RenderingSystem_DrawCallManager();
   return;
 }
 

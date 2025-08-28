@@ -1,5 +1,14 @@
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_03_part058.c - 8 个函数
 
@@ -27,7 +36,7 @@ void FUN_180234600(int64_t param_1,int param_2)
       else {
         *(int *)(lVar2 + 0x14) = param_2;
       }
-      FUN_1800846d0();
+      CoreEngine_DataProcessor();
     }
     lVar2 = *(int64_t *)(param_1 + 8);
     if ((*(int *)(lVar2 + 0x38) != 0) && (iVar1 = *(int *)(lVar2 + 0x3c), iVar1 < param_2)) {
@@ -40,7 +49,7 @@ void FUN_180234600(int64_t param_1,int param_2)
       else {
         *(int *)(lVar2 + 0x3c) = param_2;
       }
-      FUN_1800846d0();
+      CoreEngine_DataProcessor();
     }
   }
   return;
@@ -74,7 +83,7 @@ void FUN_18023461f(int64_t param_1,int param_2)
     else {
       *(int *)(param_1 + 4) = unaff_EDI;
     }
-    FUN_1800846d0();
+    CoreEngine_DataProcessor();
   }
   lVar2 = *(int64_t *)(unaff_RSI + 8);
   if ((*(int *)(lVar2 + 0x38) != 0) && (iVar1 = *(int *)(lVar2 + 0x3c), iVar1 < unaff_EDI)) {
@@ -87,7 +96,7 @@ void FUN_18023461f(int64_t param_1,int param_2)
     else {
       *(int *)(lVar2 + 0x3c) = unaff_EDI;
     }
-    FUN_1800846d0();
+    CoreEngine_DataProcessor();
   }
   return;
 }
@@ -125,7 +134,7 @@ void FUN_180234690(int64_t param_1)
   *(int8_t *)(lVar2 + 0x58) = *(int8_t *)(lVar2 + 0x30);
   if (*(int *)(lVar2 + 0x3c) < *(int *)(lVar2 + 0x14)) {
     *(int *)(lVar2 + 0x3c) = *(int *)(lVar2 + 0x14);
-    FUN_1800846d0(lVar2 + 0x38);
+    CoreEngine_DataProcessor(lVar2 + 0x38);
     iVar1 = *(int *)(lVar2 + 0x38);
   }
                     // WARNING: Subroutine does not return
@@ -150,7 +159,7 @@ int FUN_1802346f0(int64_t *param_1)
     if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
       puVar2 = *(void **)(*param_1 + 0x18);
     }
-    FUN_1800623b0(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar1,puVar2,
+    SystemConfigurationManager(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar1,puVar2,
                   *(int32_t *)(param_1[1] + 0x60));
   }
   *(int8_t *)(param_1 + 6) = 1;
@@ -492,7 +501,7 @@ void FUN_180234a10(int64_t param_1,char param_2,uint64_t param_3,uint64_t param_
 
 
 
-int FUN_180235000(int64_t param_1,uint64_t *param_2)
+int SystemCore_DataSerializer(int64_t param_1,uint64_t *param_2)
 
 {
   int32_t *puVar1;
@@ -520,7 +529,7 @@ int FUN_180235000(int64_t param_1,uint64_t *param_2)
       iVar9 = (iVar9 >> 1) + iVar9;
     }
     *(int *)(lVar4 + 0x14) = iVar9;
-    FUN_1800846d0(lVar4 + 0x10);
+    CoreEngine_DataProcessor(lVar4 + 0x10);
   }
   *(int *)(lVar4 + 0x10) = iVar11;
   uVar5 = *(int32_t *)((int64_t)param_2 + 4);
@@ -540,7 +549,7 @@ int FUN_180235000(int64_t param_1,uint64_t *param_2)
         iVar10 = (iVar9 >> 1) + iVar9;
       }
       *(int *)(lVar4 + 0x3c) = iVar10;
-      FUN_1800846d0(lVar4 + 0x38);
+      CoreEngine_DataProcessor(lVar4 + 0x38);
     }
     *(int *)(lVar4 + 0x38) = iVar11;
     uVar8 = param_2[1];
@@ -561,8 +570,8 @@ int FUN_180235000(int64_t param_1,uint64_t *param_2)
 
 
 
-// 函数: void FUN_1802350e0(int64_t param_1)
-void FUN_1802350e0(int64_t param_1)
+// 函数: void SystemCore_Decoder(int64_t param_1)
+void SystemCore_Decoder(int64_t param_1)
 
 {
   int iVar1;
@@ -648,7 +657,7 @@ void FUN_180235270(int64_t param_1)
 
 
 
-int FUN_180235410(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
+int SystemCore_RenderFrame(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
 
 {
   int iVar1;
@@ -690,12 +699,12 @@ int FUN_1802354f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   int32_t uVar5;
   int32_t uVar6;
   
-  uVar4 = FUN_180235000();
-  uVar5 = FUN_180235000(param_1,param_3);
-  uVar6 = FUN_180235000(param_1,param_4);
-  uVar4 = FUN_1802350e0(param_1,uVar4,param_5,param_8,&stack0xffffffffffffffe8);
-  uVar5 = FUN_1802350e0(param_1,uVar5,param_6,param_8,&stack0xffffffffffffffe8);
-  uVar6 = FUN_1802350e0(param_1,uVar6,param_7,param_8,&stack0xffffffffffffffe8);
+  uVar4 = SystemCore_DataSerializer();
+  uVar5 = SystemCore_DataSerializer(param_1,param_3);
+  uVar6 = SystemCore_DataSerializer(param_1,param_4);
+  uVar4 = SystemCore_Decoder(param_1,uVar4,param_5,param_8,&stack0xffffffffffffffe8);
+  uVar5 = SystemCore_Decoder(param_1,uVar5,param_6,param_8,&stack0xffffffffffffffe8);
+  uVar6 = SystemCore_Decoder(param_1,uVar6,param_7,param_8,&stack0xffffffffffffffe8);
   lVar2 = *(int64_t *)(param_1 + 8);
   iVar1 = *(int *)(lVar2 + 0x88);
   iVar3 = *(int *)(lVar2 + 0x8c);
@@ -733,12 +742,12 @@ int FUN_1802355d0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   int32_t uVar5;
   int32_t uVar6;
   
-  uVar4 = FUN_180235000();
-  uVar5 = FUN_180235000(param_1,param_3);
-  uVar6 = FUN_180235000(param_1,param_4);
-  uVar4 = FUN_1802350e0(param_1,uVar4,param_8,param_11,param_5);
-  uVar5 = FUN_1802350e0(param_1,uVar5,param_9,param_12,param_6);
-  uVar6 = FUN_1802350e0(param_1,uVar6,param_10,param_13,param_7);
+  uVar4 = SystemCore_DataSerializer();
+  uVar5 = SystemCore_DataSerializer(param_1,param_3);
+  uVar6 = SystemCore_DataSerializer(param_1,param_4);
+  uVar4 = SystemCore_Decoder(param_1,uVar4,param_8,param_11,param_5);
+  uVar5 = SystemCore_Decoder(param_1,uVar5,param_9,param_12,param_6);
+  uVar6 = SystemCore_Decoder(param_1,uVar6,param_10,param_13,param_7);
   lVar2 = *(int64_t *)(param_1 + 8);
   iVar1 = *(int *)(lVar2 + 0x88);
   iVar3 = *(int *)(lVar2 + 0x8c);
@@ -786,31 +795,31 @@ int FUN_1802356b0(int64_t param_1,float *param_2,float *param_3,float *param_4,u
   uStack_58 = *(uint64_t *)param_2;
   uStack_50 = CONCAT44(0x7f7fffff,param_2[2]);
   pfStackX_20 = param_4;
-  uVar7 = FUN_180235000(param_2[2],&uStack_58);
+  uVar7 = SystemCore_DataSerializer(param_2[2],&uStack_58);
   uStack_50 = CONCAT44(0x7f7fffff,param_2[2]);
   uStack_58 = CONCAT44(param_2[1],*param_2 + *param_3);
-  uVar8 = FUN_180235000(param_1,&uStack_58);
+  uVar8 = SystemCore_DataSerializer(param_1,&uStack_58);
   uStack_50 = CONCAT44(0x7f7fffff,param_2[2]);
   uStack_58 = CONCAT44(param_3[1] + param_2[1],*param_2 + *param_3);
-  uVar9 = FUN_180235000(param_1,&uStack_58);
+  uVar9 = SystemCore_DataSerializer(param_1,&uStack_58);
   uStack_50 = CONCAT44(0x7f7fffff,param_2[2]);
   uStack_58 = CONCAT44(param_3[1] + param_2[1],*param_2);
-  uVar10 = FUN_180235000(param_1,&uStack_58);
+  uVar10 = SystemCore_DataSerializer(param_1,&uStack_58);
   uVar5 = param_6;
   pfVar4 = pfStackX_20;
   pfVar3 = (float *)CONCAT44(param_5._4_4_,(float)param_5);
   uStack_58 = 0;
   uStack_50 = 0x7f7fffff3f800000;
   _fStackX_18 = CONCAT44(pfStackX_20[1] - pfVar3[1],*pfStackX_20);
-  uVar7 = FUN_1802350e0(param_1,uVar7,&fStackX_18,param_6,&uStack_58);
+  uVar7 = SystemCore_Decoder(param_1,uVar7,&fStackX_18,param_6,&uStack_58);
   param_5._0_4_ = *pfVar4 + *pfVar3;
   param_5._4_4_ = pfVar4[1] - pfVar3[1];
-  uVar8 = FUN_1802350e0(param_1,uVar8,&param_5,uVar5,&uStack_58);
+  uVar8 = SystemCore_Decoder(param_1,uVar8,&param_5,uVar5,&uStack_58);
   param_5._0_4_ = *pfVar4 + *pfVar3;
   param_5._4_4_ = pfVar4[1];
-  uVar9 = FUN_1802350e0(param_1,uVar9,&param_5,uVar5,&uStack_58);
-  uVar10 = FUN_1802350e0(param_1,uVar10,pfStackX_20,uVar5,&uStack_58);
-  FUN_180235410(param_1,uVar7,uVar8,uVar9);
+  uVar9 = SystemCore_Decoder(param_1,uVar9,&param_5,uVar5,&uStack_58);
+  uVar10 = SystemCore_Decoder(param_1,uVar10,pfStackX_20,uVar5,&uStack_58);
+  SystemCore_RenderFrame(param_1,uVar7,uVar8,uVar9);
   lVar2 = *(int64_t *)(param_1 + 8);
   iVar1 = *(int *)(lVar2 + 0x88);
   iVar6 = *(int *)(lVar2 + 0x8c);
@@ -862,38 +871,38 @@ int FUN_1802358c0(int64_t param_1,float *param_2,float *param_3,float *param_4,u
   fStack_50 = param_2[2];
   uStack_4c = 0x7f7fffff;
   uStackX_20 = param_4;
-  uVar7 = FUN_180235000(fStack_50,&fStack_58);
+  uVar7 = SystemCore_DataSerializer(fStack_50,&fStack_58);
   fStack_58 = *param_2 + *param_3;
   fStack_50 = param_2[2];
   uStack_4c = 0x7f7fffff;
   fStack_54 = param_2[1];
-  uVar8 = FUN_180235000(param_1,&fStack_58);
+  uVar8 = SystemCore_DataSerializer(param_1,&fStack_58);
   fStack_58 = *param_2 + *param_3;
   fStack_54 = param_3[1] + param_2[1];
   uStack_4c = 0x7f7fffff;
   fStack_50 = param_2[2];
-  uVar9 = FUN_180235000(param_1,&fStack_58);
+  uVar9 = SystemCore_DataSerializer(param_1,&fStack_58);
   fStack_58 = *param_2;
   fStack_54 = param_3[1] + param_2[1];
   fStack_50 = param_2[2];
   uStack_4c = 0x7f7fffff;
-  uVar10 = FUN_180235000(param_1,&fStack_58);
+  uVar10 = SystemCore_DataSerializer(param_1,&fStack_58);
   uVar5 = param_6;
   fStack_58 = 0.0;
   fStack_54 = 0.0;
   fStack_50 = 1.0;
   uStack_4c = 0x7f7fffff;
-  uVar7 = FUN_1802350e0(param_1,uVar7,param_4,param_6,&fStack_58);
+  uVar7 = SystemCore_Decoder(param_1,uVar7,param_4,param_6,&fStack_58);
   pfVar4 = uStackX_20;
   pfVar3 = (float *)CONCAT44(param_5._4_4_,(float)param_5);
   _fStackX_18 = CONCAT44(uStackX_20[1] - pfVar3[1],*uStackX_20);
-  uVar8 = FUN_1802350e0(param_1,uVar8,&fStackX_18,uVar5,&fStack_58);
+  uVar8 = SystemCore_Decoder(param_1,uVar8,&fStackX_18,uVar5,&fStack_58);
   param_5._0_4_ = *pfVar4 + *pfVar3;
   param_5._4_4_ = pfVar4[1] - pfVar3[1];
-  uVar9 = FUN_1802350e0(param_1,uVar9,&param_5,uVar5,&fStack_58);
+  uVar9 = SystemCore_Decoder(param_1,uVar9,&param_5,uVar5,&fStack_58);
   uStackX_20 = (float *)CONCAT44(uStackX_20[1],*uStackX_20 + *pfVar3);
-  uVar10 = FUN_1802350e0(param_1,uVar10,&uStackX_20,uVar5,&fStack_58);
-  FUN_180235410(param_1,uVar7,uVar8,uVar9);
+  uVar10 = SystemCore_Decoder(param_1,uVar10,&uStackX_20,uVar5,&fStack_58);
+  SystemCore_RenderFrame(param_1,uVar7,uVar8,uVar9);
   lVar2 = *(int64_t *)(param_1 + 8);
   iVar1 = *(int *)(lVar2 + 0x88);
   iVar6 = *(int *)(lVar2 + 0x8c);
@@ -937,32 +946,32 @@ int FUN_180235ae0(int64_t param_1,int32_t *param_2,int32_t *param_3,int32_t *par
   uint64_t uStack_40;
   
   uStackX_20 = param_4;
-  uVar6 = FUN_180235000();
+  uVar6 = SystemCore_DataSerializer();
   uStack_48 = *param_3;
   uStack_44 = param_2[1];
   uStack_40 = CONCAT44(0x7f7fffff,param_2[2]);
-  uVar7 = FUN_180235000(param_1,&uStack_48);
+  uVar7 = SystemCore_DataSerializer(param_1,&uStack_48);
   uStack_48 = *param_3;
   uStack_44 = param_3[1];
   uStack_40 = CONCAT44(0x7f7fffff,param_2[2]);
-  uVar8 = FUN_180235000(param_1,&uStack_48);
+  uVar8 = SystemCore_DataSerializer(param_1,&uStack_48);
   uStack_48 = *param_2;
   uStack_44 = param_3[1];
   uStack_40 = CONCAT44(0x7f7fffff,param_2[2]);
-  uVar9 = FUN_180235000(param_1,&uStack_48);
+  uVar9 = SystemCore_DataSerializer(param_1,&uStack_48);
   uVar4 = param_6;
   uStack_48 = 0;
   uStack_44 = 0;
   uStack_40 = 0x7f7fffff3f800000;
-  uVar6 = FUN_1802350e0(param_1,uVar6,param_4,param_6,&uStack_48);
+  uVar6 = SystemCore_Decoder(param_1,uVar6,param_4,param_6,&uStack_48);
   puVar3 = (int32_t *)CONCAT44(param_5._4_4_,(int32_t)param_5);
   param_5._0_4_ = *puVar3;
   param_5._4_4_ = uStackX_20[1];
-  uVar7 = FUN_1802350e0(param_1,uVar7,&param_5,uVar4,&uStack_48);
-  uVar8 = FUN_1802350e0(param_1,uVar8,puVar3,uVar4,&uStack_48);
+  uVar7 = SystemCore_Decoder(param_1,uVar7,&param_5,uVar4,&uStack_48);
+  uVar8 = SystemCore_Decoder(param_1,uVar8,puVar3,uVar4,&uStack_48);
   uStackX_20 = (int32_t *)CONCAT44(puVar3[1],*uStackX_20);
-  uVar9 = FUN_1802350e0(param_1,uVar9,&uStackX_20,uVar4,&uStack_48);
-  FUN_180235410(param_1,uVar6,uVar7,uVar8);
+  uVar9 = SystemCore_Decoder(param_1,uVar9,&uStackX_20,uVar4,&uStack_48);
+  SystemCore_RenderFrame(param_1,uVar6,uVar7,uVar8);
   lVar2 = *(int64_t *)(param_1 + 8);
   iVar1 = *(int *)(lVar2 + 0x88);
   iVar5 = *(int *)(lVar2 + 0x8c);

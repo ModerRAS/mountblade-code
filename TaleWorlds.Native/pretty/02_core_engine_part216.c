@@ -601,7 +601,7 @@ LAB_180191a1c:
 
 
 
-int32_t FUN_180191c00(int64_t param_1)
+int32_t RenderingSystem_PostProcessor(int64_t param_1)
 
 {
   byte bVar1;
@@ -706,7 +706,7 @@ void FUN_180191d40(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uVar5 = 0xfffffffffffffffe;
   lVar1 = *(int64_t *)(param_1 + 0x30);
   if (lVar1 != 0) {
-    FUN_180058370(lVar1,*(uint64_t *)(lVar1 + 0x10));
+    RenderingSystem_CameraSystem(lVar1,*(uint64_t *)(lVar1 + 0x10));
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(lVar1);
   }

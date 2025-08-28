@@ -274,7 +274,7 @@ void FUN_1802d95a0(int64_t *param_1)
       apuStack_58[0][1] = uStack_6c;
       *(int8_t **)(apuStack_58[0] + 2) = auStackX_8;
       *(int32_t **)(apuStack_58[0] + 4) = auStackX_10;
-      FUN_18015b810(uStack_70,0,uVar1,0x10,0xffffffffffffffff,apuStack_58);
+      SystemCore_DataTransformer(uStack_70,0,uVar1,0x10,0xffffffffffffffff,apuStack_58);
       iVar3 = iVar3 + 1;
     } while (iVar3 < iVar4);
     lVar2 = *param_1;

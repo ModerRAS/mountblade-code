@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -54,7 +55,7 @@ uint64_t FUN_18076fa40(int64_t *param_1)
   lVar1 = *param_1;
   lVar2 = *(int64_t *)(lVar1 + 0x218);
   if (lVar2 != 0) {
-    FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&rendering_buffer_2192_ptr,0xb8);
+    RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&rendering_buffer_2192_ptr,0xb8);
     *(uint64_t *)(lVar1 + 0x218) = 0;
   }
   return 0;
@@ -133,7 +134,7 @@ uint64_t FUN_18076fc40(int64_t param_1)
   
   iVar1 = SystemStatusChecker(param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_180744e20(param_1 + 0x20);
+    iVar1 = UISystem_ComponentManager(param_1 + 0x20);
     if (iVar1 == 0) {
       *(int32_t *)(param_1 + 0x30) = 0xffffffff;
       *(int32_t *)(param_1 + 0x34) = 0;
@@ -174,7 +175,7 @@ uint64_t FUN_18076fc90(int64_t param_1,int param_2)
       aiStackX_10[0] = aiStackX_10[0] * *(int *)(param_1 + 0x234);
       *(int *)(param_1 + 0x238) = aiStackX_10[0];
       if (*(int64_t *)(param_1 + 0x218) != 0) {
-        FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x218),
+        RenderingSystem_MaterialHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x218),
                       &rendering_buffer_2192_ptr,0x174);
         aiStackX_10[0] = *(int *)(param_1 + 0x238);
       }
@@ -336,7 +337,7 @@ FUN_180770229:
         if ((3 < iVar3) && (iVar11 = iVar7, iVar7 < iVar13)) {
           iVar11 = iVar13;
         }
-        uVar5 = FUN_180748010(param_1 + 2,iVar11);
+        uVar5 = UltraHighFreq_StateController1(param_1 + 2,iVar11);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -415,7 +416,7 @@ FUN_180770229:
         if ((unaff_EBP <= iVar3) && (unaff_EBP = iVar6, iVar6 < iVar11)) {
           unaff_EBP = iVar11;
         }
-        uVar4 = FUN_180748010(unaff_RBX + 2,unaff_EBP);
+        uVar4 = UltraHighFreq_StateController1(unaff_RBX + 2,unaff_EBP);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -475,7 +476,7 @@ uint64_t FUN_18077014d(uint64_t param_1,int32_t param_2)
       if ((unaff_EBP <= iVar1) && (unaff_EBP = iVar4, iVar4 < iVar7)) {
         unaff_EBP = iVar7;
       }
-      uVar2 = FUN_180748010(unaff_RBX + 0x10,unaff_EBP);
+      uVar2 = UltraHighFreq_StateController1(unaff_RBX + 0x10,unaff_EBP);
       if ((int)uVar2 != 0) {
         return uVar2;
       }

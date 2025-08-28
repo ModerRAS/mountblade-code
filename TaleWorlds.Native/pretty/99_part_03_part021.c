@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingShaderProcessor */
+#define RenderingShaderProcessor RenderingShaderProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -344,7 +348,7 @@ FUN_1801e1250(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_
   do {
     if (plVar8 == (int64_t *)0x0) {
 LAB_1801e12d2:
-      FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
+      RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18),1);
       puVar6 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x38,*(int8_t *)(param_1 + 0x2c));
       uVar4 = *(int32_t *)((int64_t)param_4 + 4);
@@ -817,7 +821,7 @@ LAB_1801e1aa7:
         if (puStack_160 != puVar20) {
           *(int64_t *)(puVar20 + 8) = *(int64_t *)(puVar20 + 8) + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar22,puVar20);
+          RenderingSystem_BufferHandler(puVar22,puVar20);
         }
       }
       else {
@@ -833,7 +837,7 @@ LAB_1801e1aa7:
           plVar15 = (int64_t *)(lVar12 + 0x348);
           *plVar15 = *plVar15 + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar20,puVar22);
+          RenderingSystem_BufferHandler(puVar20,puVar22);
           if (puVar20 != (uint *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar20);

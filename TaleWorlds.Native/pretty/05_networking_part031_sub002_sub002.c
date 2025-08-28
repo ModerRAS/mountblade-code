@@ -1,4 +1,4 @@
-#include "FUN_1808555a0_definition.h"
+#include "SystemAdvancedManager_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -249,7 +249,7 @@ int FUN_180859f30(int64_t param_1,int *param_2,uint param_3,uint param_4,uint pa
   }
   else {
     if (cVar4 != '\0') {
-      iVar5 = FUN_18085ab70(param_1);
+      iVar5 = UISystem_WidgetController(param_1);
       iVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),param_2,
                             (int64_t)iVar5 + *(int64_t *)(param_1 + 0x10),1,
                             in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
@@ -478,7 +478,7 @@ LAB_18085a6ac:
   }
   if (bVar3) {
     if (!bVar4) {
-      iVar5 = FUN_18085ab70(param_1);
+      iVar5 = UISystem_WidgetController(param_1);
       in_stack_ffffffffffffff08 = in_stack_ffffffffffffff08 & 0xffffffffffffff00;
       iVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),param_2,
                             (int64_t)iVar5 + *(int64_t *)(param_1 + 0x10),0,
@@ -668,7 +668,7 @@ LAB_18085a6ac:
   if (bVar4) {
     lVar17 = *(int64_t *)(unaff_RBP + 0x57);
     if (bVar5) goto LAB_18085a8c1;
-    iVar6 = FUN_18085ab70(lVar17);
+    iVar6 = UISystem_WidgetController(lVar17);
     in_stack_00000020 = in_stack_00000020 & 0xffffffffffffff00;
     iVar6 = FUN_18085f790(*(uint64_t *)(lVar17 + 0x160),*(uint64_t *)(unaff_RBP + 0x5f),
                           (int64_t)iVar6 + *(int64_t *)(lVar17 + 0x10),0,in_stack_00000020);
@@ -892,7 +892,7 @@ uint64_t FUN_18085a980(int64_t param_1)
 
 
 
-uint64_t FUN_18085ab70(int64_t param_1)
+uint64_t UISystem_WidgetController(int64_t param_1)
 
 {
   char cVar1;
@@ -1104,7 +1104,7 @@ uint64_t FUN_18085aca0(int64_t param_1)
   }
   uVar19 = 0;
 LAB_180857f18:
-  iVar9 = FUN_18085ab70(param_1);
+  iVar9 = UISystem_WidgetController(param_1);
   if (0 < iVar9) {
     uVar27 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     uVar26 = (int64_t)iVar9;
@@ -1180,7 +1180,7 @@ LAB_1808580a0:
       if ((*piStack_100 < network_system_memory) && (SystemInitializer(&system_ptr_ea98), network_system_memory == -1))
       {
         network_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (uVar27 <= network_system_memory) {
         return 0;
@@ -1337,7 +1337,7 @@ LAB_1808580a0:
       if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
          (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
         network_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       if (network_system_memory < uStack_158) {
         uVar10 = 0;
@@ -1400,7 +1400,7 @@ LAB_180859163:
         if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
            (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
           network_system_memory = uVar7;
-          FUN_1808fcb30(&system_ptr_ea98);
+          SystemCore_StateController(&system_ptr_ea98);
         }
         *(uint *)(param_1 + 0x148) = network_system_memory;
         uVar7 = FUN_180855810(param_1,uVar26);
@@ -1541,7 +1541,7 @@ LAB_180858c20:
       if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
          (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
         network_system_memory = 0;
-        FUN_1808fcb30(&system_ptr_ea98);
+        SystemCore_StateController(&system_ptr_ea98);
       }
       uVar27 = uStack_15c;
       if (*(uint *)(lVar14 + 0xa0) != network_system_memory) {
@@ -1781,7 +1781,7 @@ LAB_180858e04:
     if ((*(int *)(lStack_c0 + 0x48) < network_system_memory) &&
        (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
       network_system_memory = 0;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
     uVar27 = network_system_memory;
     plVar17 = (int64_t *)(param_1 + 0x70);
@@ -1920,7 +1920,7 @@ FUN_18085acd0(int64_t param_1,int64_t *param_2,uint *param_3,uint64_t *param_4,c
     if ((*(int *)(*plVar1 + 0x48) < network_system_memory) &&
        (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
       network_system_memory = 0;
-      FUN_1808fcb30(&system_ptr_ea98);
+      SystemCore_StateController(&system_ptr_ea98);
     }
     uVar8 = *(uint *)(uVar13 + 0x10);
     uVar4 = *param_3;

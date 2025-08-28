@@ -1,3 +1,7 @@
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
@@ -159,7 +163,7 @@ void RenderSystem_ParticleSystem_Update(void)
             (fVar14 < *(float *)(lVar6 + 8) + *(float *)(lVar6 + 0x10))) &&
            (*(float *)(lVar6 + 8) < (fVar1 + 2.0) * unaff_XMM9_Da + fVar14)) {
           lVar6 = FUN_1801247c0();
-          FUN_180291c70(lVar6,lVar3);
+          RenderingSystem_TextureLoader(lVar6,lVar3);
           fVar10 = fVar2 * unaff_XMM9_Da;
           fStack0000000000000040 = fVar14 + unaff_XMM9_Da;
           fVar12 = fVar1 * unaff_XMM9_Da;
@@ -171,16 +175,16 @@ void RenderSystem_ParticleSystem_Update(void)
                         (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
-            FUN_180291c70(lVar6,lVar3);
+            RenderingSystem_TextureLoader(lVar6,lVar3);
           }
           else {
             bVar4 = false;
           }
-          FUN_1802921e0(lVar6,6,4);
+          NetworkSystem_PacketSerializer(lVar6,6,4);
           FUN_180292290(lVar6,&stack0x00000040,&stack0x00000038,&stack0x00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
-            FUN_180291a50(lVar6);
+            SystemCore_Initialize(lVar6);
           }
           fStack000000000000004c = fVar13 + fVar10;
           fStack0000000000000050 = unaff_XMM9_Da + unaff_XMM9_Da + fVar14;
@@ -191,16 +195,16 @@ void RenderSystem_ParticleSystem_Update(void)
                         (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
-            FUN_180291c70(lVar6,lVar3);
+            RenderingSystem_TextureLoader(lVar6,lVar3);
           }
           else {
             bVar4 = false;
           }
-          FUN_1802921e0(lVar6,6,4);
+          NetworkSystem_PacketSerializer(lVar6,6,4);
           FUN_180292290(lVar6,&stack0x00000050,&stack0x00000048,&stack0x00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
-            FUN_180291a50(lVar6);
+            SystemCore_Initialize(lVar6);
           }
           fVar12 = fVar12 + fVar14;
           fVar10 = fVar10 + fVar13;
@@ -211,16 +215,16 @@ void RenderSystem_ParticleSystem_Update(void)
                         (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
-            FUN_180291c70(lVar6,lVar3);
+            RenderingSystem_TextureLoader(lVar6,lVar3);
           }
           else {
             bVar4 = false;
           }
-          FUN_1802921e0(lVar6,6,4);
+          NetworkSystem_PacketSerializer(lVar6,6,4);
           FUN_180292290(lVar6,&stack0x00000030,&stack0x00000058,&stack0x00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
-            FUN_180291a50(lVar6);
+            SystemCore_Initialize(lVar6);
           }
           fStack0000000000000060 = fVar12;
           fStack0000000000000064 = fVar10;
@@ -229,19 +233,19 @@ void RenderSystem_ParticleSystem_Update(void)
                         (*(int64_t *)(lVar6 + 0x78) + -8 + (int64_t)*(int *)(lVar6 + 0x70) * 8)))
           {
             bVar4 = true;
-            FUN_180291c70(lVar6,lVar3);
+            RenderingSystem_TextureLoader(lVar6,lVar3);
           }
           else {
             bVar4 = false;
           }
-          FUN_1802921e0(lVar6,6,4);
+          NetworkSystem_PacketSerializer(lVar6,6,4);
           FUN_180292290(lVar6,&stack0x00000030,&stack0x00000060,&stack0x00000068,&stack0x00000070);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
-            FUN_180291a50(lVar6);
+            SystemCore_Initialize(lVar6);
           }
           *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
-          FUN_180291a50(lVar6);
+          SystemCore_Initialize(lVar6);
         }
         iVar9 = iVar9 + 1;
         lVar8 = lVar8 + 8;
@@ -341,7 +345,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
           (fVar12 < *(float *)(lVar4 + 8) + *(float *)(lVar4 + 0x10))) &&
          (*(float *)(lVar4 + 8) < (fVar1 + 2.0) * unaff_XMM9_Da + fVar12)) {
         lVar4 = FUN_1801247c0();
-        FUN_180291c70(lVar4,lVar5);
+        RenderingSystem_TextureLoader(lVar4,lVar5);
         fVar8 = fVar2 * unaff_XMM9_Da;
         param_8._0_4_ = fVar12 + unaff_XMM9_Da;
         fVar10 = fVar1 * unaff_XMM9_Da;
@@ -352,16 +356,16 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
            (lVar5 != *(int64_t *)
                       (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
-          FUN_180291c70(lVar4,lVar5);
+          RenderingSystem_TextureLoader(lVar4,lVar5);
         }
         else {
           bVar3 = false;
         }
-        FUN_1802921e0(lVar4,6,4);
+        NetworkSystem_PacketSerializer(lVar4,6,4);
         FUN_180292290(lVar4,&param_8,&param_7,&stack0x00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
-          FUN_180291a50(lVar4);
+          SystemCore_Initialize(lVar4);
         }
         param_9._4_4_ = fVar11 + fVar8;
         param_10._0_4_ = unaff_XMM9_Da + unaff_XMM9_Da + fVar12;
@@ -371,16 +375,16 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
            (lVar5 != *(int64_t *)
                       (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
-          FUN_180291c70(lVar4,lVar5);
+          RenderingSystem_TextureLoader(lVar4,lVar5);
         }
         else {
           bVar3 = false;
         }
-        FUN_1802921e0(lVar4,6,4);
+        NetworkSystem_PacketSerializer(lVar4,6,4);
         FUN_180292290(lVar4,&param_10,&param_9,&stack0x00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
-          FUN_180291a50(lVar4);
+          SystemCore_Initialize(lVar4);
         }
         fVar10 = fVar10 + fVar12;
         fVar8 = fVar8 + fVar11;
@@ -390,16 +394,16 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
            (lVar5 != *(int64_t *)
                       (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
-          FUN_180291c70(lVar4,lVar5);
+          RenderingSystem_TextureLoader(lVar4,lVar5);
         }
         else {
           bVar3 = false;
         }
-        FUN_1802921e0(lVar4,6,4);
+        NetworkSystem_PacketSerializer(lVar4,6,4);
         FUN_180292290(lVar4,&param_6,&param_11,&stack0x00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
-          FUN_180291a50(lVar4);
+          SystemCore_Initialize(lVar4);
         }
         param_12._0_4_ = fVar10;
         param_12._4_4_ = fVar8;
@@ -407,19 +411,19 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
            (lVar5 != *(int64_t *)
                       (*(int64_t *)(lVar4 + 0x78) + -8 + (int64_t)*(int *)(lVar4 + 0x70) * 8))) {
           bVar3 = true;
-          FUN_180291c70(lVar4,lVar5);
+          RenderingSystem_TextureLoader(lVar4,lVar5);
         }
         else {
           bVar3 = false;
         }
-        FUN_1802921e0(lVar4,6,4);
+        NetworkSystem_PacketSerializer(lVar4,6,4);
         FUN_180292290(lVar4,&param_6,&param_12,&stack0x00000068,&stack0x00000070);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
-          FUN_180291a50(lVar4);
+          SystemCore_Initialize(lVar4);
         }
         *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
-        FUN_180291a50(lVar4);
+        SystemCore_Initialize(lVar4);
       }
       iVar6 = iVar6 + 1;
       lVar7 = lVar7 + 8;
@@ -470,7 +474,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
         (unaff_XMM10_Da < *(float *)(lVar2 + 8) + *(float *)(lVar2 + 0x10))) &&
        (*(float *)(lVar2 + 8) < (unaff_XMM13_Da + 2.0) * unaff_XMM9_Da + unaff_XMM10_Da)) {
       lVar2 = FUN_1801247c0();
-      FUN_180291c70(lVar2);
+      RenderingSystem_TextureLoader(lVar2);
       fVar5 = unaff_XMM14_Da * unaff_XMM9_Da;
       in_stack_00000040 = unaff_XMM10_Da + unaff_XMM9_Da;
       fVar4 = unaff_XMM13_Da * unaff_XMM9_Da;
@@ -480,16 +484,16 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
-        FUN_180291c70(lVar2);
+        RenderingSystem_TextureLoader(lVar2);
       }
       else {
         bVar1 = false;
       }
-      FUN_1802921e0(lVar2,6,4);
+      NetworkSystem_PacketSerializer(lVar2,6,4);
       FUN_180292290(lVar2,&stack0x00000040,&stack0x00000038,&stack0x00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
-        FUN_180291a50(lVar2);
+        SystemCore_Initialize(lVar2);
       }
       fStack000000000000004c = unaff_XMM8_Da + fVar5;
       in_stack_00000050 = unaff_XMM9_Da + unaff_XMM9_Da + unaff_XMM10_Da;
@@ -498,16 +502,16 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
-        FUN_180291c70(lVar2);
+        RenderingSystem_TextureLoader(lVar2);
       }
       else {
         bVar1 = false;
       }
-      FUN_1802921e0(lVar2,6,4);
+      NetworkSystem_PacketSerializer(lVar2,6,4);
       FUN_180292290(lVar2,&stack0x00000050,&stack0x00000048,&stack0x00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
-        FUN_180291a50(lVar2);
+        SystemCore_Initialize(lVar2);
       }
       fVar4 = fVar4 + unaff_XMM10_Da;
       fVar5 = fVar5 + unaff_XMM8_Da;
@@ -517,16 +521,16 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
-        FUN_180291c70(lVar2);
+        RenderingSystem_TextureLoader(lVar2);
       }
       else {
         bVar1 = false;
       }
-      FUN_1802921e0(lVar2,6,4);
+      NetworkSystem_PacketSerializer(lVar2,6,4);
       FUN_180292290(lVar2,&stack0x00000030,&stack0x00000058,&stack0x00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
-        FUN_180291a50(lVar2);
+        SystemCore_Initialize(lVar2);
       }
       fStack0000000000000060 = fVar4;
       fStack0000000000000064 = fVar5;
@@ -534,19 +538,19 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
         bVar1 = true;
-        FUN_180291c70(lVar2);
+        RenderingSystem_TextureLoader(lVar2);
       }
       else {
         bVar1 = false;
       }
-      FUN_1802921e0(lVar2,6,4);
+      NetworkSystem_PacketSerializer(lVar2,6,4);
       FUN_180292290(lVar2,&stack0x00000030,&stack0x00000060,&stack0x00000068,&stack0x00000070);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
-        FUN_180291a50(lVar2);
+        SystemCore_Initialize(lVar2);
       }
       *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
-      FUN_180291a50(lVar2);
+      SystemCore_Initialize(lVar2);
     }
     unaff_R14D = unaff_R14D + 1;
     uVar3 = uVar3 + 8;
@@ -670,7 +674,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
   
   // 曲线绘制处理
   if (param_5 == 0.0) {
-    FUN_180293f50(param_1,&fStack_d0,&fStack_d8,param_3,0,0xf);
+    MathInterpolationCalculator0(param_1,&fStack_d0,&fStack_d8,param_3,0,0xf);
   }
   else {
     // 复杂的曲线计算
@@ -764,10 +768,10 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
     }
     else if ((fVar10 == 0.0) && (fVar12 == 1.5707964)) {
       fStack_cc = fVar4 - param_5;
-      FUN_180293730(param_1,&fStack_d0,param_5,3,6);
+      UtilitiesSystem_FileHandler(param_1,&fStack_d0,param_5,3,6);
       fStack_cc = fVar3 + param_5;
       fStack_d0 = fVar11;
-      FUN_180293730(param_1,&fStack_d0,param_5,6,9);
+      UtilitiesSystem_FileHandler(param_1,&fStack_d0,param_5,6,9);
     }
     else {
       fStack_cc = fVar4 - param_5;
@@ -851,10 +855,10 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
       }
       else if ((fVar10 == 0.0) && (fVar9 == 1.5707964)) {
         fStackX_14 = fVar3 + param_5;
-        FUN_180293730(param_1,&fStackX_10,param_5,9,0xc);
+        UtilitiesSystem_FileHandler(param_1,&fStackX_10,param_5,9,0xc);
         fStackX_14 = fVar4 - param_5;
         fStackX_10 = fVar11;
-        FUN_180293730(param_1,&fStackX_10,param_5,0,3);
+        UtilitiesSystem_FileHandler(param_1,&fStackX_10,param_5,0,3);
       }
       else {
         fStackX_14 = fVar3 + param_5;

@@ -171,7 +171,7 @@ LAB_1802ee368:
       fStack_d8 = fVar23;
       fStack_d4 = fVar24;
       fStack_d0 = fVar25;
-      FUN_18063b5f0(&fStack_240,&uStack_208);
+      SystemSecurityManager(&fStack_240,&uStack_208);
       fVar26 = *(float *)(param_1 + 0x30);
       fVar27 = *(float *)(param_1 + 0x34);
       fVar28 = *(float *)(param_1 + 0x38);
@@ -532,7 +532,7 @@ uint64_t FUN_1802ee610(int64_t param_1,int64_t param_2)
     if (*(int64_t *)(param_1 + 0x168) != 0) {
       func_0x0001802eeba0();
     }
-    FUN_1802ed990(param_1,1);
+    PhysicsSystem_CharacterController(param_1,1);
     uVar2 = 1;
   }
   return uVar2;
@@ -543,8 +543,8 @@ uint64_t FUN_1802ee610(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_1802ee720(int64_t param_1,byte param_2)
-void FUN_1802ee720(int64_t param_1,byte param_2)
+// 函数: void RenderingSystem_UpdateCamera(int64_t param_1,byte param_2)
+void RenderingSystem_UpdateCamera(int64_t param_1,byte param_2)
 
 {
   byte bVar1;

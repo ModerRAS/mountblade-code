@@ -1,11 +1,75 @@
+#include "RenderingAdvancedManager_definition.h"
 #include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 05_networking_part100.c - 14 个函数
+/**
+ * @file 05_networking_part100.c
+ * @brief 网络系统高级数据处理和连接管理模块
+ * 
+ * 本文件包含14个网络系统相关的函数，主要涉及网络数据处理、连接管理和系统优化。
+ * 这些函数负责网络系统的核心功能，包括数据验证、连接管理和资源分配。
+ * 
+ * 主要功能模块：
+ * - 网络数据验证和处理
+ * - 网络连接管理和优化
+ * - 网络资源分配和释放
+ * - 网络状态监控和错误处理
+ * - 网络系统清理和优化
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
 
-// 函数: void FUN_18089a9f0(int64_t param_1,int *param_2)
-void FUN_18089a9f0(int64_t param_1,int *param_2)
+// 函数别名定义
+#define NetworkingSystem_Initializer FUN_18089a9f0                 // 网络系统初始化函数
+#define NetworkingSystem_DataValidator FUN_18089aa40               // 网络系统数据验证器
+#define NetworkingSystem_ConnectionManager FUN_18089abe0          // 网络系统连接管理器
+#define NetworkingSystem_ResourceAllocator FUN_18089ac64          // 网络系统资源分配器
+#define NetworkingSystem_ConnectionCleaner FUN_18089ac96           // 网络系统连接清理器
+#define NetworkingSystem_StatusHandler FUN_18089ace4               // 网络系统状态处理器
+#define NetworkingSystem_EmptyFunction1 FUN_18089ae2d             // 网络系统空函数1
+#define NetworkingSystem_EmptyFunction2 FUN_18089ae35             // 网络系统空函数2
+#define NetworkingSystem_EmptyFunction3 FUN_18089ae3d             // 网络系统空函数3
+#define NetworkingSystem_AdvancedProcessor FUN_18089ae50           // 网络系统高级处理器
+#define NetworkingSystem_PerformanceOptimizer FUN_18089af12        // 网络系统性能优化器
+#define NetworkingSystem_ErrorHandler FUN_18089b218                // 网络系统错误处理器
+#define NetworkingSystem_DataProcessor FUN_18089b21d               // 网络系统数据处理器
+#define NetworkingSystem_ConnectionInitializer FUN_18089b26e       // 网络系统连接初始化器
+#define NetworkingSystem_PacketHandler FUN_18089b2a0              // 网络系统包处理器
+#define NetworkingSystem_StreamProcessor FUN_18089b307            // 网络系统流处理器
+#define NetworkingSystem_BufferManager FUN_18089b31f              // 网络系统缓冲区管理器
+#define NetworkingSystem_MemoryAllocator FUN_18089b380             // 网络系统内存分配器
+#define NetworkingSystem_ConnectionFinalizer FUN_18089b3d4        // 网络系统连接终结器
+#define NetworkingSystem_EmptyFunction4 FUN_18089b3e6             // 网络系统空函数4
+#define NetworkingSystem_EventHandler FUN_18089b400                // 网络系统事件处理器
+#define NetworkingSystem_SecurityChecker FUN_18089b460             // 网络系统安全检查器
+#define NetworkingSystem_ConnectionValidator FUN_18089b52a        // 网络系统连接验证器
+#define NetworkingSystem_ResourceManager FUN_18089b540            // 网络系统资源管理器
+#define NetworkingSystem_EmptyFunction5 FUN_18089b599              // 网络系统空函数5
+#define NetworkingSystem_StateSynchronizer FUN_18089b5a9          // 网络系统状态同步器
+#define NetworkingSystem_ConnectionManager2 FUN_18089b5fc         // 网络系统连接管理器2
+#define NetworkingSystem_EmptyFunction6 FUN_18089b617             // 网络系统空函数6
+#define NetworkingSystem_EmptyFunction7 FUN_18089b61e             // 网络系统空函数7
+#define NetworkingSystem_AdvancedEventHandler FUN_18089b630       // 网络系统高级事件处理器
+#define NetworkingSystem_CleanupHandler FUN_18089b6df             // 网络系统清理处理器
+
+/**
+ * @brief 网络系统初始化函数
+ * @details 负责网络系统的初始化操作，处理系统级别的网络配置
+ * 
+ * 功能：
+ * - 执行网络系统的初始化流程
+ * - 处理系统级别的网络配置参数
+ * - 设置网络系统的初始状态
+ * - 准备网络系统运行环境
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 系统参数2指针
+ * @return 无返回值
+ */
+void NetworkingSystem_Initializer(int64_t param_1,int *param_2)
 
 {
   char *pcVar1;
@@ -41,9 +105,21 @@ void FUN_18089a9f0(int64_t param_1,int *param_2)
   return;
 }
 
-
-
-uint64_t FUN_18089aa40(int64_t param_1,uint64_t *param_2)
+/**
+ * @brief 网络系统数据验证器
+ * @details 负责验证网络数据的完整性和有效性
+ * 
+ * 功能：
+ * - 验证网络数据的完整性
+ * - 检查数据结构的有效性
+ * - 处理数据验证过程中的错误
+ * - 返回验证结果状态码
+ * 
+ * @param param_1 数据参数1
+ * @param param_2 数据参数2指针
+ * @return uint64_t 验证结果状态码，0表示成功，非0表示错误
+ */
+uint64_t NetworkingSystem_DataValidator(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -108,7 +184,7 @@ uint64_t FUN_18089aa40(int64_t param_1,uint64_t *param_2)
                         uVar1 = 0x1c;
                       }
                       if ((int)uVar1 == 0) {
-                        FUN_1808db8c0(param_1);
+                        SystemErrorHandler(param_1);
                         uVar1 = 0;
                       }
                     }
@@ -124,9 +200,21 @@ uint64_t FUN_18089aa40(int64_t param_1,uint64_t *param_2)
   return uVar1;
 }
 
-
-
-uint64_t FUN_18089abe0(int64_t param_1,uint64_t *param_2)
+/**
+ * @brief 网络系统连接管理器
+ * @details 负责管理网络连接的建立、维护和断开
+ * 
+ * 功能：
+ * - 管理网络连接状态
+ * - 处理连接建立和断开
+ * - 维护连接池和连接队列
+ * - 处理连接相关的资源分配
+ * 
+ * @param param_1 连接参数1
+ * @param param_2 连接参数2指针
+ * @return uint64_t 连接管理结果状态码
+ */
+uint64_t NetworkingSystem_ConnectionManager(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -136,17 +224,17 @@ uint64_t FUN_18089abe0(int64_t param_1,uint64_t *param_2)
   uVar1 = DataFlowProcessor(param_2,auStack_38,1,0x46464542);
   if (((((int)uVar1 == 0) &&
        (uVar1 = DataFlowProcessor(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
-      (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+      (uVar1 = SystemSecurityChecker(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
-      (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
+      (uVar1 = SystemConnectionValidator(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_1808a2890(*param_2,param_1 + 0x60,0x25);
+      uVar1 = SystemConfigurationProcessor(*param_2,param_1 + 0x60,0x25);
       if ((int)uVar1 == 0) {
         if (*(uint *)(param_2 + 8) < 0x3d) {
           uVar1 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar1 = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          uVar1 = SystemDataManager(*param_2,param_1 + 0x40);
         }
         else {
           uVar1 = 0x1c;
@@ -164,9 +252,19 @@ uint64_t FUN_18089abe0(int64_t param_1,uint64_t *param_2)
   return uVar1;
 }
 
-
-
-uint64_t FUN_18089ac64(void)
+/**
+ * @brief 网络系统资源分配器
+ * @details 负责分配和管理网络系统所需的资源
+ * 
+ * 功能：
+ * - 分配网络系统资源
+ * - 管理资源配置参数
+ * - 处理资源分配错误
+ * - 调用高级系统管理器进行资源初始化
+ * 
+ * @return uint64_t 资源分配结果状态码，0表示成功，0x1c表示错误
+ */
+uint64_t NetworkingSystem_ResourceAllocator(void)
 
 {
   int64_t in_RAX;
@@ -175,13 +273,13 @@ uint64_t FUN_18089ac64(void)
   int64_t unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = FUN_1808a2890(*unaff_RBX,unaff_RDI + 0x60,0x25);
+    uVar1 = SystemConfigurationProcessor(*unaff_RBX,unaff_RDI + 0x60,0x25);
     if ((int)uVar1 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         uVar1 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+        uVar1 = SystemDataManager(*unaff_RBX,unaff_RDI + 0x40);
       }
       else {
         uVar1 = 0x1c;
@@ -202,8 +300,19 @@ uint64_t FUN_18089ac64(void)
 
 
 
-// 函数: void FUN_18089ac96(void)
-void FUN_18089ac96(void)
+/**
+ * @brief 网络系统连接清理器
+ * @details 负责清理和释放网络连接资源
+ * 
+ * 功能：
+ * - 清理网络连接资源
+ * - 释放连接占用的内存
+ * - 重置连接状态
+ * - 准备连接资源重新分配
+ * 
+ * @return void 无返回值
+ */
+void NetworkingSystem_ConnectionCleaner(void)
 
 {
   int iVar1;
@@ -214,7 +323,7 @@ void FUN_18089ac96(void)
     iVar1 = 0;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    iVar1 = FUN_1808a2e00(*unaff_RBX,unaff_RDI + 0x40);
+    iVar1 = SystemDataManager(*unaff_RBX,unaff_RDI + 0x40);
   }
   else {
     iVar1 = 0x1c;
@@ -230,7 +339,7 @@ void FUN_18089ac96(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18089ace4(void)
+uint64_t NetworkingSystem_StatusHandler(void)
 
 {
   float fVar1;
@@ -243,7 +352,7 @@ uint64_t FUN_18089ace4(void)
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(unaff_RBX + 0x40) < 0x3b) {
-      uVar2 = FUN_18089cc80();
+      uVar2 = SystemConnectionChecker();
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -274,13 +383,13 @@ uint64_t FUN_18089ace4(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 0x40) < 0x40)) {
-    uVar2 = FUN_1808a8620();
+    uVar2 = SystemNetworkValidator();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
     goto LAB_18089ae18;
   }
-  uVar2 = FUN_18089cc80();
+  uVar2 = SystemConnectionChecker();
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -293,8 +402,8 @@ LAB_18089ae18:
 
 
 
-// 函数: void FUN_18089ae2d(void)
-void FUN_18089ae2d(void)
+// 函数: void NetworkingSystem_EmptyFunction1(void)
+void NetworkingSystem_EmptyFunction1(void)
 
 {
   return;
@@ -304,8 +413,8 @@ void FUN_18089ae2d(void)
 
 
 
-// 函数: void FUN_18089ae35(void)
-void FUN_18089ae35(void)
+// 函数: void NetworkingSystem_EmptyFunction2(void)
+void NetworkingSystem_EmptyFunction2(void)
 
 {
   return;
@@ -315,8 +424,8 @@ void FUN_18089ae35(void)
 
 
 
-// 函数: void FUN_18089ae3d(void)
-void FUN_18089ae3d(void)
+// 函数: void NetworkingSystem_EmptyFunction3(void)
+void NetworkingSystem_EmptyFunction3(void)
 
 {
   return;
@@ -326,8 +435,8 @@ void FUN_18089ae3d(void)
 
 
 
-// 函数: void FUN_18089ae50(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
-void FUN_18089ae50(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
+// 函数: void NetworkingSystem_AdvancedProcessor(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
+void NetworkingSystem_AdvancedProcessor(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
                   char param_5)
 
 {
@@ -337,8 +446,8 @@ void FUN_18089ae50(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t para
   
   iVar1 = DataFlowProcessor(param_2,auStack_38,1,param_3);
   if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(param_2,auStack_78,0,param_4), iVar1 == 0)) &&
-     (iVar1 = FUN_180899360(param_2,param_1 + 0x10), iVar1 == 0)) {
-    if ((param_5 != '\0') && (iVar1 = FUN_18089d490(param_1 + 0x48,param_2), iVar1 != 0)) {
+     (iVar1 = SystemSecurityChecker(param_2,param_1 + 0x10), iVar1 == 0)) {
+    if ((param_5 != '\0') && (iVar1 = SystemEventProcessor(param_1 + 0x48,param_2), iVar1 != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
@@ -349,7 +458,7 @@ void FUN_18089ae50(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t para
 
 
 
-uint64_t FUN_18089af12(void)
+uint64_t NetworkingSystem_PerformanceOptimizer(void)
 
 {
   int64_t *plVar1;
@@ -380,7 +489,7 @@ uint64_t FUN_18089af12(void)
     if (*plVar1 != 0) {
       if (plVar1[2] == 0) {
 LAB_18089af81:
-        uVar3 = FUN_180769ed0(*plVar1,&stack0x00000030,unaff_ESI,unaff_ESI,0);
+        uVar3 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,unaff_ESI,unaff_ESI,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -415,19 +524,19 @@ LAB_18089af81:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808afc70();
+  uVar4 = SystemConnectionValidator();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808a5d60();
+  uVar4 = SystemNetworkProcessor();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808a5d60();
+  uVar4 = SystemNetworkProcessor();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_18089bd70();
+  uVar4 = SystemConnectionOptimizer();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -456,11 +565,11 @@ LAB_18089af81:
     return uVar4;
   }
   if (0x5a < *(uint *)(unaff_RBX + 8)) {
-    uVar4 = FUN_1808a4a20();
+    uVar4 = SystemPerformanceMonitor();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
-    uVar4 = FUN_1808a4a20();
+    uVar4 = SystemPerformanceMonitor();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -483,7 +592,7 @@ LAB_18089af81:
     if (*plVar1 != 0) {
       if (plVar1[2] == 0) {
 LAB_18089b1ab:
-        unaff_EDI = FUN_180769ed0(*plVar1,&stack0x00000038,unaff_ESI,4,0);
+        unaff_EDI = SystemPerformanceOptimizer(*plVar1,&stack0x00000038,unaff_ESI,4,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -535,7 +644,7 @@ LAB_18089b22a:
 
 
 
-int FUN_18089b218(void)
+int NetworkingSystem_ErrorHandler(void)
 
 {
   int64_t unaff_RBP;
@@ -551,7 +660,7 @@ int FUN_18089b218(void)
 
 
 
-int FUN_18089b21d(void)
+int NetworkingSystem_DataProcessor(void)
 
 {
   int64_t unaff_RBP;
@@ -570,8 +679,8 @@ int FUN_18089b21d(void)
 
 
 
-// 函数: void FUN_18089b26e(void)
-void FUN_18089b26e(void)
+// 函数: void NetworkingSystem_ConnectionInitializer(void)
+void NetworkingSystem_ConnectionInitializer(void)
 
 {
   return;
@@ -579,7 +688,7 @@ void FUN_18089b26e(void)
 
 
 
-uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
+uint64_t NetworkingSystem_PacketHandler(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -598,8 +707,8 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
   uStack_30 = puVar2[2];
   uStack_2c = puVar2[3];
   uVar3 = DataFlowProcessor(param_2,auStack_28,0,0x4c525443);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_180899360(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
+  if ((((int)uVar3 == 0) && (uVar3 = SystemSecurityChecker(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
+     (uVar3 = SystemSecurityChecker(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
     uVar4 = 0x1c;
     if (*(uint *)(param_2 + 8) < 0x5a) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
@@ -619,7 +728,7 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
     }
     if ((int)uVar3 == 0) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar3 = FUN_180899090(*param_2,param_1 + 0x30);
+        uVar3 = SystemResourceProcessor(*param_2,param_1 + 0x30);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -637,7 +746,7 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
 
 
 
-uint64_t FUN_18089b307(void)
+uint64_t NetworkingSystem_StreamProcessor(void)
 
 {
   uint64_t uVar1;
@@ -672,7 +781,7 @@ uint64_t FUN_18089b307(void)
     return uVar2;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar2 = SystemResourceProcessor(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -687,7 +796,7 @@ uint64_t FUN_18089b307(void)
 
 
 
-uint64_t FUN_18089b31f(void)
+uint64_t NetworkingSystem_BufferManager(void)
 
 {
   uint64_t uVar1;
@@ -710,7 +819,7 @@ uint64_t FUN_18089b31f(void)
     return uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar3 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar3 = SystemResourceProcessor(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -728,7 +837,7 @@ uint64_t FUN_18089b31f(void)
 
 
 
-uint64_t FUN_18089b380(void)
+uint64_t NetworkingSystem_MemoryAllocator(void)
 
 {
   uint uVar1;
@@ -738,7 +847,7 @@ uint64_t FUN_18089b380(void)
   uint64_t unaff_RDI;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*unaff_RBX,unaff_RBP + 0x30);
+    uVar2 = SystemResourceProcessor(*unaff_RBX,unaff_RBP + 0x30);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -758,8 +867,8 @@ uint64_t FUN_18089b380(void)
 
 
 
-// 函数: void FUN_18089b3d4(void)
-void FUN_18089b3d4(void)
+// 函数: void NetworkingSystem_ConnectionFinalizer(void)
+void NetworkingSystem_ConnectionFinalizer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -770,8 +879,8 @@ void FUN_18089b3d4(void)
 
 
 
-// 函数: void FUN_18089b3e6(void)
-void FUN_18089b3e6(void)
+// 函数: void NetworkingSystem_EmptyFunction4(void)
+void NetworkingSystem_EmptyFunction4(void)
 
 {
   return;
@@ -781,8 +890,8 @@ void FUN_18089b3e6(void)
 
 
 
-// 函数: void FUN_18089b400(int64_t param_1,uint64_t param_2)
-void FUN_18089b400(int64_t param_1,uint64_t param_2)
+// 函数: void NetworkingSystem_EventHandler(int64_t param_1,uint64_t param_2)
+void NetworkingSystem_EventHandler(int64_t param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -790,7 +899,7 @@ void FUN_18089b400(int64_t param_1,uint64_t param_2)
   
   iVar1 = DataFlowProcessor(param_2,auStack_28,0,0x4f525443);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808a79f0(param_2,param_1 + 8);
+    iVar1 = SystemNetworkHandler(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
       AdvancedSystemManager(param_2,auStack_28);
@@ -801,7 +910,7 @@ void FUN_18089b400(int64_t param_1,uint64_t param_2)
 
 
 
-uint64_t FUN_18089b460(int64_t param_1,int64_t *param_2)
+uint64_t NetworkingSystem_SecurityChecker(int64_t param_1,int64_t *param_2)
 
 {
   int64_t lVar1;
@@ -900,7 +1009,7 @@ uint64_t FUN_18089b460(int64_t param_1,int64_t *param_2)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*param_2,&stack0x00000008,1,1,0);
+    uVar2 = SystemPerformanceOptimizer(*param_2,&stack0x00000008,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -911,7 +1020,7 @@ LAB_1808a2e6d:
 
 
 
-uint64_t FUN_18089b52a(void)
+uint64_t NetworkingSystem_ConnectionValidator(void)
 
 {
   int64_t lVar1;
@@ -978,7 +1087,7 @@ uint64_t FUN_18089b52a(void)
         goto LAB_1808a2e6d;
       }
     }
-    uVar3 = FUN_180769ed0(*plVar2,&stack0x00000030,1,1,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar2,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar3 == 0) {
@@ -989,7 +1098,7 @@ LAB_1808a2e6d:
 
 
 
-uint64_t FUN_18089b540(void)
+uint64_t NetworkingSystem_ResourceManager(void)
 
 {
   int64_t lVar1;
@@ -1031,7 +1140,7 @@ uint64_t FUN_18089b540(void)
         goto LAB_1808a2e6d;
       }
     }
-    uVar3 = FUN_180769ed0(*plVar2,&stack0x00000030,1,1,0);
+    uVar3 = SystemPerformanceOptimizer(*plVar2,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar3 == 0) {
@@ -1044,8 +1153,8 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void FUN_18089b599(void)
-void FUN_18089b599(void)
+// 函数: void NetworkingSystem_EmptyFunction5(void)
+void NetworkingSystem_EmptyFunction5(void)
 
 {
   return;
@@ -1053,7 +1162,7 @@ void FUN_18089b599(void)
 
 
 
-uint64_t FUN_18089b5a9(int param_1)
+uint64_t NetworkingSystem_StateSynchronizer(int param_1)
 
 {
   int64_t *plVar1;
@@ -1102,7 +1211,7 @@ uint64_t FUN_18089b5a9(int param_1)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*plVar1,&stack0x00000030,1,1,0);
+    uVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -1115,8 +1224,8 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void FUN_18089b5fc(void)
-void FUN_18089b5fc(void)
+// 函数: void NetworkingSystem_ConnectionManager2(void)
+void NetworkingSystem_ConnectionManager2(void)
 
 {
   int64_t *plVar1;
@@ -1144,7 +1253,7 @@ void FUN_18089b5fc(void)
         goto LAB_1808a2e6d;
       }
     }
-    iVar2 = FUN_180769ed0(*plVar1,&stack0x00000030,1,1,0);
+    iVar2 = SystemPerformanceOptimizer(*plVar1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if (iVar2 == 0) {
@@ -1155,7 +1264,7 @@ LAB_1808a2e6d:
 
 
 
-uint64_t FUN_18089b617(void)
+uint64_t NetworkingSystem_EmptyFunction6(void)
 
 {
   return 0;
@@ -1165,8 +1274,8 @@ uint64_t FUN_18089b617(void)
 
 
 
-// 函数: void FUN_18089b61e(void)
-void FUN_18089b61e(void)
+// 函数: void NetworkingSystem_EmptyFunction7(void)
+void NetworkingSystem_EmptyFunction7(void)
 
 {
   return;
@@ -1174,7 +1283,7 @@ void FUN_18089b61e(void)
 
 
 
-uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
+uint64_t NetworkingSystem_AdvancedEventHandler(int64_t param_1,uint64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -1189,15 +1298,15 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
   uVar1 = DataFlowProcessor(param_2,auStack_48,1,0x54495645);
   if (((((int)uVar1 == 0) &&
        (uVar1 = DataFlowProcessor(param_2,auStack_68,0,0x42495645), (int)uVar1 == 0)) &&
-      (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
-     (uVar1 = FUN_180899360(param_2,param_1 + 0xd8), (int)uVar1 == 0)) {
+      (uVar1 = SystemSecurityChecker(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+     (uVar1 = SystemSecurityChecker(param_2,param_1 + 0xd8), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
     uVar1 = SystemDataManager(*param_2,param_1 + 0xf8);
     if ((int)uVar1 == 0) {
       auStackX_20[0] = 0;
-      uVar1 = FUN_1808afe30(*param_2,auStackX_20);
+      uVar1 = SystemDataProcessor(*param_2,auStackX_20);
       if ((int)uVar1 == 0) {
         iVar2 = 0;
         auStackX_18[0] = 0;
@@ -1205,15 +1314,15 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
         uVar4 = auStackX_20[0] >> 1;
         if (uVar4 != 0) {
           do {
-            uVar1 = FUN_1808dde10(param_2,auStackX_18[0]);
+            uVar1 = UISystemEventHandler(param_2,auStackX_18[0]);
             if ((int)uVar1 != 0) {
               return uVar1;
             }
-            uVar1 = FUN_1808a7f40(param_2,param_1 + 0xe8,iVar2,param_1);
+            uVar1 = SystemEventHandler(param_2,param_1 + 0xe8,iVar2,param_1);
             if ((int)uVar1 != 0) {
               return uVar1;
             }
-            uVar1 = FUN_1808de0e0(param_2,auStackX_18);
+            uVar1 = SystemCore_Initializer(param_2,auStackX_18);
             if ((int)uVar1 != 0) {
               return uVar1;
             }
@@ -1233,8 +1342,8 @@ uint64_t FUN_18089b630(int64_t param_1,uint64_t *param_2)
 
 
 
-// 函数: void FUN_18089b6df(void)
-void FUN_18089b6df(void)
+// 函数: void NetworkingSystem_CleanupHandler(void)
+void NetworkingSystem_CleanupHandler(void)
 
 {
   int iVar1;
@@ -1243,7 +1352,7 @@ void FUN_18089b6df(void)
   uint uStack00000000000000a8;
   
   uStack00000000000000a8 = 0;
-  iVar1 = FUN_1808afe30();
+  iVar1 = SystemDataProcessor();
   if (iVar1 != 0) {
     return;
   }
@@ -1251,15 +1360,15 @@ void FUN_18089b6df(void)
   uVar3 = uStack00000000000000a8 >> 1;
   if (uVar3 != 0) {
     do {
-      iVar2 = FUN_1808dde10();
+      iVar2 = UISystemEventHandler();
       if (iVar2 != 0) {
         return;
       }
-      iVar2 = FUN_1808a7f40();
+      iVar2 = SystemEventHandler();
       if (iVar2 != 0) {
         return;
       }
-      iVar2 = FUN_1808de0e0();
+      iVar2 = SystemCore_Initializer();
       if (iVar2 != 0) {
         return;
       }

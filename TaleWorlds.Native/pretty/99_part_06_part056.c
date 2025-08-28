@@ -1,3 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+/* 函数别名定义: MemoryDeallocationHandler */
+#define MemoryDeallocationHandler MemoryDeallocationHandler
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -24,9 +33,9 @@ void FUN_1803df280(int64_t param_1,int64_t param_2)
   
   FUN_180631330(param_2,&processed_var_4216_ptr,param_1 + 0xc0);
   pfVar1 = (float *)(param_1 + 0xe4);
-  lVar5 = FUN_180631960(param_2,&processed_var_6264_ptr,param_1 + 0xd4);
+  lVar5 = StringProcessor(param_2,&processed_var_6264_ptr,param_1 + 0xd4);
   if (lVar5 == 0) {
-    FUN_180631960(param_2,&processed_var_6236_ptr,param_1 + 0xd4);
+    StringProcessor(param_2,&processed_var_6236_ptr,param_1 + 0xd4);
     pcVar7 = "intensity";
     do {
       pcVar8 = pcVar7;
@@ -220,7 +229,7 @@ LAB_1803df602:
     *(float *)(param_1 + 0x60) = afStackX_8[0] * *(float *)(param_1 + 0x60);
     *(float *)(param_1 + 0x68) = afStackX_8[0] * *(float *)(param_1 + 0x68);
   }
-  FUN_180631960(param_2,&processed_var_6288_ptr,param_1 + 0x70);
+  StringProcessor(param_2,&processed_var_6288_ptr,param_1 + 0x70);
   pcVar7 = "hotspot_angle";
   do {
     pcVar8 = pcVar7;
@@ -394,7 +403,7 @@ LAB_1803df980:
       }
     }
   }
-  FUN_180631960(param_2,&processed_var_6592_ptr,param_1 + 0x158);
+  StringProcessor(param_2,&processed_var_6592_ptr,param_1 + 0x158);
   pcVar7 = "sprite_color_scale";
   do {
     pcVar8 = pcVar7;
@@ -587,7 +596,7 @@ void FUN_1803dfc60(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
       goto LAB_1803dfd66;
     }
 LAB_1803dfd68:
-    FUN_18062fb40(param_2,puVar4,&processed_var_6236_ptr);
+    UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_6236_ptr);
   }
   else {
     if ((*(float *)(param_1 + 0xd4) != *(float *)(param_4 + 0xd4)) ||
@@ -603,7 +612,7 @@ LAB_1803dfd66:
     bVar8 = *(float *)(param_1 + 0xe4) == *(float *)(param_4 + 0xe4);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6352_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6352_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0x30) == 1.0;
@@ -612,7 +621,7 @@ LAB_1803dfd66:
     bVar8 = *(float *)(param_1 + 0x30) == *(float *)(param_4 + 0x30);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_4368_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_4368_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0xf4) == 0.0;
@@ -621,7 +630,7 @@ LAB_1803dfd66:
     bVar8 = *(float *)(param_1 + 0xf4) == *(float *)(param_4 + 0xf4);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6368_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6368_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0xf0) == 0.0;
@@ -630,7 +639,7 @@ LAB_1803dfd66:
     bVar8 = *(float *)(param_1 + 0xf0) == *(float *)(param_4 + 0xf0);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6400_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6400_ptr);
   }
   if (param_4 == 0) {
     if (((((*(float *)(param_1 + 0x40) != 1.0) || (*(float *)(param_1 + 0x44) != 0.0)) ||
@@ -666,7 +675,7 @@ LAB_1803dfea3:
       goto LAB_1803dff34;
     }
 LAB_1803dff36:
-    FUN_18062fb40(param_2,puVar4,&processed_var_6288_ptr);
+    UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_6288_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0xe8) == 0.0;
@@ -675,13 +684,13 @@ LAB_1803dff36:
     bVar8 = *(float *)(param_1 + 0xe8) == *(float *)(param_4 + 0xe8);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6304_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6304_ptr);
   }
   if (param_4 == 0) {
     if (*(float *)(param_1 + 0xec) != 0.0) {
-      FUN_18062f990(param_2,puVar4,&processed_var_6320_ptr);
+      MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6320_ptr);
     }
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     iVar3 = *(int *)(param_1 + 0x418);
     if (iVar3 == *(int *)(lVar7 + 0x10)) {
       if (iVar3 == 0) {
@@ -711,7 +720,7 @@ LAB_1803e01a8:
       }
       SystemAllocationProcessor(param_2,puVar4,&processed_var_6336_ptr,pcVar6);
     }
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     iVar3 = *(int *)(param_1 + 0x128);
     if (iVar3 == *(int *)(lVar7 + 0x10)) {
       if (iVar3 == 0) {
@@ -741,7 +750,7 @@ LAB_1803e0218:
       }
       SystemAllocationProcessor(param_2,puVar4,&processed_var_6528_ptr,pcVar6);
     }
-    lVar7 = FUN_180628ca0();
+    lVar7 = MemoryDebugger0();
     iVar3 = *(int *)(param_1 + 0x148);
     if (iVar3 != *(int *)(lVar7 + 0x10)) {
       if (iVar3 == 0) goto LAB_1803e0288;
@@ -772,7 +781,7 @@ LAB_1803e02a9:
   }
   else {
     if (*(float *)(param_1 + 0xec) != *(float *)(param_4 + 0xec)) {
-      FUN_18062f990(param_2,puVar4,&processed_var_6320_ptr);
+      MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6320_ptr);
     }
     iVar3 = *(int *)(param_1 + 0x418);
     if (iVar3 == *(int *)(param_4 + 0x418)) {
@@ -864,7 +873,7 @@ LAB_1803e00f4:
       goto LAB_1803e02a9;
     }
   }
-  FUN_18062fb40(param_2,puVar4,&processed_var_6592_ptr);
+  UltraHighFreq_NetworkHandler1(param_2,puVar4,&processed_var_6592_ptr);
 LAB_1803e02bd:
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0x16c) == 1.0;
@@ -873,7 +882,7 @@ LAB_1803e02bd:
     bVar8 = *(float *)(param_1 + 0x16c) == *(float *)(param_4 + 0x16c);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6624_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6624_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(float *)(param_1 + 0x168) == 1.0;
@@ -882,7 +891,7 @@ LAB_1803e02bd:
     bVar8 = *(float *)(param_1 + 0x168) == *(float *)(param_4 + 0x168);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6448_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6448_ptr);
   }
   if (param_4 == 0) {
     bVar8 = *(int *)(param_1 + 200) == 0;
@@ -918,7 +927,7 @@ LAB_1803e02bd:
     bVar8 = *(float *)(param_1 + 0x38) == *(float *)(param_4 + 0x38);
   }
   if (!bVar8) {
-    FUN_18062f990(param_2,puVar4,&processed_var_6504_ptr);
+    MemoryDeallocationHandler0(param_2,puVar4,&processed_var_6504_ptr);
   }
   if ((puVar4[6] != 0) || (puVar4[8] != 0)) {
     if (param_5 != 0) {

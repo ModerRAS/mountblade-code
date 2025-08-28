@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_04_part029.c - 12 个函数
 
 // 函数: void FUN_1802a00a0(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4,
@@ -107,7 +115,7 @@ void FUN_1802a01a0(uint64_t *param_1)
         uStack_160 = 0x12;
         uStack_158 = param_1[2];
         uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        ppuVar6 = (void **)FUN_18005ce30(uVar5,&puStack_1f8);
+        ppuVar6 = (void **)SystemCore_StreamController(uVar5,&puStack_1f8);
         ppuStack_208 = ppuVar6;
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
@@ -118,7 +126,7 @@ void FUN_1802a01a0(uint64_t *param_1)
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
         }
-        FUN_18005e370(lVar3,&ppuStack_218);
+        SystemPerformance_Monitor(lVar3,&ppuStack_218);
         param_1[2] = 0;
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x38))(ppuVar6);
@@ -144,7 +152,7 @@ void FUN_1802a01a0(uint64_t *param_1)
             uStack_160 = 0x12;
             uStack_158 = *(uint64_t *)(uVar7 + param_1[3]);
             uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-            ppuVar6 = (void **)FUN_18005ce30(uVar5,&puStack_1f8);
+            ppuVar6 = (void **)SystemCore_StreamController(uVar5,&puStack_1f8);
             ppuStack_208 = ppuVar6;
             if (ppuVar6 != (void **)0x0) {
               (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
@@ -155,7 +163,7 @@ void FUN_1802a01a0(uint64_t *param_1)
             if (ppuVar6 != (void **)0x0) {
               (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
             }
-            FUN_18005e370(lVar3,&ppuStack_218);
+            SystemPerformance_Monitor(lVar3,&ppuStack_218);
             *(uint64_t *)(uVar7 + param_1[3]) = 0;
             if (ppuVar6 != (void **)0x0) {
               (**(code **)(*ppuVar6 + 0x38))(ppuVar6);
@@ -188,7 +196,7 @@ void FUN_1802a01a0(uint64_t *param_1)
         uStack_80 = 0xe;
         uStack_78 = param_1[1];
         uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        ppuVar6 = (void **)FUN_18005ce30(uVar5,&puStack_118);
+        ppuVar6 = (void **)SystemCore_StreamController(uVar5,&puStack_118);
         ppuStack_208 = ppuVar6;
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
@@ -199,7 +207,7 @@ void FUN_1802a01a0(uint64_t *param_1)
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x28))(ppuVar6);
         }
-        FUN_18005e370(lVar3,&ppuStack_218);
+        SystemPerformance_Monitor(lVar3,&ppuStack_218);
         param_1[1] = 0;
         if (ppuVar6 != (void **)0x0) {
           (**(code **)(*ppuVar6 + 0x38))(ppuVar6);
@@ -353,7 +361,7 @@ void FUN_1802a07c0(int64_t *param_1)
         uStack_80 = 0x12;
         lStack_78 = param_1[1];
         uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        pppplVar4 = (int64_t ****)FUN_18005ce30(uVar5,&ppplStack_118);
+        pppplVar4 = (int64_t ****)SystemCore_StreamController(uVar5,&ppplStack_118);
         pppplStack_220 = pppplVar4;
         if (pppplVar4 != (int64_t ****)0x0) {
           (*(code *)(*pppplVar4)[5])(pppplVar4);
@@ -364,7 +372,7 @@ void FUN_1802a07c0(int64_t *param_1)
         if (pppplVar4 != (int64_t ****)0x0) {
           (*(code *)(*pppplVar4)[5])(pppplVar4);
         }
-        FUN_18005e370(lVar2,&ppplStack_210);
+        SystemPerformance_Monitor(lVar2,&ppplStack_210);
         param_1[1] = 0;
         if (pppplVar4 != (int64_t ****)0x0) {
           (*(code *)(*pppplVar4)[7])(pppplVar4);
@@ -391,7 +399,7 @@ void FUN_1802a07c0(int64_t *param_1)
         uStack_160 = 0x12;
         lStack_158 = param_1[2];
         uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        ppppplVar6 = (int64_t *****)FUN_18005ce30(uVar5,&puStack_1f8);
+        ppppplVar6 = (int64_t *****)SystemCore_StreamController(uVar5,&puStack_1f8);
         pppplStack_218 = (int64_t ****)ppppplVar6;
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[5])(ppppplVar6);
@@ -402,7 +410,7 @@ void FUN_1802a07c0(int64_t *param_1)
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[5])(ppppplVar6);
         }
-        FUN_18005e370(lVar2,&pppplStack_228);
+        SystemPerformance_Monitor(lVar2,&pppplStack_228);
         param_1[2] = 0;
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[7])(ppppplVar6);
@@ -428,7 +436,7 @@ void FUN_1802a07c0(int64_t *param_1)
         uStack_160 = 0xe;
         lStack_158 = *param_1;
         uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        ppppplVar6 = (int64_t *****)FUN_18005ce30(uVar5,&puStack_1f8);
+        ppppplVar6 = (int64_t *****)SystemCore_StreamController(uVar5,&puStack_1f8);
         pppplStack_220 = (int64_t ****)ppppplVar6;
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[5])(ppppplVar6);
@@ -439,7 +447,7 @@ void FUN_1802a07c0(int64_t *param_1)
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[5])(ppppplVar6);
         }
-        FUN_18005e370(lVar2,&pppplStack_228);
+        SystemPerformance_Monitor(lVar2,&pppplStack_228);
         *param_1 = 0;
         if (ppppplVar6 != (int64_t *****)0x0) {
           (*(code *)(*ppppplVar6)[7])(ppppplVar6);
@@ -532,7 +540,7 @@ void FUN_1802a0bb0(int64_t param_1)
       uStack_160 = 0x12;
       uStack_158 = *(uint64_t *)(param_1 + 0x10);
       uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-      plVar4 = (int64_t *)FUN_18005ce30(uVar5,&plStack_1f8);
+      plVar4 = (int64_t *)SystemCore_StreamController(uVar5,&plStack_1f8);
       ppplStack_220 = (int64_t ***)plVar4;
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -543,7 +551,7 @@ void FUN_1802a0bb0(int64_t param_1)
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x28))(plVar4);
       }
-      FUN_18005e370(lVar2,&plStack_218);
+      SystemPerformance_Monitor(lVar2,&plStack_218);
       *(uint64_t *)(param_1 + 0x10) = 0;
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x38))(plVar4);
@@ -570,7 +578,7 @@ void FUN_1802a0bb0(int64_t param_1)
             uStack_80 = 0x12;
             uStack_78 = *(uint64_t *)(uVar7 + *(int64_t *)(param_1 + 0x18));
             uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-            pplVar6 = (int64_t **)FUN_18005ce30(uVar5,&puStack_118);
+            pplVar6 = (int64_t **)SystemCore_StreamController(uVar5,&puStack_118);
             pplStack_208 = pplVar6;
             if (pplVar6 != (int64_t **)0x0) {
               (*(code *)(*pplVar6)[5])(pplVar6);
@@ -581,7 +589,7 @@ void FUN_1802a0bb0(int64_t param_1)
             if (pplVar6 != (int64_t **)0x0) {
               (*(code *)(*pplVar6)[5])(pplVar6);
             }
-            FUN_18005e370(lVar2,&pplStack_228);
+            SystemPerformance_Monitor(lVar2,&pplStack_228);
             *(uint64_t *)(uVar7 + *(int64_t *)(param_1 + 0x18)) = 0;
             if (pplVar6 != (int64_t **)0x0) {
               (*(code *)(*pplVar6)[7])(pplVar6);
@@ -719,8 +727,8 @@ code_r0x0001802a107b:
 
 
 
-// 函数: void FUN_1802a11e0(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
-void FUN_1802a11e0(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
+// 函数: void SystemCore_DataConverter(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
+void SystemCore_DataConverter(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
 
 {
   byte bVar1;
@@ -854,7 +862,7 @@ void FUN_1802a11e0(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
       if (cRam0000000180d48da9 == '\0') {
         cRam0000000180d48da9 = '\x01';
         iStack_2c8 = 0x78a;
-        FUN_180060680(auStack_258,&rendering_buffer_2944_ptr,&rendering_buffer_2904_ptr,&rendering_buffer_2856_ptr);
+        RenderingEngine_BufferManager(auStack_258,&rendering_buffer_2944_ptr,&rendering_buffer_2904_ptr,&rendering_buffer_2856_ptr);
         OutputDebugStringA(auStack_258);
       }
       fVar14 = 0.0;

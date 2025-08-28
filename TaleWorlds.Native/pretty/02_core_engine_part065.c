@@ -200,20 +200,20 @@ void FUN_18009d3a0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     uVar2 = *(uint64_t *)(param_2 + -8);
     uVar6 = param_1[lVar5 >> 1];
     uStackX_8 = param_4;
-    cVar3 = FUN_180096a80(&uStackX_8,uVar1,uVar6);
+    cVar3 = CoreEngine_ConfigValidator(&uStackX_8,uVar1,uVar6);
     if (cVar3 == '\0') {
-      cVar3 = FUN_180096a80(&uStackX_8,uVar1,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&uStackX_8,uVar1,uVar2);
       uVar7 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&uStackX_8,uVar6,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&uStackX_8,uVar6,uVar2);
         goto LAB_18009d46c;
       }
     }
     else {
-      cVar3 = FUN_180096a80(&uStackX_8,uVar6,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&uStackX_8,uVar6,uVar2);
       uVar7 = uVar6;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&uStackX_8,uVar1,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&uStackX_8,uVar1,uVar2);
         uVar6 = uVar1;
 LAB_18009d46c:
         uVar7 = uVar6;
@@ -265,20 +265,20 @@ void FUN_18009d3ad(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     uVar2 = *(uint64_t *)(param_2 + -8);
     uVar6 = param_1[lVar5 >> 1];
     in_stack_00000050 = param_4;
-    cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar6);
+    cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar6);
     if (cVar3 == '\0') {
-      cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar2);
       uVar7 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&stack0x00000050,uVar6,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar6,uVar2);
         goto LAB_18009d46c;
       }
     }
     else {
-      cVar3 = FUN_180096a80(&stack0x00000050,uVar6,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar6,uVar2);
       uVar7 = uVar6;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar2);
         uVar6 = uVar1;
 LAB_18009d46c:
         uVar7 = uVar6;
@@ -323,20 +323,20 @@ void FUN_18009d3d1(void)
     uVar1 = *unaff_R14;
     uVar2 = *(uint64_t *)(unaff_R15 + -8);
     uVar5 = unaff_R14[lVar4 >> 1];
-    cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar5);
+    cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar5);
     if (cVar3 == '\0') {
-      cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar2);
       in_stack_00000050 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&stack0x00000050,uVar5,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar5,uVar2);
         goto LAB_18009d46c;
       }
     }
     else {
-      cVar3 = FUN_180096a80(&stack0x00000050,uVar5,uVar2);
+      cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar5,uVar2);
       in_stack_00000050 = uVar5;
       if (cVar3 == '\0') {
-        cVar3 = FUN_180096a80(&stack0x00000050,uVar1,uVar2);
+        cVar3 = CoreEngine_ConfigValidator(&stack0x00000050,uVar1,uVar2);
         uVar5 = uVar1;
 LAB_18009d46c:
         in_stack_00000050 = uVar5;
@@ -417,20 +417,20 @@ void FUN_18009d4f0(int32_t *param_1,int64_t param_2,int64_t param_3,uint64_t par
     uVar2 = *(int32_t *)(param_2 + -4);
     uVar6 = param_1[lVar5 >> 1];
     uStackX_8 = param_4;
-    cVar3 = FUN_1800988e0(&uStackX_8,uVar1,uVar6);
+    cVar3 = CoreEngine_StateProcessor(&uStackX_8,uVar1,uVar6);
     if (cVar3 == '\0') {
-      cVar3 = FUN_1800988e0(&uStackX_8,uVar1,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&uStackX_8,uVar1,uVar2);
       uVar7 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&uStackX_8,uVar6,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&uStackX_8,uVar6,uVar2);
         goto LAB_18009d5b5;
       }
     }
     else {
-      cVar3 = FUN_1800988e0(&uStackX_8,uVar6,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&uStackX_8,uVar6,uVar2);
       uVar7 = uVar6;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&uStackX_8,uVar1,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&uStackX_8,uVar1,uVar2);
         uVar6 = uVar1;
 LAB_18009d5b5:
         uVar7 = uVar6;
@@ -482,20 +482,20 @@ void FUN_18009d4fd(int32_t *param_1,int64_t param_2,int64_t param_3,uint64_t par
     uVar2 = *(int32_t *)(param_2 + -4);
     uVar6 = param_1[lVar5 >> 1];
     in_stack_00000050 = param_4;
-    cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar6);
+    cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar6);
     if (cVar3 == '\0') {
-      cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar2);
       uVar7 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&stack0x00000050,uVar6,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar6,uVar2);
         goto LAB_18009d5b5;
       }
     }
     else {
-      cVar3 = FUN_1800988e0(&stack0x00000050,uVar6,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar6,uVar2);
       uVar7 = uVar6;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar2);
         uVar6 = uVar1;
 LAB_18009d5b5:
         uVar7 = uVar6;
@@ -543,20 +543,20 @@ void FUN_18009d51f(void)
     uVar2 = *(int32_t *)(unaff_R15 + -4);
     uVar5 = unaff_R14[lVar4 >> 1];
     in_stack_00000050._4_4_ = (int)((uint64_t)unaff_RBX >> 0x20);
-    cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar5);
+    cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar5);
     if (cVar3 == '\0') {
-      cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar2);
       uVar6 = uVar1;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&stack0x00000050,uVar5,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar5,uVar2);
         goto LAB_18009d5b5;
       }
     }
     else {
-      cVar3 = FUN_1800988e0(&stack0x00000050,uVar5,uVar2);
+      cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar5,uVar2);
       uVar6 = uVar5;
       if (cVar3 == '\0') {
-        cVar3 = FUN_1800988e0(&stack0x00000050,uVar1,uVar2);
+        cVar3 = CoreEngine_StateProcessor(&stack0x00000050,uVar1,uVar2);
         uVar5 = uVar1;
 LAB_18009d5b5:
         uVar6 = uVar5;

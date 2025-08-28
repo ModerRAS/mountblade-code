@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part053.c - 3 个函数
 
 // 函数: void FUN_1803dc6f0(int64_t param_1,int64_t param_2,int param_3)
@@ -176,9 +180,9 @@ LAB_1803dc915:
   }
   *puVar1 = 0;
 LAB_1803dc91d:
-  FUN_180631960(param_2,&processed_var_8872_ptr,&uStack_68);
-  FUN_180631960(param_2,&processed_var_8888_ptr,&uStack_90);
-  uVar14 = FUN_180631960(param_2,&processed_var_8408_ptr,&fStack_80);
+  StringProcessor(param_2,&processed_var_8872_ptr,&uStack_68);
+  StringProcessor(param_2,&processed_var_8888_ptr,&uStack_90);
+  uVar14 = StringProcessor(param_2,&processed_var_8408_ptr,&fStack_80);
   pcVar12 = "color";
   do {
     pcVar13 = pcVar12;
@@ -283,7 +287,7 @@ LAB_1803dcabf:
         uVar8 = (uint)uVar9;
         if (((0 < (int)uVar8) && (*puVar1 < uVar8)) &&
            (*(int64_t *)(*(int64_t *)(lVar4 + ((uint64_t)*puVar1 % uVar9) * 8) + 0x38) != 0)) {
-          FUN_180056f10(param_1 + 0x98);
+          SystemCore_PointerManager(param_1 + 0x98);
         }
         FUN_1803dccd0(param_1,param_3);
         puStack_e0 = &system_data_buffer_ptr;
@@ -679,7 +683,7 @@ int64_t FUN_1803dcdd0(int64_t param_1,int64_t param_2,int64_t *param_3,int param
     if ((void *)param_3[1] != (void *)0x0) {
       puVar12 = (void *)param_3[1];
     }
-    FUN_180627020(&processed_var_4048_ptr,puVar12);
+    SystemCore_Allocator(&processed_var_4048_ptr,puVar12);
     lVar9 = system_system_data_config;
     uVar6 = 0;
     *(int32_t *)(param_1 + 0x50) = 0;
@@ -706,7 +710,7 @@ LAB_1803dcfd4:
         (*(int64_t *)(lVar9 + 8) +
         (uVar10 % (uint64_t)(*(int64_t *)(lVar9 + 0x10) - *(int64_t *)(lVar9 + 8) >> 3)) * 8) +
       0x38) != 0)) {
-    FUN_180056f10(param_1 + 0x98);
+    SystemCore_PointerManager(param_1 + 0x98);
   }
   FUN_1803dccd0(param_1,param_4);
   return lVar13;

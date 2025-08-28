@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_02_part042.c - 4 个函数
 
 // 函数: void FUN_1801b2460(int64_t param_1)
@@ -86,18 +94,18 @@ void FUN_1801b2460(int64_t param_1)
   fStack_140 = (float)(int32_t)uStack_80;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   uVar2 = uStack_88._4_4_;
   fStack_144 = (float)uStack_88._4_4_;
   uStack_13c = 0x7f7fffff;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = 3;
   uStack_130 = 0x200000001;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -105,17 +113,17 @@ void FUN_1801b2460(int64_t param_1)
   fStack_144 = (float)uVar2;
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   fStack_144 = (float)uVar2;
   uStack_13c = 0x7f7fffff;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(3,(int32_t)uStack_138);
   uStack_130 = 0x500000004;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -123,17 +131,17 @@ void FUN_1801b2460(int64_t param_1)
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(6,(int32_t)uStack_138);
   uStack_130 = 0x800000007;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -141,17 +149,17 @@ void FUN_1801b2460(int64_t param_1)
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   uStack_13c = 0x7f7fffff;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(9,(int32_t)uStack_138);
   uStack_130 = 0xb0000000a;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -159,17 +167,17 @@ void FUN_1801b2460(int64_t param_1)
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_144 = (float)uVar2;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(0xc,(int32_t)uStack_138);
   uStack_130 = 0xe0000000d;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -177,17 +185,17 @@ void FUN_1801b2460(int64_t param_1)
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_144 = (float)uVar2;
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_144 = fVar6;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(0xf,(int32_t)uStack_138);
   uStack_130 = 0x1100000010;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -195,17 +203,17 @@ void FUN_1801b2460(int64_t param_1)
   fStack_144 = (float)uVar2;
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   fStack_144 = (float)uVar2;
   uStack_13c = 0x7f7fffff;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_144 = (float)uVar2;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(0x12,(int32_t)uStack_138);
   uStack_130 = 0x1400000013;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -213,17 +221,17 @@ void FUN_1801b2460(int64_t param_1)
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_148 = fVar1;
   fStack_144 = (float)uVar2;
   fStack_140 = (float)uVar3;
   uStack_13c = 0x7f7fffff;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   fStack_144 = (float)uVar2;
   uStack_13c = 0x7f7fffff;
   fStack_148 = fVar7;
   fStack_140 = fVar5;
-  FUN_1800863a0(&uStack_f0,&fStack_148);
+  AudioMixer(&uStack_f0,&fStack_148);
   uStack_138 = CONCAT44(0x15,(int32_t)uStack_138);
   uStack_130 = 0x1700000016;
   FUN_180086270(&uStack_b0,&uStack_138);
@@ -322,7 +330,7 @@ void FUN_1801b2c30(int64_t param_1)
       lVar10 = lVar3 + 0x5f8;
       puVar4 = *(uint64_t **)(lVar3 + 0x608);
       if (puVar4 != (uint64_t *)0x0) {
-        FUN_18004b790(lVar10,*puVar4);
+        SystemCache_Manager(lVar10,*puVar4);
                     // WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(puVar4);
       }
@@ -591,7 +599,7 @@ void FUN_1801b32d0(int64_t param_1)
       *(uint *)((int64_t)plStack_130 + 0x2c4) = uVar1 | 4;
       if (((plStack_130[4] != 0) && (*(char *)(plStack_130[4] + 0x60cb0) == '\0')) &&
          ((uVar1 & 2) != 0)) {
-        uVar13 = FUN_1802ee720(plStack_130,0);
+        uVar13 = RenderingSystem_UpdateCamera(plStack_130,0);
       }
     }
     lVar5 = system_system_data_memory;
@@ -635,7 +643,7 @@ void FUN_1801b32d0(int64_t param_1)
       (*(code *)(*pplVar4)[5])(pplVar4);
     }
     uStack_150 = 1;
-    FUN_1800763c0(pplVar4,&plStack_120);
+    SystemCore_BufferManager(pplVar4,&plStack_120);
     uStack_150 = 0;
     if (pplVar4 != (int64_t **)0x0) {
       (*(code *)(*pplVar4)[7])(pplVar4);
@@ -704,7 +712,7 @@ void FUN_1801b32d0(int64_t param_1)
       auStack_80[0] = 0;
       uStack_88 = 6;
       strcpy_s(auStack_80,0x40,&processed_var_436_ptr);
-      puVar7 = (uint64_t *)FUN_1800b30d0(system_resource_state,&pplStack_140,&puStack_98,1);
+      puVar7 = (uint64_t *)SystemCore_PerformanceMonitor(system_resource_state,&pplStack_140,&puStack_98,1);
       puVar7 = (uint64_t *)FUN_18022cb40(*puVar7,&plStack_118);
       plVar6 = (int64_t *)*puVar7;
       *puVar7 = 0;
@@ -793,7 +801,7 @@ void FUN_1801b32d0(int64_t param_1)
       auStack_e0[0] = 0;
       uStack_e8 = 9;
       strcpy_s(auStack_e0,0x40,&processed_var_5464_ptr);
-      puVar7 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStack_148,&puStack_f8,1);
+      puVar7 = (uint64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_148,&puStack_f8,1);
       FUN_18022cd30(plVar6,8,*puVar7);
       if (plStack_148 != (int64_t *)0x0) {
         (**(code **)(*plStack_148 + 0x38))();

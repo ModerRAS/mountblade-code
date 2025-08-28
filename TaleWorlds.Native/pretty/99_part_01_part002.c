@@ -205,9 +205,9 @@ void FUN_1800a0051(uint64_t param_1, int64_t *param_2, int64_t param_3, byte par
       uVar8 = (uint64_t)in_stack_00000080;
       do {
         // 输出制表符
-        FUN_1800a0e50(lVar3, 9);
+        SystemCore_ResourceManager(lVar3, 9);
         if (lVar2 != 0) {
-          FUN_1800a1160(lVar3, lVar2);
+          SystemCore_Synchronizer(lVar3, lVar2);
         }
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
@@ -219,58 +219,58 @@ void FUN_1800a0051(uint64_t param_1, int64_t *param_2, int64_t param_3, byte par
   lVar2 = param_2[1];
   
   // 输出XML标签开始符号
-  FUN_1800a0e50(lVar2, CHAR_LESS_THAN);
+  SystemCore_ResourceManager(lVar2, CHAR_LESS_THAN);
   lVar3 = *param_2;
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出感叹号
-  FUN_1800a0e50(lVar2, CHAR_EXCLAMATION);
+  SystemCore_ResourceManager(lVar2, CHAR_EXCLAMATION);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出左方括号
-  FUN_1800a0e50(lVar2, CHAR_LEFT_SQUARE_BRACKET);
+  SystemCore_ResourceManager(lVar2, CHAR_LEFT_SQUARE_BRACKET);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出字符'C'
-  FUN_1800a0e50(lVar2, 'C');
+  SystemCore_ResourceManager(lVar2, 'C');
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出字符'D'
-  FUN_1800a0e50(lVar2, 'D');
+  SystemCore_ResourceManager(lVar2, 'D');
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出字符'A'
-  FUN_1800a0e50(lVar2, 'A');
+  SystemCore_ResourceManager(lVar2, 'A');
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出字符'T'
-  FUN_1800a0e50(lVar2, 'T');
+  SystemCore_ResourceManager(lVar2, 'T');
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 再次输出字符'A'
-  FUN_1800a0e50(lVar2, 'A');
+  SystemCore_ResourceManager(lVar2, 'A');
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 输出右方括号
-  FUN_1800a0e50(lVar2, CHAR_RIGHT_SQUARE_BRACKET);
+  SystemCore_ResourceManager(lVar2, CHAR_RIGHT_SQUARE_BRACKET);
   if (lVar3 != 0) {
-    FUN_1800a1160(lVar2, lVar3);
+    SystemCore_Synchronizer(lVar2, lVar3);
   }
   
   // 处理字符串数据
@@ -294,9 +294,9 @@ void FUN_1800a0051(uint64_t param_1, int64_t *param_2, int64_t param_3, byte par
   while (puVar9 != puVar6 + lVar7) {
     uVar1 = *puVar9;
     puVar9 = puVar9 + 1;
-    FUN_1800a0e50(lVar3, uVar1);
+    SystemCore_ResourceManager(lVar3, uVar1);
     if (lVar2 != 0) {
-      FUN_1800a1160(lVar3, lVar2);
+      SystemCore_Synchronizer(lVar3, lVar2);
     }
   }
   
@@ -305,22 +305,22 @@ void FUN_1800a0051(uint64_t param_1, int64_t *param_2, int64_t param_3, byte par
   lVar7 = param_2[1];
   
   // 输出右方括号
-  FUN_1800a0e50(lVar7, CHAR_RIGHT_SQUARE_BRACKET);
+  SystemCore_ResourceManager(lVar7, CHAR_RIGHT_SQUARE_BRACKET);
   lVar5 = *param_2;
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7, lVar5);
+    SystemCore_Synchronizer(lVar7, lVar5);
   }
   
   // 输出右方括号
-  FUN_1800a0e50(lVar7, CHAR_RIGHT_SQUARE_BRACKET);
+  SystemCore_ResourceManager(lVar7, CHAR_RIGHT_SQUARE_BRACKET);
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7, lVar5);
+    SystemCore_Synchronizer(lVar7, lVar5);
   }
   
   // 输出大于符号
-  FUN_1800a0e50(lVar7, CHAR_GREATER_THAN);
+  SystemCore_ResourceManager(lVar7, CHAR_GREATER_THAN);
   if (lVar5 != 0) {
-    FUN_1800a1160(lVar7, lVar5);
+    SystemCore_Synchronizer(lVar7, lVar5);
   }
   
   // 更新输出缓冲区

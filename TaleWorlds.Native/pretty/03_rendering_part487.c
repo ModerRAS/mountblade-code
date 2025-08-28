@@ -1,7 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part487.c - 4 个函数
 
@@ -79,7 +82,7 @@ void FUN_1805288a0(int64_t param_1,int32_t *param_2,float *param_3,float *param_
   cVar5 = *(char *)(lVar13 + 0xe5);
   cVar6 = *(char *)(lVar13 + 0xe4);
   if ((*(byte *)(lVar7 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(lVar7,*(int64_t *)(lVar7 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar7,*(int64_t *)(lVar7 + 0x10) + 0x70,0xbf800000);
   }
   lVar13 = (int64_t)cVar5;
   puVar12 = (uint *)(lVar13 * 0x100 + *(int64_t *)(lVar7 + 0x18));
@@ -116,7 +119,7 @@ void FUN_1805288a0(int64_t param_1,int32_t *param_2,float *param_3,float *param_
   fStack_d0 = fStack_110;
   uStack_cc = uStack_10c;
   if ((*(byte *)(lVar7 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(lVar7,*(int64_t *)(lVar7 + 0x10) + 0x70,0xbf800000);
+    SystemCore_FileSystem(lVar7,*(int64_t *)(lVar7 + 0x10) + 0x70,0xbf800000);
   }
   lVar14 = (int64_t)cVar6;
   puVar12 = (uint *)(lVar14 * 0x100 + *(int64_t *)(lVar7 + 0x18));
@@ -408,7 +411,7 @@ LAB_1805291c0:
         if ((1.0 < *(float *)(lVar10 + 0x13d4) || *(float *)(lVar10 + 0x13d4) == 1.0) &&
            ((*(byte *)(lVar10 + 0x1484) & 1) == 0)) {
           *(uint *)(lVar10 + 0x1484) = *(uint *)(lVar10 + 0x1484) | 1;
-          puVar11 = (uint64_t *)FUN_180516f50(lVar19,auStack_130);
+          puVar11 = (uint64_t *)UltraHighFreq_MemoryManager1(lVar19,auStack_130);
           lVar19 = *(int64_t *)(param_1 + 0x6e0);
           *(uint64_t *)(lVar19 + 0x13d8) = *puVar11;
           uVar18 = puVar11[4];

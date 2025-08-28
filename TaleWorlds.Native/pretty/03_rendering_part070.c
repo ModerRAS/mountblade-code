@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part070.c - 渲染系统高级初始化和资源管理模块
 // 本模块包含9个核心函数，涵盖渲染系统初始化、资源管理、内存分配、状态控制、参数处理等高级渲染功能
 // 主要函数包括：rendering_system_initialize_render_context、rendering_system_process_render_batch、rendering_system_check_visibility等
@@ -258,7 +262,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         
         // 分配渲染资源
         puVar8 = (uint64_t *)
-                 FUN_1800b0a10(uVar20, &plStack_3d0, *(int32_t *)(param_2 + 0x1bd4), &puStack_128);
+                 SystemCore_ConfigManager(uVar20, &plStack_3d0, *(int32_t *)(param_2 + 0x1bd4), &puStack_128);
         uVar20 = *puVar8;
         *puVar8 = 0;
         plStack_3d8 = *(int64_t **)(param_1 + 0x68);
@@ -290,7 +294,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         
         // 分配第二个渲染资源
         puVar8 = (uint64_t *)
-                 FUN_1800b0a10(uVar20, &plStack_3c0, *(int32_t *)(param_2 + 0x1bd4), &puStack_c8);
+                 SystemCore_ConfigManager(uVar20, &plStack_3c0, *(int32_t *)(param_2 + 0x1bd4), &puStack_c8);
         uVar20 = *puVar8;
         *puVar8 = 0;
         plStack_3c8 = *(int64_t **)(param_1 + 0x70);
@@ -434,7 +438,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         lStack_240 = param_1 + 0x988;
         lStack_230 = (int64_t)iVar16 * 0x50;
         uVar20 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
-        plVar11 = (int64_t *)FUN_18005ce30(uVar20, &puStack_2e8);
+        plVar11 = (int64_t *)SystemCore_StreamController(uVar20, &puStack_2e8);
         pplStack_408 = (int64_t **)plVar11;
         
         if (plVar11 != (int64_t *)0x0) {
@@ -447,7 +451,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        FUN_18005e370(uVar20, &plStack_3f8);
+        SystemPerformance_Monitor(uVar20, &plStack_3f8);
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
@@ -464,7 +468,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         lStack_160 = param_1 + 0x1290;
         lStack_150 = (int64_t)iVar16 * 0x1b0;
         uVar20 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
-        plVar11 = (int64_t *)FUN_18005ce30(uVar20, &puStack_208);
+        plVar11 = (int64_t *)SystemCore_StreamController(uVar20, &puStack_208);
         ppuStack_3b8 = (void **)plVar11;
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -476,7 +480,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        FUN_18005e370(uVar20, &plStack_3f0);
+        SystemPerformance_Monitor(uVar20, &plStack_3f0);
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }

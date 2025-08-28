@@ -25,7 +25,7 @@ void FUN_18046a6f0(int64_t param_1,int64_t *param_2)
       plVar1 = plVar1 + 1;
     } while ((uint64_t)(int64_t)iVar2 < uVar3);
   }
-  FUN_18005ea90(param_2 + 0xb93,&lStackX_8);
+  SystemSecurity_Manager(param_2 + 0xb93,&lStackX_8);
 LAB_18046a744:
   uStack_10 = (**(code **)(*param_2 + 8))(param_2);
   plStack_18 = param_2;

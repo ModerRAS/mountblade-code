@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part170.c - 11 个函数
 
 // 函数: void FUN_18076a70d(void)
@@ -19,7 +23,7 @@ void FUN_18076a70d(void)
     *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x40) = 0;
   }
   if (unaff_RBX[0x33] != 0) {
-    FUN_180768380(unaff_RBX[0x33],0);
+    SystemCore_DataHandler(unaff_RBX[0x33],0);
   }
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
@@ -195,7 +199,7 @@ void FUN_18076ac40(int param_1,int64_t *param_2)
     *(uint64_t *)(lVar5 + 0x160) = 0;
     *(uint64_t *)(lVar5 + 0x168) = 0;
     *(int *)(lVar5 + 0x170) = param_1;
-    iVar4 = FUN_1807682e0((uint64_t *)(lVar5 + 0x168),0);
+    iVar4 = SystemCore_DataProcessor((uint64_t *)(lVar5 + 0x168),0);
     if (iVar4 == 0) {
                     // WARNING: Subroutine does not return
       SystemValidationProcessor(auStack_138,0x100,&ui_system_data_1784_ptr,*(int32_t *)(lVar5 + 0x170));
@@ -233,7 +237,7 @@ uint64_t FUN_18076ade0(void)
       FUN_180767ad0(lVar1);
       *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x130 + (int64_t)*(int *)(lVar1 + 0x170) * 8) = 0;
       if (*(int64_t *)(lVar1 + 0x168) != 0) {
-        FUN_180768380(*(int64_t *)(lVar1 + 0x168),0);
+        SystemCore_DataHandler(*(int64_t *)(lVar1 + 0x168),0);
       }
                     // WARNING: Subroutine does not return
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&ui_system_data_1824_ptr,0x91,1);
@@ -268,7 +272,7 @@ void FUN_18076adfb(void)
       FUN_180767ad0(lVar1);
       *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x130 + (int64_t)*(int *)(lVar1 + 0x170) * 8) = 0;
       if (*(int64_t *)(lVar1 + 0x168) != 0) {
-        FUN_180768380(*(int64_t *)(lVar1 + 0x168),0);
+        SystemCore_DataHandler(*(int64_t *)(lVar1 + 0x168),0);
       }
                     // WARNING: Subroutine does not return
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&ui_system_data_1824_ptr,0x91,1);
@@ -353,7 +357,7 @@ uint64_t FUN_18076af64(void)
   else if (*(int *)(*(int64_t *)(unaff_RBP + 0x28) + 0x110) == 7) {
     lVar5 = *(int64_t *)(unaff_RBP + 0x28);
     while ((*(uint *)(lVar5 + 0x58) & 0x440) == 0) {
-      FUN_180768bf0();
+      UIComponent_EventHandler();
     }
     if ((*(uint *)(lVar5 + 0x58) & 0x40) == 0) {
       lVar2 = *(int64_t *)(*(int64_t *)(unaff_RBP + 0x28) + 0x108);
@@ -825,7 +829,7 @@ void FUN_18076b613(void)
 
 
 
-int FUN_18076b6f0(char *param_1,char *param_2,int param_3)
+int SystemCore_Optimizer(char *param_1,char *param_2,int param_3)
 
 {
   char cVar1;
@@ -854,7 +858,7 @@ int FUN_18076b6f0(char *param_1,char *param_2,int param_3)
 
 
 
-char * FUN_18076b7c0(char *param_1,char *param_2)
+char * UtilitiesSystem_DataValidator(char *param_1,char *param_2)
 
 {
   char cVar1;

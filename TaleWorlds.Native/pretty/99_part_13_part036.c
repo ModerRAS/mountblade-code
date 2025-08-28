@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_13_part036.c - 2 个函数
 
 // 函数: void FUN_1808bd674(void)
@@ -261,19 +265,19 @@ int FUN_1808bd9b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(param_1 + 0x1d0) = 0;
-    FUN_18084f040(param_1 + 0x1a0);
+    SystemCore_CacheManager(param_1 + 0x1a0);
   }
   if (!bVar2) {
     *(int32_t *)(param_1 + 0x98) = 0;
-    FUN_18084f2d0(param_1 + 0x68);
+    SystemCore_NetworkProcessor(param_1 + 0x68);
   }
   return iVar3;
 }
@@ -383,19 +387,19 @@ int FUN_1808bd9bd(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(param_1 + 0x1d0) = 0;
-    FUN_18084f040(param_1 + 0x1a0);
+    SystemCore_CacheManager(param_1 + 0x1a0);
   }
   if (!bVar2) {
     *(int32_t *)(param_1 + 0x98) = 0;
-    FUN_18084f2d0(param_1 + 0x68);
+    SystemCore_NetworkProcessor(param_1 + 0x68);
   }
   return iVar3;
 }
@@ -500,19 +504,19 @@ int FUN_1808bd9ea(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t par
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (!bVar2) {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return iVar3;
 }
@@ -532,18 +536,18 @@ int32_t FUN_1808bdb86(uint64_t param_1,int32_t param_2)
   char cStack0000000000000034;
   
   *(int32_t *)(unaff_R14 + 0x60) = param_2;
-  FUN_18084f560(unaff_R14 + 0x30);
+  RenderingEngine_ShaderProcessor(unaff_R14 + 0x30);
   if (cStack0000000000000030 == '\0') {
     *(int32_t *)(unaff_R15 + 0x60) = 0;
-    FUN_18084f040(unaff_R15 + 0x30);
+    SystemCore_CacheManager(unaff_R15 + 0x30);
   }
   if (cStack0000000000000034 == '\0') {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (unaff_R13B == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -561,14 +565,14 @@ int32_t FUN_1808bdba1(uint64_t param_1,int32_t param_2)
   uint64_t in_stack_00000030;
   
   *(int32_t *)(unaff_R15 + 0x60) = param_2;
-  FUN_18084f040(unaff_R15 + 0x30);
+  SystemCore_CacheManager(unaff_R15 + 0x30);
   if (in_stack_00000030._4_1_ == '\0') {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (unaff_R13B == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -584,10 +588,10 @@ int32_t FUN_1808bdbba(void)
   char unaff_R13B;
   
   *(int32_t *)(unaff_RBP + 0x60) = 0;
-  FUN_18084f040(unaff_RBP + 0x30);
+  SystemCore_CacheManager(unaff_RBP + 0x30);
   if (unaff_R13B == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -601,7 +605,7 @@ int32_t FUN_1808bdbd9(void)
   int64_t unaff_RSI;
   
   *(int32_t *)(unaff_RSI + 0x60) = 0;
-  FUN_18084f2d0(unaff_RSI + 0x30);
+  SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   return unaff_EBX;
 }
 
@@ -730,12 +734,12 @@ uint64_t FUN_1808bdd90(int64_t param_1)
     }
     uStack_30 = 0xffffffffffffffff;
     aiStack_28[0] = -1;
-    FUN_1808741f0(param_1 + 0x38,&uStack_30,aiStack_28);
+    SystemResource_Manager(param_1 + 0x38,&uStack_30,aiStack_28);
     uStack_18 = 0xffffffffffffffff;
     aiStack_10[0] = -1;
     lStack_20 = *(int64_t *)((int64_t)aiStack_28[0] * 0x20 + 0x18 + *(int64_t *)(param_1 + 0x48))
     ;
-    FUN_1807d1650(lStack_20,&uStack_18,aiStack_10);
+    NetworkSystem_ConnectionHandler(lStack_20,&uStack_18,aiStack_10);
   } while ((*(char *)(param_1 + 0x780) != '\0') ||
           (uVar2 = FUN_1808b81c0(param_1 + 0x3c8,
                                  *(uint64_t *)
@@ -780,7 +784,7 @@ void FUN_1808bdeb0(int64_t param_1)
     iVar6 = 0;
     lVar7 = 0;
     plStack_458 = (int64_t *)(param_1 + 0x38);
-    FUN_1808741f0((int64_t *)(param_1 + 0x38),&uStack_450,aiStack_448);
+    SystemResource_Manager((int64_t *)(param_1 + 0x38),&uStack_450,aiStack_448);
     plVar1 = plStack_458;
     if (aiStack_448[0] != -1) {
       iVar3 = aiStack_448[0];
@@ -792,7 +796,7 @@ void FUN_1808bdeb0(int64_t param_1)
           uStack_450 = 0xffffffffffffffff;
           aiStack_448[0] = -1;
           plStack_458 = *(int64_t **)(lVar10 + 0x18);
-          FUN_1807d1650(plStack_458,&uStack_450,aiStack_448);
+          NetworkSystem_ConnectionHandler(plStack_458,&uStack_450,aiStack_448);
           if (aiStack_448[0] != -1) {
             iVar8 = aiStack_448[0];
             iVar4 = (int)uStack_450;

@@ -353,7 +353,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define SystemCore_EncryptionEngine0              BufferAllocator
 #define CoreEngineDataBufferProcessor              BufferExpander
 #define SystemCore_ConfigurationHandler0              ShaderConfigSetter
-#define FUN_18062dee0              FileStreamOpener
+#define RenderingSystem_DataValidator0              FileStreamOpener
 #define SystemSecurityChecker              SecurityCheckHandler
 
 // =============================================================================
@@ -871,7 +871,7 @@ void ShaderSourceCompiler(uint64_t param_1, int64_t param_2, int64_t param_3, ui
 #define SystemCore_EncryptionEngine0              BufferAllocator
 #define CoreEngineDataBufferProcessor              BufferExpander
 #define SystemCore_ConfigurationHandler0              ShaderConfigSetter
-#define FUN_18062dee0              FileStreamOpener
+#define RenderingSystem_DataValidator0              FileStreamOpener
 #define SystemSecurityChecker              SecurityCheckHandler
 
 // =============================================================================

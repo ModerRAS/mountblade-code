@@ -406,8 +406,8 @@ void FUN_18009d8f0(int64_t *param_1,int64_t *param_2,int64_t *param_3,int64_t pa
     do {
       lVar8 = *plVar12;
       lVar2 = *param_1;
-      plVar4 = (int64_t *)FUN_180058080(param_4 + 0x90,auStackX_18,lVar8 + 0x20);
-      plVar4 = (int64_t *)FUN_180058080(*(int32_t *)(*plVar4 + 0x40),auStackX_20,lVar2 + 0x20);
+      plVar4 = (int64_t *)> HighFreq_AnimationSystem1(param_4 + 0x90,auStackX_18,lVar8 + 0x20);
+      plVar4 = (int64_t *)> HighFreq_AnimationSystem1(*(int32_t *)(*plVar4 + 0x40),auStackX_20,lVar2 + 0x20);
       if (extraout_XMM0_Da == *(float *)(*plVar4 + 0x40)) {
         if (*(int *)(lVar8 + 0x30) == 0) {
           bVar3 = false;

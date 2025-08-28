@@ -1,5 +1,13 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/*
+ * FUN_函数语义化别名定义
+ * 自动生成的别名定义，用于提高代码可读性
+ */
+
+
 
 // ============================================================================
 // 99_part_13_part044_sub002_sub002.c - 高级渲染系统和数据管理模块
@@ -169,7 +177,7 @@ uint64 FUN_1808c1eb0(int64 param_1)
   // 初始化搜索参数
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = INVALID_INDEX;
-  FUN_1808741f0((IntPtr)(param_1 + 0x108), &uStack_40, aiStack_38);
+  SystemResource_Manager((IntPtr)(param_1 + 0x108), &uStack_40, aiStack_38);
   
   if (aiStack_38[0] != INVALID_INDEX) {
     iVar8 = aiStack_38[0];
@@ -182,7 +190,7 @@ uint64 FUN_1808c1eb0(int64 param_1)
         uStack_40 = 0xffffffffffffffff;
         aiStack_38[0] = INVALID_INDEX;
         plVar1 = *(IntPtr **)((int64)iVar8 * NODE_SIZE_20 + 0x18 + *(int64 *)(param_1 + 0x118));
-        FUN_1807d1650(plVar1, &uStack_40, aiStack_38);
+        NetworkSystem_ConnectionHandler(plVar1, &uStack_40, aiStack_38);
         
         if (aiStack_38[0] != INVALID_INDEX) {
           iVar7 = aiStack_38[0];
@@ -333,7 +341,7 @@ uint64 FUN_1808c2060(int64 param_1, uint32 *param_2, int8 param_3)
   else {
     // 替代移除模式
     auStackX_18[0] = 1;
-    uVar3 = FUN_180879610((IntPtr)(param_1 + 0x268), param_2, auStackX_18);
+    uVar3 = SystemStateProcessor((IntPtr)(param_1 + 0x268), param_2, auStackX_18);
     if ((int32)uVar3 != SUCCESS_CODE) {
       return uVar3;
     }
@@ -1104,7 +1112,7 @@ LAB_1808c2c1e:
   plStack_90 = (IntPtr)(param_1 + 0x38);
   uStack_88 = 0xffffffffffffffff;
   aiStack_80[0] = INVALID_INDEX;
-  FUN_1808741f0(plStack_90, &uStack_88, aiStack_80);
+  SystemResource_Manager(plStack_90, &uStack_88, aiStack_80);
   
   if (aiStack_80[0] != INVALID_INDEX) {
     plVar15 = plStack_90;
@@ -1116,7 +1124,7 @@ LAB_1808c2c1e:
       uStack_70 = 0xffffffffffffffff;
       aiStack_68[0] = INVALID_INDEX;
       plStack_78 = *(IntPtr **)(plVar15[2] + 0x18 + (int64)iVar6 * NODE_SIZE_20);
-      FUN_1807d1650(plStack_78, &uStack_70, aiStack_68);
+      NetworkSystem_ConnectionHandler(plStack_78, &uStack_70, aiStack_68);
       plVar10 = plStack_78;
       
       if (aiStack_68[0] != INVALID_INDEX) {
@@ -1791,7 +1799,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   iVar3 = FUN_1808b89f0(param_1[2] + 0x290, puVar7);
   lVar8 = lStack_60;
   
-  if ((iVar3 != SUCCESS_CODE) || (iVar3 = FUN_1808b2f30(puVar7, 0), lVar8 = lStack_60, iVar3 != SUCCESS_CODE))
+  if ((iVar3 != SUCCESS_CODE) || (iVar3 = SystemDataFlowProcessor(puVar7, 0), lVar8 = lStack_60, iVar3 != SUCCESS_CODE))
   goto LAB_1808c3648;
   
   // 更新对象状态
@@ -1885,22 +1893,22 @@ LAB_1808c3648:
   // 执行清理操作
   if (!bVar18) {
     *(uint32 *)(lStack_58 + 0x60) = 0;
-    FUN_18084f560(lStack_58 + 0x30);
+    RenderingEngine_ShaderProcessor(lStack_58 + 0x30);
   }
   
   if (!bVar16) {
     *(uint32 *)(lStack_50 + 0x60) = 0;
-    FUN_18084f040(lStack_50 + 0x30);
+    SystemCore_CacheManager(lStack_50 + 0x30);
   }
   
   if (!bVar17) {
     *(uint32 *)(lStack_48 + 0x60) = 0;
-    FUN_18084f040(lStack_48 + 0x30);
+    SystemCore_CacheManager(lStack_48 + 0x30);
   }
   
   if (!bVar15) {
     *(uint32 *)(lVar8 + 0x60) = 0;
-    FUN_18084f2d0(lVar8 + 0x30);
+    SystemCore_NetworkProcessor(lVar8 + 0x30);
   }
   
   return iVar3;
@@ -2071,7 +2079,7 @@ int32 FUN_1808c3266(void)
   iVar3 = FUN_1808b89f0(unaff_R12[2] + 0x290, puVar6);
   lVar7 = lStack0000000000000058;
   
-  if ((iVar3 != SUCCESS_CODE) || (iVar3 = FUN_1808b2f30(puVar6, 0), lVar7 = lStack0000000000000058, iVar3 != SUCCESS_CODE))
+  if ((iVar3 != SUCCESS_CODE) || (iVar3 = SystemDataFlowProcessor(puVar6, 0), lVar7 = lStack0000000000000058, iVar3 != SUCCESS_CODE))
   goto LAB_1808c3648;
   
   // 更新对象状态
@@ -2165,22 +2173,22 @@ LAB_1808c3648:
   // 执行清理操作
   if (!bVar17) {
     *(uint32 )(lStack0000000000000060 + 0x60) = 0;
-    FUN_18084f560(lStack0000000000000060 + 0x30);
+    RenderingEngine_ShaderProcessor(lStack0000000000000060 + 0x30);
   }
   
   if (!bVar15) {
     *(uint32 )(lStack0000000000000068 + 0x60) = 0;
-    FUN_18084f040(lStack0000000000000068 + 0x30);
+    SystemCore_CacheManager(lStack0000000000000068 + 0x30);
   }
   
   if (!bVar16) {
     *(uint32 )(lStack0000000000000070 + 0x60) = 0;
-    FUN_18084f040(lStack0000000000000070 + 0x30);
+    SystemCore_CacheManager(lStack0000000000000070 + 0x30);
   }
   
   if (!bVar14) {
     *(uint32 )(lVar7 + 0x60) = 0;
-    FUN_18084f2d0(lVar7 + 0x30);
+    SystemCore_NetworkProcessor(lVar7 + 0x30);
   }
   
   return iVar3;
@@ -2220,21 +2228,21 @@ uint32 FUN_1808c366a(void)
   
   // 执行多级资源清理
   *(uint32 *)(in_stack_00000060 + 0x60) = unaff_R14D;
-  FUN_18084f560(in_stack_00000060 + 0x30);
+  RenderingEngine_ShaderProcessor(in_stack_00000060 + 0x30);
   
   if (cStack0000000000000040 == 0) {
     *(uint32 *)(in_stack_00000068 + 0x60) = unaff_R14D;
-    FUN_18084f040(in_stack_00000068 + 0x30);
+    SystemCore_CacheManager(in_stack_00000068 + 0x30);
   }
   
   if (cStack0000000000000044 == 0) {
     *(uint32 )(in_stack_00000070 + 0x60) = unaff_R14D;
-    FUN_18084f040(in_stack_00000070 + 0x30);
+    SystemCore_CacheManager(in_stack_00000070 + 0x30);
   }
   
   if (in_stack_00000048 == 0) {
     *(uint32 )(unaff_RDI + 0x60) = unaff_R14D;
-    FUN_18084f2d0(unaff_RDI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RDI + 0x30);
   }
   
   return unaff_EBX;
@@ -2354,7 +2362,7 @@ uint64 FUN_1808c37a0(IntPtr param_1, uint64 param_2)
     // 执行批量数据处理
     uStack_30 = 0xffffffffffffffff;
     aiStack_28[0] = INVALID_INDEX;
-    FUN_1807d1650(plVar2, &uStack_30, aiStack_28);
+    NetworkSystem_ConnectionHandler(plVar2, &uStack_30, aiStack_28);
     
     if (aiStack_28[0] != INVALID_INDEX) {
       iVar7 = aiStack_28[0];
@@ -2485,7 +2493,7 @@ uint64 FUN_1808c37b9(uint64 param_1, uint64 param_2)
     // 执行批量数据处理
     _iStack0000000000000038 = 0xffffffffffffffff;
     in_stack_00000040 = INVALID_INDEX;
-    FUN_1807d1650(plVar3, &stack0x00000038, &stack0x00000040);
+    NetworkSystem_ConnectionHandler(plVar3, &stack0x00000038, &stack0x00000040);
     
     if (in_stack_00000040 != INVALID_INDEX) {
       iVar7 = in_stack_00000040;

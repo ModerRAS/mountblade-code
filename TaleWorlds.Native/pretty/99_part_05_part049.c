@@ -122,7 +122,7 @@ void FUN_1802f94d1(void)
           fStack0000000000000070 = fVar3;
           fStack0000000000000074 = fVar4;
           fStack0000000000000078 = fVar5;
-          FUN_18063b5f0(&stack0x00000030,&stack0x00000060);
+          SystemSecurityManager(&stack0x00000030,&stack0x00000060);
           fVar6 = *unaff_R13;
           fVar7 = unaff_R13[1];
           fVar8 = unaff_R13[2];
@@ -312,7 +312,7 @@ void FUN_1802f94e7(void)
         fStack0000000000000070 = fVar3;
         fStack0000000000000074 = fVar4;
         fStack0000000000000078 = fVar5;
-        FUN_18063b5f0(&stack0x00000030,&stack0x00000060);
+        SystemSecurityManager(&stack0x00000030,&stack0x00000060);
         fVar6 = *unaff_R13;
         fVar7 = unaff_R13[1];
         fVar8 = unaff_R13[2];
@@ -561,7 +561,7 @@ void FUN_1802f98b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   }
   else {
     lVar6 = param_4 + 0x30;
-    FUN_18063b5f0(&uStack_a8);
+    SystemSecurityManager(&uStack_a8);
     uStack_e8 = uStack_a8;
     uStack_e0 = uStack_a0;
     uStack_d8 = uStack_98;
@@ -585,7 +585,7 @@ void FUN_1802f98b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   uStack_20 = *(int32_t *)(puVar5 + 7);
   uStack_1c = *(int32_t *)((int64_t)puVar5 + 0x3c);
   lVar6 = param_1 + 0x30;
-  FUN_18063b5f0(&uStack_a8);
+  SystemSecurityManager(&uStack_a8);
   uStack_e8 = uStack_a8;
   uStack_e0 = uStack_a0;
   uStack_d8 = uStack_98;
@@ -787,12 +787,12 @@ LAB_1802f9cc0:
               if (*(void **)(param_3 + 0x290) != (void *)0x0) {
                 puVar10 = *(void **)(param_3 + 0x290);
               }
-              FUN_180627020(&rendering_buffer_2176_ptr,puVar10,(int)acStack_58[0],lVar16,puVar8,lVar14);
+              SystemCore_Allocator(&rendering_buffer_2176_ptr,puVar10,(int)acStack_58[0],lVar16,puVar8,lVar14);
               lVar7 = *(int64_t *)(lVar7 + 0x10);
               if (lVar7 == 0) {
                 return;
               }
-              FUN_1802ed990(lVar7,1);
+              PhysicsSystem_CharacterController(lVar7,1);
               return;
             }
             lVar7 = (int64_t)&rendering_buffer_2296_ptr - (int64_t)pcVar13;
@@ -874,7 +874,7 @@ void FUN_1802f9e70(int64_t param_1,int64_t param_2)
         pcVar8 = pcVar8 + 1;
       } while ((uint64_t)(int64_t)iVar9 < uVar13);
     }
-    FUN_180194a50(puVar1,acStackX_8);
+    NetworkSystem_StreamProcessor(puVar1,acStackX_8);
     return;
   }
   pcVar8 = (char *)*puVar1;

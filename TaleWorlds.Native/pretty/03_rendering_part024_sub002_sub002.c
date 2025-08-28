@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -693,7 +698,7 @@ LAB_18027e6bc:
             uStack_c8 = (uint64_t *******)0x0;
             ppppppuStack_200 = (uint64_t ******)pppppppuVar14;
             if ((int64_t)pppppppuVar29[5] - (int64_t)pppppppuVar29[4] >> 4 != 0) {
-              FUN_180076910(pppppppuVar14,pppppppuVar29[4][1] + 0x37);
+              UltraHighFreq_SecurityValidator1(pppppppuVar14,pppppppuVar29[4][1] + 0x37);
               *(int32_t *)(pppppppuVar14 + 0x4e) = *(int32_t *)(pppppppuVar29[4][1] + 0x4e);
               ppppppuVar12 = (uint64_t ******)pppppppuVar29[4][1][0x56];
               pppppppuVar14[0x55] = (uint64_t ******)pppppppuVar29[4][1][0x55];
@@ -714,7 +719,7 @@ LAB_18027e6bc:
               uStack_70 = 0;
               uStack_80 = 0;
               auStack_88[0] = 0;
-              FUN_18022f2e0(&uStack_98,pppppppuVar14,0);
+              RenderingSystem_MaterialProcessor(&uStack_98,pppppppuVar14,0);
               ppppppuVar12 = pppppppuVar29[4];
               puVar16 = puVar27;
               puVar30 = puVar27;
@@ -964,7 +969,7 @@ LAB_18027ef7d:
                 (*(code *)(*uStack_188)[5])(uStack_188);
               }
               FUN_18017a600(uVar13,&ppppppuStackX_10,&puStack_170,&puStack_128,&puStack_148);
-              FUN_180057830(&puStack_170);
+              DataTransformer0(&puStack_170);
               if (puStack_148 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
                 CoreEngineMemoryPoolCleaner();
@@ -1076,7 +1081,7 @@ LAB_18027f217:
                (uint64_t)((int64_t)ppppppuStack_1b0 - (int64_t)puStack_1b8 >> 4));
     }
     if (lVar10 == 0) {
-      FUN_180276f30(ppppppuVar12,(int64_t)ppppppuVar12 + 0x214,1);
+      SystemCore_UpdateState(ppppppuVar12,(int64_t)ppppppuVar12 + 0x214,1);
       ppppppuVar12 = (uint64_t ******)ppppppuVar12[5];
       if ((ppppppuVar12 != (uint64_t ******)0x0) &&
          (*(short *)(ppppppuVar12 + 0x56) = *(short *)(ppppppuVar12 + 0x56) + 1,

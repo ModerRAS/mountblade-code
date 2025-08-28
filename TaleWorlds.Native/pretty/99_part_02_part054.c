@@ -1,5 +1,12 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 99_part_02_part054.c - 11 个函数
 
@@ -155,7 +162,7 @@ void FUN_1801bf840(int64_t *param_1)
         lVar14 = lVar19 + lVar8;
         if (lVar14 != lVar13) {
           do {
-            FUN_180057830(lVar14);
+            DataTransformer0(lVar14);
             lVar14 = lVar14 + 0x20;
           } while (lVar14 != lVar13);
           lVar8 = *plVar24;
@@ -191,7 +198,7 @@ void FUN_1801bf840(int64_t *param_1)
         pcStack_f0 = pcVar25;
       }
       puVar4 = (uint64_t *)0x0;
-      FUN_180049830(plVar3);
+      UltraHighFreq_PerformanceMonitor1(plVar3);
       *plVar3 = (int64_t)&rendering_buffer_2528_ptr;
       plStack_c0 = plVar3 + 0x18;
       plVar3[0x1a] = 0;
@@ -294,7 +301,7 @@ LAB_1801bfd18:
       iStack_ac = iVar22;
       uStack_60 = uStack_b0;
       iStack_5c = iVar22;
-      FUN_180049830(plVar3);
+      UltraHighFreq_PerformanceMonitor1(plVar3);
       *plVar3 = (int64_t)&rendering_buffer_2528_ptr;
       plStackX_20 = plVar3 + 0x18;
       plVar3[0x1a] = 0;
@@ -317,7 +324,7 @@ LAB_1801bfd18:
       pplStack_78 = &plStackX_20;
       plStackX_20 = plVar3;
       (**(code **)(*plVar3 + 0x28))(plVar3);
-      FUN_18005e110(lVar10);
+      SystemCore_TimerManager(lVar10);
       if (plVar20 < plVar15) {
         *plVar20 = (int64_t)plVar3;
         plStack_90 = plVar20 + 1;
@@ -391,7 +398,7 @@ LAB_1801bffb0:
       }
       if (cVar26 == '\0') {
         bVar1 = true;
-        plVar3 = (int64_t *)FUN_18005e890(lVar10);
+        plVar3 = (int64_t *)PerformanceOptimizer(lVar10);
         cVar26 = (**(code **)(*plVar3 + 0x20))(plVar3,0);
         if (cVar26 == '\0') {
           plVar20 = (int64_t *)*plVar20;

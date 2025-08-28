@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -187,7 +188,7 @@ LAB_18008a841:
             uVar25 = uStack_3b0;
           }
           uStack_5a8 = 0;
-          lVar14 = FUN_180629a40(puVar27,&puStack_418,uVar25,iVar23);
+          lVar14 = NetworkSystem_ProtocolParser(puVar27,&puStack_418,uVar25,iVar23);
           puVar21 = &system_buffer_ptr;
           if (*(void **)(lVar14 + 8) != (void *)0x0) {
             puVar21 = *(void **)(lVar14 + 8);
@@ -214,11 +215,11 @@ LAB_18008a841:
         if (iVar13 < (int)(*(int *)(puVar27 + 2) - uVar26)) {
           iVar20 = iVar13;
         }
-        FUN_1806277c0(&puStack_598,iVar20 + 1);
+        SystemManager_ConfigManager0(&puStack_598,iVar20 + 1);
         lVar14 = (int64_t)(int)uVar26;
         for (; (lVar14 < iVar23 && (uVar26 < *(uint *)(puVar27 + 2))); uVar26 = uVar26 + 1) {
           uVar4 = *(int8_t *)(lVar14 + puVar27[1]);
-          FUN_1806277c0(&puStack_598,uStack_588 + 1);
+          SystemManager_ConfigManager0(&puStack_598,uStack_588 + 1);
           puStack_590[uStack_588] = uVar4;
           puStack_590[uStack_588 + 1] = 0;
           uStack_588 = uStack_588 + 1;
@@ -281,7 +282,7 @@ LAB_18008acc1:
           uStack_500 = 0;
           puStack_510 = (int8_t *)0x0;
           uStack_508 = 0;
-          FUN_1806277c0(&puStack_518,uStack_388);
+          SystemManager_ConfigManager0(&puStack_518,uStack_388);
           if (0 < (int)uStack_388) {
             puVar21 = &system_buffer_ptr;
             if (puStack_390 != (void *)0x0) {
@@ -299,7 +300,7 @@ LAB_18008acc1:
           uStack_560 = 0;
           puStack_570 = (uint64_t *)0x0;
           uStack_568 = uStack_568 & 0xffffffff00000000;
-          FUN_1806277c0(&puStack_578,iStack_268);
+          SystemManager_ConfigManager0(&puStack_578,iStack_268);
           if (0 < iStack_268) {
             puVar21 = &system_buffer_ptr;
             if (puStack_270 != (void *)0x0) {
@@ -810,7 +811,7 @@ void FUN_18008b690(int64_t param_1,int64_t *param_2)
       } while (lVar6 < iVar4);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&processed_var_8520_ptr);
+    SystemParameterHandler(system_message_context,&processed_var_8520_ptr);
   }
   uStack_90 = 0;
   puVar1 = (uint64_t *)(param_1 + 0xb0);

@@ -1,3 +1,7 @@
+/* SystemCore_EventHandler - RenderingSystem_DataBlockCopier */
+#define RenderingSystem_DataBlockCopier SystemCore_EventHandler
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -985,7 +989,7 @@ LAB_1800f7747:
   uVar10 = 0;
 LAB_1800f7790:
   lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc0,(char)param_1[5]);
-  FUN_180049b30(lVar7 + 0x20,param_5);
+  RenderingSystem_DataBlockCopier(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
   SystemNetworkHandler(lVar7,plVar8,param_1,uVar10);
@@ -1145,7 +1149,7 @@ LAB_1800f79d7:
   uVar10 = 0;
 LAB_1800f7a20:
   lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc0,(char)param_1[5]);
-  FUN_180049b30(lVar7 + 0x20,param_5);
+  RenderingSystem_DataBlockCopier(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
   SystemNetworkHandler(lVar7,plVar8,param_1,uVar10);
@@ -1163,7 +1167,7 @@ uint64_t * FUN_1800f7a90(int64_t param_1,int64_t param_2,uint64_t param_3,uint64
   puVar1 = (uint64_t *)
            CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
                          0xfffffffffffffffe);
-  FUN_180049b30(puVar1 + 4,param_2 + 0x20);
+  RenderingSystem_DataBlockCopier(puVar1 + 4,param_2 + 0x20);
   puVar1[0x17] = *(uint64_t *)(param_2 + 0xb8);
   *puVar1 = 0;
   puVar1[1] = 0;

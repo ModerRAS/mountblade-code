@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -79,12 +85,12 @@ void FUN_180852090(uint64_t *param_1,uint64_t *param_2)
     param_1[8] = lVar6;
   }
   iVar5 = FUN_1808b2950(param_1,param_2);
-  if (iVar5 != 0) goto FUN_180852aaa;
+  if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
   cVar3 = func_0x0001808c5700(param_2,param_1[8]);
   if (cVar3 != '\0') {
-    iVar5 = FUN_1808b2f30(param_1,0);
-    if ((iVar5 != 0) || (iVar5 = FUN_1808b2f30(param_1,1), iVar5 != 0)) goto FUN_180852aaa;
-    iVar5 = FUN_180744d60(param_1 + 0x1f);
+    iVar5 = SystemDataFlowProcessor(param_1,0);
+    if ((iVar5 != 0) || (iVar5 = SystemDataFlowProcessor(param_1,1), iVar5 != 0)) goto NetworkSystem_ConnectionHandler;
+    iVar5 = SystemAnalyzer(param_1 + 0x1f);
     puVar11 = (uint64_t *)0x0;
     if (iVar5 == 0) {
       lVar6 = (**(code **)*param_1)(param_1);
@@ -97,7 +103,7 @@ void FUN_180852090(uint64_t *param_1,uint64_t *param_2)
         puVar2 = puStack_288;
         if (iVar5 != 0) {
 LAB_1808522f9:
-          FUN_180744d60(&puStack_288);
+          SystemAnalyzer(&puStack_288);
           goto LAB_180852302;
         }
         lVar6 = (int64_t)iStack_280;
@@ -128,15 +134,15 @@ LAB_180852282:
             } while (-1 < lVar6);
           }
         }
-        FUN_180744d60(&puStack_288);
+        SystemAnalyzer(&puStack_288);
       }
     }
     else {
 LAB_180852302:
-      if (iVar5 != 0) goto FUN_180852aaa;
+      if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
     }
     iVar5 = FUN_18084ec10(param_1);
-    if (iVar5 != 0) goto FUN_180852aaa;
+    if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
     if ((uint64_t *)param_1[0xc] == (uint64_t *)0x0) {
       puVar8 = (uint64_t *)SystemDataFlowProcessor();
       uStack_2c8 = (uint64_t *)*puVar8;
@@ -152,10 +158,10 @@ LAB_180852302:
        (*(uint64_t *)(lVar6 + 0x60) != uStack_2c0)) {
       if ((*(int *)(lVar6 + 0x58) == 0) &&
          (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
-          (*(int *)(lVar6 + 100) == 0)))) goto FUN_180852aaa;
+          (*(int *)(lVar6 + 100) == 0)))) goto NetworkSystem_ConnectionHandler;
       uVar1 = param_1[0xe];
       iVar5 = FUN_180853470(param_1);
-      if (iVar5 != 0) goto FUN_180852aaa;
+      if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
       param_1[0xe] = uVar1;
       FUN_18084e4b0(param_1);
       lVar6 = param_1[8];
@@ -191,14 +197,14 @@ joined_r0x0001808523af:
         iVar5 = FUN_1808c4370(puVar9,param_1);
       } while ((iVar5 == 0) && (iVar5 = FUN_1808c1c20(param_1[7],puVar9), iVar5 == 0));
     }
-    goto FUN_180852aaa;
+    goto NetworkSystem_ConnectionHandler;
   }
 LAB_180852a22:
   for (puVar11 = (uint64_t *)param_1[0x10];
       ((uint64_t *)param_1[0x10] <= puVar11 &&
       (puVar11 < (uint64_t *)param_1[0x10] + *(int *)(param_1 + 0x11))); puVar11 = puVar11 + 1) {
     iVar5 = FUN_1808b50d0(*puVar11,param_2);
-    if (iVar5 != 0) goto FUN_180852aaa;
+    if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
   }
   puVar11 = (uint64_t *)param_1[0x12];
   while ((((uint64_t *)param_1[0x12] <= puVar11 &&
@@ -206,7 +212,7 @@ LAB_180852a22:
          (iVar5 = FUN_1808b50d0(*puVar11,param_2), iVar5 == 0))) {
     puVar11 = puVar11 + 1;
   }
-FUN_180852aaa:
+NetworkSystem_ConnectionHandler:
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_338);
 LAB_18085243e:
@@ -235,7 +241,7 @@ LAB_1808524b7:
     iVar5 = FUN_1808bc240(param_1[7],&uStack_2c8,0xffffffff,&uStack_2b8);
     if ((iVar5 != 0) ||
        ((uStack_2b8 != 0 && (iVar5 = FUN_1808c2ec0(uStack_2b8,param_1), iVar5 != 0))))
-    goto FUN_180852aaa;
+    goto NetworkSystem_ConnectionHandler;
   }
   puVar12 = puVar12 + 2;
   goto LAB_18085243e;
@@ -243,7 +249,7 @@ LAB_180852518:
   cVar3 = FUN_180853040(param_1 + 0x10,param_1[8] + 0x80);
   if ((cVar3 == '\0') || (cVar3 = FUN_180853040(param_1 + 0x12,param_1[8] + 0x90), cVar3 == '\0')) {
     iVar5 = FUN_18084ead0(param_1,0);
-    if (iVar5 != 0) goto FUN_180852aaa;
+    if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
     uVar14 = 0;
     uStack_2c8 = (uint64_t *)0x0;
     uStack_2c0 = 0;
@@ -279,7 +285,7 @@ LAB_180852518:
           else if (iVar18 < iVar10) {
             iVar18 = iVar10;
           }
-          iVar5 = FUN_180747f10(&uStack_2c8,iVar18);
+          iVar5 = RenderingTextureManager0(&uStack_2c8,iVar18);
           if (iVar5 != 0) goto LAB_180852943;
           uVar15 = uStack_2c0 >> 0x20;
           puVar11 = uStack_2c8;
@@ -311,8 +317,8 @@ LAB_180852518:
         goto LAB_1808526bf;
       }
 LAB_180852954:
-      FUN_180744d60(&uStack_2c8);
-      goto FUN_180852aaa;
+      SystemAnalyzer(&uStack_2c8);
+      goto NetworkSystem_ConnectionHandler;
     }
 LAB_1808526bf:
     iVar5 = *(int *)(param_1 + 0x11);
@@ -350,7 +356,7 @@ LAB_1808526bf:
           else if (iVar18 < iVar10) {
             iVar18 = iVar10;
           }
-          iVar5 = FUN_180747f10(&uStack_2c8,iVar18);
+          iVar5 = RenderingTextureManager0(&uStack_2c8,iVar18);
           if (iVar5 != 0) goto LAB_180852943;
           uVar15 = uStack_2c0 >> 0x20;
           puVar11 = uStack_2c8;
@@ -382,7 +388,7 @@ LAB_1808526bf:
       memset(*plVar13 + (int64_t)iVar5 * 8,0,(int64_t)-iVar5 << 3);
     }
     *(int32_t *)(param_1 + 0x13) = 0;
-    iVar5 = FUN_18073c380(param_1[0xf],0xfffffffe,auStack_298);
+    iVar5 = UltraHighFreq_PhysicsEngine1(param_1[0xf],0xfffffffe,auStack_298);
     if ((iVar5 == 0) && (iVar5 = FUN_18073c5f0(param_1[0xf],auStack_298[0],&uStack_2b8), iVar5 == 0)
        ) {
       puStack_310 = &uStack_2c8;
@@ -410,20 +416,20 @@ LAB_1808526bf:
                                                  (char)(*(uint *)(param_1 + 0x18) >> 1)) &
                                         0xffffff01);
           if (iVar5 == 0) {
-            FUN_180744d60(&uStack_2c8);
+            SystemAnalyzer(&uStack_2c8);
             goto LAB_180852980;
           }
         }
       }
     }
 LAB_180852943:
-    FUN_180744d60(&uStack_2c8);
-    goto FUN_180852aaa;
+    SystemAnalyzer(&uStack_2c8);
+    goto NetworkSystem_ConnectionHandler;
   }
 LAB_180852980:
   uVar15 = 0;
   iVar5 = FUN_18084e9e0(param_1);
-  if (iVar5 != 0) goto FUN_180852aaa;
+  if (iVar5 != 0) goto NetworkSystem_ConnectionHandler;
   uVar14 = uVar15;
   uVar23 = uVar15;
   uVar19 = uVar15;

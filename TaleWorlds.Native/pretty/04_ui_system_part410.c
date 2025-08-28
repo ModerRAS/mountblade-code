@@ -1,5 +1,10 @@
+#include "SystemDataAdvancedInitializer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part410.c - 17 个函数
 
@@ -38,7 +43,7 @@ uint64_t FUN_180894300(int64_t param_1,int64_t param_2)
   if ((int)uVar1 == 0) {
     *(int32_t *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(int32_t *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64_t *)(param_2 + 0x98),param_1);
+    SystemResourceHandler(*(uint64_t *)(param_2 + 0x98),param_1);
   }
   return uVar1;
 }
@@ -93,7 +98,7 @@ int FUN_180894460(int64_t param_1,int64_t param_2,int param_3)
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x1c));
+  iVar2 = SystemCore_Cleanup(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x1c));
   return iVar2 + iVar1;
 }
 
@@ -118,7 +123,7 @@ int FUN_180894570(int64_t param_1,int64_t param_2,int param_3)
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x14));
+  iVar2 = SystemCore_Cleanup(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x14));
   return iVar2 + iVar1;
 }
 
@@ -485,8 +490,8 @@ void FUN_180894c70(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
+  if (((iVar1 == 0) && (iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x18), iVar1 == 0)) &&
      (iVar1 = FUN_18088f530(param_2,param_1 + 0x20,*(int32_t *)(param_1 + 0x18)), iVar1 == 0)) {
     FUN_18088f5c0(param_2,param_1 + 0x20 + (int64_t)*(int *)(param_1 + 0x18) * 4);
   }
@@ -503,7 +508,7 @@ void FUN_180894c94(void)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20();
+  iVar1 = UISystem_LayoutEngine();
   if (iVar1 == 0) {
     iVar1 = FUN_18088f530();
     if (iVar1 == 0) {
@@ -534,8 +539,8 @@ void FUN_180894ce0(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if ((((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
+  iVar1 = SystemCore_DataProcessor(param_2,param_1 + 0x10);
+  if ((((iVar1 == 0) && (iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x18), iVar1 == 0)) &&
       (iVar1 = FUN_18088f620(param_2,param_1 + 0x20,*(int32_t *)(param_1 + 0x18)), iVar1 == 0))
      && (iVar1 = FUN_18088f5c0(param_2,param_1 + 0x20 + (int64_t)*(int *)(param_1 + 0x18) * 8),
         iVar1 == 0)) {
@@ -554,7 +559,7 @@ void FUN_180894d04(void)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20();
+  iVar1 = UISystem_LayoutEngine();
   if (iVar1 == 0) {
     iVar1 = FUN_18088f620();
     if (iVar1 == 0) {
@@ -588,7 +593,7 @@ void FUN_180894d60(int64_t param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = UISystem_LayoutEngine(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
     iVar1 = FUN_18088f620(param_2,param_1 + 0x18,*(int32_t *)(param_1 + 0x10));
     if (iVar1 == 0) {
@@ -720,7 +725,7 @@ uint64_t FUN_180894fb0(int64_t param_1)
   uint uVar4;
   
   FUN_18088c620();
-  FUN_180840270(param_1 + 0xd8);
+  SystemCore_MemoryManager(param_1 + 0xd8);
   iVar2 = SystemStatusChecker(param_1 + 0x70);
   if ((iVar2 == 0) && (iVar2 = FUN_180895130(param_1 + 0x80), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x90) = 0xffffffff;
@@ -843,7 +848,7 @@ uint64_t FUN_180895130(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(param_1,0), (int)uVar3 != 0)) {
+     (uVar3 = SystemCore_SecurityHandler(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -880,10 +885,10 @@ uint64_t FUN_180895210(int64_t *param_1)
     }
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1807d3f50(param_1 + 2,iVar8), (int)uVar3 != 0)) {
+       (uVar3 = SystemCore_SecurityHandler(param_1 + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0(param_1,iVar8);
+    uVar3 = RenderingEngine_TextureManager(param_1,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -949,10 +954,10 @@ uint64_t FUN_180895236(void)
     }
     uVar5 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = FUN_1807d3f50(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
+       (uVar2 = SystemCore_SecurityHandler(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
-    uVar2 = FUN_1807703c0();
+    uVar2 = RenderingEngine_TextureManager();
     if ((int)uVar2 != 0) {
       return uVar2;
     }

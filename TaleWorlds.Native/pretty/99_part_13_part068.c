@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -46,7 +50,7 @@ uint64_t FUN_1808d6cd0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t
     plVar8 = plVar9;
     if (lVar1 != 0) {
       lVar2 = *(int64_t *)(*(int64_t *)(lVar1 + 0x2b0) + 0x30);
-      iVar4 = FUN_18085ab70(lVar1 + 200);
+      iVar4 = UISystem_WidgetController(lVar1 + 200);
       plVar8 = (int64_t *)(iVar4 + lVar2);
     }
     plVar6 = (int64_t *)(*(int64_t *)(param_1 + 0x40) + -0x18);
@@ -79,7 +83,7 @@ uint64_t FUN_1808d6cd0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t
     lVar1 = *(int64_t *)(param_1 + 0x50);
     if ((lVar1 != 0) && (2 < *(int *)(lVar1 + 0x2e4))) {
       lVar2 = *(int64_t *)(*(int64_t *)(lVar1 + 0x2b0) + 0x30);
-      iVar4 = FUN_18085ab70(lVar1 + 200);
+      iVar4 = UISystem_WidgetController(lVar1 + 200);
       lVar1 = *(int64_t *)(param_1 + 0x30);
       for (uVar7 = *(uint64_t *)(lVar1 + 0x58);
           (*(uint64_t *)(lVar1 + 0x58) <= uVar7 &&
@@ -410,14 +414,14 @@ uint64_t FUN_1808d71e0(int64_t param_1,int64_t param_2)
     if (iVar3 < 8) {
       iVar3 = 8;
     }
-    uVar2 = FUN_180747f10(param_2 + 0x48,iVar3);
+    uVar2 = RenderingTextureManager0(param_2 + 0x48,iVar3);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
   }
   *(int64_t *)(*(int64_t *)(param_2 + 0x48) + (int64_t)*(int *)(param_2 + 0x50) * 8) = param_1;
   *(int *)(param_2 + 0x50) = *(int *)(param_2 + 0x50) + 1;
-  uVar2 = FUN_1808d73b0(param_1,*(int32_t *)(param_2 + 0x20),0);
+  uVar2 = UtilitiesSystem_StringProcessor(param_1,*(int32_t *)(param_2 + 0x20),0);
   return uVar2;
 }
 
@@ -489,7 +493,7 @@ uint64_t FUN_1808d72a0(int64_t param_1,float param_2)
 
 
 
-uint64_t FUN_1808d73b0(int64_t param_1,uint64_t param_2,char param_3)
+uint64_t UtilitiesSystem_StringProcessor(int64_t param_1,uint64_t param_2,char param_3)
 
 {
   uint *puVar1;
@@ -509,7 +513,7 @@ uint64_t FUN_1808d73b0(int64_t param_1,uint64_t param_2,char param_3)
       (*(uint64_t **)(param_1 + 0x48) <= puVar5 &&
       (puVar5 < *(uint64_t **)(param_1 + 0x48) + *(int *)(param_1 + 0x50))); puVar5 = puVar5 + 1)
   {
-    uVar4 = FUN_1808d73b0(*puVar5,fVar8,param_3);
+    uVar4 = UtilitiesSystem_StringProcessor(*puVar5,fVar8,param_3);
     if ((int)uVar4 != 0) {
       return uVar4;
     }

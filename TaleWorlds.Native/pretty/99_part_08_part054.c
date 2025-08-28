@@ -1,3 +1,12 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_08_part054.c - 2 个函数
@@ -27,7 +36,7 @@ void FUN_1805ae0f0(int *param_1,uint param_2)
     (**(code **)((void *)*puVar3 + 0x10))(puVar3);
   }
   *(int32_t *)(puVar3 + 1) = 0;
-  FUN_1800571e0(param_1 + 2,auStackX_10);
+  SystemDatabaseProcessor(param_1 + 2,auStackX_10);
   if (*param_1 - 1U == param_2) {
     *param_1 = 0;
     uVar2 = param_1[1] - 1;
@@ -93,11 +102,11 @@ char FUN_1805ae280(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
             if (cVar2 != '\0') {
               cVar2 = SystemSynchronizationProcessor(param_1,(int64_t)param_3 + 0x34,&memory_allocator_3200_ptr);
               if (cVar2 != '\0') {
-                cVar2 = FUN_180646700(param_1,(int64_t)param_3 + 0x3c,&memory_allocator_3168_ptr);
+                cVar2 = RenderingBufferHandler0(param_1,(int64_t)param_3 + 0x3c,&memory_allocator_3168_ptr);
                 if (cVar2 != '\0') {
-                  cVar2 = FUN_180646700(param_1,param_3 + 8,&memory_allocator_3168_ptr);
+                  cVar2 = RenderingBufferHandler0(param_1,param_3 + 8,&memory_allocator_3168_ptr);
                   if (cVar2 != '\0') {
-                    cVar2 = FUN_180646700(param_1,(int64_t)param_3 + 0x44,&memory_allocator_3184_ptr);
+                    cVar2 = RenderingBufferHandler0(param_1,(int64_t)param_3 + 0x44,&memory_allocator_3184_ptr);
                     if (cVar2 != '\0') {
                       uStackX_20 = 0;
                       cVar2 = FUN_180646140(param_1,&uStackX_20,0x27);
@@ -141,20 +150,20 @@ char FUN_1805ae280(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
                                                           (uint)((char)uStackX_20 != '\0'));
                                     cVar2 = SystemSynchronizationProcessor(param_1,&uStackX_20,&system_param1_ptr);
                                     if ((cVar2 != '\0') && ((uint)uStackX_20 != 0)) {
-                                      cVar2 = FUN_180646700(param_1,param_3,&memory_allocator_3136_ptr);
+                                      cVar2 = RenderingBufferHandler0(param_1,param_3,&memory_allocator_3136_ptr);
                                       if (cVar2 != '\0') {
-                                        cVar2 = FUN_180646700(param_1,(int64_t)param_3 + 4,
+                                        cVar2 = RenderingBufferHandler0(param_1,(int64_t)param_3 + 4,
                                                               &memory_allocator_3136_ptr);
                                         if (cVar2 != '\0') {
-                                          cVar2 = FUN_180646700(param_1,param_3 + 1,&memory_allocator_3152_ptr);
+                                          cVar2 = RenderingBufferHandler0(param_1,param_3 + 1,&memory_allocator_3152_ptr);
                                           if (cVar2 != '\0') {
-                                            cVar2 = FUN_180646700(param_1,param_3 + 2,&memory_allocator_3104_ptr
+                                            cVar2 = RenderingBufferHandler0(param_1,param_3 + 2,&memory_allocator_3104_ptr
                                                                  );
                                             if (cVar2 != '\0') {
-                                              cVar2 = FUN_180646700(param_1,(int64_t)param_3 + 0x14
+                                              cVar2 = RenderingBufferHandler0(param_1,(int64_t)param_3 + 0x14
                                                                     ,&memory_allocator_3104_ptr);
                                               if (cVar2 != '\0') {
-                                                cVar2 = FUN_180646700(param_1,param_3 + 3,
+                                                cVar2 = RenderingBufferHandler0(param_1,param_3 + 3,
                                                                       &memory_allocator_3120_ptr);
                                                 if (cVar2 != '\0') {
                                                   *(int8_t *)((int64_t)param_3 + 0x61) = 1;
@@ -264,18 +273,18 @@ char FUN_1805ae3cf(int32_t param_1)
                    (int)CONCAT71((int7)(unaff_RBP >> 8),cStack0000000000000068 != (char)unaff_RBP);
               cVar1 = SystemSynchronizationProcessor(uVar3,&stack0x00000068,&system_param1_ptr);
               if ((cVar1 != '\0') && (_cStack0000000000000068 != 0)) {
-                cVar1 = FUN_180646700();
+                cVar1 = RenderingBufferHandler0();
                 if (cVar1 != '\0') {
-                  cVar1 = FUN_180646700(extraout_XMM0_Da_06,(int64_t)unaff_RBX + 4,&memory_allocator_3136_ptr);
+                  cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_06,(int64_t)unaff_RBX + 4,&memory_allocator_3136_ptr);
                   if (cVar1 != '\0') {
-                    cVar1 = FUN_180646700(extraout_XMM0_Da_07,unaff_RBX + 1,&memory_allocator_3152_ptr);
+                    cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_07,unaff_RBX + 1,&memory_allocator_3152_ptr);
                     if (cVar1 != '\0') {
-                      cVar1 = FUN_180646700(extraout_XMM0_Da_08,unaff_RBX + 2,&memory_allocator_3104_ptr);
+                      cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_08,unaff_RBX + 2,&memory_allocator_3104_ptr);
                       if (cVar1 != '\0') {
-                        cVar1 = FUN_180646700(extraout_XMM0_Da_09,(int64_t)unaff_RBX + 0x14,
+                        cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_09,(int64_t)unaff_RBX + 0x14,
                                               &memory_allocator_3104_ptr);
                         if (cVar1 != '\0') {
-                          cVar1 = FUN_180646700(extraout_XMM0_Da_10,unaff_RBX + 3,&memory_allocator_3120_ptr);
+                          cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_10,unaff_RBX + 3,&memory_allocator_3120_ptr);
                           if (cVar1 != '\0') {
                             *(int8_t *)((int64_t)unaff_RBX + 0x61) = 1;
                             return '\x01';
@@ -363,18 +372,18 @@ char FUN_1805ae430(int32_t param_1)
                  (int)CONCAT71((int7)(unaff_RBP >> 8),cStack0000000000000068 != (char)unaff_RBP);
             cVar1 = SystemSynchronizationProcessor(uVar3,&stack0x00000068,&system_param1_ptr);
             if ((cVar1 != '\0') && (_cStack0000000000000068 != 0)) {
-              cVar1 = FUN_180646700();
+              cVar1 = RenderingBufferHandler0();
               if (cVar1 != '\0') {
-                cVar1 = FUN_180646700(extraout_XMM0_Da_05,(int64_t)unaff_RBX + 4,&memory_allocator_3136_ptr);
+                cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_05,(int64_t)unaff_RBX + 4,&memory_allocator_3136_ptr);
                 if (cVar1 != '\0') {
-                  cVar1 = FUN_180646700(extraout_XMM0_Da_06,unaff_RBX + 1,&memory_allocator_3152_ptr);
+                  cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_06,unaff_RBX + 1,&memory_allocator_3152_ptr);
                   if (cVar1 != '\0') {
-                    cVar1 = FUN_180646700(extraout_XMM0_Da_07,unaff_RBX + 2,&memory_allocator_3104_ptr);
+                    cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_07,unaff_RBX + 2,&memory_allocator_3104_ptr);
                     if (cVar1 != '\0') {
-                      cVar1 = FUN_180646700(extraout_XMM0_Da_08,(int64_t)unaff_RBX + 0x14,
+                      cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_08,(int64_t)unaff_RBX + 0x14,
                                             &memory_allocator_3104_ptr);
                       if (cVar1 != '\0') {
-                        cVar1 = FUN_180646700(extraout_XMM0_Da_09,unaff_RBX + 3,&memory_allocator_3120_ptr);
+                        cVar1 = RenderingBufferHandler0(extraout_XMM0_Da_09,unaff_RBX + 3,&memory_allocator_3120_ptr);
                         if (cVar1 != '\0') {
                           *(int8_t *)((int64_t)unaff_RBX + 0x61) = 1;
                           return '\x01';
@@ -445,10 +454,10 @@ char FUN_1805ae650(uint64_t param_1,int32_t param_2,int32_t *param_3)
         }
         cVar2 = SystemBufferProcessor(param_1,cVar1,&system_param1_ptr);
         if ((cVar2 != '\0') && (cVar1 != '\0')) {
-          cVar1 = FUN_180645fa0(param_1,*param_3,&memory_allocator_3136_ptr);
+          cVar1 = RenderingSystem_VertexBufferManager(param_1,*param_3,&memory_allocator_3136_ptr);
           if ((cVar1 == '\0') ||
-             (((cVar1 = FUN_180645fa0(param_1,param_3[1],&memory_allocator_3136_ptr), cVar1 == '\0' ||
-               (cVar1 = FUN_180645fa0(param_1,param_3[2],&memory_allocator_3152_ptr), cVar1 == '\0')) ||
+             (((cVar1 = RenderingSystem_VertexBufferManager(param_1,param_3[1],&memory_allocator_3136_ptr), cVar1 == '\0' ||
+               (cVar1 = RenderingSystem_VertexBufferManager(param_1,param_3[2],&memory_allocator_3152_ptr), cVar1 == '\0')) ||
               (cVar1 = FUN_18056eb00(param_1,param_3 + 4,&memory_allocator_3104_ptr), cVar1 == '\0')))) {
             cVar2 = '\0';
           }
@@ -485,10 +494,10 @@ char FUN_1805ae844(float param_1)
   }
   cVar1 = SystemBufferProcessor(param_1,cVar2,&system_param1_ptr);
   if ((cVar1 != '\0') && (cVar2 != '\0')) {
-    cVar2 = FUN_180645fa0(extraout_XMM0_Da,*unaff_RDI,&memory_allocator_3136_ptr);
+    cVar2 = RenderingSystem_VertexBufferManager(extraout_XMM0_Da,*unaff_RDI,&memory_allocator_3136_ptr);
     if (((cVar2 != '\0') &&
-        ((cVar2 = FUN_180645fa0(extraout_XMM0_Da_00,unaff_RDI[1],&memory_allocator_3136_ptr), cVar2 != '\0' &&
-         (cVar2 = FUN_180645fa0(extraout_XMM0_Da_01,unaff_RDI[2],&memory_allocator_3152_ptr), cVar2 != '\0'))))
+        ((cVar2 = RenderingSystem_VertexBufferManager(extraout_XMM0_Da_00,unaff_RDI[1],&memory_allocator_3136_ptr), cVar2 != '\0' &&
+         (cVar2 = RenderingSystem_VertexBufferManager(extraout_XMM0_Da_01,unaff_RDI[2],&memory_allocator_3152_ptr), cVar2 != '\0'))))
        && (cVar2 = FUN_18056eb00(extraout_XMM0_Da_02,unaff_RDI + 4,&memory_allocator_3104_ptr), cVar2 != '\0'))
     {
       return '\x01';
@@ -538,9 +547,9 @@ FUN_1805ae910(uint64_t param_1,int32_t param_2,int32_t *param_3,int8_t param_4,
   cVar1 = SystemBufferProcessor(param_1,0,&system_param1_ptr);
   if (((((cVar1 != '\0') && (cVar1 = SystemBufferProcessor(param_1,0x14,&memory_allocator_3472_ptr), cVar1 != '\0')) &&
        (cVar1 = SystemBufferProcessor(param_1,param_2,&system_data_bcc0), cVar1 != '\0')) &&
-      ((cVar1 = FUN_180645fa0(param_1,*param_3,&memory_allocator_3264_ptr), cVar1 != '\0' &&
-       (cVar1 = FUN_180645fa0(param_1,param_3[1],&memory_allocator_3264_ptr), cVar1 != '\0')))) &&
-     ((cVar1 = FUN_180645fa0(param_1,param_3[2],&memory_allocator_3280_ptr), cVar1 != '\0' &&
+      ((cVar1 = RenderingSystem_VertexBufferManager(param_1,*param_3,&memory_allocator_3264_ptr), cVar1 != '\0' &&
+       (cVar1 = RenderingSystem_VertexBufferManager(param_1,param_3[1],&memory_allocator_3264_ptr), cVar1 != '\0')))) &&
+     ((cVar1 = RenderingSystem_VertexBufferManager(param_1,param_3[2],&memory_allocator_3280_ptr), cVar1 != '\0' &&
       ((cVar1 = SystemBufferProcessor(param_1,param_4,&system_param1_ptr), cVar1 != '\0' &&
        (cVar1 = FUN_1805aea10(param_1,param_5), cVar1 != '\0')))))) {
     return 1;
@@ -714,7 +723,7 @@ LAB_1805aec10:
           *puVar2 = 0x3f800000;
         }
         else {
-          cVar1 = FUN_180646700(param_1,param_2 + 0x24 + (int64_t)iVar3 * 0x30);
+          cVar1 = RenderingBufferHandler0(param_1,param_2 + 0x24 + (int64_t)iVar3 * 0x30);
           if (cVar1 == '\0') goto LAB_1805aec10;
         }
         auStackX_18[0] = (uint)bVar4;
@@ -803,7 +812,7 @@ LAB_1805aec3f:
         cVar1 = SystemSynchronizationProcessor();
         if (cVar1 != '\0') {
           if (iStack0000000000000060 == unaff_R12D) goto code_r0x0001805aec39;
-          cVar1 = FUN_180646700();
+          cVar1 = RenderingBufferHandler0();
           if (cVar1 != '\0') goto LAB_1805aec3f;
         }
       }
@@ -843,7 +852,7 @@ LAB_1805aecf5:
         cVar2 = '\0';
       }
       else {
-        cVar2 = FUN_180646700(param_1,pfVar5);
+        cVar2 = RenderingBufferHandler0(param_1,pfVar5);
         if (cVar2 == '\0') goto LAB_1805aecf5;
         cVar2 = '\x01';
       }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_03_part068.c - 5 个函数
 
 // 函数: void FUN_180239b65(void)
@@ -398,7 +402,7 @@ void FUN_18023a780(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uint64_t *puVar1;
   
   *param_1 = &processed_var_8720_ptr;
-  FUN_18023b050(param_1,1,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler(param_1,1,param_3,param_4,0xfffffffffffffffe);
   puVar1 = (uint64_t *)param_1[0x6f];
   if (puVar1 != (uint64_t *)0x0) {
     puVar1[4] = &system_data_buffer_ptr;
@@ -459,7 +463,7 @@ void FUN_18023a780(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_18023a940(int64_t param_1)
+int64_t SystemCore_Scheduler(int64_t param_1)
 
 {
   int64_t *plVar1;
@@ -493,7 +497,7 @@ int64_t FUN_18023a940(int64_t param_1)
       uVar5 = (**(code **)(*(int64_t *)*puVar2 + 0xa8))();
       *(int32_t *)((int64_t)puVar2 + 0x4c) = uVar5;
       if (iVar4 != 0) {
-        FUN_180626ee0(&ui_system_data_128_ptr,iVar4);
+        UtilitiesSystem_PerformanceMonitor(&ui_system_data_128_ptr,iVar4);
       }
       uStack_20 = 0;
       uStack_18 = 0;
@@ -529,7 +533,7 @@ LAB_18023ab3f:
   uStack_48 = 0;
   pcStack_40 = (code *)0x0;
   pcStack_38 = _guard_check_icall;
-  FUN_18023c450(param_1,1,0xffffffff,&uStack_50,uVar6);
+  SystemCore_DecryptionManager(param_1,1,0xffffffff,&uStack_50,uVar6);
   if (pcStack_40 != (code *)0x0) {
     (*pcStack_40)(&uStack_50,0,0);
   }
@@ -803,7 +807,7 @@ char FUN_18023aef0(int64_t param_1,int64_t param_2)
       return cVar6;
     }
   }
-  if (((*(int *)(param_1 + 0x398) != 0) && (cVar7 = FUN_180624af0(param_1 + 0x388), cVar7 != '\0'))
+  if (((*(int *)(param_1 + 0x398) != 0) && (cVar7 = RenderingSystem_RenderQueue(param_1 + 0x388), cVar7 != '\0'))
      && (cVar6 = FUN_1802a7680(param_1 + 0x388,lStackX_10), cVar6 != '\0')) {
     return cVar6;
   }

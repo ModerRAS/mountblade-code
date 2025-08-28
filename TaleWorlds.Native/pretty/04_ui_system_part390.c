@@ -402,7 +402,7 @@ void FUN_18087a150(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x80), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x80), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x318))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -420,7 +420,7 @@ void FUN_18087a1a0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x110), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x110), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2d8))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -438,7 +438,7 @@ void FUN_18087a1f0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x180), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x180), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x298))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -456,7 +456,7 @@ void FUN_18087a240(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1d0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1d0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x268))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -474,7 +474,7 @@ void FUN_18087a290(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x100), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x100), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2e0))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -492,7 +492,7 @@ void FUN_18087a2e0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xe0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xe0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2e8))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -510,7 +510,7 @@ void FUN_18087a330(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1a0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1a0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x288))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -528,7 +528,7 @@ void FUN_18087a380(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x40), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x40), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x338))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -546,7 +546,7 @@ void FUN_18087a3d0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x30), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x30), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x340))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -564,7 +564,7 @@ void FUN_18087a420(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x130), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x130), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2a8))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -582,7 +582,7 @@ void FUN_18087a470(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1e0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1e0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x260))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -600,7 +600,7 @@ void FUN_18087a4c0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x60), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x60), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x330))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -618,7 +618,7 @@ void FUN_18087a510(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 400), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 400), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x290))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -636,7 +636,7 @@ void FUN_18087a560(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x150), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x150), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2c0))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -654,7 +654,7 @@ void FUN_18087a5b0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x70), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x70), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 800))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -672,7 +672,7 @@ void FUN_18087a600(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1c0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1c0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x270))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -690,7 +690,7 @@ void FUN_18087a650(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1b0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1b0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x278))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -708,7 +708,7 @@ void FUN_18087a6a0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x90), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x90), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x310))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -726,7 +726,7 @@ void FUN_18087a6f0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x170), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x170), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2b0))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -744,7 +744,7 @@ void FUN_18087a740(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x50), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x50), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x328))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -787,7 +787,7 @@ void FUN_18087a7f0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x160), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x160), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2b8))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -805,7 +805,7 @@ void FUN_18087a840(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xa0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xa0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x308))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -823,7 +823,7 @@ void FUN_18087a890(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xb0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xb0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x300))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -841,7 +841,7 @@ void FUN_18087a8e0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x120), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x120), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2d0))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -859,7 +859,7 @@ void FUN_18087a930(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0x1f0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0x1f0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x280))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -877,7 +877,7 @@ void FUN_18087a980(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xd0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xd0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2f0))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -895,7 +895,7 @@ void FUN_18087a9d0(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xc0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xc0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2f8))(*(int64_t **)(param_1 + 8),param_2,1);
@@ -913,7 +913,7 @@ void FUN_18087aa20(int64_t param_1,uint64_t param_2)
   int64_t lVar1;
   
   if ((*(int64_t *)(param_1 + 0x10) != 0) &&
-     (lVar1 = FUN_1808761f0(*(int64_t *)(param_1 + 0x10) + 0xf0), lVar1 != 0)) {
+     (lVar1 = CoreSystem_SynchronizationManager0(*(int64_t *)(param_1 + 0x10) + 0xf0), lVar1 != 0)) {
     return;
   }
   (**(code **)(**(int64_t **)(param_1 + 8) + 0x2c8))(*(int64_t **)(param_1 + 8),param_2,1);

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part462.c - 2 个函数
 
 // 函数: void FUN_180515880(int64_t param_1)
@@ -164,7 +168,7 @@ void FUN_180515880(int64_t param_1)
   lVar9 = *(int64_t *)(param_1 + 0x728);
   lVar12 = *(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8);
   pfVar8 = (float *)(lVar9 + 0xa0);
-  FUN_18063b5f0(&fStack_188);
+  SystemSecurityManager(&fStack_188);
   uStack_108 = *(uint64_t *)(pfVar8 + 4);
   uStack_100 = *(uint64_t *)(pfVar8 + 6);
   fStack_260 = *(float *)(lVar12 + 0x98);
@@ -254,7 +258,7 @@ void FUN_180515880(int64_t param_1)
     fVar19 = fStack_254 * fVar20 - fStack_250 * fVar17;
     fVar21 = fVar17 * fStack_258 - fStack_254 * fVar14;
     fVar22 = fStack_250 * fVar14 - fVar20 * fStack_258;
-    FUN_18063b5f0(&fStack_214,&fStack_1c8);
+    SystemSecurityManager(&fStack_214,&fStack_1c8);
     fVar18 = fStack_20c * fStack_26c;
     fVar15 = fStack_1fc * fStack_25c;
     fVar16 = fStack_204 * fStack_25c;
@@ -270,7 +274,7 @@ void FUN_180515880(int64_t param_1)
     fStack_254 = fStack_20c * fVar17 + fStack_1fc * fVar22 + fStack_1ec * fStack_254;
     fStack_250 = fStack_20c * fVar20 + fStack_1fc * fVar21 + fStack_1ec * fStack_250;
     fStack_24c = fVar18 + fVar15 + fStack_1ec * fStack_24c;
-    FUN_18063b470(&uStack_1b8,&fStack_278);
+    AdvancedProcessor_StateManager0(&uStack_1b8,&fStack_278);
     *(uint64_t *)(lVar9 + 0x40) = uStack_1b8;
     *(uint64_t *)(lVar9 + 0x48) = uStack_1b0;
   }
@@ -330,11 +334,11 @@ void FUN_180515880(int64_t param_1)
       fStack_c4 = fVar16;
       fStack_c0 = fVar21;
       uStack_bc = uStack_18c;
-      pfVar8 = (float *)FUN_180534930(*(int64_t *)(*(int64_t *)(lVar12 + 0x3778 + lVar9) + 0x8a8)
+      pfVar8 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(*(int64_t *)(lVar12 + 0x3778 + lVar9) + 0x8a8)
                                       + 0x70,auStack_148,*(int64_t *)(param_1 + 0x728) + 0x50);
       _fStack_288 = CONCAT44(pfVar8[1] - fVar16,*pfVar8 - fVar15);
       _fStack_280 = CONCAT44(0x7f7fffff,pfVar8[2] - fVar21);
-      FUN_180285b40(&uStack_1a8,&uStack_1e4,&fStack_288);
+      SystemCore_EventHandler(&uStack_1a8,&uStack_1e4,&fStack_288);
       puVar4 = *(uint64_t **)(param_1 + 0x728);
       *puVar4 = uStack_1e4;
       puVar4[1] = uStack_1dc;
@@ -411,7 +415,7 @@ void FUN_180515a4e(void)
   
   lVar9 = *(int64_t *)(in_RAX + 0x8a8);
   pfVar7 = (float *)(in_R9 + 0xa0);
-  FUN_18063b5f0();
+  SystemSecurityManager();
   fVar22 = unaff_RBP[0x18];
   fVar24 = unaff_RBP[0x19];
   unaff_RBP[-0x1c] = 3.4028235e+38;
@@ -526,7 +530,7 @@ void FUN_180515a4e(void)
     fVar23 = fStack0000000000000074 * fVar29 - in_stack_00000078 * fVar14;
     fVar17 = fVar14 * in_stack_00000070 - fStack0000000000000074 * fVar16;
     fVar15 = in_stack_00000078 * fVar16 - fVar29 * in_stack_00000070;
-    FUN_18063b5f0(unaff_RBP + -0x13);
+    SystemSecurityManager(unaff_RBP + -0x13);
     fVar26 = unaff_RBP[-0xd];
     fVar13 = unaff_RBP[-9];
     fVar12 = unaff_RBP[-0x12];
@@ -554,7 +558,7 @@ void FUN_180515a4e(void)
     fStack0000000000000074 = fVar28 * fVar14 + fVar26 * fVar15 + fVar13 * fStack0000000000000074;
     in_stack_00000078 = fVar28 * fVar29 + fVar26 * fVar17 + fVar13 * in_stack_00000078;
     fStack000000000000007c = fVar21 + fVar20 + fVar13 * fStack000000000000007c;
-    FUN_18063b470(unaff_RBP + 4,&stack0x00000050);
+    AdvancedProcessor_StateManager0(unaff_RBP + 4,&stack0x00000050);
     uVar5 = *(uint64_t *)(unaff_RBP + 6);
     *(uint64_t *)(lVar9 + 0x40) = *(uint64_t *)(unaff_RBP + 4);
     *(uint64_t *)(lVar9 + 0x48) = uVar5;
@@ -622,11 +626,11 @@ void FUN_180515a4e(void)
       unaff_RBP[0xd] = fVar27;
       unaff_RBP[0xe] = fVar22;
       unaff_RBP[0xf] = fVar24;
-      pfVar7 = (float *)FUN_180534930(*(int64_t *)(lVar9 + 0x8a8) + 0x70,unaff_RBP + 0x20,
+      pfVar7 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar9 + 0x8a8) + 0x70,unaff_RBP + 0x20,
                                       lVar10 + 0x50);
       _fStack0000000000000040 = CONCAT44(pfVar7[1] - fVar27,*pfVar7 - fVar1);
       _fStack0000000000000048 = CONCAT44(0x7f7fffff,pfVar7[2] - fVar22);
-      FUN_180285b40(unaff_RBP + 8,unaff_RBP + -7,&stack0x00000040);
+      SystemCore_EventHandler(unaff_RBP + 8,unaff_RBP + -7,&stack0x00000040);
       puVar4 = *(uint64_t **)(unaff_RBX + 0x728);
       uVar5 = *(uint64_t *)(unaff_RBP + -5);
       *puVar4 = *(uint64_t *)(unaff_RBP + -7);

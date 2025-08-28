@@ -751,7 +751,7 @@ void FUN_1808c6dd0(int64_t *param_1,int64_t *param_2,uint *param_3,uint64_t *par
       if (lStack_90 != *(int64_t *)(*(int64_t *)(lVar4 + 0x2b0) + 0x78)) {
         do {
           auStack_70[0] = 0;
-          iVar1 = FUN_18073c4c0(lStack_90,0,auStack_70);
+          iVar1 = UtilitiesSystem_MathCalculator(lStack_90,0,auStack_70);
           if (iVar1 != 0) goto FUN_1808c713f;
           uStack_80 = 0;
           iVar1 = FUN_18073c730(lStack_90,&uStack_80,0,0);
@@ -769,7 +769,7 @@ void FUN_1808c6dd0(int64_t *param_1,int64_t *param_2,uint *param_3,uint64_t *par
         } while (lStack_90 != *(int64_t *)(*(int64_t *)(lVar4 + 0x2b0) + 0x78));
       }
       uVar6 = *(uint64_t *)(*(int64_t *)(*(int64_t *)(*param_1 + 0x160) + 0x2b0) + 0x30);
-      iVar1 = FUN_18085ab70();
+      iVar1 = UISystem_WidgetController();
       lVar4 = uVar6 - (int64_t)((int)(fVar8 + 0.5) - iVar1);
       fVar8 = (float)(int64_t)(uStack_88 - lVar4);
       if (fVar8 <= 0.0) {
@@ -863,7 +863,7 @@ void FUN_1808c6e58(void)
       if (lVar8 != *(int64_t *)(*(int64_t *)(lVar3 + 0x2b0) + 0x78)) {
         do {
           *(uint64_t *)(unaff_RBP + -0x19) = unaff_RDI;
-          iVar1 = FUN_18073c4c0(lVar8,0,unaff_RBP + -0x19);
+          iVar1 = UtilitiesSystem_MathCalculator(lVar8,0,unaff_RBP + -0x19);
           if (iVar1 != 0) goto FUN_1808c7139;
           *(uint64_t *)(unaff_RBP + -0x29) = unaff_RDI;
           iVar1 = FUN_18073c730(*(uint64_t *)(unaff_RBP + -0x39),unaff_RBP + -0x29,0,0);
@@ -885,7 +885,7 @@ void FUN_1808c6e58(void)
         } while (lVar8 != *(int64_t *)(*(int64_t *)(lVar3 + 0x2b0) + 0x78));
       }
       uVar6 = *(uint64_t *)(*(int64_t *)(*(int64_t *)(*unaff_R14 + 0x160) + 0x2b0) + 0x30);
-      iVar1 = FUN_18085ab70();
+      iVar1 = UISystem_WidgetController();
       lVar8 = uVar6 - (int64_t)((int)(fVar9 + 0.5) - iVar1);
       fVar9 = (float)(*(int64_t *)(unaff_RBP + -0x31) - lVar8);
       if (fVar9 <= 0.0) {

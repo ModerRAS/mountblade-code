@@ -1,6 +1,15 @@
-#include "FUN_1808555a0_definition.h"
+#include "ultra_high_freq_fun_definitions.h"
+#include "SystemAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 05_networking_part060.c - 3 个函数
 
@@ -14,7 +23,7 @@ void FUN_180872540(int64_t *param_1)
   uint uVar4;
   
   if (param_1[2] != 0) {
-    iVar1 = FUN_180768380(param_1[2],0);
+    iVar1 = SystemCore_DataHandler(param_1[2],0);
     if (iVar1 != 0) goto LAB_18087257d;
     param_1[2] = 0;
   }
@@ -51,7 +60,7 @@ LAB_18087257d:
   }
   *(int32_t *)(param_1 + 1) = 0;
   if (0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) {
-    FUN_1807d3f50(param_1,0);
+    SystemCore_SecurityHandler(param_1,0);
   }
   return;
 }
@@ -281,7 +290,7 @@ uint64_t FUN_180872630(int64_t *param_1)
   if (-1 < (int)uVar4) {
     uVar1 = uVar4;
   }
-  if ((0 < (int)uVar1) && (uVar3 = FUN_180747e10(param_1,0), (int)uVar3 != 0)) {
+  if ((0 < (int)uVar1) && (uVar3 = SystemCore_Initializer(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -379,7 +388,7 @@ uint64_t FUN_180872cc0(int64_t *param_1)
   if (-1 < (int)uVar4) {
     uVar1 = uVar4;
   }
-  if ((0 < (int)uVar1) && (uVar3 = FUN_180747e10(param_1,0), (int)uVar3 != 0)) {
+  if ((0 < (int)uVar1) && (uVar3 = SystemCore_Initializer(param_1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -531,7 +540,7 @@ LAB_18087317c:
     }
     *(int32_t *)(param_1 + 0x48) = 0;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180747e10(param_1 + 0x40,0);
+      SystemCore_Initializer(param_1 + 0x40,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x3c);
@@ -557,7 +566,7 @@ LAB_18087320a:
     }
     *(int32_t *)(param_1 + 0x38) = 0;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180748010(param_1 + 0x30,0);
+      UltraHighFreq_StateController1(param_1 + 0x30,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x2c);
@@ -759,7 +768,7 @@ LAB_18087317c:
     }
     *(uint *)(param_1 + 0x48) = uVar7;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180747e10(param_1 + 0x40,0);
+      SystemCore_Initializer(param_1 + 0x40,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x3c);
@@ -785,7 +794,7 @@ LAB_18087320a:
     }
     *(uint *)(param_1 + 0x38) = uVar7;
     if (0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) {
-      FUN_180748010(param_1 + 0x30,0);
+      UltraHighFreq_StateController1(param_1 + 0x30,0);
     }
   }
   uVar5 = *(uint *)(param_1 + 0x2c);

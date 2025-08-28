@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_08_part013.c - 2 个函数
 
 // 函数: void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,char param_5)
@@ -83,7 +87,7 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
     AcquireSRWLockShared(param_4);
     uVar21 = 0;
     uVar20 = 0x51b1c9;
-    FUN_1801aa0f0(*(uint64_t *)(param_1 + 0x18),plVar18 + 0xc,0,auStack_90,0x51b1c9,0,uVar22);
+    PhysicsSystem_JointManager(*(uint64_t *)(param_1 + 0x18),plVar18 + 0xc,0,auStack_90,0x51b1c9,0,uVar22);
     ReleaseSRWLockShared(param_4);
     if (lStack_70 == 0) {
       plVar15 = (int64_t *)0x0;
@@ -215,14 +219,14 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
         do {
           lVar10 = *(int64_t *)(lVar11 + lVar9 * 8);
           if ((lVar10 != 0) && (*(char *)(*(int64_t *)(lVar10 + 0x58f8) + 0x1c) != '\0')) {
-            FUN_1805b59d0(lVar10,0x180c95578);
+            NetworkSystem_SecurityManager(lVar10,0x180c95578);
             lVar11 = system_system_config;
           }
           lVar9 = lVar9 + 1;
         } while (lVar9 < iVar6);
       }
       if (system_system_config != 0) {
-        FUN_180567f30(system_system_config,0x180c95578);
+        SystemCore_DatabaseHandler(system_system_config,0x180c95578);
       }
       system_system_config = 0;
                     // WARNING: Subroutine does not return

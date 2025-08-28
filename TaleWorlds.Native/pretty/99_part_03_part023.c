@@ -327,7 +327,7 @@ LAB_1801e2f08:
         else {
           if (uVar7 <= (uint)plStack_150) goto LAB_1801e2fae;
           puStack_1a8 = (uint *)CONCAT71(puStack_1a8._1_7_,0x13);
-          puVar10 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar10,uVar7,0x10);
+          puVar10 = (int8_t *)SystemCore_NetworkHandler(system_memory_pool_ptr,puVar10,uVar7,0x10);
         }
         puStack_118 = puVar10;
         plStack_150 = (int64_t *)CoreEngineSystemCleanup(puVar10);
@@ -395,7 +395,7 @@ LAB_1801e3078:
         if (puStack_160 != puVar20) {
           *(int64_t *)(puVar20 + 8) = *(int64_t *)(puVar20 + 8) + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar22,puVar20);
+          RenderingSystem_BufferHandler(puVar22,puVar20);
         }
       }
       else {
@@ -411,7 +411,7 @@ LAB_1801e3078:
           plVar15 = (int64_t *)(lVar12 + 0x348);
           *plVar15 = *plVar15 + -1;
           func_0x00018066bd70(puStack_160);
-          FUN_18066ba00(puVar20,puVar22);
+          RenderingSystem_BufferHandler(puVar20,puVar22);
           if (puVar20 != (uint *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar20);

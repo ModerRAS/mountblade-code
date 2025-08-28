@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -132,7 +137,7 @@ LAB_180198f21:
   iVar11 = (int)plStack_c0;
   uStack_f0 = uVar9;
   if ((int)plStack_c0 < 10) {
-    FUN_180060680(acStack_70,&processed_var_4576_ptr,0);
+    RenderingEngine_BufferManager(acStack_70,&processed_var_4576_ptr,0);
     lVar16 = -1;
     do {
       lVar3 = lVar16;
@@ -144,7 +149,7 @@ LAB_180198f21:
                     // WARNING: Subroutine does not return
       memcpy(pbStack_f8 + uStack_f0,acStack_70,(int64_t)((int)lVar3 + 2));
     }
-    FUN_180060680(acStack_60,&processed_var_4576_ptr,(uint64_t)plVar10 & 0xffffffff);
+    RenderingEngine_BufferManager(acStack_60,&processed_var_4576_ptr,(uint64_t)plVar10 & 0xffffffff);
     lVar16 = -1;
     do {
       lVar15 = lVar16 + 1;
@@ -211,7 +216,7 @@ LAB_1801991c0:
     pcVar8 = acStack_60;
   }
   else {
-    FUN_180060680(acStack_50,&processed_var_4576_ptr,(uint64_t)plStack_c0 & 0xffffffff);
+    RenderingEngine_BufferManager(acStack_50,&processed_var_4576_ptr,(uint64_t)plStack_c0 & 0xffffffff);
     lVar16 = -1;
     do {
       lVar15 = lVar16 + 1;
@@ -314,7 +319,7 @@ int64_t * FUN_1801993a0(uint64_t param_1,int64_t *param_2,uint64_t param_3,char 
   else {
     FUN_1801a0860(param_1,&plStack_28);
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
-    plVar3 = (int64_t *)FUN_180275090(uVar2);
+    plVar3 = (int64_t *)RenderingSystem_ShaderManager(uVar2);
     if (plVar3 != (int64_t *)0x0) {
       plStack_30 = plVar3;
       (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -334,7 +339,7 @@ int64_t * FUN_1801993a0(uint64_t param_1,int64_t *param_2,uint64_t param_3,char 
     (**(code **)(*(int64_t *)*param_2 + 0x100))((int64_t *)*param_2,0);
     (**(code **)(*(int64_t *)(*param_2 + 0x1f0) + 0x10))
               ((int64_t *)(*param_2 + 0x1f0),&rendering_buffer_2416_ptr);
-    FUN_180276f30(*param_2,*param_2 + 0x214,1);
+    SystemCore_UpdateState(*param_2,*param_2 + 0x214,1);
     (**(code **)(*(int64_t *)*param_2 + 0x148))((int64_t *)*param_2,&system_data_0300);
   }
   if (plStack_28 != (int64_t *)0x0) {
@@ -427,7 +432,7 @@ void FUN_180199500(int64_t param_1,float param_2,char param_3)
                (*(int32_t *)(lVar7 + 4 + lVar5 * 0xc) = 0xffffffff,
                *(char *)(lVar7 + 9 + lVar5 * 0xc) != '\0')) {
               *(int8_t *)(lVar7 + 8 + lVar5 * 0xc) = 0;
-              FUN_1800571e0(param_1 + 0x82d8,auStackX_18,lVar7,uVar11,uVar13);
+              SystemDatabaseProcessor(param_1 + 0x82d8,auStackX_18,lVar7,uVar11,uVar13);
             }
             break;
           }

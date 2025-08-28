@@ -311,7 +311,7 @@ int64_t FUN_18013d540(void)
     core_system_config_config = 0;
     core_system_config_config = 0;
     FUN_1808fc820(&processed_var_7056_ptr);
-    FUN_1808fcb30(&system_ptr_9270);
+    SystemCore_StateController(&system_ptr_9270);
   }
   lVar6 = core_system_config_config;
   if (core_system_config_config == 0) {

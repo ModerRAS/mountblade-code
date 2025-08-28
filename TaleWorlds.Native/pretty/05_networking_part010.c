@@ -132,12 +132,12 @@ typedef struct {
 #define NetworkDataBufferResize FUN_18084c470
 #define NetworkDataBufferExpand FUN_18084c494
 #define NetworkErrorGetLastCode FUN_18084c55b
-#define NetworkConnectionReset FUN_18084c5a0
+#define NetworkConnectionReset UISystem_EventDispatcher
 #define NetworkPacketQueueProcess FUN_18084c612
 #define NetworkDataStreamFlush FUN_18084c61e
 #define NetworkConnectionUpdateStatus FUN_18084c653
 #define NetworkConnectionValidate FUN_18084c658
-#define NetworkConnectionFinalize FUN_18084c680
+#define NetworkConnectionFinalize UIComponent_StateProcessor
 #define NetworkManagerDestroy FUN_18084c730
 #define NetworkManagerCleanup FUN_18084c738
 #define NetworkManagerReset FUN_18084c744

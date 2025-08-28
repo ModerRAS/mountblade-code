@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -34,7 +35,7 @@ void FUN_1808b51e6(void)
   }
   else if (sVar1 == 6) {
     iVar4 = FUN_180740c00(*(uint64_t *)(unaff_R14 + 0x30),&stack0x00000080);
-    if (((iVar4 != 0) || (in_stack_00000080 != 0x18)) || (iVar4 = FUN_1808b2f30(), iVar4 != 0))
+    if (((iVar4 != 0) || (in_stack_00000080 != 0x18)) || (iVar4 = SystemDataFlowProcessor(), iVar4 != 0))
     goto LAB_1808b536d;
     func_0x0001808da6d0(lVar2,&stack0x00000070);
     iVar4 = FUN_1808b4440();
@@ -46,7 +47,7 @@ void FUN_1808b51e6(void)
   if (((iVar4 == 0) &&
       (iVar4 = FUN_180740ff0(*(uint64_t *)(unaff_R14 + 0x30),*(int8_t *)(lVar2 + 0x40)),
       iVar4 == 0)) && ((iVar4 = FUN_1808b3f80(), iVar4 == 0 && (sVar1 == 7)))) {
-    FUN_1808b2f30();
+    SystemDataFlowProcessor();
   }
 LAB_1808b536d:
                     // WARNING: Subroutine does not return
@@ -161,7 +162,7 @@ int FUN_1808b5390(int64_t *param_1,int32_t *param_2,uint64_t *param_3)
     puVar8 = puVar9;
   }
   auStackX_8[0] = *(int32_t *)(param_3 + 0x10);
-  iVar12 = FUN_1807d28c0(puVar8,auStackX_8,apuStackX_18);
+  iVar12 = RenderingSystem_Renderer(puVar8,auStackX_8,apuStackX_18);
   if (iVar12 != 0) goto LAB_1808b566f;
   if (!bVar6) {
     return 0;
@@ -303,7 +304,7 @@ int FUN_1808b5408(void)
     plVar6 = plVar7;
   }
   in_stack_00000090 = *(int32_t *)(unaff_R13 + 0x80);
-  iVar10 = FUN_1807d28c0(plVar6,&stack0x00000090,&stack0x000000a0);
+  iVar10 = RenderingSystem_Renderer(plVar6,&stack0x00000090,&stack0x000000a0);
   if (iVar10 != 0) goto LAB_1808b566f;
   if (!bVar5) {
     return iVar12;
@@ -468,7 +469,7 @@ int FUN_1808b542a(uint64_t param_1,uint64_t param_2,int64_t *param_3)
     plVar6 = plVar7;
   }
   in_stack_00000090 = *(int32_t *)(unaff_R13 + 0x80);
-  iVar9 = FUN_1807d28c0(plVar6,&stack0x00000090,&stack0x000000a0);
+  iVar9 = RenderingSystem_Renderer(plVar6,&stack0x00000090,&stack0x000000a0);
   if (iVar9 != 0) goto LAB_1808b566f;
   if (!bVar4) {
     return iVar12;
@@ -600,7 +601,7 @@ int FUN_1808b5495(void)
     plVar6 = plVar7;
   }
   in_stack_00000090 = *(int32_t *)(unaff_R13 + 0x80);
-  iVar10 = FUN_1807d28c0(plVar6,&stack0x00000090,&stack0x000000a0);
+  iVar10 = RenderingSystem_Renderer(plVar6,&stack0x00000090,&stack0x000000a0);
   if (iVar10 != 0) goto LAB_1808b566f;
   if (!bVar5) {
     return iVar12;

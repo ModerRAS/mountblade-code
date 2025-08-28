@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part032.c - 渲染系统模块第32部分
 // 本文件包含9个函数，主要处理渲染数据结构管理、缓冲区操作和资源清理
 
@@ -939,7 +943,7 @@ uint64_t * release_rendering_resource(uint64_t *resource_ptr, uint64_t release_f
  * 渲染向量计算函数
  * 计算渲染相关的向量运算
  * 
- * 原始函数名: FUN_180285b40
+ * 原始函数名: SystemCore_EventHandler
  * 
  * @param vector_ptr1 向量指针1
  * @param result_ptr 结果指针
@@ -1010,7 +1014,7 @@ uint64_t calculate_rendering_distance(int64_t param1, uint64_t param2, float *po
   distance_y = position_ptr[1] - *(float *)(param1 + 0x14);
   distance_z = position_ptr[2] - *(float *)(param1 + 0x18);
   max_distance = 0x7f7fffff;  // 最大浮点数
-  FUN_180285b40(0x7f7fffff, distance_y, &distance_x);
+  SystemCore_EventHandler(0x7f7fffff, distance_y, &distance_x);
   return param2;
 }
 

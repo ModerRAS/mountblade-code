@@ -1,3 +1,7 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
@@ -5,8 +9,6 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
 
 // 03_rendering_part049.c - 渲染系统高级数据处理和渲染控制模块
 // 包含29个核心函数，涵盖渲染数据高级处理、渲染控制、数据转换、渲染状态管理等功能
@@ -43,7 +45,7 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
     if ((*(byte *)(render_context + 0x30) & 2) != 0) {
       uStack_88 = param_4 & 0xffffff;
       iStack_84 = vertex_count * 2;
-      FUN_1802921e0(render_context, vertex_count * 9 + -6, iStack_84);
+      NetworkSystem_PacketSerializer(render_context, vertex_count * 9 + -6, iStack_84);
       uVar1 = *(int32_t *)(render_context + 0x48);
       iVar7 = 2;
       if (2 < (int)vertex_count) {
@@ -65,7 +67,7 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
                     // WARNING: Subroutine does not return
       SystemCore_MemoryManager0(uVar5 & 0xfffffffffffffff0);
     }
-    FUN_1802921e0(render_context, (vertex_count - 2) * 3, uVar5);
+    NetworkSystem_PacketSerializer(render_context, (vertex_count - 2) * 3, uVar5);
     if (0 < (int)vertex_count) {
       do {
         uVar3 = *data_ptr;
@@ -118,7 +120,7 @@ void process_rendering_coordinate_transform(int64_t render_context, float *coord
   int iVar8;
   
   if ((scale_factor == 0.0) || (end_index < start_index)) {
-    FUN_18011d9a0(render_context + 0x80);
+    SystemCore_InterruptHandler(render_context + 0x80);
   }
   else {
     piVar1 = (int *)(render_context + 0x80);
@@ -219,7 +221,7 @@ void process_rendering_advanced_transform(int64_t param_1, int param_2, uint64_t
  */
 void cleanup_rendering_data_buffer(int64_t render_context)
 {
-  FUN_18011d9a0(render_context + 0x80);
+  SystemCore_InterruptHandler(render_context + 0x80);
   return;
 }
 
@@ -237,7 +239,7 @@ void cleanup_rendering_data_buffer(int64_t render_context)
 void initialize_rendering_data_buffer(int64_t render_context, uint64_t param_2, float scale_factor, uint64_t param_4, uint64_t param_5, int param_6)
 {
   if (scale_factor == 0.0) {
-    FUN_18011d9a0();
+    SystemCore_InterruptHandler();
   }
   else {
     DataProcessingEngine0((int *)(render_context + 0x80), param_6 + 1 + *(int *)(render_context + 0x80));
@@ -343,7 +345,7 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
   }
   if ((fVar7 <= 0.0) || (flags == 0)) {
     piVar5 = (int *)(render_context + 0x80);
-    FUN_18011d9a0(piVar5);
+    SystemCore_InterruptHandler(piVar5);
     fStackX_10 = *coord_end;
     iVar6 = 8;
     fStackX_14 = coord_start[1];
@@ -366,7 +368,7 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar3 * 8) =
          CONCAT44(fStackX_14, fStackX_10);
     *piVar5 = *piVar5 + 1;
-    FUN_18011d9a0(piVar5, coord_end);
+    SystemCore_InterruptHandler(piVar5, coord_end);
     fStackX_10 = *coord_start;
     fStackX_14 = coord_end[1];
     iVar3 = *piVar5;
@@ -404,16 +406,16 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
     }
     fStackX_10 = *coord_start + fVar8;
     fStackX_14 = coord_start[1] + fVar8;
-    FUN_180293730(render_context, &fStackX_10, fVar8, 6, 9);
+    UtilitiesSystem_FileHandler(render_context, &fStackX_10, fVar8, 6, 9);
     fStackX_14 = fVar10 + coord_start[1];
     fStackX_10 = *coord_end - fVar10;
-    FUN_180293730(render_context, &fStackX_10, fVar10, 9, 0xc);
+    UtilitiesSystem_FileHandler(render_context, &fStackX_10, fVar10, 9, 0xc);
     fStackX_10 = *coord_end - fVar9;
     fStackX_14 = coord_end[1] - fVar9;
-    FUN_180293730(render_context, &fStackX_10, fVar9, 0, 3);
+    UtilitiesSystem_FileHandler(render_context, &fStackX_10, fVar9, 0, 3);
     fStackX_10 = fVar7 + *coord_start;
     fStackX_14 = coord_end[1] - fVar7;
-    FUN_180293730(render_context, &fStackX_10, fVar7, 3, 6);
+    UtilitiesSystem_FileHandler(render_context, &fStackX_10, fVar7, 3, 6);
   }
   return;
 }
@@ -454,16 +456,16 @@ void process_rendering_advanced_coordinate_transform(int32_t param_1)
   }
   fStack0000000000000088 = unaff_XMM9_Da + fStack000000000000008c;
   fStack000000000000008c = in_XMM4_Da + fStack000000000000008c;
-  FUN_180293730(param_1, &stack0x00000088);
+  UtilitiesSystem_FileHandler(param_1, &stack0x00000088);
   fStack000000000000008c = fVar2 + unaff_RBP[1];
   fStack0000000000000088 = *unaff_RSI - fVar2;
-  FUN_180293730(fStack0000000000000088, &stack0x00000088, fVar2, 9, 0xc);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, fVar2, 9, 0xc);
   fStack0000000000000088 = *unaff_RSI - fVar1;
   fStack000000000000008c = unaff_RSI[1] - fVar1;
-  FUN_180293730(fStack0000000000000088, &stack0x00000088, fVar1, 0, 3);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, fVar1, 0, 3);
   fStack0000000000000088 = unaff_XMM6_Da + *unaff_RBP;
   fStack000000000000008c = unaff_RSI[1] - unaff_XMM6_Da;
-  FUN_180293730(fStack0000000000000088, &stack0x00000088, unaff_XMM6_Da, 3, 6);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, unaff_XMM6_Da, 3, 6);
   return;
 }
 
@@ -486,7 +488,7 @@ void process_rendering_batch_data(void)
   int32_t uStack000000000000008c;
   
   piVar5 = (int *)(unaff_RBX + 0x80);
-  FUN_18011d9a0(piVar5);
+  SystemCore_InterruptHandler(piVar5);
   uVar1 = *unaff_RSI;
   iVar6 = 8;
   uStack000000000000008c = unaff_RBP[1];
@@ -509,7 +511,7 @@ void process_rendering_batch_data(void)
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x88) + (int64_t)iVar3 * 8) =
        CONCAT44(uStack000000000000008c, uVar1);
   *piVar5 = *piVar5 + 1;
-  FUN_18011d9a0(piVar5);
+  SystemCore_InterruptHandler(piVar5);
   uVar1 = *unaff_RBP;
   uStack000000000000008c = unaff_RSI[1];
   iVar3 = *piVar5;
@@ -548,7 +550,7 @@ void process_rendering_data_stream(void)
   int iVar5;
   int32_t uStack000000000000008c;
   
-  FUN_18011d9a0();
+  SystemCore_InterruptHandler();
   uVar1 = *unaff_RSI;
   iVar5 = 8;
   uStack000000000000008c = unaff_RBP[1];
@@ -571,7 +573,7 @@ void process_rendering_data_stream(void)
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar3 * 8) =
        CONCAT44(uStack000000000000008c, uVar1);
   *unaff_RBX = *unaff_RBX + 1;
-  FUN_18011d9a0();
+  SystemCore_InterruptHandler();
   uVar1 = *unaff_RBP;
   uStack000000000000008c = unaff_RSI[1];
   iVar3 = *unaff_RBX;
@@ -665,7 +667,7 @@ void process_rendering_coordinate_offset(int64_t render_context, float *coord_st
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar5 * 8) =
          CONCAT44(fVar3 + 0.5, fVar2 + 0.5);
     *piVar1 = *piVar1 + 1;
-    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *piVar1, flags, 0, param_5);
+    RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *piVar1, flags, 0, param_5);
     *piVar1 = 0;
   }
   return;
@@ -747,7 +749,7 @@ void process_rendering_float_calculation(float param_1, int64_t param_2, float *
   *(uint64_t *)(*(int64_t *)(in_RCX + 0x88) + (int64_t)iVar5 * 8) =
        CONCAT44(fVar3 + 0.5, fVar2 + 0.5);
   *piVar1 = *piVar1 + 1;
-  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
+  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
   *piVar1 = 0;
   return;
 }
@@ -822,7 +824,7 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) =
        CONCAT44(fVar1 + 0.5, fVar5 + 0.5);
   *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
@@ -858,7 +860,7 @@ void process_rendering_array_operations(int32_t param_1, uint64_t param_2, int p
   DataProcessingEngine0(param_1, iVar1);
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)*unaff_RBX * 8) = param_6;
   *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
@@ -902,8 +904,8 @@ void process_rendering_boundary_calculation(int64_t render_context, float *coord
     fStackX_8 = *coord_end - 0.5;
     fStackX_c = coord_end[1] - 0.5;
   }
-  FUN_1802939e0(0x3f000000, &fStack_18, &fStackX_8, param_5, param_6);
-  FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), param_4, 1, param_7);
+  UtilitiesSystem_LogManager(0x3f000000, &fStack_18, &fStackX_8, param_5, param_6);
+  RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), param_4, 1, param_7);
   *(int32_t *)(render_context + 0x80) = 0;
   return;
 }
@@ -932,7 +934,7 @@ void process_rendering_batch_operations(int64_t render_context, uint64_t *data_p
   
   if ((flags & 0xff000000) != 0) {
     if (scale_factor <= 0.0) {
-      FUN_1802921e0(0, 6, 4);
+      NetworkSystem_PacketSerializer(0, 6, 4);
       sVar7 = *(short *)(render_context + 0x48);
       uVar1 = *(int32_t *)data_ptr2;
       uVar2 = *(int32_t *)((int64_t)data_ptr1 + 4);
@@ -975,7 +977,7 @@ void process_rendering_batch_operations(int64_t render_context, uint64_t *data_p
       *(int64_t *)(render_context + 0x58) = *(int64_t *)(render_context + 0x58) + 0xc;
     }
     else {
-      FUN_1802939e0(0, data_ptr1, data_ptr2, scale_factor, param_6);
+      UtilitiesSystem_LogManager(0, data_ptr1, data_ptr2, scale_factor, param_6);
       FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
       *(int32_t *)(render_context + 0x80) = 0;
     }
@@ -1005,7 +1007,7 @@ void process_rendering_advanced_index(uint64_t param_1, uint64_t param_2)
   uint64_t *unaff_RSI;
   int32_t unaff_EDI;
   
-  FUN_1802921e0(param_1, param_2, (int)param_2 + -2);
+  NetworkSystem_PacketSerializer(param_1, param_2, (int)param_2 + -2);
   sVar7 = *(short *)(unaff_RBX + 0x48);
   uVar1 = *(int32_t *)unaff_RSI;
   uVar2 = *(int32_t *)((int64_t)unaff_RBP + 4);
@@ -1072,9 +1074,9 @@ void empty_rendering_function_5(void)
 void process_rendering_multisampling(int64_t render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint flags)
 {
   if ((flags & 0xff000000) != 0) {
-    FUN_18011d9a0(render_context + 0x80);
-    FUN_18011d9a0(render_context + 0x80, param_3);
-    FUN_18011d9a0(render_context + 0x80, param_4);
+    SystemCore_InterruptHandler(render_context + 0x80);
+    SystemCore_InterruptHandler(render_context + 0x80, param_3);
+    SystemCore_InterruptHandler(render_context + 0x80, param_4);
     FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
     *(int32_t *)(render_context + 0x80) = 0;
   }
@@ -1090,9 +1092,9 @@ void process_rendering_texture_mapping(void)
 {
   int64_t unaff_RSI;
   
-  FUN_18011d9a0();
-  FUN_18011d9a0(unaff_RSI + 0x80);
-  FUN_18011d9a0(unaff_RSI + 0x80);
+  SystemCore_InterruptHandler();
+  SystemCore_InterruptHandler(unaff_RSI + 0x80);
+  SystemCore_InterruptHandler(unaff_RSI + 0x80);
   FUN_180293190();
   *(int32_t *)(unaff_RSI + 0x80) = 0;
   return;
@@ -1123,7 +1125,7 @@ void process_rendering_material_blending(int64_t render_context, uint64_t param_
 {
   if ((flags & 0xff000000) != 0) {
     FUN_180293860(0x40bc7edd, param_2, param_3 - 0.5, 0, 0x40bc7edd, 0xf);
-    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags, 1, param_6);
+    RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags, 1, param_6);
     *(int32_t *)(render_context + 0x80) = 0;
   }
   return;

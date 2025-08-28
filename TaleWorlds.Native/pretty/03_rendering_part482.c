@@ -224,7 +224,7 @@ LAB_180526a29:
         uStack_98 = 0;
         iStack_94 = -1;
         uStack_90 = 0x2002;
-        FUN_18051ec50(param_1,&uStack_98);
+        CoreSystemThreadManager(param_1,&uStack_98);
         if (iVar4 != -1) {
           uStack_90 = 0;
           lStack_88 = 0;
@@ -234,7 +234,7 @@ LAB_180526a29:
           uStack_6c = 0;
           uStack_98 = 0;
           iStack_94 = iVar4;
-          FUN_18051ec50(param_1,&uStack_98);
+          CoreSystemThreadManager(param_1,&uStack_98);
         }
       }
     }
@@ -276,7 +276,7 @@ LAB_180526faa:
         uVar5 = *(int32_t *)
                  ((int64_t)*(int *)(lVar10 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar10 + 0xd0));
       }
-      lVar10 = FUN_18054f900(lVar7,9,bVar13,uVar5,uVar3);
+      lVar10 = Timer_GetElapsed(lVar7,9,bVar13,uVar5,uVar3);
       if (lVar10 == 0) goto LAB_180526f68;
       iVar4 = *(int *)(*(int64_t *)(param_1 + 0x590) + 0x2498);
       if (*(int *)(lVar10 + 0x1c) != iVar4) {
@@ -305,7 +305,7 @@ LAB_180526faa:
         }
         lStack_88 = (uint64_t)(uint)fVar14 << 0x20;
         iStack_94 = *(int *)(lVar10 + 0x1c);
-        cVar2 = FUN_18051ec50(param_1,&uStack_98);
+        cVar2 = CoreSystemThreadManager(param_1,&uStack_98);
         if (cVar2 != '\0') {
           if (iVar12 != 0x20) {
             *(int32_t *)(param_1 + 0x7c) = 0xffff;
@@ -576,7 +576,7 @@ LAB_180526a29:
         *(int32_t *)(unaff_RBP + -0x39) = 0;
         *(int32_t *)(unaff_RBP + -0x35) = 0xffffffff;
         *(uint64_t *)(unaff_RBP + -0x31) = 0x2002;
-        FUN_18051ec50(0,unaff_RBP + -0x39);
+        CoreSystemThreadManager(0,unaff_RBP + -0x39);
         if (iVar5 != -1) {
           *(int32_t *)(unaff_RBP + -0x21) = *(int32_t *)(unaff_RBP + 0x67);
           *(uint64_t *)(unaff_RBP + -0x31) = 0;
@@ -588,7 +588,7 @@ LAB_180526a29:
           *(int8_t *)(unaff_RBP + -0xd) = 0;
           *(int32_t *)(unaff_RBP + -0x39) = 0;
           *(int *)(unaff_RBP + -0x35) = iVar5;
-          FUN_18051ec50(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
+          CoreSystemThreadManager(*(int32_t *)(unaff_RBP + 0x67),unaff_RBP + -0x39);
         }
       }
     }
@@ -630,7 +630,7 @@ LAB_180526faa:
         uVar6 = *(int32_t *)
                  ((int64_t)*(int *)(lVar11 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar11 + 0xd0));
       }
-      lVar11 = FUN_18054f900(lVar8,9,bVar14,uVar6,uVar4);
+      lVar11 = Timer_GetElapsed(lVar8,9,bVar14,uVar6,uVar4);
       if (lVar11 == 0) goto LAB_180526f68;
       iVar5 = *(int *)(lVar11 + 0x1c);
       iVar1 = *(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x2498);
@@ -661,7 +661,7 @@ LAB_180526faa:
           }
         }
         *(float *)(unaff_RBP + -0x25) = fVar15;
-        cVar3 = FUN_18051ec50(fVar15,unaff_RBP + -0x39);
+        cVar3 = CoreSystemThreadManager(fVar15,unaff_RBP + -0x39);
         if (cVar3 != '\0') {
           if (iVar13 != 0x20) {
             *(int32_t *)(unaff_RBX + 0x7c) = 0xffff;

@@ -64,7 +64,7 @@ void FUN_1808787d0(int64_t param_1,int64_t *param_2,uint64_t *param_3,int64_t pa
       uStack_b8 = 0xffffffffffffffff;
       aiStack_b0[0] = -1;
       uStack_c0 = param_2;
-      FUN_1808741f0(param_2,&uStack_b8,aiStack_b0);
+      SystemResource_Manager(param_2,&uStack_b8,aiStack_b0);
       plVar1 = uStack_c0;
       if (aiStack_b0[0] != -1) {
         iVar8 = aiStack_b0[0];
@@ -189,7 +189,7 @@ LAB_1808788de:
             if ((*(int *)(lVar3 + 0x48) < network_system_config) &&
                (SystemInitializer(&system_ptr_ea98), network_system_config == -1)) {
               network_system_config = 0;
-              FUN_1808fcb30(&system_ptr_ea98);
+              SystemCore_StateController(&system_ptr_ea98);
             }
             if ((int)plVar16[0x14] != network_system_config) {
               for (uVar10 = plVar16[0x10];
@@ -240,10 +240,10 @@ LAB_1808788de:
         }
       }
       if ((0x5a < uVar18) ||
-         ((((iVar8 = FUN_180868e40(FUN_1808777c0,param_1,param_5), iVar8 == 0 &&
-            (iVar8 = FUN_180868de0(FUN_1808777c0,param_1,param_5), iVar8 == 0)) &&
-           (iVar8 = FUN_180868fc0(FUN_1808777c0,param_1,param_5), iVar8 == 0)) &&
-          (iVar8 = FUN_180868ea0(FUN_1808777c0,param_1,param_5), iVar8 == 0)))) {
+         ((((iVar8 = FUN_180868e40(RenderingSystem_TextureHandler0,param_1,param_5), iVar8 == 0 &&
+            (iVar8 = FUN_180868de0(RenderingSystem_TextureHandler0,param_1,param_5), iVar8 == 0)) &&
+           (iVar8 = FUN_180868fc0(RenderingSystem_TextureHandler0,param_1,param_5), iVar8 == 0)) &&
+          (iVar8 = FUN_180868ea0(RenderingSystem_TextureHandler0,param_1,param_5), iVar8 == 0)))) {
         if (uVar18 < 0x61) {
           uVar20 = 0;
           uVar12 = uVar10;
@@ -482,7 +482,7 @@ void FUN_1808789b7(float param_1)
             if ((*(int *)(lVar3 + 0x48) < network_system_config) &&
                (param_1 = (float)SystemInitializer(&system_ptr_ea98), network_system_config == -1)) {
               network_system_config = 0;
-              param_1 = (float)FUN_1808fcb30(&system_ptr_ea98);
+              param_1 = (float)SystemCore_StateController(&system_ptr_ea98);
             }
             if ((int)plVar17[0x14] != network_system_config) {
               for (uVar13 = plVar17[0x10];
@@ -535,10 +535,10 @@ void FUN_1808789b7(float param_1)
         }
       }
       if ((0x5a < unaff_R13D) ||
-         ((((iVar10 = FUN_180868e40(FUN_1808777c0,unaff_R12), iVar10 == 0 &&
-            (iVar10 = FUN_180868de0(FUN_1808777c0,unaff_R12), iVar10 == 0)) &&
-           (iVar10 = FUN_180868fc0(FUN_1808777c0,unaff_R12), iVar10 == 0)) &&
-          (iVar10 = FUN_180868ea0(FUN_1808777c0,unaff_R12), iVar10 == 0)))) {
+         ((((iVar10 = FUN_180868e40(RenderingSystem_TextureHandler0,unaff_R12), iVar10 == 0 &&
+            (iVar10 = FUN_180868de0(RenderingSystem_TextureHandler0,unaff_R12), iVar10 == 0)) &&
+           (iVar10 = FUN_180868fc0(RenderingSystem_TextureHandler0,unaff_R12), iVar10 == 0)) &&
+          (iVar10 = FUN_180868ea0(RenderingSystem_TextureHandler0,unaff_R12), iVar10 == 0)))) {
         if (unaff_R13D < 0x61) {
           uVar14 = unaff_R14 & 0xffffffff;
           uVar15 = (int32_t)unaff_R14;

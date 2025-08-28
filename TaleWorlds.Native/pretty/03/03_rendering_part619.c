@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -155,7 +160,7 @@ void RenderingSystem_AdvancedDataProcessor(int param_1, uint param_2, float para
         } while (puVar7 != (uint64_t *)0x0);
     }
     if ((puVar4 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar4 + 4))) {
-        puVar4 = (uint64_t *)FUN_1804c0610(0x180c95e98, auStack_70, in_R8, puVar4, auStackX_8);
+        puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(0x180c95e98, auStack_70, in_R8, puVar4, auStackX_8);
         puVar4 = (uint64_t *)*puVar4;
     }
     lVar5 = puVar4[5];
@@ -191,7 +196,7 @@ void RenderingSystem_AdvancedDataProcessor(int param_1, uint param_2, float para
     *(int16_t *)(puStack_60 + 5) = 0x6563;
     *(int8_t *)((int64_t)puStack_60 + RENDERING_STRING_BUFFER_SIZE) = 0;
     uStack_58 = RENDERING_STRING_BUFFER_SIZE;
-    FUN_180628380(&puStack_68, param_1);
+    RenderingSystem_CameraController(&puStack_68, param_1);
     uVar11 = uStack_58 + RENDERING_DATA_QUEUE_SIZE;
     if (uVar11 != 0) {
         uVar3 = uStack_58 + RENDERING_DATA_QUEUE_SIZE + 1;
@@ -215,7 +220,7 @@ LAB_18060e38b:
     *(int32_t *)(puVar7 + 1) = 0x20726564;
     *(int8_t *)((int64_t)puVar7 + RENDERING_DATA_QUEUE_SIZE) = 0;
     uStack_58 = uVar11;
-    FUN_180628380(&puStack_68, param_2);
+    RenderingSystem_CameraController(&puStack_68, param_2);
     uVar11 = uStack_58 + 0x13;
     if (uVar11 != 0) {
         uVar3 = uStack_58 + 0x14;
@@ -863,7 +868,7 @@ void RenderingSystem_ResourceInitializer(int64_t *param_1, int32_t param_2, int8
     int64_t *plStackX_8;
     
     if (param_1 != (int64_t *)0x0) {
-        FUN_1802ee720(param_1, 1);
+        RenderingSystem_UpdateCamera(param_1, 1);
         lVar3 = RenderingSystem_ResourceLocator(param_1);
         lVar1 = render_system_memory;
         if (lVar3 == 0) {
@@ -901,7 +906,7 @@ void RenderingSystem_ResourceDestroyer(int64_t param_1, char param_2, uint64_t p
     if (param_1 != 0) {
         lVar5 = RenderingSystem_ResourceLocator();
         if (lVar5 != 0) {
-            FUN_1802ee720(*(uint64_t *)(lVar5 + 0x18), 1);
+            RenderingSystem_UpdateCamera(*(uint64_t *)(lVar5 + 0x18), 1);
             if (param_2 != '\0') {
                 FUN_1802ea560(*(uint64_t *)(lVar5 + 0x18), RENDERING_FLAG_ACTIVE);
             }
@@ -924,7 +929,7 @@ void RenderingSystem_ResourceDestroyer(int64_t param_1, char param_2, uint64_t p
                 (*pcVar1)(puVar7, pcVar1, (uint64_t)(uVar4 >> 4), param_4, 0xfffffffffffffffe);
             }
             *(int32_t *)(puVar7 + 1) = 0;
-            FUN_1800571e0(lVar3 + RENDERING_STRING_HASH_SIZE + 8, &stack0x00000010);
+            SystemDatabaseProcessor(lVar3 + RENDERING_STRING_HASH_SIZE + 8, &stack0x00000010);
             if (*piVar6 - 1U == uVar4) {
                 *piVar6 = 0;
                 uVar4 = *(int *)(lVar3 + RENDERING_STRING_HASH_SIZE + 4) - 1;
@@ -942,7 +947,7 @@ void RenderingSystem_ResourceDestroyer(int64_t param_1, char param_2, uint64_t p
             }
             return;
         }
-        FUN_1802ee720(param_1, 1);
+        RenderingSystem_UpdateCamera(param_1, 1);
         if (param_2 != '\0') {
             FUN_1802ea560(param_1, RENDERING_FLAG_ACTIVE);
         }
@@ -971,13 +976,13 @@ void RenderingSystem_ResourceCleanup(uint64_t param_1)
     
     lVar4 = RenderingSystem_ResourceLocator();
     if (lVar4 == 0) {
-        FUN_1802ee720(param_1, 1);
+        RenderingSystem_UpdateCamera(param_1, 1);
         if (unaff_SIL != '\0') {
             FUN_1802ea560(param_1, RENDERING_FLAG_ACTIVE);
         }
         return;
     }
-    FUN_1802ee720(*(uint64_t *)(lVar4 + 0x18), 1);
+    RenderingSystem_UpdateCamera(*(uint64_t *)(lVar4 + 0x18), 1);
     if (unaff_SIL != '\0') {
         FUN_1802ea560(*(uint64_t *)(lVar4 + 0x18), RENDERING_FLAG_ACTIVE);
     }
@@ -1000,7 +1005,7 @@ void RenderingSystem_ResourceCleanup(uint64_t param_1)
         (**(code **)((void *)*puVar6 + 0x10))(puVar6);
     }
     *(int32_t *)(puVar6 + 1) = 0;
-    FUN_1800571e0(lVar2 + RENDERING_STRING_HASH_SIZE + 8, &stack0x00000038);
+    SystemDatabaseProcessor(lVar2 + RENDERING_STRING_HASH_SIZE + 8, &stack0x00000038);
     if (*piVar5 - 1U == uVar3) {
         *piVar5 = 0;
         uVar3 = *(int *)(lVar2 + RENDERING_STRING_HASH_SIZE + 4) - 1;
@@ -1029,7 +1034,7 @@ void RenderingSystem_EmptyFunction_2(void)
 {
     char unaff_SIL;
     
-    FUN_1802ee720();
+    RenderingSystem_UpdateCamera();
     if (unaff_SIL != '\0') {
         FUN_1802ea560();
     }
@@ -1060,7 +1065,7 @@ void RenderingSystem_ResourceFinalizer(int64_t param_1)
     int64_t lVar1;
     
     if ((param_1 != 0) && (lVar1 = RenderingSystem_ResourceLocator(), lVar1 == 0)) {
-        FUN_1802ee720(param_1, 0);
+        RenderingSystem_UpdateCamera(param_1, 0);
     }
     return;
 }
@@ -1155,7 +1160,7 @@ void RenderingSystem_DataTransformer(int param_1, uint64_t *param_2)
     uint64_t uStack_10;
     
     FUN_1804c31d0((int64_t)param_1 * 200 + render_system_memory, auStack_58, auStackX_8);
-    FUN_18063b5f0(&uStack_38, auStack_58);
+    SystemSecurityManager(&uStack_38, auStack_58);
     *param_2 = uStack_38;
     param_2[1] = uStack_30;
     param_2[2] = uStack_28;
@@ -1213,7 +1218,7 @@ int32_t RenderingSystem_ParameterHandler(uint64_t param_1, int32_t param_2, int8
     if (lVar2 == 0) {
         return 0xffffffff;
     }
-    lVar2 = FUN_18054f900(lVar2, param_2, param_3, param_4, param_5);
+    lVar2 = Timer_GetElapsed(lVar2, param_2, param_3, param_4, param_5);
     return *(int32_t *)(lVar2 + 0x50);
 }
 
@@ -1232,7 +1237,7 @@ int RenderingSystem_ParameterGetter(uint64_t param_1, int32_t param_2, int8_t pa
     
     iVar1 = RenderingSystem_DataValidator();
     lVar2 = (int64_t)iVar1 * RENDERING_STRING_MAX_LENGTH + render_system_memory;
-    if (((lVar2 != 0) && (lVar2 = FUN_18054f900(lVar2, param_2, param_3, param_4, param_5), lVar2 != 0))
+    if (((lVar2 != 0) && (lVar2 = Timer_GetElapsed(lVar2, param_2, param_3, param_4, param_5), lVar2 != 0))
        && (*(int *)(lVar2 + 0x104) != -1)) {
         return *(int *)(lVar2 + 0x104);
     }

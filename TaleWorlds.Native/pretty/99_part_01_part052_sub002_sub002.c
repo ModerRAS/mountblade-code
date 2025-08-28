@@ -53,7 +53,7 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   UNLOCK();
   DataStructureManager(param_1 + 0x1dd,0x18,2,FUN_1802e5430,FUN_1800e7f20);
   *(int32_t *)(param_1 + 0x1dc) = 0;
-  DataStructureManager(param_1 + 0x1e4,0x20,0x1d,FUN_180627850,FUN_180627b90);
+  DataStructureManager(param_1 + 0x1e4,0x20,0x1d,FUN_180627850,SystemValidator);
   func_0x0001800e7950(param_1 + 0x25a);
   _Mtx_init_in_situ(param_1 + 0x26c,2);
   param_1[0x277] = 0;

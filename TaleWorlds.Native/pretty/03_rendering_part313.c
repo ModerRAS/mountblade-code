@@ -31,7 +31,7 @@ uint64_t * FUN_180434170(uint64_t *param_1)
   *param_1 = &processed_var_6328_ptr;
   DataStructureManager(param_1 + 3,0x48,4,FUN_1804350f0,FUN_180431c60);
   FUN_180300d00(param_1 + 0x28);
-  FUN_180431730(param_1);
+  RenderingSystem_GeometryProcessor0(param_1);
   return param_1;
 }
 

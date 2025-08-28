@@ -1,3 +1,7 @@
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -23,9 +27,9 @@ extern int64_t SYSTEM_DATA_MANAGER_A;  // 资源计数器指针
 extern int64_t SYSTEM_DATA_MANAGER_B;  // 内存分配器句柄
 
 // 函数声明
-void FUN_18028e550(int64_t param_1, int param_2, int64_t param_3, float param_4);
+void SystemCore_ProcessEvents(int64_t param_1, int param_2, int64_t param_3, float param_4);
 void SystemSecurityChecker(int64_t param_1);
-void FUN_180059ba0(void *param_1, int64_t param_2);
+void DataValidator0(void *param_1, int64_t param_2);
 void *func_0x000180120ce0(int64_t param_1, int64_t param_2);
 void memset(void *dest, int value, int64_t count);
 
@@ -79,13 +83,13 @@ void process_rendering_data_complex(void)
         stack_float1 = float_var2;
         if (float_var2 < 0.0) {
           // 处理负值情况
-          FUN_18028e550(source_reg + -4, 0, target_reg, float_var2);
+          SystemCore_ProcessEvents(source_reg + -4, 0, target_reg, float_var2);
         }
         else {
           // 处理正值情况
-          FUN_18028e550(target_reg, (int)float_var2, target_reg, float_var2);
+          SystemCore_ProcessEvents(target_reg, (int)float_var2, target_reg, float_var2);
           stack_float1 = float_var2;
-          FUN_18028e550(source_reg + -4);
+          SystemCore_ProcessEvents(source_reg + -4);
         }
       }
     }
@@ -133,39 +137,39 @@ void process_rendering_data_complex(void)
               if ((float_var5 <= float_var10) || (float_var2 <= float_var7)) {
                 if (((float_var2 < float_var5) && (float_var5 < float_var10)) ||
                    ((float_var10 < float_var5 && (float_var5 < float_var2)))) {
-                  FUN_18028e550(target_reg, ulong_val, target_reg, float_var2);
+                  SystemCore_ProcessEvents(target_reg, ulong_val, target_reg, float_var2);
                 }
                 else if ((float_var7 <= float_var2) || (float_var10 <= float_var7)) {
                   if ((float_var10 < float_var7) && (float_var7 < float_var2)) {
                     stack_float1 = float_var7;
                     stack_float2 = float_var9;
-                    FUN_18028e550(target_reg, ulong_val, target_reg, float_var2);
+                    SystemCore_ProcessEvents(target_reg, ulong_val, target_reg, float_var2);
                   }
                 }
                 else {
                   stack_float1 = float_var7;
                   stack_float2 = float_var9;
-                  FUN_18028e550(target_reg, ulong_val, target_reg, float_var2);
+                  SystemCore_ProcessEvents(target_reg, ulong_val, target_reg, float_var2);
                 }
               }
               else {
                 stack_float1 = float_var7;
                 stack_float2 = float_var9;
-                FUN_18028e550(target_reg, ulong_val, target_reg, float_var2);
+                SystemCore_ProcessEvents(target_reg, ulong_val, target_reg, float_var2);
                 stack_float1 = float_var5;
                 stack_float2 = float_var8;
-                FUN_18028e550();
+                SystemCore_ProcessEvents();
               }
             }
             else {
-              FUN_18028e550(target_reg, ulong_val, target_reg, float_var2);
+              SystemCore_ProcessEvents(target_reg, ulong_val, target_reg, float_var2);
               stack_float1 = float_var7;
               stack_float2 = float_var9;
-              FUN_18028e550();
+              SystemCore_ProcessEvents();
             }
             
             stack_float1 = float_var10;
-            FUN_18028e550(target_reg);
+            SystemCore_ProcessEvents(target_reg);
             ulong_val = temp_ulong & 0xffffffff;
           } while ((int)temp_ulong < count_reg);
           
@@ -327,7 +331,7 @@ void setup_rendering_buffer(int *buffer_config, int64_t buffer_ptr, int buffer_s
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(buffer_ptr_local, SYSTEM_DATA_MANAGER_B);
+    DataValidator0(buffer_ptr_local, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -400,7 +404,7 @@ void configure_rendering_context(int *context_config, int64_t context_ptr, int c
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(local_buffer, SYSTEM_DATA_MANAGER_B);
+    DataValidator0(local_buffer, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -470,7 +474,7 @@ void setup_rendering_pipeline(int *pipeline_config, int64_t pipeline_ptr, int pi
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(local_buffer, SYSTEM_DATA_MANAGER_B);
+    DataValidator0(local_buffer, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -504,7 +508,7 @@ void release_rendering_resources(void)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0();
+    DataValidator0();
   }
   
   // 释放栈资源
@@ -512,7 +516,7 @@ void release_rendering_resources(void)
     if ((stack_param1 != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(stack_param1, SYSTEM_DATA_MANAGER_B);
+    DataValidator0(stack_param1, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清理栈
@@ -529,7 +533,7 @@ void free_rendering_buffer(void)
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0();
+  DataValidator0();
 }
 
 // 函数: void deallocate_rendering_memory(int64_t memory_ptr)
@@ -543,7 +547,7 @@ void deallocate_rendering_memory(int64_t memory_ptr)
   if ((memory_ptr != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(memory_ptr, SYSTEM_DATA_MANAGER_B);
+  DataValidator0(memory_ptr, SYSTEM_DATA_MANAGER_B);
 }
 
 // 函数: void optimize_rendering_data(uint64_t *data_array, int array_size)

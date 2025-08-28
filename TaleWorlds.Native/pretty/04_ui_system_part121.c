@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 04_ui_system_part121.c - 34 个函数
 
@@ -225,8 +230,8 @@ LAB_18073c33b:
 
 
 
-// 函数: void FUN_18073c380(uint64_t param_1,int32_t param_2,uint64_t param_3)
-void FUN_18073c380(uint64_t param_1,int32_t param_2,uint64_t param_3)
+// 函数: void UltraHighFreq_PhysicsEngine1(uint64_t param_1,int32_t param_2,uint64_t param_3)
+void UltraHighFreq_PhysicsEngine1(uint64_t param_1,int32_t param_2,uint64_t param_3)
 
 {
   int iVar1;
@@ -366,8 +371,8 @@ void FUN_18073c493(void)
 
 
 
-// 函数: void FUN_18073c4c0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
-void FUN_18073c4c0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
+// 函数: void UtilitiesSystem_MathCalculator(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
+void UtilitiesSystem_MathCalculator(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   int iVar1;
@@ -469,7 +474,7 @@ void FUN_18073c5f0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074bda0(auStack_138,0x100,param_2);
     iVar3 = DataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074b930(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    UIAnimationController(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,4,param_1,&processed_var_6736_ptr);
@@ -515,7 +520,7 @@ void FUN_18073c60d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = func_0x00018074bda0(&stack0x00000040,0x100,param_2);
     iVar3 = DataProcessor(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    FUN_18074b930(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    UIAnimationController(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,4,param_1,&processed_var_6736_ptr,&stack0x00000040);
   }
@@ -541,7 +546,7 @@ void FUN_18073c66b(void)
   
   iVar1 = func_0x00018074bda0(&stack0x00000040,0x100);
   iVar2 = DataProcessor(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  FUN_18074b930(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  UIAnimationController(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,4);
 }
@@ -774,7 +779,7 @@ void FUN_18073c8d0(uint64_t param_1,uint64_t param_2)
     if (iVar1 == 0) goto LAB_18073c96e;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    FUN_18074ba80(auStack_118,0x100,param_2);
+    SystemCore_CompressionHandler(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
     DataTransformer(iVar1,4,param_1,&processed_var_6360_ptr);

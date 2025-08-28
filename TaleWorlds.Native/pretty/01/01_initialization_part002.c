@@ -936,7 +936,7 @@ void FUN_18002e8e0(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&processed_var_7352_ptr,in_R9,0xfffffffffffffffe);
-  init_system_ui = FUN_180623800(&puStack_a0);
+  init_system_ui = SystemCore_ConfigManager(&puStack_a0);
   return;
 }
 

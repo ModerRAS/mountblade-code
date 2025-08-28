@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -36,8 +40,8 @@ void FUN_18020cae0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
               uVar6 = uVar6 + 1;
             } while ((int64_t)uVar6 < (int64_t)iVar3);
           }
-          FUN_1800b8500(plVar1);
-          FUN_180057830(plVar1);
+          SystemCore_Controller(plVar1);
+          DataTransformer0(plVar1);
           *puVar2 = &system_data_buffer_ptr;
           if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -201,7 +205,7 @@ LAB_18020ce30:
   plStack_b0 = (int64_t *)0x0;
   plStack_a8 = (int64_t *)0x0;
   uStack_a0 = 3;
-  FUN_1802e8c60(plVar15);
+  Network_ProtocolHandler(plVar15);
   if (plStack_b0 < plStack_a8) {
     *plStack_b0 = (int64_t)plVar15;
     plVar9 = plStack_b0;
@@ -257,7 +261,7 @@ LAB_18020ceb6:
         puStack_60 = puStack_48;
         strcpy_s(*(uint64_t *)(lVar10 + 0x28),0x40,puVar13);
         puStack_60 = (uint64_t *)lVar10;
-        lVar16 = FUN_1800590b0(lVar8,&uStackX_8,puStack_48);
+        lVar16 = SystemCore_SecurityValidator(lVar8,&uStackX_8,puStack_48);
         if ((char)uStackX_8 == '\0') {
           *puStack_48 = &system_state_ptr;
                     // WARNING: Subroutine does not return
@@ -526,7 +530,7 @@ void FUN_18020d4c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       puStack_68 = (uint64_t *)0x0;
       uStack_60 = 3;
       uVar8 = 1;
-      FUN_1802e8c60(uVar1,&puStack_78);
+      Network_ProtocolHandler(uVar1,&puStack_78);
       if (puStack_70 < puStack_68) {
         *puStack_70 = uVar1;
         puVar4 = puStack_70;
@@ -1000,7 +1004,7 @@ void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
     uStack_6a8 = (int32_t)lVar1;
     strcpy_s(auStack_6a0,0x100,param_2);
   }
-  lVar1 = FUN_180624440(apuStack_478,&puStack_6b8);
+  lVar1 = SystemCore_EncryptionEngine(apuStack_478,&puStack_6b8);
   puStack_598 = &rendering_buffer_2008_ptr;
   puStack_590 = auStack_580;
   auStack_580[0] = 0;

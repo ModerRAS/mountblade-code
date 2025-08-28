@@ -1,3 +1,8 @@
+/* 函数别名定义: SystemOutputManager */
+#define SystemOutputManager SystemOutputManager
+
+
+#include "SystemOutputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -50,8 +55,8 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
     }
     if (iVar6 < *(int *)(lVar9 + 8)) {
       bVar3 = 5 < iVar12;
-      uVar4 = FUN_180557990(*(uint64_t *)(unaff_RDI + 0xb0),2,iVar6,0xffffffff,bVar3);
-      iVar5 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
+      uVar4 = RenderingSystem_RenderQueue(*(uint64_t *)(unaff_RDI + 0xb0),2,iVar6,0xffffffff,bVar3);
+      iVar5 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
       iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
       piVar10 = unaff_R15;
       if (iVar5 != -1) {
@@ -59,8 +64,8 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
       }
       uVar1 = *(uint64_t *)(unaff_RDI + 0xb0);
       puVar14[-2] = piVar10;
-      uVar4 = FUN_180557990(uVar1,1,iVar6,0xffffffff,bVar3);
-      iVar5 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
+      uVar4 = RenderingSystem_RenderQueue(uVar1,1,iVar6,0xffffffff,bVar3);
+      iVar5 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
       iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
       piVar10 = unaff_R15;
       if (iVar5 != -1) {
@@ -68,8 +73,8 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
       }
       uVar1 = *(uint64_t *)(unaff_RDI + 0xb0);
       *puVar14 = piVar10;
-      uVar4 = FUN_180557990(uVar1,0,iVar6,0xffffffff,bVar3);
-      iVar5 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
+      uVar4 = RenderingSystem_RenderQueue(uVar1,0,iVar6,0xffffffff,bVar3);
+      iVar5 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
       iVar5 = *(int *)(render_system_memory + (int64_t)iVar5 * 4);
       piVar10 = unaff_R15;
       if (iVar5 != -1) {
@@ -77,8 +82,8 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
       }
       uVar1 = *(uint64_t *)(unaff_RDI + 0xb0);
       puVar14[1] = piVar10;
-      uVar4 = FUN_180557990(uVar1,5,iVar6,0xffffffff,bVar3);
-      iVar6 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
+      uVar4 = RenderingSystem_RenderQueue(uVar1,5,iVar6,0xffffffff,bVar3);
+      iVar6 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),uVar4);
       iVar6 = *(int *)(render_system_memory + (int64_t)iVar6 * 4);
       piVar10 = unaff_R15;
       if (iVar6 != -1) {
@@ -101,7 +106,7 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
         param_6 = piVar7;
         plVar8 = (int64_t *)&stack0x00000030;
       }
-      iVar6 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),
+      iVar6 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),
                             *(int32_t *)(*plVar8 + 4));
       iVar6 = *(int *)(render_system_memory + (int64_t)iVar6 * 4);
       piVar10 = unaff_R15;
@@ -126,7 +131,7 @@ void FUN_18057d0a7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
         plVar8 = (int64_t *)&param_10;
         param_11 = lVar2 + lVar11 * 8;
       }
-      iVar6 = FUN_18053a410(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),
+      iVar6 = SystemCacheManager(&system_data_5f30,*(int32_t *)(unaff_RDI + 0xac),
                             *(int32_t *)(*plVar8 + 4));
       iVar6 = *(int *)(render_system_memory + (int64_t)iVar6 * 4);
       if (iVar6 == -1) {
@@ -272,7 +277,7 @@ FUN_18057d980(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &ui_system_data_1336_ptr;
-  FUN_180049470();
+  SystemCore_SecurityManager();
   if ((param_2 & 1) != 0) {
     free(param_1,0x620,param_3,param_4,uVar1);
   }
@@ -511,7 +516,7 @@ void FUN_18057db20(int64_t param_1,int64_t param_2,float *param_3)
                         fVar5 + fVar17 + (float)uStack_158 * 0.0);
   uStack_150 = CONCAT44(fVar7 + fVar20 + uStack_150._4_4_ * 0.0,
                         fVar6 + fVar19 + (float)uStack_150 * 0.0);
-  FUN_18063b470(&uStack_188,&uStack_168);
+  AdvancedProcessor_StateManager0(&uStack_188,&uStack_168);
   uStack_100 = uStack_184;
   uStack_f8 = uStack_17c;
   uStack_fc = uStack_180;
@@ -730,7 +735,7 @@ LAB_18057dfca:
                                 fVar10 + (float)uStack_178 * 0.0 + fVar14);
           uStack_170 = CONCAT44(fVar13 + uStack_170._4_4_ * 0.0 + fVar7,
                                 fVar12 + (float)uStack_170 * 0.0 + fVar9);
-          FUN_18063b470(&fStack_1a8,&uStack_188);
+          AdvancedProcessor_StateManager0(&fStack_1a8,&uStack_188);
           uStack_138 = fStack_1a4;
           uStack_130 = uStack_19c;
           uStack_134 = fStack_1a0;

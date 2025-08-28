@@ -561,7 +561,7 @@ LAB_1805f44db:
                 fStack_158 = fStack_210;
                 fStack_154 = fStack_20c;
                 fStack_150 = fStack_208;
-                uVar41 = FUN_1801c24a0(&fStack_210);
+                uVar41 = UtilitiesSystem_CryptoHandler(&fStack_210);
                 param_1[lVar26 * 7 + 0xf1] = uVar11;
                 (param_1 + lVar26 * 7 + 0xf1)[1] = uVar12;
                 param_1[lVar26 * 7 + 0xf3] = uVar13;
@@ -604,7 +604,7 @@ LAB_1805f44db:
               fStack_178 = fStack_210;
               fStack_174 = fStack_20c;
               fStack_170 = fStack_208;
-              uVar41 = FUN_1801c24a0(&fStack_210);
+              uVar41 = UtilitiesSystem_CryptoHandler(&fStack_210);
               lVar26 = (int64_t)*piVar18;
               param_1[lVar26 * 7 + 0xf1] = uVar10;
               (param_1 + lVar26 * 7 + 0xf1)[1] = uVar11;

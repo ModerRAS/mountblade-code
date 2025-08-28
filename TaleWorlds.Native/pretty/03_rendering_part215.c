@@ -1,5 +1,14 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part215.c - 5 个函数
 
@@ -74,9 +83,9 @@ void FUN_180390c80(int64_t param_1,int param_2,int param_3)
                   *(char *)(lVar3 + 0x20) = *(char *)(lVar3 + 0x20) + -1;
                   *(uint64_t *)(lVar3 + 0x18) = 0;
                 }
-                FUN_18038b160(uVar12);
+                SystemCore_ProcessManager(uVar12);
                 uVar9 = uVar6;
-                FUN_18038b160();
+                SystemCore_ProcessManager();
                 *(int8_t *)(lVar2 + 0x20) = 0;
                 uVar9 = uVar9 & 0xffffffffffffff00;
                 bVar13 = *(int64_t *)(lVar2 + 0x10) != 0;
@@ -113,13 +122,13 @@ void FUN_180390c80(int64_t param_1,int param_2,int param_3)
                   *(int64_t *)(lVar3 + 0x10) = *(int64_t *)(lVar3 + 0x18);
                   *(uint64_t *)(lVar3 + 0x18) = 0;
                 }
-                FUN_18038ee20(uVar9,uVar12,0xffffffff);
-                FUN_18038ee20();
+                SystemCore_Encoder(uVar9,uVar12,0xffffffff);
+                SystemCore_Encoder();
                 *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
-                FUN_18038ee20();
+                SystemCore_Encoder();
                 if (*(int *)(uVar6 + 0x128) == -1) {
                   *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
-                  FUN_18038ee20();
+                  SystemCore_Encoder();
                 }
               }
               iVar10 = iVar10 + 1;
@@ -188,8 +197,8 @@ void FUN_180390d17(int param_1)
               *(char *)(lVar2 + 0x20) = *(char *)(lVar2 + 0x20) + -1;
               *(uint64_t *)(lVar2 + 0x18) = 0;
             }
-            FUN_18038b160();
-            FUN_18038b160();
+            SystemCore_ProcessManager();
+            SystemCore_ProcessManager();
             *(int8_t *)(lVar1 + 0x20) = 0;
             cVar6 = *(int64_t *)(lVar1 + 0x10) != 0;
             if ((bool)cVar6) {
@@ -216,13 +225,13 @@ void FUN_180390d17(int param_1)
               *(int64_t *)(lVar2 + 0x10) = *(int64_t *)(lVar2 + 0x18);
               *(uint64_t *)(lVar2 + 0x18) = 0;
             }
-            FUN_18038ee20();
-            FUN_18038ee20();
+            SystemCore_Encoder();
+            SystemCore_Encoder();
             *(int *)(unaff_R14 + 0x530) = *(int *)(unaff_R14 + 0x530) + 1;
-            FUN_18038ee20();
+            SystemCore_Encoder();
             if (*(int *)(unaff_RSI + 0x128) == -1) {
               *(int *)(unaff_R14 + 0x530) = *(int *)(unaff_R14 + 0x530) + 1;
-              FUN_18038ee20();
+              SystemCore_Encoder();
             }
           }
           iVar4 = iVar4 + 1;
@@ -378,14 +387,14 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
                 *(int64_t *)(uVar8 + 0x10) = *(int64_t *)(uVar8 + 0x18);
                 *(uint64_t *)(uVar8 + 0x18) = 0;
               }
-              FUN_18038b160(uVar13);
-              FUN_18038b160(uVar14);
-              uVar24 = FUN_18038b160(lVar9);
+              SystemCore_ProcessManager(uVar13);
+              SystemCore_ProcessManager(uVar14);
+              uVar24 = SystemCore_ProcessManager(lVar9);
               bVar5 = true;
-              uVar24 = FUN_18038ee20(uVar24,uVar13,0xffffffff);
-              uVar24 = FUN_18038ee20(uVar24,uVar14,0xffffffff);
+              uVar24 = SystemCore_Encoder(uVar24,uVar13,0xffffffff);
+              uVar24 = SystemCore_Encoder(uVar24,uVar14,0xffffffff);
               *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
-              FUN_18038ee20(uVar24,uVar13,*(int32_t *)(param_1 + 0x530));
+              SystemCore_Encoder(uVar24,uVar13,*(int32_t *)(param_1 + 0x530));
             }
           }
           lVar9 = *(int64_t *)(param_1 + 0x478);
@@ -486,7 +495,7 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
         } while ((int)uVar17 < (int)(uint)*(byte *)(uVar13 + 0xa8));
         if (((int)uVar22 != -1) && (iVar21 != -1)) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(system_message_context,&processed_var_5304_ptr);
+          SystemParameterHandler(system_message_context,&processed_var_5304_ptr);
         }
       }
     }
@@ -604,14 +613,14 @@ void FUN_180390fe4(uint64_t param_1)
             *(int64_t *)(uVar14 + 0x10) = *(int64_t *)(uVar14 + 0x18);
             *(uint64_t *)(uVar14 + 0x18) = unaff_RBP;
           }
-          FUN_18038b160();
-          FUN_18038b160();
-          FUN_18038b160(lVar8);
+          SystemCore_ProcessManager();
+          SystemCore_ProcessManager();
+          SystemCore_ProcessManager(lVar8);
           bVar5 = true;
-          FUN_18038ee20();
-          FUN_18038ee20();
+          SystemCore_Encoder();
+          SystemCore_Encoder();
           *(int *)(unaff_R13 + 0x530) = *(int *)(unaff_R13 + 0x530) + 1;
-          FUN_18038ee20();
+          SystemCore_Encoder();
         }
       }
       lVar8 = *(int64_t *)(unaff_R13 + 0x478);
@@ -712,7 +721,7 @@ void FUN_180390fe4(uint64_t param_1)
     } while ((int)uVar19 < (int)(uint)*(byte *)(unaff_RSI + 0xa8));
     if (((int)uVar18 != -1) && (iVar17 != -1)) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_5304_ptr);
+      SystemParameterHandler(system_message_context,&processed_var_5304_ptr);
     }
   }
   return;

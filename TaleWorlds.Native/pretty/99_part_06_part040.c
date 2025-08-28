@@ -165,7 +165,7 @@ void FUN_1803cbfb0(int64_t param_1,float *param_2,int64_t param_3)
   fStack_4e4 = fStack_4e4 * 0.0 + fVar22 + fVar13;
   fStack_4e0 = fStack_4e0 * 0.0 + fVar23 + fVar16;
   fStack_4dc = fStack_4dc * 0.0 + fVar24 + fVar14;
-  FUN_18063b470(&uStack_528,&uStack_4f8);
+  AdvancedProcessor_StateManager0(&uStack_528,&uStack_4f8);
   uStack_480 = uStack_528._4_4_;
   uStack_47c = uStack_520;
   uStack_478 = uStack_51c;
@@ -234,7 +234,7 @@ void FUN_1803cbfb0(int64_t param_1,float *param_2,int64_t param_3)
       alStack_398[2] = lVar6;
       (**(code **)(*plVar1 + 0x48))(plVar1,auStack_360);
       puStack_3e0 = auStack_360;
-      puVar3 = (int32_t *)FUN_1800fcb90(&fStack_4a0,auStack_370,auStack_3d8);
+      puVar3 = (int32_t *)SystemCore_Initializer(&fStack_4a0,auStack_370,auStack_3d8);
       fVar17 = fStack_3c8 * 2.0;
       fVar16 = fStack_3c4 * 2.0;
       fVar15 = fStack_3c0 * 2.0;
@@ -858,7 +858,7 @@ void FUN_1803cd740(int64_t param_1,float *param_2,int64_t param_3)
   fStack_1a4 = fVar22 + fStack_1a4 * 0.0 + fVar16;
   fStack_1a0 = fVar23 + fStack_1a0 * 0.0 + fVar13;
   fStack_19c = fVar24 + fStack_19c * 0.0 + fVar14;
-  FUN_18063b470(&uStack_1c8,&uStack_1b8);
+  AdvancedProcessor_StateManager0(&uStack_1c8,&uStack_1b8);
   uStack_c0 = uStack_1c8._4_4_;
   uStack_bc = (int32_t)uStack_1c0;
   uStack_b8 = uStack_1c0._4_4_;

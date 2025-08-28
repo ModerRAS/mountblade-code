@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part432.c - 23 个函数
 
 // 函数: void FUN_180502e28(void)
@@ -774,7 +778,7 @@ void FUN_1805038d0(int64_t *param_1)
 
 {
   SystemDataValidator((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
-                FUN_18004a130,0xfffffffffffffffe);
+                SystemCore_MemoryManager,0xfffffffffffffffe);
   *(int8_t *)((*param_1 - (uint64_t)(*(uint *)(param_1 + 1) & 0x1f)) + 0x202f) = 1;
   return;
 }
@@ -819,7 +823,7 @@ uint64_t FUN_180503930(int64_t param_1,uint64_t param_2)
       lVar10 = (uint64_t)((uint)uVar8 & 0x1f) * 0x100 + uVar6;
       lVar7 = *(int64_t *)(param_1 + 0x50);
       FUN_180506460(param_2,lVar10,uVar11,plVar1,0xfffffffffffffffe,uVar6,uVar8,lVar5);
-      SystemDataValidator(lVar10 + 0x38,0x30,4,FUN_18004a130);
+      SystemDataValidator(lVar10 + 0x38,0x30,4,SystemCore_MemoryManager);
       LOCK();
       puVar2 = (uint64_t *)(uVar6 + 0x2008);
       uVar8 = *puVar2;
@@ -886,7 +890,7 @@ void FUN_180503ac0(int64_t *param_1)
   bool bVar8;
   
   SystemDataValidator((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
-                FUN_18004a130,0xfffffffffffffffe);
+                SystemCore_MemoryManager,0xfffffffffffffffe);
   LOCK();
   plVar1 = (int64_t *)(*param_1 + 0x2008);
   lVar4 = *plVar1;

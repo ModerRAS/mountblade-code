@@ -588,7 +588,7 @@ LAB_18057b795:
   unaff_RBP[10] = fVar27 * fVar23 + fVar24 * fVar17 + fVar20 * fVar31;
   unaff_RBP[0xb] = fVar27 * fVar25 + fVar24 * fVar25 + fVar20 * fVar25;
   in_stack_00000050 = fVar15;
-  FUN_18063b470(&stack0x00000030);
+  AdvancedProcessor_StateManager0(&stack0x00000030);
                     // WARNING: Subroutine does not return
   AdvancedSystemController(fVar15 * *(float *)(unaff_RBX + 0x58) * 0.5);
 }

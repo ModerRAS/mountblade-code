@@ -370,7 +370,7 @@ void FUN_1802f8320(int64_t param_1,uint64_t *param_2)
     *(int32_t *)(lVar7 + 0x220) = 0;
     *(int32_t *)(lVar7 + 0x230) = 0;
     *(int32_t *)(lVar7 + 0x240) = 0x3f800000;
-    FUN_180084760(puVar1,lVar7 + 0x244);
+    SystemCore_PerformanceMonitor(puVar1,lVar7 + 0x244);
   }
   return;
 }
@@ -473,7 +473,7 @@ void FUN_1802f834b(int64_t param_1,uint64_t *param_2)
   *(int32_t *)(lVar5 + 0x220) = 0;
   *(int32_t *)(lVar5 + 0x230) = 0;
   *(int32_t *)(lVar5 + 0x240) = 0x3f800000;
-  FUN_180084760(uVar6,lVar5 + 0x244);
+  SystemCore_PerformanceMonitor(uVar6,lVar5 + 0x244);
   return;
 }
 
@@ -521,7 +521,7 @@ void FUN_1802f83c0(void)
   *(int32_t *)(in_R10 + 0x220) = 0;
   *(int32_t *)(in_R10 + 0x230) = 0;
   *(int32_t *)(in_R10 + 0x240) = 0x3f800000;
-  FUN_180084760(uVar1,in_R10 + 0x244);
+  SystemCore_PerformanceMonitor(uVar1,in_R10 + 0x244);
   return;
 }
 
@@ -660,7 +660,7 @@ float * FUN_1802f8430(int64_t param_1)
       *(int32_t *)(param_1 + 0x210) = 0;
       *(int32_t *)(param_1 + 0x220) = 0;
       *(int32_t *)(param_1 + 0x230) = 0;
-      FUN_180084760(pfVar35,param_1 + 0x244);
+      SystemCore_PerformanceMonitor(pfVar35,param_1 + 0x244);
     }
     return pfVar35;
   }
@@ -744,7 +744,7 @@ float * FUN_1802f84eb(uint64_t param_1,float *param_2,int64_t param_3,float para
   *(int32_t *)(param_3 + 0x210) = 0;
   *(int32_t *)(param_3 + 0x220) = 0;
   *(int32_t *)(param_3 + 0x230) = 0;
-  FUN_180084760(in_R9,param_3 + 0x244);
+  SystemCore_PerformanceMonitor(in_R9,param_3 + 0x244);
   return in_R9;
 }
 
@@ -757,7 +757,7 @@ uint64_t FUN_1802f85d3(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_
   *(int32_t *)(param_3 + 0x210) = 0;
   *(int32_t *)(param_3 + 0x220) = 0;
   *(int32_t *)(param_3 + 0x230) = 0;
-  FUN_180084760(param_4,param_3 + 0x244);
+  SystemCore_PerformanceMonitor(param_4,param_3 + 0x244);
   return param_4;
 }
 

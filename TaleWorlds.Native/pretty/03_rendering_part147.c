@@ -1,5 +1,12 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 03_rendering_part147.c - 8 个函数
 
@@ -294,8 +301,8 @@ void FUN_18035bbd0(int64_t *param_1)
     plVar20 = plStackX_8 + 0x22;
     if (*plVar20 == 0) {
       uVar18 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,CONCAT71((int7)(uVar27 >> 8),0x16));
-      uVar18 = FUN_180275090(uVar18);
-      FUN_180056f10(plVar20,uVar18);
+      uVar18 = RenderingSystem_ShaderManager(uVar18);
+      SystemCore_PointerManager(plVar20,uVar18);
       lVar30 = plVar3[0x23];
       pplStackX_10 = &plStackX_8;
       plStackX_8 = (int64_t *)*plVar20;
@@ -303,7 +310,7 @@ void FUN_18035bbd0(int64_t *param_1)
         (**(code **)(*plStackX_8 + 0x28))();
       }
       pplStackX_18 = &plStackX_8;
-      FUN_1802edcd0(lVar30,plStackX_8,1);
+      PhysicsSystem_TerrainCollider(lVar30,plStackX_8,1);
       if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
       }
@@ -317,7 +324,7 @@ void FUN_18035bbd0(int64_t *param_1)
       (**(code **)(*plStackX_8 + 0x28))();
     }
     pplStackX_18 = &plStackX_8;
-    FUN_1802edcd0(lVar30,plStackX_8,1);
+    PhysicsSystem_TerrainCollider(lVar30,plStackX_8,1);
     if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
@@ -337,7 +344,7 @@ void FUN_18035bbd0(int64_t *param_1)
     plStack_2a0 = (int64_t *)0x0;
     uStack_2b0 = 0;
     auStack_2b8[0] = 0;
-    FUN_18022f2e0(&plStack_2c8,plVar20,0);
+    RenderingSystem_MaterialProcessor(&plStack_2c8,plVar20,0);
     pfVar21 = (float *)FUN_180466610(plVar3[0x21],&uStack_1e8);
     uStack_248 = *(uint64_t *)(pfVar21 + 4);
     uStack_240 = *(uint64_t *)(pfVar21 + 6);
@@ -517,20 +524,20 @@ void FUN_18035bbd0(int64_t *param_1)
       if ((void *)plStack_2c8[3] != (void *)0x0) {
         puVar22 = (void *)plStack_2c8[3];
       }
-      FUN_1800623b0(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar31,puVar22,
+      SystemConfigurationManager(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar31,puVar22,
                     (int)plStack_2c0[0xc]);
     }
     cStack_298 = '\x01';
     if (plStack_2c0 != (int64_t *)0x0) {
       if (cStack_296 != '\0') {
-        FUN_180075b70(plStack_2c8);
+        SystemConfig_Manager(plStack_2c8);
       }
-      FUN_18007f6a0(auStack_2b8);
+      SystemSecurityManager(auStack_2b8);
       if (cStack_298 != '\0') {
-        FUN_180079520(plStack_2c8);
+        SystemInitializer(plStack_2c8);
       }
       if (cStack_297 != '\0') {
-        FUN_180079520(plStack_2c8);
+        SystemInitializer(plStack_2c8);
       }
       plVar2 = plStack_2c0;
       plStackX_8 = plStack_2c0;
@@ -546,7 +553,7 @@ void FUN_18035bbd0(int64_t *param_1)
     FUN_180275cf0(lVar30,0,&plStackX_8,1);
     plVar2 = (int64_t *)plVar3[0x22];
     if (*(code **)(*plVar2 + 0x160) == (code *)&processed_var_6368_ptr) {
-      FUN_180276f30(plVar2,(int64_t)plVar2 + 0x214,0);
+      SystemCore_UpdateState(plVar2,(int64_t)plVar2 + 0x214,0);
     }
     else {
       (**(code **)(*plVar2 + 0x160))();
@@ -564,14 +571,14 @@ void FUN_18035bbd0(int64_t *param_1)
     }
     if ((plStack_2c8 != (int64_t *)0x0) && (plStack_2c0 != (int64_t *)0x0)) {
       if (cStack_296 != '\0') {
-        FUN_180075b70();
+        SystemConfig_Manager();
       }
-      FUN_18007f6a0(auStack_2b8);
+      SystemSecurityManager(auStack_2b8);
       if (cStack_298 != '\0') {
-        FUN_180079520(plStack_2c8);
+        SystemInitializer(plStack_2c8);
       }
       if (cStack_297 != '\0') {
-        FUN_180079520(plStack_2c8);
+        SystemInitializer(plStack_2c8);
       }
       plVar3 = plStack_2c0;
       plStackX_8 = plStack_2c0;
@@ -581,7 +588,7 @@ void FUN_18035bbd0(int64_t *param_1)
       }
     }
     plStackX_8 = (int64_t *)auStack_2b8;
-    FUN_18007f6a0(auStack_2b8);
+    SystemSecurityManager(auStack_2b8);
     if (plStack_2a0 != (int64_t *)0x0) {
       (**(code **)(*plStack_2a0 + 0x38))();
     }

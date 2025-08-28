@@ -165,7 +165,7 @@ void FUN_1803752a0(uint param_1)
                       }
                       *(int32_t **)(unaff_RBP + -0x1a) = unaff_RBP + 2;
                       unaff_RBP[8] = (float)iVar12;
-                      FUN_180077750(lVar17,uVar19,&system_data_0300,0,&stack0x00000060);
+                      SystemHealthMonitor(lVar17,uVar19,&system_data_0300,0,&stack0x00000060);
                       plVar18 = *(int64_t **)(unaff_RBP + -0xc);
                       uVar15 = (uint64_t)(uint)(iVar14 - iVar16);
                       iVar22 = iVar22 + 0x200;

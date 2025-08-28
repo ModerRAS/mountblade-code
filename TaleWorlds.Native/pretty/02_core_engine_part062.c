@@ -98,14 +98,14 @@ SystemState system_current_state = SYSTEM_STATE_READY;
 #define CoreEngine_ArrayProcessor FUN_18009b327
 #define CoreEngine_MemoryPoolAllocator CoreEngineDataTransformer
 #define CoreEngine_MemoryPoolInitializer CoreEngineDataBufferProcessor
-#define CoreEngine_DataBufferProcessor FUN_180058080
+#define CoreEngine_DataBufferProcessor > HighFreq_AnimationSystem1
 #define CoreEngine_MemoryPoolCleaner CoreEngineMemoryPoolCleaner
 #define CoreEngine_DataTransformer FUN_1806298d0
 #define CoreEngine_MemoryTransfer CoreEngineMemoryPoolReallocator
 #define CoreEngine_MemoryPoolReallocator CoreEngineMemoryPoolAllocator
 #define CoreEngine_DataProcessor2 SystemInitializer
 #define CoreEngine_DataValidator FUN_180057bf0
-#define CoreEngine_ArrayInitializer FUN_18011dd10
+#define CoreEngine_ArrayInitializer Memory_CacheManager
 
 // 函数: void CoreEngine_DataProcessor(uint64_t param_1,uint64_t *param_2,int64_t param_3,int64_t *param_4,
 // 核心引擎数据处理器 - 处理系统数据流和参数计算

@@ -654,7 +654,7 @@ LAB_18057b795:
   // 最终阶段：设置缩放因子并调用渲染处理函数
   in_stack_00000050 = fVar31;                        // 设置最终缩放因子
   // 调用渲染处理函数（不返回）
-  FUN_18063b470(&stack0x00000030);
+  AdvancedProcessor_StateManager0(&stack0x00000030);
                     // WARNING: Subroutine does not return
   // 调用最终渲染函数，应用最终的变换效果
   AdvancedSystemController(fVar31 * *(float *)(unaff_RBX + 0x58) * 0.5);

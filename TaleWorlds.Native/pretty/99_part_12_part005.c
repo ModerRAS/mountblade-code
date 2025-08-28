@@ -1,3 +1,7 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -147,7 +151,7 @@ void FUN_1807caddf(void)
             (uint)(SUB164(auVar2 / auVar1,0) - (int)((uVar5 & 0xffffffff) % (uint64_t)uVar6));
   }
   *(int *)(unaff_RDI + 0x204) = (int)(((uVar5 & 0xffffffff) * uVar8) / (uint64_t)uVar7);
-  iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),*(int *)(unaff_RDI + 0x110) + (int)uVar5,
+  iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),*(int *)(unaff_RDI + 0x110) + (int)uVar5,
                         0);
   if ((iVar4 == 0) && (*(int64_t *)(unaff_RDI + 0x140) != CONCAT44(unaff_00000034,unaff_ESI))) {
     uVar7 = (int)unaff_RBX - *(int *)(unaff_RDI + 0x204);
@@ -189,7 +193,7 @@ void FUN_1807cae97(uint param_1,uint64_t param_2,uint param_3,int64_t param_4)
     param_3 = param_3 - (int)((in_RAX & 0xffffffff) % (uint64_t)param_1);
   }
   *(int *)(unaff_RDI + 0x204) = (int)(((uint64_t)param_3 * param_4) / in_R10);
-  iVar3 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),*(int *)(unaff_RDI + 0x110) + param_3,0);
+  iVar3 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),*(int *)(unaff_RDI + 0x110) + param_3,0);
   if ((iVar3 == 0) && (*(int64_t *)(unaff_RDI + 0x140) != CONCAT44(unaff_00000034,unaff_ESI))) {
     uVar2 = unaff_EBX - *(int *)(unaff_RDI + 0x204);
     while (uVar1 = uVar2, uVar1 != 0) {
@@ -291,7 +295,7 @@ uint64_t FUN_1807cb0e0(int64_t param_1)
               *(uint *)(param_1 + 0xbfc) = uVar3;
               if (*(int *)(param_1 + 0x8ec) <= (int)uVar3) {
                 if (*(char *)(param_1 + 0xbea) == '\0') {
-                  FUN_18080d690(param_1);
+                  RenderingSystem_BufferManager0(param_1);
                 }
                 uVar3 = *(uint *)(param_1 + 0xbd0);
                 *(uint *)(param_1 + 0xbfc) = uVar3;
@@ -325,7 +329,7 @@ uint64_t FUN_1807cb0e0(int64_t param_1)
           }
         }
         else {
-          FUN_18080d690(param_1);
+          RenderingSystem_BufferManager0(param_1);
         }
       }
       if (*(int *)(param_1 + 0xbf0) == 0) {
@@ -344,7 +348,7 @@ uint64_t FUN_1807cb0e0(int64_t param_1)
       cVar2 = *(char *)(param_1 + 0xbe9);
     } while (cVar2 == '\0');
   }
-  FUN_18080d690(param_1);
+  RenderingSystem_BufferManager0(param_1);
   return 0;
 }
 

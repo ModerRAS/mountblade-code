@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -56,7 +60,7 @@ void FUN_1802d2930(int64_t param_1,int32_t param_2)
   uStack_68 = uStack_78;
   uStack_64 = uStack_74;
   iVar4 = (int)uVar17;
-  FUN_18015b810(uStack_78,0,uVar17 & 0xffffffff,0x10,0xffffffffffffffff,&uStack_68,lVar15,uVar19);
+  SystemCore_DataTransformer(uStack_78,0,uVar17 & 0xffffffff,0x10,0xffffffffffffffff,&uStack_68,lVar15,uVar19);
   lVar18 = (int64_t)iVar4;
   if (0 < iVar4) {
     lVar16 = 0;
@@ -153,7 +157,7 @@ uint64_t FUN_1802d2c20(int64_t param_1,int32_t param_2,int64_t *param_3)
   uStack_20 = 0xfffffffffffffffe;
   FUN_1800c1750(param_1,&plStackX_20,param_2);
   if (plStackX_20 == (int64_t *)0x0) {
-    FUN_180627020(&processed_var_9528_ptr,param_2);
+    SystemCore_Allocator(&processed_var_9528_ptr,param_2);
     uVar5 = 0;
   }
   else {
@@ -196,7 +200,7 @@ uint64_t FUN_1802d2c20(int64_t param_1,int32_t param_2,int64_t *param_3)
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
-    FUN_1800b88d0(param_1 + 0xaf8,&plStack_28);
+    PhysicsSystem_TriggersProcessor(param_1 + 0xaf8,&plStack_28);
     uVar5 = 1;
     iVar4 = _Mtx_unlock(lVar1);
     if (iVar4 != 0) {
@@ -281,7 +285,7 @@ void FUN_1802d2d90(int64_t param_1,int64_t *param_2,int64_t *param_3)
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  FUN_1800b88d0(param_1 + 0xaf8,&plStack_58);
+  PhysicsSystem_TriggersProcessor(param_1 + 0xaf8,&plStack_58);
   if (*(int64_t *)(param_1 + 0xb50) != 0) {
     pplStackX_18 = (int64_t **)*param_2;
     if (pplStackX_18 != (int64_t **)0x0) {
@@ -709,7 +713,7 @@ LAB_1802d35de:
   piVar1 = (int *)((int64_t)puVar10 + 0x2c);
   *piVar1 = *piVar1 + -1;
   if (*piVar1 != 0) {
-    FUN_180057830();
+    DataTransformer0();
     if (*(int64_t *)(lVar13 + 0x130) != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();
@@ -776,7 +780,7 @@ LAB_1802d363a:
 LAB_1802d36c1:
   *(int64_t *)(param_1 + 0x850) = *(int64_t *)(param_1 + 0x850) + -1;
   func_0x00018066bd70(puVar10);
-  FUN_18066ba00(puVar10,puVar3);
+  RenderingSystem_BufferHandler(puVar10,puVar3);
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar10);
 }
@@ -810,7 +814,7 @@ void FUN_1802d38a0(float *param_1,float *param_2,int64_t param_3)
   if (1.0 < *param_1) {
     pfVar1 = param_1 + 8;
     *param_1 = *param_1 - 1.0;
-    FUN_180058370(pfVar1,*(uint64_t *)(param_1 + 0xc));
+    RenderingSystem_CameraSystem(pfVar1,*(uint64_t *)(param_1 + 0xc));
     uVar11 = 0;
     *(float **)pfVar1 = pfVar1;
     *(float **)(param_1 + 10) = pfVar1;

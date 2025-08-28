@@ -1,14 +1,17 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_01_part046_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int64_t *param_5)
-void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int64_t *param_5)
+// 函数: void SystemInitialization_ConfigManager(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int64_t *param_5)
+void SystemInitialization_ConfigManager(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int64_t *param_5)
 
 {
   float fVar1;
@@ -388,7 +391,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
   abStack_997[0] = param_3;
   puStack_988 = param_2;
   lStack_978 = param_1;
-  FUN_1800cfee0();
+  SystemInitialization_SubModuleInit();
   lVar16 = system_system_data_memory;
   uStack_8f8 = 0;
   uStack_8f4 = 0;
@@ -421,7 +424,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
   uStack_8bc = (uint)(param_5 != (int64_t *)0x0);
   if (param_2[0x11aa0] != '\0') {
     if (*(int64_t *)(system_system_data_memory + 0x388) == 0) {
-      puVar13 = (uint64_t *)FUN_18009e9e0(cVar19,&plStack_950,&processed_var_584_ptr);
+      puVar13 = (uint64_t *)MemorySystem_AllocateAndInitialize(cVar19,&plStack_950,&processed_var_584_ptr);
       uVar14 = *puVar13;
       *puVar13 = 0;
       ppuStack_990 = *(void ***)(lVar16 + 0x388);
@@ -462,7 +465,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
     if (plStack_850 != (int64_t *)0x0) {
       (**(code **)(*plStack_850 + 0x28))();
     }
-    uVar14 = FUN_180299eb0(uVar14,param_2,&lStack_578,&cStack_998);
+    uVar14 = UIRenderingEngine(uVar14,param_2,&lStack_578,&cStack_998);
     lVar16 = system_message_buffer;
     if (cStack_998 != '\0') {
       if (plStack_850 != (int64_t *)0x0) {
@@ -495,7 +498,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
     *(int32_t *)(lVar22 + 0x1228) = *(int32_t *)(lVar22 + 0x1268);
     *(int32_t *)(lVar22 + 0x122c) = *(int32_t *)(lVar22 + 0x126c);
     lVar22 = *(int64_t *)(lVar16 + 0x1cd8);
-    FUN_18029fc10(lVar22,*(uint64_t *)(lVar16 + 0x1c70),lVar22 + 0x1100,0x6d0);
+    UltraHighFreq_DatabaseHandler1(lVar22,*(uint64_t *)(lVar16 + 0x1c70),lVar22 + 0x1100,0x6d0);
     uVar10 = uStack_8bc;
     uVar54 = uStack_8e4;
     uVar53 = uStack_8e8;
@@ -526,7 +529,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
     }
     else {
       if (*(int64_t *)(system_system_data_memory + 0x398) == 0) {
-        puVar13 = (uint64_t *)FUN_18009e9e0(lVar22,&uStack_8b8,&processed_var_664_ptr);
+        puVar13 = (uint64_t *)MemorySystem_AllocateAndInitialize(lVar22,&uStack_8b8,&processed_var_664_ptr);
         uVar14 = *puVar13;
         *puVar13 = 0;
         plStack_930 = *(int64_t **)(lVar16 + 0x398);
@@ -555,19 +558,19 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       uStack_648 = 0;
       uVar14 = *(uint64_t *)(lStack_698 + 0x15b8);
       plStack_930 = (int64_t *)auStack_238;
-      uVar15 = FUN_18009e8e0(auStack_238,&lStack_698);
-      uVar14 = FUN_180299eb0(uVar14,param_2,uVar15,&cStack_998);
+      uVar15 = MemorySystem_PoolAllocate(auStack_238,&lStack_698);
+      uVar14 = UIRenderingEngine(uVar14,param_2,uVar15,&cStack_998);
       uStack_8f8 = (int32_t)uVar14;
       uStack_8f4 = (int32_t)((uint64_t)uVar14 >> 0x20);
       uVar14 = *(uint64_t *)(system_message_buffer + 0x1cd8);
       uVar15 = func_0x0001800858c0(param_5,*(int32_t *)(param_2 + 0x3578),0);
-      FUN_18029ad30(uVar14,0,uVar15);
-      lVar16 = FUN_180245280(param_2);
+      SystemCore_MemoryManager(uVar14,0,uVar15);
+      lVar16 = SystemLog_Manager(param_2);
       if (lVar16 == 0) {
         plVar17 = (int64_t *)0x0;
       }
       else {
-        uVar14 = FUN_180245280(param_2);
+        uVar14 = SystemLog_Manager(param_2);
         plVar17 = (int64_t *)func_0x0001800ae1f0(uVar14,*(int32_t *)(param_2 + 0x357c),1);
       }
       plVar26 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -576,7 +579,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       }
       lVar16 = system_message_buffer;
       plVar26[0x107e] = (int64_t)plVar17;
-      FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
       lVar23 = lStack_978;
       uVar32 = 0;
       lVar16 = *plVar28;
@@ -586,13 +589,13 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
         do {
           lVar16 = lVar16 + uVar31;
           ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,*(int32_t *)(lVar16 + 0x40));
-          FUN_1802db450(lVar23 + 0x1458,lVar16 + 0x10,lVar16,lVar16 + 0x20);
+          Database_InsertRecord(lVar23 + 0x1458,lVar16 + 0x10,lVar16,lVar16 + 0x20);
           if (((*(float *)(lVar16 + 0x30) != *(float *)(lVar16 + 0x20)) ||
               (*(float *)(lVar16 + 0x34) != *(float *)(lVar16 + 0x24))) ||
              (*(float *)(lVar16 + 0x38) != *(float *)(lVar16 + 0x28))) {
             ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,*(int32_t *)(lVar16 + 0x40))
             ;
-            FUN_1802db450(lVar23 + 0x1458,lVar16 + 0x20,lVar16);
+            Database_InsertRecord(lVar23 + 0x1458,lVar16 + 0x20,lVar16);
           }
           uVar33 = (int)uVar32 + 1;
           uVar32 = (uint64_t)uVar33;
@@ -618,7 +621,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       lVar16 = *(int64_t *)(lVar22 + 0x1cd8);
       *(uint64_t *)(lVar16 + 0xc0) = 0x3f8000003f800000;
       *(uint64_t *)(lVar16 + 200) = 0x3f8000003f800000;
-      FUN_18029fc10(*(int64_t *)(lVar22 + 0x1cd8),*(uint64_t *)(lVar22 + 0x1ca8),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar22 + 0x1cd8),*(uint64_t *)(lVar22 + 0x1ca8),
                     *(int64_t *)(lVar22 + 0x1cd8) + 0x80,0x80);
       uVar46 = uStack_8ec;
       uVar45 = uStack_8f4;
@@ -640,9 +643,9 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       uStack_3bc = uVar10;
       uStack_3f0 = uVar33;
       uStack_3c0 = uVar11;
-      FUN_1802dbc70(lStack_978 + 0x1458,param_2,&uStack_3f8);
+      Database_ExecuteQuery(lStack_978 + 0x1458,param_2,&uStack_3f8);
       plVar28[1] = *plVar28;
-      FUN_18009e960(&lStack_698);
+      MemorySystem_ReleasePool(&lStack_698);
       param_5 = plStack_980;
     }
     plVar28 = (int64_t *)0x0;
@@ -658,10 +661,10 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
                   ((int64_t)(int)((uint)*(byte *)((int64_t)param_5 + 0x335) * iVar27) * 0x10 +
                   param_5[0x3b]);
       }
-      FUN_18029ad30(uVar14,0,plVar17);
-      lVar16 = FUN_180245280(param_2);
+      SystemCore_MemoryManager(uVar14,0,plVar17);
+      lVar16 = SystemLog_Manager(param_2);
       if (lVar16 != 0) {
-        uVar14 = FUN_180245280(param_2);
+        uVar14 = SystemLog_Manager(param_2);
         plVar28 = (int64_t *)func_0x0001800ae1f0(uVar14,*(int32_t *)(param_2 + 0x357c),1);
       }
       plVar17 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -670,7 +673,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       }
       lVar16 = system_message_buffer;
       plVar17[0x107e] = (int64_t)plVar28;
-      FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
       lVar22 = system_message_buffer;
       auVar5 = system_system_temp_memory;
       lVar16 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -686,7 +689,7 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
       lVar16 = *(int64_t *)(lVar22 + 0x1cd8);
       *(uint64_t *)(lVar16 + 0xc0) = 0x3f8000003f800000;
       *(uint64_t *)(lVar16 + 200) = 0x3f8000003f800000;
-      FUN_18029fc10(*(int64_t *)(lVar22 + 0x1cd8),*(uint64_t *)(lVar22 + 0x1ca8),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar22 + 0x1cd8),*(uint64_t *)(lVar22 + 0x1ca8),
                     *(int64_t *)(lVar22 + 0x1cd8) + 0x80,0x80);
       puVar18 = puStack_988;
       fVar37 = *(float *)(param_2 + 0x11c20);
@@ -737,8 +740,8 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
                       (*(int64_t **)(lVar22 + 0x8400),0,*(int32_t *)(lVar23 + 0x188),
                        lVar23 + 0x1a0);
           }
-          FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_5b8);
-          FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
+          DataStructure_ProcessLinkedList(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_5b8);
+          DataStructure_UpdateNode(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
           if (system_data_2846 == '\0') {
             plVar28 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
             (**(code **)(*plVar28 + 0x68))
@@ -774,14 +777,14 @@ void FUN_1800d0950(int64_t param_1,int8_t *param_2,byte param_3,char param_4,int
         lVar16 = (int64_t)(int)((uint)*(byte *)((int64_t)plStack_980 + 0x335) * iVar27) * 0x10 +
                  plStack_980[0x3b];
       }
-      FUN_18029ad30(uVar14,0,lVar16);
-      lVar16 = FUN_180245280(param_2);
+      SystemCore_MemoryManager(uVar14,0,lVar16);
+      lVar16 = SystemLog_Manager(param_2);
       if (lVar16 == 0) {
 LAB_1800d15de:
         plVar28 = (int64_t *)0x0;
       }
       else {
-        lVar16 = FUN_180245280(param_2);
+        lVar16 = SystemLog_Manager(param_2);
         iVar27 = *(int *)(param_2 + 0x357c);
         if (*(int64_t *)(lVar16 + 0x1e0) == 0) goto LAB_1800d15de;
         if (system_main_module_state != 0) {
@@ -795,7 +798,7 @@ LAB_1800d15de:
       }
       lVar16 = system_message_buffer;
       plVar17[0x107e] = (int64_t)plVar28;
-      FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
       lVar23 = lStack_978;
       puVar18 = puStack_988;
       iVar27 = 0;
@@ -807,13 +810,13 @@ LAB_1800d15de:
         do {
           lVar16 = lVar16 + lVar22;
           ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,*(int32_t *)(lVar16 + 0x40));
-          FUN_1802db450(lVar23 + 0x1458,lVar16 + 0x10,lVar16,lVar16 + 0x20);
+          Database_InsertRecord(lVar23 + 0x1458,lVar16 + 0x10,lVar16,lVar16 + 0x20);
           if (((*(float *)(lVar16 + 0x30) != *(float *)(lVar16 + 0x20)) ||
               (*(float *)(lVar16 + 0x34) != *(float *)(lVar16 + 0x24))) ||
              (*(float *)(lVar16 + 0x38) != *(float *)(lVar16 + 0x28))) {
             ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,*(int32_t *)(lVar16 + 0x40))
             ;
-            FUN_1802db450(lVar23 + 0x1458,lVar16 + 0x20,lVar16);
+            Database_InsertRecord(lVar23 + 0x1458,lVar16 + 0x20,lVar16);
           }
           iVar27 = iVar27 + 1;
           lVar22 = lVar22 + 0x44;
@@ -839,7 +842,7 @@ LAB_1800d15de:
           fStack_6d4 = pfVar25[5] + pfVar25[1];
           fStack_6d8 = pfVar25[4] + *pfVar25;
           ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,pfVar25[9]);
-          FUN_1802db2d0(lVar16,pfVar25,&fStack_6d8,pfVar25[8]);
+          Database_DeleteRecord(lVar16,pfVar25,&fStack_6d8,pfVar25[8]);
           iVar27 = iVar27 + 1;
           lVar22 = lVar22 + 0x30;
         } while ((uint64_t)(int64_t)iVar27 <
@@ -863,7 +866,7 @@ LAB_1800d15de:
       lVar23 = *(int64_t *)(lVar7 + 0x1cd8);
       *(uint64_t *)(lVar23 + 0xc0) = 0x3f8000003f800000;
       *(uint64_t *)(lVar23 + 200) = 0x3f8000003f800000;
-      FUN_18029fc10(*(int64_t *)(lVar7 + 0x1cd8),*(uint64_t *)(lVar7 + 0x1ca8),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar7 + 0x1cd8),*(uint64_t *)(lVar7 + 0x1ca8),
                     *(int64_t *)(lVar7 + 0x1cd8) + 0x80,0x80);
       uStack_3a8 = uVar53;
       uStack_3a4 = uVar54;
@@ -881,7 +884,7 @@ LAB_1800d15de:
       uStack_3b0 = uVar33;
       uStack_3ac = uVar46;
       uStack_380 = uVar11;
-      FUN_1802dbc70(lVar16,param_2,&uStack_3b8);
+      Database_ExecuteQuery(lVar16,param_2,&uStack_3b8);
       *(uint64_t *)((int64_t)(plVar36 + 0x235e) + (int64_t)param_2) =
            *(uint64_t *)((int64_t)(plVar36 + 0x235d) + (int64_t)param_2);
       *(uint64_t *)(param_2 + 0x11b50 + (int64_t)ppuVar35) =
@@ -892,7 +895,7 @@ LAB_1800d15de:
              *(int64_t *)((int64_t)(plVar36 + 0x2355) + (int64_t)param_2);
     if (lVar23 / 0x30 + (lVar23 >> 0x3f) != lVar23 >> 0x3f) {
       if (*(int64_t *)(system_system_data_memory + 0x3c0) == 0) {
-        puVar13 = (uint64_t *)FUN_18009e9e0(lVar23,&uStack_910,&processed_var_640_ptr);
+        puVar13 = (uint64_t *)MemorySystem_AllocateAndInitialize(lVar23,&uStack_910,&processed_var_640_ptr);
         uVar14 = *puVar13;
         *puVar13 = 0;
         plStack_938 = *(int64_t **)(lVar16 + 0x3c0);
@@ -933,7 +936,7 @@ LAB_1800d15de:
       if (plStack_7a0 != (int64_t *)0x0) {
         (**(code **)(*plStack_7a0 + 0x28))();
       }
-      uVar14 = FUN_180299eb0(uVar14,param_2,&lStack_518,&cStack_998);
+      uVar14 = UIRenderingEngine(uVar14,param_2,&lStack_518,&cStack_998);
       uStack_8f8 = (int32_t)uVar14;
       uStack_8f4 = (int32_t)((uint64_t)uVar14 >> 0x20);
       lVar16 = *(int64_t *)((int64_t)(plVar36 + 0x2355) + (int64_t)param_2);
@@ -973,7 +976,7 @@ LAB_1800d15de:
             ppuStack_9a8 = (void **)
                            CONCAT44(ppuStack_9a8._4_4_,*(int32_t *)(pauVar24[2] + 4));
             auStack_5d0 = auVar38;
-            FUN_1802db2d0(plStack_950,auStack_5d0,&fStack_848,*(int32_t *)pauVar24[2]);
+            Database_DeleteRecord(plStack_950,auStack_5d0,&fStack_848,*(int32_t *)pauVar24[2]);
             *(int8_t (*) [16])((int64_t *)ppuVar35 + -2) = auVar38;
             *ppuVar35 = (void *)CONCAT44(fStack_844,fStack_848);
             ((int64_t *)ppuVar35)[1] = CONCAT44(uStack_83c,fStack_840);
@@ -983,7 +986,7 @@ LAB_1800d15de:
             ppuVar35 = (void **)((int64_t *)ppuVar35 + 8);
             iVar27 = 0x20;
           } while ((int64_t)uVar29 < 0x20);
-          FUN_18029fc10(*(uint64_t *)(system_message_buffer + 0x1cd8),
+          UltraHighFreq_DatabaseHandler1(*(uint64_t *)(system_message_buffer + 0x1cd8),
                         *(uint64_t *)(system_message_buffer + 0x1c78),lStack_978 + 0x2cac,iVar27 << 6);
           param_2 = puStack_988;
           uStack_368 = uVar53;
@@ -999,7 +1002,7 @@ LAB_1800d15de:
           uStack_33c = uVar10;
           auStack_378 = auVar5;
           uStack_340 = uVar11;
-          FUN_1802dbc70(plStack_950,puStack_988,auStack_378);
+          Database_ExecuteQuery(plStack_950,puStack_988,auStack_378);
           uVar33 = (uint)plStack_938 + 1;
           plStack_938 = (int64_t *)CONCAT44(plStack_938._4_4_,uVar33);
         } while (uVar33 < (uint)plStack_930);
@@ -1028,7 +1031,7 @@ LAB_1800d15de:
     param_5 = plStack_980;
     if (lVar22 / 0x30 + (lVar22 >> 0x3f) != lVar22 >> 0x3f) {
       if (*(int64_t *)(system_system_data_memory + 0x390) == 0) {
-        puVar13 = (uint64_t *)FUN_18009e9e0(lVar22,&uStack_920,&processed_var_608_ptr);
+        puVar13 = (uint64_t *)MemorySystem_AllocateAndInitialize(lVar22,&uStack_920,&processed_var_608_ptr);
         uVar14 = *puVar13;
         *puVar13 = 0;
         plStack_918 = *(int64_t **)(lVar16 + 0x390);
@@ -1069,7 +1072,7 @@ LAB_1800d15de:
       if (plStack_740 != (int64_t *)0x0) {
         (**(code **)(*plStack_740 + 0x28))();
       }
-      uVar14 = FUN_180299eb0(uVar14,param_2,&lStack_4b8,&cStack_998);
+      uVar14 = UIRenderingEngine(uVar14,param_2,&lStack_4b8,&cStack_998);
       param_5 = plStack_980;
       lVar16 = system_message_buffer;
       uStack_8f8 = (int32_t)uVar14;
@@ -1091,7 +1094,7 @@ LAB_1800d15de:
       }
       plVar36[0x1077] = (int64_t)plVar17;
       *(uint64_t *)(*(int64_t *)(lVar16 + 0x1cd8) + 0x83f0) = 0;
-      FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
       lVar22 = lStack_978;
       lVar16 = *(int64_t *)(param_2 + 0x11b30) - *(int64_t *)(param_2 + 0x11b28) >> 0x3f;
       if ((*(int64_t *)(param_2 + 0x11b30) - *(int64_t *)(param_2 + 0x11b28)) / 0x30 + lVar16 !=
@@ -1106,7 +1109,7 @@ LAB_1800d15de:
           fStack_6c4 = pfVar25[5] + pfVar25[1];
           fStack_6c8 = pfVar25[4] + *pfVar25;
           ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,pfVar25[9]);
-          FUN_1802db2d0(lVar16,pfVar25,&fStack_6c8,pfVar25[8]);
+          Database_DeleteRecord(lVar16,pfVar25,&fStack_6c8,pfVar25[8]);
           uVar33 = (int)plVar17 + 1;
           plVar17 = (int64_t *)(uint64_t)uVar33;
           plVar36 = plVar36 + 6;
@@ -1129,7 +1132,7 @@ LAB_1800d15de:
       lVar16 = *(int64_t *)(lVar23 + 0x1cd8);
       *(uint64_t *)(lVar16 + 0xc0) = 0x3f8000003f800000;
       *(uint64_t *)(lVar16 + 200) = 0x3f8000003f800000;
-      FUN_18029fc10(*(int64_t *)(lVar23 + 0x1cd8),*(uint64_t *)(lVar23 + 0x1ca8),
+      UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar23 + 0x1cd8),*(uint64_t *)(lVar23 + 0x1ca8),
                     *(int64_t *)(lVar23 + 0x1cd8) + 0x80,0x80);
       uStack_338 = CONCAT44(uStack_8f4,uStack_8f8);
       uStack_330 = CONCAT44(uStack_8ec,
@@ -1147,7 +1150,7 @@ LAB_1800d15de:
       uStack_304 = uVar48;
       uStack_2fc = uVar10;
       uStack_300 = uVar11;
-      FUN_1802dbc70(lVar22 + 0x1458,param_2,&uStack_338);
+      Database_ExecuteQuery(lVar22 + 0x1458,param_2,&uStack_338);
       *(uint64_t *)(param_2 + 0x11b30) = *(uint64_t *)(param_2 + 0x11b28);
       if (plStack_740 != (int64_t *)0x0) {
         (**(code **)(*plStack_740 + 0x38))();
@@ -1187,13 +1190,13 @@ LAB_1800d15de:
       plVar36[0x1077] = (int64_t)plVar17;
       lVar16 = system_message_buffer;
       *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
-      FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+      SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
       lVar16 = system_system_data_memory;
       uStack_168 = *(uint64_t *)(param_2 + 0x11c18);
       uStack_160 = *(uint64_t *)(param_2 + 0x11c20);
       uStack_158 = *(uint64_t *)(param_2 + 0x11c28);
       if (*(int64_t *)(system_system_data_memory + 0x3a0) == 0) {
-        puVar13 = (uint64_t *)FUN_18009e9e0();
+        puVar13 = (uint64_t *)MemorySystem_AllocateAndInitialize();
         uVar14 = *puVar13;
         *puVar13 = 0;
         plStack_908 = *(int64_t **)(lVar16 + 0x3a0);
@@ -1234,7 +1237,7 @@ LAB_1800d15de:
       if (plStack_6e0 != (int64_t *)0x0) {
         (**(code **)(*plStack_6e0 + 0x28))();
       }
-      uVar14 = FUN_180299eb0(uVar14,param_2,&lStack_458,&cStack_998);
+      uVar14 = UIRenderingEngine(uVar14,param_2,&lStack_458,&cStack_998);
       puVar18 = puStack_988;
       uStack_8f8 = (int32_t)uVar14;
       uStack_8f4 = (int32_t)((uint64_t)uVar14 >> 0x20);
@@ -1299,15 +1302,15 @@ LAB_1800d15de:
           *(float *)(lVar16 + 0xc4) = fVar37;
           *(float *)(lVar16 + 200) = (float)(uVar10 & 0xff) * 0.003921569;
           *(float *)(lVar16 + 0xcc) = (float)(uVar10 >> 0x18) * 0.003921569;
-          FUN_18029fc10(fVar37,*(uint64_t *)(lVar23 + 0x1ca8),
+          UltraHighFreq_DatabaseHandler1(fVar37,*(uint64_t *)(lVar23 + 0x1ca8),
                         *(int64_t *)(lVar23 + 0x1cd8) + 0x80,0x80);
           uStack_8e4 = CONCAT13(4,(uint32_t)uStack_8e4);
-          FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_8f8);
+          DataStructure_ProcessLinkedList(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_8f8);
           lVar16 = system_message_buffer;
           lVar23 = strnlen(&rendering_buffer_2080_ptr,0x3f);
           strncpy(lVar16 + 0x1ce0,&rendering_buffer_2080_ptr,lVar23);
           *(int8_t *)(lVar23 + 0x1ce0 + lVar16) = 0;
-          FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
+          DataStructure_ValidateTree(*(uint64_t *)(system_message_buffer + 0x1cd8));
           uVar10 = (int)plVar28 + 1;
           plVar28 = (int64_t *)(uint64_t)uVar10;
           lVar22 = lVar22 + 0x14;
@@ -1351,7 +1354,7 @@ LAB_1800d15de:
       uStack_244 = uVar48;
       uStack_240 = uVar11;
       uStack_23c = uVar10;
-      FUN_1802dbc70(lStack_978 + 0x1458,puStack_988,auStack_278);
+      Database_ExecuteQuery(lStack_978 + 0x1458,puStack_988,auStack_278);
       fVar37 = *(float *)(puVar18 + 0x11c24);
       fVar40 = *(float *)(puVar18 + 0x11c20);
       lVar16 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -1378,7 +1381,7 @@ LAB_1800d15de:
       uStack_2c4 = uVar48;
       uStack_2c0 = uVar11;
       uStack_2bc = uVar10;
-      FUN_1802dbc70(lVar22 + 0x1458,puVar18,auStack_2f8);
+      Database_ExecuteQuery(lVar22 + 0x1458,puVar18,auStack_2f8);
       if (plStack_6e0 != (int64_t *)0x0) {
         (**(code **)(*plStack_6e0 + 0x38))();
       }
@@ -1437,7 +1440,7 @@ LAB_1800d15de:
     }
     plVar17[0x1077] = (int64_t)plVar26;
     *(uint64_t *)(*(int64_t *)(lVar16 + 0x1cd8) + 0x83f0) = 0;
-    FUN_18029de40(*(uint64_t *)(lVar16 + 0x1cd8),1);
+    SystemCore_ProcessorEx(*(uint64_t *)(lVar16 + 0x1cd8),1);
     uStack_838 = *(uint64_t *)(lStack_978 + 0x3cb8);
     uStack_830 = *(uint64_t *)(lStack_978 + 0x3cc0);
     uStack_828 = *(uint64_t *)(lStack_978 + 0x3cc8);
@@ -1644,7 +1647,7 @@ LAB_1800d2eb0:
               if (cVar19 != '{') {
                 if ((cVar19 != '}') || (lVar22 < 1)) goto LAB_1800d31f2;
                 ppuStack_9a8 = &puStack_970;
-                FUN_1802db5b0(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
+                Database_UpdateRecord(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
                 iVar20 = iVar20 + uStack_960 * 10;
                 (**(code **)(puStack_970 + 0x10))(&puStack_970,&system_buffer_ptr);
                 lVar22 = lVar22 + -1;
@@ -1666,7 +1669,7 @@ LAB_1800d31f2:
                        ((uint64_t)(uVar10 + 1) +
                        *(int64_t *)((int64_t)(plVar17 + 4) + (int64_t)ppuVar35));
               ppuStack_9a8 = &puStack_970;
-              FUN_1802db5b0(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
+              Database_UpdateRecord(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
               iVar20 = iVar20 + uStack_960 * 10;
               (**(code **)(puStack_970 + 0x10))(&puStack_970,&system_buffer_ptr);
               uVar33 = 0xffffffff;
@@ -1731,7 +1734,7 @@ LAB_1800d31f2:
                                     (char)(int)((float)(uVar21 & 0xff) * 0.75));
             }
             ppuStack_9a8 = &puStack_970;
-            FUN_1802db5b0(lVar16 + 0x1458,iVar20,iVar34,uStack_994);
+            Database_UpdateRecord(lVar16 + 0x1458,iVar20,iVar34,uStack_994);
             if ((int)uVar10 < *(int *)((int64_t)(plVar28 + 5) + (int64_t)ppuVar35)) {
               iVar34 = iVar34 + 0x12;
               iVar20 = (int)plStack_950;
@@ -1772,11 +1775,11 @@ LAB_1800d32fb:
       } while ((uint64_t)(int64_t)(int)uVar10 <
                (uint64_t)((plVar36[1] - (int64_t)ppuVar35) / 0x50));
     }
-    uVar14 = FUN_18005c3d0(plVar36);
+    uVar14 = NetworkConnection_SendPacket(plVar36);
     lVar16 = system_system_data_memory;
     if (*(int64_t *)(system_system_data_memory + 0x3a8) == 0) {
-      uVar14 = FUN_18009e9e0(uVar14,&plStack_980,&processed_var_696_ptr);
-      FUN_180060b80(lVar16 + 0x3a8,uVar14);
+      uVar14 = MemorySystem_AllocateAndInitialize(uVar14,&plStack_980,&processed_var_696_ptr);
+      SystemCore_ChecksumValidator(lVar16 + 0x3a8,uVar14);
       if (plStack_980 != (int64_t *)0x0) {
         (**(code **)(*plStack_980 + 0x38))();
       }
@@ -1798,24 +1801,24 @@ LAB_1800d32fb:
     uStack_5e8 = 0;
     uVar14 = *(uint64_t *)(alStack_638[0] + 0x15b8);
     puStack_988 = auStack_1d8;
-    uVar15 = FUN_18009e8e0(auStack_1d8,alStack_638);
-    uVar14 = FUN_180299eb0(uVar14,param_2,uVar15,&cStack_998);
+    uVar15 = MemorySystem_PoolAllocate(auStack_1d8,alStack_638);
+    uVar14 = UIRenderingEngine(uVar14,param_2,uVar15,&cStack_998);
     uStack_8f8 = (int32_t)uVar14;
     uStack_8f4 = (int32_t)((uint64_t)uVar14 >> 0x20);
     uStack_8e4 = CONCAT13(4,(uint32_t)uStack_8e4);
-    FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8),4);
-    FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_8f8);
+    DataStructure_UpdateNode(*(uint64_t *)(system_message_buffer + 0x1cd8),4);
+    DataStructure_ProcessLinkedList(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_8f8);
     uVar14 = *(uint64_t *)(system_message_buffer + 0x1cd8);
-    lVar16 = FUN_1800bdbb0();
+    lVar16 = SystemInitialization_ResourceSetup();
     if (*(char *)(lVar16 + 900) == '\0') {
-      uVar15 = FUN_1800bd5c0();
+      uVar15 = SystemInitialization_LoadDrivers();
     }
     else {
-      uVar15 = FUN_1800bdbb0();
+      uVar15 = SystemInitialization_ResourceSetup();
     }
     ppuStack_9a8 = (void **)CONCAT44(ppuStack_9a8._4_4_,0xffffffff);
     RenderingEngineCore0(uVar14,0,uVar15,0x10);
-    FUN_1802c22a0(abStack_997,&memory_allocator_3032_ptr);
+    SystemData_Processor(abStack_997,&memory_allocator_3032_ptr);
     uStack_2b8 = CONCAT44(uStack_8f4,uStack_8f8);
     uStack_2b0 = CONCAT44(uStack_8ec,
                           CONCAT13(uStack_8ed,CONCAT12(uStack_8ee,CONCAT11(uStack_8ef,bStack_8f0))))
@@ -1826,10 +1829,10 @@ LAB_1800d32fb:
     uStack_290 = uStack_8d0;
     uStack_280 = CONCAT44(uStack_8bc,CONCAT22(uStack_8be,uStack_8c0));
     uStack_288 = uStack_8c8;
-    FUN_1802dbc70(lStack_978 + 0x1458,param_2,&uStack_2b8);
+    Database_ExecuteQuery(lStack_978 + 0x1458,param_2,&uStack_2b8);
     system_system_data_memory = system_system_data_memory + -1;
     (**(code **)(*system_system_data_memory + 0x20))();
-    FUN_18009e960(alStack_638);
+    MemorySystem_ReleasePool(alStack_638);
   }
 LAB_1800d35f3:
                     // WARNING: Subroutine does not return

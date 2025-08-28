@@ -1,9 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // =============================================================================
 // 03_rendering_part090.c - 渲染系统高级渲染控制和特效处理模块
@@ -271,7 +274,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     ppcVar8 = (code **)0x0;
     
     // 初始化渲染字符串处理
-    FUN_1802c22a0(auStack_208, &processed_var_6768_ptr);
+    SystemData_Processor(auStack_208, &processed_var_6768_ptr);
     puStack_148 = &memory_allocator_3480_ptr;
     pcStack_140 = (code *)auStack_130;
     auStack_130[0] = auStack_130[0] & 0xffffff00;
@@ -289,7 +292,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     uStack_248 = CONCAT44(uStack_248._4_4_, 4);
     
     // 处理渲染对象创建
-    FUN_1800b0a10(uVar10, &pcStack_1f0, *(int32_t *)(*(int64_t *)(param_1 + 0x88) + 0xa0), &puStack_148);
+    SystemCore_ConfigManager(uVar10, &pcStack_1f0, *(int32_t *)(*(int64_t *)(param_1 + 0x88) + 0xa0), &puStack_148);
     puStack_148 = &system_state_ptr;
     lVar9 = *(int64_t *)(param_1 + 0x88);
     
@@ -314,7 +317,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             strcpy_s(auStack_d0, 0x80, &rendering_buffer_2776_ptr);
             
             // 创建渲染资源
-            plVar6 = (int64_t *)FUN_1800b31f0(system_resource_state, &ppcStack_1f8, &puStack_e8, 1);
+            plVar6 = (int64_t *)SystemCore_EncryptionManager(system_resource_state, &ppcStack_1f8, &puStack_e8, 1);
             puStack_1b8 = (void *)*plVar6;
             
             if (ppcStack_1f8 != (code **)0x0) {
@@ -358,7 +361,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             // 执行高级渲染处理
-            lVar7 = FUN_180299eb0(uVar2, 0, &puStack_148, auStack_208);
+            lVar7 = UIRenderingEngine(uVar2, 0, &puStack_148, auStack_208);
             lVar3 = system_message_buffer;
             
             // 设置渲染参数
@@ -367,7 +370,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             *(int32_t *)(*(int64_t *)(lVar3 + 0x1cd8) + 0x1d58) = uVar10;
             
             // 执行渲染管线
-            FUN_18029fc10(*(int64_t *)(lVar3 + 0x1cd8), *(uint64_t *)(lVar3 + 0x1c88), *(int64_t *)(lVar3 + 0x1cd8) + 0x1be0, 0x230);
+            UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar3 + 0x1cd8), *(uint64_t *)(lVar3 + 0x1c88), *(int64_t *)(lVar3 + 0x1cd8) + 0x1be0, 0x230);
             
             // 处理渲染对象
             lVar3 = *(int64_t *)(system_message_buffer + 0x1c88);
@@ -415,7 +418,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             uStack_238 = 0x21;
             uStack_240 = 2;
             uStack_248 = CONCAT44(uStack_248._4_4_, 0x10);
-            FUN_1800b0a10(uVar10, apcStack_1c8, *(int32_t *)(*(int64_t *)(param_1 + 0x88) + 0xa0), &puStack_148);
+            SystemCore_ConfigManager(uVar10, apcStack_1c8, *(int32_t *)(*(int64_t *)(param_1 + 0x88) + 0xa0), &puStack_148);
             
             // 创建着色器资源
             puStack_148 = &system_state_ptr;
@@ -607,7 +610,7 @@ void RenderingSystemParameterProcessor(int64_t *param_1)
     // 处理渲染对象
     iVar12 = (**(code **)(*plVar4 + 0x70))(plVar4, *(uint64_t *)(lVar15 + 0x10), 0, 1);
     if (iVar12 < 0) {
-        FUN_180220810(iVar12, &ui_system_data_1768_ptr);
+        SystemCore_Loader(iVar12, &ui_system_data_1768_ptr);
     }
     
     // 处理渲染数据
@@ -783,7 +786,7 @@ void RenderingSystemDataProcessor(void)
     // 处理渲染对象
     iVar15 = (**(code **)(*plVar6 + 0x70))(plVar6, *(uint64_t *)(lVar18 + 0x10), 0, 1, 0);
     if (iVar15 < 0) {
-        FUN_180220810(iVar15, &ui_system_data_1768_ptr);
+        SystemCore_Loader(iVar15, &ui_system_data_1768_ptr);
     }
     
     // 处理渲染数据

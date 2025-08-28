@@ -49,7 +49,7 @@ void FUN_180384a67(void)
         } while (puVar9 != (uint64_t *)0x0);
       }
       if ((puVar10 == unaff_RBX) || (*puVar13 < (uint64_t)puVar10[4])) {
-        puVar10 = (uint64_t *)FUN_180387860();
+        puVar10 = (uint64_t *)RenderingSystem_MaterialProcessor();
         puVar10 = (uint64_t *)*puVar10;
       }
       if (*(int64_t *)(lVar12 + (int64_t)puVar10) == unaff_R12) goto FUN_180384e7e;
@@ -73,7 +73,7 @@ void FUN_180384a67(void)
         } while (puVar10 != (uint64_t *)0x0);
       }
       if ((puVar11 == unaff_RBX) || (*puVar13 < (uint64_t)puVar11[4])) {
-        puVar11 = (uint64_t *)FUN_180387860();
+        puVar11 = (uint64_t *)RenderingSystem_MaterialProcessor();
         puVar11 = (uint64_t *)*puVar11;
       }
       iVar2 = *(int *)(*(int64_t *)(lVar15 + (int64_t)puVar11) + 0xc);
@@ -92,7 +92,7 @@ void FUN_180384a67(void)
         } while (puVar10 != (uint64_t *)0x0);
       }
       if ((puVar11 == unaff_RBX) || (*puVar13 < (uint64_t)puVar11[4])) {
-        puVar11 = (uint64_t *)FUN_180387860();
+        puVar11 = (uint64_t *)RenderingSystem_MaterialProcessor();
         puVar11 = (uint64_t *)*puVar11;
       }
       iVar4 = *(int *)(*(int64_t *)(lVar15 + (int64_t)puVar11) + 0xc);
@@ -111,7 +111,7 @@ void FUN_180384a67(void)
         } while (puVar10 != (uint64_t *)0x0);
       }
       if ((puVar11 == unaff_RBX) || (*puVar13 < (uint64_t)puVar11[4])) {
-        puVar11 = (uint64_t *)FUN_180387860();
+        puVar11 = (uint64_t *)RenderingSystem_MaterialProcessor();
         puVar11 = (uint64_t *)*puVar11;
       }
       iVar6 = *(int *)(*(int64_t *)(lVar15 + (int64_t)puVar11) + 0x10);
@@ -130,7 +130,7 @@ void FUN_180384a67(void)
         } while (puVar11 != (uint64_t *)0x0);
       }
       if ((puVar10 == unaff_RBX) || (*puVar13 < (uint64_t)puVar10[4])) {
-        puVar10 = (uint64_t *)FUN_180387860();
+        puVar10 = (uint64_t *)RenderingSystem_MaterialProcessor();
         puVar10 = (uint64_t *)*puVar10;
       }
       puVar10 = (uint64_t *)(lVar15 + (int64_t)puVar10);
@@ -247,7 +247,7 @@ void FUN_180384c38(void)
       } while (puVar13 != (uint64_t *)0x0);
     }
     if ((puVar12 == unaff_RBX) || (*unaff_RDI < (uint64_t)puVar12[4])) {
-      puVar12 = (uint64_t *)FUN_180387860();
+      puVar12 = (uint64_t *)RenderingSystem_MaterialProcessor();
       puVar12 = (uint64_t *)*puVar12;
     }
     iVar3 = *(int *)(*(int64_t *)(unaff_R14 + (int64_t)puVar12) + 0xc);
@@ -266,7 +266,7 @@ void FUN_180384c38(void)
       } while (puVar13 != (uint64_t *)0x0);
     }
     if ((puVar12 == unaff_RBX) || (*unaff_RDI < (uint64_t)puVar12[4])) {
-      puVar12 = (uint64_t *)FUN_180387860();
+      puVar12 = (uint64_t *)RenderingSystem_MaterialProcessor();
       puVar12 = (uint64_t *)*puVar12;
     }
     iVar5 = *(int *)(*(int64_t *)(unaff_R14 + (int64_t)puVar12) + 0xc);
@@ -285,7 +285,7 @@ void FUN_180384c38(void)
       } while (puVar13 != (uint64_t *)0x0);
     }
     if ((puVar12 == unaff_RBX) || (*unaff_RDI < (uint64_t)puVar12[4])) {
-      puVar12 = (uint64_t *)FUN_180387860();
+      puVar12 = (uint64_t *)RenderingSystem_MaterialProcessor();
       puVar12 = (uint64_t *)*puVar12;
     }
     iVar7 = *(int *)(*(int64_t *)(unaff_R14 + (int64_t)puVar12) + 0x10);
@@ -304,7 +304,7 @@ void FUN_180384c38(void)
       } while (puVar12 != (uint64_t *)0x0);
     }
     if ((puVar13 == unaff_RBX) || (*unaff_RDI < (uint64_t)puVar13[4])) {
-      puVar13 = (uint64_t *)FUN_180387860();
+      puVar13 = (uint64_t *)RenderingSystem_MaterialProcessor();
       puVar13 = (uint64_t *)*puVar13;
     }
     puVar13 = (uint64_t *)(unaff_R14 + (int64_t)puVar13);
@@ -515,7 +515,7 @@ void FUN_180384ed0(int64_t param_1,uint64_t param_2,int64_t param_3)
     aplStack_e0[0][4] = lStack_e8;
     lVar6 = (int64_t)puStack_120 - (int64_t)puStack_128;
   }
-  FUN_18015b810(aplStack_e0,0,lVar6 >> 3,0x40,0xffffffffffffffff,aplStack_e0);
+  SystemCore_DataTransformer(aplStack_e0,0,lVar6 >> 3,0x40,0xffffffffffffffff,aplStack_e0);
 LAB_1803851ae:
   lVar6 = *(int64_t *)(param_1 + 0x90);
   if (((*(char *)(lVar6 + 0x563) != '\0') &&

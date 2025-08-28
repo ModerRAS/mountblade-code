@@ -36,7 +36,7 @@ code_r0x0001808d1304:
     }
     do {
       lVar2 = *(int64_t *)(unaff_R15[2] + 8 + (int64_t)iVar3 * 0x10);
-      iVar1 = FUN_1808605e0(lVar2);
+      iVar1 = SystemCore_StateController(lVar2);
       if ((iVar1 != 2) && (*(int64_t *)(lVar2 + 0x350) == 0)) {
         iVar1 = FUN_180863820(lVar2,-(unaff_R12D != 0) & 3,0);
         if (iVar1 != 0) {

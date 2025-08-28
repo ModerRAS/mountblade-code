@@ -1,3 +1,6 @@
+n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
+#define SystemCallbackHandler SystemCore_Compression
+
 /**
  * @file TaleWorlds.Native.dll_beautified_part001.c
  * @brief TaleWorlds.Native.dll 原始代码美化文件 - 第1部分
@@ -18,7 +21,7 @@
 /* 游戏核心数据结构 */
 uint8_t system_state_c740;           // 核心游戏数据存储
 uint8_t memory_allocator_3504;           // 未知数据结构 - 待分析
-uint8_t FUN_18007fcd0;           // 核心游戏函数指针
+uint8_t SystemCore_Compression;           // 核心游戏函数指针
 uint8_t system_state_c768;           // 游戏状态数据
 uint8_t memory_allocator_3520;           // 未知数据结构 - 待分析
 uint8_t system_state_c9b8;           // 游戏配置数据
@@ -82,7 +85,7 @@ uint8_t system_state_5770;           // 游戏世界状态数据
  */
 
 #define GameCore_Init              FUN_180073930    // 游戏核心初始化
-#define GameCore_MainFunction      FUN_18007fcd0    // 游戏核心主函数
+#define GameCore_MainFunction      SystemCore_Compression    // 游戏核心主函数
 #define EngineCore_Function        FUN_1809414f0    // 引擎核心功能
 #define GameWorld_Function         FUN_180941590    // 游戏世界功能
 

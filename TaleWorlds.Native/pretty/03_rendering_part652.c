@@ -172,8 +172,8 @@ void FUN_180639d80(int64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_180639de0(int64_t *param_1,int64_t param_2)
-void FUN_180639de0(int64_t *param_1,int64_t param_2)
+// 函数: void UtilitiesSystem_ThreadManager(int64_t *param_1,int64_t param_2)
+void UtilitiesSystem_ThreadManager(int64_t *param_1,int64_t param_2)
 
 {
   int64_t lVar1;
@@ -274,8 +274,8 @@ void FUN_180639f50(int64_t *param_1,int32_t *param_2)
 
 
 
-// 函数: void FUN_180639fd0(int64_t *param_1,int32_t *param_2)
-void FUN_180639fd0(int64_t *param_1,int32_t *param_2)
+// 函数: void Audio_SoundManager(int64_t *param_1,int32_t *param_2)
+void Audio_SoundManager(int64_t *param_1,int32_t *param_2)
 
 {
   int32_t *puVar1;
@@ -359,9 +359,9 @@ void FUN_18063a110(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   if ((uint64_t)((param_1[2] - param_1[1]) + *param_1) < 0x41) {
     System_BufferManager(param_1,(param_1[1] - *param_1) + 0x40);
   }
-  FUN_180639fd0(param_1,param_2);
-  FUN_180639fd0(param_1,param_2 + 0x10);
-  FUN_180639fd0(param_1,param_2 + 0x20);
+  Audio_SoundManager(param_1,param_2);
+  Audio_SoundManager(param_1,param_2 + 0x10);
+  Audio_SoundManager(param_1,param_2 + 0x20);
   puVar1 = (int32_t *)param_1[1];
   if ((uint64_t)((param_1[2] - (int64_t)puVar1) + *param_1) < 0x11) {
     System_BufferManager(param_1,(int64_t)puVar1 + (0x10 - *param_1),param_3,param_4,unaff_RDI);
@@ -403,8 +403,8 @@ void FUN_18063a180(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-// 函数: void FUN_18063a240(float *param_1,float *param_2)
-void FUN_18063a240(float *param_1,float *param_2)
+// 函数: void UI_WidgetHandler(float *param_1,float *param_2)
+void UI_WidgetHandler(float *param_1,float *param_2)
 
 {
   uint64_t uVar1;

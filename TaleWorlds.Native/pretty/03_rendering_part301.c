@@ -334,7 +334,7 @@ LAB_18042a852:
                 }
                 else {
                   if (uVar4 == 0x80) {
-                    uVar4 = FUN_18041efc0(param_1);
+                    uVar4 = RenderingSystem_Renderer(param_1);
                   }
                   else {
                     uVar4 = uVar4 - 0x7f;
@@ -406,8 +406,8 @@ uint64_t FUN_18042ab50(int64_t param_1)
     }
     lVar5 = lVar5 + -1;
   } while (lVar5 != 0);
-  iVar1 = FUN_18041efc0(param_1);
-  iVar2 = FUN_18041efc0(param_1);
+  iVar1 = RenderingSystem_Renderer(param_1);
+  iVar2 = RenderingSystem_Renderer(param_1);
   if (*(int64_t *)(param_1 + 0x10) != 0) {
     iVar3 = (**(code **)(param_1 + 0x20))(*(uint64_t *)(param_1 + 0x28));
     if (iVar3 == 0) goto LAB_18042ac0d;
@@ -422,10 +422,10 @@ LAB_18042ac0d:
   if ((((-1 < iVar1) && (-1 < iVar2)) &&
       ((iVar2 == 0 || (iVar1 <= (int)(0x7fffffff / (int64_t)iVar2))))) &&
      ((iVar3 = iVar2 * iVar1, -1 < iVar3 && (iVar3 < 0x20000000)))) {
-    FUN_18041efc0(param_1);
-    FUN_18041efc0(param_1);
-    FUN_18041efc0(param_1);
-    FUN_18041efc0(param_1);
+    RenderingSystem_Renderer(param_1);
+    RenderingSystem_Renderer(param_1);
+    RenderingSystem_Renderer(param_1);
+    RenderingSystem_Renderer(param_1);
     if (((iVar2 == 0) || (iVar1 <= (int)(0x7fffffff / (int64_t)iVar2))) &&
        ((-1 < iVar3 && (iVar3 < 0x20000000)))) {
       uVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(iVar3 * 4),0x22);
@@ -454,10 +454,10 @@ void FUN_18042ac55(void)
   int unaff_EDI;
   int unaff_R14D;
   
-  FUN_18041efc0();
-  FUN_18041efc0();
-  FUN_18041efc0();
-  FUN_18041efc0();
+  RenderingSystem_Renderer();
+  RenderingSystem_Renderer();
+  RenderingSystem_Renderer();
+  RenderingSystem_Renderer();
   if ((((unaff_EBP == 0) || (unaff_R14D <= (int)(0x7fffffff / (int64_t)unaff_EBP))) &&
       (-1 < unaff_EDI)) && (unaff_EDI < 0x20000000)) {
     uVar1 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(unaff_EDI * 4),0x22);
@@ -801,9 +801,9 @@ uint64_t FUN_18042b010(int64_t param_1,int32_t *param_2,int32_t *param_3,int par
             cVar1 = *pcVar4;
             *(char **)(param_1 + 0xb8) = pcVar4 + 1;
             if (cVar1 == 'a') {
-              uVar3 = FUN_18041f0a0(param_1);
+              uVar3 = SystemCore_MemoryManager(param_1);
               *param_2 = uVar3;
-              uVar3 = FUN_18041f0a0();
+              uVar3 = SystemCore_MemoryManager();
               param_2[1] = uVar3;
               pbVar2 = *(byte **)(param_1 + 0xb8);
               if (pbVar2 < *(byte **)(param_1 + 0xc0)) {

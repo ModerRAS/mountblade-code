@@ -1,8 +1,11 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_09_part009.c - 1 个函数
 
@@ -198,7 +201,7 @@ LAB_1805c1afc:
         }
         if (*(int *)((int64_t)iVar7 * 0xa60 + 0x3608 + param_1[0x291]) == 1) {
           if ((*(byte *)(param_1 + 2) & 1) == 0) {
-            FUN_1805d3210(plVar20);
+            SystemCore_ThreadManager(plVar20);
             cVar5 = (char)param_1[0x438];
           }
           fVar23 = *(float *)(param_1 + 0xd);
@@ -324,7 +327,7 @@ LAB_1805c1cc6:
     }
     if ((char)param_1[0x386] != '\0') {
       if ((*(byte *)(param_1 + 2) & 1) == 0) {
-        FUN_1805d3210(plVar20);
+        SystemCore_ThreadManager(plVar20);
         cVar5 = bVar2;
       }
       fVar30 = (float)func_0x0001805d8e00(param_1 + 0x2ce,(int)param_1[0xd]);
@@ -370,7 +373,7 @@ LAB_1805c1cc6:
           fVar33 = fVar33 * 0.5 * (3.0 - fVar28);
           if ((fVar34 * fVar27 * fVar25 * fVar33 + fVar34 * fVar29 * fVar31 * fVar33 < 0.5) &&
              (!bVar4)) {
-            FUN_180487c70(param_1 + 0x29e,3,auVar32._0_8_,fVar28,param_5,uVar35,uVar36);
+            SystemCore_Validator(param_1 + 0x29e,3,auVar32._0_8_,fVar28,param_5,uVar35,uVar36);
             if ((int)param_1[0x2a6] < 3) {
               fVar30 = -NAN;
             }
@@ -434,7 +437,7 @@ LAB_1805c1cc6:
           }
         }
         else {
-          FUN_180487c70(param_1 + 0x29e,2);
+          SystemCore_Validator(param_1 + 0x29e,2);
           fVar30 = -NAN;
           if ((int)param_1[0x2a6] < 2) {
             fVar31 = -NAN;
@@ -444,8 +447,8 @@ LAB_1805c1cc6:
           }
           fVar25 = *(float *)(param_1 + 0x2a1);
           fVar29 = *(float *)((int64_t)param_1 + 0x150c);
-          lVar22 = FUN_180516f50(*param_1,auStack_178);
-          FUN_180487c70(lVar22,2);
+          lVar22 = UltraHighFreq_MemoryManager1(*param_1,auStack_178);
+          SystemCore_Validator(lVar22,2);
           if (*(int *)(lVar22 + 0x40) < 2) {
             fStack_190 = -NAN;
           }
@@ -456,10 +459,10 @@ LAB_1805c1cc6:
           uStack_18c = 0x7f7fffff;
           _fStack_198 = CONCAT44(fVar29 - *(float *)(lVar22 + 0x1c),
                                  fVar25 - *(float *)(lVar22 + 0x18));
-          fVar31 = (float)FUN_1801c24a0(&fStack_198);
-          lVar22 = FUN_180516f50((int64_t)(int)*param_3 * 0xa60 + param_1[0x291] + 0x30a0,
+          fVar31 = (float)UtilitiesSystem_CryptoHandler(&fStack_198);
+          lVar22 = UltraHighFreq_MemoryManager1((int64_t)(int)*param_3 * 0xa60 + param_1[0x291] + 0x30a0,
                                  auStack_178);
-          FUN_180487c70(lVar22,2);
+          SystemCore_Validator(lVar22,2);
           if (*(int *)(lVar22 + 0x40) < 2) {
             fVar25 = -NAN;
           }
@@ -468,8 +471,8 @@ LAB_1805c1cc6:
           }
           fVar29 = *(float *)(lVar22 + 0x18);
           fVar28 = *(float *)(lVar22 + 0x1c);
-          lVar22 = FUN_180516f50(*param_1,auStack_130);
-          FUN_180487c70(lVar22,2);
+          lVar22 = UltraHighFreq_MemoryManager1(*param_1,auStack_130);
+          SystemCore_Validator(lVar22,2);
           if (1 < *(int *)(lVar22 + 0x40)) {
             fVar30 = *(float *)(lVar22 + 0x20);
           }
@@ -478,7 +481,7 @@ LAB_1805c1cc6:
           uStack_17c = 0x7f7fffff;
           uStack_188 = CONCAT44(fVar28,fVar29);
           fStack_180 = fVar25 - fVar30;
-          fVar27 = (float)FUN_1801c24a0(&uStack_188);
+          fVar27 = (float)UtilitiesSystem_CryptoHandler(&uStack_188);
           fVar33 = uStack_188._4_4_ * fStack_194 + (float)uStack_188 * fStack_198 +
                    fStack_180 * fStack_190;
           if (fVar33 < -1.0) {
@@ -571,7 +574,7 @@ LAB_1805c280c:
       if (*(int *)(*(int64_t *)(lVar22 + 0x8f8) + 0x9e4) == 4) {
         plVar20 = (int64_t *)(*(int64_t *)(lVar22 + 0x8f8) + 0xd8);
         do {
-          cVar5 = FUN_18058f970(plVar20 + -0x1a);
+          cVar5 = SystemCore_EventHandler(plVar20 + -0x1a);
           if ((cVar5 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar20[4] * 0xa0 + 0x50 + *plVar20) & 0x12) == 2))
           goto FUN_1805c296d;
@@ -587,7 +590,7 @@ LAB_1805c280c:
       if (*(int *)(*(int64_t *)(*param_1 + 0x8f8) + 0x9e4) == 4) {
         plVar20 = (int64_t *)(*(int64_t *)(*param_1 + 0x8f8) + 0xd8);
         do {
-          cVar5 = FUN_18058f970(plVar20 + -0x1a);
+          cVar5 = SystemCore_EventHandler(plVar20 + -0x1a);
           if ((cVar5 != '\0') &&
              ((*(byte *)((int64_t)(int)plVar20[4] * 0xa0 + 0x50 + *plVar20) & 0x12) == 2))
           goto FUN_1805c296d;

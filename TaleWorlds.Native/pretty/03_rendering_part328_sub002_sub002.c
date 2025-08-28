@@ -1057,8 +1057,8 @@ LAB_18043d375:
   }
   uVar3 = 0;
 LAB_18043e26e:
-  FUN_180627b90(auStack_50);
-  FUN_180627b90(auStack_30);
+  SystemValidator(auStack_50);
+  SystemValidator(auStack_30);
   return uVar3;
 }
 

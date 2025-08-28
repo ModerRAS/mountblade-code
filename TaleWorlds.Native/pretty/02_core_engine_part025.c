@@ -1,3 +1,12 @@
+/* FUN_1806272a0 - RenderingSystem_ResourceRegistrar */
+#define RenderingSystem_ResourceRegistrar FUN_1806272a0
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -414,7 +423,7 @@ FUN_180069f00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
-  uVar1 = FUN_180628ca0();
+  uVar1 = MemoryDebugger0();
   CoreEngineDataTransformer(param_2,uVar1,param_3,param_4,uVar2,uVar3);
   return param_2;
 }
@@ -483,7 +492,7 @@ uint64_t * FUN_18006a090(uint64_t *param_1,uint64_t param_2)
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1b) = 0;
   param_1[0x18] = &system_state_ptr;
-  FUN_180049470(param_1);
+  SystemCore_SecurityManager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xe8);
   }
@@ -565,7 +574,7 @@ void FUN_180070680(uint64_t param_1,uint64_t param_2)
   if (puVar8 != (void *)0x0) {
     puVar6 = puVar8;
   }
-  FUN_1800623b0(system_message_context,5,0xffffffff00000000,3,puVar6);
+  SystemConfigurationManager(system_message_context,5,0xffffffff00000000,3,puVar6);
   FUN_1800623e0();
   puVar8 = &system_buffer_ptr;
   if (puStack_68 != (void *)0x0) {
@@ -583,7 +592,7 @@ void FUN_180070680(uint64_t param_1,uint64_t param_2)
   }
   else {
     uVar7 = func_0x0001800464d0(&puStack_70);
-    FUN_1806272a0(uVar7);
+    RenderingSystem_ResourceRegistrar(uVar7);
   }
   FUN_180046130(&system_data_1900,1);
   _Exit(5);

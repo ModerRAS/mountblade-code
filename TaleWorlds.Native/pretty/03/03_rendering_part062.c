@@ -829,7 +829,7 @@ void render_system_resource_handler(int64_t render_context, int64_t target_conte
   
   if (process_result < 0) {
     // 处理错误
-    FUN_180220810(process_result, &render_system_global_context);
+    SystemCore_Loader(process_result, &render_system_global_context);
   }
   else {
     // 处理成功
@@ -1353,7 +1353,7 @@ void render_system_texture_processor(int64_t render_context, uint texture_offset
   
   if (process_result < 0) {
     // 处理错误
-    FUN_180220810(process_result, &render_system_global_context);
+    SystemCore_Loader(process_result, &render_system_global_context);
   }
   
   // 计算纹理索引
@@ -1449,7 +1449,7 @@ void render_system_data_copier(int64_t render_context, uint64_t source_data, int
   
   if (copy_result < 0) {
     // 处理错误
-    FUN_180220810(copy_result, &render_system_global_context);
+    SystemCore_Loader(copy_result, &render_system_global_context);
   }
   
   // 复制源数据
@@ -1470,7 +1470,7 @@ void render_system_data_copier(int64_t render_context, uint64_t source_data, int
  */
 int64_t render_system_get_texture_data(uint64_t texture_ptr)
 {
-  return FUN_18023a940(texture_ptr);
+  return SystemCore_Scheduler(texture_ptr);
 }
 
 /**

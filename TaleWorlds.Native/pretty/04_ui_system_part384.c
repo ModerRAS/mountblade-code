@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedHandler_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -53,7 +54,7 @@ uint64_t FUN_180876000(int64_t *param_1)
        (uVar5 = FUN_180883420(param_1 + 2,iVar9), (int)uVar5 != 0)) {
       return uVar5;
     }
-    uVar5 = FUN_1807703c0(param_1,iVar9);
+    uVar5 = RenderingEngine_TextureManager(param_1,iVar9);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -128,7 +129,7 @@ uint64_t FUN_180876026(void)
        (uVar4 = FUN_180883420(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
       return uVar4;
     }
-    uVar4 = FUN_1807703c0();
+    uVar4 = RenderingEngine_TextureManager();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -204,7 +205,7 @@ uint64_t FUN_180876180(int64_t param_1,uint param_2,uint64_t param_3)
 
 
 
-int64_t FUN_1808761f0(int64_t *param_1,uint64_t param_2)
+int64_t CoreSystem_SynchronizationManager0(int64_t *param_1,uint64_t param_2)
 
 {
   int64_t lVar1;
@@ -349,7 +350,7 @@ void FUN_1808762b0(int64_t param_1,int64_t *param_2)
       plStack_d8 = (int64_t *)puVar2[2];
       uStack_d0 = *(int32_t *)(puVar2 + 3);
       uStack_cc = *(int32_t *)((int64_t)puVar2 + 0x1c);
-      FUN_18074b650(auStack_c8,0x80,&plStack_d8);
+      RenderingSystem_ShaderCompiler(auStack_c8,0x80,&plStack_d8);
       goto FUN_180876d27;
     }
     cVar6 = func_0x0001808661c0(*(uint64_t *)(param_1 + 0x80));
@@ -493,7 +494,7 @@ LAB_180876796:
               plStack_980 = (int64_t *)(param_1 + 0x778);
               pplStack_978 = (int64_t **)0xffffffffffffffff;
               puStack_970 = (uint64_t *)CONCAT44(puStack_970._4_4_,0xffffffff);
-              FUN_1808741f0(plStack_980,&pplStack_978,&puStack_970);
+              SystemResource_Manager(plStack_980,&pplStack_978,&puStack_970);
               if ((int)puStack_970 != -1) {
                 iVar7 = (int)puStack_970;
                 iVar8 = (int)pplStack_978;
@@ -554,7 +555,7 @@ LAB_1808768bc:
                     uStack_960 = *(int32_t *)(lVar11 + 0x18);
                     uStack_95c = *(int32_t *)(lVar11 + 0x1c);
                     auStack_988[0] = 1;
-                    FUN_180879610(&uStack_940,&lStack_968);
+                    SystemStateProcessor(&uStack_940,&lStack_968);
                   }
                 }
                 uVar15 = uVar15 + 0x10;
@@ -651,7 +652,7 @@ LAB_1808769aa:
         uStack_960 = *(int32_t *)(lVar11 + 0x18);
         uStack_95c = *(int32_t *)(lVar11 + 0x1c);
         auStack_988[0] = 1;
-        FUN_180879610(&uStack_940,&lStack_968,auStack_988);
+        SystemStateProcessor(&uStack_940,&lStack_968,auStack_988);
       }
     }
     uVar15 = uVar15 + 0x10;
@@ -669,7 +670,7 @@ LAB_1808769aa:
     plStack_980 = (int64_t *)(param_1 + 0x898);
     pplStack_978 = (int64_t **)0xffffffffffffffff;
     puStack_970 = (uint64_t *)CONCAT44(puStack_970._4_4_,0xffffffff);
-    FUN_1808741f0(plStack_980,&pplStack_978,&puStack_970);
+    SystemResource_Manager(plStack_980,&pplStack_978,&puStack_970);
     plVar4 = plStack_980;
     while (plStack_980 = plVar4, (int)puStack_970 != -1) {
       lVar11 = (int64_t)(int)puStack_970;

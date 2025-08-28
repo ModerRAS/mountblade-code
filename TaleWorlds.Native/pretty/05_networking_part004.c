@@ -241,7 +241,7 @@ int NetworkProtocol_SerializeQuadField(void* context, uint8_t* output_buffer, in
     total_size += separator_size;
     
     // 序列化字段数组
-    field_size = FUN_18074b650(output_buffer + total_size, buffer_size - total_size, fields);
+    field_size = RenderingSystem_ShaderCompiler(output_buffer + total_size, buffer_size - total_size, fields);
     if (field_size < 0) return field_size;
     total_size += field_size;
     
@@ -515,7 +515,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     total_size += separator_size;
     
     // 序列化标志字段
-    field_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, flags);
+    field_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, flags);
     if (field_size < 0) return field_size;
     
     return total_size + field_size;
@@ -597,7 +597,7 @@ int NetworkProtocol_SerializeSecurity(void* context, uint8_t* output_buffer, int
     total_size += separator_size;
     
     // 序列化安全标志
-    field_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, security_flag);
+    field_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, security_flag);
     if (field_size < 0) return field_size;
     
     return total_size + field_size;
@@ -670,7 +670,7 @@ int NetworkProtocol_SerializeError(void* context, uint8_t* output_buffer, int bu
     total_size += separator_size;
     
     // 序列化错误标志
-    field_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, error_flag);
+    field_size = SystemCore_Cleanup(output_buffer + total_size, buffer_size - total_size, error_flag);
     if (field_size < 0) return field_size;
     
     return total_size + field_size;
@@ -1166,7 +1166,7 @@ LAB_180845484:
         iVar2 = iVar1;
     }
     if ((iVar2 == 0) &&
-       (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+       (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
     {
         *apuStack_138[0] = &processed_var_9408_ptr;
         *(int32_t *)(apuStack_138[0] + 1) = 0x20;

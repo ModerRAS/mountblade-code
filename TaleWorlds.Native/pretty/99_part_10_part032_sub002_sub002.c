@@ -278,7 +278,7 @@ bool FUN_1806b8360(int64_t *param_1,int64_t *param_2,uint64_t param_3,float para
       fVar5 = pfVar12[4];
       fVar6 = pfVar12[6];
       fVar7 = pfVar12[5];
-      puVar13 = (int32_t *)FUN_1800fcb90(pfVar12,auStack_168,lVar11);
+      puVar13 = (int32_t *)SystemCore_Initializer(pfVar12,auStack_168,lVar11);
       uStack_1f0 = *puVar13;
       uStack_1ec = puVar13[1];
       uStack_1e8 = puVar13[2];
@@ -409,7 +409,7 @@ bool FUN_1806b83c5(int32_t param_1)
     fVar5 = pfVar21[4];
     fVar6 = pfVar21[6];
     fVar7 = pfVar21[5];
-    puVar22 = (int32_t *)FUN_1800fcb90(pfVar21,unaff_RBP + 2,lVar20);
+    puVar22 = (int32_t *)SystemCore_Initializer(pfVar21,unaff_RBP + 2,lVar20);
     *(int32_t *)(unaff_RBP + -0xf) = *puVar22;
     *(int32_t *)((int64_t)unaff_RBP + -0x74) = puVar22[1];
     piVar17 = (int *)unaff_RBP[0x37];
@@ -610,7 +610,7 @@ uint64_t FUN_1806b87e0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_
       fVar6 = pfVar13[4];
       fVar7 = pfVar13[6];
       fVar8 = pfVar13[5];
-      puVar14 = (int32_t *)FUN_1800fcb90(pfVar13,auStack_178,lVar12);
+      puVar14 = (int32_t *)SystemCore_Initializer(pfVar13,auStack_178,lVar12);
       uStack_1d8 = *puVar14;
       uStack_1d4 = puVar14[1];
       uStack_1d0 = puVar14[2];
@@ -933,7 +933,7 @@ uint FUN_1806b8877(void)
     fVar5 = pfVar22[4];
     fVar6 = pfVar22[6];
     fVar7 = pfVar22[5];
-    puVar23 = (int32_t *)FUN_1800fcb90(pfVar22,unaff_RBP + 0x18,lVar21);
+    puVar23 = (int32_t *)SystemCore_Initializer(pfVar22,unaff_RBP + 0x18,lVar21);
     *unaff_RBP = *puVar23;
     unaff_RBP[1] = puVar23[1];
     piVar24 = *(int **)(unaff_RBP + 0x8e);

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -79,7 +83,7 @@ uint64_t FUN_1808c7dc0(int64_t param_1,int8_t param_2)
   }
   *(int32_t *)(param_1 + 0x18) = 0;
   if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
-    FUN_180747f10(param_1 + 0x10,0);
+    RenderingTextureManager0(param_1 + 0x10,0);
   }
 LAB_1808c7ea2:
   *(int32_t *)(param_1 + 4) = 0;
@@ -507,7 +511,7 @@ uint64_t FUN_1808c83d0(int64_t param_1,int64_t param_2)
     return 0;
   }
   uStackX_8 = 0;
-  iVar1 = FUN_18088c740(&uStackX_8);
+  iVar1 = RenderingSystemOptimizer(&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = FUN_1808c7b30(param_1,*(uint64_t *)(param_1 + 8),*(uint64_t *)(param_2 + 0x90),
                           *(uint64_t *)(param_2 + 800));

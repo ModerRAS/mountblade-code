@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part088.c - 4 个函数
 
 // 函数: void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
@@ -260,7 +264,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
       *(void **)(lVar8 + 0x9628) = &processed_var_7008_ptr;
       *(void **)(lVar8 + 0x9610) = &processed_var_4240_ptr;
       *(uint64_t **)(lVar8 + 0x9650) = param_1;
-      FUN_180094b30(lVar8,&processed_var_6432_ptr);
+      SystemCore_NetworkHandler(lVar8,&processed_var_6432_ptr);
       FUN_180080810(lVar8 + 0x3580,param_2 + 0x3580);
       do {
         uStack_808 = param_1[0x24];
@@ -298,7 +302,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
         uStack_370 = 0x18;
         uStack_368 = param_1[0x24];
         uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        plVar10 = (int64_t *)FUN_18005ce30(uVar9,&plStack_408);
+        plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&plStack_408);
         pplStack_7e0 = (int64_t **)plVar10;
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -309,7 +313,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x28))(plVar10);
         }
-        FUN_18005e370(uVar9,&plStack_7b8);
+        SystemPerformance_Monitor(uVar9,&plStack_7b8);
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x38))(plVar10);
         }
@@ -338,7 +342,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
           (**(code **)((void *)*param_1 + 0x28))(param_1);
         }
         uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-        plVar10 = (int64_t *)FUN_18005ce30(uVar9,&plStack_6a8);
+        plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&plStack_6a8);
         pplStack_7d8 = (int64_t **)plVar10;
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -349,7 +353,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x28))(plVar10);
         }
-        FUN_18005e370(uVar9,&plStack_7b0);
+        SystemPerformance_Monitor(uVar9,&plStack_7b0);
         if (plVar10 != (int64_t *)0x0) {
           (**(code **)(*plVar10 + 0x38))(plVar10);
         }
@@ -367,7 +371,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
           *(void **)(lVar8 + 0x9628) = &processed_var_7008_ptr;
           *(void **)(lVar8 + 0x9610) = &processed_var_4240_ptr;
           *(uint64_t **)(lVar8 + 0x9650) = param_1;
-          FUN_180094b30(lVar8,&processed_var_6408_ptr);
+          SystemCore_NetworkHandler(lVar8,&processed_var_6408_ptr);
           FUN_180080810(lVar8 + 0x3580,param_2 + 0x3580);
           iVar7 = 0;
           do {
@@ -406,7 +410,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
             uStack_290 = 0x18;
             uStack_288 = param_1[0x22];
             uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-            plVar10 = (int64_t *)FUN_18005ce30(uVar9,&plStack_328);
+            plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&plStack_328);
             pplStack_7d0 = (int64_t **)plVar10;
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -417,7 +421,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x28))(plVar10);
             }
-            FUN_18005e370(uVar9,&plStack_7a8);
+            SystemPerformance_Monitor(uVar9,&plStack_7a8);
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x38))(plVar10);
             }
@@ -446,7 +450,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
               (**(code **)((void *)*param_1 + 0x28))(param_1);
             }
             uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-            plVar10 = (int64_t *)FUN_18005ce30(uVar9,&plStack_5c8);
+            plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&plStack_5c8);
             pplStack_7c8 = (int64_t **)plVar10;
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -457,7 +461,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x28))(plVar10);
             }
-            FUN_18005e370(uVar9,&plStack_7a0);
+            SystemPerformance_Monitor(uVar9,&plStack_7a0);
             if (plVar10 != (int64_t *)0x0) {
               (**(code **)(*plVar10 + 0x38))(plVar10);
             }
@@ -486,7 +490,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
             }
             *(code **)(lVar8 + 0x9610) = pcVar11;
             *(uint64_t **)(lVar8 + 0x9650) = param_1;
-            FUN_180094b30(lVar8,&processed_var_6408_ptr);
+            SystemCore_NetworkHandler(lVar8,&processed_var_6408_ptr);
             FUN_180080810(lVar8 + 0x3580,param_2 + 0x3580);
             iVar7 = 0;
             do {
@@ -525,7 +529,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
               uStack_1b0 = 0x18;
               uStack_1a8 = param_1[0x21];
               uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-              plVar10 = (int64_t *)FUN_18005ce30(uVar9,&plStack_248);
+              plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&plStack_248);
               pplStack_7c0 = (int64_t **)plVar10;
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -536,7 +540,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x28))(plVar10);
               }
-              FUN_18005e370(uVar9,&plStack_798);
+              SystemPerformance_Monitor(uVar9,&plStack_798);
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x38))(plVar10);
               }
@@ -565,7 +569,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
                 (**(code **)((void *)*param_1 + 0x28))(param_1);
               }
               uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
-              plVar10 = (int64_t *)FUN_18005ce30(uVar9,&puStack_4e8);
+              plVar10 = (int64_t *)SystemCore_StreamController(uVar9,&puStack_4e8);
               ppuStack_788 = (void **)plVar10;
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x28))(plVar10);
@@ -576,7 +580,7 @@ void FUN_18031a6c0(uint64_t *param_1,int64_t param_2,char param_3)
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x28))(plVar10);
               }
-              FUN_18005e370(uVar9,&plStack_790);
+              SystemPerformance_Monitor(uVar9,&plStack_790);
               if (plVar10 != (int64_t *)0x0) {
                 (**(code **)(*plVar10 + 0x38))(plVar10);
               }
@@ -740,13 +744,13 @@ void FUN_18031b8e0(int64_t param_1)
 
 {
   if (*(int64_t *)(param_1 + 0x110) != 0) {
-    FUN_18023b050(*(int64_t *)(param_1 + 0x110),0);
+    SystemCore_NetworkHandler(*(int64_t *)(param_1 + 0x110),0);
   }
   if (*(int64_t *)(param_1 + 0x108) != 0) {
-    FUN_18023b050(*(int64_t *)(param_1 + 0x108),0);
+    SystemCore_NetworkHandler(*(int64_t *)(param_1 + 0x108),0);
   }
   if (*(int64_t *)(param_1 + 0x118) != 0) {
-    FUN_18023b050(*(int64_t *)(param_1 + 0x118),0);
+    SystemCore_NetworkHandler(*(int64_t *)(param_1 + 0x118),0);
   }
   *(int32_t *)(param_1 + 0x4c) = 0x18;
   *(int32_t *)(param_1 + 0x5c) = 0xffffffff;

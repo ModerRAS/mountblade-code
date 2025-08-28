@@ -30,7 +30,7 @@ void FUN_180867990(int64_t param_1,int param_2,int64_t param_3)
   uStackX_20 = 0;
   if ((((param_1 != 0) && (*(int *)(param_1 + 8) != 0)) &&
       (iVar3 = func_0x00018088c590(*(int *)(param_1 + 8),&lStackX_8), iVar3 == 0)) &&
-     (((iVar3 = FUN_18088c740(&uStackX_20,lStackX_8), iVar3 == 0 && (-1 < param_2)) &&
+     (((iVar3 = RenderingSystemOptimizer(&uStackX_20,lStackX_8), iVar3 == 0 && (-1 < param_2)) &&
       (param_2 <= *(int *)(param_1 + 0x28))))) {
     func_0x0001808674c0(&uStack_38);
     lStack_28 = *(int64_t *)(param_3 + 0x18);
@@ -225,7 +225,7 @@ int32_t FUN_180867d60(uint64_t *param_1)
   uStackX_8 = 0;
   if (((*(int *)(param_1 + 1) == 0) ||
       ((iVar4 = func_0x00018088c590(*(int *)(param_1 + 1),auStackX_10), iVar4 == 0 &&
-       (iVar4 = FUN_18088c740(&uStackX_8), iVar4 == 0)))) && (iVar4 = FUN_18088c620(), iVar4 == 0))
+       (iVar4 = RenderingSystemOptimizer(&uStackX_8), iVar4 == 0)))) && (iVar4 = FUN_18088c620(), iVar4 == 0))
   {
     iVar4 = 0;
     if (0 < *(int *)(param_1 + 5)) {
@@ -325,7 +325,7 @@ void FUN_180867f80(int64_t param_1,uint param_2,uint64_t *param_3)
       (*(int64_t *)(alStack_68[0] + 0x98) != 0)))) {
     if (((*(uint *)(alStack_68[0] + 0x20) >> 3 & 1) == 0) || ((param_2 & 0x41800) == 0)) {
       alStack_68[1] = 0;
-      iVar1 = FUN_18088c740(alStack_68 + 1);
+      iVar1 = RenderingSystemOptimizer(alStack_68 + 1);
       if ((iVar1 == 0) &&
          (iVar1 = func_0x00018088dd50(*(uint64_t *)(alStack_68[0] + 0x98)), iVar1 == 0)) {
         FUN_180868160(param_1,param_2,param_3);
@@ -922,7 +922,7 @@ void FUN_180868800(int64_t param_1,int64_t param_2)
   uStackX_8 = 0;
   if ((((param_1 != 0) && (*(int *)(param_1 + 8) != 0)) &&
       (iVar3 = func_0x00018088c590(*(int *)(param_1 + 8),&uStackX_18), iVar3 == 0)) &&
-     (iVar3 = FUN_18088c740(&uStackX_8,uStackX_18), iVar3 == 0)) {
+     (iVar3 = RenderingSystemOptimizer(&uStackX_8,uStackX_18), iVar3 == 0)) {
     iVar3 = *(int *)(param_1 + 0x28);
     uVar7 = uVar9;
     if (0 < iVar3) {
@@ -982,7 +982,7 @@ uint64_t FUN_180868970(int64_t param_1,int param_2,uint64_t param_3)
     uVar2 = func_0x00018088c590(*(int *)(param_1 + 8),&uStackX_20);
     if ((int)uVar2 == 0) {
       uStackX_8 = 0;
-      iVar1 = FUN_18088c740(&uStackX_8,uStackX_20);
+      iVar1 = RenderingSystemOptimizer(&uStackX_8,uStackX_20);
       if (((iVar1 == 0) && (-1 < param_2)) && (param_2 < *(int *)(param_1 + 0x28))) {
         *(uint64_t *)(*(int64_t *)(param_1 + 0x20) + 8 + (int64_t)param_2 * 0x18) = param_3;
       }

@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_CacheManager 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 
 // 03_rendering_part544.c - 10 个函数
 
@@ -178,13 +187,13 @@ void FUN_180566900(uint64_t param_1)
   puStack_140 = (uint64_t *)0x0;
   puStack_138 = (uint64_t *)0x0;
   uStack_130 = 3;
-  FUN_180627910(&puStack_e8);
+  SystemCore_CacheManager(&puStack_e8);
   puStack_108 = (uint64_t *)0x0;
   puStack_100 = (uint64_t *)0x0;
   uStack_f8 = 0;
   uStack_f0 = 3;
   if (lStack_e0 != 0) {
-    FUN_180057980(&puStack_e8,&puStack_108,&system_data_63b4);
+    CoreSystem_DataCollector(&puStack_e8,&puStack_108,&system_data_63b4);
   }
   puVar18 = puStack_108;
   puVar5 = puStack_120;
@@ -300,7 +309,7 @@ LAB_180566c1e:
             lVar9 = lVar9 * 2;
             if (lVar9 != 0) goto LAB_180566c1e;
           }
-          puVar11 = (uint64_t *)FUN_180059780(puVar20,puVar18,puVar10);
+          puVar11 = (uint64_t *)SystemCore_Initializer(puVar20,puVar18,puVar10);
           CoreEngineDataTransformer(puVar11,&puStack_180);
           pcVar19 = pcStack_1a8;
           for (puVar13 = puVar20; pcStack_1a8 = pcVar19, puVar13 != puVar18; puVar13 = puVar13 + 4)
@@ -353,7 +362,7 @@ LAB_180566d7c:
           lVar9 = lVar9 * 2;
           if (lVar9 != 0) goto LAB_180566d7c;
         }
-        puVar13 = (uint64_t *)FUN_180059780(puVar20,puVar18,puVar11);
+        puVar13 = (uint64_t *)SystemCore_Initializer(puVar20,puVar18,puVar11);
         CoreEngineDataTransformer(puVar13,&puStack_1d0);
         for (puVar16 = puVar20; puVar16 != puVar18; puVar16 = puVar16 + 4) {
           (**(code **)*puVar16)(puVar16,0);
@@ -837,8 +846,8 @@ void FUN_180567bb0(int64_t param_1)
 
 
 
-// 函数: void FUN_180567f30(int64_t param_1,int64_t param_2)
-void FUN_180567f30(int64_t param_1,int64_t param_2)
+// 函数: void SystemCore_DatabaseHandler(int64_t param_1,int64_t param_2)
+void SystemCore_DatabaseHandler(int64_t param_1,int64_t param_2)
 
 {
   int iVar1;

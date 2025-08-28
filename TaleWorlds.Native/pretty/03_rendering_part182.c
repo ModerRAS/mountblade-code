@@ -1,8 +1,11 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part182.c - 1 个函数
 
@@ -465,7 +468,7 @@ LAB_180377195:
                   fVar35 = 1.0 / ((float)*(int *)(puVar23 + 0xe) - 1.0);
                   fStack_290 = ((fVar42 + fVar46) - fVar32) * (1.0 / fVar34) * fVar35 + fVar43;
                   fStack_28c = ((fVar44 + fVar45) - fVar33) * (1.0 / fVar34) * fVar35 + fVar43;
-                  pfVar15 = (float *)FUN_1802a11e0(lVar16,auStack_130,
+                  pfVar15 = (float *)SystemCore_DataConverter(lVar16,auStack_130,
                                                    CONCAT44(fStack_28c,fStack_290),0);
                   uVar31 = (uint)(fVar39 * fVar39);
                   fVar33 = fStack_3b0;
@@ -529,7 +532,7 @@ LAB_180377195:
                       fStack_278 = (fVar33 - fVar43) * (1.0 / fVar42) * fStack_274;
                       fStack_274 = (fVar45 - fVar32) * (1.0 / fVar42) * fStack_274;
                       uVar7 = CONCAT44(fStack_274,fStack_278);
-                      pfVar15 = (float *)FUN_1802a11e0(puVar23[lStack_2d0 + 0xe2],auStack_120,uVar7,
+                      pfVar15 = (float *)SystemCore_DataConverter(puVar23[lStack_2d0 + 0xe2],auStack_120,uVar7,
                                                        1);
                       uVar22 = 0;
                       uVar31 = (uint)(*(int64_t *)(lStack_2c8 + 0x10) -
@@ -606,14 +609,14 @@ LAB_180377666:
                           uVar12 = uVar12 ^ uVar12 << 5;
                           if (fVar43 < (float)(uVar12 - 1) * 2.3283064e-10) goto LAB_18037777e;
                         }
-                        pfVar15 = (float *)FUN_1802a11e0(puStack_340[0x103],auStack_110,uVar7,1);
+                        pfVar15 = (float *)SystemCore_DataConverter(puStack_340[0x103],auStack_110,uVar7,1);
                         fVar41 = fStack_2f0 * *pfVar15 + fStack_2ec;
                         uVar22 = *(uint *)(lStack_328 + 0x60);
                         fStack_350 = fVar41;
                         if ((uVar22 >> 0x11 & 1) == 0) {
                           if (((uVar22 >> 0x19 & 1) != 0) && (puStack_340[0x102] != 0)) {
                             uStack_3b8._0_4_ = uVar22;
-                            pfVar15 = (float *)FUN_1802a11e0(puStack_340[0x102],aiStack_100,uVar7,1)
+                            pfVar15 = (float *)SystemCore_DataConverter(puStack_340[0x102],aiStack_100,uVar7,1)
                             ;
                             uStack_240 = 0;
                             uStack_23c = 0x7f7fffff;
@@ -766,7 +769,7 @@ LAB_18037777e:
         puVar21 = &memory_allocator_3824_ptr;
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,puVar21,lVar18 / 0x28,puVar29);
+      SystemParameterHandler(system_message_context,puVar21,lVar18 / 0x28,puVar29);
     }
   }
                     // WARNING: Subroutine does not return

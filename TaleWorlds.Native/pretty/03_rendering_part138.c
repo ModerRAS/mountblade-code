@@ -103,7 +103,7 @@ void FUN_18034e7c2(void)
     *(float *)(unaff_RBP + -0x65) = fVar7;
     *(float *)(unaff_RBP + -0x61) = fVar8;
     *(uint *)(unaff_RBP + -0x5d) = uVar9;
-    FUN_18063b5f0(&fStackX_20,unaff_RBP + -0x79);
+    SystemSecurityManager(&fStackX_20,unaff_RBP + -0x79);
     fVar10 = *(float *)(unaff_RSI + 0x70);
     fVar11 = *(float *)(unaff_RSI + 0x74);
     fVar12 = *(float *)(unaff_RSI + 0x78);
@@ -157,7 +157,7 @@ void FUN_18034e7c2(void)
     *(float *)(unaff_RBP + -0x25) = fVar7 * fVar15 + fVar6 * fVar11 + fVar8 * fVar19 + fVar22;
     *(float *)(unaff_RBP + -0x21) = fVar7 * fVar16 + fVar6 * fVar12 + fVar8 * fVar20 + fVar23;
     *(float *)(unaff_RBP + -0x1d) = fVar7 * fVar17 + fVar6 * fVar13 + fVar8 * fVar21 + fVar24;
-    FUN_1802ea790(uVar2,unaff_RBP + -0x59);
+    NetworkProtocol_Transmitter(uVar2,unaff_RBP + -0x59);
     unaff_EBX = unaff_EBX + 1;
     uVar26 = uVar26 + 8;
   } while (unaff_EBX < unaff_R15D);
@@ -218,7 +218,7 @@ uint64_t FUN_18034e960(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   iVar17 = 0;
   uStack_50 = 0;
   uStack_48 = 3;
-  FUN_1802e8c60(*(uint64_t *)(param_1 + 0x70),&lStack_60,param_3,param_4,0xfffffffffffffffe);
+  NetworkSystem_SecurityManager(*(uint64_t *)(param_1 + 0x70),&lStack_60,param_3,param_4,0xfffffffffffffffe);
   uVar18 = 0;
   if ('\0' < cVar3) {
     do {
@@ -438,7 +438,7 @@ void FUN_18034ebc0(int64_t param_1)
       fStack_84 = fVar27 * fVar12 + fVar25 * fVar11 + fVar26 * fVar13;
       fStack_80 = fVar27 * fVar8 + fVar25 * fVar7 + fVar26 * fVar9;
       fStack_7c = fVar27 * fVar10 + fVar25 * fVar10 + fVar26 * fVar10;
-      FUN_18063b470(&uStack_f8,&fStack_b8);
+      AdvancedProcessor_StateManager0(&uStack_f8,&fStack_b8);
       uStack_c8 = CONCAT44(fStack_84,fStack_88);
       uStack_c0 = CONCAT44(fStack_7c,fStack_80);
       uStack_d8 = uStack_f8;
@@ -467,7 +467,7 @@ void FUN_18034ebc0(int64_t param_1)
       uStack_d8 = uVar19;
       uStack_d0 = uVar18;
       if (bVar17) {
-        FUN_1802feba0(lVar4,(int64_t)(uint64_t)(uint)((int)puVar22 - *(int *)(lVar4 + 0x18)) >> 8
+        RenderingSystem_DrawPrimitive(lVar4,(int64_t)(uint64_t)(uint)((int)puVar22 - *(int *)(lVar4 + 0x18)) >> 8
                             & 0xff);
       }
       if ((char)puVar22[0x28] != -1) {
@@ -511,7 +511,7 @@ void FUN_18034ebc0(int64_t param_1)
         fStack_44 = fVar27 * fVar12 + fVar25 * fVar11 + fVar26 * fVar13;
         fStack_40 = fVar27 * fVar8 + fVar25 * fVar7 + fVar26 * fVar9;
         fStack_3c = fVar27 * fVar10 + fVar25 * fVar10 + fVar26 * fVar10;
-        FUN_18063b470(&uStack_e8,&fStack_78);
+        AdvancedProcessor_StateManager0(&uStack_e8,&fStack_78);
         puVar22[0xc] = uStack_e8;
         puVar22[0xd] = uStack_e4;
         puVar22[0xe] = uStack_e0;
@@ -528,7 +528,7 @@ void FUN_18034ebc0(int64_t param_1)
   if ('\0' < cVar20) {
     do {
       uStack_30 = 0x1802fba8b;
-      FUN_1802feba0(lVar4,cVar21);
+      RenderingSystem_DrawPrimitive(lVar4,cVar21);
       cVar20 = *(char *)(lVar4 + 0x20);
       cVar21 = cVar21 + '\x01';
     } while (cVar21 < cVar20);
@@ -643,7 +643,7 @@ void FUN_18034ec05(uint64_t param_1,byte param_2,uint64_t param_3,uint64_t param
     *(float *)(unaff_RBP + -0x25) = fVar34 * fVar12 + fVar32 * fVar11 + fVar33 * fVar13;
     *(float *)(unaff_RBP + -0x21) = fVar34 * fVar8 + fVar32 * fVar7 + fVar33 * fVar9;
     *(float *)(unaff_RBP + -0x1d) = fVar34 * fVar10 + fVar32 * fVar10 + fVar33 * fVar10;
-    FUN_18063b470(&uStackX_20,unaff_RBP + -0x59);
+    AdvancedProcessor_StateManager0(&uStackX_20,unaff_RBP + -0x59);
     *(uint64_t *)(unaff_RBP + -0x79) = uStackX_20;
     *(uint64_t *)(unaff_RBP + -0x71) = param_5;
     *(uint64_t *)(unaff_RBP + -0x69) = *(uint64_t *)(unaff_RBP + -0x29);
@@ -672,7 +672,7 @@ void FUN_18034ec05(uint64_t param_1,byte param_2,uint64_t param_3,uint64_t param
     puVar28[8] = uVar23;
     *puVar28 = 0;
     if (unaff_R15B != '\0') {
-      uVar31 = FUN_1802feba0(uVar31,(int64_t)
+      uVar31 = RenderingSystem_DrawPrimitive(uVar31,(int64_t)
                                     (uint64_t)(uint)((int)puVar28 - *(int *)(unaff_RDI + 0x18)) >>
                                     8 & 0xff);
     }
@@ -717,7 +717,7 @@ void FUN_18034ec05(uint64_t param_1,byte param_2,uint64_t param_3,uint64_t param
       *(float *)(unaff_RBP + 0x1b) = fVar34 * fVar12 + fVar32 * fVar11 + fVar33 * fVar13;
       *(float *)(unaff_RBP + 0x1f) = fVar34 * fVar8 + fVar32 * fVar7 + fVar33 * fVar9;
       *(float *)(unaff_RBP + 0x23) = fVar34 * fVar10 + fVar32 * fVar10 + fVar33 * fVar10;
-      FUN_18063b470(&param_6,unaff_RBP + -0x19);
+      AdvancedProcessor_StateManager0(&param_6,unaff_RBP + -0x19);
       uVar25 = *(uint64_t *)(unaff_RBP + 0x17);
       uVar24 = *(uint64_t *)(unaff_RBP + 0x1f);
       puVar28[0xc] = (uint)param_6;
@@ -736,7 +736,7 @@ void FUN_18034ec05(uint64_t param_1,byte param_2,uint64_t param_3,uint64_t param
   if ('\0' < cVar26) {
     do {
       uStack00000000000000e8 = 0x1802fba8b;
-      uVar31 = FUN_1802feba0(uVar31,cVar27);
+      uVar31 = RenderingSystem_DrawPrimitive(uVar31,cVar27);
       cVar26 = *(char *)(unaff_RDI + 0x20);
       cVar27 = cVar27 + '\x01';
     } while (cVar27 < cVar26);
@@ -782,7 +782,7 @@ void FUN_18034ef52(void)
   if ('\0' < cVar2) {
     do {
       uStack00000000000000e8 = 0x1802fba8b;
-      FUN_1802feba0();
+      RenderingSystem_DrawPrimitive();
       cVar2 = *(char *)(unaff_RDI + 0x20);
       cVar3 = cVar3 + '\x01';
     } while (cVar3 < cVar2);

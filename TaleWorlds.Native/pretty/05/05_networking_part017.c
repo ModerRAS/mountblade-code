@@ -1,8 +1,15 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingTextureManager */
+#define RenderingTextureManager RenderingTextureManager
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "../include/global_constants.h"
 
 // 05_networking_part017.c - 网络系统连接管理和数据传输模块
 // 包含3个函数，主要负责网络连接的建立、数据传输和连接状态管理
@@ -344,7 +351,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
     if ((transfer_result != 0) || (message_count != 0)) {
       error_count = 0;
       adapter_status = 0;
-      packet_count = FUN_18073c380(session_manager[0xf], 0xfffffffe, &adapter_status);
+      packet_count = UltraHighFreq_PhysicsEngine1(session_manager[0xf], 0xfffffffe, &adapter_status);
       
       buffer_address = packet_loss_rate;
       connection_start = compression_context;
@@ -359,7 +366,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
            connection_pool = session_manager, packet_count == 0)) &&
          ((transfer_flags = (int)*(uint *)((int64_t)session_manager + 0x8c) >> 0x1f,
            transfer_result <= (int)((*(uint *)((int64_t)session_manager + 0x8c) ^ transfer_flags) - transfer_flags) ||
-           (packet_count = FUN_180747f10(session_manager + 0x10, transfer_result), 
+           (packet_count = RenderingTextureManager0(session_manager + 0x10, transfer_result), 
             buffer_address = packet_loss_rate, connection_start = compression_context, 
             authentication_context = stream_handle, encryption_context = quality_metrics, 
             connection_pool = session_manager, packet_count == 0)))) {
@@ -410,7 +417,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
         // 处理传出消息
         transfer_flags = (int)*(uint *)((int64_t)session_manager + 0x9c) >> 0x1f;
         if ((message_count <= (int)((*(uint *)((int64_t)session_manager + 0x9c) ^ transfer_flags) - transfer_flags)) ||
-           (transfer_result = FUN_180747f10(session_manager + 0x12, message_count), 
+           (transfer_result = RenderingTextureManager0(session_manager + 0x12, message_count), 
             buffer_address = packet_loss_rate, connection_start = compression_context, 
             authentication_context = stream_handle, encryption_context = quality_metrics, 
             connection_pool = session_manager, transfer_result == 0)) {
@@ -478,11 +485,11 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
         (buffer_address = packet_loss_rate, connection_start = compression_context, 
          authentication_context = stream_handle, encryption_context = quality_metrics, 
          connection_pool = session_manager, transfer_result != 0)) ||
-       (((transfer_result = FUN_1808b2f30(session_manager, 1), 
+       (((transfer_result = SystemDataFlowProcessor(session_manager, 1), 
           buffer_address = packet_loss_rate, connection_start = compression_context, 
           authentication_context = stream_handle, encryption_context = quality_metrics, 
           connection_pool = session_manager, transfer_result != 0 ||
-         (transfer_result = FUN_1808b2f30(session_manager, 0), 
+         (transfer_result = SystemDataFlowProcessor(session_manager, 0), 
           buffer_address = packet_loss_rate, connection_start = compression_context, 
           authentication_context = stream_handle, encryption_context = quality_metrics, 
           connection_pool = session_manager, transfer_result != 0)) ||
@@ -601,19 +608,19 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   // 清理连接资源
   if ((char)successful_transfers == '\0') {
     *(int32_t *)(connection_start + 0x60) = 0;
-    FUN_18084f560(connection_start + 0x30);
+    RenderingEngine_ShaderProcessor(connection_start + 0x30);
   }
   if ((char)send_flags == '\0') {
     *(int32_t *)(buffer_address + 0x60) = 0;
-    FUN_18084f040(buffer_address + 0x30);
+    SystemCore_CacheManager(buffer_address + 0x30);
   }
   if ((char)receive_flags == '\0') {
     *(int32_t *)(encryption_context + 0x1d0) = 0;
-    FUN_18084f040(encryption_context + 0x1a0);
+    SystemCore_CacheManager(encryption_context + 0x1a0);
   }
   if ((char)control_flags == '\0') {
     *(int32_t *)(authentication_context + 0x60) = 0;
-    FUN_18084f2d0(authentication_context + 0x30);
+    SystemCore_NetworkProcessor(authentication_context + 0x30);
   }
   
 handle_connection_error:
@@ -847,7 +854,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
     if ((optimization_result != 0) || (active_connections != 0)) {
       packet_loss_count = 0;
       manager_status = 0;
-      queue_size = FUN_18073c380(transfer_queue[0xf], 0xfffffffe, &manager_status);
+      queue_size = UltraHighFreq_PhysicsEngine1(transfer_queue[0xf], 0xfffffffe, &manager_status);
       
       if (((queue_size == 0) &&
           (queue_size = FUN_18073c5f0(transfer_queue[0xf], manager_status, &packet_loss_count), 
@@ -855,7 +862,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
          ((compression_ratio = (int)*(uint *)((int64_t)transfer_queue + 0x8c) >> 0x1f,
            optimization_result <= (int)((*(uint *)((int64_t)transfer_queue + 0x8c) ^ 
                                           compression_ratio) - compression_ratio) ||
-           (queue_size = FUN_180747f10(transfer_queue + 0x10, optimization_result), 
+           (queue_size = RenderingTextureManager0(transfer_queue + 0x10, optimization_result), 
             queue_size == 0)))) {
         
         // 优化数据传输
@@ -895,7 +902,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
         compression_ratio = (int)*(uint *)((int64_t)transfer_queue + 0x9c) >> 0x1f;
         if ((active_connections <= (int)((*(uint *)((int64_t)transfer_queue + 0x9c) ^ 
                                          compression_ratio) - compression_ratio)) ||
-           (optimization_result = FUN_180747f10(transfer_queue + 0x12, active_connections), 
+           (optimization_result = RenderingTextureManager0(transfer_queue + 0x12, active_connections), 
             optimization_result == 0)) {
           
           data_throughput = 0;
@@ -945,8 +952,8 @@ void optimize_network_data_transfer(int64_t transfer_context)
                                                 (char)(*(uint *)(transfer_queue + 0x18) >> 1)) & 
                                         0xffffff01), optimization_result != 0)) && 
         (optimization_result != 0)) ||
-       (((optimization_result = FUN_1808b2f30(transfer_queue, 1), optimization_result != 0 ||
-         (optimization_result = FUN_1808b2f30(transfer_queue, 0), optimization_result != 0)) ||
+       (((optimization_result = SystemDataFlowProcessor(transfer_queue, 1), optimization_result != 0 ||
+         (optimization_result = SystemDataFlowProcessor(transfer_queue, 0), optimization_result != 0)) ||
         ((optimization_result = FUN_18084ec10(transfer_queue), optimization_result != 0 ||
          (optimization_result = FUN_18073dc80(transfer_queue[0xf], 1), optimization_result != 0)))))))
       goto handle_basic_optimization;
@@ -1062,19 +1069,19 @@ void optimize_network_data_transfer(int64_t transfer_context)
   // 释放优化缓冲区
   if (strategy_buffer[2] == '\0') {
     *(int32_t *)(compression_context + 0x60) = 0;
-    FUN_18084f560(compression_context + 0x30);
+    RenderingEngine_ShaderProcessor(compression_context + 0x30);
   }
   if (strategy_buffer[1] == '\0') {
     *(int32_t *)(transfer_start + 0x60) = 0;
-    FUN_18084f040(transfer_start + 0x30);
+    SystemCore_CacheManager(transfer_start + 0x30);
   }
   if (strategy_buffer[0] == '\0') {
     *(int32_t *)(manager_config + 0x1d0) = 0;
-    FUN_18084f040(manager_config + 0x1a0);
+    SystemCore_CacheManager(manager_config + 0x1a0);
   }
   if (optimization_buffer[0] == '\0') {
     *(int32_t *)(performance_metrics + 0x60) = 0;
-    FUN_18084f2d0(performance_metrics + 0x30);
+    SystemCore_NetworkProcessor(performance_metrics + 0x30);
   }
   
   // 处理优化错误
@@ -1122,22 +1129,22 @@ void cleanup_network_connection_resources(void)
   // 根据资源标志执行清理
   if (transfer_handle._4_1_ == '\0') {
     *(int32_t *)(transfer_context + 0x60) = connection_flags;
-    FUN_18084f560(transfer_context + 0x30);
+    RenderingEngine_ShaderProcessor(transfer_context + 0x30);
   }
   
   if (resource_flag1 == '\0') {
     *(int32_t *)(connection_context + 0x60) = connection_flags;
-    FUN_18084f040(connection_context + 0x30);
+    SystemCore_CacheManager(connection_context + 0x30);
   }
   
   if (resource_flag2 == '\0') {
     *(int32_t *)(context_base + 0x1d0) = connection_flags;
-    FUN_18084f040(context_base + 0x1a0);
+    SystemCore_CacheManager(context_base + 0x1a0);
   }
   
   if (cleanup_flag == '\0') {
     *(int32_t *)(transfer_context + 0x60) = connection_flags;
-    FUN_18084f2d0(transfer_context + 0x30);
+    SystemCore_NetworkProcessor(transfer_context + 0x30);
   }
   
   // 执行最终清理

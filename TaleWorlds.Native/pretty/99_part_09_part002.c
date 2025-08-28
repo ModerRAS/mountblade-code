@@ -583,7 +583,7 @@ int * FUN_1805be810(int64_t *param_1,int *param_2)
   iVar9 = *(int *)((int64_t)param_1 + 0x200c);
   iVar6 = iVar9 - iVar7;
   if ((*(uint *)(param_1 + 2) & 0x1000) == 0) {
-    FUN_1805d4df0(param_1 + 1);
+    SystemCore_Initializer0(param_1 + 1);
     iVar7 = *(int *)((int64_t)param_1 + 0x1c2c);
     iVar9 = *(int *)((int64_t)param_1 + 0x200c);
   }
@@ -666,7 +666,7 @@ int * FUN_1805be8b3(void)
   iVar9 = *(int *)((int64_t)unaff_RBX + 0x200c);
   iVar6 = iVar9 - iVar7;
   if ((*(uint *)(unaff_RBX + 2) & 0x1000) == 0) {
-    FUN_1805d4df0(unaff_RBX + 1);
+    SystemCore_Initializer0(unaff_RBX + 1);
     iVar7 = *(int *)((int64_t)unaff_RBX + 0x1c2c);
     iVar9 = *(int *)((int64_t)unaff_RBX + 0x200c);
   }

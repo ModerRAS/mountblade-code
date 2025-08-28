@@ -1,5 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 03_rendering_part104.c - 渲染系统高级文件处理和资源管理模块
 // 包含3个核心函数，涵盖渲染文件处理、资源管理、数据序列化、内存管理、文件操作等高级渲染功能
@@ -114,7 +125,7 @@ void RenderingSystemProcessFileData(int64_t render_context, int64_t file_context
           stack_resource_ptr = resource_ptr;
           stack_allocator_ptr = data_stream;
           
-          DataStructureManager(data_stream, RENDERING_RESOURCE_BLOCK_SIZE, 4, FUN_1801c2890, FUN_18004a130);
+          DataStructureManager(data_stream, RENDERING_RESOURCE_BLOCK_SIZE, 4, FUN_1801c2890, SystemCore_MemoryManager);
           data_buffer[0x3e] = 0;
           *data_buffer = 0;
           (**(code **)(*resource_ptr + 0x10))(resource_ptr, &system_buffer_ptr);
@@ -197,7 +208,7 @@ void RenderingSystemProcessFileData(int64_t render_context, int64_t file_context
       }
       
       FUN_180332560(render_context, file_context, (uint64_t)data_size);
-      FUN_1800571e0(render_context + 0x230, stack_data_array);
+      SystemDatabaseProcessor(render_context + 0x230, stack_data_array);
       return;
     }
     
@@ -321,10 +332,10 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
   CoreMemoryPoolProcessor(&buffer_ptr, data_length);
   *(uint64_t *)((uint64_t)buffer_capacity + data_handle) = RENDERING_MAGIC_NUMBER;
   buffer_capacity = data_length;
-  process_result = FUN_180624a00(&buffer_ptr);
+  process_result = UltraHighFreq_LogManager1(&buffer_ptr);
   
   if (process_result == '\0') {
-    FUN_180624910(&buffer_ptr);
+    SystemManager_Processor(&buffer_ptr);
   }
   
   *resource_data = &system_state_ptr;
@@ -361,9 +372,9 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
     CoreMemoryPoolProcessor(resource_data, string_length + 1);
     *(int16_t *)((uint64_t)*(uint *)(resource_data + 2) + resource_data[1]) = RENDERING_PATH_SEPARATOR;
     *(int *)(resource_data + 2) = string_length + 1;
-    FUN_180628380(resource_data, array_index);
+    RenderingSystem_CameraController(resource_data, array_index);
     array_index = array_index + 1;
-    process_result = FUN_180624a00(resource_data);
+    process_result = UltraHighFreq_LogManager1(resource_data);
   } while (process_result != '\0');
   
   buffer_ptr = &system_data_buffer_ptr;
@@ -514,7 +525,7 @@ LAB_18032d78f:
       CoreMemoryPoolProcessor(&stack_ptr, resource_size);
       *(int16_t *)(string_ptr + string_length) = RENDERING_PATH_SEPARATOR;
       string_length = resource_size;
-      FUN_180626eb0(temp_path, 0x20, &memory_allocator_3388_ptr, **(int32_t **)(resource_handle + 8));
+      SystemCore_CacheManager(temp_path, 0x20, &memory_allocator_3388_ptr, **(int32_t **)(resource_handle + 8));
       resource_handle = -1;
       
       do {
@@ -543,7 +554,7 @@ LAB_18032d78f:
       process_info = 0;
       buffer_flag = 0;
       string_length = data_count;
-      FUN_18062dee0(&process_info, data_ptr, &processed_var_9772_ptr);
+      SystemCore_Validator(&process_info, data_ptr, &processed_var_9772_ptr);
       path_data[0] = 0;
       path_data[1] = 0;
       path_data[2] = 0;

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -19,8 +20,8 @@ void FUN_18084b180(uint64_t param_1,int8_t param_2)
   iVar1 = func_0x00018088c590(param_1,alStackX_18);
   if ((((iVar1 != 0) ||
        (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
-        (iVar2 = FUN_18088c740(alStackX_18 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_18,0x18), iVar1 == 0)) {
+        (iVar2 = RenderingSystemOptimizer(alStackX_18 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStackX_18[0] + 0x98),apuStack_18,0x18), iVar1 == 0)) {
     *apuStack_18[0] = &rendering_buffer_2544_ptr;
     *(int32_t *)(apuStack_18[0] + 1) = 0x18;
     *(int8_t *)(apuStack_18[0] + 2) = param_2;
@@ -926,7 +927,7 @@ uint FUN_18084c150(int64_t *param_1)
 // WARNING: Removing unreachable block (ram,0x0001807480eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_18084c220(int64_t *param_1)
+uint UltraHighFreq_InputHandler1(int64_t *param_1)
 
 {
   int iVar1;

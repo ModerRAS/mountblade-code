@@ -1,5 +1,14 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+n//  的语义化别名
+#define SystemCore_LoggingSystem 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathInterpolationCalculator */
+#define MathInterpolationCalculator MathInterpolationCalculator
+
+
 
 // 02_core_engine_part146.c - 9 个函数
 
@@ -503,7 +512,7 @@ LAB_180137566:
       *(uint64_t *)(param_1 + 0xe) = *(uint64_t *)(lVar17 + 0x40);
       *(uint64_t *)(param_1 + 0x10) = *(uint64_t *)(lVar17 + 0x50);
       if ((lVar11 != 0) && (*(int64_t *)(lVar7 + 0x1c98) == lVar11)) {
-        FUN_18012d2e0(lVar17);
+        SystemCore_DataCompressor(lVar17);
         lVar11 = *(int64_t *)(param_1 + 0x1a);
       }
       if (lVar11 != 0) {
@@ -596,14 +605,14 @@ LAB_180137566:
         *(int32_t *)(lVar11 + 0x1c4c) = uVar3;
         *(int32_t *)(lVar11 + 0x1c50) = uVar4;
         *(int32_t *)(lVar11 + 0x1c54) = param_1[0x19];
-        FUN_180121200(auStack_78,0x14,&rendering_buffer_2680_ptr,*param_1);
+        SystemCore_LoggingSystem(auStack_78,0x14,&rendering_buffer_2680_ptr,*param_1);
         lVar11 = SYSTEM_DATA_MANAGER_A;
         fStack_b8 = 1.4013e-45;
         fStack_b4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x162c);
         fStack_b0 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1630);
         FUN_18013e000(SYSTEM_DATA_MANAGER_A + 0x1b90,&fStack_b8);
         *(uint64_t *)(lVar11 + 0x162c) = 0;
-        FUN_1801299b0(auStack_78,0,0x20081139);
+        CoreSystem_Validator(auStack_78,0,0x20081139);
         lVar11 = SYSTEM_DATA_MANAGER_A;
         lVar12 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
         lVar17 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
@@ -740,7 +749,7 @@ LAB_180137c29:
       uVar9 = func_0x000180121e20(&uStack_88);
       uStack_d0 = 0xf;
       uStack_d8 = 0;
-      FUN_180293f50(*(uint64_t *)(puVar18 + 0xba),param_1 + 0xe,&fStack_b8,uVar9);
+      MathInterpolationCalculator0(*(uint64_t *)(puVar18 + 0xba),param_1 + 0xe,&fStack_b8,uVar9);
       lVar11 = SYSTEM_DATA_MANAGER_A;
     }
   }
@@ -769,7 +778,7 @@ LAB_180137c29:
       uVar9 = func_0x000180121e20(&uStack_88);
       uStack_d0 = 0xf;
       uStack_d8 = 0;
-      FUN_180293f50(*(uint64_t *)(puVar18 + 0xba),param_1 + 0xe,&fStack_b8,uVar9);
+      MathInterpolationCalculator0(*(uint64_t *)(puVar18 + 0xba),param_1 + 0xe,&fStack_b8,uVar9);
     }
     FUN_180291f60(*(uint64_t *)(puVar18 + 0xba));
   }
@@ -802,7 +811,7 @@ LAB_180137c29:
       FUN_1801373f0();
     }
     if (cStack_c7 != '\0') {
-      FUN_18012cfe0();
+      RenderingSystem_MeshProcessor();
     }
   }
 LAB_180137f18:

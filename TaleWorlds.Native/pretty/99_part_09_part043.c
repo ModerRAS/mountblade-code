@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -134,7 +135,7 @@ void FUN_1805d0cd0(int64_t *param_1,float param_2)
       uVar18 = *(uint64_t *)((int64_t)param_1 + 0x14dc);
       lVar13 = (int64_t)*(int *)((int64_t)param_1 + 0x173c) * 0xa60;
       uVar23 = *(uint64_t *)(*(int64_t *)(lVar13 + 0x30c0 + param_1[0x291]) + 0x24);
-      plVar12 = (int64_t *)FUN_180516f50(lVar13 + param_1[0x291] + 0x30a0,&uStack_d8);
+      plVar12 = (int64_t *)UltraHighFreq_MemoryManager1(lVar13 + param_1[0x291] + 0x30a0,&uStack_d8);
     }
     FUN_1805b93a0(param_1,1,plVar12,uVar18,uVar23,&fStackX_8);
     if (fStackX_8._0_1_ != '\0') {
@@ -231,7 +232,7 @@ LAB_1805d1360:
     else {
       if (!bVar2) {
         if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
-          FUN_1805d4440(param_1 + 1);
+          SystemCore_Validator(param_1 + 1);
         }
         if (*(char *)((int64_t)param_1 + 0xd5) != '\0') goto LAB_1805d1360;
       }

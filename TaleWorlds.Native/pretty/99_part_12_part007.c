@@ -1,3 +1,9 @@
+/* 函数别名定义: MathTrigonometryFunction */
+#define MathTrigonometryFunction MathTrigonometryFunction
+
+
+#include "SystemCore_ConfigManager_definition.h"
+#include "RenderingAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -68,10 +74,10 @@ void FUN_1807cb8fe(void)
       plVar17 = (int64_t *)0x0;
       uVar16 = 0;
       uVar24 = 0;
-      iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),pbVar13,1,0x100,0);
+      iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),pbVar13,1,0x100,0);
       if (iVar4 == 0) {
         uVar25 = CONCAT44(uVar24,4);
-        iVar4 = FUN_180772fe0(extraout_XMM0_Da,9,&processed_var_5832_ptr,piVar2,uVar25);
+        iVar4 = SystemMemory_Controller(extraout_XMM0_Da,9,&processed_var_5832_ptr,piVar2,uVar25);
         if (iVar4 == 0) {
           plVar21 = plVar17;
           if (0 < *piVar2) {
@@ -96,7 +102,7 @@ void FUN_1807cb8fe(void)
               unaff_RSI = unaff_RSI + 1;
             } while ((int)uVar19 < *piVar2);
           }
-          iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),iStack0000000000000078 + 0x3c,0);
+          iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),iStack0000000000000078 + 0x3c,0);
           if (iVar4 == 0) {
             *(int32_t *)(unaff_RDI + 0x8f0) = 0;
             if (0 < (int)*(uint *)(unaff_RDI + 0x8ec)) {
@@ -126,9 +132,9 @@ void FUN_1807cb8fe(void)
                   iVar20 = 0;
                   lVar7 = *(int64_t *)(unaff_RDI + 0x278);
                   uVar25 = 0;
-                  iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + -0x60,4,1,0);
+                  iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + -0x60,4,1,0);
                   if ((((iVar4 != 0) ||
-                       (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),0), iVar4 != 0)) ||
+                       (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),0), iVar4 != 0)) ||
                       (iVar4 = FUN_180769ac0(*(uint64_t *)(unaff_RDI + 0x170),
                                              (int64_t)&stack0x00000050 + 4), iVar4 != 0)) ||
                      (iVar4 = FUN_180769ac0(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000058),
@@ -145,20 +151,20 @@ void FUN_1807cb8fe(void)
                      (0 < *(int *)((int64_t)plVar21 + lVar7) * *(int *)(unaff_RDI + 0x3c8))) {
                     pbVar14 = pbVar13 + 3;
                     do {
-                      iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
+                      iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000040);
                       if (iVar4 != 0) goto LAB_1807cc69d;
                       if ((char)bStack0000000000000040 < '\0') {
                         if ((((((bStack0000000000000040 & 1) != 0) &&
-                              (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar13),
+                              (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar13),
                               iVar4 != 0)) ||
                              (((bStack0000000000000040 & 2) != 0 &&
-                              (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -2
+                              (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -2
                                                     ), iVar4 != 0)))) ||
                             (((bStack0000000000000040 & 4) != 0 &&
-                             (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -1)
+                             (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -1)
                              , iVar4 != 0)))) ||
                            (((bStack0000000000000040 & 8) != 0 &&
-                            (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14),
+                            (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14),
                             iVar4 != 0)))) goto LAB_1807cc69d;
                         if ((bStack0000000000000040 & 0x10) != 0) goto LAB_1807cbd3d;
                       }
@@ -166,14 +172,14 @@ void FUN_1807cb8fe(void)
                         if (bStack0000000000000040 != 0) {
                           *pbVar13 = bStack0000000000000040;
                         }
-                        iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -2);
+                        iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -2);
                         if (((iVar4 != 0) ||
-                            (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -1),
+                            (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + -1),
                             iVar4 != 0)) ||
-                           (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14),
+                           (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14),
                            iVar4 != 0)) goto LAB_1807cc69d;
 LAB_1807cbd3d:
-                        iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + 1);
+                        iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),pbVar14 + 1);
                         if (iVar4 != 0) goto LAB_1807cc69d;
                       }
                       if (*pbVar13 == 0x61) {
@@ -225,14 +231,14 @@ LAB_1807cbd3d:
                     in_stack_00000068 = lVar18;
                     func_0x00018076a7d0(*(uint64_t *)(unaff_RDI + 0x170),&stack0x00000050);
                     uVar25 = 0;
-                    iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),
+                    iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),
                                           (int64_t)&stack0x00000078 + 4,4,1,0);
                     if (iVar4 != 0) break;
                     iStack0000000000000050 = iStack0000000000000050 + iStack000000000000007c;
                     uVar25 = 0;
-                    iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18,1,0x16,0);
+                    iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18,1,0x16,0);
                     if (((iVar4 != 0) ||
-                        (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),0), iVar4 != 0))
+                        (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),0), iVar4 != 0))
                        || (iVar4 = FUN_180769ac0(*(uint64_t *)(unaff_RDI + 0x170),
                                                  (int64_t)&stack0x00000040 + 4), iVar4 != 0))
                     goto LAB_1807cc69d;
@@ -254,49 +260,49 @@ LAB_1807cbd3d:
                       *(uint64_t *)(lVar18 + 0x2f8) = 0;
                       *(uint64_t *)(lVar18 + 0x330) = 0;
                       *(uint64_t *)(lVar18 + 0x368) = 0;
-                      iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),
+                      iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),
                                             iStack0000000000000050,0);
                       if (iVar4 != 0) goto LAB_1807cc69d;
                     }
                     else {
-                      iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + -0x5c,4,1
+                      iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RBP + -0x5c,4,1
                                             ,0);
                       if (((iVar4 != 0) ||
-                          (iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x3a0,1
+                          (iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x3a0,1
                                                  ,0x60,0), iVar4 != 0)) ||
-                         (iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x402,2,
+                         (iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x402,2,
                                                 0x18,0), iVar4 != 0)) goto LAB_1807cc69d;
                       uVar25 = 0;
-                      iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x45a,2,0x18
+                      iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x45a,2,0x18
                                             ,0);
                       if ((((iVar4 != 0) ||
-                           (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x401)
+                           (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x401)
                            , iVar4 != 0)) ||
-                          ((((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                          ((((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                     lVar18 + 0x458), iVar4 != 0 ||
-                             (((((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                             (((((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                         lVar18 + 0x452), iVar4 != 0 ||
-                                 (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                                 (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                         lVar18 + 0x453), iVar4 != 0)) ||
-                                (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                                (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                        lVar18 + 0x454), iVar4 != 0)) ||
-                               ((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                               ((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                        lVar18 + 0x4aa), iVar4 != 0 ||
-                                (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                                (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                        lVar18 + 0x4ab), iVar4 != 0)))) ||
-                              (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                              (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                      lVar18 + 0x4ac), iVar4 != 0)))) ||
-                            ((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                            ((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                     lVar18 + 0x400), iVar4 != 0 ||
-                             (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                             (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                     lVar18 + 0x457), iVar4 != 0)))) ||
-                           (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x507)
+                           (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x507)
                            , iVar4 != 0)))) ||
-                         ((((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x508
+                         ((((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x508
                                                   ), iVar4 != 0 ||
-                            (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x509
+                            (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x509
                                                   ), iVar4 != 0)) ||
-                           (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x50a)
+                           (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x50a)
                            , iVar4 != 0)) ||
                           (iVar4 = FUN_180769ac0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x50c),
                           iVar4 != 0)))) goto LAB_1807cc69d;
@@ -307,7 +313,7 @@ LAB_1807cbd3d:
                       if (*(byte *)(lVar18 + 0x458) < 2) {
                         *(int8_t *)(lVar18 + 0x457) = 0;
                       }
-                      iVar4 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),
+                      iVar4 = MathTrigonometryFunction0(*(uint64_t *)(unaff_RDI + 0x170),
                                             iStack0000000000000050,0);
                       if (iVar4 != 0) goto LAB_1807cc69d;
                       if (uStack0000000000000044 != 0) {
@@ -319,19 +325,19 @@ LAB_1807cbd3d:
                         *(uint64_t *)(lVar18 + 0x48) = 0;
                         *(uint64_t *)(lVar18 + 0x50) = 0;
                         *(int *)(unaff_RDI + 0x8fc) = *(int *)(unaff_RDI + 0x8fc) + 1;
-                        iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),
+                        iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),
                                               (int64_t)&stack0x00000060 + 4,4,1,0);
                         if (((iVar4 == 0) &&
-                            (iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x30,
+                            (iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x30,
                                                    4,1,0), iVar4 == 0)) &&
-                           ((iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x34,
+                           ((iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x34,
                                                    4,1,0), iVar4 == 0 &&
-                            ((iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x2c
+                            ((iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x2c
                                                    ), iVar4 == 0 &&
                              (iVar4 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x3c
                                                    ), iVar4 == 0)))))) {
                           *(int32_t *)(lVar18 + 0x54) = 1;
-                          iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),
+                          iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),
                                                 (int64_t)&stack0x00000048 + 5);
                           if (iVar4 == 0) {
                             bVar15 = (bStack000000000000004d & 1) * '\x02' + 8;
@@ -359,13 +365,13 @@ LAB_1807cbd3d:
                             bVar23 = (bStack000000000000004d & 0x20) != 0;
                             *(uint *)(lVar18 + 0x30) = (uVar16 >> bVar22) >> bVar23;
                             *(uint *)(lVar18 + 0x34) = (uVar19 >> bVar22) >> bVar23;
-                            iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x2d);
+                            iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),lVar18 + 0x2d);
                             if ((((iVar4 == 0) &&
                                  (iVar4 = FUN_1807697a0(*(uint64_t *)(unaff_RDI + 0x170),
                                                         lVar18 + 0x38), iVar4 == 0)) &&
-                                (iVar4 = FUN_180769720(*(uint64_t *)(unaff_RDI + 0x170),0),
+                                (iVar4 = SystemMonitor(*(uint64_t *)(unaff_RDI + 0x170),0),
                                 iVar4 == 0)) &&
-                               (iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),
+                               (iVar4 = SystemPerformanceOptimizer(*(uint64_t *)(unaff_RDI + 0x170),
                                                       unaff_RBP + 0x1c0,1,0x16,0), iVar4 == 0)) {
                     // WARNING: Subroutine does not return
                               SystemDataValidator(unaff_RBP + 0x2e0,0x100,&processed_var_5872_ptr,
@@ -478,7 +484,7 @@ LAB_1807cbd3d:
                     *(int32_t *)(unaff_RDI + 0x18) = 0;
                     FUN_18080d060(uVar24,1);
                     if (((*(byte *)(unaff_RDI + 0x160) & 0x80) != 0) &&
-                       (iVar4 = FUN_180769080(*(uint64_t *)(unaff_RDI + 0x170)), iVar4 == 0)) {
+                       (iVar4 = UISystem_Renderer(*(uint64_t *)(unaff_RDI + 0x170)), iVar4 == 0)) {
                     // WARNING: Subroutine does not return
                       FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                     *(uint64_t *)(unaff_RDI + 0x170),&processed_var_8528_ptr,0xc42,1);
@@ -502,8 +508,8 @@ LAB_1807cc69d:
 
 
 
-// 函数: void FUN_1807cc6a5(void)
-void FUN_1807cc6a5(void)
+// 函数: void InitializationSystem_StateController(void)
+void InitializationSystem_StateController(void)
 
 {
   int64_t unaff_RBP;

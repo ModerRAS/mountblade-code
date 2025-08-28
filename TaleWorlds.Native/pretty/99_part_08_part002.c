@@ -53,7 +53,7 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
                   FUN_1804dfdb0(piVar16,lVar5);
                 }
                 else {
-                  FUN_1804de580();
+                  NetworkSystem_SecurityValidator();
                 }
               }
             }
@@ -70,7 +70,7 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
                 FUN_1804dfdb0(piVar16,lVar5);
               }
               else {
-                FUN_1804de580();
+                NetworkSystem_SecurityValidator();
               }
               lVar13 = 0;
               lVar5 = *param_1;
@@ -188,7 +188,7 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
                 FUN_1804dfdb0(piVar16,lVar5);
               }
               else {
-                FUN_1804de580();
+                NetworkSystem_SecurityValidator();
               }
             }
           }
@@ -204,7 +204,7 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
               FUN_1804dfdb0(piVar16,lVar5);
             }
             else {
-              FUN_1804de580();
+              NetworkSystem_SecurityValidator();
             }
             lVar13 = 0;
             lVar5 = *unaff_R12;
@@ -312,7 +312,7 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
                   FUN_1804dfdb0(piVar16,lVar5);
                 }
                 else {
-                  FUN_1804de580();
+                  NetworkSystem_SecurityValidator();
                 }
               }
             }
@@ -329,7 +329,7 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
                 FUN_1804dfdb0(piVar16,lVar5);
               }
               else {
-                FUN_1804de580();
+                NetworkSystem_SecurityValidator();
               }
               lVar13 = 0;
               lVar5 = *param_1;
@@ -447,7 +447,7 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
                 FUN_1804dfdb0(piVar16,lVar5);
               }
               else {
-                FUN_1804de580();
+                NetworkSystem_SecurityValidator();
               }
             }
           }
@@ -463,7 +463,7 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
               FUN_1804dfdb0(piVar16,lVar5);
             }
             else {
-              FUN_1804de580();
+              NetworkSystem_SecurityValidator();
             }
             lVar13 = 0;
             lVar5 = *unaff_R12;
@@ -566,7 +566,7 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
                   FUN_1804dfdb0(piVar12,lVar4);
                 }
                 else {
-                  FUN_1804de580();
+                  NetworkSystem_SecurityValidator();
                 }
               }
             }
@@ -581,11 +581,11 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
               cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar11[5]);
               if (cVar5 == '\0') {
                 FUN_1804dfdb0(piVar12,lVar4);
-                FUN_1804de580(lVar13 + 8,*param_1);
+                NetworkSystem_SecurityValidator(lVar13 + 8,*param_1);
               }
               else {
-                FUN_1804de580();
-                FUN_1804de580(lVar13 + 8,*param_1);
+                NetworkSystem_SecurityValidator();
+                NetworkSystem_SecurityValidator(lVar13 + 8,*param_1);
               }
             }
           }
@@ -648,7 +648,7 @@ void FUN_1804ddbfc(void)
                 FUN_1804dfdb0(piVar11,lVar4);
               }
               else {
-                FUN_1804de580();
+                NetworkSystem_SecurityValidator();
               }
             }
           }
@@ -663,11 +663,11 @@ void FUN_1804ddbfc(void)
             cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar10[5]);
             if (cVar5 == '\0') {
               FUN_1804dfdb0(piVar11,lVar4);
-              FUN_1804de580(lVar12 + 8,*unaff_R15);
+              NetworkSystem_SecurityValidator(lVar12 + 8,*unaff_R15);
             }
             else {
-              FUN_1804de580();
-              FUN_1804de580(lVar12 + 8,*unaff_R15);
+              NetworkSystem_SecurityValidator();
+              NetworkSystem_SecurityValidator(lVar12 + 8,*unaff_R15);
             }
           }
         }

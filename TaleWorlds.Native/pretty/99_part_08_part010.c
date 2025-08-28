@@ -1,3 +1,9 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -412,7 +418,7 @@ void FUN_1804e9160(int64_t param_1,uint param_2)
     }
     *(int16_t *)(lVar4 + 0x3d1) = 0;
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&ui_system_data_1728_ptr);
+    SystemParameterHandler(system_message_context,&ui_system_data_1728_ptr);
   }
   *(int8_t *)(lVar4 + 0x3d0) = 0;
   lVar6 = *(int64_t *)(*(int64_t *)(param_1 + 0x87b340) + uVar7 * 8) + lVar6;
@@ -457,7 +463,7 @@ void FUN_1804e9160(int64_t param_1,uint param_2)
     (**(code **)((void *)*puVar5 + 0x10))(puVar5);
   }
   *(int32_t *)(puVar5 + 1) = 0;
-  FUN_1800571e0(param_1 + 0x87b320,auStackX_10);
+  SystemDatabaseProcessor(param_1 + 0x87b320,auStackX_10);
   if (*(int *)(param_1 + 0x87b318) - 1U == param_2) {
     *(int32_t *)(param_1 + 0x87b318) = 0;
     uVar3 = *(int *)(param_1 + 0x87b31c) - 1;

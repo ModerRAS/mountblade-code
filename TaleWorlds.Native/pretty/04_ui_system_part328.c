@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -694,7 +695,7 @@ uint FUN_18084c150(int64_t *param_1)
 // WARNING: Removing unreachable block (ram,0x0001807480eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_18084c220(int64_t *param_1)
+uint UltraHighFreq_InputHandler1(int64_t *param_1)
 
 {
   int iVar1;
@@ -758,9 +759,9 @@ void FUN_18084c2d0(uint64_t *param_1)
   }
   FUN_18084c150(param_1 + 0x16);
   FUN_18084c150(param_1 + 0x14);
-  FUN_18084c220(param_1 + 0x12);
-  FUN_18084c220(param_1 + 0x10);
-  FUN_18084c220(param_1 + 7);
+  UltraHighFreq_InputHandler1(param_1 + 0x12);
+  UltraHighFreq_InputHandler1(param_1 + 0x10);
+  UltraHighFreq_InputHandler1(param_1 + 7);
   *param_1 = &processed_var_936_ptr;
   plVar1 = param_1 + 4;
   plVar2 = (int64_t *)*plVar1;
@@ -775,8 +776,8 @@ void FUN_18084c2d0(uint64_t *param_1)
     plVar3 = plVar2;
   }
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
-  FUN_18084c220(plVar3 + 4);
-  FUN_18084c220(plVar3 + 2);
+  UltraHighFreq_InputHandler1(plVar3 + 4);
+  UltraHighFreq_InputHandler1(plVar3 + 2);
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
@@ -806,7 +807,7 @@ uint64_t FUN_18084c350(uint64_t param_1,uint64_t param_2)
 int64_t FUN_18084c390(int64_t param_1,uint64_t param_2)
 
 {
-  FUN_18084c220(param_1 + 0x38);
+  UltraHighFreq_InputHandler1(param_1 + 0x38);
   FUN_1808b02a0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x48);
@@ -923,8 +924,8 @@ uint64_t FUN_18084c55b(void)
 
 
 
-// 函数: void FUN_18084c5a0(int64_t *param_1)
-void FUN_18084c5a0(int64_t *param_1)
+// 函数: void UISystem_EventDispatcher(int64_t *param_1)
+void UISystem_EventDispatcher(int64_t *param_1)
 
 {
   int iVar1;
@@ -972,7 +973,7 @@ void FUN_18084c5a0(int64_t *param_1)
   }
   *(int32_t *)(param_1 + 1) = 0;
   if (0 < (int)((uVar8 ^ (int)uVar8 >> 0x1f) - ((int)uVar8 >> 0x1f))) {
-    FUN_18084d3f0(param_1,0);
+    RenderingSystem_TextureManager(param_1,0);
   }
   return;
 }
@@ -1017,7 +1018,7 @@ void FUN_18084c612(int32_t param_1,int param_2,uint param_3)
   }
   *(int *)(unaff_RDI + 8) = (int)unaff_RBP;
   if (0 < (int)((param_3 ^ (int)param_3 >> 0x1f) - ((int)param_3 >> 0x1f))) {
-    FUN_18084d3f0(param_1,0);
+    RenderingSystem_TextureManager(param_1,0);
   }
   return;
 }
@@ -1060,7 +1061,7 @@ void FUN_18084c61e(int64_t param_1)
   *(int *)(unaff_RDI + 8) = (int)unaff_RBP;
   uVar6 = (int)*(uint *)(unaff_RDI + 0xc) >> 0x1f;
   if (0 < (int)((*(uint *)(unaff_RDI + 0xc) ^ uVar6) - uVar6)) {
-    FUN_18084d3f0(uVar1,0);
+    RenderingSystem_TextureManager(uVar1,0);
   }
   return;
 }

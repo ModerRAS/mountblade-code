@@ -1,3 +1,7 @@
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -52,7 +56,7 @@ LAB_1801b8583:
           if (lVar12 != 0) goto LAB_1801b8583;
           puVar3 = (uint64_t *)0x0;
         }
-        puVar4 = (uint64_t *)FUN_180059780(puVar16,puVar15,puVar3);
+        puVar4 = (uint64_t *)SystemCore_Initializer(puVar16,puVar15,puVar3);
         CoreEngineDataTransformer(puVar4,puVar9);
         for (puVar10 = puVar16; puVar10 != puVar15; puVar10 = puVar10 + 4) {
           (**(code **)*puVar10)(puVar10,0);
@@ -102,7 +106,7 @@ LAB_1801b86ae:
                     CoreEngineDataTransformer();
                   }
                   else {
-                    FUN_180059820(param_2,puVar3 + uVar11 * 4);
+                    SystemCore_BackupSystem(param_2,puVar3 + uVar11 * 4);
                   }
                 }
                 break;

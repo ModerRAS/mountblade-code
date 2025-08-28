@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_12_part010.c - 7 个函数
 
 // 函数: void FUN_1807cf4e0(int64_t param_1)
@@ -132,7 +136,7 @@ uint64_t FUN_1807cf760(int64_t param_1)
     uVar4 = uVar3;
   }
   iVar1 = *(int *)(*(int64_t *)(uVar4 + 0x48) + 0x6d0);
-  FUN_180768b70(auStackX_8);
+  SystemCore_PerformanceMonitor(auStackX_8);
   auStackX_8[0] = (iVar1 * auStackX_8[0]) / 1000;
   if (*(uint *)(uVar4 + 0x41c) <= auStackX_8[0] - *(int *)(uVar4 + 0x418)) {
     if (uVar4 != 0) {
@@ -142,7 +146,7 @@ uint64_t FUN_1807cf760(int64_t param_1)
     uVar3 = (uint64_t)uVar2;
     *(int *)(uVar4 + 0x418) = *(int *)(uVar4 + 0x418) + *(int *)(uVar4 + 0x41c);
   }
-  FUN_180768bf0(*(int32_t *)(uVar4 + 0x420));
+  UIComponent_EventHandler(*(int32_t *)(uVar4 + 0x420));
   return uVar3;
 }
 
@@ -162,7 +166,7 @@ uint64_t FUN_1807cf800(int64_t param_1)
     plVar2 = (int64_t *)0x48;
   }
   iVar1 = *(int *)(*plVar2 + 0x6d0);
-  FUN_180768b70(aiStackX_8);
+  SystemCore_PerformanceMonitor(aiStackX_8);
   puVar3 = (uint *)(param_1 + 0x410);
   if (param_1 == 0) {
     puVar3 = (uint *)0x418;
@@ -507,7 +511,7 @@ uint64_t FUN_1807cff20(int64_t param_1)
     uVar6 = uVar7;
   }
   iVar1 = *(int *)(*(int64_t *)(uVar6 + 0x48) + 0x6d0);
-  FUN_180768b70(auStackX_8);
+  SystemCore_PerformanceMonitor(auStackX_8);
   auStackX_8[0] = (iVar1 * auStackX_8[0]) / 1000;
   uVar4 = ((uint64_t)(uint)(*(int *)(uVar6 + 0x520) << 3) / (uint64_t)*(uint *)(uVar6 + 0x528)) /
           (uint64_t)*(uint *)(uVar6 + 0x58);
@@ -538,7 +542,7 @@ uint64_t FUN_1807cff20(int64_t param_1)
         }
         *(int *)(uVar6 + 0x52c) = *(int *)(uVar6 + 0x52c) + *(int *)(uVar6 + 0x520);
       }
-      FUN_180768bf0(*(int32_t *)(uVar6 + 0x524));
+      UIComponent_EventHandler(*(int32_t *)(uVar6 + 0x524));
       uVar2 = uVar7;
     }
   }
@@ -561,7 +565,7 @@ uint64_t FUN_1807d0030(int64_t param_1)
     plVar2 = (int64_t *)0x48;
   }
   iVar1 = *(int *)(*plVar2 + 0x6d0);
-  FUN_180768b70(aiStackX_8);
+  SystemCore_PerformanceMonitor(aiStackX_8);
   puVar3 = (uint *)(param_1 + 0x528);
   if (param_1 == 0) {
     puVar3 = (uint *)0x530;

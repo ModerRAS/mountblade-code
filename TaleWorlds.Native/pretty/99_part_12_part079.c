@@ -1,4 +1,17 @@
-#include "FUN_1808de000_definition.h"
+#include "ultra_high_freq_fun_definitions.h"
+/* UISystem_Controller - UISystem_Controller */
+#define UISystem_Controller UISystem_Controller
+
+
+/* 函数别名定义: SystemInputManager */
+#define SystemInputManager SystemInputManager
+
+
+/* 函数别名定义: DataCompressor */
+#define DataCompressor DataCompressor
+
+
+#include "SystemInputManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part079.c - 5 个函数
@@ -36,7 +49,7 @@ uint64_t FUN_1808a0670(int64_t param_1,int64_t *param_2)
   int32_t auStackX_20 [2];
   uint auStack_18 [4];
   
-  uVar2 = FUN_1808ddf00(param_2,0);
+  uVar2 = UltraHighFreq_ResourceLoader1(param_2,0);
   if ((int)uVar2 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -51,7 +64,7 @@ uint64_t FUN_1808a0670(int64_t param_1,int64_t *param_2)
       auStackX_18[0] = *(uint *)(param_1 + 0x34);
       uVar2 = (**(code **)**(uint64_t **)(*param_2 + 8))
                         (*(uint64_t **)(*param_2 + 8),auStackX_18,4);
-      if (((int)uVar2 == 0) && (uVar2 = FUN_1808de160(param_2,0), (int)uVar2 == 0)) {
+      if (((int)uVar2 == 0) && (uVar2 = UISystem_Controller(param_2,0), (int)uVar2 == 0)) {
         if (0x6b < *(uint *)(param_2 + 8)) {
           uVar1 = *(int *)(param_1 + 0x40) * 2;
           if ((uVar1 | 1) < 0x8000) {
@@ -74,7 +87,7 @@ uint64_t FUN_1808a0670(int64_t param_1,int64_t *param_2)
           for (; (*(uint64_t *)(param_1 + 0x38) <= uVar4 &&
                  (uVar4 < (int64_t)*(int *)(param_1 + 0x40) * 0x10 + *(uint64_t *)(param_1 + 0x38)
                  )); uVar4 = uVar4 + 0x10) {
-            uVar2 = FUN_1808ddf00(param_2,auStackX_20[0]);
+            uVar2 = UltraHighFreq_ResourceLoader1(param_2,auStackX_20[0]);
             if ((int)uVar2 != 0) {
               return uVar2;
             }
@@ -85,7 +98,7 @@ uint64_t FUN_1808a0670(int64_t param_1,int64_t *param_2)
             if ((int)uVar2 != 0) {
               return uVar2;
             }
-            uVar2 = FUN_1808de160(param_2,auStackX_20);
+            uVar2 = UISystem_Controller(param_2,auStackX_20);
             if ((int)uVar2 != 0) {
               return uVar2;
             }
@@ -136,7 +149,7 @@ uint64_t FUN_1808a0720(void)
     for (; (*(uint64_t *)(unaff_RSI + 0x38) <= uVar3 &&
            (uVar3 < (int64_t)*(int *)(unaff_RSI + 0x40) * 0x10 + *(uint64_t *)(unaff_RSI + 0x38)))
         ; uVar3 = uVar3 + 0x10) {
-      uVar4 = FUN_1808ddf00();
+      uVar4 = UltraHighFreq_ResourceLoader1();
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -147,7 +160,7 @@ uint64_t FUN_1808a0720(void)
       if ((int)uVar4 != 0) {
         return uVar4;
       }
-      uVar4 = FUN_1808de160();
+      uVar4 = UISystem_Controller();
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -183,7 +196,7 @@ uint64_t FUN_1808a0810(int64_t param_1,uint64_t *param_2)
     }
   }
   else {
-    uVar1 = FUN_1808ddd30(param_1,auStack_28,1,0x5453494c,0x55444f4d);
+    uVar1 = DataCompressor0(param_1,auStack_28,1,0x5453494c,0x55444f4d);
     if ((int)uVar1 == 0) {
       uVar1 = FUN_1808a4260(param_1,0x42444f4d,param_2);
       if ((int)uVar1 == 0) {
@@ -207,9 +220,9 @@ uint64_t FUN_1808a08b0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x5449554d);
+  uVar1 = DataCompressor0(param_2,auStack_28,1,0x5453494c,0x5449554d);
   if ((int)uVar1 == 0) {
-    uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x4249554d,0);
+    uVar1 = DataCompressor0(param_2,auStack_48,0,0x4249554d,0);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
@@ -257,10 +270,10 @@ uint64_t FUN_1808a0990(int64_t param_1,int64_t *param_2)
   int8_t auStack_60 [32];
   int8_t auStack_40 [40];
   
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,1,0x5453494c,0x4f4c4d50);
+  uVar4 = DataCompressor0(param_2,auStack_40,1,0x5453494c,0x4f4c4d50);
   if ((int)uVar4 == 0) {
     uVar3 = 0;
-    uVar4 = FUN_1808ddd30(param_2,auStack_60,0,0x424c4d50,0);
+    uVar4 = DataCompressor0(param_2,auStack_60,0,0x424c4d50,0);
     if ((int)uVar4 == 0) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar2 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
@@ -370,7 +383,7 @@ uint64_t FUN_1808a09c5(int32_t param_1)
   int16_t in_stack_000000c8;
   
   uVar3 = 0;
-  uVar4 = FUN_1808ddd30(param_1,&stack0x00000048,0,0x424c4d50,0);
+  uVar4 = DataCompressor0(param_1,&stack0x00000048,0,0x424c4d50,0);
   if ((int)uVar4 != 0) {
     return uVar4;
   }

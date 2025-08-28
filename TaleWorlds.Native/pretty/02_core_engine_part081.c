@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part081.c - 10 个函数
 
 // 函数: void FUN_18010e9ca(void)
@@ -99,7 +107,7 @@ void FUN_18010e9ca(void)
       }
       fVar11 = unaff_XMM8_Da;
       if (unaff_RDI != uVar6) {
-        FUN_180297340(pfVar2,&stack0x00000050,fVar1,0x7f7fffff,0xbf800000);
+        SystemCore_StateController(pfVar2,&stack0x00000050,fVar1,0x7f7fffff,0xbf800000);
         if (unaff_XMM8_Da < fStack0000000000000050) {
           fStack0000000000000050 = fStack0000000000000050 - fVar1 / *pfVar2;
         }
@@ -110,7 +118,7 @@ void FUN_18010e9ca(void)
         *(float *)(unaff_RBP + 0x48) = fVar11;
         unaff_XMM11_Da = fVar11;
       }
-      FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar6,0);
+      SystemCore_ManageMemory(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar6,0);
       unaff_RSI = SYSTEM_DATA_MANAGER_A;
       fVar12 = fVar12 + unaff_XMM10_Da;
       unaff_RDI = uVar6 + 1;
@@ -145,7 +153,7 @@ void FUN_18010e9ca(void)
        ((*(float *)(lVar3 + 0x228) <= fVar12 && fVar12 != *(float *)(lVar3 + 0x228) &&
         (unaff_XMM14_Da < *(float *)(lVar3 + 0x230))))) || (*(char *)(unaff_RSI + 0x2e38) != cVar4))
      && (in_stack_00000058 = fVar12, fStack000000000000005c = fVar13,
-        cVar4 = FUN_180128040(&stack0x00000050,&stack0x00000058,1), cVar4 != '\0')) {
+        cVar4 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1), cVar4 != '\0')) {
     *(uint *)(lVar7 + 0x148) = *(uint *)(lVar7 + 0x148) | 1;
   }
   return;
@@ -205,7 +213,7 @@ void FUN_18010ea4d(void)
     }
     fVar9 = unaff_XMM8_Da;
     if (unaff_RDI != uVar5) {
-      FUN_180297340(pfVar2,&stack0x00000050,fVar1,0x7f7fffff,0xbf800000);
+      SystemCore_StateController(pfVar2,&stack0x00000050,fVar1,0x7f7fffff,0xbf800000);
       if (unaff_XMM8_Da < in_stack_00000050) {
         in_stack_00000050 = in_stack_00000050 - fVar1 / *pfVar2;
       }
@@ -216,7 +224,7 @@ void FUN_18010ea4d(void)
       *(float *)(unaff_RBP + 0x48) = fVar9;
       unaff_XMM11_Da = fVar9;
     }
-    FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar5,0);
+    SystemCore_ManageMemory(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar5,0);
     unaff_RSI = SYSTEM_DATA_MANAGER_A;
     unaff_XMM6_Da = unaff_XMM6_Da + unaff_XMM10_Da;
     unaff_RDI = uVar5 + 1;
@@ -253,7 +261,7 @@ void FUN_18010ea4d(void)
         (unaff_XMM14_Da < *(float *)(lVar3 + 0x230))))) ||
       (*(char *)(unaff_RSI + 0x2e38) != (char)unaff_R12)) &&
      (in_stack_00000058 = fVar10, fStack000000000000005c = fVar11,
-     cVar4 = FUN_180128040(&stack0x00000050,&stack0x00000058,1), cVar4 != '\0')) {
+     cVar4 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1), cVar4 != '\0')) {
     *(uint *)(lVar7 + 0x148) = *(uint *)(lVar7 + 0x148) | 1;
   }
   return;
@@ -315,7 +323,7 @@ void FUN_18010ebc0(void)
      (*(char *)(unaff_RSI + 0x2e38) != (char)unaff_R12)) {
     in_stack_00000058 = fVar6;
     fStack000000000000005c = fVar5;
-    cVar2 = FUN_180128040(&stack0x00000050,&stack0x00000058,1);
+    cVar2 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
     if (cVar2 != '\0') {
       *(uint *)(lVar4 + 0x148) = *(uint *)(lVar4 + 0x148) | 1;
     }
@@ -364,7 +372,7 @@ void FUN_18010ec09(void)
      (*(char *)(unaff_RSI + 0x2e38) != (char)unaff_R12)) {
     in_stack_00000058 = fVar5;
     fStack000000000000005c = fVar4;
-    cVar2 = FUN_180128040(&stack0x00000050,&stack0x00000058,1);
+    cVar2 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
     if (cVar2 != '\0') {
       *(uint *)(lVar3 + 0x148) = *(uint *)(lVar3 + 0x148) | 1;
     }
@@ -396,7 +404,7 @@ void FUN_18010ec85(void)
        *pfVar1 <= unaff_XMM7_Da && unaff_XMM7_Da != *pfVar1)) &&
       (unaff_XMM14_Da < *(float *)(CONCAT71(in_register_00000001,in_AL) + 0x230))) ||
      (*(char *)(unaff_RSI + 0x2e38) != unaff_R12B)) {
-    cVar2 = FUN_180128040(&stack0x00000050,&stack0x00000058,1);
+    cVar2 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
     if (cVar2 != '\0') {
       *(uint *)(in_R10 + 0x148) = *(uint *)(in_R10 + 0x148) | 1;
     }

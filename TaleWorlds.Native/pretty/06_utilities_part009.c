@@ -871,7 +871,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
         stack_array2[0] = -1;
         
         // 初始化渲染器列表
-        FUN_1807d1650(render_list, &buffer_size, stack_array2);
+        NetworkSystem_ConnectionHandler(render_list, &buffer_size, stack_array2);
         stack_array[0] = stack_array2[0];
         
         if (stack_array2[0] != -1) {
@@ -1153,7 +1153,7 @@ cleanup_render_data:
 process_render_flags:
     if ((render_flags >> 0x19 & 1) != 0) {
         int64_t temp_ptr = *(int64_t*)(param_1 + 0xa0);
-        result_value = FUN_18073c4c0(*(uint64_t*)(param_1 + 0x60), param_1 + 0xa0, 0);
+        result_value = UtilitiesSystem_MathCalculator(*(uint64_t*)(param_1 + 0x60), param_1 + 0xa0, 0);
         
         if ((int)result_value != 0) {
             return result_value;
@@ -1260,7 +1260,7 @@ uint64_t* UtilitiesSystem_MemoryHandler(uint64_t* param_1, uint64_t param_2)
     *param_1 = (uint64_t)&processed_var_7872_ptr;
     
     // 执行内存操作
-    FUN_180840270(param_1 + 5);
+    SystemCore_MemoryManager(param_1 + 5);
     
     // 重置指针到预定义地址
     *param_1 = (uint64_t)&processed_var_7840_ptr;
@@ -1551,7 +1551,7 @@ uint64_t UtilitiesSystem_ParameterValidator(int64_t param_1, uint64_t param_2, u
     int param_count;                                  /**< 参数计数 */
     
     // 执行参数验证
-    validate_result = FUN_18088ee20(param_3, param_1 + 0x10);
+    validate_result = UISystem_LayoutEngine(param_3, param_1 + 0x10);
     
     // 检查验证结果
     if ((int)validate_result == 0) {
@@ -1559,7 +1559,7 @@ uint64_t UtilitiesSystem_ParameterValidator(int64_t param_1, uint64_t param_2, u
         *(uint32_t*)(param_1 + 0x14) = 0;
         
         // 检查参数数量
-        if ((1 < *(int*)(param_1 + 0x10)) && (validate_result = FUN_18088ee60(param_3), (int)validate_result != 0)) {
+        if ((1 < *(int*)(param_1 + 0x10)) && (validate_result = SystemCore_DataProcessor(param_3), (int)validate_result != 0)) {
             return validate_result;
         }
         

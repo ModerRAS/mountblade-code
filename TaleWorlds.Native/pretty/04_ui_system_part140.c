@@ -144,7 +144,7 @@ uint64_t FUN_18074c360(int64_t *param_1,uint64_t param_2,uint param_3)
   }
   uVar1 = (**(code **)(*param_1 + 0x120))(param_1,0xfffffffe,&uStackX_20);
   if ((int)uVar1 == 0) {
-    uVar1 = FUN_18076e380(uStackX_20,param_2,param_3);
+    uVar1 = UISystem_DataHandler0(uStackX_20,param_2,param_3);
     if ((int)uVar1 == 0) {
       uVar1 = (**(code **)(*param_1 + 0x208))(param_1);
     }
@@ -506,7 +506,7 @@ LAB_18074cc84:
             *(uint *)(param_2 + 100) = *(uint *)(param_2 + 100) & 0xffffffbf;
             UNLOCK();
             *(uint64_t *)(param_2 + 0x1f8) = 0;
-            uVar7 = FUN_180762070(param_2,0,0);
+            uVar7 = SystemCore_Initializer(param_2,0,0);
             uVar2 = (uint64_t)uVar7;
             if (uVar7 != 0) {
 LAB_18074cd03:

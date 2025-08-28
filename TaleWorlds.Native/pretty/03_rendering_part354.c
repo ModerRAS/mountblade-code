@@ -1,3 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_Handler - SystemCore_Handler */
+#define SystemCore_Handler SystemCore_Handler
+
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -90,12 +99,12 @@ void FUN_18045c5c0(int64_t param_1)
     if ((iVar2 < 0) ||
        ((uint64_t)(*(int64_t *)(lVar4 + 0x890) - *(int64_t *)(lVar4 + 0x888) >> 5) <=
         (uint64_t)(int64_t)iVar2)) {
-      lVar4 = FUN_180628ca0();
+      lVar4 = MemoryDebugger0();
     }
     else {
       lVar4 = (int64_t)iVar2 * 0x20 + *(int64_t *)(lVar4 + 0x888);
     }
-    FUN_180627ce0(lVar4,&puStack_110,&puStack_f0);
+    UtilitiesSystem_FileHandler(lVar4,&puStack_110,&puStack_f0);
     (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer,&puStack_110);
     puStack_110 = &system_data_buffer_ptr;
     if (lStack_108 != 0) {
@@ -421,7 +430,7 @@ int8_t FUN_18045ceb0(void)
   pppplVar6 = (int64_t ****)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,0xfffffffffffffffe);
   ppplVar4 = system_global_data_ptr;
   ppplStackX_8 = (int64_t ***)pppplVar6;
-  FUN_180049830(pppplVar6);
+  UltraHighFreq_PerformanceMonitor1(pppplVar6);
   *pppplVar6 = (int64_t ***)&memory_allocator_3624_ptr;
   *(int8_t *)(pppplVar6 + 0x18) = 0;
   pppplVar6[0x19] = ppplVar4;
@@ -458,7 +467,7 @@ joined_r0x00018045cfc8:
   ppplStackX_8 = (int64_t ***)&ppplStackX_10;
   ppplStackX_10 = (int64_t ***)pppplVar6;
   (*(code *)(*pppplVar6)[5])(pppplVar6);
-  FUN_18005e6a0(lVar3,&ppplStackX_10,1);
+  SystemCore_ErrorHandler(lVar3,&ppplStackX_10,1);
 LAB_18045cf9b:
   uVar1 = *(int8_t *)(pppplVar6 + 0x18);
   (*(code *)(*pppplVar6)[7])(pppplVar6);
@@ -482,7 +491,7 @@ FUN_18045d030(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   
   pcVar1 = *(code **)(*system_cache_buffer + 0x70);
   CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar3 = FUN_180169110();
+  uVar3 = SystemCore_Handler();
   uVar2 = (*pcVar1)(system_cache_buffer,uVar3);
   if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
@@ -668,7 +677,7 @@ void FUN_18045d430(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t par
   uStack_40 = 0;
   uStack_38 = 3;
   if (lStack_68 != 0) {
-    FUN_180057980(&puStack_70,&puStack_50,&system_ptr_ccb0);
+    CoreSystem_DataCollector(&puStack_70,&puStack_50,&system_ptr_ccb0);
   }
   puVar2 = puStack_48;
   puVar1 = puStack_50;
@@ -745,7 +754,7 @@ void FUN_18045d610(float *param_1,float *param_2,float *param_3,float *param_4,f
   puStack_80 = &rendering_buffer_2640_ptr;
   pcStack_78 = FUN_1800adba0;
   appuStack_90[0] = &plStackX_8;
-  FUN_18005c650(appuStack_90);
+  SystemCore_SecurityManager(appuStack_90);
   fVar1 = (float)alStack_68[0];
   if (alStack_68[0] < 0) {
     fVar1 = fVar1 + 1.8446744e+19;
@@ -821,11 +830,11 @@ void FUN_18045da50(uint64_t param_1)
   int64_t lStack_48;
   int8_t auStack_30 [40];
   
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   FUN_1800bc000(&puStack_50,param_1);
   SystemCore_NetworkHandler0(auStack_30,&puStack_50);
   FUN_180056c50();
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   puStack_50 = &system_data_buffer_ptr;
   if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
@@ -846,10 +855,10 @@ void FUN_18045daf0(uint64_t param_1)
 {
   int8_t auStack_30 [40];
   
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   CoreMemoryPoolValidator(auStack_30,param_1);
   FUN_180056c50();
-  FUN_18005e630(system_context_ptr);
+  SystemCore_FileSystem(system_context_ptr);
   return;
 }
 

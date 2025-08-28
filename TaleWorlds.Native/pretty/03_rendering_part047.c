@@ -178,7 +178,7 @@ void FUN_180291500(int32_t *param_1)
     if (0 < iVar1) {
       iVar2 = iVar1;
     }
-    FUN_18013e760(param_1,iVar2);
+    RenderingEngine_Renderer(param_1,iVar2);
   }
   *param_1 = 0;
   iVar1 = param_1[5];
@@ -188,7 +188,7 @@ void FUN_180291500(int32_t *param_1)
     if (0 < iVar1) {
       iVar2 = iVar1;
     }
-    FUN_18011dd10(param_1 + 4,iVar2);
+    Memory_CacheManager(param_1 + 4,iVar2);
   }
   param_1[4] = 0;
   FUN_18013e800(param_1 + 8,0);
@@ -659,7 +659,7 @@ void FUN_180291880(int *param_1)
     if (iVar9 + 1 < iVar8) {
       iVar4 = iVar8;
     }
-    FUN_18013e760(param_1,iVar4);
+    RenderingEngine_Renderer(param_1,iVar4);
     iVar9 = *param_1;
   }
   lVar10 = (int64_t)iVar9;
@@ -681,8 +681,8 @@ void FUN_180291880(int *param_1)
 
 
 
-// 函数: void FUN_180291950(int *param_1)
-void FUN_180291950(int *param_1)
+// 函数: void SystemCore_ErrorHandler(int *param_1)
+void SystemCore_ErrorHandler(int *param_1)
 
 {
   uint64_t *puVar1;
@@ -748,7 +748,7 @@ void FUN_180291950(int *param_1)
       if (iVar8 + 1 < iVar7) {
         iVar3 = iVar7;
       }
-      FUN_18013e760(param_1,iVar3);
+      RenderingEngine_Renderer(param_1,iVar3);
       iVar8 = *param_1;
     }
     lVar9 = (int64_t)iVar8;
@@ -788,8 +788,8 @@ void FUN_180291950(int *param_1)
 
 
 
-// 函数: void FUN_180291a50(int *param_1)
-void FUN_180291a50(int *param_1)
+// 函数: void SystemCore_Initialize(int *param_1)
+void SystemCore_Initialize(int *param_1)
 
 {
   uint64_t *puVar1;
@@ -869,7 +869,7 @@ void FUN_180291a50(int *param_1)
     if (iVar8 + 1 < iVar7) {
       iVar3 = iVar7;
     }
-    FUN_18013e760(param_1,iVar3);
+    RenderingEngine_Renderer(param_1,iVar3);
     iVar8 = *param_1;
   }
   lVar9 = (int64_t)iVar8;

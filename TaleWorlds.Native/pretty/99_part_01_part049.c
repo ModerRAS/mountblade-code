@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -49,7 +50,7 @@ void FUN_1800d5be0(uint64_t param_1,uint64_t param_2,int32_t param_3)
   plStack_78 = plVar7;
   FUN_1800da760(lVar5,param_2,plVar7);
   plVar1 = (int64_t *)(lVar5 + 0x40);
-  FUN_1800b8500(plVar1);
+  SystemCore_Controller(plVar1);
   iVar17 = 0;
   lVar12 = *plVar7;
   if (*(int64_t *)(lVar5 + 0x28) - lVar12 >> 3 != 0) {
@@ -81,7 +82,7 @@ void FUN_1800d5be0(uint64_t param_1,uint64_t param_2,int32_t param_3)
       uStack_8c = param_3;
       uStack_70 = lVar12;
       uStack_64 = param_3;
-      FUN_180049830(plVar7);
+      UltraHighFreq_PerformanceMonitor1(plVar7);
       *plVar7 = (int64_t)&rendering_buffer_2528_ptr;
       plVar7[0x1a] = 0;
       plVar7[0x1b] = (int64_t)_guard_check_icall;
@@ -186,7 +187,7 @@ LAB_1800d5e4d:
       }
       if (cVar19 == '\0') {
         bVar4 = true;
-        uVar11 = FUN_18005e890(lVar8);
+        uVar11 = PerformanceOptimizer(lVar8);
         cVar19 = FUN_18020ee40(uVar11);
         if (cVar19 == '\0') {
           plVar7 = *(int64_t **)(uVar15 * 8 + *plVar1);
@@ -290,7 +291,7 @@ int64_t FUN_1800d6020(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t 
       if (plStack_b0 != (int64_t *)0x0) {
         (**(code **)(*plStack_b0 + 0x28))();
       }
-      lVar7 = FUN_180299eb0(uVar3,param_2,&lStack_a0,param_9);
+      lVar7 = UIRenderingEngine(uVar3,param_2,&lStack_a0,param_9);
       if (*param_9 == '\0') {
         *(int64_t *)(param_4 + 0x60 + lVar8 * 8) = lVar7;
         uVar4 = *(int32_t *)((int64_t)param_7 + 4);
@@ -412,7 +413,7 @@ LAB_1800d6409:
         uVar4 = *(uint64_t *)(lStack_e8 + 0x15b8);
         plStackX_8 = alStack_80;
         uVar2 = FUN_18009e8e0(alStack_80,&lStack_e8);
-        uVar4 = FUN_180299eb0(uVar4,param_2,uVar2,auStackX_20);
+        uVar4 = UIRenderingEngine(uVar4,param_2,uVar2,auStackX_20);
         *(uint64_t *)(param_3 + 0x88) = uVar4;
         FUN_18009e960(&lStack_e8);
         return auStackX_20[0];
@@ -513,7 +514,7 @@ FUN_1800d66b0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t param_4,
 LAB_1800d672d:
   cVar2 = FUN_1800d6260(param_1,param_2,param_3,param_6,param_4,param_5,param_7);
   if (cVar2 == '\0') {
-    FUN_1800df980();
+    SystemCore_Controller0();
     return 1;
   }
   *(uint *)(param_3 + 0x314) = uVar1;

@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 
 // 03_rendering_part157.c - 19 个函数
 
@@ -428,7 +434,7 @@ void FUN_180365820(uint64_t param_1)
   auStack_290[0] = 0;
   uStack_298 = 0xf;
   strcpy_s(auStack_290,0x80,&system_data_01c0);
-  FUN_180049b30(apuStack_348,&puStack_2a8);
+  SystemCore_EventHandler(apuStack_348,&puStack_2a8);
   uStack_2b0 = 3;
   uStack_368 = 1;
   FUN_1803617c0(param_1,appuStack_360,apuStack_348);
@@ -441,7 +447,7 @@ void FUN_180365820(uint64_t param_1)
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x13;
   strcpy_s(auStack_1f0,0x80,&system_data_01a8);
-  FUN_180049b30(apuStack_348,&puStack_208);
+  SystemCore_EventHandler(apuStack_348,&puStack_208);
   uStack_2b0 = 3;
   uStack_368 = 2;
   FUN_1803617c0(param_1,appuStack_360,apuStack_348);
@@ -454,7 +460,7 @@ void FUN_180365820(uint64_t param_1)
   auStack_150[0] = 0;
   uStack_158 = 0xc;
   strcpy_s(auStack_150,0x80,&system_data_0198);
-  FUN_180049b30(apuStack_348,&puStack_168);
+  SystemCore_EventHandler(apuStack_348,&puStack_168);
   uStack_2b0 = 3;
   uStack_368 = 4;
   FUN_1803617c0(param_1,appuStack_360,apuStack_348);
@@ -467,7 +473,7 @@ void FUN_180365820(uint64_t param_1)
   auStack_b0[0] = 0;
   uStack_b8 = 0xd;
   strcpy_s(auStack_b0,0x80,&system_data_0238);
-  FUN_180049b30(apuStack_348,&puStack_c8);
+  SystemCore_EventHandler(apuStack_348,&puStack_c8);
   uStack_2b0 = 9;
   uStack_368 = 8;
   FUN_1803617c0(param_1,appuStack_360,apuStack_348);
@@ -980,7 +986,7 @@ void FUN_180366170(uint64_t *param_1)
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
-  FUN_1803456e0();
+  SystemCore_SyncController();
   *puVar3 = &processed_var_8872_ptr;
   puVar3[0xf] = 0;
   puVar3[0x10] = 0;
@@ -1007,7 +1013,7 @@ void FUN_180366170(uint64_t *param_1)
   puVar2[4] = 0x6f6c6f43;
   *(int16_t *)(puVar2 + 5) = 0x72;
   uStack_70 = 0x15;
-  FUN_1803460a0(param_1,&puStack_80,param_1 + 0x15,3,uVar4);
+  SystemNetwork_Processor(param_1,&puStack_80,param_1 + 0x15,3,uVar4);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager(puVar2);
@@ -1021,8 +1027,8 @@ uint64_t FUN_180366340(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180057830();
-  FUN_1803457d0(param_1);
+  DataTransformer0();
+  UIComponent_Manager(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xb0,param_3,param_4,uVar1);
   }
@@ -1052,7 +1058,7 @@ void FUN_1803663a0(uint64_t param_1,uint64_t param_2)
   puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb0,8,3);
   uVar5 = 0xfffffffffffffffe;
   puVar4 = puVar3;
-  FUN_1803456e0(puVar3,param_2,param_1);
+  SystemCore_SyncController(puVar3,param_2,param_1);
   *puVar4 = &processed_var_8872_ptr;
   puVar4[0xf] = 0;
   puVar4[0x10] = 0;
@@ -1079,7 +1085,7 @@ void FUN_1803663a0(uint64_t param_1,uint64_t param_2)
   puVar2[4] = 0x6f6c6f43;
   *(int16_t *)(puVar2 + 5) = 0x72;
   uStack_70 = 0x15;
-  FUN_1803460a0(puVar3,&puStack_80,puVar3 + 0x15,3,uVar5);
+  SystemNetwork_Processor(puVar3,&puStack_80,puVar3 + 0x15,3,uVar5);
   puStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager(puVar2);

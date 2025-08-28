@@ -777,7 +777,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
         *(int16_t *)((int64_t)structure_array_ptr + 0xc) = 0x6c6d;
         *(int8_t *)((int64_t)structure_array_ptr + 0xe) = 0;
         string_data_length = data_item_count;
-        string_char = FUN_180624af0(&data_buffer);
+        string_char = RenderingSystem_RenderQueue(&data_buffer);
         data_array_ptr = data_item_ptr;
         if (string_char != '\0') {
           string_length = FUN_180657fa0(&data_buffer);
@@ -1130,7 +1130,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
       *(int16_t *)((int64_t)resource_ptr3 + 0xc) = 0x6c6d;
       *(int8_t *)((int64_t)resource_ptr3 + 0xe) = 0;
       buffer_length = resource_count;
-      format_char = FUN_180624af0(&stack_buffer);
+      format_char = RenderingSystem_RenderQueue(&stack_buffer);
       if (format_char != '\0') {
         formatted_result = FUN_180657fa0(&stack_buffer);
         resource_ptr3 = (uint64_t *)resource_context[1];

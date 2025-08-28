@@ -1,3 +1,5 @@
+/* FUN_函数别名定义 */
+#define DataValidator_CheckIntegrity DataValidator_CheckIntegrity  // DataValidator_CheckIntegrity 的语义化别名
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -157,7 +159,7 @@ void FUN_18013f6f0(int64_t param_1)
   if (*(void **)(param_1 + 0x28) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 0x28);
   }
-  FUN_180060680(acStack_138,&memory_allocator_3664_ptr,puVar5,puVar7);
+  RenderingEngine_BufferManager(acStack_138,&memory_allocator_3664_ptr,puVar5,puVar7);
   puStack_160 = &system_config_ptr;
   puStack_158 = auStack_148;
   auStack_148[0] = 0;
@@ -353,7 +355,7 @@ uint64_t FUN_180141820(int64_t *param_1)
   *puVar7 = 0x73656c75646f4d2f;
   *(int16_t *)(puVar7 + 1) = 0x2f;
   uStack_90 = 9;
-  iVar3 = FUN_180628d60(&puStack_c0,&puStack_a0);
+  iVar3 = DataValidator_CheckIntegrity(&puStack_c0,&puStack_a0);
   uVar14 = 0;
   if ((iVar3 < 0) && (param_1[1] - *param_1 >> 5 != 0)) {
     puStack_80 = &system_data_buffer_ptr;
@@ -546,7 +548,7 @@ int32_t FUN_180142220(int64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t
     } while (uVar3 < *(uint *)(param_2 + 2));
   }
   puStackX_10 = param_2;
-  plVar2 = (int64_t *)FUN_180058080(param_1 + 0x8e8,auStackX_8,param_2,param_4,0xfffffffffffffffe);
+  plVar2 = (int64_t *)HighFreq_AnimationSystem1(param_1 + 0x8e8,auStackX_8,param_2,param_4,0xfffffffffffffffe);
   if (*plVar2 == param_1 + 0x8e8) {
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
@@ -680,8 +682,8 @@ void FUN_180142300(int64_t param_1,uint64_t *param_2,int64_t param_3)
       puVar13 = puStack_60;
     }
     uVar10 = CoreMemoryPoolValidator(&puStack_e0,puVar13);
-    uVar11 = FUN_180629a40(&puStack_100,&puStack_a0,1,uStack_f0);
-    lVar8 = FUN_180627ce0(uVar10,&puStack_c0,uVar11);
+    uVar11 = NetworkSystem_ProtocolParser(&puStack_100,&puStack_a0,1,uStack_f0);
+    lVar8 = UtilitiesSystem_FileHandler(uVar10,&puStack_c0,uVar11);
     if (puStack_f8 != (int16_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
@@ -1021,7 +1023,7 @@ LAB_18014293a:
       }
     }
 LAB_18014293f:
-    plVar5 = (int64_t *)FUN_1800590b0(param_1,&cStackX_8,param_2);
+    plVar5 = (int64_t *)SystemCore_SecurityValidator(param_1,&cStackX_8,param_2);
     if (cStackX_8 == '\0') goto LAB_180142973;
     param_4 = 0;
   }

@@ -701,7 +701,7 @@ void FUN_1805e4ab0(int32_t *param_1,uint64_t param_2)
   lVar13 = *(int64_t *)(**(int64_t **)(param_1 + 8) + 0x9d8);
   lVar12 = *(int64_t *)(**(int64_t **)(param_1 + 8) + 0x20);
   if (lVar13 != 0) {
-    cVar9 = FUN_18038d0a0(lVar13,lVar12 + 0xc);
+    cVar9 = SystemCore_PerformanceMonitor(lVar13,lVar12 + 0xc);
     lVar11 = lVar13;
     if (cVar9 != '\0') goto LAB_1805e4ba2;
   }
@@ -729,7 +729,7 @@ LAB_1805e4ba2:
   *(uint64_t *)(param_1 + 0x20) = uVar8;
   param_1[0x22] = 3;
   *(uint64_t *)(param_1 + 0x12) = param_2;
-  FUN_180487c70(param_1 + 0x12,3);
+  SystemCore_Validator(param_1 + 0x12,3);
   if ((int)param_1[0x22] < 3) {
     uVar14 = 0xffc00000;
   }

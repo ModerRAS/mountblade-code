@@ -192,7 +192,7 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
   }
   FUN_180627f00(param_5,puVar7);
   FUN_180627f00(param_5,&system_data_c8e4);
-  lVar10 = FUN_180624440(apuStack_278,lStack_2f0 + 0x60);
+  lVar10 = SystemCore_EncryptionEngine(apuStack_278,lStack_2f0 + 0x60);
   puVar4 = &system_buffer_ptr;
   if (*(void **)(lVar10 + 8) != (void *)0x0) {
     puVar4 = *(void **)(lVar10 + 8);

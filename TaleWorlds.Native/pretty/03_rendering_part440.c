@@ -1,7 +1,9 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part440.c - 8 个函数
 
@@ -26,7 +28,7 @@ void FUN_18050aea0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     }
   }
   if ((*(byte *)(lVar1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000,param_4,uVar3);
+    SystemCore_FileSystem(lVar1,*(int64_t *)(lVar1 + 0x10) + 0x70,0xbf800000,param_4,uVar3);
   }
   if (*(int64_t *)(lVar1 + 0x28) != 0) {
     iVar2 = _Mtx_unlock(*(int64_t *)(lVar1 + 0x28) + 0x58);
@@ -88,7 +90,7 @@ void FUN_18050af60(int64_t param_1,int param_2)
       if (render_system_config_config == -1) {
         _Mtx_init_in_situ(0x180d49e70,2);
         FUN_1808fc820(FUN_180943020);
-        FUN_1808fcb30(&system_ptr_9e60);
+        SystemCore_StateController(&system_ptr_9e60);
       }
     }
     uStackX_20 = 0x180d49e70;
@@ -361,7 +363,7 @@ void FUN_18050b440(int64_t param_1,int param_2,uint param_3,int param_4,char par
   uVar4 = *(uint *)(lVar9 + 0x9e0 + (int64_t)param_2 * 4);
   uVar8 = (uint64_t)(int)uVar4;
   if (uVar4 < 5) {
-    cVar2 = FUN_18058f970(uVar8 * 0x1f8 + 8 + lVar9);
+    cVar2 = SystemCore_EventHandler(uVar8 * 0x1f8 + 8 + lVar9);
     uVar8 = (uint64_t)uVar4;
     if (cVar2 == '\0') {
       uVar8 = 6;
@@ -432,7 +434,7 @@ void FUN_18050b440(int64_t param_1,int param_2,uint param_3,int param_4,char par
       uStack_3c = 0;
       uStack_68 = 1;
       iStack_64 = iStack_74;
-      cStack_77 = FUN_18051ec50(param_1,&uStack_68);
+      cStack_77 = CoreSystemThreadManager(param_1,&uStack_68);
       if (cStack_77 == '\0') {
         if (param_4 != 3) {
           return;
@@ -513,7 +515,7 @@ LAB_18050b9f8:
   lVar6 = lVar9;
   if (-1 < iVar5) {
     lVar12 = (int64_t)iVar5 * 0x1f8;
-    cVar2 = FUN_18058f970(lVar9 + 8 + lVar12);
+    cVar2 = SystemCore_EventHandler(lVar9 + 8 + lVar12);
     if (((cVar2 != '\0') &&
         ((*(uint *)((int64_t)*(int *)(lVar12 + 0xf8 + lVar9) * 0xa0 + 0x58 +
                    *(int64_t *)(lVar12 + 0xd8 + lVar9)) & 0x3000) != 0)) && (system_status_flag != 1))
@@ -641,7 +643,7 @@ void FUN_18050b572(int32_t param_1)
     if (iStack0000000000000054 != -1) {
       uStack0000000000000060 = 1;
       iStack0000000000000064 = iStack0000000000000054;
-      cStack0000000000000051 = FUN_18051ec50(0x3ecccccd,&stack0x00000060);
+      cStack0000000000000051 = CoreSystemThreadManager(0x3ecccccd,&stack0x00000060);
       param_1 = extraout_XMM0_Da_02;
       if (cStack0000000000000051 == '\0') {
         if (in_stack_000000e8 != 3) {
@@ -720,7 +722,7 @@ LAB_18050b9f8:
   lVar7 = lVar9;
   if (-1 < iVar12) {
     lVar11 = (int64_t)iVar12 * 0x1f8;
-    cVar3 = FUN_18058f970(lVar9 + 8 + lVar11);
+    cVar3 = SystemCore_EventHandler(lVar9 + 8 + lVar11);
     if (((cVar3 != '\0') &&
         ((*(uint *)((int64_t)*(int *)(lVar11 + 0xf8 + lVar9) * 0xa0 + 0x58 +
                    *(int64_t *)(lVar11 + 0xd8 + lVar9)) & 0x3000) != 0)) && (system_status_flag != 1))
@@ -791,7 +793,7 @@ void FUN_18050b6b8(int32_t param_1)
     if (iStack0000000000000054 != -1) {
       uStack0000000000000060 = 1;
       iStack0000000000000064 = iStack0000000000000054;
-      cStack0000000000000051 = FUN_18051ec50(0x3ecccccd,&stack0x00000060);
+      cStack0000000000000051 = CoreSystemThreadManager(0x3ecccccd,&stack0x00000060);
       param_1 = extraout_XMM0_Da;
       if (cStack0000000000000051 == '\0') {
         if (in_stack_000000e8 != 3) {
@@ -868,7 +870,7 @@ LAB_18050b9f8:
   lVar4 = lVar5;
   if (-1 < iVar8) {
     lVar7 = (int64_t)iVar8 * 0x1f8;
-    cVar2 = FUN_18058f970(lVar5 + 8 + lVar7);
+    cVar2 = SystemCore_EventHandler(lVar5 + 8 + lVar7);
     if (((cVar2 != '\0') &&
         ((*(uint *)((int64_t)*(int *)(lVar7 + 0xf8 + lVar5) * 0xa0 + 0x58 +
                    *(int64_t *)(lVar7 + 0xd8 + lVar5)) & 0x3000) != 0)) && (system_status_flag != 1)) {
@@ -951,7 +953,7 @@ void FUN_18050bbd0(int64_t param_1,int param_2,int32_t param_3,int8_t param_4)
     if (iVar2 < 0) {
       lVar4 = *(int64_t *)(param_1 + 0x8f8);
       lVar3 = (int64_t)param_2 * 0x1f8;
-      cVar1 = FUN_18058f970(lVar4 + 8 + lVar3);
+      cVar1 = SystemCore_EventHandler(lVar4 + 8 + lVar3);
       if ((cVar1 != '\0') &&
          (lVar3 = (int64_t)*(int *)(lVar3 + 0xf8 + lVar4) * 0xa0 +
                   *(int64_t *)(lVar3 + 0xd8 + lVar4), (*(uint *)(lVar3 + 0x50) & 0x103) != 0x100))

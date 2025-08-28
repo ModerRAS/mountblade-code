@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 
 // 99_part_01_part015_sub002.c - 1 个函数
 
@@ -64,7 +70,7 @@ void FUN_1800af9f0(int64_t param_1,uint64_t *param_2,int64_t param_3)
         }
 LAB_1800afade:
         if (iVar8 == 0) {
-          FUN_180060680(&uStack_60,&processed_var_4576_ptr,
+          RenderingEngine_BufferManager(&uStack_60,&processed_var_4576_ptr,
                         **(int32_t **)(*(int64_t *)(param_1 + 8) + (int64_t)iVar15 * 8));
           lVar13 = -1;
           do {
@@ -125,7 +131,7 @@ LAB_1800afade:
         }
 LAB_1800afc3f:
         if (iVar8 == 0) {
-          FUN_180626eb0(&uStack_60,0x20,&system_data_6430,
+          SystemCore_CacheManager(&uStack_60,0x20,&system_data_6430,
                         (double)**(float **)(*(int64_t *)(param_1 + 0x28) + (int64_t)iVar15 * 8));
           lVar13 = -1;
           do {
@@ -267,7 +273,7 @@ LAB_1800afda6:
         }
 LAB_1800aff9c:
         if (iVar8 == 0) {
-          FUN_180626eb0(&uStack_60,0x20,&processed_var_7284_ptr,
+          SystemCore_CacheManager(&uStack_60,0x20,&processed_var_7284_ptr,
                         **(uint64_t **)(*(int64_t *)(param_1 + 0x68) + (int64_t)iVar15 * 8));
           lVar13 = -1;
           do {
@@ -332,7 +338,7 @@ LAB_1800aff9c:
       lVar13 = lVar13 + 8;
     } while ((uint64_t)(int64_t)iVar15 < uVar9);
   }
-  uVar6 = FUN_180628ca0();
+  uVar6 = MemoryDebugger0();
   SystemCore_NetworkHandler0(param_2,uVar6);
   uStack_80 = uStack_80 & 0xffffffff00000000;
 LAB_1800affe3:

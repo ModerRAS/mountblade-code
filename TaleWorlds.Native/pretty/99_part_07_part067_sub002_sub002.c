@@ -247,7 +247,7 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
              ((fVar43 = *(float *)(lVar38 + 0x174) * 0.2, fVar43 <= 0.0 ||
               (pfVar1 = (float *)(lVar35 + 100 + lVar39), fVar43 < *pfVar1 || fVar43 == *pfVar1))))
           {
-            FUN_180077750(*(uint64_t *)(lVar35 + 8 + lVar39),lVar38,unaff_RBP + 100,0,
+            SystemHealthMonitor(*(uint64_t *)(lVar35 + 8 + lVar39),lVar38,unaff_RBP + 100,0,
                           unaff_RBP + 0xc);
           }
           lVar31 = *(int64_t *)(unaff_RSI + 8);
@@ -432,7 +432,7 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
                  (((*(ushort *)(lVar8 + 8 + lVar32 * 0xc) & 1 << ((byte)uVar36 & 0x1f)) != 0 &&
                   ((fVar45 = *(float *)(lVar38 + 0x174) * 0.2, fVar45 <= 0.0 ||
                    (fVar45 <= fVar43 * *(float *)(lVar39 + 0x5c + lVar31))))))) {
-                FUN_180077750(*(uint64_t *)(lVar39 + 0x48 + lVar31),lVar38,unaff_RBP + 0x44,0,
+                SystemHealthMonitor(*(uint64_t *)(lVar39 + 0x48 + lVar31),lVar38,unaff_RBP + 0x44,0,
                               &stack0x00000050);
               }
               lVar35 = *(int64_t *)(unaff_RSI + 8);
@@ -618,7 +618,7 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
                  ((*(ushort *)(lVar8 + 8 + lVar32 * 0xc) & 1 << ((byte)uVar36 & 0x1f)) != 0)))) &&
                ((fVar45 = *(float *)(lVar39 + 0x174) * 0.2, fVar45 <= 0.0 ||
                 (fVar45 <= fVar43 * *(float *)(lVar31 + 0x5c + lVar38))))) {
-              FUN_180077750(*(uint64_t *)(lVar31 + 0x48 + lVar38),lVar39,unaff_RBP + 0x54,0,
+              SystemHealthMonitor(*(uint64_t *)(lVar31 + 0x48 + lVar38),lVar39,unaff_RBP + 0x54,0,
                             unaff_RBP + -0x10);
             }
             lVar39 = *(int64_t *)(unaff_RSI + 8);
@@ -759,7 +759,7 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
              (((*(ushort *)(lVar8 + 8 + lVar32 * 0xc) & 1 << ((byte)uVar37 & 0x1f)) != 0 &&
               ((fVar45 = *(float *)(lVar38 + 0x174) * 0.2, fVar45 <= 0.0 ||
                (fVar45 <= fVar43 * *(float *)(lVar35 + 0x28 + lVar39))))))) {
-            FUN_180077750(*(uint64_t *)(lVar35 + 0x18 + lVar39),lVar38,unaff_RBP + 0x74,0,
+            SystemHealthMonitor(*(uint64_t *)(lVar35 + 0x18 + lVar39),lVar38,unaff_RBP + 0x74,0,
                           unaff_RBP + 0x28);
           }
           lVar38 = *(int64_t *)(unaff_RSI + 8);

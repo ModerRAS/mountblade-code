@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 03_rendering_part225.c - 4 个函数
 
 // 函数: void FUN_180394958(uint64_t param_1,uint64_t param_2)
@@ -291,7 +295,7 @@ LAB_180394c11:
             unaff_RBP[unaff_RBP[8] + 10] = plVar28;
             *(float *)(unaff_RBP + 2) = fVar43 + fVar42;
             *(float *)((int64_t)unaff_RBP + 0x14) = fVar46 + fVar40;
-            cVar21 = FUN_18038d0a0(lVar24,unaff_RBP + 2);
+            cVar21 = SystemCore_PerformanceMonitor(lVar24,unaff_RBP + 2);
             lVar27 = unaff_RBP[-10];
             if (((cVar21 == '\0') || (lVar27 != 0)) && (lVar24 != lVar27)) {
               bVar33 = false;
@@ -536,7 +540,7 @@ LAB_180395496:
               plVar4 = plVar2;
             }
             plVar4 = plVar4 + 1;
-            uVar14 = FUN_18038ee20(uVar14,*plVar12,0xffffffff);
+            uVar14 = SystemCore_Encoder(uVar14,*plVar12,0xffffffff);
           }
           plVar12 = plVar12 + 1;
           lVar10 = lVar10 + -1;
@@ -559,7 +563,7 @@ LAB_180395496:
           lVar10 = *plVar1;
           if (*(int *)(lVar10 + 0x128) == -1) {
             *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
-            uVar14 = FUN_18038ee20(uVar14,lVar10,*(int32_t *)(param_1 + 0x530));
+            uVar14 = SystemCore_Encoder(uVar14,lVar10,*(int32_t *)(param_1 + 0x530));
           }
           uVar5 = uVar5 + 1;
           plVar1 = plVar1 + 1;
@@ -576,7 +580,7 @@ LAB_180395496:
         lVar10 = *plVar4;
         if (*(int *)(lVar10 + 0x128) == -1) {
           *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
-          uVar14 = FUN_18038ee20(uVar14,lVar10,*(int32_t *)(param_1 + 0x530));
+          uVar14 = SystemCore_Encoder(uVar14,lVar10,*(int32_t *)(param_1 + 0x530));
         }
         uVar13 = uVar13 + 1;
         plVar4 = plVar4 + 1;

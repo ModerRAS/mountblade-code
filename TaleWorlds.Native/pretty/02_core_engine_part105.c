@@ -1,10 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part105.c - 7 个函数
 
-// 函数: void FUN_1801224c0(int64_t param_1,float *param_2,float *param_3,int64_t param_4,int64_t param_5,
-void FUN_1801224c0(int64_t param_1,float *param_2,float *param_3,int64_t param_4,int64_t param_5,
+// 函数: void UtilitiesSystem_DataValidator(int64_t param_1,float *param_2,float *param_3,int64_t param_4,int64_t param_5,
+void UtilitiesSystem_DataValidator(int64_t param_1,float *param_2,float *param_3,int64_t param_4,int64_t param_5,
                   int64_t *param_6,float *param_7,float *param_8)
 
 {
@@ -36,7 +40,7 @@ void FUN_1801224c0(int64_t param_1,float *param_2,float *param_3,int64_t param_4
       param_6 = (int64_t *)((uint64_t)(uint)fVar2 << 0x20);
     }
     else {
-      FUN_180297340(pfVar9,&uStack_98,fVar2,0x7f7fffff,0,param_4,param_5,0);
+      SystemCore_StateController(pfVar9,&uStack_98,fVar2,0x7f7fffff,0,param_4,param_5,0);
       fVar12 = (float)uStack_98;
       if (0.0 < (float)uStack_98) {
         fVar12 = (float)uStack_98 - fVar2 / *pfVar9;
@@ -199,7 +203,7 @@ void FUN_180122503(uint64_t param_1,float *param_2,float *param_3)
       *(int32_t *)(unaff_RBP + 0x6f) = 0;
     }
     else {
-      FUN_180297340(pfVar4,unaff_RBP + -0x59,fVar2,0x7f7fffff);
+      SystemCore_StateController(pfVar4,unaff_RBP + -0x59,fVar2,0x7f7fffff);
       fVar19 = *(float *)(unaff_RBP + -0x59);
       if (unaff_XMM10_Da < fVar19) {
         fVar19 = fVar19 - fVar2 / *pfVar4;
@@ -368,7 +372,7 @@ void FUN_18012250a(uint64_t param_1,float *param_2)
       *(int32_t *)(unaff_RBP + 0x6f) = 0;
     }
     else {
-      FUN_180297340(pfVar4,unaff_RBP + -0x59,fVar2,0x7f7fffff);
+      SystemCore_StateController(pfVar4,unaff_RBP + -0x59,fVar2,0x7f7fffff);
       fVar19 = *(float *)(unaff_RBP + -0x59);
       if (unaff_XMM10_Da < fVar19) {
         fVar19 = fVar19 - fVar2 / *pfVar4;
@@ -531,7 +535,7 @@ void FUN_180122537(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     *(int32_t *)(unaff_RBP + 0x6f) = 0;
   }
   else {
-    FUN_180297340(pfVar4,unaff_RBP + -0x59,param_3,0x7f7fffff);
+    SystemCore_StateController(pfVar4,unaff_RBP + -0x59,param_3,0x7f7fffff);
     fVar19 = *(float *)(unaff_RBP + -0x59);
     if (unaff_XMM10_Da < fVar19) {
       fVar19 = fVar19 - unaff_XMM6_Da / *pfVar4;

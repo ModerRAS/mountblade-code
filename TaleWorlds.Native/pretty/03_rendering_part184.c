@@ -1,8 +1,11 @@
+#include "SystemDataAdvancedOptimizer_definition.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 03_rendering_part184.c - 1 个函数
 
@@ -339,7 +342,7 @@ LAB_180377195:
               unaff_RBP[0x17] =
                    ((fVar35 + fVar37) - (float)(int)fVar11 * fVar34) * (1.0 / fVar32) * fVar33 +
                    fVar29;
-              pfVar10 = (float *)FUN_1802a11e0(lVar24,unaff_RBP + 0x6e,
+              pfVar10 = (float *)SystemCore_DataConverter(lVar24,unaff_RBP + 0x6e,
                                                *(uint64_t *)(unaff_RBP + 0x16),0);
               uVar25 = (uint)(fVar38 * fVar38);
               if (*pfVar10 <= unaff_XMM10_Da) {
@@ -406,7 +409,7 @@ LAB_180377195:
                     unaff_RBP[0x1c] = (fVar38 - fVar40 * fVar11) * (1.0 / fVar34) * fVar39;
                     unaff_RBP[0x1d] = (fVar37 - fVar40 * fVar29) * (1.0 / fVar34) * fVar39;
                     uVar6 = *(uint64_t *)(unaff_RBP + 0x1c);
-                    pfVar10 = (float *)FUN_1802a11e0(uVar5,unaff_RBP + 0x72,uVar6,1);
+                    pfVar10 = (float *)SystemCore_DataConverter(uVar5,unaff_RBP + 0x72,uVar6,1);
                     fVar40 = *pfVar10;
                     uVar17 = 0;
                     uVar20 = (uint)(*(int64_t *)(*(int64_t *)(unaff_RBP + 8) + 0x10) -
@@ -473,7 +476,7 @@ LAB_180377666:
                         uVar25 = uVar25 ^ uVar25 << 5;
                         if (fVar40 < (float)(uVar25 - 1) * 2.3283064e-10) goto LAB_18037777e;
                       }
-                      pfVar10 = (float *)FUN_1802a11e0(*(uint64_t *)
+                      pfVar10 = (float *)SystemCore_DataConverter(*(uint64_t *)
                                                         (*(int64_t *)(unaff_RBP + -0x16) + 0x818),
                                                        unaff_RBP + 0x76,uVar6,1);
                       fVar40 = unaff_RBP[-2] * *pfVar10 + unaff_RBP[-1];
@@ -482,7 +485,7 @@ LAB_180377666:
                       if ((uVar17 >> 0x11 & 1) == 0) {
                         if (((uVar17 >> 0x19 & 1) != 0) &&
                            (*(int64_t *)(*(int64_t *)(unaff_RBP + -0x16) + 0x810) != 0)) {
-                          pfVar10 = (float *)FUN_1802a11e0(*(int64_t *)
+                          pfVar10 = (float *)SystemCore_DataConverter(*(int64_t *)
                                                             (*(int64_t *)(unaff_RBP + -0x16) +
                                                             0x810),unaff_RBP + 0x7a,uVar6,1);
                           unaff_RBP[0x2a] = 0.0;
@@ -647,7 +650,7 @@ LAB_18037777e:
     puVar16 = &memory_allocator_3824_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,puVar16,lVar13 / 0x28,puVar22);
+  SystemParameterHandler(system_message_context,puVar16,lVar13 / 0x28,puVar22);
 }
 
 

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -418,7 +419,7 @@ LAB_18037a2de:
               if (*(void **)(lVar38 + 0x10) != (void *)0x0) {
                 puVar28 = *(void **)(lVar38 + 0x10);
               }
-              FUN_180627020(&memory_allocator_3856_ptr,puVar28);
+              SystemCore_Allocator(&memory_allocator_3856_ptr,puVar28);
             }
             else {
               do {
@@ -448,7 +449,7 @@ LAB_18037a35a:
               fVar51 = SQRT(*(float *)(lVar16 + 0x58) * *(float *)(lVar16 + 0x58) +
                             *(float *)(lVar16 + 0x5c) * *(float *)(lVar16 + 0x5c) +
                             *(float *)(lVar16 + 0x60) * *(float *)(lVar16 + 0x60));
-              FUN_18063b470();
+              AdvancedProcessor_StateManager0();
               fVar43 = fStack_e8 * fStack_e8;
               fVar45 = fStack_e4 * fStack_e4;
               fVar47 = fStack_e0 * fStack_e0;
@@ -576,18 +577,18 @@ LAB_18037a524:
       lVar16 = *plVar33;
     } while ((uint64_t)(int64_t)iStackX_10 < (uint64_t)(plVar33[1] - lVar16 >> 3));
   }
-  FUN_1800b8500(plVar33);
+  SystemCore_Controller(plVar33);
   pppppppuVar17 = pppppppuStack_148;
   pppppppuVar18 = pppppppuStack_178;
   if (pppppppuStack_148 != (uint64_t *******)0x0) {
-    FUN_18004b790(&pppppppuStack_158,*pppppppuStack_148);
+    SystemCache_Manager(&pppppppuStack_158,*pppppppuStack_148);
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(pppppppuVar17);
   }
   if (pppppppuStack_178 == (uint64_t *******)0x0) {
     return;
   }
-  FUN_18004b790(&pppppppuStack_188,*pppppppuStack_178);
+  SystemCache_Manager(&pppppppuStack_188,*pppppppuStack_178);
                     // WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(pppppppuVar18);
 }
@@ -680,16 +681,16 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
   puVar4[3] = 0x73647261;
   *(int16_t *)(puVar4 + 4) = 0x2f;
   uStack_3a8 = iVar6;
-  lVar2 = FUN_180624440(apuStack_268,&puStack_3b8);
+  lVar2 = SystemCore_EncryptionEngine(apuStack_268,&puStack_3b8);
   puVar5 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(lVar2 + 8);
   }
   (**(code **)(puStack_3b8 + 0x10))(&puStack_3b8,puVar5);
   apuStack_268[0] = &system_state_ptr;
-  cVar1 = FUN_180624a00(&puStack_3b8);
+  cVar1 = UltraHighFreq_LogManager1(&puStack_3b8);
   if (cVar1 == '\0') {
-    FUN_180624910(&puStack_3b8);
+    SystemManager_Processor(&puStack_3b8);
   }
   SystemCore_NetworkHandler0(&puStack_370,param_2 + 0x1f0);
   SystemCore_EncryptionEngine0(&puStack_390,param_1 + 0x10);
@@ -742,7 +743,7 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
   uStack_294 = 0;
   auStack_2e8[0] = 0;
   uStack_3c8 = iVar6;
-  uVar3 = FUN_18023a940(param_1);
+  uVar3 = SystemCore_Scheduler(param_1);
   FUN_1800a5fc0(system_message_buffer,uVar3,&lStack_2e0);
   plStack_398 = alStack_318;
   alStack_318[0] = 0;
@@ -764,7 +765,7 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
     if (puStack_3d0 != (int8_t *)0x0) {
       puVar7 = puStack_3d0;
     }
-    FUN_18062dee0(&uStack_350,puVar7,&processed_var_9772_ptr);
+    SystemCore_Validator(&uStack_350,puVar7,&processed_var_9772_ptr);
     lVar2 = lStack_348;
     if (lStack_348 != 0) {
       plStack_398 = (int64_t *)CONCAT44(plStack_398._4_4_,0x58);
@@ -843,7 +844,7 @@ void FUN_18037ac70(int64_t param_1)
   uint64_t uVar2;
   int64_t lVar3;
   
-  uVar2 = FUN_180244ff0();
+  uVar2 = SystemOptimizer();
   puVar1 = *(uint64_t **)(param_1 + 0x9650);
   if ((*(int *)(param_1 + 0x124e8) == 0) && (*(int *)(param_1 + 0x124ec) == 0)) {
     FUN_18037a770(uVar2,puVar1[2]);

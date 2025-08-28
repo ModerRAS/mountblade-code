@@ -1,17 +1,18 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 01_initialization_part017.c - 32 个函数
 
-// 函数: void FUN_18004b730(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18004b730(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void > HighFreq_ParticleSystem1(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void > HighFreq_ParticleSystem1(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    SystemCache_Manager(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     SystemCoreProcessor(puVar1);
   }
@@ -22,12 +23,12 @@ void FUN_18004b730(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_18004b790(uint64_t param_1,uint64_t *param_2)
-void FUN_18004b790(uint64_t param_1,uint64_t *param_2)
+// 函数: void SystemCache_Manager(uint64_t param_1,uint64_t *param_2)
+void SystemCache_Manager(uint64_t param_1,uint64_t *param_2)
 
 {
   if (param_2 != (uint64_t *)0x0) {
-    FUN_18004b790(param_1,*param_2);
+    SystemCache_Manager(param_1,*param_2);
                     // WARNING: Subroutine does not return
     SystemCoreProcessor(param_2);
   }
@@ -44,7 +45,7 @@ void FUN_18004b7a2(uint64_t param_1)
 {
   uint64_t *unaff_RBX;
   
-  FUN_18004b790(param_1,*unaff_RBX);
+  SystemCache_Manager(param_1,*unaff_RBX);
                     // WARNING: Subroutine does not return
   SystemCoreProcessor();
 }
@@ -220,7 +221,7 @@ void FUN_18004ba90(uint64_t *param_1)
 void FUN_18004bad0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -232,7 +233,7 @@ void FUN_18004bad0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 void FUN_18004bb00(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -307,7 +308,7 @@ void FUN_18004bb90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   *(uint64_t *)(lVar2 + 0x38) = *(uint64_t *)(lVar2 + 0x30);
   lVar4 = lVar2 + 0x50;
-  FUN_180058370(lVar4,*(uint64_t *)(lVar2 + 0x60),param_3,param_4,0xfffffffffffffffe);
+  RenderingSystem_CameraSystem(lVar4,*(uint64_t *)(lVar2 + 0x60),param_3,param_4,0xfffffffffffffffe);
   *(int64_t *)lVar4 = lVar4;
   *(int64_t *)(lVar2 + 0x58) = lVar4;
   *(uint64_t *)(lVar2 + 0x60) = 0;
@@ -547,7 +548,7 @@ void FUN_18004bff0(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -683,7 +684,7 @@ void FUN_18004c0b0(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCore_DebugHandler();
           return;
         }
       }
@@ -749,7 +750,7 @@ void FUN_18004c260(uint64_t *param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCore_DebugHandler();
         return;
       }
     }
@@ -828,7 +829,7 @@ void FUN_18004c31f(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  UltraHighFreq_ThreadManager1();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;

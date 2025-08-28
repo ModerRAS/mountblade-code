@@ -1,7 +1,13 @@
+n//  的语义化别名
+#define SystemCore_MemoryAllocator 
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-#include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part048.c - 11 个函数
 
@@ -373,8 +379,8 @@ void FUN_1805d31dd(void)
 
 
 
-// 函数: void FUN_1805d3210(int64_t *param_1)
-void FUN_1805d3210(int64_t *param_1)
+// 函数: void SystemCore_ThreadManager(int64_t *param_1)
+void SystemCore_ThreadManager(int64_t *param_1)
 
 {
   float fVar1;
@@ -421,7 +427,7 @@ void FUN_1805d3210(int64_t *param_1)
       uStack_38 = 0;
       uStack_48 = 0;
       uStack_40 = 0;
-      FUN_1801aa0f0(*(uint64_t *)(lVar4 + 0x18),plVar2 + 0x41f,lVar4,&uStack_68,0x51b189,1);
+      PhysicsSystem_JointManager(*(uint64_t *)(lVar4 + 0x18),plVar2 + 0x41f,lVar4,&uStack_68,0x51b189,1);
     }
     else {
       uStack_68 = (int32_t)plVar2[0x41f];
@@ -522,7 +528,7 @@ void FUN_1805d3272(int64_t param_1,uint64_t param_2,int64_t param_3)
     uStack0000000000000070 = 0;
     uStack0000000000000060 = 0;
     uStack0000000000000068 = 0;
-    FUN_1801aa0f0(*(uint64_t *)(param_3 + 0x18),param_1 + 0x20f8,param_3,&stack0x00000040,0x51b189
+    PhysicsSystem_JointManager(*(uint64_t *)(param_3 + 0x18),param_1 + 0x20f8,param_3,&stack0x00000040,0x51b189
                  );
   }
   else {
@@ -623,7 +629,7 @@ void FUN_1805d3480(int64_t param_1)
   if (*(int64_t *)(param_1 + 0xe0) != 0) {
     uVar1 = *(uint *)(param_1 + 8);
     if ((uVar1 & 1) == 0) {
-      FUN_1805d3210(param_1);
+      SystemCore_ThreadManager(param_1);
       uVar1 = *(uint *)(param_1 + 8);
     }
     if ((uVar1 >> 9 & 1) == 0) {
@@ -650,7 +656,7 @@ void FUN_1805d34a8(void)
   int64_t unaff_RBX;
   
   if ((in_EAX & 1) == 0) {
-    FUN_1805d3210();
+    SystemCore_ThreadManager();
     in_EAX = *(uint *)(unaff_RBX + 8);
   }
   if ((in_EAX >> 9 & 1) == 0) {
@@ -703,7 +709,7 @@ void FUN_1805d3550(int64_t *param_1)
       (((*(byte *)((int64_t)plVar4 + 0x209c) & 1) != 0 && ((*(byte *)(plVar4 + 0x413) & 1) != 0))))
      )) {
     if ((*(byte *)(param_1 + 1) & 1) == 0) {
-      FUN_1805d3210(param_1);
+      SystemCore_ThreadManager(param_1);
       plVar4 = (int64_t *)*param_1;
     }
     lVar2 = *(int64_t *)(*plVar4 + 0x6d8);
@@ -739,7 +745,7 @@ void FUN_1805d3550(int64_t *param_1)
         *(uint *)(param_1 + 1) = *(uint *)(param_1 + 1) | 2;
         return;
       }
-      lVar2 = FUN_1805b74c0(param_1);
+      lVar2 = SystemCore_MemoryAllocator(param_1);
       lVar2 = *(int64_t *)(lVar2 + 0x6d8);
       lVar1 = *(int64_t *)(*(int64_t *)*param_1 + 0x6d8);
       fVar8 = *(float *)(lVar2 + 0x8c8) - *(float *)(lVar1 + 0x8c8);

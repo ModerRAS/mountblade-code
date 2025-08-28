@@ -1,3 +1,7 @@
+/* 函数别名定义: DataTransformer */
+#define DataTransformer DataTransformer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -751,7 +755,7 @@ void FUN_1800b9030(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 {
   if (param_2 != (uint64_t *)0x0) {
     FUN_1800b9030(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-    FUN_180057830();
+    DataTransformer0();
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer(param_2);
   }

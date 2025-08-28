@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedController_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -28,7 +29,7 @@ code_r0x0001808d8614:
   if ((*(int *)(param_1 + 5) == 0) && (*(int *)(param_1 + 3) == 0)) goto LAB_1808d856d;
   if (unaff_RBX == unaff_RDI) {
 LAB_1808d85eb:
-    uVar1 = FUN_1808b2f30();
+    uVar1 = SystemDataFlowProcessor();
     if ((int)uVar1 == 0) {
       uVar1 = 0;
     }

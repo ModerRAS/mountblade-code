@@ -1,3 +1,9 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -70,7 +76,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
          (lVar8 = *(int64_t *)(*system_main_module_state + 0x888),
          (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar8 >> 5) <=
          (uint64_t)(int64_t)iVar4)) {
-        lVar8 = FUN_180628ca0();
+        lVar8 = MemoryDebugger0();
       }
       else {
         lVar8 = (int64_t)iVar4 * 0x20 + lVar8;
@@ -105,7 +111,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
         puVar11 = puStack_2a8;
       }
       System_DataHandler(&puStack_250,&processed_var_8076_ptr,puVar11,puVar13);
-      cVar3 = FUN_180624a00(&puStack_250);
+      cVar3 = UltraHighFreq_LogManager1(&puStack_250);
       if (cVar3 != '\0') {
         FUN_18008b250(&puStack_250);
       }
@@ -143,7 +149,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
          (lVar9 = *(int64_t *)(*system_main_module_state + 0x888),
          (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar9 >> 5) <=
          (uint64_t)(int64_t)iVar4)) {
-        lVar9 = FUN_180628ca0();
+        lVar9 = MemoryDebugger0();
       }
       else {
         lVar9 = (int64_t)iVar4 * 0x20 + lVar9;
@@ -178,7 +184,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
         puVar11 = puStack_2c8;
       }
       System_DataHandler(&puStack_290,&processed_var_8076_ptr,puVar11,puVar13);
-      cVar3 = FUN_180624a00(&puStack_290);
+      cVar3 = UltraHighFreq_LogManager1(&puStack_290);
       if (cVar3 != '\0') {
         puVar1 = (uint64_t *)*plVar2;
         if (puVar1 != (uint64_t *)0x0) {
@@ -194,7 +200,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
           puVar12 = puStack_288;
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&processed_var_8208_ptr,puVar12);
+        SystemParameterHandler(system_message_context,&processed_var_8208_ptr,puVar12);
       }
       puStack_290 = &system_data_buffer_ptr;
       if (puStack_288 != (void *)0x0) {
@@ -261,7 +267,7 @@ LAB_180088ac9:
     } while (plVar7 != plStack_2e0 + 0x16);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&processed_var_8288_ptr);
+  SystemParameterHandler(system_message_context,&processed_var_8288_ptr);
 }
 
 
@@ -436,7 +442,7 @@ LAB_1800892bd:
     lVar9 = param_1[1];
     SystemCore_EncryptionEngine0(&puStack_48,param_2);
     bVar3 = true;
-    plVar5 = (int64_t *)FUN_180058080(lVar9,auStackX_8,&puStack_48);
+    plVar5 = (int64_t *)> HighFreq_AnimationSystem1(lVar9,auStackX_8,&puStack_48);
     if (*plVar5 == lVar9) {
       bVar2 = true;
       goto LAB_1800892fd;

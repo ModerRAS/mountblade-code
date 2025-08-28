@@ -80,7 +80,7 @@ void FUN_1800b5f00(int64_t param_1)
     *(int8_t *)((int64_t)puVar1 + 0x12) = 0;
     system_system_config_memory = 0x12;
     FUN_1808fc820(FUN_180941a30);
-    FUN_1808fcb30(&system_ptr_9238);
+    SystemCore_StateController(&system_ptr_9238);
   }
   puStack_80 = &system_data_buffer_ptr;
   uStack_68 = 0;
@@ -290,7 +290,7 @@ LAB_1800b63ec:
     puStack_78 = (int8_t *)0x0;
     uStack_68 = uStack_68 & 0xffffffff00000000;
     puStack_80 = &system_state_ptr;
-    uVar12 = FUN_18023a940(param_1);
+    uVar12 = SystemCore_Scheduler(param_1);
     FUN_180225ee0(extraout_XMM0_Da,&puStack_100,4,uVar12);
     puStack_100 = &system_data_buffer_ptr;
     if (puStack_f8 == (int8_t *)0x0) {
@@ -352,7 +352,7 @@ void FUN_1800b6620(void)
         }
         if (cVar11 == '\0') {
           bVar2 = true;
-          plVar5 = (int64_t *)FUN_18005e890(uVar3);
+          plVar5 = (int64_t *)PerformanceOptimizer(uVar3);
           cVar11 = (**(code **)(*plVar5 + 0x20))(plVar5,0);
           if (cVar11 == '\0') {
             plVar5 = *(int64_t **)(uVar9 * 8 + *(int64_t *)(lVar10 + lVar4));
@@ -371,7 +371,7 @@ void FUN_1800b6620(void)
         uVar9 = (uint64_t)uVar8;
       } while (uVar9 < (uint64_t)(lVar7 - lVar6 >> 3));
     } while (bVar2);
-    FUN_1800b8500(lVar4 + 0x5a0 + lStackX_8);
+    SystemCore_Controller(lVar4 + 0x5a0 + lStackX_8);
     lStackX_8 = lStackX_8 + 0x20;
     lVar10 = lVar10 + 0x20;
     lStackX_10 = lStackX_10 + -1;
@@ -404,7 +404,7 @@ void FUN_1800b6780(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   
   lVar2 = system_resource_state;
   uVar9 = 0xfffffffffffffffe;
-  FUN_1800b8500(param_2);
+  SystemCore_Controller(param_2);
   FUN_1800b8cb0(param_2,*(int64_t *)(lVar2 + 0x4d0) - *(int64_t *)(lVar2 + 0x4c8) >> 3 &
                         0xffffffff);
   plVar8 = *(int64_t **)(lVar2 + 0x4c8);
@@ -608,7 +608,7 @@ void FUN_1800b6b20(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   
   lVar1 = system_resource_state;
   uVar10 = 0xfffffffffffffffe;
-  FUN_1800b8500();
+  SystemCore_Controller();
   uVar9 = *(int64_t *)(lVar1 + 0xa8) - *(int64_t *)(lVar1 + 0xa0) >> 3 & 0xffffffff;
   plVar7 = (int64_t *)*param_2;
   plVar2 = (int64_t *)0x0;

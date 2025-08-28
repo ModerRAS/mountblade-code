@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_06_part014.c - 14 个函数
 
 // 函数: void FUN_1803b13f0(int64_t param_1)
@@ -607,10 +615,10 @@ void FUN_1803b1ad0(int64_t param_1,int64_t param_2)
   if (iVar1 != 0) {
     if (*(int *)(param_2 + 0x60a28) == 0) {
       uVar3 = FUN_1800bd5c0();
-      FUN_180056f10(param_1 + 0x1c48,uVar3);
+      SystemCore_PointerManager(param_1 + 0x1c48,uVar3);
     }
     else {
-      plVar4 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_158,param_2 + 0x60a18,1);
+      plVar4 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_158,param_2 + 0x60a18,1);
       lVar2 = *plVar4;
       *plVar4 = 0;
       plStack_148 = *(int64_t **)(param_1 + 0x1c48);
@@ -786,7 +794,7 @@ LAB_1803b1fdd:
       uStack_3c = uStack_50._4_4_;
       uStack_50 = puVar8;
       ppppiStack_48 = ppppiStack_58;
-      FUN_18005c650(&ppppiStack_48);
+      SystemCore_SecurityManager(&ppppiStack_48);
       *(uint64_t **)(*(int64_t *)(param_1 + 0x68) + 0x2918) = puVar8;
     }
   }

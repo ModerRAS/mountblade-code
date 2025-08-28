@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingBufferHandler */
+#define RenderingBufferHandler RenderingBufferHandler
+
+
 
 // 03_rendering_part504.c - 18 个函数
 
@@ -47,16 +53,16 @@ void FUN_180536190(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   uStack_130 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1b8;
   if (*param_1 != 0) {
-    pcStack_198 = FUN_18004a130;
+    pcStack_198 = SystemCore_MemoryManager;
     DataStructureManager(auStack_e8,0x30,4,FUN_1801c2890);
     uStack_28 = 0;
     cVar1 = SystemSynchronizationProcessor(param_3,aiStack_180,&system_data_bcc0);
     if (cVar1 != '\0') {
-      cVar1 = FUN_180646700(param_3,auStack_178,&memory_allocator_3264_ptr);
+      cVar1 = RenderingBufferHandler0(param_3,auStack_178,&memory_allocator_3264_ptr);
       if (cVar1 != '\0') {
-        cVar1 = FUN_180646700(param_3,auStack_174,&memory_allocator_3264_ptr);
+        cVar1 = RenderingBufferHandler0(param_3,auStack_174,&memory_allocator_3264_ptr);
         if (cVar1 != '\0') {
-          cVar1 = FUN_180646700(param_3,auStack_170,&memory_allocator_3280_ptr);
+          cVar1 = RenderingBufferHandler0(param_3,auStack_170,&memory_allocator_3280_ptr);
           if (cVar1 != '\0') {
             uStack_184 = (uint)(cStack_188 != '\0');
             cVar1 = SystemSynchronizationProcessor(param_3,&uStack_184,&system_param1_ptr);
@@ -94,7 +100,7 @@ void FUN_180536190(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         }
       }
     }
-    SystemDataValidator(auStack_e8,0x30,4,FUN_18004a130);
+    SystemDataValidator(auStack_e8,0x30,4,SystemCore_MemoryManager);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_1b8);
@@ -126,7 +132,7 @@ void FUN_180536390(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_128;
   lVar1 = *param_1;
   if (lVar1 != 0) {
-    pcStack_108 = FUN_18004a130;
+    pcStack_108 = SystemCore_MemoryManager;
     DataStructureManager(auStack_e8,0x30,4,FUN_1801c2890);
     uStack_28 = 0;
     cVar2 = SystemSynchronizationProcessor(param_3,&iStack_f8,&memory_allocator_3424_ptr);
@@ -146,7 +152,7 @@ void FUN_180536390(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         }
       }
     }
-    SystemDataValidator(auStack_e8,0x30,4,FUN_18004a130);
+    SystemDataValidator(auStack_e8,0x30,4,SystemCore_MemoryManager);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_128);
@@ -170,10 +176,10 @@ void FUN_1805364e0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   lVar2 = *param_1;
   if (lVar2 != 0) {
-    cVar3 = FUN_180646700(param_3,&fStack_18,&rendering_buffer_2992_ptr);
+    cVar3 = RenderingBufferHandler0(param_3,&fStack_18,&rendering_buffer_2992_ptr);
     if (((cVar3 == '\0') ||
-        (cVar3 = FUN_180646700(param_3,&fStack_14,&rendering_buffer_2992_ptr), cVar3 == '\0')) ||
-       (cVar3 = FUN_180646700(param_3,afStack_10,&memory_allocator_3008_ptr), cVar3 == '\0')) {
+        (cVar3 = RenderingBufferHandler0(param_3,&fStack_14,&rendering_buffer_2992_ptr), cVar3 == '\0')) ||
+       (cVar3 = RenderingBufferHandler0(param_3,afStack_10,&memory_allocator_3008_ptr), cVar3 == '\0')) {
       cVar3 = '\0';
     }
     else {
@@ -213,11 +219,11 @@ void FUN_180536500(int32_t param_1)
   float fStackX_24;
   float in_stack_00000028;
   
-  cVar2 = FUN_180646700(param_1,&fStackX_20);
+  cVar2 = RenderingBufferHandler0(param_1,&fStackX_20);
   if (cVar2 != '\0') {
-    cVar2 = FUN_180646700(extraout_XMM0_Da,&fStackX_24,&rendering_buffer_2992_ptr);
+    cVar2 = RenderingBufferHandler0(extraout_XMM0_Da,&fStackX_24,&rendering_buffer_2992_ptr);
     if (cVar2 != '\0') {
-      cVar2 = FUN_180646700(extraout_XMM0_Da_00,&stack0x00000028,&memory_allocator_3008_ptr);
+      cVar2 = RenderingBufferHandler0(extraout_XMM0_Da_00,&stack0x00000028,&memory_allocator_3008_ptr);
       if (cVar2 != '\0') {
         cVar2 = '\x01';
         goto LAB_18053654e;
@@ -268,7 +274,7 @@ void FUN_180536600(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   lVar2 = *param_1;
   if (lVar2 != 0) {
-    cVar3 = FUN_180646700(param_3,afStackX_8,&rendering_buffer_2976_ptr);
+    cVar3 = RenderingBufferHandler0(param_3,afStackX_8,&rendering_buffer_2976_ptr);
     FUN_1804feec0();
     if (cVar3 != '\0') {
       iVar1 = *(int *)(lVar2 + 0x98d930);
@@ -294,7 +300,7 @@ void FUN_180536615(void)
   int64_t unaff_RDI;
   float in_stack_00000040;
   
-  cVar2 = FUN_180646700();
+  cVar2 = RenderingBufferHandler0();
   FUN_1804feec0();
   if (cVar2 != '\0') {
     iVar1 = *(int *)(unaff_RDI + 0x98d930);
@@ -744,7 +750,7 @@ void FUN_180536e20(int *param_1,int param_2,int param_3,uint64_t param_4,char pa
     param_1[lVar12 + 0x278] = param_3;
     param_1[0x285] = -1;
     if (((param_3 == -1) || (piVar11 = param_1 + lVar8 * 0x7e + 2, piVar11 == (int *)0x0)) ||
-       (cVar4 = FUN_18058f970(piVar11), cVar4 == '\0')) {
+       (cVar4 = SystemCore_EventHandler(piVar11), cVar4 == '\0')) {
       piVar11 = (int *)0x0;
     }
     *(int **)(param_1 + lVar12 * 2 + 0x27a) = piVar11;
@@ -796,7 +802,7 @@ void FUN_180536e20(int *param_1,int param_2,int param_3,uint64_t param_4,char pa
       }
     }
     if ((*(int64_t *)(param_1 + 0x286) != 0) && (-1 < param_3)) {
-      cVar4 = FUN_18058f970(param_1 + lVar8 * 0x7e + 2);
+      cVar4 = SystemCore_EventHandler(param_1 + lVar8 * 0x7e + 2);
       if (cVar4 != '\0') {
         if ((param_5 == '\0') &&
            ((*(uint *)((int64_t)param_1[lVar8 * 0x7e + 0x3e] * 0xa0 + 0x50 +

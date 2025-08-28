@@ -29,7 +29,7 @@ void FUN_180522d09(int64_t param_1,int64_t param_2)
       if ((uVar5 >> 0x13 & 1) == 0) {
         if ((uVar5 >> 0x10 & 1) == 0) goto LAB_180522e20;
         uVar4 = func_0x00018052dcc0(*(int32_t *)(lVar2 + 0x20));
-        uVar4 = FUN_180557b40(*(uint64_t *)(unaff_RBX + 0x598),uVar4,1,0xffffffff,0);
+        uVar4 = RenderingSystem_EffectProcessor0(*(uint64_t *)(unaff_RBX + 0x598),uVar4,1,0xffffffff,0);
         *(int32_t *)(unaff_RBP + -0x2c) = uVar4;
         *(uint64_t *)(unaff_RBP + -0x28) = 0;
       }
@@ -46,7 +46,7 @@ void FUN_180522d09(int64_t param_1,int64_t param_2)
       *(int32_t *)(unaff_RBP + -0xc) = 0x3ecccccd;
       *(int8_t *)(unaff_RBP + -4) = 0;
       *(int32_t *)(unaff_RBP + -0x30) = 0;
-      in_XMM0_Da = FUN_18051ec50(0,unaff_RBP + -0x30);
+      in_XMM0_Da = CoreSystemThreadManager(0,unaff_RBP + -0x30);
     }
     else {
       in_XMM0_Da = FUN_180524930(in_XMM0_Da,0,0);
@@ -87,7 +87,7 @@ LAB_180522e20:
       uVar4 = *(int32_t *)(lVar3 + 0x1a4);
     }
     *(int32_t *)(unaff_RBP + -0x2c) = uVar4;
-    in_XMM0_Da = FUN_18051ec50(0,unaff_RBP + -0x30);
+    in_XMM0_Da = CoreSystemThreadManager(0,unaff_RBP + -0x30);
   }
   if ((*(uint *)(lVar2 + 8) >> 0x17 & 1) != 0) {
     FUN_18052c030(in_XMM0_Da,6);
@@ -129,7 +129,7 @@ void FUN_180522d1d(int32_t param_1)
       if ((in_ECX >> 0x13 & 1) == 0) {
         if ((in_ECX >> 0x10 & 1) == 0) goto LAB_180522e20;
         uVar3 = func_0x00018052dcc0(*(int32_t *)(unaff_RDI + 0x20));
-        uVar3 = FUN_180557b40(*(uint64_t *)(unaff_RBX + 0x598),uVar3,1,0xffffffff,0);
+        uVar3 = RenderingSystem_EffectProcessor0(*(uint64_t *)(unaff_RBX + 0x598),uVar3,1,0xffffffff,0);
         *(int32_t *)(unaff_RBP + -0x2c) = uVar3;
         *(uint64_t *)(unaff_RBP + -0x28) = 0;
       }
@@ -146,7 +146,7 @@ void FUN_180522d1d(int32_t param_1)
       *(int32_t *)(unaff_RBP + -0xc) = 0x3ecccccd;
       *(int8_t *)(unaff_RBP + -4) = 0;
       *(int32_t *)(unaff_RBP + -0x30) = 0;
-      param_1 = FUN_18051ec50(0,unaff_RBP + -0x30);
+      param_1 = CoreSystemThreadManager(0,unaff_RBP + -0x30);
     }
     else {
       param_1 = FUN_180524930(param_1,0,0);
@@ -187,7 +187,7 @@ LAB_180522e20:
       uVar3 = *(int32_t *)(lVar2 + 0x1a4);
     }
     *(int32_t *)(unaff_RBP + -0x2c) = uVar3;
-    param_1 = FUN_18051ec50(0,unaff_RBP + -0x30);
+    param_1 = CoreSystemThreadManager(0,unaff_RBP + -0x30);
   }
   if ((*(uint *)(unaff_RDI + 8) >> 0x17 & 1) != 0) {
     FUN_18052c030(param_1,6);

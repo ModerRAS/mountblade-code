@@ -1,5 +1,19 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* SystemCore_Initializer - SystemCore_Initializer */
+#define SystemCore_Initializer SystemCore_Initializer
+
+
+/* 函数别名定义: MathOptimizationEngine */
+#define MathOptimizationEngine MathOptimizationEngine
+
+
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 
 /**
  * 03_rendering_part154.c - 渲染系统高级资源管理和数据处理模块
@@ -988,10 +1002,10 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 0x16;
     strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fdd8);
-    FUN_1800b8300(resource_array, &string_pointer);
+    DataDeserializer0(resource_array, &string_pointer);
     resource_priority = 0x0B;
     operation_counter = 1;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1001,10 +1015,10 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 4;
     strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fdf8);
-    FUN_1800b8300(resource_array, &texture_pointer);
+    DataDeserializer0(resource_array, &texture_pointer);
     resource_priority = 3;
     operation_counter = 2;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1014,10 +1028,10 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
     strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffa0);
-    FUN_1800b8300(resource_array, &shader_pointer);
+    DataDeserializer0(resource_array, &shader_pointer);
     resource_priority = 1;
     operation_counter = 4;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1027,10 +1041,10 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
     strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fff8);
-    FUN_1800b8300(resource_array, &pipeline_pointer);
+    DataDeserializer0(resource_array, &pipeline_pointer);
     resource_priority = 1;
     operation_counter = 8;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1078,7 +1092,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     // 初始化栈保护
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     data_pointer = param_1;
-    FUN_1803456e0();
+    SystemCore_SyncController();
     *data_pointer = &processed_var_7800_ptr;
     object_pointer = data_pointer + 0x12;
     *object_pointer = (int64_t)&system_state_ptr;
@@ -1186,7 +1200,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     *(int16_t *)(data_pointer + 1) = 0x6874;
     *(int8_t *)((int64_t)data_pointer + 10) = 0;
     buffer_status = 10;
-    FUN_1803460a0(param_1, &config_pointer, param_1 + 0x12, 9);
+    SystemNetwork_Processor(param_1, &config_pointer, param_1 + 0x12, 9);
     config_pointer = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(data_pointer);
 }
@@ -1249,7 +1263,7 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
     if ((int64_t *)param_1[0x24] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x24] + 0x38))();
     }
-    FUN_180058370(param_1 + 0x1a, param_1[0x1c], param_3, param_4, resource_handle);
+    RenderingSystem_CameraSystem(param_1 + 0x1a, param_1[0x1c], param_3, param_4, resource_handle);
     param_1[0x16] = &system_data_buffer_ptr;
     if (param_1[0x17] != 0) {
         CoreEngineMemoryPoolCleaner();
@@ -1450,10 +1464,10 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 10;
     strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ff70);
-    FUN_1800b8300(resource_array, &string_pointer);
+    DataDeserializer0(resource_array, &string_pointer);
     resource_priority = 9;
     operation_counter = 1;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1463,10 +1477,10 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 0x0f;
     strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffd8);
-    FUN_1800b8300(resource_array, &texture_pointer);
+    DataDeserializer0(resource_array, &texture_pointer);
     resource_priority = 3;
     operation_counter = 2;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1476,10 +1490,10 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
     strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffa0);
-    FUN_1800b8300(resource_array, &shader_pointer);
+    DataDeserializer0(resource_array, &shader_pointer);
     resource_priority = 1;
     operation_counter = 4;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1489,10 +1503,10 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
     strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fff8);
-    FUN_1800b8300(resource_array, &pipeline_pointer);
+    DataDeserializer0(resource_array, &pipeline_pointer);
     resource_priority = 1;
     operation_counter = 8;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1502,10 +1516,10 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     config_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     config_length = 0x0c;
     strcpy_s(config_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffe8);
-    FUN_1800b8300(resource_array, &config_pointer);
+    DataDeserializer0(resource_array, &config_pointer);
     resource_priority = 9;
     operation_counter = 0x10;
-    FUN_180180730(param_1, object_pointer_array, resource_array);
+    MathOptimizationEngine0(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
@@ -1662,7 +1676,7 @@ ADVANCED_PARAM_PROCESSOR:
                         loop_counter = 0;
                         if (resource_size != 0) goto ADVANCED_PARAM_PROCESSOR;
                     }
-                    pipeline_pointer = (uint64_t *)FUN_180059780(resource_pointer, shader_pointer, loop_counter);
+                    pipeline_pointer = (uint64_t *)SystemCore_Initializer(resource_pointer, shader_pointer, loop_counter);
                     *pipeline_pointer = &system_state_ptr;
                     pipeline_pointer[1] = 0;
                     *(int32_t *)(pipeline_pointer + 2) = 0;
@@ -1719,7 +1733,7 @@ ADVANCED_PARAM_PROCESSOR:
                 CoreEngineDataTransformer();
             }
             else {
-                FUN_180059820(param_3, &config_pointer);
+                SystemCore_BackupSystem(param_3, &config_pointer);
             }
             config_pointer = &system_data_buffer_ptr;
             if (string_pointer != (int8_t *)0x0) {
@@ -1960,7 +1974,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_pointer_ptr[2] = 0x6f532072;
     component_pointer_ptr[3] = 0x646e75;
     component_status = 0x0f;
-    FUN_1803460a0(param_1, &component_data, param_1 + 0x2a, 3);
+    SystemNetwork_Processor(param_1, &component_data, param_1 + 0x2a, 3);
     component_data = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(component_pointer_ptr);
 }
@@ -2065,7 +2079,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_pointer_ptr[2] = 0x6f532072;
     system_pointer_ptr[3] = 0x646e75;
     system_status = 0x0f;
-    FUN_1803460a0(resource_pointer, &system_data, resource_pointer + 0x2a, 3);
+    SystemNetwork_Processor(resource_pointer, &system_data, resource_pointer + 0x2a, 3);
     system_data = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(system_pointer_ptr);
 }

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 04_ui_system_part200.c - 14 个函数
 
 // 函数: void FUN_1807851dd(int param_1,uint64_t param_2)
@@ -277,7 +281,7 @@ uint64_t FUN_180785a50(int64_t param_1)
       return uVar1;
     }
     if (*(int64_t *)(param_1 + 0x180) != 0) {
-      uVar1 = FUN_180768380(*(int64_t *)(param_1 + 0x180),0);
+      uVar1 = SystemCore_DataHandler(*(int64_t *)(param_1 + 0x180),0);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -288,7 +292,7 @@ uint64_t FUN_180785a50(int64_t param_1)
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x160),
                     &processed_var_9712_ptr,0x75,1);
     }
-    uVar1 = FUN_180768380(*(uint64_t *)(param_1 + 400),0);
+    uVar1 = SystemCore_DataHandler(*(uint64_t *)(param_1 + 400),0);
     if ((int)uVar1 != 0) {
       return uVar1;
     }

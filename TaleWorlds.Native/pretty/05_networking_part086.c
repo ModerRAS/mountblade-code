@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 05_networking_part086.c - 9 个函数
 
 // 函数: void FUN_18088f6f7(void)
@@ -11,7 +15,7 @@ void FUN_18088f6f7(void)
 
 
 
-uint64_t FUN_18088f710(uint64_t *param_1,uint64_t *param_2)
+uint64_t SystemSynchronizer(uint64_t *param_1,uint64_t *param_2)
 
 {
   byte bVar1;
@@ -562,19 +566,19 @@ int FUN_18088fb40(int64_t param_1,uint64_t param_2,uint64_t param_3)
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(param_1 + 0x1d0) = 0;
-    FUN_18084f040(param_1 + 0x1a0);
+    SystemCore_CacheManager(param_1 + 0x1a0);
   }
   if (!bVar4) {
     *(int32_t *)(param_1 + 0x98) = 0;
-    FUN_18084f2d0(param_1 + 0x68);
+    SystemCore_NetworkProcessor(param_1 + 0x68);
   }
   return iVar2;
 }
@@ -665,19 +669,19 @@ int FUN_18088fb47(int64_t param_1,uint64_t param_2,uint64_t param_3)
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(param_1 + 0x1d0) = 0;
-    FUN_18084f040(param_1 + 0x1a0);
+    SystemCore_CacheManager(param_1 + 0x1a0);
   }
   if (!bVar4) {
     *(int32_t *)(param_1 + 0x98) = 0;
-    FUN_18084f2d0(param_1 + 0x68);
+    SystemCore_NetworkProcessor(param_1 + 0x68);
   }
   return iVar2;
 }
@@ -764,19 +768,19 @@ int FUN_18088fb75(int64_t param_1,uint64_t param_2)
   }
   if (!bVar1) {
     *(int32_t *)(param_1 + 0x238) = 0;
-    FUN_18084f560(param_1 + 0x208);
+    RenderingEngine_ShaderProcessor(param_1 + 0x208);
   }
   if (!bVar5) {
     *(int32_t *)(param_1 + 0x168) = 0;
-    FUN_18084f040(param_1 + 0x138);
+    SystemCore_CacheManager(param_1 + 0x138);
   }
   if (!bVar6) {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (!bVar4) {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return iVar2;
 }
@@ -796,18 +800,18 @@ int32_t FUN_18088fd22(uint64_t param_1,int32_t param_2)
   char in_stack_00000088;
   
   *(int32_t *)(unaff_R14 + 0x60) = param_2;
-  FUN_18084f560(unaff_R14 + 0x30);
+  RenderingEngine_ShaderProcessor(unaff_R14 + 0x30);
   if (in_stack_00000070 == '\0') {
     *(int32_t *)(unaff_R15 + 0x60) = 0;
-    FUN_18084f040(unaff_R15 + 0x30);
+    SystemCore_CacheManager(unaff_R15 + 0x30);
   }
   if (in_stack_00000088 == '\0') {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (uStackX_20 == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -825,14 +829,14 @@ int32_t FUN_18088fd3d(uint64_t param_1,int32_t param_2)
   char in_stack_00000088;
   
   *(int32_t *)(unaff_R15 + 0x60) = param_2;
-  FUN_18084f040(unaff_R15 + 0x30);
+  SystemCore_CacheManager(unaff_R15 + 0x30);
   if (in_stack_00000088 == '\0') {
     *(int32_t *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    SystemCore_CacheManager(unaff_RBP + 0x30);
   }
   if (uStackX_20 == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -848,10 +852,10 @@ int32_t FUN_18088fd59(void)
   int8_t uStackX_20;
   
   *(int32_t *)(unaff_RBP + 0x60) = 0;
-  FUN_18084f040(unaff_RBP + 0x30);
+  SystemCore_CacheManager(unaff_RBP + 0x30);
   if (uStackX_20 == '\0') {
     *(int32_t *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -865,7 +869,7 @@ int32_t FUN_18088fd75(void)
   int64_t unaff_RSI;
   
   *(int32_t *)(unaff_RSI + 0x60) = 0;
-  FUN_18084f2d0(unaff_RSI + 0x30);
+  SystemCore_NetworkProcessor(unaff_RSI + 0x30);
   return unaff_EBX;
 }
 
@@ -888,7 +892,7 @@ uint64_t FUN_18088fdb0(int64_t param_1,uint64_t param_2)
     return 0x2e;
   }
   lStackX_8 = 0;
-  iVar2 = FUN_18088c740(&lStackX_8,param_2);
+  iVar2 = RenderingSystemOptimizer(&lStackX_8,param_2);
   if (iVar2 == 0) {
     iVar2 = FUN_1808dec80(lVar1,param_2);
     if (iVar2 == 0) {
@@ -915,7 +919,7 @@ uint64_t FUN_18088fdce(void)
     return 0x2e;
   }
   in_stack_00000030 = 0;
-  iVar2 = FUN_18088c740(&stack0x00000030);
+  iVar2 = RenderingSystemOptimizer(&stack0x00000030);
   if (iVar2 == 0) {
     iVar2 = FUN_1808dec80(lVar1);
     if (iVar2 == 0) {
@@ -939,7 +943,7 @@ void FUN_18088fded(void)
   uint64_t uStack0000000000000030;
   
   uStack0000000000000030 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000030);
+  iVar1 = RenderingSystemOptimizer(&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_1808dec80();
     if (iVar1 == 0) {
@@ -1038,7 +1042,7 @@ uint64_t FUN_18088fea0(int64_t param_1,uint64_t param_2)
     return 0x2e;
   }
   lStackX_8 = 0;
-  iVar2 = FUN_18088c740(&lStackX_8,param_2);
+  iVar2 = RenderingSystemOptimizer(&lStackX_8,param_2);
   if (iVar2 == 0) {
     iVar2 = FUN_1808de9b0(lVar1);
     if (iVar2 == 0) {
@@ -1068,7 +1072,7 @@ uint64_t FUN_18088febe(void)
     return 0x2e;
   }
   in_stack_00000030 = 0;
-  iVar2 = FUN_18088c740(&stack0x00000030);
+  iVar2 = RenderingSystemOptimizer(&stack0x00000030);
   if (iVar2 == 0) {
     iVar2 = FUN_1808de9b0(lVar1);
     if (iVar2 == 0) {
@@ -1095,7 +1099,7 @@ void FUN_18088fedd(void)
   uint64_t uStack0000000000000030;
   
   uStack0000000000000030 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000030);
+  iVar1 = RenderingSystemOptimizer(&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_1808de9b0();
     if (iVar1 == 0) {

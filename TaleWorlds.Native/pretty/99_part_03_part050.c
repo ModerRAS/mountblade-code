@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
 
 // 99_part_03_part050.c - 5 个函数
 
@@ -80,8 +86,8 @@ void FUN_1801ff450(int64_t param_1)
   fVar21 = (float)dVar2;
   fStackX_8 = fVar20;
   fStackX_10 = fVar21;
-  FUN_1800571e0(param_1 + 0x68,&fStackX_8);
-  FUN_1800571e0(param_1 + 0x88,&fStackX_10);
+  SystemDatabaseProcessor(param_1 + 0x68,&fStackX_8);
+  SystemDatabaseProcessor(param_1 + 0x88,&fStackX_10);
   lVar5 = SYSTEM_DATA_MANAGER_A;
   lVar15 = *(int64_t *)(param_1 + 0x70);
   lVar4 = *(int64_t *)(param_1 + 0x68);
@@ -102,7 +108,7 @@ void FUN_1801ff450(int64_t param_1)
   *(float *)(lVar5 + 0x1c04) = fVar24;
   *(float *)(lVar5 + 0x1c08) = fVar18;
   *(int32_t *)(lVar5 + 0x1bd4) = 1;
-  FUN_1801299b0(&processed_var_9928_ptr,0,0x207);
+  CoreSystem_Validator(&processed_var_9928_ptr,0,0x207);
   iVar17 = iVar7 + -1;
   *(double *)(param_1 + 0xb8) =
        ((double)iVar17 * *(double *)(param_1 + 0xb8) + (double)fVar20) * (1.0 / (double)iVar7);
@@ -350,7 +356,7 @@ void FUN_1801ff450(int64_t param_1)
       uVar27 = CONCAT44(uVar28,0x3f800000);
       fStackX_8 = fVar24;
       fStackX_c = fVar21;
-      FUN_180293d20(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
+      SystemCore_SystemMonitor(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
       uVar28 = (int32_t)((uint64_t)uVar27 >> 0x20);
     }
     lVar15 = SYSTEM_DATA_MANAGER_A;
@@ -366,7 +372,7 @@ void FUN_1801ff450(int64_t param_1)
       uVar27 = CONCAT44(uVar28,0x3f800000);
       fStackX_8 = fVar24;
       fStackX_c = fVar21;
-      FUN_180293d20(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
+      SystemCore_SystemMonitor(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
       uVar28 = (int32_t)((uint64_t)uVar27 >> 0x20);
     }
     lVar15 = SYSTEM_DATA_MANAGER_A;
@@ -382,7 +388,7 @@ void FUN_1801ff450(int64_t param_1)
       uVar27 = CONCAT44(uVar28,0x3f800000);
       fStackX_8 = fVar24;
       fStackX_c = fVar20;
-      FUN_180293d20(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
+      SystemCore_SystemMonitor(uVar16,&fStackX_10,&fStackX_8,uVar9,uVar27);
       lVar15 = SYSTEM_DATA_MANAGER_A;
       uVar28 = (int32_t)((uint64_t)uVar27 >> 0x20);
       if (240.0 < fVar23) {
@@ -396,7 +402,7 @@ void FUN_1801ff450(int64_t param_1)
         uVar9 = func_0x000180121e20(&puStack_158);
         fStackX_8 = fVar24;
         fStackX_c = fVar22;
-        FUN_180293d20(uVar16,&fStackX_10,&fStackX_8,uVar9,CONCAT44(uVar28,0x3f800000));
+        SystemCore_SystemMonitor(uVar16,&fStackX_10,&fStackX_8,uVar9,CONCAT44(uVar28,0x3f800000));
       }
     }
     puStack_148 = &system_data_buffer_ptr;
@@ -416,7 +422,7 @@ void FUN_1801ff450(int64_t param_1)
     uStack_110 = uStack_110 & 0xffffffff00000000;
     puStack_128 = &system_state_ptr;
   }
-  FUN_18012cfe0();
+  HighFreq_CacheSystem1();
   SYSTEM_DATA_MANAGER_A = uVar6;
   iVar7 = _Mtx_unlock(0x180c91970);
   if (iVar7 != 0) {
@@ -502,7 +508,7 @@ void FUN_1801fffd0(int64_t param_1)
   *(int32_t *)(lVar2 + 0x1bd4) = 1;
   *(int32_t *)(lVar2 + 0x1c38) = 0x3f19999a;
   *(int32_t *)(lVar2 + 0x1be8) = 1;
-  FUN_1801299b0(&processed_var_48_ptr,0,7);
+  CoreSystem_Validator(&processed_var_48_ptr,0,7);
   puStack_100 = &processed_var_6196_ptr;
   puStack_f8 = &processed_var_6204_ptr;
   lStack_110 = *(int64_t *)(param_1 + 0x68) + 0x50;
@@ -592,7 +598,7 @@ void FUN_1801fffd0(int64_t param_1)
     fVar16 = fVar1 + fVar16;
     uStackX_8 = CONCAT44(fVar10,fVar16);
     uVar17 = CONCAT44(uVar18,0x3f800000);
-    FUN_180293d20(uVar8,&fStackX_10,&uStackX_8,uVar7,uVar17,puVar19,plVar20,iVar6,uVar21,fVar11,
+    SystemCore_SystemMonitor(uVar8,&fStackX_10,&uStackX_8,uVar7,uVar17,puVar19,plVar20,iVar6,uVar21,fVar11,
                   uVar9);
     lVar2 = SYSTEM_DATA_MANAGER_A;
     uVar18 = (int32_t)((uint64_t)uVar17 >> 0x20);
@@ -607,7 +613,7 @@ void FUN_1801fffd0(int64_t param_1)
       uVar7 = func_0x000180121e20(&uStack_f0);
       uStackX_8 = CONCAT44(fVar10,fVar16);
       uVar17 = CONCAT44(uVar18,0x3f800000);
-      FUN_180293d20(uVar8,&fStackX_10,&uStackX_8,uVar7,uVar17,puVar19,plVar20,iVar6,uVar21,fVar11,
+      SystemCore_SystemMonitor(uVar8,&fStackX_10,&uStackX_8,uVar7,uVar17,puVar19,plVar20,iVar6,uVar21,fVar11,
                     uVar9);
       lVar2 = SYSTEM_DATA_MANAGER_A;
       uVar18 = (int32_t)((uint64_t)uVar17 >> 0x20);
@@ -622,7 +628,7 @@ void FUN_1801fffd0(int64_t param_1)
         uVar21 = func_0x000180121e20(&uStack_f0);
         uStackX_8 = CONCAT44(fVar11,fVar16);
         uVar8 = CONCAT44(uVar18,0x3f800000);
-        FUN_180293d20(uVar9,&fStackX_10,&uStackX_8,uVar21,uVar8);
+        SystemCore_SystemMonitor(uVar9,&fStackX_10,&uStackX_8,uVar21,uVar8);
         lVar2 = SYSTEM_DATA_MANAGER_A;
         uVar18 = (int32_t)((uint64_t)uVar8 >> 0x20);
         if (240.0 < fVar13) {
@@ -635,12 +641,12 @@ void FUN_1801fffd0(int64_t param_1)
           fStackX_14 = fVar14;
           uVar21 = func_0x000180121e20(&uStack_f0);
           uStackX_8 = CONCAT44(fVar14,fVar16);
-          FUN_180293d20(uVar9,&fStackX_10,&uStackX_8,uVar21,CONCAT44(uVar18,0x3f800000));
+          SystemCore_SystemMonitor(uVar9,&fStackX_10,&uStackX_8,uVar21,CONCAT44(uVar18,0x3f800000));
         }
       }
     }
   }
-  FUN_18012cfe0();
+  HighFreq_CacheSystem1();
   SYSTEM_DATA_MANAGER_A = uVar4;
   iVar6 = _Mtx_unlock(0x180c91970);
   if (iVar6 != 0) {

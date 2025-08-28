@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 /**
  * @file 99_part_13_part014.c
  * @brief 系统数据处理和对象管理模块
@@ -347,7 +351,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
             return SYSTEM_ERROR_STATE_CHECK;
         }
         
-        status_code = FUN_1808a2e00(*param_2, (char *)object_ptr + 3);
+        status_code = SystemCore_ProtocolProcessor(*param_2, (char *)object_ptr + 3);
         flags = (FlagType)status_code;
         
     } else {
@@ -374,7 +378,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
         flags = flags & 0xffffffff00000000;
         *(ObjectPtr **)((int64_t *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = (ObjectPtr)((char *)object_ptr - 3);
         
-        status_code = FUN_1808afe30(*param_2, &flags);
+        status_code = SystemCore_Manager(*param_2, &flags);
         
         if ((int)status_code != 0) {
             return status_code;
@@ -569,7 +573,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
             return status_code;
         }
         
-        status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
+        status_code = SystemCore_ProtocolProcessor(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
         validation_result = (uint)status_code;
         
     } else {
@@ -596,7 +600,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
         stack_param = CONCAT44(validation_flags, index);
         *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
         
-        status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param);
+        status_code = SystemCore_Manager(*((int64_t **)&stack_param + 1)[0], &stack_param);
         
         if ((int)status_code != 0) {
             return status_code;
@@ -734,7 +738,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
+            status_code = SystemCore_ProtocolProcessor(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
             index = (int)status_code;
             
         } else {
@@ -760,7 +764,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             stack_param[0] = CONCAT44(allocation_flags, index);
             *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
             
-            status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
+            status_code = SystemCore_Manager(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
             
             if ((int)status_code != 0) {
                 return status_code;
@@ -902,7 +906,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
+            status_code = SystemCore_ProtocolProcessor(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
             index = (int)status_code;
             
         } else {
@@ -928,7 +932,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             stack_param[0] = CONCAT44(error_flags, index);
             *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = error_object;
             
-            status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
+            status_code = SystemCore_Manager(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
             
             if ((int)status_code != 0) {
                 return status_code;

@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part057.c - 4 个函数
 
 // 函数: void FUN_180092b20(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
@@ -695,7 +699,7 @@ void FUN_180093950(void)
   if (lVar5 == 0) {
     uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x160,8,3,uVar6);
     uVar6 = FUN_180288040(uVar6);
-    FUN_180056f10(lVar2 + 0x1800,uVar6);
+    SystemCore_PointerManager(lVar2 + 0x1800,uVar6);
     lVar5 = *(int64_t *)(lVar2 + 0x1800);
     lVar4 = system_main_module_state;
   }

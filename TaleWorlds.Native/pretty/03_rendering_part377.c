@@ -1,5 +1,11 @@
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: MathCoreCalculator */
+#define MathCoreCalculator MathCoreCalculator
+
+
 
 // 03_rendering_part377.c - 7 个函数
 
@@ -140,7 +146,7 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,uint64_t *param_3,int64_t p
   uStack_a0 = 0xf;
   uStack_b8 = uStack_b8 & 0xffffff00;
   if (pbVar13 != pbVar13 + lVar8) {
-    FUN_1800671b0(&uStack_b8,pbVar13,(int64_t)(pbVar13 + lVar8) - (int64_t)pbVar13);
+    MathCoreCalculator0(&uStack_b8,pbVar13,(int64_t)(pbVar13 + lVar8) - (int64_t)pbVar13);
   }
   uVar3 = uStack_a0;
   uVar2 = uStack_a8;
@@ -412,7 +418,7 @@ void FUN_1804732b0(int8_t *param_1,int64_t param_2,uint64_t *param_3)
           uStack_118 = 0;
           uStack_110 = 0xf;
           uStack_128 = 0;
-          FUN_1800671b0(&uStack_128,&memory_allocator_3064_ptr,0x16);
+          MathCoreCalculator0(&uStack_128,&memory_allocator_3064_ptr,0x16);
           FUN_180472d60(param_2,puStack_150,&uStack_128,0);
           uStack_158 = 1;
           if (uStack_110 < 0x10) goto LAB_180473b9d;
@@ -436,7 +442,7 @@ void FUN_1804732b0(int8_t *param_1,int64_t param_2,uint64_t *param_3)
             uStack_f8 = 0;
             uStack_f0 = 0xf;
             uStack_108 = 0;
-            FUN_1800671b0(&uStack_108,&memory_allocator_3200_ptr,0x2a);
+            MathCoreCalculator0(&uStack_108,&memory_allocator_3200_ptr,0x2a);
             FUN_180472d60(param_2,puStack_150,&uStack_108,0xffffffffffffffff);
             uStack_158 = 1;
             if (0xf < uStack_f0) {
@@ -468,7 +474,7 @@ LAB_1804738ed:
             uStack_f8 = 0;
             uStack_f0 = 0xf;
             uStack_108 = 0;
-            FUN_1800671b0(&uStack_108,&memory_allocator_3088_ptr,0x31);
+            MathCoreCalculator0(&uStack_108,&memory_allocator_3088_ptr,0x31);
             FUN_180472d60(param_2,puStack_150,&uStack_108,0xffffffffffffffff);
             uStack_158 = 1;
             if (0xf < uStack_f0) {
@@ -505,7 +511,7 @@ LAB_180473445:
               uStack_98 = 0;
               uStack_90 = 0xf;
               uStack_a8 = 0;
-              FUN_1800671b0(&uStack_a8,&memory_allocator_3344_ptr,0x4d);
+              MathCoreCalculator0(&uStack_a8,&memory_allocator_3344_ptr,0x4d);
               FUN_180472d60(param_2,puStack_150,&uStack_a8,0);
               uStack_158 = 1;
               if (0xf < uStack_90) {
@@ -532,7 +538,7 @@ LAB_180473445:
               uStack_b8 = 0;
               uStack_b0 = 0xf;
               uStack_c8 = 0;
-              FUN_1800671b0(&uStack_c8,&memory_allocator_3424_ptr,0x2a);
+              MathCoreCalculator0(&uStack_c8,&memory_allocator_3424_ptr,0x2a);
               FUN_180472d60(param_2,puStack_150,&uStack_c8,0);
               uStack_158 = 1;
               if (0xf < uStack_b0) {
@@ -558,7 +564,7 @@ LAB_180473445:
               uStack_d8 = 0;
               uStack_d0 = 0xf;
               uStack_e8 = 0;
-              FUN_1800671b0(&uStack_e8,&memory_allocator_3472_ptr,0x42);
+              MathCoreCalculator0(&uStack_e8,&memory_allocator_3472_ptr,0x42);
               FUN_180472d60(param_2,puStack_150,&uStack_e8,0xfffffffffffffffc);
               uStack_158 = 1;
               if (0xf < uStack_d0) {
@@ -587,7 +593,7 @@ LAB_180473445:
               uStack_78 = 0;
               uStack_70 = 0xf;
               uStack_88 = 0;
-              FUN_1800671b0(&uStack_88,&system_handler1_ptr,0x48);
+              MathCoreCalculator0(&uStack_88,&system_handler1_ptr,0x48);
               FUN_180472d60(param_2,puStack_150,&uStack_88,0xfffffffffffffffc);
               uStack_158 = 1;
               if (0xf < uStack_70) {
@@ -641,7 +647,7 @@ LAB_180473445:
           else {
             uVar13 = 0x7fffffffffffffff;
           }
-          uVar11 = FUN_180067110(uVar13 + 1);
+          uVar11 = SystemCore_SyscallHandler(uVar13 + 1);
           param_3[2] = uVar12 + 1;
           param_3[3] = uVar13;
           if (0xf < uVar3) {
@@ -663,7 +669,7 @@ LAB_180473445:
     uStack_118 = 0;
     uStack_110 = 0xf;
     uStack_128 = 0;
-    FUN_1800671b0(&uStack_128,&memory_allocator_3064_ptr,0x16);
+    MathCoreCalculator0(&uStack_128,&memory_allocator_3064_ptr,0x16);
     FUN_180472d60(param_2,puStack_150,&uStack_128,0);
     uStack_158 = 1;
     if (uStack_110 < 0x10) goto LAB_180473b9d;
@@ -683,7 +689,7 @@ LAB_180473445:
     uStack_118 = 0;
     uStack_110 = 0xf;
     uStack_128 = 0;
-    FUN_1800671b0(&uStack_128,&memory_allocator_3168_ptr,0xc);
+    MathCoreCalculator0(&uStack_128,&memory_allocator_3168_ptr,0xc);
     FUN_180472d60(param_2,param_1,&uStack_128,0);
     uStack_158 = 1;
     if (uStack_110 < 0x10) goto LAB_180473b9d;
@@ -886,7 +892,7 @@ void FUN_180473e00(int8_t *param_1,int64_t param_2,uint64_t param_3)
       uStack_38 = 0;
       uStack_30 = 0xf;
       uStack_48 = 0;
-      FUN_1800671b0(&uStack_48,&memory_allocator_3248_ptr,0x14);
+      MathCoreCalculator0(&uStack_48,&memory_allocator_3248_ptr,0x14);
       FUN_180472d60(param_2,param_1,&uStack_48,0);
       uStack_78 = 1;
       if (0xf < uStack_30) {
@@ -1027,7 +1033,7 @@ LAB_1804740f0:
       uStack_38 = 0;
       uStack_30 = 0xf;
       uStack_48 = 0;
-      FUN_1800671b0(&uStack_48,&memory_allocator_3248_ptr,0x14);
+      MathCoreCalculator0(&uStack_48,&memory_allocator_3248_ptr,0x14);
       FUN_180472d60(param_2,param_1,&uStack_48,0);
       uStack_88 = 1;
       if (0xf < uStack_30) {

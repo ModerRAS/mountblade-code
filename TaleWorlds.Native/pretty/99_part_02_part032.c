@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 99_part_02_part032.c - 3 个函数
 
 // 函数: void FUN_1801a3620(int64_t param_1,uint64_t *param_2)
@@ -168,7 +176,7 @@ LAB_1801a38da:
     uStack_1a8 = 0;
     pcStack_1a0 = (code *)0x0;
     pcStack_198 = _guard_check_icall;
-    FUN_18023c450(lVar7,0,uStack_1f4,&lStack_1b0);
+    SystemCore_DecryptionManager(lVar7,0,uStack_1f4,&lStack_1b0);
     uVar11 = uStack_248;
     if (pcStack_1a0 != (code *)0x0) {
       (*pcStack_1a0)(&lStack_1b0,0,0);
@@ -245,7 +253,7 @@ LAB_1801a39ab:
       auStack_f0[0] = 0;
       uStack_f8 = 0xe;
       strcpy_s(auStack_f0,0x40,&processed_var_9048_ptr);
-      FUN_1800b08e0(lVar9,&plStack_220,&puStack_108,1);
+      SystemCore_GarbageCollector(lVar9,&plStack_220,&puStack_108,1);
       plVar6 = plStack_220;
       uStack_248 = 1;
       puStack_108 = &system_state_ptr;
@@ -267,7 +275,7 @@ LAB_1801a39ab:
     uStack_188 = 0;
     pcStack_180 = (code *)0x0;
     pcStack_178 = _guard_check_icall;
-    FUN_18023c450(*(uint64_t *)(lVar7 + 0x10),0,*(int32_t *)(lVar7 + 0x468),&uStack_190);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar7 + 0x10),0,*(int32_t *)(lVar7 + 0x468),&uStack_190);
     if (pcStack_180 != (code *)0x0) {
       (*pcStack_180)(&uStack_190,0,0);
     }
@@ -278,7 +286,7 @@ LAB_1801a39ab:
       auStack_90[0] = 0;
       uStack_98 = 7;
       strcpy_s(auStack_90,0x40,&processed_var_9176_ptr);
-      FUN_1800b30d0(lVar9,aplStack_218,&puStack_a8,1);
+      SystemCore_PerformanceMonitor(lVar9,aplStack_218,&puStack_a8,1);
       plVar6 = aplStack_218[0];
       uStack_248 = uVar11 & 0xffffffef | 8;
       puStack_a8 = &system_state_ptr;

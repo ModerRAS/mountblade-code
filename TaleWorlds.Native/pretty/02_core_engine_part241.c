@@ -1,6 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part241.c - 2 个函数
 
 // 函数: void FUN_180209b00(uint64_t param_1,int64_t param_2,int param_3)
@@ -277,7 +285,7 @@ LAB_180209f34:
                       }
                     }
                   }
-                  plVar5 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_80,&puStack_c8,1);
+                  plVar5 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_80,&puStack_c8,1);
                   lVar11 = *plVar5;
                   *plVar5 = 0;
                   plVar5 = (int64_t *)*plVar18;
@@ -343,7 +351,7 @@ LAB_18020a094:
                         }
                       }
                     }
-                    plVar5 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_70,&puStack_a8,1);
+                    plVar5 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_70,&puStack_a8,1);
                     lVar11 = *plVar5;
                     *plVar5 = 0;
                     plStack_78 = (int64_t *)plVar18[1];
@@ -409,7 +417,7 @@ LAB_18020a1f4:
                           }
                         }
                       }
-                      plVar5 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_60,&puStack_128,1);
+                      plVar5 = (int64_t *)SystemCore_GarbageCollector(system_resource_state,&plStack_60,&puStack_128,1);
                       lVar11 = *plVar5;
                       *plVar5 = 0;
                       plStack_68 = (int64_t *)plVar18[2];
@@ -659,7 +667,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     pcStack_110 = _guard_check_icall;
-    FUN_18023c450(*plVar18,1,0xffffffff,&puStack_128);
+    SystemCore_DecryptionManager(*plVar18,1,0xffffffff,&puStack_128);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&puStack_128,0,0);
     }
@@ -669,7 +677,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     pcStack_110 = _guard_check_icall;
-    FUN_18023c450(plVar18[1],1,0xffffffff,&puStack_128);
+    SystemCore_DecryptionManager(plVar18[1],1,0xffffffff,&puStack_128);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&puStack_128,0,0);
     }
@@ -679,7 +687,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     pcStack_110 = _guard_check_icall;
-    FUN_18023c450(plVar18[2],1,0xffffffff,&puStack_128);
+    SystemCore_DecryptionManager(plVar18[2],1,0xffffffff,&puStack_128);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&puStack_128,0,0);
     }

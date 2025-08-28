@@ -30,11 +30,11 @@ uint FUN_180718ead(uint64_t param_1,uint64_t param_2)
   iStack0000000000000040 = in_stack_00000130 >> (unaff_DIL & 0x1f);
   fStack0000000000000038 = unaff_XMM7_Da * unaff_XMM8_Da;
   uStack0000000000000028 = param_2;
-  iVar1 = FUN_180718bd0();
+  iVar1 = UISystem_EventManager0();
   iStack0000000000000040 = in_stack_00000130;
   fStack0000000000000038 = unaff_XMM6_Da * unaff_XMM8_Da;
   uStack0000000000000028 = in_stack_00000118;
-  uVar2 = FUN_180718bd0();
+  uVar2 = UISystem_EventManager0();
   return uVar2 | iVar1 << ((byte)(unaff_R13D >> 1) & 0x1f);
 }
 

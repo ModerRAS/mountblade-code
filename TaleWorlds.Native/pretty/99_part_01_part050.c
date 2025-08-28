@@ -1,9 +1,12 @@
+#include "ultra_high_freq_fun_definitions.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 99_part_01_part050.c - 4 个函数
 
@@ -184,9 +187,9 @@ LAB_1800d6939:
                           *(int32_t *)(*(int64_t *)(param_2 + 0x96d0) + 0x324));
   }
   else {
-    lVar20 = FUN_180244ff0(param_2);
+    lVar20 = SystemOptimizer(param_2);
     if ((lVar20 != 0) && (!bVar17)) {
-      lVar20 = FUN_180244ff0(param_2);
+      lVar20 = SystemOptimizer(param_2);
       uStack_1dc = CONCAT44(uStack_1dc._4_4_,*(int32_t *)(lVar20 + 0x324));
       uStack_1bc = 1;
       iVar23 = 0;
@@ -207,9 +210,9 @@ LAB_1800d6939:
       } while (iVar23 < 4);
     }
   }
-  lVar20 = FUN_180245280(param_2);
+  lVar20 = SystemLog_Manager(param_2);
   if (lVar20 != 0) {
-    lVar20 = FUN_180245280(param_2);
+    lVar20 = SystemLog_Manager(param_2);
     uStack_1e0 = *(int32_t *)(lVar20 + 0x324);
   }
   uStack_1e1 = 5;
@@ -337,7 +340,7 @@ LAB_1800d6939:
     puStack_180 = &system_state_ptr;
     lVar21 = system_message_buffer;
   }
-  FUN_18029fc10(*(int64_t *)(lVar21 + 0x1cd8),*(uint64_t *)(lVar21 + 0x1ca8),
+  UltraHighFreq_DatabaseHandler1(*(int64_t *)(lVar21 + 0x1cd8),*(uint64_t *)(lVar21 + 0x1ca8),
                 *(int64_t *)(lVar21 + 0x1cd8) + 0x80,0x80);
   fVar30 = *(float *)(param_3 + 0x130) * *(float *)(param_3 + 0x118);
   for (iVar23 = 1; (64.0 < fVar30 && (iVar23 < 8)); iVar23 = iVar23 * 2) {
@@ -387,7 +390,7 @@ LAB_1800d6939:
           uStack_218 = CONCAT44(fStack_1a4,fStack_1a8);
           uStack_19c = uStack_20c;
           fStack_1a0 = fStack_210;
-          FUN_1800b9f60(&uStack_1b8);
+          SystemCore_Parser(&uStack_1b8);
           iVar18 = FUN_18063c230(&uStack_148,&uStack_1b8);
           lVar20 = system_message_buffer;
           if (iVar18 != 0) {
@@ -397,7 +400,7 @@ LAB_1800d6939:
             *(uint *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1a64) = uVar25;
             FUN_18029d000(*(uint64_t *)(lVar20 + 0x1cd8),CONCAT71((uint7)(uint3)(uVar25 >> 8),5));
             FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_1f8);
-            FUN_18029fc10(*(int64_t *)(system_message_buffer + 0x1cd8),
+            UltraHighFreq_DatabaseHandler1(*(int64_t *)(system_message_buffer + 0x1cd8),
                           *(uint64_t *)(system_message_buffer + 0x1c80),
                           *(int64_t *)(system_message_buffer + 0x1cd8) + 0x19e0,0x200);
             if (system_data_2846 == '\0') {
@@ -459,11 +462,11 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   uStackX_10 = *(uint64_t *)(param_2 + 0x96e8);
   uStackX_18 = *(uint64_t *)(param_2 + 0x96d0);
   lStackX_8 = param_1;
-  lVar9 = FUN_180245280(param_2);
+  lVar9 = SystemLog_Manager(param_2);
   uVar4 = *(uint64_t *)(param_2 + 0x12408);
   uVar5 = *(uint64_t *)(param_2 + 0x12410);
   uVar6 = *(uint64_t *)(param_2 + 0x96f0);
-  FUN_180244ff0(param_2);
+  SystemOptimizer(param_2);
   iStack_44 = (int)*(float *)(param_2 + 0x11c24);
   lVar11 = 0;
   uStack_50 = 0;
@@ -471,10 +474,10 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   FUN_18029d0a0(*(uint64_t *)(system_message_buffer + 0x1cd8),param_2 + 0x11c18,&uStack_50);
   lVar12 = system_main_module_state;
   if (param_3 == 0) {
-    lVar10 = FUN_180244ff0(param_2);
+    lVar10 = SystemOptimizer(param_2);
     lVar12 = lVar11;
     if (lVar10 != 0) {
-      lVar10 = FUN_180244ff0(param_2);
+      lVar10 = SystemOptimizer(param_2);
       iVar1 = *(int *)(param_2 + 0x3578);
       if (*(int64_t *)(lVar10 + 0x1d8) != 0) {
         if (system_main_module_state != 0) {
@@ -484,7 +487,7 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
                  *(int64_t *)(lVar10 + 0x1d8);
       }
     }
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar12);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar12);
     if ((lVar9 == 0) || (plVar13 = *(int64_t **)(lVar9 + 0x1e0), plVar13 == (int64_t *)0x0)) {
       plVar13 = (int64_t *)0x0;
     }
@@ -503,11 +506,11 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     lVar10 = lVar11;
     if ((*(int64_t *)(param_3 + 0x1d8) == 0) ||
        (lVar10 = *(int64_t *)(param_3 + 0x1d8), lVar12 == 0)) {
-      FUN_18029ad30(uVar7,0,lVar10);
+      RenderingSystem_TextureLoader(uVar7,0,lVar10);
     }
     else {
       *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(lVar12 + 0x224);
-      FUN_18029ad30(uVar7,0);
+      RenderingSystem_TextureLoader(uVar7,0);
     }
   }
   plVar8 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -516,7 +519,7 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   }
   lVar12 = system_message_buffer;
   plVar8[0x107e] = (int64_t)plVar13;
-  FUN_18029de40(*(uint64_t *)(lVar12 + 0x1cd8),1);
+  SystemCore_ProcessorEx(*(uint64_t *)(lVar12 + 0x1cd8),1);
   if (*(int *)(lVar9 + 0x160) == 5) {
     uVar14 = *(int32_t *)(param_2 + 0x357c);
   }
@@ -595,11 +598,11 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
   *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   uStack00000000000000a8 = *(uint64_t *)(param_2 + 0x96e8);
   uStack00000000000000b0 = *(uint64_t *)(param_2 + 0x96d0);
-  lVar7 = FUN_180245280();
+  lVar7 = SystemLog_Manager();
   uVar2 = *(uint64_t *)(unaff_RBX + 0x12408);
   uVar3 = *(uint64_t *)(unaff_RBX + 0x12410);
   uVar4 = *(uint64_t *)(unaff_RBX + 0x96f0);
-  FUN_180244ff0();
+  SystemOptimizer();
   iStack0000000000000054 = (int)*(float *)(unaff_RBX + 0x11c24);
   lVar9 = 0;
   in_stack_00000048 = 0;
@@ -607,10 +610,10 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
   FUN_18029d0a0(*(uint64_t *)(system_message_buffer + 0x1cd8),unaff_RBX + 0x11c18,&stack0x00000048);
   lVar10 = system_main_module_state;
   if (param_3 == 0) {
-    lVar8 = FUN_180244ff0();
+    lVar8 = SystemOptimizer();
     lVar10 = lVar9;
     if (lVar8 != 0) {
-      lVar8 = FUN_180244ff0();
+      lVar8 = SystemOptimizer();
       iVar1 = *(int *)(unaff_RBX + 0x3578);
       if (*(int64_t *)(lVar8 + 0x1d8) != 0) {
         if (system_main_module_state != 0) {
@@ -620,7 +623,7 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
                  *(int64_t *)(lVar8 + 0x1d8);
       }
     }
-    FUN_18029ad30(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar10);
+    RenderingSystem_TextureLoader(*(uint64_t *)(system_message_buffer + 0x1cd8),0,lVar10);
     if ((lVar7 == 0) || (plVar11 = *(int64_t **)(lVar7 + 0x1e0), plVar11 == (int64_t *)0x0)) {
       plVar11 = (int64_t *)0x0;
     }
@@ -639,11 +642,11 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
     lVar8 = lVar9;
     if ((*(int64_t *)(param_3 + 0x1d8) == 0) ||
        (lVar8 = *(int64_t *)(param_3 + 0x1d8), lVar10 == 0)) {
-      FUN_18029ad30(uVar5,0,lVar8);
+      RenderingSystem_TextureLoader(uVar5,0,lVar8);
     }
     else {
       *(int64_t *)(param_3 + 0x340) = (int64_t)*(int *)(lVar10 + 0x224);
-      FUN_18029ad30(uVar5,0);
+      RenderingSystem_TextureLoader(uVar5,0);
     }
   }
   plVar6 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -652,7 +655,7 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
   }
   lVar10 = system_message_buffer;
   plVar6[0x107e] = (int64_t)plVar11;
-  FUN_18029de40(*(uint64_t *)(lVar10 + 0x1cd8),1);
+  SystemCore_ProcessorEx(*(uint64_t *)(lVar10 + 0x1cd8),1);
   if (*(int *)(lVar7 + 0x160) == 5) {
     uVar12 = *(int32_t *)(unaff_RBX + 0x357c);
   }

@@ -1,5 +1,10 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 
 // 99_part_12_part077.c - 4 个函数
 
@@ -261,7 +266,7 @@ uint64_t FUN_1807ff980(int64_t param_1,int64_t param_2,int param_3)
     lVar1 = (int64_t)param_3 * 8 + 0x150;
     alStackX_10[0] = *(int64_t *)(lVar1 + *(int64_t *)(param_1 + 0x18));
     if (alStackX_10[0] == 0) {
-      uVar3 = FUN_180759220(lVar2,param_2,alStackX_10,2,0,0);
+      uVar3 = UltraHighFreq_AudioSystem1(lVar2,param_2,alStackX_10,2,0,0);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -371,15 +376,15 @@ uint64_t FUN_1807ffa10(int64_t param_1,int64_t param_2)
                (float)*(int *)(*(int64_t *)(param_1 + 8) + 0x6d0);
           *(int32_t *)(param_1 + 0x68) = 0;
           if ((((*(int64_t *)(param_1 + 0x2e8) == 0) ||
-               (uVar2 = FUN_18075dbf0(*(int64_t *)(param_1 + 0x2e8),0,0,4), (int)uVar2 == 0)) &&
+               (uVar2 = SystemCore_ConfigurationManager(*(int64_t *)(param_1 + 0x2e8),0,0,4), (int)uVar2 == 0)) &&
               ((*(int64_t *)(param_1 + 0x2f0) == 0 ||
-               (uVar2 = FUN_18075dbf0(*(int64_t *)(param_1 + 0x2f0),0,0,4), (int)uVar2 == 0)))) &&
+               (uVar2 = SystemCore_ConfigurationManager(*(int64_t *)(param_1 + 0x2f0),0,0,4), (int)uVar2 == 0)))) &&
              ((*(int64_t *)(param_1 + 0x290) == 0 ||
-              (uVar2 = FUN_18075dbf0(param_1 + 0x70,0,0,4), (int)uVar2 == 0)))) {
+              (uVar2 = SystemCore_ConfigurationManager(param_1 + 0x70,0,0,4), (int)uVar2 == 0)))) {
             func_0x0001807e6aa0(param_1 + 0x70);
             *(uint64_t *)(*(int64_t *)(param_1 + 0x2d8) + 0x1f8) =
                  *(uint64_t *)(param_1 + 0x18);
-            uVar2 = FUN_180759220(uVar4,*(uint64_t *)(param_1 + 0x2d8),0,0,uVar6 & 0xffffff00,0);
+            uVar2 = UltraHighFreq_AudioSystem1(uVar4,*(uint64_t *)(param_1 + 0x2d8),0,0,uVar6 & 0xffffff00,0);
             if ((int)uVar2 == 0) {
               if ((*(uint *)(param_1 + 0x3c) & 0x10000) == 0) {
                 uVar4 = (**(code **)(**(int64_t **)(param_1 + 0x18) + 0x120))
@@ -414,8 +419,8 @@ uint64_t FUN_1807ffa10(int64_t param_1,int64_t param_2)
                    *(int16_t *)(*(int64_t *)(param_1 + 0x2d8) + 0x280);
               (**(code **)(**(int64_t **)(param_1 + 0x2d8) + 0x28))
                         (*(int64_t **)(param_1 + 0x2d8),0,0,0);
-              FUN_180762070(*(uint64_t *)(param_1 + 0x2d8),0,1);
-              FUN_180762070(param_2,0,1);
+              SystemCore_Initializer(*(uint64_t *)(param_1 + 0x2d8),0,1);
+              SystemCore_Initializer(param_2,0,1);
               *(int32_t *)(param_1 + 0x300) = 0xffffffff;
               *(int32_t *)(param_1 + 0x304) =
                    *(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x1ec);
@@ -509,20 +514,20 @@ uint64_t FUN_1807ffaae(void)
            (float)*(int *)(*(int64_t *)(unaff_RBX + 8) + 0x6d0);
       *(int32_t *)(unaff_RBX + 0x68) = uVar10;
       if ((*(int64_t *)(unaff_RBX + 0x2e8) != 0) &&
-         (uVar6 = FUN_18075dbf0(*(int64_t *)(unaff_RBX + 0x2e8),0,0,4), (int)uVar6 != 0)) {
+         (uVar6 = SystemCore_ConfigurationManager(*(int64_t *)(unaff_RBX + 0x2e8),0,0,4), (int)uVar6 != 0)) {
         return uVar6;
       }
       if ((*(int64_t *)(unaff_RBX + 0x2f0) != 0) &&
-         (uVar6 = FUN_18075dbf0(*(int64_t *)(unaff_RBX + 0x2f0),0,0,4), (int)uVar6 != 0)) {
+         (uVar6 = SystemCore_ConfigurationManager(*(int64_t *)(unaff_RBX + 0x2f0),0,0,4), (int)uVar6 != 0)) {
         return uVar6;
       }
       if ((*(uint64_t *)(unaff_RBX + 0x290) != unaff_R15) &&
-         (uVar6 = FUN_18075dbf0(unaff_RBX + 0x70,0,0,4), (int)uVar6 != 0)) {
+         (uVar6 = SystemCore_ConfigurationManager(unaff_RBX + 0x70,0,0,4), (int)uVar6 != 0)) {
         return uVar6;
       }
       uVar6 = func_0x0001807e6aa0(unaff_RBX + 0x70);
       *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x2d8) + 0x1f8) = *(uint64_t *)(unaff_RBX + 0x18);
-      uVar6 = FUN_180759220(uVar6,*(uint64_t *)(unaff_RBX + 0x2d8),0,0,(char)unaff_R15);
+      uVar6 = UltraHighFreq_AudioSystem1(uVar6,*(uint64_t *)(unaff_RBX + 0x2d8),0,0,(char)unaff_R15);
       if ((int)uVar6 == 0) {
         if ((*(uint *)(unaff_RBX + 0x3c) & 0x10000) == 0) {
           uVar6 = (**(code **)(**(int64_t **)(unaff_RBX + 0x18) + 0x120))
@@ -560,8 +565,8 @@ uint64_t FUN_1807ffaae(void)
              *(int16_t *)(*(int64_t *)(unaff_RBX + 0x2d8) + 0x280);
         (**(code **)(**(int64_t **)(unaff_RBX + 0x2d8) + 0x28))
                   (*(int64_t **)(unaff_RBX + 0x2d8),0,0,0);
-        uVar6 = FUN_180762070(*(uint64_t *)(unaff_RBX + 0x2d8),0,1);
-        FUN_180762070(uVar6,0,1);
+        uVar6 = SystemCore_Initializer(*(uint64_t *)(unaff_RBX + 0x2d8),0,1);
+        SystemCore_Initializer(uVar6,0,1);
         *(int32_t *)(unaff_RBX + 0x300) = 0xffffffff;
         *(int32_t *)(unaff_RBX + 0x304) =
              *(int32_t *)(*(int64_t *)(*(int64_t *)(unaff_RBX + 0x18) + 0x20) + 0x1ec);

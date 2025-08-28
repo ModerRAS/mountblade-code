@@ -112,7 +112,7 @@ uint64_t FUN_1808c0f90(int64_t param_1,int64_t param_2)
   }
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
-  FUN_1807d1650(plVar4,&uStack_40,aiStack_38);
+  NetworkSystem_ConnectionHandler(plVar4,&uStack_40,aiStack_38);
   if (aiStack_38[0] != -1) {
     iVar3 = aiStack_38[0];
     iVar7 = (int)uStack_40;
@@ -159,11 +159,11 @@ LAB_1808c116b:
     } while (iVar3 != -1);
   }
   iVar3 = SystemLockProcessor(plVar4);
-  if ((iVar3 == 0) && (iVar3 = FUN_180744e20(plVar4 + 2), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = UISystem_ComponentManager(plVar4 + 2), iVar3 == 0)) {
     *(int32_t *)(plVar4 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)plVar4 + 0x24) = 0;
   }
-  FUN_180744e20(plVar4 + 2);
+  UISystem_ComponentManager(plVar4 + 2);
   SystemLockProcessor(plVar4);
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar4,&rendering_buffer_2688_ptr,0x5f2,1);

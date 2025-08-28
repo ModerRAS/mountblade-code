@@ -16,7 +16,7 @@ void FUN_1808dea80(int *param_1)
   uStackX_8 = 0;
   if (((*param_1 == 0) ||
       ((iVar3 = func_0x00018088c590(*param_1,&uStackX_10), iVar3 == 0 &&
-       (iVar3 = FUN_18088c740(&uStackX_8,uStackX_10), iVar3 == 0)))) &&
+       (iVar3 = RenderingSystemOptimizer(&uStackX_8,uStackX_10), iVar3 == 0)))) &&
      (iVar3 = FUN_18088c620(param_1), iVar3 == 0)) {
     lVar2 = *(int64_t *)(param_1 + 6);
     if ((lVar2 != 0) && (*(int **)(lVar2 + 0x2e8) != (int *)0x0)) {
@@ -995,7 +995,7 @@ uint64_t FUN_1808df6a0(int64_t *param_1)
        (uVar5 = FUN_180868700(param_1 + 2,iVar9), (int)uVar5 != 0)) {
       return uVar5;
     }
-    uVar5 = FUN_1807703c0(param_1,iVar9);
+    uVar5 = SystemCore_StateController0(param_1,iVar9);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -1069,7 +1069,7 @@ uint64_t FUN_1808df6c6(void)
        (uVar4 = FUN_180868700(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
       return uVar4;
     }
-    uVar4 = FUN_1807703c0();
+    uVar4 = SystemCore_StateController0();
     if ((int)uVar4 != 0) {
       return uVar4;
     }

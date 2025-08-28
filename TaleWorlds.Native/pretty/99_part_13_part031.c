@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /* SystemController - SystemPhysicsEngine 的语义化别名 */
 #define SystemController SystemPhysicsEngine
 
@@ -54,7 +55,7 @@ uint64_t FUN_1808b9a90(int64_t param_1,int64_t param_2)
     if ((int)uVar5 != 0) {
       return uVar5;
     }
-    uVar5 = FUN_18073d8a0(uStackX_10,1);
+    uVar5 = SystemCore_StateController(uStackX_10,1);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -84,7 +85,7 @@ uint64_t FUN_1808b9a90(int64_t param_1,int64_t param_2)
     uVar2 = uStackX_10;
     lVar8 = *(int64_t *)(param_1 + 0x38);
     uVar5 = *(uint64_t *)(param_1 + 0x20);
-    uVar4 = FUN_18085ab70(lVar8 + 200);
+    uVar4 = UISystem_WidgetController(lVar8 + 200);
     uVar1 = *(uint64_t *)(param_1 + 0x30);
     uVar7 = (**(code **)(*(int64_t *)(*(int64_t *)(param_1 + 0x38) + 8) + 0x30))();
     FUN_1808c9310(puVar6,*(uint64_t *)(param_1 + 0x28),*(uint64_t *)(param_1 + 0x18),uVar2,
@@ -124,7 +125,7 @@ uint64_t FUN_1808b9bc8(uint64_t *param_1)
   if (param_1 != (uint64_t *)0x0) {
     (**(code **)*param_1)();
   }
-  FUN_18085ab70(*(int64_t *)(unaff_R13 + 0x38) + 200);
+  UISystem_WidgetController(*(int64_t *)(unaff_R13 + 0x38) + 200);
   (**(code **)(*(int64_t *)(*(int64_t *)(unaff_R13 + 0x38) + 8) + 0x30))();
   FUN_1808c9310(in_stack_00000070,*(uint64_t *)(unaff_R13 + 0x28),
                 *(uint64_t *)(unaff_R13 + 0x18),in_stack_000000c8,
@@ -379,7 +380,7 @@ FUN_1808b9fa0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t param_
       else if (iVar10 < iVar8) {
         iVar10 = iVar8;
       }
-      iVar3 = FUN_180748010(param_1,iVar10);
+      iVar3 = UltraHighFreq_StateController1(param_1,iVar10);
       plVar11 = (int64_t *)0x0;
       if (iVar3 != 0) goto LAB_1808ba0a2;
     }
@@ -511,7 +512,7 @@ int32_t FUN_1808ba200(int64_t *param_1,uint64_t *param_2,uint64_t param_3)
       else if (iVar10 < iVar8) {
         iVar10 = iVar8;
       }
-      iVar3 = FUN_180748010(param_1,iVar10);
+      iVar3 = UltraHighFreq_StateController1(param_1,iVar10);
       plVar13 = (int64_t *)0x0;
       if (iVar3 != 0) goto LAB_1808ba301;
     }
@@ -656,7 +657,7 @@ int32_t FUN_1808ba490(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t
       else if (iVar10 < iVar8) {
         iVar10 = iVar8;
       }
-      iVar3 = FUN_180748010(param_1,iVar10);
+      iVar3 = UltraHighFreq_StateController1(param_1,iVar10);
       plVar11 = (int64_t *)0x0;
       if (iVar3 != 0) goto LAB_1808ba592;
     }
@@ -792,7 +793,7 @@ FUN_1808ba6e0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t param_
       else if (iVar10 < iVar8) {
         iVar10 = iVar8;
       }
-      iVar3 = FUN_180748010(param_1,iVar10);
+      iVar3 = UltraHighFreq_StateController1(param_1,iVar10);
       plVar11 = (int64_t *)0x0;
       if (iVar3 != 0) goto LAB_1808ba7e2;
     }
@@ -929,7 +930,7 @@ FUN_1808ba950(int64_t *param_1,int64_t *param_2,int8_t param_3,uint64_t param_4,
       else if (iVar10 < iVar8) {
         iVar10 = iVar8;
       }
-      iVar3 = FUN_180748010(param_1,iVar10);
+      iVar3 = UltraHighFreq_StateController1(param_1,iVar10);
       plVar11 = (int64_t *)0x0;
       if (iVar3 != 0) goto LAB_1808baa53;
     }

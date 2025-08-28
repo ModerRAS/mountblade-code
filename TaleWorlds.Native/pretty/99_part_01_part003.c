@@ -230,7 +230,7 @@ typedef struct {
 // 参数：context - 系统上下文
 // 返回值：SystemStatus - 处理状态
 void FUN_1800a023d(void);                    // 系统字符串搜索处理器1
-uint64_t * FUN_1800a02a0(int64_t param_1, char *param_2); // 系统字符串搜索处理器2
+uint64_t * SystemCore_DataManager(int64_t param_1, char *param_2); // 系统字符串搜索处理器2
 uint64_t * FUN_1800a02d0(uint64_t param_1, uint64_t *param_2); // 系统字符串搜索处理器3
 uint64_t * FUN_1800a0324(uint64_t param_1, uint64_t *param_2); // 系统字符串搜索处理器4
 uint64_t FUN_1800a0338(int64_t param_1); // 系统字符串搜索处理器5

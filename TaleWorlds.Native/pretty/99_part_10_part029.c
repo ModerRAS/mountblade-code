@@ -1,3 +1,4 @@
+#include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part029.c - 10 个函数
@@ -73,15 +74,15 @@ void FUN_1806b62aa(int64_t param_1)
     }
     *(uint64_t *)(param_1 + -0x20) = uVar6;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = uVar9;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -125,15 +126,15 @@ void FUN_1806b62aa(int64_t param_1)
     *(uint64_t *)(param_1 + -0x20) = uVar6;
     lVar2 = *(int64_t *)(param_1 + -0x38);
     bStack0000000000000081 = bVar10 | bVar4;
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 2;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(byte **)(lVar2 + 0x18) = bVar10 | bVar4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -141,7 +142,7 @@ void FUN_1806b62aa(int64_t param_1)
     FUN_1806b2670(&stack0x00000020,param_1 + -0x38,&stack0x00000080);
   }
   if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
-    FUN_1806b4470(param_1 + -0xb0);
+    RenderingSystem_ShaderProcessor(param_1 + -0xb0);
   }
   if (lVar8 == 0) {
     if (lVar1 == 0) {
@@ -202,15 +203,15 @@ void FUN_1806b6347(int64_t param_1)
   }
   *(uint64_t *)(unaff_RBP + 0x90) = unaff_RSI;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
   **(int8_t **)(lVar1 + 0x18) = 4;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
   **(int8_t **)(lVar1 + 0x18) = uVar4;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
   puVar2 = *(int8_t **)(lVar1 + 0x18);
   *puVar2 = unaff_R13B;
   puVar2[1] = in_stack_00000088._1_1_;
@@ -218,7 +219,7 @@ void FUN_1806b6347(int64_t param_1)
   FUN_1806b6980(unaff_RBP + 0x78,&processed_var_6648_ptr,&stack0x00000098,uVar5);
   if (*(uint *)(unaff_RBP + 0x50) <= (uint)(*(int *)(unaff_RBP + 0x28) - *(int *)(unaff_RBP + 0x20))
      ) {
-    FUN_1806b4470();
+    RenderingSystem_ShaderProcessor();
   }
   if (unaff_RBX == 0) {
     if (unaff_RDI == 0) {
@@ -297,15 +298,15 @@ void FUN_1806b6436(void)
   *(uint64_t *)(unaff_RBP + 0x90) = unaff_RSI;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
   bStack0000000000000081 = bVar4 | bVar3;
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
   **(int8_t **)(lVar1 + 0x18) = 2;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
   **(byte **)(lVar1 + 0x18) = bVar4 | bVar3;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
   puVar2 = *(int8_t **)(lVar1 + 0x18);
   *puVar2 = unaff_R13B;
   puVar2[1] = in_stack_00000088._1_1_;
@@ -313,7 +314,7 @@ void FUN_1806b6436(void)
   FUN_1806b2670(&uStackX_20,unaff_RBP + 0x78,&stack0x00000080);
   if (*(uint *)(unaff_RBP + 0x50) <= (uint)(*(int *)(unaff_RBP + 0x28) - *(int *)(unaff_RBP + 0x20))
      ) {
-    FUN_1806b4470();
+    RenderingSystem_ShaderProcessor();
   }
   if (unaff_RBX != 0) {
                     // WARNING: Subroutine does not return
@@ -439,15 +440,15 @@ void FUN_1806b65b0(int64_t param_1,int16_t param_2,uint64_t param_3,int param_4)
       }
       *(uint64_t *)(param_1 + -0x20) = uVar5;
       lVar2 = *(int64_t *)(param_1 + -0x38);
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
       **(int8_t **)(lVar2 + 0x18) = 4;
       *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
       lVar2 = *(int64_t *)(param_1 + -0x38);
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
       **(int8_t **)(lVar2 + 0x18) = uVar8;
       *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
       lVar2 = *(int64_t *)(param_1 + -0x38);
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
       puVar3 = *(int8_t **)(lVar2 + 0x18);
       *puVar3 = (char)param_2;
       puVar3[1] = uStackX_10._1_1_;
@@ -494,15 +495,15 @@ void FUN_1806b65b0(int64_t param_1,int16_t param_2,uint64_t param_3,int param_4)
       lVar2 = *(int64_t *)(param_1 + -0x38);
       bStackX_9 = bVar9 | bVar4;
       uStackX_a = param_2;
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
       **(int8_t **)(lVar2 + 0x18) = 2;
       *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
       lVar2 = *(int64_t *)(param_1 + -0x38);
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
       **(byte **)(lVar2 + 0x18) = bVar9 | bVar4;
       *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
       lVar2 = *(int64_t *)(param_1 + -0x38);
-      FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+      SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
       puVar3 = *(int8_t **)(lVar2 + 0x18);
       *puVar3 = (char)param_2;
       puVar3[1] = uStackX_10._1_1_;
@@ -511,7 +512,7 @@ void FUN_1806b65b0(int64_t param_1,int16_t param_2,uint64_t param_3,int param_4)
     }
     if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
     {
-      FUN_1806b4470(param_1 + -0xb0);
+      RenderingSystem_ShaderProcessor(param_1 + -0xb0);
     }
     if (lVar7 != 0) {
                     // WARNING: Subroutine does not return
@@ -603,15 +604,15 @@ void FUN_1806b65db(int64_t param_1)
     }
     *(uint64_t *)(param_1 + -0x20) = uVar5;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = uVar9;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -655,15 +656,15 @@ void FUN_1806b65db(int64_t param_1)
     *(uint64_t *)(param_1 + -0x20) = uVar5;
     lVar2 = *(int64_t *)(param_1 + -0x38);
     bStack0000000000000081 = bVar10 | bVar4;
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 2;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(byte **)(lVar2 + 0x18) = bVar10 | bVar4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -671,7 +672,7 @@ void FUN_1806b65db(int64_t param_1)
     FUN_1806b2670(&stack0x00000028,param_1 + -0x38,&stack0x00000080);
   }
   if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
-    FUN_1806b4470(param_1 + -0xb0);
+    RenderingSystem_ShaderProcessor(param_1 + -0xb0);
   }
   if (lVar8 == 0) {
     if (lVar1 == 0) {
@@ -760,15 +761,15 @@ void FUN_1806b65df(int64_t param_1)
     }
     *(uint64_t *)(param_1 + -0x20) = uVar5;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = uVar9;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -812,15 +813,15 @@ void FUN_1806b65df(int64_t param_1)
     *(uint64_t *)(param_1 + -0x20) = uVar5;
     lVar2 = *(int64_t *)(param_1 + -0x38);
     bStack0000000000000081 = bVar10 | bVar4;
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(int8_t **)(lVar2 + 0x18) = 2;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
     **(byte **)(lVar2 + 0x18) = bVar10 | bVar4;
     *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
     lVar2 = *(int64_t *)(param_1 + -0x38);
-    FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
+    SystemController(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
     puVar3 = *(int8_t **)(lVar2 + 0x18);
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
@@ -828,7 +829,7 @@ void FUN_1806b65df(int64_t param_1)
     FUN_1806b2670(&stack0x00000028,param_1 + -0x38,&stack0x00000080);
   }
   if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
-    FUN_1806b4470(param_1 + -0xb0);
+    RenderingSystem_ShaderProcessor(param_1 + -0xb0);
   }
   if (lVar8 == 0) {
     if (lVar1 == 0) {
@@ -887,15 +888,15 @@ void FUN_1806b6670(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   *(uint64_t *)(unaff_RBP + 0x90) = unaff_RSI;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1,param_3,param_4,in_RAX);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1,param_3,param_4,in_RAX);
   **(int8_t **)(lVar1 + 0x18) = 4;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 1);
   **(int8_t **)(lVar1 + 0x18) = uVar4;
   *(int64_t *)(lVar1 + 0x18) = *(int64_t *)(lVar1 + 0x18) + 1;
   lVar1 = *(int64_t *)(unaff_RBP + 0x78);
-  FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
+  SystemController(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 2);
   puVar2 = *(int8_t **)(lVar1 + 0x18);
   *puVar2 = unaff_R13B;
   puVar2[1] = in_stack_00000088._1_1_;
@@ -903,7 +904,7 @@ void FUN_1806b6670(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   FUN_1806b6980(unaff_RBP + 0x78,&processed_var_6648_ptr,&stack0x00000020,uVar5);
   if (*(uint *)(unaff_RBP + 0x50) <= (uint)(*(int *)(unaff_RBP + 0x28) - *(int *)(unaff_RBP + 0x20))
      ) {
-    FUN_1806b4470();
+    RenderingSystem_ShaderProcessor();
   }
   if (unaff_RBX == 0) {
     if (unaff_RDI == 0) {

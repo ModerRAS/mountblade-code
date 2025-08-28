@@ -14,9 +14,9 @@ void FUN_18029e3e0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   
   plVar1 = *(int64_t **)(param_1 + 0x8400);
   UNRECOVERED_JUMPTABLE = *(code **)(*plVar1 + 0x178);
-  lVar3 = FUN_18023a940(param_2);
+  lVar3 = SystemCore_Scheduler(param_2);
   uVar2 = *(uint64_t *)(lVar3 + 8);
-  lVar3 = FUN_18023a940(param_3);
+  lVar3 = SystemCore_Scheduler(param_3);
                     // WARNING: Could not recover jumptable at 0x00018029e43f. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(plVar1,*(uint64_t *)(lVar3 + 8),uVar2);
@@ -39,9 +39,9 @@ void FUN_18029e450(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
   
   plVar1 = *(int64_t **)(param_1 + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x170);
-  lVar4 = FUN_18023a940(param_6);
+  lVar4 = SystemCore_Scheduler(param_6);
   uVar3 = *(uint64_t *)(lVar4 + 8);
-  lVar4 = FUN_18023a940();
+  lVar4 = SystemCore_Scheduler();
   (*pcVar2)(plVar1,*(uint64_t *)(lVar4 + 8),param_3 + param_4 * param_5,0,0,0,uVar3,
             param_8 * param_9 + param_7,0);
   return;
@@ -141,7 +141,7 @@ void FUN_18029e630(int64_t param_1,int64_t param_2,int param_3,int param_4,int32
   uVar2 = *(uint *)(param_2 + 0x35c);
   pcVar4 = *(code **)(*plVar3 + 0x180);
   uVar5 = *(uint64_t *)(param_6 + 0x10);
-  lVar6 = FUN_18023a940(param_2);
+  lVar6 = SystemCore_Scheduler(param_2);
   uVar7 = (uint)bVar1;
   if ((int)uVar2 < (int)(uint)bVar1) {
     uVar7 = uVar2;
@@ -282,7 +282,7 @@ void FUN_18029e910(int64_t param_1,int64_t param_2,int param_3,int param_4,int p
   if (1 < *(ushort *)(param_2 + 0x32e)) {
     uVar5 = (uint)*(ushort *)(param_2 + 0x32e);
   }
-  lVar4 = FUN_18023a940(param_2);
+  lVar4 = SystemCore_Scheduler(param_2);
   uVar3 = *(uint64_t *)(lVar4 + 8);
   uVar6 = (uint)bVar1;
   if ((int)uVar2 < (int)(uint)bVar1) {
@@ -463,7 +463,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   FUN_1800b2450();
   puStack_f8 = &system_state_ptr;
   puStack_130 = &system_state_ptr;
-  lVar6 = FUN_18023a940(plStack_160);
+  lVar6 = SystemCore_Scheduler(plStack_160);
   uStack_1a8 = *(uint64_t *)(lVar6 + 8);
   uVar4 = (uint)*(byte *)(param_2 + 0x335);
   if ((int)*(uint *)(param_2 + 0x35c) < (int)(uint)*(byte *)(param_2 + 0x335)) {
@@ -472,7 +472,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   iStack_1a0 = param_3 * uVar4 + param_4;
   plVar1 = *(int64_t **)(param_1 + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x170);
-  lVar6 = FUN_18023a940();
+  lVar6 = SystemCore_Scheduler();
   uStack_1c8 = *(uint64_t *)(lVar6 + 8);
   uStack_1b8 = 0;
   iStack_1c0 = iStack_1a0;
@@ -484,7 +484,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   iVar5 = (**(code **)(**(int64_t **)(param_1 + 0x8400) + 0x70))
                     (*(int64_t **)(param_1 + 0x8400),uStack_1a8,0,1);
   if (iVar5 < 0) {
-    FUN_180220810(iVar5,&ui_system_data_1936_ptr);
+    SystemCore_Loader(iVar5,&ui_system_data_1936_ptr);
   }
   else {
     iVar5 = func_0x000180225d90(*(int32_t *)(param_2 + 0x324));
@@ -532,11 +532,11 @@ void FUN_18029ef00(int64_t param_1,int64_t param_2)
   uint64_t uStack_28;
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
-  lVar4 = FUN_18023a940(param_2);
+  lVar4 = SystemCore_Scheduler(param_2);
   plVar1 = *(int64_t **)(param_1 + 0x8400);
   plVar2 = *(int64_t **)(lVar4 + 8);
   pcVar3 = *(code **)(*plVar1 + 0x1b0);
-  lVar4 = FUN_18023a940(param_2);
+  lVar4 = SystemCore_Scheduler(param_2);
   (*pcVar3)(plVar1,*(uint64_t *)(lVar4 + 0x10));
   (**(code **)(*plVar2 + 0x50))(plVar2,auStack_58);
   *(int32_t *)(param_2 + 0x35c) = uStack_50;
@@ -890,7 +890,7 @@ void FUN_18029f830(int64_t param_1,uint param_2,uint param_3)
                      (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(lVar14 + 0x10),0,4,0,
                       apuStack_18);
   if (iVar11 < 0) {
-    FUN_180220810(iVar11,&ui_system_data_1768_ptr);
+    SystemCore_Loader(iVar11,&ui_system_data_1768_ptr);
   }
   uVar6 = param_2 >> 0xe;
   lVar14 = (int64_t)*(int *)(system_parameter_buffer + 0x1538) * 0x488 + system_parameter_buffer + 0x1a18;
@@ -960,7 +960,7 @@ void FUN_18029f9b0(int64_t param_1,uint64_t param_2,int param_3)
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(lVar1 + 0x10),0,4,0,auStack_18
                     );
   if (iVar2 < 0) {
-    FUN_180220810(iVar2,&ui_system_data_1768_ptr);
+    SystemCore_Loader(iVar2,&ui_system_data_1768_ptr);
   }
                     // WARNING: Subroutine does not return
   memcpy(auStack_18[0],param_2,(int64_t)param_3 << 5);

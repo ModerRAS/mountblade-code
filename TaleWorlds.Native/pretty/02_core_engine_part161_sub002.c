@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// $fun 的语义化别名
+#define $alias_name $fun
+
+
 // 02_core_engine_part161_sub002.c - 1 个函数
 
 // 函数: void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
@@ -196,7 +200,7 @@ void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(unaff_RBP + -0x25) = uVar19;
   *(int32_t *)(unaff_RBP + -0x21) = in_XMM2_Dc;
   *(int32_t *)(unaff_RBP + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(unaff_RBP + -0x39);
+  SystemCore_Parser(unaff_RBP + -0x39);
   uVar2 = *(uint64_t *)(unaff_RBP + -0x31);
   uVar16 = *(int32_t *)(unaff_RBP + -9);
   uVar3 = *(uint64_t *)(unaff_RBP + -0x29);

@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 /**
  * @file 04_ui_system_part002_sub001.c
  * @brief UI系统高级处理模块
@@ -485,7 +486,7 @@ void UISystemInitializer(void* param_1) {
         if (0x8000 < *(uint32_t*)0x180c9eb50) {
             /* 系统繁忙，进行清理 */
             *(uint32_t*)0x180c9eb50 = *(uint32_t*)0x180c9eb50 + 1;
-            FUN_1808fcdc8(); // 系统清理函数
+            UltraHighFreq_ThreadManager1(); // 系统清理函数
             /* 执行系统调用 */
             void* pcVar1 = (void*)swi(3);
             ((void(*)())pcVar1)();
@@ -540,7 +541,7 @@ void UISystemResetter(void) {
     void* pcVar1;
     
     /* 执行系统清理 */
-    FUN_1808fcdc8();
+    UltraHighFreq_ThreadManager1();
     
     /* 系统调用重置 */
     pcVar1 = (void*)swi(3);

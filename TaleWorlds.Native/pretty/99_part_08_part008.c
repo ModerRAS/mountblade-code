@@ -1,3 +1,7 @@
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -1185,8 +1189,8 @@ LAB_1804e66bf:
     } while ((int8_t *)((int64_t)puVar4 + (int64_t)(puVar1 + (-0x70 - (int64_t)puStackX_18)))
              != puVar7);
   }
-  FUN_1800b8300(puVar3,param_2);
-  FUN_1800b8300(puVar3 + 0xb,param_2 + 0x58);
+  DataDeserializer0(puVar3,param_2);
+  DataDeserializer0(puVar3 + 0xb,param_2 + 0x58);
   puVar4 = (uint64_t *)param_1[1];
   puVar2 = (uint64_t *)*param_1;
   if (puVar2 != puVar4) {

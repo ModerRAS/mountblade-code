@@ -111,7 +111,7 @@ extern void FUN_180669700(int64_t param_1, void* param_2, uint64_t param_3, int 
 extern void SystemSecurityChecker(uint64_t param_1);
 extern uint64_t FUN_180660070(int64_t param_1, uint param_2);
 extern uint64_t FUN_18065ffa0(int64_t param_1, uint param_2);
-extern uint64_t FUN_18065cec0(int64_t param_1, int param_2);
+extern uint64_t UtilitiesSystem_FormatConverter(int64_t param_1, int param_2);
 
 /**
  * UI系统数据初始化器 - 初始化UI系统数据结构
@@ -1398,7 +1398,7 @@ void FUN_18065d0a0(int64_t param_1, float param_2, uint64_t param_3, float param
  * @param param_2 参数2 - 查询索引
  * @return 查询结果
  */
-uint64_t FUN_18065cec0(int64_t param_1, int param_2)
+uint64_t UtilitiesSystem_FormatConverter(int64_t param_1, int param_2)
 {
     int64_t state_data;
     int check_index;

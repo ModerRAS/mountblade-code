@@ -1,9 +1,11 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part127.c - 15 个函数
 
@@ -45,8 +47,8 @@ void FUN_18012cf49(int32_t param_1)
 
 
 
-// 函数: void FUN_18012cfe0(void)
-void FUN_18012cfe0(void)
+// 函数: void HighFreq_CacheSystem1(void)
+void HighFreq_CacheSystem1(void)
 
 {
   char *pcVar1;
@@ -667,8 +669,8 @@ void FUN_18012d230(int64_t param_1)
 
 
 
-// 函数: void FUN_18012d2e0(int64_t param_1)
-void FUN_18012d2e0(int64_t param_1)
+// 函数: void SystemCore_DataCompressor(int64_t param_1)
+void SystemCore_DataCompressor(int64_t param_1)
 
 {
   int64_t lVar1;
@@ -973,7 +975,7 @@ void FUN_18012d7c0(int64_t param_1)
     if (iVar10 + 1 < iVar9) {
       iVar5 = iVar9;
     }
-    FUN_18013e760(piVar3,iVar5);
+    RenderingEngine_Renderer(piVar3,iVar5);
     iVar10 = *piVar3;
   }
   lVar11 = (int64_t)iVar10;

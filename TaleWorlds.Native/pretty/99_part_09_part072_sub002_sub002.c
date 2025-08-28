@@ -1,3 +1,4 @@
+#include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -449,7 +450,7 @@ void FUN_1805eb720(int64_t *param_1,uint64_t *param_2,int64_t *param_3,int64_t p
     fStack_3b0 = fVar16;
     if (lVar13 != 0) {
       lVar13 = *(int64_t *)(lVar13 + 0x18) + -0xd0 + (int64_t)*(char *)(lVar13 + 0x20) * 0x100;
-      FUN_18063b5f0(&fStack_4d8);
+      SystemSecurityManager(&fStack_4d8);
       fStack_398 = fStack_4d8;
       fStack_394 = fStack_4d4;
       fStack_390 = fStack_4d0;
@@ -544,8 +545,8 @@ void FUN_1805eb720(int64_t *param_1,uint64_t *param_2,int64_t *param_3,int64_t p
     uStack_144 = uStack_524;
     uStack_140 = uStack_520;
     uStack_13c = uStack_51c;
-    lVar13 = FUN_180300bf0(&uStack_538,auStack_258,&uStack_5a8);
-    FUN_18063b5f0(&uStack_4a8);
+    lVar13 = UltraHighFreq_FileSystem1(&uStack_538,auStack_258,&uStack_5a8);
+    SystemSecurityManager(&uStack_4a8);
     uVar4 = *(int32_t *)(lVar13 + 0x10);
     uVar5 = *(int32_t *)(lVar13 + 0x14);
     uVar6 = *(int32_t *)(lVar13 + 0x18);
@@ -637,7 +638,7 @@ void FUN_1805eb720(int64_t *param_1,uint64_t *param_2,int64_t *param_3,int64_t p
       fStack_124 = fVar17;
       fStack_120 = fVar24;
       fStack_11c = fVar18;
-      FUN_18063b5f0(&fStack_478,&uStack_518);
+      SystemSecurityManager(&fStack_478,&uStack_518);
       fStack_2d8 = fStack_478;
       fStack_2d4 = fStack_474;
       fStack_2d0 = fStack_470;
@@ -863,8 +864,8 @@ void FUN_1805eb720(int64_t *param_1,uint64_t *param_2,int64_t *param_3,int64_t p
       uStack_104 = uStack_4e4;
       uStack_100 = uStack_4e0;
       uStack_fc = uStack_4dc;
-      lVar10 = FUN_180300bf0(&uStack_4f8,auStack_238,&uStack_5a8);
-      FUN_18063b5f0(&uStack_448);
+      lVar10 = UltraHighFreq_FileSystem1(&uStack_4f8,auStack_238,&uStack_5a8);
+      SystemSecurityManager(&uStack_448);
       uVar4 = *(int32_t *)(lVar10 + 0x10);
       uVar5 = *(int32_t *)(lVar10 + 0x14);
       uVar6 = *(int32_t *)(lVar10 + 0x18);
@@ -1003,7 +1004,7 @@ float * FUN_1805ec350(int64_t *param_1,float *param_2,int32_t param_3,int32_t pa
     *(int32_t *)(lVar1 + 100) = uStack_34;
     *(int32_t *)(lVar1 + 0x68) = uStack_30;
     *(int32_t *)(lVar1 + 0x6c) = uStack_2c;
-    FUN_180254610();
+    RenderingSystem_CameraController();
     lVar1 = *param_1;
     fVar2 = *(float *)(lVar1 + 0x90);
     fVar3 = *(float *)(lVar1 + 0x94);

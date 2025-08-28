@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* SystemCore_EventHandler - RenderingSystem_DataBlockCopier */
+#define RenderingSystem_DataBlockCopier SystemCore_EventHandler
+
+
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 
@@ -31,7 +36,7 @@ void FUN_1800497f0(uint64_t param_1)
 
 
 uint64_t *
-FUN_180049830(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+UltraHighFreq_PerformanceMonitor1(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -172,7 +177,7 @@ void FUN_1800499c0(int64_t param_1,int64_t param_2,int64_t param_3)
 
 
 uint64_t *
-FUN_180049b30(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+RenderingSystem_DataBlockCopier(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   void *puVar1;
@@ -506,14 +511,14 @@ void FUN_180050b00(void)
     pplStackX_8 = pplVar9;
     (*(code *)(*pplVar9)[5])(pplVar9);
     (*pcVar3)(puVar2,&pplStackX_8);
-    FUN_18020f150(plVar1[0x28]);
+    CoreEngine_SystemInitializer(plVar1[0x28]);
     (*(code *)(*pplVar9)[7])(pplVar9);
   }
   lVar8 = *(int64_t *)(system_operation_state + 0x18) - *(int64_t *)(system_operation_state + 0x10);
   uVar13 = uVar12;
   if (lVar8 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar8,uVar13 * 0x1c + *(int64_t *)(system_operation_state + 0x10));
+      CoreEngine_MemoryManager(lVar8,uVar13 * 0x1c + *(int64_t *)(system_operation_state + 0x10));
       uVar11 = (int)uVar12 + 1;
       uVar12 = (uint64_t)uVar11;
       lVar8 = *(int64_t *)(system_operation_state + 0x18) - *(int64_t *)(system_operation_state + 0x10);
@@ -626,14 +631,14 @@ void FUN_180050b30(int64_t param_1)
     pplStackX_8 = pplVar8;
     (*(code *)(*pplVar8)[5])(pplVar8);
     (*pcVar3)(puVar2,&pplStackX_8);
-    FUN_18020f150(plVar1[0x28]);
+    CoreEngine_SystemInitializer(plVar1[0x28]);
     (*(code *)(*pplVar8)[7])(pplVar8);
   }
   lVar7 = *(int64_t *)(system_operation_state + 0x18) - *(int64_t *)(system_operation_state + 0x10);
   uVar12 = uVar11;
   if (lVar7 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar7,uVar12 * 0x1c + *(int64_t *)(system_operation_state + 0x10));
+      CoreEngine_MemoryManager(lVar7,uVar12 * 0x1c + *(int64_t *)(system_operation_state + 0x10));
       uVar10 = (int)uVar11 + 1;
       uVar11 = (uint64_t)uVar10;
       lVar7 = *(int64_t *)(system_operation_state + 0x18) - *(int64_t *)(system_operation_state + 0x10);

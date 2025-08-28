@@ -232,7 +232,7 @@ void FUN_1802ef920(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
   
   lVar5 = *(int64_t *)(param_1 + 0x268);
   if (param_2 == (int64_t *)0x0) {
-    FUN_1802ed990(param_1,1,param_3,param_4,0xfffffffffffffffe);
+    PhysicsSystem_CharacterController(param_1,1,param_3,param_4,0xfffffffffffffffe);
   }
   else {
     (**(code **)(*param_2 + 0x28))(param_2);
@@ -302,7 +302,7 @@ void FUN_1802efa20(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   plVar3 = *(int64_t **)(param_2 + 0x268);
   lVar2 = *(int64_t *)(param_1 + 0x268);
   if (plVar3 == (int64_t *)0x0) {
-    FUN_1802ed990(param_1,1,lVar6,param_4,0xfffffffffffffffe);
+    PhysicsSystem_CharacterController(param_1,1,lVar6,param_4,0xfffffffffffffffe);
   }
   else {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -368,7 +368,7 @@ void FUN_1802efa51(uint64_t param_1,uint64_t param_2,int64_t param_3)
   plVar3 = *(int64_t **)(unaff_RBP + 0x268);
   lVar6 = *(int64_t *)(unaff_RSI + 0x268);
   if (plVar3 == (int64_t *)0x0) {
-    FUN_1802ed990();
+    PhysicsSystem_CharacterController();
   }
   else {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -426,7 +426,7 @@ void FUN_1802efab2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack0000000000000040 = in_stack_00000048;
   lVar6 = *(int64_t *)(unaff_RSI + 0x268);
   if (plVar3 == (int64_t *)0x0) {
-    FUN_1802ed990();
+    PhysicsSystem_CharacterController();
   }
   else {
     (**(code **)(*plVar3 + 0x28))(plVar3);

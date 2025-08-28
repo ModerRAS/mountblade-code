@@ -33,7 +33,7 @@ int FUN_180844300(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = SystemDataProcessor(param_2,param_3,&processed_var_664_ptr);
   iVar3 = SystemDataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = SystemDataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -62,7 +62,7 @@ int FUN_1808443b0(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = SystemDataProcessor(param_2,param_3,&ui_system_data_160_ptr);
   iVar3 = SystemDataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar3 = RenderingSystem_ShaderCompiler(iVar2 + param_2,param_3 - iVar2,&uStack_18);
   iVar2 = iVar2 + iVar3;
   iVar3 = SystemDataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
@@ -234,7 +234,7 @@ int FUN_1808447d0(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;
 }
 
@@ -303,7 +303,7 @@ int FUN_180844a30(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -330,7 +330,7 @@ int FUN_180844b20(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = SystemDataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -357,7 +357,7 @@ int FUN_180844c00(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = SystemCore_Cleanup(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 
@@ -382,7 +382,7 @@ int FUN_180844d00(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = SystemDataProcessor(iVar2 + param_2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = SystemCore_Cleanup(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -730,7 +730,7 @@ LAB_180845484:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_9408_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
@@ -831,7 +831,7 @@ LAB_1808456ba:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &processed_var_8152_ptr;
     *(int32_t *)(apuStack_138[0] + 3) = 0;
@@ -962,7 +962,7 @@ LAB_180845e35:
     iVar5 = iVar4;
   }
   if ((iVar5 == 0) &&
-     (iVar4 = FUN_18088dec0(*(uint64_t *)(alStack_158[0] + 0x98),apuStack_148,0x28), iVar4 == 0))
+     (iVar4 = SystemCore_SecurityChecker(*(uint64_t *)(alStack_158[0] + 0x98),apuStack_148,0x28), iVar4 == 0))
   {
     *apuStack_148[0] = &processed_var_9800_ptr;
     *(int32_t *)(apuStack_148[0] + 4) = 0;

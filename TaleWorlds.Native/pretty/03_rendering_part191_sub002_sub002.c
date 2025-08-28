@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryDebugger */
+#define MemoryDebugger MemoryDebugger
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -316,7 +320,7 @@ void FUN_18037ae90(int64_t param_1,int64_t param_2,uint64_t *param_3)
     puVar26 = puVar12;
   }
   strcpy_s(auStack_570,0x80,puVar26);
-  puVar14 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_7d0,&puStack_588,&uStack_8e8);
+  puVar14 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_7d0,&puStack_588,&uStack_8e8);
   plVar25 = (int64_t *)*puVar14;
   *puVar14 = 0;
   plStack_7d8 = aplStack_940[0];
@@ -403,7 +407,7 @@ LAB_18037b5a5:
     puVar26 = puVar12;
   }
   strcpy_s(auStack_4d0,0x80,puVar26);
-  puVar14 = (uint64_t *)FUN_1800b1230(system_resource_state,&plStack_818,&puStack_4e8,&uStack_8b0);
+  puVar14 = (uint64_t *)SystemInitializer(system_resource_state,&plStack_818,&puStack_4e8,&uStack_8b0);
   plVar25 = (int64_t *)*puVar14;
   *puVar14 = 0;
   plStack_7c8 = aplStack_940[1];
@@ -605,7 +609,7 @@ LAB_18037bb4c:
       lVar15 = 200;
       uStack_998 = iVar8;
     }
-    lVar16 = FUN_180624440(apuStack_308,&puStack_9a8);
+    lVar16 = SystemCore_EncryptionEngine(apuStack_308,&puStack_9a8);
     puVar23 = &system_buffer_ptr;
     if (*(void **)(lVar16 + 8) != (void *)0x0) {
       puVar23 = *(void **)(lVar16 + 8);
@@ -1048,7 +1052,7 @@ FUN_18037c700(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int32_t *)(param_2 + 2) = 6;
   }
   else {
-    uVar2 = FUN_180628ca0();
+    uVar2 = MemoryDebugger0();
     CoreEngineDataTransformer(param_2,uVar2);
   }
   return param_2;

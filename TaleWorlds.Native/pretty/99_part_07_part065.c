@@ -139,7 +139,7 @@ void FUN_1804d753c(uint64_t param_1,int param_2,int64_t param_3,uint64_t param_4
         if (((*(ushort *)(lVar7 + 8 + (param_1 & (int64_t)iVar4) * 0xc) &
              1 << ((byte)uVar25 & 0x1f)) != 0) &&
            (1 < *(int *)(*(int64_t *)(uVar26 + lVar24) + 0x178))) {
-          FUN_180077750(lVar8,*(int64_t *)(uVar26 + lVar24),unaff_RBP + -0x19,0,&stack0x00000030);
+          SystemHealthMonitor(lVar8,*(int64_t *)(uVar26 + lVar24),unaff_RBP + -0x19,0,&stack0x00000030);
         }
         lVar24 = *(int64_t *)(unaff_RSI + 8);
         uVar23 = (int)uVar25 + 1;
@@ -284,7 +284,7 @@ void FUN_1804d7588(void)
       do {
         if (((*(ushort *)(unaff_R12 + 8 + unaff_R15 * 4) & 1 << ((byte)uVar24 & 0x1f)) != 0) &&
            (1 < *(int *)(*(int64_t *)(uVar20 + lVar22) + 0x178))) {
-          FUN_180077750(lVar5,*(int64_t *)(uVar20 + lVar22),unaff_RBP + -0x19,0,&stack0x00000030);
+          SystemHealthMonitor(lVar5,*(int64_t *)(uVar20 + lVar22),unaff_RBP + -0x19,0,&stack0x00000030);
         }
         lVar22 = *(int64_t *)(unaff_RSI + 8);
         uVar23 = (int)uVar24 + 1;
@@ -431,7 +431,7 @@ void FUN_1804d75cf(int64_t param_1,int64_t param_2,int64_t param_3)
     do {
       if (((*(ushort *)(unaff_R12 + 8 + unaff_R15 * 4) & 1 << ((byte)unaff_RBX & 0x1f)) != 0) &&
          (1 < *(int *)(*(int64_t *)(uVar18 + lVar19) + 0x178))) {
-        fVar22 = (float)FUN_180077750(fVar22,*(int64_t *)(uVar18 + lVar19),unaff_RBP + -0x19,0,
+        fVar22 = (float)SystemHealthMonitor(fVar22,*(int64_t *)(uVar18 + lVar19),unaff_RBP + -0x19,0,
                                       &stack0x00000030);
       }
       lVar19 = *(int64_t *)(unaff_RSI + 8);
@@ -463,7 +463,7 @@ void FUN_1804d76f4(uint64_t param_1,int64_t param_2)
   do {
     if (((*(ushort *)(unaff_R12 + 8 + unaff_R15 * 4) & 1 << ((byte)unaff_EBX & 0x1f)) != 0) &&
        (1 < *(int *)(*(int64_t *)(uVar1 + param_2) + 0x178))) {
-      FUN_180077750();
+      SystemHealthMonitor();
     }
     param_2 = *(int64_t *)(unaff_RSI + 8);
     unaff_EBX = unaff_EBX + 1;

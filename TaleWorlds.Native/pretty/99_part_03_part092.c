@@ -1,3 +1,8 @@
+/* 函数别名定义: RenderingSystemProcessor */
+#define RenderingSystemProcessor RenderingSystemProcessor
+
+
+#include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -281,7 +286,7 @@ void FUN_18024f8e0(int64_t param_1)
       uStack_7c = (int32_t)((uint64_t)lVar1 >> 0x20);
       uStack_60._0_4_ = uStack_80;
       uStack_60._4_4_ = uStack_7c;
-      FUN_18015b810(*(int64_t *)(lStackX_8 + 0x3580),0,
+      SystemCore_DataTransformer(*(int64_t *)(lStackX_8 + 0x3580),0,
                     *(int32_t *)(*(int64_t *)(lStackX_8 + 0x3580) + 0x110),1,0xffffffffffffffff,
                     &uStack_60,uVar7);
       lVar2 = *(int64_t *)(lStackX_8 + 0x3580);
@@ -309,7 +314,7 @@ void FUN_18024f8e0(int64_t param_1)
       uStack_74 = (int32_t)((uint64_t)lVar2 >> 0x20);
       uStack_58._0_4_ = uStack_78;
       uStack_58._4_4_ = uStack_74;
-      FUN_18015b810(*(int64_t *)(lStackX_8 + 0x3580),0,
+      SystemCore_DataTransformer(*(int64_t *)(lStackX_8 + 0x3580),0,
                     *(int32_t *)(*(int64_t *)(lStackX_8 + 0x3580) + 0x110),1,0xffffffffffffffff,
                     &uStack_60,uVar7);
     }
@@ -434,7 +439,7 @@ void FUN_18024fb60(int64_t param_1,int64_t param_2,int64_t param_3)
           uVar9 = puVar1[2] - 1;
         }
         if ((*puVar1 & 1 << ((byte)uVar9 & 0x1f)) != 0) {
-          FUN_1800571e0(&lStack_138,&iStack_140);
+          SystemDatabaseProcessor(&lStack_138,&iStack_140);
         }
       }
       iStack_140 = iVar3 + 1;
@@ -472,7 +477,7 @@ void FUN_18024fb60(int64_t param_1,int64_t param_2,int64_t param_3)
     *(int32_t *)((int64_t)aplStack_70[0] + 0x24) = uStack_e8._4_4_;
     *(int32_t *)(aplStack_70[0] + 5) = (int32_t)uStack_e0;
     *(int32_t *)((int64_t)aplStack_70[0] + 0x2c) = uStack_e0._4_4_;
-    FUN_18015b810(aplStack_70,0,lStack_130 - lStack_138 >> 2,0x80,0xffffffffffffffff,aplStack_70);
+    SystemCore_DataTransformer(aplStack_70,0,lStack_130 - lStack_138 >> 2,0x80,0xffffffffffffffff,aplStack_70);
     if (0 < iStack_144) {
       uVar6 = (uint64_t)iStack_144;
       uVar7 = uVar12;
@@ -517,7 +522,7 @@ void FUN_18024fb60(int64_t param_1,int64_t param_2,int64_t param_3)
   *(int32_t *)((int64_t)plStack_108 + 0x34) = uStack_80._4_4_;
   *(int32_t *)(plStack_108 + 7) = (int32_t)uStack_78;
   *(int32_t *)((int64_t)plStack_108 + 0x3c) = uStack_78._4_4_;
-  FUN_18015b810(&plStack_108,0,lStack_130 - lStack_138 >> 2,0x80,0xffffffffffffffff,&plStack_108);
+  SystemCore_DataTransformer(&plStack_108,0,lStack_130 - lStack_138 >> 2,0x80,0xffffffffffffffff,&plStack_108);
   if (alStack_d0[0] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();

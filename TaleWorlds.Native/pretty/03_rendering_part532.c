@@ -1,3 +1,8 @@
+#include "ultra_high_freq_fun_definitions.h"
+/* 函数别名定义: DataDeserializer */
+#define DataDeserializer DataDeserializer
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -185,12 +190,12 @@ LAB_180559824:
     }
   }
   if (0 < iStack_68) {
-    uVar2 = FUN_18055b2f0(&system_data_6150,&puStack_78);
+    uVar2 = SystemFile_Manager(&system_data_6150,&puStack_78);
     *param_1 = uVar2;
   }
-  FUN_180631000(param_2,&ui_system_data_1800_ptr,(int64_t)param_1 + 0x11);
-  FUN_180631000(param_2,&processed_var_4560_ptr,param_1 + 4);
-  FUN_180631000(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0x12);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1800_ptr,(int64_t)param_1 + 0x11);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4560_ptr,param_1 + 4);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4544_ptr,(int64_t)param_1 + 0x12);
   puStack_98 = &system_data_buffer_ptr;
   uStack_80 = 0;
   puStack_90 = (void *)0x0;
@@ -664,8 +669,8 @@ LAB_18055a000:
   }
   param_1[2] = 2;
 LAB_18055a126:
-  FUN_180631000(param_2,&ui_system_data_1728_ptr,param_1 + 1);
-  FUN_180631000(param_2,&processed_var_4640_ptr,(int64_t)param_1 + 5);
+  UltraHighFreq_CacheSystem1(param_2,&ui_system_data_1728_ptr,param_1 + 1);
+  UltraHighFreq_CacheSystem1(param_2,&processed_var_4640_ptr,(int64_t)param_1 + 5);
   puStack_70 = &system_data_buffer_ptr;
   uStack_58 = 0;
   lStack_68 = 0;
@@ -705,7 +710,7 @@ LAB_18055a1d4:
     }
   }
   if (0 < iStack_60) {
-    uVar3 = FUN_18055b2f0(&system_data_6150,&puStack_70);
+    uVar3 = SystemFile_Manager(&system_data_6150,&puStack_70);
     param_1[3] = uVar3;
   }
   puStack_90 = &system_data_buffer_ptr;
@@ -948,7 +953,7 @@ void FUN_18055a540(void)
 
 
 
-int32_t FUN_18055b2f0(int64_t param_1,int64_t param_2)
+int32_t SystemFile_Manager(int64_t param_1,int64_t param_2)
 
 {
   byte *pbVar1;
@@ -1080,7 +1085,7 @@ LAB_18055b4fd:
     if (uVar3 < (uint64_t)param_1[2]) {
       param_1[1] = uVar3 + 0x68;
       ppuStack_a8 = (void **)uVar3;
-      FUN_1800b8300(uVar3);
+      DataDeserializer0(uVar3);
       *(int32_t *)(uVar3 + 0x58) = uStack_40;
       *(int32_t *)(uVar3 + 0x5c) = uStack_3c;
       *(int8_t *)(uVar3 + 0x60) = uStack_38;

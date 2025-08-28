@@ -1,3 +1,6 @@
+#include "CoreSystem_ValidationEngine0_definition.h"
+#include "SystemAdvancedValidator_definition.h"
+#include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -208,7 +211,7 @@ void FUN_18007f4c0(int8_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         puVar8 = *(void **)(lVar7 + 0x18);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&processed_var_5720_ptr,puVar8,param_4,uVar10);
+      SystemParameterHandler(system_message_context,&processed_var_5720_ptr,puVar8,param_4,uVar10);
     }
   }
   lVar7 = *(int64_t *)(param_1 + 8);
@@ -259,7 +262,7 @@ LAB_18007f5cb:
 void FUN_18007f660(int64_t param_1)
 
 {
-  FUN_18007f6a0();
+  SystemSecurityManager();
   if (*(int64_t **)(param_1 + 0x18) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x18) + 0x38))();
   }
@@ -270,8 +273,8 @@ void FUN_18007f660(int64_t param_1)
 
 
 
-// 函数: void FUN_18007f6a0(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18007f6a0(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemSecurityManager(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemSecurityManager(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
@@ -296,8 +299,8 @@ void FUN_18007f6a0(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t para
     if (*param_1 != '\0') {
       lVar4 = lVar1;
       if ((param_1[0x10] & 2U) == 0) {
-        FUN_180079520(lVar1);
-        FUN_180079520(*(uint64_t *)(param_1 + 8));
+        SystemInitializer(lVar1);
+        SystemInitializer(*(uint64_t *)(param_1 + 8));
         lVar4 = *(int64_t *)(param_1 + 8);
       }
       FUN_18007edd0(lVar4,1,param_3,param_4,uVar5);
@@ -383,7 +386,7 @@ LAB_18007f7cf:
 void FUN_18007f820(void)
 
 {
-  FUN_18007f840();
+  SystemManager_Validator();
   return;
 }
 
@@ -391,8 +394,8 @@ void FUN_18007f820(void)
 
 
 
-// 函数: void FUN_18007f840(int64_t *param_1)
-void FUN_18007f840(int64_t *param_1)
+// 函数: void SystemManager_Validator(int64_t *param_1)
+void SystemManager_Validator(int64_t *param_1)
 
 {
   int *piVar1;

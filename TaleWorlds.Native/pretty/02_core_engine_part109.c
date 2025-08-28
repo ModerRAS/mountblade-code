@@ -1,9 +1,15 @@
+
+// $fun 的语义化别名
+#define $alias_name $fun
+
+/* 函数别名定义: DataValidator */
+#define DataValidator DataValidator
+
+
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
 
 
-#include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
 
 // 02_core_engine_part109.c - 9 个函数
 
@@ -402,7 +408,7 @@ void FUN_180125780(uint64_t param_1,uint64_t param_2)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar4,SYSTEM_DATA_MANAGER_B);
+        DataValidator0(lVar4,SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(lVar3 + 0x2e00) = 1;
@@ -593,7 +599,7 @@ void FUN_180125793(uint64_t param_1,uint64_t param_2)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar3,SYSTEM_DATA_MANAGER_B);
+        DataValidator0(lVar3,SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(unaff_RBX + 0x2e00) = 1;
@@ -789,7 +795,7 @@ void FUN_180125eb9(uint64_t param_1,int param_2)
         if (*(int64_t *)(lVar8 + 0x3c0) != 0) {
           lVar8 = *(int64_t *)(lVar8 + 0x3c0);
         }
-        FUN_18012d2e0(lVar8);
+        SystemCore_DataCompressor(lVar8);
         break;
       }
       plVar10 = plVar10 + -1;
@@ -814,7 +820,7 @@ void FUN_180125eb9(uint64_t param_1,int param_2)
     if (0 < (int)uVar3) {
       uVar4 = (uint64_t)uVar3;
     }
-    FUN_18013e760(unaff_RBX + 0x1bc0,uVar4);
+    RenderingEngine_Renderer(unaff_RBX + 0x1bc0,uVar4);
   }
   *(int *)(unaff_RBX + 0x1bc0) = iVar7;
   FUN_18012ed10(*(uint64_t *)(unaff_RBX + 0x1c98));
@@ -860,7 +866,7 @@ void FUN_180125eb9(uint64_t param_1,int param_2)
   *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(lVar9 + 0x1c08) = 0x43c80000;
   *(int32_t *)(lVar9 + 0x1bd4) = 4;
-  FUN_1801299b0(&rendering_buffer_2432_ptr,0,0);
+  CoreSystem_Validator(&rendering_buffer_2432_ptr,0,0);
   *(int8_t *)(unaff_RBX + 2) = 1;
   return;
 }
@@ -923,7 +929,7 @@ void FUN_180125ff8(void)
   *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(lVar2 + 0x1c08) = 0x43c80000;
   *(int32_t *)(lVar2 + 0x1bd4) = 4;
-  FUN_1801299b0(&rendering_buffer_2432_ptr,0,0);
+  CoreSystem_Validator(&rendering_buffer_2432_ptr,0,0);
   *(int8_t *)(unaff_RBX + 2) = 1;
   return;
 }
