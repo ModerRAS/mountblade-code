@@ -765,7 +765,7 @@ void FUN_18007bbb0(int64_t param_1,int64_t param_2,int64_t param_3)
   }
   lVar7 = FUN_180255f80(*(uint64_t *)(param_1 + 0xa8),&system_data_02e0,plVar8);
   if (lVar7 != 0) {
-    RenderingSystem_ResourceAllocator(plVar6,lVar7 + 0xb0);
+    FUN_180080810(plVar6,lVar7 + 0xb0);
   }
   if (*plVar6 == 0) {
     puVar12 = &system_buffer_ptr;

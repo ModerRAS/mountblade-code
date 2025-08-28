@@ -17,7 +17,7 @@
  * @date 2024
  */
 
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
@@ -144,7 +144,7 @@ typedef struct {
 // =============================================================================
 
 /** 系统初始化函数 */
-#define SystemInitializer                   FUN_1808fcb90
+#define SystemInitializer                   System_Initializer2
 #define SystemShutdown                      FUN_1808fc050
 #define SystemGetState                      FUN_1808fd200
 

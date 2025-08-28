@@ -1,4 +1,4 @@
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 #define ResourceReleaser CoreEngine_MemoryPoolManager  // 资源释放器
 #define AdvancedMemoryAllocator CoreMemoryPoolAllocator  // 高级内存分配器
 #define MemoryPoolAllocator CoreMemoryPoolReallocator  // 内存池分配器

@@ -1,4 +1,4 @@
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
