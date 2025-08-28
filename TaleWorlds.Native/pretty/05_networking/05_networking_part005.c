@@ -528,52 +528,68 @@ SET_PARAMS_FAILED:
 void send_extended_network_packet(undefined8 connection_handle, undefined4 packet_data, undefined8 extended_params)
 
 {
-  int connection_result;
-  int encode_result1;
-  int encode_result2;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_key;
+  int connection_result;       // 连接结果
+  int encode_result1;         // 第一次编码结果
+  int encode_result2;         // 第二次编码结果
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined1 *message_buffer;   // 消息缓冲区
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_key;     // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 检查网络状态
   connection_result = FUN_180840600();
   if ((connection_result != 0) && ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0)) {
+    // 编码数据包数据
     encode_result1 = func_0x00018074b7d0(packet_buffer, NETWORK_BUFFER_SIZE, packet_data);
+    // 编码数据分隔符
     encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    // 编码扩展参数
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送扩展数据包消息（函数不返回）
     FUN_180749ef0(connection_result, 0xc, connection_handle, NETWORK_PACKET_MESSAGE);
   }
-                    // WARNING: Subroutine does not return
+  // 安全验证失败，执行异常处理（函数不返回）
   FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
 
-// 函数: 发送简单网络包
-void send_network_packet_simple(void)
+// 函数: 发送简单网络数据包
+// 功能：发送简单的网络数据包，包含基本的网络通信功能
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含数据编码、分隔符添加和消息发送机制
+void send_simple_network_packet(void)
 
 {
-  int encode_result1;
-  int encode_result2;
-  undefined4 packet_data;
-  undefined4 message_flags;
+  int encode_result1;         // 第一次编码结果
+  int encode_result2;         // 第二次编码结果
+  undefined4 packet_data;    // 数据包数据
+  undefined4 message_flags;  // 消息标志位
   
+  // 编码数据包数据
   encode_result1 = func_0x00018074b7d0(&stack0x00000030, NETWORK_BUFFER_SIZE, packet_data);
+  // 编码数据分隔符
   encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
-                    // WARNING: Subroutine does not return
+  // 发送数据包消息（函数不返回）
   FUN_180749ef0(message_flags, 0xc);
 }
 
 
 
 
-// 函数: 清理网络包
-void cleanup_network_packet(void)
+// 函数: 释放网络数据包资源
+// 功能：释放和清理网络数据包相关的资源，包括内存、句柄等
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含安全验证和资源清理机制
+void release_network_packet_resources(void)
 
 {
   ulonglong security_key;
