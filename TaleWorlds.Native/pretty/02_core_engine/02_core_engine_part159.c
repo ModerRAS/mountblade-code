@@ -23,6 +23,9 @@
 // 9. process_fog_settings - 处理雾效设置
 // 10. process_cloud_shadow_settings - 处理云阴影设置
 // 11. process_sun_settings - 处理阳光设置
+// 12. process_postfx_settings - 处理后处理效果设置
+// 13. process_cubemap_texture_settings - 处理立方体贴图纹理设置
+// 14. initialize_thread_local_storage - 初始化线程本地存储
 //
 // 简化说明：为提高代码可读性，函数已重命名为语义化名称，
 //          并添加了中文注释说明功能。部分复杂算法进行了简化处理。
