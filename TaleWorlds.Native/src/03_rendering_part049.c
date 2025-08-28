@@ -1229,13 +1229,16 @@ void RenderingSystem_ProcessTripleCoordinates(longlong render_context, undefined
 void RenderingSystem_ProcessTripleCoordinatesReg(void)
 
 {
-  longlong unaff_RSI;
+  longlong render_context_reg;
   
+  // 清理缓冲区
   FUN_18011d9a0();
-  FUN_18011d9a0(unaff_RSI + 0x80);
-  FUN_18011d9a0(unaff_RSI + 0x80);
+  FUN_18011d9a0(render_context_reg + 0x80);
+  FUN_18011d9a0(render_context_reg + 0x80);
+  // 处理顶点索引缓冲区
   FUN_180293190();
-  *(undefined4 *)(unaff_RSI + 0x80) = 0;
+  // 重置缓冲区计数器
+  *(undefined4 *)(render_context_reg + 0x80) = 0;
   return;
 }
 
@@ -1244,9 +1247,11 @@ void RenderingSystem_ProcessTripleCoordinatesReg(void)
 
 
 // 函数: void FUN_180294169(void)
-void FUN_180294169(void)
+// 功能: 渲染系统空操作函数6
+void RenderingSystem_NoOperation6(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -1255,15 +1260,19 @@ void FUN_180294169(void)
 
 
 // 函数: void FUN_180294180(longlong param_1,undefined8 param_2,float param_3,uint param_4,undefined8 param_5
-void FUN_180294180(longlong param_1,undefined8 param_2,float param_3,uint param_4,undefined8 param_5
-                  ,undefined4 param_6)
+// 功能: 渲染系统缩放坐标处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 数据指针, param_3 - 缩放因子, param_4 - 渲染标志, param_5 - 数据指针2, param_6 - 渲染参数
+void RenderingSystem_ProcessScaledCoordinates(longlong render_context, undefined8 data_ptr, float scale_factor, uint render_flags, undefined8 data_ptr2, undefined4 render_param)
 
 {
-  if ((param_4 & 0xff000000) != 0) {
-    FUN_180293860(0x40bc7edd,param_2,param_3 - 0.5,0,0x40bc7edd,0xf);
-    FUN_1802923e0(param_1,*(undefined8 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0x80),param_4,1,
-                  param_6);
-    *(undefined4 *)(param_1 + 0x80) = 0;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    // 执行缩放和初始化
+    FUN_180293860(0x40bc7edd, data_ptr, scale_factor - 0.5, 0, 0x40bc7edd, 0xf);
+    // 执行渲染
+    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags, 1, render_param);
+    // 重置缓冲区计数器
+    *(undefined4 *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1273,8 +1282,9 @@ void FUN_180294180(longlong param_1,undefined8 param_2,float param_3,uint param_
 
 
 // 函数: void FUN_180294200(longlong param_1,longlong param_2,float param_3,undefined8 *param_4,uint param_5,
-void FUN_180294200(longlong param_1,longlong param_2,float param_3,undefined8 *param_4,uint param_5,
-                  longlong param_6,longlong param_7,undefined4 param_8,float *param_9)
+// 功能: 渲染系统高级文本处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 字体数据指针, param_3 - 缩放因子, param_4 - 顶点数据数组, param_5 - 渲染标志, param_6 - 文本起始指针, param_7 - 文本结束指针, param_8 - 渲染参数, param_9 - 颜色数组
+void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong font_data, float scale_factor, undefined8 *vertex_data, uint render_flags, longlong text_start, longlong text_end, undefined4 render_param, float *color_array)
 
 {
   undefined8 *puVar1;
