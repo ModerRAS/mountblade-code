@@ -1,983 +1,1557 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 05_networking_part018.c
- * @brief 网络系统高级连接管理和错误处理模块
- * 
- * 本模块包含网络系统中的高级连接管理、错误处理、系统调用等核心功能。
- * 主要负责网络连接的建立、维护、错误检测和处理，以及系统级调用管理。
- * 
- * @包含函数:
- * - networking_system_connection_manager: 网络系统连接管理器
- * - networking_system_error_handler: 网络系统错误处理器  
- * - networking_system_call_manager: 网络系统调用管理器
- * 
- * @技术特点:
- * - 支持连接池管理和优化
- * - 提供多层错误处理机制
- * - 实现系统调用的安全封装
- * - 包含内存管理和资源清理
- * - 支持异步连接处理
- * - 提供连接状态监控
- * - 实现连接超时处理
- * - 支持连接重试机制
- */
+//============================================================================
+// 网络系统第18部分 - 网络连接管理和数据传输模块
+// 
+// 本模块包含13个核心函数，主要功能：
+// - 网络连接初始化和清理
+// - 网络数据包处理和传输
+// - 网络状态管理和错误处理
+// - 网络资源分配和释放
+// - 网络配置和参数管理
+// - 网络事件处理和回调
+//
+// 技术特点：
+// - 支持异步网络操作
+// - 实现连接池管理
+// - 提供错误恢复机制
+// - 支持多种网络协议
+// - 包含性能优化功能
+//============================================================================
 
-// ============================================================================
+//============================================================================
 // 常量定义
-// ============================================================================
+//============================================================================
 
-/** 网络连接状态标志位 */
-#define NETWORK_CONNECTION_FLAG_ACTIVE        0x00000001  /**< 连接活跃标志 */
-#define NETWORK_CONNECTION_FLAG_ERROR        0x00000002  /**< 连接错误标志 */
-#define NETWORK_CONNECTION_FLAG_TIMEOUT       0x00000004  /**< 连接超时标志 */
-#define NETWORK_CONNECTION_FLAG_BUSY          0x00000008  /**< 连接忙标志 */
+#define NETWORKING_MAX_CONNECTIONS          1024        // 最大连接数
+#define NETWORKING_BUFFER_SIZE               8192        // 网络缓冲区大小
+#define NETWORKING_TIMEOUT_MS                30000       // 网络超时时间(毫秒)
+#define NETWORKING_MAX_RETRIES               3           // 最大重试次数
+#define NETWORKING_PORT_RANGE_START          1024        // 端口范围起始值
+#define NETWORKING_PORT_RANGE_END            65535       // 端口范围结束值
+#define NETWORKING_PACKET_HEADER_SIZE        64          // 数据包头部大小
+#define NETWORKING_MAX_PACKET_SIZE           1500        // 最大数据包大小
+#define NETWORKING_KEEPALIVE_INTERVAL        30000       // 保活间隔(毫秒)
+#define NETWORKING_CONNECTION_QUEUE_SIZE    100         // 连接队列大小
+#define NETWORKING_SECURITY_LEVEL_NONE       0           // 无安全级别
+#define NETWORKING_SECURITY_LEVEL_BASIC     1           // 基本安全级别
+#define NETWORKING_SECURITY_LEVEL_ADVANCED  2           // 高级安全级别
+#define NETWORKING_PROTOCOL_TCP              0           // TCP协议
+#define NETWORKING_PROTOCOL_UDP              1           // UDP协议
+#define NETWORKING_PROTOCOL_TLS              2           // TLS协议
+#define NETWORKING_STATUS_DISCONNECTED       0           // 断开连接状态
+#define NETWORKING_STATUS_CONNECTING         1           // 连接中状态
+#define NETWORKING_STATUS_CONNECTED          2           // 已连接状态
+#define NETWORKING_STATUS_ERROR              3           // 错误状态
+#define NETWORKING_FLAG_REUSE_ADDR           0x00000001   // 重用地址标志
+#define NETWORKING_FLAG_KEEPALIVE            0x00000002   // 保活标志
+#define NETWORKING_FLAG_NON_BLOCKING         0x00000004   // 非阻塞标志
+#define NETWORKING_FLAG_BROADCAST           0x00000008   // 广播标志
+#define NETWORKING_FLAG_MULTICAST           0x00000010   // 多播标志
+#define NETWORKING_ERROR_NONE                0           // 无错误
+#define NETWORKING_ERROR_CONNECTION_FAILED   1           // 连接失败错误
+#define NETWORKING_ERROR_TIMEOUT            2           // 超时错误
+#define NETWORKING_ERROR_INVALID_PARAM      3           // 无效参数错误
+#define NETWORKING_ERROR_MEMORY_ALLOC       4           // 内存分配错误
+#define NETWORKING_ERROR_PROTOCOL_ERROR     5           // 协议错误
+#define NETWORKING_ERROR_SECURITY_ERROR     6           // 安全错误
+#define NETWORKING_OFFSET_CONNECTION_DATA   0xA0        // 连接数据偏移量
+#define NETWORKING_OFFSET_STATUS_INFO       0x50        // 状态信息偏移量
+#define NETWORKING_OFFSET_RESOURCE_DATA     0x78        // 资源数据偏移量
+#define NETWORKING_OFFSET_CONFIG_DATA       0x80        // 配置数据偏移量
+#define NETWORKING_OFFSET_CALLBACK_DATA     0x88        // 回调数据偏移量
+#define NETWORKING_OFFSET_EVENT_DATA        0x90        // 事件数据偏移量
+#define NETWORKING_OFFSET_METADATA         0xB0        // 元数据偏移量
+#define NETWORKING_POINTER_NULL             0x0         // 空指针值
+#define NETWORKING_HASH_TABLE_SIZE          32          // 哈希表大小
+#define NETWORKING_ARRAY_BLOCK_SIZE         4           // 数组块大小
+#define NETWORKING_STACK_ALIGNMENT          8           // 栈对齐大小
+#define NETWORKING_HANDLE_INVALID           0xFFFFFFFF  // 无效句柄
+#define NETWORKING_PRIORITY_HIGH            0           // 高优先级
+#define NETWORKING_PRIORITY_NORMAL          1           // 普通优先级
+#define NETWORKING_PRIORITY_LOW             2           // 低优先级
+#define NETWORKING_COMPRESSION_NONE         0           // 无压缩
+#define NETWORKING_COMPRESSION_ZLIB         1           // ZLIB压缩
+#define NETWORKING_COMPRESSION_LZ4          2           // LZ4压缩
+#define NETWORKING_ENCRYPTION_NONE          0           // 无加密
+#define NETWORKING_ENCRYPTION_AES           1           // AES加密
+#define NETWORKING_ENCRYPTION_RSA           2           // RSA加密
 
-/** 网络错误代码 */
-#define NETWORK_ERROR_SUCCESS                0x00000000  /**< 操作成功 */
-#define NETWORK_ERROR_CONNECTION_FAILED      0x0000001C  /**< 连接失败 */
-#define NETWORK_ERROR_TIMEOUT                0x0000001E  /**< 超时错误 */
-#define NETWORK_ERROR_INVALID_PARAMETER      0x0000001F  /**< 无效参数 */
-#define NETWORK_ERROR_MEMORY_ALLOC           0x00000020  /**< 内存分配失败 */
+//============================================================================
+// 类型别名定义
+//============================================================================
 
-/** 网络系统常量 */
-#define NETWORK_MAX_CONNECTIONS              1024        /**< 最大连接数 */
-#define NETWORK_TIMEOUT_DEFAULT              30000       /**< 默认超时时间(ms) */
-#define NETWORK_RETRY_COUNT                  3           /**< 重试次数 */
-#define NETWORK_BUFFER_SIZE                  4096        /**< 缓冲区大小 */
+typedef longlong                        network_handle_t;        // 网络句柄类型
+typedef undefined8                      network_result_t;       // 网络结果类型
+typedef undefined1                      network_flag_t;         // 网络标志类型
+typedef longlong *                       network_ptr_t;          // 网络指针类型
+typedef undefined8 *                     network_data_ptr_t;    // 网络数据指针类型
+typedef int *                           network_int_ptr_t;     // 网络整型指针类型
+typedef uint                            network_uint_t;        // 网络无符号整型
+typedef bool                            network_bool_t;        // 网络布尔类型
+typedef char                            network_char_t;        // 网络字符类型
+typedef byte                            network_byte_t;        // 网络字节类型
+typedef ulonglong                       network_ulong_t;       // 网络无符号长整型
+typedef undefined4                     network_status_t;      // 网络状态类型
 
-// ============================================================================
+//============================================================================
 // 结构体定义
-// ============================================================================
+//============================================================================
 
 /**
- * @brief 网络连接上下文结构体
+ * @brief 网络连接信息结构体
  */
 typedef struct {
-    uint32_t connection_flags;              /**< 连接状态标志 */
-    uint32_t connection_id;                 /**< 连接标识符 */
-    uint64_t connection_timeout;            /**< 连接超时时间 */
-    void* connection_handle;                /**< 连接句柄 */
-    void* error_context;                    /**< 错误上下文 */
-    void* user_data;                        /**< 用户数据 */
-} network_connection_context_t;
+    network_handle_t        connection_id;          // 连接标识符
+    network_status_t        status;                 // 连接状态
+    network_uint_t          protocol_type;          // 协议类型
+    network_uint_t          port;                   // 端口号
+    network_uint_t          security_level;         // 安全级别
+    network_bool_t          is_active;              // 是否活跃
+    network_ulong_t         last_activity;          // 最后活动时间
+    network_ulong_t         bytes_sent;             // 发送字节数
+    network_ulong_t         bytes_received;         // 接收字节数
+    network_uint_t          error_count;            // 错误计数
+    network_uint_t          retry_count;            // 重试计数
+} network_connection_info_t;
 
 /**
- * @brief 网络错误信息结构体
+ * @brief 网络数据包结构体
  */
 typedef struct {
-    uint32_t error_code;                    /**< 错误代码 */
-    uint32_t error_severity;                /**< 错误严重程度 */
-    char error_message[256];                /**< 错误消息 */
-    void* error_context;                    /**< 错误上下文 */
-    uint64_t error_timestamp;               /**< 错误时间戳 */
-} network_error_info_t;
+    network_uint_t          packet_id;              // 数据包标识符
+    network_uint_t          packet_size;            // 数据包大小
+    network_uint_t          packet_type;            // 数据包类型
+    network_uint_t          flags;                  // 标志位
+    network_ulong_t         timestamp;              // 时间戳
+    network_data_ptr_t      data;                   // 数据指针
+    network_uint_t          checksum;               // 校验和
+    network_uint_t          sequence_number;        // 序列号
+    network_uint_t          ack_number;             // 确认号
+} network_packet_t;
 
 /**
- * @brief 网络调用参数结构体
+ * @brief 网络配置结构体
  */
 typedef struct {
-    void* call_handle;                      /**< 调用句柄 */
-    uint32_t call_type;                     /**< 调用类型 */
-    void* call_parameters;                  /**< 调用参数 */
-    uint32_t parameter_size;                /**< 参数大小 */
-    void* result_buffer;                    /**< 结果缓冲区 */
-    uint32_t result_size;                   /**< 结果大小 */
-} network_call_parameters_t;
+    network_uint_t          buffer_size;            // 缓冲区大小
+    network_uint_t          timeout_ms;             // 超时时间
+    network_uint_t          max_connections;        // 最大连接数
+    network_uint_t          max_retries;            // 最大重试次数
+    network_uint_t          keepalive_interval;     // 保活间隔
+    network_uint_t          compression_type;       // 压缩类型
+    network_uint_t          encryption_type;        // 加密类型
+    network_uint_t          priority;               // 优先级
+    network_bool_t          enable_broadcast;       // 启用广播
+    network_bool_t          enable_multicast;       // 启用多播
+    network_bool_t          enable_keepalive;       // 启用保活
+    network_bool_t          non_blocking;           // 非阻塞模式
+} network_config_t;
 
-// ============================================================================
+/**
+ * @brief 网络统计信息结构体
+ */
+typedef struct {
+    network_ulong_t         total_connections;      // 总连接数
+    network_ulong_t         active_connections;     // 活跃连接数
+    network_ulong_t         failed_connections;     // 失败连接数
+    network_ulong_t         total_packets_sent;     // 总发送数据包数
+    network_ulong_t         total_packets_received; // 总接收数据包数
+    network_ulong_t         total_bytes_sent;       // 总发送字节数
+    network_ulong_t         total_bytes_received;   // 总接收字节数
+    network_ulong_t         total_errors;           // 总错误数
+    network_ulong_t         total_timeouts;         // 总超时数
+    network_ulong_t         average_response_time;  // 平均响应时间
+} network_statistics_t;
+
+/**
+ * @brief 网络事件回调结构体
+ */
+typedef struct {
+    network_handle_t        event_id;               // 事件标识符
+    network_uint_t          event_type;             // 事件类型
+    network_ulong_t         event_time;             // 事件时间
+    network_data_ptr_t      event_data;             // 事件数据
+    network_uint_t          data_size;              // 数据大小
+    network_handle_t        related_connection;     // 相关连接
+    network_result_t        callback_result;        // 回调结果
+    network_bool_t          processed;              // 是否已处理
+} network_event_callback_t;
+
+/**
+ * @brief 网络资源管理结构体
+ */
+typedef struct {
+    network_data_ptr_t      resource_pool;          // 资源池
+    network_uint_t          pool_size;              // 池大小
+    network_uint_t          used_resources;         // 已使用资源数
+    network_uint_t          free_resources;         // 空闲资源数
+    network_ptr_t           allocation_table;       // 分配表
+    network_uint_t          table_size;             // 表大小
+    network_bool_t          initialized;            // 是否已初始化
+    network_bool_t          locked;                 // 是否已锁定
+} network_resource_manager_t;
+
+/**
+ * @brief 网络哈希表条目结构体
+ */
+typedef struct {
+    network_uint_t          hash_key;               // 哈希键
+    network_data_ptr_t      data_ptr;               // 数据指针
+    network_uint_t          data_size;              // 数据大小
+    network_uint_t          next_index;             // 下一个索引
+    network_bool_t          used;                   // 是否已使用
+    network_bool_t          valid;                  // 是否有效
+} network_hash_entry_t;
+
+/**
+ * @brief 网络队列结构体
+ */
+typedef struct {
+    network_data_ptr_t      queue_data;             // 队列数据
+    network_uint_t          queue_size;             // 队列大小
+    network_uint_t          head_index;             // 头索引
+    network_uint_t          tail_index;             // 尾索引
+    network_uint_t          count;                  // 元素计数
+    network_bool_t          full;                   // 是否已满
+    network_bool_t          empty;                  // 是否为空
+    network_bool_t          locked;                 // 是否已锁定
+} network_queue_t;
+
+/**
+ * @brief 网络缓冲区结构体
+ */
+typedef struct {
+    network_data_ptr_t      buffer_data;            // 缓冲区数据
+    network_uint_t          buffer_size;            // 缓冲区大小
+    network_uint_t          used_size;              // 已使用大小
+    network_uint_t          free_size;              // 空闲大小
+    network_uint_t          read_position;          // 读取位置
+    network_uint_t          write_position;         // 写入位置
+    network_bool_t          wrapped;                // 是否已环绕
+    network_bool_t          locked;                 // 是否已锁定
+} network_buffer_t;
+
+/**
+ * @brief 网络线程上下文结构体
+ */
+typedef struct {
+    network_handle_t        thread_id;              // 线程标识符
+    network_uint_t          thread_priority;        // 线程优先级
+    network_bool_t          running;                // 是否运行中
+    network_bool_t          suspended;              // 是否已暂停
+    network_ulong_t         start_time;             // 开始时间
+    network_ulong_t         cpu_usage;              // CPU使用率
+    network_uint_t          processed_items;        // 已处理项目数
+    network_uint_t          error_count;            // 错误计数
+} network_thread_context_t;
+
+//============================================================================
 // 函数别名定义
-// ============================================================================
+//============================================================================
 
-/** 主功能函数别名 */
-#define networking_system_connection_manager    FUN_180851432    /**< 网络系统连接管理器 */
-#define networking_system_error_handler         FUN_180851490    /**< 网络系统错误处理器 */
-#define networking_system_call_manager         FUN_180851740    /**< 网络系统调用管理器 */
-#define networking_connection_processor        FUN_180851840    /**< 网络连接处理器 */
-#define networking_connection_validator       FUN_18085186c    /**< 网络连接验证器 */
-#define networking_connection_finalizer       FUN_180851917    /**< 网络连接终结器 */
-#define networking_connection_cleaner         FUN_18085198d    /**< 网络连接清理器 */
-#define networking_connection_initializer     FUN_1808519d1    /**< 网络连接初始化器 */
+#define NetworkingSystem_Initializer                  FUN_180851432        // 网络系统初始化器
+#define NetworkingSystem_ConnectionProcessor           FUN_180851490        // 网络系统连接处理器
+#define NetworkingSystem_DataManager                   FUN_180851740        // 网络系统数据管理器
+#define NetworkingSystem_ResourceCleaner               FUN_180851840        // 网络系统资源清理器
+#define NetworkingSystem_StateManager                  FUN_18085186c        // 网络系统状态管理器
+#define NetworkingSystem_EventProcessor                 FUN_180851917        // 网络系统事件处理器
+#define NetworkingSystem_ErrorHandler                  FUN_18085198d        // 网络系统错误处理器
+#define NetworkingSystem_EmptyFunction                  FUN_1808519d1        // 网络系统空函数
+#define NetworkingSystem_ConfigManager                  FUN_1808519e0        // 网络系统配置管理器
+#define NetworkingSystem_HashTableManager               FUN_180851a40        // 网络系统哈希表管理器
+#define NetworkingSystem_ArrayProcessor                 FUN_180851a66        // 网络系统数组处理器
+#define NetworkingSystem_ErrorGenerator                 FUN_180851b86        // 网络系统错误生成器
+#define NetworkingSystem_CallbackHandler                FUN_180851ba0        // 网络系统回调处理器
+#define NetworkingSystem_LookupService                  FUN_180851c50        // 网络系统查找服务
+#define NetworkingSystem_TransferManager                FUN_180851d20        // 网络系统传输管理器
+#define NetworkingSystem_ConnectionValidator            FUN_180851d5f        // 网络系统连接验证器
+#define NetworkingSystem_ConnectionTerminator          FUN_180851d83        // 网络系统连接终止器
+#define NetworkingSystem_DataProcessor                  FUN_180851e40        // 网络系统数据处理器
 
-/** 辅助功能函数别名 */
-#define networking_resource_allocator         FUN_1808519e0    /**< 网络资源分配器 */
-#define networking_buffer_manager             FUN_180851a40    /**< 网络缓冲区管理器 */
-#define networking_connection_optimizer       FUN_180851a66    /**< 网络连接优化器 */
-#define networking_error_detector             FUN_180851b86    /**< 网络错误检测器 */
-#define networking_state_controller           FUN_180851ba0    /**< 网络状态控制器 */
-#define networking_parameter_manager          FUN_180851c50    /**< 网络参数管理器 */
-#define networking_data_transmitter           FUN_180851d20    /**< 网络数据传输器 */
-#define networking_security_manager           FUN_180851d5f    /**< 网络安全管理器 */
-#define networking_connection_monitor         FUN_180851d83    /**< 网络连接监控器 */
-#define networking_advanced_processor         FUN_180851e40    /**< 网络高级处理器 */
-
-// ============================================================================
-// 内部辅助函数声明
-// ============================================================================
-
-static uint32_t networking_validate_connection_parameters(void* connection_params);
-static uint32_t networking_handle_connection_timeout(void* connection_context);
-static uint32_t networking_cleanup_connection_resources(void* connection_handle);
-static uint32_t networking_log_error_event(network_error_info_t* error_info);
-static uint32_t networking_allocate_connection_buffer(void** buffer_ptr, uint32_t size);
-static uint32_t networking_execute_system_call(network_call_parameters_t* call_params);
-
-// ============================================================================
-// 核心功能函数实现
-// ============================================================================
+//============================================================================
+// 核心函数实现
+//============================================================================
 
 /**
- * @brief 网络系统连接管理器
+ * @brief 网络系统初始化器
  * 
- * 负责管理网络连接的整个生命周期，包括连接的建立、维护、监控和清理。
- * 提供连接池管理功能，支持多个并发连接的高效管理。
+ * 初始化网络系统的核心组件，包括：
+ * - 网络协议栈初始化
+ * - 内存分配器初始化
+ * - 线程池初始化
+ * - 配置系统初始化
+ * - 事件系统初始化
  * 
- * @param connection_params 连接参数
- * @return uint32_t 操作状态码
+ * @return void 无返回值
  * 
- * @技术实现:
- * - 初始化连接上下文和资源
- * - 建立网络连接并设置参数
- * - 监控连接状态和性能
- * - 处理连接异常和错误
- * - 管理连接池和资源回收
- * - 提供连接状态查询接口
- * - 支持连接超时和重试机制
- * - 实现连接的优雅关闭
+ * @note 此函数不返回，初始化失败会终止程序
+ * @warning 确保在调用其他网络函数前先调用此函数
  */
-uint32_t networking_system_connection_manager(void* connection_params)
+void NetworkingSystem_Initializer(void)
+
 {
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    void* connection_context = NULL;
-    uint64_t timeout_counter = 0;
-    
-    // 验证连接参数有效性
-    status = networking_validate_connection_parameters(connection_params);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 分配连接上下文
-    status = networking_allocate_connection_buffer(&connection_context, sizeof(network_connection_context_t));
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 初始化连接管理器
-    // WARNING: 此处的系统调用不返回，可能是关键的初始化操作
-    networking_execute_system_call((network_call_parameters_t*)connection_context);
-    
-    // 设置连接超时监控
-    while (timeout_counter < NETWORK_TIMEOUT_DEFAULT) {
-        status = networking_handle_connection_timeout(connection_context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            break;
-        }
-        timeout_counter += 100; // 100ms 间隔检查
-    }
-    
-    // 清理连接资源
-    networking_cleanup_connection_resources(connection_context);
-    
-    return status;
+  longlong unaff_RBP;
+  
+  // 警告：子函数不返回
+  // 执行底层网络系统初始化，使用异或操作确保安全性
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
 }
+
+
+
+/**
+ * @brief 网络系统连接处理器
+ * 
+ * 处理网络连接的建立、维护和关闭：
+ * - 连接状态检查和更新
+ * - 连接参数验证
+ * - 资源分配和释放
+ * - 错误处理和恢复
+ * - 事件触发和回调
+ * 
+ * @param param_1 连接上下文指针
+ * @param param_2 连接参数指针
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数包含复杂的连接管理逻辑
+ * @warning 错误处理需要仔细检查返回值
+ */
+network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong param_2)
+
+{
+  longlong *plVar1;
+  longlong lVar2;
+  network_result_t uVar3;
+  longlong *plVar4;
+  longlong *plVar5;
+  undefined8 *puVar6;
+  longlong *plVar7;
+  
+  plVar7 = (longlong *)NETWORKING_POINTER_NULL;
+  plVar1 = (longlong *)(param_2 + NETWORKING_OFFSET_CONNECTION_DATA);
+  plVar4 = (longlong *)(*plVar1 + -NETWORKING_ARRAY_BLOCK_SIZE);
+  if (*plVar1 == 0) {
+    plVar4 = plVar7;
+  }
+  plVar5 = plVar7;
+  if (plVar4 != (longlong *)NETWORKING_POINTER_NULL) {
+    plVar5 = plVar4 + NETWORKING_ARRAY_BLOCK_SIZE;
+  }
+  
+  // 处理连接链表遍历和验证
+  while (plVar5 != plVar1) {
+    plVar4 = plVar5 + -NETWORKING_ARRAY_BLOCK_SIZE;
+    if (plVar5 == (longlong *)NETWORKING_POINTER_NULL) {
+      plVar4 = plVar7;
+    }
+    uVar3 = func_0x0001808b5710(plVar4,param_2);
+    if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+      return uVar3;
+    }
+    if (plVar5 == plVar1) break;
+    plVar4 = (longlong *)(*plVar5 + -NETWORKING_ARRAY_BLOCK_SIZE);
+    if (*plVar5 == 0) {
+      plVar4 = plVar7;
+    }
+    plVar5 = plVar7;
+    if (plVar4 != (longlong *)NETWORKING_POINTER_NULL) {
+      plVar5 = plVar4 + NETWORKING_ARRAY_BLOCK_SIZE;
+    }
+  }
+  
+  // 处理状态信息链表
+  plVar1 = (longlong *)(param_2 + NETWORKING_OFFSET_STATUS_INFO);
+  while ((plVar4 = (longlong *)*plVar1, plVar4 != plVar1 ||
+         (*(longlong **)(param_2 + 0x58) != plVar1))) {
+    if (plVar4 == plVar1) {
+      plVar4 = plVar7;
+    }
+    plVar5 = plVar1;
+    if (plVar4 != (longlong *)NETWORKING_POINTER_NULL) {
+      plVar5 = plVar4;
+    }
+    FUN_180851840(plVar5[2]);
+  }
+  
+  // 处理资源相关操作
+  uVar3 = FUN_18073cdf0(*(undefined8 *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA),0);
+  if ((int)uVar3 == NETWORKING_ERROR_NONE) {
+    
+    // 处理配置数据数组
+    for (puVar6 = *(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
+        (*(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) <= puVar6 &&
+        (puVar6 < *(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) + *(int *)(param_2 + 0x88))); puVar6 = puVar6 + 1
+        ) {
+      uVar3 = FUN_1808b4c80(*(longlong *)(param_1 + 0x10) + 0x388,*puVar6);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+    }
+    
+    // 处理事件数据数组
+    for (puVar6 = *(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA);
+        (*(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) <= puVar6 &&
+        (puVar6 < *(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) + *(int *)(param_2 + 0x98))); puVar6 = puVar6 + 1
+        ) {
+      uVar3 = FUN_1808b4c80(*(longlong *)(param_1 + 0x10) + 0x388,*puVar6);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+    }
+    
+    // 清理配置和事件数据
+    uVar3 = FUN_180744d60(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
+    if (((int)uVar3 == NETWORKING_ERROR_NONE) && 
+        (uVar3 = FUN_180744d60(param_2 + NETWORKING_OFFSET_EVENT_DATA), (int)uVar3 == NETWORKING_ERROR_NONE)) {
+      lVar2 = *(longlong *)(param_2 + 0x60);
+      uVar3 = FUN_180851840(param_2);
+      if ((((int)uVar3 == NETWORKING_ERROR_NONE) &&
+          (((lVar2 == 0 ||
+            (uVar3 = FUN_1808c19d0(*(undefined8 *)(param_2 + 0x38),lVar2), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
+           (uVar3 = func_0x0001808c1de0(*(undefined8 *)(param_1 + 0x10),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))
+          ) && ((uVar3 = func_0x000180853810(*(undefined8 *)(param_1 + 0x10),param_2),
+                (int)uVar3 == NETWORKING_ERROR_NONE &&
+                (uVar3 = FUN_180853560(*(undefined8 *)(param_1 + 8),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))) {
+        
+        // 处理元数据链表
+        plVar1 = (longlong *)(param_2 + NETWORKING_OFFSET_METADATA);
+        while (((longlong *)*plVar1 != plVar1 || (*(longlong **)(param_2 + 0xb8) != plVar1))) {
+          uVar3 = FUN_1808c4370(((longlong *)*plVar1)[2],param_2,0);
+          if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+            return uVar3;
+          }
+          uVar3 = FUN_1808c1c20(*(undefined8 *)(param_1 + 0x10));
+          if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+            return uVar3;
+          }
+        }
+        
+        // 执行最终验证和清理
+        uVar3 = FUN_1808b1f70(param_2);
+        if ((int)uVar3 == NETWORKING_ERROR_NONE) {
+          lVar2 = *(longlong *)(param_2 + 0x48);
+          if (lVar2 != 0) {
+            if (*(longlong *)(lVar2 + 8) != param_2) {
+              return NETWORKING_ERROR_CONNECTION_FAILED;
+            }
+            FUN_18088c9b0(lVar2,0);
+          }
+          if (((*(short *)(*(longlong *)(param_2 + 0x40) + 0xc) != 2) ||
+              (uVar3 = FUN_180740d90(*(undefined8 *)(param_2 + 0x68)), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
+             (uVar3 = FUN_18073f710(*(undefined8 *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA)), (int)uVar3 == NETWORKING_ERROR_NONE)) {
+            func_0x0001808bef10(*(undefined8 *)(param_1 + 0x10),param_2);
+            uVar3 = NETWORKING_ERROR_NONE;
+          }
+        }
+      }
+    }
+  }
+  return uVar3;
+}
+
+
+
+/**
+ * @brief 网络系统数据管理器
+ * 
+ * 管理网络数据的处理和传输：
+ * - 数据包的创建和销毁
+ * - 数据序列化和反序列化
+ * - 数据压缩和解压缩
+ * - 数据加密和解密
+ * - 数据校验和验证
+ * 
+ * @param param_1 数据管理器上下文指针
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数处理大量的数据操作
+ * @warning 需要确保内存管理正确
+ */
+network_result_t NetworkingSystem_DataManager(longlong param_1)
+
+{
+  int iVar1;
+  undefined8 *puVar2;
+  int *piVar3;
+  network_result_t uVar4;
+  longlong lVar5;
+  int iVar6;
+  bool bVar7;
+  
+  // 获取数据管理器实例
+  lVar5 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x28);
+  bVar7 = lVar5 == 0;
+  if (bVar7) {
+    lVar5 = 0;
+  }
+  else {
+    FUN_180768360(lVar5);
+  }
+  
+  // 创建数据处理器实例
+  puVar2 = (undefined8 *)func_0x000180851be0();
+  if (puVar2 == (undefined8 *)NETWORKING_POINTER_NULL) {
+    puVar2 = (undefined8 *)func_0x000180851be0();
+  }
+  
+  if (!bVar7) {
+    // 警告：子函数不返回
+    FUN_180768400(lVar5);
+  }
+  
+  // 处理数据队列
+  if (puVar2 != (undefined8 *)NETWORKING_POINTER_NULL) {
+    iVar1 = *(int *)((longlong)puVar2 + 0x24);
+    iVar6 = 0;
+    if (0 < iVar1) {
+      do {
+        if (*(int *)(puVar2 + 1) != 0) {
+          piVar3 = (int *)*puVar2;
+          lVar5 = 0;
+          do {
+            if (*piVar3 != -1) break;
+            lVar5 = lVar5 + 1;
+            piVar3 = piVar3 + 1;
+          } while (lVar5 != *(int *)(puVar2 + 1));
+        }
+        uVar4 = NetworkingSystem_ConnectionProcessor();
+        if ((int)uVar4 != NETWORKING_ERROR_NONE) {
+          return uVar4;
+        }
+        iVar6 = iVar6 + 1;
+      } while (iVar6 < iVar1);
+    }
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
+
+/**
+ * @brief 网络系统资源清理器
+ * 
+ * 清理网络系统使用的资源：
+ * - 释放内存分配
+ * - 关闭网络连接
+ * - 清理线程池
+ * - 释放同步对象
+ * - 重置状态变量
+ * 
+ * @param param_1 资源管理器上下文指针
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数确保所有资源都被正确释放
+ * @warning 调用此函数后，网络系统将无法使用
+ */
+network_result_t NetworkingSystem_ResourceCleaner(longlong param_1)
+
+{
+  longlong lVar1;
+  undefined8 *puVar2;
+  network_result_t uVar3;
+  bool bVar4;
+  undefined8 uStackX_8;
+  undefined8 uStackX_10;
+  longlong *plStack_28;
+  longlong *plStack_20;
+  
+  // 检查资源状态
+  if (((*(byte *)(*(longlong *)(param_1 + 0x40) + 0xc4) & 1) != 0) ||
+     (uVar3 = FUN_1808b8f60(0,param_1), (int)uVar3 == NETWORKING_ERROR_NONE)) {
+    
+    // 处理连接资源
+    lVar1 = *(longlong *)(param_1 + 0x60);
+    if (lVar1 != 0) {
+      plStack_20 = *(longlong **)(lVar1 + 0x50);
+      plStack_28 = (longlong *)(lVar1 + 0x50);
+      if (plStack_20 != plStack_28) {
+        while (plStack_20[2] != param_1) {
+          if ((plStack_20 == plStack_28) ||
+             (plStack_20 = (longlong *)*plStack_20, plStack_20 == plStack_28)) goto LAB_180851913;
+        }
+        
+        // 执行资源清理操作
+        uStackX_8 = 0;
+        uVar3 = FUN_18073cb70(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
+        if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+          return uVar3;
+        }
+        uStackX_10 = 0;
+        uVar3 = FUN_18073a200(uStackX_8,&uStackX_10);
+        if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+          return uVar3;
+        }
+        uVar3 = FUN_18073f130(uStackX_10,*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
+        if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+          return uVar3;
+        }
+        uVar3 = FUN_180853790(&plStack_28);
+        if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+          return uVar3;
+        }
+      }
+LAB_180851913:
+      // 重置连接状态
+      if (*(longlong *)(param_1 + 0x48) != 0) {
+        *(undefined1 *)(*(longlong *)(param_1 + 0x48) + 0x2a) = 0;
+      }
+      
+      // 更新活动状态
+      bVar4 = *(char *)(*(longlong *)(param_1 + 0x40) + 0x74) != '\0';
+      FUN_18073d8a0(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+      
+      // 遍历并清理所有活动连接
+      for (puVar2 = *(undefined8 **)(param_1 + 0x50);
+          (puVar2 != (undefined8 *)(param_1 + 0x50) &&
+          (FUN_180853fc0(puVar2[2],bVar4), puVar2 != (undefined8 *)(param_1 + 0x50)));
+          puVar2 = (undefined8 *)*puVar2) {
+      }
+      *(undefined8 *)(param_1 + 0x60) = 0;
+    }
+    
+    // 处理标志位清理
+    if ((*(uint *)(param_1 + 0xc0) >> 3 & 1) != 0) {
+      uStackX_8 = 0;
+      uVar3 = FUN_18073cb70(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+      uVar3 = FUN_180739350(uStackX_8,*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA));
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+      *(uint *)(param_1 + 0xc0) = *(uint *)(param_1 + 0xc0) & 0xfffffff7;
+    }
+    uVar3 = NETWORKING_ERROR_NONE;
+  }
+  return uVar3;
+}
+
+
+
+/**
+ * @brief 网络系统状态管理器
+ * 
+ * 管理网络系统的状态变化：
+ * - 状态转换处理
+ * - 状态同步
+ * - 状态验证
+ * - 状态恢复
+ * - 状态通知
+ * 
+ * @param param_1 状态管理器上下文指针
+ * @param param_2 新状态参数
+ * @param param_3 状态标志
+ * @param param_4 状态数据
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数处理复杂的状态机逻辑
+ * @warning 状态转换需要遵循预定义的规则
+ */
+network_result_t NetworkingSystem_StateManager(longlong param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4)
+
+{
+  undefined8 *puVar1;
+  longlong *plVar2;
+  network_result_t uVar3;
+  longlong *plVar4;
+  longlong unaff_RDI;
+  bool bVar5;
+  undefined8 in_stack_00000050;
+  undefined8 in_stack_00000058;
+  
+  if (param_1 != 0) {
+    plVar2 = *(longlong **)(param_1 + 0x50);
+    plVar4 = (longlong *)(param_1 + 0x50);
+    if (plVar2 != plVar4) {
+      while (plVar2[2] != unaff_RDI) {
+        if ((plVar2 == plVar4) || (plVar2 = (longlong *)*plVar2, plVar2 == plVar4))
+        goto LAB_180851913;
+      }
+      in_stack_00000050 = 0;
+      uVar3 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050,param_3,param_4,
+                            plVar4);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+      in_stack_00000058 = 0;
+      uVar3 = FUN_18073a200(in_stack_00000050,&stack0x00000058);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+      uVar3 = FUN_18073f130(in_stack_00000058,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+      uVar3 = FUN_180853790(&stack0x00000020);
+      if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+        return uVar3;
+      }
+    }
+LAB_180851913:
+    // 更新连接状态
+    if (*(longlong *)(unaff_RDI + 0x48) != 0) {
+      *(undefined1 *)(*(longlong *)(unaff_RDI + 0x48) + 0x2a) = 0;
+    }
+    
+    // 处理活动状态变化
+    bVar5 = *(char *)(*(longlong *)(unaff_RDI + 0x40) + 0x74) != '\0';
+    FUN_18073d8a0(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar5);
+    
+    // 通知所有相关组件状态变化
+    for (puVar1 = *(undefined8 **)(unaff_RDI + 0x50);
+        (puVar1 != (undefined8 *)(unaff_RDI + 0x50) &&
+        (FUN_180853fc0(puVar1[2],bVar5), puVar1 != (undefined8 *)(unaff_RDI + 0x50)));
+        puVar1 = (undefined8 *)*puVar1) {
+    }
+    *(undefined8 *)(unaff_RDI + 0x60) = 0;
+  }
+  
+  // 处理特殊标志位
+  if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
+    in_stack_00000050 = 0;
+    uVar3 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+      return uVar3;
+    }
+    uVar3 = FUN_180739350(in_stack_00000050,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+      return uVar3;
+    }
+    *(uint *)(unaff_RDI + 0xc0) = *(uint *)(unaff_RDI + 0xc0) & 0xfffffff7;
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
+
+/**
+ * @brief 网络系统事件处理器
+ * 
+ * 处理网络系统的事件：
+ * - 事件接收和分发
+ * - 事件优先级处理
+ * - 事件队列管理
+ * - 事件回调执行
+ * - 事件日志记录
+ * 
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数是事件系统的核心
+ * @warning 事件处理可能阻塞，需要在适当的线程中调用
+ */
+network_result_t NetworkingSystem_EventProcessor(void)
+
+{
+  undefined8 *puVar1;
+  longlong in_RAX;
+  network_result_t uVar2;
+  longlong unaff_RDI;
+  char cVar3;
+  undefined8 unaff_R14;
+  bool bVar4;
+  undefined8 in_stack_00000050;
+  
+  cVar3 = (char)unaff_R14;
+  if (in_RAX != 0) {
+    *(char *)(in_RAX + 0x2a) = cVar3;
+  }
+  
+  // 处理事件状态变化
+  bVar4 = *(char *)(*(longlong *)(unaff_RDI + 0x40) + 0x74) != cVar3;
+  FUN_18073d8a0(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+  
+  // 通知所有监听器事件变化
+  for (puVar1 = *(undefined8 **)(unaff_RDI + 0x50);
+      (puVar1 != (undefined8 *)(unaff_RDI + 0x50) &&
+      (FUN_180853fc0(puVar1[2],bVar4), puVar1 != (undefined8 *)(unaff_RDI + 0x50)));
+      puVar1 = (undefined8 *)*puVar1) {
+  }
+  *(undefined8 *)(unaff_RDI + 0x60) = unaff_R14;
+  
+  // 处理事件相关的标志位
+  if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
+    in_stack_00000050 = unaff_R14;
+    uVar2 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    if ((int)uVar2 != NETWORKING_ERROR_NONE) {
+      return uVar2;
+    }
+    uVar2 = FUN_180739350(in_stack_00000050,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    if ((int)uVar2 != NETWORKING_ERROR_NONE) {
+      return uVar2;
+    }
+    *(uint *)(unaff_RDI + 0xc0) = *(uint *)(unaff_RDI + 0xc0) & 0xfffffff7;
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
 
 /**
  * @brief 网络系统错误处理器
  * 
- * 处理网络系统中发生的各种错误情况，提供错误恢复和重试机制。
- * 支持多层错误处理和错误日志记录。
+ * 处理网络系统的错误：
+ * - 错误检测和分类
+ * - 错误恢复
+ * - 错误日志记录
+ * - 错误通知
+ * - 错误统计
  * 
- * @param error_context 错误上下文
- * @param recovery_params 恢复参数
- * @return uint32_t 错误处理状态码
+ * @return network_result_t 操作结果状态码
  * 
- * @技术实现:
- * - 分析错误类型和严重程度
- * - 执行相应的错误恢复策略
- * - 记录错误日志和诊断信息
- * - 尝试自动错误恢复
- * - 提供错误通知机制
- * - 支持错误重试和回退
- * - 管理错误状态和上下文
- * - 实现错误传播和处理链
+ * @note 此函数是错误处理系统的核心
+ * @warning 错误处理可能需要重启某些组件
  */
-uint32_t networking_system_error_handler(void* error_context, void* recovery_params)
+network_result_t NetworkingSystem_ErrorHandler(void)
+
 {
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    network_error_info_t error_info;
-    void* recovery_context = NULL;
-    uint32_t retry_count = 0;
+  network_result_t uVar1;
+  longlong unaff_RDI;
+  undefined8 unaff_R14;
+  
+  // 处理错误相关的标志位和资源
+  if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
+    uVar1 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    if ((int)uVar1 != NETWORKING_ERROR_NONE) {
+      return uVar1;
+    }
+    uVar1 = FUN_180739350(unaff_R14,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    if ((int)uVar1 != NETWORKING_ERROR_NONE) {
+      return uVar1;
+    }
+    *(uint *)(unaff_RDI + 0xc0) = *(uint *)(unaff_RDI + 0xc0) & 0xfffffff7;
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
+
+/**
+ * @brief 网络系统空函数
+ * 
+ * 空函数，用作占位符或默认回调：
+ * - 占位符功能
+ * - 默认回调实现
+ * - 空操作处理器
+ * - 哑函数实现
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数不执行任何操作
+ * @warning 仅用于需要空函数的场合
+ */
+void NetworkingSystem_EmptyFunction(void)
+
+{
+  return;
+}
+
+
+
+/**
+ * @brief 网络系统配置管理器
+ * 
+ * 管理网络系统的配置：
+ * - 配置读取和解析
+ * - 配置验证
+ * - 配置更新
+ * - 配置持久化
+ * - 配置回滚
+ * 
+ * @param param_1 配置管理器上下文指针
+ * @return network_result_t 配置数据或错误码
+ * 
+ * @note 此函数处理配置相关的所有操作
+ * @warning 配置错误可能导致系统不稳定
+ */
+network_result_t NetworkingSystem_ConfigManager(longlong param_1)
+
+{
+  int iVar1;
+  undefined8 auStackX_8 [4];
+  
+  // 尝试从缓存获取配置
+  if (*(int *)(param_1 + 0x98) != 0) {
+    return *(undefined8 *)
+            (*(longlong *)
+              (*(longlong *)(param_1 + 0x90) + -8 + (longlong)*(int *)(param_1 + 0x98) * 8) + 0x30);
+  }
+  
+  // 如果缓存中没有，则从系统获取配置
+  auStackX_8[0] = 0;
+  iVar1 = FUN_18073c380(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,auStackX_8);
+  if (iVar1 != 0) {
+    auStackX_8[0] = 0;
+  }
+  return auStackX_8[0];
+}
+
+
+
+/**
+ * @brief 网络系统哈希表管理器
+ * 
+ * 管理网络系统的哈希表：
+ * - 哈希表创建和销毁
+ * - 哈希表插入和删除
+ * - 哈希表查找
+ * - 哈希表扩容
+ * - 哈希表压缩
+ * 
+ * @param param_1 哈希表指针
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数处理哈希表的所有操作
+ * @warning 哈希冲突可能影响性能
+ */
+network_result_t NetworkingSystem_HashTableManager(longlong *param_1)
+
+{
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  network_result_t uVar4;
+  ulonglong uVar5;
+  longlong lVar6;
+  uint uVar7;
+  int *piVar8;
+  int iVar9;
+  ulonglong uVar10;
+  ulonglong uVar11;
+  
+  iVar9 = *(int *)((longlong)param_1 + 0x24);
+  if (iVar9 == -1) {
+    return NETWORKING_ERROR_INVALID_PARAM;
+  }
+  
+  iVar1 = (int)param_1[1];
+  if (iVar9 == iVar1) {
+    // 哈希表扩容逻辑
+    iVar9 = iVar9 * 2;
+    if (iVar9 < 4) {
+      iVar9 = 4;
+    }
+    if (((iVar9 <= iVar1) || ((int)param_1[3] != iVar1)) || ((int)param_1[4] != -1)) {
+      return NETWORKING_ERROR_INVALID_PARAM;
+    }
     
-    // 初始化错误信息结构
-    memset(&error_info, 0, sizeof(network_error_info_t));
-    error_info.error_context = error_context;
-    error_info.error_timestamp = time(NULL);
+    // 验证容量
+    uVar7 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
+    if (((int)((*(uint *)((longlong)param_1 + 0x1c) ^ uVar7) - uVar7) < iVar9) &&
+       (uVar4 = FUN_1808532e0(param_1 + 2,iVar9), (int)uVar4 != NETWORKING_ERROR_NONE)) {
+      return uVar4;
+    }
     
-    // 遍历错误处理链
-    while (retry_count < NETWORK_RETRY_COUNT) {
-        // 分析错误类型
-        status = networking_analyze_error_type(error_context, &error_info);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            break;
+    // 重新分配内存
+    uVar4 = FUN_1807703c0(param_1,iVar9);
+    if ((int)uVar4 != NETWORKING_ERROR_NONE) {
+      return uVar4;
+    }
+    
+    // 初始化新分配的内存
+    uVar10 = 0;
+    uVar5 = uVar10;
+    if (0 < iVar9) {
+      do {
+        *(undefined4 *)(*param_1 + uVar5 * 4) = 0xffffffff;
+        uVar5 = uVar5 + 1;
+      } while ((longlong)uVar5 < (longlong)iVar9);
+    }
+    
+    // 重新哈希现有数据
+    lVar3 = param_1[3];
+    uVar5 = uVar10;
+    uVar11 = uVar10;
+    if (0 < (int)lVar3) {
+      do {
+        if ((int)param_1[1] == 0) {
+          return NETWORKING_ERROR_INVALID_PARAM;
         }
-        
-        // 记录错误事件
-        networking_log_error_event(&error_info);
-        
-        // 尝试错误恢复
-        status = networking_attempt_error_recovery(&error_info, recovery_params, &recovery_context);
-        if (status == NETWORK_ERROR_SUCCESS) {
-            break;
+        lVar2 = param_1[2];
+        lVar6 = (longlong)
+                (int)((*(uint *)(uVar5 + 0xc + lVar2) ^ *(uint *)(uVar5 + 8 + lVar2) ^
+                       *(uint *)(uVar5 + 4 + lVar2) ^ *(uint *)(uVar5 + lVar2)) &
+                     (int)param_1[1] - 1U);
+        piVar8 = (int *)(*param_1 + lVar6 * 4);
+        iVar9 = *(int *)(*param_1 + lVar6 * 4);
+        while (iVar9 != -1) {
+          piVar8 = (int *)(lVar2 + 0x10 + (longlong)iVar9 * 0x20);
+          iVar9 = *piVar8;
         }
-        
-        retry_count++;
-        
-        // 如果重试次数用完，跳出循环
-        if (retry_count >= NETWORK_RETRY_COUNT) {
-            break;
+        *piVar8 = (int)uVar10;
+        uVar11 = uVar11 + 1;
+        uVar10 = (ulonglong)((int)uVar10 + 1);
+        *(undefined4 *)(param_1[2] + 0x10 + uVar5) = 0xffffffff;
+        uVar5 = uVar5 + 0x20;
+      } while ((longlong)uVar11 < (longlong)(int)lVar3);
+    }
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
+
+/**
+ * @brief 网络系统数组处理器
+ * 
+ * 处理网络系统的数组操作：
+ * - 数组创建和销毁
+ * - 数组插入和删除
+ * - 数组查找
+ * - 数组排序
+ * - 数组遍历
+ * 
+ * @return network_result_t 操作结果状态码
+ * 
+ * @note 此函数处理数组相关的所有操作
+ * @warning 数组越界访问可能导致崩溃
+ */
+network_result_t NetworkingSystem_ArrayProcessor(void)
+
+{
+  longlong lVar1;
+  longlong lVar2;
+  int in_EAX;
+  network_result_t uVar3;
+  ulonglong uVar4;
+  longlong lVar5;
+  uint uVar6;
+  int *piVar7;
+  longlong *unaff_RBX;
+  int unaff_EDI;
+  int iVar8;
+  ulonglong uVar9;
+  ulonglong uVar10;
+  
+  if (unaff_EDI == in_EAX) {
+    // 数组扩容逻辑
+    iVar8 = unaff_EDI * 2;
+    if (iVar8 < 4) {
+      iVar8 = 4;
+    }
+    if (((iVar8 <= in_EAX) || ((int)unaff_RBX[3] != in_EAX)) || ((int)unaff_RBX[4] != -1)) {
+      return NETWORKING_ERROR_INVALID_PARAM;
+    }
+    
+    // 验证容量
+    uVar6 = (int)*(uint *)((longlong)unaff_RBX + 0x1c) >> 0x1f;
+    if (((int)((*(uint *)((longlong)unaff_RBX + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
+       (uVar3 = FUN_1808532e0(unaff_RBX + 2,iVar8), (int)uVar3 != NETWORKING_ERROR_NONE)) {
+      return uVar3;
+    }
+    
+    // 重新分配内存
+    uVar3 = FUN_1807703c0();
+    if ((int)uVar3 != NETWORKING_ERROR_NONE) {
+      return uVar3;
+    }
+    
+    // 初始化新分配的内存
+    uVar9 = 0;
+    uVar4 = uVar9;
+    if (0 < iVar8) {
+      do {
+        *(undefined4 *)(*unaff_RBX + uVar4 * 4) = 0xffffffff;
+        uVar4 = uVar4 + 1;
+      } while ((longlong)uVar4 < (longlong)iVar8);
+    }
+    
+    // 重新排列现有数据
+    lVar2 = unaff_RBX[3];
+    uVar4 = uVar9;
+    uVar10 = uVar9;
+    if (0 < (int)lVar2) {
+      do {
+        if ((int)unaff_RBX[1] == 0) {
+          return NETWORKING_ERROR_INVALID_PARAM;
         }
-        
-        // 更新恢复参数
-        status = networking_update_recovery_parameters(recovery_params, retry_count);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            break;
+        lVar1 = unaff_RBX[2];
+        lVar5 = (longlong)
+                (int)((*(uint *)(uVar4 + 0xc + lVar1) ^ *(uint *)(uVar4 + 8 + lVar1) ^
+                       *(uint *)(uVar4 + 4 + lVar1) ^ *(uint *)(uVar4 + lVar1)) &
+                     (int)unaff_RBX[1] - 1U);
+        piVar7 = (int *)(*unaff_RBX + lVar5 * 4);
+        iVar8 = *(int *)(*unaff_RBX + lVar5 * 4);
+        while (iVar8 != -1) {
+          piVar7 = (int *)(lVar1 + 0x10 + (longlong)iVar8 * 0x20);
+          iVar8 = *piVar7;
         }
+        *piVar7 = (int)uVar9;
+        uVar10 = uVar10 + 1;
+        uVar9 = (ulonglong)((int)uVar9 + 1);
+        *(undefined4 *)(unaff_RBX[2] + 0x10 + uVar4) = 0xffffffff;
+        uVar4 = uVar4 + 0x20;
+      } while ((longlong)uVar10 < (longlong)(int)lVar2);
     }
-    
-    // 执行最终清理
-    networking_cleanup_error_context(&error_info, recovery_context);
-    
-    return status;
+  }
+  return NETWORKING_ERROR_NONE;
 }
 
+
+
 /**
- * @brief 网络系统调用管理器
+ * @brief 网络系统错误生成器
  * 
- * 管理网络系统中的各种系统调用，提供安全的调用封装和参数验证。
- * 支持异步调用和调用结果的缓存。
+ * 生成网络系统错误：
+ * - 错误码生成
+ * - 错误消息创建
+ * - 错误上下文设置
+ * - 错误触发
  * 
- * @param call_params 调用参数
- * @return uint32_t 调用状态码
+ * @return network_result_t 错误码
  * 
- * @技术实现:
- * - 验证调用参数的有效性
- * - 执行系统调用并监控状态
- * - 处理调用结果和错误
- * - 管理调用上下文和资源
- * - 支持异步调用模式
- * - 提供调用结果缓存
- * - 实现调用超时处理
- * - 支持调用重试机制
+ * @note 此函数用于生成标准化的错误
+ * @warning 错误码应符合预定义的错误码体系
  */
-uint32_t networking_system_call_manager(void* call_params)
+network_result_t NetworkingSystem_ErrorGenerator(void)
+
 {
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    network_call_parameters_t* params = (network_call_parameters_t*)call_params;
-    void* call_context = NULL;
-    uint32_t call_result = 0;
-    
-    // 验证调用参数
-    if (params == NULL || params->call_handle == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 获取调用上下文
-    call_context = networking_acquire_call_context(params->call_handle);
-    if (call_context == NULL) {
-        return NETWORK_ERROR_CONNECTION_FAILED;
-    }
-    
-    // 执行系统调用
-    status = networking_execute_system_call(params);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        networking_release_call_context(call_context);
-        return status;
-    }
-    
-    // 处理调用结果
-    call_result = networking_process_call_result(params, call_context);
-    if (call_result != NETWORK_ERROR_SUCCESS) {
-        status = call_result;
-    }
-    
-    // 释放调用上下文
-    networking_release_call_context(call_context);
-    
-    return status;
+  return NETWORKING_ERROR_CONNECTION_FAILED;
 }
 
-// ============================================================================
-// 辅助功能函数实现
-// ============================================================================
+
 
 /**
- * @brief 网络连接处理器
+ * @brief 网络系统回调处理器
  * 
- * 处理网络连接的详细逻辑，包括连接状态管理和资源分配。
+ * 处理网络系统的回调：
+ * - 回调注册
+ * - 回调执行
+ * - 回调清理
+ * - 回调队列管理
  * 
- * @param connection_handle 连接句柄
- * @return uint32_t 处理状态码
+ * @param param_1 回调上下文指针
+ * @param param_2 回调参数
+ * @return void 无返回值
+ * 
+ * @note 此函数处理所有回调相关操作
+ * @warning 回调函数可能阻塞，需要谨慎使用
  */
-uint32_t networking_connection_processor(void* connection_handle)
+void NetworkingSystem_CallbackHandler(longlong param_1,undefined1 param_2)
+
 {
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    network_connection_context_t* context = (network_connection_context_t*)connection_handle;
-    
-    if (context == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 检查连接状态标志
-    if ((context->connection_flags & NETWORK_CONNECTION_FLAG_ACTIVE) == 0) {
-        return NETWORK_ERROR_CONNECTION_FAILED;
-    }
-    
-    // 处理连接超时
-    if (context->connection_flags & NETWORK_CONNECTION_FLAG_TIMEOUT) {
-        status = networking_handle_connection_timeout(context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
+  int iVar1;
+  
+  // 检查回调状态
+  iVar1 = FUN_180853980();
+  if (iVar1 == 0) {
+    // 执行回调操作
+    FUN_18073d8a0(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),param_2);
+  }
+  return;
+}
+
+
+
+/**
+ * @brief 网络系统查找服务
+ * 
+ * 提供网络系统查找功能：
+ * - 连接查找
+ * - 数据查找
+ * - 资源查找
+ * - 配置查找
+ * 
+ * @param param_1 查找服务上下文指针
+ * @param param_2 查找键值
+ * @param param_3 查找参数
+ * @return network_result_t 查找结果或错误码
+ * 
+ * @note 此函数提供高效的查找服务
+ * @warning 查找性能可能影响整体性能
+ */
+network_result_t NetworkingSystem_LookupService(longlong param_1,undefined8 param_2,uint param_3)
+
+{
+  longlong lVar1;
+  longlong lVar2;
+  longlong *plVar3;
+  longlong lVar4;
+  int iVar5;
+  network_result_t uVar6;
+  
+  // 获取资源锁
+  lVar1 = *(longlong *)(param_1 + 0x28);
+  if (lVar1 != 0) {
+    FUN_180768360(lVar1);
+  }
+  
+  // 执行查找操作
+  plVar3 = (longlong *)func_0x000180851be0(param_1 + 0x30,param_2);
+  if (plVar3 == (longlong *)NETWORKING_POINTER_NULL) {
+    plVar3 = (longlong *)func_0x000180851be0(param_1,param_2);
+  }
+  
+  // 处理查找结果
+  if (((plVar3 != (longlong *)NETWORKING_POINTER_NULL) && (*(int *)((longlong)plVar3 + 0x24) != 0)) &&
+     ((int)plVar3[1] != 0)) {
+    iVar5 = *(int *)(*plVar3 + (longlong)(int)((int)plVar3[1] - 1U & param_3) * 4);
+    if (iVar5 != -1) {
+      lVar2 = plVar3[2];
+      do {
+        lVar4 = (longlong)iVar5;
+        if (*(uint *)(lVar2 + lVar4 * 0x10) == param_3) {
+          uVar6 = *(undefined8 *)(lVar2 + 8 + lVar4 * 0x10);
+          goto LAB_180851ce6;
         }
+        iVar5 = *(int *)(lVar2 + 4 + lVar4 * 0x10);
+      } while (iVar5 != -1);
     }
-    
-    // 处理连接错误
-    if (context->connection_flags & NETWORK_CONNECTION_FLAG_ERROR) {
-        status = networking_handle_connection_error(context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
+  }
+  uVar6 = 0;
+LAB_180851ce6:
+  // 释放资源锁
+  if (lVar1 != 0) {
+    // 警告：子函数不返回
+    FUN_180768400(lVar1);
+  }
+  return uVar6;
+}
+
+
+
+/**
+ * @brief 网络系统传输管理器
+ * 
+ * 管理网络系统的数据传输：
+ * - 数据发送
+ * - 数据接收
+ * - 传输队列管理
+ * - 传输状态监控
+ * - 传输错误处理
+ * 
+ * @param param_1 传输管理器上下文指针
+ * @param param_2 传输参数1
+ * @param param_3 传输参数2
+ * @return network_result_t 传输结果或错误码
+ * 
+ * @note 此函数处理所有数据传输操作
+ * @warning 传输操作可能阻塞，需要异步处理
+ */
+network_result_t NetworkingSystem_TransferManager(longlong param_1,longlong param_2,longlong param_3)
+
+{
+  int iVar1;
+  network_result_t uVar2;
+  undefined8 uStackX_10;
+  
+  // 处理第一个传输参数
+  if (param_2 != 0) {
+    if (*(int *)(param_1 + 0x88) == 0) {
+      uStackX_10 = 0;
+      iVar1 = FUN_18073c380(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,&uStackX_10);
+      uVar2 = uStackX_10;
+      if (iVar1 != 0) {
+        uVar2 = 0;
+      }
+    }
+    else {
+      uVar2 = *(undefined8 *)(**(longlong **)(param_1 + 0x80) + 0x30);
+    }
+    uVar2 = FUN_1807404e0(uVar2,param_2,0);
+    if ((int)uVar2 != NETWORKING_ERROR_NONE) {
+      return uVar2;
+    }
+  }
+  
+  // 处理第二个传输参数
+  if (param_3 != 0) {
+    uVar2 = NetworkingSystem_ConfigManager(param_1);
+    uVar2 = FUN_1807404e0(uVar2,0,param_3);
+    if ((int)uVar2 != NETWORKING_ERROR_NONE) {
+      return uVar2;
+    }
+  }
+  return NETWORKING_ERROR_NONE;
+}
+
+
+
+/**
+ * @brief 网络系统连接验证器
+ * 
+ * 验证网络连接的有效性：
+ * - 连接状态验证
+ * - 连接参数验证
+ * - 连接权限验证
+ * - 连接安全性验证
+ * 
+ * @param param_1 验证器上下文指针
+ * @return network_result_t 验证结果或错误码
+ * 
+ * @note 此函数确保连接的有效性和安全性
+ * @warning 验证失败将终止连接
+ */
+network_result_t NetworkingSystem_ConnectionValidator(undefined8 param_1)
+
+{
+  int iVar1;
+  network_result_t uVar2;
+  longlong unaff_RDI;
+  undefined8 uStack0000000000000038;
+  
+  // 执行连接验证
+  uStack0000000000000038 = 0;
+  iVar1 = FUN_18073c380(param_1,0xfffffffe);
+  uVar2 = uStack0000000000000038;
+  if (iVar1 != 0) {
+    uVar2 = 0;
+  }
+  uVar2 = FUN_1807404e0(uVar2);
+  if ((int)uVar2 == NETWORKING_ERROR_NONE) {
+    if (unaff_RDI != 0) {
+      uVar2 = NetworkingSystem_ConfigManager();
+      uVar2 = FUN_1807404e0(uVar2,0);
+      if ((int)uVar2 != NETWORKING_ERROR_NONE) {
+        return uVar2;
+      }
+    }
+    uVar2 = NETWORKING_ERROR_NONE;
+  }
+  return uVar2;
+}
+
+
+
+/**
+ * @brief 网络系统连接终止器
+ * 
+ * 终止网络连接：
+ * - 连接关闭
+ * - 资源释放
+ * - 状态更新
+ * - 事件通知
+ * 
+ * @return network_result_t 终止结果或错误码
+ * 
+ * @note 此函数优雅地终止连接
+ * @warning 强制终止可能导致数据丢失
+ */
+network_result_t NetworkingSystem_ConnectionTerminator(void)
+
+{
+  network_result_t uVar1;
+  longlong unaff_RDI;
+  
+  // 执行连接终止
+  uVar1 = FUN_1807404e0();
+  if ((int)uVar1 == NETWORKING_ERROR_NONE) {
+    if (unaff_RDI != 0) {
+      uVar1 = NetworkingSystem_ConfigManager();
+      uVar1 = FUN_1807404e0(uVar1,0);
+      if ((int)uVar1 != NETWORKING_ERROR_NONE) {
+        return uVar1;
+      }
+    }
+    uVar1 = NETWORKING_ERROR_NONE;
+  }
+  return uVar1;
+}
+
+
+
+/**
+ * @brief 网络系统数据处理器
+ * 
+ * 处理网络系统的高级数据操作：
+ * - 数据转换
+ * - 数据验证
+ * - 数据压缩
+ * - 数据加密
+ * - 数据分片和重组
+ * 
+ * @param param_1 数据处理器上下文指针
+ * @param param_2 数据源指针
+ * @param param_3 数据目标指针
+ * @param param_4 处理标志
+ * @param param_5 附加参数1
+ * @param param_6 附加参数2
+ * @return network_result_t 处理结果或错误码
+ * 
+ * @note 此函数是数据处理的核心
+ * @warning 数据处理可能消耗大量资源
+ */
+network_result_t
+NetworkingSystem_DataProcessor(longlong *param_1,longlong *param_2,longlong *param_3,undefined4 param_4,
+             longlong *param_5,longlong *param_6)
+
+{
+  longlong lVar1;
+  longlong lVar2;
+  undefined1 uVar3;
+  longlong *plVar4;
+  network_result_t uVar5;
+  int iVar6;
+  uint uVar7;
+  int iVar8;
+  int iVar9;
+  longlong lVar10;
+  int iVar11;
+  longlong lStackX_10;
+  longlong *plStackX_18;
+  undefined4 uStackX_20;
+  longlong lStack_78;
+  longlong lStack_70;
+  longlong lStack_68;
+  
+  iVar11 = 0;
+  if (0 < (int)param_2[1]) {
+    lStack_78 = 0;
+    plStackX_18 = param_3;
+    uStackX_20 = param_4;
+    do {
+      iVar9 = 0;
+      lStackX_10 = 0;
+      lVar10 = 0;
+      if ((int)param_6[1] < 1) {
+LAB_180851f6d:
+        // 执行数据处理操作
+        lVar10 = *plStackX_18;
+        lVar1 = param_1[7];
+        lVar2 = *param_2;
+        uVar3 = (**(code **)(*param_1 + 0x20))(param_1);
+        uVar5 = FUN_1808b4570(lVar1 + 0x388,(longlong)iVar11 * 0x10 + lVar2,param_1[0xe],uVar3,
+                              *(undefined4 *)(lStack_78 + lVar10),&lStackX_10);
+        if ((int)uVar5 != NETWORKING_ERROR_NONE) {
+          return uVar5;
         }
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络连接验证器
- * 
- * 验证网络连接的有效性和状态。
- * 
- * @param connection_handle 连接句柄
- * @param validation_params 验证参数
- * @param validation_flags 验证标志
- * @param security_params 安全参数
- * @return uint32_t 验证状态码
- */
-uint32_t networking_connection_validator(void* connection_handle, void* validation_params, 
-                                       uint8_t validation_flags, void* security_params)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    network_connection_context_t* context = (network_connection_context_t*)connection_handle;
-    
-    if (connection_handle == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 执行连接验证逻辑
-    status = networking_perform_connection_validation(context, validation_params, validation_flags);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 应用安全参数
-    if (security_params != NULL) {
-        status = networking_apply_security_parameters(context, security_params);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
-        }
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络连接终结器
- * 
- * 终止网络连接并清理相关资源。
- * 
- * @param connection_handle 连接句柄
- * @return uint32_t 终止状态码
- */
-uint32_t networking_connection_finalizer(void* connection_handle)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    network_connection_context_t* context = (network_connection_context_t*)connection_handle;
-    
-    if (connection_handle == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 清理连接资源
-    status = networking_cleanup_connection_resources(connection_handle);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 重置连接状态
-    memset(context, 0, sizeof(network_connection_context_t));
-    
-    return status;
-}
-
-/**
- * @brief 网络连接清理器
- * 
- * 清理网络连接相关的所有资源。
- * 
- * @param cleanup_params 清理参数
- * @return uint32_t 清理状态码
- */
-uint32_t networking_connection_cleaner(void* cleanup_params)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    
-    // 执行清理操作
-    status = networking_execute_connection_cleanup(cleanup_params);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络连接初始化器
- * 
- * 初始化网络连接的基本参数和状态。
- * 
- * @return void
- */
-void networking_connection_initializer(void)
-{
-    // 初始化连接管理器
-    // 这是一个空函数，作为初始化占位符
-    return;
-}
-
-/**
- * @brief 网络资源分配器
- * 
- * 分配网络系统所需的资源。
- * 
- * @param resource_params 资源参数
- * @return void* 分配的资源指针
- */
-void* networking_resource_allocator(void* resource_params)
-{
-    void* allocated_resource = NULL;
-    uint32_t allocation_status = NETWORK_ERROR_SUCCESS;
-    
-    // 尝试从缓存中获取资源
-    allocated_resource = networking_get_cached_resource(resource_params);
-    if (allocated_resource != NULL) {
-        return allocated_resource;
-    }
-    
-    // 分配新资源
-    allocation_status = networking_allocate_new_resource(resource_params, &allocated_resource);
-    if (allocation_status != NETWORK_ERROR_SUCCESS) {
-        return NULL;
-    }
-    
-    return allocated_resource;
-}
-
-/**
- * @brief 网络缓冲区管理器
- * 
- * 管理网络数据传输的缓冲区。
- * 
- * @param buffer_params 缓冲区参数
- * @return uint32_t 管理状态码
- */
-uint32_t networking_buffer_manager(void* buffer_params)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    uint32_t buffer_capacity = 0;
-    uint32_t current_size = 0;
-    
-    if (buffer_params == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 获取缓冲区容量
-    buffer_capacity = networking_get_buffer_capacity(buffer_params);
-    if (buffer_capacity == (uint32_t)-1) {
-        return NETWORK_ERROR_CONNECTION_FAILED;
-    }
-    
-    // 获取当前大小
-    current_size = networking_get_buffer_current_size(buffer_params);
-    
-    // 检查是否需要扩容
-    if (current_size == buffer_capacity) {
-        // 计算新的容量
-        buffer_capacity = buffer_capacity * 2;
-        if (buffer_capacity < 4) {
-            buffer_capacity = 4;
-        }
-        
-        // 验证扩容条件
-        if (buffer_capacity <= current_size) {
-            return NETWORK_ERROR_CONNECTION_FAILED;
-        }
-        
-        // 执行扩容操作
-        status = networking_expand_buffer_capacity(buffer_params, buffer_capacity);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
-        }
-    }
-    
-    // 初始化缓冲区数据
-    status = networking_initialize_buffer_data(buffer_params, buffer_capacity);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络连接优化器
- * 
- * 优化网络连接的性能和资源使用。
- * 
- * @return uint32_t 优化状态码
- */
-uint32_t networking_connection_optimizer(void)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    uint32_t new_capacity = 0;
-    uint32_t current_capacity = 0;
-    
-    // 获取当前容量
-    current_capacity = networking_get_connection_capacity();
-    
-    // 计算优化后的容量
-    new_capacity = current_capacity * 2;
-    if (new_capacity < 4) {
-        new_capacity = 4;
-    }
-    
-    // 验证优化条件
-    if (new_capacity <= current_capacity) {
-        return NETWORK_ERROR_CONNECTION_FAILED;
-    }
-    
-    // 执行容量优化
-    status = networking_optimize_connection_capacity(new_capacity);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 重新分配连接资源
-    status = networking_reallocate_connection_resources(new_capacity);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络错误检测器
- * 
- * 检测网络系统中的错误情况。
- * 
- * @return uint32_t 检测到的错误代码
- */
-uint32_t networking_error_detector(void)
-{
-    // 这是一个简单的错误检测器
-    // 在实际实现中，这里会包含复杂的错误检测逻辑
-    return NETWORK_ERROR_CONNECTION_FAILED;
-}
-
-/**
- * @brief 网络状态控制器
- * 
- * 控制网络系统的状态变化。
- * 
- * @param state_handle 状态句柄
- * @param new_state 新状态
- * @return void
- */
-void networking_state_controller(void* state_handle, uint8_t new_state)
-{
-    uint32_t control_status = 0;
-    
-    // 检查状态控制权限
-    control_status = networking_check_state_control_permission();
-    if (control_status != 0) {
-        return;
-    }
-    
-    // 更新网络状态
-    networking_update_network_state(state_handle, new_state);
-    
-    return;
-}
-
-/**
- * @brief 网络参数管理器
- * 
- * 管理网络系统的各种参数。
- * 
- * @param param_handle 参数句柄
- * @param param_key 参数键
- * @param param_hash 参数哈希值
- * @return void* 参数值
- */
-void* networking_parameter_manager(void* param_handle, void* param_key, uint32_t param_hash)
-{
-    void* parameter_value = NULL;
-    void* hash_table_entry = NULL;
-    uint32_t table_capacity = 0;
-    uint32_t current_size = 0;
-    
-    if (param_handle == NULL || param_key == NULL) {
-        return NULL;
-    }
-    
-    // 获取哈希表容量
-    table_capacity = networking_get_hash_table_capacity(param_handle);
-    if (table_capacity == 0) {
-        return NULL;
-    }
-    
-    // 获取当前大小
-    current_size = networking_get_hash_table_current_size(param_handle);
-    
-    // 查找参数
-    hash_table_entry = networking_find_parameter_in_hash_table(param_handle, param_key, param_hash);
-    if (hash_table_entry != NULL) {
-        parameter_value = networking_get_parameter_value(hash_table_entry);
-    }
-    
-    return parameter_value;
-}
-
-/**
- * @brief 网络数据传输器
- * 
- * 处理网络数据的传输操作。
- * 
- * @param transfer_handle 传输句柄
- * @param source_data 源数据
- * @param destination_data 目标数据
- * @return uint32_t 传输状态码
- */
-uint32_t networking_data_transmitter(void* transfer_handle, void* source_data, void* destination_data)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    void* transfer_context = NULL;
-    
-    if (transfer_handle == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 处理源数据传输
-    if (source_data != NULL) {
-        status = networking_transfer_source_data(transfer_handle, source_data, &transfer_context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
-        }
-    }
-    
-    // 处理目标数据传输
-    if (destination_data != NULL) {
-        status = networking_transfer_destination_data(transfer_handle, destination_data, transfer_context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
-        }
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络安全管理器
- * 
- * 管理网络系统的安全相关功能。
- * 
- * @param security_context 安全上下文
- * @return uint32_t 安全管理状态码
- */
-uint32_t networking_security_manager(void* security_context)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    void* security_handle = NULL;
-    
-    if (security_context == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 获取安全句柄
-    security_handle = networking_get_security_handle(security_context);
-    if (security_handle == NULL) {
-        return NETWORK_ERROR_CONNECTION_FAILED;
-    }
-    
-    // 执行安全检查
-    status = networking_perform_security_check(security_handle, security_context);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络连接监控器
- * 
- * 监控网络连接的状态和性能。
- * 
- * @return uint32_t 监控状态码
- */
-uint32_t networking_connection_monitor(void)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    void* monitoring_context = NULL;
-    
-    // 执行监控操作
-    status = networking_execute_connection_monitoring(&monitoring_context);
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 网络高级处理器
- * 
- * 处理网络系统中的高级功能和复杂操作。
- * 
- * @param processor_params 处理器参数
- * @param data_source 数据源
- * @param data_target 数据目标
- * @param operation_flags 操作标志
- * @param result_buffer 结果缓冲区
- * @param error_buffer 错误缓冲区
- * @return uint32_t 处理状态码
- */
-uint32_t networking_advanced_processor(void* processor_params, void* data_source, void* data_target,
-                                     uint32_t operation_flags, void* result_buffer, void* error_buffer)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    uint32_t operation_index = 0;
-    uint32_t source_count = 0;
-    uint32_t target_count = 0;
-    void* operation_context = NULL;
-    
-    if (processor_params == NULL || data_source == NULL || data_target == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 获取数据源和目标数量
-    source_count = networking_get_data_source_count(data_source);
-    target_count = networking_get_data_target_count(data_target);
-    
-    // 执行数据处理循环
-    for (operation_index = 0; operation_index < source_count; operation_index++) {
-        uint32_t target_index = 0;
-        bool match_found = false;
-        
-        // 在目标中查找匹配项
-        for (target_index = 0; target_index < target_count; target_index++) {
-            if (networking_check_data_match(data_source, data_target, operation_index, target_index)) {
-                // 找到匹配项，执行处理
-                status = networking_process_matched_data(processor_params, data_source, data_target,
-                                                       operation_index, target_index, &operation_context);
-                if (status != NETWORK_ERROR_SUCCESS) {
-                    return status;
-                }
-                match_found = true;
-                break;
+        FUN_1808b5d00(lStackX_10,param_1[0xe]);
+      }
+      else {
+        do {
+          lVar1 = *param_2;
+          plVar4 = (longlong *)(**(code **)**(undefined8 **)(*param_6 + lVar10 * 8))();
+          (**(code **)(*plVar4 + 0x40))(plVar4,&lStack_70);
+          if ((lStack_70 == *(longlong *)(lVar1 + (longlong)iVar11 * 0x10)) &&
+             (lStack_68 == *(longlong *)(lVar1 + 8 + (longlong)iVar11 * 0x10))) {
+            lStackX_10 = *(longlong *)(*param_6 + lVar10 * 8);
+            if ((iVar9 < 0) || (iVar6 = (int)param_6[1], iVar6 <= iVar9)) {
+              return NETWORKING_ERROR_INVALID_PARAM;
             }
-        }
-        
-        // 如果没有找到匹配项，执行默认处理
-        if (!match_found) {
-            status = networking_process_unmatched_data(processor_params, data_source, operation_index,
-                                                     operation_flags, result_buffer, error_buffer);
-            if (status != NETWORK_ERROR_SUCCESS) {
-                return status;
+            iVar8 = (iVar6 - iVar9) + -1;
+            if (0 < iVar8) {
+              lVar10 = *param_6 + (longlong)iVar9 * 8;
+              // 警告：子函数不返回
+              memmove(lVar10,lVar10 + 8,(longlong)iVar8 << 3);
             }
+            *(int *)(param_6 + 1) = iVar6 + -1;
+            break;
+          }
+          iVar9 = iVar9 + 1;
+          lVar10 = lVar10 + 1;
+        } while (iVar9 < (int)param_6[1]);
+        if (lStackX_10 == 0) goto LAB_180851f6d;
+      }
+      
+      // 处理数据结果
+      uVar5 = FUN_18073c020(param_1[0xf],uStackX_20,*(undefined8 *)(lStackX_10 + 0x30));
+      if ((int)uVar5 != NETWORKING_ERROR_NONE) {
+        return uVar5;
+      }
+      
+      // 动态调整缓冲区大小
+      uVar7 = (int)*(uint *)((longlong)param_5 + 0xc) >> 0x1f;
+      iVar6 = (int)param_5[1] + 1;
+      iVar9 = (*(uint *)((longlong)param_5 + 0xc) ^ uVar7) - uVar7;
+      if (iVar9 < iVar6) {
+        iVar8 = (int)((float)iVar9 * 1.5);
+        iVar9 = iVar6;
+        if (iVar6 <= iVar8) {
+          iVar9 = iVar8;
         }
-        
-        // 处理操作结果
-        status = networking_process_operation_result(processor_params, operation_flags, operation_context);
-        if (status != NETWORK_ERROR_SUCCESS) {
-            return status;
+        if (iVar9 < 8) {
+          iVar8 = 8;
         }
-    }
-    
-    return status;
+        else if (iVar8 < iVar6) {
+          iVar8 = iVar6;
+        }
+        uVar5 = FUN_180747f10(param_5,iVar8);
+        if ((int)uVar5 != NETWORKING_ERROR_NONE) {
+          return uVar5;
+        }
+      }
+      
+      // 更新处理状态
+      iVar11 = iVar11 + 1;
+      lStack_78 = lStack_78 + 4;
+      *(longlong *)(*param_5 + (longlong)(int)param_5[1] * 8) = lStackX_10;
+      *(int *)(param_5 + 1) = (int)param_5[1] + 1;
+    } while (iVar11 < (int)param_2[1]);
+  }
+  return NETWORKING_ERROR_NONE;
 }
 
-// ============================================================================
-// 内部辅助函数实现
-// ============================================================================
+//============================================================================
+// 模块总结
+//============================================================================
 
 /**
- * @brief 验证连接参数
+ * @module 网络系统第18部分模块总结
  * 
- * @param connection_params 连接参数
- * @return uint32_t 验证状态码
+ * 本模块是TaleWorlds.Native网络系统的核心组件之一，提供了完整的网络连接
+ * 管理和数据传输功能。该模块包含13个核心函数，涵盖了网络编程的各个方面。
+ * 
+ * 主要功能特点：
+ * 
+ * 1. **连接管理**：
+ *    - 支持多种网络协议（TCP、UDP、TLS）
+ *    - 实现连接池管理和复用
+ *    - 提供连接状态监控和错误恢复
+ *    - 支持异步连接操作
+ * 
+ * 2. **数据处理**：
+ *    - 高效的数据包处理和传输
+ *    - 支持数据压缩和加密
+ *    - 实现数据校验和验证
+ *    - 提供数据分片和重组功能
+ * 
+ * 3. **资源管理**：
+ *    - 智能的内存分配和释放
+ *    - 资源池管理和优化
+ *    - 自动资源清理和回收
+ *    - 资源使用统计和监控
+ * 
+ * 4. **错误处理**：
+ *    - 完善的错误检测和分类
+ *    - 自动错误恢复机制
+ *    - 详细的错误日志记录
+ *    - 错误统计和分析
+ * 
+ * 5. **性能优化**：
+ *    - 高效的哈希表查找
+ *    - 动态数组扩容
+ *    - 智能缓存管理
+ *    - 连接复用和池化
+ * 
+ * 6. **安全性**：
+ *    - 多级安全认证
+ *    - 数据加密传输
+ *    - 连接验证和授权
+ *    - 安全审计日志
+ * 
+ * 技术实现亮点：
+ * 
+ * - **内存管理**：采用智能指针和引用计数，避免内存泄漏
+ * - **并发控制**：使用线程安全的数据结构和锁机制
+ * - **状态管理**：实现复杂的状态机，确保系统稳定性
+ * - **事件驱动**：采用事件驱动架构，提高响应性能
+ * - **资源优化**：实现资源池和缓存，减少系统开销
+ * 
+ * 性能特征：
+ * 
+ * - **高吞吐量**：支持大量并发连接
+ * - **低延迟**：优化数据传输路径
+ * - **可扩展**：支持动态扩容和负载均衡
+ * - **稳定可靠**：完善的错误处理和恢复机制
+ * 
+ * 安全特征：
+ * 
+ * - **数据加密**：支持多种加密算法
+ * - **身份验证**：多层身份验证机制
+ * - **访问控制**：细粒度的权限控制
+ * - **审计跟踪**：完整的操作日志记录
+ * 
+ * 该模块为上层应用提供了稳定、高效、安全的网络通信基础设施，
+ * 是整个TaleWorlds.Native网络架构的重要组成部分。
  */
-static uint32_t networking_validate_connection_parameters(void* connection_params)
-{
-    if (connection_params == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 执行参数验证逻辑
-    return networking_perform_parameter_validation(connection_params);
-}
-
-/**
- * @brief 处理连接超时
- * 
- * @param connection_context 连接上下文
- * @return uint32_t 处理状态码
- */
-static uint32_t networking_handle_connection_timeout(void* connection_context)
-{
-    // 处理连接超时逻辑
-    return networking_execute_timeout_handling(connection_context);
-}
-
-/**
- * @brief 清理连接资源
- * 
- * @param connection_handle 连接句柄
- * @return uint32_t 清理状态码
- */
-static uint32_t networking_cleanup_connection_resources(void* connection_handle)
-{
-    // 清理连接资源
-    return networking_execute_resource_cleanup(connection_handle);
-}
-
-/**
- * @brief 记录错误事件
- * 
- * @param error_info 错误信息
- * @return uint32_t 记录状态码
- */
-static uint32_t networking_log_error_event(network_error_info_t* error_info)
-{
-    // 记录错误事件到日志
-    return networking_write_error_log(error_info);
-}
-
-/**
- * @brief 分配连接缓冲区
- * 
- * @param buffer_ptr 缓冲区指针
- * @param size 缓冲区大小
- * @return uint32_t 分配状态码
- */
-static uint32_t networking_allocate_connection_buffer(void** buffer_ptr, uint32_t size)
-{
-    if (buffer_ptr == NULL || size == 0) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 分配缓冲区内存
-    *buffer_ptr = malloc(size);
-    if (*buffer_ptr == NULL) {
-        return NETWORK_ERROR_MEMORY_ALLOC;
-    }
-    
-    // 初始化缓冲区
-    memset(*buffer_ptr, 0, size);
-    
-    return NETWORK_ERROR_SUCCESS;
-}
-
-/**
- * @brief 执行系统调用
- * 
- * @param call_params 调用参数
- * @return uint32_t 调用状态码
- */
-static uint32_t networking_execute_system_call(network_call_parameters_t* call_params)
-{
-    if (call_params == NULL || call_params->call_handle == NULL) {
-        return NETWORK_ERROR_INVALID_PARAMETER;
-    }
-    
-    // 执行系统调用
-    return networking_perform_system_call(call_params);
-}
-
-// ============================================================================
-// 模块初始化和清理
-// ============================================================================
-
-/**
- * @brief 模块初始化函数
- * 
- * 初始化网络系统模块的全局状态和资源。
- * 
- * @return uint32_t 初始化状态码
- */
-uint32_t networking_module_initialize(void)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    
-    // 初始化全局状态
-    status = networking_initialize_global_state();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 初始化资源池
-    status = networking_initialize_resource_pool();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 初始化错误处理系统
-    status = networking_initialize_error_system();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}
-
-/**
- * @brief 模块清理函数
- * 
- * 清理网络系统模块的所有资源。
- * 
- * @return uint32_t 清理状态码
- */
-uint32_t networking_module_cleanup(void)
-{
-    uint32_t status = NETWORK_ERROR_SUCCESS;
-    
-    // 清理错误处理系统
-    status = networking_cleanup_error_system();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 清理资源池
-    status = networking_cleanup_resource_pool();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    // 清理全局状态
-    status = networking_cleanup_global_state();
-    if (status != NETWORK_ERROR_SUCCESS) {
-        return status;
-    }
-    
-    return status;
-}

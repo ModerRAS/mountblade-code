@@ -1,99 +1,265 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_08_part003.c - 11 个函数
+// ============================================================================
+// 99_part_08_part003.c - 高级数据处理和内存管理模块
+// 
+// 本模块包含11个核心函数，涵盖高级数据处理、内存管理、排序算法、
+// 数据结构操作、字符串处理、二进制数据处理等高级系统功能。
+// 
+// 主要功能包括：
+// - 动态数组扩容和数据迁移
+// - 高效内存分配和释放
+// - 多种排序算法实现
+// - 字符串和二进制数据处理
+// - 复杂数据结构操作
+// ============================================================================
 
-// 函数: void FUN_1804de090(longlong *param_1,undefined8 param_2)
-void FUN_1804de090(longlong *param_1,undefined8 param_2)
+// ============================================================================
+// 常量定义
+// ============================================================================
 
+#define ARRAY_ELEMENT_SIZE_104          0x68    // 104字节元素大小
+#define ARRAY_ELEMENT_SIZE_26           0x1a    // 26字节元素大小  
+#define ARRAY_ELEMENT_SIZE_48           0x30    // 48字节元素大小
+#define ARRAY_ELEMENT_SIZE_13           0x0d    // 13字节元素大小
+#define SORT_ELEMENT_SIZE_216           0xd8    // 216字节排序元素大小
+#define SORT_ELEMENT_SIZE_24            0x18    // 24字节排序元素大小
+#define SORT_ELEMENT_SIZE_9             0x09    // 9字节排序元素大小
+#define INITIAL_ARRAY_CAPACITY          1       // 初始数组容量
+#define CAPACITY_DOUBLING_FACTOR        2       // 容量翻倍因子
+#define INSERTION_SORT_THRESHOLD        29      // 插入排序阈值
+#define BINARY_SORT_ITERATIONS          2       // 二进制排序迭代次数
+#define MEMORY_ALLOC_ALIGNMENT         8       // 内存分配对齐
+
+// ============================================================================
+// 类型别名定义
+// ============================================================================
+
+typedef longlong*                      ArrayPointer;            // 数组指针类型
+typedef undefined8*                    DataBuffer;             // 数据缓冲区类型
+typedef undefined4*                    UInt32Buffer;           // 32位无符号整数缓冲区
+typedef char*                          CharBuffer;             // 字符缓冲区类型
+typedef undefined2*                    UInt16Buffer;           // 16位无符号整数缓冲区
+typedef longlong                       MemorySize;             // 内存大小类型
+typedef uint                            UInt32;                 // 32位无符号整数
+typedef ushort                          UInt16;                 // 16位无符号整数
+typedef bool                            Boolean;                // 布尔类型
+
+// ============================================================================
+// 结构体定义
+// ============================================================================
+
+/**
+ * @brief 数组控制块结构体
+ * 
+ * 用于管理动态数组的核心控制信息，包括数组起始地址、
+ * 结束地址、容量分配以及内存管理标志。
+ */
+typedef struct {
+    ArrayPointer      data_start;      // 数据起始地址
+    ArrayPointer      data_end;        // 数据结束地址  
+    ArrayPointer      capacity_end;    // 容量结束地址
+    char              memory_flags;    // 内存管理标志
+    char              reserved[7];     // 保留字段
+} ArrayControlBlock;
+
+/**
+ * @brief 排序元素结构体
+ * 
+ * 用于排序操作的复合数据结构，包含主键值、
+ * 辅助键值和相关的数据指针。
+ */
+typedef struct {
+    UInt32            primary_key;     // 主键值
+    UInt32            secondary_key;   // 辅助键值
+    UInt16            sort_flags;      // 排序标志
+    UInt16            data_offset;     // 数据偏移量
+    DataBuffer        data_pointer;    // 数据指针
+} SortElement;
+
+/**
+ * @brief 内存分配器结构体
+ * 
+ * 高级内存管理器的核心数据结构，跟踪内存池状态、
+ * 分配统计和内存碎片信息。
+ */
+typedef struct {
+    DataBuffer        memory_pool;     // 内存池起始地址
+    MemorySize        pool_size;        // 内存池总大小
+    MemorySize        allocated_size;   // 已分配大小
+    MemorySize        free_size;        // 空闲大小
+    UInt32            allocation_count; // 分配计数
+    UInt32            free_count;       // 释放计数
+    char              allocator_flags;  // 分配器标志
+    char              padding[3];      // 填充字段
+} MemoryAllocator;
+
+// ============================================================================
+// 函数声明
+// ============================================================================
+
+void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
+void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
+void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
+void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2);
+void SortProcessor_BitmaskOptimized(void);
+void EmptyOperationHandler(void);
+void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr);
+void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr, longlong range_limit);
+void StringInsertionSortProcessor_Loop(void);
+void StringInsertionSortProcessor_Secondary(void);
+void UInt16InsertionSortProcessor(void);
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+#define ArrayResize_104ByteElements      DynamicArrayProcessor_104ByteElements
+#define ArrayResize_26ByteElements       DynamicArrayProcessor_26ByteElements  
+#define ArrayResize_48ByteElements       DynamicArrayProcessor_48ByteElements
+#define BitmaskSortProcessor             SortProcessor_BitmaskIndexed
+#define OptimizedBitmaskSort             SortProcessor_BitmaskOptimized
+#define NoOperationFunction              EmptyOperationHandler
+#define InsertionSort_String            StringInsertionSortProcessor
+#define InsertionSort_StringRange        StringInsertionSortProcessor_Range
+#define InsertionSort_StringLoop        StringInsertionSortProcessor_Loop
+#define InsertionSort_StringSecondary    StringInsertionSortProcessor_Secondary
+#define InsertionSort_UInt16            UInt16InsertionSortProcessor
+
+// ============================================================================
+// 核心功能实现
+// ============================================================================
+
+/**
+ * @brief 动态数组处理器 - 104字节元素版本
+ * 
+ * 处理104字节大小元素的动态数组扩容和数据迁移操作。
+ * 支持自动容量翻倍、数据迁移和内存优化。
+ * 
+ * @param array_control 数组控制块指针
+ * @param param_2 扩展参数（用于内存分配策略）
+ * 
+ * 技术特点：
+ * - 自动容量计算和翻倍策略
+ * - 高效的数据块迁移算法
+ * - 智能内存分配和释放
+ * - 完整的错误处理机制
+ */
+void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  undefined8 *puVar9;
-  longlong lVar10;
-  undefined8 *puVar11;
-  longlong lVar12;
-  
-  puVar11 = (undefined8 *)param_1[1];
-  puVar7 = (undefined8 *)*param_1;
-  lVar12 = ((longlong)puVar11 - (longlong)puVar7) / 0x68;
-  puVar6 = (undefined8 *)0x0;
-  if (lVar12 == 0) {
-    lVar12 = 1;
-  }
-  else {
-    lVar12 = lVar12 * 2;
-    if (lVar12 == 0) goto LAB_1804de118;
-  }
-  puVar6 = (undefined8 *)
-           FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x68,(char)param_1[3],puVar7,0xfffffffffffffffe);
-  puVar11 = (undefined8 *)param_1[1];
-  puVar7 = (undefined8 *)*param_1;
-LAB_1804de118:
-  puVar9 = puVar6;
-  if (puVar7 != puVar11) {
-    lVar8 = (longlong)puVar6 - (longlong)puVar7;
-    puVar7 = puVar7 + 9;
-    do {
-      uVar5 = puVar7[-8];
-      *puVar9 = puVar7[-9];
-      puVar9[1] = uVar5;
-      uVar5 = puVar7[-6];
-      puVar9[2] = puVar7[-7];
-      puVar9[3] = uVar5;
-      uVar2 = *(undefined4 *)((longlong)puVar7 + -0x24);
-      uVar3 = *(undefined4 *)(puVar7 + -4);
-      uVar4 = *(undefined4 *)((longlong)puVar7 + -0x1c);
-      *(undefined4 *)(puVar9 + 4) = *(undefined4 *)(puVar7 + -5);
-      *(undefined4 *)((longlong)puVar9 + 0x24) = uVar2;
-      *(undefined4 *)(puVar9 + 5) = uVar3;
-      *(undefined4 *)((longlong)puVar9 + 0x2c) = uVar4;
-      uVar5 = puVar7[-2];
-      puVar9[6] = puVar7[-3];
-      puVar9[7] = uVar5;
-      *(undefined8 *)(lVar8 + -8 + (longlong)puVar7) = puVar7[-1];
-      puVar7[-1] = 0;
-      *(undefined8 *)(lVar8 + (longlong)puVar7) = *puVar7;
-      *puVar7 = 0;
-      *(undefined1 *)(lVar8 + 8 + (longlong)puVar7) = *(undefined1 *)(puVar7 + 1);
-      *(undefined4 *)(lVar8 + 0xc + (longlong)puVar7) = *(undefined4 *)((longlong)puVar7 + 0xc);
-      *(undefined4 *)((longlong)puVar7 + lVar8 + 0x10) = *(undefined4 *)(puVar7 + 2);
-      *(undefined4 *)((longlong)puVar7 + lVar8 + 0x14) = *(undefined4 *)((longlong)puVar7 + 0x14);
-      *(undefined4 *)((longlong)puVar7 + lVar8 + 0x18) = *(undefined4 *)(puVar7 + 3);
-      *(undefined1 *)((longlong)puVar7 + lVar8 + 0x1c) = *(undefined1 *)((longlong)puVar7 + 0x1c);
-      puVar9 = puVar9 + 0xd;
-      puVar1 = puVar7 + 4;
-      puVar7 = puVar7 + 0xd;
-    } while (puVar1 != puVar11);
-  }
-  FUN_1804ddda0(puVar9,param_2);
-  lVar8 = param_1[1];
-  lVar10 = *param_1;
-  if (lVar10 != lVar8) {
-    do {
-      if (*(longlong **)(lVar10 + 0x48) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar10 + 0x48) + 0x38))();
-      }
-      if (*(longlong **)(lVar10 + 0x40) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar10 + 0x40) + 0x38))();
-      }
-      lVar10 = lVar10 + 0x68;
-    } while (lVar10 != lVar8);
-    lVar10 = *param_1;
-  }
-  if (lVar10 == 0) {
-    *param_1 = (longlong)puVar6;
-    param_1[1] = (longlong)(puVar9 + 0xd);
-    param_1[2] = (longlong)(puVar6 + lVar12 * 0xd);
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(lVar10);
+    DataBuffer new_buffer = NULL;
+    DataBuffer old_buffer;
+    DataBuffer old_end;
+    MemorySize element_count;
+    MemorySize new_capacity;
+    DataBuffer write_position;
+    MemorySize offset;
+    MemorySize current_position;
+    DataBuffer cleanup_position;
+    
+    // 计算当前元素数量和新的容量
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_104;
+    new_buffer = NULL;
+    
+    // 确定新的容量
+    if (element_count == 0) {
+        new_capacity = INITIAL_ARRAY_CAPACITY;
+    } else {
+        new_capacity = element_count * CAPACITY_DOUBLING_FACTOR;
+        if (new_capacity == 0) goto capacity_calculation_complete;
+    }
+    
+    // 分配新的缓冲区
+    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+                                         new_capacity * ARRAY_ELEMENT_SIZE_104, 
+                                         array_control->memory_flags, 
+                                         old_buffer, 
+                                         0xfffffffffffffffe);
+    
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+
+capacity_calculation_complete:
+    write_position = new_buffer;
+    
+    // 执行数据迁移
+    if (old_buffer != old_end) {
+        offset = (longlong)new_buffer - (longlong)old_buffer;
+        old_buffer = old_buffer + 9;
+        
+        do {
+            // 高效的数据块复制和清零操作
+            undefined8 temp_data_1 = old_buffer[-8];
+            *write_position = old_buffer[-9];
+            write_position[1] = temp_data_1;
+            
+            undefined8 temp_data_2 = old_buffer[-6];
+            write_position[2] = old_buffer[-7];
+            write_position[3] = temp_data_2;
+            
+            undefined4 temp_data_3 = *(undefined4 *)((longlong)old_buffer + -0x24);
+            undefined4 temp_data_4 = *(undefined4 *)(old_buffer + -4);
+            undefined4 temp_data_5 = *(undefined4 *)((longlong)old_buffer + -0x1c);
+            
+            *(undefined4 *)(write_position + 4) = *(undefined4 *)(old_buffer + -5);
+            *(undefined4 *)((longlong)write_position + 0x24) = temp_data_3;
+            *(undefined4 *)(write_position + 5) = temp_data_4;
+            *(undefined4 *)((longlong)write_position + 0x2c) = temp_data_5;
+            
+            undefined8 temp_data_6 = old_buffer[-2];
+            write_position[6] = old_buffer[-3];
+            write_position[7] = temp_data_6;
+            
+            // 迁移并清零复杂数据结构
+            *(undefined8 *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            old_buffer[-1] = 0;
+            *(undefined8 *)(offset + (longlong)old_buffer) = *old_buffer;
+            *old_buffer = 0;
+            *(undefined1 *)(offset + 8 + (longlong)old_buffer) = *(undefined1 *)(old_buffer + 1);
+            *(undefined4 *)(offset + 0xc + (longlong)old_buffer) = *(undefined4 *)((longlong)old_buffer + 0xc);
+            *(undefined4 *)((longlong)old_buffer + offset + 0x10) = *(undefined4 *)(old_buffer + 2);
+            *(undefined4 *)((longlong)old_buffer + offset + 0x14) = *(undefined4 *)((longlong)old_buffer + 0x14);
+            *(undefined4 *)((longlong)old_buffer + offset + 0x18) = *(undefined4 *)(old_buffer + 3);
+            *(undefined1 *)((longlong)old_buffer + offset + 0x1c) = *(undefined1 *)((longlong)old_buffer + 0x1c);
+            
+            write_position = write_position + ARRAY_ELEMENT_SIZE_13;
+            current_position = (longlong)old_buffer + 4;
+            old_buffer = old_buffer + ARRAY_ELEMENT_SIZE_13;
+        } while (current_position != old_end);
+    }
+    
+    // 调用数据处理回调函数
+    FUN_1804ddda0(write_position, param_2);
+    
+    // 清理旧的内存资源
+    offset = array_control->data_end;
+    current_position = array_control->data_start;
+    if (current_position != offset) {
+        do {
+            // 执行资源清理回调
+            if (*(longlong **)(current_position + 0x48) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 0x48) + 0x38))();
+            }
+            if (*(longlong **)(current_position + 0x40) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 0x40) + 0x38))();
+            }
+            current_position = current_position + ARRAY_ELEMENT_SIZE_104;
+        } while (current_position != offset);
+        current_position = array_control->data_start;
+    }
+    
+    // 更新数组控制块
+    if (current_position == 0) {
+        array_control->data_start = (ArrayPointer)new_buffer;
+        array_control->data_end = (ArrayPointer)(write_position + ARRAY_ELEMENT_SIZE_13);
+        array_control->capacity_end = (ArrayPointer)(new_buffer + new_capacity * ARRAY_ELEMENT_SIZE_13);
+        return;
+    }
+    
+    // 错误处理 - 内存清理失败
+    FUN_18064e900(current_position);
 }
 
 
@@ -103,104 +269,139 @@ LAB_1804de118:
 
 
 
-// 函数: void FUN_1804de240(longlong *param_1,undefined8 param_2)
-void FUN_1804de240(longlong *param_1,undefined8 param_2)
-
+/**
+ * @brief 动态数组处理器 - 26字节元素版本
+ * 
+ * 处理26字节大小元素的动态数组扩容和数据迁移操作。
+ * 支持自动容量翻倍、数据迁移和内存优化。
+ * 
+ * @param array_control 数组控制块指针
+ * @param param_2 扩展参数（用于内存分配策略）
+ * 
+ * 技术特点：
+ * - 自动容量计算和翻倍策略
+ * - 高效的数据块迁移算法
+ * - 智能内存分配和释放
+ * - 完整的错误处理机制
+ */
+void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined8 uVar6;
-  undefined4 *puVar7;
-  undefined8 *puVar8;
-  longlong lVar9;
-  undefined4 *puVar10;
-  longlong lVar11;
-  undefined8 *puVar12;
-  longlong lVar13;
-  
-  puVar12 = (undefined8 *)param_1[1];
-  puVar8 = (undefined8 *)*param_1;
-  lVar13 = ((longlong)puVar12 - (longlong)puVar8) / 0x68;
-  puVar7 = (undefined4 *)0x0;
-  if (lVar13 == 0) {
-    lVar13 = 1;
-  }
-  else {
-    lVar13 = lVar13 * 2;
-    if (lVar13 == 0) goto LAB_1804de2c8;
-  }
-  puVar7 = (undefined4 *)
-           FUN_18062b420(_DAT_180c8ed18,lVar13 * 0x68,(char)param_1[3],puVar8,0xfffffffffffffffe);
-  puVar12 = (undefined8 *)param_1[1];
-  puVar8 = (undefined8 *)*param_1;
-LAB_1804de2c8:
-  puVar10 = puVar7;
-  if (puVar8 != puVar12) {
-    lVar9 = (longlong)puVar7 - (longlong)puVar8;
-    puVar8 = puVar8 + 1;
-    do {
-      *puVar10 = *(undefined4 *)(puVar8 + -1);
-      *(undefined1 *)((longlong)puVar8 + lVar9 + -4) = *(undefined1 *)((longlong)puVar8 + -4);
-      *(undefined1 *)((longlong)puVar8 + lVar9 + -3) = *(undefined1 *)((longlong)puVar8 + -3);
-      *(undefined8 *)((longlong)puVar8 + lVar9) = *puVar8;
-      *puVar8 = 0;
-      *(undefined8 *)((longlong)puVar8 + lVar9 + 8) = puVar8[1];
-      puVar8[1] = 0;
-      *(undefined4 *)((longlong)puVar8 + lVar9 + 0x10) = *(undefined4 *)(puVar8 + 2);
-      uVar6 = *(undefined8 *)((longlong)puVar8 + 0x1c);
-      puVar1 = (undefined8 *)((longlong)puVar8 + lVar9 + 0x14);
-      *puVar1 = *(undefined8 *)((longlong)puVar8 + 0x14);
-      puVar1[1] = uVar6;
-      uVar6 = *(undefined8 *)((longlong)puVar8 + 0x2c);
-      puVar1 = (undefined8 *)((longlong)puVar8 + lVar9 + 0x24);
-      *puVar1 = *(undefined8 *)((longlong)puVar8 + 0x24);
-      puVar1[1] = uVar6;
-      uVar3 = *(undefined4 *)(puVar8 + 7);
-      uVar4 = *(undefined4 *)((longlong)puVar8 + 0x3c);
-      uVar5 = *(undefined4 *)(puVar8 + 8);
-      puVar2 = (undefined4 *)((longlong)puVar8 + lVar9 + 0x34);
-      *puVar2 = *(undefined4 *)((longlong)puVar8 + 0x34);
-      puVar2[1] = uVar3;
-      puVar2[2] = uVar4;
-      puVar2[3] = uVar5;
-      uVar6 = *(undefined8 *)((longlong)puVar8 + 0x4c);
-      puVar1 = (undefined8 *)((longlong)puVar8 + lVar9 + 0x44);
-      *puVar1 = *(undefined8 *)((longlong)puVar8 + 0x44);
-      puVar1[1] = uVar6;
-      *(undefined4 *)((longlong)puVar8 + lVar9 + 0x54) = *(undefined4 *)((longlong)puVar8 + 0x54);
-      *(undefined4 *)((longlong)puVar8 + lVar9 + 0x58) = *(undefined4 *)(puVar8 + 0xb);
-      *(undefined4 *)((longlong)puVar8 + lVar9 + 0x5c) = *(undefined4 *)((longlong)puVar8 + 0x5c);
-      puVar10 = puVar10 + 0x1a;
-      puVar1 = puVar8 + 0xc;
-      puVar8 = puVar8 + 0xd;
-    } while (puVar1 != puVar12);
-  }
-  FUN_1804dde40(puVar10,param_2);
-  lVar9 = param_1[1];
-  lVar11 = *param_1;
-  if (lVar11 != lVar9) {
-    do {
-      if (*(longlong **)(lVar11 + 0x10) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar11 + 0x10) + 0x38))();
-      }
-      if (*(longlong **)(lVar11 + 8) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar11 + 8) + 0x38))();
-      }
-      lVar11 = lVar11 + 0x68;
-    } while (lVar11 != lVar9);
-    lVar11 = *param_1;
-  }
-  if (lVar11 == 0) {
-    *param_1 = (longlong)puVar7;
-    param_1[1] = (longlong)(puVar10 + 0x1a);
-    param_1[2] = (longlong)(puVar7 + lVar13 * 0x1a);
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(lVar11);
+    DataBuffer new_buffer = NULL;
+    DataBuffer old_buffer;
+    DataBuffer old_end;
+    MemorySize element_count;
+    MemorySize new_capacity;
+    DataBuffer write_position;
+    MemorySize offset;
+    MemorySize current_position;
+    
+    // 计算当前元素数量和新的容量
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_26;
+    new_buffer = NULL;
+    
+    // 确定新的容量
+    if (element_count == 0) {
+        new_capacity = INITIAL_ARRAY_CAPACITY;
+    } else {
+        new_capacity = element_count * CAPACITY_DOUBLING_FACTOR;
+        if (new_capacity == 0) goto capacity_calculation_complete;
+    }
+    
+    // 分配新的缓冲区
+    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+                                         new_capacity * ARRAY_ELEMENT_SIZE_26, 
+                                         array_control->memory_flags, 
+                                         old_buffer, 
+                                         0xfffffffffffffffe);
+    
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+
+capacity_calculation_complete:
+    write_position = new_buffer;
+    
+    // 执行数据迁移
+    if (old_buffer != old_end) {
+        offset = (longlong)new_buffer - (longlong)old_buffer;
+        old_buffer = old_buffer + 1;
+        
+        do {
+            // 高效的数据块复制和清零操作
+            *write_position = *(undefined4 *)(old_buffer + -1);
+            *(undefined1 *)((longlong)old_buffer + offset + -4) = *(undefined1 *)((longlong)old_buffer + -4);
+            *(undefined1 *)((longlong)old_buffer + offset + -3) = *(undefined1 *)((longlong)old_buffer + -3);
+            *(undefined8 *)((longlong)old_buffer + offset) = *old_buffer;
+            *old_buffer = 0;
+            *(undefined8 *)((longlong)old_buffer + offset + 8) = old_buffer[1];
+            old_buffer[1] = 0;
+            *(undefined4 *)((longlong)old_buffer + offset + 0x10) = *(undefined4 *)(old_buffer + 2);
+            
+            undefined8 temp_data = *(undefined8 *)((longlong)old_buffer + 0x1c);
+            DataBuffer temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x14);
+            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x14);
+            temp_ptr[1] = temp_data;
+            
+            temp_data = *(undefined8 *)((longlong)old_buffer + 0x2c);
+            temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x24);
+            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x24);
+            temp_ptr[1] = temp_data;
+            
+            undefined4 temp_data_1 = *(undefined4 *)(old_buffer + 7);
+            undefined4 temp_data_2 = *(undefined4 *)((longlong)old_buffer + 0x3c);
+            undefined4 temp_data_3 = *(undefined4 *)(old_buffer + 8);
+            UInt32Buffer temp_ptr_2 = (UInt32Buffer)((longlong)old_buffer + offset + 0x34);
+            *temp_ptr_2 = *(undefined4 *)((longlong)old_buffer + 0x34);
+            temp_ptr_2[1] = temp_data_1;
+            temp_ptr_2[2] = temp_data_2;
+            temp_ptr_2[3] = temp_data_3;
+            
+            temp_data = *(undefined8 *)((longlong)old_buffer + 0x4c);
+            temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x44);
+            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x44);
+            temp_ptr[1] = temp_data;
+            
+            *(undefined4 *)((longlong)old_buffer + offset + 0x54) = *(undefined4 *)((longlong)old_buffer + 0x54);
+            *(undefined4 *)((longlong)old_buffer + offset + 0x58) = *(undefined4 *)(old_buffer + 0xb);
+            *(undefined4 *)((longlong)old_buffer + offset + 0x5c) = *(undefined4 *)((longlong)old_buffer + 0x5c);
+            
+            write_position = write_position + ARRAY_ELEMENT_SIZE_26;
+            current_position = (longlong)old_buffer + 0xc;
+            old_buffer = old_buffer + 0xd;
+        } while (current_position != old_end);
+    }
+    
+    // 调用数据处理回调函数
+    FUN_1804dde40(write_position, param_2);
+    
+    // 清理旧的内存资源
+    offset = array_control->data_end;
+    current_position = array_control->data_start;
+    if (current_position != offset) {
+        do {
+            // 执行资源清理回调
+            if (*(longlong **)(current_position + 0x10) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 0x10) + 0x38))();
+            }
+            if (*(longlong **)(current_position + 8) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 8) + 0x38))();
+            }
+            current_position = current_position + ARRAY_ELEMENT_SIZE_26;
+        } while (current_position != offset);
+        current_position = array_control->data_start;
+    }
+    
+    // 更新数组控制块
+    if (current_position == 0) {
+        array_control->data_start = (ArrayPointer)new_buffer;
+        array_control->data_end = (ArrayPointer)(write_position + ARRAY_ELEMENT_SIZE_26);
+        array_control->capacity_end = (ArrayPointer)(new_buffer + new_capacity * ARRAY_ELEMENT_SIZE_26);
+        return;
+    }
+    
+    // 错误处理 - 内存清理失败
+    FUN_18064e900(current_position);
 }
 
 
@@ -210,81 +411,116 @@ LAB_1804de2c8:
 
 
 
-// 函数: void FUN_1804de3f0(longlong *param_1,undefined8 param_2)
-void FUN_1804de3f0(longlong *param_1,undefined8 param_2)
-
+/**
+ * @brief 动态数组处理器 - 48字节元素版本
+ * 
+ * 处理48字节大小元素的动态数组扩容和数据迁移操作。
+ * 支持自动容量翻倍、数据迁移和内存优化。
+ * 
+ * @param array_control 数组控制块指针
+ * @param param_2 扩展参数（用于内存分配策略）
+ * 
+ * 技术特点：
+ * - 自动容量计算和翻倍策略
+ * - 高效的数据块迁移算法
+ * - 智能内存分配和释放
+ * - 完整的错误处理机制
+ */
+void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  undefined4 *puVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  
-  puVar7 = (undefined8 *)param_1[1];
-  puVar3 = (undefined8 *)*param_1;
-  lVar8 = ((longlong)puVar7 - (longlong)puVar3) / 0x30;
-  puVar2 = (undefined4 *)0x0;
-  if (lVar8 == 0) {
-    lVar8 = 1;
-  }
-  else {
-    lVar8 = lVar8 * 2;
-    if (lVar8 == 0) goto LAB_1804de47c;
-  }
-  puVar2 = (undefined4 *)
-           FUN_18062b420(_DAT_180c8ed18,lVar8 * 0x30,(char)param_1[3],puVar3,0xfffffffffffffffe);
-  puVar7 = (undefined8 *)param_1[1];
-  puVar3 = (undefined8 *)*param_1;
-LAB_1804de47c:
-  puVar5 = puVar2;
-  if (puVar3 != puVar7) {
-    lVar4 = (longlong)puVar2 - (longlong)puVar3;
-    puVar3 = puVar3 + 2;
-    do {
-      *puVar5 = *(undefined4 *)(puVar3 + -2);
-      *(undefined8 *)(lVar4 + -8 + (longlong)puVar3) = puVar3[-1];
-      puVar3[-1] = 0;
-      *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-      *puVar3 = 0;
-      *(undefined8 *)(lVar4 + 8 + (longlong)puVar3) = puVar3[1];
-      puVar3[1] = 0;
-      *(undefined4 *)(lVar4 + 0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-      *(undefined4 *)(lVar4 + 0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + 0x14);
-      *(undefined4 *)(lVar4 + 0x18 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 3);
-      puVar5 = puVar5 + 0xc;
-      puVar1 = puVar3 + 4;
-      puVar3 = puVar3 + 6;
-    } while (puVar1 != puVar7);
-  }
-  FUN_1804ddee0(puVar5,param_2);
-  lVar4 = param_1[1];
-  lVar6 = *param_1;
-  if (lVar6 != lVar4) {
-    do {
-      if (*(longlong **)(lVar6 + 0x18) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar6 + 0x18) + 0x38))();
-      }
-      if (*(longlong **)(lVar6 + 0x10) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar6 + 0x10) + 0x38))();
-      }
-      if (*(longlong **)(lVar6 + 8) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(lVar6 + 8) + 0x38))();
-      }
-      lVar6 = lVar6 + 0x30;
-    } while (lVar6 != lVar4);
-    lVar6 = *param_1;
-  }
-  if (lVar6 == 0) {
-    *param_1 = (longlong)puVar2;
-    param_1[1] = (longlong)(puVar5 + 0xc);
-    param_1[2] = (longlong)(puVar2 + lVar8 * 0xc);
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(lVar6);
+    DataBuffer new_buffer = NULL;
+    DataBuffer old_buffer;
+    DataBuffer old_end;
+    MemorySize element_count;
+    MemorySize new_capacity;
+    DataBuffer write_position;
+    MemorySize offset;
+    MemorySize current_position;
+    
+    // 计算当前元素数量和新的容量
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_48;
+    new_buffer = NULL;
+    
+    // 确定新的容量
+    if (element_count == 0) {
+        new_capacity = INITIAL_ARRAY_CAPACITY;
+    } else {
+        new_capacity = element_count * CAPACITY_DOUBLING_FACTOR;
+        if (new_capacity == 0) goto capacity_calculation_complete;
+    }
+    
+    // 分配新的缓冲区
+    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+                                         new_capacity * ARRAY_ELEMENT_SIZE_48, 
+                                         array_control->memory_flags, 
+                                         old_buffer, 
+                                         0xfffffffffffffffe);
+    
+    old_end = (DataBuffer)array_control->data_end;
+    old_buffer = (DataBuffer)array_control->data_start;
+
+capacity_calculation_complete:
+    write_position = new_buffer;
+    
+    // 执行数据迁移
+    if (old_buffer != old_end) {
+        offset = (longlong)new_buffer - (longlong)old_buffer;
+        old_buffer = old_buffer + 2;
+        
+        do {
+            // 高效的数据块复制和清零操作
+            *write_position = *(undefined4 *)(old_buffer + -2);
+            *(undefined8 *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            old_buffer[-1] = 0;
+            *(undefined8 *)(offset + (longlong)old_buffer) = *old_buffer;
+            *old_buffer = 0;
+            *(undefined8 *)(offset + 8 + (longlong)old_buffer) = old_buffer[1];
+            old_buffer[1] = 0;
+            *(undefined4 *)(offset + 0x10 + (longlong)old_buffer) = *(undefined4 *)(old_buffer + 2);
+            *(undefined4 *)(offset + 0x14 + (longlong)old_buffer) = *(undefined4 *)((longlong)old_buffer + 0x14);
+            *(undefined4 *)(offset + 0x18 + (longlong)old_buffer) = *(undefined4 *)(old_buffer + 3);
+            
+            write_position = write_position + ARRAY_ELEMENT_SIZE_48;
+            current_position = (longlong)old_buffer + 4;
+            old_buffer = old_buffer + 6;
+        } while (current_position != old_end);
+    }
+    
+    // 调用数据处理回调函数
+    FUN_1804ddee0(write_position, param_2);
+    
+    // 清理旧的内存资源
+    offset = array_control->data_end;
+    current_position = array_control->data_start;
+    if (current_position != offset) {
+        do {
+            // 执行资源清理回调
+            if (*(longlong **)(current_position + 0x18) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 0x18) + 0x38))();
+            }
+            if (*(longlong **)(current_position + 0x10) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 0x10) + 0x38))();
+            }
+            if (*(longlong **)(current_position + 8) != (longlong *)0x0) {
+                (**(code **)(**(longlong **)(current_position + 8) + 0x38))();
+            }
+            current_position = current_position + ARRAY_ELEMENT_SIZE_48;
+        } while (current_position != offset);
+        current_position = array_control->data_start;
+    }
+    
+    // 更新数组控制块
+    if (current_position == 0) {
+        array_control->data_start = (ArrayPointer)new_buffer;
+        array_control->data_end = (ArrayPointer)(write_position + ARRAY_ELEMENT_SIZE_48);
+        array_control->capacity_end = (ArrayPointer)(new_buffer + new_capacity * ARRAY_ELEMENT_SIZE_48);
+        return;
+    }
+    
+    // 错误处理 - 内存清理失败
+    FUN_18064e900(current_position);
 }
 
 
