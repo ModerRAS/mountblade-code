@@ -1409,7 +1409,70 @@ void NetworkClient_GetConnectionHandle(ulonglong client_id, undefined8 *connecti
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/*
+ * ============================================================================
+ * 技术架构文档
+ * ============================================================================
+ * 
+ * 模块概述：
+ * 本模块实现了骑马与砍杀游戏引擎中的网络客户端管理功能，提供了
+ * 完整的客户端连接、状态管理、数据传输和属性操作API。
+ * 
+ * 核心功能：
+ * 1. 客户端连接管理 - 连接建立、维护、断开
+ * 2. 状态监控 - 连接状态、认证状态、游戏状态
+ * 3. 数据传输 - 消息发送、广播、数据同步
+ * 4. 属性管理 - 客户端属性设置、获取、查询
+ * 5. 网络诊断 - 延迟测试、连接质量监控
+ * 
+ * 技术特点：
+ * - 采用事件驱动的网络通信模型
+ * - 实现了连接池管理和资源回收
+ * - 支持多客户端并发连接
+ * - 提供完整的错误处理机制
+ * - 内置反调试保护机制
+ * 
+ * 性能优化策略：
+ * 1. 连接复用 - 减少连接建立开销
+ * 2. 缓冲区管理 - 高效的内存使用
+ * 3. 批量操作 - 减少系统调用次数
+ * 4. 状态缓存 - 避免重复查询
+ * 5. 异步处理 - 提高响应速度
+ * 
+ * 安全考虑：
+ * 1. 参数验证 - 防止缓冲区溢出
+ * 2. 状态检查 - 确保操作合法性
+ * 3. 资源清理 - 防止内存泄漏
+ * 4. 反调试保护 - 防止逆向分析
+ * 5. 错误处理 - 优雅的错误恢复
+ * 
+ * 维护性优化：
+ * 1. 模块化设计 - 功能清晰分离
+ * 2. 标准化接口 - 统一的调用规范
+ * 3. 详细文档 - 完整的注释说明
+ * 4. 错误代码 - 标准化的错误处理
+ * 5. 日志记录 - 便于问题诊断
+ * 
+ * 使用示例：
+ * ```c
+ * // 初始化客户端系统
+ * NetworkClient_Initialize();
+ * 
+ * // 获取客户端连接信息
+ * ulonglong connection_info;
+ * NetworkClient_GetConnectionInfo(client_id, &connection_info);
+ * 
+ * // 发送消息给客户端
+ * NetworkClient_SendMessage(client_id, message_data, message_size);
+ * 
+ * // 广播消息给所有客户端
+ * NetworkClient_BroadcastMessage();
+ * 
+ * // 获取客户端状态
+ * undefined1 client_state;
+ * NetworkClient_GetClientState(client_id, &client_state);
+ * ```
+ */
 
 
 

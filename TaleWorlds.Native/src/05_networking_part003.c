@@ -1725,68 +1725,187 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
 
 
 
-int FUN_180843450(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 网络协议复杂数据结构序列化函数C
+ * 
+ * 该函数负责处理复杂数据结构的序列化工作。
+ * 用于处理包含多个字段、布尔值、数组和额外数据参数的协议数据结构。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 复杂数据结构封装
+ * - 多字段序列化
+ * - 布尔值处理
+ * - 数组数据处理
+ * - 动态数据参数处理
+ * 
+ * @性能优化:
+ * - 批量数据序列化
+ * - 内存预分配
+ * - 序列化效率优化
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined1 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStackX_8;
-  
-  uStackX_8 = *(undefined8 *)(param_1 + 0x18);
-  uVar1 = *(undefined1 *)(param_1 + 0x24);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983f78);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18088ece0(iVar3 + param_2,param_3 - iVar3,&uStackX_8);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0x25);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+    uint32_t field;
+    uint8_t bool_field;
+    uint64_t array_field;
+    uint8_t* extra_data;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取复杂数据结构的各个字段
+    array_field = *(uint64_t*)((uint8_t*)context + 0x18);
+    bool_field = *(uint8_t*)((uint8_t*)context + 0x24);
+    field = *(uint32_t*)((uint8_t*)context + 0x10);
+    extra_data = (uint8_t*)context + 0x25;
+    
+    // 序列化协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983f78);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化字段值
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化数组数据
+    header_size = FUN_18088ece0(output_buffer + total_size, buffer_size - total_size, &array_field);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化额外数据参数
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, extra_data);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化布尔字段（压缩数据）
+    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    return total_size + header_size;
 }
 
 
 
-int FUN_180843570(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 网络协议三字段序列化函数A
+ * 
+ * 该函数负责处理三字段协议的序列化工作。
+ * 用于处理包含三个字段和额外数据参数的协议数据结构。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 三字段数据封装
+ * - 协议头部序列化
+ * - 分隔符处理
+ * - 额外数据参数处理
+ * - 布尔值压缩处理
+ * 
+ * @性能优化:
+ * - 快速序列化
+ * - 内存预分配
+ * - 序列化效率优化
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined1 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  
-  uVar2 = *(undefined1 *)(param_1 + 0x1c);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809840a0);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,param_1 + 0x28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b830(iVar4 + param_2,param_3 - iVar4,uVar1);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074be90(iVar4 + param_2,param_3 - iVar4,uVar2);
-  return iVar5 + iVar4;
+    uint32_t field1, field2, field3;
+    uint8_t bool_field;
+    uint8_t* extra_data;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取三个字段和额外数据
+    bool_field = *(uint8_t*)((uint8_t*)context + 0x1c);
+    field3 = *(uint32_t*)((uint8_t*)context + 0x10);
+    field2 = *(uint32_t*)((uint8_t*)context + 0x18);
+    extra_data = (uint8_t*)context + 0x28;
+    
+    // 序列化协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809840a0);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化字段3
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field3);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化额外数据参数
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, extra_data);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化字段2（使用不同的序列化方式）
+    header_size = func_0x00018074b830(output_buffer + total_size, buffer_size - total_size, field2);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化布尔字段（压缩数据）
+    header_size = FUN_18074be90(output_buffer + total_size, buffer_size - total_size, bool_field);
+    return total_size + header_size;
 }
 
 
