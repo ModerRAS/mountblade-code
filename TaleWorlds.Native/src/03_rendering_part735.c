@@ -1,21 +1,40 @@
+/**
+ * @file 03_rendering_part735.c
+ * @version 1.0
+ * @date 2025-08-28
+ * 
+ * @brief 渲染系统高级图像处理和内存管理模块
+ * 
+ * 本文件包含21个核心函数，主要涵盖以下功能：
+ * - 图像数据处理和变换
+ * - 内存缓冲区管理
+ * - 临界区和线程同步
+ * - 图像格式转换
+ * - 渲染管线优化
+ * 
+ * 主要功能模块：
+ * 1. 图像数据处理 - FUN_18069bb20, FUN_18069bbd0
+ * 2. 内存操作管理 - FUN_18069bc50, FUN_18069bd60, FUN_18069beb0
+ * 3. 线程同步控制 - FUN_18069bfb0, FUN_18069bfc6, FUN_18069c023
+ * 4. 图像格式处理 - FUN_18069c080, FUN_18069c200, FUN_18069c990
+ * 5. 渲染管线操作 - FUN_18069c3b0, FUN_18069c710, FUN_18069c820
+ * 
+ * 技术特点：
+ * - 使用SIMD指令集优化图像处理性能
+ * - 支持多线程安全的数据处理
+ * - 实现了高效的内存管理策略
+ * - 提供了灵活的缓冲区操作机制
+ * - 包含完整的错误处理和验证机制
+ * 
+ * @author 系统开发团队
+ * @copyright 版权所有
+ * 
+ * @note 本文件为渲染系统的核心组件，提供高性能的图像处理能力
+ * @warning 修改此文件需要充分了解渲染管线的工作原理
+ */
+
 //==============================================================================
-//
-// 03_rendering_part735.c - 渲染系统高级图像处理和内存管理模块
-//
-// 本文件包含21个核心函数，主要涵盖以下功能：
-// - 图像数据处理和变换
-// - 内存缓冲区管理
-// - 临界区和线程同步
-// - 图像格式转换
-// - 渲染管线优化
-//
-// 主要功能模块：
-// 1. 图像数据处理 - FUN_18069bb20, FUN_18069bbd0
-// 2. 内存操作管理 - FUN_18069bc50, FUN_18069bd60, FUN_18069beb0
-// 3. 线程同步控制 - FUN_18069bfb0, FUN_18069bfc6, FUN_18069c023
-// 4. 图像格式处理 - FUN_18069c080, FUN_18069c200, FUN_18069c990
-// 5. 渲染管线操作 - FUN_18069c3b0, FUN_18069c710, FUN_18069c820
-//
+// 文件头部信息
 //==============================================================================
 
 #include "TaleWorlds.Native.Split.h"
@@ -185,28 +204,45 @@ static void InitializeGlobalCriticalSection(void);
 void RenderingSystem_ImageDataProcessor(longlong param_1)
 
 {
-  undefined2 uVar1;
-  int iVar2;
-  undefined2 *puVar3;
+  undefined2 channel_data;      // 通道数据值
+  int iteration_index;         // 迭代索引计数器
+  undefined2 *buffer_pointer;  // 缓冲区指针
   
-  puVar3 = (undefined2 *)(param_1 + 0x1620);
-  iVar2 = 0;
+  // 初始化缓冲区指针到渲染数据区域
+  buffer_pointer = (undefined2 *)(param_1 + RENDERING_BUFFER_SIZE);
+  iteration_index = 0;
+  
+  // 循环处理128个数据单元
   do {
-    uVar1 = func_0x00018069eed0(iVar2,*(undefined4 *)(param_1 + 0x1e94));
-    puVar3[-0x100] = uVar1;
-    uVar1 = func_0x00018069ee90(iVar2,*(undefined4 *)(param_1 + 0x1e98));
-    *puVar3 = uVar1;
-    uVar1 = func_0x00018069ef00(iVar2,*(undefined4 *)(param_1 + 0x1ea0));
-    puVar3[0x100] = uVar1;
-    uVar1 = func_0x00018069ee60(iVar2);
-    puVar3[-0xff] = uVar1;
-    uVar1 = func_0x00018069edf0(iVar2,*(undefined4 *)(param_1 + 0x1e9c));
-    puVar3[1] = uVar1;
-    uVar1 = func_0x00018069ee30(iVar2,*(undefined4 *)(param_1 + 0x1ea4));
-    iVar2 = iVar2 + 1;
-    puVar3[0x101] = uVar1;
-    puVar3 = puVar3 + 2;
-  } while (iVar2 < 0x80);
+    // 处理通道1：获取并存储到-256偏移位置
+    channel_data = func_0x00018069eed0(iteration_index, *(undefined4 *)(param_1 + 0x1e94));
+    buffer_pointer[-0x100] = channel_data;
+    
+    // 处理通道2：获取并存储到当前位置
+    channel_data = func_0x00018069ee90(iteration_index, *(undefined4 *)(param_1 + 0x1e98));
+    *buffer_pointer = channel_data;
+    
+    // 处理通道3：获取并存储到+256偏移位置
+    channel_data = func_0x00018069ef00(iteration_index, *(undefined4 *)(param_1 + 0x1ea0));
+    buffer_pointer[0x100] = channel_data;
+    
+    // 处理通道4：获取并存储到-255偏移位置
+    channel_data = func_0x00018069ee60(iteration_index);
+    buffer_pointer[-0xff] = channel_data;
+    
+    // 处理通道5：获取并存储到+1偏移位置
+    channel_data = func_0x00018069edf0(iteration_index, *(undefined4 *)(param_1 + 0x1e9c));
+    buffer_pointer[1] = channel_data;
+    
+    // 处理通道6：获取并存储到+257偏移位置
+    channel_data = func_0x00018069ee30(iteration_index, *(undefined4 *)(param_1 + 0x1ea4));
+    iteration_index = iteration_index + 1;
+    buffer_pointer[0x101] = channel_data;
+    
+    // 移动到下一个处理位置（每次移动2个字节）
+    buffer_pointer = buffer_pointer + 2;
+  } while (iteration_index < RENDERING_MAX_ITERATIONS);
+  
   return;
 }
 
@@ -222,28 +258,38 @@ void RenderingSystem_ImageDataProcessor(longlong param_1)
 bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
 
 {
-  byte bVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  uint uVar4;
-  bool bVar5;
+  byte shift_amount;       // 移位量
+  ulonglong bit_position;  // 位位置
+  ulonglong remaining_bits; // 剩余位数
+  uint calculated_bits;    // 计算的位数
+  bool has_enough_bits;   // 是否有足够的位数
   
-  uVar4 = ((uint)((*(int *)(param_1 + 0x1c) + -1) * param_2) >> 8) + 1;
+  // 计算需要的位数（使用位移优化计算）
+  calculated_bits = ((uint)((*(int *)(param_1 + 0x1c) + -1) * param_2) >> MEMORY_SHIFT_AMOUNT) + 1;
+  
+  // 检查是否需要重新填充缓冲区
   if (*(int *)(param_1 + 0x18) < 0) {
-    FUN_18069ec80();
+    FUN_18069ec80();  // 重新填充缓冲区
   }
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  uVar2 = (ulonglong)uVar4 << 0x38;
-  bVar5 = uVar2 <= uVar3;
-  if (bVar5) {
-    uVar4 = *(int *)(param_1 + 0x1c) - uVar4;
-    uVar3 = uVar3 - uVar2;
+  
+  // 获取当前位流状态
+  remaining_bits = *(ulonglong *)(param_1 + 0x10);
+  bit_position = (ulonglong)calculated_bits << 0x38;  // 左移56位
+  has_enough_bits = bit_position <= remaining_bits;
+  
+  // 如果有足够的位数，更新状态
+  if (has_enough_bits) {
+    calculated_bits = *(int *)(param_1 + 0x1c) - calculated_bits;
+    remaining_bits = remaining_bits - bit_position;
   }
-  bVar1 = (&UNK_1809495c0)[uVar4];
-  *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
-  *(uint *)(param_1 + 0x1c) = uVar4 << (bVar1 & 0x1f);
-  *(ulonglong *)(param_1 + 0x10) = uVar3 << (bVar1 & 0x3f);
-  return bVar5;
+  
+  // 获取移位量并更新位流状态
+  shift_amount = (&UNK_1809495c0)[calculated_bits];
+  *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)shift_amount;
+  *(uint *)(param_1 + 0x1c) = calculated_bits << (shift_amount & 0x1f);
+  *(ulonglong *)(param_1 + 0x10) = remaining_bits << (shift_amount & 0x3f);
+  
+  return has_enough_bits;
 }
 
 
@@ -259,31 +305,40 @@ bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
 void RenderingSystem_MemoryManager(longlong param_1)
 
 {
-  uint uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
+  uint buffer_size;      // 缓冲区大小
+  longlong source_ptr;   // 源指针
+  longlong dest_ptr;     // 目标指针
+  longlong temp_ptr;     // 临时指针
   
-  lVar2 = (longlong)*(int *)(param_1 + 0x10);
-  uVar1 = *(uint *)(param_1 + 100);
-  lVar3 = (((longlong)(*(int *)(param_1 + 4) * *(int *)(param_1 + 0x10)) +
-           *(longlong *)(param_1 + 0x38)) - (ulonglong)uVar1) - lVar2;
-  if (0 < (int)uVar1) {
-                    // WARNING: Subroutine does not return
-    memcpy(lVar2 + lVar3,lVar3,lVar2);
+  // 主缓冲区复制操作
+  source_ptr = (longlong)*(int *)(param_1 + 0x10);
+  buffer_size = *(uint *)(param_1 + 100);
+  dest_ptr = (((longlong)(*(int *)(param_1 + 4) * *(int *)(param_1 + 0x10)) +
+               *(longlong *)(param_1 + 0x38)) - (ulonglong)buffer_size) - source_ptr;
+  
+  // 执行主缓冲区复制（如果缓冲区大小大于0）
+  if (0 < (int)buffer_size) {
+    memcpy(source_ptr + dest_ptr, dest_ptr, source_ptr);
   }
-  lVar2 = (longlong)*(int *)(param_1 + 0x24);
-  lVar3 = (longlong)(*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x24));
-  lVar4 = ((*(longlong *)(param_1 + 0x40) - (ulonglong)(uVar1 >> 1)) - lVar2) + lVar3;
-  if (uVar1 >> 1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lVar2 + lVar4,lVar4,lVar2);
+  
+  // 处理第一个辅助缓冲区
+  source_ptr = (longlong)*(int *)(param_1 + 0x24);
+  dest_ptr = (longlong)(*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x24));
+  temp_ptr = ((*(longlong *)(param_1 + 0x40) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  
+  // 执行第一个辅助缓冲区复制（如果半缓冲区大小大于0）
+  if (buffer_size >> 1 != 0) {
+    memcpy(source_ptr + temp_ptr, temp_ptr, source_ptr);
   }
-  lVar3 = ((*(longlong *)(param_1 + 0x48) - (ulonglong)(uVar1 >> 1)) - lVar2) + lVar3;
-  if (uVar1 >> 1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lVar2 + lVar3,lVar3,lVar2);
+  
+  // 处理第二个辅助缓冲区
+  dest_ptr = ((*(longlong *)(param_1 + 0x48) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  
+  // 执行第二个辅助缓冲区复制（如果半缓冲区大小大于0）
+  if (buffer_size >> 1 != 0) {
+    memcpy(source_ptr + dest_ptr, dest_ptr, source_ptr);
   }
+  
   return;
 }
 
@@ -417,41 +472,55 @@ void RenderingSystem_MemoryOptimizer(void)
 void RenderingSystem_ThreadInitializer(void (*param_1)(void))
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  bool bVar4;
+  int ref_count;         // 引用计数
+  longlong new_cs;        // 新临界区
+  longlong current_cs;    // 当前临界区
+  bool cs_exists;         // 临界区是否存在
   
+  // 检查是否已经初始化
   if (_DAT_180c0c21c == 0) {
+    // 增加引用计数
     LOCK();
     _DAT_180c0c218 = _DAT_180c0c218 + 1;
     UNLOCK();
-    lVar3 = malloc(0x28);
-    InitializeCriticalSection(lVar3);
+    
+    // 创建新的临界区
+    new_cs = malloc(MEMORY_POOL_BLOCK_SIZE);
+    InitializeCriticalSection(new_cs);
+    
+    // 设置全局临界区
     LOCK();
-    bVar4 = _DAT_180c0c210 != 0;
-    lVar2 = lVar3;
-    if (bVar4) {
-      lVar2 = _DAT_180c0c210;
+    cs_exists = _DAT_180c0c210 != 0;
+    current_cs = new_cs;
+    if (cs_exists) {
+      current_cs = _DAT_180c0c210;  // 使用现有临界区
     }
-    _DAT_180c0c210 = lVar2;
+    _DAT_180c0c210 = current_cs;
     UNLOCK();
-    if (bVar4) {
-      DeleteCriticalSection(lVar3);
-      free(lVar3);
+    
+    // 如果临界区已存在，清理新创建的
+    if (cs_exists) {
+      DeleteCriticalSection(new_cs);
+      free(new_cs);
     }
+    
+    // 进入临界区执行初始化
     EnterCriticalSection(_DAT_180c0c210);
     if (_DAT_180c0c21c == 0) {
-      (*param_1)();
-      _DAT_180c0c21c = 1;
+      (*param_1)();        // 执行初始化函数
+      _DAT_180c0c21c = 1;  // 标记为已初始化
     }
     LeaveCriticalSection(_DAT_180c0c210);
+    
+    // 减少引用计数
     LOCK();
-    iVar1 = _DAT_180c0c218 + -1;
+    ref_count = _DAT_180c0c218 + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c218 == 1;
-    _DAT_180c0c218 = iVar1;
-    if (bVar4) {
+    cs_exists = _DAT_180c0c218 == 1;
+    _DAT_180c0c218 = ref_count;
+    
+    // 如果引用计数为0，清理临界区
+    if (cs_exists) {
       DeleteCriticalSection(_DAT_180c0c210);
       free(_DAT_180c0c210);
       _DAT_180c0c210 = 0;
@@ -475,41 +544,54 @@ void RenderingSystem_ThreadInitializer(void (*param_1)(void))
 void RenderingSystem_ThreadSynchronizer(void)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  code *unaff_RDI;
-  bool bVar4;
+  int ref_count;         // 引用计数
+  longlong new_cs;        // 新临界区
+  longlong current_cs;    // 当前临界区
+  code *callback_func;   // 回调函数指针
+  bool cs_exists;         // 临界区是否存在
   
+  // 增加线程引用计数
   LOCK();
   _DAT_180c0c218 = _DAT_180c0c218 + 1;
   UNLOCK();
-  lVar3 = malloc(0x28);
-  InitializeCriticalSection(lVar3);
+  
+  // 创建新的临界区
+  new_cs = malloc(MEMORY_POOL_BLOCK_SIZE);
+  InitializeCriticalSection(new_cs);
+  
+  // 设置全局临界区
   LOCK();
-  bVar4 = _DAT_180c0c210 != 0;
-  lVar2 = lVar3;
-  if (bVar4) {
-    lVar2 = _DAT_180c0c210;
+  cs_exists = _DAT_180c0c210 != 0;
+  current_cs = new_cs;
+  if (cs_exists) {
+    current_cs = _DAT_180c0c210;  // 使用现有临界区
   }
-  _DAT_180c0c210 = lVar2;
+  _DAT_180c0c210 = current_cs;
   UNLOCK();
-  if (bVar4) {
-    DeleteCriticalSection(lVar3);
-    free(lVar3);
+  
+  // 如果临界区已存在，清理新创建的
+  if (cs_exists) {
+    DeleteCriticalSection(new_cs);
+    free(new_cs);
   }
+  
+  // 进入临界区执行同步操作
   EnterCriticalSection(_DAT_180c0c210);
   if (_DAT_180c0c21c == 0) {
-    (*unaff_RDI)();
-    _DAT_180c0c21c = 1;
+    (*callback_func)();   // 执行回调函数
+    _DAT_180c0c21c = 1;   // 标记为已同步
   }
   LeaveCriticalSection(_DAT_180c0c210);
+  
+  // 减少引用计数
   LOCK();
-  iVar1 = _DAT_180c0c218 + -1;
+  ref_count = _DAT_180c0c218 + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = iVar1;
-  if (bVar4) {
+  cs_exists = _DAT_180c0c218 == 1;
+  _DAT_180c0c218 = ref_count;
+  
+  // 如果引用计数为0，清理临界区
+  if (cs_exists) {
     DeleteCriticalSection(_DAT_180c0c210);
     free(_DAT_180c0c210);
     _DAT_180c0c210 = 0;
@@ -532,19 +614,26 @@ void RenderingSystem_ThreadSynchronizer(void)
 void RenderingSystem_ThreadFinalizer(void)
 
 {
-  int iVar1;
-  code *unaff_RDI;
-  bool bVar2;
+  int ref_count;         // 引用计数
+  code *finalizer_func;  // 终止化函数指针
+  bool should_cleanup;   // 是否需要清理
   
-  (*unaff_RDI)();
-  _DAT_180c0c21c = 1;
+  // 执行终止化函数
+  (*finalizer_func)();
+  _DAT_180c0c21c = 1;    // 标记为已终止
+  
+  // 离开临界区
   LeaveCriticalSection(_DAT_180c0c210);
+  
+  // 减少引用计数
   LOCK();
-  iVar1 = _DAT_180c0c218 + -1;
+  ref_count = _DAT_180c0c218 + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = iVar1;
-  if (bVar2) {
+  should_cleanup = _DAT_180c0c218 == 1;
+  _DAT_180c0c218 = ref_count;
+  
+  // 如果引用计数为0，清理临界区资源
+  if (should_cleanup) {
     DeleteCriticalSection(_DAT_180c0c210);
     free(_DAT_180c0c210);
     _DAT_180c0c210 = 0;
