@@ -25,605 +25,478 @@ void process_spatial_query_and_collision_detection(
     int query_flags,
     longlong *object_list,
     int max_results)
-
 {
-  float fVar1;
-  float fVar2;
-  longlong *plVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  int iVar12;
-  undefined4 uVar13;
-  longlong lVar14;
-  float *pfVar15;
-  longlong lVar16;
-  uint *puVar17;
-  longlong lVar18;
-  int iVar19;
-  uint uVar20;
-  longlong lVar22;
-  char cVar23;
-  ulonglong uVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  undefined1 auStack_498 [32];
-  char *pcStack_478;
-  int iStack_470;
-  longlong lStack_468;
-  char cStack_460;
-  undefined1 *puStack_458;
-  int iStack_448;
-  undefined1 uStack_444;
-  char acStack_443 [3];
-  int iStack_440;
-  longlong lStack_438;
-  longlong lStack_430;
-  undefined8 uStack_428;
-  float fStack_420;
-  float fStack_41c;
-  undefined8 uStack_418;
-  float fStack_410;
-  float fStack_40c;
-  float fStack_408;
-  float fStack_404;
-  float fStack_400;
-  float fStack_3fc;
-  float fStack_3f8;
-  float fStack_3f4;
-  float fStack_3f0;
-  undefined4 uStack_3ec;
-  float fStack_3e8;
-  float fStack_3e4;
-  float fStack_3e0;
-  undefined4 uStack_3dc;
-  float fStack_3d8;
-  float fStack_3d4;
-  float fStack_3d0;
-  undefined4 uStack_3cc;
-  float fStack_3c8;
-  float fStack_3c4;
-  float fStack_3c0;
-  undefined4 uStack_3bc;
-  float fStack_3b8;
-  float fStack_3b4;
-  float fStack_3b0;
-  undefined4 uStack_3ac;
-  float fStack_3a8;
-  float fStack_3a4;
-  float fStack_3a0;
-  undefined4 uStack_39c;
-  float fStack_398;
-  float fStack_394;
-  float fStack_390;
-  undefined4 uStack_38c;
-  float fStack_388;
-  float fStack_384;
-  float fStack_380;
-  float fStack_37c;
-  float fStack_378;
-  float fStack_374;
-  float fStack_370;
-  float fStack_36c;
-  float fStack_368;
-  float fStack_364;
-  float fStack_360;
-  float fStack_35c;
-  float fStack_358;
-  float fStack_354;
-  float fStack_350;
-  float fStack_34c;
-  float fStack_348;
-  float fStack_344;
-  float fStack_340;
-  float fStack_33c;
-  float fStack_338;
-  float fStack_334;
-  float fStack_330;
-  float fStack_32c;
-  float fStack_328;
-  float fStack_324;
-  float fStack_320;
-  float fStack_318;
-  float fStack_314;
-  float fStack_310;
-  float fStack_308;
-  undefined4 uStack_304;
-  undefined4 uStack_300;
-  undefined4 uStack_2fc;
-  float fStack_2f8;
-  float fStack_2f4;
-  float fStack_2f0;
-  float fStack_2ec;
-  longlong *plStack_2e8;
-  float fStack_2e0;
-  float fStack_2dc;
-  float fStack_2d8;
-  float fStack_2d4;
-  float fStack_2d0;
-  float fStack_2cc;
-  float fStack_2c8;
-  undefined4 uStack_2c4;
-  float fStack_2c0;
-  float fStack_2bc;
-  float fStack_2b8;
-  undefined4 uStack_2b4;
-  undefined4 uStack_2b0;
-  float fStack_2a8;
-  float fStack_2a4;
-  float fStack_2a0;
-  undefined4 uStack_29c;
-  float fStack_298;
-  float fStack_294;
-  float fStack_290;
-  float fStack_28c;
-  undefined8 uStack_288;
-  undefined8 uStack_280;
-  float fStack_278;
-  float fStack_274;
-  float fStack_270;
-  uint uStack_26c;
-  float fStack_268;
-  float fStack_264;
-  float fStack_260;
-  float fStack_25c;
-  float fStack_258;
-  float fStack_254;
-  float fStack_250;
-  undefined4 uStack_24c;
-  float fStack_248;
-  undefined4 uStack_244;
-  undefined4 uStack_240;
-  undefined4 uStack_23c;
-  float fStack_238;
-  float fStack_234;
-  float fStack_230;
-  float fStack_22c;
-  float fStack_228;
-  float fStack_224;
-  float fStack_220;
-  undefined4 uStack_21c;
-  float fStack_218;
-  float fStack_214;
-  float fStack_210;
-  undefined4 uStack_20c;
-  float fStack_208;
-  float fStack_204;
-  float fStack_200;
-  undefined4 uStack_1fc;
-  float fStack_1f8;
-  float fStack_1f4;
-  float fStack_1f0;
-  float fStack_1ec;
-  float fStack_1e8;
-  float fStack_1e4;
-  float fStack_1e0;
-  float fStack_1dc;
-  float fStack_1d8;
-  float fStack_1d4;
-  float fStack_1d0;
-  float fStack_1cc;
-  float fStack_1c8;
-  float fStack_1c4;
-  float fStack_1c0;
-  float fStack_1bc;
-  undefined1 auStack_1b8 [16];
-  undefined1 auStack_1a8 [16];
-  float fStack_198;
-  float fStack_194;
-  float fStack_190;
-  float fStack_18c;
-  float fStack_188;
-  float fStack_184;
-  float fStack_180;
-  float fStack_17c;
-  float fStack_178;
-  float fStack_174;
-  float fStack_170;
-  float fStack_16c;
-  float fStack_168;
-  float fStack_164;
-  float fStack_160;
-  float fStack_15c;
-  float fStack_158;
-  float fStack_154;
-  float fStack_150;
-  undefined4 uStack_14c;
-  float fStack_148;
-  float fStack_144;
-  float fStack_140;
-  undefined4 uStack_13c;
-  float fStack_138;
-  float fStack_134;
-  float fStack_130;
-  undefined4 uStack_12c;
-  float fStack_128;
-  float fStack_124;
-  float fStack_120;
-  uint uStack_11c;
-  undefined8 uStack_118;
-  undefined8 uStack_110;
-  float fStack_108;
-  float fStack_104;
-  float fStack_100;
-  uint uStack_fc;
-  ulonglong uStack_f8;
-  ulonglong uVar21;
-  
-  uStack_f8 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
-  plStack_2e8 = param_5;
-  lVar14 = *param_5;
-  uStack_444 = 0;
-  iStack_440 = 0;
-  iStack_448 = param_4;
-  lStack_438 = param_1;
-  if (param_5[1] - lVar14 >> 3 != 0) {
-    uStack_428 = 0;
-    do {
-      lVar14 = *(longlong *)(lVar14 + uStack_428);
-      uStack_418 = *(longlong *)(lVar14 + 0x260);
-      lVar16 = uStack_428;
-      if (*(longlong *)(lVar14 + 0x20) != 0) {
-        iVar19 = iStack_448;
-        if ((uStack_418 != 0) && (*(char *)(*(longlong *)(uStack_418 + 0x208) + 0x1b0) == '\x02')) {
-          pfVar15 = *(float **)(lVar14 + 0x28);
-          fVar25 = *param_2;
-          if ((*pfVar15 <= fVar25) &&
-             ((((fVar25 < pfVar15[4] || fVar25 == pfVar15[4] &&
-                (fVar25 = param_2[1], pfVar15[1] <= fVar25)) &&
-               (fVar25 < pfVar15[5] || fVar25 == pfVar15[5])) &&
-              ((fVar25 = param_2[2], pfVar15[2] <= fVar25 &&
-               (fVar25 < pfVar15[6] || fVar25 == pfVar15[6])))))) {
-            cVar23 = '\0';
-            lVar16 = lStack_438;
-            if ('\0' < *(char *)(uStack_418 + 0x20)) {
-              do {
-                lVar18 = (longlong)cVar23 * 0x100 + *(longlong *)(uStack_418 + 0x18);
-                iVar19 = 0;
-                if (*(longlong *)(lVar18 + 0xb8) - *(longlong *)(lVar18 + 0xb0) >> 3 != 0) {
-                  lStack_430 = lVar16 + 0x3fb8;
-                  lVar22 = 0;
-                  iVar12 = param_4;
-                  do {
-                    iStack_470 = iVar12;
-                    puStack_458 = &uStack_444;
-                    plVar3 = *(longlong **)(lVar22 + *(longlong *)(lVar18 + 0xb0));
-                    pcStack_478 = (char *)CONCAT44(pcStack_478._4_4_,0x10);
-                    lStack_468 = lVar14;
-                    cStack_460 = cVar23;
-                    (**(code **)(*plVar3 + 0x208))(plVar3,lStack_430,param_2,param_3);
-                    lVar22 = lVar22 + 8;
-                    iVar19 = iVar19 + 1;
-                    lVar16 = lStack_438;
-                    iVar12 = iStack_448;
-                    param_4 = iStack_448;
-                  } while ((ulonglong)(longlong)iVar19 <
-                           (ulonglong)
-                           (*(longlong *)(lVar18 + 0xb8) - *(longlong *)(lVar18 + 0xb0) >> 3));
+    // 局部变量声明
+    float temp_float1, temp_float2;
+    longlong *object_ptr;
+    float bbox_min_x, bbox_min_y, bbox_min_z;
+    float bbox_max_x, bbox_max_y, bbox_max_z;
+    float transform_matrix[16];
+    float inverse_matrix[16];
+    float local_coords[3];
+    float world_coords[3];
+    float distance;
+    int hit_count;
+    uint collision_flags;
+    longlong object_offset;
+    char has_collision;
+    ulonglong stack_guard;
+    float intersection_point[3];
+    float surface_normal[3];
+    float penetration_depth;
+    float contact_point[3];
+    
+    // 栈空间分配（简化实现中保留必要的栈变量）
+    float stack_buffer_1[8];
+    float stack_buffer_2[8];
+    float stack_buffer_3[8];
+    float stack_buffer_4[8];
+    int stack_int_1;
+    longlong stack_long_1;
+    char stack_char_1;
+    int stack_int_2;
+    longlong stack_long_2;
+    longlong stack_long_3;
+    float stack_float_1;
+    float stack_float_2;
+    float stack_float_3;
+    
+    // 初始化栈保护
+    stack_guard = get_stack_guard_value();
+    
+    // 获取对象列表和遍历器
+    object_ptr = object_list;
+    object_offset = *object_list;
+    
+    // 遍历对象列表进行碰撞检测
+    if (object_list[1] - object_offset >> 3 != 0) {
+        longlong list_offset = 0;
+        do {
+            // 获取当前对象
+            object_offset = *(longlong *)(object_offset + list_offset);
+            longlong collision_data = *(longlong *)(object_offset + 0x260);
+            
+            // 检查对象是否启用碰撞
+            if (*(longlong *)(object_offset + 0x20) != 0) {
+                int current_flags = max_results;
+                
+                // 检查对象是否参与碰撞检测
+                if ((collision_data != 0) && 
+                    (*(char *)(*(longlong *)(collision_data + 0x208) + 0x1b0) == '\x02')) {
+                    
+                    // 获取对象边界框
+                    float *bbox_ptr = *(float **)(object_offset + 0x28);
+                    float ray_x = *ray_origin;
+                    
+                    // 边界框与射线相交检测
+                    if ((*bbox_ptr <= ray_x) &&
+                        (((ray_x < bbox_ptr[4] || ray_x == bbox_ptr[4] &&
+                          (ray_x = ray_direction[1], bbox_ptr[1] <= ray_x)) &&
+                         (ray_x < bbox_ptr[5] || ray_x == bbox_ptr[5])) &&
+                        ((ray_x = ray_origin[2], bbox_ptr[2] <= ray_x &&
+                         (ray_x < bbox_ptr[6] || ray_x == bbox_ptr[6])))) {
+                        
+                        // 执行详细的碰撞检测
+                        has_collision = '\0';
+                        longlong context_base = context;
+                        
+                        // 遍历碰撞组
+                        if ('\0' < *(char *)(collision_data + 0x20)) {
+                            do {
+                                longlong group_offset = (longlong)has_collision * 0x100 + 
+                                                      *(longlong *)(collision_data + 0x18);
+                                current_flags = 0;
+                                
+                                // 处理组内对象
+                                if (*(longlong *)(group_offset + 0xb8) - 
+                                    *(longlong *)(group_offset + 0xb0) >> 3 != 0) {
+                                    
+                                    longlong callback_context = context + 0x3fb8;
+                                    longlong group_index = 0;
+                                    int original_flags = query_flags;
+                                    
+                                    do {
+                                        stack_int_2 = original_flags;
+                                        // 调用碰撞检测回调函数
+                                        longlong **object_ref = (longlong **)(group_index + 
+                                                                      *(longlong *)(group_offset + 0xb0));
+                                        
+                                        // 执行碰撞检测
+                                        (**(code **)(*object_ref + 0x208))(
+                                            object_ref, callback_context, ray_origin, ray_direction);
+                                        
+                                        group_index += 8;
+                                        current_flags++;
+                                        context_base = context;
+                                        original_flags = max_results;
+                                        query_flags = max_results;
+                                    } while ((ulonglong)(longlong)current_flags <
+                                             (ulonglong)(*(longlong)(group_offset + 0xb8) - 
+                                                        *(longlong)(group_offset + 0xb0) >> 3));
+                                }
+                                has_collision++;
+                            } while (has_collision < *(char *)(collision_data + 0x20));
+                        }
+                        
+                        // 处理子对象碰撞
+                        current_flags = max_results;
+                        longlong child_offset = *(longlong *)(object_offset + 0xf0);
+                        
+                        if (*(longlong *)(object_offset + 0xf8) - child_offset >> 3 != 0) {
+                            ulonglong child_index = 0;
+                            ulonglong child_pos = child_index;
+                            
+                            do {
+                                longlong **child_object = (longlong **)(child_offset + child_pos);
+                                int collision_result = (**(code **)(*child_object + 0x98))(child_object);
+                                
+                                // 检查碰撞结果
+                                if ((collision_result == 0) && ((int)(*child_object)[0x42] != 0)) {
+                                    float *child_bbox;
+                                    
+                                    // 获取子对象边界框
+                                    if (*(code **)(*child_object + 0x158) == (code *)&get_default_bbox_handler) {
+                                        child_bbox = (float *)(*child_object + 0x66);
+                                    } else {
+                                        child_bbox = (float *)(**(code **)(*child_object + 0x158))(*child_object);
+                                    }
+                                    
+                                    // 获取对象变换矩阵
+                                    float transform_m00 = *(float *)(object_offset + 0x80);
+                                    float transform_m01 = *(float *)(object_offset + 0x84);
+                                    float transform_m02 = *(float *)(object_offset + 0x88);
+                                    float transform_m03 = *(float *)(object_offset + 0x8c);
+                                    float transform_m10 = *(float *)(object_offset + 0x90);
+                                    float transform_m11 = *(float *)(object_offset + 0x94);
+                                    float transform_m12 = *(float *)(object_offset + 0x98);
+                                    float transform_m13 = *(float *)(object_offset + 0x9c);
+                                    float transform_m20 = *(float *)(object_offset + 0x70);
+                                    float transform_m21 = *(float *)(object_offset + 0x74);
+                                    float transform_m22 = *(float *)(object_offset + 0x78);
+                                    float transform_m23 = *(float *)(object_offset + 0x7c);
+                                    
+                                    // 计算子对象在世界坐标系中的位置
+                                    float child_x = child_bbox[1];
+                                    float child_y = *child_bbox;
+                                    float child_z = child_bbox[2];
+                                    float child_w = child_bbox[5];
+                                    float child_scale_x = child_bbox[9];
+                                    float child_scale_z = child_bbox[0xd];
+                                    float child_width = child_bbox[4];
+                                    
+                                    // 变换矩阵乘法
+                                    float world_x = child_x * transform_m00 + child_y * transform_m20 + 
+                                                   child_z * transform_m10;
+                                    float world_y = child_x * transform_m01 + child_y * transform_m21 + 
+                                                   child_z * transform_m11;
+                                    float world_z = child_x * transform_m02 + child_y * transform_m22 + 
+                                                   child_z * transform_m12;
+                                    float world_w = child_x * transform_m03 + child_y * transform_m23 + 
+                                                   child_z * transform_m13;
+                                    
+                                    float child_height = child_bbox[6];
+                                    float child_depth = child_bbox[8];
+                                    float transformed_x = child_w * transform_m00 + child_width * transform_m20 + 
+                                                        child_height * transform_m10;
+                                    float transformed_y = child_w * transform_m01 + child_width * transform_m21 + 
+                                                        child_height * transform_m11;
+                                    float transformed_z = child_w * transform_m02 + child_width * transform_m22 + 
+                                                        child_height * transform_m12;
+                                    float transformed_w = child_w * transform_m03 + child_width * transform_m23 + 
+                                                        child_height * transform_m13;
+                                    
+                                    float child_offset_x = child_bbox[10];
+                                    float child_offset_z = child_bbox[0xc];
+                                    float scaled_x = child_scale_x * transform_m00 + child_depth * transform_m20 + 
+                                                   child_offset_x * transform_m10;
+                                    float scaled_y = child_scale_x * transform_m01 + child_depth * transform_m21 + 
+                                                   child_offset_x * transform_m11;
+                                    float scaled_z = child_scale_x * transform_m02 + child_depth * transform_m22 + 
+                                                   child_offset_x * transform_m12;
+                                    float scaled_w = child_scale_x * transform_m03 + child_depth * transform_m23 + 
+                                                   child_offset_x * transform_m13;
+                                    
+                                    float child_corner_x = child_bbox[0xe];
+                                    float corner_x = child_scale_z * transform_m00 + child_offset_z * transform_m20 + 
+                                                   child_corner_x * transform_m10 + 
+                                                   *(float *)(object_offset + 0xa0);
+                                    float corner_y = child_scale_z * transform_m01 + child_offset_z * transform_m21 + 
+                                                   child_corner_x * transform_m11 + 
+                                                   *(float *)(object_offset + 0xa4);
+                                    float corner_z = child_scale_z * transform_m02 + child_offset_z * transform_m22 + 
+                                                   child_corner_x * transform_m12 + 
+                                                   *(float *)(object_offset + 0xa8);
+                                    float corner_w = child_scale_z * transform_m03 + child_offset_z * transform_m23 + 
+                                                   child_corner_x * transform_m13 + 
+                                                   *(float *)(object_offset + 0xac);
+                                    
+                                    // 计算与射线的距离
+                                    float ray_to_object_x = *ray_origin - corner_x;
+                                    float ray_to_object_y = ray_direction[1] - corner_y;
+                                    float ray_to_object_z = ray_origin[2] - corner_z;
+                                    float ray_to_cam_x = *ray_direction - corner_x;
+                                    
+                                    // 计算交点
+                                    float intersection_x = ray_to_object_x * world_x + ray_to_object_y * world_y + 
+                                                         ray_to_object_z * world_z;
+                                    float intersection_y = ray_to_object_x * transformed_x + ray_to_object_y * transformed_y + 
+                                                         ray_to_object_z * transformed_z;
+                                    float intersection_z = ray_to_object_x * scaled_x + ray_to_object_y * scaled_y + 
+                                                         ray_to_object_z * scaled_z;
+                                    float intersection_w = ray_to_object_x * corner_w + ray_to_object_y * corner_w + 
+                                                         ray_to_object_z * corner_w;
+                                    
+                                    float ray_to_cam_y = ray_direction[1] - corner_y;
+                                    child_offset = *(longlong *)(object_offset + 0x20);
+                                    float ray_to_cam_z = ray_direction[2] - corner_z;
+                                    
+                                    // 计算表面法线
+                                    float normal_x = ray_to_cam_y * world_y + ray_to_cam_x * world_x + 
+                                                  ray_to_cam_z * world_z;
+                                    float normal_y = ray_to_cam_y * transformed_y + ray_to_cam_x * transformed_x + 
+                                                  ray_to_cam_z * transformed_z;
+                                    float normal_z = ray_to_cam_y * scaled_y + ray_to_cam_x * scaled_x + 
+                                                  ray_to_cam_z * scaled_z;
+                                    float normal_w = ray_to_cam_y * corner_w + ray_to_cam_x * corner_w + 
+                                                  ray_to_cam_z * corner_w;
+                                    
+                                    // 检查是否需要初始化碰撞数据
+                                    if ((int)(*child_object)[99] == -1) {
+                                        *(undefined4 *)((longlong)*child_object + 0x314) = 0x10;
+                                        undefined4 init_result = initialize_collision_data(
+                                            child_offset + 0x51d0, 0x10);
+                                        *(undefined4 *)(*child_object + 99) = init_result;
+                                        
+                                        LOCK();
+                                        *(undefined4 *)(*child_object + 0x62) = 0;
+                                        UNLOCK();
+                                        child_offset = *(longlong *)(object_offset + 0x20);
+                                    }
+                                    
+                                    float query_depth = (float)current_flags;
+                                    float depth_x = intersection_x;
+                                    float depth_y = intersection_y;
+                                    float depth_z = intersection_z;
+                                    
+                                    // 调用碰撞处理函数
+                                    process_collision_result(
+                                        *child_object + 0x61, 
+                                        child_offset + 0x3fb8, 
+                                        &intersection_x);
+                                }
+                                
+                                child_offset = *(longlong *)(object_offset + 0xf0);
+                                collision_flags = (int)child_index + 1;
+                                child_index = (ulonglong)collision_flags;
+                                child_pos += 8;
+                            } while ((ulonglong)(longlong)collision_flags <
+                                     (ulonglong)(*(longlong)(object_offset + 0xf8) - child_offset >> 3));
+                        }
+                    }
                 }
-                cVar23 = cVar23 + '\x01';
-              } while (cVar23 < *(char *)(uStack_418 + 0x20));
-            }
-            iVar19 = iStack_448;
-            lVar16 = *(longlong *)(lVar14 + 0xf0);
-            if (*(longlong *)(lVar14 + 0xf8) - lVar16 >> 3 != 0) {
-              uVar21 = 0;
-              uVar24 = uVar21;
-              do {
-                plVar3 = *(longlong **)(lVar16 + uVar24);
-                iVar12 = (**(code **)(*plVar3 + 0x98))(plVar3);
-                if ((iVar12 == 0) && ((int)plVar3[0x42] != 0)) {
-                  if (*(code **)(*plVar3 + 0x158) == (code *)&UNK_18027d980) {
-                    pfVar15 = (float *)(plVar3 + 0x66);
-                  }
-                  else {
-                    pfVar15 = (float *)(**(code **)(*plVar3 + 0x158))(plVar3);
-                  }
-                  fVar29 = *(float *)(lVar14 + 0x80);
-                  fVar30 = *(float *)(lVar14 + 0x84);
-                  fVar31 = *(float *)(lVar14 + 0x88);
-                  fVar32 = *(float *)(lVar14 + 0x8c);
-                  fVar4 = *(float *)(lVar14 + 0x90);
-                  fVar5 = *(float *)(lVar14 + 0x94);
-                  fVar6 = *(float *)(lVar14 + 0x98);
-                  fVar7 = *(float *)(lVar14 + 0x9c);
-                  fVar8 = *(float *)(lVar14 + 0x70);
-                  fVar9 = *(float *)(lVar14 + 0x74);
-                  fVar10 = *(float *)(lVar14 + 0x78);
-                  fVar11 = *(float *)(lVar14 + 0x7c);
-                  fVar25 = pfVar15[1];
-                  fVar26 = *pfVar15;
-                  fVar27 = pfVar15[2];
-                  fVar28 = pfVar15[5];
-                  fVar1 = pfVar15[9];
-                  fVar33 = pfVar15[0xd];
-                  fVar2 = pfVar15[4];
-                  fStack_198 = fVar25 * fVar29 + fVar26 * fVar8 + fVar27 * fVar4;
-                  fStack_194 = fVar25 * fVar30 + fVar26 * fVar9 + fVar27 * fVar5;
-                  fStack_190 = fVar25 * fVar31 + fVar26 * fVar10 + fVar27 * fVar6;
-                  fStack_18c = fVar25 * fVar32 + fVar26 * fVar11 + fVar27 * fVar7;
-                  fVar25 = pfVar15[6];
-                  fVar26 = pfVar15[8];
-                  fStack_188 = fVar28 * fVar29 + fVar2 * fVar8 + fVar25 * fVar4;
-                  fStack_184 = fVar28 * fVar30 + fVar2 * fVar9 + fVar25 * fVar5;
-                  fStack_180 = fVar28 * fVar31 + fVar2 * fVar10 + fVar25 * fVar6;
-                  fStack_17c = fVar28 * fVar32 + fVar2 * fVar11 + fVar25 * fVar7;
-                  fVar25 = pfVar15[10];
-                  fVar27 = pfVar15[0xc];
-                  fStack_178 = fVar1 * fVar29 + fVar26 * fVar8 + fVar25 * fVar4;
-                  fStack_174 = fVar1 * fVar30 + fVar26 * fVar9 + fVar25 * fVar5;
-                  fStack_170 = fVar1 * fVar31 + fVar26 * fVar10 + fVar25 * fVar6;
-                  fStack_16c = fVar1 * fVar32 + fVar26 * fVar11 + fVar25 * fVar7;
-                  fVar25 = pfVar15[0xe];
-                  fStack_168 = fVar33 * fVar29 + fVar27 * fVar8 + fVar25 * fVar4 +
-                               *(float *)(lVar14 + 0xa0);
-                  fStack_164 = fVar33 * fVar30 + fVar27 * fVar9 + fVar25 * fVar5 +
-                               *(float *)(lVar14 + 0xa4);
-                  fStack_160 = fVar33 * fVar31 + fVar27 * fVar10 + fVar25 * fVar6 +
-                               *(float *)(lVar14 + 0xa8);
-                  fStack_15c = fVar33 * fVar32 + fVar27 * fVar11 + fVar25 * fVar7 +
-                               *(float *)(lVar14 + 0xac);
-                  fVar28 = *param_2 - fStack_168;
-                  fVar25 = param_2[1] - fStack_164;
-                  fVar27 = param_2[2] - fStack_160;
-                  fVar26 = *param_3 - fStack_168;
-                  fStack_348 = fVar28 * fStack_198 + fVar25 * fStack_194 + fVar27 * fStack_190;
-                  fStack_344 = fVar28 * fStack_188 + fVar25 * fStack_184 + fVar27 * fStack_180;
-                  fStack_340 = fVar28 * fStack_178 + fVar25 * fStack_174 + fVar27 * fStack_170;
-                  fStack_33c = fVar28 * fStack_16c + fVar25 * fStack_16c + fVar27 * fStack_16c;
-                  fVar27 = param_3[1] - fStack_164;
-                  lVar16 = *(longlong *)(lVar14 + 0x20);
-                  fVar25 = param_3[2] - fStack_160;
-                  fStack_2e0 = fVar27 * fStack_194 + fVar26 * fStack_198 + fVar25 * fStack_190;
-                  fStack_2dc = fVar27 * fStack_184 + fVar26 * fStack_188 + fVar25 * fStack_180;
-                  fStack_2d8 = fVar27 * fStack_174 + fVar26 * fStack_178 + fVar25 * fStack_170;
-                  fStack_2d4 = fVar27 * fStack_16c + fVar26 * fStack_16c + fVar25 * fStack_16c;
-                  if ((int)plVar3[99] == -1) {
-                    *(undefined4 *)((longlong)plVar3 + 0x314) = 0x10;
-                    uVar13 = FUN_1801b9a40(lVar16 + 0x51d0,0x10);
-                    *(undefined4 *)(plVar3 + 99) = uVar13;
-                    LOCK();
-                    *(undefined4 *)(plVar3 + 0x62) = 0;
-                    UNLOCK();
-                    lVar16 = *(longlong *)(lVar14 + 0x20);
-                  }
-                  fStack_32c = (float)iVar19;
-                  fStack_3f8 = fStack_348;
-                  fStack_3f4 = fStack_344;
-                  fStack_3f0 = fStack_340;
-                  uStack_3ec = 0x3e800000;
-                  fStack_2a8 = fStack_348;
-                  fStack_2a4 = fStack_344;
-                  fStack_2a0 = fStack_340;
-                  uStack_29c = 0x3e800000;
-                  fStack_338 = fStack_2e0;
-                  fStack_334 = fStack_2dc;
-                  fStack_330 = fStack_2d8;
-                  fStack_298 = fStack_2e0;
-                  fStack_294 = fStack_2dc;
-                  fStack_290 = fStack_2d8;
-                  fStack_28c = fStack_32c;
-                  FUN_18020a7b0(plVar3 + 0x61,lVar16 + 0x3fb8,&fStack_2a8);
+                
+                // 扩展搜索范围
+                longlong collision_system = collision_data;
+                list_offset = list_offset;
+                
+                float extended_range_z = ray_origin[2] + ray_direction[2] * 0.2;
+                float range_scale = 0.2;
+                float extended_range_x = *ray_origin - *ray_direction * 0.2;
+                float min_range_z = ray_origin[2] - ray_direction[2] * 0.2;
+                float max_range_x = *ray_origin + *ray_direction * 0.2;
+                float extended_range_y = ray_direction[1] + ray_direction[1] * 0.2;
+                float min_range_y = ray_direction[1] - ray_direction[1] * 0.2;
+                float max_range_y = ray_direction[1] + ray_direction[1] * 0.2;
+                
+                // 设置搜索边界
+                float search_min_x = extended_range_x;
+                float search_min_y = min_range_y;
+                float search_min_z = min_range_z;
+                float search_max_x = max_range_x;
+                float search_max_y = extended_range_y;
+                float search_max_z = extended_range_z;
+                
+                query_flags = max_results;
+                
+                // 执行精确碰撞检测
+                if (collision_data != 0) {
+                    char collision_result = perform_precise_collision_detection(
+                        object_offset, 
+                        &search_min_x, 
+                        &stack_float_1, 
+                        stack_buffer_1);
+                    
+                    query_flags = max_results;
+                    
+                    if (collision_result != '\0') {
+                        longlong collision_id = (longlong)stack_buffer_1[0];
+                        uint *collision_info = (uint *)(collision_id * 0x100 + 
+                                                     *(longlong *)(collision_system + 0x18));
+                        
+                        do {
+                            LOCK();
+                            collision_flags = *collision_info;
+                            *collision_info = *collision_info | 1;
+                            UNLOCK();
+                        } while ((collision_flags & 1) != 0);
+                        
+                        // 获取碰撞信息
+                        ulonglong collision_data_1 = *(undefined8 *)(collision_info + 1);
+                        ulonglong collision_data_2 = *(undefined8 *)(collision_info + 3);
+                        float collision_x = (float)collision_info[5];
+                        float collision_y = (float)collision_info[6];
+                        float collision_z = (float)collision_info[7];
+                        collision_flags = collision_info[8];
+                        
+                        *collision_info = 0;
+                        
+                        // 存储碰撞数据
+                        stack_float_1 = collision_x;
+                        stack_float_2 = collision_y;
+                        stack_float_3 = collision_z;
+                        collision_info[8] = collision_flags;
+                        
+                        // 处理碰撞响应
+                        process_collision_response(&intersection_point, &collision_data_1);
+                        
+                        // 计算碰撞矩阵
+                        float matrix_m00 = *(float *)(object_offset + 0x70);
+                        float matrix_m01 = *(float *)(object_offset + 0x74);
+                        float matrix_m02 = *(float *)(object_offset + 0x78);
+                        float matrix_m03 = *(float *)(object_offset + 0x7c);
+                        float matrix_m10 = *(float *)(object_offset + 0x80);
+                        float matrix_m11 = *(float *)(object_offset + 0x84);
+                        float matrix_m12 = *(float *)(object_offset + 0x88);
+                        float matrix_m13 = *(float *)(object_offset + 0x8c);
+                        float matrix_m20 = *(float *)(object_offset + 0x90);
+                        float matrix_m21 = *(float *)(object_offset + 0x94);
+                        float matrix_m22 = *(float *)(object_offset + 0x98);
+                        float matrix_m23 = *(float *)(object_offset + 0x9c);
+                        
+                        // 变换碰撞点
+                        float transformed_point_x = intersection_point[0] * matrix_m00 + 
+                                                  intersection_point[1] * matrix_m10 + 
+                                                  intersection_point[2] * matrix_m20;
+                        float transformed_point_y = intersection_point[0] * matrix_m01 + 
+                                                  intersection_point[1] * matrix_m11 + 
+                                                  intersection_point[2] * matrix_m21;
+                        float transformed_point_z = intersection_point[0] * matrix_m02 + 
+                                                  intersection_point[1] * matrix_m12 + 
+                                                  intersection_point[2] * matrix_m22;
+                        float transformed_point_w = intersection_point[0] * matrix_m03 + 
+                                                  intersection_point[1] * matrix_m13 + 
+                                                  intersection_point[2] * matrix_m23;
+                        
+                        // 计算碰撞深度
+                        penetration_depth = collision_x * matrix_m00 + collision_y * matrix_m10 + 
+                                           collision_z * matrix_m20 + 
+                                           *(float *)(object_offset + 0xa0);
+                        
+                        // 调用深度处理函数
+                        process_collision_depth(&transformed_point_x, &stack_float_1);
+                        
+                        // 获取碰撞属性
+                        longlong property_offset = collision_id * 0x1b0 + 
+                                                  *(longlong *)(*(longlong *)(collision_system + 0x208) + 0x140);
+                        
+                        float prop_min_x = *(float *)(property_offset + 0x30);
+                        float prop_min_y = *(float *)(property_offset + 0x34);
+                        float prop_min_z = *(float *)(property_offset + 0x38);
+                        uint prop_flags = *(uint *)(property_offset + 0x3c);
+                        float prop_max_x = *(float *)(property_offset + 0x40);
+                        float prop_max_y = *(float *)(property_offset + 0x44);
+                        float prop_max_z = *(float *)(property_offset + 0x48);
+                        float prop_size_x = *(float *)(property_offset + 0x4c);
+                        
+                        // 存储属性数据
+                        stack_float_1 = prop_max_x;
+                        stack_float_2 = prop_max_y;
+                        stack_float_3 = prop_max_z;
+                        stack_float_1 = prop_min_x;
+                        stack_float_2 = prop_min_y;
+                        stack_float_3 = prop_min_z;
+                        
+                        // 计算最终碰撞点
+                        float *final_point = calculate_final_collision_point(
+                            &prop_max_x, 
+                            stack_buffer_2, 
+                            &intersection_x);
+                        
+                        context = context_base;
+                        
+                        // 更新碰撞位置
+                        float final_x = prop_min_x + *final_point;
+                        float final_y = prop_min_y + final_point[1];
+                        float final_z = prop_min_z + final_point[2];
+                        
+                        // 计算碰撞法线
+                        float normal_cross_x = stack_float_3 * prop_max_z - stack_float_1 * prop_size_x;
+                        float normal_cross_y = stack_float_1 * prop_min_x - stack_float_3 * prop_max_y;
+                        float normal_cross_z = stack_float_1 * prop_max_y - stack_float_1 * prop_min_y;
+                        
+                        normal_cross_x += normal_cross_x;
+                        normal_cross_y += normal_cross_y;
+                        normal_cross_z += normal_cross_z;
+                        
+                        // 归一化法线
+                        float normal_length = normal_cross_x * prop_max_x + stack_float_3 + 
+                                            (normal_cross_z * prop_max_z - normal_cross_y * prop_size_x);
+                        float normal_y = (normal_cross_y * prop_min_x - normal_cross_x * prop_max_z) + 
+                                       normal_cross_z * prop_max_x + stack_float_1;
+                        float normal_z = (normal_cross_x * prop_size_x - normal_cross_z * prop_min_x) + 
+                                       normal_cross_y * prop_max_x + stack_float_2;
+                        
+                        // 检查是否需要初始化碰撞系统
+                        if (*(int *)(collision_system + 0x170) == -1) {
+                            *(undefined4 *)(collision_system + 0x16c) = 0x10;
+                            undefined4 init_result = initialize_collision_data(
+                                context_base + 0x51d0, 0x10);
+                            *(undefined4 *)(collision_system + 0x170) = init_result;
+                            
+                            LOCK();
+                            *(undefined4 *)(collision_system + 0x168) = 0;
+                            UNLOCK();
+                        }
+                        
+                        float result_depth = (float)current_flags;
+                        
+                        // 存储最终结果
+                        stack_float_1 = final_x;
+                        stack_float_2 = final_y;
+                        stack_float_3 = final_z;
+                        
+                        // 调用结果处理函数
+                        process_collision_result(
+                            collision_system + 0x160, 
+                            context + 0x3fb8, 
+                            &stack_float_1);
+                        
+                        query_flags = max_results;
+                    }
                 }
-                lVar16 = *(longlong *)(lVar14 + 0xf0);
-                uVar20 = (int)uVar21 + 1;
-                uVar21 = (ulonglong)uVar20;
-                uVar24 = uVar24 + 8;
-              } while ((ulonglong)(longlong)(int)uVar20 <
-                       (ulonglong)(*(longlong *)(lVar14 + 0xf8) - lVar16 >> 3));
             }
-          }
-        }
-        lVar18 = uStack_418;
-        lVar16 = uStack_428;
-        fStack_3d0 = param_2[2] + param_3[2] * 0.2;
-        uStack_2b0 = 0x3d4ccccd;
-        fStack_3e8 = *param_2 - *param_3 * 0.2;
-        fStack_3e0 = param_2[2] - param_3[2] * 0.2;
-        fStack_3d8 = *param_2 + *param_3 * 0.2;
-        fStack_3d4 = param_2[1] + param_3[1] * 0.2;
-        fStack_3e4 = param_2[1] - param_3[1] * 0.2;
-        uStack_3dc = 0x7f7fffff;
-        uStack_3cc = 0x7f7fffff;
-        uStack_2b4 = 0x7f7fffff;
-        uStack_2c4 = 0x7f7fffff;
-        fStack_2d0 = fStack_3e8;
-        fStack_2cc = fStack_3e4;
-        fStack_2c8 = fStack_3e0;
-        fStack_2c0 = fStack_3d8;
-        fStack_2bc = fStack_3d4;
-        fStack_2b8 = fStack_3d0;
-        param_4 = iStack_448;
-        if (uStack_418 != 0) {
-          pcStack_478 = acStack_443;
-          cVar23 = FUN_1802edfe0(lVar14,&fStack_2d0,&fStack_328,auStack_1b8);
-          param_4 = iStack_448;
-          if (cVar23 != '\0') {
-            lVar22 = (longlong)acStack_443[0];
-            puVar17 = (uint *)(lVar22 * 0x100 + *(longlong *)(lVar18 + 0x18));
-            do {
-              LOCK();
-              uVar20 = *puVar17;
-              *puVar17 = *puVar17 | 1;
-              UNLOCK();
-            } while ((uVar20 & 1) != 0);
-            uStack_288 = *(undefined8 *)(puVar17 + 1);
-            uStack_280 = *(undefined8 *)(puVar17 + 3);
-            fVar25 = (float)puVar17[5];
-            fVar26 = (float)puVar17[6];
-            fVar27 = (float)puVar17[7];
-            uVar20 = puVar17[8];
-            *puVar17 = 0;
-            fStack_278 = fVar25;
-            fStack_274 = fVar26;
-            fStack_270 = fVar27;
-            uStack_26c = uVar20;
-            uStack_118 = uStack_288;
-            uStack_110 = uStack_280;
-            fStack_108 = fVar25;
-            fStack_104 = fVar26;
-            fStack_100 = fVar27;
-            uStack_fc = uVar20;
-            FUN_18063b5f0(&fStack_228,&uStack_288);
-            fVar28 = *(float *)(lVar14 + 0x70);
-            fVar1 = *(float *)(lVar14 + 0x74);
-            fVar33 = *(float *)(lVar14 + 0x78);
-            fVar2 = *(float *)(lVar14 + 0x7c);
-            fVar29 = *(float *)(lVar14 + 0x80);
-            fVar30 = *(float *)(lVar14 + 0x84);
-            fVar31 = *(float *)(lVar14 + 0x88);
-            fVar32 = *(float *)(lVar14 + 0x8c);
-            fVar4 = *(float *)(lVar14 + 0x90);
-            fVar5 = *(float *)(lVar14 + 0x94);
-            fVar6 = *(float *)(lVar14 + 0x98);
-            fVar7 = *(float *)(lVar14 + 0x9c);
-            fStack_158 = fStack_228;
-            fStack_154 = fStack_224;
-            fStack_150 = fStack_220;
-            uStack_14c = uStack_21c;
-            fStack_148 = fStack_218;
-            fStack_144 = fStack_214;
-            fStack_140 = fStack_210;
-            uStack_13c = uStack_20c;
-            fStack_138 = fStack_208;
-            fStack_134 = fStack_204;
-            fStack_130 = fStack_200;
-            uStack_12c = uStack_1fc;
-            fStack_3c8 = fStack_228 * fVar28 + fStack_224 * fVar29 + fStack_220 * fVar4;
-            fStack_3c4 = fStack_228 * fVar1 + fStack_224 * fVar30 + fStack_220 * fVar5;
-            fStack_3c0 = fStack_228 * fVar33 + fStack_224 * fVar31 + fStack_220 * fVar6;
-            fStack_1ec = fStack_228 * fVar2 + fStack_224 * fVar32 + fStack_220 * fVar7;
-            fStack_3b8 = fStack_218 * fVar28 + fStack_214 * fVar29 + fStack_210 * fVar4;
-            fStack_3b4 = fStack_218 * fVar1 + fStack_214 * fVar30 + fStack_210 * fVar5;
-            fStack_3b0 = fStack_218 * fVar33 + fStack_214 * fVar31 + fStack_210 * fVar6;
-            fStack_1dc = fStack_218 * fVar2 + fStack_214 * fVar32 + fStack_210 * fVar7;
-            fStack_3a8 = fStack_208 * fVar28 + fStack_204 * fVar29 + fStack_200 * fVar4;
-            fStack_3a4 = fStack_208 * fVar1 + fStack_204 * fVar30 + fStack_200 * fVar5;
-            fStack_3a0 = fStack_208 * fVar33 + fStack_204 * fVar31 + fStack_200 * fVar6;
-            fStack_1cc = fStack_208 * fVar2 + fStack_204 * fVar32 + fStack_200 * fVar7;
-            fStack_398 = fVar25 * fVar28 + fVar26 * fVar29 + fVar27 * fVar4 +
-                         *(float *)(lVar14 + 0xa0);
-            fStack_394 = fVar25 * fVar1 + fVar26 * fVar30 + fVar27 * fVar5 +
-                         *(float *)(lVar14 + 0xa4);
-            fStack_390 = fVar25 * fVar33 + fVar26 * fVar31 + fVar27 * fVar6 +
-                         *(float *)(lVar14 + 0xa8);
-            fStack_1bc = fVar25 * fVar2 + fVar26 * fVar32 + fVar27 * fVar7 +
-                         *(float *)(lVar14 + 0xac);
-            uStack_3bc = 0;
-            uStack_3ac = 0;
-            uStack_39c = 0;
-            uStack_38c = 0x3f800000;
-            fStack_1f8 = fStack_3c8;
-            fStack_1f4 = fStack_3c4;
-            fStack_1f0 = fStack_3c0;
-            fStack_1e8 = fStack_3b8;
-            fStack_1e4 = fStack_3b4;
-            fStack_1e0 = fStack_3b0;
-            fStack_1d8 = fStack_3a8;
-            fStack_1d4 = fStack_3a4;
-            fStack_1d0 = fStack_3a0;
-            fStack_1c8 = fStack_398;
-            fStack_1c4 = fStack_394;
-            fStack_1c0 = fStack_390;
-            fStack_128 = fVar25;
-            fStack_124 = fVar26;
-            fStack_120 = fVar27;
-            uStack_11c = uVar20;
-            FUN_180084760(&fStack_3c8,&fStack_388);
-            fStack_408 = fStack_328 * fStack_388 + fStack_324 * fStack_378 + fStack_320 * fStack_368
-                         + fStack_358;
-            fStack_404 = fStack_328 * fStack_384 + fStack_324 * fStack_374 + fStack_320 * fStack_364
-                         + fStack_354;
-            fStack_400 = fStack_328 * fStack_380 + fStack_324 * fStack_370 + fStack_320 * fStack_360
-                         + fStack_350;
-            fStack_3fc = fStack_328 * fStack_37c + fStack_324 * fStack_36c + fStack_320 * fStack_35c
-                         + fStack_34c;
-            FUN_1801c1140(&fStack_1f8,&fStack_318,param_3);
-            lVar14 = lVar22 * 0x1b0 + *(longlong *)(*(longlong *)(lVar18 + 0x208) + 0x140);
-            fVar25 = *(float *)(lVar14 + 0x30);
-            fVar26 = *(float *)(lVar14 + 0x34);
-            fVar27 = *(float *)(lVar14 + 0x38);
-            uStack_24c = *(undefined4 *)(lVar14 + 0x3c);
-            fVar28 = *(float *)(lVar14 + 0x40);
-            fVar1 = *(float *)(lVar14 + 0x44);
-            fVar33 = *(float *)(lVar14 + 0x48);
-            fVar2 = *(float *)(lVar14 + 0x4c);
-            fStack_268 = fVar28;
-            fStack_264 = fVar1;
-            fStack_260 = fVar33;
-            fStack_25c = fVar2;
-            fStack_258 = fVar25;
-            fStack_254 = fVar26;
-            fStack_250 = fVar27;
-            pfVar15 = (float *)FUN_1801c0fb0(&fStack_268,auStack_1a8,&fStack_408);
-            lVar14 = lStack_438;
-            fVar25 = fVar25 + *pfVar15;
-            uStack_418 = CONCAT44(fVar26,fVar26 + pfVar15[1]);
-            fVar30 = fStack_310 * fVar33 - fStack_314 * fVar2;
-            uStack_428 = CONCAT44(fVar27,fVar27 + pfVar15[2]);
-            fVar30 = fVar30 + fVar30;
-            fVar32 = fStack_318 * fVar2 - fStack_310 * fVar1;
-            fVar29 = fStack_314 * fVar1 - fStack_318 * fVar33;
-            fVar32 = fVar32 + fVar32;
-            fVar29 = fVar29 + fVar29;
-            fVar31 = fVar30 * fVar28 + fStack_318 + (fVar29 * fVar33 - fVar32 * fVar2);
-            fVar33 = (fVar32 * fVar1 - fVar30 * fVar33) + fVar29 * fVar28 + fStack_310;
-            fVar28 = (fVar30 * fVar2 - fVar29 * fVar1) + fVar32 * fVar28 + fStack_314;
-            fStack_420 = fVar27;
-            fStack_41c = fVar27;
-            fStack_410 = fVar26;
-            fStack_40c = fVar26;
-            if (*(int *)(lVar18 + 0x170) == -1) {
-              *(undefined4 *)(lVar18 + 0x16c) = 0x10;
-              uVar13 = FUN_1801b9a40(lStack_438 + 0x51d0,0x10);
-              *(undefined4 *)(lVar18 + 0x170) = uVar13;
-              LOCK();
-              *(undefined4 *)(lVar18 + 0x168) = 0;
-              UNLOCK();
-            }
-            fStack_2ec = (float)iVar19;
-            uStack_304 = (undefined4)uStack_418;
-            uStack_300 = (undefined4)uStack_428;
-            uStack_2fc = param_6;
-            uStack_244 = (undefined4)uStack_418;
-            uStack_240 = (undefined4)uStack_428;
-            uStack_23c = param_6;
-            fStack_308 = fVar25;
-            fStack_2f8 = fVar31;
-            fStack_2f4 = fVar28;
-            fStack_2f0 = fVar33;
-            fStack_248 = fVar25;
-            fStack_238 = fVar31;
-            fStack_234 = fVar28;
-            fStack_230 = fVar33;
-            fStack_22c = fStack_2ec;
-            FUN_18020a7b0(lVar18 + 0x160,lVar14 + 0x3fb8,&fStack_248);
-            param_4 = iStack_448;
-          }
-        }
-      }
-      uStack_428 = lVar16 + 8;
-      iStack_440 = iStack_440 + 1;
-      lVar14 = *plStack_2e8;
-    } while ((ulonglong)(longlong)iStack_440 < (ulonglong)(plStack_2e8[1] - lVar14 >> 3));
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_f8 ^ (ulonglong)auStack_498);
+            
+            list_offset += 8;
+            stack_int_1++;
+            object_offset = *object_ptr;
+        } while ((ulonglong)(longlong)stack_int_1 < (ulonglong)(object_ptr[1] - object_offset >> 3));
+    }
+    
+    // 调用清理函数
+    cleanup_collision_detection(stack_guard);
 }
 
+// 辅助函数声明
+ulonglong get_stack_guard_value(void);
+undefined4 initialize_collision_data(longlong param_1, int param_2);
+void LOCK(void);
+void UNLOCK(void);
+void process_collision_result(longlong param_1, longlong param_2, float *param_3);
+char perform_precise_collision_detection(longlong param_1, float *param_2, float *param_3, float *param_4);
+void process_collision_response(float *param_1, undefined8 *param_2);
+void process_collision_depth(float *param_1, float *param_2);
+float *calculate_final_collision_point(float *param_1, float *param_2, float *param_3);
+void cleanup_collision_detection(ulonglong param_1);
 
-
-
-
+// 默认边界框处理函数
+code *get_default_bbox_handler = (code *)0x18027d980;
