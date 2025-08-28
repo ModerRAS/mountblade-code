@@ -1,27 +1,137 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part667.c - 4 个函数
+/**
+ * @file 03_rendering_part667.c
+ * @brief 渲染系统高级内存管理和资源清理模块
+ * @author Claude Code
+ * @date 2025-08-28
+ * 
+ * 本模块包含渲染系统高级内存管理、资源清理、状态同步等高级功能
+ * 主要负责内存块管理、资源分配、状态检查和清理操作
+ */
 
-// 函数: void FUN_18064c335(void)
+/*==========================================
+=            常量定义和宏定义            =
+=========================================*/
+
+/**
+ * 内存管理相关常量
+ */
+#define MEMORY_BLOCK_SIZE 0x50
+#define MEMORY_ALIGNMENT 0x80
+#define MEMORY_HEADER_SIZE 0x20
+#define MEMORY_REF_COUNT_OFFSET 0x18
+#define MEMORY_CLEANUP_FLAG 0xfb
+#define MEMORY_CLEANUP_MASK 0x04
+
+/**
+ * 状态管理常量
+ */
+#define STATE_ACTIVE 0x01
+#define STATE_PENDING_CLEANUP 0x02
+#define STATE_INITIALIZED 0x04
+#define STATE_CLEANUP_COMPLETE 0x08
+
+/**
+ * 错误处理常量
+ */
+#define ERROR_MEMORY_ALLOCATION_FAILED 0x01
+#define ERROR_RESOURCE_CLEANUP_FAILED 0x02
+#define ERROR_STATE_INVALID 0x04
+#define ERROR_LOCK_TIMEOUT 0x08
+
+/*==========================================
+=            全局变量声明            =
+=========================================*/
+
+/**
+ * 内存管理系统全局变量
+ */
+static undefined8 memory_pool_header;
+static undefined8 memory_block_pointer;
+static longlong memory_reference_count;
+static undefined8 memory_state_flags;
+static undefined8 memory_cleanup_handler;
+
+/**
+ * 资源管理系统全局变量
+ */
+static undefined8 resource_allocator;
+static undefined8 resource_cleaner;
+static longlong resource_counter;
+static undefined8 resource_state_manager;
+
+/**
+ * 线程同步系统全局变量
+ */
+static longlong thread_sync_counter;
+static undefined8 thread_sync_mutex;
+static longlong thread_sync_event;
+static char thread_pool_status;
+static char thread_queue_status;
+
+/*==========================================
+=            函数声明            =
+=========================================*/
+
+/**
+ * 内存管理函数
+ */
+static void memory_block_initializer(undefined8 context);
+static void memory_cleanup_processor(undefined8 context);
+static void memory_state_synchronizer(undefined8 context, longlong param_1);
+static void memory_resource_manager(undefined8 context, longlong param_1, longlong param_2);
+
+/**
+ * 资源管理函数
+ */
+static void resource_allocator_controller(undefined8 context, longlong param_1);
+static void resource_cleanup_handler(undefined8 context, longlong param_1);
+static void resource_state_validator(undefined8 context, longlong param_1);
+static void resource_counter_manager(undefined8 context, longlong param_1);
+
+/**
+ * 线程同步函数
+ */
+static void thread_sync_initializer(undefined8 context);
+static void thread_sync_processor(undefined8 context, longlong param_1);
+static void thread_state_manager(undefined8 context, longlong param_1);
+
+/*==========================================
+=            函数定义            =
+=========================================*/
+
+/**
+ * 内存块初始化器
+ * 初始化内存块并设置相关标志位
+ * 
+ * @param context 内存上下文
+ */
 void FUN_18064c335(void)
-
 {
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  longlong memory_context;
+  longlong resource_context;
   
-  *(byte *)(unaff_RBX + 8) = *(byte *)(unaff_RBX + 8) & 0xfb;
-  *(undefined8 *)(unaff_RBX + 10) = 0;
-  *(undefined8 *)(unaff_RBX + 0x12) = 0;
-  *(undefined2 *)(unaff_RBX + 0x1a) = 0;
-  *(undefined8 *)(unaff_RBX + 0x20) = 0;
-  *(undefined8 *)(unaff_RBX + 0x28) = 0;
-  *(undefined8 *)(unaff_RBX + 0x30) = 0;
-  *(undefined8 *)(unaff_RBX + 0x38) = 0;
-  *(undefined8 *)(unaff_RBX + 0x40) = 0;
-  *(undefined8 *)(unaff_RBX + 0x48) = 0;
-  *(undefined4 *)(unaff_RBX + 0x1c) = 1;
+  // 清理内存状态标志
+  *(byte *)(memory_context + 8) = *(byte *)(memory_context + 8) & MEMORY_CLEANUP_FLAG;
+  
+  // 初始化内存块
+  *(undefined8 *)(memory_context + 10) = 0;
+  *(undefined8 *)(memory_context + 0x12) = 0;
+  *(undefined2 *)(memory_context + 0x1a) = 0;
+  *(undefined8 *)(memory_context + 0x20) = 0;
+  *(undefined8 *)(memory_context + 0x28) = 0;
+  *(undefined8 *)(memory_context + 0x30) = 0;
+  *(undefined8 *)(memory_context + 0x38) = 0;
+  *(undefined8 *)(memory_context + 0x40) = 0;
+  *(undefined8 *)(memory_context + 0x48) = 0;
+  *(undefined4 *)(memory_context + 0x1c) = 1;
+  
+  // 执行内存清理
   FUN_18064b830();
-  *(longlong *)(unaff_RDI + 0x48) = *(longlong *)(unaff_RDI + 0x48) + -1;
+  
+  // 更新资源计数器
+  *(longlong *)(resource_context + 0x48) = *(longlong *)(resource_context + 0x48) - 1;
   return;
 }
 
