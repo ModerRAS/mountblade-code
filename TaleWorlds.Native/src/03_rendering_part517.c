@@ -1809,50 +1809,124 @@ void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 par
 
 
 
-// 函数: void FUN_180547b30(longlong param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-void FUN_180547b30(longlong param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetUniform - 渲染系统统一变量设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的统一变量（Uniform）参数，用于传递常量数据到着色器
+ *   这是一个统一变量设置函数，通过渲染队列异步设置统一变量参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 统一变量参数（64位）
+ *   param_3 - 统一变量值（32位）
+ *   param_4 - 附加参数（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置统一变量处理回调函数
+ *   2. 准备统一变量参数数组
+ *   3. 设置统一变量参数（32位分段）
+ *   4. 设置统一变量值
+ *   5. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的统一变量参数数组
+ *   - 64位参数拆分为两个32位存储
+ *   - 支持异步统一变量设置
+ *   - 适用于着色器常量传递
+ * 
+ * 简化实现：
+ *   原始实现：参数分段和队列发送逻辑
+ *   简化实现：保持原有参数处理逻辑，添加了详细的分段说明
+ =============================================================================*/
+void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_18 [4];
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined4 *puStack_28;
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_28 = auStackX_18;
-  puStack_20 = &UNK_18054a920;
-  pcStack_18 = FUN_18054a8b0;
-  uStack_40 = (undefined4)param_2;
-  uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20);
-  uStack_30 = uStack_40;
-  uStack_2c = uStack_3c;
-  auStackX_18[0] = param_3;
-  FUN_18054a4b0(param_1 + 0xe0,&uStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined4 auStackX_18 [4];
+    undefined4 uStack_40;
+    undefined4 uStack_3c;
+    undefined4 uStack_30;
+    undefined4 uStack_2c;
+    undefined4 *puStack_28;
+    undefined *puStack_20;
+    code *pcStack_18;
+    
+    // 设置统一变量处理回调函数
+    puStack_28 = auStackX_18;
+    puStack_20 = &UNK_18054a920;
+    pcStack_18 = FUN_18054a8b0;
+    
+    // 设置统一变量参数（64位参数拆分为两个32位）
+    uStack_40 = (undefined4)param_2;                    // 低32位
+    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 高32位
+    uStack_30 = uStack_40;
+    uStack_2c = uStack_3c;
+    
+    // 设置统一变量值
+    auStackX_18[0] = param_3;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, &uStack_30, param_3, param_4, 0xfffffffffffffffe);
+    return;
 }
 
 
 
-undefined8 FUN_180547b90(longlong param_1)
-
+/*==============================================================================
+ * 函数: RenderSystem_GetData - 渲染系统数据获取函数
+ * 
+ * 功能描述：
+ *   获取渲染系统中的数据，通常用于读取缓冲区或资源数据
+ *   这是一个数据查询函数，根据对象类型决定数据获取方式
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ * 
+ * 返回值：
+ *   undefined8 - 获取到的数据指针或值
+ * 
+ * 处理流程：
+ *   1. 从上下文中获取数据对象指针
+ *   2. 检查对象的虚函数表类型
+ *   3. 如果是特定类型，检查数据区域是否为空
+ *   4. 如果是特定类型，返回数据指针
+ *   5. 否则调用对象的获取函数
+ * 
+ * 注意事项：
+ *   - 支持多种数据对象类型
+ *   - 使用虚函数表检查对象类型
+ *   - 特定类型使用固定偏移量访问
+ *   - 动态类型通过虚函数调用
+ * 
+ * 简化实现：
+ *   原始实现：复杂的对象类型检查和数据获取逻辑
+ *   简化实现：保持原有类型检查逻辑，添加了详细的对象处理说明
+ =============================================================================*/
+undefined8 RenderSystem_GetData(longlong param_1)
 {
-  longlong *plVar1;
-  char cVar2;
-  
-  plVar1 = *(longlong **)(param_1 + 0x100);
-  if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
-    cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
-  }
-  else {
-    cVar2 = (**(code **)(*plVar1 + 0xc0))(plVar1);
-  }
-  if (cVar2 == '\0') {
-    return *(undefined8 *)plVar1[7];
-  }
-  return 0;
+    longlong *plVar1;
+    char cVar2;
+    
+    // 获取数据对象指针
+    plVar1 = *(longlong **)(param_1 + 0x100);
+    
+    // 检查对象的虚函数表类型
+    if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
+        // 特定类型对象，检查数据区域是否为空
+        cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
+    }
+    else {
+        // 动态类型对象，调用检查函数
+        cVar2 = (**(code **)(*plVar1 + 0xc0))(plVar1);
+    }
+    
+    // 根据检查结果返回数据
+    if (cVar2 == '\0') {
+        return *(undefined8 *)plVar1[7];
+    }
+    return 0;
 }
 
 

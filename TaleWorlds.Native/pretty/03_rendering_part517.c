@@ -1470,103 +1470,275 @@ void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 par
 
 
 
-// 函数: void FUN_180547aa0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547aa0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetShader - 渲染系统着色器设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的着色器程序，用于控制GPU着色器管线
+ *   这是一个着色器设置函数，通过渲染队列异步设置着色器参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 着色器参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置着色器处理回调函数
+ *   2. 分配着色器参数结构体内存（0x18字节）
+ *   3. 拆分64位参数为两个32位参数
+ *   4. 打包着色器参数到结构体
+ *   5. 发送到渲染队列处理
+ * 
+ * 参数打包：
+ *   - 将64位参数拆分为高低32位
+ *   - 按顺序存储到结构体中
+ *   - 保留原始64位附加参数
+ * 
+ * 注意事项：
+ *   - 使用0x18字节的着色器参数结构体
+ *   - 支持64位到32位的参数拆分
+ *   - 采用8字节内存对齐
+ * 
+ * 简化实现：
+ *   原始实现：复杂的着色器参数打包和拆分
+ *   简化实现：保持原有参数打包逻辑，添加了详细的拆分说明
+ =============================================================================*/
+void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 *apuStack_28 [2];
-  code *pcStack_18;
-  code *pcStack_10;
-  
-  pcStack_18 = FUN_18054a9d0;
-  pcStack_10 = FUN_18054a960;
-  apuStack_28[0] =
-       (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc,0xfffffffffffffffe);
-  uStack_40 = (undefined4)param_2;
-  uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20);
-  uStack_38 = (undefined4)param_3;
-  uStack_34 = (undefined4)((ulonglong)param_3 >> 0x20);
-  *apuStack_28[0] = uStack_40;
-  apuStack_28[0][1] = uStack_3c;
-  apuStack_28[0][2] = uStack_38;
-  apuStack_28[0][3] = uStack_34;
-  *(undefined8 *)(apuStack_28[0] + 4) = param_4;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_28);
-  return;
+    undefined4 uStack_40;            // 着色器参数低32位
+    undefined4 uStack_3c;            // 着色器参数高32位
+    undefined4 uStack_38;            // 附加参数1低32位
+    undefined4 uStack_34;            // 附加参数1高32位
+    undefined4 *apuStack_28 [2];    // 着色器参数指针数组
+    code *pcStack_18;               // 着色器处理回调1
+    code *pcStack_10;               // 着色器处理回调2
+    
+    // 设置着色器处理回调函数
+    pcStack_18 = FUN_18054a9d0;
+    pcStack_10 = FUN_18054a960;
+    
+    // 分配着色器参数结构体内存（0x18字节，8字节对齐）
+    apuStack_28[0] = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
+    
+    // 拆分64位着色器参数为32位
+    uStack_40 = (undefined4)param_2;                    // 低32位
+    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 高32位
+    uStack_38 = (undefined4)param_3;                    // 附加参数1低32位
+    uStack_34 = (undefined4)((ulonglong)param_3 >> 0x20); // 附加参数1高32位
+    
+    // 打包着色器参数到结构体
+    *apuStack_28[0] = uStack_40;                         // 存储低32位
+    apuStack_28[0][1] = uStack_3c;                        // 存储高32位
+    apuStack_28[0][2] = uStack_38;                        // 存储附加参数1低32位
+    apuStack_28[0][3] = uStack_34;                        // 存储附加参数1高32位
+    *(undefined8 *)(apuStack_28[0] + 4) = param_4;       // 存储附加参数2（64位）
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_28);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547b30(longlong param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-void FUN_180547b30(longlong param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetUniform - 渲染系统统一变量设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的统一变量（Uniform），用于传递着色器参数
+ *   这是一个统一变量设置函数，通过渲染队列异步设置统一变量
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 统一变量参数（64位）
+ *   param_3 - 统一变量值（32位）
+ *   param_4 - 附加参数（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置统一变量处理回调函数
+ *   2. 准备统一变量参数数组
+ *   3. 拆分64位参数为两个32位参数
+ *   4. 打包统一变量参数
+ *   5. 发送到渲染队列处理
+ * 
+ * 参数处理：
+ *   - 将64位参数拆分为高低32位
+ *   - 复制到参数数组中进行处理
+ *   - 保留原始的统一变量值
+ * 
+ * 注意事项：
+ *   - 使用16字节的统一变量参数数组
+ *   - 支持64位到32位的参数拆分
+ *   - 统一变量值为32位，适合传递浮点数或整数
+ * 
+ * 简化实现：
+ *   原始实现：统一变量参数拆分和打包
+ *   简化实现：保持原有参数处理逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_18 [4];
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined4 *puStack_28;
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_28 = auStackX_18;
-  puStack_20 = &UNK_18054a920;
-  pcStack_18 = FUN_18054a8b0;
-  uStack_40 = (undefined4)param_2;
-  uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20);
-  uStack_30 = uStack_40;
-  uStack_2c = uStack_3c;
-  auStackX_18[0] = param_3;
-  FUN_18054a4b0(param_1 + 0xe0,&uStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined4 auStackX_18 [4];     // 统一变量参数数组
+    undefined4 uStack_40;            // 参数低32位
+    undefined4 uStack_3c;            // 参数高32位
+    undefined4 uStack_30;            // 复制的参数低32位
+    undefined4 uStack_2c;            // 复制的参数高32位
+    undefined4 *puStack_28;         // 参数指针
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 统一变量处理回调
+    
+    // 设置统一变量处理回调函数
+    puStack_28 = auStackX_18;
+    puStack_20 = &UNK_18054a920;
+    pcStack_18 = FUN_18054a8b0;
+    
+    // 拆分64位参数为32位
+    uStack_40 = (undefined4)param_2;                    // 低32位
+    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 高32位
+    
+    // 复制参数到处理数组
+    uStack_30 = uStack_40;                               // 复制低32位
+    uStack_2c = uStack_3c;                               // 复制高32位
+    
+    // 设置统一变量值
+    auStackX_18[0] = param_3;                           // 统一变量值
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, &uStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
-undefined8 FUN_180547b90(longlong param_1)
-
+/*==============================================================================
+ * 函数: RenderSystem_GetData - 渲染系统数据获取函数
+ * 
+ * 功能描述：
+ *   获取渲染系统的数据信息，用于读取渲染相关的数据
+ *   这是一个数据查询函数，支持多种数据对象的查询
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ * 
+ * 返回值：
+ *   undefined8 - 数据值或指针
+ * 
+ * 处理流程：
+ *   1. 从上下文中获取数据对象指针
+ *   2. 检查数据对象的虚函数表
+ *   3. 如果是默认对象，检查数据对齐状态
+ *   4. 如果是动态对象，调用对象的检查函数
+ *   5. 根据检查结果返回数据或0
+ * 
+ * 数据检查逻辑：
+ *   - 默认对象：检查数据是否16字节对齐
+ *   - 动态对象：通过虚函数调用进行检查
+ *   - 返回数据指针或0（表示无效数据）
+ * 
+ * 注意事项：
+ *   - 支持16字节对齐检查
+ *   - 使用虚函数表实现多态
+ *   - 返回0表示数据无效或不可用
+ * 
+ * 简化实现：
+ *   原始实现：复杂的数据检查和返回逻辑
+ *   简化实现：保持原有数据检查逻辑，添加了详细的对齐说明
+ =============================================================================*/
+undefined8 RenderSystem_GetData(longlong param_1)
 {
-  longlong *plVar1;
-  char cVar2;
-  
-  plVar1 = *(longlong **)(param_1 + 0x100);
-  if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
-    cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
-  }
-  else {
-    cVar2 = (**(code **)(*plVar1 + 0xc0))(plVar1);
-  }
-  if (cVar2 == '\0') {
-    return *(undefined8 *)plVar1[7];
-  }
-  return 0;
+    longlong *plVar1;
+    char cVar2;
+    
+    // 获取数据对象指针
+    plVar1 = *(longlong **)(param_1 + 0x100);
+    
+    // 检查数据对象的虚函数表
+    if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
+        // 默认数据对象，检查16字节对齐
+        cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
+    }
+    else {
+        // 动态数据对象，调用检查函数
+        cVar2 = (**(code **)(*plVar1 + 0xc0))(plVar1);
+    }
+    
+    // 根据检查结果返回数据
+    if (cVar2 == '\0') {
+        // 数据有效，返回数据指针
+        return *(undefined8 *)plVar1[7];
+    }
+    
+    // 数据无效，返回0
+    return 0;
 }
 
 
 
-undefined4 FUN_180547bf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_ExecuteDraw - 渲染系统绘制执行函数
+ * 
+ * 功能描述：
+ *   执行渲染系统的绘制操作，用于实际绘制图形
+ *   这是一个绘制执行函数，通过渲染队列异步执行绘制命令
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 绘制参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   undefined4 - 绘制执行结果
+ * 
+ * 处理流程：
+ *   1. 初始化返回值为0
+ *   2. 设置绘制处理回调函数
+ *   3. 准备绘制参数数组
+ *   4. 发送到渲染队列处理
+ *   5. 返回执行结果
+ * 
+ * 注意事项：
+ *   - 使用8字节的绘制参数数组
+ *   - 支持异步绘制执行
+ *   - 返回值在队列处理完成后更新
+ * 
+ * 简化实现：
+ *   原始实现：简单的绘制参数打包和队列发送
+ *   简化实现：保持原有绘制执行逻辑，添加了详细的参数说明
+ =============================================================================*/
+undefined4 RenderSystem_ExecuteDraw(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_8 [2];
-  undefined4 **ppuStackX_10;
-  undefined4 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  auStackX_8[0] = 0;
-  ppuStackX_10 = apuStack_30;
-  puStack_20 = &UNK_18054a870;
-  pcStack_18 = FUN_18054a800;
-  apuStack_30[0] = auStackX_8;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return auStackX_8[0];
+    undefined4 auStackX_8 [2];     // 绘制参数数组
+    undefined4 **ppuStackX_10;      // 参数指针指针
+    undefined4 *apuStack_30 [2];   // 参数指针数组
+    undefined *puStack_20;          // 回调函数指针
+    code *pcStack_18;              // 绘制处理回调
+    
+    // 初始化返回值
+    auStackX_8[0] = 0;
+    
+    // 设置绘制处理回调函数
+    ppuStackX_10 = apuStack_30;
+    puStack_20 = &UNK_18054a870;
+    pcStack_18 = FUN_18054a800;
+    
+    // 准备绘制参数数组
+    apuStack_30[0] = auStackX_8;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    // 返回执行结果
+    return auStackX_8[0];
 }
 
 
