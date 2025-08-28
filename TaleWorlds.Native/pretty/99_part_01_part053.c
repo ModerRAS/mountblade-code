@@ -429,7 +429,7 @@ void SystemParameterHandler(void)
   lVar1 = SystemParameterBuffer;
   if (*(int *)(SystemParameterBuffer + 8) == SYSTEM_STATE_INACTIVE) {
     SystemContextInitializer(SystemContextPtr);
-    puStack_20 = &unknown_var_1632_ptr;
+    puStack_20 = &SystemContextVar1632;
     pcStack_18 = SystemBufferInitializer;
     alStack_30[0] = lVar1;
     SystemParameterProcessor(alStack_30);
@@ -938,13 +938,13 @@ void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param
   ulonglong uStack_28;
   
   uStack_d0 = 0xfffffffffffffffe;
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
+  uStack_28 = SecurityCookieInitializer() ^ (ulonglong)auStack_108;
   uStack_e8 = 0;
-  puStack_c8 = &unknown_var_3432_ptr;
+  puStack_c8 = &SystemContextVar3432;
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = *(int32_t *)(param_1 + 0x10);
-  puVar3 = &system_buffer_ptr;
+  puVar3 = &SystemBufferPtr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_1 + 8);
   }
@@ -954,7 +954,7 @@ void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param
     cVar1 = DataStructureValidator(lVar4 + 0x108, param_3);
     if ((cVar1 != '\0') && (*(int *)(lVar4 + 0x380) != 0)) goto LAB_1800db339;
   }
-  plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_d8, &puStack_c8, param_3);
+  plVar2 = (longlong *)ResourceAllocator(SystemResourceState, &plStack_d8, &puStack_c8, param_3);
   uStack_e8 = 1;
   lVar4 = *plVar2;
   *plVar2 = 0;
@@ -968,7 +968,7 @@ void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param
     (**(code **)(*plStack_d8 + 0x38))();
   }
 LAB_1800db339:
-  puStack_c8 = &unknown_var_720_ptr;
+  puStack_c8 = &SystemContextVar720;
                     // WARNING: Subroutine does not return
   SecurityChecker(uStack_28 ^ (ulonglong)auStack_108);
 }
@@ -1026,7 +1026,7 @@ void ParameterValidator(float param_1, longlong *param_2, int *param_3)
   }
                     // WARNING: Could not recover jumptable at 0x0001800db44e. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Thrd_id();
+  ThreadIdentifier();
   return;
 }
 
@@ -1090,7 +1090,7 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
   ulonglong uStack_38;
   
   uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
+  uStack_38 = SecurityCookieInitializer() ^ (ulonglong)auStack_158;
   lVar1 = *param_2;
   if ((((lVar1 == 0) || (*(short *)(lVar1 + 0x32c) != SYSTEM_STACK_BUFFER_SIZE)) || (*(short *)(lVar1 + 0x32e) != SYSTEM_STACK_BUFFER_SIZE))
      || ((*(int *)(lVar1 + 0x324) != 0x1e || (*(int *)(lVar1 + 0x380) == SYSTEM_STATE_INACTIVE)))) {
@@ -1112,16 +1112,16 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
     uStack_11c = 0;
     uStack_118 = 0;
     uStack_108 = param_7;
-    puStack_d8 = &unknown_var_3432_ptr;
+    puStack_d8 = &SystemContextVar3432;
     puStack_d0 = auStack_c0;
     auStack_c0[0] = 0;
     uStack_c8 = *(int32_t *)(param_1 + 0x10);
-    puVar3 = &system_buffer_ptr;
+    puVar3 = &SystemBufferPtr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_1 + 8);
     }
     strcpy_s(auStack_c0,SYSTEM_STACK_BUFFER_SIZE,puVar3);
-    plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_f0, &puStack_d8, &uStack_138);
+    plVar2 = (longlong *)ResourceAllocator(SystemResourceState, &plStack_f0, &puStack_d8, &uStack_138);
     lVar1 = *plVar2;
     *plVar2 = 0;
     plStack_f8 = (longlong *)*param_2;
@@ -1132,7 +1132,7 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
     if (plStack_f0 != (longlong *)0x0) {
       (**(code **)(*plStack_f0 + 0x38))();
     }
-    puStack_d8 = &unknown_var_720_ptr;
+    puStack_d8 = &SystemContextVar720;
   }
                     // WARNING: Subroutine does not return
   SecurityChecker(uStack_38 ^ (ulonglong)auStack_158);

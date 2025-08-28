@@ -989,9 +989,9 @@ void UISystem_StateSynchronizer(longlong param_1)
 {
   int iVar1;
   
-  iVar1 = FUN_18078ad10();
+  iVar1 = UISystem_GetSystemStatus();
   if (iVar1 == 0) {
-    FUN_180746460(param_1,*(int32_t *)(param_1 + 0x680),0,0,param_1 + 0x116cc,0,0,0);
+    UISystem_ExecuteSystemOperation(param_1,*(int32_t *)(param_1 + 0x680),0,0,param_1 + 0x116cc,0,0,0);
   }
   return;
 }
@@ -1008,7 +1008,7 @@ uint64_t UISystem_DataUpdater(longlong param_1,int param_2,uint64_t param_3,uint
   *(uint64_t *)(param_1 + 0x115e8 + (longlong)param_2 * 8) = param_4;
   if ((param_1 != 0) && (param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,0x15);
+    UISystem_ExecuteSystemCleanup(param_1,0x15);
   }
   return 0;
 }
