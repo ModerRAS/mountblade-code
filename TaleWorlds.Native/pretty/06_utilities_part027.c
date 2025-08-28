@@ -138,7 +138,7 @@ void utilities_system_state_checker(uint64_t param_1, longlong param_2)
   if ((system_check_result != 0) && (status_flag == '\0')) {
     // 加锁并重置系统状态
     LOCK();
-    _DAT_180c821d0 = 0;
+    *system_state_flag_ptr = 0;
     UNLOCK();
   }
   return;
@@ -174,7 +174,7 @@ void utilities_system_state_resetter(uint64_t param_1, longlong param_2)
   if ((system_check_result != 0) && (reset_flag == '\0')) {
     // 加锁并重置系统状态
     LOCK();
-    _DAT_180c821d0 = 0;
+    *system_state_flag_ptr = 0;
     UNLOCK();
   }
   return;
@@ -1027,26 +1027,26 @@ void FUN_180941920(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   // plVar1 -> memory_ptr: 内存指针
   
   // 获取内存指针
-  memory_ptr = _DAT_180d49200;
+  memory_ptr = *memory_pool_ptr;
   
   // 调用内存处理函数
   FUN_18008d1f0(param_1,               // 内存参数1
-                _DAT_180d49200[1],    // 内存参数2
+                memory_pool_ptr[1],    // 内存参数2
                 param_3,               // 内存参数3
                 param_4,               // 内存参数4
                 0xfffffffffffffffe);  // 内存标志
   
   // 更新内存指针状态
-  _DAT_180d49200[1] = (longlong)memory_ptr;
-  *_DAT_180d49200 = (longlong)memory_ptr;
-  _DAT_180d49200[2] = (longlong)memory_ptr;
-  _DAT_180d49208 = 0;
+  memory_pool_ptr[1] = (longlong)memory_ptr;
+  *memory_pool_ptr = (longlong)memory_ptr;
+  memory_pool_ptr[2] = (longlong)memory_ptr;
+  *memory_pool_status_ptr = 0;
   
   // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
   // WARNING: Treating indirect jump as call
   
   // 释放内存
-  free(_DAT_180d49200,0x58);
+  free(memory_pool_ptr,0x58);
   return;
 }
 
@@ -1206,22 +1206,22 @@ void FUN_180941ad0(void)
   // uVar4 -> exception_mask: 异常掩码
   
   // 获取异常指针
-  exception_ptr = _DAT_180d493f8;
-  if (_DAT_180d493f8 == (uint64_t *)0x0) {
+  exception_ptr = *exception_handler_ptr;
+  if (*exception_handler_ptr == (uint64_t *)0x0) {
     return;
   }
   
   // 计算异常掩码
-  exception_mask = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  exception_mask = (ulonglong)*exception_handler_ptr & 0xffffffffffc00000;
   if (exception_mask != 0) {
     // 计算异常偏移量
-    exception_offset = exception_mask + 0x80 + ((longlong)_DAT_180d493f8 - exception_mask >> 0x10) * 0x50;
+    exception_offset = exception_mask + 0x80 + ((longlong)*exception_handler_ptr - exception_mask >> 0x10) * 0x50;
     exception_offset = exception_offset - (ulonglong)*(uint *)(exception_offset + 4);
     
     // 检查异常列表状态
     if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_offset + 0xe) == '\0')) {
       // 处理异常链表
-      *_DAT_180d493f8 = *(uint64_t *)(exception_offset + 0x20);
+      *exception_handler_ptr = *(uint64_t *)(exception_offset + 0x20);
       *(uint64_t **)(exception_offset + 0x20) = exception_ptr;
       exception_count = (int *)(exception_offset + 0x18);
       *exception_count = *exception_count + -1;
@@ -1236,7 +1236,7 @@ void FUN_180941ad0(void)
       // 调用异常处理函数
       func_0x00018064e870(exception_mask,
                           CONCAT71(0xff000000,*(void ***)(exception_mask + 0x70) == &ExceptionList),
-                          _DAT_180d493f8,
+                          *exception_handler_ptr,
                           exception_mask,
                           0xfffffffffffffffe);
     }
@@ -1355,14 +1355,14 @@ void utilities_system_state_cleaner_and_terminator(void)
 {
   if (DAT_180c91d50 != '\0') {
     FUN_18005a050();
-    if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
+    if ((1 < *system_sync_count_ptr) && (*system_sync_data_ptr != 0)) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    if (_DAT_180c91d18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c91d18 + 0x38))();
+    if (*system_sync_handler_ptr != (longlong *)0x0) {
+      (**(code **)(**system_sync_handler_ptr + 0x38))();
     }
-    if (_DAT_180c91cf0 != 0) {
+    if (*system_sync_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }

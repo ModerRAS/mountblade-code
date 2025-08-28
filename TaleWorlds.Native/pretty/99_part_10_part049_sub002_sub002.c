@@ -632,7 +632,7 @@ int FUN_1806c52c0(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
+int SystemConfigManager2(longlong param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;
@@ -743,7 +743,7 @@ int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c5850(uint64_t *param_1,longlong *param_2,int param_3)
+int StateManager2(uint64_t *param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;
@@ -832,7 +832,7 @@ int FUN_1806c5850(uint64_t *param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c59f0(longlong param_1,longlong *param_2,int param_3)
+int ComponentManager2(longlong param_1,longlong *param_2,int param_3)
 
 {
   int *piVar1;
@@ -1236,7 +1236,7 @@ int FUN_1806c59f0(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c5a08(longlong param_1,longlong *param_2)
+int SystemController2(longlong param_1,longlong *param_2)
 
 {
   int iVar1;
@@ -1719,7 +1719,7 @@ int FUN_1806c5a08(longlong param_1,longlong *param_2)
 
 
 
-int FUN_1806c5a1a(uint64_t param_1,uint64_t param_2)
+int SystemMonitor2(uint64_t param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -2198,7 +2198,7 @@ int FUN_1806c5a1a(uint64_t param_1,uint64_t param_2)
 
 
 
-int FUN_1806c5a43(void)
+int SystemCleaner2(void)
 
 {
   int iVar1;
@@ -2658,7 +2658,7 @@ int FUN_1806c5a43(void)
 
 
 
-int FUN_1806c5aa7(uint64_t param_1)
+int SystemChecker2(uint64_t param_1)
 
 {
   int iVar1;
@@ -3011,7 +3011,7 @@ int FUN_1806c5aa7(uint64_t param_1)
 
 
 
-int FUN_1806c5b0d(void)
+int SystemMonitor3(void)
 
 {
   int iVar1;
@@ -3353,7 +3353,7 @@ int FUN_1806c5b0d(void)
 
 
 
-int FUN_1806c5bff(uint64_t param_1,int32_t param_2)
+int SystemConfigurator2(uint64_t param_1,int32_t param_2)
 
 {
   int iVar1;
@@ -3655,7 +3655,7 @@ int FUN_1806c5bff(uint64_t param_1,int32_t param_2)
 
 
 
-int FUN_1806c5f62(uint64_t param_1,int32_t param_2)
+int SystemProcessor3(uint64_t param_1,int32_t param_2)
 
 {
   char *pcVar1;
@@ -3824,7 +3824,7 @@ int FUN_1806c5f62(uint64_t param_1,int32_t param_2)
 
 
 
-int FUN_1806c6244(void)
+int SystemHelper1(void)
 
 {
   int *piVar1;
@@ -3867,7 +3867,7 @@ int FUN_1806c6244(void)
 
 
 
-int FUN_1806c6294(void)
+int SystemHelper2(void)
 
 {
   char cVar1;
@@ -3887,7 +3887,7 @@ int FUN_1806c6294(void)
 
 
 
-int FUN_1806c62d0(longlong param_1,longlong *param_2,int param_3)
+int SystemLogger2(longlong param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;
@@ -3925,7 +3925,7 @@ int FUN_1806c62d0(longlong param_1,longlong *param_2,int param_3)
     }
   }
   ResourceCleaner(param_2);
-  FUN_1806c2790(param_2,param_3 + 1,param_1 + 0x60,&DAT_180be0350,auStackX_18);
+  DataProcessor2(param_2,param_3 + 1,param_1 + 0x60,&DAT_180be0350,auStackX_18);
   pcVar3 = *(code **)(param_1 + 0x98);
   StateManager(param_2,*(uint64_t *)(param_1 + 0x80));
   piVar2 = (int *)param_2[0xb];
