@@ -692,31 +692,38 @@ void Engine_SetObjectPropertiesAndTriggerCallback(longlong render_obj, longlong 
 
 
 
-// 函数: void FUN_18012d230(longlong param_1)
-void FUN_18012d230(longlong param_1)
+// 函数: void Engine_RemoveObjectFromBatchList(longlong target_object)
+void Engine_RemoveObjectFromBatchList(longlong target_object)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  int iVar4;
+  longlong batch_list_base;
+  longlong current_object;
+  longlong *object_ptr;
+  int search_index;
+  int batch_count;
   
-  lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1aa8);
-  lVar2 = *(longlong *)(lVar1 + -8 + (longlong)*(int *)(_DAT_180c8a9b0 + 0x1aa0) * 8);
-  if (((lVar2 != param_1) && (*(longlong *)(lVar2 + 0x3a0) != param_1)) &&
-     (iVar4 = *(int *)(_DAT_180c8a9b0 + 0x1aa0) + -2, -1 < iVar4)) {
-    lVar2 = (longlong)iVar4;
-    plVar3 = (longlong *)(lVar1 + lVar2 * 8);
+  // 获取批次列表基础地址
+  batch_list_base = *(longlong *)(g_EngineInstance + 0x1aa8);
+  current_object = *(longlong *)(batch_list_base + -8 + (longlong)*(int *)(g_EngineInstance + 0x1aa0) * 8);
+  
+  // 检查目标对象是否在批次列表中
+  if (((current_object != target_object) && (*(longlong *)(current_object + 0x3a0) != target_object)) &&
+     (search_index = *(int *)(g_EngineInstance + 0x1aa0) + -2, -1 < search_index)) {
+    
+    // 从后向前搜索目标对象
+    current_object = (longlong)search_index;
+    object_ptr = (longlong *)(batch_list_base + current_object * 8);
     do {
-      if (*plVar3 == param_1) {
-                    // WARNING: Subroutine does not return
-        memmove(lVar1 + (longlong)iVar4 * 8,lVar1 + (longlong)(iVar4 + 1) * 8,
-                (longlong)((*(int *)(_DAT_180c8a9b0 + 0x1aa0) - iVar4) + -1) << 3);
+      if (*object_ptr == target_object) {
+        // 找到目标对象，从列表中移除（不返回）
+        memmove(batch_list_base + (longlong)search_index * 8,
+                batch_list_base + (longlong)(search_index + 1) * 8,
+                (longlong)((*(int *)(g_EngineInstance + 0x1aa0) - search_index) + -1) << 3);
       }
-      iVar4 = iVar4 + -1;
-      plVar3 = plVar3 + -1;
-      lVar2 = lVar2 + -1;
-    } while (-1 < lVar2);
+      search_index = search_index + -1;
+      object_ptr = object_ptr + -1;
+      current_object = current_object + -1;
+    } while (-1 < current_object);
     return;
   }
   return;
@@ -728,69 +735,81 @@ void FUN_18012d230(longlong param_1)
 
 
 
-// 函数: void FUN_18012d2e0(longlong param_1)
-void FUN_18012d2e0(longlong param_1)
+// 函数: void Engine_UpdateObjectStateAndRemoveFromLists(longlong target_object)
+void Engine_UpdateObjectStateAndRemoveFromLists(longlong target_object)
 
 {
-  longlong lVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  int iVar5;
+  longlong engine_instance;
+  uint object_flags;
+  longlong transform_data;
+  longlong *object_list_ptr;
+  int search_index;
   
-  lVar1 = _DAT_180c8a9b0;
-  uVar2 = 0;
-  if (*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != param_1) {
-    *(longlong *)(_DAT_180c8a9b0 + 0x1c98) = param_1;
-    if ((param_1 != 0) && (*(char *)(lVar1 + 0x1d07) != '\0')) {
-      *(undefined1 *)(lVar1 + 0x1d05) = 1;
+  engine_instance = g_EngineInstance;
+  object_flags = 0;
+  
+  // 更新对象状态
+  if (*(longlong *)(g_EngineInstance + 0x1c98) != target_object) {
+    *(longlong *)(g_EngineInstance + 0x1c98) = target_object;
+    if ((target_object != 0) && (*(char *)(engine_instance + 0x1d07) != '\0')) {
+      *(uint8_t *)(engine_instance + 0x1d05) = 1;
     }
-    *(undefined1 *)(lVar1 + 0x1d09) = 0;
-    if (param_1 != 0) {
-      uVar2 = *(undefined4 *)(param_1 + 0x3c8);
+    *(uint8_t *)(engine_instance + 0x1d09) = 0;
+    if (target_object != 0) {
+      object_flags = *(uint *)(target_object + 0x3c8);
     }
-    *(undefined4 *)(lVar1 + 0x1ca0) = uVar2;
-    *(undefined1 *)(lVar1 + 0x1d04) = 0;
-    *(undefined4 *)(lVar1 + 0x1cfc) = 0;
+    *(uint *)(engine_instance + 0x1ca0) = object_flags;
+    *(uint8_t *)(engine_instance + 0x1d04) = 0;
+    *(uint *)(engine_instance + 0x1cfc) = 0;
   }
-  if (param_1 != 0) {
-    if ((*(longlong *)(param_1 + 0x408) != 0) &&
-       (lVar3 = *(longlong *)(*(longlong *)(param_1 + 0x408) + 0x30), lVar3 != 0)) {
-      *(undefined4 *)(lVar3 + 0x18) = *(undefined4 *)(param_1 + 8);
-      lVar3 = *(longlong *)(*(longlong *)(param_1 + 0x408) + 0x30);
-      *(undefined4 *)(lVar3 + 0x14) = *(undefined4 *)(lVar3 + 0x18);
+  
+  if (target_object != 0) {
+    // 更新变换数据
+    if ((*(longlong *)(target_object + 0x408) != 0) &&
+       (transform_data = *(longlong *)(*(longlong *)(target_object + 0x408) + 0x30), transform_data != 0)) {
+      *(uint *)(transform_data + 0x18) = *(uint *)(target_object + 8);
+      transform_data = *(longlong *)(*(longlong *)(target_object + 0x408) + 0x30);
+      *(uint *)(transform_data + 0x14) = *(uint *)(transform_data + 0x18);
     }
-    if (*(longlong *)(param_1 + 0x3a0) != 0) {
-      param_1 = *(longlong *)(param_1 + 0x3a0);
+    
+    // 获取关联对象
+    if (*(longlong *)(target_object + 0x3a0) != 0) {
+      target_object = *(longlong *)(target_object + 0x3a0);
     }
-    if (((((*(uint *)(param_1 + 0xc) & 0x4000000) != 0) && (*(int *)(lVar1 + 0x1b2c) != 0)) &&
-        (*(longlong *)(lVar1 + 0x1b50) != 0)) &&
-       (*(longlong *)(*(longlong *)(lVar1 + 0x1b50) + 0x3a0) != param_1)) {
-      *(undefined2 *)(lVar1 + 0x1b3c) = 1;
-      *(undefined4 *)(lVar1 + 0x1b38) = 0;
-      *(undefined1 *)(lVar1 + 0x1b3e) = 0;
-      *(undefined4 *)(lVar1 + 0x1b2c) = 0;
-      *(undefined4 *)(lVar1 + 0x1b44) = 0;
-      *(undefined8 *)(lVar1 + 0x1b50) = 0;
+    
+    // 重置相关状态
+    if (((((*(uint *)(target_object + 0xc) & 0x4000000) != 0) && (*(int *)(engine_instance + 0x1b2c) != 0)) &&
+        (*(longlong *)(engine_instance + 0x1b50) != 0)) &&
+       (*(longlong *)(*(longlong *)(engine_instance + 0x1b50) + 0x3a0) != target_object)) {
+      *(uint16_t *)(engine_instance + 0x1b3c) = 1;
+      *(uint *)(engine_instance + 0x1b38) = 0;
+      *(uint8_t *)(engine_instance + 0x1b3e) = 0;
+      *(uint *)(engine_instance + 0x1b2c) = 0;
+      *(uint *)(engine_instance + 0x1b44) = 0;
+      *(longlong *)(engine_instance + 0x1b50) = 0;
     }
-    if ((*(longlong *)(*(longlong *)(lVar1 + 0x1ab8) + -8 + (longlong)*(int *)(lVar1 + 0x1ab0) * 8)
-         != param_1) && (iVar5 = *(int *)(lVar1 + 0x1ab0) + -2, -1 < iVar5)) {
-      lVar3 = (longlong)iVar5;
-      plVar4 = (longlong *)(*(longlong *)(lVar1 + 0x1ab8) + lVar3 * 8);
+    
+    // 从对象列表中移除
+    if ((*(longlong *)(*(longlong *)(engine_instance + 0x1ab8) + -8 + (longlong)*(int *)(engine_instance + 0x1ab0) * 8)
+         != target_object) && (search_index = *(int *)(engine_instance + 0x1ab0) + -2, -1 < search_index)) {
+      transform_data = (longlong)search_index;
+      object_list_ptr = (longlong *)(*(longlong *)(engine_instance + 0x1ab8) + transform_data * 8);
       do {
-        if (*plVar4 == param_1) {
-                    // WARNING: Subroutine does not return
-          memmove(*(longlong *)(lVar1 + 0x1ab8) + (longlong)iVar5 * 8,
-                  *(longlong *)(lVar1 + 0x1ab8) + (longlong)(iVar5 + 1) * 8,
-                  (longlong)((*(int *)(lVar1 + 0x1ab0) - iVar5) + -1) << 3);
+        if (*object_list_ptr == target_object) {
+          // 找到目标对象，从列表中移除（不返回）
+          memmove(*(longlong *)(engine_instance + 0x1ab8) + (longlong)search_index * 8,
+                  *(longlong *)(engine_instance + 0x1ab8) + (longlong)(search_index + 1) * 8,
+                  (longlong)((*(int *)(engine_instance + 0x1ab0) - search_index) + -1) << 3);
         }
-        iVar5 = iVar5 + -1;
-        plVar4 = plVar4 + -1;
-        lVar3 = lVar3 + -1;
-      } while (-1 < lVar3);
+        search_index = search_index + -1;
+        object_list_ptr = object_list_ptr + -1;
+        transform_data = transform_data + -1;
+      } while (-1 < transform_data);
     }
-    if ((*(uint *)(param_1 + 0xc) & 0x2000) == 0) {
-      FUN_18012d230(param_1);
+    
+    // 如果对象标志符合条件，从批次列表中移除
+    if ((*(uint *)(target_object + 0xc) & 0x2000) == 0) {
+      Engine_RemoveObjectFromBatchList(target_object);
     }
   }
   return;
@@ -802,81 +821,96 @@ void FUN_18012d2e0(longlong param_1)
 
 
 
-// 函数: void FUN_18012d4c0(int param_1)
-void FUN_18012d4c0(int param_1)
+// 函数: void Engine_GenerateInterpolatedFloatValues(int segment_count)
+void Engine_GenerateInterpolatedFloatValues(int segment_count)
 
 {
-  int *piVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  int iVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  float fVar9;
-  float fVar10;
-  float fStackX_10;
+  int *array_capacity;
+  longlong context_obj;
+  int new_capacity;
+  int current_capacity;
+  int array_size;
+  uint segment_index;
+  ulonglong remaining_segments;
+  longlong engine_instance;
+  float start_value;
+  float step_value;
+  float first_value;
   
-  lVar8 = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar2 = *(longlong *)(lVar8 + 0x1af8);
-  fVar9 = (float)func_0x00018012d6a0();
-  uVar6 = param_1 - 1;
-  fVar10 = (float)(int)((fVar9 - (float)(int)uVar6 * *(float *)(lVar8 + 0x1674)) / (float)param_1);
-  if (fVar10 <= 1.0) {
-    fVar10 = 1.0;
+  engine_instance = g_EngineInstance;
+  *(uint8_t *)(*(longlong *)(g_EngineInstance + 0x1af8) + 0xb1) = 1;
+  context_obj = *(longlong *)(engine_instance + 0x1af8);
+  
+  // 获取起始值
+  start_value = (float)Engine_GetCurrentValue();
+  segment_index = segment_count - 1;
+  
+  // 计算步长值
+  step_value = (float)(int)((start_value - (float)(int)segment_index * *(float *)(engine_instance + 0x1674)) / (float)segment_count);
+  if (step_value <= 1.0) {
+    step_value = 1.0;
   }
-  fStackX_10 = (float)(int)(fVar9 - (fVar10 + *(float *)(lVar8 + 0x1674)) * (float)(int)uVar6);
-  if (fStackX_10 <= 1.0) {
-    fStackX_10 = 1.0;
+  
+  // 计算第一个值
+  first_value = (float)(int)(start_value - (step_value + *(float *)(engine_instance + 0x1674)) * (float)(int)segment_index);
+  if (first_value <= 1.0) {
+    first_value = 1.0;
   }
-  piVar1 = (int *)(lVar2 + 0x1c8);
-  iVar5 = *piVar1;
-  iVar4 = *(int *)(lVar2 + 0x1cc);
-  if (iVar5 == iVar4) {
-    if (iVar4 == 0) {
-      iVar4 = 8;
+  
+  // 获取数组指针和容量
+  array_capacity = (int *)(context_obj + 0x1c8);
+  array_size = *array_capacity;
+  current_capacity = *(int *)(context_obj + 0x1cc);
+  
+  // 检查是否需要扩展数组
+  if (array_size == current_capacity) {
+    if (current_capacity == 0) {
+      current_capacity = 8;
     }
     else {
-      iVar4 = iVar4 / 2 + iVar4;
+      current_capacity = current_capacity / 2 + current_capacity;
     }
-    iVar3 = iVar5 + 1;
-    if (iVar5 + 1 < iVar4) {
-      iVar3 = iVar4;
+    new_capacity = array_size + 1;
+    if (array_size + 1 < current_capacity) {
+      new_capacity = current_capacity;
     }
-    FUN_18011dbd0(piVar1,iVar3);
-    iVar5 = *piVar1;
+    Engine_ResizeArray(array_capacity, new_capacity);
+    array_size = *array_capacity;
   }
-  *(float *)(*(longlong *)(lVar2 + 0x1d0) + (longlong)iVar5 * 4) = fStackX_10;
-  iVar5 = *piVar1 + 1;
-  *piVar1 = iVar5;
-  if (0 < (int)uVar6) {
-    uVar7 = (ulonglong)uVar6;
+  
+  // 存储第一个值
+  *(float *)(*(longlong *)(context_obj + 0x1d0) + (longlong)array_size * 4) = first_value;
+  array_size = *array_capacity + 1;
+  *array_capacity = array_size;
+  
+  // 生成剩余的插值
+  if (0 < (int)segment_index) {
+    remaining_segments = (ulonglong)segment_index;
     do {
-      iVar4 = *(int *)(lVar2 + 0x1cc);
-      if (iVar5 == iVar4) {
-        if (iVar4 == 0) {
-          iVar4 = 8;
+      current_capacity = *(int *)(context_obj + 0x1cc);
+      if (array_size == current_capacity) {
+        if (current_capacity == 0) {
+          current_capacity = 8;
         }
         else {
-          iVar4 = iVar4 / 2 + iVar4;
+          current_capacity = current_capacity / 2 + current_capacity;
         }
-        iVar3 = iVar5 + 1;
-        if (iVar5 + 1 < iVar4) {
-          iVar3 = iVar4;
+        new_capacity = array_size + 1;
+        if (array_size + 1 < current_capacity) {
+          new_capacity = current_capacity;
         }
-        FUN_18011dbd0(piVar1,iVar3);
-        iVar5 = *piVar1;
+        Engine_ResizeArray(array_capacity, new_capacity);
+        array_size = *array_capacity;
       }
-      *(float *)(*(longlong *)(lVar2 + 0x1d0) + (longlong)iVar5 * 4) = fVar10;
-      iVar5 = *piVar1 + 1;
-      *piVar1 = iVar5;
-      uVar7 = uVar7 - 1;
-    } while (uVar7 != 0);
+      *(float *)(*(longlong *)(context_obj + 0x1d0) + (longlong)array_size * 4) = step_value;
+      array_size = *array_capacity + 1;
+      *array_capacity = array_size;
+      remaining_segments = remaining_segments - 1;
+    } while (remaining_segments != 0);
   }
-  *(undefined4 *)(lVar2 + 0x1ac) =
-       *(undefined4 *)(*(longlong *)(lVar2 + 0x1d0) + -4 + (longlong)iVar5 * 4);
+  
+  // 设置最后的值
+  *(uint *)(context_obj + 0x1ac) = *(uint *)(*(longlong *)(context_obj + 0x1d0) + -4 + (longlong)array_size * 4);
   return;
 }
 
@@ -884,30 +918,33 @@ void FUN_18012d4c0(int param_1)
 
 
 
-// 函数: void FUN_18012d5bc(void)
-void FUN_18012d5bc(void)
+// 函数: void Engine_PopulateFloatArrayWithBatchValues(uint batch_count, longlong array_info, longlong context_obj, uint value)
+void Engine_PopulateFloatArrayWithBatchValues(uint batch_count, longlong array_info, longlong context_obj, uint value)
 
 {
-  int in_EAX;
-  uint unaff_EBX;
-  longlong unaff_RBP;
-  ulonglong uVar1;
-  int *unaff_RDI;
-  undefined4 in_stack_00000040;
+  int array_index;
+  uint current_batch;
+  longlong target_context;
+  ulonglong remaining_batches;
+  int *array_capacity;
   
-  uVar1 = (ulonglong)unaff_EBX;
+  remaining_batches = (ulonglong)batch_count;
   do {
-    if (in_EAX == unaff_RDI[1]) {
-      FUN_18011dbd0();
-      in_EAX = *unaff_RDI;
+    // 检查是否需要扩展数组
+    if (array_index == array_capacity[1]) {
+      Engine_ResizeArray(array_capacity);
+      array_index = *array_capacity;
     }
-    *(undefined4 *)(*(longlong *)(unaff_RDI + 2) + (longlong)in_EAX * 4) = in_stack_00000040;
-    in_EAX = *unaff_RDI + 1;
-    *unaff_RDI = in_EAX;
-    uVar1 = uVar1 - 1;
-  } while (uVar1 != 0);
-  *(undefined4 *)(unaff_RBP + 0x1ac) =
-       *(undefined4 *)(*(longlong *)(unaff_RBP + 0x1d0) + -4 + (longlong)in_EAX * 4);
+    
+    // 设置数组值
+    *(uint *)(*(longlong *)(array_capacity + 2) + (longlong)array_index * 4) = value;
+    array_index = *array_capacity + 1;
+    *array_capacity = array_index;
+    remaining_batches = remaining_batches - 1;
+  } while (remaining_batches != 0);
+  
+  // 设置最后的值
+  *(uint *)(target_context + 0x1ac) = *(uint *)(*(longlong *)(target_context + 0x1d0) + -4 + (longlong)array_index * 4);
   return;
 }
 
@@ -915,15 +952,12 @@ void FUN_18012d5bc(void)
 
 
 
-// 函数: void FUN_18012d615(void)
-void FUN_18012d615(void)
+// 函数: void Engine_UpdateArrayFinalValue(int array_index, longlong context_obj)
+void Engine_UpdateArrayFinalValue(int array_index, longlong context_obj)
 
 {
-  int in_EAX;
-  longlong unaff_RBP;
-  
-  *(undefined4 *)(unaff_RBP + 0x1ac) =
-       *(undefined4 *)(*(longlong *)(unaff_RBP + 0x1d0) + -4 + (longlong)in_EAX * 4);
+  // 更新数组的最终值
+  *(uint *)(context_obj + 0x1ac) = *(uint *)(*(longlong *)(context_obj + 0x1d0) + -4 + (longlong)array_index * 4);
   return;
 }
 
@@ -933,122 +967,122 @@ void FUN_18012d615(void)
 
 
 
-// 函数: void FUN_18012d7c0(longlong param_1)
-void FUN_18012d7c0(longlong param_1)
+// 函数: void Engine_AddRenderDataToBuffer(longlong render_data)
+void Engine_AddRenderDataToBuffer(longlong render_data)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  int *piVar3;
-  longlong lVar4;
-  int iVar5;
-  uint uVar6;
-  uint uVar7;
-  longlong lVar8;
-  int iVar9;
-  int iVar10;
-  longlong lVar11;
-  uint *puVar12;
-  longlong *plVar13;
-  int *piVar14;
-  int *piVar15;
-  int *piVar16;
-  longlong lStackX_8;
-  undefined4 uStack_24;
-  undefined8 uStack_20;
+  undefined8 *data_ptr;
+  undefined8 data_value;
+  int *buffer_info;
+  longlong render_context;
+  int buffer_index;
+  uint texture_flags;
+  uint render_flags;
+  longlong texture_handle;
+  int buffer_capacity;
+  int max_capacity;
+  longlong data_offset;
+  uint *texture_data;
+  longlong *render_buffer;
+  int *buffer_entry;
+  int *prev_entry;
+  int *next_entry;
+  longlong current_data;
+  undefined4 render_mode;
+  undefined8 render_params;
   
-  lVar8 = _DAT_180c8a9b0;
-  lStackX_8 = param_1;
-  if ((param_1 == 0) && (lStackX_8 = *(longlong *)(_DAT_180c8a9b0 + 0xb0), lStackX_8 == 0)) {
-    lStackX_8 = **(longlong **)(*(longlong *)(_DAT_180c8a9b0 + 0xa0) + 0x48);
+  texture_handle = g_EngineInstance;
+  current_data = render_data;
+  if ((render_data == 0) && (current_data = *(longlong *)(g_EngineInstance + 0xb0), current_data == 0)) {
+    current_data = **(longlong **)(*(longlong *)(g_EngineInstance + 0xa0) + 0x48);
   }
-  lVar4 = lStackX_8;
-  func_0x00018012d740(lStackX_8);
-  FUN_18013d860(lVar8 + 0x1ba0,&lStackX_8);
-  uVar2 = *(undefined8 *)(*(longlong *)(lVar4 + 0x58) + 8);
-  piVar3 = *(int **)(*(longlong *)(lVar8 + 0x1af8) + 0x2e8);
-  iVar10 = piVar3[0x1c];
-  if (iVar10 == piVar3[0x1d]) {
-    FUN_18011dc70(piVar3 + 0x1c);
-    iVar10 = piVar3[0x1c];
+  render_context = current_data;
+  Engine_InitializeRenderContext(current_data);
+  Engine_UpdateRenderState(texture_handle + 0x1ba0, &current_data);
+  data_value = *(undefined8 *)(*(longlong *)(render_context + 0x58) + 8);
+  buffer_info = *(int **)(*(longlong *)(texture_handle + 0x1af8) + 0x2e8);
+  buffer_capacity = buffer_info[0x1c];
+  if (buffer_capacity == buffer_info[0x1d]) {
+    Engine_ExpandRenderBuffer(buffer_info + 0x1c);
+    buffer_capacity = buffer_info[0x1c];
   }
-  *(undefined8 *)(*(longlong *)(piVar3 + 0x1e) + (longlong)iVar10 * 8) = uVar2;
-  piVar3[0x1c] = piVar3[0x1c] + 1;
-  piVar16 = (int *)0x0;
-  if (piVar3[0x1c] != 0) {
-    piVar16 = *(int **)(*(longlong *)(piVar3 + 0x1e) + -8 + (longlong)piVar3[0x1c] * 8);
+  *(undefined8 *)(*(longlong *)(buffer_info + 0x1e) + (longlong)buffer_capacity * 8) = data_value;
+  buffer_info[0x1c] = buffer_info[0x1c] + 1;
+  next_entry = (int *)0x0;
+  if (buffer_info[0x1c] != 0) {
+    next_entry = *(int **)(*(longlong *)(buffer_info + 0x1e) + -8 + (longlong)buffer_info[0x1c] * 8);
   }
-  iVar10 = *piVar3;
-  if (iVar10 != 0) {
-    piVar15 = (int *)(*(longlong *)(piVar3 + 2) + -0x30 + (longlong)iVar10 * 0x30);
-    if ((piVar15 != (int *)0x0) &&
-       (((*piVar15 == 0 || (*(int **)(piVar15 + 6) == piVar16)) && (*(longlong *)(piVar15 + 8) == 0)
+  buffer_capacity = *buffer_info;
+  if (buffer_capacity != 0) {
+    buffer_entry = (int *)(*(longlong *)(buffer_info + 2) + -0x30 + (longlong)buffer_capacity * 0x30);
+    if ((buffer_entry != (int *)0x0) &&
+       (((*buffer_entry == 0 || (*(int **)(buffer_entry + 6) == next_entry)) && (*(longlong *)(buffer_entry + 8) == 0)
         ))) {
-      piVar14 = piVar15 + -0xc;
-      if (iVar10 < 2) {
-        piVar14 = (int *)0x0;
+      prev_entry = buffer_entry + -0xc;
+      if (buffer_capacity < 2) {
+        prev_entry = (int *)0x0;
       }
-      if (((*piVar15 == 0) && (piVar14 != (int *)0x0)) && (*(int **)(piVar14 + 6) == piVar16)) {
-        if (piVar3[0x18] == 0) {
-          plVar13 = (longlong *)(*(longlong *)(piVar3 + 0xe) + 0x18);
+      if (((*buffer_entry == 0) && (prev_entry != (int *)0x0)) && (*(int **)(prev_entry + 6) == next_entry)) {
+        if (buffer_info[0x18] == 0) {
+          render_buffer = (longlong *)(*(longlong *)(buffer_info + 0xe) + 0x18);
         }
         else {
-          plVar13 = (longlong *)
-                    ((longlong)(piVar3[0x18] + -1) * 0x10 + *(longlong *)(piVar3 + 0x1a));
+          render_buffer = (longlong *)
+                    ((longlong)(buffer_info[0x18] + -1) * 0x10 + *(longlong *)(buffer_info + 0x1a));
         }
-        if (((*(longlong *)(piVar14 + 1) == *plVar13) && (*(longlong *)(piVar14 + 3) == plVar13[1]))
-           && (*(longlong *)(piVar14 + 8) == 0)) {
-          *piVar3 = iVar10 + -1;
+        if (((*(longlong *)(prev_entry + 1) == *render_buffer) && (*(longlong *)(prev_entry + 3) == render_buffer[1]))
+           && (*(longlong *)(prev_entry + 8) == 0)) {
+          *buffer_info = buffer_capacity + -1;
           return;
         }
       }
-      *(int **)(piVar15 + 6) = piVar16;
+      *(int **)(buffer_entry + 6) = next_entry;
       return;
     }
   }
-  if (piVar3[0x18] == 0) {
-    puVar12 = (uint *)(*(longlong *)(piVar3 + 0xe) + 0x18);
+  if (buffer_info[0x18] == 0) {
+    texture_data = (uint *)(*(longlong *)(buffer_info + 0xe) + 0x18);
   }
   else {
-    puVar12 = (uint *)((longlong)(piVar3[0x18] + -1) * 0x10 + *(longlong *)(piVar3 + 0x1a));
+    texture_data = (uint *)((longlong)(buffer_info[0x18] + -1) * 0x10 + *(longlong *)(buffer_info + 0x1a));
   }
-  uVar6 = *puVar12;
-  lVar8 = *(longlong *)(puVar12 + 1);
-  uVar7 = puVar12[3];
-  if (piVar3[0x1c] == 0) {
-    uStack_20 = 0;
+  texture_flags = *texture_data;
+  texture_handle = *(longlong *)(texture_data + 1);
+  render_flags = texture_data[3];
+  if (buffer_info[0x1c] == 0) {
+    render_params = 0;
   }
   else {
-    uStack_20 = *(undefined8 *)(*(longlong *)(piVar3 + 0x1e) + -8 + (longlong)piVar3[0x1c] * 8);
+    render_params = *(undefined8 *)(*(longlong *)(buffer_info + 0x1e) + -8 + (longlong)buffer_info[0x1c] * 8);
   }
-  iVar10 = *piVar3;
-  iVar9 = piVar3[1];
-  if (iVar10 == iVar9) {
-    if (iVar9 == 0) {
-      iVar9 = 8;
+  buffer_capacity = *buffer_info;
+  max_capacity = buffer_info[1];
+  if (buffer_capacity == max_capacity) {
+    if (max_capacity == 0) {
+      max_capacity = 8;
     }
     else {
-      iVar9 = iVar9 / 2 + iVar9;
+      max_capacity = max_capacity / 2 + max_capacity;
     }
-    iVar5 = iVar10 + 1;
-    if (iVar10 + 1 < iVar9) {
-      iVar5 = iVar9;
+    buffer_index = buffer_capacity + 1;
+    if (buffer_capacity + 1 < max_capacity) {
+      buffer_index = max_capacity;
     }
-    FUN_18013e760(piVar3,iVar5);
-    iVar10 = *piVar3;
+    Engine_ExpandRenderBuffer(buffer_info, buffer_index);
+    buffer_capacity = *buffer_info;
   }
-  lVar11 = (longlong)iVar10;
-  lVar4 = *(longlong *)(piVar3 + 2);
-  plVar13 = (longlong *)(lVar4 + lVar11 * 0x30);
-  *plVar13 = (ulonglong)uVar6 << 0x20;
-  plVar13[1] = lVar8;
-  puVar1 = (undefined8 *)(lVar4 + 0x10 + lVar11 * 0x30);
-  *puVar1 = CONCAT44(uStack_24,uVar7);
-  puVar1[1] = uStack_20;
-  puVar1 = (undefined8 *)(lVar4 + 0x20 + lVar11 * 0x30);
-  *puVar1 = 0;
-  puVar1[1] = 0;
-  *piVar3 = *piVar3 + 1;
+  current_data = (longlong)buffer_capacity;
+  render_context = *(longlong *)(buffer_info + 2);
+  render_buffer = (longlong *)(render_context + current_data * 0x30);
+  *render_buffer = (ulonglong)texture_flags << 0x20;
+  render_buffer[1] = render_context;
+  data_ptr = (undefined8 *)(render_context + 0x10 + current_data * 0x30);
+  *data_ptr = CONCAT44(render_mode, render_flags);
+  data_ptr[1] = render_params;
+  data_ptr = (undefined8 *)(render_context + 0x20 + current_data * 0x30);
+  *data_ptr = 0;
+  data_ptr[1] = 0;
+  *buffer_info = *buffer_info + 1;
   return;
 }
 
