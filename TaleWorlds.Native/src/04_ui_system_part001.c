@@ -787,25 +787,25 @@ undefined DAT_180d4a788;                          // UI系统管线管理数据�
 undefined DAT_180d4a740;                          // UI系统缓冲区管理数据表 - 存储缓冲区管理数据
 undefined DAT_180d4a700;                          // UI系统内存管理数据表 - 存储内存管理数据
 undefined DAT_180d4a6e0;                          // UI系统资源管理数据表 - 存储资源管理数据
-undefined DAT_180d4a6b8;
-undefined DAT_180d4a968;
-undefined DAT_180d4a948;
-undefined DAT_180d4a920;
-undefined DAT_180d4a8f0;
-undefined DAT_180d4a8d0;
-undefined DAT_180d4a898;
-undefined DAT_180d4a858;
-undefined DAT_180d4a820;
-undefined DAT_180d4a7e0;
-undefined DAT_180d4a7b0;
-undefined DAT_180d4a778;
-undefined DAT_180d4a750;
-undefined DAT_180d4a708;
-undefined DAT_180d4a958;
-undefined DAT_180d4a928;
-undefined DAT_180d4a910;
-undefined DAT_180d4a8c0;
-undefined DAT_180d4a8a8;
+undefined DAT_180d4a6b8;                          // UI系统性能监控数据表 - 存储性能监控数据
+undefined DAT_180d4a968;                          // UI系统调试信息数据表 - 存储调试信息
+undefined DAT_180d4a948;                          // UI系统日志记录数据表 - 存储日志记录
+undefined DAT_180d4a920;                          // UI系统错误报告数据表 - 存储错误报告
+undefined DAT_180d4a8f0;                          // UI系统统计信息数据表 - 存储统计信息
+undefined DAT_180d4a8d0;                          // UI系统配置文件数据表 - 存储配置文件
+undefined DAT_180d4a898;                          // UI系统用户偏好数据表 - 存储用户偏好
+undefined DAT_180d4a858;                          // UI系统主题样式数据表 - 存储主题样式
+undefined DAT_180d4a820;                          // UI系统本地化数据表 - 存储本地化数据
+undefined DAT_180d4a7e0;                          // UI系统动画数据表 - 存储动画数据
+undefined DAT_180d4a7b0;                          // UI系统过渡效果数据表 - 存储过渡效果
+undefined DAT_180d4a778;                          // UI系统交互反馈数据表 - 存储交互反馈
+undefined DAT_180d4a750;                          // UI系统音频效果数据表 - 存储音频效果
+undefined DAT_180d4a708;                          // UI系统视频播放数据表 - 存储视频播放
+undefined DAT_180d4a958;                          // UI系统网络通信数据表 - 存储网络通信
+undefined DAT_180d4a928;                          // UI系统数据同步数据表 - 存储数据同步
+undefined DAT_180d4a910;                          // UI系统文件操作数据表 - 存储文件操作
+undefined DAT_180d4a8c0;                          // UI系统数据库访问数据表 - 存储数据库访问
+undefined DAT_180d4a8a8;                          // UI系统缓存管理数据表 - 存储缓存管理
 undefined UNK_180002e60;
 undefined UNK_180002ea0;
 undefined UNK_180002ee0;

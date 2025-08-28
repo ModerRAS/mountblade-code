@@ -101,6 +101,30 @@
 // 参数化数据处理器
 #define ParameterizedDataProcessor FUN_1807cd630
 
+// 系统资源管理器
+#define SystemResourceManager FUN_1807cd7f0
+
+// 高级数据处理协调器
+#define AdvancedDataProcessingCoordinator FUN_1807cd854
+
+// 系统状态同步器
+#define SystemStateSynchronizer FUN_1807ce34b
+
+// 系统配置处理器
+#define SystemConfigurationProcessor FUN_1807ce440
+
+// 系统错误处理器
+#define SystemErrorHandler FUN_1807ce620
+
+// 系统清理器
+#define SystemCleaner FUN_1807ce6c8
+
+// 系统完成处理器
+#define SystemCompletionProcessor FUN_1807cf15c
+
+// 系统最终处理器
+#define SystemFinalProcessor FUN_1807cf390
+
 /* ============================================================================
  * 常量定义
  * ============================================================================ */
@@ -587,56 +611,71 @@ undefined8 ErrorCodeReturner(void)
 
 
 
-undefined8 FUN_1807cd630(longlong param_1,char param_2)
+/**
+ * 参数化数据处理器 - 处理带参数的数据操作
+ * 
+ * 功能：
+ * - 处理参数化的数据转换操作
+ * - 管理状态检查和验证
+ * - 执行参数驱动的内存操作
+ * - 处理缓冲区管理
+ * 
+ * @param system_context 系统上下文指针
+ * @param operation_flag 操作标志
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 ParameterizedDataProcessor(longlong system_context, char operation_flag)
 
 {
-  char cVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  int iVar4;
+  char state_flag;
+  uint current_index;
+  ulonglong data_offset;
+  int iteration_count;
   
-  if (*(int *)(param_1 + 0xbec) == 0) {
-    if ((*(char *)(param_1 + 0xbe9) == '\0') || (*(char *)(param_1 + 0xbea) != '\0')) {
-      uVar2 = *(uint *)(param_1 + 0xc0c);
-      uVar3 = (ulonglong)(int)uVar2;
-      if (-1 < (int)uVar2) {
-        *(uint *)(param_1 + 0xbfc) = uVar2;
-        cVar1 = *(char *)(uVar3 + 0x290 + param_1);
-        while (cVar1 == -2) {
-          uVar2 = (int)uVar3 + 1;
-          *(uint *)(param_1 + 0xbfc) = uVar2;
-          if (*(int *)(param_1 + 0x8ec) <= (int)uVar2) {
-            if (*(char *)(param_1 + 0xbea) == '\0') {
-              FUN_18080d690(param_1);
+  // 检查系统处理状态
+  if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
+    // 检查系统标志位状态
+    if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
+      current_index = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
+      data_offset = (ulonglong)(int)current_index;
+      if (-1 < (int)current_index) {
+        *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
+        state_flag = *(char *)(data_offset + SYSTEM_OFFSET_290 + system_context);
+        while (state_flag == SYSTEM_DATA_FLAG_NEG2) {
+          current_index = (int)data_offset + 1;
+          *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
+          if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= (int)current_index) {
+            if (*(char *)(system_context + SYSTEM_OFFSET_BEA) == '\0') {
+              FUN_18080d690(system_context);
             }
-            uVar2 = *(uint *)(param_1 + 0xbd0);
-            *(uint *)(param_1 + 0xbfc) = uVar2;
+            current_index = *(uint *)(system_context + SYSTEM_OFFSET_BD0);
+            *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
           }
-          uVar3 = (ulonglong)uVar2;
-          cVar1 = *(char *)((longlong)(int)uVar2 + 0x290 + param_1);
+          data_offset = (ulonglong)current_index;
+          state_flag = *(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context);
         }
-        if (*(char *)((longlong)(int)uVar2 + 0x290 + param_1) == -1) {
-          *(undefined4 *)(param_1 + 0xbfc) = *(undefined4 *)(param_1 + 0xbd0);
+        if (*(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context) == SYSTEM_INVALID_INDEX) {
+          *(undefined4 *)(system_context + SYSTEM_OFFSET_BFC) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
         }
-        *(undefined4 *)(param_1 + 0xc0c) = 0xffffffff;
+        *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
       }
-      if (-1 < *(int *)(param_1 + 0xc08)) {
-        *(int *)(param_1 + 0xbf8) = *(int *)(param_1 + 0xc08);
-        *(undefined4 *)(param_1 + 0xc08) = 0xffffffff;
+      if (-1 < *(int *)(system_context + SYSTEM_OFFSET_C08)) {
+        *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
+        *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
       }
-      FUN_1807ce620(param_1,param_2);
-      if (*(int *)(param_1 + 0xc08) == -1) {
-        iVar4 = *(int *)(param_1 + 0xbf8) + 1;
-        *(int *)(param_1 + 0xc08) = iVar4;
-        if (*(int *)(*(longlong *)(param_1 + 0x278) +
-                    (ulonglong)*(byte *)((longlong)*(int *)(param_1 + 0xbfc) + 0x290 + param_1) *
-                    0x10) <= iVar4) {
-          iVar4 = *(int *)(param_1 + 0xbfc) + 1;
-          *(int *)(param_1 + 0xc0c) = iVar4;
-          if (*(int *)(param_1 + 0x8ec) <= iVar4) {
-            *(undefined4 *)(param_1 + 0xc0c) = *(undefined4 *)(param_1 + 0xbd0);
+      FUN_1807ce620(system_context, operation_flag);
+      if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
+        iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BF8) + 1;
+        *(int *)(system_context + SYSTEM_OFFSET_C08) = iteration_count;
+        if (*(int *)(*(longlong *)(system_context + SYSTEM_OFFSET_278) +
+                    (ulonglong)*(byte *)((longlong)*(int *)(system_context + SYSTEM_OFFSET_BFC) + SYSTEM_OFFSET_290 + system_context) *
+                    SYSTEM_ALIGNMENT_SIZE) <= iteration_count) {
+          iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BFC) + 1;
+          *(int *)(system_context + SYSTEM_OFFSET_C0C) = iteration_count;
+          if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= iteration_count) {
+            *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
           }
-          *(undefined4 *)(param_1 + 0xc08) = 0;
+          *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0;
         }
       }
     }
@@ -644,21 +683,25 @@ undefined8 FUN_1807cd630(longlong param_1,char param_2)
       FUN_18080d690();
     }
   }
-  else if (param_2 != '\0') {
+  else if (operation_flag != '\0') {
     FUN_1807cd7f0();
   }
-  if (*(int *)(param_1 + 0xbf0) == 0) {
-    *(undefined1 *)(param_1 + 0xbe9) = 1;
+  
+  // 处理系统状态更新
+  if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
+    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = 1;
   }
   else {
-    *(int *)(param_1 + 0xbec) = *(int *)(param_1 + 0xbec) + 1;
-    if (*(int *)(param_1 + 0xbf0) + *(int *)(param_1 + 0xc00) <= *(int *)(param_1 + 0xbec)) {
-      *(undefined4 *)(param_1 + 0xc00) = 0;
-      *(undefined4 *)(param_1 + 0xbec) = 0;
+    *(int *)(system_context + SYSTEM_OFFSET_BEC) = *(int *)(system_context + SYSTEM_OFFSET_BEC) + 1;
+    if (*(int *)(system_context + SYSTEM_OFFSET_BF0) + *(int *)(system_context + SYSTEM_OFFSET_C00) <= *(int *)(system_context + SYSTEM_OFFSET_BEC)) {
+      *(undefined4 *)(system_context + SYSTEM_OFFSET_C00) = 0;
+      *(undefined4 *)(system_context + SYSTEM_OFFSET_BEC) = 0;
     }
   }
-  *(int *)(param_1 + 0x858) = *(int *)(param_1 + 0x858) + *(int *)(param_1 + 0x854);
-  return 0;
+  
+  // 更新系统缓冲区大小
+  *(int *)(system_context + SYSTEM_BUFFER_SIZE) = *(int *)(system_context + SYSTEM_BUFFER_SIZE) + *(int *)(system_context + SYSTEM_OFFSET_854);
+  return SYSTEM_SUCCESS;
 }
 
 
