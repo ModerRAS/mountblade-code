@@ -1462,7 +1462,6 @@ void FUN_18003a2b0(void) {
     
     // 获取键值回调函数
     key_callback = (InitializationSystemKeyPtr)FUN_18007fcd0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1546,7 +1545,6 @@ void FUN_18003a3b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1630,7 +1628,6 @@ void FUN_18003a4b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1714,7 +1711,6 @@ void FUN_18003a5b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1798,7 +1794,6 @@ void FUN_18003a6b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1882,7 +1877,6 @@ void FUN_18003a7b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1966,7 +1960,6 @@ void FUN_18003a8b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -2050,7 +2043,6 @@ void FUN_18003a9b0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -2218,7 +2210,6 @@ void FUN_18003abb0(void) {
     
     // 初始化键值回调函数（空指针）
     key_callback = (InitializationSystemKeyPtr)0;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
