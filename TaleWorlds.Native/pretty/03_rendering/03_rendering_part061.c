@@ -1302,39 +1302,60 @@ void FUN_18029e2a0(longlong param_1,undefined8 param_2,undefined4 *param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 渲染系统能力检查函数
+// 检查渲染系统的特定能力是否可用
+// param_1: 渲染系统上下文指针
+// param_2: 能力数据指针
+// param_3: 能力类型标志
+// param_4: 能力检查结果输出指针
+// 返回值: 能力可用返回true，不可用返回false
 bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param_4)
-
 {
-  uint uVar1;
-  int iVar2;
-  uint uVar3;
-  undefined8 auStack_18 [2];
+  uint capability_flags;
+  int check_result;
+  uint check_params;
+  undefined8 check_output[2];
   
+  // 设置帧计数器
   *(undefined4 *)(param_2 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+  
+  // 根据能力类型设置检查参数
   if (param_3 == 0) {
-    uVar3 = 5;
+    check_params = 5;  // 默认检查参数
   }
   else {
-    uVar1 = param_3 & 1;
+    // 根据标志位组合检查参数
+    capability_flags = param_3 & 1;
     if ((param_3 & 8) != 0) {
-      uVar1 = 3;
+      capability_flags = 3;
     }
-    uVar3 = uVar1 | 4;
+    check_params = capability_flags | 4;
     if ((param_3 & 2) == 0) {
-      uVar3 = uVar1;
+      check_params = capability_flags;
     }
     if ((param_3 & 4) != 0) {
-      uVar3 = uVar3 | 5;
+      check_params = check_params | 5;
     }
   }
-  iVar2 = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
-                    (*(longlong **)(param_1 + 0x8400),*(undefined8 *)(param_2 + 0x10),0,uVar3,0,
-                     auStack_18);
-  if (iVar2 < 0) {
-    FUN_180220810(iVar2,&UNK_180a17358);
+  
+  // 调用渲染核心检查能力
+  check_result = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
+                    (*(longlong **)(param_1 + 0x8400),
+                     *(undefined8 *)(param_2 + 0x10),  // 能力数据句柄
+                     0,                               // 偏移量
+                     check_params,                    // 检查参数
+                     0,                               // 保留参数
+                     check_output);                   // 检查输出
+  
+  // 处理检查错误
+  if (check_result < 0) {
+    FUN_180220810(check_result, &UNK_180a17358);
   }
-  *(undefined8 *)(param_4 + 8) = auStack_18[0];
-  return -1 < iVar2;
+  
+  // 输出检查结果
+  *(undefined8 *)(param_4 + 8) = check_output[0];
+  
+  return -1 < check_result;  // 返回能力是否可用
 }
 
 

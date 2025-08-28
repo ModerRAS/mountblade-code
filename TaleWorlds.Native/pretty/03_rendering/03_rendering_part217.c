@@ -1,580 +1,565 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part217.c - 渲染系统高级碰撞检测和几何处理模块
-// 包含1个核心函数：rendering_system_advanced_collision_detection
+/**
+ * 渲染系统高级碰撞检测和对象处理模块
+ * 
+ * 本模块包含1个核心函数，用于处理渲染对象之间的碰撞检测、
+ * 边界计算、向量运算和对象关系管理。主要功能包括：
+ * - 渲染对象碰撞检测和距离计算
+ * - 边界框和向量运算处理
+ * - 对象关系建立和管理
+ * - 渲染状态更新和参数控制
+ * 
+ * 函数列表：
+ * - RenderingSystem_AdvancedCollisionDetection: 高级碰撞检测和对象处理
+ */
 
 /**
- * 渲染系统高级碰撞检测和几何处理函数
+ * 渲染系统高级碰撞检测和对象处理函数
  * 
- * 该函数实现了一个复杂的碰撞检测系统，用于处理三个不同类型的渲染对象之间的碰撞关系。
- * 主要功能包括：
- * 1. 遍历渲染对象数组，寻找符合特定条件的对象组合
- * 2. 计算对象间的几何关系和碰撞参数
- * 3. 处理对象的连接关系和状态更新
- * 4. 管理对象的内存分配和释放
+ * 该函数负责处理渲染对象之间的复杂碰撞检测，包括：
+ * - 对象边界计算和距离测量
+ * - 碰撞关系建立和管理
+ * - 向量运算和几何计算
+ * - 渲染状态更新和同步
  * 
- * @param render_context 渲染上下文指针，包含全局渲染状态和对象数组
- * @param object_type_id 第一个对象类型标识符
- * @param object_type_id2 第二个对象类型标识符  
- * @param object_type_id3 第三个对象类型标识符
+ * @param render_context 渲染上下文指针，包含渲染系统状态
+ * @param object_id_1 第一个对象的ID标识
+ * @param object_id_2 第二个对象的ID标识
+ * @param object_id_3 第三个对象的ID标识
  */
-void rendering_system_advanced_collision_detection(longlong render_context, int object_type_id, int object_type_id2, int object_type_id3)
+void RenderingSystem_AdvancedCollisionDetection(longlong render_context, int object_id_1, int object_id_2, int object_id_3)
 {
-  byte object_has_connections;
-  undefined8 *connection_array_ptr;
-  float *float_ptr;
-  undefined8 *connection_array_ptr2;
-  longlong target_object_ptr;
-  longlong source_object_ptr;
-  longlong collision_object_ptr;
-  longlong temp_object_ptr;
-  longlong best_object_ptr;
-  bool collision_detected;
-  longlong *object_link_ptr;
-  ulonglong iteration_count;
-  int object_type;
-  int best_object_index;
-  uint best_connection_index;
-  uint current_connection_index;
-  ulonglong min_distance_squared;
-  undefined8 *edge_array_ptr;
-  int edge_index;
-  ulonglong edge_count;
-  uint temp_uint;
-  ulonglong temp_ulong;
-  ulonglong distance_squared;
-  undefined8 *edge_array_ptr2;
-  bool edge_valid;
-  ulonglong edge_index2;
-  longlong *object_link_ptr2;
-  undefined8 *object_array_ptr;
-  longlong *object_link_ptr3;
-  int temp_int;
-  uint connection_index;
-  longlong object_data_ptr;
-  ulonglong *object_data_array_ptr;
-  ulonglong object_data_ulong;
-  uint object_data_uint;
-  int collision_index;
-  longlong *collision_ptr;
-  ulonglong collision_ulong;
-  char temp_char;
-  undefined4 temp_undefined4;
-  float distance_float;
-  undefined1 temp_array [16];
-  float vector_x;
-  float vector_y;
-  float center_x;
-  float center_y;
-  float min_distance;
-  float current_min_distance;
-  float best_distance;
-  float temp_float1;
-  float temp_float2;
-  float temp_float3;
-  float temp_float4;
-  float temp_float5;
-  float temp_float6;
-  float temp_float7;
-  float temp_float8;
-  float temp_float9;
-  float temp_float10;
-  char stack_char;
-  uint stack_uint;
-  int stack_int;
-  ulonglong stack_ulong;
-  float stack_float;
-  uint stack_uint2;
-  ulonglong temp_ulong2;
+    // 声明变量
+    byte has_components_flag;
+    undefined8 *component_ptr;
+    float *float_ptr;
+    undefined8 *object_ptr;
+    longlong temp_long_1;
+    longlong temp_long_2;
+    longlong temp_long_3;
+    longlong temp_long_4;
+    longlong temp_long_5;
+    longlong temp_long_6;
+    longlong temp_long_7;
+    longlong temp_long_8;
+    longlong temp_long_9;
+    bool collision_detected;
+    longlong *long_ptr;
+    ulonglong ulong_temp_1;
+    int int_temp_1;
+    int int_temp_2;
+    uint uint_temp_1;
+    uint uint_temp_2;
+    ulonglong ulong_temp_2;
+    undefined8 *data_ptr;
+    int int_temp_3;
+    ulonglong ulong_temp_3;
+    uint uint_temp_3;
+    ulonglong ulong_temp_4;
+    ulonglong ulong_temp_5;
+    undefined8 *array_ptr;
+    bool bool_temp_1;
+    ulonglong ulong_temp_6;
+    longlong *long_ptr_2;
+    undefined8 *ptr_temp_1;
+    longlong *long_ptr_3;
+    int int_temp_4;
+    uint uint_temp_4;
+    longlong long_temp_10;
+    ulonglong *ulong_ptr_1;
+    ulonglong ulong_temp_7;
+    uint uint_temp_5;
+    int int_temp_5;
+    longlong *long_ptr_4;
+    ulonglong ulong_temp_8;
+    char char_temp_1;
+    undefined4 undefined_temp_1;
+    float float_temp_1;
+    undefined1 byte_array_1 [16];
+    float distance_x;
+    float distance_y;
+    float vector_x;
+    float vector_y;
+    float center_x;
+    float center_y;
+    float normal_x;
+    float normal_y;
+    float dot_product;
+    float inv_sqrt;
+    char stack_char_1;
+    uint stack_uint_1;
+    int stack_int_1;
+    ulonglong stack_ulong_1;
+    float stack_float_1;
+    uint stack_uint_2;
+    ulonglong ulong_temp_9;
   
-  // 获取渲染对象数组指针和数量
-  object_data_array_ptr = *(ulonglong **)(render_context + 0x478);
-  min_distance_squared = 0;
-  current_connection_index = 0;
-  best_connection_index = 0;
-  object_count = *(longlong *)(render_context + 0x480) - (longlong)object_data_array_ptr >> 3;
-  source_object_ptr = min_distance_squared;
-  collision_object_ptr = min_distance_squared;
-  target_object_ptr = min_distance_squared;
-  object_data_ulong = min_distance_squared;
-  
-  // 遍历所有渲染对象，寻找符合条件的对象组合
-  if (object_count != 0) {
+  puVar34 = *(ulonglong **)(param_1 + 0x478);
+  uVar22 = 0;
+  uVar21 = 0;
+  uVar15 = 0;
+  uVar20 = *(longlong *)(param_1 + 0x480) - (longlong)puVar34 >> 3;
+  uVar12 = uVar22;
+  uVar26 = uVar22;
+  uVar17 = uVar22;
+  uVar35 = uVar22;
+  if (uVar20 != 0) {
     do {
-      temp_ulong2 = *object_data_array_ptr;
-      object_type = *(int *)(temp_ulong2 + 0x130);
-      temp_ulong = temp_ulong2;
-      collision_ulong = object_data_ulong;
-      if (((object_type_id != object_type) && (temp_ulong = source_object_ptr, collision_ulong = temp_ulong2, object_type_id2 != object_type)) &&
-         (collision_ulong = object_data_ulong, object_type_id3 == object_type)) {
-        collision_object_ptr = temp_ulong2;
+      uVar32 = *puVar34;
+      iVar14 = *(int *)(uVar32 + 0x130);
+      uVar23 = uVar32;
+      uVar39 = uVar35;
+      if (((param_2 != iVar14) && (uVar23 = uVar12, uVar39 = uVar32, param_3 != iVar14)) &&
+         (uVar39 = uVar35, param_4 == iVar14)) {
+        uVar26 = uVar32;
       }
-      if (((temp_ulong != 0) && (collision_ulong != 0)) && (collision_object_ptr != 0)) break;
-      connection_index = (int)target_object_ptr + 1;
-      target_object_ptr = (ulonglong)connection_index;
-      object_data_array_ptr = object_data_array_ptr + 1;
-      source_object_ptr = temp_ulong;
-      object_data_ulong = collision_ulong;
-    } while ((ulonglong)(longlong)(int)connection_index < object_count);
-    
-    // 如果找到三个符合条件的对象，则进行碰撞检测处理
-    if (((temp_ulong != 0) && (collision_ulong != 0)) && (collision_object_ptr != 0)) {
-      connection_index = 0xffffffff;
-      stack_char = false;
-      best_object_index = -1;
-      current_min_distance = 10000.0;
-      object_has_connections = *(byte *)(temp_ulong + 0xa8);
-      best_object_index = -1;
-      stack_uint2 = 0xffffffff;
-      object_type = -1;
-      stack_int = -1;
-      stack_ulong = 0;
-      stack_char = false;
-      stack_uint = 0;
-      
-      // 处理源对象的连接关系
-      if (object_has_connections != 0) {
-        edge_array_ptr = (undefined8 *)(temp_ulong + 0x60);
-        source_object_ptr = min_distance_squared;
-        target_object_ptr = min_distance_squared;
+      if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) break;
+      uVar36 = (int)uVar17 + 1;
+      uVar17 = (ulonglong)uVar36;
+      puVar34 = puVar34 + 1;
+      uVar12 = uVar23;
+      uVar35 = uVar39;
+    } while ((ulonglong)(longlong)(int)uVar36 < uVar20);
+    if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) {
+      uVar36 = 0xffffffff;
+      cVar40 = false;
+      iVar13 = -1;
+      fStack_100 = 10000.0;
+      bVar1 = *(byte *)(uVar23 + 0xa8);
+      iVar30 = -1;
+      uStack_fc = 0xffffffff;
+      iVar14 = -1;
+      iStack_110 = -1;
+      uStack_108 = 0;
+      cStack0000000000000028 = false;
+      uStack_124 = 0;
+      if (bVar1 != 0) {
+        puVar18 = (undefined8 *)(uVar23 + 0x60);
+        uVar12 = uVar22;
+        uVar17 = uVar22;
         do {
-          temp_uint = (uint)source_object_ptr;
-          connection_array_ptr = (undefined8 *)*edge_array_ptr;
-          if (*(char *)(connection_array_ptr + 4) == '\x02') {
-            source_object_ptr = connection_array_ptr[2];
-            if (source_object_ptr == temp_ulong) {
-              source_object_ptr = connection_array_ptr[3];
+          uVar16 = (uint)uVar12;
+          puVar2 = (undefined8 *)*puVar18;
+          if (*(char *)(puVar2 + 4) == '\x02') {
+            uVar12 = puVar2[2];
+            if (uVar12 == uVar23) {
+              uVar12 = puVar2[3];
             }
-            float_ptr = (float *)connection_array_ptr[1];
-            edge_valid = false;
-            min_distance_squared = 0xffffffff;
-            collision_index = -1;
-            object_data_ulong = 0xffffffff;
-            edge_index = -1;
-            best_distance = 10001.0;
-            vector_x = *(float *)*connection_array_ptr;
-            vector_y = ((float *)*connection_array_ptr)[1];
-            temp_float9 = *float_ptr - vector_x;
-            temp_float8 = vector_y - float_ptr[1];
-            temp_float10 = (vector_x + *float_ptr) * 0.5;
-            current_min_distance = (vector_y + float_ptr[1]) * 0.5;
-            distance_squared = temp_float9 * temp_float9 + temp_float8 * temp_float8;
-            temp_array = rsqrtss(ZEXT416((uint)distance_squared),ZEXT416((uint)distance_squared));
-            vector_y = temp_array._0_4_;
-            distance_squared = vector_y * 0.5 * (3.0 - distance_squared * vector_y * vector_y);
-            temp_float8 = temp_float8 * distance_squared;
-            temp_float9 = temp_float9 * distance_squared;
-            
-            // 计算向量方向
-            if (0.0 < (*(float *)(temp_ulong + 0xec) - current_min_distance) * temp_float9 +
-                      (*(float *)(temp_ulong + 0xe8) - temp_float10) * temp_float8) {
-              temp_float8 = -temp_float8;
-              temp_float9 = -temp_float9;
+            pfVar3 = (float *)puVar2[1];
+            bVar25 = false;
+            uVar20 = 0xffffffff;
+            iVar37 = -1;
+            uVar35 = 0xffffffff;
+            iVar19 = -1;
+            fVar49 = 10001.0;
+            fVar42 = *(float *)*puVar2;
+            fVar46 = ((float *)*puVar2)[1];
+            fVar51 = *pfVar3 - fVar42;
+            fVar50 = fVar46 - pfVar3[1];
+            fVar52 = (fVar42 + *pfVar3) * 0.5;
+            fVar53 = (fVar46 + pfVar3[1]) * 0.5;
+            fVar42 = fVar51 * fVar51 + fVar50 * fVar50;
+            auVar43 = rsqrtss(ZEXT416((uint)fVar42),ZEXT416((uint)fVar42));
+            fVar46 = auVar43._0_4_;
+            fVar42 = fVar46 * 0.5 * (3.0 - fVar42 * fVar46 * fVar46);
+            fVar50 = fVar50 * fVar42;
+            fVar51 = fVar51 * fVar42;
+            if (0.0 < (*(float *)(uVar23 + 0xec) - fVar53) * fVar51 +
+                      (*(float *)(uVar23 + 0xe8) - fVar52) * fVar50) {
+              fVar50 = -fVar50;
+              fVar51 = -fVar51;
             }
-            
-            // 检查碰撞对象的连接关系
-            if (*(byte *)(source_object_ptr + 0xa8) != 0) {
-              edge_array_ptr2 = (undefined8 *)(source_object_ptr + 0x60);
-              temp_ulong2 = min_distance_squared;
+            if (*(byte *)(uVar12 + 0xa8) != 0) {
+              puVar24 = (undefined8 *)(uVar12 + 0x60);
+              uVar32 = uVar22;
               do {
-                object_array_ptr = (undefined8 *)*edge_array_ptr2;
-                if (((*(char *)(object_array_ptr + 4) == '\x02') && (object_array_ptr != connection_array_ptr)) &&
-                   (((object_array_ptr[2] == collision_ulong || (object_array_ptr[3] == collision_ulong)) &&
-                    (*(byte *)(collision_object_ptr + 0xa8) != 0)))) {
-                  object_array_ptr = (undefined8 *)(collision_object_ptr + 0x60);
-                  target_object_ptr = min_distance_squared;
+                puVar28 = (undefined8 *)*puVar24;
+                if (((*(char *)(puVar28 + 4) == '\x02') && (puVar28 != puVar2)) &&
+                   (((puVar28[2] == uVar39 || (puVar28[3] == uVar39)) &&
+                    (*(byte *)(uVar26 + 0xa8) != 0)))) {
+                  puVar28 = (undefined8 *)(uVar26 + 0x60);
+                  uVar17 = uVar22;
                   do {
-                    connection_array_ptr2 = (undefined8 *)*object_array_ptr;
-                    if (*(char *)(connection_array_ptr2 + 4) != '\x02') {
-                      float_ptr = (float *)connection_array_ptr2[1];
-                      vector_x = *(float *)*connection_array_ptr2;
-                      vector_y = ((float *)*connection_array_ptr2)[1];
-                      temp_float6 = vector_y - float_ptr[1];
-                      temp_float7 = *float_ptr - vector_x;
-                      center_x = (vector_x + *float_ptr) * 0.5;
-                      center_y = (vector_y + float_ptr[1]) * 0.5;
-                      distance_squared = temp_float7 * temp_float7 + temp_float6 * temp_float6;
-                      temp_array = rsqrtss(ZEXT416((uint)distance_squared),ZEXT416((uint)distance_squared));
-                      vector_y = temp_array._0_4_;
-                      distance_squared = vector_y * 0.5 * (3.0 - distance_squared * vector_y * vector_y);
-                      temp_float7 = distance_squared * temp_float7;
-                      distance_squared = distance_squared * temp_float6;
-                      edge_valid = 0.0 < (*(float *)(collision_object_ptr + 0xec) - center_y) * temp_float7 +
-                                     (*(float *)(collision_object_ptr + 0xe8) - center_x) * distance_squared;
-                      if (edge_valid) {
-                        distance_squared = -distance_squared;
-                        temp_float7 = -temp_float7;
+                    puVar4 = (undefined8 *)*puVar28;
+                    if (*(char *)(puVar4 + 4) != '\x02') {
+                      pfVar3 = (float *)puVar4[1];
+                      fVar42 = *(float *)*puVar4;
+                      fVar46 = ((float *)*puVar4)[1];
+                      fVar44 = fVar46 - pfVar3[1];
+                      fVar45 = *pfVar3 - fVar42;
+                      fVar47 = (fVar42 + *pfVar3) * 0.5;
+                      fVar48 = (fVar46 + pfVar3[1]) * 0.5;
+                      fVar42 = fVar45 * fVar45 + fVar44 * fVar44;
+                      auVar43 = rsqrtss(ZEXT416((uint)fVar42),ZEXT416((uint)fVar42));
+                      fVar46 = auVar43._0_4_;
+                      fVar42 = fVar46 * 0.5 * (3.0 - fVar42 * fVar46 * fVar46);
+                      fVar45 = fVar42 * fVar45;
+                      fVar42 = fVar42 * fVar44;
+                      bVar10 = 0.0 < (*(float *)(uVar26 + 0xec) - fVar48) * fVar45 +
+                                     (*(float *)(uVar26 + 0xe8) - fVar47) * fVar42;
+                      if (bVar10) {
+                        fVar42 = -fVar42;
+                        fVar45 = -fVar45;
                       }
-                      
-                      // 检查碰撞条件
-                      if (temp_float7 * temp_float9 + distance_squared * temp_float8 <= -0.3) {
-                        center_x = center_x - temp_float10;
-                        center_y = center_y - current_min_distance;
-                        vector_y = center_y * center_y + center_x * center_x;
-                        temp_array = rsqrtss(ZEXT416((uint)vector_y),ZEXT416((uint)vector_y));
-                        distance_squared = temp_array._0_4_;
-                        distance_squared = distance_squared * 0.5 * (3.0 - vector_y * distance_squared * distance_squared);
-                        distance_squared = distance_squared * center_y * temp_float9 + distance_squared * center_x * temp_float8;
-                        if ((0.1 <= distance_squared) && (vector_y = vector_y / distance_squared, vector_y < best_distance)) {
-                          object_data_ulong = target_object_ptr;
-                          min_distance_squared = temp_ulong2;
-                          best_distance = vector_y;
-                          edge_valid = edge_valid;
+                      if (fVar45 * fVar51 + fVar42 * fVar50 <= -0.3) {
+                        fVar47 = fVar47 - fVar52;
+                        fVar48 = fVar48 - fVar53;
+                        fVar46 = fVar48 * fVar48 + fVar47 * fVar47;
+                        auVar43 = rsqrtss(ZEXT416((uint)fVar46),ZEXT416((uint)fVar46));
+                        fVar42 = auVar43._0_4_;
+                        fVar42 = fVar42 * 0.5 * (3.0 - fVar46 * fVar42 * fVar42);
+                        fVar42 = fVar42 * fVar48 * fVar51 + fVar42 * fVar47 * fVar50;
+                        if ((0.1 <= fVar42) && (fVar46 = fVar46 / fVar42, fVar46 < fVar49)) {
+                          uVar35 = uVar17;
+                          uVar20 = uVar32;
+                          fVar49 = fVar46;
+                          bVar25 = bVar10;
                         }
                       }
                     }
-                    connection_index = (int)target_object_ptr + 1;
-                    target_object_ptr = (ulonglong)connection_index;
-                    object_array_ptr = object_array_ptr + 1;
-                  } while ((int)connection_index < (int)(uint)*(byte *)(collision_object_ptr + 0xa8));
+                    uVar36 = (int)uVar17 + 1;
+                    uVar17 = (ulonglong)uVar36;
+                    puVar28 = puVar28 + 1;
+                  } while ((int)uVar36 < (int)(uint)*(byte *)(uVar26 + 0xa8));
                 }
-                collision_index = (int)min_distance_squared;
-                edge_index = (int)object_data_ulong;
-                temp_uint = (int)temp_ulong2 + 1;
-                temp_ulong2 = (ulonglong)temp_uint;
-                edge_array_ptr2 = edge_array_ptr2 + 1;
-                target_object_ptr = stack_ulong;
-                connection_index = stack_uint2;
-                temp_uint = stack_uint;
-              } while ((int)temp_uint < (int)(uint)*(byte *)(source_object_ptr + 0xa8));
+                iVar37 = (int)uVar20;
+                iVar19 = (int)uVar35;
+                uVar31 = (int)uVar32 + 1;
+                uVar32 = (ulonglong)uVar31;
+                puVar24 = puVar24 + 1;
+                uVar17 = uStack_108;
+                uVar36 = uStack_fc;
+                uVar16 = uStack_124;
+              } while ((int)uVar31 < (int)(uint)*(byte *)(uVar12 + 0xa8));
             }
-            best_object_index = object_type;
-            best_object_index = stack_int;
-            object_has_connections = stack_char;
-            if (best_distance < current_min_distance) {
-              target_object_ptr = source_object_ptr;
-              best_object_index = collision_index;
-              best_object_index = edge_index;
-              object_has_connections = edge_valid;
-              connection_index = temp_uint;
-              stack_char = edge_valid;
-              stack_ulong = source_object_ptr;
-              current_min_distance = best_distance;
-              stack_uint2 = temp_uint;
-              stack_int = edge_index;
-              object_type = collision_index;
+            iVar13 = iVar14;
+            iVar30 = iStack_110;
+            cVar40 = cStack0000000000000028;
+            if (fVar49 < fStack_100) {
+              uVar17 = uVar12;
+              iVar13 = iVar37;
+              iVar30 = iVar19;
+              cVar40 = bVar25;
+              uVar36 = uVar16;
+              cStack0000000000000028 = bVar25;
+              uStack_108 = uVar12;
+              fStack_100 = fVar49;
+              uStack_fc = uVar16;
+              iStack_110 = iVar19;
+              iVar14 = iVar37;
             }
           }
-          stack_uint = temp_uint + 1;
-          source_object_ptr = (ulonglong)stack_uint;
-          edge_array_ptr = edge_array_ptr + 1;
-        } while ((int)stack_uint < (int)(uint)object_has_connections);
-        
-        // 如果找到有效的碰撞关系，则进行处理
-        if (((((-1 < (int)connection_index) && ((int)connection_index < (int)(uint)object_has_connections)) && (-1 < best_object_index)) &&
-            ((best_object_index < (int)(uint)*(byte *)(collision_ulong + 0xa8) && (-1 < best_object_index)))) &&
-           ((best_object_index < (int)(uint)*(byte *)(collision_object_ptr + 0xa8) && (target_object_ptr != 0)))) {
-          stack_uint = 0;
-          temp_object_ptr = *(longlong *)(temp_ulong + 0x60 + (longlong)(int)connection_index * 8);
-          best_object_ptr = *(longlong *)(collision_object_ptr + 0x60 + (longlong)best_object_index * 8);
-          object_has_connections = *(byte *)(target_object_ptr + 0xa8);
-          collision_object_ptr = *(longlong *)(target_object_ptr + 0x60 + (longlong)best_object_index * 8);
-          
-          // 处理目标对象的连接关系
-          if (object_has_connections != 0) {
-            object_link_ptr3 = (longlong *)(target_object_ptr + 0x60);
-            source_object_ptr = min_distance_squared;
-            temp_object_ptr2 = collision_object_ptr;
+          uStack_124 = uVar16 + 1;
+          uVar12 = (ulonglong)uStack_124;
+          puVar18 = puVar18 + 1;
+        } while ((int)uStack_124 < (int)(uint)bVar1);
+        if (((((-1 < (int)uVar36) && ((int)uVar36 < (int)(uint)bVar1)) && (-1 < iVar13)) &&
+            ((iVar13 < (int)(uint)*(byte *)(uVar39 + 0xa8) && (-1 < iVar30)))) &&
+           ((iVar30 < (int)(uint)*(byte *)(uVar26 + 0xa8) && (uVar17 != 0)))) {
+          uStack_124 = 0;
+          lVar5 = *(longlong *)(uVar23 + 0x60 + (longlong)(int)uVar36 * 8);
+          lVar6 = *(longlong *)(uVar26 + 0x60 + (longlong)iVar30 * 8);
+          bVar1 = *(byte *)(uVar17 + 0xa8);
+          lVar7 = *(longlong *)(uVar17 + 0x60 + (longlong)iVar13 * 8);
+          if (bVar1 != 0) {
+            plVar29 = (longlong *)(uVar17 + 0x60);
+            uVar12 = uVar22;
+            lVar33 = lVar7;
             do {
-              connection_index = (uint)source_object_ptr;
-              object_link_ptr = (longlong *)*object_link_ptr3;
-              if ((object_link_ptr[2] != temp_ulong) && (((char)object_link_ptr[4] != '\x02' || (object_link_ptr[3] != temp_ulong)))
+              uVar36 = (uint)uVar12;
+              plVar11 = (longlong *)*plVar29;
+              if ((plVar11[2] != uVar23) && (((char)plVar11[4] != '\x02' || (plVar11[3] != uVar23)))
                  ) {
-                if (object_link_ptr[2] != collision_ulong) {
-                  if (((char)object_link_ptr[4] != '\x02') || (object_link_ptr[3] != collision_ulong)) {
-                    source_object_ptr = min_distance_squared;
-                    object_data_ulong = min_distance_squared;
+                if (plVar11[2] != uVar39) {
+                  if (((char)plVar11[4] != '\x02') || (plVar11[3] != uVar39)) {
+                    uVar12 = uVar22;
+                    uVar35 = uVar22;
                     do {
-                      connection_index = (uint)object_data_ulong;
-                      if (*object_link_ptr == *(longlong *)(temp_object_ptr + source_object_ptr * 8)) break;
-                      object_data_ulong = (ulonglong)((uint)object_data_ulong + 1);
-                      source_object_ptr = source_object_ptr + 1;
-                      connection_index = 0xffffffff;
-                    } while ((longlong)source_object_ptr < 2);
-                    source_object_ptr = min_distance_squared;
-                    object_data_ulong = min_distance_squared;
+                      uVar36 = (uint)uVar35;
+                      if (*plVar11 == *(longlong *)(lVar5 + uVar12 * 8)) break;
+                      uVar35 = (ulonglong)((uint)uVar35 + 1);
+                      uVar12 = uVar12 + 1;
+                      uVar36 = 0xffffffff;
+                    } while ((longlong)uVar12 < 2);
+                    uVar12 = uVar22;
+                    uVar35 = uVar22;
                     do {
-                      min_distance_squared = min_distance_squared;
-                      temp_uint = (uint)object_data_ulong;
-                      if (object_link_ptr[1] == *(longlong *)(temp_object_ptr + source_object_ptr * 8)) break;
-                      object_data_ulong = (ulonglong)((uint)object_data_ulong + 1);
-                      source_object_ptr = source_object_ptr + 1;
-                      temp_uint = connection_index;
-                    } while ((longlong)source_object_ptr < 2);
+                      uVar20 = uVar22;
+                      uVar16 = (uint)uVar35;
+                      if (plVar11[1] == *(longlong *)(lVar5 + uVar12 * 8)) break;
+                      uVar35 = (ulonglong)((uint)uVar35 + 1);
+                      uVar12 = uVar12 + 1;
+                      uVar16 = uVar36;
+                    } while ((longlong)uVar12 < 2);
                     do {
-                      temp_object_ptr = object_link_ptr[min_distance_squared];
-                      object_link_ptr2 = object_link_ptr;
-                      source_object_ptr = min_distance_squared;
+                      lVar8 = plVar11[uVar20];
+                      plVar27 = plVar11;
+                      uVar12 = uVar22;
                       do {
-                        object_link_ptr = object_link_ptr2;
-                        if (temp_object_ptr == *(longlong *)(temp_object_ptr2 + source_object_ptr * 8)) {
-                          edge_valid = object_has_connections == '\0';
-                          if ((char)object_link_ptr2[4] == '\x02') {
-                            if (object_link_ptr2[2] == target_object_ptr) {
-                              object_link_ptr2[2] = object_link_ptr2[3];
+                        plVar11 = plVar27;
+                        if (lVar8 == *(longlong *)(lVar33 + uVar12 * 8)) {
+                          bVar25 = cVar40 == '\0';
+                          if ((char)plVar27[4] == '\x02') {
+                            if (plVar27[2] == uVar17) {
+                              plVar27[2] = plVar27[3];
                             }
-                            object_link_ptr2[3] = 0;
-                            *(undefined1 *)(object_link_ptr2 + 4) = 0;
-                            if (object_link_ptr2[2] != 0) {
-                              *(undefined1 *)(object_link_ptr2 + 4) = 1;
+                            plVar27[3] = 0;
+                            *(undefined1 *)(plVar27 + 4) = 0;
+                            if (plVar27[2] != 0) {
+                              *(undefined1 *)(plVar27 + 4) = 1;
                             }
-                            FUN_18038b160(object_link_ptr2[2]);
+                            FUN_18038b160(plVar27[2]);
                           }
                           else {
-                            FUN_18038d8f0(render_context,object_link_ptr2);
+                            FUN_18038d8f0(param_1,plVar27);
                           }
-                          collision_ptr = object_link_ptr2;
-                          if (min_distance_squared == 0) {
-                            if (edge_valid) {
-                              collision_ptr = (longlong *)((longlong)(int)(uint)(temp_uint == 0) * 8 + best_object_ptr)
+                          plVar38 = plVar27;
+                          if (uVar20 == 0) {
+                            if (bVar25) {
+                              plVar38 = (longlong *)((longlong)(int)(uint)(uVar16 == 0) * 8 + lVar6)
                               ;
                             }
                             else {
-                              collision_ptr = (longlong *)((longlong)(int)temp_uint * 8 + best_object_ptr);
+                              plVar38 = (longlong *)((longlong)(int)uVar16 * 8 + lVar6);
                             }
                           }
-                          if (min_distance_squared == 1) {
-                            if (edge_valid) {
-                              temp_object_ptr2 = *(longlong *)(best_object_ptr + (longlong)(int)(uint)(temp_uint == 0) * 8)
+                          if (uVar20 == 1) {
+                            if (bVar25) {
+                              lVar33 = *(longlong *)(lVar6 + (longlong)(int)(uint)(uVar16 == 0) * 8)
                               ;
                             }
                             else {
-                              temp_object_ptr2 = *(longlong *)(best_object_ptr + (longlong)(int)temp_uint * 8);
+                              lVar33 = *(longlong *)(lVar6 + (longlong)(int)uVar16 * 8);
                             }
                           }
                           else {
-                            temp_object_ptr2 = object_link_ptr2[1];
+                            lVar33 = plVar27[1];
                           }
-                          edge_array_ptr = *(undefined8 **)(render_context + 0x458);
-                          object_data_ulong = *(longlong *)(render_context + 0x460) - (longlong)edge_array_ptr >> 3;
-                          target_object_ptr = min_distance_squared;
-                          if (object_data_ulong != 0) {
+                          puVar18 = *(undefined8 **)(param_1 + 0x458);
+                          uVar35 = *(longlong *)(param_1 + 0x460) - (longlong)puVar18 >> 3;
+                          uVar17 = uVar22;
+                          if (uVar35 != 0) {
                             do {
-                              object_link_ptr = (longlong *)*edge_array_ptr;
-                              if (((*object_link_ptr == *collision_ptr) && (object_link_ptr[1] == temp_object_ptr2)) ||
-                                 ((*object_link_ptr == temp_object_ptr2 && (object_link_ptr[1] == *collision_ptr)))) {
-                                *(undefined1 *)(object_link_ptr + 4) = 2;
-                                object_link_ptr[3] = stack_ulong;
-                                *object_link_ptr3 = (longlong)object_link_ptr;
-                                FUN_18038b160(object_link_ptr[2]);
-                                temp_object_ptr2 = collision_object_ptr;
-                                target_object_ptr = stack_ulong;
+                              plVar11 = (longlong *)*puVar18;
+                              if (((*plVar11 == *plVar38) && (plVar11[1] == lVar33)) ||
+                                 ((*plVar11 == lVar33 && (plVar11[1] == *plVar38)))) {
+                                *(undefined1 *)(plVar11 + 4) = 2;
+                                plVar11[3] = uStack_108;
+                                *plVar29 = (longlong)plVar11;
+                                FUN_18038b160(plVar11[2]);
+                                lVar33 = lVar7;
+                                uVar17 = uStack_108;
                                 goto LAB_1803922c3;
                               }
-                              connection_index = (int)target_object_ptr + 1;
-                              target_object_ptr = (ulonglong)connection_index;
-                              edge_array_ptr = edge_array_ptr + 1;
-                            } while ((ulonglong)(longlong)(int)connection_index < object_data_ulong);
+                              uVar36 = (int)uVar17 + 1;
+                              uVar17 = (ulonglong)uVar36;
+                              puVar18 = puVar18 + 1;
+                            } while ((ulonglong)(longlong)(int)uVar36 < uVar35);
                           }
-                          if (min_distance_squared == 1) {
-                            if (edge_valid) {
-                              temp_object_ptr2 = *(longlong *)(best_object_ptr + (longlong)(int)(uint)(temp_uint == 0) * 8)
+                          if (uVar20 == 1) {
+                            if (bVar25) {
+                              lVar33 = *(longlong *)(lVar6 + (longlong)(int)(uint)(uVar16 == 0) * 8)
                               ;
                             }
                             else {
-                              temp_object_ptr2 = *(longlong *)(best_object_ptr + (longlong)(int)temp_uint * 8);
+                              lVar33 = *(longlong *)(lVar6 + (longlong)(int)uVar16 * 8);
                             }
                           }
                           else {
-                            temp_object_ptr2 = object_link_ptr2[1];
-                            if (min_distance_squared == 0) {
-                              connection_index = temp_uint;
-                              if (edge_valid) {
-                                connection_index = (uint)(temp_uint == 0);
+                            lVar33 = plVar27[1];
+                            if (uVar20 == 0) {
+                              uVar36 = uVar16;
+                              if (bVar25) {
+                                uVar36 = (uint)(uVar16 == 0);
                               }
-                              object_link_ptr2 = (longlong *)((longlong)(int)connection_index * 8 + best_object_ptr);
+                              plVar27 = (longlong *)((longlong)(int)uVar36 * 8 + lVar6);
                             }
                           }
-                          best_object_ptr = *object_link_ptr2;
-                          object_link_ptr = (longlong *)FUN_18038c180(render_context);
-                          object_link_ptr[1] = temp_object_ptr2;
-                          *object_link_ptr = best_object_ptr;
-                          *(undefined1 *)(object_link_ptr + 4) = 1;
-                          object_link_ptr[2] = stack_ulong;
-                          *object_link_ptr3 = (longlong)object_link_ptr;
-                          temp_object_ptr2 = collision_object_ptr;
-                          target_object_ptr = stack_ulong;
+                          lVar9 = *plVar27;
+                          plVar11 = (longlong *)FUN_18038c180(param_1);
+                          plVar11[1] = lVar33;
+                          *plVar11 = lVar9;
+                          *(undefined1 *)(plVar11 + 4) = 1;
+                          plVar11[2] = uStack_108;
+                          *plVar29 = (longlong)plVar11;
+                          lVar33 = lVar7;
+                          uVar17 = uStack_108;
                         }
 LAB_1803922c3:
-                        source_object_ptr = source_object_ptr + 1;
-                        object_link_ptr2 = object_link_ptr;
-                        object_has_connections = stack_char;
-                      } while ((longlong)source_object_ptr < 2);
-                      min_distance_squared = min_distance_squared + 1;
-                      connection_index = stack_uint;
-                    } while ((longlong)min_distance_squared < 2);
+                        uVar12 = uVar12 + 1;
+                        plVar27 = plVar11;
+                        cVar40 = cStack0000000000000028;
+                      } while ((longlong)uVar12 < 2);
+                      uVar20 = uVar20 + 1;
+                      uVar36 = uStack_124;
+                    } while ((longlong)uVar20 < 2);
                     goto LAB_180392028;
                   }
-                  object_link_ptr[2] = collision_ulong;
+                  plVar11[2] = uVar39;
                 }
-                *(undefined1 *)(object_link_ptr + 4) = 1;
-                object_link_ptr[3] = 0;
-                func_0x00018038ac80(object_link_ptr);
-                *object_link_ptr3 = best_object_ptr;
-                *(undefined1 *)(best_object_ptr + 0x20) = 2;
-                *(ulonglong *)(best_object_ptr + 0x18) = target_object_ptr;
+                *(undefined1 *)(plVar11 + 4) = 1;
+                plVar11[3] = 0;
+                func_0x00018038ac80(plVar11);
+                *plVar29 = lVar6;
+                *(undefined1 *)(lVar6 + 0x20) = 2;
+                *(ulonglong *)(lVar6 + 0x18) = uVar17;
               }
 LAB_180392028:
-              object_has_connections = *(byte *)(target_object_ptr + 0xa8);
-              stack_uint = connection_index + 1;
-              source_object_ptr = (ulonglong)stack_uint;
-              object_link_ptr3 = object_link_ptr3 + 1;
-              object_has_connections = stack_char;
-            } while ((int)stack_uint < (int)(uint)object_has_connections);
+              bVar1 = *(byte *)(uVar17 + 0xa8);
+              uStack_124 = uVar36 + 1;
+              uVar12 = (ulonglong)uStack_124;
+              plVar29 = plVar29 + 1;
+              cVar40 = cStack0000000000000028;
+            } while ((int)uStack_124 < (int)(uint)bVar1);
           }
-          
-          // 更新目标对象的状态
-          if (object_has_connections != 0) {
-            object_link_ptr3 = (longlong *)(target_object_ptr + 0x60);
-            source_object_ptr = min_distance_squared;
+          if (bVar1 != 0) {
+            plVar29 = (longlong *)(uVar17 + 0x60);
+            uVar12 = uVar22;
             do {
-              temp_object_ptr = *object_link_ptr3;
-              *(undefined1 *)(temp_object_ptr + 0x20) = 0;
-              object_has_connections = *(longlong *)(temp_object_ptr + 0x10) != 0;
-              if ((bool)object_has_connections) {
-                *(undefined1 *)(temp_object_ptr + 0x20) = 1;
+              lVar5 = *plVar29;
+              *(undefined1 *)(lVar5 + 0x20) = 0;
+              cVar40 = *(longlong *)(lVar5 + 0x10) != 0;
+              if ((bool)cVar40) {
+                *(undefined1 *)(lVar5 + 0x20) = 1;
               }
-              if (*(longlong *)(temp_object_ptr + 0x18) != 0) {
-                object_has_connections = object_has_connections + '\x01';
-                *(char *)(temp_object_ptr + 0x20) = object_has_connections;
+              if (*(longlong *)(lVar5 + 0x18) != 0) {
+                cVar40 = cVar40 + '\x01';
+                *(char *)(lVar5 + 0x20) = cVar40;
               }
-              if ((object_has_connections == '\x01') && (*(longlong *)(temp_object_ptr + 0x18) != 0)) {
-                *(longlong *)(temp_object_ptr + 0x10) = *(longlong *)(temp_object_ptr + 0x18);
-                *(undefined8 *)(temp_object_ptr + 0x18) = 0;
+              if ((cVar40 == '\x01') && (*(longlong *)(lVar5 + 0x18) != 0)) {
+                *(longlong *)(lVar5 + 0x10) = *(longlong *)(lVar5 + 0x18);
+                *(undefined8 *)(lVar5 + 0x18) = 0;
               }
-              object_has_connections = *(byte *)(target_object_ptr + 0xa8);
-              connection_index = (int)source_object_ptr + 1;
-              source_object_ptr = (ulonglong)connection_index;
-              object_link_ptr3 = object_link_ptr3 + 1;
-            } while ((int)connection_index < (int)(uint)object_has_connections);
+              bVar1 = *(byte *)(uVar17 + 0xa8);
+              uVar36 = (int)uVar12 + 1;
+              uVar12 = (ulonglong)uVar36;
+              plVar29 = plVar29 + 1;
+            } while ((int)uVar36 < (int)(uint)bVar1);
           }
-          
-          // 处理对象间的连接关系
-          source_object_ptr = min_distance_squared;
-          object_data_ulong = min_distance_squared;
-          if (object_has_connections != 0) {
+          uVar12 = uVar22;
+          uVar35 = uVar22;
+          if (bVar1 != 0) {
             do {
-              object_link_ptr3 = *(longlong **)(target_object_ptr + 0x60 + object_data_ulong * 8);
-              connection_index = (int)source_object_ptr + 1;
-              source_object_ptr = min_distance_squared;
-              if (connection_index != object_has_connections) {
-                source_object_ptr = object_data_ulong + 1;
+              plVar29 = *(longlong **)(uVar17 + 0x60 + uVar35 * 8);
+              uVar36 = (int)uVar12 + 1;
+              uVar12 = uVar22;
+              if (uVar36 != bVar1) {
+                uVar12 = uVar35 + 1;
               }
-              object_link_ptr = *(longlong **)(target_object_ptr + 0x60 + source_object_ptr * 8);
-              if ((*object_link_ptr3 == *object_link_ptr) || (object_type = -1, *object_link_ptr3 == object_link_ptr[1])) {
-                object_type = 0;
+              plVar11 = *(longlong **)(uVar17 + 0x60 + uVar12 * 8);
+              if ((*plVar29 == *plVar11) || (iVar14 = -1, *plVar29 == plVar11[1])) {
+                iVar14 = 0;
               }
-              if ((object_link_ptr3[1] == *object_link_ptr) || (object_link_ptr3[1] == object_link_ptr[1])) {
-                object_type = 1;
+              if ((plVar29[1] == *plVar11) || (plVar29[1] == plVar11[1])) {
+                iVar14 = 1;
               }
-              source_object_ptr = min_distance_squared;
-              if (object_type == 0) {
-                source_object_ptr = 8;
+              uVar12 = uVar22;
+              if (iVar14 == 0) {
+                uVar12 = 8;
               }
-              *(undefined8 *)(stack_ulong + 0x80 + object_data_ulong * 8) =
-                   *(undefined8 *)(source_object_ptr + (longlong)object_link_ptr3);
-              object_has_connections = *(byte *)(stack_ulong + 0xa8);
-              source_object_ptr = (ulonglong)connection_index;
-              object_data_ulong = object_data_ulong + 1;
-              target_object_ptr = stack_ulong;
-            } while ((int)connection_index < (int)(uint)object_has_connections);
+              *(undefined8 *)(uStack_108 + 0x80 + uVar35 * 8) =
+                   *(undefined8 *)(uVar12 + (longlong)plVar29);
+              bVar1 = *(byte *)(uStack_108 + 0xa8);
+              uVar12 = (ulonglong)uVar36;
+              uVar35 = uVar35 + 1;
+              uVar17 = uStack_108;
+            } while ((int)uVar36 < (int)(uint)bVar1);
           }
-          
-          // 清理和处理对象资源
-          FUN_18038b160(temp_ulong);
-          FUN_18038af00(temp_ulong);
-          connection_index = best_connection_index;
-          if (*(longlong *)(temp_ulong + 0xb0) != 0) {
-            connection_index = *(uint *)(*(longlong *)(temp_ulong + 0xb0) + 0x134);
+          FUN_18038b160(uVar23);
+          FUN_18038af00(uVar23);
+          uVar36 = uVar15;
+          if (*(longlong *)(uVar23 + 0xb0) != 0) {
+            uVar36 = *(uint *)(*(longlong *)(uVar23 + 0xb0) + 0x134);
           }
-          if (*(longlong *)(temp_ulong + 0xb8) != 0) {
-            connection_index = connection_index | *(uint *)(*(longlong *)(temp_ulong + 0xb8) + 0x134);
+          if (*(longlong *)(uVar23 + 0xb8) != 0) {
+            uVar36 = uVar36 | *(uint *)(*(longlong *)(uVar23 + 0xb8) + 0x134);
           }
-          if (*(longlong *)(temp_ulong + 0xc0) != 0) {
-            connection_index = connection_index | *(uint *)(*(longlong *)(temp_ulong + 0xc0) + 0x134);
+          if (*(longlong *)(uVar23 + 0xc0) != 0) {
+            uVar36 = uVar36 | *(uint *)(*(longlong *)(uVar23 + 0xc0) + 0x134);
           }
-          if (*(longlong *)(temp_ulong + 200) != 0) {
-            connection_index = connection_index | *(uint *)(*(longlong *)(temp_ulong + 200) + 0x134);
+          if (*(longlong *)(uVar23 + 200) != 0) {
+            uVar36 = uVar36 | *(uint *)(*(longlong *)(uVar23 + 200) + 0x134);
           }
-          temp_uint = 0xffffffff;
-          if (connection_index != 0) {
-            temp_uint = connection_index;
+          uVar16 = 0xffffffff;
+          if (uVar36 != 0) {
+            uVar16 = uVar36;
           }
-          *(uint *)(temp_ulong + 0x134) = temp_uint;
-          
-          FUN_18038b160(collision_ulong);
-          FUN_18038af00(collision_ulong);
-          if (*(longlong *)(collision_ulong + 0xb0) != 0) {
-            best_connection_index = *(uint *)(*(longlong *)(collision_ulong + 0xb0) + 0x134);
+          *(uint *)(uVar23 + 0x134) = uVar16;
+          FUN_18038b160(uVar39);
+          FUN_18038af00(uVar39);
+          if (*(longlong *)(uVar39 + 0xb0) != 0) {
+            uVar15 = *(uint *)(*(longlong *)(uVar39 + 0xb0) + 0x134);
           }
-          if (*(longlong *)(collision_ulong + 0xb8) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_ulong + 0xb8) + 0x134);
+          if (*(longlong *)(uVar39 + 0xb8) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar39 + 0xb8) + 0x134);
           }
-          if (*(longlong *)(collision_ulong + 0xc0) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_ulong + 0xc0) + 0x134);
+          if (*(longlong *)(uVar39 + 0xc0) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar39 + 0xc0) + 0x134);
           }
-          if (*(longlong *)(collision_ulong + 200) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_ulong + 200) + 0x134);
+          if (*(longlong *)(uVar39 + 200) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar39 + 200) + 0x134);
           }
-          connection_index = 0xffffffff;
-          if (best_connection_index != 0) {
-            connection_index = best_connection_index;
+          uVar36 = 0xffffffff;
+          if (uVar15 != 0) {
+            uVar36 = uVar15;
           }
-          *(uint *)(collision_ulong + 0x134) = connection_index;
-          
-          FUN_18038b160(collision_object_ptr);
-          FUN_18038af00(collision_object_ptr);
-          best_connection_index = current_connection_index;
-          if (*(longlong *)(collision_object_ptr + 0xb0) != 0) {
-            best_connection_index = *(uint *)(*(longlong *)(collision_object_ptr + 0xb0) + 0x134);
+          *(uint *)(uVar39 + 0x134) = uVar36;
+          FUN_18038b160(uVar26);
+          FUN_18038af00(uVar26);
+          uVar15 = uVar21;
+          if (*(longlong *)(uVar26 + 0xb0) != 0) {
+            uVar15 = *(uint *)(*(longlong *)(uVar26 + 0xb0) + 0x134);
           }
-          if (*(longlong *)(collision_object_ptr + 0xb8) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_object_ptr + 0xb8) + 0x134);
+          if (*(longlong *)(uVar26 + 0xb8) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar26 + 0xb8) + 0x134);
           }
-          if (*(longlong *)(collision_object_ptr + 0xc0) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_object_ptr + 0xc0) + 0x134);
+          if (*(longlong *)(uVar26 + 0xc0) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar26 + 0xc0) + 0x134);
           }
-          if (*(longlong *)(collision_object_ptr + 200) != 0) {
-            best_connection_index = best_connection_index | *(uint *)(*(longlong *)(collision_object_ptr + 200) + 0x134);
+          if (*(longlong *)(uVar26 + 200) != 0) {
+            uVar15 = uVar15 | *(uint *)(*(longlong *)(uVar26 + 200) + 0x134);
           }
-          connection_index = 0xffffffff;
-          if (best_connection_index != 0) {
-            connection_index = best_connection_index;
+          uVar36 = 0xffffffff;
+          if (uVar15 != 0) {
+            uVar36 = uVar15;
           }
-          *(uint *)(collision_object_ptr + 0x134) = connection_index;
-          
-          FUN_18038b160(stack_ulong);
-          temp_undefined4 = FUN_18038af00(stack_ulong);
-          if (*(longlong *)(stack_ulong + 0xb0) != 0) {
-            current_connection_index = *(uint *)(*(longlong *)(stack_ulong + 0xb0) + 0x134);
+          *(uint *)(uVar26 + 0x134) = uVar36;
+          FUN_18038b160(uStack_108);
+          uVar41 = FUN_18038af00(uStack_108);
+          if (*(longlong *)(uStack_108 + 0xb0) != 0) {
+            uVar21 = *(uint *)(*(longlong *)(uStack_108 + 0xb0) + 0x134);
           }
-          if (*(longlong *)(stack_ulong + 0xb8) != 0) {
-            current_connection_index = current_connection_index | *(uint *)(*(longlong *)(stack_ulong + 0xb8) + 0x134);
+          if (*(longlong *)(uStack_108 + 0xb8) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(longlong *)(uStack_108 + 0xb8) + 0x134);
           }
-          if (*(longlong *)(stack_ulong + 0xc0) != 0) {
-            current_connection_index = current_connection_index | *(uint *)(*(longlong *)(stack_ulong + 0xc0) + 0x134);
+          if (*(longlong *)(uStack_108 + 0xc0) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(longlong *)(uStack_108 + 0xc0) + 0x134);
           }
-          if (*(longlong *)(stack_ulong + 200) != 0) {
-            current_connection_index = current_connection_index | *(uint *)(*(longlong *)(stack_ulong + 200) + 0x134);
+          if (*(longlong *)(uStack_108 + 200) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(longlong *)(uStack_108 + 200) + 0x134);
           }
-          best_connection_index = 0xffffffff;
-          if (current_connection_index != 0) {
-            best_connection_index = current_connection_index;
+          uVar15 = 0xffffffff;
+          if (uVar21 != 0) {
+            uVar15 = uVar21;
           }
-          *(uint *)(stack_ulong + 0x134) = best_connection_index;
-          
-          // 执行最终的渲染操作
-          temp_undefined4 = FUN_18038ee20(temp_undefined4,temp_ulong,0xffffffff);
-          temp_undefined4 = FUN_18038ee20(temp_undefined4,collision_ulong,0xffffffff);
-          temp_undefined4 = FUN_18038ee20(temp_undefined4,collision_object_ptr,0xffffffff);
-          temp_undefined4 = FUN_18038ee20(temp_undefined4,stack_ulong,0xffffffff);
-          *(int *)(render_context + 0x530) = *(int *)(render_context + 0x530) + 1;
-          temp_undefined4 = FUN_18038ee20(temp_undefined4,temp_ulong,*(undefined4 *)(render_context + 0x530));
-          *(int *)(render_context + 0x530) = *(int *)(render_context + 0x530) + 1;
-          FUN_18038ee20(temp_undefined4,collision_ulong,*(undefined4 *)(render_context + 0x530));
+          *(uint *)(uStack_108 + 0x134) = uVar15;
+          uVar41 = FUN_18038ee20(uVar41,uVar23,0xffffffff);
+          uVar41 = FUN_18038ee20(uVar41,uVar39,0xffffffff);
+          uVar41 = FUN_18038ee20(uVar41,uVar26,0xffffffff);
+          uVar41 = FUN_18038ee20(uVar41,uStack_108,0xffffffff);
+          *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
+          uVar41 = FUN_18038ee20(uVar41,uVar23,*(undefined4 *)(param_1 + 0x530));
+          *(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + 1;
+          FUN_18038ee20(uVar41,uVar39,*(undefined4 *)(param_1 + 0x530));
         }
       }
     }
   }
   return;
 }
+
+
+
+
+
