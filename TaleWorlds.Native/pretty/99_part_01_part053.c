@@ -893,6 +893,23 @@ longlong MemoryManager_AllocateLargePool(void)
 
 
 
+/**
+ * @brief 资源管理器处理器
+ * 
+ * 本函数负责处理系统资源的管理和分配操作，包括资源状态管理、安全验证和资源分配。
+ * 实现高级的资源管理机制，确保系统资源的安全分配和释放。
+ * 
+ * @param param_1 系统参数结构体
+ * @param param_2 资源指针引用
+ * @param param_3 资源管理标志
+ * 
+ * 功能特点：
+ * * - 实现安全的资源管理操作
+ * * - 处理资源状态的转换
+ * * - 支持资源的动态分配和释放
+ * * - 包含安全验证机制
+ * * - 管理资源的生命周期
+ */
 void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param_3)
 
 {
