@@ -1206,108 +1206,151 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
 
 
 
-// 函数: void FUN_180091020(void)
-void FUN_180091020(void)
-
+/**
+ * 主渲染循环和帧同步处理
+ * 处理游戏的主渲染循环，包括帧同步、状态更新和渲染调度
+ * 
+ * 注意：此函数不返回，是游戏的主循环入口点
+ */
+void main_render_loop(void)
 {
-  char cVar1;
-  char cVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  char cVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  undefined8 uVar11;
-  undefined1 auStack_d8 [32];
-  undefined1 uStack_b8;
-  int iStack_a8;
-  int iStack_a4;
-  int iStack_a0;
-  int iStack_9c;
-  longlong *plStack_98;
-  undefined8 uStack_90;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  char current_state;
+  char previous_state;
+  longlong context_ptr1;
+  longlong context_ptr2;
+  longlong context_ptr3;
+  longlong engine_context;
+  char is_active;
+  ulonglong context_index1;
+  ulonglong context_index2;
+  ulonglong context_index3;
+  undefined8 render_result;
+  undefined1 stack_buffer_d8 [32];
+  undefined1 active_flag;
+  int render_height;
+  int render_width;
+  int viewport_x;
+  int viewport_y;
+  longlong *resource_ptr;
+  undefined8 cleanup_flag;
+  undefined *resource_manager;
+  undefined1 *string_buffer;
+  undefined4 buffer_size;
+  undefined1 stack_buffer_70 [72];
+  ulonglong security_cookie;
   
-  lVar6 = _DAT_180c86950;
-  uStack_90 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  // 获取引擎上下文
+  engine_context = _DAT_180c86950;
+  cleanup_flag = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_d8;
+  
+  // 保存当前渲染状态
   *(undefined1 *)(_DAT_180c86950 + 0x1889) = *(undefined1 *)(_DAT_180c86950 + 0x1888);
-  cVar1 = *(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
-                   (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
-  *(char *)(lVar6 + 0x1888) = cVar1;
-  cVar2 = *(char *)(lVar6 + 0x1889);
+  
+  // 获取新的渲染状态
+  current_state = *(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
+                          (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
+  
+  // 更新状态寄存器
+  *(char *)(engine_context + 0x1888) = current_state;
+  previous_state = *(char *)(engine_context + 0x1889);
+  
+  // 检查渲染模式
   if (*(int *)(_DAT_180c86920 + 0x2370) == 0) {
-    if (cVar1 == cVar2) goto LAB_1800911c4;
-    if (cVar1 != '\0') goto LAB_180091164;
-    puStack_88 = &UNK_1809fcc58;
-    puStack_80 = auStack_70;
-    auStack_70[0] = 0;
-    uStack_78 = 0x17;
-    uVar11 = strcpy_s(auStack_70,0x40,&UNK_180a01360);
-    uStack_b8 = 1;
-    uVar11 = FUN_180157390(uVar11,&plStack_98,&puStack_88,0);
-    FUN_180060b80(lVar6 + 0x1698,uVar11);
-    if (plStack_98 != (longlong *)0x0) {
-      (**(code **)(*plStack_98 + 0x38))();
+    // 如果状态未改变，跳过处理
+    if (current_state == previous_state) goto RENDER_CONTINUE;
+    
+    // 如果状态为空，初始化渲染系统
+    if (current_state != '\0') goto ACTIVE_RENDERING;
+    
+    // 初始化渲染资源
+    resource_manager = &UNK_1809fcc58;
+    string_buffer = stack_buffer_70;
+    stack_buffer_70[0] = 0;
+    buffer_size = 0x17;
+    render_result = strcpy_s(stack_buffer_70, 0x40, &UNK_180a01360);
+    active_flag = 1;
+    render_result = FUN_180157390(render_result, &resource_ptr, &resource_manager, 0);
+    FUN_180060b80(engine_context + 0x1698, render_result);
+    
+    // 清理资源指针
+    if (resource_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_ptr + 0x38))();
     }
-    puStack_88 = &UNK_18098bcb0;
-    (**(code **)(**(longlong **)(lVar6 + 0x1698) + 0x60))();
-LAB_180091192:
+    
+    // 设置资源管理器
+    resource_manager = &UNK_18098bcb0;
+    (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x60))();
+    
+RENDER_CONTINUE:
+    // 继续渲染循环
     (**(code **)(*_DAT_180c86878 + 0x10))();
   }
   else {
-LAB_180091164:
-    if (*(longlong **)(lVar6 + 0x1698) != (longlong *)0x0) {
-      cVar7 = (**(code **)(**(longlong **)(lVar6 + 0x1698) + 0xd8))();
-      if (cVar7 != '\0') {
-        (**(code **)(**(longlong **)(lVar6 + 0x1698) + 0x68))();
-        goto LAB_180091192;
+ACTIVE_RENDERING:
+    // 活跃渲染模式
+    if (*(longlong **)(engine_context + 0x1698) != (longlong *)0x0) {
+      is_active = (**(code **)(**(longlong **)(engine_context + 0x1698) + 0xd8))();
+      if (is_active != '\0') {
+        // 执行活跃渲染任务
+        (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x68))();
+        goto RENDER_CONTINUE;
       }
     }
   }
-  if (((cVar1 != cVar2) && (_DAT_180c8a9c0 != 0)) && (*(longlong *)(_DAT_180c8a9c0 + 0x10) != 0)) {
-    (**(code **)(_DAT_180c8a9c0 + 0x80))(*(undefined1 *)(lVar6 + 0x1888));
+  
+  // 状态变化处理
+  if (((current_state != previous_state) && (_DAT_180c8a9c0 != 0)) && (*(longlong *)(_DAT_180c8a9c0 + 0x10) != 0)) {
+    (**(code **)(_DAT_180c8a9c0 + 0x80))(*(undefined1 *)(engine_context + 0x1888));
   }
-LAB_1800911c4:
-  FUN_180093af0(lVar6);
-  FUN_1800905f0(lVar6 + 0x30);
+  
+RENDER_CONTINUE:
+  // 执行渲染任务
+  FUN_180093af0(engine_context);
+  FUN_1800905f0(engine_context + 0x30);
+  
+  // 检查是否需要更新显示设置
   if ((DAT_180c82860 == '\0') && (*(int *)(_DAT_180c86908 + 0x7e0) == 0)) {
+    // 如果显示配置为空或无效，使用默认设置
     if ((**(char **)(_DAT_180c868d0 + 0x2010) == '\0') ||
        (*(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
                  (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
-      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8),0);
+      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8), 0);
     }
     else {
-      lVar3 = *(longlong *)(_DAT_180c86870 + 8);
-      uVar8 = (ulonglong)(*(uint *)(lVar3 + 0x13c) & 1);
-      lVar4 = *(longlong *)(_DAT_180c86870 + 8);
-      uVar9 = (ulonglong)(*(uint *)(lVar4 + 0x13c) & 1);
-      lVar5 = *(longlong *)(_DAT_180c86870 + 8);
-      uVar10 = (ulonglong)(*(uint *)(lVar5 + 0x13c) & 1);
-      iStack_a4 = *(int *)(lVar4 + 0xf0 + uVar9 * 0x48) + *(int *)(lVar3 + 0xb0 + uVar8 * 0x48);
-      iStack_a8 = *(int *)(lVar4 + 0xec + uVar9 * 0x48) + *(int *)(lVar3 + 0xac + uVar8 * 0x48);
-      iStack_9c = *(int *)(lVar5 + 0xf0 + uVar10 * 0x48) + *(int *)(lVar3 + 0xb8 + uVar8 * 0x48);
-      iStack_a0 = *(int *)(lVar5 + 0xec + uVar10 * 0x48) + *(int *)(lVar3 + 0xb4 + uVar8 * 0x48);
-      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8),&iStack_a8);
-      lVar3 = *(longlong *)(_DAT_180c868d0 + 0x2010);
-      FUN_180093780(lVar3,*(undefined4 *)(lVar3 + 4),*(undefined4 *)(lVar3 + 8));
-      lVar3 = _DAT_180c868d0;
-      *(float *)(lVar6 + 0x17e0) =
-           (float)*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2010) + 4) / *(float *)(lVar6 + 0x17ec);
-      *(float *)(lVar6 + 0x17e4) =
-           (float)*(int *)(*(longlong *)(lVar3 + 0x2010) + 8) / *(float *)(lVar6 + 0x17f0);
+      // 计算显示参数
+      context_ptr1 = *(longlong *)(_DAT_180c86870 + 8);
+      context_index1 = (ulonglong)(*(uint *)(context_ptr1 + 0x13c) & 1);
+      context_ptr2 = *(longlong *)(_DAT_180c86870 + 8);
+      context_index2 = (ulonglong)(*(uint *)(context_ptr2 + 0x13c) & 1);
+      context_ptr3 = *(longlong *)(_DAT_180c86870 + 8);
+      context_index3 = (ulonglong)(*(uint *)(context_ptr3 + 0x13c) & 1);
+      
+      // 计算渲染尺寸
+      render_width = *(int *)(context_ptr2 + 0xf0 + context_index2 * 0x48) + *(int *)(context_ptr1 + 0xb0 + context_index1 * 0x48);
+      render_height = *(int *)(context_ptr2 + 0xec + context_index2 * 0x48) + *(int *)(context_ptr1 + 0xac + context_index1 * 0x48);
+      viewport_x = *(int *)(context_ptr3 + 0xf0 + context_index3 * 0x48) + *(int *)(context_ptr1 + 0xb8 + context_index1 * 0x48);
+      viewport_y = *(int )(context_ptr3 + 0xec + context_index3 * 0x48) + *(int )(context_ptr1 + 0xb4 + context_index1 * 0x48);
+      
+      // 更新显示设置
+      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8), &render_height);
+      
+      // 更新显示比例
+      context_ptr1 = *(longlong *)(_DAT_180c868d0 + 0x2010);
+      FUN_180093780(context_ptr1, *(undefined4 *)(context_ptr1 + 4), *(undefined4 *)(context_ptr1 + 8));
+      context_ptr1 = _DAT_180c868d0;
+      
+      // 计算并设置宽高比
+      *(float *)(engine_context + 0x17e0) =
+           (float)*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2010) + 4) / *(float *)(engine_context + 0x17ec);
+      *(float *)(engine_context + 0x17e4) =
+           (float)*(int *)(*(longlong *)(context_ptr1 + 0x2010) + 8) / *(float *)(engine_context + 0x17f0);
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_d8);
+  
+  // 清理栈帧并继续循环（此函数不返回）
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_d8);
 }
 
 
@@ -1316,29 +1359,43 @@ LAB_1800911c4:
 
 
 
-// 函数: void FUN_1800913a0(void)
-void FUN_1800913a0(void)
-
+/**
+ * 更新渲染参数和分辨率设置
+ * 检查并更新渲染参数，如果分辨率发生变化则重新配置渲染系统
+ * 
+ * 注意：当检测到分辨率变化时，此函数可能不返回并触发系统重新配置
+ */
+void update_render_parameters(void)
 {
-  char *pcVar1;
-  int iVar2;
-  int iVar3;
+  char *config_ptr;
+  int new_width;
+  int new_height;
   
-  pcVar1 = *(char **)(_DAT_180c868d0 + 0x2010);
-  iVar2 = (int)(*(float *)(_DAT_180c86950 + 0x17f0) * *(float *)(_DAT_180c86950 + 0x17e4));
-  iVar3 = (int)(*(float *)(_DAT_180c86950 + 0x17ec) * *(float *)(_DAT_180c86950 + 0x17e0));
-  if (*pcVar1 == '\0') {
-    *(int *)(pcVar1 + 4) = iVar3;
-    *(int *)(pcVar1 + 8) = iVar2;
-    *pcVar1 = '\x01';
+  // 获取配置指针
+  config_ptr = *(char **)(_DAT_180c868d0 + 0x2010);
+  
+  // 计算新的分辨率（基于当前显示比例）
+  new_width = (int)(*(float *)(_DAT_180c86950 + 0x17f0) * *(float *)(_DAT_180c86950 + 0x17e4));
+  new_height = (int)(*(float *)(_DAT_180c86950 + 0x17ec) * *(float *)(_DAT_180c86950 + 0x17e0));
+  
+  // 如果配置未初始化，设置初始参数
+  if (*config_ptr == '\0') {
+    *(int *)(config_ptr + 4) = new_height;     // 设置高度
+    *(int *)(config_ptr + 8) = new_width;      // 设置宽度
+    *config_ptr = '\x01';                     // 标记为已配置
     return;
   }
-  if ((*(int *)(pcVar1 + 4) == iVar3) && (*(int *)(pcVar1 + 8) == iVar2)) {
+  
+  // 检查分辨率是否发生变化
+  if ((*(int *)(config_ptr + 4) == new_height) && (*(int *)(config_ptr + 8) == new_width)) {
+    // 分辨率未变化，无需更新
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a16bd0,*(int *)(pcVar1 + 4),*(undefined4 *)(pcVar1 + 8),iVar3
-                ,iVar2);
+  
+  // 分辨率发生变化，触发重新配置
+  // 注意：此函数可能不返回，将触发系统重新初始化
+  FUN_180062300(_DAT_180c86928, &UNK_180a16bd0, *(int *)(config_ptr + 4), 
+                *(undefined4 *)(config_ptr + 8), new_height, new_width);
 }
 
 
