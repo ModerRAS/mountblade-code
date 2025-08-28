@@ -926,7 +926,7 @@ uint64_t FUN_1808d0d90(int64_t param_1,uint64_t param_2)
       }
       (**(code **)(*plVar8 + 0x28))(plVar8,0);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar8,&unknown_var_5904_ptr,0xed7,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar8,&unknown_var_5904_ptr,0xed7,1);
     }
   }
   return 0x1c;

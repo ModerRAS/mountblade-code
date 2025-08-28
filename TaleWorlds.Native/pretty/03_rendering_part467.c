@@ -704,7 +704,7 @@ LAB_180519e0e:
     FUN_180575540(uVar5,1,cVar2,cVar3,unaff_RBP + -0x1c);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 

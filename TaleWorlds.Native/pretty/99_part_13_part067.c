@@ -253,7 +253,7 @@ LAB_1808d6bd1:
   }
 FUN_1808d6c72:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_108);
 LAB_1808d68bb:
   param_2 = puStack_90;
   if ((plVar7 < *(int64_t **)(lVar5 + 0x28)) ||
@@ -431,7 +431,7 @@ LAB_1808d6bd1:
   }
 LAB_1808d6c62:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b8 ^ (uint64_t)&stack0x00000000);
 }
 
 

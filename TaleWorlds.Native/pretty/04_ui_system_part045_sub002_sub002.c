@@ -3799,7 +3799,7 @@ void FUN_180679d30(int64_t param_1,uint64_t *param_2,int param_3)
   } while (lStack_b40 != 0);
   puStack_af8 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_d68);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_d68);
 }
 
 

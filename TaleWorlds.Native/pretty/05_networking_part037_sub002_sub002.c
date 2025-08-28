@@ -135,7 +135,7 @@ LAB_1808607eb:
             uVar18 = *(uint *)(param_1 + 0x2dc);
             lVar14 = *(int64_t *)(lVar7 + 0x130);
             if (lVar14 != 0) {
-              FUN_180768360(lVar14);
+              SystemMemoryAllocator(lVar14);
             }
             plVar9 = (int64_t *)func_0x000180851be0(lVar7 + 0x138,plVar19);
             if (plVar9 == (int64_t *)0x0) {
@@ -144,7 +144,7 @@ LAB_1808607eb:
             if (plVar9 == (int64_t *)0x0) {
               if (lVar14 != 0) {
                     // WARNING: Subroutine does not return
-                FUN_180768400(lVar14);
+                SystemMemoryManager(lVar14);
               }
               goto FUN_1808616bc;
             }
@@ -165,7 +165,7 @@ LAB_1808607eb:
 LAB_180860998:
             if (lVar14 != 0) {
                     // WARNING: Subroutine does not return
-              FUN_180768400(lVar14);
+              SystemMemoryManager(lVar14);
             }
             if ((lVar7 == 0) ||
                (iVar6 = FUN_1808c19d0(*(uint64_t *)(param_1 + 0x2c8)), iVar6 != 0))
@@ -261,7 +261,7 @@ LAB_180860af6:
                       plVar21[1] = (int64_t)plVar21;
                       *plVar21 = (int64_t)plVar21;
                     // WARNING: Subroutine does not return
-                      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr,
+                      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -698,7 +698,7 @@ joined_r0x000180861496:
                         plVar21[1] = (int64_t)plVar21;
                         *plVar21 = (int64_t)plVar21;
                     // WARNING: Subroutine does not return
-                        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;
@@ -718,7 +718,7 @@ joined_r0x000180861496:
   }
 FUN_1808616bc:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_78 ^ (uint64_t)auStack_1a8);
+  SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_1a8);
 }
 
 

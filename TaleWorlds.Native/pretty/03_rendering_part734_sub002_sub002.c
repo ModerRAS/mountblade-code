@@ -182,7 +182,7 @@ void FUN_18069a490(int64_t param_1)
   }
   if ((*(int *)(param_1 + 0x4420) == 0) && (*(int *)(param_1 + 0x1e64) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_b8);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_b8);
   }
   FUN_180699f40(param_1);
   uStack_98 = *(uint64_t *)(param_1 + 0x4438);

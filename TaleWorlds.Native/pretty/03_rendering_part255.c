@@ -119,7 +119,7 @@ void FUN_18040ebd0(uint64_t param_1,float *param_2,float *param_3,float *param_4
   param_2[3] = fVar8;
 FUN_18040ed98:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_78 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_b8);
 }
 
 
@@ -239,7 +239,7 @@ void FUN_18040ec27(uint64_t param_1,int32_t param_2,float *param_3,float *param_
     unaff_RBX[3] = fVar6 * fVar14 + fVar4 * fVar16 * fVar20;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -276,7 +276,7 @@ void FUN_18040ec8a(void)
   unaff_RBX[2] = fVar3 * unaff_XMM11_Dc + fVar1 * unaff_XMM10_Dc;
   unaff_RBX[3] = fVar3 * unaff_XMM11_Dd + fVar1 * unaff_XMM10_Dd;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -335,7 +335,7 @@ void FUN_18040ed1b(uint64_t param_1,float *param_2)
   param_2[2] = (3.0 - fVar5 * fVar5 * fVar7) * fVar5 * 0.5 * fVar12;
   param_2[3] = (3.0 - fVar6 * fVar6 * fVar8) * fVar6 * 0.5 * fVar13;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -349,7 +349,7 @@ void FUN_18040ed98(void)
   uint64_t in_stack_00000040;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 

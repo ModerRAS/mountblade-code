@@ -20,7 +20,7 @@ void FUN_180780c63(int64_t param_1)
   *(int32_t *)(unaff_RBX + 0x23cc) = unaff_ESI;
   (*unaff_R13)(param_1 + 0x220);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00001050 ^ (uint64_t)&stack0x00000000);
 }
 
 

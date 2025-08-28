@@ -240,8 +240,8 @@ typedef struct {
 
 /** 辅助函数别名 */
 #define SystemCleanup                      FUN_1801f9270      // 系统清理函数
-#define MemoryAllocate                     FUN_18062b420      // 内存分配函数
-#define MemoryFree                         FUN_18064e900      // 内存释放函数
+#define MemoryAllocate                     CoreEngineMemoryPoolAllocator      // 内存分配函数
+#define MemoryFree                         CoreEngineMemoryPoolCleaner      // 内存释放函数
 #define StringCopy                         FUN_1802c22a0      // 字符串复制函数
 #define StringLength                       FUN_1802c2560      // 字符串长度函数
 #define ResourceCreate                     FUN_1800b1230      // 资源创建函数
@@ -251,8 +251,8 @@ typedef struct {
 #define ExecuteOperation                   FUN_18029fc10      // 操作执行函数
 #define FormatData                         FUN_18029d150      // 数据格式化函数
 #define TransformData                      FUN_18029d760      // 数据变换函数
-#define ConfigureSystem                    FUN_180627ae0      // 系统配置函数
-#define ControlResource                    FUN_180626f80      // 资源控制函数
+#define ConfigureSystem                    CoreEngineDataTransformer      // 系统配置函数
+#define ControlResource                    SystemDataInitializer      // 资源控制函数
 #define QueryResource                      FUN_180244ff0      // 资源查询函数
 #define ProcessCommand                     FUN_1801f9aa0      // 命令处理函数
 #define UpdateResource                     FUN_180060b80      // 资源更新函数

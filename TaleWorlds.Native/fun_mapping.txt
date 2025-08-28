@@ -1,4 +1,14 @@
 # FUN_函数到语义化别名的映射
+FUN_1808fc8a8=SystemDataValidator
+FUN_180045af0=SystemResourceManager
+FUN_180058370=SystemStateController
+FUN_1802c24b0=SystemParameterProcessor
+FUN_180057340=SystemConfigHandler
+FUN_18004b790=SystemSecurityChecker
+FUN_18007f6a0=SystemOptimizationManager
+FUN_180057010=SystemPerformanceMonitor
+FUN_180044a30=SystemErrorHandler
+FUN_18005d260=SystemMemoryAllocator
 FUN_18064d630=SystemExceptionHandler
 FUN_180627b90=SystemMemoryManager
 FUN_18006a050=SystemCoreInitializer
