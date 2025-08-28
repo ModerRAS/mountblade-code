@@ -407,8 +407,8 @@ uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
             result2 = result2 - (result2 % result1 + result1);
         }
         
-        // 处理初始化结果
-        result2 = FUN_1807881c0(system_ptr, component_ptr, result2);
+        // 调用UI内部初始化函数
+        result2 = UI_InternalInit(system_ptr, component_ptr, result2);
         if (result2 == 0) {
             return UI_SYSTEM_SUCCESS;
         }
