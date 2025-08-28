@@ -72,14 +72,14 @@ typedef enum {
 ==============================================================================*/
 
 // 函数: 系统初始化器
-undefined FUN_180073930;  // SystemInitializer - 系统初始化器
-undefined UNK_18098c880;   // 系统配置数据指针
-undefined DAT_18098c8c8;   // 系统初始化状态标志
-undefined UNK_18098c898;   // 系统初始化参数表
-undefined DAT_180bf5268;   // 系统启动时间戳
-undefined DAT_180bf5270;   // 系统版本信息
-undefined DAT_180bf5280;   // 系统构建信息
-undefined DAT_180bf5288;   // 系统环境信息
+void* FUN_180073930;  // SystemInitializer - 系统初始化器
+void* UNK_18098c880;   // 系统配置数据指针
+void* DAT_18098c8c8;   // 系统初始化状态标志
+void* UNK_18098c898;   // 系统初始化参数表
+void* DAT_180bf5268;   // 系统启动时间戳
+void* DAT_180bf5270;   // 系统版本信息
+void* DAT_180bf5280;   // 系统构建信息
+void* DAT_180bf5288;   // 系统环境信息
 
 // 函数: 系统环境检查器
 undefined FUN_1800637c0;  // SystemEnvironmentChecker - 系统环境检查器
