@@ -150,7 +150,7 @@ void FUN_18032afa0(int64_t param_1,int64_t *param_2,uint64_t param_3)
           lVar4 = 1;
 LAB_18032b0f4:
           // 分配新的缓冲区内存
-          puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar4 * 4,(char)param_2[3]);
+          puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar4 * 4,(char)param_2[3]);
           puVar8 = (int32_t *)param_2[1];
           puVar7 = (int32_t *)*param_2;
         }
@@ -168,7 +168,7 @@ LAB_18032b0f4:
         // 写入资源数据项
         *puVar5 = uVar1;
         if (*param_2 != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         
         // 更新缓冲区指针
@@ -186,7 +186,7 @@ LAB_18032b0f4:
   pppplVar3 = pppplStack_48;
   if ((int64_t *****)pppplStack_48 != (int64_t *****)0x0) {
     FUN_18004b790(&pppplStack_58,*pppplStack_48);
-    FUN_18064e900(pppplVar3);
+    CoreEngineMemoryPoolCleaner(pppplVar3);
   }
   
   return;
@@ -295,7 +295,7 @@ void FUN_18032b1c0(int64_t param_1,int64_t *param_2,uint64_t param_3,char param_
           lVar4 = 1;
 LAB_18032b314:
           // 分配新的缓冲区内存
-          puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar4 * 4,(char)param_2[3]);
+          puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar4 * 4,(char)param_2[3]);
           puVar8 = (int32_t *)param_2[1];
           puVar7 = (int32_t *)*param_2;
         }
@@ -313,7 +313,7 @@ LAB_18032b314:
         // 写入数据项
         *puVar5 = uVar1;
         if (*param_2 != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         
         // 更新缓冲区指针
@@ -340,7 +340,7 @@ LAB_18032b314:
   }
   
   FUN_18004b790(&ppuStack_68,*ppuStack_58);
-  FUN_18064e900(ppuVar3);
+  CoreEngineMemoryPoolCleaner(ppuVar3);
 }
 
 
@@ -507,7 +507,7 @@ LAB_18032b522:
     }
     
     // 创建新的资源条目
-    puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x354));
+    puVar5 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x354));
     uStack_40 = (int32_t)param_2;
     uStack_3c = (int32_t)(param_2 >> 0x20);
     *(int32_t *)puVar5 = uStack_40;
@@ -600,7 +600,7 @@ LAB_18032b6ff:
   // 检查是否需要创建新资源条目
   if (puVar5 == *(uint **)(lVar1 + lVar3 * 8)) {
     // 分配资源条目内存
-    uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3);
+    uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3);
     uVar4 = FUN_18033ac00(uVar4);
     
     // 计算哈希值
@@ -616,7 +616,7 @@ LAB_18032b6ff:
     }
     
     // 创建新的资源条目
-    puVar5 = (uint *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0xa1c));
+    puVar5 = (uint *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0xa1c));
     uStack_38 = (uint)uVar4;
     uStack_34 = (uint)((uint64_t)uVar4 >> 0x20);
     *puVar5 = param_2;
@@ -716,7 +716,7 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   uStackX_10 = param_2;
   
   // 创建文件缓冲区
-  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+  puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
   lVar2 = FUN_180334500(param_1,&puStack_68);
   
   // 获取文件路径
@@ -733,7 +733,7 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   // 设置文件操作参数
   puStack_68 = &system_data_buffer_ptr;
   if (lStack_60 != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   lStack_60 = 0;
@@ -744,9 +744,9 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   _fseeki64(puVar1[1],0,0);
   
   // 创建文件头
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar3 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
-  FUN_18064e990(puVar3);
+  CoreEngineSystemCleanup(puVar3);
   *puVar3 = 0x655679616c706552;  // "ReplyValue"
   *(int32_t *)(puVar3 + 1) = 0x6f697372;  // "rsio"
   *(int16_t *)((int64_t)puVar3 + 0xc) = 0x6e;  // "n"
@@ -757,7 +757,7 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   fwrite(auStackX_8,1,1,puVar1[1]);
   
   // 清理文件缓冲区
-  FUN_18064e900(puVar3);
+  CoreEngineMemoryPoolCleaner(puVar3);
 }
 
 
@@ -820,7 +820,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   puVar3 = *(uint64_t **)(param_1 + 0x968);
   if (puVar3 != (uint64_t *)0x0) {
     FUN_18004b790(lVar4,*puVar3);
-    FUN_18064e900(puVar3);
+    CoreEngineMemoryPoolCleaner(puVar3);
   }
   *(int64_t *)lVar4 = lVar4;
   *(int64_t *)(param_1 + 0x960) = lVar4;
@@ -885,7 +885,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   
   // 获取文件操作参数
   FUN_180334500(param_1,auStack_80);
-  puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+  puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
   puVar8 = &system_buffer_ptr;
   if (puStack_78 != (void *)0x0) {
     puVar8 = puStack_78;
@@ -898,7 +898,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   
   // 检查文件是否打开
   if (puVar3[1] == 0) {
-    FUN_180626f80(&unknown_var_7632_ptr);
+    SystemDataInitializer(&unknown_var_7632_ptr);
     if (puVar3[1] != 0) {
       fclose();
       puVar3[1] = 0;
@@ -906,7 +906,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
       SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
-    FUN_18064e900(puVar3);
+    CoreEngineMemoryPoolCleaner(puVar3);
   }
   
   // 读取文件头信息
@@ -932,7 +932,7 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
           lVar4 = 1;
 LAB_18032c711:
           puVar5 = (uint64_t *)
-                   FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,*(int8_t *)(param_1 + 0x278));
+                   CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar4 * 8,*(int8_t *)(param_1 + 0x278));
           puVar10 = *(uint64_t **)(param_1 + 0x268);
           puVar9 = (uint64_t *)*puVar1;
         }
@@ -950,7 +950,7 @@ LAB_18032c711:
         // 写入资源数据
         *puVar5 = uStackX_10;
         if (*puVar1 != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         
         // 更新缓冲区指针
@@ -985,7 +985,7 @@ LAB_18032c711:
       // 创建新的资源索引条目
       FUN_18066c220(param_1 + 0x9a8,acStackX_18,(uint64_t)*(uint *)(param_1 + 0x998),
                     *(int32_t *)(param_1 + 0x9a0),1);
-      piVar6 = (int *)FUN_18062b420(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0x9b4));
+      piVar6 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,*(int8_t *)(param_1 + 0x9b4));
       *piVar6 = iVar2;
       piVar6[1] = 0;
       piVar6[2] = 0;
@@ -1036,7 +1036,7 @@ LAB_18032c882:
   }
   
   // 清理文件缓冲区
-  FUN_18064e900(puVar3);
+  CoreEngineMemoryPoolCleaner(puVar3);
 }
 
 
@@ -1104,7 +1104,7 @@ void FUN_18032c9f0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
   
   // 清理资源数据缓冲区
   if (lStack_b0 != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 初始化资源收集缓冲区
@@ -1126,7 +1126,7 @@ void FUN_18032c9f0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
   
   // 清理资源收集缓冲区
   if (puVar5 != (uint64_t *)0x0) {
-    FUN_18064e900(puVar5);
+    CoreEngineMemoryPoolCleaner(puVar5);
   }
   
   // 初始化扩展数据缓冲区
@@ -1218,12 +1218,12 @@ void FUN_18032c9f0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
   
   // 清理扩展数据缓冲区
   if (puVar5 != (uint64_t *)0x0) {
-    FUN_18064e900(puVar5);
+    CoreEngineMemoryPoolCleaner(puVar5);
   }
   
   // 清理资源数据缓冲区
   if (((char)uStack_98 == '\0') && (lVar7 != 0)) {
-    FUN_18064e900(lVar7);
+    CoreEngineMemoryPoolCleaner(lVar7);
   }
   
   // 处理资源导出

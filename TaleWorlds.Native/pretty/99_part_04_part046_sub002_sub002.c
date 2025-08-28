@@ -912,7 +912,7 @@ LAB_1802b2c74:
     puStack_b8 = &system_state_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_118);
 }
 
 

@@ -191,7 +191,7 @@ typedef void (*RenderCallback)(RenderContext* context);
 #define RenderingBufferReleaser      FUN_18069cbd0    /* 缓冲区释放器 */
 
 /* 渲染状态函数别名 */
-#define RenderingStateSetter         FUN_1808fc050    /* 渲染状态设置器 */
+#define RenderingStateSetter         SystemSecurityChecker    /* 渲染状态设置器 */
 #define RenderingStateGetter         FUN_1808fc060    /* 渲染状态获取器 */
 #define RenderingStateResetter      FUN_1808fc070    /* 渲染状态重置器 */
 
@@ -572,7 +572,7 @@ void FUN_18069cbd0(uint64_t param_1, int64_t param_2, int64_t param_3,
  * 
  * @param param_1 状态参数
  */
-void FUN_1808fc050(uint64_t param_1) {
+void SystemSecurityChecker(uint64_t param_1) {
     // 渲染状态设置实现
     // 包含状态验证、硬件设置、同步处理等工作
 }

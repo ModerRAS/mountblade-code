@@ -142,8 +142,8 @@
 /* FUN_180628ca0 - 系统时间戳获取函数 */
 #define SystemTimestampGetter FUN_180628ca0
 
-/* FUN_180627ae0 - 字符串初始化函数 */
-#define StringInitializer FUN_180627ae0
+/* CoreEngineDataTransformer - 字符串初始化函数 */
+#define StringInitializer CoreEngineDataTransformer
 
 /* FUN_1801299b0 - 字符串比较函数 */
 #define StringComparator FUN_1801299b0
@@ -190,14 +190,14 @@
 /* FUN_180627910 - 上下文创建函数 */
 #define ContextCreator FUN_180627910
 
-/* FUN_18062b1e0 - 内存分配函数 */
-#define MemoryAllocator FUN_18062b1e0
+/* CoreEngineMemoryPoolReallocator - 内存分配函数 */
+#define MemoryAllocator CoreEngineMemoryPoolReallocator
 
 /* FUN_180049830 - 资源初始化函数 */
 #define ResourceInitializer FUN_180049830
 
-/* FUN_1806277c0 - 数据块初始化函数 */
-#define DataBlockInitializer FUN_1806277c0
+/* CoreEngineDataBufferProcessor - 数据块初始化函数 */
+#define DataBlockInitializer CoreEngineDataBufferProcessor
 
 /* FUN_180629c00 - 字符串格式化函数 */
 #define StringFormatter FUN_180629c00

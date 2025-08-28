@@ -178,7 +178,7 @@ LAB_1808e3f76:
   *(int *)(param_1 + 0x14c) = iVar8 + 1;
 LAB_1808e3f99:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -286,7 +286,7 @@ LAB_1808e3f76:
   *(int *)(unaff_RDI + 0x14c) = iVar4 + 1;
 LAB_1808e3f99:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -349,7 +349,7 @@ void FUN_1808e3eb9(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
   *(int *)(unaff_RDI + 0x14c) = iVar2 + 1;
 LAB_1808e3f99:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
 }
 
 

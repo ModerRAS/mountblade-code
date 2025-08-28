@@ -48,7 +48,7 @@ void FUN_18038a7cd(int param_1,uint64_t param_2,uint64_t param_3,float param_4)
         lVar1 = *(int64_t *)(unaff_RBP + 0x28c8) + lVar3 * 0x28;
         FUN_1800e8140(lVar1 + 8,(int64_t)*(int *)(*(int64_t *)(unaff_RBP + 0x28c8) + lVar3 * 0x28)
                      );
-        FUN_18005ea90(lVar1 + 8,&stack0x00000090);
+        SystemInitializer(lVar1 + 8,&stack0x00000090);
       }
       unaff_R14D = unaff_R14D + 1;
       iVar2 = iVar7;
@@ -98,7 +98,7 @@ void FUN_18038a80e(float param_1,float param_2,float param_3,float param_4)
           lVar1 = *(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28;
           FUN_1800e8140(lVar1 + 8,
                         (int64_t)*(int *)(*(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28));
-          FUN_18005ea90(lVar1 + 8,&stack0x00000090);
+          SystemInitializer(lVar1 + 8,&stack0x00000090);
           iVar3 = iVar3 + 1;
         } while (iVar3 <= iVar4);
       }
@@ -141,7 +141,7 @@ void FUN_18038a837(float param_1,float param_2,float param_3)
           lVar1 = *(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28;
           FUN_1800e8140(lVar1 + 8,
                         (int64_t)*(int *)(*(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28));
-          FUN_18005ea90(lVar1 + 8,&stack0x00000090);
+          SystemInitializer(lVar1 + 8,&stack0x00000090);
           iVar3 = iVar3 + 1;
         } while (iVar3 <= iVar4);
       }
@@ -182,7 +182,7 @@ void FUN_18038a863(int param_1)
           lVar1 = *(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28;
           FUN_1800e8140(lVar1 + 8,
                         (int64_t)*(int *)(*(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28));
-          FUN_18005ea90(lVar1 + 8,&stack0x00000090);
+          SystemInitializer(lVar1 + 8,&stack0x00000090);
           iVar3 = iVar3 + 1;
         } while (iVar3 <= iVar4);
       }
@@ -217,7 +217,7 @@ void FUN_18038a873(void)
         lVar1 = *(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28;
         FUN_1800e8140(lVar1 + 8,(int64_t)*(int *)(*(int64_t *)(unaff_RBP + 0x28c8) + lVar2 * 0x28)
                      );
-        FUN_18005ea90(lVar1 + 8,&stack0x00000090);
+        SystemInitializer(lVar1 + 8,&stack0x00000090);
         iVar3 = iVar3 + 1;
       } while (iVar3 <= unaff_R14D);
     }

@@ -197,7 +197,7 @@ void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,
   }
                     // WARNING: Subroutine does not return
   *(uint64_t *)(puVar16 + -8) = 0x180837cc0;
-  FUN_1808fc050(uStack_e0 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_e0 ^ (uint64_t)auStack_108);
 }
 
 

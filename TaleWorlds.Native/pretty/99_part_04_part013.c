@@ -710,7 +710,7 @@ LAB_18026328e:
     } while (lVar10 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_498);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_498);
 }
 
 
@@ -970,7 +970,7 @@ LAB_18026384c:
       *(int32_t **)(param_2 + 8) = *(int32_t **)(param_2 + 8) + 1;
       FUN_180263040(param_1,param_2,uVar5);
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_498);
+      SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_498);
     }
   } while( true );
 }

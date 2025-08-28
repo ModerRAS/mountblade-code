@@ -874,7 +874,7 @@ void FUN_18082d9e0(uint64_t param_1,uint64_t *param_2,int32_t *param_3)
     FUN_1808fd200();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uVar3);
+  SystemSecurityChecker(uVar3);
 }
 
 
