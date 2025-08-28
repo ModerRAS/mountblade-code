@@ -67,6 +67,9 @@ typedef uint64_t StateHandle;                   // 状态句柄
 #define CoreEngineInterfaceHandler                 FUN_1800599e0
 #define CoreEngineResourceInitializer              FUN_1800599e0
 
+// 系统安全检查函数 - 执行栈保护和安全验证
+#define SystemSecurityChecker                       FUN_1808fc050
+
 //------------------------------------------------------------------------------
 // 核心引擎子模块配置管理函数
 // 功能：执行核心引擎子模块的配置管理和接口处理，包括：
@@ -146,7 +149,7 @@ uint64_t FUN_1800599e0(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (ulonglong)auStack_28);
+    SystemSecurityChecker(uStack_8 ^ (ulonglong)auStack_28);
     
     return uVar1;                                  // 返回操作结果
 }

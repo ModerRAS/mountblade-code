@@ -67,6 +67,7 @@ typedef uint64_t ConfigHandle;                   // 配置句柄
 #define CoreEngineSubmoduleProcessor              FUN_1800599e0
 #define CoreEngineModuleInitializer               FUN_1800599e0
 #define CoreEngineResourceManager                 FUN_1800599e0
+#define CoreEngineSecurityChecker                 FUN_1808fc050
 
 //------------------------------------------------------------------------------
 // 核心引擎子模块处理函数
@@ -108,7 +109,7 @@ typedef uint64_t ConfigHandle;                   // 配置句柄
 //   简化实现：基于核心引擎架构模式，创建完整的子模块处理功能
 //   优化点：添加完整的子模块管理、资源处理、状态管理功能
 //------------------------------------------------------------------------------
-uint64_t FUN_1800599e0(uint64_t param_1, uint64_t param_2)
+uint64_t CoreEngineSubmoduleProcessor(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
     uint64_t uVar1;                              // 操作结果
@@ -147,7 +148,7 @@ uint64_t FUN_1800599e0(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (ulonglong)auStack_28);
+    CoreEngineSecurityChecker(uStack_8 ^ (ulonglong)auStack_28);
     
     return uVar1;                                  // 返回操作结果
 }

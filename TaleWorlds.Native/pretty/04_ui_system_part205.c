@@ -186,269 +186,427 @@ uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
 
 
 
-// 函数: void FUN_180788f20(longlong param_1)
-void FUN_180788f20(longlong param_1)
-
+/**
+ * UI_ShutdownSystem - UI系统关闭
+ * 
+ * 安全关闭UI系统，清理所有资源并调用清理函数
+ * 
+ * @param system_ptr 系统指针
+ * 
+ * 原始实现：FUN_180788f20
+ */
+void UI_ShutdownSystem(longlong system_ptr)
 {
-  if (*(code **)(param_1 + 0x368) != (code *)0x0) {
-    (**(code **)(param_1 + 0x368))(param_1 + 8);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_18095ac80,0x56,1);
+    // 检查清理函数是否存在
+    if (*(code **)(system_ptr + UI_OFFSET_CLEANUP) != (code *)0x0) {
+        // 调用清理函数
+        (**(code **)(system_ptr + UI_OFFSET_CLEANUP))(system_ptr + 8);
+    }
+    
+    // 执行系统清理（此函数不返回）
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), system_ptr, &UNK_18095ac80, 0x56, 1);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180788f70(longlong *param_1)
-
+/**
+ * UI_SecurityCheck - UI系统安全检查
+ * 
+ * 执行安全检查，如果系统指针有效则执行安全清理
+ * 
+ * @param system_ptr_ptr 系统指针的指针
+ * @return 检查结果：0=安全，其他=安全风险
+ * 
+ * 原始实现：FUN_180788f70
+ */
+uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
 {
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_18095ac80,0x76f,1);
-  }
-  return 0;
-}
-
-
-
-uint64_t FUN_180788fe0(longlong param_1)
-
-{
-  longlong lVar1;
-  uint64_t *puVar2;
-  uint64_t uVar3;
-  uint64_t *puVar4;
-  int32_t auStackX_8 [2];
-  int32_t auStackX_10 [2];
-  int32_t auStackX_18 [4];
-  uint64_t in_stack_ffffffffffffffa8;
-  uint uVar5;
-  uint64_t in_stack_ffffffffffffffb0;
-  uint7 uVar7;
-  ulonglong uVar6;
-  uint64_t in_stack_ffffffffffffffb8;
-  uint uVar9;
-  ulonglong uVar8;
-  
-  uVar5 = (uint)((ulonglong)in_stack_ffffffffffffffa8 >> 0x20);
-  uVar9 = (uint)((ulonglong)in_stack_ffffffffffffffb8 >> 0x20);
-  *(int16_t *)(*(longlong *)(param_1 + 0x48) + 0x127f4) = 0;
-  *(int16_t *)(*(longlong *)(param_1 + 0x48) + 0x127f2) = 0;
-  *(int16_t *)(*(longlong *)(param_1 + 0x48) + 0x127f0) = 0;
-  if ((*(code **)(param_1 + 0x358) == (code *)0x0) ||
-     (uVar3 = (**(code **)(param_1 + 0x358))(param_1 + 8), (int)uVar3 == 0)) {
-    lVar1 = *(longlong *)(param_1 + 0x48);
-    uVar7 = (uint7)((ulonglong)in_stack_ffffffffffffffb0 >> 8);
-    if (*(longlong *)(lVar1 + 0x10f88) == 0) {
-      if ((*(longlong *)(param_1 + 0x380) != 0) &&
-         (uVar3 = FUN_180767c00(param_1 + 0x1c0,&UNK_18095ad08,&UNK_1807872a0,param_1,
-                                (ulonglong)uVar5 << 0x20,(ulonglong)uVar7 << 8,
-                                (ulonglong)uVar9 << 0x20,lVar1,1), (int)uVar3 != 0)) {
-        return uVar3;
-      }
+    // 检查系统指针是否有效
+    if (*system_ptr_ptr != 0) {
+        // 执行安全清理（此函数不返回）
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *system_ptr_ptr, &UNK_18095ac80, 0x76f, 1);
     }
-    else {
-      uVar8 = (ulonglong)uVar9 << 0x20;
-      uVar6 = CONCAT71(uVar7,1);
-      uVar3 = FUN_180767c00(param_1 + 0x70,&UNK_18095ad08,FUN_1807863b0,param_1,
-                            (ulonglong)uVar5 << 0x20,uVar6,uVar8,lVar1,1);
-      if ((int)uVar3 != 0) {
-        return uVar3;
-      }
-      if ((*(longlong *)(param_1 + 0x380) != 0) &&
-         (uVar3 = FUN_180767c00(param_1 + 0x1c0,&UNK_18095ad20,&UNK_1807872a0,param_1,1,
-                                uVar6 & 0xffffffffffffff00,uVar8 & 0xffffffff00000000,
-                                *(uint64_t *)(param_1 + 0x48),1), (int)uVar3 != 0)) {
-        return uVar3;
-      }
-    }
-    if (*(longlong *)(param_1 + 0x3a8) != 0) {
-      puVar4 = (uint64_t *)(*(longlong *)(param_1 + 0x48) + 0x6c0);
-      for (puVar2 = (uint64_t *)*puVar4; puVar2 != puVar4; puVar2 = (uint64_t *)*puVar2) {
-        auStackX_18[0] = 0;
-        auStackX_10[0] = 0;
-        auStackX_8[0] = 0;
-        (**(code **)(param_1 + 0x3a8))
-                  (param_1 + 8,*(int32_t *)(puVar2 + 4),puVar2[3],(longlong)puVar2 + 0x24,
-                   auStackX_18,auStackX_10,auStackX_8);
-      }
-    }
-    uVar3 = 0;
-  }
-  return uVar3;
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
 
-uint64_t FUN_180789122(void)
-
+/**
+ * UI_ProcessEvents - UI系统事件处理
+ * 
+ * 处理UI系统的事件，包括鼠标、键盘等输入事件
+ * 
+ * @param system_ptr 系统指针
+ * @return 处理结果：0=成功，其他=错误代码
+ * 
+ * 原始实现：FUN_180788fe0
+ */
+uint64_t UI_ProcessEvents(longlong system_ptr)
 {
-  uint64_t *puVar1;
-  longlong unaff_RBX;
-  uint64_t *puVar2;
-  int8_t *puStack0000000000000028;
-  int8_t *puStack0000000000000030;
-  
-  puVar2 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-  for (puVar1 = (uint64_t *)*puVar2; puVar1 != puVar2; puVar1 = (uint64_t *)*puVar1) {
-    puStack0000000000000030 = &stack0x00000080;
-    puStack0000000000000028 = &stack0x00000088;
-    (**(code **)(unaff_RBX + 0x3a8))
-              (unaff_RBX + 8,*(int32_t *)(puVar1 + 4),puVar1[3],(longlong)puVar1 + 0x24,
-               &stack0x00000090);
-  }
-  return 0;
-}
-
-
-
-uint64_t FUN_18078913f(void)
-
-{
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong *unaff_RDI;
-  int8_t *puStack0000000000000028;
-  int8_t *puStack0000000000000030;
-  
-  do {
-    puStack0000000000000030 = &stack0x00000080;
-    puStack0000000000000028 = &stack0x00000088;
-    (**(code **)(unaff_RBX + 0x3a8))
-              (unaff_RBX + 8,(int)unaff_RDI[4],unaff_RDI[3],(longlong)unaff_RDI + 0x24,
-               &stack0x00000090);
-    unaff_RDI = (longlong *)*unaff_RDI;
-  } while (unaff_RDI != (longlong *)unaff_RSI);
-  return 0;
-}
-
-
-
-uint64_t FUN_1807891b1(void)
-
-{
-  return 0;
-}
-
-
-
-uint64_t FUN_1807891bb(void)
-
-{
-  return 0;
-}
-
-
-
-uint64_t FUN_1807891d0(longlong param_1)
-
-{
-  longlong lVar1;
-  uint64_t *puVar2;
-  uint64_t uVar3;
-  uint64_t *puVar4;
-  longlong lVar5;
-  longlong lVar6;
-  
-  uVar3 = FUN_180767ad0(param_1 + 0x1c0);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_180767ad0(param_1 + 0x70), (int)uVar3 == 0)) &&
-     ((*(code **)(param_1 + 0x360) == (code *)0x0 ||
-      (uVar3 = (**(code **)(param_1 + 0x360))(param_1 + 8), (int)uVar3 == 0)))) {
-    lVar6 = (longlong)*(int *)(*(longlong *)(param_1 + 0x48) + 0x127e8);
-    if (0 < lVar6) {
-      lVar5 = 0;
-      do {
-        lVar1 = *(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x127e0) + lVar5 * 8);
-        if (*(longlong *)(lVar1 + 0x18) != 0) {
-          (**(code **)(param_1 + 0x398))(param_1 + 8);
-          *(uint64_t *)(lVar1 + 0x18) = 0;
+    longlong data_ptr;
+    uint64_t *current_node;
+    uint64_t result;
+    uint64_t *list_head;
+    int32_t param_array1[2];
+    int32_t param_array2[2];
+    int32_t param_array3[4];
+    uint64_t stack_param1;
+    uint param_x;
+    uint64_t stack_param2;
+    uint7 param_y;
+    ulonglong combined_param;
+    uint64_t stack_param3;
+    uint param_z;
+    ulonglong extended_param;
+    
+    // 解析栈参数
+    param_x = (uint)((ulonglong)stack_param1 >> 0x20);
+    param_z = (uint)((ulonglong)stack_param3 >> 0x20);
+    
+    // 重置UI状态
+    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f4) = 0;
+    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f2) = 0;
+    *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f0) = 0;
+    
+    // 检查事件处理器
+    if ((*(code **)(system_ptr + 0x358) == (code *)0x0) ||
+        (result = (**(code **)(system_ptr + 0x358))(system_ptr + 8), (int)result == 0)) {
+        
+        data_ptr = *(longlong *)(system_ptr + UI_OFFSET_DATA);
+        param_y = (uint7)((ulonglong)stack_param2 >> 8);
+        
+        // 检查是否有特殊模式
+        if (*(longlong *)(data_ptr + 0x10f88) == 0) {
+            // 常规事件处理
+            if ((*(longlong *)(system_ptr + 0x380) != 0) &&
+                (result = FUN_180767c00(system_ptr + 0x1c0, &UNK_18095ad08, &UNK_1807872a0, system_ptr,
+                                      (ulonglong)param_x << 0x20, (ulonglong)param_y << 8,
+                                      (ulonglong)param_z << 0x20, data_ptr, 1), (int)result != 0)) {
+                return result;
+            }
+        } else {
+            // 特殊模式事件处理
+            extended_param = (ulonglong)param_z << 0x20;
+            combined_param = CONCAT71(param_y, 1);
+            
+            result = FUN_180767c00(system_ptr + 0x70, &UNK_18095ad08, FUN_1807863b0, system_ptr,
+                                  (ulonglong)param_x << 0x20, combined_param, extended_param, data_ptr, 1);
+            if ((int)result != 0) {
+                return result;
+            }
+            
+            // 处理特殊事件
+            if ((*(longlong *)(system_ptr + 0x380) != 0) &&
+                (result = FUN_180767c00(system_ptr + 0x1c0, &UNK_18095ad20, &UNK_1807872a0, system_ptr, 1,
+                                      combined_param & 0xffffffffffffff00, extended_param & 0xffffffff00000000,
+                                      *(uint64_t *)(system_ptr + UI_OFFSET_DATA), 1), (int)result != 0)) {
+                return result;
+            }
         }
-        lVar5 = lVar5 + 1;
-      } while (lVar5 < lVar6);
-    }
-    if (*(longlong *)(param_1 + 0x3b0) != 0) {
-      puVar4 = (uint64_t *)(*(longlong *)(param_1 + 0x48) + 0x6c0);
-      for (puVar2 = (uint64_t *)*puVar4; puVar2 != puVar4; puVar2 = (uint64_t *)*puVar2) {
-        (**(code **)(param_1 + 0x3b0))(param_1 + 8,*(int32_t *)((longlong)puVar2 + 0x24));
-      }
-    }
-    uVar3 = 0;
-  }
-  return uVar3;
-}
-
-
-
-uint64_t FUN_180789205(void)
-
-{
-  longlong lVar1;
-  uint64_t *puVar2;
-  code *in_RAX;
-  uint64_t uVar3;
-  longlong unaff_RBX;
-  uint64_t *puVar4;
-  longlong lVar5;
-  longlong lVar6;
-  
-  if ((in_RAX == (code *)0x0) || (uVar3 = (*in_RAX)(unaff_RBX + 8), (int)uVar3 == 0)) {
-    lVar6 = (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x48) + 0x127e8);
-    if (0 < lVar6) {
-      lVar5 = 0;
-      do {
-        lVar1 = *(longlong *)(*(longlong *)(*(longlong *)(unaff_RBX + 0x48) + 0x127e0) + lVar5 * 8);
-        if (*(longlong *)(lVar1 + 0x18) != 0) {
-          (**(code **)(unaff_RBX + 0x398))(unaff_RBX + 8);
-          *(uint64_t *)(lVar1 + 0x18) = 0;
+        
+        // 处理事件队列
+        if (*(longlong *)(system_ptr + UI_OFFSET_HANDLER) != 0) {
+            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+            for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+                // 初始化参数数组
+                param_array1[0] = 0;
+                param_array2[0] = 0;
+                param_array3[0] = 0;
+                
+                // 调用事件处理器
+                (**(code **)(system_ptr + UI_OFFSET_HANDLER))
+                    (system_ptr + 8, *(int32_t *)(current_node + 4), current_node[3], (longlong)current_node + 0x24,
+                     param_array1, param_array2, param_array3);
+            }
         }
-        lVar5 = lVar5 + 1;
-      } while (lVar5 < lVar6);
+        
+        result = 0;
     }
-    if (*(longlong *)(unaff_RBX + 0x3b0) != 0) {
-      puVar4 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-      for (puVar2 = (uint64_t *)*puVar4; puVar2 != puVar4; puVar2 = (uint64_t *)*puVar2) {
-        (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar2 + 0x24));
-      }
-    }
-    uVar3 = 0;
-  }
-  return uVar3;
+    
+    return result;
 }
 
 
 
-uint64_t FUN_180789221(void)
-
+/**
+ * UI_TraverseComponents - UI组件遍历处理
+ * 
+ * 遍历所有UI组件并执行相应的处理函数
+ * 
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_180789122
+ */
+uint64_t UI_TraverseComponents(void)
 {
-  int iVar1;
-  longlong lVar2;
-  uint64_t *puVar3;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  uint64_t *puVar4;
-  longlong lVar5;
-  
-  iVar1 = *(int *)(in_RAX + 0x127e8);
-  if (0 < (longlong)iVar1) {
-    lVar5 = 0;
+    uint64_t *current_component;
+    longlong system_ptr;
+    uint64_t *list_head;
+    int8_t *stack_param1;
+    int8_t *stack_param2;
+    
+    // 获取组件链表头
+    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    
+    // 遍历所有组件
+    for (current_component = (uint64_t *)*list_head; current_component != list_head; current_component = (uint64_t *)*current_component) {
+        // 设置栈参数
+        stack_param1 = &stack0x00000080;
+        stack_param2 = &stack0x00000088;
+        
+        // 调用组件处理函数
+        (**(code **)(system_ptr + UI_OFFSET_HANDLER))
+            (system_ptr + 8, *(int32_t *)(current_component + 4), current_component[3], (longlong)current_component + 0x24,
+             &stack0x00000090);
+    }
+    
+    return UI_SYSTEM_SUCCESS;
+}
+
+
+
+/**
+ * UI_ProcessLoop - UI系统循环处理
+ * 
+ * 循环处理UI组件，直到遍历完所有组件
+ * 
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_18078913f
+ */
+uint64_t UI_ProcessLoop(void)
+{
+    longlong system_ptr;
+    longlong end_ptr;
+    longlong *current_ptr;
+    int8_t *stack_param1;
+    int8_t *stack_param2;
+    
+    // 循环处理组件
     do {
-      lVar2 = *(longlong *)(*(longlong *)(*(longlong *)(unaff_RBX + 0x48) + 0x127e0) + lVar5 * 8);
-      if (*(longlong *)(lVar2 + 0x18) != 0) {
-        (**(code **)(unaff_RBX + 0x398))(unaff_RBX + 8);
-        *(uint64_t *)(lVar2 + 0x18) = 0;
-      }
-      lVar5 = lVar5 + 1;
-    } while (lVar5 < iVar1);
-  }
-  if (*(longlong *)(unaff_RBX + 0x3b0) != 0) {
-    puVar4 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-    for (puVar3 = (uint64_t *)*puVar4; puVar3 != puVar4; puVar3 = (uint64_t *)*puVar3) {
-      (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar3 + 0x24));
+        // 设置栈参数
+        stack_param1 = &stack0x00000080;
+        stack_param2 = &stack0x00000088;
+        
+        // 调用组件处理函数
+        (**(code **)(system_ptr + UI_OFFSET_HANDLER))
+            (system_ptr + 8, (int)current_ptr[4], current_ptr[3], (longlong)current_ptr + 0x24,
+             &stack0x00000090);
+        
+        // 移动到下一个组件
+        current_ptr = (longlong *)*current_ptr;
+    } while (current_ptr != (longlong *)end_ptr);
+    
+    return UI_SYSTEM_SUCCESS;
+}
+
+
+
+/**
+ * UI_ReturnSuccess - 返回成功状态
+ * 
+ * 简单返回成功状态的函数
+ * 
+ * @return 成功状态：0
+ * 
+ * 原始实现：FUN_1807891b1
+ */
+uint64_t UI_ReturnSuccess(void)
+{
+    return UI_SYSTEM_SUCCESS;
+}
+
+/**
+ * UI_ReturnSuccess2 - 返回成功状态
+ * 
+ * 简单返回成功状态的函数（备用版本）
+ * 
+ * @return 成功状态：0
+ * 
+ * 原始实现：FUN_1807891bb
+ */
+uint64_t UI_ReturnSuccess2(void)
+{
+    return UI_SYSTEM_SUCCESS;
+}
+
+
+
+/**
+ * UI_CleanupResources - UI系统资源清理
+ * 
+ * 清理UI系统占用的所有资源，包括内存和渲染资源
+ * 
+ * @param system_ptr 系统指针
+ * @return 清理结果：0=成功，其他=错误代码
+ * 
+ * 原始实现：FUN_1807891d0
+ */
+uint64_t UI_CleanupResources(longlong system_ptr)
+{
+    longlong resource_ptr;
+    uint64_t *current_node;
+    uint64_t result;
+    uint64_t *list_head;
+    longlong index;
+    longlong resource_count;
+    
+    // 验证系统状态
+    result = SystemState_Validator(system_ptr + 0x1c0);
+    if ((((int)result == 0) && (result = SystemState_Validator(system_ptr + 0x70), (int)result == 0)) &&
+        ((*(code **)(system_ptr + 0x360) == (code *)0x0 ||
+         (result = (**(code **)(system_ptr + 0x360))(system_ptr + 8), (int)result == 0)))) {
+        
+        // 获取资源数量
+        resource_count = (longlong)*(int *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
+        
+        // 清理所有资源
+        if (0 < resource_count) {
+            index = 0;
+            do {
+                // 获取资源指针
+                resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+                
+                // 如果资源存在则清理
+                if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                    // 调用资源清理函数
+                    (**(code **)(system_ptr + 0x398))(system_ptr + 8);
+                    *(uint64_t *)(resource_ptr + 0x18) = 0;
+                }
+                
+                index = index + 1;
+            } while (index < resource_count);
+        }
+        
+        // 清理渲染资源
+        if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+            for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+                // 调用渲染清理函数
+                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            }
+        }
+        
+        result = UI_SYSTEM_SUCCESS;
     }
-  }
-  return 0;
+    
+    return result;
+}
+
+
+
+/**
+ * UI_ReleaseResources - UI系统资源释放
+ * 
+ * 释放UI系统占用的所有资源，包括内存和渲染资源
+ * 
+ * @param cleanup_func 清理函数指针
+ * @param system_ptr 系统指针
+ * @return 释放结果：0=成功，其他=错误代码
+ * 
+ * 原始实现：FUN_180789205
+ */
+uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
+{
+    longlong resource_ptr;
+    uint64_t *current_node;
+    uint64_t result;
+    uint64_t *list_head;
+    longlong index;
+    longlong resource_count;
+    
+    // 检查清理函数并执行
+    if ((cleanup_func == (code *)0x0) || (result = (*cleanup_func)(system_ptr + 8), (int)result == 0)) {
+        // 获取资源数量
+        resource_count = (longlong)*(int *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e8);
+        
+        // 释放所有资源
+        if (0 < resource_count) {
+            index = 0;
+            do {
+                // 获取资源指针
+                resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+                
+                // 如果资源存在则释放
+                if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                    // 调用资源释放函数
+                    (**(code **)(system_ptr + 0x398))(system_ptr + 8);
+                    *(uint64_t *)(resource_ptr + 0x18) = 0;
+                }
+                
+                index = index + 1;
+            } while (index < resource_count);
+        }
+        
+        // 释放渲染资源
+        if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+            list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+            for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+                // 调用渲染释放函数
+                (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+            }
+        }
+        
+        result = UI_SYSTEM_SUCCESS;
+    }
+    
+    return result;
+}
+
+
+
+/**
+ * UI_ResetSystem - UI系统重置
+ * 
+ * 重置UI系统到初始状态，清理所有资源并重置状态
+ * 
+ * @param data_ptr 数据指针
+ * @param system_ptr 系统指针
+ * @return 重置结果：0=成功
+ * 
+ * 原始实现：FUN_180789221
+ */
+uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
+{
+    int resource_count;
+    longlong resource_ptr;
+    uint64_t *current_node;
+    longlong index;
+    
+    // 获取资源数量
+    resource_count = *(int *)(data_ptr + 0x127e8);
+    
+    // 释放所有资源
+    if (0 < resource_count) {
+        index = 0;
+        do {
+            // 获取资源指针
+            resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+            
+            // 如果资源存在则释放
+            if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                // 调用资源释放函数
+                (**(code **)(system_ptr + 0x398))(system_ptr + 8);
+                *(uint64_t *)(resource_ptr + 0x18) = 0;
+            }
+            
+            index = index + 1;
+        } while (index < resource_count);
+    }
+    
+    // 释放渲染资源
+    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+            // 调用渲染释放函数
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        }
+    }
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
