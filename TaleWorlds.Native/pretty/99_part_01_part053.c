@@ -952,6 +952,23 @@ LAB_1800db339:
 
 
 
+/**
+ * @brief 参数验证器
+ * 
+ * 本函数负责验证系统参数的有效性和一致性，包括参数类型检查、数值范围验证和状态确认。
+ * 实现严格的参数验证机制，确保系统参数的正确性和安全性。
+ * 
+ * @param param_1 浮点参数值
+ * @param param_2 参数结构体指针引用
+ * @param param_3 参数数组指针
+ * 
+ * 功能特点：
+ * * - 验证参数的类型和数值范围
+ * * - 检查参数的一致性和有效性
+ * * - 支持多种参数类型的验证
+ * * - 包含状态检查和错误处理
+ * * - 确保系统参数的安全性
+ */
 void ParameterValidator(float param_1, longlong *param_2, int *param_3)
 
 {
@@ -994,6 +1011,27 @@ void ParameterValidator(float param_1, longlong *param_2, int *param_3)
 
 
 
+/**
+ * @brief 高级资源管理器
+ * 
+ * 本函数是高级资源管理系统的核心实现，负责复杂的资源分配、状态管理和安全验证。
+ * 支持多参数配置和高级资源管理功能，提供完整的资源生命周期管理。
+ * 
+ * @param param_1 系统参数结构体
+ * @param param_2 资源指针引用
+ * @param param_3 资源管理标志1
+ * @param param_4 资源管理标志2
+ * @param param_5 资源类型标识符
+ * @param param_6 资源安全标志
+ * @param param_7 资源配置参数
+ * 
+ * 功能特点：
+ * * - 实现高级资源分配和管理
+ * * - 支持多参数配置和状态管理
+ * * - 包含完整的安全验证机制
+ * * - 提供资源生命周期管理
+ * * - 支持多种资源类型的处理
+ */
 void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4,
                            int8_t param_5, uint64_t param_6, int32_t param_7)
 
