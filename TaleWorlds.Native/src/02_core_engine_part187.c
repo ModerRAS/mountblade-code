@@ -795,135 +795,168 @@ setup_engine_rendering_params(undefined8 *param_1,undefined8 param2,undefined8 p
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 初始化引擎渲染管线
+ * @param param_1 渲染管线指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 渲染管线指针
+ */
 undefined8 *
-FUN_18016ef90(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_rendering_pipeline(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param_4)
 
 {
-  undefined4 *puVar1;
-  undefined *puStack_28;
-  longlong lStack_20;
-  undefined4 uStack_10;
+  undefined4 *render_data;
+  undefined *render_resource;
+  longlong resource_status;
+  undefined4 resource_size;
   
-  FUN_18032c0b0(*(undefined8 *)(_DAT_180c86870 + 0x3d8),&puStack_28,param_3,param_4,0,
+  setup_rendering_pipeline(*(undefined8 *)(engine_context + 0x3d8),&render_resource,param_3,param_4,0,
                 0xfffffffffffffffe);
-  puStack_28 = &UNK_180a3c3e0;
-  if (lStack_20 != 0) {
+  render_resource = &engine_resource_table;
+  if (resource_status != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    handle_resource_error();
   }
-  lStack_20 = 0;
-  uStack_10 = 0;
-  puStack_28 = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bcb0;
+  resource_status = 0;
+  resource_size = 0;
+  render_resource = &default_engine_config;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,6);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x65766153;
-  *(undefined2 *)(puVar1 + 1) = 0x2164;
-  *(undefined1 *)((longlong)puVar1 + 6) = 0;
+  create_engine_instance(param_1,6);
+  render_data = (undefined4 *)param_1[1];
+  *render_data = 0x65766153;
+  *(undefined2 *)(render_data + 1) = 0x2164;
+  *(undefined1 *)((longlong)render_data + 6) = 0;
   *(undefined4 *)(param_1 + 2) = 6;
   return param_1;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 管理引擎配置参数并更新状态
+ * @param param_1 配置管理器指针
+ * @param param2 参数2
+ * @param param_3 配置参数指针
+ * @param param4 参数4
+ * @return 配置管理器指针
+ */
 undefined8 *
-FUN_18016f090(undefined8 *param_1,undefined8 param_2,longlong *param_3,undefined8 param_4)
+manage_engine_config_params(undefined8 *param_1,undefined8 param2,longlong *param_3,undefined8 param4)
 
 {
-  int *piVar1;
-  longlong lVar2;
-  int *piVar3;
-  undefined4 *puVar4;
-  int iVar5;
-  int *piVar6;
-  int iVar7;
-  ulonglong uVar8;
-  undefined8 uStackX_20;
+  int *config_item;
+  longlong context_ptr;
+  int *config_end;
+  undefined4 *instance_data;
+  int config_value;
+  int *config_start;
+  int config_index;
+  ulonglong config_count;
+  undefined8 config_param;
   
-  iVar7 = 0;
-  uStackX_20 = param_4;
+  config_index = 0;
+  config_param = param4;
   if ((param_3[1] - *param_3 & 0xffffffffffffffe0U) == 0) {
-    *(bool *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0xae0) =
-         *(char *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0xae0) == '\0';
+    *(bool *)(*(longlong *)(engine_context + 0x3d8) + 0xae0) =
+         *(char *)(*(longlong *)(engine_context + 0x3d8) + 0xae0) == '\0';
   }
   else {
-    iVar5 = atoi(*(undefined8 *)(*param_3 + 8));
-    uStackX_20 = CONCAT44(uStackX_20._4_4_,iVar5);
-    lVar2 = *(longlong *)(_DAT_180c86870 + 0x3d8);
-    piVar3 = *(int **)(lVar2 + 0xac8);
-    piVar6 = *(int **)(lVar2 + 0xac0);
-    uVar8 = (longlong)piVar3 - (longlong)piVar6 >> 2;
-    if (uVar8 != 0) {
+    config_value = atoi(*(undefined8 *)(*param_3 + 8));
+    config_param = CONCAT44(config_param._4_4_,config_value);
+    context_ptr = *(longlong *)(engine_context + 0x3d8);
+    config_end = *(int **)(context_ptr + 0xac8);
+    config_start = *(int **)(context_ptr + 0xac0);
+    config_count = (longlong)config_end - (longlong)config_start >> 2;
+    if (config_count != 0) {
       do {
-        if (*piVar6 == iVar5) {
-          for (piVar6 = *(int **)(lVar2 + 0xac0); (piVar6 != piVar3 && (*piVar6 != iVar5));
-              piVar6 = piVar6 + 1) {
+        if (*config_start == config_value) {
+          for (config_start = *(int **)(context_ptr + 0xac0); (config_start != config_end && (*config_start != config_value));
+              config_start = config_start + 1) {
           }
-          piVar1 = piVar6 + 1;
-          if ((piVar1 < piVar3) && (piVar1 != piVar3)) {
+          config_item = config_start + 1;
+          if ((config_item < config_end) && (config_item != config_end)) {
                     // WARNING: Subroutine does not return
-            memmove(piVar6,piVar1,(longlong)piVar3 - (longlong)piVar1);
+            move_config_items(config_start,config_item,(longlong)config_end - (longlong)config_item);
           }
-          *(int **)(lVar2 + 0xac8) = piVar3 + -1;
-          goto LAB_18016f158;
+          *(int **)(context_ptr + 0xac8) = config_end + -1;
+          goto CONFIG_UPDATED;
         }
-        iVar7 = iVar7 + 1;
-        piVar6 = piVar6 + 1;
-      } while ((ulonglong)(longlong)iVar7 < uVar8);
+        config_index = config_index + 1;
+        config_start = config_start + 1;
+      } while ((ulonglong)(longlong)config_index < config_count);
     }
-    FUN_1800571e0(lVar2 + 0xac0,&uStackX_20);
+    add_config_item(context_ptr + 0xac0,&config_param);
   }
-LAB_18016f158:
-  *param_1 = &UNK_18098bcb0;
+CONFIG_UPDATED:
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar4 = (undefined4 *)param_1[1];
-  *puVar4 = 0x656e6f44;
-  *(undefined1 *)(puVar4 + 1) = 0;
+  create_engine_instance(param_1,4);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
-undefined8 FUN_18016f240(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 执行引擎系统更新
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param update_params 更新参数
+ * @return 系统指针
+ */
+undefined8 execute_engine_system_update(undefined8 system_ptr,undefined8 param2,undefined8 update_params)
 
 {
-  FUN_180166580(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  update_engine_system(system_ptr,system_ptr,update_params,update_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 
 
-undefined8 FUN_18016f2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 验证引擎系统状态
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param validation_params 验证参数
+ * @return 系统指针
+ */
+undefined8 validate_engine_system_status(undefined8 system_ptr,undefined8 param2,undefined8 validation_params)
 
 {
-  FUN_1801661b0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  check_system_status(system_ptr,system_ptr,validation_params,validation_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 
 
-undefined8 FUN_18016f340(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 同步引擎系统组件
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param sync_params 同步参数
+ * @return 系统指针
+ */
+undefined8 synchronize_engine_system_components(undefined8 system_ptr,undefined8 param2,undefined8 sync_params)
 
 {
-  FUN_180165f80(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  sync_system_components(system_ptr,system_ptr,sync_params,sync_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 

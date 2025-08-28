@@ -891,49 +891,60 @@ initialize_data_buffer(undefined8 *input_data, undefined8 *output_buffer, undefi
 
 
 
+/**
+ * 处理数据类型转换
+ * 主要功能：根据输入数据的类型和内容，执行相应的数据转换和格式化操作
+ * 
+ * 原始实现：FUN_18016a740
+ * 简化实现：数据类型转换处理函数
+ */
 undefined8 *
-FUN_18016a740(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+process_data_type_conversion(longlong *input_data, undefined8 *output_buffer, undefined8 conversion_type, undefined8 conversion_flags)
 
 {
-  undefined8 uVar1;
-  undefined *puStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined8 uStack_20;
+  undefined8 memory_context;
+  undefined *conversion_context;
+  undefined8 float_value;
+  undefined4 int_value;
+  undefined8 combined_value;
   
-  if (*param_1 == 0) {
-    if (param_1[1] == 0) {
-      if (param_1[2] == 0) {
-        uVar1 = FUN_180628ca0();
-        FUN_180627ae0(param_2,uVar1);
+  if (*input_data == 0) {
+    if (input_data[1] == 0) {
+      if (input_data[2] == 0) {
+        // 空数据处理
+        memory_context = get_memory_context();
+        initialize_empty_buffer(output_buffer, memory_context);
       }
       else {
-        uVar1 = FUN_180628ca0();
-        FUN_180627ce0(uVar1,param_2,param_1[2]);
+        // 字符串数据处理
+        memory_context = get_memory_context();
+        copy_string_data(memory_context, output_buffer, input_data[2]);
       }
     }
     else {
-      puStack_38 = &UNK_180a3c3e0;
-      uStack_20 = 0;
-      uStack_30 = 0;
-      uStack_28 = 0;
-      FUN_180628040(&puStack_38,&UNK_180a0888c,(double)*(float *)param_1[1],param_4,0,
-                    0xfffffffffffffffe);
-      *param_2 = &UNK_18098bcb0;
-      param_2[1] = 0;
-      *(undefined4 *)(param_2 + 2) = 0;
-      *param_2 = &UNK_180a3c3e0;
-      *(undefined4 *)(param_2 + 2) = uStack_28;
-      param_2[1] = uStack_30;
-      *(undefined4 *)((longlong)param_2 + 0x1c) = uStack_20._4_4_;
-      *(undefined4 *)(param_2 + 3) = (undefined4)uStack_20;
+      // 浮点数数据处理
+      conversion_context = &CLEANUP_CONTEXT;
+      combined_value = 0;
+      float_value = 0;
+      int_value = 0;
+      convert_float_data(&conversion_context, &FLOAT_CONVERSION_TABLE, (double)*(float *)input_data[1], conversion_flags, 0,
+                         CONTEXT_CLEANUP_FLAG);
+      *output_buffer = &DEFAULT_OBJECT_PTR;
+      output_buffer[1] = 0;
+      *(undefined4 *)(output_buffer + 2) = 0;
+      *output_buffer = &CLEANUP_CONTEXT;
+      *(undefined4 *)(output_buffer + 2) = int_value;
+      output_buffer[1] = float_value;
+      *(undefined4 *)((longlong)output_buffer + 0x1c) = combined_value._4_4_;
+      *(undefined4 *)(output_buffer + 3) = (undefined4)combined_value;
     }
   }
   else {
-    uVar1 = FUN_180628ca0();
-    FUN_180627d90(uVar1,param_2,*(undefined4 *)*param_1);
+    // 整数数据处理
+    memory_context = get_memory_context();
+    convert_integer_data(memory_context, output_buffer, *(undefined4 *)*input_data);
   }
-  return param_2;
+  return output_buffer;
 }
 
 

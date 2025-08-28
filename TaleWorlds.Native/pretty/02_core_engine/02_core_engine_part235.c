@@ -27,44 +27,44 @@ void merge_sorted_intervals(undefined8 param_1, undefined8 param_2, undefined8 *
   undefined8 *ptr_temp;
   
   while( true ) {
-    iVar1 = *(int *)(in_R10 + -1);
-    iVar2 = *(int *)(in_R10 + 1);
-    if (iVar1 == iVar2) {
-      bVar3 = *(int *)((longlong)in_R10 + -4) < *(int *)((longlong)in_R10 + 0xc);
+    compare_value1 = *(int *)(in_R10 + -1);
+    compare_value2 = *(int *)(in_R10 + 1);
+    if (compare_value1 == compare_value2) {
+      should_break = *(int *)((longlong)in_R10 + -4) < *(int *)((longlong)in_R10 + 0xc);
     }
     else {
-      bVar3 = iVar2 < iVar1;
+      should_break = compare_value2 < compare_value1;
     }
-    if (bVar3) break;
-    if (iVar2 == iVar1) {
-      bVar3 = *(int *)((longlong)in_R10 + 0xc) < *(int *)((longlong)in_R10 + -4);
+    if (should_break) break;
+    if (compare_value2 == compare_value1) {
+      should_break = *(int *)((longlong)in_R10 + 0xc) < *(int *)((longlong)in_R10 + -4);
     }
     else {
-      bVar3 = iVar1 < iVar2;
+      should_break = compare_value1 < compare_value2;
     }
-    if ((bVar3) || (in_R10 = in_R10 + -2, in_R10 <= unaff_RBP)) break;
+    if ((should_break) || (in_R10 = in_R10 + -2, in_R10 <= unaff_RBP)) break;
   }
-  puVar7 = param_3;
-  puVar9 = in_R10;
+  ptr_output = param_3;
+  ptr_right = in_R10;
   if (param_3 < unaff_RSI) {
-    iVar1 = *(int *)(in_R10 + 1);
+    compare_value1 = *(int *)(in_R10 + 1);
     while( true ) {
-      iVar2 = *(int *)(param_3 + 1);
-      if (iVar2 == iVar1) {
-        bVar3 = *(int *)((longlong)param_3 + 0xc) < *(int *)((longlong)in_R10 + 0xc);
+      compare_value2 = *(int *)(param_3 + 1);
+      if (compare_value2 == compare_value1) {
+        should_break = *(int *)((longlong)param_3 + 0xc) < *(int *)((longlong)in_R10 + 0xc);
       }
       else {
-        bVar3 = iVar1 < iVar2;
+        should_break = compare_value1 < compare_value2;
       }
-      puVar7 = param_3;
-      if (bVar3) break;
-      if (iVar1 == iVar2) {
-        bVar3 = *(int *)((longlong)in_R10 + 0xc) < *(int *)((longlong)param_3 + 0xc);
+      ptr_output = param_3;
+      if (should_break) break;
+      if (compare_value1 == compare_value2) {
+        should_break = *(int *)((longlong)in_R10 + 0xc) < *(int *)((longlong)param_3 + 0xc);
       }
       else {
-        bVar3 = iVar2 < iVar1;
+        should_break = compare_value2 < compare_value1;
       }
-      if ((bVar3) || (param_3 = param_3 + 2, puVar7 = param_3, unaff_RSI <= param_3)) break;
+      if ((should_break) || (param_3 = param_3 + 2, ptr_output = param_3, unaff_RSI <= param_3)) break;
     }
   }
 joined_r0x000180204576:
