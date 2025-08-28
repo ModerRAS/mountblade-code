@@ -736,7 +736,7 @@ void core_engine_system_initializer_type12(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_9;
     parent_node[7] = SYSTEM_REGISTRY_ID_10;
-    parent_node[8] = &global_var_7920_ptr;
+    parent_node[8] = (uint64_t)&global_var_7920_ptr;
     parent_node[9] = 3;
     parent_node[10] = callback_function;
     
