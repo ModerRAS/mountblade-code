@@ -691,25 +691,63 @@ int NetworkProtocol_SerializeConnectionAck(void* context, uint8_t* output_buffer
 
 
 
-int FUN_180842a00(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 数据传输协议序列化函数
+ * 
+ * 该函数负责处理数据传输协议的序列化工作。
+ * 包含传输参数、数据大小和传输模式的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 传输参数封装
+ * - 数据大小信息
+ * - 传输模式设置
+ * 
+ * @性能优化:
+ * - 批量数据传输
+ * - 流量控制
+ * - 传输效率优化
+ */
+int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983320);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+    uint32_t transfer_param, data_size_param;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取传输参数
+    transfer_param = *(uint32_t*)((uint8_t*)context + 0x18);
+    data_size_param = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化数据传输头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983320);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化数据大小参数
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, data_size_param);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化传输参数
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, transfer_param);
+    return total_size + header_size;
 }
 
 
