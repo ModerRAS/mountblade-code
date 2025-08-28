@@ -603,10 +603,10 @@ void CoreEngineMemoryManager(void)
     init_flags = 0;
     
     // 初始化字符串缓冲区
-    string_buffer = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
+    string_buffer = (int32_t*)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x16, 0x13);
     *(int8_t*)string_buffer = 0;
     string_buffer = string_buffer;
-    init_flags = FUN_18064e990(string_buffer);
+    init_flags = CoreEngineMemoryPoolInitializer(string_buffer);
     temp_data = CONCAT44(temp_data._4_4_, init_flags);
     
     // 设置标识符
@@ -619,12 +619,12 @@ void CoreEngineMemoryManager(void)
     init_flags = 0x15;
     
     // 初始化数据结构
-    memory_handle = FUN_1801614d0(memory_handle, &temp_buffer);
+    memory_handle = CoreEngineMemoryTransfer(memory_handle, &temp_buffer);
     *global_pointer = memory_handle;
     temp_buffer = &system_data_buffer_ptr;
     
     // 清理资源
-    FUN_18064e900(string_buffer);
+    CoreEngineMemoryPoolCleaner(string_buffer);
 }
 
 /**
@@ -648,7 +648,7 @@ uint64_t* CoreEngineConfigurationProcessor(uint64_t param_1, uint64_t* param_2, 
     config_flags = 0;
     
     // 初始化配置系统
-    FUN_18004e7a0();
+    CoreEngineSystemCleanup();
     
     // 设置默认配置
     *param_2 = &system_state_ptr;

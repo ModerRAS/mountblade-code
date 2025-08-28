@@ -38,7 +38,7 @@
  * @param cleanup_func 清理函数指针
  * @note 负责系统内存的分配、管理和清理
  */
-#define SystemMemoryManager FUN_1808fc838
+#define SystemMemoryManager SystemMemoryManager
 
 /**
  * @brief 系统数据结构管理器
@@ -49,7 +49,7 @@
  * @return 处理结果
  * @note 负责复杂数据结构的操作和管理
  */
-#define SystemDataStructureManager FUN_1805fb030
+#define SystemDataStructureManager SystemDataStructureManager
 
 /**
  * @brief 系统数据写入器
@@ -57,7 +57,7 @@
  * @param offset 偏移量
  * @note 负责数据的写入操作
  */
-#define SystemDataWriter FUN_18005d190
+#define SystemDataWriter SystemDataWriter
 
 /**
  * @brief 系统资源清理器
@@ -72,7 +72,7 @@
  * @param value 初始化值
  * @note 负责系统参数的初始化
  */
-#define SystemParameterInitializer FUN_1806277c0
+#define SystemParameterInitializer SystemParameterInitializer
 
 /**
  * @brief 系统数据扩展器
@@ -228,14 +228,14 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_9a0 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b38;
   ppuStack_b18 = (void **)FUN_1805fd350;
-  FUN_1808fc838(auStack_998,0xa0,0xf,FUN_1805faf50);
+  SystemMemoryManager(auStack_998,0xa0,0xf,FUN_1805faf50);
   ppuStack_a68 = &puStack_b08;
   lVar3 = 0;
   puStack_b08 = &system_data_buffer_ptr;
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,4);
+  SystemParameterInitializer(&puStack_b08,4);
   *(int32_t *)puStack_b00 = 0x61757161;
   *(int8_t *)((longlong)puStack_b00 + 4) = 0;
   uStack_af8 = 4;
@@ -244,7 +244,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,7);
+  SystemParameterInitializer(&puStack_ae8,7);
   *puStack_ae0 = 0x6e617661726163;
   uStack_ad8 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -252,7 +252,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -262,7 +262,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,5);
+  SystemParameterInitializer(&puStack_aa8,5);
   *(int32_t *)puStack_aa0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_aa0 + 4) = 0x65;
   uStack_a98 = 5;
@@ -271,25 +271,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,8);
+  SystemParameterInitializer(&puStack_a88,8);
   *puStack_a80 = 0x7972746e61666e69;
   *(int8_t *)(puStack_a80 + 1) = 0;
   uStack_a78 = 8;
   ppuStack_b10 = &puStack_b08;
   ppuStack_b18 = &puStack_ae8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_a88,&puStack_aa8,&puStack_ac8);
-  FUN_18005d190(auStack_998,lVar2);
-  FUN_18005d190(auStack_978,lVar2 + 0x20);
-  FUN_18005d190(auStack_958,lVar2 + 0x40);
-  FUN_18005d190(auStack_938,lVar2 + 0x60);
-  FUN_18005d190(auStack_918,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_a88,&puStack_aa8,&puStack_ac8);
+  SystemDataWriter(auStack_998,lVar2);
+  SystemDataWriter(auStack_978,lVar2 + 0x20);
+  SystemDataWriter(auStack_958,lVar2 + 0x40);
+  SystemDataWriter(auStack_938,lVar2 + 0x60);
+  SystemDataWriter(auStack_918,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,8);
+  SystemParameterInitializer(&puStack_a88,8);
   *puStack_a80 = 0x6e6961746e756f6d;
   *(int8_t *)(puStack_a80 + 1) = 0;
   uStack_a78 = 8;
@@ -298,7 +298,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -306,7 +306,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -316,7 +316,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -325,25 +325,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_8f8,lVar2);
-  FUN_18005d190(auStack_8d8,lVar2 + 0x20);
-  FUN_18005d190(auStack_8b8,lVar2 + 0x40);
-  FUN_18005d190(auStack_898,lVar2 + 0x60);
-  FUN_18005d190(auStack_878,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_8f8,lVar2);
+  SystemDataWriter(auStack_8d8,lVar2 + 0x20);
+  SystemDataWriter(auStack_8b8,lVar2 + 0x40);
+  SystemDataWriter(auStack_898,lVar2 + 0x60);
+  SystemDataWriter(auStack_878,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x776f6e73;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -352,7 +352,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -360,7 +360,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -370,7 +370,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -379,25 +379,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_858,lVar2);
-  FUN_18005d190(auStack_838,lVar2 + 0x20);
-  FUN_18005d190(auStack_818,lVar2 + 0x40);
-  FUN_18005d190(auStack_7f8,lVar2 + 0x60);
-  FUN_18005d190(auStack_7d8,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_858,lVar2);
+  SystemDataWriter(auStack_838,lVar2 + 0x20);
+  SystemDataWriter(auStack_818,lVar2 + 0x40);
+  SystemDataWriter(auStack_7f8,lVar2 + 0x60);
+  SystemDataWriter(auStack_7d8,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -406,7 +406,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -414,7 +414,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -424,7 +424,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -433,25 +433,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_7b8,lVar2);
-  FUN_18005d190(auStack_798,lVar2 + 0x20);
-  FUN_18005d190(auStack_778,lVar2 + 0x40);
-  FUN_18005d190(auStack_758,lVar2 + 0x60);
-  FUN_18005d190(auStack_738,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_7b8,lVar2);
+  SystemDataWriter(auStack_798,lVar2 + 0x20);
+  SystemDataWriter(auStack_778,lVar2 + 0x40);
+  SystemDataWriter(auStack_758,lVar2 + 0x60);
+  SystemDataWriter(auStack_738,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -460,7 +460,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -468,7 +468,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -478,7 +478,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -487,25 +487,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_718,lVar2);
-  FUN_18005d190(auStack_6f8,lVar2 + 0x20);
-  FUN_18005d190(auStack_6d8,lVar2 + 0x40);
-  FUN_18005d190(auStack_6b8,lVar2 + 0x60);
-  FUN_18005d190(auStack_698,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_718,lVar2);
+  SystemDataWriter(auStack_6f8,lVar2 + 0x20);
+  SystemDataWriter(auStack_6d8,lVar2 + 0x40);
+  SystemDataWriter(auStack_6b8,lVar2 + 0x60);
+  SystemDataWriter(auStack_698,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -514,7 +514,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -522,7 +522,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -532,7 +532,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -541,25 +541,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_678,lVar2);
-  FUN_18005d190(auStack_658,lVar2 + 0x20);
-  FUN_18005d190(auStack_638,lVar2 + 0x40);
-  FUN_18005d190(auStack_618,lVar2 + 0x60);
-  FUN_18005d190(auStack_5f8,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_678,lVar2);
+  SystemDataWriter(auStack_658,lVar2 + 0x20);
+  SystemDataWriter(auStack_638,lVar2 + 0x40);
+  SystemDataWriter(auStack_618,lVar2 + 0x60);
+  SystemDataWriter(auStack_5f8,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -568,7 +568,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -576,7 +576,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -586,7 +586,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -595,25 +595,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_5d8,lVar2);
-  FUN_18005d190(auStack_5b8,lVar2 + 0x20);
-  FUN_18005d190(auStack_598,lVar2 + 0x40);
-  FUN_18005d190(auStack_578,lVar2 + 0x60);
-  FUN_18005d190(auStack_558,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_5d8,lVar2);
+  SystemDataWriter(auStack_5b8,lVar2 + 0x20);
+  SystemDataWriter(auStack_598,lVar2 + 0x40);
+  SystemDataWriter(auStack_578,lVar2 + 0x60);
+  SystemDataWriter(auStack_558,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x64697261;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -622,7 +622,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -630,7 +630,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -640,7 +640,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -649,25 +649,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_538,lVar2);
-  FUN_18005d190(auStack_518,lVar2 + 0x20);
-  FUN_18005d190(auStack_4f8,lVar2 + 0x40);
-  FUN_18005d190(auStack_4d8,lVar2 + 0x60);
-  FUN_18005d190(auStack_4b8,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_538,lVar2);
+  SystemDataWriter(auStack_518,lVar2 + 0x20);
+  SystemDataWriter(auStack_4f8,lVar2 + 0x40);
+  SystemDataWriter(auStack_4d8,lVar2 + 0x60);
+  SystemDataWriter(auStack_4b8,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -676,7 +676,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -684,7 +684,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -694,7 +694,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -703,25 +703,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_498,lVar2);
-  FUN_18005d190(auStack_478,lVar2 + 0x20);
-  FUN_18005d190(auStack_458,lVar2 + 0x40);
-  FUN_18005d190(auStack_438,lVar2 + 0x60);
-  FUN_18005d190(auStack_418,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_498,lVar2);
+  SystemDataWriter(auStack_478,lVar2 + 0x20);
+  SystemDataWriter(auStack_458,lVar2 + 0x40);
+  SystemDataWriter(auStack_438,lVar2 + 0x60);
+  SystemDataWriter(auStack_418,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -730,7 +730,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -738,7 +738,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -748,7 +748,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -757,25 +757,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_3f8,lVar2);
-  FUN_18005d190(auStack_3d8,lVar2 + 0x20);
-  FUN_18005d190(auStack_3b8,lVar2 + 0x40);
-  FUN_18005d190(auStack_398,lVar2 + 0x60);
-  FUN_18005d190(auStack_378,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_3f8,lVar2);
+  SystemDataWriter(auStack_3d8,lVar2 + 0x20);
+  SystemDataWriter(auStack_3b8,lVar2 + 0x40);
+  SystemDataWriter(auStack_398,lVar2 + 0x60);
+  SystemDataWriter(auStack_378,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,6);
+  SystemParameterInitializer(&puStack_a88,6);
   *(int32_t *)puStack_a80 = 0x65726f62;
   *(int16_t *)((longlong)puStack_a80 + 4) = 0x6c61;
   *(int8_t *)((longlong)puStack_a80 + 6) = 0;
@@ -785,7 +785,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -793,7 +793,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -803,7 +803,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -812,25 +812,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_358,lVar2);
-  FUN_18005d190(auStack_338,lVar2 + 0x20);
-  FUN_18005d190(auStack_318,lVar2 + 0x40);
-  FUN_18005d190(auStack_2f8,lVar2 + 0x60);
-  FUN_18005d190(auStack_2d8,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_358,lVar2);
+  SystemDataWriter(auStack_338,lVar2 + 0x20);
+  SystemDataWriter(auStack_318,lVar2 + 0x40);
+  SystemDataWriter(auStack_2f8,lVar2 + 0x60);
+  SystemDataWriter(auStack_2d8,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -839,7 +839,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -847,7 +847,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -857,7 +857,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -866,25 +866,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_2b8,lVar2);
-  FUN_18005d190(auStack_298,lVar2 + 0x20);
-  FUN_18005d190(auStack_278,lVar2 + 0x40);
-  FUN_18005d190(auStack_258,lVar2 + 0x60);
-  FUN_18005d190(auStack_238,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_2b8,lVar2);
+  SystemDataWriter(auStack_298,lVar2 + 0x20);
+  SystemDataWriter(auStack_278,lVar2 + 0x40);
+  SystemDataWriter(auStack_258,lVar2 + 0x60);
+  SystemDataWriter(auStack_238,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x61757161;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -893,7 +893,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -901,7 +901,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -911,7 +911,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -920,25 +920,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_218,lVar2);
-  FUN_18005d190(auStack_1f8,lVar2 + 0x20);
-  FUN_18005d190(auStack_1d8,lVar2 + 0x40);
-  FUN_18005d190(auStack_1b8,lVar2 + 0x60);
-  FUN_18005d190(auStack_198,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_218,lVar2);
+  SystemDataWriter(auStack_1f8,lVar2 + 0x20);
+  SystemDataWriter(auStack_1d8,lVar2 + 0x40);
+  SystemDataWriter(auStack_1b8,lVar2 + 0x60);
+  SystemDataWriter(auStack_198,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,8);
+  SystemParameterInitializer(&puStack_a88,8);
   *puStack_a80 = 0x6e6961746e756f6d;
   *(int8_t *)(puStack_a80 + 1) = 0;
   uStack_a78 = 8;
@@ -947,7 +947,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -955,7 +955,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -965,7 +965,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -974,25 +974,25 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_178,lVar2);
-  FUN_18005d190(auStack_158,lVar2 + 0x20);
-  FUN_18005d190(auStack_138,lVar2 + 0x40);
-  FUN_18005d190(auStack_118,lVar2 + 0x60);
-  FUN_18005d190(auStack_f8,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_178,lVar2);
+  SystemDataWriter(auStack_158,lVar2 + 0x20);
+  SystemDataWriter(auStack_138,lVar2 + 0x40);
+  SystemDataWriter(auStack_118,lVar2 + 0x60);
+  SystemDataWriter(auStack_f8,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   ppuStack_a48 = &puStack_a88;
   puStack_a88 = &system_data_buffer_ptr;
   uStack_a70 = 0;
   puStack_a80 = (uint64_t *)0x0;
   uStack_a78 = 0;
-  FUN_1806277c0(&puStack_a88,4);
+  SystemParameterInitializer(&puStack_a88,4);
   *(int32_t *)puStack_a80 = 0x6873756c;
   *(int8_t *)((longlong)puStack_a80 + 4) = 0;
   uStack_a78 = 4;
@@ -1001,7 +1001,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_a90 = 0;
   puStack_aa0 = (uint64_t *)0x0;
   uStack_a98 = 0;
-  FUN_1806277c0(&puStack_aa8,7);
+  SystemParameterInitializer(&puStack_aa8,7);
   *puStack_aa0 = 0x6e617661726163;
   uStack_a98 = 7;
   ppuStack_a58 = &puStack_ac8;
@@ -1009,7 +1009,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ab0 = 0;
   puStack_ac0 = (uint64_t *)0x0;
   uStack_ab8 = 0;
-  FUN_1806277c0(&puStack_ac8,10);
+  SystemParameterInitializer(&puStack_ac8,10);
   *puStack_ac0 = 0x6c735f6573726f68;
   *(int16_t *)(puStack_ac0 + 1) = 0x776f;
   *(int8_t *)((longlong)puStack_ac0 + 10) = 0;
@@ -1019,7 +1019,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_ad0 = 0;
   puStack_ae0 = (uint64_t *)0x0;
   uStack_ad8 = 0;
-  FUN_1806277c0(&puStack_ae8,5);
+  SystemParameterInitializer(&puStack_ae8,5);
   *(int32_t *)puStack_ae0 = 0x73726f68;
   *(int16_t *)((longlong)puStack_ae0 + 4) = 0x65;
   uStack_ad8 = 5;
@@ -1028,18 +1028,18 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_af0 = 0;
   puStack_b00 = (uint64_t *)0x0;
   uStack_af8 = 0;
-  FUN_1806277c0(&puStack_b08,8);
+  SystemParameterInitializer(&puStack_b08,8);
   *puStack_b00 = 0x7972746e61666e69;
   *(int8_t *)(puStack_b00 + 1) = 0;
   uStack_af8 = 8;
   ppuStack_b10 = &puStack_a88;
   ppuStack_b18 = &puStack_aa8;
-  lVar2 = FUN_1805fb030(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
-  FUN_18005d190(auStack_d8,lVar2);
-  FUN_18005d190(auStack_b8,lVar2 + 0x20);
-  FUN_18005d190(auStack_98,lVar2 + 0x40);
-  FUN_18005d190(auStack_78,lVar2 + 0x60);
-  FUN_18005d190(auStack_58,lVar2 + 0x80);
+  lVar2 = SystemDataStructureManager(auStack_a40,&puStack_b08,&puStack_ae8,&puStack_ac8);
+  SystemDataWriter(auStack_d8,lVar2);
+  SystemDataWriter(auStack_b8,lVar2 + 0x20);
+  SystemDataWriter(auStack_98,lVar2 + 0x40);
+  SystemDataWriter(auStack_78,lVar2 + 0x60);
+  SystemDataWriter(auStack_58,lVar2 + 0x80);
   FUN_1805fd350(auStack_a40);
   uVar1 = (param_1[1] - *param_1) / 0x14;
   if (uVar1 < 0xf) {
