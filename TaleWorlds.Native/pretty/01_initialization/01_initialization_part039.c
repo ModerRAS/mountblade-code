@@ -1290,18 +1290,31 @@ longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
 
 
 
-longlong FUN_18006e0b0(longlong param_1,ulonglong param_2)
+/**
+ * 清理和销毁内存池管理器
+ * 释放内存池管理器占用的所有资源，包括互斥锁、条件变量等
+ * 原函数名：FUN_18006e0b0
+ * 
+ * @param manager 内存池管理器指针
+ * @param flags 销毁标志，第0位为1时表示释放管理器内存
+ * @return 传入的管理器指针
+ */
+longlong CleanupAndDestroyMemoryPoolManager(longlong manager, ulonglong flags)
 
 {
+  // 执行清理操作
   FUN_18006e5d0();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_18006e4a0(param_1 + 200);
-  FUN_180049470(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x408);
+  FUN_18006e4a0(manager + 200);
+  FUN_180049470(manager);
+  
+  // 根据标志决定是否释放管理器内存
+  if ((flags & 1) != 0) {
+    free(manager, 0x408);
   }
-  return param_1;
+  
+  return manager;
 }
 
 
