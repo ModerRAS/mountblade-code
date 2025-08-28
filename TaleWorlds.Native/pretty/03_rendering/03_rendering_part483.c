@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -173,7 +175,7 @@ LAB_180526d2c:
                   *(int *)((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 100 +
                           *(longlong *)(lVar8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
        0)))) {
-    cVar3 = FUN_1805a3b20(unaff_RBX + 0x28,unaff_RBP + 0x67);
+    cVar3 = StringProcessor(unaff_RBX + 0x28,unaff_RBP + 0x67);
     if (cVar3 == '\0') {
 LAB_180526f68:
       lVar7 = *(longlong *)(unaff_RBX + 0x8f8);
@@ -419,7 +421,7 @@ LAB_180526d2c:
                   *(int *)((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 100 +
                           *(longlong *)(lVar8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
        0)))) {
-    cVar3 = FUN_1805a3b20(unaff_RBX + 0x28,unaff_RBP + 0x67);
+    cVar3 = StringProcessor(unaff_RBX + 0x28,unaff_RBP + 0x67);
     if (cVar3 == '\0') {
 LAB_180526f68:
       lVar7 = *(longlong *)(unaff_RBX + 0x8f8);

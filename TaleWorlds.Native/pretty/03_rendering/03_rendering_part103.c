@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -683,7 +685,7 @@ longlong RenderingSystemResourceSetter(longlong resource_manager, uint resource_
     
     // 检查线程局部存储
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < render_system_config_buffer) && (FUN_1808fcb90(&system_memory_96d0), render_system_config_buffer == -1)) {
+                 0x48) < render_system_config_buffer) && (SystemInitializer(&system_memory_96d0), render_system_config_buffer == -1)) {
         // 初始化线程局部数据
         render_system_config_buffer = &unknown_var_3480_ptr;
         render_system_config_buffer = &system_memory_9748;

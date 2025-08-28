@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -560,7 +562,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                  (float)(random_seed - 1) * 2.3283064e-10 < *(float *)(param_2 + 0xc0) + *(float *)(param_2 + 0xc0))) {
                 
                 if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_system_config_config) && 
-                    (FUN_1808fcb90(&system_memory_9ec8), render_system_config_config == -1)) {
+                    (SystemInitializer(&system_memory_9ec8), render_system_config_config == -1)) {
                     transform_output_1 = &system_data_buffer_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
@@ -734,7 +736,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             
             render_flags = 0;
             if ((*(byte *)(param_2 + 0xac) & 0x40) == 0) {
-                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_system_config_config) && (FUN_1808fcb90(&system_memory_9ed0), render_system_config_config == -1)) {
+                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_system_config_config) && (SystemInitializer(&system_memory_9ed0), render_system_config_config == -1)) {
                     transform_output_1 = &system_data_buffer_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;

@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -225,7 +227,7 @@ void FUN_180603100(longlong param_1)
 {
   int8_t auStackX_8 [32];
   
-  FUN_1805a3b20(param_1 + 0x28,auStackX_8);
+  StringProcessor(param_1 + 0x28,auStackX_8);
   return;
 }
 

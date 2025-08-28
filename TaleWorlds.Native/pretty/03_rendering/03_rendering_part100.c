@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -716,7 +718,7 @@ LAB_1803281b2:
     do {
       // 检查线程局部存储状态
       if ((*(int *)(offset_diff + 0x48) < render_system_config_pointer) &&
-         (FUN_1808fcb90(&system_flag_8e24), render_system_config_pointer == -1)) {
+         (SystemInitializer(&system_flag_8e24), render_system_config_pointer == -1)) {
         render_system_config_pointer = &unknown_var_3480_ptr;
         render_system_config_pointer = &system_flag_8e78;
         render_system_config_pointer = 0;

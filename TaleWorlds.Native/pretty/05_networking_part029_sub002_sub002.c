@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -22,7 +24,7 @@ void * FUN_180857df0(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < network_system_memory) {
-    FUN_1808fcb90(&system_ptr_eaac);
+    SystemInitializer(&system_ptr_eaac);
     if (network_system_memory == -1) {
       network_system_memory = 0xffffffff;
       FUN_1808fcb30(&system_ptr_eaac);
@@ -219,7 +221,7 @@ LAB_180857f82:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < network_system_memory) && (FUN_1808fcb90(&system_ptr_ea98), network_system_memory == -1))
+      if ((*piStack_100 < network_system_memory) && (SystemInitializer(&system_ptr_ea98), network_system_memory == -1))
       {
         network_system_memory = 0;
         FUN_1808fcb30(&system_ptr_ea98);
@@ -376,7 +378,7 @@ LAB_1808580a0:
         uStack_158 = uVar6;
       }
       if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
-         (FUN_1808fcb90(&system_ptr_ea98), network_system_memory == -1)) {
+         (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
         network_system_memory = 0;
         FUN_1808fcb30(&system_ptr_ea98);
       }
@@ -439,7 +441,7 @@ LAB_180859163:
           return uVar18;
         }
         if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
-           (FUN_1808fcb90(&system_ptr_ea98), network_system_memory == -1)) {
+           (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
           network_system_memory = uVar7;
           FUN_1808fcb30(&system_ptr_ea98);
         }
@@ -577,7 +579,7 @@ LAB_180858c20:
         }
       }
       if ((*(int *)(*plStack_c8 + 0x48) < network_system_memory) &&
-         (FUN_1808fcb90(&system_ptr_ea98), network_system_memory == -1)) {
+         (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
         network_system_memory = 0;
         FUN_1808fcb30(&system_ptr_ea98);
       }
@@ -816,7 +818,7 @@ LAB_180858e04:
     *(uint *)(param_1 + 8) = uVar7;
     *(int32_t *)(param_1 + 0xc) = 2;
     if ((*(int *)(lStack_c0 + 0x48) < network_system_memory) &&
-       (FUN_1808fcb90(&system_ptr_ea98), network_system_memory == -1)) {
+       (SystemInitializer(&system_ptr_ea98), network_system_memory == -1)) {
       network_system_memory = 0;
       FUN_1808fcb30(&system_ptr_ea98);
     }

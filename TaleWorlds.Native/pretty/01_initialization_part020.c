@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -153,7 +155,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
     if (*(char *)(system_context + 0x22d) == '\0') {
       temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
-         (FUN_1808fcb90(&system_memory_9140), init_system_config_counter == -1)) {
+         (SystemInitializer(&system_memory_9140), init_system_config_counter == -1)) {
         init_system_config_counter = float_param;
         FUN_1808fcb30(&system_memory_9140);
       }
@@ -187,7 +189,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       
       // 更新配置参数
       if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
-         (FUN_1808fcb90(&system_memory_9148), init_system_config_counter == -1)) {
+         (SystemInitializer(&system_memory_9148), init_system_config_counter == -1)) {
         init_system_config_counter = calculated_value2;
         FUN_1808fcb30(&system_memory_9148);
       }

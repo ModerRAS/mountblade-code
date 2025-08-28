@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -1061,7 +1063,7 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
   
   // 初始化互斥量
   if ((*(int *)(tls_data_ptr + 0x48) < render_system_config_pointer) &&
-     (FUN_1808fcb90(&system_memory_9678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
+     (SystemInitializer(&system_memory_9678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
      render_system_config_pointer == -1)) {
     _Mtx_init_in_situ(0x180d49680, 2);
     FUN_1808fc820(FUN_180941da0);

@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -316,7 +318,7 @@ uint64_t rendering_system_get_global_render_data(void)
   // 检查线程本地存储中的数据是否需要初始化
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < render_system_config_camera) {
-    FUN_1808fcb90(&system_state_9128);
+    SystemInitializer(&system_state_9128);
     
     // 如果数据初始化失败，执行清理和重新初始化
     if (render_system_config_camera == -1) {

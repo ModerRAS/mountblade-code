@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -448,7 +450,7 @@ LABEL_TEXTURE_PROCESS:
         /* 检查线程安全性 */
         if ((*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
                                (ulonglong)__tls_index * 8) + 0x48) < render_system_config_material) && 
-            (FUN_1808fcb90(&system_memory_9ed8), render_system_config_material == -1)) {
+            (SystemInitializer(&system_memory_9ed8), render_system_config_material == -1)) {
             stack_ptr = &system_data_buffer_ptr;
             stack_param_4 = 0;
             stack_param_5 = 0;
@@ -644,7 +646,7 @@ LABEL_TEXTURE_PROCESS:
         if (texture_index == 4) {
             param_flag = render_system_config_material;
             if ((thread_id < render_system_config_material) &&
-                (FUN_1808fcb90(&system_memory_9ee0), param_flag = render_system_config_material, 
+                (SystemInitializer(&system_memory_9ee0), param_flag = render_system_config_material, 
                  render_system_config_material == -1)) {
                 stack_ptr = &system_data_buffer_ptr;
                 stack_param_4 = 0;
@@ -665,7 +667,7 @@ LABEL_TEXTURE_PROCESS:
         } else {
             param_flag = render_system_config_material;
             if ((thread_id < render_system_config_material) &&
-                (FUN_1808fcb90(&system_memory_9ee8), param_flag = render_system_config_material, 
+                (SystemInitializer(&system_memory_9ee8), param_flag = render_system_config_material, 
                  render_system_config_material == -1)) {
                 stack_ptr = &system_data_buffer_ptr;
                 stack_param_4 = 0;

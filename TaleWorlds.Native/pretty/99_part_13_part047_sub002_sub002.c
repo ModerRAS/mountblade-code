@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -1008,7 +1010,7 @@ float FUN_1808c5f30(longlong param_1,float param_2)
         }
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-             system_system_config) && (FUN_1808fcb90(&system_ptr_f494), system_system_config == -1)) {
+             system_system_config) && (SystemInitializer(&system_ptr_f494), system_system_config == -1)) {
           system_system_config = 0.7213475;
           FUN_1808fcb30(&system_ptr_f494);
         }
@@ -1043,7 +1045,7 @@ float FUN_1808c5fbe(int param_1,uint64_t param_2,uint64_t param_3,float *param_4
     if (param_1 == 2) {
       if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                   0x48) < system_system_config) {
-        FUN_1808fcb90(&system_ptr_f494);
+        SystemInitializer(&system_ptr_f494);
         if (system_system_config == -1) {
           system_system_config = 0.7213475;
           FUN_1808fcb30(&system_ptr_f494);
@@ -1105,7 +1107,7 @@ float FUN_1808c60e0(void)
   float fVar2;
   float unaff_XMM8_Da;
   
-  FUN_1808fcb90(&system_ptr_f494);
+  SystemInitializer(&system_ptr_f494);
   if (system_system_config == -1) {
     system_system_config = 0.7213475;
     FUN_1808fcb30(&system_ptr_f494);
@@ -1152,7 +1154,7 @@ float FUN_1808c6120(longlong param_1,uint param_2)
         }
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-             system_system_config) && (FUN_1808fcb90(&system_ptr_f49c), system_system_config == -1)) {
+             system_system_config) && (SystemInitializer(&system_ptr_f49c), system_system_config == -1)) {
           system_system_config = 0.7213475;
           FUN_1808fcb30(&system_ptr_f49c);
         }
@@ -1187,7 +1189,7 @@ float FUN_1808c619c(uint64_t param_1,uint64_t param_2,int param_3,int *param_4)
     if (param_3 == 2) {
       if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                   0x48) < system_system_config) {
-        FUN_1808fcb90(&system_ptr_f49c);
+        SystemInitializer(&system_ptr_f49c);
         if (system_system_config == -1) {
           system_system_config = 0.7213475;
           FUN_1808fcb30(&system_ptr_f49c);
@@ -1249,7 +1251,7 @@ float FUN_1808c62ca(void)
   float fVar2;
   float unaff_XMM8_Da;
   
-  FUN_1808fcb90(&system_ptr_f49c);
+  SystemInitializer(&system_ptr_f49c);
   if (system_system_config == -1) {
     system_system_config = 0.7213475;
     FUN_1808fcb30(&system_ptr_f49c);

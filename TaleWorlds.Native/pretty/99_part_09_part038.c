@@ -1,3 +1,5 @@
+#define StatusChecker FUN_1805b7ac0  // 状态检查器
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part038.c - 1 个函数
@@ -95,7 +97,7 @@ LAB_1805cf57f:
           }
           if ((((*(uint *)((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 +
                           *(longlong *)(lVar10 + 0xd0)) >> 0x1c & 1) != 0) &&
-              (cVar5 = FUN_1805b7ac0(param_1), cVar5 != '\0')) &&
+              (cVar5 = StatusChecker(param_1), cVar5 != '\0')) &&
              (fVar16 = *(float *)(*param_1 + 0x2f8),
              uVar13 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272),
              uVar13 = uVar13 >> 0x11 ^ uVar13, uVar13 = uVar13 << 5 ^ uVar13,
