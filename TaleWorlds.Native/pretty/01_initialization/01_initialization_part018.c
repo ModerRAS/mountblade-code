@@ -888,48 +888,61 @@ void initialize_system_parameters(void)
   undefined1 temp_buffer3 [264]; // 临时缓冲区3
   ulonglong security_hash;   // 安全哈希
   
-  lVar3 = _DAT_180c86870;
-  uStack_178 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_208;
+  main_engine = _DAT_180c86870;
+  stack_guard = 0xfffffffffffffffe;
+  security_hash = _DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+  
+  // 检查系统状态并设置时间戳
   if (*(undefined **)*_DAT_180c8ed08 == &UNK_18098bb88) {
-    cVar9 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+    is_enabled = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {
-    cVar9 = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
+    is_enabled = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
   }
-  if (cVar9 == '\0') {
+  
+  // 设置时间戳
+  if (is_enabled == '\0') {
     _DAT_180bf65b8 = timeGetTime();
   }
   else {
     _DAT_180bf65b8 = 0xb061;
   }
-  lVar2 = _DAT_180c86920;
+  
+  engine_config = _DAT_180c86920;
   _DAT_180bf65b8 = _DAT_180bf65b8 ^ 0x41c64e6d;
+  
+  // 计算缩放因子
   if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
     if (*(int *)(_DAT_180c86920 + 0x2140) == 0) {
-      fVar10 = *(float *)(_DAT_180c86920 + 0x20d0);
+      scale_factor = *(float *)(_DAT_180c86920 + 0x20d0);
     }
     else {
-      fVar10 = 100.0;
+      scale_factor = 100.0;
     }
-    fVar10 = fVar10 * 0.01;
+    scale_factor = scale_factor * 0.01;
   }
   else {
-    fVar10 = 1.0;
+    scale_factor = 1.0;
   }
-  *(float *)(lVar3 + 0x234) = fVar10;
-  *(undefined4 *)(lVar3 + 0x238) = 0x3f800000;
-  fVar12 = 1.0;
-  if (*(int *)(lVar2 + 0x1ea0) == 1) {
-    iVar1 = *(int *)(lVar2 + 0x1d50);
-    piVar5 = (int *)FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8),auStack_170);
-    fVar12 = (float)iVar1 / (float)*piVar5;
-    fVar10 = fVar12 * *(float *)(lVar3 + 0x234);
-    fVar12 = fVar12 * *(float *)(lVar3 + 0x238);
+  
+  // 设置缩放参数
+  *(float *)(main_engine + 0x234) = scale_factor;
+  *(undefined4 *)(main_engine + 0x238) = 0x3f800000;
+  quality_factor = 1.0;
+  
+  // 处理特殊渲染模式
+  if (*(int *)(engine_config + 0x1ea0) == 1) {
+    temp_int = *(int *)(engine_config + 0x1d50);
+    config_ptr = (int *)FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8), temp_buffer2);
+    quality_factor = (float)temp_int / (float)*config_ptr;
+    scale_factor = quality_factor * *(float *)(main_engine + 0x234);
+    quality_factor = quality_factor * *(float *)(main_engine + 0x238);
   }
-  if (0.2 <= fVar10) {
-    if (1.0 <= fVar10) {
-      fVar10 = 1.0;
+  
+  // 限制缩放因子范围
+  if (0.2 <= scale_factor) {
+    if (1.0 <= scale_factor) {
+      scale_factor = 1.0;
     }
   }
   else {

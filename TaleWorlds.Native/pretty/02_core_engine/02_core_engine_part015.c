@@ -161,19 +161,27 @@ void force_cleanup_resource_manager(longlong resource_manager)
 
 
 
-// 函数: void FUN_180055f70(undefined8 param_1,undefined4 param_2)
-void FUN_180055f70(undefined8 param_1,undefined4 param_2)
+// 函数: void emergency_exit_process(undefined8 unused_param, undefined4 exit_code)
+// 功能: 紧急退出进程，进行清理后以指定错误码退出
+void emergency_exit_process(undefined8 unused_param, undefined4 exit_code)
 
 {
-  code *pcVar1;
+  code *system_call_ptr;
   
+  // 如果全局数据结构存在，调用清理函数
   if (_DAT_180c8f008 != 0) {
     func_0x00018005a410(_DAT_180c8f008 + 8);
   }
+  
+  // 等待2秒，确保清理完成
   Sleep(2000);
-  _Exit(param_2);
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  
+  // 以指定错误码退出进程
+  _Exit(exit_code);
+  
+  // 下面的代码不会执行，因为_Exit不会返回
+  system_call_ptr = (code *)swi(3);
+  (*system_call_ptr)();
   return;
 }
 
@@ -183,53 +191,81 @@ void FUN_180055f70(undefined8 param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+// 函数: void initialize_system_configuration(void)
+// 功能: 初始化系统配置，设置各种全局参数和数据结构
+void initialize_system_configuration(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  char *pcVar3;
-  int iVar4;
-  char *pcVar5;
-  undefined8 in_R9;
-  undefined8 uVar6;
+  undefined8 *global_ptr;
+  undefined8 backup_value;
+  char *config_data;
+  int lock_result;
+  char *iterator_ptr;
+  undefined8 unused_r9;
+  undefined8 flag_value;
   
-  pcVar3 = _DAT_180c8a9d8;
-  uVar6 = 0xfffffffffffffffe;
+  // 获取配置数据指针和设置标志值
+  config_data = _DAT_180c8a9d8;
+  flag_value = 0xfffffffffffffffe;
+  
+  // 检查配置数据是否有效
   if (*_DAT_180c8a9d8 != '\0') {
-    puVar1 = (undefined8 *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    // 获取全局数据指针
+    global_ptr = (undefined8 *)*_DAT_180c86960;
+    
+    // 加锁保护共享数据
+    lock_result = _Mtx_lock(0x180c91970);
+    if (lock_result != 0) {
+      // 如果加锁失败，抛出C标准错误
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    uVar2 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *puVar1;
-    FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,uVar6);
-    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(pcVar3 + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(pcVar3 + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(pcVar3 + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(pcVar3 + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(pcVar3 + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    
+    // 备份当前值并更新全局数据
+    backup_value = _DAT_180c8a9b0;
+    _DAT_180c8a9b0 = *global_ptr;
+    
+    // 初始化基础配置数据结构
+    FUN_1801299b0(&UNK_1809fd9a0, 0, 0, unused_r9, flag_value);
+    
+    // 设置基础配置参数
+    FUN_18010f010(&UNK_1809fd9b0, *(undefined4 *)(config_data + 4));     // 参数1
+    FUN_18010f010(&UNK_1809fd9d0, *(undefined4 *)(config_data + 8));     // 参数2
+    FUN_18010f010(&UNK_1809fd9f0, *(undefined4 *)(config_data + 0xc));   // 参数3
+    FUN_18010f010(&UNK_1809fda10, *(undefined4 *)(config_data + 0x10));  // 参数4
+    FUN_18010f010(&UNK_1809fda30, *(undefined4 *)(config_data + 0x14));  // 参数5
+    FUN_18010f010(&UNK_1809fda58, *(undefined4 *)(config_data + 0x18));  // 参数6
+    
+    // 处理第一组配置数据（偏移0x28处的链表）
+    for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
+        iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
+      FUN_18010f010(&UNK_1809fda80, *(undefined4 *)(iterator_ptr + 0x20), *(undefined4 *)(iterator_ptr + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    
+    // 处理第二组配置数据（偏移0x58处的链表）
+    for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
+        iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
+      FUN_18010f010(&UNK_1809fdaa8, *(undefined4 *)(iterator_ptr + 0x20), *(undefined4 *)(iterator_ptr + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(pcVar3 + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(pcVar3 + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(pcVar3 + 0x88));
+    
+    // 设置高级配置参数
+    FUN_18010f010(&UNK_1809fdad0, *(undefined4 *)(config_data + 0x80));  // 高级参数1
+    FUN_18010f010(&UNK_1809fdaf8, *(undefined4 *)(config_data + 0x84));  // 高级参数2
+    FUN_18010f010(&UNK_1809fdb20, *(undefined4 *)(config_data + 0x88));  // 高级参数3
+    
+    // 完成配置初始化
     FUN_18012cfe0();
-    _DAT_180c8a9b0 = uVar2;
-    iVar4 = _Mtx_unlock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    
+    // 恢复备份值
+    _DAT_180c8a9b0 = backup_value;
+    
+    // 解锁共享数据
+    lock_result = _Mtx_unlock(0x180c91970);
+    if (lock_result != 0) {
+      // 如果解锁失败，抛出C标准错误
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
   }
+  
   return;
 }
 
