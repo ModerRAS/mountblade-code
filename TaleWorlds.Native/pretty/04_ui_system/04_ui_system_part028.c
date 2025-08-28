@@ -45,7 +45,6 @@
  * @param batch_index 批处理索引
  */
 void ui_system_advanced_render_batch_processor(longlong ui_context, longlong render_context, int batch_index)
-
 {
     // 变量声明和初始化
     undefined4 *texture_data_ptr;
@@ -147,331 +146,210 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     // 初始化渲染上下文
     *(uint *)(render_context + 0xf10) = (uint)(batch_index != 0);
     stack_batch = batch_index;
-  if (param_3 < *(int *)(param_1 + 0x1e74)) {
-    uStack_120 = uVar21;
-    uStack_118 = uVar19;
-    uVar22 = uVar21;
-    do {
-      iStack_134 = iStack_15c;
-      *(longlong *)(param_2 + 0xfb8) =
-           ((longlong)(iStack_15c % iStack_138) + 0x15c) * 0x30 + param_1;
-      if (iStack_15c < 1) {
-        piStack_110 = &iStack_144;
-      }
-      else {
-        piStack_110 = (int *)(*(longlong *)(param_1 + 0x43a8) + (longlong)(iStack_15c + -1) * 4);
-      }
-      lStack_168 = (longlong)iStack_15c;
-      piStack_108 = (int *)(*(longlong *)(param_1 + 0x43a8) + lStack_168 * 4);
-      *(undefined8 *)(param_2 + 0xf50) = *(undefined8 *)(param_1 + 0x2c18);
-      puVar6 = *(undefined8 **)(param_2 + 0xf58);
-      iStack_154 = iStack_15c * (int)uVar22 * 0x10;
-      iStack_150 = iStack_15c * (int)uVar19 * 8;
-      *puVar6 = 0;
-      *(undefined1 *)(puVar6 + 1) = 0;
-      *(undefined4 *)(param_2 + 0xf14) = 0;
-      *(int *)(param_2 + 0xf8c) = iStack_15c * -0x80;
-      *(int *)(param_2 + 0xf90) = ((*(int *)(param_1 + 0x1e74) - iStack_15c) + -1) * 0x80;
-      if (*(int *)(param_1 + 0x2be0) == 0) {
-        *(longlong *)(param_2 + 0xf18) = iStack_154 + lStack_100;
-        *(longlong *)(param_2 + 0xf20) = lStack_f8 + iStack_150;
-        *(longlong *)(param_2 + 0xf28) = lStack_f0 + iStack_150;
-        *(longlong *)(param_2 + 0xf30) = *(longlong *)(param_2 + 0xf18) + -1;
-        *(longlong *)(param_2 + 0xf38) = *(longlong *)(param_2 + 0xf20) + -1;
-        puVar7 = *(undefined1 **)(param_2 + 0xf38);
-        *(longlong *)(param_2 + 0xf40) = *(longlong *)(param_2 + 0xf28) + -1;
-        puVar8 = *(undefined1 **)(param_2 + 0xf40);
-        *(longlong *)(param_2 + 0xf18) =
-             *(longlong *)(param_2 + 0xf18) - (longlong)*(int *)(param_2 + 0xe80);
-        lVar20 = 0x10;
-        *(longlong *)(param_2 + 0xf20) =
-             *(longlong *)(param_2 + 0xf20) - (longlong)*(int *)(param_2 + 0xe94);
-        *(longlong *)(param_2 + 0xf28) =
-             *(longlong *)(param_2 + 0xf28) - (longlong)*(int *)(param_2 + 0xe94);
-        *(undefined4 *)(param_2 + 0xf48) = *(undefined4 *)(param_2 + 0xe80);
-        *(undefined4 *)(param_2 + 0xf4c) = *(undefined4 *)(param_2 + 0xe94);
-        lVar18 = (longlong)*(int *)(param_2 + 0xe94);
-        puVar15 = *(undefined1 **)(param_2 + 0xf30);
-        iVar5 = *(int *)(param_2 + 0xe80);
+    
+    // 批处理循环
+    if (batch_index < *(int *)(ui_context + 0x1e74)) {
+        stack_buffer1 = texture_count;
+        stack_buffer2 = vertex_size;
+        buffer_size = texture_count;
+        
         do {
-          *puVar15 = 0x81;
-          puVar15 = puVar15 + iVar5;
-          lVar20 = lVar20 + -1;
-        } while (lVar20 != 0);
-        *puVar7 = 0x81;
-        puVar7[lVar18] = 0x81;
-        puVar7[lVar18 * 2] = 0x81;
-        puVar7[lVar18 * 3] = 0x81;
-        puVar7[lVar18 * 4] = 0x81;
-        puVar7[lVar18 * 5] = 0x81;
-        puVar7[lVar18 * 6] = 0x81;
-        puVar7[lVar18 * 7] = 0x81;
-        *puVar8 = 0x81;
-        puVar8[lVar18] = 0x81;
-        puVar8[lVar18 * 2] = 0x81;
-        puVar8[lVar18 * 3] = 0x81;
-        puVar8[lVar18 * 4] = 0x81;
-        puVar8[lVar18 * 5] = 0x81;
-        puVar8[lVar18 * 6] = 0x81;
-        puVar8[lVar18 * 7] = 0x81;
-      }
-      else {
-        *(longlong *)(param_2 + 0xf18) =
-             *(longlong *)(*(longlong *)(param_1 + 0x43b0) + lStack_168 * 8) + 0x20;
-        *(longlong *)(param_2 + 0xf20) =
-             *(longlong *)(*(longlong *)(param_1 + 0x43b8) + lStack_168 * 8) + 0x10;
-        *(longlong *)(param_2 + 0xf28) =
-             *(longlong *)(*(longlong *)(param_1 + 0x43c0) + lStack_168 * 8) + 0x10;
-        *(undefined8 *)(param_2 + 0xf30) =
-             *(undefined8 *)(*(longlong *)(param_1 + 0x43c8) + lStack_168 * 8);
-        *(undefined8 *)(param_2 + 0xf38) =
-             *(undefined8 *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8);
-        *(undefined8 *)(param_2 + 0xf40) =
-             *(undefined8 *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8);
-        *(undefined4 *)(param_2 + 0xf48) = 1;
-        *(undefined4 *)(param_2 + 0xf4c) = 1;
-      }
-      uVar17 = 0;
-      if (0 < *(int *)(param_1 + 0x1e78)) {
-        lStack_128 = 0x10;
-        iStack_14c = 0;
-        lStack_130 = 0x20;
-        do {
-          piVar14 = piStack_110;
-          iVar5 = iStack_160;
-          *piStack_108 = uVar17 - 1;
-          if (((uVar17 & iStack_160 - 1U) == 0) && (*piStack_110 - iStack_160 < (int)uVar17)) {
-            do {
-              Sleep(0);
-            } while (*piVar14 - iVar5 < (int)uVar17);
-            uVar21 = (ulonglong)(int)uVar22;
-          }
-          lVar20 = *(longlong *)(param_2 + 0xf00);
-          lVar18 = (longlong)iStack_150;
-          *(int *)(param_2 + 0xf84) = iStack_14c;
-          iVar5 = *(int *)(param_1 + 0x1e78);
-          *(longlong *)(param_2 + 0xea8) = lStack_100 + iStack_154;
-          *(longlong *)(param_2 + 0xeb0) = lStack_f8 + lVar18;
-          *(uint *)(param_2 + 0xf88) = ((iVar5 - uVar17) + -1) * 0x80;
-          *(longlong *)(param_2 + 0xeb8) = lStack_f0 + lVar18;
-          *(longlong *)(param_2 + 0xe18) =
-               alStack_a8[(ulonglong)*(byte *)(lVar20 + 2) * 3] + (longlong)iStack_154;
-          *(longlong *)(param_2 + 0xe20) =
-               alStack_a8[(ulonglong)*(byte *)(lVar20 + 2) * 3 + 1] + lVar18;
-          *(longlong *)(param_2 + 0xe28) =
-               alStack_a8[(ulonglong)*(byte *)(lVar20 + 2) * 3 + 2] + lVar18;
-          *(uint *)(param_2 + 0xfc0) =
-               *(uint *)(param_2 + 0xfc0) | auStack_b8[*(byte *)(lVar20 + 2)];
-          FUN_18066f3e0(param_1,param_2,0);
-          uVar13 = uStack_148;
-          *(undefined4 *)(param_2 + 0xf14) = 1;
-          *(uint *)(param_2 + 0xfc0) =
-               *(uint *)(param_2 + 0xfc0) |
-               (uint)(*(int *)(*(longlong *)(param_2 + 0xfb8) + 0x18) - 0x41U < 0x3fffffbf);
-          *(longlong *)(param_2 + 0xf18) = *(longlong *)(param_2 + 0xf18) + 0x10;
-          *(longlong *)(param_2 + 0xf20) = *(longlong *)(param_2 + 0xf20) + 8;
-          *(longlong *)(param_2 + 0xf28) = *(longlong *)(param_2 + 0xf28) + 8;
-          if (*(int *)(param_1 + 0x2be0) == 0) {
-            *(longlong *)(param_2 + 0xf30) = *(longlong *)(param_2 + 0xf30) + 0x10;
-            *(longlong *)(param_2 + 0xf38) = *(longlong *)(param_2 + 0xf38) + 8;
-            *(longlong *)(param_2 + 0xf40) = *(longlong *)(param_2 + 0xf40) + 8;
-            if (*(int *)(param_1 + 0x2be0) != 0) goto LAB_18066fdc2;
-          }
-          else {
-LAB_18066fdc2:
-            pbVar9 = *(byte **)(param_2 + 0xf00);
-            bVar4 = *pbVar9;
-            if (((bVar4 == 4) || (bVar4 == 9)) || (iStack_158 = 1, pbVar9[9] == 0)) {
-              iStack_158 = 0;
+            stack_iter = stack_batch;
+            *(longlong *)(render_context + 0xfb8) =
+                 ((longlong)(stack_batch % stack_flag) + 0x15c) * UI_RESOURCE_BLOCK_SIZE + ui_context;
+            
+            // 设置索引缓冲区
+            if (stack_batch < 1) {
+                index_buffer = &stack_limit;
             }
-            bVar4 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar4 + 0xd00 + param_1 + 0x1ed0) +
-                              param_1 + 0x1ed0 + 0xc40 +
-                             ((ulonglong)pbVar9[2] + (ulonglong)pbVar9[0xb] * 4) * 4);
-            uStack_140 = (uint)bVar4;
-            if (iStack_15c != *(int *)(param_1 + 0x1e74) + -1) {
-              puVar1 = (undefined4 *)(uVar21 * 0xf + *(longlong *)(param_2 + 0xea8));
-              uVar10 = puVar1[1];
-              uVar11 = puVar1[2];
-              uVar12 = puVar1[3];
-              puVar2 = (undefined4 *)
-                       (*(longlong *)(*(longlong *)(param_1 + 0x43b0) + 8 + lStack_168 * 8) +
-                       lStack_130);
-              *puVar2 = *puVar1;
-              puVar2[1] = uVar10;
-              puVar2[2] = uVar11;
-              puVar2[3] = uVar12;
-              *(undefined8 *)
-               (lStack_128 + *(longlong *)(*(longlong *)(param_1 + 0x43b8) + 8 + lStack_168 * 8)) =
-                   *(undefined8 *)(uStack_118 * 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined8 *)
-               (lStack_128 + *(longlong *)(*(longlong *)(param_1 + 0x43c0) + 8 + lStack_168 * 8)) =
-                   *(undefined8 *)(uStack_118 * 7 + *(longlong *)(param_2 + 0xeb8));
+            else {
+                index_buffer = (int *)(*(longlong *)(ui_context + 0x43a8) + (longlong)(stack_batch + -1) * 4);
             }
-            if ((uVar17 != *(int *)(param_1 + 0x1e78) - 1U) &&
-               (*(char *)(*(longlong *)(param_2 + 0xf00) + 0x4e) == '\0')) {
-              lVar18 = 0;
-              lVar20 = uStack_120 * 2;
-              do {
-                lVar16 = lVar20 + uStack_120;
-                *(undefined1 *)
-                 (lVar18 + *(longlong *)(*(longlong *)(param_1 + 0x43c8) + lStack_168 * 8)) =
-                     *(undefined1 *)
-                      (lVar20 + uStack_120 * -2 + 0xf + *(longlong *)(param_2 + 0xea8));
-                *(undefined1 *)
-                 (*(longlong *)(*(longlong *)(param_1 + 0x43c8) + lStack_168 * 8) + 1 + lVar18) =
-                     *(undefined1 *)((*(longlong *)(param_2 + 0xea8) + lVar20 + 0xf) - uStack_120);
-                lVar3 = lVar20 + 0xf;
-                lVar20 = lVar20 + uStack_120 * 4;
-                *(undefined1 *)
-                 (*(longlong *)(*(longlong *)(param_1 + 0x43c8) + lStack_168 * 8) + 2 + lVar18) =
-                     *(undefined1 *)(lVar3 + *(longlong *)(param_2 + 0xea8));
-                *(undefined1 *)
-                 (*(longlong *)(*(longlong *)(param_1 + 0x43c8) + lStack_168 * 8) + 3 + lVar18) =
-                     *(undefined1 *)(lVar16 + 0xf + *(longlong *)(param_2 + 0xea8));
-                lVar18 = lVar18 + 4;
-              } while (lVar18 < 0x10);
-              **(undefined1 **)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb0) + 7);
-              **(undefined1 **)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 1) =
-                   *(undefined1 *)(uStack_118 + 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 1) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 2) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb0) + 7 + uStack_118 * 2);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 2) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 2);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 3) =
-                   *(undefined1 *)(uStack_118 * 3 + 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 3) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 3);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 4) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb0) + 7 + uStack_118 * 4);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 4) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 4);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 5) =
-                   *(undefined1 *)(uStack_118 * 5 + 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 5) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 5);
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 6) =
-                   *(undefined1 *)(uStack_118 * 6 + 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 6) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 6);
-              uVar22 = (ulonglong)uStack_13c;
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d0) + lStack_168 * 8) + 7) =
-                   *(undefined1 *)(uStack_118 * 7 + 7 + *(longlong *)(param_2 + 0xeb0));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x43d8) + lStack_168 * 8) + 7) =
-                   *(undefined1 *)(*(longlong *)(param_2 + 0xeb8) + 7 + uStack_118 * 7);
+            
+            stack_offset = (longlong)stack_batch;
+            index_buffer = (int *)(*(longlong *)(ui_context + 0x43a8) + stack_offset * 4);
+            *(undefined8 *)(render_context + 0xf50) = *(undefined8 *)(ui_context + 0x2c18);
+            render_data_ptr = *(undefined8 **)(render_context + 0xf58);
+            stack_counter = stack_batch * (int)buffer_size * UI_TEXTURE_STRIDE;
+            stack_loop = stack_batch * (int)vertex_size * UI_VERTEX_STRIDE;
+            
+            // 初始化渲染数据
+            *render_data_ptr = 0;
+            *(undefined1 *)(render_data_ptr + 1) = 0;
+            *(undefined4 *)(render_context + 0xf14) = 0;
+            *(int *)(render_context + 0xf8c) = stack_batch * -UI_BATCH_SIZE;
+            *(int *)(render_context + 0xf90) = ((*(int *)(ui_context + 0x1e74) - stack_batch) + -1) * UI_BATCH_SIZE;
+            
+            // 处理渲染模式
+            if (*(int *)(ui_context + 0x2be0) == 0) {
+                // 直接渲染模式
+                *(longlong *)(render_context + 0xf18) = stack_counter + stack_data;
+                *(longlong *)(render_context + 0xf20) = stack_resource + stack_loop;
+                *(longlong *)(render_context + 0xf28) = stack_texture + stack_loop;
+                *(longlong *)(render_context + 0xf30) = *(longlong *)(render_context + 0xf18) + -1;
+                *(longlong *)(render_context + 0xf38) = *(longlong *)(render_context + 0xf20) + -1;
+                texture_ptr = *(undefined1 **)(render_context + 0xf38);
+                *(longlong *)(render_context + 0xf40) = *(longlong *)(render_context + 0xf28) + -1;
+                vertex_ptr = *(undefined1 **)(render_context + 0xf40);
+                
+                // 调整指针位置
+                *(longlong *)(render_context + 0xf18) =
+                     *(longlong *)(render_context + 0xf18) - (longlong)*(int *)(render_context + 0xe80);
+                resource_offset = UI_TEXTURE_STRIDE;
+                *(longlong *)(render_context + 0xf20) =
+                     *(longlong *)(render_context + 0xf20) - (longlong)*(int *)(render_context + 0xe94);
+                *(longlong *)(render_context + 0xf28) =
+                     *(longlong *)(render_context + 0xf28) - (longlong)*(int *)(render_context + 0xe94);
+                *(undefined4 *)(render_context + 0xf48) = *(undefined4 *)(render_context + 0xe80);
+                *(undefined4 *)(render_context + 0xf4c) = *(undefined4 *)(render_context + 0xe94);
+                stack_memory = (longlong)*(int *)(render_context + 0xe94);
+                flag_ptr = *(undefined1 **)(render_context + 0xf30);
+                current_index = *(int *)(render_context + 0xe80);
+                
+                // 填充纹理数据
+                do {
+                    *flag_ptr = UI_TEXTURE_FLAG;
+                    flag_ptr = flag_ptr + current_index;
+                    resource_offset = resource_offset + -1;
+                } while (resource_offset != 0);
+                
+                // 设置纹理标志
+                *texture_ptr = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 2] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 3] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 4] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 5] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 6] = UI_TEXTURE_FLAG;
+                texture_ptr[stack_memory * 7] = UI_TEXTURE_FLAG;
+                
+                *vertex_ptr = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 2] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 3] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 4] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 5] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 6] = UI_TEXTURE_FLAG;
+                vertex_ptr[stack_memory * 7] = UI_TEXTURE_FLAG;
             }
-            uVar23 = (uint)bVar4;
-            lVar20 = param_1 + 0x1ed0;
-            if (uVar23 != 0) {
-              if (*(int *)(param_1 + 0x1ec0) == 0) {
-                lVar18 = (longlong)(int)uVar23;
-                lStack_d8 = lVar18 * 0x10 + lVar20;
-                lStack_d0 = (lVar18 + 0x40) * 0x10 + lVar20;
-                lStack_c8 = (lVar18 + 0x80) * 0x10 + lVar20;
-                lStack_c0 = ((ulonglong)
-                             *(byte *)(((longlong)*(int *)(param_1 + 0x1e64) + 0x32) * 0x40 + lVar18
-                                      + lVar20) + 0xc0) * 0x10 + lVar20;
-                if (0 < (int)uVar17) {
-                  plStack_170 = &lStack_d8;
-                  uStack_178 = uStack_148;
-                  FUN_18069cb40(*(undefined8 *)(param_2 + 0xea8),*(undefined8 *)(param_2 + 0xeb0),
-                                *(undefined8 *)(param_2 + 0xeb8),uVar22 & 0xffffffff);
-                }
-                iVar5 = iStack_158;
-                if (iStack_158 == 0) {
-                  plStack_170 = &lStack_d8;
-                  uStack_178 = uVar13;
-                  FUN_18069ca00(*(undefined8 *)(param_2 + 0xea8),*(undefined8 *)(param_2 + 0xeb0),
-                                *(undefined8 *)(param_2 + 0xeb8),uVar22 & 0xffffffff);
-                }
-                if (0 < lStack_168) {
-                  plStack_170 = &lStack_d8;
-                  uStack_178 = uVar13;
-                  FUN_18069cad0(*(undefined8 *)(param_2 + 0xea8),*(undefined8 *)(param_2 + 0xeb0),
-                                *(undefined8 *)(param_2 + 0xeb8),uVar22 & 0xffffffff);
-                }
-                if (iVar5 == 0) {
-                  plStack_170 = &lStack_d8;
-                  uStack_178 = uVar13;
-                  FUN_18069c900(*(undefined8 *)(param_2 + 0xea8),*(undefined8 *)(param_2 + 0xeb0),
-                                *(undefined8 *)(param_2 + 0xeb8),uVar22 & 0xffffffff);
-                }
-              }
-              else {
-                if (0 < (int)uVar17) {
-                  func_0x00018001c253(*(undefined8 *)(param_2 + 0xea8),uVar22 & 0xffffffff,
-                                      (longlong)(int)uVar23 * 0x10 + lVar20);
-                }
-                iVar5 = iStack_158;
-                if (iStack_158 == 0) {
-                  FUN_18069ca80(*(undefined8 *)(param_2 + 0xea8),uVar22 & 0xffffffff,
-                                ((longlong)(int)uVar23 + 0x40) * 0x10 + lVar20);
-                }
-                if (0 < lStack_168) {
-                  func_0x00018001c10b(*(undefined8 *)(param_2 + 0xea8),uVar22 & 0xffffffff,
-                                      (longlong)(int)uVar23 * 0x10 + lVar20);
-                }
-                if (iVar5 == 0) {
-                  FUN_18069c990(*(undefined8 *)(param_2 + 0xea8),uVar22 & 0xffffffff,
-                                ((longlong)(int)uVar23 + 0x40) * 0x10 + lVar20);
-                }
-              }
+            else {
+                // 间接渲染模式
+                *(longlong *)(render_context + 0xf18) =
+                     *(longlong *)(*(longlong *)(ui_context + 0x43b0) + stack_offset * 8) + 0x20;
+                *(longlong *)(render_context + 0xf20) =
+                     *(longlong *)(*(longlong *)(ui_context + 0x43b8) + stack_offset * 8) + 0x10;
+                *(longlong *)(render_context + 0xf28) =
+                     *(longlong *)(*(longlong *)(ui_context + 0x43c0) + stack_offset * 8) + 0x10;
+                *(undefined8 *)(render_context + 0xf30) =
+                     *(undefined8 *)(*(longlong *)(ui_context + 0x43c8) + stack_offset * 8);
+                *(undefined8 *)(render_context + 0xf38) =
+                     *(undefined8 *)(*(longlong *)(ui_context + 0x43d0) + stack_offset * 8);
+                *(undefined8 *)(render_context + 0xf40) =
+                     *(undefined8 *)(*(longlong *)(ui_context + 0x43d8) + stack_offset * 8);
+                *(undefined4 *)(render_context + 0xf48) = 1;
+                *(undefined4 *)(render_context + 0xf4c) = 1;
             }
-          }
-          uVar17 = uVar17 + 1;
-          iStack_14c = iStack_14c + -0x80;
-          iStack_154 = iStack_154 + 0x10;
-          iStack_150 = iStack_150 + 8;
-          *(longlong *)(param_2 + 0xf00) = *(longlong *)(param_2 + 0xf00) + 0x4c;
-          *(longlong *)(param_2 + 0xf50) = *(longlong *)(param_2 + 0xf50) + 9;
-          lStack_130 = lStack_130 + 0x10;
-          lStack_128 = lStack_128 + 8;
-          uVar21 = (ulonglong)(int)uVar22;
-        } while ((int)uVar17 < *(int *)(param_1 + 0x1e78));
-        uVar21 = (ulonglong)(int)uVar22;
-      }
-      if (*(int *)(param_1 + 0x2be0) == 0) {
-        func_0x00018069cbd0(lStack_e0,*(longlong *)(param_2 + 0xea8) + 0x10,
-                            *(longlong *)(param_2 + 0xeb0) + 8,*(longlong *)(param_2 + 0xeb8) + 8);
-      }
-      else if (iStack_15c != *(int *)(param_1 + 0x1e74) + -1) {
-        lVar20 = 0;
-        iVar5 = *piStack_e8;
-        lVar18 = (longlong)((iVar5 >> 1) + 0x10);
-        do {
-          lVar16 = *(longlong *)(*(longlong *)(param_1 + 0x43b0) + 8 + lStack_168 * 8) +
-                   (longlong)(iVar5 + 0x20);
-          *(undefined1 *)(lVar16 + lVar20) = *(undefined1 *)(lVar16 + -1);
-          lVar16 = *(longlong *)(*(longlong *)(param_1 + 0x43b8) + 8 + lStack_168 * 8) + lVar18;
-          *(undefined1 *)(lVar16 + lVar20) = *(undefined1 *)(lVar16 + -1);
-          lVar16 = *(longlong *)(*(longlong *)(param_1 + 0x43c0) + 8 + lStack_168 * 8) + lVar18;
-          *(undefined1 *)(lVar16 + lVar20) = *(undefined1 *)(lVar16 + -1);
-          lVar20 = lVar20 + 1;
-        } while (lVar20 < 4);
-      }
-      uVar19 = (ulonglong)uStack_148;
-      *piStack_108 = uVar17 + iStack_160;
-      *(longlong *)(param_2 + 0xf00) = *(longlong *)(param_2 + 0xf00) + 0x4c;
-      *(undefined4 *)(param_2 + 0xf10) = 1;
-      *(longlong *)(param_2 + 0xf00) =
-           *(longlong *)(param_2 + 0xf00) +
-           (ulonglong)(uint)(*(int *)(param_2 + 0xf08) * *(int *)(param_1 + 0x438c)) * 0x4c;
-      iStack_15c = iStack_15c + 1 + *(int *)(param_1 + 0x438c);
-      param_3 = iStack_134;
-    } while (iStack_15c < *(int *)(param_1 + 0x1e74));
-  }
-  if (param_3 == *(int *)(param_1 + 0x1e74) + -1) {
-    ReleaseSemaphore(*(undefined8 *)(param_1 + 0x4400),1);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+            
+            // 数据处理循环
+            vertex_stride = 0;
+            if (0 < *(int *)(ui_context + 0x1e78)) {
+                stack_base = UI_TEXTURE_STRIDE;
+                stack_flag = 0;
+                stack_context = 0x20;
+                
+                do {
+                    index_buffer = index_buffer;
+                    current_index = stack_limit;
+                    *index_buffer = vertex_stride - 1;
+                    
+                    // 同步检查
+                    if (((vertex_stride & stack_limit - 1U) == 0) && (*index_buffer - stack_limit < (int)vertex_stride)) {
+                        do {
+                            Sleep(0);
+                        } while (*index_buffer - current_index < (int)vertex_stride);
+                        texture_count = (ulonglong)(int)buffer_size;
+                    }
+                    
+                    // 设置渲染参数
+                    resource_offset = *(longlong *)(render_context + 0xf00);
+                    stack_memory = (longlong)stack_loop;
+                    *(int *)(render_context + 0xf84) = stack_flag;
+                    current_index = *(int *)(ui_context + 0x1e78);
+                    *(longlong *)(render_context + 0xea8) = stack_data + stack_counter;
+                    *(longlong *)(render_context + 0xeb0) = stack_resource + stack_memory;
+                    *(uint *)(render_context + 0xf88) = ((current_index - vertex_stride) + -1) * UI_BATCH_SIZE;
+                    *(longlong *)(render_context + 0xeb8) = stack_texture + stack_memory;
+                    
+                    // 计算渲染地址
+                    *(longlong *)(render_context + 0xe18) =
+                         stack_array[(ulonglong)*(byte *)(resource_offset + 2) * 3] + (longlong)stack_counter;
+                    *(longlong *)(render_context + 0xe20) =
+                         stack_array[(ulonglong)*(byte *)(resource_offset + 2) * 3 + 1] + stack_memory;
+                    *(longlong *)(render_context + 0xe28) =
+                         stack_array[(ulonglong)*(byte *)(resource_offset + 2) * 3 + 2] + stack_memory;
+                    
+                    // 设置渲染标志
+                    *(uint *)(render_context + 0xfc0) =
+                         *(uint *)(render_context + 0xfc0) | stack_flags[*(byte *)(resource_offset + 2)];
+                    
+                    // 执行渲染操作
+                    FUN_18066f3e0(ui_context, render_context, 0);
+                    texture_count = stack_texture_count;
+                    *(undefined4 *)(render_context + 0xf14) = 1;
+                    *(uint *)(render_context + 0xfc0) =
+                         *(uint *)(render_context + 0xfc0) |
+                         (uint)(*(int *)(*(longlong *)(render_context + 0xfb8) + 0x18) - 0x41U < 0x3fffffbf);
+                    
+                    // 更新渲染指针
+                    *(longlong *)(render_context + 0xf18) = *(longlong *)(render_context + 0xf18) + UI_TEXTURE_STRIDE;
+                    *(longlong *)(render_context + 0xf20) = *(longlong *)(render_context + 0xf20) + UI_VERTEX_STRIDE;
+                    *(longlong *)(render_context + 0xf28) = *(longlong *)(render_context + 0xf28) + UI_VERTEX_STRIDE;
+                    
+                    // 更新纹理和顶点指针
+                    if (*(int *)(ui_context + 0x2be0) == 0) {
+                        *(longlong *)(render_context + 0xf30) = *(longlong *)(render_context + 0xf30) + UI_TEXTURE_STRIDE;
+                        *(longlong *)(render_context + 0xf38) = *(longlong *)(render_context + 0xf38) + UI_VERTEX_STRIDE;
+                        *(longlong *)(render_context + 0xf40) = *(longlong *)(render_context + 0xf40) + UI_VERTEX_STRIDE;
+                    }
+                    
+                    // 更新循环变量
+                    vertex_stride = vertex_stride + 1;
+                    stack_flag = stack_flag + -UI_BATCH_SIZE;
+                    stack_counter = stack_counter + UI_TEXTURE_STRIDE;
+                    stack_loop = stack_loop + UI_VERTEX_STRIDE;
+                    *(longlong *)(render_context + 0xf00) = *(longlong *)(render_context + 0xf00) + 0x4c;
+                    *(longlong *)(render_context + 0xf50) = *(longlong *)(render_context + 0xf50) + 9;
+                    stack_context = stack_context + UI_TEXTURE_STRIDE;
+                    stack_base = stack_base + UI_VERTEX_STRIDE;
+                    texture_count = (ulonglong)(int)buffer_size;
+                } while ((int)vertex_stride < *(int *)(ui_context + 0x1e78));
+                
+                texture_count = (ulonglong)(int)buffer_size;
+            }
+            
+            // 后处理
+            if (*(int *)(ui_context + 0x2be0) == 0) {
+                func_0x00018069cbd0(stack_vertex,*(longlong *)(render_context + 0xea8) + UI_TEXTURE_STRIDE,
+                                    *(longlong *)(render_context + 0xeb0) + UI_VERTEX_STRIDE,*(longlong *)(render_context + 0xeb8) + UI_VERTEX_STRIDE);
+            }
+            
+            vertex_size = (ulonglong)stack_texture_count;
+            *index_buffer = vertex_stride + stack_limit;
+            *(longlong *)(render_context + 0xf00) = *(longlong *)(render_context + 0xf00) + 0x4c;
+            *(undefined4 *)(render_context + 0xf10) = 1;
+            *(longlong *)(render_context + 0xf00) =
+                 *(longlong *)(render_context + 0xf00) +
+                 (ulonglong)(uint)(*(int *)(render_context + 0xf08) * *(int *)(ui_context + 0x438c)) * 0x4c;
+            stack_batch = stack_batch + 1 + *(int *)(ui_context + 0x438c);
+            batch_index = stack_iter;
+        } while (stack_batch < *(int *)(ui_context + 0x1e74));
+    }
+    
+    // 释放信号量
+    if (batch_index == *(int *)(ui_context + 0x1e74) + -1) {
+        ReleaseSemaphore(*(undefined8 *)(ui_context + 0x4400), UI_SEMAPHORE_COUNT);
+    }
+    
+    // 安全退出
+    FUN_1808fc050(stack_security ^ (ulonglong)stack_buffer);
 }
-
-
-
-
-
