@@ -1,40 +1,59 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part009.c - 4 个函数
+// 04_ui_system_part009.c - UI系统高级向量处理和动画控制模块
+// 包含4个核心函数，涵盖UI向量归一化处理、动画权重计算、角度插值等高级UI功能
 
-// 函数: void FUN_1806593b0(longlong *param_1,float param_2)
-void FUN_1806593b0(longlong *param_1,float param_2)
-
+/**
+ * 向量归一化和缩放处理函数
+ * 对输入的向量数组进行归一化处理并应用缩放因子
+ * 
+ * @param vector_array 向量数组指针
+ * @param scale_factor 缩放因子
+ */
+void normalize_and_scale_vector_array(longlong *vector_array, float scale_factor)
 {
-  ulonglong uVar1;
-  longlong lVar2;
-  uint uVar3;
-  ulonglong uVar4;
-  float fVar5;
-  float fVar6;
-  undefined1 auVar7 [16];
-  float fStackX_8;
-  float fStackX_c;
+  ulonglong current_offset;
+  longlong array_start;
+  uint element_index;
+  ulonglong element_count;
+  float vector_x;
+  float vector_y;
+  float vector_length_squared;
+  float inverse_sqrt_result;
+  float normalized_scale;
+  float scaled_x;
+  float scaled_y;
   
-  lVar2 = *param_1;
-  uVar1 = 0;
-  uVar4 = uVar1;
-  if (param_1[1] - lVar2 >> 3 != 0) {
+  array_start = *vector_array;
+  current_offset = 0;
+  element_count = current_offset;
+  
+  // 计算数组元素数量（每个元素8字节）
+  if (vector_array[1] - array_start >> 3 != 0) {
     do {
-      uVar3 = (int)uVar4 + 1;
-      fStackX_c = (float)((ulonglong)*(undefined8 *)(uVar1 + lVar2) >> 0x20);
-      fStackX_8 = (float)*(undefined8 *)(uVar1 + lVar2);
-      fVar5 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
-      auVar7 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
-      fVar6 = auVar7._0_4_;
-      fVar5 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
-      *(ulonglong *)(uVar1 + param_1[0x11]) =
-           CONCAT44(fVar5 * fStackX_c * param_2 + *(float *)(uVar1 + 4 + lVar2),
-                    fVar5 * fStackX_8 * param_2 + *(float *)(uVar1 + lVar2));
-      uVar1 = uVar1 + 8;
-      lVar2 = *param_1;
-      uVar4 = (ulonglong)uVar3;
-    } while ((ulonglong)(longlong)(int)uVar3 < (ulonglong)(param_1[1] - lVar2 >> 3));
+      element_index = (int)element_count + 1;
+      
+      // 提取向量分量（高32位为Y，低32位为X）
+      vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + array_start) >> 0x20);
+      vector_x = (float)*(undefined8 *)(current_offset + array_start);
+      
+      // 计算向量长度的平方
+      vector_length_squared = vector_y * vector_y + vector_x * vector_x;
+      
+      // 使用快速平方根倒数进行归一化
+      inverse_sqrt_result = rsqrtss(ZEXT416((uint)vector_length_squared), ZEXT416((uint)vector_length_squared))._0_4_;
+      normalized_scale = inverse_sqrt_result * 0.5f * (3.0f - vector_length_squared * inverse_sqrt_result * inverse_sqrt_result);
+      
+      // 应用缩放并存储结果
+      scaled_x = normalized_scale * vector_x * scale_factor + *(float *)(current_offset + array_start);
+      scaled_y = normalized_scale * vector_y * scale_factor + *(float *)(current_offset + 4 + array_start);
+      
+      *(ulonglong *)(current_offset + vector_array[0x11]) = CONCAT44(scaled_y, scaled_x);
+      
+      current_offset = current_offset + 8;
+      array_start = *vector_array;
+      element_count = (ulonglong)element_index;
+    } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(vector_array[1] - array_start >> 3));
   }
   return;
 }
