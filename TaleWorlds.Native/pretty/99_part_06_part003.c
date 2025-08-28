@@ -717,7 +717,7 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
     uint uVar2;
     
     _Mtx_init_in_situ(param_1, 2, param_3, param_4, 0xfffffffffffffffe);
-    FUN_1803a6850(param_1 + 0x50);
+    SystemConfigurationProcessor(param_1 + 0x50);
     uVar2 = 0;
     *(uint64_t *)(param_1 + 0x88) = 0;
     *(uint64_t *)(param_1 + 0x90) = 0;
@@ -923,7 +923,7 @@ LAB_1803a6a70:
 LAB_1803a6a8b:
     if ((param_1 + 4 != (int64_t *)0x0) && (lVar6 != 0)) {
         puStack_30 = (void *)0x1803a6aa4;
-        FUN_18010cbc0(lVar6, &system_memory_6430, param_1 + 4);
+        SystemDataHandler(lVar6, &system_memory_6430, param_1 + 4);
     }
     pcVar10 = "visible_decal_life_base";
     do {
@@ -961,14 +961,14 @@ LAB_1803a6b10:
 LAB_1803a6b28:
     if (((int64_t)param_1 + 0x24 != 0) && (lVar6 != 0)) {
         puStack_30 = (void *)0x1803a6b44;
-        FUN_18010cbc0(lVar6, &system_memory_6430, (int64_t)param_1 + 0x24);
+        SystemDataHandler(lVar6, &system_memory_6430, (int64_t)param_1 + 0x24);
     }
     puStack_30 = (void *)0x1803a6b63;
-    FUN_180631330(param_2, &unknown_var_8768_ptr, param_1 + 5);
+    SystemDataConfigurator(param_2, &unknown_var_8768_ptr, param_1 + 5);
     puStack_30 = (void *)0x1803a6b76;
-    FUN_180631850(param_2, &unknown_var_8744_ptr, param_1 + 6);
+    SystemDataModifier(param_2, &unknown_var_8744_ptr, param_1 + 6);
     puStack_30 = (void *)0x1803a6b89;
-    FUN_180631000(param_2, &unknown_var_8720_ptr, (int64_t)param_1 + 0x2c);
+    SystemDataAllocator(param_2, &unknown_var_8720_ptr, (int64_t)param_1 + 0x2c);
     puVar1 = (int8_t *)((int64_t)param_1 + 0x2d);
     uVar14 = 0xfffffffffffffffe;
     lVar6 = SystemDataProcessor(param_2);
