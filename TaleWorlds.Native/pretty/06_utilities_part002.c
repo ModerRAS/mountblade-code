@@ -233,7 +233,8 @@ static void utilities_resource_cleanup_manager(longlong param_1, longlong param_
 static uint8_t utilities_advanced_data_processor_type1(void)
 {
     // 实现复杂的数据结构和算法操作
-    return FUN_180943200;
+    // 原始实现：FUN_180943200
+    return SystemDataProcessorType1();
 }
 
 static uint8_t utilities_advanced_data_processor_type2(void)
