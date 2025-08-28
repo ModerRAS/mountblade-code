@@ -34,23 +34,23 @@
 
 /** 
  * @defgroup StandardTypes 标准类型别名
- * @brief 将undefined类型替换为标准C类型
+ * @brief 标准C类型别名定义
  * @{
  */
 
-/** 8位无符号整数 - 原 undefined1 */
+/** 8位无符号整数 */
 typedef uint8_t uint8;
 
-/** 16位无符号整数 - 原 undefined2 */
+/** 16位无符号整数 */
 typedef uint16_t uint16;
 
-/** 32位无符号整数 - 原 undefined4 */
+/** 32位无符号整数 */
 typedef uint32_t uint32;
 
-/** 64位无符号整数 - 原 undefined8 */
+/** 64位无符号整数 */
 typedef uint64_t uint64;
 
-/** 通用指针类型 - 原 undefined* */
+/** 通用指针类型 */
 typedef void* void_ptr;
 
 /** 函数指针类型 */
