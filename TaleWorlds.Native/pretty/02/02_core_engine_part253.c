@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part253.c - 核心引擎模块第253部分
-// 包含15个函数，主要负责字符串比较、内存管理和数据结构操作
+// 包含20个函数，主要负责字符串比较、内存管理、数据结构操作和系统初始化
 
 /**
  * 三路快速排序的分区函数
@@ -741,35 +741,35 @@ LAB_18021a863:
 void process_resource_file(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  ulonglong uVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined *puVar5;
-  uint uVar6;
-  uint *puVar7;
-  undefined4 *puVar8;
-  ulonglong uVar9;
-  undefined4 uVar10;
-  undefined *puStack_d0;
-  longlong lStack_c8;
-  undefined4 uStack_c0;
-  ulonglong uStack_b8;
-  undefined8 uStack_b0;
-  longlong lStack_a8;
-  uint *puStack_a0;
-  undefined8 uStack_98;
-  undefined2 uStack_90;
-  undefined1 uStack_8e;
-  undefined *puStack_88;
-  longlong lStack_80;
-  uint uStack_78;
-  undefined4 uStack_70;
-  undefined *puStack_68;
-  undefined *puStack_60;
-  undefined8 uStack_48;
-  longlong lStack_40;
-  undefined8 uStack_30;
+  ulonglong entry_count;
+  longlong file_handle;
+  undefined8 file_pos;
+  undefined8 file_size;
+  undefined *default_ptr;
+  uint string_size;
+  uint *data_ptr;
+  undefined4 *header_ptr;
+  ulonglong current_entry;
+  undefined4 alloc_result;
+  undefined *temp_data_ptr;
+  longlong temp_long;
+  undefined4 temp_flag;
+  ulonglong entry_index;
+  undefined8 entry_data;
+  longlong buffer_size;
+  uint *file_data;
+  undefined8 file_flags;
+  undefined2 file_mode;
+  undefined1 file_type;
+  undefined *string_ptr;
+  longlong data_offset;
+  uint buffer_size2;
+  undefined4 stack_flag;
+  undefined *cleanup_ptr;
+  undefined *file_ptr;
+  undefined8 stack_cookie;
+  longlong temp_long2;
+  undefined8 stack_cookie2;
   
   uStack_30 = 0xfffffffffffffffe;
   FUN_1801597a0(param_1,&puStack_68,param_3,param_4,0);

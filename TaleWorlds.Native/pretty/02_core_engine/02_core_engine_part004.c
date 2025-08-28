@@ -76,57 +76,61 @@ void 注册基础场景组件(void)
 }
 
 /**
- * 注册输入设备处理器
- * 在全局注册表中注册输入设备处理接口
+ * 注册渲染组件
+ * 在全局组件注册表中注册渲染组件，负责图形渲染相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x43330a43fcdb3653
+ * - 组件版本ID: 0xdcfdc333a769ec93
+ * - 组件名称: UNK_180a00370
+ * - 优先级: 1
+ * - 处理函数: FUN_18025cc00
  */
-void register_input_device_handler(void)
-
+void 注册渲染组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025cc00;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_RENDER, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_RENDER, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a010a0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x43330a43fcdb3653;  // 输入设备类型标识符
-  previous_node[7] = 0xdcfdc333a769ec93;  // 版本信息
-  previous_node[8] = &UNK_180a00370;      // 设备描述符
-  previous_node[9] = 1;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_RENDER;      // 渲染组件类型ID
+    parent_node[7] = COMPONENT_VERSION_RENDER;   // 渲染组件版本ID
+    parent_node[8] = &COMPONENT_NAME_RENDER;      // 渲染组件名称
+    parent_node[9] = COMPONENT_PRIORITY_RENDER;   // 渲染组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 渲染组件处理函数
+    
+    return;
 }
 
 /**
