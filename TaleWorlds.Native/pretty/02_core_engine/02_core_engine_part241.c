@@ -304,7 +304,7 @@ LAB_180209f34:
                   stack_resource_4 = &global_config_3456_ptr;
                   if (stack_offset_4 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                   }
                   stack_offset_4 = 0;
                   stack_param_4 = stack_param_4 & 0xffffffff00000000;
@@ -370,7 +370,7 @@ LAB_18020a094:
                     stack_resource_5 = &global_config_3456_ptr;
                     if (stack_offset_5 != 0) {
                     // WARNING: Subroutine does not return
-                      FUN_18064e900();
+                      CoreEngineMemoryPoolCleaner();
                     }
                     stack_offset_5 = 0;
                     stack_param_2 = stack_param_2 & 0xffffffff00000000;
@@ -436,7 +436,7 @@ LAB_18020a1f4:
                       stack_resource_1 = &global_config_3456_ptr;
                       if (stack_offset_1 != 0) {
                     // WARNING: Subroutine does not return
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                       }
                       stack_offset_1 = 0;
                       callback_func_2 = (code *)((uint64_t)callback_func_2 & 0xffffffff00000000);
@@ -474,7 +474,7 @@ LAB_18020a31a:
                 stack_resource_3 = &global_config_3456_ptr;
                 if (stack_offset_3 != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngineMemoryPoolCleaner();
                 }
                 stack_offset_3 = 0;
                 stack_counter = stack_counter & 0xffffffff00000000;
@@ -591,7 +591,7 @@ LAB_18020a4d0:
 LAB_18020a528:
                   *(int *)(material_ptr + 3) = (int)material_name;
                   if (stack_offset_2 != 0) {
-                    FUN_1806277c0(material_ptr + 4,stack_flags);
+                    CoreEngineDataBufferProcessor(material_ptr + 4,stack_flags);
                   }
                   if (texture_id != 0) {
                     // WARNING: Subroutine does not return
@@ -634,7 +634,7 @@ LAB_18020a5e9:
                 stack_resource_2 = &global_config_3456_ptr;
                 if (stack_offset_2 != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngineMemoryPoolCleaner();
                 }
                 stack_offset_2 = 0;
                 stack_config_2 = stack_config_2 & 0xffffffff00000000;

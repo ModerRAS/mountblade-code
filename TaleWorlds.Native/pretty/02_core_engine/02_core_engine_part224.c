@@ -38,14 +38,14 @@ void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data
   int32_t stack_flags2;
   
   // 初始化资源管理器
-  FUN_180627ae0(&stack_resource1, context_param1, context_param1, context_param2, 0, 0xfffffffffffffffe);
+  CoreEngineDataTransformer(&stack_resource1, context_param1, context_param1, context_param2, 0, 0xfffffffffffffffe);
   System_DataHandler(&stack_resource1, &STRING_CONST_180a0b2b4, *(uint64_t *)(data_source + 0x20));
   
   context_data = *engine_context;
   
   // 检查并处理缓冲区数据
   if (0 < stack_count) {
-    FUN_1806277c0(context_data + 0x60780, *(int *)(context_data + 0x60790) + stack_count);
+    CoreEngineDataBufferProcessor(context_data + 0x60780, *(int *)(context_data + 0x60790) + stack_count);
     // 执行内存复制操作
     memcpy((uint64_t)*(uint *)(context_data + 0x60790) + *(int64_t *)(context_data + 0x60788), stack_data1,
            (int64_t)(stack_count + 1));
@@ -62,7 +62,7 @@ void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data
       *array_ptr = &RESOURCE_HANDLE_180a3c3e0;
       if (array_ptr[1] != 0) {
         // 释放现有资源
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       array_ptr[1] = 0;
       *(int32_t *)(array_ptr + 3) = 0;
@@ -79,7 +79,7 @@ void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data
     int64_t array_base = engine_context[1];
     
     // 为当前元素创建资源
-    FUN_180627ae0(&stack_resource2, iteration_data + 0x20);
+    CoreEngineDataTransformer(&stack_resource2, iteration_data + 0x20);
     stack_flags2 = *(int32_t *)(iteration_data + 0x40);
     
     temp_ptr1 = *(uint64_t **)(array_base + 8);
@@ -113,7 +113,7 @@ void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data
     stack_resource2 = &RESOURCE_HANDLE_180a3c3e0;
     if (stack_data2 != 0) {
       // 释放资源
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     stack_data2 = 0;
     stack_data3 = stack_data3 & 0xffffffff00000000;
@@ -142,7 +142,7 @@ void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data
   }
   
   // 清理剩余资源
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 // 全局常量定义

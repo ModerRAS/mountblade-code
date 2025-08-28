@@ -793,7 +793,7 @@ void FUN_1800e8d00(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_
       else if (iVar6 < iVar3) {
         iVar3 = iVar6;
       }
-      plVar4 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+      plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
       plVar4[1] = 0;
       plVar4[2] = 0;
       *plVar4 = (int64_t)&system_handler1_ptr;
@@ -820,7 +820,7 @@ void FUN_1800e8d00(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_
         auVar7._8_8_ = 0;
         movmskps(uVar1,auVar7);
       }
-      lVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x58,8,3);
+      lVar5 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x58,8,3);
                     // WARNING: Subroutine does not return
       memset(lVar5 + 8,0,0x50);
     }

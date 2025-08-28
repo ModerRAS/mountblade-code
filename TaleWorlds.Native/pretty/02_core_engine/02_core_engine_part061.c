@@ -470,7 +470,7 @@ void process_render_state(int64_t render_context, int64_t scene_data)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_2f8);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_2f8);
 }
 
 
@@ -565,7 +565,7 @@ int8_t render_scene_objects(uint64_t param_1, int64_t render_context, uint64_t p
   *param_4 = &system_data_buffer_ptr;
   if (param_4[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_4[1] = 0;
   *(int32_t *)(param_4 + 3) = 0;

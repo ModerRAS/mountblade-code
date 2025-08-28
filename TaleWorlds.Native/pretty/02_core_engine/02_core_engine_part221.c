@@ -61,7 +61,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
         // 调用资源管理器的清理方法
         (**(code **)*resource_manager)(resource_manager, 0);
         if (resource_handle != 0) {
-            FUN_18064e900(resource_handle);  // 释放资源句柄
+            CoreEngineMemoryPoolCleaner(resource_handle);  // 释放资源句柄
         }
     }
     
@@ -94,7 +94,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 设置渲染目标为默认状态
     engine_context[0xc169] = &system_data_buffer_ptr;
     if (engine_context[0xc16a] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0xc16a] = 0;
     *(int32_t *)(engine_context + 0xc16c) = 0;
@@ -135,7 +135,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置音频缓冲区
     engine_context[0x103a] = &system_data_buffer_ptr;
     if (engine_context[0x103b] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x103b] = 0;
     *(int32_t *)(engine_context + 0x103d) = 0;
@@ -148,27 +148,27 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_180057830();
     
     if (engine_context[0x1023] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理网络系统
     _Mtx_destroy_in_situ();
     FUN_1808fc8a8(engine_context + 0xb97, 0x2408, 1, FUN_1801b99e0);
     if (engine_context[0xb93] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     _Mtx_destroy_in_situ();
     if (engine_context[0xb7f] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     if (engine_context[0xb75] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     _Mtx_destroy_in_situ();
     if (engine_context[0xb65] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理物理世界
@@ -180,14 +180,14 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置物理世界状态
     engine_context[0x7da] = &system_data_buffer_ptr;
     if (engine_context[0x7db] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x7db] = 0;
     *(int32_t *)(engine_context + 0x7dd) = 0;
     engine_context[0x7da] = &system_state_ptr;
     
     if (engine_context[0x7ce] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理动画系统
@@ -198,13 +198,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     
     _Mtx_destroy_in_situ();
     if (engine_context[0x53e] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     if (engine_context[0x53a] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     if (engine_context[0x536] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理材质和纹理系统
@@ -221,14 +221,14 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置着色器程序状态
     engine_context[0x512] = &system_data_buffer_ptr;
     if (engine_context[0x513] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x513] = 0;
     *(int32_t *)(engine_context + 0x515) = 0;
     engine_context[0x512] = &system_state_ptr;
     
     if (engine_context[0x50e] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理事件系统
@@ -241,10 +241,10 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     if (engine_context[0x502] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     if (engine_context[0x4fe] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     if ((int64_t *)engine_context[0x4fd] != (int64_t *)0x0) {
@@ -254,7 +254,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置脚本引擎状态
     engine_context[0x4f9] = &system_data_buffer_ptr;
     if (engine_context[0x4fa] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x4fa] = 0;
     *(int32_t *)(engine_context + 0x4fc) = 0;
@@ -273,13 +273,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 清理UI系统
     FUN_18024f2c0(engine_context + 0xae);
     if (engine_context[0xa8] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 重置UI渲染器状态
     engine_context[0xa4] = &system_data_buffer_ptr;
     if (engine_context[0xa5] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0xa5] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
@@ -288,7 +288,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置字体系统状态
     engine_context[0xa0] = &system_data_buffer_ptr;
     if (engine_context[0xa1] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0xa1] = 0;
     *(int32_t *)(engine_context + 0xa3) = 0;
@@ -297,7 +297,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置文本渲染器状态
     engine_context[0x9b] = &system_data_buffer_ptr;
     if (engine_context[0x9c] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x9c] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
@@ -306,7 +306,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 重置窗口系统状态
     engine_context[0x91] = &system_data_buffer_ptr;
     if (engine_context[0x92] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     engine_context[0x92] = 0;
     *(int32_t *)(engine_context + 0x94) = 0;
@@ -338,7 +338,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 初始化文件系统
     FUN_1808fc8a8(engine_context + 0x5e, 8, 4, FUN_180045af0);
     if (engine_context[0x5a] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理调试和分析系统
@@ -350,7 +350,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     if (engine_context[0x1c] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     // 清理线程系统
@@ -361,10 +361,10 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     if (engine_context[0xe] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     if (engine_context[0xb] != 0) {
-        FUN_18064e900();  // 触发错误处理
+        CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
     
     engine_context[0xb] = 0;
@@ -422,7 +422,7 @@ void register_game_event_handler(int64_t event_system, int64_t event_data)
         
         // 添加新事件到系统
         event_parameter = event_data;
-        FUN_18005ea90(event_system + 0x2870, &event_parameter, event_index, event_count, 0, 0xfffffffffffffffe);
+        SystemInitializer(event_system + 0x2870, &event_parameter, event_index, event_count, 0, 0xfffffffffffffffe);
     }
     else {
         // 处理命名事件
@@ -603,7 +603,7 @@ void thread_safe_queue_operation(int64_t queue_context, uint64_t operation_id, u
     
     // 扩展队列缓冲区
 EXPAND_QUEUE_BUFFER:
-    queue_buffer = (int32_t *)FUN_18062b420(GLOBAL_MEMORY_ALLOCATOR, queue_size << 5, *(int8_t *)(queue_context + 0x5b40));
+    queue_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_ALLOCATOR, queue_size << 5, *(int8_t *)(queue_context + 0x5b40));
     queue_data = *(int32_t **)(queue_context + 0x5b30);
     queue_start = *(int32_t **)(queue_context + 0x5b28);
     
@@ -630,7 +630,7 @@ EXPAND_QUEUE_BUFFER:
     
     // 释放旧缓冲区
     if (*(int64_t *)(queue_context + 0x5b28) != 0) {
-        FUN_18064e900();  // 释放内存块
+        CoreEngineMemoryPoolCleaner();  // 释放内存块
     }
     
     // 更新队列指针
@@ -753,7 +753,7 @@ SCENE_INITIALIZED:
             (**(code **)*scene_object)(scene_object, 0);
             
             if (object_id != 0) {
-                FUN_18064e900(object_id);  // 释放资源句柄
+                CoreEngineMemoryPoolCleaner(object_id);  // 释放资源句柄
             }
         }
         
@@ -763,13 +763,13 @@ SCENE_INITIALIZED:
     // 根据场景参数创建实体
     if (*(float *)(scene_context + 0x3140) <= 0.1) {
         // 创建简单实体
-        entity_list = (int64_t *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x10, 8, 3);
+        entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x10, 8, 3);
         *entity_list = (int64_t)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
     }
     else if (*(int *)(scene_context + 0x3054) == 2) {
         // 创建中等复杂度实体
-        entity_list = (int64_t *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x20, 8, 3);
+        entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x20, 8, 3);
         *entity_list = (int64_t)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
         *entity_list = (int64_t)&unknown_var_6136_ptr;
@@ -778,7 +778,7 @@ SCENE_INITIALIZED:
     }
     else {
         // 创建复杂实体
-        entity_list = (int64_t *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x70, 8, 3);
+        entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x70, 8, 3);
         *entity_list = (int64_t)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
         *entity_list = (int64_t)&unknown_var_6184_ptr;
@@ -816,7 +816,7 @@ int64_t *create_game_entity(uint64_t entity_type, int64_t *entity_output, int8_t
     int64_t *entity_reference;
     
     // 分配实体内存
-    entity_handle = FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x2f0, 0x10, 0xd);
+    entity_handle = CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x2f0, 0x10, 0xd);
     
     // 初始化实体组件
     entity_instance = (int64_t *)FUN_1802e6b00(entity_handle, entity_flags);
@@ -950,7 +950,7 @@ void destroy_game_entity(int64_t entity_system, int64_t *entity_ptr, uint64_t de
         }
     }
     else {
-        FUN_180626f80(&system_param2_ptr);  // 触发实体销毁错误
+        SystemDataInitializer(&system_param2_ptr);  // 触发实体销毁错误
     }
     
     // 调用实体销毁方法
@@ -1025,7 +1025,7 @@ uint64_t update_entity_status(int64_t world_context, int64_t *entity_ptr, int8_t
                     if (*(void **)(world_entity + 0x290) != (void *)0x0) {
                         property_vtable = *(void **)(world_entity + 0x290);
                     }
-                    property_list = (int64_t *)FUN_180626f80(&unknown_var_2304_ptr, property_vtable);
+                    property_list = (int64_t *)SystemDataInitializer(&unknown_var_2304_ptr, property_vtable);
                 }
                 
                 if ((int64_t *)*entity_ptr != (int64_t *)0x0) {
@@ -1057,7 +1057,7 @@ uint64_t update_entity_status(int64_t world_context, int64_t *entity_ptr, int8_t
     
     // 分配实体管理器内存
     entity_manager = (uint64_t *)(world_context + 0x60878);
-    entity_id = FUN_18062b420(GLOBAL_MEMORY_ALLOCATOR, 0x28, *(int8_t *)(world_context + 0x608a0));
+    entity_id = CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_ALLOCATOR, 0x28, *(int8_t *)(world_context + 0x608a0));
     *(int64_t **)(entity_id + 0x20) = entity_ptr;
     
     // 调用实体初始化方法
@@ -1095,7 +1095,7 @@ uint64_t update_entity_status(int64_t world_context, int64_t *entity_ptr, int8_t
         if (*(int64_t **)(entity_id + 0x20) != (int64_t *)0x0) {
             (**(code **)(**(int64_t **)(entity_id + 0x20) + 0x38))();
         }
-        FUN_18064e900(entity_id);  // 释放资源句柄
+        CoreEngineMemoryPoolCleaner(entity_id);  // 释放资源句柄
     }
     
 ENTITY_UPDATE_COMPLETE:

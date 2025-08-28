@@ -72,7 +72,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   *(int32_t *)(output_buffer + 2) = 0;
   
   // 初始化错误处理上下文
-  FUN_1806277c0(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
+  CoreEngineDataBufferProcessor(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
   *(int32_t *)(output_buffer + 2) = 0;
   
   // 清空缓冲区内容
@@ -81,7 +81,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   }
   
   flag_value = 1;
-  FUN_180627ae0(&stack_var1,input_value);
+  CoreEngineDataTransformer(&stack_var1,input_value);
   
   // 检查错误上下文大小
   if (error_context[1] - *error_context >> 5 == 0) {
@@ -96,7 +96,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     
     if (string_ptr == 0) {
       temp_length = current_length + 9;
-      FUN_1806277c0(output_buffer,temp_length);
+      CoreEngineDataBufferProcessor(output_buffer,temp_length);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       
@@ -107,13 +107,13 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       
       // 如果有额外数据，追加到缓冲区
       if (0 < stack_var3) {
-        FUN_1806277c0(output_buffer,temp_length + stack_var3);
+        CoreEngineDataBufferProcessor(output_buffer,temp_length + stack_var3);
         // 警告：子函数不返回
         memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(int64_t)(stack_var3 + 1));
       }
       
       // 写入"is "字符串
-      FUN_1806277c0(output_buffer,current_length + 0xd);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0xd);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(int32_t *)((uint64_t)buffer_size + string_ptr) = 0x20736920;  // " is"
@@ -127,19 +127,19 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       stack_var4 = &STRING_CONSTANT_EMPTY;
       if (stack_var5 != 0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       stack_var5 = 0;
       stack_var6 = 0;
       stack_var4 = &STRING_CONSTANT_EMPTY;
       
       current_length = *(int *)(output_buffer + 2) + 1;
-      FUN_1806277c0(output_buffer,current_length);
+      CoreEngineDataBufferProcessor(output_buffer,current_length);
       *(int16_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
     }
     else {
       // 生成"Possible stack level overflow"错误消息
-      FUN_1806277c0(output_buffer,current_length + 0x26);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x26);
       stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入"Possible stack level overflow "字符串
@@ -157,7 +157,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x26;
       
       // 写入版本信息
-      FUN_1806277c0(output_buffer,current_length + 0x2e);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x2e);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa776f4c203a2030;  // " L4v:\n"
@@ -165,7 +165,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x2e;
       
       // 写入"Media version"信息
-      FUN_1806277c0(output_buffer,current_length + 0x39);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x39);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x6964654d203a2031;  // " Media v"
@@ -173,7 +173,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x39;
       
       // 写入"High version"信息
-      FUN_1806277c0(output_buffer,current_length + 0x42);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x42);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x68676948203a2032;  // " High v"
@@ -181,7 +181,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x42;
       
       current_length = current_length + 0x51;
-      FUN_1806277c0(output_buffer,current_length);
+      CoreEngineDataBufferProcessor(output_buffer,current_length);
       stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入版本号3信息
@@ -194,7 +194,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   }
   else {
     // 处理其他错误情况
-    FUN_180627ae0(&stack_var4);
+    CoreEngineDataTransformer(&stack_var4);
     stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
@@ -245,7 +245,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     FUN_180103970(xmm0_reg_00,format_result);
     
     current_length = *(int *)(output_buffer + 2);
-    FUN_1806277c0(output_buffer,current_length + 0x23);
+    CoreEngineDataBufferProcessor(output_buffer,current_length + 0x23);
     stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     
     // 写入"Engine config"错误消息
@@ -263,7 +263,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     stack_var4 = &STRING_CONSTANT_EMPTY;
     if (stack_var5 != 0) {
       // 警告：子函数不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     stack_var5 = 0;
     stack_var6 = 0;
@@ -273,7 +273,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   stack_var1 = &STRING_CONSTANT_EMPTY;
   if (stack_var2 != (void *)0x0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   return output_buffer;
@@ -314,7 +314,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   *(int32_t *)(output_buffer + 2) = 0;
   
   // 初始化错误处理上下文
-  FUN_1806277c0(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
+  CoreEngineDataBufferProcessor(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
   *(int32_t *)(output_buffer + 2) = 0;
   
   // 清空缓冲区内容
@@ -323,7 +323,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   }
   
   flag_value = 1;
-  FUN_180627ae0(&stack_var1,input_value);
+  CoreEngineDataTransformer(&stack_var1,input_value);
   
   // 检查错误上下文大小
   if (error_context[1] - *error_context >> 5 == 0) {
@@ -338,7 +338,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     
     if (string_ptr != 0) {
       // 生成详细的堆栈溢出错误消息
-      FUN_1806277c0(output_buffer,current_length + 0x2b);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x2b);
       wide_buffer_ptr = (uint64_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入"Possible stack overflow "字符串
@@ -353,7 +353,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x2b;
       
       // 写入版本信息
-      FUN_1806277c0(output_buffer,current_length + 0x34);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x34);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x6765704a203a2030;  // " Jpeg:\n"
@@ -361,7 +361,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x34;
       
       // 写入引擎版本信息
-      FUN_1806277c0(output_buffer,current_length + 0x3c);
+      CoreEngineDataBufferProcessor(output_buffer,current_length + 0x3c);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa676e50203a2031;  // " Eng:\n"
@@ -369,7 +369,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0x3c;
       
       current_length = current_length + 0x45;
-      FUN_1806277c0(output_buffer,current_length);
+      CoreEngineDataBufferProcessor(output_buffer,current_length);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
       *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa736444203a2032;  // " Dds:\n"
@@ -378,7 +378,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     }
     
     temp_length = current_length + 9;
-    FUN_1806277c0(output_buffer,temp_length);
+    CoreEngineDataBufferProcessor(output_buffer,temp_length);
     buffer_size = *(uint *)(output_buffer + 2);
     string_ptr = output_buffer[1];
     
@@ -389,13 +389,13 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     
     // 如果有额外数据，追加到缓冲区
     if (0 < stack_var3) {
-      FUN_1806277c0(output_buffer,temp_length + stack_var3);
+      CoreEngineDataBufferProcessor(output_buffer,temp_length + stack_var3);
       // 警告：子函数不返回
       memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(int64_t)(stack_var3 + 1));
     }
     
     // 写入"is "字符串
-    FUN_1806277c0(output_buffer,current_length + 0xd);
+    CoreEngineDataBufferProcessor(output_buffer,current_length + 0xd);
     buffer_size = *(uint *)(output_buffer + 2);
     string_ptr = output_buffer[1];
     *(int32_t *)((uint64_t)buffer_size + string_ptr) = 0x20736920;  // " is"
@@ -407,7 +407,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     
     // 如果格式化结果有内容，追加到缓冲区
     if (0 < *(int *)(string_ptr + 0x10)) {
-      FUN_1806277c0(output_buffer,*(int *)(output_buffer + 2) + *(int *)(string_ptr + 0x10));
+      CoreEngineDataBufferProcessor(output_buffer,*(int *)(output_buffer + 2) + *(int *)(string_ptr + 0x10));
       // 警告：子函数不返回
       memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],*(uint64_t *)(string_ptr + 8),
              (int64_t)(*(int *)(string_ptr + 0x10) + 1));
@@ -416,23 +416,23 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     stack_var4 = &STRING_CONSTANT_EMPTY;
     if (stack_var5 != 0) {
       // 警告：子函数不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     stack_var5 = 0;
     stack_var6 = 0;
     stack_var4 = &STRING_CONSTANT_EMPTY;
     
     current_length = *(int *)(output_buffer + 2);
-    FUN_1806277c0(output_buffer,current_length + 1);
+    CoreEngineDataBufferProcessor(output_buffer,current_length + 1);
     *(int16_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
     *(int *)(output_buffer + 2) = current_length + 1;
   }
   else {
     // 处理其他错误情况
-    FUN_180627ae0(&stack_var4);
+    CoreEngineDataTransformer(&stack_var4);
     FUN_1800af2c0(_DAT,&stack_var1,&stack_var4,error_code,flag_value);
     current_length = *(int *)(output_buffer + 2);
-    FUN_1806277c0(output_buffer,current_length + 0x23);
+    CoreEngineDataBufferProcessor(output_buffer,current_length + 0x23);
     buffer_ptr = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     
     // 写入"Module config"错误消息
@@ -450,7 +450,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     stack_var4 = &STRING_CONSTANT_EMPTY;
     if (stack_var5 != 0) {
       // 警告：子函数不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     stack_var5 = 0;
     stack_var6 = 0;
@@ -460,7 +460,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   stack_var1 = &STRING_CONSTANT_EMPTY;
   if (stack_var2 != (void *)0x0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   return output_buffer;
@@ -625,7 +625,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
     output_buffer[3] = 0;
     output_buffer[1] = 0;
     *(int32_t *)(output_buffer + 2) = 0;
-    FUN_1806277c0(output_buffer,0xf);
+    CoreEngineDataBufferProcessor(output_buffer,0xf);
     buffer_ptr = (uint64_t *)output_buffer[1];
     *buffer_ptr = 0x206e776f6e6b6e55;  // "Unknown"
     buffer_ptr[1] = 0x646e616d6d6f63;  // " command"
@@ -640,7 +640,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
       
       if (stack_98 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       stack_98 = (void *)0x0;
       stack_88 = 0;
@@ -671,7 +671,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
       stack_a0 = &STRING_CONSTANT_EMPTY;
       if (stack_98 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       stack_98 = (void *)0x0;
       stack_88 = 0;
@@ -697,7 +697,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
           output_buffer[3] = 0;
           output_buffer[1] = 0;
           *(int32_t *)(output_buffer + 2) = 0;
-          FUN_1806277c0(output_buffer,0x1a);
+          CoreEngineDataBufferProcessor(output_buffer,0x1a);
           buffer_ptr = (uint64_t *)output_buffer[1];
           *buffer_ptr = 0x206e776f6e6b6e75;  // "Unknown "
           buffer_ptr[1] = 0x20646e616d6d6f63;  // " command "
@@ -716,7 +716,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
         
         if (stack_78 != (uint64_t *)0x0) {
           // 警告：子函数不返回
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         stack_78 = (uint64_t *)0x0;
         stack_68 = 0;
@@ -753,16 +753,16 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
                     temp_uint = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT,(int64_t)(int)temp_uint,CONCAT71(temp_var7,0x13))
+                           CoreEngineMemoryPoolAllocator(_DAT,(int64_t)(int)temp_uint,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
-                  stack_a8 = FUN_18064e990(temp_ptr1);
+                  stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
                 }
                 else if ((uint)temp_ptr1 < temp_uint) {
                   temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,temp_uint,0x10,0x13);
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
-                  stack_a8 = FUN_18064e990(temp_ptr1);
+                  stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
                 }
               }
               // 警告：子函数不返回
@@ -781,7 +781,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
                     buffer_size = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT,(int64_t)(int)buffer_size,CONCAT71(temp_var7,0x13))
+                           CoreEngineMemoryPoolAllocator(_DAT,(int64_t)(int)buffer_size,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                 }
@@ -790,7 +790,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
                   temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,buffer_size,0x10,0x13);
                 }
                 stack_ptr_b8 = (uint64_t *)temp_ptr1;
-                stack_a8 = FUN_18064e990(temp_ptr1);
+                stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
                 temp_ptr1 = (int8_t *)(uint64_t)stack_a8;
               }
 LAB_18016195a:
@@ -848,13 +848,13 @@ LAB_18016195a:
               return output_buffer;
             }
             // 警告：子函数不返回
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           // 警告：子函数不返回
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         // 警告：子函数不返回
-        FUN_18064e900(temp_ptr1);
+        CoreEngineMemoryPoolCleaner(temp_ptr1);
       }
       
       // 处理简单配置命令
@@ -864,7 +864,7 @@ LAB_18016195a:
       
       if (stack_98 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       stack_98 = (void *)0x0;
       stack_88 = 0;
@@ -909,7 +909,7 @@ LAB_18016195a:
         output_buffer[3] = 0;
         output_buffer[1] = 0;
         *(int32_t *)(output_buffer + 2) = 0;
-        FUN_1806277c0(output_buffer,10);
+        CoreEngineDataBufferProcessor(output_buffer,10);
         buffer_ptr = (uint64_t *)output_buffer[1];
         *buffer_ptr = 0x65732065756c6156;  // "Value s"
         *(int16_t *)(buffer_ptr + 1) = 0x2e74;  // "et."
@@ -930,7 +930,7 @@ LAB_18016195a:
         output_buffer[3] = 0;
         output_buffer[1] = 0;
         *(int32_t *)(output_buffer + 2) = 0;
-        FUN_1806277c0(output_buffer,0x2d);
+        CoreEngineDataBufferProcessor(output_buffer,0x2d);
         buffer_ptr = (uint64_t *)output_buffer[1];
         *buffer_ptr = 0x2064696c61766e49;  // "Invalid "
         buffer_ptr[1] = 0x6f207265626d756e;  // "number o"
@@ -950,7 +950,7 @@ LAB_18016195a:
     
     if (stack_ptr_c0 != (uint64_t *)0x0) {
       // 警告：子函数不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   

@@ -1211,31 +1211,31 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   
   /* 处理渲染参数 */
   if (param_3 != 0) {
-    FUN_18010d9f0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x8c0));
+    SystemParameterProcessor1(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x8c0));
   }
   if (param_4 != 0) {
-    FUN_18010da70(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x850));
+    SystemParameterProcessor2(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x850));
   }
   if (param_5 != 0) {
-    FUN_18010d870(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0xa10));
+    SystemParameterProcessor3(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0xa10));
   }
   if (param_6 != 0) {
-    FUN_18010daf0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x7e0));
+    SystemParameterProcessor4(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x7e0));
   }
   if (param_2 != 0) {
-    FUN_18010cd70(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x2060));
+    SystemParameterProcessor5(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x2060));
   }
   if (param_9 != 0) {
-    FUN_18043be90();
+    RenderingSystem_ProcessParameterSet3();
   }
   if (param_10 != 0) {
     SystemTransformExecutor(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x21b0));
   }
   
   /* 执行渲染系统初始化 */
-  FUN_180103970();
+  SystemInitializer();
   if (param_1 != 0) {
-    FUN_1800b3a40();
+    SystemCleanupHandler();
   }
   
   /* 设置渲染缓冲区 */
@@ -1248,7 +1248,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   
   /* 执行批处理操作 */
   temp_data = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
-  pointer_ptr = (void **)FUN_18005ce30(temp_data, &buffer_pointer);
+  pointer_ptr = (void **)SystemPointerManager(temp_data, &buffer_pointer);
   temp_pointer = pointer_ptr;
   
   if (pointer_ptr != (void **)0x0) {
@@ -1263,7 +1263,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
   
-  FUN_18005e370(temp_data, &pointer_stack);
+  SystemDataManager(temp_data, &pointer_stack);
   
   if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x38))(pointer_ptr);

@@ -325,7 +325,7 @@ void FUN_1802285e0(uint64_t param_1,int32_t param_2,uint64_t param_3)
   ppuStack_f8 = &puStack_c0;
   puStack_c0 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_118);
 }
 
 

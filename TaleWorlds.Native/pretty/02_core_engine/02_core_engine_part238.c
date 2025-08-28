@@ -145,7 +145,7 @@ void initialize_engine_resource_manager(uint64_t engine_context, int64_t *resour
   }
   
   // 错误处理
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -155,16 +155,16 @@ void initialize_engine_resource_manager(uint64_t engine_context, int64_t *resour
 // 函数调用映射说明 (简化实现标注):
 // FUN_180209470 -> configure_resource_manager (简化实现)
 // FUN_180209720 -> process_resource_manager_advanced (简化实现)
-// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// CoreEngineMemoryPoolCleaner -> handle_resource_manager_error (简化实现)
 // FUN_1800b3590 -> create_resource_processor (简化实现)
 // FUN_180208400 -> initialize_resource_processor (简化实现)
 // FUN_180080810 -> process_resource_data (简化实现)
 // FUN_1801efdb0 -> lookup_resource_data (简化实现)
 // FUN_1801ef300 -> validate_resource_data (简化实现)
 // FUN_1801ef620 -> process_resource_data (简化实现)
-// FUN_180626f80 -> log_resource_error (简化实现)
-// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
-// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// SystemDataInitializer -> log_resource_error (简化实现)
+// CoreEngineMemoryPoolReallocator -> allocate_resource_memory (简化实现)
+// CoreEngineMemoryPoolAllocator -> allocate_resource_chunk (简化实现)
 // FUN_180208f20 -> process_resource_float_data (简化实现)
 // SUB168 -> calculate_resource_count (简化实现)
 // handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)
@@ -631,16 +631,16 @@ void update_resource_manager_time(int64_t manager_ptr, float time_delta)
 // 函数调用映射说明 (简化实现标注):
 // FUN_180209470 -> configure_resource_manager (简化实现)
 // FUN_180209720 -> process_resource_manager_advanced (简化实现)
-// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// CoreEngineMemoryPoolCleaner -> handle_resource_manager_error (简化实现)
 // FUN_1800b3590 -> create_resource_processor (简化实现)
 // FUN_180208400 -> initialize_resource_processor (简化实现)
 // FUN_180080810 -> process_resource_data (简化实现)
 // FUN_1801efdb0 -> lookup_resource_data (简化实现)
 // FUN_1801ef300 -> validate_resource_data (简化实现)
 // FUN_1801ef620 -> process_resource_data (简化实现)
-// FUN_180626f80 -> log_resource_error (简化实现)
-// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
-// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// SystemDataInitializer -> log_resource_error (简化实现)
+// CoreEngineMemoryPoolReallocator -> allocate_resource_memory (简化实现)
+// CoreEngineMemoryPoolAllocator -> allocate_resource_chunk (简化实现)
 // FUN_180208f20 -> process_resource_float_data (简化实现)
 // SUB168 -> calculate_resource_count (简化实现)
 // handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)
@@ -1042,16 +1042,16 @@ resource_complete_label:
 // 函数调用映射说明 (简化实现标注):
 // FUN_180209470 -> configure_resource_manager (简化实现)
 // FUN_180209720 -> process_resource_manager_advanced (简化实现)
-// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// CoreEngineMemoryPoolCleaner -> handle_resource_manager_error (简化实现)
 // FUN_1800b3590 -> create_resource_processor (简化实现)
 // FUN_180208400 -> initialize_resource_processor (简化实现)
 // FUN_180080810 -> process_resource_data (简化实现)
 // FUN_1801efdb0 -> lookup_resource_data (简化实现)
 // FUN_1801ef300 -> validate_resource_data (简化实现)
 // FUN_1801ef620 -> process_resource_data (简化实现)
-// FUN_180626f80 -> log_resource_error (简化实现)
-// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
-// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// SystemDataInitializer -> log_resource_error (简化实现)
+// CoreEngineMemoryPoolReallocator -> allocate_resource_memory (简化实现)
+// CoreEngineMemoryPoolAllocator -> allocate_resource_chunk (简化实现)
 // FUN_180208f20 -> process_resource_float_data (简化实现)
 // SUB168 -> calculate_resource_count (简化实现)
 // handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)

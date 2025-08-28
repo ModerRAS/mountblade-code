@@ -605,7 +605,7 @@ LAB_1807e2ced:
   }
                     // WARNING: Subroutine does not return
   *(uint64_t *)(puVar26 + -8) = 0x1807e2d59;
-  FUN_1808fc050(auStack_28[0] ^ (uint64_t)auStack_28);
+  SystemSecurityChecker(auStack_28[0] ^ (uint64_t)auStack_28);
 }
 
 

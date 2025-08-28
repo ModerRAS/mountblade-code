@@ -836,7 +836,7 @@ ARRAY_RESIZE_DONE:
  * 内存缓冲区释放 thunk 函数
  * 主要功能： thunk 函数，调用内存缓冲区释放
  * 
- * 原始实现：thunk_FUN_18064e900
+ * 原始实现：thunk_CoreEngineMemoryPoolCleaner
  * 简化实现：内存缓冲区释放
  */
 void thunk_release_memory_buffer(void)

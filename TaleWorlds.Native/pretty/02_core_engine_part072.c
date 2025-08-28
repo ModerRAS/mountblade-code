@@ -24,7 +24,7 @@ void FUN_180104cb0(int64_t param_1,int64_t param_2)
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }

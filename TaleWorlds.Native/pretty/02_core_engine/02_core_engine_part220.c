@@ -559,4 +559,4 @@ void FUN_1801985e0(uint64_t param_1, int64_t *param_2, int param_3, int64_t para
 void FUN_180397d70(uint64_t *param_1, uint64_t *param_2);
 void FUN_1802fa820(int64_t param_1, int32_t param_2, int64_t param_3);
 code *FUN_1801bc9a0(void);
-uint64_t *FUN_18062b420(uint64_t param_1, int64_t param_2, uint64_t param_3);
+uint64_t *CoreEngineMemoryPoolAllocator(uint64_t param_1, int64_t param_2, uint64_t param_3);

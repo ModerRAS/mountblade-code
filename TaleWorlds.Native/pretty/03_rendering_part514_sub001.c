@@ -1,55 +1,55 @@
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
 
 // 渲染系统数据处理相关函数
-#define RenderDataProcessor FUN_180570190  // 渲染数据处理器
-#define RenderDataAllocator FUN_1805707a0  // 渲染数据分配器
-#define RenderDataValidator FUN_180573020  // 渲染数据验证器
+#define RenderDataProcessor RenderDataProcessor  // 渲染数据处理器
+#define RenderDataAllocator RenderDataAllocator  // 渲染数据分配器
+#define RenderDataValidator RenderDataValidator  // 渲染数据验证器
 
 // 渲染系统内存管理相关函数
-#define RenderMemoryManager FUN_1804bca40  // 渲染内存管理器
-#define RenderMemoryAllocator FUN_1804bd030  // 渲染内存分配器
-#define RenderMemoryCleaner FUN_1804bd2b0  // 渲染内存清理器
-#define RenderMemoryInitializer FUN_1804bce70  // 渲染内存初始化器
+#define RenderMemoryManager RenderMemoryManager  // 渲染内存管理器
+#define RenderMemoryAllocator RenderMemoryAllocator  // 渲染内存分配器
+#define RenderMemoryCleaner RenderMemoryCleaner  // 渲染内存清理器
+#define RenderMemoryInitializer RenderMemoryInitializer  // 渲染内存初始化器
 
 // 渲染系统资源管理相关函数
-#define RenderResourceManager FUN_1804c0610  // 渲染资源管理器
-#define RenderResourceInitializer FUN_1804bc4f0  // 渲染资源初始化器
-#define RenderResourceOptimizer FUN_1804bc380  // 渲染资源优化器
-#define RenderResourceProcessor FUN_1804bc2d0  // 渲染资源处理器
-#define RenderResourceValidator FUN_1804bc420  // 渲染资源验证器
+#define RenderResourceManager RenderResourceManager  // 渲染资源管理器
+#define RenderResourceInitializer RenderResourceInitializer  // 渲染资源初始化器
+#define RenderResourceOptimizer RenderResourceOptimizer  // 渲染资源优化器
+#define RenderResourceProcessor RenderResourceProcessor  // 渲染资源处理器
+#define RenderResourceValidator RenderResourceValidator  // 渲染资源验证器
 
 // 渲染系统颜色和材质相关函数
-#define RenderColorProcessor FUN_1804bba40  // 渲染颜色处理器
-#define RenderColorExtractor FUN_1804bbc50  // 渲染颜色提取器
+#define RenderColorProcessor RenderColorProcessor  // 渲染颜色处理器
+#define RenderColorExtractor RenderColorExtractor  // 渲染颜色提取器
 
 // 渲染系统对象管理相关函数
-#define RenderObjectManager FUN_180275090  // 渲染对象管理器
-#define RenderObjectInitializer FUN_1802759e0  // 渲染对象初始化器
-#define RenderObjectProcessor FUN_180275a60  // 渲染对象处理器
+#define RenderObjectManager RenderObjectManager  // 渲染对象管理器
+#define RenderObjectInitializer RenderObjectInitializer  // 渲染对象初始化器
+#define RenderObjectProcessor RenderObjectProcessor  // 渲染对象处理器
 
 // 渲染系统状态管理相关函数
-#define RenderStateManager FUN_1802fc0f0  // 渲染状态管理器
-#define RenderStateCleaner FUN_1802f3c20  // 渲染状态清理器
+#define RenderStateManager RenderStateManager  // 渲染状态管理器
+#define RenderStateCleaner RenderStateCleaner  // 渲染状态清理器
 
 // 渲染系统高级功能相关函数
-#define RenderAdvancedProcessor FUN_180546fa0  // 渲染高级处理器
-#define RenderAdvancedInitializer FUN_180543290  // 渲染高级初始化器
-#define RenderAdvancedOptimizer FUN_1805435c0  // 渲染高级优化器
-#define RenderAdvancedValidator FUN_1805439d0  // 渲染高级验证器
+#define RenderAdvancedProcessor RenderAdvancedProcessor  // 渲染高级处理器
+#define RenderAdvancedInitializer RenderAdvancedInitializer  // 渲染高级初始化器
+#define RenderAdvancedOptimizer RenderAdvancedOptimizer  // 渲染高级优化器
+#define RenderAdvancedValidator RenderAdvancedValidator  // 渲染高级验证器
 
 // 渲染系统缓冲区管理相关函数
-#define RenderBufferManager FUN_180544860  // 渲染缓冲区管理器
-#define RenderBufferCleaner FUN_180544ac0  // 渲染缓冲区清理器
+#define RenderBufferManager RenderBufferManager  // 渲染缓冲区管理器
+#define RenderBufferCleaner RenderBufferCleaner  // 渲染缓冲区清理器
 
 // 渲染系统控制相关函数
-#define RenderSystemController FUN_180548880  // 渲染系统控制器
-#define RenderSystemFinalizer FUN_18054a3b0  // 渲染系统终结器
+#define RenderSystemController RenderSystemController  // 渲染系统控制器
+#define RenderSystemFinalizer RenderSystemFinalizer  // 渲染系统终结器
 
 // 渲染系统几何处理相关函数
-#define RenderGeometryProcessor FUN_1805ec620  // 渲染几何处理器
+#define RenderGeometryProcessor RenderGeometryProcessor  // 渲染几何处理器
 
 // 系统核心功能相关函数
-#define SystemCoreProcessor FUN_1800e8140  // 系统核心处理器
+#define SystemCoreProcessor SystemCoreProcessor  // 系统核心处理器
 
 // 主要渲染功能函数
 #define RenderMainProcessor FUN_180541920  // 渲染主处理器
@@ -160,7 +160,7 @@ void FUN_180542260(int64_t param_1)
   if (*(int64_t *)(param_1 + 0x818) - *(int64_t *)(param_1 + 0x810) >> 3 != 0) {
     do {
       uVar1 = *(uint64_t *)(*(int64_t *)(param_1 + 0x8a8) + 0x260);
-      FUN_1805ec620(*(uint64_t *)(uVar2 + *(int64_t *)(param_1 + 0x810)),0,0,uVar1,uVar1,0);
+      RenderGeometryProcessor(*(uint64_t *)(uVar2 + *(int64_t *)(param_1 + 0x810)),0,0,uVar1,uVar1,0);
       uVar2 = uVar2 + 8;
       uVar3 = (int)uVar4 + 1;
       uVar4 = (uint64_t)uVar3;
@@ -189,7 +189,7 @@ void FUN_180542286(void)
   do {
     uStack0000000000000028 = 0;
     uVar1 = *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x8a8) + 0x260);
-    FUN_1805ec620(*(uint64_t *)(uVar2 + *(int64_t *)(unaff_RBX + 0x810)),0,0,uVar1,uVar1);
+    RenderGeometryProcessor(*(uint64_t *)(uVar2 + *(int64_t *)(unaff_RBX + 0x810)),0,0,uVar1,uVar1);
     uVar2 = uVar2 + 8;
     unaff_EDI = unaff_EDI + 1;
   } while ((uint64_t)(int64_t)(int)unaff_EDI <
@@ -318,33 +318,33 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
   *(int8_t *)((int64_t)pppppplVar9 + 0x56c) = 0;
   ppppppplStack_1d8._0_4_ = param_2[7];
   pppppplStack_f8 = pppppplVar9;
-  FUN_180570190(pppppplVar9,param_2[9],param_2[8],&fStack_c8);
+  RenderDataProcessor(pppppplVar9,param_2[9],param_2[8],&fStack_c8);
   ppppppplStack_1d8 =
        (int64_t *******)
        CONCAT44(ppppppplStack_1d8._4_4_,*(int32_t *)((int64_t)pppppplVar9 + 0x55c));
-  FUN_1804bba40(0x180c95de0,*(int32_t *)(pppppplVar9 + 2),
+  RenderColorProcessor(0x180c95de0,*(int32_t *)(pppppplVar9 + 2),
                 *(int32_t *)((int64_t)pppppplVar9 + 0x14),
                 *(int32_t *)((int64_t)pppppplVar9 + 0x53c));
   pppppplVar2 = *(int64_t *******)(param_1 + 0x260);
   pppppplStack_150 = pppppplVar2;
   if ((*param_2 & 0x20) != 0) {
     ppppppplStack_1d8 = (int64_t *******)CONCAT44(ppppppplStack_1d8._4_4_,param_2[2]);
-    uVar10 = FUN_1804bc2d0(0x180c95de0,param_2[9],param_2[8],
+    uVar10 = RenderResourceProcessor(0x180c95de0,param_2[9],param_2[8],
                            *(int32_t *)((int64_t)pppppplVar9 + 0x53c));
     uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    ppppppplVar12 = (int64_t *******)FUN_180275090(uVar11);
+    ppppppplVar12 = (int64_t *******)RenderObjectManager(uVar11);
     ppppppplStack_170 = ppppppplVar12;
     if (ppppppplVar12 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplVar12)[5])(ppppppplVar12);
     }
     uStack_1a0 = 1;
-    FUN_180275a60(uVar10,ppppppplVar12,1);
+    RenderObjectProcessor(uVar10,ppppppplVar12,1);
     fVar22 = *(float *)(pppppplVar9 + 0xa8);
     if (0.99 <= fVar22) {
       fVar22 = 0.99;
     }
     ppppplVar3 = (*ppppppplVar12)[0x21];
-    uVar8 = FUN_1804bbc50(0x180c95de0,pppppplVar9);
+    uVar8 = RenderColorExtractor(0x180c95de0,pppppplVar9);
     fStack_17c = (float)(uVar8 >> 0x18) * 0.003921569;
     uStack_188 = (int64_t *******)
                  CONCAT44((float)(uVar8 >> 8 & 0xff) * 0.003921569,
@@ -363,20 +363,20 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
         pppppplVar18 = pppppplVar18 + 2;
       } while (pppppplVar18 < ppppppplVar12[8]);
     }
-    FUN_1802fc0f0(pppppplVar2,ppppppplVar12);
+    RenderStateManager(pppppplVar2,ppppppplVar12);
     if (param_2[1] != 0) {
       ppppppplStack_1d8 =
            (int64_t *******)
            CONCAT44(ppppppplStack_1d8._4_4_,*(int32_t *)((int64_t)pppppplVar9 + 0x53c));
-      lVar13 = FUN_1804bc420(0x180c95de0,param_2[9],param_2[8]);
+      lVar13 = RenderResourceValidator(0x180c95de0,param_2[9],param_2[8]);
       if (lVar13 != 0) {
-        FUN_1802759e0(lVar13,&uStack_178);
+        RenderObjectInitializer(lVar13,&uStack_178);
         ppppppplStack_1a8 = uStack_178;
         if (uStack_178 != (int64_t *******)0x0) {
           (*(code *)(*uStack_178)[5])();
         }
         ppppppplStack_158 = (int64_t *******)&ppppppplStack_1a8;
-        FUN_1802fc0f0(pppppplVar2,ppppppplStack_1a8);
+        RenderStateManager(pppppplVar2,ppppppplStack_1a8);
         if (ppppppplStack_1a8 != (int64_t *******)0x0) {
           (*(code *)(*ppppppplStack_1a8)[7])();
         }
@@ -391,23 +391,23 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
   ppppppplStack_128 = (int64_t *******)0x0;
   ppppppplStack_120 = (int64_t *******)0x0;
   if ((*param_2 & 0x80) != 0) {
-    uVar10 = FUN_1804bc380(0x180c95de0,param_2[9],param_2[8],
+    uVar10 = RenderResourceOptimizer(0x180c95de0,param_2[9],param_2[8],
                            *(int32_t *)((int64_t)pppppplVar9 + 0x53c));
     uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    ppppppplVar14 = (int64_t *******)FUN_180275090(uVar11);
+    ppppppplVar14 = (int64_t *******)RenderObjectManager(uVar11);
     ppppppplStack_190 = ppppppplVar14;
     ppppppplStack_128 = ppppppplVar14;
     if (ppppppplVar14 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplVar14)[5])(ppppppplVar14);
     }
     uStack_1a0 = 2;
-    FUN_180275a60(uVar10,ppppppplVar14,1);
+    RenderObjectProcessor(uVar10,ppppppplVar14,1);
     ppppppplStack_190 = (int64_t *******)0x0;
     plStack_198 = (int64_t *)0x0;
     uStack_1a0 = 0;
     ppppplVar3 = (*ppppppplVar14)[0x21];
     ppppppplStack_120 = ppppppplVar14;
-    uVar8 = FUN_1804bbc50(0x180c95de0,pppppplVar9);
+    uVar8 = RenderColorExtractor(0x180c95de0,pppppplVar9);
     fStack_17c = (float)(uVar8 >> 0x18) * 0.003921569;
     uStack_188 = (int64_t *******)
                  CONCAT44((float)(uVar8 >> 8 & 0xff) * 0.003921569,
@@ -417,24 +417,24 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     ppppppplStack_1a8 = ppppppplVar14;
     (*(code *)(*ppppppplVar14)[5])(ppppppplVar14);
     ppppppplStack_170 = (int64_t *******)&ppppppplStack_1a8;
-    FUN_1802fc0f0(pppppplVar2,ppppppplStack_1a8);
+    RenderStateManager(pppppplVar2,ppppppplStack_1a8);
     if (ppppppplStack_1a8 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplStack_1a8)[7])();
     }
   }
   if ((*param_2 & 0x100) != 0) {
-    uVar10 = FUN_1804bc4f0(0x180c95de0,param_2[9],param_2[8],
+    uVar10 = RenderResourceInitializer(0x180c95de0,param_2[9],param_2[8],
                            *(int32_t *)((int64_t)pppppplVar9 + 0x53c));
     uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    ppppppplVar12 = (int64_t *******)FUN_180275090(uVar11);
+    ppppppplVar12 = (int64_t *******)RenderObjectManager(uVar11);
     ppppppplStack_170 = ppppppplVar12;
     if (ppppppplVar12 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplVar12)[5])(ppppppplVar12);
     }
     uStack_1a0 = 4;
-    FUN_180275a60(uVar10,ppppppplVar12,1);
+    RenderObjectProcessor(uVar10,ppppppplVar12,1);
     ppppplVar3 = (*ppppppplVar12)[0x21];
-    uVar8 = FUN_1804bbc50(0x180c95de0,pppppplVar9);
+    uVar8 = RenderColorExtractor(0x180c95de0,pppppplVar9);
     fStack_17c = (float)(uVar8 >> 0x18) * 0.003921569;
     uStack_188 = (int64_t *******)
                  CONCAT44((float)(uVar8 >> 8 & 0xff) * 0.003921569,
@@ -444,7 +444,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     ppppppplStack_1a8 = ppppppplVar12;
     (*(code *)(*ppppppplVar12)[5])(ppppppplVar12);
     ppppppplStack_158 = (int64_t *******)&ppppppplStack_1a8;
-    FUN_1802fc0f0(pppppplVar2,ppppppplStack_1a8);
+    RenderStateManager(pppppplVar2,ppppppplStack_1a8);
     if (ppppppplStack_1a8 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplStack_1a8)[7])();
     }
@@ -460,12 +460,12 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     else {
       uVar10 = 1;
     }
-    uVar10 = FUN_1805707a0(pppppplVar9,uVar10);
+    uVar10 = RenderDataAllocator(pppppplVar9,uVar10);
     plStack_118 = (int64_t *)0x0;
     pppppplStack_110 = (int64_t ******)0x0;
     pfStack_108 = (float *)0x0;
     ppppppplStack_100 = (int64_t *******)0x0;
-    plVar15 = (int64_t *)FUN_1804bca40(uVar10,&plStack_198,pppppplVar9);
+    plVar15 = (int64_t *)RenderMemoryManager(uVar10,&plStack_198,pppppplVar9);
     plVar4 = (int64_t *)*plVar15;
     *plVar15 = 0;
     ppppppplStack_190 = (int64_t *******)0x0;
@@ -474,7 +474,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     if (plStack_198 != (int64_t *)0x0) {
       uVar10 = (**(code **)(*plStack_198 + 0x38))();
     }
-    plVar15 = (int64_t *)FUN_1804bd030(uVar10,&plStack_198,pppppplVar9,param_2[3]);
+    plVar15 = (int64_t *)RenderMemoryAllocator(uVar10,&plStack_198,pppppplVar9,param_2[3]);
     pppppplVar2 = (int64_t ******)*plVar15;
     *plVar15 = 0;
     ppppppplStack_190 = (int64_t *******)0x0;
@@ -483,7 +483,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     if (plStack_198 != (int64_t *)0x0) {
       uVar10 = (**(code **)(*plStack_198 + 0x38))();
     }
-    puVar16 = (uint64_t *)FUN_1804bd2b0(uVar10,&plStack_198,pppppplVar9,param_2[4]);
+    puVar16 = (uint64_t *)RenderMemoryCleaner(uVar10,&plStack_198,pppppplVar9,param_2[4]);
     pfVar5 = (float *)*puVar16;
     *puVar16 = 0;
     ppppppplStack_190 = (int64_t *******)0x0;
@@ -492,7 +492,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     if (plStack_198 != (int64_t *)0x0) {
       uVar10 = (**(code **)(*plStack_198 + 0x38))();
     }
-    puVar16 = (uint64_t *)FUN_1804bce70(uVar10,&ppppppplStack_160,pppppplVar9);
+    puVar16 = (uint64_t *)RenderMemoryInitializer(uVar10,&ppppppplStack_160,pppppplVar9);
     ppppppplVar12 = (int64_t *******)*puVar16;
     *puVar16 = 0;
     ppppppplStack_190 = (int64_t *******)0x0;
@@ -528,7 +528,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     ppppppplStack_1d8 = (int64_t *******)&uStack_178;
     ppppppplVar12 =
          (int64_t *******)
-         FUN_180546fa0(ppppppplStack_160,&plStack_198,&pfStack_168,&ppppppplStack_1a8);
+         RenderAdvancedProcessor(ppppppplStack_160,&plStack_198,&pfStack_168,&ppppppplStack_1a8);
     if (ppppppplVar12 != (int64_t *******)0x0) {
       ppppppplStack_160 = ppppppplVar12;
       (*(code *)(*ppppppplVar12)[5])(ppppppplVar12);
@@ -540,7 +540,7 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
       (*(code *)(*ppppppplVar12)[5])(ppppppplVar12);
     }
     uStack_188 = (int64_t *******)&ppppppplStack_1a8;
-    FUN_1802fc0f0(pppppplStack_150,ppppppplStack_1a8);
+    RenderStateManager(pppppplStack_150,ppppppplStack_1a8);
     if (ppppppplStack_1a8 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplStack_1a8)[7])();
     }
@@ -555,8 +555,8 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
     *(uint *)(ppppppplVar12 + 0x2f) = uVar8;
     ppppppplVar12[0x31] = pppppplVar9;
     *(int8_t *)((int64_t)pppppplVar9 + 0x565) = 0;
-    FUN_18054a3b0(ppppppplVar12,pppppplStack_150,param_2[5]);
-    FUN_180548880(ppppppplVar12,1);
+    RenderSystemFinalizer(ppppppplVar12,pppppplStack_150,param_2[5]);
+    RenderSystemController(ppppppplVar12,1);
     if (ppppppplStack_170 != (int64_t *******)0x0) {
       (*(code *)(*ppppppplStack_170)[7])();
     }
@@ -591,13 +591,13 @@ void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4
   ppppppplStack_1a8._0_4_ = uVar8;
   if ((puVar17 == (uint64_t *)0x180c95e98) || (uVar8 < *(uint *)(puVar17 + 4))) {
     ppppppplStack_1d8 = (int64_t *******)&ppppppplStack_1a8;
-    puVar17 = (uint64_t *)FUN_1804c0610(0x180c95e98,&uStack_188,0x180c95e98,puVar17);
+    puVar17 = (uint64_t *)RenderResourceManager(0x180c95e98,&uStack_188,0x180c95e98,puVar17);
     puVar17 = (uint64_t *)*puVar17;
   }
   ppppppplStack_170 = (int64_t *******)puVar17[5];
   lVar13 = (int64_t)*(int *)((int64_t)ppppppplStack_170 + 0x298);
   ppppppplStack_190 = (int64_t *******)lVar13;
-  FUN_1800e8140(&puStack_148,lVar13);
+  SystemCoreProcessor(&puStack_148,lVar13);
   ppppppplVar7 = ppppppplStack_170;
   uVar8 = param_2[4];
   ppppppplStack_1a8 = (int64_t *******)CONCAT44(ppppppplStack_1a8._4_4_,uVar8);
@@ -674,7 +674,7 @@ LAB_180542d7d:
        CONCAT44(ppppppplStack_1d8._4_4_,*(int32_t *)((int64_t)pppppplVar9 + 0x53c));
   ppppppplStack_1d0 = ppppppplVar12;
   ppppppplStack_1c8 = ppppppplVar14;
-  FUN_180573020(*(uint64_t *)(*(int64_t *)(lStack_f0 + 0x260) + 0x210),pppppplStack_150[0x41],
+  RenderDataValidator(*(uint64_t *)(*(int64_t *)(lStack_f0 + 0x260) + 0x210),pppppplStack_150[0x41],
                 *(int32_t *)(pppppplVar9 + 2),*(int32_t *)((int64_t)pppppplVar9 + 0x14));
   if (puVar16 == (uint64_t *)0x0) {
     if (ppppppplVar12 != (int64_t *******)0x0) {
@@ -757,9 +757,9 @@ void FUN_180542ed0(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
   *(int32_t *)(lVar4 + 0x568) = 0x41c64e6d;
   *(int8_t *)(lVar4 + 0x56c) = 0;
   ppuStack_d8._0_4_ = param_2[7];
-  FUN_180570190(lVar4,param_2[9],param_2[8],&fStack_98);
+  RenderDataProcessor(lVar4,param_2[9],param_2[8],&fStack_98);
   ppuStack_d8 = (uint64_t **)CONCAT44(ppuStack_d8._4_4_,*(int32_t *)(lVar4 + 0x55c));
-  fVar9 = (float)FUN_1804bba40(0x180c95de0,*(int32_t *)(lVar4 + 0x10),
+  fVar9 = (float)RenderColorProcessor(0x180c95de0,*(int32_t *)(lVar4 + 0x10),
                                *(int32_t *)(lVar4 + 0x14),*(int32_t *)(lVar4 + 0x53c));
   fVar11 = *(float *)(param_1 + 0x8c0) - fVar9;
   if (((fVar11 <= -0.001) || (0.001 <= fVar11)) &&
@@ -782,26 +782,26 @@ void FUN_180542ed0(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
   }
   if ((puVar5 == (uint64_t *)0x180c95e98) || (uVar3 < *(uint *)(puVar5 + 4))) {
     ppuStack_d8 = &puStack_b8;
-    puVar5 = (uint64_t *)FUN_1804c0610(0x180c95e98,&plStack_b0,0x180c95e98,puVar5);
+    puVar5 = (uint64_t *)RenderResourceManager(0x180c95e98,&plStack_b0,0x180c95e98,puVar5);
     puVar5 = (uint64_t *)*puVar5;
   }
   uVar10 = func_0x000180544b60(param_1,(*(int64_t *)
                                          (*(int64_t *)(puVar5[5] + 0x3b8) +
                                          (int64_t)*(int *)(lVar4 + 0x24) * 8) - render_system_memory) /
                                        0x60,*(int32_t *)(lVar4 + 0x560));
-  FUN_180543290(uVar10,param_2,lVar4);
-  FUN_1805435c0(param_1,param_2,lVar4);
+  RenderAdvancedInitializer(uVar10,param_2,lVar4);
+  RenderAdvancedOptimizer(param_1,param_2,lVar4);
   if ((*param_2 & 0x100) != 0) {
-    uVar10 = FUN_1804bc4f0(0x180c95de0,param_2[9],param_2[8],*(int32_t *)(lVar4 + 0x53c));
+    uVar10 = RenderResourceInitializer(0x180c95de0,param_2[9],param_2[8],*(int32_t *)(lVar4 + 0x53c));
     uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
-    plVar7 = (int64_t *)FUN_180275090(uVar6);
+    plVar7 = (int64_t *)RenderObjectManager(uVar6);
     plStack_b0 = plVar7;
     if (plVar7 != (int64_t *)0x0) {
       (**(code **)(*plVar7 + 0x28))(plVar7);
     }
-    FUN_180275a60(uVar10,plVar7,1);
+    RenderObjectProcessor(uVar10,plVar7,1);
     pcVar2 = *(code **)(*plVar7 + 0x108);
-    uVar3 = FUN_1804bbc50(0x180c95de0,lVar4);
+    uVar3 = RenderColorExtractor(0x180c95de0,lVar4);
     fStack_bc = (float)(uVar3 >> 0x18) * 0.003921569;
     uStack_c8 = (int64_t *)
                 CONCAT44((float)(uVar3 >> 8 & 0xff) * 0.003921569,
@@ -811,22 +811,22 @@ void FUN_180542ed0(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
     puStack_b8 = &uStack_c8;
     uStack_c8 = plVar7;
     (**(code **)(*plVar7 + 0x28))(plVar7);
-    FUN_180544860(param_1,6,&uStack_c8);
+    RenderBufferManager(param_1,6,&uStack_c8);
     lVar8 = *(int64_t *)(param_1 + 0x8a8);
     if (lVar8 != 0) {
       lVar8 = *(int64_t *)(lVar8 + 0x260);
     }
-    FUN_1802fc0f0(lVar8,*(uint64_t *)(param_1 + 0x48));
+    RenderStateManager(lVar8,*(uint64_t *)(param_1 + 0x48));
     uStack_c8 = (int64_t *)((uint64_t)uStack_c8 & 0xffffffff00000000);
     (**(code **)(*plVar7 + 0x38))(plVar7);
   }
-  FUN_180544ac0(param_1);
+  RenderBufferCleaner(param_1);
   if ((*param_2 & 1) != 0) {
-    FUN_1805439d0(param_1,param_2,lVar4,param_4);
+    RenderAdvancedValidator(param_1,param_2,lVar4,param_4);
   }
-  FUN_180544ac0(param_1);
-  FUN_1802f3c20(*(uint64_t *)(param_1 + 0x8a8));
-  FUN_180544ac0(param_1);
+  RenderBufferCleaner(param_1);
+  RenderStateCleaner(*(uint64_t *)(param_1 + 0x8a8));
+  RenderBufferCleaner(param_1);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_f8);
 }

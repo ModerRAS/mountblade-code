@@ -25,14 +25,14 @@ extern uint64_t ThreadLocalStoragePointer; // 线程局部存储指针
 
 // 函数声明
 void FUN_18020f940(uint64_t param_1);  // 线程启动函数
-void FUN_18064e900(void);               // 错误处理函数
+void CoreEngineMemoryPoolCleaner(void);               // 错误处理函数
 void FUN_18020f530(void);               // 清理函数
 void FUN_1800466d0(int64_t param_1);    // 初始化函数
 void FUN_18005ee30(int64_t param_1, int param_2, uint64_t *param_3, int32_t param_4, int64_t param_5); // 内存分配
 void FUN_180060fc0(int64_t param_1, int64_t *param_2); // 任务队列操作
 void FUN_1806279c0(uint64_t *param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5); // 线程创建
 void FUN_180623fd0(int64_t param_1, uint64_t *param_2); // 线程设置
-void FUN_18062b1e0(int64_t param_1, int param_2, int param_3, int param_4, int64_t param_5); // 对象创建
+void CoreEngineMemoryPoolReallocator(int64_t param_1, int param_2, int param_3, int param_4, int64_t param_5); // 对象创建
 void FUN_1808fc418(int param_1);        // 内存分配
 void FUN_180060e40(uint64_t param_1, int64_t param_2, int64_t **param_3); // 任务获取
 void FUN_18005e110(uint64_t param_1, int64_t ***param_2); // 任务处理
@@ -40,7 +40,7 @@ void FUN_180060c60(int64_t *param_1, int64_t **param_2, int64_t *param_3, int64_
 void FUN_18020ee40(void);               // 事件检查
 void FUN_180049830(int64_t *param_1);  // 对象初始化
 void FUN_180046190(int64_t param_1);   // 条件变量销毁
-void FUN_1808fc050(int64_t param_1);   // 栈清理
+void SystemSecurityChecker(int64_t param_1);   // 栈清理
 
 // 线程控制块结构体
 typedef struct {
@@ -261,11 +261,11 @@ void cleanup_task_queue(int64_t *task_queue)
             lVar1 = *plVar3;
             plVar3 = plVar3 + 1;
             if (lVar1 != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
         }
         if (*task_queue != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *task_queue = 0;
     }
@@ -304,11 +304,11 @@ void cleanup_sync_queue(int64_t *sync_queue)
             lVar1 = *plVar3;
             plVar3 = plVar3 + 1;
             if (lVar1 != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
         }
         if (*sync_queue != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *sync_queue = 0;
     }
@@ -347,11 +347,11 @@ void cleanup_memory_pool(int64_t *memory_pool)
             lVar1 = *plVar3;
             plVar3 = plVar3 + 1;
             if (lVar1 != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
         }
         if (*memory_pool != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *memory_pool = 0;
     }
@@ -443,7 +443,7 @@ void destroy_task_manager(uint64_t *task_manager, uint64_t param2, uint64_t para
         return;
     }
     if (*(int *)(task_manager[1] + 8) == 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     terminate();
 }
@@ -497,7 +497,7 @@ void start_thread_execution(int64_t thread_handle)
     int64_t *plVar3;
     
     *(int8_t *)(thread_handle + 0x58) = 1;
-    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 3, DEFAULT_TIMEOUT);
+    uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x10, 8, 3, DEFAULT_TIMEOUT);
     plVar3 = (int64_t *)FUN_1808fc418(0x10);
     *plVar3 = thread_handle;
     plVar3[1] = (int64_t)&global_var_1688_ptr;
@@ -582,7 +582,7 @@ void create_worker_thread(int64_t *thread_block, uint64_t param2, uint64_t param
     FUN_180623fd0(thread_block[8], &puStack_30);
     puStack_30 = &global_var_3456_ptr;
     if (lStack_28 != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     lStack_28 = 0;
     uStack_18 = 0;
@@ -741,7 +741,7 @@ uint64_t execute_task_scheduling(int64_t task_manager, char force)
                     ((void (*)(void))(*(code **)(*(int64_t *)*plVar5 + 0x38)))();
                 }
                 if (*(int64_t *)(task_manager + 0xb0) != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 plVar5 = (int64_t *)(*(int64_t *)(task_manager + 0xc0) + 8);
                 *(int64_t **)(task_manager + 0xc0) = plVar5;
@@ -1010,7 +1010,7 @@ void create_task_execution_environment(uint64_t *context_ptr)
     plStack_d8 = alStack_70;
     _Mtx_init_in_situ(alStack_70, 2);
     uStack_20 = 0;
-    plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 200, 8, 3);
+    plVar2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 200, 8, 3);
     plStack_d8 = plVar2;
     FUN_180049830(plVar2);
     *plVar2 = (int64_t)&global_var_2248_ptr;
@@ -1028,7 +1028,7 @@ void create_task_execution_environment(uint64_t *context_ptr)
     _Mtx_destroy_in_situ(alStack_70);
     pplStack_d0 = (int64_t **)alStack_b8;
     _Cnd_destroy_in_situ(alStack_b8);
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_f8);
+    SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -1087,7 +1087,7 @@ uint64_t process_task_completion(int64_t task_manager, char force)
                         ((void (*)(void))(*(code **)(*(int64_t *)*plVar3 + 0x38)))(plVar3);
                     }
                     if (*(int64_t *)(task_manager + 0xb0) != 0) {
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     plVar3 = (int64_t *)(*(int64_t *)(task_manager + 0xc0) + 8);
                     *(int64_t **)(task_manager + 0xc0) = plVar3;
@@ -1169,11 +1169,11 @@ void cleanup_task_manager_resources(int64_t *task_manager)
             lVar1 = *plVar3;
             plVar3 = plVar3 + 1;
             if (lVar1 != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
         }
         if (*task_manager != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *task_manager = 0;
     }

@@ -189,7 +189,7 @@ void safe_copy_string_to_buffer(int64_t string_buffer, int64_t source_string)
   }
   
   // 字符串过长，使用扩展处理函数
-  FUN_180626f80(&unknown_var_616_ptr, 0x200, source_string);
+  SystemDataInitializer(&unknown_var_616_ptr, 0x200, source_string);
   *(int *)(string_buffer + 0x10) = 0;  // 重置长度标志
   **(char **)(string_buffer + 8) = 0;  // 清空字符串内容
   return;
@@ -316,7 +316,7 @@ void string_replace_and_memory_operation(int64_t string_buffer, int64_t search_s
   stack_ptr_268 = &system_state_ptr;
   
   // 执行内存清理操作
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_298);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer_298);
 }
 
 
@@ -336,7 +336,7 @@ uint64_t * create_memory_manager_object(uint64_t memory_pool, int32_t config_fla
   uint64_t *manager_ptr;
   
   // 分配内存管理器对象
-  manager_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -367,7 +367,7 @@ uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t c
   uint64_t *manager_ptr;
   
   // 分配高级内存管理器对象
-  manager_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -424,7 +424,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   // 循环初始化线程对象
   do {
     // 创建主线程对象
-    new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
+    new_object = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x3d0, 8, 3);
     thread_object = (int64_t *)FUN_180275090(new_object);
     if (thread_object != (int64_t *)0x0) {
       // 调用线程对象的初始化函数
@@ -440,7 +440,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
     }
     
     // 创建辅助线程对象
-    new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
+    new_object = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x300, 0x10, 3);
     thread_object = (int64_t *)FUN_180075030(new_object, 1);
     if (thread_object != (int64_t *)0x0) {
       // 调用辅助线程对象的初始化函数
@@ -1076,7 +1076,7 @@ int64_t * create_render_manager(int64_t *render_manager)
   *(int32_t *)(render_manager + 5) = 0xff101010;   // 渲染模式
   
   // 创建新的渲染对象（768字节，16字节对齐）
-  new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
+  new_object = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x300, 0x10, 3);
   resource_object = (int64_t *)FUN_180075030(new_object, 1);
   
   // 初始化新创建的渲染对象
@@ -1351,7 +1351,7 @@ RENDER_CONTINUE:
   }
   
   // 清理栈帧并继续循环（此函数不返回）
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_d8);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer_d8);
 }
 
 

@@ -20,7 +20,7 @@ uint64_t FUN_1807437c0(int64_t param_1)
   plVar1 = *(int64_t **)(param_1 + 0x10788);
   if (plVar1 != (int64_t *)(param_1 + 0x10788)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(param_1 + 0x10bd0,plVar1[3],&system_buffer_ptr,0,1);
+    SystemDataValidator(param_1 + 0x10bd0,plVar1[3],&system_buffer_ptr,0,1);
   }
   return 0;
 }
@@ -36,7 +36,7 @@ void FUN_1807437dd(int64_t param_1)
   int64_t unaff_RBX;
   
                     // WARNING: Subroutine does not return
-  FUN_180742250(param_1 + 0x10bd0,*(uint64_t *)(unaff_RBX + 0x18),&system_buffer_ptr,0,1);
+  SystemDataValidator(param_1 + 0x10bd0,*(uint64_t *)(unaff_RBX + 0x18),&system_buffer_ptr,0,1);
 }
 
 
@@ -65,7 +65,7 @@ uint64_t FUN_180743880(int64_t param_1)
   *(uint64_t *)(param_1 + 0x10820) = 0;
   if ((int64_t *)*plVar2 != plVar2) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),((int64_t *)*plVar2)[2],&unknown_var_8208_ptr,
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),((int64_t *)*plVar2)[2],&unknown_var_8208_ptr,
                   0xff,1);
   }
   *(int64_t **)(param_1 + 0x10838) = plVar2;
@@ -87,7 +87,7 @@ void FUN_1807438b7(void)
   int64_t unaff_RSI;
   
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RSI + 0x10),
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RSI + 0x10),
                 &unknown_var_8208_ptr,0xff,1);
 }
 
@@ -290,7 +290,7 @@ uint64_t FUN_180743c40(int64_t param_1)
     if (*(int64_t *)(param_1 + 0x11598) == 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180768360();
+    uVar1 = SystemMemoryAllocator();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -306,7 +306,7 @@ uint64_t FUN_180743cc0(int64_t param_1,int8_t param_2)
   uint64_t uVar1;
   
   if (*(int64_t *)(param_1 + 0x115a8) != 0) {
-    uVar1 = FUN_180768360();
+    uVar1 = SystemMemoryAllocator();
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -354,7 +354,7 @@ uint64_t FUN_180743d80(int64_t param_1)
 {
   if (*(int64_t *)(param_1 + 0x11598) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400();
+    SystemMemoryManager();
   }
   return 0;
 }
@@ -380,7 +380,7 @@ uint64_t FUN_180743da0(int64_t param_1)
     uVar2 = FUN_180744ae0(param_1,0x100004,lVar1,0);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180768400(*(uint64_t *)(param_1 + 0x115a8));
+      SystemMemoryManager(*(uint64_t *)(param_1 + 0x115a8));
     }
   }
   return uVar2;
@@ -392,10 +392,10 @@ uint64_t FUN_180743e10(int64_t param_1)
 
 {
   if (*(int64_t *)(param_1 + 0x11538) != 0) {
-    FUN_180768360();
+    SystemMemoryAllocator();
   }
   if (*(int64_t *)(param_1 + 0x11548) != 0) {
-    FUN_180768360();
+    SystemMemoryAllocator();
   }
   return 0;
 }
@@ -407,11 +407,11 @@ uint64_t FUN_180743e50(int64_t param_1)
 {
   if (*(int64_t *)(param_1 + 0x11548) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400();
+    SystemMemoryManager();
   }
   if (*(int64_t *)(param_1 + 0x11538) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400();
+    SystemMemoryManager();
   }
   return 0;
 }
@@ -625,7 +625,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
   *(uint64_t *)(*plVar1 + 8) = param_1[0x24fb];
   param_1[0x24fb] = plVar1;
   *plVar1 = (int64_t)plVar1;
-  iVar2 = FUN_180744cc0(param_1 + 0x24f5);
+  iVar2 = SystemStatusChecker(param_1 + 0x24f5);
   if (iVar2 == 0) {
     iVar2 = FUN_180744e20(param_1 + 0x24f7);
     if (iVar2 == 0) {
@@ -634,7 +634,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
     }
   }
   FUN_180744e20(param_1 + 0x24f7);
-  FUN_180744cc0(param_1 + 0x24f5);
+  SystemStatusChecker(param_1 + 0x24f5);
   func_0x000180785a10(param_1 + 0x2487);
   param_1[0x2444] = &unknown_var_8408_ptr;
   thunk_FUN_180742070(param_1 + 0x217a);

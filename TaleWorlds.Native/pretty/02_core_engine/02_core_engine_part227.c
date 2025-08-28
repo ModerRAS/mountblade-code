@@ -79,7 +79,7 @@ void FUN_18019e260(int64_t param_1)
   FUN_1803986d0(param_1 + 0x607e0);
   puVar20 = (uint64_t *)0x0;
   alStack_148[0] = 0;
-  alStack_148[0] = FUN_18062b420(system_memory_pool_ptr,0x100000,0xd);
+  alStack_148[0] = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x100000,0xd);
   LOCK();
   alStack_148[1] = 0;
   UNLOCK();
@@ -331,7 +331,7 @@ LAB_18019e833:
               uStack_168 = 0;
               if (alStack_148[0] != 0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
               }
               alStack_148[0] = 0;
               
