@@ -264,7 +264,7 @@ void ui_system_advanced_data_processor(int64_t *ui_context_ptr,int64_t process_p
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
+  // 原始实现：SystemSecurityChecker(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
@@ -378,7 +378,7 @@ void ui_system_memory_manager(int64_t ui_memory_context,int64_t *ui_memory_ptr)
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
+  // 原始实现：SystemSecurityChecker(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
@@ -693,7 +693,7 @@ void ui_system_config_processor(byte *ui_config_data,uint ui_config_size,int64_t
   
   // 返回处理结果
   // 注意：此处调用系统函数返回结果
-  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (uint64_t)ui_stack_guard);
+  // 原始实现：SystemSecurityChecker(ui_security_cookie ^ (uint64_t)ui_stack_guard);
   return;
 }
 
