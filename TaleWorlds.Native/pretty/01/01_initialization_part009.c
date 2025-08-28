@@ -36,13 +36,13 @@
 #define FUN_180623800 SystemMemoryAllocatorAndRegistrar
 
 /** 系统注册表管理器函数 */
-#define FUN_18008d070 SystemRegistryManager
+#define NetworkDataProcessor SystemRegistryManager
 
 /** 系统内存大小计算函数 */
-#define FUN_18008f0d0 SystemMemorySizeCalculator
+#define NetworkConnectionManager SystemMemorySizeCalculator
 
 /** 系统内存分配和插入函数 */
-#define FUN_18008f140 SystemMemoryAllocatorAndInserter
+#define NetworkProtocolHandler SystemMemoryAllocatorAndInserter
 
 /** 系统函数指针设置函数 */
 #define FUN_18007fcd0 SystemFunctionPointerSetter1
@@ -190,7 +190,7 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18007fcd0;
@@ -210,8 +210,8 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c740,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4fc124d23d41985f;
@@ -257,7 +257,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -277,8 +277,8 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c768,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4770584fbb1df897;
@@ -324,7 +324,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -344,8 +344,8 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4666df49b97e0f10;
@@ -391,7 +391,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -411,8 +411,8 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
@@ -458,7 +458,7 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -478,8 +478,8 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4c868a42644030f6;
@@ -525,7 +525,7 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -545,8 +545,8 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x40ea3a798283cbbb;
@@ -592,7 +592,7 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -612,8 +612,8 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x45b8d074df27d12f;
@@ -659,7 +659,7 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_180073930;
@@ -679,8 +679,8 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x421c3cedd07d816d;
@@ -726,7 +726,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -746,8 +746,8 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4c22bb0c326587ce;
@@ -869,7 +869,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
@@ -889,8 +889,8 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -936,7 +936,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
@@ -956,8 +956,8 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -1003,7 +1003,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1023,8 +1023,8 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -1070,7 +1070,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
@@ -1090,8 +1090,8 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -1137,7 +1137,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1157,8 +1157,8 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -1204,7 +1204,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
@@ -1224,8 +1224,8 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -1271,7 +1271,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1291,8 +1291,8 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4140994454d56503;
@@ -1370,7 +1370,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
@@ -1390,8 +1390,8 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x45425dc186a5d575;
@@ -1437,7 +1437,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
@@ -1457,8 +1457,8 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x43330a43fcdb3653;
@@ -1504,7 +1504,7 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
@@ -1524,8 +1524,8 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
@@ -1571,7 +1571,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1591,8 +1591,8 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
@@ -1638,7 +1638,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
@@ -1658,8 +1658,8 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x49086ba08ab981a7;
@@ -1705,7 +1705,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1725,8 +1725,8 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x402feffe4481676e;
@@ -1772,7 +1772,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
@@ -1792,8 +1792,8 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
@@ -1839,7 +1839,7 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1859,8 +1859,8 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = 0x4140994454d56503;

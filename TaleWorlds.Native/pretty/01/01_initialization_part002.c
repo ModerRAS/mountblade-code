@@ -955,7 +955,7 @@ void FUN_18002e970(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
@@ -975,8 +975,8 @@ void FUN_18002e970(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = AUDIO_COMPONENT_TYPE_ID;
@@ -1002,7 +1002,7 @@ void FUN_18002ea70(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
@@ -1022,8 +1022,8 @@ void FUN_18002ea70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = INPUT_COMPONENT_TYPE_ID;
@@ -1049,7 +1049,7 @@ void FUN_18002eb70(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1069,8 +1069,8 @@ void FUN_18002eb70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = PHYSICS_COMPONENT_TYPE_ID;
@@ -1096,7 +1096,7 @@ void FUN_18002ec70(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
@@ -1116,8 +1116,8 @@ void FUN_18002ec70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = NETWORK_COMPONENT_TYPE_ID;
@@ -1143,7 +1143,7 @@ void FUN_18002ed70(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1163,8 +1163,8 @@ void FUN_18002ed70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = AI_COMPONENT_TYPE_ID;
@@ -1190,7 +1190,7 @@ void FUN_18002ee70(void)
   uint64_t *puStackX_10;
   void *puStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   puStackX_18 = &unknown_var_2048_ptr;
@@ -1210,8 +1210,8 @@ void FUN_18002ee70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = UI_COMPONENT_TYPE_ID;
@@ -1237,7 +1237,7 @@ void FUN_18002ef70(void)
   uint64_t *puStackX_10;
   uint64_t uStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   uStackX_18 = 0;
@@ -1257,8 +1257,8 @@ void FUN_18002ef70(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = ANIMATION_COMPONENT_TYPE_ID;
@@ -1284,7 +1284,7 @@ void FUN_18002f070(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
@@ -1304,8 +1304,8 @@ void FUN_18002f070(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = SCRIPT_COMPONENT_TYPE_ID;
@@ -1331,7 +1331,7 @@ void FUN_18002f170(void)
   uint64_t *puStackX_10;
   code *pcStackX_18;
   
-  plVar4 = (int64_t *)FUN_18008d070();
+  plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
@@ -1351,8 +1351,8 @@ void FUN_18002f170(void)
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
+    lVar5 = NetworkConnectionManager(plVar4);
+    NetworkProtocolHandler(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
   }
   puVar7[6] = AUDIO_COMPONENT_TYPE_ID;

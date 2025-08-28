@@ -9,7 +9,7 @@ void FUN_1808bc8f4(void)
   uint64_t in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 

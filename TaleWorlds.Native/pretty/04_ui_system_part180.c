@@ -518,7 +518,7 @@ int FUN_1807716e0(int64_t param_1,uint64_t **param_2,uint64_t *param_3,int64_t *
   }
   if (uVar9 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9,&unknown_var_2864_ptr,0x691,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9,&unknown_var_2864_ptr,0x691,1);
   }
   return iVar8;
 }

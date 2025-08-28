@@ -326,7 +326,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
             do {
               iVar12 = (int)uVar14;
               if (*(int64_t *)puVar15 == 0) {
-                lVar9 = FUN_18062b420(system_memory_pool_ptr, 0x28000, 0x25);
+                lVar9 = CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x28000, 0x25);
                 LOCK();
                 bVar18 = *(int64_t *)((int64_t)pplVar5 + ((int64_t)iVar12 * 2 + 2) * 4) == 0;
                 if (bVar18) {
@@ -340,7 +340,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
                 }
                 else {
                   if (lVar9 != 0) {
-                    FUN_18064e900(lVar9);
+                    CoreMemoryPoolInitializer(lVar9);
                   }
                   do {
                   } while (*pcVar13 != '\0');
@@ -374,7 +374,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
             do {
               iVar12 = (int)uVar14;
               if (*plVar11 == 0) {
-                lVar10 = FUN_18062b420(system_memory_pool_ptr, 0xd8000, 0x25);
+                lVar10 = CoreMemoryPoolAllocator(system_memory_pool_ptr, 0xd8000, 0x25);
                 plVar2 = (int64_t *)(lVar9 + 0x1290 + (int64_t)iVar12 * 8);
                 LOCK();
                 bVar18 = *plVar2 == 0;
@@ -390,7 +390,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
                 }
                 else {
                   if (lVar10 != 0) {
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                   }
                   do {
                   } while (*pcVar13 != '\0');
@@ -433,7 +433,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         uStack_238 = 0x28000;
         lStack_240 = param_1 + 0x988;
         lStack_230 = (int64_t)iVar16 * 0x50;
-        uVar20 = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+        uVar20 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
         plVar11 = (int64_t *)FUN_18005ce30(uVar20, &puStack_2e8);
         pplStack_408 = (int64_t **)plVar11;
         
@@ -463,7 +463,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         uStack_158 = 0xd8000;
         lStack_160 = param_1 + 0x1290;
         lStack_150 = (int64_t)iVar16 * 0x1b0;
-        uVar20 = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+        uVar20 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
         plVar11 = (int64_t *)FUN_18005ce30(uVar20, &puStack_208);
         ppuStack_3b8 = (void **)plVar11;
         if (plVar11 != (int64_t *)0x0) {
@@ -490,7 +490,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
   // 设置默认渲染批处理大小
   *(int32_t *)(param_2 + 0x124b8) = 0;
 LAB_1803084bf:
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_488);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_488);
 }
 
 /**
@@ -531,7 +531,7 @@ void rendering_system_process_render_batch(uint *param_1, int32_t *param_2)
   
   // 检查渲染数据缓冲区是否需要分配
   if (*(int64_t *)(param_1 + (uint64_t)uVar2 * 2 + 2) == 0) {
-    lVar3 = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x18);
+    lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x18);
     LOCK();
     bVar5 = *(int64_t *)(param_1 + uVar4 * 2 + 2) == 0;
     if (bVar5) {
@@ -545,7 +545,7 @@ void rendering_system_process_render_batch(uint *param_1, int32_t *param_2)
     }
     else {
       if (lVar3 != 0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       do {
       } while (*(char *)(uVar4 + 0x408 + (int64_t)param_1) != '\0');
@@ -855,13 +855,13 @@ int64_t FUN_1803089a0(int64_t *param_1, int64_t *param_2, int param_3)
   }
   if (param_3 == 0) {
     if (*param_1 != 0) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
   }
   else {
     if (param_3 == 1) {
       // 执行数据复制验证
-      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
+      puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

@@ -397,7 +397,7 @@ int64_t FUN_18042b8d0(int64_t param_1,int *param_2)
   if (((-1 < iVar4) &&
       ((((iVar4 == 0 || (3 < (int)(0x7fffffff / (int64_t)iVar4))) && (-1 < iVar4 * 4)) &&
        (-1 < iVar5)))) && ((iVar5 == 0 || (iVar4 * 4 <= (int)(0x7fffffff / (int64_t)iVar5))))) {
-    lVar8 = FUN_18062b420(system_memory_pool_ptr,(int64_t)(iVar4 * iVar5 * 4));
+    lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(iVar4 * iVar5 * 4));
   }
   *(int64_t *)(param_2 + 2) = lVar8;
   if (lVar8 == 0) {

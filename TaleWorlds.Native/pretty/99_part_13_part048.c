@@ -321,7 +321,7 @@ LAB_1808c69db:
   }
 LAB_1808c6b04:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_88);
 }
 
 
@@ -395,7 +395,7 @@ void FUN_1808c69e6(void)
   }
 LAB_1808c6b04:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -463,7 +463,7 @@ void FUN_1808c6a0a(int64_t *param_1)
   }
 LAB_1808c6b04:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -523,7 +523,7 @@ void FUN_1808c6a37(void)
   }
 LAB_1808c6b04:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -670,7 +670,7 @@ uint64_t * FUN_1808c6d60(uint64_t *param_1,uint64_t *param_2)
     *piVar1 = *piVar1 + -1;
     if (*piVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&unknown_var_2208_ptr,0x76,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&unknown_var_2208_ptr,0x76,1);
     }
   }
   return param_1;
@@ -789,7 +789,7 @@ void FUN_1808c6dd0(int64_t *param_1,int64_t *param_2,uint *param_3,uint64_t *par
   }
 FUN_1808c713f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_60 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_60 ^ (uint64_t)auStack_b8);
 }
 
 
@@ -910,7 +910,7 @@ void FUN_1808c6e58(void)
   }
 FUN_1808c7139:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -9) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -9) ^ (uint64_t)&stack0x00000000);
 }
 
 

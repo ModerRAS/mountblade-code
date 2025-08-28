@@ -65,7 +65,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   FUN_180627c50(&stack_string_ptr,resource_data);
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
-  resource_handle = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
+  resource_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);
   resource_ptr = (int64_t *)FUN_1801954d0(resource_handle,&stack_string_ptr);
   stack_ptr_ptr = (void **)resource_ptr;
   if (resource_ptr != (int64_t *)0x0) {
@@ -104,7 +104,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_resource_ptr = &system_data_buffer_ptr;
   if (stack_resource_data != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   stack_resource_data = 0;
   stack_resource_flags[0] = 0;
@@ -125,7 +125,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   resource_size = *(uint *)(resource_offset + 0x10);
   resource_count = (uint64_t)resource_size;
   if (*(int64_t *)(resource_offset + 8) != 0) {
-    FUN_1806277c0(&stack_ptr,resource_count);
+    CoreMemoryPoolProcessor(&stack_ptr,resource_count);
   }
   if (resource_size != 0) {
                     // WARNING: Subroutine does not return
@@ -137,7 +137,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_param1 = CONCAT44(*(uint *)(resource_offset + 0x1c),(int32_t)stack_param1);
   if (0 < stack_id) {
     stack_size = resource_size;
-    FUN_1806277c0(&stack_ptr,stack_id);
+    CoreMemoryPoolProcessor(&stack_ptr,stack_id);
                     // WARNING: Subroutine does not return
     memcpy((uint64_t)stack_size + stack_data,stack_length,(int64_t)(stack_id + 1));
   }
@@ -161,7 +161,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_buffer_ptr = &system_data_buffer_ptr;
   if (stack_offset != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   stack_offset = 0;
   stack_control = (uint64_t)stack_control._4_4_ << 0x20;
@@ -169,7 +169,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_ptr = &system_data_buffer_ptr;
   if (stack_length != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   stack_length = 0;
   stack_id = 0;
@@ -181,7 +181,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_string_ptr = &system_data_buffer_ptr;
   if (stack_length != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   stack_length = 0;
   stack_control = stack_control & 0xffffffff00000000;
@@ -269,7 +269,7 @@ LAB_file_processing_error:
       file_info = 0;
       file_content = (int8_t *)0x0;
       content_size = 0;
-      FUN_1806277c0(&shader_reader,*(int32_t *)(file_offset + 0x10));
+      CoreMemoryPoolProcessor(&shader_reader,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(file_content,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
@@ -295,7 +295,7 @@ LAB_path_processing_error:
       file_data = 0;
       file_handle = (int8_t *)0x0;
       file_type = 0;
-      FUN_1806277c0(&file_writer,*(int32_t *)(file_offset + 0x10));
+      CoreMemoryPoolProcessor(&file_writer,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(file_handle,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
@@ -308,7 +308,7 @@ LAB_path_processing_error:
         file_data = file_data & 0xffffffff;
       }
       file_count = content_size + 8;
-      FUN_1806277c0(&shader_reader,file_count);
+      CoreMemoryPoolProcessor(&shader_reader,file_count);
       *(uint64_t *)(file_content + content_size) = 0x6a624f656e656353;
       *(int8_t *)((int64_t)(file_content + content_size) + 8) = 0;
       content_size = file_count;
@@ -317,7 +317,7 @@ LAB_path_processing_error:
         file_writer = &system_data_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         file_handle = (int8_t *)0x0;
         file_data = file_data & 0xffffffff00000000;
@@ -325,7 +325,7 @@ LAB_path_processing_error:
         shader_reader = &system_data_buffer_ptr;
         if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
       }
       else {
@@ -360,7 +360,7 @@ LAB_path_processing_error:
             shader_info._4_4_ = 0;
             shader_input = (int8_t *)0x0;
             shader_length = 0;
-            FUN_1806277c0(&shader_output,*shader_entry);
+            CoreMemoryPoolProcessor(&shader_output,*shader_entry);
             if (*shader_entry != 0) {
                     // WARNING: Subroutine does not return
               memcpy(shader_input,*(uint64_t *)(shader_entry + -2),*shader_entry + 1);
@@ -373,7 +373,7 @@ LAB_path_processing_error:
               shader_info._4_4_ = 0;
             }
             shader_index = shader_length + 0xd;
-            FUN_1806277c0(&shader_output,shader_index);
+            CoreMemoryPoolProcessor(&shader_output,shader_index);
             shader_ptr = (uint64_t *)(shader_input + shader_length);
             *shader_ptr = 0x782e656e6563732f;
             *(int32_t *)(shader_ptr + 1) = 0x6e656373;
@@ -418,7 +418,7 @@ LAB_path_processing_error:
                 file_size = *shader_entry;
                 path_length = (uint64_t)file_size;
                 if (*(int64_t *)(shader_entry + -2) != 0) {
-                  FUN_1806277c0(&shader_output,path_length);
+                  CoreMemoryPoolProcessor(&shader_output,path_length);
                 }
                 if (file_size != 0) {
                     // WARNING: Subroutine does not return
@@ -429,7 +429,7 @@ LAB_path_processing_error:
                 }
                 shader_info._4_4_ = shader_entry[3];
                 shader_length = file_size;
-                FUN_1806277c0(&shader_output,0x12);
+                CoreMemoryPoolProcessor(&shader_output,0x12);
                 file_size_ptr = (int32_t *)(shader_input + shader_length);
                 *file_size_ptr = 0x6563732f;
                 file_size_ptr[1] = 0x782e656e;
@@ -443,7 +443,7 @@ LAB_path_processing_error:
                 shader_output = &system_data_buffer_ptr;
                 if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreMemoryPoolInitializer();
                 }
                 shader_info = (uint64_t)shader_info._4_4_ << 0x20;
               }
@@ -468,7 +468,7 @@ LAB_shader_path_found:
                   file_data = 0;
                   file_content = (int8_t *)0x0;
                   file_type = 0;
-                  FUN_1806277c0(&shader_reader,max_path_length);
+                  CoreMemoryPoolProcessor(&shader_reader,max_path_length);
                   if (max_path_length != 0) {
                     // WARNING: Subroutine does not return
                     memcpy(file_content,file_data,max_path_length + 1);
@@ -490,7 +490,7 @@ LAB_shader_path_found:
                   shader_reader = &system_data_buffer_ptr;
                   if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                   }
                   file_content = (int8_t *)0x0;
                   file_data = file_data & 0xffffffff00000000;
@@ -498,7 +498,7 @@ LAB_shader_path_found:
                   resource_handle = &system_data_buffer_ptr;
                   if (resource_data != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                   }
                   resource_data = 0;
                   resource_flags = 0;
@@ -507,7 +507,7 @@ LAB_shader_path_found:
                 temp_buffer = &system_data_buffer_ptr;
                 if (file_buffer != (void *)0x0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreMemoryPoolInitializer();
                 }
                 file_buffer = (void *)0x0;
                 file_mode = 0;
@@ -515,7 +515,7 @@ LAB_shader_path_found:
                 shader_output = &system_data_buffer_ptr;
                 if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreMemoryPoolInitializer();
                 }
                 shader_info = (uint64_t)shader_info._4_4_ << 0x20;
               }
@@ -525,7 +525,7 @@ LAB_shader_found:
               shader_output = &system_data_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900();
+                CoreMemoryPoolInitializer();
               }
               shader_info = (uint64_t)shader_info._4_4_ << 0x20;
             }
@@ -542,7 +542,7 @@ LAB_shader_found:
         file_buffer = &system_data_buffer_ptr;
         if (file_data != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         file_data = 0;
         buffer_size = 0;
@@ -552,12 +552,12 @@ LAB_shader_found:
         }
         if (shader_data != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(shader_data);
+          CoreMemoryPoolInitializer(shader_data);
         }
         file_writer = &system_data_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         file_handle = (int8_t *)0x0;
         file_data = file_data & 0xffffffff00000000;
@@ -565,7 +565,7 @@ LAB_shader_found:
         shader_reader = &system_data_buffer_ptr;
         if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
       }
       file_handle = (int8_t *)0x0;
@@ -596,7 +596,7 @@ void initialize_render_pipeline(void)
   uint64_t render_config;
   int64_t mutex_data;
   
-  render_state = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x198,8,3);
+  render_state = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x198,8,3);
   render_target = render_state + 4;
   FUN_180637560(render_target);
   *render_target = &unknown_var_6384_ptr;
@@ -616,11 +616,11 @@ void initialize_render_pipeline(void)
   render_state[2] = 0xffffffff00000000;
   *(int32_t *)(render_state + 1) = 0xe;
   system_message_context = render_state;
-  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x480,8,3);
+  render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x480,8,3);
   init_system_data_file = FUN_18004bd10(render_config);
-  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x10420,8,3);
+  render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10420,8,3);
   init_system_data_file = FUN_18005c090(render_config);
-  init_system_data_file = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+  init_system_data_file = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
   *(int32_t *)(init_system_data_file + 0x19) = 0;
   *(int16_t *)(init_system_data_file + 0x1d) = 0;
   *(int8_t *)(init_system_data_file + 0x1f) = 0;
@@ -630,11 +630,11 @@ void initialize_render_pipeline(void)
   *(uint64_t *)(init_system_data_file + 0x10) = 0;
   *(int8_t *)(init_system_data_file + 0x18) = 0;
   *(uint64_t *)(init_system_data_file + 0x20) = 0;
-  init_system_data_file = FUN_18062b1e0(system_memory_pool_ptr,8,4,3);
+  init_system_data_file = CoreMemoryPoolReallocator(system_memory_pool_ptr,8,4,3);
   *(int32_t *)(init_system_data_file + 4) = 0;
-  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3);
+  render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3);
   init_system_data_file = FUN_18015c450(render_config);
-  mutex_data = FUN_18062b1e0(system_memory_pool_ptr,0xe8,8,3);
+  mutex_data = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe8,8,3);
   _Mtx_init_in_situ(mutex_data,2);
   _Mtx_init_in_situ(mutex_data + 0x50,2);
   *(uint64_t *)(mutex_data + 0xa0) = 0;
@@ -647,7 +647,7 @@ void initialize_render_pipeline(void)
   *(int32_t *)(mutex_data + 0xd8) = 0x20;
   *(int32_t *)(mutex_data + 0xe0) = 0;
   init_system_data_file = mutex_data;
-  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
+  render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3);
                     // WARNING: Subroutine does not return
   memset(render_config,0,0x70);
 }
@@ -671,7 +671,7 @@ void cleanup_resource_array(int64_t *resource_array)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 
@@ -710,7 +710,7 @@ void destroy_resource_handler(int64_t resource_handle)
           (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resource_ptr);
+        CoreMemoryPoolInitializer(resource_ptr);
       }
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -720,7 +720,7 @@ void destroy_resource_handler(int64_t resource_handle)
   *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -754,7 +754,7 @@ void destroy_resource_context(int64_t context_ptr)
   *(uint64_t *)(context_ptr + 8) = &system_data_buffer_ptr;
   if (*(int64_t *)(context_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   *(uint64_t *)(context_ptr + 0x10) = 0;
   *(int32_t *)(context_ptr + 0x20) = 0;
@@ -798,7 +798,7 @@ void destroy_resource_manager_v2(int64_t resource_handle)
           (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resource_ptr);
+        CoreMemoryPoolInitializer(resource_ptr);
       }
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -808,7 +808,7 @@ void destroy_resource_manager_v2(int64_t resource_handle)
   *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }

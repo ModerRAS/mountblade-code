@@ -150,7 +150,7 @@ void FUN_180659702(float param_1,float param_2,int64_t param_3,char param_4)
   if (unaff_R14[8] != unaff_XMM6_Da) {
                     // WARNING: Subroutine does not return
     uStack_8 = 0x1806598e8;
-    FUN_1808fd400(-unaff_R14[8]);
+    AdvancedSystemController(-unaff_R14[8]);
   }
   fStack000000000000003c = (float)((uint64_t)*(uint64_t *)(unaff_R14 + 4) >> 0x20);
   fStack0000000000000038 = (float)*(uint64_t *)(unaff_R14 + 4);
@@ -753,7 +753,7 @@ LAB_18065a765:
                     // WARNING: Subroutine does not return
       uStack_8 = 0x18065aa9f;
       fStack000000000000007c = fStack000000000000005c;
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }

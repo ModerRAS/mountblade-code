@@ -77,7 +77,7 @@ void FUN_18052f6f0(int64_t param_1,int64_t param_2,int32_t *param_3,int32_t *par
           *param_3 = uVar6;
           *param_5 = 1;
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(*(int64_t *)(param_1 + 0x20) + 0x34));
+          AdvancedSystemController(*(int32_t *)(*(int64_t *)(param_1 + 0x20) + 0x34));
         }
       }
       uVar6 = func_0x00018051cd90(extraout_XMM0_Da,param_2);

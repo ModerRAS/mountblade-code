@@ -1524,9 +1524,9 @@ void initialize_game_system_component_type26(void)
 // unknown_var_2048 -> DEFAULT_CONFIG_1800868c0
 
 // 函数调用映射：
-// FUN_18008d070 -> get_system_manager
-// FUN_18008f0d0 -> allocate_system_memory
-// FUN_18008f140 -> create_system_component
+// NetworkDataProcessor -> get_system_manager
+// NetworkConnectionManager -> allocate_system_memory
+// NetworkProtocolHandler -> create_system_component
 // FUN_18025cc00 -> get_component_callback_handler
 // FUN_18025c000 -> get_component_handler
 // FUN_18025d270 -> get_system_callback

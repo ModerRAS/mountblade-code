@@ -507,7 +507,7 @@ int UtilitiesSystem_DataHandler1(int64_t param_1)
     // 检查数据指针
     if (data_pointer != 0) {
         // 执行系统调用
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+        SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      data_pointer, 
                      &unknown_var_2144_ptr, 
                      0xb8, 
@@ -999,7 +999,7 @@ void UtilitiesSystem_DataHandler2(int64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_18088c790(stack_data);
+    AdvancedSystemProcessor(stack_data);
     
     // 返回处理状态
     return;
@@ -1779,7 +1779,7 @@ void UtilitiesSystem_ArrayProcessor1(int64_t param_1, int64_t param_2)
         // 释放旧内存
         if ((0 < *(int *)(stack_data2 + 0x2c)) && 
             (*(int64_t *)(stack_data2 + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(stack_data2 + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -1901,7 +1901,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
         // 释放旧内存
         if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && 
             (*(int64_t *)(in_stack_00000070 + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(in_stack_00000070 + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -2015,7 +2015,7 @@ void UtilitiesSystem_ArrayProcessor3(int64_t in_RAX, uint64_t in_stack_00000060,
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(int64_t *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(unaff_RBX + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -2114,7 +2114,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(int64_t *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(unaff_RBX + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 

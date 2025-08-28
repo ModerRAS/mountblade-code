@@ -29,9 +29,9 @@ void FUN_1807426bf(void)
   
   if ((in_ZF) && (iVar1 = FUN_1807682e0(unaff_RBX + 0x6f,1), iVar1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
   }
-  FUN_180768360(unaff_RBX[0x6f]);
+  SystemStateManager(unaff_RBX[0x6f]);
   if ((unaff_RBX[0x6b] == 0) && ((*(byte *)(unaff_RBX + 0x66) & 1) == 0)) {
     uVar9 = 0;
     iVar1 = func_0x00018076c250();
@@ -166,11 +166,11 @@ void FUN_1807426bf(void)
       *(uint *)((int64_t)unaff_RBX + 0x344) = *(uint *)(unaff_RBX + 0x68);
     }
                     // WARNING: Subroutine does not return
-    FUN_180768400(unaff_RBX[0x6f]);
+    SystemConfigManager(unaff_RBX[0x6f]);
   }
 LAB_180742a3a:
                     // WARNING: Subroutine does not return
-  FUN_180768400(unaff_RBX[0x6f]);
+  SystemConfigManager(unaff_RBX[0x6f]);
 }
 
 
@@ -184,7 +184,7 @@ void FUN_180742aca(void)
   uint64_t in_stack_00000160;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -348,7 +348,7 @@ uint64_t FUN_180742d90(int64_t param_1,int param_2)
     uVar2 = FUN_180770580(lVar1);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_8208_ptr,0x28c,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_8208_ptr,0x28c,1);
     }
   }
   return uVar2;
@@ -410,7 +410,7 @@ int32_t FUN_180742e60(int64_t param_1)
     memset(lVar1,0,(int64_t)iVar3 * 4 + 0x200);
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(param_1 + 0x10bd0,lVar1,&system_buffer_ptr,0,1);
+  SystemInitializer(param_1 + 0x10bd0,lVar1,&system_buffer_ptr,0,1);
 }
 
 
@@ -441,7 +441,7 @@ void FUN_180742eec(int64_t param_1,uint64_t param_2,uint64_t param_3,int param_4
     memset();
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(unaff_RDI + 0x10bd0);
+  SystemInitializer(unaff_RDI + 0x10bd0);
 }
 
 

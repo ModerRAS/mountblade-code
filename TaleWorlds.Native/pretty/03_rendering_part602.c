@@ -206,7 +206,7 @@ void FUN_180599870(int64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(param_1 + 0x120) + *(float *)(param_1 + 0x34));
+  AdvancedSystemController(*(float *)(param_1 + 0x120) + *(float *)(param_1 + 0x34));
 }
 
 
