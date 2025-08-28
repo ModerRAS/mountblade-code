@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include <time.h>
 
 /*==============================================================================
     系统状态同步器增强模块 - 高级状态管理和同步机制
@@ -121,8 +122,10 @@ typedef struct {
     StateFlags flags;                     // 组件标志
     StateTimestamp last_sync;            // 最后同步时间
     uint32_t state_count;                // 状态数量
+    uint32_t max_states;                 // 最大状态数量
     StateInfo* states;                    // 状态数组
     uint32_t history_count;               // 历史记录数量
+    uint32_t max_history;                // 最大历史记录数量
     StateHistory* history;                // 历史记录数组
     char component_name[64];              // 组件名称
     char component_type[64];              // 组件类型

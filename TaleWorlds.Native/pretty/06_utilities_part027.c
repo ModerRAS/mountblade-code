@@ -1009,7 +1009,7 @@ void utilities_system_data_mode_resetter(void)
 
 {
   // 重置系统数据模式并设置为默认值
-  _DAT_180bf52e8 = &UNK_18098bcb0;  // 设置默认数据模式指针
+  *system_state_mode_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认数据模式指针
   return;
 }
 
@@ -1030,7 +1030,7 @@ void utilities_system_function_mode_resetter(void)
 
 {
   // 重置系统功能模式并设置为默认值
-  _DAT_180bf5738 = &UNK_18098bcb0;  // 设置默认功能模式指针
+  *system_function_mode_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认功能模式指针
   return;
 }
 
