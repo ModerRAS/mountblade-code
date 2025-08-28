@@ -595,66 +595,75 @@ longlong *rendering_system_merge_render_data(longlong *param_1, longlong *param_
 
 
 
-// 函数: void FUN_180309290(longlong *param_1,longlong param_2,longlong param_3,longlong param_4,
-void FUN_180309290(longlong *param_1,longlong param_2,longlong param_3,longlong param_4,
-                  longlong *param_5)
+// 渲染数据优化函数
+void rendering_system_optimize_render_data(longlong *param_1, longlong param_2, longlong param_3, longlong param_4, longlong *param_5)
 
 {
-  int iVar1;
-  longlong lVar2;
-  int iVar3;
-  char cVar4;
-  uint uVar5;
-  uint uVar6;
-  uint uVar7;
-  uint uVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
+    int base_index;
+    longlong data_ptr;
+    int temp_index;
+    char compare_result;
+    uint hash_index_1;
+    uint hash_index_2;
+    uint data_index_1;
+    uint data_index_2;
+    longlong loop_counter;
+    longlong original_param;
+    longlong *data_block_1;
+    longlong *data_block_2;
+    longlong *data_block_3;
+    longlong *data_block_4;
   
-  lVar9 = param_4 * 2 + 2;
-  if (lVar9 < param_3) {
-    iVar1 = (int)param_1[1];
-    lVar2 = *param_1;
-    lVar10 = param_4;
-    do {
-      uVar6 = (int)lVar9 + iVar1 + -1;
-      uVar5 = uVar6 >> 0xb;
-      plStackX_8 = *(longlong **)
-                    (*(longlong *)(lVar2 + 8 + (ulonglong)uVar5 * 8) +
-                    (ulonglong)(uVar6 + uVar5 * -0x800) * 8);
-      if (plStackX_8 != (longlong *)0x0) {
-        (**(code **)(*plStackX_8 + 0x28))();
-      }
-      uVar6 = (int)lVar9 + iVar1;
-      uVar5 = uVar6 >> 0xb;
-      plStackX_10 = *(longlong **)
-                     (*(longlong *)(lVar2 + 8 + (ulonglong)uVar5 * 8) +
-                     (ulonglong)(uVar6 + uVar5 * -0x800) * 8);
-      if (plStackX_10 != (longlong *)0x0) {
-        (**(code **)(*plStackX_10 + 0x28))();
-      }
-      cVar4 = FUN_180306d20(&plStackX_10,&plStackX_8);
-      param_4 = lVar9;
-      if (cVar4 != '\0') {
-        param_4 = lVar9 + -1;
-      }
-      uVar7 = iVar1 + (int)param_4;
-      uVar5 = uVar7 >> 0xb;
-      uVar8 = iVar1 + (int)lVar10;
-      uVar6 = uVar8 >> 0xb;
-      *(undefined8 *)
-       (*(longlong *)(lVar2 + 8 + (ulonglong)uVar6 * 8) + (ulonglong)(uVar8 + uVar6 * -0x800) * 8) =
-           *(undefined8 *)
-            (*(longlong *)(lVar2 + 8 + (ulonglong)uVar5 * 8) +
-            (ulonglong)(uVar7 + uVar5 * -0x800) * 8);
-      lVar9 = param_4 * 2 + 2;
-      lVar10 = param_4;
-    } while (lVar9 < param_3);
-  }
+  // 计算循环计数器初始值
+    loop_counter = param_4 * 2 + 2;
+    if (loop_counter < param_3) {
+        base_index = (int)param_1[1];
+        data_ptr = *param_1;
+        original_param = param_4;
+        do {
+            // 处理第一个数据块
+            hash_index_2 = (int)loop_counter + base_index + -1;
+            hash_index_1 = hash_index_2 >> RENDERING_DATA_HASH_SHIFT;
+            data_block_1 = *(longlong **)
+                          (*(longlong *)(data_ptr + 8 + (ulonglong)hash_index_1 * 8) +
+                          (ulonglong)(hash_index_2 + hash_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+            if (data_block_1 != (longlong *)0x0) {
+                // 执行数据块1的处理函数
+                (**(code **)(*data_block_1 + 0x28))();
+            }
+            
+            // 处理第二个数据块
+            hash_index_2 = (int)loop_counter + base_index;
+            hash_index_1 = hash_index_2 >> RENDERING_DATA_HASH_SHIFT;
+            data_block_2 = *(longlong **)
+                          (*(longlong *)(data_ptr + 8 + (ulonglong)hash_index_1 * 8) +
+                          (ulonglong)(hash_index_2 + hash_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+            if (data_block_2 != (longlong *)0x0) {
+                // 执行数据块2的处理函数
+                (**(code **)(*data_block_2 + 0x28))();
+            }
+            
+            // 比较两个数据块
+            compare_result = FUN_180306d20(&data_block_2, &data_block_1);
+            param_4 = loop_counter;
+            if (compare_result != '\0') {
+                param_4 = loop_counter + -1;
+            }
+            
+            // 数据交换和优化
+            data_index_1 = base_index + (int)param_4;
+            hash_index_1 = data_index_1 >> RENDERING_DATA_HASH_SHIFT;
+            data_index_2 = base_index + (int)original_param;
+            hash_index_2 = data_index_2 >> RENDERING_DATA_HASH_SHIFT;
+            *(undefined8 *)
+             (*(longlong *)(data_ptr + 8 + (ulonglong)hash_index_2 * 8) + (ulonglong)(data_index_2 + hash_index_2 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8) =
+                 *(undefined8 *)
+                  (*(longlong *)(data_ptr + 8 + (ulonglong)hash_index_1 * 8) +
+                  (ulonglong)(data_index_1 + hash_index_1 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+            loop_counter = param_4 * 2 + 2;
+            original_param = param_4;
+        } while (loop_counter < param_3);
+    }
   if (lVar9 == param_3) {
     uVar7 = (int)param_1[1] + -1 + (int)lVar9;
     uVar5 = uVar7 >> 0xb;
