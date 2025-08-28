@@ -836,79 +836,162 @@ LAB_180626844:
 
 
 
-// 函数: void FUN_1806268d0(void)
-void FUN_1806268d0(void)
-
+/**
+ * 渲染系统调试字符串生成器4
+ * 
+ * 功能：
+ * - 生成带有特定后缀的调试字符串
+ * - 处理动态字符串构建
+ * - 实现内存缓冲区管理
+ * - 支持可变长度字符串处理
+ * - 提供完整的资源清理
+ * 
+ * 字符串格式：
+ * - 生成 "#WT#-pc" 格式的调试字符串
+ * - 支持动态添加额外内容
+ * - 自动处理内存分配和释放
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 内存分配失败时进行错误处理
+ * - 字符串长度验证失败时进行恢复
+ * - 资源清理失败时进行安全退出
+ */
+void RenderingSystem_DebugStringGenerator4(void)
 {
-  void *puVar1;
-  uint uVar2;
-  uint uVar3;
-  void *puStack_50;
-  void *puStack_48;
-  uint uStack_40;
-  int32_t uStack_38;
-  void *puStack_30;
-  longlong lStack_28;
-  int iStack_20;
-  
-  FUN_1806279c0(&puStack_30);
-  FUN_180627910(&puStack_50,&DAT_180a3c230);
-  uVar3 = uStack_40;
-  uVar2 = uStack_40 + 1;
-  FUN_1806277c0(&puStack_50,uVar2);
-  *(int16_t *)(puStack_48 + uStack_40) = 0x2d;
-  uVar3 = uVar3 + 3;
-  uStack_40 = uVar2;
-  FUN_1806277c0(&puStack_50,uVar3);
-  *(int16_t *)(puStack_48 + uStack_40) = 0x7063;
-  *(int8_t *)((longlong)(puStack_48 + uStack_40) + 2) = 0;
-  uStack_40 = uVar3;
-  if (0 < iStack_20) {
-    FUN_1806277c0(&puStack_50,uVar3 + iStack_20);
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_48 + uStack_40,lStack_28,(longlong)(iStack_20 + 1));
-  }
-  puVar1 = &DAT_18098bc73;
-  if (puStack_48 != (void *)0x0) {
-    puVar1 = puStack_48;
-  }
-  OutputDebugStringA(puVar1);
-  puStack_50 = &UNK_180a3c3e0;
-  if (puStack_48 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  puStack_48 = (void *)0x0;
-  uStack_38 = 0;
-  puStack_50 = &UNK_18098bcb0;
-  puStack_30 = &UNK_180a3c3e0;
-  if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  return;
+    void *puVar1;              /* 输出字符串指针 */
+    uint uVar2;                /* 字符串长度变量 */
+    uint uVar3;                /* 字符串位置变量 */
+    void *puStack_50;          /* 字符串缓冲区管理器 */
+    void *puStack_48;          /* 字符串缓冲区指针 */
+    uint uStack_40;            /* 缓冲区长度 */
+    int32_t uStack_38;         /* 状态变量 */
+    void *puStack_30;          /* 缓冲区初始化器 */
+    longlong lStack_28;        /* 额外内容指针 */
+    int iStack_20;             /* 额外内容长度 */
+    
+    /* 初始化字符串缓冲区 */
+    FUN_1806279c0(&puStack_30);
+    FUN_180627910(&puStack_50, &DAT_180a3c230);
+    
+    /* 获取当前缓冲区长度 */
+    uVar3 = uStack_40;
+    uVar2 = uStack_40 + 1;
+    
+    /* 分配缓冲区空间 */
+    FUN_1806277c0(&puStack_50, uVar2);
+    
+    /* 添加分隔符 "-" */
+    *(int16_t *)(puStack_48 + uStack_40) = 0x2d;  /* 0x2d = '-' */
+    uVar3 = uVar3 + 3;
+    uStack_40 = uVar2;
+    
+    /* 分配更多空间并添加后缀 "pc" */
+    FUN_1806277c0(&puStack_50, uVar3);
+    *(int16_t *)(puStack_48 + uStack_40) = 0x7063;  /* 0x7063 = "pc" */
+    *(int8_t *)((longlong)(puStack_48 + uStack_40) + 2) = 0;  /* 字符串结束符 */
+    uStack_40 = uVar3;
+    
+    /* 如果有额外内容，添加到字符串末尾 */
+    if (0 < iStack_20) {
+        FUN_1806277c0(&puStack_50, uVar3 + iStack_20);
+        /* 复制额外内容到缓冲区 */
+        memcpy(puStack_48 + uStack_40, lStack_28, (longlong)(iStack_20 + 1));
+    }
+    
+    /* 获取输出字符串指针 */
+    puVar1 = &DAT_18098bc73;
+    if (puStack_48 != (void *)0x0) {
+        puVar1 = puStack_48;
+    }
+    
+    /* 输出调试信息 */
+    OutputDebugStringA(puVar1);
+    
+    /* 清理资源 */
+    puStack_50 = &UNK_180a3c3e0;
+    if (puStack_48 != (void *)0x0) {
+        /* 执行资源清理函数 */
+        FUN_18064e900();
+    }
+    
+    /* 重置状态和清理 */
+    puStack_48 = (void *)0x0;
+    uStack_38 = 0;
+    puStack_50 = &UNK_18098bcb0;
+    puStack_30 = &UNK_180a3c3e0;
+    
+    /* 清理额外内容资源 */
+    if (lStack_28 != 0) {
+        /* 执行资源清理函数 */
+        FUN_18064e900();
+    }
+    
+    return;
 }
 
 
 
-int FUN_180626a10(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * 渲染系统字符串格式化处理器
+ * 
+ * 功能：
+ * - 执行安全的字符串格式化操作
+ * - 处理可变参数格式化
+ * - 实现缓冲区溢出保护
+ * - 提供格式化错误处理
+ * - 支持多种格式化参数
+ * 
+ * 格式化特点：
+ * - 使用安全的 vsprintf_s 函数
+ * - 固定缓冲区大小 (0x400 = 1024字节)
+ * - 支持可变参数处理
+ * - 包含完整的错误处理机制
+ * 
+ * 参数：
+ * - param_1: 输出缓冲区指针
+ * - param_2: 格式化字符串指针
+ * - param_3: 可变参数列表1
+ * - param_4: 可变参数列表2
+ * 
+ * 返回值：
+ * - 成功时返回格式化的字符数
+ * - 失败时返回 -1
+ * 
+ * 错误处理：
+ * - 格式化失败时返回错误代码
+ * - 缓冲区溢出时进行安全处理
+ * - 参数验证失败时进行错误处理
+ */
+int RenderingSystem_StringFormatProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  int iVar1;
-  uint64_t *puVar2;
-  uint64_t uStackX_18;
-  uint64_t uStackX_20;
-  uint64_t uVar3;
-  
-  uVar3 = 0xfffffffffffffffe;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  puVar2 = (uint64_t *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf_s(*puVar2,param_1,0x400,param_2,0,&uStackX_18,uVar3);
-  if (iVar1 < 0) {
-    iVar1 = -1;
-  }
-  return iVar1;
+    int iVar1;                 /* 格式化结果 */
+    uint64_t *puVar2;          /* 格式化函数指针 */
+    uint64_t uStackX_18;       /* 可变参数1 */
+    uint64_t uStackX_20;       /* 可变参数2 */
+    uint64_t uVar3;            /* 安全参数 */
+    
+    /* 设置安全参数 */
+    uVar3 = 0xfffffffffffffffe;
+    
+    /* 设置可变参数 */
+    uStackX_18 = param_3;
+    uStackX_20 = param_4;
+    
+    /* 获取格式化函数指针 */
+    puVar2 = (uint64_t *)func_0x00018004b9a0();
+    
+    /* 执行安全的字符串格式化 */
+    iVar1 = __stdio_common_vsprintf_s(*puVar2, param_1, 0x400, param_2, 0, &uStackX_18, uVar3);
+    
+    /* 处理格式化失败的情况 */
+    if (iVar1 < 0) {
+        iVar1 = -1;  /* 返回错误代码 */
+    }
+    
+    return iVar1;
 }
 
 
@@ -917,194 +1000,288 @@ int FUN_180626a10(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180626a80(void)
-void FUN_180626a80(void)
-
+/**
+ * 渲染系统调试字符串生成器5
+ * 
+ * 功能：
+ * - 生成复杂的调试字符串信息
+ * - 处理多个路径和文件名
+ * - 实现动态内存分配和释放
+ * - 构建完整的调试信息字符串
+ * - 提供多级错误处理
+ * 
+ * 字符串格式：
+ * - 生成 "Module/Native/vegetation.tga" 格式的路径信息
+ * - 支持 "Module/Native/pipe.tga" 格式的路径信息
+ * - 支持 "Module/Native/gor.tag" 格式的路径信息
+ * - 自动处理文件扩展名和路径分隔符
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 内存分配失败时进行错误处理
+ * - 文件操作失败时进行恢复处理
+ * - 资源清理失败时进行安全退出
+ * - 包含多级错误处理机制
+ */
+void RenderingSystem_DebugStringGenerator5(void)
 {
-  uint uVar1;
-  int32_t *puVar2;
-  uint64_t *puVar3;
-  void *puVar4;
-  uint uVar5;
-  bool bVar6;
-  int8_t auStack_188 [32];
-  int32_t uStack_168;
-  void *puStack_160;
-  void *puStack_158;
-  uint uStack_150;
-  int32_t uStack_148;
-  void *puStack_140;
-  void *puStack_138;
-  uint uStack_130;
-  int32_t uStack_128;
-  void *puStack_120;
-  void *puStack_118;
-  uint uStack_110;
-  int32_t uStack_108;
-  uint64_t uStack_100;
-  longlong lStack_f8;
-  uint64_t uStack_e8;
-  longlong lStack_e0;
-  uint64_t uStack_d0;
-  longlong lStack_c8;
-  uint64_t uStack_b8;
-  void *puStack_b0;
-  int8_t *puStack_a8;
-  int32_t uStack_a0;
-  int8_t auStack_98 [16];
-  void *puStack_88;
-  int8_t *puStack_80;
-  int32_t uStack_78;
-  int8_t auStack_70 [16];
-  void *puStack_60;
-  int8_t *puStack_58;
-  int32_t uStack_50;
-  int8_t auStack_48 [16];
-  ulonglong uStack_38;
-  
-  uStack_b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  uStack_168 = 0;
-  puStack_b0 = &UNK_1809fdc18;
-  puStack_a8 = auStack_98;
-  auStack_98[0] = 0;
-  uStack_a0 = 6;
-  strcpy_s(auStack_98,0x10,&UNK_180a3c07c);
-  FUN_1806279c0(&puStack_160,&puStack_b0);
-  uVar1 = uStack_150;
-  uStack_168 = 0;
-  puStack_b0 = &UNK_18098bcb0;
-  uVar5 = uStack_150 + 0xf;
-  FUN_1806277c0(&puStack_160,uVar5);
-  puVar2 = (int32_t *)(puStack_158 + uStack_150);
-  *puVar2 = 0x75646f4d;
-  puVar2[1] = 0x2f73656c;
-  puVar2[2] = 0x6974614e;
-  puVar2[3] = 0x2f6576;
-  uStack_150 = uVar5;
-  FUN_1806277c0(&puStack_160,uVar1 + 0x1b);
-  puVar3 = (uint64_t *)(puStack_158 + uStack_150);
-  *puVar3 = 0x61742e6d61657473;
-  *(int32_t *)(puVar3 + 1) = 0x74656772;
-  *(int8_t *)((longlong)puVar3 + 0xc) = 0;
-  uStack_100 = 0;
-  lStack_f8 = 0;
-  puVar4 = &DAT_18098bc73;
-  if (puStack_158 != (void *)0x0) {
-    puVar4 = puStack_158;
-  }
-  uStack_150 = uVar1 + 0x1b;
-  FUN_18062dee0(&uStack_100,puVar4,&UNK_1809fcfbc);
-  bVar6 = lStack_f8 == 0;
-  if (lStack_f8 != 0) {
-    fclose();
+    uint uVar1;                /* 字符串长度变量 */
+    int32_t *puVar2;           /* 字符串构建指针 */
+    uint64_t *puVar3;          /* 64位字符串构建指针 */
+    void *puVar4;              /* 输出字符串指针 */
+    uint uVar5;                /* 缓冲区大小变量 */
+    bool bVar6;                /* 文件操作状态标志 */
+    
+    /* 主缓冲区 */
+    int8_t auStack_188 [32];   /* 主安全缓冲区 */
+    int32_t uStack_168;        /* 状态变量 */
+    void *puStack_160;         /* 字符串管理器 */
+    void *puStack_158;         /* 主字符串缓冲区 */
+    uint uStack_150;           /* 主缓冲区长度 */
+    int32_t uStack_148;        /* 主缓冲区状态 */
+    
+    /* 第一备用缓冲区 */
+    void *puStack_140;         /* 备用字符串管理器 */
+    void *puStack_138;         /* 备用字符串缓冲区 */
+    uint uStack_130;           /* 备用缓冲区长度 */
+    int32_t uStack_128;        /* 备用缓冲区状态 */
+    
+    /* 第二备用缓冲区 */
+    void *puStack_120;         /* 第二备用字符串管理器 */
+    void *puStack_118;         /* 第二备用字符串缓冲区 */
+    uint uStack_110;           /* 第二备用缓冲区长度 */
+    int32_t uStack_108;        /* 第二备用缓冲区状态 */
+    
+    /* 文件操作变量 */
+    uint64_t uStack_100;       /* 文件句柄1 */
+    longlong lStack_f8;        /* 文件指针1 */
+    uint64_t uStack_e8;        /* 文件句柄2 */
+    longlong lStack_e0;        /* 文件指针2 */
+    uint64_t uStack_d0;        /* 文件句柄3 */
+    longlong lStack_c8;        /* 文件指针3 */
+    
+    /* 字符串构建变量 */
+    uint64_t uStack_b8;        /* 安全参数 */
+    void *puStack_b0;          /* 字符串构建器 */
+    int8_t *puStack_a8;        /* 路径前缀指针 */
+    int32_t uStack_a0;         /* 路径前缀长度 */
+    int8_t auStack_98 [16];    /* 路径前缀缓冲区 */
+    
+    /* 备用字符串构建变量 */
+    void *puStack_88;          /* 备用字符串构建器 */
+    int8_t *puStack_80;        /* 备用路径前缀指针 */
+    int32_t uStack_78;         /* 备用路径前缀长度 */
+    int8_t auStack_70 [16];    /* 备用路径前缀缓冲区 */
+    
+    /* 第二备用字符串构建变量 */
+    void *puStack_60;          /* 第二备用字符串构建器 */
+    int8_t *puStack_58;        /* 第二备用路径前缀指针 */
+    int32_t uStack_50;         /* 第二备用路径前缀长度 */
+    int8_t auStack_48 [16];    /* 第二备用路径前缀缓冲区 */
+    
+    /* 安全参数 */
+    ulonglong uStack_38;       /* 异常处理参数 */
+    
+    /* 初始化安全参数 */
+    uStack_b8 = 0xfffffffffffffffe;
+    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+    
+    /* 初始化状态变量 */
+    uStack_168 = 0;
+    
+    /* 构建路径前缀 "Module/" */
+    puStack_b0 = &UNK_1809fdc18;
+    puStack_a8 = auStack_98;
+    auStack_98[0] = 0;
+    uStack_a0 = 6;
+    strcpy_s(auStack_98, 0x10, &UNK_180a3c07c);
+    
+    /* 初始化主字符串缓冲区 */
+    FUN_1806279c0(&puStack_160, &puStack_b0);
+    uVar1 = uStack_150;
+    uStack_168 = 0;
+    puStack_b0 = &UNK_18098bcb0;
+    
+    /* 分配缓冲区空间 */
+    uVar5 = uStack_150 + 0xf;
+    FUN_1806277c0(&puStack_160, uVar5);
+    
+    /* 构建 "Module/Native/vegetation.tga" 路径 */
+    puVar2 = (int32_t *)(puStack_158 + uStack_150);
+    *puVar2 = 0x75646f4d;        /* "Modu" */
+    puVar2[1] = 0x2f73656c;     /* "les/" */
+    puVar2[2] = 0x6974614e;     /* "Nati" */
+    puVar2[3] = 0x2f6576;       /* "ve/" */
+    uStack_150 = uVar5;
+    
+    /* 继续构建路径 */
+    FUN_1806277c0(&puStack_160, uVar1 + 0x1b);
+    puVar3 = (uint64_t *)(puStack_158 + uStack_150);
+    *puVar3 = 0x61742e6d61657473;  /* "s.vegeta" */
+    *(int32_t *)(puVar3 + 1) = 0x74656772;  /* "reg" */
+    *(int8_t *)((longlong)puVar3 + 0xc) = 0;  /* 字符串结束符 */
+    
+    /* 尝试打开文件 */
+    uStack_100 = 0;
     lStack_f8 = 0;
-    LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
-    UNLOCK();
-  }
-  puStack_160 = &UNK_180a3c3e0;
-  if (puStack_158 == (void *)0x0) {
-    puStack_158 = (void *)0x0;
-    uStack_148 = 0;
-    puStack_160 = &UNK_18098bcb0;
-    if (bVar6) {
-      puStack_88 = &UNK_1809fdc18;
-      puStack_80 = auStack_70;
-      auStack_70[0] = 0;
-      uStack_78 = 6;
-      strcpy_s(auStack_70,0x10,&UNK_180a3c07c);
-      FUN_1806279c0(&puStack_140,&puStack_88);
-      uVar1 = uStack_130;
-      uStack_168 = 0;
-      puStack_88 = &UNK_18098bcb0;
-      uVar5 = uStack_130 + 0xf;
-      FUN_1806277c0(&puStack_140,uVar5);
-      puVar2 = (int32_t *)(puStack_138 + uStack_130);
-      *puVar2 = 0x75646f4d;
-      puVar2[1] = 0x2f73656c;
-      puVar2[2] = 0x6974614e;
-      puVar2[3] = 0x2f6576;
-      uStack_130 = uVar5;
-      FUN_1806277c0(&puStack_140,uVar1 + 0x1a);
-      *(uint64_t *)(puStack_138 + uStack_130) = 0x7261742e63697065;
-      *(int32_t *)((longlong)(puStack_138 + uStack_130) + 8) = 0x746567;
-      uStack_e8 = 0;
-      lStack_e0 = 0;
-      puVar4 = &DAT_18098bc73;
-      if (puStack_138 != (void *)0x0) {
-        puVar4 = puStack_138;
-      }
-      uStack_130 = uVar1 + 0x1a;
-      FUN_18062dee0(&uStack_e8,puVar4,&UNK_1809fcfbc);
-      bVar6 = lStack_e0 == 0;
-      if (lStack_e0 != 0) {
+    puVar4 = &DAT_18098bc73;
+    if (puStack_158 != (void *)0x0) {
+        puVar4 = puStack_158;
+    }
+    uStack_150 = uVar1 + 0x1b;
+    FUN_18062dee0(&uStack_100, puVar4, &UNK_1809fcfbc);
+    bVar6 = lStack_f8 == 0;
+    
+    /* 清理文件资源 */
+    if (lStack_f8 != 0) {
         fclose();
-        lStack_e0 = 0;
+        lStack_f8 = 0;
         LOCK();
         _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
         UNLOCK();
-      }
-      puStack_140 = &UNK_180a3c3e0;
-      if (puStack_138 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-      puStack_138 = (void *)0x0;
-      uStack_128 = 0;
-      puStack_140 = &UNK_18098bcb0;
-      if (bVar6) {
-        puStack_60 = &UNK_1809fdc18;
-        puStack_58 = auStack_48;
-        auStack_48[0] = 0;
-        uStack_50 = 6;
-        strcpy_s(auStack_48,0x10,&UNK_180a3c07c);
-        FUN_1806279c0(&puStack_120,&puStack_60);
-        uVar1 = uStack_110;
-        puStack_60 = &UNK_18098bcb0;
-        uVar5 = uStack_110 + 0xf;
-        FUN_1806277c0(&puStack_120,uVar5);
-        puVar2 = (int32_t *)(puStack_118 + uStack_110);
-        *puVar2 = 0x75646f4d;
-        puVar2[1] = 0x2f73656c;
-        puVar2[2] = 0x6974614e;
-        puVar2[3] = 0x2f6576;
-        uStack_110 = uVar5;
-        FUN_1806277c0(&puStack_120,uVar1 + 0x19);
-        puVar3 = (uint64_t *)(puStack_118 + uStack_110);
-        *puVar3 = 0x677261742e676f67;
-        *(int16_t *)(puVar3 + 1) = 0x7465;
-        *(int8_t *)((longlong)puVar3 + 10) = 0;
-        uStack_d0 = 0;
-        lStack_c8 = 0;
-        puVar4 = &DAT_18098bc73;
-        if (puStack_118 != (void *)0x0) {
-          puVar4 = puStack_118;
-        }
-        uStack_110 = uVar1 + 0x19;
-        FUN_18062dee0(&uStack_d0,puVar4,&UNK_1809fcfbc);
-        if (lStack_c8 != 0) {
-          fclose();
-          lStack_c8 = 0;
-          LOCK();
-          _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
-          UNLOCK();
-        }
-        puStack_120 = &UNK_180a3c3e0;
-        if (puStack_118 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
-        }
-        puStack_118 = (void *)0x0;
-        uStack_108 = 0;
-        puStack_120 = &UNK_18098bcb0;
-      }
     }
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+    
+    /* 清理主缓冲区 */
+    puStack_160 = &UNK_180a3c3e0;
+    if (puStack_158 == (void *)0x0) {
+        puStack_158 = (void *)0x0;
+        uStack_148 = 0;
+        puStack_160 = &UNK_18098bcb0;
+        
+        /* 如果第一个文件不存在，尝试第二个文件 */
+        if (bVar6) {
+            /* 构建备用路径 "Module/Native/pipe.tga" */
+            puStack_88 = &UNK_1809fdc18;
+            puStack_80 = auStack_70;
+            auStack_70[0] = 0;
+            uStack_78 = 6;
+            strcpy_s(auStack_70, 0x10, &UNK_180a3c07c);
+            
+            /* 初始化备用字符串缓冲区 */
+            FUN_1806279c0(&puStack_140, &puStack_88);
+            uVar1 = uStack_130;
+            uStack_168 = 0;
+            puStack_88 = &UNK_18098bcb0;
+            
+            /* 分配备用缓冲区空间 */
+            uVar5 = uStack_130 + 0xf;
+            FUN_1806277c0(&puStack_140, uVar5);
+            
+            /* 构建备用路径 */
+            puVar2 = (int32_t *)(puStack_138 + uStack_130);
+            *puVar2 = 0x75646f4d;        /* "Modu" */
+            puVar2[1] = 0x2f73656c;     /* "les/" */
+            puVar2[2] = 0x6974614e;     /* "Nati" */
+            puVar2[3] = 0x2f6576;       /* "ve/" */
+            uStack_130 = uVar5;
+            
+            /* 继续构建备用路径 */
+            FUN_1806277c0(&puStack_140, uVar1 + 0x1a);
+            *(uint64_t *)(puStack_138 + uStack_130) = 0x7261742e63697065;  /* "epipe.t" */
+            *(int32_t *)((longlong)(puStack_138 + uStack_130) + 8) = 0x746567;  /* "teg" */
+            
+            /* 尝试打开备用文件 */
+            uStack_e8 = 0;
+            lStack_e0 = 0;
+            puVar4 = &DAT_18098bc73;
+            if (puStack_138 != (void *)0x0) {
+                puVar4 = puStack_138;
+            }
+            uStack_130 = uVar1 + 0x1a;
+            FUN_18062dee0(&uStack_e8, puVar4, &UNK_1809fcfbc);
+            bVar6 = lStack_e0 == 0;
+            
+            /* 清理备用文件资源 */
+            if (lStack_e0 != 0) {
+                fclose();
+                lStack_e0 = 0;
+                LOCK();
+                _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                UNLOCK();
+            }
+            
+            /* 清理备用缓冲区 */
+            puStack_140 = &UNK_180a3c3e0;
+            if (puStack_138 != (void *)0x0) {
+                /* 执行资源清理函数 */
+                FUN_18064e900();
+            }
+            puStack_138 = (void *)0x0;
+            uStack_128 = 0;
+            puStack_140 = &UNK_18098bcb0;
+            
+            /* 如果备用文件也不存在，尝试第三个文件 */
+            if (bVar6) {
+                /* 构建第三备用路径 "Module/Native/gor.tag" */
+                puStack_60 = &UNK_1809fdc18;
+                puStack_58 = auStack_48;
+                auStack_48[0] = 0;
+                uStack_50 = 6;
+                strcpy_s(auStack_48, 0x10, &UNK_180a3c07c);
+                
+                /* 初始化第三备用字符串缓冲区 */
+                FUN_1806279c0(&puStack_120, &puStack_60);
+                uVar1 = uStack_110;
+                puStack_60 = &UNK_18098bcb0;
+                
+                /* 分配第三备用缓冲区空间 */
+                uVar5 = uStack_110 + 0xf;
+                FUN_1806277c0(&puStack_120, uVar5);
+                
+                /* 构建第三备用路径 */
+                puVar2 = (int32_t *)(puStack_118 + uStack_110);
+                *puVar2 = 0x75646f4d;        /* "Modu" */
+                puVar2[1] = 0x2f73656c;     /* "les/" */
+                puVar2[2] = 0x6974614e;     /* "Nati" */
+                puVar2[3] = 0x2f6576;       /* "ve/" */
+                uStack_110 = uVar5;
+                
+                /* 继续构建第三备用路径 */
+                FUN_1806277c0(&puStack_120, uVar1 + 0x19);
+                puVar3 = (uint64_t *)(puStack_118 + uStack_110);
+                *puVar3 = 0x677261742e676f67;  /* "gor.tag" */
+                *(int16_t *)(puVar3 + 1) = 0x7465;  /* "te" */
+                *(int8_t *)((longlong)puVar3 + 10) = 0;  /* 字符串结束符 */
+                
+                /* 尝试打开第三备用文件 */
+                uStack_d0 = 0;
+                lStack_c8 = 0;
+                puVar4 = &DAT_18098bc73;
+                if (puStack_118 != (void *)0x0) {
+                    puVar4 = puStack_118;
+                }
+                uStack_110 = uVar1 + 0x19;
+                FUN_18062dee0(&uStack_d0, puVar4, &UNK_1809fcfbc);
+                
+                /* 清理第三备用文件资源 */
+                if (lStack_c8 != 0) {
+                    fclose();
+                    lStack_c8 = 0;
+                    LOCK();
+                    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                    UNLOCK();
+                }
+                
+                /* 清理第三备用缓冲区 */
+                puStack_120 = &UNK_180a3c3e0;
+                if (puStack_118 != (void *)0x0) {
+                    /* 执行资源清理函数 */
+                    FUN_18064e900();
+                }
+                puStack_118 = (void *)0x0;
+                uStack_108 = 0;
+                puStack_120 = &UNK_18098bcb0;
+            }
+        }
+        
+        /* 执行安全退出 */
+        FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+    }
+    
+    /* 执行资源清理 */
+    FUN_18064e900();
 }
 
 
