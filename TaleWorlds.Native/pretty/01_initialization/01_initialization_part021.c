@@ -82,11 +82,11 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   FUN_180627c50(&module_name, resource_name);
   buffer_size = 0;
   buffer_capacity = buffer_capacity & 0xffffff00;  // 对齐到256字节边界
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
-  plVar4 = (longlong *)FUN_1801954d0(uVar3,&puStack_1c0);
-  ppuStack_170 = (undefined **)plVar4;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x28))(plVar4);
+  undefined8 alloc_result = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
+  longlong *resource_manager = (longlong *)FUN_1801954d0(alloc_result,&puStack_1c0);
+  ppuStack_170 = (undefined **)resource_manager;
+  if (resource_manager != (longlong *)0x0) {
+    (**(code **)(*resource_manager + 0x28))(resource_manager);
   }
   uStack_148 = 0x3f800000;
   uStack_144 = 0;
@@ -175,12 +175,12 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_218 = 0xffffffff;
   uStack_1d0 = uVar1;
   uStack_1c8._4_4_ = *(uint *)(lVar6 + 0x1c);
-  FUN_1801a6440(plVar4,_DAT_180c868e8,&puStack_1e0,&uStack_148);
-  FUN_18019e260(plVar4);
-  (**(code **)(*(longlong *)param_1[0x56] + 0x138))((longlong *)param_1[0x56],plVar4);
-  FUN_180199500(plVar4,0x3d072b02,1);
-  FUN_1801a2ea0(plVar4);
-  (**(code **)(*(longlong *)param_1[0x56] + 0x140))((longlong *)param_1[0x56],plVar4);
+  FUN_1801a6440(resource_manager,_DAT_180c868e8,&puStack_1e0,&uStack_148);
+  FUN_18019e260(resource_manager);
+  (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_manager);
+  FUN_180199500(resource_manager,0x3d072b02,1);
+  FUN_1801a2ea0(resource_manager);
+  (**(code **)(*(longlong *)engine_context[0x56] + 0x140))((longlong *)engine_context[0x56],resource_manager);
   Sleep(1000);
   puStack_1e0 = &UNK_180a3c3e0;
   if (lStack_1d8 != 0) {
@@ -198,8 +198,8 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   lStack_188 = 0;
   uStack_178 = 0;
   puStack_190 = &UNK_18098bcb0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))(plVar4);
+  if (resource_manager != (longlong *)0x0) {
+    (**(code **)(*resource_manager + 0x38))(resource_manager);
   }
   ppuStack_170 = &puStack_1c0;
   puStack_1c0 = &UNK_180a3c3e0;
@@ -388,11 +388,11 @@ LAB_180054912:
         if (cVar4 == '\0') {
           FUN_180624910(&puStack_d0);
         }
-        plVar2 = plStack_a8;
-        iVar8 = (int)(lVar10 >> 5);
-        lVar10 = (longlong)iVar8;
-        if (0 < iVar8) {
-          puVar15 = (uint *)(puVar3 + 2);
+        longlong *module_registry = global_registry;
+        int dependency_count = (int)(lVar10 >> 5);
+        longlong dependency_offset = (longlong)dependency_count;
+        if (0 < dependency_count) {
+          uint *module_entry = (uint *)(puVar3 + 2);
           do {
             FUN_180061db0();
             FUN_180061be0();
@@ -572,13 +572,13 @@ LAB_180054ec9:
             }
             puStack_150 = (undefined1 *)0x0;
             puStack_158 = &UNK_18098bcb0;
-            iVar13 = iVar13 + 1;
-            puVar15 = puVar15 + 8;
-            lVar10 = lVar10 + -1;
-            lVar14 = lStack_a0;
+            dependency_index = dependency_index + 1;
+            module_entry = module_entry + 2;
+            dependency_offset = dependency_offset + -1;
+            total_modules = module_count;
             puVar5 = puStack_50;
-            iVar9 = iStack_f8;
-          } while (lVar10 != 0);
+            current_index = module_index;
+          } while (dependency_offset != 0);
         }
         puStack_d0 = &UNK_180a3c3e0;
         if (lStack_c8 != 0) {
@@ -614,8 +614,8 @@ LAB_180054ec9:
       uStack_120 = uStack_120 & 0xffffffff00000000;
       puStack_130 = (undefined1 *)0x0;
       puStack_138 = &UNK_18098bcb0;
-      iStack_f8 = iVar9 + 1;
-    } while (iStack_f8 < (int)lVar14);
+      module_index = current_index + 1;
+    } while (module_index < (int)total_modules);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_178);
@@ -730,14 +730,14 @@ void cleanup_module_resources(longlong *module_list)
 
 {
   // 模块清理变量
-  longlong current_module;     // 当前模块
   longlong end_module;         // 结束模块
+  longlong current_module;     // 当前模块
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x48) {
-    FUN_180058c20(lVar2);
+  end_module = module_list[1];
+  for (current_module = *module_list; current_module != end_module; current_module = current_module + 0x48) {
+    FUN_180058c20(current_module);
   }
-  if (*param_1 == 0) {
+  if (*module_list == 0) {
     return;
   }
                     // WARNING: Subroutine does not return

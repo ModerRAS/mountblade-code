@@ -1,6 +1,21 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization_part045.c - 8 个函数
+//
+// 简化说明：本文件包含8个用于对象序列化和内存管理的函数
+// 主要功能：
+// 1. DeserializeObjectArray - 从数据流中反序列化对象数组
+// 2. DeserializeObjectArrayVariant - 反序列化对象数组的变体版本
+// 3. BatchDeserializeObjects - 批量处理对象数组的反序列化
+// 4. DeserializeSingleObject - 反序列化单个对象的简化版本
+// 5. FinalizeObjectArrayProcessing - 处理对象数组的最终化操作
+// 6. InitializeObjectFromStream - 从数据流中读取并初始化对象属性
+// 7. CreateObjectInstance - 创建并初始化对象实例
+// 8. InitializeObjectManager - 初始化对象的内部管理器
+// 9. CleanupObjectManager - 清理对象的内部管理器
+//
+// 注意：由于代码复杂度很高，部分变量名仍保持原始格式（如iVar1, lVar2等）
+// 这些主要是循环计数器、临时变量和寄存器变量，在实际使用中可以根据需要进一步优化
 
 /**
  * 从数据流中反序列化对象数组
@@ -111,21 +126,21 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      lVar8 = lVar8 + -1;
-      lVar11 = lVar11 + 0x24;
-    } while (lVar8 != 0);
+      object_count = object_count + -1;
+      offset = offset + 0x24;
+    } while (object_count != 0);
   }
-  *(int **)(param_2 + 8) = (int *)(lVar5 + 8);
-  iVar4 = *(int *)(lVar5 + 8);
-  *(longlong *)(param_2 + 8) = lVar5 + 0xc;
-  if (iVar4 < 1) {
-    *(int **)(param_2 + 8) = (int *)(lVar5 + 0x14);
-    iVar4 = *(int *)(lVar5 + 0x14);
-    *(longlong *)(param_2 + 8) = lVar5 + 0x18;
-    if (iVar4 < 1) {
+  *(int **)(data_stream + 8) = (int *)(current_pos + 8);
+  array_size = *(int *)(current_pos + 8);
+  *(longlong *)(data_stream + 8) = current_pos + 0xc;
+  if (array_size < 1) {
+    *(int **)(data_stream + 8) = (int *)(current_pos + 0x14);
+    array_size = *(int *)(current_pos + 0x14);
+    *(longlong *)(data_stream + 8) = current_pos + 0x18;
+    if (array_size < 1) {
       return;
     }
-    *(short *)((longlong)param_1 + 0x62) = (short)iVar4;
+    *(short *)((longlong)object_manager + 0x62) = (short)array_size;
     if (*(longlong *)((longlong)param_1 + 0x5a) == 0) {
       *(undefined8 *)((longlong)param_1 + 0x5a) = 0;
       if (*(longlong *)((longlong)param_1 + 0x52) == 0) {
@@ -154,7 +169,7 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(short *)(param_1 + 10) = (short)iVar4;
+  *(short *)(object_manager + 10) = (short)array_size;
   if (param_1[9] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -298,9 +313,9 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      lVar8 = lVar8 + -1;
-      lVar11 = lVar11 + 0x24;
-    } while (lVar8 != 0);
+      object_count = object_count + -1;
+      offset = offset + 0x24;
+    } while (object_count != 0);
   }
   *(int **)(unaff_RDI + 8) = (int *)(lVar5 + 8);
   iVar4 = *(int *)(lVar5 + 8);
@@ -312,7 +327,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
     if (iVar4 < 1) {
       return;
     }
-    *(short *)((longlong)param_1 + 0x62) = (short)iVar4;
+    *(short *)((longlong)object_manager + 0x62) = (short)array_size;
     if (*(longlong *)((longlong)param_1 + 0x5a) == 0) {
       *(undefined8 *)((longlong)param_1 + 0x5a) = 0;
       if (*(longlong *)((longlong)param_1 + 0x52) == 0) {
@@ -341,7 +356,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(short *)(param_1 + 10) = (short)iVar4;
+  *(short *)(object_manager + 10) = (short)array_size;
   if (param_1[9] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

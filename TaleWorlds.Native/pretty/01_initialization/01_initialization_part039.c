@@ -854,12 +854,22 @@ LAB_18006d9d7:
 
 
 
-// 函数: void FUN_18006da50(longlong *param_1)
-void FUN_18006da50(longlong *param_1)
+/**
+ * 释放内存块描述符
+ * 清理内存块描述符并标记为可用状态
+ * 原函数名：FUN_18006da50
+ * 
+ * @param descriptor 描述符指针
+ */
+void FreeMemoryBlockDescriptor(longlong *descriptor)
 
 {
-  FUN_180069530((ulonglong)(*(uint *)(param_1 + 1) & 0x1f) * 0x1a8 + *param_1);
-  *(undefined1 *)((*param_1 - (ulonglong)(*(uint *)(param_1 + 1) & 0x1f)) + 0x352f) = 1;
+  // 调用清理函数释放内存块
+  FUN_180069530((ulonglong)(*(uint *)(descriptor + 1) & 0x1f) * 0x1a8 + *descriptor);
+  
+  // 标记描述符为可用状态
+  *(undefined1 *)((*descriptor - (ulonglong)(*(uint *)(descriptor + 1) & 0x1f)) + 0x352f) = 1;
+  
   return;
 }
 
