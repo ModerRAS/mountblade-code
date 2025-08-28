@@ -659,7 +659,14 @@ undefined8 get_resource_entry_data(longlong resource_entry, undefined8 *data_poi
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4)
+// 函数: 处理资源生命周期事件
+// 参数:
+//   param_1 - 资源指针
+//   param_2 - 事件数据指针
+//   param_3 - 事件类型
+//   param_4 - 事件参数
+// 功能: 根据事件类型处理资源的创建、复制、移动或销毁
+longlong handle_resource_lifecycle(longlong *resource_ptr, longlong *event_data, int event_type, undefined8 event_param)
 
 {
   longlong lVar1;
@@ -714,8 +721,13 @@ longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined
 
 
 
-undefined8 *
-FUN_180068ff0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 初始化资源条目
+// 参数:
+//   param_1 - 资源条目指针
+//   param_2 - 配置参数
+//   param_3, param_4 - 初始化参数
+// 功能: 初始化资源条目的基本结构和数据
+undefined8 *initialize_resource_entry(undefined8 *resource_entry, longlong config_param, undefined8 param_3, undefined8 param_4)
 
 {
   undefined *puVar1;
@@ -738,7 +750,11 @@ FUN_180068ff0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-undefined8 * FUN_180069070(undefined8 *param_1)
+// 函数: 创建默认资源条目
+// 参数:
+//   param_1 - 资源条目指针
+// 功能: 创建具有默认配置的资源条目
+undefined8 * create_default_resource_entry(undefined8 *resource_entry)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -765,8 +781,12 @@ undefined8 * FUN_180069070(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180069130(longlong param_1,longlong param_2)
-void FUN_180069130(longlong param_1,longlong param_2)
+// 函数: 移动资源回调函数
+// 参数:
+//   param_1 - 目标资源
+//   param_2 - 源资源
+// 功能: 将资源的回调函数从源移动到目标
+void move_resource_callbacks(longlong dest_resource, longlong src_resource)
 
 {
   code *pcVar1;
@@ -785,7 +805,13 @@ void FUN_180069130(longlong param_1,longlong param_2)
 
 
 
-longlong FUN_180069190(longlong param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放内存块资源
+// 参数:
+//   param_1 - 内存块指针
+//   param_2 - 释放标志
+//   param_3, param_4 - 释放参数
+// 功能: 根据标志释放内存块资源
+longlong free_memory_block_resource(longlong memory_block, ulonglong free_flag, undefined8 param_3, undefined8 param_4)
 
 {
   *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
@@ -797,8 +823,13 @@ longlong FUN_180069190(longlong param_1,ulonglong param_2,undefined8 param_3,und
 
 
 
-undefined8 *
-FUN_1800691e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放文件句柄资源
+// 参数:
+//   param_1 - 文件句柄指针
+//   param_2 - 释放标志
+//   param_3, param_4 - 释放参数
+// 功能: 根据标志释放文件句柄资源
+undefined8 *free_file_handle_resource(undefined8 *file_handle, ulonglong free_flag, undefined8 param_3, undefined8 param_4)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -812,8 +843,13 @@ FUN_1800691e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
+// 函数: 复制字符串数据
+// 参数:
+//   param_1 - 目标缓冲区
+//   param_2 - 源字符串
+//   param_3 - 字符串长度
+// 功能: 安全复制字符串数据到目标缓冲区
+void copy_string_data(longlong dest_buffer, undefined8 src_string, int string_length)
 
 {
   if (param_3 + 1 < 0x100) {
@@ -829,8 +865,9 @@ void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180069241(void)
-void FUN_180069241(void)
+// 函数: 内存复制操作
+// 功能: 执行内存复制操作（简化实现）
+void perform_memory_copy(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -841,8 +878,11 @@ void FUN_180069241(void)
 
 
 
-// 函数: void FUN_180069266(undefined1 *param_1)
-void FUN_180069266(undefined1 *param_1)
+// 函数: 重置缓冲区状态
+// 参数:
+//   param_1 - 缓冲区指针
+// 功能: 重置缓冲区的状态和数据
+void reset_buffer_state(undefined1 *buffer)
 
 {
   longlong unaff_RDI;
@@ -858,8 +898,13 @@ void FUN_180069266(undefined1 *param_1)
 
 
 
-// 函数: void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 字符串替换操作
+// 参数:
+//   param_1 - 字符串管理器
+//   param_2 - 搜索字符串
+//   param_3 - 替换字符串
+// 功能: 在字符串中执行搜索和替换操作
+void perform_string_replace(longlong string_manager, longlong search_string, longlong replace_string)
 
 {
   longlong lVar1;
@@ -901,8 +946,12 @@ void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_1800693f0(longlong param_1,longlong param_2)
-void FUN_1800693f0(longlong param_1,longlong param_2)
+// 函数: 设置字符串缓冲区
+// 参数:
+//   param_1 - 缓冲区结构体
+//   param_2 - 源字符串
+// 功能: 设置字符串缓冲区的内容和长度
+void set_string_buffer(longlong buffer_struct, longlong src_string)
 
 {
   longlong lVar1;
@@ -931,7 +980,13 @@ void FUN_1800693f0(longlong param_1,longlong param_2)
 
 
 
-longlong FUN_180069470(longlong param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放哈希表资源
+// 参数:
+//   param_1 - 哈希表指针
+//   param_2 - 释放标志
+//   param_3, param_4 - 释放参数
+// 功能: 根据标志释放哈希表资源
+longlong free_hash_table_resource(longlong hash_table, ulonglong free_flag, undefined8 param_3, undefined8 param_4)
 
 {
   *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
@@ -945,8 +1000,12 @@ longlong FUN_180069470(longlong param_1,ulonglong param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 清理资源条目
+// 参数:
+//   param_1 - 资源条目指针
+//   param_2, param_3, param_4 - 清理参数
+// 功能: 清理资源条目并调用相关的析构函数
+void cleanup_resource_entry(undefined8 *resource_entry, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   if ((code *)param_1[0x2f] != (code *)0x0) {
@@ -963,8 +1022,11 @@ void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_1800695a0(longlong param_1)
-void FUN_1800695a0(longlong param_1)
+// 函数: 重置字符串指针
+// 参数:
+//   param_1 - 字符串结构体
+// 功能: 重置字符串指针为默认状态
+void reset_string_pointer(longlong string_struct)
 
 {
   *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
@@ -973,8 +1035,13 @@ void FUN_1800695a0(longlong param_1)
 
 
 
-undefined8 *
-FUN_1800696d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 初始化同步对象
+// 参数:
+//   param_1 - 同步对象指针
+//   param_2 - 初始化标志
+//   param_3, param_4 - 初始化参数
+// 功能: 初始化同步对象的基本结构
+undefined8 *initialize_sync_object(undefined8 *sync_object, ulonglong init_flag, undefined8 param_3, undefined8 param_4)
 
 {
   *param_1 = &UNK_18098bdc8;
@@ -988,7 +1055,12 @@ FUN_1800696d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined8 * FUN_180069720(undefined8 *param_1,ulonglong param_2)
+// 函数: 释放同步对象
+// 参数:
+//   param_1 - 同步对象指针
+//   param_2 - 释放标志
+// 功能: 根据标志释放同步对象资源
+undefined8 * free_sync_object(undefined8 *sync_object, ulonglong free_flag)
 
 {
   *param_1 = &UNK_1809feeb8;
@@ -1000,7 +1072,12 @@ undefined8 * FUN_180069720(undefined8 *param_1,ulonglong param_2)
 
 
 
-undefined8 FUN_180069760(undefined8 param_1,ulonglong param_2)
+// 函数: 释放事件对象
+// 参数:
+//   param_1 - 事件对象
+//   param_2 - 释放标志
+// 功能: 根据标志释放事件对象资源
+undefined8 free_event_object(undefined8 event_object, ulonglong free_flag)
 
 {
   FUN_1800697a0();
