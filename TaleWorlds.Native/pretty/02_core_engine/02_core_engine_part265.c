@@ -874,163 +874,229 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
 
 /**
  * 销毁场景对象
- * @param object_ptr 对象指针
+ * 完全销毁一个场景对象，释放所有相关资源
+ * 
+ * @param object_ptr 对象指针，要销毁的对象
+ * 
+ * 功能说明：
+ * 1. 处理生命周期事件的清理
+ * 2. 释放所有组件的引用计数
+ * 3. 注销事件监听器
+ * 4. 清理对象资源
+ * 5. 释放对象内存
+ * 
+ * 销毁流程：
+ * 1. 检查并处理生命周期事件
+ * 2. 更新组件的生存期引用
+ * 3. 注册和注销组件事件
+ * 4. 记录调试事件日志
+ * 5. 最终清理所有资源
+ * 
+ * 内存管理：
+ * - 正确处理所有引用计数
+ * - 避免内存泄漏
+ * - 确保事件系统状态一致
+ * 
+ * 注意事项：
+ * - 函数不会返回，内部调用堆栈保护清理函数
+ * - 销毁过程需要处理复杂的依赖关系
+ * - 需要确保所有相关资源都被正确释放
  */
-void destroy_scene_object(longlong object_ptr) {
-  undefined8 object_data;
-  bool event_flag1;
-  bool event_flag2;
-  char lifecycle_flag;
-  undefined4 string_value;
-  longlong temp_value;
-  undefined4 *event_string;
-  ulonglong event_mask;
-  undefined1 stack_buffer1[32];
-  undefined *stack_ptr1;
-  undefined4 *stack_ptr2;
-  undefined4 stack_value1;
-  ulonglong stack_value2;
-  undefined4 stack_value3;
-  undefined8 stack_value4;
-  undefined *stack_ptr3;
-  undefined1 *stack_ptr4;
-  undefined4 stack_value5;
-  undefined1 stack_buffer2[32];
-  ulonglong stack_value5;
+void 销毁场景对象(longlong object_ptr) {
+  undefined8 object_type_data;     // 对象类型数据
+  bool event_registration_success; // 事件注册成功标志
+  bool lifecycle_event_active;     // 生命周期事件活动标志
+  char lifecycle_check_result;     // 生命周期检查结果
+  undefined4 event_string_value;   // 事件字符串值
+  longlong temp_value;             // 临时值
+  undefined4 *event_string_ptr;    // 事件字符串指针
+  ulonglong destruction_event_mask; // 销毁事件掩码
   
-  // 堆栈保护
-  stack_value4 = 0xfffffffffffffffe;
-  stack_value5 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
-  event_flag1 = false;
-  stack_value3 = 0;
-  *(undefined8 *)(object_ptr + 0x1d0) = 0;
+  // 堆栈缓冲区 - 用于堆栈保护检查
+  undefined1 stack_protection_buffer_1[32];
+  undefined *stack_context_ptr_1;
+  undefined4 *stack_context_ptr_2;
+  undefined4 stack_temp_value_1;
+  ulonglong stack_temp_value_2;
+  undefined4 stack_temp_value_3;
+  undefined8 stack_temp_value_4;
+  undefined *stack_context_ptr_3;
+  undefined1 *stack_context_ptr_4;
+  undefined4 stack_temp_value_5;
+  
+  // 生命周期事件处理缓冲区
+  undefined1 destruction_event_buffer[32];
+  ulonglong stack_protection_value;
+  
+  // 初始化堆栈保护
+  stack_temp_value_4 = DEFAULT_STACK_PROTECTION;
+  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
+  event_registration_success = false;
+  stack_temp_value_3 = 0;
+  *(undefined8 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
   
   // 检查是否需要处理生存期事件
-  if (_DAT_180c8a9d0 == 0) goto SKIP_LIFETIME_EVENTS;
+  if (LIFETIME_EVENT_ENABLED == 0) goto 跳过生命周期事件处理;
+  
   temp_value = get_system_time();
-  event_string = stack_ptr2;
-  if ((temp_value == 0) || (lifecycle_flag = check_object_lifecycle(object_ptr), event_string = stack_ptr2, lifecycle_flag == '\0')) {
-    EVENT_HANDLER_LABEL:
-    event_flag2 = false;
+  event_string_ptr = stack_context_ptr_2;
+  
+  // 检查时间和生命周期状态
+  if ((temp_value == 0) || 
+      (lifecycle_check_result = 检查对象生命周期(object_ptr), 
+       event_string_ptr = stack_context_ptr_2, 
+       lifecycle_check_result == '\0')) {
+    
+    销毁事件处理器标签:
+    lifecycle_event_active = false;
   }
   else {
-    object_data = *(undefined8 *)(object_ptr + 0x1e0);
-    stack_ptr1 = &EVENT_LOG_BUFFER;
-    stack_value2 = 0;
-    stack_ptr2 = (undefined4 *)0x0;
-    stack_value1 = 0;
-    event_string = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
-    *(undefined1 *)event_string = 0;
-    stack_ptr2 = event_string;
-    string_value = initialize_event_string(event_string);
-    stack_value2 = CONCAT44(stack_value2._4_4_, string_value);
-    *event_string = 0x5f657375;  // "_esu"
-    event_string[1] = 0x74726976;  // "triv"
-    event_string[2] = 0x5f6c6175;  // "_lau"
-    event_string[3] = 0x74786574;  // "txet"
-    event_string[4] = 0x6e697275;  // "niru"
-    *(undefined2 *)(event_string + 5) = 0x67;  // "g"
-    stack_value1 = 0x15;
-    event_flag1 = true;
-    stack_value3 = 1;
-    temp_value = register_event_listener(object_data, &stack_ptr1, 0);
-    if (temp_value == 0) goto EVENT_HANDLER_LABEL;
-    event_flag2 = true;
+    // 注册销毁事件监听器
+    object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+    stack_context_ptr_1 = &EVENT_LOG_BUFFER;
+    stack_temp_value_2 = 0;
+    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_temp_value_1 = 0;
+    
+    event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    *(undefined1 *)event_string_ptr = 0;
+    stack_context_ptr_2 = event_string_ptr;
+    
+    event_string_value = initialize_event_string(event_string_ptr);
+    stack_temp_value_2 = CONCAT44(stack_temp_value_2._4_4_, event_string_value);
+    
+    // 设置事件字符串: "_use_lifetime_texturing"
+    *event_string_ptr = 0x5f657375;  // "_esu"
+    event_string_ptr[1] = 0x74726976;  // "triv"
+    event_string_ptr[2] = 0x5f6c6175;  // "_lau"
+    event_string_ptr[3] = 0x74786574;  // "txet"
+    event_string_ptr[4] = 0x6e697275;  // "niru"
+    *(undefined2 *)(event_string_ptr + 5) = 0x67;  // "g"
+    
+    stack_temp_value_1 = 0x15;
+    event_registration_success = true;
+    stack_temp_value_3 = 1;
+    
+    temp_value = register_event_listener(object_type_data, &stack_context_ptr_1, 0);
+    if (temp_value == 0) goto 销毁事件处理器标签;
+    lifecycle_event_active = true;
   }
   
   // 清理事件资源
-  if (event_flag1) {
-    stack_value3 = 0;
-    stack_ptr1 = &EVENT_LOG_BUFFER;
-    if (event_string != (undefined4 *)0x0) {
+  if (event_registration_success) {
+    stack_temp_value_3 = 0;
+    stack_context_ptr_1 = &EVENT_LOG_BUFFER;
+    if (event_string_ptr != (undefined4 *)0x0) {
       // WARNING: Subroutine does not return
-      free_event_string(event_string);
+      free_event_string(event_string_ptr);
     }
-    stack_ptr2 = (undefined4 *)0x0;
-    stack_value2 = stack_value2 & 0xffffffff00000000;
-    stack_ptr1 = &MEMORY_CLEANUP_FLAG;
+    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_temp_value_2 = stack_temp_value_2 & 0xffffffff00000000;
+    stack_context_ptr_1 = &MEMORY_CLEANUP_FLAG;
   }
   
   // 处理生存期事件
-  if (event_flag2) {
-    if (*(longlong *)(object_ptr + 0xa8) != 0) {
-      *(undefined1 *)(object_ptr + 0x158) = 1;
-      initialize_object_lifecycle(&stack_ptr1, object_ptr);
-      if (*(undefined **)(object_ptr + 0x148) != stack_ptr1) {
-        *(undefined2 *)(object_ptr + 0x158) = 0;
+  if (lifecycle_event_active) {
+    // 检查场景数据有效性
+    if (*(longlong *)(object_ptr + OFFSET_OBJECT_SCENE_DATA) != 0) {
+      *(undefined1 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
+      initialize_object_lifecycle(&stack_context_ptr_1, object_ptr);
+      if (*(undefined **)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
+        *(undefined2 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
       }
     }
-    if (*(char *)(object_ptr + 0x158) != '\0') {
-      // 更新不同组件的生存期引用
-      if (*(longlong *)(object_ptr + 0xb8) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 0xb8) + 0x348) = *(undefined8 *)(object_ptr + 0x148);
-        *(undefined4 *)(*(longlong *)(object_ptr + 0xb8) + 0x350) = 0;
+    
+    // 如果生命周期标志有效，处理组件生存期引用清理
+    if (*(char *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) != '\0') {
+      // 清理主组件数组的生存期引用
+      if (*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) != 0) {
+        *(undefined8 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
+          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(undefined4 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
       }
+      
+      // 清理渲染组件数组的生存期引用
       if (*(longlong *)(object_ptr + 200) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 200) + 0x348) = *(undefined8 *)(object_ptr + 0x148);
+        *(undefined8 *)(*(longlong *)(object_ptr + 200) + 0x348) = 
+          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
         *(undefined4 *)(*(longlong *)(object_ptr + 200) + 0x350) = 1;
       }
+      
+      // 清理其他组件的生存期引用
       if (*(longlong *)(object_ptr + 0xd8) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = *(undefined8 *)(object_ptr + 0x148);
+        *(undefined8 *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = 
+          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
         *(undefined4 *)(*(longlong *)(object_ptr + 0xd8) + 0x350) = 2;
       }
       
-      // 注册组件事件
-      stack_ptr3 = &COMPONENT_EVENT_FLAG;
-      stack_ptr4 = stack_buffer2;
-      stack_buffer2[0] = 0;
-      stack_value5 = 0x15;
-      strcpy_s(stack_buffer2, 0x20, &COMPONENT_EVENT_DATA);
-      event_mask = register_event_listener(*(undefined8 *)(object_ptr + 0x1e0), &stack_ptr3, 1);
-      *(ulonglong *)(object_ptr + 0x140) = *(ulonglong *)(object_ptr + 0x140) | event_mask;
-      update_object_event_mask(object_ptr);
-      *(undefined2 *)(object_ptr + 0x3c0) = 0xffff;
-      stack_ptr3 = &MEMORY_CLEANUP_FLAG;
-      *(undefined4 *)(object_ptr + 0x1d0) = 1;
+      // 注册销毁组件事件
+      stack_context_ptr_3 = &COMPONENT_EVENT_FLAG;
+      stack_context_ptr_4 = destruction_event_buffer;
+      destruction_event_buffer[0] = 0;
+      stack_temp_value_5 = 0x15;
+      strcpy_s(destruction_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
       
-      // 记录调试事件
-      object_data = *(undefined8 *)(object_ptr + 0x1e0);
-      stack_ptr1 = &EVENT_LOG_BUFFER;
-      stack_value2 = 0;
-      stack_ptr2 = (undefined4 *)0x0;
-      stack_value1 = 0;
-      event_string = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
-      *(undefined1 *)event_string = 0;
-      stack_ptr2 = event_string;
-      string_value = initialize_event_string(event_string);
-      stack_value2 = CONCAT44(stack_value2._4_4_, string_value);
-      *event_string = 0x5f657375;  // "_esu"
-      event_string[1] = 0x62756f64;  // "buod"
-      event_string[2] = 0x635f656c;  // "c_el"
-      event_string[3] = 0x726f6c6f;  // "rolo"
-      event_string[4] = 0x5f70616d;  // "_pam"
-      event_string[5] = 0x68746977;  // "htiw"
-      event_string[6] = 0x73616d5f;  // "sam_"
-      event_string[7] = 0x65745f6b;  // "et_k"
-      event_string[8] = 0x72757478;  // "rutx"
-      *(undefined2 *)(event_string + 9) = 0x65;  // "e"
-      stack_value1 = 0x25;
-      register_event_listener(object_data, &stack_ptr1, 0);
-      stack_ptr1 = &EVENT_LOG_BUFFER;
+      destruction_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+                                                    &stack_context_ptr_3, 1);
+      *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
+        *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) | destruction_event_mask;
+      
+      update_object_event_mask(object_ptr);
+      *(undefined2 *)(object_ptr + 0x3c0) = FULL_COMPONENT_MASK;
+      stack_context_ptr_3 = &MEMORY_CLEANUP_FLAG;
+      *(undefined4 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
+      
+      // 记录销毁调试事件: "_use_build_color_control_with_sample_texture"
+      object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+      stack_context_ptr_1 = &EVENT_LOG_BUFFER;
+      stack_temp_value_2 = 0;
+      stack_context_ptr_2 = (undefined4 *)0x0;
+      stack_temp_value_1 = 0;
+      
+      event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      *(undefined1 *)event_string_ptr = 0;
+      stack_context_ptr_2 = event_string_ptr;
+      
+      event_string_value = initialize_event_string(event_string_ptr);
+      stack_temp_value_2 = CONCAT44(stack_temp_value_2._4_4_, event_string_value);
+      
+      *event_string_ptr = 0x5f657375;  // "_esu"
+      event_string_ptr[1] = 0x62756f64;  // "buod"
+      event_string_ptr[2] = 0x635f656c;  // "c_el"
+      event_string_ptr[3] = 0x726f6c6f;  // "rolo"
+      event_string_ptr[4] = 0x5f70616d;  // "_pam"
+      event_string_ptr[5] = 0x68746977;  // "htiw"
+      event_string_ptr[6] = 0x73616d5f;  // "sam_"
+      event_string_ptr[7] = 0x65745f6b;  // "et_k"
+      event_string_ptr[8] = 0x72757478;  // "rutx"
+      *(undefined2 *)(event_string_ptr + 9) = 0x65;  // "e"
+      
+      stack_temp_value_1 = 0x25;
+      register_event_listener(object_type_data, &stack_context_ptr_1, 0);
+      stack_context_ptr_1 = &EVENT_LOG_BUFFER;
       // WARNING: Subroutine does not return
-      free_event_string(event_string);
+      free_event_string(event_string_ptr);
     }
     
-    // 注销组件事件
-    stack_ptr3 = &COMPONENT_EVENT_FLAG;
-    stack_ptr4 = stack_buffer2;
-    stack_buffer2[0] = 0;
-    stack_value5 = 0x15;
-    strcpy_s(stack_buffer2, 0x20, &COMPONENT_EVENT_DATA);
-    event_mask = register_event_listener(*(undefined8 *)(object_ptr + 0x1e0), &stack_ptr3, 1);
-    *(ulonglong *)(object_ptr + 0x140) = *(ulonglong *)(object_ptr + 0x140) & ~event_mask;
+    // 注销销毁组件事件
+    stack_context_ptr_3 = &COMPONENT_EVENT_FLAG;
+    stack_context_ptr_4 = destruction_event_buffer;
+    destruction_event_buffer[0] = 0;
+    stack_temp_value_5 = 0x15;
+    strcpy_s(destruction_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
+    
+    destruction_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+                                                  &stack_context_ptr_3, 1);
+    *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
+      *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) & ~destruction_event_mask;
+    
     update_object_event_mask(object_ptr);
-    stack_ptr3 = &MEMORY_CLEANUP_FLAG;
+    stack_context_ptr_3 = &MEMORY_CLEANUP_FLAG;
   }
   
-SKIP_LIFETIME_EVENTS:
+跳过生命周期事件处理:
   // WARNING: Subroutine does not return
-  cleanup_stack_protection(stack_value5 ^ (ulonglong)stack_buffer1);
+  cleanup_stack_protection(stack_protection_value ^ (ulonglong)stack_protection_buffer_1);
 }
 
 /**

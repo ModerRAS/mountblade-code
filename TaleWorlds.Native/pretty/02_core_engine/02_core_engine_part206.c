@@ -786,12 +786,11 @@ longlong * copy_linked_list_data(longlong *dest_ptr, longlong *src_ptr)
 
 
 
-// 函数: void FUN_180189d00(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189d00(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：条件释放16字节内存
+void conditional_free_16bytes(undefined8 memory_ptr, char should_free, undefined8 param_3, undefined8 param_4)
 {
-  if (param_2 != '\0') {
-    free(param_1,0x10,param_3,param_4,0xfffffffffffffffe);
+  if (should_free != '\0') {
+    free(memory_ptr, 0x10, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -800,12 +799,11 @@ void FUN_180189d00(undefined8 param_1,char param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_180189e60(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189e60(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：条件释放24字节内存
+void conditional_free_24bytes(undefined8 memory_ptr, char should_free, undefined8 param_3, undefined8 param_4)
 {
-  if (param_2 != '\0') {
-    free(param_1,0x18,param_3,param_4,0xfffffffffffffffe);
+  if (should_free != '\0') {
+    free(memory_ptr, 0x18, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -928,16 +926,15 @@ void FUN_180189fd0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_18018a010(longlong *param_1)
-void FUN_18018a010(longlong *param_1)
-
+// 函数：清理64字节内存块
+void cleanup_64byte_memory_blocks(longlong *array_info)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_end;
+  longlong current_ptr;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x40) {
-    FUN_180187950(lVar2);
+  array_end = array_info[1];
+  for (current_ptr = *array_info; current_ptr != array_end; current_ptr = current_ptr + 0x40) {
+    cleanup_memory_block(current_ptr);
   }
   return;
 }
@@ -946,16 +943,15 @@ void FUN_18018a010(longlong *param_1)
 
 
 
-// 函数: void FUN_18018a050(longlong *param_1)
-void FUN_18018a050(longlong *param_1)
-
+// 函数：清理40字节内存块
+void cleanup_40byte_memory_blocks(longlong *array_info)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_end;
+  longlong current_ptr;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x28) {
-    FUN_180067070(lVar2);
+  array_end = array_info[1];
+  for (current_ptr = *array_info; current_ptr != array_end; current_ptr = current_ptr + 0x28) {
+    free_memory(current_ptr);
   }
   return;
 }
@@ -964,12 +960,11 @@ void FUN_18018a050(longlong *param_1)
 
 
 
-// 函数: void FUN_18018a0b0(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18018a0b0(undefined8 param_1,char param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：条件释放32字节内存
+void conditional_free_32bytes(undefined8 memory_ptr, char should_free, undefined8 param_3, undefined8 param_4)
 {
-  if (param_2 != '\0') {
-    free(param_1,0x20,param_3,param_4,0xfffffffffffffffe);
+  if (should_free != '\0') {
+    free(memory_ptr, 0x20, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
