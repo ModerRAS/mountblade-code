@@ -267,27 +267,41 @@ uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, ulonglong freeFlags, u
 
 
 
-// 函数: void FUN_1803f8150(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_4,
-void FUN_1803f8150(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_4,
-                  int32_t param_5)
-
+/**
+ * @brief 渲染系统参数更新处理器
+ * 
+ * 负责根据系统状态和渲染参数动态调整渲染设置
+ * 实现渲染质量的自动调整和性能优化
+ * 
+ * @param rendererContext 渲染器上下文指针
+ * @param renderFlags 渲染标志位
+ * @param renderData 渲染数据指针
+ * @param qualityFlags 质量标志
+ * @param performanceFlags 性能标志
+ * 
+ * @return void
+ */
+void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t renderFlags, 
+                                          longlong renderData, int32_t qualityFlags, 
+                                          int32_t performanceFlags)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  int iVar5;
-  longlong lVar6;
-  float fVar7;
-  int8_t auStack_88 [32];
-  int32_t uStack_68;
-  int32_t uStack_60;
-  uint64_t uStack_58;
-  uint64_t uStack_48;
-  uint64_t uStack_40;
-  int32_t uStack_38;
-  int32_t uStack_34;
-  ulonglong uStack_30;
+  /* 渲染参数变量 */
+  float renderScale;
+  float aspectRatio;
+  float fieldOfView;
+  float nearPlane;
+  int qualityLevel;
+  longlong renderSystem;
+  float inverseDepth;
+  int8_t securityBuffer [32];
+  int32_t renderWidth;
+  int32_t renderHeight;
+  uint64_t renderState;
+  uint64_t qualityMatrix1;
+  uint64_t qualityMatrix2;
+  int32_t qualitySetting1;
+  int32_t qualitySetting2;
+  ulonglong securityChecksum;
   
   uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
   iVar5 = (int)param_1[0x8b];

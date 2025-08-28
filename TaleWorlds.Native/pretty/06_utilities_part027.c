@@ -1082,9 +1082,9 @@ void utilities_system_module_state_manager(void)
   }
   
   // 重置模块状态
-  _DAT_180d49220 = 0;
-  _DAT_180d49230 = 0;
-  _DAT_180d49218 = &UNK_18098bcb0;
+  *system_module_status_ptr = 0;
+  *system_module_cleanup_ptr = 0;
+  *system_module_state_ptr = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1105,7 +1105,7 @@ void utilities_system_data_state_manager(void)
 
 {
   // 初始化系统数据状态
-  _DAT_180d49240 = &UNK_180a3c3e0;
+  *system_data_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查数据状态
   if (_DAT_180d49248 != 0) {

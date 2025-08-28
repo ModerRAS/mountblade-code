@@ -161,7 +161,7 @@
 #define NetworkingSystem_ConnectionPoolManagerInternal func_0x0001808bde90
 
 // TCP 协议处理器
-#define NetworkingSystem_TCPProtocolHandler NetworkingSystem_TCPProtocolHandler
+#define NetworkingSystem_TCPProtocolHandler network_tcp_handler_ptr
 
 // UDP 协议处理器
 #define NetworkingSystem_UDPProtocolHandler network_udp_handler_ptr
