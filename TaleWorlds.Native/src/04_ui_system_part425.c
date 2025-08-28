@@ -972,7 +972,19 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e297(void)
+/**
+ * @brief UI系统资源管理器类型2
+ * @details UI系统的第二个资源管理函数，负责UI资源的分配和管理
+ * 
+ * 功能：
+ * - 执行UI系统资源的深度管理
+ * - 处理UI资源的复杂分配
+ * - 管理UI资源的高级状态
+ * - 执行UI资源的优化操作
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_resource_manager_type2(void)
 
 {
   longlong *plVar1;
@@ -1076,7 +1088,19 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2be(void)
+/**
+ * @brief UI系统资源管理器类型3
+ * @details UI系统的第三个资源管理函数，负责UI资源的分配和管理
+ * 
+ * 功能：
+ * - 执行UI系统的高级资源管理
+ * - 处理UI资源的复杂逻辑
+ * - 管理UI资源的性能优化
+ * - 执行UI资源的错误恢复
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_resource_manager_type3(void)
 
 {
   longlong *plVar1;
@@ -1176,7 +1200,19 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2e8(void)
+/**
+ * @brief UI系统资源管理器类型4
+ * @details UI系统的第四个资源管理函数，负责UI资源的分配和管理
+ * 
+ * 功能：
+ * - 执行UI系统的简化资源管理
+ * - 处理UI资源的基本分配
+ * - 管理UI资源的简单状态
+ * - 处理UI资源的基本错误情况
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_resource_manager_type4(void)
 
 {
   longlong *plVar1;
