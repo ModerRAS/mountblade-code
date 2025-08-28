@@ -3075,56 +3075,65 @@ undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data,
   undefined8 init_result;
   ulonglong buffer_size;
   
-  *(undefined4 *)(param_1 + 0x28) = 0xe;
-  *(undefined8 *)(param_1 + 0x120) = 0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x168) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(longlong *)(param_1 + 8) = param_1 + 0x178;
-  if (*(int *)(param_3 + 0x14) - 1U < 5) {
-    uVar3 = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))
-                      (*(longlong **)(param_1 + 0x170),param_1 + 0x18c);
-    if ((int)uVar3 == 0) {
-      *(undefined4 *)(param_1 + 0x110) = 0;
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 8) = *(undefined4 *)(param_3 + 0x14);
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 0xc) = *(undefined4 *)(param_3 + 0xc);
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 0x10) = *(undefined4 *)(param_3 + 0x10);
-      if (*(uint *)(param_3 + 0xc) != 0) {
-        iVar1 = *(int *)(param_3 + 0x14);
-        if (iVar1 == 1) {
-          uVar4 = 8;
+  /* 初始化系统数据结构 */
+  *(undefined4 )(system_context + 0x28) = 0xe; /* 设置系统类型 */
+  *(undefined8 )(system_context + 0x120) = 0; /* 清空数据缓冲区1 */
+  *(undefined8 )(system_context + 0x128) = 0; /* 清空数据缓冲区2 */
+  *(undefined8 )(system_context + 0x130) = 0; /* 清空数据缓冲区3 */
+  *(undefined8 )(system_context + 0x148) = 0; /* 清空数据缓冲区4 */
+  *(undefined8 )(system_context + 0x138) = 0; /* 清空数据缓冲区5 */
+  *(undefined8 )(system_context + 0x168) = 0; /* 清空数据缓冲区6 */
+  *(undefined4 )(system_context + 0x18) = 0; /* 重置状态标志 */
+  *(longlong )(system_context + 8) = system_context + 0x178; /* 设置数据区域指针 */
+  /* 检查处理参数类型 */
+  if (*(int )(process_params + 0x14) - 1U < 5) {
+    init_result = (**(code **)(**(longlong **)(system_context + 0x170) + 0x10))
+                      (*(longlong **)(system_context + 0x170), system_context + 0x18c);
+    if ((int)init_result == 0) {
+      /* 初始化成功，设置处理参数 */
+      *(undefined4 )(system_context + 0x110) = 0; /* 清空处理标志 */
+      *(undefined4 *)(*(longlong )(system_context + 8) + 8) = *(undefined4 )(process_params + 0x14);
+      *(undefined4 *)(*(longlong )(system_context + 8) + 0xc) = *(undefined4 )(process_params + 0xc);
+      *(undefined4 *)(*(longlong )(system_context + 8) + 0x10) = *(undefined4 )(process_params + 0x10);
+      /* 根据处理类型计算缓冲区大小 */
+      if (*(uint )(process_params + 0xc) != 0) {
+        process_type = *(int )(process_params + 0x14);
+        if (process_type == 1) {
+          buffer_size = 8; /* 类型1：8字节 */
         }
-        else if (iVar1 == 2) {
-          uVar4 = 0x10;
+        else if (process_type == 2) {
+          buffer_size = 0x10; /* 类型2：16字节 */
         }
-        else if (iVar1 == 3) {
-          uVar4 = 0x18;
+        else if (process_type == 3) {
+          buffer_size = 0x18; /* 类型3：24字节 */
         }
         else {
-          if ((iVar1 != 4) && (iVar1 != 5)) {
-            *(uint *)(*(longlong *)(param_1 + 8) + 0x18) = *(uint *)(param_3 + 4);
-            *(undefined4 *)(param_1 + 0x18) = 0;
-            return 0;
+          if ((process_type != 4) && (process_type != 5)) {
+            /* 其他类型：直接设置大小 */
+            *(uint *)(*(longlong )(system_context + 8) + 0x18) = *(uint )(process_params + 4);
+            *(undefined4 )(system_context + 0x18) = 0;
+            return 0; /* 初始化成功 */
           }
-          uVar4 = 0x20;
+          buffer_size = 0x20; /* 类型4/5：32字节 */
         }
-        auVar2._8_8_ = 0;
-        auVar2._0_8_ = uVar4;
-        *(int *)(*(longlong *)(param_1 + 8) + 0x18) =
-             (int)((SUB168((ZEXT416(*(uint *)(param_3 + 4)) << 3) / auVar2,0) & 0xffffffff) /
-                  (ulonglong)*(uint *)(param_3 + 0xc));
+        
+        /* 计算并设置缓冲区大小 */
+        temp_buffer._8_8_ = 0;
+        temp_buffer._0_8_ = buffer_size;
+        *(int *)(*(longlong )(system_context + 8) + 0x18) =
+             (int)((SUB168((ZEXT416(*(uint )(process_params + 4)) << 3) / temp_buffer, 0) & 0xffffffff) /
+                  (ulonglong)*(uint )(process_params + 0xc));
       }
-      *(undefined4 *)(param_1 + 0x18) = 0;
-      return 0;
+      
+      *(undefined4 )(system_context + 0x18) = 0;
+      return 0; /* 初始化成功 */
     }
   }
   else {
-    uVar3 = 0x13;
+    init_result = 0x13; /* 错误代码：不支持的类型 */
   }
-  return uVar3;
+  
+  return init_result; /* 返回初始化结果 */
 }
 
 

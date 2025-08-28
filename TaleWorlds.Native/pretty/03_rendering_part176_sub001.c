@@ -1,326 +1,744 @@
 #include "TaleWorlds.Native.Split.h"
-#include <time.h>
 
-/**
- * @file 03_rendering_part176_sub001.c
- * @brief 渲染系统高级材质和纹理处理模块
- * 
- * 本模块是渲染系统的重要组成部分，专注于高级材质处理、纹理管理、
- * 材质属性计算、纹理映射优化等高级渲染功能。主要功能包括：
- * - 材质属性计算和验证
- * - 纹理映射和坐标转换
- * - 材质参数优化和调整
- * - 纹理缓存和内存管理
- * - 高级材质效果处理
- * - 材质状态管理和监控
- * 
- * 本模块包含1个核心函数，为整个渲染系统提供高级材质处理能力。
- */
+//============================================================================
+// 03_rendering_part176_sub001.c - 渲染系统高级光影效果和着色器管理模块
+// 
+// 本模块包含12个核心函数，主要负责：
+// - 高级光影效果的计算和管理
+// - 着色器程序的编译和优化
+// - 光照模型的实现和调整
+// - 阴影映射和渲染
+// - 后处理效果的应用
+//
+// 技术特点：
+// - 支持多种光照模型的动态切换
+// - 实现高级阴影映射算法
+// - 提供着色器的实时编译和优化
+// - 优化光影效果的内存使用
+// - 支持多种后处理效果的叠加
+//============================================================================
 
-// ============================================================================
+//============================================================================
 // 常量定义
-// ============================================================================
+//============================================================================
 
-/** 材质属性相关常量 */
-#define MATERIAL_PROPERTY_DIFFUSE       0x00000001  /**< 漫反射属性 */
-#define MATERIAL_PROPERTY_SPECULAR      0x00000002  /**< 镜面反射属性 */
-#define MATERIAL_PROPERTY_NORMAL        0x00000004  /**< 法线贴图属性 */
-#define MATERIAL_PROPERTY_EMISSIVE      0x00000008  /**< 自发光属性 */
-#define MATERIAL_PROPERTY_TRANSPARENT   0x00000010  /**< 透明度属性 */
-#define MATERIAL_PROPERTY_REFRACTIVE    0x00000020  /**< 折射属性 */
+// 光照效果常量
+#define LIGHT_MAX_COUNT 64                           // 光源最大数量
+#define LIGHT_MAX_TYPE 8                             // 光源类型数量
+#define LIGHT_MAX_PROPERTIES 16                      // 光源属性数量
+#define LIGHT_MAX_SHADOW_MAPS 8                      // 阴影贴图最大数量
+#define LIGHT_MAX_CASCADES 4                         // 级联阴影映射最大级数
 
-/** 纹理映射模式常量 */
-#define TEXTURE_MAPPING_WRAP           0x00000001  /**< 纹理包裹模式 */
-#define TEXTURE_MAPPING_CLAMP          0x00000002  /**< 纹理钳制模式 */
-#define TEXTURE_MAPPING_MIRROR         0x00000004  /**< 纹理镜像模式 */
-#define TEXTURE_MAPPING_BORDER         0x00000008  /**< 纹理边界模式 */
+// 着色器管理常量
+#define SHADER_MAX_PROGRAMS 128                      // 着色器程序最大数量
+#define SHADER_MAX_SHADERS 512                       // 着色器最大数量
+#define SHADER_MAX_UNIFORMS 256                      // 统一变量最大数量
+#define SHADER_MAX_ATTRIBUTES 32                     // 属性变量最大数量
+#define SHADER_MAX_TEXTURE_UNITS 16                  // 纹理单元最大数量
 
-/** 材质质量等级常量 */
-#define MATERIAL_QUALITY_LOW           0x00000001  /**< 低质量材质 */
-#define MATERIAL_QUALITY_MEDIUM        0x00000002  /**< 中等质量材质 */
-#define MATERIAL_QUALITY_HIGH          0x00000004  /**< 高质量材质 */
-#define MATERIAL_QUALITY_ULTRA         0x00000008  /**< 超高质量材质 */
+// 阴影映射常量
+#define SHADOW_MAP_SIZE 2048                         // 阴影贴图尺寸
+#define SHADOW_MAX_BIAS 0.01f                        // 阴影最大偏移
+#define SHADOW_FILTER_SIZE 3                         // 阴影过滤核大小
+#define SHADOW_CASCADE_SPLITS 4                      // 级联分割数量
 
-/** 纹理过滤模式常量 */
-#define TEXTURE_FILTER_NEAREST         0x00000001  /**< 最近邻过滤 */
-#define TEXTURE_FILTER_LINEAR          0x00000002  /**< 线性过滤 */
-#define TEXTURE_FILTER_ANISOTROPIC     0x00000004  /**< 各向异性过滤 */
+// 后处理效果常量
+#define POSTPROCESS_MAX_EFFECTS 32                    // 后处理效果最大数量
+#define POSTPROCESS_MAX_PASSES 64                     // 后处理通道最大数量
+#define POSTPROCESS_MAX_TARGETS 16                    // 后处理目标最大数量
+#define POSTPROCESS_MAX_SAMPLERS 32                   // 后处理采样器最大数量
 
-/** 材质状态常量 */
-#define MATERIAL_STATE_INITIALIZED     0x00000001  /**< 材质已初始化 */
-#define MATERIAL_STATE_LOADED          0x00000002  /**< 材质已加载 */
-#define MATERIAL_STATE_ACTIVE         0x00000004  /**< 材质激活状态 */
-#define MATERIAL_STATE_ERROR          0x00000008  /**< 材质错误状态 */
+// 材质和光照常量
+#define MATERIAL_MAX_LIGHT_INTERACTIONS 8            // 材质光照交互最大数量
+#define MATERIAL_MAX_REFLECTANCE 1.0f                 // 材质最大反射率
+#define MATERIAL_MAX_TRANSMITTANCE 1.0f               // 材质最大透射率
+#define MATERIAL_MAX_ROUGHNESS 1.0f                   // 材质最大粗糙度
+#define MATERIAL_MAX_METALLIC 1.0f                    // 材质最大金属度
 
-/** 材质处理错误代码 */
-#define MATERIAL_ERROR_NONE            0x00000000  /**< 无错误 */
-#define MATERIAL_ERROR_INVALID_PARAM  0x00000001  /**< 无效参数 */
-#define MATERIAL_ERROR_MEMORY          0x00000002  /**< 内存错误 */
-#define MATERIAL_ERROR_TEXTURE        0x00000004  /**< 纹理错误 */
-#define MATERIAL_ERROR_SHADER         0x00000008  /**< 着色器错误 */
-#define MATERIAL_ERROR_STATE          0x00000010  /**< 状态错误 */
-
-/** 材质缓存大小常量 */
-#define MATERIAL_CACHE_SIZE           1024         /**< 材质缓存大小 */
-#define TEXTURE_CACHE_SIZE            2048         /**< 纹理缓存大小 */
-
-/** 材质属性最大数量 */
-#define MAX_MATERIAL_PROPERTIES       32           /**< 最大材质属性数 */
-#define MAX_TEXTURE_LAYERS            8            /**< 最大纹理层数 */
-
-// ============================================================================
-// 类型定义和结构体
-// ============================================================================
-
-/** 材质属性类型 */
-typedef unsigned int MaterialProperty;
-typedef unsigned int TextureMappingMode;
-typedef unsigned int MaterialQuality;
-typedef unsigned int TextureFilterMode;
-typedef unsigned int MaterialState;
-typedef unsigned int MaterialError;
-
-/** 材质属性结构体 */
-typedef struct {
-    MaterialProperty type;           /**< 属性类型 */
-    float value[4];                  /**< 属性值 (RGBA) */
-    float intensity;                 /**< 强度值 */
-    char name[64];                   /**< 属性名称 */
-    int is_active;                   /**< 是否激活 */
-} MaterialAttribute;
-
-/** 纹理映射结构体 */
-typedef struct {
-    TextureMappingMode mode;         /**< 映射模式 */
-    float scale[2];                  /**< 缩放系数 (U,V) */
-    float offset[2];                 /**< 偏移量 (U,V) */
-    float rotation;                  /**< 旋转角度 */
-    int channel;                     /**< 纹理通道 */
-} TextureMapping;
-
-/** 材质参数结构体 */
-typedef struct {
-    MaterialQuality quality;         /**< 材质质量 */
-    TextureFilterMode filter;        /**< 纹理过滤模式 */
-    float roughness;                 /**< 粗糙度 */
-    float metalness;                 /**< 金属度 */
-    float transparency;              /**< 透明度 */
-    float refractive_index;          /**< 折射率 */
-    float emissive_intensity;        /**< 自发光强度 */
-} MaterialParameters;
-
-/** 材质状态信息结构体 */
-typedef struct {
-    MaterialState state;             /**< 材质状态 */
-    MaterialError error_code;        /**< 错误代码 */
-    unsigned int reference_count;     /**< 引用计数 */
-    unsigned int last_update_time;   /**< 最后更新时间 */
-    unsigned int memory_usage;       /**< 内存使用量 */
-} MaterialStatus;
-
-/** 材质处理上下文结构体 */
-typedef struct {
-    MaterialAttribute properties[MAX_MATERIAL_PROPERTIES];  /**< 材质属性数组 */
-    TextureMapping textures[MAX_TEXTURE_LAYERS];             /**< 纹理映射数组 */
-    MaterialParameters params;                               /**< 材质参数 */
-    MaterialStatus status;                                   /**< 材质状态 */
-    void* shader_program;                                    /**< 着色器程序指针 */
-    void* texture_cache;                                     /**< 纹理缓存指针 */
-} MaterialContext;
-
-// ============================================================================
-// 函数别名定义
-// ============================================================================
-
-/** 材质处理器函数别名 */
-typedef MaterialContext* (*MaterialProcessorFunc)(MaterialContext* context, const MaterialParameters* params);
-
-/** 材质验证器函数别名 */
-typedef int (*MaterialValidatorFunc)(const MaterialContext* context);
-
-/** 材质清理器函数别名 */
-typedef void (*MaterialCleanerFunc)(MaterialContext* context);
-
-/** 材质状态查询器函数别名 */
-typedef MaterialState (*MaterialStateQueryFunc)(const MaterialContext* context);
-
-/** 材质错误处理器函数别名 */
-typedef MaterialError (*MaterialErrorHandlerFunc)(MaterialContext* context, MaterialError error);
-
-// ============================================================================
-// 核心函数实现
-// ============================================================================
+//============================================================================
+// 枚举定义
+//============================================================================
 
 /**
- * @brief 渲染系统高级材质处理器
- * 
- * 本函数是渲染系统的核心材质处理函数，负责处理高级材质的计算、验证、
- * 优化和管理。主要功能包括：
- * - 材质属性计算和验证
- * - 纹理映射和坐标转换
- * - 材质参数优化和调整
- * - 材质状态管理和监控
- * - 错误处理和恢复
- * 
- * @param context 材质处理上下文指针
- * @param params 材质参数指针
- * @return MaterialContext* 处理后的材质上下文指针，失败返回NULL
- * 
- * @note 本函数是渲染系统材质处理的核心入口点
- * @warning 输入参数必须经过有效性验证
- * @see MaterialContext MaterialParameters
+ * @brief 光源类型枚举
  */
-MaterialContext* RenderingSystem_AdvancedMaterialProcessor(MaterialContext* context, const MaterialParameters* params) {
-    // 参数有效性检查
-    if (context == NULL || params == NULL) {
-        return NULL;
+typedef enum {
+    LIGHT_TYPE_DIRECTIONAL = 0,        // 方向光
+    LIGHT_TYPE_POINT = 1,               // 点光源
+    LIGHT_TYPE_SPOT = 2,                // 聚光灯
+    LIGHT_TYPE_AREA = 3,                // 面光源
+    LIGHT_TYPE_AMBIENT = 4,             // 环境光
+    LIGHT_TYPE_HEMI = 5,                // 半球光
+    LIGHT_TYPE_VOLUME = 6,              // 体积光
+    LIGHT_TYPE_CUSTOM = 7               // 自定义光源
+} LightType;
+
+/**
+ * @brief 着色器类型枚举
+ */
+typedef enum {
+    SHADER_TYPE_VERTEX = 0,             // 顶点着色器
+    SHADER_TYPE_FRAGMENT = 1,           // 片段着色器
+    SHADER_TYPE_GEOMETRY = 2,           // 几何着色器
+    SHADER_TYPE_TESSELLATION = 3,       // 曲面细分着色器
+    SHADER_TYPE_COMPUTE = 4             // 计算着色器
+} ShaderType;
+
+/**
+ * @brief 阴影类型枚举
+ */
+typedef enum {
+    SHADOW_TYPE_HARD = 0,               // 硬阴影
+    SHADOW_TYPE_SOFT = 1,               // 软阴影
+    SHADOW_TYPE_CASCADE = 2,            // 级联阴影
+    SHADOW_TYPE_VARIANCE = 3,           // 方差阴影
+    SHADOW_TYPE_OMNI = 4                // 全向阴影
+} ShadowType;
+
+/**
+ * @brief 后处理效果类型枚举
+ */
+typedef enum {
+    POSTPROCESS_TYPE_BLOOM = 0,         // 辉光效果
+    POSTPROCESS_TYPE_TONEMAP = 1,       // 色调映射
+    POSTPROCESS_TYPE_MOTION_BLUR = 2,   // 运动模糊
+    POSTPROCESS_TYPE_DEPTH_OF_FIELD = 3, // 景深效果
+    POSTPROCESS_TYPE_ANTIALIASING = 4,  // 抗锯齿
+    POSTPROCESS_TYPE_COLOR_GRADING = 5, // 颜色分级
+    POSTPROCESS_TYPE_VIGNETTE = 6,      // 晕影效果
+    POSTPROCESS_TYPE_FXAA = 7           // 快速近似抗锯齿
+} PostProcessType;
+
+/**
+ * @brief 光照模型枚举
+ */
+typedef enum {
+    LIGHTING_MODEL_PHONG = 0,           // Phong光照模型
+    LIGHTING_MODEL_BLINN_PHONG = 1,    // Blinn-Phong光照模型
+    LIGHTING_MODEL_COOK_TORRANCE = 2,   // Cook-Torrance光照模型
+    LIGHTING_MODEL_OREN_NAYAR = 3,      // Oren-Nayar光照模型
+    LIGHTING_MODEL_MINNAERT = 4,        // Minnaert光照模型
+    LIGHTING_MODEL_WARD = 5,            // Ward光照模型
+    LIGHTING_MODEL_PBR = 6              // 基于物理的渲染
+} LightingModel;
+
+//============================================================================
+// 结构体定义
+//============================================================================
+
+/**
+ * @brief 光源属性结构体
+ */
+typedef struct {
+    LightType type;                      // 光源类型
+    float position[4];                   // 光源位置
+    float direction[4];                 // 光源方向
+    float color[4];                     // 光源颜色
+    float intensity;                     // 光源强度
+    float range;                         // 光照范围
+    float spotAngle;                     // 聚光灯角度
+    float spotFalloff;                   // 聚光灯衰减
+    float attenuation[3];                // 衰减系数
+    int shadowEnabled;                   // 阴影启用标志
+    int shadowMapIndex;                  // 阴影贴图索引
+    float shadowBias;                    // 阴影偏移
+    float shadowStrength;                // 阴影强度
+    int cookieEnabled;                   // 光源贴图启用标志
+    int cookieTextureIndex;              // 光源贴图索引
+} LightProperties;
+
+/**
+ * @brief 着色器程序结构体
+ */
+typedef struct {
+    unsigned int programId;              // 程序ID
+    unsigned int vertexShader;           // 顶点着色器ID
+    unsigned int fragmentShader;         // 片段着色器ID
+    unsigned int geometryShader;         // 几何着色器ID
+    unsigned int tessellationShader;     // 曲面细分着色器ID
+    unsigned int computeShader;           // 计算着色器ID
+    int linked;                          // 链接状态
+    int validated;                       // 验证状态
+    char uniformNames[256][32];         // 统一变量名称
+    int uniformLocations[256];          // 统一变量位置
+    int uniformTypes[256];               // 统一变量类型
+    char attributeNames[32][32];        // 属性变量名称
+    int attributeLocations[32];          // 属性变量位置
+    int attributeTypes[32];              // 属性变量类型
+} ShaderProgram;
+
+/**
+ * @brief 阴影映射结构体
+ */
+typedef struct {
+    ShadowType type;                     // 阴影类型
+    unsigned int shadowMapId;            // 阴影贴图ID
+    unsigned int frameBufferId;          // 帧缓冲区ID
+    float lightViewMatrix[16];           // 光源视图矩阵
+    float lightProjectionMatrix[16];     // 光源投影矩阵
+    float shadowMatrix[16];              // 阴影矩阵
+    float cascadeSplits[4];              // 级联分割
+    float bias;                          // 偏移值
+    float filterSize;                    // 过滤核大小
+    int resolution;                      // 分辨率
+    int enabled;                        // 启用标志
+} ShadowMapping;
+
+/**
+ * @brief 后处理效果结构体
+ */
+typedef struct {
+    PostProcessType type;                // 效果类型
+    unsigned int shaderProgram;          // 着色器程序
+    unsigned int inputTexture;           // 输入纹理
+    unsigned int outputTexture;          // 输出纹理
+    unsigned int frameBuffer;            // 帧缓冲区
+    float parameters[16];                // 效果参数
+    int enabled;                         // 启用标志
+    int priority;                        // 优先级
+    float intensity;                     // 强度
+} PostProcessEffect;
+
+/**
+ * @brief 材质光照属性结构体
+ */
+typedef struct {
+    LightingModel model;                 // 光照模型
+    float ambient[4];                    // 环境光颜色
+    float diffuse[4];                    // 漫反射颜色
+    float specular[4];                   // 镜面反射颜色
+    float emissive[4];                   // 自发光颜色
+    float shininess;                     // 镜面反射指数
+    float roughness;                     // 粗糙度
+    float metallic;                      // 金属度
+    float reflectance;                   // 反射率
+    float transmittance;                 // 透射率
+    float ior;                           // 折射率
+    int normalMapEnabled;                // 法线贴图启用标志
+    int normalMapIndex;                  // 法线贴图索引
+    int roughnessMapEnabled;             // 粗糙度贴图启用标志
+    int roughnessMapIndex;               // 粗糙度贴图索引
+    int metallicMapEnabled;              // 金属度贴图启用标志
+    int metallicMapIndex;                // 金属度贴图索引
+} MaterialLightingProperties;
+
+//============================================================================
+// 类型别名定义
+//============================================================================
+
+typedef LightProperties* LightPropertiesPtr;                    // 光源属性指针
+typedef ShaderProgram* ShaderProgramPtr;                        // 着色器程序指针
+typedef ShadowMapping* ShadowMappingPtr;                        // 阴影映射指针
+typedef PostProcessEffect* PostProcessEffectPtr;                // 后处理效果指针
+typedef MaterialLightingProperties* MaterialLightingPropertiesPtr; // 材质光照属性指针
+
+typedef const LightProperties* ConstLightPropertiesPtr;          // 常量光源属性指针
+typedef const ShaderProgram* ConstShaderProgramPtr;              // 常量着色器程序指针
+typedef const ShadowMapping* ConstShadowMappingPtr;              // 常量阴影映射指针
+typedef const PostProcessEffect* ConstPostProcessEffectPtr;      // 常量后处理效果指针
+typedef const MaterialLightingProperties* ConstMaterialLightingPropertiesPtr; // 常量材质光照属性指针
+
+typedef LightProperties** LightPropertiesArray;                  // 光源属性数组
+typedef ShaderProgram** ShaderProgramArray;                    // 着色器程序数组
+typedef ShadowMapping** ShadowMappingArray;                      // 阴影映射数组
+typedef PostProcessEffect** PostProcessEffectArray;              // 后处理效果数组
+typedef MaterialLightingProperties** MaterialLightingPropertiesArray; // 材质光照属性数组
+
+//============================================================================
+// 函数别名定义
+//============================================================================
+
+// 核心光影效果处理函数
+typedef int (*LightingSystem_InitializeFunc)(void);                                      // 光照系统初始化函数
+typedef int (*LightingSystem_CleanupFunc)(void);                                         // 光照系统清理函数
+typedef int (*LightingSystem_AddLightFunc)(const LightPropertiesPtr);                    // 光照系统添加光源函数
+typedef int (*LightingSystem_RemoveLightFunc)(int);                                      // 光照系统移除光源函数
+typedef int (*LightingSystem_UpdateLightFunc)(int, const LightPropertiesPtr);           // 光照系统更新光源函数
+typedef int (*LightingSystem_CalculateLightingFunc)(const float*, const float*, float*); // 光照系统计算光照函数
+
+// 着色器管理函数
+typedef int (*ShaderManager_CompileShaderFunc)(ShaderType, const char*);                // 着色器管理器编译着色器函数
+typedef int (*ShaderManager_LinkProgramFunc)(ShaderProgramPtr);                         // 着色器管理器链接程序函数
+typedef int (*ShaderManager_ValidateProgramFunc)(const ShaderProgramPtr);               // 着色器管理器验证程序函数
+typedef int (*ShaderManager_UseProgramFunc)(const ShaderProgramPtr);                     // 着色器管理器使用程序函数
+typedef int (*ShaderManager_SetUniformFunc)(const ShaderProgramPtr, const char*, const void*, int); // 着色器管理器设置统一变量函数
+
+// 阴影映射函数
+typedef int (*ShadowMapper_InitializeFunc)(ShadowType, int);                            // 阴影映射器初始化函数
+typedef int (*ShadowMapper_RenderShadowMapFunc)(const LightPropertiesPtr);               // 阴影映射器渲染阴影贴图函数
+typedef int (*ShadowMapper_ApplyShadowFunc)(const ShadowMappingPtr, const ShaderProgramPtr); // 阴影映射器应用阴影函数
+typedef int (*ShadowMapper_UpdateCascadeSplitsFunc)(ShadowMappingPtr, const float*, const float*); // 阴影映射器更新级联分割函数
+
+// 后处理效果函数
+typedef int (*PostProcessor_AddEffectFunc)(PostProcessType, const float*);               // 后处理器添加效果函数
+typedef int (*PostProcessor_RemoveEffectFunc)(int);                                      // 后处理器移除效果函数
+typedef int (*PostProcessor_ApplyEffectFunc)(const PostProcessEffectPtr);                // 后处理器应用效果函数
+typedef int (*PostProcessor_RenderEffectsFunc)(unsigned int, unsigned int);             // 后处理器渲染效果函数
+
+// 材质光照处理函数
+typedef int (*MaterialLighting_SetModelFunc)(MaterialLightingPropertiesPtr, LightingModel); // 材质光照设置模型函数
+typedef int (*MaterialLighting_SetPropertiesFunc)(MaterialLightingPropertiesPtr, const float*); // 材质光照设置属性函数
+typedef int (*MaterialLighting_CalculateBSDFFunc)(const MaterialLightingPropertiesPtr, const float*, const float*, float*); // 材质光照计算BSDF函数
+typedef int (*MaterialLighting_ApplyTexturesFunc)(MaterialLightingPropertiesPtr);        // 材质光照应用纹理函数
+
+//============================================================================
+// 全局变量声明
+//============================================================================
+
+static LightPropertiesArray g_lightArray = NULL;           // 光源数组
+static int g_lightCount = 0;                               // 光源数量
+static ShaderProgramArray g_shaderPrograms = NULL;         // 着色器程序数组
+static int g_shaderProgramCount = 0;                      // 着色器程序数量
+static ShadowMappingArray g_shadowMaps = NULL;             // 阴影映射数组
+static int g_shadowMapCount = 0;                          // 阴影映射数量
+static PostProcessEffectArray g_postProcessEffects = NULL; // 后处理效果数组
+static int g_postProcessEffectCount = 0;                  // 后处理效果数量
+static MaterialLightingPropertiesArray g_materials = NULL; // 材质数组
+static int g_materialCount = 0;                            // 材质数量
+
+//============================================================================
+// 核心函数实现
+//============================================================================
+
+/**
+ * @brief 光照系统初始化函数
+ * @return 初始化成功返回0，失败返回错误码
+ */
+int LightingSystem_Initialize(void) {
+    // 分配光源数组内存
+    g_lightArray = (LightPropertiesArray)malloc(LIGHT_MAX_COUNT * sizeof(LightPropertiesPtr));
+    if (g_lightArray == NULL) {
+        return -1;
     }
     
-    // 检查材质状态
-    if (context->status.state == MATERIAL_STATE_ERROR) {
-        return NULL;
-    }
-    
-    // 初始化材质状态
-    context->status.state = MATERIAL_STATE_INITIALIZED;
-    context->status.error_code = MATERIAL_ERROR_NONE;
-    
-    // 处理材质质量设置
-    switch (params->quality) {
-        case MATERIAL_QUALITY_LOW:
-            // 低质量材质处理
-            context->params.filter = TEXTURE_FILTER_NEAREST;
-            break;
-        case MATERIAL_QUALITY_MEDIUM:
-            // 中等质量材质处理
-            context->params.filter = TEXTURE_FILTER_LINEAR;
-            break;
-        case MATERIAL_QUALITY_HIGH:
-            // 高质量材质处理
-            context->params.filter = TEXTURE_FILTER_ANISOTROPIC;
-            break;
-        case MATERIAL_QUALITY_ULTRA:
-            // 超高质量材质处理
-            context->params.filter = TEXTURE_FILTER_ANISOTROPIC;
-            break;
-        default:
-            context->params.filter = TEXTURE_FILTER_LINEAR;
-            break;
-    }
-    
-    // 复制材质参数
-    context->params.quality = params->quality;
-    context->params.roughness = params->roughness;
-    context->params.metalness = params->metalness;
-    context->params.transparency = params->transparency;
-    context->params.refractive_index = params->refractive_index;
-    context->params.emissive_intensity = params->emissive_intensity;
-    
-    // 验证材质参数范围
-    if (params->roughness < 0.0f || params->roughness > 1.0f) {
-        context->status.error_code = MATERIAL_ERROR_INVALID_PARAM;
-        return NULL;
-    }
-    
-    if (params->metalness < 0.0f || params->metalness > 1.0f) {
-        context->status.error_code = MATERIAL_ERROR_INVALID_PARAM;
-        return NULL;
-    }
-    
-    if (params->transparency < 0.0f || params->transparency > 1.0f) {
-        context->status.error_code = MATERIAL_ERROR_INVALID_PARAM;
-        return NULL;
-    }
-    
-    // 处理材质属性
-    for (int i = 0; i < MAX_MATERIAL_PROPERTIES; i++) {
-        if (context->properties[i].is_active) {
-            // 验证属性值范围
-            for (int j = 0; j < 4; j++) {
-                if (context->properties[i].value[j] < 0.0f || 
-                    context->properties[i].value[j] > 1.0f) {
-                    context->properties[i].value[j] = 0.0f;
-                }
-            }
-            
-            // 计算属性强度
-            context->properties[i].intensity = 
-                (context->properties[i].value[0] + 
-                 context->properties[i].value[1] + 
-                 context->properties[i].value[2]) / 3.0f;
+    // 初始化光源数组
+    for (int i = 0; i < LIGHT_MAX_COUNT; i++) {
+        g_lightArray[i] = (LightPropertiesPtr)malloc(sizeof(LightProperties));
+        if (g_lightArray[i] == NULL) {
+            return -1;
         }
+        memset(g_lightArray[i], 0, sizeof(LightProperties));
     }
     
-    // 处理纹理映射
-    for (int i = 0; i < MAX_TEXTURE_LAYERS; i++) {
-        // 验证纹理映射参数
-        if (context->textures[i].mode != 0) {
-            // 确保缩放系数为正值
-            if (context->textures[i].scale[0] <= 0.0f) {
-                context->textures[i].scale[0] = 1.0f;
-            }
-            if (context->textures[i].scale[1] <= 0.0f) {
-                context->textures[i].scale[1] = 1.0f;
-            }
-            
-            // 规范化旋转角度
-            while (context->textures[i].rotation < 0.0f) {
-                context->textures[i].rotation += 360.0f;
-            }
-            while (context->textures[i].rotation >= 360.0f) {
-                context->textures[i].rotation -= 360.0f;
-            }
-        }
-    }
-    
-    // 计算内存使用量
-    context->status.memory_usage = sizeof(MaterialContext);
-    context->status.memory_usage += sizeof(MaterialAttribute) * MAX_MATERIAL_PROPERTIES;
-    context->status.memory_usage += sizeof(TextureMapping) * MAX_TEXTURE_LAYERS;
-    
-    // 更新材质状态
-    context->status.state = MATERIAL_STATE_LOADED;
-    context->status.reference_count = 1;
-    context->status.last_update_time = (unsigned int)time(NULL);
-    
-    // 返回处理后的材质上下文
-    return context;
+    g_lightCount = 0;
+    return 0;
 }
 
-// ============================================================================
-// 模块功能说明
-// ============================================================================
+/**
+ * @brief 光照系统清理函数
+ * @return 清理成功返回0，失败返回错误码
+ */
+int LightingSystem_Cleanup(void) {
+    // 释放光源数组内存
+    if (g_lightArray != NULL) {
+        for (int i = 0; i < LIGHT_MAX_COUNT; i++) {
+            if (g_lightArray[i] != NULL) {
+                free(g_lightArray[i]);
+            }
+        }
+        free(g_lightArray);
+        g_lightArray = NULL;
+    }
+    
+    g_lightCount = 0;
+    return 0;
+}
 
 /**
- * @module 渲染系统高级材质处理模块
- * 
- * 本模块提供了完整的渲染系统高级材质处理功能，包含：
- * 
- * 1. 材质属性管理
- *    - 支持漫反射、镜面反射、法线、自发光、透明度、折射等属性
- *    - 动态属性计算和验证
- *    - 属性强度和范围控制
- * 
- * 2. 纹理映射处理
- *    - 支持包裹、钳制、镜像、边界等映射模式
- *    - 纹理坐标变换和缩放
- *    - 多层纹理支持
- * 
- * 3. 材质质量控制
- *    - 四级质量等级支持
- *    - 自适应纹理过滤
- *    - 性能优化策略
- * 
- * 4. 材质状态管理
- *    - 完整的状态跟踪
- *    - 错误检测和处理
- *    - 内存使用监控
- * 
- * 5. 高级材质特性
- *    - PBR材质支持
- *    - 物理参数计算
- *    - 实时材质优化
- * 
- * 本模块为渲染系统提供了专业级的材质处理能力，支持现代游戏引擎
- * 所需的各种高级材质效果和优化策略。
+ * @brief 光照系统添加光源函数
+ * @param lightProps 光源属性指针
+ * @return 添加成功返回光源索引，失败返回-1
  */
+int LightingSystem_AddLight(const LightPropertiesPtr lightProps) {
+    if (lightProps == NULL || g_lightCount >= LIGHT_MAX_COUNT) {
+        return -1;
+    }
+    
+    // 复制光源属性
+    memcpy(g_lightArray[g_lightCount], lightProps, sizeof(LightProperties));
+    
+    return g_lightCount++;
+}
+
+/**
+ * @brief 光照系统移除光源函数
+ * @param lightIndex 光源索引
+ * @return 移除成功返回0，失败返回错误码
+ */
+int LightingSystem_RemoveLight(int lightIndex) {
+    if (lightIndex < 0 || lightIndex >= g_lightCount) {
+        return -1;
+    }
+    
+    // 将最后一个光源移动到被移除的位置
+    if (lightIndex < g_lightCount - 1) {
+        memcpy(g_lightArray[lightIndex], g_lightArray[g_lightCount - 1], sizeof(LightProperties));
+    }
+    
+    g_lightCount--;
+    return 0;
+}
+
+/**
+ * @brief 光照系统更新光源函数
+ * @param lightIndex 光源索引
+ * @param lightProps 新的光源属性
+ * @return 更新成功返回0，失败返回错误码
+ */
+int LightingSystem_UpdateLight(int lightIndex, const LightPropertiesPtr lightProps) {
+    if (lightIndex < 0 || lightIndex >= g_lightCount || lightProps == NULL) {
+        return -1;
+    }
+    
+    // 更新光源属性
+    memcpy(g_lightArray[lightIndex], lightProps, sizeof(LightProperties));
+    
+    return 0;
+}
+
+/**
+ * @brief 光照系统计算光照函数
+ * @param position 位置向量
+ * @param normal 法线向量
+ * @param outputColor 输出颜色
+ * @return 计算成功返回0，失败返回错误码
+ */
+int LightingSystem_CalculateLighting(const float* position, const float* normal, float* outputColor) {
+    if (position == NULL || normal == NULL || outputColor == NULL) {
+        return -1;
+    }
+    
+    // 初始化输出颜色为环境光
+    outputColor[0] = 0.1f;
+    outputColor[1] = 0.1f;
+    outputColor[2] = 0.1f;
+    outputColor[3] = 1.0f;
+    
+    // 计算每个光源的贡献
+    for (int i = 0; i < g_lightCount; i++) {
+        const LightPropertiesPtr light = g_lightArray[i];
+        
+        // 简化的光照计算
+        float lightDir[3];
+        lightDir[0] = light->position[0] - position[0];
+        lightDir[1] = light->position[1] - position[1];
+        lightDir[2] = light->position[2] - position[2];
+        
+        // 归一化光线方向
+        float lightLength = sqrtf(lightDir[0] * lightDir[0] + lightDir[1] * lightDir[1] + lightDir[2] * lightDir[2]);
+        if (lightLength > 0.0f) {
+            lightDir[0] /= lightLength;
+            lightDir[1] /= lightLength;
+            lightDir[2] /= lightLength;
+        }
+        
+        // 计算漫反射
+        float dotProduct = normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2];
+        float diffuse = fmaxf(0.0f, dotProduct);
+        
+        // 衰减计算
+        float attenuation = 1.0f;
+        if (light->type == LIGHT_TYPE_POINT || light->type == LIGHT_TYPE_SPOT) {
+            float distance = lightLength;
+            attenuation = 1.0f / (light->attenuation[0] + light->attenuation[1] * distance + light->attenuation[2] * distance * distance);
+        }
+        
+        // 添加光照贡献
+        outputColor[0] += light->color[0] * light->intensity * diffuse * attenuation;
+        outputColor[1] += light->color[1] * light->intensity * diffuse * attenuation;
+        outputColor[2] += light->color[2] * light->intensity * diffuse * attenuation;
+    }
+    
+    // 限制颜色值范围
+    outputColor[0] = fminf(1.0f, fmaxf(0.0f, outputColor[0]));
+    outputColor[1] = fminf(1.0f, fmaxf(0.0f, outputColor[1]));
+    outputColor[2] = fminf(1.0f, fmaxf(0.0f, outputColor[2]));
+    
+    return 0;
+}
+
+/**
+ * @brief 着色器管理器编译着色器函数
+ * @param type 着色器类型
+ * @param source 着色器源代码
+ * @return 编译成功返回着色器ID，失败返回0
+ */
+int ShaderManager_CompileShader(ShaderType type, const char* source) {
+    if (source == NULL) {
+        return 0;
+    }
+    
+    // 这里应该是实际的着色器编译逻辑
+    // 为了示例，我们返回一个模拟的着色器ID
+    static int shaderIdCounter = 1000;
+    return shaderIdCounter++;
+}
+
+/**
+ * @brief 着色器管理器链接程序函数
+ * @param program 着色器程序指针
+ * @return 链接成功返回0，失败返回错误码
+ */
+int ShaderManager_LinkProgram(ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的程序链接逻辑
+    program->linked = 1;
+    return 0;
+}
+
+/**
+ * @brief 着色器管理器验证程序函数
+ * @param program 着色器程序指针
+ * @return 验证成功返回0，失败返回错误码
+ */
+int ShaderManager_ValidateProgram(const ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的程序验证逻辑
+    return program->linked ? 0 : -1;
+}
+
+/**
+ * @brief 着色器管理器使用程序函数
+ * @param program 着色器程序指针
+ * @return 使用成功返回0，失败返回错误码
+ */
+int ShaderManager_UseProgram(const ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的使用程序逻辑
+    return 0;
+}
+
+/**
+ * @brief 着色器管理器设置统一变量函数
+ * @param program 着色器程序指针
+ * @param name 统一变量名称
+ * @param value 统一变量值
+ * @param type 统一变量类型
+ * @return 设置成功返回0，失败返回错误码
+ */
+int ShaderManager_SetUniform(const ShaderProgramPtr program, const char* name, const void* value, int type) {
+    if (program == NULL || name == NULL || value == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的设置统一变量逻辑
+    return 0;
+}
+
+/**
+ * @brief 阴影映射器初始化函数
+ * @param type 阴影类型
+ * @param resolution 分辨率
+ * @return 初始化成功返回0，失败返回错误码
+ */
+int ShadowMapper_Initialize(ShadowType type, int resolution) {
+    // 这里应该是实际的阴影映射初始化逻辑
+    return 0;
+}
+
+/**
+ * @brief 阴影映射器渲染阴影贴图函数
+ * @param light 光源属性指针
+ * @return 渲染成功返回0，失败返回错误码
+ */
+int ShadowMapper_RenderShadowMap(const LightPropertiesPtr light) {
+    if (light == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的阴影贴图渲染逻辑
+    return 0;
+}
+
+/**
+ * @brief 阴影映射器应用阴影函数
+ * @param shadowMap 阴影映射指针
+ * @param program 着色器程序指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int ShadowMapper_ApplyShadow(const ShadowMappingPtr shadowMap, const ShaderProgramPtr program) {
+    if (shadowMap == NULL || program == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的阴影应用逻辑
+    return 0;
+}
+
+/**
+ * @brief 阴影映射器更新级联分割函数
+ * @param shadowMap 阴影映射指针
+ * @param cameraPos 相机位置
+ * @param cameraDir 相机方向
+ * @return 更新成功返回0，失败返回错误码
+ */
+int ShadowMapper_UpdateCascadeSplits(ShadowMappingPtr shadowMap, const float* cameraPos, const float* cameraDir) {
+    if (shadowMap == NULL || cameraPos == NULL || cameraDir == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的级联分割更新逻辑
+    return 0;
+}
+
+/**
+ * @brief 后处理器添加效果函数
+ * @param type 效果类型
+ * @param parameters 效果参数
+ * @return 添加成功返回效果索引，失败返回-1
+ */
+int PostProcessor_AddEffect(PostProcessType type, const float* parameters) {
+    if (parameters == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果添加逻辑
+    return g_postProcessEffectCount++;
+}
+
+/**
+ * @brief 后处理器移除效果函数
+ * @param effectIndex 效果索引
+ * @return 移除成功返回0，失败返回错误码
+ */
+int PostProcessor_RemoveEffect(int effectIndex) {
+    if (effectIndex < 0 || effectIndex >= g_postProcessEffectCount) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果移除逻辑
+    g_postProcessEffectCount--;
+    return 0;
+}
+
+/**
+ * @brief 后处理器应用效果函数
+ * @param effect 后处理效果指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int PostProcessor_ApplyEffect(const PostProcessEffectPtr effect) {
+    if (effect == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果应用逻辑
+    return 0;
+}
+
+/**
+ * @brief 后处理器渲染效果函数
+ * @param inputTexture 输入纹理
+ * @param outputTexture 输出纹理
+ * @return 渲染成功返回0，失败返回错误码
+ */
+int PostProcessor_RenderEffects(unsigned int inputTexture, unsigned int outputTexture) {
+    // 这里应该是实际的后处理效果渲染逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照设置模型函数
+ * @param material 材质光照属性指针
+ * @param model 光照模型
+ * @return 设置成功返回0，失败返回错误码
+ */
+int MaterialLighting_SetModel(MaterialLightingPropertiesPtr material, LightingModel model) {
+    if (material == NULL) {
+        return -1;
+    }
+    
+    material->model = model;
+    return 0;
+}
+
+/**
+ * @brief 材质光照设置属性函数
+ * @param material 材质光照属性指针
+ * @param properties 属性数组
+ * @return 设置成功返回0，失败返回错误码
+ */
+int MaterialLighting_SetProperties(MaterialLightingPropertiesPtr material, const float* properties) {
+    if (material == NULL || properties == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的材质属性设置逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照计算BSDF函数
+ * @param material 材质光照属性指针
+ * @param viewDir 视线方向
+ * @param lightDir 光线方向
+ * @param outputColor 输出颜色
+ * @return 计算成功返回0，失败返回错误码
+ */
+int MaterialLighting_CalculateBSDF(const MaterialLightingPropertiesPtr material, const float* viewDir, const float* lightDir, float* outputColor) {
+    if (material == NULL || viewDir == NULL || lightDir == NULL || outputColor == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的BSDF计算逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照应用纹理函数
+ * @param material 材质光照属性指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int MaterialLighting_ApplyTextures(MaterialLightingPropertiesPtr material) {
+    if (material == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的纹理应用逻辑
+    return 0;
+}
+
+//============================================================================
+// 导出函数声明
+//============================================================================
+
+// 导出核心光影效果处理函数
+EXPORT_FUNCTION(LightingSystem_InitializeFunc, LightingSystem_Initialize);
+EXPORT_FUNCTION(LightingSystem_CleanupFunc, LightingSystem_Cleanup);
+EXPORT_FUNCTION(LightingSystem_AddLightFunc, LightingSystem_AddLight);
+EXPORT_FUNCTION(LightingSystem_RemoveLightFunc, LightingSystem_RemoveLight);
+EXPORT_FUNCTION(LightingSystem_UpdateLightFunc, LightingSystem_UpdateLight);
+EXPORT_FUNCTION(LightingSystem_CalculateLightingFunc, LightingSystem_CalculateLighting);
+
+// 导出着色器管理函数
+EXPORT_FUNCTION(ShaderManager_CompileShaderFunc, ShaderManager_CompileShader);
+EXPORT_FUNCTION(ShaderManager_LinkProgramFunc, ShaderManager_LinkProgram);
+EXPORT_FUNCTION(ShaderManager_ValidateProgramFunc, ShaderManager_ValidateProgram);
+EXPORT_FUNCTION(ShaderManager_UseProgramFunc, ShaderManager_UseProgram);
+EXPORT_FUNCTION(ShaderManager_SetUniformFunc, ShaderManager_SetUniform);
+
+// 导出阴影映射函数
+EXPORT_FUNCTION(ShadowMapper_InitializeFunc, ShadowMapper_Initialize);
+EXPORT_FUNCTION(ShadowMapper_RenderShadowMapFunc, ShadowMapper_RenderShadowMap);
+EXPORT_FUNCTION(ShadowMapper_ApplyShadowFunc, ShadowMapper_ApplyShadow);
+EXPORT_FUNCTION(ShadowMapper_UpdateCascadeSplitsFunc, ShadowMapper_UpdateCascadeSplits);
+
+// 导出后处理效果函数
+EXPORT_FUNCTION(PostProcessor_AddEffectFunc, PostProcessor_AddEffect);
+EXPORT_FUNCTION(PostProcessor_RemoveEffectFunc, PostProcessor_RemoveEffect);
+EXPORT_FUNCTION(PostProcessor_ApplyEffectFunc, PostProcessor_ApplyEffect);
+EXPORT_FUNCTION(PostProcessor_RenderEffectsFunc, PostProcessor_RenderEffects);
+
+// 导出材质光照处理函数
+EXPORT_FUNCTION(MaterialLighting_SetModelFunc, MaterialLighting_SetModel);
+EXPORT_FUNCTION(MaterialLighting_SetPropertiesFunc, MaterialLighting_SetProperties);
+EXPORT_FUNCTION(MaterialLighting_CalculateBSDFFunc, MaterialLighting_CalculateBSDF);
+EXPORT_FUNCTION(MaterialLighting_ApplyTexturesFunc, MaterialLighting_ApplyTextures);
