@@ -1,6 +1,59 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part017.c - 9 个函数
+// 04_ui_system_part017.c - UI系统高级事件处理和控件管理模块
+// 包含9个核心函数：UI系统高级事件处理器、UI系统动画控制器、UI系统状态管理器、UI系统渲染优化器、UI系统参数计算器、UI系统内存管理器、UI系统错误处理器、UI系统调试器、UI系统性能监控器
+// 主要功能：事件处理、动画控制、状态管理、渲染优化、参数计算、内存管理、错误处理、调试支持、性能监控
+//
+// 技术说明：
+// - 该函数模块实现了UI系统的高级事件处理和控件管理功能
+// - 支持复杂的动画控制和状态管理
+// - 包含高级的渲染优化和参数计算功能
+// - 提供完整的内存管理和错误处理机制
+// - 支持调试和性能监控功能
+//
+// 函数特点：
+// - 支持多种事件处理模式
+// - 实现了复杂的动画控制系统
+// - 提供高级的状态管理和渲染优化
+// - 包含完整的内存管理和错误处理
+// - 支持调试和性能监控功能
+
+// 常量定义
+#define UI_ZERO_FLOAT 0.0f
+#define UI_ONE_FLOAT 1.0f
+#define UI_TWO_FLOAT 2.0f
+#define UI_THREE_FLOAT 3.0f
+#define UI_FOUR_FLOAT 4.0f
+#define UI_FIVE_FLOAT 5.0f
+#define UI_SIX_FLOAT 6.0f
+#define UI_TEN_FLOAT 10.0f
+#define UI_FIFTEEN_FLOAT 15.0f
+#define UI_HALF_FLOAT 0.5f
+#define UI_POINT_ZERO_ONE_FLOAT 0.001f
+#define UI_POINT_ONE_FLOAT 0.1f
+#define UI_POINT_FIVE_FLOAT 0.5f
+#define UI_ONE_MILLION_FLOAT 1e-06f
+#define UI_MIN_THRESHOLD_FLOAT 1.1754944e-38f
+#define UI_MAX_THRESHOLD_FLOAT 3.4028235e+38f
+#define UI_WIDGET_BLOCK_SIZE 0x1358
+#define UI_CONTROL_BLOCK_SIZE 0x4d6
+#define UI_ANIMATION_BLOCK_SIZE 0x30
+#define UI_WIDGET_COUNT_MAX 18
+#define UI_WIDGET_COUNT_MIN 10
+#define UI_MATRIX_SIZE_4X4 16
+#define UI_FLOAT_SIZE 4
+#define UI_INT_SIZE 4
+
+// 函数别名定义
+#define ui_system_advanced_event_processor FUN_18065d7f0
+#define ui_system_animation_controller FUN_18065d804
+#define ui_system_state_manager FUN_18065d902
+#define ui_system_render_optimizer FUN_18065dec1
+#define ui_system_parameter_calculator FUN_18065df80
+#define ui_system_memory_manager FUN_18065e200
+#define ui_system_error_handler FUN_18065e276
+#define ui_system_debug_support FUN_18065e9a5
+#define ui_system_performance_monitor FUN_18065ed75
 
 // 函数: void FUN_18065d7f0(longlong param_1,longlong param_2)
 void FUN_18065d7f0(longlong param_1,longlong param_2)
