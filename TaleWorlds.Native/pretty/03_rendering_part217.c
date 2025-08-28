@@ -602,7 +602,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                             *(int8_t*)(existing_connection_point + 4) = 2;
                                                             existing_connection_point[3] = search_index;
                                                             *middle_connection_point = (longlong)existing_connection_point;
-                                                            FUN_18038b160(existing_connection_point[2]);
+                                                            RenderingSystem_ConnectionHandleCleanup(existing_connection_point[2]);
                                                             new_connection_handle = middle_geometry_ptr;
                                                             optimization_index = search_index;
                                                             goto connection_optimization_complete;
@@ -633,7 +633,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                 }
                                                 
                                                 temp_connection_handle = *temp_connection_point;
-                                                existing_connection_point = (RenderConnectionPoint*)FUN_18038c180(param_1);
+                                                existing_connection_point = (RenderConnectionPoint*)RenderingSystem_ConnectionPointFinder(param_1);
                                                 existing_connection_point[1] = new_connection_handle;
                                                 *existing_connection_point = temp_connection_handle;
                                                 *(int8_t*)(existing_connection_point + 4) = 1;
