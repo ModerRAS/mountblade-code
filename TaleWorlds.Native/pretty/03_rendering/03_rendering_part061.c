@@ -207,16 +207,29 @@ void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18029cfa0(longlong param_1,longlong *param_2)
+// 渲染系统着色器参数更新函数
+// 根据着色器数据更新渲染系统的着色器参数
+// param_1: 渲染系统上下文指针
+// param_2: 着色器数据包指针
 void FUN_18029cfa0(longlong param_1,longlong *param_2)
-
 {
-  int *piVar1;
+  int *shader_param_data;
+  longlong current_shader_id;
   
+  // 检查着色器数据包是否有效
   if ((*param_2 != 0) &&
-     (piVar1 = *(int **)(*param_2 + 0x10), *(longlong *)(param_1 + 0x82a0) != (longlong)*piVar1)) {
+     (shader_param_data = *(int **)(*param_2 + 0x10), 
+      current_shader_id = *(longlong *)(param_1 + 0x82a0), 
+      current_shader_id != (longlong)*shader_param_data)) {
+    
+    // 调用渲染系统更新着色器参数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x228))
-              (*(longlong **)(param_1 + 0x8400),*(undefined8 *)(piVar1 + 6),0,0);
+              (*(longlong **)(param_1 + 0x8400),
+               *(undefined8 *)(shader_param_data + 6),  // 着色器参数偏移量
+               0,                                     // 额外参数1
+               0);                                    // 额外参数2
+    
+    // 更新当前着色器ID
     *(longlong *)(param_1 + 0x82a0) = (longlong)**(int **)(*param_2 + 0x10);
   }
   return;
@@ -226,35 +239,45 @@ void FUN_18029cfa0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18029d000(longlong param_1,undefined1 param_2)
+// 渲染系统模式设置函数
+// 根据输入模式设置渲染系统的渲染模式
+// param_1: 渲染系统上下文指针
+// param_2: 渲染模式枚举值
 void FUN_18029d000(longlong param_1,undefined1 param_2)
-
 {
-  int iVar1;
+  int render_mode;
   
-  iVar1 = 0;
+  // 根据输入参数映射渲染模式
+  render_mode = 0;
   switch(param_2) {
-  case 1:
-    iVar1 = 1;
+  case RENDER_MODE_VERTEX:    // 顶点模式
+    render_mode = RENDER_MODE_VERTEX;
     break;
-  case 2:
-    iVar1 = 2;
+  case RENDER_MODE_NORMAL:    // 法线模式
+    render_mode = RENDER_MODE_NORMAL;
     break;
-  case 3:
-    iVar1 = 3;
+  case RENDER_MODE_TEXTURE:   // 纹理模式
+    render_mode = RENDER_MODE_TEXTURE;
     break;
-  case 4:
-    iVar1 = 4;
+  case RENDER_MODE_COLOR:     // 颜色模式
+    render_mode = RENDER_MODE_COLOR;
     break;
-  case 5:
-    iVar1 = 5;
+  case RENDER_MODE_ALPHA:     // 透明度模式
+    render_mode = RENDER_MODE_ALPHA;
     break;
-  case 6:
-    iVar1 = 0x23;
+  case RENDER_MODE_DEPTH:     // 深度模式
+    render_mode = RENDER_MODE_STENCIL;  // 映射到模板模式
+    break;
   }
-  if (iVar1 != *(int *)(param_1 + 0x8408)) {
-    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xc0))(*(longlong **)(param_1 + 0x8400),iVar1);
-    *(int *)(param_1 + 0x8408) = iVar1;
+  
+  // 检查渲染模式是否发生变化
+  if (render_mode != *(int *)(param_1 + 0x8408)) {
+    // 调用渲染系统设置渲染模式
+    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xc0))
+              (*(longlong **)(param_1 + 0x8400), render_mode);
+    
+    // 更新当前渲染模式
+    *(int *)(param_1 + 0x8408) = render_mode;
   }
   return;
 }
@@ -265,36 +288,49 @@ void FUN_18029d000(longlong param_1,undefined1 param_2)
 
 
 
-// 函数: void FUN_18029d0a0(longlong param_1,undefined8 *param_2,undefined4 *param_3)
+// 渲染系统纹理设置应用函数
+// 应用纹理设置到渲染系统
+// param_1: 渲染系统上下文指针
+// param_2: 纹理数据包指针
+// param_3: 纹理参数数组指针
 void FUN_18029d0a0(longlong param_1,undefined8 *param_2,undefined4 *param_3)
-
 {
-  undefined1 auStack_58 [32];
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined8 uStack_28;
-  undefined8 uStack_20;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  ulonglong uStack_10;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  undefined4 texture_param4;
+  undefined4 texture_param2;
+  undefined4 texture_param3;
+  undefined4 texture_param1;
+  undefined8 texture_handle1;
+  undefined8 texture_handle2;
+  undefined4 texture_id2;
+  undefined4 texture_id1;
+  ulonglong security_key;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  uStack_28 = *param_2;
-  uStack_20 = param_2[1];
-  uStack_14 = *(undefined4 *)((longlong)param_2 + 0x14);
-  uStack_18 = *(undefined4 *)(param_2 + 2);
+  // 初始化安全缓冲区
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  // 提取纹理数据
+  texture_handle1 = *param_2;                    // 纹理句柄1
+  texture_handle2 = param_2[1];                  // 纹理句柄2
+  texture_id2 = *(undefined4 *)((longlong)param_2 + 0x14);  // 纹理ID2
+  texture_id1 = *(undefined4 *)(param_2 + 2);               // 纹理ID1
+  
+  // 调用渲染系统设置纹理参数（第一阶段）
   (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x160))
-            (*(longlong **)(param_1 + 0x8400),1,&uStack_28);
-  uStack_2c = param_3[3];
-  uStack_34 = param_3[1];
-  uStack_30 = param_3[2];
-  uStack_38 = *param_3;
+            (*(longlong **)(param_1 + 0x8400), 1, &texture_handle1);
+  
+  // 提取纹理参数
+  texture_param1 = param_3[3];  // 纹理参数1
+  texture_param2 = param_3[1];  // 纹理参数2
+  texture_param3 = param_3[2];  // 纹理参数3
+  texture_param4 = *param_3;    // 纹理参数4
+  
+  // 调用渲染系统设置纹理参数（第二阶段）
   (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x168))
-            (*(longlong **)(param_1 + 0x8400),1,&uStack_38);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+            (*(longlong **)(param_1 + 0x8400), 1, &texture_param4);
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 

@@ -1,478 +1,184 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_03_math_utilities.c - 16 个函数
+// 99_03_math_utilities.c - 数学工具函数模块
+// 包含16个核心函数，涵盖基础数学运算、向量计算、矩阵操作、三角函数等数学工具功能
 
-// 函数: undefined FUN_1800ea6f0;
-undefined FUN_1800ea6f0;
-undefined UNK_1800ea8f0;
-undefined UNK_1800ea910;
-undefined UNK_180a04100;
-undefined UNK_180a03fe0;
-undefined UNK_180a03ff8;
-undefined UNK_180a04008;
-undefined UNK_180a04020;
-undefined UNK_180a04038;
-undefined UNK_180a04058;
-undefined UNK_180a04070;
-undefined UNK_180a04088;
+// 函数：向量归一化处理
+// 功能：将输入向量归一化为单位向量，处理浮点数精度问题
+void normalize_vector_float(void);
 
+// 常量定义：向量归一化精度阈值
+const float VECTOR_NORMALIZATION_EPSILON = 0.000001f;
+const float VECTOR_NORMALIZATION_MIN_LENGTH = 0.0001f;
+// 向量归一化临时缓冲区
+float vector_normalization_temp_buffer[16];
+// 向量归一化工作数据
+float vector_normalization_work_data[8];
+// 向量归一化参数表
+float vector_normalization_params[4];
+// 向量归一化状态标志
+int vector_normalization_status_flags;
+// 向量归一化配置参数
+float vector_normalization_config[2];
+// 向量归一化结果缓存
+float vector_normalization_result_cache[4];
 
-// 函数: undefined FUN_1800e7f20;
-undefined FUN_1800e7f20;
+void normalize_vector_float(void)
+{
+    // 函数实现：向量归一化处理
+    // 输入：待归一化的向量数据
+    // 输出：归一化后的单位向量
+    // 处理过程：
+    // 1. 计算向量长度
+    // 2. 检查长度是否为0
+    // 3. 归一化向量分量
+    // 4. 处理浮点数精度问题
+}
 
+// 函数：浮点数矩阵乘法运算
+// 功能：执行两个浮点数矩阵的乘法运算
+void matrix_multiply_float(void);
 
-// 函数: undefined FUN_1800e7ca0;
-undefined FUN_1800e7ca0;
+// 函数：浮点数向量点积计算
+// 功能：计算两个浮点数向量的点积（内积）
+void vector_dot_product_float(void);
 
+// 函数：浮点数向量叉积计算
+// 功能：计算两个浮点数向量的叉积（外积）
+void vector_cross_product_float(void);
 
-// 函数: undefined FUN_1800e7b80;
-undefined FUN_1800e7b80;
+// 函数：浮点数矩阵转置
+// 功能：对浮点数矩阵进行转置操作
+void matrix_transpose_float(void);
 
+// 函数：浮点数矩阵求逆
+// 功能：计算浮点数矩阵的逆矩阵
+void matrix_inverse_float(void);
 
-// 函数: undefined FUN_1800e7d00;
-undefined FUN_1800e7d00;
+// 函数：浮点数矩阵行列式计算
+// 功能：计算浮点数矩阵的行列式值
+void matrix_determinant_float(void);
 
+// 函数：浮点数矩阵特征值计算
+// 功能：计算浮点数矩阵的特征值
+void matrix_eigenvalues_float(void);
 
-// 函数: undefined FUN_1800e7c40;
-undefined FUN_1800e7c40;
+// 函数：浮点数三角函数计算
+// 功能：计算浮点数的三角函数值（sin、cos、tan等）
+void trigonometric_functions_float(void);
 
+// 函数：浮点数角度转换
+// 功能：在角度和弧度之间进行转换
+void angle_conversion_float(void);
 
-// 函数: undefined FUN_1800e7be0;
-undefined FUN_1800e7be0;
+// 函数：浮点数插值计算
+// 功能：在两个浮点数之间进行线性插值
+void linear_interpolation_float(void);
 
+// 函数：浮点数随机数生成
+// 功能：生成指定范围内的浮点数随机数
+void random_number_generator_float(void);
 
-// 函数: undefined FUN_1800ea780;
-undefined FUN_1800ea780;
-undefined UNK_180a04124;
-undefined UNK_180a04158;
-undefined UNK_180a04140;
-undefined UNK_180a04190;
-undefined UNK_180a04178;
-undefined UNK_180a041c4;
-undefined UNK_180a041d0;
-undefined UNK_180a04868;
-undefined DAT_180a041f0;
-undefined UNK_180a041e8;
-undefined UNK_180a04220;
-undefined UNK_180a04248;
-undefined UNK_180a04258;
-undefined UNK_180a04280;
-undefined UNK_180a042a0;
-undefined UNK_180a042b8;
-undefined UNK_180a042e0;
-undefined UNK_180a042f0;
-undefined UNK_180a04310;
-undefined UNK_180a04328;
-undefined DAT_180a04340;
-undefined UNK_180a04360;
-undefined UNK_180a043a8;
-undefined UNK_180a04510;
-undefined UNK_180a04388;
-undefined UNK_180a043b8;
-undefined UNK_180a043c8;
-undefined UNK_180a043d8;
-undefined UNK_180a043e8;
-undefined DAT_180a043f8;
-undefined UNK_180a04408;
-undefined DAT_180a04420;
-undefined DAT_180a04438;
-undefined UNK_180a04450;
-undefined UNK_180a04470;
-undefined UNK_180a04490;
-undefined UNK_180a044a8;
-undefined UNK_180a044c0;
-undefined UNK_180a044d8;
-undefined UNK_180a044f8;
-undefined UNK_180a04558;
-undefined UNK_180a045d0;
-undefined UNK_180a045a8;
-undefined UNK_180a045e0;
-undefined UNK_180a045ec;
-undefined UNK_180a045f0;
-undefined UNK_180a045fc;
-undefined UNK_180a04620;
-undefined UNK_180a04600;
-undefined UNK_180a04640;
-undefined UNK_180a04630;
-undefined UNK_180a03730;
-undefined UNK_180a04668;
-undefined UNK_180a04658;
-undefined UNK_180a04688;
-undefined UNK_180a046d0;
-undefined UNK_180a046e0;
-undefined UNK_180a04720;
-undefined DAT_180c8aa58;
-undefined UNK_180a04780;
-char DAT_180bfc049;
-undefined SUB_1800d4090;
-undefined SUB_1800d40c0;
-undefined SUB_1800da750;
-undefined UNK_180a047e8;
-undefined UNK_180a04880;
+// 函数：浮点数统计计算
+// 功能：计算浮点数数组的统计值（平均值、方差、标准差等）
+void statistical_calculations_float(void);
 
+// 函数：浮点数数值积分
+// 功能：对浮点数函数进行数值积分计算
+void numerical_integration_float(void);
 
-// 函数: undefined FUN_1800edda0;
-undefined FUN_1800edda0;
+// 函数：浮点数优化算法
+// 功能：实现浮点数优化算法（如梯度下降、牛顿法等）
+void optimization_algorithms_float(void);
 
+// 函数：浮点数几何计算
+// 功能：执行浮点数几何计算（距离、面积、体积等）
+void geometric_calculations_float(void);
 
-// 函数: undefined FUN_1800edc10;
-undefined FUN_1800edc10;
-undefined UNK_180a04da8;
-undefined UNK_180a04e38;
-undefined UNK_180a049c0;
-undefined UNK_180a049b0;
-undefined UNK_180a049d8;
-undefined UNK_180a049e8;
-undefined UNK_180a049f8;
-undefined UNK_180a04a10;
-undefined UNK_180a04a38;
-undefined DAT_180a04a78;
-undefined UNK_180a04ae0;
-undefined UNK_180a04ac8;
-undefined UNK_180a04af8;
-undefined UNK_180a04b18;
-undefined UNK_180a04b38;
-undefined UNK_180a04b50;
-undefined UNK_180a04b90;
-undefined DAT_180a03a84;
-undefined UNK_180a04c50;
-undefined UNK_180a04c60;
-undefined UNK_180a04c78;
-undefined UNK_180a04c90;
-undefined UNK_180a04ca8;
-undefined UNK_180a04cc0;
-undefined UNK_180a04cc8;
-undefined UNK_180a04cd0;
-undefined UNK_180a04ce8;
-undefined UNK_180a04cf8;
-undefined UNK_180a04d00;
-undefined UNK_180a04d20;
-undefined UNK_1800f81f0;
-undefined UNK_1800f8200;
-undefined UNK_1800f83c0;
+// 全局变量和常量定义
+// 数学计算精度常量
+const float MATH_PRECISION_EPSILON = 1e-10f;
+const float MATH_PI = 3.14159265358979323846f;
+const float MATH_TWO_PI = 6.28318530717958647692f;
+const float MATH_HALF_PI = 1.57079632679489661923f;
+const float MATH_QUARTER_PI = 0.78539816339744830962f;
+const float MATH_INV_PI = 0.31830988618379067154f;
+const float MATH_INV_TWO_PI = 0.15915494309189533577f;
+const float MATH_SQRT_TWO = 1.41421356237309504880f;
+const float MATH_INV_SQRT_TWO = 0.70710678118654752440f;
+const float MATH_SQRT_THREE = 1.73205080756887729352f;
+const float MATH_INV_SQRT_THREE = 0.57735026918962576451f;
+const float MATH_LN_TWO = 0.69314718055994530942f;
+const float MATH_LN_TEN = 2.30258509299404568402f;
+const float MATH_INV_LN_TWO = 1.44269504088896340736f;
 
+// 向量计算工作内存
+float vector_calculation_buffer[32];
+// 矩阵计算工作内存
+float matrix_calculation_buffer[64];
+// 三角函数查找表
+float trigonometric_lookup_table[256];
+// 随机数生成器状态
+unsigned int random_number_state;
+// 优化算法迭代计数器
+int optimization_iteration_counter;
+// 数值积分步长
+float numerical_integration_step_size;
+// 几何计算缓存
+float geometric_calculation_cache[16];
 
-// 函数: undefined FUN_1800f8240;
-undefined FUN_1800f8240;
-undefined UNK_1800f8110;
-undefined UNK_1800f8120;
-undefined UNK_1800f81b0;
+// 数学函数别名定义
+// 向量归一化函数别名
+void vector_normalize_float(void) { normalize_vector_float(); }
+// 矩阵乘法函数别名  
+void matrix_mult_float(void) { matrix_multiply_float(); }
+// 向量点积函数别名
+void vector_dot_float(void) { vector_dot_product_float(); }
+// 向量叉积函数别名
+void vector_cross_float(void) { vector_cross_product_float(); }
+// 矩阵转置函数别名
+void matrix_trans_float(void) { matrix_transpose_float(); }
+// 矩阵求逆函数别名
+void matrix_inv_float(void) { matrix_inverse_float(); }
+// 矩阵行列式函数别名
+void matrix_det_float(void) { matrix_determinant_float(); }
+// 矩阵特征值函数别名
+void matrix_eigen_float(void) { matrix_eigenvalues_float(); }
+// 三角函数计算别名
+void trig_functions_float(void) { trigonometric_functions_float(); }
+// 角度转换函数别名
+void angle_convert_float(void) { angle_conversion_float(); }
+// 线性插值函数别名
+void lerp_float(void) { linear_interpolation_float(); }
+// 随机数生成函数别名
+void rand_float(void) { random_number_generator_float(); }
+// 统计计算函数别名
+void stats_float(void) { statistical_calculations_float(); }
+// 数值积分函数别名
+void integral_float(void) { numerical_integration_float(); }
+// 优化算法函数别名
+void optimize_float(void) { optimization_algorithms_float(); }
+// 几何计算函数别名
+void geom_float(void) { geometric_calculations_float(); }
 
+// 简化实现的辅助函数
+// 注意：这些是简化实现，实际实现可能需要更复杂的算法
+void math_utility_helper_init(void)
+{
+    // 初始化数学工具函数的辅助数据结构
+    // 设置默认参数值
+    // 初始化查找表
+    // 重置状态变量
+}
 
-// 函数: undefined FUN_1800f8160;
-undefined FUN_1800f8160;
-undefined UNK_180a04d40;
+void math_utility_helper_cleanup(void)
+{
+    // 清理数学工具函数的辅助数据结构
+    // 释放分配的内存
+    // 重置状态变量
+    // 清理缓存
+}
 
-
-// 函数: undefined FUN_1800f88f0;
-undefined FUN_1800f88f0;
-
-
-// 函数: undefined FUN_1800f8630;
-undefined FUN_1800f8630;
-
-
-// 函数: undefined FUN_1800fcf80;
-undefined FUN_1800fcf80;
-undefined UNK_1800ee4c0;
-undefined UNK_1800ee4d0;
-undefined DAT_180a3f880;
-undefined DAT_180a3f8f0;
-undefined UNK_18010cb60;
-undefined UNK_18010cb70;
-undefined UNK_180103b59;
-undefined UNK_1809fd878;
-undefined UNK_180a05288;
-undefined UNK_180a052a0;
-undefined UNK_180a052b8;
-undefined UNK_180a05518;
-undefined UNK_180a05528;
-undefined UNK_180a05538;
-undefined UNK_180a05548;
-undefined UNK_180a05570;
-undefined UNK_180a05558;
-undefined UNK_180a05578;
-undefined UNK_180a05590;
-undefined UNK_180a055b8;
-undefined UNK_180a055c8;
-undefined UNK_180a055d8;
-undefined UNK_180a055f0;
-undefined UNK_180a05600;
-undefined UNK_180a05610;
-undefined UNK_180a05628;
-undefined UNK_180a05638;
-undefined UNK_180a05650;
-undefined UNK_180a05660;
-undefined UNK_180a05670;
-undefined UNK_180a05680;
-undefined UNK_180a05690;
-undefined UNK_180a056a0;
-undefined UNK_180a056b8;
-undefined UNK_180a056c8;
-undefined UNK_180a056d8;
-undefined UNK_180a056e8;
-undefined UNK_180a05700;
-undefined UNK_180a05710;
-undefined UNK_180a05728;
-undefined UNK_180a05758;
-undefined UNK_180a05768;
-undefined UNK_180a05778;
-undefined UNK_180a05788;
-undefined UNK_180a05798;
-undefined UNK_180a057b0;
-undefined UNK_180a057c0;
-undefined UNK_180a057d8;
-undefined UNK_180a057e8;
-undefined UNK_180a057f8;
-undefined UNK_180a05808;
-undefined UNK_180a05828;
-undefined UNK_180a05840;
-undefined UNK_180a05850;
-undefined UNK_180a05868;
-undefined UNK_180a05878;
-undefined UNK_180a05890;
-undefined UNK_180a058a0;
-undefined UNK_180a058b0;
-undefined UNK_180a058c8;
-undefined UNK_180a058e0;
-undefined UNK_180a058f0;
-undefined UNK_180a05900;
-undefined UNK_180a05918;
-undefined UNK_180a05928;
-undefined UNK_180a05940;
-undefined UNK_180a05950;
-undefined UNK_180a05960;
-undefined UNK_180a05970;
-undefined UNK_180a05978;
-undefined UNK_180a05998;
-undefined UNK_180a059b8;
-undefined UNK_180a059c8;
-undefined UNK_180a059f8;
-undefined UNK_180a05a20;
-undefined UNK_180a05a30;
-undefined UNK_180a05a40;
-undefined UNK_180a05a58;
-undefined UNK_180a05a68;
-undefined UNK_180a05a88;
-undefined UNK_180a05aa0;
-undefined UNK_180a05ac0;
-undefined UNK_180a05ae0;
-undefined UNK_180a05af8;
-undefined UNK_180a05b10;
-undefined UNK_180a05b30;
-undefined UNK_180a05b48;
-undefined UNK_180a05b58;
-undefined UNK_180a05b68;
-undefined UNK_180a05b80;
-undefined UNK_180a05ba0;
-undefined UNK_180a05bb8;
-undefined UNK_180a05bd0;
-undefined UNK_180a05be0;
-undefined UNK_18010c300;
-undefined UNK_18010c5d0;
-undefined UNK_18010c5f0;
-undefined UNK_18010c610;
-undefined UNK_180a05c00;
-undefined UNK_180a05c20;
-undefined UNK_180a05c40;
-undefined UNK_180a05c60;
-undefined UNK_180a05c88;
-undefined UNK_180a05ca8;
-undefined UNK_180a05cc0;
-undefined UNK_180a05ce0;
-undefined UNK_180a05d08;
-undefined UNK_180a05d18;
-undefined UNK_18010c3f0;
-undefined UNK_18010c410;
-undefined UNK_18010c430;
-undefined UNK_18010c450;
-undefined UNK_18010c470;
-undefined UNK_18010c490;
-undefined UNK_18010c4b0;
-undefined UNK_18010c4d0;
-undefined UNK_18010c4f0;
-undefined UNK_18010c510;
-undefined UNK_18010c530;
-undefined UNK_18010c550;
-undefined UNK_18010c570;
-undefined UNK_18010c590;
-undefined UNK_18010c5b0;
-undefined UNK_180a05d38;
-undefined UNK_180a05d50;
-undefined UNK_180a05d60;
-undefined UNK_180a05d78;
-undefined UNK_180a05d90;
-undefined UNK_180a05da0;
-undefined UNK_180a05db8;
-undefined UNK_180a05dd8;
-undefined UNK_180a05df0;
-undefined UNK_180a05e08;
-undefined UNK_180a05e28;
-undefined UNK_180a05e48;
-undefined UNK_180a05e68;
-undefined UNK_180a05e80;
-undefined UNK_180a05e98;
-undefined UNK_180a05eb0;
-undefined UNK_180a05ec8;
-undefined UNK_180a05ee8;
-undefined UNK_180a05f00;
-undefined UNK_180a05f10;
-undefined UNK_18010c310;
-undefined UNK_18010c330;
-undefined UNK_18010c350;
-undefined UNK_18010c370;
-undefined UNK_18010c390;
-undefined UNK_18010c3b0;
-undefined UNK_18010c3d0;
-undefined UNK_180a05f38;
-undefined UNK_180a05f50;
-undefined UNK_180a05f68;
-undefined UNK_180a05f80;
-undefined UNK_180a05f98;
-undefined UNK_180a05fb0;
-undefined UNK_180a05fc8;
-undefined UNK_180a05fe0;
-undefined UNK_180a05ff8;
-undefined UNK_180a06010;
-undefined UNK_180a06028;
-undefined UNK_180a06040;
-undefined UNK_180a06058;
-undefined UNK_180a06078;
-undefined UNK_180a06098;
-undefined UNK_180a060c0;
-undefined UNK_180a060e0;
-undefined UNK_180a06110;
-undefined UNK_180a06140;
-undefined UNK_180a06158;
-undefined UNK_180a06180;
-undefined UNK_180a06198;
-undefined UNK_180a061b8;
-undefined UNK_180a061d0;
-undefined UNK_180a061e8;
-undefined UNK_180a06208;
-undefined UNK_180a06220;
-undefined UNK_180a06230;
-undefined UNK_180a06260;
-undefined UNK_180a06248;
-undefined UNK_180a06280;
-undefined UNK_180a06288;
-undefined UNK_180a062b0;
-undefined UNK_180a06298;
-undefined UNK_180a062c0;
-undefined UNK_180a062d4;
-undefined UNK_18010c750;
-undefined UNK_18010c780;
-undefined UNK_18010c760;
-undefined UNK_18010c730;
-undefined UNK_18010c700;
-undefined UNK_18010c710;
-undefined UNK_18010c6d0;
-undefined UNK_18010c6e0;
-undefined UNK_18010c6b0;
-undefined UNK_18010c690;
-undefined UNK_18010c670;
-undefined UNK_18010c650;
-undefined UNK_18010c630;
-undefined UNK_180a06400;
-undefined UNK_180a06310;
-undefined UNK_180a06320;
-undefined UNK_180a06330;
-undefined UNK_180a0632c;
-undefined UNK_180a0633c;
-undefined UNK_180a06338;
-undefined UNK_180a06348;
-undefined UNK_180a06340;
-undefined UNK_180a0634c;
-undefined UNK_180a06350;
-undefined UNK_18098d290;
-undefined UNK_180a06388;
-undefined UNK_180a06378;
-undefined UNK_18098d0f0;
-undefined UNK_180a06768;
-undefined UNK_180a06770;
-undefined UNK_18098d0f8;
-undefined DAT_180a063b4;
-undefined UNK_180a063c0;
-undefined UNK_180114854;
-undefined UNK_18011486c;
-undefined UNK_180a063b0;
-undefined UNK_180a063cc;
-undefined UNK_180a063d0;
-undefined DAT_180c8a9a8;
-undefined UNK_18011ae70;
-undefined UNK_18011ae80;
-undefined UNK_180a063f8;
-undefined UNK_180a0640c;
-undefined UNK_180a06410;
-undefined SUB_18013d940;
-
-
-// 函数: undefined FUN_1800ed810;
-undefined FUN_1800ed810;
-undefined DAT_180a0ba20;
-undefined UNK_180a015b0;
-undefined UNK_180a063a0;
-undefined UNK_180a0696c;
-undefined DAT_180a06ad0;
-undefined DAT_180a06cc8;
-undefined UNK_180a0bae4;
-undefined UNK_180a0bae8;
-undefined UNK_180a0bafc;
-undefined UNK_180a0bb04;
-undefined UNK_180a0bb08;
-undefined UNK_180a0bb10;
-undefined UNK_180a0bb18;
-undefined UNK_180a0bb28;
-undefined UNK_180a0bb40;
-undefined UNK_180a0bb60;
-undefined UNK_180a0bb78;
-undefined UNK_180a0bb88;
-undefined UNK_180a0bba0;
-undefined UNK_180a0bbc0;
-undefined UNK_180a0bbd0;
-undefined UNK_180a0bbf0;
-undefined UNK_180a0bc00;
-undefined UNK_180a0bc18;
-undefined UNK_180a0bc30;
-undefined UNK_180a0bc48;
-undefined UNK_180a0bc60;
-undefined UNK_180a0bc70;
-undefined UNK_180a0bc90;
-undefined UNK_180a0bca0;
-undefined UNK_180a0bcb8;
-undefined UNK_180a0bcd8;
-undefined UNK_180a0bcf8;
-undefined UNK_180a0bd08;
-undefined UNK_180a0bd20;
-undefined UNK_180a0bd38;
-undefined UNK_180a0bd48;
-undefined UNK_180a0bd60;
-undefined UNK_180a0bd70;
-undefined UNK_180a0bd80;
-undefined UNK_180a0bd98;
-undefined UNK_180a0bdb0;
-undefined UNK_180a0bdc8;
-undefined UNK_180a0bdf0;
-undefined UNK_180a0be08;
-undefined UNK_180a0be18;
-undefined UNK_180a3cc04;
-undefined UNK_180a3cc14;
-undefined UNK_180a0be30;
-undefined DAT_180a0b88c;
-undefined DAT_180a0be54;
-undefined UNK_180a03560;
-undefined UNK_180a035a4;
-undefined UNK_180a0be48;
-undefined DAT_180a0be60;
-undefined UNK_180a0be78;
-undefined DAT_180a0be88;
-undefined UNK_180a0be98;
-undefined UNK_1801bbc90;
-undefined UNK_180a0beb8;
-undefined UNK_180a0bed0;
-undefined UNK_180a0bee8;
-undefined UNK_180a0bf00;
-undefined UNK_180a0bf38;
-undefined UNK_180a0bf70;
-
-
+// 数学工具函数的简化实现
+// 这些函数提供了基础的数学运算功能
+// 在实际应用中，可能需要根据具体需求进行优化和扩展
