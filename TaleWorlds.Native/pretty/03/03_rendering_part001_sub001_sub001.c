@@ -2241,65 +2241,74 @@ undefined access_optimization_data; // 访问优化数据
 
 
 
-// 函数: undefined FUN_180446ca0;
-undefined FUN_180446ca0;
-undefined UNK_1804519b0;
+// 函数: 绘制事件优化
+// 负责绘制事件优化建议
+undefined draw_event_optimization;
+undefined event_optimization_data; // 事件优化数据
 
 
 
 
-// 函数: undefined FUN_180446d20;
-undefined FUN_180446d20;
-undefined UNK_180451c70;
+// 函数: 绘制操作优化
+// 负责绘制操作优化建议
+undefined draw_operation_optimization;
+undefined operation_optimization_data; // 操作优化数据
 
 
 
 
-// 函数: undefined FUN_180446dc0;
-undefined FUN_180446dc0;
-undefined UNK_180451c80;
+// 函数: 绘制错误报告
+// 负责绘制错误报告信息
+undefined draw_error_report;
+undefined error_report_data;      // 错误报告数据
 
 
 
 
-// 函数: undefined FUN_180446e70;
-undefined FUN_180446e70;
-undefined UNK_180451c90;
+// 函数: 绘制性能报告
+// 负责绘制性能报告信息
+undefined draw_performance_report;
+undefined performance_report_data; // 性能报告数据
 
 
 
 
-// 函数: undefined FUN_180446f00;
-undefined FUN_180446f00;
-undefined UNK_180452530;
+// 函数: 绘制内存报告
+// 负责绘制内存报告信息
+undefined draw_memory_report;
+undefined memory_report_data;     // 内存报告数据
 
 
 
 
-// 函数: undefined FUN_180446fa0;
-undefined FUN_180446fa0;
-undefined UNK_180452550;
+// 函数: 绘制CPU报告
+// 负责绘制CPU报告信息
+undefined draw_cpu_report;
+undefined cpu_report_data;        // CPU报告数据
 
 
 
 
-// 函数: undefined FUN_180446fd0;
-undefined FUN_180446fd0;
-undefined UNK_1804525c0;
+// 函数: 绘制GPU报告
+// 负责绘制GPU报告信息
+undefined draw_gpu_report;
+undefined gpu_report_data;        // GPU报告数据
 
 
 
 
-// 函数: undefined FUN_180447030;
-undefined FUN_180447030;
-undefined UNK_1804525e0;
+// 函数: 绘制网络报告
+// 负责绘制网络报告信息
+undefined draw_network_report;
+undefined network_report_data;    // 网络报告数据
 
 
 
 
-// 函数: undefined FUN_1804470d0;
-undefined FUN_1804470d0;
-undefined UNK_180453480;
+// 函数: 绘制磁盘报告
+// 负责绘制磁盘报告信息
+undefined draw_disk_report;
+undefined disk_report_data;       // 磁盘报告数据
 
 
 
