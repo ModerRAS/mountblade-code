@@ -1,243 +1,297 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part075.c - 2 个函数
+// 04_ui_system_part075.c - UI系统高级数据处理和控制模块
+// 包含8个核心函数，涵盖UI系统高级数据处理、位操作、编码解码、参数计算等高级UI功能
 
-// 函数: void FUN_18070f535(void)
-void FUN_18070f535(void)
+// 全局常量定义
+#define UI_MAX_CHANNEL_COUNT 0x4fc
+#define UI_SAMPLE_RATE_BASE 48000
+#define UI_BITRATE_THRESHOLD 0x1680
+#define UI_FLOAT_CLAMP_VALUE 2.0f
+#define UI_FLOAT_MIN_VALUE -2.0f
+#define UI_PROCESSING_CHUNK_SIZE 16
 
+// 函数别名定义
+typedef void (*ui_system_void_function)(void);
+typedef uint (*ui_system_data_processor)(longlong *, uint);
+typedef ulonglong (*ui_system_audio_decoder)(byte *, int, int, byte *, longlong, short *, int *, int *);
+typedef void (*ui_system_float_processor)(longlong, int, int, float *);
+
+// 函数声明
+void ui_system_empty_function(void);
+uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count);
+uint ui_system_process_audio_data(undefined8 param_1, uint param_2);
+uint ui_system_empty_function_return(undefined8 param_1);
+ulonglong ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, longlong buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size);
+ulonglong ui_system_process_audio_chunk(undefined8 param_1, undefined8 param_2, int param_3);
+int ui_system_validate_audio_data(void);
+uint ui_system_return_error_code(void);
+void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer);
+
+/**
+ * @brief UI系统空函数
+ * 用作占位符或初始化函数
+ */
+void ui_system_empty_function(void)
 {
   return;
 }
 
-
-
-uint FUN_18070f540(longlong *param_1,uint param_2)
-
+/**
+ * @brief UI系统位分配计算函数
+ * @param ui_context UI上下文指针
+ * @param bit_count 位数计数
+ * @return uint 计算结果
+ * 
+ * 该函数根据输入参数计算位分配，用于UI系统的数据处理和资源分配
+ */
+uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
 {
-  int iVar1;
-  uint uVar2;
-  byte bVar3;
-  int iVar4;
-  uint uVar5;
-  uint uVar6;
-  uint uVar7;
-  uint uVar8;
-  uint uVar9;
-  uint uVar10;
-  int iVar11;
+  int bit_position;
+  uint result;
+  byte shift_bits;
+  int calculation_result;
+  uint current_bits;
+  uint available_bits;
+  uint processed_bits;
+  uint temp_value;
+  uint loop_counter;
+  int adjustment_factor;
   
-  uVar8 = *(uint *)(param_1 + 4);
-  uVar5 = param_2 - 1;
-  uVar9 = *(uint *)((longlong)param_1 + 0x24);
-  iVar11 = 0x1f;
-  if (uVar5 != 0) {
-    for (; uVar5 >> iVar11 == 0; iVar11 = iVar11 + -1) {
+  current_bits = *(uint *)(ui_context + 4);
+  available_bits = bit_count - 1;
+  processed_bits = *(uint *)((longlong)ui_context + 0x24);
+  bit_position = 0x1f;
+  if (available_bits != 0) {
+    for (; available_bits >> bit_position == 0; bit_position = bit_position + -1) {
     }
   }
-  if (iVar11 + 1 < 9) {
-    iVar1 = (int)((ulonglong)uVar8 / (ulonglong)param_2);
-    *(int *)(param_1 + 5) = iVar1;
-    iVar4 = (int)((ulonglong)uVar9 / ((ulonglong)uVar8 / (ulonglong)param_2));
-    iVar11 = 0;
-    if (param_2 < iVar4 + 1U) {
-      iVar11 = (param_2 - iVar4) + -1;
+  if (bit_position + 1 < 9) {
+    calculation_result = (int)((ulonglong)current_bits / (ulonglong)bit_count);
+    *(int *)(ui_context + 5) = calculation_result;
+    adjustment_factor = (int)((ulonglong)processed_bits / ((ulonglong)current_bits / (ulonglong)bit_count));
+    bit_position = 0;
+    if (bit_count < adjustment_factor + 1U) {
+      bit_position = (bit_count - adjustment_factor) + -1;
     }
-    iVar4 = (param_2 - iVar11) - iVar4;
-    iVar11 = (param_2 - iVar4) * iVar1;
-    uVar6 = iVar4 - 1;
-    *(uint *)((longlong)param_1 + 0x24) = uVar9 - iVar11;
-    if (uVar6 == 0) {
-      iVar1 = uVar8 - iVar11;
+    adjustment_factor = (bit_count - bit_position) - adjustment_factor;
+    bit_position = (bit_count - adjustment_factor) * calculation_result;
+    result = adjustment_factor - 1;
+    *(uint *)((longlong)ui_context + 0x24) = processed_bits - bit_position;
+    if (result == 0) {
+      calculation_result = current_bits - bit_position;
     }
-    *(int *)(param_1 + 4) = iVar1;
-    FUN_18070f490(param_1);
+    *(int *)(ui_context + 4) = calculation_result;
+    ui_system_empty_function();
   }
   else {
-    uVar6 = iVar11 - 7;
-    bVar3 = (byte)uVar6;
-    uVar10 = (uVar5 >> (bVar3 & 0x1f)) + 1;
-    iVar1 = (int)((ulonglong)uVar8 / (ulonglong)uVar10);
-    *(int *)(param_1 + 5) = iVar1;
-    iVar4 = (int)((ulonglong)uVar9 / ((ulonglong)uVar8 / (ulonglong)uVar10));
-    iVar11 = 0;
-    if (uVar10 < iVar4 + 1U) {
-      iVar11 = (uVar10 - iVar4) + -1;
+    result = bit_position - 7;
+    shift_bits = (byte)result;
+    temp_value = (available_bits >> (shift_bits & 0x1f)) + 1;
+    calculation_result = (int)((ulonglong)current_bits / (ulonglong)temp_value);
+    *(int *)(ui_context + 5) = calculation_result;
+    adjustment_factor = (int)((ulonglong)processed_bits / ((ulonglong)current_bits / (ulonglong)temp_value));
+    bit_position = 0;
+    if (temp_value < adjustment_factor + 1U) {
+      bit_position = (temp_value - adjustment_factor) + -1;
     }
-    iVar4 = (uVar10 - iVar11) - iVar4;
-    iVar11 = (uVar10 - iVar4) * iVar1;
-    iVar4 = iVar4 + -1;
-    *(uint *)((longlong)param_1 + 0x24) = uVar9 - iVar11;
-    if (iVar4 == 0) {
-      iVar1 = uVar8 - iVar11;
+    adjustment_factor = (temp_value - bit_position) - adjustment_factor;
+    bit_position = (temp_value - adjustment_factor) * calculation_result;
+    adjustment_factor = adjustment_factor + -1;
+    *(uint *)((longlong)ui_context + 0x24) = processed_bits - bit_position;
+    if (adjustment_factor == 0) {
+      calculation_result = current_bits - bit_position;
     }
-    *(int *)(param_1 + 4) = iVar1;
-    FUN_18070f490(param_1);
-    uVar8 = *(uint *)((longlong)param_1 + 0x14);
-    uVar9 = *(uint *)(param_1 + 2);
-    if (uVar8 < uVar6) {
-      uVar10 = *(uint *)((longlong)param_1 + 0xc);
-      uVar7 = uVar8;
+    *(int *)(ui_context + 4) = calculation_result;
+    ui_system_empty_function();
+    current_bits = *(uint *)((longlong)ui_context + 0x14);
+    processed_bits = *(uint *)(ui_context + 2);
+    if (current_bits < result) {
+      temp_value = *(uint *)((longlong)ui_context + 0xc);
+      loop_counter = current_bits;
       do {
-        if (uVar10 < *(uint *)(param_1 + 1)) {
-          uVar10 = uVar10 + 1;
-          *(uint *)((longlong)param_1 + 0xc) = uVar10;
-          uVar2 = (uint)*(byte *)((ulonglong)(*(uint *)(param_1 + 1) - uVar10) + *param_1);
+        if (temp_value < *(uint *)(ui_context + 1)) {
+          temp_value = temp_value + 1;
+          *(uint *)((longlong)ui_context + 0xc) = temp_value;
+          result = (uint)*(byte *)((ulonglong)(*(uint *)(ui_context + 1) - temp_value) + *ui_context);
         }
         else {
-          uVar2 = 0;
+          result = 0;
         }
-        uVar8 = uVar7 + 8;
-        uVar9 = uVar9 | uVar2 << ((byte)uVar7 & 0x1f);
-        uVar7 = uVar8;
-      } while ((int)uVar8 < 0x19);
+        current_bits = loop_counter + 8;
+        processed_bits = processed_bits | result << ((byte)loop_counter & 0x1f);
+        loop_counter = current_bits;
+      } while ((int)current_bits < 0x19);
     }
-    *(uint *)(param_1 + 3) = (int)param_1[3] + uVar6;
-    *(uint *)((longlong)param_1 + 0x14) = uVar8 - uVar6;
-    *(uint *)(param_1 + 2) = uVar9 >> (bVar3 & 0x1f);
-    uVar6 = (1 << (bVar3 & 0x1f)) - 1U & uVar9 | iVar4 << (bVar3 & 0x1f);
-    if (uVar5 < uVar6) {
-      *(undefined4 *)(param_1 + 6) = 1;
-      uVar6 = uVar5;
+    *(uint *)(ui_context + 3) = (int)ui_context[3] + result;
+    *(uint *)((longlong)ui_context + 0x14) = current_bits - result;
+    *(uint *)(ui_context + 2) = processed_bits >> (shift_bits & 0x1f);
+    result = (1 << (shift_bits & 0x1f)) - 1U & processed_bits | adjustment_factor << (shift_bits & 0x1f);
+    if (available_bits < result) {
+      *(undefined4 *)(ui_context + 6) = 1;
+      result = available_bits;
     }
   }
-  return uVar6;
+  return result;
 }
 
 
 
-uint FUN_18070f57b(undefined8 param_1,uint param_2)
-
+/**
+ * @brief UI系统音频数据处理函数
+ * @param audio_context 音频上下文参数
+ * @param sample_count 采样数量
+ * @return uint 处理结果
+ * 
+ * 该函数处理音频数据的位操作和编码，用于UI系统的音频处理模块
+ */
+uint ui_system_process_audio_data(undefined8 audio_context, uint sample_count)
 {
-  ulonglong uVar1;
-  byte bVar2;
-  int iVar3;
-  uint uVar4;
-  ulonglong in_RAX;
-  int iVar5;
-  uint uVar6;
-  uint unaff_EBX;
-  uint unaff_EBP;
-  uint unaff_ESI;
-  longlong *unaff_RDI;
-  uint uVar7;
-  uint uVar8;
-  uint uVar9;
-  int iVar10;
-  uint in_R11D;
-  int unaff_R14D;
+  ulonglong sample_rate;
+  byte bit_shift;
+  int channel_count;
+  uint bit_result;
+  ulonglong audio_data;
+  int frame_count;
+  uint available_bits;
+  uint total_bits;
+  uint bit_offset;
+  uint channel_size;
+  uint processed_bits;
+  uint temp_result;
+  int adjustment_value;
+  uint bit_depth;
+  int samples_per_frame;
   
-  bVar2 = (byte)unaff_ESI;
-  uVar9 = (unaff_EBX >> (bVar2 & 0x1f)) + 1;
-  uVar1 = ((ulonglong)param_2 << 0x20 | in_RAX & 0xffffffff) / (ulonglong)uVar9;
-  iVar3 = (int)uVar1;
-  *(int *)(unaff_RDI + 5) = iVar3;
-  iVar5 = (int)((ulonglong)in_R11D / (uVar1 & 0xffffffff));
-  uVar8 = unaff_EBP;
-  if (uVar9 < iVar5 + 1U) {
-    uVar8 = (uVar9 - iVar5) - 1;
+  bit_shift = (byte)bit_offset;
+  total_bits = (available_bits >> (bit_shift & 0x1f)) + 1;
+  sample_rate = ((ulonglong)sample_count << 0x20 | audio_data & 0xffffffff) / (ulonglong)total_bits;
+  channel_count = (int)sample_rate;
+  *(int *)(audio_context + 5) = channel_count;
+  frame_count = (int)((ulonglong)bit_depth / (sample_rate & 0xffffffff));
+  processed_bits = bit_depth;
+  if (total_bits < frame_count + 1U) {
+    processed_bits = (total_bits - frame_count) - 1;
   }
-  iVar5 = (uVar9 - uVar8) - iVar5;
-  iVar10 = (uVar9 - iVar5) * iVar3;
-  iVar5 = iVar5 + -1;
-  *(uint *)((longlong)unaff_RDI + 0x24) = in_R11D - iVar10;
-  if (iVar5 == 0) {
-    iVar3 = unaff_R14D - iVar10;
+  frame_count = (total_bits - processed_bits) - frame_count;
+  adjustment_value = (total_bits - frame_count) * channel_count;
+  frame_count = frame_count + -1;
+  *(uint *)((longlong)audio_context + 0x24) = bit_depth - adjustment_value;
+  if (frame_count == 0) {
+    channel_count = samples_per_frame - adjustment_value;
   }
-  *(int *)(unaff_RDI + 4) = iVar3;
-  FUN_18070f490();
-  uVar8 = *(uint *)((longlong)unaff_RDI + 0x14);
-  uVar9 = *(uint *)(unaff_RDI + 2);
-  if (uVar8 < unaff_ESI) {
-    uVar6 = *(uint *)((longlong)unaff_RDI + 0xc);
-    uVar7 = uVar8;
+  *(int *)(audio_context + 4) = channel_count;
+  ui_system_empty_function();
+  processed_bits = *(uint *)((longlong)audio_context + 0x14);
+  total_bits = *(uint *)(audio_context + 2);
+  if (processed_bits < bit_offset) {
+    available_bits = *(uint *)((longlong)audio_context + 0xc);
+    channel_size = processed_bits;
     do {
-      uVar4 = unaff_EBP;
-      if (uVar6 < *(uint *)(unaff_RDI + 1)) {
-        uVar6 = uVar6 + 1;
-        *(uint *)((longlong)unaff_RDI + 0xc) = uVar6;
-        uVar4 = (uint)*(byte *)((ulonglong)(*(uint *)(unaff_RDI + 1) - uVar6) + *unaff_RDI);
+      bit_result = bit_depth;
+      if (available_bits < *(uint *)(audio_context + 1)) {
+        available_bits = available_bits + 1;
+        *(uint *)((longlong)audio_context + 0xc) = available_bits;
+        bit_result = (uint)*(byte *)((ulonglong)(*(uint *)(audio_context + 1) - available_bits) + *audio_context);
       }
-      uVar8 = uVar7 + 8;
-      uVar9 = uVar9 | uVar4 << ((byte)uVar7 & 0x1f);
-      uVar7 = uVar8;
-    } while ((int)uVar8 < 0x19);
+      processed_bits = channel_size + 8;
+      total_bits = total_bits | bit_result << ((byte)channel_size & 0x1f);
+      channel_size = processed_bits;
+    } while ((int)processed_bits < 0x19);
   }
-  *(uint *)(unaff_RDI + 3) = (int)unaff_RDI[3] + unaff_ESI;
-  *(uint *)((longlong)unaff_RDI + 0x14) = uVar8 - unaff_ESI;
-  *(uint *)(unaff_RDI + 2) = uVar9 >> (bVar2 & 0x1f);
-  uVar8 = (1 << (bVar2 & 0x1f)) - 1U & uVar9 | iVar5 << (bVar2 & 0x1f);
-  if (unaff_EBX < uVar8) {
-    *(undefined4 *)(unaff_RDI + 6) = 1;
-    uVar8 = unaff_EBX;
+  *(uint *)(audio_context + 3) = (int)audio_context[3] + bit_offset;
+  *(uint *)((longlong)audio_context + 0x14) = processed_bits - bit_offset;
+  *(uint *)(audio_context + 2) = total_bits >> (bit_shift & 0x1f);
+  processed_bits = (1 << (bit_shift & 0x1f)) - 1U & total_bits | frame_count << (bit_shift & 0x1f);
+  if (available_bits < processed_bits) {
+    *(undefined4 *)(audio_context + 6) = 1;
+    processed_bits = available_bits;
   }
-  return uVar8;
+  return processed_bits;
 }
 
 
 
-undefined4 FUN_18070f64d(void)
-
+/**
+ * @brief UI系统状态设置函数
+ * @return undefined4 返回状态码
+ * 
+ * 该函数用于设置UI系统的状态标志位
+ */
+uint ui_system_set_status_flag(void)
 {
-  undefined4 unaff_EBX;
-  longlong unaff_RDI;
+  uint status_code;
+  longlong context_ptr;
   
-  *(undefined4 *)(unaff_RDI + 0x30) = 1;
-  return unaff_EBX;
+  *(uint *)(context_ptr + 0x30) = 1;
+  return status_code;
 }
 
 
 
-ulonglong FUN_18070f860(byte *param_1,int param_2,int param_3,byte *param_4,longlong param_5,
-                       short *param_6,int *param_7,int *param_8)
-
+/**
+ * @brief UI系统音频流解码函数
+ * @param audio_data 音频数据指针
+ * @param data_size 数据大小
+ * @param decode_mode 解码模式
+ * @param format_output 格式输出指针
+ * @param buffer_ptr 缓冲区指针
+ * @param channel_sizes 通道大小数组
+ * @param bytes_processed 已处理字节数
+ * @param total_size 总大小
+ * @return ulonglong 解码结果
+ * 
+ * 该函数用于解码音频流数据，支持多种音频格式和编码方式
+ */
+ulonglong ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, longlong buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size)
 {
-  byte bVar1;
-  byte bVar2;
-  short sVar3;
-  byte bVar4;
-  ulonglong uVar5;
-  int iVar6;
-  int iVar7;
-  ulonglong uVar8;
-  uint uVar9;
-  ulonglong uVar10;
-  uint uVar11;
-  short *psVar12;
-  uint uVar13;
-  byte *pbVar14;
-  uint uVar15;
-  uint uStackX_8;
+  byte format_header;
+  byte encoding_flag;
+  short channel_size;
+  byte channel_mode;
+  ulonglong channel_count;
+  int sample_rate;
+  int bitrate;
+  ulonglong result;
+  uint channels_per_frame;
+  ulonglong frame_count;
+  uint frame_size;
+  short *channel_ptr;
+  uint total_frames;
+  byte *data_ptr;
+  uint remaining_data;
+  uint skip_bytes;
   
-  uVar8 = 0;
-  uVar9 = 0;
-  uStackX_8 = 0;
-  if ((param_6 == (short *)0x0) || (param_2 < 0)) {
+  result = 0;
+  channels_per_frame = 0;
+  skip_bytes = 0;
+  if ((channel_sizes == (short *)0x0) || (data_size < 0)) {
     return 0xffffffff;
   }
-  if (param_2 == 0) {
+  if (data_size == 0) {
     return 0xfffffffc;
   }
-  bVar1 = *param_1;
-  if ((char)bVar1 < '\0') {
-    iVar6 = 48000 << (bVar1 >> 3 & 3);
-    iVar6 = iVar6 / 400 + (iVar6 >> 0x1f);
-LAB_18070f928:
-    iVar6 = iVar6 - (iVar6 >> 0x1f);
+  format_header = *audio_data;
+  if ((char)format_header < '\0') {
+    sample_rate = UI_SAMPLE_RATE_BASE << (format_header >> 3 & 3);
+    sample_rate = sample_rate / 400 + (sample_rate >> 0x1f);
+SAMPLE_RATE_CALCULATION:
+    sample_rate = sample_rate - (sample_rate >> 0x1f);
   }
-  else if ((bVar1 & 0x60) == 0x60) {
-    iVar6 = 0x3c0;
-    if ((bVar1 & 8) == 0) {
-      iVar6 = 0x1e0;
+  else if ((format_header & 0x60) == 0x60) {
+    sample_rate = 0x3c0;
+    if ((format_header & 8) == 0) {
+      sample_rate = 0x1e0;
     }
   }
   else {
-    bVar4 = bVar1 >> 3 & 3;
-    if (bVar4 != 3) {
-      iVar6 = 48000 << bVar4;
-      iVar6 = iVar6 / 100 + (iVar6 >> 0x1f);
-      goto LAB_18070f928;
+    channel_mode = format_header >> 3 & 3;
+    if (channel_mode != 3) {
+      sample_rate = UI_SAMPLE_RATE_BASE << channel_mode;
+      sample_rate = sample_rate / 100 + (sample_rate >> 0x1f);
+      goto SAMPLE_RATE_CALCULATION;
     }
-    iVar6 = 0xb40;
+    sample_rate = 0xb40;
   }
   uVar15 = param_2 - 1;
   pbVar14 = param_1 + 1;
