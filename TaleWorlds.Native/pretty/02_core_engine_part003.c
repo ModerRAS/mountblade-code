@@ -570,7 +570,7 @@ void core_engine_system_initializer_type9(void)
     buffer_size = 7;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &system_memory_4640, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_224, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     core_system_memory = core_engine_string_processor_register(&string_processor);
