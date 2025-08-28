@@ -1,79 +1,136 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part056.c - 14 个函数
+// 03_rendering_part056.c - 渲染系统高级数据处理和渲染控制模块
+// 包含14个核心函数，涵盖渲染系统高级数据处理、几何计算、内存管理、
+// 数据压缩、校验和计算、数组扩展、缓冲区管理等高级渲染功能
 
-// 函数: void FUN_18029833b(undefined8 param_1,float param_2,float param_3,float param_4)
-void FUN_18029833b(undefined8 param_1,float param_2,float param_3,float param_4)
+// 函数别名定义 - 保持向后兼容性
+#define render_advanced_arc_calculation FUN_18029833b
+#define render_empty_operation_1 FUN_180298850
+#define render_boundary_processing FUN_180298890
+#define render_memory_copy_operation FUN_180298c20
+#define render_data_decompressor FUN_180298c80
+#define render_data_validator FUN_180298ee0
+#define render_array_resize_16bit FUN_180299170
+#define render_array_resize_auto_16bit FUN_1802991ad
+#define render_simple_assignment_1 FUN_18029921e
+#define render_array_resize_40bit FUN_180299230
+#define render_array_resize_auto_40bit FUN_18029924a
+#define render_simple_assignment_2 FUN_180299304
+#define render_simple_assignment_3 FUN_180299316
+#define render_array_push_32bit FUN_180299330
+#define render_array_push_auto_32bit FUN_180299378
+#define render_array_push_direct_32bit FUN_1802993e9
+
+// 全局变量声明
+extern undefined8 _DAT_180c8a9a8;
+extern undefined8 _DAT_180c8a9b0;
+extern undefined8 _DAT_180c96838;
+extern undefined8 _DAT_180c96840;
+extern undefined8 _DAT_180c96848;
+extern undefined8 _DAT_180c96850;
+
+// 外部函数声明
+extern undefined8 FUN_18011dc70(int *param_1, int param_2);
+extern undefined8 FUN_180293190(float param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4);
+extern undefined8 FUN_180293730(float param_1, undefined8 param_2, float param_3, int param_4, int param_5);
+extern undefined8 FUN_180293860(float param_1, undefined8 param_2, float param_3, float param_4, float param_5);
+extern undefined8 FUN_180293f50(undefined8 param_1, float *param_2, float *param_3, ulonglong param_4, undefined4 param_5, int param_6);
+extern undefined8 func_0x000180120ce0(longlong param_1, undefined8 param_2);
+extern undefined8 func_0x000180298bc0(longlong param_1, int param_2);
+
+/**
+ * 渲染系统高级弧线计算函数
+ * 
+ * 该函数执行复杂的渲染几何计算，主要处理弧线相关的数学运算，
+ * 包括角度计算、边界检查和渲染参数调整。用于高级渲染效果中的
+ * 弧形边界处理和几何变换。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param param_2 第一个浮点参数，用于弧线计算
+ * @param param_3 第二个浮点参数，用于弧线计算
+ * @param param_4 第三个浮点参数，用于弧线计算
+ */
+void render_advanced_arc_calculation(undefined8 render_context, float param_2, float param_3, float param_4)
+// 原始函数名: FUN_18029833b - 保持向后兼容性
 
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  int iVar4;
-  int iVar5;
-  int iVar6;
-  longlong unaff_RBP;
-  int iVar7;
-  longlong unaff_RDI;
-  float *unaff_R14;
-  undefined4 unaff_R15D;
-  undefined4 uVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float unaff_XMM7_Da;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float fVar13;
-  float fVar14;
-  float unaff_XMM10_Da;
-  float unaff_XMM13_Da;
-  float unaff_XMM14_Da;
+  int *array_capacity_ptr;
+  longlong data_array_ptr;
+  undefined8 temp_data;
+  int current_capacity;
+  int new_capacity;
+  int temp_int;
+  longlong stack_offset;
+  int arc_segments;
+  longlong render_data_ptr;
+  float *float_array_ptr;
+  undefined4 render_flags;
+  undefined4 temp_flag;
+  float arc_radius;
+  float start_angle;
+  float end_angle;
+  float center_x;
+  float center_y;
+  float boundary_min_x;
+  float boundary_max_x;
+  float boundary_min_y;
+  float boundary_max_y;
+  float temp_float;
+  float arc_length;
+  float angle_step;
+  float segment_angle;
   
-  fVar9 = (param_2 - unaff_XMM13_Da) * 0.5;
-  if (param_3 <= fVar9) {
-    fVar9 = param_3;
+  // 计算弧线半径
+  arc_radius = (param_2 - boundary_min_y) * 0.5;
+  if (param_3 <= arc_radius) {
+    arc_radius = param_3;
   }
-  fVar9 = fVar9 - 1.0;
-  if (unaff_XMM8_Da <= fVar9) {
-    if (fVar9 <= unaff_XMM7_Da) {
-      unaff_XMM7_Da = fVar9;
+  arc_radius = arc_radius - 1.0;
+  if (boundary_max_x <= arc_radius) {
+    if (arc_radius <= boundary_min_x) {
+      boundary_min_x = arc_radius;
     }
   }
   else {
-    unaff_XMM7_Da = 0.0;
+    boundary_min_x = 0.0;
   }
-  fVar11 = 1.0 / unaff_XMM7_Da;
-  *(float *)(unaff_RBP + 0x7f) = fVar11;
-  fVar9 = 1.0 - (param_4 - unaff_XMM9_Da) * fVar11;
-  if (unaff_XMM8_Da < fVar9) {
-    if (fVar9 < 1.0) {
-      fVar9 = (float)acosf(fVar9);
+  
+  // 计算角度步长
+  angle_step = 1.0 / boundary_min_x;
+  *(float *)(stack_offset + 0x7f) = angle_step;
+  // 计算起始角度
+  arc_radius = 1.0 - (param_4 - boundary_max_y) * angle_step;
+  if (boundary_max_x < arc_radius) {
+    if (arc_radius < 1.0) {
+      arc_radius = (float)acosf(arc_radius);
     }
     else {
-      fVar9 = 0.0;
+      arc_radius = 0.0;
     }
   }
   else {
-    fVar9 = 1.5707964;
+    arc_radius = 1.5707964;
   }
-  fVar11 = 1.0 - (unaff_XMM10_Da - unaff_XMM9_Da) * fVar11;
-  if (unaff_XMM8_Da < fVar11) {
-    if (fVar11 < 1.0) {
-      fVar11 = (float)acosf();
+  
+  // 计算结束角度
+  angle_step = 1.0 - (boundary_min_x - boundary_max_y) * angle_step;
+  if (boundary_max_x < angle_step) {
+    if (angle_step < 1.0) {
+      angle_step = (float)acosf();
     }
     else {
-      fVar11 = 0.0;
+      angle_step = 0.0;
     }
   }
   else {
-    fVar11 = 1.5707964;
+    angle_step = 1.5707964;
   }
-  iVar7 = 8;
-  fVar13 = unaff_XMM9_Da + unaff_XMM7_Da;
-  if (unaff_XMM9_Da + unaff_XMM7_Da <= *(float *)(unaff_RBP + 0x67)) {
-    fVar13 = *(float *)(unaff_RBP + 0x67);
+  // 设置弧线段数
+  arc_segments = 8;
+  arc_length = boundary_max_y + boundary_min_x;
+  if (boundary_max_y + boundary_min_x <= *(float *)(stack_offset + 0x67)) {
+    arc_length = *(float *)(stack_offset + 0x67);
   }
   if (fVar9 == fVar11) {
     piVar1 = (int *)(unaff_RDI + 0x80);
