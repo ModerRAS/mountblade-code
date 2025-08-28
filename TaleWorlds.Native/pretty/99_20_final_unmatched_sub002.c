@@ -176,7 +176,7 @@ uint8_t unknown_var_6864;  // 渲染场景
 uint8_t unknown_var_6568;  // 渲染对象
 uint8_t unknown_var_6688;  // 渲染变换
 uint8_t unknown_var_6744;  // 渲染矩阵
-uint8_t unknown_var_7056;  // 渲染管线
+uint8_t rendering_pipeline_manager;  // 渲染管线
 uint8_t unknown_var_7112;  // 渲染目标
 uint8_t unknown_var_7168;  // 渲染深度
 
@@ -301,7 +301,7 @@ uint8_t unknown_var_904;  // UI动画资源
 uint8_t unknown_var_6264;  // UI布局资源
 uint8_t unknown_var_1408;  // UI控件资源
 uint8_t unknown_var_1488;  // UI主题资源
-uint8_t unknown_var_1584;  // UI样式资源
+uint8_t rendering_main_control;  // UI样式资源
 uint8_t unknown_var_1528;  // UI图标资源
 uint8_t unknown_var_1640;  // UI颜色资源
 uint8_t unknown_var_1696;  // UI字体大小
@@ -713,7 +713,7 @@ uint8_t unknown_var_264;  // 引擎资源
 uint8_t unknown_var_616;  // 引擎内存
 uint8_t unknown_var_696;  // 引擎性能
 uint8_t unknown_var_720;  // 引擎日志
-uint8_t unknown_var_9840;  // 引擎调试
+uint8_t rendering_device_handle;  // 引擎调试
 uint8_t unknown_var_184;  // 引擎配置
 uint8_t unknown_var_2124;  // 引擎状态
 uint8_t unknown_var_800;  // 引擎统计
@@ -924,14 +924,14 @@ uint8_t unknown_var_5992;  // 引擎服务事件
 uint8_t unknown_var_6912;  // 引擎服务信号
 uint8_t unknown_var_6984;  // 引擎服务线程
 uint8_t unknown_var_6960;  // 引擎服务进程
-uint8_t unknown_var_7088;  // 引擎服务同步
+uint8_t rendering_state_manager;  // 引擎服务同步
 uint8_t unknown_var_7072;  // 引擎服务通信
 uint8_t unknown_var_7008;  // 引擎服务网络
 uint8_t unknown_var_6936;  // 引擎服务存储
 uint8_t unknown_var_6856;  // 引擎服务设备
 uint8_t unknown_var_6840;  // 引擎服务驱动
 uint8_t unknown_var_6888;  // 引擎服务清理
-uint8_t unknown_var_7056;  // 引擎服务安全
+uint8_t rendering_pipeline_manager;  // 引擎服务安全
 uint8_t unknown_var_6872;  // 引擎服务日志
 uint8_t unknown_var_7136;  // 引擎服务统计
 uint8_t unknown_var_7280;  // 引擎服务计数器

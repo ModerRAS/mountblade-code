@@ -194,7 +194,7 @@ uint64_t FUN_1806a1170(int64_t param_1,uint64_t *param_2,int8_t *param_3)
             puVar8 = (void *)__std_type_info_name(0x180bfc198,0x180c827e0);
           }
           uVar3 = (**(code **)(*plVar6 + 8))
-                            (plVar6,iVar2,puVar8,&unknown_var_1664_ptr,CONCAT44(uVar13,0x71));
+                            (plVar6,iVar2,puVar8,&rendering_config_var_ptr,CONCAT44(uVar13,0x71));
         }
         puVar5[2] = uVar3;
         __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar3);
@@ -384,7 +384,7 @@ int8_t FUN_1806a11f6(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t
       else {
         puVar10 = (void *)__std_type_info_name(0x180bfc198,0x180c827e0);
       }
-      uVar7 = (**(code **)(*plVar8 + 8))(plVar8,iVar5,puVar10,&unknown_var_1664_ptr,CONCAT44(uVar15,0x71));
+      uVar7 = (**(code **)(*plVar8 + 8))(plVar8,iVar5,puVar10,&rendering_config_var_ptr,CONCAT44(uVar15,0x71));
     }
     puVar6[2] = uVar7;
     __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar7);

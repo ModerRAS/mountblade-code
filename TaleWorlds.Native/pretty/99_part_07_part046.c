@@ -210,7 +210,7 @@ void FUN_1804c6850(int64_t param_1)
       puStack_100 = auStack_f0;
       auStack_f0[0] = 0;
       uStack_f8 = 0x12;
-      strcpy_s(auStack_f0,0x20,&unknown_var_1664_ptr);
+      strcpy_s(auStack_f0,0x20,&rendering_config_var_ptr);
       puVar3 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStack_1b8,&puStack_108,1);
       uVar2 = *puVar3;
       *puVar3 = 0;
@@ -317,7 +317,7 @@ void FUN_1804c6850(int64_t param_1)
 uint64_t * FUN_1804c6e20(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1752_ptr;
+  *param_1 = &rendering_shader_manager_ptr;
   *param_1 = &unknown_var_1696_ptr;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 5) = 0x1060101;
@@ -371,7 +371,7 @@ uint64_t * FUN_1804c6f10(uint64_t *param_1,uint64_t param_2)
   if ((int64_t *)param_1[0xc] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xc] + 0x38))();
   }
-  *param_1 = &unknown_var_1752_ptr;
+  *param_1 = &rendering_shader_manager_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xc0);
   }

@@ -570,7 +570,7 @@ uint8_t unknown_var_1240;                          // UI系统缓存加载器 - 
 uint8_t unknown_var_1264;                          // UI系统缓存保存器 - 保存缓存数据
 uint8_t unknown_var_1136;                          // UI系统缓存检查器 - 检查缓存完整性
 uint8_t unknown_var_1144;                          // UI系统缓存修复器 - 修复缓存错误
-uint8_t unknown_var_1280;                          // UI系统缓存迁移器 - 迁移缓存数据
+uint8_t rendering_buffer_manager;                          // UI系统缓存迁移器 - 迁移缓存数据
 uint8_t unknown_var_1296;                          // UI系统缓存版本器 - 管理缓存版本
 uint8_t unknown_var_1316;                          // UI系统缓存校验器 - 校验缓存数据
 uint8_t unknown_var_1328;                          // UI系统缓存序列化器 - 序列化缓存数据
@@ -584,7 +584,7 @@ uint8_t unknown_var_1440;                          // UI系统缓存恢复器 - 
 uint8_t unknown_var_1544;                          // UI系统缓存测试器 - 测试缓存功能
 int8_t system_memory_6808;                      // UI系统缓存标志 - 标识缓存状态
 uint8_t unknown_var_1792;                          // UI系统缓存调试器 - 调试缓存功能
-uint8_t unknown_var_1688;                          // UI系统缓存分析器 - 分析缓存性能
+uint8_t rendering_state_manager;                          // UI系统缓存分析器 - 分析缓存性能
 uint8_t unknown_var_1704;                          // UI系统缓存优化器 - 优化缓存操作
 uint64_t DAT;                       // UI系统缓存计数器 - 统计缓存操作
 uint8_t unknown_var_1840;                          // UI系统缓存控制器 - 控制缓存操作
@@ -836,7 +836,7 @@ uint8_t unknown_var_7232;                          // UI系统内存清零器 - 
 //------------------------------------------------------------------------------
 
 uint8_t unknown_var_8096;                          // UI系统线程创建器 - 创建线程
-uint8_t unknown_var_9840;                          // UI系统线程销毁器 - 销毁线程
+uint8_t rendering_device_handle;                          // UI系统线程销毁器 - 销毁线程
 uint8_t unknown_var_1552;                          // UI系统线程启动器 - 启动线程
 uint8_t unknown_var_2512;                          // UI系统线程停止器 - 停止线程
 uint8_t unknown_var_3392;                          // UI系统线程暂停器 - 暂停线程

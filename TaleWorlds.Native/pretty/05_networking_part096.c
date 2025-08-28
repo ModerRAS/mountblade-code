@@ -72,7 +72,7 @@ void FUN_180897859(float param_1)
       fVar1 = *(float *)(unaff_R15 + -0x180985054 + (int64_t)pfVar5);
       if (fVar1 != *pfVar5) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &unknown_var_7088_ptr;
+        in_stack_00000028 = &rendering_state_manager_ptr;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;

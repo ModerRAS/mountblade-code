@@ -301,7 +301,7 @@ LAB_18010a4a0:
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   lVar1 = param_1 + 0xef0;
-  (**(code **)(*(int64_t *)(param_1 + 0xf30) + 0x10))((int64_t *)(param_1 + 0xf30),&unknown_var_1688_ptr)
+  (**(code **)(*(int64_t *)(param_1 + 0xf30) + 0x10))((int64_t *)(param_1 + 0xf30),&rendering_state_manager_ptr)
   ;
   uVar6 = FUN_180628ca0();
   FUN_18005c8a0(lVar1,uVar6);
@@ -310,7 +310,7 @@ LAB_18010a4a0:
   uStackX_8 = (int32_t *)lVar1;
   SystemInitializer(param_1 + 0x48,&uStackX_8);
   uVar2 = param_1 + 0xfb0;
-  (**(code **)(*(int64_t *)(param_1 + 0xff0) + 0x10))((int64_t *)(param_1 + 0xff0),&unknown_var_1664_ptr)
+  (**(code **)(*(int64_t *)(param_1 + 0xff0) + 0x10))((int64_t *)(param_1 + 0xff0),&rendering_config_var_ptr)
   ;
   uVar6 = FUN_180628ca0();
   FUN_18005c8a0(uVar2,uVar6);

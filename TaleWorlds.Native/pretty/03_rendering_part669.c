@@ -535,12 +535,12 @@ FUN_18064ddd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  if (param_1 == (int64_t *)&unknown_var_7056_ptr) {
+  if (param_1 == (int64_t *)&rendering_pipeline_manager_ptr) {
     FUN_18064f980();
     param_1 = *(int64_t **)
                (*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x10);
-    if (param_1 == (int64_t *)&unknown_var_7056_ptr) {
+    if (param_1 == (int64_t *)&rendering_pipeline_manager_ptr) {
       return (uint64_t *)0x0;
     }
   }
@@ -686,7 +686,7 @@ void FUN_18064e0d0(int64_t *param_1,int param_2)
   if (param_1 == (int64_t *)0x0) {
     return;
   }
-  if (param_1 == (int64_t *)&unknown_var_7056_ptr) {
+  if (param_1 == (int64_t *)&rendering_pipeline_manager_ptr) {
     return;
   }
   aiStackX_10[0] = param_2;
@@ -999,7 +999,7 @@ void FUN_18064e350(int64_t *param_1)
   int64_t lVar5;
   uint64_t uVar6;
   
-  if (((param_1 == (int64_t *)0x0) || (param_1 == (int64_t *)&unknown_var_7056_ptr)) ||
+  if (((param_1 == (int64_t *)0x0) || (param_1 == (int64_t *)&rendering_pipeline_manager_ptr)) ||
      (lVar5 = *param_1, *(int64_t **)(lVar5 + 0x10) == param_1)) {
     return;
   }

@@ -2244,7 +2244,7 @@ uint8_t unknown_var_8468;      // 终极特殊功能任务数据结构
 uint8_t unknown_var_8472;      // 终极特殊功能线程数据结构
 uint8_t unknown_var_9736;      // 终极特殊功能同步数据结构
 uint8_t unknown_var_1504;      // 终极特殊功能错误数据结构
-uint8_t unknown_var_1584;      // 终极特殊功能日志数据结构
+uint8_t rendering_main_control;      // 终极特殊功能日志数据结构
 uint8_t unknown_var_1648;      // 终极特殊功能报告数据结构
 uint8_t system_data_06e0;      // 终极特殊功能统计数据
 uint8_t system_data_f940;      // 终极特殊功能性能数据

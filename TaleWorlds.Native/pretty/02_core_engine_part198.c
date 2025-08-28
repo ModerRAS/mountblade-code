@@ -1011,7 +1011,7 @@ void FUN_18017dd10(uint64_t param_1,uint64_t param_2)
   uStack_38 = 0xfffffffffffffffe;
   puVar4 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
-  *puVar4 = &unknown_var_1584_ptr;
+  *puVar4 = &rendering_main_control_ptr;
   puVar4[0x13] = 0;
   puVar4[0x14] = 0;
   puVar4[0x15] = 0;

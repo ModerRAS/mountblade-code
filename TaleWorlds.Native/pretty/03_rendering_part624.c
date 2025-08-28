@@ -727,7 +727,7 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
         puStack_220 = &unknown_var_3664_ptr;
         uStack_228 = param_1;
-        RenderingSystem_InitializePort(&unknown_var_1088_ptr, &unknown_var_200_ptr, *param_2, param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_1088_ptr, &render_target_ptr, *param_2, param_2[1]);
         RenderingSystem_ReadMemoryRegion(&unknown_var_1328_ptr, *param_2, param_2[1]);
     }
     

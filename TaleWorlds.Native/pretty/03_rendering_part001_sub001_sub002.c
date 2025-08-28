@@ -4,7 +4,7 @@
 
 // 函数: uint8_t FUN_180447120;
 uint8_t FUN_180447120;
-uint8_t unknown_var_7056;
+uint8_t rendering_pipeline_manager;
 
 
 

@@ -177,7 +177,7 @@ void FUN_18066d7c0(void)
   }
   ui_system_config_config = FUN_180691db0;
   if (bVar6) {
-    ui_system_config_config = (code *)&unknown_var_9840_ptr;
+    ui_system_config_config = (code *)&rendering_device_handle_ptr;
   }
   ui_system_config_config = FUN_180694010;
   if (bVar4) {

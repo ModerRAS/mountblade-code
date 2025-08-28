@@ -466,9 +466,9 @@ void FUN_1806c2950(int64_t *param_1,uint64_t *param_2,int64_t *param_3)
         lVar7 = (**(code **)(*plVar3 + 0x50))(plVar3,pcVar6);
         if (lVar7 == 0) {
           uVar8 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
-          in_stack_fffffffffffffdd8 = &unknown_var_1584_ptr;
+          in_stack_fffffffffffffdd8 = &rendering_main_control_ptr;
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar8,4,&unknown_var_1776_ptr,0x6c,&unknown_var_1584_ptr,pcVar6);
+                    (uVar8,4,&unknown_var_1776_ptr,0x6c,&rendering_main_control_ptr,pcVar6);
           *(int8_t *)param_1[10] = 1;
           lStackX_20 = lVar7;
         }

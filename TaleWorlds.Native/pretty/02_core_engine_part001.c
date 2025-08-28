@@ -326,7 +326,7 @@ uint8_t unknown_var_1624;   // 配置文件搜索器
 uint8_t unknown_var_1648;   // 配置文件过滤器
 uint8_t unknown_var_608;   // 配置文件排序器
 uint8_t unknown_var_624;   // 配置文件分页器
-uint8_t unknown_var_1664;   // 配置文件缓存器
+uint8_t rendering_config_var;   // 配置文件缓存器
 uint8_t unknown_var_1696;   // 配置文件预加载器
 uint8_t unknown_var_3856;   // 配置文件优化器
 uint8_t system_memory_0018;   // 配置系统常量1
@@ -635,7 +635,7 @@ uint8_t system_memory_9270;
 uint8_t system_memory_9280;
 uint8_t system_memory_9278;
 uint8_t system_memory_927c;
-uint8_t unknown_var_7056;
+uint8_t rendering_pipeline_manager;
 
 
 // 函数: uint8_t FUN_1800596a0;
@@ -845,7 +845,7 @@ uint8_t unknown_var_9680;
 uint8_t unknown_var_128;
 uint8_t unknown_var_648;
 uint8_t unknown_var_1024;
-uint8_t unknown_var_1584;
+uint8_t rendering_main_control;
 uint8_t system_memory_e968;
 uint8_t unknown_var_2008;
 uint8_t unknown_var_7960;
@@ -1006,7 +1006,7 @@ uint8_t unknown_var_2056;
 uint8_t unknown_var_2152;
 uint8_t unknown_var_2160;
 uint8_t unknown_var_2176;
-uint8_t unknown_var_1688;
+uint8_t rendering_state_manager;
 uint8_t unknown_var_2248;
 uint8_t unknown_var_2232;
 
@@ -1228,7 +1228,7 @@ uint8_t unknown_var_1312;
 uint8_t unknown_var_1328;
 uint8_t unknown_var_1392;
 uint8_t unknown_var_1408;
-uint8_t unknown_var_7056;
+uint8_t rendering_pipeline_manager;
 uint8_t unknown_var_8296;
 uint8_t unknown_var_6768;
 
@@ -1262,7 +1262,7 @@ uint8_t unknown_var_2880;
 // 函数: uint8_t FUN_180056de0;
 uint8_t FUN_180056de0;
 uint8_t unknown_var_1648;
-uint8_t unknown_var_1688;
+uint8_t rendering_state_manager;
 uint8_t unknown_var_1832;
 uint8_t unknown_var_1920;
 uint8_t unknown_var_1936;

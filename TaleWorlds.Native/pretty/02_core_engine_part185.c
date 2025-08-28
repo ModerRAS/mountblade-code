@@ -604,7 +604,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, int64_t config_dat
                                   *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1670)) << 0x20
                            ^ 0x8000000000000000);
         *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-        resource_id = ResourceIdGetter(&unknown_var_1736_ptr, 0,
+        resource_id = ResourceIdGetter(&rendering_texture_manager_ptr, 0,
                                       *(int32_t *)
                                        (*(int64_t *)(*(int64_t *)(temp_offset + 0x1af8) + 0x220) + -4 +
                                         (int64_t)*(int *)(*(int64_t *)(temp_offset + 0x1af8) + 0x218) * 4));
@@ -615,7 +615,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, int64_t config_dat
             *(int8_t *)(temp_offset + 0x1b3f) = 1;
         }
         stack_var22 = 0x800;
-        ResourceStatusSetter(&unknown_var_1736_ptr, resource_id, &quad_stack_ptr8);
+        ResourceStatusSetter(&rendering_texture_manager_ptr, resource_id, &quad_stack_ptr8);
         temp_offset = SYSTEM_DATA_MANAGER_A;
         resource_id = ResourceIdGetter(&unknown_var_2576_ptr, 0,
                                       *(int32_t *)

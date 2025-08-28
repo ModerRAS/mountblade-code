@@ -313,106 +313,106 @@ uint8_t SUB_18051f9a0;
 
 
 
-// 函数: uint8_t FUN_18060efa0;
-uint8_t FUN_18060efa0;
+// 函数: uint8_t RenderingSystemAdvancedInitializer;
+uint8_t RenderingSystemAdvancedInitializer;
 uint8_t SUB_180525320;
 
 
 
 
-// 函数: uint8_t FUN_18060efd0;
-uint8_t FUN_18060efd0;
+// 函数: uint8_t RenderingSystemAdvancedConfigurator;
+uint8_t RenderingSystemAdvancedConfigurator;
 uint8_t unknown_var_400;
 
 
 
 
-// 函数: uint8_t FUN_18060f040;
-uint8_t FUN_18060f040;
+// 函数: uint8_t RenderingSystemAdvancedProcessor;
+uint8_t RenderingSystemAdvancedProcessor;
 uint8_t unknown_var_2640;
 
 
 
 
-// 函数: uint8_t FUN_18060f0d0;
-uint8_t FUN_18060f0d0;
+// 函数: uint8_t RenderingSystemAdvancedManager;
+uint8_t RenderingSystemAdvancedManager;
 uint8_t unknown_var_3856;
 
 
 
 
-// 函数: uint8_t FUN_18060f140;
-uint8_t FUN_18060f140;
+// 函数: uint8_t RenderingSystemAdvancedValidator;
+uint8_t RenderingSystemAdvancedValidator;
 uint8_t unknown_var_3888;
 
 
 
 
-// 函数: uint8_t FUN_18060f1b0;
-uint8_t FUN_18060f1b0;
+// 函数: uint8_t RenderingSystemAdvancedOptimizer;
+uint8_t RenderingSystemAdvancedOptimizer;
 uint8_t unknown_var_7232;
 
 
 
 
-// 函数: uint8_t FUN_18060f240;
-uint8_t FUN_18060f240;
+// 函数: uint8_t RenderingSystemAdvancedController;
+uint8_t RenderingSystemAdvancedController;
 uint8_t unknown_var_7424;
 
 
 
 
-// 函数: uint8_t FUN_18060f2b0;
-uint8_t FUN_18060f2b0;
+// 函数: uint8_t RenderingSystemAdvancedHandler;
+uint8_t RenderingSystemAdvancedHandler;
 uint8_t unknown_var_7472;
 
 
 
 
-// 函数: uint8_t FUN_18060f370;
-uint8_t FUN_18060f370;
+// 函数: uint8_t RenderingSystemAdvancedCleaner;
+uint8_t RenderingSystemAdvancedCleaner;
 uint8_t unknown_var_7520;
 
 
 
 
-// 函数: uint8_t FUN_18060f430;
-uint8_t FUN_18060f430;
+// 函数: uint8_t RenderingSystemAdvancedResetter;
+uint8_t RenderingSystemAdvancedResetter;
 uint8_t unknown_var_7536;
 
 
 
 
-// 函数: uint8_t FUN_18060f4f0;
-uint8_t FUN_18060f4f0;
+// 函数: uint8_t RenderingSystemAdvancedFinalizer;
+uint8_t RenderingSystemAdvancedFinalizer;
 uint8_t unknown_var_7680;
 
 
 
 
-// 函数: uint8_t FUN_18060f5e0;
-uint8_t FUN_18060f5e0;
+// 函数: uint8_t RenderingSystemAdvancedSynchronizer;
+uint8_t RenderingSystemAdvancedSynchronizer;
 uint8_t unknown_var_8080;
 
 
 
 
-// 函数: uint8_t FUN_18060f7c0;
-uint8_t FUN_18060f7c0;
+// 函数: uint8_t RenderingSystemAdvancedCoordinator;
+uint8_t RenderingSystemAdvancedCoordinator;
 uint8_t unknown_var_8688;
 
 
 
 
-// 函数: uint8_t FUN_18060f810;
-uint8_t FUN_18060f810;
+// 函数: uint8_t RenderingSystemAdvancedIntegrator;
+uint8_t RenderingSystemAdvancedIntegrator;
 uint8_t unknown_var_8704;
 
 
 
 
-// 函数: uint8_t FUN_18060f8e0;
-uint8_t FUN_18060f8e0;
+// 函数: uint8_t RenderingSystemAdvancedUnifier;
+uint8_t RenderingSystemAdvancedUnifier;
 uint8_t unknown_var_8720;
 uint8_t unknown_var_8736;
 uint8_t unknown_var_8752;
@@ -1034,8 +1034,8 @@ uint8_t unknown_var_3952;
 
 
 
-// 函数: uint8_t FUN_1806164e0;
-uint8_t FUN_1806164e0;
+// 函数: uint8_t RenderingSystemDataFlowProcessor;
+uint8_t RenderingSystemDataFlowProcessor;
 uint8_t unknown_var_4928;
 uint8_t unknown_var_4976;
 uint8_t unknown_var_4992;
@@ -1045,57 +1045,57 @@ uint8_t unknown_var_5168;
 
 
 
-// 函数: uint8_t FUN_180616690;
-uint8_t FUN_180616690;
+// 函数: uint8_t RenderingSystemDataFlowManager;
+uint8_t RenderingSystemDataFlowManager;
 uint8_t unknown_var_5184;
 
 
 
 
-// 函数: uint8_t FUN_180616770;
-uint8_t FUN_180616770;
+// 函数: uint8_t RenderingSystemDataFlowController;
+uint8_t RenderingSystemDataFlowController;
 uint8_t unknown_var_5200;
 
 
 
 
-// 函数: uint8_t FUN_180616800;
-uint8_t FUN_180616800;
+// 函数: uint8_t RenderingSystemDataFlowOptimizer;
+uint8_t RenderingSystemDataFlowOptimizer;
 uint8_t unknown_var_6896;
 
 
 
 
-// 函数: uint8_t FUN_180616870;
-uint8_t FUN_180616870;
+// 函数: uint8_t RenderingSystemDataFlowValidator;
+uint8_t RenderingSystemDataFlowValidator;
 uint8_t unknown_var_7104;
 
 
 
 
-// 函数: uint8_t FUN_1806168b0;
-uint8_t FUN_1806168b0;
+// 函数: uint8_t RenderingSystemDataFlowHandler;
+uint8_t RenderingSystemDataFlowHandler;
 uint8_t unknown_var_7120;
 
 
 
 
-// 函数: uint8_t FUN_180616930;
-uint8_t FUN_180616930;
+// 函数: uint8_t RenderingSystemDataFlowCleaner;
+uint8_t RenderingSystemDataFlowCleaner;
 uint8_t unknown_var_7136;
 
 
 
 
-// 函数: uint8_t FUN_180616960;
-uint8_t FUN_180616960;
+// 函数: uint8_t RenderingSystemDataFlowResetter;
+uint8_t RenderingSystemDataFlowResetter;
 uint8_t unknown_var_7264;
 
 
 
 
-// 函数: uint8_t FUN_180616980;
-uint8_t FUN_180616980;
+// 函数: uint8_t RenderingSystemDataFlowFinalizer;
+uint8_t RenderingSystemDataFlowFinalizer;
 uint8_t unknown_var_7280;
 uint8_t unknown_var_7328;
 uint8_t unknown_var_7344;
@@ -1105,85 +1105,85 @@ uint8_t unknown_var_7536;
 
 
 
-// 函数: uint8_t FUN_180616ac0;
-uint8_t FUN_180616ac0;
+// 函数: uint8_t RenderingSystemDataFlowSynchronizer;
+uint8_t RenderingSystemDataFlowSynchronizer;
 uint8_t unknown_var_7632;
 
 
 
 
-// 函数: uint8_t FUN_180616b10;
-uint8_t FUN_180616b10;
+// 函数: uint8_t RenderingSystemDataFlowCoordinator;
+uint8_t RenderingSystemDataFlowCoordinator;
 uint8_t unknown_var_7744;
 
 
 
 
-// 函数: uint8_t FUN_180616ba0;
-uint8_t FUN_180616ba0;
+// 函数: uint8_t RenderingSystemDataFlowIntegrator;
+uint8_t RenderingSystemDataFlowIntegrator;
 uint8_t unknown_var_7760;
 
 
 
 
-// 函数: uint8_t FUN_180616c90;
-uint8_t FUN_180616c90;
+// 函数: uint8_t RenderingSystemDataFlowUnifier;
+uint8_t RenderingSystemDataFlowUnifier;
 uint8_t unknown_var_7792;
 
 
 
 
-// 函数: uint8_t FUN_180616ce0;
-uint8_t FUN_180616ce0;
+// 函数: uint8_t RenderingSystemDataFlowTransformer;
+uint8_t RenderingSystemDataFlowTransformer;
 uint8_t unknown_var_7808;
 
 
 
 
-// 函数: uint8_t FUN_180616d30;
-uint8_t FUN_180616d30;
+// 函数: uint8_t RenderingSystemDataFlowAnalyzer;
+uint8_t RenderingSystemDataFlowAnalyzer;
 uint8_t unknown_var_8000;
 
 
 
 
-// 函数: uint8_t FUN_180616db0;
-uint8_t FUN_180616db0;
+// 函数: uint8_t RenderingSystemDataFlowMonitor;
+uint8_t RenderingSystemDataFlowMonitor;
 uint8_t unknown_var_8016;
 
 
 
 
-// 函数: uint8_t FUN_180616e00;
-uint8_t FUN_180616e00;
+// 函数: uint8_t RenderingSystemDataFlowReporter;
+uint8_t RenderingSystemDataFlowReporter;
 uint8_t unknown_var_9728;
 
 
 
 
-// 函数: uint8_t FUN_180616e50;
-uint8_t FUN_180616e50;
+// 函数: uint8_t RenderingSystemDataFlowLogger;
+uint8_t RenderingSystemDataFlowLogger;
 uint8_t unknown_var_4256;
 
 
 
 
-// 函数: uint8_t FUN_180617030;
-uint8_t FUN_180617030;
+// 函数: uint8_t RenderingSystemDataFlowArchiver;
+uint8_t RenderingSystemDataFlowArchiver;
 uint8_t unknown_var_4512;
 
 
 
 
-// 函数: uint8_t FUN_180617280;
-uint8_t FUN_180617280;
+// 函数: uint8_t RenderingSystemDataFlowCompressor;
+uint8_t RenderingSystemDataFlowCompressor;
 uint8_t unknown_var_4880;
 
 
 
 
-// 函数: uint8_t FUN_180617480;
-uint8_t FUN_180617480;
+// 函数: uint8_t RenderingSystemDataFlowDecompressor;
+uint8_t RenderingSystemDataFlowDecompressor;
 uint8_t unknown_var_5856;
 uint8_t unknown_var_6048;
 uint8_t unknown_var_6752;
@@ -1191,22 +1191,22 @@ uint8_t unknown_var_6752;
 
 
 
-// 函数: uint8_t FUN_1806174d0;
-uint8_t FUN_1806174d0;
+// 函数: uint8_t RenderingSystemDataFlowEncryptor;
+uint8_t RenderingSystemDataFlowEncryptor;
 uint8_t unknown_var_6816;
 
 
 
 
-// 函数: uint8_t FUN_180617580;
-uint8_t FUN_180617580;
+// 函数: uint8_t RenderingSystemDataFlowDecryptor;
+uint8_t RenderingSystemDataFlowDecryptor;
 uint8_t unknown_var_6832;
 
 
 
 
-// 函数: uint8_t FUN_180617650;
-uint8_t FUN_180617650;
+// 函数: uint8_t RenderingSystemDataFlowAuthenticator;
+uint8_t RenderingSystemDataFlowAuthenticator;
 uint8_t unknown_var_6848;
 uint8_t unknown_var_6928;
 uint8_t unknown_var_8224;
@@ -1214,29 +1214,29 @@ uint8_t unknown_var_8224;
 
 
 
-// 函数: uint8_t FUN_1806177c0;
-uint8_t FUN_1806177c0;
+// 函数: uint8_t RenderingSystemDataFlowAuthorizer;
+uint8_t RenderingSystemDataFlowAuthorizer;
 uint8_t unknown_var_8960;
 
 
 
 
-// 函数: uint8_t FUN_1806178d0;
-uint8_t FUN_1806178d0;
+// 函数: uint8_t RenderingSystemDataFlowAuditor;
+uint8_t RenderingSystemDataFlowAuditor;
 uint8_t unknown_var_8976;
 
 
 
 
-// 函数: uint8_t FUN_180617970;
-uint8_t FUN_180617970;
+// 函数: uint8_t RenderingSystemDataFlowValidator2;
+uint8_t RenderingSystemDataFlowValidator2;
 uint8_t unknown_var_8992;
 
 
 
 
-// 函数: uint8_t FUN_180617a30;
-uint8_t FUN_180617a30;
+// 函数: uint8_t RenderingSystemDataFlowSanitizer;
+uint8_t RenderingSystemDataFlowSanitizer;
 uint8_t unknown_var_9104;
 uint8_t unknown_var_9536;
 uint8_t unknown_var_9616;
@@ -1245,15 +1245,15 @@ uint8_t unknown_var_9648;
 
 
 
-// 函数: uint8_t FUN_180617af0;
-uint8_t FUN_180617af0;
+// 函数: uint8_t RenderingSystemDataFlowNormalizer;
+uint8_t RenderingSystemDataFlowNormalizer;
 uint8_t unknown_var_9680;
 
 
 
 
-// 函数: uint8_t FUN_180617ba0;
-uint8_t FUN_180617ba0;
+// 函数: uint8_t RenderingSystemDataFlowSerializer;
+uint8_t RenderingSystemDataFlowSerializer;
 uint8_t unknown_var_9728;
 
 
