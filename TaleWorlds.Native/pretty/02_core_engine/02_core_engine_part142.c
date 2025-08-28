@@ -1,848 +1,959 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part142.c - 6 个函数
+// 02_core_engine_part142.c - 核心引擎模块第142部分
+// 本文件包含6个函数，主要处理引擎渲染和物理计算相关的功能
 
-// 函数: void FUN_180134826(void)
-void FUN_180134826(void)
+// 全局变量定义
+static void* engine_context = (void*)0x180c8a9b0;  // 引擎全局上下文
 
+/**
+ * 处理引擎渲染数据的批量更新
+ * 功能：批量处理渲染数据，更新边界框和物理属性
+ */
+void process_render_batch_update(void)
 {
-  float *pfVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined8 uVar5;
-  int iVar6;
-  int in_EAX;
-  int iVar7;
-  uint uVar8;
-  int *piVar9;
-  longlong lVar10;
-  longlong lVar11;
-  int unaff_EBP;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar12;
-  uint uVar13;
-  int unaff_R13D;
-  longlong unaff_R14;
-  int unaff_R15D;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float unaff_XMM7_Da;
-  float unaff_XMM8_Da;
-  undefined4 uStackX_24;
-  float fStack0000000000000028;
-  undefined4 uStack000000000000002c;
-  undefined4 uStack0000000000000030;
-  undefined4 uStack0000000000000034;
-  undefined4 uStack0000000000000038;
+  float *render_data_ptr;
+  void **context_ptr;
+  longlong data_offset;
+  int current_count;
+  int new_capacity;
+  int index;
+  int max_elements;
+  uint element_index;
+  int *capacity_ptr;
+  longlong base_address;
+  longlong buffer_address;
+  int current_index;
+  longlong render_context;
+  ulonglong element_data;
+  uint element_count;
+  int max_elements_limit;
+  longlong physics_context;
+  float scale_factor;
+  float height_offset;
+  float width_offset;
+  float depth_offset;
+  float physics_scale;
   
+  // 批量处理渲染数据
   do {
-    iVar7 = *(int *)(unaff_R14 + 0x34);
-    uStackX_24 = (undefined4)unaff_RDI;
-    fStack0000000000000028 = (float)(unaff_RDI >> 0x20);
-    uStack000000000000002c = 0x7f7fffff;
-    uStack0000000000000030 = 0x7f7fffff;
-    uStack0000000000000034 = 0xff7fffff;
-    uStack0000000000000038 = 0xff7fffff;
-    fVar14 = (float)unaff_EBP * (unaff_XMM7_Da / (float)unaff_R13D);
-    if (in_EAX == iVar7) {
-      if (iVar7 == 0) {
-        iVar7 = 8;
+    current_count = *(int *)(physics_context + 0x34);
+    element_data = (ulonglong)render_context;
+    height_offset = (float)(render_context >> 0x20);
+    
+    // 设置边界框默认值
+    float min_x = 0x7f7fffff;  // 最大浮点数
+    float max_x = 0x7f7fffff;
+    float min_y = 0xff7fffff;  // 最小浮点数
+    float max_y = 0xff7fffff;
+    
+    scale_factor = (float)current_index * (physics_scale / (float)max_elements_limit);
+    
+    // 动态扩容逻辑
+    if (index == current_count) {
+      if (current_count == 0) {
+        current_count = 8;
       }
       else {
-        iVar7 = iVar7 / 2 + iVar7;
+        current_count = current_count / 2 + current_count;
       }
-      iVar6 = in_EAX + 1;
-      if (in_EAX + 1 < iVar7) {
-        iVar6 = iVar7;
+      new_capacity = index + 1;
+      if (index + 1 < current_count) {
+        new_capacity = current_count;
       }
-      FUN_18013e250(unaff_R14 + 0x30,iVar6);
-      in_EAX = *(int *)(unaff_R14 + 0x30);
+      resize_render_buffer(physics_context + 0x30, new_capacity);
+      index = *(int *)(physics_context + 0x30);
     }
-    lVar3 = *(longlong *)(unaff_R14 + 0x38);
-    unaff_EBP = unaff_EBP + 1;
-    lVar10 = (longlong)in_EAX * 0x1c;
-    *(undefined8 *)(lVar10 + lVar3) = CONCAT44(uStackX_24,fVar14);
-    ((undefined8 *)(lVar10 + lVar3))[1] = CONCAT44(uStack000000000000002c,fStack0000000000000028);
-    *(ulonglong *)(lVar10 + 0x10 + lVar3) = CONCAT44(uStack0000000000000034,uStack0000000000000030);
-    *(undefined4 *)(lVar10 + 0x18 + lVar3) = uStack0000000000000038;
-    *(int *)(unaff_R14 + 0x30) = *(int *)(unaff_R14 + 0x30) + 1;
-    lVar3 = _DAT_180c8a9b0;
-    in_EAX = *(int *)(unaff_R14 + 0x30);
-  } while (unaff_EBP < unaff_R15D);
-  if (0 < unaff_R13D) {
-    uStack000000000000002c = 0x7f7fffff;
-    uVar12 = unaff_RDI;
+    
+    // 写入渲染数据
+    base_address = *(longlong *)(physics_context + 0x38);
+    current_index = current_index + 1;
+    data_offset = (longlong)index * 0x1c;
+    *(undefined8 *)(data_offset + base_address) = CONCAT44(element_data, scale_factor);
+    ((undefined8 *)(data_offset + base_address))[1] = CONCAT44(min_x, height_offset);
+    *(ulonglong *)(data_offset + 0x10 + base_address) = CONCAT44(min_y, max_x);
+    *(undefined4 *)(data_offset + 0x18 + base_address) = max_y;
+    *(int *)(physics_context + 0x30) = *(int *)(physics_context + 0x30) + 1;
+    base_address = engine_context;
+    index = *(int *)(physics_context + 0x30);
+  } while (current_index < max_elements_limit);
+  
+  // 处理物理数据更新
+  if (0 < max_elements_limit) {
+    min_x = 0x7f7fffff;
+    element_data = render_context;
     do {
-      iVar6 = (int)unaff_RDI;
-      lVar10 = *(longlong *)(unaff_R14 + 0x38);
-      lVar11 = *(longlong *)(*(longlong *)(lVar3 + 0x1af8) + 0x210);
-      iVar7 = iVar6;
-      if (iVar6 < 0) {
-        iVar7 = *(int *)(lVar11 + 0xc);
+      current_index = (int)render_context;
+      data_offset = *(longlong *)(physics_context + 0x38);
+      buffer_address = *(longlong *)(*(longlong *)(base_address + 0x1af8) + 0x210);
+      new_capacity = current_index;
+      
+      // 处理负数索引
+      if (current_index < 0) {
+        new_capacity = *(int *)(buffer_address + 0xc);
       }
-      fVar16 = *(float *)(lVar11 + 0x14);
-      uVar13 = iVar6 + 1;
-      fVar15 = *(float *)(lVar11 + 0x18) - fVar16;
-      fVar17 = *(float *)(unaff_RSI + 0x40) + 0.5;
-      fVar14 = (float)(int)((fVar15 * *(float *)((longlong)iVar7 * 0x1c +
-                                                *(longlong *)(lVar11 + 0x38)) + fVar16 + fVar17) -
-                           unaff_XMM7_Da);
-      uVar8 = uVar13;
-      if ((int)uVar13 < 0) {
-        uVar8 = *(uint *)(lVar11 + 0xc);
+      
+      depth_offset = *(float *)(buffer_address + 0x14);
+      element_count = current_index + 1;
+      width_offset = *(float *)(buffer_address + 0x18) - depth_offset;
+      height_offset = *(float *)(render_context + 0x40) + 0.5;
+      scale_factor = (float)(int)((width_offset * *(float *)((longlong)new_capacity * 0x1c +
+                                                *(longlong *)(buffer_address + 0x38)) + depth_offset + height_offset) -
+                           physics_scale);
+      
+      element_index = element_count;
+      if ((int)element_count < 0) {
+        element_index = *(uint *)(buffer_address + 0xc);
       }
-      unaff_RDI = (ulonglong)uVar13;
-      fStack0000000000000028 =
-           (float)(int)((fVar15 * *(float *)((longlong)(int)uVar8 * 0x1c +
-                                            *(longlong *)(lVar11 + 0x38)) + fVar16 + fVar17) -
-                       unaff_XMM7_Da);
-      pfVar1 = (float *)(uVar12 + 0xc + lVar10);
-      *pfVar1 = fVar14;
-      pfVar1[1] = -3.4028235e+38;
-      pfVar1[2] = fStack0000000000000028;
-      pfVar1[3] = 3.4028235e+38;
-      fVar16 = *(float *)(uVar12 + 0x10 + lVar10);
-      if (fVar16 <= *(float *)(unaff_RSI + 0x22c)) {
-        fVar16 = *(float *)(unaff_RSI + 0x22c);
+      
+      render_context = (ulonglong)element_count;
+      height_offset = (float)(int)((width_offset * *(float *)((longlong)(int)element_index * 0x1c +
+                                            *(longlong *)(buffer_address + 0x38)) + depth_offset + height_offset) -
+                       physics_scale);
+      
+      // 更新渲染数据数组
+      render_data_ptr = (float *)(element_data + 0xc + data_offset);
+      *render_data_ptr = scale_factor;
+      render_data_ptr[1] = -3.4028235e+38;  // 最小浮点数值
+      render_data_ptr[2] = height_offset;
+      render_data_ptr[3] = 3.4028235e+38;   // 最大浮点数值
+      
+      // 更新边界框
+      depth_offset = *(float *)(element_data + 0x10 + data_offset);
+      if (depth_offset <= *(float *)(render_context + 0x22c)) {
+        depth_offset = *(float *)(render_context + 0x22c);
       }
-      fVar15 = *(float *)(uVar12 + 0xc + lVar10);
-      fVar17 = *(float *)(unaff_RSI + 0x228);
-      if (*(float *)(unaff_RSI + 0x228) <= fVar15) {
-        fVar17 = fVar15;
+      width_offset = *(float *)(element_data + 0xc + data_offset);
+      height_offset = *(float *)(render_context + 0x228);
+      if (*(float *)(render_context + 0x228) <= width_offset) {
+        height_offset = width_offset;
       }
-      *(float *)(uVar12 + 0x10 + lVar10) = fVar16;
-      *(float *)(uVar12 + 0xc + lVar10) = fVar17;
-      fVar16 = *(float *)(uVar12 + 0x14 + lVar10);
-      fVar15 = *(float *)(uVar12 + 0x18 + lVar10);
-      if (*(float *)(unaff_RSI + 0x230) <= fVar16) {
-        fVar16 = *(float *)(unaff_RSI + 0x230);
+      *(float *)(element_data + 0x10 + data_offset) = depth_offset;
+      *(float *)(element_data + 0xc + data_offset) = height_offset;
+      
+      // 更新Y轴边界
+      depth_offset = *(float *)(element_data + 0x14 + data_offset);
+      width_offset = *(float *)(element_data + 0x18 + data_offset);
+      if (*(float *)(render_context + 0x230) <= depth_offset) {
+        depth_offset = *(float *)(render_context + 0x230);
       }
-      if (*(float *)(unaff_RSI + 0x234) <= fVar15) {
-        fVar15 = *(float *)(unaff_RSI + 0x234);
+      if (*(float *)(render_context + 0x234) <= width_offset) {
+        width_offset = *(float *)(render_context + 0x234);
       }
-      *(float *)(uVar12 + 0x14 + lVar10) = fVar16;
-      *(float *)(uVar12 + 0x18 + lVar10) = fVar15;
-      uVar12 = uVar12 + 0x1c;
-    } while ((int)uVar13 < unaff_R13D);
+      *(float *)(element_data + 0x14 + data_offset) = depth_offset;
+      *(float *)(element_data + 0x18 + data_offset) = width_offset;
+      element_data = element_data + 0x1c;
+    } while ((int)element_count < max_elements_limit);
   }
-  FUN_180291cf0(*(undefined8 *)(unaff_RSI + 0x2e8),*(undefined4 *)(unaff_R14 + 0x10));
-  lVar10 = _DAT_180c8a9b0;
-  lVar3 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
-  lVar11 = (longlong)*(int *)(lVar3 + 0xc) * 0x1c + *(longlong *)(lVar3 + 0x38);
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar3 = *(longlong *)(lVar10 + 0x1af8);
-  FUN_180291b40(*(undefined8 *)(lVar3 + 0x2e8),*(undefined8 *)(lVar11 + 0xc),
-                *(undefined8 *)(lVar11 + 0x14),0,fVar14);
-  lVar10 = _DAT_180c8a9b0;
-  puVar2 = (undefined8 *)
-           (*(longlong *)(*(longlong *)(lVar3 + 0x2e8) + 0x68) + -0x10 +
-           (longlong)*(int *)(*(longlong *)(lVar3 + 0x2e8) + 0x60) * 0x10);
-  uVar5 = puVar2[1];
-  *(undefined8 *)(lVar3 + 0x228) = *puVar2;
-  *(undefined8 *)(lVar3 + 0x230) = uVar5;
-  fStack0000000000000028 = (float)uVar5;
-  uStack000000000000002c = (undefined4)((ulonglong)uVar5 >> 0x20);
-  lVar3 = *(longlong *)(*(longlong *)(lVar10 + 0x1af8) + 0x210);
-  fVar14 = *(float *)(lVar3 + 0x18);
-  fVar16 = *(float *)(lVar3 + 0x14);
-  fVar15 = *(float *)(((longlong)*(int *)(lVar3 + 0xc) + 1) * 0x1c + *(longlong *)(lVar3 + 0x38));
-  fVar17 = *(float *)((longlong)*(int *)(lVar3 + 0xc) * 0x1c + *(longlong *)(lVar3 + 0x38));
-  *(undefined1 *)(*(longlong *)(lVar10 + 0x1af8) + 0xb1) = 1;
-  lVar3 = *(longlong *)(lVar10 + 0x1af8);
-  fVar14 = (fVar15 - fVar17) * (fVar14 - fVar16) * 0.65;
-  if (fVar14 == unaff_XMM8_Da) {
-    fVar14 = *(float *)(lVar3 + 0x284);
+  
+  // 调用渲染系统更新
+  update_render_system(*(undefined8 *)(render_context + 0x2e8), *(undefined4 *)(physics_context + 0x10));
+  
+  // 处理物理碰撞数据
+  data_offset = engine_context;
+  base_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
+  buffer_address = (longlong)*(int *)(base_address + 0xc) * 0x1c + *(longlong *)(base_address + 0x38);
+  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  base_address = *(longlong *)(data_offset + 0x1af8);
+  
+  // 更新物理碰撞体积
+  update_physics_collision(*(undefined8 *)(base_address + 0x2e8), *(undefined8 *)(buffer_address + 0xc),
+                          *(undefined8 *)(buffer_address + 0x14), 0, scale_factor);
+  
+  data_offset = engine_context;
+  context_ptr = (undefined8 *)(*(longlong *)(*(longlong *)(base_address + 0x2e8) + 0x68) + -0x10 +
+                              (longlong)*(int *)(*(longlong *)(base_address + 0x2e8) + 0x60) * 0x10);
+  
+  // 更新物理属性
+  *(undefined8 *)(base_address + 0x228) = *context_ptr;
+  *(undefined8 *)(base_address + 0x230) = context_ptr[1];
+  height_offset = (float)context_ptr[1];
+  
+  // 计算碰撞体积
+  base_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  scale_factor = *(float *)(base_address + 0x18);
+  depth_offset = *(float *)(base_address + 0x14);
+  width_offset = *(float *)(((longlong)*(int *)(base_address + 0xc) + 1) * 0x1c + *(longlong *)(base_address + 0x38));
+  height_offset = *(float *)((longlong)*(int *)(base_address + 0xc) * 0x1c + *(longlong *)(base_address + 0x38));
+  *(undefined1 *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
+  base_address = *(longlong *)(data_offset + 0x1af8);
+  scale_factor = (width_offset - height_offset) * (scale_factor - depth_offset) * 0.65;
+  
+  if (scale_factor == physics_scale) {
+    scale_factor = *(float *)(base_address + 0x284);
   }
-  piVar9 = (int *)(lVar3 + 0x1c8);
-  *(float *)(lVar3 + 0x1ac) = fVar14;
-  iVar7 = *piVar9;
-  iVar6 = *(int *)(lVar3 + 0x1cc);
-  if (iVar7 == iVar6) {
-    if (iVar6 == 0) {
-      iVar6 = 8;
+  
+  // 更新物理属性数组
+  capacity_ptr = (int *)(base_address + 0x1c8);
+  *(float *)(base_address + 0x1ac) = scale_factor;
+  new_capacity = *capacity_ptr;
+  current_count = *(int *)(base_address + 0x1cc);
+  
+  // 动态扩容
+  if (new_capacity == current_count) {
+    if (current_count == 0) {
+      current_count = 8;
     }
     else {
-      iVar6 = iVar6 / 2 + iVar6;
+      current_count = current_count / 2 + current_count;
     }
-    iVar4 = iVar7 + 1;
-    if (iVar7 + 1 < iVar6) {
-      iVar4 = iVar6;
+    index = new_capacity + 1;
+    if (new_capacity + 1 < current_count) {
+      index = current_count;
     }
-    FUN_18011dbd0(piVar9,iVar4);
-    iVar7 = *piVar9;
+    resize_physics_array(capacity_ptr, index);
+    new_capacity = *capacity_ptr;
   }
-  *(float *)(*(longlong *)(lVar3 + 0x1d0) + (longlong)iVar7 * 4) = *(float *)(lVar3 + 0x1ac);
-  *piVar9 = *piVar9 + 1;
+  
+  *(float *)(*(longlong *)(base_address + 0x1d0) + (longlong)new_capacity * 4) = *(float *)(base_address + 0x1ac);
+  *capacity_ptr = *capacity_ptr + 1;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1801348d8(void)
-void FUN_1801348d8(void)
-
+/**
+ * 处理简化版本的渲染数据更新
+ * 功能：处理渲染数据的更新，采用简化的算法
+ */
+void process_simplified_render_update(void)
 {
-  float *pfVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int iVar6;
-  undefined8 uVar7;
-  int iVar8;
-  int iVar9;
-  uint uVar10;
-  int *piVar11;
-  longlong lVar12;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar13;
-  uint uVar14;
-  int unaff_R13D;
-  longlong unaff_R14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float unaff_XMM7_Da;
-  float unaff_XMM8_Da;
+  float *render_data_ptr;
+  undefined8 *context_ptr;
+  float physics_value;
+  longlong data_offset;
+  longlong buffer_address;
+  int current_count;
+  int new_capacity;
+  int index;
+  uint element_index;
+  int *capacity_ptr;
+  longlong render_context;
+  longlong physics_context;
+  ulonglong element_data;
+  uint element_count;
+  int max_elements_limit;
+  longlong physics_address;
+  float scale_factor;
+  float height_offset;
+  float width_offset;
+  float depth_offset;
+  float physics_scale;
   
-  lVar5 = _DAT_180c8a9b0;
-  uVar13 = unaff_RDI;
-  if (0 < unaff_R13D) {
+  buffer_address = engine_context;
+  element_data = render_context;
+  
+  if (0 < max_elements_limit) {
     do {
-      iVar8 = (int)unaff_RDI;
-      lVar4 = *(longlong *)(unaff_R14 + 0x38);
-      lVar12 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
-      iVar9 = iVar8;
-      if (iVar8 < 0) {
-        iVar9 = *(int *)(lVar12 + 0xc);
+      index = (int)render_context;
+      data_offset = *(longlong *)(physics_address + 0x38);
+      render_context = *(longlong *)(*(longlong *)(buffer_address + 0x1af8) + 0x210);
+      current_count = index;
+      
+      // 处理负数索引
+      if (index < 0) {
+        current_count = *(int *)(render_context + 0xc);
       }
-      fVar16 = *(float *)(lVar12 + 0x14);
-      uVar14 = iVar8 + 1;
-      fVar15 = *(float *)(lVar12 + 0x18) - fVar16;
-      fVar17 = *(float *)(unaff_RSI + 0x40) + 0.5;
-      uVar10 = uVar14;
-      if ((int)uVar14 < 0) {
-        uVar10 = *(uint *)(lVar12 + 0xc);
+      
+      depth_offset = *(float *)(render_context + 0x14);
+      element_count = index + 1;
+      width_offset = *(float *)(render_context + 0x18) - depth_offset;
+      height_offset = *(float *)(physics_context + 0x40) + 0.5;
+      element_index = element_count;
+      
+      if ((int)element_count < 0) {
+        element_index = *(uint *)(render_context + 0xc);
       }
-      unaff_RDI = (ulonglong)uVar14;
-      fVar3 = *(float *)((longlong)(int)uVar10 * 0x1c + *(longlong *)(lVar12 + 0x38));
-      pfVar1 = (float *)(uVar13 + 0xc + lVar4);
-      *pfVar1 = (float)(int)((fVar15 * *(float *)((longlong)iVar9 * 0x1c +
-                                                 *(longlong *)(lVar12 + 0x38)) + fVar16 + fVar17) -
-                            unaff_XMM7_Da);
-      pfVar1[1] = -3.4028235e+38;
-      pfVar1[2] = (float)(int)((fVar15 * fVar3 + fVar16 + fVar17) - unaff_XMM7_Da);
-      pfVar1[3] = 3.4028235e+38;
-      fVar16 = *(float *)(uVar13 + 0x10 + lVar4);
-      if (fVar16 <= *(float *)(unaff_RSI + 0x22c)) {
-        fVar16 = *(float *)(unaff_RSI + 0x22c);
+      
+      render_context = (ulonglong)element_count;
+      physics_value = *(float *)((longlong)(int)element_index * 0x1c + *(longlong *)(render_context + 0x38));
+      render_data_ptr = (float *)(element_data + 0xc + data_offset);
+      
+      // 计算并设置渲染数据
+      *render_data_ptr = (float)(int)((width_offset * *(float *)((longlong)current_count * 0x1c +
+                                                 *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+                            physics_scale);
+      render_data_ptr[1] = -3.4028235e+38;
+      render_data_ptr[2] = (float)(int)((width_offset * physics_value + depth_offset + height_offset) - physics_scale);
+      render_data_ptr[3] = 3.4028235e+38;
+      
+      // 更新边界框
+      depth_offset = *(float *)(element_data + 0x10 + data_offset);
+      if (depth_offset <= *(float *)(physics_context + 0x22c)) {
+        depth_offset = *(float *)(physics_context + 0x22c);
       }
-      fVar15 = *(float *)(uVar13 + 0xc + lVar4);
-      fVar17 = *(float *)(unaff_RSI + 0x228);
-      if (*(float *)(unaff_RSI + 0x228) <= fVar15) {
-        fVar17 = fVar15;
+      width_offset = *(float *)(element_data + 0xc + data_offset);
+      height_offset = *(float *)(physics_context + 0x228);
+      if (*(float *)(physics_context + 0x228) <= width_offset) {
+        height_offset = width_offset;
       }
-      *(float *)(uVar13 + 0x10 + lVar4) = fVar16;
-      *(float *)(uVar13 + 0xc + lVar4) = fVar17;
-      fVar16 = *(float *)(uVar13 + 0x14 + lVar4);
-      fVar15 = *(float *)(uVar13 + 0x18 + lVar4);
-      if (*(float *)(unaff_RSI + 0x230) <= fVar16) {
-        fVar16 = *(float *)(unaff_RSI + 0x230);
+      *(float *)(element_data + 0x10 + data_offset) = depth_offset;
+      *(float *)(element_data + 0xc + data_offset) = height_offset;
+      
+      // 更新Y轴边界
+      depth_offset = *(float *)(element_data + 0x14 + data_offset);
+      width_offset = *(float *)(element_data + 0x18 + data_offset);
+      if (*(float *)(physics_context + 0x230) <= depth_offset) {
+        depth_offset = *(float *)(physics_context + 0x230);
       }
-      if (*(float *)(unaff_RSI + 0x234) <= fVar15) {
-        fVar15 = *(float *)(unaff_RSI + 0x234);
+      if (*(float *)(physics_context + 0x234) <= width_offset) {
+        width_offset = *(float *)(physics_context + 0x234);
       }
-      *(float *)(uVar13 + 0x14 + lVar4) = fVar16;
-      *(float *)(uVar13 + 0x18 + lVar4) = fVar15;
-      uVar13 = uVar13 + 0x1c;
-    } while ((int)uVar14 < unaff_R13D);
+      *(float *)(element_data + 0x14 + data_offset) = depth_offset;
+      *(float *)(element_data + 0x18 + data_offset) = width_offset;
+      element_data = element_data + 0x1c;
+    } while ((int)element_count < max_elements_limit);
   }
-  FUN_180291cf0(*(undefined8 *)(unaff_RSI + 0x2e8),*(undefined4 *)(unaff_R14 + 0x10));
-  lVar4 = _DAT_180c8a9b0;
-  lVar5 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
-  lVar12 = (longlong)*(int *)(lVar5 + 0xc) * 0x1c + *(longlong *)(lVar5 + 0x38);
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar5 = *(longlong *)(lVar4 + 0x1af8);
-  FUN_180291b40(*(undefined8 *)(lVar5 + 0x2e8),*(undefined8 *)(lVar12 + 0xc),
-                *(undefined8 *)(lVar12 + 0x14),0);
-  lVar4 = _DAT_180c8a9b0;
-  puVar2 = (undefined8 *)
-           (*(longlong *)(*(longlong *)(lVar5 + 0x2e8) + 0x68) + -0x10 +
-           (longlong)*(int *)(*(longlong *)(lVar5 + 0x2e8) + 0x60) * 0x10);
-  uVar7 = puVar2[1];
-  *(undefined8 *)(lVar5 + 0x228) = *puVar2;
-  *(undefined8 *)(lVar5 + 0x230) = uVar7;
-  lVar5 = *(longlong *)(*(longlong *)(lVar4 + 0x1af8) + 0x210);
-  fVar16 = *(float *)(lVar5 + 0x18);
-  fVar15 = *(float *)(lVar5 + 0x14);
-  fVar17 = *(float *)(((longlong)*(int *)(lVar5 + 0xc) + 1) * 0x1c + *(longlong *)(lVar5 + 0x38));
-  fVar3 = *(float *)((longlong)*(int *)(lVar5 + 0xc) * 0x1c + *(longlong *)(lVar5 + 0x38));
-  *(undefined1 *)(*(longlong *)(lVar4 + 0x1af8) + 0xb1) = 1;
-  lVar5 = *(longlong *)(lVar4 + 0x1af8);
-  fVar16 = (fVar17 - fVar3) * (fVar16 - fVar15) * 0.65;
-  if (fVar16 == unaff_XMM8_Da) {
-    fVar16 = *(float *)(lVar5 + 0x284);
+  
+  // 调用渲染系统更新
+  update_render_system(*(undefined8 *)(physics_context + 0x2e8), *(undefined4 *)(physics_address + 0x10));
+  
+  data_offset = engine_context;
+  buffer_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
+  render_context = (longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38);
+  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  
+  // 更新物理碰撞
+  update_physics_collision(*(undefined8 *)(buffer_address + 0x2e8), *(undefined8 *)(render_context + 0xc),
+                          *(undefined8 *)(render_context + 0x14), 0);
+  
+  data_offset = engine_context;
+  context_ptr = (undefined8 *)(*(longlong *)(*(longlong *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
+                              (longlong)*(int *)(*(longlong *)(buffer_address + 0x2e8) + 0x60) * 0x10);
+  
+  // 更新物理属性
+  *(undefined8 *)(buffer_address + 0x228) = *context_ptr;
+  *(undefined8 *)(buffer_address + 0x230) = context_ptr[1];
+  
+  // 计算碰撞体积
+  buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  depth_offset = *(float *)(buffer_address + 0x18);
+  width_offset = *(float *)(buffer_address + 0x14);
+  height_offset = *(float *)(((longlong)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(longlong *)(buffer_address + 0x38));
+  physics_value = *(float *)((longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38));
+  *(undefined1 *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  depth_offset = (height_offset - physics_value) * (depth_offset - width_offset) * 0.65;
+  
+  if (depth_offset == physics_scale) {
+    depth_offset = *(float *)(buffer_address + 0x284);
   }
-  piVar11 = (int *)(lVar5 + 0x1c8);
-  *(float *)(lVar5 + 0x1ac) = fVar16;
-  iVar9 = *piVar11;
-  iVar8 = *(int *)(lVar5 + 0x1cc);
-  if (iVar9 == iVar8) {
-    if (iVar8 == 0) {
-      iVar8 = 8;
+  
+  // 更新物理属性数组
+  capacity_ptr = (int *)(buffer_address + 0x1c8);
+  *(float *)(buffer_address + 0x1ac) = depth_offset;
+  current_count = *capacity_ptr;
+  index = *(int *)(buffer_address + 0x1cc);
+  
+  // 动态扩容
+  if (current_count == index) {
+    if (index == 0) {
+      index = 8;
     }
     else {
-      iVar8 = iVar8 / 2 + iVar8;
+      index = index / 2 + index;
     }
-    iVar6 = iVar9 + 1;
-    if (iVar9 + 1 < iVar8) {
-      iVar6 = iVar8;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < index) {
+      new_capacity = index;
     }
-    FUN_18011dbd0(piVar11,iVar6);
-    iVar9 = *piVar11;
+    resize_physics_array(capacity_ptr, new_capacity);
+    current_count = *capacity_ptr;
   }
-  *(float *)(*(longlong *)(lVar5 + 0x1d0) + (longlong)iVar9 * 4) = *(float *)(lVar5 + 0x1ac);
-  *piVar11 = *piVar11 + 1;
+  
+  *(float *)(*(longlong *)(buffer_address + 0x1d0) + (longlong)current_count * 4) = *(float *)(buffer_address + 0x1ac);
+  *capacity_ptr = *capacity_ptr + 1;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1801348ee(void)
-void FUN_1801348ee(void)
-
+/**
+ * 处理优化的渲染数据更新
+ * 功能：采用优化算法处理渲染数据更新
+ */
+void process_optimized_render_update(void)
 {
-  float *pfVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  uint uVar9;
-  int *piVar10;
-  longlong lVar11;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar12;
-  uint uVar13;
-  int unaff_R13D;
-  longlong unaff_R14;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float unaff_XMM7_Da;
-  float unaff_XMM8_Da;
-  float fStack0000000000000028;
-  undefined4 uStack000000000000002c;
+  float *render_data_ptr;
+  undefined8 *context_ptr;
+  float physics_value;
+  longlong data_offset;
+  longlong buffer_address;
+  int current_count;
+  int new_capacity;
+  int index;
+  uint element_index;
+  int *capacity_ptr;
+  longlong render_context;
+  longlong physics_context;
+  ulonglong element_data;
+  uint element_count;
+  int max_elements_limit;
+  longlong physics_address;
+  float scale_factor;
+  float height_offset;
+  float width_offset;
+  float depth_offset;
+  float physics_scale;
+  float temp_value;
   
-  lVar5 = _DAT_180c8a9b0;
-  uStack000000000000002c = 0x7f7fffff;
-  uVar12 = unaff_RDI;
+  buffer_address = engine_context;
+  temp_value = 0x7f7fffff;  // 最大浮点数
+  element_data = render_context;
+  
   do {
-    iVar7 = (int)unaff_RDI;
-    lVar4 = *(longlong *)(unaff_R14 + 0x38);
-    lVar11 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
-    iVar8 = iVar7;
-    if (iVar7 < 0) {
-      iVar8 = *(int *)(lVar11 + 0xc);
+    index = (int)render_context;
+    data_offset = *(longlong *)(physics_address + 0x38);
+    render_context = *(longlong *)(*(longlong *)(buffer_address + 0x1af8) + 0x210);
+    current_count = index;
+    
+    // 处理负数索引
+    if (index < 0) {
+      current_count = *(int *)(render_context + 0xc);
     }
-    fVar15 = *(float *)(lVar11 + 0x14);
-    uVar13 = iVar7 + 1;
-    fVar14 = *(float *)(lVar11 + 0x18) - fVar15;
-    fVar16 = *(float *)(unaff_RSI + 0x40) + 0.5;
-    uVar9 = uVar13;
-    if ((int)uVar13 < 0) {
-      uVar9 = *(uint *)(lVar11 + 0xc);
+    
+    depth_offset = *(float *)(render_context + 0x14);
+    element_count = index + 1;
+    width_offset = *(float *)(render_context + 0x18) - depth_offset;
+    height_offset = *(float *)(physics_context + 0x40) + 0.5;
+    element_index = element_count;
+    
+    if ((int)element_count < 0) {
+      element_index = *(uint *)(render_context + 0xc);
     }
-    unaff_RDI = (ulonglong)uVar13;
-    fStack0000000000000028 =
-         (float)(int)((fVar14 * *(float *)((longlong)(int)uVar9 * 0x1c +
-                                          *(longlong *)(lVar11 + 0x38)) + fVar15 + fVar16) -
-                     unaff_XMM7_Da);
-    pfVar1 = (float *)(uVar12 + 0xc + lVar4);
-    *pfVar1 = (float)(int)((fVar14 * *(float *)((longlong)iVar8 * 0x1c +
-                                               *(longlong *)(lVar11 + 0x38)) + fVar15 + fVar16) -
-                          unaff_XMM7_Da);
-    pfVar1[1] = -3.4028235e+38;
-    pfVar1[2] = fStack0000000000000028;
-    pfVar1[3] = 3.4028235e+38;
-    fVar15 = *(float *)(uVar12 + 0x10 + lVar4);
-    if (fVar15 <= *(float *)(unaff_RSI + 0x22c)) {
-      fVar15 = *(float *)(unaff_RSI + 0x22c);
+    
+    render_context = (ulonglong)element_count;
+    temp_value = (float)(int)((width_offset * *(float *)((longlong)(int)element_index * 0x1c +
+                                          *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+                     physics_scale);
+    
+    render_data_ptr = (float *)(element_data + 0xc + data_offset);
+    *render_data_ptr = (float)(int)((width_offset * *(float *)((longlong)current_count * 0x1c +
+                                               *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+                          physics_scale);
+    render_data_ptr[1] = -3.4028235e+38;
+    render_data_ptr[2] = temp_value;
+    render_data_ptr[3] = 3.4028235e+38;
+    
+    // 更新边界框
+    depth_offset = *(float *)(element_data + 0x10 + data_offset);
+    if (depth_offset <= *(float *)(physics_context + 0x22c)) {
+      depth_offset = *(float *)(physics_context + 0x22c);
     }
-    fVar14 = *(float *)(uVar12 + 0xc + lVar4);
-    fVar16 = *(float *)(unaff_RSI + 0x228);
-    if (*(float *)(unaff_RSI + 0x228) <= fVar14) {
-      fVar16 = fVar14;
+    width_offset = *(float *)(element_data + 0xc + data_offset);
+    height_offset = *(float *)(physics_context + 0x228);
+    if (*(float *)(physics_context + 0x228) <= width_offset) {
+      height_offset = width_offset;
     }
-    *(float *)(uVar12 + 0x10 + lVar4) = fVar15;
-    *(float *)(uVar12 + 0xc + lVar4) = fVar16;
-    fVar15 = *(float *)(uVar12 + 0x14 + lVar4);
-    fVar14 = *(float *)(uVar12 + 0x18 + lVar4);
-    if (*(float *)(unaff_RSI + 0x230) <= fVar15) {
-      fVar15 = *(float *)(unaff_RSI + 0x230);
+    *(float *)(element_data + 0x10 + data_offset) = depth_offset;
+    *(float *)(element_data + 0xc + data_offset) = height_offset;
+    
+    // 更新Y轴边界
+    depth_offset = *(float *)(element_data + 0x14 + data_offset);
+    width_offset = *(float *)(element_data + 0x18 + data_offset);
+    if (*(float *)(physics_context + 0x230) <= depth_offset) {
+      depth_offset = *(float *)(physics_context + 0x230);
     }
-    if (*(float *)(unaff_RSI + 0x234) <= fVar14) {
-      fVar14 = *(float *)(unaff_RSI + 0x234);
+    if (*(float *)(physics_context + 0x234) <= width_offset) {
+      width_offset = *(float *)(physics_context + 0x234);
     }
-    *(float *)(uVar12 + 0x14 + lVar4) = fVar15;
-    *(float *)(uVar12 + 0x18 + lVar4) = fVar14;
-    uVar12 = uVar12 + 0x1c;
-  } while ((int)uVar13 < unaff_R13D);
-  FUN_180291cf0(*(undefined8 *)(unaff_RSI + 0x2e8),*(undefined4 *)(unaff_R14 + 0x10));
-  lVar4 = _DAT_180c8a9b0;
-  lVar5 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
-  lVar11 = (longlong)*(int *)(lVar5 + 0xc) * 0x1c + *(longlong *)(lVar5 + 0x38);
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar5 = *(longlong *)(lVar4 + 0x1af8);
-  FUN_180291b40(*(undefined8 *)(lVar5 + 0x2e8),*(undefined8 *)(lVar11 + 0xc),
-                *(undefined8 *)(lVar11 + 0x14),0);
-  lVar4 = _DAT_180c8a9b0;
-  puVar2 = (undefined8 *)
-           (*(longlong *)(*(longlong *)(lVar5 + 0x2e8) + 0x68) + -0x10 +
-           (longlong)*(int *)(*(longlong *)(lVar5 + 0x2e8) + 0x60) * 0x10);
-  _fStack0000000000000028 = puVar2[1];
-  *(undefined8 *)(lVar5 + 0x228) = *puVar2;
-  *(undefined8 *)(lVar5 + 0x230) = _fStack0000000000000028;
-  lVar5 = *(longlong *)(*(longlong *)(lVar4 + 0x1af8) + 0x210);
-  fVar15 = *(float *)(lVar5 + 0x18);
-  fVar14 = *(float *)(lVar5 + 0x14);
-  fVar16 = *(float *)(((longlong)*(int *)(lVar5 + 0xc) + 1) * 0x1c + *(longlong *)(lVar5 + 0x38));
-  fVar3 = *(float *)((longlong)*(int *)(lVar5 + 0xc) * 0x1c + *(longlong *)(lVar5 + 0x38));
-  *(undefined1 *)(*(longlong *)(lVar4 + 0x1af8) + 0xb1) = 1;
-  lVar5 = *(longlong *)(lVar4 + 0x1af8);
-  fVar15 = (fVar16 - fVar3) * (fVar15 - fVar14) * 0.65;
-  if (fVar15 == unaff_XMM8_Da) {
-    fVar15 = *(float *)(lVar5 + 0x284);
+    *(float *)(element_data + 0x14 + data_offset) = depth_offset;
+    *(float *)(element_data + 0x18 + data_offset) = width_offset;
+    element_data = element_data + 0x1c;
+  } while ((int)element_count < max_elements_limit);
+  
+  // 调用渲染系统更新
+  update_render_system(*(undefined8 *)(physics_context + 0x2e8), *(undefined4 *)(physics_address + 0x10));
+  
+  data_offset = engine_context;
+  buffer_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
+  render_context = (longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38);
+  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  
+  // 更新物理碰撞
+  update_physics_collision(*(undefined8 *)(buffer_address + 0x2e8), *(undefined8 *)(render_context + 0xc),
+                          *(undefined8 *)(render_context + 0x14), 0);
+  
+  data_offset = engine_context;
+  context_ptr = (undefined8 *)(*(longlong *)(*(longlong *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
+                              (longlong)*(int *)(*(longlong *)(buffer_address + 0x2e8) + 0x60) * 0x10);
+  
+  // 更新物理属性
+  *(undefined8 *)(buffer_address + 0x228) = *context_ptr;
+  *(undefined8 *)(buffer_address + 0x230) = context_ptr[1];
+  
+  // 计算碰撞体积
+  buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  depth_offset = *(float *)(buffer_address + 0x18);
+  width_offset = *(float *)(buffer_address + 0x14);
+  height_offset = *(float *)(((longlong)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(longlong *)(buffer_address + 0x38));
+  physics_value = *(float *)((longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38));
+  *(undefined1 *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  depth_offset = (height_offset - physics_value) * (depth_offset - width_offset) * 0.65;
+  
+  if (depth_offset == physics_scale) {
+    depth_offset = *(float *)(buffer_address + 0x284);
   }
-  piVar10 = (int *)(lVar5 + 0x1c8);
-  *(float *)(lVar5 + 0x1ac) = fVar15;
-  iVar8 = *piVar10;
-  iVar7 = *(int *)(lVar5 + 0x1cc);
-  if (iVar8 == iVar7) {
-    if (iVar7 == 0) {
-      iVar7 = 8;
+  
+  // 更新物理属性数组
+  capacity_ptr = (int *)(buffer_address + 0x1c8);
+  *(float *)(buffer_address + 0x1ac) = depth_offset;
+  current_count = *capacity_ptr;
+  index = *(int *)(buffer_address + 0x1cc);
+  
+  // 动态扩容
+  if (current_count == index) {
+    if (index == 0) {
+      index = 8;
     }
     else {
-      iVar7 = iVar7 / 2 + iVar7;
+      index = index / 2 + index;
     }
-    iVar6 = iVar8 + 1;
-    if (iVar8 + 1 < iVar7) {
-      iVar6 = iVar7;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < index) {
+      new_capacity = index;
     }
-    FUN_18011dbd0(piVar10,iVar6);
-    iVar8 = *piVar10;
+    resize_physics_array(capacity_ptr, new_capacity);
+    current_count = *capacity_ptr;
   }
-  *(float *)(*(longlong *)(lVar5 + 0x1d0) + (longlong)iVar8 * 4) = *(float *)(lVar5 + 0x1ac);
-  *piVar10 = *piVar10 + 1;
+  
+  *(float *)(*(longlong *)(buffer_address + 0x1d0) + (longlong)current_count * 4) = *(float *)(buffer_address + 0x1ac);
+  *capacity_ptr = *capacity_ptr + 1;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180134b4f(longlong param_1)
-void FUN_180134b4f(longlong param_1)
-
+/**
+ * 添加物理属性到数组
+ * 功能：将物理属性值添加到物理属性数组中
+ * 
+ * @param param_1 物理系统上下文指针
+ */
+void add_physics_property(longlong param_1)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  int *piVar4;
-  undefined8 uStack0000000000000058;
+  int current_count;
+  int capacity;
+  int new_capacity;
+  int *array_ptr;
+  undefined8 temp_value;
   
-  piVar4 = (int *)(param_1 + 0x1c8);
+  array_ptr = (int *)(param_1 + 0x1c8);
   *(undefined4 *)(param_1 + 0x1ac) = *(undefined4 *)(param_1 + 0x284);
-  iVar3 = *piVar4;
-  iVar2 = *(int *)(param_1 + 0x1cc);
-  if (iVar3 == iVar2) {
-    if (iVar2 == 0) {
-      iVar2 = 8;
+  current_count = *array_ptr;
+  capacity = *(int *)(param_1 + 0x1cc);
+  
+  // 动态扩容
+  if (current_count == capacity) {
+    if (capacity == 0) {
+      capacity = 8;
     }
     else {
-      iVar2 = iVar2 / 2 + iVar2;
+      capacity = capacity / 2 + capacity;
     }
-    iVar1 = iVar3 + 1;
-    if (iVar3 + 1 < iVar2) {
-      iVar1 = iVar2;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < capacity) {
+      new_capacity = capacity;
     }
-    uStack0000000000000058 = 0x18011d983;
-    FUN_18011dbd0(piVar4,iVar1);
-    iVar3 = *piVar4;
+    temp_value = 0x18011d983;
+    resize_physics_array(array_ptr, new_capacity);
+    current_count = *array_ptr;
   }
-  *(undefined4 *)(*(longlong *)(param_1 + 0x1d0) + (longlong)iVar3 * 4) =
+  
+  *(undefined4 *)(*(longlong *)(param_1 + 0x1d0) + (longlong)current_count * 4) =
        *(undefined4 *)(param_1 + 0x1ac);
-  *piVar4 = *piVar4 + 1;
+  *array_ptr = *array_ptr + 1;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180134b80(void)
-void FUN_180134b80(void)
-
+/**
+ * 处理复杂的渲染和物理计算
+ * 功能：处理复杂的渲染数据更新和物理计算，包括边界检查和碰撞检测
+ */
+void process_complex_render_physics(void)
 {
-  undefined4 *puVar1;
-  float fVar2;
-  longlong lVar3;
-  int *piVar4;
-  uint uVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  int iVar8;
-  longlong lVar9;
-  int iVar10;
-  longlong lVar11;
-  int iVar12;
-  int iVar13;
-  longlong lVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  char acStackX_8 [8];
-  char acStackX_10 [8];
-  undefined1 uStackX_18;
-  float fStackX_20;
-  float fStackX_24;
-  float fStack_c8;
-  float fStack_c4;
-  float fStack_c0;
-  float fStack_bc;
-  float fStack_b8;
-  float fStack_b4;
-  undefined4 uStack_b0;
-  undefined4 uStack_ac;
-  undefined4 uStack_a8;
-  float fStack_a4;
+  undefined4 *render_ptr;
+  float physics_value;
+  longlong context_offset;
+  int *array_ptr;
+  uint element_flags;
+  undefined4 temp_value;
+  longlong data_address;
+  int index;
+  longlong buffer_offset;
+  int element_id;
+  longlong physics_offset;
+  int collision_id;
+  int element_count;
+  longlong render_address;
+  float scale_factor;
+  float height_offset;
+  float width_offset;
+  float depth_offset;
+  char temp_buffer1[8];
+  char temp_buffer2[8];
+  undefined1 render_flag;
+  float render_offset;
+  float physics_offset;
+  float depth_value;
+  float width_value;
+  float height_value;
+  float min_bound;
+  float max_bound;
+  undefined4 bounds_data[3];
+  float render_scale;
   
-  lVar9 = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar3 = *(longlong *)(lVar9 + 0x1af8);
-  piVar4 = *(int **)(lVar3 + 0x210);
-  func_0x00018012d640();
-  FUN_180126d80();
-  FUN_180291f60(*(undefined8 *)(lVar3 + 0x2e8));
-  fVar16 = *(float *)(lVar3 + 0x104);
-  if (*(float *)(lVar3 + 0x104) <= (float)piVar4[8]) {
-    fVar16 = (float)piVar4[8];
+  context_offset = engine_context;
+  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  data_address = *(longlong *)(context_offset + 0x1af8);
+  array_ptr = *(int **)(data_address + 0x210);
+  
+  // 初始化渲染系统
+  initialize_render_system();
+  update_render_state();
+  prepare_render_context(*(undefined8 *)(data_address + 0x2e8));
+  
+  // 处理渲染边界
+  depth_offset = *(float *)(data_address + 0x104);
+  if (*(float *)(data_address + 0x104) <= (float)array_ptr[8]) {
+    depth_offset = (float)array_ptr[8];
   }
-  piVar4[8] = (int)fVar16;
-  *(float *)(lVar3 + 0x104) = fVar16;
-  uVar5 = piVar4[1];
-  if ((uVar5 & 0x10) == 0) {
-    *(int *)(lVar3 + 0x118) = piVar4[10];
-    uVar5 = piVar4[1];
+  array_ptr[8] = (int)depth_offset;
+  *(float *)(data_address + 0x104) = depth_offset;
+  
+  element_flags = array_ptr[1];
+  if ((element_flags & 0x10) == 0) {
+    *(int *)(data_address + 0x118) = array_ptr[10];
+    element_flags = array_ptr[1];
   }
-  uStackX_18 = 0;
-  if (((uVar5 & 1) == 0) && (*(char *)(lVar3 + 0xb4) == '\0')) {
-    iVar10 = 1;
-    fVar2 = (float)piVar4[9];
-    iVar12 = -1;
-    if (1 < piVar4[4]) {
-      lVar14 = 0x1c;
-      lVar11 = _DAT_180c8a9b0;
+  
+  render_flag = 0;
+  if (((element_flags & 1) == 0) && (*(char *)(data_address + 0xb4) == '\0')) {
+    index = 1;
+    physics_value = (float)array_ptr[9];
+    collision_id = -1;
+    
+    if (1 < array_ptr[4]) {
+      render_address = 0x1c;
+      buffer_offset = engine_context;
+      
       do {
-        lVar7 = *(longlong *)(*(longlong *)(lVar11 + 0x1af8) + 0x210);
-        iVar13 = iVar10;
-        if (iVar10 < 0) {
-          iVar13 = *(int *)(lVar7 + 0xc);
+        data_address = *(longlong *)(*(longlong *)(buffer_offset + 0x1af8) + 0x210);
+        element_count = index;
+        
+        if (index < 0) {
+          element_count = *(int *)(data_address + 0xc);
         }
-        iVar8 = *piVar4 + iVar10;
-        fVar17 = (*(float *)(lVar7 + 0x18) - *(float *)(lVar7 + 0x14)) *
-                 *(float *)((longlong)iVar13 * 0x1c + *(longlong *)(lVar7 + 0x38)) +
-                 *(float *)(lVar7 + 0x14) + *(float *)(lVar3 + 0x40);
-        fStack_b8 = fVar17 + 4.0;
-        fStack_c0 = fVar17 - 4.0;
-        if (*(int *)(lVar11 + 0x1b2c) == iVar8) {
-          *(int *)(lVar11 + 0x1b34) = iVar8;
+        
+        element_id = *array_ptr + index;
+        depth_offset = (*(float *)(data_address + 0x18) - *(float *)(data_address + 0x14)) *
+                 *(float *)((longlong)element_count * 0x1c + *(longlong *)(data_address + 0x38)) +
+                 *(float *)(data_address + 0x14) + *(float *)(data_address + 0x40);
+        
+        // 设置边界值
+        max_bound = depth_offset + 4.0;
+        min_bound = depth_offset - 4.0;
+        
+        // 检查元素ID
+        if (*(int *)(buffer_offset + 0x1b2c) == element_id) {
+          *(int *)(buffer_offset + 0x1b34) = element_id;
         }
-        if (*(int *)(lVar11 + 0x1b30) == iVar8) {
-          *(undefined1 *)(lVar11 + 0x1b3f) = 1;
+        if (*(int *)(buffer_offset + 0x1b30) == element_id) {
+          *(undefined1 *)(buffer_offset + 0x1b3f) = 1;
         }
-        lVar7 = *(longlong *)(lVar11 + 0x1af8);
-        fStack_bc = fVar2;
-        fStack_b4 = fVar16;
-        if (((((*(float *)(lVar7 + 0x22c) <= fVar16 && fVar16 != *(float *)(lVar7 + 0x22c)) &&
-              (fVar2 < *(float *)(lVar7 + 0x234))) &&
-             (*(float *)(lVar7 + 0x228) <= fStack_b8 && fStack_b8 != *(float *)(lVar7 + 0x228))) &&
-            (fStack_c0 < *(float *)(lVar7 + 0x230))) ||
-           (((iVar8 != 0 && (iVar8 == *(int *)(lVar11 + 0x1b2c))) ||
-            (*(char *)(lVar11 + 0x2e38) != '\0')))) {
-          acStackX_10[0] = '\0';
-          acStackX_8[0] = '\0';
-          if ((((*(byte *)(piVar4 + 1) & 2) == 0) &&
-              ((FUN_18010f170(&fStack_c0,iVar8,acStackX_10,acStackX_8,0), acStackX_10[0] != '\0' ||
-               (acStackX_8[0] != '\0')))) &&
-             (*(undefined4 *)(lVar9 + 0x1dcc) = 4, acStackX_8[0] != '\0')) {
-            lVar7 = 0x1d;
-            iVar13 = iVar10;
-            if ((*(byte *)(*(longlong *)(piVar4 + 0xe) + 8 + lVar14) & 2) != 0) {
-              iVar13 = iVar12;
+        
+        data_address = *(longlong *)(buffer_offset + 0x1af8);
+        width_value = physics_value;
+        height_value = depth_offset;
+        
+        // 边界检查和碰撞检测
+        if (((((*(float *)(data_address + 0x22c) <= depth_offset && depth_offset != *(float *)(data_address + 0x22c)) &&
+              (physics_value < *(float *)(data_address + 0x234))) &&
+             (*(float *)(data_address + 0x228) <= max_bound && max_bound != *(float *)(data_address + 0x228))) &&
+            (min_bound < *(float *)(data_address + 0x230))) ||
+           (((element_id != 0 && (element_id == *(int *)(buffer_offset + 0x1b2c))) ||
+            (*(char *)(buffer_offset + 0x2e38) != '\0')))) {
+          
+          // 处理渲染数据
+          temp_buffer2[0] = '\0';
+          temp_buffer1[0] = '\0';
+          
+          if ((((*(byte *)(array_ptr + 1) & 2) == 0) &&
+              ((process_render_data(&min_bound, element_id, temp_buffer2, temp_buffer1, 0), 
+                temp_buffer2[0] != '\0' || (temp_buffer1[0] != '\0')))) &&
+             (*(undefined4 *)(context_offset + 0x1dcc) = 4, temp_buffer1[0] != '\0')) {
+            
+            data_address = 0x1d;
+            element_count = index;
+            if ((*(byte *)(*(longlong *)(array_ptr + 0xe) + 8 + render_address) & 2) != 0) {
+              element_count = collision_id;
             }
           }
           else {
-            lVar7 = (ulonglong)(acStackX_10[0] != '\0') + 0x1b;
-            iVar13 = iVar12;
+            data_address = (ulonglong)(temp_buffer2[0] != '\0') + 0x1b;
+            element_count = collision_id;
           }
-          puVar1 = (undefined4 *)(lVar11 + 0x1628 + (lVar7 + 10) * 0x10);
-          uStack_b0 = *puVar1;
-          uStack_ac = puVar1[1];
-          uStack_a8 = puVar1[2];
-          fStack_a4 = (float)puVar1[3] * *(float *)(lVar11 + 0x1628);
-          fStackX_20 = (float)(int)fVar17;
-          fStackX_24 = *(float *)(lVar3 + 0x234);
-          if (fVar16 <= *(float *)(lVar3 + 0x234)) {
-            fStackX_24 = fVar16;
+          
+          // 更新渲染数据
+          render_ptr = (undefined4 *)(buffer_offset + 0x1628 + (data_address + 10) * 0x10);
+          bounds_data[0] = *render_ptr;
+          bounds_data[1] = render_ptr[1];
+          bounds_data[2] = render_ptr[2];
+          render_scale = (float)render_ptr[3] * *(float *)(buffer_offset + 0x1628);
+          render_offset = (float)(int)depth_offset;
+          physics_offset = *(float *)(data_address + 0x234);
+          
+          if (depth_offset <= *(float *)(data_address + 0x234)) {
+            physics_offset = depth_offset;
           }
-          fStack_c4 = fVar2 + 1.0;
-          if (fVar2 + 1.0 <= *(float *)(lVar3 + 0x22c)) {
-            fStack_c4 = *(float *)(lVar3 + 0x22c);
+          
+          height_value = physics_value + 1.0;
+          if (physics_value + 1.0 <= *(float *)(data_address + 0x22c)) {
+            height_value = *(float *)(data_address + 0x22c);
           }
-          fStack_c8 = fStackX_20;
-          uVar6 = func_0x000180121e20(&uStack_b0);
-          FUN_180293d20(*(undefined8 *)(lVar3 + 0x2e8),&fStack_c8,&fStackX_20,uVar6,0x3f800000);
-          lVar11 = _DAT_180c8a9b0;
-          iVar12 = iVar13;
+          
+          width_value = render_offset;
+          temp_value = process_render_bounds(&bounds_data[0]);
+          update_render_bounds(*(undefined8 *)(data_address + 0x2e8), &height_value, &render_offset, temp_value, 0x3f800000);
+          buffer_offset = engine_context;
+          collision_id = element_count;
         }
-        iVar10 = iVar10 + 1;
-        lVar14 = lVar14 + 0x1c;
-      } while (iVar10 < piVar4[4]);
-      if (iVar12 != -1) {
-        if ((*(char *)((longlong)piVar4 + 9) == '\0') && (iVar10 = 0, 0 < piVar4[4] + 1)) {
-          lVar9 = 0;
+        
+        index = index + 1;
+        render_address = render_address + 0x1c;
+      } while (index < array_ptr[4]);
+      
+      // 处理碰撞结果
+      if (collision_id != -1) {
+        if ((*(char *)((longlong)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
+          context_offset = 0;
           do {
-            iVar10 = iVar10 + 1;
-            *(undefined4 *)(lVar9 + 4 + *(longlong *)(piVar4 + 0xe)) =
-                 *(undefined4 *)(lVar9 + *(longlong *)(piVar4 + 0xe));
-            lVar9 = lVar9 + 0x1c;
-          } while (iVar10 < piVar4[4] + 1);
+            index = index + 1;
+            *(undefined4 *)(context_offset + 4 + *(longlong *)(array_ptr + 0xe)) =
+                 *(undefined4 *)(context_offset + *(longlong *)(array_ptr + 0xe));
+            context_offset = context_offset + 0x1c;
+          } while (index < array_ptr[4] + 1);
         }
-        *(undefined1 *)((longlong)piVar4 + 9) = 1;
-        iVar10 = iVar12 + -1;
-        uStackX_18 = 1;
-        lVar9 = *(longlong *)(*(longlong *)(lVar11 + 0x1af8) + 0x210);
-        fVar16 = ((*(float *)(lVar11 + 0x118) - *(float *)(lVar11 + 0x1b48)) + 4.0) -
-                 *(float *)(*(longlong *)(lVar11 + 0x1af8) + 0x40);
-        if (iVar10 < 0) {
-          iVar10 = *(int *)(lVar9 + 0xc);
+        
+        *(undefined1 *)((longlong)array_ptr + 9) = 1;
+        index = collision_id + -1;
+        render_flag = 1;
+        context_offset = *(longlong *)(*(longlong *)(buffer_offset + 0x1af8) + 0x210);
+        depth_offset = ((*(float *)(buffer_offset + 0x118) - *(float *)(buffer_offset + 0x1b48)) + 4.0) -
+                 *(float *)(*(longlong *)(buffer_offset + 0x1af8) + 0x40);
+        
+        if (index < 0) {
+          index = *(int *)(context_offset + 0xc);
         }
-        fVar2 = *(float *)(lVar9 + 0x14);
-        lVar14 = *(longlong *)(lVar9 + 0x38);
-        fVar15 = *(float *)(lVar9 + 0x18) - fVar2;
-        fVar17 = fVar15 * *(float *)((longlong)iVar10 * 0x1c + lVar14) + fVar2 +
-                 *(float *)(lVar11 + 0x1688);
-        if (fVar17 <= fVar16) {
-          fVar17 = fVar16;
+        
+        physics_value = *(float *)(context_offset + 0x14);
+        render_address = *(longlong *)(context_offset + 0x38);
+        height_offset = *(float *)(context_offset + 0x18) - physics_value;
+        depth_offset = height_offset * *(float *)((longlong)index * 0x1c + render_address) + physics_value +
+                 *(float *)(buffer_offset + 0x1688);
+        
+        if (depth_offset <= depth_offset) {
+          depth_offset = depth_offset;
         }
-        if ((*(byte *)(piVar4 + 1) & 4) != 0) {
-          iVar10 = iVar12 + 1;
-          if (iVar10 < 0) {
-            iVar10 = *(int *)(lVar9 + 0xc);
+        
+        if ((*(byte *)(array_ptr + 1) & 4) != 0) {
+          index = collision_id + 1;
+          if (index < 0) {
+            index = *(int *)(context_offset + 0xc);
           }
-          lVar9 = (longlong)iVar10 * 0x1c;
-          fVar16 = (fVar15 * *(float *)(lVar9 + lVar14) + fVar2) - *(float *)(lVar11 + 0x1688);
-          if (fVar16 <= fVar17) {
-            fVar17 = fVar16;
+          context_offset = (longlong)index * 0x1c;
+          depth_offset = (height_offset * *(float *)(context_offset + render_address) + physics_value) - *(float *)(buffer_offset + 0x1688);
+          if (depth_offset <= depth_offset) {
+            depth_offset = depth_offset;
           }
         }
-        FUN_1801342e0(iVar12,lVar9,lVar14,fVar17);
+        
+        process_physics_collision(collision_id, context_offset, render_address, depth_offset);
       }
     }
   }
-  *(undefined1 *)((longlong)piVar4 + 9) = uStackX_18;
-  *(undefined8 *)(lVar3 + 0x210) = 0;
-  *(undefined4 *)(lVar3 + 0x20c) = 0;
-  *(float *)(lVar3 + 0x100) = (float)(int)(*(float *)(lVar3 + 0x204) + *(float *)(lVar3 + 0x40));
+  
+  *(undefined1 *)((longlong)array_ptr + 9) = render_flag;
+  *(undefined8 *)(data_address + 0x210) = 0;
+  *(undefined4 *)(data_address + 0x20c) = 0;
+  *(float *)(data_address + 0x100) = (float)(int)(*(float *)(data_address + 0x204) + *(float *)(data_address + 0x40));
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180134c17(void)
-void FUN_180134c17(void)
-
+/**
+ * 处理高级渲染和物理交互
+ * 功能：处理高级渲染数据更新和物理交互，包括复杂的边界检查
+ */
+void process_advanced_render_physics(void)
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  int iVar4;
-  int *unaff_RBX;
-  longlong unaff_RBP;
-  int iVar5;
-  longlong lVar6;
-  longlong unaff_R13;
-  int iVar7;
-  int iVar8;
-  longlong lVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float unaff_XMM7_Da;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  float fStack000000000000003c;
-  float fStack0000000000000040;
-  undefined4 uStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined4 uStack0000000000000050;
-  float fStack0000000000000054;
-  char in_stack_00000100;
-  char in_stack_00000108;
-  undefined1 in_stack_00000110;
-  float fStack0000000000000118;
-  float fStack000000000000011c;
+  undefined4 *render_ptr;
+  undefined4 temp_value;
+  longlong context_offset;
+  int element_count;
+  int *array_ptr;
+  longlong physics_context;
+  int index;
+  longlong data_offset;
+  longlong render_context;
+  int element_id;
+  int current_count;
+  longlong buffer_address;
+  float scale_factor;
+  float height_offset;
+  float width_offset;
+  float depth_offset;
+  float physics_value;
+  float min_bound;
+  float max_bound;
+  float render_data[5];
+  undefined4 bounds_data[3];
+  float render_scale;
+  char temp_buffer1[8];
+  char temp_buffer2[8];
+  undefined1 render_flag;
   
-  iVar5 = 1;
-  fVar12 = (float)unaff_RBX[9];
-  iVar7 = -1;
-  if (1 < unaff_RBX[4]) {
-    lVar9 = 0x1c;
-    lVar6 = _DAT_180c8a9b0;
+  index = 1;
+  height_offset = (float)array_ptr[9];
+  element_id = -1;
+  
+  if (1 < array_ptr[4]) {
+    buffer_address = 0x1c;
+    data_offset = engine_context;
+    
     do {
-      lVar3 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
-      iVar8 = iVar5;
-      if (iVar5 < 0) {
-        iVar8 = *(int *)(lVar3 + 0xc);
+      context_offset = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+      current_count = index;
+      
+      if (index < 0) {
+        current_count = *(int *)(context_offset + 0xc);
       }
-      iVar4 = *unaff_RBX + iVar5;
-      fVar13 = (*(float *)(lVar3 + 0x18) - *(float *)(lVar3 + 0x14)) *
-               *(float *)((longlong)iVar8 * 0x1c + *(longlong *)(lVar3 + 0x38)) +
-               *(float *)(lVar3 + 0x14) + *(float *)(unaff_RBP + 0x40);
-      fStack0000000000000040 = fVar13 + 4.0;
-      fStack0000000000000038 = fVar13 - 4.0;
-      if (*(int *)(lVar6 + 0x1b2c) == iVar4) {
-        *(int *)(lVar6 + 0x1b34) = iVar4;
+      
+      element_count = *array_ptr + index;
+      depth_offset = (*(float *)(context_offset + 0x18) - *(float *)(context_offset + 0x14)) *
+               *(float *)((longlong)current_count * 0x1c + *(longlong *)(context_offset + 0x38)) +
+               *(float *)(context_offset + 0x14) + *(float *)(physics_context + 0x40);
+      
+      // 设置边界值
+      render_data[4] = depth_offset + 4.0;
+      render_data[3] = depth_offset - 4.0;
+      
+      // 检查元素ID
+      if (*(int *)(data_offset + 0x1b2c) == element_count) {
+        *(int *)(data_offset + 0x1b34) = element_count;
       }
-      if (*(int *)(lVar6 + 0x1b30) == iVar4) {
-        *(undefined1 *)(lVar6 + 0x1b3f) = 1;
+      if (*(int *)(data_offset + 0x1b30) == element_count) {
+        *(undefined1 *)(data_offset + 0x1b3f) = 1;
       }
-      lVar3 = *(longlong *)(lVar6 + 0x1af8);
-      fStack000000000000003c = fVar12;
-      if (((((*(float *)(lVar3 + 0x22c) <= unaff_XMM7_Da &&
-              unaff_XMM7_Da != *(float *)(lVar3 + 0x22c)) && (fVar12 < *(float *)(lVar3 + 0x234)))
-           && (*(float *)(lVar3 + 0x228) <= fStack0000000000000040 &&
-               fStack0000000000000040 != *(float *)(lVar3 + 0x228))) &&
-          (fStack0000000000000038 < *(float *)(lVar3 + 0x230))) ||
-         (((iVar4 != 0 && (iVar4 == *(int *)(lVar6 + 0x1b2c))) ||
-          (*(char *)(lVar6 + 0x2e38) != '\0')))) {
-        in_stack_00000108 = '\0';
-        in_stack_00000100 = '\0';
-        if ((((*(byte *)(unaff_RBX + 1) & 2) == 0) &&
-            ((FUN_18010f170(&stack0x00000038,iVar4,&stack0x00000108,&stack0x00000100,0),
-             in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
-           (*(undefined4 *)(unaff_R13 + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
-          lVar3 = 0x1d;
-          iVar8 = iVar5;
-          if ((*(byte *)(*(longlong *)(unaff_RBX + 0xe) + 8 + lVar9) & 2) != 0) {
-            iVar8 = iVar7;
+      
+      context_offset = *(longlong *)(data_offset + 0x1af8);
+      render_data[2] = height_offset;
+      
+      // 边界检查和碰撞检测
+      if (((((*(float *)(context_offset + 0x22c) <= scale_factor && scale_factor != *(float *)(context_offset + 0x22c)) &&
+              (height_offset < *(float *)(context_offset + 0x234))) &&
+           (*(float *)(context_offset + 0x228) <= render_data[4] && render_data[4] != *(float *)(context_offset + 0x228))) &&
+          (render_data[3] < *(float *)(context_offset + 0x230))) ||
+         (((element_count != 0 && (element_count == *(int *)(data_offset + 0x1b2c))) ||
+          (*(char *)(data_offset + 0x2e38) != '\0')))) {
+        
+        // 处理渲染数据
+        temp_buffer2[0] = '\0';
+        temp_buffer1[0] = '\0';
+        
+        if ((((*(byte *)(array_ptr + 1) & 2) == 0) &&
+            ((process_render_data(&render_data[3], element_count, &temp_buffer2, &temp_buffer1, 0),
+             temp_buffer2[0] != '\0' || (temp_buffer1[0] != '\0')))) &&
+           (*(undefined4 *)(render_context + 0x1dcc) = 4, temp_buffer1[0] != '\0')) {
+          
+          context_offset = 0x1d;
+          current_count = index;
+          if ((*(byte *)(*(longlong *)(array_ptr + 0xe) + 8 + buffer_address) & 2) != 0) {
+            current_count = element_id;
           }
         }
         else {
-          lVar3 = (ulonglong)(in_stack_00000108 != '\0') + 0x1b;
-          iVar8 = iVar7;
+          context_offset = (ulonglong)(temp_buffer2[0] != '\0') + 0x1b;
+          current_count = element_id;
         }
-        puVar1 = (undefined4 *)(lVar6 + 0x1628 + (lVar3 + 10) * 0x10);
-        uStack0000000000000048 = *puVar1;
-        uStack000000000000004c = puVar1[1];
-        uStack0000000000000050 = puVar1[2];
-        fStack0000000000000054 = (float)puVar1[3] * *(float *)(lVar6 + 0x1628);
-        fStack0000000000000030 = (float)(int)fVar13;
-        fStack000000000000011c = *(float *)(unaff_RBP + 0x234);
-        if (unaff_XMM7_Da <= *(float *)(unaff_RBP + 0x234)) {
-          fStack000000000000011c = unaff_XMM7_Da;
+        
+        // 更新渲染数据
+        render_ptr = (undefined4 *)(data_offset + 0x1628 + (context_offset + 10) * 0x10);
+        bounds_data[0] = *render_ptr;
+        bounds_data[1] = render_ptr[1];
+        bounds_data[2] = render_ptr[2];
+        render_scale = (float)render_ptr[3] * *(float *)(data_offset + 0x1628);
+        render_data[0] = (float)(int)depth_offset;
+        physics_value = *(float *)(physics_context + 0x234);
+        
+        if (scale_factor <= *(float *)(physics_context + 0x234)) {
+          physics_value = scale_factor;
         }
-        fStack0000000000000034 = fVar12 + 1.0;
-        if (fVar12 + 1.0 <= *(float *)(unaff_RBP + 0x22c)) {
-          fStack0000000000000034 = *(float *)(unaff_RBP + 0x22c);
+        
+        render_data[1] = height_offset + 1.0;
+        if (height_offset + 1.0 <= *(float *)(physics_context + 0x22c)) {
+          render_data[1] = *(float *)(physics_context + 0x22c);
         }
-        fStack0000000000000118 = fStack0000000000000030;
-        uVar2 = func_0x000180121e20(&stack0x00000048);
-        FUN_180293d20(*(undefined8 *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar2,
-                      0x3f800000);
-        lVar6 = _DAT_180c8a9b0;
-        iVar7 = iVar8;
+        
+        scale_factor = render_data[0];
+        temp_value = process_render_bounds(&bounds_data[0]);
+        update_render_bounds(*(undefined8 *)(physics_context + 0x2e8), &render_data[1], &render_data[0], temp_value, 0x3f800000);
+        data_offset = engine_context;
+        element_id = current_count;
       }
-      iVar5 = iVar5 + 1;
-      lVar9 = lVar9 + 0x1c;
-    } while (iVar5 < unaff_RBX[4]);
-    if (iVar7 != -1) {
-      if ((*(char *)((longlong)unaff_RBX + 9) == '\0') && (iVar5 = 0, 0 < unaff_RBX[4] + 1)) {
-        lVar9 = 0;
+      
+      index = index + 1;
+      buffer_address = buffer_address + 0x1c;
+    } while (index < array_ptr[4]);
+    
+    // 处理碰撞结果
+    if (element_id != -1) {
+      if ((*(char *)((longlong)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
+        buffer_address = 0;
         do {
-          iVar5 = iVar5 + 1;
-          *(undefined4 *)(lVar9 + 4 + *(longlong *)(unaff_RBX + 0xe)) =
-               *(undefined4 *)(lVar9 + *(longlong *)(unaff_RBX + 0xe));
-          lVar9 = lVar9 + 0x1c;
-        } while (iVar5 < unaff_RBX[4] + 1);
+          index = index + 1;
+          *(undefined4 *)(buffer_address + 4 + *(longlong *)(array_ptr + 0xe)) =
+               *(undefined4 *)(buffer_address + *(longlong *)(array_ptr + 0xe));
+          buffer_address = buffer_address + 0x1c;
+        } while (index < array_ptr[4] + 1);
       }
-      *(undefined1 *)((longlong)unaff_RBX + 9) = 1;
-      iVar5 = iVar7 + -1;
-      in_stack_00000110 = 1;
-      lVar9 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
-      fVar12 = ((*(float *)(lVar6 + 0x118) - *(float *)(lVar6 + 0x1b48)) + 4.0) -
-               *(float *)(*(longlong *)(lVar6 + 0x1af8) + 0x40);
-      if (iVar5 < 0) {
-        iVar5 = *(int *)(lVar9 + 0xc);
+      
+      *(undefined1 *)((longlong)array_ptr + 9) = 1;
+      index = element_id + -1;
+      render_flag = 1;
+      buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+      height_offset = ((*(float *)(data_offset + 0x118) - *(float *)(data_offset + 0x1b48)) + 4.0) -
+               *(float *)(*(longlong *)(data_offset + 0x1af8) + 0x40);
+      
+      if (index < 0) {
+        index = *(int *)(buffer_address + 0xc);
       }
-      fVar13 = *(float *)(lVar9 + 0x14);
-      lVar3 = *(longlong *)(lVar9 + 0x38);
-      fVar10 = *(float *)(lVar9 + 0x18) - fVar13;
-      fVar11 = fVar10 * *(float *)((longlong)iVar5 * 0x1c + lVar3) + fVar13 +
-               *(float *)(lVar6 + 0x1688);
-      if (fVar11 <= fVar12) {
-        fVar11 = fVar12;
+      
+      depth_offset = *(float *)(buffer_address + 0x14);
+      context_offset = *(longlong *)(buffer_address + 0x38);
+      width_offset = *(float *)(buffer_address + 0x18) - depth_offset;
+      physics_value = width_offset * *(float *)((longlong)index * 0x1c + context_offset) + depth_offset +
+               *(float *)(data_offset + 0x1688);
+      
+      if (physics_value <= height_offset) {
+        physics_value = height_offset;
       }
-      if ((*(byte *)(unaff_RBX + 1) & 4) != 0) {
-        iVar5 = iVar7 + 1;
-        if (iVar5 < 0) {
-          iVar5 = *(int *)(lVar9 + 0xc);
+      
+      if ((*(byte *)(array_ptr + 1) & 4) != 0) {
+        index = element_id + 1;
+        if (index < 0) {
+          index = *(int *)(buffer_address + 0xc);
         }
-        lVar9 = (longlong)iVar5 * 0x1c;
-        fVar12 = (fVar10 * *(float *)(lVar9 + lVar3) + fVar13) - *(float *)(lVar6 + 0x1688);
-        if (fVar12 <= fVar11) {
-          fVar11 = fVar12;
+        buffer_address = (longlong)index * 0x1c;
+        height_offset = (width_offset * *(float *)(buffer_address + context_offset) + depth_offset) - *(float *)(data_offset + 0x1688);
+        if (height_offset <= physics_value) {
+          physics_value = height_offset;
         }
       }
-      FUN_1801342e0(iVar7,lVar9,lVar3,fVar11);
+      
+      process_physics_collision(element_id, buffer_address, context_offset, physics_value);
     }
   }
-  *(undefined1 *)((longlong)unaff_RBX + 9) = in_stack_00000110;
-  *(undefined8 *)(unaff_RBP + 0x210) = 0;
-  *(undefined4 *)(unaff_RBP + 0x20c) = 0;
-  *(float *)(unaff_RBP + 0x100) =
-       (float)(int)(*(float *)(unaff_RBP + 0x204) + *(float *)(unaff_RBP + 0x40));
+  
+  *(undefined1 *)((longlong)array_ptr + 9) = render_flag;
+  *(undefined8 *)(physics_context + 0x210) = 0;
+  *(undefined4 *)(physics_context + 0x20c) = 0;
+  *(float *)(physics_context + 0x100) = (float)(int)(*(float *)(physics_context + 0x204) + *(float *)(physics_context + 0x40));
   return;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
