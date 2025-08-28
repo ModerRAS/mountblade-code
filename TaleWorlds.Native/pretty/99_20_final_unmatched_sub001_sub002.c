@@ -792,10 +792,21 @@ void Module_99_20_Final_Unmatched_Sub001_Sub002_GetAnalysisStats(
  函数别名定义（用于兼容性）
 =============================================================================*/
 
-#define UnknownFunction1_99_20_Final_Unmatched_Sub001_Sub002 UnknownFunction1
-#define UnknownFunction2_99_20_Final_Unmatched_Sub001_Sub002 UnknownFunction2
-#define UnknownFunction3_99_20_Final_Unmatched_Sub001_Sub002 UnknownFunction3
+#define SystemInitializer                  SystemInitializerAndStateManager
+#define GraphicsSystemInit                 SystemInitializerAndStateManager
+#define StateManager                       SystemInitializerAndStateManager
 
-#define FUN_1805fef00 UnknownFunction1
-#define FUN_1805fef40 UnknownFunction2
-#define FUN_1805ff120 UnknownFunction3
+// 参数计算相关别名
+#define ParameterCalculator                GraphicsParameterCalculatorAndResourceProcessor
+#define ResourceProcessor                  GraphicsParameterCalculatorAndResourceProcessor
+#define GraphicsCalcEngine                 GraphicsParameterCalculatorAndResourceProcessor
+
+// 对象管理相关别名
+#define ObjectManager                      ObjectLifecycleManagerAndMemoryOperator
+#define MemoryOperator                     ObjectLifecycleManagerAndMemoryOperator
+#define LifecycleManager                   ObjectLifecycleManagerAndMemoryOperator
+
+// 原始函数兼容性别名
+#define FUN_1805fef00                      SystemInitializerAndStateManager
+#define FUN_1805fef40                      GraphicsParameterCalculatorAndResourceProcessor
+#define FUN_1805ff120                      ObjectLifecycleManagerAndMemoryOperator
