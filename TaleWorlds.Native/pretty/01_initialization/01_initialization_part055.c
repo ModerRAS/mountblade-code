@@ -27,17 +27,17 @@ undefined1 check_system_status(void)
   
   do {
     Sleep(0);
-    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x02' &&
-           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x01'))) {
-      lVar3 = (longlong)unaff_ESI;
-      unaff_RDI = unaff_RDI + 0x18;
-      unaff_ESI = unaff_ESI + 1;
+    while ((*(char *)(*(longlong *)(base_ptr + 0x1e0) + 0x15 + array_offset) != '\x02' &&
+           (*(char *)(*(longlong *)(base_ptr + 0x1e0) + 0x15 + array_offset) != '\x01'))) {
+      index_offset = (longlong)counter;
+      array_offset = array_offset + 0x18;
+      counter = counter + 1;
       LOCK();
       status_ptr = (undefined1 *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
       status_value = *status_ptr;
       *status_ptr = 0;
       UNLOCK();
-      if (0xf < unaff_ESI) {
+      if (0xf < counter) {
         return status_value;
       }
     }
@@ -91,38 +91,38 @@ float * calculate_bounding_box(float *object_ptr)
   float *vertex_array_ptr;
   undefined4 stack_temp_20;
   
-  uStack_38 = 0xfffffffffffffffe;
-  if (((uint)param_1[0x40] & 0x10000) == 0) {
-    auStack_30[0] = 0;
-    uStack_20 = 0;
-    uStack_80 = 0x1800795fa;
+  stack_temp_38 = 0xfffffffffffffffe;
+  if (((uint)object_ptr[0x40] & 0x10000) == 0) {
+    stack_temp_30[0] = 0;
+    stack_temp_20 = 0;
+    stack_temp_80 = 0x1800795fa;
     vertex_array_ptr = object_ptr;
-    initialize_context(stack_temp_30);
-    uStack_80 = 0x180079605;
-    time_value = (float)get_current_time(0);
-    if ((10 < (int)fVar6) ||
-       ((int)(*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) +
-             (*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
-      stack_temp_48 = &ERROR_MESSAGE_PTR;
-      if (*(undefined **)(param_1 + 6) != (undefined *)0x0) {
-        puStack_48 = *(undefined **)(param_1 + 6);
+    FUN_18007f4c0(stack_temp_30);
+    stack_temp_80 = 0x180079605;
+    time_value = (float)FUN_1802349a0(0);
+    if ((10 < (int)time_value) ||
+       ((int)(*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) +
+             (*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)time_value)) {
+      stack_temp_48 = &DAT_18098bc73;
+      if (*(undefined **)(object_ptr + 6) != (undefined *)0x0) {
+        stack_temp_48 = *(undefined **)(object_ptr + 6);
       }
-      uStack_40 = CONCAT44(uStack_40._4_4_,*(undefined4 *)(*(longlong *)(param_1 + 0x84) + 0x60));
-      stack_temp_58 = &BOUNDING_BOX_CONSTANT;
+      stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(undefined4 *)(*(longlong *)(object_ptr + 0x84) + 0x60));
+      stack_temp_58 = &UNK_1809ffb30;
       stack_temp_80 = 0x18007967a;
       stack_temp_50 = time_value;
-      log_error_message(ERROR_LOG_PTR,0,0x80000000000,3);
+      FUN_1800623b0(DAT_180c86928,0,0x80000000000,3);
     }
-    param_1[0x40] = (float)((uint)param_1[0x40] | 0x10000);
-    uStack_80 = 0x18007968e;
-    cleanup_context(stack_temp_30);
+    object_ptr[0x40] = (float)((uint)object_ptr[0x40] | 0x10000);
+    stack_temp_80 = 0x18007968e;
+    FUN_18007f6a0(stack_temp_30);
   }
-  uStack_38 = 0xfffffffffffffffe;
-  pfVar7 = param_1;
-  if ((*(byte *)((longlong)param_1 + 0xfd) & 0x20) == 0) {
-    transform_ptr = (float *)get_transform_matrix(*(undefined8 *)(object_ptr + 0x6c));
+  stack_temp_38 = 0xfffffffffffffffe;
+  transform_ptr = object_ptr;
+  if ((*(byte *)((longlong)object_ptr + 0xfd) & 0x20) == 0) {
+    transform_ptr = (float *)func_0x000180085de0(*(undefined8 *)(object_ptr + 0x6c));
   }
-  if ((*(longlong *)(pfVar7 + 0x84) != 0) && (((uint)param_1[0x40] & 0x80) == 0)) {
+  if ((*(longlong *)(transform_ptr + 0x84) != 0) && (((uint)object_ptr[0x40] & 0x80) == 0)) {
     min_bounds_ptr = object_ptr + 0x9d;
     min_bounds_ptr[0] = 1e+08;  // 初始化最小X坐标
     min_bounds_ptr[1] = 1e+08;  // 初始化最小Y坐标
@@ -140,8 +140,8 @@ float * calculate_bounding_box(float *object_ptr)
     object_ptr[0xa8] = 3.4028235e+38;
     stack_temp_90 = 0;
     mesh_data_ptr = transform_ptr;
-    get_mesh_vertices(&mesh_data_ptr);
-    if (*(int *)(lStack_88 + 0x10) != 0) {
+    FUN_18007f770(&mesh_data_ptr);
+    if (*(int *)(stack_temp_88 + 0x10) != 0) {
       do {
         current_vertex = (float *)((longlong)(int)vertex_count * 0x10 + *(longlong *)(stack_temp_88 + 0x18));
         stack_temp_a8 = *current_vertex;
@@ -175,43 +175,43 @@ float * calculate_bounding_box(float *object_ptr)
         vertex_count = vertex_count + 1;
       } while (vertex_count < *(uint *)(stack_temp_88 + 0x10));
     }
-    pfVar7 = *(float **)(param_1 + 0x6e);
-    if ((pfVar7 != (float *)0x0) && (((uint)pfVar7[0x4e] & 0x3000) != 0)) {
-      uStack_78 = *(undefined8 *)(param_1 + 0x48);
-      uStack_70 = *(undefined8 *)(param_1 + 0x4a);
-      uStack_68 = *(undefined8 *)(param_1 + 0x4c);
-      uStack_60 = *(undefined8 *)(param_1 + 0x4e);
-      puStack_58 = *(undefined **)(param_1 + 0x50);
-      fStack_50 = param_1[0x52];
-      fStack_4c = param_1[0x53];
-      puStack_48 = *(undefined **)(param_1 + 0x54);
-      uStack_40 = *(undefined8 *)(param_1 + 0x56);
-      transform_bounds(&stack_temp_78);
-      apply_transform_to_bounds(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
-      pfVar7 = *(float **)(param_1 + 0x6e);
-      if (((uint)pfVar7[0x4e] & 0x3000) == 0x2000) {
-        uStack_78 = *(undefined8 *)(param_1 + 0x48);
-        uStack_70 = *(undefined8 *)(param_1 + 0x4a);
-        uStack_68 = *(undefined8 *)(param_1 + 0x4c);
-        uStack_60 = *(undefined8 *)(param_1 + 0x4e);
-        puStack_58 = *(undefined **)(param_1 + 0x50);
-        fStack_50 = param_1[0x52];
-        fStack_4c = param_1[0x53];
-        puStack_48 = *(undefined **)(param_1 + 0x54);
-        uStack_40 = *(undefined8 *)(param_1 + 0x56);
-        apply_rotation_transform(&stack_temp_78,0x3fc90fdb);
-        apply_transform_to_bounds(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
-        uStack_78 = *(undefined8 *)(param_1 + 0x48);
-        uStack_70 = *(undefined8 *)(param_1 + 0x4a);
-        uStack_68 = *(undefined8 *)(param_1 + 0x4c);
-        uStack_60 = *(undefined8 *)(param_1 + 0x4e);
-        puStack_58 = *(undefined **)(param_1 + 0x50);
-        fStack_50 = param_1[0x52];
-        fStack_4c = param_1[0x53];
-        puStack_48 = *(undefined **)(param_1 + 0x54);
-        uStack_40 = *(undefined8 *)(param_1 + 0x56);
-        apply_scale_transform(&stack_temp_78);
-        transform_ptr = (float *)apply_transform_to_bounds(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
+    transform_ptr = *(float **)(object_ptr + 0x6e);
+    if ((transform_ptr != (float *)0x0) && (((uint)transform_ptr[0x4e] & 0x3000) != 0)) {
+      stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
+      stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
+      stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
+      stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
+      stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+      stack_temp_50 = object_ptr[0x52];
+      stack_temp_4c = object_ptr[0x53];
+      stack_temp_48 = *(undefined **)(object_ptr + 0x54);
+      stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+      FUN_180085c10(&stack_temp_78);
+      FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
+      transform_ptr = *(float **)(object_ptr + 0x6e);
+      if (((uint)transform_ptr[0x4e] & 0x3000) == 0x2000) {
+        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
+        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
+        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
+        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
+        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+        stack_temp_50 = object_ptr[0x52];
+        stack_temp_4c = object_ptr[0x53];
+        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
+        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+        FUN_180085ac0(&stack_temp_78,0x3fc90fdb);
+        FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
+        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
+        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
+        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
+        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
+        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+        stack_temp_50 = object_ptr[0x52];
+        stack_temp_4c = object_ptr[0x53];
+        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
+        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+        FUN_180085970(&stack_temp_78);
+        transform_ptr = (float *)FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
       }
     }
     transform_ptr = mesh_data_ptr;
@@ -279,7 +279,7 @@ LAB_RELEASE_MESH:
       UNLOCK();
       if (lock_status == '\0') {
         if ((((time_value == 1.4013e-45) && (*(longlong *)(mesh_data_ptr + 0x84) != 0)) &&
-            (transform_ptr = mesh_data_ptr, release_mesh_resource(mesh_data_ptr), *(char *)(transform_ptr + 0x3f) == '\0')) &&
+            (transform_ptr = mesh_data_ptr, FUN_1800791a0(mesh_data_ptr), *(char *)(transform_ptr + 0x3f) == '\0')) &&
            ((*(char *)(transform_ptr + 0x3d) == '\0' &&
             (((*(byte *)((longlong)transform_ptr + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((longlong)transform_ptr + 0xfe) & 1) == 0)))))) {
@@ -298,7 +298,7 @@ LAB_RELEASE_MESH:
       }
     }
   }
-  return pfVar7;
+  return transform_ptr;
 }
 
 
