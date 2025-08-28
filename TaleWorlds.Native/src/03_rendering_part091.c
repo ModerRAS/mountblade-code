@@ -626,465 +626,574 @@ void RenderingSystem_MaterialProcessor(undefined8 texture_handle, undefined8 sha
 
 
 
-// 函数: void FUN_18031e320(longlong param_1,longlong param_2)
-void FUN_18031e320(longlong param_1,longlong param_2)
+// ===================================================================
+// 函数实现：渲染数据传输器
+// ===================================================================
+
+/**
+ * 渲染数据传输器 - 负责渲染数据的传输和处理
+ * 
+ * @param source_context 源渲染上下文
+ * @param target_context 目标渲染上下文
+ * @return void
+ * 
+ * 技术说明：
+ * - 处理渲染数据传输
+ * - 管理资源状态同步
+ * - 处理向量归一化
+ * - 管理渲染参数
+ * - 优化数据传输性能
+ */
+void RenderingSystem_DataTransfer(longlong source_context, longlong target_context)
 
 {
-  float fVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  longlong *plVar5;
-  undefined8 uVar6;
-  char cVar7;
-  uint uVar8;
-  int iVar9;
-  undefined8 *puVar10;
-  undefined8 *puVar11;
-  longlong lVar12;
-  float fVar13;
-  float fVar14;
-  double dVar15;
-  float fVar16;
-  double dVar17;
-  float fVar18;
-  float fVar19;
-  undefined1 auStack_218 [32];
-  undefined1 uStack_1f8;
-  undefined8 uStack_1e8;
-  undefined8 uStack_1e0;
-  undefined4 uStack_1d8;
-  undefined *puStack_1d0;
-  undefined8 *puStack_1c8;
-  undefined4 uStack_1c0;
-  undefined8 uStack_1b8;
-  undefined4 uStack_1b0;
-  undefined4 uStack_1ac;
-  undefined4 uStack_1a8;
-  undefined4 uStack_1a4;
-  undefined4 uStack_1a0;
-  undefined8 uStack_19c;
-  undefined8 uStack_194;
-  undefined1 uStack_18c;
-  undefined8 uStack_18b;
-  undefined4 uStack_180;
-  undefined1 uStack_17c;
-  longlong *plStack_178;
-  longlong *plStack_170;
-  longlong *plStack_168;
-  longlong *plStack_160;
-  longlong *plStack_158;
-  longlong *plStack_150;
-  longlong *plStack_148;
-  longlong *plStack_140;
-  undefined8 uStack_138;
-  undefined *puStack_128;
-  undefined1 *puStack_120;
-  undefined4 uStack_118;
-  undefined1 auStack_110 [136];
-  ulonglong uStack_88;
+  float scale_factor;
+  undefined4 render_param1;
+  undefined4 render_param2;
+  int render_state;
+  longlong *render_resource;
+  undefined8 texture_handle;
+  char validation_flag;
+  uint buffer_size;
+  int texture_index;
+  undefined8 *vertex_buffer;
+  undefined8 *index_buffer;
+  longlong shader_program;
+  float lighting_intensity;
+  float normal_length;
+  double aspect_ratio_x;
+  float inverse_length;
+  double aspect_ratio_y;
+  float scaled_intensity;
+  float normal_x;
+  undefined1 alignment_buffer[32];
+  undefined1 user_flag;
+  undefined8 light_vector;
+  undefined8 normal_vector;
+  undefined4 transfer_flag;
+  undefined *render_target;
+  undefined8 *constant_buffer;
+  undefined4 buffer_size;
+  undefined8 frame_buffer;
+  undefined4 texture_width;
+  undefined4 texture_height;
+  undefined4 texture_depth;
+  undefined4 texture_mips;
+  undefined4 texture_format;
+  undefined8 viewport_data;
+  undefined8 projection_data;
+  undefined1 stencil_enable;
+  undefined8 blend_factor;
+  undefined4 clear_flags;
+  undefined1 scissor_enable;
+  longlong *vertex_shader;
+  longlong *pixel_shader;
+  longlong *geometry_shader;
+  longlong *hull_shader;
+  longlong *domain_shader;
+  longlong *compute_shader;
+  longlong *stream_output;
+  undefined8 render_state_data;
+  undefined *frame_buffer_ptr;
+  undefined1 *shader_data;
+  undefined4 data_size;
+  undefined1 user_buffer[136];
+  ulonglong frame_sync;
   
-  uStack_138 = 0xfffffffffffffffe;
-  uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_218;
-  uStack_1d8 = 0;
-  plVar5 = *(longlong **)(param_1 + 0x1c8);
-  if (plVar5 != (longlong *)0x0) {
-    plStack_178 = plVar5;
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  // 初始化数据传输状态
+  render_state_data = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  transfer_flag = 0;
+  
+  // 传输顶点着色器资源
+  render_resource = *(longlong **)(source_context + 0x1c8);
+  if (render_resource != (longlong *)0x0) {
+    vertex_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
   }
-  plStack_178 = *(longlong **)(param_2 + 0x97a0);
-  *(longlong **)(param_2 + 0x97a0) = plVar5;
-  if (plStack_178 != (longlong *)0x0) {
-    (**(code **)(*plStack_178 + 0x38))();
+  vertex_shader = *(longlong **)(target_context + 0x97a0);
+  *(longlong **)(target_context + 0x97a0) = render_resource;
+  if (vertex_shader != (longlong *)0x0) {
+    (**(code **)(*vertex_shader + 0x38))();
   }
-  uVar6 = *(undefined8 *)(param_1 + 0x24c);
-  *(undefined8 *)(param_2 + 0x97c8) = *(undefined8 *)(param_1 + 0x244);
-  *(undefined8 *)(param_2 + 0x97d0) = uVar6;
-  uVar6 = *(undefined8 *)(param_1 + 0x25c);
-  *(undefined8 *)(param_2 + 0x97d8) = *(undefined8 *)(param_1 + 0x254);
-  *(undefined8 *)(param_2 + 0x97e0) = uVar6;
-  uVar6 = *(undefined8 *)(param_1 + 0x26c);
-  *(undefined8 *)(param_2 + 0x97e8) = *(undefined8 *)(param_1 + 0x264);
-  *(undefined8 *)(param_2 + 0x97f0) = uVar6;
-  uVar6 = *(undefined8 *)(param_1 + 0x27c);
-  *(undefined8 *)(param_2 + 0x97f8) = *(undefined8 *)(param_1 + 0x274);
-  *(undefined8 *)(param_2 + 0x9800) = uVar6;
-  uVar6 = *(undefined8 *)(param_1 + 0x28c);
-  *(undefined8 *)(param_2 + 0x9808) = *(undefined8 *)(param_1 + 0x284);
-  *(undefined8 *)(param_2 + 0x9810) = uVar6;
-  uVar6 = *(undefined8 *)(param_1 + 0x29c);
-  *(undefined8 *)(param_2 + 0x9818) = *(undefined8 *)(param_1 + 0x294);
-  *(undefined8 *)(param_2 + 0x9820) = uVar6;
-  fVar13 = *(float *)(*(longlong *)(param_1 + 0x88) + 0x4b4);
-  fVar14 = *(float *)(param_2 + 0x97cc);
-  fVar1 = *(float *)(param_2 + 0x97c8);
-  fVar19 = *(float *)(param_2 + 0x97d0);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar13 * fVar18;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar14 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar14,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x97c8) = fVar18;
-    *(float *)(param_2 + 0x97cc) = fVar14;
-    *(float *)(param_2 + 0x97d0) = fVar19;
-    *(undefined4 *)(param_2 + 0x97d4) = 0x7f7fffff;
+  
+  // 传输渲染参数
+  texture_handle = *(undefined8 *)(source_context + 0x24c);
+  *(undefined8 *)(target_context + 0x97c8) = *(undefined8 *)(source_context + 0x244);
+  *(undefined8 *)(target_context + 0x97d0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x25c);
+  *(undefined8 *)(target_context + 0x97d8) = *(undefined8 *)(source_context + 0x254);
+  *(undefined8 *)(target_context + 0x97e0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x26c);
+  *(undefined8 *)(target_context + 0x97e8) = *(undefined8 *)(source_context + 0x264);
+  *(undefined8 *)(target_context + 0x97f0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x27c);
+  *(undefined8 *)(target_context + 0x97f8) = *(undefined8 *)(source_context + 0x274);
+  *(undefined8 *)(target_context + 0x9800) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x28c);
+  *(undefined8 *)(target_context + 0x9808) = *(undefined8 *)(source_context + 0x284);
+  *(undefined8 *)(target_context + 0x9810) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x29c);
+  *(undefined8 *)(target_context + 0x9818) = *(undefined8 *)(source_context + 0x294);
+  *(undefined8 *)(target_context + 0x9820) = texture_handle;
+  
+  // 获取光照强度参数
+  lighting_intensity = *(float *)(*(longlong *)(source_context + 0x88) + 0x4b4);
+  
+  // 处理第一组法向量归一化
+  normal_length = *(float *)(target_context + 0x97cc);
+  scale_factor = *(float *)(target_context + 0x97c8);
+  normal_x = *(float *)(target_context + 0x97d0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97c8) = scaled_intensity;
+    *(float *)(target_context + 0x97cc) = normal_length;
+    *(float *)(target_context + 0x97d0) = normal_x;
+    *(undefined4 *)(target_context + 0x97d4) = 0x7f7fffff;
   }
-  fVar14 = *(float *)(param_2 + 0x97dc);
-  fVar1 = *(float *)(param_2 + 0x97d8);
-  fVar19 = *(float *)(param_2 + 0x97e0);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar13 * fVar18;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar14 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar14,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x97d8) = fVar18;
-    *(float *)(param_2 + 0x97dc) = fVar14;
-    *(float *)(param_2 + 0x97e0) = fVar19;
-    *(undefined4 *)(param_2 + 0x97e4) = 0x7f7fffff;
+  
+  // 处理第二组法向量归一化
+  normal_length = *(float *)(target_context + 0x97dc);
+  scale_factor = *(float *)(target_context + 0x97d8);
+  normal_x = *(float *)(target_context + 0x97e0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97d8) = scaled_intensity;
+    *(float *)(target_context + 0x97dc) = normal_length;
+    *(float *)(target_context + 0x97e0) = normal_x;
+    *(undefined4 *)(target_context + 0x97e4) = 0x7f7fffff;
   }
-  fVar14 = *(float *)(param_2 + 0x97ec);
-  fVar1 = *(float *)(param_2 + 0x97e8);
-  fVar19 = *(float *)(param_2 + 0x97f0);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar13 * fVar18;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar14 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar14,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x97e8) = fVar18;
-    *(float *)(param_2 + 0x97ec) = fVar14;
-    *(float *)(param_2 + 0x97f0) = fVar19;
-    *(undefined4 *)(param_2 + 0x97f4) = 0x7f7fffff;
+  
+  // 处理第三组法向量归一化
+  normal_length = *(float *)(target_context + 0x97ec);
+  scale_factor = *(float *)(target_context + 0x97e8);
+  normal_x = *(float *)(target_context + 0x97f0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97e8) = scaled_intensity;
+    *(float *)(target_context + 0x97ec) = normal_length;
+    *(float *)(target_context + 0x97f0) = normal_x;
+    *(undefined4 *)(target_context + 0x97f4) = 0x7f7fffff;
   }
-  fVar14 = *(float *)(param_2 + 0x97fc);
-  fVar1 = *(float *)(param_2 + 0x97f8);
-  fVar19 = *(float *)(param_2 + 0x9800);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar18 * fVar13;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar14 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar14,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x97f8) = fVar18;
-    *(float *)(param_2 + 0x97fc) = fVar14;
-    *(float *)(param_2 + 0x9800) = fVar19;
-    *(undefined4 *)(param_2 + 0x9804) = 0x7f7fffff;
+  
+  // 处理第四组法向量归一化
+  normal_length = *(float *)(target_context + 0x97fc);
+  scale_factor = *(float *)(target_context + 0x97f8);
+  normal_x = *(float *)(target_context + 0x9800);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97f8) = scaled_intensity;
+    *(float *)(target_context + 0x97fc) = normal_length;
+    *(float *)(target_context + 0x9800) = normal_x;
+    *(undefined4 *)(target_context + 0x9804) = 0x7f7fffff;
   }
-  fVar14 = *(float *)(param_2 + 0x980c);
-  fVar1 = *(float *)(param_2 + 0x9808);
-  fVar19 = *(float *)(param_2 + 0x9810);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar18 * fVar13;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar14 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar14,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x9808) = fVar18;
-    *(float *)(param_2 + 0x980c) = fVar14;
-    *(float *)(param_2 + 0x9810) = fVar19;
-    *(undefined4 *)(param_2 + 0x9814) = 0x7f7fffff;
+  
+  // 处理第五组法向量归一化
+  normal_length = *(float *)(target_context + 0x980c);
+  scale_factor = *(float *)(target_context + 0x9808);
+  normal_x = *(float *)(target_context + 0x9810);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x9808) = scaled_intensity;
+    *(float *)(target_context + 0x980c) = normal_length;
+    *(float *)(target_context + 0x9810) = normal_x;
+    *(undefined4 *)(target_context + 0x9814) = 0x7f7fffff;
   }
-  fVar14 = *(float *)(param_2 + 0x981c);
-  fVar1 = *(float *)(param_2 + 0x9818);
-  fVar19 = *(float *)(param_2 + 0x9820);
-  fVar18 = SQRT(fVar1 * fVar1 + fVar14 * fVar14 + fVar19 * fVar19);
-  if (1e-05 < fVar18) {
-    fVar16 = 1.0 / fVar18;
-    fVar18 = fVar18 * fVar13;
-    fVar19 = fVar18 * fVar19 * fVar16;
-    fVar13 = fVar18 * fVar14 * fVar16;
-    fVar18 = fVar1 * fVar16 * fVar18;
-    uStack_1e8 = (longlong *)CONCAT44(fVar13,fVar18);
-    uStack_1e0 = CONCAT44(0x7f7fffff,fVar19);
-    *(float *)(param_2 + 0x9818) = fVar18;
-    *(float *)(param_2 + 0x981c) = fVar13;
-    *(float *)(param_2 + 0x9820) = fVar19;
-    *(undefined4 *)(param_2 + 0x9824) = 0x7f7fffff;
+  
+  // 处理第六组法向量归一化
+  normal_length = *(float *)(target_context + 0x981c);
+  scale_factor = *(float *)(target_context + 0x9818);
+  normal_x = *(float *)(target_context + 0x9820);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    lighting_intensity = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(lighting_intensity, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x9818) = scaled_intensity;
+    *(float *)(target_context + 0x981c) = lighting_intensity;
+    *(float *)(target_context + 0x9820) = normal_x;
+    *(undefined4 *)(target_context + 0x9824) = 0x7f7fffff;
   }
-  plVar5 = *(longlong **)(param_1 + 0x228);
-  if (plVar5 != (longlong *)0x0) {
-    plStack_170 = plVar5;
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  
+  // 传输像素着色器资源
+  render_resource = *(longlong **)(source_context + 0x228);
+  if (render_resource != (longlong *)0x0) {
+    pixel_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
   }
-  plStack_170 = *(longlong **)(param_2 + 0x97b8);
-  *(longlong **)(param_2 + 0x97b8) = plVar5;
-  if (plStack_170 != (longlong *)0x0) {
-    (**(code **)(*plStack_170 + 0x38))();
+  pixel_shader = *(longlong **)(target_context + 0x97b8);
+  *(longlong **)(target_context + 0x97b8) = render_resource;
+  if (pixel_shader != (longlong *)0x0) {
+    (**(code **)(*pixel_shader + 0x38))();
   }
-  plVar5 = *(longlong **)(param_1 + 0x1d0);
-  if (plVar5 != (longlong *)0x0) {
-    plStack_168 = plVar5;
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  
+  // 传输几何着色器资源
+  render_resource = *(longlong **)(source_context + 0x1d0);
+  if (render_resource != (longlong *)0x0) {
+    geometry_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
   }
-  uStack_1d8 = 1;
-  plStack_168 = (longlong *)0x0;
-  plStack_160 = *(longlong **)(param_2 + 0x97b0);
-  *(longlong **)(param_2 + 0x97b0) = plVar5;
-  if (plStack_160 != (longlong *)0x0) {
-    (**(code **)(*plStack_160 + 0x38))();
+  transfer_flag = 1;
+  geometry_shader = (longlong *)0x0;
+  hull_shader = *(longlong **)(target_context + 0x97b0);
+  *(longlong **)(target_context + 0x97b0) = render_resource;
+  if (hull_shader != (longlong *)0x0) {
+    (**(code **)(*hull_shader + 0x38))();
   }
-  uStack_1d8 = 0;
-  plVar5 = *(longlong **)(param_1 + 0x1d8);
-  if (plVar5 != (longlong *)0x0) {
-    plStack_158 = plVar5;
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  transfer_flag = 0;
+  
+  // 传输外壳着色器资源
+  render_resource = *(longlong **)(source_context + 0x1d8);
+  if (render_resource != (longlong *)0x0) {
+    domain_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
   }
-  plStack_158 = *(longlong **)(param_2 + 0x97a8);
-  *(longlong **)(param_2 + 0x97a8) = plVar5;
-  if (plStack_158 != (longlong *)0x0) {
-    (**(code **)(*plStack_158 + 0x38))();
+  domain_shader = *(longlong **)(target_context + 0x97a8);
+  *(longlong **)(target_context + 0x97a8) = render_resource;
+  if (domain_shader != (longlong *)0x0) {
+    (**(code **)(*domain_shader + 0x38))();
   }
-  if (*(longlong *)(param_2 + 0x97a0) == 0) {
-    uStack_1e8 = *(longlong **)(param_2 + 0x97c0);
-    *(undefined8 *)(param_2 + 0x97c0) = 0;
-    if (uStack_1e8 != (longlong *)0x0) {
-      (**(code **)(*uStack_1e8 + 0x38))();
+  
+  // 处理用户数据传输
+  if (*(longlong *)(target_context + 0x97a0) == 0) {
+    light_vector = *(longlong **)(target_context + 0x97c0);
+    *(undefined8 *)(target_context + 0x97c0) = 0;
+    if (light_vector != (longlong *)0x0) {
+      (**(code **)(*light_vector + 0x38))();
     }
     goto LAB_18031ebd1;
   }
-  puStack_1d0 = &UNK_180a3c3e0;
-  uStack_1b8 = 0;
-  puStack_1c8 = (undefined8 *)0x0;
-  uStack_1c0 = 0;
-  puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x1c,0x13);
-  *(undefined1 *)puVar10 = 0;
-  puStack_1c8 = puVar10;
-  uVar8 = FUN_18064e990(puVar10);
-  *puVar10 = 0x666669645f747270;
-  puVar10[1] = 0x69626d615f657375;
-  puVar10[2] = 0x757365725f746e65;
-  *(undefined4 *)(puVar10 + 3) = 0x5f746c;
-  uStack_1c0 = 0x1b;
-  lVar12 = *(longlong *)(param_1 + 0x88);
-  iVar9 = *(int *)(lVar12 + 0x4e8);
-  uStack_1b8._0_4_ = uVar8;
-  if (0 < iVar9) {
-    if ((iVar9 != -0x1b) && (uVar8 < iVar9 + 0x1cU)) {
-      uStack_1f8 = 0x13;
-      puVar10 = (undefined8 *)FUN_18062b8b0(_DAT_180c8ed18,puVar10,iVar9 + 0x1cU,0x10);
-      puStack_1c8 = puVar10;
-      uStack_1b8._0_4_ = FUN_18064e990(puVar10);
-      iVar9 = *(int *)(lVar12 + 0x4e8);
+  
+  // 配置用户数据缓冲区
+  render_target = &UNK_180a3c3e0;
+  frame_buffer = 0;
+  constant_buffer = (undefined8 *)0x0;
+  buffer_size = 0;
+  vertex_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
+  *(undefined1 *)vertex_buffer = 0;
+  constant_buffer = vertex_buffer;
+  buffer_size = FUN_18064e990(vertex_buffer);
+  *vertex_buffer = 0x666669645f747270;
+  vertex_buffer[1] = 0x69626d615f657375;
+  vertex_buffer[2] = 0x757365725f746e65;
+  *(undefined4 *)(vertex_buffer + 3) = 0x5f746c;
+  buffer_size = 0x1b;
+  shader_program = *(longlong *)(source_context + 0x88);
+  texture_index = *(int *)(shader_program + 0x4e8);
+  frame_buffer._0_4_ = buffer_size;
+  if (0 < texture_index) {
+    if ((texture_index != -0x1b) && (buffer_size < texture_index + 0x1cU)) {
+      user_flag = 0x13;
+      vertex_buffer = (undefined8 *)FUN_18062b8b0(_DAT_180c8ed18, vertex_buffer, texture_index + 0x1cU, 0x10);
+      constant_buffer = vertex_buffer;
+      frame_buffer._0_4_ = FUN_18064e990(vertex_buffer);
+      texture_index = *(int *)(shader_program + 0x4e8);
     }
                     // WARNING: Subroutine does not return
-    memcpy((undefined1 *)((longlong)puVar10 + 0x1b),*(undefined8 *)(lVar12 + 0x4e0),
-           (longlong)(iVar9 + 1));
+    memcpy((undefined1 *)((longlong)vertex_buffer + 0x1b), *(undefined8 *)(shader_program + 0x4e0),
+           (longlong)(texture_index + 1));
   }
-  uStack_1a8 = 1;
-  uStack_1a4 = 1;
-  uStack_19c = 0;
-  uStack_194 = 0x3f80000000000000;
-  uStack_18b = 1;
-  uStack_18c = 0;
-  uStack_180 = 0xffffffff;
-  uStack_17c = 0;
-  lVar12 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
-  dVar15 = 1.0;
-  dVar17 = 1.0;
-  if ((*(char *)(lVar12 + 0xd9) != '\0') &&
-     (iVar9 = *(int *)(_DAT_180c86920 + 0x540), iVar9 - 1U < 4)) {
-    dVar15 = *(double *)(lVar12 + -8 + (longlong)iVar9 * 0x10);
-    dVar17 = *(double *)(lVar12 + (longlong)iVar9 * 0x10);
+  texture_width = 1;
+  texture_height = 1;
+  viewport_data = 0;
+  projection_data = 0x3f80000000000000;
+  blend_factor = 1;
+  stencil_enable = 0;
+  clear_flags = 0xffffffff;
+  scissor_enable = 0;
+  shader_program = *(longlong *)(_DAT_180c86890 + 0x7ab8);
+  aspect_ratio_x = 1.0;
+  aspect_ratio_y = 1.0;
+  if ((*(char *)(shader_program + 0xd9) != '\0') &&
+     (texture_index = *(int *)(_DAT_180c86920 + 0x540), texture_index - 1U < 4)) {
+    aspect_ratio_x = *(double *)(shader_program + -8 + (longlong)texture_index * 0x10);
+    aspect_ratio_y = *(double *)(shader_program + (longlong)texture_index * 0x10);
   }
-  uStack_1b0 = (undefined4)(longlong)((double)*(float *)(param_2 + 0x11c20) / dVar15);
-  uStack_1ac = (undefined4)(longlong)((double)*(float *)(param_2 + 0x11c24) / dVar17);
-  uStack_1a0 = 0x1e;
-  puStack_128 = &UNK_1809fcc28;
-  puStack_120 = auStack_110;
-  auStack_110[0] = 0;
-  uStack_118 = 0x1b;
-  puVar11 = (undefined8 *)&DAT_18098bc73;
-  if (puVar10 != (undefined8 *)0x0) {
-    puVar11 = puVar10;
+  texture_depth = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
+  texture_mips = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
+  texture_format = 0x1e;
+  frame_buffer_ptr = &UNK_1809fcc28;
+  shader_data = user_buffer;
+  user_buffer[0] = 0;
+  data_size = 0x1b;
+  index_buffer = (undefined8 *)&DAT_18098bc73;
+  if (vertex_buffer != (undefined8 *)0x0) {
+    index_buffer = vertex_buffer;
   }
-  strcpy_s(auStack_110,0x80,puVar11);
-  lVar12 = *(longlong *)(param_1 + 0x230);
-  if (lVar12 == 0) {
+  strcpy_s(user_buffer, 0x80, index_buffer);
+  shader_program = *(longlong *)(source_context + 0x230);
+  if (shader_program == 0) {
 LAB_18031eaf0:
-    puVar11 = (undefined8 *)FUN_1800b1230(_DAT_180c86930,&plStack_148,&puStack_128,&uStack_1b0);
-    uVar6 = *puVar11;
-    *puVar11 = 0;
-    plStack_150 = *(longlong **)(param_1 + 0x230);
-    *(undefined8 *)(param_1 + 0x230) = uVar6;
-    if (plStack_150 != (longlong *)0x0) {
-      (**(code **)(*plStack_150 + 0x38))();
+    index_buffer = (undefined8 *)FUN_1800b1230(_DAT_180c86930, &stream_output, &frame_buffer_ptr, &texture_depth);
+    texture_handle = *index_buffer;
+    *index_buffer = 0;
+    compute_shader = *(longlong **)(source_context + 0x230);
+    *(undefined8 *)(source_context + 0x230) = texture_handle;
+    if (compute_shader != (longlong *)0x0) {
+      (**(code **)(*compute_shader + 0x38))();
     }
-    if (plStack_148 != (longlong *)0x0) {
-      (**(code **)(*plStack_148 + 0x38))();
+    if (stream_output != (longlong *)0x0) {
+      (**(code **)(*stream_output + 0x38))();
     }
   }
   else {
-    cVar7 = func_0x0001800ba3b0(lVar12 + 0x108,&uStack_1b0);
-    if ((cVar7 == '\0') || (puVar10 = puStack_1c8, *(int *)(lVar12 + 0x380) == 0))
+    validation_flag = func_0x0001800ba3b0(shader_program + 0x108, &texture_depth);
+    if ((validation_flag == '\0') || (vertex_buffer = constant_buffer, *(int *)(shader_program + 0x380) == 0))
     goto LAB_18031eaf0;
   }
+  
   _Thrd_id();
-  puStack_128 = &UNK_18098bcb0;
-  plVar5 = *(longlong **)(param_1 + 0x230);
-  if (plVar5 != (longlong *)0x0) {
-    plStack_140 = plVar5;
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  frame_buffer_ptr = &UNK_18098bcb0;
+  render_resource = *(longlong **)(source_context + 0x230);
+  if (render_resource != (longlong *)0x0) {
+    compute_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
   }
-  plStack_140 = *(longlong **)(param_2 + 0x97c0);
-  *(longlong **)(param_2 + 0x97c0) = plVar5;
-  if (plStack_140 != (longlong *)0x0) {
-    (**(code **)(*plStack_140 + 0x38))();
+  compute_shader = *(longlong **)(target_context + 0x97c0);
+  *(longlong **)(target_context + 0x97c0) = render_resource;
+  if (compute_shader != (longlong *)0x0) {
+    (**(code **)(*compute_shader + 0x38))();
   }
-  puStack_1d0 = &UNK_180a3c3e0;
-  if (puVar10 != (undefined8 *)0x0) {
+  render_target = &UNK_180a3c3e0;
+  if (vertex_buffer != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar10);
+    FUN_18064e900(vertex_buffer);
   }
-  puStack_1c8 = (undefined8 *)0x0;
-  uStack_1b8 = (ulonglong)uStack_1b8._4_4_ << 0x20;
-  puStack_1d0 = &UNK_18098bcb0;
+  constant_buffer = (undefined8 *)0x0;
+  frame_buffer = (ulonglong)frame_buffer._4_4_ << 0x20;
+  render_target = &UNK_18098bcb0;
 LAB_18031ebd1:
-  fVar13 = *(float *)(param_1 + 0x210);
-  fVar14 = *(float *)(param_1 + 0x214);
-  uVar2 = *(undefined4 *)(param_1 + 500);
-  uVar3 = *(undefined4 *)(param_1 + 0x1f8);
-  iVar9 = *(int *)(param_1 + 0x1e4);
-  *(undefined4 *)(param_2 + 0x9750) = *(undefined4 *)(param_1 + 0x1f0);
-  *(undefined4 *)(param_2 + 0x9754) = uVar2;
-  *(undefined4 *)(param_2 + 0x9758) = uVar3;
-  *(float *)(param_2 + 0x975c) = (float)iVar9;
-  uVar2 = *(undefined4 *)(param_1 + 0x204);
-  uVar3 = *(undefined4 *)(param_1 + 0x208);
-  iVar9 = *(int *)(param_1 + 0x1e8);
-  *(undefined4 *)(param_2 + 0x9760) = *(undefined4 *)(param_1 + 0x200);
-  *(undefined4 *)(param_2 + 0x9764) = uVar2;
-  *(undefined4 *)(param_2 + 0x9768) = uVar3;
-  *(float *)(param_2 + 0x976c) = (float)iVar9;
-  fVar13 = 1.0 / fVar13;
-  iVar9 = *(int *)(param_1 + 0x1ec);
-  *(float *)(param_2 + 0x9770) = fVar13;
-  *(float *)(param_2 + 0x9774) = fVar13;
-  *(float *)(param_2 + 0x9778) = 1.0 / fVar14;
-  *(float *)(param_2 + 0x977c) = (float)iVar9;
-  uVar2 = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x4b0);
-  uVar3 = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x4ac);
-  uStack_1e8 = (longlong *)CONCAT44(uVar3,uVar2);
-  *(undefined4 *)(param_2 + 0x9780) = uVar2;
-  *(undefined4 *)(param_2 + 0x9784) = uVar3;
-  *(undefined4 *)(param_2 + 0x9788) = 0;
-  *(undefined4 *)(param_2 + 0x978c) = 0;
-  iVar9 = *(int *)(param_1 + 0x23c);
-  iVar4 = *(int *)(param_1 + 0x240);
-  uStack_1e0 = 0x3f80000000000000;
-  *(float *)(param_2 + 0x9790) = (float)*(int *)(param_1 + 0x238);
-  *(float *)(param_2 + 0x9794) = (float)iVar9;
-  *(float *)(param_2 + 0x9798) = (float)iVar4;
-  *(undefined4 *)(param_2 + 0x979c) = 0x3f800000;
+  
+  // 最终参数设置
+  lighting_intensity = *(float *)(source_context + 0x210);
+  normal_length = *(float *)(source_context + 0x214);
+  render_param1 = *(undefined4 *)(source_context + 500);
+  render_param2 = *(undefined4 *)(source_context + 0x1f8);
+  texture_index = *(int *)(source_context + 0x1e4);
+  *(undefined4 *)(target_context + 0x9750) = *(undefined4 *)(source_context + 0x1f0);
+  *(undefined4 *)(target_context + 0x9754) = render_param1;
+  *(undefined4 *)(target_context + 0x9758) = render_param2;
+  *(float *)(target_context + 0x975c) = (float)texture_index;
+  render_param1 = *(undefined4 *)(source_context + 0x204);
+  render_param2 = *(undefined4 *)(source_context + 0x208);
+  texture_index = *(int *)(source_context + 0x1e8);
+  *(undefined4 *)(target_context + 0x9760) = *(undefined4 *)(source_context + 0x200);
+  *(undefined4 *)(target_context + 0x9764) = render_param1;
+  *(undefined4 *)(target_context + 0x9768) = render_param2;
+  *(float *)(target_context + 0x976c) = (float)texture_index;
+  lighting_intensity = 1.0 / lighting_intensity;
+  texture_index = *(int *)(source_context + 0x1ec);
+  *(float *)(target_context + 0x9770) = lighting_intensity;
+  *(float *)(target_context + 0x9774) = lighting_intensity;
+  *(float *)(target_context + 0x9778) = 1.0 / normal_length;
+  *(float *)(target_context + 0x977c) = (float)texture_index;
+  render_param1 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4b0);
+  render_param2 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4ac);
+  light_vector = (longlong *)CONCAT44(render_param2, render_param1);
+  *(undefined4 *)(target_context + 0x9780) = render_param1;
+  *(undefined4 *)(target_context + 0x9784) = render_param2;
+  *(undefined4 *)(target_context + 0x9788) = 0;
+  *(undefined4 *)(target_context + 0x978c) = 0;
+  texture_index = *(int *)(source_context + 0x23c);
+  render_state = *(int *)(source_context + 0x240);
+  normal_vector = 0x3f80000000000000;
+  *(float *)(target_context + 0x9790) = (float)*(int *)(source_context + 0x238);
+  *(float *)(target_context + 0x9794) = (float)texture_index;
+  *(float *)(target_context + 0x9798) = (float)render_state;
+  *(undefined4 *)(target_context + 0x979c) = 0x3f800000;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (ulonglong)auStack_218);
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_18031ed90(undefined8 **param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18031ed90(undefined8 **param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+// ===================================================================
+// 函数实现：内存管理器
+// ===================================================================
+
+/**
+ * 内存管理器 - 负责渲染系统内存的分配和管理
+ * 
+ * @param memory_pool 内存池指针数组
+ * @param memory_context 内存上下文
+ * @param allocation_size 分配大小
+ * @param memory_flags 内存标志
+ * @return void
+ * 
+ * 技术说明：
+ * - 管理内存池分配
+ * - 处理内存块复制
+ * - 管理内存释放
+ * - 处理字符串匹配
+ * - 优化内存使用
+ */
+void RenderingSystem_MemoryManager(undefined8 **memory_pool, longlong *memory_context, undefined8 allocation_size, undefined8 memory_flags)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int iVar6;
-  int iVar7;
-  int *piVar8;
-  ulonglong uVar9;
-  undefined8 *puStack_50;
-  undefined8 *puStack_48;
-  undefined8 uStack_40;
-  undefined4 uStack_38;
+  undefined8 *memory_block;
+  undefined8 *memory_ptr;
+  undefined8 *memory_end;
+  longlong string_compare;
+  longlong string_length;
+  int block_size;
+  int block_index;
+  int *string_data;
+  ulonglong block_count;
+  undefined8 *temp_block;
+  undefined8 *temp_ptr;
+  undefined8 alloc_size;
+  undefined4 memory_type;
   
-  puStack_50 = (undefined8 *)0x0;
-  puStack_48 = (undefined8 *)0x0;
-  uStack_40 = 0;
-  uStack_38 = 3;
-  if (&puStack_50 != param_1) {
-    FUN_1800588c0(&puStack_50,*param_1,param_1[1],param_4,0xfffffffffffffffe);
+  // 初始化内存管理器
+  temp_block = (undefined8 *)0x0;
+  temp_ptr = (undefined8 *)0x0;
+  alloc_size = 0;
+  memory_type = 3;
+  
+  if (&temp_block != memory_pool) {
+    FUN_1800588c0(&temp_block, *memory_pool, memory_pool[1], memory_flags, 0xfffffffffffffffe);
   }
-  puVar3 = puStack_48;
-  puVar2 = puStack_50;
-  FUN_18031f0e0(puStack_50,puStack_48);
-  (**(code **)(*param_2 + 0x10))(param_2,&DAT_18098bc73);
-  uVar9 = (longlong)puVar3 - (longlong)puVar2 >> 5;
-  iVar7 = 0;
-  puVar1 = puVar2;
-  if (uVar9 != 0) {
-    piVar8 = (int *)(puVar2 + 2);
+  
+  memory_end = temp_ptr;
+  memory_ptr = temp_block;
+  FUN_18031f0e0(temp_block, temp_ptr);
+  
+  // 执行内存操作
+  (**(code **)(*memory_context + 0x10))(memory_context, &DAT_18098bc73);
+  
+  // 计算内存块数量
+  block_count = (longlong)memory_end - (longlong)memory_ptr >> 5;
+  block_index = 0;
+  memory_block = memory_ptr;
+  
+  if (block_count != 0) {
+    string_data = (int *)(memory_ptr + 2);
     do {
-      iVar6 = *piVar8;
-      if (iVar6 == 4) {
-        lVar4 = 0;
+      block_size = *string_data;
+      
+      // 检查字符串匹配
+      if (block_size == 4) {
+        string_compare = 0;
         do {
-          lVar5 = lVar4 + 1;
-          if (*(char *)(*(longlong *)(piVar8 + -2) + lVar4) != (&DAT_180a04ee4)[lVar4])
+          string_length = string_compare + 1;
+          if (*(char *)(*(longlong *)(string_data + -2) + string_compare) != (&DAT_180a04ee4)[string_compare])
           goto LAB_18031ee56;
-          lVar4 = lVar5;
-        } while (lVar5 != 5);
+          string_compare = string_length;
+        } while (string_length != 5);
       }
       else {
 LAB_18031ee56:
-        if (0 < iVar6) {
-          FUN_1806277c0(param_2,(int)param_2[2] + iVar6);
+        // 处理内存块复制
+        if (0 < block_size) {
+          FUN_1806277c0(memory_context, (int)memory_context[2] + block_size);
                     // WARNING: Subroutine does not return
-          memcpy((ulonglong)*(uint *)(param_2 + 2) + param_2[1],*(undefined8 *)(piVar8 + -2),
-                 (longlong)(*piVar8 + 1));
+          memcpy((ulonglong)*(uint *)(memory_context + 2) + memory_context[1], *(undefined8 *)(string_data + -2),
+                 (longlong)(*string_data + 1));
         }
-        iVar6 = (int)param_2[2] + 1;
-        FUN_1806277c0(param_2,iVar6);
-        *(undefined2 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]) = 0x20;
-        *(int *)(param_2 + 2) = iVar6;
+        
+        // 更新内存块索引
+        block_size = (int)memory_context[2] + 1;
+        FUN_1806277c0(memory_context, block_size);
+        *(undefined2 *)((ulonglong)*(uint *)(memory_context + 2) + memory_context[1]) = 0x20;
+        *(int *)(memory_context + 2) = block_size;
       }
-      iVar7 = iVar7 + 1;
-      piVar8 = piVar8 + 8;
-    } while ((ulonglong)(longlong)iVar7 < uVar9);
+      
+      block_index = block_index + 1;
+      string_data = string_data + 8;
+    } while ((ulonglong)(longlong)block_index < block_count);
   }
-  for (; puVar1 != puVar3; puVar1 = puVar1 + 4) {
-    (**(code **)*puVar1)(puVar1,0);
+  
+  // 清理内存块
+  for (; memory_block != memory_end; memory_block = memory_block + 4) {
+    (**(code **)*memory_block)(memory_block, 0);
   }
-  if (puVar2 != (undefined8 *)0x0) {
+  
+  // 释放内存
+  if (memory_ptr != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(memory_ptr);
   }
   return;
 }
 
 
 
+// ===================================================================
+// 函数实现：内存分配器
+// ===================================================================
+
+/**
+ * 内存分配器 - 负责渲染系统内存的分配和释放
+ * 
+ * @param memory_ptr 内存指针
+ * @param alloc_flags 分配标志
+ * @param block_size 块大小
+ * @param free_flags 释放标志
+ * @return undefined8* 分配的内存指针
+ * 
+ * 技术说明：
+ * - 分配内存块
+ * - 初始化内存指针
+ * - 处理内存释放
+ * - 管理内存标志
+ * - 确保内存对齐
+ */
 undefined8 *
-FUN_18031ef00(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+RenderingSystem_MemoryAllocator(undefined8 *memory_ptr, ulonglong alloc_flags, undefined8 block_size, undefined8 free_flags)
 
 {
-  *param_1 = &UNK_180a1ae60;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
+  // 初始化内存指针链表
+  *memory_ptr = &UNK_180a1ae60;
+  *memory_ptr = &UNK_180a21720;
+  *memory_ptr = &UNK_180a21690;
+  
+  // 检查是否需要释放内存
+  if ((alloc_flags & 1) != 0) {
+    free(memory_ptr, 0x28, block_size, free_flags, 0xfffffffffffffffe);
   }
-  return param_1;
+  
+  return memory_ptr;
 }
 
 
