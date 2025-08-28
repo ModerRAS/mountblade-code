@@ -6,7 +6,7 @@
 
 // 函数别名定义
 #define MemoryCleanupAndFree MemoryCleanupAndFree  // 内存清理和释放函数
-#define SystemMemoryAllocator FUN_18062b420  // 系统内存分配器
+#define SystemMemoryAllocator SystemMemoryAllocator  // 系统内存分配器
 #define SystemInitializer FUN_180627be0      // 系统初始化函数
 
 // 函数: void FUN_18026d3f0(int64_t param_1,int64_t param_2)
@@ -51,7 +51,7 @@ void FUN_18026d3f0(int64_t param_1,int64_t param_2)
         lVar6 = 0;
       }
       else {
-        lVar6 = FUN_18062b420(system_memory_pool_ptr,uVar14 * 4,*(int8_t *)(param_1 + 0x58));
+        lVar6 = SystemMemoryAllocator(system_memory_pool_ptr,uVar14 * 4,*(int8_t *)(param_1 + 0x58));
       }
       if (lVar13 != lVar9) {
                     // WARNING: Subroutine does not return
@@ -97,7 +97,7 @@ void FUN_18026d3f0(int64_t param_1,int64_t param_2)
   lVar9 = *(int64_t *)(param_2 + 0x28);
   lVar13 = lVar9 - *(int64_t *)(param_2 + 0x20) >> 3;
   if (lVar13 != 0) {
-    plVar8 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar13 * 8,3);
+    plVar8 = (int64_t *)SystemMemoryAllocator(system_memory_pool_ptr,lVar13 * 8,3);
     plVar20 = plVar8 + lVar13;
     lVar9 = *(int64_t *)(param_2 + 0x28);
   }
@@ -129,7 +129,7 @@ void FUN_18026d3f0(int64_t param_1,int64_t param_2)
                   lVar6 = 1;
 LAB_18026d697:
                   plVar11 = (int64_t *)
-                            FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,
+                            SystemMemoryAllocator(system_memory_pool_ptr,lVar6 * 8,
                                           CONCAT71((int7)((uint64_t)lVar13 >> 8),3));
                 }
                 else {
@@ -172,7 +172,7 @@ LAB_18026d697:
         if (lVar6 == 0) {
           lVar6 = 1;
 LAB_18026d731:
-          plVar11 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,3);
+          plVar11 = (int64_t *)SystemMemoryAllocator(system_memory_pool_ptr,lVar6 * 8,3);
         }
         else {
           lVar6 = lVar6 * 2;
@@ -286,7 +286,7 @@ FUN_18026d890(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
     if (lVar2 == 0) goto LAB_18026d976;
   }
   puVar3 = (int32_t *)
-           FUN_18062b420(system_memory_pool_ptr,lVar2 * 4,*(int8_t *)(param_1 + 0xb),param_4,
+           SystemMemoryAllocator(system_memory_pool_ptr,lVar2 * 4,*(int8_t *)(param_1 + 0xb),param_4,
                          0xfffffffffffffffe);
   puVar5 = (int32_t *)param_1[9];
   puVar4 = (int32_t *)*plVar1;
@@ -576,7 +576,7 @@ void FUN_18026dfc0(int64_t *param_1,uint64_t param_2)
   puVar3 = (int32_t *)0x0;
   if (uVar11 != 0) {
     puVar3 = (int32_t *)
-             FUN_18062b420(system_memory_pool_ptr,uVar11 * 0x28,(char)param_1[3],puVar6,0xfffffffffffffffe);
+             SystemMemoryAllocator(system_memory_pool_ptr,uVar11 * 0x28,(char)param_1[3],puVar6,0xfffffffffffffffe);
     puVar6 = (uint64_t *)param_1[1];
     puVar5 = (uint64_t *)*param_1;
   }
