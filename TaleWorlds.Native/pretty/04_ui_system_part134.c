@@ -111,6 +111,46 @@ struct UIMemoryBlock {
 // 函数别名定义 - 提供有意义的函数名称
 //==============================================================================
 
+// 内存管理相关函数别名
+#define UISystem_MemoryAllocator(param1, param2, param3, param4, param5, param6, param7) FUN_180741e10(param1, param2, param3, param4, param5, param6, param7)
+#define UISystem_MemoryReleaser(param1, param2, param3, param4, param5) FUN_180742250(param1, param2, param3, param4, param5)
+#define UISystem_MemoryAllocatorEx(param1, param2, param3, param4, param5) FUN_180742050(param1, param2, param3, param4, param5)
+#define UISystem_ParameterUpdater(param1, param2, param3, param4, param5) FUN_180742650(param1, param2, param3, param4, param5)
+
+// 组件搜索相关函数别名
+#define UISystem_ComponentFinder(param1, param2, param3, param4) FUN_18078cde0(param1, param2, param3, param4)
+#define UISystem_ComponentMatcher(param1, param2) FUN_180743ab0(param1, param2)
+#define UISystem_ComponentProcessor(param1, param2, param3, param4, param5, param6) FUN_1807568a0(param1, param2, param3, param4, param5, param6)
+#define UISystem_ComponentValidator(param1) FUN_180758960(param1)
+#define UISystem_ComponentStateSetter(param1, param2) FUN_180758220(param1, param2)
+#define UISystem_ComponentVerifier(param1, param2) func_0x000180756db0(param1, param2)
+#define UISystem_ComponentFilter(param1, param2, param3, param4, param5, param6) FUN_180756aa0(param1, param2, param3, param4, param5, param6)
+#define UISystem_ComponentScreener(param1, param2) FUN_180754fe0(param1, param2)
+#define UISystem_SearchPreprocessor(param1, param2, param3, param4) FUN_18078cf50(param1, param2, param3, param4)
+
+// 系统检查相关函数别名
+#define UISystem_SystemChecker() FUN_1807499f0()
+#define UISystem_StateChecker() FUN_180749060()
+
+// 布局管理相关函数别名
+#define UISystem_LayoutManager(param1, param2, param3, param4, param5, param6) FUN_180741d10(param1, param2, param3, param4, param5, param6)
+
+// 组件注册管理相关函数别名
+#define UISystem_ComponentRegistrar(param1, param2) FUN_1807889e0(param1, param2)
+#define UISystem_ComponentUnregistrar(param1, param2) FUN_180788d20(param1, param2)
+#define UISystem_ComponentCleaner(param1, param2) FUN_180743d60(param1, param2)
+#define UISystem_ComponentStateChecker(param1, param2) func_0x000180743c20(param1, param2)
+
+// 组件操作相关函数别名
+#define UISystem_ComponentOperator(param1, param2, param3, param4, param5) FUN_180772160(param1, param2, param3, param4, param5)
+#define UISystem_ComponentFinderEx(param1, param2) func_0x000180771d40(param1, param2)
+#define UISystem_ComponentInfoGetter(param1, param2, param3) func_0x000180771cd0(param1, param2, param3)
+#define UISystem_ComponentDataGetter(param1, param2, param3) func_0x000180771c60(param1, param2, param3)
+#define UISystem_ComponentComparer(param1, param2) func_0x00018076b420(param1, param2)
+
+// 组件管理相关函数别名
+#define UISystem_ComponentRemover(param1, param2) FUN_180748290(param1, param2)
+
 /**
  * @brief 设置UI组件激活状态
  * @param component_id 组件ID
@@ -485,7 +525,7 @@ ulonglong UISystem_FindComponent_Simplified(uint64_t search_context, longlong se
 void UISystem_SetComponentActivation(int32_t param_1,uint param_2,uint64_t param_3)
 
 {
-  FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_3,0,param_2 | 0x10,1,1);
+  UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_3,0,param_2 | 0x10,1,1);
   return;
 }
 
@@ -500,7 +540,7 @@ void UISystem_ProcessComponentEvent_EventHandler(uint64_t param_1,uint64_t param
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_3,0,1);
+  UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_3,0,1);
 }
 
 
@@ -513,7 +553,7 @@ void UISystem_ProcessComponentEvent_EventHandler(uint64_t param_1,uint64_t param
 void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_4)
 
 {
-  FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_4,0,param_3 | 0x10);
+  UISystem_ParameterUpdater(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_4,0,param_3 | 0x10);
   return;
 }
 
