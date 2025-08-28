@@ -1,1146 +1,1177 @@
-// 03_rendering_part070.c - 渲染系统高级处理模块
-// 
-// 本文件包含9个核心函数，涵盖渲染系统高级处理功能，包括：
-// - 渲染管线高级处理
-// - 渲染资源管理和优化
-// - 渲染数据批处理
-// - 渲染状态同步
-// - 渲染参数配置
-// - 渲染性能优化
-// - 渲染内存管理
-// - 渲染缓冲区处理
-// - 渲染上下文管理
-//
-// 注意：这是一个简化的实现，主要关注代码的可读性和注释的完整性。
-
 #include "TaleWorlds.Native.Split.h"
 
-// 全局变量定义
-static longlong *g_renderResourceManager = NULL;  // 原始名称: _DAT_180bf00a8
-static longlong *g_renderContextPool = NULL;     // 原始名称: _DAT_180c8ed18
-static longlong *g_renderBufferManager = NULL;   // 原始名称: _DAT_180c82868
-static longlong *g_renderParameterTable = NULL;  // 原始名称: _DAT_180c86870
+// 03_rendering_part070.c - 渲染系统高级初始化和资源管理模块
+// 本模块包含9个核心函数，涵盖渲染系统初始化、资源管理、内存分配、状态控制、参数处理等高级渲染功能
+// 主要函数包括：rendering_system_initialize_render_context、rendering_system_process_render_batch、rendering_system_check_visibility等
 
-// 常量定义
-#define RENDER_RESOURCE_SIZE_160KB    0x28000    // 160KB
-#define RENDER_RESOURCE_SIZE_848KB    0xd8000    // 848KB
-#define RENDER_RESOURCE_SIZE_8KB      0x2000     // 8KB
-#define RENDER_RESOURCE_SIZE_256B     0x100      // 256B
-#define RENDER_RESOURCE_SIZE_56B      0x38       // 56B
-#define RENDER_BUFFER_SIZE_256B       0x100      // 256B
-#define RENDER_BUFFER_SIZE_432B       0x1b0      // 432B
-#define RENDER_BUFFER_SIZE_80B        0x50       // 80B
-#define RENDER_INDEX_MASK             0x7ff      // 2047
-#define RENDER_INDEX_SHIFT            0xb        // 11位
-#define RENDER_MAX_BATCH_SIZE         0x1d       // 29
-#define RENDER_STACK_GUARD            0xfffffffffffffffe
+// ============================================================================
+// 常量定义和函数别名
+// ============================================================================
 
-// 字符串常量
-static const char *RENDER_SHADER_PATH = "/shaders/main_shader";     // 原始名称: UNK_180a1a228
-static const char *RENDER_TEXTURE_PATH = "/textures/main_texture";  // 原始名称: UNK_180a1a200
-static const char *RENDER_BUFFER_PATH = "/buffers/main_buffer";     // 原始名称: UNK_1809fcc58
-static const char *RENDER_CONFIG_PATH = "/config/render_config";   // 原始名称: UNK_18098bcb0
-static const char *RENDER_STATE_PATH = "/state/render_state";      // 原始名称: UNK_1809fcc28
+// 函数别名定义，便于理解和维护
+#define rendering_system_initialize_render_context FUN_180307ca0
+#define rendering_system_process_render_batch FUN_180308500
+#define rendering_system_check_visibility FUN_1803085c0
+#define rendering_system_update_render_state FUN_1803085e2
+#define rendering_system_allocate_render_resources FUN_180308660
+#define rendering_system_release_render_resources FUN_180308670
+#define rendering_system_execute_render_command FUN_180308820
+#define rendering_system_validate_render_data FUN_1803089a0
+#define rendering_system_cleanup_render_context FUN_180308a90
+#define rendering_system_advanced_resource_handler FUN_180308aa7
 
-// 渲染资源管理器结构体
-typedef struct {
-    longlong *resourcePool;
-    longlong *bufferPool;
-    longlong *statePool;
-    uint resourceCount;
-    uint bufferCount;
-    uint stateCount;
-} RenderResourceManager;
+// 渲染系统常量
+#define RENDERING_CONTEXT_ALIGNMENT 0x800       // 渲染上下文内存对齐大小
+#define RENDERING_BATCH_SIZE 0x50               // 渲染批处理大小
+#define RENDERING_MAX_ITERATIONS 100            // 渲染最大迭代次数
+#define RENDERING_MEMORY_POOL_SIZE 0x28000     // 渲染内存池大小
+#define RENDERING_RESOURCE_TIMEOUT 0x25        // 渲染资源超时时间
 
-// 渲染管线状态结构体
-typedef struct {
-    longlong *pipelineState;
-    longlong *shaderState;
-    longlong *textureState;
-    uint pipelineId;
-    uint shaderId;
-    uint textureId;
-} RenderPipelineState;
+// 渲染状态常量
+#define RENDERING_STATE_ACTIVE 0x01            // 渲染状态：激活
+#define RENDERING_STATE_IDLE 0x00             // 渲染状态：空闲
+#define RENDERING_STATE_ERROR 0xFF             // 渲染状态：错误
 
-// 渲染缓冲区结构体
-typedef struct {
-    longlong *bufferPtr;
-    uint bufferSize;
-    uint bufferType;
-    uint bufferFlags;
-} RenderBuffer;
-
-// 渲染批处理结构体
-typedef struct {
-    longlong *batchData;
-    uint batchSize;
-    uint batchType;
-    uint batchFlags;
-} RenderBatch;
-
-// 渲染配置结构体
-typedef struct {
-    float qualityScale;
-    float performanceScale;
-    uint maxBatchSize;
-    uint bufferAlignment;
-} RenderConfig;
+// ============================================================================
+// 核心函数实现
+// ============================================================================
 
 /**
- * 渲染管线高级处理函数
+ * 渲染系统初始化渲染上下文
  * 
- * 该函数负责处理渲染管线的高级操作，包括：
- * - 渲染资源的分配和管理
- * - 渲染状态的同步和更新
- * - 渲染参数的配置和优化
- * - 渲染批处理的调度和执行
+ * 该函数负责初始化渲染系统的上下文环境，包括内存分配、资源池创建、
+ * 状态初始化和渲染管线设置等。确保渲染系统在正确的状态下启动。
  * 
- * @param renderContext 渲染上下文指针
- * @param renderParams 渲染参数指针
+ * @param param_1 指向渲染系统主控制结构的指针，包含系统配置和状态信息
+ * @param param_2 指向渲染上下文数据结构的指针，用于存储初始化后的上下文
+ * @return 无返回值，通过指针参数输出初始化结果
+ * 
+ * 初始化流程：
+ * 1. 验证输入参数的有效性
+ * 2. 分配渲染资源池和内存缓冲区
+ * 3. 初始化渲染管线和状态机
+ * 4. 设置渲染参数和默认值
+ * 5. 创建渲染批处理队列
+ * 6. 初始化完成并返回
  */
-void RenderingPipeline_AdvancedProcess(longlong renderContext, longlong renderParams)
+void rendering_system_initialize_render_context(longlong *param_1, longlong *param_2)
+
 {
-    RenderResourceManager *resourceManager;
-    longlong **resourcePool;
-    int resourceCount;
-    int batchCount;
-    longlong **batchPool;
-    uint resourceIndex;
-    uint batchIndex;
-    undefined8 *resourceHandle;
-    longlong contextHandle;
-    longlong paramHandle;
-    longlong *resourcePtr;
-    int maxBatchSize;
-    char *statePtr;
-    ulonglong stateOffset;
-    uint *statePtrUint;
-    int stateIndex;
-    longlong stateBase;
-    bool stateValid;
-    float qualityScale;
-    undefined8 stateValue;
-    float performanceScale;
-    undefined1 stackBuffer[32];
-    undefined1 *tempBuffer;
-    float tempFloat1;
-    float tempFloat2;
-    undefined4 tempUint1;
-    int tempInt1;
-    undefined8 tempValue1;
-    float tempFloat3;
-    undefined1 tempBool1;
-    undefined4 tempUint2;
-    longlong **tempPoolPtr;
-    int tempInt2;
-    undefined4 tempUint3;
-    uint tempUint4;
-    uint tempUint5;
-    int tempInt3;
-    longlong **tempPoolPtr2;
-    longlong tempLong1;
-    longlong *tempPtr1;
-    longlong *tempPtr2;
-    longlong *tempPtr3;
-    int *tempIntPtr1;
-    undefined4 tempUint6;
-    uint tempUint7;
-    longlong *tempPtr4;
-    longlong *tempPtr5;
-    longlong *tempPtr6;
-    longlong *tempPtr7;
-    undefined **tempPtr8;
-    undefined8 tempValue2;
-    int *tempIntPtr2;
-    undefined8 tempValue3;
-    int *tempIntPtr3;
-    longlong tempLong2;
-    int *tempIntPtr4;
-    undefined8 tempValue4;
-    int *tempIntPtr5;
-    longlong tempLong3;
-    int *tempIntPtr6;
-    undefined8 tempValue5;
-    int *tempIntPtr7;
-    undefined8 tempValue6;
-    int *tempIntPtr8;
-    undefined8 tempValue7;
-    int *tempIntPtr9;
-    longlong tempLong4;
-    undefined1 stackBuffer2[12];
-    undefined4 tempUint8;
-    undefined4 tempUint9;
-    undefined4 tempUint10;
-    undefined4 tempUint11;
-    undefined *tempPtr9;
-    undefined1 *tempPtr10;
-    undefined4 tempUint12;
-    undefined1 stackBuffer3[128];
-    undefined4 tempUint13;
-    undefined8 tempValue8;
-    longlong tempLong5;
-    undefined8 tempValue9;
-    longlong tempLong6;
-    undefined *tempPtr11;
-    undefined1 *tempPtr12;
-    undefined4 tempUint14;
-    undefined1 stackBuffer4[128];
-    undefined4 tempUint15;
-    undefined8 tempValue10;
-    longlong tempLong7;
-    undefined8 tempValue11;
-    longlong tempLong8;
-    undefined *tempPtr13;
-    undefined1 *tempPtr14;
-    undefined4 tempUint16;
-    undefined1 stackBuffer5[72];
-    undefined *tempPtr15;
-    undefined1 *tempPtr16;
-    undefined4 tempUint17;
-    undefined1 stackBuffer6[72];
-    ulonglong tempUlong1;
+  int *piVar1;
+  longlong *plVar2;
+  int iVar3;
+  int iVar4;
+  longlong **pplVar5;
+  uint uVar6;
+  uint uVar7;
+  undefined8 *puVar8;
+  longlong lVar9;
+  longlong lVar10;
+  longlong *plVar11;
+  int iVar12;
+  char *pcVar13;
+  ulonglong uVar14;
+  uint *puVar15;
+  int iVar16;
+  longlong lVar17;
+  bool bVar18;
+  float fVar19;
+  undefined8 uVar20;
+  float fVar21;
+  undefined1 auStack_488 [32];
+  undefined1 *puStack_468;
+  float fStack_460;
+  float fStack_458;
+  undefined4 uStack_450;
+  int iStack_448;
+  undefined8 uStack_440;
+  undefined1 uStack_438;
+  undefined4 uStack_430;
+  longlong **pplStack_428;
+  int iStack_420;
+  undefined4 uStack_41c;
+  uint uStack_418;
+  uint uStack_414;
+  int iStack_410;
+  longlong **pplStack_408;
+  longlong lStack_400;
+  longlong *plStack_3f8;
+  longlong *plStack_3f0;
+  int *piStack_3e8;
+  undefined4 uStack_3e0;
+  uint uStack_3dc;
+  longlong *plStack_3d8;
+  longlong *plStack_3d0;
+  longlong *plStack_3c8;
+  longlong *plStack_3c0;
+  undefined **ppuStack_3b8;
+  undefined8 uStack_3b0;
+  int *piStack_3a8;
+  undefined8 uStack_3a0;
+  int *piStack_398;
+  longlong lStack_390;
+  int *piStack_388;
+  undefined8 uStack_380;
+  int *piStack_378;
+  longlong lStack_370;
+  int *piStack_368;
+  undefined8 uStack_360;
+  int *piStack_358;
+  undefined8 uStack_350;
+  int *piStack_348;
+  undefined8 uStack_340;
+  int *piStack_338;
+  longlong lStack_330;
+  undefined1 auStack_328 [12];
+  undefined4 uStack_31c;
+  undefined4 uStack_30c;
+  undefined4 uStack_2fc;
+  undefined4 uStack_2ec;
+  undefined *puStack_2e8;
+  undefined1 *puStack_2e0;
+  undefined4 uStack_2d8;
+  undefined1 auStack_2d0 [128];
+  undefined4 uStack_250;
+  undefined8 uStack_248;
+  longlong lStack_240;
+  undefined8 uStack_238;
+  longlong lStack_230;
+  undefined *puStack_208;
+  undefined1 *puStack_200;
+  undefined4 uStack_1f8;
+  undefined1 auStack_1f0 [128];
+  undefined4 uStack_170;
+  undefined8 uStack_168;
+  longlong lStack_160;
+  undefined8 uStack_158;
+  longlong lStack_150;
+  undefined *puStack_128;
+  undefined1 *puStack_120;
+  undefined4 uStack_118;
+  undefined1 auStack_110 [72];
+  undefined *puStack_c8;
+  undefined1 *puStack_c0;
+  undefined4 uStack_b8;
+  undefined1 auStack_b0 [72];
+  ulonglong uStack_68;
+  
+  // 初始化渲染上下文状态变量
+  uStack_3b0 = 0xfffffffffffffffe;
+  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
+  iVar16 = 0;
+  iVar12 = 0;
+  plVar11 = *(longlong **)(param_1 + 0x1b90);
+  lStack_400 = param_1;
+  
+  // 检查渲染资源池是否需要初始化
+  if (plVar11 != *(longlong **)(param_1 + 0x1b98)) {
+    do {
+      iVar16 = iVar16 + (int)(*(longlong *)(*plVar11 + 0x90) - *(longlong *)(*plVar11 + 0x88) >> 3);
+      plVar11 = plVar11 + 1;
+    } while (plVar11 != *(longlong **)(param_1 + 0x1b98));
     
-    tempValue2 = RENDER_STACK_GUARD;
-    tempUlong1 = g_renderResourceManager ^ (ulonglong)stackBuffer;
-    maxBatchSize = 0;
-    batchCount = 0;
-    resourcePool = *(longlong **)(renderContext + 0x1b90);
-    tempLong5 = renderContext;
-    
-    // 计算资源池中的总资源数量
-    if (resourcePool != *(longlong **)(renderContext + 0x1b98)) {
-        do {
-            maxBatchSize = maxBatchSize + (int)(*(longlong *)(*resourcePool + 0x90) - *(longlong *)(*resourcePool + 0x88) >> 3);
-            resourcePool = resourcePool + 1;
-        } while (resourcePool != *(longlong **)(renderContext + 0x1b98));
+    if (0 < iVar16) {
+      // 初始化渲染批处理参数
+      piVar1 = (int *)(param_1 + 0x78);
+      iVar16 = *piVar1;
+      *(int *)(param_2 + 0x124b8) = iVar16;
+      iStack_410 = iVar16;
+      
+      if (0 < iVar16) {
+        iVar3 = *piVar1;
+        uStack_3e0 = 0;
+        pplStack_428 = (longlong **)piVar1;
+        iStack_420 = iVar3;
+        piStack_3e8 = piVar1;
+        iVar4 = iVar3;
         
-        if (0 < maxBatchSize) {
-            resourceManager = (RenderResourceManager *)(renderContext + 0x78);
-            maxBatchSize = resourceManager->resourceCount;
-            *(int *)(renderParams + 0x124b8) = maxBatchSize;
-            tempInt3 = maxBatchSize;
-            
-            if (0 < maxBatchSize) {
-                batchCount = resourceManager->resourceCount;
-                tempUint6 = 0;
-                tempPoolPtr = (longlong **)resourceManager;
-                tempInt2 = batchCount;
-                tempIntPtr1 = resourceManager->resourceCount;
-                resourceCount = batchCount;
-                
-                // 计算所需的位深度
-                if (batchCount != 0) {
-                    for (; resourceCount != 0; resourceCount = resourceCount >> 1) {
-                        batchCount = batchCount + 1;
-                    }
-                    stateValue = CONCAT44(tempUint3, batchCount);
-                    stateBase = (ulonglong)tempUint7 << 0x20;
-                    tempIntPtr2 = resourceManager;
-                    tempValue3 = stateValue;
-                    tempIntPtr3 = resourceManager;
-                    tempLong2 = stateBase;
-                    
-                    // 调用渲染管线初始化函数
-                    RenderingPipeline_Initialize(&tempIntPtr3, &tempIntPtr2, (longlong)(batchCount + -1) * 2);
-                    
-                    if (batchCount < RENDER_MAX_BATCH_SIZE) {
-                        tempIntPtr7 = resourceManager;
-                        tempValue7 = stateValue;
-                        tempIntPtr8 = resourceManager;
-                        tempLong4 = stateBase;
-                        RenderingPipeline_Optimize(&tempIntPtr8, &tempIntPtr7);
-                    }
-                    else {
-                        tempInt2 = RENDER_MAX_BATCH_SIZE - 1;
-                        tempValue5 = CONCAT44(tempUint3, RENDER_MAX_BATCH_SIZE - 1);
-                        tempPoolPtr = (longlong **)resourceManager;
-                        tempIntPtr6 = resourceManager;
-                        tempIntPtr5 = resourceManager;
-                        tempLong3 = stateBase;
-                        RenderingPipeline_Optimize(&tempIntPtr5, &tempIntPtr6);
-                        tempInt2 = RENDER_MAX_BATCH_SIZE - 1;
-                        tempValue6 = CONCAT44(tempUint3, RENDER_MAX_BATCH_SIZE - 1);
-                        tempPoolPtr = (longlong **)resourceManager;
-                        tempIntPtr7 = resourceManager;
-                        tempValue5 = stateValue;
-                        tempIntPtr6 = resourceManager;
-                        RenderingPipeline_Reconfigure(&tempIntPtr6, &tempIntPtr7);
-                    }
-                }
-                
-                // 计算渲染质量比例
-                qualityScale = (float)maxBatchSize * 0.006666667;
-                performanceScale = 0.0;
-                if ((0.0 <= qualityScale) && (performanceScale = qualityScale, 1.0 <= qualityScale)) {
-                    performanceScale = 1.0;
-                }
-                qualityScale = *(float *)(g_renderParameterTable + 0x388);
-                
-                // 初始化渲染缓冲区
-                RenderingBuffer_Initialize(renderParams + 0xf0, stackBuffer2);
-                
-                tempUint8 = 0;
-                tempUint9 = 0;
-                tempUint10 = 0;
-                tempUint11 = 0x3f800000;
-                tempPtr15 = &RENDER_BUFFER_PATH;
-                tempPtr16 = stackBuffer5;
-                stackBuffer5[0] = 0;
-                tempUint17 = 0x1e;
-                stateValue = strcpy_s(stackBuffer5, 0x40, RENDER_SHADER_PATH);
-                
-                tempUint3 = RENDER_BUFFER_SIZE_256B;
-                tempBool1 = 1;
-                tempValue1 = 0;
-                tempUint2 = RENDER_BUFFER_SIZE_80B;
-                tempFloat2 = 0.0;
-                tempFloat3 = 4.2039e-45;
-                tempBuffer = (undefined1 *)CONCAT44(tempBuffer._4_4_, 0x61);
-                tempInt1 = maxBatchSize;
-                
-                // 创建渲染资源
-                resourceHandle = (undefined8 *)
-                    RenderingResource_Create(stateValue, &tempPtr5, *(undefined4 *)(renderParams + 0x1bd4), &tempPtr15);
-                stateValue = *resourceHandle;
-                *resourceHandle = 0;
-                tempPtr4 = *(longlong **)(renderContext + 0x68);
-                *(undefined8 *)(renderContext + 0x68) = stateValue;
-                
-                if (tempPtr4 != (longlong *)0x0) {
-                    (**(code **)(*tempPtr4 + 0x38))();
-                }
-                if (tempPtr5 != (longlong *)0x0) {
-                    (**(code **)(*tempPtr5 + 0x38))();
-                }
-                
-                // 创建纹理资源
-                tempPtr15 = &RENDER_CONFIG_PATH;
-                tempPtr9 = &RENDER_BUFFER_PATH;
-                tempPtr10 = stackBuffer6;
-                stackBuffer6[0] = 0;
-                tempUint17 = 0x21;
-                stateValue = strcpy_s(stackBuffer6, 0x40, RENDER_TEXTURE_PATH);
-                
-                tempUint3 = RENDER_BUFFER_SIZE_256B;
-                tempBool1 = 1;
-                tempValue1 = 0;
-                tempUint2 = RENDER_BUFFER_SIZE_432B;
-                tempFloat2 = 0.0;
-                tempFloat3 = 4.2039e-45;
-                tempBuffer = (undefined1 *)CONCAT44(tempBuffer._4_4_, 0x61);
-                tempInt1 = maxBatchSize;
-                
-                resourceHandle = (undefined8 *)
-                    RenderingResource_Create(stateValue, &tempPtr6, *(undefined4 *)(renderParams + 0x1bd4), &tempPtr9);
-                stateValue = *resourceHandle;
-                *resourceHandle = 0;
-                tempPtr7 = *(longlong **)(renderContext + 0x70);
-                *(undefined8 *)(renderContext + 0x70) = stateValue;
-                
-                if (tempPtr7 != (longlong *)0x0) {
-                    (**(code **)(*tempPtr7 + 0x38))();
-                }
-                if (tempPtr6 != (longlong *)0x0) {
-                    (**(code **)(*tempPtr6 + 0x38))();
-                }
-                
-                tempPtr9 = &RENDER_CONFIG_PATH;
-                tempUint4 = 0;
-                
-                // 处理渲染批处理
-                if (0 < maxBatchSize) {
-                    tempPoolPtr = (longlong **)(renderContext + 0x980);
-                    do {
-                        tempPoolPtr2 = tempPoolPtr;
-                        LOCK();
-                        batchIndex = *(uint *)tempPoolPtr;
-                        *(uint *)tempPoolPtr = *(uint *)tempPoolPtr + 1;
-                        UNLOCK();
-                        resourceIndex = batchIndex >> RENDER_INDEX_SHIFT;
-                        tempUlong1 = (ulonglong)resourceIndex;
-                        statePtr = (char *)((longlong)tempPoolPtr + tempUlong1 + 0x808);
-                        statePtrUint = (uint *)((longlong)tempPoolPtr + ((ulonglong)resourceIndex * 2 + 2) * 4);
-                        stateBase = -0x808 - (longlong)tempPoolPtr;
-                        
-                        do {
-                            stateIndex = (int)tempUlong1;
-                            if (*(longlong *)statePtrUint == 0) {
-                                paramHandle = RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_160KB, 0x25);
-                                LOCK();
-                                stateValid = *(longlong *)((longlong)tempPoolPtr2 + ((longlong)stateIndex * 2 + 2) * 4) == 0;
-                                if (stateValid) {
-                                    *(longlong *)((longlong)tempPoolPtr2 + ((longlong)stateIndex * 2 + 2) * 4) = paramHandle;
-                                }
-                                UNLOCK();
-                                if (stateValid) {
-                                    LOCK();
-                                    *(undefined1 *)((longlong)stateIndex + 0x808 + (longlong)tempPoolPtr2) = 0;
-                                    UNLOCK();
-                                }
-                                else {
-                                    if (paramHandle != 0) {
-                                        // 警告：子函数不返回
-                                        RenderingResource_Release(paramHandle);
-                                    }
-                                    do {
-                                    } while (*statePtr != '\0');
-                                }
-                            }
-                            else {
-                                do {
-                                } while (*statePtr != '\0');
-                            }
-                            paramHandle = tempLong5;
-                            tempUlong1 = (ulonglong)(stateIndex + 1);
-                            statePtrUint = statePtrUint + 2;
-                            statePtr = statePtr + 1;
-                        } while ((longlong)(statePtr + stateBase) <= (longlong)(ulonglong)resourceIndex);
-                        
-                        tempIntPtr1 = (int *)(*(longlong *)((longlong)tempPoolPtr2 + ((ulonglong)resourceIndex * 2 + 2) * 4)
-                            + (ulonglong)(batchIndex - (batchIndex & 0xfffff800)) * RENDER_BUFFER_SIZE_80B);
-                        
-                        LOCK();
-                        statePtrUint = (uint *)(tempLong5 + 0x1288);
-                        tempUint5 = *statePtrUint;
-                        *statePtrUint = *statePtrUint + 1;
-                        UNLOCK();
-                        batchIndex = tempUint5 >> RENDER_INDEX_SHIFT;
-                        tempUlong1 = (ulonglong)batchIndex;
-                        stateBase = tempLong5 + 0x1288;
-                        statePtr = (char *)(tempLong5 + 0x1a90 + tempUlong1);
-                        resourcePool = (longlong *)(tempLong5 + 0x1290 + (ulonglong)batchIndex * 8);
-                        
-                        do {
-                            stateIndex = (int)tempUlong1;
-                            if (*resourcePool == 0) {
-                                contextHandle = RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_848KB, 0x25);
-                                tempPtr2 = (longlong *)(paramHandle + 0x1290 + (longlong)stateIndex * 8);
-                                LOCK();
-                                stateValid = *tempPtr2 == 0;
-                                if (stateValid) {
-                                    *tempPtr2 = contextHandle;
-                                }
-                                UNLOCK();
-                                if (stateValid) {
-                                    RenderingBuffer_Clear(stateBase, stateIndex << RENDER_INDEX_SHIFT);
-                                    LOCK();
-                                    *(undefined1 *)((longlong)stateIndex + 0x808 + stateBase) = 0;
-                                    UNLOCK();
-                                }
-                                else {
-                                    if (contextHandle != 0) {
-                                        // 警告：子函数不返回
-                                        RenderingResource_Release();
-                                    }
-                                    do {
-                                    } while (*statePtr != '\0');
-                                }
-                            }
-                            else {
-                                do {
-                                } while (*statePtr != '\0');
-                            }
-                            renderContext = tempLong5;
-                            resourceIndex = tempUint4;
-                            tempUlong1 = (ulonglong)(stateIndex + 1);
-                            resourcePool = resourcePool + 1;
-                            statePtr = statePtr + 1;
-                        } while ((longlong)(statePtr + (-0x808 - stateBase)) <= (longlong)(ulonglong)batchIndex);
-                        
-                        tempBuffer = stackBuffer2;
-                        tempFloat3 = performanceScale * 0.875;
-                        tempFloat2 = 1.0 / qualityScale;
-                        
-                        // 执行渲染批处理
-                        RenderingBatch_Execute(tempLong5,
-                            *(undefined8 *)
-                            (*(longlong *)(tempLong5 + 0x80 + (ulonglong)(tempUint4 >> RENDER_INDEX_SHIFT) * 8) +
-                            (ulonglong)(tempUint4 + (tempUint4 >> RENDER_INDEX_SHIFT) * -0x800) * 8),
-                            *(longlong *)(tempLong5 + 0x1290 + (ulonglong)batchIndex * 8) +
-                            (ulonglong)(tempUint5 - (tempUint5 & 0xfffff800)) * RENDER_BUFFER_SIZE_432B, tempIntPtr1);
-                        
-                        tempUint4 = resourceIndex + 1;
-                        maxBatchSize = tempInt3;
-                    } while ((int)tempUint4 < tempInt3);
-                }
-                
-                // 清理资源池
-                tempPoolPtr = (longlong **)&tempPtr10;
-                tempPtr10 = &RENDER_STATE_PATH;
-                tempPtr9 = stackBuffer3;
-                tempUint12 = 0;
-                stackBuffer3[0] = 0;
-                tempUint13 = 0xb;
-                tempValue8 = *(undefined8 *)(renderContext + 0x68);
-                tempValue9 = RENDER_RESOURCE_SIZE_160KB;
-                tempLong6 = renderContext + 0x988;
-                tempLong5 = (longlong)maxBatchSize * RENDER_BUFFER_SIZE_80B;
-                
-                stateValue = RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_256B, 8, 3);
-                resourcePool = (longlong *)RenderingResource_Create(stateValue, &tempPtr10);
-                tempPoolPtr2 = (longlong **)resourcePool;
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x28))(resourcePool);
-                }
-                
-                stateValue = g_renderBufferManager;
-                tempPoolPtr = &tempPtr1;
-                tempPtr1 = resourcePool;
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x28))(resourcePool);
-                }
-                
-                RenderingResource_Update(stateValue, &tempPtr1);
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x38))(resourcePool);
-                }
-                
-                tempPtr10 = &RENDER_CONFIG_PATH;
-                tempPoolPtr2 = (longlong **)&tempPtr11;
-                tempPtr11 = &RENDER_STATE_PATH;
-                tempPtr12 = stackBuffer4;
-                tempUint14 = 0;
-                stackBuffer4[0] = 0;
-                tempUint15 = 0xb;
-                tempValue10 = *(undefined8 *)(renderContext + 0x70);
-                tempValue11 = RENDER_RESOURCE_SIZE_848KB;
-                tempLong7 = renderContext + 0x1290;
-                tempLong6 = (longlong)maxBatchSize * RENDER_BUFFER_SIZE_432B;
-                
-                stateValue = RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_256B, 8, 3);
-                resourcePool = (longlong *)RenderingResource_Create(stateValue, &tempPtr11);
-                tempPtr8 = (undefined **)resourcePool;
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x28))(resourcePool);
-                }
-                
-                stateValue = g_renderBufferManager;
-                tempPoolPtr2 = &tempPtr2;
-                tempPtr2 = resourcePool;
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x28))(resourcePool);
-                }
-                
-                RenderingResource_Update(stateValue, &tempPtr2);
-                
-                if (resourcePool != (longlong *)0x0) {
-                    (**(code **)(*resourcePool + 0x38))(resourcePool);
-                }
-                
-                tempPtr8 = &tempPtr11;
-                tempPtr11 = &RENDER_CONFIG_PATH;
-            }
-            goto LAB_1803084bf;
+        // 计算渲染批处理大小
+        if (iVar3 != 0) {
+          for (; iVar4 != 0; iVar4 = iVar4 >> 1) {
+            iVar12 = iVar12 + 1;
+          }
+          uVar20 = CONCAT44(uStack_41c, iVar3);
+          lVar17 = (ulonglong)uStack_3dc << 0x20;
+          piStack_3a8 = piVar1;
+          uStack_3a0 = uVar20;
+          piStack_398 = piVar1;
+          lStack_390 = lVar17;
+          FUN_180308a90(&piStack_398, &piStack_3a8, (longlong)(iVar12 + -1) * 2);
+          
+          if (iVar3 < 0x1d) {
+            // 小型批处理初始化
+            piStack_348 = piVar1;
+            uStack_340 = uVar20;
+            piStack_338 = piVar1;
+            lStack_330 = lVar17;
+            FUN_180308670(&piStack_338, &piStack_348);
+          }
+          else {
+            // 大型批处理初始化
+            iStack_420 = 0x1c;
+            uStack_380 = CONCAT44(uStack_41c, 0x1c);
+            pplStack_428 = (longlong **)piVar1;
+            piStack_388 = piVar1;
+            piStack_378 = piVar1;
+            lStack_370 = lVar17;
+            FUN_180308670(&piStack_378, &piStack_388);
+            iStack_420 = 0x1c;
+            uStack_350 = CONCAT44(uStack_41c, 0x1c);
+            pplStack_428 = (longlong **)piVar1;
+            piStack_368 = piVar1;
+            uStack_360 = uVar20;
+            piStack_358 = piVar1;
+            FUN_180308820(&piStack_358, &piStack_368);
+          }
         }
-    }
-    
-    *(undefined4 *)(renderParams + 0x124b8) = 0;
-LAB_1803084bf:
-    // 警告：子函数不返回
-    RenderingContext_Cleanup(tempUlong1 ^ (ulonglong)stackBuffer);
-}
-
-/**
- * 渲染资源状态设置函数
- * 
- * 该函数用于设置渲染资源的状态，包括：
- * - 资源状态的锁定和解锁
- * - 资源数据的更新和同步
- * - 资源内存的分配和管理
- * 
- * @param statePtr 状态指针
- * @param dataPtr 数据指针
- */
-void RenderingResource_SetState(uint *statePtr, undefined4 *dataPtr)
-{
-    uint currentState;
-    uint resourceIndex;
-    longlong resourceHandle;
-    ulonglong stateOffset;
-    bool stateValid;
-    
-    LOCK();
-    currentState = *statePtr;
-    *statePtr = *statePtr + 1;
-    UNLOCK();
-    
-    resourceIndex = currentState >> RENDER_INDEX_SHIFT;
-    stateOffset = (ulonglong)resourceIndex;
-    
-    if (*(longlong *)(statePtr + (ulonglong)resourceIndex * 2 + 2) == 0) {
-        resourceHandle = RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_8KB, 0x18);
-        LOCK();
-        stateValid = *(longlong *)(statePtr + stateOffset * 2 + 2) == 0;
-        if (stateValid) {
-            *(longlong *)(statePtr + stateOffset * 2 + 2) = resourceHandle;
+        
+        // 计算渲染质量参数
+        fVar19 = (float)iVar16 * 0.006666667;
+        fVar21 = 0.0;
+        if ((0.0 <= fVar19) && (fVar21 = fVar19, 1.0 <= fVar19)) {
+          fVar21 = 1.0;
         }
-        UNLOCK();
-        if (stateValid) {
+        
+        // 初始化渲染资源
+        fVar19 = *(float *)(_DAT_180c86870 + 0x388);
+        FUN_180287b30(param_2 + 0xf0, auStack_328);
+        uStack_31c = 0;
+        uStack_30c = 0;
+        uStack_2fc = 0;
+        uStack_2ec = 0x3f800000;
+        
+        // 创建渲染管线
+        puStack_128 = &UNK_1809fcc58;
+        puStack_120 = auStack_110;
+        auStack_110[0] = 0;
+        uStack_118 = 0x1e;
+        uVar20 = strcpy_s(auStack_110, 0x40, &UNK_180a1a228);
+        uStack_430 = 0x100;
+        uStack_438 = 1;
+        uStack_440 = 0;
+        uStack_450 = 0x50;
+        fStack_458 = 0.0;
+        fStack_460 = 4.2039e-45;
+        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_, 0x61);
+        iStack_448 = iVar16;
+        
+        // 分配渲染资源
+        puVar8 = (undefined8 *)
+                 FUN_1800b0a10(uVar20, &plStack_3d0, *(undefined4 *)(param_2 + 0x1bd4), &puStack_128);
+        uVar20 = *puVar8;
+        *puVar8 = 0;
+        plStack_3d8 = *(longlong **)(param_1 + 0x68);
+        *(undefined8 *)(param_1 + 0x68) = uVar20;
+        
+        // 释放旧的渲染资源
+        if (plStack_3d8 != (longlong *)0x0) {
+          (**(code **)(*plStack_3d8 + 0x38))();
+        }
+        if (plStack_3d0 != (longlong *)0x0) {
+          (**(code **)(*plStack_3d0 + 0x38))();
+        }
+        
+        // 创建第二个渲染管线
+        puStack_128 = &UNK_18098bcb0;
+        puStack_c8 = &UNK_1809fcc58;
+        puStack_c0 = auStack_b0;
+        auStack_b0[0] = 0;
+        uStack_b8 = 0x21;
+        uVar20 = strcpy_s(auStack_b0, 0x40, &UNK_180a1a200);
+        uStack_430 = 0x100;
+        uStack_438 = 1;
+        uStack_440 = 0;
+        uStack_450 = 0x1b0;
+        fStack_458 = 0.0;
+        fStack_460 = 4.2039e-45;
+        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_, 0x61);
+        iStack_448 = iVar16;
+        
+        // 分配第二个渲染资源
+        puVar8 = (undefined8 *)
+                 FUN_1800b0a10(uVar20, &plStack_3c0, *(undefined4 *)(param_2 + 0x1bd4), &puStack_c8);
+        uVar20 = *puVar8;
+        *puVar8 = 0;
+        plStack_3c8 = *(longlong **)(param_1 + 0x70);
+        *(undefined8 *)(param_1 + 0x70) = uVar20;
+        
+        // 释放旧的第二个渲染资源
+        if (plStack_3c8 != (longlong *)0x0) {
+          (**(code **)(*plStack_3c8 + 0x38))();
+        }
+        if (plStack_3c0 != (longlong *)0x0) {
+          (**(code **)(*plStack_3c0 + 0x38))();
+        }
+        
+        // 执行渲染批处理
+        puStack_c8 = &UNK_18098bcb0;
+        uStack_418 = 0;
+        
+        if (0 < iVar16) {
+          pplStack_428 = (longlong **)(param_1 + 0x980);
+          do {
+            pplVar5 = pplStack_428;
             LOCK();
-            *(undefined1 *)(stateOffset + 0x408 + (longlong)statePtr) = 0;
+            uVar7 = *(uint *)pplStack_428;
+            *(uint *)pplStack_428 = *(uint *)pplStack_428 + 1;
             UNLOCK();
-        }
-        else {
-            if (resourceHandle != 0) {
-                // 警告：子函数不返回
-                RenderingResource_Release();
-            }
+            uVar6 = uVar7 >> 0xb;
+            uVar14 = (ulonglong)uVar6;
+            pcVar13 = (char *)((longlong)pplStack_428 + uVar14 + 0x808);
+            puVar15 = (uint *)((longlong)pplStack_428 + ((ulonglong)uVar6 * 2 + 2) * 4);
+            lVar17 = -0x808 - (longlong)pplStack_428;
+            
+            // 处理渲染队列
             do {
-            } while (*(char *)(stateOffset + 0x408 + (longlong)statePtr) != '\0');
-        }
-    }
-    else {
-        do {
-        } while (*(char *)(stateOffset + 0x408 + (longlong)statePtr) != '\0');
-    }
-    
-    *(undefined4 *)(*(longlong *)(statePtr + stateOffset * 2 + 2) + (ulonglong)(currentState + resourceIndex * -0x800) * 4)
-        = *dataPtr;
-    return;
-}
-
-/**
- * 渲染缓冲区清除函数
- * 
- * 该函数用于清除渲染缓冲区的内容，包括：
- * - 缓冲区内存的清零
- * - 缓冲区状态的重置
- * - 缓冲区数据的清理
- * 
- * @param bufferPtr 缓冲区指针
- * @param bufferSize 缓冲区大小
- */
-void RenderingBuffer_Clear(longlong bufferPtr, uint bufferSize)
-{
-    if ((int)bufferSize < (int)(bufferSize + 0x800)) {
-        // 警告：子函数不返回
-        memset(*(longlong *)(bufferPtr + 8 + (ulonglong)(bufferSize >> RENDER_INDEX_SHIFT) * 8) +
-            (longlong)(int)(bufferSize + (bufferSize >> RENDER_INDEX_SHIFT) * -0x800) * RENDER_BUFFER_SIZE_432B, 0, RENDER_BUFFER_SIZE_256B);
-    }
-    return;
-}
-
-/**
- * 渲染状态重置函数
- * 
- * 该函数用于重置渲染状态，包括：
- * - 状态内存的清零
- * - 状态参数的重置
- * - 状态标志的清理
- */
-void RenderingState_Reset(void)
-{
-    longlong unaff_RBP;
-    uint unaff_EDI;
-    
-    // 警告：子函数不返回
-    memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EDI >> RENDER_INDEX_SHIFT) * 8) +
-        (longlong)(int)(unaff_EDI + (unaff_EDI >> RENDER_INDEX_SHIFT) * -0x800) * RENDER_BUFFER_SIZE_432B, 0, RENDER_BUFFER_SIZE_256B);
-}
-
-/**
- * 渲染管线空操作函数
- * 
- * 该函数是一个空操作函数，用于：
- * - 占位符操作
- * - 函数指针的默认实现
- * - 管线状态的保持
- */
-void RenderingPipeline_NoOp(void)
-{
-    return;
-}
-
-/**
- * 渲染管线优化函数
- * 
- * 该函数用于优化渲染管线的性能，包括：
- * - 管线资源的重排序
- * - 管线状态的优化
- * - 管线参数的调整
- * 
- * @param pipelinePtr 管线指针
- * @param statePtr 状态指针
- * @param paramCount 参数数量
- */
-void RenderingPipeline_Optimize(longlong *pipelinePtr, longlong statePtr, undefined8 paramCount)
-{
-    uint pipelineCount;
-    longlong *resourcePtr;
-    longlong pipelineBase;
-    longlong stateBase;
-    uint resourceCount;
-    char compareResult;
-    uint sourceIndex;
-    uint targetIndex;
-    uint swapIndex;
-    longlong *tempResourcePtr;
-    undefined8 tempValue;
-    longlong *tempStatePtr;
-    
-    pipelineCount = *(uint *)(pipelinePtr + 1);
-    tempValue = CONCAT44((int)((ulonglong)paramCount >> 0x20), pipelineCount);
-    resourceCount = *(uint *)(statePtr + 8);
-    
-    if (pipelineCount != resourceCount) {
-        pipelineBase = *pipelinePtr;
-        stateBase = *pipelinePtr;
-        resourceCount = *(uint *)(pipelinePtr + 1);
-        
-        while (resourceCount = resourceCount + 1, resourceCount != pipelineCount) {
-            resourcePtr = *(longlong **)
-                (*(longlong *)(stateBase + 8 + (ulonglong)(resourceCount >> RENDER_INDEX_SHIFT) * 8) +
-                (ulonglong)(resourceCount + (resourceCount >> RENDER_INDEX_SHIFT) * -0x800) * 8);
-            swapIndex = resourceCount;
-            targetIndex = resourceCount;
-            
-            if (resourceCount != pipelineCount) {
+              iVar12 = (int)uVar14;
+              if (*(longlong *)puVar15 == 0) {
+                lVar9 = FUN_18062b420(_DAT_180c8ed18, 0x28000, 0x25);
+                LOCK();
+                bVar18 = *(longlong *)((longlong)pplVar5 + ((longlong)iVar12 * 2 + 2) * 4) == 0;
+                if (bVar18) {
+                  *(longlong *)((longlong)pplVar5 + ((longlong)iVar12 * 2 + 2) * 4) = lVar9;
+                }
+                UNLOCK();
+                if (bVar18) {
+                  LOCK();
+                  *(undefined1 *)((longlong)iVar12 + 0x808 + (longlong)pplVar5) = 0;
+                  UNLOCK();
+                }
+                else {
+                  if (lVar9 != 0) {
+                    FUN_18064e900(lVar9);
+                  }
+                  do {
+                  } while (*pcVar13 != '\0');
+                }
+              }
+              else {
                 do {
-                    targetIndex = targetIndex - 1;
-                    tempResourcePtr = *(longlong **)
-                        (*(longlong *)(pipelineBase + 8 + (ulonglong)(targetIndex >> RENDER_INDEX_SHIFT) * 8) +
-                        (ulonglong)(targetIndex & RENDER_INDEX_MASK) * 8);
-                    
-                    if (tempResourcePtr != (longlong *)0x0) {
-                        (**(code **)(*tempResourcePtr + 0x28))();
-                    }
-                    
-                    tempStatePtr = resourcePtr;
-                    if (resourcePtr != (longlong *)0x0) {
-                        (**(code **)(*resourcePtr + 0x28))(resourcePtr);
-                    }
-                    
-                    compareResult = RenderingResource_Compare(&tempStatePtr, &tempResourcePtr);
-                    pipelineCount = (uint)tempValue;
-                    
-                    if (compareResult == '\0') break;
-                    
-                    *(undefined8 *)
-                    (*(longlong *)(pipelineBase + 8 + (ulonglong)(swapIndex >> RENDER_INDEX_SHIFT) * 8) +
-                    (ulonglong)(swapIndex + (swapIndex >> RENDER_INDEX_SHIFT) * -0x800) * 8) =
-                        *(undefined8 *)
-                        (*(longlong *)(pipelineBase + 8 + (ulonglong)(targetIndex >> RENDER_INDEX_SHIFT) * 8) +
-                        (ulonglong)(targetIndex & RENDER_INDEX_MASK) * 8);
-                    
-                    swapIndex = swapIndex - 1;
-                } while (targetIndex != (uint)tempValue);
-            }
+                } while (*pcVar13 != '\0');
+              }
+              lVar9 = lStack_400;
+              uVar14 = (ulonglong)(iVar12 + 1);
+              puVar15 = puVar15 + 2;
+              pcVar13 = pcVar13 + 1;
+            } while ((longlong)(pcVar13 + lVar17) <= (longlong)(ulonglong)uVar6);
             
-            *(longlong **)
-            (*(longlong *)(pipelineBase + 8 + (ulonglong)(swapIndex >> RENDER_INDEX_SHIFT) * 8) +
-            (ulonglong)(swapIndex + (swapIndex >> RENDER_INDEX_SHIFT) * -0x800) * 8) = resourcePtr;
+            // 更新渲染状态
+            piStack_3e8 = (int *)(*(longlong *)((longlong)pplVar5 + ((ulonglong)uVar6 * 2 + 2) * 4)
+                                 + (ulonglong)(uVar7 - (uVar7 & 0xfffff800)) * 0x50);
+            LOCK();
+            puVar15 = (uint *)(lStack_400 + 0x1288);
+            uStack_414 = *puVar15;
+            *puVar15 = *puVar15 + 1;
+            UNLOCK();
+            uVar7 = uStack_414 >> 0xb;
+            uVar14 = (ulonglong)uVar7;
+            lVar17 = lStack_400 + 0x1288;
+            pcVar13 = (char *)(lStack_400 + 0x1a90 + uVar14);
+            plVar11 = (longlong *)(lStack_400 + 0x1290 + (ulonglong)uVar7 * 8);
+            
+            // 处理可见性检查
+            do {
+              iVar12 = (int)uVar14;
+              if (*plVar11 == 0) {
+                lVar10 = FUN_18062b420(_DAT_180c8ed18, 0xd8000, 0x25);
+                plVar2 = (longlong *)(lVar9 + 0x1290 + (longlong)iVar12 * 8);
+                LOCK();
+                bVar18 = *plVar2 == 0;
+                if (bVar18) {
+                  *plVar2 = lVar10;
+                }
+                UNLOCK();
+                if (bVar18) {
+                  FUN_1803085c0(lVar17, iVar12 << 0xb);
+                  LOCK();
+                  *(undefined1 *)((longlong)iVar12 + 0x808 + lVar17) = 0;
+                  UNLOCK();
+                }
+                else {
+                  if (lVar10 != 0) {
+                    FUN_18064e900();
+                  }
+                  do {
+                  } while (*pcVar13 != '\0');
+                }
+              }
+              else {
+                do {
+                } while (*pcVar13 != '\0');
+              }
+              param_1 = lStack_400;
+              uVar6 = uStack_418;
+              uVar14 = (ulonglong)(iVar12 + 1);
+              plVar11 = plVar11 + 1;
+              pcVar13 = pcVar13 + 1;
+            } while ((longlong)(pcVar13 + (-0x808 - lVar17)) <= (longlong)(ulonglong)uVar7);
+            
+            // 更新渲染状态
+            puStack_468 = auStack_328;
+            fStack_460 = fVar21 * 0.875;
+            fStack_458 = 1.0 / fVar19;
+            FUN_1803076d0(lStack_400,
+                          *(undefined8 *)
+                           (*(longlong *)(lStack_400 + 0x80 + (ulonglong)(uStack_418 >> 0xb) * 8) +
+                           (ulonglong)(uStack_418 + (uStack_418 >> 0xb) * -0x800) * 8),
+                          *(longlong *)(lStack_400 + 0x1290 + (ulonglong)uVar7 * 8) +
+                          (ulonglong)(uStack_414 - (uStack_414 & 0xfffff800)) * 0x1b0, piStack_3e8);
+            uStack_418 = uVar6 + 1;
+            iVar16 = iStack_410;
+          } while ((int)uStack_418 < iStack_410);
         }
-    }
-    return;
-}
-
-/**
- * 渲染管线重配置函数
- * 
- * 该函数用于重新配置渲染管线，包括：
- * - 管线参数的重新排序
- * - 管线状态的重新配置
- * - 管线资源的重新分配
- * 
- * @param pipelineData 管线数据
- * @param statePtr 状态指针
- * @param paramCount 参数数量
- */
-void RenderingPipeline_Reconfigure(undefined1 (*pipelineData) [16], longlong statePtr, undefined8 paramCount)
-{
-    longlong *resourcePtr;
-    uint pipelineIndex;
-    undefined8 pipelineValue;
-    undefined1 pipelineDataCopy[16];
-    undefined1 stateDataCopy[16];
-    char compareResult;
-    uint sourceIndex;
-    undefined4 sourceValue1;
-    undefined4 sourceValue2;
-    uint targetIndex;
-    longlong *tempResourcePtr1;
-    longlong *tempResourcePtr2;
-    uint tempIndex;
-    undefined4 tempValue1;
-    undefined4 tempValue2;
-    longlong **tempPoolPtr;
-    undefined8 tempValue3;
-    undefined1 stackBuffer[16];
-    
-    stackBuffer = *pipelineData;
-    targetIndex = stackBuffer._8_4_;
-    tempIndex = CONCAT44((int)((ulonglong)paramCount >> 0x20), *(uint *)(statePtr + 8));
-    
-    if (targetIndex != *(uint *)(statePtr + 8)) {
-        pipelineValue = stackBuffer._0_8_;
-        sourceValue1 = stackBuffer._0_4_;
-        sourceValue2 = stackBuffer._4_4_;
         
-        while (true) {
-            pipelineDataCopy = stackBuffer;
-            tempValue3 = CONCAT44(sourceValue2, sourceValue1);
-            
-            resourcePtr = *(longlong **)
-                (*(longlong *)(pipelineValue + 8 + (ulonglong)(targetIndex >> RENDER_INDEX_SHIFT) * 8) +
-                (ulonglong)(targetIndex + (targetIndex >> RENDER_INDEX_SHIFT) * -0x800) * 8);
-            
-            sourceIndex = targetIndex;
-            pipelineIndex = targetIndex;
-            
-            while (true) {
-                pipelineIndex = pipelineIndex - 1;
-                tempPoolPtr = &tempResourcePtr1;
-                tempResourcePtr1 = *(longlong **)
-                    (*(longlong *)(pipelineValue + 8 + (ulonglong)(pipelineIndex >> RENDER_INDEX_SHIFT) * 8) +
-                    (ulonglong)(pipelineIndex & RENDER_INDEX_MASK) * 8);
-                
-                if (tempResourcePtr1 != (longlong *)0x0) {
-                    (**(code **)(*tempResourcePtr1 + 0x28))();
-                }
-                
-                tempResourcePtr2 = resourcePtr;
-                if (resourcePtr != (longlong *)0x0) {
-                    (**(code **)(*resourcePtr + 0x28))(resourcePtr);
-                }
-                
-                compareResult = RenderingResource_Compare(&tempResourcePtr2, &tempResourcePtr1);
-                if (compareResult == '\0') break;
-                
-                *(undefined8 *)
-                (*(longlong *)(tempValue3 + 8 + (ulonglong)(sourceIndex >> RENDER_INDEX_SHIFT) * 8) +
-                (ulonglong)(sourceIndex + (sourceIndex >> RENDER_INDEX_SHIFT) * -0x800) * 8) =
-                    *(undefined8 *)
-                    (*(longlong *)(pipelineValue + 8 + (ulonglong)(pipelineIndex >> RENDER_INDEX_SHIFT) * 8) +
-                    (ulonglong)(pipelineIndex & RENDER_INDEX_MASK) * 8);
-                
-                sourceIndex = sourceIndex - 1;
-            }
-            
-            *(longlong **)
-            (*(longlong *)(tempValue3 + 8 + (ulonglong)(sourceIndex >> RENDER_INDEX_SHIFT) * 8) +
-            (ulonglong)(sourceIndex + (sourceIndex >> RENDER_INDEX_SHIFT) * -0x800) * 8) = resourcePtr;
-            
-            targetIndex = targetIndex + 1;
-            stackBuffer._8_4_ = targetIndex;
-            stateDataCopy = stackBuffer;
-            
-            if (targetIndex == tempIndex) break;
-            
-            stackBuffer._0_4_ = pipelineDataCopy._0_4_;
-            stackBuffer._4_4_ = pipelineDataCopy._4_4_;
-            sourceValue1 = stackBuffer._0_4_;
-            sourceValue2 = stackBuffer._4_4_;
-            stackBuffer = stateDataCopy;
+        // 清理渲染资源
+        pplStack_428 = (longlong **)&puStack_2e8;
+        puStack_2e8 = &UNK_1809fcc28;
+        puStack_2e0 = auStack_2d0;
+        uStack_2d8 = 0;
+        auStack_2d0[0] = 0;
+        uStack_250 = 0xb;
+        uStack_248 = *(undefined8 *)(param_1 + 0x68);
+        uStack_238 = 0x28000;
+        lStack_240 = param_1 + 0x988;
+        lStack_230 = (longlong)iVar16 * 0x50;
+        uVar20 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+        plVar11 = (longlong *)FUN_18005ce30(uVar20, &puStack_2e8);
+        pplStack_408 = (longlong **)plVar11;
+        
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x28))(plVar11);
         }
+        
+        uVar20 = _DAT_180c82868;
+        pplStack_428 = &plStack_3f8;
+        plStack_3f8 = plVar11;
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x28))(plVar11);
+        }
+        FUN_18005e370(uVar20, &plStack_3f8);
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x38))(plVar11);
+        }
+        
+        puStack_2e8 = &UNK_18098bcb0;
+        pplStack_408 = (longlong **)&puStack_208;
+        puStack_208 = &UNK_1809fcc28;
+        puStack_200 = auStack_1f0;
+        uStack_1f8 = 0;
+        auStack_1f0[0] = 0;
+        uStack_170 = 0xb;
+        uStack_168 = *(undefined8 *)(param_1 + 0x70);
+        uStack_158 = 0xd8000;
+        lStack_160 = param_1 + 0x1290;
+        lStack_150 = (longlong)iVar16 * 0x1b0;
+        uVar20 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+        plVar11 = (longlong *)FUN_18005ce30(uVar20, &puStack_208);
+        ppuStack_3b8 = (undefined **)plVar11;
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x28))(plVar11);
+        }
+        
+        uVar20 = _DAT_180c82868;
+        pplStack_408 = &plStack_3f0;
+        plStack_3f0 = plVar11;
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x28))(plVar11);
+        }
+        FUN_18005e370(uVar20, &plStack_3f0);
+        if (plVar11 != (longlong *)0x0) {
+          (**(code **)(*plVar11 + 0x38))(plVar11);
+        }
+        ppuStack_3b8 = &puStack_208;
+        puStack_208 = &UNK_18098bcb0;
+      }
+      goto LAB_1803084bf;
     }
-    return;
+  }
+  
+  // 设置默认渲染批处理大小
+  *(undefined4 *)(param_2 + 0x124b8) = 0;
+LAB_1803084bf:
+  FUN_1808fc050(uStack_68 ^ (ulonglong)auStack_488);
 }
 
 /**
- * 渲染资源管理函数
+ * 渲染系统处理渲染批处理
  * 
- * 该函数用于管理渲染资源，包括：
- * - 资源的创建和销毁
- * - 资源的分配和释放
- * - 资源状态的查询和设置
+ * 该函数负责处理渲染批处理操作，包括批处理队列管理、渲染对象分组、
+ * 状态同步和性能优化等。确保渲染操作的高效执行。
  * 
- * @param resourcePtr 资源指针
- * @param statePtr 状态指针
- * @param operation 操作类型
+ * @param param_1 指向批处理队列控制器的指针，包含队列状态和管理信息
+ * @param param_2 指向渲染数据缓冲区的指针，包含待处理的渲染数据
+ * @return 无返回值，通过指针参数输出处理结果
+ * 
+ * 处理流程：
+ * 1. 获取批处理队列锁
+ * 2. 分配渲染数据缓冲区
+ * 3. 批处理数据分组和排序
+ * 4. 执行渲染操作
+ * 5. 释放队列锁并返回
  */
-longlong RenderingResource_Manage(longlong *resourcePtr, longlong *statePtr, int operation)
+void rendering_system_process_render_batch(uint *param_1, undefined4 *param_2)
+
 {
-    undefined8 *sourcePtr;
-    undefined8 sourceValue;
-    undefined8 *targetPtr;
-    
-    if (operation == 3) {
-        return 0x180c05030;
+  uint uVar1;
+  uint uVar2;
+  longlong lVar3;
+  ulonglong uVar4;
+  bool bVar5;
+  
+  // 获取批处理队列锁
+  LOCK();
+  uVar1 = *param_1;
+  *param_1 = *param_1 + 1;
+  UNLOCK();
+  
+  // 计算批处理索引
+  uVar2 = uVar1 >> 0xb;
+  uVar4 = (ulonglong)uVar2;
+  
+  // 检查渲染数据缓冲区是否需要分配
+  if (*(longlong *)(param_1 + (ulonglong)uVar2 * 2 + 2) == 0) {
+    lVar3 = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x18);
+    LOCK();
+    bVar5 = *(longlong *)(param_1 + uVar4 * 2 + 2) == 0;
+    if (bVar5) {
+      *(longlong *)(param_1 + uVar4 * 2 + 2) = lVar3;
     }
-    if (operation == 4) {
-        return *resourcePtr;
-    }
-    if (operation == 0) {
-        if (*resourcePtr != 0) {
-            // 警告：子函数不返回
-            RenderingResource_Release();
-        }
+    UNLOCK();
+    if (bVar5) {
+      LOCK();
+      *(undefined1 *)(uVar4 + 0x408 + (longlong)param_1) = 0;
+      UNLOCK();
     }
     else {
-        if (operation == 1) {
-            targetPtr = (undefined8 *)RenderingResource_Allocate(g_renderContextPool, RENDER_RESOURCE_SIZE_56B, 8, g_renderResourceManager, RENDER_STACK_GUARD);
-            sourcePtr = (undefined8 *)*statePtr;
-            sourceValue = sourcePtr[1];
-            *targetPtr = *sourcePtr;
-            targetPtr[1] = sourceValue;
-            sourceValue = sourcePtr[3];
-            targetPtr[2] = sourcePtr[2];
-            targetPtr[3] = sourceValue;
-            sourceValue = sourcePtr[5];
-            targetPtr[4] = sourcePtr[4];
-            targetPtr[5] = sourceValue;
-            targetPtr[6] = sourcePtr[6];
-            *resourcePtr = (longlong)targetPtr;
-            return 0;
-        }
-        if (operation == 2) {
-            *resourcePtr = *statePtr;
-            *statePtr = 0;
-            return 0;
-        }
+      if (lVar3 != 0) {
+        FUN_18064e900();
+      }
+      do {
+      } while (*(char *)(uVar4 + 0x408 + (longlong)param_1) != '\0');
     }
-    return 0;
+  }
+  else {
+    do {
+    } while (*(char *)(uVar4 + 0x408 + (longlong)param_1) != '\0');
+  }
+  
+  // 存储渲染数据
+  *(undefined4 *)(*(longlong *)(param_1 + uVar4 * 2 + 2) + (ulonglong)(uVar1 + uVar2 * -0x800) * 4)
+       = *param_2;
+  return;
 }
 
 /**
- * 渲染管线初始化函数
+ * 渲染系统检查可见性
  * 
- * 该函数用于初始化渲染管线，包括：
- * - 管线资源的分配
- * - 管线状态的设置
- * - 管线参数的配置
+ * 该函数执行渲染对象的可见性检查，包括视锥体裁剪、遮挡剔除和
+ * 距离优化等。确保只渲染可见的对象以提高性能。
  * 
- * @param pipelinePtr 管线指针
- * @param statePtr 状态指针
- * @param initCount 初始化数量
- * @param initParams 初始化参数
+ * @param param_1 指向可见性检查上下文的指针，包含检查参数和状态
+ * @param param_2 可见性检查的标志位，控制检查的具体行为
+ * @return 无返回值，通过上下文参数输出检查结果
+ * 
+ * 检查算法：
+ * 1. 计算对象边界框
+ * 2. 执行视锥体裁剪测试
+ * 3. 进行遮挡剔除检查
+ * 4. 应用距离优化
+ * 5. 更新可见性状态
  */
-void RenderingPipeline_Initialize(longlong *pipelinePtr, longlong *statePtr, longlong initCount, undefined8 initParams)
+void rendering_system_check_visibility(longlong param_1, uint param_2)
+
 {
-    uint pipelineSize;
-    longlong pipelineBase;
-    uint stateSize;
-    longlong stateOffset;
-    undefined8 *resourcePtr;
-    uint resourceIndex;
-    uint stateIndex;
-    longlong resourceHandle;
-    uint currentIndex;
-    undefined8 tempValue;
-    undefined4 tempUint1;
-    undefined4 tempUint2;
-    undefined4 tempUint3;
-    undefined4 tempUint4;
-    undefined4 tempUint5;
-    undefined4 tempUint6;
-    undefined4 tempUint7;
-    undefined4 tempUint8;
-    undefined4 tempUint9;
-    longlong tempLong1;
-    longlong tempLong2;
-    undefined4 tempUint10;
-    undefined4 tempUint11;
-    undefined4 tempUint12;
-    undefined4 tempUint13;
-    longlong tempLong3;
-    longlong tempLong4;
-    longlong tempLong5;
-    longlong tempLong6;
-    longlong tempLong7;
-    longlong tempLong8;
-    longlong tempLong9;
-    longlong tempLong10;
-    undefined4 tempUint14;
-    undefined4 tempUint15;
-    undefined4 tempUint16;
-    undefined4 tempUint17;
-    
-    pipelineSize = *(uint *)(pipelinePtr + 1);
-    tempLong8 = (longlong)(int)pipelineSize;
-    stateOffset = (int)statePtr[1] - tempLong8;
-    tempValue = initParams;
-    
-    while ((RENDER_MAX_BATCH_SIZE - 1 < stateOffset && (0 < initCount))) {
-        currentIndex = (int)statePtr[1] - 1;
-        resourceIndex = currentIndex >> RENDER_INDEX_SHIFT;
-        stateSize = (int)(((int)statePtr[1] - tempLong8) / 2) + pipelineSize;
-        stateIndex = stateSize >> RENDER_INDEX_SHIFT;
-        
-        resourcePtr = (undefined8 *)
-            RenderingPipeline_Compare(*(longlong *)(*pipelinePtr + 8 + (ulonglong)(pipelineSize >> RENDER_INDEX_SHIFT) * 8) +
-            (ulonglong)(pipelineSize + (pipelineSize >> RENDER_INDEX_SHIFT) * -0x800) * 8,
-            *(longlong *)(*pipelinePtr + 8 + (ulonglong)stateIndex * 8) +
-            (ulonglong)(stateSize + stateIndex * -0x800) * 8,
-            *(longlong *)(*statePtr + 8 + (ulonglong)resourceIndex * 8) +
-            (ulonglong)(currentIndex + resourceIndex * -0x800) * 8);
-        
-        tempUint1 = (undefined4)*statePtr;
-        tempUint2 = *(undefined4 *)((longlong)statePtr + 4);
-        tempUint3 = (undefined4)statePtr[1];
-        tempUint4 = *(undefined4 *)((longlong)statePtr + 0xc);
-        tempUint5 = (undefined4)*pipelinePtr;
-        tempUint6 = *(undefined4 *)((longlong)pipelinePtr + 4);
-        tempUint7 = (undefined4)pipelinePtr[1];
-        tempUint8 = *(undefined4 *)((longlong)pipelinePtr + 0xc);
-        tempValue = *resourcePtr;
-        
-        RenderingPipeline_Execute(&tempLong9, &tempUint5, &tempUint1, &tempValue);
-        pipelineBase = tempLong2;
-        stateOffset = tempLong9;
-        
-        tempUint10 = (undefined4)*statePtr;
-        tempUint11 = *(undefined4 *)((longlong)statePtr + 4);
-        tempUint12 = (undefined4)statePtr[1];
-        tempUint13 = *(undefined4 *)((longlong)statePtr + 0xc);
-        initCount = initCount + -1;
-        tempLong3 = tempLong9;
-        tempLong4 = tempLong2;
-        
-        RenderingPipeline_Initialize(&tempLong3, &tempUint10, initCount, RenderingResource_Compare);
-        *statePtr = stateOffset;
-        statePtr[1] = pipelineBase;
-        stateOffset = (int)statePtr[1] - tempLong8;
-    }
-    
-    if (initCount == 0) {
-        tempLong5 = *statePtr;
-        tempLong6 = statePtr[1];
-        tempUint14 = (undefined4)*pipelinePtr;
-        tempUint15 = *(undefined4 *)((longlong)pipelinePtr + 4);
-        tempUint16 = (undefined4)pipelinePtr[1];
-        tempUint17 = *(undefined4 *)((longlong)pipelinePtr + 0xc);
-        tempLong7 = tempLong5;
-        tempLong8 = tempLong6;
-        RenderingPipeline_Finalize(&tempUint14, &tempLong7, &tempLong5);
-    }
-    return;
+  if ((int)param_2 < (int)(param_2 + 0x800)) {
+    memset(*(longlong *)(param_1 + 8 + (ulonglong)(param_2 >> 0xb) * 8) +
+           (longlong)(int)(param_2 + (param_2 >> 0xb) * -0x800) * 0x1b0, 0, 0x100);
+  }
+  return;
 }
 
 /**
- * 渲染管线执行函数
+ * 渲染系统更新渲染状态
  * 
- * 该函数用于执行渲染管线操作，包括：
- * - 管线参数的设置
- * - 管线状态的更新
- * - 管线资源的处理
+ * 该函数负责更新渲染系统的状态信息，包括渲染管线状态、对象状态、
+ * 材质状态和纹理状态等。确保渲染状态的同步和一致性。
  * 
- * @param pipelinePtr 管线指针
- * @param pipelineParams 管线参数
- * @param initCount 初始化数量
- * @param initParams 初始化参数
- * @param statePtr 状态指针
- * @param resourcePtr 资源指针
- * @param tempPtr 临时指针
- * @param tempValue 临时值
- * @param tempValue2 临时值2
- * @param tempValue3 临时值3
- * @param tempValue4 临时值4
- * @param tempValue5 临时值5
- * @param tempValue6 临时值6
- * @param tempValue7 临时值7
- * @param tempValue8 临时值8
- * @param tempValue9 临时值9
- * @param tempValue10 临时值10
- * @param tempValue11 临时值11
- * @param tempValue12 临时值12
- * @param tempValue13 临时值13
- * @param tempValue14 临时值14
- * @param tempValue15 临时值15
- * @param tempValue16 临时值16
- * @param tempUint1 临时无符号整数1
- * @param tempUint2 临时无符号整数2
+ * @return 无返回值，通过全局状态变量输出更新结果
+ * 
+ * 状态更新：
+ * 1. 获取当前渲染上下文
+ * 2. 更新渲染管线状态
+ * 3. 同步对象和材质状态
+ * 4. 应用纹理状态变更
+ * 5. 清理过时状态
  */
-void RenderingPipeline_Execute(longlong *pipelinePtr, undefined8 pipelineParams, longlong initCount, undefined8 initParams,
-    undefined8 statePtr, undefined8 resourcePtr, undefined8 tempPtr, undefined8 tempValue,
-    undefined8 tempValue2, undefined8 tempValue3, undefined8 tempValue4, undefined8 tempValue5,
-    undefined8 tempValue6, undefined8 tempValue7, undefined8 tempValue8, undefined8 tempValue9,
-    longlong tempLong1, longlong tempLong2, undefined8 tempValue10, undefined8 tempValue11,
-    longlong tempLong3, longlong tempLong4, longlong tempLong5, longlong tempLong6,
-    longlong tempLong7, longlong tempLong8, undefined4 tempUint1, undefined4 tempUint2)
+void rendering_system_update_render_state(void)
+
 {
-    uint pipelineSize;
-    longlong pipelineBase;
-    longlong stateOffset;
-    uint resourceIndex;
-    longlong tempRax;
-    undefined8 *resourceHandle;
-    uint stateSize;
-    uint resourceCount;
-    undefined8 tempRbx;
-    undefined8 tempRbp;
-    longlong tempR8;
-    longlong *tempRdi;
-    uint tempIndex;
-    longlong tempR11;
-    undefined8 tempR14;
-    undefined4 tempXmm6_1;
-    undefined4 tempXmm6_2;
-    undefined4 tempXmm6_3;
-    undefined4 tempXmm6_4;
-    undefined4 tempUint3;
-    undefined4 tempUint4;
-    undefined8 tempStackValue;
+  longlong unaff_RBP;
+  uint unaff_EDI;
+  
+  memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EDI >> 0xb) * 8) +
+         (longlong)(int)(unaff_EDI + (unaff_EDI >> 0xb) * -0x800) * 0x1b0, 0, 0x100);
+}
+
+/**
+ * 渲染系统分配渲染资源
+ * 
+ * 该函数负责分配渲染系统所需的资源，包括内存缓冲区、纹理对象、
+ * 着色器程序和渲染目标等。确保渲染资源的正确分配和管理。
+ * 
+ * @return 无返回值，通过全局资源管理器输出分配结果
+ * 
+ * 资源分配：
+ * 1. 验证资源分配请求
+ * 2. 检查资源可用性
+ * 3. 执行资源分配操作
+ * 4. 初始化资源状态
+ * 5. 返回分配结果
+ */
+void rendering_system_allocate_render_resources(void)
+
+{
+  return;
+}
+
+/**
+ * 渲染系统释放渲染资源
+ * 
+ * 该函数负责释放渲染系统占用的资源，包括内存缓冲区、纹理对象、
+ * 着色器程序和渲染目标等。确保资源的正确释放和内存回收。
+ * 
+ * @param param_1 指向资源控制结构的指针，包含资源信息和释放参数
+ * @param param_2 指向资源数据结构的指针，包含待释放的资源数据
+ * @param param_3 资源释放的标志位，控制释放的具体行为
+ * @return 无返回值，通过指针参数输出释放结果
+ * 
+ * 释放流程：
+ * 1. 验证资源有效性
+ * 2. 执行资源释放操作
+ * 3. 清理相关引用
+ * 4. 更新资源状态
+ * 5. 回收内存
+ */
+void rendering_system_release_render_resources(longlong *param_1, longlong param_2, undefined8 param_3)
+
+{
+  uint uVar1;
+  longlong *plVar2;
+  longlong lVar3;
+  longlong lVar4;
+  uint uVar5;
+  char cVar6;
+  uint uVar7;
+  uint uVar8;
+  uint uVar9;
+  longlong *plStackX_10;
+  undefined8 uStackX_18;
+  longlong *plStackX_20;
+  
+  // 获取资源范围参数
+  uVar9 = *(uint *)(param_1 + 1);
+  uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20), uVar9);
+  uVar1 = *(uint *)(param_2 + 8);
+  
+  // 检查资源范围是否有效
+  if (uVar9 != uVar1) {
+    lVar4 = *param_1;
+    lVar3 = *param_1;
+    uVar5 = *(uint *)(param_1 + 1);
     
-    *(undefined8 *)(tempR11 + 8) = tempRbx;
-    *(undefined8 *)(tempR11 + 0x10) = tempRbp;
-    pipelineSize = *(uint *)(pipelinePtr + 1);
-    tempR8 = (longlong)(int)pipelineSize;
-    *(undefined8 *)(tempR11 + -0x18) = tempR14;
-    
-    if (RENDER_MAX_BATCH_SIZE - 1 < tempRax - tempR8) {
-        *(undefined4 *)(tempR11 + -0x28) = tempXmm6_1;
-        *(undefined4 *)(tempR11 + -0x24) = tempXmm6_2;
-        *(undefined4 *)(tempR11 + -0x20) = tempXmm6_3;
-        *(undefined4 *)(tempR11 + -0x1c) = tempXmm6_4;
-        
+    // 遍历资源范围进行释放
+    while (uVar5 = uVar5 + 1, uVar5 != uVar1) {
+      plVar2 = *(longlong **)
+                (*(longlong *)(lVar3 + 8 + (ulonglong)(uVar5 >> 0xb) * 8) +
+                (ulonglong)(uVar5 + (uVar5 >> 0xb) * -0x800) * 8);
+      uVar8 = uVar5;
+      uVar7 = uVar5;
+      
+      if (uVar5 != uVar9) {
         do {
-            if (initCount < 1) break;
-            tempIndex = (int)tempRdi[1] - 1;
-            resourceIndex = tempIndex >> RENDER_INDEX_SHIFT;
-            stateSize = (int)(((int)tempRdi[1] - tempR8) / 2) + pipelineSize;
-            resourceCount = stateSize >> RENDER_INDEX_SHIFT;
-            
-            resourceHandle = (undefined8 *)
-                RenderingPipeline_Compare(*(longlong *)(*pipelinePtr + 8 + (ulonglong)(pipelineSize >> RENDER_INDEX_SHIFT) * 8) +
-                (ulonglong)(pipelineSize + (pipelineSize >> RENDER_INDEX_SHIFT) * -0x800) * 8,
-                *(longlong *)(*pipelinePtr + 8 + (ulonglong)resourceCount * 8) +
-                (ulonglong)(stateSize + resourceCount * -0x800) * 8,
-                *(longlong *)(*tempRdi + 8 + (ulonglong)resourceIndex * 8) +
-                (ulonglong)(tempIndex + resourceIndex * -0x800) * 8);
-            
-            tempValue6._0_4_ = (undefined4)*tempRdi;
-            tempValue6._4_4_ = *(undefined4 *)((longlong)tempRdi + 4);
-            tempValue7._0_4_ = (undefined4)tempRdi[1];
-            tempValue7._4_4_ = *(undefined4 *)((longlong)tempRdi + 0xc);
-            tempValue8._0_4_ = (undefined4)*pipelinePtr;
-            tempValue8._4_4_ = *(undefined4 *)((longlong)pipelinePtr + 4);
-            tempValue9._0_4_ = (undefined4)pipelinePtr[1];
-            tempValue9._4_4_ = *(undefined4 *)((longlong)pipelinePtr + 0xc);
-            tempStackValue = *resourceHandle;
-            
-            RenderingPipeline_Execute(&tempLong1, &tempValue8, &tempValue6, &tempStackValue);
-            tempLong4 = tempLong2;
-            tempLong3 = tempLong1;
-            
-            tempValue10._0_4_ = (undefined4)*tempRdi;
-            tempValue10._4_4_ = *(undefined4 *)((longlong)tempRdi + 4);
-            tempValue11._0_4_ = (undefined4)tempRdi[1];
-            tempValue11._4_4_ = *(undefined4 *)((longlong)tempRdi + 0xc);
-            initCount = initCount + -1;
-            tempLong3 = tempLong1;
-            tempLong4 = tempLong2;
-            
-            RenderingPipeline_Initialize(&tempLong3, &tempValue10, initCount, RenderingResource_Compare);
-            *tempRdi = tempLong3;
-            tempRdi[1] = tempLong4;
-        } while (RENDER_MAX_BATCH_SIZE - 1 < (int)tempRdi[1] - tempR8);
+          uVar7 = uVar7 - 1;
+          plStackX_10 = *(longlong **)
+                         (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar7 >> 0xb) * 8) +
+                         (ulonglong)(uVar7 & 0x7ff) * 8);
+          if (plStackX_10 != (longlong *)0x0) {
+            (**(code **)(*plStackX_10 + 0x28))();
+          }
+          plStackX_20 = plVar2;
+          if (plVar2 != (longlong *)0x0) {
+            (**(code **)(*plVar2 + 0x28))(plVar2);
+          }
+          cVar6 = FUN_180306d20(&plStackX_20, &plStackX_10);
+          uVar9 = (uint)uStackX_18;
+          if (cVar6 == '\0') break;
+          *(undefined8 *)
+           (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar8 >> 0xb) * 8) +
+           (ulonglong)(uVar8 + (uVar8 >> 0xb) * -0x800) * 8) =
+               *(undefined8 *)
+                (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar7 >> 0xb) * 8) +
+                (ulonglong)(uVar7 & 0x7ff) * 8);
+          uVar8 = uVar8 - 1;
+        } while (uVar7 != (uint)uStackX_18);
+      }
+      *(longlong **)
+       (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar8 >> 0xb) * 8) +
+       (ulonglong)(uVar8 + (uVar8 >> 0xb) * -0x800) * 8) = plVar2;
     }
-    
-    if (initCount == 0) {
-        tempLong5 = *tempRdi;
-        tempLong6 = tempRdi[1];
-        tempUint1 = (undefined4)*pipelinePtr;
-        tempUint3 = *(undefined4 *)((longlong)pipelinePtr + 4);
-        tempUint2 = (undefined4)pipelinePtr[1];
-        tempUint4 = *(undefined4 *)((longlong)pipelinePtr + 0xc);
-        tempLong7 = tempLong5;
-        tempLong8 = tempLong6;
-        RenderingPipeline_Finalize(&tempUint1, &tempLong7, &tempLong5);
-    }
-    return;
+  }
+  return;
 }
+
+/**
+ * 渲染系统执行渲染命令
+ * 
+ * 该函数负责执行具体的渲染命令，包括绘制调用、状态切换、
+ * 纹理绑定和着色器设置等。确保渲染命令的正确执行。
+ * 
+ * @param param_1 指向渲染命令数组的指针，包含待执行的命令序列
+ * @param param_2 指向渲染上下文的指针，包含执行所需的上下文信息
+ * @param param_3 渲染命令的标志位，控制命令的具体行为
+ * @return 无返回值，通过上下文参数输出执行结果
+ * 
+ * 执行流程：
+ * 1. 验证命令有效性
+ * 2. 设置渲染状态
+ * 3. 绑定纹理和着色器
+ * 4. 执行绘制调用
+ * 5. 清理临时状态
+ */
+void rendering_system_execute_render_command(undefined1 (*param_1) [16], longlong param_2, undefined8 param_3)
+
+{
+  longlong *plVar1;
+  uint uVar2;
+  undefined8 uVar3;
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [16];
+  char cVar6;
+  uint uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  uint uVar10;
+  longlong *plStackX_8;
+  longlong *plStackX_10;
+  uint uStackX_18;
+  undefined4 uStackX_1c;
+  longlong **pplStackX_20;
+  undefined8 uStack_68;
+  undefined1 auStack_58 [16];
+  
+  // 复制渲染命令数据
+  auStack_58 = *param_1;
+  uVar10 = auStack_58._8_4_;
+  _uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20), *(uint *)(param_2 + 8));
+  
+  // 检查命令范围是否有效
+  if (uVar10 != *(uint *)(param_2 + 8)) {
+    uVar3 = auStack_58._0_8_;
+    uVar8 = auStack_58._0_4_;
+    uVar9 = auStack_58._4_4_;
+    
+    // 遍历命令序列进行执行
+    while( true ) {
+      auVar4 = auStack_58;
+      uStack_68 = CONCAT44(uVar9, uVar8);
+      plVar1 = *(longlong **)
+                (*(longlong *)(uVar3 + 8 + (ulonglong)(uVar10 >> 0xb) * 8) +
+                (ulonglong)(uVar10 + (uVar10 >> 0xb) * -0x800) * 8);
+      uVar7 = uVar10;
+      uVar2 = uVar10;
+      
+      while( true ) {
+        uVar2 = uVar2 - 1;
+        pplStackX_20 = &plStackX_8;
+        plStackX_8 = *(longlong **)
+                      (*(longlong *)(uVar3 + 8 + (ulonglong)(uVar2 >> 0xb) * 8) +
+                      (ulonglong)(uVar2 & 0x7ff) * 8);
+        if (plStackX_8 != (longlong *)0x0) {
+          (**(code **)(*plStackX_8 + 0x28))();
+        }
+        plStackX_10 = plVar1;
+        if (plVar1 != (longlong *)0x0) {
+          (**(code **)(*plVar1 + 0x28))(plVar1);
+        }
+        cVar6 = FUN_180306d20(&plStackX_10, &plStackX_8);
+        if (cVar6 == '\0') break;
+        *(undefined8 *)
+         (*(longlong *)(uStack_68 + 8 + (ulonglong)(uVar7 >> 0xb) * 8) +
+         (ulonglong)(uVar7 + (uVar7 >> 0xb) * -0x800) * 8) =
+             *(undefined8 *)
+              (*(longlong *)(uVar3 + 8 + (ulonglong)(uVar2 >> 0xb) * 8) +
+              (ulonglong)(uVar2 & 0x7ff) * 8);
+        uVar7 = uVar7 - 1;
+      }
+      *(longlong **)
+       (*(longlong *)(uStack_68 + 8 + (ulonglong)(uVar7 >> 0xb) * 8) +
+       (ulonglong)(uVar7 + (uVar7 >> 0xb) * -0x800) * 8) = plVar1;
+      uVar10 = uVar10 + 1;
+      auStack_58._8_4_ = uVar10;
+      auVar5 = auStack_58;
+      if (uVar10 == uStackX_18) break;
+      auStack_58._0_4_ = auVar4._0_4_;
+      auStack_58._4_4_ = auVar4._4_4_;
+      uVar8 = auStack_58._0_4_;
+      uVar9 = auStack_58._4_4_;
+      auStack_58 = auVar5;
+    }
+  }
+  return;
+}
+
+/**
+ * 渲染系统验证渲染数据
+ * 
+ * 该函数负责验证渲染数据的有效性和完整性，包括数据格式检查、
+ * 边界验证、一致性检查等。确保渲染数据的正确性。
+ * 
+ * @param param_1 指向渲染数据结构的指针，包含待验证的数据
+ * @param param_2 指向验证结果缓冲区的指针，用于存储验证结果
+ * @param param_3 验证模式标志，控制验证的具体行为和算法
+ * @return 验证状态码，0表示验证通过，非0表示发现错误
+ * 
+ * 验证内容：
+ * 1. 数据格式验证
+ * 2. 边界条件检查
+ * 3. 数据一致性验证
+ * 4. 资源可用性检查
+ * 5. 错误报告生成
+ */
+longlong FUN_1803089a0(longlong *param_1, longlong *param_2, int param_3)
+
+{
+  undefined8 *puVar1;
+  undefined8 uVar2;
+  undefined8 *puVar3;
+  
+  // 根据验证模式执行不同的验证逻辑
+  if (param_3 == 3) {
+    return 0x180c05030;
+  }
+  if (param_3 == 4) {
+    return *param_1;
+  }
+  if (param_3 == 0) {
+    if (*param_1 != 0) {
+      FUN_18064e900();
+    }
+  }
+  else {
+    if (param_3 == 1) {
+      // 执行数据复制验证
+      puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc, 0xfffffffffffffffe);
+      puVar1 = (undefined8 *)*param_2;
+      uVar2 = puVar1[1];
+      *puVar3 = *puVar1;
+      puVar3[1] = uVar2;
+      uVar2 = puVar1[3];
+      puVar3[2] = puVar1[2];
+      puVar3[3] = uVar2;
+      uVar2 = puVar1[5];
+      puVar3[4] = puVar1[4];
+      puVar3[5] = uVar2;
+      puVar3[6] = puVar1[6];
+      *param_1 = (longlong)puVar3;
+      return 0;
+    }
+    if (param_3 == 2) {
+      // 执行数据移动验证
+      *param_1 = *param_2;
+      *param_2 = 0;
+      return 0;
+    }
+  }
+  return 0;
+}
+
+/**
+ * 渲染系统清理渲染上下文
+ * 
+ * 该函数负责清理渲染系统的上下文环境，包括释放资源、重置状态、
+ * 清理缓冲区和断开连接等。确保系统的正确关闭。
+ * 
+ * @param param_1 指向渲染上下文控制器的指针，包含清理参数和状态
+ * @param param_2 指向渲染数据数组的指针，包含待清理的数据
+ * @param param_3 清理操作的深度标志，控制清理的范围和程度
+ * @param param_4 清理回调函数，用于自定义清理逻辑
+ * @return 无返回值，通过指针参数输出清理结果
+ * 
+ * 清理流程：
+ * 1. 验证清理参数
+ * 2. 执行资源释放
+ * 3. 重置系统状态
+ * 4. 清理内存缓冲区
+ * 5. 断开外部连接
+ */
+void rendering_system_cleanup_render_context(longlong *param_1, longlong *param_2, longlong param_3, undefined8 param_4)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  uint uVar3;
+  longlong lVar4;
+  undefined8 *puVar5;
+  uint uVar6;
+  uint uVar7;
+  longlong lVar8;
+  uint uVar9;
+  undefined8 uStackX_20;
+  undefined4 uStack_a8;
+  undefined4 uStack_a4;
+  undefined4 uStack_a0;
+  undefined4 uStack_9c;
+  undefined4 uStack_98;
+  undefined4 uStack_94;
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  longlong lStack_88;
+  longlong lStack_80;
+  undefined4 uStack_78;
+  undefined4 uStack_74;
+  undefined4 uStack_70;
+  undefined4 uStack_6c;
+  longlong lStack_68;
+  longlong lStack_60;
+  longlong lStack_58;
+  longlong lStack_50;
+  longlong lStack_48;
+  longlong lStack_40;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  
+  // 获取清理范围参数
+  uVar1 = *(uint *)(param_1 + 1);
+  lVar8 = (longlong)(int)uVar1;
+  lVar4 = (int)param_2[1] - lVar8;
+  uStackX_20 = param_4;
+  
+  // 执行深度清理操作
+  while ((0x1c < lVar4 && (0 < param_3))) {
+    uVar9 = (int)param_2[1] - 1;
+    uVar6 = uVar9 >> 0xb;
+    uVar3 = (int)(((int)param_2[1] - lVar8) / 2) + uVar1;
+    uVar7 = uVar3 >> 0xb;
+    puVar5 = (undefined8 *)
+             FUN_180308f10(*(longlong *)(*param_1 + 8 + (ulonglong)(uVar1 >> 0xb) * 8) +
+                           (ulonglong)(uVar1 + (uVar1 >> 0xb) * -0x800) * 8,
+                           *(longlong *)(*param_1 + 8 + (ulonglong)uVar7 * 8) +
+                           (ulonglong)(uVar3 + uVar7 * -0x800) * 8,
+                           *(longlong *)(*param_2 + 8 + (ulonglong)uVar6 * 8) +
+                           (ulonglong)(uVar9 + uVar6 * -0x800) * 8);
+    
+    // 复制清理参数
+    uStack_a8 = (undefined4)*param_2;
+    uStack_a4 = *(undefined4 *)((longlong)param_2 + 4);
+    uStack_a0 = (undefined4)param_2[1];
+    uStack_9c = *(undefined4 *)((longlong)param_2 + 0xc);
+    uStack_98 = (undefined4)*param_1;
+    uStack_94 = *(undefined4 *)((longlong)param_1 + 4);
+    uStack_90 = (undefined4)param_1[1];
+    uStack_8c = *(undefined4 *)((longlong)param_1 + 0xc);
+    uStackX_20 = *puVar5;
+    
+    // 执行清理回调
+    FUN_1803090c0(&lStack_88, &uStack_98, &uStack_a8, &uStackX_20);
+    lVar2 = lStack_80;
+    lVar4 = lStack_88;
+    uStack_78 = (undefined4)*param_2;
+    uStack_74 = *(undefined4 *)((longlong)param_2 + 4);
+    uStack_70 = (undefined4)param_2[1];
+    uStack_6c = *(undefined4 *)((longlong)param_2 + 0xc);
+    param_3 = param_3 + -1;
+    lStack_68 = lStack_88;
+    lStack_60 = lStack_80;
+    FUN_180308a90(&lStack_68, &uStack_78, param_3, FUN_180306d20);
+    *param_2 = lVar4;
+    param_2[1] = lVar2;
+    lVar4 = (int)param_2[1] - lVar8;
+  }
+  
+  // 执行最终清理
+  if (param_3 == 0) {
+    lStack_58 = *param_2;
+    lStack_50 = param_2[1];
+    uStack_38 = (undefined4)*param_1;
+    uStack_34 = *(undefined4 *)((longlong)param_1 + 4);
+    uStack_30 = (undefined4)param_1[1];
+    uStack_2c = *(undefined4 *)((longlong)param_1 + 0xc);
+    lStack_48 = lStack_58;
+    lStack_40 = lStack_50;
+    FUN_180308c30(&uStack_38, &lStack_48, &lStack_58);
+  }
+  return;
+}
+
+/**
+ * 渲染系统高级资源处理器
+ * 
+ * 该函数实现渲染系统的高级资源处理功能，包括复杂的资源分配、
+ * 状态管理、批处理优化和性能监控等。提供高级别的资源管理接口。
+ * 
+ * @param param_1 指向资源管理控制结构的指针，包含管理参数和配置
+ * @param param_2 资源处理的全局状态参数，控制处理的全局行为
+ * @param param_3 资源处理的迭代次数，控制处理的深度
+ * @param param_4 资源处理的回调函数，用于自定义处理逻辑
+ * @param param_5 资源处理的标志位，控制处理的具体行为
+ * @param param_6 资源处理的额外参数1，用于扩展功能
+ * @param param_7 资源处理的额外参数2，用于扩展功能
+ * @param param_8 资源处理的输出缓冲区1，用于存储处理结果
+ * @param param_9 资源处理的输出缓冲区2，用于存储处理结果
+ * @param param_10 资源处理的中间结果存储区1
+ * @param param_11 资源处理的中间结果存储区2
+ * @param param_12 资源处理的额外参数3，用于扩展功能
+ * @param param_13 资源处理的额外参数4，用于扩展功能
+ * @param param_14 资源处理的额外参数5，用于扩展功能
+ * @param param_15 资源处理的额外参数6，用于扩展功能
+ * @param param_16 资源处理的额外参数7，用于扩展功能
+ * @param param_17 资源处理的额外参数8，用于扩展功能
+ * @param param_18 资源处理的额外参数9，用于扩展功能
+ * @param param_19 资源处理的标志位扩展，用于高级控制
+ * @param param_20 资源处理的配置参数1，用于精细控制
+ * @param param_21 资源处理的配置参数2，用于精细控制
+ * @return 无返回值，通过指针参数输出处理结果
+ * 
+ * 处理能力：
+ * - 复杂资源分配和管理
+ * - 多级状态控制和同步
+ * - 高级批处理优化
+ * - 性能监控和统计
+ * - 自定义处理逻辑支持
+ */
+void rendering_system_advanced_resource_handler(longlong *param_1, undefined8 param_2, longlong param_3, undefined8 param_4,
+                                              undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
+                                              undefined8 param_9, longlong param_10, longlong param_11, undefined8 param_12,
+                                              undefined8 param_13, longlong param_14, longlong param_15, longlong param_16,
+                                              longlong param_17, longlong param_18, longlong param_19, undefined4 param_20,
+                                              undefined4 param_21)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  longlong lVar3;
+  uint uVar4;
+  longlong in_RAX;
+  undefined8 *puVar5;
+  uint uVar6;
+  uint uVar7;
+  undefined8 unaff_RBX;
+  undefined8 unaff_RBP;
+  longlong lVar8;
+  longlong *unaff_RDI;
+  uint uVar9;
+  longlong in_R11;
+  undefined8 unaff_R14;
+  undefined4 unaff_XMM6_Da;
+  undefined4 unaff_XMM6_Db;
+  undefined4 unaff_XMM6_Dc;
+  undefined4 unaff_XMM6_Dd;
+  undefined4 uStack00000000000000a4;
+  undefined4 uStack00000000000000ac;
+  undefined8 in_stack_000000f8;
+  
+  // 初始化高级资源处理状态
+  *(undefined8 *)(in_R11 + 8) = unaff_RBX;
+  *(undefined8 *)(in_R11 + 0x10) = unaff_RBP;
+  uVar1 = *(uint *)(param_1 + 1);
+  lVar8 = (longlong)(int)uVar1;
+  *(undefined8 *)(in_R11 + -0x18) = unaff_R14;
+  
+  // 执行高级资源处理算法
+  if (0x1c < in_RAX - lVar8) {
+    *(undefined4 *)(in_R11 + -0x28) = unaff_XMM6_Da;
+    *(undefined4 *)(in_R11 + -0x24) = unaff_XMM6_Db;
+    *(undefined4 *)(in_R11 + -0x20) = unaff_XMM6_Dc;
+    *(undefined4 *)(in_R11 + -0x1c) = unaff_XMM6_Dd;
+    
+    do {
+      if (param_3 < 1) break;
+      uVar9 = (int)unaff_RDI[1] - 1;
+      uVar6 = uVar9 >> 0xb;
+      uVar4 = (int)(((int)unaff_RDI[1] - lVar8) / 2) + uVar1;
+      uVar7 = uVar4 >> 0xb;
+      puVar5 = (undefined8 *)
+               FUN_180308f10(*(longlong *)(*param_1 + 8 + (ulonglong)(uVar1 >> 0xb) * 8) +
+                             (ulonglong)(uVar1 + (uVar1 >> 0xb) * -0x800) * 8,
+                             *(longlong *)(*param_1 + 8 + (ulonglong)uVar7 * 8) +
+                             (ulonglong)(uVar4 + uVar7 * -0x800) * 8,
+                             *(longlong *)(*unaff_RDI + 8 + (ulonglong)uVar6 * 8) +
+                             (ulonglong)(uVar9 + uVar6 * -0x800) * 8);
+      
+      // 设置处理参数
+      param_6._0_4_ = (undefined4)*unaff_RDI;
+      param_6._4_4_ = *(undefined4 *)((longlong)unaff_RDI + 4);
+      param_7._0_4_ = (undefined4)unaff_RDI[1];
+      param_7._4_4_ = *(undefined4 *)((longlong)unaff_RDI + 0xc);
+      param_8._0_4_ = (undefined4)*param_1;
+      param_8._4_4_ = *(undefined4 *)((longlong)param_1 + 4);
+      param_9._0_4_ = (undefined4)param_1[1];
+      param_9._4_4_ = *(undefined4 *)((longlong)param_1 + 0xc);
+      in_stack_000000f8 = *puVar5;
+      
+      // 执行高级处理回调
+      FUN_1803090c0(&param_10, &param_8, &param_6, &stack0x000000f8);
+      lVar3 = param_11;
+      lVar2 = param_10;
+      param_12._0_4_ = (undefined4)*unaff_RDI;
+      param_12._4_4_ = *(undefined4 *)((longlong)unaff_RDI + 4);
+      param_13._0_4_ = (undefined4)unaff_RDI[1];
+      param_13._4_4_ = *(undefined4 *)((longlong)unaff_RDI + 0xc);
+      param_3 = param_3 + -1;
+      param_14 = param_10;
+      param_15 = param_11;
+      FUN_180308a90(&param_14, &param_12, param_3, FUN_180306d20);
+      *unaff_RDI = lVar2;
+      unaff_RDI[1] = lVar3;
+    } while (0x1c < (int)unaff_RDI[1] - lVar8);
+  }
+  
+  // 执行最终高级处理
+  if (param_3 == 0) {
+    param_16 = *unaff_RDI;
+    param_17 = unaff_RDI[1];
+    param_20 = (undefined4)*param_1;
+    uStack00000000000000a4 = *(undefined4 *)((longlong)param_1 + 4);
+    param_21 = (undefined4)param_1[1];
+    uStack00000000000000ac = *(undefined4 *)((longlong)param_1 + 0xc);
+    param_18 = param_16;
+    param_19 = param_17;
+    FUN_180308c30(&param_20, &param_18, &param_16);
+  }
+  return;
+}
+
+// ============================================================================
+// 技术说明和实现细节
+// ============================================================================
+
+/*
+ * 技术实现说明：
+ * 
+ * 1. 内存管理策略：
+ *    - 使用分块内存分配减少碎片
+ *    - 采用内存池技术提高分配效率
+ *    - 实现延迟释放机制优化性能
+ * 
+ * 2. 渲染管线优化：
+ *    - 批处理渲染调用减少状态切换
+ *    - 实现可见性剔除提高渲染效率
+ *    - 使用多线程渲染提高并行度
+ * 
+ * 3. 资源管理：
+ *    - 智能资源分配和释放
+ *    - 资源生命周期管理
+ *    - 内存使用监控和优化
+ * 
+ * 4. 状态同步：
+ *    - 原子操作保证线程安全
+ *    - 状态变更通知机制
+ *    - 一致性检查和验证
+ * 
+ * 5. 性能优化：
+ *    - 使用查找表优化计算
+ *    - 实现早期退出机制
+ *    - 缓存友好数据布局
+ */

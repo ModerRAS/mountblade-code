@@ -1,1491 +1,929 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part095.c - 渲染系统资源管理和内存分配模块
-// 
-// 本模块包含6个核心函数，主要负责：
-// - 渲染资源的高级管理和分配
-// - 内存缓冲区的动态分配和释放
-// - 资源池的管理和优化
-// - 线程安全的资源操作
-// - 渲染系统的内存管理
-// 
-// 主要功能：
-// 1. 高级资源分配器 - 管理渲染资源的生命周期
-// 2. 资源池管理器 - 优化资源分配和重用
-// 3. 内存分配器 - 提供高效的内存管理
-// 4. 资源清理器 - 安全释放系统资源
-// 5. 资源查询器 - 提供资源状态查询
-// 6. 资源引用管理器 - 管理资源引用计数
-// 
-// 包含函数：6个
-// 模块类型：渲染系统 - 资源管理
+// 03_rendering_part095.c - 6 个函数
 
-// ============================================================================
-// 常量定义和宏定义
-// ============================================================================
+// 函数: void FUN_180322e90(undefined8 param_1,undefined4 *param_2,longlong param_3)
+void FUN_180322e90(undefined8 param_1,undefined4 *param_2,longlong param_3)
 
-/** 渲染资源管理器常量 */
-#define RENDER_RESOURCE_MANAGER_VERSION 1
-#define RENDER_RESOURCE_POOL_SIZE 0x200
-#define RENDER_RESOURCE_BLOCK_SIZE 0x100
-#define RENDER_RESOURCE_ALIGNMENT 8
-#define RENDER_RESOURCE_MAX_HANDLES 0x1000
-
-/** 内存管理常量 */
-#define MEMORY_POOL_INITIAL_SIZE 0x1000
-#define MEMORY_POOL_EXPAND_SIZE 0x800
-#define MEMORY_POOL_MAX_SIZE 0x10000
-#define MEMORY_ALIGNMENT_MASK 0x7
-#define MEMORY_ALLOCATOR_FLAGS 3
-
-/** 资源状态常量 */
-#define RESOURCE_STATE_ACTIVE 0x1
-#define RESOURCE_STATE_LOCKED 0x2
-#define RESOURCE_STATE_PENDING 0x4
-#define RESOURCE_STATE_DISPOSED 0x8
-
-/** 错误代码常量 */
-#define ERROR_RESOURCE_INVALID 0xFFFFFFFF
-#define ERROR_MEMORY_ALLOCATION_FAILED 0xFFFFFFFE
-#define ERROR_RESOURCE_ALREADY_EXISTS 0xFFFFFFFD
-#define ERROR_RESOURCE_NOT_FOUND 0xFFFFFFFC
-
-/** 线程同步常量 */
-#define SYNC_LOCK_TIMEOUT 0xFFFFFFFF
-#define SYNC_SPIN_COUNT 1000
-#define SYNC_RECURSION_COUNT 10
-
-// ============================================================================
-// 数据类型定义
-// ============================================================================
-
-/** 渲染资源描述符结构 */
-typedef struct {
-    /** 资源唯一标识符 */
-    uint32_t resource_id;
-    /** 资源类型 */
-    uint32_t resource_type;
-    /** 资源大小 */
-    size_t resource_size;
-    /** 资源状态标志 */
-    uint32_t resource_flags;
-    /** 资源引用计数 */
-    uint32_t reference_count;
-    /** 资源创建时间 */
-    uint64_t creation_time;
-    /** 资源最后访问时间 */
-    uint64_t last_access_time;
-    /** 资源自定义数据 */
-    void* custom_data;
-} render_resource_descriptor_t;
-
-/** 内存池管理器结构 */
-typedef struct {
-    /** 内存池起始地址 */
-    void* pool_base;
-    /** 内存池当前大小 */
-    size_t pool_size;
-    /** 内存池最大大小 */
-    size_t max_pool_size;
-    /** 已分配内存大小 */
-    size_t allocated_size;
-    /** 空闲块链表 */
-    void* free_blocks;
-    /** 已分配块链表 */
-    void* allocated_blocks;
-    /** 内存池锁 */
-    void* pool_lock;
-    /** 内存池统计信息 */
-    struct {
-        uint32_t allocation_count;
-        uint32_t free_count;
-        uint32_t fragmentation_count;
-        uint32_t peak_usage;
-    } statistics;
-} memory_pool_manager_t;
-
-/** 资源句柄管理器结构 */
-typedef struct {
-    /** 句柄数组 */
-    void** handle_array;
-    /** 句柄数组大小 */
-    uint32_t array_size;
-    /** 句柄数组容量 */
-    uint32_t array_capacity;
-    /** 句柄哈希表 */
-    void** hash_table;
-    /** 哈希表大小 */
-    uint32_t hash_table_size;
-    /** 句柄管理器锁 */
-    void* handle_lock;
-    /** 句柄管理器状态 */
-    uint32_t manager_state;
-} resource_handle_manager_t;
-
-/** 渲染资源管理器结构 */
-typedef struct {
-    /** 资源描述符数组 */
-    render_resource_descriptor_t* descriptors;
-    /** 资源数量 */
-    uint32_t resource_count;
-    /** 资源容量 */
-    uint32_t resource_capacity;
-    /** 内存池管理器 */
-    memory_pool_manager_t* memory_pool;
-    /** 句柄管理器 */
-    resource_handle_manager_t* handle_manager;
-    /** 资源管理器锁 */
-    void* manager_lock;
-    /** 资源管理器配置 */
-    struct {
-        uint32_t enable_caching;
-        uint32_t enable_threading;
-        uint32_t enable_debugging;
-        uint32_t reserved;
-    } config;
-} render_resource_manager_t;
-
-// ============================================================================
-// 函数声明
-// ============================================================================
-
-/** 渲染资源高级分配器 */
-void RenderResource_AdvancedAllocator(void* render_context, uint32_t* resource_params, int64_t resource_data);
-
-/** 渲染资源池管理器 */
-void RenderResource_PoolManager(void* render_context, uint32_t* resource_params, int64_t resource_data);
-
-/** 渲染资源清理器 */
-void RenderResource_Cleanup(void);
-
-/** 渲染资源处理器 */
-void RenderResource_Processor(void* render_context, void** resource_handle, int64_t* resource_data, uint32_t process_flags);
-
-/** 渲染资源分配器（扩展版本） */
-void RenderResource_AllocatorEx(void* render_context, int64_t* resource_handle, int64_t resource_data);
-
-/** 渲染资源查询器 */
-uint32_t RenderResource_QueryHandle(int64_t resource_manager, int64_t query_param);
-
-// ============================================================================
-// 核心函数实现
-// ============================================================================
-
-/**
- * 渲染资源高级分配器 - 高级资源分配和管理函数
- * 
- * 本函数实现了一个复杂的资源分配和管理系统，主要用于：
- * - 渲染资源的高效分配和初始化
- * - 资源池的动态管理和优化
- * - 内存池的扩展和收缩
- * - 资源引用计数的管理
- * - 线程安全的资源操作
- * 
- * @param render_context 渲染系统上下文指针
- * @param resource_params 资源参数数组
- * @param resource_data 资源数据指针
- * 
- * @return void
- * 
- * @note 本函数使用复杂的内存管理算法
- * @note 支持资源池的动态扩展
- * @note 包含线程安全机制
- * @note 适用于大规模渲染资源管理
- */
-void RenderResource_AdvancedAllocator(void* render_context, uint32_t* resource_params, int64_t resource_data) {
-    
-    // 局部变量声明
-    uint64_t* resource_handle;
-    uint32_t* resource_ptr;
-    uint32_t resource_id;
-    char resource_type;
-    void* context_data;
-    uint32_t resource_flags;
-    int64_t* resource_list;
-    int64_t list_offset;
-    void** resource_array;
-    void* array_data;
-    uint64_t handle_value;
-    int64_t* list_end;
-    uint32_t* resource_info;
-    int64_t info_offset;
-    void** handle_array;
-    uint64_t array_size;
-    int64_t resource_offset;
-    uint32_t* resource_block;
-    uint32_t* data_ptr;
-    int64_t block_offset;
-    uint8_t stack_buffer[32];
-    uint32_t stack_param1;
-    int64_t stack_param2;
-    void* stack_context;
-    uint32_t stack_param3;
-    uint32_t stack_param4;
-    uint32_t stack_param5;
-    uint32_t stack_param6;
-    uint32_t stack_param7;
-    uint32_t stack_param8;
-    uint32_t stack_param9;
-    uint32_t stack_param10;
-    uint64_t security_checksum;
-    
-    // 参数验证
-    if (resource_data == 0) {
-        return;
-    }
-    
-    // 安全检查和初始化
-    security_checksum = g_SecurityChecksum ^ (uint64_t)stack_buffer;
-    context_data = *(void**)(resource_data + 0x10);
-    
-    // 初始化资源参数
-    resource_params[2] = 1;
-    stack_context = render_context;
-    resource_array = resource_params;
-    list_offset = resource_data;
-    
-    // 获取资源标识符
-    resource_flags = RenderResource_GetIdentifier(render_context, resource_data);
-    *resource_params = resource_flags;
-    resource_flags = RenderResource_GetIdentifier(render_context, context_data);
-    resource_params[1] = resource_flags;
-    
-    // 获取资源类型信息
-    array_data = *(void**)(*(int64_t*)(resource_data + 0x208) + 0x18);
-    context_data = &g_DefaultResourceType;
-    if (array_data != (void*)0x0) {
-        context_data = array_data;
-    }
-    
-    // 调用资源类型特定的初始化函数
-    (**(code**)(*(int64_t*)(resource_params + 4) + 0x10))(resource_params + 4, context_data);
-    
-    // 初始化资源句柄管理器
-    resource_handle = (uint64_t*)(resource_params + 0x22);
-    handle_value = *(int64_t*)(resource_data + 0x1b0) - *(int64_t*)(resource_data + 0x1a8) >> 3;
-    array_size = handle_value & 0xffffffff;
-    ResourceHandle_Initialize(resource_handle, handle_value & 0xffffffff);
-    
-    context_data = stack_context;
-    resource_block = resource_params;
-    
-    // 批量资源分配和处理
-    if ((int)handle_value != 0) {
-        resource_offset = 0;
-        do {
-            block_offset = 0;
-            RenderResource_ProcessResource(context_data, &block_offset, 
-                                        *(void**)(resource_offset + *(int64_t*)(resource_data + 0x1a8)), 
-                                        0xffffffff);
-            list_offset = block_offset;
-            
-            if (block_offset != 0) {
-                list_end = *(int64_t**)(resource_params + 0x24);
-                if (list_end < *(int64_t**)(resource_params + 0x26)) {
-                    *(int64_t**)(resource_params + 0x24) = list_end + 1;
-                    *list_end = block_offset;
-                }
-                else {
-                    // 扩展资源池
-                    resource_list = (int64_t*)*resource_handle;
-                    list_offset = (int64_t)list_end - (int64_t)resource_list >> 3;
-                    if (list_offset == 0) {
-                        list_offset = 1;
-LAB_RESOURCE_POOL_EXPAND:
-                        resource_list = (int64_t*)MemoryPool_Allocate(g_MemoryPoolConfig, 
-                                                                  list_offset * 8, 
-                                                                  *(uint8_t*)(resource_params + 0x28));
-                        list_end = (int64_t*)*resource_handle;
-                        list_end = *(int64_t**)(resource_params + 0x24);
-                    }
-                    else {
-                        list_offset = list_offset * 2;
-                        if (list_offset != 0) goto LAB_RESOURCE_POOL_EXPAND;
-                        resource_list = (int64_t*)0x0;
-                    }
-                    
-                    // 移动现有资源数据
-                    if (resource_list != list_end) {
-                        memmove(resource_list, list_end, (int64_t)list_end - (int64_t)resource_list);
-                    }
-                    
-                    *resource_list = list_offset;
-                    if (*resource_handle != 0) {
-                        MemoryPool_Release();
-                    }
-                    
-                    *resource_handle = (uint64_t)resource_list;
-                    *(int64_t**)(resource_params + 0x26) = resource_list + list_offset;
-                    *(int64_t**)(resource_params + 0x24) = resource_list + 1;
-                    resource_data = list_offset;
-                }
-            }
-            
-            resource_offset = resource_offset + 8;
-            array_size = array_size - 1;
-            resource_block = resource_array;
-            render_context = stack_context;
-        } while (array_size != 0);
-    }
-    
-    // 设置资源元数据
-    resource_block[0x2a] = *(uint32_t*)(resource_data + 0x170);
-    resource_block[0x2b] = *(uint32_t*)(resource_data + 0x168);
-    list_end = (int64_t*)(resource_block + 0x1a);
-    resource_type = *(char*)(resource_data + 0x20);
-    resource_list = list_end;
-    
-    // 初始化资源类型特定的数据
-    ResourceData_Initialize(list_end, (int64_t)resource_type);
-    stack_param3 = (uint32_t)resource_type;
-    stack_param1 = 0;
-    
-    if (resource_type != '\0') {
-        block_offset = 0;
-        do {
-            resource_offset = block_offset;
-            handle_value = stack_param1;
-            data_ptr = (uint32_t*)((int64_t)(char)stack_param1 * 0x100 + *(int64_t*)(list_offset + 0x18));
-            *(uint32_t*)(block_offset + *list_end) = 1;
-            
-            // 原子操作设置资源状态
-            do {
-                LOCK();
-                resource_id = *data_ptr;
-                *data_ptr = *data_ptr | 1;
-                UNLOCK();
-            } while ((resource_id & 1) != 0);
-            
-            // 保存资源信息
-            stack_param4 = data_ptr[1];
-            stack_param5 = data_ptr[2];
-            stack_param6 = data_ptr[3];
-            stack_param7 = data_ptr[4];
-            stack_param8 = data_ptr[5];
-            stack_param9 = data_ptr[6];
-            stack_param10 = data_ptr[7];
-            stack_param3 = data_ptr[8];
-            *data_ptr = 0;
-            
-            list_offset = *list_end;
-            resource_ptr = (uint32_t*)(block_offset + 0x10 + list_offset);
-            *resource_ptr = stack_param4;
-            resource_ptr[1] = stack_param5;
-            resource_ptr[2] = stack_param6;
-            resource_ptr[3] = stack_param7;
-            resource_ptr = (uint32_t*)(block_offset + 0x20 + list_offset);
-            *resource_ptr = stack_param8;
-            resource_ptr[1] = stack_param9;
-            resource_ptr[2] = stack_param10;
-            resource_ptr[3] = stack_param3;
-            
-            // 设置资源扩展数据
-            list_offset = *(int64_t*)((int64_t)(char)stack_param1 * 0x1b0 + 0x180 + 
-                                     *(int64_t*)(*(int64_t*)(list_offset + 0x208) + 0x140));
-            handle_value = *list_end;
-            *(uint32_t*)(handle_value + 0x40 + block_offset) = *(uint32_t*)(list_offset + 0x10);
-            
-            array_data = *(void**)(list_offset + 8);
-            context_data = &g_DefaultResourceType;
-            if (array_data != (void*)0x0) {
-                context_data = array_data;
-            }
-            
-            // 复制资源类型名称
-            strcpy_s(*(void**)(handle_value + 0x38 + block_offset), 0x40, context_data);
-            
-            // 处理资源子项
-            handle_value = *(int64_t*)(data_ptr + 0x2e) - *(int64_t*)(data_ptr + 0x2c) >> 3;
-            array_size = handle_value & 0xffffffff;
-            ResourceHandle_Initialize(*list_end + 0x88 + resource_offset, handle_value & 0xffffffff);
-            
-            if ((int)handle_value != 0) {
-                list_offset = 0;
-                do {
-                    resource_array = (void**)0x0;
-                    RenderResource_ProcessResource(render_context, &resource_array, 
-                                                *(void**)(*(int64_t*)(data_ptr + 0x2c) + list_offset), 
-                                                handle_value);
-                    resource_block = resource_array;
-                    
-                    if (resource_array != (void**)0x0) {
-                        handle_value = *list_end;
-                        handle_array = *(void***)(resource_offset + 0x90 + handle_value);
-                        if (handle_array < *(void***)(resource_offset + 0x98 + handle_value)) {
-                            *(void***)(resource_offset + 0x90 + handle_value) = handle_array + 1;
-                            *handle_array = resource_array;
-                            handle_value = stack_param1;
-                        }
-                        else {
-                            // 扩展子项资源池
-                            resource_handle = *(void***)(resource_offset + 0x88 + handle_value);
-                            list_offset = (int64_t)handle_array - (int64_t)resource_handle >> 3;
-                            if (list_offset == 0) {
-                                list_offset = 1;
-LAB_SUBRESOURCE_POOL_EXPAND:
-                                resource_handle = (void**)MemoryPool_Allocate(g_MemoryPoolConfig, 
-                                                                          list_offset * 8, 
-                                                                          *(uint8_t*)(resource_offset + 0xa0 + handle_value));
-                                handle_array = *(void***)(resource_offset + 0x90 + handle_value);
-                                resource_handle = *(void***)(resource_offset + 0x88 + handle_value);
-                            }
-                            else {
-                                list_offset = list_offset * 2;
-                                if (list_offset != 0) goto LAB_SUBRESOURCE_POOL_EXPAND;
-                                resource_handle = (void**)0x0;
-                            }
-                            
-                            // 移动现有子项资源数据
-                            if (resource_handle != handle_array) {
-                                memmove(resource_handle, handle_array, (int64_t)handle_array - (int64_t)resource_handle);
-                            }
-                            
-                            *resource_handle = resource_block;
-                            if (*(int64_t*)(resource_offset + 0x88 + handle_value) != 0) {
-                                MemoryPool_Release();
-                            }
-                            
-                            *(void***)(resource_offset + 0x88 + handle_value) = resource_handle;
-                            *(void***)(resource_offset + 0x90 + handle_value) = resource_handle + 1;
-                            *(void***)(resource_offset + 0x98 + handle_value) = resource_handle + list_offset;
-                            list_end = resource_list;
-                        }
-                    }
-                    
-                    list_offset = list_offset + 8;
-                    array_size = array_size - 1;
-                    resource_offset = block_offset;
-                    render_context = stack_context;
-                } while (array_size != 0);
-            }
-            
-            stack_param1 = handle_value + 1;
-            block_offset = resource_offset + 0xb0;
-            render_context = stack_context;
-        } while (stack_param1 < stack_param3);
-    }
-    
-    // 安全检查和清理
-    Security_Check(security_checksum ^ (uint64_t)stack_buffer);
-}
-
-/**
- * 渲染资源池管理器 - 资源池的动态管理函数
- * 
- * 本函数实现了一个高级的资源池管理系统，主要用于：
- * - 资源池的动态扩展和收缩
- * - 资源的高效分配和重用
- * - 内存池的优化管理
- * - 资源生命周期的管理
- * - 性能监控和统计
- * 
- * @param render_context 渲染系统上下文指针
- * @param resource_params 资源参数数组
- * @param resource_data 资源数据指针
- * 
- * @return void
- * 
- * @note 本函数使用先进的池管理算法
- * @note 支持动态内存扩展
- * @note 包含性能优化机制
- * @note 适用于高性能渲染系统
- */
-void RenderResource_PoolManager(void* render_context, uint32_t* resource_params, int64_t resource_data) {
-    
-    // 局部变量声明
-    uint64_t* resource_handle;
-    uint32_t* resource_ptr;
-    uint32_t resource_id;
-    char resource_type;
-    void* context_data;
-    int64_t resource_offset;
-    uint32_t resource_flags;
-    int64_t* resource_list;
-    int64_t list_offset;
-    void** resource_array;
-    void* array_data;
-    uint64_t handle_value;
-    int64_t* list_end;
-    int64_t* resource_info;
-    void** handle_array;
-    uint64_t array_size;
-    uint32_t* resource_block;
-    uint32_t* data_ptr;
-    int64_t block_offset;
-    uint32_t stack_param1;
-    int64_t stack_param2;
-    void* stack_context;
-    uint32_t stack_param3;
-    uint32_t stack_param4;
-    uint32_t stack_param5;
-    uint32_t stack_param6;
-    uint32_t stack_param7;
-    uint32_t stack_param8;
-    uint32_t stack_param9;
-    uint32_t stack_param10;
-    uint64_t security_checksum;
-    
-    // 初始化栈帧和上下文
-    *(void**)(render_context + 0x20) = g_ResourceManagerContext;
-    context_data = *(void**)(resource_data + 0x10);
-    *(void**)(render_context + -0x20) = g_MemoryPoolContext;
-    *(void**)(render_context + -0x28) = g_ThreadContext;
-    
-    // 初始化资源参数
-    resource_params[2] = 1;
-    *(void**)(render_context + -0x30) = g_SyncContext;
-    *(void**)(render_context + -0x38) = g_DebugContext;
-    
-    stack_context = render_context;
-    resource_array = resource_params;
-    list_offset = resource_data;
-    
-    // 获取资源标识符
-    resource_flags = RenderResource_GetIdentifier(render_context, resource_data);
-    *resource_params = resource_flags;
-    resource_flags = RenderResource_GetIdentifier(render_context, context_data);
-    resource_params[1] = resource_flags;
-    
-    // 获取资源类型信息
-    array_data = *(void**)(*(int64_t*)(resource_data + 0x208) + 0x18);
-    context_data = &g_DefaultResourceType;
-    if (array_data != (void*)0x0) {
-        context_data = array_data;
-    }
-    
-    // 调用资源类型特定的初始化函数
-    (**(code**)(*(int64_t*)(resource_params + 4) + 0x10))(resource_params + 4, context_data);
-    
-    // 初始化资源句柄管理器
-    resource_handle = (uint64_t*)(resource_params + 0x22);
-    handle_value = *(int64_t*)(resource_data + 0x1b0) - *(int64_t*)(resource_data + 0x1a8) >> 3;
-    array_size = handle_value & 0xffffffff;
-    ResourceHandle_Initialize(resource_handle, handle_value & 0xffffffff);
-    
-    context_data = stack_context;
-    resource_block = resource_params;
-    
-    // 批量资源分配和处理
-    if ((int)handle_value != 0) {
-        block_offset = 0;
-        do {
-            stack_param2 = 0;
-            RenderResource_ProcessResource(context_data, &stack_param2, 
-                                        *(void**)(block_offset + *(int64_t*)(resource_data + 0x1a8)), 
-                                        0xffffffff);
-            resource_offset = stack_param2;
-            
-            if (stack_param2 != 0) {
-                resource_info = *(int64_t**)(resource_params + 0x24);
-                if (resource_info < *(int64_t**)(resource_params + 0x26)) {
-                    *(int64_t**)(resource_params + 0x24) = resource_info + 1;
-                    *resource_info = stack_param2;
-                }
-                else {
-                    // 扩展资源池
-                    resource_list = (int64_t*)*resource_handle;
-                    list_offset = (int64_t)resource_info - (int64_t)resource_list >> 3;
-                    if (list_offset == 0) {
-                        list_offset = 1;
-LAB_RESOURCE_POOL_EXPAND:
-                        resource_list = (int64_t*)MemoryPool_Allocate(g_MemoryPoolConfig, 
-                                                                  list_offset * 8, 
-                                                                  *(uint8_t*)(resource_params + 0x28));
-                        resource_info = (int64_t*)*resource_handle;
-                        resource_info = *(int64_t**)(resource_params + 0x24);
-                    }
-                    else {
-                        list_offset = list_offset * 2;
-                        if (list_offset != 0) goto LAB_RESOURCE_POOL_EXPAND;
-                        resource_list = (int64_t*)0x0;
-                    }
-                    
-                    // 移动现有资源数据
-                    if (resource_list != resource_info) {
-                        memmove(resource_list, resource_info, (int64_t)resource_info - (int64_t)resource_list);
-                    }
-                    
-                    *resource_list = resource_offset;
-                    if (*resource_handle != 0) {
-                        MemoryPool_Release();
-                    }
-                    
-                    *resource_handle = (uint64_t)resource_list;
-                    *(int64_t**)(resource_params + 0x26) = resource_list + list_offset;
-                    *(int64_t**)(resource_params + 0x24) = resource_list + 1;
-                    resource_data = list_offset;
-                }
-            }
-            
-            block_offset = block_offset + 8;
-            array_size = array_size - 1;
-            resource_block = resource_array;
-            render_context = stack_context;
-        } while (array_size != 0);
-    }
-    
-    // 设置资源元数据
-    resource_block[0x2a] = *(uint32_t*)(resource_data + 0x170);
-    resource_block[0x2b] = *(uint32_t*)(resource_data + 0x168);
-    resource_info = (int64_t*)(resource_block + 0x1a);
-    resource_type = *(char*)(resource_data + 0x20);
-    resource_list = resource_info;
-    
-    // 初始化资源类型特定的数据
-    ResourceData_Initialize(resource_info, (int64_t)resource_type);
-    stack_param3 = (uint32_t)resource_type;
-    stack_param1 = 0;
-    
-    if (resource_type != '\0') {
-        stack_param2 = 0;
-        do {
-            data_ptr = (uint32_t*)((int64_t)(char)stack_param1 * 0x100 + 
-                                    *(int64_t*)(list_offset + 0x18));
-            *(uint32_t*)(stack_param2 + *resource_info) = 1;
-            
-            // 原子操作设置资源状态
-            do {
-                LOCK();
-                resource_id = *data_ptr;
-                *data_ptr = *data_ptr | 1;
-                UNLOCK();
-            } while ((resource_id & 1) != 0);
-            
-            // 保存资源信息
-            stack_param4 = data_ptr[1];
-            stack_param5 = data_ptr[2];
-            stack_param6 = data_ptr[3];
-            stack_param7 = data_ptr[4];
-            stack_param8 = data_ptr[5];
-            stack_param9 = data_ptr[6];
-            stack_param10 = data_ptr[7];
-            stack_param3 = data_ptr[8];
-            *data_ptr = 0;
-            
-            resource_offset = *resource_info;
-            resource_ptr = (uint32_t*)(stack_param2 + 0x10 + resource_offset);
-            *resource_ptr = stack_param4;
-            resource_ptr[1] = stack_param5;
-            resource_ptr[2] = stack_param6;
-            resource_ptr[3] = stack_param7;
-            resource_ptr = (uint32_t*)(stack_param2 + 0x20 + resource_offset);
-            *resource_ptr = stack_param8;
-            resource_ptr[1] = stack_param9;
-            resource_ptr[2] = stack_param10;
-            resource_ptr[3] = stack_param3;
-            
-            // 设置资源扩展数据
-            resource_offset = *(int64_t*)((int64_t)(char)stack_param1 * 0x1b0 + 0x180 + 
-                                         *(int64_t*)(*(int64_t*)(list_offset + 0x208) + 0x140));
-            handle_value = *resource_info;
-            *(uint32_t*)(handle_value + 0x40 + stack_param2) = *(uint32_t*)(resource_offset + 0x10);
-            
-            array_data = *(void**)(resource_offset + 8);
-            context_data = &g_DefaultResourceType;
-            if (array_data != (void*)0x0) {
-                context_data = array_data;
-            }
-            
-            // 复制资源类型名称
-            strcpy_s(*(void**)(handle_value + 0x38 + stack_param2), 0x40, context_data);
-            
-            // 处理资源子项
-            handle_value = *(int64_t*)(data_ptr + 0x2e) - *(int64_t*)(data_ptr + 0x2c) >> 3;
-            array_size = handle_value & 0xffffffff;
-            ResourceHandle_Initialize(*resource_info + 0x88 + stack_param2, handle_value & 0xffffffff);
-            
-            if ((int)handle_value != 0) {
-                resource_offset = 0;
-                do {
-                    resource_array = (void**)0x0;
-                    RenderResource_ProcessResource(render_context, &resource_array, 
-                                                *(void**)(*(int64_t*)(data_ptr + 0x2c) + resource_offset), 
-                                                stack_param1);
-                    resource_block = resource_array;
-                    
-                    if (resource_array != (void**)0x0) {
-                        handle_value = *resource_info;
-                        handle_array = *(void***)(stack_param2 + 0x90 + handle_value);
-                        if (handle_array < *(void***)(stack_param2 + 0x98 + handle_value)) {
-                            *(void***)(stack_param2 + 0x90 + handle_value) = handle_array + 1;
-                            *handle_array = resource_array;
-                        }
-                        else {
-                            // 扩展子项资源池
-                            resource_handle = *(void***)(stack_param2 + 0x88 + handle_value);
-                            list_offset = (int64_t)handle_array - (int64_t)resource_handle >> 3;
-                            if (list_offset == 0) {
-                                list_offset = 1;
-LAB_SUBRESOURCE_POOL_EXPAND:
-                                resource_handle = (void**)MemoryPool_Allocate(g_MemoryPoolConfig, 
-                                                                          list_offset * 8, 
-                                                                          *(uint8_t*)(stack_param2 + 0xa0 + handle_value));
-                                handle_array = *(void***)(stack_param2 + 0x90 + handle_value);
-                                resource_handle = *(void***)(stack_param2 + 0x88 + handle_value);
-                            }
-                            else {
-                                list_offset = list_offset * 2;
-                                if (list_offset != 0) goto LAB_SUBRESOURCE_POOL_EXPAND;
-                                resource_handle = (void**)0x0;
-                            }
-                            
-                            // 移动现有子项资源数据
-                            if (resource_handle != handle_array) {
-                                memmove(resource_handle, handle_array, (int64_t)handle_array - (int64_t)resource_handle);
-                            }
-                            
-                            *resource_handle = resource_block;
-                            if (*(int64_t*)(stack_param2 + 0x88 + handle_value) != 0) {
-                                MemoryPool_Release();
-                            }
-                            
-                            *(void***)(stack_param2 + 0x88 + handle_value) = resource_handle;
-                            *(void***)(stack_param2 + 0x90 + handle_value) = resource_handle + 1;
-                            *(void***)(stack_param2 + 0x98 + handle_value) = resource_handle + list_offset;
-                            resource_info = resource_list;
-                        }
-                    }
-                    
-                    resource_offset = resource_offset + 8;
-                    array_size = array_size - 1;
-                    render_context = stack_context;
-                } while (array_size != 0);
-            }
-            
-            stack_param1 = stack_param1 + 1;
-            stack_param2 = stack_param2 + 0xb0;
-            render_context = stack_context;
-        } while (stack_param1 < stack_param3);
-    }
-    
-    // 安全检查和清理
-    Security_Check(security_checksum ^ (uint64_t)&stack_param1);
-}
-
-/**
- * 渲染资源清理器 - 系统资源清理函数
- * 
- * 本函数用于清理渲染系统中的资源，主要用于：
- * - 释放分配的内存资源
- * - 清理资源池和缓冲区
- * - 重置系统状态
- * - 回收系统资源
- * 
- * @return void
- * 
- * @note 本函数是系统清理的核心入口点
- * @note 确保所有资源都被正确释放
- * @note 防止内存泄漏
- */
-void RenderResource_Cleanup(void) {
-    
-    // 简单的空函数实现
-    // 在实际应用中，这里会包含资源清理逻辑
+{
+  ulonglong *puVar1;
+  uint *puVar2;
+  uint uVar3;
+  char cVar4;
+  undefined8 uVar5;
+  undefined *puVar6;
+  undefined4 uVar7;
+  longlong *plVar8;
+  longlong lVar9;
+  undefined8 *puVar10;
+  undefined *puVar11;
+  longlong *plVar12;
+  undefined8 *puVar13;
+  ulonglong uVar14;
+  longlong *plVar15;
+  uint uVar16;
+  undefined8 *puVar17;
+  ulonglong uVar18;
+  longlong lVar19;
+  undefined4 *puVar20;
+  uint *puVar21;
+  longlong lVar22;
+  undefined1 auStack_c8 [32];
+  uint uStack_a8;
+  longlong lStack_a0;
+  undefined8 uStack_98;
+  undefined4 *puStack_90;
+  uint uStack_88;
+  longlong lStack_80;
+  longlong lStack_78;
+  longlong *plStack_70;
+  uint uStack_68;
+  uint uStack_64;
+  uint uStack_60;
+  uint uStack_5c;
+  uint uStack_58;
+  uint uStack_54;
+  uint uStack_50;
+  uint uStack_4c;
+  ulonglong uStack_48;
+  
+  if (param_3 == 0) {
     return;
-}
-
-/**
- * 渲染资源处理器 - 资源处理和分配函数
- * 
- * 本函数实现了一个复杂的资源处理和分配系统，主要用于：
- * - 资源的智能分配和管理
- * - 不同类型资源的处理
- * - 资源生命周期的管理
- * - 内存池的优化使用
- * 
- * @param render_context 渲染系统上下文指针
- * @param resource_handle 资源句柄指针
- * @param resource_data 资源数据指针
- * @param process_flags 处理标志
- * 
- * @return void
- * 
- * @note 本函数使用先进的资源处理算法
- * @note 支持多种资源类型
- * @note 包含智能内存管理
- * @note 适用于复杂的渲染系统
- */
-void RenderResource_Processor(void* render_context, void** resource_handle, int64_t* resource_data, uint32_t process_flags) {
-    
-    // 局部变量声明
-    int64_t* resource_info;
-    uint32_t resource_type;
-    uint32_t resource_id;
-    uint32_t resource_flags[12];
-    int64_t resource_offset[8];
-    int64_t list_offset[8];
-    int64_t resource_size;
-    int64_t resource_capacity;
-    int32_t resource_count;
-    uint32_t handle_value;
-    int64_t* resource_list;
-    void** resource_array;
-    uint32_t* resource_block;
-    void** handle_array;
-    void* stack_context;
-    int64_t* stack_resource;
-    
-    // 初始化栈帧和上下文
-    stack_context = (void*)0xfffffffffffffffe;
-    handle_array = (void**)0x0;
-    
-    // 获取资源类型
-    resource_count = (**(code**)(*resource_data + 0x98))(resource_data);
-    if (resource_count == 0) {
-        // 处理特殊资源类型
-        resource_size = (**(code**)(*resource_data + 0x178))(resource_data);
-        if (resource_size == 0) {
-            return;
-        }
-        resource_size = (**(code**)(*resource_data + 0x178))(resource_data);
-        if ((*(int*)(resource_size + 0x20) == 0x11) && 
-            (resource_count = strcmp(*(void**)(resource_size + 0x18), &g_SpecialResourceType), 
-             resource_count == 0)) {
-            return;
-        }
-    }
-    else {
-        if (resource_count == 1) {
-            // 处理第一种资源类型
-            RenderResource_ProcessType1(render_context, &handle_array, resource_data);
-            resource_array = handle_array;
-            goto LAB_RESOURCE_PROCESS_COMPLETE;
-        }
-        if (resource_count == 2) {
-            // 处理第二种资源类型
-            RenderResource_ProcessType2(render_context, &handle_array, resource_data);
-            resource_array = handle_array;
-            goto LAB_RESOURCE_PROCESS_COMPLETE;
-        }
-        if (resource_count == 4) {
-            // 处理第四种资源类型（复杂资源）
-            resource_array = (void**)MemoryPool_Allocate(g_MemoryPoolConfig, 0xf8, 8, 3);
-            handle_array = resource_array;
-            RenderResource_InitializeComplex(resource_array);
-            *resource_array = &g_ComplexResourceType;
-            handle_value = RenderResource_GetComplexIdentifier(resource_array);
-            resource_info = (int64_t*)resource_data[9];
-            stack_resource = resource_info;
-            if (resource_info != (int64_t*)0x0) {
-                handle_value = (**(code**)(*resource_info + 0x28))(resource_info);
-            }
-            handle_value = RenderResource_ComplexProcess(handle_value, resource_info + 9);
-            if (resource_info != (int64_t*)0x0) {
-                (**(code**)(*resource_info + 0x38))(resource_info);
-            }
-            
-            // 设置复杂资源参数
-            resource_size = resource_data[10];
-            resource_flags[0] = *(uint32_t*)((int64_t)resource_data + 0x54);
-            resource_capacity = resource_data[0xb];
-            resource_flags[1] = *(uint32_t*)((int64_t)resource_data + 0x5c);
-            resource_offset[0] = resource_data[0xc];
-            list_offset[0] = resource_data[0xd];
-            resource_offset[1] = resource_data[0xe];
-            resource_offset[2] = resource_data[0xf];
-            resource_offset[3] = resource_data[0x10];
-            resource_offset[4] = resource_data[0x11];
-            
-            *(uint32_t*)(resource_array + 2) = 1;
-            *(uint32_t*)(resource_array + 0x1e) = handle_value;
-            *(uint32_t*)((int64_t)resource_array + 0xf4) = process_flags;
-            *(int*)(resource_array + 0x16) = (int)resource_size;
-            *(uint32_t*)((int64_t)resource_array + 0xb4) = resource_flags[0];
-            *(int*)(resource_array + 0x17) = (int)resource_capacity;
-            *(uint32_t*)((int64_t)resource_array + 0xbc) = resource_flags[1];
-            resource_array[0x18] = resource_offset[0];
-            resource_array[0x19] = list_offset[0];
-            resource_array[0x1a] = resource_offset[1];
-            resource_array[0x1b] = resource_offset[2];
-            resource_array[0x1c] = resource_offset[3];
-            resource_array[0x1d] = resource_offset[4];
-            *(uint32_t*)((int64_t)resource_array + 0x8c) = 4;
-            goto LAB_RESOURCE_PROCESS_COMPLETE;
-        }
-        if (resource_count != 6) {
-            return;
-        }
-    }
-    
-    // 处理第六种资源类型（特殊资源）
-    resource_array = (void**)(**(code**)(*resource_data + 0x1f8))(resource_data, render_context);
-    
-LAB_RESOURCE_PROCESS_COMPLETE:
-    if (resource_array != (void**)0x0) {
-        handle_value = RenderResource_GetIdentifier(render_context, resource_data);
-        *(uint32_t*)(resource_array + 1) = handle_value;
-        handle_value = RenderResource_GetIdentifier(render_context, resource_data[5]);
-        *(uint32_t*)((int64_t)resource_array + 0xc) = handle_value;
-        *(uint32_t*)(resource_array + 2) = *(uint32_t*)(resource_array + 2) | 1;
-        handle_value = (**(code**)(*resource_data + 0x98))(resource_data);
-        *(uint32_t*)((int64_t)resource_array + 0x8c) = handle_value;
-        
-        // 获取资源参数
-        resource_block = (uint32_t*)(**(code**)(*resource_data + 0x198))(resource_data);
-        resource_flags[0] = resource_block[1];
-        resource_flags[1] = resource_block[2];
-        resource_flags[2] = resource_block[3];
-        resource_flags[3] = resource_block[4];
-        resource_flags[4] = resource_block[5];
-        resource_flags[5] = resource_block[6];
-        resource_flags[6] = resource_block[7];
-        resource_flags[7] = resource_block[8];
-        resource_flags[8] = resource_block[9];
-        resource_flags[9] = resource_block[10];
-        resource_flags[10] = resource_block[0xb];
-        handle_value = resource_block[0xc];
-        
-        // 设置资源参数
-        *(uint32_t*)(resource_array + 0xb) = *resource_block;
-        *(uint32_t*)((int64_t)resource_array + 0x5c) = resource_flags[0];
-        *(uint32_t*)(resource_array + 0xc) = resource_flags[1];
-        *(uint32_t*)((int64_t)resource_array + 100) = resource_flags[2];
-        *(uint32_t*)(resource_array + 0xd) = resource_flags[3];
-        *(uint32_t*)((int64_t)resource_array + 0x6c) = resource_flags[4];
-        *(uint32_t*)(resource_array + 0xe) = resource_flags[5];
-        *(uint32_t*)((int64_t)resource_array + 0x74) = resource_flags[6];
-        *(uint32_t*)(resource_array + 0xf) = resource_flags[7];
-        *(uint32_t*)((int64_t)resource_array + 0x7c) = resource_flags[8];
-        *(uint32_t*)(resource_array + 0x10) = resource_flags[9];
-        *(uint32_t*)((int64_t)resource_array + 0x84) = resource_flags[10];
-        *(uint32_t*)(resource_array + 0x11) = handle_value;
-        handle_value = (**(code**)(*resource_data + 0x130))(resource_data);
-        *(uint32_t*)((int64_t)resource_array + 0x14) = handle_value;
-        
-        // 获取扩展资源参数
-        handle_array = (void**)(**(code**)(*resource_data + 0x158))(resource_data);
-        resource_offset[0] = handle_array[1];
-        resource_offset[1] = handle_array[2];
-        resource_offset[2] = handle_array[3];
-        resource_offset[3] = handle_array[4];
-        resource_offset[4] = handle_array[5];
-        resource_offset[5] = handle_array[6];
-        resource_offset[6] = handle_array[7];
-        
-        // 设置扩展资源参数
-        resource_array[3] = *handle_array;
-        resource_array[4] = resource_offset[0];
-        resource_array[5] = resource_offset[1];
-        resource_array[6] = resource_offset[2];
-        resource_array[7] = resource_offset[3];
-        resource_array[8] = resource_offset[4];
-        resource_array[9] = resource_offset[5];
-        resource_array[10] = resource_offset[6];
-        
-        *resource_handle = resource_array;
-    }
-    return;
-}
-
-/**
- * 渲染资源分配器（扩展版本） - 复杂资源分配函数
- * 
- * 本函数实现了一个复杂的资源分配系统，主要用于：
- * - 复杂资源结构的分配
- * - 资源元数据的处理
- * - 文件路径和资源名称的管理
- * - 资源依赖关系的处理
- * 
- * @param render_context 渲染系统上下文指针
- * @param resource_handle 资源句柄指针
- * @param resource_data 资源数据指针
- * 
- * @return void
- * 
- * @note 本函数处理复杂的资源分配逻辑
- * @note 支持文件路径处理
- * @note 包含资源依赖管理
- * @note 适用于复杂的资源系统
- */
-void RenderResource_AllocatorEx(void* render_context, int64_t* resource_handle, int64_t resource_data) {
-    
-    // 局部变量声明
-    char file_extension;
-    uint32_t resource_flags[4];
-    void* resource_data_ptr;
-    int64_t resource_offset;
-    int64_t resource_size;
-    int64_t resource_capacity;
-    char* file_path;
-    char* file_name;
-    uint32_t path_length;
-    void* default_path;
-    uint32_t* resource_info;
-    void** resource_array;
-    uint32_t* resource_block;
-    void* context_data;
-    char temp_buffer[72];
-    uint64_t security_checksum;
-    
-    // 初始化栈帧和上下文
-    context_data = (void*)0xfffffffffffffffe;
-    security_checksum = g_SecurityChecksum ^ (uint64_t)temp_buffer;
-    
-    // 分配资源内存
-    resource_data_ptr = MemoryPool_Allocate(g_MemoryPoolConfig, 0x200, 8, 3);
-    resource_size = RenderResource_InitializeComplex(resource_data_ptr);
-    
-    // 设置资源基本属性
-    *(uint32_t*)(resource_size + 0xb0) = *(uint32_t*)(resource_data + 0x30);
-    *(uint32_t*)(resource_size + 0xb4) = *(uint32_t*)(resource_data + 0xe4);
-    *(uint32_t*)(resource_size + 200) = *(uint32_t*)(resource_data + 0x168);
-    *(uint32_t*)(resource_size + 0xb8) = *(uint32_t*)(resource_data + 0xe8);
-    *(uint32_t*)(resource_size + 0xbc) = *(uint32_t*)(resource_data + 0xec);
-    *(uint32_t*)(resource_size + 0xc0) = *(uint32_t*)(resource_data + 0xf0);
-    *(uint32_t*)(resource_size + 0xc4) = *(uint32_t*)(resource_data + 0xf4);
-    *(uint32_t*)(resource_size + 0xcc) = *(uint32_t*)(resource_data + 0x16c);
-    
-    // 设置资源数据指针
-    resource_data_ptr = *(void**)(resource_data + 0xdc);
-    *(void**)(resource_size + 0xd8) = *(void**)(resource_data + 0xd4);
-    *(void**)(resource_size + 0xe0) = resource_data_ptr;
-    
-    // 设置资源标志
-    resource_flags[0] = *(uint32_t*)(resource_data + 0x15c);
-    resource_flags[1] = *(uint32_t*)(resource_data + 0x160);
-    resource_flags[2] = *(uint32_t*)(resource_data + 0x164);
-    *(uint32_t*)(resource_size + 0xe8) = *(uint32_t*)(resource_data + 0x158);
-    *(uint32_t*)(resource_size + 0xec) = resource_flags[0];
-    *(uint32_t*)(resource_size + 0xf0) = resource_flags[1];
-    *(uint32_t*)(resource_size + 0xf4) = resource_flags[2];
-    
-    // 处理文件路径信息
-    resource_capacity = *(int64_t*)(resource_data + 0x108);
-    if (resource_capacity != 0) {
-        if (*(int64_t*)(resource_capacity + 0x1b0) == 0) {
-            resource_capacity = resource_capacity + 0x10;
+  }
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uVar5 = *(undefined8 *)(param_3 + 0x10);
+  param_2[2] = 1;
+  uStack_98 = param_1;
+  puStack_90 = param_2;
+  lStack_78 = param_3;
+  uVar7 = FUN_18032b4a0(param_1,param_3);
+  *param_2 = uVar7;
+  uVar7 = FUN_18032b4a0(param_1,uVar5);
+  param_2[1] = uVar7;
+  puVar6 = *(undefined **)(*(longlong *)(param_3 + 0x208) + 0x18);
+  puVar11 = &DAT_18098bc73;
+  if (puVar6 != (undefined *)0x0) {
+    puVar11 = puVar6;
+  }
+  (**(code **)(*(longlong *)(param_2 + 4) + 0x10))(param_2 + 4,puVar11);
+  puVar1 = (ulonglong *)(param_2 + 0x22);
+  uVar14 = *(longlong *)(param_3 + 0x1b0) - *(longlong *)(param_3 + 0x1a8) >> 3;
+  uVar18 = uVar14 & 0xffffffff;
+  FUN_1800e8140(puVar1,uVar14 & 0xffffffff);
+  uVar5 = uStack_98;
+  puVar20 = param_2;
+  if ((int)uVar14 != 0) {
+    lVar22 = 0;
+    do {
+      lStack_80 = 0;
+      FUN_180323340(uVar5,&lStack_80,*(undefined8 *)(lVar22 + *(longlong *)(param_3 + 0x1a8)),
+                    0xffffffff);
+      lVar19 = lStack_80;
+      if (lStack_80 != 0) {
+        plVar15 = *(longlong **)(param_2 + 0x24);
+        if (plVar15 < *(longlong **)(param_2 + 0x26)) {
+          *(longlong **)(param_2 + 0x24) = plVar15 + 1;
+          *plVar15 = lStack_80;
         }
         else {
-            resource_capacity = ResourcePath_GetFullPath();
+          plVar12 = (longlong *)*puVar1;
+          lVar9 = (longlong)plVar15 - (longlong)plVar12 >> 3;
+          if (lVar9 == 0) {
+            lVar9 = 1;
+LAB_180322fe3:
+            plVar8 = (longlong *)
+                     FUN_18062b420(_DAT_180c8ed18,lVar9 * 8,*(undefined1 *)(param_2 + 0x28));
+            plVar12 = (longlong *)*puVar1;
+            plVar15 = *(longlong **)(param_2 + 0x24);
+          }
+          else {
+            lVar9 = lVar9 * 2;
+            if (lVar9 != 0) goto LAB_180322fe3;
+            plVar8 = (longlong *)0x0;
+          }
+          if (plVar12 != plVar15) {
+                    // WARNING: Subroutine does not return
+            memmove(plVar8,plVar12,(longlong)plVar15 - (longlong)plVar12);
+          }
+          *plVar8 = lVar19;
+          if (*puVar1 != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900();
+          }
+          *puVar1 = (ulonglong)plVar8;
+          *(longlong **)(param_2 + 0x26) = plVar8 + lVar9;
+          *(longlong **)(param_2 + 0x24) = plVar8 + 1;
+          param_3 = lStack_78;
         }
-        
-        path_length = 0;
-        default_path = &g_DefaultResourcePath;
-        file_name = temp_buffer;
-        temp_buffer[0] = '\0';
-        path_length = *(uint32_t*)(resource_capacity + 0x10);
-        context_data = &g_DefaultResourceType;
-        if (*(void**)(resource_capacity + 8) != (void*)0x0) {
-            context_data = *(void**)(resource_capacity + 8);
-        }
-        
-        // 复制文件路径
-        strcpy_s(temp_buffer, 0x40, context_data);
-        if (file_name != (char*)0x0) {
-            file_extension = *file_name;
-            file_path = file_name;
-            for (; (file_extension != '.' && (path_length < path_length)); path_length = path_length + 1) {
-                file_path = file_path + 1;
-                file_extension = *file_path;
-            }
-            if (path_length != path_length) {
-                file_name[(int)path_length] = '\0';
-                path_length = path_length;
-            }
-        }
-        
-        *(uint32_t*)(resource_size + 0x160) = path_length;
-        file_path = "";
-        if (file_name != (char*)0x0) {
-            file_path = file_name;
-        }
-        strcpy_s(*(void**)(resource_size + 0x158), 0x40, file_path);
-        default_path = &g_ResourcePathExtension;
-    }
-    
-    // 处理资源依赖关系
-    if (*(int64_t*)(resource_data + 0x110) != 0) {
-        context_data = *(void**)(*(int64_t*)(resource_data + 0x110) + 0x18);
-        default_path = &g_DefaultResourceType;
-        if (context_data != (void*)0x0) {
-            default_path = context_data;
-        }
-        
-        (**(code**)(*(int64_t*)(resource_size + 0x1a8) + 0x10))((int64_t*)(resource_size + 0x1a8), default_path);
-        resource_array = &resource_info;
-        resource_info = *(int64_t**)(resource_data + 0x110);
-        if (resource_info != (int64_t*)0x0) {
-            (**(code**)(*resource_info + 0x28))();
-        }
-        RenderResource_ProcessDependencies(render_context, &resource_info);
-    }
-    
-    *resource_handle = resource_size;
-    
-    // 安全检查和清理
-    Security_Check(security_checksum ^ (uint64_t)temp_buffer);
-}
-
-/**
- * 渲染资源分配器（优化版本） - 优化的资源分配函数
- * 
- * 本函数实现了一个优化的资源分配系统，主要用于：
- * - 高效的资源分配和管理
- * - 内存池的优化使用
- * - 资源块的动态扩展
- * - 性能优化的资源处理
- * 
- * @param render_context 渲染系统上下文指针
- * @param resource_handle 资源句柄指针
- * @param resource_data 资源数据指针
- * 
- * @return void
- * 
- * @note 本函数使用优化的分配算法
- * @note 支持内存池的动态扩展
- * @note 包含性能优化机制
- * @note 适用于高性能渲染系统
- */
-void RenderResource_AllocatorOptimized(void* render_context, int64_t* resource_handle, int64_t resource_data) {
-    
-    // 局部变量声明
-    int64_t resource_size;
-    uint64_t resource_count;
-    int64_t resource_offset;
-    int64_t resource_capacity;
-    int64_t resource_start;
-    int64_t resource_end;
-    uint64_t available_space;
-    uint64_t required_space;
-    uint64_t expansion_size;
-    int32_t resource_index;
-    
-    // 获取资源管理器
-    resource_size = RenderResource_GetManager();
-    resource_capacity = 0;
-    *(uint8_t*)(resource_size + 0xb0) = *(uint8_t*)(resource_data + 0xa9);
-    resource_offset = *(int64_t*)(resource_size + 0xc0);
-    resource_start = *(int64_t*)(resource_size + 0xb8);
-    resource_count = *(int64_t*)(resource_data + 0x38) - *(int64_t*)(resource_data + 0x30) >> 3;
-    available_space = resource_offset - resource_start >> 3;
-    required_space = resource_count & 0xffffffff;
-    
-    // 检查是否需要扩展内存池
-    if (available_space < required_space) {
-        expansion_space = (resource_count & 0xffffffff) - available_space;
-        if ((uint64_t)(*(int64_t*)(resource_size + 200) - resource_offset >> 3) < expansion_space) {
-            if (available_space == 0) {
-                available_space = 1;
+      }
+      lVar22 = lVar22 + 8;
+      uVar18 = uVar18 - 1;
+      puVar20 = puStack_90;
+      param_1 = uStack_98;
+    } while (uVar18 != 0);
+  }
+  puVar20[0x2a] = *(undefined4 *)(param_3 + 0x170);
+  puVar20[0x2b] = *(undefined4 *)(param_3 + 0x168);
+  plVar15 = (longlong *)(puVar20 + 0x1a);
+  cVar4 = *(char *)(param_3 + 0x20);
+  plStack_70 = plVar15;
+  FUN_18033ab50(plVar15,(longlong)cVar4);
+  uStack_88 = (uint)cVar4;
+  uStack_a8 = 0;
+  if (cVar4 != '\0') {
+    lStack_a0 = 0;
+    do {
+      lVar22 = lStack_a0;
+      uVar16 = uStack_a8;
+      puVar21 = (uint *)((longlong)(char)uStack_a8 * 0x100 + *(longlong *)(lStack_78 + 0x18));
+      *(undefined4 *)(lStack_a0 + *plVar15) = 1;
+      do {
+        LOCK();
+        uVar3 = *puVar21;
+        *puVar21 = *puVar21 | 1;
+        UNLOCK();
+      } while ((uVar3 & 1) != 0);
+      uStack_68 = puVar21[1];
+      uStack_64 = puVar21[2];
+      uStack_60 = puVar21[3];
+      uStack_5c = puVar21[4];
+      uStack_58 = puVar21[5];
+      uStack_54 = puVar21[6];
+      uStack_50 = puVar21[7];
+      uStack_4c = puVar21[8];
+      *puVar21 = 0;
+      lVar19 = *plVar15;
+      puVar2 = (uint *)(lStack_a0 + 0x10 + lVar19);
+      *puVar2 = uStack_68;
+      puVar2[1] = uStack_64;
+      puVar2[2] = uStack_60;
+      puVar2[3] = uStack_5c;
+      puVar2 = (uint *)(lStack_a0 + 0x20 + lVar19);
+      *puVar2 = uStack_58;
+      puVar2[1] = uStack_54;
+      puVar2[2] = uStack_50;
+      puVar2[3] = uStack_4c;
+      lVar19 = *(longlong *)
+                ((longlong)(char)uStack_a8 * 0x1b0 + 0x180 +
+                *(longlong *)(*(longlong *)(lStack_78 + 0x208) + 0x140));
+      lVar9 = *plVar15;
+      *(undefined4 *)(lVar9 + 0x40 + lStack_a0) = *(undefined4 *)(lVar19 + 0x10);
+      puVar6 = *(undefined **)(lVar19 + 8);
+      puVar11 = &DAT_18098bc73;
+      if (puVar6 != (undefined *)0x0) {
+        puVar11 = puVar6;
+      }
+      strcpy_s(*(undefined8 *)(lVar9 + 0x38 + lStack_a0),0x40,puVar11);
+      uVar14 = *(longlong *)(puVar21 + 0x2e) - *(longlong *)(puVar21 + 0x2c) >> 3;
+      uVar18 = uVar14 & 0xffffffff;
+      FUN_1800e8140(*plVar15 + 0x88 + lVar22,uVar14 & 0xffffffff);
+      if ((int)uVar14 != 0) {
+        lVar19 = 0;
+        do {
+          puStack_90 = (undefined4 *)0x0;
+          FUN_180323340(param_1,&puStack_90,*(undefined8 *)(*(longlong *)(puVar21 + 0x2c) + lVar19),
+                        uVar16);
+          puVar20 = puStack_90;
+          if (puStack_90 != (undefined4 *)0x0) {
+            lVar22 = *plVar15;
+            puVar17 = *(undefined8 **)(lStack_a0 + 0x90 + lVar22);
+            if (puVar17 < *(undefined8 **)(lStack_a0 + 0x98 + lVar22)) {
+              *(undefined8 **)(lStack_a0 + 0x90 + lVar22) = puVar17 + 1;
+              *puVar17 = puStack_90;
+              uVar16 = uStack_a8;
             }
             else {
-                available_space = available_space * 2;
+              puVar13 = *(undefined8 **)(lStack_a0 + 0x88 + lVar22);
+              lVar9 = (longlong)puVar17 - (longlong)puVar13 >> 3;
+              if (lVar9 == 0) {
+                lVar9 = 1;
+LAB_18032321b:
+                puVar10 = (undefined8 *)
+                          FUN_18062b420(_DAT_180c8ed18,lVar9 * 8,
+                                        *(undefined1 *)(lStack_a0 + 0xa0 + lVar22));
+                puVar17 = *(undefined8 **)(lStack_a0 + 0x90 + lVar22);
+                puVar13 = *(undefined8 **)(lStack_a0 + 0x88 + lVar22);
+              }
+              else {
+                lVar9 = lVar9 * 2;
+                if (lVar9 != 0) goto LAB_18032321b;
+                puVar10 = (undefined8 *)0x0;
+              }
+              if (puVar13 != puVar17) {
+                    // WARNING: Subroutine does not return
+                memmove(puVar10,puVar13,(longlong)puVar17 - (longlong)puVar13);
+              }
+              *puVar10 = puVar20;
+              if (*(longlong *)(lStack_a0 + 0x88 + lVar22) != 0) {
+                    // WARNING: Subroutine does not return
+                FUN_18064e900();
+              }
+              *(undefined8 **)(lStack_a0 + 0x88 + lVar22) = puVar10;
+              *(undefined8 **)(lStack_a0 + 0x90 + lVar22) = puVar10 + 1;
+              *(undefined8 **)(lStack_a0 + 0x98 + lVar22) = puVar10 + lVar9;
+              plVar15 = plStack_70;
+              uVar16 = uStack_a8;
             }
-            if (available_space < required_space) {
-                available_space = required_space;
-            }
-            resource_end = resource_offset;
-            resource_offset = resource_capacity;
-            if (available_space != 0) {
-                resource_offset = MemoryPool_Allocate(g_MemoryPoolConfig, 
-                                                   available_space * 8, 
-                                                   *(uint8_t*)(resource_size + 0xd0));
-                resource_start = *(int64_t*)(resource_size + 0xb8);
-                resource_end = *(int64_t*)(resource_size + 0xc0);
-            }
-            
-            // 移动现有资源数据
-            if (resource_start != resource_end) {
-                memmove(resource_offset, resource_start, resource_end - resource_start);
-            }
-            
-            // 清理扩展空间
-            if (expansion_space != 0) {
-                memset(resource_offset, 0, expansion_space * 8);
-            }
-            
-            // 更新内存池指针
-            if (*(int64_t*)(resource_size + 0xb8) != 0) {
-                MemoryPool_Release();
-            }
-            
-            *(int64_t*)(resource_size + 0xb8) = resource_offset;
-            *(uint64_t*)(resource_size + 200) = resource_offset + available_space * 8;
+          }
+          lVar19 = lVar19 + 8;
+          uVar18 = uVar18 - 1;
+          lVar22 = lStack_a0;
+          param_1 = uStack_98;
+        } while (uVar18 != 0);
+      }
+      uStack_a8 = uVar16 + 1;
+      lStack_a0 = lVar22 + 0xb0;
+      param_1 = uStack_98;
+    } while (uStack_a8 < uStack_88);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_c8);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180322eba(undefined8 param_1,undefined4 *param_2,longlong param_3)
+void FUN_180322eba(undefined8 param_1,undefined4 *param_2,longlong param_3)
+
+{
+  ulonglong *puVar1;
+  uint *puVar2;
+  uint uVar3;
+  char cVar4;
+  undefined8 uVar5;
+  undefined *puVar6;
+  longlong lVar7;
+  undefined4 uVar8;
+  longlong *plVar9;
+  longlong lVar10;
+  undefined8 *puVar11;
+  undefined *puVar12;
+  longlong *plVar13;
+  undefined8 *puVar14;
+  undefined8 unaff_RBX;
+  ulonglong uVar15;
+  longlong *plVar16;
+  undefined8 unaff_RBP;
+  undefined8 unaff_RDI;
+  undefined8 *puVar17;
+  longlong in_R11;
+  undefined8 unaff_R12;
+  ulonglong uVar18;
+  undefined4 *puVar19;
+  undefined8 unaff_R14;
+  uint *puVar20;
+  longlong lVar21;
+  uint uStackX_20;
+  longlong lStack0000000000000028;
+  undefined8 uStack0000000000000030;
+  undefined4 *puStack0000000000000038;
+  uint in_stack_00000040;
+  longlong in_stack_00000048;
+  longlong lStack0000000000000050;
+  longlong *in_stack_00000058;
+  uint uStack0000000000000060;
+  uint uStack0000000000000064;
+  uint uStack0000000000000068;
+  uint uStack000000000000006c;
+  uint uStack0000000000000070;
+  uint uStack0000000000000074;
+  uint uStack0000000000000078;
+  uint uStack000000000000007c;
+  ulonglong in_stack_00000080;
+  
+  *(undefined8 *)(in_R11 + 0x20) = unaff_RBX;
+  uVar5 = *(undefined8 *)(param_3 + 0x10);
+  *(undefined8 *)(in_R11 + -0x20) = unaff_RBP;
+  *(undefined8 *)(in_R11 + -0x28) = unaff_RDI;
+  param_2[2] = 1;
+  *(undefined8 *)(in_R11 + -0x30) = unaff_R12;
+  *(undefined8 *)(in_R11 + -0x38) = unaff_R14;
+  uStack0000000000000030 = param_1;
+  puStack0000000000000038 = param_2;
+  lStack0000000000000050 = param_3;
+  uVar8 = FUN_18032b4a0(param_1,param_3);
+  *param_2 = uVar8;
+  uVar8 = FUN_18032b4a0(param_1,uVar5);
+  param_2[1] = uVar8;
+  puVar6 = *(undefined **)(*(longlong *)(param_3 + 0x208) + 0x18);
+  puVar12 = &DAT_18098bc73;
+  if (puVar6 != (undefined *)0x0) {
+    puVar12 = puVar6;
+  }
+  (**(code **)(*(longlong *)(param_2 + 4) + 0x10))(param_2 + 4,puVar12);
+  puVar1 = (ulonglong *)(param_2 + 0x22);
+  uVar15 = *(longlong *)(param_3 + 0x1b0) - *(longlong *)(param_3 + 0x1a8) >> 3;
+  uVar18 = uVar15 & 0xffffffff;
+  FUN_1800e8140(puVar1,uVar15 & 0xffffffff);
+  uVar5 = uStack0000000000000030;
+  puVar19 = param_2;
+  if ((int)uVar15 != 0) {
+    lVar21 = 0;
+    do {
+      in_stack_00000048 = 0;
+      FUN_180323340(uVar5,&stack0x00000048,*(undefined8 *)(lVar21 + *(longlong *)(param_3 + 0x1a8)),
+                    0xffffffff);
+      lVar7 = in_stack_00000048;
+      if (in_stack_00000048 != 0) {
+        plVar16 = *(longlong **)(param_2 + 0x24);
+        if (plVar16 < *(longlong **)(param_2 + 0x26)) {
+          *(longlong **)(param_2 + 0x24) = plVar16 + 1;
+          *plVar16 = in_stack_00000048;
         }
-        else if (expansion_space != 0) {
-            memset(resource_offset, 0, expansion_space * 8);
+        else {
+          plVar13 = (longlong *)*puVar1;
+          lVar10 = (longlong)plVar16 - (longlong)plVar13 >> 3;
+          if (lVar10 == 0) {
+            lVar10 = 1;
+LAB_180322fe3:
+            plVar9 = (longlong *)
+                     FUN_18062b420(_DAT_180c8ed18,lVar10 * 8,*(undefined1 *)(param_2 + 0x28));
+            plVar13 = (longlong *)*puVar1;
+            plVar16 = *(longlong **)(param_2 + 0x24);
+          }
+          else {
+            lVar10 = lVar10 * 2;
+            if (lVar10 != 0) goto LAB_180322fe3;
+            plVar9 = (longlong *)0x0;
+          }
+          if (plVar13 != plVar16) {
+                    // WARNING: Subroutine does not return
+            memmove(plVar9,plVar13,(longlong)plVar16 - (longlong)plVar13);
+          }
+          *plVar9 = lVar7;
+          if (*puVar1 != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900();
+          }
+          *puVar1 = (ulonglong)plVar9;
+          *(longlong **)(param_2 + 0x26) = plVar9 + lVar10;
+          *(longlong **)(param_2 + 0x24) = plVar9 + 1;
+          param_3 = lStack0000000000000050;
         }
-    }
-    else {
-        resource_offset = resource_start + required_space * 8;
-    }
-    
-    *(int64_t*)(resource_size + 0xc0) = resource_offset;
-    resource_index = (int)resource_count;
-    resource_capacity = resource_capacity;
-    
-    // 批量处理资源
-    if (resource_index != 0) {
+      }
+      lVar21 = lVar21 + 8;
+      uVar18 = uVar18 - 1;
+      puVar19 = puStack0000000000000038;
+      param_1 = uStack0000000000000030;
+    } while (uVar18 != 0);
+  }
+  puVar19[0x2a] = *(undefined4 *)(param_3 + 0x170);
+  puVar19[0x2b] = *(undefined4 *)(param_3 + 0x168);
+  plVar16 = (longlong *)(puVar19 + 0x1a);
+  cVar4 = *(char *)(param_3 + 0x20);
+  in_stack_00000058 = plVar16;
+  FUN_18033ab50(plVar16,(longlong)cVar4);
+  in_stack_00000040 = (uint)cVar4;
+  uStackX_20 = 0;
+  if (cVar4 != '\0') {
+    lStack0000000000000028 = 0;
+    do {
+      puVar20 = (uint *)((longlong)(char)uStackX_20 * 0x100 +
+                        *(longlong *)(lStack0000000000000050 + 0x18));
+      *(undefined4 *)(lStack0000000000000028 + *plVar16) = 1;
+      do {
+        LOCK();
+        uVar3 = *puVar20;
+        *puVar20 = *puVar20 | 1;
+        UNLOCK();
+      } while ((uVar3 & 1) != 0);
+      uStack0000000000000060 = puVar20[1];
+      uStack0000000000000064 = puVar20[2];
+      uStack0000000000000068 = puVar20[3];
+      uStack000000000000006c = puVar20[4];
+      uStack0000000000000070 = puVar20[5];
+      uStack0000000000000074 = puVar20[6];
+      uStack0000000000000078 = puVar20[7];
+      uStack000000000000007c = puVar20[8];
+      *puVar20 = 0;
+      lVar21 = *plVar16;
+      puVar2 = (uint *)(lStack0000000000000028 + 0x10 + lVar21);
+      *puVar2 = uStack0000000000000060;
+      puVar2[1] = uStack0000000000000064;
+      puVar2[2] = uStack0000000000000068;
+      puVar2[3] = uStack000000000000006c;
+      puVar2 = (uint *)(lStack0000000000000028 + 0x20 + lVar21);
+      *puVar2 = uStack0000000000000070;
+      puVar2[1] = uStack0000000000000074;
+      puVar2[2] = uStack0000000000000078;
+      puVar2[3] = uStack000000000000007c;
+      lVar21 = *(longlong *)
+                ((longlong)(char)uStackX_20 * 0x1b0 + 0x180 +
+                *(longlong *)(*(longlong *)(lStack0000000000000050 + 0x208) + 0x140));
+      lVar7 = *plVar16;
+      *(undefined4 *)(lVar7 + 0x40 + lStack0000000000000028) = *(undefined4 *)(lVar21 + 0x10);
+      puVar6 = *(undefined **)(lVar21 + 8);
+      puVar12 = &DAT_18098bc73;
+      if (puVar6 != (undefined *)0x0) {
+        puVar12 = puVar6;
+      }
+      strcpy_s(*(undefined8 *)(lVar7 + 0x38 + lStack0000000000000028),0x40,puVar12);
+      uVar15 = *(longlong *)(puVar20 + 0x2e) - *(longlong *)(puVar20 + 0x2c) >> 3;
+      uVar18 = uVar15 & 0xffffffff;
+      FUN_1800e8140(*plVar16 + 0x88 + lStack0000000000000028,uVar15 & 0xffffffff);
+      if ((int)uVar15 != 0) {
+        lVar21 = 0;
         do {
-            RenderResource_Processor(render_context, *(int64_t*)(resource_size + 0xb8) + resource_capacity,
-                                   *(void**)(*(int64_t*)(resource_data + 0x30) + resource_capacity), 
-                                   0xffffffff);
-            resource_capacity = resource_capacity + 8;
-            resource_count = resource_count - 1;
-            resource_offset = resource_offset + 8;
-        } while (resource_count != 0);
-    }
-    
-    *resource_handle = resource_size;
-    return;
+          puStack0000000000000038 = (undefined4 *)0x0;
+          FUN_180323340(param_1,&stack0x00000038,
+                        *(undefined8 *)(*(longlong *)(puVar20 + 0x2c) + lVar21),uStackX_20);
+          puVar19 = puStack0000000000000038;
+          if (puStack0000000000000038 != (undefined4 *)0x0) {
+            lVar7 = *plVar16;
+            puVar17 = *(undefined8 **)(lStack0000000000000028 + 0x90 + lVar7);
+            if (puVar17 < *(undefined8 **)(lStack0000000000000028 + 0x98 + lVar7)) {
+              *(undefined8 **)(lStack0000000000000028 + 0x90 + lVar7) = puVar17 + 1;
+              *puVar17 = puStack0000000000000038;
+            }
+            else {
+              puVar14 = *(undefined8 **)(lStack0000000000000028 + 0x88 + lVar7);
+              lVar10 = (longlong)puVar17 - (longlong)puVar14 >> 3;
+              if (lVar10 == 0) {
+                lVar10 = 1;
+LAB_18032321b:
+                puVar11 = (undefined8 *)
+                          FUN_18062b420(_DAT_180c8ed18,lVar10 * 8,
+                                        *(undefined1 *)(lStack0000000000000028 + 0xa0 + lVar7));
+                puVar17 = *(undefined8 **)(lStack0000000000000028 + 0x90 + lVar7);
+                puVar14 = *(undefined8 **)(lStack0000000000000028 + 0x88 + lVar7);
+              }
+              else {
+                lVar10 = lVar10 * 2;
+                if (lVar10 != 0) goto LAB_18032321b;
+                puVar11 = (undefined8 *)0x0;
+              }
+              if (puVar14 != puVar17) {
+                    // WARNING: Subroutine does not return
+                memmove(puVar11,puVar14,(longlong)puVar17 - (longlong)puVar14);
+              }
+              *puVar11 = puVar19;
+              if (*(longlong *)(lStack0000000000000028 + 0x88 + lVar7) != 0) {
+                    // WARNING: Subroutine does not return
+                FUN_18064e900();
+              }
+              *(undefined8 **)(lStack0000000000000028 + 0x88 + lVar7) = puVar11;
+              *(undefined8 **)(lStack0000000000000028 + 0x90 + lVar7) = puVar11 + 1;
+              *(undefined8 **)(lStack0000000000000028 + 0x98 + lVar7) = puVar11 + lVar10;
+              plVar16 = in_stack_00000058;
+            }
+          }
+          lVar21 = lVar21 + 8;
+          uVar18 = uVar18 - 1;
+          param_1 = uStack0000000000000030;
+        } while (uVar18 != 0);
+      }
+      uStackX_20 = uStackX_20 + 1;
+      lStack0000000000000028 = lStack0000000000000028 + 0xb0;
+      param_1 = uStack0000000000000030;
+    } while (uStackX_20 < in_stack_00000040);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000080 ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * 渲染资源查询器 - 资源句柄查询函数
- * 
- * 本函数实现了一个高效的资源查询系统，主要用于：
- * - 资源句柄的快速查找
- * - 资源引用计数的管理
- * - 线程安全的资源查询
- * - 资源状态的验证
- * 
- * @param resource_manager 资源管理器指针
- * @param query_param 查询参数
- * 
- * @return uint32_t 资源句柄或错误代码
- * 
- * @note 本函数使用哈希表进行快速查找
- * @note 支持线程安全的查询操作
- * @note 包含错误处理机制
- * @note 适用于大规模资源管理
- */
-uint32_t RenderResource_QueryHandle(int64_t resource_manager, int64_t query_param) {
-    
-    // 局部变量声明
-    int64_t resource_info;
-    int32_t lock_result;
-    uint32_t resource_handle;
-    int64_t hash_offset;
-    uint32_t* resource_ptr;
-    void* context_data;
-    uint32_t hash_array[2];
-    uint32_t* hash_ptr;
-    uint8_t temp_buffer[24];
-    
-    // 初始化上下文
-    context_data = (void*)0xfffffffffffffffe;
-    
-    // 参数验证
-    if (query_param == 0) {
-        resource_handle = ERROR_RESOURCE_INVALID;
+
+
+
+
+// 函数: void FUN_180323335(void)
+void FUN_180323335(void)
+
+{
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180323340(undefined8 param_1,undefined8 *param_2,longlong *param_3,undefined4 param_4)
+void FUN_180323340(undefined8 param_1,undefined8 *param_2,longlong *param_3,undefined4 param_4)
+
+{
+  longlong *plVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  undefined4 uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  undefined4 uVar10;
+  undefined4 uVar11;
+  undefined4 uVar12;
+  longlong lVar13;
+  longlong lVar14;
+  longlong lVar15;
+  longlong lVar16;
+  longlong lVar17;
+  undefined8 uVar18;
+  undefined8 uVar19;
+  undefined8 uVar20;
+  undefined8 uVar21;
+  undefined8 uVar22;
+  undefined8 uVar23;
+  undefined8 uVar24;
+  longlong lVar25;
+  longlong lVar26;
+  int iVar27;
+  undefined4 uVar28;
+  longlong lVar29;
+  undefined8 *puVar30;
+  undefined4 *puVar31;
+  undefined8 *puVar32;
+  undefined8 *puStack_48;
+  undefined8 uStack_40;
+  longlong *plStack_38;
+  
+  uStack_40 = 0xfffffffffffffffe;
+  puStack_48 = (undefined8 *)0x0;
+  iVar27 = (**(code **)(*param_3 + 0x98))(param_3);
+  if (iVar27 == 0) {
+    lVar29 = (**(code **)(*param_3 + 0x178))(param_3);
+    if (lVar29 == 0) {
+      return;
+    }
+    lVar29 = (**(code **)(*param_3 + 0x178))(param_3);
+    if ((*(int *)(lVar29 + 0x20) == 0x11) &&
+       (iVar27 = strcmp(*(undefined8 *)(lVar29 + 0x18),&UNK_180a1b100), iVar27 == 0)) {
+      return;
+    }
+  }
+  else {
+    if (iVar27 == 1) {
+      FUN_1803235c0(param_1,&puStack_48,param_3);
+      puVar30 = puStack_48;
+      goto LAB_1803234fc;
+    }
+    if (iVar27 == 2) {
+      FUN_180323810(param_1,&puStack_48,param_3);
+      puVar30 = puStack_48;
+      goto LAB_1803234fc;
+    }
+    if (iVar27 == 4) {
+      puVar30 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0xf8,8,3);
+      puStack_48 = puVar30;
+      FUN_180320470(puVar30);
+      *puVar30 = &UNK_180a1b368;
+      uVar28 = FUN_180339cf0(puVar30);
+      plVar1 = (longlong *)param_3[9];
+      plStack_38 = plVar1;
+      if (plVar1 != (longlong *)0x0) {
+        uVar28 = (**(code **)(*plVar1 + 0x28))(plVar1);
+      }
+      uVar28 = FUN_1800c17c0(uVar28,plVar1 + 9);
+      if (plVar1 != (longlong *)0x0) {
+        (**(code **)(*plVar1 + 0x38))(plVar1);
+      }
+      lVar25 = param_3[10];
+      uVar2 = *(undefined4 *)((longlong)param_3 + 0x54);
+      lVar26 = param_3[0xb];
+      uVar3 = *(undefined4 *)((longlong)param_3 + 0x5c);
+      lVar29 = param_3[0xc];
+      lVar13 = param_3[0xd];
+      lVar14 = param_3[0xe];
+      lVar15 = param_3[0xf];
+      lVar16 = param_3[0x10];
+      lVar17 = param_3[0x11];
+      *(undefined4 *)(puVar30 + 2) = 1;
+      *(undefined4 *)(puVar30 + 0x1e) = uVar28;
+      *(undefined4 *)((longlong)puVar30 + 0xf4) = param_4;
+      *(int *)(puVar30 + 0x16) = (int)lVar25;
+      *(undefined4 *)((longlong)puVar30 + 0xb4) = uVar2;
+      *(int *)(puVar30 + 0x17) = (int)lVar26;
+      *(undefined4 *)((longlong)puVar30 + 0xbc) = uVar3;
+      puVar30[0x18] = lVar29;
+      puVar30[0x19] = lVar13;
+      puVar30[0x1a] = lVar14;
+      puVar30[0x1b] = lVar15;
+      puVar30[0x1c] = lVar16;
+      puVar30[0x1d] = lVar17;
+      *(undefined4 *)((longlong)puVar30 + 0x8c) = 4;
+      goto LAB_1803234fc;
+    }
+    if (iVar27 != 6) {
+      return;
+    }
+  }
+  puVar30 = (undefined8 *)(**(code **)(*param_3 + 0x1f8))(param_3,param_1);
+LAB_1803234fc:
+  if (puVar30 != (undefined8 *)0x0) {
+    uVar28 = FUN_18032b4a0(param_1,param_3);
+    *(undefined4 *)(puVar30 + 1) = uVar28;
+    uVar28 = FUN_18032b4a0(param_1,param_3[5]);
+    *(undefined4 *)((longlong)puVar30 + 0xc) = uVar28;
+    *(uint *)(puVar30 + 2) = *(uint *)(puVar30 + 2) | 1;
+    uVar28 = (**(code **)(*param_3 + 0x98))(param_3);
+    *(undefined4 *)((longlong)puVar30 + 0x8c) = uVar28;
+    puVar31 = (undefined4 *)(**(code **)(*param_3 + 0x198))(param_3);
+    uVar2 = puVar31[1];
+    uVar3 = puVar31[2];
+    uVar4 = puVar31[3];
+    uVar5 = puVar31[4];
+    uVar6 = puVar31[5];
+    uVar7 = puVar31[6];
+    uVar8 = puVar31[7];
+    uVar9 = puVar31[8];
+    uVar10 = puVar31[9];
+    uVar11 = puVar31[10];
+    uVar12 = puVar31[0xb];
+    uVar28 = puVar31[0xc];
+    *(undefined4 *)(puVar30 + 0xb) = *puVar31;
+    *(undefined4 *)((longlong)puVar30 + 0x5c) = uVar2;
+    *(undefined4 *)(puVar30 + 0xc) = uVar3;
+    *(undefined4 *)((longlong)puVar30 + 100) = uVar4;
+    *(undefined4 *)(puVar30 + 0xd) = uVar5;
+    *(undefined4 *)((longlong)puVar30 + 0x6c) = uVar6;
+    *(undefined4 *)(puVar30 + 0xe) = uVar7;
+    *(undefined4 *)((longlong)puVar30 + 0x74) = uVar8;
+    *(undefined4 *)(puVar30 + 0xf) = uVar9;
+    *(undefined4 *)((longlong)puVar30 + 0x7c) = uVar10;
+    *(undefined4 *)(puVar30 + 0x10) = uVar11;
+    *(undefined4 *)((longlong)puVar30 + 0x84) = uVar12;
+    *(undefined4 *)(puVar30 + 0x11) = uVar28;
+    uVar28 = (**(code **)(*param_3 + 0x130))(param_3);
+    *(undefined4 *)((longlong)puVar30 + 0x14) = uVar28;
+    puVar32 = (undefined8 *)(**(code **)(*param_3 + 0x158))(param_3);
+    uVar18 = puVar32[1];
+    uVar19 = puVar32[2];
+    uVar20 = puVar32[3];
+    uVar21 = puVar32[4];
+    uVar22 = puVar32[5];
+    uVar23 = puVar32[6];
+    uVar24 = puVar32[7];
+    puVar30[3] = *puVar32;
+    puVar30[4] = uVar18;
+    puVar30[5] = uVar19;
+    puVar30[6] = uVar20;
+    puVar30[7] = uVar21;
+    puVar30[8] = uVar22;
+    puVar30[9] = uVar23;
+    puVar30[10] = uVar24;
+    *param_2 = puVar30;
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1803235c0(undefined8 param_1,longlong *param_2,longlong param_3)
+void FUN_1803235c0(undefined8 param_1,longlong *param_2,longlong param_3)
+
+{
+  char cVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  longlong lVar7;
+  char *pcVar8;
+  uint uVar9;
+  undefined *puVar10;
+  undefined *puVar11;
+  undefined1 auStack_e8 [32];
+  longlong *plStack_c8;
+  undefined8 uStack_c0;
+  longlong **pplStack_b8;
+  undefined *puStack_a8;
+  char *pcStack_a0;
+  uint uStack_98;
+  char acStack_90 [72];
+  ulonglong uStack_48;
+  
+  uStack_c0 = 0xfffffffffffffffe;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x200,8,3);
+  lVar6 = FUN_180339920(uVar5);
+  *(undefined4 *)(lVar6 + 0xb0) = *(undefined4 *)(param_3 + 0x30);
+  *(undefined4 *)(lVar6 + 0xb4) = *(undefined4 *)(param_3 + 0xe4);
+  *(undefined4 *)(lVar6 + 200) = *(undefined4 *)(param_3 + 0x168);
+  *(undefined4 *)(lVar6 + 0xb8) = *(undefined4 *)(param_3 + 0xe8);
+  *(undefined4 *)(lVar6 + 0xbc) = *(undefined4 *)(param_3 + 0xec);
+  *(undefined4 *)(lVar6 + 0xc0) = *(undefined4 *)(param_3 + 0xf0);
+  *(undefined4 *)(lVar6 + 0xc4) = *(undefined4 *)(param_3 + 0xf4);
+  *(undefined4 *)(lVar6 + 0xcc) = *(undefined4 *)(param_3 + 0x16c);
+  uVar5 = *(undefined8 *)(param_3 + 0xdc);
+  *(undefined8 *)(lVar6 + 0xd8) = *(undefined8 *)(param_3 + 0xd4);
+  *(undefined8 *)(lVar6 + 0xe0) = uVar5;
+  uVar2 = *(undefined4 *)(param_3 + 0x15c);
+  uVar3 = *(undefined4 *)(param_3 + 0x160);
+  uVar4 = *(undefined4 *)(param_3 + 0x164);
+  *(undefined4 *)(lVar6 + 0xe8) = *(undefined4 *)(param_3 + 0x158);
+  *(undefined4 *)(lVar6 + 0xec) = uVar2;
+  *(undefined4 *)(lVar6 + 0xf0) = uVar3;
+  *(undefined4 *)(lVar6 + 0xf4) = uVar4;
+  lVar7 = *(longlong *)(param_3 + 0x108);
+  if (lVar7 != 0) {
+    if (*(longlong *)(lVar7 + 0x1b0) == 0) {
+      lVar7 = lVar7 + 0x10;
     }
     else {
-        // 获取线程锁
-        lock_result = ThreadLock_Acquire(resource_manager + 0xb78);
-        if (lock_result != 0) {
-            Throw_C_Error(lock_result);
-        }
-        
-        // 获取资源标识符
-        resource_handle = RenderResource_GetIdentifier(resource_manager);
-        resource_info = *(int64_t*)(resource_manager + 0xb50);
-        
-        // 在哈希表中查找资源
-        for (resource_ptr = *(uint32_t**)(resource_info + 
-                                       ((uint64_t)resource_handle % (uint64_t)*(uint32_t*)(resource_manager + 0xb58)) * 8);
-             resource_ptr != (uint32_t*)0x0; resource_ptr = *(uint32_t**)(resource_ptr + 4)) {
-            if (resource_handle == *resource_ptr) {
-                hash_offset = *(int64_t*)(resource_manager + 0xb58);
-                goto LAB_RESOURCE_FOUND;
-            }
-        }
-        
-        hash_offset = *(int64_t*)(resource_manager + 0xb58);
-        resource_ptr = *(uint32_t**)(resource_info + hash_offset * 8);
-        
-LAB_RESOURCE_FOUND:
-        if (resource_ptr == *(uint32_t**)(resource_info + hash_offset * 8)) {
-            // 分配新的资源句柄
-            context_data = MemoryPool_Allocate(g_MemoryPoolConfig, 0x10, 8, 3, context_data);
-            resource_ptr = (uint32_t*)MemoryPool_InitializeHandle(context_data);
-            *resource_ptr = resource_handle;
-            RenderResource_SetHandleData(resource_ptr + 2, query_param);
-            
-            hash_array[0] = resource_handle;
-            hash_ptr = resource_ptr;
-            RenderResource_AddToHashTable(resource_manager + 0xb48, temp_buffer, hash_array);
-        }
-        
-        // 释放线程锁
-        lock_result = ThreadLock_Release(resource_manager + 0xb78);
-        if (lock_result != 0) {
-            Throw_C_Error(lock_result);
-        }
+      lVar7 = func_0x000180079240();
     }
-    
-    return resource_handle;
+    uVar9 = 0;
+    puStack_a8 = &UNK_1809fcc58;
+    pcStack_a0 = acStack_90;
+    acStack_90[0] = '\0';
+    uStack_98 = *(uint *)(lVar7 + 0x10);
+    puVar11 = &DAT_18098bc73;
+    if (*(undefined **)(lVar7 + 8) != (undefined *)0x0) {
+      puVar11 = *(undefined **)(lVar7 + 8);
+    }
+    strcpy_s(acStack_90,0x40,puVar11);
+    if (pcStack_a0 != (char *)0x0) {
+      cVar1 = *pcStack_a0;
+      pcVar8 = pcStack_a0;
+      for (; (cVar1 != '.' && (uVar9 < uStack_98)); uVar9 = uVar9 + 1) {
+        pcVar8 = pcVar8 + 1;
+        cVar1 = *pcVar8;
+      }
+      if (uVar9 != uStack_98) {
+        pcStack_a0[(int)uVar9] = '\0';
+        uStack_98 = uVar9;
+      }
+    }
+    *(uint *)(lVar6 + 0x160) = uStack_98;
+    pcVar8 = "";
+    if (pcStack_a0 != (char *)0x0) {
+      pcVar8 = pcStack_a0;
+    }
+    strcpy_s(*(undefined8 *)(lVar6 + 0x158),0x40,pcVar8);
+    puStack_a8 = &UNK_18098bcb0;
+  }
+  if (*(longlong *)(param_3 + 0x110) != 0) {
+    puVar11 = *(undefined **)(*(longlong *)(param_3 + 0x110) + 0x18);
+    puVar10 = &DAT_18098bc73;
+    if (puVar11 != (undefined *)0x0) {
+      puVar10 = puVar11;
+    }
+    (**(code **)(*(longlong *)(lVar6 + 0x1a8) + 0x10))((longlong *)(lVar6 + 0x1a8),puVar10);
+    pplStack_b8 = &plStack_c8;
+    plStack_c8 = *(longlong **)(param_3 + 0x110);
+    if (plStack_c8 != (longlong *)0x0) {
+      (**(code **)(*plStack_c8 + 0x28))();
+    }
+    FUN_180323b30(param_1,&plStack_c8);
+  }
+  *param_2 = lVar6;
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_e8);
 }
 
-// ============================================================================
-// 函数别名定义（为了提高代码可读性）
-// ============================================================================
 
-/** 渲染资源高级分配器别名 */
-#define RenderResourceAdvancedAllocator RenderResource_AdvancedAllocator
 
-/** 渲染资源池管理器别名 */
-#define RenderResourcePoolManager RenderResource_PoolManager
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/** 渲染资源清理器别名 */
-#define RenderResourceCleanup RenderResource_Cleanup
 
-/** 渲染资源处理器别名 */
-#define RenderResourceProcessor RenderResource_Processor
 
-/** 渲染资源分配器（扩展版本）别名 */
-#define RenderResourceAllocatorEx RenderResource_AllocatorEx
+// 函数: void FUN_180323810(undefined8 param_1,longlong *param_2,longlong param_3)
+void FUN_180323810(undefined8 param_1,longlong *param_2,longlong param_3)
 
-/** 渲染资源分配器（优化版本）别名 */
-#define RenderResourceAllocatorOptimized RenderResource_AllocatorOptimized
+{
+  longlong lVar1;
+  ulonglong uVar2;
+  longlong lVar3;
+  longlong lVar4;
+  longlong lVar5;
+  longlong lVar6;
+  ulonglong uVar7;
+  ulonglong uVar8;
+  ulonglong uVar9;
+  int iStackX_20;
+  
+  lVar1 = FUN_18033a090();
+  lVar6 = 0;
+  *(undefined1 *)(lVar1 + 0xb0) = *(undefined1 *)(param_3 + 0xa9);
+  lVar3 = *(longlong *)(lVar1 + 0xc0);
+  lVar4 = *(longlong *)(lVar1 + 0xb8);
+  uVar2 = *(longlong *)(param_3 + 0x38) - *(longlong *)(param_3 + 0x30) >> 3;
+  uVar9 = lVar3 - lVar4 >> 3;
+  uVar7 = uVar2 & 0xffffffff;
+  if (uVar9 < uVar7) {
+    uVar8 = (uVar2 & 0xffffffff) - uVar9;
+    if ((ulonglong)(*(longlong *)(lVar1 + 200) - lVar3 >> 3) < uVar8) {
+      if (uVar9 == 0) {
+        uVar9 = 1;
+      }
+      else {
+        uVar9 = uVar9 * 2;
+      }
+      if (uVar9 < uVar7) {
+        uVar9 = uVar7;
+      }
+      lVar5 = lVar3;
+      lVar3 = lVar6;
+      if (uVar9 != 0) {
+        lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar9 * 8,*(undefined1 *)(lVar1 + 0xd0));
+        lVar4 = *(longlong *)(lVar1 + 0xb8);
+        lVar5 = *(longlong *)(lVar1 + 0xc0);
+      }
+      if (lVar4 != lVar5) {
+                    // WARNING: Subroutine does not return
+        memmove(lVar3,lVar4,lVar5 - lVar4);
+      }
+      if (uVar8 != 0) {
+                    // WARNING: Subroutine does not return
+        memset(lVar3,0,uVar8 * 8);
+      }
+      if (*(longlong *)(lVar1 + 0xb8) != 0) {
+                    // WARNING: Subroutine does not return
+        FUN_18064e900();
+      }
+      *(longlong *)(lVar1 + 0xb8) = lVar3;
+      *(ulonglong *)(lVar1 + 200) = lVar3 + uVar9 * 8;
+    }
+    else if (uVar8 != 0) {
+                    // WARNING: Subroutine does not return
+      memset(lVar3,0,uVar8 * 8);
+    }
+  }
+  else {
+    lVar3 = lVar4 + uVar7 * 8;
+  }
+  *(longlong *)(lVar1 + 0xc0) = lVar3;
+  iStackX_20 = (int)uVar2;
+  lVar3 = lVar6;
+  if (iStackX_20 != 0) {
+    do {
+      FUN_180323340(param_1,*(longlong *)(lVar1 + 0xb8) + lVar6,
+                    *(undefined8 *)(*(longlong *)(param_3 + 0x30) + lVar3),0xffffffff);
+      lVar6 = lVar6 + 8;
+      uVar7 = uVar7 - 1;
+      lVar3 = lVar3 + 8;
+    } while (uVar7 != 0);
+  }
+  *param_2 = lVar1;
+  return;
+}
 
-/** 渲染资源查询器别名 */
-#define RenderResourceQueryHandle RenderResource_QueryHandle
 
-// ============================================================================
-// 辅助函数声明
-// ============================================================================
 
-/** 获取资源标识符 */
-uint32_t RenderResource_GetIdentifier(void* render_context, int64_t resource_data);
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/** 资源句柄初始化 */
-void ResourceHandle_Initialize(uint64_t* handle, uint32_t size);
+uint FUN_1803239f0(longlong param_1,longlong param_2)
 
-/** 内存池分配 */
-void* MemoryPool_Allocate(void* pool_config, size_t size, uint8_t flags);
+{
+  longlong lVar1;
+  int iVar2;
+  uint uVar3;
+  longlong lVar4;
+  uint *puVar5;
+  undefined8 uVar6;
+  uint auStack_40 [2];
+  uint *puStack_38;
+  undefined1 auStack_30 [24];
+  
+  uVar6 = 0xfffffffffffffffe;
+  if (param_2 == 0) {
+    uVar3 = 0xffffffff;
+  }
+  else {
+    iVar2 = _Mtx_lock(param_1 + 0xb78);
+    if (iVar2 != 0) {
+      __Throw_C_error_std__YAXH_Z(iVar2);
+    }
+    uVar3 = FUN_18032b4a0(param_1);
+    lVar1 = *(longlong *)(param_1 + 0xb50);
+    for (puVar5 = *(uint **)(lVar1 + ((ulonglong)uVar3 % (ulonglong)*(uint *)(param_1 + 0xb58)) * 8)
+        ; puVar5 != (uint *)0x0; puVar5 = *(uint **)(puVar5 + 4)) {
+      if (uVar3 == *puVar5) {
+        lVar4 = *(longlong *)(param_1 + 0xb58);
+        goto LAB_180323a8e;
+      }
+    }
+    lVar4 = *(longlong *)(param_1 + 0xb58);
+    puVar5 = *(uint **)(lVar1 + lVar4 * 8);
+LAB_180323a8e:
+    if (puVar5 == *(uint **)(lVar1 + lVar4 * 8)) {
+      uVar6 = FUN_18062b1e0(_DAT_180c8ed18,0x10,8,3,uVar6);
+      puVar5 = (uint *)FUN_180320830(uVar6);
+      *puVar5 = uVar3;
+      FUN_180056f10(puVar5 + 2,param_2);
+      auStack_40[0] = uVar3;
+      puStack_38 = puVar5;
+      FUN_18033b220(param_1 + 0xb48,auStack_30,auStack_40);
+    }
+    iVar2 = _Mtx_unlock(param_1 + 0xb78);
+    if (iVar2 != 0) {
+      __Throw_C_error_std__YAXH_Z(iVar2);
+    }
+  }
+  return uVar3;
+}
 
-/** 内存池释放 */
-void MemoryPool_Release(void);
 
-/** 安全检查 */
-void Security_Check(uint64_t checksum);
 
-/** 资源处理 */
-void RenderResource_ProcessResource(void* context, int64_t* handle, void* data, uint32_t flags);
 
-/** 资源数据初始化 */
-void ResourceData_Initialize(int64_t* data, int64_t type);
 
-/** 复杂资源初始化 */
-int64_t RenderResource_InitializeComplex(void* resource);
-
-/** 复杂资源标识符获取 */
-uint32_t RenderResource_GetComplexIdentifier(void* resource);
-
-/** 复杂资源处理 */
-uint32_t RenderResource_ComplexProcess(uint32_t handle, int64_t* data);
-
-/** 资源类型1处理 */
-void RenderResource_ProcessType1(void* context, void** handle, int64_t* data);
-
-/** 资源类型2处理 */
-void RenderResource_ProcessType2(void* context, void** handle, int64_t* data);
-
-/** 资源路径获取 */
-int64_t ResourcePath_GetFullPath(void);
-
-/** 资源依赖处理 */
-void RenderResource_ProcessDependencies(void* context, int64_t** data);
-
-/** 资源管理器获取 */
-int64_t RenderResource_GetManager(void);
-
-/** 资源句柄数据设置 */
-void RenderResource_SetHandleData(uint32_t* handle, int64_t data);
-
-/** 资源哈希表添加 */
-void RenderResource_AddToHashTable(int64_t* table, uint8_t* buffer, uint32_t* data);
-
-/** 线程锁获取 */
-int32_t ThreadLock_Acquire(int64_t lock);
-
-/** 线程锁释放 */
-int32_t ThreadLock_Release(int64_t lock);
-
-/** C错误抛出 */
-void Throw_C_Error(int32_t error_code);
-
-/** 内存句柄初始化 */
-void* MemoryPool_InitializeHandle(void* handle);
-
-// ============================================================================
-// 全局变量声明
-// ============================================================================
-
-/** 安全校验和 */
-extern uint64_t g_SecurityChecksum;
-
-/** 默认资源类型 */
-extern void* g_DefaultResourceType;
-
-/** 特殊资源类型 */
-extern void* g_SpecialResourceType;
-
-/** 复杂资源类型 */
-extern void* g_ComplexResourceType;
-
-/** 内存池配置 */
-extern void* g_MemoryPoolConfig;
-
-/** 资源管理器上下文 */
-extern void* g_ResourceManagerContext;
-
-/** 内存池上下文 */
-extern void* g_MemoryPoolContext;
-
-/** 线程上下文 */
-extern void* g_ThreadContext;
-
-/** 同步上下文 */
-extern void* g_SyncContext;
-
-/** 调试上下文 */
-extern void* g_DebugContext;
-
-/** 默认资源路径 */
-extern void* g_DefaultResourcePath;
-
-/** 资源路径扩展 */
-extern void* g_ResourcePathExtension;
-
-/*
- * ============================================================================
- * 技术说明和性能特征
- * ============================================================================
- * 
- * 1. 内存管理优化：
- *    - 使用内存池技术减少内存分配开销
- *    - 支持动态内存扩展和收缩
- *    - 智能内存碎片整理
- *    - 高效的内存对齐和访问
- * 
- * 2. 资源管理策略：
- *    - 支持多种资源类型的统一管理
- *    - 智能资源生命周期管理
- *    - 资源引用计数和垃圾回收
- *    - 资源池的优化使用
- * 
- * 3. 线程安全机制：
- *    - 使用原子操作确保数据一致性
- *    - 智能锁机制减少竞争
- *    - 无锁数据结构优化性能
- *    - 线程局部存储优化
- * 
- * 4. 性能优化特性：
- *    - 哈希表实现快速资源查找
- *    - 批量处理减少系统调用
- *    - 缓存友好的数据布局
- *    - 智能预取和预分配
- * 
- * 5. 错误处理和恢复：
- *    - 完善的错误检测和报告
- *    - 优雅的降级处理
- *    - 资源泄漏防护
- *    - 系统状态恢复
- * 
- * 6. 适用场景：
- *    - 大规模3D游戏渲染系统
- *    - 实时图形处理应用
- *    - 高性能计算密集型任务
- *    - 复杂的资源管理需求
- * ============================================================================
- */

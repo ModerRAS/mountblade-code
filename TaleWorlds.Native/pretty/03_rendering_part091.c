@@ -1,1145 +1,1202 @@
-/*
- * 渲染系统高级处理模块
- * 文件名: 03_rendering_part091.c
- * 模块: 渲染系统 - 子模块091
- * 
- * 本模块包含6个核心函数，主要负责渲染系统的高级处理功能：
- * 1. 渲染状态管理和控制
- * 2. 渲染资源清理和释放
- * 3. 渲染参数处理和验证
- * 4. 渲染数据变换和计算
- * 5. 渲染系统初始化和配置
- * 6. 渲染内存管理和优化
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-/* =============================================================================
- * 常量定义和宏定义
- * ============================================================================= */
+// 03_rendering_part091.c - 渲染系统高级管线处理和资源管理模块
+// 包含6个核心函数：渲染管线管理器、资源清理器、渲染对象处理器、材质处理器、渲染数据传输器和内存管理器
+// 涵盖渲染管线优化、资源生命周期管理、内存分配和释放、状态控制等功能
 
-/* 渲染系统状态常量 */
-#define RENDERING_STATE_NORMAL      0x00
-#define RENDERING_STATE_PROCESSING  0x01
-#define RENDERING_STATE_COMPLETED   0x02
-#define RENDERING_STATE_ERROR       0x03
+// ===================================================================
+// 渲染系统核心常量定义
+// ===================================================================
 
-/* 渲染系统配置常量 */
-#define RENDERING_MAX_TEXTURES     0x18
-#define RENDERING_BUFFER_SIZE      0x40
-#define RENDERING_ALIGNMENT         0x10
-#define RENDERING_MAGIC_NUMBER      0x7f7fffff
+#define RENDER_SYSTEM_MAX_TEXTURE_UNITS 16
+#define RENDER_SYSTEM_MAX_SHADER_STAGES 8
+#define RENDER_SYSTEM_MAX_RENDER_TARGETS 8
+#define RENDER_SYSTEM_MAX_VERTEX_BUFFERS 12
+#define RENDER_SYSTEM_MAX_INDEX_BUFFERS 4
+#define RENDER_SYSTEM_MAX_CONSTANT_BUFFERS 16
+#define RENDER_SYSTEM_PIPELINE_STATE_SIZE 0x1000
+#define RENDER_SYSTEM_RESOURCE_POOL_SIZE 0x2000
+#define RENDER_SYSTEM_MEMORY_ALIGNMENT 16
+#define RENDER_SYSTEM_MAX_FRAME_LATENCY 3
+#define RENDER_SYSTEM_RESOURCE_CLEANUP_THRESHOLD 0x1000
 
-/* 渲染系统数学常量 */
-#define RENDERING_EPSILON          1e-05f
-#define RENDERING_ONE_OVER_EPSILON 100000.0f
-#define RENDERING_NORMALIZATION_THRESHOLD 1e-05f
+// 渲染管线状态常量
+#define RENDER_PIPELINE_STATE_IDLE 0x00000000
+#define RENDER_PIPELINE_STATE_ACTIVE 0x00000001
+#define RENDER_PIPELINE_STATE_FLUSHING 0x00000002
+#define RENDER_PIPELINE_STATE_RESET 0x00000004
+#define RENDER_PIPELINE_STATE_ERROR 0x80000000
 
-/* =============================================================================
- * 函数别名定义
- * ============================================================================= */
+// 资源类型标识符
+#define RESOURCE_TYPE_TEXTURE 0x00000001
+#define RESOURCE_TYPE_BUFFER 0x00000002
+#define RESOURCE_TYPE_SHADER 0x00000004
+#define RESOURCE_TYPE_PIPELINE 0x00000008
+#define RESOURCE_TYPE_TARGET 0x00000010
 
-/* 主要处理函数 */
-#define rendering_system_advanced_processor     FUN_18031d820
-#define rendering_system_cleanup_handler        FUN_18031dfa0
-#define rendering_system_resource_manager       FUN_18031e050
-#define rendering_system_parameter_processor    FUN_18031e240
-#define rendering_system_data_transformer       FUN_18031e320
-#define rendering_system_memory_optimizer       FUN_18031ed90
+// 内存管理标志
+#define MEMORY_FLAG_READ_ONLY 0x00000001
+#define MEMORY_FLAG_WRITE_ONLY 0x00000002
+#define MEMORY_FLAG_READ_WRITE 0x00000003
+#define MEMORY_FLAG_PERSISTENT 0x00000004
+#define MEMORY_FLAG_DYNAMIC 0x00000008
 
-/* 辅助函数 */
-#define rendering_system_allocator              FUN_18031ef00
+// ===================================================================
+// 渲染系统函数别名定义
+// ===================================================================
 
-/* =============================================================================
- * 全局变量和结构体定义
- * ============================================================================= */
+// 渲染管线管理器
+#define RenderingSystem_PipelineManager FUN_18031d820
 
-/* 渲染系统状态结构 */
-typedef struct {
-    uint32_t state_flags;
-    uint32_t texture_count;
-    uint32_t buffer_size;
-    float normalization_factor;
-    void* resource_pool;
-} RenderingSystemState;
+// 资源清理器
+#define RenderingSystem_ResourceCleaner FUN_18031dfa0
 
-/* 渲染参数结构 */
-typedef struct {
-    float vector_x;
-    float vector_y;
-    float vector_z;
-    float vector_w;
-    float magnitude;
-    uint32_t flags;
-} RenderingParameters;
+// 渲染对象处理器
+#define RenderingSystem_ObjectProcessor FUN_18031e050
 
-/* =============================================================================
- * 核心函数实现
- * ============================================================================= */
+// 材质处理器
+#define RenderingSystem_MaterialProcessor FUN_18031e240
+
+// 渲染数据传输器
+#define RenderingSystem_DataTransfer FUN_18031e320
+
+// 内存管理器
+#define RenderingSystem_MemoryManager FUN_18031ed90
+
+// 内存分配器
+#define RenderingSystem_MemoryAllocator FUN_18031ef00
+
+// ===================================================================
+// 函数实现：渲染管线管理器
+// ===================================================================
 
 /**
- * 渲染系统高级处理器
+ * 渲染管线管理器 - 负责渲染管线的初始化、配置和优化
  * 
- * 本函数是渲染系统的核心处理函数，负责：
- * 1. 渲染状态管理和控制
- * 2. 渲染资源分配和释放
- * 3. 渲染参数处理和验证
- * 4. 渲染数据变换和计算
- * 5. 渲染系统初始化和配置
+ * @param render_context_ptr 渲染上下文指针数组
+ * @param material_data 材质数据指针
+ * @return void
  * 
- * @param param_1 渲染系统上下文指针数组
- * @param param_2 渲染参数结构指针
+ * 技术说明：
+ * - 管理渲染管线的完整生命周期
+ * - 处理材质绑定和着色器配置
+ * - 优化渲染状态转换
+ * - 管理渲染目标切换
+ * - 处理深度和模板缓冲区配置
  */
-void rendering_system_advanced_processor(code **param_1, code *param_2)
+void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *material_data)
+
 {
-    /* 变量声明 */
-    uint32_t state_flags;
-    float magnitude_x, magnitude_y, magnitude_z;
-    float normalization_factor;
-    int texture_index;
-    code *resource_pointer;
-    uint64_t resource_handle;
-    longlong resource_data;
-    longlong *resource_manager;
-    uint32_t buffer_size;
-    uint64_t temp_data;
+  uint texture_unit;
+  float material_param1;
+  float material_param2;
+  int render_state;
+  code *shader_program;
+  undefined8 render_target;
+  longlong pipeline_config;
+  longlong *state_block;
+  uint vertex_count;
+  undefined8 texture_handle;
+  longlong index_buffer;
+  code **render_pass;
+  undefined8 *resource_ptr;
+  longlong frame_buffer;
+  code **shader_stage;
+  uint *vertex_data;
+  longlong constant_buffer;
+  undefined4 blend_state;
+  undefined1 alignment_buffer[32];
+  undefined8 depth_stencil_state;
+  undefined4 rasterizer_state;
+  undefined4 sample_mask;
+  undefined4 stencil_ref;
+  undefined8 viewport;
+  undefined1 scissor_enable;
+  undefined4 topology;
+  code **input_layout;
+  float viewport_scale;
+  undefined4 primitive_restart;
+  undefined1 padding_buffer[8];
+  code **vertex_shader;
+  code **pixel_shader;
+  code *geometry_shader;
+  undefined8 stream_output;
+  undefined4 draw_indexed;
+  undefined2 index_format;
+  undefined2 index_offset;
+  code *hull_shader;
+  undefined *stream_output_buffer;
+  code *domain_shader;
+  code *compute_shader;
+  undefined8 constant_buffer_update;
+  undefined4 draw_instance_count;
+  longlong *vertex_buffer;
+  longlong instance_buffer;
+  undefined4 vertex_offset;
+  ulonglong frame_sync;
+  
+  // 初始化渲染管线状态
+  depth_stencil_state = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  render_pass = (code **)0x0;
+  vertex_shader = (code *)&UNK_1809fcc58;
+  pixel_shader = (code *)vertex_data;
+  vertex_data[0] = vertex_data[0] & 0xffffff00;
+  topology = 0x1e;
+  blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ad98);
+  primitive_restart = 1;
+  scissor_enable = 1;
+  viewport = 0;
+  sample_mask = 4;
+  rasterizer_state = 0x10;
+  stencil_ref = 0x21;
+  depth_stencil_state._4_4_ = 4;
+  
+  // 配置输入装配器
+  FUN_1800b0a10(blend_state, &input_layout, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+  pipeline_config = _DAT_180c86898;
+  vertex_shader = (code *)&UNK_18098bcb0;
+  shader_program = render_context_ptr[0x11];
+  
+  // 检查渲染状态有效性
+  if ((*(char *)(*(longlong *)(shader_program + 0x60c48) + 0x331d) == '\0') &&
+     (render_state = *(int *)(shader_program + 0x60c40), render_state != -1)) {
     
-    /* 栈变量初始化 */
-    uint64_t stack_protection = 0xfffffffffffffffe;
-    uint64_t security_cookie = _DAT_180bf00a8 ^ stack_protection;
+    // 获取当前渲染目标配置
+    frame_buffer = *(longlong *)(*(longlong *)(shader_program + 0x60c20) + (longlong)render_state * 8);
+    if (*(longlong *)(frame_buffer + 0x40) == 0) {
+      frame_buffer = *(longlong *)(frame_buffer + 0x128);
+    }
+    else {
+      frame_buffer = *(longlong *)(frame_buffer + 0x28);
+    }
     
-    /* 渲染系统状态初始化 */
-    RenderingSystemState render_state = {
-        .state_flags = RENDERING_STATE_NORMAL,
-        .texture_count = 0,
-        .buffer_size = RENDERING_BUFFER_SIZE,
-        .normalization_factor = 1.0f,
-        .resource_pool = NULL
-    };
-    
-    /* 资源管理初始化 */
-    resource_manager = NULL;
-    resource_pointer = (code *)&UNK_1809fcc58;
-    
-    /* 缓冲区初始化 */
-    uint32_t buffer[2];
-    buffer[0] = buffer[0] & 0xffffff00;
-    render_state.buffer_size = 0x1e;
-    
-    /* 渲染系统字符串初始化 */
-    strcpy_s(buffer, RENDERING_BUFFER_SIZE, &UNK_180a1ad98);
-    
-    /* 渲染系统配置设置 */
-    render_state.state_flags = RENDERING_STATE_PROCESSING;
-    render_state.texture_count = 1;
-    
-    /* 渲染系统参数初始化 */
-    uint32_t param_flags[] = {1, 4, 0x10, 0x21};
-    
-    /* 渲染系统资源分配 */
-    FUN_1800b0a10(render_state.buffer_size, &resource_manager, 
-                  *(uint32_t *)(param_1[0x11] + 0xa0), &resource_pointer);
-    
-    /* 渲染系统数据获取 */
-    resource_data = _DAT_180c86898;
-    resource_pointer = (code *)&UNK_18098bcb0;
-    
-    /* 渲染系统状态检查 */
-    code *context_pointer = param_1[0x11];
-    if ((*(char *)(*(longlong *)(context_pointer + 0x60c48) + 0x331d) == '\0') &&
-        (texture_index = *(int *)(context_pointer + 0x60c40), texture_index != -1)) {
-        
-        /* 渲染系统纹理数据处理 */
-        longlong texture_data = *(longlong *)(*(longlong *)(context_pointer + 0x60c20) + 
-                                              (longlong)texture_index * 8);
-        if (*(longlong *)(texture_data + 0x40) == 0) {
-            texture_data = *(longlong *)(texture_data + 0x128);
-        } else {
-            texture_data = *(longlong *)(texture_data + 0x28);
+    if (frame_buffer != 0) {
+      geometry_shader = (code *)0x0;
+      draw_indexed = 0;
+      index_format = 0;
+      index_offset = 0;
+      
+      // 初始化资源池
+      if (*(longlong *)(pipeline_config + 0x410) == 0) {
+        resource_ptr = (undefined8 *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &UNK_180a03740);
+        render_target = *resource_ptr;
+        *resource_ptr = 0;
+        input_layout = *(code ***)(pipeline_config + 0x410);
+        *(undefined8 *)(pipeline_config + 0x410) = render_target;
+        if (input_layout != (code **)0x0) {
+          (**(code **)((longlong)*input_layout + 0x38))();
         }
-        
-        if (texture_data != 0) {
-            /* 渲染系统纹理资源处理 */
-            code *texture_resource = (code *)0x0;
-            uint32_t texture_flags = 0;
-            
-            /* 渲染系统纹理管理器初始化 */
-            if (*(longlong *)(resource_data + 0x410) == 0) {
-                uint64_t *texture_manager = (uint64_t *)FUN_18009e9e0((longlong)texture_index, 
-                                                                     &resource_manager, &UNK_180a03740);
-                temp_data = *texture_manager;
-                *texture_manager = 0;
-                
-                code **old_manager = *(code ***)(resource_data + 0x410);
-                *(uint64_t *)(resource_data + 0x410) = temp_data;
-                
-                if (old_manager != (code **)0x0) {
-                    (**(code **)((longlong)*old_manager + 0x38))();
-                }
-                if (resource_manager != (code **)0x0) {
-                    (**(code **)(*resource_manager + 0x38))();
-                }
-            }
-            
-            /* 渲染系统纹理处理 */
-            code *texture_handler = *(code **)(resource_data + 0x410);
-            longlong *texture_stack = (longlong *)0x0;
-            code **texture_processor = &texture_resource;
-            
-            /* 渲染系统纹理数据初始化 */
-            texture_resource = (code *)&UNK_180a3c3e0;
-            uint64_t texture_id = 0;
-            longlong texture_offset = 0;
-            uint32_t texture_status = 0;
-            
-            /* 渲染系统纹理处理调用 */
-            temp_data = *(uint64_t *)(texture_handler + 0x15b8);
-            resource_manager = &resource_pointer;
-            
-            /* 渲染系统纹理数据变换 */
-            FUN_180627ae0(&texture_id, &texture_processor);
-            
-            /* 渲染系统纹理参数处理 */
-            uint32_t render_params[4];
-            render_params[0] = (uint32_t)texture_id;
-            render_params[1] = texture_id >> 32;
-            render_params[2] = (uint32_t)texture_offset;
-            render_params[3] = texture_offset >> 32;
-            
-            /* 渲染系统纹理清理 */
-            if (texture_stack != (longlong *)0x0) {
-                (**(code **)(*texture_stack + 0x28))();
-            }
-            
-            /* 渲染系统纹理数据处理 */
-            longlong processed_data = FUN_180299eb0(temp_data, 0, &resource_pointer, &texture_id);
-            
-            /* 渲染系统参数更新 */
-            resource_data = _DAT_180c86938;
-            *(uint32_t *)(*(longlong *)(resource_data + 0x1cd8) + 0x1d88) =
-                 *(uint32_t *)(param_1[0x11] + 0x30b0);
-            
-            /* 渲染系统数学计算 */
-            float power_result = powf(0x40000000, *(float *)(param_1[0x11] + 0x320c));
-            *(float *)(*(longlong *)(resource_data + 0x1cd8) + 0x1d58) = power_result;
-            
-            /* 渲染系统纹理渲染 */
-            FUN_18029fc10(*(longlong *)(resource_data + 0x1cd8), 
-                          *(uint64_t *)(resource_data + 0x1c88),
-                          *(longlong *)(resource_data + 0x1cd8) + 0x1be0, 0x230);
-            
-            /* 渲染系统资源管理 */
-            resource_data = *(longlong *)(_DAT_180c86938 + 0x1c88);
-            longlong **render_manager = *(longlong **)(*(longlong *)(resource_data + 0x1cd8) + 0x8400);
-            code *render_function = *(code **)(*render_manager + 0x238);
-            
-            /* 渲染系统参数设置 */
-            *(uint32_t *)(resource_data + 0x16c) = *(uint32_t *)(_DAT_180c86870 + 0x224);
-            (*render_function)(render_manager, 2, 1, resource_data + 0x10);
-            
-            /* 渲染系统状态更新 */
-            resource_data = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-            if ((processed_data != 0) && 
-                (*(longlong *)(resource_data + 0x82a0) != (longlong)**(int **)(processed_data + 0x10))) {
-                
-                /* 渲染系统状态同步 */
-                (**(code **)(**(longlong **)(resource_data + 0x8400) + 0x228))
-                          (*(longlong **)(resource_data + 0x8400), 
-                           *(uint64_t *)(*(int **)(processed_data + 0x10) + 6), 0, 0);
-                *(longlong *)(resource_data + 0x82a0) = (longlong)**(int **)(processed_data + 0x10);
-            }
-            
-            /* 渲染系统资源释放 */
-            param_flags[3] = 0xffffffff;
-            FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, texture_data, 0x20);
-            
-            /* 渲染系统最终处理 */
-            resource_data = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-            if (resource_manager != (code **)0x0) {
-                *(uint32_t *)((longlong)resource_manager + 0x16c) = 
-                    *(uint32_t *)(_DAT_180c86870 + 0x224);
-                code **final_manager = (code **)resource_manager[4];
-            }
-            
-            /* 渲染系统渲染完成 */
-            render_manager = *(longlong **)(resource_data + 0x8400);
-            param_flags[3] = 0;
-            resource_manager = final_manager;
-            (**(code **)(*render_manager + 0x220))(render_manager, 1, 1, &resource_manager);
-            
-            /* 渲染系统后处理 */
-            render_manager = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
-            (**(code **)(*render_manager + 0x148))(render_manager, 1, 1, 1);
-            
-            /* 渲染系统缓冲区重置 */
-            resource_pointer = (code *)&UNK_1809fcc58;
-            buffer[0] = buffer[0] & 0xffffff00;
-            render_state.buffer_size = 0x1f;
-            strcpy_s(buffer, RENDERING_BUFFER_SIZE, &UNK_180a1ae38);
-            
-            /* 渲染系统最终配置 */
-            render_state.state_flags = RENDERING_STATE_COMPLETED;
-            render_state.texture_count = 2;
-            param_flags[3] = 0x10;
-            FUN_1800b0a10(render_state.buffer_size, &texture_resource, 
-                          *(uint32_t *)(param_1[0x11] + 0xa0), &resource_pointer);
-            
-            /* 渲染系统资源分配完成 */
-            resource_pointer = (code *)&UNK_18098bcb0;
-            code **render_allocator = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
-            code *texture_context = texture_resource;
-            
-            /* 渲染系统资源初始化 */
-            for (int i = 0; i < 9; i++) {
-                render_allocator[i] = (code *)0x0;
-            }
-            
-            /* 渲染系统资源链接 */
-            code **temp_allocator = (code **)texture_resource;
-            render_allocator[0] = texture_context;
-            
-            if (texture_resource != (code *)0x0) {
-                (**(code **)(*(longlong *)texture_resource + 0x28))(texture_resource);
-            }
-            
-            temp_allocator = (code **)*render_allocator;
-            *render_allocator = texture_context;
-            
-            if (temp_allocator != (code **)0x0) {
-                (**(code **)((longlong)*temp_allocator + 0x38))();
-            }
-            
-            /* 渲染系统参数处理 */
-            code **param_manager = resource_manager;
-            resource_manager = resource_manager;
-            
-            if (resource_manager != (code **)0x0) {
-                (**(code **)(*resource_manager + 0x28))(resource_manager);
-            }
-            
-            resource_manager = (code **)render_allocator[1];
-            render_allocator[1] = (code *)param_manager;
-            
-            if (resource_manager != (code **)0x0) {
-                (**(code **)(*resource_manager + 0x38))();
-            }
-            
-            if (param_1 != (code **)0x0) {
-                resource_manager = param_1;
-                (**(code **)(*param_1 + 0x28))(param_1);
-            }
-            
-            resource_manager = (code **)render_allocator[2];
-            render_allocator[2] = (code *)param_1;
-            
-            if (resource_manager != (code **)0x0) {
-                (**(code **)(*resource_manager + 0x38))();
-            }
-            
-            render_allocator[3] = param_2;
-            
-            /* 渲染系统数据验证 */
-            uint32_t *data_validator = (uint32_t *)FUN_180145140(param_1[0x11] + 0x3018, 
-                                                               &texture_resource, 
-                                                               *(uint32_t *)(param_1[0x11] + 0x3f50));
-            
-            /* 渲染系统向量处理 */
-            uint32_t vector_x = data_validator[0];
-            uint32_t vector_y = data_validator[1];
-            uint32_t vector_z = data_validator[2];
-            
-            /* 渲染系统向量标准化 */
-            *(uint32_t *)((longlong)render_allocator + 0x24) = vector_x ^ 0x80000000;
-            *(uint32_t *)(render_allocator + 5) = vector_y ^ 0x80000000;
-            *(uint32_t *)((longlong)render_allocator + 0x2c) = vector_z ^ 0x80000000;
-            *(uint32_t *)(render_allocator + 6) = RENDERING_MAGIC_NUMBER;
-            
-            /* 渲染系统参数计算 */
-            code *param_context = param_1[0x11];
-            float param_scale = *(float *)(param_context + 0x30c8);
-            float param_multiplier = *(float *)(param_context + 0x30e4);
-            float scaled_value = param_scale * param_multiplier;
-            float param_factor = *(float *)(param_context + 0x30e0);
-            
-            /* 渲染系统矩阵变换 */
-            *(float *)((longlong)render_allocator + 0x34) = param_scale * *(float *)(param_context + 0x30dc);
-            *(float *)(render_allocator + 7) = param_scale * param_factor;
-            *(float *)((longlong)render_allocator + 0x3c) = scaled_value;
-            *(uint32_t *)(render_allocator + 8) = RENDERING_MAGIC_NUMBER;
-            
-            /* 渲染系统最终处理 */
-            resource_manager = &texture_resource;
-            code *final_processor = (code *)&UNK_1802e4bc0;
-            code *cleanup_handler = &UNK_1800ee4c0;
-            texture_resource = FUN_18031d520;
-            
-            /* 渲染系统清理 */
-            (*(code *)&UNK_1800ee4c0)(render_allocator, &texture_resource);
-            
-            if (final_processor != (code *)0x0) {
-                (*final_processor)(&texture_resource, 0, 0);
-            }
-            
-            /* 渲染系统资源释放 */
-            if (texture_resource != (code *)0x0) {
-                (**(code **)(*(longlong *)texture_resource + 0x38))();
-            }
-            
-            if (texture_stack != (longlong *)0x0) {
-                (**(code **)(*texture_stack + 0x38))();
-            }
-            
-            resource_manager = &texture_processor;
-            texture_processor = (code *)&UNK_180a3c3e0;
-            
-            if (texture_offset != 0) {
-                FUN_18064e900();
-            }
-            
-            texture_offset = 0;
-            texture_id = texture_id & 0xffffffff00000000;
-            texture_processor = (code *)&UNK_18098bcb0;
-            
-            if (texture_stack != (longlong *)0x0) {
-                (**(code **)(*texture_stack + 0x38))();
-            }
+        if (vertex_buffer != (code **)0x0) {
+          (**(code **)(*vertex_buffer + 0x38))();
         }
+      }
+      
+      // 配置渲染通道
+      render_pass = *(code **)(pipeline_config + 0x410);
+      vertex_buffer = (longlong *)0x0;
+      input_layout = &pixel_shader;
+      pixel_shader = (code *)&UNK_180a3c3e0;
+      frame_sync = 0;
+      instance_buffer = 0;
+      draw_indexed = 0;
+      state_block = (longlong *)0x0;
+      texture_handle = CONCAT26(index_offset, CONCAT24(index_format, draw_indexed));
+      compute_shader = geometry_shader;
+      draw_instance_count = 2;
+      constant_buffer_update = 0;
+      frame_buffer = 0;
+      render_target = *(undefined8 *)(render_pass + 0x15b8);
+      vertex_buffer = &vertex_shader;
+      frame_sync._4_4_ = (undefined4)((ulonglong)texture_handle >> 0x20);
+      pixel_shader = geometry_shader;
+      topology = draw_indexed;
+      rasterizer_state = frame_sync._4_4_;
+      vertex_data[0] = 2;
+      viewport = 0;
+      frame_sync = texture_handle;
+      vertex_shader = render_pass;
+      
+      // 执行渲染管线配置
+      FUN_180627ae0(alignment_buffer, &pixel_shader);
+      primitive_restart = (undefined4)constant_buffer_update;
+      sample_mask = constant_buffer_update._4_4_;
+      stencil_ref = (undefined4)frame_buffer;
+      topology = (undefined4)frame_buffer._4_4_;
+      state_block = vertex_buffer;
+      if (vertex_buffer != (longlong *)0x0) {
+        (**(code **)(*vertex_buffer + 0x28))();
+      }
+      
+      // 执行材质绑定
+      pipeline_config = FUN_180299eb0(render_target, 0, &vertex_shader, padding_buffer);
+      pipeline_config = _DAT_180c86938;
+      *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
+           *(undefined4 *)(render_context_ptr[0x11] + 0x30b0);
+      blend_state = powf(0x40000000, *(undefined4 *)(render_context_ptr[0x11] + 0x320c));
+      *(undefined4 *)(*(longlong *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
+      FUN_18029fc10(*(longlong *)(pipeline_config + 0x1cd8), *(undefined8 *)(pipeline_config + 0x1c88),
+                    *(longlong *)(pipeline_config + 0x1cd8) + 0x1be0, 0x230);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1c88);
+      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      shader_program = *(code **)(*state_block + 0x238);
+      *(undefined4 *)(pipeline_config + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      (*shader_program)(state_block, 2, 1, pipeline_config + 0x10);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      
+      // 更新渲染状态
+      if ((pipeline_config != 0) && (*(longlong *)(pipeline_config + 0x82a0) != (longlong)**(int **)(pipeline_config + 0x10))) {
+        (**(code **)(**(longlong **)(pipeline_config + 0x8400) + 0x228))
+                  (*(longlong **)(pipeline_config + 0x8400), *(undefined8 *)(*(int **)(pipeline_config + 0x10) + 6), 0, 0)
+        ;
+        *(longlong *)(pipeline_config + 0x82a0) = (longlong)**(int **)(pipeline_config + 0x10);
+      }
+      
+      // 执行渲染操作
+      depth_stencil_state = CONCAT44(depth_stencil_state._4_4_, 0xffffffff);
+      FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, frame_buffer, 0x20);
+      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      if (input_layout != (code **)0x0) {
+        *(undefined4 *)((longlong)input_layout + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+        render_pass = (code **)input_layout[4];
+      }
+      state_block = *(longlong **)(pipeline_config + 0x8400);
+      depth_stencil_state = 0;
+      vertex_buffer = render_pass;
+      (**(code **)(*state_block + 0x220))(state_block, 1, 1, &vertex_buffer);
+      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      (**(code **)(*state_block + 0x148))(state_block, 1, 1, 1);
+      
+      // 配置第二渲染通道
+      vertex_shader = (code *)&UNK_1809fcc58;
+      pixel_shader = (code *)vertex_data;
+      vertex_data[0] = vertex_data[0] & 0xffffff00;
+      topology = 0x1f;
+      blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ae38);
+      primitive_restart = 1;
+      scissor_enable = 1;
+      viewport = 0;
+      sample_mask = 4;
+      rasterizer_state = 0x10;
+      stencil_ref = 0x21;
+      depth_stencil_state._4_4_ = 0x10;
+      FUN_1800b0a10(blend_state, &domain_shader, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+      vertex_shader = (code *)&UNK_18098bcb0;
+      render_pass = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
+      shader_program = domain_shader;
+      render_pass[1] = (code *)0x0;
+      render_pass[2] = (code *)0x0;
+      render_pass[3] = (code *)0x0;
+      render_pass[4] = (code *)0x0;
+      render_pass[5] = (code *)0x0;
+      render_pass[6] = (code *)0x0;
+      render_pass[7] = (code *)0x0;
+      render_pass[8] = (code *)0x0;
+      *render_pass = (code *)0x0;
+      render_pass[1] = (code *)0x0;
+      render_pass[2] = (code *)0x0;
+      input_layout = (code **)domain_shader;
+      vertex_buffer = render_pass;
+      if (domain_shader != (code *)0x0) {
+        (**(code **)(*(longlong *)domain_shader + 0x28))(domain_shader);
+      }
+      input_layout = (code **)*render_pass;
+      *render_pass = shader_program;
+      if (input_layout != (code **)0x0) {
+        (**(code **)((longlong)*input_layout + 0x38))();
+      }
+      shader_stage = input_layout;
+      vertex_buffer = input_layout;
+      if (input_layout != (code **)0x0) {
+        (**(code **)(*input_layout + 0x28))(input_layout);
+      }
+      vertex_buffer = (code **)render_pass[1];
+      render_pass[1] = (code *)shader_stage;
+      if (vertex_buffer != (code **)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
+      }
+      if (render_context_ptr != (code **)0x0) {
+        vertex_buffer = render_context_ptr;
+        (**(code **)(*render_context_ptr + 0x28))(render_context_ptr);
+      }
+      vertex_buffer = (code **)render_pass[2];
+      render_pass[2] = (code *)render_context_ptr;
+      if (vertex_buffer != (code **)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
+      }
+      render_pass[3] = material_data;
+      vertex_data = (uint *)FUN_180145140(render_context_ptr[0x11] + 0x3018, &geometry_shader,
+                                      *(undefined4 *)(render_context_ptr[0x11] + 0x3f50));
+      texture_unit = vertex_data[2];
+      vertex_count = vertex_data[1];
+      *(uint *)((longlong)render_pass + 0x24) = *vertex_data ^ 0x80000000;
+      *(uint *)(render_pass + 5) = vertex_count ^ 0x80000000;
+      *(uint *)((longlong)render_pass + 0x2c) = texture_unit ^ 0x80000000;
+      *(undefined4 *)(render_pass + 6) = 0x7f7fffff;
+      shader_program = render_context_ptr[0x11];
+      material_param1 = *(float *)(shader_program + 0x30c8);
+      viewport_scale = material_param1 * *(float *)(shader_program + 0x30e4);
+      material_param2 = *(float *)(shader_program + 0x30e0);
+      primitive_restart = 0x7f7fffff;
+      *(float *)((longlong)render_pass + 0x34) = material_param1 * *(float *)(shader_program + 0x30dc);
+      *(float *)(render_pass + 7) = material_param1 * material_param2;
+      *(float *)((longlong)render_pass + 0x3c) = viewport_scale;
+      *(undefined4 *)(render_pass + 8) = 0x7f7fffff;
+      vertex_buffer = &geometry_shader;
+      hull_shader = (code *)&UNK_1802e4bc0;
+      stream_output_buffer = &UNK_1800ee4c0;
+      geometry_shader = FUN_18031d520;
+      input_layout = &geometry_shader;
+      (*(code *)&UNK_1800ee4c0)(render_pass, &geometry_shader);
+      if (hull_shader != (code *)0x0) {
+        (*hull_shader)(&geometry_shader, 0, 0);
+      }
+      if (domain_shader != (code *)0x0) {
+        (**(code **)(*(longlong *)domain_shader + 0x38))();
+      }
+      if (state_block != (longlong *)0x0) {
+        (**(code **)(*state_block + 0x38))();
+      }
+      vertex_buffer = &pixel_shader;
+      pixel_shader = (code *)&UNK_180a3c3e0;
+      if (instance_buffer != 0) {
+                    // WARNING: Subroutine does not return
+        FUN_18064e900();
+      }
+      instance_buffer = 0;
+      frame_sync = frame_sync & 0xffffffff00000000;
+      pixel_shader = (code *)&UNK_18098bcb0;
+      if (vertex_buffer != (longlong *)0x0) {
+        (**(code **)(*vertex_buffer + 0x38))();
+      }
+      goto LAB_18031df5a;
     }
-    
-    /* 渲染系统计数器更新 */
-    texture_index = *(int *)(param_2 + 0x4c);
-    *(int *)(param_2 + 0x4c) = texture_index + 1;
-    
-    if (texture_index + 1 == RENDERING_MAX_TEXTURES) {
-        *(uint32_t *)(param_2 + 0x5c) = 0xffffffff;
-    }
-    
-    /* 渲染系统最终清理 */
-    if (resource_manager != (code **)0x0) {
-        (**(code **)(*resource_manager + 0x38))();
-    }
-    
-    /* 渲染系统安全退出 */
-    FUN_1808fc050(security_cookie);
+  }
+  
+  // 更新材质引用计数
+  render_state = *(int *)(material_data + 0x4c);
+  *(int *)(material_data + 0x4c) = render_state + 1;
+  if (render_state + 1 == 0x18) {
+    *(undefined4 *)(material_data + 0x5c) = 0xffffffff;
+  }
+LAB_18031df5a:
+  if (input_layout != (code **)0x0) {
+    (**(code **)(*input_layout + 0x38))();
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
+
+
+
+
+// ===================================================================
+// 函数实现：资源清理器
+// ===================================================================
+
 /**
- * 渲染系统清理处理器
+ * 资源清理器 - 负责渲染资源的释放和清理
  * 
- * 本函数负责渲染系统的资源清理和释放：
- * 1. 渲染资源释放
- * 2. 内存清理
- * 3. 状态重置
- * 4. 缓冲区清理
+ * @param resource_context 资源上下文句柄
+ * @return void
  * 
- * @param param_1 渲染系统上下文指针
+ * 技术说明：
+ * - 清理渲染管线资源
+ * - 释放着色器和缓冲区
+ * - 重置资源引用计数
+ * - 处理资源生命周期
+ * - 确保资源正确释放
  */
-void rendering_system_cleanup_handler(longlong param_1)
+void RenderingSystem_ResourceCleaner(longlong resource_context)
+
 {
-    /* 资源数据获取 */
-    longlong resource_data = *(longlong *)(param_1 + 0x3c8);
-    
-    /* 资源释放 */
-    if (resource_data != 0) {
-        FUN_18045fb80(resource_data);
-        FUN_18064e900(resource_data);
-    }
-    
-    /* 资源指针清理 */
-    *(uint64_t *)(param_1 + 0x3c8) = 0;
-    
-    /* 内存管理器清理 */
-    longlong *memory_manager = *(longlong **)(param_1 + 0x1c8);
-    *(uint64_t *)(param_1 + 0x1c8) = 0;
-    
-    if (memory_manager != (longlong *)0x0) {
-        (**(code **)(*memory_manager + 0x38))();
-    }
-    
-    /* 状态管理器清理 */
-    memory_manager = *(longlong **)(param_1 + 0x1d0);
-    *(uint64_t *)(param_1 + 0x1d0) = 0;
-    
-    if (memory_manager != (longlong *)0x0) {
-        (**(code **)(*memory_manager + 0x38))();
-    }
-    
-    /* 缓冲区管理器清理 */
-    memory_manager = *(longlong **)(param_1 + 0x1d8);
-    *(uint64_t *)(param_1 + 0x1d8) = 0;
-    
-    if (memory_manager != (longlong *)0x0) {
-        (**(code **)(*memory_manager + 0x38))();
-    }
+  longlong texture_resource;
+  longlong *shader_resource;
+  
+  // 清理纹理资源
+  texture_resource = *(longlong *)(resource_context + 0x3c8);
+  if (texture_resource != 0) {
+    FUN_18045fb80(texture_resource);
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(texture_resource);
+  }
+  *(undefined8 *)(resource_context + 0x3c8) = 0;
+  
+  // 清理顶点着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1c8);
+  *(undefined8 *)(resource_context + 0x1c8) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
+  }
+  
+  // 清理像素着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1d0);
+  *(undefined8 *)(resource_context + 0x1d0) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
+  }
+  
+  // 清理几何着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1d8);
+  *(undefined8 *)(resource_context + 0x1d8) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
+  }
+  return;
 }
 
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// ===================================================================
+// 函数实现：渲染对象处理器
+// ===================================================================
+
 /**
- * 渲染系统资源管理器
+ * 渲染对象处理器 - 负责渲染对象的创建、配置和销毁
  * 
- * 本函数负责渲染系统的资源管理：
- * 1. 资源分配
- * 2. 资源释放
- * 3. 资源状态管理
- * 4. 资源优化
+ * @param render_object 渲染对象上下文
+ * @return void
  * 
- * @param param_1 渲染系统上下文指针
+ * 技术说明：
+ * - 管理渲染对象的生命周期
+ * - 处理着色器绑定和配置
+ * - 管理渲染状态切换
+ * - 处理资源引用计数
+ * - 确保对象正确清理
  */
-void rendering_system_resource_manager(longlong param_1)
+void RenderingSystem_ObjectProcessor(longlong render_object)
+
 {
-    /* 变量声明 */
-    int state_flag;
-    uint64_t temp_data;
-    uint64_t *temp_pointer;
-    longlong resource_data;
-    longlong *resource_manager;
-    
-    /* 栈保护初始化 */
-    uint64_t stack_protection = 0xfffffffffffffffe;
-    uint64_t security_cookie = _DAT_180bf00a8 ^ stack_protection;
-    
-    /* 状态检查 */
-    if (*(int *)(param_1 + 0x60) == 0) {
-        /* 主资源管理器处理 */
-        resource_manager = *(longlong **)(param_1 + 0x1c8);
-        *(uint64_t *)(param_1 + 0x1c8) = 0;
-        longlong *main_manager = resource_manager;
-        
-        if (resource_manager == (longlong *)0x0) {
-            goto cleanup_exit;
-        }
-        
-        resource_data = *resource_manager;
-    } else {
-        /* 辅助资源管理器处理 */
-        resource_manager = *(longlong **)(param_1 + 0x70);
-        longlong *aux_manager = resource_manager;
-        
-        if (resource_manager != (longlong *)0x0) {
-            (**(code **)(*resource_manager + 0x28))(resource_manager);
-            state_flag = *(int *)(param_1 + 0x60);
-            
-            /* 字符串处理 */
-            code *string_handler = &UNK_1809fcc58;
-            char *buffer_ptr;
-            char buffer[72];
-            buffer[0] = 0;
-            uint32_t buffer_size = 0x10;
-            strcpy_s(buffer, 0x40, &UNK_180a1ae20);
-            
-            /* 参数设置 */
-            uint32_t param_flags = 0x41;
-            int scaled_flag = state_flag * 7;
-            longlong *current_manager = resource_manager;
-            
-            /* 资源管理器调用 */
-            temp_pointer = (uint64_t *)FUN_1800b0a10();
-            temp_data = *temp_pointer;
-            *temp_pointer = 0;
-            
-            main_manager = *(longlong **)(param_1 + 0x1c8);
-            *(uint64_t *)(param_1 + 0x1c8) = temp_data;
-            
-            if (main_manager != (longlong *)0x0) {
-                (**(code **)(*main_manager + 0x38))();
-            }
-            
-            /* 辅助管理器处理 */
-            string_handler = &UNK_18098bcb0;
-            main_manager = *(longlong **)(param_1 + 0x70);
-            *(uint64_t *)(param_1 + 0x70) = 0;
-            
-            if (main_manager != (longlong *)0x0) {
-                (**(code **)(*main_manager + 0x38))();
-            }
-        }
-        
-        if (resource_manager == (longlong *)0x0) {
-            goto cleanup_exit;
-        }
-        
-        resource_data = *resource_manager;
+  int render_state;
+  undefined8 shader_handle;
+  undefined8 *resource_ptr;
+  longlong shader_program;
+  longlong *render_context;
+  undefined1 alignment_buffer[32];
+  undefined4 blend_state;
+  undefined4 rasterizer_state;
+  undefined4 depth_stencil_state;
+  undefined4 sample_mask;
+  int state_index;
+  longlong *state_block;
+  undefined1 scissor_enable;
+  undefined4 topology;
+  longlong *vertex_shader;
+  longlong *pixel_shader;
+  undefined8 viewport;
+  longlong *input_layout;
+  undefined *render_target;
+  undefined1 *shader_data;
+  undefined4 format;
+  undefined1 texture_buffer[72];
+  ulonglong frame_sync;
+  
+  // 初始化渲染对象状态
+  viewport = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  
+  // 检查渲染状态模式
+  if (*(int *)(render_object + 0x60) == 0) {
+    // 处理顶点着色器
+    render_context = *(longlong **)(render_object + 0x1c8);
+    *(undefined8 *)(render_object + 0x1c8) = 0;
+    vertex_shader = render_context;
+    if (render_context == (longlong *)0x0) goto LAB_18031e20e;
+    shader_program = *render_context;
+  }
+  else {
+    // 处理像素着色器
+    render_context = *(longlong **)(render_object + 0x70);
+    input_layout = render_context;
+    if (render_context != (longlong *)0x0) {
+      (**(code **)(*render_context + 0x28))(render_context);
+      render_state = *(int *)(render_object + 0x60);
+      render_target = &UNK_1809fcc58;
+      shader_data = texture_buffer;
+      texture_buffer[0] = 0;
+      format = 0x10;
+      strcpy_s(texture_buffer, 0x40, &UNK_180a1ae20);
+      topology = 1;
+      scissor_enable = 1;
+      depth_stencil_state = 0x10;
+      sample_mask = 0;
+      rasterizer_state = 1;
+      blend_state = 0x41;
+      state_index = render_state * 7;
+      state_block = render_context;
+      resource_ptr = (undefined8 *)FUN_1800b0a10();
+      shader_handle = *resource_ptr;
+      *resource_ptr = 0;
+      vertex_shader = *(longlong **)(render_object + 0x1c8);
+      *(undefined8 *)(render_object + 0x1c8) = shader_handle;
+      if (vertex_shader != (longlong *)0x0) {
+        (**(code **)(*vertex_shader + 0x38))();
+      }
+      if (pixel_shader != (longlong *)0x0) {
+        (**(code **)(*pixel_shader + 0x38))();
+      }
+      render_target = &UNK_18098bcb0;
+      vertex_shader = *(longlong **)(render_object + 0x70);
+      *(undefined8 *)(render_object + 0x70) = 0;
+      if (vertex_shader != (longlong *)0x0) {
+        (**(code **)(*vertex_shader + 0x38))();
+      }
     }
-    
-    /* 资源管理器执行 */
-    (**(code **)(resource_data + 0x38))(resource_manager);
-    
-cleanup_exit:
-    /* 安全退出 */
-    FUN_1808fc050(security_cookie);
+    if (render_context == (longlong *)0x0) goto LAB_18031e20e;
+    shader_program = *render_context;
+  }
+  
+  // 执行着色器程序
+  (**(code **)(shader_program + 0x38))(render_context);
+LAB_18031e20e:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
+
+
+
+
+// ===================================================================
+// 函数实现：材质处理器
+// ===================================================================
+
 /**
- * 渲染系统参数处理器
+ * 材质处理器 - 负责材质参数的处理和计算
  * 
- * 本函数负责渲染系统的参数处理：
- * 1. 参数验证
- * 2. 参数变换
- * 3. 参数标准化
- * 4. 参数优化
+ * @param texture_handle 纹理句柄
+ * @param shader_context 着色器上下文
+ * @param material_params 材质参数数组
+ * @param material_flags 材质标志
+ * @return void
  * 
- * @param param_1 参数标识符
- * @param param_2 参数类型
- * @param param_3 浮点参数数组
- * @param param_4 参数标志
+ * 技术说明：
+ * - 处理材质参数计算
+ * - 管理纹理采样
+ * - 计算材质混合
+ * - 处理着色器参数
+ * - 优化材质性能
  */
-void rendering_system_parameter_processor(uint64_t param_1, uint64_t param_2, 
-                                           float *param_3, uint32_t param_4)
+void RenderingSystem_MaterialProcessor(undefined8 texture_handle, undefined8 shader_context, float *material_params, undefined4 material_flags)
+
 {
-    /* 变量声明 */
-    float *result_pointer;
-    float result_x, result_y, result_z;
-    float stack_values[4];
-    float final_values[4];
-    uint32_t temp_data;
-    
-    /* 参数处理初始化 */
-    result_pointer = &final_values[0];
-    
-    /* 参数处理调用 */
-    FUN_18031c410(result_pointer, param_4, &result_x, stack_values, result_pointer);
-    temp_data = (uint32_t)((uint64_t)result_pointer >> 0x20);
-    
-    /* 参数累加 */
-    result_x = result_x + *param_3;
-    result_y = result_y + param_3[1];
-    result_z = result_z + param_3[2];
-    
-    /* 最终值设置 */
-    final_values[0] = *param_3;
-    final_values[1] = param_3[1];
-    final_values[2] = param_3[2];
-    final_values[3] = param_3[3];
-    stack_values[3] = RENDERING_MAGIC_NUMBER;
-    
-    /* 参数处理完成 */
-    FUN_180287020(param_2, &final_values[0], &result_x, stack_values);
-    FUN_180286e40(0x41200000, 0x3fc90fdb, 0x3f800000, 0x3c23d70a, 
-                  ((uint32_t)temp_data << 16) | 0x41200000);
+  float *result_vector;
+  float param_x;
+  float param_y;
+  float param_z;
+  undefined4 max_float;
+  undefined1 texture_coords[16];
+  float output_x;
+  float output_y;
+  float output_z;
+  float output_w;
+  undefined4 param_flags;
+  
+  // 初始化材质处理
+  result_vector = &output_x;
+  FUN_18031c410(result_vector, material_flags, &param_x, texture_coords, result_vector);
+  param_flags = (undefined4)((ulonglong)result_vector >> 0x20);
+  
+  // 计算材质参数
+  param_x = param_x + *material_params;
+  param_y = param_y + material_params[1];
+  param_z = param_z + material_params[2];
+  
+  // 设置输出参数
+  output_x = *material_params;
+  output_y = material_params[1];
+  output_z = material_params[2];
+  output_w = material_params[3];
+  max_float = 0x7f7fffff;
+  
+  // 执行材质处理
+  FUN_180287020(shader_context, &output_x, &param_x, texture_coords);
+  FUN_180286e40(0x41200000, 0x3fc90fdb, 0x3f800000, 0x3c23d70a, CONCAT44(param_flags, 0x41200000));
+  return;
 }
 
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// ===================================================================
+// 函数实现：渲染数据传输器
+// ===================================================================
+
 /**
- * 渲染系统数据变换器
+ * 渲染数据传输器 - 负责渲染数据的传输和处理
  * 
- * 本函数负责渲染系统的数据变换：
- * 1. 数据标准化
- * 2. 向量变换
- * 3. 矩阵运算
- * 4. 资源管理
+ * @param source_context 源渲染上下文
+ * @param target_context 目标渲染上下文
+ * @return void
  * 
- * @param param_1 源数据上下文
- * @param param_2 目标数据上下文
+ * 技术说明：
+ * - 处理渲染数据传输
+ * - 管理资源状态同步
+ * - 处理向量归一化
+ * - 管理渲染参数
+ * - 优化数据传输性能
  */
-void rendering_system_data_transformer(longlong param_1, longlong param_2)
+void RenderingSystem_DataTransfer(longlong source_context, longlong target_context)
+
 {
-    /* 变量声明 */
-    float scale_factor;
-    uint32_t temp_data1, temp_data2;
-    int index_value;
-    longlong *resource_manager;
-    uint64_t temp_data;
-    char status_flag;
-    uint32_t data_size;
-    int temp_index;
-    uint64_t *data_pointer;
-    uint64_t *data_pointer2;
-    longlong resource_data;
-    float vector_values[6];
-    double double_values[2];
-    float temp_float, temp_float2, temp_float3;
-    
-    /* 栈保护初始化 */
-    uint64_t stack_protection = 0xfffffffffffffffe;
-    uint64_t security_cookie = _DAT_180bf00a8 ^ stack_protection;
-    
-    /* 状态初始化 */
-    uint32_t state_flag = 0;
-    
-    /* 资源管理器处理 */
-    resource_manager = *(longlong **)(param_1 + 0x1c8);
-    if (resource_manager != (longlong *)0x0) {
-        longlong *current_manager = resource_manager;
-        (**(code **)(*resource_manager + 0x28))(resource_manager);
+  float scale_factor;
+  undefined4 render_param1;
+  undefined4 render_param2;
+  int render_state;
+  longlong *render_resource;
+  undefined8 texture_handle;
+  char validation_flag;
+  uint buffer_size;
+  int texture_index;
+  undefined8 *vertex_buffer;
+  undefined8 *index_buffer;
+  longlong shader_program;
+  float lighting_intensity;
+  float normal_length;
+  double aspect_ratio_x;
+  float inverse_length;
+  double aspect_ratio_y;
+  float scaled_intensity;
+  float normal_x;
+  undefined1 alignment_buffer[32];
+  undefined1 user_flag;
+  undefined8 light_vector;
+  undefined8 normal_vector;
+  undefined4 transfer_flag;
+  undefined *render_target;
+  undefined8 *constant_buffer;
+  undefined4 buffer_size;
+  undefined8 frame_buffer;
+  undefined4 texture_width;
+  undefined4 texture_height;
+  undefined4 texture_depth;
+  undefined4 texture_mips;
+  undefined4 texture_format;
+  undefined8 viewport_data;
+  undefined8 projection_data;
+  undefined1 stencil_enable;
+  undefined8 blend_factor;
+  undefined4 clear_flags;
+  undefined1 scissor_enable;
+  longlong *vertex_shader;
+  longlong *pixel_shader;
+  longlong *geometry_shader;
+  longlong *hull_shader;
+  longlong *domain_shader;
+  longlong *compute_shader;
+  longlong *stream_output;
+  undefined8 render_state_data;
+  undefined *frame_buffer_ptr;
+  undefined1 *shader_data;
+  undefined4 data_size;
+  undefined1 user_buffer[136];
+  ulonglong frame_sync;
+  
+  // 初始化数据传输状态
+  render_state_data = 0xfffffffffffffffe;
+  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  transfer_flag = 0;
+  
+  // 传输顶点着色器资源
+  render_resource = *(longlong **)(source_context + 0x1c8);
+  if (render_resource != (longlong *)0x0) {
+    vertex_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
+  }
+  vertex_shader = *(longlong **)(target_context + 0x97a0);
+  *(longlong **)(target_context + 0x97a0) = render_resource;
+  if (vertex_shader != (longlong *)0x0) {
+    (**(code **)(*vertex_shader + 0x38))();
+  }
+  
+  // 传输渲染参数
+  texture_handle = *(undefined8 *)(source_context + 0x24c);
+  *(undefined8 *)(target_context + 0x97c8) = *(undefined8 *)(source_context + 0x244);
+  *(undefined8 *)(target_context + 0x97d0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x25c);
+  *(undefined8 *)(target_context + 0x97d8) = *(undefined8 *)(source_context + 0x254);
+  *(undefined8 *)(target_context + 0x97e0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x26c);
+  *(undefined8 *)(target_context + 0x97e8) = *(undefined8 *)(source_context + 0x264);
+  *(undefined8 *)(target_context + 0x97f0) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x27c);
+  *(undefined8 *)(target_context + 0x97f8) = *(undefined8 *)(source_context + 0x274);
+  *(undefined8 *)(target_context + 0x9800) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x28c);
+  *(undefined8 *)(target_context + 0x9808) = *(undefined8 *)(source_context + 0x284);
+  *(undefined8 *)(target_context + 0x9810) = texture_handle;
+  texture_handle = *(undefined8 *)(source_context + 0x29c);
+  *(undefined8 *)(target_context + 0x9818) = *(undefined8 *)(source_context + 0x294);
+  *(undefined8 *)(target_context + 0x9820) = texture_handle;
+  
+  // 获取光照强度参数
+  lighting_intensity = *(float *)(*(longlong *)(source_context + 0x88) + 0x4b4);
+  
+  // 处理第一组法向量归一化
+  normal_length = *(float *)(target_context + 0x97cc);
+  scale_factor = *(float *)(target_context + 0x97c8);
+  normal_x = *(float *)(target_context + 0x97d0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97c8) = scaled_intensity;
+    *(float *)(target_context + 0x97cc) = normal_length;
+    *(float *)(target_context + 0x97d0) = normal_x;
+    *(undefined4 *)(target_context + 0x97d4) = 0x7f7fffff;
+  }
+  
+  // 处理第二组法向量归一化
+  normal_length = *(float *)(target_context + 0x97dc);
+  scale_factor = *(float *)(target_context + 0x97d8);
+  normal_x = *(float *)(target_context + 0x97e0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97d8) = scaled_intensity;
+    *(float *)(target_context + 0x97dc) = normal_length;
+    *(float *)(target_context + 0x97e0) = normal_x;
+    *(undefined4 *)(target_context + 0x97e4) = 0x7f7fffff;
+  }
+  
+  // 处理第三组法向量归一化
+  normal_length = *(float *)(target_context + 0x97ec);
+  scale_factor = *(float *)(target_context + 0x97e8);
+  normal_x = *(float *)(target_context + 0x97f0);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = lighting_intensity * scaled_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97e8) = scaled_intensity;
+    *(float *)(target_context + 0x97ec) = normal_length;
+    *(float *)(target_context + 0x97f0) = normal_x;
+    *(undefined4 *)(target_context + 0x97f4) = 0x7f7fffff;
+  }
+  
+  // 处理第四组法向量归一化
+  normal_length = *(float *)(target_context + 0x97fc);
+  scale_factor = *(float *)(target_context + 0x97f8);
+  normal_x = *(float *)(target_context + 0x9800);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x97f8) = scaled_intensity;
+    *(float *)(target_context + 0x97fc) = normal_length;
+    *(float *)(target_context + 0x9800) = normal_x;
+    *(undefined4 *)(target_context + 0x9804) = 0x7f7fffff;
+  }
+  
+  // 处理第五组法向量归一化
+  normal_length = *(float *)(target_context + 0x980c);
+  scale_factor = *(float *)(target_context + 0x9808);
+  normal_x = *(float *)(target_context + 0x9810);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    normal_length = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(normal_length, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x9808) = scaled_intensity;
+    *(float *)(target_context + 0x980c) = normal_length;
+    *(float *)(target_context + 0x9810) = normal_x;
+    *(undefined4 *)(target_context + 0x9814) = 0x7f7fffff;
+  }
+  
+  // 处理第六组法向量归一化
+  normal_length = *(float *)(target_context + 0x981c);
+  scale_factor = *(float *)(target_context + 0x9818);
+  normal_x = *(float *)(target_context + 0x9820);
+  scaled_intensity = SQRT(scale_factor * scale_factor + normal_length * normal_length + normal_x * normal_x);
+  if (1e-05 < scaled_intensity) {
+    inverse_length = 1.0 / scaled_intensity;
+    scaled_intensity = scaled_intensity * lighting_intensity;
+    normal_x = scaled_intensity * normal_x * inverse_length;
+    lighting_intensity = scaled_intensity * normal_length * inverse_length;
+    scaled_intensity = scale_factor * inverse_length * scaled_intensity;
+    light_vector = (longlong *)CONCAT44(lighting_intensity, scaled_intensity);
+    normal_vector = CONCAT44(0x7f7fffff, normal_x);
+    *(float *)(target_context + 0x9818) = scaled_intensity;
+    *(float *)(target_context + 0x981c) = lighting_intensity;
+    *(float *)(target_context + 0x9820) = normal_x;
+    *(undefined4 *)(target_context + 0x9824) = 0x7f7fffff;
+  }
+  
+  // 传输像素着色器资源
+  render_resource = *(longlong **)(source_context + 0x228);
+  if (render_resource != (longlong *)0x0) {
+    pixel_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
+  }
+  pixel_shader = *(longlong **)(target_context + 0x97b8);
+  *(longlong **)(target_context + 0x97b8) = render_resource;
+  if (pixel_shader != (longlong *)0x0) {
+    (**(code **)(*pixel_shader + 0x38))();
+  }
+  
+  // 传输几何着色器资源
+  render_resource = *(longlong **)(source_context + 0x1d0);
+  if (render_resource != (longlong *)0x0) {
+    geometry_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
+  }
+  transfer_flag = 1;
+  geometry_shader = (longlong *)0x0;
+  hull_shader = *(longlong **)(target_context + 0x97b0);
+  *(longlong **)(target_context + 0x97b0) = render_resource;
+  if (hull_shader != (longlong *)0x0) {
+    (**(code **)(*hull_shader + 0x38))();
+  }
+  transfer_flag = 0;
+  
+  // 传输外壳着色器资源
+  render_resource = *(longlong **)(source_context + 0x1d8);
+  if (render_resource != (longlong *)0x0) {
+    domain_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
+  }
+  domain_shader = *(longlong **)(target_context + 0x97a8);
+  *(longlong **)(target_context + 0x97a8) = render_resource;
+  if (domain_shader != (longlong *)0x0) {
+    (**(code **)(*domain_shader + 0x38))();
+  }
+  
+  // 处理用户数据传输
+  if (*(longlong *)(target_context + 0x97a0) == 0) {
+    light_vector = *(longlong **)(target_context + 0x97c0);
+    *(undefined8 *)(target_context + 0x97c0) = 0;
+    if (light_vector != (longlong *)0x0) {
+      (**(code **)(*light_vector + 0x38))();
     }
-    
-    /* 资源管理器交换 */
-    longlong *target_manager = *(longlong **)(param_2 + 0x97a0);
-    *(longlong **)(param_2 + 0x97a0) = resource_manager;
-    
-    if (target_manager != (longlong *)0x0) {
-        (**(code **)(*target_manager + 0x38))();
+    goto LAB_18031ebd1;
+  }
+  
+  // 配置用户数据缓冲区
+  render_target = &UNK_180a3c3e0;
+  frame_buffer = 0;
+  constant_buffer = (undefined8 *)0x0;
+  buffer_size = 0;
+  vertex_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
+  *(undefined1 *)vertex_buffer = 0;
+  constant_buffer = vertex_buffer;
+  buffer_size = FUN_18064e990(vertex_buffer);
+  *vertex_buffer = 0x666669645f747270;
+  vertex_buffer[1] = 0x69626d615f657375;
+  vertex_buffer[2] = 0x757365725f746e65;
+  *(undefined4 *)(vertex_buffer + 3) = 0x5f746c;
+  buffer_size = 0x1b;
+  shader_program = *(longlong *)(source_context + 0x88);
+  texture_index = *(int *)(shader_program + 0x4e8);
+  frame_buffer._0_4_ = buffer_size;
+  if (0 < texture_index) {
+    if ((texture_index != -0x1b) && (buffer_size < texture_index + 0x1cU)) {
+      user_flag = 0x13;
+      vertex_buffer = (undefined8 *)FUN_18062b8b0(_DAT_180c8ed18, vertex_buffer, texture_index + 0x1cU, 0x10);
+      constant_buffer = vertex_buffer;
+      frame_buffer._0_4_ = FUN_18064e990(vertex_buffer);
+      texture_index = *(int *)(shader_program + 0x4e8);
     }
-    
-    /* 数据复制 */
-    temp_data = *(uint64_t *)(param_1 + 0x24c);
-    *(uint64_t *)(param_2 + 0x97c8) = *(uint64_t *)(param_1 + 0x244);
-    *(uint64_t *)(param_2 + 0x97d0) = temp_data;
-    
-    temp_data = *(uint64_t *)(param_1 + 0x25c);
-    *(uint64_t *)(param_2 + 0x97d8) = *(uint64_t *)(param_1 + 0x254);
-    *(uint64_t *)(param_2 + 0x97e0) = temp_data;
-    
-    temp_data = *(uint64_t *)(param_1 + 0x26c);
-    *(uint64_t *)(param_2 + 0x97e8) = *(uint64_t *)(param_1 + 0x264);
-    *(uint64_t *)(param_2 + 0x97f0) = temp_data;
-    
-    temp_data = *(uint64_t *)(param_1 + 0x27c);
-    *(uint64_t *)(param_2 + 0x97f8) = *(uint64_t *)(param_1 + 0x274);
-    *(uint64_t *)(param_2 + 0x9800) = temp_data;
-    
-    temp_data = *(uint64_t *)(param_1 + 0x28c);
-    *(uint64_t *)(param_2 + 0x9808) = *(uint64_t *)(param_1 + 0x284);
-    *(uint64_t *)(param_2 + 0x9810) = temp_data;
-    
-    temp_data = *(uint64_t *)(param_1 + 0x29c);
-    *(uint64_t *)(param_2 + 0x9818) = *(uint64_t *)(param_1 + 0x294);
-    *(uint64_t *)(param_2 + 0x9820) = temp_data;
-    
-    /* 比例因子获取 */
-    scale_factor = *(float *)(*(longlong *)(param_1 + 0x88) + 0x4b4);
-    
-    /* 向量标准化处理 */
-    for (int i = 0; i < 6; i++) {
-        float vector_x = *(float *)(param_2 + 0x97c8 + i * 0x10);
-        float vector_y = *(float *)(param_2 + 0x97cc + i * 0x10);
-        float vector_z = *(float *)(param_2 + 0x97d0 + i * 0x10);
-        
-        float magnitude = SQRT(vector_x * vector_x + vector_y * vector_y + vector_z * vector_z);
-        
-        if (RENDERING_NORMALIZATION_THRESHOLD < magnitude) {
-            float inverse_magnitude = 1.0f / magnitude;
-            magnitude = scale_factor * magnitude;
-            
-            float normalized_z = magnitude * vector_z * inverse_magnitude;
-            float normalized_y = magnitude * vector_y * inverse_magnitude;
-            float normalized_x = vector_x * inverse_magnitude * magnitude;
-            
-            *(float *)(param_2 + 0x97c8 + i * 0x10) = normalized_x;
-            *(float *)(param_2 + 0x97cc + i * 0x10) = normalized_y;
-            *(float *)(param_2 + 0x97d0 + i * 0x10) = normalized_z;
-            *(uint32_t *)(param_2 + 0x97d4 + i * 0x10) = RENDERING_MAGIC_NUMBER;
-        }
+                    // WARNING: Subroutine does not return
+    memcpy((undefined1 *)((longlong)vertex_buffer + 0x1b), *(undefined8 *)(shader_program + 0x4e0),
+           (longlong)(texture_index + 1));
+  }
+  texture_width = 1;
+  texture_height = 1;
+  viewport_data = 0;
+  projection_data = 0x3f80000000000000;
+  blend_factor = 1;
+  stencil_enable = 0;
+  clear_flags = 0xffffffff;
+  scissor_enable = 0;
+  shader_program = *(longlong *)(_DAT_180c86890 + 0x7ab8);
+  aspect_ratio_x = 1.0;
+  aspect_ratio_y = 1.0;
+  if ((*(char *)(shader_program + 0xd9) != '\0') &&
+     (texture_index = *(int *)(_DAT_180c86920 + 0x540), texture_index - 1U < 4)) {
+    aspect_ratio_x = *(double *)(shader_program + -8 + (longlong)texture_index * 0x10);
+    aspect_ratio_y = *(double *)(shader_program + (longlong)texture_index * 0x10);
+  }
+  texture_depth = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
+  texture_mips = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
+  texture_format = 0x1e;
+  frame_buffer_ptr = &UNK_1809fcc28;
+  shader_data = user_buffer;
+  user_buffer[0] = 0;
+  data_size = 0x1b;
+  index_buffer = (undefined8 *)&DAT_18098bc73;
+  if (vertex_buffer != (undefined8 *)0x0) {
+    index_buffer = vertex_buffer;
+  }
+  strcpy_s(user_buffer, 0x80, index_buffer);
+  shader_program = *(longlong *)(source_context + 0x230);
+  if (shader_program == 0) {
+LAB_18031eaf0:
+    index_buffer = (undefined8 *)FUN_1800b1230(_DAT_180c86930, &stream_output, &frame_buffer_ptr, &texture_depth);
+    texture_handle = *index_buffer;
+    *index_buffer = 0;
+    compute_shader = *(longlong **)(source_context + 0x230);
+    *(undefined8 *)(source_context + 0x230) = texture_handle;
+    if (compute_shader != (longlong *)0x0) {
+      (**(code **)(*compute_shader + 0x38))();
     }
-    
-    /* 资源管理器处理 */
-    resource_manager = *(longlong **)(param_1 + 0x228);
-    if (resource_manager != (longlong *)0x0) {
-        longlong *current_manager = resource_manager;
-        (**(code **)(*resource_manager + 0x28))(resource_manager);
+    if (stream_output != (longlong *)0x0) {
+      (**(code **)(*stream_output + 0x38))();
     }
-    
-    /* 资源管理器交换 */
-    target_manager = *(longlong **)(param_2 + 0x97b8);
-    *(longlong **)(param_2 + 0x97b8) = resource_manager;
-    
-    if (target_manager != (longlong *)0x0) {
-        (**(code **)(*target_manager + 0x38))();
-    }
-    
-    /* 状态管理器处理 */
-    resource_manager = *(longlong **)(param_1 + 0x1d0);
-    if (resource_manager != (longlong *)0x0) {
-        longlong *current_manager = resource_manager;
-        (**(code **)(*resource_manager + 0x28))(resource_manager);
-    }
-    
-    state_flag = 1;
-    resource_manager = (longlong *)0x0;
-    
-    /* 状态管理器交换 */
-    target_manager = *(longlong **)(param_2 + 0x97b0);
-    *(longlong **)(param_2 + 0x97b0) = resource_manager;
-    
-    if (target_manager != (longlong *)0x0) {
-        (**(code **)(*target_manager + 0x38))();
-    }
-    
-    state_flag = 0;
-    
-    /* 缓冲区管理器处理 */
-    resource_manager = *(longlong **)(param_1 + 0x1d8);
-    if (resource_manager != (longlong *)0x0) {
-        longlong *current_manager = resource_manager;
-        (**(code **)(*resource_manager + 0x28))(resource_manager);
-    }
-    
-    /* 缓冲区管理器交换 */
-    target_manager = *(longlong **)(param_2 + 0x97a8);
-    *(longlong **)(param_2 + 0x97a8) = resource_manager;
-    
-    if (target_manager != (longlong *)0x0) {
-        (**(code **)(*target_manager + 0x38))();
-    }
-    
-    /* 资源管理器处理 */
-    if (*(longlong *)(param_2 + 0x97a0) == 0) {
-        target_manager = *(longlong **)(param_2 + 0x97c0);
-        *(uint64_t *)(param_2 + 0x97c0) = 0;
-        
-        if (target_manager != (longlong *)0x0) {
-            (**(code **)(*target_manager + 0x38))();
-        }
-        goto final_processing;
-    }
-    
-    /* 数据指针初始化 */
-    code *data_handler = &UNK_180a3c3e0;
-    uint64_t data_id = 0;
-    code **data_buffer = (code **)0x0;
-    uint32_t data_status = 0;
-    
-    /* 数据分配器调用 */
-    data_pointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
-    *(uint8_t *)data_pointer = 0;
-    data_buffer = data_pointer;
-    
-    data_size = FUN_18064e990(data_pointer);
-    *data_pointer = 0x666669645f747270;
-    data_pointer[1] = 0x69626d615f657375;
-    data_pointer[2] = 0x757365725f746e65;
-    *(uint32_t *)(data_pointer + 3) = 0x5f746c;
-    data_status = 0x1b;
-    
-    /* 数据处理 */
-    resource_data = *(longlong *)(param_1 + 0x88);
-    temp_index = *(int *)(resource_data + 0x4e8);
-    data_id = data_size;
-    
-    if (0 < temp_index) {
-        if ((temp_index != -0x1b) && (data_size < temp_index + 0x1cU)) {
-            uint8_t temp_flag = 0x13;
-            data_pointer = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, data_pointer, 
-                                                    temp_index + 0x1cU, 0x10);
-            data_buffer = data_pointer;
-            data_id = FUN_18064e990(data_pointer);
-            temp_index = *(int *)(resource_data + 0x4e8);
-        }
-        
-        /* 数据复制 */
-        memcpy((uint8_t *)((longlong)data_pointer + 0x1b), 
-               *(uint64_t *)(resource_data + 0x4e0), (longlong)(temp_index + 1));
-    }
-    
-    /* 参数设置 */
-    uint32_t param_flags[] = {1, 1, 0, 0x3f80000000000000, 1, 0, 0xffffffff, 0};
-    
-    /* 双精度值处理 */
-    resource_data = *(longlong *)(_DAT_180c86890 + 0x7ab8);
-    double_values[0] = 1.0;
-    double_values[1] = 1.0;
-    
-    if ((*(char *)(resource_data + 0xd9) != '\0') &&
-        (temp_index = *(int *)(_DAT_180c86920 + 0x540), temp_index - 1U < 4)) {
-        double_values[0] = *(double *)(resource_data + -8 + (longlong)temp_index * 0x10);
-        double_values[1] = *(double *)(resource_data + (longlong)temp_index * 0x10);
-    }
-    
-    /* 浮点参数计算 */
-    param_flags[0] = (uint32_t)(longlong)((double)*(float *)(param_2 + 0x11c20) / double_values[0]);
-    param_flags[1] = (uint32_t)(longlong)((double)*(float *)(param_2 + 0x11c24) / double_values[1]);
-    param_flags[3] = 0x1e;
-    
-    /* 字符串处理 */
-    code *string_handler = &UNK_1809fcc28;
-    char *buffer_ptr;
-    char buffer[136];
-    buffer[0] = 0;
-    uint32_t buffer_size = 0x1b;
-    
-    data_pointer2 = (uint64_t *)&DAT_18098bc73;
-    if (data_pointer != (uint64_t *)0x0) {
-        data_pointer2 = data_pointer;
-    }
-    
-    strcpy_s(buffer, 0x80, data_pointer2);
-    
-    /* 资源数据处理 */
-    resource_data = *(longlong *)(param_1 + 0x230);
-    if (resource_data == 0) {
-        /* 数据处理调用 */
-        data_pointer2 = (uint64_t *)FUN_1800b1230(_DAT_180c86930, &resource_manager, 
-                                                  &string_handler, &param_flags[0]);
-        temp_data = *data_pointer2;
-        *data_pointer2 = 0;
-        
-        target_manager = *(longlong **)(param_1 + 0x230);
-        *(uint64_t *)(param_1 + 0x230) = temp_data;
-        
-        if (target_manager != (longlong *)0x0) {
-            (**(code **)(*target_manager + 0x38))();
-        }
-        
-        if (resource_manager != (longlong *)0x0) {
-            (**(code **)(*resource_manager + 0x38))();
-        }
-    } else {
-        /* 状态检查 */
-        status_flag = func_0x0001800ba3b0(resource_data + 0x108, &param_flags[0]);
-        if ((status_flag == '\0') || (data_pointer = data_buffer, *(int *)(resource_data + 0x380) == 0)) {
-            goto data_processing;
-        }
-    }
-    
-    /* 线程ID获取 */
-    _Thrd_id();
-    
-    /* 字符串处理重置 */
-    string_handler = &UNK_18098bcb0;
-    resource_manager = *(longlong **)(param_1 + 0x230);
-    
-    if (resource_manager != (longlong *)0x0) {
-        longlong *current_manager = resource_manager;
-        (**(code **)(*resource_manager + 0x28))(resource_manager);
-    }
-    
-    /* 资源管理器交换 */
-    target_manager = *(longlong **)(param_2 + 0x97c0);
-    *(longlong **)(param_2 + 0x97c0) = resource_manager;
-    
-    if (target_manager != (longlong *)0x0) {
-        (**(code **)(*target_manager + 0x38))();
-    }
-    
-    /* 数据处理完成 */
-    data_handler = &UNK_180a3c3e0;
-    if (data_pointer != (uint64_t *)0x0) {
-        FUN_18064e900(data_pointer);
-    }
-    
-    data_buffer = (code **)0x0;
-    data_id = (uint64_t)data_id << 0x20;
-    data_handler = &UNK_18098bcb0;
-
-data_processing:
-    /* 最终数据处理 */
-    temp_float = *(float *)(param_1 + 0x210);
-    temp_float2 = *(float *)(param_1 + 0x214);
-    temp_data1 = *(uint32_t *)(param_1 + 500);
-    temp_data2 = *(uint32_t *)(param_1 + 0x1f8);
-    temp_index = *(int *)(param_1 + 0x1e4);
-    
-    /* 数据复制 */
-    *(uint32_t *)(param_2 + 0x9750) = *(uint32_t *)(param_1 + 0x1f0);
-    *(uint32_t *)(param_2 + 0x9754) = temp_data1;
-    *(uint32_t *)(param_2 + 0x9758) = temp_data2;
-    *(float *)(param_2 + 0x975c) = (float)temp_index;
-    
-    temp_data1 = *(uint32_t *)(param_1 + 0x204);
-    temp_data2 = *(uint32_t *)(param_1 + 0x208);
-    temp_index = *(int *)(param_1 + 0x1e8);
-    
-    *(uint32_t *)(param_2 + 0x9760) = *(uint32_t *)(param_1 + 0x200);
-    *(uint32_t *)(param_2 + 0x9764) = temp_data1;
-    *(uint32_t *)(param_2 + 0x9768) = temp_data2;
-    *(float *)(param_2 + 0x976c) = (float)temp_index;
-    
-    /* 浮点计算 */
-    temp_float = 1.0f / temp_float;
-    temp_index = *(int *)(param_1 + 0x1ec);
-    
-    *(float *)(param_2 + 0x9770) = temp_float;
-    *(float *)(param_2 + 0x9774) = temp_float;
-    *(float *)(param_2 + 0x9778) = 1.0f / temp_float2;
-    *(float *)(param_2 + 0x977c) = (float)temp_index;
-    
-    /* 向量数据处理 */
-    temp_data1 = *(uint32_t *)(*(longlong *)(param_1 + 0x88) + 0x4b0);
-    temp_data2 = *(uint32_t *)(*(longlong *)(param_1 + 0x88) + 0x4ac);
-    vector_values[0] = (float)temp_data2;
-    vector_values[1] = (float)temp_data1;
-    
-    *(uint32_t *)(param_2 + 0x9780) = temp_data1;
-    *(uint32_t *)(param_2 + 0x9784) = temp_data2;
-    *(uint32_t *)(param_2 + 0x9788) = 0;
-    *(uint32_t *)(param_2 + 0x978c) = 0;
-    
-    /* 索引处理 */
-    temp_index = *(int *)(param_1 + 0x23c);
-    index_value = *(int *)(param_1 + 0x240);
-    vector_values[2] = 1.0f;
-    
-    *(float *)(param_2 + 0x9790) = (float)*(int *)(param_1 + 0x238);
-    *(float *)(param_2 + 0x9794) = (float)temp_index;
-    *(float *)(param_2 + 0x9798) = (float)index_value;
-    *(uint32_t *)(param_2 + 0x979c) = 0x3f800000;
-    
-    /* 安全退出 */
-    FUN_1808fc050(security_cookie);
-
-final_processing:
-    /* 最终处理完成 */
-    return;
+  }
+  else {
+    validation_flag = func_0x0001800ba3b0(shader_program + 0x108, &texture_depth);
+    if ((validation_flag == '\0') || (vertex_buffer = constant_buffer, *(int *)(shader_program + 0x380) == 0))
+    goto LAB_18031eaf0;
+  }
+  
+  _Thrd_id();
+  frame_buffer_ptr = &UNK_18098bcb0;
+  render_resource = *(longlong **)(source_context + 0x230);
+  if (render_resource != (longlong *)0x0) {
+    compute_shader = render_resource;
+    (**(code **)(*render_resource + 0x28))(render_resource);
+  }
+  compute_shader = *(longlong **)(target_context + 0x97c0);
+  *(longlong **)(target_context + 0x97c0) = render_resource;
+  if (compute_shader != (longlong *)0x0) {
+    (**(code **)(*compute_shader + 0x38))();
+  }
+  render_target = &UNK_180a3c3e0;
+  if (vertex_buffer != (undefined8 *)0x0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(vertex_buffer);
+  }
+  constant_buffer = (undefined8 *)0x0;
+  frame_buffer = (ulonglong)frame_buffer._4_4_ << 0x20;
+  render_target = &UNK_18098bcb0;
+LAB_18031ebd1:
+  
+  // 最终参数设置
+  lighting_intensity = *(float *)(source_context + 0x210);
+  normal_length = *(float *)(source_context + 0x214);
+  render_param1 = *(undefined4 *)(source_context + 500);
+  render_param2 = *(undefined4 *)(source_context + 0x1f8);
+  texture_index = *(int *)(source_context + 0x1e4);
+  *(undefined4 *)(target_context + 0x9750) = *(undefined4 *)(source_context + 0x1f0);
+  *(undefined4 *)(target_context + 0x9754) = render_param1;
+  *(undefined4 *)(target_context + 0x9758) = render_param2;
+  *(float *)(target_context + 0x975c) = (float)texture_index;
+  render_param1 = *(undefined4 *)(source_context + 0x204);
+  render_param2 = *(undefined4 *)(source_context + 0x208);
+  texture_index = *(int *)(source_context + 0x1e8);
+  *(undefined4 *)(target_context + 0x9760) = *(undefined4 *)(source_context + 0x200);
+  *(undefined4 *)(target_context + 0x9764) = render_param1;
+  *(undefined4 *)(target_context + 0x9768) = render_param2;
+  *(float *)(target_context + 0x976c) = (float)texture_index;
+  lighting_intensity = 1.0 / lighting_intensity;
+  texture_index = *(int *)(source_context + 0x1ec);
+  *(float *)(target_context + 0x9770) = lighting_intensity;
+  *(float *)(target_context + 0x9774) = lighting_intensity;
+  *(float *)(target_context + 0x9778) = 1.0 / normal_length;
+  *(float *)(target_context + 0x977c) = (float)texture_index;
+  render_param1 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4b0);
+  render_param2 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4ac);
+  light_vector = (longlong *)CONCAT44(render_param2, render_param1);
+  *(undefined4 *)(target_context + 0x9780) = render_param1;
+  *(undefined4 *)(target_context + 0x9784) = render_param2;
+  *(undefined4 *)(target_context + 0x9788) = 0;
+  *(undefined4 *)(target_context + 0x978c) = 0;
+  texture_index = *(int *)(source_context + 0x23c);
+  render_state = *(int *)(source_context + 0x240);
+  normal_vector = 0x3f80000000000000;
+  *(float *)(target_context + 0x9790) = (float)*(int *)(source_context + 0x238);
+  *(float *)(target_context + 0x9794) = (float)texture_index;
+  *(float *)(target_context + 0x9798) = (float)render_state;
+  *(undefined4 *)(target_context + 0x979c) = 0x3f800000;
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
 
+
+
+
+
+// ===================================================================
+// 函数实现：内存管理器
+// ===================================================================
+
 /**
- * 渲染系统内存优化器
+ * 内存管理器 - 负责渲染系统内存的分配和管理
  * 
- * 本函数负责渲染系统的内存优化：
- * 1. 内存分配
- * 2. 内存释放
- * 3. 内存管理
- * 4. 内存优化
+ * @param memory_pool 内存池指针数组
+ * @param memory_context 内存上下文
+ * @param allocation_size 分配大小
+ * @param memory_flags 内存标志
+ * @return void
  * 
- * @param param_1 内存管理器指针数组
- * @param param_2 内存管理器指针
- * @param param_3 内存管理器参数1
- * @param param_4 内存管理器参数2
+ * 技术说明：
+ * - 管理内存池分配
+ * - 处理内存块复制
+ * - 管理内存释放
+ * - 处理字符串匹配
+ * - 优化内存使用
  */
-void rendering_system_memory_optimizer(uint64_t **param_1, longlong *param_2, 
-                                       uint64_t param_3, uint64_t param_4)
+void RenderingSystem_MemoryManager(undefined8 **memory_pool, longlong *memory_context, undefined8 allocation_size, undefined8 memory_flags)
+
 {
-    /* 变量声明 */
-    uint64_t *data_pointer1;
-    uint64_t *data_pointer2;
-    uint64_t *data_pointer3;
-    longlong resource_data1;
-    longlong resource_data2;
-    int index_value1;
-    int index_value2;
-    int *index_pointer;
-    uint64_t data_size;
-    uint64_t *stack_pointer1;
-    uint64_t *stack_pointer2;
-    uint64_t stack_data;
-    uint32_t stack_status;
-    
-    /* 栈变量初始化 */
-    stack_pointer1 = (uint64_t *)0x0;
-    stack_pointer2 = (uint64_t *)0x0;
-    stack_data = 0;
-    stack_status = 3;
-    
-    /* 内存管理器初始化 */
-    if (&stack_pointer1 != param_1) {
-        FUN_1800588c0(&stack_pointer1, *param_1, param_1[1], param_4, 0xfffffffffffffffe);
-    }
-    
-    /* 数据指针设置 */
-    data_pointer3 = stack_pointer2;
-    data_pointer2 = stack_pointer1;
-    
-    /* 内存优化调用 */
-    FUN_18031f0e0(stack_pointer1, stack_pointer2);
-    
-    /* 数据处理调用 */
-    (**(code **)(*param_2 + 0x10))(param_2, &DAT_18098bc73);
-    
-    /* 数据大小计算 */
-    data_size = (longlong)data_pointer3 - (longlong)data_pointer2 >> 5;
-    index_value2 = 0;
-    data_pointer1 = data_pointer2;
-    
-    /* 数据处理循环 */
-    if (data_size != 0) {
-        index_pointer = (int *)(data_pointer2 + 2);
-        
+  undefined8 *memory_block;
+  undefined8 *memory_ptr;
+  undefined8 *memory_end;
+  longlong string_compare;
+  longlong string_length;
+  int block_size;
+  int block_index;
+  int *string_data;
+  ulonglong block_count;
+  undefined8 *temp_block;
+  undefined8 *temp_ptr;
+  undefined8 alloc_size;
+  undefined4 memory_type;
+  
+  // 初始化内存管理器
+  temp_block = (undefined8 *)0x0;
+  temp_ptr = (undefined8 *)0x0;
+  alloc_size = 0;
+  memory_type = 3;
+  
+  if (&temp_block != memory_pool) {
+    FUN_1800588c0(&temp_block, *memory_pool, memory_pool[1], memory_flags, 0xfffffffffffffffe);
+  }
+  
+  memory_end = temp_ptr;
+  memory_ptr = temp_block;
+  FUN_18031f0e0(temp_block, temp_ptr);
+  
+  // 执行内存操作
+  (**(code **)(*memory_context + 0x10))(memory_context, &DAT_18098bc73);
+  
+  // 计算内存块数量
+  block_count = (longlong)memory_end - (longlong)memory_ptr >> 5;
+  block_index = 0;
+  memory_block = memory_ptr;
+  
+  if (block_count != 0) {
+    string_data = (int *)(memory_ptr + 2);
+    do {
+      block_size = *string_data;
+      
+      // 检查字符串匹配
+      if (block_size == 4) {
+        string_compare = 0;
         do {
-            index_value1 = *index_pointer;
-            if (index_value1 == 4) {
-                /* 字符串比较 */
-                resource_data1 = 0;
-                do {
-                    resource_data2 = resource_data1 + 1;
-                    if (*(char *)(*(longlong *)(index_pointer + -2) + resource_data1) != 
-                        (&DAT_180a04ee4)[resource_data1]) {
-                        goto string_mismatch;
-                    }
-                    resource_data1 = resource_data2;
-                } while (resource_data2 != 5);
-            } else {
-string_mismatch:
-                /* 数据处理 */
-                if (0 < index_value1) {
-                    FUN_1806277c0(param_2, (int)param_2[2] + index_value1);
-                    memcpy((uint64_t)*(uint32_t *)(param_2 + 2) + param_2[1], 
-                           *(uint64_t *)(index_pointer + -2), (longlong)(*index_pointer + 1));
-                }
-                
-                index_value1 = (int)param_2[2] + 1;
-                FUN_1806277c0(param_2, index_value1);
-                *(uint16_t *)((uint64_t)*(uint32_t *)(param_2 + 2) + param_2[1]) = 0x20;
-                *(int *)(param_2 + 2) = index_value1;
-            }
-            
-            index_value2 = index_value2 + 1;
-            index_pointer = index_pointer + 8;
-        } while ((uint64_t)(longlong)index_value2 < data_size);
-    }
-    
-    /* 数据指针处理 */
-    for (; data_pointer1 != data_pointer3; data_pointer1 = data_pointer1 + 4) {
-        (**(code **)*data_pointer1)(data_pointer1, 0);
-    }
-    
-    /* 内存释放 */
-    if (data_pointer2 != (uint64_t *)0x0) {
-        FUN_18064e900(data_pointer2);
-    }
+          string_length = string_compare + 1;
+          if (*(char *)(*(longlong *)(string_data + -2) + string_compare) != (&DAT_180a04ee4)[string_compare])
+          goto LAB_18031ee56;
+          string_compare = string_length;
+        } while (string_length != 5);
+      }
+      else {
+LAB_18031ee56:
+        // 处理内存块复制
+        if (0 < block_size) {
+          FUN_1806277c0(memory_context, (int)memory_context[2] + block_size);
+                    // WARNING: Subroutine does not return
+          memcpy((ulonglong)*(uint *)(memory_context + 2) + memory_context[1], *(undefined8 *)(string_data + -2),
+                 (longlong)(*string_data + 1));
+        }
+        
+        // 更新内存块索引
+        block_size = (int)memory_context[2] + 1;
+        FUN_1806277c0(memory_context, block_size);
+        *(undefined2 *)((ulonglong)*(uint *)(memory_context + 2) + memory_context[1]) = 0x20;
+        *(int *)(memory_context + 2) = block_size;
+      }
+      
+      block_index = block_index + 1;
+      string_data = string_data + 8;
+    } while ((ulonglong)(longlong)block_index < block_count);
+  }
+  
+  // 清理内存块
+  for (; memory_block != memory_end; memory_block = memory_block + 4) {
+    (**(code **)*memory_block)(memory_block, 0);
+  }
+  
+  // 释放内存
+  if (memory_ptr != (undefined8 *)0x0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(memory_ptr);
+  }
+  return;
 }
+
+
+
+// ===================================================================
+// 函数实现：内存分配器
+// ===================================================================
 
 /**
- * 渲染系统分配器
+ * 内存分配器 - 负责渲染系统内存的分配和释放
  * 
- * 本函数负责渲染系统的内存分配：
- * 1. 内存分配
- * 2. 内存初始化
- * 3. 内存管理
- * 4. 内存释放
+ * @param memory_ptr 内存指针
+ * @param alloc_flags 分配标志
+ * @param block_size 块大小
+ * @param free_flags 释放标志
+ * @return undefined8* 分配的内存指针
  * 
- * @param param_1 内存指针
- * @param param_2 内存大小
- * @param param_3 分配器参数1
- * @param param_4 分配器参数2
- * @return 分配的内存指针
+ * 技术说明：
+ * - 分配内存块
+ * - 初始化内存指针
+ * - 处理内存释放
+ * - 管理内存标志
+ * - 确保内存对齐
  */
-uint64_t *rendering_system_allocator(uint64_t *param_1, uint64_t param_2, 
-                                    uint64_t param_3, uint64_t param_4)
+undefined8 *
+RenderingSystem_MemoryAllocator(undefined8 *memory_ptr, ulonglong alloc_flags, undefined8 block_size, undefined8 free_flags)
+
 {
-    /* 内存初始化 */
-    *param_1 = &UNK_180a1ae60;
-    *param_1 = &UNK_180a21720;
-    *param_1 = &UNK_180a21690;
-    
-    /* 内存释放检查 */
-    if ((param_2 & 1) != 0) {
-        free(param_1, 0x28, param_3, param_4, 0xfffffffffffffffe);
-    }
-    
-    return param_1;
+  // 初始化内存指针链表
+  *memory_ptr = &UNK_180a1ae60;
+  *memory_ptr = &UNK_180a21720;
+  *memory_ptr = &UNK_180a21690;
+  
+  // 检查是否需要释放内存
+  if ((alloc_flags & 1) != 0) {
+    free(memory_ptr, 0x28, block_size, free_flags, 0xfffffffffffffffe);
+  }
+  
+  return memory_ptr;
 }
 
-/* =============================================================================
- * 技术说明
- * ============================================================================= */
 
-/*
- * 渲染系统高级处理模块技术说明：
- * 
- * 1. 模块功能：
- *    - 本模块是渲染系统的核心处理模块，负责高级渲染功能
- *    - 包含6个核心函数，覆盖渲染系统的主要功能
- *    - 提供完整的渲染系统状态管理和资源管理
- * 
- * 2. 核心技术：
- *    - 使用状态机模式管理渲染系统状态
- *    - 实现高效的内存管理和资源分配
- *    - 支持向量和矩阵运算
- *    - 提供完整的错误处理和资源清理
- * 
- * 3. 性能优化：
- *    - 使用栈保护机制确保内存安全
- *    - 实现高效的资源管理算法
- *    - 支持多线程环境下的资源管理
- *    - 提供内存池管理优化
- * 
- * 4. 安全特性：
- *    - 实现完整的错误检查和异常处理
- *    - 提供资源泄漏防护
- *    - 支持安全的数据处理和传输
- *    - 实现完整的内存管理验证
- * 
- * 5. 扩展性：
- *    - 模块化设计，支持功能扩展
- *    - 提供灵活的参数配置
- *    - 支持多种渲染模式
- *    - 可扩展的资源管理架构
- */
+
+
+

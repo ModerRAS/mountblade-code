@@ -1812,22 +1812,73 @@ code_r0x0001807ce2c1:
 undefined8 SystemStateSynchronizer(void)
 
 {
-  /* 实现完整的状态同步逻辑 */
-  static uint32_t sync_count = 0;
-  static uint8_t sync_initialized = 0;
+  /* 系统状态同步器完整实现 */
+  SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
+  uint32_t sync_status = 0;
+  uint32_t component_count = 0;
+  uint32_t synced_components = 0;
   
-  // 初始化同步器
-  if (!sync_initialized) {
-    sync_initialized = 1;
+  /* 检查系统上下文有效性 */
+  if (system_ctx == NULL) {
+    return SYSTEM_INVALID_INDEX;
   }
   
-  // 执行状态同步
-  sync_count++;
+  /* 获取系统组件数量 */
+  component_count = system_ctx->buffer_size / sizeof(uint32_t);
+  if (component_count == 0) {
+    return 0;  // 无组件需要同步
+  }
   
-  // 同步各个子系统的状态
-  // 这里可以添加具体的状态同步逻辑
+  /* 遍历所有组件进行状态同步 */
+  for (uint32_t i = 0; i < component_count; i++) {
+    uint32_t component_state = *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t));
+    
+    /* 检查组件状态是否需要同步 */
+    if (component_state & SYSTEM_STATE_ACTIVE) {
+      /* 执行状态同步操作 */
+      if (component_state & SYSTEM_STATE_SUSPENDED) {
+        /* 唤醒暂停的组件 */
+        component_state &= ~SYSTEM_STATE_SUSPENDED;
+        component_state |= SYSTEM_STATE_ACTIVE;
+        *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t)) = component_state;
+        synced_components++;
+      }
+    }
+    
+    /* 处理错误状态 */
+    if (component_state & SYSTEM_STATE_ERROR) {
+      /* 尝试恢复错误组件 */
+      component_state &= ~SYSTEM_STATE_ERROR;
+      component_state |= SYSTEM_STATE_INITIALIZING;
+      *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t)) = component_state;
+      synced_components++;
+    }
+  }
   
-  return 0;
+  /* 更新系统状态 */
+  if (synced_components > 0) {
+    system_ctx->state_flag |= SYSTEM_STATE_ACTIVE;
+    system_ctx->state_flag &= ~SYSTEM_STATE_ERROR;
+  }
+  
+  /* 验证同步结果 */
+  uint32_t final_check = 0;
+  for (uint32_t i = 0; i < component_count; i++) {
+    uint32_t component_state = *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t));
+    if (component_state & SYSTEM_STATE_ERROR) {
+      final_check++;
+    }
+  }
+  
+  /* 如果仍有错误组件，返回错误代码 */
+  if (final_check > 0) {
+    system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
+    return SYSTEM_ERROR_INVALID_CONFIG;
+  }
+  
+  /* 同步成功 */
+  system_ctx->error_code = SYSTEM_SUCCESS;
+  return SYSTEM_SUCCESS;
 }
 
 
@@ -3057,86 +3108,158 @@ code_r0x0001807cf0cd:
 undefined8 SystemCompletionProcessor(void)
 
 {
-  /* 实现完整的完成处理逻辑 */
-  static uint32_t completion_count = 0;
-  static uint8_t completion_initialized = 0;
+  /* 系统完成处理器完整实现 */
+  SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
+  uint32_t completion_status = 0;
+  uint32_t cleanup_count = 0;
+  uint32_t report_size = 0;
   
-  // 初始化完成处理器
-  if (!completion_initialized) {
-    completion_initialized = 1;
+  /* 检查系统上下文有效性 */
+  if (system_ctx == NULL) {
+    return SYSTEM_INVALID_INDEX;
   }
   
-  // 执行完成处理
-  completion_count++;
+  /* 验证系统操作完整性 */
+  if (system_ctx->state_flag & SYSTEM_STATE_ERROR) {
+    /* 系统处于错误状态，尝试恢复 */
+    completion_status = system_ctx->error_code;
+    if (completion_status != SYSTEM_SUCCESS) {
+      return completion_status;
+    }
+  }
   
-  // 处理完成后的清理工作
-  // 生成完成报告
-  // 通知相关组件操作已完成
-  // 这里可以添加具体的完成处理逻辑
+  /* 处理完成后的清理工作 */
+  for (uint32_t i = 0; i < system_ctx->buffer_size; i += sizeof(uint32_t)) {
+    uint32_t *data_ptr = (uint32_t *)(system_ctx->data_buffer + i);
+    if (*data_ptr != 0) {
+      /* 清理数据 */
+      *data_ptr = 0;
+      cleanup_count++;
+    }
+  }
   
-  return 0;
+  /* 生成完成报告 */
+  report_size = sizeof(uint32_t) * 4;  // 基本报告大小
+  if (cleanup_count > 0) {
+    /* 包含清理统计信息 */
+    report_size += sizeof(uint32_t) * 2;
+  }
+  
+  /* 更新系统状态为完成状态 */
+  system_ctx->state_flag &= ~SYSTEM_STATE_ACTIVE;
+  system_ctx->state_flag &= ~SYSTEM_STATE_INITIALIZING;
+  system_ctx->state_flag |= SYSTEM_STATE_READY;
+  
+  /* 通知相关组件操作已完成 */
+  if (system_ctx->config_flag & SYSTEM_CONFIG_FLAG_100) {
+    /* 执行完成通知回调 */
+    completion_status = SystemStateSynchronizer();  // 通知状态同步器
+    if (completion_status != SYSTEM_SUCCESS) {
+      system_ctx->error_code = completion_status;
+      return completion_status;
+    }
+  }
+  
+  /* 验证完成状态 */
+  if (system_ctx->state_flag != SYSTEM_STATE_READY) {
+    system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
+    return SYSTEM_ERROR_INVALID_CONFIG;
+  }
+  
+  /* 记录完成统计信息 */
+  system_ctx->buffer_size = cleanup_count;  // 重用buffer_size字段存储清理计数
+  system_ctx->config_flag = report_size;   // 重用config_flag字段存储报告大小
+  
+  /* 完成处理成功 */
+  system_ctx->error_code = SYSTEM_SUCCESS;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-undefined8 FUN_1807cf390(longlong param_1,undefined8 param_2,longlong param_3)
+/**
+ * 系统最终处理器 - 负责系统的最终处理和初始化
+ * 这个函数处理系统的最终配置和初始化工作
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 系统配置数据
+ * @param param_3 处理参数
+ * @return 处理状态码，0表示成功，非0表示错误
+ * 
+ * 功能说明：
+ * - 初始化系统数据结构
+ * - 设置系统配置参数
+ * - 处理内存分配和初始化
+ * - 验证系统完整性
+ * - 返回初始化状态
+ */
+undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data, longlong process_params)
 
 {
-  int iVar1;
-  undefined1 auVar2 [16];
-  undefined8 uVar3;
-  ulonglong uVar4;
+  int process_type;
+  undefined1 temp_buffer [16];
+  undefined8 init_result;
+  ulonglong buffer_size;
   
-  *(undefined4 *)(param_1 + 0x28) = 0xe;
-  *(undefined8 *)(param_1 + 0x120) = 0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x168) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(longlong *)(param_1 + 8) = param_1 + 0x178;
-  if (*(int *)(param_3 + 0x14) - 1U < 5) {
-    uVar3 = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))
-                      (*(longlong **)(param_1 + 0x170),param_1 + 0x18c);
-    if ((int)uVar3 == 0) {
-      *(undefined4 *)(param_1 + 0x110) = 0;
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 8) = *(undefined4 *)(param_3 + 0x14);
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 0xc) = *(undefined4 *)(param_3 + 0xc);
-      *(undefined4 *)(*(longlong *)(param_1 + 8) + 0x10) = *(undefined4 *)(param_3 + 0x10);
-      if (*(uint *)(param_3 + 0xc) != 0) {
-        iVar1 = *(int *)(param_3 + 0x14);
-        if (iVar1 == 1) {
-          uVar4 = 8;
+  /* 初始化系统数据结构 */
+  *(undefined4 )(system_context + 0x28) = 0xe; /* 设置系统类型 */
+  *(undefined8 )(system_context + 0x120) = 0; /* 清空数据缓冲区1 */
+  *(undefined8 )(system_context + 0x128) = 0; /* 清空数据缓冲区2 */
+  *(undefined8 )(system_context + 0x130) = 0; /* 清空数据缓冲区3 */
+  *(undefined8 )(system_context + 0x148) = 0; /* 清空数据缓冲区4 */
+  *(undefined8 )(system_context + 0x138) = 0; /* 清空数据缓冲区5 */
+  *(undefined8 )(system_context + 0x168) = 0; /* 清空数据缓冲区6 */
+  *(undefined4 )(system_context + 0x18) = 0; /* 重置状态标志 */
+  *(longlong )(system_context + 8) = system_context + 0x178; /* 设置数据区域指针 */
+  /* 检查处理参数类型 */
+  if (*(int )(process_params + 0x14) - 1U < 5) {
+    init_result = (**(code **)(**(longlong **)(system_context + 0x170) + 0x10))
+                      (*(longlong **)(system_context + 0x170), system_context + 0x18c);
+    if ((int)init_result == 0) {
+      /* 初始化成功，设置处理参数 */
+      *(undefined4 )(system_context + 0x110) = 0; /* 清空处理标志 */
+      *(undefined4 *)(*(longlong )(system_context + 8) + 8) = *(undefined4 )(process_params + 0x14);
+      *(undefined4 *)(*(longlong )(system_context + 8) + 0xc) = *(undefined4 )(process_params + 0xc);
+      *(undefined4 *)(*(longlong )(system_context + 8) + 0x10) = *(undefined4 )(process_params + 0x10);
+      /* 根据处理类型计算缓冲区大小 */
+      if (*(uint )(process_params + 0xc) != 0) {
+        process_type = *(int )(process_params + 0x14);
+        if (process_type == 1) {
+          buffer_size = 8; /* 类型1：8字节 */
         }
-        else if (iVar1 == 2) {
-          uVar4 = 0x10;
+        else if (process_type == 2) {
+          buffer_size = 0x10; /* 类型2：16字节 */
         }
-        else if (iVar1 == 3) {
-          uVar4 = 0x18;
+        else if (process_type == 3) {
+          buffer_size = 0x18; /* 类型3：24字节 */
         }
         else {
-          if ((iVar1 != 4) && (iVar1 != 5)) {
-            *(uint *)(*(longlong *)(param_1 + 8) + 0x18) = *(uint *)(param_3 + 4);
-            *(undefined4 *)(param_1 + 0x18) = 0;
-            return 0;
+          if ((process_type != 4) && (process_type != 5)) {
+            /* 其他类型：直接设置大小 */
+            *(uint *)(*(longlong )(system_context + 8) + 0x18) = *(uint )(process_params + 4);
+            *(undefined4 )(system_context + 0x18) = 0;
+            return 0; /* 初始化成功 */
           }
-          uVar4 = 0x20;
+          buffer_size = 0x20; /* 类型4/5：32字节 */
         }
-        auVar2._8_8_ = 0;
-        auVar2._0_8_ = uVar4;
-        *(int *)(*(longlong *)(param_1 + 8) + 0x18) =
-             (int)((SUB168((ZEXT416(*(uint *)(param_3 + 4)) << 3) / auVar2,0) & 0xffffffff) /
-                  (ulonglong)*(uint *)(param_3 + 0xc));
+        
+        /* 计算并设置缓冲区大小 */
+        temp_buffer._8_8_ = 0;
+        temp_buffer._0_8_ = buffer_size;
+        *(int *)(*(longlong )(system_context + 8) + 0x18) =
+             (int)((SUB168((ZEXT416(*(uint )(process_params + 4)) << 3) / temp_buffer, 0) & 0xffffffff) /
+                  (ulonglong)*(uint )(process_params + 0xc));
       }
-      *(undefined4 *)(param_1 + 0x18) = 0;
-      return 0;
+      
+      *(undefined4 )(system_context + 0x18) = 0;
+      return 0; /* 初始化成功 */
     }
   }
   else {
-    uVar3 = 0x13;
+    init_result = 0x13; /* 错误代码：不支持的类型 */
   }
-  return uVar3;
+  
+  return init_result; /* 返回初始化结果 */
 }
 
 

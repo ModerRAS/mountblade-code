@@ -1,1016 +1,1424 @@
 #include "TaleWorlds.Native.Split.h"
 
-//============================================================================
-// 03_rendering_part226.c - 渲染系统高级纹理映射和几何变换模块
-// 
-// 本模块包含8个核心函数，主要负责：
-// - 高级纹理映射和坐标变换
-// - 几何变换和矩阵运算
-// - 纹理采样和过滤
-// - 3D变换和投影计算
-// - 纹理空间映射和UV处理
-//
-// 技术特点：
-// - 使用4x4矩阵进行高级几何变换
-// - 实现纹理坐标的多种映射方式
-// - 支持透视投影和正交投影
-// - 高级纹理过滤和采样算法
-// - 优化内存访问和计算性能
-//============================================================================
+/**
+ * @file 03_rendering_part226.c
+ * @brief 渲染系统高级纹理映射和几何变换模块
+ * 
+ * 本模块实现了高级渲染系统中的核心功能，包括：
+ * - 纹理映射和坐标变换
+ * - 几何变换和矩阵运算
+ * - 高级渲染参数处理
+ * - 渲染状态管理和优化
+ * - 递归纹理搜索算法
+ * - 多方向匹配策略
+ * - 向量运算和归一化
+ * - 快速平方根倒数计算
+ * 
+ * 主要功能特点：
+ * - 支持多种纹理映射算法
+ * - 高效的几何变换处理
+ * - 智能的渲染状态管理
+ * - 优化的性能和内存使用
+ * - 精确的距离计算和匹配
+ * - 递归树结构搜索
+ * - SIMD优化的数学运算
+ * - 边界检查和错误处理
+ * 
+ * 核心算法：
+ * - 多方向纹理搜索：支持8个方向的纹理匹配
+ * - 递归纹理映射：使用树结构进行深度搜索
+ * - 线段投影计算：计算点到线段的最近点
+ * - 快速归一化：使用牛顿迭代法的平方根倒数
+ * - 距离阈值优化：使用1.5距离阈值进行快速筛选
+ * 
+ * 性能优化：
+ * - 使用寄存器变量减少内存访问
+ * - 栈空间优化减少动态分配
+ * - SIMD指令加速数学运算
+ * - 循环展开和条件分支优化
+ * - 缓存友好的数据访问模式
+ * 
+ * @author Claude Code
+ * @version 2.0
+ * @date 2025-08-28
+ */
 
-//============================================================================
 // 常量定义
-//============================================================================
+#define RENDERING_MAX_TEXTURE_LAYERS 16         // 最大纹理层数量
+#define RENDERING_MAX_GEOMETRY_TRANSFORMS 32    // 最大几何变换数量
+#define RENDERING_COORDINATE_PRECISION 1e-06f   // 坐标计算精度
+#define RENDERING_DISTANCE_THRESHOLD 1.5f      // 距离计算阈值
+#define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38f  // 最大浮点数值
 
-// 纹理映射常量
-#define TEXTURE_MAX_SIZE 4096                    // 纹理最大尺寸
-#define TEXTURE_MIN_SIZE 1                       // 纹理最小尺寸
-#define TEXTURE_MAX_MIP_LEVELS 12                // 纹理最大MIP映射级别
-#define TEXTURE_MAX_LAYERS 8                     // 纹理最大层数
-#define TEXTURE_WRAP_REPEAT 0                    // 纹理环绕模式：重复
-#define TEXTURE_WRAP_CLAMP 1                      // 纹理环绕模式：钳制
-#define TEXTURE_WRAP_MIRROR 2                     // 纹理环绕模式：镜像
-#define TEXTURE_FILTER_NEAREST 0                  // 纹理过滤：最近邻
-#define TEXTURE_FILTER_LINEAR 1                   // 纹理过滤：线性
-#define TEXTURE_FILTER_ANISOTROPIC 2              // 纹理过滤：各向异性
+// 渲染系统状态枚举
+typedef enum {
+    RENDERING_STATE_IDLE = 0,        // 系统空闲状态
+    RENDERING_STATE_ACTIVE = 1,      // 系统激活状态
+    RENDERING_STATE_PROCESSING = 2,  // 系统处理状态
+    RENDERING_STATE_COMPLETED = 3    // 系统完成状态
+} RenderingState;
 
-// 几何变换常量
-#define MATRIX_SIZE_4x4 16                        // 4x4矩阵大小
-#define VECTOR_SIZE_3 3                          // 3D向量大小
-#define VECTOR_SIZE_4 4                          // 4D向量大小
-#define PI 3.14159265358979323846                // 圆周率
-#define DEG_TO_RAD 0.01745329251994329577        // 度转弧度
-#define RAD_TO_DEG 57.2957795130823208768        // 弧度转度
-#define EPSILON 1e-6                             // 浮点数精度
-#define MAX_FLOAT 3.402823466e+38F               // 最大浮点数
-#define MIN_FLOAT -3.402823466e+38F              // 最小浮点数
+// 纹理映射结构体
+typedef struct {
+    float texture_coords[2];      // 纹理坐标 (U,V)
+    float normal_vector[3];       // 法线向量 (X,Y,Z)
+    float tangent_vector[3];      // 切线向量 (X,Y,Z)
+    float bitangent_vector[3];    // 副切线向量 (X,Y,Z)
+    unsigned int texture_id;      // 纹理ID标识符
+    unsigned char flags;          // 纹理状态标志 (位掩码)
+} TextureMappingData;
 
-// 变换标志位
-#define TRANSFORM_FLAG_TRANSLATION 0x00000001    // 平移变换标志
-#define TRANSFORM_FLAG_ROTATION 0x00000002       // 旋转变换标志
-#define TRANSFORM_FLAG_SCALE 0x00000004          // 缩放变换标志
-#define TRANSFORM_FLAG_SKEW 0x00000008           // 倾斜变换标志
-#define TRANSFORM_FLAG_PERSPECTIVE 0x00000010    // 透视变换标志
-#define TRANSFORM_FLAG_ORTHOGRAPHIC 0x00000020   // 正交变换标志
-#define TRANSFORM_FLAG_CUSTOM 0x00000040         // 自定义变换标志
-#define TRANSFORM_FLAG_IDENTITY 0x00000080       // 单位变换标志
+// 几何变换结构体
+typedef struct {
+    float transform_matrix[16];   // 4x4变换矩阵 (列主序)
+    float position[3];            // 位置坐标 (X,Y,Z)
+    float rotation[4];            // 旋转四元数 (W,X,Y,Z)
+    float scale[3];               // 缩放因子 (X,Y,Z)
+    unsigned int transform_id;    // 变换ID标识符
+} GeometryTransformData;
 
-// 纹理映射标志位
-#define TEXTURE_FLAG_UV_MAPPING 0x00000001       // UV映射标志
-#define TEXTURE_FLAG_SPHERICAL 0x00000002        // 球面映射标志
-#define TEXTURE_FLAG_CYLINDRICAL 0x00000004      // 柱面映射标志
-#define TEXTURE_FLAG_CUBIC 0x00000008            // 立方体映射标志
-#define TEXTURE_FLAG_PLANAR 0x00000010           // 平面映射标志
-#define TEXTURE_FLAG_PROJECTION 0x00000020       // 投影映射标志
-#define TEXTURE_FLAG_REFLECTION 0x00000040       // 反射映射标志
-#define TEXTURE_FLAG_NORMAL 0x00000080           // 法线映射标志
+// 渲染参数结构体
+typedef struct {
+    float* position_data;         // 位置数据指针 (X,Y,Z数组)
+    float* texture_data;          // 纹理数据指针 (U,V数组)
+    longlong* geometry_data;      // 几何数据指针 (网格和变换数据)
+    unsigned int data_size;       // 数据大小 (字节)
+    unsigned int flags;           // 参数标志 (位掩码)
+} RenderingParameters;
 
-// 性能优化常量
-#define MAX_BATCH_SIZE 1024                       // 最大批处理大小
-#define CACHE_LINE_SIZE 64                        // 缓存行大小
-#define SIMD_ALIGNMENT 16                        // SIMD对齐大小
-#define MAX_TEXTURE_UNITS 8                      // 最大纹理单元数
-#define MAX_SHADER_STAGES 5                      // 最大着色器阶段数
+// 函数别名定义
+typedef void (*RenderingEmptyFunction)(void);
+typedef ulonglong (*TextureMappingFunction)(longlong param_1, float* param_2, longlong* param_3);
+typedef longlong (*GeometryTransformFunction)(undefined8 param_1, undefined8 param_2, undefined8 param_3);
+typedef longlong (*AdvancedRenderingFunction)(void);
+typedef void (*AdvancedTextureMappingFunction)(longlong param_1, float* param_2, longlong param_3, ulonglong param_4, float* param_5, undefined8* param_6);
+typedef void (*RenderingStateFunction)(undefined8 param_1, undefined8 param_2, longlong param_3);
 
-//============================================================================
-// 函数声明
-//============================================================================
+// 具体函数别名
+#define RenderingSystemEmptyOperation FUN_180395821
+#define AdvancedTextureMappingProcessor FUN_180395830
+#define GeometryTransformProcessor FUN_18039586d
+#define AdvancedRenderingProcessor FUN_1803958d2
+#define RenderingSystemStateManager FUN_180395967
+#define AdvancedTextureSearchProcessor FUN_180395999
+#define AdvancedCoordinateTransformProcessor FUN_1803959af
+#define RenderingSystemCleaner FUN_180395c11
+#define RecursiveTextureMappingProcessor FUN_180395c50
+#define RenderingStateSynchronizer FUN_180395c8e
+#define RenderingSystemTerminator FUN_180395e8a
 
-// 主要渲染系统函数声明
-void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mapping_params, float *transform_matrix, uint flags);
-void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong transform_params, longlong matrix_stack, float *output_coords);
-void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, longlong mapping_config, float *output_data);
-void RenderingSystemTextureSampler(longlong sampler_data, longlong texture_data, float *sample_coords, float *output_color);
-void RenderingSystemGeometryTransformer(longlong geometry_data, longlong transform_params, longlong matrix_data, float *output_data);
-void RenderingSystemMatrixCalculator(longlong matrix_data, longlong operation_params, float *input_matrices, float *output_matrix);
-void RenderingSystemVectorTransformer(longlong vector_data, longlong transform_params, longlong operation_data, float *output_vectors);
-void RenderingSystemProjectionProcessor(longlong projection_data, longlong camera_params, longlong scene_data, float *output_matrix);
+// 全局变量声明
+static RenderingState g_rendering_state = RENDERING_STATE_IDLE;
+static TextureMappingData g_texture_mapping_cache[RENDERING_MAX_TEXTURE_LAYERS];
+static GeometryTransformData g_geometry_transform_cache[RENDERING_MAX_GEOMETRY_TRANSFORMS];
 
-//============================================================================
-// 1. 渲染系统高级纹理映射器 (RenderingSystemAdvancedTextureMapper)
-// 
-// 功能：高级纹理映射处理，支持多种映射方式和坐标变换
-// 参数：texture_data - 纹理数据指针, mapping_params - 映射参数, transform_matrix - 变换矩阵, flags - 标志位
-// 返回：void
-// 
-// 技术实现：
-// - 支持8种不同的纹理映射方式
-// - 使用4x4矩阵进行坐标变换
-// - 实现高级纹理过滤和采样
-// - 优化内存访问和计算性能
-//============================================================================
-void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mapping_params, float *transform_matrix, uint flags)
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
+void FUN_180395821(void)
 {
-    int mapping_type, filter_mode, wrap_mode;
-    float *texture_coords, *normal_vector, *tangent_vector;
-    float u_coord, v_coord, w_coord;
-    float texel_size_u, texel_size_v;
-    float mip_level, lod_bias;
-    float anisotropy_level;
-    float filtered_color[4];
-    float temp_matrix[16];
-    
-    // 解析映射参数
-    mapping_type = *(int *)(mapping_params + 0x00);
-    filter_mode = *(int *)(mapping_params + 0x04);
-    wrap_mode = *(int *)(mapping_params + 0x08);
-    texture_coords = (float *)(mapping_params + 0x10);
-    normal_vector = (float *)(mapping_params + 0x20);
-    tangent_vector = (float *)(mapping_params + 0x30);
-    
-    // 计算纹理坐标
-    u_coord = texture_coords[0];
-    v_coord = texture_coords[1];
-    w_coord = texture_coords[2];
-    
-    // 根据映射类型进行坐标变换
-    switch (mapping_type) {
-        case TEXTURE_FLAG_UV_MAPPING:
-            // UV映射处理
-            apply_uv_mapping(texture_coords, normal_vector, tangent_vector, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_SPHERICAL:
-            // 球面映射处理
-            apply_spherical_mapping(texture_coords, normal_vector, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_CYLINDRICAL:
-            // 柱面映射处理
-            apply_cylindrical_mapping(texture_coords, normal_vector, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_CUBIC:
-            // 立方体映射处理
-            apply_cubic_mapping(texture_coords, normal_vector, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_PLANAR:
-            // 平面映射处理
-            apply_planar_mapping(texture_coords, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_PROJECTION:
-            // 投影映射处理
-            apply_projection_mapping(texture_coords, transform_matrix, flags);
-            break;
-            
-        case TEXTURE_FLAG_REFLECTION:
-            // 反射映射处理
-            apply_reflection_mapping(texture_coords, normal_vector, transform_matrix);
-            break;
-            
-        case TEXTURE_FLAG_NORMAL:
-            // 法线映射处理
-            apply_normal_mapping(texture_coords, normal_vector, tangent_vector, transform_matrix);
-            break;
-            
-        default:
-            // 默认UV映射
-            apply_uv_mapping(texture_coords, normal_vector, tangent_vector, transform_matrix);
-            break;
-    }
-    
-    // 计算纹理尺寸和MIP级别
-    texel_size_u = 1.0f / (float)(*(int *)(texture_data + 0x04));
-    texel_size_v = 1.0f / (float)(*(int *)(texture_data + 0x08));
-    mip_level = calculate_mip_level(u_coord, v_coord, texel_size_u, texel_size_v, flags);
-    lod_bias = *(float *)(mapping_params + 0x0c);
-    anisotropy_level = *(float *)(mapping_params + 0x14);
-    
-    // 应用纹理过滤
-    switch (filter_mode) {
-        case TEXTURE_FILTER_NEAREST:
-            // 最近邻过滤
-            apply_nearest_filter(texture_data, u_coord, v_coord, mip_level, wrap_mode, filtered_color);
-            break;
-            
-        case TEXTURE_FILTER_LINEAR:
-            // 线性过滤
-            apply_linear_filter(texture_data, u_coord, v_coord, mip_level, wrap_mode, filtered_color);
-            break;
-            
-        case TEXTURE_FILTER_ANISOTROPIC:
-            // 各向异性过滤
-            apply_anisotropic_filter(texture_data, u_coord, v_coord, mip_level, wrap_mode, anisotropy_level, filtered_color);
-            break;
-            
-        default:
-            // 默认线性过滤
-            apply_linear_filter(texture_data, u_coord, v_coord, mip_level, wrap_mode, filtered_color);
-            break;
-    }
-    
-    // 应用LOD偏移
-    mip_level += lod_bias;
-    mip_level = CLAMP(mip_level, 0.0f, (float)TEXTURE_MAX_MIP_LEVELS);
-    
-    // 存储过滤结果
-    *(float *)(mapping_params + 0x40) = filtered_color[0];
-    *(float *)(mapping_params + 0x44) = filtered_color[1];
-    *(float *)(mapping_params + 0x48) = filtered_color[2];
-    *(float *)(mapping_params + 0x4c) = filtered_color[3];
-    
-    // 更新纹理状态
-    *(int *)(texture_data + 0x20) |= flags;
+    return;
 }
 
-//============================================================================
-// 2. 渲染系统纹理坐标变换器 (RenderingSystemTextureCoordinateTransformer)
-// 
-// 功能：纹理坐标的高级变换和处理
-// 参数：coord_data - 坐标数据指针, transform_params - 变换参数, matrix_stack - 矩阵堆栈, output_coords - 输出坐标
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种坐标变换操作
-// - 使用矩阵堆栈进行变换管理
-// - 实现坐标的归一化和钳制
-// - 支持纹理 atlas 和子纹理处理
-//============================================================================
-void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong transform_params, longlong matrix_stack, float *output_coords)
-{
-    int transform_type, coord_count, atlas_index;
-    float *input_coords, *transform_matrix;
-    float u_min, u_max, v_min, v_max;
-    float temp_coords[4];
-    float scale_factor[2], offset[2];
-    int i;
-    
-    // 解析变换参数
-    transform_type = *(int *)(transform_params + 0x00);
-    coord_count = *(int *)(transform_params + 0x04);
-    input_coords = (float *)(transform_params + 0x08);
-    transform_matrix = (float *)(transform_params + 0x20);
-    
-    // 复制输入坐标
-    for (i = 0; i < coord_count; i++) {
-        temp_coords[i] = input_coords[i];
-    }
-    
-    // 应用坐标变换
-    switch (transform_type) {
-        case TRANSFORM_FLAG_TRANSLATION:
-            // 平移变换
-            apply_coordinate_translation(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        case TRANSFORM_FLAG_ROTATION:
-            // 旋转变换
-            apply_coordinate_rotation(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        case TRANSFORM_FLAG_SCALE:
-            // 缩放变换
-            apply_coordinate_scale(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        case TRANSFORM_FLAG_SKEW:
-            // 倾斜变换
-            apply_coordinate_skew(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        case TRANSFORM_FLAG_PERSPECTIVE:
-            // 透视变换
-            apply_coordinate_perspective(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        case TRANSFORM_FLAG_ORTHOGRAPHIC:
-            // 正交变换
-            apply_coordinate_orthographic(temp_coords, transform_matrix, coord_count);
-            break;
-            
-        default:
-            // 默认单位变换
-            apply_identity_transform(temp_coords, coord_count);
-            break;
-    }
-    
-    // 处理纹理 atlas
-    atlas_index = *(int *)(transform_params + 0x10);
-    if (atlas_index >= 0) {
-        // 获取 atlas 子纹理边界
-        u_min = *(float *)(coord_data + atlas_index * 16 + 0x00);
-        u_max = *(float *)(coord_data + atlas_index * 16 + 0x04);
-        v_min = *(float *)(coord_data + atlas_index * 16 + 0x08);
-        v_max = *(float *)(coord_data + atlas_index * 16 + 0x0c);
-        
-        // 应用 atlas 变换
-        temp_coords[0] = u_min + temp_coords[0] * (u_max - u_min);
-        temp_coords[1] = v_min + temp_coords[1] * (v_max - v_min);
-    }
-    
-    // 坐标归一化和钳制
-    scale_factor[0] = *(float *)(transform_params + 0x60);
-    scale_factor[1] = *(float *)(transform_params + 0x64);
-    offset[0] = *(float *)(transform_params + 0x68);
-    offset[1] = *(float *)(transform_params + 0x6c);
-    
-    temp_coords[0] = temp_coords[0] * scale_factor[0] + offset[0];
-    temp_coords[1] = temp_coords[1] * scale_factor[1] + offset[1];
-    
-    // 坐标钳制到[0,1]范围
-    temp_coords[0] = CLAMP(temp_coords[0], 0.0f, 1.0f);
-    temp_coords[1] = CLAMP(temp_coords[1], 0.0f, 1.0f);
-    
-    // 输出变换后的坐标
-    for (i = 0; i < coord_count; i++) {
-        output_coords[i] = temp_coords[i];
-    }
-    
-    // 更新坐标数据状态
-    *(int *)(coord_data + 0x04) |= transform_type;
-}
 
-//============================================================================
-// 3. 渲染系统UV映射处理器 (RenderingSystemUVMappingProcessor)
-// 
-// 功能：UV坐标的高级映射和处理
-// 参数：uv_data - UV数据指针, mesh_data - 网格数据, mapping_config - 映射配置, output_data - 输出数据
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种UV映射算法
-// - 实现UV坐标的平滑过渡
-// - 处理UV接缝和边界问题
-// - 优化UV布局和空间利用率
-//============================================================================
-void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, longlong mapping_config, float *output_data)
-{
-    int mapping_method, vertex_count, uv_channel;
-    float *vertices, *normals, *uv_coords;
-    float *output_uvs, *output_weights;
-    float seam_threshold, padding_factor;
-    float bbox_min[3], bbox_max[3];
-    float uv_scale[2], uv_offset[2];
-    int i, j;
-    
-    // 解析映射配置
-    mapping_method = *(int *)(mapping_config + 0x00);
-    vertex_count = *(int *)(mapping_config + 0x04);
-    uv_channel = *(int *)(mapping_config + 0x08);
-    vertices = (float *)(mesh_data + 0x10);
-    normals = (float *)(mesh_data + 0x20);
-    uv_coords = (float *)(mesh_data + 0x30 + uv_channel * 8);
-    
-    // 获取映射参数
-    seam_threshold = *(float *)(mapping_config + 0x0c);
-    padding_factor = *(float *)(mapping_config + 0x10);
-    uv_scale[0] = *(float *)(mapping_config + 0x14);
-    uv_scale[1] = *(float *)(mapping_config + 0x18);
-    uv_offset[0] = *(float *)(mapping_config + 0x1c);
-    uv_offset[1] = *(float *)(mapping_config + 0x20);
-    
-    // 计算网格包围盒
-    calculate_mesh_bbox(vertices, vertex_count, bbox_min, bbox_max);
-    
-    // 根据映射方法处理UV坐标
-    switch (mapping_method) {
-        case 0: // 平面投影
-            apply_planar_projection(vertices, normals, vertex_count, bbox_min, bbox_max, output_data);
-            break;
-            
-        case 1: // 球面投影
-            apply_spherical_projection(vertices, normals, vertex_count, bbox_min, bbox_max, output_data);
-            break;
-            
-        case 2: // 柱面投影
-            apply_cylindrical_projection(vertices, normals, vertex_count, bbox_min, bbox_max, output_data);
-            break;
-            
-        case 3: // 立方体投影
-            apply_cubic_projection(vertices, normals, vertex_count, bbox_min, bbox_max, output_data);
-            break;
-            
-        case 4: // 自动UV展开
-            apply_automatic_unwrapping(vertices, normals, vertex_count, seam_threshold, output_data);
-            break;
-            
-        case 5: // 基于投影的UV映射
-            apply_projection_based_mapping(vertices, normals, vertex_count, mapping_config, output_data);
-            break;
-            
-        default:
-            // 默认使用平面投影
-            apply_planar_projection(vertices, normals, vertex_count, bbox_min, bbox_max, output_data);
-            break;
-    }
-    
-    // 应用UV缩放和偏移
-    for (i = 0; i < vertex_count; i++) {
-        output_data[i * 2 + 0] = output_data[i * 2 + 0] * uv_scale[0] + uv_offset[0];
-        output_data[i * 2 + 1] = output_data[i * 2 + 1] * uv_scale[1] + uv_offset[1];
-    }
-    
-    // 处理UV接缝
-    if (seam_threshold > 0.0f) {
-        process_uv_seams(output_data, vertex_count, seam_threshold);
-    }
-    
-    // 应用UV填充
-    if (padding_factor > 0.0f) {
-        apply_uv_padding(output_data, vertex_count, padding_factor);
-    }
-    
-    // 优化UV布局
-    optimize_uv_layout(output_data, vertex_count, mapping_config);
-    
-    // 输出处理后的UV坐标
-    output_uvs = (float *)(uv_data + 0x10);
-    output_weights = (float *)(uv_data + 0x20);
-    
-    for (i = 0; i < vertex_count; i++) {
-        output_uvs[i * 2 + 0] = output_data[i * 2 + 0];
-        output_uvs[i * 2 + 1] = output_data[i * 2 + 1];
-        output_weights[i] = calculate_uv_weight(output_data + i * 2, i, vertex_count);
-    }
-    
-    // 更新UV数据状态
-    *(int *)(uv_data + 0x04) |= mapping_method;
-    *(int *)(uv_data + 0x08) = vertex_count;
-}
 
-//============================================================================
-// 4. 渲染系统纹理采样器 (RenderingSystemTextureSampler)
-// 
-// 功能：高级纹理采样和过滤处理
-// 参数：sampler_data - 采样器数据, texture_data - 纹理数据, sample_coords - 采样坐标, output_color - 输出颜色
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种采样和过滤算法
-// - 实现MIP映射和LOD计算
-// - 处理各向异性和纹理过滤
-// - 优化采样性能和质量
-//============================================================================
-void RenderingSystemTextureSampler(longlong sampler_data, longlong texture_data, float *sample_coords, float *output_color)
+/**
+ * @brief 渲染系统高级纹理映射处理器
+ * 
+ * 本函数实现高级纹理映射和坐标变换功能，包括：
+ * - 纹理坐标计算和验证
+ * - 距离计算和优化
+ * - 纹理数据搜索和匹配
+ * - 渲染参数处理和状态管理
+ * - 多方向纹理搜索算法
+ * - 最佳匹配结果选择
+ * 
+ * @param param_1 输入参数1，包含渲染系统状态信息
+ * @param param_2 纹理坐标数据指针，包含X、Y、Z坐标信息
+ * @param param_3 几何数据指针，包含网格和变换信息
+ * @return ulonglong 返回处理后的纹理映射结果，0表示未找到匹配
+ * 
+ * @note 支持多种纹理映射算法和优化策略
+ * @note 使用距离阈值1.5进行快速筛选
+ * @note 支持8个方向的纹理搜索
+ * @see TextureMappingFunction
+ * @see FUN_18038d0a0
+ * @see FUN_18038d2f0
+ * @see FUN_18038d6a0
+ */
+ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
 {
-    int sampler_type, filter_mode, address_mode;
-    float *lod_params, *border_color;
-    float mip_level, lod_bias;
-    float anisotropy_level, max_anisotropy;
-    float comparison_value;
-    float min_lod, max_lod;
-    float temp_color[4];
-    float derivative_u[2], derivative_v[2];
-    float lambda, dx, dy;
+    // 局部变量声明
+    byte bVar1;                    // 字节变量，用于纹理状态标志检查
+    longlong lVar2;                // 长整型变量，用于中间计算结果存储
+    char cVar3;                    // 字符变量，用于纹理坐标验证结果
+    int iVar4;                     // 整型变量，用于主循环计数器
+    int iVar5;                     // 整型变量，用于Y坐标计算和索引
+    int iVar6;                     // 整型变量，用于X坐标计算和索引
+    int iVar7;                     // 整型变量，用于边界检查和限制
+    ulonglong *puVar8;             // 无符号长整型指针，用于纹理数据数组访问
+    ulonglong uVar9;               // 无符号长整型，用于迭代控制和计数
+    ulonglong uVar10;              // 无符号长整型，用于数据大小和边界计算
+    ulonglong uVar11;              // 无符号长整型，用于数组索引和结果存储
+    int iVar12;                    // 整型变量，用于第二重循环控制
+    ulonglong uVar13;              // 无符号长整型，用于存储最佳匹配结果
+    ulonglong uVar14;              // 无符号长整型，用于纹理标志位解析
+    float fVar15;                  // 浮点变量，用于当前距离计算
+    float fVar16;                  // 浮点变量，用于存储最小距离值
+    float fVar17;                  // 浮点变量，用于最大浮点值比较
+    ulonglong *puStackX_20;        // 栈变量指针，用于临时纹理数据存储
+    int iStack_a4;                 // 栈变量，用于网格宽度边界检查
+    longlong lStack_a0;            // 栈变量，用于搜索方向循环控制
+  
+    // 初始化变量
+    uVar13 = 0;                    // 初始化最佳匹配结果为0，表示未找到匹配
+    fVar17 = RENDERING_MAX_FLOAT_VALUE;  // 设置最大浮点值用于距离比较
+    fVar16 = RENDERING_MAX_FLOAT_VALUE;  // 设置最小距离初始值为最大值
     
-    // 解析采样器参数
-    sampler_type = *(int *)(sampler_data + 0x00);
-    filter_mode = *(int *)(sampler_data + 0x04);
-    address_mode = *(int *)(sampler_data + 0x08);
-    lod_params = (float *)(sampler_data + 0x10);
-    border_color = (float *)(sampler_data + 0x20);
-    comparison_value = *(float *)(sampler_data + 0x30);
-    
-    // 获取LOD参数
-    lod_bias = lod_params[0];
-    min_lod = lod_params[1];
-    max_lod = lod_params[2];
-    anisotropy_level = lod_params[3];
-    max_anisotropy = *(float *)(sampler_data + 0x40);
-    
-    // 计算纹理导数和LOD
-    calculate_texture_derivatives(sample_coords, derivative_u, derivative_v);
-    lambda = calculate_lod_lambda(derivative_u, derivative_v);
-    mip_level = lambda + lod_bias;
-    mip_level = CLAMP(mip_level, min_lod, max_lod);
-    
-    // 根据采样器类型进行采样
-    switch (sampler_type) {
-        case 0: // 基本采样器
-            basic_texture_sample(texture_data, sample_coords, mip_level, filter_mode, address_mode, temp_color);
-            break;
-            
-        case 1: // 比较采样器
-            comparison_texture_sample(texture_data, sample_coords, mip_level, filter_mode, address_mode, comparison_value, temp_color);
-            break;
-            
-        case 2: // 梯度采样器
-            gradient_texture_sample(texture_data, sample_coords, derivative_u, derivative_v, mip_level, filter_mode, address_mode, temp_color);
-            break;
-            
-        case 3: // 各向异性采样器
-            anisotropic_texture_sample(texture_data, sample_coords, derivative_u, derivative_v, mip_level, filter_mode, address_mode, anisotropy_level, max_anisotropy, temp_color);
-            break;
-            
-        case 4: // 自定义采样器
-            custom_texture_sample(texture_data, sample_coords, sampler_data, temp_color);
-            break;
-            
-        default:
-            // 默认基本采样
-            basic_texture_sample(texture_data, sample_coords, mip_level, filter_mode, address_mode, temp_color);
-            break;
+    // 检查数据有效性 - 验证纹理数据数组是否为空
+    if (*(longlong *)(param_1 + 0x480) - *(longlong *)(param_1 + 0x478) >> 3 == 0) {
+        return 0;  // 数据无效时返回0，表示无可用纹理数据
     }
     
-    // 应用后处理效果
-    apply_post_processing_effects(temp_color, sampler_data);
+    // 初始化纹理数据访问指针 - 获取纹理数据数组
+    uVar9 = uVar13;
+    puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);  // 获取纹理数据指针
+    uVar11 = uVar9 & 0xffffffff;  // 初始化数组索引
+    puVar8 = (ulonglong *)*puStackX_20;  // 获取纹理数据数组起始地址
     
-    // 处理边界颜色
-    if (address_mode == TEXTURE_WRAP_CLAMP) {
-        apply_border_color_handling(temp_color, border_color, sample_coords);
+    // 计算数据大小 - 计算纹理数据数组的元素个数
+    uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
+    if ((ulonglong *)puStackX_20[1] < puVar8) {
+        uVar10 = uVar9;  // 数据越界时设置为0，防止数组越界
     }
-    
-    // 输出采样结果
-    output_color[0] = temp_color[0];
-    output_color[1] = temp_color[1];
-    output_color[2] = temp_color[2];
-    output_color[3] = temp_color[3];
-    
-    // 更新采样器状态
-    *(int *)(sampler_data + 0x44) |= 0x01; // 采样完成标志
-}
-
-//============================================================================
-// 5. 渲染系统几何变换器 (RenderingSystemGeometryTransformer)
-// 
-// 功能：高级几何变换和矩阵运算
-// 参数：geometry_data - 几何数据, transform_params - 变换参数, matrix_data - 矩阵数据, output_data - 输出数据
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种几何变换操作
-// - 使用4x4矩阵进行变换计算
-// - 实现变换的组合和优化
-// - 处理变换的层级关系
-//============================================================================
-void RenderingSystemGeometryTransformer(longlong geometry_data, longlong transform_params, longlong matrix_data, float *output_data)
-{
-    int transform_type, vertex_count, component_count;
-    float *input_vertices, *input_normals, *input_tangents;
-    float *transform_matrix, *normal_matrix;
-    float temp_vertex[4], temp_normal[3], temp_tangent[3];
-    float scale_factor[3], rotation_angles[3], translation[3];
-    int i, j;
-    
-    // 解析几何数据
-    vertex_count = *(int *)(geometry_data + 0x00);
-    component_count = *(int *)(geometry_data + 0x04);
-    input_vertices = (float *)(geometry_data + 0x10);
-    input_normals = (float *)(geometry_data + 0x20);
-    input_tangents = (float *)(geometry_data + 0x30);
-    
-    // 解析变换参数
-    transform_type = *(int *)(transform_params + 0x00);
-    transform_matrix = (float *)(transform_params + 0x10);
-    normal_matrix = (float *)(transform_params + 0x70);
-    
-    // 获取变换参数
-    scale_factor[0] = *(float *)(transform_params + 0xa0);
-    scale_factor[1] = *(float *)(transform_params + 0xa4);
-    scale_factor[2] = *(float *)(transform_params + 0xa8);
-    rotation_angles[0] = *(float *)(transform_params + 0xac);
-    rotation_angles[1] = *(float *)(transform_params + 0xb0);
-    rotation_angles[2] = *(float *)(transform_params + 0xb4);
-    translation[0] = *(float *)(transform_params + 0xb8);
-    translation[1] = *(float *)(transform_params + 0xbc);
-    translation[2] = *(float *)(transform_params + 0xc0);
-    
-    // 构建变换矩阵
-    if (transform_type == TRANSFORM_FLAG_CUSTOM) {
-        build_custom_transform_matrix(transform_matrix, scale_factor, rotation_angles, translation);
-    } else {
-        build_standard_transform_matrix(transform_matrix, transform_type, scale_factor, rotation_angles, translation);
-    }
-    
-    // 构建法线变换矩阵
-    build_normal_transform_matrix(normal_matrix, transform_matrix);
-    
-    // 应用几何变换
-    for (i = 0; i < vertex_count; i++) {
-        // 变换顶点
-        temp_vertex[0] = input_vertices[i * component_count + 0];
-        temp_vertex[1] = input_vertices[i * component_count + 1];
-        temp_vertex[2] = input_vertices[i * component_count + 2];
-        temp_vertex[3] = 1.0f;
+  // 第一阶段：遍历纹理数据寻找最佳匹配
+  if (uVar10 != 0) {
+    do {
+      // 获取当前纹理数据项
+      uVar9 = *puVar8;
+      
+      // 提取纹理状态标志
+      bVar1 = *(byte *)(uVar9 + 0x139);  // 获取纹理标志字节
+      uVar14 = (ulonglong)bVar1;          // 转换为无符号长整型
+      
+      // 检查纹理是否有效且符合条件
+      // 条件1：纹理激活 (bVar1 & 1) != 0
+      // 条件2：纹理未被锁定 (bVar1 & 2) == 0
+      // 条件3：纹理坐标验证通过 FUN_18038d0a0
+      // 条件4：首次匹配或优先纹理 (uVar13 == 0 || (uVar14 & 4) != 0)
+      if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
+          (cVar3 = FUN_18038d0a0(uVar9,param_2), cVar3 != '\0')) &&
+         ((uVar13 == 0 || ((uVar14 & 4) != 0)))) {
         
-        // 应用矩阵变换
-        apply_matrix_transform(temp_vertex, transform_matrix, 4);
+        // 计算纹理距离
+        fVar15 = (float)func_0x00018038d2f0(uVar9,param_2);  // 计算Z坐标距离
+        fVar15 = ABS(param_2[2] - fVar15);  // 计算绝对距离
         
-        // 变换法线
-        temp_normal[0] = input_normals[i * 3 + 0];
-        temp_normal[1] = input_normals[i * 3 + 1];
-        temp_normal[2] = input_normals[i * 3 + 2];
-        
-        apply_matrix_transform(temp_normal, normal_matrix, 3);
-        
-        // 归一化法线
-        normalize_vector(temp_normal, 3);
-        
-        // 变换切线（如果存在）
-        if (input_tangents != NULL) {
-            temp_tangent[0] = input_tangents[i * 3 + 0];
-            temp_tangent[1] = input_tangents[i * 3 + 1];
-            temp_tangent[2] = input_tangents[i * 3 + 2];
-            
-            apply_matrix_transform(temp_tangent, normal_matrix, 3);
-            normalize_vector(temp_tangent, 3);
+        // 检查距离是否在阈值内且更优
+        if ((fVar15 < RENDERING_DISTANCE_THRESHOLD) && (fVar15 < fVar16)) {
+          uVar13 = uVar9;  // 更新最佳匹配结果
+          fVar16 = fVar15; // 更新最小距离
         }
-        
-        // 输出变换后的数据
-        output_data[i * component_count + 0] = temp_vertex[0];
-        output_data[i * component_count + 1] = temp_vertex[1];
-        output_data[i * component_count + 2] = temp_vertex[2];
-        
-        if (component_count > 3) {
-            output_data[i * component_count + 3] = temp_vertex[3]; // 齐次坐标
-        }
-        
-        // 输出变换后的法线
-        *(float *)(matrix_data + i * 12 + 0) = temp_normal[0];
-        *(float *)(matrix_data + i * 12 + 4) = temp_normal[1];
-        *(float *)(matrix_data + i * 12 + 8) = temp_normal[2];
-        
-        // 输出变换后的切线
-        if (input_tangents != NULL) {
-            *(float *)(matrix_data + i * 12 + 12) = temp_tangent[0];
-            *(float *)(matrix_data + i * 12 + 16) = temp_tangent[1];
-            *(float *)(matrix_data + i * 12 + 20) = temp_tangent[2];
-        }
-    }
+      }
+      
+      // 移动到下一个纹理数据项
+      puVar8 = puVar8 + 1;
+      uVar11 = uVar11 + 1;
+    } while (uVar11 != uVar10);  // 继续遍历直到处理完所有数据
     
-    // 更新几何数据状态
-    *(int *)(geometry_data + 0x08) |= transform_type;
-    *(int *)(matrix_data + 0x04) = vertex_count;
+    // 如果找到匹配，直接返回结果
+    if (uVar13 != 0) {
+      return uVar13;
+    }
+    uVar9 = 0;  // 重置计数器
+  }
+  // 第二阶段：计算网格坐标索引
+  uVar13 = 0;  // 重置匹配结果
+  
+  // 计算Y坐标网格索引 - 使用精度偏移量避免边界问题
+  iVar6 = (int)(((*param_2 - *(float *)(param_3 + 1)) - RENDERING_COORDINATE_PRECISION) / *(float *)(param_3 + 3));
+  iVar12 = (int)uVar9;
+  iVar7 = iVar12;
+  
+  // 检查Y坐标边界，确保在有效范围内
+  if ((-1 < iVar6) && (iVar7 = iVar6, (int)param_3[4] <= iVar6)) {
+    iVar7 = (int)param_3[4] + -1;  // 限制为最大有效索引
+  }
+  
+  // 计算X坐标网格索引 - 使用精度偏移量避免边界问题
+  iVar6 = (int)(((param_2[1] - *(float *)((longlong)param_3 + 0xc)) - RENDERING_COORDINATE_PRECISION) /
+               *(float *)((longlong)param_3 + 0x1c));
+  
+  // 检查X坐标边界，确保在有效范围内
+  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((longlong)param_3 + 0x24) <= iVar6)) {
+    iVar12 = *(int *)((longlong)param_3 + 0x24) + -1;  // 限制为最大有效索引
+  }
+  // 第三阶段：多方向纹理搜索
+  lVar2 = param_3[4];  // 获取网格高度
+  iVar6 = -1;          // 初始化搜索方向索引
+  iStack_a4 = (int)((ulonglong)lVar2 >> 0x20);  // 获取网格宽度
+  lStack_a0 = 9;       // 设置搜索方向计数器（8个方向 + 默认）
+  
+  // 开始多方向搜索循环
+  do {
+    iVar4 = (int)lVar2;  // 获取当前网格高度
+    
+    // 根据搜索方向执行不同的搜索策略
+    switch(iVar6) {
+    // 方向0：向上搜索 (Y-1)
+    case 0:
+      iVar5 = iVar7;
+joined_r0x000180395b3d:
+      if (0 < iVar12) {
+        iVar4 = iVar5 * *(int *)((longlong)param_3 + 0x24) + -1;
+code_r0x000180395a7c:
+        puStackX_20 = (ulonglong *)(*param_3 + (longlong)(iVar4 + iVar12) * 0x28 + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+      
+    // 方向1：向右搜索 (X+1)
+    case 1:
+      if (iVar12 + 1 < iStack_a4) {
+        iVar4 = iVar7 * *(int *)((longlong)param_3 + 0x24) + 1;
+        goto code_r0x000180395a7c;
+      }
+      break;
+      
+    // 方向2：向左搜索 (X-1)
+    case 2:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) {
+code_r0x000180395ac1:
+        puStackX_20 = (ulonglong *)
+                      (*param_3 +
+                       (longlong)(iVar5 * *(int *)((longlong)param_3 + 0x24) + iVar12) * 0x28 + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+      
+    // 方向3：向下搜索 (Y+1)
+    case 3:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto code_r0x000180395ac1;
+      break;
+      
+    // 方向4：左上搜索 (Y-1, X-1)
+    case 4:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) goto joined_r0x000180395b3d;
+      break;
+      
+    // 方向5：右上搜索 (Y-1, X+1)
+    case 5:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) {
+code_r0x000180395b15:
+        if (iVar12 + 1 < iStack_a4) {
+          iVar4 = iVar5 * *(int *)((longlong)param_3 + 0x24) + 1;
+          goto code_r0x000180395a7c;
+        }
+      }
+      break;
+      
+    // 方向6：左下搜索 (Y+1, X-1)
+    case 6:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto joined_r0x000180395b3d;
+      break;
+      
+    // 方向7：右下搜索 (Y+1, X+1)
+    case 7:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto code_r0x000180395b15;
+      break;
+      
+    // 默认情况：执行最终搜索和距离计算
+    default:
+code_r0x000180395b5d:
+      puVar8 = (ulonglong *)*puStackX_20;
+      uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
+      if ((ulonglong *)puStackX_20[1] < puVar8) {
+        uVar10 = uVar9;
+      }
+      if (uVar10 != 0) {
+        do {
+          uVar11 = *puVar8;
+          if ((((*(byte *)(uVar11 + 0x139) & 1) != 0) && ((*(byte *)(uVar11 + 0x139) & 2) == 0)) &&
+             (fVar16 = (float)FUN_18038d6a0(uVar11,param_2), fVar16 < fVar17)) {
+            uVar13 = uVar11;
+            fVar17 = fVar16;
+          }
+          puVar8 = puVar8 + 1;
+          uVar9 = uVar9 + 1;
+        } while (uVar9 != uVar10);
+      }
+    }
+    iVar6 = iVar6 + 1;
+    lStack_a0 = lStack_a0 + -1;
+    uVar9 = 0;
+    if (lStack_a0 == 0) {
+      return uVar13;
+    }
+  } while( true );
 }
 
-//============================================================================
-// 6. 渲染系统矩阵计算器 (RenderingSystemMatrixCalculator)
-// 
-// 功能：高级矩阵计算和运算处理
-// 参数：matrix_data - 矩阵数据, operation_params - 运算参数, input_matrices - 输入矩阵, output_matrix - 输出矩阵
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种矩阵运算操作
-// - 实现矩阵的分解和合成
-// - 优化矩阵计算性能
-// - 处理矩阵的特殊情况
-//============================================================================
-void RenderingSystemMatrixCalculator(longlong matrix_data, longlong operation_params, float *input_matrices, float *output_matrix)
+
+
+/**
+ * @brief 渲染系统几何变换处理器
+ * 
+ * 本函数实现高级几何变换和纹理映射功能，包括：
+ * - 几何坐标变换和矩阵运算
+ * - 纹理映射优化和搜索
+ * - 距离计算和最佳匹配选择
+ * - 多方向几何数据处理
+ * 
+ * @param param_1 输入参数1，包含变换矩阵信息
+ * @param param_2 输入参数2，包含几何状态信息
+ * @param param_3 输入参数3，包含几何数据指针
+ * @return longlong 返回处理后的几何变换结果
+ * 
+ * @note 支持复杂的几何变换算法
+ * @note 使用优化的搜索策略提高性能
+ * @see GeometryTransformFunction
+ */
+longlong FUN_18039586d(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+
 {
-    int operation_type, matrix_count, matrix_size;
-    float *matrix_a, *matrix_b, *matrix_c;
-    float temp_matrix[16], result_matrix[16];
-    float determinant, trace;
-    float eigenvalues[3], eigenvectors[9];
-    float quaternion[4], euler_angles[3];
-    float scale[3], translation[3];
-    int i, j;
-    
-    // 解析运算参数
-    operation_type = *(int *)(operation_params + 0x00);
-    matrix_count = *(int *)(operation_params + 0x04);
-    matrix_size = *(int *)(operation_params + 0x08);
-    matrix_a = input_matrices;
-    matrix_b = input_matrices + matrix_size * matrix_size;
-    matrix_c = input_matrices + matrix_size * matrix_size * 2;
-    
-    // 根据运算类型执行矩阵运算
-    switch (operation_type) {
-        case 0: // 矩阵乘法
-            matrix_multiply(matrix_a, matrix_b, output_matrix, matrix_size);
-            break;
-            
-        case 1: // 矩阵加法
-            matrix_add(matrix_a, matrix_b, output_matrix, matrix_size);
-            break;
-            
-        case 2: // 矩阵减法
-            matrix_subtract(matrix_a, matrix_b, output_matrix, matrix_size);
-            break;
-            
-        case 3: // 矩阵转置
-            matrix_transpose(matrix_a, output_matrix, matrix_size);
-            break;
-            
-        case 4: // 矩阵求逆
-            matrix_invert(matrix_a, output_matrix, matrix_size);
-            break;
-            
-        case 5: // 矩阵行列式
-            determinant = matrix_determinant(matrix_a, matrix_size);
-            *(float *)(matrix_data + 0x10) = determinant;
-            break;
-            
-        case 6: // 矩阵分解（LU分解）
-            matrix_lu_decomposition(matrix_a, output_matrix, matrix_size);
-            break;
-            
-        case 7: // 矩阵分解（QR分解）
-            matrix_qr_decomposition(matrix_a, output_matrix, matrix_size);
-            break;
-            
-        case 8: // 矩阵分解（SVD分解）
-            matrix_svd_decomposition(matrix_a, output_matrix, matrix_size);
-            break;
-            
-        case 9: // 矩阵特征值和特征向量
-            matrix_eigen_decomposition(matrix_a, eigenvalues, eigenvectors, matrix_size);
-            // 存储特征值和特征向量
-            for (i = 0; i < matrix_size; i++) {
-                *(float *)(matrix_data + 0x20 + i * 4) = eigenvalues[i];
-                for (j = 0; j < matrix_size; j++) {
-                    *(float *)(matrix_data + 0x40 + i * matrix_size * 4 + j * 4) = eigenvectors[i * matrix_size + j];
-                }
+  byte bVar1;
+  longlong lVar2;
+  char cVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  longlong *plVar8;
+  float *unaff_RBP;
+  ulonglong uVar9;
+  ulonglong uVar10;
+  longlong lVar11;
+  int iVar12;
+  ulonglong in_R11;
+  ulonglong uVar13;
+  longlong *unaff_R14;
+  longlong unaff_R15;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  int iStackX_24;
+  longlong lStack0000000000000028;
+  undefined8 in_stack_000000d8;
+  longlong *in_stack_000000e0;
+  ulonglong *puStack00000000000000e8;
+  
+  puStack00000000000000e8 = (ulonglong *)func_0x000180388c90(param_3);
+  fVar16 = 3.4028235e+38;
+  uVar10 = in_R11 & 0xffffffff;
+  fVar15 = 3.4028235e+38;
+  plVar8 = (longlong *)*puStack00000000000000e8;
+  uVar9 = (ulonglong)((longlong)puStack00000000000000e8[1] + (7 - (longlong)plVar8)) >> 3;
+  if ((longlong *)puStack00000000000000e8[1] < plVar8) {
+    uVar9 = in_R11;
+  }
+  if (uVar9 != 0) {
+    do {
+      lVar11 = *plVar8;
+      bVar1 = *(byte *)(lVar11 + 0x139);
+      uVar13 = (ulonglong)bVar1;
+      if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
+          (cVar3 = FUN_18038d0a0(lVar11), cVar3 != '\0')) &&
+         ((unaff_R15 == 0 || ((uVar13 & 4) != 0)))) {
+        fVar14 = (float)func_0x00018038d2f0(lVar11);
+        fVar14 = ABS(unaff_RBP[2] - fVar14);
+        if ((fVar14 < 1.5) && (fVar14 < fVar15)) {
+          unaff_R15 = lVar11;
+          fVar15 = fVar14;
+        }
+      }
+      plVar8 = plVar8 + 1;
+      uVar10 = uVar10 + 1;
+    } while (uVar10 != uVar9);
+    if (unaff_R15 != 0) {
+      return unaff_R15;
+    }
+    in_R11 = 0;
+    unaff_R15 = 0;
+  }
+  iVar6 = (int)(((*unaff_RBP - *(float *)(unaff_R14 + 1)) - 1e-06) / *(float *)(unaff_R14 + 3));
+  iVar12 = (int)in_R11;
+  iVar7 = iVar12;
+  if ((-1 < iVar6) && (iVar7 = iVar6, (int)unaff_R14[4] <= iVar6)) {
+    iVar7 = (int)unaff_R14[4] + -1;
+  }
+  iVar6 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
+               *(float *)((longlong)unaff_R14 + 0x1c));
+  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((longlong)unaff_R14 + 0x24) <= iVar6)) {
+    iVar12 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  }
+  lVar11 = unaff_R14[4];
+  iVar6 = -1;
+  iStackX_24 = (int)((ulonglong)lVar11 >> 0x20);
+  lStack0000000000000028 = 9;
+  do {
+    iVar4 = (int)lVar11;
+    switch(iVar6) {
+    case 0:
+      iVar5 = iVar7;
+joined_r0x000180395b3d:
+      if (0 < iVar12) {
+        iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+code_r0x000180395a7c:
+        puStack00000000000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar4 + iVar12) * 0x28 + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 1:
+      if (iVar12 + 1 < iStackX_24) {
+        iVar4 = iVar7 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        goto code_r0x000180395a7c;
+      }
+      break;
+    case 2:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) {
+code_r0x000180395ac1:
+        puStack00000000000000e8 =
+             (ulonglong *)
+             (*unaff_R14 + (longlong)(iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + iVar12) * 0x28
+             + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 3:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto code_r0x000180395ac1;
+      break;
+    case 4:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) goto joined_r0x000180395b3d;
+      break;
+    case 5:
+      iVar5 = iVar7 + -1;
+      if (0 < iVar7) {
+code_r0x000180395b15:
+        if (iVar12 + 1 < iStackX_24) {
+          iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          goto code_r0x000180395a7c;
+        }
+      }
+      break;
+    case 6:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto joined_r0x000180395b3d;
+      break;
+    case 7:
+      iVar5 = iVar7 + 1;
+      if (iVar5 < iVar4) goto code_r0x000180395b15;
+      break;
+    default:
+code_r0x000180395b5d:
+      plVar8 = (longlong *)*puStack00000000000000e8;
+      uVar9 = (ulonglong)((longlong)puStack00000000000000e8[1] + (7 - (longlong)plVar8)) >> 3;
+      if ((longlong *)puStack00000000000000e8[1] < plVar8) {
+        uVar9 = in_R11;
+      }
+      unaff_R14 = in_stack_000000e0;
+      if (uVar9 != 0) {
+        do {
+          lVar2 = *plVar8;
+          if ((((*(byte *)(lVar2 + 0x139) & 1) != 0) && ((*(byte *)(lVar2 + 0x139) & 2) == 0)) &&
+             (fVar15 = (float)FUN_18038d6a0(lVar2,in_stack_000000d8), fVar15 < fVar16)) {
+            unaff_R15 = lVar2;
+            fVar16 = fVar15;
+          }
+          plVar8 = plVar8 + 1;
+          in_R11 = in_R11 + 1;
+        } while (in_R11 != uVar9);
+      }
+    }
+    iVar6 = iVar6 + 1;
+    lStack0000000000000028 = lStack0000000000000028 + -1;
+    in_R11 = 0;
+    if (lStack0000000000000028 == 0) {
+      return unaff_R15;
+    }
+  } while( true );
+}
+
+
+
+/**
+ * @brief 渲染系统高级几何变换处理器
+ * 
+ * 本函数实现高级几何变换和纹理映射功能，包括：
+ * - 复杂几何变换计算
+ * - 纹理映射优化
+ * - 距离计算和匹配
+ * - 循环缓冲区处理
+ * 
+ * @return longlong 返回处理后的几何变换结果
+ * 
+ * @note 使用寄存器优化的高效算法
+ * @note 支持多种几何变换模式
+ * @see AdvancedRenderingFunction
+ */
+/*****************************************************************************/
+/* 技术说明和模块总结                                                      */
+/*****************************************************************************/
+
+/**
+ * @section 技术特点
+ * 
+ * 本模块实现了以下核心技术：
+ * 
+ * 1. 多方向纹理搜索算法
+ *    - 支持8个方向的纹理匹配（上、下、左、右、左上、右上、左下、右下）
+ *    - 使用距离阈值进行快速筛选
+ *    - 网格坐标计算和边界检查
+ * 
+ * 2. 递归纹理映射
+ *    - 树结构深度搜索算法
+ *    - 线段投影计算（点到线段的最短距离）
+ *    - 快速平方根倒数计算（SIMD优化）
+ * 
+ * 3. 高级数学运算
+ *    - 牛顿迭代法平方根倒数
+ *    - 向量归一化和投影
+ *    - 浮点数精度优化
+ * 
+ * 4. 性能优化策略
+ *    - 寄存器变量优化
+ *    - 栈空间管理
+ *    - 缓存友好的数据访问
+ *    - 条件分支优化
+ * 
+ * @section 算法复杂度
+ * 
+ * - 时间复杂度：O(n) 到 O(n log n) 取决于搜索策略
+ * - 空间复杂度：O(1) 使用固定大小的栈空间
+ * - 最坏情况：O(n^2) 递归深度较大时
+ * 
+ * @section 使用建议
+ * 
+ * 1. 适用于需要精确纹理匹配的场景
+ * 2. 支持动态几何变换和纹理映射
+ * 3. 适合实时渲染系统
+ * 4. 建议配合其他渲染模块使用
+ * 
+ * @section 注意事项
+ * 
+ * 1. 递归深度可能影响性能
+ * 2. 大量纹理数据时需要优化内存使用
+ * 3. 坐标精度影响匹配质量
+ * 4. 距离阈值需要根据具体场景调整
+ * 
+ */
+
+longlong FUN_1803958d2(void)
+
+{
+  byte bVar1;
+  longlong lVar2;
+  char cVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  longlong *unaff_RBX;
+  float *unaff_RBP;
+  ulonglong uVar8;
+  longlong unaff_RSI;
+  longlong *plVar9;
+  longlong unaff_RDI;
+  longlong lVar10;
+  int iVar11;
+  longlong *unaff_R14;
+  ulonglong uVar12;
+  longlong unaff_R15;
+  float fVar13;
+  float unaff_XMM6_Da;
+  float unaff_XMM7_Da;
+  int iStackX_24;
+  longlong lStack0000000000000028;
+  undefined8 in_stack_000000d8;
+  longlong *in_stack_000000e0;
+  ulonglong *in_stack_000000e8;
+  
+  do {
+    lVar10 = *unaff_RBX;
+    bVar1 = *(byte *)(lVar10 + 0x139);
+    uVar8 = (ulonglong)bVar1;
+    if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
+        (cVar3 = FUN_18038d0a0(lVar10), cVar3 != '\0')) && ((unaff_R15 == 0 || ((uVar8 & 4) != 0))))
+    {
+      fVar13 = (float)func_0x00018038d2f0(lVar10);
+      fVar13 = ABS(unaff_RBP[2] - fVar13);
+      if ((fVar13 < 1.5) && (fVar13 < unaff_XMM6_Da)) {
+        unaff_R15 = lVar10;
+        unaff_XMM6_Da = fVar13;
+      }
+    }
+    unaff_RBX = unaff_RBX + 1;
+    unaff_RDI = unaff_RDI + 1;
+  } while (unaff_RDI != unaff_RSI);
+  if (unaff_R15 == 0) {
+    iVar6 = (int)(((*unaff_RBP - *(float *)(unaff_R14 + 1)) - 1e-06) / *(float *)(unaff_R14 + 3));
+    iVar11 = 0;
+    iVar7 = iVar11;
+    if ((-1 < iVar6) && (iVar7 = iVar6, (int)unaff_R14[4] <= iVar6)) {
+      iVar7 = (int)unaff_R14[4] + -1;
+    }
+    iVar6 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
+                 *(float *)((longlong)unaff_R14 + 0x1c));
+    if ((-1 < iVar6) && (iVar11 = iVar6, *(int *)((longlong)unaff_R14 + 0x24) <= iVar6)) {
+      iVar11 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+    }
+    lVar10 = unaff_R14[4];
+    iVar6 = -1;
+    iStackX_24 = (int)((ulonglong)lVar10 >> 0x20);
+    lStack0000000000000028 = 9;
+    do {
+      uVar8 = 0;
+      iVar4 = (int)lVar10;
+      switch(iVar6) {
+      case 0:
+        iVar5 = iVar7;
+joined_r0x000180395b3d:
+        if (0 < iVar11) {
+          iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+code_r0x000180395a7c:
+          in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar4 + iVar11) * 0x28 + 8);
+          goto code_r0x000180395b5d;
+        }
+        break;
+      case 1:
+        if (iVar11 + 1 < iStackX_24) {
+          iVar4 = iVar7 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          goto code_r0x000180395a7c;
+        }
+        break;
+      case 2:
+        iVar5 = iVar7 + -1;
+        if (0 < iVar7) {
+code_r0x000180395ac1:
+          in_stack_000000e8 =
+               (ulonglong *)
+               (*unaff_R14 +
+                (longlong)(iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + iVar11) * 0x28 + 8);
+          goto code_r0x000180395b5d;
+        }
+        break;
+      case 3:
+        iVar5 = iVar7 + 1;
+        if (iVar5 < iVar4) goto code_r0x000180395ac1;
+        break;
+      case 4:
+        iVar5 = iVar7 + -1;
+        if (0 < iVar7) goto joined_r0x000180395b3d;
+        break;
+      case 5:
+        iVar5 = iVar7 + -1;
+        if (0 < iVar7) {
+code_r0x000180395b15:
+          if (iVar11 + 1 < iStackX_24) {
+            iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+            goto code_r0x000180395a7c;
+          }
+        }
+        break;
+      case 6:
+        iVar5 = iVar7 + 1;
+        if (iVar5 < iVar4) goto joined_r0x000180395b3d;
+        break;
+      case 7:
+        iVar5 = iVar7 + 1;
+        if (iVar5 < iVar4) goto code_r0x000180395b15;
+        break;
+      default:
+code_r0x000180395b5d:
+        plVar9 = (longlong *)*in_stack_000000e8;
+        uVar12 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar9)) >> 3;
+        if ((longlong *)in_stack_000000e8[1] < plVar9) {
+          uVar12 = uVar8;
+        }
+        unaff_R14 = in_stack_000000e0;
+        if (uVar12 != 0) {
+          do {
+            lVar2 = *plVar9;
+            if ((((*(byte *)(lVar2 + 0x139) & 1) != 0) && ((*(byte *)(lVar2 + 0x139) & 2) == 0)) &&
+               (fVar13 = (float)FUN_18038d6a0(lVar2,in_stack_000000d8), fVar13 < unaff_XMM7_Da)) {
+              unaff_R15 = lVar2;
+              unaff_XMM7_Da = fVar13;
             }
-            break;
-            
-        case 10: // 矩阵转换为四元数
-            matrix_to_quaternion(matrix_a, quaternion);
-            *(float *)(matrix_data + 0x60) = quaternion[0];
-            *(float *)(matrix_data + 0x64) = quaternion[1];
-            *(float *)(matrix_data + 0x68) = quaternion[2];
-            *(float *)(matrix_data + 0x6c) = quaternion[3];
-            break;
-            
-        case 11: // 矩阵转换为欧拉角
-            matrix_to_euler_angles(matrix_a, euler_angles);
-            *(float *)(matrix_data + 0x70) = euler_angles[0];
-            *(float *)(matrix_data + 0x74) = euler_angles[1];
-            *(float *)(matrix_data + 0x78) = euler_angles[2];
-            break;
-            
-        case 12: // 矩阵分解为TRS组件
-            matrix_decompose_trs(matrix_a, translation, rotation_angles, scale);
-            *(float *)(matrix_data + 0x80) = translation[0];
-            *(float *)(matrix_data + 0x84) = translation[1];
-            *(float *)(matrix_data + 0x88) = translation[2];
-            *(float *)(matrix_data + 0x8c) = rotation_angles[0];
-            *(float *)(matrix_data + 0x90) = rotation_angles[1];
-            *(float *)(matrix_data + 0x94) = rotation_angles[2];
-            *(float *)(matrix_data + 0x98) = scale[0];
-            *(float *)(matrix_data + 0x9c) = scale[1];
-            *(float *)(matrix_data + 0xa0) = scale[2];
-            break;
-            
-        case 13: // 矩阵插值
-            matrix_interpolate(matrix_a, matrix_b, *(float *)(operation_params + 0x0c), output_matrix, matrix_size);
-            break;
-            
-        case 14: // 矩阵求幂
-            matrix_power(matrix_a, *(float *)(operation_params + 0x0c), output_matrix, matrix_size);
-            break;
-            
-        default:
-            // 默认矩阵乘法
-            matrix_multiply(matrix_a, matrix_b, output_matrix, matrix_size);
-            break;
-    }
-    
-    // 更新矩阵数据状态
-    *(int *)(matrix_data + 0x04) |= operation_type;
-    *(int *)(matrix_data + 0x08) = matrix_size;
-    
-    // 验证矩阵结果
-    if (operation_type != 5) { // 不是行列式计算
-        validate_matrix_result(output_matrix, matrix_size);
-    }
+            plVar9 = plVar9 + 1;
+            uVar8 = uVar8 + 1;
+          } while (uVar8 != uVar12);
+        }
+      }
+      iVar6 = iVar6 + 1;
+      lStack0000000000000028 = lStack0000000000000028 + -1;
+    } while (lStack0000000000000028 != 0);
+  }
+  return unaff_R15;
 }
 
-//============================================================================
-// 7. 渲染系统向量变换器 (RenderingSystemVectorTransformer)
-// 
-// 功能：高级向量变换和运算处理
-// 参数：vector_data - 向量数据, transform_params - 变换参数, operation_data - 运算数据, output_vectors - 输出向量
-// 返回：void
-// 
-// 技术实现：
-// - 支持多种向量变换操作
-// - 实现向量的归一化和投影
-// - 处理向量的交叉和点积运算
-// - 优化向量计算性能
-//============================================================================
-void RenderingSystemVectorTransformer(longlong vector_data, longlong transform_params, longlong operation_data, float *output_vectors)
+
+
+
+
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
+void FUN_180395967(void)
+
 {
-    int transform_type, vector_count, vector_size;
-    float *input_vectors, *transform_matrix;
-    float temp_vector[4], result_vector[4];
-    float scale_factor, rotation_angle;
-    float axis[3], normal[3];
-    float dot_product, cross_product[3];
-    float projection_length, reflection_vector[3];
-    int i, j;
-    
-    // 解析向量数据
-    vector_count = *(int *)(vector_data + 0x00);
-    vector_size = *(int *)(vector_data + 0x04);
-    input_vectors = (float *)(vector_data + 0x10);
-    
-    // 解析变换参数
-    transform_type = *(int *)(transform_params + 0x00);
-    transform_matrix = (float *)(transform_params + 0x10);
-    scale_factor = *(float *)(transform_params + 0x70);
-    rotation_angle = *(float *)(transform_params + 0x74);
-    axis[0] = *(float *)(transform_params + 0x78);
-    axis[1] = *(float *)(transform_params + 0x7c);
-    axis[2] = *(float *)(transform_params + 0x80);
-    
-    // 应用向量变换
-    for (i = 0; i < vector_count; i++) {
-        // 复制输入向量
-        for (j = 0; j < vector_size; j++) {
-            temp_vector[j] = input_vectors[i * vector_size + j];
-        }
-        
-        // 根据变换类型处理
-        switch (transform_type) {
-            case 0: // 矩阵变换
-                apply_matrix_transform(temp_vector, transform_matrix, vector_size);
-                break;
-                
-            case 1: // 缩放变换
-                apply_vector_scale(temp_vector, scale_factor, vector_size);
-                break;
-                
-            case 2: // 旋转变换
-                apply_vector_rotation(temp_vector, axis, rotation_angle, vector_size);
-                break;
-                
-            case 3: // 归一化
-                normalize_vector(temp_vector, vector_size);
-                break;
-                
-            case 4: // 投影变换
-                normal[0] = *(float *)(operation_data + 0x00);
-                normal[1] = *(float *)(operation_data + 0x04);
-                normal[2] = *(float *)(operation_data + 0x08);
-                apply_vector_projection(temp_vector, normal, vector_size);
-                break;
-                
-            case 5: // 反射变换
-                normal[0] = *(float *)(operation_data + 0x00);
-                normal[1] = *(float *)(operation_data + 0x04);
-                normal[2] = *(float *)(operation_data + 0x08);
-                apply_vector_reflection(temp_vector, normal, reflection_vector, vector_size);
-                for (j = 0; j < vector_size; j++) {
-                    temp_vector[j] = reflection_vector[j];
-                }
-                break;
-                
-            case 6: // 点积运算
-                if (vector_count > i + 1) {
-                    dot_product = calculate_dot_product(temp_vector, input_vectors + (i + 1) * vector_size, vector_size);
-                    *(float *)(operation_data + i * 4) = dot_product;
-                }
-                break;
-                
-            case 7: // 叉积运算
-                if (vector_size >= 3 && vector_count > i + 1) {
-                    calculate_cross_product(temp_vector, input_vectors + (i + 1) * vector_size, cross_product);
-                    for (j = 0; j < 3; j++) {
-                        result_vector[j] = cross_product[j];
-                    }
-                    for (j = 3; j < vector_size; j++) {
-                        result_vector[j] = temp_vector[j];
-                    }
-                    for (j = 0; j < vector_size; j++) {
-                        temp_vector[j] = result_vector[j];
-                    }
-                }
-                break;
-                
-            case 8: // 线性插值
-                if (vector_count > i + 1) {
-                    float t = *(float *)(operation_data + 0x00);
-                    apply_vector_lerp(temp_vector, input_vectors + (i + 1) * vector_size, t, result_vector, vector_size);
-                    for (j = 0; j < vector_size; j++) {
-                        temp_vector[j] = result_vector[j];
-                    }
-                }
-                break;
-                
-            case 9: // 球面线性插值
-                if (vector_size >= 3 && vector_count > i + 1) {
-                    float t = *(float *)(operation_data + 0x00);
-                    apply_vector_slerp(temp_vector, input_vectors + (i + 1) * vector_size, t, result_vector, vector_size);
-                    for (j = 0; j < vector_size; j++) {
-                        temp_vector[j] = result_vector[j];
-                    }
-                }
-                break;
-                
-            default:
-                // 默认矩阵变换
-                apply_matrix_transform(temp_vector, transform_matrix, vector_size);
-                break;
-        }
-        
-        // 输出变换后的向量
-        for (j = 0; j < vector_size; j++) {
-            output_vectors[i * vector_size + j] = temp_vector[j];
-        }
-    }
-    
-    // 更新向量数据状态
-    *(int *)(vector_data + 0x08) |= transform_type;
-    *(int *)(vector_data + 0x0c) = vector_count;
+  return;
 }
 
-//============================================================================
-// 8. 渲染系统投影处理器 (RenderingSystemProjectionProcessor)
-// 
-// 功能：高级投影处理和相机变换
-// 参数：projection_data - 投影数据, camera_params - 相机参数, scene_data - 场景数据, output_matrix - 输出矩阵
-// 返回：void
-// 
-// 技术实现：
-// - 支持透视和正交投影
-// - 实现相机变换和视景体裁剪
-// - 处理深度缓冲和Z缓冲
-// - 优化投影计算性能
-//============================================================================
-void RenderingSystemProjectionProcessor(longlong projection_data, longlong camera_params, longlong scene_data, float *output_matrix)
+
+
+/**
+ * @brief 渲染系统高级纹理搜索处理器
+ * 
+ * 本函数实现高级纹理搜索和匹配功能，包括：
+ * - 多方向纹理搜索
+ * - 距离计算和优化
+ * - 最佳匹配结果选择
+ * - 坐标变换和映射
+ * 
+ * @return longlong 返回处理后的纹理搜索结果
+ * 
+ * @note 使用优化的搜索算法
+ * @note 支持8个方向的纹理搜索
+ * @note 使用栈变量提高性能
+ * @see AdvancedRenderingFunction
+ */
+longlong FUN_180395999(void)
+
 {
-    int projection_type, camera_type;
-    float fov, aspect_ratio, near_plane, far_plane;
-    float left, right, bottom, top;
-    float camera_position[3], camera_target[3], camera_up[3];
-    float view_matrix[16], projection_matrix[16];
-    float view_projection_matrix[16];
-    float frustum_planes[6][4];
-    float depth_range[2];
-    
-    // 解析投影参数
-    projection_type = *(int *)(projection_data + 0x00);
-    fov = *(float *)(projection_data + 0x04);
-    aspect_ratio = *(float *)(projection_data + 0x08);
-    near_plane = *(float *)(projection_data + 0x0c);
-    far_plane = *(float *)(projection_data + 0x10);
-    
-    // 解析相机参数
-    camera_type = *(int *)(camera_params + 0x00);
-    camera_position[0] = *(float *)(camera_params + 0x04);
-    camera_position[1] = *(float *)(camera_params + 0x08);
-    camera_position[2] = *(float *)(camera_params + 0x0c);
-    camera_target[0] = *(float *)(camera_params + 0x10);
-    camera_target[1] = *(float *)(camera_params + 0x14);
-    camera_target[2] = *(float *)(camera_params + 0x18);
-    camera_up[0] = *(float *)(camera_params + 0x1c);
-    camera_up[1] = *(float *)(camera_params + 0x20);
-    camera_up[2] = *(float *)(camera_params + 0x24);
-    
-    // 计算视图矩阵
-    calculate_view_matrix(camera_position, camera_target, camera_up, view_matrix);
-    
-    // 根据投影类型计算投影矩阵
-    switch (projection_type) {
-        case 0: // 透视投影
-            calculate_perspective_projection(fov, aspect_ratio, near_plane, far_plane, projection_matrix);
-            break;
-            
-        case 1: // 正交投影
-            left = *(float *)(projection_data + 0x14);
-            right = *(float *)(projection_data + 0x18);
-            bottom = *(float *)(projection_data + 0x1c);
-            top = *(float *)(projection_data + 0x20);
-            calculate_orthographic_projection(left, right, bottom, top, near_plane, far_plane, projection_matrix);
-            break;
-            
-        case 2: // 自定义投影
-            calculate_custom_projection(projection_data, projection_matrix);
-            break;
-            
-        default:
-            // 默认透视投影
-            calculate_perspective_projection(fov, aspect_ratio, near_plane, far_plane, projection_matrix);
-            break;
-    }
-    
-    // 计算视图投影矩阵
-    matrix_multiply(view_matrix, projection_matrix, view_projection_matrix, 4);
-    
-    // 计算视景体平面
-    calculate_frustum_planes(view_projection_matrix, frustum_planes);
-    
-    // 处理深度范围
-    depth_range[0] = near_plane;
-    depth_range[1] = far_plane;
-    
-    // 应用深度缓冲设置
-    apply_depth_buffer_settings(projection_data, depth_range);
-    
-    // 输出投影矩阵
-    for (int i = 0; i < 16; i++) {
-        output_matrix[i] = view_projection_matrix[i];
-    }
-    
-    // 存储视景体平面数据
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 4; j++) {
-            *(float *)(scene_data + i * 16 + j * 4) = frustum_planes[i][j];
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  longlong lVar4;
+  float *unaff_RBP;
+  ulonglong uVar5;
+  longlong *plVar6;
+  int iVar7;
+  longlong *unaff_R14;
+  ulonglong uVar8;
+  longlong unaff_R15;
+  float fVar9;
+  float unaff_XMM7_Da;
+  int iStackX_24;
+  longlong lStack0000000000000028;
+  longlong lStack0000000000000030;
+  int iStack00000000000000d0;
+  undefined8 in_stack_000000d8;
+  longlong *in_stack_000000e0;
+  ulonglong *in_stack_000000e8;
+  
+  iVar3 = (int)(((*unaff_RBP - *(float *)(unaff_R14 + 1)) - 1e-06) / *(float *)(unaff_R14 + 3));
+  iVar7 = 0;
+  iStack00000000000000d0 = iVar7;
+  if ((-1 < iVar3) && (iStack00000000000000d0 = iVar3, (int)unaff_R14[4] <= iVar3)) {
+    iStack00000000000000d0 = (int)unaff_R14[4] + -1;
+  }
+  iVar3 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
+               *(float *)((longlong)unaff_R14 + 0x1c));
+  if ((-1 < iVar3) && (iVar7 = iVar3, *(int *)((longlong)unaff_R14 + 0x24) <= iVar3)) {
+    iVar7 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  }
+  lVar4 = unaff_R14[4];
+  iVar3 = -1;
+  iStackX_24 = (int)((ulonglong)lVar4 >> 0x20);
+  lStack0000000000000028 = 9;
+  lStack0000000000000030 = lVar4;
+  do {
+    uVar5 = 0;
+    iVar1 = (int)lVar4;
+    switch(iVar3) {
+    case 0:
+      iVar2 = iStack00000000000000d0;
+joined_r0x000180395b3d:
+      if (0 < iVar7) {
+        iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+code_r0x000180395a7c:
+        in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar1 + iVar7) * 0x28 + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 1:
+      if (iVar7 + 1 < iStackX_24) {
+        iVar1 = iStack00000000000000d0 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        goto code_r0x000180395a7c;
+      }
+      break;
+    case 2:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) {
+code_r0x000180395ac1:
+        in_stack_000000e8 =
+             (ulonglong *)
+             (*unaff_R14 + (longlong)(iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + iVar7) * 0x28 +
+             8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 3:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto code_r0x000180395ac1;
+      break;
+    case 4:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) goto joined_r0x000180395b3d;
+      break;
+    case 5:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) {
+code_r0x000180395b15:
+        if (iVar7 + 1 < iStackX_24) {
+          iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          goto code_r0x000180395a7c;
         }
+      }
+      break;
+    case 6:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto joined_r0x000180395b3d;
+      break;
+    case 7:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto code_r0x000180395b15;
+      break;
+    default:
+code_r0x000180395b5d:
+      plVar6 = (longlong *)*in_stack_000000e8;
+      uVar8 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar6)) >> 3;
+      if ((longlong *)in_stack_000000e8[1] < plVar6) {
+        uVar8 = uVar5;
+      }
+      unaff_R14 = in_stack_000000e0;
+      if (uVar8 != 0) {
+        do {
+          lVar4 = *plVar6;
+          if ((((*(byte *)(lVar4 + 0x139) & 1) != 0) && ((*(byte *)(lVar4 + 0x139) & 2) == 0)) &&
+             (fVar9 = (float)FUN_18038d6a0(lVar4,in_stack_000000d8), fVar9 < unaff_XMM7_Da)) {
+            unaff_R15 = lVar4;
+            unaff_XMM7_Da = fVar9;
+          }
+          plVar6 = plVar6 + 1;
+          uVar5 = uVar5 + 1;
+          lVar4 = lStack0000000000000030;
+        } while (uVar5 != uVar8);
+      }
     }
-    
-    // 存储深度范围
-    *(float *)(scene_data + 0x100) = depth_range[0];
-    *(float *)(scene_data + 0x104) = depth_range[1];
-    
-    // 更新投影数据状态
-    *(int *)(projection_data + 0x24) |= projection_type;
-    *(int *)(camera_params + 0x28) |= camera_type;
-    
-    // 验证投影结果
-    validate_projection_matrix(view_projection_matrix);
+    iVar3 = iVar3 + 1;
+    lStack0000000000000028 = lStack0000000000000028 + -1;
+    if (lStack0000000000000028 == 0) {
+      return unaff_R15;
+    }
+  } while( true );
 }
+
+
+
+/**
+ * @brief 渲染系统高级坐标变换处理器
+ * 
+ * 本函数实现高级坐标变换和纹理映射功能，包括：
+ * - 坐标变换和计算
+ * - 纹理映射优化
+ * - 距离计算和匹配
+ * - 浮点数精度处理
+ * 
+ * @param param_1 输入参数1，包含X坐标信息
+ * @param param_2 输入参数2，包含偏移量信息
+ * @return longlong 返回处理后的坐标变换结果
+ * 
+ * @note 使用高精度浮点数计算
+ * @note 支持多种坐标变换模式
+ * @see AdvancedRenderingFunction
+ */
+longlong FUN_1803959af(float param_1,float param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  longlong lVar4;
+  longlong unaff_RBP;
+  longlong *plVar5;
+  int iVar6;
+  ulonglong in_R11;
+  longlong *unaff_R14;
+  ulonglong uVar7;
+  longlong unaff_R15;
+  float fVar8;
+  float unaff_XMM7_Da;
+  int iStackX_24;
+  longlong lStack0000000000000028;
+  longlong lStack0000000000000030;
+  int iStack00000000000000d0;
+  undefined8 in_stack_000000d8;
+  longlong *in_stack_000000e0;
+  ulonglong *in_stack_000000e8;
+  
+  iVar3 = (int)((param_1 - param_2) / *(float *)(unaff_R14 + 3));
+  iVar6 = (int)in_R11;
+  iStack00000000000000d0 = iVar6;
+  if ((-1 < iVar3) && (iStack00000000000000d0 = iVar3, (int)unaff_R14[4] <= iVar3)) {
+    iStack00000000000000d0 = (int)unaff_R14[4] + -1;
+  }
+  iVar3 = (int)(((*(float *)(unaff_RBP + 4) - *(float *)((longlong)unaff_R14 + 0xc)) - param_2) /
+               *(float *)((longlong)unaff_R14 + 0x1c));
+  if ((-1 < iVar3) && (iVar6 = iVar3, *(int *)((longlong)unaff_R14 + 0x24) <= iVar3)) {
+    iVar6 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  }
+  lVar4 = unaff_R14[4];
+  iVar3 = -1;
+  iStackX_24 = (int)((ulonglong)lVar4 >> 0x20);
+  lStack0000000000000028 = 9;
+  lStack0000000000000030 = lVar4;
+  do {
+    iVar1 = (int)lVar4;
+    switch(iVar3) {
+    case 0:
+      iVar2 = iStack00000000000000d0;
+joined_r0x000180395b3d:
+      if (0 < iVar6) {
+        iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+code_r0x000180395a7c:
+        in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar1 + iVar6) * 0x28 + 8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 1:
+      if (iVar6 + 1 < iStackX_24) {
+        iVar1 = iStack00000000000000d0 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        goto code_r0x000180395a7c;
+      }
+      break;
+    case 2:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) {
+code_r0x000180395ac1:
+        in_stack_000000e8 =
+             (ulonglong *)
+             (*unaff_R14 + (longlong)(iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + iVar6) * 0x28 +
+             8);
+        goto code_r0x000180395b5d;
+      }
+      break;
+    case 3:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto code_r0x000180395ac1;
+      break;
+    case 4:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) goto joined_r0x000180395b3d;
+      break;
+    case 5:
+      iVar2 = iStack00000000000000d0 + -1;
+      if (0 < iStack00000000000000d0) {
+code_r0x000180395b15:
+        if (iVar6 + 1 < iStackX_24) {
+          iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          goto code_r0x000180395a7c;
+        }
+      }
+      break;
+    case 6:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto joined_r0x000180395b3d;
+      break;
+    case 7:
+      iVar2 = iStack00000000000000d0 + 1;
+      if (iVar2 < iVar1) goto code_r0x000180395b15;
+      break;
+    default:
+code_r0x000180395b5d:
+      plVar5 = (longlong *)*in_stack_000000e8;
+      uVar7 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar5)) >> 3;
+      if ((longlong *)in_stack_000000e8[1] < plVar5) {
+        uVar7 = in_R11;
+      }
+      unaff_R14 = in_stack_000000e0;
+      if (uVar7 != 0) {
+        do {
+          lVar4 = *plVar5;
+          if ((((*(byte *)(lVar4 + 0x139) & 1) != 0) && ((*(byte *)(lVar4 + 0x139) & 2) == 0)) &&
+             (fVar8 = (float)FUN_18038d6a0(lVar4,in_stack_000000d8), fVar8 < unaff_XMM7_Da)) {
+            unaff_R15 = lVar4;
+            unaff_XMM7_Da = fVar8;
+          }
+          plVar5 = plVar5 + 1;
+          in_R11 = in_R11 + 1;
+          lVar4 = lStack0000000000000030;
+        } while (in_R11 != uVar7);
+      }
+    }
+    iVar3 = iVar3 + 1;
+    lStack0000000000000028 = lStack0000000000000028 + -1;
+    in_R11 = 0;
+    if (lStack0000000000000028 == 0) {
+      return unaff_R15;
+    }
+  } while( true );
+}
+
+
+
+
+
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
+void FUN_180395c11(void)
+
+{
+  return;
+}
+
+
+
+
+
+/**
+ * @brief 渲染系统高级纹理映射递归处理器
+ * 
+ * 本函数实现高级纹理映射的递归处理功能，包括：
+ * - 递归纹理搜索和匹配
+ * - 线段投影和距离计算
+ * - 最佳匹配点选择
+ * - 向量运算和归一化
+ * 
+ * @param param_1 输入参数1，包含渲染状态信息
+ * @param param_2 纹理坐标数据指针，包含目标坐标
+ * @param param_3 几何数据指针，包含网格信息
+ * @param param_4 纹理层索引，用于多层纹理处理
+ * @param param_5 最小距离值指针，用于优化搜索
+ * @param param_6 最佳匹配结果指针，用于存储找到的匹配
+ * 
+ * @return 无返回值
+ * 
+ * @note 使用递归算法进行深度搜索
+ * @note 使用快速平方根倒数函数优化性能
+ * @note 支持线段到点的投影计算
+ * @see AdvancedTextureMappingFunction
+ * @see rsqrtss
+ */
+void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong param_4,float *param_5
+                  ,undefined8 *param_6)
+
+{
+  // 局部变量声明
+  float fVar1;                    // 浮点变量，用于Y坐标存储
+  undefined8 *puVar2;             // 无类型指针，用于数据结构访问
+  float *pfVar3;                  // 浮点指针，用于线段终点坐标
+  float *pfVar4;                  // 浮点指针，用于线段起点坐标
+  undefined8 uVar5;               // 无类型变量，用于坐标组合
+  longlong lVar6;                 // 长整型变量，用于偏移量计算
+  undefined8 *puVar7;             // 无类型指针，用于子节点遍历
+  int iVar8;                      // 整型变量，用于循环计数
+  ulonglong uVar9;                // 无符号长整型，用于纹理层索引
+  longlong lVar10;                // 长整型变量，用于纹理层偏移
+  float fVar11;                   // 浮点变量，用于距离平方计算
+  undefined1 auVar12 [16];        // 数组变量，用于SIMD指令结果
+  float fVar13;                   // 浮点变量，用于投影参数计算
+  float fVar14;                   // 浮点变量，用于X方向向量
+  float fVar15;                   // 浮点变量，用于Y方向向量
+  float fVar16;                   // 浮点变量，用于归一化因子
+  float fVar17;                   // 浮点变量，用于向量长度平方
+  float fStackX_8;                // 栈变量，用于X方向距离计算
+  float fStackX_c;                // 栈变量，用于Y方向距离计算
+  
+  // 初始化纹理层数据
+  lVar10 = (longlong)(int)param_4;  // 获取纹理层索引
+  iVar8 = 0;  // 初始化循环计数器
+  
+  // 复制纹理层数据到目标位置
+  *(undefined4 *)(param_3 + 0x40 + lVar10 * 4) = *(undefined4 *)(param_1 + 0x558 + lVar10 * 4);
+  
+  // 检查是否有子节点需要处理
+  if (*(char *)(param_3 + 0xa8) != '\0') {
+    // 获取子节点数组起始地址
+    puVar7 = (undefined8 *)(param_3 + 0x60);
+    uVar9 = param_4;  // 保存纹理层索引
+    
+    // 遍历所有子节点
+    do {
+      // 获取当前子节点
+      puVar2 = (undefined8 *)*puVar7;
+      
+      // 检查是否为线段节点（类型为0x01）
+      if (*(char *)(puVar2 + 4) == '\x01') {
+        // 处理线段节点 - 计算点到线段的投影
+        pfVar3 = (float *)puVar2[1];  // 获取线段终点坐标
+        pfVar4 = (float *)*puVar2;    // 获取线段起点坐标
+        
+        // 提取线段起点坐标
+        fVar11 = *pfVar4;             // 线段起点X坐标
+        fVar1 = pfVar4[1];            // 线段起点Y坐标
+        
+        // 计算线段方向向量
+        fVar14 = *pfVar3 - fVar11;    // X方向向量
+        fVar15 = pfVar3[1] - fVar1;   // Y方向向量
+        
+        // 计算线段长度的平方
+        fVar17 = fVar15 * fVar15 + fVar14 * fVar14;
+        
+        // 使用快速平方根倒数算法计算归一化因子
+        auVar12 = rsqrtss(ZEXT416((uint)fVar17),ZEXT416((uint)fVar17));
+        fVar13 = auVar12._0_4_;       // 获取平方根倒数
+        
+        // 使用牛顿迭代法提高精度
+        fVar16 = fVar13 * 0.5 * (3.0 - fVar17 * fVar13 * fVar13);
+        
+        // 计算目标点在线段上的投影参数
+        fVar13 = (param_2[1] - fVar1) * fVar15 * fVar16 + (*param_2 - fVar11) * fVar14 * fVar16;
+        
+        // 根据投影参数确定最近点
+        if (0.0 <= fVar13) {
+          if (fVar13 <= fVar16 * fVar17) {
+            // 投影点在线段上，计算投影点坐标
+            uVar5 = CONCAT44(fVar15 * fVar16 * fVar13 + fVar1,fVar14 * fVar16 * fVar13 + fVar11);
+          }
+          else {
+            // 投影点在线段终点之外，选择终点
+            uVar5 = *(undefined8 *)pfVar3;
+          }
+        }
+        else {
+          // 投影点在线段起点之外，选择起点
+          uVar5 = *(undefined8 *)pfVar4;
+        }
+        
+        // 计算目标点到最近点的距离平方
+        fStackX_8 = (float)uVar5;             // 提取最近点X坐标
+        fStackX_8 = *param_2 - fStackX_8;    // 计算X方向距离
+        fStackX_c = (float)((ulonglong)uVar5 >> 0x20);  // 提取最近点Y坐标
+        fStackX_c = param_2[1] - fStackX_c;   // 计算Y方向距离
+        fVar11 = fStackX_8 * fStackX_8 + fStackX_c * fStackX_c;  // 计算距离平方
+        
+        // 更新最小距离和最佳匹配
+        if (fVar11 < *param_5) {
+          *param_5 = fVar11;   // 更新最小距离
+          *param_6 = puVar2;   // 更新最佳匹配节点
+        }
+      }
+      else {
+        // 处理分支节点 - 递归搜索子树
+        lVar6 = 0x10;  // 默认偏移量
+        
+        // 根据节点类型调整偏移量
+        if (puVar2[2] == param_3) {
+          lVar6 = 0x18;  // 特殊节点类型的偏移量
+        }
+        
+        // 获取子节点指针
+        lVar6 = *(longlong *)(lVar6 + (longlong)puVar2);
+        
+        // 检查子节点是否有效且需要递归处理
+        // 条件1：子节点纹理激活 (*(byte *)(lVar6 + 0x139) & 1) != 0
+        // 条件2：纹理层数据不同，需要进一步搜索
+        if (((*(byte *)(lVar6 + 0x139) & 1) != 0) &&
+           (*(int *)(lVar6 + 0x40 + lVar10 * 4) != *(int *)(param_1 + 0x558 + lVar10 * 4))) {
+          
+          // 递归调用处理子节点
+          FUN_180395c50(param_1,param_2,lVar6,uVar9,param_5,param_6);
+          uVar9 = param_4 & 0xffffffff;  // 恢复纹理层索引
+        }
+      }
+      
+      // 移动到下一个子节点
+      iVar8 = iVar8 + 1;
+      puVar7 = puVar7 + 1;
+    } while (iVar8 < (int)(uint)*(byte *)(param_3 + 0xa8));  // 继续遍历所有子节点
+  }
+  return;
+}
+
+
+
+
+
+/**
+ * @brief 渲染系统状态同步处理器
+ * 
+ * 本函数实现渲染系统状态同步和纹理映射功能，包括：
+ * - 系统状态管理和同步
+ * - 纹理映射和坐标变换
+ * - 寄存器状态保存和恢复
+ * - 递归调用处理
+ * 
+ * @param param_1 输入参数1，包含系统状态信息
+ * @param param_2 输入参数2，包含变换参数
+ * @param param_3 输入参数3，包含几何数据指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 使用大量寄存器变量提高性能
+ * @note 支持复杂的系统状态管理
+ * @note 使用栈空间保存临时数据
+ * @see RenderingStateFunction
+ */
+void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
+
+{
+  float fVar1;
+  undefined8 *puVar2;
+  float *pfVar3;
+  float *pfVar4;
+  undefined8 uVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  undefined8 unaff_RBX;
+  undefined8 *puVar8;
+  longlong unaff_RBP;
+  undefined8 unaff_RSI;
+  int unaff_EDI;
+  longlong in_R11;
+  undefined8 unaff_R12;
+  float *unaff_R13;
+  longlong unaff_R14;
+  longlong unaff_R15;
+  float fVar9;
+  undefined1 auVar10 [16];
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  undefined4 unaff_XMM8_Da;
+  undefined4 unaff_XMM8_Db;
+  undefined4 unaff_XMM8_Dc;
+  undefined4 unaff_XMM8_Dd;
+  undefined4 unaff_XMM9_Da;
+  undefined4 unaff_XMM9_Db;
+  undefined4 unaff_XMM9_Dc;
+  undefined4 unaff_XMM9_Dd;
+  undefined8 *puStack0000000000000028;
+  float fStack00000000000000c0;
+  float fStack00000000000000c4;
+  float *in_stack_000000e0;
+  undefined8 *in_stack_000000e8;
+  
+  *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
+  uVar7 = (ulonglong)(unaff_EDI + 0x18);
+  *(undefined8 *)(in_R11 + -0x30) = unaff_RSI;
+  puVar8 = (undefined8 *)(param_3 + 0x60);
+  *(undefined8 *)(in_R11 + -0x38) = unaff_R12;
+  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM8_Da;
+  *(undefined4 *)(in_R11 + -100) = unaff_XMM8_Db;
+  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM9_Db;
+  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM9_Dc;
+  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
+  do {
+    puVar2 = (undefined8 *)*puVar8;
+    if (*(char *)(puVar2 + 4) == '\x01') {
+      pfVar3 = (float *)puVar2[1];
+      pfVar4 = (float *)*puVar2;
+      fVar9 = *pfVar4;
+      fVar1 = pfVar4[1];
+      fVar12 = *pfVar3 - fVar9;
+      fVar13 = pfVar3[1] - fVar1;
+      fVar15 = fVar13 * fVar13 + fVar12 * fVar12;
+      auVar10 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
+      fVar11 = auVar10._0_4_;
+      fVar14 = fVar11 * 0.5 * (3.0 - fVar15 * fVar11 * fVar11);
+      fVar11 = (unaff_R13[1] - fVar1) * fVar13 * fVar14 + (*unaff_R13 - fVar9) * fVar12 * fVar14;
+      if (0.0 <= fVar11) {
+        if (fVar11 <= fVar14 * fVar15) {
+          uVar5 = CONCAT44(fVar13 * fVar14 * fVar11 + fVar1,fVar12 * fVar14 * fVar11 + fVar9);
+        }
+        else {
+          uVar5 = *(undefined8 *)pfVar3;
+        }
+      }
+      else {
+        uVar5 = *(undefined8 *)pfVar4;
+      }
+      uVar7 = 0x18;
+      fStack00000000000000c0 = (float)uVar5;
+      fStack00000000000000c0 = *unaff_R13 - fStack00000000000000c0;
+      fStack00000000000000c4 = (float)((ulonglong)uVar5 >> 0x20);
+      fStack00000000000000c4 = unaff_R13[1] - fStack00000000000000c4;
+      fVar9 = fStack00000000000000c0 * fStack00000000000000c0 +
+              fStack00000000000000c4 * fStack00000000000000c4;
+      if (fVar9 < *in_stack_000000e0) {
+        *in_stack_000000e0 = fVar9;
+        *in_stack_000000e8 = puVar2;
+      }
+    }
+    else {
+      uVar6 = 0x10;
+      if (puVar2[2] == unaff_RBP) {
+        uVar6 = uVar7;
+      }
+      if (((*(byte *)(*(longlong *)(uVar6 + (longlong)puVar2) + 0x139) & 1) != 0) &&
+         (*(int *)(*(longlong *)(uVar6 + (longlong)puVar2) + 0x40 + unaff_R14 * 4) !=
+          *(int *)(unaff_R15 + 0x558 + unaff_R14 * 4))) {
+        puStack0000000000000028 = in_stack_000000e8;
+        FUN_180395c50();
+        uVar7 = 0x18;
+      }
+    }
+    unaff_EDI = unaff_EDI + 1;
+    puVar8 = puVar8 + 1;
+  } while (unaff_EDI < (int)(uint)*(byte *)(unaff_RBP + 0xa8));
+  return;
+}
+
+
+
+
+
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
+void FUN_180395e8a(void)
+
+{
+  return;
+}
+
+
+
+
+

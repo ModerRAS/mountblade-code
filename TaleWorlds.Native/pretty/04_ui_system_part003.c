@@ -1,1524 +1,1199 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part003.c - UI系统底层支持函数 (23个函数)
-// 该文件包含UI系统的底层支持函数，主要用于日志记录、错误处理、内存管理、字符串处理等
+// 04_ui_system_part003.c - 23 个函数
 
-// ============================================================================
-// UI系统日志记录函数
-// ============================================================================
+// 函数: void FUN_1806501d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,longlong param_4,
+void FUN_1806501d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,longlong param_4,
+                  undefined8 param_5)
 
-// 函数: 格式化并记录UI系统日志消息
-// 原始函数名: FUN_1806501d0
-// 功能: 格式化日志消息并记录到UI系统日志中
-// 参数: param_1-日志上下文, param_2-日志级别, param_3-格式字符串, param_4-可变参数, param_5-附加数据
-void format_ui_log_message(undefined8 log_context, undefined8 log_level, undefined8 format_string, 
-                        longlong variable_args, undefined8 additional_data)
 {
-  ulonglong *security_check;
-  char *thread_local_flag;
-  undefined1 security_buffer[32];
-  undefined8 formatted_data_ptr;
-  undefined8 zero_flag;
-  undefined1 log_buffer[512];
-  ulonglong stack_guard;
+  ulonglong *puVar1;
+  char *pcVar2;
+  undefined1 auStack_278 [32];
+  undefined8 uStack_258;
+  undefined8 uStack_250;
+  undefined1 auStack_248 [512];
+  ulonglong uStack_48;
   
-  if (variable_args != 0) {
-    // 安全检查：堆栈保护
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-    
-    // 获取线程本地存储标志
-    thread_local_flag = (char *)(*(longlong *)
+  if (param_4 != 0) {
+    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
+    pcVar2 = (char *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
-    
-    // 检查是否已经在处理中（防止递归）
-    if (*thread_local_flag == '\0') {
-      *thread_local_flag = '\x01';  // 设置处理中标志
-      
-      // 获取标准IO函数指针
-      security_check = (ulonglong *)func_0x00018004b9a0();
-      
-      // 准备格式化参数
-      formatted_data_ptr = additional_data;
-      zero_flag = 0;
-      
-      // 格式化日志消息
-      __stdio_common_vsprintf(*security_check | 2, log_buffer, 0x1ff, variable_args);
-      
-      *thread_local_flag = '\0';  // 清除处理中标志
-      
-      // 调用实际日志记录函数
-      log_ui_system_message(log_context, log_level, format_string, log_buffer);
+    if (*pcVar2 == '\0') {
+      *pcVar2 = '\x01';
+      puVar1 = (ulonglong *)func_0x00018004b9a0();
+      uStack_250 = param_5;
+      uStack_258 = 0;
+      __stdio_common_vsprintf(*puVar1 | 2,auStack_248,0x1ff,param_4);
+      *pcVar2 = '\0';
+      FUN_1806500f0(param_1,param_2,param_3,auStack_248);
     }
-    
-    // 安全检查结束
-    perform_security_check(stack_guard ^ (ulonglong)security_buffer);
+                    // WARNING: Subroutine does not return
+    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_278);
   }
   return;
 }
 
-// 函数: 记录UI系统错误日志
-// 原始函数名: FUN_180650219
-// 功能: 记录UI系统错误日志
-// 参数: param_1-错误代码
-void log_ui_system_error(longlong error_code)
+
+
+
+
+// 函数: void FUN_180650219(longlong param_1)
+void FUN_180650219(longlong param_1)
+
 {
-  longlong register_value;
-  ulonglong *stdio_ptr;
-  char *thread_local_flag;
-  ulonglong stack_cookie;
+  longlong in_RAX;
+  ulonglong *puVar1;
+  char *pcVar2;
+  ulonglong in_stack_00000230;
   
-  // 获取线程本地存储标志
-  thread_local_flag = (char *)(*(longlong *)(register_value + error_code * 8) + 8);
-  
-  // 检查是否已经在处理中
-  if (*thread_local_flag == '\0') {
-    *thread_local_flag = '\x01';  // 设置处理中标志
-    
-    // 获取标准IO函数指针
-    stdio_ptr = (ulonglong *)func_0x00018004b9a0();
-    
-    // 格式化错误消息
-    __stdio_common_vsprintf(*stdio_ptr | 2, &stack0x00000030, 0x1ff);
-    
-    *thread_local_flag = '\0';  // 清除处理中标志
-    
-    // 记录错误消息
-    log_ui_system_message();
+  pcVar2 = (char *)(*(longlong *)(in_RAX + param_1 * 8) + 8);
+  if (*pcVar2 == '\0') {
+    *pcVar2 = '\x01';
+    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    __stdio_common_vsprintf(*puVar1 | 2,&stack0x00000030,0x1ff);
+    *pcVar2 = '\0';
+    FUN_1806500f0();
   }
-  
-  // 安全检查
-  perform_security_check(stack_cookie ^ (ulonglong)&stack0x00000000);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000230 ^ (ulonglong)&stack0x00000000);
 }
 
-// 函数: UI系统空操作函数
-// 原始函数名: FUN_1806502a2
-// 功能: 空操作函数，用于占位或同步
-void ui_system_no_operation(void)
+
+
+
+
+// 函数: void FUN_1806502a2(void)
+void FUN_1806502a2(void)
+
 {
   return;
 }
 
-// ============================================================================
-// UI系统消息处理函数
-// ============================================================================
 
-// 函数: 发送UI系统消息
-// 原始函数名: FUN_1806502b0
-// 功能: 发送UI系统消息
-// 参数: param_1-消息类型, param_2-消息参数1, param_3-消息参数2, param_4-消息参数3
-void send_ui_system_message(undefined8 message_type, undefined8 message_param1, 
-                          undefined8 message_param2, undefined8 message_param3)
+
+
+
+// 函数: void FUN_1806502b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1806502b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  undefined8 message_data;
+  undefined8 uStackX_20;
   
-  // 准备消息数据
-  message_data = message_param3;
-  
-  // 格式化并发送消息
-  format_ui_log_message(message_type, message_param1, 0, message_param2, &message_data);
-  
+  uStackX_20 = param_4;
+  FUN_1806501d0(param_1,param_2,0,param_3,&uStackX_20);
   return;
 }
 
-// 函数: 广播UI系统消息
-// 原始函数名: FUN_1806502e0
-// 功能: 向所有UI组件广播系统消息
-// 参数: param_1-消息ID, param_2-消息数据1, param_3-消息数据2, param_4-消息数据3
-void broadcast_ui_system_message(undefined8 message_id, undefined8 message_data1, 
-                               undefined8 message_data2, undefined8 message_data3)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1806502e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1806502e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  undefined8 msg_data1;
-  undefined8 msg_data2;
-  undefined8 msg_data3;
+  undefined8 uStackX_10;
+  undefined8 uStackX_18;
+  undefined8 uStackX_20;
   
-  // 准备消息数据
-  msg_data1 = message_data1;
-  msg_data2 = message_data2;
-  msg_data3 = message_data3;
-  
-  // 初始化消息系统（如果需要）
+  uStackX_10 = param_2;
+  uStackX_18 = param_3;
+  uStackX_20 = param_4;
   if (_DAT_180bfbdb4 == 0) {
-    initialize_ui_message_system(&DAT_180bfbdb0);
+    FUN_180650490(&DAT_180bfbdb0);
   }
-  
-  // 如果消息系统可用，则广播消息
   if (_DAT_180bfbdb0 != 0) {
-    format_ui_log_message(0, 0, &UNK_180a3db78, message_id, &msg_data1);
+    FUN_1806501d0(0,0,&UNK_180a3db78,param_1,&uStackX_10);
   }
-  
   return;
 }
 
-// 函数: 发送UI系统警告消息
-// 原始函数名: FUN_180650340
-// 功能: 发送UI系统警告消息
-// 参数: param_1-警告代码, param_2-警告数据1, param_3-警告数据2, param_4-警告数据3
-void send_ui_system_warning(undefined8 warning_code, undefined8 warning_data1, 
-                           undefined8 warning_data2, undefined8 warning_data3)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180650340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180650340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  bool should_log;
-  longlong warning_count;
-  undefined8 warn_data1;
-  undefined8 warn_data2;
-  undefined8 warn_data3;
+  bool bVar1;
+  longlong lVar2;
+  undefined8 uStackX_10;
+  undefined8 uStackX_18;
+  undefined8 uStackX_20;
   
-  // 准备警告数据
-  warn_data1 = warning_data1;
-  warn_data2 = warning_data2;
-  warn_data3 = warning_data3;
-  
-  // 初始化警告系统（如果需要）
+  uStackX_10 = param_2;
+  uStackX_18 = param_3;
+  uStackX_20 = param_4;
   if (_DAT_180bfbd84 == 0) {
-    initialize_ui_warning_system(&DAT_180bfbd80);
+    FUN_180650490(&DAT_180bfbd80);
   }
-  
-  // 检查警告系统是否可用
   if (_DAT_180bfbd80 == 0) {
-    // 如果警告系统不可用，尝试使用消息系统
     if (_DAT_180bfbdb4 == 0) {
-      initialize_ui_message_system(&DAT_180bfbdb0);
+      FUN_180650490(&DAT_180bfbdb0);
     }
     if (_DAT_180bfbdb0 == 0) {
-      return;  // 两个系统都不可用，直接返回
-    }
-  }
-  
-  // 线程安全：增加警告计数器
-  LOCK();
-  warning_count = _DAT_180c9e910 + 1;
-  UNLOCK();
-  
-  // 检查是否超过警告限制
-  should_log = _DAT_180c9e910 <= _DAT_180bf72a8;
-  _DAT_180c9e910 = warning_count;
-  
-  // 如果未超过限制，则记录警告
-  if (should_log) {
-    format_ui_log_message(0, 0, &UNK_180a3db48, warning_code, &warn_data1);
-  }
-  
-  return;
-}
-
-// 函数: 发送UI系统调试消息
-// 原始函数名: FUN_1806503d0
-// 功能: 发送UI系统调试消息
-// 参数: param_1-调试级别, param_2-调试数据1, param_3-调试数据2, param_4-调试数据3
-void send_ui_system_debug_message(undefined4 debug_level, undefined8 debug_data1, 
-                                undefined8 debug_data2, undefined8 debug_data3)
-{
-  bool should_log;
-  ulonglong debug_count;
-  undefined8 dbg_data2;
-  undefined8 dbg_data3;
-  
-  // 准备调试数据
-  dbg_data2 = debug_data2;
-  dbg_data3 = debug_data3;
-  
-  // 初始化调试系统（如果需要）
-  if (_DAT_180bfbd84 == 0) {
-    initialize_ui_warning_system(&DAT_180bfbd80);
-  }
-  
-  // 检查调试系统是否可用
-  if (_DAT_180bfbd80 == 0) {
-    // 如果调试系统不可用，尝试使用消息系统
-    if (_DAT_180bfbdb4 == 0) {
-      initialize_ui_message_system(&DAT_180bfbdb0);
-    }
-    if (_DAT_180bfbdb0 == 0) {
-      goto skip_logging;  // 两个系统都不可用，跳过记录
-    }
-  }
-  
-  // 线程安全：增加调试计数器
-  LOCK();
-  debug_count = _DAT_180ca8b88 + 1;
-  UNLOCK();
-  
-  // 检查是否超过调试限制
-  should_log = _DAT_180ca8b88 <= _DAT_180bf7308;
-  _DAT_180ca8b88 = debug_count;
-  
-  // 如果未超过限制，则记录调试消息
-  if (should_log) {
-    format_ui_log_message(0, 0, &UNK_180a3db30, debug_data1, &dbg_data2);
-  }
-  
-skip_logging:
-  // 调用调试回调函数（如果已注册）
-  if (_DAT_180c9e908 != (code *)0x0) {
-    (*_DAT_180c9e908)(debug_level, _DAT_180c9eb48);
-  }
-  
-  return;
-}
-
-// ============================================================================
-// UI系统环境变量处理函数
-// ============================================================================
-
-// 函数: 解析UI系统环境变量
-// 原始函数名: FUN_180650490
-// 功能: 解析UI系统相关的环境变量
-// 参数: param_1-环境变量配置结构
-void parse_ui_environment_variable(int *env_config)
-{
-  code *error_handler;
-  char uppercase_char;
-  uint env_value_length;
-  int parsed_value;
-  longlong string_length;
-  ulonglong char_index;
-  ulonglong max_length;
-  undefined1 security_buffer[32];
-  char *string_end_ptr[2];
-  char env_name_buffer[80];
-  char env_value_buffer[80];
-  ulonglong stack_guard;
-  
-  // 安全检查：堆栈保护
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-  
-  // 初始化环境变量名称缓冲区
-  env_name_buffer[0] = '\0';
-  strncpy(env_name_buffer, &UNK_180a3dc10, 0x40);
-  env_name_buffer[0x40] = 0;  // 确保字符串终止
-  
-  // 构建完整的环境变量名称
-  strncat(env_name_buffer, *(undefined8 *)(env_config + 4), 0x40);
-  env_name_buffer[0x40] = 0;  // 确保字符串终止
-  
-  // 初始化环境变量值缓冲区
-  env_value_buffer[0] = '\0';
-  
-  // 获取环境变量值
-  env_value_length = GetEnvironmentVariableA(env_name_buffer, env_value_buffer, 0x41);
-  
-  // 检查获取是否成功
-  if ((ulonglong)env_value_length - 1 < 0x40) {
-    // 计算环境变量值的实际长度
-    max_length = 0xffffffffffffffff;
-    do {
-      char_index = max_length + 1;
-      string_length = max_length + 1;
-      max_length = char_index;
-    } while (env_value_buffer[string_length] != '\0');
-    
-    // 限制最大长度为64字符
-    if (0x40 < char_index) {
-      char_index = 0x40;
-    }
-    
-    // 转换为大写字母
-    max_length = 0;
-    if (char_index != 0) {
-      do {
-        uppercase_char = toupper((int)env_value_buffer[max_length]);
-        env_name_buffer[max_length] = uppercase_char;
-        max_length = max_length + 1;
-      } while (max_length < char_index);
-    }
-    
-    // 检查长度是否仍然超限
-    if (0x40 < char_index) {
-      handle_ui_buffer_overflow();
-      error_handler = (code *)swi(3);
-      (*error_handler)();
       return;
     }
-    
-    // 终止字符串
-    env_name_buffer[char_index] = '\0';
-    
-    // 检查是否为特殊值
-    if ((env_name_buffer[0] == '\0') || 
-        (string_length = strstr(&UNK_180a3dc20, env_name_buffer), string_length != 0)) {
-      *env_config = 1;  // 特殊值标志
+  }
+  LOCK();
+  lVar2 = _DAT_180c9e910 + 1;
+  UNLOCK();
+  bVar1 = _DAT_180c9e910 <= _DAT_180bf72a8;
+  _DAT_180c9e910 = lVar2;
+  if (bVar1) {
+    FUN_1806501d0(0,0,&UNK_180a3db48,param_1,&uStackX_10);
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1806503d0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1806503d0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  bool bVar1;
+  ulonglong uVar2;
+  undefined8 uStackX_18;
+  undefined8 uStackX_20;
+  
+  uStackX_18 = param_3;
+  uStackX_20 = param_4;
+  if (_DAT_180bfbd84 == 0) {
+    FUN_180650490(&DAT_180bfbd80);
+  }
+  if (_DAT_180bfbd80 == 0) {
+    if (_DAT_180bfbdb4 == 0) {
+      FUN_180650490(&DAT_180bfbdb0);
+    }
+    if (_DAT_180bfbdb0 == 0) goto LAB_180650464;
+  }
+  LOCK();
+  uVar2 = _DAT_180ca8b88 + 1;
+  UNLOCK();
+  bVar1 = _DAT_180ca8b88 <= _DAT_180bf7308;
+  _DAT_180ca8b88 = uVar2;
+  if (bVar1) {
+    FUN_1806501d0(0,0,&UNK_180a3db30,param_2,&uStackX_18);
+  }
+LAB_180650464:
+  if (_DAT_180c9e908 != (code *)0x0) {
+    (*_DAT_180c9e908)(param_1,_DAT_180c9eb48);
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180650490(int *param_1)
+void FUN_180650490(int *param_1)
+
+{
+  code *pcVar1;
+  char cVar2;
+  uint uVar3;
+  int iVar4;
+  longlong lVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  undefined1 auStack_e8 [32];
+  char *apcStack_c8 [2];
+  char acStack_b8 [80];
+  char acStack_68 [80];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  acStack_b8[0] = '\0';
+  strncpy(acStack_b8,&UNK_180a3dc10,0x40);
+  acStack_b8[0x40] = 0;
+  strncat(acStack_b8,*(undefined8 *)(param_1 + 4),0x40);
+  acStack_b8[0x40] = 0;
+  acStack_68[0] = '\0';
+  uVar3 = GetEnvironmentVariableA(acStack_b8,acStack_68,0x41);
+  if ((ulonglong)uVar3 - 1 < 0x40) {
+    uVar7 = 0xffffffffffffffff;
+    do {
+      uVar6 = uVar7 + 1;
+      lVar5 = uVar7 + 1;
+      uVar7 = uVar6;
+    } while (acStack_68[lVar5] != '\0');
+    if (0x40 < uVar6) {
+      uVar6 = 0x40;
+    }
+    uVar7 = 0;
+    if (uVar6 != 0) {
+      do {
+        cVar2 = toupper((int)acStack_68[uVar7]);
+        acStack_b8[uVar7] = cVar2;
+        uVar7 = uVar7 + 1;
+      } while (uVar7 < uVar6);
+    }
+    if (0x40 < uVar6) {
+      FUN_1808fcdc8();
+      pcVar1 = (code *)swi(3);
+      (*pcVar1)();
+      return;
+    }
+    acStack_b8[uVar6] = '\0';
+    if ((acStack_b8[0] == '\0') || (lVar5 = strstr(&UNK_180a3dc20,acStack_b8), lVar5 != 0)) {
+      *param_1 = 1;
     }
     else {
-      // 检查是否为禁用值
-      string_length = strstr(&UNK_180a3dbc0, env_name_buffer);
-      if (string_length == 0) {
-        // 尝试解析为数值
-        string_end_ptr[0] = env_name_buffer;
-        parsed_value = strtol(env_name_buffer, string_end_ptr, 10);
-        
-        // 处理单位后缀（如果配置为字节单位）
-        if (env_config[2] == 8) {
-          uppercase_char = *string_end_ptr[0];
-          if (uppercase_char == 'K') {
-            string_end_ptr[0] = string_end_ptr[0] + 1;  // 跳过'K'
+      lVar5 = strstr(&UNK_180a3dbc0,acStack_b8);
+      if (lVar5 == 0) {
+        apcStack_c8[0] = acStack_b8;
+        iVar4 = strtol(acStack_b8,apcStack_c8,10);
+        if (param_1[2] == 8) {
+          cVar2 = *apcStack_c8[0];
+          if (cVar2 == 'K') {
+            apcStack_c8[0] = apcStack_c8[0] + 1;
           }
-          else if (uppercase_char == 'M') {
-            parsed_value = parsed_value << 10;  // 转换为MB
-            string_end_ptr[0] = string_end_ptr[0] + 1;  // 跳过'M'
+          else if (cVar2 == 'M') {
+            iVar4 = iVar4 << 10;
+            apcStack_c8[0] = apcStack_c8[0] + 1;
           }
-          else if (uppercase_char == 'G') {
-            parsed_value = parsed_value << 0x14;  // 转换为GB
-            string_end_ptr[0] = string_end_ptr[0] + 1;  // 跳过'G'
+          else if (cVar2 == 'G') {
+            iVar4 = iVar4 << 0x14;
+            apcStack_c8[0] = apcStack_c8[0] + 1;
           }
           else {
-            // 默认转换为KB
-            parsed_value = (int)((longlong)parsed_value + 0x3ffU >> 10);
+            iVar4 = (int)((longlong)iVar4 + 0x3ffU >> 10);
           }
-          // 跳过可选的'B'后缀
-          if (*string_end_ptr[0] == 'B') {
-            string_end_ptr[0] = string_end_ptr[0] + 1;
+          if (*apcStack_c8[0] == 'B') {
+            apcStack_c8[0] = apcStack_c8[0] + 1;
           }
         }
-        
-        // 检查是否还有剩余字符
-        if (*string_end_ptr[0] != '\0') {
-          // 如果有剩余字符，记录为无效值
-          send_ui_system_warning(&UNK_180a3dbd0, *(undefined8 *)(env_config + 4), env_name_buffer);
-          env_config[1] = 1;  // 无效值标志
-          goto security_check_exit;
+        if (*apcStack_c8[0] != '\0') {
+          FUN_180650340(&UNK_180a3dbd0,*(undefined8 *)(param_1 + 4),acStack_b8);
+          param_1[1] = 1;
+          goto FUN_1806505b5;
         }
-        
-        *env_config = parsed_value;  // 设置解析的值
+        *param_1 = iVar4;
       }
       else {
-        *env_config = 0;  // 禁用值
+        *param_1 = 0;
       }
     }
-    
-    env_config[1] = 2;  // 成功解析标志
+    param_1[1] = 2;
   }
   else if (DAT_180bf66d8 == '\0') {
-    env_config[1] = 1;  // 环境变量未找到
+    param_1[1] = 1;
   }
-  
-security_check_exit:
-  // 安全检查结束
-  perform_security_check(stack_guard ^ (ulonglong)security_buffer);
+FUN_1806505b5:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_e8);
 }
 
-// 函数: 处理UI系统环境变量值
-// 原始函数名: FUN_180650513
-// 功能: 处理UI系统环境变量值的内部函数
-void process_ui_environment_value(void)
+
+
+
+
+// 函数: void FUN_180650513(void)
+void FUN_180650513(void)
+
 {
-  char uppercase_char;
-  code *error_handler;
-  undefined1 current_char;
-  int parsed_value;
-  longlong search_result;
-  char *parse_end_ptr;
-  ulonglong char_index;
-  longlong stack_frame_offset;
-  int *config_ptr;
-  ulonglong register_value;
-  ulonglong string_length;
+  char cVar1;
+  code *pcVar2;
+  undefined1 uVar3;
+  int iVar4;
+  longlong lVar5;
+  char *pcVar6;
+  ulonglong uVar7;
+  longlong unaff_RBP;
+  int *unaff_RSI;
+  ulonglong unaff_RDI;
+  ulonglong uVar8;
   
-  // 计算输入字符串的长度
-  register_value = 0xffffffffffffffff;
+  uVar7 = 0xffffffffffffffff;
   do {
-    register_value = register_value + 1;
-  } while (*(char *)(stack_frame_offset + -9 + register_value) != '\0');
-  
-  // 限制最大长度为64字符
-  if (0x40 < register_value) {
-    register_value = register_value;
+    uVar7 = uVar7 + 1;
+  } while (*(char *)(unaff_RBP + -9 + uVar7) != '\0');
+  if (0x40 < uVar7) {
+    uVar7 = unaff_RDI;
   }
-  
-  // 转换为大写字母
-  string_length = 0;
-  if (register_value != 0) {
+  uVar8 = 0;
+  if (uVar7 != 0) {
     do {
-      current_char = toupper((int)*(char *)(stack_frame_offset + -9 + string_length));
-      *(undefined1 *)(stack_frame_offset + -0x59 + string_length) = current_char;
-      string_length = string_length + 1;
-    } while (string_length < register_value);
+      uVar3 = toupper((int)*(char *)(unaff_RBP + -9 + uVar8));
+      *(undefined1 *)(unaff_RBP + -0x59 + uVar8) = uVar3;
+      uVar8 = uVar8 + 1;
+    } while (uVar8 < uVar7);
   }
-  
-  // 检查长度是否超限
-  if (0x40 < register_value) {
-    handle_ui_buffer_overflow();
-    error_handler = (code *)swi(3);
-    (*error_handler)();
+  if (0x40 < uVar7) {
+    FUN_1808fcdc8();
+    pcVar2 = (code *)swi(3);
+    (*pcVar2)();
     return;
   }
-  
-  // 终止字符串
-  *(undefined1 *)(stack_frame_offset + -0x59 + register_value) = 0;
-  
-  // 检查是否为空字符串
-  if (*(char *)(stack_frame_offset + -0x59) == '\0') {
-  empty_string_case:
-    *config_ptr = 1;  // 空字符串标志
+  *(undefined1 *)(unaff_RBP + -0x59 + uVar7) = 0;
+  if (*(char *)(unaff_RBP + -0x59) == '\0') {
+LAB_180650673:
+    *unaff_RSI = 1;
   }
   else {
-    // 检查是否为启用值
-    search_result = strstr(&UNK_180a3dc20, stack_frame_offset + -0x59);
-    if (search_result != 0) goto empty_string_case;
-    
-    // 检查是否为禁用值
-    search_result = strstr(&UNK_180a3dbc0, stack_frame_offset + -0x59);
-    if (search_result == 0) {
-      // 尝试解析为数值
-      *(longlong *)(stack_frame_offset + -0x69) = stack_frame_offset + -0x59;
-      parsed_value = strtol(stack_frame_offset + -0x59, stack_frame_offset + -0x69, 10);
-      parse_end_ptr = *(char **)(stack_frame_offset + -0x69);
-      
-      // 处理单位后缀（如果配置为字节单位）
-      if (config_ptr[2] == 8) {
-        uppercase_char = *parse_end_ptr;
-        if (uppercase_char == 'K') {
-          parse_end_ptr = parse_end_ptr + 1;
-          *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+    lVar5 = strstr(&UNK_180a3dc20,unaff_RBP + -0x59);
+    if (lVar5 != 0) goto LAB_180650673;
+    lVar5 = strstr(&UNK_180a3dbc0,unaff_RBP + -0x59);
+    if (lVar5 == 0) {
+      *(longlong *)(unaff_RBP + -0x69) = unaff_RBP + -0x59;
+      iVar4 = strtol(unaff_RBP + -0x59,unaff_RBP + -0x69,10);
+      pcVar6 = *(char **)(unaff_RBP + -0x69);
+      if (unaff_RSI[2] == 8) {
+        cVar1 = *pcVar6;
+        if (cVar1 == 'K') {
+          pcVar6 = pcVar6 + 1;
+          *(char **)(unaff_RBP + -0x69) = pcVar6;
         }
-        else if (uppercase_char == 'M') {
-          parsed_value = parsed_value << 10;  // 转换为MB
-          parse_end_ptr = parse_end_ptr + 1;
-          *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+        else if (cVar1 == 'M') {
+          iVar4 = iVar4 << 10;
+          pcVar6 = pcVar6 + 1;
+          *(char **)(unaff_RBP + -0x69) = pcVar6;
         }
-        else if (uppercase_char == 'G') {
-          parsed_value = parsed_value << 0x14;  // 转换为GB
-          parse_end_ptr = parse_end_ptr + 1;
-          *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+        else if (cVar1 == 'G') {
+          iVar4 = iVar4 << 0x14;
+          pcVar6 = pcVar6 + 1;
+          *(char **)(unaff_RBP + -0x69) = pcVar6;
         }
         else {
-          // 默认转换为KB
-          parsed_value = (int)((longlong)parsed_value + 0x3ffU >> 10);
+          iVar4 = (int)((longlong)iVar4 + 0x3ffU >> 10);
         }
-        // 跳过可选的'B'后缀
-        if (*parse_end_ptr == 'B') {
-          parse_end_ptr = parse_end_ptr + 1;
-          *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+        if (*pcVar6 == 'B') {
+          pcVar6 = pcVar6 + 1;
+          *(char **)(unaff_RBP + -0x69) = pcVar6;
         }
       }
-      
-      // 检查是否还有剩余字符
-      if (*parse_end_ptr != '\0') {
-        send_ui_system_warning(&UNK_180a3dbd0, *(undefined8 *)(config_ptr + 4), stack_frame_offset + -0x59);
-        config_ptr[1] = 1;  // 无效值标志
-        goto security_check_exit;
+      if (*pcVar6 != '\0') {
+        FUN_180650340(&UNK_180a3dbd0,*(undefined8 *)(unaff_RSI + 4),unaff_RBP + -0x59);
+        unaff_RSI[1] = 1;
+        goto LAB_1806505ad;
       }
-      
-      *config_ptr = parsed_value;  // 设置解析的值
+      *unaff_RSI = iVar4;
     }
     else {
-      *config_ptr = 0;  // 禁用值
+      *unaff_RSI = 0;
     }
   }
-  
-  config_ptr[1] = 2;  // 成功解析标志
-  
-security_check_exit:
-  // 安全检查结束
-  perform_security_check(*(ulonglong *)(stack_frame_offset + 0x47) ^ (ulonglong)&stack0x00000000);
+  unaff_RSI[1] = 2;
+LAB_1806505ad:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
 }
 
-// 函数: UI系统环境变量处理结束函数
-// 原始函数名: FUN_1806505b5
-// 功能: UI系统环境变量处理的结束函数
-void ui_environment_processing_end(void)
+
+
+
+
+// 函数: void FUN_1806505b5(void)
+void FUN_1806505b5(void)
+
 {
-  longlong stack_frame_offset;
+  longlong unaff_RBP;
   
-  // 安全检查结束
-  perform_security_check(*(ulonglong *)(stack_frame_offset + 0x47) ^ (ulonglong)&stack0x00000000);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
 }
 
-// 函数: 处理UI系统数值环境变量
-// 原始函数名: FUN_1806505d6
-// 功能: 处理UI系统数值类型的环境变量
-void process_ui_numeric_environment(void)
+
+
+
+
+// 函数: void FUN_1806505d6(void)
+void FUN_1806505d6(void)
+
 {
-  char unit_char;
-  int parsed_value;
-  char *parse_end_ptr;
-  longlong stack_frame_offset;
-  int *config_ptr;
+  char cVar1;
+  int iVar2;
+  char *pcVar3;
+  longlong unaff_RBP;
+  int *unaff_RSI;
   
-  // 设置解析指针
-  *(longlong *)(stack_frame_offset + -0x69) = stack_frame_offset + -0x59;
-  parsed_value = strtol(stack_frame_offset + -0x59, stack_frame_offset + -0x69, 10);
-  parse_end_ptr = *(char **)(stack_frame_offset + -0x69);
-  
-  // 处理单位后缀（如果配置为字节单位）
-  if (config_ptr[2] == 8) {
-    unit_char = *parse_end_ptr;
-    if (unit_char == 'K') {
-      parse_end_ptr = parse_end_ptr + 1;
-      *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+  *(longlong *)(unaff_RBP + -0x69) = unaff_RBP + -0x59;
+  iVar2 = strtol(unaff_RBP + -0x59,unaff_RBP + -0x69,10);
+  pcVar3 = *(char **)(unaff_RBP + -0x69);
+  if (unaff_RSI[2] == 8) {
+    cVar1 = *pcVar3;
+    if (cVar1 == 'K') {
+      pcVar3 = pcVar3 + 1;
+      *(char **)(unaff_RBP + -0x69) = pcVar3;
     }
-    else if (unit_char == 'M') {
-      parsed_value = parsed_value << 10;  // 转换为MB
-      parse_end_ptr = parse_end_ptr + 1;
-      *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+    else if (cVar1 == 'M') {
+      iVar2 = iVar2 << 10;
+      pcVar3 = pcVar3 + 1;
+      *(char **)(unaff_RBP + -0x69) = pcVar3;
     }
-    else if (unit_char == 'G') {
-      parsed_value = parsed_value << 0x14;  // 转换为GB
-      parse_end_ptr = parse_end_ptr + 1;
-      *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+    else if (cVar1 == 'G') {
+      iVar2 = iVar2 << 0x14;
+      pcVar3 = pcVar3 + 1;
+      *(char **)(unaff_RBP + -0x69) = pcVar3;
     }
     else {
-      // 默认转换为KB
-      parsed_value = (int)((longlong)parsed_value + 0x3ffU >> 10);
+      iVar2 = (int)((longlong)iVar2 + 0x3ffU >> 10);
     }
-    // 跳过可选的'B'后缀
-    if (*parse_end_ptr == 'B') {
-      parse_end_ptr = parse_end_ptr + 1;
-      *(char **)(stack_frame_offset + -0x69) = parse_end_ptr;
+    if (*pcVar3 == 'B') {
+      pcVar3 = pcVar3 + 1;
+      *(char **)(unaff_RBP + -0x69) = pcVar3;
     }
   }
-  
-  // 检查解析结果
-  if (*parse_end_ptr == '\0') {
-    *config_ptr = parsed_value;  // 设置解析的值
-    config_ptr[1] = 2;  // 成功解析标志
+  if (*pcVar3 == '\0') {
+    *unaff_RSI = iVar2;
+    unaff_RSI[1] = 2;
   }
   else {
-    // 有剩余字符，记录为无效值
-    send_ui_system_warning(&UNK_180a3dbd0, *(undefined8 *)(config_ptr + 4), stack_frame_offset + -0x59);
-    config_ptr[1] = 1;  // 无效值标志
+    FUN_180650340(&UNK_180a3dbd0,*(undefined8 *)(unaff_RSI + 4),unaff_RBP + -0x59);
+    unaff_RSI[1] = 1;
   }
-  
-  // 安全检查结束
-  perform_security_check(*(ulonglong *)(stack_frame_offset + 0x47) ^ (ulonglong)&stack0x00000000);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
 }
 
-// 函数: 处理UI系统默认环境变量
-// 原始函数名: FUN_18065067e
-// 功能: 处理UI系统默认环境变量情况
-void process_ui_default_environment(void)
+
+
+
+
+// 函数: void FUN_18065067e(void)
+void FUN_18065067e(void)
+
 {
-  longlong stack_frame_offset;
-  longlong config_ptr;
+  longlong unaff_RBP;
+  longlong unaff_RSI;
   
-  // 检查是否使用默认值
   if (DAT_180bf66d8 == '\0') {
-    *(undefined4 *)(config_ptr + 4) = 1;  // 使用默认值标志
+    *(undefined4 *)(unaff_RSI + 4) = 1;
   }
-  
-  // 安全检查结束
-  perform_security_check(*(ulonglong *)(stack_frame_offset + 0x47) ^ (ulonglong)&stack0x00000000);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
 }
 
-// 函数: 处理UI系统缓冲区溢出
-// 原始函数名: FUN_180650697
-// 功能: 处理UI系统缓冲区溢出错误
-void handle_ui_buffer_overflow(void)
+
+
+
+
+// 函数: void FUN_180650697(void)
+void FUN_180650697(void)
+
 {
-  code *error_handler;
+  code *pcVar1;
   
-  // 调用错误处理函数
-  handle_ui_buffer_overflow_internal();
-  
-  // 调用系统错误处理器
-  error_handler = (code *)swi(3);
-  (*error_handler)();
-  
+  FUN_1808fcdc8();
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
   return;
 }
 
-// ============================================================================
-// UI系统数学计算函数
-// ============================================================================
 
-// 函数: 计算UI射线与平面交点
-// 原始函数名: FUN_1806506a0
-// 功能: 计算UI射线与平面的交点
-// 参数: param_1-输出交点, param_2-射线起点, param_3-平面法向量, param_4-平面上的点
-// 返回值: 是否相交（true=相交，false=不相交）
-bool calculate_ui_ray_plane_intersection(float *intersection_point, float *ray_origin, 
-                                       float *plane_normal, float *plane_point)
+
+bool FUN_1806506a0(float *param_1,float *param_2,float *param_3,float *param_4)
+
 {
-  float plane_normal_x;
-  float ray_direction_x;
-  float plane_point_x;
-  float ray_direction_y;
-  float plane_normal_y;
-  float plane_point_y;
-  float plane_normal_z;
-  float ray_direction_z;
-  float denominator;
-  float plane_normal_dot_ray_y;
-  float plane_normal_dot_ray_z;
-  float plane_normal_dot_ray_x;
-  float ray_origin_dot_plane_normal;
-  float plane_point_dot_plane_normal;
-  float ray_direction_dot_plane_normal;
-  float intersection_distance;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
   
-  // 计算平面法向量分量
-  plane_normal_x = plane_normal[4];
-  ray_direction_x = ray_origin[6];
-  plane_point_x = plane_point[6];
-  plane_normal_y = plane_normal[5];
-  ray_direction_y = plane_point[5];
-  plane_normal_z = plane_normal[6];
-  
-  // 计算分母（平面法向量与射线方向的点积）
-  denominator = plane_normal_y * ray_direction_y - plane_normal_z * ray_direction_x;
-  plane_normal_dot_ray_x = plane_point_x * plane_normal_z - plane_normal_x * ray_direction_x;
-  plane_normal_dot_ray_y = plane_normal_x * ray_direction_y - plane_point_x * plane_normal_y;
-  plane_normal_dot_ray_z = plane_normal_x * ray_direction_x - plane_normal_y * plane_point_x;
-  
-  // 计算分子（射线起点到平面的距离）
-  ray_origin_dot_plane_normal = plane_normal_dot_ray_y * ray_origin[5] + 
-                               plane_normal_dot_ray_x * ray_origin[4] + 
-                               plane_normal_dot_ray_z * ray_direction_x;
-  
-  // 检查是否相交（分母不为零）
-  if (ray_origin_dot_plane_normal != 0.0) {
-    // 计算平面上的点到射线起点的距离
-    plane_point_dot_plane_normal = ray_origin[5] * ray_origin[1] + 
-                                  ray_origin[4] * *ray_origin + 
-                                  ray_direction_x * ray_origin[2];
-    
-    // 计算交点距离
-    intersection_distance = 1.0 / ray_origin_dot_plane_normal;
-    
-    // 计算平面法向量与射线起点的点积
-    plane_normal_dot_ray_x = plane_normal_y * plane_normal[1] + 
-                           plane_normal_x * *plane_normal + 
-                           plane_normal_z * plane_normal[2];
-    
-    // 计算平面法向量与平面点的点积
-    plane_normal_dot_ray_y = ray_direction_y * plane_point[1] + 
-                           plane_point_x * *plane_point + 
-                           ray_direction_x * plane_point[2];
-    
-    // 计算射线方向与平面法向量的点积
-    ray_direction_dot_plane_normal = ray_origin[5];
-    
-    // 计算交点坐标
-    *intersection_point = ((ray_direction_x * ray_direction_y - ray_origin[5] * ray_direction_x) * plane_normal_dot_ray_x + 
-                         plane_point_dot_plane_normal * plane_normal_dot_ray_x +
-                         (ray_origin[5] * plane_normal_z - ray_origin[6] * plane_normal_y) * plane_normal_dot_ray_y) * intersection_distance;
-    
-    intersection_point[1] = ((ray_origin[4] * ray_direction_x - ray_origin[6] * plane_point_x) * plane_normal_dot_ray_x + 
-                           plane_point_dot_plane_normal * plane_normal_dot_ray_y +
-                           (ray_origin[6] * plane_normal_x - ray_origin[4] * plane_normal_z) * plane_normal_dot_ray_y) * intersection_distance;
-    
-    intersection_point[2] = ((ray_direction_dot_plane_normal * plane_point_x - ray_origin[4] * ray_direction_y) * plane_normal_dot_ray_x + 
-                           plane_point_dot_plane_normal * plane_normal_dot_ray_z +
-                           (ray_origin[4] * plane_normal_x - ray_direction_dot_plane_normal * plane_normal_x) * plane_normal_dot_ray_y) * intersection_distance;
-    
-    intersection_point[3] = 3.4028235e+38;  // 设置最大浮点数作为标记
+  fVar1 = param_3[4];
+  fVar2 = param_2[6];
+  fVar3 = param_4[6];
+  fVar4 = param_3[5];
+  fVar5 = param_4[5];
+  fVar6 = param_3[6];
+  fVar18 = fVar4 * fVar3 - fVar6 * fVar5;
+  fVar7 = param_4[4];
+  fVar19 = fVar7 * fVar6 - fVar1 * fVar3;
+  fVar20 = fVar1 * fVar5 - fVar7 * fVar4;
+  fVar13 = fVar19 * param_2[5] + fVar18 * param_2[4] + fVar20 * fVar2;
+  if (fVar13 != 0.0) {
+    fVar17 = param_2[5] * param_2[1] + param_2[4] * *param_2 + fVar2 * param_2[2];
+    fVar14 = 1.0 / fVar13;
+    fVar8 = param_2[4];
+    fVar15 = fVar4 * param_3[1] + fVar1 * *param_3 + fVar6 * param_3[2];
+    fVar16 = fVar5 * param_4[1] + fVar7 * *param_4 + fVar3 * param_4[2];
+    fVar1 = param_2[5];
+    fVar9 = param_2[6];
+    fVar10 = param_3[4];
+    fVar11 = param_2[4];
+    fVar12 = param_3[4];
+    *param_1 = ((fVar2 * fVar5 - param_2[5] * fVar3) * fVar15 + fVar17 * fVar18 +
+               (param_2[5] * fVar6 - param_2[6] * fVar4) * fVar16) * fVar14;
+    param_1[1] = ((fVar8 * fVar3 - fVar9 * fVar7) * fVar15 + fVar17 * fVar19 +
+                 (fVar9 * fVar10 - fVar11 * fVar6) * fVar16) * fVar14;
+    param_1[2] = ((fVar1 * fVar7 - fVar11 * fVar5) * fVar15 + fVar17 * fVar20 +
+                 (fVar11 * fVar4 - fVar1 * fVar12) * fVar16) * fVar14;
+    param_1[3] = 3.4028235e+38;
   }
-  
-  return ray_origin_dot_plane_normal != 0.0;
+  return fVar13 != 0.0;
 }
 
-// 函数: 计算UI变换矩阵
-// 原始函数名: FUN_180650782
-// 功能: 计算UI元素的变换矩阵
-// 参数: param_1-输出矩阵, param_2-输入矩阵1, param_3-缩放因子1, param_4-缩放因子2
-// 返回值: 计算是否成功
-undefined1 calculate_ui_transform_matrix(float *output_matrix, float *input_matrix1, 
-                                       float scale_factor1, float scale_factor2)
+
+
+undefined1 FUN_180650782(float *param_1,float *param_2,float param_3,float param_4)
+
 {
-  float matrix_element_11;
-  float matrix_element_12;
-  float matrix_element_13;
-  float matrix_element_21;
-  float matrix_element_22;
-  float matrix_element_23;
-  float *input_matrix2;
-  float *input_matrix3;
-  float scale_value1;
-  float scale_value2;
-  float transform_factor1;
-  float transform_factor2;
-  float normalized_scale1;
-  float normalized_scale2;
-  float determinant1;
-  float determinant2;
-  float determinant3;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float *in_R8;
+  float *in_R9;
+  float in_XMM1_Da;
+  float in_XMM4_Da;
+  float fVar7;
+  float in_XMM5_Da;
+  float fVar8;
+  float unaff_XMM6_Da;
+  float fVar9;
+  float unaff_XMM8_Da;
+  float unaff_XMM9_Da;
+  float unaff_XMM10_Da;
+  float unaff_XMM11_Da;
+  float unaff_XMM12_Da;
+  float unaff_XMM13_Da;
+  float unaff_XMM14_Da;
+  float unaff_XMM15_Da;
   
-  // 计算输入矩阵1的行列式
-  determinant1 = scale_value2 * input_matrix1[1] + scale_value1 * *input_matrix1 + transform_factor1 * input_matrix1[2];
-  
-  // 计算缩放因子的倒数
-  scale_factor1 = 1.0 / scale_factor1;
-  
-  // 计算输入矩阵2的行列式
-  matrix_element_11 = input_matrix1[4];
-  normalized_scale1 = determinant2 * input_matrix2[1] + scale_factor2 * *input_matrix2 + determinant3 * input_matrix2[2];
-  normalized_scale2 = determinant1 * input_matrix3[1] + transform_factor2 * *input_matrix3 + transform_factor1 * input_matrix3[2];
-  
-  // 计算中间变换矩阵元素
-  matrix_element_12 = input_matrix1[5];
-  matrix_element_13 = input_matrix1[6];
-  matrix_element_21 = input_matrix2[4];
-  matrix_element_22 = input_matrix1[4];
-  matrix_element_23 = input_matrix2[4];
-  
-  // 计算输出矩阵的第一行
-  *output_matrix = ((transform_factor1 * determinant1 - input_matrix1[5] * transform_factor1) * normalized_scale1 +
-                   determinant1 * determinant2 +
-                   (input_matrix1[5] * determinant3 - input_matrix1[6] * determinant2) * normalized_scale2) * scale_factor1;
-  
-  // 计算输出矩阵的第二行
-  output_matrix[1] = ((matrix_element_11 * transform_factor1 - matrix_element_13 * transform_factor2) * normalized_scale1 + 
-                      determinant1 * determinant3 +
-                      (matrix_element_13 * matrix_element_21 - matrix_element_22 * determinant3) * normalized_scale2) * scale_factor1;
-  
-  // 计算输出矩阵的第三行
-  output_matrix[2] = ((matrix_element_12 * transform_factor2 - matrix_element_22 * determinant1) * normalized_scale1 + 
-                      determinant1 * transform_factor2 +
-                      (matrix_element_22 * determinant2 - matrix_element_12 * matrix_element_23) * normalized_scale2) * scale_factor1;
-  
-  output_matrix[3] = 3.4028235e+38;  // 设置最大浮点数作为标记
-  
-  return 1;  // 总是返回成功
+  fVar9 = in_XMM5_Da * param_2[1] + in_XMM4_Da * *param_2 + in_XMM1_Da * param_2[2];
+  param_3 = 1.0 / param_3;
+  fVar1 = param_2[4];
+  fVar7 = unaff_XMM12_Da * in_R8[1] + param_4 * *in_R8 + unaff_XMM14_Da * in_R8[2];
+  fVar8 = unaff_XMM13_Da * in_R9[1] + unaff_XMM15_Da * *in_R9 + unaff_XMM11_Da * in_R9[2];
+  fVar2 = param_2[5];
+  fVar3 = param_2[6];
+  fVar4 = in_R8[4];
+  fVar5 = param_2[4];
+  fVar6 = in_R8[4];
+  *param_1 = ((unaff_XMM6_Da * unaff_XMM13_Da - param_2[5] * unaff_XMM11_Da) * fVar7 +
+              fVar9 * unaff_XMM8_Da +
+             (param_2[5] * unaff_XMM14_Da - param_2[6] * unaff_XMM12_Da) * fVar8) * param_3;
+  param_1[1] = ((fVar1 * unaff_XMM11_Da - fVar3 * unaff_XMM15_Da) * fVar7 + fVar9 * unaff_XMM9_Da +
+               (fVar3 * fVar4 - fVar5 * unaff_XMM14_Da) * fVar8) * param_3;
+  param_1[2] = ((fVar2 * unaff_XMM15_Da - fVar5 * unaff_XMM13_Da) * fVar7 + fVar9 * unaff_XMM10_Da +
+               (fVar5 * unaff_XMM12_Da - fVar2 * fVar6) * fVar8) * param_3;
+  param_1[3] = 3.4028235e+38;
+  return 1;
 }
 
-// ============================================================================
-// UI系统工具函数
-// ============================================================================
 
-// 函数: UI系统空操作函数2
-// 原始函数名: FUN_180650908
-// 功能: UI系统空操作函数，用于占位
-void ui_system_no_operation2(void)
+
+
+
+// 函数: void FUN_180650908(void)
+void FUN_180650908(void)
+
 {
   return;
 }
 
-// 函数: 提取UI系统文件名
-// 原始函数名: FUN_180650950
-// 功能: 从路径中提取文件名
-// 参数: param_1-路径信息结构, param_2-输出缓冲区
-void extract_ui_filename(longlong path_info, longlong output_buffer)
+
+
+
+
+// 函数: void FUN_180650950(longlong param_1,longlong param_2)
+void FUN_180650950(longlong param_1,longlong param_2)
+
 {
-  char path_char;
-  ulonglong last_backslash1;
-  ulonglong last_backslash2;
-  ulonglong last_backslash3;
-  undefined *path_ptr;
-  char *filename_ptr;
+  char cVar1;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  undefined *puVar4;
+  char *pcVar5;
   
-  // 获取路径指针
-  path_ptr = &DAT_18098bc73;
-  if (*(undefined **)(path_info + 8) != (undefined *)0x0) {
-    path_ptr = *(undefined **)(path_info + 8);
+  puVar4 = &DAT_18098bc73;
+  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
+    puVar4 = *(undefined **)(param_1 + 8);
   }
-  
-  // 查找最后一个反斜杠
-  last_backslash1 = strrchr(path_ptr, 0x5c);
-  
-  // 重新获取路径指针
-  path_ptr = &DAT_18098bc73;
-  if (*(undefined **)(path_info + 8) != (undefined *)0x0) {
-    path_ptr = *(undefined **)(path_info + 8);
+  uVar2 = strrchr(puVar4,0x5c);
+  puVar4 = &DAT_18098bc73;
+  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
+    puVar4 = *(undefined **)(param_1 + 8);
   }
-  
-  // 再次查找最后一个反斜杠
-  last_backslash2 = strrchr(path_ptr, 0x5c);
-  
-  // 确定使用哪个反斜杠位置
-  if (last_backslash1 == 0) {
-    if (last_backslash2 == 0) {
-      // 没有反斜杠，使用整个路径作为文件名
-      filename_ptr = "";
-      if (*(char **)(path_info + 8) != (char *)0x0) {
-        filename_ptr = *(char **)(path_info + 8);
+  uVar3 = strrchr(puVar4,0x5c);
+  if (uVar2 == 0) {
+    if (uVar3 == 0) {
+      pcVar5 = "";
+      if (*(char **)(param_1 + 8) != (char *)0x0) {
+        pcVar5 = *(char **)(param_1 + 8);
       }
-      
-      // 复制文件名到输出缓冲区
-      output_buffer = output_buffer - (longlong)filename_ptr;
+      param_2 = param_2 - (longlong)pcVar5;
       do {
-        path_char = *filename_ptr;
-        filename_ptr[output_buffer] = path_char;
-        filename_ptr = filename_ptr + 1;
-      } while (path_char != '\0');
+        cVar1 = *pcVar5;
+        pcVar5[param_2] = cVar1;
+        pcVar5 = pcVar5 + 1;
+      } while (cVar1 != '\0');
     }
     else {
-      // 使用第二个反斜杠后的部分作为文件名
-      filename_ptr = (char *)(last_backslash2 + 1);
-      output_buffer = output_buffer - (longlong)filename_ptr;
+      pcVar5 = (char *)(uVar3 + 1);
+      param_2 = param_2 - (longlong)pcVar5;
       do {
-        path_char = *filename_ptr;
-        filename_ptr[output_buffer] = path_char;
-        filename_ptr = filename_ptr + 1;
-      } while (path_char != '\0');
+        cVar1 = *pcVar5;
+        pcVar5[param_2] = cVar1;
+        pcVar5 = pcVar5 + 1;
+      } while (cVar1 != '\0');
     }
   }
-  else if (last_backslash2 == 0) {
-    // 使用第一个反斜杠后的部分作为文件名
-    filename_ptr = (char *)(last_backslash1 + 1);
-    output_buffer = output_buffer - (longlong)filename_ptr;
+  else if (uVar3 == 0) {
+    pcVar5 = (char *)(uVar2 + 1);
+    param_2 = param_2 - (longlong)pcVar5;
     do {
-      path_char = *filename_ptr;
-      filename_ptr[output_buffer] = path_char;
-      filename_ptr = filename_ptr + 1;
-    } while (path_char != '\0');
+      cVar1 = *pcVar5;
+      pcVar5[param_2] = cVar1;
+      pcVar5 = pcVar5 + 1;
+    } while (cVar1 != '\0');
   }
-  else if (last_backslash2 < last_backslash1) {
-    // 使用第一个反斜杠后的部分作为文件名
-    filename_ptr = (char *)(last_backslash1 + 1);
-    output_buffer = output_buffer - (longlong)filename_ptr;
+  else if (uVar3 < uVar2) {
+    pcVar5 = (char *)(uVar2 + 1);
+    param_2 = param_2 - (longlong)pcVar5;
     do {
-      path_char = *filename_ptr;
-      filename_ptr[output_buffer] = path_char;
-      filename_ptr = filename_ptr + 1;
-    } while (path_char != '\0');
+      cVar1 = *pcVar5;
+      pcVar5[param_2] = cVar1;
+      pcVar5 = pcVar5 + 1;
+    } while (cVar1 != '\0');
   }
   else {
-    // 使用第二个反斜杠后的部分作为文件名
-    filename_ptr = (char *)(last_backslash2 + 1);
-    output_buffer = output_buffer - (longlong)filename_ptr;
+    pcVar5 = (char *)(uVar3 + 1);
+    param_2 = param_2 - (longlong)pcVar5;
     do {
-      path_char = *filename_ptr;
-      filename_ptr[output_buffer] = path_char;
-      filename_ptr = filename_ptr + 1;
-    } while (path_char != '\0');
+      cVar1 = *pcVar5;
+      pcVar5[param_2] = cVar1;
+      pcVar5 = pcVar5 + 1;
+    } while (cVar1 != '\0');
   }
-  
   return;
 }
 
-// ============================================================================
-// UI系统消息队列函数
-// ============================================================================
 
-// 函数: 发送UI系统优先级消息
-// 原始函数名: FUN_180650a70
-// 功能: 发送UI系统优先级消息
-// 参数: param_1-消息类型, param_2-消息参数1, param_3-消息参数2, param_4-消息参数3
-void send_ui_priority_message(undefined8 message_type, undefined8 message_param1, 
-                            undefined8 message_param2, undefined8 message_param3)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180650a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180650a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  // 调用内部消息发送函数，使用高优先级
-  send_ui_internal_message(message_type, _DAT_180c967a0, message_param2, message_param3, 0xfffffffffffffffe);
-  
+  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
-// 函数: 复制UI系统消息数据
-// 原始函数名: FUN_180650aa0
-// 功能: 复制UI系统消息数据
-// 参数: param_1-目标地址, param_2-源地址
-// 返回值: 目标地址
-longlong copy_ui_message_data(longlong destination, longlong source)
+
+
+longlong FUN_180650aa0(longlong param_1,longlong param_2)
+
 {
-  undefined8 temp_value;
+  undefined8 uVar1;
   
-  // 初始化复制操作
-  initialize_ui_message_copy();
-  
-  // 复制基本消息数据（0x20字节）
-  copy_ui_message_data_internal(destination + 0x20, source + 0x20);
-  
-  // 复制消息标志（1字节）
-  *(undefined1 *)(destination + 0x40) = *(undefined1 *)(source + 0x40);
-  
-  // 复制消息时间戳（4字节）
-  *(undefined4 *)(destination + 0x44) = *(undefined4 *)(source + 0x44);
-  
-  // 复制消息序列号（8字节）
-  *(undefined8 *)(destination + 0x48) = *(undefined8 *)(source + 0x48);
-  
-  // 复制消息优先级（4字节）
-  *(undefined4 *)(destination + 0x50) = *(undefined4 *)(source + 0x50);
-  
-  // 复制扩展消息数据（0x18字节）
-  copy_ui_message_data_internal(destination + 0x58, source + 0x58);
-  
-  // 复制附加消息数据（0x20字节）
-  copy_ui_message_data_internal(destination + 0x78, source + 0x78);
-  
-  // 复制消息句柄（8字节）
-  temp_value = *(undefined8 *)(source + 0xa0);
-  *(undefined8 *)(destination + 0x98) = *(undefined8 *)(source + 0x98);
-  *(undefined8 *)(destination + 0xa0) = temp_value;
-  
-  // 复制消息验证数据（8字节）
-  *(undefined4 *)(destination + 0xa8) = *(undefined4 *)(source + 0xa8);
-  *(undefined4 *)(destination + 0xac) = *(undefined4 *)(source + 0xac);
-  
-  return destination;
+  FUN_180627be0();
+  FUN_180627be0(param_1 + 0x20,param_2 + 0x20);
+  *(undefined1 *)(param_1 + 0x40) = *(undefined1 *)(param_2 + 0x40);
+  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(param_2 + 0x44);
+  *(undefined8 *)(param_1 + 0x48) = *(undefined8 *)(param_2 + 0x48);
+  *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(param_2 + 0x50);
+  FUN_180627be0(param_1 + 0x58,param_2 + 0x58);
+  FUN_180627be0(param_1 + 0x78,param_2 + 0x78);
+  uVar1 = *(undefined8 *)(param_2 + 0xa0);
+  *(undefined8 *)(param_1 + 0x98) = *(undefined8 *)(param_2 + 0x98);
+  *(undefined8 *)(param_1 + 0xa0) = uVar1;
+  *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(param_2 + 0xa8);
+  *(undefined4 *)(param_1 + 0xac) = *(undefined4 *)(param_2 + 0xac);
+  return param_1;
 }
 
-// 函数: 解析UI系统可执行文件头
-// 原始函数名: FUN_180650b30
-// 功能: 解析UI系统可执行文件的头部信息
-// 参数: param_1-输出结构, param_2-文件基址, param_3-PE头偏移
-// 返回值: 解析结果标志
-ulonglong parse_ui_executable_header(longlong output_struct, longlong file_base, longlong pe_offset)
+
+
+ulonglong FUN_180650b30(longlong param_1,longlong param_2,longlong param_3)
+
 {
-  uint section_count;
-  uint export_table_rva;
-  uint export_table_size;
-  uint section_alignment;
-  ulonglong parse_result;
-  longlong pe_header_ptr;
-  int *section_header_ptr;
-  uint current_section;
-  ulonglong export_directory_rva;
-  uint *export_directory_ptr;
-  uint export_name_rva;
-  uint export_ordinal_base;
-  uint export_function_rva;
-  uint export_name_rva_array;
+  uint uVar1;
+  uint uVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  longlong lVar5;
+  int *piVar6;
+  uint uVar7;
+  ulonglong uVar8;
+  uint uVar9;
+  uint *puVar10;
   
-  // 计算PE头位置
-  pe_header_ptr = *(int *)(pe_offset + 0x3c) + file_base;
-  
-  // 复制可选头特征值
-  *(undefined4 *)(output_struct + 0x50) = *(undefined4 *)(pe_header_ptr + 0x50);
-  *(undefined4 *)(output_struct + 0x44) = *(undefined4 *)(pe_header_ptr + 8);
-  
-  // 检查是否为DLL文件
-  if ((*(ushort *)(pe_header_ptr + 0x16) & 0x200) != 0) {
-    *(undefined1 *)(output_struct + 0x40) = 1;  // DLL标志
+  lVar5 = *(int *)(param_3 + 0x3c) + param_2;
+  *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(lVar5 + 0x50);
+  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(lVar5 + 8);
+  if ((*(ushort *)(lVar5 + 0x16) & 0x200) != 0) {
+    *(undefined1 *)(param_1 + 0x40) = 1;
   }
-  
-  // 获取导出表信息
-  export_directory_rva = (ulonglong)*(uint *)(pe_header_ptr + 0xbc);
-  parse_result = export_directory_rva * 0x2492492492492493;  // 计算对齐
-  
-  // 计算节数量
-  section_alignment = (uint)((export_directory_rva - export_directory_rva / 7 >> 1) + export_directory_rva / 7 >> 4);
-  if (section_alignment == 0) {
-  no_export_table:
-    parse_result = parse_result & 0xffffffffffffff00;  // 无导出表标志
+  uVar8 = (ulonglong)*(uint *)(lVar5 + 0xbc);
+  uVar4 = uVar8 * 0x2492492492492493;
+  uVar7 = (uint)((uVar8 - uVar8 / 7 >> 1) + uVar8 / 7 >> 4);
+  if (uVar7 == 0) {
+LAB_180650c04:
+    uVar4 = uVar4 & 0xffffffffffffff00;
   }
   else {
-    current_section = 0;
-    if (section_alignment != 0) {
-      // 遍历所有节
-      section_header_ptr = (int *)((ulonglong)*(uint *)(pe_header_ptr + 0xb8) + 0xc + file_base);
+    uVar9 = 0;
+    if (uVar7 != 0) {
+      piVar6 = (int *)((ulonglong)*(uint *)(lVar5 + 0xb8) + 0xc + param_2);
       do {
-        // 检查是否为导出节
-        if ((section_header_ptr[1] != 0) && (*section_header_ptr == 2)) {
-          export_directory_ptr = (uint *)((ulonglong)(uint)section_header_ptr[2] + file_base);
-          if (*export_directory_ptr != 0x53445352) goto no_export_table;  // 检查"RSDS"签名
-          
-          // 复制导出表时间戳
-          *(uint *)(output_struct + 0xac) = export_directory_ptr[5];
-          
-          // 调用回调函数处理导出名称
-          (**(code **)(*(longlong *)(output_struct + 0x78) + 0x10))
-                    ((longlong *)(output_struct + 0x78), export_directory_ptr + 6);
-          
-          parse_result = (ulonglong)*export_directory_ptr;
-          *(uint *)(output_struct + 0xa8) = *export_directory_ptr;
-          
-          // 复制导出函数信息
-          export_name_rva = export_directory_ptr[2];
-          export_ordinal_base = export_directory_ptr[3];
-          export_function_rva = export_directory_ptr[4];
-          *(uint *)(output_struct + 0x98) = export_directory_ptr[1];
-          *(uint *)(output_struct + 0x9c) = export_name_rva;
-          *(uint *)(output_struct + 0xa0) = export_ordinal_base;
-          *(uint *)(output_struct + 0xa4) = export_function_rva;
+        if ((piVar6[1] != 0) && (*piVar6 == 2)) {
+          puVar10 = (uint *)((ulonglong)(uint)piVar6[2] + param_2);
+          if (*puVar10 != 0x53445352) goto LAB_180650c04;
+          *(uint *)(param_1 + 0xac) = puVar10[5];
+          (**(code **)(*(longlong *)(param_1 + 0x78) + 0x10))
+                    ((longlong *)(param_1 + 0x78),puVar10 + 6);
+          uVar4 = (ulonglong)*puVar10;
+          *(uint *)(param_1 + 0xa8) = *puVar10;
+          uVar1 = puVar10[2];
+          uVar2 = puVar10[3];
+          uVar3 = puVar10[4];
+          *(uint *)(param_1 + 0x98) = puVar10[1];
+          *(uint *)(param_1 + 0x9c) = uVar1;
+          *(uint *)(param_1 + 0xa0) = uVar2;
+          *(uint *)(param_1 + 0xa4) = uVar3;
         }
-        current_section = current_section + 1;
-        section_header_ptr = section_header_ptr + 7;
-      } while (current_section < section_alignment);
+        uVar9 = uVar9 + 1;
+        piVar6 = piVar6 + 7;
+      } while (uVar9 < uVar7);
     }
-    parse_result = CONCAT71((int7)(parse_result >> 8), 1);  // 设置成功标志
+    uVar4 = CONCAT71((int7)(uVar4 >> 8),1);
   }
-  
-  return parse_result;
+  return uVar4;
 }
 
-// ============================================================================
-// UI系统动态库管理函数
-// ============================================================================
 
-// 函数: 加载UI系统动态库
-// 原始函数名: FUN_180650c20
-// 功能: 加载UI系统所需的动态库
-// 参数: param_1-库信息结构
-void load_ui_system_library(longlong library_info)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180650c20(longlong param_1)
+void FUN_180650c20(longlong param_1)
+
 {
-  short *library_handle;
-  undefined8 *library_list_ptr;
-  undefined8 *current_ptr;
-  undefined *library_path;
-  undefined8 *previous_ptr;
-  ulonglong library_base;
-  undefined1 security_buffer[32];
-  short **handle_ptr;
-  short *temp_handle;
-  undefined8 load_address;
-  undefined1 handle_buffer[16];
-  longlong library_data[4];
-  undefined1 path_buffer[272];
-  ulonglong stack_guard;
+  short *psVar1;
+  undefined8 *puVar2;
+  undefined8 *puVar3;
+  undefined *puVar4;
+  undefined8 *puVar5;
+  ulonglong uVar6;
+  undefined1 auStack_228 [32];
+  short **ppsStack_208;
+  short *psStack_1f8;
+  undefined8 uStack_1f0;
+  undefined1 auStack_1e8 [16];
+  longlong alStack_1d8 [4];
+  undefined1 auStack_1b8 [8];
+  longlong lStack_1b0;
+  uint uStack_1a8;
+  undefined4 uStack_19c;
+  short *psStack_190;
+  undefined1 auStack_128 [272];
+  ulonglong uStack_18;
   
-  // 初始化加载地址
-  load_address = 0xfffffffffffffffe;
-  
-  // 安全检查：堆栈保护
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-  
-  // 获取库路径
-  library_path = &DAT_18098bc73;
-  if (*(undefined **)(library_info + 8) != (undefined *)0x0) {
-    library_path = *(undefined **)(library_info + 8);
+  uStack_1f0 = 0xfffffffffffffffe;
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
+  puVar4 = &DAT_18098bc73;
+  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
+    puVar4 = *(undefined **)(param_1 + 8);
   }
-  
-  // 加载动态库
-  library_handle = (short *)LoadLibraryA(library_path);
-  if (library_handle != (short *)0x0) {
-    // 初始化库链表指针
-    previous_ptr = (undefined8 *)&DAT_180c96790;
-    current_ptr = _DAT_180c967a0;
-    temp_handle = library_handle;
-    
-    // 在库链表中查找合适的插入位置
+  psVar1 = (short *)LoadLibraryA(puVar4);
+  if (psVar1 != (short *)0x0) {
+    puVar5 = (undefined8 *)&DAT_180c96790;
+    puVar2 = _DAT_180c967a0;
+    psStack_1f8 = psVar1;
     if (_DAT_180c967a0 != (undefined8 *)0x0) {
       do {
-        if ((short *)current_ptr[4] < library_handle) {
-          library_list_ptr = (undefined8 *)*current_ptr;
+        if ((short *)puVar2[4] < psVar1) {
+          puVar3 = (undefined8 *)*puVar2;
         }
         else {
-          library_list_ptr = (undefined8 *)current_ptr[1];
-          previous_ptr = current_ptr;
+          puVar3 = (undefined8 *)puVar2[1];
+          puVar5 = puVar2;
         }
-        current_ptr = library_list_ptr;
-      } while (library_list_ptr != (undefined8 *)0x0);
-      
-      // 检查是否需要插入到链表中
-      if ((previous_ptr != (undefined8 *)&DAT_180c96790) && ((short *)previous_ptr[4] <= library_handle))
-        goto insert_into_list;
+        puVar2 = puVar3;
+      } while (puVar3 != (undefined8 *)0x0);
+      if ((puVar5 != (undefined8 *)&DAT_180c96790) && ((short *)puVar5[4] <= psVar1))
+      goto LAB_180650dc8;
     }
-    
-    // 提取文件名
-    extract_ui_filename(library_info, path_buffer);
-    
-    // 初始化库数据结构
-    initialize_ui_library_data(library_data);
-    
-    // 设置库句柄
-    handle_ptr = &temp_handle;
-    
-    // 调用库初始化函数
-    (**(code **)(library_data[0] + 0x10))(library_data, path_buffer);
-    
-    // 获取库大小
-    library_base = *(uint *)(library_info + 0x10);
-    if (*(longlong *)(library_info + 8) != 0) {
-      copy_ui_library_info(path_buffer, library_base);
+    FUN_180650950(param_1,auStack_128);
+    FUN_18063ccc0(alStack_1d8);
+    psStack_190 = psVar1;
+    (**(code **)(alStack_1d8[0] + 0x10))(alStack_1d8,auStack_128);
+    uStack_1a8 = *(uint *)(param_1 + 0x10);
+    uVar6 = (ulonglong)uStack_1a8;
+    if (*(longlong *)(param_1 + 8) != 0) {
+      FUN_1806277c0(auStack_1b8,uVar6);
     }
-    
-    // 复制库路径
-    if (library_base != 0) {
-      memcpy(load_address, *(undefined8 *)(library_info + 8), library_base);
+    if (uStack_1a8 != 0) {
+                    // WARNING: Subroutine does not return
+      memcpy(lStack_1b0,*(undefined8 *)(param_1 + 8),uVar6);
     }
-    
-    // 确保路径字符串终止
-    if (load_address != 0) {
-      *(undefined1 *)(library_base + load_address) = 0;
+    if (lStack_1b0 != 0) {
+      *(undefined1 *)(uVar6 + lStack_1b0) = 0;
     }
-    
-    // 获取库特征值
-    *(undefined4 *)(library_info + 0x1c) = *(undefined4 *)(library_info + 0x1c);
-    
-    // 检查PE签名
-    if (*temp_handle == 0x5a4d) {
-      parse_ui_executable_header(library_data, temp_handle, temp_handle);
+    uStack_19c = *(undefined4 *)(param_1 + 0x1c);
+    if (*psStack_190 == 0x5a4d) {
+      FUN_180650b30(alStack_1d8,psStack_190,psStack_190);
     }
-    
-    // 重新定位插入点
-    previous_ptr = (undefined8 *)&DAT_180c96790;
-    current_ptr = _DAT_180c967a0;
-    
-    // 查找插入位置
-    while (current_ptr != (undefined8 *)0x0) {
-      if ((short *)current_ptr[4] < library_handle) {
-        current_ptr = (undefined8 *)*current_ptr;
+    puVar5 = (undefined8 *)&DAT_180c96790;
+    puVar2 = _DAT_180c967a0;
+    while (puVar2 != (undefined8 *)0x0) {
+      if ((short *)puVar2[4] < psVar1) {
+        puVar2 = (undefined8 *)*puVar2;
       }
       else {
-        previous_ptr = current_ptr;
-        current_ptr = (undefined8 *)current_ptr[1];
+        puVar5 = puVar2;
+        puVar2 = (undefined8 *)puVar2[1];
       }
     }
-    
-    // 检查是否需要插入到链表头部
-    if ((previous_ptr == (undefined8 *)&DAT_180c96790) || (library_handle < (short *)previous_ptr[4])) {
-      handle_ptr = &temp_handle;
-      previous_ptr = (undefined8 *)insert_ui_library_node(previous_ptr, handle_buffer);
-      previous_ptr = (undefined8 *)*previous_ptr;
+    if ((puVar5 == (undefined8 *)&DAT_180c96790) || (psVar1 < (short *)puVar5[4])) {
+      ppsStack_208 = &psStack_1f8;
+      puVar5 = (undefined8 *)FUN_1806515e0(puVar5,auStack_1e8);
+      puVar5 = (undefined8 *)*puVar5;
     }
-    
-  insert_into_list:
-    // 复制库数据到链表节点
-    copy_ui_message_data(previous_ptr + 5, library_data);
-    
-    // 清理库数据
-    cleanup_ui_library_data(library_data);
+    FUN_180650aa0(puVar5 + 5,alStack_1d8);
+    FUN_18063cfe0(alStack_1d8);
   }
-  
-  // 安全检查结束
-  perform_security_check(stack_guard ^ (ulonglong)security_buffer);
+LAB_180650dc8:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_228);
 }
 
-// 函数: 创建UI系统进程快照
-// 原始函数名: FUN_180650e00
-// 功能: 创建UI系统相关进程的快照
-void create_ui_process_snapshot(void)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180650e00(void)
+void FUN_180650e00(void)
+
 {
-  int mutex_result;
-  undefined4 process_id;
-  undefined8 module_handle;
-  longlong snapshot_handle;
-  undefined1 security_buffer[128];
-  undefined8 snapshot_flags;
-  undefined8 snapshot_address;
-  undefined1 process_info_buffer[748];
-  ulonglong stack_guard;
+  int iVar1;
+  undefined4 uVar2;
+  undefined8 uVar3;
+  longlong lVar4;
+  undefined1 auStack_3c8 [128];
+  undefined8 uStack_348;
+  undefined8 uStack_340;
+  undefined1 auStack_324 [748];
+  ulonglong uStack_38;
   
-  // 设置快照标志
-  snapshot_flags = 0xfffffffffffffffe;
-  
-  // 安全检查：堆栈保护
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-  
-  // 设置快照地址
-  snapshot_address = 0x180c96740;
-  
-  // 锁定互斥体
-  mutex_result = _Mtx_lock(0x180c96740);
-  if (mutex_result != 0) {
-    __Throw_C_error_std__YAXH_Z(mutex_result);
+  uStack_348 = 0xfffffffffffffffe;
+  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3c8;
+  uStack_340 = 0x180c96740;
+  iVar1 = _Mtx_lock(0x180c96740);
+  if (iVar1 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar1);
   }
-  
-  // 获取当前模块句柄
-  module_handle = GetModuleHandleA(0);
-  
-  // 获取进程ID
-  process_id = GetProcessId(module_handle);
-  
-  // 创建进程快照
-  snapshot_handle = CreateToolhelp32Snapshot(0x18, process_id);
-  
-  // 处理快照创建失败的情况
+  uVar3 = GetModuleHandleA(0);
+  uVar2 = GetProcessId(uVar3);
+  lVar4 = CreateToolhelp32Snapshot(0x18,uVar2);
   while( true ) {
-    if (snapshot_handle != -1) {
-      // 成功创建快照，初始化进程信息结构
-      memset(process_info_buffer, 0, 0x234);
+    if (lVar4 != -1) {
+                    // WARNING: Subroutine does not return
+      memset(auStack_324,0,0x234);
     }
-    
-    // 检查错误代码
-    mutex_result = GetLastError();
-    if (mutex_result != 0x18) break;
-    
-    // 如果错误为"ERROR_BAD_LENGTH"，重试
-    snapshot_handle = CreateToolhelp32Snapshot(0x18, process_id);
+    iVar1 = GetLastError();
+    if (iVar1 != 0x18) break;
+    lVar4 = CreateToolhelp32Snapshot(0x18,uVar2);
   }
-  
-  // 解锁互斥体
-  mutex_result = _Mtx_unlock(0x180c96740);
-  if (mutex_result != 0) {
-    __Throw_C_error_std__YAXH_Z(mutex_result);
+  iVar1 = _Mtx_unlock(0x180c96740);
+  if (iVar1 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar1);
   }
-  
-  // 安全检查结束
-  perform_security_check(stack_guard ^ (ulonglong)security_buffer);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_3c8);
 }
 
-// 函数: 发送UI系统内部消息
-// 原始函数名: FUN_180651540
-// 功能: 发送UI系统内部消息
-// 参数: param_1-消息类型, param_2-消息参数1, param_3-消息参数2, param_4-消息参数3
-void send_ui_internal_message(undefined8 message_type, undefined8 message_param1, 
-                           undefined8 message_param2, undefined8 message_param3)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180651540(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180651540(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  // 调用内部消息发送函数，使用内部优先级
-  send_ui_internal_message(message_type, _DAT_180c967a0, message_param2, message_param3, 0xfffffffffffffffe);
-  
+  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
-// 函数: 递归发送UI系统内部消息
-// 原始函数名: FUN_180651560
-// 功能: 递归发送UI系统内部消息
-// 参数: param_1-消息类型, param_2-消息链表, param_3-消息参数2, param_4-消息参数3
-void send_ui_internal_message_recursive(undefined8 message_type, undefined8 *message_list, 
-                                      undefined8 message_param2, undefined8 message_param3)
+
+
+
+
+// 函数: void FUN_180651560(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180651560(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 {
-  if (message_list != (undefined8 *)0x0) {
-    // 递归发送消息到链表中的所有节点
-    send_ui_internal_message_recursive(&DAT_180c96790, *message_list, message_param2, message_param3, 0xfffffffffffffffe);
-    
-    // 清理当前节点
-    cleanup_ui_message_node(message_list + 5);
-    
-    // 释放节点内存
-    free_ui_message_node(message_list);
+  if (param_2 != (undefined8 *)0x0) {
+    FUN_180651560(&DAT_180c96790,*param_2,param_3,param_4,0xfffffffffffffffe);
+    FUN_18063cfe0(param_2 + 5);
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(param_2);
   }
-  
   return;
 }
 
-// 函数: 查找UI系统消息节点插入位置
-// 原始函数名: FUN_1806515e0
-// 功能: 在UI系统消息链表中查找合适的插入位置
-// 参数: param_1-消息类型, param_2-消息链表, param_3-消息数据, param_4-节点指针, param_5-优先级
-// 返回值: 插入位置的指针
-undefined8 *find_ui_message_insert_position(undefined8 message_type, undefined8 *message_list, 
-                                           undefined8 message_data, longlong *node_ptr,
-                                           ulonglong *priority)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 *
+FUN_1806515e0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4,
+             ulonglong *param_5)
+
 {
-  longlong *node_info;
-  undefined8 *insert_position;
-  ulonglong current_priority;
-  longlong current_node;
-  undefined8 *search_ptr;
-  undefined4 insert_flag;
-  bool is_higher_priority;
+  longlong *plVar1;
+  undefined8 *puVar2;
+  ulonglong uVar3;
+  longlong lVar4;
+  undefined8 *puVar5;
+  undefined4 uVar6;
+  bool bVar7;
   
-  // 检查是否为特殊节点
-  if ((node_ptr == _DAT_180c96790) || (node_ptr == (longlong *)&DAT_180c96790)) {
-    if ((_DAT_180c967b0 != 0) && (node_ptr = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *priority))
-       goto insert_at_position;
+  if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&DAT_180c96790)) {
+    if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
+       ) goto LAB_18065166c;
   }
   else {
-    // 获取节点信息
-    node_info = (longlong *)func_0x00018066bd70(node_ptr);
-    if (((ulonglong)node_ptr[4] < *priority) && (*priority < (ulonglong)node_info[4])) {
-      if (*node_ptr != 0) {
-        node_ptr = node_info;
+    plVar1 = (longlong *)func_0x00018066bd70(param_4);
+    if (((ulonglong)param_4[4] < *param_5) && (*param_5 < (ulonglong)plVar1[4])) {
+      if (*param_4 != 0) {
+        param_4 = plVar1;
       }
-    insert_at_position:
-      if (node_ptr != (longlong *)0x0) {
-        initialize_ui_message_node();
-        return message_list;
+LAB_18065166c:
+      if (param_4 != (longlong *)0x0) {
+        FUN_180651770();
+        return param_2;
       }
     }
   }
-  
-  // 在链表中查找插入位置
-  insert_position = (undefined8 *)&DAT_180c96790;
-  is_higher_priority = true;
-  
+  puVar5 = (undefined8 *)&DAT_180c96790;
+  bVar7 = true;
   if (_DAT_180c967a0 != (undefined8 *)0x0) {
-    search_ptr = _DAT_180c967a0;
+    puVar2 = _DAT_180c967a0;
     do {
-      insert_position = search_ptr;
-      is_higher_priority = *priority < (ulonglong)insert_position[4];
-      if (is_higher_priority) {
-        search_ptr = (undefined8 *)insert_position[1];
+      puVar5 = puVar2;
+      bVar7 = *param_5 < (ulonglong)puVar5[4];
+      if (bVar7) {
+        puVar2 = (undefined8 *)puVar5[1];
       }
       else {
-        search_ptr = (undefined8 *)*insert_position;
+        puVar2 = (undefined8 *)*puVar5;
       }
-    } while (search_ptr != (undefined8 *)0x0);
+    } while (puVar2 != (undefined8 *)0x0);
   }
-  
-  search_ptr = insert_position;
-  if (is_higher_priority) {
-    if (insert_position == _DAT_180c96798) {
-      current_priority = *priority;
-      goto insert_node;
+  puVar2 = puVar5;
+  if (bVar7) {
+    if (puVar5 == _DAT_180c96798) {
+      uVar3 = *param_5;
+      goto LAB_1806516e0;
     }
-    search_ptr = (undefined8 *)func_0x00018066b9a0(insert_position);
+    puVar2 = (undefined8 *)func_0x00018066b9a0(puVar5);
   }
-  
-  current_priority = *priority;
-  if (current_priority <= (ulonglong)search_ptr[4]) {
-    *message_list = search_ptr;
-    return message_list;
+  uVar3 = *param_5;
+  if (uVar3 <= (ulonglong)puVar2[4]) {
+    *param_2 = puVar2;
+    return param_2;
   }
-  
-insert_node:
-  // 确定插入标志
-  if ((insert_position == (undefined8 *)&DAT_180c96790) || (current_priority < (ulonglong)insert_position[4])) {
-    insert_flag = 0;
+LAB_1806516e0:
+  if ((puVar5 == (undefined8 *)&DAT_180c96790) || (uVar3 < (ulonglong)puVar5[4])) {
+    uVar6 = 0;
   }
   else {
-    insert_flag = 1;
+    uVar6 = 1;
   }
-  
-  // 分配新节点
-  current_node = allocate_ui_message_node(_DAT_180c8ed18, 0xd8, DAT_180c967b8);
-  
-  // 设置节点优先级
-  *(ulonglong *)(current_node + 0x20) = *priority;
-  
-  // 初始化节点数据
-  initialize_ui_message_node(current_node + 0x28);
-  
-  // 插入节点到链表
-  insert_ui_message_node(current_node, insert_position, &DAT_180c96790, insert_flag);
+  lVar4 = FUN_18062b420(_DAT_180c8ed18,0xd8,DAT_180c967b8);
+  *(ulonglong *)(lVar4 + 0x20) = *param_5;
+  FUN_18063ccc0(lVar4 + 0x28);
+                    // WARNING: Subroutine does not return
+  FUN_18066bdc0(lVar4,puVar5,&DAT_180c96790,uVar6);
 }
 
-// 函数: 插入UI系统消息节点
-// 原始函数名: FUN_180651770
-// 功能: 在UI系统消息链表中插入新节点
-// 参数: param_1-消息类型, param_2-消息数据, param_3-节点位置, param_4-消息参数, param_5-优先级
-void insert_ui_message_node(undefined8 message_type, undefined8 message_data, undefined *node_position, 
-                          undefined8 message_param, ulonglong *priority)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180651770(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+void FUN_180651770(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+                  ulonglong *param_5)
+
 {
-  longlong new_node;
-  undefined4 insert_flag;
+  longlong lVar1;
+  undefined4 uVar2;
   
-  // 检查插入条件
-  if ((((char)message_param == '\0') && (node_position != &DAT_180c96790)) &&
-     (*(ulonglong *)(node_position + 0x20) <= *priority)) {
-    insert_flag = 1;
+  if ((((char)param_4 == '\0') && (param_3 != &DAT_180c96790)) &&
+     (*(ulonglong *)(param_3 + 0x20) <= *param_5)) {
+    uVar2 = 1;
   }
   else {
-    insert_flag = 0;
+    uVar2 = 0;
   }
-  
-  // 分配新节点
-  new_node = allocate_ui_message_node(_DAT_180c8ed18, 0xd8, DAT_180c967b8, message_param, 0xfffffffffffffffe);
-  
-  // 设置节点优先级
-  *(ulonglong *)(new_node + 0x20) = *priority;
-  
-  // 初始化节点数据
-  initialize_ui_message_node(new_node + 0x28);
-  
-  // 插入节点
-  insert_ui_message_node(new_node, node_position, &DAT_180c96790, insert_flag);
+  lVar1 = FUN_18062b420(_DAT_180c8ed18,0xd8,DAT_180c967b8,param_4,0xfffffffffffffffe);
+  *(ulonglong *)(lVar1 + 0x20) = *param_5;
+  FUN_18063ccc0(lVar1 + 0x28);
+                    // WARNING: Subroutine does not return
+  FUN_18066bdc0(lVar1,param_3,&DAT_180c96790,uVar2);
 }
 
-// ============================================================================
-// UI系统内存管理函数
-// ============================================================================
 
-// 函数: 初始化UI系统内存管理器
-// 原始函数名: FUN_180651830
-// 功能: 初始化UI系统内存管理器的各个部分
-// 参数: param_1-内存管理器结构
-void initialize_ui_memory_manager(longlong memory_manager)
+
+
+
+// 函数: void FUN_180651830(longlong param_1)
+void FUN_180651830(longlong param_1)
+
 {
-  // 初始化高级内存管理部分
-  *(undefined8 *)(memory_manager + 0x80) = &UNK_180a3c3e0;
-  if (*(longlong *)(memory_manager + 0x88) != 0) {
-    free_ui_memory_region();
+  *(undefined8 *)(param_1 + 0x80) = &UNK_180a3c3e0;
+  if (*(longlong *)(param_1 + 0x88) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
   }
-  *(undefined8 *)(memory_manager + 0x88) = 0;
-  *(undefined4 *)(memory_manager + 0x98) = 0;
-  *(undefined8 *)(memory_manager + 0x80) = &UNK_18098bcb0;
-  
-  // 初始化中级内存管理部分
-  *(undefined8 *)(memory_manager + 0x60) = &UNK_180a3c3e0;
-  if (*(longlong *)(memory_manager + 0x68) != 0) {
-    free_ui_memory_region();
+  *(undefined8 *)(param_1 + 0x88) = 0;
+  *(undefined4 *)(param_1 + 0x98) = 0;
+  *(undefined8 *)(param_1 + 0x80) = &UNK_18098bcb0;
+  *(undefined8 *)(param_1 + 0x60) = &UNK_180a3c3e0;
+  if (*(longlong *)(param_1 + 0x68) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
   }
-  *(undefined8 *)(memory_manager + 0x68) = 0;
-  *(undefined4 *)(memory_manager + 0x78) = 0;
-  *(undefined8 *)(memory_manager + 0x60) = &UNK_18098bcb0;
-  
-  // 初始化基础内存管理部分
-  *(undefined8 *)(memory_manager + 0x28) = &UNK_180a3c3e0;
-  if (*(longlong *)(memory_manager + 0x30) != 0) {
-    free_ui_memory_region();
+  *(undefined8 *)(param_1 + 0x68) = 0;
+  *(undefined4 *)(param_1 + 0x78) = 0;
+  *(undefined8 *)(param_1 + 0x60) = &UNK_18098bcb0;
+  *(undefined8 *)(param_1 + 0x28) = &UNK_180a3c3e0;
+  if (*(longlong *)(param_1 + 0x30) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
   }
-  *(undefined8 *)(memory_manager + 0x30) = 0;
-  *(undefined4 *)(memory_manager + 0x40) = 0;
-  *(undefined8 *)(memory_manager + 0x28) = &UNK_18098bcb0;
-  
-  // 初始化核心内存管理部分
-  *(undefined8 *)(memory_manager + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(memory_manager + 0x10) != 0) {
-    free_ui_memory_region();
+  *(undefined8 *)(param_1 + 0x30) = 0;
+  *(undefined4 *)(param_1 + 0x40) = 0;
+  *(undefined8 *)(param_1 + 0x28) = &UNK_18098bcb0;
+  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
+  if (*(longlong *)(param_1 + 0x10) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
   }
-  *(undefined8 *)(memory_manager + 0x10) = 0;
-  *(undefined4 *)(memory_manager + 0x20) = 0;
-  *(undefined8 *)(memory_manager + 8) = &UNK_18098bcb0;
-  
+  *(undefined8 *)(param_1 + 0x10) = 0;
+  *(undefined4 *)(param_1 + 0x20) = 0;
+  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
   return;
 }
 
-// 函数: 释放UI系统内存池
-// 原始函数名: FUN_180651860
-// 功能: 释放UI系统内存池
-// 参数: param_1-内存池指针, param_2-释放标志
-// 返回值: 内存池指针
-undefined8 *free_ui_memory_pool(undefined8 *memory_pool, ulonglong free_flag)
+
+
+undefined8 * FUN_180651860(undefined8 *param_1,ulonglong param_2)
+
 {
-  // 设置内存池为默认状态
-  *memory_pool = &UNK_180a3dca0;
-  
-  // 如果设置了释放标志，则释放内存
-  if ((free_flag & 1) != 0) {
-    free(memory_pool, 0x160);
+  *param_1 = &UNK_180a3dca0;
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x160);
   }
-  
-  return memory_pool;
+  return param_1;
 }
 
-// ============================================================================
-// UI系统托管代码接口函数
-// ============================================================================
 
-// 函数: 传递UI系统托管库回调方法指针
-// 原始函数名: pass_managed_library_callback_method_pointers
-// 功能: 将托管库的回调方法指针传递给UI系统
-// 参数: param_1-回调方法指针
-void pass_managed_library_callback_method_pointers(undefined8 callback_method_pointers)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void pass_managed_library_callback_method_pointers(undefined8 param_1)
+
 {
-  // 调用托管代码的回调方法指针传递函数
-  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008, callback_method_pointers);
-  
+                    // 0x651890  36  pass_managed_library_callback_method_pointers
+                    // WARNING: Could not recover jumptable at 0x00018065189d. Too many branches
+                    // WARNING: Treating indirect jump as call
+  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008,param_1);
   return;
 }
 
-// 函数: 传递UI系统控制器方法
-// 原始函数名: pass_controller_methods
-// 功能: 将控制器方法传递给UI系统
-// 参数: param_1-控制器方法指针
-void pass_controller_methods(undefined8 controller_methods)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void pass_controller_methods(undefined8 param_1)
+
 {
-  // 保存控制器方法指针
-  _DAT_180c8f018 = controller_methods;
-  
+                    // 0x6518b0  34  pass_controller_methods
+  _DAT_180c8f018 = param_1;
   return;
 }
 
-// 函数: 传递UI系统托管初始化方法指针
-// 原始函数名: pass_managed_initialize_method_pointer
-// 功能: 将托管初始化方法指针传递给UI系统
-// 参数: param_1-初始化方法指针
-void pass_managed_initialize_method_pointer(undefined8 initialize_method_pointer)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void pass_managed_initialize_method_pointer(undefined8 param_1)
+
 {
-  // 保存初始化方法指针
-  _DAT_180c8f010 = initialize_method_pointer;
-  
+                    // 0x6518c0  35  pass_managed_initialize_method_pointer
+  _DAT_180c8f010 = param_1;
   return;
 }
 
-// 函数: 释放UI系统托管内存
-// 原始函数名: FUN_1806518d0
-// 功能: 释放UI系统托管内存
-// 参数: param_1-内存指针, param_2-释放标志
-// 返回值: 内存指针
-undefined8 free_ui_managed_memory(undefined8 memory_pointer, ulonglong free_flag)
+
+
+undefined8 FUN_1806518d0(undefined8 param_1,ulonglong param_2)
+
 {
-  // 初始化托管内存清理
-  initialize_ui_managed_memory_cleanup();
-  
-  // 如果设置了释放标志，则释放内存
-  if ((free_flag & 1) != 0) {
-    free(memory_pointer, 400);
+  FUN_180651910();
+  if ((param_2 & 1) != 0) {
+    free(param_1,400);
   }
-  
-  return memory_pointer;
+  return param_1;
 }
 
-// 函数: 初始化UI系统托管环境
-// 原始函数名: FUN_180651910
-// 功能: 初始化UI系统的托管环境
-// 参数: param_1-托管环境结构
-void initialize_ui_managed_environment(undefined8 *managed_environment)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180651910(undefined8 *param_1)
+void FUN_180651910(undefined8 *param_1)
+
 {
-  // 设置托管环境为默认状态
-  *managed_environment = &UNK_180a3dcb0;
-  
-  // 清除托管函数指针
+  *param_1 = &UNK_180a3dcb0;
   _DAT_180c8f008 = 0;
-  
-  // 检查并清理现有的托管内存
-  if (managed_environment[0x2d] != 0) {
-    free_ui_memory_region();
+  if (param_1[0x2d] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
   }
-  
-  // 设置托管内存池
-  managed_environment[1] = &UNK_180a3dca0;
-  
+  param_1[1] = &UNK_180a3dca0;
   return;
 }
+
+
+
+
+

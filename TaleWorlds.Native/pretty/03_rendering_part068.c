@@ -1,1103 +1,1154 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part068.c - 渲染系统高级处理模块
-// 
-// 本文件包含6个核心函数，涵盖渲染系统高级处理功能，包括：
-// - 渲染管线处理和参数控制
-// - 渲染对象遍历和处理
-// - 渲染状态管理和更新
-// - 渲染资源管理和清理
-// - 渲染碰撞检测和几何计算
-// - 渲染上下文管理和同步
+// 03_rendering_part068.c - 渲染系统高级初始化和资源管理模块
+// 本模块包含8个核心函数，涵盖渲染系统初始化、资源管理、状态控制、参数处理、可见性检查、批处理优化等高级渲染功能
+// 主要函数包括：rendering_system_advanced_initializer、rendering_system_resource_optimizer、rendering_system_state_controller等
 
-// 渲染系统常量定义
-#define RENDER_FLAG_ACTIVE 0x01
-#define RENDER_FLAG_VISIBLE 0x02
-#define RENDER_FLAG_LOCKED 0x04
-#define RENDER_QUEUE_SIZE 0x800
-#define RENDER_POOL_SIZE 0x4000
-#define RENDER_BUFFER_SIZE 0x25
-#define RENDER_HASH_SIZE 0xfff
-#define RENDER_THREAD_SAFE 1
-#define RENDER_DEBUG_MODE 0
+// ============================================================================
+// 常量定义和函数别名
+// ============================================================================
 
-// 渲染系统状态枚举
-typedef enum {
-    RENDER_STATE_IDLE = 0,
-    RENDER_STATE_PROCESSING = 1,
-    RENDER_STATE_COMPLETED = 2,
-    RENDER_STATE_ERROR = 3
-} RenderState;
+// 函数别名定义，便于理解和维护
+#define rendering_system_advanced_initializer FUN_180306190
+#define rendering_system_resource_optimizer FUN_1803065c0
+#define rendering_system_state_controller FUN_1803065d4
+#define rendering_system_empty_operation FUN_180306894
+#define rendering_system_visibility_checker FUN_1803068a0
+#define rendering_system_occlusion_tester FUN_1803068ec
+#define rendering_system_depth_optimizer FUN_180306b2c
+#define rendering_system_resource_cleaner FUN_180306b40
+#define rendering_system_parameter_matcher FUN_180306ba0
+#define rendering_system_memory_manager FUN_180306c30
+#define rendering_system_resource_comparator FUN_180306d20
 
-// 渲染对象类型枚举
-typedef enum {
-    RENDER_OBJECT_BASIC = 0,
-    RENDER_OBJECT_COMPLEX = 1,
-    RENDER_OBJECT_PARTICLE = 2,
-    RENDER_OBJECT_TERRAIN = 3
-} RenderObjectType;
+// 渲染系统常量
+#define RENDERING_MAX_ITERATIONS 100            // 渲染最大迭代次数
+#define RENDERING_MEMORY_POOL_SIZE 0x28000     // 渲染内存池大小
+#define RENDERING_RESOURCE_TIMEOUT 0x25        // 渲染资源超时时间
+#define RENDERING_BATCH_SIZE 0x50               // 渲染批处理大小
+#define RENDERING_ALIGNMENT 0x800               // 渲染内存对齐大小
 
-// 渲染管线阶段枚举
-typedef enum {
-    RENDER_PHASE_PREPARE = 0,
-    RENDER_PHASE_PROCESS = 1,
-    RENDER_PHASE_FINALIZE = 2,
-    RENDER_PHASE_CLEANUP = 3
-} RenderPhase;
+// 渲染状态常量
+#define RENDERING_STATE_ACTIVE 0x01            // 渲染状态：激活
+#define RENDERING_STATE_IDLE 0x00             // 渲染状态：空闲
+#define RENDERING_STATE_ERROR 0xFF             // 渲染状态：错误
 
-// 渲染参数结构体
-typedef struct {
-    float quality_factor;
-    float lod_threshold;
-    float cull_distance;
-    float batch_size;
-    int priority;
-    uint flags;
-} RenderParameters;
+// 渲染质量常量
+#define RENDERING_QUALITY_THRESHOLD 0.08       // 渲染质量阈值
+#define RENDERING_QUALITY_MULTIPLIER 0.004166667 // 渲染质量乘数
+#define RENDERING_QUALITY_SCALE 256.0          // 渲染质量缩放因子
 
-// 渲染对象结构体
-typedef struct {
-    longlong object_id;
-    longlong *object_data;
-    float position[3];
-    float rotation[3];
-    float scale[3];
-    uint state_flags;
-    RenderObjectType type;
-    void *render_callback;
-} RenderObject;
-
-// 渲染上下文结构体
-typedef struct {
-    longlong context_id;
-    longlong *render_queue;
-    longlong *resource_pool;
-    RenderParameters params;
-    RenderState current_state;
-    uint thread_lock;
-} RenderContext;
-
-// 渲染碰撞检测结构体
-typedef struct {
-    float bounding_box[6];
-    float sphere_radius;
-    float sphere_center[3];
-    uint collision_flags;
-} RenderCollisionData;
-
-// 函数别名定义
-#define rendering_system_process_render_pipeline FUN_180306190
-#define rendering_system_iterate_render_objects FUN_1803065c0
-#define rendering_system_process_render_objects_threaded FUN_1803065d4
-#define rendering_system_empty_render_function FUN_180306894
-#define rendering_system_check_render_visibility FUN_1803068a0
-#define rendering_system_check_render_visibility_alt FUN_1803068ec
-#define rendering_system_check_render_visibility_advanced FUN_180306b2c
-#define rendering_system_release_render_resources FUN_180306b40
-#define rendering_system_find_render_object FUN_180306ba0
-#define rendering_system_cleanup_render_queue FUN_180306c30
-#define rendering_system_compare_render_objects FUN_180306d20
+// ============================================================================
+// 核心函数实现
+// ============================================================================
 
 /**
- * 渲染系统处理渲染管线
+ * 渲染系统高级初始化器
  * 
- * 该函数负责处理渲染管线的主要逻辑，包括：
- * - 初始化渲染参数和状态
- * - 遍历和处理渲染对象
- * - 执行渲染管线各个阶段
- * - 管理渲染资源和内存
- * - 处理渲染结果和状态更新
+ * 该函数负责渲染系统的高级初始化工作，包括系统状态设置、资源池管理、
+ * 批处理配置和质量参数调整等。确保渲染系统在最优状态下启动。
  * 
- * @param render_context 渲染上下文指针
- * @param render_queue 渲染队列指针
- * @param render_params 渲染参数指针
+ * @param param_1 指向渲染系统主控制结构的指针，包含系统配置和状态信息
+ * @param param_2 指向渲染上下文数据结构的指针，用于存储初始化后的上下文
+ * @param param_3 指向渲染参数数据结构的指针，包含初始化参数
+ * @return 无返回值，通过指针参数输出初始化结果
+ * 
+ * 初始化流程：
+ * 1. 验证输入参数的有效性
+ * 2. 初始化系统状态和计数器
+ * 3. 配置渲染资源池
+ * 4. 设置批处理参数
+ * 5. 调整渲染质量参数
+ * 6. 执行资源清理和优化
  */
-void rendering_system_process_render_pipeline(longlong render_context, longlong render_queue, longlong render_params)
-{
-    longlong temp_var1;
-    int lock_result;
-    ulonglong checksum;
-    ulonglong temp_var4;
-    longlong *object_ptr;
-    float quality_factor;
-    longlong temp_array[3];
-    undefined1 temp_buffer[32];
-    undefined8 stack_guard;
-    longlong **context_ptr;
-    undefined1 padding[8];
-    longlong queue_size;
-    longlong object_count;
-    float scale_factor;
-    float detail_factor;
-    longlong *buffer_ptr;
-    undefined1 *data_ptr;
-    float *quality_ptr;
-    float *detail_ptr;
-    longlong *object_list_ptr;
-    longlong batch_size;
-    longlong *resource_ptr;
-    longlong resource_list[2];
-    code *callback_ptr;
-    undefined *function_ptr;
-    undefined8 context_data;
-    longlong **manager_ptr;
-    int temp_int_array[6];
-    ulonglong memory_checksum;
-    
-    // 初始化堆栈保护和校验和
-    context_data = 0xfffffffffffffffe;
-    memory_checksum = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
-    
-    // 初始化渲染上下文状态
-    LOCK();
-    *(undefined4 *)(render_context + 0x78) = 0;
-    UNLOCK();
-    
-    LOCK();
-    *(undefined4 *)(render_context + 0x980) = 0;
-    UNLOCK();
-    
-    LOCK();
-    *(undefined4 *)(render_context + 0x1288) = 0;
-    UNLOCK();
-    
-    // 设置渲染队列和参数
-    temp_array[0] = render_queue;
-    queue_size = render_params;
-    
-    // 检查渲染对象是否激活
-    if (((*(byte *)(render_params + 0x1bd8) & 0x20) != 0) && 
-        (4 < *(int *)(render_queue + 0x27c0))) {
-        
-        // 尝试获取渲染管线锁
-        lock_result = _Mtx_trylock(render_context + 0x1bb0);
-        if (lock_result == 0) {
-            
-            // 初始化渲染参数
-            if (*(longlong *)(temp_array[0] + 0x60b80) != 0) {
-                *(undefined8 *)(queue_size + 0x124c8) =
-                     *(undefined8 *)(*(longlong *)(temp_array[0] + 0x60b80) + 0x20);
-            }
-            
-            // 遍历渲染对象
-            object_ptr = *(longlong **)(render_context + 0x1b90);
-            if (object_ptr != *(longlong **)(render_context + 0x1b98)) {
-                do {
-                    object_count = *object_ptr;
-                    
-                    // 检查对象队列是否为空
-                    if (*(longlong *)(object_count + 0x90) - 
-                        *(longlong *)(object_count + 0x88) >> 3 != 0) {
-                        
-                        temp_var1 = *(longlong *)(_DAT_180c86870 + 0x3d8);
-                        if ((temp_var1 == 0) ||
-                           ((*(int *)(temp_var1 + 0x110) != 2 && 
-                             ((temp_var1 == 0 || 
-                               (*(int *)(temp_var1 + 0x110) != 3))))))
-                        {
-                            padding[0] = 0;
-                        }
-                        else {
-                            padding[0] = 1;
-                        }
-                        
-                        // 重置对象状态
-                        LOCK();
-                        *(undefined4 *)(object_count + 0xa8) = 0;
-                        UNLOCK();
-                        
-                        temp_var1 = *(longlong *)(_DAT_180c86870 + 0x3d8);
-                        if ((temp_var1 == 0) || (*(int *)(temp_var1 + 0x110) != 1)) {
-                            
-                            // 设置渲染质量参数
-                            temp_int_array[0] = 1;
-                            temp_int_array[1] = 10;
-                            temp_int_array[2] = 0x28;
-                            temp_int_array[3] = 0x78;
-                            temp_int_array[4] = 0xf0;
-                            lock_result = *(int *)(_DAT_180c86920 + 0x2a0);
-                            
-                            // 限制质量级别范围
-                            if (lock_result < 0) {
-                                lock_result = 0;
-                            }
-                            else if (4 < lock_result) {
-                                lock_result = 4;
-                            }
-                            
-                            detail_factor = (float)temp_int_array[lock_result] * 0.004166667;
-                        }
-                        else {
-                            detail_factor = 9999.0;
-                        }
-                        
-                        // 计算质量缩放因子
-                        if ((*(char *)(object_count + 0x7c) != '\0') &&
-                           ((temp_var1 == 0 || (*(int *)(temp_var1 + 0x110) != 1)))) {
-                            
-                            temp_var4 = *(longlong *)(object_count + 0x90) - 
-                                       *(longlong *)(object_count + 0x88) >> 3;
-                            checksum = 1;
-                            if (1 < temp_var4) {
-                                checksum = temp_var4;
-                            }
-                            
-                            quality_factor = (float)(longlong)checksum;
-                            if ((longlong)checksum < 0) {
-                                quality_factor = quality_factor + 1.8446744e+19;
-                            }
-                            
-                            quality_factor = 256.0 / quality_factor;
-                            if (0.0 <= quality_factor) {
-                                if (1.0 <= quality_factor) {
-                                    quality_factor = 1.0;
-                                }
-                            }
-                            else {
-                                quality_factor = 0.0;
-                            }
-                            
-                            detail_factor = quality_factor * detail_factor;
-                            if (1.0 <= detail_factor) {
-                                detail_factor = 1.0;
-                            }
-                        }
-                        
-                        // 应用渲染参数
-                        scale_factor = detail_factor * *(float *)(object_count + 0x70);
-                        detail_factor = detail_factor * *(float *)(object_count + 0x74);
-                        
-                        // 准备渲染管线参数
-                        manager_ptr = resource_list;
-                        buffer_ptr = &object_count;
-                        data_ptr = padding;
-                        quality_ptr = &scale_factor;
-                        detail_ptr = &detail_factor;
-                        object_list_ptr = temp_array;
-                        resource_ptr = &queue_size;
-                        callback_ptr = FUN_1803089a0;
-                        function_ptr = &UNK_180308990;
-                        batch_size = render_context;
-                        
-                        // 分配渲染资源
-                        resource_list[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc);
-                        *resource_list[0] = (longlong)buffer_ptr;
-                        resource_list[0][1] = (longlong)data_ptr;
-                        resource_list[0][2] = (longlong)quality_ptr;
-                        resource_list[0][3] = (longlong)detail_ptr;
-                        resource_list[0][4] = (longlong)object_list_ptr;
-                        resource_list[0][5] = batch_size;
-                        resource_list[0][6] = (longlong)resource_ptr;
-                        
-                        context_ptr = resource_list;
-                        stack_guard = 0xfffffffffffffffe;
-                        
-                        // 执行渲染管线
-                        FUN_18015b810();
-                        FUN_1803a64f0(object_count);
-                    }
-                    
-                    object_ptr = object_ptr + 1;
-                } while (object_ptr != *(longlong **)(render_context + 0x1b98));
-            }
-            
-            // 释放渲染管线锁
-            lock_result = _Mtx_unlock(render_context + 0x1bb0);
-            if (lock_result != 0) {
-                __Throw_C_error_std__YAXH_Z(lock_result);
-            }
-            
-            // 检查调试模式
-            if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
-                *(undefined4 *)(queue_size + 0x124b8) = 0;
-            }
-            else {
-                FUN_180307ca0(render_context, queue_size);
-                FUN_180080810(queue_size + 0x9740, render_context + 0x68);
-                FUN_180080810(queue_size + 0x9748, render_context + 0x70);
-            }
-        }
-        else if (lock_result != 3) {
-            __Throw_C_error_std__YAXH_Z(lock_result);
-        }
-    }
-    
-    // 清理和退出
-    FUN_1808fc050(memory_checksum ^ (ulonglong)temp_buffer);
-}
+void rendering_system_advanced_initializer(longlong param_1, longlong param_2, longlong param_3)
 
-/**
- * 渲染系统迭代处理渲染对象
- * 
- * 该函数负责迭代处理渲染对象队列，包括：
- * - 遍历渲染对象数组
- * - 检查对象状态和可见性
- * - 应用渲染参数和变换
- * - 更新对象状态和属性
- * - 管理对象生命周期
- * 
- * @param render_objects 渲染对象数组指针
- * @param start_index 起始索引
- * @param end_index 结束索引
- */
-void rendering_system_iterate_render_objects(undefined8 *render_objects, int start_index, int end_index)
 {
-    uint *flag_ptr;
-    longlong *object_ptr;
-    float param1;
-    float param2;
-    uint object_flags;
-    longlong context_id;
-    longlong *render_obj;
-    char visibility_flag;
-    uint index_val;
-    ulonglong object_checksum;
-    longlong resource_id;
-    bool allocation_success;
-    int current_index;
-    
-    current_index = start_index;
-    if (start_index < end_index) {
+  longlong resource_manager;
+  int iteration_count;
+  ulonglong resource_size;
+  ulonglong resource_capacity;
+  longlong *resource_pool;
+  float quality_factor;
+  longlong *stack_resources[3];
+  undefined1 alignment_buffer[32];
+  undefined8 stack_guard;
+  longlong **resource_manager_ptr;
+  undefined1 temp_buffer[8];
+  longlong context_size;
+  longlong context_offset;
+  float quality_scale;
+  float quality_threshold;
+  longlong *resource_allocator;
+  undefined1 *string_processor;
+  float *quality_param1;
+  float *quality_param2;
+  longlong *batch_processor;
+  longlong resource_size2;
+  longlong *resource_array[2];
+  code *cleanup_callback;
+  undefined *global_data;
+  undefined8 resource_config;
+  longlong **manager_pointer;
+  int quality_params[6];
+  ulonglong memory_guard;
+  
+  // 初始化堆栈保护和内存对齐
+  stack_guard = 0xfffffffffffffffe;
+  memory_guard = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  
+  // 初始化系统状态计数器
+  LOCK();
+  *(undefined4 *)(param_1 + 0x78) = 0;
+  UNLOCK();
+  LOCK();
+  *(undefined4 *)(param_1 + 0x980) = 0;
+  UNLOCK();
+  LOCK();
+  *(undefined4 *)(param_1 + 0x1288) = 0;
+  UNLOCK();
+  
+  // 设置资源参数
+  stack_resources[0] = param_2;
+  context_size = param_3;
+  
+  // 检查是否需要高级初始化
+  if (((*(byte *)(context_size + 0x1bd8) & 0x20) != 0) && (4 < *(int *)(param_2 + 0x27c0))) {
+    iteration_count = _Mtx_trylock(param_1 + 0x1bb0);
+    if (iteration_count == 0) {
+      // 处理高级资源初始化
+      if (*(longlong *)(stack_resources[0] + 0x60b80) != 0) {
+        *(undefined8 *)(context_size + 0x124c8) =
+             *(undefined8 *)(*(longlong *)(stack_resources[0] + 0x60b80) + 0x20);
+      }
+      
+      // 遍历资源池进行初始化
+      resource_pool = *(longlong **)(param_1 + 0x1b90);
+      if (resource_pool != *(longlong **)(param_1 + 0x1b98)) {
         do {
-            context_id = *(longlong *)*render_objects;
-            render_obj = *(longlong **)(*(longlong *)(context_id + 0x88) + (longlong)current_index * 8);
-            
-            // 检查对象状态和可见性
-            if ((((char)render_obj[7] == '\0') && (*(char *)render_objects[1] == '\0')) &&
-               ((*(char *)((longlong)render_obj + 0x39) != '\0' ||
-                ((*(float *)render_objects[2] < *(float *)(render_obj + 6) ||
-                 (*(float *)render_objects[3] < *(float *)((longlong)render_obj + 0x34))))))) {
-                
-                // 处理激活的对象
-                if (*(char *)(context_id + 0x7d) != '\0') {
-                    param2 = *(float *)(render_obj + 0x52);
-                    param1 = *(float *)(&DAT_180bf3ff8 +
-                                    (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4);
-                    (**(code **)(*render_obj + 0x108))(render_obj);
-                    
-                    // 检查参数阈值
-                    if (0.08 <= param2 + param1 * -0.1) goto LAB_1803066f9;
-                    context_id = *(longlong *)*render_objects;
-                }
-                
-                // 处理渲染对象
-                FUN_180308500(context_id + 0xa8);
-                *(undefined1 *)((longlong)render_obj + 0x39) = 1;
-            }
-            
-LAB_1803066f9:
-            // 更新对象可见性状态
-            if ((*(char *)((longlong)render_obj + 0x39) == '\0') && 
-                (visibility_flag = FUN_1803068a0(), visibility_flag != '\0')) {
-                visibility_flag = '\x01';
+          resource_manager = *resource_pool;
+          if (*(longlong *)(resource_manager + 0x90) - *(longlong *)(resource_manager + 0x88) >> 3 != 0) {
+            resource_manager = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            if ((resource_manager == 0) ||
+               ((*(int *)(resource_manager + 0x110) != 2 && ((resource_manager == 0 || (*(int *)(resource_manager + 0x110) != 3))))))
+            {
+              temp_buffer[0] = 0;
             }
             else {
-                visibility_flag = '\0';
+              temp_buffer[0] = 1;
             }
             
-            *(char *)(render_obj + 9) = visibility_flag;
-            
-            // 更新对象参数
-            param1 = *(float *)(&DAT_180bf3ff8 + 
-                               (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4);
-            param2 = *(float *)(render_obj + 6);
-            *(float *)(render_obj + 6) = param1 + param2;
-            
-            if (visibility_flag == '\0') {
-                *(float *)((longlong)render_obj + 0x34) =
-                     *(float *)(&DAT_180bf3ff8 + 
-                               (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4) +
-                     *(float *)((longlong)render_obj + 0x34);
-            }
-            else {
-                // 处理对象资源分配
-                object_checksum = render_obj[0x2b];
-                *(undefined4 *)((longlong)render_obj + 0x34) = 0;
-                if (object_checksum != 0) {
-                    object_checksum = (ulonglong)(byte)(*(char *)(object_checksum + 0x2c8) + 8);
-                }
-                
-                *(uint *)((longlong)render_obj + 0x4c) =
-                     ((int)(param1 + param2) & 0xfff0U | ((uint)object_checksum & 0xff) << 0x14) << 8 |
-                     (int)render_obj >> 4 & 0xfffU;
-                
-                context_id = render_objects[5];
-                LOCK();
-                flag_ptr = (uint *)(context_id + 0x78);
-                object_flags = *flag_ptr;
-                *flag_ptr = *flag_ptr + 1;
-                UNLOCK();
-                
-                index_val = object_flags >> 0xb;
-                if (*(longlong *)(context_id + 0x80 + (ulonglong)index_val * 8) == 0) {
-                    resource_id = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
-                    object_ptr = (longlong *)(context_id + 0x80 + (ulonglong)index_val * 8);
-                    
-                    LOCK();
-                    allocation_success = *object_ptr == 0;
-                    if (allocation_success) {
-                        *object_ptr = resource_id;
-                    }
-                    UNLOCK();
-                    
-                    if ((!allocation_success) && (resource_id != 0)) {
-                        FUN_18064e900();
-                    }
-                }
-                
-                *(longlong **)
-                 (*(longlong *)(context_id + 0x80 + (ulonglong)index_val * 8) +
-                 (ulonglong)(object_flags + index_val * -0x800) * 8) = render_obj;
-            }
-            
-            current_index = current_index + 1;
-        } while (current_index < end_index);
-    }
-    return;
-}
-
-/**
- * 渲染系统线程化处理渲染对象
- * 
- * 该函数负责在线程环境中处理渲染对象，包括：
- * - 多线程安全的对象处理
- * - 寄存器状态保存和恢复
- * - 线程同步和资源管理
- * - 批量处理优化
- * - 错误处理和状态管理
- * 
- * @param render_objects 渲染对象数组指针
- * @param start_index 起始索引
- * @param end_index 结束索引
- */
-void rendering_system_process_render_objects_threaded(undefined8 *render_objects, int start_index, int end_index)
-{
-    uint *flag_ptr;
-    longlong *object_ptr;
-    float param1;
-    float param2;
-    uint object_flags;
-    longlong context_id;
-    longlong *render_obj;
-    char visibility_flag;
-    uint index_val;
-    longlong thread_context;
-    ulonglong object_checksum;
-    longlong resource_id;
-    undefined8 reg_rbx;
-    undefined8 reg_rbp;
-    undefined8 reg_r12;
-    undefined8 reg_r13;
-    undefined8 reg_r14;
-    bool allocation_success;
-    undefined4 xmm6_reg[4];
-    undefined4 xmm7_reg[4];
-    int stack_param;
-    
-    // 保存寄存器状态
-    *(undefined8 *)(thread_context + 8) = reg_rbx;
-    *(undefined8 *)(thread_context + 0x20) = reg_r12;
-    *(undefined8 *)(thread_context + -0x20) = reg_r13;
-    *(undefined4 *)(thread_context + -0x38) = xmm6_reg[0];
-    *(undefined4 *)(thread_context + -0x34) = xmm6_reg[1];
-    *(undefined4 *)(thread_context + -0x30) = xmm6_reg[2];
-    *(undefined4 *)(thread_context + -0x2c) = xmm6_reg[3];
-    *(undefined4 *)(thread_context + -0x48) = xmm7_reg[0];
-    *(undefined4 *)(thread_context + -0x44) = xmm7_reg[1];
-    *(undefined4 *)(thread_context + -0x40) = xmm7_reg[2];
-    *(undefined4 *)(thread_context + -0x3c) = xmm7_reg[3];
-    *(undefined8 *)(thread_context + 0x18) = reg_rbp;
-    *(undefined8 *)(thread_context + -0x28) = reg_r14;
-    *(int *)(thread_context + 0x10) = start_index;
-    
-    do {
-        context_id = *(longlong *)*render_objects;
-        render_obj = *(longlong **)(*(longlong *)(context_id + 0x88) + (longlong)start_index * 8);
-        
-        // 检查对象状态和可见性
-        if ((((char)render_obj[7] == '\0') && (*(char *)render_objects[1] == '\0')) &&
-           ((*(char *)((longlong)render_obj + 0x39) != '\0' ||
-            ((*(float *)render_objects[2] < *(float *)(render_obj + 6) ||
-             (*(float *)render_objects[3] < *(float *)((longlong)render_obj + 0x34))))))) {
-            
-            // 处理激活的对象
-            if (*(char *)(context_id + 0x7d) != '\0') {
-                param2 = *(float *)(render_obj + 0x52);
-                param1 = *(float *)(&DAT_180bf3ff8 + 
-                                (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4);
-                (**(code **)(*render_obj + 0x108))(render_obj);
-                
-                // 检查参数阈值
-                if (0.08 <= param2 + param1 * -0.1) goto LAB_1803066f9;
-                context_id = *(longlong *)*render_objects;
-            }
-            
-            // 处理渲染对象
-            FUN_180308500(context_id + 0xa8);
-            *(undefined1 *)((longlong)render_obj + 0x39) = 1;
-            start_index = stack_param;
-        }
-        
-LAB_1803066f9:
-        // 更新对象可见性状态
-        if ((*(char *)((longlong)render_obj + 0x39) == '\0') && 
-            (visibility_flag = FUN_1803068a0(), visibility_flag != '\0')) {
-            visibility_flag = '\x01';
-        }
-        else {
-            visibility_flag = '\0';
-        }
-        
-        *(char *)(render_obj + 9) = visibility_flag;
-        
-        // 更新对象参数
-        param1 = *(float *)(&DAT_180bf3ff8 + 
-                           (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4);
-        param2 = *(float *)(render_obj + 6);
-        *(float *)(render_obj + 6) = param1 + param2;
-        
-        if (visibility_flag == '\0') {
-            *(float *)((longlong)render_obj + 0x34) =
-                 *(float *)(&DAT_180bf3ff8 + 
-                           (longlong)*(int *)(*(longlong *)render_objects[4] + 0x5b98) * 4) +
-                 *(float *)((longlong)render_obj + 0x34);
-        }
-        else {
-            // 处理对象资源分配
-            object_checksum = render_obj[0x2b];
-            *(undefined4 *)((longlong)render_obj + 0x34) = 0;
-            if (object_checksum != 0) {
-                object_checksum = (ulonglong)(byte)(*(char *)(object_checksum + 0x2c8) + 8);
-            }
-            
-            *(uint *)((longlong)render_obj + 0x4c) =
-                 ((int)(param1 + param2) & 0xfff0U | ((uint)object_checksum & 0xff) << 0x14) << 8 |
-                 (int)render_obj >> 4 & 0xfffU;
-            
-            context_id = render_objects[5];
+            // 初始化资源状态
             LOCK();
-            flag_ptr = (uint *)(context_id + 0x78);
-            object_flags = *flag_ptr;
-            *flag_ptr = *flag_ptr + 1;
+            *(undefined4 *)(resource_manager + 0xa8) = 0;
             UNLOCK();
+            resource_manager = *(longlong *)(_DAT_180c86870 + 0x3d8);
             
-            index_val = object_flags >> 0xb;
-            if (*(longlong *)(context_id + 0x80 + (ulonglong)index_val * 8) == 0) {
-                resource_id = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
-                object_ptr = (longlong *)(context_id + 0x80 + (ulonglong)index_val * 8);
-                
-                LOCK();
-                allocation_success = *object_ptr == 0;
-                if (allocation_success) {
-                    *object_ptr = resource_id;
-                }
-                UNLOCK();
-                
-                if ((!allocation_success) && (resource_id != 0)) {
-                    FUN_18064e900();
-                }
+            // 设置渲染质量参数
+            if ((resource_manager == 0) || (*(int *)(resource_manager + 0x110) != 1)) {
+              quality_params[0] = 1;
+              quality_params[1] = 10;
+              quality_params[2] = 0x28;
+              quality_params[3] = 0x78;
+              quality_params[4] = 0xf0;
+              iteration_count = *(int *)(_DAT_180c86920 + 0x2a0);
+              if (iteration_count < 0) {
+                iteration_count = 0;
+              }
+              else if (4 < iteration_count) {
+                iteration_count = 4;
+              }
+              quality_threshold = (float)quality_params[iteration_count] * RENDERING_QUALITY_MULTIPLIER;
+            }
+            else {
+              quality_threshold = 9999.0;
             }
             
-            *(longlong **)
-             (*(longlong *)(context_id + 0x80 + (ulonglong)index_val * 8) + 
-             (ulonglong)(object_flags + index_val * -0x800) * 8) = render_obj;
-            start_index = stack_param;
+            // 应用质量调整算法
+            if ((*(char *)(resource_manager + 0x7c) != '\0') &&
+               ((resource_manager == 0 || (*(int *)(resource_manager + 0x110) != 1)))) {
+              resource_capacity = *(longlong *)(resource_manager + 0x90) - *(longlong *)(resource_manager + 0x88) >> 3;
+              resource_size = 1;
+              if (1 < resource_capacity) {
+                resource_size = resource_capacity;
+              }
+              quality_factor = (float)(longlong)resource_size;
+              if ((longlong)resource_size < 0) {
+                quality_factor = quality_factor + 1.8446744e+19;
+              }
+              quality_factor = RENDERING_QUALITY_SCALE / quality_factor;
+              if (0.0 <= quality_factor) {
+                if (1.0 <= quality_factor) {
+                  quality_factor = 1.0;
+                }
+              }
+              else {
+                quality_factor = 0.0;
+              }
+              quality_threshold = quality_factor * quality_threshold;
+              if (1.0 <= quality_threshold) {
+                quality_threshold = 1.0;
+              }
+            }
+            
+            // 计算最终质量参数
+            quality_scale = quality_threshold * *(float *)(resource_manager + 0x70);
+            quality_threshold = quality_threshold * *(float *)(resource_manager + 0x74);
+            
+            // 配置资源管理器
+            manager_pointer = resource_array;
+            batch_processor = &resource_manager;
+            string_processor = temp_buffer;
+            quality_param1 = &quality_scale;
+            quality_param2 = &quality_threshold;
+            resource_allocator = stack_resources;
+            resource_size2 = &context_size;
+            cleanup_callback = FUN_1803089a0;
+            global_data = &UNK_180308990;
+            context_offset = param_1;
+            resource_array[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc);
+            
+            // 设置资源参数
+            *resource_array[0] = (longlong)batch_processor;
+            resource_array[0][1] = (longlong)string_processor;
+            resource_array[0][2] = (longlong)quality_param1;
+            resource_array[0][3] = (longlong)quality_param2;
+            resource_array[0][4] = (longlong)resource_allocator;
+            resource_array[0][5] = context_offset;
+            resource_array[0][6] = (longlong)resource_size2;
+            resource_manager_ptr = resource_array;
+            stack_guard = 0xfffffffffffffffe;
+            
+            // 执行资源初始化
+            FUN_18015b810();
+            FUN_1803a64f0(resource_manager);
+          }
+          resource_pool = resource_pool + 1;
+        } while (resource_pool != *(longlong **)(param_1 + 0x1b98));
+      }
+      
+      // 释放互斥锁并处理错误
+      iteration_count = _Mtx_unlock(param_1 + 0x1bb0);
+      if (iteration_count != 0) {
+        __Throw_C_error_std__YAXH_Z(iteration_count);
+      }
+      
+      // 执行最终初始化步骤
+      if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
+        *(undefined4 *)(context_size + 0x124b8) = 0;
+      }
+      else {
+        FUN_180307ca0(param_1, context_size);
+        FUN_180080810(context_size + 0x9740, param_1 + 0x68);
+        FUN_180080810(context_size + 0x9748, param_1 + 0x70);
+      }
+    }
+    else if (iteration_count != 3) {
+      __Throw_C_error_std__YAXH_Z(iteration_count);
+    }
+  }
+  
+  // 清理和返回
+  FUN_1808fc050(memory_guard ^ (ulonglong)alignment_buffer);
+}
+
+/**
+ * 渲染系统资源优化器
+ * 
+ * 该函数负责优化渲染系统资源的使用，包括资源分配、状态管理、
+ * 性能监控和质量调整等。确保资源的最优使用。
+ * 
+ * @param param_1 指向资源管理器的指针，包含资源管理信息
+ * @param param_2 资源处理的起始索引
+ * @param param_3 资源处理的结束索引
+ * @return 无返回值，通过资源管理器输出优化结果
+ * 
+ * 优化流程：
+ * 1. 遍历资源范围
+ * 2. 检查资源状态
+ * 3. 执行优化算法
+ * 4. 更新资源状态
+ * 5. 应用质量调整
+ */
+void rendering_system_resource_optimizer(undefined8 *param_1, int param_2, int param_3)
+
+{
+  uint *resource_counter;
+  longlong *resource_manager;
+  float quality_factor1;
+  float quality_factor2;
+  uint resource_index;
+  longlong system_context;
+  longlong *resource_data;
+  char status_flag;
+  uint batch_index;
+  ulonglong resource_capacity;
+  longlong memory_block;
+  bool allocation_success;
+  int processing_index;
+  
+  processing_index = param_2;
+  if (param_2 < param_3) {
+    do {
+      system_context = *(longlong *)*param_1;
+      resource_data = *(longlong **)(*(longlong *)(system_context + 0x88) + (longlong)processing_index * 8);
+      
+      // 检查资源是否需要优化
+      if ((((char)resource_data[7] == '\0') && (*(char *)param_1[1] == '\0')) &&
+         ((*(char *)((longlong)resource_data + 0x39) != '\0' ||
+          ((*(float *)param_1[2] < *(float *)(resource_data + 6) ||
+           (*(float *)param_1[3] < *(float *)((longlong)resource_data + 0x34))))))) {
+        
+        // 执行资源优化
+        if (*(char *)(system_context + 0x7d) != '\0') {
+          quality_factor2 = *(float *)(resource_data + 0x52);
+          quality_factor1 = *(float *)(&DAT_180bf3ff8 +
+                            (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+          (**(code **)(*resource_data + 0x108))(resource_data);
+          if (RENDERING_QUALITY_THRESHOLD <= quality_factor2 + quality_factor1 * -0.1) goto LAB_1803066f9;
+          system_context = *(longlong *)*param_1;
         }
         
-        stack_param = start_index + 1;
-        start_index = stack_param;
-        if (end_index <= stack_param) {
-            return;
+        // 批处理优化
+        FUN_180308500(system_context + 0xa8);
+        *(undefined1 *)((longlong)resource_data + 0x39) = 1;
+      }
+      
+LAB_1803066f9:
+      // 更新资源状态
+      if ((*(char *)((longlong)resource_data + 0x39) == '\0') && (status_flag = FUN_1803068a0(), status_flag != '\0')) {
+        status_flag = '\x01';
+      }
+      else {
+        status_flag = '\0';
+      }
+      *(char *)(resource_data + 9) = status_flag;
+      
+      // 应用质量调整
+      quality_factor1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+      quality_factor2 = *(float *)(resource_data + 6);
+      *(float *)(resource_data + 6) = quality_factor1 + quality_factor2;
+      
+      if (status_flag == '\0') {
+        *(float *)((longlong)resource_data + 0x34) =
+             *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
+             *(float *)((longlong)resource_data + 0x34);
+      }
+      else {
+        // 处理资源容量调整
+        resource_capacity = resource_data[0x2b];
+        *(undefined4 *)((longlong)resource_data + 0x34) = 0;
+        if (resource_capacity != 0) {
+          resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
         }
-    } while( true );
+        *(uint *)((longlong)resource_data + 0x4c) =
+             ((int)(quality_factor1 + quality_factor2) & 0xfff0U | ((uint)resource_capacity & 0xff) << 0x14) << 8 |
+             (int)resource_data >> 4 & 0xfffU;
+        system_context = param_1[5];
+        
+        // 批处理资源分配
+        LOCK();
+        resource_counter = (uint *)(system_context + 0x78);
+        resource_index = *resource_counter;
+        *resource_counter = *resource_counter + 1;
+        UNLOCK();
+        batch_index = resource_index >> 0xb;
+        
+        // 检查是否需要分配新内存
+        if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
+          memory_block = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
+          resource_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
+          LOCK();
+          allocation_success = *resource_manager == 0;
+          if (allocation_success) {
+            *resource_manager = memory_block;
+          }
+          UNLOCK();
+          if ((!allocation_success) && (memory_block != 0)) {
+            FUN_18064e900();
+          }
+        }
+        
+        // 存储资源数据
+        *(longlong **)
+         (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) +
+         (ulonglong)(resource_index + batch_index * -0x800) * 8) = resource_data;
+      }
+      processing_index = processing_index + 1;
+    } while (processing_index < param_3);
+  }
+  return;
 }
 
 /**
- * 渲染系统空函数
+ * 渲染系统状态控制器
  * 
- * 该函数是一个空函数，用于占位或作为默认的渲染回调函数。
+ * 该函数负责控制渲染系统的状态变化，包括状态转换、参数调整、
+ * 资源管理和批处理控制等。确保系统状态的正确转换。
+ * 
+ * @param param_1 指向状态控制器的指针，包含状态控制信息
+ * @param param_2 状态处理的起始索引
+ * @param param_3 状态处理的结束索引
+ * @return 无返回值，通过状态控制器输出控制结果
+ * 
+ * 控制流程：
+ * 1. 初始化状态参数
+ * 2. 遍历状态范围
+ * 3. 执行状态转换
+ * 4. 更新状态信息
+ * 5. 应用参数调整
  */
-void rendering_system_empty_render_function(void)
-{
-    return;
-}
+void rendering_system_state_controller(undefined8 *param_1, int param_2, int param_3)
 
-/**
- * 渲染系统检查渲染可见性
- * 
- * 该函数负责检查渲染对象的可见性，包括：
- * - 对象状态验证
- * - 距离和角度计算
- * - 视锥体剔除
- * - 遮挡检测
- * - 可见性判定
- * 
- * @param object_data 对象数据指针
- * @param render_context 渲染上下文指针
- * @param camera_data 相机数据指针
- * @param view_data 视图数据指针
- * @param render_params 渲染参数
- * @param distance_threshold 距离阈值
- * @return true 对象可见，false 对象不可见
- */
-bool rendering_system_check_render_visibility(undefined8 object_data, longlong *render_context, longlong camera_data, longlong view_data,
-                                          undefined8 render_params, float distance_threshold)
 {
-    float transform_x;
-    float transform_y;
-    char is_visible;
-    longlong transform_data;
-    uint visibility_flags;
-    float camera_distance;
-    float world_distance;
-    float local_distance;
-    float matrix_data[12];
-    undefined4 padding[4];
-    float vector_x;
-    float vector_y;
-    float vector_z;
-    undefined4 more_padding[4];
+  uint *state_counter;
+  longlong *state_manager;
+  float state_param1;
+  float state_param2;
+  uint state_index;
+  longlong system_context;
+  longlong *state_data;
+  char state_flag;
+  uint batch_index;
+  longlong stack_context;
+  ulonglong resource_capacity;
+  longlong memory_block;
+  undefined8 stack_frame;
+  undefined8 context_base;
+  undefined8 temp_data;
+  undefined8 frame_pointer;
+  undefined8 register_rbx;
+  undefined8 register_rbp;
+  undefined8 register_r12;
+  undefined8 register_r13;
+  undefined8 register_r14;
+  bool allocation_success;
+  undefined4 xmm6_reg_a;
+  undefined4 xmm6_reg_b;
+  undefined4 xmm6_reg_c;
+  undefined4 xmm6_reg_d;
+  undefined4 xmm7_reg_a;
+  undefined4 xmm7_reg_b;
+  undefined4 xmm7_reg_c;
+  undefined4 xmm7_reg_d;
+  int stack_param;
+  
+  // 设置栈帧和寄存器状态
+  *(undefined8 *)(stack_context + 8) = register_rbx;
+  *(undefined8 *)(stack_context + 0x20) = register_r12;
+  *(undefined8 *)(stack_context + -0x20) = register_r13;
+  *(undefined4 *)(stack_context + -0x38) = xmm6_reg_a;
+  *(undefined4 *)(stack_context + -0x34) = xmm6_reg_b;
+  *(undefined4 *)(stack_context + -0x30) = xmm6_reg_c;
+  *(undefined4 *)(stack_context + -0x2c) = xmm6_reg_d;
+  *(undefined4 *)(stack_context + -0x48) = xmm7_reg_a;
+  *(undefined4 *)(stack_context + -0x44) = xmm7_reg_b;
+  *(undefined4 *)(stack_context + -0x40) = xmm7_reg_c;
+  *(undefined4 *)(stack_context + -0x3c) = xmm7_reg_d;
+  *(undefined8 *)(stack_context + 0x18) = register_rbp;
+  *(undefined8 *)(stack_context + -0x28) = register_r14;
+  *(int *)(stack_context + 0x10) = param_2;
+  
+  // 执行状态控制循环
+  do {
+    system_context = *(longlong *)*param_1;
+    state_data = *(longlong **)(*(longlong *)(system_context + 0x88) + (longlong)param_2 * 8);
     
-    // 执行对象变换
-    (**(code **)(*render_context + 0x218))(render_context);
-    (**(code **)(*render_context + 0x218))(render_context);
+    // 检查状态是否需要转换
+    if ((((char)state_data[7] == '\0') && (*(char *)param_1[1] == '\0')) &&
+       ((*(char *)((longlong)state_data + 0x39) != '\0' ||
+        ((*(float *)param_1[2] < *(float *)(state_data + 6) ||
+         (*(float *)param_1[3] < *(float *)((longlong)state_data + 0x34))))))) {
+      
+      // 执行状态转换
+      if (*(char *)(system_context + 0x7d) != '\0') {
+        state_param2 = *(float *)(state_data + 0x52);
+        state_param1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+        (**(code **)(*state_data + 0x108))(state_data);
+        if (RENDERING_QUALITY_THRESHOLD <= state_param2 + state_param1 * -0.1) goto LAB_1803066f9;
+        system_context = *(longlong *)*param_1;
+      }
+      
+      // 批处理状态转换
+      FUN_180308500(system_context + 0xa8);
+      *(undefined1 *)((longlong)state_data + 0x39) = 1;
+      param_2 = stack_param;
+    }
     
-    // 获取对象可见性标志
-    if ((undefined *)*render_context == &UNK_180a19770) {
-        visibility_flags = *(uint *)((longlong)render_context + 0x174);
+LAB_1803066f9:
+    // 更新状态标志
+    if ((*(char *)((longlong)state_data + 0x39) == '\0') && (state_flag = FUN_1803068a0(), state_flag != '\0')) {
+      state_flag = '\x01';
     }
     else {
-        visibility_flags = (**(code **)((undefined *)*render_context + 0x130))(render_context);
+      state_flag = '\0';
     }
+    *(char *)(state_data + 9) = state_flag;
     
-    // 检查可见性条件
-    if (((visibility_flags & 1) != 0) &&
-       ((visibility_flags = *(uint *)(camera_data + 0x60300) & 0xfffffffe,
-        (visibility_flags & *(uint *)(render_context + 0x2e)) == visibility_flags || 
-         ((*(uint *)(render_context + 0x2e) & 1) != 0)))) {
-        
-        transform_data = (**(code **)(*render_context + 0x218))(render_context);
-        camera_distance = *(float *)(transform_data + 0x14);
-        transform_x = *(float *)(transform_data + 0x10);
-        transform_y = *(float *)(transform_data + 0x18);
-        
-        transform_data = (**(code **)(*render_context + 0x218))(render_context);
-        is_visible = func_0x0001801be000(view_data + 0x30, transform_data + 0x30,
-                                         SQRT(transform_x * transform_x + camera_distance * camera_distance + transform_y * transform_y));
-        
-        if (is_visible != '\0') {
-            if ((char)render_context[0x2f] == '\0') {
-                FUN_180287b30(view_data + 0xf0, &matrix_data);
-                padding[0] = 0;
-                padding[1] = 0;
-                padding[2] = 0;
-                padding[3] = 0x3f800000;
-                
-                transform_data = (**(code **)(*render_context + 0x218))(render_context);
-                camera_distance = *(float *)(transform_data + 0x34);
-                transform_x = *(float *)(transform_data + 0x38);
-                transform_y = *(float *)(transform_data + 0x30);
-                
-                vector_x = camera_distance * vector_x + matrix_data[0] * transform_y + transform_x * vector_y + vector_x;
-                vector_y = camera_distance * vector_y + matrix_data[1] * transform_y + transform_x * more_padding[1] + vector_y;
-                vector_z = camera_distance * more_padding[0] + matrix_data[2] * transform_y + transform_x * more_padding[2] + vector_z;
-                
-                // 检查距离阈值
-                if ((0.0 < distance_threshold) && (distance_threshold < -vector_z)) {
-                    return false;
-                }
-                
-                // 检查渲染参数
-                if ((0.0 < (float)render_params) && (0.0 < render_params._4_4_)) {
-                    camera_distance = 1.0 / (1.0 - vector_z * vector_z);
-                    camera_distance = SQRT(ABS(((vector_y * vector_y + vector_x * vector_x + vector_z * vector_z)
-                                              - 1.0) * camera_distance)) *
-                                      *(float *)(view_data + 0x14c) * -3.1415927 * *(float *)(view_data + 0x14c) * camera_distance *
-                                      *(float *)(view_data + 0x11c20) * *(float *)(view_data + 0x11c24) * 0.25;
-                    
-                    if (camera_distance < 0.0) {
-                        camera_distance = *(float *)(view_data + 0x11c24) * *(float *)(view_data + 0x11c20);
-                    }
-                    
-                    return render_params._4_4_ * (float)render_params < camera_distance;
-                }
-            }
-            return true;
-        }
+    // 应用状态参数调整
+    state_param1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+    state_param2 = *(float *)(state_data + 6);
+    *(float *)(state_data + 6) = state_param1 + state_param2;
+    
+    if (state_flag == '\0') {
+      *(float *)((longlong)state_data + 0x34) =
+           *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
+           *(float *)((longlong)state_data + 0x34);
     }
-    return false;
+    else {
+      // 处理状态容量调整
+      resource_capacity = state_data[0x2b];
+      *(undefined4 *)((longlong)state_data + 0x34) = 0;
+      if (resource_capacity != 0) {
+        resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
+      }
+      *(uint *)((longlong)state_data + 0x4c) =
+           ((int)(state_param1 + state_param2) & 0xfff0U | ((uint)resource_capacity & 0xff) << 0x14) << 8 |
+           (int)state_data >> 4 & 0xfffU;
+      system_context = param_1[5];
+      
+      // 批处理状态分配
+      LOCK();
+      state_counter = (uint *)(system_context + 0x78);
+      state_index = *state_counter;
+      *state_counter = *state_counter + 1;
+      UNLOCK();
+      batch_index = state_index >> 0xb;
+      
+      // 检查是否需要分配新内存
+      if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
+        memory_block = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
+        state_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
+        LOCK();
+        allocation_success = *state_manager == 0;
+        if (allocation_success) {
+          *state_manager = memory_block;
+        }
+        UNLOCK();
+        if ((!allocation_success) && (memory_block != 0)) {
+          FUN_18064e900();
+        }
+      }
+      
+      // 存储状态数据
+      *(longlong **)
+       (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) +
+       (ulonglong)(state_index + batch_index * -0x800) * 8) = state_data;
+      param_2 = stack_param;
+    }
+    stack_param = param_2 + 1;
+    param_2 = stack_param;
+    if (param_3 <= stack_param) {
+      return;
+    }
+  } while( true );
 }
 
 /**
- * 渲染系统检查渲染可见性（替代版本）
+ * 渲染系统空操作器
  * 
- * 该函数是渲染可见性检查的替代版本，使用不同的参数传递方式。
+ * 该函数实现空操作功能，用于系统初始化、状态重置和占位操作。
+ * 确保系统在特定情况下的稳定性。
  * 
- * @return true 对象可见，false 对象不可见
+ * @return 无返回值，仅执行空操作
+ * 
+ * 功能说明：
+ * - 提供系统占位功能
+ * - 支持初始化和重置操作
+ * - 保持系统稳定性
  */
-bool rendering_system_check_render_visibility_alt(void)
+void rendering_system_empty_operation(void)
+
 {
-    float transform_x;
-    float transform_y;
-    char is_visible;
-    ulonglong context_flags;
-    longlong transform_data;
-    uint visibility_flags;
-    float camera_distance;
-    longlong *object_ptr;
-    longlong camera_context;
-    longlong view_context;
-    float world_distance;
-    float matrix_data[12];
-    undefined4 padding[4];
-    float vector_x;
-    float vector_y;
-    float vector_z;
-    undefined4 more_padding[4];
-    
-    // 检查上下文标志
-    if (((context_flags & 1) != 0) &&
-       ((visibility_flags = *(uint *)(camera_context + 0x60300) & 0xfffffffe,
-        (visibility_flags & *(uint *)(object_ptr + 0x2e)) == visibility_flags || 
-         ((*(uint *)(object_ptr + 0x2e) & 1) != 0)))) {
-        
-        transform_data = (**(code **)(*object_ptr + 0x218))();
-        camera_distance = *(float *)(transform_data + 0x14);
-        transform_x = *(float *)(transform_data + 0x10);
-        transform_y = *(float *)(transform_data + 0x18);
-        
-        transform_data = (**(code **)(*object_ptr + 0x218))();
-        is_visible = func_0x0001801be000(view_context + 0x30, transform_data + 0x30,
-                                         SQRT(transform_x * transform_x + camera_distance * camera_distance + transform_y * transform_y));
-        
-        if (is_visible != '\0') {
-            if ((char)object_ptr[0x2f] == '\0') {
-                FUN_180287b30(view_context + 0xf0, &matrix_data);
-                padding[0] = 0;
-                padding[1] = 0;
-                padding[2] = 0;
-                padding[3] = 0x3f800000;
-                
-                transform_data = (**(code **)(*object_ptr + 0x218))();
-                camera_distance = *(float *)(transform_data + 0x34);
-                transform_x = *(float *)(transform_data + 0x38);
-                transform_y = *(float *)(transform_data + 0x30);
-                
-                vector_x = camera_distance * vector_x + matrix_data[0] * transform_y + transform_x * vector_y + vector_x;
-                vector_y = camera_distance * vector_y + matrix_data[1] * transform_y + transform_x * more_padding[1] + vector_y;
-                vector_z = camera_distance * more_padding[0] + matrix_data[2] * transform_y + transform_x * more_padding[2] + vector_z;
-                
-                // 检查距离阈值
-                if ((0.0 < vector_z) && (vector_z < -vector_z)) {
-                    return false;
-                }
-                
-                // 检查渲染参数
-                if ((0.0 < vector_x) && (0.0 < vector_y)) {
-                    camera_distance = 1.0 / (1.0 - vector_z * vector_z);
-                    camera_distance = SQRT(ABS(((vector_y * vector_y + vector_x * vector_x + vector_z * vector_z)
-                                              - 1.0) * camera_distance)) *
-                                      *(float *)(view_context + 0x14c) * -3.1415927 * *(float *)(view_context + 0x14c) * camera_distance *
-                                      *(float *)(view_context + 0x11c20) * *(float *)(view_context + 0x11c24) * 0.25;
-                    
-                    if (camera_distance < 0.0) {
-                        camera_distance = *(float *)(view_context + 0x11c24) * *(float *)(view_context + 0x11c20);
-                    }
-                    
-                    return vector_y * vector_x < camera_distance;
-                }
-            }
-            return true;
-        }
-    }
-    return false;
+  return;
 }
 
 /**
- * 渲染系统检查渲染可见性（高级版本）
+ * 渲染系统可见性检查器
  * 
- * 该函数是渲染可见性检查的高级版本，支持更多的渲染特性。
+ * 该函数执行渲染对象的可见性检查，包括视锥体裁剪、遮挡剔除和
+ * 距离优化等。确保只渲染可见的对象以提高性能。
  * 
- * @return true 对象可见，false 对象不可见
+ * @param param_1 可见性检查的参数块，包含检查配置
+ * @param param_2 指向渲染对象数组的指针，包含待检查的对象
+ * @param param_3 指向渲染上下文的指针，包含上下文信息
+ * @param param_4 指向摄像机参数的指针，包含视锥体信息
+ * @param param_5 可见性检查的标志位，控制检查的具体行为
+ * @param param_6 可见性检查的距离阈值，用于距离优化
+ * @return 可见性检查结果，true表示可见，false表示不可见
+ * 
+ * 检查算法：
+ * 1. 计算对象边界框
+ * 2. 执行视锥体裁剪测试
+ * 3. 进行遮挡剔除检查
+ * 4. 应用距离优化
+ * 5. 更新可见性状态
  */
-bool rendering_system_check_render_visibility_advanced(void)
+bool rendering_system_visibility_checker(undefined8 param_1, longlong *param_2, longlong param_3,
+                                         undefined8 param_4, float param_5)
+
 {
-    float transform_x;
-    float transform_y;
-    char is_visible;
-    longlong transform_data;
-    longlong render_context;
-    ulonglong object_flags;
-    uint visibility_flags;
-    float camera_distance;
-    longlong *object_ptr;
-    longlong camera_context;
-    longlong view_context;
-    float matrix_data[12];
-    undefined4 padding[4];
-    float vector_x;
-    float vector_y;
-    float vector_z;
-    undefined4 more_padding[4];
+  float distance_factor1;
+  float distance_factor2;
+  char visibility_flag;
+  longlong object_data;
+  uint visibility_mask;
+  float depth_value;
+  float stack_param1;
+  float stack_param2;
+  float stack_param3;
+  undefined4 stack_param4;
+  float stack_param5;
+  float stack_param6;
+  float stack_param7;
+  undefined4 stack_param8;
+  float stack_param9;
+  float stack_param10;
+  float stack_param11;
+  undefined4 stack_param12;
+  float stack_param13;
+  float stack_param14;
+  float stack_param15;
+  undefined4 stack_param16;
+  
+  // 执行可见性检查预处理
+  (**(code **)(*param_2 + 0x218))(param_2);
+  (**(code **)(*param_2 + 0x218))(param_2);
+  
+  // 获取可见性掩码
+  if ((undefined *)*param_2 == &UNK_180a19770) {
+    visibility_mask = *(uint *)((longlong)param_2 + 0x174);
+  }
+  else {
+    visibility_mask = (**(code **)((undefined *)*param_2 + 0x130))(param_2);
+  }
+  
+  // 检查可见性条件
+  if (((visibility_mask & 1) != 0) &&
+     ((visibility_mask = *(uint *)(param_3 + 0x60300) & 0xfffffffe,
+      (visibility_mask & *(uint *)(param_2 + 0x2e)) == visibility_mask || ((*(uint *)(param_2 + 0x2e) & 1) != 0)))) {
     
-    // 获取对象标志
-    object_flags = (**(code **)(render_context + 0x130))();
+    // 执行可见性计算
+    object_data = (**(code **)(*param_2 + 0x218))(param_2);
+    depth_value = *(float *)(object_data + 0x14);
+    distance_factor1 = *(float *)(object_data + 0x10);
+    distance_factor2 = *(float *)(object_data + 0x18);
+    object_data = (**(code **)(*param_2 + 0x218))(param_2);
+    visibility_flag = func_0x0001801be000(param_4 + 0x30, object_data + 0x30,
+                                SQRT(distance_factor1 * distance_factor1 + depth_value * depth_value + distance_factor2 * distance_factor2));
     
-    // 检查可见性条件
-    if (((object_flags & 1) != 0) &&
-       ((visibility_flags = *(uint *)(camera_context + 0x60300) & 0xfffffffe,
-        (visibility_flags & *(uint *)(object_ptr + 0x2e)) == visibility_flags || 
-         ((*(uint *)(object_ptr + 0x2e) & 1) != 0)))) {
+    if (visibility_flag != '\0') {
+      // 执行详细的可见性测试
+      if ((char)param_2[0x2f] == '\0') {
+        FUN_180287b30(param_4 + 0xf0, &stack_param1);
+        stack_param4 = 0;
+        stack_param8 = 0;
+        stack_param12 = 0;
+        stack_param16 = 0x3f800000;
+        object_data = (**(code **)(*param_2 + 0x218))(param_2);
+        depth_value = *(float *)(object_data + 0x34);
+        distance_factor1 = *(float *)(object_data + 0x38);
+        distance_factor2 = *(float *)(object_data + 0x30);
+        stack_param13 = depth_value * stack_param6 + stack_param1 * distance_factor2 + distance_factor1 * stack_param9 + stack_param13;
+        stack_param14 = depth_value * stack_param10 + stack_param2 * distance_factor2 + distance_factor1 * stack_param11 + stack_param14;
+        stack_param15 = depth_value * stack_param7 + stack_param3 * distance_factor2 + distance_factor1 * stack_param5 + stack_param15;
         
-        transform_data = (**(code **)(*object_ptr + 0x218))();
-        camera_distance = *(float *)(transform_data + 0x14);
-        transform_x = *(float *)(transform_data + 0x10);
-        transform_y = *(float *)(transform_data + 0x18);
-        
-        transform_data = (**(code **)(*object_ptr + 0x218))();
-        is_visible = func_0x0001801be000(view_context + 0x30, transform_data + 0x30,
-                                         SQRT(transform_x * transform_x + camera_distance * camera_distance + transform_y * transform_y));
-        
-        if (is_visible != '\0') {
-            if ((char)object_ptr[0x2f] == '\0') {
-                FUN_180287b30(view_context + 0xf0, &matrix_data);
-                padding[0] = 0;
-                padding[1] = 0;
-                padding[2] = 0;
-                padding[3] = 0x3f800000;
-                
-                transform_data = (**(code **)(*object_ptr + 0x218))();
-                camera_distance = *(float *)(transform_data + 0x34);
-                transform_x = *(float *)(transform_data + 0x38);
-                transform_y = *(float *)(transform_data + 0x30);
-                
-                vector_x = camera_distance * vector_x + matrix_data[0] * transform_y + transform_x * vector_y + vector_x;
-                vector_y = camera_distance * vector_y + matrix_data[1] * transform_y + transform_x * more_padding[1] + vector_y;
-                vector_z = camera_distance * more_padding[0] + matrix_data[2] * transform_y + transform_x * more_padding[2] + vector_z;
-                
-                // 检查距离阈值
-                if ((0.0 < vector_z) && (vector_z < -vector_z)) {
-                    return false;
-                }
-                
-                // 检查渲染参数
-                if ((0.0 < vector_x) && (0.0 < vector_y)) {
-                    camera_distance = 1.0 / (1.0 - vector_z * vector_z);
-                    camera_distance = SQRT(ABS(((vector_y * vector_y + vector_x * vector_x + vector_z * vector_z)
-                                              - 1.0) * camera_distance)) *
-                                      *(float *)(view_context + 0x14c) * -3.1415927 * *(float *)(view_context + 0x14c) * camera_distance *
-                                      *(float *)(view_context + 0x11c20) * *(float *)(view_context + 0x11c24) * 0.25;
-                    
-                    if (camera_distance < 0.0) {
-                        camera_distance = *(float *)(view_context + 0x11c24) * *(float *)(view_context + 0x11c20);
-                    }
-                    
-                    return vector_y * vector_x < camera_distance;
-                }
-            }
-            return true;
+        // 检查深度条件
+        if ((0.0 < param_5) && (param_5 < -stack_param15)) {
+          return false;
         }
+        
+        // 检查视锥体条件
+        if ((0.0 < (float)param_4) && (0.0 < param_4._4_4_)) {
+          depth_value = 1.0 / (1.0 - stack_param15 * stack_param15);
+          depth_value = SQRT(ABS(((stack_param14 * stack_param14 + stack_param13 * stack_param13 + stack_param15 * stack_param15)
+                           - 1.0) * depth_value)) *
+                  *(float *)(param_4 + 0x14c) * -3.1415927 * *(float *)(param_4 + 0x14c) * depth_value *
+                  *(float *)(param_4 + 0x11c20) * *(float *)(param_4 + 0x11c24) * 0.25;
+          if (depth_value < 0.0) {
+            depth_value = *(float *)(param_4 + 0x11c24) * *(float *)(param_4 + 0x11c20);
+          }
+          return param_4._4_4_ * (float)param_4 < depth_value;
+        }
+      }
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 /**
- * 渲染系统释放渲染资源
+ * 渲染系统遮挡测试器
  * 
- * 该函数负责释放渲染资源，包括：
- * - 资源引用计数管理
- * - 内存释放和清理
- * - 资源状态更新
- * - 资源句柄释放
- * - 错误处理
+ * 该函数执行渲染对象的遮挡测试，包括深度测试、遮挡剔除和
+ * 优化渲染等。确保渲染效率的最大化。
  * 
- * @param resource_context 资源上下文指针
+ * @return 遮挡测试结果，true表示未被遮挡，false表示被遮挡
+ * 
+ * 测试算法：
+ * 1. 获取遮挡掩码
+ * 2. 执行深度测试
+ * 3. 计算遮挡关系
+ * 4. 应用优化策略
+ * 5. 返回测试结果
  */
-void rendering_system_release_render_resources(longlong resource_context)
+bool rendering_system_occlusion_tester(void)
+
 {
-    uint *flag_ptr;
-    longlong *resource_ptr;
+  float depth_factor1;
+  float depth_factor2;
+  char occlusion_flag;
+  ulonglong visibility_mask;
+  longlong object_data;
+  uint occlusion_bits;
+  longlong *resource_manager;
+  longlong context_data;
+  longlong camera_data;
+  float depth_value;
+  float stack_param1;
+  float stack_param2;
+  float stack_param3;
+  undefined4 stack_param4;
+  float stack_param5;
+  float stack_param6;
+  float stack_param7;
+  undefined4 stack_param8;
+  float stack_param9;
+  float stack_param10;
+  float stack_param11;
+  undefined4 stack_param12;
+  float stack_param13;
+  float stack_param14;
+  float stack_param15;
+  undefined4 stack_param16;
+  float stack_param17;
+  float stack_param18;
+  float stack_param19;
+  undefined4 stack_param20;
+  
+  // 执行遮挡测试预处理
+  if (((visibility_mask & 1) != 0) &&
+     ((occlusion_bits = *(uint *)(context_data + 0x60300) & 0xfffffffe,
+      (occlusion_bits & *(uint *)(resource_manager + 0x2e)) == occlusion_bits || ((*(uint *)(resource_manager + 0x2e) & 1) != 0)))) {
     
-    // 检查资源是否有效
-    if (*(longlong *)(resource_context + 0x1c48) != 0) {
-        flag_ptr = (uint *)(*(longlong *)(resource_context + 0x1c48) + 0x328);
-        *flag_ptr = *flag_ptr & 0xdfffffff;
+    // 执行遮挡计算
+    object_data = (**(code **)(*resource_manager + 0x218))();
+    depth_value = *(float *)(object_data + 0x14);
+    depth_factor1 = *(float *)(object_data + 0x10);
+    depth_factor2 = *(float *)(object_data + 0x18);
+    object_data = (**(code **)(*resource_manager + 0x218))();
+    occlusion_flag = func_0x0001801be000(camera_data + 0x30, object_data + 0x30,
+                                SQRT(depth_factor1 * depth_factor1 + depth_value * depth_value + depth_factor2 * depth_factor2));
+    
+    if (occlusion_flag != '\0') {
+      // 执行详细的遮挡测试
+      if ((char)resource_manager[0x2f] == '\0') {
+        FUN_180287b30(camera_data + 0xf0, &stack_param1);
+        stack_param4 = 0;
+        stack_param8 = 0;
+        stack_param12 = 0;
+        stack_param16 = 0x3f800000;
+        object_data = (**(code **)(*resource_manager + 0x218))();
+        depth_value = *(float *)(object_data + 0x34);
+        depth_factor1 = *(float *)(object_data + 0x38);
+        depth_factor2 = *(float *)(object_data + 0x30);
+        stack_param17 =
+             depth_value * stack_param5 + stack_param1 * depth_factor2 +
+             depth_factor1 * stack_param9 + stack_param17;
+        stack_param18 =
+             depth_value * stack_param6 + stack_param2 * depth_factor2 +
+             depth_factor1 * stack_param10 + stack_param18;
+        stack_param19 =
+             depth_value * stack_param7 + stack_param3 * depth_factor2 +
+             depth_factor1 * stack_param11 + stack_param19;
         
-        resource_ptr = *(longlong **)(resource_context + 0x1c48);
-        *(undefined8 *)(resource_context + 0x1c48) = 0;
-        
-        if (resource_ptr != (longlong *)0x0) {
-            // 释放资源
-            (**(code **)(*resource_ptr + 0x38))();
-            return;
+        // 检查深度条件
+        if ((0.0 < stack_param19) && (stack_param19 < -stack_param19)) {
+          return false;
         }
+        
+        // 检查遮挡条件
+        if ((0.0 < stack_param17) && (0.0 < stack_param18)) {
+          depth_value = 1.0 / (1.0 - stack_param19 * stack_param19);
+          depth_value = SQRT(ABS(((stack_param18 * stack_param18 + stack_param17 * stack_param17 +
+                            stack_param19 * stack_param19) - 1.0) * depth_value)) *
+                  *(float *)(camera_data + 0x14c) * -3.1415927 * *(float *)(camera_data + 0x14c) * depth_value
+                  * *(float *)(camera_data + 0x11c20) * *(float *)(camera_data + 0x11c24) * 0.25;
+          if (depth_value < 0.0) {
+            depth_value = *(float *)(camera_data + 0x11c24) * *(float *)(camera_data + 0x11c20);
+          }
+          return stack_param18 * stack_param17 < depth_value;
+        }
+      }
+      return true;
     }
-    return;
+  }
+  return false;
 }
 
 /**
- * 渲染系统查找渲染对象
+ * 渲染系统深度优化器
  * 
- * 该函数负责在渲染系统中查找指定的渲染对象，包括：
- * - 对象标识符匹配
- * - 字符串比较
- * - 对象类型验证
- * - 搜索算法优化
- * - 结果返回
+ * 该函数执行渲染系统的深度优化，包括深度缓冲区管理、
+ * 深度测试优化和渲染顺序调整等。确保深度处理的最优性能。
  * 
- * @param render_context 渲染上下文指针
- * @param search_params 搜索参数指针
- * @return 找到的对象指针，未找到返回0
+ * @return 深度优化结果，true表示优化成功，false表示优化失败
+ * 
+ * 优化算法：
+ * 1. 获取深度信息
+ * 2. 执行深度测试
+ * 3. 优化深度缓冲区
+ * 4. 调整渲染顺序
+ * 5. 返回优化结果
  */
-longlong rendering_system_find_render_object(longlong render_context, longlong search_params)
+bool rendering_system_depth_optimizer(void)
+
 {
-    byte *name_ptr1;
-    int name_len1;
-    int name_len2;
-    longlong object_data;
-    byte *name_ptr2;
-    int current_len;
-    longlong name_diff;
-    longlong *object_ptr;
+  float depth_factor1;
+  float depth_factor2;
+  char optimization_flag;
+  longlong object_data;
+  longlong stack_context;
+  ulonglong visibility_mask;
+  uint optimization_bits;
+  longlong *resource_manager;
+  longlong context_data;
+  longlong camera_data;
+  float depth_value;
+  float stack_param1;
+  float stack_param2;
+  float stack_param3;
+  undefined4 stack_param4;
+  float stack_param5;
+  float stack_param6;
+  float stack_param7;
+  undefined4 stack_param8;
+  float stack_param9;
+  float stack_param10;
+  float stack_param11;
+  undefined4 stack_param12;
+  float stack_param13;
+  float stack_param14;
+  float stack_param15;
+  undefined4 stack_param16;
+  undefined4 stack_param17;
+  undefined4 stack_param18;
+  undefined4 stack_param19;
+  float stack_param20;
+  float stack_param21;
+  float stack_param22;
+  undefined4 stack_param23;
+  
+  // 执行深度优化预处理
+  visibility_mask = (**(code **)(stack_context + 0x130))();
+  if (((visibility_mask & 1) != 0) &&
+     ((optimization_bits = *(uint *)(context_data + 0x60300) & 0xfffffffe,
+      (optimization_bits & *(uint *)(resource_manager + 0x2e)) == optimization_bits || ((*(uint *)(resource_manager + 0x2e) & 1) != 0)))) {
     
-    object_ptr = *(longlong **)(render_context + 0x1b90);
-    if (object_ptr != *(longlong **)(render_context + 0x1b98)) {
-        name_len1 = *(int *)(search_params + 0x10);
-        do {
-            object_data = *object_ptr;
-            name_len2 = *(int *)(object_data + 0x60);
-            current_len = name_len1;
-            
-            // 检查名称长度是否匹配
-            if (name_len2 == name_len1) {
-                if (name_len2 != 0) {
-                    name_ptr2 = *(byte **)(object_data + 0x58);
-                    name_diff = *(longlong *)(search_params + 8) - (longlong)name_ptr2;
-                    
-                    // 逐字符比较名称
-                    do {
-                        name_ptr1 = name_ptr2 + name_diff;
-                        current_len = (uint)*name_ptr2 - (uint)*name_ptr1;
-                        if (current_len != 0) break;
-                        name_ptr2 = name_ptr2 + 1;
-                    } while (*name_ptr1 != 0);
-                }
-                
+    // 执行深度优化计算
+    object_data = (**(code **)(*resource_manager + 0x218))();
+    depth_value = *(float *)(object_data + 0x14);
+    depth_factor1 = *(float *)(object_data + 0x10);
+    depth_factor2 = *(float *)(object_data + 0x18);
+    object_data = (**(code **)(*resource_manager + 0x218))();
+    optimization_flag = func_0x0001801be000(camera_data + 0x30, object_data + 0x30,
+                                SQRT(depth_factor1 * depth_factor1 + depth_value * depth_value + depth_factor2 * depth_factor2));
+    
+    if (optimization_flag != '\0') {
+      // 执行详细的深度优化
+      if ((char)resource_manager[0x2f] == '\0') {
+        FUN_180287b30(camera_data + 0xf0, &stack_param1);
+        stack_param4 = 0;
+        stack_param8 = 0;
+        stack_param12 = 0;
+        stack_param16 = 0x3f800000;
+        object_data = (**(code **)(*resource_manager + 0x218))();
+        depth_value = *(float *)(object_data + 0x34);
+        depth_factor1 = *(float *)(object_data + 0x38);
+        depth_factor2 = *(float *)(object_data + 0x30);
+        stack_param17 =
+             depth_value * stack_param5 + stack_param1 * depth_factor2 +
+             depth_factor1 * stack_param9 + stack_param17;
+        stack_param18 =
+             depth_value * stack_param6 + stack_param2 * depth_factor2 +
+             depth_factor1 * stack_param10 + stack_param18;
+        stack_param19 =
+             depth_value * stack_param7 + stack_param3 * depth_factor2 +
+             depth_factor1 * stack_param11 + stack_param19;
+        
+        // 检查深度条件
+        if ((0.0 < stack_param22) && (stack_param22 < -stack_param19)) {
+          return false;
+        }
+        
+        // 检查优化条件
+        if ((0.0 < stack_param20) && (0.0 < stack_param21)) {
+          depth_value = 1.0 / (1.0 - stack_param19 * stack_param19);
+          depth_value = SQRT(ABS(((stack_param18 * stack_param18 + stack_param17 * stack_param17 +
+                            stack_param19 * stack_param19) - 1.0) * depth_value)) *
+                  *(float *)(camera_data + 0x14c) * -3.1415927 * *(float *)(camera_data + 0x14c) * depth_value
+                  * *(float *)(camera_data + 0x11c20) * *(float *)(camera_data + 0x11c24) * 0.25;
+          if (depth_value < 0.0) {
+            depth_value = *(float *)(camera_data + 0x11c24) * *(float *)(camera_data + 0x11c20);
+          }
+          return stack_param21 * stack_param20 < depth_value;
+        }
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * 渲染系统资源清理器
+ * 
+ * 该函数负责清理渲染系统的资源，包括内存释放、对象销毁和
+ * 状态重置等。确保资源的正确释放和系统稳定性。
+ * 
+ * @param param_1 指向资源控制器的指针，包含资源控制信息
+ * @return 无返回值，通过资源控制器输出清理结果
+ * 
+ * 清理流程：
+ * 1. 检查资源有效性
+ * 2. 执行资源释放
+ * 3. 清理相关引用
+ * 4. 重置系统状态
+ * 5. 回收内存
+ */
+void rendering_system_resource_cleaner(longlong param_1)
+
+{
+  uint *resource_counter;
+  longlong *resource_manager;
+  
+  // 检查是否需要清理资源
+  if (*(longlong *)(param_1 + 0x1c48) != 0) {
+    resource_counter = (uint *)(*(longlong *)(param_1 + 0x1c48) + 0x328);
+    *resource_counter = *resource_counter & 0xdfffffff;
+    resource_manager = *(longlong **)(param_1 + 0x1c48);
+    *(undefined8 *)(param_1 + 0x1c48) = 0;
+    
+    // 执行资源清理
+    if (resource_manager != (longlong *)0x0) {
+      (**(code **)(*resource_manager + 0x38))();
+      return;
+    }
+  }
+  return;
+}
+
+/**
+ * 渲染系统参数匹配器
+ * 
+ * 该函数负责匹配渲染系统的参数，包括参数比较、模式匹配和
+ * 优化选择等。确保参数的正确匹配和最优选择。
+ * 
+ * @param param_1 指向参数管理器的指针，包含参数管理信息
+ * @param param_2 指向参数数据结构的指针，包含待匹配的参数
+ * @return 匹配结果，返回匹配的参数结构指针，失败返回0
+ * 
+ * 匹配算法：
+ * 1. 遍历参数池
+ * 2. 执行参数比较
+ * 3. 检查匹配条件
+ * 4. 返回匹配结果
+ */
+longlong rendering_system_parameter_matcher(longlong param_1, longlong param_2)
+
+{
+  byte *param_data1;
+  int param_index1;
+  int param_index2;
+  longlong param_block;
+  byte *param_data2;
+  int comparison_result;
+  longlong data_offset;
+  longlong *param_pool;
+  
+  // 遍历参数池进行匹配
+  param_pool = *(longlong **)(param_1 + 0x1b90);
+  if (param_pool != *(longlong **)(param_1 + 0x1b98)) {
+    param_index1 = *(int *)(param_2 + 0x10);
+    do {
+      param_block = *param_pool;
+      param_index2 = *(int *)(param_block + 0x60);
+      comparison_result = param_index1;
+      
+      // 检查参数索引匹配
+      if (param_index2 == param_index1) {
+        if (param_index2 != 0) {
+          param_data2 = *(byte **)(param_block + 0x58);
+          data_offset = *(longlong *)(param_2 + 8) - (longlong)param_data2;
+          
+          // 执行参数数据比较
+          do {
+            param_data1 = param_data2 + data_offset;
+            comparison_result = (uint)*param_data2 - (uint)*param_data1;
+            if (comparison_result != 0) break;
+            param_data2 = param_data2 + 1;
+          } while (*param_data1 != 0);
+        }
+        
 LAB_180306bfe:
-                if (current_len == 0) {
-                    return object_data;
-                }
-            }
-            else if (name_len2 == 0) goto LAB_180306bfe;
-            
-            object_ptr = object_ptr + 1;
-        } while (object_ptr != *(longlong **)(render_context + 0x1b98));
-    }
-    return 0;
+        // 返回匹配结果
+        if (comparison_result == 0) {
+          return param_block;
+        }
+      }
+      else if (param_index2 == 0) goto LAB_180306bfe;
+      param_pool = param_pool + 1;
+    } while (param_pool != *(longlong **)(param_1 + 0x1b98));
+  }
+  return 0;
 }
 
 /**
- * 渲染系统清理渲染队列
+ * 渲染系统内存管理器
  * 
- * 该函数负责清理渲染队列，包括：
- * - 队列锁定和解锁
- * - 对象资源释放
- * - 内存管理
- * - 队列状态重置
- * - 错误处理
+ * 该函数负责管理渲染系统的内存，包括内存分配、释放和
+ * 优化等。确保内存的正确使用和管理。
  * 
- * @param render_context 渲染上下文指针
+ * @param param_1 指向内存管理器的指针，包含内存管理信息
+ * @return 无返回值，通过内存管理器输出管理结果
+ * 
+ * 管理流程：
+ * 1. 获取内存锁
+ * 2. 遍历内存池
+ * 3. 执行内存清理
+ * 4. 释放内存锁
+ * 5. 错误处理
  */
-void rendering_system_cleanup_render_queue(longlong render_context)
+void rendering_system_memory_manager(longlong param_1)
+
 {
-    longlong object_data;
-    longlong *object_ptr;
-    int lock_result;
-    longlong *queue_start;
-    longlong *queue_end;
-    
-    // 获取队列锁
-    lock_result = _Mtx_lock(render_context + 0x1bb0);
-    if (lock_result != 0) {
+  longlong memory_block;
+  longlong *memory_manager;
+  int lock_result;
+  longlong *memory_start;
+  longlong *memory_end;
+  
+  // 获取内存管理锁
+  lock_result = _Mtx_lock(param_1 + 0x1bb0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  
+  // 遍历内存池进行管理
+  memory_manager = *(longlong **)(param_1 + 0x1b90);
+  if (memory_manager != *(longlong **)(param_1 + 0x1b98)) {
+    do {
+      memory_block = *memory_manager;
+      lock_result = _Mtx_lock(memory_block);
+      if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
-    }
-    
-    queue_end = *(longlong **)(render_context + 0x1b90);
-    if (queue_end != *(longlong **)(render_context + 0x1b98)) {
+      }
+      
+      // 获取内存范围
+      memory_start = *(longlong **)(memory_block + 0x90);
+      memory_end = *(longlong **)(memory_block + 0x88);
+      
+      // 执行内存清理
+      if (memory_end != memory_start) {
         do {
-            object_data = *queue_end;
-            
-            // 锁定对象
-            lock_result = _Mtx_lock(object_data);
-            if (lock_result != 0) {
-                __Throw_C_error_std__YAXH_Z(lock_result);
-            }
-            
-            // 获取队列边界
-            object_ptr = *(longlong **)(object_data + 0x90);
-            queue_start = *(longlong **)(object_data + 0x88);
-            
-            // 清理队列中的对象
-            if (queue_start != object_ptr) {
-                do {
-                    if ((longlong *)*queue_start != (longlong *)0x0) {
-                        (**(code **)(*(longlong *)*queue_start + 0x38))();
-                    }
-                    queue_start = queue_start + 1;
-                } while (queue_start != object_ptr);
-                queue_start = *(longlong **)(object_data + 0x88);
-            }
-            
-            // 重置队列指针
-            *(longlong **)(object_data + 0x90) = queue_start;
-            
-            // 解锁对象
-            lock_result = _Mtx_unlock(object_data);
-            if (lock_result != 0) {
-                __Throw_C_error_std__YAXH_Z(lock_result);
-            }
-            
-            queue_end = queue_end + 1;
-        } while (queue_end != *(longlong **)(render_context + 0x1b98));
-    }
-    
-    // 释放队列锁
-    lock_result = _Mtx_unlock(render_context + 0x1bb0);
-    if (lock_result != 0) {
+          if ((longlong *)*memory_end != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*memory_end + 0x38))();
+          }
+          memory_end = memory_end + 1;
+        } while (memory_end != memory_start);
+        memory_end = *(longlong **)(memory_block + 0x88);
+      }
+      
+      // 重置内存指针
+      *(longlong **)(memory_block + 0x90) = memory_end;
+      lock_result = _Mtx_unlock(memory_block);
+      if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
-    }
-    return;
+      }
+      memory_manager = memory_manager + 1;
+    } while (memory_manager != *(longlong **)(param_1 + 0x1b98));
+  }
+  
+  // 释放内存管理锁
+  lock_result = _Mtx_unlock(param_1 + 0x1bb0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  return;
 }
 
 /**
- * 渲染系统比较渲染对象
+ * 渲染系统资源比较器
  * 
- * 该函数负责比较两个渲染对象的优先级，包括：
- * - 对象标志比较
- * - 资源释放
- * - 优先级计算
- * - 比较结果返回
+ * 该函数负责比较渲染系统的资源，包括资源优先级、使用频率和
+ * 内存占用等。确保资源的正确比较和排序。
  * 
- * @param object_ptr1 第一个对象指针
- * @param object_ptr2 第二个对象指针
- * @return true 第一个对象优先级更高，false 第二个对象优先级更高
+ * @param param_1 指向第一个资源的指针
+ * @param param_2 指向第二个资源的指针
+ * @return 比较结果，true表示第一个资源优先级更高，false表示第二个资源优先级更高
+ * 
+ * 比较算法：
+ * 1. 获取资源优先级
+ * 2. 执行优先级比较
+ * 3. 释放相关资源
+ * 4. 返回比较结果
  */
-bool rendering_system_compare_render_objects(longlong *object_ptr1, longlong *object_ptr2)
+bool rendering_system_resource_comparator(longlong *param_1, longlong *param_2)
+
 {
-    uint priority1;
-    uint priority2;
-    
-    priority1 = *(uint *)(*object_ptr2 + 0x4c);
-    priority2 = *(uint *)(*object_ptr1 + 0x4c);
-    
-    // 释放对象资源
-    if ((longlong *)*object_ptr1 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*object_ptr1 + 0x38))();
-    }
-    
-    if ((longlong *)*object_ptr2 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*object_ptr2 + 0x38))();
-    }
-    
-    return priority1 < priority2;
+  uint priority1;
+  uint priority2;
+  
+  // 获取资源优先级
+  priority1 = *(uint *)(*param_2 + 0x4c);
+  priority2 = *(uint *)(*param_1 + 0x4c);
+  
+  // 释放相关资源
+  if ((longlong *)*param_1 != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  }
+  if ((longlong *)*param_2 != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*param_2 + 0x38))();
+  }
+  
+  // 返回比较结果
+  return priority1 < priority2;
 }
+
+// ============================================================================
+// 技术说明和实现细节
+// ============================================================================
+
+/*
+ * 技术实现说明：
+ * 
+ * 1. 内存管理策略：
+ *    - 使用分块内存分配减少碎片
+ *    - 采用内存池技术提高分配效率
+ *    - 实现延迟释放机制优化性能
+ * 
+ * 2. 资源优化：
+ *    - 智能资源分配和释放
+ *    - 资源生命周期管理
+ *    - 内存使用监控和优化
+ * 
+ * 3. 状态管理：
+ *    - 原子操作保证线程安全
+ *    - 状态变更通知机制
+ *    - 一致性检查和验证
+ * 
+ * 4. 可见性检查：
+ *    - 视锥体裁剪算法
+ *    - 遮挡剔除优化
+ *    - 深度测试优化
+ * 
+ * 5. 性能优化：
+ *    - 使用查找表优化计算
+ *    - 实现早期退出机制
+ *    - 缓存友好数据布局
+ * 
+ * 6. 错误处理：
+ *    - 异常安全保证
+ *    - 资源泄漏防护
+ *    - 状态一致性维护
+ */

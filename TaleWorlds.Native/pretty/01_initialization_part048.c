@@ -1314,7 +1314,7 @@ undefined8 InitializationSystem_PermissionValidator(longlong param_1, longlong p
  * - 文件版本：1.0
  * - 创建日期：2025-08-28
  * - 最后修改：2025-08-28
- * - 作者：原始代码美化处理
+ * - 作者：Claude Code
  * - 描述：初始化系统资源管理和同步机制模块
  * 
  * 本文件是对原始原始代码的美化和重构版本，保持了原有功能的完整性，

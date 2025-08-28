@@ -1,1893 +1,1574 @@
+#include "TaleWorlds.Native.Split.h"
+
+// 03_rendering_part334.c - 渲染系统高级控制和数据处理模块
+// 该模块包含34个核心函数，涵盖渲染系统高级控制、数据处理、资源管理、状态管理、
+// 线程同步、参数验证、内存管理、事件处理等高级渲染功能
+// 主要功能包括：渲染对象移除、数据变换、资源获取、状态设置、参数处理等
+
+/*===================================================================================
+    常量定义
+===================================================================================*/
+
+// 渲染系统偏移量常量
+#define RENDERING_SYSTEM_OFFSET_60D10    0x60D10      // 渲染系统数据结构偏移量
+#define RENDERING_SYSTEM_OFFSET_60D18    0x60D18      // 渲染系统数据结构偏移量
+#define RENDERING_SYSTEM_OFFSET_607E0    0x607E0      // 渲染系统资源偏移量
+#define RENDERING_SYSTEM_OFFSET_2AC      0x2AC        // 渲染系统状态标志偏移量
+#define RENDERING_SYSTEM_OFFSET_1C8      0x1C8        // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_1C0      0x1C0        // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_1AF8     0x1AF8       // 渲染系统状态偏移量
+#define RENDERING_SYSTEM_OFFSET_1A0      0x1A0        // 渲染系统状态偏移量
+#define RENDERING_SYSTEM_OFFSET_124      0x124        // 渲染系统浮点参数偏移量
+#define RENDERING_SYSTEM_OFFSET_19F8     0x19F8       // 渲染系统参数偏移量
+#define RENDERING_SYSTEM_OFFSET_1B80     0x1B80       // 渲染系统配置偏移量
+#define RENDERING_SYSTEM_OFFSET_16C8     0x16C8       // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_16CC     0x16CC       // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_16D0     0x16D0       // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_16D4     0x16D4       // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_1660     0x1660       // 渲染系统状态偏移量
+#define RENDERING_SYSTEM_OFFSET_16C0     0x16C0       // 渲染系统浮点参数偏移量
+
+// 渲染系统标志位常量
+#define RENDERING_SYSTEM_FLAG_EFFFFFFF   0xEFFFFFFF    // 渲染系统状态标志掩码
+#define RENDERING_SYSTEM_FLAG_FFFFFFFE   0xFFFFFFFE    // 渲染系统通用标志掩码
+
+// 渲染系统错误代码常量
+#define RENDERING_SYSTEM_ERROR_INVALID   0xFFFFFFFF    // 渲染系统错误代码
+#define RENDERING_SYSTEM_ERROR_SUCCESS   0x00000000    // 渲染系统成功代码
+
+// 渲染系统浮点常量
+#define RENDERING_SYSTEM_FLOAT_0_05      0.05f         // 渲染系统浮点常量0.05
+#define RENDERING_SYSTEM_FLOAT_4_0       4.0f          // 渲染系统浮点常量4.0
+#define RENDERING_SYSTEM_FLOAT_256_0     256.0f        // 渲染系统浮点常量256.0
+
+// 渲染系统键值常量
+#define RENDERING_SYSTEM_KEY_E0          0xE0          // 渲染系统键值E0
+#define RENDERING_SYSTEM_KEY_E1          0xE1          // 渲染系统键值E1
+#define RENDERING_SYSTEM_KEY_E2          0xE2          // 渲染系统键值E2
+#define RENDERING_SYSTEM_KEY_E3          0xE3          // 渲染系统键值E3
+#define RENDERING_SYSTEM_KEY_E4          0xE4          // 渲染系统键值E4
+
+// 渲染系统状态常量
+#define RENDERING_SYSTEM_STATE_INACTIVE  0x00          // 渲染系统状态-非活动
+#define RENDERING_SYSTEM_STATE_ACTIVE    0x01          // 渲染系统状态-活动
+#define RENDERING_SYSTEM_STATE_PENDING   0x02          // 渲染系统状态-等待中
+#define RENDERING_SYSTEM_STATE_COMPLETE  0x03          // 渲染系统状态-完成
+
+/*===================================================================================
+    函数声明和别名定义
+===================================================================================*/
+
+// 渲染系统高级控制和数据处理函数
+void RenderingSystem_RemoveRenderObject(longlong *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+void RenderingSystem_ProcessDataTransform(longlong param_1, undefined1 param_2, undefined8 *param_3, undefined8 *param_4, char param_5);
+void RenderingSystem_UpdateRenderState(longlong param_1, undefined4 param_2);
+void RenderingSystem_ExecuteRenderBatch(void);
+void RenderingSystem_EmptyFunction_1(void);
+longlong * RenderingSystem_GetRenderResource(longlong *resource_manager, longlong param_2);
+undefined8 * RenderingSystem_AcquireRenderResource(undefined8 *resource_manager, longlong *param_2);
+void RenderingSystem_InitializeRenderContext(void);
+void RenderingSystem_ProcessRenderCommand(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+void RenderingSystem_SetRenderParameters(undefined8 param_1, undefined1 param_2);
+void RenderingSystem_ReleaseRenderResource(undefined8 param_1);
+void RenderingSystem_DestroyRenderObject(undefined8 param_1);
+void RenderingSystem_ProcessRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+void RenderingSystem_UpdateRenderQueue(undefined8 param_1);
+void RenderingSystem_LockRenderMutex(void);
+void RenderingSystem_SetRenderConfig(undefined8 param_1, undefined8 *param_2);
+void RenderingSystem_UnlockRenderMutex(void);
+void RenderingSystem_ExecuteRenderOperation(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4, undefined8 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8, undefined4 param_9, undefined4 param_10);
+void RenderingSystem_ProcessRenderTransform(undefined8 param_1);
+void RenderingSystem_UpdateRenderGeometry(undefined8 param_1);
+void RenderingSystem_ToggleRenderState(void);
+void RenderingSystem_ProcessRenderString(undefined8 param_1, undefined8 param_2, char *param_3);
+void RenderingSystem_ExecuteRenderBatch(undefined8 param_1, undefined8 param_2);
+void RenderingSystem_UpdateRenderMaterial(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4);
+void RenderingSystem_ReleaseRenderTexture(undefined8 param_1);
+void RenderingSystem_UpdateRenderParameters(undefined8 param_1, undefined8 param_2, float param_3, float param_4, int param_5);
+void RenderingSystem_SetRenderShader(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, int param_4);
+void RenderingSystem_UpdateRenderEffects(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, int param_5);
+void RenderingSystem_ProcessRenderBuffer(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, undefined4 *param_5, int param_6);
+float RenderingSystem_CalculateRenderExponent(void);
+void RenderingSystem_CopyRenderData(undefined8 param_1, undefined8 param_2, int param_3, undefined8 param_4, undefined8 param_5, undefined1 param_6);
+void RenderingSystem_TransferRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, int param_4);
+void RenderingSystem_UpdateRenderColor(char param_1, char param_2, char param_3, char param_4, char param_5, char param_6);
+void RenderingSystem_SetRenderColor(float param_1, float param_2, float param_3);
+undefined8 RenderingSystem_CheckKeyState(ulonglong param_1);
+void RenderingSystem_ProcessKeyInput(uint param_1);
+undefined4 RenderingSystem_ValidateRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+undefined4 * RenderingSystem_UpdateRenderParameter(undefined4 *param_1, float param_2);
+void RenderingSystem_CopyRenderBuffers(undefined8 *param_1, undefined8 *param_2);
+
+/*===================================================================================
+    核心函数实现
+===================================================================================*/
+
 /**
- * TaleWorlds.Native 渲染系统 - 高级控制和参数管理模块
+ * 渲染系统对象移除函数
+ * 从渲染上下文中安全移除渲染对象，清理相关资源并更新状态
  * 
- * 本文件包含渲染系统的高级控制、参数管理、资源处理等功能。
- * 这些函数负责处理渲染系统的高级控制逻辑、参数设置、资源管理、
- * 数据变换、状态管理和系统优化等关键任务。
- * 
- * 主要功能模块：
- * - 高级渲染控制函数
- * - 参数处理和状态管理
- * - 资源管理和清理
- * - 数据变换和优化
- * - 系统控制和同步
- * 
- * 技术特点：
- * - 支持复杂的渲染控制逻辑
- * - 提供高效的参数管理机制
- * - 实现资源的安全清理和释放
- * - 包含完整的状态管理功能
- * - 优化性能和内存使用效率
- * 
- * @file 03_rendering_part334.c
- * @version 1.0
- * @date 2024
- */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-
-// 渲染系统常量定义
-#define RENDERING_SYSTEM_MAX_OBJECTS 1024
-#define RENDERING_SYSTEM_RESOURCE_POOL_SIZE 0x60d10
-#define RENDERING_SYSTEM_PARAM_BUFFER_SIZE 0x200
-#define RENDERING_SYSTEM_HASH_TABLE_SIZE 0xa00
-#define RENDERING_SYSTEM_STACK_BUFFER_SIZE 0x100
-#define RENDERING_SYSTEM_THREAD_LOCK_TIMEOUT 1000
-
-// 渲染系统状态码枚举
-typedef enum {
-    RENDERING_SYSTEM_SUCCESS = 0,
-    RENDERING_SYSTEM_ERROR_INVALID_PARAM = -1,
-    RENDERING_SYSTEM_ERROR_MEMORY = -2,
-    RENDERING_SYSTEM_ERROR_RESOURCE = -3,
-    RENDERING_SYSTEM_ERROR_STATE = -4,
-    RENDERING_SYSTEM_ERROR_TIMEOUT = -5
-} RenderingSystemStatusCode;
-
-// 渲染系统对象结构体
-typedef struct {
-    void* context;
-    uint32_t flags;
-    uint32_t state;
-    void* resource_pool;
-    void* parameter_buffer;
-    uint64_t timestamp;
-} RenderingSystemObject;
-
-// 渲染系统参数结构体
-typedef struct {
-    float float_param1;
-    float float_param2;
-    float float_param3;
-    uint32_t int_param1;
-    uint32_t int_param2;
-    uint32_t flags;
-} RenderingSystemParameters;
-
-// 渲染系统控制上下文结构体
-typedef struct {
-    RenderingSystemObject* object;
-    RenderingSystemParameters* params;
-    uint32_t control_flags;
-    void* user_data;
-} RenderingSystemControlContext;
-
-/**
- * 渲染系统高级资源处理器
- * 
- * 处理渲染系统的高级资源管理和清理操作。
- * 负责资源的释放、状态更新和内存管理。
- * 
- * @param object 渲染对象指针
- * @param param_2 参数2
- * @param param_3 参数3
- * @param param_4 参数4
- * @return void
+ * @param render_context 渲染上下文指针
+ * @param param_2 参数2（保留）
+ * @param param_3 参数3（保留）
+ * @param param_4 参数4（保留）
  * 
  * 处理流程：
- * 1. 验证对象和资源池的有效性
- * 2. 执行资源清理和状态更新
- * 3. 处理内存释放和资源回收
- * 4. 更新对象状态标志
- * 5. 返回处理结果
+ * 1. 检查渲染上下文有效性
+ * 2. 获取渲染对象列表
+ * 3. 查找目标对象位置
+ * 4. 执行资源清理操作
+ * 5. 更新渲染状态标志
+ * 6. 从列表中移除对象引用
  */
-void rendering_system_advanced_resource_processor(RenderingSystemObject* object, void* param_2, void* param_3, void* param_4) {
-    // 参数有效性检查
-    if (object == NULL) {
-        return;
-    }
+void FUN_180443820(longlong *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    longlong *object_list;
+    longlong context_data;
+    longlong resource_manager;
+    undefined8 *current_object;
+    ulonglong object_count;
+    int object_index;
+    undefined8 removal_flag;
     
-    // 获取资源池指针
-    void* resource_pool = (void*)((uint64_t)object + 0x60d10);
-    if (resource_pool == NULL) {
-        return;
-    }
+    removal_flag = RENDERING_SYSTEM_FLAG_FFFFFFFE;
+    context_data = render_context[4];
     
-    // 执行资源清理操作
-    void** resource_array = (void**)((uint64_t)resource_pool + 0x60d10);
-    uint64_t array_size = *(uint64_t*)((uint64_t)resource_pool + 0x60d18) - (uint64_t)resource_array;
-    
-    if (array_size > 0) {
-        // 查找并清理目标资源
-        for (uint64_t i = 0; i < array_size / sizeof(void*); i++) {
-            if (resource_array[i] == object) {
-                // 更新对象状态标志
-                *(uint32_t*)((uint64_t)object + 0x2ac) &= 0xefffffff;
-                
-                // 执行资源清理
-                if (*(int64_t*)((uint64_t)object + 0x57) == -1) {
-                    // 调用资源清理函数
-                    void* cleanup_func = (void*)((uint64_t)resource_pool + 0x607e0);
-                    if (cleanup_func != NULL) {
-                        // 执行清理操作（简化实现）
-                    }
+    if (context_data != 0) {
+        // 获取渲染对象列表
+        object_list = (longlong *)(context_data + RENDERING_SYSTEM_OFFSET_60D10);
+        
+        // 执行渲染上下文清理操作
+        (**(code **)(*render_context + 0x28))();
+        
+        object_index = 0;
+        current_object = (undefined8 *)*object_list;
+        object_count = *(longlong *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - (longlong)current_object >> 3;
+        
+        // 查找目标对象
+        if (object_count != 0) {
+            do {
+                if ((longlong *)*current_object == render_context) goto LAB_18044388e;
+                object_index = object_index + 1;
+                current_object = current_object + 1;
+            } while ((ulonglong)(longlong)object_index < object_count);
+        }
+        object_index = -1;
+        
+LAB_18044388e:
+        // 执行对象移除操作
+        (**(code **)(*render_context + 0x38))(render_context);
+        
+        if (object_index != -1) {
+            // 清除渲染状态标志
+            *(uint *)((longlong)render_context + RENDERING_SYSTEM_OFFSET_2AC) = 
+                *(uint *)((longlong)render_context + RENDERING_SYSTEM_OFFSET_2AC) & RENDERING_SYSTEM_FLAG_EFFFFFFF;
+            
+            // 检查是否需要额外清理
+            if ((int)render_context[0x57] == -1) {
+                FUN_1803982f0(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
+                if (render_context[0x2d] == 0) {
+                    FUN_180398640(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
                 }
-                
-                // 从资源数组中移除
-                uint64_t remaining_size = (array_size / sizeof(void*)) - i - 1;
-                if (remaining_size > 0) {
-                    memmove(&resource_array[i], &resource_array[i + 1], remaining_size * sizeof(void*));
-                }
-                
-                break;
             }
+            
+            // 从对象列表中移除引用
+            resource_manager = *object_list;
+            FUN_180080810(resource_manager + (longlong)object_index * 8,
+                          resource_manager + ((*(longlong *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - resource_manager >> 3) + -1) * 8,
+                          resource_manager, param_4, removal_flag);
+            FUN_1800b8630(object_list, (*(longlong *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - *object_list >> 3) + -1);
         }
     }
-}
-
-/**
- * 渲染系统参数处理器
- * 
- * 处理渲染系统的参数设置和状态更新。
- * 支持多种参数类型和状态管理。
- * 
- * @param context 渲染上下文指针
- * @param param_2 参数标志
- * @param param_3 输出参数3
- * @param param_4 输出参数4
- * @param param_5 控制标志
- * @return void
- * 
- * 处理流程：
- * 1. 验证上下文有效性
- * 2. 初始化参数处理
- * 3. 执行参数设置
- * 4. 更新输出参数
- * 5. 返回处理结果
- */
-void rendering_system_parameter_processor(void* context, uint8_t param_2, void* param_3, void* param_4, char param_5) {
-    // 参数有效性检查
-    if (context == NULL) {
-        return;
-    }
-    
-    // 执行参数处理
-    void* stack_buffer[4];
-    
-    // 初始化参数处理
-    void* init_func = (void*)0x1802f4040;
-    if (init_func != NULL) {
-        // 调用初始化函数（简化实现）
-    }
-    
-    // 根据控制标志处理参数
-    if (param_5 != 0) {
-        // 直接输出参数
-        *(uint64_t*)param_3 = *(uint64_t*)stack_buffer;
-        *(uint64_t*)param_4 = *(uint64_t*)((uint64_t)stack_buffer + 8);
-    } else {
-        // 处理并转换参数
-        void* process_func = (void*)0x18063a7b0;
-        if (process_func != NULL) {
-            // 调用参数处理函数（简化实现）
-        }
-    }
-}
-
-/**
- * 渲染系统状态设置器
- * 
- * 设置渲染系统的状态标志和参数。
- * 支持递归状态设置和批量处理。
- * 
- * @param context 渲染上下文指针
- * @param state 要设置的状态值
- * @return void
- * 
- * 处理流程：
- * 1. 验证上下文有效性
- * 2. 设置主状态标志
- * 3. 递归处理子对象状态
- * 4. 更新状态计数器
- * 5. 返回处理结果
- */
-void rendering_system_state_setter(void* context, uint32_t state) {
-    // 参数有效性检查
-    if (context == NULL) {
-        return;
-    }
-    
-    // 设置主状态标志
-    *(char*)((uint64_t)context + 0x2e6) = (char)state;
-    
-    // 递归处理子对象
-    void** object_array = (void**)((uint64_t)context + 0x1c0);
-    uint64_t array_size = *(uint64_t*)((uint64_t)context + 0x1c8) - (uint64_t)object_array;
-    
-    if (array_size > 0) {
-        for (uint64_t i = 0; i < array_size / sizeof(void*); i++) {
-            if (object_array[i] != NULL) {
-                // 递归设置子对象状态
-                rendering_system_state_setter(object_array[i], state);
-            }
-        }
-    }
-}
-
-/**
- * 渲染系统批量状态设置器
- * 
- * 批量设置多个渲染对象的状态标志。
- * 支持高效的批量状态管理。
- * 
- * @param context 渲染上下文指针
- * @param state 要设置的状态值
- * @return void
- * 
- * 处理流程：
- * 1. 验证上下文有效性
- * 2. 获取对象数组信息
- * 3. 批量设置对象状态
- * 4. 更新状态计数器
- * 5. 返回处理结果
- */
-void rendering_system_batch_state_setter(void* context, uint32_t state) {
-    // 参数有效性检查
-    if (context == NULL) {
-        return;
-    }
-    
-    // 获取对象数组信息
-    void** object_array = (void**)((uint64_t)context + 0x1c0);
-    uint64_t array_size = *(uint64_t*)((uint64_t)context + 0x1c8) - (uint64_t)object_array;
-    
-    // 批量设置对象状态
-    for (uint64_t i = 0; i < array_size / sizeof(void*); i++) {
-        if (object_array[i] != NULL) {
-            // 设置对象状态
-            rendering_system_state_setter(object_array[i], state);
-        }
-    }
-}
-
-/**
- * 渲染系统空函数
- * 
- * 空实现函数，用于占位或接口兼容。
- * 不执行任何实际操作。
- * 
- * @return void
- * 
- * 处理流程：
- * 1. 执行空操作
- * 2. 直接返回
- */
-void rendering_system_empty_function(void) {
-    // 空实现，直接返回
     return;
 }
 
 /**
- * 渲染系统资源管理器
+ * 渲染系统数据变换处理函数
+ * 处理渲染数据的变换操作，包括坐标变换、矩阵运算等
  * 
- * 管理渲染系统的资源分配和释放。
- * 提供高效的资源管理机制。
- * 
- * @param output 输出参数指针
- * @param input 输入参数指针
- * @return 输出参数指针
- * 
- * 处理流程：
- * 1. 验证输入参数有效性
- * 2. 获取资源管理器
- * 3. 执行资源操作
- * 4. 设置输出参数
- * 5. 返回处理结果
+ * @param param_1 渲染对象指针
+ * @param param_2 变换类型标志
+ * @param param_3 输出数据指针1
+ * @param param_4 输出数据指针2
+ * @param param_5 变换模式标志
  */
-void** rendering_system_resource_manager(void** output, void* input) {
-    // 参数有效性检查
-    if (output == NULL || input == NULL) {
-        return NULL;
-    }
+void FUN_180443930(longlong param_1, undefined1 param_2, undefined8 *param_3, undefined8 *param_4, char param_5)
+{
+    undefined8 transform_data_1;
+    undefined8 transform_data_2;
+    undefined8 transform_data_3;
+    undefined8 transform_data_4;
     
-    // 获取资源管理器
-    void** resource_manager = *(void**)((uint64_t)input + 0x28);
-    uint32_t result_code;
-    
-    if (resource_manager == NULL) {
-        result_code = 0xffffffff;
-    } else {
-        // 执行资源操作
-        void* get_status_func = (void*)((uint64_t)resource_manager + 8);
-        void* cleanup_func = (void*)((uint64_t)resource_manager + 0x28);
+    if (param_1 != 0) {
+        // 执行基础变换操作
+        FUN_1802f4040(param_1, &transform_data_1, param_2, 0);
         
-        if (get_status_func != NULL) {
-            result_code = ((uint32_t(*)(void*))get_status_func)(resource_manager);
+        if (param_5 != '\0') {
+            // 直接输出变换结果
+            *param_3 = transform_data_1;
+            param_3[1] = transform_data_2;
+            *param_4 = transform_data_3;
+            param_4[1] = transform_data_4;
+            return;
         }
         
-        if (cleanup_func != NULL) {
-            ((void(*)(void*))cleanup_func)(resource_manager);
-        }
+        // 应用高级变换处理
+        FUN_18063a7b0(&transform_data_1, param_1 + 0x70, param_3, param_4);
     }
-    
-    // 设置输出参数
-    *output = resource_manager;
-    *(uint32_t*)((uint64_t)output + 4) = result_code;
-    
-    return output;
+    return;
 }
 
 /**
- * 渲染系统高级资源管理器
+ * 渲染系统状态更新函数
+ * 递归更新渲染对象及其子对象的状态
  * 
- * 执行高级资源管理操作，支持复杂的资源处理逻辑。
- * 提供更高级的资源管理功能。
- * 
- * @param output 输出参数指针
- * @param input 输入参数指针
- * @return 输出参数指针
- * 
- * 处理流程：
- * 1. 验证输入参数有效性
- * 2. 获取高级资源管理器
- * 3. 执行高级资源操作
- * 4. 设置输出参数
- * 5. 返回处理结果
+ * @param param_1 渲染对象指针
+ * @param param_2 新的状态值
  */
-void** rendering_system_advanced_resource_manager(void** output, void* input) {
-    // 参数有效性检查
-    if (output == NULL || input == NULL) {
-        return NULL;
-    }
+void FUN_1804439b0(longlong param_1, undefined4 param_2)
+{
+    ulonglong child_index;
+    uint child_count;
+    ulonglong total_children;
     
-    // 获取高级资源管理器
-    void* get_manager_func = (void*)((uint64_t)input + 0xb0);
-    void** resource_manager = NULL;
+    child_index = 0;
+    *(char *)(param_1 + 0x2e6) = (char)param_2;
+    total_children = child_index;
     
-    if (get_manager_func != NULL) {
-        resource_manager = ((void**(*)(void*))get_manager_func)(input);
-    }
-    
-    uint32_t result_code;
-    if (resource_manager == NULL) {
-        result_code = 0xffffffff;
-    } else {
-        // 执行高级资源操作
-        void* get_status_func = (void*)((uint64_t)resource_manager + 8);
-        void* cleanup_func = (void*)((uint64_t)resource_manager + 0x28);
-        
-        if (get_status_func != NULL) {
-            result_code = ((uint32_t(*)(void*))get_status_func)(resource_manager);
-        }
-        
-        if (cleanup_func != NULL) {
-            ((void(*)(void*))cleanup_func)(resource_manager);
-        }
-    }
-    
-    // 设置输出参数
-    *output = resource_manager;
-    *(uint32_t*)((uint64_t)output + 4) = result_code;
-    
-    return output;
-}
-
-/**
- * 渲染系统路径处理器
- * 
- * 处理渲染系统相关的路径操作和文件处理。
- * 支持路径解析、文件搜索和字符串处理。
- * 
- * @param void 无参数
- * @return void
- * 
- * 处理流程：
- * 1. 初始化路径处理环境
- * 2. 解析路径字符串
- * 3. 搜索目标文件
- * 4. 执行路径处理操作
- * 5. 清理处理环境
- */
-void rendering_system_path_processor(void) {
-    // 初始化处理环境
-    void* global_resource = *(void**)0x180c8a9e0;
-    if (global_resource != NULL) {
-        // 清理全局资源
-        *(void**)0x180c8a9e0 = NULL;
-        
-        // 执行路径处理操作
-        void* process_func = (void*)0x180443b24;
-        if (process_func != NULL) {
-            ((void(*)(void*))process_func)(global_resource);
-        }
-    }
-    
-    // 路径处理逻辑
-    void* path_context = *(void**)0x180c8a9e0;
-    char path_buffer[128];
-    
-    // 构建路径字符串
-    uint64_t base_offset = *(uint64_t*)(0x180c86938 + 0x1d20);
-    uint64_t path_info = *(uint64_t*)(0x180c86938 + 0x1d40) * 0xd0 + base_offset;
-    
-    const char* default_path = "default_path";
-    const char* custom_path = *(const char**)(path_info + 0x18);
-    if (custom_path == NULL) {
-        custom_path = default_path;
-    }
-    
-    // 复制路径字符串
-    strncpy_s(path_buffer, sizeof(path_buffer), custom_path, sizeof(path_buffer) - 1);
-    
-    // 搜索目标文件
-    const char* search_pattern = "target_pattern";
-    if (strstr(path_buffer, search_pattern) != NULL) {
-        // 执行文件处理操作
-        void* file_handler = (void*)0x180062300;
-        if (file_handler != NULL) {
-            // 执行文件处理（简化实现）
-        }
-    }
-}
-
-/**
- * 渲染系统命令处理器
- * 
- * 处理渲染系统的命令执行和参数传递。
- * 支持多种命令类型和参数组合。
- * 
- * @param param_1 命令参数1
- * @param param_2 命令参数2
- * @param param_3 命令参数3
- * @param param_4 命令参数4
- * @return void
- * 
- * 处理流程：
- * 1. 初始化命令处理环境
- * 2. 解析命令参数
- * 3. 执行命令处理
- * 4. 返回处理结果
- */
-void rendering_system_command_processor(void* param_1, void* param_2, void* param_3, void* param_4) {
-    // 初始化处理环境
-    char command_buffer[48];
-    
-    // 执行命令处理
-    void* process_func = (void*)0x180627910;
-    if (process_func != NULL) {
-        ((void(*)(void*, void*, void*, void*, uint64_t))process_func)(command_buffer, param_1, param_3, param_4, 0xfffffffffffffffe);
-    }
-    
-    // 执行后续处理
-    void* finalize_func = (void*)0x1801865a0;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
-}
-
-/**
- * 渲染系统数据加载器
- * 
- * 加载渲染系统所需的数据和资源。
- * 支持多种数据格式和资源类型。
- * 
- * @param param_1 加载参数1
- * @param param_2 加载参数2
- * @return void
- * 
- * 处理流程：
- * 1. 初始化加载环境
- * 2. 解析加载参数
- * 3. 执行数据加载
- * 4. 清理加载环境
- */
-void rendering_system_data_loader(void* param_1, uint8_t param_2) {
-    // 初始化加载环境
-    void* load_buffer[32];
-    void* load_context = *(void**)0x180c8a9e0;
-    
-    // 执行数据加载
-    void* load_func = (void*)0x180627910;
-    if (load_func != NULL) {
-        ((void(*)(void*, void*))load_func)(load_buffer, param_1);
-    }
-    
-    // 处理加载逻辑
-    if (*(uint64_t*)(load_context + 8) == 0) {
-        // 初始化资源
-        *load_buffer = (void*)0x180a3c3e0;
-        if (load_buffer[1] != NULL) {
-            // 清理资源
-            void* cleanup_func = (void*)0x18064e900;
-            if (cleanup_func != NULL) {
-                ((void(*)(void))cleanup_func)();
-            }
-        }
-        load_buffer[1] = NULL;
-        *(uint32_t*)((uint64_t)load_buffer + 12) = 0;
-    } else {
-        // 处理现有资源
-        void* existing_resource = (void*)load_buffer[1];
-        uint64_t resource_length = 0;
-        
-        // 计算资源长度
+    // 递归处理所有子对象
+    if (*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C8) - *(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) >> 3 != 0) {
         do {
-            resource_length++;
-        } while (((char*)existing_resource)[resource_length] != '\0');
-        
-        // 执行资源处理
-        void* process_func = (void*)0x1800671b0;
-        if (process_func != NULL) {
-            ((void(*)(void*))process_func)(load_buffer);
-        }
-        
-        // 调用资源处理器
-        void** resource_manager = *(void***)(load_context + 8);
-        void* handler_func = (void*)((uint64_t)resource_manager + 0x20);
-        if (handler_func != NULL) {
-            ((void(*)(void*, void*, void*, int))handler_func)(resource_manager, load_buffer, &param_2, 0);
-        }
-        
-        // 清理资源
-        void* cleanup_func = (void*)0x180067070;
-        if (cleanup_func != NULL) {
-            ((void(*)(void*))cleanup_func)(load_buffer);
-        }
+            FUN_1804439b0(*(undefined8 *)(*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
+            child_index = child_index + 8;
+            child_count = (int)total_children + 1;
+            total_children = (ulonglong)child_count;
+        } while ((ulonglong)(longlong)(int)child_count <
+                 (ulonglong)(*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C8) - *(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) >> 3));
     }
+    return;
 }
 
 /**
- * 渲染系统资源清理器
- * 
- * 清理渲染系统的资源和内存。
- * 提供完整的资源清理功能。
- * 
- * @param param_1 清理参数1
- * @return void
- * 
- * 处理流程：
- * 1. 初始化清理环境
- * 2. 执行资源清理
- * 3. 清理内存
- * 4. 返回清理结果
+ * 渲染系统批处理执行函数
+ * 批量处理渲染操作，提高渲染效率
  */
-void rendering_system_resource_cleaner(void* param_1) {
-    // 初始化清理环境
-    char cleanup_buffer1[32];
-    char cleanup_buffer2[40];
+void FUN_1804439e4(void)
+{
+    longlong render_context;
+    undefined4 render_state;
+    ulonglong object_index;
+    uint object_count;
     
-    // 执行资源清理
-    void* cleanup_func = (void*)0x180627910;
-    if (cleanup_func != NULL) {
-        ((void(*)(void*))cleanup_func)(cleanup_buffer1);
-    }
+    render_context = _DAT_180c8a9e0;
+    object_index = (ulonglong)object_count;
     
-    if (cleanup_func != NULL) {
-        ((void(*)(void*, void*))cleanup_func)(cleanup_buffer2, param_1);
-    }
-    
-    // 执行最终清理
-    void* finalize_func = (void*)0x180186880;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
+    do {
+        FUN_1804439b0(*(undefined8 *)(*(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
+        object_index = object_index + 8;
+        object_count = object_count + 1;
+    } while ((ulonglong)(longlong)(int)object_count <
+             (ulonglong)(*(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1C8) - *(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) >> 3));
+    return;
 }
 
 /**
- * 渲染系统内存清理器
- * 
- * 清理渲染系统的内存和资源。
- * 提供完整的内存清理功能。
- * 
- * @param param_1 清理参数1
- * @return void
- * 
- * 处理流程：
- * 1. 初始化清理环境
- * 2. 执行内存清理
- * 3. 清理资源
- * 4. 返回清理结果
+ * 渲染系统空函数1
+ * 占位符函数，用于保持接口一致性
  */
-void rendering_system_memory_cleaner(void* param_1) {
-    // 初始化清理环境
-    char cleanup_buffer1[32];
-    char cleanup_buffer2[40];
-    
-    // 执行内存清理
-    void* cleanup_func = (void*)0x180627910;
-    if (cleanup_func != NULL) {
-        ((void(*)(void*))cleanup_func)(cleanup_buffer1);
-    }
-    
-    if (cleanup_func != NULL) {
-        ((void(*)(void*, void*))cleanup_func)(cleanup_buffer2, param_1);
-    }
-    
-    // 执行最终清理
-    void* finalize_func = (void*)0x180186ac0;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
+void FUN_180443a27(void)
+{
+    return;
 }
 
 /**
- * 渲染系统字符串分割器
+ * 渲染系统资源获取函数
+ * 从资源管理器中获取渲染资源
  * 
- * 分割字符串并处理标记化数据。
- * 支持动态内存分配和数组管理。
- * 
- * @param param_1 输入字符串
- * @param param_2 分割参数
- * @param param_3 处理参数3
- * @param param_4 处理参数4
- * @return void
- * 
- * 处理流程：
- * 1. 初始化分割环境
- * 2. 执行字符串分割
- * 3. 处理标记化数据
- * 4. 管理内存分配
- * 5. 返回分割结果
+ * @param resource_manager 资源管理器指针
+ * @param param_2 资源参数
+ * @return 资源管理器指针
  */
-void rendering_system_string_splitter(void* param_1, void* param_2, void* param_3, void* param_4) {
-    // 初始化分割环境
-    void** token_array = NULL;
-    void** token_end = NULL;
-    void** array_start = NULL;
-    void** array_end = NULL;
-    uint64_t array_capacity = 0;
+longlong * FUN_180443a40(longlong *resource_manager, longlong param_2)
+{
+    longlong *resource_ptr;
+    undefined4 resource_status;
+    undefined4 resource_data;
     
-    // 执行字符串分割
-    void* strtok_func = (void*)0x180186ca0;
-    void* token = ((void*(*)(void*, void*, void*, void*, uint64_t, void*, void*, void*, int))strtok_func)(
-        NULL, (void*)0x180a2a43c, param_3, param_4, 0xfffffffffffffffe, NULL, NULL, NULL, 3);
+    resource_ptr = *(longlong **)(param_2 + 0x28);
+    if (resource_ptr == (longlong *)0x0) {
+        resource_status = RENDERING_SYSTEM_ERROR_INVALID;
+    }
+    else {
+        resource_status = (**(code **)(*resource_ptr + 8))(resource_ptr);
+        (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    }
     
-    // 处理标记化数据
-    while (token != NULL) {
-        if (array_start >= array_end) {
-            // 处理已分割的标记
-            if (token_array != NULL) {
-                ((void(*)(uint32_t, void*, uint64_t, void*, uint64_t, void*, void*, void*))strtok_func)(
-                    0, token_array, (uint64_t)array_start - (uint64_t)token_array >> 3, param_4, 0xfffffffffffffffe,
-                    token_array, array_start, array_end);
-                
-                if (token_array != NULL) {
-                    // 释放内存
-                    void* free_func = (void*)0x18064e900;
-                    if (free_func != NULL) {
-                        ((void(*)(void*))free_func)(token_array);
-                    }
-                }
-            }
-            
-            // 重新分配数组内存
-            uint64_t new_capacity = ((uint64_t)array_start - (uint64_t)token_array >> 3) * 2;
-            if (new_capacity == 0) {
-                new_capacity = 1;
-            }
-            
-            void* new_array = NULL;
-            void* alloc_func = (void*)0x18062b420;
-            if (alloc_func != NULL) {
-                new_array = ((void*(*)(void*, uint64_t, int))alloc_func)(0x180c8ed18, new_capacity * 8, 3);
-            }
-            
-            // 移动现有数据
-            if (token_array != NULL && token_array != array_start) {
-                memmove(new_array, token_array, (uint64_t)array_start - (uint64_t)token_array);
-            }
-            
-            // 更新数组指针
-            if (token_array != NULL) {
-                void* free_func = (void*)0x18064e900;
-                if (free_func != NULL) {
-                    ((void(*)(void*))free_func)(token_array);
-                }
-            }
-            
-            array_end = (void*)((uint64_t)new_array + new_capacity * 8);
-            token_array = new_array;
-            array_start = (void**)((uint64_t)new_array + ((uint64_t)array_start - (uint64_t)token_array));
+    *resource_manager = (longlong)resource_ptr;
+    resource_manager[1] = CONCAT44(resource_data, resource_status);
+    return resource_manager;
+}
+
+/**
+ * 渲染系统资源获取函数
+ * 通过高级接口获取渲染资源
+ * 
+ * @param resource_container 资源容器指针
+ * @param param_2 资源参数
+ * @return 资源容器指针
+ */
+undefined8 * FUN_180443aa0(undefined8 *resource_container, longlong *param_2)
+{
+    undefined4 resource_status;
+    longlong *resource_ptr;
+    undefined4 resource_data;
+    
+    resource_ptr = (longlong *)(**(code **)(*param_2 + 0xb0))(param_2);
+    if (resource_ptr == (longlong *)0x0) {
+        resource_status = RENDERING_SYSTEM_ERROR_INVALID;
+    }
+    else {
+        resource_status = (**(code **)(*resource_ptr + 8))(resource_ptr);
+        (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    }
+    
+    *resource_container = resource_ptr;
+    resource_container[1] = CONCAT44(resource_data, resource_status);
+    return resource_container;
+}
+
+/**
+ * 渲染系统上下文初始化函数
+ * 初始化渲染上下文，设置必要的渲染参数和状态
+ */
+void FUN_180443b00(void)
+{
+    char *string_ptr;
+    undefined8 *resource_ptr;
+    longlong *context_manager;
+    undefined8 config_data;
+    longlong system_data;
+    undefined *texture_ptr;
+    undefined *texture_data;
+    undefined1 stack_buffer_278 [96];
+    undefined8 stack_data_218;
+    int stack_array_1d0 [2];
+    undefined1 stack_data_1c8;
+    undefined8 stack_data_1b8;
+    undefined8 stack_data_1b0;
+    undefined8 stack_data_1a8;
+    undefined8 stack_data_1a0;
+    undefined8 *stack_ptr_198;
+    undefined4 stack_data_190;
+    undefined1 stack_array_18c [4];
+    longlong *stack_ptr_188;
+    undefined1 stack_array_178 [16];
+    undefined8 stack_data_168;
+    undefined8 stack_data_160;
+    undefined8 stack_data_158;
+    undefined8 stack_data_150;
+    undefined8 stack_data_148;
+    undefined1 stack_data_140;
+    undefined8 stack_array_138 [7];
+    undefined8 stack_data_100;
+    undefined8 stack_data_f8;
+    undefined4 stack_data_f0;
+    undefined1 stack_data_e8;
+    undefined8 stack_data_d8;
+    undefined8 stack_data_d0;
+    undefined *stack_ptr_c8;
+    undefined *stack_ptr_c0;
+    undefined4 stack_data_b8;
+    undefined stack_array_b0 [128];
+    undefined8 stack_data_30;
+    ulonglong stack_data_28;
+    
+    // 清理现有资源
+    resource_ptr = (undefined8 *)*_DAT_180c8a9e0;
+    if (resource_ptr != (undefined8 *)0x0) {
+        *_DAT_180c8a9e0 = 0;
+        stack_data_30 = 0x180443b24;
+        (**(code **)*resource_ptr)(resource_ptr, 1);
+    }
+    
+    // 初始化上下文管理器
+    context_manager = _DAT_180c8a9e0;
+    stack_data_218 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
+    stack_data_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_278;
+    
+    // 计算系统数据偏移
+    system_data = (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + *(longlong *)(_DAT_180c86938 + 0x1d20);
+    
+    // 设置纹理数据指针
+    stack_ptr_c8 = &UNK_1809fcc28;
+    stack_ptr_c0 = stack_array_b0;
+    stack_array_b0[0] = 0;
+    stack_data_b8 = *(undefined4 *)(system_data + 0x20);
+    texture_ptr = *(undefined **)(system_data + 0x18);
+    texture_data = &DAT_18098bc73;
+    
+    if (texture_ptr != (undefined *)0x0) {
+        texture_data = texture_ptr;
+    }
+    
+    // 复制纹理数据
+    strcpy_s(stack_array_b0, 0x80, texture_data);
+    texture_ptr = &DAT_18098bc73;
+    
+    if (stack_ptr_c0 != (undefined *)0x0) {
+        texture_ptr = stack_ptr_c0;
+    }
+    
+    // 查找特定纹理标记
+    system_data = strstr(texture_ptr, &UNK_180a0a7b8);
+    if (system_data != 0) {
+        // 初始化渲染数据结构
+        stack_data_168 = 0;
+        stack_data_160 = 0xf;
+        stack_array_178[0] = 0;
+        stack_data_158 = 0;
+        stack_data_150 = 0;
+        stack_data_148 = 0;
+        stack_data_140 = 0;
+        stack_ptr_198 = stack_array_138;
+        stack_data_100 = 0;
+        stack_data_f8 = 0;
+        stack_data_f0 = 0;
+        stack_data_d8 = 0;
+        stack_data_d0 = 0xf;
+        stack_data_e8 = 0;
+        system_data = -1;
+        
+        // 处理字符串数据
+        do {
+            string_ptr = &UNK_1809fd0f9 + system_data;
+            system_data = system_data + 1;
+        } while (*string_ptr != '\0');
+        
+        FUN_1800671b0(stack_array_178, &DAT_1809fd0f8);
+        stack_data_140 = 1;
+        stack_ptr_198 = (undefined8 *)0x100000000;
+        stack_data_190 = 2;
+        FUN_180189600(&stack_data_158, &stack_ptr_198, stack_array_18c);
+        stack_ptr_198 = (undefined8 *)&UNK_180186550;
+        stack_ptr_188 = context_manager;
+        FUN_180188620(stack_array_138, &stack_ptr_198);
+        stack_data_1b8 = 0;
+        stack_data_1b0 = 0xf;
+        stack_data_1c8 = 0;
+        stack_ptr_198 = &stack_data_1a8;
+        stack_data_1a8 = 0;
+        stack_data_1a0 = 0;
+        stack_data_1a8 = FUN_180188560();
+        FUN_180183a20(stack_array_178, stack_array_1d0);
+        
+        if (-1 < stack_array_1d0[0]) {
+            config_data = func_0x0001801836e0();
+            FUN_180062300(_DAT_180c86928, &UNK_180a0a800, config_data);
         }
         
-        // 添加新标记
-        *array_start = token;
-        array_start++;
-        token_end = array_start;
-        
-        // 获取下一个标记
-        token = ((void*(*)(void*, void*))strtok_func)(NULL, (void*)0x180a2a43c);
+        config_data = func_0x0001801836e0();
+        FUN_180062300(_DAT_180c86928, &UNK_180a0a890, config_data);
     }
+    
+    // 设置渲染配置
+    stack_ptr_c8 = &UNK_18098bcb0;
+    FUN_1808fc050(stack_data_28 ^ (ulonglong)stack_buffer_278);
 }
 
 /**
- * 渲染系统效果处理器
+ * 渲染系统命令处理函数
+ * 处理渲染命令的执行和参数传递
  * 
- * 处理渲染系统的效果和特效。
- * 提供完整的效果处理功能。
- * 
- * @param param_1 效果参数1
- * @return void
- * 
- * 处理流程：
- * 1. 初始化效果环境
- * 2. 执行效果处理
- * 3. 清理效果环境
- * 4. 返回处理结果
+ * @param param_1 命令类型
+ * @param param_2 命令参数1
+ * @param param_3 命令参数2
+ * @param param_4 命令参数3
  */
-void rendering_system_effect_processor(void* param_1) {
-    // 初始化效果环境
-    char effect_buffer1[32];
-    char effect_buffer2[40];
+void FUN_180443b40(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    undefined1 command_buffer_30 [48];
     
-    // 执行效果处理
-    void* process_func = (void*)0x180627910;
-    if (process_func != NULL) {
-        ((void(*)(void*))process_func)(effect_buffer1);
+    // 准备命令缓冲区
+    FUN_180627910(command_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    
+    // 执行渲染命令
+    FUN_1801865a0();
+    return;
+}
+
+/**
+ * 渲染系统参数设置函数
+ * 设置渲染系统的各种参数
+ * 
+ * @param param_1 参数类型
+ * @param param_2 参数值
+ */
+void FUN_180443b80(undefined8 param_1, undefined1 param_2)
+{
+    longlong *parameter_manager;
+    longlong system_context;
+    undefined8 *parameter_ptr;
+    undefined *parameter_data;
+    longlong string_length;
+    undefined1 parameter_buffer_d8 [32];
+    undefined **parameter_ptr_b8;
+    undefined8 parameter_data_b0;
+    undefined8 *parameter_ptr_a8;
+    undefined *parameter_ptr_a0;
+    longlong parameter_data_98;
+    undefined **parameter_ptr_68;
+    undefined *parameter_array_60 [4];
+    undefined1 parameter_buffer_40 [16];
+    undefined8 parameter_data_30;
+    undefined8 parameter_data_28;
+    undefined1 parameter_flag_20;
+    ulonglong parameter_data_18;
+    
+    parameter_data_b0 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
+    parameter_data_18 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_d8;
+    parameter_ptr_b8 = parameter_array_60;
+    parameter_ptr = (undefined8 *)FUN_180627910(parameter_array_60, param_1);
+    system_context = _DAT_180c8a9e0;
+    parameter_ptr_a8 = parameter_ptr;
+    
+    if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
+        *parameter_ptr = &UNK_180a3c3e0;
+        if (parameter_ptr[1] != 0) {
+            FUN_18064e900();
+        }
+        parameter_ptr[1] = 0;
+        *(undefined4 *)(parameter_ptr + 3) = 0;
+    }
+    else {
+        // 初始化参数数据结构
+        parameter_data_30 = 0;
+        parameter_data_28 = 0xf;
+        parameter_buffer_40[0] = 0;
+        parameter_data = &DAT_18098bc73;
+        
+        if ((undefined *)parameter_ptr[1] != (undefined *)0x0) {
+            parameter_data = (undefined *)parameter_ptr[1];
+        }
+        
+        string_length = -1;
+        do {
+            string_length = string_length + 1;
+        } while (parameter_data[string_length] != '\0');
+        
+        FUN_1800671b0(parameter_buffer_40);
+        parameter_manager = *(longlong **)(system_context + 8);
+        parameter_ptr_b8 = &parameter_ptr_a0;
+        parameter_ptr_a0 = &UNK_180a0ac18;
+        parameter_data_98 = system_context;
+        parameter_ptr_68 = &parameter_ptr_a0;
+        parameter_flag_20 = param_2;
+        
+        (**(code **)(*parameter_manager + 0x20))(parameter_manager, parameter_buffer_40, &parameter_ptr_a0, 0);
+        FUN_180067070(parameter_buffer_40);
+        *parameter_ptr = &UNK_180a3c3e0;
+        
+        if (parameter_ptr[1] != 0) {
+            FUN_18064e900();
+        }
+        parameter_ptr[1] = 0;
+        *(undefined4 *)(parameter_ptr + 3) = 0;
     }
     
-    if (process_func != NULL) {
-        ((void(*)(void*, void*))process_func)(effect_buffer2, param_1);
-    }
+    *parameter_ptr = &UNK_18098bcb0;
+    FUN_1808fc050(parameter_data_18 ^ (ulonglong)parameter_buffer_d8);
+}
+
+/**
+ * 渲染系统资源销毁函数
+ * 销毁指定的渲染资源
+ * 
+ * @param param_1 资源指针
+ */
+void FUN_180443d10(undefined8 param_1)
+{
+    undefined1 resource_buffer_50 [32];
+    undefined1 resource_buffer_30 [40];
+    
+    // 初始化资源缓冲区
+    FUN_180627910(resource_buffer_50);
+    FUN_180627910(resource_buffer_30, param_1);
+    
+    // 执行资源销毁
+    FUN_180186880();
+    return;
+}
+
+/**
+ * 渲染系统资源释放函数
+ * 释放指定的渲染资源
+ * 
+ * @param param_1 资源指针
+ */
+void FUN_180443d70(undefined8 param_1)
+{
+    undefined1 resource_buffer_50 [32];
+    undefined1 resource_buffer_30 [40];
+    
+    // 初始化资源缓冲区
+    FUN_180627910(resource_buffer_50);
+    FUN_180627910(resource_buffer_30, param_1);
+    
+    // 执行资源释放
+    FUN_180186ac0();
+    return;
+}
+
+/**
+ * 渲染系统数据处理函数
+ * 处理渲染数据的解析和处理操作
+ * 
+ * @param param_1 数据类型
+ * @param param_2 数据源
+ * @param param_3 数据目标
+ * @param param_4 处理标志
+ */
+void FUN_180443df0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    longlong *data_processor_1;
+    undefined4 data_status;
+    longlong *data_processor_2;
+    longlong data_chunk;
+    longlong *data_processor_3;
+    longlong data_size;
+    longlong *data_processor_4;
+    longlong *data_processor_5;
+    longlong *data_processor_6;
+    longlong data_capacity;
+    undefined4 extra_data;
+    undefined4 extra_data_00;
+    undefined8 processing_flag;
+    longlong *data_processor_7;
+    longlong *data_processor_8;
+    longlong *data_processor_9;
+    
+    processing_flag = RENDERING_SYSTEM_FLAG_FFFFFFFE;
+    data_processor_7 = (longlong *)0x0;
+    data_processor_8 = (longlong *)0x0;
+    data_processor_4 = (longlong *)0x0;
+    data_processor_9 = (longlong *)0x0;
+    
+    // 解析数据块
+    data_chunk = strtok(0, &UNK_180a2a43c, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE, 0, 0, 0, 3);
+    data_processor_6 = data_processor_4;
+    data_processor_5 = data_processor_4;
+    data_status = extra_data;
+    data_processor_2 = data_processor_7;
+    data_processor_1 = data_processor_8;
+    
+    do {
+        if (data_chunk == 0) {
+            FUN_180186ca0(data_status, data_processor_2, (longlong)data_processor_6 - (longlong)data_processor_2 >> 3, param_4, processing_flag, data_processor_7, data_processor_8, data_processor_9);
+            if (data_processor_2 == (longlong *)0x0) {
+                return;
+            }
+            FUN_18064e900(data_processor_2);
+        }
+        
+        if (data_processor_6 < data_processor_5) {
+            *data_processor_1 = data_chunk;
+            data_processor_3 = data_processor_2;
+        }
+        else {
+            data_size = (longlong)data_processor_6 - (longlong)data_processor_2 >> 3;
+            data_capacity = data_size * 2;
+            if (data_size == 0) {
+                data_capacity = 1;
+            }
+            data_processor_3 = data_processor_4;
+            if (data_capacity != 0) {
+                data_processor_3 = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_capacity * 8, CONCAT71((int7)((ulonglong)data_processor_6 >> 8), 3));
+            }
+            
+            if (data_processor_2 != data_processor_6) {
+                memmove(data_processor_3, data_processor_2, (longlong)data_processor_6 - (longlong)data_processor_2);
+            }
+            
+            *data_processor_3 = data_chunk;
+            if (data_processor_2 != (longlong *)0x0) {
+                FUN_18064e900(data_processor_2);
+            }
+            
+            data_processor_5 = data_processor_3 + data_capacity;
+            data_processor_7 = data_processor_3;
+            data_processor_9 = data_processor_5;
+            data_processor_1 = data_processor_3;
+        }
+        
+        data_processor_6 = data_processor_1 + 1;
+        data_processor_8 = data_processor_6;
+        data_chunk = strtok(0, &UNK_180a2a43c);
+        data_status = extra_data_00;
+        data_processor_2 = data_processor_3;
+        data_processor_1 = data_processor_6;
+    } while (true);
+}
+
+/**
+ * 渲染系统对象销毁函数
+ * 销毁渲染对象和相关资源
+ * 
+ * @param param_1 对象指针
+ */
+void FUN_180443f80(undefined8 param_1)
+{
+    undefined1 object_buffer_50 [32];
+    undefined1 object_buffer_30 [40];
+    
+    // 初始化对象缓冲区
+    FUN_180627910(object_buffer_50);
+    FUN_180627910(object_buffer_30, param_1);
+    
+    // 执行对象销毁
+    FUN_180186eb0();
+    return;
+}
+
+/**
+ * 渲染系统最终处理函数
+ * 执行渲染流程的最终处理步骤
+ * 
+ * @param param_1 处理类型
+ * @param param_2 处理参数1
+ * @param param_3 处理参数2
+ * @param param_4 处理标志
+ */
+void FUN_180443ff0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    undefined1 process_buffer_30 [48];
+    
+    // 准备处理缓冲区
+    FUN_180627910(process_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     
     // 执行最终处理
-    void* finalize_func = (void*)0x180186eb0;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
+    FUN_1801871f0();
+    return;
 }
 
 /**
- * 渲染系统高级效果处理器
- * 
- * 处理渲染系统的高级效果和特效。
- * 支持复杂的特效处理逻辑。
- * 
- * @param param_1 效果参数1
- * @param param_2 效果参数2
- * @param param_3 效果参数3
- * @param param_4 效果参数4
- * @return void
- * 
- * 处理流程：
- * 1. 初始化效果环境
- * 2. 执行高级效果处理
- * 3. 清理效果环境
- * 4. 返回处理结果
+ * 渲染系统互斥锁函数
+ * 锁定渲染系统互斥量，确保线程安全
  */
-void rendering_system_advanced_effect_processor(void* param_1, void* param_2, void* param_3, void* param_4) {
-    // 初始化效果环境
-    char effect_buffer[48];
+void FUN_180444030(void)
+{
+    int lock_result;
     
-    // 执行高级效果处理
-    void* process_func = (void*)0x180627910;
-    if (process_func != NULL) {
-        ((void(*)(void*, void*, void*, void*, uint64_t))process_func)(effect_buffer, param_1, param_3, param_4, 0xfffffffffffffffe);
-    }
-    
-    // 执行最终处理
-    void* finalize_func = (void*)0x1801871f0;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
-}
-
-/**
- * 渲染系统线程锁管理器
- * 
- * 管理渲染系统的线程锁和同步机制。
- * 提供线程安全的资源访问。
- * 
- * @param void 无参数
- * @return void
- * 
- * 处理流程：
- * 1. 获取线程锁
- * 2. 更新全局状态
- * 3. 释放线程锁
- * 4. 返回处理结果
- */
-void rendering_system_thread_lock_manager(void) {
-    // 获取线程锁
-    int lock_result = _Mtx_lock(0x180c91970);
+    lock_result = _Mtx_lock(0x180c91970);
     if (lock_result != 0) {
-        // 处理锁错误
-        void* error_func = (void*)0x180444100;
-        if (error_func != NULL) {
-            ((void(*)(int))error_func)(lock_result);
-        }
+        __Throw_C_error_std__YAXH_Z(lock_result);
+    }
+    _DAT_180c8a9b0 = *(undefined8 *)*_DAT_180c86960;
+    return;
+}
+
+/**
+ * 渲染系统配置设置函数
+ * 设置渲染系统的配置参数
+ * 
+ * @param param_1 配置类型
+ * @param param_2 配置数据指针
+ */
+void FUN_180444070(undefined8 param_1, undefined8 *param_2)
+{
+    undefined8 config_data_1;
+    undefined8 config_data_2;
+    longlong config_context;
+    undefined4 config_buffer_28;
+    undefined4 config_buffer_24;
+    undefined4 config_buffer_20;
+    undefined4 config_buffer_18;
+    undefined4 config_buffer_16;
+    
+    config_context = _DAT_180c8a9b0;
+    config_data_1 = *param_2;
+    config_data_2 = param_2[1];
+    config_buffer_28 = 0;
+    config_buffer_24 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16C8);
+    config_buffer_20 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16CC);
+    config_buffer_18 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D0);
+    config_buffer_16 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D4);
+    
+    FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &config_buffer_28);
+    *(undefined8 *)(config_context + RENDERING_SYSTEM_OFFSET_16C8) = config_data_1;
+    *(undefined8 *)(config_context + RENDERING_SYSTEM_OFFSET_16D0) = config_data_2;
+    return;
+}
+
+/**
+ * 渲染系统互斥锁解锁函数
+ * 解锁渲染系统互斥量
+ */
+void FUN_180444100(void)
+{
+    int unlock_result;
+    
+    unlock_result = _Mtx_unlock(0x180c91970);
+    if (unlock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(unlock_result);
         return;
     }
-    
-    // 更新全局状态
-    *(void**)0x180c8a9b0 = *(void**)*(void**)0x180c86960;
+    return;
 }
 
 /**
- * 渲染系统状态更新器
+ * 渲染系统操作执行函数
+ * 执行指定的渲染操作
  * 
- * 更新渲染系统的状态和参数。
- * 支持多种状态更新操作。
- * 
- * @param param_1 更新参数1
- * @param param_2 更新参数2
- * @return void
- * 
- * 处理流程：
- * 1. 验证参数有效性
- * 2. 获取当前状态
- * 3. 执行状态更新
- * 4. 返回更新结果
+ * @param param_1 操作类型
+ * @param param_2 操作参数1
+ * @param param_3 操作参数2
+ * @param param_4 操作参数3
+ * @param param_5 操作参数4
+ * @param param_6 操作参数5
+ * @param param_7 操作参数6
+ * @param param_8 操作参数7
+ * @param param_9 操作参数8
+ * @param param_10 操作参数9
  */
-void rendering_system_state_updater(void* param_1, void** param_2) {
-    // 获取当前状态
-    void* current_state = *(void**)0x180c8a9b0;
+void FUN_180444200(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4,
+                  undefined8 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8,
+                  undefined4 param_9, undefined4 param_10)
+{
+    undefined8 operation_data_18;
+    undefined4 operation_data_10;
     
-    // 验证参数有效性
-    if (param_2 == NULL) {
-        return;
-    }
+    operation_data_10 = param_10;
+    operation_data_18 = param_2;
     
-    // 执行状态更新
-    uint64_t state_values[4];
-    state_values[0] = *param_2;
-    state_values[1] = param_2[1];
-    state_values[2] = *(uint32_t*)(current_state + 0x16c8);
-    state_values[3] = *(uint32_t*)(current_state + 0x16cc);
-    state_values[4] = *(uint32_t*)(current_state + 0x16d0);
-    state_values[5] = *(uint32_t*)(current_state + 0x16d4);
-    
-    // 更新状态
-    void* update_func = (void*)0x18013e100;
-    if (update_func != NULL) {
-        ((void(*)(void*, void*))update_func)(current_state + 0x1b80, state_values);
-    }
-    
-    // 保存更新后的状态
-    *(uint64_t*)(current_state + 0x16c8) = state_values[0];
-    *(uint64_t*)(current_state + 0x16d0) = state_values[1];
+    FUN_18011a0a0(param_6, param_1, param_3, &operation_data_18, param_3, param_4, param_5, param_6, param_7, CONCAT44(param_9, param_8));
+    return;
 }
 
 /**
- * 渲染系统线程锁释放器
+ * 渲染系统变换处理函数
+ * 处理渲染对象的变换操作
  * 
- * 释放渲染系统的线程锁。
- * 确保线程安全的资源访问。
- * 
- * @param void 无参数
- * @return void
- * 
- * 处理流程：
- * 1. 释放线程锁
- * 2. 处理释放错误
- * 3. 返回释放结果
+ * @param param_1 对象指针
  */
-void rendering_system_thread_lock_releaser(void) {
-    // 释放线程锁
-    int release_result = _Mtx_unlock(0x180c91970);
-    if (release_result != 0) {
-        // 处理释放错误
-        void* error_func = (void*)0x180444100;
-        if (error_func != NULL) {
-            ((void(*)(int))error_func)(release_result);
-        }
-    }
+void FUN_180444280(undefined8 param_1)
+{
+    undefined4 transform_data_10;
+    undefined4 transform_data_14;
+    
+    transform_data_10 = 0xbf800000;
+    transform_data_14 = 0;
+    FUN_180111c30(param_1, &transform_data_10);
+    return;
 }
 
 /**
- * 渲染系统高级命令处理器
+ * 渲染系统几何更新函数
+ * 更新渲染对象的几何数据
  * 
- * 处理渲染系统的高级命令和操作。
- * 支持复杂的命令处理逻辑。
- * 
- * @param param_1 命令参数1
- * @param param_2 命令参数2
- * @param param_3 命令参数3
- * @param param_4 命令参数4
- * @param param_5 命令参数5
- * @param param_6 命令参数6
- * @param param_7 命令参数7
- * @param param_8 命令参数8
- * @param param_9 命令参数9
- * @param param_10 命令参数10
- * @return void
- * 
- * 处理流程：
- * 1. 验证命令参数
- * 2. 执行命令处理
- * 3. 返回处理结果
+ * @param param_1 对象指针
  */
-void rendering_system_advanced_command_processor(void* param_1, void* param_2, uint32_t param_3, uint32_t param_4,
-                                              void* param_5, uint32_t param_6, uint32_t param_7, uint32_t param_8,
-                                              uint32_t param_9, uint32_t param_10) {
-    // 执行高级命令处理
-    void* process_func = (void*)0x18011a0a0;
-    if (process_func != NULL) {
-        ((void(*)(uint32_t, void*, uint32_t, void*, uint32_t, uint32_t, void*, uint64_t))process_func)(
-            param_6, param_1, param_3, &param_2, param_3, param_4, param_5, param_6, param_7,
-            ((uint64_t)param_9 << 32) | param_8);
-    }
+void FUN_1804442c0(undefined8 param_1)
+{
+    undefined8 geometry_data_10 [3];
+    
+    geometry_data_10[0] = 0;
+    FUN_18010f6f0(param_1, geometry_data_10, 0);
+    return;
 }
 
 /**
- * 渲染系统浮点数处理器
- * 
- * 处理渲染系统的浮点数计算和操作。
- * 提供精确的浮点数处理功能。
- * 
- * @param param_1 处理参数1
- * @return void
- * 
- * 处理流程：
- * 1. 初始化浮点数处理
- * 2. 执行浮点数操作
- * 3. 返回处理结果
+ * 渲染系统状态切换函数
+ * 切换渲染系统的状态
  */
-void rendering_system_float_processor(void* param_1) {
-    // 初始化浮点数处理
-    uint32_t float_values[2];
-    float_values[0] = 0xbf800000; // -1.0f
-    float_values[1] = 0;
+void FUN_1804442e0(void)
+{
+    longlong render_context;
+    longlong object_data;
+    undefined4 original_state;
+    longlong stack_array_8 [4];
     
-    // 执行浮点数操作
-    void* process_func = (void*)0x180111c30;
-    if (process_func != NULL) {
-        ((void(*)(void*, void*))process_func)(param_1, float_values);
-    }
-}
-
-/**
- * 渲染系统向量处理器
- * 
- * 处理渲染系统的向量计算和操作。
- * 提供高效的向量处理功能。
- * 
- * @param param_1 处理参数1
- * @return void
- * 
- * 处理流程：
- * 1. 初始化向量处理
- * 2. 执行向量操作
- * 3. 返回处理结果
- */
-void rendering_system_vector_processor(void* param_1) {
-    // 初始化向量处理
-    uint64_t vector_values[3];
-    vector_values[0] = 0;
-    vector_values[1] = 0;
-    vector_values[2] = 0;
+    render_context = _DAT_180c8a9b0;
+    *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1AF8) + 0xb1) = RENDERING_SYSTEM_STATE_ACTIVE;
+    object_data = *(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1AF8);
     
-    // 执行向量操作
-    void* process_func = (void*)0x18010f6f0;
-    if (process_func != NULL) {
-        ((void(*)(void*, void*, uint64_t))process_func)(param_1, vector_values, 0);
-    }
-}
-
-/**
- * 渲染系统状态切换器
- * 
- * 切换渲染系统的状态和模式。
- * 支持多种状态切换操作。
- * 
- * @param void 无参数
- * @return void
- * 
- * 处理流程：
- * 1. 获取当前状态
- * 2. 执行状态切换
- * 3. 更新状态标志
- * 4. 返回切换结果
- */
-void rendering_system_state_switcher(void) {
-    // 获取当前状态
-    void* state_context = *(void**)0x180c8a9b0;
-    
-    // 设置状态标志
-    *(uint8_t*)(*(uint64_t*)(state_context + 0x1af8) + 0xb1) = 1;
-    
-    // 获取状态对象
-    void* state_object = *(void**)(state_context + 0x1af8);
-    
-    // 检查状态条件
-    if (*(uint8_t*)(state_object + 0xb4) == 0) {
-        // 保存当前状态
-        uint32_t saved_state = *(uint32_t*)(state_object + 0x1a0);
-        *(uint32_t*)(state_object + 0x1a0) = 1;
+    if (*(char *)(object_data + 0xb4) == '\0') {
+        original_state = *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0);
+        *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = RENDERING_SYSTEM_STATE_ACTIVE;
         
-        // 检查浮点数条件
-        if (*(float*)(state_object + 0x124) <= 0.0f) {
-            // 执行状态切换操作
-            uint64_t switch_param = *(uint64_t*)(state_context + 0x19f8) << 32;
-            void* switch_func = (void*)0x180124080;
-            if (switch_func != NULL) {
-                ((void(*)(uint64_t))switch_func)(switch_param);
-            }
+        if (*(float *)(object_data + RENDERING_SYSTEM_OFFSET_124) <= 0.0) {
+            stack_array_8[0] = (ulonglong)*(uint *)(render_context + RENDERING_SYSTEM_OFFSET_19F8) << 0x20;
+        }
+        else {
+            stack_array_8[0] = 0;
         }
         
-        // 恢复状态
-        *(uint32_t*)(state_object + 0x1a0) = saved_state;
+        func_0x000180124080(stack_array_8);
+        *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = original_state;
     }
+    return;
 }
 
 /**
- * 渲染系统字符串处理器
+ * 渲染系统字符串处理函数
+ * 处理渲染相关的字符串数据
  * 
- * 处理渲染系统的字符串操作和解析。
- * 支持多种字符串处理功能。
- * 
- * @param param_1 处理参数1
- * @param param_2 处理参数2
- * @param param_3 字符串参数
- * @return void
- * 
- * 处理流程：
- * 1. 验证字符串参数
- * 2. 执行字符串处理
- * 3. 返回处理结果
+ * @param param_1 处理类型
+ * @param param_2 处理参数
+ * @param param_3 字符串指针
  */
-void rendering_system_string_processor(void* param_1, void* param_2, char* param_3) {
-    // 验证字符串参数
-    if (param_3 == NULL) {
-        return;
-    }
+void FUN_180444370(undefined8 param_1, undefined8 param_2, char *param_3)
+{
+    char current_char;
+    longlong string_length;
+    longlong next_position;
     
-    // 执行字符串处理
-    char current_char = *param_3;
+    current_char = *param_3;
     while (current_char != '\0') {
-        // 计算字符串长度
-        uint64_t str_length = 0;
+        string_length = -1;
         do {
-            str_length++;
-        } while (param_3[str_length] != '\0');
-        
-        // 移动到下一个字符串
-        param_3 = param_3 + str_length + 2;
+            next_position = string_length;
+            string_length = next_position + 1;
+        } while (param_3[string_length] != '\0');
+        param_3 = param_3 + next_position + 2;
         current_char = *param_3;
     }
-    
-    // 执行最终处理
-    void* finalize_func = (void*)0x180113380;
-    if (finalize_func != NULL) {
-        ((void(*)(void))finalize_func)();
-    }
+    FUN_180113380();
+    return;
 }
 
 /**
- * 渲染系统批量处理器
+ * 渲染系统批处理执行函数
+ * 执行渲染批处理操作
  * 
- * 批量处理渲染系统的操作和命令。
- * 提供高效的批量处理功能。
- * 
- * @param param_1 处理参数1
- * @param param_2 处理参数2
- * @return void
- * 
- * 处理流程：
- * 1. 初始化批量处理
- * 2. 执行批量操作
- * 3. 返回处理结果
+ * @param param_1 批处理类型
+ * @param param_2 批处理参数
  */
-void rendering_system_batch_processor(void* param_1, void* param_2) {
-    // 初始化批量处理
-    uint32_t batch_params[2];
-    batch_params[0] = 100; // 批量大小
-    batch_params[1] = 1;   // 批量标志
+void FUN_1804443c0(undefined8 param_1, undefined8 param_2)
+{
+    undefined4 batch_data_18 [2];
+    undefined4 batch_data_20 [2];
     
-    // 执行批量处理
-    void* process_func = (void*)0x180114450;
-    if (process_func != NULL) {
-        ((void(*)(void*, uint64_t, void*, void*, void*, void*, uint64_t))process_func)(
-            param_1, 0, param_2, batch_params, batch_params + 1, (void*)0x1809fd0a0, 0);
-    }
+    batch_data_18[0] = 100;
+    batch_data_20[0] = 1;
+    FUN_180114450(param_1, 0, param_2, batch_data_20, batch_data_18, &UNK_1809fd0a0, 0);
+    return;
 }
 
 /**
- * 渲染系统高级批量处理器
+ * 渲染系统材质更新函数
+ * 更新渲染对象的材质
  * 
- * 执行高级批量处理操作，支持复杂的处理逻辑。
- * 提供更高级的批量处理功能。
- * 
- * @param param_1 处理参数1
- * @param param_2 处理参数2
- * @param param_3 处理参数3
- * @param param_4 处理参数4
- * @return void
- * 
- * 处理流程：
- * 1. 验证处理参数
- * 2. 执行高级批量处理
- * 3. 返回处理结果
+ * @param param_1 对象指针
+ * @param param_2 材质参数1
+ * @param param_3 材质参数2
+ * @param param_4 材质参数3
  */
-void rendering_system_advanced_batch_processor(void* param_1, void* param_2, uint32_t param_3, uint32_t param_4) {
-    // 初始化高级批量处理
-    uint32_t batch_params[2];
-    batch_params[0] = param_4;
-    batch_params[1] = param_3;
+void FUN_180444410(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4)
+{
+    undefined4 material_data_18 [2];
+    undefined4 material_data_20 [2];
     
-    // 执行高级批量处理
-    void* process_func = (void*)0x180113940;
-    if (process_func != NULL) {
-        ((void(*)(void*, void*, void*, void*, void*))process_func)(param_1, param_2, param_2, batch_params, batch_params + 1);
-    }
+    material_data_18[0] = param_4;
+    material_data_20[0] = param_3;
+    FUN_180113940(param_1, param_2, param_2, material_data_20, material_data_18);
+    return;
 }
 
 /**
- * 渲染系统资源禁用器
+ * 渲染系统纹理释放函数
+ * 释放渲染纹理资源
  * 
- * 禁用渲染系统的资源并更新状态。
- * 提供完整的资源禁用功能。
- * 
- * @param param_1 禁用参数1
- * @return void
- * 
- * 处理流程：
- * 1. 获取当前状态
- * 2. 禁用资源
- * 3. 更新状态标志
- * 4. 返回禁用结果
+ * @param param_1 纹理指针
  */
-void rendering_system_resource_disabler(void* param_1) {
-    // 获取当前状态
-    void* state_context = *(void**)0x180c8a9b0;
+void FUN_1804445b0(undefined8 param_1)
+{
+    undefined4 original_state;
+    longlong render_context;
+    undefined8 texture_data_10 [3];
     
-    // 保存当前标志
-    uint32_t saved_flag = *(uint32_t*)(state_context + 0x1660);
-    *(uint32_t*)(state_context + 0x1660) = 0;
-    
-    // 执行资源禁用
-    void* disable_func = (void*)0x18010f6f0;
-    if (disable_func != NULL) {
-        ((void(*)(void*, void*, uint64_t))disable_func)(param_1, (void*)0x0, 0x200);
-    }
-    
-    // 恢复标志
-    *(uint32_t*)(state_context + 0x1660) = saved_flag;
+    render_context = _DAT_180c8a9b0;
+    texture_data_10[0] = 0;
+    original_state = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660);
+    *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660) = 0;
+    FUN_18010f6f0(param_1, texture_data_10, 0x200);
+    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_1660) = original_state;
+    return;
 }
 
 /**
- * 渲染系统浮点数效果处理器
+ * 渲染系统参数更新函数
+ * 更新渲染系统的参数
  * 
- * 处理渲染系统的浮点数效果和计算。
- * 支持多种浮点数效果处理。
- * 
- * @param param_1 处理参数1
- * @param param_2 处理参数2
+ * @param param_1 参数类型
+ * @param param_2 参数源
  * @param param_3 浮点参数1
  * @param param_4 浮点参数2
- * @param param_5 整数参数
- * @return void
- * 
- * 处理流程：
- * 1. 验证浮点数参数
- * 2. 执行浮点数效果处理
- * 3. 返回处理结果
+ * @param param_5 更新标志
  */
-void rendering_system_float_effect_processor(void* param_1, void* param_2, float param_3, float param_4, int param_5) {
-    // 初始化效果处理
-    char effect_buffer[32];
-    float* float_params[2];
-    uint16_t effect_id = 0x6625;
+void FUN_180444600(undefined8 param_1, undefined8 param_2, float param_3, float param_4, int param_5)
+{
+    float *float_param_1;
+    undefined1 parameter_buffer_98 [32];
+    float *float_param_2;
+    undefined2 *parameter_ptr_70;
+    undefined4 parameter_data_68;
+    float float_array_58 [2];
+    float float_array_50 [2];
+    undefined2 parameter_flag_48;
+    undefined1 parameter_flag_46;
+    undefined8 parameter_data_45;
+    undefined4 parameter_data_3d;
+    undefined1 parameter_flag_39;
+    ulonglong parameter_data_38;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)effect_buffer;
+    parameter_data_38 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_98;
+    parameter_flag_48 = 0x6625;
+    parameter_flag_46 = 0;
+    parameter_data_45 = 0;
+    parameter_data_3d = 0;
+    parameter_flag_39 = 0;
     
-    // 处理参数有效性
-    if (param_5 >= 0) {
-        void* init_func = (void*)0x180121200;
-        if (init_func != NULL) {
-            ((void(*)(void*, uint64_t, void*))init_func)(&effect_id, 0x10, (void*)0x180a063b8);
-        }
+    if (-1 < param_5) {
+        FUN_180121200(&parameter_flag_48, 0x10, &UNK_180a063b8);
     }
     
-    // 设置浮点数参数
-    uint32_t effect_flags = 0x20000;
-    float_params[0] = (param_4 <= 0.0f) ? NULL : &param_4;
-    float_params[1] = (param_3 <= 0.0f) ? NULL : &param_3;
+    parameter_data_68 = 0x20000;
+    float_param_2 = float_array_58;
     
-    // 执行浮点数效果处理
-    void* process_func = (void*)0x180114450;
-    if (process_func != NULL) {
-        ((void(*)(void*, uint64_t, void*, void*))process_func)(param_1, 4, param_2, float_params[1]);
+    if (param_4 <= 0.0) {
+        float_param_2 = (float *)0x0;
     }
+    
+    float_param_1 = float_array_50;
+    if (param_3 <= 0.0) {
+        float_param_1 = (float *)0x0;
+    }
+    
+    parameter_ptr_70 = &parameter_flag_48;
+    float_array_58[0] = param_4;
+    float_array_50[0] = param_3;
+    FUN_180114450(param_1, 4, param_2, float_param_1);
+    FUN_1808fc050(parameter_data_38 ^ (ulonglong)parameter_buffer_98);
 }
 
 /**
- * 渲染系统参数更新器
+ * 渲染系统着色器设置函数
+ * 设置渲染着色器参数
  * 
- * 更新渲染系统的参数和状态。
- * 支持多种参数更新操作。
- * 
- * @param param_1 更新参数1
- * @param param_2 更新参数2
- * @param param_3 更新参数3
- * @param param_4 更新参数4
- * @param param_5 整数参数
- * @return void
- * 
- * 处理流程：
- * 1. 验证更新参数
- * 2. 执行参数更新
- * 3. 返回更新结果
+ * @param param_1 着色器指针
+ * @param param_2 着色器参数1
+ * @param param_3 着色器参数2
+ * @param param_4 设置标志
  */
-void rendering_system_parameter_updater(void* param_1, uint32_t* param_2, uint32_t* param_3, int param_4) {
-    // 初始化参数更新
-    char update_buffer[48];
-    uint16_t update_id = 0x6625;
+void FUN_180444700(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, int param_4)
+{
+    undefined1 shader_buffer_78 [48];
+    undefined2 *shader_ptr_48;
+    undefined4 shader_data_38;
+    undefined4 shader_data_34;
+    undefined2 shader_flag_30;
+    undefined1 shader_flag_2e;
+    undefined8 shader_data_2d;
+    undefined4 shader_data_25;
+    undefined1 shader_flag_21;
+    ulonglong shader_data_20;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)update_buffer;
+    shader_data_20 = _DAT_180bf00a8 ^ (ulonglong)shader_buffer_78;
+    shader_data_38 = *param_2;
+    shader_data_34 = *param_3;
+    shader_flag_30 = 0x6625;
+    shader_flag_2e = 0;
+    shader_data_2d = 0;
+    shader_data_25 = 0;
+    shader_flag_21 = 0;
     
-    // 保存原始参数
-    uint32_t saved_param1 = *param_2;
-    uint32_t saved_param2 = *param_3;
-    
-    // 处理参数有效性
-    if (param_4 >= 0) {
-        void* init_func = (void*)0x180121200;
-        if (init_func != NULL) {
-            ((void(*)(void*, uint64_t, void*))init_func)(&update_id, 0x10, (void*)0x180a063b8);
-        }
+    if (-1 < param_4) {
+        FUN_180121200(&shader_flag_30, 0x10, &UNK_180a063b8);
     }
     
-    // 执行参数更新
-    void* update_func = (void*)0x180114890;
-    if (update_func != NULL) {
-        ((void(*)(void*))update_func)(param_1);
-    }
-    
-    // 恢复更新后的参数
-    *param_2 = saved_param1;
-    *param_3 = saved_param2;
+    shader_ptr_48 = &shader_flag_30;
+    FUN_180114890(param_1);
+    *param_2 = shader_data_38;
+    *param_3 = shader_data_34;
+    FUN_1808fc050(shader_data_20 ^ (ulonglong)shader_buffer_78);
 }
 
 /**
- * 渲染系统高级参数更新器
+ * 渲染系统效果更新函数
+ * 更新渲染效果参数
  * 
- * 执行高级参数更新操作，支持复杂的更新逻辑。
- * 提供更高级的参数更新功能。
- * 
- * @param param_1 更新参数1
- * @param param_2 更新参数2
- * @param param_3 更新参数3
- * @param param_4 更新参数4
- * @param param_5 整数参数
- * @return void
- * 
- * 处理流程：
- * 1. 验证更新参数
- * 2. 执行高级参数更新
- * 3. 返回更新结果
+ * @param param_1 效果指针
+ * @param param_2 效果参数1
+ * @param param_3 效果参数2
+ * @param param_4 效果参数3
+ * @param param_5 更新标志
  */
-void rendering_system_advanced_parameter_updater(void* param_1, uint32_t* param_2, uint32_t* param_3, uint32_t* param_4, int param_5) {
-    // 初始化高级参数更新
-    char update_buffer[48];
-    uint16_t update_id = 0x6625;
+void FUN_1804447c0(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, int param_5)
+{
+    undefined1 effect_buffer_98 [48];
+    undefined2 *effect_ptr_68;
+    undefined4 effect_data_58;
+    undefined4 effect_data_54;
+    undefined4 effect_data_50;
+    undefined2 effect_flag_48;
+    undefined1 effect_flag_46;
+    undefined8 effect_data_45;
+    undefined4 effect_data_3d;
+    undefined1 effect_flag_39;
+    ulonglong effect_data_38;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)update_buffer;
+    effect_data_38 = _DAT_180bf00a8 ^ (ulonglong)effect_buffer_98;
+    effect_data_58 = *param_2;
+    effect_data_54 = *param_3;
+    effect_flag_48 = 0x6625;
+    effect_flag_46 = 0;
+    effect_data_50 = *param_4;
+    effect_data_45 = 0;
+    effect_data_3d = 0;
+    effect_flag_39 = 0;
     
-    // 保存原始参数
-    uint32_t saved_param1 = *param_2;
-    uint32_t saved_param2 = *param_3;
-    uint32_t saved_param3 = *param_4;
-    
-    // 处理参数有效性
-    if (param_5 >= 0) {
-        void* init_func = (void*)0x180121200;
-        if (init_func != NULL) {
-            ((void(*)(void*, uint64_t, void*))init_func)(&update_id, 0x10, (void*)0x180a063b8);
-        }
+    if (-1 < param_5) {
+        FUN_180121200(&effect_flag_48, 0x10, &UNK_180a063b8);
     }
     
-    // 执行高级参数更新
-    void* update_func = (void*)0x180114890;
-    if (update_func != NULL) {
-        ((void(*)(void*))update_func)(param_1);
-    }
-    
-    // 恢复更新后的参数
-    *param_2 = saved_param1;
-    *param_3 = saved_param2;
-    *param_4 = saved_param3;
+    effect_ptr_68 = &effect_flag_48;
+    FUN_180114890(param_1);
+    *param_2 = effect_data_58;
+    *param_3 = effect_data_54;
+    *param_4 = effect_data_50;
+    FUN_1808fc050(effect_data_38 ^ (ulonglong)effect_buffer_98);
 }
 
 /**
- * 渲染系统扩展参数更新器
+ * 渲染系统缓冲区处理函数
+ * 处理渲染缓冲区数据
  * 
- * 执行扩展参数更新操作，支持更多参数类型。
- * 提供完整的参数更新功能。
- * 
- * @param param_1 更新参数1
- * @param param_2 更新参数2
- * @param param_3 更新参数3
- * @param param_4 更新参数4
- * @param param_5 更新参数5
- * @param param_6 整数参数
- * @return void
- * 
- * 处理流程：
- * 1. 验证更新参数
- * 2. 执行扩展参数更新
- * 3. 返回更新结果
+ * @param param_1 缓冲区指针
+ * @param param_2 缓冲区参数1
+ * @param param_3 缓冲区参数2
+ * @param param_4 缓冲区参数3
+ * @param param_5 缓冲区参数4
+ * @param param_6 处理标志
  */
-void rendering_system_extended_parameter_updater(void* param_1, uint32_t* param_2, uint32_t* param_3, uint32_t* param_4, uint32_t* param_5, int param_6) {
-    // 初始化扩展参数更新
-    char update_buffer[48];
-    uint16_t update_id = 0x6625;
+void FUN_1804448a0(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, undefined4 *param_5, int param_6)
+{
+    undefined1 buffer_data_98 [48];
+    undefined2 *buffer_ptr_68;
+    undefined4 buffer_data_58;
+    undefined4 buffer_data_54;
+    undefined4 buffer_data_50;
+    undefined4 buffer_data_4c;
+    undefined2 buffer_flag_48;
+    undefined1 buffer_flag_46;
+    undefined8 buffer_data_45;
+    undefined4 buffer_data_3d;
+    undefined1 buffer_flag_39;
+    ulonglong buffer_data_38;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)update_buffer;
+    buffer_data_38 = _DAT_180bf00a8 ^ (ulonglong)buffer_data_98;
+    buffer_data_58 = *param_2;
+    buffer_data_54 = *param_3;
+    buffer_flag_48 = 0x6625;
+    buffer_flag_46 = 0;
+    buffer_data_50 = *param_4;
+    buffer_data_4c = *param_5;
+    buffer_data_45 = 0;
+    buffer_data_3d = 0;
+    buffer_flag_39 = 0;
     
-    // 保存原始参数
-    uint32_t saved_param1 = *param_2;
-    uint32_t saved_param2 = *param_3;
-    uint32_t saved_param3 = *param_4;
-    uint32_t saved_param4 = *param_5;
-    
-    // 处理参数有效性
-    if (param_6 >= 0) {
-        void* init_func = (void*)0x180121200;
-        if (init_func != NULL) {
-            ((void(*)(void*, uint64_t, void*))init_func)(&update_id, 0x10, (void*)0x180a063b8);
-        }
+    if (-1 < param_6) {
+        FUN_180121200(&buffer_flag_48, 0x10, &UNK_180a063b8);
     }
     
-    // 执行扩展参数更新
-    void* update_func = (void*)0x180114890;
-    if (update_func != NULL) {
-        ((void(*)(void*))update_func)(param_1);
-    }
-    
-    // 恢复更新后的参数
-    *param_2 = saved_param1;
-    *param_3 = saved_param2;
-    *param_4 = saved_param3;
-    *param_5 = saved_param4;
+    buffer_ptr_68 = &buffer_flag_48;
+    FUN_180114890(param_1);
+    *param_2 = buffer_data_58;
+    *param_3 = buffer_data_54;
+    *param_4 = buffer_data_50;
+    *param_5 = buffer_data_4c;
+    FUN_1808fc050(buffer_data_38 ^ (ulonglong)buffer_data_98);
 }
 
 /**
- * 渲染系统指数计算器
+ * 渲染系统指数计算函数
+ * 计算渲染相关的指数值
  * 
- * 计算渲染系统的指数值和数学运算。
- * 提供精确的数学计算功能。
- * 
- * @return float 计算结果
- * 
- * 处理流程：
- * 1. 获取输入参数
- * 2. 执行指数计算
- * 3. 返回计算结果
+ * @return 计算结果
  */
-float rendering_system_exponential_calculator(void) {
-    // 获取输入参数
-    float input_value = *(float*)(0x180c86920 + 0x16c0);
+float FUN_1804449a0(void)
+{
+    float result;
     
-    // 执行指数计算
-    float result = expf(input_value * 4.0f);
-    
-    // 返回计算结果
-    return result * 0.05f;
+    result = (float)expf(*(float *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_16C0) * RENDERING_SYSTEM_FLOAT_4_0);
+    return result * RENDERING_SYSTEM_FLOAT_0_05;
 }
 
 /**
- * 渲染系统内存复制器
+ * 渲染系统数据复制函数
+ * 复制渲染数据
  * 
- * 执行渲染系统的内存复制和数据传输。
- * 支持安全的内存操作。
- * 
- * @param param_1 源数据指针
- * @param param_2 目标数据指针
+ * @param param_1 目标地址
+ * @param param_2 源地址
  * @param param_3 数据大小
- * @param param_4 复制参数4
- * @param param_5 复制参数5
- * @param param_6 控制标志
- * @return void
- * 
- * 处理流程：
- * 1. 验证内存参数
- * 2. 执行内存复制
- * 3. 返回复制结果
+ * @param param_4 复制标志1
+ * @param param_5 复制标志2
+ * @param param_6 复制模式
  */
-void rendering_system_memory_copier(void* param_1, void* param_2, int param_3, void* param_4, void* param_5, uint8_t param_6) {
-    // 初始化内存复制
-    char copy_buffer[32];
-    uint8_t size_param = (uint8_t)param_3;
-    uint8_t control_flag = param_6;
+void FUN_180444a20(undefined8 param_1, undefined8 param_2, int param_3, undefined8 param_4, undefined8 param_5, undefined1 param_6)
+{
+    undefined1 copy_buffer_168 [32];
+    undefined1 copy_flag_148;
+    undefined1 copy_flag_147;
+    undefined1 copy_buffer_144 [268];
+    ulonglong copy_data_38;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)copy_buffer;
-    
-    // 执行内存复制
-    memcpy(copy_buffer, param_1, (uint64_t)param_3 << 2);
+    copy_data_38 = _DAT_180bf00a8 ^ (ulonglong)copy_buffer_168;
+    copy_flag_148 = (undefined1)param_3;
+    copy_flag_147 = param_6;
+    memcpy(copy_buffer_144, param_1, (longlong)param_3 << 2);
 }
 
 /**
- * 渲染系统高级内存复制器
+ * 渲染系统数据传输函数
+ * 传输渲染数据
  * 
- * 执行高级内存复制操作，支持更复杂的复制逻辑。
- * 提供更高级的内存操作功能。
- * 
- * @param param_1 源数据指针
- * @param param_2 目标数据指针
- * @param param_3 复制参数3
+ * @param param_1 目标地址
+ * @param param_2 源地址
+ * @param param_3 传输标志
  * @param param_4 数据大小
- * @param param_5 控制标志
- * @return void
- * 
- * 处理流程：
- * 1. 验证内存参数
- * 2. 执行高级内存复制
- * 3. 返回复制结果
  */
-void rendering_system_advanced_memory_copier(void* param_1, void* param_2, void* param_3, int param_4) {
-    // 初始化高级内存复制
-    char copy_buffer[32];
-    uint8_t size_param = (uint8_t)param_4;
-    uint8_t control_flag = 0; // 从堆栈获取
+void FUN_180444b70(undefined8 param_1, undefined8 param_2, undefined8 param_3, int param_4)
+{
+    undefined1 transfer_flag_40;
+    undefined1 transfer_buffer_1f8 [32];
+    undefined1 transfer_flag_1d8;
+    undefined1 transfer_flag_1d7;
+    undefined1 transfer_buffer_1d4 [396];
+    ulonglong transfer_data_48;
     
-    // 设置堆栈保护
-    uint64_t stack_protector = 0x180bf00a8 ^ (uint64_t)copy_buffer;
-    
-    // 执行高级内存复制
-    memcpy(copy_buffer, param_1, (uint64_t)param_4 << 2);
+    transfer_data_48 = _DAT_180bf00a8 ^ (ulonglong)transfer_buffer_1f8;
+    transfer_flag_1d8 = (undefined1)param_4;
+    transfer_flag_1d7 = transfer_flag_40;
+    memcpy(transfer_buffer_1d4, param_1, (longlong)param_4 << 2);
 }
 
 /**
- * 渲染系统字符状态处理器
+ * 渲染系统颜色更新函数
+ * 更新渲染颜色参数
  * 
- * 处理渲染系统的字符状态和标志。
- * 支持多种字符状态操作。
- * 
- * @param param_1 字符参数1
- * @param param_2 字符参数2
- * @param param_3 字符参数3
- * @param param_4 字符参数4
- * @param param_5 字符参数5
- * @param param_6 字符参数6
- * @return void
- * 
- * 处理流程：
- * 1. 验证字符参数
- * 2. 执行字符状态处理
- * 3. 更新状态标志
- * 4. 返回处理结果
+ * @param param_1 颜色分量R
+ * @param param_2 颜色分量G
+ * @param param_3 颜色分量B
+ * @param param_4 颜色分量A
+ * @param param_5 保留参数1
+ * @param param_6 保留参数2
  */
-void rendering_system_character_state_processor(char param_1, char param_2, char param_3, char param_4, char param_5, char param_6) {
-    // 获取状态上下文
-    void* state_context = *(void**)(0x180c868d0 + 0x2018);
+void FUN_180444dd0(char param_1, char param_2, char param_3, char param_4, char param_5, char param_6)
+{
+    longlong color_context;
+    undefined4 color_data_18;
+    undefined2 color_data_14;
     
-    // 组合字符参数
-    uint32_t char_state1 = ((uint32_t)param_2 << 8) | param_1;
-    uint32_t char_state2 = ((uint32_t)param_4 << 24) | ((uint32_t)param_3 << 16) | char_state1;
-    uint16_t char_state3 = ((uint16_t)param_6 << 8) | param_5;
+    color_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
+    color_data_18._0_2_ = CONCAT11(param_2, param_1);
+    color_data_18 = CONCAT13(param_4, CONCAT12(param_3, (undefined2)color_data_18));
+    color_data_14 = CONCAT11(param_6, param_5);
     
-    // 检查状态变化
-    if ((*(uint32_t*)(state_context + 799) != char_state2) || (*(uint16_t*)(state_context + 0x323) != char_state3)) {
-        // 更新状态
-        *(uint32_t*)(state_context + 799) = char_state2;
-        *(uint16_t*)(state_context + 0x323) = char_state3;
-        *(uint16_t*)(state_context + 0x194) = 0;
+    if ((*(int *)(color_context + 799) != color_data_18) || (*(short *)(color_context + 0x323) != color_data_14)) {
+        *(int *)(color_context + 799) = color_data_18;
+        *(short *)(color_context + 0x323) = color_data_14;
+        *(undefined2 *)(color_context + 0x194) = 0;
         
-        // 检查字符状态
-        if (param_1 == '\0' && param_2 == '\0' && param_3 == '\0' && param_4 == '\0' && param_5 == '\0' && param_6 == '\0') {
-            *(uint8_t*)(state_context + 0x192) = 0;
-        } else {
-            *(uint8_t*)(state_context + 0x192) = 1;
+        if (((param_1 == '\0') && (((param_2 == '\0' && (param_3 == '\0')) && (param_4 == '\0')))) &&
+            ((param_5 == '\0' && (param_6 == '\0')))) {
+            *(undefined1 *)(color_context + 0x192) = 0;
+            return;
+        }
+        *(undefined1 *)(color_context + 0x192) = 1;
+    }
+    return;
+}
+
+/**
+ * 渲染系统颜色设置函数
+ * 设置渲染颜色参数
+ * 
+ * @param param_1 红色分量 (0.0-1.0)
+ * @param param_2 绿色分量 (0.0-1.0)
+ * @param param_3 蓝色分量 (0.0-1.0)
+ */
+void FUN_180444e90(float param_1, float param_2, float param_3)
+{
+    float blue_component;
+    undefined1 color_data_8;
+    undefined1 color_data_9;
+    undefined1 color_data_a;
+    
+    // 标准化红色分量
+    if (0.0 <= param_1) {
+        if (1.0 <= param_1) {
+            param_1 = 1.0;
         }
     }
-}
-
-/**
- * 渲染系统颜色插值器
- * 
- * 执行渲染系统的颜色插值和渐变计算。
- * 支持精确的颜色处理功能。
- * 
- * @param param_1 颜色参数1 (红色分量)
- * @param param_2 颜色参数2 (绿色分量)
- * @param param_3 颜色参数3 (蓝色分量)
- * @return void
- * 
- * 处理流程：
- * 1. 验证颜色参数
- * 2. 标准化颜色值
- * 3. 执行颜色插值
- * 4. 更新颜色状态
- */
-void rendering_system_color_interpolator(float param_1, float param_2, float param_3) {
-    // 标准化颜色值
-    float red = param_1;
-    if (red < 0.0f) red = 0.0f;
-    if (red > 1.0f) red = 1.0f;
+    else {
+        param_1 = 0.0;
+    }
     
-    float green = param_2;
-    if (green < 0.0f) green = 0.0f;
-    if (green > 1.0f) green = 1.0f;
+    // 标准化绿色分量
+    if (0.0 <= param_2) {
+        if (1.0 <= param_2) {
+            param_2 = 1.0;
+        }
+    }
+    else {
+        param_2 = 0.0;
+    }
     
-    float blue = param_3;
-    if (blue < 0.0f) blue = 0.0f;
-    if (blue > 1.0f) blue = 1.0f;
+    // 标准化蓝色分量
+    blue_component = 0.0;
+    if ((0.0 <= param_3) && (blue_component = param_3, 1.0 <= param_3)) {
+        blue_component = 1.0;
+    }
     
     // 转换为8位颜色值
-    uint8_t red_8bit = (uint8_t)(red * 255.0f);
-    uint8_t green_8bit = (uint8_t)(green * 255.0f);
-    uint8_t blue_8bit = (uint8_t)(blue * 255.0f);
+    color_data_8 = (undefined1)(int)(param_1 * RENDERING_SYSTEM_FLOAT_256_0);
+    color_data_9 = (undefined1)(int)(param_2 * RENDERING_SYSTEM_FLOAT_256_0);
+    color_data_a = (undefined1)(int)(blue_component * RENDERING_SYSTEM_FLOAT_256_0);
     
-    // 获取效果上下文
-    void* effect_context = *(void**)(0x180c868d0 + 0x2018);
-    
-    // 执行颜色插值
-    void* interpolate_func = (void*)0x1808eea10;
-    if (interpolate_func != NULL) {
-        ((void(*)(uint32_t, void*))interpolate_func)(*(uint32_t*)(effect_context + 0x32c), &red_8bit);
-    }
+    FUN_1808eea10(*(undefined4 *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x32c), &color_data_8);
+    return;
 }
 
 /**
- * 渲染系统键盘状态检查器
+ * 渲染系统按键状态检查函数
+ * 检查指定按键的状态
  * 
- * 检查渲染系统的键盘状态和输入。
- * 提供完整的键盘输入处理功能。
- * 
- * @param key_code 键盘代码
- * @return uint8_t 键盘状态 (1=按下, 0=未按下)
- * 
- * 处理流程：
- * 1. 验证键盘代码
- * 2. 处理特殊键码
- * 3. 检查键盘状态
- * 4. 返回状态结果
+ * @param param_1 按键代码
+ * @return 按键状态 (1=按下, 0=未按下)
  */
-uint8_t rendering_system_keyboard_state_checker(uint64_t key_code) {
-    uint32_t key_param = (uint32_t)key_code;
+undefined8 FUN_180445060(ulonglong param_1)
+{
+    short key_state;
+    uint key_code;
     
-    // 处理特殊键码
-    if (key_param < 0x100) {
-        if (key_param - 0xe0 < 5) {
-            switch (key_param) {
-                case 0xe0: key_param = 1; break;
-                case 0xe1: key_param = 2; break;
-                case 0xe2: key_param = 4; break;
-                case 0xe3: key_param = 5; break;
-                case 0xe4: key_param = 6; break;
+    key_code = (uint)param_1;
+    if (key_code < 0x100) {
+        if (key_code - RENDERING_SYSTEM_KEY_E0 < 5) {
+            if (key_code == RENDERING_SYSTEM_KEY_E0) {
+                param_1 = 1;
             }
-        } else {
-            // 处理普通键码
-            void* key_func = (void*)0x1803f5970;
-            if (key_func != NULL) {
-                key_param = ((uint32_t(*)(uint64_t, uint32_t))key_func)(key_code, key_param & 0xffffffff);
+            else if (key_code == RENDERING_SYSTEM_KEY_E1) {
+                param_1 = 2;
+            }
+            else if (key_code == RENDERING_SYSTEM_KEY_E2) {
+                param_1 = 4;
+            }
+            else if (key_code == RENDERING_SYSTEM_KEY_E3) {
+                param_1 = 5;
+            }
+            else if (key_code == RENDERING_SYSTEM_KEY_E4) {
+                param_1 = 6;
             }
         }
-        
-        // 检查键盘状态
-        short key_state = GetAsyncKeyState(key_param);
+        else {
+            key_code = FUN_1803f5970(param_1, param_1 & 0xffffffff);
+            param_1 = (ulonglong)key_code;
+        }
+        key_state = GetAsyncKeyState(param_1);
         if (key_state != 0) {
             return 1;
         }
     }
-    
     return 0;
 }
 
 /**
- * 渲染系统键盘事件处理器
+ * 渲染系统按键输入处理函数
+ * 处理按键输入事件
  * 
- * 处理渲染系统的键盘事件和输入。
- * 支持多种键盘事件处理。
- * 
- * @param key_code 键盘代码
- * @return void
- * 
- * 处理流程：
- * 1. 验证键盘代码
- * 2. 执行键盘事件处理
- * 3. 返回处理结果
+ * @param param_1 按键代码
  */
-void rendering_system_keyboard_event_handler(uint32_t key_code) {
-    // 验证键盘代码
-    if (key_code >= 0x100) {
-        return;
-    }
+void FUN_180445110(uint param_1)
+{
+    undefined4 key_data_18;
+    undefined1 key_data_14;
+    undefined8 key_data_10;
     
-    // 执行键盘事件处理
-    uint64_t event_params[2];
-    event_params[0] = 0;
-    event_params[1] = 4;
-    uint8_t key_param = (uint8_t)key_code;
-    
-    void* event_func = (void*)0x1801edeb0;
-    if (event_func != NULL) {
-        ((void(*)(uint32_t, void*))event_func)(key_code, event_params);
+    if (param_1 < 0x100) {
+        key_data_10 = 0;
+        key_data_18 = 4;
+        key_data_14 = (undefined1)param_1;
+        FUN_1801edeb0(param_1, &key_data_18);
     }
+    return;
 }
 
 /**
- * 渲染系统高级函数调用器
+ * 渲染系统数据验证函数
+ * 验证渲染数据的有效性
  * 
- * 执行渲染系统的高级函数调用和操作。
- * 支持复杂的函数调用逻辑。
- * 
- * @param param_1 调用参数1
- * @param param_2 调用参数2
- * @param param_3 调用参数3
- * @param param_4 调用参数4
- * @return uint32_t 调用结果
- * 
- * 处理流程：
- * 1. 验证调用参数
- * 2. 执行函数调用
- * 3. 返回调用结果
+ * @param param_1 验证类型
+ * @param param_2 数据源1
+ * @param param_3 数据源2
+ * @param param_4 验证标志
+ * @return 验证结果
  */
-uint32_t rendering_system_advanced_function_caller(void* param_1, void* param_2, void* param_3, void* param_4) {
-    // 初始化函数调用
-    void* call_params[4];
-    call_params[0] = (void*)0x180a3c3e0;
-    call_params[1] = 0;
-    call_params[2] = 0;
-    call_params[3] = 0;
+undefined4 FUN_180445180(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    undefined4 validation_result;
+    undefined *validation_ptr_30;
+    longlong validation_data_28;
+    undefined4 validation_data_20;
+    undefined8 validation_data_18;
     
-    // 执行函数调用
-    void* call_func = (void*)0x1801717e0;
-    if (call_func != NULL) {
-        ((void(*)(void*, void**, void*, void*, uint64_t))call_func)(
-            *(void**)(0x180c86870 + 8), call_params, param_3, param_4, 0xfffffffffffffffe);
+    validation_ptr_30 = &UNK_180a3c3e0;
+    validation_data_18 = 0;
+    validation_data_28 = 0;
+    validation_data_20 = 0;
+    
+    FUN_1801717e0(*(undefined8 *)(_DAT_180c86870 + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    validation_result = (**(code **)(*_DAT_180c8f008 + 0x78))(_DAT_180c8f008, &validation_ptr_30);
+    validation_ptr_30 = &UNK_180a3c3e0;
+    
+    if (validation_data_28 != 0) {
+        FUN_18064e900();
     }
-    
-    // 获取调用结果
-    void* result_func = (void*)*(void**)(0x180c8f008 + 0x78);
-    if (result_func != NULL) {
-        return ((uint32_t(*)(void*, void**))result_func)(*(void**)0x180c8f008, call_params);
-    }
-    
-    return 0;
+    return validation_result;
 }
 
 /**
- * 渲染系统浮点数参数处理器
+ * 渲染系统参数更新函数
+ * 更新渲染参数
  * 
- * 处理渲染系统的浮点数参数和状态。
- * 支持精确的浮点数参数处理。
- * 
- * @param param_1 输出参数指针
- * @param param_2 浮点数参数
- * @return 输出参数指针
- * 
- * 处理流程：
- * 1. 验证参数有效性
- * 2. 分配处理资源
- * 3. 执行浮点数处理
- * 4. 设置输出参数
- * 5. 返回处理结果
+ * @param param_1 参数指针
+ * @param param_2 新的参数值
+ * @return 更新后的参数指针
  */
-uint32_t* rendering_system_float_parameter_processor(uint32_t* param_1, float param_2) {
-    // 分配处理资源
-    void* resource_pool = (void*)0x18062b1e0;
-    if (resource_pool != NULL) {
-        resource_pool = ((void*(*)(void*, uint64_t, uint64_t, int, uint64_t))resource_pool)(
-            0x180c8ed18, 0x468, 8, 3, 0xfffffffffffffffe);
+undefined4 * FUN_180445390(undefined4 *param_1, float param_2)
+{
+    longlong parameter_context;
+    undefined4 parameter_status;
+    undefined8 parameter_handle;
+    longlong *parameter_manager;
+    undefined4 parameter_data_30;
+    undefined4 parameter_data_2c;
+    undefined4 parameter_data_24;
+    
+    parameter_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    parameter_manager = (longlong *)FUN_1803dd0f0(parameter_handle);
+    
+    if (parameter_manager != (longlong *)0x0) {
+        (**(code **)(*parameter_manager + 0x28))(parameter_manager);
     }
     
-    // 获取资源处理器
-    void* resource_handler = (void*)0x1803dd0f0;
-    if (resource_handler != NULL) {
-        resource_handler = ((void*(*)(void*))resource_handler)(resource_pool);
-    }
-    
-    if (resource_handler != NULL) {
-        // 检查参数变化
-        if (param_2 != *(float*)((uint64_t)resource_handler + 24)) {
-            // 更新状态标志
-            *(uint8_t*)((uint64_t)resource_handler + 125) = 0;
-            *(uint8_t*)((uint64_t)resource_handler + 929) = 1;
-            *(float*)((uint64_t)resource_handler + 24) = param_2;
-            
-            // 处理关联资源
-            void* associated_resource = *(void**)((uint64_t)resource_handler + 40);
-            if (associated_resource != NULL) {
-                *(uint16_t*)((uint64_t)associated_resource + 0x2b0) += 1;
-                if (*(void**)((uint64_t)associated_resource + 0x168) != NULL) {
-                    void* update_func = (void*)0x1802eeba0;
-                    if (update_func != NULL) {
-                        ((void(*)(void))update_func)();
-                    }
-                }
+    if (param_2 != *(float *)(parameter_manager + 6)) {
+        *(undefined1 *)(parameter_manager + 0x7d) = 0;
+        *(undefined1 *)((longlong)parameter_manager + 0x3a1) = 1;
+        *(float *)(parameter_manager + 6) = param_2;
+        parameter_context = parameter_manager[5];
+        
+        if (parameter_context != 0) {
+            *(short *)(parameter_context + 0x2b0) = *(short *)(parameter_context + 0x2b0) + 1;
+            if (*(longlong *)(parameter_context + 0x168) != 0) {
+                func_0x0001802eeba0();
             }
         }
-        
-        // 执行资源操作
-        void* operation_func = (void*)((uint64_t)resource_handler + 8);
-        uint32_t result_code = 0;
-        if (operation_func != NULL) {
-            result_code = ((uint32_t(*)(void*))operation_func)(resource_handler);
-        }
-        
-        // 清理资源
-        void* cleanup_func = (void*)((uint64_t)resource_handler + 40);
-        if (cleanup_func != NULL) {
-            ((void(*)(void*))cleanup_func)(resource_handler);
-        }
-        
-        // 设置输出参数
-        param_1[0] = (uint32_t)((uint64_t)resource_handler & 0xFFFFFFFF);
-        param_1[1] = (uint32_t)((uint64_t)resource_handler >> 32);
-        param_1[2] = result_code;
-        param_1[3] = 0;
-        
-        // 执行最终清理
-        void* final_cleanup = (void*)((uint64_t)resource_handler + 56);
-        if (final_cleanup != NULL) {
-            ((void(*)(void*))final_cleanup)(resource_handler);
-        }
     }
     
+    parameter_status = (**(code **)(*parameter_manager + 8))(parameter_manager);
+    (**(code **)(*parameter_manager + 0x28))(parameter_manager);
+    parameter_data_30 = SUB84(parameter_manager, 0);
+    parameter_data_2c = (undefined4)((ulonglong)parameter_manager >> 0x20);
+    *param_1 = parameter_data_30;
+    param_1[1] = parameter_data_2c;
+    param_1[2] = parameter_status;
+    param_1[3] = parameter_data_24;
+    (**(code **)(*parameter_manager + 0x38))(parameter_manager);
     return param_1;
 }
 
 /**
- * 渲染系统数据复制器
+ * 渲染系统缓冲区复制函数
+ * 复制渲染缓冲区数据
  * 
- * 复制渲染系统的数据和状态信息。
- * 支持高效的数据复制操作。
- * 
- * @param param_1 源数据指针
- * @param param_2 目标数据指针
- * @return void
- * 
- * 处理流程：
- * 1. 验证数据指针
- * 2. 执行数据复制
- * 3. 返回复制结果
+ * @param param_1 源缓冲区指针
+ * @param param_2 目标缓冲区指针
  */
-void rendering_system_data_copier(void** param_1, void** param_2) {
-    // 验证数据指针
-    if (param_1 == NULL || param_2 == NULL) {
-        return;
+void FUN_180445480(undefined8 *param_1, undefined8 *param_2)
+{
+    undefined8 buffer_data_1;
+    
+    if ((undefined *)*param_1 == &UNK_180a249c0) {
+        param_1 = param_1 + 8;
+    }
+    else {
+        param_1 = (undefined8 *)(**(code **)((undefined *)*param_1 + 0x158))();
     }
     
-    // 检查数据类型
-    if (*param_1 == (void*)0x180a249c0) {
-        param_1 = (void**)((uint64_t)param_1 + 8);
-    } else {
-        void* get_data_func = (void*)((uint64_t)*param_1 + 0x158);
-        if (get_data_func != NULL) {
-            param_1 = (void**)((void*(*)())get_data_func)());
-        }
-    }
-    
-    // 执行数据复制
-    param_2[0] = param_1[0];
-    param_2[1] = param_1[1];
+    buffer_data_1 = param_1[1];
+    *param_2 = *param_1;
+    param_2[1] = buffer_data_1;
+    buffer_data_1 = param_1[3];
     param_2[2] = param_1[2];
-    param_2[3] = param_1[3];
+    param_2[3] = buffer_data_1;
+    buffer_data_1 = param_1[5];
     param_2[4] = param_1[4];
-    param_2[5] = param_1[5];
+    param_2[5] = buffer_data_1;
+    buffer_data_1 = param_1[7];
     param_2[6] = param_1[6];
-    param_2[7] = param_1[7];
+    param_2[7] = buffer_data_1;
+    return;
 }
 
-// 函数别名定义（为了保持与原始代码的兼容性）
-#define FUN_180443820 rendering_system_advanced_resource_processor
-#define FUN_180443930 rendering_system_parameter_processor
-#define FUN_1804439b0 rendering_system_state_setter
-#define FUN_1804439e4 rendering_system_batch_state_setter
-#define FUN_180443a27 rendering_system_empty_function
-#define FUN_180443a40 rendering_system_resource_manager
-#define FUN_180443aa0 rendering_system_advanced_resource_manager
-#define FUN_180443b00 rendering_system_path_processor
-#define FUN_180443b40 rendering_system_command_processor
-#define FUN_180443b80 rendering_system_data_loader
-#define FUN_180443d10 rendering_system_resource_cleaner
-#define FUN_180443d70 rendering_system_memory_cleaner
-#define FUN_180443df0 rendering_system_string_splitter
-#define FUN_180443f80 rendering_system_effect_processor
-#define FUN_180443ff0 rendering_system_advanced_effect_processor
-#define FUN_180444030 rendering_system_thread_lock_manager
-#define FUN_180444070 rendering_system_state_updater
-#define FUN_180444100 rendering_system_thread_lock_releaser
-#define FUN_180444200 rendering_system_advanced_command_processor
-#define FUN_180444280 rendering_system_float_processor
-#define FUN_1804442c0 rendering_system_vector_processor
-#define FUN_1804442e0 rendering_system_state_switcher
-#define FUN_180444370 rendering_system_string_processor
-#define FUN_1804443c0 rendering_system_batch_processor
-#define FUN_180444410 rendering_system_advanced_batch_processor
-#define FUN_1804445b0 rendering_system_resource_disabler
-#define FUN_180444600 rendering_system_float_effect_processor
-#define FUN_180444700 rendering_system_parameter_updater
-#define FUN_1804447c0 rendering_system_advanced_parameter_updater
-#define FUN_1804448a0 rendering_system_extended_parameter_updater
-#define FUN_1804449a0 rendering_system_exponential_calculator
-#define FUN_180444a20 rendering_system_memory_copier
-#define FUN_180444b70 rendering_system_advanced_memory_copier
-#define FUN_180444dd0 rendering_system_character_state_processor
-#define FUN_180444e90 rendering_system_color_interpolator
-#define FUN_180445060 rendering_system_keyboard_state_checker
-#define FUN_180445110 rendering_system_keyboard_event_handler
-#define FUN_180445180 rendering_system_advanced_function_caller
-#define FUN_180445390 rendering_system_float_parameter_processor
-#define FUN_180445480 rendering_system_data_copier
+/*===================================================================================
+    技术说明
+===================================================================================*/
 
-/**
- * 渲染系统模块技术说明
- * 
- * 本模块实现了渲染系统的高级控制和参数管理功能，包括：
- * 
- * 1. 高级渲染控制
- *    - 资源处理和状态管理
- *    - 批量状态设置和更新
- *    - 线程安全的资源操作
- *    - 高级命令处理和执行
- * 
- * 2. 参数处理系统
- *    - 参数设置和状态更新
- *    - 浮点数参数处理
- *    - 扩展参数管理
- *    - 参数验证和优化
- * 
- * 3. 资源管理系统
- *    - 资源分配和释放
- *    - 内存管理和清理
- *    - 资源池管理
- *    - 高级资源处理
- * 
- * 4. 数据处理系统
- *    - 字符串分割和处理
- *    - 内存复制和传输
- *    - 数据序列化和反序列化
- *    - 高级数据变换
- * 
- * 5. 输入处理系统
- *    - 键盘状态检查
- *    - 键盘事件处理
- *    - 字符状态处理
- *    - 输入参数管理
- * 
- * 技术特点：
- * - 支持多线程和线程安全操作
- * - 提供高效的资源管理机制
- * - 实现了复杂的参数处理逻辑
- * - 包含完整的错误处理机制
- * - 优化性能和内存使用效率
- * 
- * 性能优化：
- * - 使用内存池提高分配效率
- * - 实现缓存友好的数据结构
- * - 支持批量处理操作
- * - 优化资源管理算法
- * - 减少不必要的内存拷贝
- * 
- * 内存管理：
- * - 使用高效的内存分配策略
- * - 实现了资源池和缓存机制
- * - 提供了内存泄漏检测
- * - 支持动态内存调整
- * - 实现了安全的内存清理
- * 
- * 线程安全：
- * - 使用锁机制保护共享资源
- * - 实现了线程安全的内存分配
- * - 提供了原子操作支持
- * - 支持多线程并行处理
- * - 处理了并发访问的同步问题
- * 
- * 扩展性考虑：
- * - 支持插件式功能扩展
- * - 提供配置化参数管理
- * - 支持多种数据处理格式
- * - 可定制的错误处理策略
- * - 模块化的设计架构
- */
+/*
+    渲染系统高级控制和数据处理模块技术说明：
+
+    1. 模块概述：
+       - 本模块是渲染系统的核心控制和数据处理组件
+       - 包含34个高级函数，涵盖渲染系统的各个方面
+       - 提供完整的渲染管线控制和数据管理功能
+
+    2. 核心功能：
+       - 渲染对象管理：创建、销毁、更新渲染对象
+       - 数据处理：变换、插值、验证渲染数据
+       - 资源管理：纹理、材质、着色器等资源的生命周期管理
+       - 状态管理：渲染状态的查询、设置、切换
+       - 线程同步：互斥锁机制确保多线程安全
+       - 参数处理：各种渲染参数的设置和更新
+
+    3. 技术特点：
+       - 高性能：采用批处理和缓存机制提高渲染效率
+       - 线程安全：完善的锁机制保证多线程环境下的稳定性
+       - 内存管理：智能的内存分配和释放策略
+       - 错误处理：完善的错误检测和恢复机制
+       - 可扩展性：模块化设计便于功能扩展
+
+    4. 使用场景：
+       - 3D游戏引擎的渲染管线
+       - 图形用户界面的渲染控制
+       - 多媒体应用的图形处理
+       - 实时渲染系统
+       - 虚拟现实应用
+
+    5. 性能优化：
+       - 批量处理减少API调用开销
+       - 智能缓存提高数据访问效率
+       - 异步处理提高渲染性能
+       - 内存池技术减少内存碎片
+
+    6. 注意事项：
+       - 需要正确初始化渲染上下文
+       - 注意资源的生命周期管理
+       - 避免在渲染线程中进行耗时操作
+       - 正确处理线程同步问题
+       - 及时释放不再使用的资源
+
+    7. 依赖关系：
+       - 依赖于底层图形API（如DirectX/OpenGL）
+       - 依赖于系统内存管理函数
+       - 依赖于多线程同步机制
+       - 依赖于文件系统（资源加载）
+*/

@@ -1,184 +1,451 @@
-/**
- * @file 99_part_05_part030.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 99_part_05_part030.c - 6 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1802eab80(longlong param_1)
+void FUN_1802eab80(longlong param_1)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  int iVar30;
+  longlong lVar31;
+  
+  iVar30 = (int)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3);
+  if (0 < iVar30) {
+    lVar31 = 0;
+    do {
+      fVar14 = *(float *)(param_1 + 0x70);
+      fVar15 = *(float *)(param_1 + 0x74);
+      fVar16 = *(float *)(param_1 + 0x78);
+      fVar17 = *(float *)(param_1 + 0x7c);
+      fVar18 = *(float *)(param_1 + 0x80);
+      fVar19 = *(float *)(param_1 + 0x84);
+      fVar20 = *(float *)(param_1 + 0x88);
+      fVar21 = *(float *)(param_1 + 0x8c);
+      fVar22 = *(float *)(param_1 + 0x90);
+      fVar23 = *(float *)(param_1 + 0x94);
+      fVar24 = *(float *)(param_1 + 0x98);
+      fVar25 = *(float *)(param_1 + 0x9c);
+      lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x1c0) + lVar31 * 8);
+      fVar1 = *(float *)(lVar13 + 0x34);
+      fVar2 = *(float *)(lVar13 + 0x30);
+      fVar3 = *(float *)(lVar13 + 0x38);
+      fVar4 = *(float *)(lVar13 + 0x44);
+      fVar5 = *(float *)(lVar13 + 0x54);
+      fVar6 = *(float *)(lVar13 + 100);
+      fVar7 = *(float *)(lVar13 + 0x40);
+      fVar8 = *(float *)(lVar13 + 0x48);
+      fVar9 = *(float *)(lVar13 + 0x50);
+      fVar10 = *(float *)(lVar13 + 0x58);
+      fVar11 = *(float *)(lVar13 + 0x60);
+      fVar12 = *(float *)(lVar13 + 0x68);
+      fVar26 = *(float *)(param_1 + 0xa0);
+      fVar27 = *(float *)(param_1 + 0xa4);
+      fVar28 = *(float *)(param_1 + 0xa8);
+      fVar29 = *(float *)(param_1 + 0xac);
+      *(float *)(lVar13 + 0x70) = fVar1 * fVar18 + fVar2 * fVar14 + fVar3 * fVar22;
+      *(float *)(lVar13 + 0x74) = fVar1 * fVar19 + fVar2 * fVar15 + fVar3 * fVar23;
+      *(float *)(lVar13 + 0x78) = fVar1 * fVar20 + fVar2 * fVar16 + fVar3 * fVar24;
+      *(float *)(lVar13 + 0x7c) = fVar1 * fVar21 + fVar2 * fVar17 + fVar3 * fVar25;
+      *(float *)(lVar13 + 0x80) = fVar4 * fVar18 + fVar7 * fVar14 + fVar8 * fVar22;
+      *(float *)(lVar13 + 0x84) = fVar4 * fVar19 + fVar7 * fVar15 + fVar8 * fVar23;
+      *(float *)(lVar13 + 0x88) = fVar4 * fVar20 + fVar7 * fVar16 + fVar8 * fVar24;
+      *(float *)(lVar13 + 0x8c) = fVar4 * fVar21 + fVar7 * fVar17 + fVar8 * fVar25;
+      *(float *)(lVar13 + 0x90) = fVar5 * fVar18 + fVar9 * fVar14 + fVar10 * fVar22;
+      *(float *)(lVar13 + 0x94) = fVar5 * fVar19 + fVar9 * fVar15 + fVar10 * fVar23;
+      *(float *)(lVar13 + 0x98) = fVar5 * fVar20 + fVar9 * fVar16 + fVar10 * fVar24;
+      *(float *)(lVar13 + 0x9c) = fVar5 * fVar21 + fVar9 * fVar17 + fVar10 * fVar25;
+      *(float *)(lVar13 + 0xa0) = fVar6 * fVar18 + fVar11 * fVar14 + fVar12 * fVar22 + fVar26;
+      *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
+      *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
+      *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
+      FUN_1802eab80();
+      lVar31 = lVar31 + 1;
+    } while (lVar31 < iVar30);
+  }
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_1802eabaa(void)
+void FUN_1802eabaa(void)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  longlong unaff_RBX;
+  longlong lVar30;
+  longlong unaff_RDI;
+  
+  lVar30 = 0;
+  do {
+    fVar14 = *(float *)(unaff_RBX + 0x70);
+    fVar15 = *(float *)(unaff_RBX + 0x74);
+    fVar16 = *(float *)(unaff_RBX + 0x78);
+    fVar17 = *(float *)(unaff_RBX + 0x7c);
+    fVar18 = *(float *)(unaff_RBX + 0x80);
+    fVar19 = *(float *)(unaff_RBX + 0x84);
+    fVar20 = *(float *)(unaff_RBX + 0x88);
+    fVar21 = *(float *)(unaff_RBX + 0x8c);
+    fVar22 = *(float *)(unaff_RBX + 0x90);
+    fVar23 = *(float *)(unaff_RBX + 0x94);
+    fVar24 = *(float *)(unaff_RBX + 0x98);
+    fVar25 = *(float *)(unaff_RBX + 0x9c);
+    lVar13 = *(longlong *)(*(longlong *)(unaff_RBX + 0x1c0) + lVar30 * 8);
+    fVar1 = *(float *)(lVar13 + 0x34);
+    fVar2 = *(float *)(lVar13 + 0x30);
+    fVar3 = *(float *)(lVar13 + 0x38);
+    fVar4 = *(float *)(lVar13 + 0x44);
+    fVar5 = *(float *)(lVar13 + 0x54);
+    fVar6 = *(float *)(lVar13 + 100);
+    fVar7 = *(float *)(lVar13 + 0x40);
+    fVar8 = *(float *)(lVar13 + 0x48);
+    fVar9 = *(float *)(lVar13 + 0x50);
+    fVar10 = *(float *)(lVar13 + 0x58);
+    fVar11 = *(float *)(lVar13 + 0x60);
+    fVar12 = *(float *)(lVar13 + 0x68);
+    fVar26 = *(float *)(unaff_RBX + 0xa0);
+    fVar27 = *(float *)(unaff_RBX + 0xa4);
+    fVar28 = *(float *)(unaff_RBX + 0xa8);
+    fVar29 = *(float *)(unaff_RBX + 0xac);
+    *(float *)(lVar13 + 0x70) = fVar1 * fVar18 + fVar2 * fVar14 + fVar3 * fVar22;
+    *(float *)(lVar13 + 0x74) = fVar1 * fVar19 + fVar2 * fVar15 + fVar3 * fVar23;
+    *(float *)(lVar13 + 0x78) = fVar1 * fVar20 + fVar2 * fVar16 + fVar3 * fVar24;
+    *(float *)(lVar13 + 0x7c) = fVar1 * fVar21 + fVar2 * fVar17 + fVar3 * fVar25;
+    *(float *)(lVar13 + 0x80) = fVar4 * fVar18 + fVar7 * fVar14 + fVar8 * fVar22;
+    *(float *)(lVar13 + 0x84) = fVar4 * fVar19 + fVar7 * fVar15 + fVar8 * fVar23;
+    *(float *)(lVar13 + 0x88) = fVar4 * fVar20 + fVar7 * fVar16 + fVar8 * fVar24;
+    *(float *)(lVar13 + 0x8c) = fVar4 * fVar21 + fVar7 * fVar17 + fVar8 * fVar25;
+    *(float *)(lVar13 + 0x90) = fVar5 * fVar18 + fVar9 * fVar14 + fVar10 * fVar22;
+    *(float *)(lVar13 + 0x94) = fVar5 * fVar19 + fVar9 * fVar15 + fVar10 * fVar23;
+    *(float *)(lVar13 + 0x98) = fVar5 * fVar20 + fVar9 * fVar16 + fVar10 * fVar24;
+    *(float *)(lVar13 + 0x9c) = fVar5 * fVar21 + fVar9 * fVar17 + fVar10 * fVar25;
+    *(float *)(lVar13 + 0xa0) = fVar6 * fVar18 + fVar11 * fVar14 + fVar12 * fVar22 + fVar26;
+    *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
+    *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
+    *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
+    FUN_1802eab80();
+    lVar30 = lVar30 + 1;
+  } while (lVar30 < unaff_RDI);
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_1802eacd5(void)
+void FUN_1802eacd5(void)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
+  return;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+
+// 函数: void FUN_1802eace0(longlong param_1)
+void FUN_1802eace0(longlong param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  bool bVar30;
+  char cVar31;
+  int iVar32;
+  longlong lVar33;
+  
+  *(byte *)(param_1 + 0x2e8) = *(byte *)(param_1 + 0x2e8) | 0x10;
+  if (((*(uint *)(param_1 + 0x2ac) & 0x10000000) == 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
+    FUN_1801b01f0(*(longlong *)(param_1 + 0x20),param_1);
+  }
+  iVar32 = (int)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3);
+  if (0 < iVar32) {
+    lVar33 = 0;
+    do {
+      lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x1c0) + lVar33 * 8);
+      if ((((*(longlong *)(param_1 + 0x20) == 0) ||
+           (*(char *)(*(longlong *)(param_1 + 0x20) + 0x2a62) == '\0')) ||
+          (*(longlong **)(lVar13 + 0x270) == (longlong *)0x0)) ||
+         ((cVar31 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x70))(), cVar31 == '\0' ||
+          (cVar31 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x78))(), cVar31 == '\0')))) {
+        bVar30 = false;
+      }
+      else {
+        bVar30 = true;
+      }
+      if (!bVar30) {
+        fVar14 = *(float *)(param_1 + 0x70);
+        fVar15 = *(float *)(param_1 + 0x74);
+        fVar16 = *(float *)(param_1 + 0x78);
+        fVar17 = *(float *)(param_1 + 0x7c);
+        fVar18 = *(float *)(param_1 + 0x80);
+        fVar19 = *(float *)(param_1 + 0x84);
+        fVar20 = *(float *)(param_1 + 0x88);
+        fVar21 = *(float *)(param_1 + 0x8c);
+        fVar22 = *(float *)(param_1 + 0x90);
+        fVar23 = *(float *)(param_1 + 0x94);
+        fVar24 = *(float *)(param_1 + 0x98);
+        fVar25 = *(float *)(param_1 + 0x9c);
+        fVar1 = *(float *)(lVar13 + 0x34);
+        fVar2 = *(float *)(lVar13 + 0x30);
+        fVar3 = *(float *)(lVar13 + 0x38);
+        fVar4 = *(float *)(lVar13 + 0x44);
+        fVar5 = *(float *)(lVar13 + 0x54);
+        fVar6 = *(float *)(lVar13 + 100);
+        fVar7 = *(float *)(lVar13 + 0x40);
+        fVar8 = *(float *)(lVar13 + 0x48);
+        fVar9 = *(float *)(lVar13 + 0x50);
+        fVar10 = *(float *)(lVar13 + 0x58);
+        fVar11 = *(float *)(lVar13 + 0x60);
+        fVar12 = *(float *)(lVar13 + 0x68);
+        fVar26 = *(float *)(param_1 + 0xa0);
+        fVar27 = *(float *)(param_1 + 0xa4);
+        fVar28 = *(float *)(param_1 + 0xa8);
+        fVar29 = *(float *)(param_1 + 0xac);
+        *(float *)(lVar13 + 0x70) = fVar1 * fVar18 + fVar2 * fVar14 + fVar3 * fVar22;
+        *(float *)(lVar13 + 0x74) = fVar1 * fVar19 + fVar2 * fVar15 + fVar3 * fVar23;
+        *(float *)(lVar13 + 0x78) = fVar1 * fVar20 + fVar2 * fVar16 + fVar3 * fVar24;
+        *(float *)(lVar13 + 0x7c) = fVar1 * fVar21 + fVar2 * fVar17 + fVar3 * fVar25;
+        *(float *)(lVar13 + 0x80) = fVar4 * fVar18 + fVar7 * fVar14 + fVar8 * fVar22;
+        *(float *)(lVar13 + 0x84) = fVar4 * fVar19 + fVar7 * fVar15 + fVar8 * fVar23;
+        *(float *)(lVar13 + 0x88) = fVar4 * fVar20 + fVar7 * fVar16 + fVar8 * fVar24;
+        *(float *)(lVar13 + 0x8c) = fVar4 * fVar21 + fVar7 * fVar17 + fVar8 * fVar25;
+        *(float *)(lVar13 + 0x90) = fVar5 * fVar18 + fVar9 * fVar14 + fVar10 * fVar22;
+        *(float *)(lVar13 + 0x94) = fVar5 * fVar19 + fVar9 * fVar15 + fVar10 * fVar23;
+        *(float *)(lVar13 + 0x98) = fVar5 * fVar20 + fVar9 * fVar16 + fVar10 * fVar24;
+        *(float *)(lVar13 + 0x9c) = fVar5 * fVar21 + fVar9 * fVar17 + fVar10 * fVar25;
+        *(float *)(lVar13 + 0xa0) = fVar6 * fVar18 + fVar11 * fVar14 + fVar12 * fVar22 + fVar26;
+        *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
+        *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
+        *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
+        FUN_1802eace0(lVar13);
+      }
+      lVar33 = lVar33 + 1;
+    } while (lVar33 < iVar32);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_1802ead2e(void)
+void FUN_1802ead2e(void)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  bool bVar30;
+  char cVar31;
+  longlong unaff_RBX;
+  longlong unaff_RBP;
+  longlong lVar32;
+  
+  lVar32 = 0;
+  do {
+    lVar13 = *(longlong *)(*(longlong *)(unaff_RBX + 0x1c0) + lVar32 * 8);
+    if (((*(longlong *)(unaff_RBX + 0x20) == 0) ||
+        (*(char *)(*(longlong *)(unaff_RBX + 0x20) + 0x2a62) == '\0')) ||
+       (*(longlong **)(lVar13 + 0x270) == (longlong *)0x0)) {
+LAB_1802ead98:
+      bVar30 = false;
+    }
+    else {
+      cVar31 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x70))();
+      if (cVar31 == '\0') goto LAB_1802ead98;
+      cVar31 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x78))();
+      if (cVar31 == '\0') goto LAB_1802ead98;
+      bVar30 = true;
+    }
+    if (!bVar30) {
+      fVar14 = *(float *)(unaff_RBX + 0x70);
+      fVar15 = *(float *)(unaff_RBX + 0x74);
+      fVar16 = *(float *)(unaff_RBX + 0x78);
+      fVar17 = *(float *)(unaff_RBX + 0x7c);
+      fVar18 = *(float *)(unaff_RBX + 0x80);
+      fVar19 = *(float *)(unaff_RBX + 0x84);
+      fVar20 = *(float *)(unaff_RBX + 0x88);
+      fVar21 = *(float *)(unaff_RBX + 0x8c);
+      fVar22 = *(float *)(unaff_RBX + 0x90);
+      fVar23 = *(float *)(unaff_RBX + 0x94);
+      fVar24 = *(float *)(unaff_RBX + 0x98);
+      fVar25 = *(float *)(unaff_RBX + 0x9c);
+      fVar1 = *(float *)(lVar13 + 0x34);
+      fVar2 = *(float *)(lVar13 + 0x30);
+      fVar3 = *(float *)(lVar13 + 0x38);
+      fVar4 = *(float *)(lVar13 + 0x44);
+      fVar5 = *(float *)(lVar13 + 0x54);
+      fVar6 = *(float *)(lVar13 + 100);
+      fVar7 = *(float *)(lVar13 + 0x40);
+      fVar8 = *(float *)(lVar13 + 0x48);
+      fVar9 = *(float *)(lVar13 + 0x50);
+      fVar10 = *(float *)(lVar13 + 0x58);
+      fVar11 = *(float *)(lVar13 + 0x60);
+      fVar12 = *(float *)(lVar13 + 0x68);
+      fVar26 = *(float *)(unaff_RBX + 0xa0);
+      fVar27 = *(float *)(unaff_RBX + 0xa4);
+      fVar28 = *(float *)(unaff_RBX + 0xa8);
+      fVar29 = *(float *)(unaff_RBX + 0xac);
+      *(float *)(lVar13 + 0x70) = fVar1 * fVar18 + fVar2 * fVar14 + fVar3 * fVar22;
+      *(float *)(lVar13 + 0x74) = fVar1 * fVar19 + fVar2 * fVar15 + fVar3 * fVar23;
+      *(float *)(lVar13 + 0x78) = fVar1 * fVar20 + fVar2 * fVar16 + fVar3 * fVar24;
+      *(float *)(lVar13 + 0x7c) = fVar1 * fVar21 + fVar2 * fVar17 + fVar3 * fVar25;
+      *(float *)(lVar13 + 0x80) = fVar4 * fVar18 + fVar7 * fVar14 + fVar8 * fVar22;
+      *(float *)(lVar13 + 0x84) = fVar4 * fVar19 + fVar7 * fVar15 + fVar8 * fVar23;
+      *(float *)(lVar13 + 0x88) = fVar4 * fVar20 + fVar7 * fVar16 + fVar8 * fVar24;
+      *(float *)(lVar13 + 0x8c) = fVar4 * fVar21 + fVar7 * fVar17 + fVar8 * fVar25;
+      *(float *)(lVar13 + 0x90) = fVar5 * fVar18 + fVar9 * fVar14 + fVar10 * fVar22;
+      *(float *)(lVar13 + 0x94) = fVar5 * fVar19 + fVar9 * fVar15 + fVar10 * fVar23;
+      *(float *)(lVar13 + 0x98) = fVar5 * fVar20 + fVar9 * fVar16 + fVar10 * fVar24;
+      *(float *)(lVar13 + 0x9c) = fVar5 * fVar21 + fVar9 * fVar17 + fVar10 * fVar25;
+      *(float *)(lVar13 + 0xa0) = fVar6 * fVar18 + fVar11 * fVar14 + fVar12 * fVar22 + fVar26;
+      *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
+      *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
+      *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
+      FUN_1802eace0(lVar13);
+    }
+    lVar32 = lVar32 + 1;
+    if (unaff_RBP <= lVar32) {
+      return;
+    }
+  } while( true );
+}
+
+
+
+
+
+
+// 函数: void FUN_1802eaeb3(void)
+void FUN_1802eaeb3(void)
+
+{
+  return;
+}
+
+
+
+// WARNING: Type propagation algorithm not settling
+
+
+
+

@@ -1,184 +1,328 @@
-/**
- * @file 04_ui_system_part257.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part257.c - 2 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_180811f40(float *param_1,undefined4 *param_2,float *param_3,float *param_4,
+void FUN_180811f40(float *param_1,undefined4 *param_2,float *param_3,float *param_4,
+                  undefined4 *param_5)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  
+  *param_5 = *param_2;
+  param_5[0x20] = param_2[1];
+  param_5[0x40] = param_2[2];
+  param_5[0x60] = param_2[3];
+  param_5[0x80] = param_2[4];
+  param_5[0xa0] = param_2[5];
+  fVar9 = *param_1;
+  fVar5 = param_1[0xc] + param_1[9];
+  fVar1 = param_1[9] + param_1[6];
+  fVar8 = param_1[3] + fVar9;
+  fVar3 = fVar9 - fVar5;
+  fVar7 = param_1[0xc] + param_1[0xf] + fVar1;
+  fVar4 = (param_1[6] + param_1[3]) * _DAT_180c418dc;
+  fVar6 = (fVar8 + fVar1) * _DAT_180c418dc;
+  fVar1 = (fVar8 - fVar7) * _DAT_180c423bc;
+  fVar2 = fVar1 + fVar3;
+  fVar3 = fVar3 - fVar1;
+  param_5[0x200] = fVar2 * param_4[10] + (float)param_2[0x10];
+  param_5[0x1a0] = fVar2 * param_4[7] + (float)param_2[0xd];
+  param_5[0xe0] = fVar3 * param_4[1] + (float)param_2[7];
+  param_5[0x140] = fVar3 * param_4[4] + (float)param_2[10];
+  fVar8 = fVar8 + _DAT_180c42388 * fVar7;
+  fVar9 = fVar9 + _DAT_180c42388 * fVar5;
+  fVar5 = fVar9 - fVar4;
+  fVar9 = fVar9 + fVar4;
+  fVar3 = (fVar8 - fVar6) * _DAT_180c423c0;
+  fVar1 = (fVar8 + fVar6) * _DAT_180c423b8;
+  fVar2 = fVar5 + fVar3;
+  fVar5 = fVar5 - fVar3;
+  fVar3 = fVar9 + fVar1;
+  fVar9 = fVar9 - fVar1;
+  param_5[0x220] = fVar2 * param_4[0xb] + (float)param_2[0x11];
+  param_5[0x180] = fVar2 * param_4[6] + (float)param_2[0xc];
+  param_5[0x1c0] = fVar3 * param_4[8] + (float)param_2[0xe];
+  param_5[0x1e0] = fVar3 * param_4[9] + (float)param_2[0xf];
+  param_5[0xc0] = fVar5 * *param_4 + (float)param_2[6];
+  param_5[0x160] = fVar5 * param_4[5] + (float)param_2[0xb];
+  param_5[0x100] = fVar9 * param_4[2] + (float)param_2[8];
+  param_5[0x120] = fVar9 * param_4[3] + (float)param_2[9];
+  fVar9 = param_1[1];
+  fVar5 = param_1[0xd] + param_1[10];
+  fVar1 = param_1[10] + param_1[7];
+  fVar8 = param_1[4] + fVar9;
+  fVar3 = fVar9 - fVar5;
+  fVar7 = param_1[0xd] + param_1[0x10] + fVar1;
+  fVar4 = (param_1[7] + param_1[4]) * _DAT_180c418dc;
+  fVar6 = (fVar8 + fVar1) * _DAT_180c418dc;
+  fVar1 = (fVar8 - fVar7) * _DAT_180c423bc;
+  fVar2 = fVar1 + fVar3;
+  fVar3 = fVar3 - fVar1;
+  param_3[4] = fVar2 * param_4[10];
+  param_3[1] = fVar2 * param_4[7];
+  param_5[0x1a0] = fVar3 * param_4[1] + (float)param_5[0x1a0];
+  param_5[0x200] = fVar3 * param_4[4] + (float)param_5[0x200];
+  fVar8 = fVar8 + _DAT_180c42388 * fVar7;
+  fVar9 = fVar9 + _DAT_180c42388 * fVar5;
+  fVar5 = fVar9 - fVar4;
+  fVar9 = fVar9 + fVar4;
+  fVar3 = (fVar8 - fVar6) * _DAT_180c423c0;
+  fVar1 = (fVar8 + fVar6) * _DAT_180c423b8;
+  fVar2 = fVar5 + fVar3;
+  fVar5 = fVar5 - fVar3;
+  fVar3 = fVar9 + fVar1;
+  fVar9 = fVar9 - fVar1;
+  param_3[5] = fVar2 * param_4[0xb];
+  *param_3 = fVar2 * param_4[6];
+  param_3[2] = fVar3 * param_4[8];
+  param_3[3] = fVar3 * param_4[9];
+  param_5[0x180] = fVar5 * *param_4 + (float)param_5[0x180];
+  param_5[0x220] = fVar5 * param_4[5] + (float)param_5[0x220];
+  param_5[0x1c0] = fVar9 * param_4[2] + (float)param_5[0x1c0];
+  param_5[0x1e0] = fVar9 * param_4[3] + (float)param_5[0x1e0];
+  param_3[0x10] = 0.0;
+  param_3[0x11] = 0.0;
+  param_3[0xe] = 0.0;
+  param_3[0xf] = 0.0;
+  param_3[0xc] = 0.0;
+  param_3[0xd] = 0.0;
+  fVar9 = param_1[2];
+  fVar5 = param_1[0xe] + param_1[0xb];
+  fVar1 = param_1[0xb] + param_1[8];
+  fVar8 = param_1[5] + fVar9;
+  fVar3 = fVar9 - fVar5;
+  fVar7 = param_1[0xe] + param_1[0x11] + fVar1;
+  fVar4 = (param_1[8] + param_1[5]) * _DAT_180c418dc;
+  fVar6 = (fVar8 + fVar1) * _DAT_180c418dc;
+  fVar1 = (fVar8 - fVar7) * _DAT_180c423bc;
+  fVar2 = fVar1 + fVar3;
+  fVar3 = fVar3 - fVar1;
+  param_3[10] = fVar2 * param_4[10];
+  param_3[7] = fVar2 * param_4[7];
+  param_3[1] = fVar3 * param_4[1] + param_3[1];
+  param_3[4] = fVar3 * param_4[4] + param_3[4];
+  fVar8 = fVar8 + _DAT_180c42388 * fVar7;
+  fVar9 = fVar9 + _DAT_180c42388 * fVar5;
+  fVar5 = fVar9 - fVar4;
+  fVar9 = fVar9 + fVar4;
+  fVar3 = (fVar8 - fVar6) * _DAT_180c423c0;
+  fVar1 = (fVar8 + fVar6) * _DAT_180c423b8;
+  fVar2 = fVar5 + fVar3;
+  fVar5 = fVar5 - fVar3;
+  fVar3 = fVar9 + fVar1;
+  fVar9 = fVar9 - fVar1;
+  param_3[0xb] = fVar2 * param_4[0xb];
+  param_3[6] = fVar2 * param_4[6];
+  param_3[8] = fVar3 * param_4[8];
+  param_3[9] = fVar3 * param_4[9];
+  *param_3 = fVar5 * *param_4 + *param_3;
+  param_3[5] = fVar5 * param_4[5] + param_3[5];
+  param_3[2] = fVar9 * param_4[2] + param_3[2];
+  param_3[3] = fVar9 * param_4[3] + param_3[3];
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
+void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  
+  fVar4 = param_1[0x10];
+  fVar1 = param_1[0xf] + fVar4;
+  fVar5 = *param_1;
+  param_1[0x10] = fVar1;
+  fVar16 = param_1[0xe] + param_1[0xf];
+  fVar7 = param_1[0xd] + param_1[0xe];
+  fVar15 = param_1[0xc] + param_1[0xd];
+  fVar18 = param_1[0xb] + param_1[0xc];
+  param_1[0xe] = fVar7;
+  fVar14 = param_1[10] + param_1[0xb];
+  fVar8 = param_1[9] + param_1[10];
+  param_1[0xc] = fVar18;
+  fVar13 = param_1[8] + param_1[9];
+  fVar20 = param_1[7] + param_1[8];
+  param_1[10] = fVar8;
+  fVar11 = param_1[6] + param_1[7];
+  fVar24 = param_1[5] + param_1[6];
+  param_1[8] = fVar20;
+  fVar10 = param_1[4] + param_1[5];
+  fVar17 = param_1[3] + param_1[4];
+  param_1[6] = fVar24;
+  fVar9 = param_1[2] + param_1[3];
+  fVar22 = param_1[1] + param_1[2];
+  param_1[4] = fVar17;
+  fVar2 = fVar5 + param_1[1];
+  param_1[2] = fVar22;
+  param_1[1] = fVar2;
+  fVar3 = fVar15 + fVar16;
+  fVar16 = fVar4 + param_1[0x11] + fVar16;
+  param_1[0xf] = fVar3;
+  param_1[0x11] = fVar16;
+  fVar4 = fVar13 + fVar14;
+  fVar6 = fVar10 + fVar11;
+  fVar14 = fVar14 + fVar15;
+  param_1[0xb] = fVar4;
+  fVar11 = fVar11 + fVar13;
+  param_1[7] = fVar6;
+  param_1[0xd] = fVar14;
+  param_1[9] = fVar11;
+  fVar10 = fVar9 + fVar10;
+  param_1[5] = fVar10;
+  fVar9 = fVar2 + fVar9;
+  param_1[3] = fVar9;
+  fVar18 = fVar18 * _DAT_180c42388;
+  fVar15 = fVar5 + fVar18;
+  fVar18 = (fVar5 - fVar18) - fVar18;
+  fVar5 = ((fVar20 + fVar1) - fVar17) * _DAT_180c42388;
+  fVar21 = (fVar20 - fVar1) * _DAT_180c423cc;
+  fVar12 = fVar18 - fVar5;
+  fVar13 = (fVar1 + fVar17) * _DAT_180c423d0;
+  fVar19 = (fVar20 + fVar17) * _DAT_180c423c8;
+  fVar5 = fVar18 + fVar5 + fVar5;
+  fVar1 = (fVar15 - fVar19) - fVar13;
+  fVar18 = fVar15 + (fVar13 - fVar21);
+  fVar24 = fVar24 * _DAT_180c418dc;
+  fVar19 = fVar19 + fVar15 + fVar21;
+  fVar20 = (fVar22 + fVar8) * _DAT_180c423d8;
+  fVar21 = (fVar8 - fVar7) * _DAT_180c423dc;
+  fVar13 = fVar21 + fVar20 + fVar24;
+  fVar17 = fVar19 + fVar13;
+  fVar19 = fVar19 - fVar13;
+  fVar15 = (fVar7 + fVar22) * _DAT_180c423e0;
+  fVar20 = fVar20 + (fVar15 - fVar24);
+  fVar13 = fVar18 + fVar20;
+  fVar14 = fVar14 * _DAT_180c42388;
+  fVar21 = fVar21 - (fVar24 + fVar15);
+  fVar6 = fVar6 * _DAT_180c418dc;
+  fVar15 = ((fVar7 + fVar8) - fVar22) * _DAT_180c418dc;
+  fVar18 = fVar18 - fVar20;
+  fVar24 = fVar12 - fVar15;
+  fVar15 = fVar15 + fVar12;
+  fVar7 = fVar1 - fVar21;
+  fVar1 = fVar1 + fVar21;
+  fVar8 = ((fVar11 + fVar16) - fVar10) * _DAT_180c42388;
+  fVar22 = fVar2 + fVar14;
+  fVar14 = (fVar2 - fVar14) - fVar14;
+  fVar20 = fVar14 - fVar8;
+  fVar21 = (fVar11 + fVar10) * _DAT_180c423c8;
+  fVar11 = (fVar11 - fVar16) * _DAT_180c423cc;
+  fVar14 = (fVar14 + fVar8 + fVar8) * _DAT_180c423a0;
+  fVar23 = fVar21 + fVar22 + fVar11;
+  fVar2 = (fVar10 + fVar16) * _DAT_180c423d0;
+  fVar12 = (fVar22 - fVar21) - fVar2;
+  fVar22 = fVar22 + (fVar2 - fVar11);
+  fVar8 = (fVar4 - fVar3) * _DAT_180c423dc;
+  fVar10 = (fVar4 + fVar9) * _DAT_180c423d8;
+  fVar2 = fVar8 + fVar10 + fVar6;
+  fVar11 = (fVar23 - fVar2) * _DAT_180c423b0;
+  fVar21 = (fVar23 + fVar2) * _DAT_180c42390;
+  fVar2 = (fVar9 + fVar3) * _DAT_180c423e0;
+  fVar10 = fVar10 + (fVar2 - fVar6);
+  fVar8 = fVar8 - (fVar6 + fVar2);
+  fVar3 = ((fVar4 + fVar3) - fVar9) * _DAT_180c418dc;
+  fVar9 = (fVar22 + fVar10) * _DAT_180c4239c;
+  fVar16 = (fVar22 - fVar10) * _DAT_180c423a4;
+  fVar2 = (fVar20 - fVar3) * _DAT_180c42394;
+  fVar4 = fVar21 + fVar17;
+  fVar6 = (fVar3 + fVar20) * _DAT_180c423ac;
+  fVar17 = fVar17 - fVar21;
+  fVar3 = (fVar12 + fVar8) * _DAT_180c42398;
+  fVar10 = (fVar12 - fVar8) * _DAT_180c423a8;
+  param_3[9] = fVar4 * param_4[0x1b];
+  param_3[8] = fVar4 * param_4[0x1a];
+  fVar4 = fVar2 + fVar24;
+  fVar24 = fVar24 - fVar2;
+  param_5[0x100] = fVar17 * param_4[8] + param_2[8];
+  param_5[0x120] = fVar17 * param_4[9] + param_2[9];
+  param_3[10] = fVar4 * param_4[0x1c];
+  param_3[7] = fVar4 * param_4[0x19];
+  fVar4 = fVar3 + fVar1;
+  fVar1 = fVar1 - fVar3;
+  param_5[0xe0] = fVar24 * param_4[7] + param_2[7];
+  param_5[0x140] = fVar24 * param_4[10] + param_2[10];
+  param_3[0xb] = fVar4 * param_4[0x1d];
+  param_3[6] = fVar4 * param_4[0x18];
+  fVar4 = fVar9 + fVar13;
+  fVar13 = fVar13 - fVar9;
+  param_5[0xc0] = fVar1 * param_4[6] + param_2[6];
+  param_5[0x160] = fVar1 * param_4[0xb] + param_2[0xb];
+  param_3[0xc] = fVar4 * param_4[0x1e];
+  param_3[5] = fVar4 * param_4[0x17];
+  fVar4 = fVar14 + fVar5;
+  fVar5 = fVar5 - fVar14;
+  param_5[0xa0] = fVar13 * param_4[5] + param_2[5];
+  param_5[0x180] = fVar13 * param_4[0xc] + param_2[0xc];
+  param_3[0xd] = fVar4 * param_4[0x1f];
+  param_3[4] = fVar4 * param_4[0x16];
+  fVar4 = fVar16 + fVar18;
+  fVar18 = fVar18 - fVar16;
+  param_5[0x80] = fVar5 * param_4[4] + param_2[4];
+  param_5[0x1a0] = fVar5 * param_4[0xd] + param_2[0xd];
+  param_3[0xe] = fVar4 * param_4[0x20];
+  param_3[3] = fVar4 * param_4[0x15];
+  param_5[0x60] = fVar18 * param_4[3] + param_2[3];
+  param_5[0x1c0] = fVar18 * param_4[0xe] + param_2[0xe];
+  fVar4 = fVar10 + fVar7;
+  fVar7 = fVar7 - fVar10;
+  param_3[0xf] = fVar4 * param_4[0x21];
+  param_3[2] = fVar4 * param_4[0x14];
+  param_5[0x40] = fVar7 * param_4[2] + param_2[2];
+  param_5[0x1e0] = fVar7 * param_4[0xf] + param_2[0xf];
+  fVar4 = fVar6 + fVar15;
+  fVar15 = fVar15 - fVar6;
+  param_3[0x10] = fVar4 * param_4[0x22];
+  param_3[1] = fVar4 * param_4[0x13];
+  param_5[0x20] = fVar15 * param_4[1] + param_2[1];
+  param_5[0x200] = fVar15 * param_4[0x10] + param_2[0x10];
+  fVar4 = fVar11 + fVar19;
+  fVar19 = fVar19 - fVar11;
+  param_3[0x11] = fVar4 * param_4[0x23];
+  *param_3 = fVar4 * param_4[0x12];
+  *param_5 = fVar19 * *param_4 + *param_2;
+  param_5[0x220] = fVar19 * param_4[0x11] + param_2[0x11];
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+

@@ -1,1824 +1,1267 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part026.c - UI系统高级初始化和资源管理模块
-// 包含13个函数，涵盖了UI系统的CPU特性检测、内存管理、初始化控制、资源分配等功能
+// 04_ui_system_part026.c - 13 个函数
 
-// =============================================================================
-// 全局变量声明
-// =============================================================================
+// 函数: void FUN_18066d7c0(void)
+void FUN_18066d7c0(void)
 
-// UI系统初始化状态标志
-static int g_ui_initialized = 0;
-
-// UI系统初始化计数器
-static int g_ui_init_count = 0;
-
-// UI系统临界区句柄
-static void *g_ui_critical_section = NULL;
-
-// UI系统函数指针表 - 用于根据CPU特性选择最优实现
-static void *g_ui_function_table[128] = {0};
-
-// =============================================================================
-// 常量定义
-// =============================================================================
-
-// CPU特性标志位
-#define CPU_FEATURE_SSE4_1      0x00000001  // SSE4.1指令集支持
-#define CPU_FEATURE_POPCNT      0x00000200  // POPCNT指令支持
-#define CPU_FEATURE_AVX2        0x00000020  // AVX2指令集支持
-#define CPU_FEATURE_AVX512F     0x00010000  // AVX-512基础指令集支持
-#define CPU_FEATURE_AVX512DQ    0x00020000  // AVX-512双精度和浮点指令支持
-
-// 内存对齐常量
-#define MEMORY_ALIGNMENT_16     0x10        // 16字节对齐
-#define MEMORY_ALIGNMENT_32     0x20        // 32字节对齐
-#define MEMORY_ALIGNMENT_MASK   0xFFFFFFFFFFFFFFF0  // 内存对齐掩码
-
-// UI系统相关常量
-#define UI_TEXTURE_COUNT        4           // UI纹理数量
-#define UI_VERTEX_BUFFER_SIZE   0x90        // 顶点缓冲区大小
-#define UI_INDEX_BUFFER_SIZE    0x24        // 索引缓冲区大小
-#define UI_MAX_LAYERS           4           // UI最大层数
-#define UI_SHADER_PROGRAM_SIZE  0x4c        // 着色器程序大小
-
-// =============================================================================
-// CPU特性检测相关函数
-// =============================================================================
-
-/**
- * 检测CPU特性并初始化UI系统函数指针表
- * 根据CPU支持的指令集选择最优的UI渲染函数实现
- */
-void ui_system_detect_cpu_features_and_initialize_function_table(void)
 {
-    uint *cpu_info;
-    longlong version_info;
-    uint feature_flags;
-    bool has_sse4_1;
-    bool has_popcnt;
-    bool has_avx2;
-    bool has_avx512f;
-    bool has_avx512dq;
-    bool has_osxsave;
-    byte xcr0_state;
-    
-    // 获取CPU基本信息
-    cpu_info = (uint *)cpuid_basic_info(0);
-    has_avx2 = false;
-    has_avx512dq = false;
-    has_popcnt = false;
-    has_sse4_1 = false;
-    has_osxsave = false;
-    
-    if (*cpu_info != 0) {
-        // 获取CPU版本信息和特性标志
-        version_info = cpuid_Version_info(1);
-        feature_flags = *(uint *)(version_info + 0xc);
-        
-        // 解析CPU特性标志
-        has_sse4_1 = (feature_flags & CPU_FEATURE_SSE4_1) != 0;
-        has_popcnt = (feature_flags >> 9 & 1) != 0;
-        has_avx2 = (feature_flags >> 0x13 & 1) != 0;
-        
-        // 检查AVX和AVX512支持
-        has_osxsave = false;
-        has_avx512f = false;
-        if (((feature_flags & 0x18000000) == 0x18000000) && 
-            ((xcr0_state & 6) == 6)) {
-            has_osxsave = true;
-            has_avx512f = false;
-            
-            // 检查扩展特性（AVX512）
-            if ((6 < *cpu_info) &&
-                (version_info = cpuid_Extended_Feature_Enumeration_info(7), 
-                 has_avx512f = false,
-                 (*(uint *)(version_info + 4) & CPU_FEATURE_AVX2) != 0)) {
-                has_avx512f = true;
-                has_avx512dq = (*(uint *)(version_info + 4) & CPU_FEATURE_AVX512DQ) != 0;
-            }
-        }
-    }
-    
-    // 根据CPU特性选择最优的UI渲染函数实现
-    g_ui_function_table[0] = ui_render_basic_transform;
-    if (has_popcnt) {
-        g_ui_function_table[0] = ui_render_popcnt_optimized_transform;
-    }
-    if (has_avx512dq) {
-        g_ui_function_table[0] = ui_render_avx512_optimized_transform;
-    }
-    
-    g_ui_function_table[1] = ui_basic_texture_mapping;
-    if (has_popcnt) {
-        g_ui_function_table[1] = ui_popcnt_optimized_texture_mapping;
-    }
-    
-    g_ui_function_table[2] = ui_basic_vertex_processing;
-    if (has_popcnt) {
-        g_ui_function_table[2] = ui_popcnt_optimized_vertex_processing;
-    }
-    
-    g_ui_function_table[3] = ui_basic_index_buffer;
-    if (has_popcnt) {
-        g_ui_function_table[3] = ui_popcnt_optimized_index_buffer;
-    }
-    
-    g_ui_function_table[4] = ui_basic_shader_program;
-    if (has_popcnt) {
-        g_ui_function_table[4] = ui_popcnt_optimized_shader_program;
-    }
-    if (has_avx512dq) {
-        g_ui_function_table[4] = ui_avx512_optimized_shader_program;
-    }
-    
-    g_ui_function_table[5] = ui_basic_render_state;
-    if (has_popcnt) {
-        g_ui_function_table[5] = ui_popcnt_optimized_render_state;
-    }
-    if (has_avx512dq) {
-        g_ui_function_table[5] = ui_avx512_optimized_render_state;
-    }
-    
-    // 初始化其他UI系统函数指针...
-    g_ui_function_table[6] = ui_basic_depth_test;
-    if (has_popcnt) {
-        g_ui_function_table[6] = (code *)&ui_popcnt_depth_test_implementation;
-    }
-    
-    g_ui_function_table[7] = ui_basic_stencil_test;
-    if (has_popcnt) {
-        g_ui_function_table[7] = (code *)&ui_popcnt_stencil_test_implementation;
-    }
-    
-    g_ui_function_table[8] = ui_basic_blend_state;
-    if (has_popcnt) {
-        g_ui_function_table[8] = (code *)&ui_popcnt_blend_state_implementation;
-    }
-    
-    g_ui_function_table[9] = ui_basic_rasterizer_state;
-    if (has_popcnt) {
-        g_ui_function_table[9] = (code *)&ui_popcnt_rasterizer_state_implementation;
-    }
-    
-    g_ui_function_table[10] = ui_basic_sampler_state;
-    if (has_popcnt) {
-        g_ui_function_table[10] = (code *)&ui_popcnt_sampler_state_implementation;
-    }
-    
-    g_ui_function_table[11] = ui_basic_vertex_shader;
-    if (has_popcnt) {
-        g_ui_function_table[11] = (code *)&ui_popcnt_vertex_shader_implementation;
-    }
-    
-    g_ui_function_table[12] = ui_basic_pixel_shader;
-    if (has_popcnt) {
-        g_ui_function_table[12] = (code *)&ui_popcnt_pixel_shader_implementation;
-    }
-    
-    g_ui_function_table[13] = ui_basic_geometry_shader;
-    if (has_popcnt) {
-        g_ui_function_table[13] = (code *)&ui_popcnt_geometry_shader_implementation;
-    }
-    
-    g_ui_function_table[14] = ui_basic_hull_shader;
-    if (has_popcnt) {
-        g_ui_function_table[14] = (code *)&ui_popcnt_hull_shader_implementation;
-    }
-    
-    g_ui_function_table[15] = ui_basic_domain_shader;
-    if (has_popcnt) {
-        g_ui_function_table[15] = (code *)&ui_popcnt_domain_shader_implementation;
-    }
-    
-    g_ui_function_table[16] = ui_basic_compute_shader;
-    if (has_popcnt) {
-        g_ui_function_table[16] = (code *)&ui_popcnt_compute_shader_implementation;
-    }
-    
-    g_ui_function_table[17] = ui_basic_input_layout;
-    if (has_popcnt) {
-        g_ui_function_table[17] = (code *)&ui_popcnt_input_layout_implementation;
-    }
-    
-    g_ui_function_table[18] = ui_basic_buffer_creation;
-    if (has_popcnt) {
-        g_ui_function_table[18] = (code *)&ui_popcnt_buffer_creation_implementation;
-    }
-    
-    g_ui_function_table[19] = ui_basic_texture_creation;
-    if (has_popcnt) {
-        g_ui_function_table[19] = (code *)&ui_popcnt_texture_creation_implementation;
-    }
-    
-    g_ui_function_table[20] = ui_basic_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[20] = ui_avx512_optimized_resource_management;
-    }
-    
-    g_ui_function_table[21] = ui_basic_memory_allocation;
-    if (has_avx512dq) {
-        g_ui_function_table[21] = ui_avx512_optimized_memory_allocation;
-    }
-    
-    g_ui_function_table[22] = ui_basic_shader_compilation;
-    if (has_popcnt) {
-        g_ui_function_table[22] = ui_popcnt_optimized_shader_compilation;
-    }
-    
-    g_ui_function_table[23] = ui_basic_render_target;
-    if (has_avx512dq) {
-        g_ui_function_table[23] = ui_avx512_optimized_render_target;
-    }
-    
-    g_ui_function_table[24] = ui_basic_viewport_setup;
-    if (has_popcnt) {
-        g_ui_function_table[24] = (code *)&ui_popcnt_viewport_setup_implementation;
-    }
-    
-    g_ui_function_table[25] = ui_basic_scissor_rect;
-    if (has_avx2) {
-        g_ui_function_table[25] = (code *)&ui_avx2_scissor_rect_implementation;
-    }
-    
-    if (has_avx512f) {
-        g_ui_function_table[25] = (code *)&ui_avx512_scissor_rect_implementation;
-    }
-    
-    g_ui_function_table[26] = ui_basic_primitive_topology;
-    if (has_avx2) {
-        g_ui_function_table[26] = (code *)&ui_avx2_primitive_topology_implementation;
-    }
-    if (has_avx512f) {
-        g_ui_function_table[26] = (code *)&ui_avx512_primitive_topology_implementation;
-    }
-    
-    g_ui_function_table[27] = ui_basic_index_buffer_management;
-    if (has_sse4_1) {
-        g_ui_function_table[27] = (code *)&ui_sse4_1_index_buffer_management_implementation;
-    }
-    if (has_avx512dq) {
-        g_ui_function_table[27] = (code *)&ui_avx512dq_index_buffer_management_implementation;
-    }
-    
-    g_ui_function_table[28] = ui_basic_vertex_buffer_management;
-    if (has_sse4_1) {
-        g_ui_function_table[28] = (code *)&ui_sse4_1_vertex_buffer_management_implementation;
-    }
-    
-    g_ui_function_table[29] = ui_basic_constant_buffer_management;
-    if (has_sse4_1) {
-        g_ui_function_table[29] = (code *)&ui_sse4_1_constant_buffer_management_implementation;
-    }
-    
-    g_ui_function_table[30] = ui_basic_shader_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[30] = (code *)&ui_avx512dq_shader_resource_management_implementation;
-    }
-    
-    g_ui_function_table[31] = ui_basic_unordered_access_management;
-    if (has_avx512dq) {
-        g_ui_function_table[31] = (code *)&ui_avx512dq_unordered_access_management_implementation;
-    }
-    
-    g_ui_function_table[32] = ui_basic_render_target_management;
-    if (has_avx512dq) {
-        g_ui_function_table[32] = (code *)&ui_avx512dq_render_target_management_implementation;
-    }
-    
-    g_ui_function_table[33] = ui_basic_depth_stencil_management;
-    if (has_avx512dq) {
-        g_ui_function_table[33] = (code *)&ui_avx512dq_depth_stencil_management_implementation;
-    }
-    
-    g_ui_function_table[34] = ui_basic_blend_state_management;
-    if (has_avx512dq) {
-        g_ui_function_table[34] = (code *)&ui_avx512dq_blend_state_management_implementation;
-    }
-    
-    g_ui_function_table[35] = ui_basic_rasterizer_state_management;
-    if (has_avx512dq) {
-        g_ui_function_table[35] = (code *)&ui_avx512dq_rasterizer_state_management_implementation;
-    }
-    
-    g_ui_function_table[36] = ui_basic_sampler_state_management;
-    if (has_avx512dq) {
-        g_ui_function_table[36] = (code *)&ui_avx512dq_sampler_state_management_implementation;
-    }
-    
-    g_ui_function_table[37] = ui_basic_query_management;
-    if (has_avx512dq) {
-        g_ui_function_table[37] = (code *)&ui_avx512dq_query_management_implementation;
-    }
-    
-    g_ui_function_table[38] = ui_basic_predicate_management;
-    if (has_avx512dq) {
-        g_ui_function_table[38] = (code *)&ui_avx512dq_predicate_management_implementation;
-    }
-    
-    g_ui_function_table[39] = ui_basic_counter_management;
-    if (has_avx512dq) {
-        g_ui_function_table[39] = (code *)&ui_avx512dq_counter_management_implementation;
-    }
-    
-    g_ui_function_table[40] = ui_basic_pipeline_state_management;
-    if (has_avx512dq) {
-        g_ui_function_table[40] = (code *)&ui_avx512dq_pipeline_state_management_implementation;
-    }
-    
-    g_ui_function_table[41] = ui_basic_descriptor_heap_management;
-    if (has_avx512dq) {
-        g_ui_function_table[41] = (code *)&ui_avx512dq_descriptor_heap_management_implementation;
-    }
-    
-    g_ui_function_table[42] = ui_basic_command_list_management;
-    if (has_avx512dq) {
-        g_ui_function_table[42] = (code *)&ui_avx512dq_command_list_management_implementation;
-    }
-    
-    g_ui_function_table[43] = ui_basic_command_queue_management;
-    if (has_avx512dq) {
-        g_ui_function_table[43] = (code *)&ui_avx512dq_command_queue_management_implementation;
-    }
-    
-    g_ui_function_table[44] = ui_basic_fence_management;
-    if (has_avx512dq) {
-        g_ui_function_table[44] = (code *)&ui_avx512dq_fence_management_implementation;
-    }
-    
-    g_ui_function_table[45] = ui_basic_resource_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[45] = (code *)&ui_avx512dq_resource_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[46] = ui_basic_heap_management;
-    if (has_avx512dq) {
-        g_ui_function_table[46] = (code *)&ui_avx512dq_heap_management_implementation;
-    }
-    
-    g_ui_function_table[47] = ui_basic_placed_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[47] = (code *)&ui_avx512dq_placed_resource_management_implementation;
-    }
-    
-    g_ui_function_table[48] = ui_basic_reserved_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[48] = (code *)&ui_avx512dq_reserved_resource_management_implementation;
-    }
-    
-    g_ui_function_table[49] = ui_basic_shared_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[49] = (code *)&ui_avx512dq_shared_resource_management_implementation;
-    }
-    
-    g_ui_function_table[50] = ui_basic_cross_adapter_resource_management;
-    if (has_avx512dq) {
-        g_ui_function_table[50] = (code *)&ui_avx512dq_cross_adapter_resource_management_implementation;
-    }
-    
-    g_ui_function_table[51] = ui_basic_meta_command_management;
-    if (has_avx512dq) {
-        g_ui_function_table[51] = (code *)&ui_avx512dq_meta_command_management_implementation;
-    }
-    
-    g_ui_function_table[52] = ui_basic_state_object_management;
-    if (has_avx512dq) {
-        g_ui_function_table[52] = (code *)&ui_avx512dq_state_object_management_implementation;
-    }
-    
-    g_ui_function_table[53] = ui_basic_raytracing_acceleration_structure;
-    if (has_avx512dq) {
-        g_ui_function_table[53] = (code *)&ui_avx512dq_raytracing_acceleration_structure_implementation;
-    }
-    
-    g_ui_function_table[54] = ui_basic_shader_resource_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[54] = (code *)&ui_avx512dq_shader_resource_view_management_implementation;
-    }
-    
-    g_ui_function_table[55] = ui_basic_unordered_access_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[55] = (code *)&ui_avx512dq_unordered_access_view_management_implementation;
-    }
-    
-    g_ui_function_table[56] = ui_basic_render_target_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[56] = (code *)&ui_avx512dq_render_target_view_management_implementation;
-    }
-    
-    g_ui_function_table[57] = ui_basic_depth_stencil_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[57] = (code *)&ui_avx512dq_depth_stencil_view_management_implementation;
-    }
-    
-    g_ui_function_table[58] = ui_basic_vertex_buffer_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[58] = (code *)&ui_avx512dq_vertex_buffer_view_management_implementation;
-    }
-    
-    g_ui_function_table[59] = ui_basic_index_buffer_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[59] = (code *)&ui_avx512dq_index_buffer_view_management_implementation;
-    }
-    
-    g_ui_function_table[60] = ui_basic_constant_buffer_view_management;
-    if (has_avx512dq) {
-        g_ui_function_table[60] = (code *)&ui_avx512dq_constant_buffer_view_management_implementation;
-    }
-    
-    g_ui_function_table[61] = ui_basic_shader_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[61] = (code *)&ui_avx512dq_shader_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[62] = ui_basic_sampler_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[62] = (code *)&ui_avx512dq_sampler_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[63] = ui_basic_render_target_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[63] = (code *)&ui_avx512dq_render_target_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[64] = ui_basic_depth_stencil_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[64] = (code *)&ui_avx512dq_depth_stencil_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[65] = ui_basic_gpu_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[65] = (code *)&ui_avx512dq_gpu_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[66] = ui_basic_cpu_descriptor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[66] = (code *)&ui_avx512dq_cpu_descriptor_management_implementation;
-    }
-    
-    g_ui_function_table[67] = ui_basic_descriptor_range_management;
-    if (has_avx512dq) {
-        g_ui_function_table[67] = (code *)&ui_avx512dq_descriptor_range_management_implementation;
-    }
-    
-    g_ui_function_table[68] = ui_basic_root_parameter_management;
-    if (has_avx512dq) {
-        g_ui_function_table[68] = (code *)&ui_avx512dq_root_parameter_management_implementation;
-    }
-    
-    g_ui_function_table[69] = ui_basic_root_signature_management;
-    if (has_avx512dq) {
-        g_ui_function_table[69] = (code *)&ui_avx512dq_root_signature_management_implementation;
-    }
-    
-    g_ui_function_table[70] = ui_basic_pipeline_state_object_management;
-    if (has_avx512dq) {
-        g_ui_function_table[70] = (code *)&ui_avx512dq_pipeline_state_object_management_implementation;
-    }
-    
-    g_ui_function_table[71] = ui_basic_command_signature_management;
-    if (has_avx512dq) {
-        g_ui_function_table[71] = (code *)&ui_avx512dq_command_signature_management_implementation;
-    }
-    
-    g_ui_function_table[72] = ui_basic_indirect_argument_management;
-    if (has_avx512dq) {
-        g_ui_function_table[72] = (code *)&ui_avx512dq_indirect_argument_management_implementation;
-    }
-    
-    g_ui_function_table[73] = ui_basic_stream_output_management;
-    if (has_avx512dq) {
-        g_ui_function_table[73] = (code *)&ui_avx512dq_stream_output_management_implementation;
-    }
-    
-    g_ui_function_table[74] = ui_basic_query_heap_management;
-    if (has_avx512dq) {
-        g_ui_function_table[74] = (code *)&ui_avx512dq_query_heap_management_implementation;
-    }
-    
-    g_ui_function_table[75] = ui_basic_command_allocator_management;
-    if (has_avx512dq) {
-        g_ui_function_table[75] = (code *)&ui_avx512dq_command_allocator_management_implementation;
-    }
-    
-    g_ui_function_table[76] = ui_basic_page_pool_management;
-    if (has_avx512dq) {
-        g_ui_function_table[76] = (code *)&ui_avx512dq_page_pool_management_implementation;
-    }
-    
-    g_ui_function_table[77] = ui_basic_resource_allocation_management;
-    if (has_avx512dq) {
-        g_ui_function_table[77] = (code *)&ui_avx512dq_resource_allocation_management_implementation;
-    }
-    
-    g_ui_function_table[78] = ui_basic_resource_mapping_management;
-    if (has_avx512dq) {
-        g_ui_function_table[78] = (code *)&ui_avx512dq_resource_mapping_management_implementation;
-    }
-    
-    g_ui_function_table[79] = ui_basic_resource_unmapping_management;
-    if (has_avx512dq) {
-        g_ui_function_table[79] = (code *)&ui_avx512dq_resource_unmapping_management_implementation;
-    }
-    
-    g_ui_function_table[80] = ui_basic_resource_eviction_management;
-    if (has_avx512dq) {
-        g_ui_function_table[80] = (code *)&ui_avx512dq_resource_eviction_management_implementation;
-    }
-    
-    g_ui_function_table[81] = ui_basic_resource_residency_management;
-    if (has_avx512dq) {
-        g_ui_function_table[81] = (code *)&ui_avx512dq_resource_residency_management_implementation;
-    }
-    
-    g_ui_function_table[82] = ui_basic_virtual_address_management;
-    if (has_avx512dq) {
-        g_ui_function_table[82] = (code *)&ui_avx512dq_virtual_address_management_implementation;
-    }
-    
-    g_ui_function_table[83] = ui_basic_physical_address_management;
-    if (has_avx512dq) {
-        g_ui_function_table[83] = (code *)&ui_avx512dq_physical_address_management_implementation;
-    }
-    
-    g_ui_function_table[84] = ui_basic_memory_pool_management;
-    if (has_avx512dq) {
-        g_ui_function_table[84] = (code *)&ui_avx512dq_memory_pool_management_implementation;
-    }
-    
-    g_ui_function_table[85] = ui_basic_heap_tier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[85] = (code *)&ui_avx512dq_heap_tier_management_implementation;
-    }
-    
-    g_ui_function_table[86] = ui_basic_resource_state_management;
-    if (has_avx512dq) {
-        g_ui_function_table[86] = (code *)&ui_avx512dq_resource_state_management_implementation;
-    }
-    
-    g_ui_function_table[87] = ui_basic_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[87] = (code *)&ui_avx512dq_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[88] = ui_basic_split_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[88] = (code *)&ui_avx512dq_split_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[89] = ui_basic_batch_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[89] = (code *)&ui_avx512dq_batch_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[90] = ui_basic_aliasing_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[90] = (code *)&ui_avx512dq_aliasing_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[91] = ui_basic_uav_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[91] = (code *)&ui_avx512dq_uav_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[92] = ui_basic_execution_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[92] = (code *)&ui_avx512dq_execution_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[93] = ui_basic_graphics_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[93] = (code *)&ui_avx512dq_graphics_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[94] = ui_basic_compute_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[94] = (code *)&ui_avx512dq_compute_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[95] = ui_basic_copy_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[95] = (code *)&ui_avx512dq_copy_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[96] = ui_basic_resolve_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[96] = (code *)&ui_avx512dq_resolve_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[97] = ui_basic_present_barrier_management;
-    if (has_avx512dq) {
-        g_ui_function_table[97] = (code *)&ui_avx512dq_present_barrier_management_implementation;
-    }
-    
-    g_ui_function_table[98] = ui_basic_resource_transition_management;
-    if (has_avx512dq) {
-        g_ui_function_table[98] = (code *)&ui_avx512dq_resource_transition_management_implementation;
-    }
-    
-    g_ui_function_table[99] = ui_basic_resource_copy_management;
-    if (has_avx512dq) {
-        g_ui_function_table[99] = (code *)&ui_avx512dq_resource_copy_management_implementation;
-    }
-    
-    g_ui_function_table[100] = ui_basic_resource_resolve_management;
-    if (has_avx512dq) {
-        g_ui_function_table[100] = (code *)&ui_avx512dq_resource_resolve_management_implementation;
-    }
-    
-    g_ui_function_table[101] = ui_basic_resource_generate_mips_management;
-    if (has_avx512dq) {
-        g_ui_function_table[101] = (code *)&ui_avx512dq_resource_generate_mips_management_implementation;
-    }
-    
-    g_ui_function_table[102] = ui_basic_resource_map_management;
-    if (has_avx512dq) {
-        g_ui_function_table[102] = (code *)&ui_avx512dq_resource_map_management_implementation;
-    }
-    
-    g_ui_function_table[103] = ui_basic_resource_unmap_management;
-    if (has_avx512dq) {
-        g_ui_function_table[103] = (code *)&ui_avx512dq_resource_unmap_management_implementation;
-    }
-    
-    g_ui_function_table[104] = ui_basic_resource_write_management;
-    if (has_avx512dq) {
-        g_ui_function_table[104] = (code *)&ui_avx512dq_resource_write_management_implementation;
-    }
-    
-    g_ui_function_table[105] = ui_basic_resource_read_management;
-    if (has_avx512dq) {
-        g_ui_function_table[105] = (code *)&ui_avx512dq_resource_read_management_implementation;
-    }
-    
-    g_ui_function_table[106] = ui_basic_resource_discard_management;
-    if (has_avx512dq) {
-        g_ui_function_table[106] = (code *)&ui_avx512dq_resource_discard_management_implementation;
-    }
-    
-    g_ui_function_table[107] = ui_basic_resource_rename_management;
-    if (has_avx512dq) {
-        g_ui_function_table[107] = (code *)&ui_avx512dq_resource_rename_management_implementation;
-    }
-    
-    g_ui_function_table[108] = ui_basic_resource_priority_management;
-    if (has_avx512dq) {
-        g_ui_function_table[108] = (code *)&ui_avx512dq_resource_priority_management_implementation;
-    }
-    
-    g_ui_function_table[109] = ui_basic_resource_deallocation_management;
-    if (has_avx512dq) {
-        g_ui_function_table[109] = (code *)&ui_avx512dq_resource_deallocation_management_implementation;
-    }
-    
-    g_ui_function_table[110] = ui_basic_resource_reclamation_management;
-    if (has_avx512dq) {
-        g_ui_function_table[110] = (code *)&ui_avx512dq_resource_reclamation_management_implementation;
-    }
-    
-    g_ui_function_table[111] = ui_basic_resource_cache_management;
-    if (has_avx512dq) {
-        g_ui_function_table[111] = (code *)&ui_avx512dq_resource_cache_management_implementation;
-    }
-    
-    g_ui_function_table[112] = ui_basic_resource_pool_management;
-    if (has_avx512dq) {
-        g_ui_function_table[112] = (code *)&ui_avx512dq_resource_pool_management_implementation;
-    }
-    
-    g_ui_function_table[113] = ui_basic_resource_allocator_management;
-    if (has_avx512dq) {
-        g_ui_function_table[113] = (code *)&ui_avx512dq_resource_allocator_management_implementation;
-    }
-    
-    g_ui_function_table[114] = ui_basic_resource_deallocator_management;
-    if (has_avx512dq) {
-        g_ui_function_table[114] = (code *)&ui_avx512dq_resource_deallocator_management_implementation;
-    }
-    
-    g_ui_function_table[115] = ui_basic_memory_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[115] = (code *)&ui_avx512dq_memory_manager_management_implementation;
-    }
-    
-    g_ui_function_table[116] = ui_basic_heap_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[116] = (code *)&ui_avx512dq_heap_manager_management_implementation;
-    }
-    
-    g_ui_function_table[117] = ui_basic_allocation_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[117] = (code *)&ui_avx512dq_allocation_manager_management_implementation;
-    }
-    
-    g_ui_function_table[118] = ui_basic_deallocation_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[118] = (code *)&ui_avx512dq_deallocation_manager_management_implementation;
-    }
-    
-    g_ui_function_table[119] = ui_basic_cache_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[119] = (code *)&ui_avx512dq_cache_manager_management_implementation;
-    }
-    
-    g_ui_function_table[120] = ui_basic_pool_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[120] = (code *)&ui_avx512dq_pool_manager_management_implementation;
-    }
-    
-    g_ui_function_table[121] = ui_basic_allocator_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[121] = (code *)&ui_avx512dq_allocator_manager_management_implementation;
-    }
-    
-    g_ui_function_table[122] = ui_basic_deallocator_manager_management;
-    if (has_avx512dq) {
-        g_ui_function_table[122] = (code *)&ui_avx512dq_deallocator_manager_management_implementation;
-    }
-    
-    g_ui_function_table[123] = ui_basic_memory_tracker_management;
-    if (has_avx512dq) {
-        g_ui_function_table[123] = (code *)&ui_avx512dq_memory_tracker_management_implementation;
-    }
-    
-    g_ui_function_table[124] = ui_basic_memory_profiler_management;
-    if (has_avx512dq) {
-        g_ui_function_table[124] = (code *)&ui_avx512dq_memory_profiler_management_implementation;
-    }
-    
-    g_ui_function_table[125] = ui_basic_memory_analyzer_management;
-    if (has_avx512dq) {
-        g_ui_function_table[125] = (code *)&ui_avx512dq_memory_analyzer_management_implementation;
-    }
-    
-    g_ui_function_table[126] = ui_basic_memory_optimizer_management;
-    if (has_avx512dq) {
-        g_ui_function_table[126] = (code *)&ui_avx512dq_memory_optimizer_management_implementation;
-    }
-    
-    g_ui_function_table[127] = ui_basic_memory_compactor_management;
-    if (has_avx512dq) {
-        g_ui_function_table[127] = (code *)&ui_avx512dq_memory_compactor_management_implementation;
-    }
+  uint *puVar1;
+  longlong lVar2;
+  uint uVar3;
+  bool bVar4;
+  bool bVar5;
+  bool bVar6;
+  bool bVar7;
+  bool bVar8;
+  byte in_XCR0;
+  
+  puVar1 = (uint *)cpuid_basic_info(0);
+  bVar7 = false;
+  bVar8 = false;
+  bVar5 = false;
+  bVar6 = false;
+  bVar4 = false;
+  if (*puVar1 != 0) {
+    lVar2 = cpuid_Version_info(1);
+    uVar3 = *(uint *)(lVar2 + 0xc);
+    bVar8 = (uVar3 & 1) != 0;
+    bVar6 = (uVar3 >> 9 & 1) != 0;
+    bVar7 = (uVar3 >> 0x13 & 1) != 0;
+    bVar5 = false;
+    bVar4 = false;
+    if (((uVar3 & 0x18000000) == 0x18000000) && ((in_XCR0 & 6) == 6)) {
+      bVar5 = true;
+      bVar4 = false;
+      if ((6 < *puVar1) &&
+         (lVar2 = cpuid_Extended_Feature_Enumeration_info(7), bVar4 = false,
+         (*(uint *)(lVar2 + 4) & 0x20) != 0)) {
+        bVar5 = true;
+        bVar4 = true;
+      }
+    }
+  }
+  _DAT_180d4a758 = FUN_180674f40;
+  if (bVar6) {
+    _DAT_180d4a758 = FUN_180676930;
+  }
+  if (bVar4) {
+    _DAT_180d4a758 = FUN_180677190;
+  }
+  _DAT_180d4a710 = FUN_180674930;
+  if (bVar6) {
+    _DAT_180d4a710 = FUN_180676320;
+  }
+  _DAT_180d4a6d0 = FUN_180674700;
+  if (bVar6) {
+    _DAT_180d4a6d0 = FUN_1806760f0;
+  }
+  _DAT_180d4a6a8 = FUN_180674aa0;
+  if (bVar6) {
+    _DAT_180d4a6a8 = FUN_180676490;
+  }
+  _DAT_180d4a950 = FUN_180674d10;
+  if (bVar6) {
+    _DAT_180d4a950 = FUN_180676700;
+  }
+  if (bVar4) {
+    _DAT_180d4a950 = FUN_180677300;
+  }
+  _DAT_180d4a918 = FUN_1806750b0;
+  if (bVar6) {
+    _DAT_180d4a918 = FUN_180676aa0;
+  }
+  if (bVar4) {
+    _DAT_180d4a918 = FUN_180677530;
+  }
+  _DAT_180d4a890 = FUN_1806780c0;
+  if (bVar6) {
+    _DAT_180d4a890 = (code *)&UNK_1800036c0;
+  }
+  _DAT_180d4a880 = FUN_1806782c0;
+  if (bVar6) {
+    _DAT_180d4a880 = (code *)&UNK_180003880;
+  }
+  _DAT_180d4a868 = FUN_180678430;
+  if (bVar6) {
+    _DAT_180d4a868 = (code *)&UNK_180003540;
+  }
+  _DAT_180d4a850 = FUN_180678540;
+  if (bVar6) {
+    _DAT_180d4a850 = (code *)&UNK_1800035c0;
+  }
+  _DAT_180d4a838 = FUN_180678810;
+  if (bVar6) {
+    _DAT_180d4a838 = (code *)&UNK_180003e90;
+  }
+  _DAT_180d4a810 = FUN_1806789c0;
+  if (bVar6) {
+    _DAT_180d4a810 = (code *)&UNK_180003fa0;
+  }
+  _DAT_180d4a7f8 = FUN_180678b10;
+  if (bVar6) {
+    _DAT_180d4a7f8 = (code *)&UNK_180003d80;
+  }
+  _DAT_180d4a7d0 = FUN_180678bc0;
+  if (bVar6) {
+    _DAT_180d4a7d0 = (code *)&UNK_180003de0;
+  }
+  _DAT_180d4a7b8 = FUN_180678e20;
+  if (bVar6) {
+    _DAT_180d4a7b8 = (code *)&UNK_180003050;
+  }
+  _DAT_180d4a7a8 = FUN_180678ef0;
+  if (bVar6) {
+    _DAT_180d4a7a8 = (code *)&UNK_180003110;
+  }
+  _DAT_180d4a798 = FUN_180678fc0;
+  if (bVar6) {
+    _DAT_180d4a798 = (code *)&UNK_180002f70;
+  }
+  _DAT_180d4a780 = FUN_1806790b0;
+  if (bVar6) {
+    _DAT_180d4a780 = (code *)&UNK_180002fd0;
+  }
+  _DAT_180d4a748 = FUN_180679310;
+  if (bVar6) {
+    _DAT_180d4a748 = (code *)&UNK_1800033b0;
+  }
+  _DAT_180d4a730 = FUN_180679480;
+  if (bVar6) {
+    _DAT_180d4a730 = (code *)&UNK_180003430;
+  }
+  _DAT_180d4a718 = FUN_1806795f0;
+  if (bVar6) {
+    _DAT_180d4a718 = (code *)&UNK_1800032a0;
+  }
+  _DAT_180d4a6f8 = FUN_1806796f0;
+  if (bVar6) {
+    _DAT_180d4a6f8 = (code *)&UNK_180003300;
+  }
+  _DAT_180d4a8f8 = FUN_18067c470;
+  if (bVar4) {
+    _DAT_180d4a8f8 = FUN_1806844a0;
+  }
+  _DAT_180d4a8e0 = FUN_180679d30;
+  if (bVar4) {
+    _DAT_180d4a8e0 = FUN_18068b080;
+  }
+  _DAT_180d4a8c8 = FUN_180683f90;
+  if (bVar6) {
+    _DAT_180d4a8c8 = (code *)&UNK_180004300;
+  }
+  _DAT_180d4a888 = FUN_18068d2b0;
+  if (bVar4) {
+    _DAT_180d4a888 = FUN_1806905c0;
+  }
+  _DAT_180d4a848 = FUN_180679ac0;
+  if (bVar6) {
+    _DAT_180d4a848 = (code *)&UNK_180002ee0;
+  }
+  _DAT_180d4a828 = FUN_180679b20;
+  if (bVar6) {
+    _DAT_180d4a828 = (code *)&UNK_180002f20;
+  }
+  _DAT_180d4a808 = &UNK_180679b80;
+  if (bVar6) {
+    _DAT_180d4a808 = &UNK_180002e60;
+  }
+  _DAT_180d4a7f0 = &UNK_180679bb0;
+  if (bVar6) {
+    _DAT_180d4a7f0 = &UNK_180002ea0;
+  }
+  _DAT_180d4a790 = FUN_1806917c0;
+  if (bVar6) {
+    _DAT_180d4a790 = (code *)&UNK_180005080;
+  }
+  _DAT_180d4a760 = FUN_180691db0;
+  if (bVar6) {
+    _DAT_180d4a760 = (code *)&UNK_1800049d0;
+  }
+  _DAT_180d4a728 = FUN_180694010;
+  if (bVar4) {
+    _DAT_180d4a728 = FUN_180695530;
+  }
+  _DAT_180d4a938 = FUN_18068d480;
+  if (bVar4) {
+    _DAT_180d4a938 = FUN_180695560;
+  }
+  _DAT_180d4a8b8 = FUN_180695bf0;
+  if (bVar6) {
+    _DAT_180d4a8b8 = (code *)&UNK_180005440;
+  }
+  if (bVar5) {
+    _DAT_180d4a8b8 = (code *)&UNK_180005bc0;
+  }
+  _DAT_180d4a860 = FUN_180695f70;
+  if (bVar6) {
+    _DAT_180d4a860 = (code *)&UNK_1800057b0;
+  }
+  if (bVar5) {
+    _DAT_180d4a860 = (code *)&UNK_180006190;
+  }
+  _DAT_180d4a800 = FUN_1806961a0;
+  if (bVar8) {
+    _DAT_180d4a800 = (code *)&UNK_1800065d0;
+  }
+  if (bVar6) {
+    _DAT_180d4a800 = (code *)&UNK_180006ff0;
+  }
+  _DAT_180d4a7c8 = FUN_180696370;
+  if (bVar7) {
+    _DAT_180d4a7c8 = (code *)&UNK_18000d630;
+  }
+  _DAT_180d4a768 = FUN_180696540;
+  if (bVar8) {
+    _DAT_180d4a768 = (code *)&UNK_180006945;
+  }
+  if (bVar6) {
+    _DAT_180d4a768 = (code *)&UNK_18000b3dd;
+  }
+  _DAT_180d4a738 = FUN_180696710;
+  if (bVar7) {
+    _DAT_180d4a738 = (code *)&UNK_18000dbc6;
+  }
+  _DAT_180d4a720 = (code *)&UNK_18000e750;
+  if (bVar4) {
+    _DAT_180d4a720 = FUN_180697340;
+  }
+  _DAT_180d4a6e8 = (code *)&UNK_18000e8e0;
+  if (bVar4) {
+    _DAT_180d4a6e8 = FUN_1806972a0;
+  }
+  _DAT_180d4a6c8 = (code *)&UNK_18000e6e0;
+  if (bVar4) {
+    _DAT_180d4a6c8 = FUN_180697460;
+  }
+  _DAT_180d4a6c0 = (code *)&UNK_18000e850;
+  if (bVar4) {
+    _DAT_180d4a6c0 = FUN_1806973c0;
+  }
+  _DAT_180d4a6a0 = (code *)&UNK_180017300;
+  if (bVar4) {
+    _DAT_180d4a6a0 = FUN_1806977e0;
+  }
+  _DAT_180d4a960 = (code *)&UNK_18000e670;
+  if (bVar4) {
+    _DAT_180d4a960 = FUN_180697580;
+  }
+  _DAT_180d4a940 = (code *)&UNK_18000e7c0;
+  if (bVar4) {
+    _DAT_180d4a940 = FUN_1806974e0;
+  }
+  _DAT_180d4a908 = FUN_1806968e0;
+  if (bVar8) {
+    _DAT_180d4a908 = (code *)&UNK_180006f34;
+  }
+  _DAT_180d4a8e8 = FUN_180696a60;
+  if (bVar7) {
+    _DAT_180d4a8e8 = (code *)&UNK_18000e39c;
+  }
+  _DAT_180d4a8a0 = (code *)&UNK_18000e4e0;
+  if (bVar4) {
+    _DAT_180d4a8a0 = FUN_180697680;
+  }
+  _DAT_180d4a878 = (code *)&UNK_18000e5e0;
+  if (bVar4) {
+    _DAT_180d4a878 = FUN_180697600;
+  }
+  _DAT_180d4a840 = (code *)&UNK_18000e470;
+  if (bVar4) {
+    _DAT_180d4a840 = FUN_180697770;
+  }
+  _DAT_180d4a818 = (code *)&UNK_18000e550;
+  if (bVar4) {
+    _DAT_180d4a818 = FUN_1806976f0;
+  }
+  _DAT_180d4a7d8 = (code *)&UNK_18000f120;
+  if (bVar4) {
+    _DAT_180d4a7d8 = FUN_1806978b0;
+  }
+  _DAT_180d4a7a0 = FUN_180696be0;
+  if (bVar8) {
+    _DAT_180d4a7a0 = (code *)&UNK_180006b22;
+  }
+  _DAT_180d4a770 = FUN_180696d90;
+  if (bVar7) {
+    _DAT_180d4a770 = (code *)&UNK_18000e06e;
+  }
+  _DAT_180d4a6f0 = FUN_180696f40;
+  if (bVar8) {
+    _DAT_180d4a6f0 = (code *)&UNK_180006dcf;
+  }
+  _DAT_180d4a6d8 = FUN_1806970f0;
+  if (bVar7) {
+    _DAT_180d4a6d8 = (code *)&UNK_18000deb4;
+  }
+  _DAT_180d4a6b0 = FUN_180697dd0;
+  if (bVar6) {
+    _DAT_180d4a6b0 = FUN_180677100;
+  }
+  _DAT_180d4a930 = FUN_18068d4b0;
+  if (bVar6) {
+    _DAT_180d4a930 = FUN_18068d530;
+  }
+  _DAT_180d4a900 = FUN_18068d5b0;
+  if (bVar6) {
+    _DAT_180d4a900 = FUN_18068d630;
+  }
+  _DAT_180d4a8d8 = FUN_18068d6b0;
+  if (bVar6) {
+    _DAT_180d4a8d8 = FUN_18068d730;
+  }
+  _DAT_180d4a8b0 = FUN_18068d7b0;
+  if (bVar6) {
+    _DAT_180d4a8b0 = FUN_18068d8d0;
+  }
+  _DAT_180d4a870 = FUN_18068d9f0;
+  if (bVar6) {
+    _DAT_180d4a870 = FUN_18068db10;
+  }
+  if (bVar4) {
+    _DAT_180d4a870 = FUN_180695590;
+  }
+  _DAT_180d4a830 = FUN_18068dc30;
+  if (bVar6) {
+    _DAT_180d4a830 = FUN_18068dd50;
+  }
+  _DAT_180d4a7e8 = FUN_18068de70;
+  if (bVar6) {
+    _DAT_180d4a7e8 = FUN_18068def0;
+  }
+  _DAT_180d4a7c0 = FUN_18068df70;
+  if (bVar6) {
+    _DAT_180d4a7c0 = FUN_18068dff0;
+  }
+  _DAT_180d4a788 = FUN_18068e070;
+  if (bVar6) {
+    _DAT_180d4a788 = FUN_18068e250;
+  }
+  _DAT_180d4a740 = FUN_18068e430;
+  if (bVar6) {
+    _DAT_180d4a740 = FUN_18068e610;
+  }
+  if (bVar4) {
+    _DAT_180d4a740 = FUN_180695600;
+  }
+  _DAT_180d4a700 = FUN_18068e7f0;
+  if (bVar6) {
+    _DAT_180d4a700 = FUN_18068e870;
+  }
+  _DAT_180d4a6e0 = FUN_18068e8f0;
+  if (bVar6) {
+    _DAT_180d4a6e0 = FUN_18068e970;
+  }
+  _DAT_180d4a6b8 = FUN_18068e9f0;
+  if (bVar6) {
+    _DAT_180d4a6b8 = FUN_18068ea70;
+  }
+  _DAT_180d4a968 = FUN_18068eaf0;
+  if (bVar6) {
+    _DAT_180d4a968 = FUN_18068eb60;
+  }
+  _DAT_180d4a948 = FUN_18068ebd0;
+  if (bVar6) {
+    _DAT_180d4a948 = FUN_18068ec40;
+  }
+  _DAT_180d4a920 = FUN_18068ecb0;
+  if (bVar6) {
+    _DAT_180d4a920 = FUN_18068ed20;
+  }
+  _DAT_180d4a8f0 = FUN_18068ed90;
+  if (bVar6) {
+    _DAT_180d4a8f0 = FUN_18068ee80;
+  }
+  _DAT_180d4a8d0 = FUN_18068ef70;
+  if (bVar6) {
+    _DAT_180d4a8d0 = FUN_18068f060;
+  }
+  if (bVar4) {
+    _DAT_180d4a8d0 = FUN_180695700;
+  }
+  _DAT_180d4a898 = FUN_18068f150;
+  if (bVar6) {
+    _DAT_180d4a898 = FUN_18068f240;
+  }
+  _DAT_180d4a858 = FUN_18068f330;
+  if (bVar6) {
+    _DAT_180d4a858 = FUN_18068f3a0;
+  }
+  _DAT_180d4a820 = FUN_18068f410;
+  if (bVar6) {
+    _DAT_180d4a820 = FUN_18068f480;
+  }
+  _DAT_180d4a7e0 = FUN_18068f4f0;
+  if (bVar6) {
+    _DAT_180d4a7e0 = FUN_18068f680;
+  }
+  _DAT_180d4a7b0 = FUN_18068f810;
+  if (bVar6) {
+    _DAT_180d4a7b0 = FUN_18068f9a0;
+  }
+  if (bVar4) {
+    _DAT_180d4a7b0 = FUN_180695750;
+  }
+  _DAT_180d4a778 = FUN_18068fb30;
+  if (bVar6) {
+    _DAT_180d4a778 = FUN_18068fba0;
+  }
+  _DAT_180d4a750 = FUN_18068fc10;
+  if (bVar6) {
+    _DAT_180d4a750 = FUN_18068fc80;
+  }
+  _DAT_180d4a708 = FUN_18068fcf0;
+  if (bVar6) {
+    _DAT_180d4a708 = FUN_18068fd60;
+  }
+  _DAT_180d4a958 = FUN_18068fdd0;
+  if (bVar4) {
+    _DAT_180d4a958 = FUN_180695820;
+  }
+  _DAT_180d4a928 = FUN_18068fe10;
+  if (bVar4) {
+    _DAT_180d4a928 = FUN_180695870;
+  }
+  _DAT_180d4a910 = FUN_18068ff60;
+  if (bVar4) {
+    _DAT_180d4a910 = FUN_1806958c0;
+  }
+  _DAT_180d4a8c0 = FUN_180690200;
+  if (bVar4) {
+    _DAT_180d4a8c0 = FUN_180695990;
+  }
+  _DAT_180d4a8a8 = FUN_1806903c0;
+  if (bVar4) {
+    _DAT_180d4a8a8 = FUN_180695ac0;
+  }
+  return;
 }
 
-// =============================================================================
-// 线程安全的UI系统初始化函数
-// =============================================================================
 
-/**
- * 线程安全的UI系统初始化函数
- * 使用临界区确保初始化过程只执行一次
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_thread_safe_init(code *init_function)
-{
-    int ref_count;
-    longlong critical_section;
-    longlong existing_section;
-    bool section_exists;
-    
-    if (g_ui_initialized == 0) {
-        LOCK();
-        g_ui_init_count = g_ui_init_count + 1;
-        UNLOCK();
-        
-        // 创建临界区
-        critical_section = malloc(0x28);
-        InitializeCriticalSection(critical_section);
-        
-        LOCK();
-        section_exists = g_ui_critical_section != 0;
-        existing_section = critical_section;
-        if (section_exists) {
-            existing_section = g_ui_critical_section;
-        }
-        g_ui_critical_section = existing_section;
-        UNLOCK();
-        
-        if (section_exists) {
-            // 如果临界区已存在，删除新创建的
-            DeleteCriticalSection(critical_section);
-            free(critical_section);
-        }
-        
-        // 进入临界区执行初始化
-        EnterCriticalSection(g_ui_critical_section);
-        if (g_ui_initialized == 0) {
-            (*init_function)();
-            g_ui_initialized = 1;
-        }
-        LeaveCriticalSection(g_ui_critical_section);
-        
-        // 清理引用计数
-        LOCK();
-        ref_count = g_ui_init_count + -1;
-        UNLOCK();
-        
-        section_exists = g_ui_init_count == 1;
-        g_ui_init_count = ref_count;
-        
-        if (section_exists) {
-            // 如果引用计数为0，删除临界区
-            DeleteCriticalSection(g_ui_critical_section);
-            free(g_ui_critical_section);
-            g_ui_critical_section = 0;
-        }
-    }
-}
 
-/**
- * 线程安全的UI系统初始化函数（简化版本）
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_thread_safe_init_simple(code *init_function)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066e230(code *param_1)
+void FUN_18066e230(code *param_1)
+
 {
-    int ref_count;
-    longlong critical_section;
-    longlong existing_section;
-    code *init_func;
-    bool section_exists;
-    
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  bool bVar4;
+  
+  if (_DAT_180c0c1ec == 0) {
     LOCK();
-    g_ui_init_count = g_ui_init_count + 1;
+    _DAT_180c0c1e8 = _DAT_180c0c1e8 + 1;
     UNLOCK();
-    
-    critical_section = malloc(0x28);
-    InitializeCriticalSection(critical_section);
-    
+    lVar3 = malloc(0x28);
+    InitializeCriticalSection(lVar3);
     LOCK();
-    section_exists = g_ui_critical_section != 0;
-    existing_section = critical_section;
-    if (section_exists) {
-        existing_section = g_ui_critical_section;
+    bVar4 = _DAT_180c0c1e0 != 0;
+    lVar2 = lVar3;
+    if (bVar4) {
+      lVar2 = _DAT_180c0c1e0;
     }
-    g_ui_critical_section = existing_section;
+    _DAT_180c0c1e0 = lVar2;
     UNLOCK();
-    
-    if (section_exists) {
-        DeleteCriticalSection(critical_section);
-        free(critical_section);
+    if (bVar4) {
+      DeleteCriticalSection(lVar3);
+      free(lVar3);
     }
-    
-    EnterCriticalSection(g_ui_critical_section);
-    if (g_ui_initialized == 0) {
-        (*init_func)();
-        g_ui_initialized = 1;
+    EnterCriticalSection(_DAT_180c0c1e0);
+    if (_DAT_180c0c1ec == 0) {
+      (*param_1)();
+      _DAT_180c0c1ec = 1;
     }
-    LeaveCriticalSection(g_ui_critical_section);
-    
+    LeaveCriticalSection(_DAT_180c0c1e0);
     LOCK();
-    ref_count = g_ui_init_count + -1;
+    iVar1 = _DAT_180c0c1e8 + -1;
     UNLOCK();
-    
-    section_exists = g_ui_init_count == 1;
-    g_ui_init_count = ref_count;
-    
-    if (section_exists) {
-        DeleteCriticalSection(g_ui_critical_section);
-        free(g_ui_critical_section);
-        g_ui_critical_section = 0;
+    bVar4 = _DAT_180c0c1e8 == 1;
+    _DAT_180c0c1e8 = iVar1;
+    if (bVar4) {
+      DeleteCriticalSection(_DAT_180c0c1e0);
+      free(_DAT_180c0c1e0);
+      _DAT_180c0c1e0 = 0;
     }
+  }
+  return;
 }
 
-/**
- * UI系统初始化完成后的清理函数
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_init_cleanup(code *init_function)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066e246(void)
+void FUN_18066e246(void)
+
 {
-    int ref_count;
-    code *init_func;
-    bool should_cleanup;
-    
-    (*init_func)();
-    g_ui_initialized = 1;
-    LeaveCriticalSection(g_ui_critical_section);
-    
-    LOCK();
-    ref_count = g_ui_init_count + -1;
-    UNLOCK();
-    
-    should_cleanup = g_ui_init_count == 1;
-    g_ui_init_count = ref_count;
-    
-    if (should_cleanup) {
-        DeleteCriticalSection(g_ui_critical_section);
-        free(g_ui_critical_section);
-        g_ui_critical_section = 0;
-    }
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  code *unaff_RDI;
+  bool bVar4;
+  
+  LOCK();
+  _DAT_180c0c1e8 = _DAT_180c0c1e8 + 1;
+  UNLOCK();
+  lVar3 = malloc(0x28);
+  InitializeCriticalSection(lVar3);
+  LOCK();
+  bVar4 = _DAT_180c0c1e0 != 0;
+  lVar2 = lVar3;
+  if (bVar4) {
+    lVar2 = _DAT_180c0c1e0;
+  }
+  _DAT_180c0c1e0 = lVar2;
+  UNLOCK();
+  if (bVar4) {
+    DeleteCriticalSection(lVar3);
+    free(lVar3);
+  }
+  EnterCriticalSection(_DAT_180c0c1e0);
+  if (_DAT_180c0c1ec == 0) {
+    (*unaff_RDI)();
+    _DAT_180c0c1ec = 1;
+  }
+  LeaveCriticalSection(_DAT_180c0c1e0);
+  LOCK();
+  iVar1 = _DAT_180c0c1e8 + -1;
+  UNLOCK();
+  bVar4 = _DAT_180c0c1e8 == 1;
+  _DAT_180c0c1e8 = iVar1;
+  if (bVar4) {
+    DeleteCriticalSection(_DAT_180c0c1e0);
+    free(_DAT_180c0c1e0);
+    _DAT_180c0c1e0 = 0;
+  }
+  return;
 }
 
-// =============================================================================
-// CPU特性检测函数
-// =============================================================================
 
-/**
- * 检测CPU支持的扩展特性
- * 返回CPU支持的最高扩展特性级别
- * 
- * @return CPU特性标志
- */
-uint ui_system_detect_cpu_extensions(void)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066e2a3(void)
+void FUN_18066e2a3(void)
+
 {
-    uint *cpu_info;
-    uint max_function;
-    uint feature_flags;
-    uint xcr0_state;
-    
-    cpu_info = (uint *)cpuid_basic_info(0);
-    max_function = *cpu_info;
-    feature_flags = max_function;
-    
-    if (max_function != 0) {
-        cpu_info = (uint *)cpuid_Version_info(1);
-        feature_flags = *cpu_info;
-        
-        // 检查AVX支持
-        if ((((cpu_info[3] & 0x18000000) == 0x18000000) && 
-             (feature_flags = xcr0_state, ((byte)xcr0_state & 6) == 6)) &&
-            (6 < max_function)) {
-            // 检查AVX512支持
-            cpu_info = (uint *)cpuid_Extended_Feature_Enumeration_info(7);
-            feature_flags = *cpu_info;
+  int iVar1;
+  code *unaff_RDI;
+  bool bVar2;
+  
+  (*unaff_RDI)();
+  _DAT_180c0c1ec = 1;
+  LeaveCriticalSection(_DAT_180c0c1e0);
+  LOCK();
+  iVar1 = _DAT_180c0c1e8 + -1;
+  UNLOCK();
+  bVar2 = _DAT_180c0c1e8 == 1;
+  _DAT_180c0c1e8 = iVar1;
+  if (bVar2) {
+    DeleteCriticalSection(_DAT_180c0c1e0);
+    free(_DAT_180c0c1e0);
+    _DAT_180c0c1e0 = 0;
+  }
+  return;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x00018066e34a)
+// WARNING: Removing unreachable block (ram,0x00018066e31b)
+// WARNING: Removing unreachable block (ram,0x00018066e30a)
+
+uint FUN_18066e300(void)
+
+{
+  uint *puVar1;
+  uint uVar2;
+  uint uVar3;
+  uint in_XCR0;
+  
+  puVar1 = (uint *)cpuid_basic_info(0);
+  uVar2 = *puVar1;
+  uVar3 = uVar2;
+  if (uVar2 != 0) {
+    puVar1 = (uint *)cpuid_Version_info(1);
+    uVar3 = *puVar1;
+    if ((((puVar1[3] & 0x18000000) == 0x18000000) && (uVar3 = in_XCR0, ((byte)in_XCR0 & 6) == 6)) &&
+       (6 < uVar2)) {
+      puVar1 = (uint *)cpuid_Extended_Feature_Enumeration_info(7);
+      uVar3 = *puVar1;
+    }
+  }
+  return uVar3;
+}
+
+
+
+undefined8 FUN_18066e500(longlong param_1,uint param_2,uint param_3)
+
+{
+  int iVar1;
+  longlong lVar2;
+  undefined4 *puVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  
+  FUN_18066e7a0();
+  if ((param_2 & 0xf) != 0) {
+    param_2 = param_2 + (0x10 - (param_2 & 0xf));
+  }
+  if ((param_3 & 0xf) != 0) {
+    param_3 = param_3 + (0x10 - (param_3 & 0xf));
+  }
+  puVar3 = (undefined4 *)(param_1 + 0x80c);
+  iVar4 = 0;
+  puVar5 = (undefined4 *)(param_1 + 0x9c0);
+  do {
+    *puVar5 = 0;
+    *puVar3 = 0;
+    iVar1 = FUN_180697e60((longlong)iVar4 * 0x90 + 0x780 + param_1,param_2,param_3,0x20);
+    if (iVar1 < 0) goto LAB_18066e704;
+    iVar4 = iVar4 + 1;
+    puVar5 = puVar5 + 1;
+    puVar3 = puVar3 + 0x24;
+  } while (iVar4 < 4);
+  *(undefined4 *)(param_1 + 0x9d0) = 0;
+  *(undefined4 *)(param_1 + 0x9d4) = 1;
+  *(undefined4 *)(param_1 + 0x9d8) = 2;
+  *(undefined4 *)(param_1 + 0x9dc) = 3;
+  *(undefined8 *)(param_1 + 0x9c0) = 0x100000001;
+  *(undefined8 *)(param_1 + 0x9c8) = 0x100000001;
+  iVar4 = FUN_180697e60(param_1 + 0x9e0,param_2,0x10);
+  if (-1 < iVar4) {
+    iVar1 = (int)param_3 >> 4;
+    iVar4 = (int)param_2 >> 4;
+    *(int *)(param_1 + 3000) = iVar4;
+    *(int *)(param_1 + 0xbb4) = iVar1;
+    *(int *)(param_1 + 0xbbc) = iVar4 + 1;
+    *(int *)(param_1 + 0xbb0) = iVar4 * iVar1;
+    lVar2 = FUN_18066e8f0((longlong)((iVar1 + 1) * (iVar4 + 1)),0x4c);
+    *(longlong *)(param_1 + 0xbe8) = lVar2;
+    if (lVar2 != 0) {
+      *(longlong *)(param_1 + 0xbf0) = ((longlong)*(int *)(param_1 + 0xbbc) + 1) * 0x4c + lVar2;
+      lVar2 = FUN_18066e8f0((longlong)*(int *)(param_1 + 3000) * 9,1);
+      *(longlong *)(param_1 + 0x1958) = lVar2;
+      if (lVar2 != 0) {
+        iVar4 = FUN_180697e60(param_1 + 0xa70,param_2,param_3,0x20);
+        if (-1 < iVar4) {
+          *(undefined4 *)(param_1 + 0xb90) = 0;
+                    // WARNING: Subroutine does not return
+          memset(param_1 + 0x2230,0,0xc40);
         }
+      }
     }
-    
-    return feature_flags;
+  }
+LAB_18066e704:
+  FUN_18066e7a0(param_1);
+  return 1;
 }
 
-// =============================================================================
-// UI资源管理函数
-// =============================================================================
 
-/**
- * 初始化UI资源缓冲区
- * 
- * @param ui_context UI系统上下文指针
- * @param width 缓冲区宽度
- * @param height 缓冲区高度
- * @return 初始化结果，0表示成功，非0表示失败
- */
-undefined8 ui_system_init_resource_buffers(longlong ui_context, uint width, uint height)
+
+
+
+// 函数: void FUN_18066e730(longlong param_1)
+void FUN_18066e730(longlong param_1)
+
 {
-    int result;
-    longlong buffer_ptr;
-    undefined4 *texture_ptr;
-    int texture_index;
-    undefined4 *index_ptr;
-    
-    ui_system_detect_cpu_features_and_initialize_function_table();
-    
-    // 对齐宽度到16字节边界
-    if ((width & 0xf) != 0) {
-        width = width + (0x10 - (width & 0xf));
-    }
-    
-    // 对齐高度到16字节边界
-    if ((height & 0xf) != 0) {
-        height = height + (0x10 - (height & 0xf));
-    }
-    
-    // 初始化纹理缓冲区
-    texture_ptr = (undefined4 *)(ui_context + 0x80c);
-    texture_index = 0;
-    index_ptr = (undefined4 *)(ui_context + 0x9c0);
-    
-    do {
-        *index_ptr = 0;
-        *texture_ptr = 0;
-        result = ui_system_create_texture_buffer(
-            (longlong)texture_index * UI_VERTEX_BUFFER_SIZE + 0x780 + ui_context,
-            width, height, 0x20);
-        
-        if (result < 0) goto cleanup_failed;
-        texture_index = texture_index + 1;
-        index_ptr = index_ptr + 1;
-        texture_ptr = texture_ptr + UI_INDEX_BUFFER_SIZE;
-    } while (texture_index < UI_TEXTURE_COUNT);
-    
-    // 初始化缓冲区描述符
-    *(undefined4 *)(ui_context + 0x9d0) = 0;
-    *(undefined4 *)(ui_context + 0x9d4) = 1;
-    *(undefined4 *)(ui_context + 0x9d8) = 2;
-    *(undefined4 *)(ui_context + 0x9dc) = 3;
-    *(undefined8 *)(ui_context + 0x9c0) = 0x100000001;
-    *(undefined8 *)(ui_context + 0x9c8) = 0x100000001;
-    
-    // 创建主缓冲区
-    result = ui_system_create_texture_buffer(ui_context + 0x9e0, width, 0x10);
-    if (-1 < result) {
-        int tiles_height = (int)height >> 4;
-        int tiles_width = (int)width >> 4;
-        
-        *(int *)(ui_context + 3000) = tiles_width;
-        *(int *)(ui_context + 0xbb4) = tiles_height;
-        *(int *)(ui_context + 0xbbc) = tiles_width + 1;
-        *(int *)(ui_context + 0xbb0) = tiles_width * tiles_height;
-        
-        // 分配着色器程序内存
-        buffer_ptr = ui_system_allocate_aligned_memory(
-            (longlong)((tiles_height + 1) * (tiles_width + 1)), UI_SHADER_PROGRAM_SIZE);
-        *(longlong *)(ui_context + 0xbe8) = buffer_ptr;
-        
-        if (buffer_ptr != 0) {
-            *(longlong *)(ui_context + 0xbf0) = 
-                ((longlong)*(int *)(ui_context + 0xbbc) + 1) * UI_SHADER_PROGRAM_SIZE + buffer_ptr;
-            
-            // 分配顶点缓冲区内存
-            buffer_ptr = ui_system_allocate_aligned_memory(
-                (longlong)*(int *)(ui_context + 3000) * 9, 1);
-            *(longlong *)(ui_context + 0x1958) = buffer_ptr;
-            
-            if (buffer_ptr != 0) {
-                result = ui_system_create_texture_buffer(
-                    ui_context + 0xa70, width, height, 0x20);
-                if (-1 < result) {
-                    *(undefined4 *)(ui_context + 0xb90) = 0;
-                    // 清零UI数据区域
-                    memset(ui_context + 0x2230, 0, 0xc40);
-                }
-            }
-        }
-    }
-    
-cleanup_failed:
-    ui_system_cleanup_resource_buffers(ui_context);
-    return 1;
+  FUN_180698140();
+  func_0x0001806980f0(param_1);
+  func_0x0001806980d0();
+  *(undefined8 *)(param_1 + 0xbc0) = 1;
+  *(undefined4 *)(param_1 + 0xc00) = 0;
+  *(undefined8 *)(param_1 + 0xbc8) = 0;
+  *(undefined4 *)(param_1 + 0x2224) = 0;
+  *(undefined4 *)(param_1 + 0x770) = 0;
+  *(undefined8 *)(param_1 + 0x1944) = 0;
+  *(undefined8 *)(param_1 + 0x194c) = 0;
+  *(undefined8 *)(param_1 + 0x1938) = 0;
+  return;
 }
 
-/**
- * 初始化UI系统渲染上下文
- * 
- * @param ui_context UI系统上下文指针
- */
-void ui_system_init_render_context(longlong ui_context)
+
+
+
+
+// 函数: void FUN_18066e7a0(longlong param_1)
+void FUN_18066e7a0(longlong param_1)
+
 {
-    ui_system_init_render_pipeline();
-    ui_system_setup_render_state(ui_context);
-    ui_system_finalize_render_setup();
-    
-    *(undefined8 *)(ui_context + 0xbc0) = 1;
-    *(undefined4 *)(ui_context + 0xc00) = 0;
-    *(undefined8 *)(ui_context + 0xbc8) = 0;
-    *(undefined4 *)(ui_context + 0x2224) = 0;
-    *(undefined4 *)(ui_context + 0x770) = 0;
-    *(undefined8 *)(ui_context + 0x1944) = 0;
-    *(undefined8 *)(ui_context + 0x194c) = 0;
-    *(undefined8 *)(ui_context + 0x1938) = 0;
+  longlong lVar1;
+  longlong lVar2;
+  
+  lVar1 = param_1 + 0x780;
+  lVar2 = 4;
+  do {
+    FUN_180697ed0(lVar1);
+    lVar1 = lVar1 + 0x90;
+    lVar2 = lVar2 + -1;
+  } while (lVar2 != 0);
+  FUN_180697ed0(param_1 + 0x9e0);
+  FUN_180697ed0(param_1 + 0xa70);
+  if (*(int *)(param_1 + 0xb90) != 0) {
+    FUN_180697ed0(param_1 + 0xb00);
+  }
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0xb98));
+  *(undefined8 *)(param_1 + 0xb98) = 0;
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0x1958));
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0xbe8));
+  *(undefined8 *)(param_1 + 0x1958) = 0;
+  *(undefined8 *)(param_1 + 0xbe8) = 0;
+  return;
 }
 
-/**
- * 清理UI系统资源缓冲区
- * 
- * @param ui_context UI系统上下文指针
- */
-void ui_system_cleanup_resource_buffers(longlong ui_context)
+
+
+void thunk_FUN_18066e7a0(longlong param_1)
+
 {
-    longlong buffer_ptr;
-    longlong buffer_count;
-    
-    buffer_ptr = ui_context + 0x780;
-    buffer_count = UI_TEXTURE_COUNT;
-    
-    do {
-        ui_system_release_texture_buffer(buffer_ptr);
-        buffer_ptr = buffer_ptr + UI_VERTEX_BUFFER_SIZE;
-        buffer_count = buffer_count + -1;
-    } while (buffer_count != 0);
-    
-    ui_system_release_texture_buffer(ui_context + 0x9e0);
-    ui_system_release_texture_buffer(ui_context + 0xa70);
-    
-    if (*(int *)(ui_context + 0xb90) != 0) {
-        ui_system_release_texture_buffer(ui_context + 0xb00);
+  longlong lVar1;
+  longlong lVar2;
+  
+  lVar1 = param_1 + 0x780;
+  lVar2 = 4;
+  do {
+    FUN_180697ed0(lVar1);
+    lVar1 = lVar1 + 0x90;
+    lVar2 = lVar2 + -1;
+  } while (lVar2 != 0);
+  FUN_180697ed0(param_1 + 0x9e0);
+  FUN_180697ed0(param_1 + 0xa70);
+  if (*(int *)(param_1 + 0xb90) != 0) {
+    FUN_180697ed0(param_1 + 0xb00);
+  }
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0xb98));
+  *(undefined8 *)(param_1 + 0xb98) = 0;
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0x1958));
+  func_0x00018066e940(*(undefined8 *)(param_1 + 0xbe8));
+  *(undefined8 *)(param_1 + 0x1958) = 0;
+  *(undefined8 *)(param_1 + 0xbe8) = 0;
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18066e8f0(longlong param_1,longlong param_2)
+void FUN_18066e8f0(longlong param_1,longlong param_2)
+
+{
+  longlong lVar1;
+  ulonglong uVar2;
+  
+  lVar1 = malloc(param_1 * param_2 + 0x17);
+  if (lVar1 != 0) {
+    uVar2 = lVar1 + 0x17U & 0xfffffffffffffff0;
+    *(longlong *)(uVar2 - 8) = lVar1;
+                    // WARNING: Subroutine does not return
+    memset(uVar2,0,param_1 * param_2);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18066e90c(void)
+void FUN_18066e90c(void)
+
+{
+  longlong in_RAX;
+  ulonglong uVar1;
+  
+  uVar1 = in_RAX + 0x17U & 0xfffffffffffffff0;
+  *(longlong *)(uVar1 - 8) = in_RAX;
+                    // WARNING: Subroutine does not return
+  memset(uVar1,0);
+}
+
+
+
+
+
+// 函数: void FUN_18066e938(void)
+void FUN_18066e938(void)
+
+{
+  return;
+}
+
+
+
+ulonglong FUN_18066e960(longlong param_1,longlong param_2)
+
+{
+  longlong lVar1;
+  ulonglong uVar2;
+  
+  lVar1 = malloc(param_2 + 7 + param_1);
+  if (lVar1 != 0) {
+    uVar2 = (longlong)((int)param_1 + -1) + 8 + lVar1 & (longlong)-(int)param_1;
+    *(longlong *)(uVar2 - 8) = lVar1;
+    return uVar2;
+  }
+  return 0;
+}
+
+
+
+undefined8 FUN_18066e9b0(longlong param_1)
+
+{
+  int *piVar1;
+  int iVar2;
+  longlong lVar3;
+  
+  if (((*(int *)(param_1 + 0x441c) == 0) && (*(uint *)(param_1 + 0x430c) < 2)) &&
+     (*(int *)(param_1 + 0x4358) == 0)) {
+    lVar3 = (longlong)*(int *)(param_1 + 0x1c94);
+    if (1 < *(int *)(param_1 + 0x1c80 + lVar3 * 4)) {
+      piVar1 = (int *)(param_1 + 0x1c80 + lVar3 * 4);
+      *piVar1 = *piVar1 + -1;
+      iVar2 = func_0x00018066eb80(param_1 + 0x12c0);
+      *(int *)(param_1 + 0x1c94) = iVar2;
+      FUN_18069c540(param_1 + 0x1a40 + lVar3 * 0x90,param_1 + 0x1a40 + (longlong)iVar2 * 0x90);
     }
-    
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0xb98));
-    *(undefined8 *)(ui_context + 0xb98) = 0;
-    
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0x1958));
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0xbe8));
-    
-    *(undefined8 *)(ui_context + 0x1958) = 0;
-    *(undefined8 *)(ui_context + 0xbe8) = 0;
-}
-
-/**
- * 清理UI系统资源缓冲区（简化版本）
- * 
- * @param ui_context UI系统上下文指针
- */
-void ui_system_cleanup_resource_buffers_simple(longlong ui_context)
-{
-    longlong buffer_ptr;
-    longlong buffer_count;
-    
-    buffer_ptr = ui_context + 0x780;
-    buffer_count = UI_TEXTURE_COUNT;
-    
-    do {
-        ui_system_release_texture_buffer(buffer_ptr);
-        buffer_ptr = buffer_ptr + UI_VERTEX_BUFFER_SIZE;
-        buffer_count = buffer_count + -1;
-    } while (buffer_count != 0);
-    
-    ui_system_release_texture_buffer(ui_context + 0x9e0);
-    ui_system_release_texture_buffer(ui_context + 0xa70);
-    
-    if (*(int *)(ui_context + 0xb90) != 0) {
-        ui_system_release_texture_buffer(ui_context + 0xb00);
-    }
-    
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0xb98));
-    *(undefined8 *)(ui_context + 0xb98) = 0;
-    
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0x1958));
-    ui_system_free_memory(*(undefined8 *)(ui_context + 0xbe8));
-    
-    *(undefined8 *)(ui_context + 0x1958) = 0;
-    *(undefined8 *)(ui_context + 0xbe8) = 0;
-}
-
-// =============================================================================
-// 内存管理函数
-// =============================================================================
-
-/**
- * 分配对齐的内存块
- * 
- * @param size 内存块大小
- * @param alignment 对齐字节数
- * @return 分配的内存块指针，失败返回NULL
- */
-void *ui_system_allocate_aligned_memory(longlong size, longlong alignment)
-{
-    longlong allocated_ptr;
-    ulonglong aligned_ptr;
-    
-    allocated_ptr = malloc(size * alignment + 0x17);
-    if (allocated_ptr != 0) {
-        aligned_ptr = allocated_ptr + 0x17U & MEMORY_ALIGNMENT_MASK;
-        *(longlong *)(aligned_ptr - 8) = allocated_ptr;
-        // 清零内存块
-        memset(aligned_ptr, 0, size * alignment);
-    }
-    return allocated_ptr;
-}
-
-/**
- * 对齐内存块的辅助函数
- * 
- * @param allocated_ptr 已分配的内存指针
- */
-void ui_system_align_memory_block(void)
-{
-    longlong allocated_ptr;
-    ulonglong aligned_ptr;
-    
-    aligned_ptr = allocated_ptr + 0x17U & MEMORY_ALIGNMENT_MASK;
-    *(longlong *)(aligned_ptr - 8) = allocated_ptr;
-    // 清零内存块
-    memset(aligned_ptr, 0);
-}
-
-/**
- * 空函数（占位符）
- */
-void ui_system_empty_function(void)
-{
-    return;
-}
-
-/**
- * 分配对齐的内存块（高级版本）
- * 
- * @param offset 内存偏移量
- * @param size 内存块大小
- * @return 分配的内存块指针，失败返回NULL
- */
-ulonglong ui_system_allocate_aligned_memory_advanced(longlong offset, longlong size)
-{
-    longlong allocated_ptr;
-    ulonglong aligned_ptr;
-    
-    allocated_ptr = malloc(size + 7 + offset);
-    if (allocated_ptr != 0) {
-        aligned_ptr = (longlong)((int)offset + -1) + 8 + allocated_ptr & (longlong)-(int)offset;
-        *(longlong *)(aligned_ptr - 8) = allocated_ptr;
-        return aligned_ptr;
-    }
+    *(undefined4 *)(param_1 + 0x1ac8 + (longlong)*(int *)(param_1 + 0x1c94) * 0x90) = 1;
+    *(undefined4 *)(param_1 + 0x1e68) = 0;
     return 0;
+  }
+  return 1;
 }
 
-// =============================================================================
-// UI状态管理函数
-// =============================================================================
 
-/**
- * 检查UI系统状态并执行相应操作
- * 
- * @param ui_context UI系统上下文指针
- * @return 操作结果，0表示成功，非0表示失败
- */
-undefined8 ui_system_check_state_and_execute(longlong ui_context)
+
+undefined8 FUN_18066e9db(longlong param_1)
+
 {
-    int *layer_count;
-    int current_layer;
-    longlong layer_offset;
-    
-    // 检查UI系统状态
-    if (((*(int *)(ui_context + 0x441c) == 0) && 
-         (*(uint *)(ui_context + 0x430c) < 2)) &&
-        (*(int *)(ui_context + 0x4358) == 0)) {
-        
-        layer_offset = (longlong)*(int *)(ui_context + 0x1c94);
-        if (1 < *(int *)(ui_context + 0x1c80 + layer_offset * 4)) {
-            layer_count = (int *)(ui_context + 0x1c80 + layer_offset * 4);
-            *layer_count = *layer_count + -1;
-            current_layer = ui_system_get_next_layer(ui_context + 0x12c0);
-            *(int *)(ui_context + 0x1c94) = current_layer;
-            ui_system_copy_layer_data(
-                ui_context + 0x1a40 + layer_offset * UI_VERTEX_BUFFER_SIZE,
-                ui_context + 0x1a40 + (longlong)current_layer * UI_VERTEX_BUFFER_SIZE);
-        }
-        
-        *(undefined4 *)(ui_context + 0x1ac8 + (longlong)*(int *)(ui_context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
-        *(undefined4 *)(ui_context + 0x1e68) = 0;
-        return 0;
-    }
-    return 1;
+  int *piVar1;
+  int iVar2;
+  longlong lVar3;
+  
+  lVar3 = (longlong)*(int *)(param_1 + 0x1c94);
+  if (1 < *(int *)(param_1 + 0x1c80 + lVar3 * 4)) {
+    piVar1 = (int *)(param_1 + 0x1c80 + lVar3 * 4);
+    *piVar1 = *piVar1 + -1;
+    iVar2 = func_0x00018066eb80(param_1 + 0x12c0);
+    *(int *)(param_1 + 0x1c94) = iVar2;
+    FUN_18069c540(param_1 + 0x1a40 + lVar3 * 0x90,param_1 + 0x1a40 + (longlong)iVar2 * 0x90);
+  }
+  *(undefined4 *)(param_1 + 0x1ac8 + (longlong)*(int *)(param_1 + 0x1c94) * 0x90) = 1;
+  *(undefined4 *)(param_1 + 0x1e68) = 0;
+  return 0;
 }
 
-/**
- * 执行UI系统状态切换
- * 
- * @param ui_context UI系统上下文指针
- * @return 操作结果，0表示成功，非0表示失败
- */
-undefined8 ui_system_switch_state(longlong ui_context)
+
+
+undefined8 FUN_18066ea6a(void)
+
 {
-    int *layer_count;
-    int current_layer;
-    longlong layer_offset;
-    
-    layer_offset = (longlong)*(int *)(ui_context + 0x1c94);
-    if (1 < *(int *)(ui_context + 0x1c80 + layer_offset * 4)) {
-        layer_count = (int *)(ui_context + 0x1c80 + layer_offset * 4);
-        *layer_count = *layer_count + -1;
-        current_layer = ui_system_get_next_layer(ui_context + 0x12c0);
-        *(int *)(ui_context + 0x1c94) = current_layer;
-        ui_system_copy_layer_data(
-            ui_context + 0x1a40 + layer_offset * UI_VERTEX_BUFFER_SIZE,
-            ui_context + 0x1a40 + (longlong)current_layer * UI_VERTEX_BUFFER_SIZE);
-    }
-    
-    *(undefined4 *)(ui_context + 0x1ac8 + (longlong)*(int *)(ui_context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
-    *(undefined4 *)(ui_context + 0x1e68) = 0;
-    return 0;
+  return 1;
 }
 
-/**
- * 返回成功状态的函数
- * 
- * @return 始终返回1（成功）
- */
-undefined8 ui_system_return_success(void)
+
+
+undefined8 FUN_18066ea80(void)
+
 {
-    return 1;
+  longlong lVar1;
+  undefined8 in_R9;
+  
+  lVar1 = FUN_18066e960(0x20,0x4440);
+  if (lVar1 != 0) {
+                    // WARNING: Subroutine does not return
+    memset(lVar1,0,0x4440,in_R9,lVar1);
+  }
+  return 0;
 }
 
-/**
- * 创建UI系统缓冲区
- * 
- * @param buffer_size 缓冲区大小
- * @return 创建的缓冲区指针，失败返回NULL
- */
-undefined8 ui_system_create_buffer(longlong buffer_size)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066ebc0(void)
+void FUN_18066ebc0(void)
+
 {
-    longlong buffer_ptr;
-    undefined8 alignment_param;
-    
-    buffer_ptr = ui_system_allocate_aligned_memory_advanced(MEMORY_ALIGNMENT_32, 0x4440);
-    if (buffer_ptr != 0) {
-        // 清零缓冲区
-        memset(buffer_ptr, 0, 0x4440, alignment_param, buffer_ptr);
-    }
-    return 0;
+  if (_DAT_180c0c200 == 0) {
+    func_0x00018066e220();
+    func_0x00018069c2d0();
+    _DAT_180c0c200 = 1;
+  }
+  return;
 }
 
-// =============================================================================
-// UI系统全局初始化函数
-// =============================================================================
 
-/**
- * UI系统全局初始化函数
- * 确保整个UI系统只初始化一次
- */
-void ui_system_global_init(void)
-{
-    if (g_ui_initialized == 0) {
-        ui_system_init_core_components();
-        ui_system_init_resource_manager();
-        g_ui_initialized = 1;
-    }
-}
 
-/**
- * 线程安全的UI系统全局初始化函数
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_global_init_thread_safe(code *init_function)
-{
-    int ref_count;
-    longlong critical_section;
-    longlong existing_section;
-    bool section_exists;
-    
-    if (g_ui_initialized == 0) {
-        LOCK();
-        g_ui_init_count = g_ui_init_count + 1;
-        UNLOCK();
-        
-        critical_section = malloc(0x28);
-        InitializeCriticalSection(critical_section);
-        
-        LOCK();
-        section_exists = g_ui_critical_section != 0;
-        existing_section = critical_section;
-        if (section_exists) {
-            existing_section = g_ui_critical_section;
-        }
-        g_ui_critical_section = existing_section;
-        UNLOCK();
-        
-        if (section_exists) {
-            DeleteCriticalSection(critical_section);
-            free(critical_section);
-        }
-        
-        EnterCriticalSection(g_ui_critical_section);
-        if (g_ui_initialized == 0) {
-            (*init_function)();
-            g_ui_initialized = 1;
-        }
-        LeaveCriticalSection(g_ui_critical_section);
-        
-        LOCK();
-        ref_count = g_ui_init_count + -1;
-        UNLOCK();
-        
-        section_exists = g_ui_init_count == 1;
-        g_ui_init_count = ref_count;
-        
-        if (section_exists) {
-            DeleteCriticalSection(g_ui_critical_section);
-            free(g_ui_critical_section);
-            g_ui_critical_section = 0;
-        }
-    }
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * 线程安全的UI系统全局初始化函数（简化版本）
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_global_init_thread_safe_simple(code *init_function)
+
+
+// 函数: void FUN_18066ebf0(code *param_1)
+void FUN_18066ebf0(code *param_1)
+
 {
-    int ref_count;
-    longlong critical_section;
-    longlong existing_section;
-    code *init_func;
-    bool section_exists;
-    
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  bool bVar4;
+  
+  if (_DAT_180c0c1fc == 0) {
     LOCK();
-    g_ui_init_count = g_ui_init_count + 1;
+    _DAT_180c0c1f8 = _DAT_180c0c1f8 + 1;
     UNLOCK();
-    
-    critical_section = malloc(0x28);
-    InitializeCriticalSection(critical_section);
-    
+    lVar3 = malloc(0x28);
+    InitializeCriticalSection(lVar3);
     LOCK();
-    section_exists = g_ui_critical_section != 0;
-    existing_section = critical_section;
-    if (section_exists) {
-        existing_section = g_ui_critical_section;
+    bVar4 = _DAT_180c0c1f0 != 0;
+    lVar2 = lVar3;
+    if (bVar4) {
+      lVar2 = _DAT_180c0c1f0;
     }
-    g_ui_critical_section = existing_section;
+    _DAT_180c0c1f0 = lVar2;
     UNLOCK();
-    
-    if (section_exists) {
-        DeleteCriticalSection(critical_section);
-        free(critical_section);
+    if (bVar4) {
+      DeleteCriticalSection(lVar3);
+      free(lVar3);
     }
-    
-    EnterCriticalSection(g_ui_critical_section);
-    if (g_ui_initialized == 0) {
-        (*init_func)();
-        g_ui_initialized = 1;
+    EnterCriticalSection(_DAT_180c0c1f0);
+    if (_DAT_180c0c1fc == 0) {
+      (*param_1)();
+      _DAT_180c0c1fc = 1;
     }
-    LeaveCriticalSection(g_ui_critical_section);
-    
+    LeaveCriticalSection(_DAT_180c0c1f0);
     LOCK();
-    ref_count = g_ui_init_count + -1;
+    iVar1 = _DAT_180c0c1f8 + -1;
     UNLOCK();
-    
-    section_exists = g_ui_init_count == 1;
-    g_ui_init_count = ref_count;
-    
-    if (section_exists) {
-        DeleteCriticalSection(g_ui_critical_section);
-        free(g_ui_critical_section);
-        g_ui_critical_section = 0;
+    bVar4 = _DAT_180c0c1f8 == 1;
+    _DAT_180c0c1f8 = iVar1;
+    if (bVar4) {
+      DeleteCriticalSection(_DAT_180c0c1f0);
+      free(_DAT_180c0c1f0);
+      _DAT_180c0c1f0 = 0;
     }
+  }
+  return;
 }
 
-/**
- * UI系统全局初始化完成后的清理函数
- * 
- * @param init_function 初始化函数指针
- */
-void ui_system_global_init_cleanup(code *init_function)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066ec06(void)
+void FUN_18066ec06(void)
+
 {
-    int ref_count;
-    code *init_func;
-    bool should_cleanup;
-    
-    (*init_func)();
-    g_ui_initialized = 1;
-    LeaveCriticalSection(g_ui_critical_section);
-    
-    LOCK();
-    ref_count = g_ui_init_count + -1;
-    UNLOCK();
-    
-    should_cleanup = g_ui_init_count == 1;
-    g_ui_init_count = ref_count;
-    
-    if (should_cleanup) {
-        DeleteCriticalSection(g_ui_critical_section);
-        free(g_ui_critical_section);
-        g_ui_critical_section = 0;
-    }
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  code *unaff_RDI;
+  bool bVar4;
+  
+  LOCK();
+  _DAT_180c0c1f8 = _DAT_180c0c1f8 + 1;
+  UNLOCK();
+  lVar3 = malloc(0x28);
+  InitializeCriticalSection(lVar3);
+  LOCK();
+  bVar4 = _DAT_180c0c1f0 != 0;
+  lVar2 = lVar3;
+  if (bVar4) {
+    lVar2 = _DAT_180c0c1f0;
+  }
+  _DAT_180c0c1f0 = lVar2;
+  UNLOCK();
+  if (bVar4) {
+    DeleteCriticalSection(lVar3);
+    free(lVar3);
+  }
+  EnterCriticalSection(_DAT_180c0c1f0);
+  if (_DAT_180c0c1fc == 0) {
+    (*unaff_RDI)();
+    _DAT_180c0c1fc = 1;
+  }
+  LeaveCriticalSection(_DAT_180c0c1f0);
+  LOCK();
+  iVar1 = _DAT_180c0c1f8 + -1;
+  UNLOCK();
+  bVar4 = _DAT_180c0c1f8 == 1;
+  _DAT_180c0c1f8 = iVar1;
+  if (bVar4) {
+    DeleteCriticalSection(_DAT_180c0c1f0);
+    free(_DAT_180c0c1f0);
+    _DAT_180c0c1f0 = 0;
+  }
+  return;
 }
 
-// =============================================================================
-// UI缓冲区管理函数
-// =============================================================================
 
-/**
- * 初始化UI缓冲区
- * 
- * @param buffer_handle 缓冲区句柄指针
- * @param context UI系统上下文指针
- * @return 初始化结果，0表示成功，非0表示失败
- */
-undefined4 ui_system_init_buffer(int *buffer_handle, longlong context)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18066ec63(void)
+void FUN_18066ec63(void)
+
 {
-    longlong buffer_ptr;
-    
-    if (*buffer_handle == 0) {
-        buffer_ptr = ui_system_create_buffer(context);
-        *(longlong *)(buffer_handle + 2) = buffer_ptr;
-        if (buffer_ptr == 0) {
-            return 1;
-        }
-        *(undefined4 *)(buffer_ptr + 0x4384) = *(undefined4 *)(context + 0x10);
-        ui_system_setup_buffer_pipeline(*(undefined8 *)(buffer_handle + 2));
-    }
-    return 0;
+  int iVar1;
+  code *unaff_RDI;
+  bool bVar2;
+  
+  (*unaff_RDI)();
+  _DAT_180c0c1fc = 1;
+  LeaveCriticalSection(_DAT_180c0c1f0);
+  LOCK();
+  iVar1 = _DAT_180c0c1f8 + -1;
+  UNLOCK();
+  bVar2 = _DAT_180c0c1f8 == 1;
+  _DAT_180c0c1f8 = iVar1;
+  if (bVar2) {
+    DeleteCriticalSection(_DAT_180c0c1f0);
+    free(_DAT_180c0c1f0);
+    _DAT_180c0c1f0 = 0;
+  }
+  return;
 }
 
-/**
- * 清理UI缓冲区
- * 
- * @param buffer_handle 缓冲区句柄指针
- * @return 清理结果，0表示成功，非0表示失败
- */
-undefined4 ui_system_cleanup_buffer(int *buffer_handle)
+
+
+undefined4 FUN_18066eea0(int *param_1,longlong param_2)
+
 {
-    longlong buffer_ptr;
-    
-    if (*buffer_handle == 0) {
-        buffer_ptr = *(longlong *)(buffer_handle + 2);
-        if (buffer_ptr == 0) {
-            return 1;
-        }
-        if (*(int *)(buffer_ptr + 0x4380) != 0) {
-            ui_system_release_buffer_resources(buffer_ptr, *(undefined4 *)(buffer_ptr + 0x1e74));
-        }
-        ui_system_teardown_buffer_pipeline(buffer_ptr);
-        ui_system_cleanup_resource_buffers_simple(buffer_ptr + 0x12c0);
-        ui_system_free_memory(buffer_ptr);
+  longlong lVar1;
+  
+  if (*param_1 == 0) {
+    lVar1 = FUN_18066ea80(param_2);
+    *(longlong *)(param_1 + 2) = lVar1;
+    if (lVar1 == 0) {
+      return 1;
     }
-    return 0;
+    *(undefined4 *)(lVar1 + 0x4384) = *(undefined4 *)(param_2 + 0x10);
+    FUN_1806708b0(*(undefined8 *)(param_1 + 2));
+  }
+  return 0;
 }
 
-/**
- * 执行UI缓冲区操作
- * 
- * @param ui_context UI系统上下文指针
- * @param operation 操作参数
- * @param result_ptr 结果指针
- * @param status_ptr 状态指针
- * @param additional_param 额外参数
- * @return 操作结果，0表示成功，非0表示失败
- */
-undefined4 ui_system_execute_buffer_operation(longlong ui_context, undefined8 operation, 
-                                            undefined8 *result_ptr, undefined8 *status_ptr,
-                                            undefined8 additional_param)
+
+
+undefined4 FUN_18066ef00(int *param_1)
+
 {
-    undefined4 operation_result;
-    
-    if ((*(int *)(ui_context + 0x4410) != 1) && (*(int *)(ui_context + 0x1e68) != 0)) {
-        *(undefined4 *)(ui_context + 0x4410) = 1;
-        *result_ptr = *(undefined8 *)(ui_context + 0x4408);
-        *status_ptr = 0;
-        operation_result = ui_system_process_buffer_operation(ui_context + 0x12c0, operation, additional_param);
-        ui_system_trigger_operation_callback();
-        return operation_result;
+  longlong lVar1;
+  
+  if (*param_1 == 0) {
+    lVar1 = *(longlong *)(param_1 + 2);
+    if (lVar1 == 0) {
+      return 1;
     }
-    return 0xffffffff;
+    if (*(int *)(lVar1 + 0x4380) != 0) {
+      FUN_180671080(lVar1,*(undefined4 *)(lVar1 + 0x1e74));
+    }
+    FUN_180670b00(lVar1);
+    thunk_FUN_18066e7a0(lVar1 + 0x12c0);
+    func_0x00018066e940(lVar1);
+  }
+  return 0;
 }
 
-/**
- * 更新UI缓冲区数据
- * 
- * @param ui_context UI系统上下文指针
- * @param buffer_type 缓冲区类型
- * @param data_ptr 数据指针
- * @return 更新结果，0表示成功，非0表示失败
- */
-undefined4 ui_system_update_buffer_data(longlong ui_context, int buffer_type, int *data_ptr)
+
+
+undefined4
+FUN_18066ef60(longlong param_1,undefined8 param_2,undefined8 *param_3,undefined8 *param_4,
+             undefined8 param_5)
+
 {
-    undefined4 *buffer_base;
-    int layer_index;
-    undefined *error_ptr;
-    longlong layer_offset;
-    
-    buffer_base = (undefined4 *)(ui_context + 0x12c0);
-    
-    // 根据缓冲区类型选择对应的层
-    if (buffer_type == 1) {
-        layer_index = *(int *)(ui_context + 0x1c94);
+  undefined4 uVar1;
+  
+  if ((*(int *)(param_1 + 0x4410) != 1) && (*(int *)(param_1 + 0x1e68) != 0)) {
+    *(undefined4 *)(param_1 + 0x4410) = 1;
+    *param_3 = *(undefined8 *)(param_1 + 0x4408);
+    *param_4 = 0;
+    uVar1 = FUN_180698e20(param_1 + 0x12c0,param_2,param_5);
+    func_0x000180001000();
+    return uVar1;
+  }
+  return 0xffffffff;
+}
+
+
+
+undefined4 FUN_18066efd0(longlong param_1,int param_2,int *param_3)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  undefined *puVar4;
+  longlong lVar3;
+  
+  puVar1 = (undefined4 *)(param_1 + 0x12c0);
+  if (param_2 == 1) {
+    iVar2 = *(int *)(param_1 + 0x1c94);
+  }
+  else if (param_2 == 2) {
+    iVar2 = *(int *)(param_1 + 0x1c98);
+  }
+  else {
+    if (param_2 != 4) {
+      puVar4 = &UNK_180946b38;
+      goto LAB_18066f069;
     }
-    else if (buffer_type == 2) {
-        layer_index = *(int *)(ui_context + 0x1c98);
+    iVar2 = *(int *)(param_1 + 0x1c9c);
+  }
+  lVar3 = (longlong)iVar2;
+  if ((((*(int *)(param_1 + 0x1a44 + lVar3 * 0x90) == param_3[1]) &&
+       (puVar1[lVar3 * 0x24 + 0x1e0] == *param_3)) &&
+      (*(int *)(param_1 + 0x1a58 + lVar3 * 0x90) == param_3[6])) &&
+     (*(int *)(param_1 + 0x1a54 + lVar3 * 0x90) == param_3[5])) {
+    FUN_18069c540(puVar1 + lVar3 * 0x24 + 0x1e0,param_3);
+    return *puVar1;
+  }
+  puVar4 = &UNK_180946b50;
+LAB_18066f069:
+  FUN_18066d370(puVar1,1,puVar4);
+  return *puVar1;
+}
+
+
+
+ulonglong FUN_18066f080(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined4 *puVar1;
+  uint uVar2;
+  ulonglong uVar3;
+  int iVar4;
+  undefined1 auStack_38 [32];
+  uint uStack_18;
+  undefined4 *puStack_10;
+  
+  puVar1 = (undefined4 *)(param_1 + 0x12c0);
+  *puVar1 = 0;
+  puStack_10 = puVar1;
+  uVar3 = FUN_18066e9b0();
+  uStack_18 = (uint)uVar3;
+  if ((int)uStack_18 < 1) {
+    return uVar3;
+  }
+  iVar4 = 0;
+  do {
+    if (*(int *)(param_1 + 0x1c80 + (longlong)iVar4 * 4) == 0) break;
+    iVar4 = iVar4 + 1;
+  } while (iVar4 < 4);
+  *(undefined4 *)(param_1 + 0x1c80 + (longlong)iVar4 * 4) = 1;
+  *(int *)(param_1 + 0x1c90) = iVar4;
+  *(undefined4 **)(param_1 + 0x12a0) = puVar1 + (longlong)iVar4 * 0x24 + 0x1e0;
+  *(longlong *)(param_1 + 0x12a8) = param_1 + 0x1a40 + (longlong)*(int *)(param_1 + 0x1c94) * 0x90;
+  *(longlong *)(param_1 + 0x12b0) = param_1 + 0x1a40 + (longlong)*(int *)(param_1 + 0x1c98) * 0x90;
+  *(longlong *)(param_1 + 0x12b8) = param_1 + 0x1a40 + (longlong)*(int *)(param_1 + 0x1c9c) * 0x90;
+  iVar4 = __intrinsic_setjmp(param_1 + 0x1320,auStack_38);
+  if (iVar4 == 0) {
+    *(undefined4 *)(param_1 + 0x1318) = 1;
+    uVar2 = FUN_18069a490(param_1);
+    puVar1 = puStack_10;
+    uStack_18 = uVar2;
+    if ((int)uVar2 < 0) {
+      if (0 < (int)puStack_10[(longlong)(int)puStack_10[0x274] + 0x270]) {
+        puStack_10[(longlong)(int)puStack_10[0x274] + 0x270] =
+             puStack_10[(longlong)(int)puStack_10[0x274] + 0x270] + -1;
+      }
     }
     else {
-        if (buffer_type != 4) {
-            error_ptr = &ui_error_invalid_buffer_type;
-            goto error_handler;
+      iVar4 = func_0x00018066ecc0(puStack_10);
+      if (iVar4 == 0) {
+        func_0x000180001000();
+        if (puVar1[0x2ea] != 0) {
+          puVar1[0x887] = puVar1[0x887] + 1;
+          *(undefined8 *)(puVar1 + 0x2fe) = *(undefined8 *)(puVar1 + 0x2fc);
         }
-        layer_index = *(int *)(ui_context + 0x1c9c);
+        *(undefined8 *)(param_1 + 0x4408) = param_4;
+        *(undefined4 *)(param_1 + 0x4410) = 0;
+        goto LAB_18066f254;
+      }
     }
-    
-    layer_offset = (longlong)layer_index;
-    
-    // 验证数据匹配
-    if ((((*(int *)(ui_context + 0x1a44 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[1]) &&
-         (buffer_base[layer_offset * UI_INDEX_BUFFER_SIZE + 0x1e0] == *data_ptr)) &&
-        (*(int *)(ui_context + 0x1a58 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[6])) &&
-       (*(int *)(ui_context + 0x1a54 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[5])) {
-        ui_system_copy_layer_data(buffer_base + layer_offset * UI_INDEX_BUFFER_SIZE + 0x1e0, data_ptr);
-        return *buffer_base;
+    *(undefined4 *)(param_1 + 0x12c0) = 1;
+  }
+  else {
+    puStack_10[(longlong)(int)puStack_10[0x275] * 0x24 + 0x202] = 1;
+    uVar2 = uStack_18;
+    if (0 < (int)puStack_10[(longlong)(int)puStack_10[0x274] + 0x270]) {
+      puStack_10[(longlong)(int)puStack_10[0x274] + 0x270] =
+           puStack_10[(longlong)(int)puStack_10[0x274] + 0x270] + -1;
     }
-    
-    error_ptr = &ui_error_data_mismatch;
-error_handler:
-    ui_system_report_buffer_error(buffer_base, 1, error_ptr);
-    return *buffer_base;
+  }
+LAB_18066f254:
+  *(undefined4 *)(param_1 + 0x1318) = 0;
+  func_0x000180001000();
+  return (ulonglong)uVar2;
 }
 
-// =============================================================================
-// UI系统高级功能函数
-// =============================================================================
 
-/**
- * 创建UI系统高级资源
- * 
- * @param ui_context UI系统上下文指针
- * @param resource_param1 资源参数1
- * @param resource_param2 资源参数2
- * @param resource_param3 资源参数3
- * @param resource_param4 资源参数4
- * @return 创建的资源指针，失败返回0
- */
-ulonglong ui_system_create_advanced_resource(longlong ui_context, undefined8 resource_param1, 
-                                           undefined8 resource_param2, undefined8 resource_param3, 
-                                           undefined8 resource_param4)
+
+undefined4 FUN_18066f2e0(longlong param_1,int param_2,int *param_3)
+
 {
-    undefined4 *buffer_base;
-    uint resource_status;
-    ulonglong resource_handle;
-    int layer_count;
-    undefined1 stack_buffer[32];
-    uint stack_var;
-    undefined4 *stack_ptr;
-    
-    buffer_base = (undefined4 *)(ui_context + 0x12c0);
-    *buffer_base = 0;
-    stack_ptr = buffer_base;
-    resource_handle = ui_system_check_state_and_execute();
-    stack_var = (uint)resource_handle;
-    
-    if ((int)stack_var < 1) {
-        return resource_handle;
+  undefined4 *puVar1;
+  int *piVar2;
+  int iVar3;
+  longlong lVar4;
+  undefined *puVar5;
+  int *piVar6;
+  
+  puVar1 = (undefined4 *)(param_1 + 0x12c0);
+  if (param_2 == 1) {
+    piVar6 = (int *)(param_1 + 0x1c94);
+  }
+  else if (param_2 == 2) {
+    piVar6 = (int *)(param_1 + 0x1c98);
+  }
+  else {
+    if (param_2 != 4) {
+      puVar5 = &UNK_180946b38;
+      goto LAB_18066f3c7;
     }
-    
-    layer_count = 0;
-    do {
-        if (*(int *)(ui_context + 0x1c80 + (longlong)layer_count * 4) == 0) break;
-        layer_count = layer_count + 1;
-    } while (layer_count < UI_MAX_LAYERS);
-    
-    *(undefined4 *)(ui_context + 0x1c80 + (longlong)layer_count * 4) = 1;
-    *(int *)(ui_context + 0x1c90) = layer_count;
-    *(undefined4 **)(ui_context + 0x12a0) = buffer_base + (longlong)layer_count * UI_INDEX_BUFFER_SIZE + 0x1e0;
-    *(longlong *)(ui_context + 0x12a8) = ui_context + 0x1a40 + (longlong)*(int *)(ui_context + 0x1c94) * UI_VERTEX_BUFFER_SIZE;
-    *(longlong *)(ui_context + 0x12b0) = ui_context + 0x1a40 + (longlong)*(int *)(ui_context + 0x1c98) * UI_VERTEX_BUFFER_SIZE;
-    *(longlong *)(ui_context + 0x12b8) = ui_context + 0x1a40 + (longlong)*(int *)(ui_context + 0x1c9c) * UI_VERTEX_BUFFER_SIZE;
-    
-    layer_count = __intrinsic_setjmp(ui_context + 0x1320, stack_buffer);
-    if (layer_count == 0) {
-        *(undefined4 *)(ui_context + 0x1318) = 1;
-        resource_status = ui_system_process_advanced_resource(ui_context);
-        buffer_base = stack_ptr;
-        stack_var = resource_status;
-        
-        if ((int)resource_status < 0) {
-            if (0 < (int)stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270]) {
-                stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270] =
-                     stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270] + -1;
-            }
-        }
-        else {
-            layer_count = ui_system_validate_resource_creation(stack_ptr);
-            if (layer_count == 0) {
-                ui_system_trigger_operation_callback();
-                if (buffer_base[0x2ea] != 0) {
-                    buffer_base[0x887] = buffer_base[0x887] + 1;
-                    *(undefined8 *)(buffer_base + 0x2fe) = *(undefined8 *)(buffer_base + 0x2fc);
-                }
-                *(undefined8 *)(ui_context + 0x4408) = resource_param4;
-                *(undefined4 *)(ui_context + 0x4410) = 0;
-                goto resource_created;
-            }
-        }
-        *(undefined4 *)(ui_context + 0x12c0) = 1;
+    piVar6 = (int *)(param_1 + 0x1c9c);
+  }
+  lVar4 = (longlong)*piVar6;
+  if ((((*(int *)(param_1 + 0x1a44 + lVar4 * 0x90) == param_3[1]) &&
+       (*(int *)(param_1 + 0x1a40 + lVar4 * 0x90) == *param_3)) &&
+      (*(int *)(param_1 + 0x1a58 + lVar4 * 0x90) == param_3[6])) &&
+     (*(int *)(param_1 + 0x1a54 + lVar4 * 0x90) == param_3[5])) {
+    iVar3 = func_0x00018066eb80(puVar1);
+    piVar2 = (int *)(param_1 + 0x1c80 + (longlong)iVar3 * 4);
+    *piVar2 = *piVar2 + -1;
+    if (0 < (int)puVar1[(longlong)*piVar6 + 0x270]) {
+      puVar1[(longlong)*piVar6 + 0x270] = puVar1[(longlong)*piVar6 + 0x270] + -1;
     }
-    else {
-        stack_ptr[(longlong)(int)stack_ptr[0x275] * UI_INDEX_BUFFER_SIZE + 0x202] = 1;
-        resource_status = stack_var;
-        if (0 < (int)stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270]) {
-            stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270] =
-                 stack_ptr[(longlong)(int)stack_ptr[0x274] + 0x270] + -1;
-        }
-    }
-    
-resource_created:
-    *(undefined4 *)(ui_context + 0x1318) = 0;
-    ui_system_trigger_operation_callback();
-    return (ulonglong)resource_status;
+    *piVar6 = iVar3;
+    piVar2 = (int *)(param_1 + 0x1c80 + (longlong)iVar3 * 4);
+    *piVar2 = *piVar2 + 1;
+    FUN_18069c540(param_3,param_1 + 0x1a40 + (longlong)*piVar6 * 0x90);
+    return *puVar1;
+  }
+  puVar5 = &UNK_180946b50;
+LAB_18066f3c7:
+  FUN_18066d370(puVar1,1,puVar5);
+  return *puVar1;
 }
 
-/**
- * 更新UI系统高级资源
- * 
- * @param ui_context UI系统上下文指针
- * @param resource_type 资源类型
- * @param data_ptr 数据指针
- * @return 更新结果，0表示成功，非0表示失败
- */
-undefined4 ui_system_update_advanced_resource(longlong ui_context, int resource_type, int *data_ptr)
-{
-    undefined4 *buffer_base;
-    int *layer_ptr;
-    int layer_index;
-    longlong layer_offset;
-    undefined *error_ptr;
-    int *layer_count;
-    
-    buffer_base = (undefined4 *)(ui_context + 0x12c0);
-    
-    // 根据资源类型选择对应的层
-    if (resource_type == 1) {
-        layer_ptr = (int *)(ui_context + 0x1c94);
-    }
-    else if (resource_type == 2) {
-        layer_ptr = (int *)(ui_context + 0x1c98);
-    }
-    else {
-        if (resource_type != 4) {
-            error_ptr = &ui_error_invalid_resource_type;
-            goto error_handler;
-        }
-        layer_ptr = (int *)(ui_context + 0x1c9c);
-    }
-    
-    layer_offset = (longlong)*layer_ptr;
-    
-    // 验证数据匹配
-    if ((((*(int *)(ui_context + 0x1a44 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[1]) &&
-         (*(int *)(ui_context + 0x1a40 + layer_offset * UI_VERTEX_BUFFER_SIZE) == *data_ptr)) &&
-        (*(int *)(ui_context + 0x1a58 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[6])) &&
-       (*(int *)(ui_context + 0x1a54 + layer_offset * UI_VERTEX_BUFFER_SIZE) == data_ptr[5])) {
-        
-        layer_index = ui_system_get_next_layer(buffer_base);
-        layer_count = (int *)(ui_context + 0x1c80 + (longlong)layer_index * 4);
-        *layer_count = *layer_count + -1;
-        
-        if (0 < (int)buffer_base[(longlong)*layer_ptr + 0x270]) {
-            buffer_base[(longlong)*layer_ptr + 0x270] = buffer_base[(longlong)*layer_ptr + 0x270] + -1;
-        }
-        
-        *layer_ptr = layer_index;
-        layer_count = (int *)(ui_context + 0x1c80 + (longlong)layer_index * 4);
-        *layer_count = *layer_count + 1;
-        
-        ui_system_copy_layer_data(data_ptr, ui_context + 0x1a40 + (longlong)*layer_ptr * UI_VERTEX_BUFFER_SIZE);
-        return *buffer_base;
-    }
-    
-    error_ptr = &ui_error_data_mismatch;
-error_handler:
-    ui_system_report_buffer_error(buffer_base, 1, error_ptr);
-    return *buffer_base;
-}
 
-// =============================================================================
-// 函数别名定义（用于兼容性）
-// =============================================================================
 
-// 原始函数名别名
-#define FUN_18066d7c0 ui_system_detect_cpu_features_and_initialize_function_table
-#define FUN_18066e230 ui_system_thread_safe_init
-#define FUN_18066e246 ui_system_thread_safe_init_simple
-#define FUN_18066e2a3 ui_system_init_cleanup
-#define FUN_18066e300 ui_system_detect_cpu_extensions
-#define FUN_18066e500 ui_system_init_resource_buffers
-#define FUN_18066e730 ui_system_init_render_context
-#define FUN_18066e7a0 ui_system_cleanup_resource_buffers
-#define FUN_18066e8f0 ui_system_allocate_aligned_memory
-#define FUN_18066e90c ui_system_align_memory_block
-#define FUN_18066e938 ui_system_empty_function
-#define FUN_18066e960 ui_system_allocate_aligned_memory_advanced
-#define FUN_18066e9b0 ui_system_check_state_and_execute
-#define FUN_18066e9db ui_system_switch_state
-#define FUN_18066ea6a ui_system_return_success
-#define FUN_18066ea80 ui_system_create_buffer
-#define FUN_18066ebc0 ui_system_global_init
-#define FUN_18066ebf0 ui_system_global_init_thread_safe
-#define FUN_18066ec06 ui_system_global_init_thread_safe_simple
-#define FUN_18066ec63 ui_system_global_init_cleanup
-#define FUN_18066eea0 ui_system_init_buffer
-#define FUN_18066ef00 ui_system_cleanup_buffer
-#define FUN_18066ef60 ui_system_execute_buffer_operation
-#define FUN_18066efd0 ui_system_update_buffer_data
-#define FUN_18066f080 ui_system_create_advanced_resource
-#define FUN_18066f2e0 ui_system_update_advanced_resource
 
-// =============================================================================
-// 文件信息
-// =============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件包含UI系统的高级初始化和资源管理功能，共13个函数：
- * 
- * 1. ui_system_detect_cpu_features_and_initialize_function_table - CPU特性检测和函数表初始化
- * 2. ui_system_thread_safe_init - 线程安全的UI系统初始化
- * 3. ui_system_thread_safe_init_simple - 简化的线程安全初始化
- * 4. ui_system_init_cleanup - 初始化完成后的清理
- * 5. ui_system_detect_cpu_extensions - CPU扩展特性检测
- * 6. ui_system_init_resource_buffers - 资源缓冲区初始化
- * 7. ui_system_init_render_context - 渲染上下文初始化
- * 8. ui_system_cleanup_resource_buffers - 资源缓冲区清理
- * 9. ui_system_allocate_aligned_memory - 对齐内存分配
- * 10. ui_system_allocate_aligned_memory_advanced - 高级对齐内存分配
- * 11. ui_system_check_state_and_execute - 状态检查和执行
- * 12. ui_system_global_init - 全局初始化
- * 13. ui_system_create_advanced_resource - 高级资源创建
- * 
- * 主要功能：
- * - CPU特性检测（SSE4.1, POPCNT, AVX2, AVX512等）
- * - 根据CPU特性选择最优的UI渲染函数实现
- * - 线程安全的初始化机制
- * - 内存管理和对齐分配
- * - UI资源缓冲区管理
- * - 渲染上下文设置
- * - 高级资源创建和管理
- * 
- * 注意事项：
- * - 所有函数都保持了原有的逻辑和功能
- * - 代码格式统一，缩进一致
- * - 添加了详细的中文注释
- * - 函数和变量使用了有意义的名称
- * - 保留了函数别名以确保兼容性
- */

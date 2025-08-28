@@ -1,184 +1,948 @@
-/**
- * @file 04_ui_system_part322.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part322.c - 4 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
+void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  FUN_18083f9b0(param_2,param_3,&UNK_1809843c0,*(undefined4 *)(param_1 + 0x10),
+                *(undefined1 *)(param_1 + 0x18));
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+int FUN_180842820(longlong param_1,longlong param_2,int param_3)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984348);
+  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+int FUN_1808428d0(longlong param_1,longlong param_2,int param_3)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809844b0);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+int FUN_180842990(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180984248);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180842a00(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983320);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180842ac0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809833b0);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180842b80(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x1c);
+  uVar2 = *(undefined4 *)(param_1 + 0x18);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983440);
+  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar1);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180842c60(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x1c);
+  uVar2 = *(undefined4 *)(param_1 + 0x18);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809834d0);
+  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180842d40(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983680);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180842e00(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983560);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180842e70(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983710);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180842ee0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809835f0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180842f50(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined8 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar2 = *(undefined8 *)(param_1 + 0x18);
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983e68);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074bda0(iVar3 + param_2,param_3 - iVar3,uVar2);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180843010(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983de0);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_1808430d0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983ce0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180843140(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983d60);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_1808431b0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined8 uStack_38;
+  undefined8 uStack_30;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_38 = *(undefined8 *)(param_1 + 0x18);
+  uStack_30 = *(undefined8 *)(param_1 + 0x20);
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  uStack_28 = *(undefined4 *)(param_1 + 0x28);
+  uStack_24 = *(undefined4 *)(param_1 + 0x2c);
+  uStack_20 = *(undefined4 *)(param_1 + 0x30);
+  uStack_1c = *(undefined4 *)(param_1 + 0x34);
+  uStack_18 = *(undefined4 *)(param_1 + 0x38);
+  uStack_14 = *(undefined4 *)(param_1 + 0x3c);
+  uStack_10 = *(undefined4 *)(param_1 + 0x40);
+  uStack_c = *(undefined4 *)(param_1 + 0x44);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809838a8);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18088ebb0(iVar2 + param_2,param_3 - iVar2,&uStack_38);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180843270(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983930);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180843330(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined1 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  undefined8 uStackX_8;
+  
+  uStackX_8 = *(undefined8 *)(param_1 + 0x18);
+  uVar2 = *(undefined1 *)(param_1 + 0x24);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983ef0);
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18088ece0(iVar4 + param_2,param_3 - iVar4,&uStackX_8);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b830(iVar4 + param_2,param_3 - iVar4,uVar1);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074be90(iVar4 + param_2,param_3 - iVar4,uVar2);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180843450(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined1 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  undefined8 uStackX_8;
+  
+  uStackX_8 = *(undefined8 *)(param_1 + 0x18);
+  uVar1 = *(undefined1 *)(param_1 + 0x24);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983f78);
+  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18088ece0(iVar3 + param_2,param_3 - iVar3,&uStackX_8);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0x25);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180843570(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined1 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  
+  uVar2 = *(undefined1 *)(param_1 + 0x1c);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809840a0);
+  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,param_1 + 0x28);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b830(iVar4 + param_2,param_3 - iVar4,uVar1);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074be90(iVar4 + param_2,param_3 - iVar4,uVar2);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180843690(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined1 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined1 *)(param_1 + 0x1c);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984130);
+  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0x28);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0xa8);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_1808437b0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined1 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined1 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983ac8);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+
+
+// 函数: void FUN_180843870(longlong param_1,undefined8 param_2,undefined4 param_3)
+void FUN_180843870(longlong param_1,undefined8 param_2,undefined4 param_3)
+
+{
+  FUN_18083fa50(param_2,param_3,&UNK_180983828,*(undefined4 *)(param_1 + 0x10),
+                *(undefined4 *)(param_1 + 0x18));
+  return;
+}
+
+
+
+int FUN_1808438a0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  
+  uVar2 = *(undefined4 *)(param_1 + 0x18);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  uVar1 = *(undefined4 *)(param_1 + 0x1c);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809839b8);
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b830(iVar4 + param_2,param_3 - iVar4,uVar1);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180843990(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
+  
+  uVar2 = *(undefined4 *)(param_1 + 0x18);
+  uVar3 = *(undefined4 *)(param_1 + 0x10);
+  uVar1 = *(undefined4 *)(param_1 + 0x1c);
+  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983a40);
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
+  iVar4 = iVar4 + iVar5;
+  iVar5 = func_0x00018074b830(iVar4 + param_2,param_3 - iVar4,uVar1);
+  return iVar5 + iVar4;
+}
+
+
+
+int FUN_180843a80(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983c50);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+
+
+// 函数: void FUN_180843b40(longlong param_1,undefined8 param_2,undefined4 param_3)
+void FUN_180843b40(longlong param_1,undefined8 param_2,undefined4 param_3)
+
+{
+  FUN_18083fa50(param_2,param_3,&UNK_1809837a0,*(undefined4 *)(param_1 + 0x10),
+                *(undefined4 *)(param_1 + 0x18));
+  return;
+}
+
+
+
+int FUN_180843b70(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983b50);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180843be0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x18);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983bd0);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180843ce0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809820b0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180843d90(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981ec0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180843e40(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982878);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+
+
+// 函数: void FUN_180843eb0(longlong param_1,undefined8 param_2,undefined4 param_3)
+void FUN_180843eb0(longlong param_1,undefined8 param_2,undefined4 param_3)
+
+{
+  FUN_18083f7b0(param_2,param_3,&UNK_1809828f8,*(undefined4 *)(param_1 + 0x10),
+                *(undefined4 *)(param_1 + 0x14));
+  return;
+}
+
+
+
+int FUN_180843ee0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x14);
+  uVar2 = *(undefined4 *)(param_1 + 0x10);
+  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982a98);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = iVar3 + iVar4;
+  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
+  return iVar4 + iVar3;
+}
+
+
+
+int FUN_180843fa0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981fc0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180844050(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981dc0);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180844100(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981f40);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_1808441b0(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  
+  uStack_18 = *(undefined4 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  uStack_10 = *(undefined4 *)(param_1 + 0x18);
+  uStack_c = *(undefined4 *)(param_1 + 0x1c);
+  uVar1 = *(undefined4 *)(param_1 + 0x20);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981d40);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+int FUN_180844260(longlong param_1,longlong param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  int iVar3;
+  
+  uVar1 = *(undefined4 *)(param_1 + 0x10);
+  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982978);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = iVar2 + iVar3;
+  iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
+  return iVar3 + iVar2;
+}
+
+
+
+
+

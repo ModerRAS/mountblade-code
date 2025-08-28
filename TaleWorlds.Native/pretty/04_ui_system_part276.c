@@ -1,184 +1,286 @@
-/**
- * @file 04_ui_system_part276.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part276.c - 1 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1808240c2(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
+void FUN_1808240c2(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  uint uVar1;
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  undefined1 auVar4 [32];
+  undefined1 auVar5 [12];
+  int in_EAX;
+  uint uVar6;
+  longlong unaff_RBX;
+  longlong unaff_RSI;
+  int unaff_EDI;
+  ulonglong uVar7;
+  undefined2 *in_R10;
+  uint *in_R11;
+  int unaff_R12D;
+  int unaff_R13D;
+  int unaff_R14D;
+  int unaff_R15D;
+  undefined1 auVar8 [32];
+  undefined1 auVar9 [32];
+  undefined1 auVar10 [32];
+  undefined1 auVar11 [32];
+  undefined1 auVar12 [32];
+  undefined1 auVar13 [32];
+  undefined1 auVar14 [32];
+  undefined1 auVar15 [32];
+  undefined1 auVar17 [36];
+  undefined1 auVar16 [64];
+  undefined1 auVar18 [28];
+  undefined1 auVar19 [32];
+  undefined1 auVar20 [32];
+  undefined1 auVar21 [32];
+  undefined1 auVar22 [32];
+  undefined1 auVar23 [32];
+  undefined1 auVar24 [32];
+  undefined1 auVar25 [32];
+  float unaff_XMM9_Da;
+  float unaff_XMM9_Db;
+  float unaff_XMM9_Dc;
+  float unaff_XMM9_Dd;
+  float in_YMM9_H;
+  float in_register_00001454;
+  float in_register_00001458;
+  int unaff_retaddr;
+  int in_stack_000000f0;
+  int in_stack_000000f8;
+  int in_stack_00000100;
+  
+  uVar6 = (param_1 - 1U >> 3) + 1;
+  uVar7 = (ulonglong)uVar6;
+  do {
+    uVar1 = in_R11[unaff_R13D];
+    auVar20._4_4_ = uVar1;
+    auVar20._0_4_ = uVar1;
+    auVar20._8_4_ = uVar1;
+    auVar20._12_4_ = uVar1;
+    auVar20._16_4_ = uVar1;
+    auVar20._20_4_ = uVar1;
+    auVar20._24_4_ = uVar1;
+    auVar20._28_4_ = uVar1;
+    uVar1 = *in_R11;
+    auVar8._4_4_ = uVar1;
+    auVar8._0_4_ = uVar1;
+    auVar8._8_4_ = uVar1;
+    auVar8._12_4_ = uVar1;
+    auVar8._16_4_ = uVar1;
+    auVar8._20_4_ = uVar1;
+    auVar8._24_4_ = uVar1;
+    auVar8._28_4_ = uVar1;
+    uVar1 = in_R11[unaff_R12D];
+    auVar21._4_4_ = uVar1;
+    auVar21._0_4_ = uVar1;
+    auVar21._8_4_ = uVar1;
+    auVar21._12_4_ = uVar1;
+    auVar21._16_4_ = uVar1;
+    auVar21._20_4_ = uVar1;
+    auVar21._24_4_ = uVar1;
+    auVar21._28_4_ = uVar1;
+    uVar1 = in_R11[unaff_R15D];
+    auVar22._4_4_ = uVar1;
+    auVar22._0_4_ = uVar1;
+    auVar22._8_4_ = uVar1;
+    auVar22._12_4_ = uVar1;
+    auVar22._16_4_ = uVar1;
+    auVar22._20_4_ = uVar1;
+    auVar22._24_4_ = uVar1;
+    auVar22._28_4_ = uVar1;
+    uVar1 = in_R11[unaff_R14D];
+    auVar23._4_4_ = uVar1;
+    auVar23._0_4_ = uVar1;
+    auVar23._8_4_ = uVar1;
+    auVar23._12_4_ = uVar1;
+    auVar23._16_4_ = uVar1;
+    auVar23._20_4_ = uVar1;
+    auVar23._24_4_ = uVar1;
+    auVar23._28_4_ = uVar1;
+    uVar1 = in_R11[unaff_EDI];
+    auVar24._4_4_ = uVar1;
+    auVar24._0_4_ = uVar1;
+    auVar24._8_4_ = uVar1;
+    auVar24._12_4_ = uVar1;
+    auVar24._16_4_ = uVar1;
+    auVar24._20_4_ = uVar1;
+    auVar24._24_4_ = uVar1;
+    auVar24._28_4_ = uVar1;
+    uVar1 = in_R11[in_EAX];
+    auVar25._4_4_ = uVar1;
+    auVar25._0_4_ = uVar1;
+    auVar25._8_4_ = uVar1;
+    auVar25._12_4_ = uVar1;
+    auVar25._16_4_ = uVar1;
+    auVar25._20_4_ = uVar1;
+    auVar25._24_4_ = uVar1;
+    auVar25._28_4_ = uVar1;
+    auVar8 = vblendps_avx(ZEXT1632(ZEXT816(0) << 0x40),auVar8,1);
+    uVar1 = in_R11[unaff_RBX];
+    auVar19._4_4_ = uVar1;
+    auVar19._0_4_ = uVar1;
+    auVar19._8_4_ = uVar1;
+    auVar19._12_4_ = uVar1;
+    auVar19._16_4_ = uVar1;
+    auVar19._20_4_ = uVar1;
+    auVar19._24_4_ = uVar1;
+    auVar19._28_4_ = uVar1;
+    auVar8 = vblendps_avx(auVar8,auVar19,2);
+    auVar8 = vblendps_avx(auVar8,auVar20,4);
+    auVar8 = vblendps_avx(auVar8,auVar21,8);
+    auVar8 = vblendps_avx(auVar8,auVar22,0x10);
+    auVar19 = vblendps_avx(auVar8,auVar23,0x20);
+    auVar19 = vblendps_avx(auVar19,auVar24,0x40);
+    auVar19 = vblendps_avx(auVar19,auVar25,0x80);
+    auVar4._4_4_ = auVar19._4_4_ * unaff_XMM9_Db;
+    auVar4._0_4_ = auVar19._0_4_ * unaff_XMM9_Da;
+    auVar4._8_4_ = auVar19._8_4_ * unaff_XMM9_Dc;
+    auVar4._12_4_ = auVar19._12_4_ * unaff_XMM9_Dd;
+    auVar4._16_4_ = auVar19._16_4_ * in_YMM9_H;
+    auVar4._20_4_ = auVar19._20_4_ * in_register_00001454;
+    auVar4._24_4_ = auVar19._24_4_ * in_register_00001458;
+    auVar4._28_4_ = auVar8._28_4_;
+    auVar8 = vcvtps2dq_avx(auVar4);
+    auVar2 = vpackssdw_avx(auVar8._0_16_,auVar8._0_16_);
+    auVar17 = (undefined1  [36])0x0;
+    *in_R10 = auVar2._0_2_;
+    in_R11 = in_R11 + (int)unaff_RBX * 8;
+    in_R10[unaff_RSI] = auVar2._2_2_;
+    in_R10[unaff_RSI * 2] = auVar2._4_2_;
+    in_R10[unaff_RSI * 3] = auVar2._6_2_;
+    auVar2 = vpackssdw_avx(auVar8._16_16_,auVar8._16_16_);
+    in_R10[unaff_RSI * 4] = auVar2._0_2_;
+    in_R10[unaff_RSI * 5] = auVar2._2_2_;
+    in_R10[unaff_RSI * 6] = auVar2._4_2_;
+    in_R10[unaff_RSI * 7] = auVar2._6_2_;
+    in_R10 = in_R10 + param_4 * 8;
+    uVar7 = uVar7 - 1;
+  } while (uVar7 != 0);
+  in_stack_000000f0 = in_stack_000000f0 + uVar6 * -8;
+  if (in_stack_000000f0 != 0) {
+    in_stack_000000f0 = in_stack_000000f0 + -1;
+    auVar5 = ZEXT812(0);
+    auVar18 = ZEXT1228(auVar5) << 0x20;
+    auVar8 = ZEXT1232(auVar5) << 0x20;
+    switch(in_stack_000000f0) {
+    case 6:
+      uVar6 = in_R11[unaff_retaddr];
+      auVar9._4_4_ = uVar6;
+      auVar9._0_4_ = uVar6;
+      auVar9._8_4_ = uVar6;
+      auVar9._12_4_ = uVar6;
+      auVar9._16_4_ = uVar6;
+      auVar9._20_4_ = uVar6;
+      auVar9._24_4_ = uVar6;
+      auVar9._28_4_ = uVar6;
+      auVar8 = vblendps_avx(ZEXT1232(auVar5) << 0x20,auVar9,0x40);
+    case 5:
+      uVar6 = in_R11[in_stack_00000100 * 5];
+      auVar10._4_4_ = uVar6;
+      auVar10._0_4_ = uVar6;
+      auVar10._8_4_ = uVar6;
+      auVar10._12_4_ = uVar6;
+      auVar10._16_4_ = uVar6;
+      auVar10._20_4_ = uVar6;
+      auVar10._24_4_ = uVar6;
+      auVar10._28_4_ = uVar6;
+      auVar8 = vblendps_avx(auVar8,auVar10,0x20);
+    case 4:
+      uVar6 = in_R11[in_stack_00000100 * 4];
+      auVar11._4_4_ = uVar6;
+      auVar11._0_4_ = uVar6;
+      auVar11._8_4_ = uVar6;
+      auVar11._12_4_ = uVar6;
+      auVar11._16_4_ = uVar6;
+      auVar11._20_4_ = uVar6;
+      auVar11._24_4_ = uVar6;
+      auVar11._28_4_ = uVar6;
+      auVar8 = vblendps_avx(auVar8,auVar11,0x10);
+    case 3:
+      uVar6 = in_R11[in_stack_00000100 * 3];
+      auVar12._4_4_ = uVar6;
+      auVar12._0_4_ = uVar6;
+      auVar12._8_4_ = uVar6;
+      auVar12._12_4_ = uVar6;
+      auVar12._16_4_ = uVar6;
+      auVar12._20_4_ = uVar6;
+      auVar12._24_4_ = uVar6;
+      auVar12._28_4_ = uVar6;
+      auVar8 = vblendps_avx(auVar8,auVar12,8);
+    case 2:
+      uVar6 = in_R11[in_stack_00000100 * 2];
+      auVar13._4_4_ = uVar6;
+      auVar13._0_4_ = uVar6;
+      auVar13._8_4_ = uVar6;
+      auVar13._12_4_ = uVar6;
+      auVar13._16_4_ = uVar6;
+      auVar13._20_4_ = uVar6;
+      auVar13._24_4_ = uVar6;
+      auVar13._28_4_ = uVar6;
+      auVar8 = vblendps_avx(auVar8,auVar13,4);
+    case 1:
+      uVar6 = in_R11[in_stack_00000100];
+      auVar14._4_4_ = uVar6;
+      auVar14._0_4_ = uVar6;
+      auVar14._8_4_ = uVar6;
+      auVar14._12_4_ = uVar6;
+      auVar14._16_4_ = uVar6;
+      auVar14._20_4_ = uVar6;
+      auVar14._24_4_ = uVar6;
+      auVar14._28_4_ = uVar6;
+      auVar8 = vblendps_avx(auVar8,auVar14,2);
+    case 0:
+      uVar6 = *in_R11;
+      auVar15._4_4_ = uVar6;
+      auVar15._0_4_ = uVar6;
+      auVar15._8_4_ = uVar6;
+      auVar15._12_4_ = uVar6;
+      auVar15._16_4_ = uVar6;
+      auVar15._20_4_ = uVar6;
+      auVar15._24_4_ = uVar6;
+      auVar15._28_4_ = uVar6;
+      auVar17 = ZEXT436(uVar6);
+      auVar8 = vblendps_avx(auVar8,auVar15,1);
+      auVar18 = auVar8._0_28_;
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+    auVar16._0_4_ = auVar18._0_4_ * unaff_XMM9_Da;
+    auVar16._4_4_ = auVar18._4_4_ * unaff_XMM9_Db;
+    auVar16._8_4_ = auVar18._8_4_ * unaff_XMM9_Dc;
+    auVar16._12_4_ = auVar18._12_4_ * unaff_XMM9_Dd;
+    auVar16._16_4_ = auVar18._16_4_ * in_YMM9_H;
+    auVar16._20_4_ = auVar18._20_4_ * in_register_00001454;
+    auVar16._24_4_ = auVar18._24_4_ * in_register_00001458;
+    auVar16._28_36_ = auVar17;
+    auVar8 = vcvtps2dq_avx(auVar16._0_32_);
+    auVar2 = vpackssdw_avx(auVar8._0_16_,auVar8._0_16_);
+    auVar3 = vpackssdw_avx(auVar8._16_16_,auVar8._16_16_);
+    switch(in_stack_000000f0) {
+    case 6:
+      in_R10[in_stack_000000f8 * 6] = auVar3._4_2_;
+    case 5:
+      in_R10[in_stack_000000f8 * 5] = auVar3._2_2_;
+    case 4:
+      in_R10[in_stack_000000f8 * 4] = auVar3._0_2_;
+    case 3:
+      in_R10[in_stack_000000f8 * 3] = auVar2._6_2_;
+    case 2:
+      in_R10[in_stack_000000f8 * 2] = auVar2._4_2_;
+    case 1:
+      in_R10[in_stack_000000f8] = auVar2._2_2_;
+    case 0:
+      *in_R10 = auVar2._0_2_;
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  }
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
-{
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
-}
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
+// WARNING: Removing unreachable block (ram,0x00018082436c)
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+

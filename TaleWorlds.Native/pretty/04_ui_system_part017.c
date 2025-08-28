@@ -1,1152 +1,1013 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part017.c - UI系统高级动画控制和状态管理模块
-// 
-// 本文件包含9个核心函数，主要负责UI系统的高级动画控制、状态管理、
-// 参数计算和资源处理等功能。这是一个复杂的UI系统处理模块，包含大量的
-// 数学计算、动画插值、状态转换和资源管理。
-//
-// 主要功能：
-// - UI元素高级动画控制和插值计算
-// - 复杂的状态管理和转换逻辑
-// - 动画参数的动态计算和更新
-// - 渲染资源的优化和管理
-// - UI元素的批量处理和状态同步
-// - 高级动画效果和过渡控制
-//
-// 简化实现说明：
-// - 原始实现：包含大量复杂的数学计算、状态机和动画逻辑
-// - 简化实现：使用结构体和清晰的函数调用替代底层操作
-// - 保留核心的动画控制逻辑和数学计算
+// 04_ui_system_part017.c - 9 个函数
 
-// ============================================================================
-// 常量定义
-// ============================================================================
+// 函数: void FUN_18065d7f0(longlong param_1,longlong param_2)
+void FUN_18065d7f0(longlong param_1,longlong param_2)
 
-// 动画控制常量
-#define UI_ANIMATION_THRESHOLD 0.001f
-#define UI_ANIMATION_SPEED_FACTOR 0.05f
-#define UI_ANIMATION_INTERPOLATION_FACTOR 0.3f
-#define UI_ANIMATION_BATCH_SIZE 6
-#define UI_ANIMATION_DATA_SIZE 0x30
-#define UI_ANIMATION_STATE_COUNT 4
-#define UI_ANIMATION_MODE_NORMAL 0
-#define UI_ANIMATION_MODE_BLEND 1
-#define UI_ANIMATION_MODE_TRANSITION 2
-
-// 数学计算常量
-#define UI_SMOOTH_STEP_COEFFICIENTS {6.0f, -15.0f, 10.0f}
-#define UI_FLOAT_EPSILON 1.1754944e-38f
-#define UI_FLOAT_TOLERANCE 0.001f
-#define UI_PI 3.14159265358979323846f
-#define UI_HALF_PI 1.5707964f
-#define UI_TWO_PI 6.28318530717958647692f
-
-// 状态管理常量
-#define UI_STATE_ACTIVE 0x1
-#define UI_STATE_VISIBLE 0x2
-#define UI_STATE_ANIMATING 0x4
-#define UI_STATE_TRANSITIONING 0x8
-#define UI_STATE_BATCHED 0x10
-#define UI_STATE_OPTIMIZED 0x20
-
-// 资源管理常量
-#define UI_RESOURCE_FLAG_ACTIVE 0x1
-#define UI_RESOURCE_FLAG_DIRTY 0x2
-#define UI_RESOURCE_FLAG_PENDING 0x4
-#define UI_RESOURCE_FLAG_PROCESSED 0x8
-
-// ============================================================================
-// 结构体定义
-// ============================================================================
-
-/**
- * @brief UI系统动画上下文结构体
- * 
- * 存储UI系统动画的所有状态信息，包括：
- * - 动画参数和变换矩阵
- * - 渲染状态和控制参数
- * - 时间和插值参数
- * - 状态管理和资源信息
- */
-typedef struct {
-    // 核心动画参数
-    float animation_time;          // 动画时间
-    float animation_speed;         // 动画速度
-    float interpolation_factor;    // 插值因子
-    float blend_factor;            // 混合因子
-    float transition_factor;       // 过渡因子
-    
-    // 动画状态参数
-    int current_state;             // 当前状态
-    int target_state;              // 目标状态
-    int animation_mode;             // 动画模式
-    int animation_flags;            // 动画标志
-    
-    // 变换参数
-    float position_x;              // X轴位置
-    float position_y;              // Y轴位置
-    float position_z;              // Z轴位置
-    float rotation_angle;          // 旋转角度
-    float scale_factor;            // 缩放因子
-    float opacity;                 // 透明度
-    
-    // 动画控制参数
-    float target_x;                // 目标X位置
-    float target_y;                // 目标Y位置
-    float target_rotation;         // 目标旋转角度
-    float target_scale;            // 目标缩放
-    float target_opacity;          // 目标透明度
-    
-    // 批处理参数
-    int batch_count;               // 批处理数量
-    int batch_size;                // 批处理大小
-    void* batch_data;              // 批处理数据
-    
-    // 资源管理
-    void* resource_data;           // 资源数据
-    int resource_flags;            // 资源标志
-    int resource_count;            // 资源数量
-    
-    // 状态索引
-    int state_index;               // 状态索引
-    int* state_ptr;                // 状态指针
-    
-    // 辅助参数
-    float temp_values[16];         // 临时数值数组
-    int control_flags;             // 控制标志
-    
-} ui_animation_context_t;
-
-/**
- * @brief UI系统渲染数据结构体
- * 
- * 存储UI系统渲染的各种数据：
- * - 顶点数据和变换矩阵
- * - 纹理坐标和渲染参数
- * - 状态标志和资源信息
- */
-typedef struct {
-    // 渲染基础数据
-    float* vertex_data;           // 顶点数据
-    float* texture_coords;         // 纹理坐标
-    int* index_data;               // 索引数据
-    
-    // 变换矩阵
-    float transform_matrix[16];    // 变换矩阵
-    float rotation_matrix[9];      // 旋转矩阵
-    float scale_matrix[9];         // 缩放矩阵
-    
-    // 渲染参数
-    float render_priority;         // 渲染优先级
-    float blend_factor;            // 混合因子
-    float alpha_threshold;         // 透明度阈值
-    
-    // 状态标志
-    int render_flags;              // 渲染标志
-    int update_flags;              // 更新标志
-    int batch_flags;               // 批处理标志
-    
-    // 资源信息
-    void* texture_resource;       // 纹理资源
-    void* shader_resource;        // 着色器资源
-    void* buffer_resource;         // 缓冲区资源
-    
-    // 边界信息
-    float bounding_box[4];         // 边界框
-    float render_bounds[4];        // 渲染边界
-    
-} ui_render_data_t;
-
-/**
- * @brief UI系统动画参数结构体
- * 
- * 存储UI动画的各种参数：
- * - 时间和速度参数
- * - 插值和缓动参数
- * - 状态和模式参数
- */
-typedef struct {
-    // 时间参数
-    float duration;                // 动画持续时间
-    float elapsed_time;            // 已用时间
-    float time_scale;              // 时间缩放
-    
-    // 速度参数
-    float speed_factor;            // 速度因子
-    float acceleration;            // 加速度
-    float deceleration;            // 减速度
-    
-    // 插值参数
-    int interpolation_type;        // 插值类型
-    int easing_function;           // 缓动函数
-    float ease_in_factor;          // 缓入因子
-    float ease_out_factor;         // 缓出因子
-    
-    // 状态参数
-    int start_state;               // 起始状态
-    int end_state;                 // 结束状态
-    int transition_mode;           // 过渡模式
-    
-    // 循环参数
-    int loop_count;                // 循环次数
-    int loop_mode;                 // 循环模式
-    float loop_delay;              // 循环延迟
-    
-} ui_animation_params_t;
-
-// ============================================================================
-// 函数声明
-// ============================================================================
-
-// 主要功能函数
-void ui_system_advanced_animation_controller(void* context, void* target);
-void ui_system_animation_parameter_processor(void* context, float time_delta);
-void ui_system_render_state_manager(void* context, void* render_data);
-void ui_system_resource_optimizer(void* context, void* optimization_data);
-void ui_system_animation_interpolator(void* context, void* interpolation_data);
-void ui_system_state_transition_handler(void* context, void* transition_data);
-void ui_system_batch_animation_processor(void* context, void* batch_data);
-void ui_system_performance_manager(void* context, void* performance_data);
-void ui_system_debug_animation_visualizer(void* context, void* debug_data);
-
-// 内部辅助函数
-static float ui_calculate_smooth_step(float t);
-static float ui_calculate_interpolation_factor(float current, float target, float speed);
-static void ui_update_animation_matrix(ui_animation_context_t* context);
-static void ui_process_animation_batch(ui_animation_context_t* context, int batch_index);
-static float ui_calculate_animation_intensity(ui_animation_context_t* context);
-static void ui_apply_animation_transform(ui_animation_context_t* context, float* transform_matrix);
-static void ui_optimize_animation_batch(ui_animation_context_t* context);
-static void ui_handle_state_transition(ui_animation_context_t* context, int new_state);
-
-// ============================================================================
-// 函数别名定义（保持兼容性）
-// ============================================================================
-
-#define FUN_18065d7f0 ui_system_advanced_animation_controller
-#define FUN_18065d804 ui_system_animation_parameter_processor
-#define FUN_18065d902 ui_system_render_state_manager
-#define FUN_18065dec1 ui_system_resource_optimizer
-#define FUN_18065df80 ui_system_animation_interpolator
-#define FUN_18065e200 ui_system_state_transition_handler
-#define FUN_18065e276 ui_system_batch_animation_processor
-#define FUN_18065e9a5 ui_system_performance_manager
-#define FUN_18065ed75 ui_system_debug_animation_visualizer
-
-// ============================================================================
-// 主要功能函数实现
-// ============================================================================
-
-/**
- * UI系统高级动画控制器
- * 控制UI系统的高级动画逻辑和状态转换
- * 
- * 主要功能：
- * 1. 管理UI元素的动画状态和转换
- * 2. 计算复杂的动画插值和混合效果
- * 3. 处理动画的批处理和优化
- * 4. 控制动画的播放和暂停逻辑
- * 5. 管理动画资源和状态同步
- * 
- * 算法流程：
- * - 输入：动画上下文、目标数据
- * - 处理：状态计算、插值处理、批处理控制
- * - 输出：更新后的动画状态和渲染数据
- * 
- * 简化实现说明：
- * - 原始实现：包含大量复杂的数学计算和状态机逻辑
- * - 简化实现：使用结构体和清晰的函数调用替代底层操作
- * - 保留核心的动画控制逻辑和数学计算
- * 
- * @param context 动画上下文指针
- * @param target 目标数据指针
- */
-void ui_system_advanced_animation_controller(void* system_context, void* target_data)
 {
-    ui_animation_context_t* context = (ui_animation_context_t*)system_context;
-    ui_render_data_t* target = (ui_render_data_t*)target_data;
-    
-    if (context == NULL || target == NULL) {
-        return;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  int iVar4;
+  int iVar5;
+  undefined8 *puVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  
+  fVar9 = *(float *)(param_1 + 0x2c);
+  fVar12 = (3.0 - (fVar9 + fVar9)) * fVar9 * fVar9;
+  fVar9 = 1.0 - fVar12;
+  if (*(int *)(param_1 + 0x10) == 1) {
+    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  }
+  else {
+    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78),
+                  *(undefined4 *)(param_1 + 0x1c));
+  }
+  if (*(int *)(param_1 + 0x14) == 1) {
+    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  }
+  else {
+    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78),
+                  *(undefined4 *)(param_1 + 0x1c));
+  }
+  iVar5 = 0;
+  if (0.0 < fVar9) {
+    if (*(int *)(param_1 + 0x14) == 5) {
+      fVar10 = *(float *)(param_1 + 0x3c);
+      if (fVar10 < 1.0) {
+        fVar1 = *(float *)(param_1 + 0x34);
+        fVar2 = *(float *)(param_1 + 0x38);
+        fVar3 = *(float *)(param_1 + 0x30);
+        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
+        fVar8 = (1.0 - fVar1) - fVar2;
+        iVar4 = iVar5;
+        do {
+          switch(iVar4) {
+          case 0:
+            fVar11 = fVar8 * fVar3;
+            break;
+          case 1:
+            fVar11 = (1.0 - fVar3) * fVar8;
+            break;
+          case 2:
+            fVar11 = fVar1;
+            break;
+          case 3:
+            fVar11 = fVar2;
+            break;
+          default:
+            goto LAB_18065da24;
+          }
+          if (0.001 < (1.0 - fVar10) * fVar9 * fVar11) {
+            FUN_180403910(*puVar6,param_2);
+          }
+LAB_18065da24:
+          iVar4 = iVar4 + 1;
+          puVar6 = puVar6 + 1;
+        } while (iVar4 < 6);
+        fVar10 = *(float *)(param_1 + 0x3c);
+      }
+      if (0.0 < fVar10) {
+        fVar1 = *(float *)(param_1 + 0x34);
+        fVar2 = *(float *)(param_1 + 0x38);
+        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
+        fVar3 = *(float *)(param_1 + 0x30);
+        fVar8 = (1.0 - fVar1) - fVar2;
+        iVar4 = iVar5;
+        do {
+          switch(iVar4) {
+          case 0:
+            fVar11 = fVar8 * fVar3;
+            break;
+          case 1:
+            fVar11 = (1.0 - fVar3) * fVar8;
+            break;
+          case 2:
+            fVar11 = fVar1;
+            break;
+          case 3:
+            fVar11 = fVar2;
+            break;
+          default:
+            goto LAB_18065dae7;
+          }
+          if (0.001 < fVar10 * fVar9 * fVar11) {
+            FUN_180403910(*puVar6,param_2);
+          }
+LAB_18065dae7:
+          iVar4 = iVar4 + 1;
+          puVar6 = puVar6 + 1;
+        } while (iVar4 < 6);
+      }
     }
-    
-    // 1. 计算动画插值因子
-    // =======================
-    
-    float animation_time = context->animation_time;
-    float smooth_step = ui_calculate_smooth_step(animation_time);
-    float interpolation_factor = 1.0f - smooth_step;
-    
-    // 2. 处理主要动画状态
-    // =======================
-    
-    if (context->current_state == 1) {
-        // 处理主要动画逻辑
-        // FUN_180660070(...);
-    } else {
-        // 处理次要动画逻辑
-        // FUN_18065ffa0(...);
+    else {
+      FUN_18065fdb0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78),
+                    param_2);
     }
-    
-    // 3. 处理次要动画状态
-    // =======================
-    
-    if (context->target_state == 1) {
-        // 处理目标动画逻辑
-        // FUN_180660070(...);
-    } else {
-        // 处理次要目标动画逻辑
-        // FUN_18065ffa0(...);
-    }
-    
-    // 4. 批量处理动画数据
-    // =======================
-    
-    if (interpolation_factor > 0.0f) {
-        if (context->target_state == 5) {
-            // 处理特殊动画模式
-            float blend_factor = context->blend_factor;
-            
-            if (blend_factor < 1.0f) {
-                // 处理混合动画
-                float pos_x = context->position_x;
-                float pos_y = context->position_y;
-                float pos_z = context->position_z;
-                float rot_angle = context->rotation_angle;
-                
-                // 计算动画参数
-                float animation_param = (1.0f - pos_x) - pos_y;
-                
-                // 处理动画批数据
-                for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                    float animation_value;
-                    
-                    switch (i) {
-                        case 0:
-                            animation_value = animation_param * rot_angle;
-                            break;
-                        case 1:
-                            animation_value = (1.0f - rot_angle) * animation_param;
-                            break;
-                        case 2:
-                            animation_value = pos_x;
-                            break;
-                        case 3:
-                            animation_value = pos_y;
-                            break;
-                        default:
-                            animation_value = 0.0f;
-                    }
-                    
-                    // 检查动画阈值
-                    if (UI_ANIMATION_THRESHOLD < (1.0f - blend_factor) * interpolation_factor * animation_value) {
-                        // FUN_180403910(...);
-                    }
-                }
-            }
-            
-            // 处理附加动画数据
-            if (blend_factor > 0.0f) {
-                // 处理附加动画逻辑
-                for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                    float animation_value;
-                    
-                    switch (i) {
-                        case 0:
-                            animation_value = animation_param * rot_angle;
-                            break;
-                        case 1:
-                            animation_value = (1.0f - rot_angle) * animation_param;
-                            break;
-                        case 2:
-                            animation_value = pos_x;
-                            break;
-                        case 3:
-                            animation_value = pos_y;
-                            break;
-                        default:
-                            animation_value = 0.0f;
-                    }
-                    
-                    // 检查动画阈值
-                    if (UI_ANIMATION_THRESHOLD < blend_factor * interpolation_factor * animation_value) {
-                        // FUN_180403910(...);
-                    }
-                }
-            }
-        } else {
-            // 处理标准动画模式
-            // FUN_18065fdb0(...);
+  }
+  if (*(int *)(param_1 + 0x10) == 5) {
+    fVar9 = *(float *)(param_1 + 0x3c);
+    fVar10 = -1.0;
+    if (fVar9 < 1.0) {
+      fVar1 = *(float *)(param_1 + 0x34);
+      fVar2 = *(float *)(param_1 + 0x38);
+      fVar3 = *(float *)(param_1 + 0x30);
+      fVar8 = (1.0 - fVar9) * fVar12;
+      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
+      fVar11 = (1.0 - fVar1) - fVar2;
+      fVar9 = -1.0;
+      do {
+        switch(iVar5) {
+        case 0:
+          fVar7 = fVar11 * fVar3 * fVar8;
+          break;
+        case 1:
+          fVar7 = (1.0 - fVar3) * fVar11 * fVar8;
+          break;
+        case 2:
+          fVar7 = fVar8 * fVar1;
+          break;
+        case 3:
+          fVar7 = fVar8 * fVar2;
+          break;
+        default:
+          fVar7 = 0.0;
         }
-    }
-    
-    // 5. 处理当前状态动画
-    // =======================
-    
-    if (context->current_state == 5) {
-        float blend_factor = context->blend_factor;
-        float max_value = -1.0f;
-        
-        if (blend_factor < 1.0f) {
-            // 处理混合动画逻辑
-            float pos_x = context->position_x;
-            float pos_y = context->position_y;
-            float pos_z = context->position_z;
-            float rot_angle = context->rotation_angle;
-            
-            float smooth_factor = (1.0f - blend_factor) * smooth_step;
-            float animation_param = (1.0f - pos_x) - pos_y;
-            
-            // 处理动画批数据
-            for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                float animation_value;
-                
-                switch (i) {
-                    case 0:
-                        animation_value = animation_param * rot_angle * smooth_factor;
-                        break;
-                    case 1:
-                        animation_value = (1.0f - rot_angle) * animation_param * smooth_factor;
-                        break;
-                    case 2:
-                        animation_value = smooth_factor * pos_x;
-                        break;
-                    case 3:
-                        animation_value = smooth_factor * pos_y;
-                        break;
-                    default:
-                        animation_value = 0.0f;
-                }
-                
-                // 更新最大值
-                if (context->state_ptr != NULL && max_value < animation_value) {
-                    *context->state_ptr = i;
-                    max_value = animation_value;
-                }
-                
-                // 检查动画阈值
-                if (UI_ANIMATION_THRESHOLD < animation_value) {
-                    // FUN_180403910(...);
-                }
-            }
+        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar9 < fVar7)) {
+          *(int *)(param_1 + 0xc84) = iVar5;
+          fVar9 = fVar7;
         }
-        
-        // 处理附加动画数据
-        if (blend_factor > 0.0f) {
-            // 处理附加动画逻辑
-            for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                float animation_value;
-                
-                switch (i) {
-                    case 0:
-                        animation_value = animation_param * rot_angle * blend_factor * smooth_step;
-                        break;
-                    case 1:
-                        animation_value = (1.0f - rot_angle) * animation_param * blend_factor * smooth_step;
-                        break;
-                    case 2:
-                        animation_value = blend_factor * smooth_step * pos_x;
-                        break;
-                    case 3:
-                        animation_value = blend_factor * smooth_step * pos_y;
-                        break;
-                    default:
-                        animation_value = 0.0f;
-                }
-                
-                // 更新最大值
-                if (context->state_ptr != NULL && max_value < animation_value) {
-                    *context->state_ptr = i;
-                    max_value = animation_value;
-                }
-                
-                // 检查动画阈值
-                if (UI_ANIMATION_THRESHOLD < animation_value) {
-                    // FUN_180403910(...);
-                }
-            }
+        if (0.001 < fVar7) {
+          FUN_180403910(*puVar6,param_2);
         }
-    } else {
-        // 处理标准动画模式
-        // FUN_18065fdb0(...);
+        iVar5 = iVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while (iVar5 < 6);
+      fVar9 = *(float *)(param_1 + 0x3c);
     }
-    
-    // 6. 清理和同步处理
-    // ===================
-    
-    if (context->resource_flags != 0) {
-        // func_0x000180435370(target);
+    iVar5 = 0;
+    if (0.0 < fVar9) {
+      fVar1 = *(float *)(param_1 + 0x34);
+      fVar2 = *(float *)(param_1 + 0x38);
+      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
+      fVar3 = *(float *)(param_1 + 0x30);
+      fVar9 = fVar9 * fVar12;
+      fVar12 = (1.0 - fVar1) - fVar2;
+      do {
+        switch(iVar5) {
+        case 0:
+          fVar8 = fVar12 * fVar3 * fVar9;
+          break;
+        case 1:
+          fVar8 = (1.0 - fVar3) * fVar12 * fVar9;
+          break;
+        case 2:
+          fVar8 = fVar9 * fVar1;
+          break;
+        case 3:
+          fVar8 = fVar9 * fVar2;
+          break;
+        default:
+          fVar8 = 0.0;
+        }
+        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar10 < fVar8)) {
+          *(int *)(param_1 + 0xc84) = iVar5;
+          fVar10 = fVar8;
+        }
+        if (0.001 < fVar8) {
+          FUN_180403910(*puVar6,param_2);
+        }
+        iVar5 = iVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while (iVar5 < 6);
     }
+  }
+  else {
+    FUN_18065fdb0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78),param_2
+                 );
+  }
+  if (*(longlong *)(param_2 + 0x808) != 0) {
+    func_0x000180435370(param_2);
+  }
+  return;
 }
 
-/**
- * UI系统动画参数处理器
- * 处理UI系统的动画参数计算和更新
- * 
- * @param context 动画上下文指针
- * @param time_delta 时间增量
- */
-void ui_system_animation_parameter_processor(void* system_context, float time_delta)
+
+
+
+
+// 函数: void FUN_18065d804(longlong param_1,float param_2)
+void FUN_18065d804(longlong param_1,float param_2)
+
 {
-    ui_animation_context_t* context = (ui_animation_context_t*)system_context;
-    
-    if (context == NULL) {
-        return;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  longlong in_RAX;
+  undefined8 unaff_RBX;
+  undefined8 unaff_RSI;
+  int iVar4;
+  int iVar5;
+  longlong unaff_R12;
+  undefined8 unaff_R13;
+  undefined8 *puVar6;
+  undefined8 unaff_R15;
+  float fVar7;
+  undefined4 unaff_XMM6_Da;
+  float fVar8;
+  undefined4 unaff_XMM6_Db;
+  undefined4 unaff_XMM6_Dc;
+  undefined4 unaff_XMM6_Dd;
+  undefined4 unaff_XMM7_Da;
+  float fVar9;
+  undefined4 unaff_XMM7_Db;
+  undefined4 unaff_XMM7_Dc;
+  undefined4 unaff_XMM7_Dd;
+  float fVar10;
+  float fVar11;
+  undefined4 unaff_XMM12_Da;
+  undefined4 unaff_XMM12_Db;
+  undefined4 unaff_XMM12_Dc;
+  undefined4 unaff_XMM12_Dd;
+  undefined4 unaff_XMM13_Da;
+  undefined4 unaff_XMM13_Db;
+  undefined4 unaff_XMM13_Dc;
+  undefined4 unaff_XMM13_Dd;
+  undefined4 unaff_XMM14_Da;
+  undefined4 unaff_XMM14_Db;
+  undefined4 unaff_XMM14_Dc;
+  undefined4 unaff_XMM14_Dd;
+  undefined4 unaff_XMM15_Da;
+  float fVar12;
+  undefined4 unaff_XMM15_Db;
+  undefined4 unaff_XMM15_Dc;
+  undefined4 unaff_XMM15_Dd;
+  
+  *(undefined8 *)(in_RAX + 8) = unaff_RBX;
+  *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
+  *(undefined8 *)(in_RAX + -0x18) = unaff_R13;
+  *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
+  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM6_Da;
+  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM6_Db;
+  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM6_Dc;
+  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM6_Dd;
+  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM7_Da;
+  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM7_Db;
+  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM7_Dc;
+  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM7_Dd;
+  *(undefined4 *)(in_RAX + -0x98) = unaff_XMM12_Da;
+  *(undefined4 *)(in_RAX + -0x94) = unaff_XMM12_Db;
+  *(undefined4 *)(in_RAX + -0x90) = unaff_XMM12_Dc;
+  *(undefined4 *)(in_RAX + -0x8c) = unaff_XMM12_Dd;
+  *(undefined4 *)(in_RAX + -0xa8) = unaff_XMM13_Da;
+  *(undefined4 *)(in_RAX + -0xa4) = unaff_XMM13_Db;
+  *(undefined4 *)(in_RAX + -0xa0) = unaff_XMM13_Dc;
+  *(undefined4 *)(in_RAX + -0x9c) = unaff_XMM13_Dd;
+  *(undefined4 *)(in_RAX + -0xb8) = unaff_XMM14_Da;
+  *(undefined4 *)(in_RAX + -0xb4) = unaff_XMM14_Db;
+  *(undefined4 *)(in_RAX + -0xb0) = unaff_XMM14_Dc;
+  *(undefined4 *)(in_RAX + -0xac) = unaff_XMM14_Dd;
+  *(undefined4 *)(in_RAX + -200) = unaff_XMM15_Da;
+  *(undefined4 *)(in_RAX + -0xc4) = unaff_XMM15_Db;
+  *(undefined4 *)(in_RAX + -0xc0) = unaff_XMM15_Dc;
+  *(undefined4 *)(in_RAX + -0xbc) = unaff_XMM15_Dd;
+  fVar12 = (3.0 - (param_2 + param_2)) * param_2 * param_2;
+  fVar9 = 1.0 - fVar12;
+  if (*(int *)(param_1 + 0x10) == 1) {
+    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  }
+  else {
+    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78),
+                  *(undefined4 *)(param_1 + 0x1c));
+  }
+  if (*(int *)(param_1 + 0x14) == 1) {
+    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  }
+  else {
+    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78),
+                  *(undefined4 *)(param_1 + 0x1c));
+  }
+  iVar5 = 0;
+  if (0.0 < fVar9) {
+    if (*(int *)(param_1 + 0x14) == 5) {
+      fVar10 = *(float *)(param_1 + 0x3c);
+      if (fVar10 < 1.0) {
+        fVar1 = *(float *)(param_1 + 0x34);
+        fVar2 = *(float *)(param_1 + 0x38);
+        fVar3 = *(float *)(param_1 + 0x30);
+        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
+        fVar8 = (1.0 - fVar1) - fVar2;
+        iVar4 = iVar5;
+        do {
+          switch(iVar4) {
+          case 0:
+            fVar11 = fVar8 * fVar3;
+            break;
+          case 1:
+            fVar11 = (1.0 - fVar3) * fVar8;
+            break;
+          case 2:
+            fVar11 = fVar1;
+            break;
+          case 3:
+            fVar11 = fVar2;
+            break;
+          default:
+            goto LAB_18065da24;
+          }
+          if (0.001 < (1.0 - fVar10) * fVar9 * fVar11) {
+            FUN_180403910(*puVar6);
+          }
+LAB_18065da24:
+          iVar4 = iVar4 + 1;
+          puVar6 = puVar6 + 1;
+        } while (iVar4 < 6);
+        fVar10 = *(float *)(param_1 + 0x3c);
+      }
+      if (0.0 < fVar10) {
+        fVar1 = *(float *)(param_1 + 0x34);
+        fVar2 = *(float *)(param_1 + 0x38);
+        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
+        fVar3 = *(float *)(param_1 + 0x30);
+        fVar8 = (1.0 - fVar1) - fVar2;
+        iVar4 = iVar5;
+        do {
+          switch(iVar4) {
+          case 0:
+            fVar11 = fVar8 * fVar3;
+            break;
+          case 1:
+            fVar11 = (1.0 - fVar3) * fVar8;
+            break;
+          case 2:
+            fVar11 = fVar1;
+            break;
+          case 3:
+            fVar11 = fVar2;
+            break;
+          default:
+            goto LAB_18065dae7;
+          }
+          if (0.001 < fVar10 * fVar9 * fVar11) {
+            FUN_180403910(*puVar6);
+          }
+LAB_18065dae7:
+          iVar4 = iVar4 + 1;
+          puVar6 = puVar6 + 1;
+        } while (iVar4 < 6);
+      }
     }
-    
-    // 1. 计算动画参数
-    // =================
-    
-    float smooth_step = ui_calculate_smooth_step(time_delta);
-    float interpolation_factor = 1.0f - smooth_step;
-    
-    // 2. 处理动画状态
-    // =================
-    
-    if (context->current_state == 1) {
-        // 处理主要动画逻辑
-        // FUN_180660070(...);
-    } else {
-        // 处理次要动画逻辑
-        // FUN_18065ffa0(...);
+    else {
+      FUN_18065fdb0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78));
     }
-    
-    // 3. 处理目标状态
-    // =================
-    
-    if (context->target_state == 1) {
-        // 处理目标动画逻辑
-        // FUN_180660070(...);
-    } else {
-        // 处理次要目标动画逻辑
-        // FUN_18065ffa0(...);
-    }
-    
-    // 4. 批量处理动画
-    // =================
-    
-    if (interpolation_factor > 0.0f) {
-        if (context->target_state == 5) {
-            // 处理特殊动画模式
-            float blend_factor = context->blend_factor;
-            
-            if (blend_factor < 1.0f) {
-                // 处理混合动画
-                for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                    float animation_value = 0.0f;
-                    
-                    // 计算动画值
-                    switch (i) {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                            // 计算具体动画值
-                            break;
-                        default:
-                            animation_value = 0.0f;
-                    }
-                    
-                    // 检查动画阈值
-                    if (UI_ANIMATION_THRESHOLD < (1.0f - blend_factor) * interpolation_factor * animation_value) {
-                        // FUN_180403910(...);
-                    }
-                }
-            }
-        } else {
-            // 处理标准动画模式
-            // FUN_18065fdb0(...);
+  }
+  if (*(int *)(param_1 + 0x10) == 5) {
+    fVar9 = *(float *)(param_1 + 0x3c);
+    fVar10 = -1.0;
+    if (fVar9 < 1.0) {
+      fVar1 = *(float *)(param_1 + 0x34);
+      fVar2 = *(float *)(param_1 + 0x38);
+      fVar3 = *(float *)(param_1 + 0x30);
+      fVar8 = (1.0 - fVar9) * fVar12;
+      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
+      fVar11 = (1.0 - fVar1) - fVar2;
+      fVar9 = -1.0;
+      do {
+        switch(iVar5) {
+        case 0:
+          fVar7 = fVar11 * fVar3 * fVar8;
+          break;
+        case 1:
+          fVar7 = (1.0 - fVar3) * fVar11 * fVar8;
+          break;
+        case 2:
+          fVar7 = fVar8 * fVar1;
+          break;
+        case 3:
+          fVar7 = fVar8 * fVar2;
+          break;
+        default:
+          fVar7 = 0.0;
         }
-    }
-    
-    // 5. 处理当前状态
-    // =================
-    
-    if (context->current_state == 5) {
-        // 处理特殊状态动画
-        float blend_factor = context->blend_factor;
-        
-        if (blend_factor < 1.0f) {
-            // 处理混合动画逻辑
-            for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                float animation_value = 0.0f;
-                
-                // 计算动画值
-                switch (i) {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        // 计算具体动画值
-                        break;
-                    default:
-                        animation_value = 0.0f;
-                }
-                
-                // 更新状态
-                if (context->state_ptr != NULL) {
-                    *context->state_ptr = i;
-                }
-                
-                // 检查动画阈值
-                if (UI_ANIMATION_THRESHOLD < animation_value) {
-                    // FUN_180403910(...);
-                }
-            }
+        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar9 < fVar7)) {
+          *(int *)(param_1 + 0xc84) = iVar5;
+          fVar9 = fVar7;
         }
-    } else {
-        // 处理标准动画模式
-        // FUN_18065fdb0(...);
+        if (0.001 < fVar7) {
+          FUN_180403910(*puVar6);
+        }
+        iVar5 = iVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while (iVar5 < 6);
+      fVar9 = *(float *)(param_1 + 0x3c);
     }
-    
-    // 6. 清理处理
-    // ===========
-    
-    if (context->resource_flags != 0) {
-        // func_0x000180435370();
+    iVar5 = 0;
+    if (0.0 < fVar9) {
+      fVar1 = *(float *)(param_1 + 0x34);
+      fVar2 = *(float *)(param_1 + 0x38);
+      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
+      fVar3 = *(float *)(param_1 + 0x30);
+      fVar9 = fVar9 * fVar12;
+      fVar12 = (1.0 - fVar1) - fVar2;
+      do {
+        switch(iVar5) {
+        case 0:
+          fVar8 = fVar12 * fVar3 * fVar9;
+          break;
+        case 1:
+          fVar8 = (1.0 - fVar3) * fVar12 * fVar9;
+          break;
+        case 2:
+          fVar8 = fVar9 * fVar1;
+          break;
+        case 3:
+          fVar8 = fVar9 * fVar2;
+          break;
+        default:
+          fVar8 = 0.0;
+        }
+        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar10 < fVar8)) {
+          *(int *)(param_1 + 0xc84) = iVar5;
+          fVar10 = fVar8;
+        }
+        if (0.001 < fVar8) {
+          FUN_180403910(*puVar6);
+        }
+        iVar5 = iVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while (iVar5 < 6);
     }
+  }
+  else {
+    FUN_18065fdb0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78));
+  }
+  if (*(longlong *)(unaff_R12 + 0x808) != 0) {
+    func_0x000180435370();
+  }
+  return;
 }
 
-/**
- * UI系统渲染状态管理器
- * 管理UI系统的渲染状态和参数
- * 
- * @param context 状态管理上下文指针
- * @param render_data 渲染数据指针
- */
-void ui_system_render_state_manager(void* state_context, void* render_data)
+
+
+
+
+// 函数: void FUN_18065d902(undefined4 param_1)
+void FUN_18065d902(undefined4 param_1)
+
 {
-    ui_animation_context_t* context = (ui_animation_context_t*)state_context;
-    ui_render_data_t* render = (ui_render_data_t*)render_data;
-    
-    if (context == NULL || render == NULL) {
-        return;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  code *UNRECOVERED_JUMPTABLE_00;
+  longlong unaff_RBX;
+  uint uVar4;
+  uint uVar5;
+  longlong unaff_R12;
+  undefined8 *puVar6;
+  longlong unaff_R15;
+  float fVar7;
+  float fVar8;
+  float unaff_XMM7_Da;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float unaff_XMM12_Da;
+  float unaff_XMM14_Da;
+  float unaff_XMM15_Da;
+  
+  uVar5 = 0;
+  if (0.0 < unaff_XMM7_Da) {
+    if (*(int *)(unaff_RBX + 0x14) == 5) {
+      fVar8 = *(float *)(unaff_RBX + 0x3c);
+      if (fVar8 < unaff_XMM12_Da) {
+        param_1 = 0x3f800000;
+        uVar4 = uVar5;
+        do {
+          if (uVar4 < 6) {
+            UNRECOVERED_JUMPTABLE_00 =
+                 (code *)((ulonglong)*(uint *)(unaff_R15 + 0x65ded4 + (longlong)(int)uVar4 * 4) +
+                         unaff_R15);
+                    // WARNING: Could not recover jumptable at 0x00018065d9d3. Too many branches
+                    // WARNING: Treating indirect jump as call
+            (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+            return;
+          }
+          uVar4 = uVar4 + 1;
+        } while ((int)uVar4 < 6);
+        fVar8 = *(float *)(unaff_RBX + 0x3c);
+        unaff_XMM12_Da = 1.0;
+      }
+      uVar4 = uVar5;
+      if (0.0 < fVar8) {
+        do {
+          if (uVar4 < 6) {
+            UNRECOVERED_JUMPTABLE_00 =
+                 (code *)((ulonglong)*(uint *)(unaff_R15 + 0x65deec + (longlong)(int)uVar4 * 4) +
+                         unaff_R15);
+                    // WARNING: Could not recover jumptable at 0x00018065da9b. Too many branches
+                    // WARNING: Treating indirect jump as call
+            (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+            return;
+          }
+          uVar4 = uVar4 + 1;
+        } while ((int)uVar4 < 6);
+      }
     }
-    
-    // 1. 处理渲染状态
-    // =================
-    
-    if (context->animation_time > 0.0f) {
-        if (context->target_state == 5) {
-            // 处理特殊渲染模式
-            float blend_factor = context->blend_factor;
-            
-            if (blend_factor < 1.0f) {
-                // 处理混合渲染逻辑
-                for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                    if (i < 6) {
-                        // 处理渲染状态转换
-                        // 这里简化了原始实现中的复杂跳转表逻辑
-                        // 原始实现包含动态函数调用和状态转换
-                    }
-                }
-            }
-            
-            // 处理附加渲染数据
-            if (blend_factor > 0.0f) {
-                for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                    if (i < 6) {
-                        // 处理附加渲染逻辑
-                        // 这里简化了原始实现中的复杂跳转表逻辑
-                    }
-                }
-            }
-        } else {
-            // 处理标准渲染模式
-            // FUN_18065fdb0(...);
+    else {
+      param_1 = FUN_18065fdb0((longlong)*(int *)(unaff_RBX + 0x14) * 0x30 +
+                              *(longlong *)(unaff_RBX + 0xc78));
+    }
+  }
+  if (*(int *)(unaff_RBX + 0x10) == 5) {
+    fVar8 = *(float *)(unaff_RBX + 0x3c);
+    fVar10 = -1.0;
+    if (fVar8 < unaff_XMM12_Da) {
+      fVar1 = *(float *)(unaff_RBX + 0x34);
+      fVar2 = *(float *)(unaff_RBX + 0x38);
+      fVar3 = *(float *)(unaff_RBX + 0x30);
+      fVar9 = (1.0 - fVar8) * unaff_XMM15_Da;
+      puVar6 = (undefined8 *)(*(longlong *)(unaff_RBX + 0xc78) + 0xf0);
+      fVar11 = (1.0 - fVar1) - fVar2;
+      fVar8 = -1.0;
+      do {
+        switch(uVar5) {
+        case 0:
+          fVar7 = fVar11 * fVar3 * fVar9;
+          break;
+        case 1:
+          fVar7 = (1.0 - fVar3) * fVar11 * fVar9;
+          break;
+        case 2:
+          fVar7 = fVar9 * fVar1;
+          break;
+        case 3:
+          fVar7 = fVar9 * fVar2;
+          break;
+        default:
+          fVar7 = 0.0;
         }
-    }
-    
-    // 2. 处理当前状态渲染
-    // =====================
-    
-    if (context->current_state == 5) {
-        // 处理特殊状态渲染
-        float blend_factor = context->blend_factor;
-        float max_value = -1.0f;
-        
-        if (blend_factor < 1.0f) {
-            // 处理混合渲染逻辑
-            for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                float render_value = 0.0f;
-                
-                // 计算渲染值
-                switch (i) {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        // 计算具体渲染值
-                        break;
-                    default:
-                        render_value = 0.0f;
-                }
-                
-                // 更新最大值
-                if (context->state_ptr != NULL && max_value < render_value) {
-                    *context->state_ptr = i;
-                    max_value = render_value;
-                }
-                
-                // 检查渲染阈值
-                if (UI_ANIMATION_THRESHOLD < render_value) {
-                    // FUN_180403910(...);
-                }
-            }
+        if (((uint *)(unaff_RBX + 0xc84) != (uint *)0x0) && (fVar8 < fVar7)) {
+          *(uint *)(unaff_RBX + 0xc84) = uVar5;
+          fVar8 = fVar7;
         }
-        
-        // 处理附加渲染数据
-        if (blend_factor > 0.0f) {
-            for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-                if (i < 6) {
-                    // 处理附加渲染逻辑
-                    // 这里简化了原始实现中的复杂跳转表逻辑
-                }
-            }
+        if (0.001 < fVar7) {
+          FUN_180403910(*puVar6);
         }
-    } else {
-        // 处理标准渲染模式
-        // FUN_18065fdb0(...);
+        param_1 = 0x3f800000;
+        uVar5 = uVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while ((int)uVar5 < 6);
+      fVar8 = *(float *)(unaff_RBX + 0x3c);
+      unaff_R15 = 0x180000000;
+      unaff_XMM14_Da = 0.001;
     }
-    
-    // 3. 清理和同步
-    // ==============
-    
-    if (context->resource_flags != 0) {
-        // func_0x000180435370(render);
+    uVar5 = 0;
+    if (0.0 < fVar8) {
+      puVar6 = (undefined8 *)(*(longlong *)(unaff_RBX + 0xc78) + 0x120);
+      do {
+        if (uVar5 < 6) {
+                    // WARNING: Could not recover jumptable at 0x00018065dd17. Too many branches
+                    // WARNING: Treating indirect jump as call
+          (*(code *)((ulonglong)*(uint *)(unaff_R15 + 0x65df1c + (longlong)(int)uVar5 * 4) +
+                    unaff_R15))(0x3f800000);
+          return;
+        }
+        if (((uint *)(unaff_RBX + 0xc84) != (uint *)0x0) && (fVar10 < 0.0)) {
+          fVar10 = 0.0;
+          *(uint *)(unaff_RBX + 0xc84) = uVar5;
+        }
+        if (unaff_XMM14_Da < 0.0) {
+          FUN_180403910(*puVar6);
+        }
+        param_1 = 0x3f800000;
+        uVar5 = uVar5 + 1;
+        puVar6 = puVar6 + 1;
+      } while ((int)uVar5 < 6);
     }
+  }
+  else {
+    param_1 = FUN_18065fdb0((longlong)*(int *)(unaff_RBX + 0x10) * 0x30 +
+                            *(longlong *)(unaff_RBX + 0xc78));
+  }
+  if (*(longlong *)(unaff_R12 + 0x808) != 0) {
+    func_0x000180435370(param_1);
+  }
+  return;
 }
 
-/**
- * UI系统资源优化器
- * 优化UI系统的资源使用和性能
- * 
- * @param context 资源优化上下文指针
- */
-void ui_system_resource_optimizer(void* optimization_context)
+
+
+
+
+// 函数: void FUN_18065dec1(void)
+void FUN_18065dec1(void)
+
 {
-    // 简化实现：UI系统资源优化
-    // 原实现包含复杂的资源管理和优化逻辑
-    
-    if (optimization_context == NULL) {
-        return;
-    }
-    
-    // 执行资源优化
-    // func_0x000180435370();
+  func_0x000180435370();
+  return;
 }
 
-/**
- * UI系统动画插值器
- * 执行UI系统的动画插值计算
- * 
- * @param context 插值上下文指针
- * @param interpolation_data 插值数据指针
- */
-void ui_system_animation_interpolator(void* interpolation_context, void* interpolation_data)
+
+
+
+
+// 函数: void FUN_18065df80(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4,
+void FUN_18065df80(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4,
+                  float param_5,float param_6)
+
 {
-    ui_animation_context_t* context = (ui_animation_context_t*)interpolation_context;
-    ui_render_data_t* data = (ui_render_data_t*)interpolation_data;
-    
-    if (context == NULL || data == NULL) {
-        return;
-    }
-    
-    // 1. 初始化插值参数
-    // ===================
-    
-    float normalization_factor = 1.0f;
-    float speed_factor = 1.0f;
-    float blend_factor = 1.0f;
-    float scale_factor = 1.0f;
-    
-    // 2. 复制渲染数据
-    // ==================
-    
-    for (int i = 0; i < 16; i++) {
-        data->transform_matrix[i] = data->transform_matrix[i];
-    }
-    
-    // 3. 计算插值参数
-    // ==================
-    
-    // 计算归一化因子
-    // longlong context_data = FUN_18065fd40();
-    // float normalization_value = *(float*)(context_data + 8) / (scale_factor * *(float*)(data->transform_matrix[3] + 0x188));
-    
-    // 计算最小值
-    float min_value = normalization_factor;
-    
-    // 应用插值计算
-    // ... (复杂的插值计算逻辑)
-    
-    // 4. 更新渲染参数
-    // ==================
-    
-    // 更新变换矩阵
-    // *(float*)(data + 0x12) = (normalization_factor * ...) / *(float*)(data->transform_matrix[3] + 0x188);
-    // *(float*)((longlong)data + 0x94) = (speed_factor * ...) / *(float*)(data->transform_matrix[4] + 0x188);
-    // *(float*)((longlong)data + 0x9c) = (blend_factor * ...) / *(float*)(data->transform_matrix[1] + 0x188);
-    // *(float*)(data + 0x13) = (scale_factor * ...) / *(float*)(data->transform_matrix[2] + 0x188);
+  longlong lVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  fVar6 = 1.0;
+  fVar5 = 1.0;
+  fVar7 = 1.0;
+  fVar8 = 1.0;
+  *param_1 = *param_4;
+  param_1[1] = param_4[1];
+  param_1[2] = param_4[2];
+  param_1[3] = param_4[3];
+  param_1[4] = param_4[4];
+  param_1[5] = param_4[5];
+  param_1[6] = param_4[6];
+  param_1[7] = param_4[7];
+  param_1[8] = param_4[8];
+  param_1[9] = param_4[9];
+  param_1[10] = param_4[10];
+  param_1[0xb] = param_4[0xb];
+  param_1[0xc] = param_4[0xc];
+  param_1[0xd] = param_4[0xd];
+  param_1[0xe] = param_4[0xe];
+  param_1[0xf] = param_4[0xf];
+  param_1[0x10] = param_4[0x10];
+  param_1[0x11] = param_4[0x11];
+  lVar1 = FUN_18065fd40();
+  fVar9 = *(float *)(lVar1 + 8) / (param_6 * *(float *)(param_1[3] + 0x188));
+  lVar1 = FUN_18065fd40(param_1[4]);
+  fVar10 = *(float *)(lVar1 + 8) / (param_6 * *(float *)(param_1[4] + 0x188));
+  lVar1 = FUN_18065fd40(param_1[1]);
+  fVar4 = *(float *)(lVar1 + 8) / *(float *)(param_1[1] + 0x188);
+  lVar1 = FUN_18065fd40(param_1[2]);
+  param_5 = param_5 * *(float *)(param_1[2] + 0x188);
+  fVar2 = fVar10;
+  if (fVar9 <= fVar10) {
+    fVar2 = fVar9;
+  }
+  fVar3 = *(float *)(lVar1 + 8) / param_5;
+  if (fVar4 <= fVar2) {
+    fVar2 = fVar4;
+  }
+  if (fVar3 <= fVar2) {
+    fVar2 = fVar3;
+  }
+  if (fVar2 < fVar9) {
+    fVar6 = fVar2 / fVar9;
+  }
+  if (fVar2 < fVar10) {
+    fVar8 = fVar2 / fVar10;
+  }
+  if (fVar2 < fVar4) {
+    fVar7 = fVar2 / fVar4;
+  }
+  if (fVar2 < fVar3) {
+    fVar5 = (param_5 * fVar2) / *(float *)(lVar1 + 8);
+  }
+  lVar1 = FUN_18065fd40(param_1[3]);
+  *(float *)(param_1 + 0x12) = (fVar6 * *(float *)(lVar1 + 8)) / *(float *)(param_1[3] + 0x188);
+  lVar1 = FUN_18065fd40(param_1[4]);
+  *(float *)((longlong)param_1 + 0x94) =
+       (fVar8 * *(float *)(lVar1 + 8)) / *(float *)(param_1[4] + 0x188);
+  lVar1 = FUN_18065fd40(param_1[1]);
+  *(float *)((longlong)param_1 + 0x9c) =
+       (fVar7 * *(float *)(lVar1 + 8)) / *(float *)(param_1[1] + 0x188);
+  lVar1 = FUN_18065fd40(param_1[2]);
+  *(float *)(param_1 + 0x13) = (fVar5 * *(float *)(lVar1 + 8)) / *(float *)(param_1[2] + 0x188);
+  return;
 }
 
-/**
- * UI系统状态转换处理器
- * 处理UI系统的状态转换和事件
- * 
- * @param context 状态转换上下文指针
- */
-void ui_system_state_transition_handler(void)
+
+
+
+
+// 函数: void FUN_18065e200(void)
+void FUN_18065e200(void)
+
 {
-    // 简化实现：UI系统状态转换处理
-    // 原实现调用 FUN_1808fd200 函数
-    // 这里保持原始状态转换逻辑
-    // FUN_1808fd200();
+                    // WARNING: Subroutine does not return
+  FUN_1808fd200();
 }
 
-/**
- * UI系统批处理动画处理器
- * 处理UI系统的批量动画和优化
- * 
- * @param context 批处理上下文指针
- * @param batch_data 批处理数据指针
- */
-void ui_system_batch_animation_processor(void* batch_context, void* batch_data)
+
+
+
+
+// 函数: void FUN_18065e276(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+void FUN_18065e276(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+
 {
-    ui_animation_context_t* context = (ui_animation_context_t*)batch_context;
-    
-    if (context == NULL) {
-        return;
-    }
-    
-    // 1. 计算动画因子
-    // ==================
-    
-    float animation_factor = context->animation_time;
-    animation_factor = ((animation_factor * 6.0f - 15.0f) * animation_factor + 10.0f) * 
-                       animation_factor * animation_factor * animation_factor + 
-                       context->interpolation_factor;
-    
-    // 2. 处理批处理数据
-    // ==================
-    
-    if ((UI_ANIMATION_THRESHOLD < animation_factor) && (context->resource_flags != 0)) {
-        // 处理批处理逻辑
-        // ... (复杂的批处理逻辑)
-        
-        // 清理批处理数据
-        // memset(..., 0, 0x1050);
-    }
-    
-    // 3. 处理动画状态
-    // ==================
-    
-    if (animation_factor < 1.0f) {
-        // 处理动画状态逻辑
-        // ... (复杂的动画状态处理)
-        
-        // 清理动画数据
-        // memset(..., 0, 0x1050);
-    }
-    
-    // 4. 处理渲染批处理
-    // ===================
-    
-    int render_count = 10;
-    float* render_data = *(float**)((uintptr_t)context + 0x10d0);
-    longlong* batch_pointers = (longlong*)((uintptr_t)context + 0x50);
-    
+  int iVar1;
+  longlong unaff_RBP;
+  ulonglong unaff_RDI;
+  longlong *plVar2;
+  undefined1 *puVar3;
+  longlong lVar4;
+  float *pfVar5;
+  ulonglong uVar6;
+  float fVar7;
+  float unaff_XMM12_Da;
+  float unaff_XMM15_Da;
+  longlong lStack0000000000000048;
+  undefined8 uStack0000000000000058;
+  
+  fVar7 = **(float **)(unaff_RBP + 0x10d0);
+  fVar7 = ((fVar7 * 6.0 - 15.0) * fVar7 + 10.0) * fVar7 * fVar7 * fVar7 +
+          (*(float **)(unaff_RBP + 0x10d0))[9];
+  lStack0000000000000048 = param_1;
+  uStack0000000000000058 = param_4;
+  if ((1e-06 < fVar7) && (*(longlong *)(param_3 + 0x810) != 0)) {
+    puVar3 = &stack0x00000060;
+    uVar6 = unaff_RDI & 0xffffffff;
     do {
-        render_data++;
-        if ((*batch_pointers != 0) && (context->blend_factor < context->interpolation_factor * *render_data)) {
-            // FUN_180403910(*batch_pointers, batch_data);
-        }
-        render_count++;
-        batch_pointers++;
-    } while (render_count < 0x12);
-    
-    // 清理处理
-    // FUN_1808fc050(...);
-}
-
-/**
- * UI系统性能管理器
- * 管理UI系统的性能和资源使用
- * 
- * @param context 性能管理上下文指针
- * @param performance_data 性能数据指针
- */
-void ui_system_performance_manager(void* performance_context, void* performance_data)
-{
-    ui_animation_context_t* context = (ui_animation_context_t*)performance_context;
-    
-    if (context == NULL) {
-        return;
-    }
-    
-    // 1. 处理性能数据
-    // ==================
-    
-    float animation_factor = context->animation_time * context->interpolation_factor;
-    
-    // 2. 处理可见性数据
-    // ===================
-    
-    if (!context->control_flags) {
-        // 处理可见性逻辑
-        // ... (复杂的可见性处理逻辑)
-    }
-    
-    // 3. 处理动画数据
-    // ==================
-    
-    if (context->animation_flags) {
-        // 处理动画数据逻辑
-        // ... (复杂的动画数据处理逻辑)
-    }
-    
-    // 4. 更新性能参数
-    // ==================
-    
-    // 更新渲染参数
-    // *(float*)(context + 0x1020) = position_x * animation_factor + *(float*)(context + 0x1020);
-    // *(float*)(context + 0x1024) = *(float*)(context + 0x1024) + position_y * animation_factor;
-    // *(float*)(context + 0x1028) = (position_z * animation_factor + *(float*)(context + 0x1028)) - 
-    //                            (0.5 - (opacity + blend_factor) * 0.25) * position_z * animation_factor;
-    
-    // 5. 处理批处理性能
-    // ===================
-    
-    // 处理批处理优化
-    // ... (复杂的批处理性能优化逻辑)
-    
-    // 6. 清理和同步
-    // ==============
-    
-    // 清理性能数据
-    // FUN_1808fc050(...);
-}
-
-/**
- * UI系统调试动画可视化器
- * 提供UI系统动画的调试信息和可视化
- * 
- * @param context 调试上下文指针
- * @param debug_data 调试数据指针
- */
-void ui_system_debug_animation_visualizer(void* debug_context, void* debug_data)
-{
-    ui_animation_context_t* context = (ui_animation_context_t*)debug_context;
-    
-    if (context == NULL) {
-        return;
-    }
-    
-    // 1. 处理调试数据
-    // ==================
-    
-    int debug_count = 10;
-    float* debug_data_ptr = *(float**)((uintptr_t)context + 0x10d0);
-    longlong* debug_pointers = (longlong*)((uintptr_t)context + 0x50);
-    
+      func_0x000180074f10(puVar3);
+      puVar3 = puVar3 + 0x10;
+      uVar6 = uVar6 - 1;
+    } while (uVar6 != 0);
+    lVar4 = unaff_RBP + 0x780;
     do {
-        debug_data_ptr++;
-        if ((*debug_pointers != 0) && (context->blend_factor < context->interpolation_factor * *debug_data_ptr)) {
-            // FUN_180403910(*debug_pointers, debug_data);
+      func_0x000180074f10(lVar4);
+      lVar4 = lVar4 + 0x10;
+      unaff_RDI = unaff_RDI - 1;
+    } while (unaff_RDI != 0);
+                    // WARNING: Subroutine does not return
+    memset(&stack0x00000060,0,0x1050);
+  }
+  if (fVar7 < 1.0) {
+    puVar3 = &stack0x00000060;
+    uVar6 = unaff_RDI;
+    do {
+      func_0x000180074f10(puVar3);
+      puVar3 = puVar3 + 0x10;
+      uVar6 = uVar6 - 1;
+    } while (uVar6 != 0);
+    lVar4 = unaff_RBP + 0x780;
+    do {
+      func_0x000180074f10(lVar4);
+      lVar4 = lVar4 + 0x10;
+      unaff_RDI = unaff_RDI - 1;
+    } while (unaff_RDI != 0);
+                    // WARNING: Subroutine does not return
+    memset(&stack0x00000060,0,0x1050);
+  }
+  iVar1 = 10;
+  pfVar5 = *(float **)(unaff_RBP + 0x10d0);
+  plVar2 = (longlong *)(param_1 + 0x50);
+  do {
+    pfVar5 = pfVar5 + 1;
+    if ((*plVar2 != 0) && (unaff_XMM15_Da < unaff_XMM12_Da * *pfVar5)) {
+      FUN_180403910(*plVar2,param_4);
+    }
+    iVar1 = iVar1 + 1;
+    plVar2 = plVar2 + 1;
+  } while (iVar1 < 0x12);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xfb0) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_18065e9a5(void)
+void FUN_18065e9a5(void)
+
+{
+  float *pfVar1;
+  float fVar2;
+  float *pfVar3;
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [16];
+  int iVar6;
+  char cVar7;
+  byte bVar8;
+  longlong unaff_RBX;
+  longlong unaff_RBP;
+  longlong unaff_RSI;
+  float *pfVar9;
+  longlong *plVar10;
+  char cVar11;
+  ulonglong uVar12;
+  char unaff_R12B;
+  longlong unaff_R13;
+  longlong lVar13;
+  bool in_ZF;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  undefined1 in_XMM2 [16];
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  uint unaff_XMM9_Da;
+  float unaff_XMM10_Da;
+  float fVar25;
+  float unaff_XMM12_Da;
+  float unaff_XMM15_Da;
+  float fStack000000000000003c;
+  longlong in_stack_00000040;
+  longlong in_stack_00000048;
+  longlong in_stack_00000050;
+  undefined8 in_stack_00000058;
+  
+  fVar25 = unaff_XMM10_Da * unaff_XMM12_Da;
+  if (!in_ZF) {
+    cVar11 = *(char *)(unaff_RBP + 4000);
+    uVar12 = 0;
+    if ('\0' < cVar11) {
+      do {
+        cVar7 = (char)uVar12;
+        if ((*(ulonglong *)(unaff_RBP + 0x770) >> (uVar12 & 0x3f) & 1) != 0) {
+          pfVar9 = (float *)(unaff_RBP + 0x780 + (longlong)cVar7 * 0x10);
+          fVar22 = *pfVar9;
+          fVar15 = pfVar9[1];
+          fVar20 = pfVar9[2];
+          fVar2 = pfVar9[3];
+          fVar19 = fVar2 * fVar2 + fVar22 * fVar22;
+          fVar21 = fVar20 * fVar20 + fVar15 * fVar15;
+          fVar23 = fVar19 + fVar15 * fVar15 + fVar20 * fVar20;
+          fVar24 = fVar21 + fVar22 * fVar22 + fVar2 * fVar2;
+          auVar4._4_4_ = fVar19 + fVar21 + 1.1754944e-38;
+          auVar4._0_4_ = fVar21 + fVar19 + 1.1754944e-38;
+          auVar4._8_4_ = fVar23 + 1.1754944e-38;
+          auVar4._12_4_ = fVar24 + 1.1754944e-38;
+          in_XMM2 = rsqrtps(in_XMM2,auVar4);
+          fVar14 = in_XMM2._0_4_;
+          fVar16 = in_XMM2._4_4_;
+          fVar17 = in_XMM2._8_4_;
+          fVar18 = in_XMM2._12_4_;
+          pfVar9 = (float *)(unaff_RBP + 0x780 + (longlong)cVar7 * 0x10);
+          *pfVar9 = (3.0 - fVar14 * fVar14 * (fVar21 + fVar19)) * fVar14 * 0.5 * fVar22;
+          pfVar9[1] = (3.0 - fVar16 * fVar16 * (fVar19 + fVar21)) * fVar16 * 0.5 * fVar15;
+          pfVar9[2] = (3.0 - fVar17 * fVar17 * fVar23) * fVar17 * 0.5 * fVar20;
+          pfVar9[3] = (3.0 - fVar18 * fVar18 * fVar24) * fVar18 * 0.5 * fVar2;
+          cVar11 = *(char *)(unaff_RBP + 4000);
         }
-        debug_count++;
-        debug_pointers++;
-    } while (debug_count < 0x12);
-    
-    // 2. 清理调试数据
-    // ==================
-    
-    // FUN_1808fc050(...);
-}
-
-// ============================================================================
-// 内部辅助函数实现
-// ============================================================================
-
-/**
- * @brief 计算平滑步长函数
- */
-static float ui_calculate_smooth_step(float t)
-{
-    return ((t * 6.0f - 15.0f) * t + 10.0f) * t * t * t;
-}
-
-/**
- * @brief 计算插值因子
- */
-static float ui_calculate_interpolation_factor(float current, float target, float speed)
-{
-    float diff = target - current;
-    if (fabsf(diff) < UI_FLOAT_TOLERANCE) return target;
-    return current + diff * speed;
-}
-
-/**
- * @brief 更新动画矩阵
- */
-static void ui_update_animation_matrix(ui_animation_context_t* context)
-{
-    if (context == NULL) return;
-    
-    // 计算变换矩阵
-    float cos_angle = cosf(context->rotation_angle);
-    float sin_angle = sinf(context->rotation_angle);
-    
-    // 更新变换矩阵
-    context->transform_matrix[0] = cos_angle * context->scale_factor;
-    context->transform_matrix[1] = sin_angle * context->scale_factor;
-    context->transform_matrix[4] = -sin_angle * context->scale_factor;
-    context->transform_matrix[5] = cos_angle * context->scale_factor;
-    context->transform_matrix[10] = context->scale_factor;
-    context->transform_matrix[15] = 1.0f;
-}
-
-/**
- * @brief 处理动画批处理
- */
-static void ui_process_animation_batch(ui_animation_context_t* context, int batch_index)
-{
-    if (context == NULL) return;
-    
-    // 处理动画批数据
-    float* batch_data = (float*)((uintptr_t)context + 0x780 + batch_index * 0x10);
-    
-    // 更新动画参数
-    for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-        float* element_data = batch_data + i * 4;
-        
-        // 检查动画状态
-        if (context->animation_flags & (1 << i)) {
-            context->animation_time -= element_data[0];
-            if (context->animation_time <= 0.0f) {
-                context->animation_time = 0.0f;
-            }
+        uVar12 = (ulonglong)(byte)(cVar7 + 1U);
+      } while ((char)(cVar7 + 1U) < cVar11);
+    }
+    if (unaff_R12B != '\0') {
+      pfVar3 = *(float **)(unaff_RBP + 0x10d8);
+      pfVar9 = (float *)(unaff_R13 + 4);
+      lVar13 = 0;
+      do {
+        bVar8 = *(byte *)(in_stack_00000040 + lVar13);
+        if ((*(ulonglong *)(unaff_RBP + 0x770) >> ((ulonglong)bVar8 & 0x3f) & 1) != 0) {
+          FUN_18022a890(&stack0x00000060);
+          fVar22 = pfVar3[1];
+          fVar15 = *pfVar3;
+          pfVar1 = (float *)(unaff_RBP + 0x360 + (longlong)(char)bVar8 * 0x10);
+          fVar2 = pfVar1[2];
+          fVar20 = *(float *)((longlong)(char)bVar8 * 0x1b0 + 0x38 +
+                             *(longlong *)(unaff_RSI + 0x140));
+          fVar21 = (fVar15 * *pfVar1 + fVar22 * pfVar1[1]) * pfVar9[0x16];
+          fVar19 = fVar15 * pfVar1[1] - fVar22 * *pfVar1;
+          pfVar9[-1] = (fVar15 * fVar21 - fVar22 * fVar19) * unaff_XMM10_Da + pfVar9[-1];
+          *pfVar9 = (fVar15 * fVar19 + fVar22 * fVar21) * unaff_XMM10_Da + *pfVar9;
+          pfVar9[1] = ((fVar2 - fVar20) * (pfVar9[0x16] + 1.0) * 0.5 + fVar20) * unaff_XMM10_Da +
+                      pfVar9[1];
         }
+        lVar13 = lVar13 + 1;
+        pfVar9 = pfVar9 + 0x19;
+        unaff_RBX = in_stack_00000050;
+      } while (lVar13 < 2);
     }
-}
-
-/**
- * @brief 计算动画强度
- */
-static float ui_calculate_animation_intensity(ui_animation_context_t* context)
-{
-    if (context == NULL) return 0.0f;
-    
-    float intensity = 1.0f;
-    
-    if (context->animation_flags) {
-        float* animation_data = (float*)((uintptr_t)context + 0x780);
-        
-        for (int i = 0; i < UI_ANIMATION_BATCH_SIZE; i++) {
-            float* element = animation_data + i * 4;
-            
-            if (context->animation_flags & (1 << i)) {
-                intensity -= element[0];
-                if (intensity <= 0.0f) {
-                    intensity = 0.0f;
-                    break;
-                }
-            }
+  }
+  fVar22 = *(float *)(unaff_R13 + 0xc0);
+  bVar8 = 0;
+  fVar15 = *(float *)(unaff_R13 + 0x5c);
+  fStack000000000000003c = *(float *)(unaff_RBX + 0x102c);
+  fVar20 = *(float *)(unaff_RBP + 0xf88);
+  fVar2 = *(float *)(unaff_RBP + 0xf80);
+  *(ulonglong *)(unaff_RBX + 0x800) =
+       *(ulonglong *)(unaff_RBX + 0x800) | *(ulonglong *)(unaff_RBX + 0x810);
+  fVar19 = *(float *)(unaff_RBP + 0xf84);
+  *(float *)(unaff_RBX + 0x1020) = fVar2 * fVar25 + *(float *)(unaff_RBX + 0x1020);
+  *(float *)(unaff_RBX + 0x1024) = *(float *)(unaff_RBX + 0x1024) + fVar19 * fVar25;
+  *(float *)(unaff_RBX + 0x1028) =
+       (fVar20 * fVar25 + *(float *)(unaff_RBX + 0x1028)) -
+       (0.5 - (fVar22 + fVar15) * 0.25) * fVar20 * fVar25;
+  *(float *)(unaff_RBX + 0x102c) = fStack000000000000003c;
+  if ('\0' < *(char *)(unaff_RBX + 0x1040)) {
+    do {
+      if ((*(ulonglong *)(unaff_RBX + 0x810) >> ((ulonglong)bVar8 & 0x3f) & 1) != 0) {
+        uVar12 = (ulonglong)(char)bVar8;
+        pfVar9 = (float *)(unaff_RBP + 0x780 + uVar12 * 0x10);
+        fVar22 = *pfVar9;
+        fVar15 = pfVar9[1];
+        fVar20 = pfVar9[2];
+        fStack000000000000003c = pfVar9[3];
+        pfVar9 = (float *)(unaff_RBX + (uVar12 + 0x82) * 0x10);
+        fVar2 = pfVar9[1];
+        fVar19 = pfVar9[2];
+        fVar21 = pfVar9[3];
+        fVar14 = *pfVar9 * fVar22;
+        fVar16 = fVar2 * fVar15;
+        fVar17 = fVar19 * fVar20;
+        fVar18 = fVar21 * fStack000000000000003c;
+        fVar23 = fVar18 + fVar14;
+        fVar24 = fVar17 + fVar16;
+        auVar5._4_4_ = fVar23 + fVar24;
+        auVar5._0_4_ = fVar24 + fVar23;
+        auVar5._8_4_ = fVar23 + fVar16 + fVar17;
+        auVar5._12_4_ = fVar24 + fVar14 + fVar18;
+        iVar6 = movmskps((char)bVar8 * 2,auVar5);
+        if (iVar6 != 0) {
+          fVar22 = (float)((uint)fVar22 ^ unaff_XMM9_Da);
+          fVar15 = (float)((uint)fVar15 ^ unaff_XMM9_Da);
+          fVar20 = (float)((uint)fVar20 ^ unaff_XMM9_Da);
+          fStack000000000000003c = (float)((uint)fStack000000000000003c ^ unaff_XMM9_Da);
         }
+        pfVar3 = (float *)(unaff_RBX + (uVar12 + 0x82) * 0x10);
+        *pfVar3 = *pfVar9 + fVar25 * fVar22;
+        pfVar3[1] = fVar2 + fVar25 * fVar15;
+        pfVar3[2] = fVar19 + fVar25 * fVar20;
+        pfVar3[3] = fVar21 + fVar25 * fStack000000000000003c;
+        *(ulonglong *)(unaff_RBX + 0x800) =
+             *(ulonglong *)(unaff_RBX + 0x800) |
+             *(ulonglong *)(uVar12 * 0x1b0 + 0xe8 + *(longlong *)(unaff_RSI + 0x140));
+        *(ulonglong *)(unaff_RBX + 0x808) =
+             *(ulonglong *)(unaff_RBX + 0x808) | 1L << (uVar12 & 0x3f);
+      }
+      bVar8 = bVar8 + 1;
+    } while ((char)bVar8 < *(char *)(unaff_RBX + 0x1040));
+  }
+  fVar25 = *(float *)(unaff_RBP + 0x1108);
+  iVar6 = 10;
+  pfVar9 = *(float **)(unaff_RBP + 0x10d0);
+  plVar10 = (longlong *)(in_stack_00000048 + 0x50);
+  do {
+    pfVar9 = pfVar9 + 1;
+    if ((*plVar10 != 0) && (unaff_XMM15_Da < fVar25 * *pfVar9)) {
+      FUN_180403910(*plVar10,in_stack_00000058);
     }
-    
-    return intensity;
+    iVar6 = iVar6 + 1;
+    plVar10 = plVar10 + 1;
+  } while (iVar6 < 0x12);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xfb0) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * @brief 应用动画变换
- */
-static void ui_apply_animation_transform(ui_animation_context_t* context, float* transform_matrix)
+
+
+
+
+// 函数: void FUN_18065ed75(void)
+void FUN_18065ed75(void)
+
 {
-    if (context == NULL || transform_matrix == NULL) return;
-    
-    // 应用变换矩阵
-    for (int i = 0; i < 16; i++) {
-        context->transform_matrix[i] = transform_matrix[i];
+  int iVar1;
+  longlong unaff_RBP;
+  longlong *plVar2;
+  float *pfVar3;
+  float unaff_XMM12_Da;
+  float unaff_XMM15_Da;
+  longlong in_stack_00000048;
+  undefined8 in_stack_00000058;
+  
+  iVar1 = 10;
+  pfVar3 = *(float **)(unaff_RBP + 0x10d0);
+  plVar2 = (longlong *)(in_stack_00000048 + 0x50);
+  do {
+    pfVar3 = pfVar3 + 1;
+    if ((*plVar2 != 0) && (unaff_XMM15_Da < unaff_XMM12_Da * *pfVar3)) {
+      FUN_180403910(*plVar2,in_stack_00000058);
     }
+    iVar1 = iVar1 + 1;
+    plVar2 = plVar2 + 1;
+  } while (iVar1 < 0x12);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xfb0) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * @brief 优化动画批处理
- */
-static void ui_optimize_animation_batch(ui_animation_context_t* context)
-{
-    if (context == NULL) return;
-    
-    // 优化动画批处理
-    if (context->batch_count > 0) {
-        // 重新排序动画元素
-        // 合并相似的动画调用
-        // 优化状态切换
-    }
-}
 
-/**
- * @brief 处理状态转换
- */
-static void ui_handle_state_transition(ui_animation_context_t* context, int new_state)
-{
-    if (context == NULL) return;
-    
-    // 处理状态转换逻辑
-    if (context->current_state != new_state) {
-        // 保存旧状态
-        int old_state = context->current_state;
-        
-        // 更新状态
-        context->current_state = new_state;
-        
-        // 触发状态转换事件
-        if (old_state == 1 && new_state == 5) {
-            // 处理特殊状态转换
-            context->animation_mode = UI_ANIMATION_MODE_BLEND;
-        } else if (old_state == 5 && new_state == 1) {
-            // 处理反向状态转换
-            context->animation_mode = UI_ANIMATION_MODE_TRANSITION;
-        } else {
-            // 处理标准状态转换
-            context->animation_mode = UI_ANIMATION_MODE_NORMAL;
-        }
-        
-        // 重置动画参数
-        context->animation_time = 0.0f;
-        context->interpolation_factor = 0.0f;
-    }
-}
 
-// ============================================================================
-// 函数别名定义 - 保持与原函数名的兼容性
-// ============================================================================
 
-void FUN_18065d7f0(longlong param_1, longlong param_2) 
-    __attribute__((alias("ui_system_advanced_animation_controller")));
 
-void FUN_18065d804(longlong param_1, float param_2) 
-    __attribute__((alias("ui_system_animation_parameter_processor")));
-
-void FUN_18065d902(undefined4 param_1) 
-    __attribute__((alias("ui_system_render_state_manager")));
-
-void FUN_18065dec1(void) 
-    __attribute__((alias("ui_system_resource_optimizer")));
-
-void FUN_18065df80(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 *param_4, float param_5, float param_6) 
-    __attribute__((alias("ui_system_animation_interpolator")));
-
-void FUN_18065e200(void) 
-    __attribute__((alias("ui_system_state_transition_handler")));
-
-void FUN_18065e276(longlong param_1, undefined8 param_2, longlong param_3, undefined8 param_4) 
-    __attribute__((alias("ui_system_batch_animation_processor")));
-
-void FUN_18065e9a5(void) 
-    __attribute__((alias("ui_system_performance_manager")));
-
-void FUN_18065ed75(void) 
-    __attribute__((alias("ui_system_debug_animation_visualizer")));

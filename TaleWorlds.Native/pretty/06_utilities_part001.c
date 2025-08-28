@@ -1,749 +1,1368 @@
-/**
- * @file 06_utilities_part001.c
- * @brief 工具系统基础数据处理和内存管理模块
- * 
- * 本模块包含工具系统的核心功能，主要提供：
- * - 基础数据处理和转换功能
- * - 内存管理和分配操作
- * - 系统状态监控和调试
- * - 线程本地存储管理
- * - 工具函数和数据结构操作
- * 
- * 该模块为整个系统提供底层工具支持，确保系统运行的稳定性和可靠性。
- * 
- * @author Claude Code
- * @version 1.0
- * @date 2025-08-28
- */
+#include "TaleWorlds.Native.Split.h"
+
+// 06_utilities_part001.c - 101 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
-// ============================================================================
-// 常量定义和类型别名
-// ============================================================================
+// 06_utilities.c - 473 个函数
 
-/**
- * @defgroup UtilitiesConstants 工具系统常量定义
- * @{
- */
 
-/** @brief 系统基础配置常量 */
-#define UTILITIES_BASE_CONFIG_SIZE        0x1000    /**< 基础配置大小 */
-#define UTILITIES_MEMORY_POOL_SIZE        0x2000    /**< 内存池大小 */
-#define UTILITIES_MAX_THREAD_COUNT        64        /**< 最大线程数 */
-#define UTILITIES_CACHE_LINE_SIZE         64        /**< 缓存行大小 */
-#define UTILITIES_ALIGNMENT_SIZE          16        /**< 内存对齐大小 */
+// 函数: undefined FUN_1809414f0;
+undefined FUN_1809414f0;
+undefined DAT_180bf5290;
+undefined DAT_180bf52a0;
+undefined DAT_180bf52c0;
+undefined DAT_180bf52c8;
+undefined DAT_180bf52d0;
+undefined DAT_180bf52d8;
+undefined1 DAT_180bf5240;
+undefined DAT_180bf52a8;
+undefined DAT_180bf52b0;
+undefined1 DAT_180bf52e0;
+undefined UNK_180a3c3e0;
+undefined8 UNK_180bf5278;
+undefined8 UNK_180bf5298;
+undefined DAT_180bf5320;
+undefined DAT_180bf5328;
+undefined DAT_180bf5330;
+undefined DAT_180bf5338;
+undefined UNK_18098bb30;
 
-/** @brief 数据处理状态码 */
-#define UTILITIES_STATUS_SUCCESS          0x00000000 /**< 操作成功 */
-#define UTILITIES_STATUS_ERROR            0x80000000 /**< 一般错误 */
-#define UTILITIES_STATUS_INVALID_PARAM    0x80000001 /**< 无效参数 */
-#define UTILITIES_STATUS_MEMORY_ERROR     0x80000002 /**< 内存错误 */
-#define UTILITIES_STATUS_TIMEOUT          0x80000003 /**< 超时错误 */
 
-/** @} */
+// 函数: undefined FUN_180941590;
+undefined FUN_180941590;
+undefined DAT_180bf5770;
+undefined DAT_180bf5778;
+undefined DAT_180bf5780;
+undefined DAT_180bf5788;
 
-/**
- * @defgroup UtilitiesTypeAliases 工具系统类型别名
- * @{
- */
 
-/** @brief 数据处理函数指针类型 */
-typedef void* (*UtilitiesDataProcessor)(void* input_data, size_t data_size);
+// 函数: undefined FUN_1809415b0;
+undefined FUN_1809415b0;
+undefined DAT_180bf5208;
+undefined DAT_180bf5210;
+undefined DAT_180bf5218;
+undefined DAT_180bf5220;
+undefined UNK_18098bc80;
 
-/** @brief 内存分配函数指针类型 */
-typedef void* (*UtilitiesMemoryAllocator)(size_t size, size_t alignment);
 
-/** @brief 内存释放函数指针类型 */
-typedef void (*UtilitiesMemoryDeallocator)(void* ptr);
+// 函数: undefined FUN_1809415d0;
+undefined FUN_1809415d0;
+undefined DAT_180bf5bc0;
+undefined DAT_180bf5bc8;
+undefined DAT_180bf5bd0;
+undefined DAT_180bf5bd8;
+undefined UNK_1809fcc58;
 
-/** @brief 状态检查函数指针类型 */
-typedef int (*UtilitiesStatusChecker)(void* context);
 
-/** @brief 线程本地存储清理函数指针类型 */
-typedef void (*UtilitiesTLSCleanupFunc)(void* data);
+// 函数: undefined FUN_1809415f0;
+undefined FUN_1809415f0;
+undefined DAT_180bf5c30;
+undefined DAT_180bf5c38;
+undefined DAT_180bf5c40;
+undefined DAT_180bf5c48;
 
-/** @} */
 
-/**
- * @defgroup UtilitiesDataStructures 工具系统数据结构
- * @{
- */
+// 函数: undefined FUN_180941610;
+undefined FUN_180941610;
+undefined DAT_180bf6080;
+undefined DAT_180bf6088;
+undefined DAT_180bf6090;
+undefined DAT_180bf6098;
 
-/** @brief 系统基础配置结构体 */
-typedef struct {
-    uint32_t config_version;        /**< 配置版本号 */
-    uint32_t system_flags;          /**< 系统标志位 */
-    size_t   memory_pool_size;      /**< 内存池大小 */
-    uint32_t max_thread_count;      /**< 最大线程数 */
-    uint32_t reserved[4];           /**< 保留字段 */
-} UtilitiesSystemConfig;
 
-/** @brief 内存管理器结构体 */
-typedef struct {
-    void*        memory_pool;        /**< 内存池基地址 */
-    size_t       pool_size;          /**< 内存池总大小 */
-    size_t       used_size;          /**< 已使用大小 */
-    size_t       free_size;          /**< 空闲大小 */
-    uint32_t     allocation_count;   /**< 分配计数 */
-    uint32_t     deallocation_count; /**< 释放计数 */
-    void*        next_free;          /**< 下一个空闲块 */
-} UtilitiesMemoryManager;
+// 函数: undefined FUN_180941630;
+undefined FUN_180941630;
+undefined1 DAT_180c910f8;
 
-/** @brief 数据处理器结构体 */
-typedef struct {
-    UtilitiesDataProcessor processor_func; /**< 处理函数指针 */
-    void*                 context;         /**< 上下文数据 */
-    uint32_t              flags;           /**< 处理器标志 */
-    uint32_t              priority;        /**< 优先级 */
-} UtilitiesDataProcessor;
 
-/** @brief 系统状态监控器结构体 */
-typedef struct {
-    uint32_t status_code;         /**< 状态码 */
-    uint32_t error_count;         /**< 错误计数 */
-    uint32_t warning_count;       /**< 警告计数 */
-    uint32_t operation_count;     /**< 操作计数 */
-    uint64_t last_update_time;    /**< 最后更新时间 */
-    uint64_t total_processing_time; /**< 总处理时间 */
-} UtilitiesSystemMonitor;
+// 函数: undefined FUN_180941650;
+undefined FUN_180941650;
+undefined1 DAT_180c91198;
 
-/** @} */
 
-// ============================================================================
-// 核心函数实现
-// ============================================================================
+// 函数: undefined FUN_180941690;
+undefined FUN_180941690;
+undefined1 DAT_180c91238;
 
-/**
- * @defgroup UtilitiesCoreFunctions 核心工具函数
- * @{
- */
 
-/**
- * @brief 工具系统基础初始化器
- * 
- * 初始化工具系统的基础组件，包括：
- * - 内存管理器初始化
- * - 系统配置加载
- * - 状态监控器设置
- * - 线程本地存储初始化
- * 
- * @param config 系统配置指针
- * @return int 返回状态码，0表示成功
- */
-int utilities_system_basic_initializer(UtilitiesSystemConfig* config) {
-    if (!config) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 初始化内存管理器
-    void* memory_pool = malloc(config->memory_pool_size);
-    if (!memory_pool) {
-        return UTILITIES_STATUS_MEMORY_ERROR;
-    }
-    
-    // 设置系统标志位
-    uint32_t system_flags = config->system_flags;
-    system_flags |= 0x00000001; // 设置已初始化标志
-    
-    // 初始化状态监控器
-    memset(&system_monitor, 0, sizeof(UtilitiesSystemMonitor));
-    system_monitor.status_code = UTILITIES_STATUS_SUCCESS;
-    
-    // 设置基础配置
-    memcpy(&system_config, config, sizeof(UtilitiesSystemConfig));
-    
-    return UTILITIES_STATUS_SUCCESS;
-}
+// 函数: undefined FUN_1809416d0;
+undefined FUN_1809416d0;
+undefined1 DAT_180c912d8;
 
-/**
- * @brief 工具系统配置验证器
- * 
- * 验证系统配置的有效性，包括：
- * - 配置版本检查
- * - 内存大小验证
- * - 线程数限制检查
- * - 参数范围验证
- * 
- * @param config 系统配置指针
- * @return int 返回验证结果，0表示验证通过
- */
-int utilities_system_config_validator(UtilitiesSystemConfig* config) {
-    if (!config) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 验证配置版本
-    if (config->config_version == 0) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 验证内存池大小
-    if (config->memory_pool_size < UTILITIES_MEMORY_POOL_SIZE) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 验证线程数限制
-    if (config->max_thread_count > UTILITIES_MAX_THREAD_COUNT) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 验证系统标志位
-    if (config->system_flags & 0x80000000) {
-        return UTILITIES_STATUS_ERROR;
-    }
-    
-    return UTILITIES_STATUS_SUCCESS;
-}
 
-/**
- * @brief 工具系统内存分配器
- * 
- * 从内存池中分配指定大小的内存块，支持对齐分配。
- * 
- * @param size 需要分配的内存大小
- * @param alignment 内存对齐要求
- * @return void* 返回分配的内存指针，失败返回NULL
- */
-void* utilities_system_memory_allocator(size_t size, size_t alignment) {
-    if (size == 0) {
-        return NULL;
-    }
-    
-    // 计算对齐后的实际大小
-    size_t aligned_size = (size + alignment - 1) & ~(alignment - 1);
-    
-    // 检查内存池是否有足够空间
-    if (memory_manager.used_size + aligned_size > memory_manager.pool_size) {
-        return NULL;
-    }
-    
-    // 分配内存块
-    void* ptr = (void*)((uintptr_t)memory_manager.memory_pool + memory_manager.used_size);
-    memory_manager.used_size += aligned_size;
-    memory_manager.allocation_count++;
-    
-    return ptr;
-}
+// 函数: undefined FUN_180941710;
+undefined FUN_180941710;
+undefined DAT_1809fe0d0;
+undefined UNK_1809fd0d8;
 
-/**
- * @brief 工具系统内存释放器
- * 
- * 释放之前分配的内存块，更新内存管理器状态。
- * 
- * @param ptr 要释放的内存指针
- */
-void utilities_system_memory_deallocator(void* ptr) {
-    if (!ptr) {
-        return;
-    }
-    
-    // 更新内存管理器状态
-    memory_manager.deallocation_count++;
-    
-    // 简单的内存管理策略：重置使用计数
-    if (memory_manager.deallocation_count == memory_manager.allocation_count) {
-        memory_manager.used_size = 0;
-    }
-}
 
-/**
- * @brief 工具系统数据处理器类型1
- * 
- * 基础数据处理功能，支持数据转换和格式化。
- * 
- * @param input_data 输入数据指针
- * @param data_size 数据大小
- * @return void* 返回处理后的数据指针
- */
-void* utilities_data_processor_type1(void* input_data, size_t data_size) {
-    if (!input_data || data_size == 0) {
-        return NULL;
-    }
-    
-    // 分配处理后的数据缓冲区
-    void* output_data = utilities_system_memory_allocator(data_size, UTILITIES_ALIGNMENT_SIZE);
-    if (!output_data) {
-        return NULL;
-    }
-    
-    // 执行基础数据处理（示例：数据复制）
-    memcpy(output_data, input_data, data_size);
-    
-    // 更新系统监控器
-    system_monitor.operation_count++;
-    
-    return output_data;
-}
+// 函数: undefined FUN_1809417a0;
+undefined FUN_1809417a0;
 
-/**
- * @brief 工具系统数据处理器类型2
- * 
- * 高级数据处理功能，支持数据压缩和加密。
- * 
- * @param input_data 输入数据指针
- * @param data_size 数据大小
- * @return void* 返回处理后的数据指针
- */
-void* utilities_data_processor_type2(void* input_data, size_t data_size) {
-    if (!input_data || data_size == 0) {
-        return NULL;
-    }
-    
-    // 分配处理后的数据缓冲区（预留额外空间）
-    size_t output_size = data_size * 2;
-    void* output_data = utilities_system_memory_allocator(output_size, UTILITIES_ALIGNMENT_SIZE);
-    if (!output_data) {
-        return NULL;
-    }
-    
-    // 执行高级数据处理（示例：数据转换）
-    uint8_t* src = (uint8_t*)input_data;
-    uint8_t* dst = (uint8_t*)output_data;
-    
-    for (size_t i = 0; i < data_size; i++) {
-        dst[i] = src[i] ^ 0xFF; // 简单的数据转换
-    }
-    
-    // 更新系统监控器
-    system_monitor.operation_count++;
-    
-    return output_data;
-}
 
-/**
- * @brief 工具系统状态监控器
- * 
- * 监控系统运行状态，记录关键性能指标。
- * 
- * @param context 监控上下文
- * @return int 返回系统状态码
- */
-int utilities_system_status_monitor(void* context) {
-    if (!context) {
-        return UTILITIES_STATUS_INVALID_PARAM;
-    }
-    
-    // 更新监控器状态
-    system_monitor.last_update_time = get_current_time();
-    
-    // 检查系统健康状况
-    if (system_monitor.error_count > 100) {
-        system_monitor.status_code = UTILITIES_STATUS_ERROR;
-        return UTILITIES_STATUS_ERROR;
-    }
-    
-    return system_monitor.status_code;
-}
+// 函数: undefined FUN_1809417c0;
+undefined FUN_1809417c0;
+undefined DAT_180c9190c;
+undefined UNK_1809fcc28;
+undefined UNK_1809ffa30;
+undefined DAT_180a010a0;
+undefined UNK_180a00370;
 
-/**
- * @brief 工具系统线程本地存储管理器
- * 
- * 管理线程本地存储（TLS）的分配和清理。
- * 
- * @param cleanup_func 清理函数指针
- * @return void* 返回分配的TLS数据指针
- */
-void* utilities_system_tls_manager(UtilitiesTLSCleanupFunc cleanup_func) {
-    // 分配TLS数据
-    void* tls_data = malloc(1024); // 1KB TLS空间
-    if (!tls_data) {
-        return NULL;
-    }
-    
-    // 注册清理函数（简化实现）
-    if (cleanup_func) {
-        // 在实际实现中，这里会注册清理函数
-        // cleanup_func(tls_data);
-    }
-    
-    return tls_data;
-}
 
-/**
- * @brief 工具系统异常处理器
- * 
- * 处理系统异常，提供错误恢复机制。
- * 
- * @param exception_code 异常代码
- * @param context 异常上下文
- * @return int 返回处理结果
- */
-int utilities_system_exception_handler(uint32_t exception_code, void* context) {
-    // 更新错误计数
-    system_monitor.error_count++;
-    
-    // 根据异常代码处理
-    switch (exception_code) {
-        case 0xC0000005: // 访问冲突
-            system_monitor.status_code = UTILITIES_STATUS_ERROR;
-            break;
-        case 0xC0000094: // 非法指令
-            system_monitor.status_code = UTILITIES_STATUS_ERROR;
-            break;
-        default:
-            system_monitor.status_code = UTILITIES_STATUS_ERROR;
-            break;
-    }
-    
-    return system_monitor.status_code;
-}
+// 函数: undefined FUN_180941800;
+undefined FUN_180941800;
+undefined DAT_180bf64e0;
+undefined DAT_180bf64e8;
+undefined UNK_1809fdc18;
+undefined UNK_180a004dc;
+undefined DAT_180bf6530;
+undefined DAT_180bf6538;
+undefined DAT_180bf6540;
 
-/**
- * @brief 工具系统调试日志器
- * 
- * 记录调试信息，支持多种日志级别。
- * 
- * @param log_level 日志级别
- * @param message 日志消息
- * @param ... 格式化参数
- */
-void utilities_system_debug_logger(int log_level, const char* message, ...) {
-    va_list args;
-    va_start(args, message);
-    
-    // 格式化日志消息
-    char log_buffer[1024];
-    vsnprintf(log_buffer, sizeof(log_buffer), message, args);
-    
-    // 根据日志级别处理
-    switch (log_level) {
-        case 0: // DEBUG
-            // 输出调试信息
-            break;
-        case 1: // INFO
-            // 输出一般信息
-            break;
-        case 2: // WARNING
-            system_monitor.warning_count++;
-            break;
-        case 3: // ERROR
-            system_monitor.error_count++;
-            break;
-    }
-    
-    va_end(args);
-}
 
-/**
- * @brief 工具系统性能分析器
- * 
- * 分析系统性能，提供优化建议。
- * 
- * @param operation 操作类型
- * @param start_time 开始时间
- * @param end_time 结束时间
- */
-void utilities_system_performance_analyzer(int operation, uint64_t start_time, uint64_t end_time) {
-    uint64_t duration = end_time - start_time;
-    system_monitor.total_processing_time += duration;
-    
-    // 记录性能指标（简化实现）
-    switch (operation) {
-        case 1: // 内存分配
-            break;
-        case 2: // 数据处理
-            break;
-        case 3: // 系统调用
-            break;
-    }
-}
+// 函数: undefined FUN_180941820;
+undefined FUN_180941820;
+undefined DAT_180bf6548;
+undefined UNK_180a004e8;
+undefined DAT_180bf6590;
+undefined DAT_180bf6598;
+undefined DAT_180bf65a0;
+undefined DAT_180bf65a8;
 
-/**
- * @brief 工具系统资源清理器
- * 
- * 清理系统资源，释放内存，关闭文件等。
- * 
- * @param force 强制清理标志
- * @return int 返回清理结果
- */
-int utilities_system_resource_cleaner(int force) {
-    // 清理内存池
-    if (memory_manager.memory_pool) {
-        free(memory_manager.memory_pool);
-        memory_manager.memory_pool = NULL;
-    }
-    
-    // 重置内存管理器
-    memset(&memory_manager, 0, sizeof(UtilitiesMemoryManager));
-    
-    // 重置系统监控器
-    memset(&system_monitor, 0, sizeof(UtilitiesSystemMonitor));
-    
-    return UTILITIES_STATUS_SUCCESS;
-}
 
-/**
- * @brief 工具系统空操作函数类型1
- * 
- * 空操作函数，用于测试和占位。
- */
-void utilities_system_no_operation_type1(void) {
-    // 空操作，用于系统测试和占位
-}
+// 函数: undefined FUN_180941840;
+undefined FUN_180941840;
+undefined UNK_180a004f8;
+undefined DAT_180bf65c0;
+undefined DAT_180bf65c8;
+undefined DAT_180bf65d0;
+undefined DAT_180bf65d8;
 
-/**
- * @brief 工具系统空操作函数类型2
- * 
- * 空操作函数，用于测试和占位。
- */
-void utilities_system_no_operation_type2(void) {
-    // 空操作，用于系统测试和占位
-}
 
-/**
- * @brief 工具系统资源清理和内存释放函数
- * 
- * 综合的资源清理功能，确保系统资源的正确释放。
- * 
- * @param context 清理上下文
- * @return int 返回清理结果
- */
-int utilities_resource_cleanup_manager(void* context) {
-    // 执行资源清理
-    int result = utilities_system_resource_cleaner(1);
-    
-    // 验证清理结果
-    if (result == UTILITIES_STATUS_SUCCESS) {
-        system_monitor.status_code = UTILITIES_STATUS_SUCCESS;
-    } else {
-        system_monitor.status_code = UTILITIES_STATUS_ERROR;
-        system_monitor.error_count++;
-    }
-    
-    return result;
-}
+// 函数: undefined FUN_180941860;
+undefined FUN_180941860;
+undefined UNK_180a00508;
+undefined DAT_180bf65f0;
+undefined DAT_180bf65f8;
+undefined DAT_180bf6600;
+undefined DAT_180bf6608;
 
-/** @} */
 
-// ============================================================================
-// 全局变量和静态数据
-// ============================================================================
+// 函数: undefined FUN_180941880;
+undefined FUN_180941880;
+undefined UNK_180a00518;
+undefined DAT_180bf6620;
+undefined DAT_180bf6628;
+undefined DAT_180bf6630;
+undefined DAT_180bf6638;
+undefined UNK_180a00528;
 
-/**
- * @defgroup UtilitiesGlobalVariables 全局变量
- * @{
- */
 
-/** @brief 系统配置实例 */
-static UtilitiesSystemConfig system_config = {
-    .config_version = 1,
-    .system_flags = 0,
-    .memory_pool_size = UTILITIES_MEMORY_POOL_SIZE,
-    .max_thread_count = UTILITIES_MAX_THREAD_COUNT,
-    .reserved = {0}
-};
+// 函数: undefined FUN_1809418a0;
+undefined FUN_1809418a0;
+undefined DAT_180bf6650;
+undefined DAT_180bf6658;
+undefined DAT_180bf6660;
+undefined DAT_180bf6668;
+undefined UNK_180a00538;
 
-/** @brief 内存管理器实例 */
-static UtilitiesMemoryManager memory_manager = {
-    .memory_pool = NULL,
-    .pool_size = 0,
-    .used_size = 0,
-    .free_size = 0,
-    .allocation_count = 0,
-    .deallocation_count = 0,
-    .next_free = NULL
-};
 
-/** @brief 系统监控器实例 */
-static UtilitiesSystemMonitor system_monitor = {
-    .status_code = UTILITIES_STATUS_SUCCESS,
-    .error_count = 0,
-    .warning_count = 0,
-    .operation_count = 0,
-    .last_update_time = 0,
-    .total_processing_time = 0
-};
+// 函数: undefined FUN_1809418c0;
+undefined FUN_1809418c0;
+undefined DAT_180bf6680;
+undefined DAT_180bf6688;
+undefined DAT_180bf6690;
+undefined DAT_180bf6698;
+undefined UNK_180a00540;
 
-/** @brief 线程本地存储索引 */
-static uint32_t _tls_index = 0;
 
-/** @brief 线程本地存储指针 */
-static void* ThreadLocalStoragePointer = NULL;
+// 函数: undefined FUN_1809418e0;
+undefined FUN_1809418e0;
+undefined DAT_180bf66b0;
+undefined DAT_180bf66b8;
+undefined DAT_180bf66c0;
+undefined DAT_180bf66c8;
+undefined UNK_180a00548;
 
-/** @} */
 
-// ============================================================================
-// 辅助函数
-// ============================================================================
+// 函数: undefined FUN_180941900;
+undefined FUN_180941900;
+undefined DAT_180bf52e8;
+undefined DAT_180bf52f0;
+undefined DAT_180bf52f8;
+undefined DAT_180bf5300;
+undefined UNK_180a01300;
 
-/**
- * @defgroup UtilitiesHelperFunctions 辅助函数
- * @{
- */
 
-/**
- * @brief 获取当前系统时间
- * 
- * @return uint64_t 返回当前时间戳
- */
-static uint64_t get_current_time(void) {
-    // 简化的时间获取实现
-    return 0; // 在实际实现中，这里会返回真实的时间戳
-}
+// 函数: undefined FUN_180941980;
+undefined FUN_180941980;
+undefined DAT_180bf5738;
+undefined DAT_180bf5740;
+undefined DAT_180bf5748;
+undefined DAT_180bf5750;
+undefined UNK_180a01330;
 
-/**
- * @brief 内存对齐计算
- * 
- * @param size 原始大小
- * @param alignment 对齐要求
- * @return size_t 返回对齐后的大小
- */
-static size_t align_size(size_t size, size_t alignment) {
-    return (size + alignment - 1) & ~(alignment - 1);
-}
 
-/**
- * @brief 验证内存指针
- * 
- * @param ptr 内存指针
- * @param size 内存大小
- * @return int 返回验证结果
- */
-static int validate_memory_pointer(void* ptr, size_t size) {
-    if (!ptr || size == 0) {
-        return 0;
-    }
-    
-    // 检查指针是否在内存池范围内
-    uintptr_t addr = (uintptr_t)ptr;
-    uintptr_t pool_start = (uintptr_t)memory_manager.memory_pool;
-    uintptr_t pool_end = pool_start + memory_manager.pool_size;
-    
-    return (addr >= pool_start && addr + size <= pool_end);
-}
+// 函数: undefined FUN_1809419a0;
+undefined FUN_1809419a0;
 
-/** @} */
 
-// ============================================================================
-// 模块导出函数
-// ============================================================================
+// 函数: undefined FUN_1809419c0;
+undefined FUN_1809419c0;
+undefined DAT_180c9196c;
+undefined UNK_180a02998;
+undefined DAT_180c919e0;
+undefined UNK_180a0b1c8;
+undefined DAT_180bf6750;
+undefined DAT_180bf6758;
+undefined DAT_180bf6760;
+undefined DAT_180bf6768;
+undefined DAT_180bf67a8;
+undefined DAT_180bf67b0;
+undefined DAT_180bf67b8;
+undefined DAT_180bf67c0;
+undefined DAT_180bf6800;
+undefined DAT_180bf6808;
+undefined DAT_180bf6810;
+undefined DAT_180bf6818;
+undefined DAT_180bf6858;
+undefined DAT_180bf6860;
+undefined DAT_180bf6868;
+undefined DAT_180bf6870;
+undefined DAT_180bf68b0;
+undefined DAT_180bf68b8;
+undefined DAT_180bf68c0;
+undefined DAT_180bf68c8;
+undefined DAT_180bf6908;
+undefined DAT_180bf6910;
+undefined DAT_180bf6918;
+undefined DAT_180bf6920;
+undefined DAT_180bf6960;
+undefined DAT_180bf6968;
+undefined DAT_180bf6970;
+undefined DAT_180bf6978;
+undefined DAT_180bf69b8;
+undefined DAT_180bf69c0;
+undefined DAT_180bf69c8;
+undefined DAT_180bf69d0;
+undefined DAT_180bf6a10;
+undefined DAT_180bf6a18;
+undefined DAT_180bf6a20;
+undefined DAT_180bf6a28;
+undefined DAT_180bf6a68;
+undefined DAT_180bf6a70;
+undefined DAT_180bf6a78;
+undefined DAT_180bf6a80;
+undefined DAT_180bf6ac0;
+undefined DAT_180bf6ac8;
+undefined DAT_180bf6ad0;
+undefined DAT_180bf6ad8;
+undefined DAT_180bf6b18;
+undefined DAT_180bf6b20;
+undefined DAT_180bf6b28;
+undefined DAT_180bf6b30;
+undefined DAT_180bf6b70;
+undefined DAT_180bf6b78;
+undefined DAT_180bf6b80;
+undefined DAT_180bf6b88;
+undefined DAT_180bf6bc8;
+undefined DAT_180bf6bd0;
+undefined DAT_180bf6bd8;
+undefined DAT_180bf6be0;
+undefined DAT_180bf6c20;
+undefined DAT_180bf6c28;
+undefined DAT_180bf6c30;
+undefined DAT_180bf6c38;
+undefined DAT_180bf6c78;
+undefined DAT_180bf6c80;
+undefined DAT_180bf6c88;
+undefined DAT_180bf6c90;
+undefined DAT_180bf6cd0;
+undefined DAT_180bf6cd8;
+undefined DAT_180bf6ce0;
+undefined DAT_180bf6ce8;
+undefined DAT_180bf6d28;
+undefined DAT_180bf6d30;
+undefined DAT_180bf6d38;
+undefined DAT_180bf6d40;
+undefined DAT_180bf6d80;
+undefined DAT_180bf6d88;
+undefined DAT_180bf6d90;
+undefined DAT_180bf6d98;
+undefined DAT_180bf6dd8;
+undefined DAT_180bf6de0;
+undefined DAT_180bf6de8;
+undefined DAT_180bf6df0;
+undefined DAT_180bf6e30;
+undefined DAT_180bf6e38;
+undefined DAT_180bf6e40;
+undefined DAT_180bf6e48;
+undefined DAT_180bf6e88;
+undefined DAT_180bf6e90;
+undefined DAT_180bf6e98;
+undefined DAT_180bf6ea0;
+undefined DAT_180bf6ee0;
+undefined DAT_180bf6ee8;
+undefined DAT_180bf6ef0;
+undefined DAT_180bf6ef8;
+undefined DAT_180bf6f38;
+undefined DAT_180bf6f40;
+undefined DAT_180bf6f48;
+undefined DAT_180bf6f50;
+undefined DAT_180bf6f90;
+undefined DAT_180bf6f98;
+undefined DAT_180bf6fa0;
+undefined DAT_180bf6fa8;
+undefined DAT_180bf6fe8;
+undefined DAT_180bf6ff0;
+undefined DAT_180bf6ff8;
+undefined DAT_180bf7000;
+undefined DAT_180bf7040;
+undefined DAT_180bf7048;
+undefined DAT_180bf7050;
+undefined DAT_180bf7058;
+undefined DAT_180bf7098;
+undefined DAT_180bf70a0;
+undefined DAT_180bf70a8;
+undefined DAT_180bf70b0;
+undefined DAT_180bf70f0;
+undefined DAT_180bf70f8;
+undefined DAT_180bf7100;
+undefined DAT_180bf7108;
+undefined DAT_180bf7148;
+undefined DAT_180bf7150;
+undefined DAT_180bf7158;
+undefined DAT_180bf7160;
+undefined DAT_180bf71a0;
+undefined DAT_180bf71a8;
+undefined DAT_180bf71b0;
+undefined DAT_180bf71b8;
+undefined DAT_180bf71f8;
+undefined DAT_180bf7200;
+undefined DAT_180bf7208;
+undefined DAT_180bf7210;
+undefined UNK_180941b70;
+undefined DAT_18098bc73;
+undefined UNK_180a05740;
+undefined UNK_180a0cb48;
+undefined UNK_180a0cb60;
+undefined UNK_180a0cb70;
+undefined UNK_180a0cb80;
+undefined UNK_180a0cb90;
+undefined UNK_180a0cba8;
+undefined UNK_180a0cbc8;
+undefined UNK_180a0cbe0;
+undefined UNK_180a0cbf0;
+undefined UNK_180a0cc08;
+undefined UNK_180a0cc10;
+undefined UNK_180a0cc30;
+undefined UNK_180a0cc48;
+undefined UNK_180a0cc68;
+undefined UNK_180a0cc88;
+undefined UNK_180a0cca0;
+undefined UNK_180a0ccb8;
+undefined UNK_180a0ccd0;
+undefined UNK_180a0ccf0;
+undefined UNK_180a0cd08;
+undefined UNK_180a0cd28;
+undefined UNK_180a0cd40;
+undefined UNK_180a0cd58;
+undefined UNK_180a0cd70;
+undefined UNK_180a0cd88;
+undefined UNK_180a0cd98;
+undefined UNK_180a0cdb0;
+undefined UNK_180a0cdc8;
+undefined UNK_180a0cde0;
+undefined UNK_180a0ce40;
+undefined DAT_180bf7250;
+undefined DAT_180bf7258;
+undefined DAT_180bf7260;
 
-/**
- * @defgroup UtilitiesExportFunctions 导出函数
- * @{
- */
 
-/**
- * @brief 获取工具系统版本信息
- * 
- * @return uint32_t 返回版本号
- */
-uint32_t utilities_get_version(void) {
-    return 0x00010000; // 版本 1.0.0
-}
+// 函数: undefined FUN_180941b90;
+undefined FUN_180941b90;
+undefined DAT_180bf7268;
+undefined UNK_180a03098;
+undefined DAT_180bf72b0;
+undefined DAT_180bf72b8;
+undefined DAT_180bf72c0;
+undefined DAT_180bf72c8;
 
-/**
- * @brief 获取系统状态信息
- * 
- * @param status_buffer 状态缓冲区
- * @param buffer_size 缓冲区大小
- * @return int 返回状态信息大小
- */
-int utilities_get_system_status(char* status_buffer, size_t buffer_size) {
-    if (!status_buffer || buffer_size == 0) {
-        return 0;
-    }
-    
-    // 格式化状态信息
-    int written = snprintf(status_buffer, buffer_size,
-        "System Status:\n"
-        "  Status Code: 0x%08X\n"
-        "  Error Count: %u\n"
-        "  Warning Count: %u\n"
-        "  Operation Count: %u\n"
-        "  Memory Used: %zu/%zu bytes\n",
-        system_monitor.status_code,
-        system_monitor.error_count,
-        system_monitor.warning_count,
-        system_monitor.operation_count,
-        memory_manager.used_size,
-        memory_manager.pool_size
-    );
-    
-    return (written < (int)buffer_size) ? written : (int)buffer_size - 1;
-}
 
-/**
- * @brief 重置工具系统状态
- * 
- * @return int 返回重置结果
- */
-int utilities_reset_system(void) {
-    // 重置系统监控器
-    memset(&system_monitor, 0, sizeof(UtilitiesSystemMonitor));
-    system_monitor.status_code = UTILITIES_STATUS_SUCCESS;
-    
-    // 重置内存管理器（保留内存池）
-    memory_manager.used_size = 0;
-    memory_manager.allocation_count = 0;
-    memory_manager.deallocation_count = 0;
-    
-    return UTILITIES_STATUS_SUCCESS;
-}
+// 函数: undefined FUN_180941bb0;
+undefined FUN_180941bb0;
+undefined UNK_180a03060;
+undefined DAT_180bf7310;
+undefined DAT_180bf7318;
+undefined DAT_180bf7320;
+undefined DAT_180bf7328;
 
-/** @} */
 
-// ============================================================================
-// 技术说明和文档
-// ============================================================================
+// 函数: undefined FUN_180941bd0;
+undefined FUN_180941bd0;
+undefined UNK_180a030a8;
+undefined DAT_180bf7370;
+undefined DAT_180bf7378;
+undefined DAT_180bf7380;
+undefined DAT_180bf7388;
+undefined DAT_180bf7408;
+undefined DAT_180bf7410;
+undefined DAT_180bf7418;
+undefined DAT_180bf7420;
+undefined DAT_180bf74a0;
+undefined DAT_180bf74a8;
+undefined DAT_180bf74b0;
+undefined DAT_180bf74b8;
+undefined DAT_180bf7538;
+undefined DAT_180bf7540;
+undefined DAT_180bf7548;
+undefined DAT_180bf7550;
+undefined DAT_180bf75d0;
+undefined DAT_180bf75d8;
+undefined DAT_180bf75e0;
+undefined DAT_180bf75e8;
+undefined DAT_180bf7668;
+undefined DAT_180bf7670;
+undefined DAT_180bf7678;
+undefined DAT_180bf7680;
+undefined DAT_180bf7700;
+undefined DAT_180bf7708;
+undefined DAT_180bf7710;
+undefined DAT_180bf7718;
+undefined DAT_180bf7798;
+undefined DAT_180bf77a0;
+undefined DAT_180bf77a8;
+undefined DAT_180bf77b0;
+undefined DAT_180bf7830;
+undefined DAT_180bf7838;
+undefined DAT_180bf7840;
+undefined DAT_180bf7848;
+undefined DAT_180bf78c8;
+undefined DAT_180bf78d0;
+undefined DAT_180bf78d8;
+undefined DAT_180bf78e0;
+undefined DAT_180bf7960;
+undefined DAT_180bf7968;
+undefined DAT_180bf7970;
+undefined DAT_180bf7978;
+undefined DAT_180bf79f8;
+undefined DAT_180bf7a00;
+undefined DAT_180bf7a08;
+undefined DAT_180bf7a10;
+undefined DAT_180bf7a90;
+undefined DAT_180bf7a98;
+undefined DAT_180bf7aa0;
+undefined DAT_180bf7aa8;
+undefined DAT_180bf7b28;
+undefined DAT_180bf7b30;
+undefined DAT_180bf7b38;
+undefined DAT_180bf7b40;
+undefined DAT_180bf7bc0;
+undefined DAT_180bf7bc8;
+undefined DAT_180bf7bd0;
+undefined DAT_180bf7bd8;
+undefined DAT_180bf7c58;
+undefined DAT_180bf7c60;
+undefined DAT_180bf7c68;
+undefined DAT_180bf7c70;
+undefined UNK_180941cc0;
+undefined UNK_180a0fd40;
+undefined UNK_180a0fd50;
+undefined UNK_180a0fd60;
+undefined UNK_180a0fd70;
+undefined UNK_180a0fd88;
+undefined UNK_180a0fd98;
+undefined UNK_180a0fda8;
+undefined UNK_180a0fdb8;
+undefined UNK_180a0fdd0;
+undefined UNK_180a0fdf0;
+undefined UNK_180a0fe10;
+undefined UNK_180a0fe28;
+undefined UNK_180a0fe40;
+undefined UNK_180a0fe58;
+undefined UNK_180a0fe70;
+undefined UNK_180a0fe90;
+undefined DAT_180c91d54;
+undefined UNK_180a13a98;
+undefined DAT_180c91d5c;
+undefined UNK_180a13e48;
+undefined DAT_180bf7e90;
+undefined DAT_180bf7e98;
+undefined DAT_180bf7ea0;
+undefined DAT_180bf7ea8;
+undefined DAT_180bf7ee8;
+undefined DAT_180bf7ef0;
+undefined DAT_180bf7ef8;
+undefined DAT_180bf7f00;
+undefined DAT_180bf7f40;
+undefined DAT_180bf7f48;
+undefined DAT_180bf7f50;
+undefined DAT_180bf7f58;
+undefined DAT_180bf7f98;
+undefined DAT_180bf7fa0;
+undefined DAT_180bf7fa8;
+undefined DAT_180bf7fb0;
+undefined DAT_180bf7ff0;
+undefined DAT_180bf7ff8;
+undefined DAT_180bf8000;
+undefined DAT_180bf8008;
+undefined DAT_180bf8048;
+undefined DAT_180bf8050;
+undefined DAT_180bf8058;
+undefined DAT_180bf8060;
+undefined DAT_180bf80a0;
+undefined DAT_180bf80a8;
+undefined DAT_180bf80b0;
+undefined DAT_180bf80b8;
+undefined DAT_180bf80f8;
+undefined DAT_180bf8100;
+undefined DAT_180bf8108;
+undefined DAT_180bf8110;
+undefined DAT_180bf8150;
+undefined DAT_180bf8158;
+undefined DAT_180bf8160;
+undefined DAT_180bf8168;
+undefined DAT_180bf81a8;
+undefined DAT_180bf81b0;
+undefined DAT_180bf81b8;
+undefined DAT_180bf81c0;
+undefined DAT_180bf8200;
+undefined DAT_180bf8208;
+undefined DAT_180bf8210;
+undefined DAT_180bf8218;
+undefined DAT_180bf8258;
+undefined DAT_180bf8260;
+undefined DAT_180bf8268;
+undefined DAT_180bf8270;
+undefined DAT_180bf82b0;
+undefined DAT_180bf82b8;
+undefined DAT_180bf82c0;
+undefined DAT_180bf82c8;
+undefined DAT_180bf8308;
+undefined DAT_180bf8310;
+undefined DAT_180bf8318;
+undefined DAT_180bf8320;
+undefined DAT_180bf8360;
+undefined DAT_180bf8368;
+undefined DAT_180bf8370;
+undefined DAT_180bf8378;
+undefined DAT_180bf83b8;
+undefined DAT_180bf83c0;
+undefined DAT_180bf83c8;
+undefined DAT_180bf83d0;
+undefined DAT_180bf8410;
+undefined DAT_180bf8418;
+undefined DAT_180bf8420;
+undefined DAT_180bf8428;
+undefined DAT_180bf8468;
+undefined DAT_180bf8470;
+undefined DAT_180bf8478;
+undefined DAT_180bf8480;
+undefined DAT_180bf84c0;
+undefined DAT_180bf84c8;
+undefined DAT_180bf84d0;
+undefined DAT_180bf84d8;
+undefined DAT_180bf8518;
+undefined DAT_180bf8520;
+undefined DAT_180bf8528;
+undefined DAT_180bf8530;
+undefined DAT_180bf8570;
+undefined DAT_180bf8578;
+undefined DAT_180bf8580;
+undefined DAT_180bf8588;
+undefined DAT_180bf85c8;
+undefined DAT_180bf85d0;
+undefined DAT_180bf85d8;
+undefined DAT_180bf85e0;
+undefined DAT_180bf8620;
+undefined DAT_180bf8628;
+undefined DAT_180bf8630;
+undefined DAT_180bf8638;
+undefined DAT_180bf8678;
+undefined DAT_180bf8680;
+undefined DAT_180bf8688;
+undefined DAT_180bf8690;
+undefined DAT_180bf86d0;
+undefined DAT_180bf86d8;
+undefined DAT_180bf86e0;
+undefined DAT_180bf86e8;
+undefined DAT_180bf8728;
+undefined DAT_180bf8730;
+undefined DAT_180bf8738;
+undefined DAT_180bf8740;
+undefined DAT_180bf8780;
+undefined DAT_180bf8788;
+undefined DAT_180bf8790;
+undefined DAT_180bf8798;
+undefined DAT_180bf87d8;
+undefined DAT_180bf87e0;
+undefined DAT_180bf87e8;
+undefined DAT_180bf87f0;
+undefined DAT_180bf8830;
+undefined DAT_180bf8838;
+undefined DAT_180bf8840;
+undefined DAT_180bf8848;
+undefined DAT_180bf8888;
+undefined DAT_180bf8890;
+undefined DAT_180bf8898;
+undefined DAT_180bf88a0;
+undefined DAT_180bf88e0;
+undefined DAT_180bf88e8;
+undefined DAT_180bf88f0;
+undefined DAT_180bf88f8;
+undefined DAT_180bf8938;
+undefined DAT_180bf8940;
+undefined DAT_180bf8948;
+undefined DAT_180bf8950;
+undefined UNK_180941ce0;
+undefined DAT_180c91d60;
+undefined UNK_180a140f8;
+undefined DAT_180c91d64;
+undefined UNK_180a14290;
+undefined DAT_180c91d68;
+undefined UNK_180a14668;
+undefined DAT_180c91d6c;
+undefined DAT_180a14640;
+undefined DAT_180c91d70;
+undefined UNK_180a14840;
+undefined DAT_180c91da4;
+undefined UNK_180a167d0;
+undefined DAT_180bf90b0;
+undefined DAT_180bf90b8;
+undefined DAT_180bf90c0;
+undefined DAT_180bf90c8;
 
-/**
- * @page UtilitiesModuleDocumentation 工具系统模块文档
- * 
- * @section Overview 概述
- * 工具系统模块是整个系统的基础支持模块，提供通用的工具函数和数据处理功能。
- * 
- * @section Features 主要功能
- * - 基础数据处理和转换
- * - 内存管理和分配
- * - 系统状态监控
- * - 线程本地存储管理
- * - 异常处理和调试支持
- * 
- * @section Usage 使用方法
- * 1. 调用 utilities_system_basic_initializer() 初始化系统
- * 2. 使用 utilities_system_memory_allocator() 分配内存
- * 3. 使用各种数据处理器处理数据
- * 4. 使用 utilities_system_resource_cleaner() 清理资源
- * 
- * @section Performance 性能特点
- * - 高效的内存管理策略
- * - 快速的数据处理算法
- * - 低开销的状态监控
- * - 线程安全的操作
- * 
- * @section Dependencies 依赖关系
- * - TaleWorlds.Native.Split.h 核心头文件
- * - 标准C库函数
- * - 系统调用接口
- * 
- * @section Notes 注意事项
- * - 确保在使用前正确初始化系统
- * - 注意内存泄漏问题
- * - 处理异常情况
- * - 遵循线程安全原则
- */
 
-/* 
- * ============================================================================
- * 文件信息
- * ============================================================================
- * 文件名称: 06_utilities_part001.c
- * 创建日期: 2025-08-28
- * 作者: Claude Code
- * 版本: 1.0
- * 
- * ============================================================================
- * 修改历史
- * ============================================================================
- * 日期        | 作者       | 修改内容
- * 2025-08-28 | Claude Code | 创建文件，实现基础工具功能
- * ============================================================================
- * 
- * ============================================================================
- * 版权信息
- * ============================================================================
- * 本文件为TaleWorlds.Native项目的一部分，版权归项目所有者所有。
- * ============================================================================
- */
+// 函数: undefined FUN_180941d00;
+undefined FUN_180941d00;
+undefined DAT_180bf5b88;
+undefined DAT_180bf5b90;
+undefined DAT_180bf5b98;
+undefined DAT_180bf5ba0;
+
+
+// 函数: undefined FUN_180941d20;
+undefined FUN_180941d20;
+undefined DAT_180c91da8;
+undefined DAT_180a16c50;
+undefined DAT_180c91dac;
+undefined DAT_180a16c38;
+undefined DAT_180c91ee8;
+undefined UNK_180a17e48;
+undefined DAT_180c91ef8;
+undefined UNK_180a194f0;
+undefined DAT_180c91efc;
+undefined UNK_180a19588;
+undefined DAT_180c91f00;
+undefined UNK_180a19bf0;
+undefined DAT_180c91f04;
+undefined UNK_180a19df0;
+undefined DAT_180c91f08;
+undefined UNK_180a1a450;
+undefined DAT_180c91f0c;
+undefined UNK_180a1a6c8;
+undefined DAT_180c91f10;
+undefined UNK_180a1afd8;
+undefined DAT_180c91f14;
+undefined UNK_180a1cc28;
+undefined DAT_180c91f30;
+undefined UNK_180a1eb30;
+undefined DAT_180c91f68;
+undefined UNK_180a22538;
+undefined DAT_180bf91b0;
+undefined DAT_180bf91b8;
+undefined DAT_180bf91c0;
+undefined DAT_180bf91c8;
+undefined UNK_180a22b38;
+
+
+// 函数: undefined FUN_180941f00;
+undefined FUN_180941f00;
+undefined DAT_180bf9210;
+undefined DAT_180bf9218;
+undefined DAT_180bf9220;
+undefined DAT_180bf9228;
+undefined UNK_180a22b90;
+
+
+// 函数: undefined FUN_180941f20;
+undefined FUN_180941f20;
+
+
+// 函数: undefined FUN_180941f40;
+undefined FUN_180941f40;
+undefined DAT_180bf9270;
+undefined DAT_180bf9278;
+undefined DAT_180bf9280;
+undefined DAT_180bf9288;
+undefined UNK_180a22b78;
+undefined DAT_180bf92d0;
+
+
+// 函数: undefined FUN_180941f60;
+undefined FUN_180941f60;
+undefined DAT_180bf92d8;
+undefined DAT_180bf92e0;
+undefined DAT_180bf92e8;
+undefined UNK_180a22b60;
+undefined DAT_180bf9330;
+undefined DAT_180bf9338;
+
+
+// 函数: undefined FUN_180941f80;
+undefined FUN_180941f80;
+undefined DAT_180bf9340;
+undefined DAT_180bf9348;
+undefined UNK_180a22b50;
+undefined DAT_180bf9390;
+undefined DAT_180bf9398;
+undefined DAT_180bf93a0;
+
+
+// 函数: undefined FUN_180941fa0;
+undefined FUN_180941fa0;
+undefined DAT_180bf93a8;
+undefined UNK_180a22be8;
+undefined DAT_180bf93f0;
+undefined DAT_180bf93f8;
+undefined DAT_180bf9400;
+undefined DAT_180bf9408;
+
+
+// 函数: undefined FUN_180941fc0;
+undefined FUN_180941fc0;
+undefined UNK_180a22bd0;
+undefined DAT_180bf9450;
+undefined DAT_180bf9458;
+undefined DAT_180bf9460;
+undefined DAT_180bf9468;
+
+
+// 函数: undefined FUN_180941fe0;
+undefined FUN_180941fe0;
+undefined UNK_180a22bb8;
+undefined DAT_180bf94b0;
+undefined DAT_180bf94b8;
+undefined DAT_180bf94c0;
+undefined DAT_180bf94c8;
+
+
+// 函数: undefined FUN_180942000;
+undefined FUN_180942000;
+undefined UNK_180a22ba8;
+undefined DAT_180bf9510;
+undefined DAT_180bf9518;
+undefined DAT_180bf9520;
+undefined DAT_180bf9528;
+undefined UNK_180a22c48;
+
+
+// 函数: undefined FUN_180942020;
+undefined FUN_180942020;
+undefined DAT_180bf9570;
+undefined DAT_180bf9578;
+undefined DAT_180bf9580;
+undefined DAT_180bf9588;
+undefined UNK_180a22c30;
+
+
+// 函数: undefined FUN_180942040;
+undefined FUN_180942040;
+undefined DAT_180bf95d0;
+undefined DAT_180bf95d8;
+undefined DAT_180bf95e0;
+undefined DAT_180bf95e8;
+undefined UNK_180a22c18;
+
+
+// 函数: undefined FUN_180942060;
+undefined FUN_180942060;
+undefined DAT_180bf9630;
+undefined DAT_180bf9638;
+undefined DAT_180bf9640;
+undefined DAT_180bf9648;
+undefined UNK_180a22c00;
+
+
+// 函数: undefined FUN_180942080;
+undefined FUN_180942080;
+undefined DAT_180bf9690;
+undefined DAT_180bf9698;
+undefined DAT_180bf96a0;
+undefined DAT_180bf96a8;
+undefined DAT_180a22cb0;
+
+
+// 函数: undefined FUN_1809420a0;
+undefined FUN_1809420a0;
+undefined DAT_180bf96f0;
+undefined DAT_180bf96f8;
+undefined DAT_180bf9700;
+undefined DAT_180bf9708;
+undefined UNK_180a22c98;
+
+
+// 函数: undefined FUN_1809420c0;
+undefined FUN_1809420c0;
+undefined DAT_180bf9750;
+undefined DAT_180bf9758;
+undefined DAT_180bf9760;
+undefined DAT_180bf9768;
+undefined UNK_180a22c70;
+
+
+// 函数: undefined FUN_1809420e0;
+undefined FUN_1809420e0;
+undefined DAT_180bf97b0;
+undefined DAT_180bf97b8;
+undefined DAT_180bf97c0;
+undefined DAT_180bf97c8;
+undefined UNK_180a22c58;
+
+
+// 函数: undefined FUN_180942100;
+undefined FUN_180942100;
+undefined DAT_180bf9810;
+undefined DAT_180bf9818;
+undefined DAT_180bf9820;
+undefined DAT_180bf9828;
+undefined UNK_180a22d28;
+
+
+// 函数: undefined FUN_180942120;
+undefined FUN_180942120;
+
+
+// 函数: undefined FUN_180942140;
+undefined FUN_180942140;
+undefined DAT_180bf9870;
+undefined DAT_180bf9878;
+undefined DAT_180bf9880;
+undefined DAT_180bf9888;
+undefined UNK_180a22d08;
+undefined DAT_180bf98d0;
+
+
+// 函数: undefined FUN_180942160;
+undefined FUN_180942160;
+undefined DAT_180bf98d8;
+undefined DAT_180bf98e0;
+undefined DAT_180bf98e8;
+undefined UNK_180a22ce8;
+undefined DAT_180bf9930;
+undefined DAT_180bf9938;
+
+
+// 函数: undefined FUN_180942180;
+undefined FUN_180942180;
+undefined DAT_180bf9940;
+undefined DAT_180bf9948;
+undefined UNK_180a22cc8;
+undefined DAT_180bf9990;
+undefined DAT_180bf9998;
+undefined DAT_180bf99a0;
+
+
+// 函数: undefined FUN_1809421a0;
+undefined FUN_1809421a0;
+undefined DAT_180bf99a8;
+undefined UNK_180a22db0;
+undefined DAT_180bf99f0;
+undefined DAT_180bf99f8;
+undefined DAT_180bf9a00;
+undefined DAT_180bf9a08;
+
+
+// 函数: undefined FUN_1809421c0;
+undefined FUN_1809421c0;
+undefined UNK_180a22d88;
+undefined DAT_180bf9a50;
+undefined DAT_180bf9a58;
+undefined DAT_180bf9a60;
+undefined DAT_180bf9a68;
+
+
+// 函数: undefined FUN_1809421e0;
+undefined FUN_1809421e0;
+undefined UNK_180a22d68;
+undefined DAT_180bf9ab0;
+undefined DAT_180bf9ab8;
+undefined DAT_180bf9ac0;
+undefined DAT_180bf9ac8;
+
+
+// 函数: undefined FUN_180942200;
+undefined FUN_180942200;
+undefined DAT_180a22d48;
+undefined DAT_180bf9b10;
+undefined DAT_180bf9b18;
+undefined DAT_180bf9b20;
+undefined DAT_180bf9b28;
+undefined UNK_180a22e40;
+
+
+// 函数: undefined FUN_180942220;
+undefined FUN_180942220;
+undefined DAT_180bf9b70;
+undefined DAT_180bf9b78;
+undefined DAT_180bf9b80;
+undefined DAT_180bf9b88;
+undefined UNK_180a22e20;
+
+
+// 函数: undefined FUN_180942240;
+undefined FUN_180942240;
+undefined DAT_180bf9bd0;
+undefined DAT_180bf9bd8;
+undefined DAT_180bf9be0;
+undefined DAT_180bf9be8;
+undefined UNK_180a22df8;
+
+
+// 函数: undefined FUN_180942260;
+undefined FUN_180942260;
+undefined DAT_180bf9c30;
+undefined DAT_180bf9c38;
+undefined DAT_180bf9c40;
+undefined DAT_180bf9c48;
+undefined UNK_180a22dd0;
+
+
+// 函数: undefined FUN_180942280;
+undefined FUN_180942280;
+undefined DAT_180bf9c90;
+undefined DAT_180bf9c98;
+undefined DAT_180bf9ca0;
+undefined DAT_180bf9ca8;
+undefined UNK_180a22eb0;
+
+
+// 函数: undefined FUN_1809422a0;
+undefined FUN_1809422a0;
+undefined DAT_180bf9cf0;
+undefined DAT_180bf9cf8;
+undefined DAT_180bf9d00;
+undefined DAT_180bf9d08;
+undefined UNK_180a22e90;
+
+
+// 函数: undefined FUN_1809422c0;
+undefined FUN_1809422c0;
+undefined DAT_180bf9d50;
+undefined DAT_180bf9d58;
+undefined DAT_180bf9d60;
+undefined DAT_180bf9d68;
+undefined UNK_180a22e70;
+
+
+// 函数: undefined FUN_1809422e0;
+undefined FUN_1809422e0;
+undefined DAT_180bf9db0;
+undefined DAT_180bf9db8;
+undefined DAT_180bf9dc0;
+undefined DAT_180bf9dc8;
+undefined UNK_180a22e58;
+
+
+// 函数: undefined FUN_180942300;
+undefined FUN_180942300;
+undefined DAT_180bf9e10;
+undefined DAT_180bf9e18;
+undefined DAT_180bf9e20;
+undefined DAT_180bf9e28;
+undefined UNK_180a22f28;
+
+
+// 函数: undefined FUN_180942320;
+undefined FUN_180942320;
+
+
+// 函数: undefined FUN_180942340;
+undefined FUN_180942340;
+undefined DAT_180bf9e70;
+undefined DAT_180bf9e78;
+undefined DAT_180bf9e80;
+undefined DAT_180bf9e88;
+undefined UNK_180a22f10;
+undefined DAT_180bf9ed0;
+
+
+// 函数: undefined FUN_180942360;
+undefined FUN_180942360;
+undefined DAT_180bf9ed8;
+undefined DAT_180bf9ee0;
+undefined DAT_180bf9ee8;
+undefined UNK_180a22ef8;
+undefined DAT_180bf9f30;
+undefined DAT_180bf9f38;
+
+
+// 函数: undefined FUN_180942380;
+undefined FUN_180942380;
+undefined DAT_180bf9f40;
+undefined DAT_180bf9f48;
+undefined UNK_180a22ed8;
+undefined DAT_180bf9f90;
+undefined DAT_180bf9f98;
+undefined DAT_180bf9fa0;
+
+
+// 函数: undefined FUN_1809423a0;
+undefined FUN_1809423a0;
+undefined DAT_180bf9fa8;
+undefined UNK_180a22f90;
+undefined DAT_180bf9ff0;
+undefined DAT_180bf9ff8;
+undefined DAT_180bfa000;
+undefined DAT_180bfa008;
+
+
+// 函数: undefined FUN_1809423c0;
+undefined FUN_1809423c0;
+undefined UNK_180a22f78;
+undefined DAT_180bfa050;
+undefined DAT_180bfa058;
+undefined DAT_180bfa060;
+undefined DAT_180bfa068;
+
+
+// 函数: undefined FUN_1809423e0;
+undefined FUN_1809423e0;
+undefined UNK_180a22f60;
+undefined DAT_180bfa0b0;
+undefined DAT_180bfa0b8;
+undefined DAT_180bfa0c0;
+undefined DAT_180bfa0c8;
+
+
+// 函数: undefined FUN_180942400;
+undefined FUN_180942400;
+undefined UNK_180a22f40;
+undefined DAT_180bfa110;
+undefined DAT_180bfa118;
+undefined DAT_180bfa120;
+undefined DAT_180bfa128;
+undefined UNK_180a23018;
+
+
+// 函数: undefined FUN_180942420;
+undefined FUN_180942420;
+undefined DAT_180bfa170;
+undefined DAT_180bfa178;
+undefined DAT_180bfa180;
+undefined DAT_180bfa188;
+undefined UNK_180a23000;
+
+
+// 函数: undefined FUN_180942440;
+undefined FUN_180942440;
+undefined DAT_180bfa1d0;
+undefined DAT_180bfa1d8;
+undefined DAT_180bfa1e0;
+undefined DAT_180bfa1e8;
+undefined DAT_180a22fd0;
+
+
+// 函数: undefined FUN_180942460;
+undefined FUN_180942460;
+undefined DAT_180bfa230;
+undefined DAT_180bfa238;
+undefined DAT_180bfa240;
+undefined DAT_180bfa248;
+undefined DAT_180a22fa8;
+
+
+// 函数: undefined FUN_180942480;
+undefined FUN_180942480;
+undefined DAT_180bfa290;
+undefined DAT_180bfa298;
+undefined DAT_180bfa2a0;
+undefined DAT_180bfa2a8;
+undefined UNK_180a23068;
+
+
+// 函数: undefined FUN_1809424a0;
+undefined FUN_1809424a0;
+
+
+// 函数: undefined FUN_1809424c0;
+undefined FUN_1809424c0;
+
+
+// 函数: undefined FUN_180942520;
+undefined FUN_180942520;
+
+
+// 函数: undefined FUN_180942580;
+undefined FUN_180942580;
+
+
+// 函数: undefined FUN_1809425e0;
+undefined FUN_1809425e0;
+undefined DAT_180c91f6c;
+undefined UNK_180a24340;
+undefined DAT_180c91fcc;
+undefined UNK_180a24828;
+undefined DAT_180bfa350;
+undefined DAT_180bfa358;
+undefined DAT_180bfa360;
+undefined DAT_180bfa368;
+undefined DAT_180bfa3e8;
+undefined DAT_180bfa3f0;
+undefined DAT_180bfa3f8;
+undefined DAT_180bfa400;
+undefined DAT_180bfa480;
+undefined DAT_180bfa488;
+undefined DAT_180bfa490;
+undefined DAT_180bfa498;
+undefined DAT_180bfa518;
+undefined DAT_180bfa520;
+undefined DAT_180bfa528;
+undefined DAT_180bfa530;
+undefined DAT_180bfa5b0;
+undefined DAT_180bfa5b8;
+undefined DAT_180bfa5c0;
+undefined DAT_180bfa5c8;
+undefined DAT_180bfa648;
+undefined DAT_180bfa650;
+undefined DAT_180bfa658;
+undefined DAT_180bfa660;
+undefined DAT_180bfa6e0;
+undefined DAT_180bfa6e8;
+undefined DAT_180bfa6f0;
+undefined DAT_180bfa6f8;
+undefined UNK_180942600;
+undefined UNK_180a0f168;
+undefined UNK_180a0f178;
+undefined UNK_180a0f188;
+undefined UNK_180a0f190;
+undefined UNK_180a0f5b8;
+undefined UNK_180a24c50;
+undefined UNK_180a24c60;
+undefined DAT_180bfa780;
+undefined DAT_180bfa788;
+undefined DAT_180bfa790;
+undefined DAT_180bfa798;
+undefined DAT_180bfa818;
+undefined DAT_180bfa820;
+undefined DAT_180bfa828;
+undefined DAT_180bfa830;
+undefined DAT_180bfa8b0;
+undefined DAT_180bfa8b8;
+undefined DAT_180bfa8c0;
+undefined DAT_180bfa8c8;
+undefined DAT_180bfa948;
+undefined DAT_180bfa950;
+undefined DAT_180bfa958;
+undefined DAT_180bfa960;
+undefined DAT_180bfa9e0;
+undefined DAT_180bfa9e8;
+undefined DAT_180bfa9f0;
+undefined DAT_180bfa9f8;
+undefined DAT_180bfaa78;
+undefined DAT_180bfaa80;
+undefined DAT_180bfaa88;
+undefined DAT_180bfaa90;
+undefined UNK_180942620;
+undefined UNK_180a24bd0;
+undefined UNK_180a24bf0;
+undefined UNK_180a24c10;
+undefined UNK_180a24c30;
+undefined UNK_180a24d58;
+undefined UNK_180a24d80;
+undefined DAT_180bfab10;
+undefined DAT_180bfab18;
+undefined DAT_180bfab20;
+undefined DAT_180bfab28;
+undefined DAT_180bfaba8;
+undefined DAT_180bfabb0;
+undefined DAT_180bfabb8;
+undefined DAT_180bfabc0;
+undefined DAT_180bfac40;
+undefined DAT_180bfac48;
+undefined DAT_180bfac50;
+undefined DAT_180bfac58;
+undefined DAT_180bfacd8;
+undefined DAT_180bface0;
+undefined DAT_180bface8;
+undefined DAT_180bfacf0;
+undefined DAT_180bfad70;
+undefined DAT_180bfad78;
+undefined DAT_180bfad80;
+undefined DAT_180bfad88;
+undefined DAT_180bfae08;
+undefined DAT_180bfae10;
+undefined DAT_180bfae18;
+undefined DAT_180bfae20;
+undefined UNK_180942640;
+undefined UNK_180a24da8;
+undefined UNK_180a24dc0;
+
+
+// 函数: undefined FUN_180942660;
+undefined FUN_180942660;
+undefined DAT_180bfc150;
+undefined1 DAT_180bfc140;
+undefined DAT_180bfc160;
+undefined DAT_180bfc168;
+undefined8 UNK_180bfc158;
+undefined DAT_180bfaec0;
+undefined DAT_180bfaec8;
+undefined DAT_180bfaed0;
+undefined DAT_180bfaed8;
+
+
+// 函数: undefined FUN_180942750;
+undefined FUN_180942750;
+undefined DAT_180bfaee0;
+undefined DAT_180bfaee8;
+undefined DAT_180c92050;
+undefined DAT_180c92058;
+undefined DAT_180c92060;
+undefined DAT_180c92068;
+
+
+// 函数: undefined FUN_180942790;
+undefined FUN_180942790;
+undefined DAT_180bfaef0;
+undefined DAT_180bfaef8;
+undefined DAT_180bfaf00;
+undefined DAT_180bfaf08;
+
+
+// 函数: undefined FUN_1809427d0;
+undefined FUN_1809427d0;
+undefined UNK_180a27a58;
+undefined DAT_180bfb310;
+undefined DAT_180bfb318;
+undefined DAT_180bfb320;
+undefined DAT_180bfb328;
+undefined UNK_180a27a6c;
+
+
+// 函数: undefined FUN_1809427f0;
+undefined FUN_1809427f0;
+undefined DAT_180bfb730;
+undefined DAT_180bfb738;
+undefined DAT_180bfb740;
+undefined DAT_180bfb748;
+undefined UNK_180a27a70;
+
+
+// 函数: undefined FUN_180942810;
+undefined FUN_180942810;
+undefined DAT_180c9246c;
+undefined UNK_180a2ac10;
+
+
+// 函数: undefined FUN_180942890;
+undefined FUN_180942890;
+undefined DAT_180c92490;
+
+
+// 函数: undefined FUN_1809428e0;
+undefined FUN_1809428e0;
+undefined DAT_180c92480;
+
+
+// 函数: undefined FUN_180942930;
+undefined FUN_180942930;
+
+
+// 函数: undefined FUN_180942a20;
+undefined FUN_180942a20;
+
+
+// 函数: undefined FUN_1809429f0;
+undefined FUN_1809429f0;
+undefined DAT_180c924ac;
+undefined UNK_180a2bf10;
+undefined DAT_180c924b0;
+undefined DAT_180a2c1d0;
+undefined DAT_180c924b4;
+undefined DAT_180a2c338;
+undefined DAT_180c924b8;
+undefined DAT_180a2c510;
+undefined DAT_180bf6048;
+undefined DAT_180bf6050;
+undefined DAT_180bf6058;
+undefined DAT_180bf6060;
+
+
+// 函数: undefined FUN_180942a60;
+undefined FUN_180942a60;
+undefined DAT_180bf6498;
+undefined DAT_180bf64a0;
+undefined DAT_180bf64a8;
+undefined DAT_180bf64b0;
+
+
+// 函数: undefined FUN_180942a80;
+undefined FUN_180942a80;
+undefined DAT_180a2d660;
+undefined UNK_180a2ca90;
+undefined DAT_180a2d590;
+undefined UNK_180a2cab0;
+undefined DAT_180c96310;
+undefined DAT_180c96320;
+undefined DAT_180c96328;
+
+
+// 函数: undefined FUN_180942fa0;
+undefined FUN_180942fa0;
+undefined DAT_180bf6558;
+undefined DAT_180bf6560;
+undefined DAT_180bf6568;
+undefined DAT_180bf6570;
+
+
+// 函数: undefined FUN_180942fc0;
+undefined FUN_180942fc0;
+undefined DAT_180c95ecc;
+undefined UNK_180a33fb0;
+
+
+// 函数: undefined FUN_180943070;
+undefined FUN_180943070;
+undefined DAT_180c9606c;
+undefined UNK_180a3c028;
+undefined DAT_180c96218;
+undefined UNK_180943130;
+
+
+// 函数: undefined FUN_180943140;
+undefined FUN_180943140;
+
+
+// 函数: undefined FUN_180943160;
+undefined FUN_180943160;
+undefined DAT_180c96790;
+undefined DAT_180c96798;
+
+
+// 函数: undefined FUN_180943180;
+undefined FUN_180943180;
+undefined DAT_180c967a0;
+undefined DAT_180c967a8;
+undefined DAT_180c967b0;
+undefined DAT_180c967b8;
+undefined DAT_180c967d0;
+undefined UNK_180a3def0;
+undefined UNK_18098bcb0;
+
+
+// 函数: undefined FUN_1809431a0;
+undefined FUN_1809431a0;
+undefined _tls_index;
+void *ThreadLocalStoragePointer;
+undefined DAT_180c967d4;
+undefined UNK_180a3e3d8;
+undefined DAT_180c967d8;
+undefined UNK_180a3e3f0;
+undefined DAT_180c967e0;
+undefined DAT_180c967e8;
+undefined DAT_180c967f0;
+undefined DAT_180c967f8;
+
+

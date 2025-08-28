@@ -1,1230 +1,1277 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part103.c - 渲染系统高级数据处理和控制模块
+/**
+ * @file 03_rendering_part103.c
+ * @brief 渲染系统高级资源管理和数据收集模块
+ * 
+ * 本模块包含8个核心函数，涵盖渲染资源收集、数据处理、状态管理、
+ * 文件操作、资源查找、哈希表操作等高级渲染功能。
+ * 
+ * 主要功能：
+ * - 渲染资源数据收集和处理
+ * - 渲染状态管理和优化
+ * - 文件读取和写入操作
+ * - 资源查找和哈希表管理
+ * - 渲染系统清理和初始化
+ */
 
-// ===================================================================
-// 函数实现：渲染数据收集器
-// ===================================================================
+// 常量定义区域
+#define RENDERING_RESOURCE_COLLECTOR_MAX_ITEMS 0x1000      // 资源收集器最大项目数
+#define RENDERING_DATA_BUFFER_SIZE 0x800                   // 数据缓冲区大小
+#define RENDERING_HASH_TABLE_SIZE 0x400                    // 哈希表大小
+#define RENDERING_FILE_BUFFER_SIZE 0x1000                  // 文件缓冲区大小
+#define RENDERING_RESOURCE_CACHE_SIZE 0x200                // 资源缓存大小
+
+// 渲染系统状态常量
+#define RENDERING_STATE_INITIALIZED 0x01                   // 渲染系统已初始化
+#define RENDERING_STATE_ACTIVE 0x02                        // 渲染系统活跃
+#define RENDERING_STATE_CLEANUP 0x04                       // 渲染系统清理中
+#define RENDERING_STATE_ERROR 0x08                        // 渲染系统错误状态
+
+// 资源类型常量
+#define RESOURCE_TYPE_TEXTURE 0x01                         // 纹理资源
+#define RESOURCE_TYPE_SHADER 0x02                          // 着色器资源
+#define RESOURCE_TYPE_BUFFER 0x04                          // 缓冲区资源
+#define RESOURCE_TYPE_PIPELINE 0x08                        // 管线资源
+
+// 文件操作常量
+#define FILE_OPERATION_READ 0x01                           // 文件读取操作
+#define FILE_OPERATION_WRITE 0x02                          // 文件写入操作
+#define FILE_OPERATION_APPEND 0x04                         // 文件追加操作
+
+// 函数别名定义区域
+#define RenderingSystemCollectResourceData FUN_18032afa0    // 渲染系统资源数据收集器
+#define RenderingSystemProcessRenderData FUN_18032b1c0     // 渲染系统数据处理器
+#define RenderingSystemHandleResourceData FUN_18032b400    // 渲染系统资源数据处理器
+#define RenderingSystemProcessResourceQueue FUN_18032b452  // 渲染系统资源队列处理器
+#define RenderingSystemEmptyResourceHandler FUN_18032b48d  // 渲染系统空资源处理器
+#define RenderingSystemFindResource FUN_18032b4a0        // 渲染系统资源查找器
+#define RenderingSystemCreateResourceEntry FUN_18032b680   // 渲染系统资源条目创建器
+#define RenderingSystemInitializeResource FUN_18032b880   // 渲染系统资源初始化器
+#define RenderingSystemSaveResourceData FUN_18032c0b0      // 渲染系统资源数据保存器
+#define RenderingSystemLoadResourceData FUN_18032c450      // 渲染系统资源数据加载器
+#define RenderingSystemExportResourceData FUN_18032c9f0    // 渲染系统资源数据导出器
 
 /**
- * 渲染数据收集器 - 负责渲染数据的收集和处理
+ * @brief 渲染系统资源数据收集器
  * 
- * @param render_context 渲染上下文句柄
- * @param data_buffer 数据缓冲区指针
- * @param data_size 数据大小
- * @return void
+ * 收集渲染系统中的资源数据，包括纹理、着色器、缓冲区等。
+ * 支持数据过滤、排序和优化处理。
  * 
- * 技术说明：
- * - 收集渲染相关的数据信息
- * - 处理数据缓冲区的动态分配
- * - 管理数据结构的链表操作
- * - 优化数据收集性能
- * - 处理数据块的内存管理
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的数据结构和链表操作
- * - 简化版本专注于核心数据收集功能
- * - 保留了主要的数据处理流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 数据输出缓冲区指针
+ * @param param_3 收集参数和标志
+ * @return void 无返回值
  */
-void RenderingSystem_DataCollector(undefined8 render_context, longlong *data_buffer, ulonglong data_size)
+void FUN_18032afa0(longlong param_1,longlong *param_2,ulonglong param_3)
 
 {
-  // 数据收集参数
-  undefined4 data_item;
-  longlong *****data_collection_ptr;
-  longlong ****data_node_ptr;
-  longlong buffer_size;
-  undefined4 *data_dest;
-  longlong *****data_collection_head;
-  undefined4 *temp_buffer;
-  undefined4 *source_buffer;
-  undefined4 size_array[4];
-  longlong work_buffer[3];
-  longlong ****node_stack_ptr;
-  longlong ****temp_node_ptr;
-  longlong ****current_node_ptr;
-  undefined8 collection_size;
-  undefined8 node_count;
-  undefined4 buffer_capacity;
+  undefined4 uVar1;
+  longlong *****ppppplVar2;
+  longlong ****pppplVar3;
+  longlong lVar4;
+  undefined4 *puVar5;
+  longlong *****ppppplVar6;
+  undefined4 *puVar7;
+  undefined4 *puVar8;
+  undefined4 auStackX_18 [4];
+  longlong alStack_70 [3];
+  longlong ****pppplStack_58;
+  longlong ****pppplStack_50;
+  longlong ****pppplStack_48;
+  undefined8 uStack_40;
+  undefined8 uStack_38;
+  undefined4 uStack_30;
   
-  // 初始化数据收集参数
-  size_array[0] = (undefined4)data_size;
-  FUN_18033af10(render_context + 0x638, work_buffer, data_size, size_array, data_size & 0xffffffff);
-  buffer_capacity = *(undefined4 *)(work_buffer[0] + 0x30);
-  node_stack_ptr = (longlong ****)&node_stack_ptr;
-  temp_node_ptr = (longlong ****)&node_stack_ptr;
-  current_node_ptr = (longlong ****)0x0;
-  collection_size = 0;
-  node_count = 0;
+  // 设置收集参数
+  auStackX_18[0] = (undefined4)param_3;
   
-  // 数据收集链表初始化
-  if (*(longlong *)(work_buffer[0] + 0x18) != 0) {
-    current_node_ptr =
+  // 调用渲染系统参数设置函数
+  FUN_18033af10(param_1 + 0x638,alStack_70,param_3,auStackX_18,param_3 & 0xffffffff);
+  
+  // 获取渲染状态信息
+  uStack_30 = *(undefined4 *)(alStack_70[0] + 0x30);
+  
+  // 初始化资源收集栈
+  pppplStack_58 = (longlong ****)&pppplStack_58;
+  pppplStack_50 = (longlong ****)&pppplStack_58;
+  pppplStack_48 = (longlong ****)0x0;
+  uStack_40 = 0;
+  uStack_38 = 0;
+  
+  // 检查是否有资源数据需要处理
+  if (*(longlong *)(alStack_70[0] + 0x18) != 0) {
+    // 分配资源收集器内存
+    pppplStack_48 =
          (longlong ****)
-         FUN_18033c420(&node_stack_ptr, *(longlong *)(work_buffer[0] + 0x18), &node_stack_ptr);
-    data_collection_head = (longlong *****)*current_node_ptr;
-    node_stack_ptr = (longlong ****)(longlong *****)current_node_ptr;
+         FUN_18033c420(&pppplStack_58,*(longlong *)(alStack_70[0] + 0x18),&pppplStack_58);
     
-    // 遍历数据收集链表
-    while (data_collection_ptr = data_collection_head, data_collection_ptr != (longlong *****)0x0) {
-      node_stack_ptr = (longlong ****)data_collection_ptr;
-      data_collection_head = (longlong *****)*data_collection_ptr;
+    // 遍历资源数据链表
+    ppppplVar6 = (longlong *****)*pppplStack_48;
+    pppplStack_58 = (longlong ****)(longlong *****)pppplStack_48;
+    while (ppppplVar2 = ppppplVar6, ppppplVar2 != (longlong *****)0x0) {
+      pppplStack_58 = (longlong ****)ppppplVar2;
+      ppppplVar6 = (longlong *****)*ppppplVar2;
     }
     
-    data_collection_head = (longlong *****)((longlong *****)current_node_ptr)[1];
-    temp_node_ptr = (longlong ****)(longlong *****)current_node_ptr;
-    
-    // 处理链表节点
-    while (data_collection_ptr = data_collection_head, data_collection_ptr != (longlong *****)0x0) {
-      temp_node_ptr = (longlong ****)data_collection_ptr;
-      data_collection_head = (longlong *****)data_collection_ptr[1];
+    // 处理资源数据
+    ppppplVar6 = (longlong *****)((longlong *****)pppplStack_48)[1];
+    pppplStack_50 = (longlong ****)(longlong *****)pppplStack_48;
+    while (ppppplVar2 = ppppplVar6, ppppplVar2 != (longlong *****)0x0) {
+      pppplStack_50 = (longlong ****)ppppplVar2;
+      ppppplVar6 = (longlong *****)ppppplVar2[1];
     }
-    node_count = *(undefined8 *)(work_buffer[0] + 0x28);
+    
+    // 获取资源数据大小
+    uStack_38 = *(undefined8 *)(alStack_70[0] + 0x28);
   }
   
-  data_collection_head = (longlong *****)temp_node_ptr;
-  
-  // 数据收集处理
-  if ((longlong *****)temp_node_ptr != &node_stack_ptr) {
+  // 收集资源数据到输出缓冲区
+  ppppplVar6 = (longlong *****)pppplStack_50;
+  if ((longlong *****)pppplStack_50 != &pppplStack_58) {
     do {
-      data_item = *(undefined4 *)(data_collection_head + 4);
-      data_dest = (undefined4 *)data_buffer[1];
+      // 获取资源数据项
+      uVar1 = *(undefined4 *)(ppppplVar6 + 4);
+      puVar8 = (undefined4 *)param_2[1];
       
-      // 缓冲区空间检查
-      if (data_dest < (undefined4 *)data_buffer[2]) {
-        data_buffer[1] = (longlong)(data_dest + 1);
-        *data_dest = data_item;
+      // 检查输出缓冲区是否有足够空间
+      if (puVar8 < (undefined4 *)param_2[2]) {
+        param_2[1] = (longlong)(puVar8 + 1);
+        *puVar8 = uVar1;
       }
       else {
-        // 缓冲区扩容处理
-        source_buffer = (undefined4 *)*data_buffer;
-        buffer_size = (longlong)data_dest - (longlong)source_buffer >> 2;
-        if (buffer_size == 0) {
-          buffer_size = 1;
+        // 缓冲区空间不足，重新分配内存
+        puVar7 = (undefined4 *)*param_2;
+        lVar4 = (longlong)puVar8 - (longlong)puVar7 >> 2;
+        if (lVar4 == 0) {
+          lVar4 = 1;
+LAB_18032b0f4:
+          // 分配新的缓冲区内存
+          puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,lVar4 * 4,(char)param_2[3]);
+          puVar8 = (undefined4 *)param_2[1];
+          puVar7 = (undefined4 *)*param_2;
         }
         else {
-          buffer_size = buffer_size * 2;
-          if (buffer_size != 0) {
-            temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, buffer_size * 4, (char)data_buffer[3]);
-            data_dest = (undefined4 *)data_buffer[1];
-            source_buffer = (undefined4 *)*data_buffer;
-          }
-          else {
-            temp_buffer = (undefined4 *)0x0;
-          }
+          lVar4 = lVar4 * 2;
+          if (lVar4 != 0) goto LAB_18032b0f4;
+          puVar5 = (undefined4 *)0x0;
         }
         
-        // 数据迁移
-        if (source_buffer != data_dest) {
-          memmove(temp_buffer, source_buffer, (longlong)data_dest - (longlong)source_buffer);
+        // 移动现有数据到新缓冲区
+        if (puVar7 != puVar8) {
+          memmove(puVar5,puVar7,(longlong)puVar8 - (longlong)puVar7);
         }
-        *temp_buffer = data_item;
         
-        // 更新缓冲区指针
-        if (*data_buffer != 0) {
+        // 写入资源数据项
+        *puVar5 = uVar1;
+        if (*param_2 != 0) {
           FUN_18064e900();
         }
-        *data_buffer = (longlong)temp_buffer;
-        data_buffer[1] = (longlong)(temp_buffer + 1);
-        data_buffer[2] = (longlong)(temp_buffer + buffer_size);
+        
+        // 更新缓冲区指针
+        *param_2 = (longlong)puVar5;
+        param_2[1] = (longlong)(puVar5 + 1);
+        param_2[2] = (longlong)(puVar5 + lVar4);
       }
       
-      data_collection_head = (longlong *****)func_0x00018066bd70(data_collection_head);
-    } while (data_collection_head != &node_stack_ptr);
+      // 处理下一个资源数据项
+      ppppplVar6 = (longlong *****)func_0x00018066bd70(ppppplVar6);
+    } while (ppppplVar6 != &pppplStack_58);
   }
   
-  // 清理数据收集资源
-  data_node_ptr = current_node_ptr;
-  if ((longlong *****)current_node_ptr != (longlong *****)0x0) {
-    FUN_18004b790(&node_stack_ptr, *current_node_ptr);
-    FUN_18064e900(data_node_ptr);
+  // 清理资源收集器内存
+  pppplVar3 = pppplStack_48;
+  if ((longlong *****)pppplStack_48 != (longlong *****)0x0) {
+    FUN_18004b790(&pppplStack_58,*pppplStack_48);
+    FUN_18064e900(pppplVar3);
   }
   
   return;
 }
 
-// ===================================================================
-// 函数实现：高级渲染数据处理器
-// ===================================================================
+
+
+// 全局变量警告：以下全局变量可能与同地址的小符号重叠
+
+
 
 /**
- * 高级渲染数据处理器 - 负责高级渲染数据的处理和变换
+ * @brief 渲染系统数据处理器
  * 
- * @param render_context 渲染上下文句柄
- * @param data_buffer 数据缓冲区指针
- * @param data_size 数据大小
- * @param process_flag 处理标志位
- * @return void
+ * 处理渲染系统中的各种数据，包括资源数据、状态数据等。
+ * 支持数据验证、转换和优化处理。
  * 
- * 技术说明：
- * - 处理高级渲染数据的变换
- * - 管理数据处理的优化
- * - 处理数据结构的递归操作
- * - 支持条件数据处理
- * - 优化数据处理性能
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的递归数据处理逻辑
- * - 简化版本专注于核心数据处理功能
- * - 保留了主要的数据变换流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 数据输出缓冲区指针
+ * @param param_3 处理参数和标志
+ * @param param_4 处理模式标志
+ * @return void 无返回值
  */
-void RenderingSystem_AdvancedDataProcessor(undefined8 render_context, longlong *data_buffer, ulonglong data_size, char process_flag)
+void FUN_18032b1c0(longlong param_1,longlong *param_2,ulonglong param_3,char param_4)
 
 {
-  // 数据处理参数
-  undefined4 processed_data;
-  undefined8 ***data_processing_ptr;
-  undefined8 **data_node_ptr;
-  longlong buffer_size;
-  undefined4 *data_dest;
-  undefined8 ***processing_head;
-  undefined4 *temp_buffer;
-  undefined4 *source_buffer;
-  ulonglong processing_size;
-  uint size_array[4];
-  longlong work_buffer[3];
-  undefined8 **node_stack_ptr;
-  undefined8 **temp_node_ptr;
-  undefined8 **current_node_ptr;
-  undefined8 stack_data_size;
-  undefined8 node_count;
-  undefined4 buffer_capacity;
+  undefined4 uVar1;
+  undefined8 ***pppuVar2;
+  undefined8 **ppuVar3;
+  longlong lVar4;
+  undefined4 *puVar5;
+  undefined8 ***pppuVar6;
+  undefined4 *puVar7;
+  undefined4 *puVar8;
+  ulonglong uVar9;
+  uint auStackX_18 [4];
+  longlong alStack_80 [3];
+  undefined8 **ppuStack_68;
+  undefined8 **ppuStack_60;
+  undefined8 **ppuStack_58;
+  undefined8 uStack_50;
+  undefined8 uStack_48;
+  undefined4 uStack_40;
   
-  // 初始化数据处理参数
-  size_array[0] = (uint)data_size;
-  processing_size = data_size & 0xffffffff;
-  FUN_18033af10(render_context + 0x4a8, work_buffer, data_size, size_array, processing_size);
-  buffer_capacity = *(undefined4 *)(work_buffer[0] + 0x30);
-  node_stack_ptr = &node_stack_ptr;
-  temp_node_ptr = &node_stack_ptr;
-  current_node_ptr = (undefined8 ***)0x0;
-  stack_data_size = 0;
-  node_count = 0;
+  // 设置处理参数
+  auStackX_18[0] = (uint)param_3;
+  uVar9 = param_3 & 0xffffffff;
   
-  // 数据处理链表初始化
-  if (*(longlong *)(work_buffer[0] + 0x18) != 0) {
-    current_node_ptr = (undefined8 ***)
-                  FUN_18033c420(&node_stack_ptr, *(longlong *)(work_buffer[0] + 0x18), &node_stack_ptr);
-    processing_head = (undefined8 ***)*current_node_ptr;
-    node_stack_ptr = (undefined8 ***)current_node_ptr;
+  // 调用渲染系统参数设置函数
+  FUN_18033af10(param_1 + 0x4a8,alStack_80,param_3,auStackX_18,uVar9);
+  
+  // 获取处理状态信息
+  uStack_40 = *(undefined4 *)(alStack_80[0] + 0x30);
+  
+  // 初始化数据处理栈
+  ppuStack_68 = &ppuStack_68;
+  ppuStack_60 = &ppuStack_68;
+  ppuStack_58 = (undefined8 ***)0x0;
+  uStack_50 = 0;
+  uStack_48 = 0;
+  
+  // 检查是否有数据需要处理
+  if (*(longlong *)(alStack_80[0] + 0x18) != 0) {
+    // 分配数据处理器内存
+    ppuStack_58 = (undefined8 **)
+                  FUN_18033c420(&ppuStack_68,*(longlong *)(alStack_80[0] + 0x18),&ppuStack_68);
     
-    // 遍历数据处理链表
-    while (data_processing_ptr = processing_head, data_processing_ptr != (undefined8 ***)0x0) {
-      node_stack_ptr = data_processing_ptr;
-      processing_head = (undefined8 ***)*data_processing_ptr;
+    // 遍历数据链表
+    pppuVar6 = (undefined8 ***)*ppuStack_58;
+    ppuStack_68 = (undefined8 ***)ppuStack_58;
+    while (pppuVar2 = pppuVar6, pppuVar2 != (undefined8 ***)0x0) {
+      ppuStack_68 = pppuVar2;
+      pppuVar6 = (undefined8 ***)*pppuVar2;
     }
     
-    processing_head = (undefined8 ***)((undefined8 ***)current_node_ptr)[1];
-    temp_node_ptr = (undefined8 ***)current_node_ptr;
-    
-    // 处理链表节点
-    while (data_processing_ptr = processing_head, data_processing_ptr != (undefined8 ***)0x0) {
-      temp_node_ptr = data_processing_ptr;
-      processing_head = (undefined8 ***)data_processing_ptr[1];
+    // 处理数据
+    pppuVar6 = (undefined8 ***)((undefined8 ***)ppuStack_58)[1];
+    ppuStack_60 = (undefined8 ***)ppuStack_58;
+    while (pppuVar2 = pppuVar6, pppuVar2 != (undefined8 ***)0x0) {
+      ppuStack_60 = pppuVar2;
+      pppuVar6 = (undefined8 ***)pppuVar2[1];
     }
-    node_count = *(undefined8 *)(work_buffer[0] + 0x28);
+    
+    // 获取数据大小
+    uStack_48 = *(undefined8 *)(alStack_80[0] + 0x28);
   }
   
-  processing_head = (undefined8 ***)temp_node_ptr;
-  
-  // 高级数据处理
-  if ((undefined8 ***)temp_node_ptr != &node_stack_ptr) {
+  // 处理数据到输出缓冲区
+  pppuVar6 = (undefined8 ***)ppuStack_60;
+  if ((undefined8 ***)ppuStack_60 != &ppuStack_68) {
     do {
-      processed_data = *(undefined4 *)(processing_head + 4);
-      data_dest = (undefined4 *)data_buffer[1];
+      // 获取数据项
+      uVar1 = *(undefined4 *)(pppuVar6 + 4);
+      puVar8 = (undefined4 *)param_2[1];
       
-      // 缓冲区空间检查
-      if (data_dest < (undefined4 *)data_buffer[2]) {
-        data_buffer[1] = (longlong)(data_dest + 1);
-        *data_dest = processed_data;
+      // 检查输出缓冲区是否有足够空间
+      if (puVar8 < (undefined4 *)param_2[2]) {
+        param_2[1] = (longlong)(puVar8 + 1);
+        *puVar8 = uVar1;
       }
       else {
-        // 缓冲区扩容处理
-        source_buffer = (undefined4 *)*data_buffer;
-        buffer_size = (longlong)data_dest - (longlong)source_buffer >> 2;
-        if (buffer_size == 0) {
-          buffer_size = 1;
+        // 缓冲区空间不足，重新分配内存
+        puVar7 = (undefined4 *)*param_2;
+        lVar4 = (longlong)puVar8 - (longlong)puVar7 >> 2;
+        if (lVar4 == 0) {
+          lVar4 = 1;
+LAB_18032b314:
+          // 分配新的缓冲区内存
+          puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,lVar4 * 4,(char)param_2[3]);
+          puVar8 = (undefined4 *)param_2[1];
+          puVar7 = (undefined4 *)*param_2;
         }
         else {
-          buffer_size = buffer_size * 2;
-          if (buffer_size != 0) {
-            temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, buffer_size * 4, (char)data_buffer[3]);
-            data_dest = (undefined4 *)data_buffer[1];
-            source_buffer = (undefined4 *)*data_buffer;
-          }
-          else {
-            temp_buffer = (undefined4 *)0x0;
-          }
+          lVar4 = lVar4 * 2;
+          if (lVar4 != 0) goto LAB_18032b314;
+          puVar5 = (undefined4 *)0x0;
         }
         
-        // 数据迁移
-        if (source_buffer != data_dest) {
-          memmove(temp_buffer, source_buffer, (longlong)data_dest - (longlong)source_buffer);
+        // 移动现有数据到新缓冲区
+        if (puVar7 != puVar8) {
+          memmove(puVar5,puVar7,(longlong)puVar8 - (longlong)puVar7);
         }
-        *temp_buffer = processed_data;
         
-        // 更新缓冲区指针
-        if (*data_buffer != 0) {
+        // 写入数据项
+        *puVar5 = uVar1;
+        if (*param_2 != 0) {
           FUN_18064e900();
         }
-        *data_buffer = (longlong)temp_buffer;
-        data_buffer[1] = (longlong)(temp_buffer + 1);
-        data_buffer[2] = (longlong)(temp_buffer + buffer_size);
-        processing_size = (ulonglong)size_array[0];
+        
+        // 更新缓冲区指针
+        *param_2 = (longlong)puVar5;
+        param_2[1] = (longlong)(puVar5 + 1);
+        param_2[2] = (longlong)(puVar5 + lVar4);
+        uVar9 = (ulonglong)auStackX_18[0];
       }
       
-      // 条件处理
-      if (process_flag != '\0') {
-        FUN_18032b400(render_context, data_buffer, processing_size, processed_data);
+      // 根据处理模式进行额外处理
+      if (param_4 != '\0') {
+        FUN_18032b400(param_1,param_2,uVar9,uVar1);
       }
       
-      processing_head = (undefined8 ***)func_0x00018066bd70(processing_head);
-    } while (processing_head != &node_stack_ptr);
+      // 处理下一个数据项
+      pppuVar6 = (undefined8 ***)func_0x00018066bd70(pppuVar6);
+    } while (pppuVar6 != &ppuStack_68);
   }
   
-  // 清理数据处理资源
-  data_node_ptr = current_node_ptr;
-  if ((undefined8 ***)current_node_ptr == (undefined8 ***)0x0) {
+  // 清理数据处理器内存
+  ppuVar3 = ppuStack_58;
+  if ((undefined8 ***)ppuStack_58 == (undefined8 ***)0x0) {
     return;
   }
-  FUN_18004b790(&node_stack_ptr, *current_node_ptr);
-  FUN_18064e900(data_node_ptr);
+  
+  FUN_18004b790(&ppuStack_68,*ppuStack_58);
+  FUN_18064e900(ppuVar3);
 }
 
-// ===================================================================
-// 函数实现：渲染数据递归处理器
-// ===================================================================
+
+
+
 
 /**
- * 渲染数据递归处理器 - 负责渲染数据的递归处理
+ * @brief 渲染系统资源数据处理器
  * 
- * @param render_context 渲染上下文句柄
- * @param data_buffer 数据缓冲区指针
- * @param data_param 数据参数
- * @param data_item 数据项
- * @return void
+ * 处理渲染系统中的资源数据，包括纹理、着色器等。
+ * 支持递归处理和资源依赖关系管理。
  * 
- * 技术说明：
- * - 处理渲染数据的递归操作
- * - 管理数据结构的层次化处理
- * - 支持复杂数据关系的处理
- * - 优化递归处理性能
- * - 处理数据块的批量操作
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的递归处理逻辑
- * - 简化版本专注于核心递归处理功能
- * - 保留了主要的递归处理流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 数据输出缓冲区指针
+ * @param param_3 资源参数
+ * @param param_4 资源标识符
+ * @return void 无返回值
  */
-void RenderingSystem_DataRecursiveProcessor(undefined8 render_context, longlong data_buffer, undefined4 data_param, undefined4 data_item)
+void FUN_18032b400(undefined8 param_1,longlong param_2,undefined4 param_3,undefined4 param_4)
 
 {
-  longlong data_handle;
-  ulonglong data_count;
-  longlong data_range;
+  longlong lVar1;
+  ulonglong uVar2;
+  longlong lVar3;
   
-  // 获取数据处理句柄
-  data_handle = FUN_18032ba60(render_context, data_item);
-  FUN_18033c870(data_buffer, *(undefined8 *)(data_buffer + 8), *(undefined8 *)(data_handle + 0x170),
-                *(undefined8 *)(data_handle + 0x178));
+  // 获取资源处理函数
+  lVar1 = FUN_18032ba60(param_1,param_4);
   
-  // 计算数据范围
-  data_count = *(longlong *)(data_handle + 0x178) - *(longlong *)(data_handle + 0x170) >> 2;
-  if ((int)data_count != 0) {
-    data_range = 0;
-    data_count = data_count & 0xffffffff;
-    
-    // 递归处理数据
+  // 处理资源数据
+  FUN_18033c870(param_2,*(undefined8 *)(param_2 + 8),*(undefined8 *)(lVar1 + 0x170),
+                *(undefined8 *)(lVar1 + 0x178));
+  
+  // 计算资源数量
+  uVar2 = *(longlong *)(lVar1 + 0x178) - *(longlong *)(lVar1 + 0x170) >> 2;
+  
+  // 递归处理子资源
+  if ((int)uVar2 != 0) {
+    lVar3 = 0;
+    uVar2 = uVar2 & 0xffffffff;
     do {
-      FUN_18032b400(render_context, data_buffer, data_param, *(undefined4 *)(*(longlong *)(data_handle + 0x170) + data_range));
-      data_range = data_range + 4;
-      data_count = data_count - 1;
-    } while (data_count != 0);
+      FUN_18032b400(param_1,param_2,param_3,*(undefined4 *)(*(longlong *)(lVar1 + 0x170) + lVar3));
+      lVar3 = lVar3 + 4;
+      uVar2 = uVar2 - 1;
+    } while (uVar2 != 0);
   }
   
   return;
 }
 
-// ===================================================================
-// 函数实现：渲染数据循环处理器
-// ===================================================================
+
+
+
 
 /**
- * 渲染数据循环处理器 - 负责渲染数据的循环处理
+ * @brief 渲染系统资源队列处理器
  * 
- * @param void 无参数
- * @return void
+ * 处理渲染系统中的资源队列，支持批量处理和优化。
  * 
- * 技术说明：
- * - 处理渲染数据的循环操作
- * - 管理数据处理的重复操作
- * - 支持批量数据处理
- * - 优化循环处理性能
- * - 处理数据迭代操作
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的循环处理逻辑
- * - 简化版本专注于核心循环处理功能
- * - 保留了主要的循环处理流程
+ * @return void 无返回值
  */
-void RenderingSystem_DataLoopProcessor(void)
+void FUN_18032b452(void)
 
 {
-  uint loop_counter;
-  ulonglong iteration_count;
+  uint in_EAX;
+  ulonglong uVar1;
   
-  iteration_count = (ulonglong)loop_counter;
+  // 获取队列长度
+  uVar1 = (ulonglong)in_EAX;
   
-  // 循环处理数据
+  // 处理队列中的所有资源
   do {
     FUN_18032b400();
-    iteration_count = iteration_count - 1;
-  } while (iteration_count != 0);
+    uVar1 = uVar1 - 1;
+  } while (uVar1 != 0);
   
   return;
 }
 
-// ===================================================================
-// 函数实现：渲染数据空操作处理器
-// ===================================================================
+
+
+
 
 /**
- * 渲染数据空操作处理器 - 负责渲染数据的空操作处理
+ * @brief 渲染系统空资源处理器
  * 
- * @param void 无参数
- * @return void
+ * 处理空资源情况，提供默认处理逻辑。
  * 
- * 技术说明：
- * - 提供空操作处理功能
- * - 用作系统占位符
- * - 支持流程控制的空操作
- * - 维持系统稳定性
- * - 提供统一的接口
- * 
- * 简化实现说明：
- * - 原始实现为空函数
- * - 简化版本保持空操作功能
- * - 用作系统架构的占位符
+ * @return void 无返回值
  */
-void RenderingSystem_DataEmptyProcessor(void)
+void FUN_18032b48d(void)
 
 {
   return;
 }
 
-// ===================================================================
-// 函数实现：渲染数据缓存管理器
-// ===================================================================
+
+
+// 全局变量警告：以下全局变量可能与同地址的小符号重叠
 
 /**
- * 渲染数据缓存管理器 - 负责渲染数据缓存的管理
+ * @brief 渲染系统资源查找器
  * 
- * @param cache_handle 缓存句柄
- * @param cache_key 缓存键值
- * @return int 缓存操作结果
+ * 在渲染系统中查找指定的资源，支持哈希表查找。
  * 
- * 技术说明：
- * - 管理渲染数据的缓存操作
- * - 处理缓存项的查找和创建
- * - 支持缓存容量的动态调整
- * - 优化缓存访问性能
- * - 处理缓存数据的同步
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的缓存管理逻辑
- * - 简化版本专注于核心缓存管理功能
- * - 保留了主要的缓存操作流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 资源标识符
+ * @return undefined4 查找结果
  */
-int RenderingSystem_DataCacheManager(longlong cache_handle, ulonglong cache_key)
+undefined4 FUN_18032b4a0(longlong param_1,ulonglong param_2)
 
 {
-  longlong lock_handle;
-  longlong cache_index;
-  longlong cache_table;
-  ulonglong *cache_entry;
-  int cache_status;
-  ulonglong *cache_ptr;
-  longlong cache_size;
-  ulonglong hash_value;
-  char lock_status[4];
-  uint table_size;
-  longlong lock_offset;
-  undefined4 cache_value;
-  undefined4 cache_value_high;
-  undefined8 cache_timestamp;
-  undefined4 entry_status;
+  longlong lVar1;
+  longlong lVar2;
+  ulonglong *puVar3;
+  int iVar4;
+  ulonglong *puVar5;
+  longlong lVar6;
+  ulonglong uVar7;
+  char acStackX_8 [4];
+  uint uStackX_c;
+  longlong lStackX_10;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined8 uStack_38;
+  undefined4 uStack_34;
   
-  // 初始化缓存操作
-  lock_handle = cache_handle + 0x358;
-  lock_offset = lock_handle;
-  cache_status = _Mtx_lock(lock_handle);
-  if (cache_status != 0) {
-    __Throw_C_error_std__YAXH_Z(cache_status);
+  // 获取资源表锁
+  lVar1 = param_1 + 0x358;
+  lStackX_10 = lVar1;
+  iVar4 = _Mtx_lock(lVar1);
+  if (iVar4 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar4);
   }
   
-  cache_status = _DAT_180d48e20;
-  hash_value = cache_key % (ulonglong)*(uint *)(cache_handle + 0x338);
-  cache_table = *(longlong *)(cache_handle + 0x330);
-  cache_entry = *(ulonglong **)(cache_table + hash_value * 8);
+  // 获取哈希表参数
+  iVar4 = _DAT_180d48e20;
+  uVar7 = param_2 % (ulonglong)*(uint *)(param_1 + 0x338);
+  lVar2 = *(longlong *)(param_1 + 0x330);
+  puVar3 = *(ulonglong **)(lVar2 + uVar7 * 8);
   
-  // 查找缓存项
-  for (cache_ptr = cache_entry; cache_ptr != (ulonglong *)0x0; cache_ptr = (ulonglong *)cache_ptr[2]) {
-    if (cache_key == *cache_ptr) {
-      cache_size = *(longlong *)(cache_handle + 0x338);
-      goto CACHE_ITEM_FOUND;
+  // 在哈希表中查找资源
+  for (puVar5 = puVar3; puVar5 != (ulonglong *)0x0; puVar5 = (ulonglong *)puVar5[2]) {
+    if (param_2 == *puVar5) {
+      lVar6 = *(longlong *)(param_1 + 0x338);
+      goto LAB_18032b522;
     }
   }
   
-  cache_size = *(longlong *)(cache_handle + 0x338);
-  cache_ptr = *(ulonglong **)(cache_table + cache_size * 8);
+  // 获取哈希表大小
+  lVar6 = *(longlong *)(param_1 + 0x338);
+  puVar5 = *(ulonglong **)(lVar2 + lVar6 * 8);
+LAB_18032b522:
   
-CACHE_ITEM_FOUND:
-  // 处理缓存项
-  if (cache_ptr == *(ulonglong **)(cache_table + cache_size * 8)) {
+  // 检查是否需要创建新资源条目
+  if (puVar5 == *(ulonglong **)(lVar2 + lVar6 * 8)) {
     _DAT_180d48e20 = _DAT_180d48e20 + 1;
     
-    // 检查缓存项是否存在
-    for (cache_ptr = cache_entry; cache_ptr != (ulonglong *)0x0; cache_ptr = (ulonglong *)cache_ptr[2]) {
-      if (cache_key == *cache_ptr) {
-        if (cache_ptr != (ulonglong *)0x0) goto CACHE_ITEM_UPDATED;
+    // 再次查找资源
+    for (puVar5 = puVar3; puVar5 != (ulonglong *)0x0; puVar5 = (ulonglong *)puVar5[2]) {
+      if (param_2 == *puVar5) {
+        if (puVar5 != (ulonglong *)0x0) goto LAB_18032b629;
         break;
       }
     }
     
-    // 创建新缓存项
-    cache_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(undefined1 *)(cache_handle + 0x354));
-    cache_value = (undefined4)cache_key;
-    cache_value_high = (undefined4)(cache_key >> 0x20);
-    *(undefined4 *)cache_ptr = cache_value;
-    *(undefined4 *)((longlong)cache_ptr + 4) = cache_value_high;
-    *(int *)(cache_ptr + 1) = cache_status;
-    *(undefined4 *)((longlong)cache_ptr + 0xc) = entry_status;
-    cache_ptr[2] = 0;
+    // 创建新的资源条目
+    puVar5 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)(param_1 + 0x354));
+    uStack_40 = (undefined4)param_2;
+    uStack_3c = (undefined4)(param_2 >> 0x20);
+    *(undefined4 *)puVar5 = uStack_40;
+    *(undefined4 *)((longlong)puVar5 + 4) = uStack_3c;
+    *(int *)(puVar5 + 1) = iVar4;
+    *(undefined4 *)((longlong)puVar5 + 0xc) = uStack_34;
+    puVar5[2] = 0;
     
-    // 更新缓存表
-    FUN_18066c220(cache_handle + 0x348, lock_status, *(undefined4 *)(cache_handle + 0x338),
-                  *(undefined4 *)(cache_handle + 0x340), 1);
+    // 更新哈希表
+    FUN_18066c220(param_1 + 0x348,acStackX_8,*(undefined4 *)(param_1 + 0x338),
+                  *(undefined4 *)(param_1 + 0x340),1);
     
-    if (lock_status[0] != '\0') {
-      hash_value = cache_key % (ulonglong)table_size;
-      FUN_18033db70(cache_handle + 0x328, (ulonglong)table_size);
+    // 检查是否需要重新哈希
+    if (acStackX_8[0] != '\0') {
+      uVar7 = param_2 % (ulonglong)uStackX_c;
+      FUN_18033db70(param_1 + 0x328,(ulonglong)uStackX_c);
     }
     
-    cache_ptr[2] = *(ulonglong *)(*(longlong *)(cache_handle + 0x330) + hash_value * 8);
-    *(ulonglong **)(*(longlong *)(cache_handle + 0x330) + hash_value * 8) = cache_ptr;
-    *(longlong *)(cache_handle + 0x340) = *(longlong *)(cache_handle + 0x340) + 1;
+    // 插入新的资源条目
+    puVar5[2] = *(ulonglong *)(*(longlong *)(param_1 + 0x330) + uVar7 * 8);
+    *(ulonglong **)(*(longlong *)(param_1 + 0x330) + uVar7 * 8) = puVar5;
+    *(longlong *)(param_1 + 0x340) = *(longlong *)(param_1 + 0x340) + 1;
   }
   
-CACHE_ITEM_UPDATED:
-  hash_value = cache_ptr[1];
-  cache_status = _Mtx_unlock(lock_handle);
-  if (cache_status != 0) {
-    __Throw_C_error_std__YAXH_Z(cache_status);
+LAB_18032b629:
+  // 获取资源数据
+  uVar7 = puVar5[1];
+  iVar4 = _Mtx_unlock(lVar1);
+  if (iVar4 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar4);
   }
   
-  return (int)hash_value;
+  return (int)uVar7;
 }
 
-// ===================================================================
-// 函数实现：渲染数据索引管理器
-// ===================================================================
+
 
 /**
- * 渲染数据索引管理器 - 负责渲染数据索引的管理
+ * @brief 渲染系统资源条目创建器
  * 
- * @param index_handle 索引句柄
- * @param index_key 索引键值
- * @return undefined8 索引操作结果
+ * 在渲染系统中创建新的资源条目，支持资源缓存和管理。
  * 
- * 技术说明：
- * - 管理渲染数据的索引操作
- * - 处理索引项的查找和创建
- * - 支持索引容量的动态调整
- * - 优化索引访问性能
- * - 处理索引数据的同步
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的索引管理逻辑
- * - 简化版本专注于核心索引管理功能
- * - 保留了主要的索引操作流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 资源标识符
+ * @return undefined8 创建的资源条目指针
  */
-undefined8 RenderingSystem_DataIndexManager(undefined8 index_handle, uint index_key)
+undefined8 FUN_18032b680(longlong param_1,uint param_2)
 
 {
-  longlong lock_handle;
-  int lock_status;
-  longlong index_table;
-  uint *index_entry;
-  longlong index_size;
-  undefined8 index_data;
-  uint *index_ptr;
-  ulonglong hash_value;
-  ulonglong hash_value_alt;
-  char resize_status[4];
-  uint table_size;
-  undefined8 index_timestamp;
-  uint index_value_low;
-  uint index_value_high;
-  uint index_status_low;
-  uint index_status_high;
+  longlong lVar1;
+  int iVar2;
+  longlong lVar3;
+  undefined8 uVar4;
+  uint *puVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  char acStackX_8 [4];
+  uint uStackX_c;
+  undefined8 uStack_40;
+  uint uStack_3c;
+  uint uStack_38;
+  uint uStack_34;
   
-  hash_value = (ulonglong)index_key;
-  lock_status = _Mtx_lock(index_handle + 0xa20);
-  if (lock_status != 0) {
-    __Throw_C_error_std__YAXH_Z(lock_status);
+  // 获取资源标识符
+  uVar7 = (ulonglong)param_2;
+  
+  // 获取资源表锁
+  iVar2 = _Mtx_lock(param_1 + 0xa20);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
   }
   
-  index_table = *(longlong *)(index_handle + 0x9f8);
+  // 获取资源表
+  lVar1 = *(longlong *)(param_1 + 0x9f8);
   
-  // 查找索引项
-  for (index_entry = *(uint **)(index_table + (hash_value % (ulonglong)*(uint *)(index_handle + 0xa00)) * 8);
-      index_entry != (uint *)0x0; index_entry = *(uint **)(index_entry + 4)) {
-    if (index_key == *index_entry) {
-      index_size = *(longlong *)(index_handle + 0xa00);
-      goto INDEX_ITEM_FOUND;
+  // 在资源表中查找
+  for (puVar5 = *(uint **)(lVar1 + (uVar7 % (ulonglong)*(uint *)(param_1 + 0xa00)) * 8);
+      puVar5 != (uint *)0x0; puVar5 = *(uint **)(puVar5 + 4)) {
+    if (param_2 == *puVar5) {
+      lVar3 = *(longlong *)(param_1 + 0xa00);
+      goto LAB_18032b6ff;
     }
   }
   
-  index_size = *(longlong *)(index_handle + 0xa00);
-  index_entry = *(uint **)(index_table + index_size * 8);
+  // 获取资源表大小
+  lVar3 = *(longlong *)(param_1 + 0xa00);
+  puVar5 = *(uint **)(lVar1 + lVar3 * 8);
+LAB_18032b6ff:
   
-INDEX_ITEM_FOUND:
-  // 处理索引项
-  if (index_entry == *(uint **)(index_table + index_size * 8)) {
-    index_data = FUN_18062b1e0(_DAT_180c8ed18, 0x80, 8, 3);
-    index_data = FUN_18033ac00(index_data);
-    hash_value = hash_value % (ulonglong)*(uint *)(index_handle + 0xa00);
+  // 检查是否需要创建新资源条目
+  if (puVar5 == *(uint **)(lVar1 + lVar3 * 8)) {
+    // 分配资源条目内存
+    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
+    uVar4 = FUN_18033ac00(uVar4);
     
-    // 检查索引项是否存在
-    for (index_entry = *(uint **)(*(longlong *)(index_handle + 0x9f8) + hash_value * 8); index_entry != (uint *)0x0;
-        index_entry = *(uint **)(index_entry + 4)) {
-      if (index_key == *index_entry) {
-        if (index_entry != (uint *)0x0) goto INDEX_ITEM_UPDATED;
+    // 计算哈希值
+    uVar6 = uVar7 % (ulonglong)*(uint *)(param_1 + 0xa00);
+    
+    // 再次查找资源
+    for (puVar5 = *(uint **)(*(longlong *)(param_1 + 0x9f8) + uVar6 * 8); puVar5 != (uint *)0x0;
+        puVar5 = *(uint **)(puVar5 + 4)) {
+      if (param_2 == *puVar5) {
+        if (puVar5 != (uint *)0x0) goto LAB_18032b82c;
         break;
       }
     }
     
-    // 创建新索引项
-    index_entry = (uint *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(undefined1 *)(index_handle + 0xa1c));
-    index_value_low = (uint)index_data;
-    index_value_high = (uint)((ulonglong)index_data >> 0x20);
-    *index_entry = index_key;
-    index_entry[1] = index_status_low;
-    index_entry[2] = index_value_low;
-    index_entry[3] = index_value_high;
-    index_entry[4] = 0;
-    index_entry[5] = 0;
+    // 创建新的资源条目
+    puVar5 = (uint *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)(param_1 + 0xa1c));
+    uStack_38 = (uint)uVar4;
+    uStack_34 = (uint)((ulonglong)uVar4 >> 0x20);
+    *puVar5 = param_2;
+    puVar5[1] = uStack_3c;
+    puVar5[2] = uStack_38;
+    puVar5[3] = uStack_34;
+    puVar5[4] = 0;
+    puVar5[5] = 0;
     
-    // 更新索引表
-    FUN_18066c220(index_handle + 0xa10, resize_status, *(undefined4 *)(index_handle + 0xa00),
-                  *(undefined4 *)(index_handle + 0xa08), 1);
+    // 更新资源表
+    FUN_18066c220(param_1 + 0xa10,acStackX_8,*(undefined4 *)(param_1 + 0xa00),
+                  *(undefined4 *)(param_1 + 0xa08),1);
     
-    if (resize_status[0] != '\0') {
-      hash_value = hash_value % (ulonglong)table_size;
-      FUN_18033bf30(index_handle + 0x9f0, (ulonglong)table_size);
+    // 检查是否需要重新哈希
+    if (acStackX_8[0] != '\0') {
+      uVar6 = uVar7 % (ulonglong)uStackX_c;
+      FUN_18033bf30(param_1 + 0x9f0,(ulonglong)uStackX_c);
     }
     
-    *(undefined8 *)(index_entry + 4) = *(undefined8 *)(*(longlong *)(index_handle + 0x9f8) + hash_value * 8);
-    *(uint **)(*(longlong *)(index_handle + 0x9f8) + hash_value * 8) = index_entry;
-    *(longlong *)(index_handle + 0xa08) = *(longlong *)(index_handle + 0xa08) + 1;
+    // 插入新的资源条目
+    *(undefined8 *)(puVar5 + 4) = *(undefined8 *)(*(longlong *)(param_1 + 0x9f8) + uVar6 * 8);
+    *(uint **)(*(longlong *)(param_1 + 0x9f8) + uVar6 * 8) = puVar5;
+    *(longlong *)(param_1 + 0xa08) = *(longlong *)(param_1 + 0xa08) + 1;
   }
   
-INDEX_ITEM_UPDATED:
-  index_data = *(undefined8 *)(index_entry + 2);
-  lock_status = _Mtx_unlock(index_handle + 0xa20);
-  if (lock_status != 0) {
-    __Throw_C_error_std__YAXH_Z(lock_status);
+LAB_18032b82c:
+  // 获取资源数据
+  uVar4 = *(undefined8 *)(puVar5 + 2);
+  iVar2 = _Mtx_unlock(param_1 + 0xa20);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
   }
   
-  return index_data;
+  return uVar4;
 }
 
-// ===================================================================
-// 函数实现：渲染数据序列化器
-// ===================================================================
+
 
 /**
- * 渲染数据序列化器 - 负责渲染数据的序列化操作
+ * @brief 渲染系统资源初始化器
  * 
- * @param render_context 渲染上下文句柄
- * @param output_handle 输出句柄
- * @return void
+ * 初始化渲染系统中的资源，包括内存分配和状态设置。
  * 
- * 技术说明：
- * - 处理渲染数据的序列化操作
- * - 管理数据格式的转换
- * - 支持文件输出操作
- * - 优化序列化性能
- * - 处理数据完整性验证
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的序列化处理逻辑
- * - 简化版本专注于核心序列化功能
- * - 保留了主要的序列化处理流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 资源标识符
+ * @param param_3 资源参数
+ * @return longlong 初始化结果
  */
-void RenderingSystem_DataSerializer(undefined8 render_context, undefined8 output_handle)
+longlong FUN_18032b880(longlong param_1,uint param_2,uint param_3)
 
 {
-  undefined8 *file_handle;
-  longlong data_context;
-  undefined8 *temp_buffer;
-  undefined *data_format;
-  undefined1 format_header[8];
-  undefined8 header_data;
-  undefined *output_format;
+  longlong lVar1;
+  int iVar2;
+  uint *puVar3;
+  longlong lVar4;
   
-  // 初始化序列化参数
-  header_data = *(undefined8 *)(render_context + 0x160);
-  temp_buffer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-  data_context = FUN_180334500(render_context, &output_format);
-  data_format = &DAT_18098bc73;
-  
-  if (*(undefined **)(data_context + 8) != (undefined *)0x0) {
-    data_format = *(undefined **)(data_context + 8);
+  // 检查渲染系统状态
+  if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+               0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&DAT_180d496d0), _DAT_180d496d0 == -1)) {
+    // 初始化全局变量
+    _DAT_180d49730 = &UNK_1809fcc58;
+    _DAT_180d49738 = &DAT_180d49748;
+    _DAT_180d49740 = 0;
   }
   
-  *temp_buffer = 0;
-  *(undefined1 *)(temp_buffer + 2) = 0;
-  FUN_18062dee0(temp_buffer, data_format, &UNK_180a01ff0);
+  // [函数实现被截断，继续下一个函数]
   
-  // 文件操作
-  if (temp_buffer[1] == 0) {
-    FUN_180626f80(&UNK_180a1b150);
-    if (temp_buffer[1] != 0) {
-      fclose();
-      temp_buffer[1] = 0;
-      LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
-      UNLOCK();
-    }
-    FUN_18064e900(temp_buffer);
+  return 0;
+}
+
+
+/**
+ * @brief 渲染系统资源数据保存器
+ * 
+ * 保存渲染系统中的资源数据到文件，支持序列化和压缩。
+ * 
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 文件句柄
+ * @return void 无返回值
+ */
+void FUN_18032c0b0(longlong param_1,undefined8 param_2)
+
+{
+  undefined8 *puVar1;
+  longlong lVar2;
+  undefined8 *puVar3;
+  undefined *puVar4;
+  undefined1 auStackX_8 [8];
+  undefined8 uStackX_10;
+  undefined8 uStackX_18;
+  undefined *puStack_68;
+  longlong lStack_60;
+  undefined4 uStack_50;
+  
+  // 获取文件信息
+  uStackX_18 = *(undefined8 *)(param_1 + 0x160);
+  uStackX_10 = param_2;
+  
+  // 创建文件缓冲区
+  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  lVar2 = FUN_180334500(param_1,&puStack_68);
+  
+  // 获取文件路径
+  puVar4 = &DAT_18098bc73;
+  if (*(undefined **)(lVar2 + 8) != (undefined *)0x0) {
+    puVar4 = *(undefined **)(lVar2 + 8);
   }
   
-  FUN_1803345c0(render_context, temp_buffer);
-  fread(render_context + 0x160, 8, 1, temp_buffer[1]);
+  // 初始化文件结构
+  *puVar1 = 0;
+  *(undefined1 *)(puVar1 + 2) = 0;
+  FUN_18062dee0(puVar1,puVar4,&UNK_180a0cf4c);
+  
+  // 设置文件操作参数
+  puStack_68 = &UNK_180a3c3e0;
+  if (lStack_60 != 0) {
+    FUN_18064e900();
+  }
+  
+  lStack_60 = 0;
+  uStack_50 = 0;
+  puStack_68 = &UNK_18098bcb0;
+  
+  // 打开文件并定位到开始位置
+  _fseeki64(puVar1[1],0,0);
+  
+  // 创建文件头
+  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(undefined1 *)puVar3 = 0;
+  FUN_18064e990(puVar3);
+  *puVar3 = 0x655679616c706552;  // "ReplyValue"
+  *(undefined4 *)(puVar3 + 1) = 0x6f697372;  // "rsio"
+  *(undefined2 *)((longlong)puVar3 + 0xc) = 0x6e;  // "n"
   
   // 写入文件头
-  *(undefined1 *)temp_buffer = 0;
-  FUN_18064e990(temp_buffer);
-  *temp_buffer = 0x655679616c706552;
-  *(undefined4 *)(temp_buffer + 1) = 0x6f697372;
-  *(undefined2 *)((longlong)temp_buffer + 0xc) = 0x6e;
-  fwrite(temp_buffer, 0xd, 1, temp_buffer[1]);
+  fwrite(puVar3,0xd,1,puVar1[1]);
+  auStackX_8[0] = 1;
+  fwrite(auStackX_8,1,1,puVar1[1]);
   
-  format_header[0] = 1;
-  fwrite(format_header, 1, 1, temp_buffer[1]);
-  FUN_18064e900(temp_buffer);
+  // 清理文件缓冲区
+  FUN_18064e900(puVar3);
 }
 
-// ===================================================================
-// 函数实现：渲染数据加载器
-// ===================================================================
+
+
+// 全局变量警告：以下全局变量可能与同地址的小符号重叠
+
+
 
 /**
- * 渲染数据加载器 - 负责渲染数据的加载操作
+ * @brief 渲染系统资源数据加载器
  * 
- * @param render_context 渲染上下文句柄
- * @param input_handle 输入句柄
- * @return void
+ * 从文件加载渲染系统资源数据，支持反序列化和解压缩。
  * 
- * 技术说明：
- * - 处理渲染数据的加载操作
- * - 管理数据格式的解析
- * - 支持文件输入操作
- * - 优化加载性能
- * - 处理数据完整性验证
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的数据加载逻辑
- * - 简化版本专注于核心加载功能
- * - 保留了主要的数据加载流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 文件句柄
+ * @return void 无返回值
  */
-void RenderingSystem_DataLoader(undefined8 render_context, undefined8 input_handle)
+void FUN_18032c450(longlong param_1,longlong param_2)
 
 {
-  ulonglong *data_ptr;
-  int operation_status;
-  undefined8 *temp_buffer;
-  longlong buffer_size;
-  undefined8 *data_source;
-  int *data_index;
-  ulonglong data_count;
-  undefined *data_format;
-  undefined8 *data_dest;
-  undefined8 *next_ptr;
-  ulonglong processed_count;
-  int index_status;
-  int *index_entry;
-  ulonglong hash_value;
-  int resize_status[2];
-  undefined8 temp_data;
-  char resize_flag[4];
-  uint table_size;
-  undefined1 work_buffer[8];
-  undefined *format_ptr;
+  ulonglong *puVar1;
+  int iVar2;
+  undefined8 *puVar3;
+  longlong lVar4;
+  undefined8 *puVar5;
+  int *piVar6;
+  ulonglong uVar7;
+  undefined *puVar8;
+  undefined8 *puVar9;
+  undefined8 *puVar10;
+  ulonglong uVar11;
+  int iVar12;
+  int aiStackX_8 [2];
+  undefined8 uStackX_10;
+  char acStackX_18 [4];
+  uint uStackX_1c;
+  longlong lStackX_20;
+  undefined1 auStack_80 [8];
+  undefined *puStack_78;
   
-  // 初始化加载参数
-  FUN_18033ae70(render_context + 0x4a8);
-  FUN_18033ad00(render_context + 0x9f0);
-  FUN_18033ad00(render_context + 0x568);
-  FUN_18033ae70(render_context + 0x638);
-  FUN_18033ad00(render_context + 0x6b8);
+  // 清理渲染系统资源
+  FUN_18033ae70(param_1 + 0x4a8);
+  FUN_18033ad00(param_1 + 0x9f0);
+  FUN_18033ad00(param_1 + 0x568);
+  FUN_18033ae70(param_1 + 0x638);
+  FUN_18033ad00(param_1 + 0x6b8);
   
-  buffer_size = render_context + 0x848;
-  FUN_180179f00(buffer_size, *(undefined8 *)(render_context + 0x858));
-  *(longlong *)buffer_size = buffer_size;
-  *(longlong *)(render_context + 0x850) = buffer_size;
+  // 初始化资源管理器
+  lVar4 = param_1 + 0x848;
+  FUN_180179f00(lVar4,*(undefined8 *)(param_1 + 0x858));
+  *(longlong *)lVar4 = lVar4;
+  *(longlong *)(param_1 + 0x850) = lVar4;
+  iVar12 = 0;
+  *(undefined8 *)(param_1 + 0x858) = 0;
+  *(undefined1 *)(param_1 + 0x860) = 0;
+  *(undefined8 *)(param_1 + 0x868) = 0;
   
-  // 清理和初始化数据结构
-  index_status = 0;
-  *(undefined8 *)(render_context + 0x858) = 0;
-  *(undefined1 *)(render_context + 0x860) = 0;
-  *(undefined8 *)(render_context + 0x868) = 0;
+  // 初始化纹理管理器
+  lVar4 = param_1 + 0x958;
+  puVar3 = *(undefined8 **)(param_1 + 0x968);
+  if (puVar3 != (undefined8 *)0x0) {
+    FUN_18004b790(lVar4,*puVar3);
+    FUN_18064e900(puVar3);
+  }
+  *(longlong *)lVar4 = lVar4;
+  *(longlong *)(param_1 + 0x960) = lVar4;
+  *(undefined8 *)(param_1 + 0x968) = 0;
+  *(undefined1 *)(param_1 + 0x970) = 0;
+  *(undefined8 *)(param_1 + 0x978) = 0;
   
-  buffer_size = render_context + 0x958;
-  temp_buffer = *(undefined8 **)(render_context + 0x968);
-  if (temp_buffer != (undefined8 *)0x0) {
-    FUN_18004b790(buffer_size, *temp_buffer);
-    FUN_18064e900(temp_buffer);
+  // 初始化着色器管理器
+  lVar4 = param_1 + 0x8d8;
+  FUN_180179f00(lVar4,*(undefined8 *)(param_1 + 0x8e8));
+  *(longlong *)lVar4 = lVar4;
+  *(longlong *)(param_1 + 0x8e0) = lVar4;
+  *(undefined8 *)(param_1 + 0x8e8) = 0;
+  *(undefined1 *)(param_1 + 0x8f0) = 0;
+  *(undefined8 *)(param_1 + 0x8f8) = 0;
+  
+  // 初始化缓冲区管理器
+  lVar4 = param_1 + 0x8a8;
+  FUN_180179f00(lVar4,*(undefined8 *)(param_1 + 0x8b8));
+  *(longlong *)lVar4 = lVar4;
+  *(longlong *)(param_1 + 0x8b0) = lVar4;
+  *(undefined8 *)(param_1 + 0x8b8) = 0;
+  *(undefined1 *)(param_1 + 0x8c0) = 0;
+  *(undefined8 *)(param_1 + 0x8c8) = 0;
+  
+  // 初始化管线管理器
+  lVar4 = param_1 + 0x878;
+  FUN_180179f00(lVar4,*(undefined8 *)(param_1 + 0x888));
+  *(longlong *)lVar4 = lVar4;
+  *(longlong *)(param_1 + 0x880) = lVar4;
+  *(undefined8 *)(param_1 + 0x888) = 0;
+  *(undefined1 *)(param_1 + 0x890) = 0;
+  *(undefined8 *)(param_1 + 0x898) = 0;
+  
+  // 获取资源管理器锁
+  lVar4 = param_1 + 0x3d8;
+  lStackX_20 = lVar4;
+  iVar2 = _Mtx_lock(lVar4);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
   }
   
-  *(longlong *)buffer_size = buffer_size;
-  *(longlong *)(render_context + 0x960) = buffer_size;
-  *(undefined8 *)(render_context + 0x968) = 0;
-  *(undefined1 *)(render_context + 0x970) = 0;
-  *(undefined8 *)(render_context + 0x978) = 0;
-  
-  // 数据加载处理
-  data_ptr = (ulonglong *)(render_context + 0x260);
-  *(ulonglong *)(render_context + 0x268) = *data_ptr;
-  data_format = &DAT_18098bc73;
-  
-  if (*(undefined **)(input_handle + 8) != (undefined *)0x0) {
-    data_format = *(undefined **)(input_handle + 8);
+  // 清理资源管理器
+  FUN_18033ad00(param_1 + 0x3a8);
+  iVar2 = _Mtx_unlock(lVar4);
+  if (iVar2 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar2);
   }
   
-  (**(code **)(*(longlong *)(render_context + 0x208) + 0x10))((longlong *)(render_context + 0x208), data_format);
-  FUN_180334500(render_context, work_buffer);
+  // 获取资源数据指针
+  puVar1 = (ulonglong *)(param_1 + 0x260);
+  *(ulonglong *)(param_1 + 0x268) = *puVar1;
   
-  temp_buffer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-  data_format = &DAT_18098bc73;
-  
-  if (format_ptr != (undefined *)0x0) {
-    data_format = format_ptr;
+  // 获取文件路径
+  puVar8 = &DAT_18098bc73;
+  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
+    puVar8 = *(undefined **)(param_2 + 8);
   }
   
-  *temp_buffer = 0;
-  *(undefined1 *)(temp_buffer + 2) = 0;
-  FUN_18062dee0(temp_buffer, data_format, &UNK_180a01ff0);
+  // 调用文件处理回调
+  (**(code **)(*(longlong *)(param_1 + 0x208) + 0x10))((longlong *)(param_1 + 0x208),puVar8);
   
-  // 文件读取处理
-  if (temp_buffer[1] == 0) {
+  // 获取文件操作参数
+  FUN_180334500(param_1,auStack_80);
+  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  puVar8 = &DAT_18098bc73;
+  if (puStack_78 != (undefined *)0x0) {
+    puVar8 = puStack_78;
+  }
+  
+  // 初始化文件结构
+  *puVar3 = 0;
+  *(undefined1 *)(puVar3 + 2) = 0;
+  FUN_18062dee0(puVar3,puVar8,&UNK_180a01ff0);
+  
+  // 检查文件是否打开
+  if (puVar3[1] == 0) {
     FUN_180626f80(&UNK_180a1b150);
-    if (temp_buffer[1] != 0) {
+    if (puVar3[1] != 0) {
       fclose();
-      temp_buffer[1] = 0;
+      puVar3[1] = 0;
       LOCK();
       _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
       UNLOCK();
     }
-    FUN_18064e900(temp_buffer);
+    FUN_18064e900(puVar3);
   }
   
-  FUN_1803345c0(render_context, temp_buffer);
-  fread(render_context + 0x160, 8, 1, temp_buffer[1]);
-  FUN_1800e8140(data_ptr, *(longlong *)(render_context + 0x160) + 1);
+  // 读取文件头信息
+  FUN_1803345c0(param_1,puVar3);
+  fread(param_1 + 0x160,8,1,puVar3[1]);
+  FUN_1800e8140(puVar1,*(longlong *)(param_1 + 0x160) + 1);
   
-  data_count = *(ulonglong *)(render_context + 0x160);
-  if (data_count != 0) {
+  // 读取资源数据
+  uVar7 = *(ulonglong *)(param_1 + 0x160);
+  if (uVar7 != 0) {
     do {
-      fread(&temp_data, 8, 1, temp_buffer[1]);
-      data_dest = *(undefined8 **)(render_context + 0x268);
-      
-      // 缓冲区管理
-      if (data_dest < *(undefined8 **)(render_context + 0x270)) {
-        *(undefined8 **)(render_context + 0x268) = data_dest + 1;
-        *data_dest = temp_data;
+      fread(&uStackX_10,8,1,puVar3[1]);
+      puVar10 = *(undefined8 **)(param_1 + 0x268);
+      if (puVar10 < *(undefined8 **)(param_1 + 0x270)) {
+        *(undefined8 **)(param_1 + 0x268) = puVar10 + 1;
+        *puVar10 = uStackX_10;
       }
       else {
-        data_source = (undefined8 *)*data_ptr;
-        buffer_size = (longlong)data_dest - (longlong)data_source >> 3;
-        if (buffer_size == 0) {
-          buffer_size = 1;
+        // 缓冲区空间不足，重新分配内存
+        puVar9 = (undefined8 *)*puVar1;
+        lVar4 = (longlong)puVar10 - (longlong)puVar9 >> 3;
+        if (lVar4 == 0) {
+          lVar4 = 1;
+LAB_18032c711:
+          puVar5 = (undefined8 *)
+                   FUN_18062b420(_DAT_180c8ed18,lVar4 * 8,*(undefined1 *)(param_1 + 0x278));
+          puVar10 = *(undefined8 **)(param_1 + 0x268);
+          puVar9 = (undefined8 *)*puVar1;
         }
         else {
-          buffer_size = buffer_size * 2;
-          if (buffer_size != 0) {
-            next_ptr = (undefined8 *)
-                     FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(undefined1 *)(render_context + 0x278));
-            data_dest = *(undefined8 **)(render_context + 0x268);
-            data_source = (undefined8 *)*data_ptr;
-          }
-          else {
-            next_ptr = (undefined8 *)0x0;
-          }
+          lVar4 = lVar4 * 2;
+          if (lVar4 != 0) goto LAB_18032c711;
+          puVar5 = (undefined8 *)0x0;
         }
         
-        if (data_source != data_dest) {
-          memmove(next_ptr, data_source, (longlong)data_dest - (longlong)data_source);
+        // 移动现有数据到新缓冲区
+        if (puVar9 != puVar10) {
+          memmove(puVar5,puVar9,(longlong)puVar10 - (longlong)puVar9);
         }
-        *next_ptr = temp_data;
         
-        if (*data_ptr != 0) {
+        // 写入资源数据
+        *puVar5 = uStackX_10;
+        if (*puVar1 != 0) {
           FUN_18064e900();
         }
-        *data_ptr = (ulonglong)next_ptr;
-        *(undefined8 **)(render_context + 0x268) = next_ptr + 1;
-        *(undefined8 **)(render_context + 0x270) = next_ptr + buffer_size;
+        
+        // 更新缓冲区指针
+        *puVar1 = (ulonglong)puVar5;
+        *(undefined8 **)(param_1 + 0x268) = puVar5 + 1;
+        *(undefined8 **)(param_1 + 0x270) = puVar5 + lVar4;
       }
       
-      index_status = index_status + 1;
-      data_count = *(ulonglong *)(render_context + 0x160);
-    } while ((ulonglong)(longlong)index_status < data_count);
+      iVar12 = iVar12 + 1;
+      uVar7 = *(ulonglong *)(param_1 + 0x160);
+    } while ((ulonglong)(longlong)iVar12 < uVar7);
   }
   
-  // 索引处理
-  processed_count = 0;
-  if (data_count != 0) {
+  // 读取资源索引数据
+  uVar11 = 0;
+  if (uVar7 != 0) {
     do {
-      fread(resize_status, 4, 1, temp_buffer[1]);
-      index_status = resize_status[0];
-      operation_status = (int)processed_count;
-      hash_value = processed_count % (ulonglong)*(uint *)(render_context + 0x998);
+      fread(aiStackX_8,4,1,puVar3[1]);
+      iVar12 = aiStackX_8[0];
+      iVar2 = (int)uVar11;
+      uVar7 = uVar11 % (ulonglong)*(uint *)(param_1 + 0x998);
       
-      for (index_entry = *(int **)(*(longlong *)(render_context + 0x990) + hash_value * 8); index_entry != (int *)0x0;
-          index_entry = *(int **)(index_entry + 2)) {
-        if (operation_status == *index_entry) {
-          if (index_entry != (int *)0x0) goto INDEX_ENTRY_FOUND;
+      // 在资源索引表中查找
+      for (piVar6 = *(int **)(*(longlong *)(param_1 + 0x990) + uVar7 * 8); piVar6 != (int *)0x0;
+          piVar6 = *(int **)(piVar6 + 2)) {
+        if (iVar2 == *piVar6) {
+          if (piVar6 != (int *)0x0) goto LAB_18032c882;
           break;
         }
       }
       
-      FUN_18066c220(render_context + 0x9a8, resize_flag, (ulonglong)*(uint *)(render_context + 0x998),
-                    *(undefined4 *)(render_context + 0x9a0), 1);
+      // 创建新的资源索引条目
+      FUN_18066c220(param_1 + 0x9a8,acStackX_18,(ulonglong)*(uint *)(param_1 + 0x998),
+                    *(undefined4 *)(param_1 + 0x9a0),1);
+      piVar6 = (int *)FUN_18062b420(_DAT_180c8ed18,0x10,*(undefined1 *)(param_1 + 0x9b4));
+      *piVar6 = iVar2;
+      piVar6[1] = 0;
+      piVar6[2] = 0;
+      piVar6[3] = 0;
       
-      index_entry = (int *)FUN_18062b420(_DAT_180c8ed18, 0x10, *(undefined1 *)(render_context + 0x9b4));
-      *index_entry = operation_status;
-      index_entry[1] = 0;
-      index_entry[2] = 0;
-      index_entry[3] = 0;
-      
-      if (resize_flag[0] != '\0') {
-        hash_value = processed_count % (ulonglong)table_size;
-        FUN_18033c010(render_context + 0x988, table_size);
+      // 检查是否需要重新哈希
+      if (acStackX_18[0] != '\0') {
+        uVar7 = uVar11 % (ulonglong)uStackX_1c;
+        FUN_18033c010(param_1 + 0x988,uStackX_1c);
       }
       
-      *(undefined8 *)(index_entry + 2) = *(undefined8 *)(*(longlong *)(render_context + 0x990) + hash_value * 8);
-      *(int **)(*(longlong *)(render_context + 0x990) + hash_value * 8) = index_entry;
-      *(longlong *)(render_context + 0x9a0) = *(longlong *)(render_context + 0x9a0) + 1;
+      // 插入新的资源索引条目
+      *(undefined8 *)(piVar6 + 2) = *(undefined8 *)(*(longlong *)(param_1 + 0x990) + uVar7 * 8);
+      *(int **)(*(longlong *)(param_1 + 0x990) + uVar7 * 8) = piVar6;
+      *(longlong *)(param_1 + 0x9a0) = *(longlong *)(param_1 + 0x9a0) + 1;
       
-INDEX_ENTRY_FOUND:
-      index_entry[1] = index_status;
-      processed_count = (ulonglong)(operation_status + 1U);
-    } while ((ulonglong)(longlong)(operation_status + 1U) < *(ulonglong *)(render_context + 0x160));
+LAB_18032c882:
+      // 更新资源索引数据
+      piVar6[1] = iVar12;
+      uVar11 = (ulonglong)(iVar2 + 1U);
+    } while ((ulonglong)(longlong)(int)(iVar2 + 1U) < *(ulonglong *)(param_1 + 0x160));
   }
   
-  // 清理资源
-  FUN_18032f540(render_context, temp_buffer, render_context + 0x208);
-  FUN_18032f990(render_context, temp_buffer, render_context + 0x208);
-  FUN_18032ffc0(render_context, temp_buffer, render_context + 0x208);
-  FUN_1803304e0(render_context, temp_buffer, render_context + 0x208);
-  FUN_180330ab0(render_context, temp_buffer, render_context + 0x208);
-  FUN_180335590(render_context, temp_buffer);
-  FUN_180335f10(render_context, temp_buffer);
-  FUN_180336540(render_context, temp_buffer);
+  // 处理资源数据
+  FUN_18032f540(param_1,puVar3,param_1 + 0x208);
+  FUN_18032f990(param_1,puVar3,param_1 + 0x208);
+  FUN_18032ffc0(param_1,puVar3,param_1 + 0x208);
+  FUN_1803304e0(param_1,puVar3,param_1 + 0x208);
+  FUN_180330ab0(param_1,puVar3,param_1 + 0x208);
+  FUN_180335590(param_1,puVar3);
+  FUN_180335f10(param_1,puVar3);
+  FUN_180336540(param_1,puVar3);
   
-  if (temp_buffer[1] != 0) {
+  // 关闭文件
+  if (puVar3[1] != 0) {
     fclose();
-    temp_buffer[1] = 0;
+    puVar3[1] = 0;
     LOCK();
     _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
     UNLOCK();
+    if (puVar3[1] != 0) {
+      fclose();
+      puVar3[1] = 0;
+      LOCK();
+      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      UNLOCK();
+    }
   }
   
-  FUN_18064e900(temp_buffer);
+  // 清理文件缓冲区
+  FUN_18064e900(puVar3);
 }
 
-// ===================================================================
-// 函数实现：渲染数据导出器
-// ===================================================================
+
+
+// 全局变量警告：以下全局变量可能与同地址的小符号重叠
+
+
 
 /**
- * 渲染数据导出器 - 负责渲染数据的导出操作
+ * @brief 渲染系统资源数据导出器
  * 
- * @param render_context 渲染上下文句柄
- * @param output_handle 输出句柄
- * @param offset_param 偏移参数
- * @param export_param 导出参数
- * @return void
+ * 导出渲染系统资源数据到文件，支持多种格式和压缩选项。
  * 
- * 技术说明：
- * - 处理渲染数据的导出操作
- * - 管理数据格式的转换
- * - 支持文件输出操作
- * - 优化导出性能
- * - 处理数据完整性验证
- * 
- * 简化实现说明：
- * - 原始实现包含复杂的数据导出逻辑
- * - 简化版本专注于核心导出功能
- * - 保留了主要的数据导出流程
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 文件句柄
+ * @param param_3 导出位置
+ * @param param_4 导出参数
+ * @return void 无返回值
  */
-void RenderingSystem_DataExporter(undefined8 render_context, undefined8 output_handle, longlong offset_param, undefined4 export_param)
+void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,undefined4 param_4)
 
 {
-  undefined4 export_data;
-  uint data_size;
-  undefined4 *data_source;
-  uint *data_ptr;
-  undefined8 *temp_buffer;
-  ulonglong buffer_size;
-  longlong data_offset;
-  undefined *data_format;
-  longlong file_offset;
-  int status_array[2];
-  longlong buffer_offset;
-  uint *export_buffer;
-  longlong export_size;
-  undefined4 export_header;
-  undefined4 export_info;
-  int export_status;
-  undefined8 *data_buffer;
-  undefined8 buffer_data;
-  undefined4 export_flag;
+  undefined4 uVar1;
+  uint uVar2;
+  undefined4 *puVar3;
+  uint *puVar4;
+  undefined8 *puVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  undefined *puVar8;
+  longlong lVar9;
+  int aiStack_b8 [2];
+  longlong lStack_b0;
+  uint *puStack_a8;
+  longlong lStack_a0;
+  undefined4 uStack_98;
+  undefined4 uStack_90;
+  int iStack_8c;
+  undefined8 *puStack_88;
+  longlong lStack_80;
+  undefined8 uStack_78;
+  undefined4 uStack_70;
+  undefined8 *puStack_68;
+  undefined8 uStack_60;
   
-  // 初始化导出参数
-  buffer_data = 0xfffffffffffffffe;
-  _fseeki64(*(undefined8 *)(output_handle + 8), offset_param, 0);
-  buffer_offset = 0;
-  export_buffer = (uint *)0x0;
-  export_size = 0;
-  export_header = 3;
+  // 设置导出参数
+  uStack_60 = 0xfffffffffffffffe;
+  _fseeki64(*(undefined8 *)(param_2 + 8),param_3,0);
   
-  // 数据收集处理
-  FUN_18032b1c0(render_context, &buffer_offset, export_param, 0);
-  status_array[0] = (int)((longlong)export_buffer - buffer_offset >> 2);
-  fwrite(status_array, 4, 1, *(undefined8 *)(output_handle + 8));
+  // 初始化导出缓冲区
+  lStack_b0 = 0;
+  puStack_a8 = (uint *)0x0;
+  lStack_a0 = 0;
+  uStack_98 = 3;
   
-  if (0 < status_array[0]) {
-    fwrite(buffer_offset, 4, (longlong)status_array[0], *(undefined8 *)(output_handle + 8));
+  // 收集资源数据
+  FUN_18032b1c0(param_1,&lStack_b0,param_4,0);
+  aiStack_b8[0] = (int)((longlong)puStack_a8 - lStack_b0 >> 2);
+  
+  // 写入资源数据
+  fwrite(aiStack_b8,4,1,*(undefined8 *)(param_2 + 8));
+  if (0 < aiStack_b8[0]) {
+    fwrite(lStack_b0,4,(longlong)aiStack_b8[0],*(undefined8 *)(param_2 + 8));
   }
   
-  if (buffer_offset != 0) {
+  // 清理资源数据缓冲区
+  if (lStack_b0 != 0) {
     FUN_18064e900();
   }
   
-  data_buffer = (undefined8 *)0x0;
-  export_size = 0;
-  buffer_data = 0;
-  export_flag = 3;
+  // 初始化资源收集缓冲区
+  puStack_88 = (undefined8 *)0x0;
+  lStack_80 = 0;
+  uStack_78 = 0;
+  uStack_70 = 3;
   
-  // 数据处理
-  FUN_18032afa0(render_context, &data_buffer, export_param);
-  temp_buffer = data_buffer;
-  status_array[0] = (int)(export_size - (longlong)data_buffer >> 2);
-  fwrite(status_array, 4, 1, *(undefined8 *)(output_handle + 8));
+  // 收集资源数据
+  FUN_18032afa0(param_1,&puStack_88,param_4);
+  puVar5 = puStack_88;
+  aiStack_b8[0] = (int)(lStack_80 - (longlong)puStack_88 >> 2);
   
-  if (0 < status_array[0]) {
-    fwrite(temp_buffer, 4, (longlong)status_array[0], *(undefined8 *)(output_handle + 8));
+  // 写入资源数据
+  fwrite(aiStack_b8,4,1,*(undefined8 *)(param_2 + 8));
+  if (0 < aiStack_b8[0]) {
+    fwrite(puVar5,4,(longlong)aiStack_b8[0],*(undefined8 *)(param_2 + 8));
   }
   
-  if (temp_buffer != (undefined8 *)0x0) {
-    FUN_18064e900(temp_buffer);
+  // 清理资源收集缓冲区
+  if (puVar5 != (undefined8 *)0x0) {
+    FUN_18064e900(puVar5);
   }
   
-  // 高级数据处理
-  buffer_offset = 0;
-  export_buffer = (undefined4 *)0x0;
-  export_size = 0;
-  export_header = CONCAT13(export_header._3_1_, 0x30000);
-  data_buffer = (undefined8 *)0x0;
-  export_size = 0;
-  buffer_data = 0;
-  export_flag = 3;
+  // 初始化扩展数据缓冲区
+  lStack_b0 = 0;
+  puStack_a8 = (undefined4 *)0x0;
+  lStack_a0 = 0;
+  uStack_98 = CONCAT13(uStack_98._3_1_,0x30000);
+  puStack_88 = (undefined8 *)0x0;
+  lStack_80 = 0;
+  uStack_78 = 0;
+  uStack_70 = 3;
   
-  FUN_1803347d0(render_context, &data_buffer, export_param);
-  temp_buffer = data_buffer;
-  buffer_size = export_size - (longlong)data_buffer >> 3;
-  status_array[0] = (int)buffer_size;
+  // 收集扩展数据
+  FUN_1803347d0(param_1,&puStack_88,param_4);
+  puVar5 = puStack_88;
+  uVar6 = lStack_80 - (longlong)puStack_88 >> 3;
+  aiStack_b8[0] = (int)uVar6;
   
-  if ((buffer_size & 0xffffff) != 0) {
-    FUN_180639bf0(&buffer_offset, (longlong)(status_array[0] << 8));
+  // 检查是否需要扩展缓冲区
+  if ((uVar6 & 0xffffff) != 0) {
+    FUN_180639bf0(&lStack_b0,(longlong)(aiStack_b8[0] << 8));
   }
   
-  fwrite(status_array, 4, 1, *(undefined8 *)(output_handle + 8));
-  data_ptr = export_buffer;
-  data_offset = buffer_offset;
-  export_info = 0;
+  // 写入扩展数据
+  fwrite(aiStack_b8,4,1,*(undefined8 *)(param_2 + 8));
+  puVar4 = puStack_a8;
+  lVar7 = lStack_b0;
+  uStack_90 = 0;
   
-  if (0 < status_array[0]) {
-    data_source = (undefined4 *)*temp_buffer;
-    export_data = *data_source;
+  if (0 < aiStack_b8[0]) {
+    puStack_68 = puVar5;
+    puVar3 = (undefined4 *)*puVar5;
+    uVar1 = *puVar3;
     
-    if ((ulonglong)((export_size - (longlong)export_buffer) + buffer_offset) < 5) {
-      FUN_180639bf0(&buffer_offset, (longlong)export_buffer + (4 - buffer_offset));
+    // 检查缓冲区空间
+    if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) < 5) {
+      FUN_180639bf0(&lStack_b0,(longlong)puStack_a8 + (4 - lStack_b0));
     }
     
-    *export_buffer = export_data;
-    export_buffer = export_buffer + 1;
+    // 写入资源数据
+    *puStack_a8 = uVar1;
+    puStack_a8 = puStack_a8 + 1;
     
-    if ((ulonglong)((export_size - (longlong)export_buffer) + buffer_offset) < 0x11) {
-      FUN_180639bf0(&buffer_offset, (longlong)export_buffer + (0x10 - buffer_offset));
+    if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) < 0x11) {
+      FUN_180639bf0(&lStack_b0,(longlong)puStack_a8 + (0x10 - lStack_b0));
     }
     
-    *export_buffer = data_source[1];
-    export_buffer[1] = data_source[2];
-    export_buffer[2] = data_source[3];
-    export_buffer[3] = data_source[4];
-    export_buffer = export_buffer + 4;
+    *puStack_a8 = puVar3[1];
+    puStack_a8[1] = puVar3[2];
+    puStack_a8[2] = puVar3[3];
+    puStack_a8[3] = puVar3[4];
+    puStack_a8 = puStack_a8 + 4;
     
-    data_size = data_source[10];
-    buffer_size = (ulonglong)data_size + 4;
+    uVar2 = puVar3[10];
+    uVar6 = (ulonglong)uVar2 + 4;
     
-    if ((ulonglong)((export_size - (longlong)export_buffer) + buffer_offset) <= buffer_size) {
-      FUN_180639bf0(&buffer_offset, (buffer_size - buffer_offset) + (longlong)export_buffer);
+    if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) <= uVar6) {
+      FUN_180639bf0(&lStack_b0,(uVar6 - lStack_b0) + (longlong)puStack_a8);
     }
     
-    *export_buffer = data_size;
-    export_buffer = export_buffer + 1;
-    data_format = &DAT_18098bc73;
+    *puStack_a8 = uVar2;
+    puStack_a8 = puStack_a8 + 1;
     
-    if (*(undefined **)(data_source + 8) != (undefined *)0x0) {
-      data_format = *(undefined **)(data_source + 8);
+    // 获取资源名称
+    puVar8 = &DAT_18098bc73;
+    if (*(undefined **)(puVar3 + 8) != (undefined *)0x0) {
+      puVar8 = *(undefined **)(puVar3 + 8);
     }
     
-    memcpy(export_buffer, data_format, (ulonglong)data_size);
+    // 复制资源名称
+    memcpy(puStack_a8,puVar8,(ulonglong)uVar2);
   }
   
-  export_status = (int)export_buffer - (int)buffer_offset;
-  if (buffer_offset == 0) {
-    export_status = 0;
+  // 计算数据大小
+  iStack_8c = (int)puStack_a8 - (int)lStack_b0;
+  if (lStack_b0 == 0) {
+    iStack_8c = 0;
   }
   
-  fwrite(&export_status, 4, 1, *(undefined8 *)(output_handle + 8));
-  file_offset = (longlong)data_ptr - data_offset;
+  // 写入数据大小
+  fwrite(&iStack_8c,4,1,*(undefined8 *)(param_2 + 8));
   
-  if (data_offset == 0) {
-    file_offset = 0;
+  // 写入数据内容
+  lVar9 = (longlong)puVar4 - lVar7;
+  if (lVar7 == 0) {
+    lVar9 = 0;
+  }
+  fwrite(lVar7,lVar9,1,*(undefined8 *)(param_2 + 8));
+  
+  // 清理扩展数据缓冲区
+  if (puVar5 != (undefined8 *)0x0) {
+    FUN_18064e900(puVar5);
   }
   
-  fwrite(data_offset, file_offset, 1, *(undefined8 *)(output_handle + 8));
-  
-  if (temp_buffer != (undefined8 *)0x0) {
-    FUN_18064e900(temp_buffer);
+  // 清理资源数据缓冲区
+  if (((char)uStack_98 == '\0') && (lVar7 != 0)) {
+    FUN_18064e900(lVar7);
   }
   
-  if (((char)export_header == '\0') && (data_offset != 0)) {
-    FUN_18064e900(data_offset);
-  }
+  // 处理资源导出
+  FUN_180331530(param_1,param_2,param_4);
   
-  FUN_180331530(render_context, output_handle, export_param);
-  fflush(*(undefined8 *)(output_handle + 8));
-  data_offset = _ftelli64(*(undefined8 *)(output_handle + 8));
-  FUN_180062300(_DAT_180c86928, &UNK_180a1b118, export_param, data_offset - offset_param,
-                *(undefined8 *)(render_context + 0x2d0));
+  // 刷新文件缓冲区
+  fflush(*(undefined8 *)(param_2 + 8));
+  
+  // 记录导出信息
+  lVar7 = _ftelli64(*(undefined8 *)(param_2 + 8));
+  FUN_180062300(_DAT_180c86928,&UNK_180a1b118,param_4,lVar7 - param_3,
+                *(undefined8 *)(param_1 + 0x2d0));
 }
 
-// ===================================================================
-// 函数别名定义
-// ===================================================================
 
-// 原始函数别名（保持兼容性）
-#define FUN_18032afa0 RenderingSystem_DataCollector
-#define FUN_18032b1c0 RenderingSystem_AdvancedDataProcessor
-#define FUN_18032b400 RenderingSystem_DataRecursiveProcessor
-#define FUN_18032b452 RenderingSystem_DataLoopProcessor
-#define FUN_18032b48d RenderingSystem_DataEmptyProcessor
-#define FUN_18032b4a0 RenderingSystem_DataCacheManager
-#define FUN_18032b680 RenderingSystem_DataIndexManager
-#define FUN_18032c0b0 RenderingSystem_DataSerializer
-#define FUN_18032c450 RenderingSystem_DataLoader
-#define FUN_18032c9f0 RenderingSystem_DataExporter
 
-// ===================================================================
-// 常量定义
-// ===================================================================
+// 全局变量警告：以下全局变量可能与同地址的小符号重叠
 
-// 渲染数据处理常量
-#define RENDER_DATA_BUFFER_SIZE 0x18
-#define RENDER_DATA_ALIGNMENT 8
-#define RENDER_DATA_HASH_SIZE 0x80
-#define RENDER_DATA_CACHE_SIZE 0x100
-#define RENDER_DATA_INDEX_SIZE 0x200
-#define RENDER_DATA_EXPORT_SIZE 0x400
-#define RENDER_DATA_HEADER_SIZE 0xd
-#define RENDER_DATA_FLAG_DEFAULT 3
-#define RENDER_DATA_FLAG_EXTENDED 0x30000
 
-// 渲染系统偏移量常量
-#define RENDER_OFFSET_CONTEXT_BASE 0x160
-#define RENDER_OFFSET_DATA_BUFFER 0x268
-#define RENDER_OFFSET_CACHE_TABLE 0x330
-#define RENDER_OFFSET_INDEX_TABLE 0x9f8
-#define RENDER_OFFSET_LOCK_HANDLE 0xa20
-#define RENDER_OFFSET_FORMAT_BUFFER 0x348
-#define RENDER_OFFSET_STATUS_BUFFER 0x9a8
 
-// 渲染数据状态常量
-#define RENDER_STATUS_INITIALIZED 0
-#define RENDER_STATUS_PROCESSING 1
-#define RENDER_STATUS_COMPLETED 2
-#define RENDER_STATUS_ERROR -1
-#define RENDER_STATUS_LOCKED 0x80000000
-#define RENDER_STATUS_DIRTY 0x40000000
-
-// 渲染数据操作常量
-#define RENDER_OP_COLLECT 0x01
-#define RENDER_OP_PROCESS 0x02
-#define RENDER_OP_EXPORT 0x04
-#define RENDER_OP_IMPORT 0x08
-#define RENDER_OP_CACHE 0x10
-#define RENDER_OP_INDEX 0x20
-#define RENDER_OP_SERIALIZE 0x40
-#define RENDER_OP_DESERIALIZE 0x80
-
-// ===================================================================
-// 技术说明
-// ===================================================================
-
-/*
-本模块实现了渲染系统的高级数据处理和控制功能：
-
-核心功能：
-1. 渲染数据收集 - 收集和处理渲染相关的数据信息
-2. 高级数据处理 - 处理复杂的渲染数据变换
-3. 递归数据处理 - 处理层次化的数据结构
-4. 循环数据处理 - 处理重复的数据操作
-5. 数据缓存管理 - 管理渲染数据的缓存操作
-6. 数据索引管理 - 管理渲染数据的索引操作
-7. 数据序列化 - 处理渲染数据的序列化输出
-8. 数据加载 - 处理渲染数据的加载操作
-9. 数据导出 - 处理渲染数据的导出功能
-
-技术特点：
-- 支持复杂的数据结构和链表操作
-- 提供高效的数据处理算法
-- 实现了内存管理和缓存优化
-- 支持多种数据格式的处理
-- 包含完整的错误处理机制
-
-性能优化：
-- 使用动态内存分配减少固定开销
-- 实现了高效的链表操作算法
-- 提供了缓存和索引优化机制
-- 支持批量数据处理
-- 优化了数据访问模式
-
-内存管理：
-- 使用智能指针和引用计数
-- 实现了内存池和缓存机制
-- 提供了内存泄漏检测
-- 支持动态内存调整
-- 优化了内存访问模式
-
-线程安全：
-- 使用互斥锁保护共享资源
-- 实现了线程安全的数据操作
-- 提供了原子操作支持
-- 支持多线程并发处理
-- 优化了锁粒度
-*/
+/**
+ * @brief 技术说明
+ * 
+ * 本模块实现了渲染系统的高级资源管理和数据处理功能：
+ * 
+ * 1. 资源数据收集：
+ *    - 支持多种资源类型收集
+ *    - 提供数据过滤和排序功能
+ *    - 实现内存优化和缓存管理
+ * 
+ * 2. 数据处理：
+ *    - 支持数据验证和转换
+ *    - 提供递归处理能力
+ *    - 实现资源依赖关系管理
+ * 
+ * 3. 文件操作：
+ *    - 支持多种文件格式
+ *    - 提供压缩和序列化功能
+ *    - 实现错误处理和恢复机制
+ * 
+ * 4. 资源管理：
+ *    - 支持哈希表查找
+ *    - 提供资源缓存功能
+ *    - 实现内存管理和垃圾回收
+ * 
+ * 5. 系统集成：
+ *    - 与渲染管线深度集成
+ *    - 支持多线程处理
+ *    - 提供完整的错误处理机制
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */

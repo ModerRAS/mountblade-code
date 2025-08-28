@@ -1,731 +1,654 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 03_rendering_part041.c - 渲染系统高级数据处理和边界计算模块
- * 
- * 该模块包含渲染系统的高级数据处理和边界计算功能，主要用于处理渲染边界、
- * 坐标变换、数据管理和资源操作等核心渲染功能。
- * 
- * 主要功能：
- * - 渲染边界区域更新和计算
- * - 坐标变换和位置处理
- * - 数据批处理和管理
- * - 内存管理和资源操作
- * - 高级渲染数据处理
- * 
- * @module 渲染系统
- * @subpackage 高级数据处理
- * @version 1.0
- * @date 2025-08-28
- */
+// 03_rendering_part041.c - 9 个函数
 
-/**
- * 更新渲染边界区域
- * 
- * 根据输入参数更新渲染对象的边界区域，支持不同类型的边界更新模式。
- * 处理边界框的最小/最大值计算和边界扩展。
- * 
- * @param render_context 渲染上下文指针
- * @param update_type 更新类型 (0x04 表示扩展更新)
- * @param min_x 最小X坐标
- * @param min_y 最小Y坐标
- * @param max_x 最大X坐标
- * @param max_y 最大Y坐标
- * @param extend_min_x 扩展最小X坐标
- * @param extend_min_y 扩展最小Y坐标
- * @param extend_max_x 扩展最大X坐标
- * @param extend_max_y 扩展最大Y坐标
- */
-void update_render_boundary_region(int *render_context, char update_type, int min_x, int min_y, 
-                                   int max_x, int max_y, int extend_min_x, int extend_min_y, 
-                                   int extend_max_x, int extend_max_y)
+// 函数: void FUN_18028d0b0(int *param_1,char param_2,int param_3,int param_4,int param_5,int param_6,
+void FUN_18028d0b0(int *param_1,char param_2,int param_3,int param_4,int param_5,int param_6,
+                  int param_7,int param_8)
+
 {
-  int current_max_x;
-  short *vertex_data;
-  int current_min_x;
-  int current_min_y;
-  int current_max_y;
+  int iVar1;
+  undefined2 *puVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
   
-  if (*render_context != 0) {
-    // 更新边界框的最大值
-    if ((render_context[7] < min_x) || (current_max_y = render_context[7], render_context[1] == 0)) {
-      render_context[7] = min_x;
-      current_max_y = min_x;
+  if (*param_1 != 0) {
+    if ((param_1[7] < param_3) || (iVar5 = param_1[7], param_1[1] == 0)) {
+      param_1[7] = param_3;
+      iVar5 = param_3;
     }
-    if ((render_context[9] < min_y) || (current_min_y = render_context[9], render_context[1] == 0)) {
-      render_context[9] = min_y;
-      current_min_y = min_y;
+    if ((param_1[9] < param_4) || (iVar3 = param_1[9], param_1[1] == 0)) {
+      param_1[9] = param_4;
+      iVar3 = param_4;
     }
-    // 更新边界框的最小值
-    if ((min_x < render_context[6]) || (current_min_x = render_context[6], render_context[1] == 0)) {
-      render_context[6] = min_x;
-      current_min_x = min_x;
+    if ((param_3 < param_1[6]) || (iVar4 = param_1[6], param_1[1] == 0)) {
+      param_1[6] = param_3;
+      iVar4 = param_3;
     }
-    if ((min_y < render_context[8]) || (current_max_x = render_context[8], render_context[1] == 0)) {
-      render_context[8] = min_y;
-      current_max_x = min_y;
+    if ((param_4 < param_1[8]) || (iVar1 = param_1[8], param_1[1] == 0)) {
+      param_1[8] = param_4;
+      iVar1 = param_4;
     }
-    render_context[1] = 1;
-    
-    // 处理扩展更新模式
-    if (update_type == '\x04') {
-      if (current_max_y < max_x) {
-        render_context[7] = max_x;
-        current_max_y = max_x;
+    param_1[1] = 1;
+    if (param_2 == '\x04') {
+      if (iVar5 < param_5) {
+        param_1[7] = param_5;
+        iVar5 = param_5;
       }
-      if (current_min_y < max_y) {
-        render_context[9] = max_y;
-        current_min_y = max_y;
+      if (iVar3 < param_6) {
+        param_1[9] = param_6;
+        iVar3 = param_6;
       }
-      if (max_x < current_min_x) {
-        render_context[6] = max_x;
-        current_min_x = max_x;
+      if (param_5 < iVar4) {
+        param_1[6] = param_5;
+        iVar4 = param_5;
       }
-      if (max_y < current_max_x) {
-        render_context[8] = max_y;
-        current_max_x = max_y;
+      if (param_6 < iVar1) {
+        param_1[8] = param_6;
+        iVar1 = param_6;
       }
-      // 应用扩展边界
-      if (current_max_y < extend_min_x) {
-        render_context[7] = extend_min_x;
+      if (iVar5 < param_7) {
+        param_1[7] = param_7;
       }
-      if (current_min_y < extend_min_y) {
-        render_context[9] = extend_min_y;
+      if (iVar3 < param_8) {
+        param_1[9] = param_8;
       }
-      if (extend_min_x < current_min_x) {
-        render_context[6] = extend_min_x;
+      if (param_7 < iVar4) {
+        param_1[6] = param_7;
       }
-      if (extend_min_y < current_max_x) {
-        render_context[8] = extend_min_y;
+      if (param_8 < iVar1) {
+        param_1[8] = param_8;
       }
     }
-    render_context[0xc] = render_context[0xc] + 1;
+    param_1[0xc] = param_1[0xc] + 1;
     return;
   }
-  
-  // 处理顶点数据添加
-  current_max_y = render_context[0xc];
-  vertex_data = (short *)((longlong)current_max_y * 0xe + *(longlong *)(render_context + 10));
-  vertex_data[2] = (short)max_x;
-  vertex_data[3] = (short)max_y;
-  *(char *)(vertex_data + 6) = update_type;
-  *vertex_data = (short)min_x;
-  vertex_data[1] = (short)min_y;
-  vertex_data[4] = (short)extend_min_x;
-  vertex_data[5] = (short)extend_min_y;
-  render_context[0xc] = current_max_y + 1;
+  iVar5 = param_1[0xc];
+  puVar2 = (undefined2 *)((longlong)iVar5 * 0xe + *(longlong *)(param_1 + 10));
+  puVar2[2] = (undefined2)param_5;
+  puVar2[3] = (undefined2)param_6;
+  *(char *)(puVar2 + 6) = param_2;
+  *puVar2 = (short)param_3;
+  puVar2[1] = (short)param_4;
+  puVar2[4] = (undefined2)param_7;
+  puVar2[5] = (undefined2)param_8;
+  param_1[0xc] = iVar5 + 1;
   return;
 }
 
-/**
- * 高级渲染边界更新函数
- * 
- * 扩展的边界更新函数，支持更复杂的边界计算和更新操作。
- * 
- * @param render_data 渲染数据指针
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @param param5 参数5
- * @param param6 参数6
- * @param param7 参数7
- * @param param8 参数8
- * @param param9 参数9
- */
-void advanced_render_boundary_update(longlong render_data, char param2, int param3, int param4, 
-                                    char param5, int param6, int param7, int param8, int param9)
+
+
+
+
+// 函数: void FUN_18028d0c8(longlong param_1,undefined8 param_2,int param_3,int param_4,undefined8 param_5,
+void FUN_18028d0c8(longlong param_1,undefined8 param_2,int param_3,int param_4,undefined8 param_5,
+                  int param_6,int param_7,int param_8,int param_9)
+
 {
-  int current_max_x;
-  int current_max_y;
-  char update_type;
-  int current_min_x;
-  longlong context_ptr;
-  int current_min_y;
+  int iVar1;
+  int iVar2;
+  char unaff_SIL;
+  int iVar3;
+  longlong in_R10;
+  int in_R11D;
   
-  if ((param3 < current_min_y) || (*(int *)(render_data + 4) == 0)) {
-    *(int *)(render_data + 0x1c) = current_min_y;
-    param3 = current_min_y;
+  if ((param_3 < in_R11D) || (*(int *)(param_1 + 4) == 0)) {
+    *(int *)(param_1 + 0x1c) = in_R11D;
+    param_3 = in_R11D;
   }
-  if ((*(int *)(render_data + 0x24) < param4) ||
-     (current_max_y = *(int *)(render_data + 0x24), *(int *)(render_data + 4) == 0)) {
-    *(int *)(render_data + 0x24) = param4;
-    current_max_y = param4;
+  if ((*(int *)(param_1 + 0x24) < param_4) ||
+     (iVar2 = *(int *)(param_1 + 0x24), *(int *)(param_1 + 4) == 0)) {
+    *(int *)(param_1 + 0x24) = param_4;
+    iVar2 = param_4;
   }
-  if ((current_min_y < *(int *)(render_data + 0x18)) ||
-     (current_min_x = *(int *)(render_data + 0x18), *(int *)(render_data + 4) == 0)) {
-    *(int *)(render_data + 0x18) = current_min_y;
-    current_min_x = current_min_y;
+  if ((in_R11D < *(int *)(param_1 + 0x18)) ||
+     (iVar3 = *(int *)(param_1 + 0x18), *(int *)(param_1 + 4) == 0)) {
+    *(int *)(param_1 + 0x18) = in_R11D;
+    iVar3 = in_R11D;
   }
-  if ((param4 < *(int *)(render_data + 0x20)) ||
-     (current_max_x = *(int *)(render_data + 0x20), *(int *)(render_data + 4) == 0)) {
-    *(int *)(render_data + 0x20) = param4;
-    current_max_x = param4;
+  if ((param_4 < *(int *)(param_1 + 0x20)) ||
+     (iVar1 = *(int *)(param_1 + 0x20), *(int *)(param_1 + 4) == 0)) {
+    *(int *)(param_1 + 0x20) = param_4;
+    iVar1 = param_4;
   }
-  *(char *)(render_data + 4) = 1;
-  
-  if (update_type == '\x04') {
-    if (param3 < param6) {
-      *(int *)(render_data + 0x1c) = param6;
-      param3 = param6;
+  *(undefined4 *)(param_1 + 4) = 1;
+  if (unaff_SIL == '\x04') {
+    if (param_3 < param_6) {
+      *(int *)(param_1 + 0x1c) = param_6;
+      param_3 = param_6;
     }
-    if (current_max_y < param7) {
-      *(int *)(context_ptr + 0x24) = param7;
-      current_max_y = param7;
+    if (iVar2 < param_7) {
+      *(int *)(in_R10 + 0x24) = param_7;
+      iVar2 = param_7;
     }
-    if (param6 < current_min_x) {
-      *(int *)(context_ptr + 0x18) = param6;
-      current_min_x = param6;
+    if (param_6 < iVar3) {
+      *(int *)(in_R10 + 0x18) = param_6;
+      iVar3 = param_6;
     }
-    if (param7 < current_max_x) {
-      *(int *)(context_ptr + 0x20) = param7;
-      current_max_x = param7;
+    if (param_7 < iVar1) {
+      *(int *)(in_R10 + 0x20) = param_7;
+      iVar1 = param_7;
     }
-    if (param3 < param8) {
-      *(int *)(context_ptr + 0x1c) = param8;
+    if (param_3 < param_8) {
+      *(int *)(in_R10 + 0x1c) = param_8;
     }
-    if (current_max_y < param9) {
-      *(int *)(context_ptr + 0x24) = param9;
+    if (iVar2 < param_9) {
+      *(int *)(in_R10 + 0x24) = param_9;
     }
-    if (param8 < current_min_x) {
-      *(int *)(context_ptr + 0x18) = param8;
+    if (param_8 < iVar3) {
+      *(int *)(in_R10 + 0x18) = param_8;
     }
-    if (param9 < current_max_x) {
-      *(int *)(context_ptr + 0x20) = param9;
+    if (param_9 < iVar1) {
+      *(int *)(in_R10 + 0x20) = param_9;
     }
   }
-  *(int *)(context_ptr + 0x30) = *(int *)(context_ptr + 0x30) + 1;
+  *(int *)(in_R10 + 0x30) = *(int *)(in_R10 + 0x30) + 1;
   return;
 }
 
-/**
- * 添加渲染顶点数据
- * 
- * 向渲染数据结构中添加顶点信息，包括位置和属性数据。
- * 
- * @param render_context 渲染上下文指针
- * @param param2 参数2
- * @param param3 参数3
- * @param vertex_x 顶点X坐标
- * @param param5 参数5
- * @param vertex_y 顶点Y坐标
- * @param param7 参数7
- * @param param8 参数8
- * @param param9 参数9
- */
-void add_render_vertex_data(longlong render_context, char param2, char param3, short vertex_x,
-                            char param5, short vertex_y, short param7, short param8, short param9)
+
+
+
+
+// 函数: void FUN_18028d19a(longlong param_1,undefined8 param_2,undefined8 param_3,undefined2 param_4,
+void FUN_18028d19a(longlong param_1,undefined8 param_2,undefined8 param_3,undefined2 param_4,
+                  undefined8 param_5,undefined2 param_6,undefined2 param_7,undefined2 param_8,
+                  undefined2 param_9)
+
 {
-  int vertex_count;
-  short *vertex_buffer;
-  char data_type;
-  short vertex_x_coord;
+  int iVar1;
+  undefined2 *puVar2;
+  undefined1 unaff_SIL;
+  undefined2 in_R11W;
   
-  vertex_count = *(int *)(render_context + 0x30);
-  vertex_buffer = (short *)((longlong)vertex_count * 0xe + *(longlong *)(render_context + 0x28));
-  vertex_buffer[2] = vertex_y;
-  vertex_buffer[3] = param7;
-  *(char *)(vertex_buffer + 6) = data_type;
-  *vertex_buffer = vertex_x_coord;
-  vertex_buffer[1] = vertex_x;
-  vertex_buffer[4] = param8;
-  vertex_buffer[5] = param9;
-  *(int *)(render_context + 0x30) = vertex_count + 1;
+  iVar1 = *(int *)(param_1 + 0x30);
+  puVar2 = (undefined2 *)((longlong)iVar1 * 0xe + *(longlong *)(param_1 + 0x28));
+  puVar2[2] = param_6;
+  puVar2[3] = param_7;
+  *(undefined1 *)(puVar2 + 6) = unaff_SIL;
+  *puVar2 = in_R11W;
+  puVar2[1] = param_4;
+  puVar2[4] = param_8;
+  puVar2[5] = param_9;
+  *(int *)(param_1 + 0x30) = iVar1 + 1;
   return;
 }
 
-/**
- * 更新渲染坐标位置
- * 
- * 根据偏移量更新渲染对象的坐标位置，并更新边界信息。
- * 
- * @param render_obj 渲染对象指针
- * @param offset_x X轴偏移量
- * @param offset_y Y轴偏移量
- */
-void update_render_coordinates(int *render_obj, float offset_x, float offset_y)
+
+
+
+
+// 函数: void FUN_18028d290(int *param_1,float param_2,float param_3)
+void FUN_18028d290(int *param_1,float param_2,float param_3)
+
 {
-  int new_x;
-  longlong data_ptr;
-  longlong vertex_offset;
-  int new_y;
-  int current_x;
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  int iVar4;
+  int iVar5;
   
-  // 调用渲染系统初始化函数
   func_0x00018028d1e0();
-  
-  // 计算新坐标位置
-  offset_x = offset_x + (float)render_obj[4];
-  offset_y = offset_y + (float)render_obj[5];
-  render_obj[4] = (int)offset_x;
-  render_obj[2] = (int)offset_x;
-  render_obj[5] = (int)offset_y;
-  render_obj[3] = (int)offset_y;
-  
-  new_y = (int)offset_y;
-  current_x = (int)offset_x;
-  
-  if (*render_obj != 0) {
-    // 更新边界信息
-    if ((render_obj[7] < current_x) || (render_obj[1] == 0)) {
-      render_obj[7] = current_x;
+  param_2 = param_2 + (float)param_1[4];
+  param_3 = param_3 + (float)param_1[5];
+  param_1[4] = (int)param_2;
+  param_1[2] = (int)param_2;
+  param_1[5] = (int)param_3;
+  param_1[3] = (int)param_3;
+  iVar4 = (int)param_3;
+  iVar5 = (int)param_2;
+  if (*param_1 != 0) {
+    if ((param_1[7] < iVar5) || (param_1[1] == 0)) {
+      param_1[7] = iVar5;
     }
-    if ((render_obj[9] < new_y) || (render_obj[1] == 0)) {
-      render_obj[9] = new_y;
+    if ((param_1[9] < iVar4) || (param_1[1] == 0)) {
+      param_1[9] = iVar4;
     }
-    if ((current_x < render_obj[6]) || (render_obj[1] == 0)) {
-      render_obj[6] = current_x;
+    if ((iVar5 < param_1[6]) || (param_1[1] == 0)) {
+      param_1[6] = iVar5;
     }
-    if ((new_y < render_obj[8]) || (render_obj[1] == 0)) {
-      render_obj[8] = new_y;
+    if ((iVar4 < param_1[8]) || (param_1[1] == 0)) {
+      param_1[8] = iVar4;
     }
-    render_obj[0xc] = render_obj[0xc] + 1;
-    render_obj[1] = 1;
+    param_1[0xc] = param_1[0xc] + 1;
+    param_1[1] = 1;
     return;
   }
-  
-  // 添加新的顶点数据
-  data_ptr = *(longlong *)(render_obj + 10);
-  new_x = render_obj[0xc];
-  vertex_offset = (longlong)new_x * 0xe;
-  *(short *)(vertex_offset + 2 + data_ptr) = (short)new_y;
-  *(longlong *)(vertex_offset + 4 + data_ptr) = 0;
-  *(char *)(vertex_offset + 0xc + data_ptr) = 1;
-  *(short *)(vertex_offset + data_ptr) = (short)current_x;
-  render_obj[0xc] = new_x + 1;
+  lVar2 = *(longlong *)(param_1 + 10);
+  iVar1 = param_1[0xc];
+  lVar3 = (longlong)iVar1 * 0xe;
+  *(short *)(lVar3 + 2 + lVar2) = (short)iVar4;
+  *(undefined8 *)(lVar3 + 4 + lVar2) = 0;
+  *(undefined1 *)(lVar3 + 0xc + lVar2) = 1;
+  *(short *)(lVar3 + lVar2) = (short)iVar5;
+  param_1[0xc] = iVar1 + 1;
   return;
 }
 
-/**
- * 高级渲染变换处理
- * 
- * 执行高级的渲染变换操作，包括位置偏移和边界更新。
- * 
- * @param transform_data 变换数据指针
- * @param offset_x1 X轴偏移量1
- * @param offset_y1 Y轴偏移量1
- * @param offset_x2 X轴偏移量2
- * @param offset_y2 Y轴偏移量2
- * @param extend_x 扩展X坐标
- * @param extend_y 扩展Y坐标
- */
-void advanced_render_transform(longlong transform_data, float offset_x1, float offset_y1, 
-                               float offset_x2, float offset_y2, float extend_x, float extend_y)
+
+
+
+
+// 函数: void FUN_18028d400(longlong param_1,float param_2,float param_3,float param_4,float param_5,
+void FUN_18028d400(longlong param_1,float param_2,float param_3,float param_4,float param_5,
+                  float param_6,float param_7)
+
 {
-  int y_coord;
+  int iVar1;
   
-  // 应用变换偏移
-  offset_x1 = offset_x1 + *(float *)(transform_data + 0x10);
-  offset_y1 = offset_y1 + *(float *)(transform_data + 0x14);
-  offset_x2 = offset_x1 + offset_x2;
-  y_coord = (int)offset_y1;
-  offset_y1 = offset_y1 + offset_y2;
-  extend_x = offset_x2 + extend_x;
-  *(float *)(transform_data + 0x10) = extend_x;
-  extend_y = offset_y1 + extend_y;
-  *(float *)(transform_data + 0x14) = extend_y;
-  
-  // 更新边界区域
-  update_render_boundary_region(transform_data, 
-                               CONCAT71((uint7)(uint3)((uint)y_coord >> 8), 4),
-                               (int)extend_x, (int)extend_y, (int)offset_x1, y_coord, 
-                               (int)offset_x2, (int)offset_y1);
+  param_2 = param_2 + *(float *)(param_1 + 0x10);
+  param_3 = param_3 + *(float *)(param_1 + 0x14);
+  param_4 = param_2 + param_4;
+  iVar1 = (int)param_3;
+  param_3 = param_3 + param_5;
+  param_6 = param_4 + param_6;
+  *(float *)(param_1 + 0x10) = param_6;
+  param_7 = param_3 + param_7;
+  *(float *)(param_1 + 0x14) = param_7;
+  FUN_18028d0b0(param_1,CONCAT71((uint7)(uint3)((uint)iVar1 >> 8),4),(int)param_6,(int)param_7,
+                (int)param_2,iVar1,(int)param_4,(int)param_3);
   return;
 }
 
-/**
- * 查找渲染数据项
- * 
- * 在渲染数据结构中查找指定的数据项，支持复杂的搜索条件。
- * 
- * @param result_ptr 结果指针
- * @param data_source 数据源指针
- * @param search_param 搜索参数
- * @return 找到的数据项指针
- */
-longlong *find_render_data_item(longlong *result_ptr, longlong data_source, int search_param)
+
+
+undefined8 * FUN_18028d4a0(undefined8 *param_1,longlong param_2,int param_3)
+
 {
-  char *data_buffer;
-  longlong result_value;
-  char first_char;
-  char second_char;
-  char third_char;
-  byte fourth_char;
-  char fifth_char;
-  longlong buffer_offset;
-  longlong *found_item;
-  int search_index;
-  uint search_result;
-  int data_length;
-  uint comparison_value;
-  longlong temp_stack1[8];
-  longlong temp_stack2[8];
+  char *pcVar1;
+  undefined8 uVar2;
+  char cVar3;
+  char cVar4;
+  char cVar5;
+  byte bVar6;
+  char cVar7;
+  longlong lVar8;
+  undefined8 *puVar9;
+  int iVar10;
+  uint uVar11;
+  int iVar12;
+  uint uVar13;
+  undefined8 uStack_58;
+  undefined8 uStack_50;
+  undefined8 uStack_48;
+  undefined8 uStack_40;
+  undefined1 auStack_38 [16];
+  undefined1 auStack_28 [16];
   
-  data_buffer = *(char **)(data_source + 0x90);
-  search_index = 0;
-  temp_stack2[1] = (int)((ulonglong)*(longlong *)(data_source + 0x98) >> 0x20);
-  data_length = temp_stack2[1];
-  
-  // 检查数据有效性
-  if ((*(longlong *)(data_source + 0x98) < 0) || (data_length = 0, temp_stack2[1] < 1)) {
-    first_char = '\0';
-  } else {
-    first_char = *data_buffer;
-    data_length = 1;
+  pcVar1 = *(char **)(param_2 + 0x90);
+  iVar12 = 0;
+  uStack_50._4_4_ = (int)((ulonglong)*(longlong *)(param_2 + 0x98) >> 0x20);
+  iVar10 = uStack_50._4_4_;
+  if ((*(longlong *)(param_2 + 0x98) < 0) || (iVar10 = 0, uStack_50._4_4_ < 1)) {
+    cVar3 = '\0';
   }
-  
-  // 执行搜索逻辑
-  if (first_char == '\0') {
-    search_index = search_index + search_param;
-    if (((temp_stack2[1] < search_index) || (search_index < 0)) || (temp_stack2[1] <= search_index)) {
-      search_result = 0;
-    } else {
-      search_result = (uint)(byte)data_buffer[search_index];
+  else {
+    cVar3 = *pcVar1;
+    iVar10 = 1;
+  }
+  if (cVar3 == '\0') {
+    iVar10 = iVar10 + param_3;
+    if (((uStack_50._4_4_ < iVar10) || (iVar10 < 0)) || (uStack_50._4_4_ <= iVar10)) {
+      uVar11 = 0;
     }
-  } else {
-    search_result = 0xffffffff;
-    if (first_char == '\x03') {
-      // 处理复杂数据格式
-      if (data_length < temp_stack2[1]) {
-        buffer_offset = (longlong)data_length;
-        data_length = data_length + 1;
-        first_char = data_buffer[buffer_offset];
-      } else {
-        first_char = '\0';
+    else {
+      uVar11 = (uint)(byte)pcVar1[iVar10];
+    }
+  }
+  else {
+    uVar11 = 0xffffffff;
+    if (cVar3 == '\x03') {
+      if (iVar10 < uStack_50._4_4_) {
+        lVar8 = (longlong)iVar10;
+        iVar10 = iVar10 + 1;
+        cVar3 = pcVar1[lVar8];
       }
-      if (data_length < temp_stack2[1]) {
-        buffer_offset = (longlong)data_length;
-        data_length = data_length + 1;
-        second_char = data_buffer[buffer_offset];
-      } else {
-        second_char = '\0';
+      else {
+        cVar3 = '\0';
       }
-      if (data_length < temp_stack2[1]) {
-        buffer_offset = (longlong)data_length;
-        data_length = data_length + 1;
-        fifth_char = data_buffer[buffer_offset];
-      } else {
-        fifth_char = '\0';
+      if (iVar10 < uStack_50._4_4_) {
+        lVar8 = (longlong)iVar10;
+        iVar10 = iVar10 + 1;
+        cVar4 = pcVar1[lVar8];
       }
-      if (data_length < temp_stack2[1]) {
-        buffer_offset = (longlong)data_length;
-        data_length = data_length + 1;
-        third_char = data_buffer[buffer_offset];
-      } else {
-        third_char = '\0';
+      else {
+        cVar4 = '\0';
       }
-      comparison_value = (uint)CONCAT11(fifth_char, third_char);
-      search_result = 0xffffffff;
-      if (CONCAT11(first_char, second_char) != 0) {
+      if (iVar10 < uStack_50._4_4_) {
+        lVar8 = (longlong)iVar10;
+        iVar10 = iVar10 + 1;
+        cVar7 = pcVar1[lVar8];
+      }
+      else {
+        cVar7 = '\0';
+      }
+      if (iVar10 < uStack_50._4_4_) {
+        lVar8 = (longlong)iVar10;
+        iVar10 = iVar10 + 1;
+        cVar5 = pcVar1[lVar8];
+      }
+      else {
+        cVar5 = '\0';
+      }
+      uVar13 = (uint)CONCAT11(cVar7,cVar5);
+      uVar11 = 0xffffffff;
+      if (CONCAT11(cVar3,cVar4) != 0) {
         do {
-          if (data_length < temp_stack2[1]) {
-            buffer_offset = (longlong)data_length;
-            data_length = data_length + 1;
-            fourth_char = data_buffer[buffer_offset];
-          } else {
-            fourth_char = 0;
+          if (iVar10 < uStack_50._4_4_) {
+            lVar8 = (longlong)iVar10;
+            iVar10 = iVar10 + 1;
+            bVar6 = pcVar1[lVar8];
           }
-          if (data_length < temp_stack2[1]) {
-            buffer_offset = (longlong)data_length;
-            data_length = data_length + 1;
-            fifth_char = data_buffer[buffer_offset];
-          } else {
-            fifth_char = '\0';
+          else {
+            bVar6 = 0;
           }
-          if (data_length < temp_stack2[1]) {
-            buffer_offset = (longlong)data_length;
-            data_length = data_length + 1;
-            third_char = data_buffer[buffer_offset];
-          } else {
-            third_char = '\0';
+          if (iVar10 < uStack_50._4_4_) {
+            lVar8 = (longlong)iVar10;
+            iVar10 = iVar10 + 1;
+            cVar7 = pcVar1[lVar8];
           }
-        } while (((search_param < (int)comparison_value) ||
-                 (search_result = (uint)fourth_char, (int)(uint)CONCAT11(fifth_char, third_char) <= search_param)) &&
-                (search_index = search_index + 1, comparison_value = (uint)CONCAT11(fifth_char, third_char), 
-                 search_result = 0xffffffff, search_index < (int)(uint)CONCAT11(first_char, second_char)));
+          else {
+            cVar7 = '\0';
+          }
+          if (iVar10 < uStack_50._4_4_) {
+            lVar8 = (longlong)iVar10;
+            iVar10 = iVar10 + 1;
+            cVar5 = pcVar1[lVar8];
+          }
+          else {
+            cVar5 = '\0';
+          }
+        } while (((param_3 < (int)uVar13) ||
+                 (uVar11 = (uint)bVar6, (int)(uint)CONCAT11(cVar7,cVar5) <= param_3)) &&
+                (iVar12 = iVar12 + 1, uVar13 = (uint)CONCAT11(cVar7,cVar5), uVar11 = 0xffffffff,
+                iVar12 < (int)(uint)CONCAT11(cVar3,cVar4)));
       }
     }
   }
-  
-  // 处理搜索结果
-  temp_stack1[0] = *(longlong *)(data_source + 0x80);
-  temp_stack2[0] = *(longlong *)(data_source + 0x88);
-  found_item = (longlong *)FUN_18028b4c0(temp_stack1, &temp_stack1[0], search_result);
-  temp_stack1[1] = *(longlong *)(data_source + 0x40);
-  temp_stack2[1] = *(longlong *)(data_source + 0x48);
-  temp_stack1[0] = *found_item;
-  temp_stack2[0] = found_item[1];
-  found_item = (longlong *)FUN_18028b820(temp_stack2, &temp_stack1[1], &temp_stack1[0]);
-  result_value = found_item[1];
-  *result_ptr = *found_item;
-  result_ptr[1] = result_value;
-  return result_ptr;
+  uStack_58 = *(undefined8 *)(param_2 + 0x80);
+  uStack_50 = *(undefined8 *)(param_2 + 0x88);
+  puVar9 = (undefined8 *)FUN_18028b4c0(auStack_38,&uStack_58,uVar11);
+  uStack_48 = *(undefined8 *)(param_2 + 0x40);
+  uStack_40 = *(undefined8 *)(param_2 + 0x48);
+  uStack_58 = *puVar9;
+  uStack_50 = puVar9[1];
+  puVar9 = (undefined8 *)FUN_18028b820(auStack_28,&uStack_48,&uStack_58);
+  uVar2 = puVar9[1];
+  *param_1 = *puVar9;
+  param_1[1] = uVar2;
+  return param_1;
 }
 
-/**
- * 批量处理渲染数据
- * 
- * 批量处理渲染数据，支持高效的数据操作和处理。
- * 
- * @param start_index 起始索引
- * @param param2 参数2
- * @param end_index 结束索引
- * @param data_ptr 数据指针
- * @param result_ptr 结果指针
- * @param out_param1 输出参数1
- * @param out_param2 输出参数2
- */
-void batch_process_render_data(int start_index, char param2, int end_index, longlong data_ptr,
-                               char result_ptr, int out_param1, int out_param2)
+
+
+
+
+// 函数: void FUN_18028d533(int param_1,undefined8 param_2,int param_3,longlong param_4,undefined8 param_5,
+void FUN_18028d533(int param_1,undefined8 param_2,int param_3,longlong param_4,undefined8 param_5,
+                  undefined4 param_6,undefined4 param_7)
+
 {
-  longlong temp_value;
-  char byte1;
-  char byte2;
-  char byte3;
-  byte byte4;
-  char byte5;
-  longlong found_item;
-  longlong *item_ptr;
-  uint search_value;
-  int comparison_count;
-  int current_index;
-  uint item_value;
-  longlong context_ptr;
-  longlong *result_item_ptr;
-  uint stack_param1;
-  uint stack_param2;
+  undefined8 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  byte bVar5;
+  undefined1 uVar6;
+  longlong lVar7;
+  undefined8 *puVar8;
+  uint unaff_EBP;
+  uint uVar9;
+  int unaff_EDI;
+  int in_R10D;
+  uint uVar10;
+  longlong unaff_R14;
+  undefined8 *unaff_R15;
+  undefined4 uStack0000000000000034;
+  undefined4 uStack000000000000003c;
   
-  if (start_index < end_index) {
-    context_ptr = (longlong)start_index;
-    start_index = start_index + 1;
-    byte1 = *(char *)(context_ptr + data_ptr);
-  } else {
-    byte1 = 0;
+  if (param_1 < param_3) {
+    lVar7 = (longlong)param_1;
+    param_1 = param_1 + 1;
+    uVar2 = *(undefined1 *)(lVar7 + param_4);
   }
-  if (start_index < end_index) {
-    context_ptr = (longlong)start_index;
-    start_index = start_index + 1;
-    byte2 = *(char *)(context_ptr + data_ptr);
-  } else {
-    byte2 = 0;
+  else {
+    uVar2 = 0;
   }
-  if (start_index < end_index) {
-    context_ptr = (longlong)start_index;
-    start_index = start_index + 1;
-    byte5 = *(char *)(context_ptr + data_ptr);
-  } else {
-    byte5 = 0;
+  if (param_1 < param_3) {
+    lVar7 = (longlong)param_1;
+    param_1 = param_1 + 1;
+    uVar3 = *(undefined1 *)(lVar7 + param_4);
   }
-  if (start_index < end_index) {
-    context_ptr = (longlong)start_index;
-    start_index = start_index + 1;
-    byte3 = *(char *)(context_ptr + data_ptr);
-  } else {
-    byte3 = 0;
+  else {
+    uVar3 = 0;
   }
-  item_value = (uint)CONCAT11(byte5, byte3);
-  search_value = stack_param2;
-  
-  if (CONCAT11(byte1, byte2) != 0) {
+  if (param_1 < param_3) {
+    lVar7 = (longlong)param_1;
+    param_1 = param_1 + 1;
+    uVar6 = *(undefined1 *)(lVar7 + param_4);
+  }
+  else {
+    uVar6 = 0;
+  }
+  if (param_1 < param_3) {
+    lVar7 = (longlong)param_1;
+    param_1 = param_1 + 1;
+    uVar4 = *(undefined1 *)(lVar7 + param_4);
+  }
+  else {
+    uVar4 = 0;
+  }
+  uVar10 = (uint)CONCAT11(uVar6,uVar4);
+  uVar9 = unaff_EBP;
+  if (CONCAT11(uVar2,uVar3) != 0) {
     do {
-      if (start_index < end_index) {
-        context_ptr = (longlong)start_index;
-        start_index = start_index + 1;
-        byte4 = *(byte *)(context_ptr + data_ptr);
-      } else {
-        byte4 = 0;
+      if (param_1 < param_3) {
+        lVar7 = (longlong)param_1;
+        param_1 = param_1 + 1;
+        bVar5 = *(byte *)(lVar7 + param_4);
       }
-      if (start_index < end_index) {
-        context_ptr = (longlong)start_index;
-        start_index = start_index + 1;
-        byte5 = *(char *)(context_ptr + data_ptr);
-      } else {
-        byte5 = 0;
+      else {
+        bVar5 = 0;
       }
-      if (start_index < end_index) {
-        context_ptr = (longlong)start_index;
-        start_index = start_index + 1;
-        byte3 = *(char *)(context_ptr + data_ptr);
-      } else {
-        byte3 = 0;
+      if (param_1 < param_3) {
+        lVar7 = (longlong)param_1;
+        param_1 = param_1 + 1;
+        uVar6 = *(undefined1 *)(lVar7 + param_4);
       }
-    } while (((comparison_count < (int)item_value) ||
-             (search_value = (uint)byte4, (int)(uint)CONCAT11(byte5, byte3) <= comparison_count)) &&
-            (current_index = current_index + 1, item_value = (uint)CONCAT11(byte5, byte3), 
-             search_value = stack_param2, current_index < (int)(uint)CONCAT11(byte1, byte2)));
+      else {
+        uVar6 = 0;
+      }
+      if (param_1 < param_3) {
+        lVar7 = (longlong)param_1;
+        param_1 = param_1 + 1;
+        uVar4 = *(undefined1 *)(lVar7 + param_4);
+      }
+      else {
+        uVar4 = 0;
+      }
+    } while (((unaff_EDI < (int)uVar10) ||
+             (uVar9 = (uint)bVar5, (int)(uint)CONCAT11(uVar6,uVar4) <= unaff_EDI)) &&
+            (in_R10D = in_R10D + 1, uVar10 = (uint)CONCAT11(uVar6,uVar4), uVar9 = unaff_EBP,
+            in_R10D < (int)(uint)CONCAT11(uVar2,uVar3)));
   }
-  
-  // 处理批量结果
-  result_ptr._0_4_ = *(int *)(context_ptr + 0x88);
-  result_ptr._4_4_ = *(int *)(context_ptr + 0x8c);
-  found_item = FUN_18028b4c0(&stack_param1, &stack_param2, search_value, data_ptr,
-                             *(int *)(context_ptr + 0x80));
-  out_param1 = *(int *)(context_ptr + 0x40);
-  stack_param1 = *(int *)(context_ptr + 0x44);
-  out_param2 = *(int *)(context_ptr + 0x48);
-  stack_param2 = *(int *)(context_ptr + 0x4c);
-  result_ptr._0_4_ = *(int *)(found_item + 8);
-  result_ptr._4_4_ = *(int *)(found_item + 0xc);
-  item_ptr = (longlong *)FUN_18028b820(&stack_param1, &out_param1, &stack_param2);
-  temp_value = item_ptr[1];
-  *result_item_ptr = *item_ptr;
-  result_item_ptr[1] = temp_value;
+  param_5._0_4_ = *(undefined4 *)(unaff_R14 + 0x88);
+  param_5._4_4_ = *(undefined4 *)(unaff_R14 + 0x8c);
+  lVar7 = FUN_18028b4c0(&stack0x00000040,&stack0x00000020,uVar9,param_4,
+                        *(undefined4 *)(unaff_R14 + 0x80));
+  param_6 = *(undefined4 *)(unaff_R14 + 0x40);
+  uStack0000000000000034 = *(undefined4 *)(unaff_R14 + 0x44);
+  param_7 = *(undefined4 *)(unaff_R14 + 0x48);
+  uStack000000000000003c = *(undefined4 *)(unaff_R14 + 0x4c);
+  param_5._0_4_ = *(undefined4 *)(lVar7 + 8);
+  param_5._4_4_ = *(undefined4 *)(lVar7 + 0xc);
+  puVar8 = (undefined8 *)FUN_18028b820(&stack0x00000050,&param_6,&stack0x00000020);
+  uVar1 = puVar8[1];
+  *unaff_R15 = *puVar8;
+  unaff_R15[1] = uVar1;
   return;
 }
 
-/**
- * 渲染数据流处理
- * 
- * 处理渲染数据流，支持连续的数据处理操作。
- * 
- * @param start_index 起始索引
- * @param param2 参数2
- * @param end_index 结束索引
- * @param data_ptr 数据指针
- * @param result_ptr 结果指针
- * @param out_param1 输出参数1
- * @param out_param2 输出参数2
- */
-void process_render_data_stream(int start_index, char param2, int end_index, longlong data_ptr,
-                                char result_ptr, int out_param1, int out_param2)
+
+
+
+
+// 函数: void FUN_18028d5a4(int param_1,undefined8 param_2,int param_3,longlong param_4,undefined8 param_5,
+void FUN_18028d5a4(int param_1,undefined8 param_2,int param_3,longlong param_4,undefined8 param_5,
+                  undefined4 param_6,undefined4 param_7)
+
 {
-  longlong temp_value;
-  byte byte1;
-  char byte2;
-  char byte3;
-  longlong found_item;
-  longlong *item_ptr;
-  int max_count;
-  uint search_value;
-  int comparison_count;
-  int current_index;
-  uint stream_value;
-  longlong context_ptr;
-  longlong *result_item_ptr;
-  uint stack_param1;
-  uint stack_param2;
+  undefined8 uVar1;
+  byte bVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  longlong lVar5;
+  undefined8 *puVar6;
+  int unaff_EBX;
+  uint unaff_EBP;
+  uint uVar7;
+  int unaff_EDI;
+  int in_R10D;
+  uint in_R11D;
+  longlong unaff_R14;
+  undefined8 *unaff_R15;
+  undefined4 uStack0000000000000034;
+  undefined4 uStack000000000000003c;
   
-  // 处理数据流
   do {
-    if (start_index < end_index) {
-      context_ptr = (longlong)start_index;
-      start_index = start_index + 1;
-      byte1 = *(byte *)(context_ptr + data_ptr);
-    } else {
-      byte1 = 0;
+    if (param_1 < param_3) {
+      lVar5 = (longlong)param_1;
+      param_1 = param_1 + 1;
+      bVar2 = *(byte *)(lVar5 + param_4);
     }
-    if (start_index < end_index) {
-      context_ptr = (longlong)start_index;
-      start_index = start_index + 1;
-      byte2 = *(char *)(context_ptr + data_ptr);
-    } else {
-      byte2 = 0;
+    else {
+      bVar2 = 0;
     }
-    if (start_index < end_index) {
-      context_ptr = (longlong)start_index;
-      start_index = start_index + 1;
-      byte3 = *(char *)(context_ptr + data_ptr);
-    } else {
-      byte3 = 0;
+    if (param_1 < param_3) {
+      lVar5 = (longlong)param_1;
+      param_1 = param_1 + 1;
+      uVar3 = *(undefined1 *)(lVar5 + param_4);
     }
-  } while (((comparison_count < (int)stream_value) ||
-           (search_value = (uint)byte1, (int)(uint)CONCAT11(byte2, byte3) <= comparison_count)) &&
-          (current_index = current_index + 1, stream_value = (uint)CONCAT11(byte2, byte3), 
-           search_value = stack_param2, current_index < max_count));
-  
-  // 处理流处理结果
-  result_ptr._0_4_ = *(int *)(context_ptr + 0x88);
-  result_ptr._4_4_ = *(int *)(context_ptr + 0x8c);
-  found_item = FUN_18028b4c0(&stack_param1, &stack_param2, search_value, data_ptr,
-                             *(int *)(context_ptr + 0x80));
-  out_param1 = *(int *)(context_ptr + 0x40);
-  stack_param1 = *(int *)(context_ptr + 0x44);
-  out_param2 = *(int *)(context_ptr + 0x48);
-  stack_param2 = *(int *)(context_ptr + 0x4c);
-  result_ptr._0_4_ = *(int *)(found_item + 8);
-  result_ptr._4_4_ = *(int *)(found_item + 0xc);
-  item_ptr = (longlong *)FUN_18028b820(&stack_param1, &out_param1, &stack_param2);
-  temp_value = item_ptr[1];
-  *result_item_ptr = *item_ptr;
-  result_item_ptr[1] = temp_value;
+    else {
+      uVar3 = 0;
+    }
+    if (param_1 < param_3) {
+      lVar5 = (longlong)param_1;
+      param_1 = param_1 + 1;
+      uVar4 = *(undefined1 *)(lVar5 + param_4);
+    }
+    else {
+      uVar4 = 0;
+    }
+  } while (((unaff_EDI < (int)in_R11D) ||
+           (uVar7 = (uint)bVar2, (int)(uint)CONCAT11(uVar3,uVar4) <= unaff_EDI)) &&
+          (in_R10D = in_R10D + 1, in_R11D = (uint)CONCAT11(uVar3,uVar4), uVar7 = unaff_EBP,
+          in_R10D < unaff_EBX));
+  param_5._0_4_ = *(undefined4 *)(unaff_R14 + 0x88);
+  param_5._4_4_ = *(undefined4 *)(unaff_R14 + 0x8c);
+  lVar5 = FUN_18028b4c0(&stack0x00000040,&stack0x00000020,uVar7,param_4,
+                        *(undefined4 *)(unaff_R14 + 0x80));
+  param_6 = *(undefined4 *)(unaff_R14 + 0x40);
+  uStack0000000000000034 = *(undefined4 *)(unaff_R14 + 0x44);
+  param_7 = *(undefined4 *)(unaff_R14 + 0x48);
+  uStack000000000000003c = *(undefined4 *)(unaff_R14 + 0x4c);
+  param_5._0_4_ = *(undefined4 *)(lVar5 + 8);
+  param_5._4_4_ = *(undefined4 *)(lVar5 + 0xc);
+  puVar6 = (undefined8 *)FUN_18028b820(&stack0x00000050,&param_6,&stack0x00000020);
+  uVar1 = puVar6[1];
+  *unaff_R15 = *puVar6;
+  unaff_R15[1] = uVar1;
   return;
 }
 
-/**
- * 初始化渲染系统组件
- * 
- * 初始化渲染系统的关键组件，设置初始状态和参数。
- */
-void initialize_render_system_component(void)
+
+
+
+
+// 函数: void FUN_18028d617(void)
+void FUN_18028d617(void)
+
 {
-  longlong temp_value;
-  int *config_ptr;
-  longlong *item_ptr;
-  int config_param;
-  longlong context_data;
-  longlong result_ptr;
-  int stack_param1;
-  int stack_param2;
-  int in_param1;
-  int stack_param3;
-  int in_param2;
-  int stack_param4;
+  undefined8 uVar1;
+  undefined4 *puVar2;
+  undefined8 *puVar3;
+  undefined4 unaff_EBP;
+  undefined8 in_R9;
+  longlong unaff_R14;
+  undefined8 *unaff_R15;
+  undefined4 uStack0000000000000028;
+  undefined4 uStack000000000000002c;
+  undefined4 in_stack_00000030;
+  undefined4 uStack0000000000000034;
+  undefined4 in_stack_00000038;
+  undefined4 uStack000000000000003c;
   
-  // 设置初始化参数
-  stack_param1 = *(int *)(context_ptr + 0x88);
-  stack_param2 = *(int *)(context_ptr + 0x8c);
-  config_ptr = (int *)
-           FUN_18028b4c0(&stack_param3, &stack_param4, config_param, context_data,
-                         *(int *)(context_ptr + 0x80));
-  in_param1 = *(int *)(context_ptr + 0x40);
-  stack_param3 = *(int *)(context_ptr + 0x44);
-  in_param2 = *(int *)(context_ptr + 0x48);
-  stack_param4 = *(int *)(context_ptr + 0x4c);
-  stack_param1 = config_ptr[2];
-  stack_param2 = config_ptr[3];
-  item_ptr = (longlong *)
-           FUN_18028b820(&stack_param1, &in_param1, &stack_param4, context_data, *config_ptr);
-  temp_value = item_ptr[1];
-  *result_ptr = *item_ptr;
-  result_ptr[1] = temp_value;
+  uStack0000000000000028 = *(undefined4 *)(unaff_R14 + 0x88);
+  uStack000000000000002c = *(undefined4 *)(unaff_R14 + 0x8c);
+  puVar2 = (undefined4 *)
+           FUN_18028b4c0(&stack0x00000040,&stack0x00000020,unaff_EBP,in_R9,
+                         *(undefined4 *)(unaff_R14 + 0x80));
+  in_stack_00000030 = *(undefined4 *)(unaff_R14 + 0x40);
+  uStack0000000000000034 = *(undefined4 *)(unaff_R14 + 0x44);
+  in_stack_00000038 = *(undefined4 *)(unaff_R14 + 0x48);
+  uStack000000000000003c = *(undefined4 *)(unaff_R14 + 0x4c);
+  uStack0000000000000028 = puVar2[2];
+  uStack000000000000002c = puVar2[3];
+  puVar3 = (undefined8 *)
+           FUN_18028b820(&stack0x00000050,&stack0x00000030,&stack0x00000020,in_R9,*puVar2);
+  uVar1 = puVar3[1];
+  *unaff_R15 = *puVar3;
+  unaff_R15[1] = uVar1;
   return;
 }
 
-/**
- * 渲染系统状态重置
- * 
- * 重置渲染系统的状态，清理临时数据并恢复默认设置。
- */
-void reset_render_system_state(void)
+
+
+
+
+// 函数: void FUN_18028d61f(void)
+void FUN_18028d61f(void)
+
 {
-  longlong temp_value;
-  int *config_ptr;
-  longlong *item_ptr;
-  int config_param;
-  longlong context_data;
-  longlong result_ptr;
-  int stack_param1;
-  int stack_param2;
-  int in_param1;
-  int stack_param3;
-  int in_param2;
-  int stack_param4;
+  undefined8 uVar1;
+  undefined4 *puVar2;
+  undefined8 *puVar3;
+  undefined4 unaff_EBP;
+  undefined8 in_R9;
+  longlong unaff_R14;
+  undefined8 *unaff_R15;
+  undefined4 uStack0000000000000028;
+  undefined4 uStack000000000000002c;
+  undefined4 in_stack_00000030;
+  undefined4 uStack0000000000000034;
+  undefined4 in_stack_00000038;
+  undefined4 uStack000000000000003c;
   
-  // 重置系统状态
-  stack_param1 = *(int *)(context_ptr + 0x88);
-  stack_param2 = *(int *)(context_ptr + 0x8c);
-  config_ptr = (int *)
-           FUN_18028b4c0(&stack_param3, &stack_param4, config_param, context_data,
-                         *(int *)(context_ptr + 0x80));
-  in_param1 = *(int *)(context_ptr + 0x40);
-  stack_param3 = *(int *)(context_ptr + 0x44);
-  in_param2 = *(int *)(context_ptr + 0x48);
-  stack_param4 = *(int *)(context_ptr + 0x4c);
-  stack_param1 = config_ptr[2];
-  stack_param2 = config_ptr[3];
-  item_ptr = (longlong *)
-           FUN_18028b820(&stack_param1, &in_param1, &stack_param4, context_data, *config_ptr);
-  temp_value = item_ptr[1];
-  *result_ptr = *item_ptr;
-  result_ptr[1] = temp_value;
+  uStack0000000000000028 = *(undefined4 *)(unaff_R14 + 0x88);
+  uStack000000000000002c = *(undefined4 *)(unaff_R14 + 0x8c);
+  puVar2 = (undefined4 *)
+           FUN_18028b4c0(&stack0x00000040,&stack0x00000020,unaff_EBP,in_R9,
+                         *(undefined4 *)(unaff_R14 + 0x80));
+  in_stack_00000030 = *(undefined4 *)(unaff_R14 + 0x40);
+  uStack0000000000000034 = *(undefined4 *)(unaff_R14 + 0x44);
+  in_stack_00000038 = *(undefined4 *)(unaff_R14 + 0x48);
+  uStack000000000000003c = *(undefined4 *)(unaff_R14 + 0x4c);
+  uStack0000000000000028 = puVar2[2];
+  uStack000000000000002c = puVar2[3];
+  puVar3 = (undefined8 *)
+           FUN_18028b820(&stack0x00000050,&stack0x00000030,&stack0x00000020,in_R9,*puVar2);
+  uVar1 = puVar3[1];
+  *unaff_R15 = *puVar3;
+  unaff_R15[1] = uVar1;
   return;
 }
+
+
+
+// WARNING: Removing unreachable block (ram,0x00018028d83d)
+// WARNING: Removing unreachable block (ram,0x00018028d857)
+// WARNING: Removing unreachable block (ram,0x00018028d875)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

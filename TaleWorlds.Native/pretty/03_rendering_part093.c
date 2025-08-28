@@ -1,152 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
-/* 
- * 渲染系统高级对象初始化和内存管理模块
- * 
- * 本模块包含23个核心函数，主要负责：
- * - 渲染对象的高级初始化和配置
- * - 复杂数据结构的内存管理
- * - 渲染系统的资源分配和释放
- * - 对象生命周期管理
- * - 渲染参数的动态设置
- * 
- * 主要功能：
- * 1. 对象初始化和配置管理
- * 2. 内存分配和释放策略
- * 3. 渲染参数动态设置
- * 4. 对象生命周期控制
- * 5. 资源管理和优化
- * 
- * 技术特点：
- * - 采用RAII（资源获取即初始化）模式
- * - 实现智能内存管理
- * - 支持多线程安全操作
- * - 提供错误检测和处理机制
- * - 优化内存访问性能
- */
+// 03_rendering_part093.c - 23 个函数
 
-// 渲染系统常量定义
-#define RENDERING_SYSTEM_INITIALIZATION_SUCCESS    0x00000000  // 渲染系统初始化成功
-#define RENDERING_SYSTEM_INITIALIZATION_FAILED      0x00000001  // 渲染系统初始化失败
-#define RENDERING_SYSTEM_MEMORY_ALLOCATED          0x00000002  // 渲染系统内存已分配
-#define RENDERING_SYSTEM_MEMORY_RELEASED           0x00000003  // 渲染系统内存已释放
-#define RENDERING_SYSTEM_OBJECT_CREATED            0x00000004  // 渲染系统对象已创建
-#define RENDERING_SYSTEM_OBJECT_DESTROYED           0x00000005  // 渲染系统对象已销毁
-#define RENDERING_SYSTEM_PARAMETER_SET             0x00000006  // 渲染系统参数已设置
-#define RENDERING_SYSTEM_RESOURCE_LOADED            0x00000007  // 渲染系统资源已加载
-#define RENDERING_SYSTEM_RESOURCE_UNLOADED          0x00000008  // 渲染系统资源已卸载
-#define RENDERING_SYSTEM_STATE_CHANGED              0x00000009  // 渲染系统状态已改变
-#define RENDERING_SYSTEM_ERROR_DETECTED             0x0000000A  // 渲染系统错误检测到
-
-// 渲染系统内存管理常量
-#define RENDERING_MEMORY_POOL_SIZE                  0x00001000  // 渲染内存池大小
-#define RENDERING_MEMORY_ALIGNMENT                 0x00000010  // 渲染内存对齐
-#define RENDERING_MEMORY_BLOCK_SIZE                 0x00000100  // 渲染内存块大小
-#define RENDERING_MEMORY_MAX_ALLOCATIONS           0x00000400  // 渲染内存最大分配数
-#define RENDERING_MEMORY_GUARD_SIZE                 0x00000020  // 渲染内存保护大小
-
-// 渲染系统对象管理常量
-#define RENDERING_OBJECT_TYPE_BASIC                0x00000001  // 渲染对象类型：基础
-#define RENDERING_OBJECT_TYPE_COMPLEX               0x00000002  // 渲染对象类型：复杂
-#define RENDERING_OBJECT_TYPE_DYNAMIC              0x00000003  // 渲染对象类型：动态
-#define RENDERING_OBJECT_TYPE_STATIC               0x00000004  // 渲染对象类型：静态
-#define RENDERING_OBJECT_TYPE_SHARED               0x00000005  // 渲染对象类型：共享
-
-// 渲染系统参数常量
-#define RENDERING_PARAMETER_DEFAULT_VALUE          0x3F800000  // 渲染参数默认值
-#define RENDERING_PARAMETER_MIN_VALUE             0x00000000  // 渲染参数最小值
-#define RENDERING_PARAMETER_MAX_VALUE             0x7F7FFFFF  // 渲染参数最大值
-#define RENDERING_PARAMETER_PRECISION             0x00000001  // 渲染参数精度
-#define RENDERING_PARAMETER_RANGE_MIN             0x00000000  // 渲染参数范围最小值
-#define RENDERING_PARAMETER_RANGE_MAX             0xFFFFFFFF  // 渲染参数范围最大值
-
-// 渲染系统状态常量
-#define RENDERING_STATE_INITIALIZED                0x00000001  // 渲染状态：已初始化
-#define RENDERING_STATE_READY                      0x00000002  // 渲染状态：就绪
-#define RENDERING_STATE_ACTIVE                     0x00000003  // 渲染状态：活动
-#define RENDERING_STATE_PAUSED                     0x00000004  // 渲染状态：暂停
-#define RENDERING_STATE_SUSPENDED                 0x00000005  // 渲染状态：挂起
-#define RENDERING_STATE_TERMINATED                 0x00000006  // 渲染状态：终止
-
-// 渲染系统错误代码
-#define RENDERING_ERROR_NONE                       0x00000000  // 渲染错误：无错误
-#define RENDERING_ERROR_MEMORY                     0x00000001  // 渲染错误：内存错误
-#define RENDERING_ERROR_INITIALIZATION             0x00000002  // 渲染错误：初始化错误
-#define RENDERING_ERROR_PARAMETER                  0x00000003  // 渲染错误：参数错误
-#define RENDERING_ERROR_RESOURCE                   0x00000004  // 渲染错误：资源错误
-#define RENDERING_ERROR_STATE                      0x00000005  // 渲染错误：状态错误
-#define RENDERING_ERROR_THREAD                     0x00000006  // 渲染错误：线程错误
-
-// 渲染系统操作模式
-#define RENDERING_MODE_SINGLE_THREAD               0x00000001  // 渲染模式：单线程
-#define RENDERING_MODE_MULTI_THREAD                0x00000002  // 渲染模式：多线程
-#define RENDERING_MODE_ASYNC                       0x00000003  // 渲染模式：异步
-#define RENDERING_MODE_SYNC                        0x00000004  // 渲染模式：同步
-
-// 渲染系统优化级别
-#define RENDERING_OPTIMIZATION_NONE                0x00000000  // 渲染优化：无优化
-#define RENDERING_OPTIMIZATION_BASIC               0x00000001  // 渲染优化：基础优化
-#define RENDERING_OPTIMIZATION_ADVANCED            0x00000002  // 渲染优化：高级优化
-#define RENDERING_OPTIMIZATION_MAXIMUM             0x00000003  // 渲染优化：最大优化
-
-// 函数别名定义
-#define RenderingSystemInitializeObject            FUN_180320050  // 渲染系统初始化对象
-#define RenderingSystemProcessRenderData           FUN_180320130  // 渲染系统处理渲染数据
-#define RenderingSystemExecuteRenderCommands       FUN_18032013f  // 渲染系统执行渲染命令
-#define RenderingSystemHandleRenderOperations      FUN_180320154  // 渲染系统处理渲染操作
-#define RenderingSystemInitializeRenderState       FUN_180320196  // 渲染系统初始化渲染状态
-#define RenderingSystemPrepareRenderResources      FUN_1803201a5  // 渲染系统准备渲染资源
-#define RenderingSystemManageObjectReferences      FUN_1803201b0  // 渲染系统管理对象引用
-#define RenderingSystemCreateRenderBuffer          FUN_1803201f0  // 渲染系统创建渲染缓冲区
-#define RenderingSystemSetupRenderParameters       FUN_1803202a0  // 渲染系统设置渲染参数
-#define RenderingSystemConfigureRenderSettings     FUN_180320330  // 渲染系统配置渲染设置
-#define RenderingSystemInitializeRenderQueue       FUN_1803203f0  // 渲染系统初始化渲染队列
-#define RenderingSystemCreateRenderContext         FUN_180320470  // 渲染系统创建渲染上下文
-#define RenderingSystemSetupRenderPipeline         FUN_1803204f0  // 渲染系统设置渲染管线
-#define RenderingSystemAllocateRenderMemory        FUN_180320550  // 渲染系统分配渲染内存
-#define RenderingSystemReleaseRenderMemory         FUN_1803205e0  // 渲染系统释放渲染内存
-#define RenderingSystemInitializeRenderDevice      FUN_180320600  // 渲染系统初始化渲染设备
-#define RenderingSystemShutdownRenderDevice       FUN_1803206a0  // 渲染系统关闭渲染设备
-#define RenderingSystemConfigureRenderOutput       FUN_1803206e0  // 渲染系统配置渲染输出
-#define RenderingSystemCleanupRenderOutput         FUN_180320780  // 渲染系统清理渲染输出
-#define RenderingSystemResetRenderParameters       FUN_1803207c0  // 渲染系统重置渲染参数
-#define RenderingSystemClearRenderBuffers          FUN_180320830  // 渲染系统清除渲染缓冲区
-#define RenderingSystemInitializeRenderTargets    FUN_180320880  // 渲染系统初始化渲染目标
-#define RenderingSystemDestroyRenderTargets       FUN_180320900  // 渲染系统销毁渲染目标
-#define RenderingSystemCreateRenderTexture         FUN_180320960  // 渲染系统创建渲染纹理
-#define RenderingSystemCleanupRenderResources      FUN_180320a20  // 渲染系统清理渲染资源
-#define RenderingSystemReleaseRenderObjects       FUN_180320b20  // 渲染系统释放渲染对象
-#define RenderingSystemDestroyRenderData          FUN_180320c60  // 渲染系统销毁渲染数据
-#define RenderingSystemSetupRenderShaders          FUN_180320c80  // 渲染系统设置渲染着色器
-#define RenderingSystemInitializeRenderProgram     FUN_180320da0  // 渲染系统初始化渲染程序
-#define RenderingSystemResetRenderProgram          FUN_180320e20  // 渲染系统重置渲染程序
-#define RenderingSystemExecuteRenderProgram        FUN_180320e44  // 渲染系统执行渲染程序
-#define RenderingSystemFinalizeRenderProgram       FUN_180320ebc  // 渲染系统完成渲染程序
-#define RenderingSystemCreateRenderState           FUN_180320f40  // 渲染系统创建渲染状态
-#define RenderingSystemProcessRenderQueue          FUN_180320fd0  // 渲染系统处理渲染队列
-#define RenderingSystemExecuteRenderPipeline      FUN_1803211e0  // 渲染系统执行渲染管线
-#define RenderingSystemSynchronizeRenderState     FUN_1803214c0  // 渲染系统同步渲染状态
-#define RenderingSystemUpdateRenderParameters      FUN_180321570  // 渲染系统更新渲染参数
-
-/*
- * 渲染系统初始化对象函数
- * 
- * 功能描述：
- * 初始化渲染系统对象，设置基本的渲染参数和状态
- * 
- * 参数：
- * - param_1: 渲染对象指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 设置对象的基本属性和状态
- * 2. 初始化渲染参数和配置
- * 3. 设置内存管理和资源分配
- * 4. 确保线程安全操作
- * 5. 提供错误检测和处理
- */
+// 函数: void FUN_180320050(undefined8 *param_1)
 void FUN_180320050(undefined8 *param_1)
 
 {
@@ -168,26 +24,11 @@ void FUN_180320050(undefined8 *param_1)
   return;
 }
 
-/*
- * 渲染系统处理渲染数据函数
- * 
- * 功能描述：
- * 处理渲染数据，执行渲染操作和数据处理
- * 
- * 参数：
- * - param_1: 渲染上下文指针
- * - param_2: 渲染数据指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 遍历渲染数据结构
- * 2. 根据数据类型执行相应的渲染操作
- * 3. 处理复杂的数据转换和映射
- * 4. 确保数据处理的正确性
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320130(longlong *param_1,longlong param_2)
 void FUN_180320130(longlong *param_1,longlong param_2)
 
 {
@@ -210,26 +51,11 @@ void FUN_180320130(longlong *param_1,longlong param_2)
   return;
 }
 
-/*
- * 渲染系统执行渲染命令函数
- * 
- * 功能描述：
- * 执行渲染命令，处理渲染管线中的各种操作
- * 
- * 参数：
- * - param_1: 渲染上下文指针
- * - param_2: 渲染命令数据指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 解析渲染命令结构
- * 2. 根据命令类型执行相应的渲染操作
- * 3. 处理命令队列和优先级
- * 4. 确保命令执行的顺序性
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_18032013f(longlong *param_1,longlong param_2)
 void FUN_18032013f(longlong *param_1,longlong param_2)
 
 {
@@ -253,26 +79,11 @@ void FUN_18032013f(longlong *param_1,longlong param_2)
   return;
 }
 
-/*
- * 渲染系统处理渲染操作函数
- * 
- * 功能描述：
- * 处理渲染操作，执行具体的渲染任务
- * 
- * 参数：
- * - param_1: 渲染操作参数
- * - param_2: 渲染数据指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 处理不同类型的渲染操作
- * 2. 执行具体的渲染任务
- * 3. 管理渲染资源的使用
- * 4. 确保操作的正确执行
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320154(undefined8 param_1,longlong param_2)
 void FUN_180320154(undefined8 param_1,longlong param_2)
 
 {
@@ -294,75 +105,30 @@ void FUN_180320154(undefined8 param_1,longlong param_2)
   return;
 }
 
-/*
- * 渲染系统初始化渲染状态函数
- * 
- * 功能描述：
- * 初始化渲染状态，设置渲染环境的基本状态
- * 
- * 参数：
- * 无
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 设置渲染状态的初始值
- * 2. 初始化渲染环境
- * 3. 配置基本的渲染参数
- * 4. 确保状态的一致性
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320196(void)
 void FUN_180320196(void)
 
 {
   return;
 }
 
-/*
- * 渲染系统准备渲染资源函数
- * 
- * 功能描述：
- * 准备渲染资源，为渲染操作做好资源准备
- * 
- * 参数：
- * 无
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 分配和准备渲染资源
- * 2. 设置资源的初始状态
- * 3. 配置资源管理参数
- * 4. 确保资源的可用性
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803201a5(void)
 void FUN_1803201a5(void)
 
 {
   return;
 }
 
-/*
- * 渲染系统管理对象引用函数
- * 
- * 功能描述：
- * 管理渲染对象的引用计数，控制对象的生命周期
- * 
- * 参数：
- * - param_1: 渲染对象指针
- * 
- * 返回值：
- * 当前引用计数
- * 
- * 技术说明：
- * 1. 实现引用计数机制
- * 2. 管理对象的生命周期
- * 3. 提供线程安全的引用管理
- * 4. 自动处理对象的创建和销毁
- * 5. 提供错误检测和处理
- */
+
+
 int FUN_1803201b0(longlong *param_1)
 
 {
@@ -383,25 +149,8 @@ int FUN_1803201b0(longlong *param_1)
   return iVar3;
 }
 
-/*
- * 渲染系统创建渲染缓冲区函数
- * 
- * 功能描述：
- * 创建渲染缓冲区，为渲染操作提供内存缓冲
- * 
- * 参数：
- * - param_1: 渲染缓冲区指针
- * 
- * 返回值：
- * 渲染缓冲区指针
- * 
- * 技术说明：
- * 1. 分配渲染缓冲区内存
- * 2. 初始化缓冲区参数
- * 3. 设置缓冲区的属性和状态
- * 4. 配置内存管理策略
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 * FUN_1803201f0(undefined4 *param_1)
 
 {
@@ -424,28 +173,8 @@ undefined4 * FUN_1803201f0(undefined4 *param_1)
   return param_1;
 }
 
-/*
- * 渲染系统设置渲染参数函数
- * 
- * 功能描述：
- * 设置渲染参数，配置渲染系统的各种参数
- * 
- * 参数：
- * - param_1: 渲染参数结构指针
- * - param_2: 参数类型标识
- * - param_3: 参数值1
- * - param_4: 参数值2
- * 
- * 返回值：
- * 渲染参数结构指针
- * 
- * 技术说明：
- * 1. 初始化渲染参数结构
- * 2. 设置各种渲染参数
- * 3. 配置参数的默认值
- * 4. 确保参数的有效性
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 *
 FUN_1803202a0(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -473,28 +202,8 @@ FUN_1803202a0(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefine
   return param_1;
 }
 
-/*
- * 渲染系统配置渲染设置函数
- * 
- * 功能描述：
- * 配置渲染设置，设置渲染系统的详细配置
- * 
- * 参数：
- * - param_1: 渲染设置结构指针
- * - param_2: 设置类型标识
- * - param_3: 设置值1
- * - param_4: 设置值2
- * 
- * 返回值：
- * 渲染设置结构指针
- * 
- * 技术说明：
- * 1. 初始化渲染设置结构
- * 2. 配置各种渲染设置
- * 3. 设置设置的默认值
- * 4. 确保设置的有效性
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 *
 FUN_180320330(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -530,28 +239,8 @@ FUN_180320330(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefine
   return param_1;
 }
 
-/*
- * 渲染系统初始化渲染队列函数
- * 
- * 功能描述：
- * 初始化渲染队列，为渲染操作提供队列管理
- * 
- * 参数：
- * - param_1: 渲染队列结构指针
- * - param_2: 队列类型标识
- * - param_3: 队列参数1
- * - param_4: 队列参数2
- * 
- * 返回值：
- * 渲染队列结构指针
- * 
- * 技术说明：
- * 1. 初始化渲染队列结构
- * 2. 设置队列的基本参数
- * 3. 配置队列的管理策略
- * 4. 确保队列的正确初始化
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 *
 FUN_1803203f0(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -575,25 +264,8 @@ FUN_1803203f0(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefine
   return param_1;
 }
 
-/*
- * 渲染系统创建渲染上下文函数
- * 
- * 功能描述：
- * 创建渲染上下文，为渲染操作提供上下文环境
- * 
- * 参数：
- * - param_1: 渲染上下文指针
- * 
- * 返回值：
- * 渲染上下文指针
- * 
- * 技术说明：
- * 1. 初始化渲染上下文结构
- * 2. 设置上下文的基本属性
- * 3. 配置上下文的状态和参数
- * 4. 确保上下文的有效性
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 * FUN_180320470(undefined8 *param_1)
 
 {
@@ -616,25 +288,11 @@ undefined8 * FUN_180320470(undefined8 *param_1)
   return param_1;
 }
 
-/*
- * 渲染系统设置渲染管线函数
- * 
- * 功能描述：
- * 设置渲染管线，配置渲染的执行流程
- * 
- * 参数：
- * - param_1: 渲染管线指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 初始化渲染管线结构
- * 2. 设置管线的基本参数
- * 3. 配置管线的执行阶段
- * 4. 确保管线的正确设置
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803204f0(undefined8 *param_1)
 void FUN_1803204f0(undefined8 *param_1)
 
 {
@@ -659,28 +317,8 @@ void FUN_1803204f0(undefined8 *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统分配渲染内存函数
- * 
- * 功能描述：
- * 分配渲染内存，为渲染操作提供内存支持
- * 
- * 参数：
- * - param_1: 内存分配参数
- * - param_2: 内存大小
- * - param_3: 内存属性
- * - param_4: 内存标志
- * 
- * 返回值：
- * 内存分配结果指针
- * 
- * 技术说明：
- * 1. 分配渲染所需的内存
- * 2. 设置内存的属性和标志
- * 3. 配置内存的管理策略
- * 4. 确保内存的正确分配
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 *
 FUN_180320550(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -700,25 +338,11 @@ FUN_180320550(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-/*
- * 渲染系统释放渲染内存函数
- * 
- * 功能描述：
- * 释放渲染内存，回收不再使用的内存资源
- * 
- * 参数：
- * - param_1: 内存管理指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 遍历内存管理结构
- * 2. 释放分配的内存
- * 3. 清理内存管理数据
- * 4. 确保内存的正确释放
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803205e0(longlong *param_1)
 void FUN_1803205e0(longlong *param_1)
 
 {
@@ -736,25 +360,11 @@ void FUN_1803205e0(longlong *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统初始化渲染设备函数
- * 
- * 功能描述：
- * 初始化渲染设备，为渲染操作提供设备支持
- * 
- * 参数：
- * - param_1: 渲染设备指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 初始化渲染设备结构
- * 2. 设置设备的基本参数
- * 3. 配置设备的属性和状态
- * 4. 确保设备的正确初始化
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320600(undefined8 *param_1)
 void FUN_180320600(undefined8 *param_1)
 
 {
@@ -784,26 +394,8 @@ void FUN_180320600(undefined8 *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统关闭渲染设备函数
- * 
- * 功能描述：
- * 关闭渲染设备，释放设备资源
- * 
- * 参数：
- * - param_1: 设备句柄
- * - param_2: 关闭标志
- * 
- * 返回值：
- * 设备句柄
- * 
- * 技术说明：
- * 1. 执行设备关闭操作
- * 2. 释放设备相关资源
- * 3. 清理设备状态
- * 4. 确保设备的正确关闭
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 FUN_1803206a0(undefined8 param_1,ulonglong param_2)
 
 {
@@ -814,25 +406,11 @@ undefined8 FUN_1803206a0(undefined8 param_1,ulonglong param_2)
   return param_1;
 }
 
-/*
- * 渲染系统配置渲染输出函数
- * 
- * 功能描述：
- * 配置渲染输出，设置渲染输出的参数和属性
- * 
- * 参数：
- * - param_1: 渲染输出指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 初始化渲染输出结构
- * 2. 设置输出的基本参数
- * 3. 配置输出的属性和状态
- * 4. 确保输出的正确配置
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803206e0(undefined8 *param_1)
 void FUN_1803206e0(undefined8 *param_1)
 
 {
@@ -862,26 +440,8 @@ void FUN_1803206e0(undefined8 *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统清理渲染输出函数
- * 
- * 功能描述：
- * 清理渲染输出，释放输出相关资源
- * 
- * 参数：
- * - param_1: 输出句柄
- * - param_2: 清理标志
- * 
- * 返回值：
- * 输出句柄
- * 
- * 技术说明：
- * 1. 执行输出清理操作
- * 2. 释放输出相关资源
- * 3. 清理输出状态
- * 4. 确保输出的正确清理
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 FUN_180320780(undefined8 param_1,ulonglong param_2)
 
 {
@@ -892,25 +452,11 @@ undefined8 FUN_180320780(undefined8 param_1,ulonglong param_2)
   return param_1;
 }
 
-/*
- * 渲染系统重置渲染参数函数
- * 
- * 功能描述：
- * 重置渲染参数，将参数恢复到默认状态
- * 
- * 参数：
- * - param_1: 渲染参数指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 重置渲染参数结构
- * 2. 设置参数的默认值
- * 3. 清理参数的状态
- * 4. 确保参数的正确重置
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803207c0(longlong *param_1)
 void FUN_1803207c0(longlong *param_1)
 
 {
@@ -936,25 +482,8 @@ void FUN_1803207c0(longlong *param_1)
   return;
 }
 
-/*
- * 渲染系统清除渲染缓冲区函数
- * 
- * 功能描述：
- * 清除渲染缓冲区，清理缓冲区内容
- * 
- * 参数：
- * - param_1: 渲染缓冲区指针
- * 
- * 返回值：
- * 渲染缓冲区指针
- * 
- * 技术说明：
- * 1. 清除缓冲区内容
- * 2. 重置缓冲区状态
- * 3. 清理缓冲区数据
- * 4. 确保缓冲区的正确清除
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 * FUN_180320830(undefined4 *param_1)
 
 {
@@ -970,25 +499,11 @@ undefined4 * FUN_180320830(undefined4 *param_1)
   return param_1;
 }
 
-/*
- * 渲染系统初始化渲染目标函数
- * 
- * 功能描述：
- * 初始化渲染目标，为渲染操作提供目标支持
- * 
- * 参数：
- * - param_1: 渲染目标指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 初始化渲染目标结构
- * 2. 设置目标的基本参数
- * 3. 配置目标的属性和状态
- * 4. 确保目标的正确初始化
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320880(undefined8 *param_1)
 void FUN_180320880(undefined8 *param_1)
 
 {
@@ -1019,26 +534,8 @@ void FUN_180320880(undefined8 *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统销毁渲染目标函数
- * 
- * 功能描述：
- * 销毁渲染目标，释放目标相关资源
- * 
- * 参数：
- * - param_1: 目标句柄
- * - param_2: 销毁标志
- * 
- * 返回值：
- * 目标句柄
- * 
- * 技术说明：
- * 1. 执行目标销毁操作
- * 2. 释放目标相关资源
- * 3. 清理目标状态
- * 4. 确保目标的正确销毁
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 FUN_180320900(undefined8 param_1,ulonglong param_2)
 
 {
@@ -1049,28 +546,8 @@ undefined8 FUN_180320900(undefined8 param_1,ulonglong param_2)
   return param_1;
 }
 
-/*
- * 渲染系统创建渲染纹理函数
- * 
- * 功能描述：
- * 创建渲染纹理，为渲染操作提供纹理支持
- * 
- * 参数：
- * - param_1: 纹理参数
- * - param_2: 纹理大小
- * - param_3: 纹理格式
- * - param_4: 纹理标志
- * 
- * 返回值：
- * 纹理创建结果指针
- * 
- * 技术说明：
- * 1. 初始化纹理结构
- * 2. 设置纹理的基本参数
- * 3. 配置纹理的属性和状态
- * 4. 确保纹理的正确创建
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 *
 FUN_180320960(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -1097,25 +574,11 @@ FUN_180320960(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-/*
- * 渲染系统清理渲染资源函数
- * 
- * 功能描述：
- * 清理渲染资源，释放不再使用的资源
- * 
- * 参数：
- * - param_1: 资源管理指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 遍历资源管理结构
- * 2. 释放分配的资源
- * 3. 清理资源管理数据
- * 4. 确保资源的正确释放
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320a20(undefined4 *param_1)
 void FUN_180320a20(undefined4 *param_1)
 
 {
@@ -1165,25 +628,11 @@ void FUN_180320a20(undefined4 *param_1)
   return;
 }
 
-/*
- * 渲染系统释放渲染对象函数
- * 
- * 功能描述：
- * 释放渲染对象，清理对象相关资源
- * 
- * 参数：
- * - param_1: 对象管理指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 遍历对象管理结构
- * 2. 释放分配的对象
- * 3. 清理对象管理数据
- * 4. 确保对象的正确释放
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320b20(undefined8 *param_1)
 void FUN_180320b20(undefined8 *param_1)
 
 {
@@ -1241,25 +690,11 @@ void FUN_180320b20(undefined8 *param_1)
   return;
 }
 
-/*
- * 渲染系统销毁渲染数据函数
- * 
- * 功能描述：
- * 销毁渲染数据，清理数据相关资源
- * 
- * 参数：
- * - param_1: 数据管理指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 遍历数据管理结构
- * 2. 释放分配的数据
- * 3. 清理数据管理数据
- * 4. 确保数据的正确释放
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320c60(longlong *param_1)
 void FUN_180320c60(longlong *param_1)
 
 {
@@ -1277,25 +712,8 @@ void FUN_180320c60(longlong *param_1)
   FUN_18064e900();
 }
 
-/*
- * 渲染系统设置渲染着色器函数
- * 
- * 功能描述：
- * 设置渲染着色器，配置着色器参数
- * 
- * 参数：
- * - param_1: 着色器指针
- * 
- * 返回值：
- * 着色器指针
- * 
- * 技术说明：
- * 1. 初始化着色器结构
- * 2. 设置着色器的基本参数
- * 3. 配置着色器的属性和状态
- * 4. 确保着色器的正确设置
- * 5. 提供错误检测和处理
- */
+
+
 undefined4 * FUN_180320c80(undefined4 *param_1)
 
 {
@@ -1339,25 +757,11 @@ undefined4 * FUN_180320c80(undefined4 *param_1)
   return param_1;
 }
 
-/*
- * 渲染系统初始化渲染程序函数
- * 
- * 功能描述：
- * 初始化渲染程序，为渲染操作提供程序支持
- * 
- * 参数：
- * - param_1: 程序句柄
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 初始化渲染程序
- * 2. 设置程序的基本参数
- * 3. 配置程序的属性和状态
- * 4. 确保程序的正确初始化
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320da0(longlong param_1)
 void FUN_180320da0(longlong param_1)
 
 {
@@ -1375,25 +779,11 @@ void FUN_180320da0(longlong param_1)
   return;
 }
 
-/*
- * 渲染系统重置渲染程序函数
- * 
- * 功能描述：
- * 重置渲染程序，将程序恢复到初始状态
- * 
- * 参数：
- * - param_1: 程序指针
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 重置程序状态
- * 2. 清理程序数据
- * 3. 重置程序参数
- * 4. 确保程序的正确重置
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320e20(undefined4 *param_1)
 void FUN_180320e20(undefined4 *param_1)
 
 {
@@ -1442,25 +832,11 @@ void FUN_180320e20(undefined4 *param_1)
   return;
 }
 
-/*
- * 渲染系统执行渲染程序函数
- * 
- * 功能描述：
- * 执行渲染程序，运行渲染操作
- * 
- * 参数：
- * 无
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 执行渲染程序
- * 2. 处理程序执行结果
- * 3. 管理程序执行状态
- * 4. 确保程序的正确执行
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320e44(void)
 void FUN_180320e44(void)
 
 {
@@ -1513,25 +889,11 @@ void FUN_180320e44(void)
   return;
 }
 
-/*
- * 渲染系统完成渲染程序函数
- * 
- * 功能描述：
- * 完成渲染程序，结束程序执行
- * 
- * 参数：
- * 无
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 完成程序执行
- * 2. 清理程序状态
- * 3. 处理程序完成结果
- * 4. 确保程序的正确完成
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320ebc(void)
 void FUN_180320ebc(void)
 
 {
@@ -1563,28 +925,8 @@ void FUN_180320ebc(void)
   return;
 }
 
-/*
- * 渲染系统创建渲染状态函数
- * 
- * 功能描述：
- * 创建渲染状态，为渲染操作提供状态管理
- * 
- * 参数：
- * - param_1: 状态参数
- * - param_2: 状态目标
- * - param_3: 状态值1
- * - param_4: 状态值2
- * 
- * 返回值：
- * 状态创建结果指针
- * 
- * 技术说明：
- * 1. 初始化状态结构
- * 2. 设置状态的基本参数
- * 3. 配置状态的属性和值
- * 4. 确保状态的正确创建
- * 5. 提供错误检测和处理
- */
+
+
 undefined8 *
 FUN_180320f40(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
@@ -1607,29 +949,11 @@ FUN_180320f40(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   return param_2;
 }
 
-/*
- * 渲染系统处理渲染队列函数
- * 
- * 功能描述：
- * 处理渲染队列，执行队列中的渲染任务
- * 
- * 参数：
- * - param_1: 队列上下文
- * - param_2: 队列数据
- * - param_3: 队列管理器
- * - param_4: 队列标志
- * - param_5: 队列选项
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 处理渲染队列
- * 2. 执行队列中的任务
- * 3. 管理队列状态
- * 4. 确保队列的正确处理
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_180320fd0(longlong param_1,longlong param_2,longlong *param_3,ulonglong param_4,
 void FUN_180320fd0(longlong param_1,longlong param_2,longlong *param_3,ulonglong param_4,
                   undefined8 param_5)
 
@@ -1708,25 +1032,13 @@ void FUN_180320fd0(longlong param_1,longlong param_2,longlong *param_3,ulonglong
   return;
 }
 
-/*
- * 渲染系统执行渲染管线函数
- * 
- * 功能描述：
- * 执行渲染管线，运行渲染处理流程
- * 
- * 参数：
- * - param_1: 管线上下文
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 执行渲染管线
- * 2. 处理管线执行结果
- * 3. 管理管线执行状态
- * 4. 确保管线的正确执行
- * 5. 提供错误检测和处理
- */
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1803211e0(longlong param_1)
 void FUN_1803211e0(longlong param_1)
 
 {
@@ -1772,25 +1084,11 @@ void FUN_1803211e0(longlong param_1)
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_8f8);
 }
 
-/*
- * 渲染系统同步渲染状态函数
- * 
- * 功能描述：
- * 同步渲染状态，确保状态的一致性
- * 
- * 参数：
- * - param_1: 状态同步上下文
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 同步渲染状态
- * 2. 处理状态同步结果
- * 3. 管理状态同步过程
- * 4. 确保状态的一致性
- * 5. 提供错误检测和处理
- */
+
+
+
+
+// 函数: void FUN_1803214c0(longlong param_1)
 void FUN_1803214c0(longlong param_1)
 
 {
@@ -1817,27 +1115,13 @@ void FUN_1803214c0(longlong param_1)
   return;
 }
 
-/*
- * 渲染系统更新渲染参数函数
- * 
- * 功能描述：
- * 更新渲染参数，动态调整渲染配置
- * 
- * 参数：
- * - param_1: 参数更新上下文
- * - param_2: 参数数据
- * - param_3: 参数值
- * 
- * 返回值：
- * 无
- * 
- * 技术说明：
- * 1. 更新渲染参数
- * 2. 处理参数更新结果
- * 3. 管理参数更新过程
- * 4. 确保参数的正确更新
- * 5. 提供错误检测和处理
- */
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180321570(longlong param_1,undefined4 *param_2,longlong param_3)
 void FUN_180321570(longlong param_1,undefined4 *param_2,longlong param_3)
 
 {
@@ -1912,3 +1196,10 @@ void FUN_180321570(longlong param_1,undefined4 *param_2,longlong param_3)
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar10,puVar5,puVar1,uVar8);
 }
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

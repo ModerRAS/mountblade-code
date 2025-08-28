@@ -1,1155 +1,1531 @@
-/**
- * @file 99_20_final_unmatched_sub001_sub001.c
- * @brief 最终未匹配函数集合模块 - 子模块001子模块001
- * 
- * 本文件包含系统中未分类到其他模块的最终匹配函数集合，
- * 这些函数可能包括：
- * - 系统底层工具函数
- * - 内存管理辅助函数
- * - 数据转换和处理函数
- * - 状态检查和控制函数
- * - 资源管理函数
- * - 配置处理函数
- * 
- * 该模块作为系统的补充部分，提供各种辅助功能支持。
- * 
- * @version 1.0
- * @date 2025-08-28
- * @author Claude Code
- */
+#include "TaleWorlds.Native.Split.h"
+
+// 99_20_final_unmatched_sub001_sub001.c - 89 个函数
 
 #include "TaleWorlds.Native.Split.h"
 
-/* ============================================================================
- * 系统常量定义
- * ============================================================================ */
-
-#define SYSTEM_SUCCESS 0x00000000                    // 系统操作成功
-#define SYSTEM_ERROR 0x00000001                      // 系统操作失败
-#define SYSTEM_INVALID_PARAM 0x00000002              // 无效参数
-#define SYSTEM_MEMORY_ERROR 0x00000003               // 内存错误
-#define SYSTEM_TIMEOUT 0x00000004                    // 超时错误
-#define SYSTEM_BUSY 0x00000005                        // 系统繁忙
-
-#define SYSTEM_BUFFER_SIZE_0x26 0x26                // 缓冲区大小0x26 (38字节)
-#define SYSTEM_BLOCK_SIZE_0x98 0x98                  // 块大小0x98 (152字节)
-#define SYSTEM_BLOCK_SIZE_0x58 0x58                  // 块大小0x58 (88字节)
-#define SYSTEM_BLOCK_SIZE_0x10 0x10                  // 块大小0x10 (16字节)
-#define SYSTEM_STRING_SIZE_0x80 0x80                // 字符串大小0x80 (128字节)
-#define SYSTEM_ALLOC_SIZE_0x13 0x13                   // 分配大小0x13 (19字节)
-
-/* ============================================================================
- * 内存偏移量定义
- * ============================================================================ */
-
-#define SYSTEM_OFFSET_0x10 0x10                      // 偏移量0x10 (16字节)
-#define SYSTEM_OFFSET_0x18 0x18                      // 偏移量0x18 (24字节)
-#define SYSTEM_OFFSET_0x20 0x20                      // 偏移量0x20 (32字节)
-#define SYSTEM_OFFSET_0x28 0x28                      // 偏移量0x28 (40字节)
-#define SYSTEM_OFFSET_0x30 0x30                      // 偏移量0x30 (48字节)
-#define SYSTEM_OFFSET_0x38 0x38                      // 偏移量0x38 (56字节)
-#define SYSTEM_OFFSET_0x40 0x40                      // 偏移量0x40 (64字节)
-#define SYSTEM_OFFSET_0xd8 0xd8                      // 偏移量0xd8 (216字节)
-#define SYSTEM_OFFSET_0xdc 0xdc                      // 偏移量0xdc (220字节)
-#define SYSTEM_OFFSET_0xe0 0xe0                      // 偏移量0xe0 (224字节)
-#define SYSTEM_OFFSET_0x178 0x178                    // 偏移量0x178 (376字节)
-#define SYSTEM_OFFSET_0x180 0x180                    // 偏移量0x180 (384字节)
-#define SYSTEM_OFFSET_0x188 0x188                    // 偏移量0x188 (392字节)
-
-/* ============================================================================
- * 类型别名定义
- * ============================================================================ */
-
-// 系统基础类型别名
-typedef undefined8 SystemHandle;                    // 系统句柄类型
-typedef undefined8 DataBuffer;                      // 数据缓冲区类型
-typedef undefined8 ResourceHandle;                  // 资源句柄类型
-typedef undefined8 ConfigHandle;                    // 配置句柄类型
-typedef undefined8 StateHandle;                     // 状态句柄类型
-typedef undefined8 FunctionPtr;                     // 函数指针类型
-
-// 数据处理类型别名
-typedef undefined4 DataSize;                        // 数据大小类型
-typedef undefined4 StatusCode;                      // 状态码类型
-typedef undefined2 FlagType;                        // 标志类型
-typedef undefined1 ByteType;                        // 字节类型
-
-// 特殊数据类型别名
-typedef undefined1 CharType;                        // 字符类型
-typedef undefined8 PointerType;                     // 指针类型
-typedef undefined4 CounterType;                     // 计数器类型
-typedef undefined8 TimeStamp;                       // 时间戳类型
-
-/* ============================================================================
- * 系统状态枚举
- * ============================================================================ */
-
-/**
- * @brief 系统操作状态枚举
- */
-typedef enum {
-    SYSTEM_STATE_IDLE = 0x00000000,                 // 系统空闲状态
-    SYSTEM_STATE_READY = 0x00000001,                // 系统就绪状态
-    SYSTEM_STATE_BUSY = 0x00000002,                 // 系统繁忙状态
-    SYSTEM_STATE_ERROR = 0x00000004,                // 系统错误状态
-    SYSTEM_STATE_INIT = 0x00000008,                 // 系统初始化状态
-    SYSTEM_STATE_ACTIVE = 0x00000010,               // 系统激活状态
-    SYSTEM_STATE_SHUTDOWN = 0x00000020              // 系统关闭状态
-} SystemState;
-
-/**
- * @brief 系统标志枚举
- */
-typedef enum {
-    SYSTEM_FLAG_NONE = 0x00000000,                  // 无标志
-    SYSTEM_FLAG_INITIALIZED = 0x00000001,          // 系统已初始化
-    SYSTEM_FLAG_ENABLED = 0x00000002,              // 系统已启用
-    SYSTEM_FLAG_ACTIVE = 0x00000004,               // 系统活跃标志
-    SYSTEM_FLAG_VALID = 0x00000008,                // 系统有效标志
-    SYSTEM_FLAG_CONFIGURED = 0x00000010,           // 系统已配置
-    SYSTEM_FLAG_LOCKED = 0x00000020,               // 系统已锁定
-    SYSTEM_FLAG_READONLY = 0x00000040              // 系统只读标志
-} SystemFlags;
-
-/**
- * @brief 系统错误码枚举
- */
-typedef enum {
-    SYSTEM_ERROR_NONE = 0,                          // 无错误
-    SYSTEM_ERROR_INVALID = -1,                       // 无效参数
-    SYSTEM_ERROR_MEMORY = -2,                       // 内存错误
-    SYSTEM_ERROR_TIMEOUT = -3,                       // 超时错误
-    SYSTEM_ERROR_STATE = -4,                        // 状态错误
-    SYSTEM_ERROR_RESOURCE = -5,                     // 资源错误
-    SYSTEM_ERROR_PERMISSION = -6,                   // 权限错误
-    SYSTEM_ERROR_NOT_FOUND = -7,                     // 未找到错误
-    SYSTEM_ERROR_ALREADY_EXISTS = -8,               // 已存在错误
-    SYSTEM_ERROR_NOT_SUPPORTED = -9,                // 不支持错误
-    SYSTEM_ERROR_UNKNOWN = -10                      // 未知错误
-} SystemError;
-
-/* ============================================================================
- * 系统结构体定义
- * ============================================================================ */
-
-/**
- * @brief 系统基础信息结构体
- */
-typedef struct {
-    SystemHandle handle;                             // 系统句柄
-    SystemState state;                               // 系统状态
-    SystemFlags flags;                               // 系统标志
-    DataBuffer *buffer;                              // 数据缓冲区指针
-    ResourceHandle resource;                         // 资源句柄
-    ConfigHandle config;                             // 配置句柄
-    TimeStamp timestamp;                             // 时间戳
-    StatusCode status;                               // 状态码
-} SystemInfo;
-
-/**
- * @brief 数据处理参数结构体
- */
-typedef struct {
-    DataBuffer *input_buffer;                        // 输入缓冲区
-    DataBuffer *output_buffer;                       // 输出缓冲区
-    DataSize input_size;                             // 输入数据大小
-    DataSize output_size;                            // 输出数据大小
-    PointerType user_data;                           // 用户数据指针
-    FunctionPtr callback;                            // 回调函数指针
-    SystemFlags flags;                               // 处理标志
-} DataProcessParams;
-
-/**
- * @brief 资源管理结构体
- */
-typedef struct {
-    ResourceHandle handle;                            // 资源句柄
-    PointerType resource_ptr;                        // 资源指针
-    DataSize resource_size;                          // 资源大小
-    CounterType ref_count;                           // 引用计数
-    SystemState state;                               // 资源状态
-    TimeStamp create_time;                           // 创建时间
-    TimeStamp access_time;                           // 访问时间
-} ResourceInfo;
-
-/**
- * @brief 配置管理结构体
- */
-typedef struct {
-    ConfigHandle handle;                             // 配置句柄
-    PointerType config_data;                         // 配置数据指针
-    DataSize config_size;                            // 配置数据大小
-    SystemFlags flags;                               // 配置标志
-    TimeStamp last_modified;                         // 最后修改时间
-    StatusCode status;                               // 配置状态
-} ConfigInfo;
-
-/* ============================================================================
- * 函数别名定义
- * ============================================================================ */
-
-// 系统基础函数别名
-#define SystemFunction1 FUN_1802ab7f0                // 系统函数1
-#define SystemFunction2 FUN_1802ab780                // 系统函数2
-#define SystemFunction3 FUN_1801b9690                // 系统函数3
-#define SystemFunction4 FUN_1802e5430                // 系统函数4
-#define SystemFunction5 FUN_1806d84a0                // 系统函数5
-
-// 数据处理函数别名
-#define DataProcessor1 FUN_1801b99e0                  // 数据处理器1
-#define DataProcessor2 FUN_1801bc9a0                  // 数据处理器2
-#define DataProcessor3 FUN_1801bc8d0                  // 数据处理器3
-#define DataProcessor4 FUN_1801bc6c0                  // 数据处理器4
-#define DataProcessor5 FUN_1801bc4e0                  // 数据处理器5
-
-// 资源管理函数别名
-#define ResourceManager1 FUN_1801bc5d0                // 资源管理器1
-#define ResourceManager2 FUN_1801bbc00                 // 资源管理器2
-#define ResourceManager3 FUN_1801c2890                // 资源管理器3
-#define ResourceManager4 FUN_1801b82f0                // 资源管理器4
-#define ResourceManager5 FUN_1801eb560                // 资源管理器5
-
-// 状态管理函数别名
-#define StateManager1 FUN_1801eb5a0                  // 状态管理器1
-#define StateManager2 FUN_1801e7680                  // 状态管理器2
-#define StateManager3 FUN_1801cfcb0                  // 状态管理器3
-#define StateManager4 FUN_1801cfcf0                  // 状态管理器4
-#define StateManager5 FUN_1801cfd30                  // 状态管理器5
-
-// 配置处理函数别名
-#define ConfigProcessor1 FUN_1801cfe20               // 配置处理器1
-#define ConfigProcessor2 FUN_1801cfab0                // 配置处理器2
-#define ConfigProcessor3 FUN_1801cfb90                // 配置处理器3
-#define ConfigProcessor4 FUN_1801eb1e0                // 配置处理器4
-#define ConfigProcessor5 FUN_1801ecb30                // 配置处理器5
-
-// 内存管理函数别名
-#define MemoryManager1 FUN_1801ecbb0                 // 内存管理器1
-#define MemoryManager2 FUN_1801eb0f0                 // 内存管理器2
-#define MemoryManager3 FUN_1801deed0                 // 内存管理器3
-#define MemoryManager4 FUN_1801eb320                 // 内存管理器4
-#define MemoryManager5 FUN_1801eb3d0                 // 内存管理器5
-
-// 工具函数别名
-#define UtilityFunction1 FUN_1803f5b70                // 工具函数1
-#define UtilityFunction2 FUN_1801f34f0                // 工具函数2
-#define UtilityFunction3 FUN_1801f9cf0                // 工具函数3
-#define UtilityFunction4 FUN_1801feca0               // 工具函数4
-#define UtilityFunction5 FUN_1802e51e0               // 工具函数5
-
-// 特殊处理函数别名
-#define SpecialFunction1 FUN_1801bbf00                // 特殊函数1
-#define SpecialFunction2 FUN_1801bbfb0                // 特殊函数2
-#define SpecialFunction3 FUN_1802ca760                // 特殊函数3
-#define SpecialFunction4 FUN_1802d9840                // 特殊函数4
-#define SpecialFunction5 FUN_1802d9930               // 特殊函数5
-
-/* ============================================================================
- * 全局变量声明
- * ============================================================================ */
-
-// 系统数据变量
-undefined DAT_180c8a9b8;                             // 系统数据缓冲区1
-undefined UNK_180a02bc8;                             // 未知系统数据1
-undefined UNK_180a02bb8;                             // 未知系统数据2
-undefined UNK_1800ea8b0;                             // 未知系统数据3
-undefined UNK_18014f510;                             // 未知系统数据4
-
-// 配置数据变量
-undefined UNK_1801b9c30;                             // 配置数据1
-undefined UNK_180a0b1d8;                             // 配置数据2
-undefined UNK_180a0b1f0;                             // 配置数据3
-undefined UNK_180a0c4a0;                             // 配置数据4
-
-// 资源管理变量
-undefined UNK_1801bca00;                             // 资源数据1
-undefined UNK_1801bca40;                             // 资源数据2
-undefined UNK_1801bca50;                             // 资源数据3
-undefined UNK_180a0c118;                             // 资源数据4
-undefined UNK_180a0c148;                             // 资源数据5
-undefined UNK_180a0c178;                             // 资源数据6
-
-// 状态管理变量
-undefined UNK_180a0b200;                             // 状态数据1
-undefined UNK_180a0b258;                             // 状态数据2
-undefined UNK_180a0b220;                             // 状态数据3
-undefined UNK_180a0c460;                             // 状态数据4
-undefined UNK_180a0c480;                             // 状态数据5
-
-// 系统常量变量
-undefined DAT_180a00300;                             // 系统常量1
-undefined UNK_180a0b290;                             // 系统常量2
-undefined UNK_180993550;                             // 系统常量3
-undefined UNK_180a0b2a8;                             // 系统常量4
-undefined UNK_180a0b2b4;                             // 系统常量5
-
-/* ============================================================================
- * 核心函数实现
- * ============================================================================ */
-
-/**
- * @brief 系统基础功能函数1
- * 
- * 该函数提供系统的基础功能支持，可能包括：
- * - 系统初始化检查
- * - 基础参数验证
- * - 系统状态查询
- * - 基础资源分配
- * 
- * @return undefined8 返回操作结果状态码
- */
-undefined SystemFunction1(void) {
-    // 函数实现由原始代码提供
-    // 具体功能需要进一步分析
-    return FUN_1802ab7f0();
-}
-
-/**
- * @brief 系统基础功能函数2
- * 
- * 该函数提供系统的第二组基础功能，可能包括：
- * - 系统配置处理
- * - 状态更新操作
- * - 资源管理辅助
- * - 错误处理支持
- * 
- * @return undefined8 返回操作结果状态码
- */
-undefined SystemFunction2(void) {
-    // 函数实现由原始代码提供
-    // 具体功能需要进一步分析
-    return FUN_1802ab780();
-}
-
-/**
- * @brief 系统基础功能函数3
- * 
- * 该函数提供系统的第三组基础功能，可能包括：
- * - 数据结构操作
- * - 内存管理辅助
- * - 系统调用支持
- * - 调试功能支持
- * 
- * @return undefined8 返回操作结果状态码
- */
-undefined SystemFunction3(void) {
-    // 函数实现由原始代码提供
-    // 具体功能需要进一步分析
-    return FUN_1801b9690();
-}
-
-/**
- * @brief 系统基础功能函数4
- * 
- * 该函数提供系统的第四组基础功能，可能包括：
- * - 高级数据处理
- * - 复杂状态管理
- * - 系统优化操作
- * - 性能监控支持
- * 
- * @return undefined8 返回操作结果状态码
- */
-undefined SystemFunction4(void) {
-    // 函数实现由原始代码提供
-    // 具体功能需要进一步分析
-    return FUN_1802e5430();
-}
-
-/**
- * @brief 系统基础功能函数5
- * 
- * 该函数提供系统的第五组基础功能，可能包括：
- * - 特殊系统操作
- * - 关键资源处理
- * - 系统安全检查
- * - 紧急处理支持
- * 
- * @return undefined8 返回操作结果状态码
- */
-undefined SystemFunction5(void) {
-    // 函数实现由原始代码提供
-    // 具体功能需要进一步分析
-    return FUN_1806d84a0();
-}
-
-/* ============================================================================
- * 数据处理函数实现
- * ============================================================================ */
-
-/**
- * @brief 数据处理器函数1
- * 
- * 该函数提供核心数据处理功能，可能包括：
- * - 数据格式转换
- * - 数据验证检查
- * - 数据压缩/解压缩
- * - 数据加密/解密
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined DataProcessor1(void) {
-    // 函数实现由原始代码提供
-    // 处理系统核心数据操作
-    return FUN_1801b99e0();
-}
-
-/**
- * @brief 数据处理器函数2
- * 
- * 该函数提供高级数据处理功能，可能包括：
- * - 批量数据处理
- * - 流式数据处理
- * - 数据过滤和清洗
- * - 数据聚合操作
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined DataProcessor2(void) {
-    // 函数实现由原始代码提供
-    // 处理高级数据操作
-    return FUN_1801bc9a0();
-}
-
-/**
- * @brief 数据处理器函数3
- * 
- * 该函数提供特殊数据处理功能，可能包括：
- * - 实时数据处理
- * - 缓存数据处理
- * - 数据同步操作
- * - 数据备份和恢复
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined DataProcessor3(void) {
-    // 函数实现由原始代码提供
-    // 处理特殊数据操作
-    return FUN_1801bc8d0();
-}
-
-/**
- * @brief 数据处理器函数4
- * 
- * 该函数提供优化数据处理功能，可能包括：
- * - 数据压缩优化
- * - 数据传输优化
- * - 数据存储优化
- * - 数据访问优化
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined DataProcessor4(void) {
-    // 函数实现由原始代码提供
-    // 处理优化数据操作
-    return FUN_1801bc6c0();
-}
-
-/**
- * @brief 数据处理器函数5
- * 
- * 该函数提供辅助数据处理功能，可能包括：
- * - 数据格式化
- * - 数据解析
- * - 数据序列化
- * - 数据反序列化
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined DataProcessor5(void) {
-    // 函数实现由原始代码提供
-    // 处理辅助数据操作
-    return FUN_1801bc4e0();
-}
-
-/* ============================================================================
- * 资源管理函数实现
- * ============================================================================ */
-
-/**
- * @brief 资源管理器函数1
- * 
- * 该函数提供核心资源管理功能，可能包括：
- * - 资源分配和释放
- * - 资源引用计数管理
- * - 资源状态监控
- * - 资源池管理
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined ResourceManager1(void) {
-    // 函数实现由原始代码提供
-    // 管理系统核心资源
-    return FUN_1801bc5d0();
-}
-
-/**
- * @brief 资源管理器函数2
- * 
- * 该函数提供高级资源管理功能，可能包括：
- * - 资源生命周期管理
- * - 资源依赖关系管理
- * - 资源优先级管理
- * - 资源调度优化
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined ResourceManager2(void) {
-    // 函数实现由原始代码提供
-    // 管理系统高级资源
-    return FUN_1801bbc00();
-}
-
-/**
- * @brief 资源管理器函数3
- * 
- * 该函数提供特殊资源管理功能，可能包括：
- * - 共享资源管理
- * - 专用资源管理
- * - 临时资源管理
- * - 持久化资源管理
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined ResourceManager3(void) {
-    // 函数实现由原始代码提供
-    // 管理系统特殊资源
-    return FUN_1801c2890();
-}
-
-/**
- * @brief 资源管理器函数4
- * 
- * 该函数提供资源监控功能，可能包括：
- * - 资源使用统计
- * - 资源性能监控
- * - 资源异常检测
- * - 资源报告生成
- * 
- * @return undefined8 返回监控结果状态码
- */
-undefined ResourceManager4(void) {
-    // 函数实现由原始代码提供
-    // 监控系统资源状态
-    return FUN_1801b82f0();
-}
-
-/**
- * @brief 资源管理器函数5
- * 
- * 该函数提供资源清理功能，可能包括：
- * - 资源垃圾回收
- * - 资源内存清理
- * - 资源句柄清理
- * - 资源状态重置
- * 
- * @return undefined8 返回清理结果状态码
- */
-undefined ResourceManager5(void) {
-    // 函数实现由原始代码提供
-    // 清理系统资源
-    return FUN_1801eb560();
-}
-
-/* ============================================================================
- * 状态管理函数实现
- * ============================================================================ */
-
-/**
- * @brief 状态管理器函数1
- * 
- * 该函数提供核心状态管理功能，可能包括：
- * - 状态初始化和设置
- * - 状态查询和获取
- * - 状态变更通知
- * - 状态同步操作
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined StateManager1(void) {
-    // 函数实现由原始代码提供
-    // 管理系统核心状态
-    return FUN_1801eb5a0();
-}
-
-/**
- * @brief 状态管理器函数2
- * 
- * 该函数提供高级状态管理功能，可能包括：
- * - 状态机管理
- * - 状态转换控制
- * - 状态历史记录
- * - 状态回滚操作
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined StateManager2(void) {
-    // 函数实现由原始代码提供
-    // 管理系统高级状态
-    return FUN_1801e7680();
-}
-
-/**
- * @brief 状态管理器函数3
- * 
- * 该函数提供状态检查功能，可能包括：
- * - 状态一致性检查
- * - 状态有效性验证
- * - 状态冲突检测
- * - 状态完整性检查
- * 
- * @return undefined8 返回检查结果状态码
- */
-undefined StateManager3(void) {
-    // 函数实现由原始代码提供
-    // 检查系统状态
-    return FUN_1801cfcb0();
-}
-
-/**
- * @brief 状态管理器函数4
- * 
- * 该函数提供状态更新功能，可能包括：
- * - 状态批量更新
- * - 状态条件更新
- * - 状态优先级更新
- * - 状态异步更新
- * 
- * @return undefined8 返回更新结果状态码
- */
-undefined StateManager4(void) {
-    // 函数实现由原始代码提供
-    // 更新系统状态
-    return FUN_1801cfcf0();
-}
-
-/**
- * @brief 状态管理器函数5
- * 
- * 该函数提供状态恢复功能，可能包括：
- * - 状态备份恢复
- * - 状态错误恢复
- * - 状态版本恢复
- * - 状态快照恢复
- * 
- * @return undefined8 返回恢复结果状态码
- */
-undefined StateManager5(void) {
-    // 函数实现由原始代码提供
-    // 恢复系统状态
-    return FUN_1801cfd30();
-}
-
-/* ============================================================================
- * 配置处理函数实现
- * ============================================================================ */
-
-/**
- * @brief 配置处理器函数1
- * 
- * 该函数提供核心配置处理功能，可能包括：
- * - 配置文件解析
- * - 配置参数验证
- * - 配置数据加载
- * - 配置格式转换
- * 
- * @return undefined8 返回处理结果状态码
- */
-undefined ConfigProcessor1(void) {
-    // 函数实现由原始代码提供
-    // 处理系统核心配置
-    return FUN_1801cfe20();
-}
-
-/**
- * @brief 配置处理器函数2
- * 
- * 该函数提供配置管理功能，可能包括：
- * - 配置项管理
- * - 配置版本控制
- * - 配置冲突解决
- * - 配置优化建议
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined ConfigProcessor2(void) {
-    // 函数实现由原始代码提供
-    // 管理系统配置
-    return FUN_1801cfab0();
-}
-
-/**
- * @brief 配置处理器函数3
- * 
- * 该函数提供配置应用功能，可能包括：
- * - 配置实时应用
- * - 配置热更新
- * - 配置回滚操作
- * - 配置测试验证
- * 
- * @return undefined8 返回应用结果状态码
- */
-undefined ConfigProcessor3(void) {
-    // 函数实现由原始代码提供
-    // 应用系统配置
-    return FUN_1801cfb90();
-}
-
-/**
- * @brief 配置处理器函数4
- * 
- * 该函数提供配置同步功能，可能包括：
- * - 配置多节点同步
- * - 配置一致性保证
- * - 配置冲突检测
- * - 配置状态同步
- * 
- * @return undefined8 返回同步结果状态码
- */
-undefined ConfigProcessor4(void) {
-    // 函数实现由原始代码提供
-    // 同步系统配置
-    return FUN_1801eb1e0();
-}
-
-/**
- * @brief 配置处理器函数5
- * 
- * 该函数提供配置备份功能，可能包括：
- * - 配置自动备份
- * - 配置版本备份
- * - 配置增量备份
- * - 配置恢复备份
- * 
- * @return undefined8 返回备份结果状态码
- */
-undefined ConfigProcessor5(void) {
-    // 函数实现由原始代码提供
-    // 备份系统配置
-    return FUN_1801ecb30();
-}
-
-/* ============================================================================
- * 内存管理函数实现
- * ============================================================================ */
-
-/**
- * @brief 内存管理器函数1
- * 
- * 该函数提供核心内存管理功能，可能包括：
- * - 内存分配和释放
- * - 内存池管理
- * - 内存碎片整理
- * - 内存使用统计
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined MemoryManager1(void) {
-    // 函数实现由原始代码提供
-    // 管理系统核心内存
-    return FUN_1801ecbb0();
-}
-
-/**
- * @brief 内存管理器函数2
- * 
- * 该函数提供高级内存管理功能，可能包括：
- * - 内存映射管理
- * - 内存保护机制
- * - 内存访问控制
- * - 内存性能优化
- * 
- * @return undefined8 返回管理结果状态码
- */
-undefined MemoryManager2(void) {
-    // 函数实现由原始代码提供
-    // 管理系统高级内存
-    return FUN_1801eb0f0();
-}
-
-/**
- * @brief 内存管理器函数3
- * 
- * 该函数提供内存监控功能，可能包括：
- * - 内存使用监控
- * - 内存泄漏检测
- * - 内存性能分析
- * - 内存异常报告
- * 
- * @return undefined8 返回监控结果状态码
- */
-undefined MemoryManager3(void) {
-    // 函数实现由原始代码提供
-    // 监控系统内存使用
-    return FUN_1801deed0();
-}
-
-/**
- * @brief 内存管理器函数4
- * 
- * 该函数提供内存优化功能，可能包括：
- * - 内存分配优化
- * - 内存访问优化
- * - 内存缓存优化
- * - 内存回收优化
- * 
- * @return undefined8 返回优化结果状态码
- */
-undefined MemoryManager4(void) {
-    // 函数实现由原始代码提供
-    // 优化系统内存使用
-    return FUN_1801eb320();
-}
-
-/**
- * @brief 内存管理器函数5
- * 
- * 该函数提供内存清理功能，可能包括：
- * - 内存垃圾回收
- * - 内存碎片清理
- * - 内存无效数据清理
- * - 内存状态重置
- * 
- * @return undefined8 返回清理结果状态码
- */
-undefined MemoryManager5(void) {
-    // 函数实现由原始代码提供
-    // 清理系统内存
-    return FUN_1801eb3d0();
-}
-
-/* ============================================================================
- * 工具函数实现
- * ============================================================================ */
-
-/**
- * @brief 工具函数1
- * 
- * 该函数提供系统工具功能，可能包括：
- * - 系统信息获取
- * - 系统诊断工具
- * - 系统测试工具
- * - 系统调试工具
- * 
- * @return undefined8 返回工具操作结果状态码
- */
-undefined UtilityFunction1(void) {
-    // 函数实现由原始代码提供
-    // 提供系统工具功能
-    return FUN_1803f5b70();
-}
-
-/**
- * @brief 工具函数2
- * 
- * 该函数提供数据处理工具，可能包括：
- * - 数据格式化工具
- * - 数据转换工具
- * - 数据验证工具
- * - 数据分析工具
- * 
- * @return undefined8 返回工具操作结果状态码
- */
-undefined UtilityFunction2(void) {
-    // 函数实现由原始代码提供
-    // 提供数据处理工具
-    return FUN_1801f34f0();
-}
-
-/**
- * @brief 工具函数3
- * 
- * 该函数提供性能分析工具，可能包括：
- * - 性能计数器
- * - 性能分析器
- * - 性能优化器
- * - 性能报告器
- * 
- * @return undefined8 返回工具操作结果状态码
- */
-undefined UtilityFunction3(void) {
-    // 函数实现由原始代码提供
-    // 提供性能分析工具
-    return FUN_1801f9cf0();
-}
-
-/**
- * @brief 工具函数4
- * 
- * 该函数提供网络工具，可能包括：
- * - 网络连接工具
- * - 网络测试工具
- * - 网络监控工具
- * - 网络诊断工具
- * 
- * @return undefined8 返回工具操作结果状态码
- */
-undefined UtilityFunction4(void) {
-    // 函数实现由原始代码提供
-    // 提供网络工具功能
-    return FUN_1801feca0();
-}
-
-/**
- * @brief 工具函数5
- * 
- * 该函数提供安全工具，可能包括：
- * - 安全验证工具
- * - 加密解密工具
- * - 访问控制工具
- * - 安全审计工具
- * 
- * @return undefined8 返回工具操作结果状态码
- */
-undefined UtilityFunction5(void) {
-    // 函数实现由原始代码提供
-    // 提供安全工具功能
-    return FUN_1802e51e0();
-}
-
-/* ============================================================================
- * 特殊处理函数实现
- * ============================================================================ */
-
-/**
- * @brief 特殊处理函数1
- * 
- * 该函数提供特殊系统功能，可能包括：
- * - 系统特殊操作
- * - 硬件交互功能
- * - 底层系统调用
- * - 特殊设备驱动
- * 
- * @return undefined8 返回特殊处理结果状态码
- */
-undefined SpecialFunction1(void) {
-    // 函数实现由原始代码提供
-    // 处理特殊系统操作
-    return FUN_1801bbf00();
-}
-
-/**
- * @brief 特殊处理函数2
- * 
- * 该函数提供紧急处理功能，可能包括：
- * - 系统紧急恢复
- * - 错误紧急处理
- * - 数据紧急恢复
- * - 服务紧急重启
- * 
- * @return undefined8 返回紧急处理结果状态码
- */
-undefined SpecialFunction2(void) {
-    // 函数实现由原始代码提供
-    // 处理紧急情况
-    return FUN_1801bbfb0();
-}
-
-/**
- * @brief 特殊处理函数3
- * 
- * 该函数提供调试功能，可能包括：
- * - 调试信息输出
- * - 调试状态控制
- * - 调试数据收集
- * - 调试报告生成
- * 
- * @return undefined8 返回调试处理结果状态码
- */
-undefined SpecialFunction3(void) {
-    // 函数实现由原始代码提供
-    // 处理调试功能
-    return FUN_1802ca760();
-}
-
-/**
- * @brief 特殊处理函数4
- * 
- * 该函数提供测试功能，可能包括：
- * - 系统自测试
- * - 单元测试
- * - 集成测试
- * - 性能测试
- * 
- * @return undefined8 返回测试处理结果状态码
- */
-undefined SpecialFunction4(void) {
-    // 函数实现由原始代码提供
-    // 处理测试功能
-    return FUN_1802d9840();
-}
-
-/**
- * @brief 特殊处理函数5
- * 
- * 该函数提供维护功能，可能包括：
- * - 系统维护
- * - 数据维护
- * - 配置维护
- * - 日志维护
- * 
- * @return undefined8 返回维护处理结果状态码
- */
-undefined SpecialFunction5(void) {
-    // 函数实现由原始代码提供
-    // 处理维护功能
-    return FUN_1802d9930();
-}
-
-/* ============================================================================
- * 模块说明和技术文档
- * ============================================================================ */
-
-/**
- * @file 技术说明文档
- * 
- * ## 模块概述
- * 
- * 本模块是TaleWorlds.Native系统的最终未匹配函数集合模块，
- * 包含了89个核心函数，提供系统级的辅助功能支持。
- * 
- * ## 主要功能特性
- * 
- * ### 1. 系统基础功能 (5个函数)
- * - 系统初始化和配置
- * - 基础参数验证
- * - 系统状态管理
- * - 错误处理机制
- * - 资源分配管理
- * 
- * ### 2. 数据处理功能 (5个函数)
- * - 数据格式转换
- * - 数据验证和清洗
- * - 数据压缩和加密
- * - 数据流处理
- * - 数据序列化支持
- * 
- * ### 3. 资源管理功能 (5个函数)
- * - 资源生命周期管理
- * - 资源池管理
- * - 资源监控和统计
- * - 资源优化调度
- * - 资源清理和回收
- * 
- * ### 4. 状态管理功能 (5个函数)
- * - 状态机管理
- * - 状态同步和一致性
- * - 状态检查和验证
- * - 状态历史记录
- * - 状态恢复机制
- * 
- * ### 5. 配置处理功能 (5个函数)
- * - 配置文件解析
- * - 配置版本控制
- * - 配置热更新
- * - 配置同步机制
- * - 配置备份恢复
- * 
- * ### 6. 内存管理功能 (5个函数)
- * - 内存分配和释放
- * - 内存池管理
- * - 内存监控和优化
- * - 内存保护机制
- * - 内存清理回收
- * 
- * ### 7. 工具功能 (5个函数)
- * - 系统诊断工具
- * - 数据处理工具
- * - 性能分析工具
- * - 网络工具
- * - 安全工具
- * 
- * ### 8. 特殊处理功能 (5个函数)
- * - 硬件交互功能
- * - 紧急处理机制
- * - 调试支持
- * - 测试框架
- * - 系统维护
- * 
- * ## 技术架构
- * 
- * ### 设计原则
- * - **模块化设计**: 每个功能模块独立，便于维护和扩展
- * - **错误处理**: 完善的错误检测和恢复机制
- * - **性能优化**: 针对高频操作进行性能优化
- * - **资源管理**: 智能的资源分配和回收策略
- * - **状态一致性**: 保证系统状态的一致性和可靠性
- * 
- * ### 数据结构
- * - 使用结构体封装复杂的系统信息
- * - 采用枚举类型提高代码可读性
- * - 通过类型别名增强代码可维护性
- * - 全局变量提供系统级数据支持
- * 
- * ### 内存管理策略
- * - 引用计数管理资源生命周期
- * - 内存池技术减少分配开销
- * - 垃圾回收机制处理无效内存
- * - 内存保护防止非法访问
- * 
- * ### 性能优化技术
- * - 缓存优化提高访问速度
- * - 批处理减少系统调用
- * - 异步处理提高响应性
- * - 内存预分配避免动态分配
- * 
- * ## 使用说明
- * 
- * ### 函数调用规范
- * 1. 检查函数返回值确认操作结果
- * 2. 合理处理错误状态和异常情况
- * 3. 遵循资源分配和释放的配对原则
- * 4. 注意线程安全和并发访问
- * 
- * ### 错误处理机制
- * - 使用状态码指示操作结果
- * - 提供详细的错误信息
- * - 支持错误恢复和重试
- * - 记录错误日志用于调试
- * 
- * ### 资源管理建议
- * - 及时释放不再使用的资源
- * - 避免资源泄漏和内存泄漏
- * - 合理使用资源池提高效率
- * - 注意资源的线程安全性
- * 
- * ## 维护和扩展
- * 
- * ### 代码维护
- * - 保持函数接口的稳定性
- * - 遵循命名规范和代码风格
- * - 提供详细的注释和文档
- * - 定期进行代码审查和重构
- * 
- * ### 功能扩展
- * - 通过函数别名保持向后兼容
- * - 新增功能时考虑现有架构
- * - 避免破坏性变更
- * - 提供迁移指南和兼容性说明
- * 
- * ## 安全考虑
- * 
- * ### 数据安全
- * - 敏感数据加密存储
- * - 输入数据验证和过滤
- * - 防止缓冲区溢出
- * - 安全的内存操作
- * 
- * ### 访问控制
- * - 资源访问权限检查
- * - 函数调用权限验证
- * - 操作日志记录
- * - 异常访问检测
- * 
- * ### 错误处理
- * - 安全的错误处理机制
- * - 防止信息泄露
- * - 优雅的错误恢复
- * - 系统稳定性保证
- * 
- * ## 总结
- * 
- * 本模块作为系统的辅助功能集合，提供了全面的基础服务支持。
- * 通过合理的架构设计和优化策略，确保了系统的高效性、
- * 可靠性和可维护性。该模块是整个系统正常运行的
- * 重要基础组件。
- */
+// 99_20_final_unmatched_sub001.c - 92 个函数
+
+#include "TaleWorlds.Native.Split.h"
+
+// 最终未分类函数
+
+
+
+// 函数: undefined FUN_1802ab7f0;
+undefined FUN_1802ab7f0;
+
+
+
+
+// 函数: undefined FUN_1802ab780;
+undefined FUN_1802ab780;
+undefined DAT_180c8a9b8;
+undefined UNK_180a02bc8;
+undefined UNK_180a02bb8;
+
+
+
+
+// 函数: undefined FUN_1801b9690;
+undefined FUN_1801b9690;
+
+
+
+
+// 函数: undefined FUN_1802e5430;
+undefined FUN_1802e5430;
+undefined UNK_1800ea8b0;
+
+
+
+
+// 函数: undefined FUN_1806d84a0;
+undefined FUN_1806d84a0;
+undefined UNK_18014f510;
+
+
+
+
+// 函数: undefined FUN_1801b99e0;
+undefined FUN_1801b99e0;
+undefined UNK_1801b9c30;
+undefined UNK_180a0b1d8;
+undefined UNK_180a0b1f0;
+undefined UNK_180a0c4a0;
+
+
+
+
+// 函数: undefined FUN_1801bc9a0;
+undefined FUN_1801bc9a0;
+undefined UNK_1801bca00;
+undefined UNK_1801bca40;
+undefined UNK_1801bca50;
+undefined UNK_180a0c118;
+undefined UNK_180a0c148;
+undefined UNK_180a0c178;
+undefined UNK_180a0b200;
+undefined UNK_180a0b258;
+undefined UNK_180a0b220;
+undefined UNK_180a0c460;
+undefined UNK_180a0c480;
+undefined DAT_180a00300;
+undefined UNK_180a0b290;
+undefined UNK_180993550;
+undefined UNK_180a0b2a8;
+undefined UNK_180a0b2b4;
+
+
+
+
+// 函数: undefined FUN_1801bc8d0;
+undefined FUN_1801bc8d0;
+undefined UNK_1801bc880;
+undefined UNK_1801bc890;
+undefined UNK_1801bc960;
+undefined UNK_180a0c2b8;
+undefined UNK_180a0c348;
+undefined UNK_180a0c3d8;
+undefined UNK_180a21cc8;
+undefined UNK_180a0b2e0;
+undefined UNK_180a0b2e8;
+undefined UNK_180a0b2f0;
+undefined UNK_180a0b300;
+undefined UNK_180a0b310;
+undefined UNK_180a0b318;
+undefined UNK_180a0b338;
+undefined UNK_18031c220;
+undefined UNK_1809fd0c0;
+undefined UNK_180a068d0;
+undefined UNK_180a0b328;
+
+
+
+
+// 函数: undefined FUN_1801bc6c0;
+undefined FUN_1801bc6c0;
+undefined UNK_1801bc580;
+undefined UNK_1801bc5c0;
+undefined UNK_180a0b6c8;
+
+
+
+
+// 函数: undefined FUN_1801bc4e0;
+undefined FUN_1801bc4e0;
+
+
+
+
+// 函数: undefined FUN_1801bc5d0;
+undefined FUN_1801bc5d0;
+undefined UNK_180a0b6a0;
+undefined UNK_1801bc290;
+
+
+
+
+// 函数: undefined FUN_1801bbc00;
+undefined FUN_1801bbc00;
+undefined UNK_180a0b850;
+undefined UNK_180a0b880;
+undefined UNK_180a0c240;
+undefined UNK_180a0c228;
+undefined UNK_180a0b8a8;
+undefined UNK_1801bbd20;
+undefined UNK_1801bbcd0;
+undefined UNK_1801bbce0;
+undefined UNK_180a0b978;
+undefined UNK_180a049a0;
+undefined UNK_180a0c1a8;
+undefined UNK_180a0b780;
+undefined UNK_180a0ba68;
+undefined UNK_180a0ba88;
+undefined UNK_180a0ba98;
+undefined UNK_180a1a2f0;
+undefined UNK_180a24700;
+
+
+
+
+// 函数: undefined FUN_1801c2890;
+undefined FUN_1801c2890;
+undefined UNK_180a0c038;
+
+
+
+
+// 函数: undefined FUN_1801b82f0;
+undefined FUN_1801b82f0;
+undefined DAT_180a40110;
+undefined DAT_180a400e0;
+
+
+
+
+// 函数: undefined FUN_1801eb560;
+undefined FUN_1801eb560;
+undefined UNK_180a0cf50;
+
+
+
+
+// 函数: undefined FUN_1801eb5a0;
+undefined FUN_1801eb5a0;
+undefined UNK_180a0cea0;
+undefined UNK_180a0cf60;
+undefined UNK_180a0cf4c;
+undefined UNK_180a0cfa0;
+
+
+
+
+// 函数: undefined FUN_1801e7680;
+undefined FUN_1801e7680;
+undefined UNK_180a0d348;
+undefined UNK_180a0d350;
+undefined UNK_180a0d370;
+undefined UNK_180a0d388;
+undefined UNK_180a0d3a0;
+undefined UNK_180a0d3a8;
+undefined UNK_180a0d3b0;
+undefined UNK_180a0d3c4;
+undefined UNK_180a0d3dc;
+undefined UNK_180a0d3c8;
+undefined UNK_180a04998;
+undefined UNK_180a0d520;
+
+
+
+
+// 函数: undefined FUN_1801cfcb0;
+undefined FUN_1801cfcb0;
+
+
+
+
+// 函数: undefined FUN_1801cfcf0;
+undefined FUN_1801cfcf0;
+
+
+
+
+// 函数: undefined FUN_1801cfd30;
+undefined FUN_1801cfd30;
+
+
+
+
+// 函数: undefined FUN_1801cfe20;
+undefined FUN_1801cfe20;
+
+
+
+
+// 函数: undefined FUN_1801cfab0;
+undefined FUN_1801cfab0;
+
+
+
+
+// 函数: undefined FUN_1801cfb90;
+undefined FUN_1801cfb90;
+undefined UNK_180a0d530;
+undefined UNK_180a0d548;
+undefined UNK_180a0d5f8;
+undefined UNK_180a0d5fc;
+undefined UNK_180a0d604;
+undefined UNK_180a0d608;
+undefined UNK_180a0d610;
+undefined DAT_180a0d648;
+undefined UNK_180a0d658;
+undefined UNK_180a0d8e0;
+
+
+
+
+// 函数: undefined FUN_1801eb1e0;
+undefined FUN_1801eb1e0;
+undefined UNK_1801eb1d0;
+undefined UNK_180a0d980;
+undefined UNK_180a0d9b8;
+
+
+
+
+// 函数: undefined FUN_1801ecb30;
+undefined FUN_1801ecb30;
+undefined UNK_180a0d920;
+
+
+
+
+// 函数: undefined FUN_1801ecbb0;
+undefined FUN_1801ecbb0;
+undefined UNK_180a0d938;
+undefined UNK_180a0d958;
+undefined UNK_180a0d968;
+undefined UNK_180a0d9ec;
+undefined UNK_180a0d9f0;
+undefined UNK_180a0e090;
+undefined DAT_180a0d5b8;
+undefined DAT_180a0d5d0;
+undefined UNK_180a0da38;
+
+
+
+
+// 函数: undefined FUN_1801eb0f0;
+undefined FUN_1801eb0f0;
+undefined UNK_1801eb0e0;
+undefined DAT_180a0e020;
+undefined UNK_180a03740;
+undefined UNK_180a04ed0;
+undefined UNK_180a0da08;
+undefined UNK_180a0da70;
+undefined UNK_180a0da88;
+undefined UNK_180a0da98;
+undefined UNK_180a0dab0;
+undefined UNK_180a0dac8;
+undefined UNK_180a0dae0;
+undefined UNK_180a0daf8;
+undefined UNK_180a0db08;
+undefined UNK_180a0db28;
+undefined UNK_180a0db40;
+undefined UNK_180a0db58;
+undefined UNK_180a0db70;
+undefined UNK_180a0db88;
+undefined UNK_180a0dba0;
+undefined UNK_180a0dbb8;
+undefined UNK_180a0dbd0;
+undefined UNK_180a0dbf0;
+undefined UNK_180a0dc08;
+undefined UNK_180a0dc18;
+undefined UNK_180a0dc38;
+undefined UNK_180a0dc58;
+undefined UNK_180a0dc68;
+undefined UNK_180a0dc80;
+undefined UNK_180a0dc90;
+undefined UNK_180a0dca0;
+undefined DAT_180a0ce08;
+undefined DAT_180a0cf7c;
+undefined DAT_180a0cfc8;
+undefined UNK_180a0dcb8;
+undefined UNK_180a0dee8;
+undefined UNK_180a0dd40;
+undefined UNK_180a25f28;
+
+
+
+
+// 函数: undefined FUN_1801deed0;
+undefined FUN_1801deed0;
+undefined UNK_1801eb090;
+undefined UNK_1801eb0a0;
+undefined UNK_180a0dda8;
+undefined UNK_180a0dde0;
+undefined UNK_180a0ddf8;
+undefined UNK_180a0de18;
+
+
+
+
+// 函数: undefined FUN_1801eb320;
+undefined FUN_1801eb320;
+
+
+
+
+// 函数: undefined FUN_1801eb3d0;
+undefined FUN_1801eb3d0;
+undefined UNK_1801eb510;
+undefined UNK_1801eb520;
+undefined UNK_180a0df48;
+undefined DAT_180c8aa20;
+undefined UNK_180a0e110;
+undefined UNK_180a0e138;
+undefined UNK_180a0e120;
+undefined UNK_180a0e150;
+undefined DAT_1809fd7c8;
+
+
+
+
+// 函数: undefined FUN_1803f5b70;
+undefined FUN_1803f5b70;
+undefined DAT_180c8aa28;
+undefined UNK_180a0e4b0;
+undefined UNK_180a0e4c0;
+undefined UNK_18098c074;
+undefined UNK_180a0e4d0;
+undefined UNK_180a0e4d8;
+undefined UNK_180a0e4e4;
+undefined UNK_180a0e4e8;
+undefined UNK_180a0e4f8;
+undefined UNK_180a0e510;
+undefined UNK_180a0e524;
+undefined UNK_180a0e530;
+undefined UNK_180a0e53c;
+undefined UNK_180a0e540;
+undefined UNK_180a0e548;
+undefined UNK_180a0e560;
+undefined UNK_180a0e570;
+undefined UNK_180a0e580;
+undefined UNK_180a0e588;
+undefined UNK_180a0e590;
+undefined UNK_180a0e598;
+undefined UNK_180a0e5a8;
+undefined UNK_180a0e5b0;
+undefined UNK_180a0e5b8;
+undefined UNK_180a0e5cc;
+undefined UNK_180a0e5d8;
+undefined UNK_180a0e5f8;
+undefined UNK_180a0e608;
+undefined UNK_180a0e610;
+undefined UNK_180a0e628;
+undefined UNK_180a0e648;
+undefined UNK_180a0e658;
+undefined UNK_180a0e668;
+undefined UNK_180a0e678;
+undefined UNK_180a0e690;
+undefined UNK_180a0e6b0;
+undefined UNK_180a0e6c8;
+undefined UNK_180a0e6e0;
+undefined UNK_180a0e6f0;
+undefined UNK_180a0e708;
+undefined UNK_180a0e720;
+undefined UNK_180a0e738;
+undefined UNK_180a0e748;
+undefined UNK_180a0e768;
+undefined UNK_180a0e778;
+undefined UNK_180a0e7a8;
+undefined UNK_180a0e7b8;
+
+
+
+
+// 函数: undefined FUN_1801f34f0;
+undefined FUN_1801f34f0;
+undefined UNK_180a0efb8;
+undefined UNK_180a0f010;
+undefined UNK_180a0ef00;
+undefined DAT_1809fd518;
+undefined DAT_180a083b4;
+undefined DAT_180a089c4;
+undefined UNK_180a0a20c;
+undefined UNK_180a0a23c;
+undefined UNK_180a0e7c8;
+undefined UNK_180a0e7d8;
+undefined UNK_180a0e7e0;
+undefined UNK_180a0e7e8;
+undefined UNK_180a0e7f4;
+undefined UNK_180a0e800;
+undefined UNK_180a0e808;
+undefined UNK_180a0e818;
+undefined UNK_180a0e824;
+undefined UNK_180a0e82c;
+undefined UNK_180a0e838;
+undefined UNK_180a0e850;
+undefined UNK_180a0e868;
+undefined UNK_180a0e870;
+undefined UNK_180a0e878;
+undefined UNK_180a0e888;
+undefined UNK_180a0e8a8;
+undefined UNK_180a0ee30;
+undefined UNK_180a0ee38;
+undefined UNK_180a3cb84;
+
+
+
+
+// 函数: undefined FUN_1801f9cf0;
+undefined FUN_1801f9cf0;
+undefined UNK_180a0e890;
+undefined DAT_180a0e8a0;
+undefined UNK_180a0e8b8;
+undefined UNK_180a0e8c0;
+undefined UNK_180a0e8d8;
+undefined UNK_180a0e8f0;
+undefined UNK_180a0e900;
+undefined UNK_180a0e918;
+undefined UNK_180a0e930;
+undefined UNK_180a0e940;
+undefined UNK_180a0e958;
+undefined UNK_180a0e968;
+undefined UNK_180a0e980;
+undefined UNK_180a0e990;
+undefined UNK_180a0e9a0;
+undefined UNK_180a0e9b8;
+undefined UNK_180a0e9d0;
+undefined UNK_180a0e9f0;
+undefined UNK_180a0ea00;
+undefined UNK_180a0ea20;
+undefined UNK_180a0ea30;
+undefined UNK_180a0ea48;
+undefined UNK_180a0ea68;
+undefined UNK_180a0ea88;
+undefined UNK_180a0eab0;
+undefined UNK_180a0ead0;
+undefined UNK_180a0eae8;
+undefined UNK_180a0eb00;
+undefined UNK_180a0eb10;
+undefined UNK_180a0eb30;
+undefined UNK_180a0eb48;
+undefined UNK_180a0eb60;
+undefined UNK_180a0eb78;
+undefined UNK_180a0ebb0;
+undefined UNK_180a0ee48;
+undefined UNK_180a0eea0;
+undefined UNK_180a0ef58;
+undefined UNK_180a26220;
+undefined UNK_180a26368;
+undefined UNK_180a26420;
+undefined UNK_180a26480;
+undefined UNK_180a26538;
+undefined UNK_180a26640;
+undefined UNK_180a26780;
+undefined UNK_180a26e08;
+undefined UNK_180a26e88;
+undefined UNK_180a26ee8;
+undefined UNK_180a26f90;
+undefined UNK_180a27040;
+undefined DAT_180a0eb68;
+undefined UNK_180a0ec10;
+undefined UNK_180a0d6c8;
+undefined UNK_180a0d6d8;
+undefined UNK_180a0d6f8;
+undefined UNK_180a0d710;
+undefined UNK_180a0d720;
+undefined UNK_180a0d730;
+undefined UNK_180a0d740;
+undefined UNK_180a0d748;
+undefined UNK_180a0d750;
+undefined UNK_180a0d760;
+undefined UNK_180a0d770;
+undefined UNK_180a0d780;
+undefined UNK_180a0d7a0;
+undefined UNK_180a0d7c0;
+undefined UNK_180a0d7d8;
+undefined UNK_180a0d800;
+undefined UNK_180a0d810;
+undefined UNK_180a0ebe8;
+undefined UNK_180a0ec00;
+undefined UNK_180a0ec30;
+undefined UNK_180a0ec50;
+undefined UNK_180a0f068;
+undefined DAT_180c8aa30;
+
+
+
+
+// 函数: undefined FUN_1801feca0;
+undefined FUN_1801feca0;
+undefined UNK_180a04ec0;
+undefined UNK_180a06ba4;
+undefined UNK_180a0b000;
+undefined UNK_180a0f0c8;
+undefined UNK_180a0f0d8;
+undefined UNK_180a0f0e8;
+undefined UNK_180a0f0f8;
+undefined UNK_180a0f108;
+undefined UNK_180a0f110;
+undefined UNK_180a0f118;
+undefined UNK_180a0f128;
+undefined UNK_180a0f138;
+undefined UNK_180a0f150;
+undefined UNK_180a0f1a0;
+undefined UNK_180a0f1b0;
+undefined UNK_180a0f1c0;
+undefined UNK_180a0f1d0;
+undefined UNK_180a0f200;
+undefined UNK_180a0f228;
+undefined UNK_180a0f250;
+undefined UNK_180a0f270;
+undefined UNK_180a0f290;
+undefined UNK_180a0f2a8;
+undefined UNK_180a0f2c0;
+undefined UNK_180a0f2d0;
+undefined UNK_180a0f2e8;
+undefined UNK_180a0f300;
+undefined UNK_180a0f318;
+undefined UNK_180a0f330;
+undefined UNK_180a0f340;
+undefined UNK_180a0f358;
+undefined UNK_180a0f370;
+undefined UNK_180a0f388;
+undefined UNK_180a0f3e0;
+undefined UNK_180a0f3e8;
+undefined UNK_180a0f450;
+undefined UNK_180a0f630;
+undefined UNK_180a0f6b0;
+undefined UNK_180a0f690;
+undefined DAT_180c8aa38;
+undefined UNK_180a0f6a0;
+undefined UNK_180a0f6c0;
+undefined UNK_1801fffc0;
+undefined UNK_180a07334;
+undefined UNK_180a0733c;
+undefined UNK_180a0f6f8;
+undefined UNK_180a0f704;
+undefined UNK_180a0f710;
+undefined UNK_180a0f720;
+undefined UNK_180a0f730;
+undefined UNK_180a0f740;
+undefined UNK_180a0f748;
+undefined UNK_180a0f758;
+undefined UNK_180a0f770;
+undefined UNK_180a0f788;
+undefined UNK_180a0f7a0;
+undefined UNK_180a0f7b0;
+undefined UNK_180a0f7b8;
+undefined UNK_180a0f7e8;
+undefined UNK_180a0f7fc;
+undefined DAT_180a0f804;
+undefined UNK_180a0f810;
+undefined UNK_180a0f81c;
+undefined UNK_180a0f820;
+undefined UNK_180a0f840;
+undefined UNK_180a0f858;
+undefined UNK_180a0f864;
+undefined UNK_180a0f870;
+undefined UNK_180a0f888;
+undefined UNK_180a0f8a0;
+undefined UNK_180a0f8b8;
+undefined UNK_180a0f8d8;
+undefined UNK_180a0f8f0;
+undefined UNK_180a0f910;
+undefined UNK_180a0f928;
+undefined UNK_180a0f940;
+undefined UNK_180a0f958;
+undefined UNK_180a0f980;
+undefined UNK_180a0f998;
+undefined UNK_180a0f9b0;
+undefined UNK_180a0f9d0;
+undefined UNK_180a0f9e8;
+undefined UNK_180a0f9f8;
+undefined UNK_180a0fa10;
+undefined UNK_180a0fa28;
+undefined UNK_180a0fa40;
+undefined UNK_180a0fa58;
+undefined UNK_180a0fa68;
+undefined UNK_180a0fa80;
+undefined UNK_180a0faa0;
+undefined UNK_180a0fab8;
+undefined UNK_180a0fad0;
+undefined UNK_180a0fae8;
+undefined UNK_180a0fb00;
+undefined UNK_180a0fb20;
+undefined UNK_180a0fb38;
+undefined UNK_180a0fb50;
+undefined UNK_180a0fb68;
+undefined UNK_180a0fb80;
+undefined UNK_180a0fb98;
+undefined UNK_180a0fbf8;
+undefined UNK_180a0fc28;
+undefined DAT_180c8aa48;
+undefined DAT_180c91cf8;
+undefined DAT_180c91d00;
+undefined DAT_180c91cf0;
+undefined1 DAT_180c91d14;
+undefined1 DAT_180c91d08;
+
+
+
+
+// 函数: undefined FUN_1802e51e0;
+undefined FUN_1802e51e0;
+undefined UNK_18023e9a0;
+undefined UNK_18023ea40;
+undefined UNK_1802e5240;
+undefined UNK_180a14a80;
+undefined UNK_180a17758;
+undefined UNK_180a13e20;
+undefined UNK_18023e0d0;
+undefined UNK_180a13e90;
+undefined UNK_180a13fd0;
+undefined UNK_18023de90;
+undefined UNK_18023df70;
+undefined UNK_18023dfb0;
+undefined UNK_18023dff0;
+
+
+
+
+// 函数: undefined FUN_1801bbf00;
+undefined FUN_1801bbf00;
+
+
+
+
+// 函数: undefined FUN_1801bbfb0;
+undefined FUN_1801bbfb0;
+
+
+
+
+// 函数: undefined FUN_1802ca760;
+undefined FUN_1802ca760;
+undefined UNK_180a18fd0;
+undefined UNK_1802cdd50;
+undefined UNK_1802cdd60;
+undefined DAT_180a0d498;
+undefined UNK_180a18e98;
+undefined UNK_180a18eb0;
+undefined UNK_180a18ec8;
+undefined UNK_180a18ee8;
+undefined UNK_180a18f10;
+undefined UNK_180a18f30;
+undefined UNK_180a18f48;
+undefined UNK_180a18f60;
+undefined UNK_180993030;
+undefined UNK_180993250;
+undefined UNK_180a18e80;
+undefined UNK_180a18fe8;
+undefined UNK_180a18ff8;
+undefined UNK_180a19018;
+undefined UNK_180a19048;
+undefined UNK_180a19068;
+undefined UNK_180a19080;
+undefined UNK_180a190a4;
+undefined UNK_180a18f90;
+undefined UNK_180a18fb0;
+undefined UNK_180a18f80;
+undefined UNK_180a19028;
+undefined UNK_180a190c0;
+undefined UNK_180a190e0;
+undefined UNK_1802d9830;
+undefined UNK_1802d9920;
+undefined UNK_180a19140;
+
+
+
+
+// 函数: undefined FUN_1802d9840;
+undefined FUN_1802d9840;
+
+
+
+
+// 函数: undefined FUN_1802d9930;
+undefined FUN_1802d9930;
+undefined UNK_180a190f0;
+undefined UNK_180a19118;
+undefined UNK_180a19168;
+undefined UNK_180a19188;
+undefined UNK_1802d3ae0;
+undefined UNK_1802d9560;
+
+
+
+
+// 函数: undefined FUN_1802d9500;
+undefined FUN_1802d9500;
+undefined UNK_1802d9700;
+
+
+
+
+// 函数: undefined FUN_1802d95a0;
+undefined FUN_1802d95a0;
+undefined UNK_180a19158;
+undefined UNK_180a191d0;
+undefined UNK_180a191a8;
+undefined UNK_180a19250;
+undefined UNK_180a191e8;
+undefined UNK_1802d9740;
+
+
+
+
+// 函数: undefined FUN_1802d9750;
+undefined FUN_1802d9750;
+undefined UNK_180a192b0;
+undefined UNK_180a192c8;
+undefined UNK_180a192e0;
+undefined UNK_180a192f4;
+undefined UNK_180a19300;
+undefined UNK_180a1930c;
+undefined UNK_180a19314;
+undefined UNK_180a19320;
+undefined UNK_180a19330;
+undefined UNK_180a19338;
+undefined UNK_180a1933c;
+undefined UNK_180a19380;
+undefined UNK_180a19340;
+undefined UNK_180a19358;
+undefined UNK_180a19368;
+undefined UNK_180a193c0;
+undefined UNK_180be0008;
+undefined UNK_1802e4bc0;
+
+
+
+
+// 函数: undefined FUN_1802e3970;
+undefined FUN_1802e3970;
+undefined UNK_180a193a8;
+
+
+
+
+// 函数: undefined FUN_1802e3db0;
+undefined FUN_1802e3db0;
+undefined UNK_180a19478;
+undefined UNK_180993558;
+undefined UNK_180991de8;
+undefined UNK_180a19468;
+undefined UNK_180a19490;
+undefined UNK_180a19528;
+byte UNK_00000048;
+undefined UNK_180a3c301;
+undefined UNK_18027b560;
+undefined UNK_180a19500;
+undefined UNK_180a19510;
+undefined UNK_180a19770;
+undefined DAT_180a09e20;
+undefined UNK_180a19598;
+undefined UNK_180a195a8;
+undefined UNK_180a195b8;
+undefined UNK_180a195d0;
+undefined UNK_180a195e0;
+undefined UNK_180a195f8;
+undefined UNK_180a19608;
+undefined UNK_180a19620;
+undefined UNK_180a19648;
+undefined UNK_180a19658;
+undefined UNK_180a19660;
+undefined UNK_180a19638;
+undefined UNK_180a19680;
+undefined UNK_180a19690;
+undefined UNK_180a196a0;
+undefined UNK_180a196b0;
+undefined UNK_180a196c0;
+undefined UNK_180a196e0;
+undefined UNK_180a196f8;
+undefined UNK_180a19708;
+undefined UNK_180a19720;
+undefined UNK_180a19740;
+undefined UNK_180a19750;
+undefined UNK_180a19760;
+undefined UNK_180a199c8;
+undefined UNK_180a19ac8;
+undefined UNK_180a19af8;
+undefined UNK_180a015a8;
+undefined UNK_180a19c84;
+undefined UNK_180a19c00;
+undefined UNK_180a19c78;
+undefined UNK_180a19d78;
+undefined UNK_180a19c8c;
+undefined UNK_180a19c98;
+undefined UNK_180a19ca8;
+undefined UNK_180a19cb8;
+undefined UNK_180a19d30;
+undefined UNK_180a19cd0;
+undefined DAT_180d49678;
+
+
+
+
+// 函数: undefined FUN_1802e7dc0;
+undefined FUN_1802e7dc0;
+
+
+
+
+// 函数: undefined FUN_1803aed40;
+undefined FUN_1803aed40;
+
+
+
+
+// 函数: undefined FUN_1803aee20;
+undefined FUN_1803aee20;
+undefined DAT_180bfa2f0;
+undefined DAT_180bfa2e8;
+undefined DAT_180bfa2f8;
+undefined DAT_180bfa310;
+undefined DAT_180bfa308;
+undefined DAT_180bfa318;
+undefined DAT_180bfa330;
+undefined DAT_180bfa328;
+undefined DAT_180bfa338;
+undefined1 DAT_180bfa340;
+undefined1 DAT_180bfa320;
+undefined1 DAT_180bfa300;
+undefined UNK_180a23138;
+
+
+
+
+// 函数: undefined FUN_1803aec00;
+undefined FUN_1803aec00;
+undefined UNK_1803aebf0;
+undefined UNK_180a037b0;
+undefined UNK_180a1ac50;
+undefined UNK_180a230e0;
+undefined UNK_180a23378;
+undefined UNK_1803ba1e0;
+undefined UNK_1803ba240;
+
+
+
+
+// 函数: undefined FUN_1803ba1b0;
+undefined FUN_1803ba1b0;
+
+
+
+
+// 函数: undefined FUN_1803ba220;
+undefined FUN_1803ba220;
+undefined DAT_1809fd8ac;
+undefined DAT_180a0be28;
+undefined UNK_180a23328;
+undefined UNK_180a23140;
+undefined UNK_180a23178;
+undefined UNK_180a231b0;
+undefined UNK_1803b95e0;
+undefined UNK_1803b95f0;
+
+
+
+
+// 函数: undefined FUN_1803ba0b0;
+undefined FUN_1803ba0b0;
+undefined UNK_1803ba050;
+undefined UNK_1803ba070;
+undefined UNK_1803ba170;
+undefined UNK_1803ba000;
+undefined UNK_1803ba010;
+undefined UNK_1803b9630;
+
+
+
+
+// 函数: undefined FUN_1803b9640;
+undefined FUN_1803b9640;
+char DAT_180c8ec7a;
+undefined UNK_180a234a0;
+undefined UNK_180a23500;
+undefined UNK_180a23410;
+undefined UNK_180a23508;
+undefined UNK_180a23520;
+undefined UNK_180a23540;
+undefined UNK_180a23550;
+undefined UNK_180a23570;
+undefined UNK_180a23574;
+undefined UNK_180a2355c;
+undefined UNK_180a23568;
+undefined UNK_180a235c8;
+undefined UNK_180a23580;
+undefined UNK_180a23598;
+undefined UNK_180a235b0;
+undefined UNK_180a23680;
+undefined UNK_180a23610;
+undefined UNK_180a238f8;
+undefined UNK_180a23910;
+undefined UNK_180a23990;
+undefined UNK_180a239e0;
+undefined UNK_180a239a0;
+undefined UNK_180a239d4;
+undefined UNK_180a23a30;
+undefined UNK_180a23a40;
+undefined UNK_180a23a48;
+undefined UNK_180a23a70;
+undefined UNK_180a23a80;
+undefined UNK_180a23a98;
+undefined UNK_180a23ac0;
+undefined UNK_180a23af8;
+undefined UNK_180a23b20;
+undefined UNK_180a23b28;
+undefined UNK_180994200;
+undefined UNK_180a23ad0;
+undefined UNK_180a235f8;
+undefined UNK_180a23600;
+undefined UNK_180a237b8;
+undefined UNK_180a237d8;
+undefined UNK_180a237f0;
+undefined UNK_180a23808;
+undefined UNK_180a23818;
+undefined UNK_180a23830;
+undefined UNK_180a23850;
+undefined UNK_180a23868;
+undefined UNK_180a23890;
+undefined UNK_180a238b0;
+undefined UNK_180a238c8;
+undefined UNK_180a238e0;
+undefined UNK_180a23948;
+undefined UNK_180a23980;
+undefined UNK_180a23a18;
+undefined DAT_180a01400;
+undefined UNK_1803c5670;
+undefined UNK_1803c5690;
+
+
+
+
+// 函数: undefined FUN_1803c56d0;
+undefined FUN_1803c56d0;
+
+
+
+
+// 函数: undefined FUN_1803c5710;
+undefined FUN_1803c5710;
+undefined UNK_1803c5570;
+
+
+
+
+// 函数: undefined FUN_1803c5580;
+undefined FUN_1803c5580;
+undefined UNK_1803c5470;
+
+
+
+
+// 函数: undefined FUN_1803c5480;
+undefined FUN_1803c5480;
+undefined UNK_180a23b58;
+undefined UNK_180a23bb8;
+undefined UNK_180a242c8;
+undefined UNK_180a242f0;
+undefined UNK_180a242b0;
+undefined UNK_180a24248;
+undefined UNK_180a24258;
+undefined UNK_180a24188;
+undefined UNK_180a24208;
+undefined UNK_180a23fe0;
+undefined UNK_180a23fa0;
+undefined UNK_180a23fc0;
+undefined UNK_180a23dd0;
+undefined UNK_180a23f80;
+undefined UNK_180a23db8;
+undefined UNK_180a23da0;
+undefined UNK_180a23d70;
+undefined UNK_18014f330;
+undefined UNK_18014f340;
+undefined UNK_180a23bf8;
+undefined UNK_180a23c24;
+
+
+
+
+// 函数: undefined FUN_1803d5530;
+undefined FUN_1803d5530;
+undefined UNK_180a24608;
+undefined UNK_1803d9740;
+
+
+
+
+// 函数: undefined FUN_1803d9750;
+undefined FUN_1803d9750;
+undefined UNK_180a216b8;
+undefined UNK_180a10220;
+undefined UNK_180a2481c;
+undefined UNK_180a3cce8;
+undefined UNK_180a249c0;
+undefined UNK_180a24838;
+undefined UNK_180a24850;
+undefined UNK_180a24860;
+undefined UNK_180a24870;
+undefined UNK_180a24880;
+undefined UNK_180a24890;
+undefined UNK_180a248a0;
+undefined UNK_180a248c0;
+undefined UNK_180a248e0;
+undefined UNK_180a248f0;
+undefined UNK_180a24900;
+undefined UNK_180a24910;
+undefined UNK_180a24928;
+undefined UNK_180a24940;
+undefined UNK_180a24960;
+undefined UNK_180a24980;
+undefined UNK_180a249a0;
+undefined DAT_180a09db0;
+undefined UNK_180994920;
+undefined UNK_180a24c80;
+undefined UNK_180a24ee8;
+undefined UNK_180a24f00;
+undefined DAT_180a13168;
+IMAGE_DOS_HEADER IMAGE_DOS_HEADER_180000000;
+undefined DAT_180a24f58;
+undefined UNK_180a2500c;
+undefined UNK_180a25014;
+undefined UNK_180a25018;
+undefined DAT_180a25028;
+undefined UNK_180a25058;
+undefined UNK_180a25148;
+undefined UNK_180a25150;
+undefined UNK_180a25198;
+undefined UNK_180a251d8;
+undefined UNK_180a25210;
+undefined UNK_180a25230;
+undefined UNK_180a252e8;
+undefined UNK_180a25310;
+undefined UNK_180a25350;
+undefined UNK_180a25390;
+undefined UNK_180a253d0;
+undefined UNK_180a25400;
+undefined UNK_180a25428;
+undefined UNK_180a25458;
+undefined UNK_180a25488;
+undefined UNK_180a254a8;
+undefined UNK_180a25558;
+undefined UNK_180a2554c;
+undefined UNK_180a25550;
+undefined UNK_180a25590;
+undefined UNK_180a255d8;
+undefined UNK_180a255f8;
+undefined UNK_180a25628;
+undefined UNK_180a25660;
+undefined UNK_180a25f88;
+undefined *PTR_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A_180944888;
+undefined UNK_180a2161c;
+undefined UNK_180a25598;
+undefined UNK_180a255b4;
+undefined UNK_180a255c0;
+undefined UNK_180a255c8;
+undefined UNK_180a25678;
+undefined UNK_180a25688;
+undefined UNK_180a25690;
+undefined UNK_180a256a0;
+undefined UNK_180a256a8;
+undefined UNK_180a256c0;
+undefined UNK_180a256c8;
+undefined UNK_180a256e8;
+undefined UNK_180a256f8;
+undefined UNK_180a25740;
+undefined UNK_180a25790;
+undefined UNK_180a257d0;
+undefined UNK_180a25820;
+undefined UNK_180a25830;
+undefined UNK_180a25840;
+undefined UNK_180a25890;
+undefined UNK_180a25920;
+undefined UNK_180a25960;
+undefined UNK_180a25970;
+
+
+
+
+// 函数: undefined FUN_1803f4d50;
+undefined FUN_1803f4d50;
+
+
+
+
+// 函数: undefined FUN_1803f4dc0;
+undefined FUN_1803f4dc0;
+undefined UNK_180a25f08;
+undefined UNK_180a26018;
+undefined UNK_180a17b20;
+undefined UNK_180a17c10;
+undefined UNK_180a17c30;
+undefined UNK_180a26180;
+undefined UNK_180a26190;
+undefined UNK_180a01c78;
+undefined UNK_180a265e8;
+undefined UNK_180a26270;
+undefined UNK_180a26280;
+undefined UNK_180a26590;
+undefined UNK_180a26290;
+undefined UNK_180a26320;
+undefined UNK_180a26328;
+undefined UNK_180a263c0;
+undefined UNK_180a264e0;
+undefined UNK_180a262c0;
+undefined UNK_180a262e0;
+undefined UNK_180a26300;
+undefined UNK_180a26690;
+undefined UNK_180a266a0;
+undefined UNK_180a266a8;
+undefined UNK_180a0d7f0;
+undefined UNK_180a0d8b0;
+undefined UNK_180a0d8c8;
+undefined UNK_180a26708;
+undefined UNK_180a266c8;
+undefined UNK_180a266e8;
+undefined UNK_180a26760;
+undefined UNK_180a267e0;
+undefined UNK_180a269e0;
+undefined UNK_180a26de0;
+undefined UNK_180a26e60;
+undefined UNK_180a0d788;
+undefined UNK_180a26f38;
+undefined UNK_180a26f70;
+undefined DAT_180a26f50;
+undefined UNK_180a26fe0;
+undefined UNK_180a26ff0;
+undefined UNK_180a27000;
+undefined UNK_180a27010;
+undefined UNK_180a27020;
+undefined UNK_180a04538;
+undefined UNK_180a0ed30;
+undefined UNK_180a33f80;
+undefined UNK_180a270e8;
+undefined UNK_180a270f8;
+undefined UNK_180a27170;
+undefined UNK_180983e88;
+
+
+
+
+// 函数: undefined FUN_1804c60b0;
+undefined FUN_1804c60b0;
+
+
+
+
+// 函数: undefined FUN_1804a8e90;
+undefined FUN_1804a8e90;
+
+
+
+
+// 函数: undefined FUN_1804a9a20;
+undefined FUN_1804a9a20;
+undefined UNK_180a2cb10;
+undefined DAT_1809ff500;
+undefined UNK_180a2cbe8;
+undefined DAT_180a2cc08;
+undefined UNK_180a2d380;
+undefined DAT_180c96110;
+undefined DAT_180c96380;
+undefined4 UNK_180c96374;
+undefined4 UNK_180c96378;
+undefined DAT_180c91044;
+undefined4 UNK_180c9637c;
+undefined DAT_180c96384;
+undefined DAT_180c91040;
+undefined DAT_180c964c0;
+undefined DAT_180c964b8;
+undefined DAT_180c964bc;
+undefined DAT_180c96370;
+undefined DAT_180c96108;
+undefined DAT_180c96148;
+undefined UNK_1804e3000;
+undefined UNK_1804e3010;
+undefined UNK_1804e3030;
+undefined UNK_1804e3040;
+undefined DAT_180c91d30;
+undefined DAT_180c91d28;
+undefined8 UNK_180c91d38;
+undefined UNK_180a2cc80;
+undefined UNK_180a2cc98;
+undefined UNK_180a2ccb0;
+undefined UNK_180a2ce78;
+undefined UNK_180a2cea0;
+undefined UNK_180a2cec0;
+undefined UNK_180a2d080;
+undefined UNK_180a2d0a0;
+undefined UNK_180a2d268;
+undefined DAT_180a092b8;
+undefined DAT_180a190b0;
+undefined DAT_180d48f1a;
+undefined UNK_180a2d280;
+undefined UNK_180a2d298;
+undefined UNK_180a2d330;
+undefined UNK_180a2d348;
+undefined DAT_180c917d0;
+undefined DAT_180c918d0;
+undefined UNK_1804a5e50;
+undefined UNK_1804a5f30;
+
+
+
+
+// 函数: undefined FUN_1804a5e90;
+undefined FUN_1804a5e90;
+undefined UNK_180a2d358;
+undefined DAT_180c95eb8;
+undefined DAT_180c95ea8;
+undefined DAT_180a2d36c;
+undefined DAT_180c95ea0;
+undefined UNK_180a2d318;
+undefined DAT_180c925c8;
+undefined DAT_180c92cd8;
+undefined DAT_180c92ce0;
+undefined DAT_180c925a0;
+ulonglong *UNK_180c92bb8;
+ulonglong *UNK_180c92bf8;
+longlong UNK_180c95b78;
+ulonglong UNK_180c95b80;
+undefined UNK_1804a6c40;
+undefined UNK_1804a6c60;
+undefined UNK_180a2fb48;
+undefined DAT_180c95be0;
+
+
+
+
+// 函数: undefined FUN_1804a7600;
+undefined FUN_1804a7600;
+undefined UNK_180a2d3a0;
+undefined UNK_1809f8860;
+undefined UNK_1809f88b0;
+undefined UNK_1809f8900;
+undefined UNK_1809f8950;
+undefined UNK_1809f89a0;
+undefined DAT_180c95f30;
+undefined DAT_180a2dc90;
+undefined DAT_180a2dca0;
+undefined DAT_180a2dcb0;
+undefined DAT_180d49e00;
+undefined DAT_180d49e08;
+undefined DAT_180d49e10;
+undefined DAT_180d49e18;
+undefined DAT_180d49e20;
+undefined DAT_180d49e28;
+undefined DAT_180d49e30;
+undefined DAT_180d48f20;
+undefined UNK_180a2de30;
+undefined UNK_180a2de50;
+
+
+
+
+// 函数: undefined FUN_1804ad200;
+undefined FUN_1804ad200;
+undefined UNK_180a2e0ec;
+undefined DAT_180a2e0f8;
+undefined UNK_180a2e160;
+undefined UNK_180a2e168;
+undefined UNK_180a2779c;
+undefined UNK_180a2e150;
+undefined UNK_180a2e158;
+undefined UNK_180a2e178;
+undefined UNK_180a2e1b8;
+undefined UNK_180a2e1c8;
+undefined UNK_180a2e1d8;
+undefined UNK_180a2e1e8;
+undefined UNK_180a2e1f8;
+undefined UNK_180a2e220;
+undefined UNK_180a2e290;
+undefined UNK_180a2e2a8;
+undefined UNK_180a063a8;
+undefined UNK_180a2e248;
+undefined UNK_180a2e260;
+undefined UNK_180a2e270;
+undefined UNK_180a2e280;
+undefined UNK_180a2e2bc;
+undefined UNK_180a2e2c8;
+undefined UNK_180a2e2d8;
+undefined UNK_180a2e2e8;
+undefined UNK_180a2e2f8;
+undefined UNK_180a2e310;
+undefined UNK_180a2e328;
+undefined UNK_180a2e348;
+undefined UNK_180a2e388;
+undefined UNK_180a2e3f8;
+undefined UNK_180a2e418;
+undefined UNK_180a2e438;
+undefined UNK_180a3cc50;
+undefined UNK_180a2e3b8;
+undefined UNK_180a2e3d0;
+undefined UNK_180a2e3e0;
+undefined UNK_180a2e3e8;
+undefined UNK_180a2e428;
+undefined UNK_180a2e4c0;
+undefined UNK_180a2e4d0;
+undefined UNK_180a2e570;
+undefined UNK_180a2e460;
+undefined UNK_180a2e450;
+undefined UNK_180a2e4a0;
+undefined UNK_180a2e4b0;
+undefined UNK_180a2e628;
+undefined UNK_180a2e668;
+undefined UNK_180a2e678;
+undefined UNK_180a2e688;
+undefined UNK_180a2e698;
+
+
+
+
+// 函数: undefined FUN_1804bfc50;
+undefined FUN_1804bfc50;
+
+
+
+
+// 函数: undefined FUN_1804c97c0;
+undefined FUN_1804c97c0;
+
+
+
+
+// 函数: undefined FUN_1804c98d0;
+undefined FUN_1804c98d0;
+undefined UNK_180a2fa20;
+undefined UNK_180a2faa8;
+undefined UNK_180a2fac0;
+undefined UNK_180a2fb38;
+undefined UNK_180a2fb90;
+undefined DAT_180c82848;
+char DAT_180c82845;
+undefined UNK_180a2fb60;
+undefined UNK_180a2fb78;
+undefined UNK_180a2fba8;
+undefined UNK_180a2fbc8;
+undefined UNK_180a2fc20;
+
+
+
+
+// 函数: undefined FUN_1804ce100;
+undefined FUN_1804ce100;
+undefined UNK_1804ce1a0;
+
+
+
+
+// 函数: undefined FUN_1804ce920;
+undefined FUN_1804ce920;
+undefined UNK_1804ce9d0;
+undefined UNK_1804df5f0;
+undefined UNK_1804df630;
+
+
+
+
+// 函数: undefined FUN_1804df470;
+undefined FUN_1804df470;
+
+
+
+
+// 函数: undefined FUN_1804df640;
+undefined FUN_1804df640;
+undefined UNK_180a13894;
+undefined UNK_180a2fbe8;
+undefined UNK_180a2fc00;
+undefined UNK_1804df030;
+undefined UNK_1804df040;
+
+
+
+
+// 函数: undefined FUN_1804df080;
+undefined FUN_1804df080;
+undefined UNK_1804df160;
+undefined UNK_1804df2f0;
+
+
+
+
+// 函数: undefined FUN_1804df1a0;
+undefined FUN_1804df1a0;
+undefined UNK_1804df330;
+undefined UNK_1804df340;
+
+
+
+
+// 函数: undefined FUN_1804dee90;
+undefined FUN_1804dee90;
+undefined UNK_1804deff0;
+undefined UNK_1804df9e0;
+undefined UNK_1804df9f0;
+undefined UNK_1804dfa30;
+undefined UNK_1804dfa40;
+undefined UNK_1804dfa80;
+undefined UNK_1804dfa90;
+undefined UNK_18054b090;
+
+
+
+
+// 函数: undefined FUN_1804dc080;
+undefined FUN_1804dc080;
+undefined UNK_180a2fc90;
+undefined UNK_1804df380;
+undefined UNK_1804df720;
+undefined UNK_1804df730;
+
+
+
+
+// 函数: undefined FUN_1804df390;
+undefined FUN_1804df390;
+undefined UNK_1804deb60;
+undefined UNK_1804dec20;
+undefined UNK_1804decc0;
+undefined UNK_1804ded60;
+
+
+
+
+// 函数: undefined FUN_1804dea90;
+undefined FUN_1804dea90;
+
+
+
+
+// 函数: undefined FUN_1804deba0;
+undefined FUN_1804deba0;
+
+
+
+
+// 函数: undefined FUN_1804dec60;
+undefined FUN_1804dec60;
+
+
+
+
+// 函数: undefined FUN_1804ded00;
+undefined FUN_1804ded00;
+undefined DAT_180c96018;
+undefined UNK_1804deda0;
+undefined UNK_1804dedb0;
+undefined UNK_1804df770;
+undefined UNK_1804df780;
+undefined UNK_1804dedf0;
+undefined UNK_1804dee00;
+undefined UNK_1804dee40;
+undefined UNK_1804dee50;
+undefined UNK_180a2fd10;
+undefined UNK_180a2fd40;
+undefined UNK_180a30060;
+undefined UNK_180a301a0;
+undefined UNK_180a21db0;
+undefined UNK_180a308c0;
+undefined UNK_180a308e0;
+undefined UNK_180a30990;
+undefined UNK_180a36f00;
+
+
+
+
+// 函数: undefined FUN_1804aa300;
+undefined FUN_1804aa300;
+
+
+
+
+// 函数: undefined FUN_1805febd0;
+undefined FUN_1805febd0;
+
+
+
+
+// 函数: undefined FUN_1805fed10;
+undefined FUN_1805fed10;
+
+
+
+
+// 函数: undefined FUN_1805fede0;
+undefined FUN_1805fede0;
+
+
+
+
+// 函数: undefined FUN_1805feec0;
+undefined FUN_1805feec0;
+
+
+
+

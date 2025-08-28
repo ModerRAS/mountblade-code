@@ -1,991 +1,943 @@
-/**
- * @file 03_rendering_part551.c
- * @brief 渲染系统资源管理和状态处理模块
- * 
- * 本模块包含11个核心函数，涵盖渲染系统资源初始化、状态更新、配置管理、
- * 清理操作、分配处理、管理操作、释放处理、同步处理、完成处理、处理操作、
- * 和优化处理等渲染资源管理功能。
- * 
- * 主要功能包括：
- * - 渲染系统资源初始化和配置
- * - 渲染状态更新和同步
- * - 渲染资源分配和释放
- * - 渲染系统清理和优化
- * - 渲染异常处理和恢复
- * 
- * @author Claude Code
- * @version 1.0
- * @date 2025-08-28
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 常量定义
-// =============================================================================
+// 03_rendering_part551.c - 11 个函数
 
-/** 渲染资源块大小 (0xe0 = 224字节) */
-#define RENDERING_RESOURCE_BLOCK_SIZE 0xe0
+// 函数: void FUN_18056effa(void)
+void FUN_18056effa(void)
 
-/** 渲染资源块数量 */
-#define RENDERING_RESOURCE_BLOCK_COUNT 0x1c
-
-/** 渲染时间戳缩放因子 */
-#define RENDERING_TIMESTAMP_SCALE 1e-05
-
-/** 渲染状态偏移量 */
-#define RENDERING_STATE_OFFSET 0xd0
-
-/** 渲染配置偏移量 */
-#define RENDERING_CONFIG_OFFSET 0xd8
-
-/** 渲染标志偏移量 */
-#define RENDERING_FLAG_OFFSET 0xdc
-
-/** 渲染数据偏移量 */
-#define RENDERING_DATA_OFFSET 0xa0
-
-/** 渲染控制偏移量 */
-#define RENDERING_CONTROL_OFFSET 0xc8
-
-/** 渲染句柄偏移量 */
-#define RENDERING_HANDLE_OFFSET 0xc4
-
-/** 渲染计数器偏移量 */
-#define RENDERING_COUNTER_OFFSET 0xcc
-
-/** 渲染缓冲区大小 */
-#define RENDERING_BUFFER_SIZE 0xe0
-
-/** 渲染最大索引 */
-#define RENDERING_MAX_INDEX 0x10
-
-/** 渲染基地址 */
-#define RENDERING_BASE_ADDRESS 0x180000000
-
-/** 渲染跳转表偏移量 */
-#define RENDERING_JUMP_TABLE_OFFSET 0x56f2c0
-
-// =============================================================================
-// 类型别名定义
-// =============================================================================
-
-/** 渲染资源句柄类型 */
-typedef void* RenderingResourceHandle;
-
-/** 渲染状态句柄类型 */
-typedef void* RenderingStateHandle;
-
-/** 渲染配置句柄类型 */
-typedef void* RenderingConfigHandle;
-
-/** 渲染数据句柄类型 */
-typedef void* RenderingDataHandle;
-
-/** 渲染控制句柄类型 */
-typedef void* RenderingControlHandle;
-
-/** 渲染时间戳类型 */
-typedef float RenderingTimestamp;
-
-/** 渲染标志位类型 */
-typedef uint32_t RenderingFlags;
-
-/** 渲染计数器类型 */
-typedef uint32_t RenderingCounter;
-
-/** 渲染索引类型 */
-typedef uint32_t RenderingIndex;
-
-/** 渲染大小类型 */
-typedef uint64_t RenderingSize;
-
-/** 渲染偏移量类型 */
-typedef uint64_t RenderingOffset;
-
-// =============================================================================
-// 函数声明
-// =============================================================================
-
-/**
- * @brief 渲染系统资源初始化器
- * 
- * 初始化渲染系统的资源，包括内存分配、状态设置、
- * 资源管理和配置处理等功能。
- * 
- * @param resource_count 资源数量
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 初始化成功返回true，失败返回false
- */
-bool RenderingSystemResourceInitializer(
-    RenderingIndex resource_count,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-);
-
-/**
- * @brief 渲染系统状态更新器
- * 
- * 更新渲染系统的状态信息，包括状态同步、
- * 资源更新、配置处理等操作。
- * 
- * @param resource_index 资源索引
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 更新成功返回true，失败返回false
- */
-bool RenderingSystemStateUpdater(
-    RenderingIndex resource_index,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-);
-
-/**
- * @brief 渲染系统配置处理器
- * 
- * 处理渲染系统的配置信息，包括配置设置、
- * 状态更新、资源处理等操作。
- * 
- * @param config_data 配置数据
- * @param param2 参数2
- * @param resource_index 资源索引
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemConfigProcessor(
-    void* config_data,
-    uint32_t param2,
-    RenderingIndex resource_index,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-);
-
-/**
- * @brief 渲染系统资源分配器
- * 
- * 为渲染系统分配资源，包括内存分配、状态设置、
- * 资源管理等操作。
- * 
- * @param param1 参数1
- * @return 分配成功返回true，失败返回false
- */
-bool RenderingSystemResourceAllocator(
-    longlong param1
-);
-
-/**
- * @brief 渲染系统数据管理器
- * 
- * 管理渲染系统的数据，包括数据处理、状态更新、
- * 资源管理等操作。
- * 
- * @param data_handle 数据句柄
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @return 管理成功返回true，失败返回false
- */
-bool RenderingSystemDataManager(
-    void* data_handle,
-    void* param2,
-    void* param3,
-    void* param4
-);
-
-/**
- * @brief 渲染系统资源释放器
- * 
- * 释放渲染系统的资源，包括资源清理、内存释放、
- * 状态重置等操作。
- * 
- * @param param1 参数1
- * @return 释放成功返回true，失败返回false
- */
-bool RenderingSystemResourceReleaser(
-    longlong param1
-);
-
-/**
- * @brief 渲染系统状态管理器
- * 
- * 管理渲染系统的状态，包括状态处理、异常处理、
- * 资源管理等操作。
- * 
- * @param state_handle 状态句柄
- * @return 管理成功返回true，失败返回false
- */
-bool RenderingSystemStateManager(
-    longlong* state_handle
-);
-
-/**
- * @brief 渲染系统异常处理器
- * 
- * 处理渲染系统的异常情况，包括异常检测、
- * 异常处理、异常恢复等操作。
- * 
- * @param param1 参数1
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemExceptionHandler(
-    longlong param1
-);
-
-/**
- * @brief 渲染系统同步处理器
- * 
- * 处理渲染系统的同步操作，包括状态同步、
- * 资源同步、数据同步等操作。
- * 
- * @param sync_handle 同步句柄
- * @return 同步成功返回true，失败返回false
- */
-bool RenderingSystemSyncProcessor(
-    longlong* sync_handle
-);
-
-/**
- * @brief 渲染系统完成处理器
- * 
- * 处理渲染系统的完成操作，包括完成检测、
- * 完成处理、资源清理等操作。
- * 
- * @param complete_handle 完成句柄
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemCompletionProcessor(
-    longlong* complete_handle,
-    void* param2,
-    void* param3,
-    void* param4
-);
-
-/**
- * @brief 渲染系统优化处理器
- * 
- * 处理渲染系统的优化操作，包括性能优化、
- * 资源优化、状态优化等操作。
- * 
- * @param optimize_handle 优化句柄
- * @return 优化成功返回true，失败返回false
- */
-bool RenderingSystemOptimizationProcessor(
-    longlong* optimize_handle
-);
-
-// =============================================================================
-// 核心实现函数
-// =============================================================================
-
-/**
- * @brief 渲染系统资源初始化器实现
- * 
- * 初始化渲染系统的资源，包括内存分配、状态设置、资源管理。
- * 
- * @param resource_count 资源数量
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 初始化成功返回true，失败返回false
- */
-bool RenderingSystemResourceInitializer(
-    RenderingIndex resource_count,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-) {
-    // 计算资源大小
-    RenderingSize resource_size = resource_count * 2;
-    if (resource_count == 0) {
-        resource_size = 1;
-    }
-    if (resource_size < resource_count + state_size) {
-        resource_size = resource_count + state_size;
-    }
-    
-    // 分配资源内存
-    void* resource_memory = NULL;
-    if (resource_size != 0) {
-        resource_memory = FUN_18062b420(_DAT_180c8ed18, resource_size * RENDERING_RESOURCE_BLOCK_SIZE, *(char*)((longlong*)resource_handle + 3));
-    }
-    
-    // 复制现有资源数据
-    longlong* resource_data = (longlong*)resource_handle;
-    RenderingOffset offset = resource_data[1] - resource_data[0];
-    RenderingSize block_count = ((offset >> 6) - (offset >> 0x3f));
-    
-    void* target_ptr = resource_memory;
-    if (block_count > 0) {
-        RenderingOffset current_offset = resource_data[0] - (longlong)resource_memory;
-        void* source_ptr = resource_memory;
-        
-        do {
-            // 复制资源数据块
-            for (int i = 0; i < RENDERING_RESOURCE_BLOCK_COUNT; i++) {
-                ((uint64_t*)source_ptr)[i] = ((uint64_t*)(current_offset + (longlong)source_ptr))[i];
-            }
-            
-            // 复制渲染状态数据
-            for (int i = 0; i < 4; i++) {
-                ((uint32_t*)source_ptr)[0x18 + i] = *(uint32_t*)((longlong)source_ptr + current_offset + 0xc0 + i * 4);
-            }
-            
-            target_ptr = (void*)((uint8_t*)source_ptr + RENDERING_RESOURCE_BLOCK_SIZE);
-            source_ptr = target_ptr;
-            block_count--;
-        } while (block_count > 0);
-    }
-    
-    // 初始化资源
-    func_0x00018056ede0(target_ptr);
-    
-    // 清理现有资源
-    if (resource_data[0] != 0) {
-        FUN_18064e900();
-    }
-    
-    // 设置新的资源指针
-    resource_data[0] = (longlong)resource_memory;
-    resource_data[2] = (longlong)(resource_memory + resource_size * RENDERING_RESOURCE_BLOCK_COUNT);
-    resource_data[1] = (longlong)(target_ptr + state_size * RENDERING_RESOURCE_BLOCK_COUNT);
-    
-    // 初始化时间戳
-    RenderingTimestamp timestamp = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-    
-    // 初始化资源块
-    if ((int)resource_count < max_count) {
-        RenderingSize index = resource_count;
-        RenderingSize base_address = RENDERING_BASE_ADDRESS;
-        RenderingSize block_offset = index * RENDERING_RESOURCE_BLOCK_SIZE;
-        
-        do {
-            longlong resource_ptr = resource_data[0];
-            RenderingOffset state_offset = resource_data[1] - resource_ptr;
-            RenderingSize state_count = ((state_offset >> 6) - (state_offset >> 0x3f));
-            
-            if (index < state_count) {
-                // 设置渲染状态
-                *(uint64_t*)(block_offset + RENDERING_STATE_OFFSET + resource_ptr) = _DAT_180c966e8;
-                *(RenderingTimestamp*)(block_offset + RENDERING_CONFIG_OFFSET + resource_ptr) = timestamp;
-                *(uint8_t*)(block_offset + RENDERING_FLAG_OFFSET + resource_ptr) = 0;
-                
-                // 处理渲染索引
-                uint32_t render_index = resource_count & 0x8000000f;
-                if ((int)render_index < 0) {
-                    render_index = (render_index - 1 | 0xfffffff0) + 1;
-                }
-                
-                if (render_index < RENDERING_MAX_INDEX) {
-                    // 执行渲染操作
-                    uint64_t jump_address = *(uint32_t*)(base_address + RENDERING_JUMP_TABLE_OFFSET + (longlong)(int)render_index * 4) + base_address;
-                    switch(jump_address) {
-                        case 0x18056f221:
-                            // 清零操作
-                            for (int i = 0; i < 4; i++) {
-                                *(uint32_t*)(block_offset + resource_ptr + i * 4) = 0;
-                            }
-                            break;
-                        case 0x18056f22f:
-                            *(uint32_t*)(block_offset + resource_ptr) = 1;
-                            break;
-                        default:
-                            *(uint32_t*)(block_offset + resource_ptr) = 0;
-                            break;
-                        case 0x18056f243:
-                            func_0x0001805b2c90(resource_ptr + 0x10 + block_offset);
-                            break;
-                        case 0x18056f251:
-                            // 设置渲染数据
-                            *(uint64_t*)(block_offset + RENDERING_DATA_OFFSET + resource_ptr) = 0xffffffffffffffff;
-                            *(uint16_t*)(block_offset + RENDERING_HANDLE_OFFSET + resource_ptr) = 0xff;
-                            for (int i = 0; i < 4; i++) {
-                                *(uint64_t*)(block_offset + RENDERING_CONTROL_OFFSET + resource_ptr + i * 8) = 0;
-                            }
-                            *(uint32_t*)(block_offset + RENDERING_COUNTER_OFFSET + resource_ptr) = 0;
-                            break;
-                        case 0x18056f294:
-                            *(uint32_t*)(block_offset + resource_ptr) = 0xffffffff;
-                            break;
-                    }
-                }
-            }
-            
-            resource_count++;
-            index++;
-            block_offset += RENDERING_RESOURCE_BLOCK_SIZE;
-        } while ((int)resource_count < max_count);
-    }
-    
-    return true;
-}
-
-/**
- * @brief 渲染系统状态更新器实现
- * 
- * 更新渲染系统的状态信息，包括状态同步、资源更新。
- * 
- * @param resource_index 资源索引
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 更新成功返回true，失败返回false
- */
-bool RenderingSystemStateUpdater(
-    RenderingIndex resource_index,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-) {
-    // 初始化资源
-    func_0x00018056ede0();
-    
-    // 更新资源状态
-    longlong* resource_data = (longlong*)resource_handle;
-    resource_data[1] = resource_data[1] + state_size * RENDERING_RESOURCE_BLOCK_SIZE;
-    
-    // 初始化时间戳
-    RenderingTimestamp timestamp = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-    
-    // 更新资源块
-    if ((int)resource_index < max_count) {
-        RenderingSize index = resource_index;
-        RenderingSize base_address = RENDERING_BASE_ADDRESS;
-        RenderingSize block_offset = index * RENDERING_RESOURCE_BLOCK_SIZE;
-        
-        do {
-            longlong resource_ptr = resource_data[0];
-            RenderingOffset state_offset = resource_data[1] - resource_ptr;
-            RenderingSize state_count = ((state_offset >> 6) - (state_offset >> 0x3f));
-            
-            if (index < state_count) {
-                // 设置渲染状态
-                *(uint64_t*)(block_offset + RENDERING_STATE_OFFSET + resource_ptr) = _DAT_180c966e8;
-                *(RenderingTimestamp*)(block_offset + RENDERING_CONFIG_OFFSET + resource_ptr) = timestamp;
-                *(uint8_t*)(block_offset + RENDERING_FLAG_OFFSET + resource_ptr) = 0;
-                
-                // 处理渲染索引
-                uint32_t render_index = resource_index & 0x8000000f;
-                if ((int)render_index < 0) {
-                    render_index = (render_index - 1 | 0xfffffff0) + 1;
-                }
-                
-                if (render_index < RENDERING_MAX_INDEX) {
-                    // 执行渲染操作
-                    uint64_t jump_address = *(uint32_t*)(base_address + RENDERING_JUMP_TABLE_OFFSET + (longlong)(int)render_index * 4) + base_address;
-                    switch(jump_address) {
-                        case 0x18056f221:
-                            // 清零操作
-                            for (int i = 0; i < 4; i++) {
-                                *(uint32_t*)(block_offset + resource_ptr + i * 4) = 0;
-                            }
-                            break;
-                        case 0x18056f22f:
-                            *(uint32_t*)(block_offset + resource_ptr) = 1;
-                            break;
-                        default:
-                            *(uint32_t*)(block_offset + resource_ptr) = 0;
-                            break;
-                        case 0x18056f243:
-                            func_0x0001805b2c90(resource_ptr + 0x10 + block_offset);
-                            break;
-                        case 0x18056f251:
-                            // 设置渲染数据
-                            *(uint64_t*)(block_offset + RENDERING_DATA_OFFSET + resource_ptr) = 0xffffffffffffffff;
-                            *(uint16_t*)(block_offset + RENDERING_HANDLE_OFFSET + resource_ptr) = 0xff;
-                            for (int i = 0; i < 4; i++) {
-                                *(uint64_t*)(block_offset + RENDERING_CONTROL_OFFSET + resource_ptr + i * 8) = 0;
-                            }
-                            *(uint32_t*)(block_offset + RENDERING_COUNTER_OFFSET + resource_ptr) = 0;
-                            break;
-                        case 0x18056f294:
-                            *(uint32_t*)(block_offset + resource_ptr) = 0xffffffff;
-                            break;
-                    }
-                }
-            }
-            
-            resource_index++;
-            index++;
-            block_offset += RENDERING_RESOURCE_BLOCK_SIZE;
-        } while ((int)resource_index < max_count);
-    }
-    
-    return true;
-}
-
-/**
- * @brief 渲染系统配置处理器实现
- * 
- * 处理渲染系统的配置信息，包括配置设置、状态更新。
- * 
- * @param config_data 配置数据
- * @param param2 参数2
- * @param resource_index 资源索引
- * @param state_size 状态大小
- * @param resource_handle 资源句柄
- * @param max_count 最大数量
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemConfigProcessor(
-    void* config_data,
-    uint32_t param2,
-    RenderingIndex resource_index,
-    RenderingSize state_size,
-    RenderingResourceHandle resource_handle,
-    RenderingIndex max_count
-) {
-    // 处理配置数据
-    RenderingSize index = resource_index;
-    RenderingSize base_address = RENDERING_BASE_ADDRESS;
-    RenderingSize block_offset = index * RENDERING_RESOURCE_BLOCK_SIZE;
-    
+{
+  undefined4 *puVar1;
+  longlong lVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined8 uVar6;
+  uint uVar7;
+  undefined8 *puVar8;
+  longlong lVar9;
+  longlong lVar10;
+  ulonglong unaff_RBX;
+  ulonglong uVar11;
+  longlong unaff_RSI;
+  longlong *unaff_RDI;
+  longlong in_R9;
+  longlong in_R10;
+  undefined8 *puVar12;
+  undefined8 *puVar13;
+  longlong lVar14;
+  longlong unaff_R12;
+  int unaff_R15D;
+  float fVar15;
+  
+  uVar11 = unaff_RBX * 2;
+  if (unaff_RBX == 0) {
+    uVar11 = 1;
+  }
+  if (uVar11 < unaff_RBX + unaff_RSI) {
+    uVar11 = unaff_RBX + unaff_RSI;
+  }
+  if (uVar11 == 0) {
+    puVar8 = (undefined8 *)0x0;
+  }
+  else {
+    puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,uVar11 * 0xe0,(char)unaff_RDI[3]);
+    in_R9 = *unaff_RDI;
+    in_R10 = unaff_RDI[1];
+  }
+  lVar9 = SUB168(SEXT816(unaff_R12) * SEXT816(in_R10 - in_R9),8);
+  lVar9 = (lVar9 >> 6) - (lVar9 >> 0x3f);
+  puVar13 = puVar8;
+  if (0 < lVar9) {
+    in_R9 = in_R9 - (longlong)puVar8;
+    puVar12 = puVar8;
     do {
-        longlong* resource_data = (longlong*)resource_handle;
-        longlong resource_ptr = resource_data[0];
-        RenderingOffset state_offset = resource_data[1] - resource_ptr;
-        RenderingSize state_count = ((state_offset >> 6) - (state_offset >> 0x3f));
-        
-        if (index < state_count) {
-            // 设置渲染状态
-            *(uint64_t*)(block_offset + RENDERING_STATE_OFFSET + resource_ptr) = _DAT_180c966e8;
-            *(uint32_t*)(block_offset + RENDERING_CONFIG_OFFSET + resource_ptr) = param2;
-            *(uint8_t*)(block_offset + RENDERING_FLAG_OFFSET + resource_ptr) = 0;
-            
-            // 处理渲染索引
-            uint32_t render_index = resource_index & 0x8000000f;
-            if ((int)render_index < 0) {
-                render_index = (render_index - 1 | 0xfffffff0) + 1;
-            }
-            
-            if (render_index < RENDERING_MAX_INDEX) {
-                // 执行渲染操作
-                uint64_t jump_address = *(uint32_t*)(base_address + RENDERING_JUMP_TABLE_OFFSET + (longlong)(int)render_index * 4) + base_address;
-                switch(jump_address) {
-                    case 0x18056f221:
-                        // 清零操作
-                        for (int i = 0; i < 4; i++) {
-                            *(uint32_t*)(block_offset + resource_ptr + i * 4) = 0;
-                        }
-                        break;
-                    case 0x18056f22f:
-                        *(uint32_t*)(block_offset + resource_ptr) = 1;
-                        break;
-                    default:
-                        *(uint32_t*)(block_offset + resource_ptr) = 0;
-                        break;
-                    case 0x18056f243:
-                        func_0x0001805b2c90(resource_ptr + 0x10 + block_offset);
-                        break;
-                    case 0x18056f251:
-                        // 设置渲染数据
-                        *(uint64_t*)(block_offset + RENDERING_DATA_OFFSET + resource_ptr) = 0xffffffffffffffff;
-                        *(uint16_t*)(block_offset + RENDERING_HANDLE_OFFSET + resource_ptr) = 0xff;
-                        for (int i = 0; i < 4; i++) {
-                            *(uint64_t*)(block_offset + RENDERING_CONTROL_OFFSET + resource_ptr + i * 8) = 0;
-                        }
-                        *(uint32_t*)(block_offset + RENDERING_COUNTER_OFFSET + resource_ptr) = 0;
-                        break;
-                    case 0x18056f294:
-                        *(uint32_t*)(block_offset + resource_ptr) = 0xffffffff;
-                        break;
-                }
-            }
+      uVar6 = ((undefined8 *)(in_R9 + (longlong)puVar12))[1];
+      lVar9 = lVar9 + -1;
+      *puVar12 = *(undefined8 *)(in_R9 + (longlong)puVar12);
+      puVar12[1] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x18);
+      puVar12[2] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x10);
+      puVar12[3] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x28);
+      puVar12[4] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x20);
+      puVar12[5] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x38);
+      puVar12[6] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x30);
+      puVar12[7] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x48);
+      puVar12[8] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x40);
+      puVar12[9] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x58);
+      puVar12[10] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x50);
+      puVar12[0xb] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x68);
+      puVar12[0xc] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x60);
+      puVar12[0xd] = uVar6;
+      puVar13 = puVar12 + 0x1c;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x78);
+      puVar12[0xe] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x70);
+      puVar12[0xf] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x88);
+      puVar12[0x10] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x80);
+      puVar12[0x11] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x98);
+      puVar12[0x12] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0x90);
+      puVar12[0x13] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xa8);
+      puVar12[0x14] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xa0);
+      puVar12[0x15] = uVar6;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xb8);
+      puVar12[0x16] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xb0);
+      puVar12[0x17] = uVar6;
+      uVar3 = *(undefined4 *)((longlong)puVar12 + in_R9 + 0xc4);
+      uVar4 = *(undefined4 *)((longlong)puVar12 + in_R9 + 200);
+      uVar5 = *(undefined4 *)((longlong)puVar12 + in_R9 + 0xcc);
+      *(undefined4 *)(puVar12 + 0x18) = *(undefined4 *)((longlong)puVar12 + in_R9 + 0xc0);
+      *(undefined4 *)((longlong)puVar12 + 0xc4) = uVar3;
+      *(undefined4 *)(puVar12 + 0x19) = uVar4;
+      *(undefined4 *)((longlong)puVar12 + 0xcc) = uVar5;
+      uVar6 = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xd8);
+      puVar12[0x1a] = *(undefined8 *)((longlong)puVar12 + in_R9 + 0xd0);
+      puVar12[0x1b] = uVar6;
+      puVar12 = puVar13;
+    } while (0 < lVar9);
+  }
+  func_0x00018056ede0(puVar13);
+  if (*unaff_RDI != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  *unaff_RDI = (longlong)puVar8;
+  unaff_RDI[2] = (longlong)(puVar8 + uVar11 * 0x1c);
+  unaff_RDI[1] = (longlong)(puVar13 + unaff_RSI * 0x1c);
+  fVar15 = (float)_DAT_180c8ed38 * 1e-05;
+  if ((int)unaff_RBX < unaff_R15D) {
+    uVar11 = (ulonglong)(int)unaff_RBX;
+    lVar14 = 0x180000000;
+    lVar9 = uVar11 * 0xe0;
+    do {
+      lVar2 = *unaff_RDI;
+      lVar10 = SUB168(SEXT816(unaff_R12) * SEXT816(unaff_RDI[1] - lVar2),8);
+      if (uVar11 < (ulonglong)((lVar10 >> 6) - (lVar10 >> 0x3f))) {
+        *(undefined8 *)(lVar9 + 0xd0 + lVar2) = _DAT_180c966e8;
+        *(float *)(lVar9 + 0xd8 + lVar2) = fVar15;
+        *(undefined1 *)(lVar9 + 0xdc + lVar2) = 0;
+        uVar7 = (uint)unaff_RBX & 0x8000000f;
+        if ((int)uVar7 < 0) {
+          uVar7 = (uVar7 - 1 | 0xfffffff0) + 1;
         }
-        
-        resource_index++;
-        index++;
-        block_offset += RENDERING_RESOURCE_BLOCK_SIZE;
-    } while ((int)resource_index < max_count);
-    
-    return true;
+        if (uVar7 < 0x10) {
+          switch((ulonglong)*(uint *)(lVar14 + 0x56f2c0 + (longlong)(int)uVar7 * 4) + lVar14) {
+          case 0x18056f221:
+            puVar1 = (undefined4 *)(lVar9 + lVar2);
+            *puVar1 = 0;
+            puVar1[1] = 0;
+            puVar1[2] = 0;
+            puVar1[3] = 0;
+            break;
+          case 0x18056f22f:
+            *(undefined4 *)(lVar9 + lVar2) = 1;
+            break;
+          default:
+            *(undefined4 *)(lVar9 + lVar2) = 0;
+            break;
+          case 0x18056f243:
+            func_0x0001805b2c90(lVar2 + 0x10 + lVar9);
+            break;
+          case 0x18056f251:
+            *(undefined8 *)(lVar9 + 0xa0 + lVar2) = 0xffffffffffffffff;
+            *(undefined2 *)(lVar9 + 200 + lVar2) = 0xff;
+            *(undefined8 *)(lVar9 + 0xa8 + lVar2) = 0;
+            *(undefined8 *)(lVar9 + 0xb0 + lVar2) = 0;
+            *(undefined8 *)(lVar9 + 0xb8 + lVar2) = 0;
+            *(undefined8 *)(lVar9 + 0xc0 + lVar2) = 0;
+            *(undefined4 *)(lVar9 + 0xcc + lVar2) = 0;
+            break;
+          case 0x18056f294:
+            *(undefined4 *)(lVar9 + lVar2) = 0xffffffff;
+          }
+        }
+      }
+      uVar7 = (uint)unaff_RBX + 1;
+      unaff_RBX = (ulonglong)uVar7;
+      uVar11 = uVar11 + 1;
+      lVar9 = lVar9 + 0xe0;
+    } while ((int)uVar7 < unaff_R15D);
+  }
+  return;
 }
 
-/**
- * @brief 渲染系统资源分配器实现
- * 
- * 为渲染系统分配资源，包括内存分配、状态设置。
- * 
- * @param param1 参数1
- * @return 分配成功返回true，失败返回false
- */
-bool RenderingSystemResourceAllocator(
-    longlong param1
-) {
-    // 分配渲染资源
-    void* resource_memory = FUN_18062b420(_DAT_180c8ed18, RENDERING_RESOURCE_BLOCK_SIZE, 3);
-    if (!resource_memory) {
-        return false;
-    }
-    
-    // 初始化资源
-    memset(resource_memory, 0, RENDERING_RESOURCE_BLOCK_SIZE);
-    
-    // 设置资源参数
-    *(uint64_t*)resource_memory = (uint64_t)param1;
-    
-    // 初始化渲染状态
-    *(uint64_t*)((uint8_t*)resource_memory + RENDERING_STATE_OFFSET) = _DAT_180c966e8;
-    *(RenderingTimestamp*)((uint8_t*)resource_memory + RENDERING_CONFIG_OFFSET) = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-    *(uint8_t*)((uint8_t*)resource_memory + RENDERING_FLAG_OFFSET) = 0;
-    
-    return true;
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056f14d(void)
+void FUN_18056f14d(void)
+
+{
+  undefined4 *puVar1;
+  longlong lVar2;
+  uint uVar3;
+  longlong lVar4;
+  uint unaff_EBX;
+  longlong unaff_RSI;
+  longlong *unaff_RDI;
+  longlong lVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  longlong unaff_R12;
+  int unaff_R15D;
+  float fVar8;
+  
+  func_0x00018056ede0();
+  unaff_RDI[1] = unaff_RDI[1] + unaff_RSI * 0xe0;
+  fVar8 = (float)_DAT_180c8ed38 * 1e-05;
+  if ((int)unaff_EBX < unaff_R15D) {
+    uVar6 = (ulonglong)(int)unaff_EBX;
+    lVar7 = 0x180000000;
+    lVar5 = uVar6 * 0xe0;
+    do {
+      lVar2 = *unaff_RDI;
+      lVar4 = SUB168(SEXT816(unaff_R12) * SEXT816(unaff_RDI[1] - lVar2),8);
+      if (uVar6 < (ulonglong)((lVar4 >> 6) - (lVar4 >> 0x3f))) {
+        *(undefined8 *)(lVar5 + 0xd0 + lVar2) = _DAT_180c966e8;
+        *(float *)(lVar5 + 0xd8 + lVar2) = fVar8;
+        *(undefined1 *)(lVar5 + 0xdc + lVar2) = 0;
+        uVar3 = unaff_EBX & 0x8000000f;
+        if ((int)uVar3 < 0) {
+          uVar3 = (uVar3 - 1 | 0xfffffff0) + 1;
+        }
+        if (uVar3 < 0x10) {
+          switch((ulonglong)*(uint *)(lVar7 + 0x56f2c0 + (longlong)(int)uVar3 * 4) + lVar7) {
+          case 0x18056f221:
+            puVar1 = (undefined4 *)(lVar5 + lVar2);
+            *puVar1 = 0;
+            puVar1[1] = 0;
+            puVar1[2] = 0;
+            puVar1[3] = 0;
+            break;
+          case 0x18056f22f:
+            *(undefined4 *)(lVar5 + lVar2) = 1;
+            break;
+          default:
+            *(undefined4 *)(lVar5 + lVar2) = 0;
+            break;
+          case 0x18056f243:
+            func_0x0001805b2c90(lVar2 + 0x10 + lVar5);
+            break;
+          case 0x18056f251:
+            *(undefined8 *)(lVar5 + 0xa0 + lVar2) = 0xffffffffffffffff;
+            *(undefined2 *)(lVar5 + 200 + lVar2) = 0xff;
+            *(undefined8 *)(lVar5 + 0xa8 + lVar2) = 0;
+            *(undefined8 *)(lVar5 + 0xb0 + lVar2) = 0;
+            *(undefined8 *)(lVar5 + 0xb8 + lVar2) = 0;
+            *(undefined8 *)(lVar5 + 0xc0 + lVar2) = 0;
+            *(undefined4 *)(lVar5 + 0xcc + lVar2) = 0;
+            break;
+          case 0x18056f294:
+            *(undefined4 *)(lVar5 + lVar2) = 0xffffffff;
+          }
+        }
+      }
+      unaff_EBX = unaff_EBX + 1;
+      uVar6 = uVar6 + 1;
+      lVar5 = lVar5 + 0xe0;
+    } while ((int)unaff_EBX < unaff_R15D);
+  }
+  return;
 }
 
-/**
- * @brief 渲染系统数据管理器实现
- * 
- * 管理渲染系统的数据，包括数据处理、状态更新。
- * 
- * @param data_handle 数据句柄
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @return 管理成功返回true，失败返回false
- */
-bool RenderingSystemDataManager(
-    void* data_handle,
-    void* param2,
-    void* param3,
-    void* param4
-) {
-    // 参数验证
-    if (!data_handle) {
-        return false;
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056f195(undefined8 param_1,undefined4 param_2)
+void FUN_18056f195(undefined8 param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  longlong lVar2;
+  uint uVar3;
+  longlong lVar4;
+  uint unaff_EBX;
+  longlong *unaff_RDI;
+  longlong lVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  longlong unaff_R12;
+  int unaff_R15D;
+  
+  uVar6 = (ulonglong)(int)unaff_EBX;
+  lVar7 = 0x180000000;
+  lVar5 = uVar6 * 0xe0;
+  do {
+    lVar2 = *unaff_RDI;
+    lVar4 = SUB168(SEXT816(unaff_R12) * SEXT816(unaff_RDI[1] - lVar2),8);
+    if (uVar6 < (ulonglong)((lVar4 >> 6) - (lVar4 >> 0x3f))) {
+      *(undefined8 *)(lVar5 + 0xd0 + lVar2) = _DAT_180c966e8;
+      *(undefined4 *)(lVar5 + 0xd8 + lVar2) = param_2;
+      *(undefined1 *)(lVar5 + 0xdc + lVar2) = 0;
+      uVar3 = unaff_EBX & 0x8000000f;
+      if ((int)uVar3 < 0) {
+        uVar3 = (uVar3 - 1 | 0xfffffff0) + 1;
+      }
+      if (uVar3 < 0x10) {
+        switch((ulonglong)*(uint *)(lVar7 + 0x56f2c0 + (longlong)(int)uVar3 * 4) + lVar7) {
+        case 0x18056f221:
+          puVar1 = (undefined4 *)(lVar5 + lVar2);
+          *puVar1 = 0;
+          puVar1[1] = 0;
+          puVar1[2] = 0;
+          puVar1[3] = 0;
+          break;
+        case 0x18056f22f:
+          *(undefined4 *)(lVar5 + lVar2) = 1;
+          break;
+        default:
+          *(undefined4 *)(lVar5 + lVar2) = 0;
+          break;
+        case 0x18056f243:
+          func_0x0001805b2c90(lVar2 + 0x10 + lVar5);
+          break;
+        case 0x18056f251:
+          *(undefined8 *)(lVar5 + 0xa0 + lVar2) = 0xffffffffffffffff;
+          *(undefined2 *)(lVar5 + 200 + lVar2) = 0xff;
+          *(undefined8 *)(lVar5 + 0xa8 + lVar2) = 0;
+          *(undefined8 *)(lVar5 + 0xb0 + lVar2) = 0;
+          *(undefined8 *)(lVar5 + 0xb8 + lVar2) = 0;
+          *(undefined8 *)(lVar5 + 0xc0 + lVar2) = 0;
+          *(undefined4 *)(lVar5 + 0xcc + lVar2) = 0;
+          break;
+        case 0x18056f294:
+          *(undefined4 *)(lVar5 + lVar2) = 0xffffffff;
+        }
+      }
     }
-    
-    // 初始化数据管理器
-    uint64_t* data_ptr = (uint64_t*)data_handle;
-    
-    // 设置数据参数
-    data_ptr[0] = (uint64_t)param2;
-    data_ptr[1] = (uint64_t)param3;
-    data_ptr[2] = (uint64_t)param4;
-    
-    // 初始化渲染状态
-    *(uint64_t*)((uint8_t*)data_ptr + RENDERING_STATE_OFFSET) = _DAT_180c966e8;
-    *(RenderingTimestamp*)((uint8_t*)data_ptr + RENDERING_CONFIG_OFFSET) = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-    *(uint8_t*)((uint8_t*)data_ptr + RENDERING_FLAG_OFFSET) = 0;
-    
-    return true;
+    unaff_EBX = unaff_EBX + 1;
+    uVar6 = uVar6 + 1;
+    lVar5 = lVar5 + 0xe0;
+  } while ((int)unaff_EBX < unaff_R15D);
+  return;
 }
 
-/**
- * @brief 渲染系统资源释放器实现
- * 
- * 释放渲染系统的资源，包括资源清理、内存释放。
- * 
- * @param param1 参数1
- * @return 释放成功返回true，失败返回false
- */
-bool RenderingSystemResourceReleaser(
-    longlong param1
-) {
-    // 参数验证
-    if (!param1) {
-        return false;
-    }
-    
-    // 释放资源
-    void* resource_ptr = (void*)param1;
-    memset(resource_ptr, 0, RENDERING_RESOURCE_BLOCK_SIZE);
-    
-    return true;
+
+
+
+
+// 函数: void FUN_18056f340(longlong param_1)
+void FUN_18056f340(longlong param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = _Mtx_lock(param_1 + 0xbc0);
+  if (iVar1 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar1);
+  }
+  *(undefined8 *)(param_1 + 0x5e4) = 0;
+                    // WARNING: Subroutine does not return
+  memset(*(undefined8 *)(param_1 + 0x5b8),0,(longlong)(*(int *)(param_1 + 0x5b0) >> 3));
 }
 
-/**
- * @brief 渲染系统状态管理器实现
- * 
- * 管理渲染系统的状态，包括状态处理、异常处理。
- * 
- * @param state_handle 状态句柄
- * @return 管理成功返回true，失败返回false
- */
-bool RenderingSystemStateManager(
-    longlong* state_handle
-) {
-    // 参数验证
-    if (!state_handle) {
-        return false;
-    }
-    
-    // 处理状态
-    if (*state_handle != 0) {
-        FUN_180287f70(state_handle);
-        return false;
-    }
-    
-    return true;
+
+
+undefined8 *
+FUN_18056f3a0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = 0xfffffffffffffffe;
+  *param_1 = &UNK_180a36660;
+  _Mtx_destroy_in_situ();
+  if (param_1[0x9891] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  FUN_18055f380(param_1 + 0x970f);
+  FUN_1805fa720(param_1 + 0x8d9a);
+  if (param_1[0x8d8a] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  if (param_1[0x8d86] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  FUN_18056f670(param_1);
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x4c538,param_3,param_4,uVar1);
+  }
+  return param_1;
 }
 
-/**
- * @brief 渲染系统异常处理器实现
- * 
- * 处理渲染系统的异常情况，包括异常检测、异常处理。
- * 
- * @param param1 参数1
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemExceptionHandler(
-    longlong param1
-) {
-    // 参数验证
-    if (!param1) {
-        return false;
-    }
-    
-    // 处理异常
-    void* exception_ptr = (void*)param1;
-    if (*(uint64_t*)((uint8_t*)exception_ptr + RENDERING_STATE_OFFSET) != 0) {
-        FUN_18064e900();
-        return false;
-    }
-    
-    return true;
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056f480(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_18056f480(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  *param_1 = &UNK_180a36778;
+  *(undefined4 *)((longlong)param_1 + 0x24) = 0;
+  *(undefined2 *)(param_1 + 4) = 0;
+  param_1[2] = 2;
+  param_1[5] = &UNK_180a36730;
+  param_1[7] = 0;
+  param_1[8] = 0;
+  param_1[6] = 0xffffffffffffffff;
+  param_1[0xbc] = 0;
+  *(undefined4 *)(param_1 + 0xbb) = 0;
+  param_1[0xbd] = 0;
+  param_1[0xba] = 0;
+  param_1[0xbd] = _DAT_180c966e8;
+  param_1[0xc1] = 0;
+  param_1[0xbc] = param_1 + 9;
+  *(undefined4 *)(param_1 + 0xbb) = 0x2c40;
+  *(undefined4 *)(param_1 + 0xc2) = 0;
+                    // WARNING: Subroutine does not return
+  memset(param_1 + 9,0,0x588,param_4,0xfffffffffffffffe);
 }
 
-/**
- * @brief 渲染系统同步处理器实现
- * 
- * 处理渲染系统的同步操作，包括状态同步、资源同步。
- * 
- * @param sync_handle 同步句柄
- * @return 同步成功返回true，失败返回false
- */
-bool RenderingSystemSyncProcessor(
-    longlong* sync_handle
-) {
-    // 参数验证
-    if (!sync_handle) {
-        return false;
-    }
-    
-    // 同步处理
-    longlong* sync_ptr = sync_handle;
-    if (sync_ptr[0] != 0) {
-        // 执行同步操作
-        sync_ptr[1] = sync_ptr[1] + sync_ptr[2] * RENDERING_RESOURCE_BLOCK_SIZE;
-        
-        // 初始化时间戳
-        RenderingTimestamp timestamp = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-        
-        // 同步渲染状态
-        *(uint64_t*)(sync_ptr[0] + RENDERING_STATE_OFFSET) = _DAT_180c966e8;
-        *(RenderingTimestamp*)(sync_ptr[0] + RENDERING_CONFIG_OFFSET) = timestamp;
-        *(uint8_t*)(sync_ptr[0] + RENDERING_FLAG_OFFSET) = 0;
-    }
-    
-    return true;
+
+
+undefined8 FUN_18056f590(undefined8 param_1,ulonglong param_2)
+
+{
+  FUN_18056f670();
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x6b8);
+  }
+  return param_1;
 }
 
-/**
- * @brief 渲染系统完成处理器实现
- * 
- * 处理渲染系统的完成操作，包括完成检测、完成处理。
- * 
- * @param complete_handle 完成句柄
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @return 处理成功返回true，失败返回false
- */
-bool RenderingSystemCompletionProcessor(
-    longlong* complete_handle,
-    void* param2,
-    void* param3,
-    void* param4
-) {
-    // 参数验证
-    if (!complete_handle) {
-        return false;
-    }
-    
-    // 完成处理
-    longlong* complete_ptr = complete_handle;
-    
-    // 设置完成参数
-    complete_ptr[1] = (longlong)param2;
-    complete_ptr[2] = (longlong)param3;
-    complete_ptr[3] = (longlong)param4;
-    
-    // 初始化完成状态
-    if (complete_ptr[0] != 0) {
-        *(uint64_t*)(complete_ptr[0] + RENDERING_STATE_OFFSET) = _DAT_180c966e8;
-        *(RenderingTimestamp*)(complete_ptr[0] + RENDERING_CONFIG_OFFSET) = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-        *(uint8_t*)(complete_ptr[0] + RENDERING_FLAG_OFFSET) = 0;
-    }
-    
-    return true;
+
+
+
+
+// 函数: void FUN_18056f5d0(longlong param_1)
+void FUN_18056f5d0(longlong param_1)
+
+{
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined2 uStack_16;
+  
+  *(undefined4 *)(param_1 + 0x10) = 2;
+  *(undefined4 *)(param_1 + 0x14) = 0;
+  *(undefined4 *)(param_1 + 0x18) = uStack_20;
+  *(undefined4 *)(param_1 + 0x1c) = uStack_1c;
+  *(ulonglong *)(param_1 + 0x20) = (ulonglong)uStack_16 << 0x10;
+  (**(code **)(*(longlong *)(param_1 + 0x28) + 0x18))(param_1 + 0x28);
+  (*(code *)**(undefined8 **)(param_1 + 0x28))(param_1 + 0x28);
+  *(undefined8 *)(param_1 + 0x60c) = 0;
+                    // WARNING: Subroutine does not return
+  memset(*(undefined8 *)(param_1 + 0x5e0),0,(longlong)(*(int *)(param_1 + 0x5d8) >> 3));
 }
 
-/**
- * @brief 渲染系统优化处理器实现
- * 
- * 处理渲染系统的优化操作，包括性能优化、资源优化。
- * 
- * @param optimize_handle 优化句柄
- * @return 优化成功返回true，失败返回false
- */
-bool RenderingSystemOptimizationProcessor(
-    longlong* optimize_handle
-) {
-    // 参数验证
-    if (!optimize_handle) {
-        return false;
-    }
-    
-    // 优化处理
-    longlong* optimize_ptr = optimize_handle;
-    
-    // 执行优化操作
-    if (optimize_ptr[0] != 0) {
-        // 优化渲染资源
-        optimize_ptr[1] = optimize_ptr[1] + optimize_ptr[2] * RENDERING_RESOURCE_BLOCK_SIZE;
-        
-        // 初始化优化状态
-        *(uint64_t*)(optimize_ptr[0] + RENDERING_STATE_OFFSET) = _DAT_180c966e8;
-        *(RenderingTimestamp*)(optimize_ptr[0] + RENDERING_CONFIG_OFFSET) = (float)_DAT_180c8ed38 * RENDERING_TIMESTAMP_SCALE;
-        *(uint8_t*)(optimize_ptr[0] + RENDERING_FLAG_OFFSET) = 0;
-    }
-    
-    return true;
+
+
+
+
+// 函数: void FUN_18056f670(longlong *param_1)
+void FUN_18056f670(longlong *param_1)
+
+{
+  char cVar1;
+  
+  *param_1 = (longlong)&UNK_180a36778;
+  cVar1 = (**(code **)(param_1[5] + 0x30))(param_1 + 5);
+  if (cVar1 != '\0') {
+    (**(code **)(param_1[5] + 0x18))(param_1 + 5);
+  }
+  (**(code **)(*param_1 + 8))(param_1);
+  FUN_18056fd20(param_1 + 0xc3);
+  if (param_1[0xba] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0xba] = 0;
+  param_1[5] = (longlong)&UNK_180a36730;
+  return;
 }
 
-// =============================================================================
-// 技术说明
-// =============================================================================
 
-/**
- * @section technical_notes 技术说明
- * 
- * 本模块实现了渲染系统的资源管理和状态处理功能，具有以下技术特点：
- * 
- * 1. **资源管理**：
- *    - 使用动态内存分配技术管理渲染资源
- *    - 实现了资源池和对象池管理机制
- *    - 支持资源的生命周期管理
- * 
- * 2. **状态管理**：
- *    - 使用状态机模式管理渲染状态
- *    - 实现了状态同步和一致性保证
- *    - 支持状态查询和状态历史记录
- * 
- * 3. **内存管理**：
- *    - 使用内存池技术减少内存分配开销
- *    - 支持内存对齐和优化访问
- *    - 实现了自动内存管理和垃圾回收
- * 
- * 4. **性能优化**：
- *    - 使用缓存和预取技术优化性能
- *    - 实现了延迟加载和懒加载机制
- *    - 支持性能监控和调优功能
- * 
- * 5. **错误处理**：
- *    - 使用异常处理机制管理错误情况
- *    - 实现了错误恢复和容错机制
- *    - 支持错误日志和诊断信息
- * 
- * 6. **线程安全**：
- *    - 使用互斥锁和条件变量确保线程安全
- *    - 实现了原子操作和无锁数据结构
- *    - 支持多线程并发访问和同步操作
- * 
- * @section performance_optimization 性能优化建议
- * 
- * 1. **内存优化**：
- *    - 使用内存池技术减少内存分配开销
- *    - 实现对象复用和缓存机制
- *    - 优化内存布局和数据结构
- * 
- * 2. **渲染优化**：
- *    - 使用批处理和实例化技术
- *    - 实现渲染管线状态缓存
- *    - 优化着色器编译和链接过程
- * 
- * 3. **资源优化**：
- *    - 使用资源池和对象池技术
- *    - 实现资源的生命周期管理
- *    - 支持资源引用计数和共享机制
- * 
- * @section error_handling 错误处理机制
- * 
- * 本模块使用多层次的错误处理机制：
- * 
- * 1. **预防性检查**：
- *    - 参数验证和边界检查
- *    - 资源可用性检查
- *    - 状态一致性验证
- * 
- * 2. **错误检测**：
- *    - 返回值检查
- *    - 异常捕获和处理
- *    - 错误代码和错误信息
- * 
- * 3. **错误恢复**：
- *    - 资源清理和状态回滚
- *    - 错误日志和诊断信息
- *    - 自动重试和故障转移
- * 
- * 4. **容错机制**：
- *    - 降级处理和备用方案
- *    - 资源隔离和故障隔离
- *    - 系统监控和健康检查
- * 
- * @section memory_management 内存管理策略
- * 
- * 本模块使用以下内存管理策略：
- * 
- * 1. **内存分配**：
- *    - 使用内存池技术减少分配开销
- *    - 支持内存对齐和优化访问
- *    - 实现批量分配和预分配机制
- * 
- * 2. **内存回收**：
- *    - 使用引用计数管理对象生命周期
- *    - 实现自动垃圾回收机制
- *    - 支持手动释放和强制回收
- * 
- * 3. **内存优化**：
- *    - 使用内存映射技术提高访问速度
- *    - 实现内存压缩和去重机制
- *    - 支持内存监控和分析工具
- * 
- * 4. **内存安全**：
- *    - 使用内存保护机制防止越界访问
- *    - 实现内存泄漏检测和报告
- *    - 支持内存调试和诊断功能
- * 
- * @section resource_management 资源管理策略
- * 
- * 本模块使用以下资源管理策略：
- * 
- * 1. **资源生命周期**：
- *    - 创建：资源初始化和配置
- *    - 使用：资源访问和操作
- *    - 释放：资源清理和回收
- * 
- * 2. **资源类型**：
- *    - 渲染资源：纹理、着色器、缓冲区等
- *    - 内存资源：内存池、对象池等
- *    - 系统资源：文件、设备、句柄等
- * 
- * 3. **资源管理**：
- *    - 资源池：统一管理同类资源
- *    - 引用计数：跟踪资源使用情况
- *    - 延迟加载：按需加载资源
- * 
- * 4. **资源优化**：
- *    - 资源复用：减少重复创建
- *    - 资源缓存：提高访问速度
- *    - 资源压缩：减少内存占用
- */
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056f700(longlong param_1)
+void FUN_18056f700(longlong param_1)
+
+{
+  undefined8 *puVar1;
+  code *pcVar2;
+  char cVar3;
+  longlong *plVar4;
+  undefined8 uVar5;
+  undefined1 auStack_88 [32];
+  longlong *plStack_68;
+  undefined8 uStack_60;
+  longlong *plStack_58;
+  longlong **pplStack_50;
+  undefined *puStack_48;
+  undefined1 *puStack_40;
+  undefined4 uStack_38;
+  undefined1 auStack_30 [16];
+  ulonglong uStack_20;
+  
+  uStack_60 = 0xfffffffffffffffe;
+  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  cVar3 = (**(code **)(*(longlong *)(param_1 + 0x28) + 8))(param_1 + 0x28);
+  if (cVar3 != '\0') {
+    cVar3 = (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(param_1 + 0x28,1);
+    if ((((cVar3 == '\0') ||
+         (cVar3 = (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(param_1 + 0x28,2,1),
+         cVar3 == '\0')) ||
+        (cVar3 = (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(param_1 + 0x28,3,0x100000),
+        cVar3 == '\0')) ||
+       (cVar3 = (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(param_1 + 0x28,4,0x40000),
+       cVar3 == '\0')) {
+      (**(code **)(*(longlong *)(param_1 + 0x28) + 0x18))(param_1 + 0x28);
+    }
+    else {
+      plVar4 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3);
+      plStack_68 = plVar4;
+      FUN_180049830(plVar4);
+      *plVar4 = (longlong)&UNK_180a366a0;
+      plVar4[0x18] = param_1;
+      plStack_58 = plVar4;
+      (**(code **)(*plVar4 + 0x28))();
+      uVar5 = _DAT_180c82868;
+      puStack_48 = &UNK_1809fdc18;
+      puStack_40 = auStack_30;
+      auStack_30[0] = 0;
+      uStack_38 = 0xf;
+      strcpy_s(auStack_30,0x10,&UNK_180a36688);
+      uVar5 = FUN_18005e4d0(uVar5,&puStack_48);
+      *(undefined8 *)(param_1 + 8) = uVar5;
+      puStack_48 = &UNK_18098bcb0;
+      puVar1 = *(undefined8 **)(param_1 + 8);
+      pcVar2 = *(code **)*puVar1;
+      pplStack_50 = &plStack_68;
+      plStack_68 = plVar4;
+      (**(code **)(*plVar4 + 0x28))(plVar4);
+      (*pcVar2)(puVar1,&plStack_68);
+      (**(code **)(*plVar4 + 0x38))(plVar4);
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056f8f0(longlong *param_1)
+void FUN_18056f8f0(longlong *param_1)
+
+{
+  longlong *plVar1;
+  char cVar2;
+  longlong lVar3;
+  longlong lVar4;
+  ulonglong *puVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  ulonglong uStackX_8;
+  longlong lStackX_10;
+  longlong lStackX_18;
+  longlong lStackX_20;
+  undefined8 uVar8;
+  
+  uVar8 = 0xfffffffffffffffe;
+  lVar3 = FUN_18056fbb0(param_1 + 0xc3);
+  cVar2 = (**(code **)(param_1[5] + 0x30))(param_1 + 5);
+  while (cVar2 != '\0') {
+    uStackX_8 = uStackX_8 & 0xffffffff00000000;
+    (**(code **)(param_1[5] + 0x28))(param_1 + 5,lVar3 + 0x590,&uStackX_8,lVar3 + 0x5d0,uVar8);
+    if ((int)uStackX_8 - 1U < 0x580) {
+      *(int *)(lVar3 + 0x5c8) = (int)uStackX_8 * 8;
+      *(undefined4 *)(lVar3 + 0x5c4) = 0;
+      *(undefined8 *)((longlong)(int)uStackX_8 + *(longlong *)(lVar3 + 0x598)) = 0;
+      cVar2 = (**(code **)(*param_1 + 0x18))(param_1,lVar3,lVar3 + 0x5d0);
+      if (cVar2 != '\0') {
+        lVar4 = _DAT_180c8ed58;
+        lStackX_18 = lVar3;
+        if (_DAT_180c8ed58 == 0) {
+          QueryPerformanceCounter(&lStackX_10);
+          lVar4 = lStackX_10;
+        }
+        *(double *)(lVar3 + 0x5a8) = (double)(lVar4 - _DAT_180c8ed48) * _DAT_180c8ed50;
+        FUN_1805603c0(param_1 + 0xc3,&lStackX_18);
+        puVar5 = (ulonglong *)param_1[0xcd];
+        uVar6 = *puVar5;
+        if ((uVar6 == puVar5[1]) && (puVar5[1] = puVar5[8], uVar6 == puVar5[8])) {
+          if (puVar5 == (ulonglong *)param_1[0xd5]) {
+            lStackX_18 = FUN_18062b1e0(_DAT_180c8ed18,0x5e8,8,3);
+                    // WARNING: Subroutine does not return
+            memset(lStackX_18,0,0x5e8);
+          }
+          puVar5 = (ulonglong *)param_1[0xcd];
+          puVar5[1] = puVar5[8];
+          uVar6 = *puVar5;
+          if (uVar6 != puVar5[8]) goto LAB_18056fb2d;
+          puVar5 = (ulonglong *)puVar5[0x10];
+          uVar6 = *puVar5;
+          puVar5[1] = puVar5[8];
+          param_1[0xcd] = (longlong)puVar5;
+          lVar3 = *(longlong *)(puVar5[0x11] + uVar6 * 8);
+          uVar7 = puVar5[0x12];
+        }
+        else {
+LAB_18056fb2d:
+          lVar3 = *(longlong *)(puVar5[0x11] + uVar6 * 8);
+          uVar7 = puVar5[0x12];
+        }
+        *puVar5 = uVar7 & uVar6 + 1;
+      }
+    }
+    cVar2 = (**(code **)(param_1[5] + 0x30))(param_1 + 5);
+  }
+  lStackX_20 = lVar3;
+  FUN_1805603c0(param_1 + 0xcd,&lStackX_20);
+  plVar1 = param_1 + 0xc3;
+  puVar5 = (ulonglong *)*plVar1;
+  uVar6 = *puVar5;
+  if ((uVar6 == puVar5[1]) && (puVar5[1] = puVar5[8], uVar6 == puVar5[8])) {
+    if (puVar5 == (ulonglong *)param_1[0xcb]) {
+      do {
+        puVar5 = (ulonglong *)param_1[0xcd];
+        uVar6 = *puVar5;
+        if ((uVar6 == puVar5[1]) && (puVar5[1] = puVar5[8], uVar6 == puVar5[8])) {
+          if (puVar5 == (ulonglong *)param_1[0xd5]) {
+            return;
+          }
+          puVar5 = (ulonglong *)param_1[0xcd];
+          puVar5[1] = puVar5[8];
+          uVar6 = *puVar5;
+          if (uVar6 != puVar5[8]) goto LAB_1805700bf;
+          puVar5 = (ulonglong *)puVar5[0x10];
+          uVar6 = *puVar5;
+          puVar5[1] = puVar5[8];
+          param_1[0xcd] = (longlong)puVar5;
+          uStackX_8 = *(ulonglong *)(puVar5[0x11] + uVar6 * 8);
+          uVar7 = puVar5[0x12];
+        }
+        else {
+LAB_1805700bf:
+          uStackX_8 = *(ulonglong *)(puVar5[0x11] + uVar6 * 8);
+          uVar7 = puVar5[0x12];
+        }
+        *puVar5 = uVar7 & uVar6 + 1;
+        if (uStackX_8 != 0) {
+          if (*(longlong *)(uStackX_8 + 0x588) != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900();
+          }
+          *(undefined8 *)(uStackX_8 + 0x588) = 0;
+                    // WARNING: Subroutine does not return
+          FUN_18064e900(uStackX_8);
+        }
+      } while( true );
+    }
+    puVar5 = (ulonglong *)*plVar1;
+    puVar5[1] = puVar5[8];
+    uVar6 = *puVar5;
+    if (uVar6 == puVar5[8]) {
+      puVar5 = (ulonglong *)puVar5[0x10];
+      uVar6 = *puVar5;
+      puVar5[1] = puVar5[8];
+      *plVar1 = (longlong)puVar5;
+      uStackX_8 = *(ulonglong *)(puVar5[0x11] + uVar6 * 8);
+      *puVar5 = puVar5[0x12] & uVar6 + 1;
+      goto LAB_18057001b;
+    }
+  }
+  uStackX_8 = *(ulonglong *)(puVar5[0x11] + uVar6 * 8);
+  *puVar5 = puVar5[0x12] & uVar6 + 1;
+LAB_18057001b:
+  *(undefined4 *)(uStackX_8 + 0x5c4) = 0;
+  if (*(longlong *)(uStackX_8 + 0x588) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  *(undefined8 *)(uStackX_8 + 0x588) = 0;
+                    // WARNING: Subroutine does not return
+  FUN_18064e900(uStackX_8);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 FUN_18056fbb0(longlong param_1)
+
+{
+  undefined8 uVar1;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  ulonglong *puVar4;
+  
+  puVar4 = *(ulonglong **)(param_1 + 0x50);
+  uVar2 = *puVar4;
+  if ((uVar2 == puVar4[1]) && (puVar4[1] = puVar4[8], uVar2 == puVar4[8])) {
+    if (puVar4 == *(ulonglong **)(param_1 + 0x90)) {
+      uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x5e8,8,3,0xfffffffffffffffe);
+                    // WARNING: Subroutine does not return
+      memset(uVar1,0,0x5e8);
+    }
+    puVar4 = *(ulonglong **)(param_1 + 0x50);
+    puVar4[1] = puVar4[8];
+    uVar2 = *puVar4;
+    if (uVar2 == puVar4[8]) {
+      puVar4 = (ulonglong *)puVar4[0x10];
+      uVar2 = *puVar4;
+      puVar4[1] = puVar4[8];
+      *(ulonglong **)(param_1 + 0x50) = puVar4;
+      uVar1 = *(undefined8 *)(puVar4[0x11] + uVar2 * 8);
+      uVar3 = puVar4[0x12];
+      goto LAB_18056fd07;
+    }
+  }
+  uVar1 = *(undefined8 *)(puVar4[0x11] + uVar2 * 8);
+  uVar3 = puVar4[0x12];
+LAB_18056fd07:
+  *puVar4 = uVar3 & uVar2 + 1;
+  return uVar1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18056fd20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_18056fd20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  longlong *plVar1;
+  undefined8 *puVar2;
+  longlong lVar3;
+  undefined8 uVar4;
+  
+  uVar4 = 0xfffffffffffffffe;
+  FUN_18056ff70();
+  LOCK();
+  _DAT_180d48d28 = 0;
+  UNLOCK();
+  lVar3 = param_1[10];
+  do {
+    plVar1 = (longlong *)(lVar3 + 0x80);
+    if (*(longlong *)(lVar3 + 0x98) != 0) {
+                    // WARNING: Subroutine does not return
+      FUN_18064e900();
+    }
+    lVar3 = *plVar1;
+  } while (*plVar1 != param_1[10]);
+  LOCK();
+  _DAT_180d48d28 = 0;
+  UNLOCK();
+  puVar2 = (undefined8 *)*param_1;
+  do {
+    plVar1 = puVar2 + 0x10;
+    if (puVar2[0x13] != 0) {
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(puVar2[0x13],*puVar2,param_3,param_4,uVar4);
+    }
+    puVar2 = (undefined8 *)*plVar1;
+  } while ((undefined8 *)*plVar1 != (undefined8 *)*param_1);
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 * FUN_18056fde0(undefined8 *param_1)
+
+{
+  longlong lVar1;
+  longlong lVar2;
+  undefined8 *puVar3;
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  undefined8 *puVar6;
+  undefined8 *puVar7;
+  undefined8 *puVar8;
+  byte bVar9;
+  ulonglong uVar10;
+  ulonglong uVar11;
+  undefined1 auStack_48 [24];
+  undefined1 auStack_30 [24];
+  
+  puVar8 = (undefined8 *)0x0;
+  uVar11 = 0xf;
+  uVar10 = 1;
+  do {
+    bVar9 = (byte)uVar10;
+    uVar10 = uVar10 * 2;
+    uVar11 = uVar11 | uVar11 >> ((bVar9 & 7) << 3);
+  } while (uVar10 < 8);
+  param_1[9] = uVar11 + 1;
+  if (uVar11 + 1 < 0x1001) {
+    puVar4 = (undefined8 *)FUN_180560330();
+    if (puVar4 == (undefined8 *)0x0) {
+      FUN_180287f70(auStack_30);
+                    // WARNING: Subroutine does not return
+      _CxxThrowException(auStack_30,&UNK_180bd8a18);
+    }
+    puVar4[0x10] = puVar4;
+  }
+  else {
+    param_1[9] = 0x800;
+    puVar5 = puVar8;
+    puVar6 = puVar8;
+    puVar7 = puVar8;
+    do {
+      lVar1 = param_1[9];
+      lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar1 * 8 + 0xae,3);
+      puVar3 = puVar8;
+      if (lVar2 != 0) {
+        puVar3 = (undefined8 *)((ulonglong)(-(int)lVar2 & 7) + lVar2);
+        *puVar3 = 0;
+        puVar3[1] = 0;
+        puVar3[8] = 0;
+        puVar3[9] = 0;
+        puVar3[0x10] = 0;
+        puVar3[0x11] = (ulonglong)(-(int)(puVar3 + 0x14) & 7) + (longlong)(puVar3 + 0x14);
+        puVar3[0x12] = lVar1 + -1;
+        puVar3[0x13] = lVar2;
+      }
+      if (puVar3 == (undefined8 *)0x0) {
+        FUN_180287f70(auStack_48);
+                    // WARNING: Subroutine does not return
+        _CxxThrowException(auStack_48,&UNK_180bd8a18);
+      }
+      puVar4 = puVar3;
+      if (puVar5 != (undefined8 *)0x0) {
+        puVar6[0x10] = puVar3;
+        puVar4 = puVar5;
+      }
+      puVar7 = (undefined8 *)((longlong)puVar7 + 1);
+      puVar3[0x10] = puVar4;
+      puVar5 = puVar4;
+      puVar6 = puVar3;
+    } while (puVar7 != (undefined8 *)0x2);
+  }
+  *param_1 = puVar4;
+  param_1[8] = puVar4;
+  LOCK();
+  _DAT_180d48d28 = 0;
+  UNLOCK();
+  return param_1;
+}
+
+
+
+
+
+// 函数: void FUN_18056ff70(longlong *param_1)
+void FUN_18056ff70(longlong *param_1)
+
+{
+  ulonglong *puVar1;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  longlong lVar4;
+  
+  puVar1 = (ulonglong *)*param_1;
+  uVar2 = *puVar1;
+  if ((uVar2 == puVar1[1]) && (puVar1[1] = puVar1[8], uVar2 == puVar1[8])) {
+    if (puVar1 == (ulonglong *)param_1[8]) {
+      do {
+        puVar1 = (ulonglong *)param_1[10];
+        uVar2 = *puVar1;
+        if ((uVar2 == puVar1[1]) && (puVar1[1] = puVar1[8], uVar2 == puVar1[8])) {
+          if (puVar1 == (ulonglong *)param_1[0x12]) {
+            return;
+          }
+          puVar1 = (ulonglong *)param_1[10];
+          puVar1[1] = puVar1[8];
+          uVar2 = *puVar1;
+          if (uVar2 != puVar1[8]) goto LAB_1805700bf;
+          puVar1 = (ulonglong *)puVar1[0x10];
+          uVar2 = *puVar1;
+          puVar1[1] = puVar1[8];
+          param_1[10] = (longlong)puVar1;
+          lVar4 = *(longlong *)(puVar1[0x11] + uVar2 * 8);
+          uVar3 = puVar1[0x12];
+        }
+        else {
+LAB_1805700bf:
+          lVar4 = *(longlong *)(puVar1[0x11] + uVar2 * 8);
+          uVar3 = puVar1[0x12];
+        }
+        *puVar1 = uVar3 & uVar2 + 1;
+        if (lVar4 != 0) {
+          if (*(longlong *)(lVar4 + 0x588) != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900();
+          }
+          *(undefined8 *)(lVar4 + 0x588) = 0;
+                    // WARNING: Subroutine does not return
+          FUN_18064e900(lVar4);
+        }
+      } while( true );
+    }
+    puVar1 = (ulonglong *)*param_1;
+    puVar1[1] = puVar1[8];
+    uVar2 = *puVar1;
+    if (uVar2 == puVar1[8]) {
+      puVar1 = (ulonglong *)puVar1[0x10];
+      uVar2 = *puVar1;
+      puVar1[1] = puVar1[8];
+      *param_1 = (longlong)puVar1;
+      lVar4 = *(longlong *)(puVar1[0x11] + uVar2 * 8);
+      *puVar1 = puVar1[0x12] & uVar2 + 1;
+      goto LAB_18057001b;
+    }
+  }
+  lVar4 = *(longlong *)(puVar1[0x11] + uVar2 * 8);
+  *puVar1 = puVar1[0x12] & uVar2 + 1;
+LAB_18057001b:
+  *(undefined4 *)(lVar4 + 0x5c4) = 0;
+  if (*(longlong *)(lVar4 + 0x588) != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  *(undefined8 *)(lVar4 + 0x588) = 0;
+                    // WARNING: Subroutine does not return
+  FUN_18064e900(lVar4);
+}
+
+
+
+undefined8 * FUN_180570140(undefined8 *param_1,ulonglong param_2)
+
+{
+  *param_1 = &UNK_180a36730;
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x20);
+  }
+  return param_1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

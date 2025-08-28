@@ -1,184 +1,585 @@
-/**
- * @file 04_ui_system_part306.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part306.c - 3 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  longlong lVar7;
+  longlong lVar8;
+  undefined1 auVar9 [32];
+  undefined1 auVar10 [32];
+  float fVar11;
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [32];
+  undefined1 auVar14 [32];
+  undefined1 auVar15 [32];
+  undefined1 auVar16 [32];
+  ulonglong uVar17;
+  int iVar18;
+  uint uVar19;
+  int iVar20;
+  ulonglong *puVar21;
+  float *pfVar22;
+  undefined1 auVar23 [16];
+  undefined1 auVar24 [32];
+  undefined1 auVar25 [32];
+  undefined1 auVar26 [32];
+  undefined1 auVar27 [32];
+  undefined1 auVar28 [32];
+  undefined1 auStack_d8 [24];
+  undefined1 auStack_c0 [32];
+  ulonglong auStack_98 [18];
+  
+  puVar21 = auStack_98;
+  auStack_98[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uVar17 = (ulonglong)param_1 & 0x1f;
+  while ((uVar17 != 0 && (param_2 != 0))) {
+    param_2 = param_2 - 1;
+    fVar11 = (float)(*param_4 >> 1) * 4.656613e-10;
+    uVar19 = param_4[1] * 4;
+    fVar1 = *(float *)(param_3 + (ulonglong)(uVar19 + 1) * 4);
+    fVar2 = *(float *)(param_3 + (ulonglong)(uVar19 + 2) * 4);
+    fVar3 = *(float *)(param_3 + (ulonglong)(uVar19 + 3) * 4);
+    fVar4 = *(float *)(param_3 + (ulonglong)(uVar19 + 5) * 4);
+    fVar5 = *(float *)(param_3 + (ulonglong)(uVar19 + 6) * 4);
+    fVar6 = *(float *)(param_3 + (ulonglong)(uVar19 + 7) * 4);
+    auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),
+                              ZEXT416((uint)(*(float *)(param_3 + (ulonglong)(uVar19 + 4) * 4) -
+                                            *(float *)(param_3 + (ulonglong)uVar19 * 4))),
+                              ZEXT416(*(uint *)(param_3 + (ulonglong)uVar19 * 4)));
+    *param_1 = auVar23._0_4_;
+    auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar4 - fVar1)),
+                              ZEXT416((uint)fVar1));
+    param_1[1] = auVar23._0_4_;
+    auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar5 - fVar2)),
+                              ZEXT416((uint)fVar2));
+    param_1[2] = auVar23._0_4_;
+    auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar6 - fVar3)),
+                              ZEXT416((uint)fVar3));
+    param_1[3] = auVar23._0_4_;
+    param_1 = param_1 + 4;
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    uVar17 = (ulonglong)param_1 & 0x1f;
+  }
+  iVar20 = (int)param_2 >> 2;
+  if (iVar20 != 0) {
+    lVar8 = *param_5;
+    uVar19 = *param_4;
+    auVar25._4_4_ = uVar19;
+    auVar25._0_4_ = uVar19;
+    auVar25._8_4_ = uVar19;
+    auVar25._12_4_ = uVar19;
+    auVar25._16_4_ = uVar19;
+    auVar25._20_4_ = uVar19;
+    auVar25._24_4_ = uVar19;
+    auVar25._28_4_ = uVar19;
+    lVar7 = *(longlong *)param_4;
+    auVar26._8_8_ = lVar7;
+    auVar26._0_8_ = lVar7;
+    auVar26._16_8_ = lVar7;
+    auVar26._24_8_ = lVar7;
+    lVar7 = lVar8 * 4;
+    uVar19 = (uint)lVar8;
+    auVar23 = vpinsrd_avx(ZEXT416(uVar19),uVar19,1);
+    auVar23 = vpinsrd_avx(auVar23,uVar19,2);
+    auVar23 = vpinsrd_avx(auVar23,uVar19,3);
+    auVar25 = vpaddd_avx2(ZEXT1632(auVar23) << 0x80,auVar25);
+    iVar18 = uVar19 * 2;
+    auVar23._8_8_ = 0;
+    auVar23._0_8_ = lVar8 * 2;
+    auVar23 = vpinsrq_avx(auVar23,lVar8 * 3,1);
+    auVar12 = vpinsrq_avx((undefined1  [16])0x0,lVar8,1);
+    auVar24._16_16_ = auVar23;
+    auVar24._0_16_ = auVar12;
+    auVar24 = vpaddq_avx2(auVar24,auVar26);
+    auVar28._8_8_ = lVar7;
+    auVar28._0_8_ = lVar7;
+    auVar28._16_8_ = lVar7;
+    auVar28._24_8_ = lVar7;
+    auVar27._4_4_ = iVar18;
+    auVar27._0_4_ = iVar18;
+    auVar27._8_4_ = iVar18;
+    auVar27._12_4_ = iVar18;
+    auVar27._16_4_ = iVar18;
+    auVar27._20_4_ = iVar18;
+    auVar27._24_4_ = iVar18;
+    auVar27._28_4_ = iVar18;
+    puVar21 = (ulonglong *)auStack_d8;
+    do {
+      auStack_c0 = auVar24;
+      auVar24 = vpsrld_avx2(auVar25,1);
+      auVar9 = vcvtdq2ps_avx(auVar24);
+      auVar25 = vpaddd_avx2(auVar25,auVar27);
+      auVar24 = vpsrld_avx2(auVar25,1);
+      auVar10 = vcvtdq2ps_avx(auVar24);
+      auVar26 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._4_4_ << 2) * 4);
+      auVar25 = vpaddd_avx2(auVar25,auVar27);
+      auVar24 = vpaddq_avx2(auVar28,auStack_c0);
+      auVar14 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+                                        (param_3 + (ulonglong)(uint)(auStack_c0._12_4_ << 2) * 4),
+                               0x20);
+      auVar26 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+                                        (param_3 + (ulonglong)(uint)(auStack_c0._12_4_ << 2) * 4),
+                               0x31);
+      auVar13 = vsubps_avx(auVar26,auVar14);
+      auVar26 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._20_4_ << 2) * 4);
+      auVar15 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+                                        (param_3 + (ulonglong)(uint)(auStack_c0._28_4_ << 2) * 4),
+                               0x20);
+      auVar16 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+                                        (param_3 + (ulonglong)(uint)(auStack_c0._28_4_ << 2) * 4),
+                               0x31);
+      auVar16 = vsubps_avx(auVar16,auVar15);
+      *param_1 = auVar13._0_4_ * auVar9._0_4_ * 4.656613e-10 + auVar14._0_4_;
+      param_1[1] = auVar13._4_4_ * auVar9._4_4_ * 4.656613e-10 + auVar14._4_4_;
+      param_1[2] = auVar13._8_4_ * auVar9._8_4_ * 4.656613e-10 + auVar14._8_4_;
+      param_1[3] = auVar13._12_4_ * auVar9._12_4_ * 4.656613e-10 + auVar14._12_4_;
+      param_1[4] = auVar13._16_4_ * auVar9._16_4_ * 4.656613e-10 + auVar14._16_4_;
+      param_1[5] = auVar13._20_4_ * auVar9._20_4_ * 4.656613e-10 + auVar14._20_4_;
+      param_1[6] = auVar13._24_4_ * auVar9._24_4_ * 4.656613e-10 + auVar14._24_4_;
+      param_1[7] = auVar26._28_4_ + auVar14._28_4_;
+      param_1[8] = auVar16._0_4_ * auVar10._0_4_ * 4.656613e-10 + auVar15._0_4_;
+      param_1[9] = auVar16._4_4_ * auVar10._4_4_ * 4.656613e-10 + auVar15._4_4_;
+      param_1[10] = auVar16._8_4_ * auVar10._8_4_ * 4.656613e-10 + auVar15._8_4_;
+      param_1[0xb] = auVar16._12_4_ * auVar10._12_4_ * 4.656613e-10 + auVar15._12_4_;
+      param_1[0xc] = auVar16._16_4_ * auVar10._16_4_ * 4.656613e-10 + auVar15._16_4_;
+      param_1[0xd] = auVar16._20_4_ * auVar10._20_4_ * 4.656613e-10 + auVar15._20_4_;
+      param_1[0xe] = auVar16._24_4_ * auVar10._24_4_ * 4.656613e-10 + auVar15._24_4_;
+      param_1[0xf] = auVar26._28_4_ + auVar15._28_4_;
+      param_1 = param_1 + 0x10;
+      iVar20 = iVar20 + -1;
+    } while (iVar20 != 0);
+    *(longlong *)param_4 = auVar24._0_8_;
+  }
+  param_2 = param_2 & 3;
+  if (param_2 != 0) {
+    pfVar22 = param_1 + 2;
+    do {
+      fVar11 = (float)(*param_4 >> 1) * 4.656613e-10;
+      uVar19 = param_4[1] * 4;
+      fVar1 = *(float *)(param_3 + (ulonglong)(uVar19 + 1) * 4);
+      fVar2 = *(float *)(param_3 + (ulonglong)(uVar19 + 2) * 4);
+      fVar3 = *(float *)(param_3 + (ulonglong)(uVar19 + 3) * 4);
+      fVar4 = *(float *)(param_3 + (ulonglong)(uVar19 + 5) * 4);
+      fVar5 = *(float *)(param_3 + (ulonglong)(uVar19 + 6) * 4);
+      fVar6 = *(float *)(param_3 + (ulonglong)(uVar19 + 7) * 4);
+      auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),
+                                ZEXT416((uint)(*(float *)(param_3 + (ulonglong)(uVar19 + 4) * 4) -
+                                              *(float *)(param_3 + (ulonglong)uVar19 * 4))),
+                                ZEXT416(*(uint *)(param_3 + (ulonglong)uVar19 * 4)));
+      pfVar22[-2] = auVar23._0_4_;
+      auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar4 - fVar1)),
+                                ZEXT416((uint)fVar1));
+      pfVar22[-1] = auVar23._0_4_;
+      auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar5 - fVar2)),
+                                ZEXT416((uint)fVar2));
+      *pfVar22 = auVar23._0_4_;
+      auVar23 = vfmadd213ss_fma(ZEXT416((uint)fVar11),ZEXT416((uint)(fVar6 - fVar3)),
+                                ZEXT416((uint)fVar3));
+      pfVar22[1] = auVar23._0_4_;
+      *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+      param_2 = param_2 - 1;
+      pfVar22 = pfVar22 + 4;
+    } while (param_2 != 0);
+  }
+                    // WARNING: Subroutine does not return
+  *(undefined8 *)((longlong)puVar21 + -8) = 0x180837005;
+  FUN_1808fc050(auStack_98[0] ^ (ulonglong)auStack_98);
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+// WARNING: Removing unreachable block (ram,0x00018083721a)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  undefined1 auVar5 [32];
+  undefined1 auVar6 [32];
+  undefined1 auVar7 [32];
+  undefined1 auVar8 [32];
+  undefined1 auVar9 [32];
+  ulonglong uVar10;
+  uint uVar11;
+  undefined1 auVar12 [32];
+  ulonglong *puVar13;
+  int iVar14;
+  undefined1 auVar15 [16];
+  undefined1 auVar16 [32];
+  undefined1 auVar17 [32];
+  undefined1 auVar18 [16];
+  undefined1 auVar19 [32];
+  undefined1 auStack_b8 [24];
+  undefined1 auStack_a0 [32];
+  ulonglong auStack_78 [14];
+  
+  puVar13 = auStack_78;
+  auStack_78[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uVar10 = (ulonglong)param_1 & 0x1f;
+  auVar12 = _DAT_180980c60;
+                    // WARNING: Read-only address (ram,0x000180980c60) is written
+  while ((_DAT_180980c60 = auVar12, uVar10 != 0 && (param_2 != 0))) {
+    param_2 = param_2 - 1;
+    auVar18 = ZEXT416((uint)((float)(*param_4 >> 1) * 4.656613e-10));
+    uVar11 = param_4[1] * 2;
+    fVar1 = *(float *)(param_3 + (ulonglong)(uVar11 + 1) * 4);
+    fVar2 = *(float *)(param_3 + (ulonglong)(uVar11 + 3) * 4);
+    auVar15 = vfmadd213ss_fma(auVar18,ZEXT416((uint)(*(float *)(param_3 +
+                                                               (ulonglong)(uVar11 + 2) * 4) -
+                                                    *(float *)(param_3 + (ulonglong)uVar11 * 4))),
+                              ZEXT416(*(uint *)(param_3 + (ulonglong)uVar11 * 4)));
+    *param_1 = auVar15._0_4_;
+    auVar15 = vfmadd213ss_fma(auVar18,ZEXT416((uint)(fVar2 - fVar1)),ZEXT416((uint)fVar1));
+    param_1[1] = auVar15._0_4_;
+    param_1 = param_1 + 2;
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    uVar10 = (ulonglong)param_1 & 0x1f;
+    auVar12 = _DAT_180980c60;
+  }
+  iVar14 = (int)param_2 >> 2;
+  if (iVar14 != 0) {
+    lVar4 = *param_5;
+    lVar3 = *(longlong *)param_4;
+    auVar17._8_8_ = lVar3;
+    auVar17._0_8_ = lVar3;
+    auVar17._16_8_ = lVar3;
+    auVar17._24_8_ = lVar3;
+    lVar3 = lVar4 * 4;
+    auVar15._8_8_ = 0;
+    auVar15._0_8_ = lVar4 * 2;
+    auVar15 = vpinsrq_avx(auVar15,lVar4 * 3,1);
+    auVar18 = vpinsrq_avx((undefined1  [16])0x0,lVar4,1);
+    auVar16._16_16_ = auVar15;
+    auVar16._0_16_ = auVar18;
+    auVar16 = vpaddq_avx2(auVar16,auVar17);
+    auVar19._8_8_ = lVar3;
+    auVar19._0_8_ = lVar3;
+    auVar19._16_8_ = lVar3;
+    auVar19._24_8_ = lVar3;
+    puVar13 = (ulonglong *)auStack_b8;
+    do {
+      auStack_a0 = auVar16;
+      auVar9 = vpermd_avx2(auVar12,auStack_a0);
+      auVar16 = vpaddq_avx2(auVar19,auStack_a0);
+      auVar17 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._4_4_ * 2) * 4);
+      auVar7 = vpunpcklqdq_avx2(auVar17,*(undefined1 (*) [32])
+                                         (param_3 + (ulonglong)(uint)(auStack_a0._12_4_ * 2) * 4));
+      auVar5 = vpunpckhqdq_avx2(auVar17,*(undefined1 (*) [32])
+                                         (param_3 + (ulonglong)(uint)(auStack_a0._12_4_ * 2) * 4));
+      auVar17 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._20_4_ * 2) * 4);
+      auVar8 = vpunpcklqdq_avx2(auVar17,*(undefined1 (*) [32])
+                                         (param_3 + (ulonglong)(uint)(auStack_a0._28_4_ * 2) * 4));
+      auVar6 = vpunpckhqdq_avx2(auVar17,*(undefined1 (*) [32])
+                                         (param_3 + (ulonglong)(uint)(auStack_a0._28_4_ * 2) * 4));
+      auVar7 = vperm2f128_avx(auVar7,auVar8,0x20);
+      auVar17 = vpsrld_avx2(auVar9,1);
+      auVar17 = vcvtdq2ps_avx(auVar17);
+      auVar5 = vperm2f128_avx(auVar5,auVar6,0x20);
+      auVar5 = vsubps_avx(auVar5,auVar7);
+      *param_1 = auVar17._0_4_ * 4.656613e-10 * auVar5._0_4_ + auVar7._0_4_;
+      param_1[1] = auVar17._4_4_ * 4.656613e-10 * auVar5._4_4_ + auVar7._4_4_;
+      param_1[2] = auVar17._8_4_ * 4.656613e-10 * auVar5._8_4_ + auVar7._8_4_;
+      param_1[3] = auVar17._12_4_ * 4.656613e-10 * auVar5._12_4_ + auVar7._12_4_;
+      param_1[4] = auVar17._16_4_ * 4.656613e-10 * auVar5._16_4_ + auVar7._16_4_;
+      param_1[5] = auVar17._20_4_ * 4.656613e-10 * auVar5._20_4_ + auVar7._20_4_;
+      param_1[6] = auVar17._24_4_ * 4.656613e-10 * auVar5._24_4_ + auVar7._24_4_;
+      param_1[7] = auVar17._28_4_ + auVar7._28_4_;
+      param_1 = param_1 + 8;
+      iVar14 = iVar14 + -1;
+    } while (iVar14 != 0);
+    *(longlong *)param_4 = auVar16._0_8_;
+  }
+  for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
+    auVar18 = ZEXT416((uint)((float)(*param_4 >> 1) * 4.656613e-10));
+    uVar11 = param_4[1] * 2;
+    fVar1 = *(float *)(param_3 + (ulonglong)(uVar11 + 1) * 4);
+    fVar2 = *(float *)(param_3 + (ulonglong)(uVar11 + 3) * 4);
+    auVar15 = vfmadd213ss_fma(auVar18,ZEXT416((uint)(*(float *)(param_3 +
+                                                               (ulonglong)(uVar11 + 2) * 4) -
+                                                    *(float *)(param_3 + (ulonglong)uVar11 * 4))),
+                              ZEXT416(*(uint *)(param_3 + (ulonglong)uVar11 * 4)));
+    *param_1 = auVar15._0_4_;
+    auVar15 = vfmadd213ss_fma(auVar18,ZEXT416((uint)(fVar2 - fVar1)),ZEXT416((uint)fVar1));
+    param_1[1] = auVar15._0_4_;
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    param_1 = param_1 + 2;
+  }
+                    // WARNING: Subroutine does not return
+  *(undefined8 *)((longlong)puVar13 + -8) = 0x1808372ac;
+  FUN_1808fc050(auStack_78[0] ^ (ulonglong)auStack_78);
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+// WARNING: Removing unreachable block (ram,0x00018083774d)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
+  longlong lVar1;
+  undefined1 auVar2 [16];
+  short sVar3;
+  short sVar4;
+  short sVar5;
+  short sVar6;
+  short sVar7;
+  longlong lVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  undefined1 auVar16 [32];
+  undefined1 auVar17 [32];
+  undefined1 auVar18 [32];
+  undefined1 auVar19 [32];
+  undefined1 auVar20 [32];
+  undefined1 auVar21 [32];
+  ulonglong uVar22;
+  uint uVar23;
+  undefined1 auVar24 [32];
+  undefined1 *puVar25;
+  int iVar26;
+  undefined1 auVar27 [16];
+  undefined1 auVar28 [16];
+  undefined1 auVar29 [32];
+  undefined1 auVar30 [32];
+  undefined1 auVar31 [32];
+  undefined1 auVar32 [16];
+  undefined1 auVar33 [16];
+  undefined1 auVar34 [16];
+  undefined1 auStack_168 [8];
+  undefined1 auStack_160 [32];
+  undefined1 auStack_128 [8];
+  undefined1 auStack_120 [32];
+  longlong lStack_100;
+  longlong lStack_f8;
+  longlong lStack_f0;
+  longlong lStack_e8;
+  ulonglong uStack_e0;
+  
+  puVar25 = auStack_128;
+  uStack_e0 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uVar22 = (ulonglong)param_1 & 0x1f;
+                    // WARNING: Read-only address (ram,0x000180980be0) is written
+                    // WARNING: Read-only address (ram,0x000180980c20) is written
+                    // WARNING: Read-only address (ram,0x000180980c80) is written
+  for (; (uVar22 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
+    fVar9 = (float)(*param_4 >> 1) * 4.656613e-10;
+    uVar23 = param_4[1] * 6;
+    fVar10 = (float)(int)*(short *)(param_3 + (ulonglong)uVar23 * 2) * 3.0517578e-05;
+    fVar11 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 1) * 2) * 3.0517578e-05;
+    fVar12 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 2) * 2) * 3.0517578e-05;
+    fVar13 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 3) * 2) * 3.0517578e-05;
+    fVar14 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 4) * 2) * 3.0517578e-05;
+    fVar15 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 5) * 2) * 3.0517578e-05;
+    sVar3 = *(short *)(param_3 + (ulonglong)(uVar23 + 7) * 2);
+    sVar4 = *(short *)(param_3 + (ulonglong)(uVar23 + 8) * 2);
+    sVar5 = *(short *)(param_3 + (ulonglong)(uVar23 + 9) * 2);
+    sVar6 = *(short *)(param_3 + (ulonglong)(uVar23 + 10) * 2);
+    sVar7 = *(short *)(param_3 + (ulonglong)(uVar23 + 0xb) * 2);
+    *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 6) * 2) * 3.0517578e-05 -
+               fVar10) * fVar9 + fVar10;
+    param_1[1] = ((float)(int)sVar3 * 3.0517578e-05 - fVar11) * fVar9 + fVar11;
+    param_1[2] = ((float)(int)sVar4 * 3.0517578e-05 - fVar12) * fVar9 + fVar12;
+    param_1[3] = ((float)(int)sVar5 * 3.0517578e-05 - fVar13) * fVar9 + fVar13;
+    param_1[4] = ((float)(int)sVar6 * 3.0517578e-05 - fVar14) * fVar9 + fVar14;
+    param_1[5] = ((float)(int)sVar7 * 3.0517578e-05 - fVar15) * fVar9 + fVar15;
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    param_1 = param_1 + 6;
+    uVar22 = (ulonglong)param_1 & 0x1f;
+  }
+  iVar26 = (int)param_2 >> 2;
+  if (iVar26 != 0) {
+    lVar8 = *param_5;
+    lVar1 = *(longlong *)param_4;
+    auVar30._8_8_ = lVar1;
+    auVar30._0_8_ = lVar1;
+    auVar30._16_8_ = lVar1;
+    auVar30._24_8_ = lVar1;
+    lStack_100 = lVar8 * 4;
+    auVar28._8_8_ = 0;
+    auVar28._0_8_ = lVar8 * 2;
+    auVar28 = vpinsrq_avx(auVar28,lVar8 * 3,1);
+    auVar33 = vpinsrq_avx((undefined1  [16])0x0,lVar8,1);
+    auVar29._16_16_ = auVar28;
+    auVar29._0_16_ = auVar33;
+    auStack_120 = vpaddq_avx2(auVar29,auVar30);
+    puVar25 = auStack_168;
+    do {
+      auStack_160 = auStack_120;
+      auVar30 = vpermd_avx2(_DAT_180980c20,auStack_160);
+      auVar29 = vpermd_avx2(_DAT_180980be0,auStack_160);
+      auVar29 = vpsrld_avx2(auVar29,1);
+      auVar29 = vcvtdq2ps_avx(auVar29);
+      auVar31 = vpermd_avx2(_DAT_180980c80,auStack_160);
+      auVar30 = vpsrld_avx2(auVar30,1);
+      auVar30 = vcvtdq2ps_avx(auVar30);
+      auVar31 = vpsrld_avx2(auVar31,1);
+      auVar31 = vcvtdq2ps_avx(auVar31);
+      auVar28 = *(undefined1 (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._12_4_ * 6) * 2);
+      auVar33 = *(undefined1 (*) [16])
+                 (param_3 + 0xc + (ulonglong)(uint)(auStack_160._12_4_ * 6) * 2);
+      auVar27 = vpslldq_avx(auVar28,0xc);
+      auVar27 = vpblendd_avx2(*(undefined1 (*) [16])
+                               (param_3 + (ulonglong)(uint)(auStack_160._4_4_ * 6) * 2),auVar27,8);
+      auVar16 = vpmovsxwd_avx2(auVar27);
+      auVar16 = vcvtdq2ps_avx(auVar16);
+      auVar27 = vpslldq_avx(auVar33,0xc);
+      auVar32 = vpblendd_avx2(*(undefined1 (*) [16])
+                               (param_3 + 0xc + (ulonglong)(uint)(auStack_160._4_4_ * 6) * 2),
+                              auVar27,8);
+      auVar27 = *(undefined1 (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2);
+      auVar2 = *(undefined1 (*) [16])(param_3 + 0xc + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2)
+      ;
+      auVar17 = vpmovsxwd_avx2(auVar32);
+      auVar28 = vpsrldq_avx(auVar28,4);
+      auVar17 = vcvtdq2ps_avx(auVar17);
+      auVar34 = vpslldq_avx(auVar2,8);
+      auVar32 = vpslldq_avx(auVar27,8);
+      auVar28 = vpblendd_avx2(auVar28,auVar32,0xc);
+      auVar18 = vpmovsxwd_avx2(auVar28);
+      auVar18 = vcvtdq2ps_avx(auVar18);
+      auVar28 = vpsrldq_avx(auVar33,4);
+      auVar28 = vpblendd_avx2(auVar28,auVar34,0xc);
+      auVar19 = vpmovsxwd_avx2(auVar28);
+      auVar33 = vpslldq_avx(*(undefined1 (*) [16])
+                             (param_3 + (ulonglong)(uint)(auStack_160._28_4_ * 6) * 2),4);
+      auVar19 = vcvtdq2ps_avx(auVar19);
+      auVar28 = vpsrldq_avx(auVar27,8);
+      auVar28 = vpblendd_avx2(auVar28,auVar33,0xe);
+      auVar20 = vpmovsxwd_avx2(auVar28);
+      auVar20 = vcvtdq2ps_avx(auVar20);
+      auVar28 = vpsrldq_avx(auVar2,8);
+      auVar33 = vpslldq_avx(*(undefined1 (*) [16])
+                             (param_3 + 0xc + (ulonglong)(uint)(auStack_160._28_4_ * 6) * 2),4);
+      auVar28 = vpblendd_avx2(auVar28,auVar33,0xe);
+      auVar21 = vpmovsxwd_avx2(auVar28);
+      auVar21 = vcvtdq2ps_avx(auVar21);
+      auVar17 = vsubps_avx(auVar17,auVar16);
+      auVar19 = vsubps_avx(auVar19,auVar18);
+      auVar21 = vsubps_avx(auVar21,auVar20);
+      auVar24._8_8_ = lStack_100;
+      auVar24._0_8_ = lStack_100;
+      auVar24._16_8_ = lStack_100;
+      auVar24._24_8_ = lStack_100;
+      auStack_120 = vpaddq_avx2(auStack_160,auVar24);
+      *param_1 = (auVar17._0_4_ * auVar29._0_4_ * 4.656613e-10 + auVar16._0_4_) * 3.0517578e-05;
+      param_1[1] = (auVar17._4_4_ * auVar29._4_4_ * 4.656613e-10 + auVar16._4_4_) * 3.0517578e-05;
+      param_1[2] = (auVar17._8_4_ * auVar29._8_4_ * 4.656613e-10 + auVar16._8_4_) * 3.0517578e-05;
+      param_1[3] = (auVar17._12_4_ * auVar29._12_4_ * 4.656613e-10 + auVar16._12_4_) * 3.0517578e-05
+      ;
+      param_1[4] = (auVar17._16_4_ * auVar29._16_4_ * 4.656613e-10 + auVar16._16_4_) * 3.0517578e-05
+      ;
+      param_1[5] = (auVar17._20_4_ * auVar29._20_4_ * 4.656613e-10 + auVar16._20_4_) * 3.0517578e-05
+      ;
+      param_1[6] = (auVar17._24_4_ * auVar29._24_4_ * 4.656613e-10 + auVar16._24_4_) * 3.0517578e-05
+      ;
+      param_1[7] = auVar21._28_4_;
+      auVar16._4_4_ = (auVar19._4_4_ * auVar30._4_4_ * 4.656613e-10 + auVar18._4_4_) * 3.0517578e-05
+      ;
+      auVar16._0_4_ = (auVar19._0_4_ * auVar30._0_4_ * 4.656613e-10 + auVar18._0_4_) * 3.0517578e-05
+      ;
+      auVar16._8_4_ = (auVar19._8_4_ * auVar30._8_4_ * 4.656613e-10 + auVar18._8_4_) * 3.0517578e-05
+      ;
+      auVar16._12_4_ =
+           (auVar19._12_4_ * auVar30._12_4_ * 4.656613e-10 + auVar18._12_4_) * 3.0517578e-05;
+      auVar16._16_4_ =
+           (auVar19._16_4_ * auVar30._16_4_ * 4.656613e-10 + auVar18._16_4_) * 3.0517578e-05;
+      auVar16._20_4_ =
+           (auVar19._20_4_ * auVar30._20_4_ * 4.656613e-10 + auVar18._20_4_) * 3.0517578e-05;
+      auVar16._24_4_ =
+           (auVar19._24_4_ * auVar30._24_4_ * 4.656613e-10 + auVar18._24_4_) * 3.0517578e-05;
+      auVar16._28_4_ = 0;
+      *(undefined1 (*) [32])(param_1 + 8) = auVar16;
+      param_1[0x10] = (auVar21._0_4_ * auVar31._0_4_ * 4.656613e-10 + auVar20._0_4_) * 3.0517578e-05
+      ;
+      param_1[0x11] = (auVar21._4_4_ * auVar31._4_4_ * 4.656613e-10 + auVar20._4_4_) * 3.0517578e-05
+      ;
+      param_1[0x12] = (auVar21._8_4_ * auVar31._8_4_ * 4.656613e-10 + auVar20._8_4_) * 3.0517578e-05
+      ;
+      param_1[0x13] =
+           (auVar21._12_4_ * auVar31._12_4_ * 4.656613e-10 + auVar20._12_4_) * 3.0517578e-05;
+      param_1[0x14] =
+           (auVar21._16_4_ * auVar31._16_4_ * 4.656613e-10 + auVar20._16_4_) * 3.0517578e-05;
+      param_1[0x15] =
+           (auVar21._20_4_ * auVar31._20_4_ * 4.656613e-10 + auVar20._20_4_) * 3.0517578e-05;
+      param_1[0x16] =
+           (auVar21._24_4_ * auVar31._24_4_ * 4.656613e-10 + auVar20._24_4_) * 3.0517578e-05;
+      param_1[0x17] = auVar18._28_4_ + 0.0;
+      param_1 = param_1 + 0x18;
+      iVar26 = iVar26 + -1;
+    } while (iVar26 != 0);
+    *(longlong *)param_4 = auStack_120._0_8_;
+    lStack_f8 = lStack_100;
+    lStack_f0 = lStack_100;
+    lStack_e8 = lStack_100;
+  }
+  param_2 = param_2 & 3;
+  if (param_2 != 0) {
+    param_1 = param_1 + 2;
+    do {
+      fVar9 = (float)(*param_4 >> 1) * 4.656613e-10;
+      uVar23 = param_4[1] * 6;
+      fVar10 = (float)(int)*(short *)(param_3 + (ulonglong)uVar23 * 2) * 3.0517578e-05;
+      fVar11 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 1) * 2) * 3.0517578e-05;
+      fVar12 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 2) * 2) * 3.0517578e-05;
+      fVar13 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 3) * 2) * 3.0517578e-05;
+      fVar14 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 4) * 2) * 3.0517578e-05;
+      fVar15 = (float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 5) * 2) * 3.0517578e-05;
+      sVar3 = *(short *)(param_3 + (ulonglong)(uVar23 + 7) * 2);
+      sVar4 = *(short *)(param_3 + (ulonglong)(uVar23 + 8) * 2);
+      sVar5 = *(short *)(param_3 + (ulonglong)(uVar23 + 9) * 2);
+      sVar6 = *(short *)(param_3 + (ulonglong)(uVar23 + 10) * 2);
+      sVar7 = *(short *)(param_3 + (ulonglong)(uVar23 + 0xb) * 2);
+      param_1[-2] = ((float)(int)*(short *)(param_3 + (ulonglong)(uVar23 + 6) * 2) * 3.0517578e-05 -
+                    fVar10) * fVar9 + fVar10;
+      param_1[-1] = ((float)(int)sVar3 * 3.0517578e-05 - fVar11) * fVar9 + fVar11;
+      *param_1 = ((float)(int)sVar4 * 3.0517578e-05 - fVar12) * fVar9 + fVar12;
+      param_1[1] = ((float)(int)sVar5 * 3.0517578e-05 - fVar13) * fVar9 + fVar13;
+      param_1[2] = ((float)(int)sVar6 * 3.0517578e-05 - fVar14) * fVar9 + fVar14;
+      param_1[3] = ((float)(int)sVar7 * 3.0517578e-05 - fVar15) * fVar9 + fVar15;
+      param_1 = param_1 + 6;
+      *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+      param_2 = param_2 - 1;
+    } while (param_2 != 0);
+  }
+                    // WARNING: Subroutine does not return
+  *(undefined8 *)(puVar25 + -8) = 0x180837925;
+  FUN_1808fc050(uStack_e0 ^ (ulonglong)auStack_128);
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+// WARNING: Removing unreachable block (ram,0x000180837b6c)
+// WARNING: Removing unreachable block (ram,0x000180837b28)
+// WARNING: Removing unreachable block (ram,0x000180837afe)
+// WARNING: Removing unreachable block (ram,0x000180837b46)
+// WARNING: Removing unreachable block (ram,0x000180837c22)
+// WARNING: Removing unreachable block (ram,0x000180837c60)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

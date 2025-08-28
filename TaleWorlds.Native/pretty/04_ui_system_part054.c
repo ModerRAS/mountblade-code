@@ -1,184 +1,595 @@
-/**
- * @file 04_ui_system_part054.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part054.c - 2 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_180694010(void)
+void FUN_180694010(void)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  int in_stack_00000030;
+  
+  if (in_stack_00000030 == 1) {
+    FUN_1806935a0();
+    return;
+  }
+  FUN_1806922f0();
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180694040(undefined1 (*param_1) [16],int param_2,undefined1 *param_3,undefined1 *param_4,
+void FUN_180694040(undefined1 (*param_1) [16],int param_2,undefined1 *param_3,undefined1 *param_4,
+                  undefined1 *param_5)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  undefined1 auVar1 [16];
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [16];
+  undefined1 auVar6 [16];
+  undefined1 uVar7;
+  undefined1 uVar8;
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [16];
+  undefined1 auVar14 [16];
+  undefined1 auVar15 [16];
+  undefined1 auVar16 [16];
+  undefined1 auVar17 [16];
+  undefined1 auVar18 [16];
+  undefined1 auVar19 [32];
+  undefined1 auVar20 [32];
+  undefined1 auVar21 [32];
+  undefined1 auVar22 [32];
+  undefined1 auVar23 [32];
+  undefined1 auVar24 [32];
+  undefined1 auVar25 [32];
+  undefined1 auVar26 [32];
+  undefined1 auVar27 [32];
+  undefined1 auVar28 [32];
+  undefined1 auVar29 [32];
+  undefined1 auVar30 [32];
+  undefined1 auVar31 [32];
+  undefined1 auVar32 [32];
+  undefined1 auVar33 [32];
+  undefined1 auVar34 [32];
+  undefined1 auVar35 [32];
+  undefined1 auVar36 [16];
+  undefined1 auVar37 [16];
+  undefined1 auVar38 [16];
+  undefined1 auVar39 [16];
+  undefined1 auVar40 [16];
+  undefined1 (*pauVar41) [16];
+  longlong lVar42;
+  undefined1 (*pauVar43) [16];
+  undefined1 (*pauVar44) [16];
+  longlong lVar45;
+  undefined1 (*pauVar46) [16];
+  undefined1 (*pauVar47) [16];
+  longlong lVar48;
+  undefined1 (*pauVar49) [16];
+  undefined1 (*pauVar50) [16];
+  undefined1 (*pauVar51) [16];
+  undefined1 (*pauVar52) [16];
+  undefined1 auVar53 [16];
+  undefined1 auVar54 [16];
+  undefined1 auVar55 [32];
+  undefined1 auVar56 [32];
+  undefined1 auVar57 [32];
+  undefined1 auVar58 [32];
+  undefined1 auVar59 [32];
+  undefined1 auVar60 [16];
+  undefined1 auVar61 [32];
+  undefined1 auVar62 [32];
+  undefined1 auVar63 [32];
+  undefined1 auVar64 [16];
+  undefined1 auVar65 [32];
+  undefined1 auVar66 [32];
+  undefined1 auVar67 [32];
+  undefined1 auVar68 [32];
+  undefined1 auVar69 [16];
+  undefined1 auVar70 [32];
+  undefined1 auVar71 [32];
+  undefined1 auVar72 [32];
+  undefined1 auVar73 [32];
+  
+  auVar1 = *param_1;
+  pauVar49 = (undefined1 (*) [16])((longlong)param_1 - (longlong)param_2);
+  lVar48 = (longlong)(param_2 * 5);
+  pauVar50 = (undefined1 (*) [16])(*param_1 + param_2);
+  pauVar52 = (undefined1 (*) [16])((longlong)param_1 - lVar48);
+  lVar45 = (longlong)(param_2 * 4);
+  auVar2 = *pauVar49;
+  auVar3 = *pauVar50;
+  auVar37 = *pauVar52;
+  lVar42 = (longlong)(param_2 * 3);
+  pauVar43 = (undefined1 (*) [16])((longlong)param_1 - lVar45);
+  pauVar44 = (undefined1 (*) [16])((longlong)param_1 - lVar42);
+  pauVar51 = (undefined1 (*) [16])((longlong)param_1 - (longlong)(param_2 * 2));
+  auVar38 = *pauVar43;
+  auVar39 = *pauVar44;
+  auVar14 = *pauVar44;
+  pauVar41 = (undefined1 (*) [16])(*param_1 + param_2 * 2);
+  auVar4 = *(undefined1 (*) [16])(*param_1 + lVar42);
+  auVar5 = *pauVar51;
+  auVar40 = *(undefined1 (*) [16])(*param_1 + lVar45);
+  auVar36 = *(undefined1 (*) [16])(*param_1 + lVar45);
+  auVar6 = *pauVar41;
+  auVar60 = vpsubusb_avx(auVar5,auVar2);
+  auVar54 = vpsubusb_avx(auVar2,auVar5);
+  auVar60 = vpor_avx(auVar60,auVar54);
+  auVar54 = vpsubusb_avx(auVar2,auVar1);
+  auVar12 = vpsubusb_avx(auVar1,auVar2);
+  auVar53 = vpor_avx(auVar54,auVar12);
+  auVar54 = vpsubusb_avx(auVar1,auVar3);
+  auVar12 = vpsubusb_avx(auVar3,auVar1);
+  auVar54 = vpor_avx(auVar54,auVar12);
+  auVar10 = vpmaxub_avx(auVar60,auVar54);
+  auVar12 = vpcmpeqb_avx(auVar60,auVar60);
+  uVar7 = *param_5;
+  auVar60[1] = uVar7;
+  auVar60[0] = uVar7;
+  auVar60[2] = uVar7;
+  auVar60[3] = uVar7;
+  auVar60[4] = uVar7;
+  auVar60[5] = uVar7;
+  auVar60[6] = uVar7;
+  auVar60[7] = uVar7;
+  auVar60[8] = uVar7;
+  auVar60[9] = uVar7;
+  auVar60[10] = uVar7;
+  auVar60[0xb] = uVar7;
+  auVar60[0xc] = uVar7;
+  auVar60[0xd] = uVar7;
+  auVar60[0xe] = uVar7;
+  auVar60[0xf] = uVar7;
+  auVar60 = vpsubusb_avx(auVar10,auVar60);
+  auVar9 = vpcmpeqb_avx(auVar60,ZEXT816(0) << 0x20);
+  auVar54 = vpsubusb_avx(auVar6,auVar4);
+  auVar60 = vpsubusb_avx(auVar3,auVar6);
+  auVar13 = vpsubusb_avx(auVar6,auVar3);
+  auVar60 = vpor_avx(auVar60,auVar13);
+  auVar13 = vpsubusb_avx(auVar4,auVar6);
+  auVar54 = vpor_avx(auVar54,auVar13);
+  auVar54 = vpmaxub_avx(auVar60,auVar54);
+  auVar60 = vpsubusb_avx(auVar14,auVar5);
+  auVar13 = vpsubusb_avx(auVar5,auVar14);
+  auVar64 = vpsubusb_avx(*pauVar43,auVar14);
+  auVar14 = vpsubusb_avx(auVar14,*pauVar43);
+  auVar60 = vpor_avx(auVar60,auVar13);
+  auVar13 = vpor_avx(auVar64,auVar14);
+  uVar7 = *param_3;
+  auVar13 = vpmaxub_avx(auVar60,auVar13);
+  auVar60 = vpsubusb_avx(auVar3,auVar5);
+  auVar64 = vpsubusb_avx(auVar5,auVar3);
+  auVar60 = vpor_avx(auVar64,auVar60);
+  auVar60 = vpand_avx(auVar60,_DAT_180948160);
+  auVar64 = vpsrlw_avx(auVar60,1);
+  uVar8 = *param_4;
+  auVar60 = vpaddusb_avx(auVar53,auVar53);
+  auVar60 = vpaddusb_avx(auVar64,auVar60);
+  auVar53[1] = uVar7;
+  auVar53[0] = uVar7;
+  auVar53[2] = uVar7;
+  auVar53[3] = uVar7;
+  auVar53[4] = uVar7;
+  auVar53[5] = uVar7;
+  auVar53[6] = uVar7;
+  auVar53[7] = uVar7;
+  auVar53[8] = uVar7;
+  auVar53[9] = uVar7;
+  auVar53[10] = uVar7;
+  auVar53[0xb] = uVar7;
+  auVar53[0xc] = uVar7;
+  auVar53[0xd] = uVar7;
+  auVar53[0xe] = uVar7;
+  auVar53[0xf] = uVar7;
+  auVar60 = vpsubusb_avx(auVar60,auVar53);
+  auVar60 = vpcmpeqb_avx(auVar60,ZEXT816(0) << 0x20);
+  auVar60 = vpmaxub_avx(auVar10,auVar60 ^ auVar12);
+  auVar60 = vpmaxub_avx(auVar13,auVar60);
+  auVar60 = vpmaxub_avx(auVar54,auVar60);
+  auVar54[1] = uVar8;
+  auVar54[0] = uVar8;
+  auVar54[2] = uVar8;
+  auVar54[3] = uVar8;
+  auVar54[4] = uVar8;
+  auVar54[5] = uVar8;
+  auVar54[6] = uVar8;
+  auVar54[7] = uVar8;
+  auVar54[8] = uVar8;
+  auVar54[9] = uVar8;
+  auVar54[10] = uVar8;
+  auVar54[0xb] = uVar8;
+  auVar54[0xc] = uVar8;
+  auVar54[0xd] = uVar8;
+  auVar54[0xe] = uVar8;
+  auVar54[0xf] = uVar8;
+  auVar60 = vpsubusb_avx(auVar60,auVar54);
+  auVar13 = vpcmpeqb_avx(auVar60,ZEXT816(0) << 0x20);
+  auVar17 = _DAT_180a40580 ^ auVar2;
+  auVar18 = _DAT_180a40580 ^ auVar1;
+  auVar54 = vpsubsb_avx(auVar18,auVar17);
+  auVar5 = _DAT_180a40580 ^ auVar5;
+  auVar3 = _DAT_180a40580 ^ auVar3;
+  auVar60 = vpsubsb_avx(auVar5,auVar3);
+  auVar60 = vpand_avx(auVar60,auVar9 ^ auVar12);
+  auVar60 = vpaddsb_avx(auVar60,auVar54);
+  auVar60 = vpaddsb_avx(auVar60,auVar54);
+  auVar60 = vpaddsb_avx(auVar60,auVar54);
+  auVar54 = vpand_avx(auVar60,auVar13);
+  auVar60 = vpaddsb_avx(auVar54,_DAT_180948120);
+  auVar53 = vpaddsb_avx(auVar54,_DAT_180948110);
+  auVar64 = vpsrlw_avx(auVar60,3);
+  auVar69 = ZEXT816(0) << 0x20;
+  auVar54 = vpcmpgtb_avx(auVar69,auVar60);
+  auVar60 = vpand_avx(auVar64,_DAT_180948130);
+  auVar54 = vpand_avx(auVar54,_DAT_180948150);
+  auVar11 = vpor_avx(auVar54,auVar60);
+  auVar60 = vpaddsb_avx(auVar11,_DAT_180948100);
+  auVar54 = vpcmpgtb_avx(auVar69,auVar60);
+  auVar54 = vpand_avx(auVar54,_DAT_180a40580);
+  auVar60 = vpsrlw_avx(auVar60,1);
+  auVar60 = vpand_avx(auVar60,_DAT_180948140);
+  auVar60 = vpor_avx(auVar54,auVar60);
+  auVar14 = vpandn_avx(auVar9 ^ auVar12,auVar60);
+  auVar60 = vpsubusb_avx(*pauVar43,auVar2);
+  auVar54 = vpsubusb_avx(auVar2,*pauVar43);
+  auVar60 = vpor_avx(auVar60,auVar54);
+  auVar54 = vpsubusb_avx(auVar1,auVar4);
+  auVar12 = vpsubusb_avx(auVar4,auVar1);
+  auVar54 = vpor_avx(auVar54,auVar12);
+  auVar60 = vpmaxub_avx(auVar60,auVar54);
+  auVar54 = vpsubusb_avx(*pauVar44,auVar2);
+  auVar12 = vpsubusb_avx(auVar2,*pauVar44);
+  auVar9 = vpsubusb_avx(auVar1,auVar6);
+  auVar54 = vpor_avx(auVar54,auVar12);
+  auVar12 = vpsubusb_avx(auVar6,auVar1);
+  auVar12 = vpor_avx(auVar9,auVar12);
+  auVar54 = vpmaxub_avx(auVar54,auVar12);
+  auVar54 = vpmaxub_avx(auVar54,auVar10);
+  auVar60 = vpmaxub_avx(auVar60,auVar54);
+  auVar60 = vpsubusb_avx(auVar60,_DAT_180948100);
+  auVar60 = vpcmpeqb_avx(auVar60,auVar69);
+  auVar64 = vpand_avx(auVar60,auVar13);
+  auVar60 = *(undefined1 (*) [16])(*param_1 + lVar48);
+  auVar73._16_16_ = auVar60;
+  auVar73._0_16_ = auVar60;
+  pauVar47 = (undefined1 (*) [16])((longlong)param_1 - (longlong)(param_2 * 6));
+  auVar54 = *pauVar47;
+  auVar72._16_16_ = auVar54;
+  auVar72._0_16_ = auVar54;
+  auVar12 = *(undefined1 (*) [16])(*param_1 + param_2 * 6);
+  auVar71._16_16_ = auVar12;
+  auVar71._0_16_ = auVar12;
+  pauVar46 = (undefined1 (*) [16])((longlong)param_1 - (longlong)(param_2 * 7));
+  auVar9 = *pauVar46;
+  auVar68._16_16_ = auVar9;
+  auVar68._0_16_ = auVar9;
+  auVar13 = *(undefined1 (*) [16])(*param_1 + param_2 * 7);
+  auVar70._16_16_ = auVar13;
+  auVar70._0_16_ = auVar13;
+  auVar69 = vpsubusb_avx(auVar1,auVar13);
+  auVar10 = *(undefined1 (*) [16])((longlong)param_1 - (longlong)(param_2 * 8));
+  auVar67._16_16_ = auVar10;
+  auVar67._0_16_ = auVar10;
+  auVar15 = vpsubusb_avx(auVar2,auVar10);
+  auVar10 = vpsubusb_avx(auVar10,auVar2);
+  auVar10 = vpor_avx(auVar15,auVar10);
+  auVar13 = vpsubusb_avx(auVar13,auVar1);
+  auVar13 = vpor_avx(auVar69,auVar13);
+  auVar13 = vpmaxub_avx(auVar10,auVar13);
+  auVar10 = vpsubusb_avx(auVar9,auVar2);
+  auVar69 = vpsubusb_avx(auVar1,auVar12);
+  auVar15 = vpsubusb_avx(auVar12,auVar1);
+  auVar16 = vpsubusb_avx(auVar2,auVar9);
+  auVar10 = vpor_avx(auVar16,auVar10);
+  auVar69 = vpor_avx(auVar69,auVar15);
+  auVar15 = vpsubusb_avx(*pauVar52,auVar2);
+  auVar10 = vpmaxub_avx(auVar10,auVar69);
+  auVar69 = vpsubusb_avx(auVar2,*pauVar52);
+  auVar69 = vpor_avx(auVar15,auVar69);
+  auVar15 = vpsubusb_avx(auVar1,auVar36);
+  auVar16 = vpsubusb_avx(auVar36,auVar1);
+  auVar15 = vpor_avx(auVar15,auVar16);
+  auVar69 = vpmaxub_avx(auVar69,auVar15);
+  auVar15 = vpsubusb_avx(auVar54,auVar2);
+  auVar2 = vpsubusb_avx(auVar2,auVar54);
+  auVar2 = vpor_avx(auVar2,auVar15);
+  auVar15 = vpsubusb_avx(auVar1,auVar60);
+  auVar1 = vpsubusb_avx(auVar60,auVar1);
+  auVar1 = vpor_avx(auVar15,auVar1);
+  auVar1 = vpmaxub_avx(auVar2,auVar1);
+  auVar1 = vpmaxub_avx(auVar69,auVar1);
+  auVar1 = vpmaxub_avx(auVar10,auVar1);
+  auVar1 = vpmaxub_avx(auVar13,auVar1);
+  auVar1 = vpsubusb_avx(auVar1,_DAT_180948100);
+  auVar1 = vpcmpeqb_avx(auVar1,ZEXT816(0) << 0x20);
+  auVar2 = vpand_avx(auVar1,auVar64);
+  auVar61._16_16_ = *pauVar52;
+  auVar61._0_16_ = *pauVar52;
+  auVar67 = vpshufb_avx2(auVar67,_DAT_180948180);
+  auVar68 = vpshufb_avx2(auVar68,_DAT_180948180);
+  auVar72 = vpshufb_avx2(auVar72,_DAT_180948180);
+  auVar63._16_16_ = *pauVar43;
+  auVar63._0_16_ = *pauVar43;
+  auVar19 = vpshufb_avx2(auVar63,_DAT_180948180);
+  auVar66._16_16_ = *pauVar44;
+  auVar66._0_16_ = *pauVar44;
+  auVar20 = vpshufb_avx2(auVar66,_DAT_180948180);
+  auVar65._16_16_ = *pauVar51;
+  auVar65._0_16_ = *pauVar51;
+  auVar21 = vpshufb_avx2(auVar65,_DAT_180948180);
+  auVar55._16_16_ = *pauVar49;
+  auVar55._0_16_ = *pauVar49;
+  auVar22 = vpshufb_avx2(auVar55,_DAT_180948180);
+  auVar56._16_16_ = *param_1;
+  auVar56._0_16_ = *param_1;
+  auVar23 = vpshufb_avx2(auVar56,_DAT_180948180);
+  auVar57._16_16_ = *pauVar50;
+  auVar57._0_16_ = *pauVar50;
+  auVar57 = vpshufb_avx2(auVar57,_DAT_180948180);
+  auVar58._16_16_ = *pauVar41;
+  auVar58._0_16_ = *pauVar41;
+  auVar58 = vpshufb_avx2(auVar58,_DAT_180948180);
+  auVar61 = vpshufb_avx2(auVar61,_DAT_180948180);
+  auVar1 = *(undefined1 (*) [16])(*param_1 + lVar42);
+  auVar62._16_16_ = auVar1;
+  auVar62._0_16_ = auVar1;
+  auVar62 = vpshufb_avx2(auVar62,_DAT_180948180);
+  auVar70 = vpshufb_avx2(auVar70,_DAT_180948180);
+  auVar1 = *(undefined1 (*) [16])(*param_1 + lVar45);
+  auVar59._16_16_ = auVar1;
+  auVar59._0_16_ = auVar1;
+  auVar59 = vpshufb_avx2(auVar59,_DAT_180948180);
+  auVar73 = vpshufb_avx2(auVar73,_DAT_180948180);
+  auVar71 = vpshufb_avx2(auVar71,_DAT_180948180);
+  auVar63 = vpaddw_avx2(auVar59,auVar62);
+  auVar66 = vpaddw_avx2(auVar21,auVar20);
+  auVar66 = vpaddw_avx2(auVar66,auVar22);
+  auVar65 = vpaddw_avx2(auVar58,auVar57);
+  auVar65 = vpaddw_avx2(auVar65,auVar23);
+  auVar55 = vpaddw_avx2(auVar19,auVar61);
+  auVar56 = vpaddw_avx2(auVar68,auVar72);
+  auVar55 = vpaddw_avx2(auVar56,auVar55);
+  auVar55 = vpaddw_avx2(auVar55,auVar66);
+  auVar56 = vpaddw_avx2(auVar71,auVar73);
+  auVar63 = vpaddw_avx2(auVar56,auVar63);
+  auVar63 = vpaddw_avx2(auVar63,auVar65);
+  auVar66 = vpaddw_avx2(auVar65,auVar66);
+  auVar63 = vpaddw_avx2(auVar63,auVar55);
+  auVar65 = vpaddw_avx2(auVar63,_DAT_180948080);
+  auVar63 = vpaddw_avx2(auVar67,auVar22);
+  auVar66 = vpaddw_avx2(auVar66,_DAT_1809481a0);
+  auVar63 = vpaddw_avx2(auVar63,auVar65);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar26 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar70,auVar23);
+  auVar63 = vpaddw_avx2(auVar63,auVar65);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar27 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar22,auVar19);
+  auVar63 = vpaddw_avx2(auVar63,auVar66);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar28 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar62,auVar23);
+  auVar63 = vpaddw_avx2(auVar63,auVar66);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar29 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar67,auVar67);
+  auVar55 = vpaddw_avx2(auVar70,auVar70);
+  auVar22 = vpsubw_avx2(auVar65,auVar68);
+  auVar23 = vpsubw_avx2(auVar65,auVar71);
+  auVar65 = vpaddw_avx2(auVar63,auVar21);
+  auVar56 = vpaddw_avx2(auVar63,auVar67);
+  auVar63 = vpaddw_avx2(auVar65,auVar23);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar30 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar55,auVar57);
+  auVar65 = vpaddw_avx2(auVar55,auVar70);
+  auVar63 = vpaddw_avx2(auVar63,auVar22);
+  auVar22 = vpsubw_avx2(auVar22,auVar72);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar31 = vpermq_avx2(auVar63,0xa8);
+  auVar23 = vpsubw_avx2(auVar23,auVar73);
+  auVar24 = vpsubw_avx2(auVar66,auVar20);
+  auVar55 = vpaddw_avx2(auVar19,auVar19);
+  auVar63 = vpaddw_avx2(auVar55,auVar21);
+  auVar25 = vpsubw_avx2(auVar66,auVar58);
+  auVar63 = vpaddw_avx2(auVar63,auVar25);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar32 = vpermq_avx2(auVar63,0xa8);
+  auVar66 = vpaddw_avx2(auVar62,auVar62);
+  auVar63 = vpaddw_avx2(auVar66,auVar57);
+  auVar63 = vpaddw_avx2(auVar63,auVar24);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar33 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar56,auVar20);
+  auVar63 = vpaddw_avx2(auVar63,auVar23);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar34 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar65,auVar58);
+  auVar63 = vpaddw_avx2(auVar63,auVar22);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar25 = vpsubw_avx2(auVar25,auVar57);
+  auVar65 = vpaddw_avx2(auVar65,auVar70);
+  auVar22 = vpsubw_avx2(auVar22,auVar61);
+  auVar35 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar55,auVar19);
+  auVar63 = vpaddw_avx2(auVar63,auVar20);
+  auVar63 = vpaddw_avx2(auVar63,auVar25);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar55 = vpsubw_avx2(auVar24,auVar21);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar24 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar66,auVar62);
+  auVar63 = vpaddw_avx2(auVar63,auVar58);
+  auVar63 = vpaddw_avx2(auVar63,auVar55);
+  auVar63 = vpsrlw_avx2(auVar63,3);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar66 = vpaddw_avx2(auVar56,auVar67);
+  auVar55 = vpsubw_avx2(auVar23,auVar59);
+  auVar23 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar66,auVar19);
+  auVar66 = vpaddw_avx2(auVar66,auVar67);
+  auVar63 = vpaddw_avx2(auVar63,auVar55);
+  auVar55 = vpsubw_avx2(auVar55,auVar62);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar25 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar65,auVar62);
+  auVar65 = vpaddw_avx2(auVar65,auVar70);
+  auVar63 = vpaddw_avx2(auVar63,auVar22);
+  auVar56 = vpsubw_avx2(auVar22,auVar19);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar22 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar66,auVar61);
+  auVar63 = vpaddw_avx2(auVar63,auVar55);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar66 = vpaddw_avx2(auVar66,auVar67);
+  auVar19 = vpsubw_avx2(auVar55,auVar58);
+  auVar55 = vpaddw_avx2(auVar65,auVar70);
+  auVar20 = vpsubw_avx2(auVar56,auVar20);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar58 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar65,auVar59);
+  auVar63 = vpaddw_avx2(auVar63,auVar56);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar61 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar66,auVar72);
+  auVar63 = vpaddw_avx2(auVar63,auVar19);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar72 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar55,auVar73);
+  auVar63 = vpaddw_avx2(auVar63,auVar20);
+  auVar63 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar63,auVar63);
+  auVar65 = vpsubw_avx2(auVar19,auVar57);
+  auVar56 = vpsubw_avx2(auVar20,auVar21);
+  auVar19 = vpermq_avx2(auVar63,0xa8);
+  auVar63 = vpaddw_avx2(auVar66,auVar67);
+  auVar63 = vpaddw_avx2(auVar63,auVar68);
+  auVar66 = vpaddw_avx2(auVar55,auVar70);
+  auVar63 = vpaddw_avx2(auVar63,auVar65);
+  auVar66 = vpaddw_avx2(auVar66,auVar71);
+  auVar65 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpaddw_avx2(auVar66,auVar56);
+  auVar66 = vpsrlw_avx2(auVar63,4);
+  auVar63 = vpackuswb_avx2(auVar65,auVar65);
+  auVar63 = vpermq_avx2(auVar63,0xa8);
+  auVar9 = vpandn_avx(auVar2,auVar9);
+  auVar1 = vpand_avx(auVar63._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar9);
+  auVar54 = vpandn_avx(auVar2,auVar54);
+  *pauVar46 = auVar1;
+  auVar1 = vpand_avx(auVar72._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar54);
+  auVar54 = vpandn_avx(auVar2,auVar37);
+  *pauVar47 = auVar1;
+  auVar9 = _DAT_180a40580;
+  auVar1 = vpand_avx(auVar58._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar54);
+  auVar54 = vpandn_avx(auVar2,auVar38);
+  *pauVar52 = auVar1;
+  auVar1 = vpand_avx(auVar25._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar54);
+  auVar54 = vpandn_avx(auVar64,auVar39);
+  *pauVar43 = auVar1;
+  auVar1 = vpand_avx(auVar24._0_16_,auVar64);
+  auVar1 = vpor_avx(auVar1,auVar54);
+  auVar54 = vpandn_avx(auVar2,auVar1);
+  auVar1 = vpand_avx(auVar34._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar54,auVar1);
+  *pauVar44 = auVar1;
+  auVar1 = vpaddsb_avx(auVar14,auVar5);
+  auVar5 = vpandn_avx(auVar64,auVar1 ^ auVar9);
+  auVar1 = vpand_avx(auVar32._0_16_,auVar64);
+  auVar1 = vpor_avx(auVar5,auVar1);
+  auVar5 = vpandn_avx(auVar2,auVar1);
+  auVar1 = vpand_avx(auVar30._0_16_,auVar2);
+  auVar5 = vpor_avx(auVar5,auVar1);
+  auVar1 = vpcmpgtb_avx(ZEXT816(0) << 0x20,auVar53);
+  auVar1 = vpand_avx(auVar1,_DAT_180948150);
+  auVar54 = vpsrlw_avx(auVar53,3);
+  *pauVar51 = auVar5;
+  auVar5 = vpand_avx(auVar54,_DAT_180948130);
+  auVar1 = vpor_avx(auVar1,auVar5);
+  auVar1 = vpaddsb_avx(auVar1,auVar17);
+  auVar5 = vpandn_avx(auVar64,auVar1 ^ auVar9);
+  auVar1 = vpand_avx(auVar28._0_16_,auVar64);
+  auVar5 = vpor_avx(auVar5,auVar1);
+  auVar1 = vpand_avx(auVar26._0_16_,auVar2);
+  auVar5 = vpandn_avx(auVar2,auVar5);
+  auVar1 = vpor_avx(auVar5,auVar1);
+  *pauVar49 = auVar1;
+  auVar1 = vpsubsb_avx(auVar18,auVar11);
+  auVar5 = vpandn_avx(auVar64,auVar1 ^ auVar9);
+  auVar1 = vpand_avx(auVar29._0_16_,auVar64);
+  auVar1 = vpor_avx(auVar5,auVar1);
+  auVar5 = vpandn_avx(auVar2,auVar1);
+  auVar1 = vpand_avx(auVar27._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar5,auVar1);
+  *param_1 = auVar1;
+  auVar1 = vpsubsb_avx(auVar3,auVar14);
+  auVar3 = vpandn_avx(auVar64,auVar1 ^ auVar9);
+  auVar1 = vpand_avx(auVar33._0_16_,auVar64);
+  auVar1 = vpor_avx(auVar3,auVar1);
+  auVar3 = vpandn_avx(auVar2,auVar1);
+  auVar1 = vpand_avx(auVar31._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar3,auVar1);
+  *pauVar50 = auVar1;
+  auVar1 = vpand_avx(auVar23._0_16_,auVar64);
+  auVar3 = vpandn_avx(auVar64,auVar6);
+  auVar1 = vpor_avx(auVar1,auVar3);
+  auVar3 = vpandn_avx(auVar2,auVar1);
+  auVar1 = vpand_avx(auVar35._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar3,auVar1);
+  *pauVar41 = auVar1;
+  auVar3 = vpandn_avx(auVar2,auVar4);
+  auVar1 = vpand_avx(auVar22._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar3);
+  auVar3 = vpandn_avx(auVar2,auVar40);
+  *(undefined1 (*) [16])(*param_1 + lVar42) = auVar1;
+  auVar1 = vpand_avx(auVar61._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar3);
+  auVar3 = vpandn_avx(auVar2,auVar60);
+  *(undefined1 (*) [16])(*param_1 + lVar45) = auVar1;
+  auVar1 = vpand_avx(auVar19._0_16_,auVar2);
+  auVar4 = vpor_avx(auVar1,auVar3);
+  auVar63 = vpackuswb_avx2(auVar66,auVar66);
+  auVar63 = vpermq_avx2(auVar63,0xa8);
+  auVar3 = vpandn_avx(auVar2,auVar12);
+  auVar1 = vpand_avx(auVar63._0_16_,auVar2);
+  auVar1 = vpor_avx(auVar1,auVar3);
+  *(undefined1 (*) [16])(*param_1 + lVar48) = auVar4;
+  *(undefined1 (*) [16])(*param_1 + param_2 * 6) = auVar1;
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

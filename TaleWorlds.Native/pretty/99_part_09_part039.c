@@ -1,1282 +1,801 @@
 #include "TaleWorlds.Native.Split.h"
 
-/*=============================================================================
- TaleWorlds.Native 高级系统数据处理模块 - 第09部分第039子模块
- 
- 文件标识: 99_part_09_part039.c
- 功能描述: 高级系统状态管理和数据处理模块，包含复杂的条件判断、
-           数学计算、时间处理和系统状态控制功能。
- 
- 主要功能:
- - 系统状态检测和控制
- - 高级数学计算和插值处理
- - 时间序列数据处理
- - 条件判断和分支控制
- - 内存管理和数据访问
- 
- 核心函数:
- - AdvancedSystemStateProcessor (FUN_1805cefb9) - 高级系统状态处理器
- - SystemDataHandler (FUN_1805cf472) - 系统数据处理器
- 
- 技术特点:
- - 复杂的条件分支逻辑
- - 高精度浮点数运算
- - 时间序列处理
- - 状态机管理
- - 内存安全访问
- 
- 版本信息:
- - 创建时间: 2025-08-28
- - 美化时间: 2025-08-28
- - 负责人: Claude
- =============================================================================*/
+// 99_part_09_part039.c - 2 个函数
 
-/*==========================================
- 常量定义和类型别名
-==========================================*/
+// 函数: void FUN_1805cefb9(longlong param_1,undefined8 param_2,uint param_3)
+void FUN_1805cefb9(longlong param_1,undefined8 param_2,uint param_3)
 
-// 系统状态标志常量
-#define SYSTEM_STATE_FLAG_ACTIVE        0x20        // 系统激活状态标志
-#define SYSTEM_STATE_FLAG_EXTENDED     0x200       // 扩展功能标志
-#define SYSTEM_STATE_FLAG_PRIORITY     0x8000000   // 优先级标志
-#define SYSTEM_STATE_FLAG_SPECIAL      0x80        // 特殊功能标志
-#define SYSTEM_STATE_FLAG_RESERVED     0x10        // 保留标志
-#define SYSTEM_STATE_FLAG_SECONDARY    0x100       // 次要标志
-
-// 系统时间常量
-#define TIME_SCALE_FACTOR              2.3283064e-10 // 时间刻度因子
-#define TIME_PRECISION_FACTOR          1.1641532e-05 // 时间精度因子
-#define TIME_UNIT_MICROSECOND          1e-05        // 微秒时间单位
-#define TIME_UNIT_MILLISECOND          0.001        // 毫秒时间单位
-
-// 系统数值常量
-#define SYSTEM_MAX_VALUE               100.0        // 系统最大值
-#define SYSTEM_MIN_VALUE               -100000.0     // 系统最小值
-#define SYSTEM_THRESHOLD_HIGH          0.95          // 高阈值
-#define SYSTEM_THRESHOLD_LOW           0.0           // 低阈值
-#define SYSTEM_FACTOR_STANDARD         0.5           // 标准因子
-#define SYSTEM_FACTOR_EXTENDED         0.125         // 扩展因子
-
-// 系统模式常量
-#define SYSTEM_MODE_NORMAL             0x00          // 正常模式
-#define SYSTEM_MODE_EXTENDED           0x40          // 扩展模式
-#define SYSTEM_MODE_SPECIAL            0x80          // 特殊模式
-#define SYSTEM_MODE_RESERVED           0x100         // 保留模式
-
-// 系统状态码
-#define STATUS_CODE_SUCCESS            0x00          // 成功状态
-#define STATUS_CODE_PROCESSING         0x01          // 处理中状态
-#define STATUS_CODE_PENDING            0x02          // 等待状态
-#define STATUS_CODE_ERROR              0x03          // 错误状态
-#define STATUS_CODE_COMPLETE           0x06          // 完成状态
-#define STATUS_CODE_TIMEOUT            0x07          // 超时状态
-#define STATUS_CODE_RESERVED           0x08          // 保留状态
-#define STATUS_CODE_EXTENDED           0x0A          // 扩展状态
-
-// 系统控制码
-#define CONTROL_CODE_ENABLE            0x8000        // 启用控制码
-#define CONTROL_CODE_DISABLE           0x4000        // 禁用控制码
-#define CONTROL_CODE_RESET             0x2000        // 重置控制码
-
-// 系统数学常量
-#define MATH_FACTOR_STANDARD           0.2           // 标准数学因子
-#define MATH_FACTOR_EXTENDED           0.3           // 扩展数学因子
-#define MATH_FACTOR_SPECIAL            0.1           // 特殊数学因子
-#define MATH_FACTOR_MULTIPLIER         1.5           // 乘数因子
-#define MATH_FACTOR_DIVISOR            2.25          // 除数因子
-#define MATH_FACTOR_SCALE             60.0          // 缩放因子
-
-// 系统内存常量
-#define MEMORY_OFFSET_BASE             0x10          // 基础内存偏移
-#define MEMORY_OFFSET_EXTENDED        0x18          // 扩展内存偏移
-#define MEMORY_OFFSET_RESERVED        0x20          // 保留内存偏移
-#define MEMORY_OFFSET_SPECIAL         0x28          // 特殊内存偏移
-
-// 系统哈希常量
-#define HASH_SEED_VALUE               0x0D          // 哈希种子值
-#define HASH_SHIFT_PRIMARY             0x0D          // 主哈希移位
-#define HASH_SHIFT_SECONDARY           0x11          // 次要哈希移位
-#define HASH_SHIFT_TERTIARY            0x05          // 第三哈希移位
-
-// 系统索引常量
-#define INDEX_MIN_VALUE                0x32          // 最小索引值
-#define INDEX_MAX_VALUE                0x33          // 最大索引值
-#define INDEX_STANDARD_RANGE           100           // 标准索引范围
-
-// 系统配置常量
-#define CONFIG_FLAG_STANDARD           0x241         // 标准配置标志
-#define CONFIG_MASK_EXTENDED           0xfffffc3f    // 扩展配置掩码
-#define CONFIG_MASK_STANDARD           0x1f          // 标准配置掩码
-
-// 类型别名定义
-typedef long long SystemHandle;                    // 系统句柄类型
-typedef uint SystemFlags;                          // 系统标志类型
-typedef float SystemTime;                          // 系统时间类型
-typedef float SystemValue;                         // 系统数值类型
-typedef byte SystemState;                          // 系统状态类型
-typedef char SystemMode;                           // 系统模式类型
-typedef int SystemStatus;                          // 系统状态类型
-typedef uint SystemControl;                        // 系统控制类型
-typedef long long SystemOffset;                    // 系统偏移类型
-typedef long long SystemAddress;                   // 系统地址类型
-
-// 函数指针类型定义
-typedef void (*SystemProcessor)(void);             // 系统处理器类型
-typedef bool (*SystemValidator)(void);             // 系统验证器类型
-typedef int (*SystemCalculator)(void);             // 系统计算器类型
-typedef float (*SystemInterpolator)(void);         // 系统插值器类型
-
-// 数据结构定义
-typedef struct {
-    SystemHandle handle;                           // 系统句柄
-    SystemFlags flags;                             // 系统标志
-    SystemTime timestamp;                          // 时间戳
-    SystemValue value;                             // 数值
-    SystemState state;                             // 状态
-    SystemMode mode;                               // 模式
-} SystemContext;
-
-typedef struct {
-    SystemAddress base;                            // 基础地址
-    SystemOffset offset;                           // 偏移地址
-    SystemSize size;                               // 大小
-    SystemAttributes attrs;                        // 属性
-} SystemMemoryBlock;
-
-typedef struct {
-    SystemTime start;                              // 开始时间
-    SystemTime end;                                // 结束时间
-    SystemDuration duration;                       // 持续时间
-    SystemInterval interval;                       // 间隔时间
-} SystemTimeRange;
-
-/*==========================================
- 核心函数实现
-==========================================*/
-
-/**
- * 高级系统状态处理器
- * 
- * 该函数是系统的核心状态处理组件，负责：
- * - 系统状态的检测和控制
- * - 复杂条件的判断和处理
- * - 时间序列数据的计算和处理
- * - 系统资源的分配和管理
- * - 错误处理和恢复机制
- * 
- * @param param_1 系统上下文句柄
- * @param param_2 系统配置参数
- * @param param_3 系统状态标志
- * 
- * 处理流程：
- * 1. 初始化系统寄存器和状态
- * 2. 检查和处理系统标志
- * 3. 执行状态验证和控制
- * 4. 处理时间序列数据
- * 5. 执行数学计算和插值
- * 6. 更新系统状态和配置
- * 7. 处理错误和异常情况
- */
-void AdvancedSystemStateProcessor(SystemHandle param_1, SystemConfig param_2, SystemFlags param_3)
 {
-    // 局部变量声明
-    SystemStatus status;                           // 系统状态
-    SystemValidator validator;                    // 系统验证器
-    SystemState state;                             // 系统状态变量
-    SystemMode mode;                               // 系统模式变量
-    int condition_result;                          // 条件判断结果
-    SystemHandle current_handle;                   // 当前系统句柄
-    SystemFlags current_flags;                     // 当前系统标志
-    SystemOffset current_offset;                   // 当前偏移量
-    SystemAddress current_address;                 // 当前地址
-    SystemValue *value_ptr;                        // 数值指针
-    SystemMode *mode_ptr;                          // 模式指针
-    SystemTimeRange time_range;                    // 时间范围
-    SystemControl control_code;                    // 控制代码
-    SystemMemoryBlock memory_block;                // 内存块
-    SystemContext *context_ptr;                    // 上下文指针
-    SystemTime current_time;                       // 当前时间
-    SystemTime target_time;                        // 目标时间
-    SystemTime calculated_time;                   // 计算时间
-    SystemValue source_value;                      // 源数值
-    SystemValue target_value;                      // 目标数值
-    SystemValue result_value;                      // 结果数值
-    SystemValue threshold_value;                   // 阈值数值
-    SystemValue interpolated_value;                // 插值数值
-    SystemRegisterSet register_set;                // 寄存器集合
-    SystemMathContext math_context;                // 数学上下文
-    SystemErrorContext error_context;              // 错误上下文
-    
-    // 初始化寄存器状态
-    InitializeSystemRegisters(&register_set, param_1, param_2);
-    
-    // 检查系统标志并设置状态
-    if ((param_3 & SYSTEM_STATE_FLAG_ACTIVE) == 0) {
-        param_3 = param_3 | SYSTEM_STATE_FLAG_ACTIVE;
-        current_address = GetSystemAddress(param_1, SYSTEM_ADDRESS_EXTENDED);
-        SetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_EXTENDED, current_address);
-        SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET, param_3);
-    } else {
-        current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_EXTENDED);
+  int iVar1;
+  bool bVar2;
+  bool bVar3;
+  byte bVar4;
+  char cVar5;
+  int iVar6;
+  longlong in_RAX;
+  int *piVar7;
+  char *pcVar8;
+  longlong lVar9;
+  longlong lVar10;
+  float *pfVar11;
+  uint uVar12;
+  uint uVar13;
+  longlong *unaff_RBX;
+  undefined8 unaff_RSI;
+  undefined8 unaff_RDI;
+  undefined8 unaff_R12;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  undefined4 unaff_XMM6_Da;
+  undefined4 unaff_XMM6_Db;
+  undefined4 unaff_XMM6_Dc;
+  undefined4 unaff_XMM6_Dd;
+  undefined4 unaff_XMM7_Da;
+  undefined4 unaff_XMM7_Db;
+  undefined4 unaff_XMM7_Dc;
+  undefined4 unaff_XMM7_Dd;
+  undefined4 unaff_XMM10_Da;
+  undefined4 unaff_XMM10_Db;
+  undefined4 unaff_XMM10_Dc;
+  undefined4 unaff_XMM10_Dd;
+  
+  *(undefined8 *)(in_RAX + 0x10) = unaff_RSI;
+  *(undefined8 *)(in_RAX + 0x18) = unaff_RDI;
+  *(undefined8 *)(in_RAX + -0x18) = unaff_R12;
+  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM6_Da;
+  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM6_Db;
+  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM6_Dc;
+  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM6_Dd;
+  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM7_Da;
+  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM7_Db;
+  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM7_Dc;
+  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM7_Dd;
+  *(undefined4 *)(in_RAX + -0x78) = unaff_XMM10_Da;
+  *(undefined4 *)(in_RAX + -0x74) = unaff_XMM10_Db;
+  *(undefined4 *)(in_RAX + -0x70) = unaff_XMM10_Dc;
+  *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM10_Dd;
+  if ((param_3 & 0x20) == 0) {
+    param_3 = param_3 | 0x20;
+    lVar10 = *(longlong *)(*(longlong *)(**(longlong **)(param_1 + 8) + 0x8f8) + 0x9e8);
+    *(longlong *)(param_1 + 0xa8) = lVar10;
+    *(uint *)(param_1 + 0x10) = param_3;
+  }
+  else {
+    lVar10 = *(longlong *)(param_1 + 0xa8);
+  }
+  uVar13 = 0x200;
+  if (lVar10 == 0) {
+LAB_1805cf0ab:
+    bVar3 = false;
+  }
+  else {
+    if ((param_3 & 0x20) == 0) {
+      param_3 = param_3 | 0x20;
+      unaff_RBX[0x15] = *(longlong *)(*(longlong *)(**(longlong **)(param_1 + 8) + 0x8f8) + 0x9e8);
+      *(uint *)(unaff_RBX + 2) = param_3;
+      lVar10 = unaff_RBX[0x15];
     }
-    
-    control_code = SYSTEM_MODE_EXTENDED;
-    if (current_address == 0) {
-        state = SYSTEM_STATE_INACTIVE;
-    } else {
-        // 处理系统激活状态
-        if ((param_3 & SYSTEM_STATE_FLAG_ACTIVE) == 0) {
-            param_3 = param_3 | SYSTEM_STATE_FLAG_ACTIVE;
-            SetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_RESERVED, 
-                           GetSystemAddress(param_1, SYSTEM_ADDRESS_EXTENDED));
-            SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET, param_3);
-            current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_RESERVED);
-        }
-        
-        // 验证系统状态
-        if (!ValidateSystemState(current_address)) {
-            state = SYSTEM_STATE_INACTIVE;
-        }
-        
-        // 检查系统标志
-        if ((param_3 & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-            ProcessSystemControl(param_1 + 1);
-        }
-        
-        // 检查系统模式
-        if (GetSystemMode(param_1) == SYSTEM_MODE_INACTIVE) {
-            state = SYSTEM_STATE_INACTIVE;
-        }
-        
-        // 检查系统优先级
-        if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_PRIORITY) == 0) {
-            validator = GetSystemValidator(param_1 + 1);
-            SetSystemValidationState(param_1, validator);
-        }
-        
-        if (validator != SYSTEM_VALIDATION_PASS) {
-            state = SYSTEM_STATE_INACTIVE;
-        }
-        state = SYSTEM_STATE_ACTIVE;
+    if ((*(byte *)((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar10 + 0xd0)) &
+        0x40) == 0) goto LAB_1805cf0ab;
+    if ((param_3 & 0x200) == 0) {
+      func_0x0001805d4cd0(unaff_RBX + 1);
     }
-    
-    // 处理系统状态
-    if (GetSystemStatus(param_1) == SYSTEM_STATUS_INACTIVE) {
-        if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-            ProcessSystemControl(param_1 + 1);
-        }
-        if (GetSystemMode(param_1) != SYSTEM_MODE_INACTIVE) {
-            ProcessSystemEvent();
-        }
+    if ((char)unaff_RBX[0x20] == '\0') goto LAB_1805cf0ab;
+    if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
+      bVar4 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+      *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
     }
-    
-    if (state) {
-        // 处理活动状态
-        if ((GetSystemExtendedMode(param_1) != SYSTEM_MODE_INACTIVE) &&
-            (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr == SYSTEM_STATUS_ACTIVE)) {
-            SetSystemControlValue(param_1, GetSystemControlIndex(param_1));
-        }
-        
-        if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-            ProcessSystemControl(param_1 + 1);
-        }
-        
-        current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_STANDARD);
-        if (current_address == 0) {
-            if ((!state) && (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr == SYSTEM_STATUS_PENDING)) {
-                if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-                    ProcessSystemControl(param_1 + 1);
-                    current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_SECONDARY);
-                }
-                
-                if (current_address != 0) {
-                    if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-                        ProcessSystemControl(param_1 + 1);
-                        current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_SECONDARY);
-                    }
-                    
-                    if (ValidateSystemCondition(current_address) &&
-                        (mode = GetSystemValidationMode(), mode != SYSTEM_MODE_INACTIVE)) {
-                        target_value = GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_EXTENDED);
-                        control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                        control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                        control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                        control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                        SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                        
-                        if (CalculateTimeValue(control_code, TIME_SCALE_FACTOR) < target_value) {
-                            SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, CONTROL_CODE_ENABLE);
-                            SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_SECONDARY, STATUS_CODE_TIMEOUT);
-                            goto ProcessControlCode;
-                        }
-                    }
-                }
-            }
-            
-            status = GetSystemStatus();
-            if (status == SYSTEM_STATUS_SUCCESS) {
-                goto ProcessControlCode;
-            }
-            if (status != SYSTEM_STATUS_PROCESSING) {
-                if (status != SYSTEM_STATUS_PENDING) {
-                    if (status == SYSTEM_STATUS_ERROR) {
-                        goto ProcessErrorCode;
-                    }
-                    SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_SUCCESS);
-                    if (GetSystemConfig(param_1) - 1U < 2) {
-                        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                                           GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED) & 
-                                           CONFIG_MASK_EXTENDED | CONTROL_CODE_RESET);
-                    }
-                    goto ProcessControlCode;
-                }
-ProcessControlCode:
-                control_code = SYSTEM_MODE_EXTENDED;
-            }
-        } else {
-            mode = GetSystemOperationMode(*param_1);
-            if (mode == SYSTEM_MODE_INACTIVE) {
-                if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-                    ProcessSystemControl(param_1 + 1);
-                    current_address = GetSystemMemory(param_1, SYSTEM_MEMORY_OFFSET_STANDARD);
-                }
-                mode = GetSystemOperationMode(current_address);
-                if (mode == SYSTEM_MODE_INACTIVE) {
-                    goto ProcessInactiveState;
-                }
-            }
-            
-            // 计算哈希值
-            control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-            control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-            SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-            
-            current_address = *param_1;
-            control_code = (control_code - 1) % INDEX_STANDARD_RANGE;
-            condition_result = INDEX_MIN_VALUE < control_code;
-            status = CalculateSystemValue(current_address + MEMORY_OFFSET_BASE, condition_result);
-            
-            if (status == SYSTEM_STATUS_ERROR) {
-                condition_result = control_code < INDEX_MAX_VALUE;
-                status = CalculateSystemValue(current_address + MEMORY_OFFSET_BASE, condition_result);
-                if (status == SYSTEM_STATUS_ERROR) {
-                    goto ProcessInactiveState;
-                }
-                if (condition_result) {
-                    if (!condition_result) {
-                        if (condition_result == true) {
-                            goto ProcessControlCode;
-                        }
-                        if (condition_result == true) {
-                            goto ProcessErrorCode;
-                        }
-                        control_code = 0;
-                    }
-                    goto ProcessFinalCode;
-                }
-            } else if (condition_result) {
-                if (!condition_result) {
-                    if (condition_result == true) {
-                        goto ProcessControlCode;
-                    }
-                    if (condition_result != true) {
-                        control_code = 0;
-                        goto ProcessFinalCode;
-                    }
-ProcessErrorCode:
-                    control_code = SYSTEM_MODE_SPECIAL;
-                }
-                goto ProcessFinalCode;
-            }
-ProcessControlCode:
-            control_code = SYSTEM_MODE_RESERVED;
-        }
-ProcessFinalCode:
-        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                           GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED) | control_code);
-    } else {
-        // 处理非活动状态
-        if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_SPECIAL) == 0) {
-            ProcessSystemExtended(param_1 + 1);
-        }
-        
-        if ((GetSystemExtendedState(param_1) != SYSTEM_MODE_INACTIVE) ||
-            ((status_ptr = GetSystemStatus(param_1 + 1), *status_ptr != SYSTEM_STATUS_ACTIVE &&
-             (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr != SYSTEM_STATUS_PROCESSING)))) {
-ProcessExtendedState:
-            if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_SPECIAL) == 0) {
-                ProcessSystemExtended(param_1 + 1);
-            }
-            
-            if (GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_STANDARD) != 0.0) {
-                control_code = GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_PRIORITY;
-                if (control_code == 0) {
-                    validator = GetSystemValidator(param_1 + 1);
-                    SetSystemValidationState(param_1, validator);
-                } else {
-                    validator = GetSystemValidationState(param_1);
-                }
-                
-                if (validator != 0) {
-                    if (control_code == 0) {
-                        validator = GetSystemValidator(param_1 + 1);
-                        SetSystemValidationState(param_1, validator);
-                    }
-                    if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_EXTENDED) == 0) {
-                        ProcessSystemControl(param_1 + 1);
-                        validator = GetSystemValidationState(param_1);
-                    }
-                    if (validator != GetSystemMode(param_1)) {
-                        goto ProcessValidationState;
-                    }
-                }
-                
-                status_ptr = GetSystemStatus(param_1 + 1);
-                if ((*status_ptr == SYSTEM_STATUS_PROCESSING) && 
-                    (GetSystemConfig(param_1) != SYSTEM_STATUS_PROCESSING)) {
-                    target_value = GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_EXTENDED);
-                    control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                    control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                    control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                    control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                    SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                    
-                    if (CalculateTimeValue(control_code, TIME_SCALE_FACTOR) < target_value) {
-                        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_COMPLETE);
-                        goto ProcessExtendedState;
-                    }
-                }
-            }
-ProcessValidationState:
-            if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_SPECIAL) == 0) {
-                ProcessSystemExtended(param_1 + 1);
-            }
-            
-            if ((GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_STANDARD) == 0.0) ||
-                (((status_ptr = GetSystemStatus(param_1 + 1), *status_ptr != SYSTEM_STATUS_ACTIVE &&
-                   (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr != SYSTEM_STATUS_PROCESSING)) ||
-                  (target_value = GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_STANDARD),
-                   control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                   control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                   control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                   control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                   SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                   target_value <= CalculateTimeValue(control_code, TIME_SCALE_FACTOR))))) {
-                goto ProcessActiveState;
-            }
-            
-            if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_PRIORITY) == 0) {
-                validator = GetSystemValidator(param_1 + 1);
-                SetSystemValidationState(param_1, validator);
-            } else {
-                validator = GetSystemValidationState(param_1);
-            }
-            
-            if (validator != 0) {
-                if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_PRIORITY) == 0) {
-                    SetSystemValidationState(param_1, GetSystemValidator(param_1 + 1));
-                }
-                mode_ptr = GetSystemMode(param_1 + 1);
-                if (GetSystemValidationState(param_1) != *mode_ptr) {
-                    goto ProcessActiveState;
-                }
-            }
-            
-            if ((GetSystemExtendedMode(param_1) == SYSTEM_MODE_INACTIVE) ||
-                (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr != SYSTEM_STATUS_ACTIVE)) {
-                ProcessSystemSpecial();
-                goto ProcessFinalControl;
-            }
-            goto SetSystemControlValue;
-        }
-        
-        // 处理系统时间
-        current_address = *param_1;
-        mode = GetSystemTimeMode(current_address);
-        if (mode == SYSTEM_MODE_INACTIVE) {
-            target_value = GetSystemValue(current_address, SYSTEM_VALUE_OFFSET_TIME_EXTENDED);
-        } else {
-            target_value = GetSystemValue(current_address, SYSTEM_VALUE_OFFSET_TIME_STANDARD);
-        }
-        
-        control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-        control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-        control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-        control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-        SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-        
-        if (target_value <= CalculateTimeValue(control_code, TIME_SCALE_FACTOR)) {
-            goto ProcessExtendedState;
-        }
-        
-        if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_PRIORITY) == 0) {
-            validator = GetSystemValidator(param_1 + 1);
-            SetSystemValidationState(param_1, validator);
-        } else {
-            validator = GetSystemValidationState(param_1);
-        }
-        
-        if ((validator != 0) &&
-            (((GetSystemStatus(param_1) == SYSTEM_STATUS_EXTENDED) ||
-              (mode_ptr = GetSystemMode(param_1 + 1), *mode_ptr == SYSTEM_MODE_INACTIVE)))) {
-            goto ProcessExtendedState;
-        }
-        
-        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_COMPLETE);
-        control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-ProcessExtendedState:
-        control_code = control_code ^ control_code;
-        control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-        control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-        SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-        
-        SetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED,
-                           GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                           (SYSTEM_TIME_EXTENDED - CalculateTimeValue(control_code, TIME_PRECISION_FACTOR)));
+    else {
+      bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
     }
-ProcessFinalControl:
-    // 处理最终控制状态
-    if (((GetSystemConfig(param_1) == SYSTEM_STATUS_EXTENDED) || 
-         (GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY) != SYSTEM_STATUS_ERROR)) ||
-        (GetSystemConfig(param_1) != SYSTEM_STATUS_ACTIVE)) {
-        goto ProcessSystemComplete;
+    if (bVar4 != 0) goto LAB_1805cf0ab;
+    bVar3 = true;
+  }
+  if ((int)unaff_RBX[0x405] == 0) {
+    if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+      func_0x0001805d4cd0(unaff_RBX + 1);
     }
-    
-    if ((GetSystemFlags(param_1) & SYSTEM_STATE_FLAG_SPECIAL) == 0) {
-        ProcessSystemExtended(param_1 + 1);
+    if ((char)unaff_RBX[0x20] != '\0') {
+      FUN_1805d2570();
     }
-    
-    if (GetSystemExtendedState(param_1) != SYSTEM_MODE_INACTIVE) {
-        current_address = *param_1;
-        target_value = 1.0;
-        source_value = -100000.0;
-        current_offset = GetSystemMemory(current_address, SYSTEM_MEMORY_OFFSET_EXTENDED);
-        condition_result = GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY) +
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_STANDARD) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_TERTIARY) +
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_PRIMARY) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_QUATERNARY) <= SYSTEM_THRESHOLD_HIGH;
-        
-        validator = (SystemValidator)((uint)GetSystemConfig(current_address, SYSTEM_CONFIG_OFFSET_STANDARD) >> 0x1f) ^ 1;
-        
-        if (GetSystemConfig(current_address, SYSTEM_CONFIG_OFFSET_STANDARD) < 0) {
-            if ((CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                                      GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_STANDARD)) * TIME_UNIT_MICROSECOND <= 0.0)) {
-                goto ProcessSystemComplete;
-            }
-            
-            if (condition_result) {
-                mode_ptr = (SystemMode *)ProcessSystemOperation(param_1 + 1);
-                if (*mode_ptr != SYSTEM_MODE_INACTIVE) {
-                    goto ProcessSystemComplete;
-                }
-                current_address = *param_1;
-            }
-ProcessTimeCalculation:
-            status = 0;
-            mode = GetSystemOperationMode();
-            if ((mode == SYSTEM_MODE_INACTIVE) && 
-                (mode = GetSystemExtendedMode(), mode != SYSTEM_MODE_INACTIVE)) {
-                current_offset = GetSystemExtendedAddress();
-                status = GetSystemConfig(current_offset, SYSTEM_CONFIG_OFFSET_EXTENDED);
-            }
-            
-            condition_result = GetSystemConfig(current_address, SYSTEM_CONFIG_OFFSET_EXTENDED);
-            calculated_time = (float)(status + -1) * SYSTEM_FACTOR_EXTENDED;
-            if (0.0 <= calculated_time) {
-                if (target_value <= calculated_time) {
-                    calculated_time = target_value;
-                }
-            } else {
-                calculated_time = 0.0;
-            }
-            
-            control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-            control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-            SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-            
-            calculated_time = (SYSTEM_FACTOR_STANDARD - condition_result * SYSTEM_FACTOR_STANDARD) + calculated_time + calculated_time;
-            if (calculated_time <= 0.0) {
-                calculated_time = 0.0;
-            }
-            
-            calculated_time = CalculateTimeValue(control_code, TIME_SCALE_FACTOR) *
-                             ((SQRT((float)((status + 1) / (condition_result + 1))) * MATH_FACTOR_SCALE) / 
-                              ((condition_result + target_value) * SYSTEM_FACTOR_STANDARD) - calculated_time) + calculated_time;
-            
-            if (calculated_time <= 0.0) {
-                calculated_time = 0.0;
-            }
-            
-            SetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED,
-                               GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                               (calculated_time * source_value));
-        } else {
-            if (condition_result) {
-                goto ProcessSystemComplete;
-            }
-            
-            calculated_time = GetSystemValue(GetSystemMemory(current_address, SYSTEM_MEMORY_OFFSET_BASE), 
-                                           SYSTEM_VALUE_OFFSET_EXTENDED) * MATH_FACTOR_STANDARD;
-            value_ptr = (SystemValue *)(GetSystemMemory(current_address, SYSTEM_MEMORY_OFFSET_BASE) + SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY);
-            
-            if (*value_ptr <= calculated_time && calculated_time != *value_ptr) {
-                goto ProcessTimeCalculation;
-            }
-        }
-        
-        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                           GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED) & CONFIG_MASK_EXTENDED);
-        
-        if ((validator == 0) && (mode_ptr = GetSystemMode(param_1 + 1), *mode_ptr == SYSTEM_MODE_INACTIVE)) {
-            if (GetSystemExtendedMode(param_1) == SYSTEM_MODE_INACTIVE) {
-                control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                calculated_time = GetSystemValue(*param_1, SYSTEM_VALUE_OFFSET_EXTENDED);
-                control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                
-                target_value = (target_value - CalculateTimeValue(control_code, TIME_SCALE_FACTOR) * calculated_time) *
-                               GetSystemValue(*param_1, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY);
-                
-                if (GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_STANDARD) <= target_value) {
-                    SetSystemControlValue(param_1, GetSystemControlIndex(param_1),
-                                         GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                                         (target_value * source_value));
-                    SetSystemMode(param_1, SYSTEM_MODE_ACTIVE);
-                    goto ProcessSystemComplete;
-                }
-            } else if (CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                                             GetSystemControlValue(param_1)) * TIME_UNIT_MICROSECOND < 0.0) {
-                goto ProcessSystemComplete;
-            }
-        }
-        
-        SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_EXTENDED);
-        goto ProcessSystemComplete;
+  }
+  if (bVar3) {
+LAB_1805cf433:
+    if (((char)unaff_RBX[0x2e4] != '\0') &&
+       (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1)) {
+LAB_1805cf44a:
+      unaff_RBX[0x2e2] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8);
     }
-    
-    // 处理时间阈值
-    if (SYSTEM_FACTOR_STANDARD < CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                                                         GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED)) * TIME_UNIT_MICROSECOND) {
-        value_ptr = (SystemValue *)GetSystemStandardValue();
-        if ((*value_ptr != 0.0) &&
-            ((status_ptr = GetSystemStatus(param_1 + 1), *status_ptr == SYSTEM_STATUS_ACTIVE ||
-             (status_ptr = GetSystemStatus(param_1 + 1), *status_ptr == SYSTEM_STATUS_PROCESSING)))) {
-            SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_COMPLETE);
-            control_code = GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code ^ GetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-            control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-            SetSystemFlags(param_1, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-            
-            SetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED_SECONDARY,
-                               GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                               (SYSTEM_TIME_EXTENDED - CalculateTimeValue(control_code, TIME_PRECISION_FACTOR)));
-        }
-        ProcessSystemSpecial();
-        goto ProcessSystemComplete;
+    if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+      func_0x0001805d4cd0(unaff_RBX + 1);
     }
-    
-    value_ptr = (SystemValue *)GetSystemMode(param_1 + 1);
-    target_value = *value_ptr;
-    
-    if (target_value * -MATH_FACTOR_DIVISOR <=
-        CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                               GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED)) * TIME_UNIT_MICROSECOND) {
-ProcessConditionCheck:
-        if ((GetSystemConfig(*param_1) < 0) ||
-            ((current_address = GetSystemMemory(*param_1, SYSTEM_MEMORY_OFFSET_BASE),
-              GetSystemValue(current_address, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY) <= 
-              GetSystemValue(current_address, SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_EXTENDED ||
-              (current_address = GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER),
-               current_offset = GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED),
-               value_ptr = (SystemValue *)GetSystemStandardValue(param_1 + 1),
-               source_value = (SYSTEM_FACTOR_STANDARD - CalculateTimeDifference(current_address - current_offset) * TIME_UNIT_MICROSECOND) + target_value,
-               source_value < *value_ptr || source_value == *value_ptr)))) {
-            goto ProcessSystemComplete;
+    lVar10 = unaff_RBX[0x1d];
+    if (lVar10 == 0) {
+LAB_1805cf57f:
+      if ((!bVar3) && (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 7)) {
+        if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+          func_0x0001805d4cd0(unaff_RBX + 1);
         }
-    } else {
-        current_offset = GetSystemOperationMode(param_1 + 1);
-        if (current_offset == 0) {
-            source_value = 5.0;
-        } else {
-            source_value = 2.5;
+        lVar10 = unaff_RBX[0x1f];
+        if (lVar10 != 0) {
+          if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+            func_0x0001805d4cd0(unaff_RBX + 1);
+            lVar10 = unaff_RBX[0x1f];
+          }
+          if ((((*(uint *)((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 +
+                          *(longlong *)(lVar10 + 0xd0)) >> 0x1c & 1) != 0) &&
+              (cVar5 = FUN_1805b7ac0(), cVar5 != '\0')) &&
+             (fVar16 = *(float *)(*unaff_RBX + 0x2f8),
+             uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
+             uVar12 = uVar12 >> 0x11 ^ uVar12, uVar12 = uVar12 << 5 ^ uVar12,
+             *(uint *)(unaff_RBX + 0x272) = uVar12, (float)(uVar12 - 1) * 2.3283064e-10 < fVar16)) {
+            *(uint *)(unaff_RBX + 0x27a) = *(uint *)(unaff_RBX + 0x27a) | 0x8000;
+            *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 10;
+            goto FUN_1805cf6c9;
+          }
         }
-        
-        value_ptr = (SystemValue *)GetSystemStandardValue(param_1 + 1);
-        if ((*value_ptr <= source_value * target_value) ||
-            (source_value = GetSystemValue(GetSystemMemory(*param_1, SYSTEM_MEMORY_OFFSET_BASE), SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_SPECIAL,
-             value_ptr = (SystemValue *)(GetSystemMemory(*param_1, SYSTEM_MEMORY_OFFSET_BASE) + SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY),
-             source_value < *value_ptr || source_value == *value_ptr)) {
-            goto ProcessConditionCheck;
+      }
+      iVar6 = FUN_1805d6890();
+      if (iVar6 == 0) goto LAB_1805cf6ac;
+      if (iVar6 != 1) {
+        if (iVar6 != 2) {
+          if (iVar6 == 3) goto LAB_1805cf69e;
+          *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+          if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
+            *(uint *)((longlong)unaff_RBX + 0x158c) =
+                 *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
+          }
+          goto FUN_1805cf6c9;
         }
+LAB_1805cf6a5:
+        uVar13 = 0x40;
+      }
     }
-    
-    SetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED,
-                       GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                       (50000.0 - target_value * 100000.0));
-ProcessSystemComplete:
-    // 处理系统完成状态
-    if (GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY) == SYSTEM_STATUS_ERROR) {
-        if (0.0 < CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                                           GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_STANDARD)) * TIME_UNIT_MICROSECOND) {
-            if (GetSystemConfig(param_1) == SYSTEM_STATUS_ACTIVE) {
-                control_code = GetSystemFlags(param_1);
-                if ((control_code & SYSTEM_STATE_FLAG_RESERVED) == 0) {
-                    ProcessSystemPriority(param_1 + 1);
-                    control_code = GetSystemFlags(param_1);
-                }
-                if ((control_code >> 8 & 1) == 0) {
-                    ProcessSystemSecondary(param_1 + 1);
-                }
-                if ((GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_MULTIPLIER < 
-                     GetSystemValue(param_1, SYSTEM_VALUE_OFFSET_EXTENDED)) &&
-                    (current_address = GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER),
-                     current_offset = GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED),
-                     value_ptr = (SystemValue *)GetSystemMode(param_1 + 1),
-                     *value_ptr * 3.0 < CalculateTimeDifference(current_address - current_offset) * TIME_UNIT_MICROSECOND)) {
-                    ProcessSystemSpecial();
-                }
-            }
-        } else {
-            SetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED,
-                               GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) -
-                               (GetSystemValue(*param_1, SYSTEM_VALUE_OFFSET_EXTENDED_TERTIARY) * 100000.0));
-            SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_SUCCESS);
-            if (GetSystemConfig(param_1) - 1U < 2) {
-                SetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                                   GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_EXTENDED) & 
-                                   CONFIG_MASK_EXTENDED | CONTROL_CODE_RESET);
-            }
+    else {
+      cVar5 = func_0x000180522f60(*unaff_RBX);
+      if (cVar5 == '\0') {
+        if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+          func_0x0001805d4cd0(unaff_RBX + 1);
+          lVar10 = unaff_RBX[0x1d];
         }
+        cVar5 = func_0x000180522f60(lVar10);
+        if (cVar5 == '\0') goto LAB_1805cf57f;
+      }
+      uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+      uVar12 = uVar12 >> 0x11 ^ uVar12;
+      uVar12 = uVar12 << 5 ^ uVar12;
+      *(uint *)(unaff_RBX + 0x272) = uVar12;
+      lVar10 = *unaff_RBX;
+      uVar12 = (uVar12 - 1) % 100;
+      bVar2 = 0x32 < uVar12;
+      iVar6 = FUN_1805a0a20(lVar10 + 0x28,bVar2);
+      if (iVar6 == -1) {
+        bVar2 = uVar12 < 0x33;
+        iVar6 = FUN_1805a0a20(lVar10 + 0x28,bVar2);
+        if (iVar6 == -1) goto LAB_1805cf57f;
+        if (bVar2) {
+          if (!bVar2) {
+            if (bVar2 == true) goto LAB_1805cf6a5;
+            if (bVar2 == true) goto LAB_1805cf69e;
+            uVar13 = 0;
+          }
+          goto LAB_1805cf6b1;
+        }
+      }
+      else if (bVar2) {
+        if (!bVar2) {
+          if (bVar2 == true) goto LAB_1805cf6a5;
+          if (bVar2 != true) {
+            uVar13 = 0;
+            goto LAB_1805cf6b1;
+          }
+LAB_1805cf69e:
+          uVar13 = 0x80;
+        }
+        goto LAB_1805cf6b1;
+      }
+LAB_1805cf6ac:
+      uVar13 = 0x100;
     }
-    
-    // 处理最终系统状态
-    if ((((GetSystemMode(param_1, SYSTEM_MODE_OFFSET_FINAL) == 0) ||
-         (CalculateTimeDifference(GetSystemTimeValue(SYSTEM_TIME_BASE + (int)GetSystemTimeIndex(param_1) * SYSTEM_TIME_MULTIPLIER) - 
-                                 GetSystemTimeValue(param_1, SYSTEM_TIME_OFFSET_EXTENDED_SECONDARY)) * TIME_UNIT_MICROSECOND < -100.0)) ||
-        (9 < GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY)) ||
-        ((CONFIG_FLAG_STANDARD >> (GetSystemControlCode(param_1, SYSTEM_CONTROL_OFFSET_PRIMARY) & CONFIG_MASK_STANDARD) & 1) == 0)) {
-        ProcessSystemFinal();
+LAB_1805cf6b1:
+    *(uint *)((longlong)unaff_RBX + 0x158c) = *(uint *)((longlong)unaff_RBX + 0x158c) | uVar13;
+  }
+  else {
+    if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
+      FUN_1805d4440(unaff_RBX + 1);
     }
-    return;
+    if ((*(char *)((longlong)unaff_RBX + 0xd5) != '\0') ||
+       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1 &&
+        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 2)))) {
+LAB_1805cf23d:
+      if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
+        FUN_1805d4440(unaff_RBX + 1);
+      }
+      if (*(float *)(unaff_RBX + 0x1b) != 0.0) {
+        uVar12 = *(uint *)(unaff_RBX + 2) & 0x8000000;
+        if (uVar12 == 0) {
+          bVar4 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+          *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
+        }
+        else {
+          bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
+        }
+        if (bVar4 != 0) {
+          if (uVar12 == 0) {
+            bVar4 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+            *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
+          }
+          if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
+            func_0x0001805d4cd0(unaff_RBX + 1);
+            bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
+          }
+          if (bVar4 != *(byte *)(unaff_RBX + 0x20)) goto LAB_1805cf32d;
+        }
+        piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1);
+        if ((*piVar7 == 2) && (*(int *)(*unaff_RBX + 0x1fc) != 2)) {
+          fVar16 = *(float *)(*unaff_RBX + 0x2f4);
+          uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+          uVar12 = uVar12 >> 0x11 ^ uVar12;
+          uVar12 = uVar12 << 5 ^ uVar12;
+          *(uint *)(unaff_RBX + 0x272) = uVar12;
+          if ((float)(uVar12 - 1) * 2.3283064e-10 < fVar16) {
+            *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+            goto LAB_1805cf1e8;
+          }
+        }
+      }
+LAB_1805cf32d:
+      if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
+        FUN_1805d4440(unaff_RBX + 1);
+      }
+      if ((*(float *)(unaff_RBX + 0x1b) == 0.0) ||
+         (((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1 &&
+           (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 2)) ||
+          (fVar16 = *(float *)(*unaff_RBX + 0x2f0),
+          uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
+          uVar12 = uVar12 >> 0x11 ^ uVar12, uVar12 = uVar12 << 5 ^ uVar12,
+          *(uint *)(unaff_RBX + 0x272) = uVar12, fVar16 <= (float)(uVar12 - 1) * 2.3283064e-10))))
+      goto LAB_1805cf433;
+      if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
+        bVar4 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+        *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
+      }
+      else {
+        bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
+      }
+      if (bVar4 != 0) {
+        if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
+          *(byte *)((longlong)unaff_RBX + 0x11c) =
+               (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+        }
+        pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1);
+        if (*(char *)((longlong)unaff_RBX + 0x11c) != *pcVar8) goto LAB_1805cf433;
+      }
+      if (((char)unaff_RBX[0x2e4] == '\0') ||
+         (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 != 1)) {
+        func_0x0001805cef70();
+        goto FUN_1805cf6c9;
+      }
+      goto LAB_1805cf44a;
+    }
+    lVar10 = *unaff_RBX;
+    cVar5 = func_0x00018051f6a0(lVar10);
+    if (cVar5 == '\0') {
+      fVar16 = *(float *)(lVar10 + 0x2e0);
+    }
+    else {
+      fVar16 = *(float *)(lVar10 + 0x2dc);
+    }
+    uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+    uVar12 = uVar12 >> 0x11 ^ uVar12;
+    uVar12 = uVar12 << 5 ^ uVar12;
+    *(uint *)(unaff_RBX + 0x272) = uVar12;
+    if (fVar16 <= (float)(uVar12 - 1) * 2.3283064e-10) goto LAB_1805cf23d;
+    if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
+      bVar4 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+      *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
+    }
+    else {
+      bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
+    }
+    if ((bVar4 != 0) &&
+       (((int)unaff_RBX[0x295] == 3 ||
+        (pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar8 == '\0')))) goto LAB_1805cf23d;
+    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+    uVar12 = *(uint *)(unaff_RBX + 0x272);
+LAB_1805cf1e8:
+    uVar12 = uVar12 << 0xd ^ uVar12;
+    uVar12 = uVar12 >> 0x11 ^ uVar12;
+    uVar12 = uVar12 << 5 ^ uVar12;
+    *(uint *)(unaff_RBX + 0x272) = uVar12;
+    unaff_RBX[0x2eb] =
+         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ec] * 8) -
+         (longlong)(-60000.004 - (float)(uVar12 - 1) * 1.1641532e-05);
+  }
+FUN_1805cf6c9:
+  if (((*(int *)(*unaff_RBX + 0x1fc) == 3) || (*(int *)((longlong)unaff_RBX + 0x178c) != 7)) ||
+     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto FUN_1805cfbdd;
+  if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
+    FUN_1805d4440(unaff_RBX + 1);
+  }
+  if (*(char *)((longlong)unaff_RBX + 0xd5) != '\0') {
+    lVar10 = *unaff_RBX;
+    fVar16 = 1.0;
+    fVar17 = -100000.0;
+    lVar9 = *(longlong *)(lVar10 + 0x590);
+    bVar3 = *(float *)(lVar9 + 0x258c) * *(float *)(lVar9 + 0x259c) +
+            *(float *)(lVar9 + 0x2588) * *(float *)(lVar9 + 0x2598) +
+            *(float *)(lVar9 + 0x2590) * *(float *)(lVar9 + 0x25a0) <= 0.95;
+    bVar4 = (byte)((uint)*(int *)(lVar10 + 0x564) >> 0x1f) ^ 1;
+    if (*(int *)(lVar10 + 0x564) < 0) {
+      if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2dd] * 8) -
+                 unaff_RBX[0x2dc]) * 1e-05 <= 0.0) goto FUN_1805cfbdd;
+      if (bVar3) {
+        pcVar8 = (char *)func_0x000180507f80(unaff_RBX + 1);
+        if (*pcVar8 != '\0') goto FUN_1805cfbdd;
+        lVar10 = *unaff_RBX;
+      }
+LAB_1805cf801:
+      iVar6 = 0;
+      cVar5 = func_0x0001805b7bd0();
+      if ((cVar5 == '\0') && (cVar5 = func_0x0001805d1da0(), cVar5 != '\0')) {
+        lVar9 = func_0x0001805d1df0();
+        iVar6 = *(int *)(lVar9 + 0x678);
+      }
+      iVar1 = *(int *)(lVar10 + 0x678);
+      fVar14 = *(float *)(lVar10 + 0x2fc);
+      fVar15 = (float)(iVar6 + -1) * 0.125;
+      if (0.0 <= fVar15) {
+        if (fVar16 <= fVar15) {
+          fVar15 = fVar16;
+        }
+      }
+      else {
+        fVar15 = 0.0;
+      }
+      uVar13 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+      uVar13 = uVar13 >> 0x11 ^ uVar13;
+      uVar13 = uVar13 << 5 ^ uVar13;
+      *(uint *)(unaff_RBX + 0x272) = uVar13;
+      fVar15 = (0.5 - fVar14 * 0.5) + fVar15 + fVar15;
+      if (fVar15 <= 0.0) {
+        fVar15 = 0.0;
+      }
+      fVar15 = (float)(uVar13 - 1) * 2.3283064e-10 *
+               ((SQRT((float)((iVar6 + 1) / (iVar1 + 1))) * 60.0) / ((fVar14 + fVar16) * 30.0) -
+               fVar15) + fVar15;
+      if (fVar15 <= 0.0) {
+        fVar15 = 0.0;
+      }
+      unaff_RBX[0x2e9] =
+           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           (longlong)(fVar15 * fVar17);
+    }
+    else {
+      if (bVar3) goto FUN_1805cfbdd;
+      fVar14 = *(float *)(*(longlong *)(lVar10 + 0x20) + 0x84) * 0.2;
+      pfVar11 = (float *)(*(longlong *)(lVar10 + 0x20) + 0x234);
+      if (*pfVar11 <= fVar14 && fVar14 != *pfVar11) goto LAB_1805cf801;
+    }
+    *(uint *)((longlong)unaff_RBX + 0x1794) = *(uint *)((longlong)unaff_RBX + 0x1794) & 0xfffffc3f;
+    if ((bVar4 == 0) && (pcVar8 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar8 == '\0')) {
+      if ((char)unaff_RBX[0x2e4] == '\0') {
+        uVar13 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+        fVar14 = *(float *)(*unaff_RBX + 0x380);
+        uVar13 = uVar13 >> 0x11 ^ uVar13;
+        uVar13 = uVar13 << 5 ^ uVar13;
+        *(uint *)(unaff_RBX + 0x272) = uVar13;
+        fVar16 = (fVar16 - (float)(uVar13 - 1) * 2.3283064e-10 * fVar14) *
+                 *(float *)(*unaff_RBX + 0x37c);
+        if (*(float *)(unaff_RBX + 0x28d) <= fVar16) {
+          unaff_RBX[0x2e2] =
+               *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+               (longlong)(fVar16 * fVar17);
+          *(undefined1 *)(unaff_RBX + 0x2e4) = 1;
+          goto FUN_1805cfbdd;
+        }
+      }
+      else if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+                      unaff_RBX[0x2e2]) * 1e-05 < 0.0) goto FUN_1805cfbdd;
+    }
+    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 8;
+    goto FUN_1805cfbdd;
+  }
+  if (0.5 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+                   unaff_RBX[0x2e9]) * 1e-05) {
+    pfVar11 = (float *)FUN_1805b7450();
+    if ((*pfVar11 != 0.0) &&
+       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1 ||
+        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 2)))) {
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+      uVar13 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+      uVar13 = uVar13 >> 0x11 ^ uVar13;
+      uVar13 = uVar13 << 5 ^ uVar13;
+      *(uint *)(unaff_RBX + 0x272) = uVar13;
+      unaff_RBX[0x2eb] =
+           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ec] * 8) -
+           (longlong)(-60000.004 - (float)(uVar13 - 1) * 1.1641532e-05);
+    }
+    func_0x0001805cef70();
+    goto FUN_1805cfbdd;
+  }
+  pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1);
+  fVar16 = *pfVar11;
+  if (fVar16 * -2.25 <=
+      (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]
+             ) * 1e-05) {
+LAB_1805cfb42:
+    if ((*(int *)(*unaff_RBX + 0x564) < 0) ||
+       ((lVar10 = *(longlong *)(*unaff_RBX + 0x20),
+        *(float *)(lVar10 + 0x234) <= *(float *)(lVar10 + 0x84) * 0.3 ||
+        (lVar10 = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+        lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b6e50(unaff_RBX + 1),
+        fVar17 = (0.5 - (float)(lVar10 - lVar9) * 1e-05) + fVar16,
+        fVar17 < *pfVar11 || fVar17 == *pfVar11)))) goto FUN_1805cfbdd;
+  }
+  else {
+    lVar10 = func_0x0001805b7270(unaff_RBX + 1);
+    if (lVar10 == 0) {
+      fVar17 = 5.0;
+    }
+    else {
+      fVar17 = 2.5;
+    }
+    pfVar11 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    if ((*pfVar11 <= fVar17 * fVar16) ||
+       (fVar17 = *(float *)(*(longlong *)(*unaff_RBX + 0x20) + 0x84) * 0.1,
+       pfVar11 = (float *)(*(longlong *)(*unaff_RBX + 0x20) + 0x234),
+       fVar17 < *pfVar11 || fVar17 == *pfVar11)) goto LAB_1805cfb42;
+  }
+  unaff_RBX[0x2e9] =
+       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+       (longlong)(50000.0 - fVar16 * 100000.0);
+FUN_1805cfbdd:
+  if (*(int *)((longlong)unaff_RBX + 0x178c) == 7) {
+    if (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2dd] * 8) -
+                     unaff_RBX[0x2dc]) * 1e-05) {
+      if (*(int *)(*unaff_RBX + 0x1fc) == 1) {
+        uVar13 = *(uint *)(unaff_RBX + 2);
+        if ((uVar13 & 0x10) == 0) {
+          FUN_1805d3770(unaff_RBX + 1);
+          uVar13 = *(uint *)(unaff_RBX + 2);
+        }
+        if ((uVar13 >> 8 & 1) == 0) {
+          FUN_1805d4b40(unaff_RBX + 1);
+        }
+        if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((longlong)unaff_RBX + 0xa4)) &&
+           (lVar10 = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+           lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1),
+           *pfVar11 * 3.0 < (float)(lVar10 - lVar9) * 1e-05)) {
+          func_0x0001805cef70();
+        }
+      }
+    }
+    else {
+      unaff_RBX[0x2e9] =
+           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
+        *(uint *)((longlong)unaff_RBX + 0x158c) =
+             *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
+      }
+    }
+  }
+  if (((((int)unaff_RBX[0x2f1] == 0) ||
+       ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) -
+               unaff_RBX[0x2ed]) * 1e-05 < -100.0)) || (9 < *(uint *)((longlong)unaff_RBX + 0x178c))
+      ) || ((0x241U >> (*(uint *)((longlong)unaff_RBX + 0x178c) & 0x1f) & 1) == 0)) {
+    FUN_1805caef0();
+  }
+  return;
 }
 
-/**
- * 系统数据处理器
- * 
- * 该函数是系统的核心数据处理组件，负责：
- * - 系统数据的采集和处理
- * - 数据验证和完整性检查
- * - 时间序列数据的分析
- * - 系统状态的监控和控制
- * - 错误处理和数据恢复
- * 
- * 处理流程：
- * 1. 初始化数据处理环境
- * 2. 验证系统状态和数据完整性
- * 3. 执行数据采集和处理
- * 4. 进行数据分析和计算
- * 5. 更新系统状态和配置
- * 6. 处理异常情况和错误恢复
- */
-void SystemDataHandler(void)
+
+
+
+
+
+// 函数: void FUN_1805cf472(void)
+void FUN_1805cf472(void)
+
 {
-    // 局部变量声明
-    SystemStatus status;                           // 系统状态
-    SystemValidator validator;                    // 系统验证器
-    SystemMode mode;                               // 系统模式
-    int condition_result;                          // 条件判断结果
-    SystemHandle current_handle;                   // 当前系统句柄
-    SystemFlags current_flags;                     // 当前系统标志
-    SystemOffset current_offset;                   // 当前偏移量
-    char *mode_ptr;                                // 模式指针
-    int *status_ptr;                               // 状态指针
-    long long memory_address;                      // 内存地址
-    float *value_ptr;                              // 数值指针
-    uint control_code;                             // 控制代码
-    long long *context_ptr;                        // 上下文指针
-    uint system_flags;                             // 系统标志
-    long long register_value;                      // 寄存器值
-    char mode_register;                            // 模式寄存器
-    long long extended_register;                   // 扩展寄存器
-    float time_value;                              // 时间数值
-    float source_value;                            // 源数值
-    float target_value;                            // 目标数值
-    float result_value;                            // 结果数值
-    float threshold_value;                         // 阈值数值
-    float math_factor;                             // 数学因子
-    float extended_value;                          // 扩展数值
-    float standard_value;                           // 标准数值
-    float special_value;                           // 特殊数值
-    
-    // 检查系统状态
-    if (register_value == 0) {
-ProcessInactiveState:
-        if ((mode_register == SYSTEM_MODE_INACTIVE) && 
-            (status_ptr = GetSystemStatus(context_ptr + 1), *status_ptr == SYSTEM_STATUS_PENDING)) {
-            if ((GetSystemFlags(context_ptr, system_flags) == 0)) {
-                ProcessSystemControl(context_ptr + 1);
-            }
-            
-            memory_address = context_ptr[SYSTEM_OFFSET_SECONDARY];
-            if (memory_address == 0) {
-                goto ProcessErrorCode;
-            }
-            
-            if ((GetSystemFlags(context_ptr, system_flags) == 0)) {
-                ProcessSystemControl(context_ptr + 1);
-                memory_address = context_ptr[SYSTEM_OFFSET_SECONDARY];
-            }
-            
-            if (((GetSystemStatusFlags(memory_address) >> 0x1c & 1) == 0) || 
-                (mode = GetSystemValidationMode(), mode == SYSTEM_MODE_INACTIVE) ||
-                (target_value = GetSystemValue(*context_ptr, SYSTEM_VALUE_OFFSET_EXTENDED),
-                 control_code = GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                 control_code = control_code ^ GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                 control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                 control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                 SetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                 target_value <= CalculateTimeValue(control_code, TIME_SCALE_FACTOR))) {
-                goto ProcessErrorCode;
-            }
-            
-            SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED, CONTROL_CODE_ENABLE);
-            SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_TIMEOUT);
-        } else {
-ProcessErrorCode:
-            status = GetSystemStatus();
-            if (status == SYSTEM_STATUS_SUCCESS) {
-                goto ProcessControlCode;
-            }
-            if (status == SYSTEM_STATUS_PROCESSING) {
-                goto ProcessControlCode;
-            }
-            if (status == SYSTEM_STATUS_PENDING) {
-                goto ProcessControlCode;
-            }
-            if (status == SYSTEM_STATUS_ERROR) {
-                goto ProcessErrorCode;
-            }
-            SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_SUCCESS);
-            if (GetSystemConfig(*context_ptr) - 1U < 2) {
-                SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                                   GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED) & 
-                                   CONFIG_MASK_EXTENDED | CONTROL_CODE_RESET);
-            }
-        }
-    } else {
-        // 处理活动状态
-        mode = GetSystemOperationMode(*context_ptr);
-        if (mode == SYSTEM_MODE_INACTIVE) {
-            if ((GetSystemFlags(context_ptr, system_flags) == 0)) {
-                ProcessSystemControl(context_ptr + 1);
-                register_value = context_ptr[SYSTEM_OFFSET_STANDARD];
-            }
-            mode = GetSystemOperationMode(register_value);
-            if (mode == SYSTEM_MODE_INACTIVE) {
-                goto ProcessInactiveState;
-            }
-        }
-        
-        // 计算系统控制码
-        control_code = GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-        control_code = control_code ^ GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-        control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-        control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-        SetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-        
-        memory_address = *context_ptr;
-        control_code = (control_code - 1) % INDEX_STANDARD_RANGE;
-        condition_result = INDEX_MIN_VALUE < control_code;
-        status = CalculateSystemValue(memory_address + MEMORY_OFFSET_BASE, condition_result);
-        
-        if (status == SYSTEM_STATUS_ERROR) {
-            condition_result = control_code < INDEX_MAX_VALUE;
-            status = CalculateSystemValue(memory_address + MEMORY_OFFSET_BASE, condition_result);
-            if (status == SYSTEM_STATUS_ERROR) {
-                goto ProcessInactiveState;
-            }
-            if (condition_result) {
-                if (!condition_result) {
-                    if (condition_result == true) {
-                        goto ProcessControlCode;
-                    }
-                    if (condition_result == true) {
-                        goto ProcessErrorCode;
-                    }
-                    system_flags = 0;
-                }
-                goto ProcessControlCode;
-            }
-        } else {
-            if (!condition_result) {
-                goto ProcessControlCode;
-            }
-            if (!condition_result) {
-                if (condition_result == true) {
-ProcessControlCode:
-                    system_flags = SYSTEM_MODE_EXTENDED;
-                } else {
-                    if (condition_result != true) {
-                        system_flags = 0;
-                        goto ProcessControlCode;
-                    }
-ProcessErrorCode:
-                    system_flags = SYSTEM_MODE_SPECIAL;
-                }
-            }
-        }
-ProcessControlCode:
-        SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                           GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED) | system_flags);
+  int iVar1;
+  bool bVar2;
+  char cVar3;
+  int iVar4;
+  longlong lVar5;
+  char *pcVar6;
+  int *piVar7;
+  longlong lVar8;
+  float *pfVar9;
+  uint uVar10;
+  longlong *unaff_RBX;
+  uint unaff_ESI;
+  byte bVar11;
+  longlong in_R9;
+  char unaff_R12B;
+  longlong unaff_R13;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float unaff_XMM6_Da;
+  float unaff_XMM7_Da;
+  float unaff_XMM10_Da;
+  
+  if (in_R9 == 0) {
+LAB_1805cf57f:
+    if ((unaff_R12B == '\0') && (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 7)) {
+      if ((*(uint *)(unaff_RBX + 2) & unaff_ESI) == 0) {
+        func_0x0001805d4cd0(unaff_RBX + 1);
+      }
+      lVar8 = unaff_RBX[0x1f];
+      if (lVar8 == 0) goto LAB_1805cf652;
+      if ((*(uint *)(unaff_RBX + 2) & unaff_ESI) == 0) {
+        func_0x0001805d4cd0(unaff_RBX + 1);
+        lVar8 = unaff_RBX[0x1f];
+      }
+      if ((((*(uint *)((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar8 + 0xd0))
+             >> 0x1c & 1) == 0) || (cVar3 = FUN_1805b7ac0(), cVar3 == '\0')) ||
+         (fVar14 = *(float *)(*unaff_RBX + 0x2f8),
+         uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
+         uVar10 = uVar10 >> 0x11 ^ uVar10, uVar10 = uVar10 << 5 ^ uVar10,
+         *(uint *)(unaff_RBX + 0x272) = uVar10, fVar14 <= (float)(uVar10 - 1) * unaff_XMM7_Da))
+      goto LAB_1805cf652;
+      *(uint *)(unaff_RBX + 0x27a) = *(uint *)(unaff_RBX + 0x27a) | 0x8000;
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 10;
     }
-    
-    // 处理系统配置
-    if (((GetSystemConfig(*context_ptr) == SYSTEM_STATUS_EXTENDED) || 
-         (GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY) != SYSTEM_STATUS_ERROR)) ||
-        (GetSystemConfig(*context_ptr) != SYSTEM_STATUS_ACTIVE)) {
-        goto ProcessSystemComplete;
+    else {
+LAB_1805cf652:
+      iVar4 = FUN_1805d6890();
+      if (iVar4 == 0) goto LAB_1805cf6ac;
+      if (iVar4 == 1) goto LAB_1805cf6b1;
+      if (iVar4 == 2) goto LAB_1805cf6a5;
+      if (iVar4 == 3) goto LAB_1805cf69e;
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
+        *(uint *)((longlong)unaff_RBX + 0x158c) =
+             *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
+      }
     }
-    
-    if ((GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_STANDARD) & SYSTEM_STATE_FLAG_SPECIAL) == 0) {
-        ProcessSystemExtended(context_ptr + 1);
+  }
+  else {
+    cVar3 = func_0x000180522f60(*unaff_RBX);
+    if (cVar3 == '\0') {
+      if ((*(uint *)(unaff_RBX + 2) & unaff_ESI) == 0) {
+        func_0x0001805d4cd0(unaff_RBX + 1);
+        in_R9 = unaff_RBX[0x1d];
+      }
+      cVar3 = func_0x000180522f60(in_R9);
+      if (cVar3 == '\0') goto LAB_1805cf57f;
     }
-    
-    if (GetSystemExtendedState(context_ptr) != SYSTEM_MODE_INACTIVE) {
-        memory_address = *context_ptr;
-        target_value = 1.0;
-        source_value = -100000.0;
-        current_offset = GetSystemMemory(memory_address, SYSTEM_MEMORY_OFFSET_EXTENDED);
-        condition_result = GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY) +
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_STANDARD) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_TERTIARY) +
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_PRIMARY) * 
-                           GetSystemValue(current_offset, SYSTEM_VALUE_OFFSET_EXTENDED_QUATERNARY) <= SYSTEM_THRESHOLD_HIGH;
-        
-        validator = (SystemValidator)((uint)GetSystemConfig(memory_address, SYSTEM_CONFIG_OFFSET_STANDARD) >> 0x1f) ^ 1;
-        
-        if (GetSystemConfig(memory_address, SYSTEM_CONFIG_OFFSET_STANDARD) < 0) {
-            if ((CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                                      GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_STANDARD)) * TIME_UNIT_MICROSECOND <= threshold_value)) {
-                goto ProcessSystemComplete;
-            }
-            
-            if (condition_result) {
-                mode_ptr = (char *)ProcessSystemOperation(context_ptr + 1);
-                if (*mode_ptr != SYSTEM_MODE_INACTIVE) {
-                    goto ProcessSystemComplete;
-                }
-                memory_address = *context_ptr;
-            }
-ProcessTimeCalculation:
-            status = 0;
-            mode = GetSystemOperationMode();
-            if ((mode == SYSTEM_MODE_INACTIVE) && 
-                (mode = GetSystemExtendedMode(), mode != SYSTEM_MODE_INACTIVE)) {
-                current_offset = GetSystemExtendedAddress();
-                status = GetSystemConfig(current_offset, SYSTEM_CONFIG_OFFSET_EXTENDED);
-            }
-            
-            condition_result = GetSystemConfig(memory_address, SYSTEM_CONFIG_OFFSET_EXTENDED);
-            calculated_time = (float)(status + -1) * SYSTEM_FACTOR_EXTENDED;
-            if (threshold_value <= calculated_time) {
-                if (target_value <= calculated_time) {
-                    calculated_time = target_value;
-                }
-            } else {
-                calculated_time = threshold_value;
-            }
-            
-            control_code = GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code ^ GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-            control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-            SetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-            
-            calculated_time = (SYSTEM_FACTOR_STANDARD - condition_result * SYSTEM_FACTOR_STANDARD) + calculated_time + calculated_time;
-            if (calculated_time <= threshold_value) {
-                calculated_time = threshold_value;
-            }
-            
-            calculated_time = CalculateTimeValue(control_code, TIME_SCALE_FACTOR) *
-                             ((SQRT((float)((status + 1) / (condition_result + 1))) * MATH_FACTOR_SCALE) / 
-                              ((condition_result + target_value) * SYSTEM_FACTOR_STANDARD) - calculated_time) + calculated_time;
-            
-            if (calculated_time <= threshold_value) {
-                calculated_time = threshold_value;
-            }
-            
-            SetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED,
-                               GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) -
-                               (calculated_time * source_value));
-        } else {
-            if (condition_result) {
-                goto ProcessSystemComplete;
-            }
-            
-            calculated_time = GetSystemValue(GetSystemMemory(memory_address, SYSTEM_MEMORY_OFFSET_BASE), 
-                                           SYSTEM_VALUE_OFFSET_EXTENDED) * MATH_FACTOR_STANDARD;
-            value_ptr = (float *)(GetSystemMemory(memory_address, SYSTEM_MEMORY_OFFSET_BASE) + SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY);
-            
-            if (*value_ptr <= calculated_time && calculated_time != *value_ptr) {
-                goto ProcessTimeCalculation;
-            }
+    uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+    uVar10 = uVar10 >> 0x11 ^ uVar10;
+    uVar10 = uVar10 << 5 ^ uVar10;
+    *(uint *)(unaff_RBX + 0x272) = uVar10;
+    lVar8 = *unaff_RBX;
+    uVar10 = (uVar10 - 1) % 100;
+    bVar2 = 0x32 < uVar10;
+    iVar4 = FUN_1805a0a20(lVar8 + 0x28,bVar2);
+    if (iVar4 == -1) {
+      bVar2 = uVar10 < 0x33;
+      iVar4 = FUN_1805a0a20(lVar8 + 0x28,bVar2);
+      if (iVar4 == -1) goto LAB_1805cf57f;
+      if (bVar2) {
+        if (!bVar2) {
+          if (bVar2 == true) goto LAB_1805cf6a5;
+          if (bVar2 == true) goto LAB_1805cf69e;
+          unaff_ESI = 0;
         }
-        
-        SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                           GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED) & CONFIG_MASK_EXTENDED);
-        
-        if ((validator == 0) && (mode_ptr = GetSystemMode(context_ptr + 1), *mode_ptr == SYSTEM_MODE_INACTIVE)) {
-            if (GetSystemExtendedMode(context_ptr) == SYSTEM_MODE_INACTIVE) {
-                control_code = GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                control_code = control_code ^ GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-                calculated_time = GetSystemValue(*context_ptr, SYSTEM_VALUE_OFFSET_EXTENDED);
-                control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-                control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-                SetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-                
-                target_value = (target_value - CalculateTimeValue(control_code, TIME_SCALE_FACTOR) * calculated_time) *
-                               GetSystemValue(*context_ptr, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY);
-                
-                if (GetSystemValue(context_ptr, SYSTEM_VALUE_OFFSET_STANDARD) <= target_value) {
-                    SetSystemControlValue(context_ptr, GetSystemControlIndex(context_ptr),
-                                         GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) -
-                                         (target_value * source_value));
-                    SetSystemMode(context_ptr, SYSTEM_MODE_ACTIVE);
-                    goto ProcessSystemComplete;
-                }
-            } else if (CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                                             GetSystemControlValue(context_ptr)) * TIME_UNIT_MICROSECOND < threshold_value) {
-                goto ProcessSystemComplete;
-            }
-        }
-        
-        SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_EXTENDED);
-        goto ProcessSystemComplete;
+        goto LAB_1805cf6b1;
+      }
+LAB_1805cf6ac:
+      unaff_ESI = 0x100;
     }
-    
-    // 处理时间阈值
-    if (SYSTEM_FACTOR_STANDARD < CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                                                         GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED)) * TIME_UNIT_MICROSECOND) {
-        value_ptr = (float *)GetSystemStandardValue();
-        if ((threshold_value != *value_ptr) &&
-            ((status_ptr = GetSystemStatus(context_ptr + 1), *status_ptr == SYSTEM_STATUS_ACTIVE ||
-             (status_ptr = GetSystemStatus(context_ptr + 1), *status_ptr == SYSTEM_STATUS_PROCESSING)))) {
-            SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_COMPLETE);
-            control_code = GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code ^ GetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY);
-            control_code = control_code >> HASH_SHIFT_SECONDARY ^ control_code;
-            control_code = control_code << HASH_SHIFT_TERTIARY ^ control_code;
-            SetSystemFlags(context_ptr, SYSTEM_FLAGS_OFFSET_SECONDARY, control_code);
-            
-            SetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED_SECONDARY,
-                               GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) -
-                               (standard_value - CalculateTimeValue(control_code, TIME_PRECISION_FACTOR)));
+    else {
+      if (!bVar2) goto LAB_1805cf6ac;
+      if (!bVar2) {
+        if (bVar2 == true) {
+LAB_1805cf6a5:
+          unaff_ESI = 0x40;
         }
-        ProcessSystemSpecial();
-        goto ProcessSystemComplete;
+        else {
+          if (bVar2 != true) {
+            unaff_ESI = 0;
+            goto LAB_1805cf6b1;
+          }
+LAB_1805cf69e:
+          unaff_ESI = 0x80;
+        }
+      }
     }
-    
-    value_ptr = (float *)GetSystemMode(context_ptr + 1);
-    target_value = *value_ptr;
-    
-    if (target_value * -MATH_FACTOR_DIVISOR <=
-        CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                               GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED)) * TIME_UNIT_MICROSECOND) {
-ProcessConditionCheck:
-        if ((GetSystemConfig(*context_ptr) < 0) ||
-            ((memory_address = GetSystemMemory(*context_ptr, SYSTEM_MEMORY_OFFSET_BASE),
-              GetSystemValue(memory_address, SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY) <= 
-              GetSystemValue(memory_address, SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_EXTENDED ||
-              (memory_address = GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER),
-               current_offset = GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED),
-               value_ptr = (float *)GetSystemStandardValue(context_ptr + 1),
-               source_value = (SYSTEM_FACTOR_STANDARD - CalculateTimeDifference(memory_address - current_offset) * TIME_UNIT_MICROSECOND) + target_value,
-               source_value < *value_ptr || source_value == *value_ptr)))) {
-            goto ProcessSystemComplete;
+LAB_1805cf6b1:
+    *(uint *)((longlong)unaff_RBX + 0x158c) = *(uint *)((longlong)unaff_RBX + 0x158c) | unaff_ESI;
+  }
+  if (((*(int *)(*unaff_RBX + 0x1fc) == 3) || (*(int *)((longlong)unaff_RBX + 0x178c) != 7)) ||
+     (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto FUN_1805cfbdd;
+  if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
+    FUN_1805d4440(unaff_RBX + 1);
+  }
+  if (*(char *)((longlong)unaff_RBX + 0xd5) != '\0') {
+    lVar8 = *unaff_RBX;
+    fVar14 = 1.0;
+    fVar15 = -100000.0;
+    lVar5 = *(longlong *)(lVar8 + 0x590);
+    bVar2 = *(float *)(lVar5 + 0x258c) * *(float *)(lVar5 + 0x259c) +
+            *(float *)(lVar5 + 0x2588) * *(float *)(lVar5 + 0x2598) +
+            *(float *)(lVar5 + 0x2590) * *(float *)(lVar5 + 0x25a0) <= 0.95;
+    bVar11 = (byte)((uint)*(int *)(lVar8 + 0x564) >> 0x1f) ^ 1;
+    if (*(int *)(lVar8 + 0x564) < 0) {
+      if ((float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc])
+          * 1e-05 <= unaff_XMM10_Da) goto FUN_1805cfbdd;
+      if (bVar2) {
+        pcVar6 = (char *)func_0x000180507f80(unaff_RBX + 1);
+        if (*pcVar6 != '\0') goto FUN_1805cfbdd;
+        lVar8 = *unaff_RBX;
+      }
+LAB_1805cf801:
+      iVar4 = 0;
+      cVar3 = func_0x0001805b7bd0();
+      if ((cVar3 == '\0') && (cVar3 = func_0x0001805d1da0(), cVar3 != '\0')) {
+        lVar5 = func_0x0001805d1df0();
+        iVar4 = *(int *)(lVar5 + 0x678);
+      }
+      iVar1 = *(int *)(lVar8 + 0x678);
+      fVar12 = *(float *)(lVar8 + 0x2fc);
+      fVar13 = (float)(iVar4 + -1) * 0.125;
+      if (unaff_XMM10_Da <= fVar13) {
+        if (fVar14 <= fVar13) {
+          fVar13 = fVar14;
         }
-    } else {
-        current_offset = GetSystemOperationMode(context_ptr + 1);
-        if (current_offset == 0) {
-            source_value = 5.0;
-        } else {
-            source_value = 2.5;
-        }
-        
-        value_ptr = (float *)GetSystemStandardValue(context_ptr + 1);
-        if ((*value_ptr <= source_value * target_value) ||
-            (source_value = GetSystemValue(GetSystemMemory(*context_ptr, SYSTEM_MEMORY_OFFSET_BASE), SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_SPECIAL,
-             value_ptr = (float *)(GetSystemMemory(*context_ptr, SYSTEM_MEMORY_OFFSET_BASE) + SYSTEM_VALUE_OFFSET_EXTENDED_SECONDARY),
-             source_value < *value_ptr || source_value == *value_ptr)) {
-            goto ProcessConditionCheck;
-        }
+      }
+      else {
+        fVar13 = 0.0;
+      }
+      uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+      uVar10 = uVar10 >> 0x11 ^ uVar10;
+      uVar10 = uVar10 << 5 ^ uVar10;
+      *(uint *)(unaff_RBX + 0x272) = uVar10;
+      fVar13 = (0.5 - fVar12 * 0.5) + fVar13 + fVar13;
+      if (fVar13 <= unaff_XMM10_Da) {
+        fVar13 = unaff_XMM10_Da;
+      }
+      fVar13 = (float)(uVar10 - 1) * unaff_XMM7_Da *
+               ((SQRT((float)((iVar4 + 1) / (iVar1 + 1))) * 60.0) / ((fVar12 + fVar14) * 30.0) -
+               fVar13) + fVar13;
+      if (fVar13 <= unaff_XMM10_Da) {
+        fVar13 = unaff_XMM10_Da;
+      }
+      unaff_RBX[0x2e9] =
+           *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           (longlong)(fVar13 * fVar15);
     }
-    
-    SetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED,
-                       GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) -
-                       (50000.0 - target_value * 100000.0));
-ProcessSystemComplete:
-    // 处理系统完成状态
-    if (GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY) == SYSTEM_STATUS_ERROR) {
-        if (threshold_value <
-            CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                                   GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_STANDARD)) * TIME_UNIT_MICROSECOND) {
-            if (GetSystemConfig(*context_ptr) == SYSTEM_STATUS_ACTIVE) {
-                control_code = GetSystemFlags(context_ptr);
-                if ((control_code & SYSTEM_STATE_FLAG_RESERVED) == 0) {
-                    ProcessSystemPriority(context_ptr + 1);
-                    control_code = GetSystemFlags(context_ptr);
-                }
-                if ((control_code >> 8 & 1) == 0) {
-                    ProcessSystemSecondary(context_ptr + 1);
-                }
-                if ((GetSystemValue(context_ptr, SYSTEM_VALUE_OFFSET_STANDARD) * MATH_FACTOR_MULTIPLIER < 
-                     GetSystemValue(context_ptr, SYSTEM_VALUE_OFFSET_EXTENDED)) &&
-                    (memory_address = GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER),
-                     current_offset = GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED),
-                     value_ptr = (float *)GetSystemMode(context_ptr + 1),
-                     *value_ptr * 3.0 < CalculateTimeDifference(memory_address - current_offset) * TIME_UNIT_MICROSECOND)) {
-                    ProcessSystemSpecial();
-                }
-            }
-        } else {
-            SetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED,
-                               GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) -
-                               (GetSystemValue(*context_ptr, SYSTEM_VALUE_OFFSET_EXTENDED_TERTIARY) * 100000.0));
-            SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY, STATUS_CODE_SUCCESS);
-            if (GetSystemConfig(*context_ptr) - 1U < 2) {
-                SetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED, 
-                                   GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_EXTENDED) & 
-                                   CONFIG_MASK_EXTENDED | CONTROL_CODE_RESET);
-            }
+    else {
+      if (bVar2) goto FUN_1805cfbdd;
+      fVar12 = *(float *)(*(longlong *)(lVar8 + 0x20) + 0x84) * 0.2;
+      pfVar9 = (float *)(*(longlong *)(lVar8 + 0x20) + 0x234);
+      if (*pfVar9 <= fVar12 && fVar12 != *pfVar9) goto LAB_1805cf801;
+    }
+    *(uint *)((longlong)unaff_RBX + 0x1794) = *(uint *)((longlong)unaff_RBX + 0x1794) & 0xfffffc3f;
+    if ((bVar11 == 0) && (pcVar6 = (char *)FUN_1805b7540(unaff_RBX + 1), *pcVar6 == '\0')) {
+      if ((char)unaff_RBX[0x2e4] == '\0') {
+        uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+        fVar12 = *(float *)(*unaff_RBX + 0x380);
+        uVar10 = uVar10 >> 0x11 ^ uVar10;
+        uVar10 = uVar10 << 5 ^ uVar10;
+        *(uint *)(unaff_RBX + 0x272) = uVar10;
+        fVar14 = (fVar14 - (float)(uVar10 - 1) * unaff_XMM7_Da * fVar12) *
+                 *(float *)(*unaff_RBX + 0x37c);
+        if (*(float *)(unaff_RBX + 0x28d) <= fVar14) {
+          unaff_RBX[0x2e2] =
+               *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+               (longlong)(fVar14 * fVar15);
+          *(undefined1 *)(unaff_RBX + 0x2e4) = 1;
+          goto FUN_1805cfbdd;
         }
+      }
+      else if ((float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+                      unaff_RBX[0x2e2]) * 1e-05 < unaff_XMM10_Da) goto FUN_1805cfbdd;
     }
-    
-    // 处理最终系统状态
-    if ((((GetSystemMode(context_ptr, SYSTEM_MODE_OFFSET_FINAL) == 0) ||
-         (CalculateTimeDifference(GetSystemTimeValue(extended_register + (int)GetSystemTimeIndex(context_ptr) * SYSTEM_TIME_MULTIPLIER) - 
-                                 GetSystemTimeValue(context_ptr, SYSTEM_TIME_OFFSET_EXTENDED_SECONDARY)) * TIME_UNIT_MICROSECOND < -100.0)) ||
-        (9 < GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY)) ||
-        ((CONFIG_FLAG_STANDARD >> (GetSystemControlCode(context_ptr, SYSTEM_CONTROL_OFFSET_PRIMARY) & CONFIG_MASK_STANDARD) & 1) == 0)) {
-        ProcessSystemFinal();
+    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 8;
+    goto FUN_1805cfbdd;
+  }
+  if (0.5 < (float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+                   unaff_RBX[0x2e9]) * 1e-05) {
+    pfVar9 = (float *)FUN_1805b7450();
+    if ((unaff_XMM10_Da != *pfVar9) &&
+       ((piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1 ||
+        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 2)))) {
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+      uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
+      uVar10 = uVar10 >> 0x11 ^ uVar10;
+      uVar10 = uVar10 << 5 ^ uVar10;
+      *(uint *)(unaff_RBX + 0x272) = uVar10;
+      unaff_RBX[0x2eb] =
+           *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ec] * 8) -
+           (longlong)(unaff_XMM6_Da - (float)(uVar10 - 1) * 1.1641532e-05);
     }
-    return;
+    func_0x0001805cef70();
+    goto FUN_1805cfbdd;
+  }
+  pfVar9 = (float *)FUN_1805b7480(unaff_RBX + 1);
+  fVar14 = *pfVar9;
+  if (fVar14 * -2.25 <=
+      (float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]) *
+      1e-05) {
+LAB_1805cfb42:
+    if ((*(int *)(*unaff_RBX + 0x564) < 0) ||
+       ((lVar8 = *(longlong *)(*unaff_RBX + 0x20),
+        *(float *)(lVar8 + 0x234) <= *(float *)(lVar8 + 0x84) * 0.3 ||
+        (lVar8 = *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+        lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)FUN_1805b6e50(unaff_RBX + 1),
+        fVar15 = (0.5 - (float)(lVar8 - lVar5) * 1e-05) + fVar14,
+        fVar15 < *pfVar9 || fVar15 == *pfVar9)))) goto FUN_1805cfbdd;
+  }
+  else {
+    lVar8 = func_0x0001805b7270(unaff_RBX + 1);
+    if (lVar8 == 0) {
+      fVar15 = 5.0;
+    }
+    else {
+      fVar15 = 2.5;
+    }
+    pfVar9 = (float *)FUN_1805b6e50(unaff_RBX + 1);
+    if ((*pfVar9 <= fVar15 * fVar14) ||
+       (fVar15 = *(float *)(*(longlong *)(*unaff_RBX + 0x20) + 0x84) * 0.1,
+       pfVar9 = (float *)(*(longlong *)(*unaff_RBX + 0x20) + 0x234),
+       fVar15 < *pfVar9 || fVar15 == *pfVar9)) goto LAB_1805cfb42;
+  }
+  unaff_RBX[0x2e9] =
+       *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+       (longlong)(50000.0 - fVar14 * 100000.0);
+FUN_1805cfbdd:
+  if (*(int *)((longlong)unaff_RBX + 0x178c) == 7) {
+    if (unaff_XMM10_Da <
+        (float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc]) *
+        1e-05) {
+      if (*(int *)(*unaff_RBX + 0x1fc) == 1) {
+        uVar10 = *(uint *)(unaff_RBX + 2);
+        if ((uVar10 & 0x10) == 0) {
+          FUN_1805d3770(unaff_RBX + 1);
+          uVar10 = *(uint *)(unaff_RBX + 2);
+        }
+        if ((uVar10 >> 8 & 1) == 0) {
+          FUN_1805d4b40(unaff_RBX + 1);
+        }
+        if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((longlong)unaff_RBX + 0xa4)) &&
+           (lVar8 = *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+           lVar5 = unaff_RBX[0x2e9], pfVar9 = (float *)FUN_1805b7480(unaff_RBX + 1),
+           *pfVar9 * 3.0 < (float)(lVar8 - lVar5) * 1e-05)) {
+          func_0x0001805cef70();
+        }
+      }
+    }
+    else {
+      unaff_RBX[0x2e9] =
+           *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
+      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
+        *(uint *)((longlong)unaff_RBX + 0x158c) =
+             *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
+      }
+    }
+  }
+  if (((((int)unaff_RBX[0x2f1] == 0) ||
+       ((float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ee] * 8) - unaff_RBX[0x2ed]) *
+        1e-05 < -100.0)) || (9 < *(uint *)((longlong)unaff_RBX + 0x178c))) ||
+     ((0x241U >> (*(uint *)((longlong)unaff_RBX + 0x178c) & 0x1f) & 1) == 0)) {
+    FUN_1805caef0();
+  }
+  return;
 }
 
-/*==========================================
- 函数别名定义
-==========================================*/
 
-// 主要函数别名
-#define AdvancedSystemStateProcessor      FUN_1805cefb9    // 高级系统状态处理器
-#define SystemDataHandler                 FUN_1805cf472    // 系统数据处理器
 
-// 辅助函数别名
-#define InitializeSystemRegisters         RegisterInitializer // 系统寄存器初始化器
-#define GetSystemAddress                  AddressResolver     // 系统地址解析器
-#define SetSystemMemory                   MemorySetter        // 系统内存设置器
-#define SetSystemFlags                    FlagSetter          // 系统标志设置器
-#define GetSystemMemory                   MemoryGetter        // 系统内存获取器
-#define ValidateSystemState               StateValidator      // 系统状态验证器
-#define ProcessSystemControl              ControlProcessor    // 系统控制处理器
-#define GetSystemMode                     ModeGetter          // 系统模式获取器
-#define SetSystemValidationState          ValidationSetter    // 系统验证状态设置器
-#define GetSystemValidator                ValidatorGetter     // 系统验证器获取器
-#define ProcessSystemEvent                EventHandler        // 系统事件处理器
-#define GetSystemStatus                   StatusGetter        // 系统状态获取器
-#define SetSystemControlValue             ControlValueSetter  // 系统控制值设置器
-#define GetSystemControlIndex             ControlIndexGetter  // 系统控制索引获取器
-#define ValidateSystemCondition           ConditionValidator  // 系统条件验证器
-#define GetSystemValidationMode           ValidationModeGetter// 系统验证模式获取器
-#define CalculateSystemValue               ValueCalculator     // 系统值计算器
-#define ProcessInactiveState              InactiveProcessor   // 非活动状态处理器
-#define GetSystemStatusFlags              StatusFlagsGetter   // 系统状态标志获取器
-#define CalculateTimeValue                TimeValueCalculator // 时间值计算器
-#define ProcessSystemExtended             ExtendedProcessor   // 系统扩展处理器
-#define ProcessSystemSpecial               SpecialProcessor    // 系统特殊处理器
-#define ProcessSystemFinal                FinalProcessor      // 系统最终处理器
-#define ProcessSystemPriority             PriorityProcessor   // 系统优先级处理器
-#define ProcessSystemSecondary            SecondaryProcessor  // 系统次要处理器
-#define CalculateTimeDifference           TimeDiffCalculator  // 时间差计算器
-#define GetSystemOperationMode            OperationModeGetter // 系统操作模式获取器
-#define GetSystemExtendedMode             ExtendedModeGetter  // 系统扩展模式获取器
-#define GetSystemConfig                   ConfigGetter        // 系统配置获取器
-#define GetSystemValue                    ValueGetter         // 系统值获取器
-#define GetSystemTimeValue                TimeValueGetter     // 系统时间值获取器
-#define GetSystemTimeIndex                TimeIndexGetter     // 系统时间索引获取器
-#define GetSystemExtendedAddress          ExtendedAddrGetter  // 系统扩展地址获取器
-#define GetSystemStandardValue            StandardValueGetter // 系统标准值获取器
-#define GetSystemExtendedState            ExtendedStateGetter // 系统扩展状态获取器
-#define GetSystemControlCode              ControlCodeGetter  // 系统控制码获取器
-#define SetSystemControlCode              ControlCodeSetter  // 系统控制码设置器
-#define SetSystemTimeValue                TimeValueSetter     // 系统时间值设置器
-#define SetSystemControlValue             ControlValueSetter  // 系统控制值设置器
-#define SetSystemMode                     ModeSetter          // 系统模式设置器
 
-/*==========================================
- 模块功能说明
-==========================================*/
 
-/*
- * 模块功能概述：
- * 
- * 本模块是TaleWorlds.Native系统的高级数据处理组件，主要负责：
- * 
- * 1. 系统状态管理
- *    - 实时监控和控制系统状态
- *    - 处理状态转换和条件判断
- *    - 维护系统状态的一致性和完整性
- * 
- * 2. 高级数据处理
- *    - 复杂的数学计算和插值处理
- *    - 时间序列数据的分析和处理
- *    - 高精度浮点数运算
- * 
- * 3. 系统控制功能
- *    - 实现复杂的控制逻辑
- *    - 处理系统配置和参数调整
- *    - 执行系统命令和操作
- * 
- * 4. 错误处理和恢复
- *    - 检测和处理系统错误
- *    - 实现错误恢复机制
- *    - 保证系统的稳定性和可靠性
- * 
- * 技术特点：
- * - 采用模块化设计，具有良好的可扩展性
- * - 实现了复杂的状态机和控制逻辑
- * - 支持高精度数学计算和时间处理
- * - 具有完善的错误处理机制
- * - 优化了内存访问和数据处理效率
- * 
- * 应用场景：
- * - 游戏引擎的高级系统控制
- * - 复杂的数据处理和分析
- * - 实时系统状态监控
- * - 高性能计算和数据处理
- * 
- * 性能优化：
- * - 使用高效的算法和数据结构
- * - 优化了内存访问模式
- * - 实现了缓存友好的数据处理
- * - 减少了不必要的计算和操作
- * 
- * 维护性：
- * - 提供了详细的注释和文档
- * - 使用了清晰的命名约定
- * - 实现了模块化的代码结构
- * - 便于调试和问题定位
- */
 
-/*=============================================================================
- 文件结束 - 99_part_09_part039.c
-=============================================================================*/

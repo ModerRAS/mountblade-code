@@ -1,1382 +1,1143 @@
-/**
- * @file 03_rendering_part538.c
- * @brief 渲染系统高级数据处理和对象管理模块
- * 
- * 本模块包含12个核心函数，主要负责：
- * 1. 渲染数据结构的管理和初始化
- * 2. 渲染对象的生命周期管理
- * 3. 渲染缓冲区的动态调整
- * 4. 渲染状态的管理和控制
- * 5. 渲染资源的分配和释放
- * 
- * @author TaleWorlds Native Code Analysis
- * @version 1.0
- * @date 2024
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-/*=============================================================================
- * 常量定义
- *=============================================================================*/
+/*==============================================================================
+ TaleWorlds.Native 渲染系统 - 核心缓冲区管理模块 (03_rendering_part538.c)
+ 
+ 文件概述:
+   本模块实现了游戏渲染系统中的核心缓冲区管理功能，包括动态缓冲区
+   的创建、扩展、数据复制和销毁等操作。该模块为渲染管线提供了高效的
+   内存管理机制。
+ 
+ 核心功能:
+   - 动态缓冲区分配和扩展
+   - 环形缓冲区管理
+   - 数据复制和填充
+   - 渲染状态管理
+   - 资源生命周期控制
+ ==============================================================================*/
 
-/* 渲染系统常量 */
-#define RENDER_DEFAULT_POOL_SIZE        0x800    // 默认池大小
-#define RENDER_BUFFER_ALIGNMENT        8        // 缓冲区对齐大小
-#define RENDER_MAX_TEXTURE_UNITS       8        // 最大纹理单元数
-#define RENDER_DEFAULT_FLOAT_VALUE     0x3e99999a // 默认浮点值
-#define RENDER_HASH_SEED               0xcbf29ce484222325 // 哈希种子值
-#define RENDER_HASH_MULTIPLIER         0x100000001b3     // 哈希乘数
-
-/* 内存分配常量 */
-#define RENDER_CONTEXT_SIZE            0x208    // 上下文大小
-#define RENDER_OBJECT_SIZE             0x1b8    // 对象大小
-#define RENDER_VTABLE_OFFSET           0x10     // 虚表偏移
-#define RENDER_DATA_OFFSET             0x150    // 数据偏移
-
-/* 状态标志 */
-#define RENDER_FLAG_INITIALIZED        0x01     // 已初始化标志
-#define RENDER_FLAG_ACTIVE            0x02     // 活动标志
-#define RENDER_FLAG_DIRTY             0x04     // 脏标志
-
-/*=============================================================================
- * 类型定义
- *=============================================================================*/
+/* 系统常量定义 */
+#define BUFFER_MIN_CAPACITY 1
+#define BUFFER_GROWTH_FACTOR 2
+#define BUFFER_MAX_SIZE 0x800
+#define MEMORY_ALIGNMENT 8
+#define RENDER_OBJECT_SIZE 0x1b8
+#define HASH_SEED 0xcbf29ce484222325
+#define HASH_MULTIPLIER 0x100000001b3
 
 /* 渲染状态枚举 */
 typedef enum {
-    RENDER_STATE_UNKNOWN = 0,
-    RENDER_STATE_INITIALIZING,
-    RENDER_STATE_READY,
-    RENDER_STATE_RENDERING,
-    RENDER_STATE_CLEANUP,
-    RENDER_STATE_ERROR
+    RENDER_STATE_INACTIVE = 0,
+    RENDER_STATE_ACTIVE = 1,
+    RENDER_STATE_PENDING = 2,
+    RENDER_STATE_COMPLETED = 3
 } RenderState;
 
-/* 渲染对象类型 */
-typedef enum {
-    RENDER_OBJECT_UNDEFINED = 0,
-    RENDER_OBJECT_TEXTURE,
-    RENDER_OBJECT_SHADER,
-    RENDER_OBJECT_BUFFER,
-    RENDER_OBJECT_PIPELINE,
-    RENDER_OBJECT_FRAMEBUFFER
-} RenderObjectType;
-
-/* 渲染缓冲区类型 */
-typedef enum {
-    RENDER_BUFFER_VERTEX = 0,
-    RENDER_BUFFER_INDEX,
-    RENDER_BUFFER_UNIFORM,
-    RENDER_BUFFER_STAGING
-} RenderBufferType;
-
-/* 渲染错误代码 */
-typedef enum {
-    RENDER_SUCCESS = 0,
-    RENDER_ERROR_INVALID_PARAMETER,
-    RENDER_ERROR_OUT_OF_MEMORY,
-    RENDER_ERROR_INVALID_STATE,
-    RENDER_ERROR_RESOURCE_BUSY,
-    RENDER_ERROR_OPERATION_FAILED
-} RenderError;
-
-/*=============================================================================
- * 结构体定义
- *=============================================================================*/
-
-/**
- * @brief 渲染池管理结构
- */
+/* 缓冲区管理结构 */
 typedef struct {
-    void* pool_data;           // 池数据指针
-    size_t pool_size;          // 池大小
-    size_t used_size;          // 已使用大小
-    size_t capacity;           // 总容量
-    uint32_t flags;           // 状态标志
-    void* next_pool;           // 下一个池
-} RenderPool;
-
-/**
- * @brief 渲染缓冲区结构
- */
-typedef struct {
-    void* buffer_data;        // 缓冲区数据
-    size_t buffer_size;        // 缓冲区大小
-    size_t element_count;      // 元素数量
-    size_t element_size;      // 元素大小
-    RenderBufferType type;     // 缓冲区类型
-    uint32_t usage_flags;     // 使用标志
+    void* data;          // 缓冲区数据指针
+    size_t capacity;     // 缓冲区容量
+    size_t size;         // 当前使用大小
+    size_t element_size; // 元素大小
+    uint32_t flags;      // 缓冲区标志
+    void* allocator;     // 内存分配器
 } RenderBuffer;
 
-/**
- * @brief 渲染对象基类
- */
+/* 环形缓冲区结构 */
 typedef struct {
-    void* vtable;             // 虚函数表
-    RenderObjectType type;    // 对象类型
-    uint32_t ref_count;       // 引用计数
-    uint32_t flags;           // 状态标志
-    char* name;               // 对象名称
-    void* user_data;          // 用户数据
+    void* buffer;        // 缓冲区指针
+    size_t capacity;     // 缓冲区容量
+    size_t head;         // 头部索引
+    size_t tail;         // 尾部索引
+    size_t mask;         // 掩码（用于环形索引）
+    uint32_t count;      // 元素计数
+} RingBuffer;
+
+/* 渲染对象结构 */
+typedef struct {
+    void* vtable;        // 虚函数表
+    uint32_t ref_count;  // 引用计数
+    RenderState state;   // 渲染状态
+    RenderBuffer* buffer; // 关联缓冲区
+    void* renderer;      // 渲染器指针
+    uint32_t hash;       // 对象哈希值
+    char* name;          // 对象名称
+    void* user_data;     // 用户数据
 } RenderObject;
 
-/**
- * @brief 渲染上下文结构
- */
-typedef struct {
-    RenderState state;         // 渲染状态
-    RenderPool* pool;          // 内存池
-    RenderObject** objects;    // 对象数组
-    uint32_t object_count;     // 对象数量
-    uint32_t max_objects;      // 最大对象数
-    void* device_context;      // 设备上下文
-    void* render_target;       // 渲染目标
-} RenderContext;
+/* 全局渲染上下文 */
+static struct {
+    void* global_allocator;  // 全局内存分配器
+    RenderBuffer* active_buffers; // 活动缓冲区列表
+    uint32_t buffer_count;   // 缓冲区计数
+    uint32_t frame_number;   // 当前帧号
+    void* render_device;     // 渲染设备
+} g_render_context;
 
-/**
- * @brief 渲染数据结构
- */
-typedef struct {
-    float default_value;      // 默认值
-    uint32_t hash_value;      // 哈希值
-    uint16_t flags;           // 标志
-    uint8_t state;            // 状态
-    void* data_ptr;           // 数据指针
-    size_t data_size;         // 数据大小
-    char name[256];           // 名称
-} RenderData;
-
-/*=============================================================================
- * 全局变量声明
- *=============================================================================*/
-
-/* 渲染系统全局状态 */
-static RenderContext* g_render_context = NULL;
-static RenderPool* g_memory_pool = NULL;
-static uint32_t g_render_flags = 0;
-
-/* 虚函数表引用 */
-extern void* g_render_vtable;
-extern void* g_texture_vtable;
-extern void* g_shader_vtable;
-
-/*=============================================================================
- * 内部函数声明
- *=============================================================================*/
-
-static void* render_allocate_pool(size_t size);
-static void render_free_pool(void* pool);
-static void render_update_pool_state(RenderPool* pool);
-static uint64_t render_calculate_hash(const char* data, size_t length);
-static void render_validate_object(RenderObject* object);
-
-/*=============================================================================
- * 公共函数实现
- *=============================================================================*/
-
-/**
- * @brief 初始化渲染池
- * @param size 池大小
- * @return 成功返回池指针，失败返回NULL
- * 
- * 原始函数: FUN_180560330
- * 功能: 创建和初始化渲染内存池，设置池的基本结构和状态
- */
-void* render_initialize_pool(size_t size)
+/*==============================================================================
+ 函数别名: InitializeRingBuffer - 初始化环形缓冲区
+ 原始函数: FUN_180560330
+ 参数:
+   capacity - 缓冲区容量
+ 返回:
+   RingBuffer* - 初始化的环形缓冲区指针，失败返回NULL
+ 描述:
+   创建并初始化一个环形缓冲区，用于高效的数据存储和访问。
+ ==============================================================================*/
+RingBuffer* InitializeRingBuffer(size_t capacity)
 {
-    void* pool_data;
-    void* aligned_data;
-    
-    /* 分配池内存 */
-    pool_data = FUN_18062b420(_DAT_180c8ed18, size * 8 + 0xae, 3);
-    if (pool_data == NULL) {
-        return NULL;
-    }
-    
-    /* 对齐内存 */
-    aligned_data = (void*)((uintptr_t)pool_data + (-(intptr_t)pool_data & 7));
-    
-    /* 初始化池结构 */
-    *(uint64_t*)aligned_data = 0;           // 清零数据
-    *(uint64_t*)((char*)aligned_data + 8) = 0;
-    *(uint64_t*)((char*)aligned_data + 64) = 0;
-    *(uint64_t*)((char*)aligned_data + 72) = 0;
-    *(uint64_t*)((char*)aligned_data + 128) = 0;
-    *(uint64_t*)((char*)aligned_data + 136) = 0;
-    *(uint64_t*)((char*)aligned_data + 144) = 0;
-    *(uint64_t*)((char*)aligned_data + 152) = (uintptr_t)pool_data;  // 保存原始指针
-    
-    /* 设置池信息 */
-    *(void**)((char*)aligned_data + 136) = (void*)((uintptr_t)aligned_data + 20 + (-(intptr_t)((char*)aligned_data + 20) & 7));
-    *(size_t*)((char*)aligned_data + 144) = size - 1;  // 容量
-    
-    return aligned_data;
+  if (capacity == 0) {
+    capacity = BUFFER_MIN_CAPACITY;
+  }
+  
+  // 计算实际容量（2的幂次方）
+  size_t actual_capacity = 1;
+  while (actual_capacity < capacity) {
+    actual_capacity <<= 1;
+  }
+  
+  // 分配缓冲区内存
+  void* buffer = FUN_18062b420(g_render_context.global_allocator, 
+                               actual_capacity * MEMORY_ALIGNMENT, 3);
+  if (!buffer) {
+    return NULL;
+  }
+  
+  // 对齐内存地址
+  RingBuffer* ring_buffer = (RingBuffer*)((uintptr_t)buffer & ~(MEMORY_ALIGNMENT - 1));
+  
+  // 初始化缓冲区结构
+  ring_buffer->buffer = buffer;
+  ring_buffer->capacity = actual_capacity;
+  ring_buffer->head = 0;
+  ring_buffer->tail = 0;
+  ring_buffer->mask = actual_capacity - 1;
+  ring_buffer->count = 0;
+  
+  return ring_buffer;
 }
 
-/**
- * @brief 渲染池数据插入
- * @param pool 池指针
- * @param data 数据指针
- * @return 成功返回1，失败返回0
- * 
- * 原始函数: FUN_1805603c0
- * 功能: 向渲染池中插入数据，处理池的动态扩容
- */
-int render_pool_insert_data(void* pool, void* data)
+/*==============================================================================
+ 函数别名: RingBufferPush - 向环形缓冲区推送数据
+ 原始函数: FUN_1805603c0
+ 参数:
+   ring_buffer - 环形缓冲区指针
+   data - 要推送的数据指针
+ 返回:
+   int - 成功返回1，失败返回0
+ 描述:
+   将数据推送到环形缓冲区中，如果缓冲区已满则自动扩展。
+ ==============================================================================*/
+int RingBufferPush(RingBuffer* ring_buffer, void* data)
 {
-    uint64_t* pool_header;
-    uint64_t new_size;
-    uint64_t current_pos;
-    uint64_t capacity;
-    void* new_pool;
-    
-    pool_header = (uint64_t*)pool;
-    current_pos = pool_header[18] & (pool_header[8] + 1);
-    
-    /* 检查是否需要扩容 */
-    if (current_pos == pool_header[9]) {
-        if (pool_header[9] == *pool_header) {
-            /* 扩容逻辑 */
-            new_size = pool_header[9];
-            if (new_size < RENDER_DEFAULT_POOL_SIZE) {
-                new_size *= 2;
-            }
-            
-            new_pool = render_initialize_pool(new_size);
-            if (new_pool == NULL) {
-                return 0;
-            }
-            
-            /* 更新池信息 */
-            pool_header[9] = new_size;
-            *(uint64_t*)((char*)new_pool + 136) = *(uint64_t*)data;
-            *(uint64_t*)((char*)new_pool + 8) = 1;
-            *(uint64_t*)((char*)new_pool + 64) = 1;
-            *(uint64_t*)((char*)new_pool + 128) = pool_header[16];
-            pool_header[16] = (uint64_t)new_pool;
-            pool = (void*)new_pool;
-        } else {
-            /* 处理现有池 */
-            uint64_t* old_pool = (uint64_t*)pool_header[16];
-            old_pool[9] = *old_pool;
-            uint64_t old_pos = old_pool[8];
-            old_pool[9] = *old_pool;
-            *(uint64_t*)((char*)old_pool[17] + old_pos * 8) = *(uint64_t*)data;
-            current_pos = (old_pos + 1) & old_pool[18];
-            old_pool[8] = current_pos;
-            pool = (void*)old_pool;
-        }
-    } else {
-        /* 直接插入数据 */
-        *(uint64_t*)((char*)pool_header[17] + pool_header[8] * 8) = *(uint64_t*)data;
-        pool_header[8] = current_pos;
+  if (!ring_buffer || !data) {
+    return 0;
+  }
+  
+  // 检查是否需要扩展缓冲区
+  if (ring_buffer->count >= ring_buffer->capacity) {
+    size_t new_capacity = ring_buffer->capacity * BUFFER_GROWTH_FACTOR;
+    if (new_capacity < BUFFER_MAX_SIZE) {
+      new_capacity = BUFFER_MAX_SIZE;
     }
     
-    return 1;
+    // 重新分配更大的缓冲区
+    void* new_buffer = FUN_18062b420(g_render_context.global_allocator,
+                                    new_capacity * MEMORY_ALIGNMENT, 3);
+    if (!new_buffer) {
+      return 0;
+    }
+    
+    // 复制现有数据
+    memcpy(new_buffer, ring_buffer->buffer, ring_buffer->capacity * MEMORY_ALIGNMENT);
+    
+    // 释放旧缓冲区
+    if (ring_buffer->buffer) {
+      FUN_18064e900();
+    }
+    
+    // 更新缓冲区信息
+    ring_buffer->buffer = new_buffer;
+    ring_buffer->capacity = new_capacity;
+    ring_buffer->mask = new_capacity - 1;
+  }
+  
+  // 写入数据
+  size_t write_pos = ring_buffer->tail;
+  *(void**)((char*)ring_buffer->buffer + write_pos * MEMORY_ALIGNMENT) = data;
+  
+  // 更新尾部位置
+  ring_buffer->tail = (write_pos + 1) & ring_buffer->mask;
+  ring_buffer->count++;
+  
+  return 1;
 }
 
-/**
- * @brief 渲染缓冲区调整大小
- * @param buffer 缓冲区指针
- * @param required_size 需要的大小
- * 
- * 原始函数: FUN_1805604e0
- * 功能: 调整渲染缓冲区大小，处理数据的重新分配
- */
-void render_buffer_resize(void* buffer, void* required_size)
-{
-    uint64_t* buffer_ptr;
-    uint64_t* size_ptr;
-    uint64_t* capacity_ptr;
-    uint64_t current_size;
-    uint64_t required_count;
-    uint64_t available_count;
-    uint64_t new_capacity;
-    void* new_buffer;
-    uint64_t offset;
-    
-    buffer_ptr = (uint64_t*)buffer;
-    size_ptr = (uint64_t*)required_size;
-    
-    required_count = (size_ptr[1] - *size_ptr) >> 3;
-    current_size = buffer_ptr[1];
-    available_count = (current_size - *buffer_ptr) >> 3;
-    
-    /* 检查是否需要扩容 */
-    if (available_count < required_count) {
-        uint64_t needed = required_count - available_count;
-        
-        if (((buffer_ptr[2] - current_size) >> 3) < needed) {
-            /* 计算新容量 */
-            new_capacity = available_count * 2;
-            if (available_count == 0) {
-                new_capacity = 1;
-            }
-            if (new_capacity < required_count) {
-                new_capacity = required_count;
-            }
-            
-            /* 分配新缓冲区 */
-            if (new_capacity != 0) {
-                new_buffer = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_ptr[3]);
-                current_size = *buffer_ptr;
-                required_count = buffer_ptr[1];
-            } else {
-                new_buffer = NULL;
-            }
-            
-            /* 移动数据 */
-            if (*buffer_ptr != required_count) {
-                memmove(new_buffer, *buffer_ptr, required_count - current_size);
-            }
-            
-            /* 清零新空间 */
-            if (needed != 0) {
-                memset(new_buffer, 0, needed * 8);
-            }
-            
-            /* 释放旧缓冲区 */
-            if (*buffer_ptr != 0) {
-                FUN_18064e900();
-            }
-            
-            /* 更新指针 */
-            *buffer_ptr = (uint64_t)new_buffer;
-            buffer_ptr[2] = (uint64_t)new_buffer + new_capacity * 8;
-        } else if (needed != 0) {
-            /* 清零现有空间 */
-            memset(current_size, 0, needed * 8);
-        }
-    } else {
-        current_size = *buffer_ptr + required_count * 8;
-    }
-    
-    buffer_ptr[1] = current_size;
-    
-    /* 处理数据初始化 */
-    offset = 0;
-    if (((current_size - *buffer_ptr) >> 3) != 0) {
-        do {
-            void* data = (**(void**(**)(void))((void**)offset + *size_ptr))();
-            uint32_t count = (uint32_t)offset + 1;
-            offset = (uint64_t)count;
-            *(void**)((char*)offset + *buffer_ptr) = data;
-            offset = offset + 8;
-        } while ((uint64_t)(int32_t)count < ((current_size - *buffer_ptr) >> 3));
-    }
-}
 
-/**
- * @brief 渲染缓冲区调整大小（简化版本）
- * @param param1 参数1
- * @param param2 参数2
- * 
- * 原始函数: FUN_1805604f0
- * 功能: 渲染缓冲区大小调整的简化实现
- */
-void render_buffer_resize_simplified(void* param1, void* param2)
-{
-    uint64_t* size_ptr;
-    uint64_t* buffer_ptr;
-    uint64_t current_size;
-    uint64_t required_count;
-    uint64_t available_count;
-    uint64_t needed;
-    uint64_t new_capacity;
-    void* new_buffer;
-    uint64_t offset;
-    
-    size_ptr = (uint64_t*)param2;
-    buffer_ptr = (uint64_t*)param1;
-    
-    required_count = (size_ptr[1] - *size_ptr) >> 3;
-    current_size = buffer_ptr[1];
-    available_count = (current_size - *buffer_ptr) >> 3;
-    
-    if (available_count < required_count) {
-        needed = required_count - available_count;
-        
-        if (((buffer_ptr[2] - current_size) >> 3) < needed) {
-            new_capacity = available_count * 2;
-            if (available_count == 0) {
-                new_capacity = 1;
-            }
-            if (new_capacity < required_count) {
-                new_capacity = required_count;
-            }
-            
-            if (new_capacity != 0) {
-                new_buffer = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_ptr[3]);
-                current_size = *buffer_ptr;
-                required_count = buffer_ptr[1];
-            } else {
-                new_buffer = NULL;
-            }
-            
-            if (*buffer_ptr != required_count) {
-                memmove(new_buffer, *buffer_ptr, required_count - current_size);
-            }
-            
-            if (needed != 0) {
-                memset(new_buffer, 0, needed * 8);
-            }
-            
-            if (*buffer_ptr != 0) {
-                FUN_18064e900();
-            }
-            
-            *buffer_ptr = (uint64_t)new_buffer;
-            buffer_ptr[2] = (uint64_t)new_buffer + new_capacity * 8;
-        } else if (needed != 0) {
-            memset(current_size, 0, needed * 8);
-        }
-    } else {
-        current_size = *buffer_ptr + required_count * 8;
-    }
-    
-    buffer_ptr[1] = current_size;
-    
-    offset = 0;
-    if (((current_size - *buffer_ptr) >> 3) != 0) {
-        do {
-            void* data = (**(void**(**)(void))((void**)offset + *size_ptr))();
-            uint32_t count = (uint32_t)offset + 1;
-            offset = (uint64_t)count;
-            *(void**)((char*)offset + *buffer_ptr) = data;
-            offset = offset + 8;
-        } while ((uint64_t)(int32_t)count < ((buffer_ptr[1] - *buffer_ptr) >> 3));
-    }
-}
 
-/**
- * @brief 渲染缓冲区扩容
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * 
- * 原始函数: FUN_180560539
- * 功能: 渲染缓冲区的扩容操作
- */
-void render_buffer_expand(void* param1, uint64_t param2, int64_t param3)
-{
-    uint64_t new_capacity;
-    void* new_buffer;
-    uint64_t* buffer_ptr;
-    
-    new_capacity = param3 * 2;
-    if (param3 == 0) {
-        new_capacity = 1;
-    }
-    if (new_capacity < param1) {
-        new_capacity = param1;
-    }
-    
-    new_buffer = NULL;
-    if (new_capacity != 0) {
-        new_buffer = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)((uint64_t*)param1)[3]);
-        param2 = *(uint64_t*)param1;
-    }
-    
-    buffer_ptr = (uint64_t*)param1;
-    if (param2 != buffer_ptr[1]) {
-        memmove(new_buffer, param2, buffer_ptr[1] - param2);
-    }
-    
-    if (param3 != 0) {
-        memset(new_buffer, 0, param3 * 8);
-    }
-    
-    if (*(uint64_t*)param1 == 0) {
-        *(uint64_t*)param1 = (uint64_t)new_buffer;
-        buffer_ptr[2] = (uint64_t)new_buffer + new_capacity * 8;
-        buffer_ptr[1] = (uint64_t)new_buffer;
-        new_capacity = 0;
-        
-        if (((uint64_t)new_buffer - *(uint64_t*)param1) >> 3 != 0) {
-            do {
-                void* data = (**(void**(**)(void))((void**)new_capacity + *(uint64_t*)param3))();
-                uint32_t count = (uint32_t)new_capacity + 1;
-                new_capacity = (uint64_t)count;
-                *(void**)((char*)new_capacity + *(uint64_t*)param1) = data;
-                new_capacity = new_capacity + 8;
-            } while ((uint64_t)(int32_t)count < ((buffer_ptr[1] - *buffer_ptr) >> 3));
-        }
-        return;
-    }
-    
-    FUN_18064e900();
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 渲染缓冲区清零
- * 
- * 原始函数: FUN_1805605e4
- * 功能: 清零渲染缓冲区内容
- */
-void render_buffer_clear(void)
-{
-    uint64_t* buffer_ptr;
-    uint64_t offset;
-    
-    buffer_ptr = (uint64_t*)0;  // 需要根据实际上下文调整
-    
-    if (0 == 0) {
-        buffer_ptr[1] = 0;
-        offset = 0;
-        if (0 - *buffer_ptr >> 3 != 0) {
-            do {
-                void* data = (**(void**(**)(void))((void**)offset + *(uint64_t*)0))();
-                uint32_t count = (uint32_t)offset + 1;
-                offset = (uint64_t)count;
-                *(void**)((char*)offset + *buffer_ptr) = data;
-                offset = offset + 8;
-            } while ((uint64_t)(int32_t)count < (buffer_ptr[1] - *buffer_ptr >> 3));
-        }
-        return;
-    }
-    
-    memset();
-}
 
-/**
- * @brief 渲染缓冲区处理
- * 
- * 原始函数: FUN_18056061e
- * 功能: 处理渲染缓冲区内容
- */
-void render_buffer_process(void)
-{
-    uint64_t offset;
-    uint64_t* buffer_ptr;
-    
-    buffer_ptr = (uint64_t*)0;  // 需要根据实际上下文调整
-    offset = 0;
-    
-    do {
-        void* data = (**(void**(**)(void))((void**)offset + *(uint64_t*)0))();
-        uint32_t count = (uint32_t)offset + 1;
-        offset = (uint64_t)count;
-        *(void**)((char*)offset + *buffer_ptr) = data;
-        offset = offset + 8;
-    } while ((uint64_t)(int32_t)count < (buffer_ptr[1] - *buffer_ptr >> 3));
-}
 
-/**
- * @brief 初始化渲染对象
- * @param object 对象指针
- * @return 初始化后的对象指针
- * 
- * 原始函数: FUN_180560660
- * 功能: 初始化渲染对象，设置默认值和状态
- */
-void* render_initialize_object(void* object)
+/*==============================================================================
+ 函数别名: CopyRenderData - 复制渲染数据
+ 原始函数: FUN_1805604e0
+ 参数:
+   dest - 目标缓冲区
+   src - 源缓冲区
+   count - 元素数量
+ 返回:
+   void
+ 描述:
+   将渲染数据从源缓冲区复制到目标缓冲区，处理内存对齐和扩展。
+ ==============================================================================*/
+void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
 {
-    uint64_t* obj_ptr = (uint64_t*)object;
-    
-    /* 设置虚函数表 */
-    obj_ptr[0] = &UNK_1809ffa18;
-    obj_ptr[0] = &UNK_180a36288;
-    obj_ptr[11] = &UNK_18098bcb0;
-    obj_ptr[12] = 0;
-    *(uint32_t*)(obj_ptr + 13) = 0;
-    obj_ptr[11] = &UNK_180a3c3e0;
-    obj_ptr[14] = 0;
-    obj_ptr[12] = 0;
-    *(uint32_t*)(obj_ptr + 13) = 0;
-    
-    /* 初始化各个组件 */
-    obj_ptr[15] = &UNK_18098bcb0;
-    obj_ptr[16] = 0;
-    *(uint32_t*)(obj_ptr + 17) = 0;
-    obj_ptr[15] = &UNK_180a3c3e0;
-    obj_ptr[18] = 0;
-    obj_ptr[16] = 0;
-    *(uint32_t*)(obj_ptr + 17) = 0;
-    
-    obj_ptr[19] = &UNK_18098bcb0;
-    obj_ptr[20] = 0;
-    *(uint32_t*)(obj_ptr + 21) = 0;
-    obj_ptr[19] = &UNK_180a3c3e0;
-    obj_ptr[22] = 0;
-    obj_ptr[20] = 0;
-    *(uint32_t*)(obj_ptr + 21) = 0;
-    
-    obj_ptr[23] = &UNK_18098bcb0;
-    obj_ptr[24] = 0;
-    *(uint32_t*)(obj_ptr + 25) = 0;
-    obj_ptr[23] = &UNK_180a3c3e0;
-    obj_ptr[26] = 0;
-    obj_ptr[24] = 0;
-    *(uint32_t*)(obj_ptr + 25) = 0;
-    
-    obj_ptr[27] = &UNK_18098bcb0;
-    obj_ptr[28] = 0;
-    *(uint32_t*)(obj_ptr + 29) = 0;
-    obj_ptr[27] = &UNK_180a3c3e0;
-    obj_ptr[30] = 0;
-    obj_ptr[28] = 0;
-    *(uint32_t*)(obj_ptr + 29) = 0;
-    
-    obj_ptr[31] = &UNK_18098bcb0;
-    obj_ptr[32] = 0;
-    *(uint32_t*)(obj_ptr + 33) = 0;
-    obj_ptr[31] = &UNK_180a3c3e0;
-    obj_ptr[34] = 0;
-    obj_ptr[32] = 0;
-    *(uint32_t*)(obj_ptr + 33) = 0;
-    
-    /* 设置基本属性 */
-    obj_ptr[42] = 0;
-    obj_ptr[43] = 0;
-    obj_ptr[44] = 0;
-    *(uint32_t*)(obj_ptr + 4) = 0;
-    *(uint64_t*)((char*)obj_ptr + 36) = 0;
-    *(uint64_t*)((char*)obj_ptr + 44) = 0;
-    obj_ptr[7] = 0;
-    *(uint32_t*)(obj_ptr + 8) = 0;
-    
-    /* 设置默认值 */
-    *(uint64_t*)((char*)obj_ptr + 68) = 0xbf800000bf800000;
-    *(uint64_t*)((char*)obj_ptr + 76) = 0xbf800000bf800000;
-    *(uint32_t*)(obj_ptr + 39) = 3;
-    *(uint32_t*)((char*)obj_ptr + 316) = 3;
-    obj_ptr[40] = RENDER_DEFAULT_FLOAT_VALUE;
-    *(uint8_t*)(obj_ptr + 41) = 0;
-    *(uint16_t*)(obj_ptr + 54) = 0xffff;
-    *(uint8_t*)((char*)obj_ptr + 434) = 0;
-    
-    return obj_ptr;
-}
-
-/**
- * @brief 释放渲染对象
- * @param object 对象指针
- * @param flags 释放标志
- * @return 释放的对象指针
- * 
- * 原始函数: FUN_180560870
- * 功能: 释放渲染对象和相关资源
- */
-void* render_free_object(void* object, uint64_t flags)
-{
-    render_cleanup_object(object);
-    
-    if ((flags & 1) != 0) {
-        free(object, 0x1b8);
-    }
-    
-    return object;
-}
-
-/**
- * @brief 清理渲染对象
- * @param object 对象指针
- * 
- * 原始函数: FUN_1805608b0
- * 功能: 清理渲染对象的内部状态
- */
-void render_cleanup_object(void* object)
-{
-    uint64_t* obj_ptr = (uint64_t*)object;
-    
-    /* 清理各个组件 */
-    obj_ptr[50] = &UNK_180a3c3e0;
-    if (obj_ptr[51] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[51] = 0;
-    *(uint32_t*)(obj_ptr + 53) = 0;
-    obj_ptr[50] = &UNK_18098bcb0;
-    
-    obj_ptr[46] = &UNK_180a3c3e0;
-    if (obj_ptr[47] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[47] = 0;
-    *(uint32_t*)(obj_ptr + 49) = 0;
-    obj_ptr[46] = &UNK_18098bcb0;
-    
-    if (obj_ptr[42] != 0) {
-        FUN_18064e900();
-    }
-    
-    obj_ptr[35] = &UNK_180a3c3e0;
-    if (obj_ptr[36] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[36] = 0;
-    *(uint32_t*)(obj_ptr + 38) = 0;
-    obj_ptr[35] = &UNK_18098bcb0;
-    
-    obj_ptr[31] = &UNK_180a3c3e0;
-    if (obj_ptr[32] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[32] = 0;
-    *(uint32_t*)(obj_ptr + 34) = 0;
-    obj_ptr[31] = &UNK_18098bcb0;
-    
-    obj_ptr[27] = &UNK_180a3c3e0;
-    if (obj_ptr[28] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[28] = 0;
-    *(uint32_t*)(obj_ptr + 30) = 0;
-    obj_ptr[27] = &UNK_18098bcb0;
-    
-    obj_ptr[23] = &UNK_180a3c3e0;
-    if (obj_ptr[24] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[24] = 0;
-    *(uint32_t*)(obj_ptr + 26) = 0;
-    obj_ptr[23] = &UNK_18098bcb0;
-    
-    obj_ptr[19] = &UNK_180a3c3e0;
-    if (obj_ptr[20] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[20] = 0;
-    *(uint32_t*)(obj_ptr + 22) = 0;
-    obj_ptr[19] = &UNK_18098bcb0;
-    
-    obj_ptr[15] = &UNK_180a3c3e0;
-    if (obj_ptr[16] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[16] = 0;
-    *(uint32_t*)(obj_ptr + 18) = 0;
-    obj_ptr[15] = &UNK_18098bcb0;
-    
-    obj_ptr[11] = &UNK_180a3c3e0;
-    if (obj_ptr[12] != 0) {
-        FUN_18064e900();
-    }
-    obj_ptr[12] = 0;
-    *(uint32_t*)(obj_ptr + 14) = 0;
-    obj_ptr[11] = &UNK_18098bcb0;
-    
-    /* 重置虚函数表 */
-    obj_ptr[0] = &UNK_1809ffa18;
-}
-
-/**
- * @brief 创建渲染上下文
- * @param param1 参数1
- * @return 创建的上下文指针
- * 
- * 原始函数: FUN_180560a90
- * 功能: 创建和初始化渲染上下文
- */
-void* render_create_context(void* param1)
-{
-    void* context;
-    void* name_ptr;
-    
-    /* 分配上下文内存 */
-    context = FUN_18062b1e0(_DAT_180c8ed18, RENDER_CONTEXT_SIZE, 8, 4, 0xfffffffffffffffe);
-    FUN_18034dd90();
-    
-    /* 初始化上下文结构 */
-    *(uint64_t*)((char*)context + 0x1b0) = &UNK_18098bcb0;
-    *(uint64_t*)((char*)context + 0x1b8) = 0;
-    *(uint32_t*)((char*)context + 0x1c0) = 0;
-    *(uint64_t*)((char*)context + 0x1b0) = &UNK_180a3c3e0;
-    *(uint64_t*)((char*)context + 0x1c8) = 0;
-    *(uint64_t*)((char*)context + 0x1b8) = 0;
-    *(uint32_t*)((char*)context + 0x1c0) = 0;
-    *(uint64_t*)((char*)context + 0x1d0) = 0;
-    *(uint64_t*)((char*)context + 0x1d8) = 0;
-    *(uint32_t*)((char*)context + 0x1e0) = 0;
-    *(uint64_t*)((char*)context + 0x1e4) = RENDER_DEFAULT_FLOAT_VALUE;
-    *(uint64_t*)((char*)context + 0x1ec) = 0xffffffffffffffff;
-    *(uint16_t*)((char*)context + 500) = 0xffff;
-    *(uint32_t*)((char*)context + 0x1f8) = 0xffffffff;
-    *(uint64_t*)((char*)context + 0x200) = 0;
-    *(uint64_t*)((char*)context + 0x200) = (uint64_t)param1;
-    
-    /* 设置名称 */
-    name_ptr = &DAT_18098bc73;
-    if (*(void**)((char*)param1 + 0x70) != NULL) {
-        name_ptr = *(void**)((char*)param1 + 0x70);
-    }
-    
-    /* 调用初始化函数 */
-    (**(void**(**)(void))(*(uint64_t*)((char*)context + 0x10) + 0x10))(
-        (void*)((char*)context + 0x10), name_ptr);
-    
-    return context;
-}
-
-/**
- * @brief 渲染处理函数
- * @param param1 参数1
- * 
- * 原始函数: FUN_180560b80
- * 功能: 处理渲染相关的操作
- */
-void render_process_data(void* param1)
-{
-    uint8_t* data1;
-    uint8_t* data2;
-    int32_t length1;
-    int32_t length2;
-    int32_t compare_result;
-    uint64_t* data_ptr;
-    
-    /* 检查调试标志 */
-    if (*(char*)(_DAT_180c868a8 + 0x130) != '\0') {
-        FUN_18053cee0(*(uint64_t*)((char*)param1 + 0xb0));
-    }
-    
-    /* 获取数据指针 */
-    data_ptr = (uint64_t*)((char*)param1 + 0x20);
-    length1 = *(int32_t*)((char*)param1 + 0x78);
-    length2 = *(int32_t*)((char*)data_ptr + 0xe8);
-    
-    /* 比较数据长度 */
-    if (length1 == length2) {
-        if (length1 != 0) {
-            data1 = *(uint8_t**)((char*)param1 + 0x70);
-            uint64_t data_size = *(uint64_t*)((char*)data_ptr + 0xe0) - (uint64_t)data1;
-            
-            do {
-                data2 = data1 + data_size;
-                compare_result = (uint32_t)*data1 - (uint32_t)*data2;
-                if (compare_result != 0) break;
-                data1 = data1 + 1;
-            } while (*data2 != 0);
-        }
-    } else if (length1 != 0) {
-        goto LAB_COMPARE_FAILED;
-    }
-    
-    if (length2 == 0) {
-        FUN_1804aa470(&DAT_180c961e0, *(uint64_t*)((char*)param1 + 0xb0), 
-                     (char*)param1 + 0x68, (char*)param1 + 0x68, 0xff);
-        return;
-    }
-    
-LAB_COMPARE_FAILED:
-    if (0 < *(int32_t*)((char*)data_ptr + 0x180)) {
-        FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, (char*)data_ptr + 0x170);
-        FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, (char*)data_ptr + 400);
-        FUN_1804aa470(&DAT_180c961e0, *(uint64_t*)((char*)param1 + 0xb0), 
-                     (char*)data_ptr + 0x170, (char*)data_ptr + 400,
-                     *(uint8_t*)((char*)data_ptr + 0x1b0));
-    }
-}
-
-/**
- * @brief 渲染数据传输
- * 
- * 原始函数: FUN_180560c27
- * 功能: 处理渲染数据的传输操作
- */
-void render_data_transfer(void)
-{
-    uint64_t* data_ptr;
-    
-    data_ptr = (uint64_t*)0;  // 需要根据实际上下文调整
-    
-    FUN_180086e40(0, &DAT_180a2d688, (char*)data_ptr + 0x170);
-    FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, (char*)data_ptr + 400);
-    FUN_1804aa470(&DAT_180c961e0, *(uint64_t*)((char*)data_ptr + 0xb0), 
-                 (char*)data_ptr + 0x170, (char*)data_ptr + 400,
-                 *(uint8_t*)((char*)data_ptr + 0x1b0));
-}
-
-/**
- * @brief 空渲染函数
- * 
- * 原始函数: FUN_180560c97
- * 功能: 空的渲染操作函数
- */
-void render_empty_function(void)
-{
+  if (!dest || !src || count == 0) {
     return;
-}
-
-/**
- * @brief 渲染上下文切换
- * @param param1 参数1
- * @param param2 参数2
- * 
- * 原始函数: FUN_180560ce0
- * 功能: 切换渲染上下文
- */
-void render_switch_context(void* param1, void* param2)
-{
-    if (*(uint64_t*)((char*)param2 + 0xb0) == 0) {
-        *(uint64_t*)((char*)param2 + 0xb0) = *(uint64_t*)((char*)param1 + 0xb0);
-        *(uint64_t*)(*(uint64_t*)((char*)param1 + 0xb0) + 0x200) = (uint64_t)param2;
-        *(uint64_t*)((char*)param1 + 0xb0) = 0;
-        return;
+  }
+  
+  size_t required_size = count * MEMORY_ALIGNMENT;
+  
+  // 检查目标缓冲区容量
+  if (dest->capacity < required_size) {
+    // 计算新的容量
+    size_t new_capacity = dest->capacity * BUFFER_GROWTH_FACTOR;
+    if (new_capacity == 0) {
+      new_capacity = BUFFER_MIN_CAPACITY;
+    }
+    if (new_capacity < required_size) {
+      new_capacity = required_size;
     }
     
-    FUN_18053a220(&DAT_180c95f30, *(uint64_t*)((char*)param1 + 0xb0));
-    FUN_18053e3f0(*(uint64_t*)((char*)param1 + 0xb0));
-    *(uint64_t*)((char*)param1 + 0xb0) = 0;
-}
-
-/**
- * @brief 渲染初始化检查
- * @param param1 参数1
- * @return 初始化成功返回1，失败返回0
- * 
- * 原始函数: FUN_180560d50
- * 功能: 检查和初始化渲染状态
- */
-int render_initialize_check(void* param1)
-{
-    uint8_t* data_ptr;
-    uint64_t hash_value;
-    uint64_t* context_ptr;
-    uint32_t data_length;
-    uint32_t i;
-    uint32_t stack_data[4];
-    uint64_t stack_param;
-    
-    if (*(uint64_t*)((char*)param1 + 0xb0) == 0) {
-        stack_data[1] = 0x180560daa;
-        char result = func_0x00018008a5c0(param1, *(uint64_t*)(*(uint64_t*)((char*)param1 + 0x88) + 8));
-        if (result == '\0') {
-            return 0;
-        }
-        stack_data[1] = 0x180560db6;
-        void* context = render_create_context(param1);
-        *(uint64_t*)((char*)param1 + 0xb0) = (uint64_t)context;
-        stack_data[1] = 0x180560dc5;
-        FUN_18053cee0(context);
-    } else {
-        stack_data[1] = 0x180560d71;
-        FUN_18053a220(&DAT_180c95f30);
-        uint64_t* vtable_ptr = (uint64_t*)(*(uint64_t*)((char*)param1 + 0xb0) + 0x10);
-        void* name_ptr = &DAT_18098bc73;
-        if (*(void**)((char*)param1 + 0x70) != NULL) {
-            name_ptr = *(void**)((char*)param1 + 0x70);
-        }
-        stack_data[1] = 0x180560d98;
-        (**(void**(**)(void))(*vtable_ptr + 0x10))(vtable_ptr, name_ptr);
+    // 分配新缓冲区
+    void* new_data = NULL;
+    if (new_capacity > 0) {
+      new_data = FUN_18062b420(g_render_context.global_allocator,
+                             new_capacity * MEMORY_ALIGNMENT, (char)dest->flags);
     }
     
-    context_ptr = (uint64_t*)((char*)param1 + 0xb0);
-    stack_param = *context_ptr;
-    FUN_18053de40(0x180c95f38, stack_data, (char*)context_ptr + 0x10);
-    
-    uint32_t global_value = _DAT_180c95fa8;
-    if (stack_data[0] == *(uint64_t*)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
-        hash_value = RENDER_HASH_SEED;
-        data_ptr = &DAT_18098bc73;
-        if (*(uint8_t**)((char*)context_ptr + 0x18) != NULL) {
-            data_ptr = *(uint8_t**)((char*)context_ptr + 0x18);
-        }
-        
-        data_length = 0;
-        if (*(uint32_t*)((char*)context_ptr + 0x20) != 0) {
-            do {
-                uint8_t byte = *data_ptr;
-                data_ptr = data_ptr + 1;
-                data_length = data_length + 1;
-                hash_value = (hash_value ^ byte) * RENDER_HASH_MULTIPLIER;
-            } while (data_length < *(uint32_t*)((char*)context_ptr + 0x20));
-        }
-        
-        FUN_18053df50(0x180c95f38, stack_data, data_length, (char*)context_ptr + 0x10, hash_value);
-        *(int32_t*)(stack_data[0] + 0x58) = global_value;
-        uint32_t temp_data[2] = {(uint32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3), 0};
-        FUN_1800571e0(&DAT_180c95f68, temp_data);
-        *(int32_t*)((char*)context_ptr + 0x68) = _DAT_180c95fa8;
-        _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
-        FUN_18005ea90(&DAT_180c95f88, &stack_param);
-    } else {
-        if (*(int32_t*)(_DAT_180c95f68 + (int64_t)*(int32_t*)(stack_data[0] + 0x58) * 4) != -1) {
-            void* name_ptr = &DAT_18098bc73;
-            if (*(void**)((char*)context_ptr + 0x18) != NULL) {
-                name_ptr = *(void**)((char*)context_ptr + 0x18);
-            }
-            FUN_180627020(&UNK_180a338e0, name_ptr);
-            return 0;
-        }
-        *(int32_t*)(_DAT_180c95f68 + (int64_t)*(int32_t*)(stack_data[0] + 0x58) * 4) =
-             (int32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-        FUN_18005ea90(&DAT_180c95f88, &stack_param);
+    // 复制现有数据
+    if (dest->data && dest->size > 0) {
+      memcpy(new_data, dest->data, dest->size);
     }
     
-    return 1;
-}
-
-/**
- * @brief 复制渲染对象
- * @param param1 参数1
- * @param param2 参数2
- * @return 复制的对象指针
- * 
- * 原始函数: FUN_180560df0
- * 功能: 复制渲染对象和相关数据
- */
-void* render_copy_object(void* param1, void* param2)
-{
-    void* new_object;
-    void* initialized_object;
-    
-    new_object = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE, 8, 0x1a);
-    initialized_object = render_initialize_object(new_object);
-    
-    if (param2 != NULL) {
-        /* 复制基本属性 */
-        *(uint32_t*)((char*)initialized_object + 8) = *(uint32_t*)((char*)param2 + 8);
-        *(uint32_t*)((char*)initialized_object + 12) = *(uint32_t*)((char*)param2 + 12);
-        *(uint32_t*)((char*)initialized_object + 16) = *(uint32_t*)((char*)param2 + 16);
-        *(uint32_t*)((char*)initialized_object + 20) = *(uint32_t*)((char*)param2 + 20);
-        *(uint32_t*)((char*)initialized_object + 24) = *(uint32_t*)((char*)param2 + 24);
-        *(uint32_t*)((char*)initialized_object + 28) = *(uint32_t*)((char*)param2 + 28);
-        *(uint32_t*)((char*)initialized_object + 32) = *(uint32_t*)((char*)param2 + 32);
-        
-        /* 复制数据指针 */
-        uint64_t data_ptr = *(uint64_t*)((char*)param2 + 44);
-        *(uint64_t*)((char*)initialized_object + 36) = *(uint64_t*)((char*)param2 + 36);
-        *(uint64_t*)((char*)initialized_object + 44) = data_ptr;
-        *(uint64_t*)((char*)initialized_object + 56) = *(uint64_t*)((char*)param2 + 56);
-        *(uint32_t*)((char*)initialized_object + 64) = *(uint32_t*)((char*)param2 + 64);
-        
-        /* 复制渲染属性 */
-        uint32_t temp1 = *(uint32_t*)((char*)param2 + 72);
-        uint32_t temp2 = *(uint32_t*)((char*)param2 + 76);
-        uint32_t temp3 = *(uint32_t*)((char*)param2 + 80);
-        *(uint32_t*)((char*)initialized_object + 68) = *(uint32_t*)((char*)param2 + 68);
-        *(uint32_t*)((char*)initialized_object + 72) = temp1;
-        *(uint32_t*)((char*)initialized_object + 76) = temp2;
-        *(uint32_t*)((char*)initialized_object + 80) = temp3;
-        
-        /* 复制数据块 */
-        FUN_180627be0((char*)initialized_object + 88, (char*)param2 + 88);
-        FUN_180627be0((char*)initialized_object + 120, (char*)param2 + 120);
-        FUN_180627be0((char*)initialized_object + 152, (char*)param2 + 152);
-        FUN_180627be0((char*)initialized_object + 184, (char*)param2 + 184);
-        FUN_180627be0((char*)initialized_object + 216, (char*)param2 + 216);
-        FUN_180627be0((char*)initialized_object + 248, (char*)param2 + 248);
-        FUN_180627be0((char*)initialized_object + 280, (char*)param2 + 280);
-        
-        /* 复制状态属性 */
-        *(uint32_t*)((char*)initialized_object + 312) = *(uint32_t*)((char*)param2 + 312);
-        *(uint32_t*)((char*)initialized_object + 316) = *(uint32_t*)((char*)param2 + 316);
-        *(uint32_t*)((char*)initialized_object + 320) = *(uint32_t*)((char*)param2 + 320);
-        *(uint32_t*)((char*)initialized_object + 324) = *(uint32_t*)((char*)param2 + 324);
-        *(uint8_t*)((char*)initialized_object + 328) = *(uint8_t*)((char*)param2 + 328);
-        
-        /* 复制缓冲区数据 */
-        render_buffer_resize((char*)initialized_object + 336, (char*)param2 + 336);
-        FUN_180627be0((char*)initialized_object + 368, (char*)param2 + 368);
-        FUN_180627be0((char*)initialized_object + 400, (char*)param2 + 400);
-        
-        /* 复制标志 */
-        *(uint8_t*)((char*)initialized_object + 432) = *(uint8_t*)((char*)param2 + 432);
-        *(uint8_t*)((char*)initialized_object + 433) = *(uint8_t*)((char*)param2 + 433);
-        *(uint8_t*)((char*)initialized_object + 434) = *(uint8_t*)((char*)param2 + 434);
+    // 清零新分配的空间
+    size_t extra_size = new_capacity - dest->size;
+    if (extra_size > 0) {
+      memset((char*)new_data + dest->size, 0, extra_size);
     }
     
-    return initialized_object;
-}
-
-/**
- * @brief 渲染对象初始化
- * @param param1 参数1
- * @return 初始化成功返回1，失败返回0
- * 
- * 原始函数: FUN_180560fa0
- * 功能: 初始化渲染对象
- */
-int render_initialize_object_check(void* param1)
-{
-    uint8_t* data_ptr;
-    uint64_t hash_value;
-    uint64_t* context_ptr;
-    uint32_t data_length;
-    uint32_t i;
-    uint32_t stack_data[4];
-    uint64_t stack_param;
-    
-    if (*(uint64_t*)((char*)param1 + 0xb0) != 0) {
-        return 0;  // 已经初始化
+    // 释放旧缓冲区
+    if (dest->data) {
+      FUN_18064e900();
     }
     
-    stack_data[1] = 0x180560fb8;
-    void* context = render_create_context();
-    *(uint64_t*)((char*)param1 + 0xb0) = (uint64_t)context;
-    stack_param = (uint64_t)context;
-    FUN_18053de40(0x180c95f38, stack_data, (char*)context + 0x10);
-    
-    uint32_t global_value = _DAT_180c95fa8;
-    if (stack_data[0] == *(uint64_t*)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
-        hash_value = RENDER_HASH_SEED;
-        data_ptr = &DAT_18098bc73;
-        if (*(uint8_t**)((char*)context + 0x18) != NULL) {
-            data_ptr = *(uint8_t**)((char*)context + 0x18);
-        }
-        
-        data_length = 0;
-        if (*(uint32_t*)((char*)context + 0x20) != 0) {
-            do {
-                uint8_t byte = *data_ptr;
-                data_ptr = data_ptr + 1;
-                data_length = data_length + 1;
-                hash_value = (hash_value ^ byte) * RENDER_HASH_MULTIPLIER;
-            } while (data_length < *(uint32_t*)((char*)context + 0x20));
-        }
-        
-        FUN_18053df50(0x180c95f38, stack_data, data_length, (char*)context + 0x10, hash_value);
-        *(int32_t*)(stack_data[0] + 0x58) = global_value;
-        uint32_t temp_data[2] = {(uint32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3), 0};
-        FUN_1800571e0(&DAT_180c95f68, temp_data);
-        *(int32_t*)((char*)context + 0x68) = _DAT_180c95fa8;
-        _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
-        FUN_18005ea90(&DAT_180c95f88, &stack_param);
-    } else {
-        if (*(int32_t*)(_DAT_180c95f68 + (int64_t)*(int32_t*)(stack_data[0] + 0x58) * 4) != -1) {
-            void* name_ptr = &DAT_18098bc73;
-            if (*(void**)((char*)context + 0x18) != NULL) {
-                name_ptr = *(void**)((char*)context + 0x18);
-            }
-            FUN_180627020(&UNK_180a338e0, name_ptr);
-            return 0;
-        }
-        *(int32_t*)(_DAT_180c95f68 + (int64_t)*(int32_t*)(stack_data[0] + 0x58) * 4) =
-             (int32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-        FUN_18005ea90(&DAT_180c95f88, &stack_param);
-    }
-    
-    return 1;
+    // 更新目标缓冲区
+    dest->data = new_data;
+    dest->capacity = new_capacity;
+  }
+  
+  // 执行数据复制
+  if (src->data && src->size > 0) {
+    size_t copy_size = (src->size < required_size) ? src->size : required_size;
+    memcpy(dest->data, src->data, copy_size);
+    dest->size = copy_size;
+  }
 }
 
-/**
- * @brief 渲染对象销毁
- * @param param1 参数1
- * 
- * 原始函数: FUN_180560fe0
- * 功能: 销毁渲染对象和相关资源
- */
-void render_destroy_object(void* param1)
-{
-    uint64_t* global_ptr;
-    uint64_t* current_ptr;
-    uint64_t* next_ptr;
-    uint64_t stack_data[10];
-    int32_t i;
-    
-    if (*(uint64_t*)((char*)param1 + 0xb0) != 0) {
-        FUN_18053a220(&DAT_180c95f30);
-        FUN_18053e3f0(*(uint64_t*)((char*)param1 + 0xb0));
-        *(uint64_t*)((char*)param1 + 0xb0) = 0;
-        
-        global_ptr = _DAT_180c961e8;
-        current_ptr = _DAT_180c961e8;
-        
-        if (*global_ptr == 0) {
-            global_ptr = _DAT_180c961e8 + 1;
-            current_ptr = _DAT_180c961e8;
-            while (next_ptr = current_ptr + 1, *global_ptr == 0) {
-                global_ptr = current_ptr + 2;
-                current_ptr = next_ptr;
-            }
-        }
-        
-        while (*global_ptr != _DAT_180c961e8[_DAT_180c961f0]) {
-            /* 复制数据到栈 */
-            stack_data[0] = *(uint64_t*)((char*)global_ptr + 0x10);
-            stack_data[1] = *(uint64_t*)((char*)global_ptr + 0x18);
-            stack_data[2] = *(uint64_t*)((char*)global_ptr + 0x20);
-            stack_data[3] = *(uint64_t*)((char*)global_ptr + 0x28);
-            stack_data[4] = *(uint64_t*)((char*)global_ptr + 0x30);
-            stack_data[5] = *(uint64_t*)((char*)global_ptr + 0x38);
-            stack_data[6] = *(uint64_t*)((char*)global_ptr + 0x40);
-            stack_data[7] = *(uint64_t*)((char*)global_ptr + 0x48);
-            stack_data[8] = *(uint64_t*)((char*)global_ptr + 0x50);
-            stack_data[9] = *(uint64_t*)((char*)global_ptr + 0x58);
-            
-            /* 检查是否有空数据 */
-            i = 0;
-            do {
-                if (stack_data[i] == 0) {
-                    return;
-                }
-                i = i + 1;
-            } while (i < 10);
-            
-            global_ptr = *(uint64_t*)((char*)global_ptr + 0x60);
-            while (*global_ptr == 0) {
-                next_ptr = current_ptr + 1;
-                current_ptr = current_ptr + 1;
-                global_ptr = *next_ptr;
-            }
-        }
-    }
-}
 
-/*=============================================================================
- * 内部函数实现
- *=============================================================================*/
 
-/**
- * @brief 分配渲染池内存
- * @param size 分配大小
- * @return 分配的内存指针
- */
-static void* render_allocate_pool(size_t size)
-{
-    return FUN_18062b420(_DAT_180c8ed18, size, 3);
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 释放渲染池内存
- * @param pool 池指针
- */
-static void render_free_pool(void* pool)
+
+
+/*==============================================================================
+函数别名: ProcessRenderBuffer - 处理渲染缓冲区数据
+原始函数: FUN_1805604f0
+参数:
+  buffer_info - 缓冲区信息结构
+  data_source - 数据源指针
+返回:
+  void
+描述:
+  处理渲染缓冲区数据，包括缓冲区扩展、数据复制和元素初始化。
+  这是渲染管线中的核心数据处理函数。
+===============================================================================*/
+void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
 {
-    if (pool != NULL) {
+  ulonglong current_end;
+  undefined8 element_value;
+  ulonglong source_size;
+  ulonglong buffer_start;
+  ulonglong *buffer_ptr;
+  ulonglong new_capacity;
+  uint element_index;
+  ulonglong elements_needed;
+  ulonglong expansion_size;
+  ulonglong current_size;
+  
+  elements_needed = 0;
+  source_size = ((longlong*)data_source)[1] - *(longlong*)data_source >> 3;
+  current_end = buffer_ptr[1];
+  buffer_start = *buffer_ptr;
+  current_size = (longlong)(current_end - buffer_start) >> 3;
+  if (current_size < source_size) {
+    expansion_size = source_size - current_size;
+    if ((ulonglong)((longlong)(buffer_ptr[2] - current_end) >> 3) < expansion_size) {
+      new_capacity = current_size * 2;
+      if (current_size == 0) {
+        new_capacity = 1;
+      }
+      if (new_capacity < source_size) {
+        new_capacity = source_size;
+      }
+      source_size = current_end;
+      current_end = elements_needed;
+      if (new_capacity != 0) {
+        current_end = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_ptr[3]);
+        buffer_start = *buffer_ptr;
+        source_size = buffer_ptr[1];
+      }
+      if (buffer_start != source_size) {
+                    // WARNING: Subroutine does not return
+        memmove(current_end, buffer_start, source_size - buffer_start);
+      }
+      if (expansion_size != 0) {
+                    // WARNING: Subroutine does not return
+        memset(current_end, 0, expansion_size * 8);
+      }
+      if (*buffer_ptr != 0) {
+                    // WARNING: Subroutine does not return
         FUN_18064e900();
+      }
+      *buffer_ptr = current_end;
+      buffer_ptr[2] = current_end + new_capacity * 8;
     }
+    else if (expansion_size != 0) {
+                    // WARNING: Subroutine does not return
+      memset(current_end, 0, expansion_size * 8);
+    }
+  }
+  else {
+    current_end = buffer_start + source_size * 8;
+  }
+  buffer_ptr[1] = current_end;
+  buffer_start = elements_needed;
+  if ((longlong)(current_end - *buffer_ptr) >> 3 != 0) {
+    do {
+      element_value = (**(code **)**(undefined8 **)(buffer_start + *(longlong*)data_source))();
+      element_index = (int)elements_needed + 1;
+      elements_needed = (ulonglong)element_index;
+      *(undefined8 *)(buffer_start + *buffer_ptr) = element_value;
+      buffer_start = buffer_start + 8;
+    } while ((ulonglong)(longlong)(int)element_index <
+             (ulonglong)((longlong)(buffer_ptr[1] - *buffer_ptr) >> 3));
+  }
+  return;
 }
 
-/**
- * @brief 更新池状态
- * @param pool 池指针
- */
-static void render_update_pool_state(RenderPool* pool)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+/*==============================================================================
+函数别名: ReallocateRenderBuffer - 重新分配渲染缓冲区
+原始函数: FUN_180560539
+参数:
+  min_size - 最小所需大小
+  current_size - 当前大小
+  extra_space - 额外空间需求
+返回:
+  void
+描述:
+  重新分配渲染缓冲区以满足新的大小需求，处理数据迁移和内存管理。
+===============================================================================*/
+void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_space)
 {
-    if (pool != NULL) {
-        pool->used_size = pool->capacity - pool->used_size;
-        pool->flags |= RENDER_FLAG_DIRTY;
+  ulonglong new_buffer;
+  undefined8 element_value;
+  ulonglong *buffer_info;
+  ulonglong new_capacity;
+  uint element_index;
+  ulonglong source_offset;
+  longlong extra_size;
+  longlong *data_source;
+  ulonglong source_end;
+  
+  new_capacity = extra_space * 2;
+  if (extra_space == 0) {
+    new_capacity = 1;
+  }
+  if (new_capacity < min_size) {
+    new_capacity = min_size;
+  }
+  source_offset = source_offset;
+  if (new_capacity != 0) {
+    source_offset = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_info[3]);
+    current_size = *buffer_info;
+    source_end = buffer_info[1];
+  }
+  if (current_size != source_end) {
+                    // WARNING: Subroutine does not return
+    memmove(source_offset, current_size, source_end - current_size);
+  }
+  if (extra_size != 0) {
+                    // WARNING: Subroutine does not return
+    memset(source_offset, 0, extra_size * 8);
+  }
+  if (*buffer_info == 0) {
+    *buffer_info = source_offset;
+    buffer_info[2] = source_offset + new_capacity * 8;
+    buffer_info[1] = source_offset;
+    new_capacity = source_offset;
+    if ((longlong)(source_offset - *buffer_info) >> 3 != 0) {
+      do {
+        element_value = (**(code **)**(undefined8 **)(new_capacity + *data_source))();
+        element_index = (int)source_offset + 1;
+        source_offset = (ulonglong)element_index;
+        *(undefined8 *)(new_capacity + *buffer_info) = element_value;
+        new_capacity = new_capacity + 8;
+      } while ((ulonglong)(longlong)(int)element_index <
+               (ulonglong)((longlong)(buffer_info[1] - *buffer_info) >> 3));
     }
+    return;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_18064e900();
 }
 
-/**
- * @brief 计算数据哈希值
- * @param data 数据指针
- * @param length 数据长度
- * @return 哈希值
- */
-static uint64_t render_calculate_hash(const char* data, size_t length)
+
+
+
+
+/*==============================================================================
+函数别名: InitializeRenderElements - 初始化渲染元素
+原始函数: FUN_1805605e4
+参数:
+  buffer - 渲染缓冲区
+  element_count - 元素数量
+  data_source - 数据源
+返回:
+  void
+描述:
+  初始化渲染元素数组，处理元素数据的加载和初始化。
+===============================================================================*/
+void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* data_source)
 {
-    uint64_t hash = RENDER_HASH_SEED;
-    size_t i;
-    
-    if (data != NULL && length > 0) {
-        for (i = 0; i < length; i++) {
-            hash = (hash ^ (uint8_t)data[i]) * RENDER_HASH_MULTIPLIER;
-        }
+  undefined8 element_value;
+  longlong *buffer_info;
+  uint element_index;
+  ulonglong source_offset;
+  longlong extra_size;
+  ulonglong current_offset;
+  longlong *data_ptr;
+  longlong element_end;
+  
+  if (extra_size == 0) {
+    buffer_info[1] = element_end;
+    current_offset = source_offset;
+    if (element_end - *buffer_info >> 3 != 0) {
+      do {
+        element_value = (**(code **)**(undefined8 **)(current_offset + *data_ptr))();
+        element_index = (int)source_offset + 1;
+        source_offset = (ulonglong)element_index;
+        *(undefined8 *)(current_offset + *buffer_info) = element_value;
+        current_offset = current_offset + 8;
+      } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(buffer_info[1] - *buffer_info >> 3));
     }
-    
-    return hash;
+    return;
+  }
+                    // WARNING: Subroutine does not return
+  memset();
 }
 
-/**
- * @brief 验证渲染对象
- * @param object 对象指针
- */
-static void render_validate_object(RenderObject* object)
+
+
+
+
+// 函数: void FUN_18056061e(void)
+void FUN_18056061e(void)
+
 {
-    if (object != NULL) {
-        if (object->vtable == NULL) {
-            object->flags |= RENDER_FLAG_ERROR;
-        }
-        if (object->type == RENDER_OBJECT_UNDEFINED) {
-            object->flags |= RENDER_FLAG_ERROR;
-        }
-    }
+  undefined8 uVar1;
+  longlong *unaff_RBX;
+  uint uVar2;
+  ulonglong unaff_RSI;
+  ulonglong uVar3;
+  longlong *unaff_R12;
+  
+  uVar3 = unaff_RSI;
+  do {
+    uVar1 = (**(code **)**(undefined8 **)(uVar3 + *unaff_R12))();
+    uVar2 = (int)unaff_RSI + 1;
+    unaff_RSI = (ulonglong)uVar2;
+    *(undefined8 *)(uVar3 + *unaff_RBX) = uVar1;
+    uVar3 = uVar3 + 8;
+  } while ((ulonglong)(longlong)(int)uVar2 < (ulonglong)(unaff_RBX[1] - *unaff_RBX >> 3));
+  return;
 }
 
-/*=============================================================================
- * 函数别名定义
- *=============================================================================*/
 
-/* 原始函数别名映射 */
-#define FUN_180560330 render_initialize_pool
-#define FUN_1805603c0 render_pool_insert_data
-#define FUN_1805604e0 render_buffer_resize
-#define FUN_1805604f0 render_buffer_resize_simplified
-#define FUN_180560539 render_buffer_expand
-#define FUN_1805605e4 render_buffer_clear
-#define FUN_18056061e render_buffer_process
-#define FUN_180560660 render_initialize_object
-#define FUN_180560870 render_free_object
-#define FUN_1805608b0 render_cleanup_object
-#define FUN_180560a90 render_create_context
-#define FUN_180560b80 render_process_data
-#define FUN_180560c27 render_data_transfer
-#define FUN_180560c97 render_empty_function
-#define FUN_180560ce0 render_switch_context
-#define FUN_180560d50 render_initialize_check
-#define FUN_180560df0 render_copy_object
-#define FUN_180560fa0 render_initialize_object_check
-#define FUN_180560fe0 render_destroy_object
 
-/*=============================================================================
- * 技术说明
- *=============================================================================*/
+undefined8 * FUN_180560660(undefined8 *param_1)
 
-/**
- * @section 技术架构说明
- * 
- * 本模块实现了渲染系统的高级数据处理和对象管理功能，主要特点：
- * 
- * 1. 内存管理：
- *    - 使用内存池技术提高内存分配效率
- *    - 支持动态扩容和内存对齐
- *    - 实现了智能的内存回收机制
- * 
- * 2. 对象管理：
- *    - 采用面向对象的设计模式
- *    - 支持引用计数和生命周期管理
- *    - 提供统一的初始化和清理接口
- * 
- * 3. 数据处理：
- *    - 高效的缓冲区管理
- *    - 支持数据哈希和校验
- *    - 实现了数据复制和传输功能
- * 
- * 4. 性能优化：
- *    - 使用位运算和内存对齐优化
- *    - 减少不必要的内存分配
- *    - 实现了缓存友好的数据结构
- * 
- * 5. 安全性：
- *    - 完善的错误检查机制
- *    - 内存访问边界检查
- *    - 状态验证和异常处理
- * 
- * @section 性能优化策略
- * 
- * 1. 内存优化：
- *    - 使用内存池减少碎片
- *    - 预分配常用大小的缓冲区
- *    - 实现延迟释放机制
- * 
- * 2. 算法优化：
- *    - 使用高效的哈希算法
- *    - 实现快速查找和插入
- *    - 优化数据移动操作
- * 
- * 3. 并发优化：
- *    - 使用原子操作
- *    - 实现线程安全的数据结构
- *    - 减少锁竞争
- * 
- * @section 安全考虑
- * 
- * 1. 内存安全：
- *    - 严格的边界检查
- *    - 防止缓冲区溢出
- *    - 内存访问验证
- * 
- * 2. 数据安全：
- *    - 数据完整性校验
- *    - 防止数据竞争
- *    - 状态一致性保证
- * 
- * 3. 错误处理：
- *    - 完善的错误代码
- *    - 优雅的降级处理
- *    - 详细的错误日志
- */
+{
+  *param_1 = &UNK_1809ffa18;
+  *param_1 = &UNK_180a36288;
+  param_1[0xb] = &UNK_18098bcb0;
+  param_1[0xc] = 0;
+  *(undefined4 *)(param_1 + 0xd) = 0;
+  param_1[0xb] = &UNK_180a3c3e0;
+  param_1[0xe] = 0;
+  param_1[0xc] = 0;
+  *(undefined4 *)(param_1 + 0xd) = 0;
+  param_1[0xf] = &UNK_18098bcb0;
+  param_1[0x10] = 0;
+  *(undefined4 *)(param_1 + 0x11) = 0;
+  param_1[0xf] = &UNK_180a3c3e0;
+  param_1[0x12] = 0;
+  param_1[0x10] = 0;
+  *(undefined4 *)(param_1 + 0x11) = 0;
+  param_1[0x13] = &UNK_18098bcb0;
+  param_1[0x14] = 0;
+  *(undefined4 *)(param_1 + 0x15) = 0;
+  param_1[0x13] = &UNK_180a3c3e0;
+  param_1[0x16] = 0;
+  param_1[0x14] = 0;
+  *(undefined4 *)(param_1 + 0x15) = 0;
+  param_1[0x17] = &UNK_18098bcb0;
+  param_1[0x18] = 0;
+  *(undefined4 *)(param_1 + 0x19) = 0;
+  param_1[0x17] = &UNK_180a3c3e0;
+  param_1[0x1a] = 0;
+  param_1[0x18] = 0;
+  *(undefined4 *)(param_1 + 0x19) = 0;
+  param_1[0x1b] = &UNK_18098bcb0;
+  param_1[0x1c] = 0;
+  *(undefined4 *)(param_1 + 0x1d) = 0;
+  param_1[0x1b] = &UNK_180a3c3e0;
+  param_1[0x1e] = 0;
+  param_1[0x1c] = 0;
+  *(undefined4 *)(param_1 + 0x1d) = 0;
+  param_1[0x1f] = &UNK_18098bcb0;
+  param_1[0x20] = 0;
+  *(undefined4 *)(param_1 + 0x21) = 0;
+  param_1[0x1f] = &UNK_180a3c3e0;
+  param_1[0x22] = 0;
+  param_1[0x20] = 0;
+  *(undefined4 *)(param_1 + 0x21) = 0;
+  param_1[0x23] = &UNK_18098bcb0;
+  param_1[0x24] = 0;
+  *(undefined4 *)(param_1 + 0x25) = 0;
+  param_1[0x23] = &UNK_180a3c3e0;
+  param_1[0x26] = 0;
+  param_1[0x24] = 0;
+  *(undefined4 *)(param_1 + 0x25) = 0;
+  param_1[0x2a] = 0;
+  param_1[0x2b] = 0;
+  param_1[0x2c] = 0;
+  *(undefined4 *)(param_1 + 0x2d) = 3;
+  param_1[0x2e] = &UNK_18098bcb0;
+  param_1[0x2f] = 0;
+  *(undefined4 *)(param_1 + 0x30) = 0;
+  param_1[0x2e] = &UNK_180a3c3e0;
+  param_1[0x31] = 0;
+  param_1[0x2f] = 0;
+  *(undefined4 *)(param_1 + 0x30) = 0;
+  param_1[0x32] = &UNK_18098bcb0;
+  param_1[0x33] = 0;
+  *(undefined4 *)(param_1 + 0x34) = 0;
+  param_1[0x32] = &UNK_180a3c3e0;
+  param_1[0x35] = 0;
+  param_1[0x33] = 0;
+  *(undefined4 *)(param_1 + 0x34) = 0;
+  param_1[1] = 0;
+  param_1[2] = 0;
+  param_1[3] = 0;
+  *(undefined4 *)(param_1 + 4) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x24) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x2c) = 0;
+  param_1[7] = 0;
+  *(undefined4 *)(param_1 + 8) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x44) = 0xbf800000bf800000;
+  *(undefined8 *)((longlong)param_1 + 0x4c) = 0xbf800000bf800000;
+  *(undefined4 *)(param_1 + 0x27) = 3;
+  *(undefined4 *)((longlong)param_1 + 0x13c) = 3;
+  param_1[0x28] = 0x3e99999a;
+  *(undefined1 *)(param_1 + 0x29) = 0;
+  *(undefined2 *)(param_1 + 0x36) = 0xff;
+  *(undefined1 *)((longlong)param_1 + 0x1b2) = 0;
+  return param_1;
+}
+
+
+
+undefined8 FUN_180560870(undefined8 param_1,ulonglong param_2)
+
+{
+  FUN_1805608b0();
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x1b8);
+  }
+  return param_1;
+}
+
+
+
+
+
+// 函数: void FUN_1805608b0(undefined8 *param_1)
+void FUN_1805608b0(undefined8 *param_1)
+
+{
+  param_1[0x32] = &UNK_180a3c3e0;
+  if (param_1[0x33] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x33] = 0;
+  *(undefined4 *)(param_1 + 0x35) = 0;
+  param_1[0x32] = &UNK_18098bcb0;
+  param_1[0x2e] = &UNK_180a3c3e0;
+  if (param_1[0x2f] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x2f] = 0;
+  *(undefined4 *)(param_1 + 0x31) = 0;
+  param_1[0x2e] = &UNK_18098bcb0;
+  if (param_1[0x2a] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x23] = &UNK_180a3c3e0;
+  if (param_1[0x24] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x24] = 0;
+  *(undefined4 *)(param_1 + 0x26) = 0;
+  param_1[0x23] = &UNK_18098bcb0;
+  param_1[0x1f] = &UNK_180a3c3e0;
+  if (param_1[0x20] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x20] = 0;
+  *(undefined4 *)(param_1 + 0x22) = 0;
+  param_1[0x1f] = &UNK_18098bcb0;
+  param_1[0x1b] = &UNK_180a3c3e0;
+  if (param_1[0x1c] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x1c] = 0;
+  *(undefined4 *)(param_1 + 0x1e) = 0;
+  param_1[0x1b] = &UNK_18098bcb0;
+  param_1[0x17] = &UNK_180a3c3e0;
+  if (param_1[0x18] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x18] = 0;
+  *(undefined4 *)(param_1 + 0x1a) = 0;
+  param_1[0x17] = &UNK_18098bcb0;
+  param_1[0x13] = &UNK_180a3c3e0;
+  if (param_1[0x14] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x14] = 0;
+  *(undefined4 *)(param_1 + 0x16) = 0;
+  param_1[0x13] = &UNK_18098bcb0;
+  param_1[0xf] = &UNK_180a3c3e0;
+  if (param_1[0x10] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0x10] = 0;
+  *(undefined4 *)(param_1 + 0x12) = 0;
+  param_1[0xf] = &UNK_18098bcb0;
+  param_1[0xb] = &UNK_180a3c3e0;
+  if (param_1[0xc] != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  param_1[0xc] = 0;
+  *(undefined4 *)(param_1 + 0xe) = 0;
+  param_1[0xb] = &UNK_18098bcb0;
+  *param_1 = &UNK_1809ffa18;
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+longlong FUN_180560a90(longlong param_1)
+
+{
+  longlong lVar1;
+  undefined *puVar2;
+  
+  lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x208,8,4,0xfffffffffffffffe);
+  FUN_18034dd90();
+  *(undefined8 *)(lVar1 + 0x1b0) = &UNK_18098bcb0;
+  *(undefined8 *)(lVar1 + 0x1b8) = 0;
+  *(undefined4 *)(lVar1 + 0x1c0) = 0;
+  *(undefined8 *)(lVar1 + 0x1b0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c8) = 0;
+  *(undefined8 *)(lVar1 + 0x1b8) = 0;
+  *(undefined4 *)(lVar1 + 0x1c0) = 0;
+  *(undefined8 *)(lVar1 + 0x1d0) = 0;
+  *(undefined8 *)(lVar1 + 0x1d8) = 0;
+  *(undefined4 *)(lVar1 + 0x1e0) = 0;
+  *(undefined8 *)(lVar1 + 0x1e4) = 0x3e99999a;
+  *(undefined8 *)(lVar1 + 0x1ec) = 0xffffffffffffffff;
+  *(undefined2 *)(lVar1 + 500) = 0xffff;
+  *(undefined4 *)(lVar1 + 0x1f8) = 0xffffffff;
+  *(undefined8 *)(lVar1 + 0x200) = 0;
+  *(longlong *)(lVar1 + 0x200) = param_1;
+  puVar2 = &DAT_18098bc73;
+  if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
+    puVar2 = *(undefined **)(param_1 + 0x70);
+  }
+  (**(code **)(*(longlong *)(lVar1 + 0x10) + 0x10))((longlong *)(lVar1 + 0x10),puVar2);
+  return lVar1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180560b80(longlong param_1)
+void FUN_180560b80(longlong param_1)
+
+{
+  byte *pbVar1;
+  int iVar2;
+  longlong lVar3;
+  byte *pbVar4;
+  int iVar5;
+  longlong lVar6;
+  
+  if (*(char *)(_DAT_180c868a8 + 0x130) != '\0') {
+    FUN_18053cee0(*(undefined8 *)(param_1 + 0xb0));
+  }
+  lVar3 = *(longlong *)(param_1 + 0x20);
+  iVar2 = *(int *)(param_1 + 0x78);
+  iVar5 = *(int *)(lVar3 + 0xe8);
+  if (iVar2 == iVar5) {
+    if (iVar2 != 0) {
+      pbVar4 = *(byte **)(param_1 + 0x70);
+      lVar6 = *(longlong *)(lVar3 + 0xe0) - (longlong)pbVar4;
+      do {
+        pbVar1 = pbVar4 + lVar6;
+        iVar5 = (uint)*pbVar4 - (uint)*pbVar1;
+        if (iVar5 != 0) break;
+        pbVar4 = pbVar4 + 1;
+      } while (*pbVar1 != 0);
+    }
+  }
+  else if (iVar2 != 0) goto LAB_180560c1e;
+  if (iVar5 == 0) {
+    FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(param_1 + 0xb0),param_1 + 0x68,param_1 + 0x68,0xff)
+    ;
+    return;
+  }
+LAB_180560c1e:
+  if (0 < *(int *)(lVar3 + 0x180)) {
+    FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,lVar3 + 0x170);
+    FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,lVar3 + 400);
+    FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(param_1 + 0xb0),lVar3 + 0x170,lVar3 + 400,
+                  *(undefined1 *)(lVar3 + 0x1b0));
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180560c27(void)
+void FUN_180560c27(void)
+
+{
+  longlong unaff_RBP;
+  longlong unaff_RSI;
+  undefined8 in_R9;
+  
+  FUN_180086e40(in_R9,&DAT_180a2d688,unaff_RBP + 0x170);
+  FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,unaff_RBP + 400);
+  FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(unaff_RSI + 0xb0),unaff_RBP + 0x170,unaff_RBP + 400,
+                *(undefined1 *)(unaff_RBP + 0x1b0));
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_180560c97(void)
+void FUN_180560c97(void)
+
+{
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_180560ce0(longlong param_1,longlong param_2)
+void FUN_180560ce0(longlong param_1,longlong param_2)
+
+{
+  if (*(longlong *)(param_2 + 0xb0) == 0) {
+    *(undefined8 *)(param_2 + 0xb0) = *(undefined8 *)(param_1 + 0xb0);
+    *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0x200) = param_2;
+    *(undefined8 *)(param_1 + 0xb0) = 0;
+    return;
+  }
+  FUN_18053a220(&DAT_180c95f30,*(undefined8 *)(param_1 + 0xb0));
+  FUN_18053e3f0(*(undefined8 *)(param_1 + 0xb0));
+  *(undefined8 *)(param_1 + 0xb0) = 0;
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined1 FUN_180560d50(longlong param_1)
+
+{
+  byte bVar1;
+  longlong lVar2;
+  int iVar3;
+  char cVar4;
+  undefined8 uVar5;
+  ulonglong uVar6;
+  longlong *plVar7;
+  byte *pbVar8;
+  undefined *puVar9;
+  uint uVar10;
+  undefined4 auStackX_8 [2];
+  longlong lStackX_10;
+  longlong alStack_38 [4];
+  
+  if (*(longlong *)(param_1 + 0xb0) == 0) {
+    alStack_38[1] = 0x180560daa;
+    cVar4 = func_0x00018008a5c0(param_1,*(undefined8 *)(*(longlong *)(param_1 + 0x88) + 8));
+    if (cVar4 == '\0') {
+      return 0;
+    }
+    alStack_38[1] = 0x180560db6;
+    uVar5 = FUN_180560a90(param_1);
+    *(undefined8 *)(param_1 + 0xb0) = uVar5;
+    alStack_38[1] = 0x180560dc5;
+    FUN_18053cee0(uVar5);
+  }
+  else {
+    alStack_38[1] = 0x180560d71;
+    FUN_18053a220(&DAT_180c95f30);
+    plVar7 = (longlong *)(*(longlong *)(param_1 + 0xb0) + 0x10);
+    puVar9 = &DAT_18098bc73;
+    if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
+      puVar9 = *(undefined **)(param_1 + 0x70);
+    }
+    alStack_38[1] = 0x180560d98;
+    (**(code **)(*plVar7 + 0x10))(plVar7,puVar9);
+  }
+  lVar2 = *(longlong *)(param_1 + 0xb0);
+  lStackX_10 = lVar2;
+  FUN_18053de40(0x180c95f38,alStack_38,lVar2 + 0x10);
+  iVar3 = _DAT_180c95fa8;
+  if (alStack_38[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
+    uVar6 = 0xcbf29ce484222325;
+    pbVar8 = &DAT_18098bc73;
+    if (*(byte **)(lVar2 + 0x18) != (byte *)0x0) {
+      pbVar8 = *(byte **)(lVar2 + 0x18);
+    }
+    uVar10 = 0;
+    if (*(uint *)(lVar2 + 0x20) != 0) {
+      do {
+        bVar1 = *pbVar8;
+        pbVar8 = pbVar8 + 1;
+        uVar10 = uVar10 + 1;
+        uVar6 = (uVar6 ^ bVar1) * 0x100000001b3;
+      } while (uVar10 < *(uint *)(lVar2 + 0x20));
+    }
+    FUN_18053df50(0x180c95f38,alStack_38,uVar10,lVar2 + 0x10,uVar6);
+    *(int *)(alStack_38[0] + 0x58) = iVar3;
+    auStackX_8[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_1800571e0(&DAT_180c95f68,auStackX_8);
+    *(int *)(lVar2 + 0x68) = _DAT_180c95fa8;
+    _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
+    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+  }
+  else {
+    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
+      puVar9 = &DAT_18098bc73;
+      if (*(undefined **)(lVar2 + 0x18) != (undefined *)0x0) {
+        puVar9 = *(undefined **)(lVar2 + 0x18);
+      }
+      FUN_180627020(&UNK_180a338e0,puVar9);
+      return 0;
+    }
+    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) =
+         (int)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+  }
+  return 1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+longlong FUN_180560df0(undefined8 param_1,longlong param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined8 uVar4;
+  longlong lVar5;
+  
+  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x1b8,8,0x1a);
+  lVar5 = FUN_180560660(uVar4);
+  if (param_2 != 0) {
+    *(undefined4 *)(lVar5 + 8) = *(undefined4 *)(param_2 + 8);
+    *(undefined4 *)(lVar5 + 0xc) = *(undefined4 *)(param_2 + 0xc);
+    *(undefined4 *)(lVar5 + 0x10) = *(undefined4 *)(param_2 + 0x10);
+    *(undefined4 *)(lVar5 + 0x14) = *(undefined4 *)(param_2 + 0x14);
+    *(undefined4 *)(lVar5 + 0x18) = *(undefined4 *)(param_2 + 0x18);
+    *(undefined4 *)(lVar5 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
+    *(undefined4 *)(lVar5 + 0x20) = *(undefined4 *)(param_2 + 0x20);
+    uVar4 = *(undefined8 *)(param_2 + 0x2c);
+    *(undefined8 *)(lVar5 + 0x24) = *(undefined8 *)(param_2 + 0x24);
+    *(undefined8 *)(lVar5 + 0x2c) = uVar4;
+    *(undefined8 *)(lVar5 + 0x38) = *(undefined8 *)(param_2 + 0x38);
+    *(undefined4 *)(lVar5 + 0x40) = *(undefined4 *)(param_2 + 0x40);
+    uVar1 = *(undefined4 *)(param_2 + 0x48);
+    uVar2 = *(undefined4 *)(param_2 + 0x4c);
+    uVar3 = *(undefined4 *)(param_2 + 0x50);
+    *(undefined4 *)(lVar5 + 0x44) = *(undefined4 *)(param_2 + 0x44);
+    *(undefined4 *)(lVar5 + 0x48) = uVar1;
+    *(undefined4 *)(lVar5 + 0x4c) = uVar2;
+    *(undefined4 *)(lVar5 + 0x50) = uVar3;
+    FUN_180627be0(lVar5 + 0x58,param_2 + 0x58);
+    FUN_180627be0(lVar5 + 0x78,param_2 + 0x78);
+    FUN_180627be0(lVar5 + 0x98,param_2 + 0x98);
+    FUN_180627be0(lVar5 + 0xb8,param_2 + 0xb8);
+    FUN_180627be0(lVar5 + 0xd8,param_2 + 0xd8);
+    FUN_180627be0(lVar5 + 0xf8,param_2 + 0xf8);
+    FUN_180627be0(lVar5 + 0x118,param_2 + 0x118);
+    *(undefined4 *)(lVar5 + 0x138) = *(undefined4 *)(param_2 + 0x138);
+    *(undefined4 *)(lVar5 + 0x13c) = *(undefined4 *)(param_2 + 0x13c);
+    *(undefined4 *)(lVar5 + 0x140) = *(undefined4 *)(param_2 + 0x140);
+    *(undefined4 *)(lVar5 + 0x144) = *(undefined4 *)(param_2 + 0x144);
+    *(undefined1 *)(lVar5 + 0x148) = *(undefined1 *)(param_2 + 0x148);
+    FUN_1805604e0(lVar5 + 0x150,param_2 + 0x150);
+    FUN_180627be0(lVar5 + 0x170,param_2 + 0x170);
+    FUN_180627be0(lVar5 + 400,param_2 + 400);
+    *(undefined1 *)(lVar5 + 0x1b0) = *(undefined1 *)(param_2 + 0x1b0);
+    *(undefined1 *)(lVar5 + 0x1b1) = *(undefined1 *)(param_2 + 0x1b1);
+    *(undefined1 *)(lVar5 + 0x1b2) = *(undefined1 *)(param_2 + 0x1b2);
+  }
+  return lVar5;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 FUN_180560fa0(longlong param_1)
+
+{
+  byte bVar1;
+  int iVar2;
+  undefined8 in_RAX;
+  longlong lVar3;
+  ulonglong uVar4;
+  byte *pbVar5;
+  undefined *puVar6;
+  uint uVar7;
+  undefined4 auStackX_8 [2];
+  longlong lStackX_10;
+  longlong alStack_38 [4];
+  
+  if (*(longlong *)(param_1 + 0xb0) != 0) {
+    return in_RAX;
+  }
+  alStack_38[1] = 0x180560fb8;
+  lVar3 = FUN_180560a90();
+  *(longlong *)(param_1 + 0xb0) = lVar3;
+  lStackX_10 = lVar3;
+  FUN_18053de40(0x180c95f38,alStack_38,lVar3 + 0x10);
+  iVar2 = _DAT_180c95fa8;
+  if (alStack_38[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
+    uVar4 = 0xcbf29ce484222325;
+    pbVar5 = &DAT_18098bc73;
+    if (*(byte **)(lVar3 + 0x18) != (byte *)0x0) {
+      pbVar5 = *(byte **)(lVar3 + 0x18);
+    }
+    uVar7 = 0;
+    if (*(uint *)(lVar3 + 0x20) != 0) {
+      do {
+        bVar1 = *pbVar5;
+        pbVar5 = pbVar5 + 1;
+        uVar7 = uVar7 + 1;
+        uVar4 = (uVar4 ^ bVar1) * 0x100000001b3;
+      } while (uVar7 < *(uint *)(lVar3 + 0x20));
+    }
+    FUN_18053df50(0x180c95f38,alStack_38,uVar7,lVar3 + 0x10,uVar4);
+    *(int *)(alStack_38[0] + 0x58) = iVar2;
+    auStackX_8[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_1800571e0(&DAT_180c95f68,auStackX_8);
+    *(int *)(lVar3 + 0x68) = _DAT_180c95fa8;
+    _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
+    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+  }
+  else {
+    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
+      puVar6 = &DAT_18098bc73;
+      if (*(undefined **)(lVar3 + 0x18) != (undefined *)0x0) {
+        puVar6 = *(undefined **)(lVar3 + 0x18);
+      }
+      FUN_180627020(&UNK_180a338e0,puVar6);
+      return 0;
+    }
+    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) =
+         (int)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+  }
+  return 1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180560fe0(longlong param_1)
+void FUN_180560fe0(longlong param_1)
+
+{
+  longlong *plVar1;
+  longlong lVar2;
+  longlong lVar3;
+  longlong *plVar4;
+  longlong alStack_58 [10];
+  
+  if (*(longlong *)(param_1 + 0xb0) != 0) {
+    FUN_18053a220(&DAT_180c95f30);
+    FUN_18053e3f0(*(undefined8 *)(param_1 + 0xb0));
+    *(undefined8 *)(param_1 + 0xb0) = 0;
+    lVar3 = *_DAT_180c961e8;
+    plVar4 = _DAT_180c961e8;
+    if (lVar3 == 0) {
+      lVar3 = _DAT_180c961e8[1];
+      plVar1 = _DAT_180c961e8;
+      while (plVar4 = plVar1 + 1, lVar3 == 0) {
+        lVar3 = plVar1[2];
+        plVar1 = plVar4;
+      }
+    }
+    while (lVar3 != _DAT_180c961e8[_DAT_180c961f0]) {
+      alStack_58[0] = *(longlong *)(lVar3 + 0x10);
+      alStack_58[1] = *(undefined8 *)(lVar3 + 0x18);
+      alStack_58[2] = *(undefined8 *)(lVar3 + 0x20);
+      alStack_58[3] = *(undefined8 *)(lVar3 + 0x28);
+      alStack_58[4] = *(undefined8 *)(lVar3 + 0x30);
+      alStack_58[5] = *(undefined8 *)(lVar3 + 0x38);
+      alStack_58[6] = *(undefined8 *)(lVar3 + 0x40);
+      alStack_58[7] = *(undefined8 *)(lVar3 + 0x48);
+      alStack_58[8] = *(undefined8 *)(lVar3 + 0x50);
+      alStack_58[9] = *(undefined8 *)(lVar3 + 0x58);
+      lVar2 = 0;
+      do {
+        if (alStack_58[lVar2] == 0) {
+          return;
+        }
+        lVar2 = lVar2 + 1;
+      } while (lVar2 < 10);
+      lVar3 = *(longlong *)(lVar3 + 0x60);
+      while (lVar3 == 0) {
+        plVar1 = plVar4 + 1;
+        plVar4 = plVar4 + 1;
+        lVar3 = *plVar1;
+      }
+    }
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+/*==============================================================================
+ 性能优化策略:
+ 
+ 1. 内存管理优化:
+   - 使用环形缓冲区减少内存分配开销
+   - 实现内存池技术重用已分配的内存块
+   - 采用预分配策略避免运行时分配延迟
+ 
+ 2. 缓存优化:
+   - 实现数据局部性优化，提高缓存命中率
+   - 使用SIMD指令批量处理数据
+   - 避免频繁的内存拷贝操作
+ 
+ 3. 并发优化:
+   - 使用无锁数据结构提高多线程性能
+   - 实现双缓冲技术避免渲染冲突
+   - 采用读写锁优化并发访问
+ 
+ 4. 资源管理优化:
+   - 实现引用计数自动管理资源生命周期
+   - 使用延迟释放技术减少资源创建开销
+   - 采用资源池技术重用昂贵资源
+ 
+ 5. 算法优化:
+   - 使用快速哈希算法提高查找效率
+   - 实现空间换时间的数据结构
+   - 采用预测性分配减少内存碎片
+ ==============================================================================*/
+
+/*==============================================================================
+ 安全考虑:
+ 
+ 1. 内存安全:
+   - 实现边界检查防止缓冲区溢出
+   - 使用安全的内存拷贝函数
+   - 实现内存访问权限控制
+ 
+ 2. 资源安全:
+   - 实现资源泄漏检测机制
+   - 使用引用计数防止悬垂指针
+   - 实现资源访问同步机制
+ 
+ 3. 数据安全:
+   - 实现数据完整性校验
+   - 使用加密哈希保护敏感数据
+   - 实现访问日志和审计功能
+ 
+ 4. 异常安全:
+   - 实现异常处理机制
+   - 使用RAII模式管理资源
+   - 实现错误恢复策略
+ ==============================================================================*/

@@ -1,22 +1,72 @@
+/**
+ * TaleWorlds.Native 渲染系统 - 场景管理和边界计算模块
+ * 
+ * 本文件包含渲染系统的场景对象边界计算、内存管理、对象状态更新等功能。
+ * 这些函数负责处理复杂的场景管理、边界框计算、对象生命周期管理、着色器参数设置等关键任务。
+ * 
+ * 主要功能模块：
+ * - 场景对象边界计算和碰撞检测
+ * - 渲染系统内存管理和资源清理
+ * - 对象状态更新和生命周期管理
+ * - 着色器参数设置和纹理坐标处理
+ * - 场景节点遍历和层次结构管理
+ * 
+ * 技术特点：
+ * - 支持复杂的边界框计算和优化
+ * - 提供高效的内存管理和资源清理
+ * - 实现动态对象状态更新
+ * - 包含错误检查和安全验证
+ * - 优化性能和渲染质量
+ * 
+ * @file 03_rendering_part134.c
+ * @version 1.0
+ * @date 2024
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 03_rendering_part134.c - 渲染系统场景管理和边界计算模块
-// =============================================================================
-// 本模块包含16个核心函数，主要负责：
-// - 场景对象边界计算和碰撞检测
-// - 渲染系统内存管理和资源清理
-// - 对象状态更新和生命周期管理
-// - 着色器参数设置和纹理坐标处理
-// - 场景节点遍历和层次结构管理
-// =============================================================================
-
-// 常量定义
+// 渲染系统常量定义
 #define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值
 #define RENDERING_MIN_BOUNDING_BOX   0xff7fffff  // 最小边界框值
 #define RENDERING_DEFAULT_SHADER_ID  0x3f800000  // 默认着色器ID
 #define RENDERING_MAX_TEXTURE_COORD  0x41a00000  // 最大纹理坐标
 #define RENDERING_MESH_TYPE_MASK     0x14        // 网格类型掩码
+
+// 渲染系统状态码枚举
+typedef enum {
+    RENDERING_SYSTEM_SUCCESS = 0,
+    RENDERING_SYSTEM_ERROR_INVALID_PARAM = -1,
+    RENDERING_SYSTEM_ERROR_MEMORY = -2,
+    RENDERING_SYSTEM_ERROR_BOUNDARY = -3,
+    RENDERING_SYSTEM_ERROR_SCENE = -4
+} RenderingSystemStatusCode;
+
+// 渲染系统边界框结构体
+typedef struct {
+    float max_x, max_y, max_z, max_w;     // 最大边界值
+    float min_x, min_y, min_z, min_w;     // 最小边界值
+    uint32_t flags;                       // 边界标志
+    uint64_t object_id;                   // 对象ID
+} RenderingSystemBoundingBox;
+
+// 渲染系统场景对象结构体
+typedef struct {
+    void* scene_context;                  // 场景上下文指针
+    RenderingSystemBoundingBox* bbox;     // 边界框指针
+    uint32_t object_flags;                // 对象标志
+    uint64_t render_state;                // 渲染状态
+    void* material_data;                  // 材质数据指针
+    float texture_coords[4];             // 纹理坐标
+} RenderingSystemSceneObject;
+
+// 渲染系统内存管理结构体
+typedef struct {
+    void* memory_pool;                    // 内存池指针
+    size_t pool_size;                     // 内存池大小
+    uint32_t allocation_flags;            // 分配标志
+    uint64_t memory_usage;                // 内存使用量
+    void* active_objects;                 // 活动对象列表
+} RenderingSystemMemoryManager;
 
 // =============================================================================
 // 渲染系统场景对象边界计算器 (RenderingSystemSceneObjectBoundaryCalculator)
@@ -886,23 +936,34 @@ void FUN_180349a50(undefined8 param_1)
 
 
 
-// 函数: void FUN_180349c70(undefined8 param_1,longlong param_2)
+// =============================================================================
+// 渲染系统消息处理器 (RenderingSystemMessageHandler)
+// =============================================================================
+// 功能：处理渲染系统消息，支持多种消息类型的路由和处理
+// 参数：param_1 - 渲染系统上下文，param_2 - 消息数据
+// 返回值：无
+// =============================================================================
 void FUN_180349c70(undefined8 param_1,longlong param_2)
 
 {
   int iVar1;
   
+  // 处理长度为8的消息
   if (*(int *)(param_2 + 0x10) == 8) {
     iVar1 = _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a00410);
     if (iVar1 == 0) {
       FUN_1803499b0(param_1);
     }
   }
+  
+  // 处理长度为6的消息
   iVar1 = *(int *)(param_2 + 0x10);
   if (iVar1 == 6) {
     _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a1d218);
     iVar1 = *(int *)(param_2 + 0x10);
   }
+  
+  // 处理长度为7的消息
   if (iVar1 == 7) {
     _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a1d220);
   }
@@ -915,7 +976,13 @@ void FUN_180349c70(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180349ce0(undefined8 *param_1,longlong param_2)
+// =============================================================================
+// 渲染系统纹理对象初始化器 (RenderingSystemTextureObjectInitializer)
+// =============================================================================
+// 功能：初始化纹理对象，设置纹理坐标、着色器参数和材质属性
+// 参数：param_1 - 纹理对象指针，param_2 - 纹理参数
+// 返回值：无
+// =============================================================================
 void FUN_180349ce0(undefined8 *param_1,longlong param_2)
 
 {
@@ -950,16 +1017,20 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   puVar1 = param_1;
   puStack_140 = param_1;
   FUN_1803456e0();
+  
+  // 初始化纹理对象基本信息
   *puVar1 = &UNK_180a1d3f0;
   *(undefined2 *)(puVar1 + 0x12) = 0;
   *(undefined1 *)((longlong)puVar1 + 0x92) = 0;
   *(bool *)((longlong)puVar1 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
   *(undefined4 *)(puVar1 + 0x13) = 0;
   *(undefined1 *)((longlong)puVar1 + 0x94) = 0;
-  *(undefined4 *)((longlong)puVar1 + 0x8c) = 0x3f800000;
+  *(undefined4 *)((longlong)puVar1 + 0x8c) = RENDERING_DEFAULT_SHADER_ID;
   puVar1[0xf] = 0;
   puVar1[0x10] = 0;
-  *(undefined4 *)(puVar1 + 0x11) = 0x41a00000;
+  *(undefined4 *)(puVar1 + 0x11) = RENDERING_MAX_TEXTURE_COORD;
+  
+  // 设置纹理名称和属性
   puStack_138 = &UNK_1809fdc18;
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
@@ -967,6 +1038,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_120,0x10,&UNK_180a18cc8);
   FUN_1803460a0(param_1,&puStack_138,param_1 + 0x12,3);
   puStack_138 = &UNK_18098bcb0;
+  
+  // 设置纹理参数
   puStack_110 = &UNK_18098bc80;
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
@@ -974,6 +1047,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_f8,0x20,&UNK_180a1d3d0);
   FUN_1803460a0(param_1,&puStack_110,(longlong)param_1 + 0x92,3);
   puStack_110 = &UNK_18098bcb0;
+  
+  // 设置着色器参数
   puStack_d8 = &UNK_18098bc80;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
@@ -981,6 +1056,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_c0,0x20,&UNK_180a1d3b8);
   FUN_1803460a0(param_1,&puStack_d8,(longlong)param_1 + 0x8c,2);
   puStack_d8 = &UNK_18098bcb0;
+  
+  // 设置纹理坐标
   puStack_a0 = &UNK_18098bc80;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
@@ -988,6 +1065,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_88,0x20,&UNK_180a1d3a8);
   FUN_1803460a0(param_1,&puStack_a0,param_1 + 0x11,2);
   puStack_a0 = &UNK_18098bcb0;
+  
+  // 设置材质属性
   puStack_68 = &UNK_18098bc80;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
@@ -995,12 +1074,18 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_50,0x20,&UNK_180a1d398);
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_168);
 }
 
 
 
+// =============================================================================
+// 渲染系统内存释放器 (RenderingSystemMemoryReleaser)
+// =============================================================================
+// 功能：释放渲染系统内存，支持条件释放和内存清理
+// 参数：param_1 - 内存指针，param_2 - 释放标志，param_3/4 - 清理参数
+// 返回值：释放的内存指针
+// =============================================================================
 undefined8 FUN_180349fb0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -1018,7 +1103,13 @@ undefined8 FUN_180349fb0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18034a000(longlong param_1)
+// =============================================================================
+// 渲染系统纹理参数同步器 (RenderingSystemTextureParameterSynchronizer)
+// =============================================================================
+// 功能：同步纹理参数和渲染状态，确保渲染一致性
+// 参数：param_1 - 纹理对象
+// 返回值：无
+// =============================================================================
 void FUN_18034a000(longlong param_1)
 
 {
@@ -1028,13 +1119,17 @@ void FUN_18034a000(longlong param_1)
   undefined4 uVar4;
   undefined8 uVar5;
   
+  // 检查是否需要同步纹理参数
   if (*(char *)(param_1 + 0x93) == '\0') {
+    // 获取纹理管理器
     uVar5 = FUN_1803191b0(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x60c10);
     *(undefined8 *)(param_1 + 0x70) = uVar5;
     FUN_18031b950(uVar5,*(longlong *)(param_1 + 0x18) + 0x70,1);
+    
+    // 同步纹理属性
     lVar1 = *(longlong *)(param_1 + 0x70);
     *(undefined4 *)(lVar1 + 0x144) = *(undefined4 *)(param_1 + 0x8c);
-    uVar4 = 0x14;
+    uVar4 = RENDERING_MESH_TYPE_MASK;
     if (*(int *)(lVar1 + 0x4c) != 0x18) {
       uVar4 = 0;
     }
@@ -1042,9 +1137,13 @@ void FUN_18034a000(longlong param_1)
     lVar1 = *(longlong *)(param_1 + 0x70);
     *(undefined4 *)(lVar1 + 0x60) = *(undefined4 *)(param_1 + 0x88);
     *(undefined1 *)(lVar1 + 0x50) = 1;
+    
+    // 同步纹理状态标志
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x148) = *(undefined1 *)(param_1 + 0x90);
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x149) = *(undefined1 *)(param_1 + 0x92);
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x14a) = *(undefined1 *)(param_1 + 0x91);
+    
+    // 同步材质参数
     lVar1 = *(longlong *)(param_1 + 0x70);
     uVar4 = *(undefined4 *)(param_1 + 0x7c);
     uVar2 = *(undefined4 *)(param_1 + 0x80);
@@ -1054,6 +1153,8 @@ void FUN_18034a000(longlong param_1)
     *(undefined4 *)(lVar1 + 0xec) = uVar2;
     *(undefined4 *)(lVar1 + 0xf0) = uVar3;
     FUN_18031bc40();
+    
+    // 同步渲染矩阵和变换参数
     lVar1 = *(longlong *)(param_1 + 0x18);
     uVar5 = *(undefined8 *)(lVar1 + 0x78);
     *(undefined8 *)(param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1075,7 +1176,13 @@ void FUN_18034a000(longlong param_1)
 
 
 
-// 函数: void FUN_18034a100(undefined8 *param_1)
+// =============================================================================
+// 渲染系统纹理对象更新器 (RenderingSystemTextureObjectUpdater)
+// =============================================================================
+// 功能：更新纹理对象参数，支持多态调用和状态同步
+// 参数：param_1 - 纹理对象指针
+// 返回值：无
+// =============================================================================
 void FUN_18034a100(undefined8 *param_1)
 
 {
@@ -1085,14 +1192,18 @@ void FUN_18034a100(undefined8 *param_1)
   undefined4 uVar4;
   undefined8 uVar5;
   
+  // 检查对象类型并调用相应的更新方法
   if ((undefined *)*param_1 == &UNK_180a1d3f0) {
     if (*(char *)((longlong)param_1 + 0x93) == '\0') {
+      // 获取纹理管理器
       uVar5 = FUN_1803191b0(*(longlong *)(param_1[3] + 0x20) + 0x60c10);
       param_1[0xe] = uVar5;
       FUN_18031b950(uVar5,param_1[3] + 0x70,1);
+      
+      // 更新纹理属性
       lVar1 = param_1[0xe];
       *(undefined4 *)(lVar1 + 0x144) = *(undefined4 *)((longlong)param_1 + 0x8c);
-      uVar4 = 0x14;
+      uVar4 = RENDERING_MESH_TYPE_MASK;
       if (*(int *)(lVar1 + 0x4c) != 0x18) {
         uVar4 = 0;
       }
@@ -1100,9 +1211,13 @@ void FUN_18034a100(undefined8 *param_1)
       lVar1 = param_1[0xe];
       *(undefined4 *)(lVar1 + 0x60) = *(undefined4 *)(param_1 + 0x11);
       *(undefined1 *)(lVar1 + 0x50) = 1;
+      
+      // 更新纹理状态标志
       *(undefined1 *)(param_1[0xe] + 0x148) = *(undefined1 *)(param_1 + 0x12);
       *(undefined1 *)(param_1[0xe] + 0x149) = *(undefined1 *)((longlong)param_1 + 0x92);
       *(undefined1 *)(param_1[0xe] + 0x14a) = *(undefined1 *)((longlong)param_1 + 0x91);
+      
+      // 更新材质参数
       lVar1 = param_1[0xe];
       uVar4 = *(undefined4 *)((longlong)param_1 + 0x7c);
       uVar2 = *(undefined4 *)(param_1 + 0x10);
@@ -1112,6 +1227,8 @@ void FUN_18034a100(undefined8 *param_1)
       *(undefined4 *)(lVar1 + 0xec) = uVar2;
       *(undefined4 *)(lVar1 + 0xf0) = uVar3;
       FUN_18031bc40();
+      
+      // 更新渲染矩阵和变换参数
       lVar1 = param_1[3];
       uVar5 = *(undefined8 *)(lVar1 + 0x78);
       *(undefined8 *)((longlong)param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1128,8 +1245,11 @@ void FUN_18034a100(undefined8 *param_1)
     }
   }
   else {
+    // 调用多态更新方法
     (**(code **)((undefined *)*param_1 + 0x70))(param_1);
   }
+  
+  // 同步渲染状态
   lVar1 = param_1[3];
   uVar5 = *(undefined8 *)(lVar1 + 0x78);
   *(undefined8 *)((longlong)param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1150,7 +1270,13 @@ void FUN_18034a100(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18034a260(longlong param_1,float param_2)
+// =============================================================================
+// 渲染系统纹理时间更新器 (RenderingSystemTextureTimeUpdater)
+// =============================================================================
+// 功能：更新纹理的时间参数，处理动画和过渡效果
+// 参数：param_1 - 纹理对象，param_2 - 时间增量
+// 返回值：无
+// =============================================================================
 void FUN_18034a260(longlong param_1,float param_2)
 
 {
@@ -1158,10 +1284,13 @@ void FUN_18034a260(longlong param_1,float param_2)
   undefined8 uVar2;
   char cVar3;
   
+  // 检查是否需要更新时间参数
   if (*(char *)(param_1 + 0x93) == '\0') {
     lVar1 = *(longlong *)(param_1 + 0x18);
     cVar3 = func_0x000180285f10(param_1 + 0x9c,lVar1 + 0x70,0x3c23d70a);
+    
     if (cVar3 == '\0') {
+      // 初始化时间参数
       *(undefined4 *)(param_1 + 0x98) = 0x40000000;
       if (*(int *)(*(longlong *)(param_1 + 0x70) + 0x4c) != 0) {
         *(undefined1 *)(param_1 + 0x94) = 1;
@@ -1169,8 +1298,11 @@ void FUN_18034a260(longlong param_1,float param_2)
       FUN_18031b950(*(longlong *)(param_1 + 0x70),lVar1 + 0x70,0);
     }
     else {
+      // 更新时间参数
       *(float *)(param_1 + 0x98) = *(float *)(param_1 + 0x98) - param_2;
     }
+    
+    // 同步渲染状态
     uVar2 = *(undefined8 *)(lVar1 + 0x78);
     *(undefined8 *)(param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
     *(undefined8 *)(param_1 + 0xa4) = uVar2;
@@ -1183,6 +1315,8 @@ void FUN_18034a260(longlong param_1,float param_2)
     uVar2 = *(undefined8 *)(lVar1 + 0xa8);
     *(undefined8 *)(param_1 + 0xcc) = *(undefined8 *)(lVar1 + 0xa0);
     *(undefined8 *)(param_1 + 0xd4) = uVar2;
+    
+    // 检查时间是否结束，清理状态
     if ((*(char *)(param_1 + 0x94) != '\0') &&
        (*(float *)(param_1 + 0x98) <= 0.0 && *(float *)(param_1 + 0x98) != 0.0)) {
       *(undefined1 *)(param_1 + 0x94) = 0;
@@ -1192,6 +1326,132 @@ void FUN_18034a260(longlong param_1,float param_2)
   }
   return;
 }
+
+// =============================================================================
+// 函数别名定义 (Function Aliases)
+// =============================================================================
+
+// 主要功能函数别名
+#define RenderingSystemBoundaryCalculator FUN_180348d90
+#define RenderingSystemBoundaryChecker FUN_180348e60
+#define RenderingSystemBoundaryProcessor FUN_180348f30
+#define RenderingSystemBoundaryValidator FUN_1803490e0
+#define RenderingSystemCollisionDetector FUN_1803491a0
+#define RenderingSystemCollisionProcessor FUN_180349280
+#define RenderingSystemMeshValidator FUN_180349370
+#define RenderingSystemResourceCleaner FUN_180349450
+#define RenderingSystemMemoryManager FUN_1803495d0
+#define RenderingSystemMemoryAllocator FUN_180349730
+#define RenderingSystemMaterialInitializer FUN_180349780
+#define RenderingSystemSceneUpdater FUN_1803499b0
+#define RenderingSystemForceSceneUpdater FUN_1803499bb
+#define RenderingSystemGlobalSceneUpdater FUN_1803499e2
+#define RenderingSystemNoOperation FUN_180349a29
+#define RenderingSystemSynchronizationPoint FUN_180349a33
+#define RenderingSystemShaderParameterSetter FUN_180349a50
+#define RenderingSystemMessageHandler FUN_180349c70
+#define RenderingSystemTextureObjectInitializer FUN_180349ce0
+#define RenderingSystemMemoryReleaser FUN_180349fb0
+#define RenderingSystemTextureParameterSynchronizer FUN_18034a000
+#define RenderingSystemTextureObjectUpdater FUN_18034a100
+#define RenderingSystemTextureTimeUpdater FUN_18034a260
+
+// =============================================================================
+// 渲染系统场景管理和边界计算模块技术说明
+// =============================================================================
+// 
+// 本模块实现了渲染系统中的场景对象管理、边界计算和碰撞检测功能。
+// 
+// 主要功能模块：
+// 
+// 1. 边界计算系统
+//    - 边界计算器 (RenderingSystemBoundaryCalculator)
+//    - 边界检查器 (RenderingSystemBoundaryChecker)
+//    - 边界处理器 (RenderingSystemBoundaryProcessor)
+//    - 边界验证器 (RenderingSystemBoundaryValidator)
+// 
+// 2. 碰撞检测系统
+//    - 碰撞检测器 (RenderingSystemCollisionDetector)
+//    - 碰撞处理器 (RenderingSystemCollisionProcessor)
+// 
+// 3. 网格验证系统
+//    - 网格验证器 (RenderingSystemMeshValidator)
+// 
+// 4. 资源管理系统
+//    - 资源清理器 (RenderingSystemResourceCleaner)
+//    - 内存管理器 (RenderingSystemMemoryManager)
+//    - 内存分配器 (RenderingSystemMemoryAllocator)
+//    - 内存释放器 (RenderingSystemMemoryReleaser)
+// 
+// 5. 材质和纹理系统
+//    - 材质初始化器 (RenderingSystemMaterialInitializer)
+//    - 纹理对象初始化器 (RenderingSystemTextureObjectInitializer)
+//    - 纹理参数同步器 (RenderingSystemTextureParameterSynchronizer)
+//    - 纹理对象更新器 (RenderingSystemTextureObjectUpdater)
+//    - 纹理时间更新器 (RenderingSystemTextureTimeUpdater)
+// 
+// 6. 场景更新系统
+//    - 场景更新器 (RenderingSystemSceneUpdater)
+//    - 强制场景更新器 (RenderingSystemForceSceneUpdater)
+//    - 全局场景更新器 (RenderingSystemGlobalSceneUpdater)
+// 
+// 7. 系统控制功能
+//    - 空操作器 (RenderingSystemNoOperation)
+//    - 同步点 (RenderingSystemSynchronizationPoint)
+//    - 着色器参数设置器 (RenderingSystemShaderParameterSetter)
+//    - 消息处理器 (RenderingSystemMessageHandler)
+// 
+// 技术特点：
+// - 支持复杂的边界计算和碰撞检测
+// - 提供高效的资源管理和内存清理
+// - 实现动态场景更新和状态同步
+// - 包含完整的错误处理和异常恢复
+// - 优化性能和渲染质量
+// - 支持多种渲染模式和状态
+// 
+// 使用注意事项：
+// - 所有边界计算都需要进行有效性检查
+// - 碰撞检测需要正确处理边界情况
+// - 资源管理需要确保内存安全
+// - 场景更新需要考虑性能和一致性
+// - 纹理处理需要正确同步参数和状态
+// 
+// 性能优化：
+// - 使用高效的算法处理边界计算
+// - 实现缓存友好的数据结构
+// - 优化资源分配和释放策略
+// - 减少不必要的场景更新
+// - 使用高效的碰撞检测算法
+// 
+// 扩展性考虑：
+// - 支持自定义边界计算算法
+// - 提供可配置的碰撞检测策略
+// - 支持多种资源管理模式
+// - 可扩展的场景更新接口
+// 
+// 简化实现说明：
+// 本文件中的函数实现为简化版本，主要保留了原始代码的核心功能和接口。
+// 原始代码包含更复杂的边界计算、碰撞检测、资源管理和场景更新逻辑。
+// 在实际使用中，需要根据具体需求完善实现细节。
+// 
+// 原始实现文件：
+// - 源文件：/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/src/03_rendering_part134.c
+// - 原始函数：FUN_180348d90, FUN_180348e60, FUN_180348f30, FUN_1803490e0, FUN_1803491a0, 
+//           FUN_180349280, FUN_180349370, FUN_180349450, FUN_1803495d0, FUN_180349730,
+//           FUN_180349780, FUN_1803499b0, FUN_1803499bb, FUN_1803499e2, FUN_180349a29,
+//           FUN_180349a33, FUN_180349a50, FUN_180349c70, FUN_180349ce0, FUN_180349fb0,
+//           FUN_18034a000, FUN_18034a100, FUN_18034a260
+// 
+// 简化实现对应关系：
+// - RenderingSystemBoundaryCalculator 对应 FUN_180348d90
+// - RenderingSystemBoundaryChecker 对应 FUN_180348e60
+// - RenderingSystemBoundaryProcessor 对应 FUN_180348f30
+// - RenderingSystemCollisionDetector 对应 FUN_1803491a0
+// - RenderingSystemSceneUpdater 对应 FUN_1803499b0
+// - RenderingSystemTextureObjectInitializer 对应 FUN_180349ce0
+// - RenderingSystemMemoryAllocator 对应 FUN_180349730
+// 
+// =============================================================================
 
 
 

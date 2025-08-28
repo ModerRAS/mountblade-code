@@ -1,767 +1,738 @@
-/*
- * 渲染系统高级处理模块
- * 
- * 本模块包含渲染系统的高级处理函数，主要涉及：
- * - 渲染参数的高级处理和计算
- * - 矩阵变换和坐标转换
- * - 渲染状态管理和同步
- * - 线程安全的渲染操作
- * 
- * 函数列表：
- * 1. rendering_system_advanced_process - 渲染系统高级处理函数
- * 2. rendering_system_matrix_transform - 渲染系统矩阵变换函数
- * 3. rendering_system_state_manager - 渲染系统状态管理函数
- */
+#include "TaleWorlds.Native.Split.h"
 
-#include <stdint.h>
-#include <stdbool.h>
+// 03_rendering_part073.c - 3 个函数
 
-/* 常量定义 */
-#define RENDER_PROCESS_SUCCESS 0
-#define RENDER_PROCESS_ERROR -1
-#define RENDER_PROCESS_TIMEOUT -2
+// 函数: void FUN_18030a720(longlong param_1,undefined4 param_2,float *param_3)
+void FUN_18030a720(longlong param_1,undefined4 param_2,float *param_3)
 
-#define MATRIX_TRANSFORM_SUCCESS 0
-#define MATRIX_TRANSFORM_INVALID_PARAMS -1
-#define MATRIX_TRANSFORM_OUT_OF_BOUNDS -2
-
-#define STATE_MANAGER_SUCCESS 0
-#define STATE_MANAGER_INVALID_STATE -1
-#define STATE_MANAGER_SYNC_ERROR -2
-
-#define MAX_RENDER_OBJECTS 4096
-#define MAX_MATRIX_STACK 32
-#define MAX_STATE_BUFFERS 16
-
-#define RENDER_FLAG_ENABLE_DEPTH_TEST 0x00000001
-#define RENDER_FLAG_ENABLE_STENCIL_TEST 0x00000002
-#define RENDER_FLAG_ENABLE_BLENDING 0x00000004
-#define RENDER_FLAG_ENABLE_CULL_FACE 0x00000008
-
-#define MATRIX_TYPE_MODELVIEW 0
-#define MATRIX_TYPE_PROJECTION 1
-#define MATRIX_TYPE_TEXTURE 2
-#define MATRIX_TYPE_NORMAL 3
-
-#define STATE_TYPE_RENDER 0
-#define STATE_TYPE_TEXTURE 1
-#define STATE_TYPE_SHADER 2
-#define STATE_TYPE_BUFFER 3
-
-/* 渲染处理参数结构体 */
-typedef struct {
-    uint32_t render_flags;
-    float quality_factor;
-    float performance_factor;
-    uint32_t max_objects;
-    uint32_t active_objects;
-    float frame_time;
-    float delta_time;
-    void* user_data;
-} render_process_params_t;
-
-/* 矩阵变换参数结构体 */
-typedef struct {
-    float matrix[16];
-    uint32_t matrix_type;
-    float transform_scale[3];
-    float transform_rotation[4];
-    float transform_translation[3];
-    bool is_identity;
-    bool needs_update;
-} matrix_transform_params_t;
-
-/* 状态管理参数结构体 */
-typedef struct {
-    uint32_t state_type;
-    uint32_t state_flags;
-    void* state_data;
-    uint32_t state_size;
-    bool is_dirty;
-    bool is_locked;
-    uint32_t sync_count;
-} state_manager_params_t;
-
-/* 渲染对象结构体 */
-typedef struct {
-    uint32_t object_id;
-    uint32_t render_flags;
-    float position[3];
-    float rotation[4];
-    float scale[3];
-    void* render_data;
-    uint32_t data_size;
-    bool is_visible;
-    bool is_active;
-} render_object_t;
-
-/* 矩阵堆栈结构体 */
-typedef struct {
-    float matrices[MAX_MATRIX_STACK][16];
-    uint32_t current_index;
-    uint32_t stack_size;
-    uint32_t matrix_type;
-} matrix_stack_t;
-
-/* 状态缓冲区结构体 */
-typedef struct {
-    void* buffer_data;
-    uint32_t buffer_size;
-    uint32_t buffer_type;
-    bool is_mapped;
-    bool is_dirty;
-    uint32_t sync_count;
-} state_buffer_t;
-
-/* 渲染系统高级处理函数
- * 
- * 功能：执行渲染系统的高级处理操作，包括：
- * - 渲染参数的深度处理和优化
- * - 多线程渲染任务调度
- * - 渲染性能监控和调整
- * - 渲染错误检测和恢复
- * 
- * 参数：
- * - render_context：渲染上下文指针
- * - render_params：渲染参数指针
- * - process_params：处理参数结构体
- * - callback_func：回调函数指针
- * 
- * 返回值：
- * - 0：处理成功
- * - -1：处理失败
- * - -2：处理超时
- */
-int rendering_system_advanced_process(void* render_context, void* render_params, render_process_params_t* process_params, void* callback_func) {
-    /* 参数有效性检查 */
-    if (render_context == (void*)0x0 || render_params == (void*)0x0 || process_params == (void*)0x0) {
-        return RENDER_PROCESS_ERROR;
-    }
-    
-    /* 渲染上下文初始化检查 */
-    if (*(uint32_t*)((uint64_t)render_context + 0x18) == 0) {
-        return RENDER_PROCESS_ERROR;
-    }
-    
-    /* 渲染参数验证 */
-    uint32_t render_flags = *(uint32_t*)((uint64_t)render_params + 0x8);
-    if ((render_flags & 0x80000000) != 0) {
-        return RENDER_PROCESS_ERROR;
-    }
-    
-    /* 处理参数验证 */
-    if (process_params->max_objects > MAX_RENDER_OBJECTS) {
-        return RENDER_PROCESS_ERROR;
-    }
-    
-    /* 质量因子和性能因子调整 */
-    float quality_factor = process_params->quality_factor;
-    float performance_factor = process_params->performance_factor;
-    
-    if (quality_factor < 0.0f || quality_factor > 1.0f) {
-        quality_factor = 1.0f;
-    }
-    
-    if (performance_factor < 0.0f || performance_factor > 1.0f) {
-        performance_factor = 1.0f;
-    }
-    
-    /* 渲染标志位处理 */
-    uint32_t processed_flags = render_flags;
-    if (quality_factor > 0.8f) {
-        processed_flags |= RENDER_FLAG_ENABLE_DEPTH_TEST;
-    }
-    
-    if (performance_factor > 0.8f) {
-        processed_flags &= ~RENDER_FLAG_ENABLE_STENCIL_TEST;
-    }
-    
-    /* 渲染对象处理 */
-    uint32_t object_count = process_params->active_objects;
-    if (object_count > 0) {
-        /* 对象批处理优化 */
-        uint32_t batch_size = object_count / 4;
-        if (batch_size == 0) batch_size = 1;
-        
-        for (uint32_t i = 0; i < object_count; i += batch_size) {
-            uint32_t current_batch = (i + batch_size > object_count) ? (object_count - i) : batch_size;
-            
-            /* 批处理渲染对象 */
-            int batch_result = rendering_system_process_batch(render_context, render_params, i, current_batch, processed_flags);
-            if (batch_result != RENDER_PROCESS_SUCCESS) {
-                return batch_result;
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  undefined8 *puVar14;
+  longlong *plVar15;
+  char cVar16;
+  int iVar17;
+  float *pfVar18;
+  int iVar19;
+  longlong *plVar20;
+  longlong lVar21;
+  longlong lVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  float fVar30;
+  float fVar31;
+  float fVar32;
+  float fVar33;
+  float fVar34;
+  float fVar35;
+  float fVar36;
+  float fVar37;
+  float fVar38;
+  undefined8 uStackX_8;
+  float fStack_98;
+  float fStack_94;
+  float fStack_90;
+  float fStack_8c;
+  float fStack_88;
+  float fStack_84;
+  float fStack_80;
+  float fStack_7c;
+  float fStack_78;
+  float fStack_74;
+  float fStack_70;
+  float fStack_6c;
+  float fStack_68;
+  float fStack_64;
+  float fStack_60;
+  float fStack_5c;
+  
+  if (((*(char *)(param_1 + 0xbd) == '\0') &&
+      (lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x28) + 0x20),
+      *(char *)(lVar13 + 0x3f61) != '\0')) && (*(int *)(_DAT_180c86920 + 0x620) != -1)) {
+    puVar14 = *(undefined8 **)(param_1 + 0x48);
+    if (*(int *)(param_1 + 0x30) == *(int *)(puVar14[0x79] + 0x10)) {
+      if (*(char *)(param_1 + 0x42) != '\0') {
+        if ((undefined *)*puVar14 == &UNK_180a169b8) {
+          pfVar18 = (float *)(puVar14 + 0x66);
+        }
+        else {
+          pfVar18 = (float *)(**(code **)((undefined *)*puVar14 + 0x158))(puVar14);
+        }
+        fVar35 = *param_3;
+        fVar36 = param_3[1];
+        fVar37 = param_3[2];
+        fVar3 = param_3[3];
+        fVar4 = param_3[4];
+        fVar5 = param_3[5];
+        fVar6 = param_3[6];
+        fVar7 = param_3[7];
+        fVar8 = param_3[8];
+        fVar9 = param_3[9];
+        fVar10 = param_3[10];
+        fVar11 = param_3[0xb];
+        fVar38 = pfVar18[1];
+        fVar1 = *pfVar18;
+        fVar2 = pfVar18[2];
+        fVar23 = fVar38 * fVar4 + fVar1 * fVar35 + fVar2 * fVar8;
+        fVar24 = fVar38 * fVar5 + fVar1 * fVar36 + fVar2 * fVar9;
+        fVar25 = fVar38 * fVar6 + fVar1 * fVar37 + fVar2 * fVar10;
+        fVar26 = fVar38 * fVar7 + fVar1 * fVar3 + fVar2 * fVar11;
+        fVar38 = pfVar18[5];
+        fVar1 = pfVar18[4];
+        fVar2 = pfVar18[6];
+        fVar27 = fVar38 * fVar4 + fVar1 * fVar35 + fVar2 * fVar8;
+        fVar28 = fVar38 * fVar5 + fVar1 * fVar36 + fVar2 * fVar9;
+        fVar29 = fVar38 * fVar6 + fVar1 * fVar37 + fVar2 * fVar10;
+        fVar30 = fVar38 * fVar7 + fVar1 * fVar3 + fVar2 * fVar11;
+        fVar38 = pfVar18[9];
+        fVar1 = pfVar18[8];
+        fVar2 = pfVar18[10];
+        fVar31 = fVar38 * fVar4 + fVar1 * fVar35 + fVar2 * fVar8;
+        fVar32 = fVar38 * fVar5 + fVar1 * fVar36 + fVar2 * fVar9;
+        fVar33 = fVar38 * fVar6 + fVar1 * fVar37 + fVar2 * fVar10;
+        fVar34 = fVar38 * fVar7 + fVar1 * fVar3 + fVar2 * fVar11;
+        fVar38 = pfVar18[0xd];
+        fVar1 = pfVar18[0xc];
+        fVar2 = pfVar18[0xe];
+        fVar35 = fVar38 * fVar4 + fVar1 * fVar35 + fVar2 * fVar8 + param_3[0xc];
+        fVar36 = fVar38 * fVar5 + fVar1 * fVar36 + fVar2 * fVar9 + param_3[0xd];
+        fVar37 = fVar38 * fVar6 + fVar1 * fVar37 + fVar2 * fVar10 + param_3[0xe];
+        fVar38 = fVar38 * fVar7 + fVar1 * fVar3 + fVar2 * fVar11 + param_3[0xf];
+        iVar17 = (int)(*(longlong *)(param_1 + 0x58) - *(longlong *)(param_1 + 0x50) >> 3);
+        if (0 < iVar17) {
+          lVar22 = 0;
+          do {
+            fStack_98 = fVar23;
+            fStack_94 = fVar24;
+            fStack_90 = fVar25;
+            fStack_8c = fVar26;
+            fStack_88 = fVar27;
+            fStack_84 = fVar28;
+            fStack_80 = fVar29;
+            fStack_7c = fVar30;
+            fStack_78 = fVar31;
+            fStack_74 = fVar32;
+            fStack_70 = fVar33;
+            fStack_6c = fVar34;
+            fStack_68 = fVar35;
+            fStack_64 = fVar36;
+            fStack_60 = fVar37;
+            fStack_5c = fVar38;
+            if (*(longlong *)(param_1 + 0x38) == 0) {
+              plVar15 = *(longlong **)(*(longlong *)(param_1 + 0x48) + 0x38);
+              lVar21 = 0;
+              iVar19 = (int)(*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x40) - (longlong)plVar15
+                            >> 4);
+              if (0 < iVar19) {
+                plVar20 = plVar15;
+                do {
+                  if (*(longlong *)(*(longlong *)(param_1 + 0x50) + lVar22 * 8) ==
+                      *(longlong *)(*plVar20 + 0x118)) {
+                    lVar21 = plVar15[lVar21 * 2];
+                    fVar1 = *(float *)(lVar21 + 0x124);
+                    fVar2 = *(float *)(lVar21 + 0x120);
+                    fVar3 = *(float *)(lVar21 + 0x128);
+                    fVar4 = *(float *)(lVar21 + 0x134);
+                    fVar5 = *(float *)(lVar21 + 0x130);
+                    fVar6 = *(float *)(lVar21 + 0x138);
+                    fVar7 = *(float *)(lVar21 + 0x144);
+                    fVar8 = *(float *)(lVar21 + 0x140);
+                    fVar9 = *(float *)(lVar21 + 0x148);
+                    fVar10 = *(float *)(lVar21 + 0x154);
+                    fVar11 = *(float *)(lVar21 + 0x150);
+                    fVar12 = *(float *)(lVar21 + 0x158);
+                    fStack_98 = fVar1 * fVar27 + fVar2 * fVar23 + fVar3 * fVar31;
+                    fStack_94 = fVar1 * fVar28 + fVar2 * fVar24 + fVar3 * fVar32;
+                    fStack_90 = fVar1 * fVar29 + fVar2 * fVar25 + fVar3 * fVar33;
+                    fStack_8c = fVar1 * fVar30 + fVar2 * fVar26 + fVar3 * fVar34;
+                    fStack_88 = fVar4 * fVar27 + fVar5 * fVar23 + fVar6 * fVar31;
+                    fStack_84 = fVar4 * fVar28 + fVar5 * fVar24 + fVar6 * fVar32;
+                    fStack_80 = fVar4 * fVar29 + fVar5 * fVar25 + fVar6 * fVar33;
+                    fStack_7c = fVar4 * fVar30 + fVar5 * fVar26 + fVar6 * fVar34;
+                    fStack_78 = fVar7 * fVar27 + fVar8 * fVar23 + fVar9 * fVar31;
+                    fStack_74 = fVar7 * fVar28 + fVar8 * fVar24 + fVar9 * fVar32;
+                    fStack_70 = fVar7 * fVar29 + fVar8 * fVar25 + fVar9 * fVar33;
+                    fStack_6c = fVar7 * fVar30 + fVar8 * fVar26 + fVar9 * fVar34;
+                    fStack_68 = fVar10 * fVar27 + fVar11 * fVar23 + fVar12 * fVar31 + fVar35;
+                    fStack_64 = fVar10 * fVar28 + fVar11 * fVar24 + fVar12 * fVar32 + fVar36;
+                    fStack_60 = fVar10 * fVar29 + fVar11 * fVar25 + fVar12 * fVar33 + fVar37;
+                    fStack_5c = fVar10 * fVar30 + fVar11 * fVar26 + fVar12 * fVar34 + fVar38;
+                    break;
+                  }
+                  lVar21 = lVar21 + 1;
+                  plVar20 = plVar20 + 2;
+                } while (lVar21 < iVar19);
+              }
             }
+            FUN_180309bd0(*(undefined8 *)(*(longlong *)(param_1 + 0x50) + lVar22 * 8),param_2,
+                          *(undefined4 *)(lVar13 + 0x60),*(undefined1 *)(param_1 + 0x44),&fStack_98)
+            ;
+            lVar22 = lVar22 + 1;
+          } while (lVar22 < iVar17);
         }
+      }
     }
-    
-    /* 性能监控和调整 */
-    if (process_params->frame_time > 16.67f) { /* 60 FPS 阈值 */
-        /* 降低质量以提高性能 */
-        quality_factor *= 0.9f;
-        processed_flags &= ~RENDER_FLAG_ENABLE_BLENDING;
+    else {
+      uStackX_8 = 0;
+      cVar16 = FUN_1800f5a90(*(int *)(puVar14[0x79] + 0x10),param_1,param_3,&uStackX_8);
+      if (cVar16 != '\0') {
+        *(undefined4 *)(param_1 + 0x30) =
+             *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x3c8) + 0x10);
+      }
     }
-    
-    /* 回调函数调用 */
-    if (callback_func != (void*)0x0) {
-        int callback_result = ((int(*)(void*, void*, uint32_t))callback_func)(render_context, render_params, processed_flags);
-        if (callback_result != 0) {
-            return callback_result;
-        }
-    }
-    
-    /* 清理和同步操作 */
-    rendering_system_cleanup_process(render_context, render_params);
-    
-    return RENDER_PROCESS_SUCCESS;
+  }
+  return;
 }
 
-/* 渲染系统批处理函数
- * 
- * 功能：批量处理渲染对象，优化渲染性能
- * 
- * 参数：
- * - render_context：渲染上下文指针
- * - render_params：渲染参数指针
- * - start_index：起始索引
- * - batch_size：批处理大小
- * - render_flags：渲染标志
- * 
- * 返回值：
- * - 0：批处理成功
- * - -1：批处理失败
- */
-static int rendering_system_process_batch(void* render_context, void* render_params, uint32_t start_index, uint32_t batch_size, uint32_t render_flags) {
-    /* 批处理对象数据获取 */
-    render_object_t* objects = (render_object_t*)((uint64_t)render_params + 0x20);
-    
-    /* 批处理循环 */
-    for (uint32_t i = 0; i < batch_size; i++) {
-        render_object_t* obj = &objects[start_index + i];
-        
-        /* 对象可见性检查 */
-        if (!obj->is_visible) {
-            continue;
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *param_4,char param_5,
+void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *param_4,char param_5,
+                  undefined4 param_6,undefined4 param_7,int param_8,undefined4 param_9)
+
+{
+  float fVar1;
+  char cVar2;
+  code *pcVar3;
+  longlong lVar4;
+  bool bVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  undefined8 uVar18;
+  undefined8 uVar19;
+  int iVar20;
+  float *pfVar21;
+  uint uVar22;
+  uint uVar23;
+  uint uVar24;
+  longlong lVar25;
+  longlong lVar26;
+  longlong lVar27;
+  float fVar28;
+  float fVar29;
+  float fVar30;
+  float fVar31;
+  float fVar32;
+  float fVar33;
+  float fStack_b8;
+  float fStack_b4;
+  float fStack_b0;
+  float fStack_ac;
+  float fStack_a8;
+  float fStack_a4;
+  float fStack_a0;
+  float fStack_9c;
+  float fStack_98;
+  float fStack_94;
+  float fStack_90;
+  float fStack_8c;
+  float fStack_88;
+  float fStack_84;
+  float fStack_80;
+  float fStack_7c;
+  float fStack_78;
+  float fStack_74;
+  float fStack_70;
+  float fStack_6c;
+  
+  if (*(char *)(param_1 + 0x42) != '\0') {
+    pcVar3 = *(code **)(**(longlong **)(param_1 + 0x48) + 0x158);
+    if (pcVar3 == (code *)&UNK_18027d980) {
+      pfVar21 = (float *)(*(longlong **)(param_1 + 0x48) + 0x66);
+    }
+    else {
+      pfVar21 = (float *)(*pcVar3)();
+    }
+    fVar6 = *param_4;
+    fVar7 = param_4[1];
+    fVar8 = param_4[2];
+    fVar9 = param_4[3];
+    fVar10 = param_4[4];
+    fVar11 = param_4[5];
+    fVar12 = param_4[6];
+    fVar13 = param_4[7];
+    fVar14 = param_4[8];
+    fVar15 = param_4[9];
+    fVar16 = param_4[10];
+    fVar17 = param_4[0xb];
+    fVar28 = pfVar21[1];
+    fVar31 = *pfVar21;
+    fVar30 = pfVar21[2];
+    fVar29 = pfVar21[5];
+    fVar32 = pfVar21[9];
+    fVar33 = pfVar21[0xd];
+    fVar1 = pfVar21[4];
+    fStack_a8 = fVar28 * fVar10 + fVar31 * fVar6 + fVar30 * fVar14;
+    fStack_a4 = fVar28 * fVar11 + fVar31 * fVar7 + fVar30 * fVar15;
+    fStack_a0 = fVar28 * fVar12 + fVar31 * fVar8 + fVar30 * fVar16;
+    fStack_9c = fVar28 * fVar13 + fVar31 * fVar9 + fVar30 * fVar17;
+    fVar28 = pfVar21[6];
+    fVar31 = pfVar21[8];
+    fStack_98 = fVar29 * fVar10 + fVar1 * fVar6 + fVar28 * fVar14;
+    fStack_94 = fVar29 * fVar11 + fVar1 * fVar7 + fVar28 * fVar15;
+    fStack_90 = fVar29 * fVar12 + fVar1 * fVar8 + fVar28 * fVar16;
+    fStack_8c = fVar29 * fVar13 + fVar1 * fVar9 + fVar28 * fVar17;
+    fVar28 = pfVar21[10];
+    fVar30 = pfVar21[0xc];
+    fStack_88 = fVar32 * fVar10 + fVar31 * fVar6 + fVar28 * fVar14;
+    fStack_84 = fVar32 * fVar11 + fVar31 * fVar7 + fVar28 * fVar15;
+    fStack_80 = fVar32 * fVar12 + fVar31 * fVar8 + fVar28 * fVar16;
+    fStack_7c = fVar32 * fVar13 + fVar31 * fVar9 + fVar28 * fVar17;
+    fVar28 = pfVar21[0xe];
+    fStack_78 = fVar33 * fVar10 + fVar30 * fVar6 + fVar28 * fVar14 + param_4[0xc];
+    fStack_74 = fVar33 * fVar11 + fVar30 * fVar7 + fVar28 * fVar15 + param_4[0xd];
+    fStack_70 = fVar33 * fVar12 + fVar30 * fVar8 + fVar28 * fVar16 + param_4[0xe];
+    fStack_6c = fVar33 * fVar13 + fVar30 * fVar9 + fVar28 * fVar17 + param_4[0xf];
+    if (((*(char *)(param_3 + 0x3f61) != '\0') && ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0)) &&
+       (*(int *)(_DAT_180c86920 + 0x620) != -1)) {
+      if (param_8 <= *(int *)(_DAT_180c8a980 + 0x2f8)) {
+        *(undefined1 *)(param_1 + 0x44) = 1;
+      }
+      lVar27 = *(longlong *)(param_1 + 0x48);
+      if (*(int *)(lVar27 + 0x328) == *(int *)(_DAT_180c86870 + 0x224)) {
+        if (((*(char *)(param_1 + 0xbc) == '\0') &&
+            ((*(byte *)(*(longlong *)(lVar27 + 0x3c8) + 0x28) & 1) == 0)) &&
+           (*(int *)(_DAT_180c86870 + 0x224) + -1 != param_8)) {
+          *(undefined1 *)(param_1 + 0x44) = 1;
         }
-        
-        /* 对象渲染状态更新 */
-        if ((render_flags & RENDER_FLAG_ENABLE_CULL_FACE) != 0) {
-            /* 背面剔除处理 */
-            if (!rendering_system_check_face_culling(obj)) {
-                continue;
+        if (*(int *)(param_1 + 0x30) == *(int *)(*(longlong *)(lVar27 + 0x3c8) + 0x10)) {
+          fVar28 = (fStack_74 * 2.3 + fStack_78 * 1.7) * 8.0 + (float)_DAT_180c8ed30 * 8e-05;
+          uVar22 = (uint)fVar28;
+          uVar23 = uVar22 & 0x800000ff;
+          if ((int)uVar23 < 0) {
+            uVar23 = (uVar23 - 1 | 0xffffff00) + 1;
+          }
+          pfVar21 = *(float **)(param_3 + 0x81f0);
+          uVar24 = uVar23 + 1 & 0x800000ff;
+          if ((int)uVar24 < 0) {
+            uVar24 = (uVar24 - 1 | 0xffffff00) + 1;
+          }
+          fVar28 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar24 * 4) -
+                    *(float *)(&UNK_180a18120 + (longlong)(int)uVar23 * 4)) *
+                    (fVar28 - (float)(int)uVar22) +
+                   *(float *)(&UNK_180a18120 + (longlong)(int)uVar23 * 4)) * *pfVar21 + 1.0;
+          if (*(int *)(param_1 + 0x70) == 1) {
+            fVar31 = pfVar21[3];
+            fVar29 = fVar31 * *(float *)(param_1 + 0x7c) * fVar28;
+            fVar33 = fVar31 * *(float *)(param_1 + 0x74) * fVar28;
+            _fStack_b0 = CONCAT44(0x7f7fffff,fVar29);
+            fVar31 = fVar31 * *(float *)(param_1 + 0x78) * fVar28;
+          }
+          else if (*(int *)(param_1 + 0x70) == 2) {
+            fVar30 = *(float *)(param_1 + 0x78);
+            fVar32 = *(float *)(param_1 + 0x74);
+            fVar1 = *(float *)(param_1 + 0x7c);
+            fVar31 = fVar28 * pfVar21[3];
+            fVar29 = (fStack_84 * fVar30 + fStack_88 * fVar32 + fStack_80 * fVar1) * fVar31;
+            fVar33 = (fStack_a4 * fVar30 + fStack_a8 * fVar32 + fStack_a0 * fVar1) * fVar31;
+            _fStack_b0 = CONCAT44(fStack_7c * fVar30 + fStack_7c * fVar32 + fStack_7c * fVar1,fVar29
+                                 );
+            fVar31 = (fStack_94 * fVar30 + fStack_98 * fVar32 + fStack_90 * fVar1) * fVar31;
+          }
+          else {
+            fVar32 = pfVar21[3] * pfVar21[2];
+            fVar30 = pfVar21[3] * pfVar21[1];
+            fVar33 = fVar32 * fStack_a4 + fStack_a8 * fVar30 + fStack_a0 * 0.0;
+            fVar31 = fVar32 * fStack_94 + fStack_98 * fVar30 + fStack_90 * 0.0;
+            fVar29 = fVar32 * fStack_84 + fStack_88 * fVar30 + fStack_80 * 0.0;
+            _fStack_b0 = CONCAT44(fVar32 * fStack_7c + fStack_7c * fVar30 + fStack_7c * 0.0,fVar29);
+          }
+          uVar19 = _fStack_b0;
+          _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
+          _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
+          uVar22 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+          _DAT_180bf65b8 = uVar22 << 0xd ^ uVar22;
+          _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
+          _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+          fVar30 = SQRT(fVar31 * fVar31 + fVar33 * fVar33 + fVar29 * fVar29);
+          _fStack_b8 = CONCAT44(fVar31 + ((float)(_DAT_180bf65b8 - 1) * 4.656613e-11 - 0.1) * fVar30
+                                ,fVar33 + ((float)(uVar22 - 1) * 4.656613e-11 - 0.1) * fVar30);
+          uVar18 = _fStack_b8;
+          if (*(longlong *)(param_1 + 0x38) == 0) {
+            bVar5 = true;
+            iVar20 = (int)(*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x40) -
+                           *(longlong *)(*(longlong *)(param_1 + 0x48) + 0x38) >> 4);
+            lVar27 = (longlong)iVar20;
+            if (0 < iVar20) {
+              lVar25 = 0;
+              do {
+                lVar26 = *(longlong *)(lVar25 + *(longlong *)(*(longlong *)(param_1 + 0x48) + 0x38))
+                ;
+                lVar4 = *(longlong *)(lVar26 + 0x118);
+                if (lVar4 != 0) {
+                  if (*(int *)(lVar4 + 0x118) < 1) {
+                    bVar5 = false;
+                  }
+                  else {
+                    *(undefined4 *)(lVar4 + 0x110) = param_9;
+                    _fStack_b8 = uVar18;
+                    _fStack_b0 = uVar19;
+                    FUN_18024c560(param_2,lVar26,(int)param_5,param_6,param_7,&fStack_a8,
+                                  *(undefined1 *)(param_1 + 0x44),&fStack_b8,fVar28,
+                                  *(undefined4 *)(param_1 + 0xb8));
+                    *(undefined4 *)(lVar4 + 0x118) = 0;
+                  }
+                }
+                lVar25 = lVar25 + 0x10;
+                lVar27 = lVar27 + -1;
+              } while (lVar27 != 0);
             }
-        }
-        
-        /* 对象渲染调用 */
-        int render_result = rendering_system_render_object(render_context, obj, render_flags);
-        if (render_result != 0) {
-            return render_result;
-        }
-    }
-    
-    return 0;
-}
-
-/* 渲染系统清理函数
- * 
- * 功能：清理渲染处理过程中的临时资源
- * 
- * 参数：
- * - render_context：渲染上下文指针
- * - render_params：渲染参数指针
- */
-static void rendering_system_cleanup_process(void* render_context, void* render_params) {
-    /* 清理临时缓冲区 */
-    void* temp_buffer = *(void**)((uint64_t)render_params + 0x40);
-    if (temp_buffer != (void*)0x0) {
-        rendering_system_free_buffer(temp_buffer);
-        *(void**)((uint64_t)render_params + 0x40) = (void*)0x0;
-    }
-    
-    /* 重置渲染状态 */
-    *(uint32_t*)((uint64_t)render_context + 0x100) = 0;
-    
-    /* 同步渲染操作 */
-    rendering_system_sync_operations(render_context);
-}
-
-/* 渲染系统矩阵变换函数
- * 
- * 功能：执行渲染系统的矩阵变换操作，包括：
- * - 模型视图矩阵变换
- * - 投影矩阵变换
- * - 纹理矩阵变换
- * - 法线矩阵变换
- * 
- * 参数：
- * - matrix_stack：矩阵堆栈指针
- * - transform_params：变换参数结构体
- * - matrix_type：矩阵类型
- * 
- * 返回值：
- * - 0：变换成功
- * - -1：变换参数无效
- * - -2：变换超出范围
- */
-int rendering_system_matrix_transform(matrix_stack_t* matrix_stack, matrix_transform_params_t* transform_params, uint32_t matrix_type) {
-    /* 参数有效性检查 */
-    if (matrix_stack == (matrix_stack_t*)0x0 || transform_params == (matrix_transform_params_t*)0x0) {
-        return MATRIX_TRANSFORM_INVALID_PARAMS;
-    }
-    
-    /* 矩阵类型验证 */
-    if (matrix_type > MATRIX_TYPE_NORMAL) {
-        return MATRIX_TRANSFORM_INVALID_PARAMS;
-    }
-    
-    /* 矩阵堆栈有效性检查 */
-    if (matrix_stack->current_index >= MAX_MATRIX_STACK) {
-        return MATRIX_TRANSFORM_OUT_OF_BOUNDS;
-    }
-    
-    /* 单位矩阵检查 */
-    if (transform_params->is_identity) {
-        /* 设置单位矩阵 */
-        for (int i = 0; i < 16; i++) {
-            transform_params->matrix[i] = (i % 5 == 0) ? 1.0f : 0.0f;
-        }
-        return MATRIX_TRANSFORM_SUCCESS;
-    }
-    
-    /* 矩阵变换计算 */
-    float result_matrix[16];
-    
-    /* 缩放变换 */
-    float scale_matrix[16] = {0};
-    scale_matrix[0] = transform_params->transform_scale[0];
-    scale_matrix[5] = transform_params->transform_scale[1];
-    scale_matrix[10] = transform_params->transform_scale[2];
-    scale_matrix[15] = 1.0f;
-    
-    /* 旋转变换 */
-    float rotation_matrix[16] = {0};
-    float qx = transform_params->transform_rotation[0];
-    float qy = transform_params->transform_rotation[1];
-    float qz = transform_params->transform_rotation[2];
-    float qw = transform_params->transform_rotation[3];
-    
-    rotation_matrix[0] = 1.0f - 2.0f * (qy * qy + qz * qz);
-    rotation_matrix[1] = 2.0f * (qx * qy - qw * qz);
-    rotation_matrix[2] = 2.0f * (qx * qz + qw * qy);
-    rotation_matrix[4] = 2.0f * (qx * qy + qw * qz);
-    rotation_matrix[5] = 1.0f - 2.0f * (qx * qx + qz * qz);
-    rotation_matrix[6] = 2.0f * (qy * qz - qw * qx);
-    rotation_matrix[8] = 2.0f * (qx * qz - qw * qy);
-    rotation_matrix[9] = 2.0f * (qy * qz + qw * qx);
-    rotation_matrix[10] = 1.0f - 2.0f * (qx * qx + qy * qy);
-    rotation_matrix[15] = 1.0f;
-    
-    /* 平移变换 */
-    float translation_matrix[16] = {0};
-    translation_matrix[0] = 1.0f;
-    translation_matrix[5] = 1.0f;
-    translation_matrix[10] = 1.0f;
-    translation_matrix[12] = transform_params->transform_translation[0];
-    translation_matrix[13] = transform_params->transform_translation[1];
-    translation_matrix[14] = transform_params->transform_translation[2];
-    translation_matrix[15] = 1.0f;
-    
-    /* 矩阵乘法：缩放 * 旋转 */
-    rendering_system_multiply_matrices(scale_matrix, rotation_matrix, result_matrix);
-    
-    /* 矩阵乘法：(缩放 * 旋转) * 平移 */
-    float final_matrix[16];
-    rendering_system_multiply_matrices(result_matrix, translation_matrix, final_matrix);
-    
-    /* 根据矩阵类型进行特殊处理 */
-    switch (matrix_type) {
-        case MATRIX_TYPE_PROJECTION:
-            /* 投影矩阵特殊处理 */
-            rendering_system_apply_projection_transform(final_matrix, transform_params);
-            break;
-            
-        case MATRIX_TYPE_TEXTURE:
-            /* 纹理矩阵特殊处理 */
-            rendering_system_apply_texture_transform(final_matrix, transform_params);
-            break;
-            
-        case MATRIX_TYPE_NORMAL:
-            /* 法线矩阵计算（逆转置） */
-            rendering_system_calculate_normal_matrix(final_matrix, transform_params->matrix);
-            break;
-            
-        default:
-            /* 模型视图矩阵直接使用 */
-            for (int i = 0; i < 16; i++) {
-                transform_params->matrix[i] = final_matrix[i];
+            if ((*(char *)(param_1 + 0x44) != '\0') && (bVar5)) {
+              *(undefined1 *)(param_1 + 0x44) = 0;
             }
-            break;
-    }
-    
-    /* 矩阵堆栈操作 */
-    if (matrix_stack->current_index > 0) {
-        /* 与当前栈顶矩阵相乘 */
-        float* current_matrix = matrix_stack->matrices[matrix_stack->current_index - 1];
-        rendering_system_multiply_matrices(current_matrix, transform_params->matrix, result_matrix);
-        
-        /* 将结果存入变换参数 */
-        for (int i = 0; i < 16; i++) {
-            transform_params->matrix[i] = result_matrix[i];
-        }
-    }
-    
-    /* 压入矩阵堆栈 */
-    if (matrix_stack->current_index < MAX_MATRIX_STACK) {
-        for (int i = 0; i < 16; i++) {
-            matrix_stack->matrices[matrix_stack->current_index][i] = transform_params->matrix[i];
-        }
-        matrix_stack->current_index++;
-    }
-    
-    /* 更新矩阵类型 */
-    matrix_stack->matrix_type = matrix_type;
-    
-    return MATRIX_TRANSFORM_SUCCESS;
-}
-
-/* 矩阵乘法函数
- * 
- * 功能：执行4x4矩阵乘法运算
- * 
- * 参数：
- * - matrix_a：第一个矩阵
- * - matrix_b：第二个矩阵
- * - result：结果矩阵
- */
-static void rendering_system_multiply_matrices(const float* matrix_a, const float* matrix_b, float* result) {
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            result[i * 4 + j] = 0.0f;
-            for (int k = 0; k < 4; k++) {
-                result[i * 4 + j] += matrix_a[i * 4 + k] * matrix_b[k * 4 + j];
+          }
+          else {
+            lVar27 = *(longlong *)(*(longlong *)(param_1 + 0x38) + 0x118);
+            if (0 < *(int *)(lVar27 + 0x118)) {
+              cVar2 = *(char *)(lVar27 + 0x13d);
+              *(undefined4 *)(lVar27 + 0x110) = param_9;
+              FUN_18024c560(param_2,*(undefined8 *)(param_1 + 0x38),(int)param_5,param_6,param_7,
+                            &fStack_a8,*(undefined1 *)(param_1 + 0x44),&fStack_b8,fVar28,
+                            *(undefined4 *)(param_1 + 0xb8));
+              lVar25 = 0;
+              if (((cVar2 == '\0') && (*(char *)(lVar27 + 0x13d) == '\x01')) &&
+                 (iVar20 = (int)(*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x40) -
+                                 *(longlong *)(*(longlong *)(param_1 + 0x48) + 0x38) >> 4),
+                 lVar26 = (longlong)iVar20, 0 < iVar20)) {
+                do {
+                  lVar4 = *(longlong *)
+                           (*(longlong *)
+                             (*(longlong *)(*(longlong *)(param_1 + 0x48) + 0x38) + lVar25) + 0x118)
+                  ;
+                  if (lVar4 != 0) {
+                    *(undefined1 *)(lVar4 + 0x13d) = 1;
+                  }
+                  lVar25 = lVar25 + 0x10;
+                  lVar26 = lVar26 + -1;
+                } while (lVar26 != 0);
+              }
+              *(undefined1 *)(param_1 + 0x44) = 0;
+              *(undefined4 *)(lVar27 + 0x118) = 0;
             }
+          }
         }
+      }
     }
+  }
+  return;
 }
 
-/* 投影矩阵变换函数
- * 
- * 功能：应用投影矩阵的特殊变换
- * 
- * 参数：
- * - matrix：矩阵指针
- * - transform_params：变换参数
- */
-static void rendering_system_apply_projection_transform(float* matrix, matrix_transform_params_t* transform_params) {
-    /* 投影矩阵的近平面和远平面处理 */
-    float near_plane = 0.1f;
-    float far_plane = 1000.0f;
-    
-    /* 透视投影修正 */
-    matrix[10] = -(far_plane + near_plane) / (far_plane - near_plane);
-    matrix[11] = -1.0f;
-    matrix[14] = -(2.0f * far_plane * near_plane) / (far_plane - near_plane);
-    matrix[15] = 0.0f;
-}
 
-/* 纹理矩阵变换函数
- * 
- * 功能：应用纹理矩阵的特殊变换
- * 
- * 参数：
- * - matrix：矩阵指针
- * - transform_params：变换参数
- */
-static void rendering_system_apply_texture_transform(float* matrix, matrix_transform_params_t* transform_params) {
-    /* 纹理坐标范围调整 [0,1] */
-    matrix[0] *= 0.5f;
-    matrix[5] *= 0.5f;
-    matrix[12] += 0.5f;
-    matrix[13] += 0.5f;
-}
 
-/* 法线矩阵计算函数
- * 
- * 功能：计算法线矩阵（逆转置矩阵）
- * 
- * 参数：
- * - modelview_matrix：模型视图矩阵
- * - normal_matrix：法线矩阵输出
- */
-static void rendering_system_calculate_normal_matrix(const float* modelview_matrix, float* normal_matrix) {
-    /* 计算3x3子矩阵的逆转置 */
-    float m[3][3] = {
-        {modelview_matrix[0], modelview_matrix[1], modelview_matrix[2]},
-        {modelview_matrix[4], modelview_matrix[5], modelview_matrix[6]},
-        {modelview_matrix[8], modelview_matrix[9], modelview_matrix[10]}
-    };
-    
-    /* 计算行列式 */
-    float det = m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
-                m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
-                m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
-    
-    /* 避免除零 */
-    if (fabs(det) < 1e-6f) {
-        det = 1e-6f;
-    }
-    
-    /* 计算逆转置矩阵 */
-    float inv_det = 1.0f / det;
-    
-    normal_matrix[0] = (m[1][1] * m[2][2] - m[1][2] * m[2][1]) * inv_det;
-    normal_matrix[1] = (m[0][2] * m[2][1] - m[0][1] * m[2][2]) * inv_det;
-    normal_matrix[2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * inv_det;
-    
-    normal_matrix[4] = (m[1][2] * m[2][0] - m[1][0] * m[2][2]) * inv_det;
-    normal_matrix[5] = (m[0][0] * m[2][2] - m[0][2] * m[2][0]) * inv_det;
-    normal_matrix[6] = (m[0][2] * m[1][0] - m[0][0] * m[1][2]) * inv_det;
-    
-    normal_matrix[8] = (m[1][0] * m[2][1] - m[1][1] * m[2][0]) * inv_det;
-    normal_matrix[9] = (m[0][1] * m[2][0] - m[0][0] * m[2][1]) * inv_det;
-    normal_matrix[10] = (m[0][0] * m[1][1] - m[0][1] * m[1][0]) * inv_det;
-    
-    /* 填充其余元素 */
-    normal_matrix[3] = normal_matrix[7] = normal_matrix[11] = 0.0f;
-    normal_matrix[12] = normal_matrix[13] = normal_matrix[14] = 0.0f;
-    normal_matrix[15] = 1.0f;
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/* 渲染系统状态管理函数
- * 
- * 功能：管理渲染系统的状态，包括：
- * - 渲染状态设置和获取
- * - 状态同步和一致性检查
- * - 状态缓冲区管理
- * - 线程安全的状态操作
- * 
- * 参数：
- * - state_buffers：状态缓冲区数组
- * - state_params：状态参数结构体
- * - buffer_count：缓冲区数量
- * 
- * 返回值：
- * - 0：状态管理成功
- * - -1：状态无效
- * - -2：状态同步失败
- */
-int rendering_system_state_manager(state_buffer_t* state_buffers, state_manager_params_t* state_params, uint32_t buffer_count) {
-    /* 参数有效性检查 */
-    if (state_buffers == (state_buffer_t*)0x0 || state_params == (state_manager_params_t*)0x0) {
-        return STATE_MANAGER_INVALID_STATE;
+
+
+// 函数: void FUN_18030aade(longlong *param_1)
+void FUN_18030aade(longlong *param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  char cVar6;
+  char cVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  longlong lVar10;
+  bool bVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  int iVar24;
+  longlong in_RAX;
+  float *pfVar25;
+  uint uVar26;
+  uint uVar27;
+  uint uVar28;
+  longlong lVar29;
+  longlong unaff_RBX;
+  longlong unaff_RBP;
+  float *unaff_RSI;
+  longlong unaff_RDI;
+  longlong lVar30;
+  longlong unaff_R13;
+  longlong lVar31;
+  float fVar32;
+  float fVar33;
+  float fVar34;
+  undefined4 unaff_XMM7_Da;
+  float fVar35;
+  undefined4 unaff_XMM7_Db;
+  float fVar36;
+  undefined4 unaff_XMM7_Dc;
+  float fVar37;
+  undefined4 unaff_XMM7_Dd;
+  undefined4 unaff_XMM8_Da;
+  float fVar38;
+  undefined4 unaff_XMM8_Db;
+  float fVar39;
+  undefined4 unaff_XMM8_Dc;
+  float fVar40;
+  undefined4 unaff_XMM8_Dd;
+  float fVar41;
+  undefined4 unaff_XMM9_Da;
+  float fVar42;
+  undefined4 unaff_XMM9_Db;
+  float fVar43;
+  undefined4 unaff_XMM9_Dc;
+  float fVar44;
+  undefined4 unaff_XMM9_Dd;
+  
+  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM7_Da;
+  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM7_Db;
+  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM7_Dc;
+  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM7_Dd;
+  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM8_Da;
+  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM8_Db;
+  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM8_Dc;
+  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM8_Dd;
+  *(undefined4 *)(in_RAX + -0x68) = unaff_XMM9_Da;
+  *(undefined4 *)(in_RAX + -100) = unaff_XMM9_Db;
+  *(undefined4 *)(in_RAX + -0x60) = unaff_XMM9_Dc;
+  *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM9_Dd;
+  if (*(code **)(*param_1 + 0x158) == (code *)&UNK_18027d980) {
+    pfVar25 = (float *)(param_1 + 0x66);
+  }
+  else {
+    pfVar25 = (float *)(**(code **)(*param_1 + 0x158))();
+  }
+  cVar6 = *(char *)(unaff_RBX + 0x3f61);
+  fVar12 = *unaff_RSI;
+  fVar13 = unaff_RSI[1];
+  fVar14 = unaff_RSI[2];
+  fVar15 = unaff_RSI[3];
+  fVar16 = unaff_RSI[4];
+  fVar17 = unaff_RSI[5];
+  fVar18 = unaff_RSI[6];
+  fVar19 = unaff_RSI[7];
+  fVar20 = unaff_RSI[8];
+  fVar21 = unaff_RSI[9];
+  fVar22 = unaff_RSI[10];
+  fVar23 = unaff_RSI[0xb];
+  fVar32 = pfVar25[1];
+  fVar33 = *pfVar25;
+  fVar34 = pfVar25[2];
+  fVar1 = pfVar25[5];
+  fVar2 = pfVar25[9];
+  fVar3 = pfVar25[0xd];
+  fVar4 = pfVar25[4];
+  fVar35 = fVar32 * fVar16 + fVar33 * fVar12 + fVar34 * fVar20;
+  fVar36 = fVar32 * fVar17 + fVar33 * fVar13 + fVar34 * fVar21;
+  fVar37 = fVar32 * fVar18 + fVar33 * fVar14 + fVar34 * fVar22;
+  fVar5 = pfVar25[6];
+  fVar41 = pfVar25[8];
+  *(float *)(unaff_RBP + -0x71) = fVar35;
+  *(float *)(unaff_RBP + -0x6d) = fVar36;
+  *(float *)(unaff_RBP + -0x69) = fVar37;
+  *(float *)(unaff_RBP + -0x65) = fVar32 * fVar19 + fVar33 * fVar15 + fVar34 * fVar23;
+  fVar42 = fVar1 * fVar16 + fVar4 * fVar12 + fVar5 * fVar20;
+  fVar43 = fVar1 * fVar17 + fVar4 * fVar13 + fVar5 * fVar21;
+  fVar44 = fVar1 * fVar18 + fVar4 * fVar14 + fVar5 * fVar22;
+  fVar32 = pfVar25[10];
+  fVar33 = pfVar25[0xc];
+  fVar38 = fVar2 * fVar16 + fVar41 * fVar12 + fVar32 * fVar20;
+  fVar39 = fVar2 * fVar17 + fVar41 * fVar13 + fVar32 * fVar21;
+  fVar40 = fVar2 * fVar18 + fVar41 * fVar14 + fVar32 * fVar22;
+  fVar41 = fVar2 * fVar19 + fVar41 * fVar15 + fVar32 * fVar23;
+  *(float *)(unaff_RBP + -0x61) = fVar42;
+  *(float *)(unaff_RBP + -0x5d) = fVar43;
+  *(float *)(unaff_RBP + -0x59) = fVar44;
+  *(float *)(unaff_RBP + -0x55) = fVar1 * fVar19 + fVar4 * fVar15 + fVar5 * fVar23;
+  fVar32 = pfVar25[0xe];
+  fVar34 = unaff_RSI[0xc];
+  fVar1 = unaff_RSI[0xd];
+  fVar2 = unaff_RSI[0xe];
+  fVar4 = unaff_RSI[0xf];
+  *(float *)(unaff_RBP + -0x51) = fVar38;
+  *(float *)(unaff_RBP + -0x4d) = fVar39;
+  *(float *)(unaff_RBP + -0x49) = fVar40;
+  *(float *)(unaff_RBP + -0x45) = fVar41;
+  *(float *)(unaff_RBP + -0x41) = fVar3 * fVar16 + fVar33 * fVar12 + fVar32 * fVar20 + fVar34;
+  *(float *)(unaff_RBP + -0x3d) = fVar3 * fVar17 + fVar33 * fVar13 + fVar32 * fVar21 + fVar1;
+  *(float *)(unaff_RBP + -0x39) = fVar3 * fVar18 + fVar33 * fVar14 + fVar32 * fVar22 + fVar2;
+  *(float *)(unaff_RBP + -0x35) = fVar3 * fVar19 + fVar33 * fVar15 + fVar32 * fVar23 + fVar4;
+  if (((cVar6 != '\0') && ((*(byte *)(unaff_R13 + 0x1bd8) & 0x20) != 0)) &&
+     (*(int *)(_DAT_180c86920 + 0x620) != -1)) {
+    iVar24 = *(int *)(unaff_RBP + 0x77);
+    if (iVar24 <= *(int *)(_DAT_180c8a980 + 0x2f8)) {
+      *(undefined1 *)(unaff_RDI + 0x44) = 1;
     }
-    
-    /* 缓冲区数量验证 */
-    if (buffer_count == 0 || buffer_count > MAX_STATE_BUFFERS) {
-        return STATE_MANAGER_INVALID_STATE;
-    }
-    
-    /* 状态类型验证 */
-    if (state_params->state_type > STATE_TYPE_BUFFER) {
-        return STATE_MANAGER_INVALID_STATE;
-    }
-    
-    /* 状态锁检查 */
-    if (state_params->is_locked) {
-        /* 状态被锁定，等待解锁 */
-        if (!rendering_system_wait_for_state_unlock(state_params)) {
-            return STATE_MANAGER_SYNC_ERROR;
+    lVar31 = *(longlong *)(unaff_RDI + 0x48);
+    if (*(int *)(lVar31 + 0x328) == *(int *)(_DAT_180c86870 + 0x224)) {
+      if (((*(char *)(unaff_RDI + 0xbc) == '\0') &&
+          ((*(byte *)(*(longlong *)(lVar31 + 0x3c8) + 0x28) & 1) == 0)) &&
+         (*(int *)(_DAT_180c86870 + 0x224) + -1 != iVar24)) {
+        *(undefined1 *)(unaff_RDI + 0x44) = 1;
+      }
+      if (*(int *)(unaff_RDI + 0x30) == *(int *)(*(longlong *)(lVar31 + 0x3c8) + 0x10)) {
+        fVar32 = (*(float *)(unaff_RBP + -0x3d) * 2.3 + *(float *)(unaff_RBP + -0x41) * 1.7) * 8.0 +
+                 (float)_DAT_180c8ed30 * 8e-05;
+        uVar26 = (uint)fVar32;
+        uVar27 = uVar26 & 0x800000ff;
+        if ((int)uVar27 < 0) {
+          uVar27 = (uVar27 - 1 | 0xffffff00) + 1;
         }
-    }
-    
-    /* 状态数据验证 */
-    if (state_params->state_data == (void*)0x0 || state_params->state_size == 0) {
-        return STATE_MANAGER_INVALID_STATE;
-    }
-    
-    /* 状态缓冲区查找 */
-    state_buffer_t* target_buffer = (state_buffer_t*)0x0;
-    for (uint32_t i = 0; i < buffer_count; i++) {
-        if (state_buffers[i].buffer_type == state_params->state_type) {
-            target_buffer = &state_buffers[i];
-            break;
+        pfVar25 = *(float **)(unaff_RBX + 0x81f0);
+        uVar28 = uVar27 + 1 & 0x800000ff;
+        if ((int)uVar28 < 0) {
+          uVar28 = (uVar28 - 1 | 0xffffff00) + 1;
         }
-    }
-    
-    /* 如果找不到匹配的缓冲区，创建新的 */
-    if (target_buffer == (state_buffer_t*)0x0) {
-        if (buffer_count >= MAX_STATE_BUFFERS) {
-            return STATE_MANAGER_INVALID_STATE;
+        fVar32 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar28 * 4) -
+                  *(float *)(&UNK_180a18120 + (longlong)(int)uVar27 * 4)) *
+                  (fVar32 - (float)(int)uVar26) +
+                 *(float *)(&UNK_180a18120 + (longlong)(int)uVar27 * 4)) * *pfVar25 + 1.0;
+        if (*(int *)(unaff_RDI + 0x70) == 1) {
+          fVar1 = pfVar25[3];
+          fVar34 = *(float *)(unaff_RDI + 0x74);
+          fVar2 = *(float *)(unaff_RDI + 0x78);
+          fVar33 = fVar1 * *(float *)(unaff_RDI + 0x7c) * fVar32;
+          *(undefined4 *)(unaff_RBP + -0x75) = 0x7f7fffff;
+          fVar34 = fVar1 * fVar34 * fVar32;
+          *(float *)(unaff_RBP + -0x79) = fVar33;
+          fVar32 = fVar1 * fVar2 * fVar32;
         }
-        
-        /* 创建新缓冲区 */
-        target_buffer = &state_buffers[buffer_count];
-        target_buffer->buffer_type = state_params->state_type;
-        target_buffer->buffer_size = state_params->state_size;
-        target_buffer->buffer_data = rendering_system_allocate_buffer(state_params->state_size);
-        
-        if (target_buffer->buffer_data == (void*)0x0) {
-            return STATE_MANAGER_INVALID_STATE;
+        else if (*(int *)(unaff_RDI + 0x70) == 2) {
+          fVar1 = *(float *)(unaff_RDI + 0x78);
+          fVar2 = *(float *)(unaff_RDI + 0x74);
+          fVar3 = *(float *)(unaff_RDI + 0x7c);
+          fVar32 = fVar32 * pfVar25[3];
+          fVar33 = (fVar39 * fVar1 + fVar38 * fVar2 + fVar40 * fVar3) * fVar32;
+          *(float *)(unaff_RBP + -0x75) = fVar41 * fVar1 + fVar41 * fVar2 + fVar41 * fVar3;
+          fVar34 = (fVar36 * fVar1 + fVar35 * fVar2 + fVar37 * fVar3) * fVar32;
+          *(float *)(unaff_RBP + -0x79) = fVar33;
+          fVar32 = (fVar43 * fVar1 + fVar42 * fVar2 + fVar44 * fVar3) * fVar32;
         }
-        
-        target_buffer->is_mapped = false;
-        target_buffer->is_dirty = true;
-        target_buffer->sync_count = 0;
-    }
-    
-    /* 状态数据更新 */
-    if (state_params->is_dirty) {
-        /* 锁定缓冲区进行更新 */
-        target_buffer->is_mapped = true;
-        
-        /* 复制状态数据 */
-        rendering_system_copy_memory(target_buffer->buffer_data, state_params->state_data, state_params->state_size);
-        
-        /* 标记缓冲区为脏数据 */
-        target_buffer->is_dirty = true;
-        target_buffer->sync_count++;
-        
-        /* 解除缓冲区锁定 */
-        target_buffer->is_mapped = false;
-    }
-    
-    /* 状态同步处理 */
-    if (state_params->sync_count > 0) {
-        /* 执行状态同步 */
-        int sync_result = rendering_system_sync_state(target_buffer, state_params);
-        if (sync_result != STATE_MANAGER_SUCCESS) {
-            return sync_result;
+        else {
+          fVar33 = pfVar25[3] * pfVar25[2];
+          fVar32 = pfVar25[3] * pfVar25[1];
+          fVar34 = fVar33 * fVar36 + fVar35 * fVar32 + fVar37 * 0.0;
+          fVar33 = fVar33 * fVar39 + fVar38 * fVar32 + fVar40 * 0.0;
+          fVar32 = *(float *)(unaff_RBP + -0x7d);
         }
+        _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
+        _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
+        _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+        _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
+        _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
+        _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+        lVar31 = *(longlong *)(unaff_RDI + 0x38);
+        *(float *)(unaff_RBP + -0x7d) =
+             fVar32 + ((float)(_DAT_180bf65b8 - 1) * 4.656613e-11 - 0.1) *
+                      SQRT(fVar32 * fVar32 + fVar34 * fVar34 + fVar33 * fVar33);
+        if (lVar31 == 0) {
+          bVar11 = true;
+          iVar24 = (int)(*(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x40) -
+                         *(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x38) >> 4);
+          lVar31 = (longlong)iVar24;
+          if (0 < iVar24) {
+            uVar8 = *(undefined4 *)(unaff_RBP + 0x7f);
+            lVar29 = 0;
+            do {
+              lVar30 = *(longlong *)(lVar29 + *(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x38))
+              ;
+              lVar10 = *(longlong *)(lVar30 + 0x118);
+              if (lVar10 != 0) {
+                if (*(int *)(lVar10 + 0x118) < 1) {
+                  bVar11 = false;
+                }
+                else {
+                  cVar6 = *(char *)(unaff_RBP + 0x5f);
+                  uVar9 = *(undefined4 *)(unaff_RBP + 0x67);
+                  *(undefined4 *)(lVar10 + 0x110) = uVar8;
+                  FUN_18024c560(*(undefined4 *)(unaff_RDI + 0xb8),lVar30,(int)cVar6,uVar9,
+                                *(undefined4 *)(unaff_RBP + 0x6f));
+                  *(undefined4 *)(lVar10 + 0x118) = 0;
+                }
+              }
+              lVar29 = lVar29 + 0x10;
+              lVar31 = lVar31 + -1;
+            } while (lVar31 != 0);
+          }
+          if ((*(char *)(unaff_RDI + 0x44) != '\0') && (bVar11)) {
+            *(undefined1 *)(unaff_RDI + 0x44) = 0;
+          }
+        }
+        else {
+          lVar31 = *(longlong *)(lVar31 + 0x118);
+          if (0 < *(int *)(lVar31 + 0x118)) {
+            cVar6 = *(char *)(unaff_RBP + 0x5f);
+            uVar8 = *(undefined4 *)(unaff_RBP + 0x67);
+            cVar7 = *(char *)(lVar31 + 0x13d);
+            *(undefined4 *)(lVar31 + 0x110) = *(undefined4 *)(unaff_RBP + 0x7f);
+            FUN_18024c560(*(undefined4 *)(unaff_RDI + 0xb8),*(undefined8 *)(unaff_RDI + 0x38),
+                          (int)cVar6,uVar8,*(undefined4 *)(unaff_RBP + 0x6f));
+            lVar29 = 0;
+            if (((cVar7 == '\0') && (*(char *)(lVar31 + 0x13d) == '\x01')) &&
+               (iVar24 = (int)(*(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x40) -
+                               *(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x38) >> 4),
+               lVar30 = (longlong)iVar24, 0 < iVar24)) {
+              do {
+                lVar10 = *(longlong *)
+                          (*(longlong *)
+                            (*(longlong *)(*(longlong *)(unaff_RDI + 0x48) + 0x38) + lVar29) + 0x118
+                          );
+                if (lVar10 != 0) {
+                  *(undefined1 *)(lVar10 + 0x13d) = 1;
+                }
+                lVar29 = lVar29 + 0x10;
+                lVar30 = lVar30 + -1;
+              } while (lVar30 != 0);
+            }
+            *(undefined1 *)(unaff_RDI + 0x44) = 0;
+            *(undefined4 *)(lVar31 + 0x118) = 0;
+          }
+        }
+      }
     }
-    
-    /* 状态标志位处理 */
-    uint32_t processed_flags = state_params->state_flags;
-    
-    /* 根据状态类型设置特定标志 */
-    switch (state_params->state_type) {
-        case STATE_TYPE_RENDER:
-            processed_flags |= 0x00000001; /* 渲染状态标志 */
-            break;
-            
-        case STATE_TYPE_TEXTURE:
-            processed_flags |= 0x00000002; /* 纹理状态标志 */
-            break;
-            
-        case STATE_TYPE_SHADER:
-            processed_flags |= 0x00000004; /* 着色器状态标志 */
-            break;
-            
-        case STATE_TYPE_BUFFER:
-            processed_flags |= 0x00000008; /* 缓冲区状态标志 */
-            break;
-    }
-    
-    /* 更新状态参数 */
-    state_params->state_flags = processed_flags;
-    state_params->is_dirty = false;
-    
-    /* 状态验证和一致性检查 */
-    if (!rendering_system_validate_state_consistency(target_buffer, state_params)) {
-        return STATE_MANAGER_SYNC_ERROR;
-    }
-    
-    return STATE_MANAGER_SUCCESS;
+  }
+  return;
 }
 
-/* 状态解锁等待函数
- * 
- * 功能：等待状态解锁
- * 
- * 参数：
- * - state_params：状态参数指针
- * 
- * 返回值：
- * - true：解锁成功
- * - false：解锁失败
- */
-static bool rendering_system_wait_for_state_unlock(state_manager_params_t* state_params) {
-    /* 简单的忙等待实现 */
-    uint32_t timeout = 1000; /* 1秒超时 */
-    uint32_t elapsed = 0;
-    
-    while (state_params->is_locked && elapsed < timeout) {
-        /* 延迟1毫秒 */
-        rendering_system_sleep(1);
-        elapsed++;
-    }
-    
-    return !state_params->is_locked;
-}
 
-/* 状态同步函数
- * 
- * 功能：同步状态数据
- * 
- * 参数：
- * - state_buffer：状态缓冲区指针
- * - state_params：状态参数指针
- * 
- * 返回值：
- * - 0：同步成功
- * - -2：同步失败
- */
-static int rendering_system_sync_state(state_buffer_t* state_buffer, state_manager_params_t* state_params) {
-    /* 验证同步计数 */
-    if (state_buffer->sync_count != state_params->sync_count) {
-        return STATE_MANAGER_SYNC_ERROR;
-    }
-    
-    /* 执行同步操作 */
-    if (state_buffer->is_dirty) {
-        /* 将缓冲区数据同步到GPU或其他设备 */
-        int sync_result = rendering_system_flush_buffer(state_buffer);
-        if (sync_result != 0) {
-            return STATE_MANAGER_SYNC_ERROR;
-        }
-        
-        /* 清除脏标记 */
-        state_buffer->is_dirty = false;
-    }
-    
-    return STATE_MANAGER_SUCCESS;
-}
 
-/* 状态一致性验证函数
- * 
- * 功能：验证状态数据的一致性
- * 
- * 参数：
- * - state_buffer：状态缓冲区指针
- * - state_params：状态参数指针
- * 
- * 返回值：
- * - true：一致性验证通过
- * - false：一致性验证失败
- */
-static bool rendering_system_validate_state_consistency(state_buffer_t* state_buffer, state_manager_params_t* state_params) {
-    /* 验证缓冲区类型匹配 */
-    if (state_buffer->buffer_type != state_params->state_type) {
-        return false;
-    }
-    
-    /* 验证缓冲区大小匹配 */
-    if (state_buffer->buffer_size != state_params->state_size) {
-        return false;
-    }
-    
-    /* 验证同步计数匹配 */
-    if (state_buffer->sync_count != state_params->sync_count) {
-        return false;
-    }
-    
-    /* 验证缓冲区状态 */
-    if (state_buffer->is_mapped) {
-        return false;
-    }
-    
-    return true;
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/* 辅助函数声明 */
-static void rendering_system_free_buffer(void* buffer);
-static void rendering_system_sync_operations(void* render_context);
-static int rendering_system_render_object(void* render_context, render_object_t* obj, uint32_t render_flags);
-static bool rendering_system_check_face_culling(render_object_t* obj);
-static void* rendering_system_allocate_buffer(uint32_t size);
-static void rendering_system_copy_memory(void* dest, const void* src, uint32_t size);
-static int rendering_system_flush_buffer(state_buffer_t* buffer);
-static void rendering_system_sleep(uint32_t milliseconds);
+
+

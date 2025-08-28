@@ -1,871 +1,807 @@
 #include "TaleWorlds.Native.Split.h"
 
-// ============================================================================
-// 03_rendering_part050.c - 渲染系统资源管理和内存清理模块
-// ============================================================================
+// 03_rendering_part050.c - 9 个函数
 
-/**
- * @file 03_rendering_part050.c
- * @brief 渲染系统资源管理和内存清理模块
- * 
- * 本模块包含渲染系统的资源管理、内存清理、引用计数和生命周期管理功能。
- * 主要负责渲染资源的分配、释放、引用跟踪和内存优化。
- * 
- * 主要功能：
- * - 渲染资源引用计数管理
- * - 内存分配和释放控制
- * - 资源生命周期管理
- * - 渲染队列清理和优化
- * - 缓冲区数据处理和转换
- * 
- * @author Claude Code
- * @version 1.0
- * @date 2025-08-28
- */
+// 函数: void FUN_1802943c0(longlong param_1)
+void FUN_1802943c0(longlong param_1)
 
-// ============================================================================
-// 常量定义
-// ============================================================================
-
-/** 渲染系统最大引用计数 */
-#define RENDERING_MAX_REFERENCE_COUNT 0x7fffffff
-
-/** 渲染系统资源块大小 */
-#define RENDERING_RESOURCE_BLOCK_SIZE 0x88
-
-/** 渲染系统默认颜色值 */
-#define RENDERING_DEFAULT_COLOR 0xffffff
-
-/** 渲染系统透明度掩码 */
-#define RENDERING_ALPHA_MASK 0xff000000
-
-/** 渲染系统颜色通道移位 */
-#define RENDERING_COLOR_SHIFT 0x18
-
-// ============================================================================
-// 枚举定义
-// ============================================================================
-
-/**
- * @brief 渲染资源状态枚举
- */
-typedef enum {
-    RENDERING_RESOURCE_ACTIVE = 0,    /**< 资源活跃状态 */
-    RENDERING_RESOURCE_INACTIVE = 1,  /**< 资源非活跃状态 */
-    RENDERING_RESOURCE_DESTROYED = 2   /**< 资源已销毁状态 */
-} RenderingResourceState;
-
-/**
- * @brief 渲染内存管理类型枚举
- */
-typedef enum {
-    RENDERING_MEMORY_STANDARD = 0,    /**< 标准内存管理 */
-    RENDERING_MEMORY_POOL = 1,        /**< 内存池管理 */
-    RENDERING_MEMORY_CUSTOM = 2       /**< 自定义内存管理 */
-} RenderingMemoryType;
-
-// ============================================================================
-// 结构体定义
-// ============================================================================
-
-/**
- * @brief 渲染资源管理器结构体
- */
-typedef struct {
-    void* resource_data;          /**< 资源数据指针 */
-    int reference_count;          /**< 引用计数 */
-    RenderingResourceState state; /**< 资源状态 */
-    uint32_t memory_size;         /**< 内存大小 */
-    uint32_t resource_id;         /**< 资源ID */
-} RenderingResourceManager;
-
-/**
- * @brief 渲染内存管理器结构体
- */
-typedef struct {
-    void* memory_pool;            /**< 内存池指针 */
-    uint32_t pool_size;           /**< 内存池大小 */
-    uint32_t allocated_size;      /**< 已分配大小 */
-    RenderingMemoryType type;     /**< 内存管理类型 */
-    int allocation_count;         /**< 分配计数 */
-} RenderingMemoryManager;
-
-// ============================================================================
-// 全局变量
-// ============================================================================
-
-/** 渲染系统全局管理器指针 */
-void* g_rendering_global_manager = (void*)0x180c8a9b0;
-
-/** 渲染系统内存分配器指针 */
-void* g_rendering_memory_allocator = (void*)0x180c8a9a8;
-
-// ============================================================================
-// 函数声明
-// ============================================================================
-
-void RenderingSystem_ResourceCleanupManager(void* resource_manager);
-void RenderingSystem_MemoryReleaseManager(void* memory_manager);
-void RenderingSystem_ResourceStateInitializer(void* resource_manager, int state_flag);
-void RenderingSystem_ResourceBatchProcessor(void* resource_manager);
-void RenderingSystem_MemoryOptimizer(void* memory_manager);
-void RenderingSystem_ResourceDeallocator(void* resource_manager);
-void RenderingSystem_ReferenceCounter(void* resource_manager);
-void RenderingSystem_BufferDataProcessor(void* buffer_manager, void** output_data, uint32_t* width, uint32_t* height);
-void RenderingSystem_AdvancedResourceHandler(void* resource_manager, void** output_data, uint32_t* width, void* param_4, void* param_5, void* param_6, void* param_7, void* param_8, void* param_9, void* param_10, void* param_11, void* param_12, void* param_13, void* param_14, void* param_15);
-
-// ============================================================================
-// 函数实现
-// ============================================================================
-
-/**
- * @brief 渲染系统资源清理管理器
- * 
- * 该函数负责清理渲染系统中的资源，包括引用计数管理、内存释放和资源销毁。
- * 主要功能包括：
- * - 检查资源引用计数
- * - 释放不再使用的资源
- * - 更新全局引用计数器
- * - 清理资源数据结构
- * 
- * @param resource_manager 资源管理器指针
- */
-void RenderingSystem_ResourceCleanupManager(void* resource_manager)
 {
-    void* resource_data;
-    
-    // 清理第一个资源
-    resource_data = *(void**)((uint8_t*)resource_manager + 0x18);
-    if (resource_data != NULL) {
-        if (g_rendering_global_manager != NULL) {
-            // 减少全局引用计数
-            *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-        }
-        // 释放资源数据
-        FUN_180059ba0(resource_data, g_rendering_memory_allocator);
+  longlong lVar1;
+  
+  lVar1 = *(longlong *)(param_1 + 0x18);
+  if (lVar1 != 0) {
+    if (_DAT_180c8a9b0 != 0) {
+      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
-    
-    // 清理第二个资源
-    resource_data = *(void**)((uint8_t*)resource_manager + 0x20);
-    if (resource_data != NULL) {
-        if (g_rendering_global_manager != NULL) {
-            // 减少全局引用计数
-            *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-        }
-        // 释放资源数据
-        FUN_180059ba0(resource_data, g_rendering_memory_allocator);
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8);
+  }
+  lVar1 = *(longlong *)(param_1 + 0x20);
+  if (lVar1 != 0) {
+    if (_DAT_180c8a9b0 != 0) {
+      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
-    
-    // 清空资源指针
-    *(void**)((uint8_t*)resource_manager + 0x20) = NULL;
-    *(void**)((uint8_t*)resource_manager + 0x18) = NULL;
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar1,_DAT_180c8a9a8);
+  }
+  *(undefined8 *)(param_1 + 0x20) = 0;
+  *(undefined8 *)(param_1 + 0x18) = 0;
+  return;
 }
 
-/**
- * @brief 渲染系统内存释放管理器
- * 
- * 该函数负责管理渲染系统的内存释放，包括批量资源清理和内存优化。
- * 主要功能包括：
- * - 批量处理资源释放
- * - 内存地址验证和清理
- * - 引用计数更新
- * - 资源状态重置
- * 
- * @param memory_manager 内存管理器指针
- */
-void RenderingSystem_MemoryReleaseManager(void* memory_manager)
-{
-    int* reference_counter;
-    void* resource_data;
-    uint64_t resource_address;
-    void* global_manager;
-    uint64_t block_index;
-    uint64_t array_index;
-    uint32_t resource_count;
-    uint64_t current_index;
-    
-    // 初始化索引变量
-    current_index = 0;
-    block_index = 0;
-    array_index = 0;
-    
-    // 处理资源数组
-    if (0 < *(int*)((uint8_t*)memory_manager + 0x60)) {
-        do {
-            resource_data = *(void**)(array_index + *(uint64_t*)((uint8_t*)memory_manager + 0x68));
-            if ((resource_data != NULL) && 
-                (*(char*)(array_index + 0xc + *(uint64_t*)((uint8_t*)memory_manager + 0x68)) != '\0')) {
-                if (g_rendering_global_manager != NULL) {
-                    // 减少全局引用计数
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                        *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-                }
-                // 释放资源数据
-                FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-            }
-            resource_count = (uint32_t)block_index + 1;
-            block_index = (uint64_t)resource_count;
-            array_index = array_index + RENDERING_RESOURCE_BLOCK_SIZE;
-        } while ((int)resource_count < *(int*)((uint8_t*)memory_manager + 0x60));
-    }
-    
-    // 处理资源块
-    block_index = 0;
-    array_index = 0;
-    if (0 < *(int*)((uint8_t*)memory_manager + 0x40)) {
-        do {
-            resource_data = *(void**)(*(uint64_t*)((uint8_t*)memory_manager + 0x48) + block_index);
-            resource_address = *(uint64_t*)((uint8_t*)resource_data + 0x50);
-            if ((*(uint64_t*)((uint8_t*)memory_manager + 0x68) <= resource_address) &&
-                (resource_address < (int64_t)*(int*)((uint8_t*)memory_manager + 0x60) * RENDERING_RESOURCE_BLOCK_SIZE + 
-                 *(uint64_t*)((uint8_t*)memory_manager + 0x68))) {
-                // 清理资源地址
-                *(uint64_t*)((uint8_t*)resource_data + 0x50) = 0;
-                *(uint16_t*)(*(uint64_t*)(*(uint64_t*)((uint8_t*)memory_manager + 0x48) + block_index) + 0x4e) = 0;
-            }
-            resource_count = (uint32_t)array_index + 1;
-            block_index = block_index + 8;
-            array_index = (uint64_t)resource_count;
-        } while ((int)resource_count < *(int*)((uint8_t*)memory_manager + 0x40));
-    }
-    
-    // 全局管理器处理
-    global_manager = g_rendering_global_manager;
-    resource_data = *(uint64_t*)((uint8_t*)memory_manager + 0x68);
-    if (resource_data == NULL) {
-        resource_data = *(uint64_t*)((uint8_t*)memory_manager + 0x58);
-        if (resource_data != NULL) {
-            // 重置资源状态
-            *(uint64_t*)((uint8_t*)memory_manager + 0x50) = 0;
-            if (global_manager != NULL) {
-                // 减少全局引用计数
-                *(int*)((uint8_t*)global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)global_manager + 0x3a8) - 1;
-            }
-            // 释放资源数据
-            FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-        }
-        
-        // 设置资源状态为无效
-        *(uint32_t*)((uint8_t*)memory_manager + 0x70) = 0xffffffff;
-        RenderingSystem_ResourceCleanupManager(memory_manager);
-        
-        resource_data = g_rendering_global_manager;
-        block_index = 0;
-        if (0 < *(int*)((uint8_t*)memory_manager + 0x40)) {
-            do {
-                global_manager = *(uint64_t*)(block_index + *(uint64_t*)((uint8_t*)memory_manager + 0x48));
-                if (global_manager != NULL) {
-                    FUN_180296ad0(global_manager);
-                    if (g_rendering_global_manager != NULL) {
-                        // 减少全局引用计数
-                        *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                            *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-                    }
-                    // 释放资源数据
-                    FUN_180059ba0(global_manager, g_rendering_memory_allocator);
-                }
-                resource_count = (uint32_t)current_index + 1;
-                current_index = (uint64_t)resource_count;
-                block_index = block_index + 8;
-            } while ((int)resource_count < *(int*)((uint8_t*)memory_manager + 0x40));
-        }
-        
-        global_manager = *(uint64_t*)((uint8_t*)memory_manager + 0x48);
-        if (global_manager == NULL) {
-            return;
-        }
-        
-        // 重置资源计数
-        *(uint64_t*)((uint8_t*)memory_manager + 0x40) = 0;
-        if (resource_data != NULL) {
-            reference_counter = (int*)((uint8_t*)resource_data + 0x3a8);
-            *reference_counter = *reference_counter - 1;
-        }
-        // 释放全局管理器
-        FUN_180059ba0(global_manager, g_rendering_memory_allocator);
-    }
-    
-    // 重置资源数组
-    *(uint64_t*)((uint8_t*)memory_manager + 0x60) = 0;
-    if (global_manager != NULL) {
-        *(int*)((uint8_t*)global_manager + 0x3a8) = 
-            *(int*)((uint8_t*)global_manager + 0x3a8) - 1;
-    }
-    // 释放资源数据
-    FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-}
 
-/**
- * @brief 渲染系统资源状态初始化器
- * 
- * 该函数负责初始化渲染系统资源的状态，包括状态标志设置和资源属性配置。
- * 主要功能包括：
- * - 资源状态验证和设置
- * - 批量资源状态更新
- * - 地址范围检查
- * - 状态标志传播
- * 
- * @param resource_manager 资源管理器指针
- * @param state_flag 状态标志
- */
-void RenderingSystem_ResourceStateInitializer(void* resource_manager, int state_flag)
-{
-    int* reference_counter;
-    void* resource_data;
-    uint64_t resource_address;
-    void* global_manager;
-    uint64_t array_index;
-    int current_state;
-    uint64_t unaff_rbp;
-    uint32_t loop_counter;
-    uint64_t current_index;
-    
-    current_state = (int)unaff_rbp;
-    array_index = unaff_rbp & 0xffffffff;
-    if (current_state < *(int*)((uint8_t*)resource_manager + 0x60)) {
-        current_index = unaff_rbp & 0xffffffff;
-        do {
-            resource_data = *(void**)(current_index + *(uint64_t*)((uint8_t*)resource_manager + 0x68));
-            if ((resource_data != NULL) &&
-                (*(char*)(current_index + 0xc + *(uint64_t*)((uint8_t*)resource_manager + 0x68)) != (char)unaff_rbp)) {
-                if (g_rendering_global_manager != NULL) {
-                    // 减少全局引用计数
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                        *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-                }
-                // 释放资源数据
-                FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-            }
-            loop_counter = (uint32_t)array_index + 1;
-            array_index = (uint64_t)loop_counter;
-            current_index = current_index + RENDERING_RESOURCE_BLOCK_SIZE;
-        } while ((int)loop_counter < *(int*)((uint8_t*)resource_manager + 0x60));
-    }
-    
-    current_index = unaff_rbp & 0xffffffff;
-    array_index = unaff_rbp;
-    if (current_state < *(int*)((uint8_t*)resource_manager + 0x40)) {
-        do {
-            resource_data = *(void**)(*(uint64_t*)((uint8_t*)resource_manager + 0x48) + array_index);
-            resource_address = *(uint64_t*)((uint8_t*)resource_data + 0x50);
-            if ((*(uint64_t*)((uint8_t*)resource_manager + 0x68) <= resource_address) &&
-                (resource_address < (int64_t)*(int*)((uint8_t*)resource_manager + 0x60) * RENDERING_RESOURCE_BLOCK_SIZE + 
-                 *(uint64_t*)((uint8_t*)resource_manager + 0x68))) {
-                // 设置资源地址和状态
-                *(uint64_t*)((uint8_t*)resource_data + 0x50) = unaff_rbp;
-                *(int16_t*)(*(uint64_t*)(*(uint64_t*)((uint8_t*)resource_manager + 0x48) + array_index) + 0x4e) = (int16_t)unaff_rbp;
-            }
-            loop_counter = (uint32_t)current_index + 1;
-            current_index = (uint64_t)loop_counter;
-            array_index = array_index + 8;
-        } while ((int)loop_counter < *(int*)((uint8_t*)resource_manager + 0x40));
-    }
-    
-    // 全局管理器处理
-    global_manager = g_rendering_global_manager;
-    resource_data = *(uint64_t*)((uint8_t*)resource_manager + 0x68);
-    if (resource_data == NULL) {
-        resource_data = *(uint64_t*)((uint8_t*)resource_manager + 0x58);
-        if (resource_data != NULL) {
-            // 设置资源状态
-            *(uint64_t*)((uint8_t*)resource_manager + 0x50) = unaff_rbp;
-            if (global_manager != NULL) {
-                // 减少全局引用计数
-                *(int*)((uint8_t*)global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)global_manager + 0x3a8) - 1;
-            }
-            // 释放资源数据
-            FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-        }
-        
-        // 设置资源状态为无效
-        *(uint32_t*)((uint8_t*)resource_manager + 0x70) = 0xffffffff;
-        RenderingSystem_ResourceCleanupManager(resource_manager);
-        
-        resource_data = g_rendering_global_manager;
-        current_index = unaff_rbp & 0xffffffff;
-        array_index = unaff_rbp;
-        if (current_state < *(int*)((uint8_t*)resource_manager + 0x40)) {
-            do {
-                global_manager = *(uint64_t*)(array_index + *(uint64_t*)((uint8_t*)resource_manager + 0x48));
-                if (global_manager != NULL) {
-                    FUN_180296ad0(global_manager);
-                    if (g_rendering_global_manager != NULL) {
-                        // 减少全局引用计数
-                        *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                            *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-                    }
-                    // 释放资源数据
-                    FUN_180059ba0(global_manager, g_rendering_memory_allocator);
-                }
-                loop_counter = (uint32_t)current_index + 1;
-                current_index = (uint64_t)loop_counter;
-                array_index = array_index + 8;
-            } while ((int)loop_counter < *(int*)((uint8_t*)resource_manager + 0x40));
-        }
-        
-        global_manager = *(uint64_t*)((uint8_t*)resource_manager + 0x48);
-        if (global_manager == NULL) {
-            return;
-        }
-        
-        // 重置资源计数
-        *(uint64_t*)((uint8_t*)resource_manager + 0x40) = unaff_rbp;
-        if (resource_data != NULL) {
-            reference_counter = (int*)((uint8_t*)resource_data + 0x3a8);
-            *reference_counter = *reference_counter - 1;
-        }
-        // 释放全局管理器
-        FUN_180059ba0(global_manager, g_rendering_memory_allocator);
-    }
-    
-    // 设置资源数组状态
-    *(uint64_t*)((uint8_t*)resource_manager + 0x60) = unaff_rbp;
-    if (global_manager != NULL) {
-        *(int*)((uint8_t*)global_manager + 0x3a8) = 
-            *(int*)((uint8_t*)global_manager + 0x3a8) - 1;
-    }
-    // 释放资源数据
-    FUN_180059ba0(resource_data, g_rendering_memory_allocator);
-}
 
-/**
- * @brief 渲染系统资源批处理器
- * 
- * 该函数负责批量处理渲染系统资源，包括资源清理和内存释放。
- * 主要功能包括：
- * - 批量资源遍历和清理
- * - 引用计数管理
- * - 内存释放优化
- * - 资源状态更新
- * 
- * @param resource_manager 资源管理器指针
- */
-void RenderingSystem_ResourceBatchProcessor(void* resource_manager)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180294430(longlong param_1)
+void FUN_180294430(longlong param_1)
+
 {
-    int* reference_counter;
-    void* resource_data;
-    void* global_manager;
-    void* resource_array;
-    int array_size;
-    void* resource_base;
-    
-    global_manager = g_rendering_global_manager;
-    resource_base = resource_array;
-    
+  int *piVar1;
+  longlong lVar2;
+  ulonglong uVar3;
+  longlong lVar4;
+  ulonglong uVar5;
+  ulonglong uVar6;
+  uint uVar7;
+  ulonglong uVar8;
+  
+  uVar6 = 0;
+  uVar5 = uVar6;
+  uVar8 = uVar6;
+  if (0 < *(int *)(param_1 + 0x60)) {
     do {
-        resource_data = *(void**)(resource_base + *(uint64_t*)((uint8_t*)resource_manager + 0x48));
-        if (resource_data != NULL) {
-            FUN_180296ad0(resource_data);
-            if (g_rendering_global_manager != NULL) {
-                // 减少全局引用计数
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) - 1;
-            }
-            // 释放资源数据
-            FUN_180059ba0(resource_data, g_rendering_memory_allocator);
+      lVar2 = *(longlong *)(uVar8 + *(longlong *)(param_1 + 0x68));
+      if ((lVar2 != 0) && (*(char *)(uVar8 + 0xc + *(longlong *)(param_1 + 0x68)) != '\0')) {
+        if (_DAT_180c8a9b0 != 0) {
+          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
-        array_size = array_size + 1;
-        resource_base = resource_base + 8;
-    } while (array_size < *(int*)((uint8_t*)resource_manager + 0x40));
-    
-    resource_base = *(uint64_t*)((uint8_t*)resource_manager + 0x48);
-    if (resource_base != NULL) {
-        // 重置资源数组大小
-        *(uint64_t*)((uint8_t*)resource_manager + 0x40) = resource_array;
-        if (global_manager != NULL) {
-            reference_counter = (int*)((uint8_t*)global_manager + 0x3a8);
-            *reference_counter = *reference_counter - 1;
-        }
-        // 释放资源数组
-        FUN_180059ba0(resource_base, g_rendering_memory_allocator);
+                    // WARNING: Subroutine does not return
+        FUN_180059ba0(lVar2,_DAT_180c8a9a8);
+      }
+      uVar7 = (int)uVar5 + 1;
+      uVar5 = (ulonglong)uVar7;
+      uVar8 = uVar8 + 0x88;
+    } while ((int)uVar7 < *(int *)(param_1 + 0x60));
+  }
+  uVar5 = uVar6;
+  uVar8 = uVar6;
+  if (0 < *(int *)(param_1 + 0x40)) {
+    do {
+      lVar2 = *(longlong *)(*(longlong *)(param_1 + 0x48) + uVar5);
+      uVar3 = *(ulonglong *)(lVar2 + 0x50);
+      if ((*(ulonglong *)(param_1 + 0x68) <= uVar3) &&
+         (uVar3 < (longlong)*(int *)(param_1 + 0x60) * 0x88 + *(ulonglong *)(param_1 + 0x68))) {
+        *(undefined8 *)(lVar2 + 0x50) = 0;
+        *(undefined2 *)(*(longlong *)(*(longlong *)(param_1 + 0x48) + uVar5) + 0x4e) = 0;
+      }
+      uVar7 = (int)uVar8 + 1;
+      uVar5 = uVar5 + 8;
+      uVar8 = (ulonglong)uVar7;
+    } while ((int)uVar7 < *(int *)(param_1 + 0x40));
+  }
+  lVar4 = _DAT_180c8a9b0;
+  lVar2 = *(longlong *)(param_1 + 0x68);
+  if (lVar2 == 0) {
+    lVar2 = *(longlong *)(param_1 + 0x58);
+    if (lVar2 != 0) {
+      *(undefined8 *)(param_1 + 0x50) = 0;
+      if (lVar4 != 0) {
+        *(int *)(lVar4 + 0x3a8) = *(int *)(lVar4 + 0x3a8) + -1;
+      }
+                    // WARNING: Subroutine does not return
+      FUN_180059ba0(lVar2,_DAT_180c8a9a8);
     }
+    *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
+    FUN_1802943c0(param_1);
+    lVar2 = _DAT_180c8a9b0;
+    uVar5 = uVar6;
+    if (0 < *(int *)(param_1 + 0x40)) {
+      do {
+        lVar4 = *(longlong *)(uVar5 + *(longlong *)(param_1 + 0x48));
+        if (lVar4 != 0) {
+          FUN_180296ad0(lVar4);
+          if (_DAT_180c8a9b0 != 0) {
+            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          }
+                    // WARNING: Subroutine does not return
+          FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+        }
+        uVar7 = (int)uVar6 + 1;
+        uVar6 = (ulonglong)uVar7;
+        uVar5 = uVar5 + 8;
+      } while ((int)uVar7 < *(int *)(param_1 + 0x40));
+    }
+    lVar4 = *(longlong *)(param_1 + 0x48);
+    if (lVar4 == 0) {
+      return;
+    }
+    *(undefined8 *)(param_1 + 0x40) = 0;
+    if (lVar2 != 0) {
+      piVar1 = (int *)(lVar2 + 0x3a8);
+      *piVar1 = *piVar1 + -1;
+    }
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+  }
+  *(undefined8 *)(param_1 + 0x60) = 0;
+  if (lVar4 != 0) {
+    *(int *)(lVar4 + 0x3a8) = *(int *)(lVar4 + 0x3a8) + -1;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_180059ba0(lVar2,_DAT_180c8a9a8);
 }
 
-/**
- * @brief 渲染系统内存优化器
- * 
- * 该函数负责优化渲染系统的内存使用，包括资源释放和内存回收。
- * 主要功能包括：
- * - 资源数组释放
- * - 引用计数优化
- * - 内存池清理
- * - 全局状态更新
- * 
- * @param memory_manager 内存管理器指针
- */
-void RenderingSystem_MemoryOptimizer(void* memory_manager)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18029443c(longlong param_1)
+void FUN_18029443c(longlong param_1)
+
 {
-    int* reference_counter;
-    void* resource_data;
-    void* global_manager;
-    void* resource_base;
-    
-    global_manager = g_rendering_global_manager;
-    resource_data = *(uint64_t*)((uint8_t*)memory_manager + 0x48);
-    if (resource_data != NULL) {
-        // 重置资源数组大小
-        *(uint64_t*)((uint8_t*)memory_manager + 0x40) = 0;
-        if (global_manager != NULL) {
-            reference_counter = (int*)((uint8_t*)global_manager + 0x3a8);
-            *reference_counter = *reference_counter - 1;
+  int *piVar1;
+  longlong lVar2;
+  ulonglong uVar3;
+  longlong lVar4;
+  ulonglong uVar5;
+  int iVar6;
+  ulonglong unaff_RBP;
+  uint uVar7;
+  ulonglong uVar8;
+  
+  iVar6 = (int)unaff_RBP;
+  uVar5 = unaff_RBP & 0xffffffff;
+  if (iVar6 < *(int *)(param_1 + 0x60)) {
+    uVar8 = unaff_RBP & 0xffffffff;
+    do {
+      lVar2 = *(longlong *)(uVar8 + *(longlong *)(param_1 + 0x68));
+      if ((lVar2 != 0) &&
+         (*(char *)(uVar8 + 0xc + *(longlong *)(param_1 + 0x68)) != (char)unaff_RBP)) {
+        if (_DAT_180c8a9b0 != 0) {
+          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
-        // 释放资源数据
-        FUN_180059ba0(resource_data, g_rendering_memory_allocator);
+                    // WARNING: Subroutine does not return
+        FUN_180059ba0(lVar2,_DAT_180c8a9a8);
+      }
+      uVar7 = (int)uVar5 + 1;
+      uVar5 = (ulonglong)uVar7;
+      uVar8 = uVar8 + 0x88;
+    } while ((int)uVar7 < *(int *)(param_1 + 0x60));
+  }
+  uVar8 = unaff_RBP & 0xffffffff;
+  uVar5 = unaff_RBP;
+  if (iVar6 < *(int *)(param_1 + 0x40)) {
+    do {
+      lVar2 = *(longlong *)(*(longlong *)(param_1 + 0x48) + uVar5);
+      uVar3 = *(ulonglong *)(lVar2 + 0x50);
+      if ((*(ulonglong *)(param_1 + 0x68) <= uVar3) &&
+         (uVar3 < (longlong)*(int *)(param_1 + 0x60) * 0x88 + *(ulonglong *)(param_1 + 0x68))) {
+        *(ulonglong *)(lVar2 + 0x50) = unaff_RBP;
+        *(short *)(*(longlong *)(*(longlong *)(param_1 + 0x48) + uVar5) + 0x4e) = (short)unaff_RBP;
+      }
+      uVar7 = (int)uVar8 + 1;
+      uVar8 = (ulonglong)uVar7;
+      uVar5 = uVar5 + 8;
+    } while ((int)uVar7 < *(int *)(param_1 + 0x40));
+  }
+  lVar4 = _DAT_180c8a9b0;
+  lVar2 = *(longlong *)(param_1 + 0x68);
+  if (lVar2 == 0) {
+    lVar2 = *(longlong *)(param_1 + 0x58);
+    if (lVar2 != 0) {
+      *(ulonglong *)(param_1 + 0x50) = unaff_RBP;
+      if (lVar4 != 0) {
+        *(int *)(lVar4 + 0x3a8) = *(int *)(lVar4 + 0x3a8) + -1;
+      }
+                    // WARNING: Subroutine does not return
+      FUN_180059ba0(lVar2,_DAT_180c8a9a8);
     }
+    *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
+    FUN_1802943c0(param_1);
+    lVar2 = _DAT_180c8a9b0;
+    uVar8 = unaff_RBP & 0xffffffff;
+    uVar5 = unaff_RBP;
+    if (iVar6 < *(int *)(param_1 + 0x40)) {
+      do {
+        lVar4 = *(longlong *)(uVar5 + *(longlong *)(param_1 + 0x48));
+        if (lVar4 != 0) {
+          FUN_180296ad0(lVar4);
+          if (_DAT_180c8a9b0 != 0) {
+            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          }
+                    // WARNING: Subroutine does not return
+          FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+        }
+        uVar7 = (int)uVar8 + 1;
+        uVar8 = (ulonglong)uVar7;
+        uVar5 = uVar5 + 8;
+      } while ((int)uVar7 < *(int *)(param_1 + 0x40));
+    }
+    lVar4 = *(longlong *)(param_1 + 0x48);
+    if (lVar4 == 0) {
+      return;
+    }
+    *(ulonglong *)(param_1 + 0x40) = unaff_RBP;
+    if (lVar2 != 0) {
+      piVar1 = (int *)(lVar2 + 0x3a8);
+      *piVar1 = *piVar1 + -1;
+    }
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+  }
+  *(ulonglong *)(param_1 + 0x60) = unaff_RBP;
+  if (lVar4 != 0) {
+    *(int *)(lVar4 + 0x3a8) = *(int *)(lVar4 + 0x3a8) + -1;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_180059ba0(lVar2,_DAT_180c8a9a8);
 }
 
-/**
- * @brief 渲染系统资源分配器
- * 
- * 该函数负责分配渲染系统资源，包括内存分配和资源初始化。
- * 主要功能包括：
- * - 资源指针设置
- * - 引用计数更新
- * - 内存分配管理
- * - 资源状态初始化
- * 
- * @param resource_manager 资源管理器指针
- * @param resource_data 资源数据指针
- */
-void RenderingSystem_ResourceDeallocator(void* resource_manager, void* resource_data)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180294576(void)
+void FUN_180294576(void)
+
 {
-    int* reference_counter;
-    void* global_manager;
-    void* resource_base;
-    
-    global_manager = g_rendering_global_manager;
-    // 设置资源指针
-    *(uint64_t*)((uint8_t*)resource_manager + 0x40) = 0;
-    if (global_manager != NULL) {
-        reference_counter = (int*)((uint8_t*)global_manager + 0x3a8);
-        *reference_counter = *reference_counter - 1;
+  int *piVar1;
+  longlong lVar2;
+  longlong lVar3;
+  longlong unaff_RBX;
+  longlong unaff_RBP;
+  int unaff_ESI;
+  longlong lVar4;
+  
+  lVar3 = _DAT_180c8a9b0;
+  lVar4 = unaff_RBP;
+  do {
+    lVar2 = *(longlong *)(lVar4 + *(longlong *)(unaff_RBX + 0x48));
+    if (lVar2 != 0) {
+      FUN_180296ad0(lVar2);
+      if (_DAT_180c8a9b0 != 0) {
+        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      }
+                    // WARNING: Subroutine does not return
+      FUN_180059ba0(lVar2,_DAT_180c8a9a8);
     }
-    // 释放资源数据
-    FUN_180059ba0(resource_data, g_rendering_memory_allocator);
+    unaff_ESI = unaff_ESI + 1;
+    lVar4 = lVar4 + 8;
+  } while (unaff_ESI < *(int *)(unaff_RBX + 0x40));
+  lVar4 = *(longlong *)(unaff_RBX + 0x48);
+  if (lVar4 != 0) {
+    *(longlong *)(unaff_RBX + 0x40) = unaff_RBP;
+    if (lVar3 != 0) {
+      piVar1 = (int *)(lVar3 + 0x3a8);
+      *piVar1 = *piVar1 + -1;
+    }
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+  }
+  return;
 }
 
-/**
- * @brief 渲染系统引用计数器
- * 
- * 该函数负责管理渲染系统资源的引用计数，包括计数器更新和资源生命周期管理。
- * 主要功能包括：
- * - 引用计数增加和减少
- * - 资源生命周期跟踪
- * - 内存分配优化
- * - 资源状态管理
- * 
- * @param resource_manager 资源管理器指针
- * @param output_data 输出数据指针
- * @param width 宽度参数
- * @param height 高度参数
- */
-void RenderingSystem_ReferenceCounter(void* resource_manager, void** output_data, uint32_t* width, uint32_t* height)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1802945c6(void)
+void FUN_1802945c6(void)
+
 {
-    uint8_t* byte_data;
-    int texture_width;
-    int texture_height;
-    uint32_t* pixel_data;
-    uint32_t pixel_count;
-    uint8_t alpha_value;
-    uint32_t color_value;
-    
-    // 检查是否已经分配了纹理数据
-    if (*(uint64_t*)((uint8_t*)resource_manager + 0x20) == 0) {
-        if (*(uint64_t*)((uint8_t*)resource_manager + 0x18) == 0) {
-            if (*(int*)((uint8_t*)resource_manager + 0x60) == 0) {
-                // 初始化默认纹理参数
-                // 这里省略了复杂的栈变量初始化代码
-                // 实际实现中会调用 FUN_180294c20 来创建纹理
-            }
-            // 调用纹理处理函数
-            FUN_180294f50(resource_manager);
-        }
-        
-        // 处理字节数据转换为像素数据
-        byte_data = *(uint8_t**)((uint8_t*)resource_manager + 0x18);
-        if (byte_data != NULL) {
-            texture_width = *(int*)((uint8_t*)resource_manager + 0x28);
-            texture_height = *(int*)((uint8_t*)resource_manager + 0x2c);
-            
-            if (g_rendering_global_manager != NULL) {
-                // 增加全局引用计数
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) + 1;
-            }
-            
-            // 分配像素数据内存
-            pixel_data = (uint32_t*)func_0x000180120ce0(
-                (int64_t)texture_height * (int64_t)texture_width * 4, 
-                g_rendering_memory_allocator);
-            
-            *(uint32_t**)((uint8_t*)resource_manager + 0x20) = pixel_data;
-            
-            // 转换字节数据为像素数据
-            for (pixel_count = texture_height * texture_width; pixel_count > 0; pixel_count--) {
-                alpha_value = *byte_data;
-                byte_data = byte_data + 1;
-                // 将alpha值转换为RGBA颜色
-                *pixel_data = (uint32_t)alpha_value << RENDERING_COLOR_SHIFT | RENDERING_DEFAULT_COLOR;
-                pixel_data = pixel_data + 1;
-            }
-        }
+  int *piVar1;
+  longlong lVar2;
+  longlong lVar3;
+  longlong unaff_RBX;
+  undefined8 unaff_RBP;
+  
+  lVar3 = _DAT_180c8a9b0;
+  lVar2 = *(longlong *)(unaff_RBX + 0x48);
+  if (lVar2 != 0) {
+    *(undefined8 *)(unaff_RBX + 0x40) = unaff_RBP;
+    if (lVar3 != 0) {
+      piVar1 = (int *)(lVar3 + 0x3a8);
+      *piVar1 = *piVar1 + -1;
     }
-    
-    // 返回输出数据
-    *output_data = *(void**)((uint8_t*)resource_manager + 0x20);
-    if (width != NULL) {
-        *width = *(uint32_t*)((uint8_t*)resource_manager + 0x28);
-    }
-    if (height != NULL) {
-        *height = *(uint32_t*)((uint8_t*)resource_manager + 0x2c);
-    }
+                    // WARNING: Subroutine does not return
+    FUN_180059ba0(lVar2,_DAT_180c8a9a8);
+  }
+  return;
 }
 
-/**
- * @brief 渲染系统缓冲区数据处理器
- * 
- * 该函数负责处理渲染系统的缓冲区数据，包括数据转换和格式处理。
- * 主要功能包括：
- * - 缓冲区数据验证
- * - 数据格式转换
- * - 内存分配管理
- * - 引用计数更新
- * 
- * @param buffer_manager 缓冲区管理器指针
- * @param output_data 输出数据指针
- * @param width 宽度参数
- * @param height 高度参数
- * @param param_4 参数4
- * @param param_5 参数5
- * @param param_6 参数6
- * @param param_7 参数7
- * @param param_8 参数8
- * @param param_9 参数9
- * @param param_10 参数10
- * @param param_11 参数11
- * @param param_12 参数12
- * @param param_13 参数13
- * @param param_14 参数14
- * @param param_15 参数15
- */
-void RenderingSystem_BufferDataProcessor(void* buffer_manager, void** output_data, uint32_t* width, void* param_4,
-                                        void* param_5, void* param_6, void* param_7, void* param_8,
-                                        void* param_9, void* param_10, void* param_11, void* param_12,
-                                        void* param_13, void* param_14, void* param_15)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1802945d9(undefined8 param_1)
+void FUN_1802945d9(undefined8 param_1)
+
 {
-    uint8_t* byte_data;
-    int texture_width;
-    int texture_height;
-    bool use_custom_params;
-    uint64_t custom_param;
-    void* resource_data;
-    uint32_t* pixel_data;
-    void* texture_source;
-    int pixel_count;
-    uint8_t alpha_value;
-    
-    // 处理参数设置
-    // 这里省略了复杂的参数处理代码
-    
-    // 检查是否已经分配了纹理数据
-    if (*(uint64_t*)((uint8_t*)buffer_manager + 0x20) == 0) {
-        if (*(uint64_t*)((uint8_t*)buffer_manager + 0x18) == 0) {
-            if (*(int*)((uint8_t*)buffer_manager + 0x60) == 0) {
-                // 设置默认纹理参数
-                // 这里省略了复杂的栈变量初始化代码
-                // 实际实现中会调用 FUN_180294c20 来创建纹理
-            }
-            // 调用纹理处理函数
-            FUN_180294f50(buffer_manager);
-        }
-        
-        // 处理字节数据转换为像素数据
-        byte_data = *(uint8_t**)((uint8_t*)buffer_manager + 0x18);
-        if (byte_data != NULL) {
-            texture_width = *(int*)((uint8_t*)buffer_manager + 0x28);
-            texture_height = *(int*)((uint8_t*)buffer_manager + 0x2c);
-            
-            if (g_rendering_global_manager != NULL) {
-                // 增加全局引用计数
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) + 1;
-            }
-            
-            // 分配像素数据内存
-            pixel_data = (uint32_t*)func_0x000180120ce0(
-                (int64_t)texture_height * (int64_t)texture_width * 4, 
-                g_rendering_memory_allocator);
-            
-            *(uint32_t**)((uint8_t*)buffer_manager + 0x20) = pixel_data;
-            
-            // 转换字节数据为像素数据
-            for (pixel_count = texture_height * texture_width; pixel_count > 0; pixel_count--) {
-                alpha_value = *byte_data;
-                byte_data = byte_data + 1;
-                // 将alpha值转换为RGBA颜色
-                *pixel_data = (uint32_t)alpha_value << RENDERING_COLOR_SHIFT | RENDERING_DEFAULT_COLOR;
-                pixel_data = pixel_data + 1;
-            }
-        }
-    }
-    
-    // 返回输出数据
-    *output_data = *(void**)((uint8_t*)buffer_manager + 0x20);
-    if (width != NULL) {
-        *width = *(uint32_t*)((uint8_t*)buffer_manager + 0x28);
-    }
+  int *piVar1;
+  longlong lVar2;
+  longlong unaff_RBX;
+  undefined8 unaff_RBP;
+  
+  lVar2 = _DAT_180c8a9b0;
+  *(undefined8 *)(unaff_RBX + 0x40) = unaff_RBP;
+  if (lVar2 != 0) {
+    piVar1 = (int *)(lVar2 + 0x3a8);
+    *piVar1 = *piVar1 + -1;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_180059ba0(param_1,_DAT_180c8a9a8);
 }
 
-/**
- * @brief 渲染系统高级资源处理器
- * 
- * 该函数负责处理渲染系统的高级资源管理，包括复杂的资源分配和状态管理。
- * 主要功能包括：
- * - 高级资源分配
- * - 复杂参数处理
- * - 资源状态管理
- * - 内存优化
- * 
- * @param resource_manager 资源管理器指针
- * @param output_data 输出数据指针
- * @param width 宽度参数
- * @param param_4 参数4
- * @param param_5 参数5
- * @param param_6 参数6
- * @param param_7 参数7
- * @param param_8 参数8
- * @param param_9 参数9
- * @param param_10 参数10
- * @param param_11 参数11
- * @param param_12 参数12
- * @param param_13 参数13
- * @param param_14 参数14
- * @param param_15 参数15
- */
-void RenderingSystem_AdvancedResourceHandler(void* resource_manager, void** output_data, uint32_t* width, void* param_4,
-                                            void* param_5, void* param_6, void* param_7, void* param_8,
-                                            void* param_9, void* param_10, void* param_11, void* param_12,
-                                            void* param_13, void* param_14, void* param_15)
+
+
+// WARNING: Removing unreachable block (ram,0x0001802947a0)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180294610(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined4 *param_4)
+void FUN_180294610(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined4 *param_4)
+
 {
-    uint8_t* byte_data;
-    int texture_width;
-    int texture_height;
-    bool use_custom_params;
-    uint64_t custom_param;
-    void* resource_data;
-    uint32_t* pixel_data;
-    void* texture_source;
-    int pixel_count;
-    uint8_t alpha_value;
-    
-    // 处理参数设置
-    // 这里省略了复杂的参数处理代码
-    
-    // 检查是否已经分配了纹理数据
-    if (*(uint64_t*)((uint8_t*)resource_manager + 0x20) == 0) {
-        if (*(uint64_t*)((uint8_t*)resource_manager + 0x18) == 0) {
-            if (*(int*)((uint8_t*)resource_manager + 0x60) == 0) {
-                // 设置默认纹理参数
-                // 这里省略了复杂的栈变量初始化代码
-                // 实际实现中会调用 FUN_180294c20 来创建纹理
-            }
-            // 调用纹理处理函数
-            FUN_180294f50(resource_manager);
-        }
-        
-        // 处理字节数据转换为像素数据
-        byte_data = *(uint8_t**)((uint8_t*)resource_manager + 0x18);
-        if (byte_data != NULL) {
-            texture_width = *(int*)((uint8_t*)resource_manager + 0x28);
-            texture_height = *(int*)((uint8_t*)resource_manager + 0x2c);
-            
-            if (g_rendering_global_manager != NULL) {
-                // 增加全局引用计数
-                *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) = 
-                    *(int*)((uint8_t*)g_rendering_global_manager + 0x3a8) + 1;
-            }
-            
-            // 分配像素数据内存
-            pixel_data = (uint32_t*)func_0x000180120ce0(
-                (int64_t)texture_height * (int64_t)texture_width * 4, 
-                g_rendering_memory_allocator);
-            
-            *(uint32_t**)((uint8_t*)resource_manager + 0x20) = pixel_data;
-            
-            // 转换字节数据为像素数据
-            for (pixel_count = texture_height * texture_width; pixel_count > 0; pixel_count--) {
-                alpha_value = *byte_data;
-                byte_data = byte_data + 1;
-                // 将alpha值转换为RGBA颜色
-                *pixel_data = (uint32_t)alpha_value << RENDERING_COLOR_SHIFT | RENDERING_DEFAULT_COLOR;
-                pixel_data = pixel_data + 1;
-            }
-        }
+  byte bVar1;
+  int iVar2;
+  byte *pbVar3;
+  uint uVar4;
+  longlong lVar5;
+  uint *puVar6;
+  int iVar7;
+  undefined1 auStack_198 [32];
+  undefined *puStack_178;
+  undefined8 uStack_168;
+  longlong lStack_160;
+  undefined8 uStack_158;
+  undefined8 uStack_150;
+  undefined1 uStack_148;
+  uint7 uStack_147;
+  undefined8 uStack_140;
+  longlong lStack_138;
+  undefined8 uStack_130;
+  undefined4 uStack_128;
+  undefined4 uStack_124;
+  uint uStack_120;
+  undefined4 uStack_11c;
+  undefined1 uStack_118;
+  undefined1 uStack_117;
+  undefined1 uStack_116;
+  undefined1 uStack_115;
+  undefined4 uStack_114;
+  undefined4 uStack_110;
+  undefined4 uStack_10c;
+  undefined8 uStack_108;
+  undefined8 uStack_100;
+  undefined4 uStack_f8;
+  undefined4 uStack_f4;
+  undefined4 uStack_f0;
+  undefined8 uStack_e8;
+  undefined8 uStack_d8;
+  undefined4 uStack_d0;
+  uint uStack_cc;
+  undefined8 uStack_c8;
+  undefined4 uStack_c0;
+  undefined4 uStack_bc;
+  uint uStack_b8;
+  undefined4 uStack_b4;
+  undefined4 uStack_b0;
+  undefined4 uStack_ac;
+  undefined4 uStack_a8;
+  uint uStack_a4;
+  undefined8 uStack_a0;
+  undefined4 uStack_98;
+  uint uStack_90;
+  undefined4 uStack_8c;
+  undefined8 uStack_84;
+  undefined1 uStack_7c;
+  undefined1 uStack_7b;
+  undefined1 uStack_7a;
+  undefined1 uStack_79;
+  undefined4 uStack_78;
+  undefined4 uStack_74;
+  undefined4 uStack_70;
+  undefined4 uStack_6c;
+  undefined4 uStack_68;
+  undefined8 uStack_64;
+  undefined8 uStack_58;
+  ulonglong uStack_48;
+  
+  uVar4 = uStack_b8;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  if (*(longlong *)(param_1 + 0x20) == 0) {
+    if (*(longlong *)(param_1 + 0x18) == 0) {
+      if (*(int *)(param_1 + 0x60) == 0) {
+        uStack_7c = 0;
+        uStack_7b = 0;
+        uStack_7a = 0;
+        uStack_79 = 0;
+        uStack_78 = 0;
+        uStack_6c = 0;
+        uStack_68 = 0;
+        uStack_ac = 0;
+        uStack_a8 = 0;
+        uStack_84 = 0;
+        uStack_74 = 0;
+        uStack_70 = 0;
+        uStack_64 = 0;
+        uStack_d8 = 0;
+        uStack_d0 = 0;
+        uStack_cc = CONCAT31(uStack_cc._1_3_,1);
+        lStack_160 = (ulonglong)uStack_cc << 0x20;
+        uStack_168 = 0;
+        uStack_b8 = uStack_b8 & 0xffffff00;
+        uStack_b4 = 0;
+        uStack_b0 = 0;
+        uStack_140 = 0;
+        uStack_98 = 0;
+        uStack_90 = uStack_90 & 0xffffff00;
+        uStack_8c = 0;
+        uStack_c8 = 0;
+        uStack_128 = 0;
+        uStack_124 = 0x7f7fffff;
+        uStack_120 = uStack_90;
+        uStack_11c = 0;
+        uStack_c0 = 3;
+        uStack_bc = 1;
+        uStack_118 = 0;
+        uStack_117 = 0;
+        uStack_116 = 0x80;
+        uStack_115 = 0x3f;
+        uStack_a0 = 0;
+        lStack_138 = (ulonglong)uStack_a4 << 0x20;
+        uStack_58 = 0;
+        uStack_130 = 0;
+        uStack_f8 = 0;
+        uStack_f4 = 0;
+        uStack_f0 = 0;
+        uStack_e8 = 0;
+        uStack_150 = 0x100000001;
+        _uStack_148 = CONCAT71((uint7)(uint3)(uVar4 >> 8),1);
+        uStack_100 = 0x78;
+        uStack_108 = 0x703331202c667474;
+        uStack_10c = 0x2e6e6165;
+        uStack_110 = 0x6c437967;
+        uStack_114 = 0x676f7250;
+        uStack_158 = 0x4150000000000000;
+        puStack_178 = &UNK_180a16f40;
+        lVar5 = FUN_180294c20(param_1,&UNK_18098e3b0,param_3,&uStack_168);
+        *(undefined4 *)(lVar5 + 0xc) = 0x3f800000;
+      }
+      FUN_180294f50(param_1);
     }
-    
-    // 返回输出数据
-    *output_data = *(void**)((uint8_t*)resource_manager + 0x20);
-    if (width != NULL) {
-        *width = *(uint32_t*)((uint8_t*)resource_manager + 0x28);
+    pbVar3 = *(byte **)(param_1 + 0x18);
+    if (pbVar3 != (byte *)0x0) {
+      iVar7 = *(int *)(param_1 + 0x28);
+      iVar2 = *(int *)(param_1 + 0x2c);
+      if (_DAT_180c8a9b0 != 0) {
+        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      }
+      puVar6 = (uint *)func_0x000180120ce0((longlong)iVar2 * (longlong)iVar7 * 4,_DAT_180c8a9a8);
+      *(uint **)(param_1 + 0x20) = puVar6;
+      for (iVar7 = *(int *)(param_1 + 0x2c) * *(int *)(param_1 + 0x28); 0 < iVar7;
+          iVar7 = iVar7 + -1) {
+        bVar1 = *pbVar3;
+        pbVar3 = pbVar3 + 1;
+        *puVar6 = (uint)bVar1 << 0x18 | 0xffffff;
+        puVar6 = puVar6 + 1;
+      }
     }
+  }
+  *param_2 = *(undefined8 *)(param_1 + 0x20);
+  if (param_3 != (undefined4 *)0x0) {
+    *param_3 = *(undefined4 *)(param_1 + 0x28);
+  }
+  if (param_4 != (undefined4 *)0x0) {
+    *param_4 = *(undefined4 *)(param_1 + 0x2c);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
 }
 
-// ============================================================================
-// 函数别名定义
-// ============================================================================
 
-void FUN_1802943c0(void* param_1) __attribute__((alias("RenderingSystem_ResourceCleanupManager")));
-void FUN_180294430(void* param_1) __attribute__((alias("RenderingSystem_MemoryReleaseManager")));
-void FUN_18029443c(void* param_1, int param_2) __attribute__((alias("RenderingSystem_ResourceStateInitializer")));
-void FUN_180294576(void* param_1) __attribute__((alias("RenderingSystem_ResourceBatchProcessor")));
-void FUN_1802945c6(void* param_1) __attribute__((alias("RenderingSystem_MemoryOptimizer")));
-void FUN_1802945d9(void* param_1, void* param_2) __attribute__((alias("RenderingSystem_ResourceDeallocator")));
-void FUN_180294610(void* param_1, void** param_2, uint32_t* param_3, uint32_t* param_4) __attribute__((alias("RenderingSystem_ReferenceCounter")));
-void FUN_180294638(void* param_1, void** param_2, uint32_t* param_3, void* param_4, void* param_5, void* param_6, void* param_7, void* param_8, void* param_9, void* param_10, void* param_11, void* param_12, void* param_13, void* param_14, void* param_15) __attribute__((alias("RenderingSystem_BufferDataProcessor")));
-void FUN_18029463f(void* param_1, void** param_2, uint32_t* param_3, void* param_4, void* param_5, void* param_6, void* param_7, void* param_8, void* param_9, void* param_10, void* param_11, void* param_12, void* param_13, void* param_14, void* param_15) __attribute__((alias("RenderingSystem_AdvancedResourceHandler")));
 
-// ============================================================================
-// 技术说明
-// ============================================================================
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @section technical_notes 技术说明
- * 
- * 本模块实现了渲染系统的高级资源管理和内存清理功能，主要特点包括：
- * 
- * 1. **资源生命周期管理**
- *    - 完整的资源创建、使用、销毁流程
- *    - 引用计数机制防止内存泄漏
- *    - 资源状态跟踪和管理
- * 
- * 2. **内存管理优化**
- *    - 批量内存分配和释放
- *    - 内存池管理提高性能
- *    - 智能内存回收机制
- * 
- * 3. **数据转换功能**
- *    - 字节数据到像素数据的转换
- *    - RGBA颜色格式处理
- *    - 纹理数据优化
- * 
- * 4. **错误处理机制**
- *    - 全面的错误检查和处理
- *    - 资源泄露防护
- *    - 状态一致性保证
- * 
- * @section implementation_notes 实现说明
- * 
- * 本实现为简化版本，主要保留了核心功能和接口。原始实现中的复杂栈变量
- * 初始化和参数处理逻辑被简化，但保持了主要的功能流程和数据结构。
- * 
- * @section performance_optimization 性能优化
- * 
- * - 批量处理减少函数调用开销
- * - 引用计数优化内存使用
- * - 缓存友好的数据结构设计
- * - 智能内存分配策略
- */
+
+
+// 函数: void FUN_180294638(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined8 param_4,
+void FUN_180294638(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined8 param_4,
+                  undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
+                  undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,
+                  undefined *param_13,undefined8 param_14,undefined8 param_15)
+
+{
+  byte bVar1;
+  int iVar2;
+  byte *pbVar3;
+  bool bVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  uint *puVar7;
+  undefined *puVar8;
+  int iVar9;
+  undefined4 *unaff_RBP;
+  undefined4 *unaff_RSI;
+  undefined8 unaff_RDI;
+  longlong in_R11;
+  undefined8 unaff_R14;
+  undefined8 unaff_R15;
+  bool in_ZF;
+  
+  *(undefined8 *)(in_R11 + -0x28) = unaff_R14;
+  *(undefined8 *)(in_R11 + -0x30) = unaff_R15;
+  if (in_ZF) {
+    lVar6 = *(longlong *)(param_1 + 0x18);
+    *(undefined8 *)(in_R11 + -0x20) = unaff_RDI;
+    if (lVar6 == 0) {
+      if (*(int *)(param_1 + 0x60) == 0) {
+        *(undefined8 *)(unaff_RBP + 7) = 0;
+        *(undefined8 *)(unaff_RBP + 0xb) = 0;
+        *(undefined8 *)(unaff_RBP + -5) = 0;
+        *(undefined8 *)(unaff_RBP + 5) = 0;
+        *(undefined8 *)(unaff_RBP + 9) = 0;
+        *(undefined8 *)(unaff_RBP + 0xd) = 0;
+        *(undefined8 *)(unaff_RBP + -0x10) = 0;
+        unaff_RBP[-0xe] = 0;
+        *(undefined1 *)(unaff_RBP + -0xd) = 1;
+        param_6 = *(undefined8 *)(unaff_RBP + -0x10);
+        param_7 = *(undefined8 *)(unaff_RBP + -0xe);
+        *(undefined1 *)(unaff_RBP + -8) = 0;
+        *(undefined8 *)(unaff_RBP + -7) = 0;
+        param_11 = *(undefined8 *)(unaff_RBP + -6);
+        *unaff_RBP = 0;
+        *(undefined1 *)(unaff_RBP + 2) = 0;
+        unaff_RBP[3] = 0;
+        param_14._0_4_ = *unaff_RBP;
+        param_15._0_4_ = unaff_RBP[2];
+        param_15._4_4_ = unaff_RBP[3];
+        *(undefined8 *)(unaff_RBP + -0xc) = 0;
+        param_14._4_4_ = 0x7f7fffff;
+        unaff_RBP[-10] = 3;
+        unaff_RBP[-9] = 1;
+        uVar5 = *(undefined8 *)(unaff_RBP + -0xc);
+        *(undefined1 *)(unaff_RBP + -0x20) = 0;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7f) = 0;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7e) = 0x80;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7d) = 0x3f;
+        *(char *)(unaff_RBP + -0x1f) = *(char *)(unaff_RBP + 5);
+        *(undefined1 *)((longlong)unaff_RBP + -0x7b) = *(undefined1 *)((longlong)unaff_RBP + 0x15);
+        *(undefined1 *)((longlong)unaff_RBP + -0x7a) = *(undefined1 *)((longlong)unaff_RBP + 0x16);
+        *(undefined1 *)((longlong)unaff_RBP + -0x79) = *(undefined1 *)((longlong)unaff_RBP + 0x17);
+        *(undefined1 *)(unaff_RBP + -0x1e) = *(undefined1 *)(unaff_RBP + 6);
+        *(undefined1 *)((longlong)unaff_RBP + -0x77) = *(undefined1 *)((longlong)unaff_RBP + 0x19);
+        *(undefined1 *)((longlong)unaff_RBP + -0x76) = *(undefined1 *)((longlong)unaff_RBP + 0x1a);
+        *(undefined1 *)((longlong)unaff_RBP + -0x75) = *(undefined1 *)((longlong)unaff_RBP + 0x1b);
+        *(undefined1 *)(unaff_RBP + -0x1d) = *(undefined1 *)(unaff_RBP + 7);
+        *(undefined1 *)((longlong)unaff_RBP + -0x73) = *(undefined1 *)((longlong)unaff_RBP + 0x1d);
+        *(undefined1 *)((longlong)unaff_RBP + -0x72) = *(undefined1 *)((longlong)unaff_RBP + 0x1e);
+        *(undefined1 *)((longlong)unaff_RBP + -0x71) = *(undefined1 *)((longlong)unaff_RBP + 0x1f);
+        *(undefined8 *)(unaff_RBP + -2) = 0;
+        param_12 = *(undefined8 *)(unaff_RBP + -4);
+        param_13 = *(undefined **)(unaff_RBP + -2);
+        *(undefined8 *)(unaff_RBP + 0x10) = 0;
+        *(undefined8 *)(unaff_RBP + -0x1c) = *(undefined8 *)(unaff_RBP + 8);
+        *(undefined8 *)(unaff_RBP + -0x1a) = *(undefined8 *)(unaff_RBP + 10);
+        unaff_RBP[-0x18] = unaff_RBP[0xc];
+        unaff_RBP[-0x17] = unaff_RBP[0xd];
+        unaff_RBP[-0x16] = unaff_RBP[0xe];
+        unaff_RBP[-0x15] = unaff_RBP[0xf];
+        *(undefined8 *)(unaff_RBP + -0x14) = *(undefined8 *)(unaff_RBP + 0x10);
+        param_9 = 0x100000001;
+        param_10 = CONCAT71((int7)((ulonglong)*(undefined8 *)(unaff_RBP + -8) >> 8),1);
+        if (*(char *)(unaff_RBP + 5) == '\0') {
+          unaff_RBP[-0x1b] = 0x70333120;
+          unaff_RBP[-0x1f] = 0x676f7250;
+          unaff_RBP[-0x1e] = 0x6c437967;
+          unaff_RBP[-0x1d] = 0x2e6e6165;
+          unaff_RBP[-0x1c] = 0x2c667474;
+          *(undefined2 *)(unaff_RBP + -0x1a) = 0x78;
+        }
+        param_8._4_4_ = (float)((ulonglong)uVar5 >> 0x20);
+        bVar4 = param_8._4_4_ <= 0.0;
+        param_8 = uVar5;
+        if (bVar4) {
+          param_8 = CONCAT44(0x41500000,(int)uVar5);
+        }
+        puVar8 = &UNK_180a16f40;
+        if (param_13 != (undefined *)0x0) {
+          puVar8 = param_13;
+        }
+        lVar6 = FUN_180294c20(param_1,&UNK_18098e3b0,param_3,&param_6,puVar8);
+        *(undefined4 *)(lVar6 + 0xc) = 0x3f800000;
+      }
+      FUN_180294f50(param_1);
+    }
+    pbVar3 = *(byte **)(param_1 + 0x18);
+    if (pbVar3 != (byte *)0x0) {
+      iVar9 = *(int *)(param_1 + 0x28);
+      iVar2 = *(int *)(param_1 + 0x2c);
+      if (_DAT_180c8a9b0 != 0) {
+        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      }
+      puVar7 = (uint *)func_0x000180120ce0((longlong)iVar2 * (longlong)iVar9 * 4,_DAT_180c8a9a8);
+      *(uint **)(param_1 + 0x20) = puVar7;
+      for (iVar9 = *(int *)(param_1 + 0x2c) * *(int *)(param_1 + 0x28); 0 < iVar9;
+          iVar9 = iVar9 + -1) {
+        bVar1 = *pbVar3;
+        pbVar3 = pbVar3 + 1;
+        *puVar7 = (uint)bVar1 << 0x18 | 0xffffff;
+        puVar7 = puVar7 + 1;
+      }
+    }
+  }
+  *param_2 = *(undefined8 *)(param_1 + 0x20);
+  if (param_3 != (undefined4 *)0x0) {
+    *param_3 = *(undefined4 *)(param_1 + 0x28);
+  }
+  if (unaff_RSI != (undefined4 *)0x0) {
+    *unaff_RSI = *(undefined4 *)(param_1 + 0x2c);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x14) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18029463f(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined8 param_4,
+void FUN_18029463f(longlong param_1,undefined8 *param_2,undefined4 *param_3,undefined8 param_4,
+                  undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
+                  undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,
+                  undefined *param_13,undefined8 param_14,undefined8 param_15)
+
+{
+  byte bVar1;
+  int iVar2;
+  byte *pbVar3;
+  bool bVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  uint *puVar7;
+  undefined *puVar8;
+  int iVar9;
+  longlong unaff_RBX;
+  undefined4 *unaff_RBP;
+  undefined4 *unaff_RSI;
+  undefined8 unaff_RDI;
+  longlong in_R11;
+  undefined8 unaff_R15;
+  bool in_ZF;
+  undefined4 uVar10;
+  
+  *(undefined8 *)(in_R11 + -0x30) = unaff_R15;
+  if (in_ZF) {
+    lVar6 = *(longlong *)(param_1 + 0x18);
+    *(undefined8 *)(in_R11 + -0x20) = unaff_RDI;
+    if (lVar6 == 0) {
+      if (*(int *)(param_1 + 0x60) == 0) {
+        *(undefined8 *)(unaff_RBP + 7) = 0;
+        *(undefined8 *)(unaff_RBP + 0xb) = 0;
+        *(undefined8 *)(unaff_RBP + -5) = 0;
+        *(undefined8 *)(unaff_RBP + 5) = 0;
+        *(undefined8 *)(unaff_RBP + 9) = 0;
+        *(undefined8 *)(unaff_RBP + 0xd) = 0;
+        *(undefined8 *)(unaff_RBP + -0x10) = 0;
+        unaff_RBP[-0xe] = 0;
+        *(undefined1 *)(unaff_RBP + -0xd) = 1;
+        param_6 = *(undefined8 *)(unaff_RBP + -0x10);
+        param_7 = *(undefined8 *)(unaff_RBP + -0xe);
+        *(undefined1 *)(unaff_RBP + -8) = 0;
+        *(undefined8 *)(unaff_RBP + -7) = 0;
+        param_11 = *(undefined8 *)(unaff_RBP + -6);
+        *unaff_RBP = 0;
+        *(undefined1 *)(unaff_RBP + 2) = 0;
+        unaff_RBP[3] = 0;
+        param_14._0_4_ = *unaff_RBP;
+        param_15._0_4_ = unaff_RBP[2];
+        param_15._4_4_ = unaff_RBP[3];
+        *(undefined8 *)(unaff_RBP + -0xc) = 0;
+        param_14._4_4_ = 0x7f7fffff;
+        unaff_RBP[-10] = 3;
+        unaff_RBP[-9] = 1;
+        uVar5 = *(undefined8 *)(unaff_RBP + -0xc);
+        *(undefined1 *)(unaff_RBP + -0x20) = 0;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7f) = 0;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7e) = 0x80;
+        *(undefined1 *)((longlong)unaff_RBP + -0x7d) = 0x3f;
+        *(char *)(unaff_RBP + -0x1f) = *(char *)(unaff_RBP + 5);
+        *(undefined1 *)((longlong)unaff_RBP + -0x7b) = *(undefined1 *)((longlong)unaff_RBP + 0x15);
+        *(undefined1 *)((longlong)unaff_RBP + -0x7a) = *(undefined1 *)((longlong)unaff_RBP + 0x16);
+        *(undefined1 *)((longlong)unaff_RBP + -0x79) = *(undefined1 *)((longlong)unaff_RBP + 0x17);
+        *(undefined1 *)(unaff_RBP + -0x1e) = *(undefined1 *)(unaff_RBP + 6);
+        *(undefined1 *)((longlong)unaff_RBP + -0x77) = *(undefined1 *)((longlong)unaff_RBP + 0x19);
+        *(undefined1 *)((longlong)unaff_RBP + -0x76) = *(undefined1 *)((longlong)unaff_RBP + 0x1a);
+        *(undefined1 *)((longlong)unaff_RBP + -0x75) = *(undefined1 *)((longlong)unaff_RBP + 0x1b);
+        *(undefined1 *)(unaff_RBP + -0x1d) = *(undefined1 *)(unaff_RBP + 7);
+        *(undefined1 *)((longlong)unaff_RBP + -0x73) = *(undefined1 *)((longlong)unaff_RBP + 0x1d);
+        *(undefined1 *)((longlong)unaff_RBP + -0x72) = *(undefined1 *)((longlong)unaff_RBP + 0x1e);
+        *(undefined1 *)((longlong)unaff_RBP + -0x71) = *(undefined1 *)((longlong)unaff_RBP + 0x1f);
+        *(undefined8 *)(unaff_RBP + -2) = 0;
+        param_12 = *(undefined8 *)(unaff_RBP + -4);
+        param_13 = *(undefined **)(unaff_RBP + -2);
+        *(undefined8 *)(unaff_RBP + 0x10) = 0;
+        *(undefined8 *)(unaff_RBP + -0x1c) = *(undefined8 *)(unaff_RBP + 8);
+        *(undefined8 *)(unaff_RBP + -0x1a) = *(undefined8 *)(unaff_RBP + 10);
+        uVar10 = (undefined4)*(undefined8 *)(unaff_RBP + 0x10);
+        unaff_RBP[-0x18] = unaff_RBP[0xc];
+        unaff_RBP[-0x17] = unaff_RBP[0xd];
+        unaff_RBP[-0x16] = unaff_RBP[0xe];
+        unaff_RBP[-0x15] = unaff_RBP[0xf];
+        *(undefined8 *)(unaff_RBP + -0x14) = *(undefined8 *)(unaff_RBP + 0x10);
+        param_9 = 0x100000001;
+        param_10 = CONCAT71((int7)((ulonglong)*(undefined8 *)(unaff_RBP + -8) >> 8),1);
+        if (*(char *)(unaff_RBP + 5) == '\0') {
+          uVar10 = 0x676f7250;
+          unaff_RBP[-0x1b] = 0x70333120;
+          unaff_RBP[-0x1f] = 0x676f7250;
+          unaff_RBP[-0x1e] = 0x6c437967;
+          unaff_RBP[-0x1d] = 0x2e6e6165;
+          unaff_RBP[-0x1c] = 0x2c667474;
+          *(undefined2 *)(unaff_RBP + -0x1a) = 0x78;
+        }
+        param_8._4_4_ = (float)((ulonglong)uVar5 >> 0x20);
+        bVar4 = param_8._4_4_ <= 0.0;
+        param_8 = uVar5;
+        if (bVar4) {
+          param_8 = CONCAT44(0x41500000,(int)uVar5);
+        }
+        puVar8 = &UNK_180a16f40;
+        if (param_13 != (undefined *)0x0) {
+          puVar8 = param_13;
+        }
+        lVar6 = FUN_180294c20(uVar10,&UNK_18098e3b0,param_3,&param_6,puVar8);
+        *(undefined4 *)(lVar6 + 0xc) = 0x3f800000;
+      }
+      FUN_180294f50();
+    }
+    pbVar3 = *(byte **)(unaff_RBX + 0x18);
+    if (pbVar3 != (byte *)0x0) {
+      iVar9 = *(int *)(unaff_RBX + 0x28);
+      iVar2 = *(int *)(unaff_RBX + 0x2c);
+      if (_DAT_180c8a9b0 != 0) {
+        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      }
+      puVar7 = (uint *)func_0x000180120ce0((longlong)iVar2 * (longlong)iVar9 * 4,_DAT_180c8a9a8);
+      *(uint **)(unaff_RBX + 0x20) = puVar7;
+      for (iVar9 = *(int *)(unaff_RBX + 0x2c) * *(int *)(unaff_RBX + 0x28); 0 < iVar9;
+          iVar9 = iVar9 + -1) {
+        bVar1 = *pbVar3;
+        pbVar3 = pbVar3 + 1;
+        *puVar7 = (uint)bVar1 << 0x18 | 0xffffff;
+        puVar7 = puVar7 + 1;
+      }
+    }
+  }
+  *param_2 = *(undefined8 *)(unaff_RBX + 0x20);
+  if (param_3 != (undefined4 *)0x0) {
+    *param_3 = *(undefined4 *)(unaff_RBX + 0x28);
+  }
+  if (unaff_RSI != (undefined4 *)0x0) {
+    *unaff_RSI = *(undefined4 *)(unaff_RBX + 0x2c);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x14) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

@@ -1,1073 +1,837 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 渲染系统高级顶点变换和矩阵计算模块
- * 
- * 本文件包含8个核心函数，主要功能：
- * - 顶点变换和矩阵计算
- * - 向量归一化和长度计算
- * - 快速排序算法实现
- * - 三角形网格处理和优化
- * - 渲染状态管理和控制
- * 
- * 文件: 03_rendering_part263.c
- * 函数数量: 8个
- */
+// 03_rendering_part263.c - 8 个函数
 
-// ================== 常量定义 ==================
-#define RENDERING_VERTEX_TRANSFORM_THRESHOLD 1.0e-6f
-#define RENDERING_NORMALIZATION_FACTOR 1.0f
-#define RENDERING_QUICKSORT_SEED 0x26065ca
-#define RENDERING_MATRIX_SIZE 0x58
-#define RENDERING_VERTEX_STRIDE 0x16
-#define RENDERING_TRIANGLE_STRIDE 3
+// 函数: void FUN_180412c59(undefined8 param_1,longlong param_2,undefined8 param_3,uint param_4,
+void FUN_180412c59(undefined8 param_1,longlong param_2,undefined8 param_3,uint param_4,
+                  undefined8 param_5,undefined8 param_6,float param_7)
 
-// ================== 函数别名定义 ==================
-#define render_advanced_vertex_transform_processor FUN_180412c59
-#define render_vector_normalization_processor FUN_18041333b
-#define render_vertex_normalization_enhanced FUN_18041335a
-#define render_simple_normalization_processor FUN_1804134b2
-#define render_quicksort_implementation FUN_1804134f0
-#define render_triangle_mesh_processor FUN_1804135e0
-#define render_advanced_triangle_processor FUN_180413770
-#define render_empty_function_placeholder FUN_18041395a
-
-// ================== 辅助函数声明 ==================
-float calculate_vector_length(float x, float y, float z);
-void normalize_vector_components(float* x, float* y, float* z, float length);
-void apply_matrix_transformation(float* result, const float* matrix, const float* vector);
-
-/**
- * 渲染系统高级顶点变换处理器
- * 
- * 此函数执行复杂的顶点变换计算，包括：
- * - 顶点坐标变换
- * - 矩阵乘法运算
- * - 向量归一化处理
- * - 角度计算和插值
- * 
- * 参数:
- *   param_1 - 渲染上下文指针
- *   param_2 - 顶点数据数组
- *   param_3 - 变换矩阵指针
- *   param_4 - 顶点数量
- *   param_5 - 输出向量X分量
- *   param_6 - 输出向量Y分量
- *   param_7 - 角度参数
- */
-void render_advanced_vertex_transform_processor(undefined8 param_1, longlong param_2, undefined8 param_3, 
-                                               uint param_4, undefined8 param_5, undefined8 param_6, 
-                                               float param_7)
 {
-    undefined8 context_data1;
-    undefined8 context_data2;
-    undefined8 context_data3;
-    int vertex_index;
-    undefined4 texture_coord;
-    uint vertex_counter;
-    int transform_result;
-    longlong matrix_offset;
-    undefined8 *render_context;
-    longlong frame_buffer;
-    longlong vertex_buffer;
-    int material_id;
-    undefined8 render_state;
-    uint vertex_flags;
-    longlong *vertex_array;
-    longlong triangle_count;
-    undefined8 transform_matrix;
-    longlong vertex_offset;
-    undefined8 normal_vector;
-    longlong texture_offset;
-    ulonglong vertex_iter;
-    undefined8 lighting_params;
-    float position_x;
-    float position_y;
-    float position_z;
-    float normal_x;
-    float normal_y;
-    float normal_z;
-    float texture_u;
-    float vertex_weight;
-    uint render_flags;
-    float ambient_light;
-    float diffuse_light;
-    float specular_light;
-    undefined4 shadow_param;
-    float shininess;
-    float transparency;
-    undefined4 fog_param;
-    undefined4 reflection_param;
-    undefined4 refraction_param;
-    undefined4 emissive_param;
-    float roughness;
-    undefined4 metalness_param;
-    undefined4 ao_param;
-    undefined4 displacement_param;
-    float subsurface_scattering;
-    undefined4 clearcoat_param;
-    undefined4 sheen_param;
-    undefined4 anisotropy_param;
-    
-    // 保存渲染上下文状态
-    *(undefined8 *)(triangle_count + 0x18) = transform_matrix;
-    vertex_flags = param_4 + 2;
-    *(undefined8 *)(triangle_count + -0x18) = normal_vector;
-    vertex_offset = *(longlong *)(frame_buffer + 0x170);
-    *(undefined8 *)(triangle_count + -0x20) = texture_offset;
-    vertex_iter = (ulonglong)param_4;
-    *(undefined8 *)(triangle_count + 0x10) = render_state;
-    *(undefined8 *)(triangle_count + -0x28) = lighting_params;
-    *(undefined4 *)(triangle_count + -0x68) = shadow_param;
-    *(undefined4 *)(triangle_count + -100) = fog_param;
-    *(undefined4 *)(triangle_count + -0x60) = reflection_param;
-    *(undefined4 *)(triangle_count + -0x5c) = refraction_param;
-    *(undefined4 *)(triangle_count + -0x78) = emissive_param;
-    *(undefined4 *)(triangle_count + -0x74) = metalness_param;
-    *(undefined4 *)(triangle_count + -0x70) = ao_param;
-    *(undefined4 *)(triangle_count + -0x6c) = displacement_param;
-    *(undefined4 *)(triangle_count + -0x88) = roughness;
-    *(undefined4 *)(triangle_count + -0x84) = clearcoat_param;
-    *(undefined4 *)(triangle_count + -0x80) = sheen_param;
-    *(undefined4 *)(triangle_count + -0x7c) = anisotropy_param;
-    *(undefined4 *)(triangle_count + -0x98) = subsurface_scattering;
-    *(undefined4 *)(triangle_count + -0x94) = shininess;
-    *(undefined4 *)(triangle_count + -0x90) = transparency;
-    *(undefined4 *)(triangle_count + -0x8c) = specular_light;
-    *(undefined4 *)(triangle_count + -0xa8) = ambient_light;
-    *(undefined4 *)(triangle_count + -0xa4) = diffuse_light;
-    *(undefined4 *)(triangle_count + -0xa0) = vertex_weight;
-    *(undefined4 *)(triangle_count + -0x9c) = position_z;
-    *(undefined4 *)(triangle_count + -200) = emissive_param;
-    *(undefined4 *)(triangle_count + -0xc4) = metalness_param;
-    *(undefined4 *)(triangle_count + -0xc0) = ao_param;
-    *(undefined4 *)(triangle_count + -0xbc) = displacement_param;
-    
-    // 顶点处理主循环
-    do {
-        vertex_index = *(int *)(param_2 + vertex_iter * 4);
-        matrix_offset = (longlong)vertex_index * 0x58;
-        
-        // 检查顶点是否启用渲染
-        if ((*(byte *)(matrix_offset + 0x4c + vertex_offset) & 4) == 0) {
-            material_id = vertex_index * 3;
-            transform_result = *(int *)(frame_buffer + 0x180);
-            matrix_offset = (longlong)material_id;
-            
-            // 材质ID匹配检查
-            if (*(int *)(vertex_buffer + matrix_offset * 4) != transform_result) {
-                if (*(int *)(vertex_buffer + 4 + matrix_offset * 4) == transform_result) {
-                    param_4 = 1;
-                }
-                else {
-                    param_4 = 0xffffffff;
-                    if (*(int *)(vertex_buffer + 8 + matrix_offset * 4) == transform_result) {
-                        param_4 = vertex_flags;
-                    }
-                }
-            }
-            
-            // 计算变换参数
-            *(longlong *)(frame_buffer + -0x70) = (longlong)(int)(material_id + param_4);
-            vertex_flags = *(uint *)(vertex_buffer + (longlong)(int)(material_id + param_4) * 4);
-            
-            // 执行顶点变换
-            (**(code **)(*vertex_array + 0x18))(vertex_array, frame_buffer + 0x40, (int)vertex_flags >> 2, vertex_flags & 3);
-            
-            // 获取变换后的顶点坐标
-            position_x = *(float *)(frame_buffer + 0x40);
-            position_y = *(float *)(frame_buffer + 0x44);
-            position_z = *(float *)(frame_buffer + 0x48);
-            
-            // 获取变换矩阵数据
-            context_data1 = *(undefined8 *)(matrix_offset + 0x28 + vertex_offset);
-            texture_coord = *(undefined4 *)(matrix_offset + 0x30 + vertex_offset);
-            context_data2 = *(undefined8 *)(matrix_offset + 0x28 + vertex_offset);
-            context_data3 = *(undefined8 *)(matrix_offset + 0x28 + vertex_offset);
-            
-            // 保存纹理坐标
-            *(undefined4 *)(frame_buffer + -0x48) = texture_coord;
-            *(undefined4 *)(frame_buffer + -0x38) = texture_coord;
-            
-            // 计算顶点变换结果
-            normal_x = position_x * (float)context_data1 + position_y * (float)((ulonglong)context_data1 >> 0x20) +
-                     position_z * *(float *)(frame_buffer + -0x48);
-            
-            param_5._4_4_ = (float)context_data2 - position_x * normal_x;
-            param_6._0_4_ = (float)((ulonglong)context_data3 >> 0x20) - position_y * normal_x;
-            
-            context_data1 = *(undefined8 *)(matrix_offset + 0x34 + vertex_offset);
-            subsurface_scattering = *(float *)(frame_buffer + -0x38) - position_z * normal_x;
-            *(float *)(frame_buffer + 8) = subsurface_scattering;
-            position_z = *(float *)(frame_buffer + 8);
-            
-            texture_coord = *(undefined4 *)(matrix_offset + 0x3c + vertex_offset);
-            context_data2 = *(undefined8 *)(matrix_offset + 0x34 + vertex_offset);
-            *(undefined4 *)(frame_buffer + -0x28) = texture_coord;
-            *(undefined4 *)(frame_buffer + -0x18) = texture_coord;
-            
-            // 计算法线向量
-            normal_y = position_y * (float)((ulonglong)context_data1 >> 0x20) + position_x * (float)context_data1 +
-                     position_z * *(float *)(frame_buffer + -0x28);
-            
-            shininess = (float)context_data2 - position_x * normal_y;
-            normal_x = *(float *)(frame_buffer + -0x18) - position_z * normal_y;
-            normal_y = (float)((ulonglong)*(undefined8 *)(matrix_offset + 0x34 + vertex_offset) >> 0x20) - position_y * normal_y;
-            
-            *(float *)(frame_buffer + 0x18) = normal_x;
-            *(undefined4 *)(frame_buffer + -0x80) = *(undefined4 *)(frame_buffer + 0x18);
-            
-            // 向量长度检查和归一化
-            if (((ambient_light < (float)((uint)param_5._4_4_ & render_flags)) ||
-                (ambient_light < (float)((uint)(float)param_6 & render_flags))) ||
-               (ambient_light < (float)((uint)subsurface_scattering & render_flags))) {
-                position_z = subsurface_scattering /
-                         SQRT((float)param_6 * (float)param_6 + param_5._4_4_ * param_5._4_4_ +
-                              subsurface_scattering * subsurface_scattering);
-                param_5._4_4_ = position_z * param_5._4_4_;
-                param_6._0_4_ = position_z * (float)param_6;
-                position_z = position_z * subsurface_scattering;
-            }
-            
-            // 第二组向量归一化
-            if (((ambient_light < (float)((uint)shininess & render_flags)) ||
-                (ambient_light < (float)((uint)normal_y & render_flags))) ||
-               (ambient_light < (float)((uint)normal_x & render_flags))) {
-                subsurface_scattering = subsurface_scattering /
-                               SQRT(shininess * shininess + normal_y * normal_y + normal_x * normal_x);
-                normal_x = normal_x * subsurface_scattering;
-                shininess = subsurface_scattering * shininess;
-                normal_y = subsurface_scattering * normal_y;
-            }
-            else {
-                normal_x = *(float *)(frame_buffer + -0x80);
-            }
-            
-            // 计算材质参数
-            transform_result = param_4 + 1 + material_id;
-            if (1 < (int)param_4) {
-                transform_result = material_id;
-            }
-            
-            transform_result = *(int *)(vertex_buffer + (longlong)transform_result * 4);
-            vertex_flags = *(uint *)(vertex_buffer + *(longlong *)(frame_buffer + -0x70) * 4);
-            
-            if ((int)param_4 < 1) {
-                material_id = 2;
-            }
-            else {
-                material_id = param_4 - 1;
-            }
-            
-            vertex_array = *(longlong **)(frame_buffer + -0x78);
-            vertex_flags = *(uint *)(vertex_buffer + (longlong)(vertex_index + material_id) * 4);
-            
-            // 执行渲染调用
-            (**(code **)(*vertex_array + 0x10))(vertex_array, frame_buffer + 0x50, (int)vertex_flags >> 2, vertex_flags & 3);
-            (**(code **)(*vertex_array + 0x10))(vertex_array, frame_buffer + 0x60, (int)vertex_flags >> 2, vertex_flags & 3);
-            (**(code **)(*vertex_array + 0x10))(vertex_array, frame_buffer + 0x30, transform_result >> 2);
-            
-            // 计算顶点差值
-            roughness = *(float *)(frame_buffer + 0x50) - *(float *)(frame_buffer + 0x60);
-            transparency = *(float *)(frame_buffer + 0x54) - *(float *)(frame_buffer + 100);
-            metalness_param = *(float *)(frame_buffer + 0x58) - *(float *)(frame_buffer + 0x68);
-            ao_param = *(float *)(frame_buffer + 0x30) - *(float *)(frame_buffer + 0x60);
-            displacement_param = *(float *)(frame_buffer + 0x34) - *(float *)(frame_buffer + 100);
-            emissive_param = *(float *)(frame_buffer + 0x38) - *(float *)(frame_buffer + 0x68);
-            
-            // 计算插值权重
-            subsurface_scattering = position_y * transparency + position_x * roughness + position_z * metalness_param;
-            roughness = roughness - position_x * subsurface_scattering;
-            transparency = transparency - position_y * subsurface_scattering;
-            metalness_param = metalness_param - position_z * subsurface_scattering;
-            
-            // 第二组插值计算
-            if (((ambient_light < (float)((uint)roughness & render_flags)) ||
-                (ambient_light < (float)((uint)transparency & render_flags))) ||
-               (ambient_light < (float)((uint)metalness_param & render_flags))) {
-                subsurface_scattering = subsurface_scattering /
-                              SQRT(roughness * roughness + transparency * transparency + metalness_param * metalness_param);
-                roughness = roughness * subsurface_scattering;
-                transparency = transparency * subsurface_scattering;
-                metalness_param = metalness_param * subsurface_scattering;
-            }
-            
-            subsurface_scattering = position_y * displacement_param + position_x * ao_param + position_z * emissive_param;
-            displacement_param = displacement_param - position_y * subsurface_scattering;
-            ao_param = ao_param - position_x * subsurface_scattering;
-            emissive_param = emissive_param - position_z * subsurface_scattering;
-            
-            // 第三组向量归一化
-            if (((ambient_light < (float)((uint)ao_param & render_flags)) ||
-                (ambient_light < (float)((uint)displacement_param & render_flags))) ||
-               (ambient_light < (float)((uint)emissive_param & render_flags))) {
-                position_x = subsurface_scattering /
-                      SQRT(ao_param * ao_param + displacement_param * displacement_param + emissive_param * emissive_param);
-                ao_param = ao_param * position_x;
-                displacement_param = displacement_param * position_x;
-                emissive_param = emissive_param * position_x;
-            }
-            
-            // 计算点积和角度
-            position_x = displacement_param * transparency + ao_param * roughness + emissive_param * metalness_param;
-            if (position_x <= -1.0) {
-                position_x = -1.0;
-            }
-            if (subsurface_scattering <= position_x) {
-                position_x = subsurface_scattering;
-            }
-            
-            subsurface_scattering = (float)acosf(position_x);
-            context_data1 = *render_context;
-            param_4 = 0;
-            position_x = *(float *)((longlong)render_context + 4);
-            vertex_offset = *(longlong *)(frame_buffer + 0x170);
-            vertex_flags = 2;
-            param_2 = *(longlong *)(frame_buffer + -0x68);
-            *(undefined4 *)(frame_buffer + -8) = *(undefined4 *)(render_context + 1);
-            position_y = *(float *)(frame_buffer + -8);
-            texture_u = param_7 + subsurface_scattering;
-            position_z = *(float *)((longlong)render_context + 0x14);
-            
-            // 更新顶点数据
-            *render_context = CONCAT44(position_x + (float)param_6 * subsurface_scattering, (float)context_data1 + param_5._4_4_ * subsurface_scattering);
-            context_data1 = render_context[2];
-            *(float *)(frame_buffer + 0x28) = position_y + position_z * subsurface_scattering;
-            *(undefined4 *)(render_context + 1) = *(undefined4 *)(frame_buffer + 0x28);
-            render_context[2] = CONCAT44(position_z + normal_y * subsurface_scattering, (float)context_data1 + shininess * subsurface_scattering);
-            
-            // 更新材质属性
-            *(float *)((longlong)render_context + 0x1c) =
-                 subsurface_scattering * *(float *)(matrix_offset + 0x44 + vertex_offset) + *(float *)((longlong)render_context + 0x1c);
-            position_x = *(float *)(matrix_offset + 0x40 + vertex_offset);
-            *(float *)(render_context + 3) = *(float *)(render_context + 3) + normal_x * subsurface_scattering;
-            *(float *)((longlong)render_context + 0xc) =
-                 subsurface_scattering * position_x + *(float *)((longlong)render_context + 0xc);
-            param_7 = texture_u;
-        }
-        vertex_iter = vertex_iter + 1;
-    } while ((longlong)vertex_iter < *(longlong *)(frame_buffer + -0x60));
-    
-    // 最终归一化处理
-    context_data1 = *render_context;
-    position_x = *(float *)(render_context + 1);
-    *(undefined8 *)(frame_buffer + 0x30) = context_data1;
-    *(float *)(frame_buffer + 0x38) = position_x;
-    
-    if (((ambient_light < (float)((uint)context_data1 & render_flags)) ||
-        (ambient_light < (float)(*(uint *)(frame_buffer + 0x34) & render_flags))) ||
-       (ambient_light < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        context_data1 = *render_context;
-        *(float *)(frame_buffer + 0x38) = position_x;
-        position_z = (float)((ulonglong)context_data1 >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = context_data1;
-        position_y = subsurface_scattering /
-                 SQRT(position_z * position_z + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                      *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        *render_context = CONCAT44(position_z * position_y, (float)context_data1 * position_y);
-        *(float *)(render_context + 1) = position_x * position_y;
-    }
-    
-    // 第二组顶点归一化
-    context_data1 = render_context[2];
-    position_x = *(float *)(render_context + 3);
-    *(undefined8 *)(frame_buffer + 0x30) = context_data1;
-    *(float *)(frame_buffer + 0x38) = position_x;
-    
-    if (((ambient_light < (float)((uint)context_data1 & render_flags)) ||
-        (ambient_light < (float)(*(uint *)(frame_buffer + 0x34) & render_flags))) ||
-       (ambient_light < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        context_data1 = render_context[2];
-        *(float *)(frame_buffer + 0x38) = position_x;
-        position_z = (float)((ulonglong)context_data1 >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = context_data1;
-        position_y = subsurface_scattering /
-                 SQRT(position_z * position_z + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                      *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        render_context[2] = CONCAT44(position_z * position_y, (float)context_data1 * position_y);
-        *(float *)(render_context + 3) = position_x * position_y;
-    }
-    
-    // 最终纹理坐标归一化
-    if (0.0 < texture_u) {
-        *(float *)((longlong)render_context + 0x1c) =
-             (subsurface_scattering / texture_u) * *(float *)((longlong)render_context + 0x1c);
-        *(float *)((longlong)render_context + 0xc) =
-             (subsurface_scattering / texture_u) * *(float *)((longlong)render_context + 0xc);
-    }
-    
-    // 调用渲染终止函数
-    render_empty_function_placeholder(*(ulonglong *)(frame_buffer + 0x70) ^ (ulonglong)&stack0x00000000);
-}
-
-/**
- * 渲染向量归一化处理器
- * 
- * 对渲染向量进行归一化处理，确保向量长度为1
- * 主要用于法线向量和方向向量的标准化
- */
-void render_vector_normalization_processor(void)
-{
-    undefined8 vector_data;
-    float vector_y;
-    undefined8 *render_context;
-    longlong frame_buffer;
-    float vector_z;
-    float vector_length;
-    float normalization_factor;
-    uint render_flags;
-    float threshold;
-    float scaling_factor;
-    float unit_length;
-    
-    vector_data = *render_context;
-    vector_y = *(float *)(render_context + 1);
-    *(undefined8 *)(frame_buffer + 0x30) = vector_data;
-    *(float *)(frame_buffer + 0x38) = vector_y;
-    
-    // 检查向量长度是否需要归一化
-    if (((threshold < (float)((uint)vector_data & render_flags)) ||
-        (threshold < (float)(*(uint *)(frame_buffer + 0x34) & render_flags))) ||
-       (threshold < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        vector_data = *render_context;
-        *(float *)(frame_buffer + 0x38) = vector_y;
-        vector_z = (float)((ulonglong)vector_data >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = vector_data;
-        vector_length = unit_length /
-                SQRT(vector_z * vector_z + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                     *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        *render_context = CONCAT44(vector_z * vector_length, (float)vector_data * vector_length);
-        *(float *)(render_context + 1) = vector_y * vector_length;
-    }
-    
-    // 处理第二组向量
-    vector_data = render_context[2];
-    vector_y = *(float *)(render_context + 3);
-    *(undefined8 *)(frame_buffer + 0x30) = vector_data;
-    *(float *)(frame_buffer + 0x38) = vector_y;
-    
-    if (((threshold < (float)((uint)vector_data & render_flags)) ||
-        (threshold < (float)(*(uint *)(frame_buffer + 0x34) & render_flags))) ||
-       (threshold < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        vector_data = render_context[2];
-        *(float *)(frame_buffer + 0x38) = vector_y;
-        vector_z = (float)((ulonglong)vector_data >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = vector_data;
-        vector_length = unit_length /
-                SQRT(vector_z * vector_z + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                     *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        render_context[2] = CONCAT44(vector_z * vector_length, (float)vector_data * vector_length);
-        *(float *)(render_context + 3) = vector_y * vector_length;
-    }
-    
-    // 应用缩放因子
-    if (scaling_factor < normalization_factor) {
-        *(float *)((longlong)render_context + 0x1c) =
-             (unit_length / normalization_factor) * *(float *)((longlong)render_context + 0x1c);
-        *(float *)((longlong)render_context + 0xc) =
-             (unit_length / normalization_factor) * *(float *)((longlong)render_context + 0xc);
-    }
-    
-    // 调用渲染终止函数
-    render_empty_function_placeholder(*(ulonglong *)(frame_buffer + 0x70) ^ (ulonglong)&stack0x00000000);
-}
-
-/**
- * 渲染顶点归一化增强版
- * 
- * 增强的顶点归一化处理函数，支持更复杂的归一化算法
- * 包含额外的参数检查和错误处理
- */
-void render_vertex_normalization_enhanced(void)
-{
-    undefined8 vertex_data;
-    float input_param;
-    undefined8 *render_context;
-    longlong frame_buffer;
-    float normal_y;
-    float normal_z;
-    float vector_length;
-    float angle_param;
-    uint render_flags;
-    float threshold;
-    float scaling_factor;
-    float unit_length;
-    
-    // 检查是否需要归一化
-    if ((threshold < (float)(*(uint *)(frame_buffer + 0x34) & render_flags)) ||
-       (threshold < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        vertex_data = *render_context;
-        *(float *)(frame_buffer + 0x38) = input_param;
-        normal_z = (float)((ulonglong)vertex_data >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = vertex_data;
-        vector_length = unit_length /
-                SQRT(normal_z * normal_z + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                     *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        *render_context = CONCAT44(normal_z * vector_length, (float)vertex_data * vector_length);
-        *(float *)(render_context + 1) = input_param * vector_length;
-    }
-    
-    // 处理第二组顶点数据
-    vertex_data = render_context[2];
-    vector_length = *(float *)(render_context + 3);
-    *(undefined8 *)(frame_buffer + 0x30) = vertex_data;
-    *(float *)(frame_buffer + 0x38) = vector_length;
-    
-    if (((threshold < (float)((uint)vertex_data & render_flags)) ||
-        (threshold < (float)(*(uint *)(frame_buffer + 0x34) & render_flags))) ||
-       (threshold < (float)(*(uint *)(frame_buffer + 0x38) & render_flags))) {
-        vertex_data = render_context[2];
-        *(float *)(frame_buffer + 0x38) = vector_length;
-        normal_y = (float)((ulonglong)vertex_data >> 0x20);
-        *(undefined8 *)(frame_buffer + 0x30) = vertex_data;
-        vector_length = unit_length /
-                SQRT(normal_y * normal_y + *(float *)(frame_buffer + 0x30) * *(float *)(frame_buffer + 0x30) +
-                     *(float *)(frame_buffer + 0x38) * *(float *)(frame_buffer + 0x38));
-        render_context[2] = CONCAT44(normal_y * vector_length, (float)vertex_data * vector_length);
-        *(float *)(render_context + 3) = vector_length * vector_length;
-    }
-    
-    // 应用角度参数缩放
-    if (scaling_factor < angle_param) {
-        *(float *)((longlong)render_context + 0x1c) =
-             (unit_length / angle_param) * *(float *)((longlong)render_context + 0x1c);
-        *(float *)((longlong)render_context + 0xc) =
-             (unit_length / angle_param) * *(float *)((longlong)render_context + 0xc);
-    }
-    
-    // 调用渲染终止函数
-    render_empty_function_placeholder(*(ulonglong *)(frame_buffer + 0x70) ^ (ulonglong)&stack0x00000000);
-}
-
-/**
- * 渲染简单归一化处理器
- * 
- * 简化的归一化处理函数，用于快速归一化计算
- * 主要用于性能敏感的渲染路径
- */
-void render_simple_normalization_processor(void)
-{
-    longlong vertex_buffer;
-    longlong frame_buffer;
-    float angle_param;
-    float unit_length;
-    
-    // 直接应用归一化缩放
-    *(float *)(vertex_buffer + 0x1c) = (unit_length / angle_param) * *(float *)(vertex_buffer + 0x1c);
-    *(float *)(vertex_buffer + 0xc) = (unit_length / angle_param) * *(float *)(vertex_buffer + 0xc);
-    
-    // 调用渲染终止函数
-    render_empty_function_placeholder(*(ulonglong *)(frame_buffer + 0x70) ^ (ulonglong)&stack0x00000000);
-}
-
-/**
- * 渲染快速排序实现
- * 
- * 实现快速排序算法用于渲染数据排序
- * 支持自定义种子和分区范围
- * 
- * 参数:
- *   param_1 - 数据数组指针
- *   param_2 - 起始索引
- *   param_3 - 结束索引
- *   param_4 - 排序种子
- */
-void render_quicksort_implementation(longlong param_1, int param_2, int param_3, uint param_4)
-{
-    int left_index;
-    int right_index;
-    undefined4 pivot_value;
-    byte shift_bits;
-    uint hash_value;
-    ulonglong current_index;
-    int partition_start;
-    longlong partition_end;
-    int middle_index;
-    ulonglong left_bound;
-    ulonglong right_bound;
-    
-    left_bound = (ulonglong)param_2;
-    right_bound = left_bound;
-    
-    do {
-        middle_index = (int)right_bound;
-        current_index = right_bound & 0xffffffff;
-        shift_bits = (byte)param_4 & 0x1f;
-        param_4 = param_4 + (param_4 << shift_bits | param_4 >> 0x20 - shift_bits) + 3;
-        
-        // 选择枢轴元素
-        left_index = *(int *)(param_1 + (longlong)(int)(middle_index + param_4 % ((param_3 - middle_index) + 1U)) * 4);
-        partition_end = (longlong)param_3;
-        partition_start = param_3;
-        
-        // 分区过程
-        do {
-            hash_value = (uint)current_index;
-            right_index = *(int *)(param_1 + left_bound * 4);
-            while (right_index < left_index) {
-                left_bound = left_bound + 1;
-                hash_value = (int)current_index + 1;
-                current_index = (ulonglong)hash_value;
-                right_index = *(int *)(param_1 + left_bound * 4);
-            }
-            
-            right_index = *(int *)(param_1 + partition_end * 4);
-            while (left_index < right_index) {
-                partition_end = partition_end + -1;
-                partition_start = partition_start + -1;
-                right_index = *(int *)(param_1 + partition_end * 4);
-            }
-            
-            if (partition_end < (longlong)left_bound) break;
-            
-            pivot_value = *(undefined4 *)(param_1 + left_bound * 4);
-            hash_value = hash_value + 1;
-            current_index = (ulonglong)hash_value;
-            partition_start = partition_start + -1;
-            
-            // 交换元素
-            *(undefined4 *)(param_1 + left_bound * 4) = *(undefined4 *)(param_1 + partition_end * 4);
-            left_bound = left_bound + 1;
-            *(undefined4 *)(param_1 + partition_end * 4) = pivot_value;
-            partition_end = partition_end + -1;
-        } while ((longlong)left_bound <= partition_end);
-        
-        // 递归排序左分区
-        if (middle_index < partition_start) {
-            render_quicksort_implementation(param_1, right_bound & 0xffffffff, partition_start, param_4);
-        }
-        
-        // 检查是否完成排序
-        if (param_3 <= (int)hash_value) {
-            return;
-        }
-        
-        right_bound = (ulonglong)hash_value;
-    } while( true );
-}
-
-/**
- * 渲染三角形网格处理器
- * 
- * 处理三角形网格数据，包括：
- * - 三角形顶点索引管理
- * - 网格优化和简化
- * - 相邻三角形关系建立
- * 
- * 参数:
- *   param_1 - 网格数据指针
- *   param_2 - 顶点数组指针
- *   param_3 - 索引数组指针
- *   param_4 - 三角形数量
- */
-void render_triangle_mesh_processor(longlong param_1, longlong param_2, longlong param_3, int param_4)
-{
-    int triangle_idx1;
-    int triangle_idx2;
-    int triangle_idx3;
-    bool edge_found;
-    int vertex_idx1;
-    int vertex_idx2;
-    int vertex_idx3;
-    int vertex_idx4;
-    longlong triangle_offset;
-    int *vertex_array;
-    int adjacent_triangle;
-    longlong vertex_buffer;
-    longlong index_buffer;
-    int edge_vertex1;
-    int edge_vertex2;
-    int *triangle_array;
-    int triangle_count;
-    longlong mesh_buffer;
-    int triangle_index;
-    longlong adjacency_offset;
-    int stack_param1;
-    longlong stack_param2;
-    longlong stack_param3;
-    
-    triangle_count = 0;
-    if (0 < param_4) {
-        vertex_array = (int *)(param_2 + 0x14);
-        triangle_array = (int *)(param_3 + 8);
-        
-        // 初始化三角形数据
-        do {
-            adjacent_triangle = triangle_array[-2];
-            triangle_idx1 = triangle_array[-1];
-            vertex_array[-3] = triangle_count;
-            vertex_idx2 = triangle_idx1;
-            
-            if (triangle_idx1 <= adjacent_triangle) {
-                vertex_idx2 = adjacent_triangle;
-                adjacent_triangle = triangle_idx1;
-            }
-            
-            vertex_array[-5] = adjacent_triangle;
-            vertex_array[-4] = vertex_idx2;
-            adjacent_triangle = triangle_array[-1];
-            triangle_idx1 = *triangle_array;
-            *vertex_array = triangle_count;
-            vertex_idx2 = triangle_idx1;
-            
-            if (triangle_idx1 <= adjacent_triangle) {
-                vertex_idx2 = adjacent_triangle;
-                adjacent_triangle = triangle_idx1;
-            }
-            
-            vertex_array[-2] = adjacent_triangle;
-            vertex_array[-1] = vertex_idx2;
-            adjacent_triangle = *triangle_array;
-            triangle_idx1 = triangle_array[-2];
-            vertex_array[3] = triangle_count;
-            vertex_idx2 = triangle_idx1;
-            
-            if (triangle_idx1 <= adjacent_triangle) {
-                vertex_idx2 = adjacent_triangle;
-                adjacent_triangle = triangle_idx1;
-            }
-            
-            triangle_count = triangle_count + 1;
-            vertex_array[1] = adjacent_triangle;
-            vertex_array[2] = vertex_idx2;
-            vertex_array = vertex_array + 9;
-            triangle_array = triangle_array + 3;
-        } while (triangle_count < param_4);
-    }
-    
-    // 执行网格优化
-    render_quicksort_implementation(param_2, 0, param_4 * 3 + -1, 0, RENDERING_QUICKSORT_SEED);
-    
-    mesh_buffer = (longlong)(param_4 * 3);
-    triangle_count = 0;
-    adjacent_triangle = 1;
-    
-    if (1 < mesh_buffer) {
-        adjacency_offset = 0;
-        index_buffer = mesh_buffer + -1;
-        vertex_buffer = 0xc;
-        
-        do {
-            if (*(int *)(param_2 + adjacency_offset) != *(int *)(vertex_buffer + param_2)) {
-                render_quicksort_implementation(param_2, triangle_count, adjacent_triangle + -1, 1, RENDERING_QUICKSORT_SEED);
-                adjacency_offset = vertex_buffer;
-                triangle_count = adjacent_triangle;
-            }
-            
-            adjacent_triangle = adjacent_triangle + 1;
-            vertex_buffer = vertex_buffer + 0xc;
-            index_buffer = index_buffer + -1;
-        } while (index_buffer != 0);
-    }
-    
-    triangle_count = 0;
-    adjacent_triangle = 1;
-    
-    if (1 < mesh_buffer) {
-        adjacency_offset = 0;
-        vertex_array = (int *)(param_2 + 0xc);
-        index_buffer = mesh_buffer + -1;
-        
-        do {
-            if ((*(int *)(adjacency_offset + param_2) != *vertex_array) || 
-                (*(int *)(adjacency_offset + 4 + param_2) != vertex_array[1])) {
-                adjacency_offset = (longlong)vertex_array - param_2;
-                render_quicksort_implementation(param_2, triangle_count, adjacent_triangle + -1, 2, RENDERING_QUICKSORT_SEED);
-                triangle_count = adjacent_triangle;
-            }
-            
-            adjacent_triangle = adjacent_triangle + 1;
-            vertex_array = vertex_array + 3;
-            index_buffer = index_buffer + -1;
-        } while (index_buffer != 0);
-    }
-    
-    // 建立邻接关系
-    if (0 < mesh_buffer) {
-        vertex_array = (int *)(param_2 + 4);
-        stack_param2 = 1;
-        stack_param3 = mesh_buffer;
-        
-        do {
-            triangle_idx3 = vertex_array[1];
-            vertex_idx4 = 0;
-            adjacent_triangle = vertex_array[-1];
-            triangle_idx1 = *vertex_array;
-            vertex_buffer = (longlong)(triangle_idx3 * 3);
-            vertex_idx1 = *(int *)(param_3 + vertex_buffer * 4);
-            
-            if ((vertex_idx1 == adjacent_triangle) || (vertex_idx1 == triangle_idx1)) {
-                triangle_idx2 = *(int *)(param_3 + 4 + vertex_buffer * 4);
-                if ((triangle_idx2 == adjacent_triangle) || (triangle_idx2 == triangle_idx1)) {
-                    stack_param1 = 0;
-                    adjacency_offset = 0;
-                    vertex_idx3 = vertex_idx1;
-                }
-                else {
-                    stack_param1 = 2;
-                    adjacency_offset = 8;
-                    vertex_idx3 = *(int *)(param_3 + 8 + vertex_buffer * 4);
-                    triangle_idx2 = vertex_idx1;
-                }
-            }
-            else {
-                adjacency_offset = 4;
-                stack_param1 = 1;
-                vertex_idx3 = *(int *)(param_3 + 4 + vertex_buffer * 4);
-                triangle_idx2 = *(int *)(param_3 + 8 + vertex_buffer * 4);
-            }
-            
-            // 查找相邻三角形
-            if ((*(int *)((longlong)triangle_idx3 * RENDERING_MATRIX_SIZE + adjacency_offset + param_1) == -1) &&
-               (edge_found = true, stack_param2 < mesh_buffer)) {
-                triangle_array = vertex_array + 4;
-                vertex_buffer = stack_param2;
-                
-                do {
-                    vertex_idx1 = triangle_array[-2];
-                    if ((adjacent_triangle != vertex_idx1) || 
-                        (triangle_idx2 = triangle_array[-1], triangle_idx1 != triangle_idx2)) break;
-                    
-                    if (!edge_found) goto edge_found_label;
-                    
-                    triangle_offset = (longlong)(*triangle_array * 3);
-                    adjacency_offset = param_3 + triangle_offset * 4;
-                    vertex_idx3 = *(int *)(param_3 + triangle_offset * 4);
-                    
-                    if ((vertex_idx3 == vertex_idx1) || (vertex_idx3 == triangle_idx2)) {
-                        vertex_idx4 = *(int *)(adjacency_offset + 4);
-                        if ((vertex_idx4 == vertex_idx1) || (vertex_idx4 == triangle_idx2)) {
-                            vertex_idx4 = 0;
-                            triangle_offset = 0;
-                            vertex_idx1 = vertex_idx3;
-                        }
-                        else {
-                            vertex_idx4 = 2;
-                            triangle_offset = 8;
-                            vertex_idx1 = *(int *)(adjacency_offset + 8);
-                            vertex_idx4 = vertex_idx3;
-                        }
-                    }
-                    else {
-                        vertex_idx4 = 1;
-                        triangle_offset = 4;
-                        vertex_idx1 = *(int *)(adjacency_offset + 4);
-                        vertex_idx4 = *(int *)(adjacency_offset + 8);
-                    }
-                    
-                    if (((vertex_idx3 == vertex_idx4) && (triangle_idx2 == vertex_idx1)) &&
-                       (*(int *)((longlong)*triangle_array * RENDERING_MATRIX_SIZE + triangle_offset + param_1) == -1)) {
-                        edge_found = false;
-                    }
-                    else {
-                        vertex_buffer = vertex_buffer + 1;
-                        triangle_array = triangle_array + 3;
-                    }
-                } while (vertex_buffer < mesh_buffer);
-                
-                if (!edge_found) {
-edge_found_label:
-                    adjacent_triangle = *(int *)(param_2 + 8 + vertex_buffer * 0xc);
-                    *(int *)(param_1 + ((longlong)triangle_idx3 * RENDERING_VERTEX_STRIDE + (longlong)stack_param1) * 4) = adjacent_triangle;
-                    *(int *)(param_1 + ((longlong)adjacent_triangle * RENDERING_VERTEX_STRIDE + (longlong)vertex_idx4) * 4) = triangle_idx3;
-                }
-            }
-            
-            vertex_array = vertex_array + 3;
-            stack_param2 = stack_param2 + 1;
-            stack_param3 = stack_param3 + -1;
-        } while (stack_param3 != 0);
-    }
-    
-    return;
-}
-
-/**
- * 渲染高级三角形处理器
- * 
- * 高级三角形处理函数，支持复杂网格操作
- * 包括三角形分割、合并和优化
- */
-void render_advanced_triangle_processor(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4,
-                                       undefined8 param_5, undefined8 param_6, longlong param_7)
-{
-    int triangle_idx1;
-    int triangle_idx2;
-    int triangle_idx3;
-    int triangle_idx4;
-    int vertex_idx1;
-    int vertex_idx2;
-    bool edge_exists;
-    int vertex_idx3;
-    int vertex_idx4;
-    longlong triangle_offset;
-    int *vertex_array;
-    int *triangle_array;
-    int adjacent_triangle;
-    longlong vertex_buffer;
-    longlong index_buffer;
-    int edge_vertex1;
-    int edge_vertex2;
-    longlong mesh_data;
-    longlong stack_offset1;
-    longlong stack_offset2;
-    longlong in_stack_param1;
-    longlong in_stack_param2;
-    int stack_param;
-    
-    vertex_array = (int *)(mesh_data + 4);
-    stack_offset1 = param_4;
-    stack_offset2 = param_3;
-    
-    do {
-        triangle_idx1 = vertex_array[1];
-        vertex_idx4 = 0;
-        triangle_idx2 = vertex_array[-1];
-        triangle_idx3 = *vertex_array;
-        vertex_buffer = (longlong)(triangle_idx1 * 3);
-        vertex_idx1 = *(int *)(in_stack_param2 + vertex_buffer * 4);
-        
-        if ((vertex_idx1 == triangle_idx2) || (vertex_idx1 == triangle_idx3)) {
-            adjacent_triangle = *(int *)(in_stack_param2 + 4 + vertex_buffer * 4);
-            if ((adjacent_triangle == triangle_idx2) || (adjacent_triangle == triangle_idx3)) {
-                stack_param = 0;
-                index_buffer = 0;
-                vertex_idx3 = vertex_idx1;
-            }
-            else {
-                stack_param = 2;
-                index_buffer = 8;
-                vertex_idx3 = *(int *)(in_stack_param2 + 8 + vertex_buffer * 4);
-                adjacent_triangle = vertex_idx1;
-            }
+  undefined8 uVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  int iVar4;
+  undefined4 uVar5;
+  uint uVar6;
+  int iVar7;
+  longlong lVar8;
+  undefined8 *unaff_RBX;
+  longlong unaff_RBP;
+  longlong unaff_RSI;
+  int iVar9;
+  undefined8 unaff_RDI;
+  uint uVar10;
+  longlong *in_R10;
+  longlong in_R11;
+  undefined8 unaff_R12;
+  longlong lVar11;
+  undefined8 unaff_R13;
+  longlong lVar12;
+  undefined8 unaff_R14;
+  ulonglong uVar13;
+  undefined8 unaff_R15;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float in_XMM5_Da;
+  float fVar20;
+  uint unaff_XMM6_Da;
+  float unaff_XMM7_Da;
+  float fVar21;
+  float fVar22;
+  undefined4 unaff_XMM9_Da;
+  float fVar23;
+  float fVar24;
+  undefined4 unaff_XMM9_Db;
+  undefined4 unaff_XMM9_Dc;
+  undefined4 unaff_XMM9_Dd;
+  undefined4 unaff_XMM10_Da;
+  float fVar25;
+  undefined4 unaff_XMM10_Db;
+  undefined4 unaff_XMM10_Dc;
+  undefined4 unaff_XMM10_Dd;
+  undefined4 unaff_XMM11_Da;
+  float fVar26;
+  undefined4 unaff_XMM11_Db;
+  undefined4 unaff_XMM11_Dc;
+  undefined4 unaff_XMM11_Dd;
+  undefined4 unaff_XMM12_Da;
+  float fVar27;
+  undefined4 unaff_XMM12_Db;
+  undefined4 unaff_XMM12_Dc;
+  undefined4 unaff_XMM12_Dd;
+  undefined4 unaff_XMM13_Da;
+  undefined4 unaff_XMM13_Db;
+  undefined4 unaff_XMM13_Dc;
+  undefined4 unaff_XMM13_Dd;
+  float unaff_XMM14_Da;
+  undefined4 unaff_XMM15_Da;
+  undefined4 unaff_XMM15_Db;
+  undefined4 unaff_XMM15_Dc;
+  undefined4 unaff_XMM15_Dd;
+  
+  *(undefined8 *)(in_R11 + 0x18) = unaff_R12;
+  uVar10 = param_4 + 2;
+  *(undefined8 *)(in_R11 + -0x18) = unaff_R13;
+  lVar12 = *(longlong *)(unaff_RBP + 0x170);
+  *(undefined8 *)(in_R11 + -0x20) = unaff_R14;
+  uVar13 = (ulonglong)param_4;
+  *(undefined8 *)(in_R11 + 0x10) = unaff_RDI;
+  *(undefined8 *)(in_R11 + -0x28) = unaff_R15;
+  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM9_Da;
+  *(undefined4 *)(in_R11 + -100) = unaff_XMM9_Db;
+  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM9_Dc;
+  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
+  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM10_Da;
+  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM10_Db;
+  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM10_Dc;
+  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM10_Dd;
+  *(undefined4 *)(in_R11 + -0x88) = unaff_XMM11_Da;
+  *(undefined4 *)(in_R11 + -0x84) = unaff_XMM11_Db;
+  *(undefined4 *)(in_R11 + -0x80) = unaff_XMM11_Dc;
+  *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM11_Dd;
+  *(undefined4 *)(in_R11 + -0x98) = unaff_XMM12_Da;
+  *(undefined4 *)(in_R11 + -0x94) = unaff_XMM12_Db;
+  *(undefined4 *)(in_R11 + -0x90) = unaff_XMM12_Dc;
+  *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM12_Dd;
+  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM13_Da;
+  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM13_Db;
+  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM13_Dc;
+  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM13_Dd;
+  *(undefined4 *)(in_R11 + -200) = unaff_XMM15_Da;
+  *(undefined4 *)(in_R11 + -0xc4) = unaff_XMM15_Db;
+  *(undefined4 *)(in_R11 + -0xc0) = unaff_XMM15_Dc;
+  *(undefined4 *)(in_R11 + -0xbc) = unaff_XMM15_Dd;
+  do {
+    iVar4 = *(int *)(param_2 + uVar13 * 4);
+    lVar11 = (longlong)iVar4 * 0x58;
+    if ((*(byte *)(lVar11 + 0x4c + lVar12) & 4) == 0) {
+      iVar4 = iVar4 * 3;
+      iVar7 = *(int *)(unaff_RBP + 0x180);
+      lVar8 = (longlong)iVar4;
+      if (*(int *)(unaff_RSI + lVar8 * 4) != iVar7) {
+        if (*(int *)(unaff_RSI + 4 + lVar8 * 4) == iVar7) {
+          param_4 = 1;
         }
         else {
-            index_buffer = 4;
-            stack_param = 1;
-            vertex_idx3 = *(int *)(in_stack_param2 + 4 + vertex_buffer * 4);
-            adjacent_triangle = *(int *)(in_stack_param2 + 8 + vertex_buffer * 4);
+          param_4 = 0xffffffff;
+          if (*(int *)(unaff_RSI + 8 + lVar8 * 4) == iVar7) {
+            param_4 = uVar10;
+          }
         }
-        
-        // 检查三角形连接性
-        if ((*(int *)((longlong)triangle_idx1 * RENDERING_MATRIX_SIZE + index_buffer + in_stack_param1) == -1) &&
-           (edge_exists = true, stack_offset1 < param_3)) {
-            triangle_array = vertex_array + 4;
-            vertex_buffer = stack_offset1;
-            
-            do {
-                vertex_idx1 = triangle_array[-2];
-                if ((triangle_idx2 != vertex_idx1) || 
-                    (triangle_idx4 = triangle_array[-1], triangle_idx3 != triangle_idx4)) break;
-                
-                if (!edge_exists) goto edge_exists_label;
-                
-                triangle_offset = (longlong)(*triangle_array * 3);
-                index_buffer = in_stack_param2 + triangle_offset * 4;
-                vertex_idx2 = *(int *)(in_stack_param2 + triangle_offset * 4);
-                
-                if ((vertex_idx2 == vertex_idx1) || (vertex_idx2 == triangle_idx4)) {
-                    vertex_idx4 = *(int *)(index_buffer + 4);
-                    if ((vertex_idx4 == vertex_idx1) || (vertex_idx4 == triangle_idx4)) {
-                        vertex_idx4 = 0;
-                        triangle_offset = 0;
-                        vertex_idx1 = vertex_idx2;
-                    }
-                    else {
-                        vertex_idx4 = 2;
-                        triangle_offset = 8;
-                        vertex_idx1 = *(int *)(index_buffer + 8);
-                        vertex_idx4 = vertex_idx2;
-                    }
-                }
-                else {
-                    vertex_idx4 = 1;
-                    triangle_offset = 4;
-                    vertex_idx1 = *(int *)(index_buffer + 4);
-                    vertex_idx4 = *(int *)(index_buffer + 8);
-                }
-                
-                if (((vertex_idx3 == vertex_idx4) && (adjacent_triangle == vertex_idx1)) &&
-                   (*(int *)((longlong)*triangle_array * RENDERING_MATRIX_SIZE + triangle_offset + in_stack_param1) == -1)) {
-                    edge_exists = false;
-                }
-                else {
-                    vertex_buffer = vertex_buffer + 1;
-                    triangle_array = triangle_array + 3;
-                }
-            } while (vertex_buffer < param_7);
-            
-            if (!edge_exists) {
-edge_exists_label:
-                triangle_idx2 = *(int *)(mesh_data + 8 + vertex_buffer * 0xc);
-                *(int *)(in_stack_param1 + ((longlong)triangle_idx1 * RENDERING_VERTEX_STRIDE + (longlong)stack_param) * 4) = triangle_idx2;
-                *(int *)(in_stack_param1 + ((longlong)triangle_idx2 * RENDERING_VERTEX_STRIDE + (longlong)vertex_idx4) * 4) = triangle_idx1;
-            }
-        }
-        
-        vertex_array = vertex_array + 3;
-        stack_offset1 = stack_offset1 + 1;
-        stack_offset2 = stack_offset2 + -1;
-        param_3 = param_7;
-        
-        if (stack_offset2 == 0) {
-            return;
-        }
-    } while( true );
-}
-
-/**
- * 渲染空函数占位符
- * 
- * 用作函数占位符，在某些渲染路径中作为空操作
- */
-void render_empty_function_placeholder(void)
-{
-    return;
-}
-
-// ================== 辅助函数实现 ==================
-
-/**
- * 计算向量长度
- * 
- * 参数:
- *   x, y, z - 向量分量
- * 返回值:
- *   向量长度
- */
-float calculate_vector_length(float x, float y, float z)
-{
-    return SQRT(x * x + y * y + z * z);
-}
-
-/**
- * 归一化向量分量
- * 
- * 参数:
- *   x, y, z - 向量分量指针
- *   length - 向量长度
- */
-void normalize_vector_components(float* x, float* y, float* z, float length)
-{
-    if (length > RENDERING_VERTEX_TRANSFORM_THRESHOLD) {
-        float scale = RENDERING_NORMALIZATION_FACTOR / length;
-        *x *= scale;
-        *y *= scale;
-        *z *= scale;
+      }
+      *(longlong *)(unaff_RBP + -0x70) = (longlong)(int)(iVar4 + param_4);
+      uVar10 = *(uint *)(unaff_RSI + (longlong)(int)(iVar4 + param_4) * 4);
+      (**(code **)(*in_R10 + 0x18))(in_R10,unaff_RBP + 0x40,(int)uVar10 >> 2,uVar10 & 3);
+      fVar14 = *(float *)(unaff_RBP + 0x40);
+      fVar15 = *(float *)(unaff_RBP + 0x44);
+      fVar19 = *(float *)(unaff_RBP + 0x48);
+      uVar1 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
+      uVar5 = *(undefined4 *)(lVar11 + 0x30 + lVar12);
+      uVar2 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
+      uVar3 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
+      *(undefined4 *)(unaff_RBP + -0x48) = uVar5;
+      *(undefined4 *)(unaff_RBP + -0x38) = uVar5;
+      fVar16 = fVar14 * (float)uVar1 + fVar15 * (float)((ulonglong)uVar1 >> 0x20) +
+               fVar19 * *(float *)(unaff_RBP + -0x48);
+      param_5._4_4_ = (float)uVar2 - fVar14 * fVar16;
+      param_6._0_4_ = (float)((ulonglong)uVar3 >> 0x20) - fVar15 * fVar16;
+      uVar1 = *(undefined8 *)(lVar11 + 0x34 + lVar12);
+      fVar21 = *(float *)(unaff_RBP + -0x38) - fVar19 * fVar16;
+      *(float *)(unaff_RBP + 8) = fVar21;
+      fVar27 = *(float *)(unaff_RBP + 8);
+      uVar5 = *(undefined4 *)(lVar11 + 0x3c + lVar12);
+      uVar2 = *(undefined8 *)(lVar11 + 0x34 + lVar12);
+      *(undefined4 *)(unaff_RBP + -0x28) = uVar5;
+      *(undefined4 *)(unaff_RBP + -0x18) = uVar5;
+      fVar17 = fVar15 * (float)((ulonglong)uVar1 >> 0x20) + fVar14 * (float)uVar1 +
+               fVar19 * *(float *)(unaff_RBP + -0x28);
+      fVar23 = (float)uVar2 - fVar14 * fVar17;
+      fVar16 = *(float *)(unaff_RBP + -0x18) - fVar19 * fVar17;
+      fVar17 = (float)((ulonglong)*(undefined8 *)(lVar11 + 0x34 + lVar12) >> 0x20) - fVar15 * fVar17
+      ;
+      *(float *)(unaff_RBP + 0x18) = fVar16;
+      *(undefined4 *)(unaff_RBP + -0x80) = *(undefined4 *)(unaff_RBP + 0x18);
+      if (((unaff_XMM7_Da < (float)((uint)param_5._4_4_ & unaff_XMM6_Da)) ||
+          (unaff_XMM7_Da < (float)((uint)(float)param_6 & unaff_XMM6_Da))) ||
+         (unaff_XMM7_Da < (float)((uint)fVar21 & unaff_XMM6_Da))) {
+        fVar27 = unaff_XMM14_Da /
+                 SQRT((float)param_6 * (float)param_6 + param_5._4_4_ * param_5._4_4_ +
+                      fVar21 * fVar21);
+        param_5._4_4_ = fVar27 * param_5._4_4_;
+        param_6._0_4_ = fVar27 * (float)param_6;
+        fVar27 = fVar27 * fVar21;
+      }
+      if (((unaff_XMM7_Da < (float)((uint)fVar23 & unaff_XMM6_Da)) ||
+          (unaff_XMM7_Da < (float)((uint)fVar17 & unaff_XMM6_Da))) ||
+         (unaff_XMM7_Da < (float)((uint)fVar16 & unaff_XMM6_Da))) {
+        fVar21 = unaff_XMM14_Da / SQRT(fVar23 * fVar23 + fVar17 * fVar17 + fVar16 * fVar16);
+        fVar16 = fVar16 * fVar21;
+        fVar23 = fVar21 * fVar23;
+        fVar17 = fVar21 * fVar17;
+      }
+      else {
+        fVar16 = *(float *)(unaff_RBP + -0x80);
+      }
+      iVar7 = param_4 + 1 + iVar4;
+      if (1 < (int)param_4) {
+        iVar7 = iVar4;
+      }
+      iVar7 = *(int *)(unaff_RSI + (longlong)iVar7 * 4);
+      uVar10 = *(uint *)(unaff_RSI + *(longlong *)(unaff_RBP + -0x70) * 4);
+      if ((int)param_4 < 1) {
+        iVar9 = 2;
+      }
+      else {
+        iVar9 = param_4 - 1;
+      }
+      in_R10 = *(longlong **)(unaff_RBP + -0x78);
+      uVar6 = *(uint *)(unaff_RSI + (longlong)(iVar4 + iVar9) * 4);
+      (**(code **)(*in_R10 + 0x10))(in_R10,unaff_RBP + 0x50,(int)uVar6 >> 2,uVar6 & 3);
+      (**(code **)(*in_R10 + 0x10))(in_R10,unaff_RBP + 0x60,(int)uVar10 >> 2,uVar10 & 3);
+      (**(code **)(*in_R10 + 0x10))(in_R10,unaff_RBP + 0x30,iVar7 >> 2);
+      fVar26 = *(float *)(unaff_RBP + 0x50) - *(float *)(unaff_RBP + 0x60);
+      fVar24 = *(float *)(unaff_RBP + 0x54) - *(float *)(unaff_RBP + 100);
+      fVar25 = *(float *)(unaff_RBP + 0x58) - *(float *)(unaff_RBP + 0x68);
+      fVar22 = *(float *)(unaff_RBP + 0x30) - *(float *)(unaff_RBP + 0x60);
+      fVar18 = *(float *)(unaff_RBP + 0x34) - *(float *)(unaff_RBP + 100);
+      fVar20 = *(float *)(unaff_RBP + 0x38) - *(float *)(unaff_RBP + 0x68);
+      fVar21 = fVar15 * fVar24 + fVar14 * fVar26 + fVar19 * fVar25;
+      fVar26 = fVar26 - fVar14 * fVar21;
+      fVar24 = fVar24 - fVar15 * fVar21;
+      fVar25 = fVar25 - fVar19 * fVar21;
+      if (((unaff_XMM7_Da < (float)((uint)fVar26 & unaff_XMM6_Da)) ||
+          (unaff_XMM7_Da < (float)((uint)fVar24 & unaff_XMM6_Da))) ||
+         (unaff_XMM7_Da < (float)((uint)fVar25 & unaff_XMM6_Da))) {
+        fVar21 = unaff_XMM14_Da / SQRT(fVar26 * fVar26 + fVar24 * fVar24 + fVar25 * fVar25);
+        fVar26 = fVar26 * fVar21;
+        fVar24 = fVar24 * fVar21;
+        fVar25 = fVar25 * fVar21;
+      }
+      fVar21 = fVar15 * fVar18 + fVar14 * fVar22 + fVar19 * fVar20;
+      fVar18 = fVar18 - fVar15 * fVar21;
+      fVar22 = fVar22 - fVar14 * fVar21;
+      fVar20 = fVar20 - fVar19 * fVar21;
+      if (((unaff_XMM7_Da < (float)((uint)fVar22 & unaff_XMM6_Da)) ||
+          (unaff_XMM7_Da < (float)((uint)fVar18 & unaff_XMM6_Da))) ||
+         (unaff_XMM7_Da < (float)((uint)fVar20 & unaff_XMM6_Da))) {
+        fVar14 = unaff_XMM14_Da / SQRT(fVar22 * fVar22 + fVar18 * fVar18 + fVar20 * fVar20);
+        fVar22 = fVar22 * fVar14;
+        fVar18 = fVar18 * fVar14;
+        fVar20 = fVar20 * fVar14;
+      }
+      fVar14 = fVar18 * fVar24 + fVar22 * fVar26 + fVar20 * fVar25;
+      if (fVar14 <= -1.0) {
+        fVar14 = -1.0;
+      }
+      if (unaff_XMM14_Da <= fVar14) {
+        fVar14 = unaff_XMM14_Da;
+      }
+      fVar21 = (float)acosf(fVar14);
+      uVar1 = *unaff_RBX;
+      param_4 = 0;
+      fVar14 = *(float *)((longlong)unaff_RBX + 4);
+      lVar12 = *(longlong *)(unaff_RBP + 0x170);
+      uVar10 = 2;
+      param_2 = *(longlong *)(unaff_RBP + -0x68);
+      *(undefined4 *)(unaff_RBP + -8) = *(undefined4 *)(unaff_RBX + 1);
+      fVar15 = *(float *)(unaff_RBP + -8);
+      in_XMM5_Da = param_7 + fVar21;
+      fVar19 = *(float *)((longlong)unaff_RBX + 0x14);
+      *unaff_RBX = CONCAT44(fVar14 + (float)param_6 * fVar21,(float)uVar1 + param_5._4_4_ * fVar21);
+      uVar1 = unaff_RBX[2];
+      *(float *)(unaff_RBP + 0x28) = fVar15 + fVar27 * fVar21;
+      *(undefined4 *)(unaff_RBX + 1) = *(undefined4 *)(unaff_RBP + 0x28);
+      unaff_RBX[2] = CONCAT44(fVar19 + fVar17 * fVar21,(float)uVar1 + fVar23 * fVar21);
+      *(float *)((longlong)unaff_RBX + 0x1c) =
+           fVar21 * *(float *)(lVar11 + 0x44 + lVar12) + *(float *)((longlong)unaff_RBX + 0x1c);
+      fVar14 = *(float *)(lVar11 + 0x40 + lVar12);
+      *(float *)(unaff_RBX + 3) = *(float *)(unaff_RBX + 3) + fVar16 * fVar21;
+      *(float *)((longlong)unaff_RBX + 0xc) =
+           fVar21 * fVar14 + *(float *)((longlong)unaff_RBX + 0xc);
+      param_7 = in_XMM5_Da;
     }
+    uVar13 = uVar13 + 1;
+  } while ((longlong)uVar13 < *(longlong *)(unaff_RBP + -0x60));
+  uVar1 = *unaff_RBX;
+  fVar14 = *(float *)(unaff_RBX + 1);
+  *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+  *(float *)(unaff_RBP + 0x38) = fVar14;
+  if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
+      (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = *unaff_RBX;
+    *(float *)(unaff_RBP + 0x38) = fVar14;
+    fVar19 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar15 = unaff_XMM14_Da /
+             SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                  *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    *unaff_RBX = CONCAT44(fVar19 * fVar15,(float)uVar1 * fVar15);
+    *(float *)(unaff_RBX + 1) = fVar14 * fVar15;
+  }
+  uVar1 = unaff_RBX[2];
+  fVar14 = *(float *)(unaff_RBX + 3);
+  *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+  *(float *)(unaff_RBP + 0x38) = fVar14;
+  if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
+      (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = unaff_RBX[2];
+    *(float *)(unaff_RBP + 0x38) = fVar14;
+    fVar19 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar15 = unaff_XMM14_Da /
+             SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                  *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    unaff_RBX[2] = CONCAT44(fVar19 * fVar15,(float)uVar1 * fVar15);
+    *(float *)(unaff_RBX + 3) = fVar14 * fVar15;
+  }
+  if (0.0 < in_XMM5_Da) {
+    *(float *)((longlong)unaff_RBX + 0x1c) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
+    *(float *)((longlong)unaff_RBX + 0xc) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * 应用矩阵变换
- * 
- * 参数:
- *   result - 结果向量指针
- *   matrix - 变换矩阵指针
- *   vector - 输入向量指针
- */
-void apply_matrix_transformation(float* result, const float* matrix, const float* vector)
+
+
+
+
+// 函数: void FUN_18041333b(void)
+void FUN_18041333b(void)
+
 {
-    result[0] = matrix[0] * vector[0] + matrix[1] * vector[1] + matrix[2] * vector[2];
-    result[1] = matrix[3] * vector[0] + matrix[4] * vector[1] + matrix[5] * vector[2];
-    result[2] = matrix[6] * vector[0] + matrix[7] * vector[1] + matrix[8] * vector[2];
+  undefined8 uVar1;
+  float fVar2;
+  undefined8 *unaff_RBX;
+  longlong unaff_RBP;
+  float fVar3;
+  float fVar4;
+  float in_XMM5_Da;
+  uint unaff_XMM6_Da;
+  float unaff_XMM7_Da;
+  float unaff_XMM8_Da;
+  float unaff_XMM14_Da;
+  
+  uVar1 = *unaff_RBX;
+  fVar2 = *(float *)(unaff_RBX + 1);
+  *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+  *(float *)(unaff_RBP + 0x38) = fVar2;
+  if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
+      (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = *unaff_RBX;
+    *(float *)(unaff_RBP + 0x38) = fVar2;
+    fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar3 = unaff_XMM14_Da /
+            SQRT(fVar4 * fVar4 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                 *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    *unaff_RBX = CONCAT44(fVar4 * fVar3,(float)uVar1 * fVar3);
+    *(float *)(unaff_RBX + 1) = fVar2 * fVar3;
+  }
+  uVar1 = unaff_RBX[2];
+  fVar2 = *(float *)(unaff_RBX + 3);
+  *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+  *(float *)(unaff_RBP + 0x38) = fVar2;
+  if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
+      (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = unaff_RBX[2];
+    *(float *)(unaff_RBP + 0x38) = fVar2;
+    fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar3 = unaff_XMM14_Da /
+            SQRT(fVar4 * fVar4 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                 *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    unaff_RBX[2] = CONCAT44(fVar4 * fVar3,(float)uVar1 * fVar3);
+    *(float *)(unaff_RBX + 3) = fVar2 * fVar3;
+  }
+  if (unaff_XMM8_Da < in_XMM5_Da) {
+    *(float *)((longlong)unaff_RBX + 0x1c) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
+    *(float *)((longlong)unaff_RBX + 0xc) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
 }
+
+
+
+
+
+// 函数: void FUN_18041335a(void)
+void FUN_18041335a(void)
+
+{
+  undefined8 uVar1;
+  float in_EAX;
+  undefined8 *unaff_RBX;
+  longlong unaff_RBP;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float in_XMM5_Da;
+  uint unaff_XMM6_Da;
+  float unaff_XMM7_Da;
+  float unaff_XMM8_Da;
+  float unaff_XMM14_Da;
+  
+  if ((unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da)) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = *unaff_RBX;
+    *(float *)(unaff_RBP + 0x38) = in_EAX;
+    fVar3 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar2 = unaff_XMM14_Da /
+            SQRT(fVar3 * fVar3 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                 *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    *unaff_RBX = CONCAT44(fVar3 * fVar2,(float)uVar1 * fVar2);
+    *(float *)(unaff_RBX + 1) = in_EAX * fVar2;
+  }
+  uVar1 = unaff_RBX[2];
+  fVar2 = *(float *)(unaff_RBX + 3);
+  *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+  *(float *)(unaff_RBP + 0x38) = fVar2;
+  if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
+      (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
+     (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x38) & unaff_XMM6_Da))) {
+    uVar1 = unaff_RBX[2];
+    *(float *)(unaff_RBP + 0x38) = fVar2;
+    fVar4 = (float)((ulonglong)uVar1 >> 0x20);
+    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    fVar3 = unaff_XMM14_Da /
+            SQRT(fVar4 * fVar4 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
+                 *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
+    unaff_RBX[2] = CONCAT44(fVar4 * fVar3,(float)uVar1 * fVar3);
+    *(float *)(unaff_RBX + 3) = fVar2 * fVar3;
+  }
+  if (unaff_XMM8_Da < in_XMM5_Da) {
+    *(float *)((longlong)unaff_RBX + 0x1c) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0x1c);
+    *(float *)((longlong)unaff_RBX + 0xc) =
+         (unaff_XMM14_Da / in_XMM5_Da) * *(float *)((longlong)unaff_RBX + 0xc);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_1804134b2(void)
+void FUN_1804134b2(void)
+
+{
+  longlong unaff_RBX;
+  longlong unaff_RBP;
+  float in_XMM5_Da;
+  float unaff_XMM14_Da;
+  
+  *(float *)(unaff_RBX + 0x1c) = (unaff_XMM14_Da / in_XMM5_Da) * *(float *)(unaff_RBX + 0x1c);
+  *(float *)(unaff_RBX + 0xc) = (unaff_XMM14_Da / in_XMM5_Da) * *(float *)(unaff_RBX + 0xc);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_1804134f0(longlong param_1,int param_2,int param_3,uint param_4)
+void FUN_1804134f0(longlong param_1,int param_2,int param_3,uint param_4)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined4 uVar3;
+  byte bVar4;
+  uint uVar5;
+  ulonglong uVar6;
+  int iVar7;
+  longlong lVar8;
+  int iVar9;
+  ulonglong uVar10;
+  ulonglong uVar11;
+  
+  uVar10 = (ulonglong)param_2;
+  uVar11 = uVar10;
+  do {
+    iVar9 = (int)uVar11;
+    uVar6 = uVar11 & 0xffffffff;
+    bVar4 = (byte)param_4 & 0x1f;
+    param_4 = param_4 + (param_4 << bVar4 | param_4 >> 0x20 - bVar4) + 3;
+    iVar1 = *(int *)(param_1 + (longlong)(int)(iVar9 + param_4 % ((param_3 - iVar9) + 1U)) * 4);
+    lVar8 = (longlong)param_3;
+    iVar7 = param_3;
+    do {
+      uVar5 = (uint)uVar6;
+      iVar2 = *(int *)(param_1 + uVar10 * 4);
+      while (iVar2 < iVar1) {
+        uVar10 = uVar10 + 1;
+        uVar5 = (int)uVar6 + 1;
+        uVar6 = (ulonglong)uVar5;
+        iVar2 = *(int *)(param_1 + uVar10 * 4);
+      }
+      iVar2 = *(int *)(param_1 + lVar8 * 4);
+      while (iVar1 < iVar2) {
+        lVar8 = lVar8 + -1;
+        iVar7 = iVar7 + -1;
+        iVar2 = *(int *)(param_1 + lVar8 * 4);
+      }
+      if (lVar8 < (longlong)uVar10) break;
+      uVar3 = *(undefined4 *)(param_1 + uVar10 * 4);
+      uVar5 = uVar5 + 1;
+      uVar6 = (ulonglong)uVar5;
+      iVar7 = iVar7 + -1;
+      *(undefined4 *)(param_1 + uVar10 * 4) = *(undefined4 *)(param_1 + lVar8 * 4);
+      uVar10 = uVar10 + 1;
+      *(undefined4 *)(param_1 + lVar8 * 4) = uVar3;
+      lVar8 = lVar8 + -1;
+    } while ((longlong)uVar10 <= lVar8);
+    if (iVar9 < iVar7) {
+      FUN_1804134f0(param_1,uVar11 & 0xffffffff,iVar7,param_4);
+    }
+    if (param_3 <= (int)uVar5) {
+      return;
+    }
+    uVar11 = (ulonglong)uVar5;
+  } while( true );
+}
+
+
+
+
+
+// 函数: void FUN_1804135e0(longlong param_1,longlong param_2,longlong param_3,int param_4)
+void FUN_1804135e0(longlong param_1,longlong param_2,longlong param_3,int param_4)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  bool bVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+  longlong lVar9;
+  int *piVar10;
+  int iVar11;
+  longlong lVar12;
+  longlong lVar13;
+  int iVar14;
+  longlong lVar15;
+  int *piVar16;
+  int iVar17;
+  int iStackX_20;
+  longlong lStack_50;
+  longlong lStack_48;
+  
+  iVar7 = 0;
+  if (0 < param_4) {
+    piVar10 = (int *)(param_2 + 0x14);
+    piVar16 = (int *)(param_3 + 8);
+    do {
+      iVar14 = piVar16[-2];
+      iVar1 = piVar16[-1];
+      piVar10[-3] = iVar7;
+      iVar6 = iVar1;
+      if (iVar1 <= iVar14) {
+        iVar6 = iVar14;
+        iVar14 = iVar1;
+      }
+      piVar10[-5] = iVar14;
+      piVar10[-4] = iVar6;
+      iVar14 = piVar16[-1];
+      iVar1 = *piVar16;
+      *piVar10 = iVar7;
+      iVar6 = iVar1;
+      if (iVar1 <= iVar14) {
+        iVar6 = iVar14;
+        iVar14 = iVar1;
+      }
+      piVar10[-2] = iVar14;
+      piVar10[-1] = iVar6;
+      iVar14 = *piVar16;
+      iVar1 = piVar16[-2];
+      piVar10[3] = iVar7;
+      iVar6 = iVar1;
+      if (iVar1 <= iVar14) {
+        iVar6 = iVar14;
+        iVar14 = iVar1;
+      }
+      iVar7 = iVar7 + 1;
+      piVar10[1] = iVar14;
+      piVar10[2] = iVar6;
+      piVar10 = piVar10 + 9;
+      piVar16 = piVar16 + 3;
+    } while (iVar7 < param_4);
+  }
+  FUN_180413bd0(param_2,0,param_4 * 3 + -1,0,0x26065ca);
+  lVar15 = (longlong)(param_4 * 3);
+  iVar7 = 0;
+  iVar14 = 1;
+  if (1 < lVar15) {
+    lVar13 = 0;
+    lVar12 = lVar15 + -1;
+    lVar9 = 0xc;
+    do {
+      if (*(int *)(param_2 + lVar13) != *(int *)(lVar9 + param_2)) {
+        FUN_180413bd0(param_2,iVar7,iVar14 + -1,1,0x26065ca);
+        lVar13 = lVar9;
+        iVar7 = iVar14;
+      }
+      iVar14 = iVar14 + 1;
+      lVar9 = lVar9 + 0xc;
+      lVar12 = lVar12 + -1;
+    } while (lVar12 != 0);
+  }
+  iVar7 = 0;
+  iVar14 = 1;
+  if (1 < lVar15) {
+    lVar13 = 0;
+    piVar10 = (int *)(param_2 + 0xc);
+    lVar12 = lVar15 + -1;
+    do {
+      if ((*(int *)(lVar13 + param_2) != *piVar10) || (*(int *)(lVar13 + 4 + param_2) != piVar10[1])
+         ) {
+        lVar13 = (longlong)piVar10 - param_2;
+        FUN_180413bd0(param_2,iVar7,iVar14 + -1,2,0x26065ca);
+        iVar7 = iVar14;
+      }
+      iVar14 = iVar14 + 1;
+      piVar10 = piVar10 + 3;
+      lVar12 = lVar12 + -1;
+    } while (lVar12 != 0);
+  }
+  if (0 < lVar15) {
+    piVar10 = (int *)(param_2 + 4);
+    lStack_50 = 1;
+    lStack_48 = lVar15;
+    do {
+      iVar7 = piVar10[1];
+      iVar8 = 0;
+      iVar14 = piVar10[-1];
+      iVar1 = *piVar10;
+      lVar12 = (longlong)(iVar7 * 3);
+      iVar6 = *(int *)(param_3 + lVar12 * 4);
+      if ((iVar6 == iVar14) || (iVar6 == iVar1)) {
+        iVar17 = *(int *)(param_3 + 4 + lVar12 * 4);
+        if ((iVar17 == iVar14) || (iVar17 == iVar1)) {
+          iStackX_20 = 0;
+          lVar13 = 0;
+          iVar11 = iVar6;
+        }
+        else {
+          iStackX_20 = 2;
+          lVar13 = 8;
+          iVar11 = *(int *)(param_3 + 8 + lVar12 * 4);
+          iVar17 = iVar6;
+        }
+      }
+      else {
+        lVar13 = 4;
+        iStackX_20 = 1;
+        iVar11 = *(int *)(param_3 + 4 + lVar12 * 4);
+        iVar17 = *(int *)(param_3 + 8 + lVar12 * 4);
+      }
+      if ((*(int *)((longlong)iVar7 * 0x58 + lVar13 + param_1) == -1) &&
+         (bVar4 = true, lStack_50 < lVar15)) {
+        piVar16 = piVar10 + 4;
+        lVar12 = lStack_50;
+        do {
+          iVar6 = piVar16[-2];
+          if ((iVar14 != iVar6) || (iVar2 = piVar16[-1], iVar1 != iVar2)) break;
+          if (!bVar4) goto LAB_1804138ec;
+          lVar9 = (longlong)(*piVar16 * 3);
+          lVar13 = param_3 + lVar9 * 4;
+          iVar3 = *(int *)(param_3 + lVar9 * 4);
+          if ((iVar3 == iVar6) || (iVar3 == iVar2)) {
+            iVar5 = *(int *)(lVar13 + 4);
+            if ((iVar5 == iVar6) || (iVar5 == iVar2)) {
+              iVar8 = 0;
+              lVar9 = 0;
+              iVar6 = iVar3;
+            }
+            else {
+              iVar8 = 2;
+              lVar9 = 8;
+              iVar6 = *(int *)(lVar13 + 8);
+              iVar5 = iVar3;
+            }
+          }
+          else {
+            iVar8 = 1;
+            lVar9 = 4;
+            iVar6 = *(int *)(lVar13 + 4);
+            iVar5 = *(int *)(lVar13 + 8);
+          }
+          if (((iVar11 == iVar5) && (iVar17 == iVar6)) &&
+             (*(int *)((longlong)*piVar16 * 0x58 + lVar9 + param_1) == -1)) {
+            bVar4 = false;
+          }
+          else {
+            lVar12 = lVar12 + 1;
+            piVar16 = piVar16 + 3;
+          }
+        } while (lVar12 < lVar15);
+        if (!bVar4) {
+LAB_1804138ec:
+          iVar14 = *(int *)(param_2 + 8 + lVar12 * 0xc);
+          *(int *)(param_1 + ((longlong)iVar7 * 0x16 + (longlong)iStackX_20) * 4) = iVar14;
+          *(int *)(param_1 + ((longlong)iVar14 * 0x16 + (longlong)iVar8) * 4) = iVar7;
+        }
+      }
+      piVar10 = piVar10 + 3;
+      lStack_50 = lStack_50 + 1;
+      lStack_48 = lStack_48 + -1;
+    } while (lStack_48 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_180413770(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4,
+void FUN_180413770(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4,
+                  undefined8 param_5,undefined8 param_6,longlong param_7)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  bool bVar6;
+  int iVar7;
+  int iVar8;
+  longlong lVar9;
+  longlong lVar10;
+  longlong lVar11;
+  int iVar12;
+  int iVar13;
+  int *piVar14;
+  int *piVar15;
+  int iVar16;
+  longlong unaff_R15;
+  longlong lStack0000000000000048;
+  longlong lStack0000000000000050;
+  longlong in_stack_000000a0;
+  longlong in_stack_000000b0;
+  int iStack00000000000000b8;
+  
+  piVar14 = (int *)(unaff_R15 + 4);
+  lStack0000000000000048 = param_4;
+  lStack0000000000000050 = param_3;
+  do {
+    iVar1 = piVar14[1];
+    iVar12 = 0;
+    iVar2 = piVar14[-1];
+    iVar3 = *piVar14;
+    lVar9 = (longlong)(iVar1 * 3);
+    iVar8 = *(int *)(in_stack_000000b0 + lVar9 * 4);
+    if ((iVar8 == iVar2) || (iVar8 == iVar3)) {
+      iVar16 = *(int *)(in_stack_000000b0 + 4 + lVar9 * 4);
+      if ((iVar16 == iVar2) || (iVar16 == iVar3)) {
+        iStack00000000000000b8 = 0;
+        lVar11 = 0;
+        iVar13 = iVar8;
+      }
+      else {
+        iStack00000000000000b8 = 2;
+        lVar11 = 8;
+        iVar13 = *(int *)(in_stack_000000b0 + 8 + lVar9 * 4);
+        iVar16 = iVar8;
+      }
+    }
+    else {
+      lVar11 = 4;
+      iStack00000000000000b8 = 1;
+      iVar13 = *(int *)(in_stack_000000b0 + 4 + lVar9 * 4);
+      iVar16 = *(int *)(in_stack_000000b0 + 8 + lVar9 * 4);
+    }
+    if ((*(int *)((longlong)iVar1 * 0x58 + lVar11 + in_stack_000000a0) == -1) &&
+       (bVar6 = true, lStack0000000000000048 < param_3)) {
+      piVar15 = piVar14 + 4;
+      lVar9 = lStack0000000000000048;
+      do {
+        iVar8 = piVar15[-2];
+        if ((iVar2 != iVar8) || (iVar4 = piVar15[-1], iVar3 != iVar4)) break;
+        if (!bVar6) goto LAB_1804138ec;
+        lVar10 = (longlong)(*piVar15 * 3);
+        lVar11 = in_stack_000000b0 + lVar10 * 4;
+        iVar5 = *(int *)(in_stack_000000b0 + lVar10 * 4);
+        if ((iVar5 == iVar8) || (iVar5 == iVar4)) {
+          iVar7 = *(int *)(lVar11 + 4);
+          if ((iVar7 == iVar8) || (iVar7 == iVar4)) {
+            iVar12 = 0;
+            lVar10 = 0;
+            iVar8 = iVar5;
+          }
+          else {
+            iVar12 = 2;
+            lVar10 = 8;
+            iVar8 = *(int *)(lVar11 + 8);
+            iVar7 = iVar5;
+          }
+        }
+        else {
+          iVar12 = 1;
+          lVar10 = 4;
+          iVar8 = *(int *)(lVar11 + 4);
+          iVar7 = *(int *)(lVar11 + 8);
+        }
+        if (((iVar13 == iVar7) && (iVar16 == iVar8)) &&
+           (*(int *)((longlong)*piVar15 * 0x58 + lVar10 + in_stack_000000a0) == -1)) {
+          bVar6 = false;
+        }
+        else {
+          lVar9 = lVar9 + 1;
+          piVar15 = piVar15 + 3;
+        }
+      } while (lVar9 < param_7);
+      if (!bVar6) {
+LAB_1804138ec:
+        iVar2 = *(int *)(unaff_R15 + 8 + lVar9 * 0xc);
+        *(int *)(in_stack_000000a0 + ((longlong)iVar1 * 0x16 + (longlong)iStack00000000000000b8) * 4
+                ) = iVar2;
+        *(int *)(in_stack_000000a0 + ((longlong)iVar2 * 0x16 + (longlong)iVar12) * 4) = iVar1;
+      }
+    }
+    piVar14 = piVar14 + 3;
+    lStack0000000000000048 = lStack0000000000000048 + 1;
+    lStack0000000000000050 = lStack0000000000000050 + -1;
+    param_3 = param_7;
+    if (lStack0000000000000050 == 0) {
+      return;
+    }
+  } while( true );
+}
+
+
+
+
+
+// 函数: void FUN_18041395a(void)
+void FUN_18041395a(void)
+
+{
+  return;
+}
+
+
+
+
+

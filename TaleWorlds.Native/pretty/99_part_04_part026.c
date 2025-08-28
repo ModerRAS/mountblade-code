@@ -1,184 +1,1189 @@
-/**
- * @file 99_part_04_part026.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 99_part_04_part026.c - 16 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_18026f230(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+void FUN_18026f230(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  undefined8 uVar7;
+  undefined8 uVar8;
+  longlong lVar9;
+  float *pfVar10;
+  float *pfVar11;
+  float fVar12;
+  
+  lVar9 = (longlong)param_2 - (longlong)param_1;
+  while ((0x243 < lVar9 && (0 < param_3))) {
+    fVar12 = *param_1;
+    fVar2 = param_2[-5];
+    lVar9 = ((longlong)param_2 - (longlong)param_1) / 0x28;
+    fVar3 = param_1[lVar9 * 5];
+    fVar5 = fVar3;
+    pfVar11 = param_1 + lVar9 * 5;
+    pfVar10 = param_1;
+    fVar4 = fVar12;
+    if (fVar12 < fVar3) {
+      fVar5 = fVar12;
+      pfVar11 = param_1;
+      pfVar10 = param_1 + lVar9 * 5;
+      fVar4 = fVar3;
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+    if ((fVar2 <= fVar4) && (pfVar10 = pfVar11, fVar5 < fVar2)) {
+      pfVar10 = param_2 + -5;
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    fVar2 = *pfVar10;
+    fVar3 = pfVar10[2];
+    pfVar11 = param_2;
+    pfVar10 = param_1;
+    while( true ) {
+      while (fVar12 < fVar2) {
+        pfVar1 = pfVar10 + 5;
+        pfVar10 = pfVar10 + 5;
+        fVar12 = *pfVar1;
+      }
+      pfVar11 = pfVar11 + -5;
+      fVar12 = *pfVar11;
+      while (fVar2 < fVar12) {
+        pfVar11 = pfVar11 + -5;
+        fVar12 = *pfVar11;
+      }
+      if (pfVar11 <= pfVar10) break;
+      uVar7 = *(undefined8 *)pfVar10;
+      uVar8 = *(undefined8 *)(pfVar10 + 2);
+      fVar12 = pfVar10[4];
+      fVar4 = pfVar11[1];
+      fVar5 = pfVar11[2];
+      fVar6 = pfVar11[3];
+      *pfVar10 = *pfVar11;
+      pfVar10[1] = fVar4;
+      pfVar10[2] = fVar5;
+      pfVar10[3] = fVar6;
+      pfVar10[4] = pfVar11[4];
+      pfVar10 = pfVar10 + 5;
+      *(undefined8 *)pfVar11 = uVar7;
+      *(undefined8 *)(pfVar11 + 2) = uVar8;
+      pfVar11[4] = fVar12;
+      fVar12 = *pfVar10;
     }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+    param_3 = param_3 + -1;
+    FUN_18026f230(pfVar10,param_2,param_3,param_4,fVar2,fVar3);
+    lVar9 = (longlong)pfVar10 - (longlong)param_1;
+    param_2 = pfVar10;
+  }
+  if (param_3 == 0) {
+    FUN_18026ef40(param_1,param_2,param_2,param_4);
+  }
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_18026f23d(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+void FUN_18026f23d(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  undefined8 uVar6;
+  undefined8 uVar7;
+  longlong in_RAX;
+  longlong lVar8;
+  float *pfVar9;
+  float *pfVar10;
+  float fVar11;
+  
+  lVar8 = in_RAX - (longlong)param_1;
+  while ((0x243 < lVar8 && (0 < param_3))) {
+    fVar11 = *param_1;
+    fVar2 = param_2[-5];
+    lVar8 = ((longlong)param_2 - (longlong)param_1) / 0x28;
+    fVar3 = param_1[lVar8 * 5];
+    fVar5 = fVar3;
+    pfVar10 = param_1 + lVar8 * 5;
+    pfVar9 = param_1;
+    fVar4 = fVar11;
+    if (fVar11 < fVar3) {
+      fVar5 = fVar11;
+      pfVar10 = param_1;
+      pfVar9 = param_1 + lVar8 * 5;
+      fVar4 = fVar3;
     }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    if ((fVar2 <= fVar4) && (pfVar9 = pfVar10, fVar5 < fVar2)) {
+      pfVar9 = param_2 + -5;
     }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    fVar2 = *pfVar9;
+    pfVar10 = param_2;
+    pfVar9 = param_1;
+    while( true ) {
+      while (fVar11 < fVar2) {
+        pfVar1 = pfVar9 + 5;
+        pfVar9 = pfVar9 + 5;
+        fVar11 = *pfVar1;
+      }
+      pfVar10 = pfVar10 + -5;
+      fVar11 = *pfVar10;
+      while (fVar2 < fVar11) {
+        pfVar10 = pfVar10 + -5;
+        fVar11 = *pfVar10;
+      }
+      if (pfVar10 <= pfVar9) break;
+      uVar6 = *(undefined8 *)pfVar9;
+      uVar7 = *(undefined8 *)(pfVar9 + 2);
+      fVar11 = pfVar9[4];
+      fVar3 = pfVar10[1];
+      fVar4 = pfVar10[2];
+      fVar5 = pfVar10[3];
+      *pfVar9 = *pfVar10;
+      pfVar9[1] = fVar3;
+      pfVar9[2] = fVar4;
+      pfVar9[3] = fVar5;
+      pfVar9[4] = pfVar10[4];
+      pfVar9 = pfVar9 + 5;
+      *(undefined8 *)pfVar10 = uVar6;
+      *(undefined8 *)(pfVar10 + 2) = uVar7;
+      pfVar10[4] = fVar11;
+      fVar11 = *pfVar9;
     }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+    param_3 = param_3 + -1;
+    FUN_18026f230(pfVar9,param_2,param_3,param_4);
+    lVar8 = (longlong)pfVar9 - (longlong)param_1;
+    param_2 = pfVar9;
+  }
+  if (param_3 == 0) {
+    FUN_18026ef40(param_1,param_2,param_2,param_4);
+  }
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_18026f25e(undefined4 param_1)
+void FUN_18026f25e(undefined4 param_1)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  longlong lVar4;
+  float fVar5;
+  float fVar6;
+  undefined8 uVar7;
+  undefined8 uVar8;
+  float *pfVar9;
+  undefined1 unaff_BL;
+  longlong unaff_RBP;
+  float *unaff_RSI;
+  float *pfVar10;
+  float *in_R10;
+  float fVar11;
+  
+  do {
+    pfVar10 = in_R10;
+    if (unaff_RBP < 1) break;
+    fVar11 = *unaff_RSI;
+    fVar2 = in_R10[-5];
+    lVar4 = ((longlong)in_R10 - (longlong)unaff_RSI) / 0x28;
+    fVar3 = unaff_RSI[lVar4 * 5];
+    fVar6 = fVar3;
+    pfVar10 = unaff_RSI + lVar4 * 5;
+    pfVar9 = unaff_RSI;
+    fVar5 = fVar11;
+    if (fVar11 < fVar3) {
+      fVar6 = fVar11;
+      pfVar10 = unaff_RSI;
+      pfVar9 = unaff_RSI + lVar4 * 5;
+      fVar5 = fVar3;
     }
-    
-    return FUN_00000006(handle);
+    if ((fVar2 <= fVar5) && (pfVar9 = pfVar10, fVar6 < fVar2)) {
+      pfVar9 = in_R10 + -5;
+    }
+    fVar2 = *pfVar9;
+    pfVar9 = in_R10;
+    pfVar10 = unaff_RSI;
+    while( true ) {
+      while (fVar11 < fVar2) {
+        pfVar1 = pfVar10 + 5;
+        pfVar10 = pfVar10 + 5;
+        fVar11 = *pfVar1;
+      }
+      pfVar9 = pfVar9 + -5;
+      fVar11 = *pfVar9;
+      while (fVar2 < fVar11) {
+        pfVar9 = pfVar9 + -5;
+        fVar11 = *pfVar9;
+      }
+      if (pfVar9 <= pfVar10) break;
+      uVar7 = *(undefined8 *)pfVar10;
+      uVar8 = *(undefined8 *)(pfVar10 + 2);
+      fVar11 = pfVar10[4];
+      fVar3 = pfVar9[1];
+      fVar5 = pfVar9[2];
+      fVar6 = pfVar9[3];
+      *pfVar10 = *pfVar9;
+      pfVar10[1] = fVar3;
+      pfVar10[2] = fVar5;
+      pfVar10[3] = fVar6;
+      pfVar10[4] = pfVar9[4];
+      pfVar10 = pfVar10 + 5;
+      *(undefined8 *)pfVar9 = uVar7;
+      *(undefined8 *)(pfVar9 + 2) = uVar8;
+      pfVar9[4] = fVar11;
+      fVar11 = *pfVar10;
+    }
+    unaff_RBP = unaff_RBP + -1;
+    param_1 = FUN_18026f230(pfVar10,in_R10,unaff_RBP,unaff_BL);
+    in_R10 = pfVar10;
+  } while (0x243 < (longlong)pfVar10 - (longlong)unaff_RSI);
+  if (unaff_RBP == 0) {
+    FUN_18026ef40(param_1,pfVar10,pfVar10,unaff_BL);
+  }
+  return;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+
+// 函数: void FUN_18026f362(void)
+void FUN_18026f362(void)
+
+{
+  longlong unaff_RBP;
+  
+  if (unaff_RBP == 0) {
+    FUN_18026ef40();
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f36c(void)
+void FUN_18026f36c(void)
+
+{
+  FUN_18026ef40();
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f390(float *param_1,float *param_2)
+void FUN_18026f390(float *param_1,float *param_2)
+
+{
+  float fVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  undefined8 uVar4;
+  float *pfVar5;
+  float *pfVar7;
+  float *pfVar8;
+  float fStack_28;
+  float *pfVar6;
+  
+  if (param_1 != param_2) {
+    for (pfVar8 = param_1 + 5; pfVar8 != param_2; pfVar8 = pfVar8 + 5) {
+      fVar1 = pfVar8[4];
+      uVar2 = *(undefined8 *)pfVar8;
+      uVar3 = *(undefined8 *)(pfVar8 + 2);
+      pfVar7 = pfVar8;
+      if (pfVar8 != param_1) {
+        fStack_28 = (float)uVar2;
+        pfVar5 = pfVar8;
+        do {
+          pfVar6 = pfVar5 + -5;
+          if (*pfVar6 <= fStack_28) break;
+          uVar4 = *(undefined8 *)(pfVar5 + -3);
+          *(undefined8 *)pfVar7 = *(undefined8 *)pfVar6;
+          *(undefined8 *)(pfVar7 + 2) = uVar4;
+          pfVar7[4] = pfVar5[-1];
+          pfVar7 = pfVar7 + -5;
+          pfVar5 = pfVar6;
+        } while (pfVar6 != param_1);
+      }
+      *(undefined8 *)pfVar7 = uVar2;
+      *(undefined8 *)(pfVar7 + 2) = uVar3;
+      pfVar7[4] = fVar1;
+    }
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f410(float *param_1,float *param_2,float *param_3)
+void FUN_18026f410(float *param_1,float *param_2,float *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  longlong lVar5;
+  float *pfVar6;
+  longlong lVar7;
+  longlong lVar8;
+  longlong lVar9;
+  bool bVar10;
+  
+  lVar8 = (longlong)param_2 - (longlong)param_1 >> 3;
+  if (1 < lVar8) {
+    lVar7 = (lVar8 + -2 >> 1) + 1;
+    lVar9 = lVar7 * 2 + 2;
+    pfVar6 = param_1 + lVar7 * 2;
+    do {
+      fVar1 = pfVar6[-2];
+      fVar2 = pfVar6[-1];
+      lVar7 = lVar7 + -1;
+      lVar9 = lVar9 + -2;
+      lVar5 = lVar7;
+      lVar4 = lVar9;
+      while (lVar4 < lVar8) {
+        lVar3 = lVar4 + -1;
+        if (param_1[lVar4 * 2 + -2] < param_1[lVar4 * 2] ||
+            param_1[lVar4 * 2 + -2] == param_1[lVar4 * 2]) {
+          lVar3 = lVar4;
+        }
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar3 * 2);
+        lVar5 = lVar3;
+        lVar4 = lVar3 * 2 + 2;
+      }
+      if (lVar4 == lVar8) {
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2 + -2);
+        lVar5 = lVar4 + -1;
+      }
+      while ((lVar7 < lVar5 &&
+             (lVar4 = lVar5 + -1 >> 1, param_1[lVar4 * 2] <= fVar1 && fVar1 != param_1[lVar4 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2);
+        lVar5 = lVar4;
+      }
+      param_1[lVar5 * 2] = fVar1;
+      param_1[lVar5 * 2 + 1] = fVar2;
+      pfVar6 = pfVar6 + -2;
+    } while (lVar7 != 0);
+  }
+  pfVar6 = param_2;
+  if (param_2 < param_3) {
+    do {
+      if (*pfVar6 <= *param_1 && *param_1 != *pfVar6) {
+        lVar9 = 0;
+        fVar1 = *pfVar6;
+        lVar7 = 2;
+        fVar2 = pfVar6[1];
+        *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+        bVar10 = lVar8 == 2;
+        lVar5 = lVar9;
+        if (2 < lVar8) {
+          do {
+            lVar9 = lVar7 + -1;
+            if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+                param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+              lVar9 = lVar7;
+            }
+            lVar7 = lVar9 * 2 + 2;
+            *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar9 * 2);
+            bVar10 = lVar7 == lVar8;
+            lVar5 = lVar9;
+          } while (lVar7 < lVar8);
+        }
+        if (bVar10) {
+          *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+          lVar9 = lVar7 + -1;
+        }
+        while ((0 < lVar9 &&
+               (lVar7 = lVar9 + -1 >> 1, param_1[lVar7 * 2] <= fVar1 && fVar1 != param_1[lVar7 * 2])
+               )) {
+          *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2);
+          lVar9 = lVar7;
+        }
+        param_1[lVar9 * 2] = fVar1;
+        param_1[lVar9 * 2 + 1] = fVar2;
+      }
+      pfVar6 = pfVar6 + 2;
+    } while (pfVar6 < param_3);
+  }
+  if (1 < lVar8) {
+    param_2 = param_2 + -2;
+    do {
+      lVar8 = lVar8 + -1;
+      fVar1 = *param_2;
+      lVar9 = 0;
+      fVar2 = param_2[1];
+      lVar7 = 2;
+      *(undefined8 *)param_2 = *(undefined8 *)param_1;
+      bVar10 = lVar8 == 2;
+      lVar5 = lVar9;
+      if (2 < lVar8) {
+        do {
+          lVar9 = lVar7 + -1;
+          if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+              param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+            lVar9 = lVar7;
+          }
+          lVar7 = lVar9 * 2 + 2;
+          *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar9 * 2);
+          bVar10 = lVar7 == lVar8;
+          lVar5 = lVar9;
+        } while (lVar7 < lVar8);
+      }
+      if (bVar10) {
+        *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+        lVar9 = lVar7 + -1;
+      }
+      while ((0 < lVar9 &&
+             (lVar8 = lVar9 + -1 >> 1, param_1[lVar8 * 2] <= fVar1 && fVar1 != param_1[lVar8 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar8 * 2);
+        lVar9 = lVar8;
+      }
+      param_2 = param_2 + -2;
+      param_1[lVar9 * 2] = fVar1;
+      param_1[lVar9 * 2 + 1] = fVar2;
+      lVar8 = (longlong)param_2 + (8 - (longlong)param_1) >> 3;
+    } while (1 < lVar8);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f415(float *param_1,float *param_2,float *param_3)
+void FUN_18026f415(float *param_1,float *param_2,float *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  longlong lVar5;
+  float *pfVar6;
+  longlong lVar7;
+  longlong in_R10;
+  longlong lVar8;
+  longlong lVar9;
+  bool bVar10;
+  
+  lVar8 = in_R10 - (longlong)param_1 >> 3;
+  if (1 < lVar8) {
+    lVar7 = (lVar8 + -2 >> 1) + 1;
+    lVar9 = lVar7 * 2 + 2;
+    pfVar6 = param_1 + lVar7 * 2;
+    do {
+      fVar1 = pfVar6[-2];
+      fVar2 = pfVar6[-1];
+      lVar7 = lVar7 + -1;
+      lVar9 = lVar9 + -2;
+      lVar5 = lVar7;
+      lVar4 = lVar9;
+      while (lVar4 < lVar8) {
+        lVar3 = lVar4 + -1;
+        if (param_1[lVar4 * 2 + -2] < param_1[lVar4 * 2] ||
+            param_1[lVar4 * 2 + -2] == param_1[lVar4 * 2]) {
+          lVar3 = lVar4;
+        }
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar3 * 2);
+        lVar5 = lVar3;
+        lVar4 = lVar3 * 2 + 2;
+      }
+      if (lVar4 == lVar8) {
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2 + -2);
+        lVar5 = lVar4 + -1;
+      }
+      while ((lVar7 < lVar5 &&
+             (lVar4 = lVar5 + -1 >> 1, param_1[lVar4 * 2] <= fVar1 && fVar1 != param_1[lVar4 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2);
+        lVar5 = lVar4;
+      }
+      param_1[lVar5 * 2] = fVar1;
+      param_1[lVar5 * 2 + 1] = fVar2;
+      pfVar6 = pfVar6 + -2;
+    } while (lVar7 != 0);
+  }
+  pfVar6 = param_2;
+  if (param_2 < param_3) {
+    do {
+      if (*pfVar6 <= *param_1 && *param_1 != *pfVar6) {
+        lVar9 = 0;
+        fVar1 = *pfVar6;
+        lVar7 = 2;
+        fVar2 = pfVar6[1];
+        *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+        bVar10 = lVar8 == 2;
+        lVar5 = lVar9;
+        if (2 < lVar8) {
+          do {
+            lVar9 = lVar7 + -1;
+            if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+                param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+              lVar9 = lVar7;
+            }
+            lVar7 = lVar9 * 2 + 2;
+            *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar9 * 2);
+            bVar10 = lVar7 == lVar8;
+            lVar5 = lVar9;
+          } while (lVar7 < lVar8);
+        }
+        if (bVar10) {
+          *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+          lVar9 = lVar7 + -1;
+        }
+        while ((0 < lVar9 &&
+               (lVar7 = lVar9 + -1 >> 1, param_1[lVar7 * 2] <= fVar1 && fVar1 != param_1[lVar7 * 2])
+               )) {
+          *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2);
+          lVar9 = lVar7;
+        }
+        param_1[lVar9 * 2] = fVar1;
+        param_1[lVar9 * 2 + 1] = fVar2;
+      }
+      pfVar6 = pfVar6 + 2;
+    } while (pfVar6 < param_3);
+  }
+  if (1 < lVar8) {
+    param_2 = param_2 + -2;
+    do {
+      lVar8 = lVar8 + -1;
+      fVar1 = *param_2;
+      lVar9 = 0;
+      fVar2 = param_2[1];
+      lVar7 = 2;
+      *(undefined8 *)param_2 = *(undefined8 *)param_1;
+      bVar10 = lVar8 == 2;
+      lVar5 = lVar9;
+      if (2 < lVar8) {
+        do {
+          lVar9 = lVar7 + -1;
+          if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+              param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+            lVar9 = lVar7;
+          }
+          lVar7 = lVar9 * 2 + 2;
+          *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar9 * 2);
+          bVar10 = lVar7 == lVar8;
+          lVar5 = lVar9;
+        } while (lVar7 < lVar8);
+      }
+      if (bVar10) {
+        *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+        lVar9 = lVar7 + -1;
+      }
+      while ((0 < lVar9 &&
+             (lVar8 = lVar9 + -1 >> 1, param_1[lVar8 * 2] <= fVar1 && fVar1 != param_1[lVar8 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar9 * 2) = *(undefined8 *)(param_1 + lVar8 * 2);
+        lVar9 = lVar8;
+      }
+      param_2 = param_2 + -2;
+      param_1[lVar9 * 2] = fVar1;
+      param_1[lVar9 * 2 + 1] = fVar2;
+      lVar8 = (longlong)param_2 + (8 - (longlong)param_1) >> 3;
+    } while (1 < lVar8);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f435(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+void FUN_18026f435(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+
+{
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  longlong lVar5;
+  float *pfVar6;
+  float *unaff_RSI;
+  float *unaff_RDI;
+  longlong lVar7;
+  longlong in_R10;
+  longlong lVar8;
+  bool bVar9;
+  
+  lVar7 = (param_4 >> 1) + 1;
+  lVar8 = lVar7 * 2 + 2;
+  pfVar6 = param_1 + lVar7 * 2;
+  do {
+    fVar1 = pfVar6[-2];
+    fVar2 = pfVar6[-1];
+    lVar7 = lVar7 + -1;
+    lVar8 = lVar8 + -2;
+    lVar5 = lVar7;
+    lVar4 = lVar8;
+    while (lVar4 < in_R10) {
+      lVar3 = lVar4 + -1;
+      if (param_1[lVar4 * 2 + -2] < param_1[lVar4 * 2] ||
+          param_1[lVar4 * 2 + -2] == param_1[lVar4 * 2]) {
+        lVar3 = lVar4;
+      }
+      *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar3 * 2);
+      lVar5 = lVar3;
+      lVar4 = lVar3 * 2 + 2;
+    }
+    if (lVar4 == in_R10) {
+      *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2 + -2);
+      lVar5 = lVar4 + -1;
+    }
+    while ((lVar7 < lVar5 &&
+           (lVar4 = lVar5 + -1 >> 1, param_1[lVar4 * 2] <= fVar1 && fVar1 != param_1[lVar4 * 2]))) {
+      *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar4 * 2);
+      lVar5 = lVar4;
+    }
+    param_1[lVar5 * 2] = fVar1;
+    param_1[lVar5 * 2 + 1] = fVar2;
+    pfVar6 = pfVar6 + -2;
+  } while (lVar7 != 0);
+  pfVar6 = unaff_RSI;
+  if (unaff_RSI < unaff_RDI) {
+    do {
+      if (*pfVar6 <= *param_1 && *param_1 != *pfVar6) {
+        lVar8 = 0;
+        fVar1 = *pfVar6;
+        lVar7 = 2;
+        fVar2 = pfVar6[1];
+        *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+        bVar9 = in_R10 == 2;
+        lVar5 = lVar8;
+        if (2 < in_R10) {
+          do {
+            lVar8 = lVar7 + -1;
+            if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+                param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+              lVar8 = lVar7;
+            }
+            lVar7 = lVar8 * 2 + 2;
+            *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar8 * 2);
+            bVar9 = lVar7 == in_R10;
+            lVar5 = lVar8;
+          } while (lVar7 < in_R10);
+        }
+        if (bVar9) {
+          *(undefined8 *)(param_1 + lVar8 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+          lVar8 = lVar7 + -1;
+        }
+        while ((0 < lVar8 &&
+               (lVar7 = lVar8 + -1 >> 1, param_1[lVar7 * 2] <= fVar1 && fVar1 != param_1[lVar7 * 2])
+               )) {
+          *(undefined8 *)(param_1 + lVar8 * 2) = *(undefined8 *)(param_1 + lVar7 * 2);
+          lVar8 = lVar7;
+        }
+        param_1[lVar8 * 2] = fVar1;
+        param_1[lVar8 * 2 + 1] = fVar2;
+      }
+      pfVar6 = pfVar6 + 2;
+    } while (pfVar6 < unaff_RDI);
+  }
+  if (1 < in_R10) {
+    pfVar6 = unaff_RSI + -2;
+    do {
+      lVar4 = in_R10 + -1;
+      fVar1 = *pfVar6;
+      lVar8 = 0;
+      fVar2 = pfVar6[1];
+      lVar7 = 2;
+      *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+      bVar9 = lVar4 == 2;
+      lVar5 = lVar8;
+      if (2 < lVar4) {
+        do {
+          lVar8 = lVar7 + -1;
+          if (param_1[lVar7 * 2 + -2] < param_1[lVar7 * 2] ||
+              param_1[lVar7 * 2 + -2] == param_1[lVar7 * 2]) {
+            lVar8 = lVar7;
+          }
+          lVar7 = lVar8 * 2 + 2;
+          *(undefined8 *)(param_1 + lVar5 * 2) = *(undefined8 *)(param_1 + lVar8 * 2);
+          bVar9 = lVar7 == lVar4;
+          lVar5 = lVar8;
+        } while (lVar7 < lVar4);
+      }
+      if (bVar9) {
+        *(undefined8 *)(param_1 + lVar8 * 2) = *(undefined8 *)(param_1 + lVar7 * 2 + -2);
+        lVar8 = lVar7 + -1;
+      }
+      while ((0 < lVar8 &&
+             (lVar7 = lVar8 + -1 >> 1, param_1[lVar7 * 2] <= fVar1 && fVar1 != param_1[lVar7 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar8 * 2) = *(undefined8 *)(param_1 + lVar7 * 2);
+        lVar8 = lVar7;
+      }
+      pfVar6 = pfVar6 + -2;
+      param_1[lVar8 * 2] = fVar1;
+      param_1[lVar8 * 2 + 1] = fVar2;
+      in_R10 = (longlong)pfVar6 + (8 - (longlong)param_1) >> 3;
+    } while (1 < in_R10);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f4f7(float *param_1)
+void FUN_18026f4f7(float *param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  float *unaff_RSI;
+  float *unaff_RDI;
+  longlong lVar5;
+  float *pfVar6;
+  longlong in_R10;
+  longlong lVar7;
+  bool bVar8;
+  
+  pfVar6 = unaff_RSI;
+  if (unaff_RSI < unaff_RDI) {
+    do {
+      if (*pfVar6 <= *param_1 && *param_1 != *pfVar6) {
+        lVar3 = 0;
+        fVar1 = *pfVar6;
+        lVar5 = 2;
+        fVar2 = pfVar6[1];
+        *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+        bVar8 = in_R10 == 2;
+        lVar4 = lVar3;
+        if (2 < in_R10) {
+          do {
+            lVar3 = lVar5 + -1;
+            if (param_1[lVar5 * 2 + -2] < param_1[lVar5 * 2] ||
+                param_1[lVar5 * 2 + -2] == param_1[lVar5 * 2]) {
+              lVar3 = lVar5;
+            }
+            lVar5 = lVar3 * 2 + 2;
+            *(undefined8 *)(param_1 + lVar4 * 2) = *(undefined8 *)(param_1 + lVar3 * 2);
+            bVar8 = lVar5 == in_R10;
+            lVar4 = lVar3;
+          } while (lVar5 < in_R10);
+        }
+        if (bVar8) {
+          *(undefined8 *)(param_1 + lVar3 * 2) = *(undefined8 *)(param_1 + lVar5 * 2 + -2);
+          lVar3 = lVar5 + -1;
+        }
+        while ((0 < lVar3 &&
+               (lVar5 = lVar3 + -1 >> 1, param_1[lVar5 * 2] <= fVar1 && fVar1 != param_1[lVar5 * 2])
+               )) {
+          *(undefined8 *)(param_1 + lVar3 * 2) = *(undefined8 *)(param_1 + lVar5 * 2);
+          lVar3 = lVar5;
+        }
+        param_1[lVar3 * 2] = fVar1;
+        param_1[lVar3 * 2 + 1] = fVar2;
+      }
+      pfVar6 = pfVar6 + 2;
+    } while (pfVar6 < unaff_RDI);
+  }
+  if (1 < in_R10) {
+    pfVar6 = unaff_RSI + -2;
+    do {
+      lVar7 = in_R10 + -1;
+      fVar1 = *pfVar6;
+      lVar3 = 0;
+      fVar2 = pfVar6[1];
+      lVar5 = 2;
+      *(undefined8 *)pfVar6 = *(undefined8 *)param_1;
+      bVar8 = lVar7 == 2;
+      lVar4 = lVar3;
+      if (2 < lVar7) {
+        do {
+          lVar3 = lVar5 + -1;
+          if (param_1[lVar5 * 2 + -2] < param_1[lVar5 * 2] ||
+              param_1[lVar5 * 2 + -2] == param_1[lVar5 * 2]) {
+            lVar3 = lVar5;
+          }
+          lVar5 = lVar3 * 2 + 2;
+          *(undefined8 *)(param_1 + lVar4 * 2) = *(undefined8 *)(param_1 + lVar3 * 2);
+          bVar8 = lVar5 == lVar7;
+          lVar4 = lVar3;
+        } while (lVar5 < lVar7);
+      }
+      if (bVar8) {
+        *(undefined8 *)(param_1 + lVar3 * 2) = *(undefined8 *)(param_1 + lVar5 * 2 + -2);
+        lVar3 = lVar5 + -1;
+      }
+      while ((0 < lVar3 &&
+             (lVar5 = lVar3 + -1 >> 1, param_1[lVar5 * 2] <= fVar1 && fVar1 != param_1[lVar5 * 2])))
+      {
+        *(undefined8 *)(param_1 + lVar3 * 2) = *(undefined8 *)(param_1 + lVar5 * 2);
+        lVar3 = lVar5;
+      }
+      pfVar6 = pfVar6 + -2;
+      param_1[lVar3 * 2] = fVar1;
+      param_1[lVar3 * 2 + 1] = fVar2;
+      in_R10 = (longlong)pfVar6 + (8 - (longlong)param_1) >> 3;
+    } while (1 < in_R10);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f5d5(undefined8 *param_1)
+void FUN_18026f5d5(undefined8 *param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  longlong unaff_RSI;
+  longlong lVar5;
+  float *pfVar6;
+  longlong in_R10;
+  longlong lVar7;
+  bool bVar8;
+  
+  pfVar6 = (float *)(unaff_RSI + -8);
+  do {
+    lVar7 = in_R10 + -1;
+    fVar1 = *pfVar6;
+    lVar3 = 0;
+    fVar2 = pfVar6[1];
+    lVar5 = 2;
+    *(undefined8 *)pfVar6 = *param_1;
+    bVar8 = lVar7 == 2;
+    lVar4 = lVar3;
+    if (2 < lVar7) {
+      do {
+        lVar3 = lVar5 + -1;
+        if (*(float *)(param_1 + lVar5 + -1) < *(float *)(param_1 + lVar5) ||
+            *(float *)(param_1 + lVar5 + -1) == *(float *)(param_1 + lVar5)) {
+          lVar3 = lVar5;
+        }
+        lVar5 = lVar3 * 2 + 2;
+        param_1[lVar4] = param_1[lVar3];
+        bVar8 = lVar5 == lVar7;
+        lVar4 = lVar3;
+      } while (lVar5 < lVar7);
+    }
+    if (bVar8) {
+      param_1[lVar3] = param_1[lVar5 + -1];
+      lVar3 = lVar5 + -1;
+    }
+    while ((0 < lVar3 &&
+           (lVar5 = lVar3 + -1 >> 1,
+           *(float *)(param_1 + lVar5) <= fVar1 && fVar1 != *(float *)(param_1 + lVar5)))) {
+      param_1[lVar3] = param_1[lVar5];
+      lVar3 = lVar5;
+    }
+    pfVar6 = pfVar6 + -2;
+    *(float *)(param_1 + lVar3) = fVar1;
+    *(float *)((longlong)param_1 + lVar3 * 8 + 4) = fVar2;
+    in_R10 = (longlong)pfVar6 + (8 - (longlong)param_1) >> 3;
+  } while (1 < in_R10);
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f6b0(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+void FUN_18026f6b0(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+
+{
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  float *pfVar8;
+  float *pfVar9;
+  float fVar10;
+  
+  uVar6 = (longlong)param_2 - (longlong)param_1;
+  while ((0xe0 < (longlong)(uVar6 & 0xfffffffffffffff8) && (0 < param_3))) {
+    lVar7 = (longlong)param_2 - (longlong)param_1 >> 3;
+    if (lVar7 < 0) {
+      lVar7 = lVar7 + 1;
+    }
+    fVar10 = *param_1;
+    fVar2 = param_2[-2];
+    fVar3 = param_1[(lVar7 >> 1) * 2];
+    fVar5 = fVar3;
+    pfVar8 = param_1 + (lVar7 >> 1) * 2;
+    pfVar9 = param_1;
+    fVar4 = fVar10;
+    if (fVar10 < fVar3) {
+      fVar5 = fVar10;
+      pfVar8 = param_1;
+      pfVar9 = param_1 + (lVar7 >> 1) * 2;
+      fVar4 = fVar3;
+    }
+    if ((fVar2 <= fVar4) && (pfVar9 = pfVar8, fVar5 < fVar2)) {
+      pfVar9 = param_2 + -2;
+    }
+    fVar2 = *pfVar9;
+    pfVar8 = param_2;
+    pfVar9 = param_1;
+    while( true ) {
+      while (fVar10 < fVar2) {
+        pfVar1 = pfVar9 + 2;
+        pfVar9 = pfVar9 + 2;
+        fVar10 = *pfVar1;
+      }
+      pfVar8 = pfVar8 + -2;
+      fVar10 = *pfVar8;
+      while (fVar2 < fVar10) {
+        pfVar8 = pfVar8 + -2;
+        fVar10 = *pfVar8;
+      }
+      if (pfVar8 <= pfVar9) break;
+      fVar10 = *pfVar9;
+      fVar3 = pfVar9[1];
+      *(undefined8 *)pfVar9 = *(undefined8 *)pfVar8;
+      pfVar9 = pfVar9 + 2;
+      *pfVar8 = fVar10;
+      pfVar8[1] = fVar3;
+      fVar10 = *pfVar9;
+    }
+    param_3 = param_3 + -1;
+    FUN_18026f6b0(pfVar9,param_2,param_3,param_4);
+    uVar6 = (longlong)pfVar9 - (longlong)param_1;
+    param_2 = pfVar9;
+  }
+  if (param_3 == 0) {
+    FUN_18026f410(param_1,param_2,param_2,param_4);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f6bd(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+void FUN_18026f6bd(float *param_1,float *param_2,longlong param_3,undefined1 param_4)
+
+{
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  longlong in_RAX;
+  ulonglong uVar6;
+  longlong lVar7;
+  float *pfVar8;
+  float *pfVar9;
+  float fVar10;
+  
+  uVar6 = in_RAX - (longlong)param_1;
+  while ((0xe0 < (longlong)(uVar6 & 0xfffffffffffffff8) && (0 < param_3))) {
+    lVar7 = (longlong)param_2 - (longlong)param_1 >> 3;
+    if (lVar7 < 0) {
+      lVar7 = lVar7 + 1;
+    }
+    fVar10 = *param_1;
+    fVar2 = param_2[-2];
+    fVar3 = param_1[(lVar7 >> 1) * 2];
+    fVar5 = fVar3;
+    pfVar8 = param_1 + (lVar7 >> 1) * 2;
+    pfVar9 = param_1;
+    fVar4 = fVar10;
+    if (fVar10 < fVar3) {
+      fVar5 = fVar10;
+      pfVar8 = param_1;
+      pfVar9 = param_1 + (lVar7 >> 1) * 2;
+      fVar4 = fVar3;
+    }
+    if ((fVar2 <= fVar4) && (pfVar9 = pfVar8, fVar5 < fVar2)) {
+      pfVar9 = param_2 + -2;
+    }
+    fVar2 = *pfVar9;
+    pfVar8 = param_2;
+    pfVar9 = param_1;
+    while( true ) {
+      while (fVar10 < fVar2) {
+        pfVar1 = pfVar9 + 2;
+        pfVar9 = pfVar9 + 2;
+        fVar10 = *pfVar1;
+      }
+      pfVar8 = pfVar8 + -2;
+      fVar10 = *pfVar8;
+      while (fVar2 < fVar10) {
+        pfVar8 = pfVar8 + -2;
+        fVar10 = *pfVar8;
+      }
+      if (pfVar8 <= pfVar9) break;
+      fVar10 = *pfVar9;
+      fVar3 = pfVar9[1];
+      *(undefined8 *)pfVar9 = *(undefined8 *)pfVar8;
+      pfVar9 = pfVar9 + 2;
+      *pfVar8 = fVar10;
+      pfVar8[1] = fVar3;
+      fVar10 = *pfVar9;
+    }
+    param_3 = param_3 + -1;
+    FUN_18026f6b0(pfVar9,param_2,param_3,param_4);
+    uVar6 = (longlong)pfVar9 - (longlong)param_1;
+    param_2 = pfVar9;
+  }
+  if (param_3 == 0) {
+    FUN_18026f410(param_1,param_2,param_2,param_4);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f6e2(undefined8 param_1)
+void FUN_18026f6e2(undefined8 param_1)
+
+{
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  longlong lVar6;
+  float *pfVar7;
+  undefined1 unaff_BL;
+  longlong unaff_RBP;
+  float *unaff_RSI;
+  float *pfVar8;
+  float *in_R10;
+  float fVar9;
+  
+  do {
+    pfVar8 = in_R10;
+    if (unaff_RBP < 1) break;
+    lVar6 = (longlong)in_R10 - (longlong)unaff_RSI >> 3;
+    if (lVar6 < 0) {
+      lVar6 = lVar6 + 1;
+    }
+    fVar9 = *unaff_RSI;
+    fVar2 = in_R10[-2];
+    fVar3 = unaff_RSI[(lVar6 >> 1) * 2];
+    fVar5 = fVar3;
+    pfVar8 = unaff_RSI + (lVar6 >> 1) * 2;
+    pfVar7 = unaff_RSI;
+    fVar4 = fVar9;
+    if (fVar9 < fVar3) {
+      fVar5 = fVar9;
+      pfVar8 = unaff_RSI;
+      pfVar7 = unaff_RSI + (lVar6 >> 1) * 2;
+      fVar4 = fVar3;
+    }
+    if ((fVar2 <= fVar4) && (pfVar7 = pfVar8, fVar5 < fVar2)) {
+      pfVar7 = in_R10 + -2;
+    }
+    fVar2 = *pfVar7;
+    pfVar7 = in_R10;
+    pfVar8 = unaff_RSI;
+    while( true ) {
+      while (fVar9 < fVar2) {
+        pfVar1 = pfVar8 + 2;
+        pfVar8 = pfVar8 + 2;
+        fVar9 = *pfVar1;
+      }
+      pfVar7 = pfVar7 + -2;
+      fVar9 = *pfVar7;
+      while (fVar2 < fVar9) {
+        pfVar7 = pfVar7 + -2;
+        fVar9 = *pfVar7;
+      }
+      if (pfVar7 <= pfVar8) break;
+      fVar9 = *pfVar8;
+      fVar3 = pfVar8[1];
+      *(undefined8 *)pfVar8 = *(undefined8 *)pfVar7;
+      pfVar8 = pfVar8 + 2;
+      *pfVar7 = fVar9;
+      pfVar7[1] = fVar3;
+      fVar9 = *pfVar8;
+    }
+    unaff_RBP = unaff_RBP + -1;
+    param_1 = FUN_18026f6b0(pfVar8,in_R10,unaff_RBP,unaff_BL);
+    in_R10 = pfVar8;
+  } while (0xe0 < (longlong)((longlong)pfVar8 - (longlong)unaff_RSI & 0xfffffffffffffff8U));
+  if (unaff_RBP == 0) {
+    FUN_18026f410(param_1,pfVar8,pfVar8,unaff_BL);
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f7c3(void)
+void FUN_18026f7c3(void)
+
+{
+  longlong unaff_RBP;
+  
+  if (unaff_RBP == 0) {
+    FUN_18026f410();
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_18026f7cd(void)
+void FUN_18026f7cd(void)
+
+{
+  FUN_18026f410();
+  return;
+}
+
+
+
+
+
+

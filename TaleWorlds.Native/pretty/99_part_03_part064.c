@@ -1,184 +1,716 @@
-/**
- * @file 99_part_03_part064.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 99_part_03_part064.c - 7 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_18023690b(void)
+void FUN_18023690b(void)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  undefined8 *puVar1;
+  undefined4 *puVar2;
+  longlong lVar3;
+  longlong lVar4;
+  bool bVar5;
+  bool bVar6;
+  undefined8 uVar7;
+  undefined8 uVar8;
+  int iVar9;
+  int iVar10;
+  longlong lVar11;
+  undefined *puVar12;
+  int *piVar13;
+  longlong unaff_RBP;
+  longlong *unaff_RSI;
+  longlong unaff_RDI;
+  ulonglong uVar14;
+  int unaff_R12D;
+  ulonglong unaff_R14;
+  uint uVar15;
+  ulonglong uVar16;
+  float fVar17;
+  float unaff_XMM8_Da;
+  byte bStackX_20;
+  uint uStack0000000000000048;
+  longlong in_stack_00000058;
+  longlong in_stack_00000068;
+  longlong in_stack_00000070;
+  longlong in_stack_00000078;
+  
+  lVar3 = *(longlong *)(unaff_RBP + -0x78);
+  if (*(int *)(unaff_RDI + 0x10) == *(int *)(lVar3 + 200)) {
+    uVar16 = unaff_R14 & 0xffffffff;
+    uVar14 = unaff_R14;
+    if (0 < *(int *)(lVar3 + 200)) {
+      do {
+        lVar11 = *(longlong *)(lVar3 + 0xd0);
+        lVar4 = unaff_RSI[1];
+        piVar13 = (int *)(lVar4 + 200);
+        uVar7 = *(undefined8 *)(uVar14 + lVar11);
+        uVar8 = ((undefined8 *)(uVar14 + lVar11))[1];
+        iVar10 = *piVar13;
+        iVar9 = *(int *)(lVar4 + 0xcc);
+        uStack0000000000000048 =
+             CONCAT13(*(undefined1 *)(uVar14 + 0x13 + lVar11),
+                      CONCAT12(*(undefined1 *)(uVar14 + 0x12 + lVar11),
+                               CONCAT11(*(undefined1 *)(uVar14 + 0x11 + lVar11),
+                                        *(undefined1 *)(uVar14 + 0x10 + lVar11))));
+        if (iVar9 <= iVar10) {
+          if (iVar9 < 2) {
+            iVar9 = 8;
+          }
+          else {
+            iVar9 = (iVar9 >> 1) + iVar9;
+          }
+          *(int *)(lVar4 + 0xcc) = iVar9;
+          FUN_180085e30(piVar13);
+          iVar10 = *piVar13;
+        }
+        lVar11 = *(longlong *)(lVar4 + 0xd0);
+        uVar15 = (int)uVar16 + 1;
+        uVar16 = (ulonglong)uVar15;
+        puVar1 = (undefined8 *)(lVar11 + (longlong)iVar10 * 0x14);
+        *puVar1 = uVar7;
+        puVar1[1] = uVar8;
+        *(uint *)(lVar11 + 0x10 + (longlong)iVar10 * 0x14) = uStack0000000000000048;
+        *piVar13 = *piVar13 + 1;
+        uVar14 = uVar14 + 0x14;
+      } while ((int)uVar15 < *(int *)(lVar3 + 200));
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+  }
+  else {
+    if (bStackX_20 == 0xff) {
+      if (*(longlong *)(in_stack_00000068 + 0x1b0) == 0) {
+        in_stack_00000068 = in_stack_00000068 + 0x10;
+      }
+      else {
+        in_stack_00000068 = func_0x000180079240();
+      }
+      puVar12 = &DAT_18098bc73;
+      if (*(undefined **)(in_stack_00000068 + 8) != (undefined *)0x0) {
+        puVar12 = *(undefined **)(in_stack_00000068 + 8);
+      }
+      FUN_180627020(&UNK_180a13d90,puVar12);
+      bStackX_20 = 0;
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    if ((int)*(char *)(*unaff_RSI + 0xf6) < (char)bStackX_20 + 1) {
+      *(byte *)(*unaff_RSI + 0xf6) = bStackX_20 + 1;
     }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    uVar14 = unaff_R14 & 0xffffffff;
+    if (0 < *(int *)(unaff_RDI + 0x10)) {
+      do {
+        lVar3 = unaff_RSI[1];
+        piVar13 = (int *)(lVar3 + 200);
+        iVar10 = *(int *)(lVar3 + 0xcc);
+        iVar9 = *piVar13;
+        uStack0000000000000048 = (uint)bStackX_20;
+        if (iVar10 <= iVar9) {
+          if (iVar10 < 2) {
+            iVar10 = 8;
+          }
+          else {
+            iVar10 = (iVar10 >> 1) + iVar10;
+          }
+          *(int *)(lVar3 + 0xcc) = iVar10;
+          FUN_180085e30(piVar13);
+          iVar9 = *piVar13;
+        }
+        lVar3 = *(longlong *)(lVar3 + 0xd0);
+        uVar15 = (int)uVar14 + 1;
+        uVar14 = (ulonglong)uVar15;
+        puVar2 = (undefined4 *)(lVar3 + (longlong)iVar9 * 0x14);
+        *puVar2 = 0x3f800000;
+        puVar2[1] = 0;
+        puVar2[2] = 0;
+        puVar2[3] = 0;
+        *(uint *)(lVar3 + 0x10 + (longlong)iVar9 * 0x14) = uStack0000000000000048;
+        *piVar13 = *piVar13 + 1;
+      } while ((int)uVar15 < *(int *)(unaff_RDI + 0x10));
     }
-    
-    return handle;
+  }
+  bVar5 = false;
+  bVar6 = false;
+  fVar17 = *(float *)(unaff_RBP + -0x50) * *(float *)(unaff_RBP + -0x38);
+  if ((*(char *)(*unaff_RSI + 0xff) == '\0') ||
+     (*(char *)(*(longlong *)(unaff_RBP + 0x30) + 0xff) != '\0')) {
+    if (unaff_XMM8_Da <=
+        (*(float *)(unaff_RBP + -0x40) * *(float *)(unaff_RBP + -0x48) - fVar17) *
+        *(float *)(unaff_RBP + -0x2c) +
+        (*(float *)(unaff_RBP + -0x4c) * *(float *)(unaff_RBP + -0x38) -
+        *(float *)(unaff_RBP + -0x48) * *(float *)(unaff_RBP + -0x3c)) *
+        *(float *)(unaff_RBP + -0x30) +
+        (*(float *)(unaff_RBP + -0x50) * *(float *)(unaff_RBP + -0x3c) -
+        *(float *)(unaff_RBP + -0x40) * *(float *)(unaff_RBP + -0x4c)) *
+        *(float *)(unaff_RBP + -0x28)) {
+      bVar5 = true;
+    }
+    else {
+      bVar6 = true;
+    }
+  }
+  else {
+    bVar6 = true;
+    bVar5 = true;
+  }
+  if (*(int *)(in_stack_00000058 + 0x88) != 0) {
+    do {
+      lVar3 = *(longlong *)(in_stack_00000058 + 0x90);
+      lVar11 = (longlong)(int)unaff_R14;
+      if (bVar5) {
+        fVar17 = (float)FUN_180235410(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
+                                      *(int *)(lVar3 + 4 + lVar11 * 0xc) + unaff_R12D,
+                                      *(int *)(lVar3 + 8 + lVar11 * 0xc) + unaff_R12D);
+      }
+      if (bVar6) {
+        fVar17 = (float)FUN_180235410(fVar17,*(int *)(lVar3 + lVar11 * 0xc) + unaff_R12D,
+                                      *(int *)(lVar3 + 8 + lVar11 * 0xc) + unaff_R12D,
+                                      *(int *)(lVar3 + 4 + lVar11 * 0xc) + unaff_R12D);
+      }
+      uVar15 = (int)unaff_R14 + 1;
+      unaff_R14 = (ulonglong)uVar15;
+    } while (uVar15 < *(uint *)(in_stack_00000058 + 0x88));
+  }
+  lVar3 = *(longlong *)(unaff_RBP + 0x38);
+  *(undefined2 *)(unaff_RSI + 6) = 0x101;
+  *(undefined1 *)((longlong)unaff_RSI + 0x32) = 1;
+  if (lVar3 == 0) {
+    if (in_stack_00000070 != 0) {
+      FUN_18007f840(in_stack_00000070);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(in_stack_00000070);
+    }
+    if (in_stack_00000078 != 0) {
+      FUN_18007f840(in_stack_00000078);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(in_stack_00000078);
+    }
+    lVar3 = *(longlong *)(unaff_RBP + -0x80);
+    if (lVar3 != 0) {
+      FUN_18007f840(lVar3);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(lVar3);
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x140) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_180236b64(char param_1)
+void FUN_180236b64(char param_1)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  longlong lVar1;
+  longlong unaff_RBP;
+  longlong unaff_RSI;
+  char unaff_R13B;
+  uint unaff_R14D;
+  char unaff_R15B;
+  longlong in_stack_00000058;
+  longlong in_stack_00000070;
+  longlong in_stack_00000078;
+  
+  if (*(char *)(*(longlong *)(unaff_RBP + 0x30) + 0xff) == unaff_R15B) {
+    unaff_R15B = '\x01';
+    unaff_R13B = '\x01';
+  }
+  else if (param_1 == '\0') {
+    unaff_R13B = '\x01';
+  }
+  else {
+    unaff_R15B = '\x01';
+  }
+  if (*(int *)(in_stack_00000058 + 0x88) != 0) {
+    do {
+      if (unaff_R13B != '\0') {
+        FUN_180235410();
+      }
+      if (unaff_R15B != '\0') {
+        FUN_180235410();
+      }
+      unaff_R14D = unaff_R14D + 1;
+    } while (unaff_R14D < *(uint *)(in_stack_00000058 + 0x88));
+  }
+  lVar1 = *(longlong *)(unaff_RBP + 0x38);
+  *(undefined2 *)(unaff_RSI + 0x30) = 0x101;
+  *(undefined1 *)(unaff_RSI + 0x32) = 1;
+  if (lVar1 == 0) {
+    if (in_stack_00000070 != 0) {
+      FUN_18007f840(in_stack_00000070);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(in_stack_00000070);
     }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    if (in_stack_00000078 != 0) {
+      FUN_18007f840(in_stack_00000078);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(in_stack_00000078);
     }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    lVar1 = *(longlong *)(unaff_RBP + -0x80);
+    if (lVar1 != 0) {
+      FUN_18007f840(lVar1);
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(lVar1);
     }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x140) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+
+
+
+// 函数: void FUN_180236c4b(void)
+void FUN_180236c4b(void)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
+  longlong lVar1;
+  longlong unaff_RBP;
+  longlong in_stack_00000070;
+  longlong in_stack_00000078;
+  
+  if (in_stack_00000070 != 0) {
+    FUN_18007f840(in_stack_00000070);
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(in_stack_00000070);
+  }
+  if (in_stack_00000078 != 0) {
+    FUN_18007f840(in_stack_00000078);
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(in_stack_00000078);
+  }
+  lVar1 = *(longlong *)(unaff_RBP + -0x80);
+  if (lVar1 != 0) {
+    FUN_18007f840(lVar1);
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(lVar1);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x140) ^ (ulonglong)&stack0x00000000);
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+
+// 函数: void FUN_180236e60(longlong param_1,float *param_2)
+void FUN_180236e60(longlong param_1,float *param_2)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  longlong lVar4;
+  longlong lVar5;
+  ulonglong uVar6;
+  uint uVar7;
+  ulonglong uVar8;
+  longlong lVar9;
+  longlong lVar10;
+  longlong lVar11;
+  ulonglong uVar12;
+  ulonglong uVar13;
+  
+  lVar10 = *(longlong *)(param_1 + 8);
+  uVar13 = 0;
+  uVar6 = uVar13;
+  if (*(int *)(lVar10 + 0x60) == 0) {
+    *(undefined1 *)(param_1 + 0x30) = 1;
+    *(undefined1 *)(param_1 + 0x32) = 1;
+    return;
+  }
+  do {
+    lVar4 = *(longlong *)(lVar10 + 0x18);
+    fVar1 = *param_2;
+    lVar10 = *(longlong *)(lVar10 + 0x68);
+    lVar11 = (longlong)(int)uVar6;
+    lVar5 = lVar11 * 0x5c;
+    fVar2 = *(float *)(lVar10 + 0x38 + lVar5);
+    fVar3 = *(float *)(lVar10 + 0x3c + lVar5);
+    lVar9 = (longlong)*(int *)(lVar10 + lVar5);
+    *(float *)(lVar4 + lVar9 * 0x10) =
+         fVar1 * *(float *)(lVar10 + 0x34 + lVar5) + *(float *)(lVar4 + lVar9 * 0x10);
+    *(float *)(lVar4 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar4 + 4 + lVar9 * 0x10);
+    *(float *)(lVar4 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar4 + 8 + lVar9 * 0x10);
+    lVar10 = *(longlong *)(param_1 + 8);
+    if (*(int *)(lVar10 + 0x38) != 0) {
+      lVar4 = *(longlong *)(lVar10 + 0x40);
+      fVar1 = *param_2;
+      lVar10 = *(longlong *)(lVar10 + 0x68);
+      fVar2 = *(float *)(lVar10 + 0x38 + lVar5);
+      fVar3 = *(float *)(lVar10 + 0x3c + lVar5);
+      *(float *)(lVar4 + lVar9 * 0x10) =
+           fVar1 * *(float *)(lVar10 + 0x34 + lVar5) + *(float *)(lVar4 + lVar9 * 0x10);
+      *(float *)(lVar4 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar4 + 4 + lVar9 * 0x10);
+      *(float *)(lVar4 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar4 + 8 + lVar9 * 0x10);
+      lVar10 = *(longlong *)(param_1 + 8);
+    }
+    uVar8 = uVar13;
+    uVar12 = uVar13;
+    if (*(short *)(lVar10 + 0xc0) != 0) {
+      do {
+        fVar1 = *param_2;
+        uVar7 = (int)uVar8 + 1;
+        lVar10 = *(longlong *)(*(longlong *)(param_1 + 8) + 0xb0);
+        lVar4 = *(longlong *)(lVar10 + 8 + uVar12);
+        lVar10 = *(longlong *)(lVar10 + 0x30 + uVar12);
+        fVar2 = *(float *)(lVar10 + 4 + lVar11 * 0x10);
+        fVar3 = *(float *)(lVar10 + 8 + lVar11 * 0x10);
+        *(float *)(lVar4 + lVar9 * 0x10) =
+             fVar1 * *(float *)(lVar10 + lVar11 * 0x10) + *(float *)(lVar4 + lVar9 * 0x10);
+        *(float *)(lVar4 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar4 + 4 + lVar9 * 0x10);
+        *(float *)(lVar4 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar4 + 8 + lVar9 * 0x10);
+        lVar10 = *(longlong *)(param_1 + 8);
+        uVar8 = (ulonglong)uVar7;
+        uVar12 = uVar12 + 0x50;
+      } while ((int)uVar7 < (int)(uint)*(ushort *)(lVar10 + 0xc0));
+    }
+    uVar7 = (int)uVar6 + 1;
+    uVar6 = (ulonglong)uVar7;
+  } while (uVar7 < *(uint *)(lVar10 + 0x60));
+  *(undefined1 *)(param_1 + 0x30) = 1;
+  *(undefined1 *)(param_1 + 0x32) = 1;
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_180236e8b(void)
+void FUN_180236e8b(void)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  longlong lVar4;
+  longlong lVar5;
+  longlong lVar6;
+  longlong unaff_RBX;
+  float *unaff_RBP;
+  uint unaff_ESI;
+  uint uVar7;
+  ulonglong uVar8;
+  longlong lVar9;
+  longlong in_R9;
+  longlong lVar10;
+  ulonglong uVar11;
+  ulonglong unaff_R14;
+  
+  do {
+    lVar4 = *(longlong *)(in_R9 + 0x18);
+    fVar1 = *unaff_RBP;
+    lVar5 = *(longlong *)(in_R9 + 0x68);
+    lVar10 = (longlong)(int)unaff_ESI;
+    lVar6 = lVar10 * 0x5c;
+    fVar2 = *(float *)(lVar5 + 0x38 + lVar6);
+    fVar3 = *(float *)(lVar5 + 0x3c + lVar6);
+    lVar9 = (longlong)*(int *)(lVar5 + lVar6);
+    *(float *)(lVar4 + lVar9 * 0x10) =
+         fVar1 * *(float *)(lVar5 + 0x34 + lVar6) + *(float *)(lVar4 + lVar9 * 0x10);
+    *(float *)(lVar4 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar4 + 4 + lVar9 * 0x10);
+    *(float *)(lVar4 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar4 + 8 + lVar9 * 0x10);
+    in_R9 = *(longlong *)(unaff_RBX + 8);
+    if (*(int *)(in_R9 + 0x38) != (int)unaff_R14) {
+      lVar4 = *(longlong *)(in_R9 + 0x40);
+      fVar1 = *unaff_RBP;
+      lVar5 = *(longlong *)(in_R9 + 0x68);
+      fVar2 = *(float *)(lVar5 + 0x38 + lVar6);
+      fVar3 = *(float *)(lVar5 + 0x3c + lVar6);
+      *(float *)(lVar4 + lVar9 * 0x10) =
+           fVar1 * *(float *)(lVar5 + 0x34 + lVar6) + *(float *)(lVar4 + lVar9 * 0x10);
+      *(float *)(lVar4 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar4 + 4 + lVar9 * 0x10);
+      *(float *)(lVar4 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar4 + 8 + lVar9 * 0x10);
+      in_R9 = *(longlong *)(unaff_RBX + 8);
+    }
+    uVar8 = unaff_R14 & 0xffffffff;
+    uVar11 = unaff_R14;
+    if ((ushort)unaff_R14 < *(ushort *)(in_R9 + 0xc0)) {
+      do {
+        fVar1 = *unaff_RBP;
+        uVar7 = (int)uVar8 + 1;
+        uVar8 = (ulonglong)uVar7;
+        lVar4 = *(longlong *)(*(longlong *)(unaff_RBX + 8) + 0xb0);
+        lVar5 = *(longlong *)(lVar4 + 8 + uVar11);
+        lVar4 = *(longlong *)(lVar4 + 0x30 + uVar11);
+        fVar2 = *(float *)(lVar4 + 4 + lVar10 * 0x10);
+        fVar3 = *(float *)(lVar4 + 8 + lVar10 * 0x10);
+        *(float *)(lVar5 + lVar9 * 0x10) =
+             fVar1 * *(float *)(lVar4 + lVar10 * 0x10) + *(float *)(lVar5 + lVar9 * 0x10);
+        *(float *)(lVar5 + 4 + lVar9 * 0x10) = fVar2 * fVar1 + *(float *)(lVar5 + 4 + lVar9 * 0x10);
+        *(float *)(lVar5 + 8 + lVar9 * 0x10) = fVar3 * fVar1 + *(float *)(lVar5 + 8 + lVar9 * 0x10);
+        in_R9 = *(longlong *)(unaff_RBX + 8);
+        uVar11 = uVar11 + 0x50;
+      } while ((int)uVar7 < (int)(uint)*(ushort *)(in_R9 + 0xc0));
+    }
+    unaff_ESI = unaff_ESI + 1;
+  } while (unaff_ESI < *(uint *)(in_R9 + 0x60));
+  *(undefined1 *)(unaff_RBX + 0x30) = 1;
+  *(undefined1 *)(unaff_RBX + 0x32) = 1;
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_180237012(longlong param_1)
+void FUN_180237012(longlong param_1)
+
+{
+  *(undefined1 *)(param_1 + 0x30) = 1;
+  *(undefined1 *)(param_1 + 0x32) = 1;
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_180237030(longlong param_1,float *param_2,char param_3,float param_4)
+void FUN_180237030(longlong param_1,float *param_2,char param_3,float param_4)
+
+{
+  undefined4 uVar1;
+  bool bVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  float *pfVar5;
+  longlong lVar6;
+  longlong lVar7;
+  longlong lVar8;
+  longlong lVar9;
+  uint uVar10;
+  uint uVar11;
+  longlong lVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  undefined1 auVar17 [16];
+  float fVar18;
+  
+  lVar9 = *(longlong *)(param_1 + 8);
+  uVar10 = 0;
+  lVar6 = 0;
+  lVar12 = (longlong)*(int *)(lVar9 + 0x10);
+  if (3 < lVar12) {
+    lVar7 = 0;
+    lVar8 = (lVar12 - 4U >> 2) + 1;
+    lVar6 = lVar8 * 4;
+    do {
+      lVar9 = *(longlong *)(lVar9 + 0x18);
+      *(float *)(lVar7 + lVar9) = *(float *)(lVar7 + lVar9) * *param_2;
+      *(float *)(lVar7 + 4 + lVar9) = *(float *)(lVar7 + 4 + lVar9) * param_2[1];
+      *(float *)(lVar7 + 8 + lVar9) = *(float *)(lVar7 + 8 + lVar9) * param_2[2];
+      lVar9 = *(longlong *)(param_1 + 8);
+      if (*(int *)(lVar9 + 0x38) != 0) {
+        lVar9 = *(longlong *)(lVar9 + 0x40);
+        *(float *)(lVar7 + lVar9) = *param_2 * *(float *)(lVar7 + lVar9);
+        *(float *)(lVar7 + 4 + lVar9) = param_2[1] * *(float *)(lVar7 + 4 + lVar9);
+        *(float *)(lVar7 + 8 + lVar9) = *(float *)(lVar7 + 8 + lVar9) * param_2[2];
+        lVar9 = *(longlong *)(param_1 + 8);
+      }
+      lVar9 = *(longlong *)(lVar9 + 0x18);
+      *(float *)(lVar9 + 0x10 + lVar7) = *(float *)(lVar9 + 0x10 + lVar7) * *param_2;
+      *(float *)(lVar9 + 0x14 + lVar7) = *(float *)(lVar9 + 0x14 + lVar7) * param_2[1];
+      *(float *)(lVar9 + 0x18 + lVar7) = *(float *)(lVar9 + 0x18 + lVar7) * param_2[2];
+      lVar9 = *(longlong *)(param_1 + 8);
+      if (*(int *)(lVar9 + 0x38) != 0) {
+        lVar9 = *(longlong *)(lVar9 + 0x40);
+        *(float *)(lVar9 + 0x10 + lVar7) = *param_2 * *(float *)(lVar9 + 0x10 + lVar7);
+        *(float *)(lVar9 + 0x14 + lVar7) = param_2[1] * *(float *)(lVar9 + 0x14 + lVar7);
+        *(float *)(lVar9 + 0x18 + lVar7) = *(float *)(lVar9 + 0x18 + lVar7) * param_2[2];
+        lVar9 = *(longlong *)(param_1 + 8);
+      }
+      lVar9 = *(longlong *)(lVar9 + 0x18);
+      *(float *)(lVar7 + 0x20 + lVar9) = *(float *)(lVar7 + 0x20 + lVar9) * *param_2;
+      *(float *)(lVar7 + 0x24 + lVar9) = *(float *)(lVar7 + 0x24 + lVar9) * param_2[1];
+      *(float *)(lVar7 + 0x28 + lVar9) = *(float *)(lVar7 + 0x28 + lVar9) * param_2[2];
+      lVar9 = *(longlong *)(param_1 + 8);
+      if (*(int *)(lVar9 + 0x38) != 0) {
+        lVar9 = *(longlong *)(lVar9 + 0x40);
+        *(float *)(lVar7 + 0x20 + lVar9) = *param_2 * *(float *)(lVar7 + 0x20 + lVar9);
+        *(float *)(lVar7 + 0x24 + lVar9) = param_2[1] * *(float *)(lVar7 + 0x24 + lVar9);
+        *(float *)(lVar7 + 0x28 + lVar9) = *(float *)(lVar7 + 0x28 + lVar9) * param_2[2];
+        lVar9 = *(longlong *)(param_1 + 8);
+      }
+      lVar9 = *(longlong *)(lVar9 + 0x18);
+      *(float *)(lVar7 + 0x30 + lVar9) = *(float *)(lVar7 + 0x30 + lVar9) * *param_2;
+      *(float *)(lVar7 + 0x34 + lVar9) = *(float *)(lVar7 + 0x34 + lVar9) * param_2[1];
+      *(float *)(lVar7 + 0x38 + lVar9) = *(float *)(lVar7 + 0x38 + lVar9) * param_2[2];
+      lVar9 = *(longlong *)(param_1 + 8);
+      if (*(int *)(lVar9 + 0x38) != 0) {
+        lVar9 = *(longlong *)(lVar9 + 0x40);
+        *(float *)(lVar7 + 0x30 + lVar9) = *param_2 * *(float *)(lVar7 + 0x30 + lVar9);
+        *(float *)(lVar7 + 0x34 + lVar9) = param_2[1] * *(float *)(lVar7 + 0x34 + lVar9);
+        *(float *)(lVar7 + 0x38 + lVar9) = *(float *)(lVar7 + 0x38 + lVar9) * param_2[2];
+        lVar9 = *(longlong *)(param_1 + 8);
+      }
+      lVar7 = lVar7 + 0x40;
+      lVar8 = lVar8 + -1;
+    } while (lVar8 != 0);
+  }
+  if (lVar6 < lVar12) {
+    lVar7 = lVar6 << 4;
+    lVar12 = lVar12 - lVar6;
+    do {
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x18);
+      *(float *)(lVar7 + lVar6) = *(float *)(lVar7 + lVar6) * *param_2;
+      *(float *)(lVar7 + 4 + lVar6) = *(float *)(lVar7 + 4 + lVar6) * param_2[1];
+      *(float *)(lVar7 + 8 + lVar6) = *(float *)(lVar7 + 8 + lVar6) * param_2[2];
+      lVar9 = *(longlong *)(param_1 + 8);
+      if (*(int *)(lVar9 + 0x38) != 0) {
+        lVar6 = *(longlong *)(lVar9 + 0x40);
+        *(float *)(lVar7 + lVar6) = *param_2 * *(float *)(lVar7 + lVar6);
+        *(float *)(lVar7 + 4 + lVar6) = param_2[1] * *(float *)(lVar7 + 4 + lVar6);
+        *(float *)(lVar7 + 8 + lVar6) = *(float *)(lVar7 + 8 + lVar6) * param_2[2];
+        lVar9 = *(longlong *)(param_1 + 8);
+      }
+      lVar7 = lVar7 + 0x10;
+      lVar12 = lVar12 + -1;
+    } while (lVar12 != 0);
+  }
+  if ((param_3 != '\0') && (*(int *)(lVar9 + 0x60) == 4)) {
+    lVar6 = *(longlong *)(lVar9 + 0x68);
+    param_4 = (*(float *)(lVar6 + 0x48) - *(float *)(lVar6 + 0x100)) * param_4;
+    *(float *)(lVar6 + 0x48) = param_4 + *(float *)(lVar6 + 0x100);
+    lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+    *(float *)(lVar6 + 0xa4) = param_4 + *(float *)(lVar6 + 0x100);
+    lVar9 = *(longlong *)(param_1 + 8);
+  }
+  uVar11 = 0;
+  if (*(short *)(lVar9 + 0xc0) != 0) {
+    do {
+      lVar6 = *(longlong *)(lVar9 + 0xb0);
+      uVar4 = (ulonglong)uVar11;
+      pfVar5 = *(float **)(lVar6 + 8 + uVar4 * 0x50);
+      *(float **)(lVar6 + 0x10 + uVar4 * 0x50) = pfVar5;
+      *(float **)(lVar6 + 0x18 + uVar4 * 0x50) =
+           pfVar5 + (longlong)*(int *)(lVar6 + uVar4 * 0x50) * 4;
+      for (; lVar9 = *(longlong *)(param_1 + 8),
+          *(float **)(*(longlong *)(lVar9 + 0xb0) + 0x18 + uVar4 * 0x50) != pfVar5;
+          pfVar5 = pfVar5 + 4) {
+        *pfVar5 = *param_2 * *pfVar5;
+        pfVar5[1] = param_2[1] * pfVar5[1];
+        pfVar5[2] = param_2[2] * pfVar5[2];
+      }
+      uVar11 = uVar11 + 1;
+    } while (uVar11 < *(ushort *)(lVar9 + 0xc0));
+  }
+  uVar11 = 0;
+  if (*(int *)(lVar9 + 0x60) != 0) {
+    do {
+      lVar9 = (longlong)(int)uVar11 * 0x5c;
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 0x34 + lVar9) = *(float *)(lVar6 + 0x34 + lVar9) * *param_2;
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 0x38 + lVar9) = param_2[1] * *(float *)(lVar6 + 0x38 + lVar9);
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 0x3c + lVar9) = param_2[2] * *(float *)(lVar6 + 0x3c + lVar9);
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      fVar13 = *(float *)(lVar6 + 0x38 + lVar9);
+      fVar15 = *(float *)(lVar6 + 0x34 + lVar9);
+      fVar16 = *(float *)(lVar6 + 0x3c + lVar9);
+      fVar14 = fVar15 * fVar15 + fVar13 * fVar13 + fVar16 * fVar16;
+      auVar17 = rsqrtss(ZEXT416((uint)fVar14),ZEXT416((uint)fVar14));
+      fVar18 = auVar17._0_4_;
+      fVar14 = fVar18 * 0.5 * (3.0 - fVar14 * fVar18 * fVar18);
+      *(float *)(lVar6 + 0x34 + lVar9) = fVar15 * fVar14;
+      *(float *)(lVar6 + 0x38 + lVar9) = fVar13 * fVar14;
+      *(float *)(lVar6 + 0x3c + lVar9) = fVar16 * fVar14;
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 4 + lVar9) = *param_2 * *(float *)(lVar6 + 4 + lVar9);
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 8 + lVar9) = param_2[1] * *(float *)(lVar6 + 8 + lVar9);
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      *(float *)(lVar6 + 0xc + lVar9) = *(float *)(lVar6 + 0xc + lVar9) * param_2[2];
+      lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      fVar13 = *(float *)(lVar6 + 8 + lVar9);
+      fVar15 = *(float *)(lVar6 + 4 + lVar9);
+      fVar16 = *(float *)(lVar6 + 0xc + lVar9);
+      fVar14 = fVar15 * fVar15 + fVar13 * fVar13 + fVar16 * fVar16;
+      auVar17 = rsqrtss(ZEXT416((uint)fVar14),ZEXT416((uint)fVar14));
+      fVar18 = auVar17._0_4_;
+      uVar11 = uVar11 + 1;
+      fVar14 = fVar18 * 0.5 * (3.0 - fVar14 * fVar18 * fVar18);
+      *(float *)(lVar6 + 4 + lVar9) = fVar15 * fVar14;
+      *(float *)(lVar6 + 8 + lVar9) = fVar13 * fVar14;
+      *(float *)(lVar6 + 0xc + lVar9) = fVar16 * fVar14;
+      lVar9 = *(longlong *)(param_1 + 8);
+    } while (uVar11 < *(uint *)(lVar9 + 0x60));
+  }
+  bVar2 = *param_2 <= 0.0 && *param_2 != 0.0;
+  uVar11 = bVar2 + 1;
+  if (0.0 <= param_2[1]) {
+    uVar11 = (uint)bVar2;
+  }
+  uVar3 = uVar11 + 1;
+  if (0.0 <= param_2[2]) {
+    uVar3 = uVar11;
+  }
+  if ((uVar3 - 1 & 0xfffffffd) == 0) {
+    uVar11 = 0;
+    if (*(int *)(lVar9 + 0x88) != 0) {
+      do {
+        lVar9 = (longlong)(int)uVar11;
+        uVar11 = uVar11 + 1;
+        lVar6 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x90);
+        uVar1 = *(undefined4 *)(lVar6 + lVar9 * 0xc);
+        *(undefined4 *)(lVar6 + lVar9 * 0xc) = *(undefined4 *)(lVar6 + 8 + lVar9 * 0xc);
+        *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 8) + 0x90) + 8 + lVar9 * 0xc) = uVar1;
+      } while (uVar11 < *(uint *)(*(longlong *)(param_1 + 8) + 0x88));
+    }
+    *(undefined1 *)(param_1 + 0x31) = 1;
+  }
+  *(undefined1 *)(param_1 + 0x30) = 1;
+  *(undefined1 *)(param_1 + 0x32) = 1;
+  if ((uVar3 != 0) && (*(int *)(*(longlong *)(param_1 + 8) + 0x60) != 0)) {
+    do {
+      lVar6 = (longlong)(int)uVar10;
+      uVar10 = uVar10 + 1;
+      lVar6 = lVar6 * 0x5c + *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
+      fVar18 = *(float *)(lVar6 + 0x14) * *param_2;
+      *(float *)(lVar6 + 0x14) = fVar18;
+      fVar13 = *(float *)(lVar6 + 0x18) * param_2[1];
+      *(float *)(lVar6 + 0x18) = fVar13;
+      fVar14 = *(float *)(lVar6 + 0x1c) * param_2[2];
+      fVar15 = fVar18 * fVar18 + fVar13 * fVar13 + fVar14 * fVar14;
+      auVar17 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
+      fVar16 = auVar17._0_4_;
+      fVar15 = fVar16 * 0.5 * (3.0 - fVar15 * fVar16 * fVar16);
+      *(float *)(lVar6 + 0x14) = fVar15 * fVar18;
+      *(float *)(lVar6 + 0x18) = fVar15 * fVar13;
+      *(float *)(lVar6 + 0x1c) = fVar15 * fVar14;
+      fVar18 = *param_2 * *(float *)(lVar6 + 0x24);
+      *(float *)(lVar6 + 0x24) = fVar18;
+      fVar13 = param_2[1] * *(float *)(lVar6 + 0x28);
+      *(float *)(lVar6 + 0x28) = fVar13;
+      fVar14 = param_2[2] * *(float *)(lVar6 + 0x2c);
+      fVar15 = fVar13 * fVar13 + fVar18 * fVar18 + fVar14 * fVar14;
+      auVar17 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
+      fVar16 = auVar17._0_4_;
+      fVar15 = fVar16 * 0.5 * (3.0 - fVar15 * fVar16 * fVar16);
+      *(float *)(lVar6 + 0x24) = fVar15 * fVar18;
+      *(float *)(lVar6 + 0x28) = fVar15 * fVar13;
+      *(float *)(lVar6 + 0x2c) = fVar15 * fVar14;
+    } while (uVar10 < *(uint *)(*(longlong *)(param_1 + 8) + 0x60));
+  }
+  *(undefined1 *)(param_1 + 0x30) = 1;
+  return;
+}
+
+
+
+
+
+

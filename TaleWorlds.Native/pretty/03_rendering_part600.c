@@ -1,1507 +1,1363 @@
-#include "TaleWorlds.Native.Split.h"
-
 /**
- * @file 03_rendering_part600.c
- * @brief 渲染系统高级处理模块
+ * 03_rendering_part600.c - 渲染系统高级处理模块
  * 
- * 本模块包含14个核心函数，主要功能包括：
- * - 渲染系统高级变换处理
- * - 相机视角和投影计算
- * - 角度和旋转控制
- * - 向量归一化和处理
- * - 物理模拟和动画控制
- * - 高级数学计算优化
+ * 本模块包含14个核心函数，主要功能涵盖：
+ * - 相机位置和朝向的高级处理
+ * - 角度插值和平滑算法
+ * - 渲染参数计算和优化
+ * - 视觉效果增强和控制
+ * - 高级数学运算和向量处理
  * 
  * 主要技术特点：
- * - 使用SIMD指令优化计算
- * - 实现快速平方根倒数算法
- * - 支持四元数和矩阵变换
- * - 包含高级插值和滤波算法
+ * - 快速平方根倒数算法（rsqrtss）
+ * - 角度标准化和范围控制
+ * - 插值算法和时间基动画
+ * - 向量归一化和线性插值
+ * - 相机运动控制和平滑过渡
  */
 
-// ============================================================================
+#include "TaleWorlds.Native.Split.h"
+
 // 常量定义
-// ============================================================================
+#define PI 3.14159265358979323846     // 圆周率
+#define TWO_PI 6.28318530717958647692   // 2π
+#define HALF_PI 1.57079632679489661923  // π/2
+#define QUARTER_PI 0.78539816339744830962 // π/4
+#define SMALL_ANGLE_THRESHOLD 0.01     // 小角度阈值
+#define LARGE_ANGLE_THRESHOLD 0.62831855 // 大角度阈值(π/5)
+#define INTERPOLATION_SPEED 8.0        // 插值速度
+#define DISTANCE_THRESHOLD 0.010000001  // 距离阈值
+#define ANGLE_ADJUST_SPEED 5.0         // 角度调整速度
+#define MAX_INTERPOLATION_FACTOR 2.0    // 最大插值因子
+#define MIN_INTERPOLATION_FACTOR 0.4    // 最小插值因子
+#define SMOOTHING_FACTOR 0.4           // 平滑因子
+#define DAMPING_FACTOR 1.5              // 阻尼系数
+#define NORMALIZATION_EPSILON 1.1754944e-38 // 归一化极小值
 
-/** 渲染系统距离阈值常量 */
-#define RENDERING_DISTANCE_THRESHOLD 0.010000001f
-/** 渲染系统角度阈值常量 */
-#define RENDERING_ANGLE_THRESHOLD 0.01f
-/** 渲染系统速度阈值常量 */
-#define RENDERING_VELOCITY_THRESHOLD 0.0001f
-/** 渲染系统插值系数常量 */
-#define RENDERING_INTERPOLATION_FACTOR 1.5f
-/** 渲染系统最大值常量 */
-#define RENDERING_MAXIMUM_VALUE 1.0f
-/** 渲染系统最小值常量 */
-#define RENDERING_MINIMUM_VALUE 0.02f
-/** 渲染系统归一化系数常量 */
-#define RENDERING_NORMALIZATION_FACTOR 10.0f
-/** 渲染系统角度范围常量 */
-#define RENDERING_ANGLE_RANGE 3.1415927f
-/** 渲染系统角度周期常量 */
-#define RENDERING_ANGLE_PERIOD 6.2831855f
-/** 渲染系统角度阈值常量 */
-#define RENDERING_ANGLE_LIMIT 0.62831855f
-/** 渲染系统角度范围常量 */
-#define RENDERING_ANGLE_RANGE_EXTENDED 1.5707964f
-/** 渲染系统角度比例常量 */
-#define RENDERING_ANGLE_RATIO_1 0.31415927f
-/** 渲染系统角度比例常量 */
-#define RENDERING_ANGLE_RATIO_2 0.15707964f
-/** 渲染系统阻尼系数常量 */
-#define RENDERING_DAMPING_FACTOR 0.4f
-/** 渲染系统增益系数常量 */
-#define RENDERING_GAIN_FACTOR 5.0f
-/** 渲染系统频率系数常量 */
-#define RENDERING_FREQUENCY_FACTOR 8.0f
-/** 渲染系统容差系数常量 */
-#define RENDERING_TOLERANCE_FACTOR 0.001f
-/** 渲染系统安全系数常量 */
-#define RENDERING_SAFETY_FACTOR 0.6f
-/** 渲染系统优化系数常量 */
-#define RENDERING_OPTIMIZATION_FACTOR 7.0f
-/** 渲染系统归一化阈值常量 */
-#define RENDERING_NORMALIZATION_THRESHOLD 1.1754944e-38f
-/** 渲染系统精度阈值常量 */
-#define RENDERING_PRECISION_THRESHOLD 1e-06f
-
-// ============================================================================
-// 渲染系统核心函数
-// ============================================================================
+// 函数别名定义
+void rendering_camera_position_processor(longlong param_1, undefined8 param_2, float param_3, longlong param_4) __attribute__((alias("FUN_180598210")));
+void rendering_camera_orientation_processor(undefined8 param_1, undefined8 param_2, float param_3, longlong param_4) __attribute__((alias("FUN_18059823c")));
+void rendering_interpolation_processor(undefined8 param_1, undefined8 param_2, float param_3, float param_4) __attribute__((alias("FUN_1805982c7")));
+void rendering_angle_normalizer(void) __attribute__((alias("FUN_1805983bf")));
+void rendering_simple_processor(void) __attribute__((alias("FUN_18059847b")));
+void rendering_advanced_angle_calculator(longlong param_1, float param_2, longlong param_3) __attribute__((alias("FUN_1805984e0")));
+void rendering_complex_angle_processor(longlong param_1, float param_2, longlong param_3) __attribute__((alias("FUN_1805984f3")));
+void rendering_visual_effect_processor(undefined8 param_1, undefined8 param_2, float param_3) __attribute__((alias("FUN_1805988fc")));
+void rendering_state_resetter(void) __attribute__((alias("FUN_180598972")));
+void rendering_movement_processor(float *param_1, float param_2, char param_3, longlong param_4) __attribute__((alias("FUN_1805989b0")));
+void rendering_angle_processor(float param_1, float param_2, char param_3, longlong param_4) __attribute__((alias("FUN_1805989db")));
+void rendering_vector_processor(undefined8 param_1, undefined8 param_2, float param_3, longlong param_4) __attribute__((alias("FUN_180598b0d")));
+void rendering_data_initializer(void) __attribute__((alias("FUN_180598b5d")));
+void rendering_collision_processor(float *param_1, float param_2, float *param_3, float param_4) __attribute__((alias("FUN_180598c50")));
 
 /**
- * @brief 渲染系统高级变换处理器
+ * 高级相机位置处理器
  * 
- * 处理渲染系统的高级变换操作，包括：
- * - 位置和方向插值
+ * 实现相机位置的平滑插值和运动控制算法
+ * 包含距离检查、线性插值、向量归一化等核心功能
+ * 
+ * @param param_1 相机数据结构指针
+ * @param param_2 渲染上下文参数
+ * @param param_3 时间增量参数
+ * @param param_4 渲染状态参数
+ * 
+ * 技术特点：
+ * - 使用快速平方根倒数算法优化性能
+ * - 实现距离阈值检查避免不必要的计算
+ * - 支持平滑的相机运动过渡
+ * - 包含角度标准化和范围控制
+ */
+void FUN_180598210(longlong param_1, undefined8 param_2, float param_3, longlong param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  int iVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  undefined1 auVar9 [16];
+  
+  cVar1 = func_0x00018057c520(param_1 + 0xa0,*(uint *)(param_4 + 0x24) >> 8 & 0xffffff01);
+  if (cVar1 != '\0') {
+    if (*(float *)(param_1 + 0xb8) <= *(float *)(param_1 + 0x70)) {
+      fVar8 = *(float *)(param_1 + 0xf8) - *(float *)(param_1 + 0xc);
+      fVar4 = *(float *)(param_1 + 0xfc) - *(float *)(param_1 + 0x10);
+      fVar5 = *(float *)(param_1 + 0x100) - *(float *)(param_1 + 0x14);
+      fVar5 = fVar8 * fVar8 + fVar4 * fVar4 + fVar5 * fVar5;
+      if (fVar5 <= 0.010000001) goto LAB_1805983ca;
+      fVar5 = SQRT(fVar5) * 1.5;
+      if (1.0 <= fVar5) {
+        fVar5 = 1.0;
+      }
+      fVar4 = 1.0 - fVar5;
+      *(float *)(param_1 + 0x68) =
+           fVar4 * *(float *)(param_1 + 0x68) + fVar5 * *(float *)(param_1 + 0xb0);
+      *(float *)(param_1 + 0x6c) =
+           fVar4 * *(float *)(param_1 + 0x6c) + fVar5 * *(float *)(param_1 + 0xb4);
+      *(float *)(param_1 + 0x70) =
+           fVar4 * *(float *)(param_1 + 0x70) + fVar5 * *(float *)(param_1 + 0xb8);
+      *(undefined4 *)(param_1 + 0x74) = 0x7f7fffff;
+      fVar5 = *(float *)(param_1 + 0x70);
+      fVar4 = *(float *)(param_1 + 0x6c);
+      fVar8 = *(float *)(param_1 + 0x68);
+      fVar6 = fVar8 * fVar8 + fVar4 * fVar4 + fVar5 * fVar5;
+      auVar9 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
+      fVar7 = auVar9._0_4_;
+      fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
+      *(float *)(param_1 + 0x70) = fVar5 * fVar6;
+      *(float *)(param_1 + 0x68) = fVar8 * fVar6;
+      *(float *)(param_1 + 0x6c) = fVar4 * fVar6;
+    }
+    else {
+      *(undefined8 *)(param_1 + 0x68) = *(undefined8 *)(param_1 + 0xb0);
+      *(undefined8 *)(param_1 + 0x70) = *(undefined8 *)(param_1 + 0xb8);
+    }
+    *(undefined8 *)(param_1 + 0xf8) = *(undefined8 *)(param_1 + 0xc);
+    *(undefined8 *)(param_1 + 0x100) = *(undefined8 *)(param_1 + 0x14);
+  }
+LAB_1805983ca:
+  fVar5 = *(float *)(param_1 + 0x108);
+  if (0.0001 < ABS(fVar5)) {
+    iVar2 = 1;
+    iVar3 = -1;
+    if (0.0 <= fVar5) {
+      iVar3 = iVar2;
+    }
+    if (*(float *)(param_1 + 0x78) < 0.0) {
+      iVar2 = -1;
+    }
+    if (iVar3 != iVar2) {
+      *(float *)(param_1 + 0x78) = -*(float *)(param_1 + 0x78);
+    }
+  }
+  fVar8 = fVar5 - *(float *)(param_1 + 0x78);
+  fVar4 = fVar8 * fVar8;
+  if (fVar4 <= 0.02) {
+    fVar4 = 0.02;
+  }
+  param_3 = fVar4 * 10.0 * param_3;
+  if (1.0 <= param_3) {
+    param_3 = 1.0;
+  }
+  if ((fVar8 < -param_3) || (param_3 <= fVar8)) {
+    if (fVar8 < 0.0) {
+      param_3 = -param_3;
+    }
+    fVar5 = *(float *)(param_1 + 0x78) + param_3;
+  }
+  *(float *)(param_1 + 0x78) = fVar5;
+  if ((*(uint *)(param_4 + 0x24) & 0x800) == 0) {
+    FUN_180597510(param_1,param_2);
+  }
+  else if (*(char *)(param_4 + 0x98) == '\0') {
+    FUN_180596510(param_2);
+  }
+  *(undefined8 *)(param_1 + 0xf0) = 0;
+  return;
+}
+
+
+
+
+
+/**
+ * 相机朝向处理器
+ * 
+ * 处理相机朝向的平滑过渡和角度计算
+ * 基于相机位置数据实现朝向的动态调整
+ * 
+ * @param param_1 相机朝向参数
+ * @param param_2 渲染上下文
+ * @param param_3 时间增量
+ * @param param_4 渲染状态
+ * 
+ * 核心算法：
+ * - 角度差值计算和标准化
+ * - 插值系数动态调整
+ * - 朝向平滑过渡处理
+ * - 边界条件处理
+ */
+void FUN_18059823c(undefined8 param_1, undefined8 param_2, float param_3, longlong param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  int iVar3;
+  longlong unaff_RBX;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  undefined1 auVar9 [16];
+  
+  cVar1 = func_0x00018057c520();
+  if (cVar1 != '\0') {
+    if (*(float *)(unaff_RBX + 0xb8) <= *(float *)(unaff_RBX + 0x70)) {
+      fVar8 = *(float *)(unaff_RBX + 0xf8) - *(float *)(unaff_RBX + 0xc);
+      fVar4 = *(float *)(unaff_RBX + 0xfc) - *(float *)(unaff_RBX + 0x10);
+      fVar5 = *(float *)(unaff_RBX + 0x100) - *(float *)(unaff_RBX + 0x14);
+      fVar5 = fVar8 * fVar8 + fVar4 * fVar4 + fVar5 * fVar5;
+      if (fVar5 <= 0.010000001) goto LAB_1805983ca;
+      fVar5 = SQRT(fVar5) * 1.5;
+      if (1.0 <= fVar5) {
+        fVar5 = 1.0;
+      }
+      fVar4 = 1.0 - fVar5;
+      *(float *)(unaff_RBX + 0x68) =
+           fVar4 * *(float *)(unaff_RBX + 0x68) + fVar5 * *(float *)(unaff_RBX + 0xb0);
+      *(float *)(unaff_RBX + 0x6c) =
+           fVar4 * *(float *)(unaff_RBX + 0x6c) + fVar5 * *(float *)(unaff_RBX + 0xb4);
+      *(float *)(unaff_RBX + 0x70) =
+           fVar4 * *(float *)(unaff_RBX + 0x70) + fVar5 * *(float *)(unaff_RBX + 0xb8);
+      *(undefined4 *)(unaff_RBX + 0x74) = 0x7f7fffff;
+      fVar5 = *(float *)(unaff_RBX + 0x70);
+      fVar4 = *(float *)(unaff_RBX + 0x6c);
+      fVar8 = *(float *)(unaff_RBX + 0x68);
+      fVar6 = fVar8 * fVar8 + fVar4 * fVar4 + fVar5 * fVar5;
+      auVar9 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
+      fVar7 = auVar9._0_4_;
+      fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
+      *(float *)(unaff_RBX + 0x70) = fVar5 * fVar6;
+      *(float *)(unaff_RBX + 0x68) = fVar8 * fVar6;
+      *(float *)(unaff_RBX + 0x6c) = fVar4 * fVar6;
+    }
+    else {
+      *(undefined8 *)(unaff_RBX + 0x68) = *(undefined8 *)(unaff_RBX + 0xb0);
+      *(undefined8 *)(unaff_RBX + 0x70) = *(undefined8 *)(unaff_RBX + 0xb8);
+    }
+    *(undefined8 *)(unaff_RBX + 0xf8) = *(undefined8 *)(unaff_RBX + 0xc);
+    *(undefined8 *)(unaff_RBX + 0x100) = *(undefined8 *)(unaff_RBX + 0x14);
+  }
+LAB_1805983ca:
+  fVar5 = *(float *)(unaff_RBX + 0x108);
+  if (0.0001 < ABS(fVar5)) {
+    iVar2 = 1;
+    iVar3 = -1;
+    if (0.0 <= fVar5) {
+      iVar3 = iVar2;
+    }
+    if (*(float *)(unaff_RBX + 0x78) < 0.0) {
+      iVar2 = -1;
+    }
+    if (iVar3 != iVar2) {
+      *(float *)(unaff_RBX + 0x78) = -*(float *)(unaff_RBX + 0x78);
+    }
+  }
+  fVar8 = fVar5 - *(float *)(unaff_RBX + 0x78);
+  fVar4 = fVar8 * fVar8;
+  if (fVar4 <= 0.02) {
+    fVar4 = 0.02;
+  }
+  param_3 = fVar4 * 10.0 * param_3;
+  if (1.0 <= param_3) {
+    param_3 = 1.0;
+  }
+  if ((fVar8 < -param_3) || (param_3 <= fVar8)) {
+    if (fVar8 < 0.0) {
+      param_3 = -param_3;
+    }
+    fVar5 = *(float *)(unaff_RBX + 0x78) + param_3;
+  }
+  *(float *)(unaff_RBX + 0x78) = fVar5;
+  if ((*(uint *)(param_4 + 0x24) & 0x800) == 0) {
+    FUN_180597510();
+  }
+  else if (*(char *)(param_4 + 0x98) == '\0') {
+    FUN_180596510();
+  }
+  *(undefined8 *)(unaff_RBX + 0xf0) = 0;
+  return;
+}
+
+
+
+
+
+/**
+ * 插值处理器
+ * 
+ * 实现高级插值算法，用于平滑的参数过渡
+ * 支持线性插值和阻尼插值两种模式
+ * 
+ * @param param_1 目标对象指针
+ * @param param_2 插值参数
+ * @param param_3 主要插值系数
+ * @param param_4 次要插值系数
+ * 
+ * 技术特点：
+ * - 双参数插值控制
+ * - 阻尼系数自动调整
  * - 向量归一化处理
- * - 物理模拟计算
- * - 相机视角控制
- * 
- * @param context 渲染上下文指针
- * @param target_data 目标数据指针
- * @param interpolation_factor 插值因子
- * @param config_data 配置数据指针
+ * - 角度标准化处理
  */
-void RenderingSystemAdvancedTransformProcessor(longlong context, undefined8 target_data, float interpolation_factor, longlong config_data)
+void FUN_1805982c7(undefined8 param_1, undefined8 param_2, float param_3, float param_4)
+
 {
-    char status_flag;
-    int direction_flag_1;
-    int direction_flag_2;
-    float distance_x;
-    float distance_y;
-    float distance_z;
-    float distance_magnitude;
-    float interpolation_weight;
-    float current_x;
-    float current_y;
-    float current_z;
-    float normalization_factor;
-    undefined1 vector_normalization_data [16];
-    
-    // 检查渲染状态标志
-    status_flag = func_0x00018057c520(context + 0xa0, *(uint *)(config_data + 0x24) >> 8 & 0xffffff01);
-    if (status_flag != '\0') {
-        // 检查高度条件
-        if (*(float *)(context + 0xb8) <= *(float *)(context + 0x70)) {
-            // 计算距离向量
-            distance_x = *(float *)(context + 0xf8) - *(float *)(context + 0xc);
-            distance_y = *(float *)(context + 0xfc) - *(float *)(context + 0x10);
-            distance_z = *(float *)(context + 0x100) - *(float *)(context + 0x14);
-            distance_magnitude = distance_x * distance_x + distance_y * distance_y + distance_z * distance_z;
-            
-            // 检查距离阈值
-            if (distance_magnitude <= RENDERING_DISTANCE_THRESHOLD) goto TRANSFORMATION_COMPLETE;
-            
-            // 计算插值权重
-            distance_magnitude = SQRT(distance_magnitude) * RENDERING_INTERPOLATION_FACTOR;
-            if (RENDERING_MAXIMUM_VALUE <= distance_magnitude) {
-                distance_magnitude = RENDERING_MAXIMUM_VALUE;
-            }
-            interpolation_weight = RENDERING_MAXIMUM_VALUE - distance_magnitude;
-            
-            // 应用插值变换
-            *(float *)(context + 0x68) = 
-                 interpolation_weight * *(float *)(context + 0x68) + distance_magnitude * *(float *)(context + 0xb0);
-            *(float *)(context + 0x6c) = 
-                 interpolation_weight * *(float *)(context + 0x6c) + distance_magnitude * *(float *)(context + 0xb4);
-            *(float *)(context + 0x70) = 
-                 interpolation_weight * *(float *)(context + 0x70) + distance_magnitude * *(float *)(context + 0xb8);
-            
-            // 设置最大值标志
-            *(undefined4 *)(context + 0x74) = 0x7f7fffff;
-            
-            // 执行向量归一化
-            current_z = *(float *)(context + 0x70);
-            current_y = *(float *)(context + 0x6c);
-            current_x = *(float *)(context + 0x68);
-            distance_magnitude = current_x * current_x + current_y * current_y + current_z * current_z;
-            
-            // 使用SIMD指令计算快速平方根倒数
-            vector_normalization_data = rsqrtss(ZEXT416((uint)distance_magnitude), ZEXT416((uint)distance_magnitude));
-            normalization_factor = vector_normalization_data._0_4_;
-            distance_magnitude = normalization_factor * 0.5f * (3.0f - distance_magnitude * normalization_factor * normalization_factor);
-            
-            // 应用归一化变换
-            *(float *)(context + 0x70) = current_z * distance_magnitude;
-            *(float *)(context + 0x68) = current_x * distance_magnitude;
-            *(float *)(context + 0x6c) = current_y * distance_magnitude;
-        }
-        else {
-            // 直接复制目标值
-            *(undefined8 *)(context + 0x68) = *(undefined8 *)(context + 0xb0);
-            *(undefined8 *)(context + 0x70) = *(undefined8 *)(context + 0xb8);
-        }
-        
-        // 更新位置信息
-        *(undefined8 *)(context + 0xf8) = *(undefined8 *)(context + 0xc);
-        *(undefined8 *)(context + 0x100) = *(undefined8 *)(context + 0x14);
+  int iVar1;
+  int iVar2;
+  longlong unaff_RBX;
+  longlong unaff_RDI;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  undefined1 auVar8 [16];
+  float unaff_XMM8_Da;
+  
+  param_3 = param_3 * 1.5;
+  if (1.0 <= param_3) {
+    param_3 = 1.0;
+  }
+  param_4 = param_4 - param_3;
+  *(float *)(unaff_RBX + 0x68) =
+       param_4 * *(float *)(unaff_RBX + 0x68) + param_3 * *(float *)(unaff_RBX + 0xb0);
+  *(float *)(unaff_RBX + 0x6c) =
+       param_4 * *(float *)(unaff_RBX + 0x6c) + param_3 * *(float *)(unaff_RBX + 0xb4);
+  *(float *)(unaff_RBX + 0x70) =
+       param_4 * *(float *)(unaff_RBX + 0x70) + param_3 * *(float *)(unaff_RBX + 0xb8);
+  *(undefined4 *)(unaff_RBX + 0x74) = 0x7f7fffff;
+  fVar4 = *(float *)(unaff_RBX + 0x70);
+  fVar3 = *(float *)(unaff_RBX + 0x6c);
+  fVar7 = *(float *)(unaff_RBX + 0x68);
+  fVar5 = fVar7 * fVar7 + fVar3 * fVar3 + fVar4 * fVar4;
+  auVar8 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
+  fVar6 = auVar8._0_4_;
+  fVar5 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
+  *(float *)(unaff_RBX + 0x70) = fVar4 * fVar5;
+  *(float *)(unaff_RBX + 0x68) = fVar7 * fVar5;
+  *(float *)(unaff_RBX + 0x6c) = fVar3 * fVar5;
+  *(undefined8 *)(unaff_RBX + 0xf8) = *(undefined8 *)(unaff_RBX + 0xc);
+  *(undefined8 *)(unaff_RBX + 0x100) = *(undefined8 *)(unaff_RBX + 0x14);
+  fVar4 = *(float *)(unaff_RBX + 0x108);
+  if (0.0001 < ABS(fVar4)) {
+    iVar1 = 1;
+    iVar2 = -1;
+    if (0.0 <= fVar4) {
+      iVar2 = iVar1;
     }
-    
-TRANSFORMATION_COMPLETE:
-    // 处理速度相关变换
-    distance_magnitude = *(float *)(context + 0x108);
-    if (RENDERING_VELOCITY_THRESHOLD < ABS(distance_magnitude)) {
-        direction_flag_1 = 1;
-        direction_flag_2 = -1;
-        if (0.0f <= distance_magnitude) {
-            direction_flag_2 = direction_flag_1;
-        }
-        if (*(float *)(context + 0x78) < 0.0f) {
-            direction_flag_1 = -1;
-        }
-        if (direction_flag_2 != direction_flag_1) {
-            *(float *)(context + 0x78) = -*(float *)(context + 0x78);
-        }
+    if (*(float *)(unaff_RBX + 0x78) < 0.0) {
+      iVar1 = -1;
     }
-    
-    // 计算速度差值
-    current_x = distance_magnitude - *(float *)(context + 0x78);
-    distance_y = current_x * current_x;
-    if (distance_y <= RENDERING_MINIMUM_VALUE) {
-        distance_y = RENDERING_MINIMUM_VALUE;
+    if (iVar2 != iVar1) {
+      *(float *)(unaff_RBX + 0x78) = -*(float *)(unaff_RBX + 0x78);
     }
-    
-    // 应用速度插值
-    interpolation_factor = distance_y * RENDERING_NORMALIZATION_FACTOR * interpolation_factor;
-    if (RENDERING_MAXIMUM_VALUE <= interpolation_factor) {
-        interpolation_factor = RENDERING_MAXIMUM_VALUE;
+  }
+  fVar7 = fVar4 - *(float *)(unaff_RBX + 0x78);
+  fVar3 = fVar7 * fVar7;
+  if (fVar3 <= 0.02) {
+    fVar3 = 0.02;
+  }
+  fVar3 = fVar3 * 10.0 * unaff_XMM8_Da;
+  if (1.0 <= fVar3) {
+    fVar3 = 1.0;
+  }
+  if ((fVar7 < -fVar3) || (fVar3 <= fVar7)) {
+    if (fVar7 < 0.0) {
+      fVar3 = -fVar3;
     }
-    
-    // 更新速度值
-    if ((current_x < -interpolation_factor) || (interpolation_factor <= current_x)) {
-        if (current_x < 0.0f) {
-            interpolation_factor = -interpolation_factor;
-        }
-        distance_magnitude = *(float *)(context + 0x78) + interpolation_factor;
-    }
-    *(float *)(context + 0x78) = distance_magnitude;
-    
-    // 执行渲染后处理
-    if ((*(uint *)(config_data + 0x24) & 0x800) == 0) {
-        FUN_180597510(context, target_data);
-    }
-    else if (*(char *)(config_data + 0x98) == '\0') {
-        FUN_180596510(target_data);
-    }
-    
-    // 重置标志位
-    *(undefined8 *)(context + 0xf0) = 0;
-    return;
+    fVar4 = *(float *)(unaff_RBX + 0x78) + fVar3;
+  }
+  *(float *)(unaff_RBX + 0x78) = fVar4;
+  if ((*(uint *)(unaff_RDI + 0x24) & 0x800) == 0) {
+    FUN_180597510();
+  }
+  else if (*(char *)(unaff_RDI + 0x98) == '\0') {
+    FUN_180596510();
+  }
+  *(undefined8 *)(unaff_RBX + 0xf0) = 0;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级变换处理器变体
+ * 角度标准化器
  * 
- * 处理渲染系统的高级变换操作的变体版本，优化了寄存器使用和内存访问。
+ * 专门处理角度的标准化和范围控制
+ * 确保角度值在[-π, π]范围内
  * 
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
+ * 功能特点：
+ * - 角度范围检查和调整
+ * - 方向符号一致性处理
+ * - 插值系数动态计算
+ * - 状态标志位管理
  */
-void RenderingSystemAdvancedTransformProcessorVariant(undefined8 param1, undefined8 param2, float param3, longlong param4)
+void FUN_1805983bf(void)
+
 {
-    char status_flag;
-    int direction_flag_1;
-    int direction_flag_2;
-    longlong context_pointer;
-    float distance_x;
-    float distance_y;
-    float distance_z;
-    float distance_magnitude;
-    float interpolation_weight;
-    float current_x;
-    float current_y;
-    float current_z;
-    float normalization_factor;
-    undefined1 vector_normalization_data [16];
-    
-    // 检查渲染状态标志
-    status_flag = func_0x00018057c520();
-    if (status_flag != '\0') {
-        // 检查高度条件
-        if (*(float *)(context_pointer + 0xb8) <= *(float *)(context_pointer + 0x70)) {
-            // 计算距离向量
-            distance_x = *(float *)(context_pointer + 0xf8) - *(float *)(context_pointer + 0xc);
-            distance_y = *(float *)(context_pointer + 0xfc) - *(float *)(context_pointer + 0x10);
-            distance_z = *(float *)(context_pointer + 0x100) - *(float *)(context_pointer + 0x14);
-            distance_magnitude = distance_x * distance_x + distance_y * distance_y + distance_z * distance_z;
-            
-            // 检查距离阈值
-            if (distance_magnitude <= RENDERING_DISTANCE_THRESHOLD) goto TRANSFORMATION_COMPLETE;
-            
-            // 计算插值权重
-            distance_magnitude = SQRT(distance_magnitude) * RENDERING_INTERPOLATION_FACTOR;
-            if (RENDERING_MAXIMUM_VALUE <= distance_magnitude) {
-                distance_magnitude = RENDERING_MAXIMUM_VALUE;
-            }
-            interpolation_weight = RENDERING_MAXIMUM_VALUE - distance_magnitude;
-            
-            // 应用插值变换
-            *(float *)(context_pointer + 0x68) = 
-                 interpolation_weight * *(float *)(context_pointer + 0x68) + distance_magnitude * *(float *)(context_pointer + 0xb0);
-            *(float *)(context_pointer + 0x6c) = 
-                 interpolation_weight * *(float *)(context_pointer + 0x6c) + distance_magnitude * *(float *)(context_pointer + 0xb4);
-            *(float *)(context_pointer + 0x70) = 
-                 interpolation_weight * *(float *)(context_pointer + 0x70) + distance_magnitude * *(float *)(context_pointer + 0xb8);
-            
-            // 设置最大值标志
-            *(undefined4 *)(context_pointer + 0x74) = 0x7f7fffff;
-            
-            // 执行向量归一化
-            current_z = *(float *)(context_pointer + 0x70);
-            current_y = *(float *)(context_pointer + 0x6c);
-            current_x = *(float *)(context_pointer + 0x68);
-            distance_magnitude = current_x * current_x + current_y * current_y + current_z * current_z;
-            
-            // 使用SIMD指令计算快速平方根倒数
-            vector_normalization_data = rsqrtss(ZEXT416((uint)distance_magnitude), ZEXT416((uint)distance_magnitude));
-            normalization_factor = vector_normalization_data._0_4_;
-            distance_magnitude = normalization_factor * 0.5f * (3.0f - distance_magnitude * normalization_factor * normalization_factor);
-            
-            // 应用归一化变换
-            *(float *)(context_pointer + 0x70) = current_z * distance_magnitude;
-            *(float *)(context_pointer + 0x68) = current_x * distance_magnitude;
-            *(float *)(context_pointer + 0x6c) = current_y * distance_magnitude;
-        }
-        else {
-            // 直接复制目标值
-            *(undefined8 *)(context_pointer + 0x68) = *(undefined8 *)(context_pointer + 0xb0);
-            *(undefined8 *)(context_pointer + 0x70) = *(undefined8 *)(context_pointer + 0xb8);
-        }
-        
-        // 更新位置信息
-        *(undefined8 *)(context_pointer + 0xf8) = *(undefined8 *)(context_pointer + 0xc);
-        *(undefined8 *)(context_pointer + 0x100) = *(undefined8 *)(context_pointer + 0x14);
+  int iVar1;
+  int iVar2;
+  longlong unaff_RBX;
+  longlong unaff_RDI;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float unaff_XMM8_Da;
+  
+  *(undefined8 *)(unaff_RBX + 0xf8) = *(undefined8 *)(unaff_RBX + 0xc);
+  *(undefined8 *)(unaff_RBX + 0x100) = *(undefined8 *)(unaff_RBX + 0x14);
+  fVar4 = *(float *)(unaff_RBX + 0x108);
+  if (0.0001 < ABS(fVar4)) {
+    iVar1 = 1;
+    iVar2 = -1;
+    if (0.0 <= fVar4) {
+      iVar2 = iVar1;
     }
-    
-TRANSFORMATION_COMPLETE:
-    // 处理速度相关变换
-    distance_magnitude = *(float *)(context_pointer + 0x108);
-    if (RENDERING_VELOCITY_THRESHOLD < ABS(distance_magnitude)) {
-        direction_flag_1 = 1;
-        direction_flag_2 = -1;
-        if (0.0f <= distance_magnitude) {
-            direction_flag_2 = direction_flag_1;
-        }
-        if (*(float *)(context_pointer + 0x78) < 0.0f) {
-            direction_flag_1 = -1;
-        }
-        if (direction_flag_2 != direction_flag_1) {
-            *(float *)(context_pointer + 0x78) = -*(float *)(context_pointer + 0x78);
-        }
+    if (*(float *)(unaff_RBX + 0x78) < 0.0) {
+      iVar1 = -1;
     }
-    
-    // 计算速度差值
-    current_x = distance_magnitude - *(float *)(context_pointer + 0x78);
-    distance_y = current_x * current_x;
-    if (distance_y <= RENDERING_MINIMUM_VALUE) {
-        distance_y = RENDERING_MINIMUM_VALUE;
+    if (iVar2 != iVar1) {
+      *(float *)(unaff_RBX + 0x78) = -*(float *)(unaff_RBX + 0x78);
     }
-    
-    // 应用速度插值
-    param3 = distance_y * RENDERING_NORMALIZATION_FACTOR * param3;
-    if (RENDERING_MAXIMUM_VALUE <= param3) {
-        param3 = RENDERING_MAXIMUM_VALUE;
+  }
+  fVar5 = fVar4 - *(float *)(unaff_RBX + 0x78);
+  fVar3 = fVar5 * fVar5;
+  if (fVar3 <= 0.02) {
+    fVar3 = 0.02;
+  }
+  fVar3 = fVar3 * 10.0 * unaff_XMM8_Da;
+  if (1.0 <= fVar3) {
+    fVar3 = 1.0;
+  }
+  if ((fVar5 < -fVar3) || (fVar3 <= fVar5)) {
+    if (fVar5 < 0.0) {
+      fVar3 = -fVar3;
     }
-    
-    // 更新速度值
-    if ((current_x < -param3) || (param3 <= current_x)) {
-        if (current_x < 0.0f) {
-            param3 = -param3;
-        }
-        distance_magnitude = *(float *)(context_pointer + 0x78) + param3;
-    }
-    *(float *)(context_pointer + 0x78) = distance_magnitude;
-    
-    // 执行渲染后处理
-    if ((*(uint *)(param4 + 0x24) & 0x800) == 0) {
-        FUN_180597510();
-    }
-    else if (*(char *)(param4 + 0x98) == '\0') {
-        FUN_180596510();
-    }
-    
-    // 重置标志位
-    *(undefined8 *)(context_pointer + 0xf0) = 0;
-    return;
+    fVar4 = *(float *)(unaff_RBX + 0x78) + fVar3;
+  }
+  *(float *)(unaff_RBX + 0x78) = fVar4;
+  if ((*(uint *)(unaff_RDI + 0x24) & 0x800) == 0) {
+    FUN_180597510();
+  }
+  else if (*(char *)(unaff_RDI + 0x98) == '\0') {
+    FUN_180596510();
+  }
+  *(undefined8 *)(unaff_RBX + 0xf0) = 0;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级插值处理器
+ * 简单处理器
  * 
- * 处理渲染系统的高级插值操作，支持多种插值算法和优化。
+ * 执行基础的渲染状态重置和清理
+ * 处理简单的条件判断和状态更新
  * 
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
+ * 主要功能：
+ * - 状态条件检查
+ * - 简单的函数调用
+ * - 内存重置操作
+ * - 基础的状态管理
  */
-void RenderingSystemAdvancedInterpolator(undefined8 param1, undefined8 param2, float param3, float param4)
+void FUN_18059847b(void)
+
 {
-    int direction_flag_1;
-    int direction_flag_2;
-    longlong context_pointer;
-    longlong config_pointer;
-    float interpolation_weight;
-    float distance_x;
-    float distance_y;
-    float distance_z;
-    float distance_magnitude;
-    float interpolation_factor;
-    float normalization_factor;
-    undefined1 vector_normalization_data [16];
-    float speed_factor;
-    
-    // 应用插值系数
-    param3 = param3 * RENDERING_INTERPOLATION_FACTOR;
-    if (RENDERING_MAXIMUM_VALUE <= param3) {
-        param3 = RENDERING_MAXIMUM_VALUE;
-    }
-    param4 = param4 - param3;
-    
-    // 应用插值变换
-    *(float *)(context_pointer + 0x68) = 
-         param4 * *(float *)(context_pointer + 0x68) + param3 * *(float *)(context_pointer + 0xb0);
-    *(float *)(context_pointer + 0x6c) = 
-         param4 * *(float *)(context_pointer + 0x6c) + param3 * *(float *)(context_pointer + 0xb4);
-    *(float *)(context_pointer + 0x70) = 
-         param4 * *(float *)(context_pointer + 0x70) + param3 * *(float *)(context_pointer + 0xb8);
-    
-    // 设置最大值标志
-    *(undefined4 *)(context_pointer + 0x74) = 0x7f7fffff;
-    
-    // 执行向量归一化
-    distance_y = *(float *)(context_pointer + 0x70);
-    distance_x = *(float *)(context_pointer + 0x6c);
-    distance_magnitude = *(float *)(context_pointer + 0x68);
-    interpolation_weight = distance_magnitude * distance_magnitude + distance_x * distance_x + distance_y * distance_y;
-    
-    // 使用SIMD指令计算快速平方根倒数
-    vector_normalization_data = rsqrtss(ZEXT416((uint)interpolation_weight), ZEXT416((uint)interpolation_weight));
-    normalization_factor = vector_normalization_data._0_4_;
-    interpolation_weight = normalization_factor * 0.5f * (3.0f - interpolation_weight * normalization_factor * normalization_factor);
-    
-    // 应用归一化变换
-    *(float *)(context_pointer + 0x70) = distance_y * interpolation_weight;
-    *(float *)(context_pointer + 0x68) = distance_magnitude * interpolation_weight;
-    *(float *)(context_pointer + 0x6c) = distance_x * interpolation_weight;
-    
-    // 更新位置信息
-    *(undefined8 *)(context_pointer + 0xf8) = *(undefined8 *)(context_pointer + 0xc);
-    *(undefined8 *)(context_pointer + 0x100) = *(undefined8 *)(context_pointer + 0x14);
-    
-    // 处理速度相关变换
-    distance_y = *(float *)(context_pointer + 0x108);
-    if (RENDERING_VELOCITY_THRESHOLD < ABS(distance_y)) {
-        direction_flag_1 = 1;
-        direction_flag_2 = -1;
-        if (0.0f <= distance_y) {
-            direction_flag_2 = direction_flag_1;
-        }
-        if (*(float *)(context_pointer + 0x78) < 0.0f) {
-            direction_flag_1 = -1;
-        }
-        if (direction_flag_2 != direction_flag_1) {
-            *(float *)(context_pointer + 0x78) = -*(float *)(context_pointer + 0x78);
-        }
-    }
-    
-    // 计算速度差值
-    distance_magnitude = distance_y - *(float *)(context_pointer + 0x78);
-    distance_x = distance_magnitude * distance_magnitude;
-    if (distance_x <= RENDERING_MINIMUM_VALUE) {
-        distance_x = RENDERING_MINIMUM_VALUE;
-    }
-    
-    // 应用速度插值
-    distance_x = distance_x * RENDERING_NORMALIZATION_FACTOR * speed_factor;
-    if (RENDERING_MAXIMUM_VALUE <= distance_x) {
-        distance_x = RENDERING_MAXIMUM_VALUE;
-    }
-    
-    // 更新速度值
-    if ((distance_magnitude < -distance_x) || (distance_x <= distance_magnitude)) {
-        if (distance_magnitude < 0.0f) {
-            distance_x = -distance_x;
-        }
-        distance_y = *(float *)(context_pointer + 0x78) + distance_x;
-    }
-    *(float *)(context_pointer + 0x78) = distance_y;
-    
-    // 执行渲染后处理
-    if ((*(uint *)(config_pointer + 0x24) & 0x800) == 0) {
-        FUN_180597510();
-    }
-    else if (*(char *)(config_pointer + 0x98) == '\0') {
-        FUN_180596510();
-    }
-    
-    // 重置标志位
-    *(undefined8 *)(context_pointer + 0xf0) = 0;
-    return;
+  longlong unaff_RBX;
+  longlong unaff_RDI;
+  
+  if (*(char *)(unaff_RDI + 0x98) == '\0') {
+    FUN_180596510();
+  }
+  *(undefined8 *)(unaff_RBX + 0xf0) = 0;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级位置更新器
+ * 高级角度计算器
  * 
- * 处理渲染系统的高级位置更新操作，优化了位置计算和速度控制。
+ * 实现复杂的角度计算和插值算法
+ * 支持多种角度模式和条件处理
  * 
- * @param void 无参数
+ * @param param_1 渲染对象指针
+ * @param param_2 时间参数
+ * @param param_3 状态参数
+ * 
+ * 算法特点：
+ * - 多条件角度计算
+ * - 动态插值系数调整
+ * - 角度边界处理
+ * - 状态标志位管理
+ * - atan2f角度计算
+ * - 平滑过渡算法
  */
-void RenderingSystemAdvancedPositionUpdater(void)
+void FUN_1805984e0(longlong param_1, float param_2, longlong param_3)
+
 {
-    int direction_flag_1;
-    int direction_flag_2;
-    longlong context_pointer;
-    longlong config_pointer;
-    float distance_x;
-    float distance_y;
-    float distance_magnitude;
-    float speed_factor;
-    
-    // 更新位置信息
-    *(undefined8 *)(context_pointer + 0xf8) = *(undefined8 *)(context_pointer + 0xc);
-    *(undefined8 *)(context_pointer + 0x100) = *(undefined8 *)(context_pointer + 0x14);
-    
-    // 处理速度相关变换
-    distance_y = *(float *)(context_pointer + 0x108);
-    if (RENDERING_VELOCITY_THRESHOLD < ABS(distance_y)) {
-        direction_flag_1 = 1;
-        direction_flag_2 = -1;
-        if (0.0f <= distance_y) {
-            direction_flag_2 = direction_flag_1;
+  bool bVar1;
+  uint uVar2;
+  float fVar3;
+  undefined4 uVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  
+  bVar1 = false;
+  fVar8 = *(float *)(param_1 + 0x34);
+  if ((*(int *)(param_3 + 0x28) == 2) ||
+     (((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x18 & 1) != 0)) {
+    if ((((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x17 & 1) == 0) &&
+       (*(int *)(param_3 + 0x70) != 0x25)) {
+      uVar4 = atan2f(*(uint *)(param_3 + 0x2c) ^ 0x80000000,*(undefined4 *)(param_3 + 0x30));
+      FUN_180595490(param_1,param_2,param_3,uVar4);
+    }
+    goto LAB_1805988c4;
+  }
+  if (*(char *)(param_3 + 0x9a) != '\0') {
+    fVar3 = (float)atan2f(*(uint *)(param_3 + 0x108) ^ 0x80000000,*(undefined4 *)(param_3 + 0x10c));
+    fVar9 = fVar3 - fVar8;
+    if (fVar9 <= 3.1415927) {
+      if (fVar9 < -3.1415927) {
+        fVar9 = fVar9 + 6.2831855;
+      }
+    }
+    else {
+      fVar9 = fVar9 + -6.2831855;
+    }
+    fVar6 = ABS(fVar9);
+    fVar5 = fVar6;
+    if (fVar6 <= 0.01) {
+      fVar5 = 0.01;
+    }
+    if (fVar5 * param_2 * 8.0 <= fVar6) {
+      fVar3 = fVar9 * 8.0 * param_2 + fVar8;
+      *(float *)(param_1 + 0x34) = fVar3;
+      if (fVar3 <= 3.1415927) {
+        if (fVar3 < -3.1415927) {
+          *(float *)(param_1 + 0x34) = fVar3 + 6.2831855;
         }
-        if (*(float *)(context_pointer + 0x78) < 0.0f) {
-            direction_flag_1 = -1;
-        }
-        if (direction_flag_2 != direction_flag_1) {
-            *(float *)(context_pointer + 0x78) = -*(float *)(context_pointer + 0x78);
-        }
+      }
+      else {
+        *(float *)(param_1 + 0x34) = fVar3 - 6.2831855;
+      }
     }
-    
-    // 计算速度差值
-    distance_magnitude = distance_y - *(float *)(context_pointer + 0x78);
-    distance_x = distance_magnitude * distance_magnitude;
-    if (distance_x <= RENDERING_MINIMUM_VALUE) {
-        distance_x = RENDERING_MINIMUM_VALUE;
+    else {
+      *(float *)(param_1 + 0x34) = fVar3;
     }
-    
-    // 应用速度插值
-    distance_x = distance_x * RENDERING_NORMALIZATION_FACTOR * speed_factor;
-    if (RENDERING_MAXIMUM_VALUE <= distance_x) {
-        distance_x = RENDERING_MAXIMUM_VALUE;
+    goto LAB_1805988c4;
+  }
+  if (*(float *)(param_1 + 0x44) <= 0.0 && *(float *)(param_1 + 0x44) != 0.0) goto LAB_1805988c4;
+  if (*(char *)(param_3 + 0x98) != '\0') {
+    *(undefined4 *)(param_1 + 0x138) = 0;
+    goto LAB_1805988c4;
+  }
+  if (((*(char *)(param_3 + 0x170) == '\0') || (*(int *)(param_3 + 0x70) != -1)) ||
+     ((*(byte *)(param_1 + 0x40) & 3) != 1)) {
+    FUN_180595490();
+    *(undefined4 *)(param_1 + 0x14c) = 0;
+    goto LAB_1805988c4;
+  }
+  fVar3 = *(float *)(param_3 + 0x4c) - fVar8;
+  if (fVar3 <= 3.1415927) {
+    if (fVar3 < -3.1415927) {
+      fVar3 = fVar3 + 6.2831855;
     }
-    
-    // 更新速度值
-    if ((distance_magnitude < -distance_x) || (distance_x <= distance_magnitude)) {
-        if (distance_magnitude < 0.0f) {
-            distance_x = -distance_x;
-        }
-        distance_y = *(float *)(context_pointer + 0x78) + distance_x;
+  }
+  else {
+    fVar3 = fVar3 + -6.2831855;
+  }
+  uVar2 = *(uint *)(param_1 + 8) >> 5;
+  if ((uVar2 & 1) == 0) {
+    if ((fVar3 < -0.62831855) || (0.62831855 <= fVar3)) {
+      fVar9 = *(float *)(param_1 + 0x14c);
+      if (((((0.1 <= fVar9) || ((fVar3 < -1.5707964 || (1.5707964 <= fVar3)))) &&
+           (*(int *)(param_3 + 0x74) != -1)) && ((fVar3 < -0.62831855 || (0.62831855 <= fVar3)))) ||
+         (((0.2 <= fVar9 && ((fVar3 < -1.5707964 || (1.5707964 <= fVar3)))) ||
+          ((0.4 <= fVar9 && ((fVar3 < -0.62831855 || (0.62831855 <= fVar3)))))))) {
+        bVar1 = true;
+      }
+      else {
+        *(float *)(param_1 + 0x128) = fVar8;
+      }
     }
-    *(float *)(context_pointer + 0x78) = distance_y;
-    
-    // 执行渲染后处理
-    if ((*(uint *)(config_pointer + 0x24) & 0x800) == 0) {
-        FUN_180597510();
+    else {
+      *(undefined4 *)(param_1 + 0x14c) = 0;
     }
-    else if (*(char *)(config_pointer + 0x98) == '\0') {
-        FUN_180596510();
+  }
+  if (*(int *)(param_3 + 0x74) == -1) {
+    fVar9 = 0.31415927;
+  }
+  else {
+    fVar9 = 0.15707964;
+  }
+  if ((((uVar2 & 1) == 0) && (!bVar1)) || (fVar5 = *(float *)(param_3 + 0x4c) - fVar8, fVar5 == 0.0)
+     ) goto LAB_1805988c4;
+  if (fVar5 <= 3.1415927) {
+    if (fVar5 < -3.1415927) {
+      fVar5 = fVar5 + 6.2831855;
     }
-    
-    // 重置标志位
-    *(undefined8 *)(context_pointer + 0xf0) = 0;
-    return;
+  }
+  else {
+    fVar5 = fVar5 + -6.2831855;
+  }
+  fVar7 = *(float *)(param_3 + 0x174) + 0.001;
+  fVar6 = (fVar9 / fVar7) * 1.5;
+  if (ABS(fVar3) <= fVar6) {
+    fVar9 = 1.5;
+  }
+  else {
+    fVar9 = (fVar7 * ABS(fVar3)) / fVar9;
+    if (2.0 <= fVar9) {
+      fVar9 = 2.0;
+    }
+  }
+  *(float *)(param_1 + 0x150) = fVar9;
+  FUN_180595490(fVar6,param_2 * 0.4 * fVar9,fVar9,*(undefined4 *)(param_3 + 0x4c));
+  fVar3 = *(float *)(param_1 + 0x150) * -0.6;
+  if ((fVar3 <= fVar5) && (fVar3 = *(float *)(param_1 + 0x150) * 0.6, fVar5 <= fVar3)) {
+    fVar3 = fVar5;
+  }
+  fVar3 = fVar3 + *(float *)(param_1 + 0x34);
+  *(float *)(param_1 + 0x128) = fVar3;
+  if (fVar3 <= 3.1415927) {
+    if (fVar3 < -3.1415927) {
+      fVar3 = fVar3 + 6.2831855;
+      goto LAB_180598852;
+    }
+  }
+  else {
+    fVar3 = fVar3 - 6.2831855;
+LAB_180598852:
+    *(float *)(param_1 + 0x128) = fVar3;
+  }
+  *(undefined4 *)(param_1 + 0x14c) = 0x3ecccccd;
+  bVar1 = true;
+LAB_1805988c4:
+  fVar8 = *(float *)(param_1 + 0x34) - fVar8;
+  if (fVar8 <= 3.1415927) {
+    if (fVar8 < -3.1415927) {
+      fVar8 = fVar8 + 6.2831855;
+    }
+  }
+  else {
+    fVar8 = fVar8 + -6.2831855;
+  }
+  fVar8 = (1.0 - param_2 * 5.0) * *(float *)(param_1 + 0x138) + fVar8 * 5.0;
+  *(float *)(param_1 + 0x138) = fVar8;
+  if (ABS(fVar8) < 0.0001) {
+    *(undefined4 *)(param_1 + 0x138) = 0;
+  }
+  uVar2 = *(uint *)(param_1 + 8) | 0x20;
+  if (!bVar1) {
+    uVar2 = *(uint *)(param_1 + 8) & 0xffffffdf;
+  }
+  *(uint *)(param_1 + 8) = uVar2;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统简单处理器
+ * 复杂角度处理器
  * 
- * 处理渲染系统的简单操作，主要用于快速渲染和状态更新。
+ * 执行高级的角度处理和内存操作
+ * 包含多个XMM寄存器的数据管理
  * 
- * @param void 无参数
+ * @param param_1 渲染对象指针
+ * @param param_2 时间参数
+ * @param param_3 状态参数
+ * 
+ * 技术特点：
+ * - XMM寄存器数据管理
+ * - 复杂的内存布局操作
+ * - 高级角度计算
+ * - 多状态标志处理
+ * - 优化的数据处理流程
  */
-void RenderingSystemSimpleProcessor(void)
+void FUN_1805984f3(longlong param_1, float param_2, longlong param_3)
+
 {
-    longlong context_pointer;
-    longlong config_pointer;
-    
-    // 执行渲染后处理
-    if (*(char *)(config_pointer + 0x98) == '\0') {
-        FUN_180596510();
+  int iVar1;
+  bool bVar2;
+  uint uVar3;
+  longlong in_RAX;
+  undefined8 unaff_RDI;
+  float fVar4;
+  undefined4 uVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  undefined4 unaff_XMM6_Da;
+  undefined4 unaff_XMM6_Db;
+  undefined4 unaff_XMM6_Dc;
+  undefined4 unaff_XMM6_Dd;
+  undefined4 unaff_XMM7_Da;
+  undefined4 unaff_XMM7_Db;
+  undefined4 unaff_XMM7_Dc;
+  undefined4 unaff_XMM7_Dd;
+  undefined4 unaff_XMM8_Da;
+  undefined4 unaff_XMM8_Db;
+  undefined4 unaff_XMM8_Dc;
+  undefined4 unaff_XMM8_Dd;
+  undefined4 unaff_XMM9_Da;
+  undefined4 unaff_XMM9_Db;
+  undefined4 unaff_XMM9_Dc;
+  undefined4 unaff_XMM9_Dd;
+  undefined4 unaff_XMM10_Da;
+  undefined4 unaff_XMM10_Db;
+  undefined4 unaff_XMM10_Dc;
+  undefined4 unaff_XMM10_Dd;
+  undefined4 unaff_XMM11_Da;
+  undefined4 unaff_XMM11_Db;
+  undefined4 unaff_XMM11_Dc;
+  undefined4 unaff_XMM11_Dd;
+  undefined4 unaff_XMM12_Da;
+  undefined4 unaff_XMM12_Db;
+  undefined4 unaff_XMM12_Dc;
+  undefined4 unaff_XMM12_Dd;
+  
+  *(undefined8 *)(in_RAX + 8) = unaff_RDI;
+  bVar2 = false;
+  *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
+  *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
+  *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
+  *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
+  iVar1 = *(int *)(param_3 + 0x28);
+  *(undefined4 *)(in_RAX + -0x28) = unaff_XMM7_Da;
+  *(undefined4 *)(in_RAX + -0x24) = unaff_XMM7_Db;
+  *(undefined4 *)(in_RAX + -0x20) = unaff_XMM7_Dc;
+  *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM7_Dd;
+  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM8_Da;
+  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM8_Db;
+  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM8_Dc;
+  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
+  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM9_Da;
+  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM9_Db;
+  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM9_Dc;
+  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
+  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM10_Da;
+  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM10_Db;
+  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM10_Dc;
+  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM10_Dd;
+  *(undefined4 *)(in_RAX + -0x68) = unaff_XMM11_Da;
+  *(undefined4 *)(in_RAX + -100) = unaff_XMM11_Db;
+  *(undefined4 *)(in_RAX + -0x60) = unaff_XMM11_Dc;
+  *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM11_Dd;
+  *(undefined4 *)(in_RAX + -0x78) = unaff_XMM12_Da;
+  *(undefined4 *)(in_RAX + -0x74) = unaff_XMM12_Db;
+  *(undefined4 *)(in_RAX + -0x70) = unaff_XMM12_Dc;
+  *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM12_Dd;
+  fVar9 = *(float *)(param_1 + 0x34);
+  if ((iVar1 == 2) || (((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x18 & 1) != 0))
+  {
+    if ((((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x17 & 1) == 0) &&
+       (*(int *)(param_3 + 0x70) != 0x25)) {
+      uVar5 = atan2f(*(uint *)(param_3 + 0x2c) ^ 0x80000000,*(undefined4 *)(param_3 + 0x30));
+      FUN_180595490(param_1,param_2,param_3,uVar5);
     }
-    
-    // 重置标志位
-    *(undefined8 *)(context_pointer + 0xf0) = 0;
-    return;
+    goto LAB_1805988c4;
+  }
+  if (*(char *)(param_3 + 0x9a) != '\0') {
+    fVar4 = (float)atan2f(*(uint *)(param_3 + 0x108) ^ 0x80000000,*(undefined4 *)(param_3 + 0x10c));
+    fVar10 = fVar4 - fVar9;
+    if (fVar10 <= 3.1415927) {
+      if (fVar10 < -3.1415927) {
+        fVar10 = fVar10 + 6.2831855;
+      }
+    }
+    else {
+      fVar10 = fVar10 + -6.2831855;
+    }
+    fVar7 = ABS(fVar10);
+    fVar6 = fVar7;
+    if (fVar7 <= 0.01) {
+      fVar6 = 0.01;
+    }
+    if (fVar6 * param_2 * 8.0 <= fVar7) {
+      fVar4 = fVar10 * 8.0 * param_2 + fVar9;
+      *(float *)(param_1 + 0x34) = fVar4;
+      if (fVar4 <= 3.1415927) {
+        if (fVar4 < -3.1415927) {
+          *(float *)(param_1 + 0x34) = fVar4 + 6.2831855;
+        }
+      }
+      else {
+        *(float *)(param_1 + 0x34) = fVar4 - 6.2831855;
+      }
+    }
+    else {
+      *(float *)(param_1 + 0x34) = fVar4;
+    }
+    goto LAB_1805988c4;
+  }
+  if (*(float *)(param_1 + 0x44) <= 0.0 && *(float *)(param_1 + 0x44) != 0.0) goto LAB_1805988c4;
+  if (*(char *)(param_3 + 0x98) != '\0') {
+    *(undefined4 *)(param_1 + 0x138) = 0;
+    goto LAB_1805988c4;
+  }
+  if (((*(char *)(param_3 + 0x170) == '\0') || (*(int *)(param_3 + 0x70) != -1)) ||
+     ((*(byte *)(param_1 + 0x40) & 3) != 1)) {
+    FUN_180595490(param_1,param_2,param_3,*(undefined4 *)(param_3 + 0x4c));
+    *(undefined4 *)(param_1 + 0x14c) = 0;
+    goto LAB_1805988c4;
+  }
+  fVar4 = *(float *)(param_3 + 0x4c) - fVar9;
+  if (fVar4 <= 3.1415927) {
+    if (fVar4 < -3.1415927) {
+      fVar4 = fVar4 + 6.2831855;
+    }
+  }
+  else {
+    fVar4 = fVar4 + -6.2831855;
+  }
+  uVar3 = *(uint *)(param_1 + 8) >> 5;
+  if ((uVar3 & 1) == 0) {
+    if ((fVar4 < -0.62831855) || (0.62831855 <= fVar4)) {
+      fVar10 = *(float *)(param_1 + 0x14c);
+      if (((((0.1 <= fVar10) || ((fVar4 < -1.5707964 || (1.5707964 <= fVar4)))) &&
+           (*(int *)(param_3 + 0x74) != -1)) && ((fVar4 < -0.62831855 || (0.62831855 <= fVar4)))) ||
+         (((0.2 <= fVar10 && ((fVar4 < -1.5707964 || (1.5707964 <= fVar4)))) ||
+          ((0.4 <= fVar10 && ((fVar4 < -0.62831855 || (0.62831855 <= fVar4)))))))) {
+        bVar2 = true;
+      }
+      else {
+        *(float *)(param_1 + 0x128) = fVar9;
+      }
+    }
+    else {
+      *(undefined4 *)(param_1 + 0x14c) = 0;
+    }
+  }
+  if (*(int *)(param_3 + 0x74) == -1) {
+    fVar10 = 0.31415927;
+  }
+  else {
+    fVar10 = 0.15707964;
+  }
+  if ((((uVar3 & 1) == 0) && (!bVar2)) || (fVar6 = *(float *)(param_3 + 0x4c) - fVar9, fVar6 == 0.0)
+     ) goto LAB_1805988c4;
+  if (fVar6 <= 3.1415927) {
+    if (fVar6 < -3.1415927) {
+      fVar6 = fVar6 + 6.2831855;
+    }
+  }
+  else {
+    fVar6 = fVar6 + -6.2831855;
+  }
+  fVar8 = *(float *)(param_3 + 0x174) + 0.001;
+  fVar7 = (fVar10 / fVar8) * 1.5;
+  if (ABS(fVar4) <= fVar7) {
+    fVar10 = 1.5;
+  }
+  else {
+    fVar10 = (fVar8 * ABS(fVar4)) / fVar10;
+    if (2.0 <= fVar10) {
+      fVar10 = 2.0;
+    }
+  }
+  *(float *)(param_1 + 0x150) = fVar10;
+  FUN_180595490(fVar7,param_2 * 0.4 * fVar10,fVar10,*(undefined4 *)(param_3 + 0x4c));
+  fVar4 = *(float *)(param_1 + 0x150) * -0.6;
+  if ((fVar4 <= fVar6) && (fVar4 = *(float *)(param_1 + 0x150) * 0.6, fVar6 <= fVar4)) {
+    fVar4 = fVar6;
+  }
+  fVar4 = fVar4 + *(float *)(param_1 + 0x34);
+  *(float *)(param_1 + 0x128) = fVar4;
+  if (fVar4 <= 3.1415927) {
+    if (fVar4 < -3.1415927) {
+      fVar4 = fVar4 + 6.2831855;
+      goto LAB_180598852;
+    }
+  }
+  else {
+    fVar4 = fVar4 - 6.2831855;
+LAB_180598852:
+    *(float *)(param_1 + 0x128) = fVar4;
+  }
+  *(undefined4 *)(param_1 + 0x14c) = 0x3ecccccd;
+  bVar2 = true;
+LAB_1805988c4:
+  fVar9 = *(float *)(param_1 + 0x34) - fVar9;
+  if (fVar9 <= 3.1415927) {
+    if (fVar9 < -3.1415927) {
+      fVar9 = fVar9 + 6.2831855;
+    }
+  }
+  else {
+    fVar9 = fVar9 + -6.2831855;
+  }
+  fVar9 = (1.0 - param_2 * 5.0) * *(float *)(param_1 + 0x138) + fVar9 * 5.0;
+  *(float *)(param_1 + 0x138) = fVar9;
+  if (ABS(fVar9) < 0.0001) {
+    *(undefined4 *)(param_1 + 0x138) = 0;
+  }
+  uVar3 = *(uint *)(param_1 + 8) | 0x20;
+  if (!bVar2) {
+    uVar3 = *(uint *)(param_1 + 8) & 0xffffffdf;
+  }
+  *(uint *)(param_1 + 8) = uVar3;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级角度处理器
+ * 视觉效果处理器
  * 
- * 处理渲染系统的高级角度操作，包括角度插值、旋转控制和动画处理。
+ * 处理高级视觉效果和参数计算
+ * 包含多个浮点寄存器的数据处理
  * 
- * @param context 渲染上下文指针
- * @param time_factor 时间因子
- * @param config_data 配置数据指针
+ * @param param_1 视觉效果对象
+ * @param param_2 渲染参数
+ * @param param_3 效果强度参数
+ * 
+ * 功能特点：
+ * - 多寄存器数据处理
+ * - 视觉效果参数计算
+ * - 状态标志位管理
+ * - 浮点数优化处理
  */
-void RenderingSystemAdvancedAngleProcessor(longlong context, float time_factor, longlong config_data)
+void FUN_1805988fc(undefined8 param_1, undefined8 param_2, float param_3)
+
 {
-    bool rotation_flag;
-    uint config_flags;
-    float current_angle;
-    float target_angle;
-    float angle_difference;
-    float angle_velocity;
-    float angle_acceleration;
-    float angle_threshold;
-    float interpolation_factor;
-    float rotation_factor;
-    
-    rotation_flag = false;
-    current_angle = *(float *)(context + 0x34);
-    
-    // 检查配置标志
-    if ((*(int *)(config_data + 0x28) == 2) ||
-        (((*(uint *)(config_data + 0x68) | *(uint *)(config_data + 0x60)) >> 0x18 & 1) != 0)) {
-        if ((((*(uint *)(config_data + 0x68) | *(uint *)(config_data + 0x60)) >> 0x17 & 1) == 0) &&
-           (*(int *)(config_data + 0x70) != 0x25)) {
-            angle_threshold = atan2f(*(uint *)(config_data + 0x2c) ^ 0x80000000, *(undefined4 *)(config_data + 0x30));
-            FUN_180595490(context, time_factor, config_data, angle_threshold);
-        }
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 处理角度动画
-    if (*(char *)(config_data + 0x9a) != '\0') {
-        angle_velocity = (float)atan2f(*(uint *)(config_data + 0x108) ^ 0x80000000, *(undefined4 *)(config_data + 0x10c));
-        angle_acceleration = angle_velocity - current_angle;
-        
-        // 规范化角度差值
-        if (angle_acceleration <= RENDERING_ANGLE_RANGE) {
-            if (angle_acceleration < -RENDERING_ANGLE_RANGE) {
-                angle_acceleration = angle_acceleration + RENDERING_ANGLE_PERIOD;
-            }
-        }
-        else {
-            angle_acceleration = angle_acceleration + -RENDERING_ANGLE_PERIOD;
-        }
-        
-        // 计算角度阈值
-        angle_difference = ABS(angle_acceleration);
-        angle_threshold = angle_difference;
-        if (angle_difference <= RENDERING_ANGLE_THRESHOLD) {
-            angle_threshold = RENDERING_ANGLE_THRESHOLD;
-        }
-        
-        // 应用角度插值
-        if (angle_threshold * time_factor * RENDERING_FREQUENCY_FACTOR <= angle_difference) {
-            angle_velocity = angle_acceleration * RENDERING_FREQUENCY_FACTOR * time_factor + current_angle;
-            *(float *)(context + 0x34) = angle_velocity;
-            
-            // 规范化输出角度
-            if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-                if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-                    *(float *)(context + 0x34) = angle_velocity + RENDERING_ANGLE_PERIOD;
-                }
-            }
-            else {
-                *(float *)(context + 0x34) = angle_velocity - RENDERING_ANGLE_PERIOD;
-            }
-        }
-        else {
-            *(float *)(context + 0x34) = angle_velocity;
-        }
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 检查高度条件
-    if (*(float *)(context + 0x44) <= 0.0f && *(float *)(context + 0x44) != 0.0f) goto ANGLE_PROCESSING_COMPLETE;
-    
-    // 检查配置状态
-    if (*(char *)(config_data + 0x98) != '\0') {
-        *(undefined4 *)(context + 0x138) = 0;
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 检查动画状态
-    if (((*(char *)(config_data + 0x170) == '\0') || (*(int *)(config_data + 0x70) != -1)) ||
-       ((*(byte *)(context + 0x40) & 3) != 1)) {
-        FUN_180595490();
-        *(undefined4 *)(context + 0x14c) = 0;
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 计算目标角度
-    angle_velocity = *(float *)(config_data + 0x4c) - current_angle;
-    if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-        if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-            angle_velocity = angle_velocity + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        angle_velocity = angle_velocity + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 检查角度标志
-    config_flags = *(uint *)(context + 8) >> 5;
-    if ((config_flags & 1) == 0) {
-        if ((angle_velocity < -RENDERING_ANGLE_LIMIT) || (RENDERING_ANGLE_LIMIT <= angle_velocity)) {
-            angle_acceleration = *(float *)(context + 0x14c);
-            if (((((0.1f <= angle_acceleration) || ((angle_velocity < -RENDERING_ANGLE_RANGE_EXTENDED || (RENDERING_ANGLE_RANGE_EXTENDED <= angle_velocity)))) &&
-                 (*(int *)(config_data + 0x74) != -1)) && ((angle_velocity < -RENDERING_ANGLE_LIMIT || (RENDERING_ANGLE_LIMIT <= angle_velocity)))) ||
-                (((0.2f <= angle_acceleration && ((angle_velocity < -RENDERING_ANGLE_RANGE_EXTENDED || (RENDERING_ANGLE_RANGE_EXTENDED <= angle_velocity)))) ||
-                 ((0.4f <= angle_acceleration && ((angle_velocity < -RENDERING_ANGLE_LIMIT || (RENDERING_ANGLE_LIMIT <= angle_velocity)))))))) {
-                rotation_flag = true;
-            }
-            else {
-                *(float *)(context + 0x128) = current_angle;
-            }
-        }
-        else {
-            *(undefined4 *)(context + 0x14c) = 0;
-        }
-    }
-    
-    // 设置旋转因子
-    if (*(int *)(config_data + 0x74) == -1) {
-        angle_acceleration = RENDERING_ANGLE_RATIO_1;
-    }
-    else {
-        angle_acceleration = RENDERING_ANGLE_RATIO_2;
-    }
-    
-    // 检查旋转条件
-    if ((((config_flags & 1) == 0) && (!rotation_flag)) || 
-        (angle_threshold = *(float *)(config_data + 0x4c) - current_angle, angle_threshold == 0.0f)) {
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 规范化角度差值
-    if (angle_threshold <= RENDERING_ANGLE_RANGE) {
-        if (angle_threshold < -RENDERING_ANGLE_RANGE) {
-            angle_threshold = angle_threshold + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        angle_threshold = angle_threshold + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 计算插值因子
-    angle_difference = *(float *)(config_data + 0x174) + RENDERING_TOLERANCE_FACTOR;
-    interpolation_factor = (angle_acceleration / angle_difference) * RENDERING_INTERPOLATION_FACTOR;
-    
-    // 应用角度插值
-    if (ABS(angle_velocity) <= interpolation_factor) {
-        angle_acceleration = RENDERING_INTERPOLATION_FACTOR;
-    }
-    else {
-        angle_acceleration = (angle_difference * ABS(angle_velocity)) / angle_acceleration;
-        if (2.0f <= angle_acceleration) {
-            angle_acceleration = 2.0f;
-        }
-    }
-    
-    // 设置旋转因子
-    *(float *)(context + 0x150) = angle_acceleration;
-    FUN_180595490(interpolation_factor, time_factor * RENDERING_DAMPING_FACTOR * angle_acceleration, angle_acceleration, *(undefined4 *)(config_data + 0x4c));
-    
-    // 应用旋转限制
-    angle_velocity = *(float *)(context + 0x150) * -RENDERING_SAFETY_FACTOR;
-    if ((angle_velocity <= angle_threshold) && 
-        (angle_velocity = *(float *)(context + 0x150) * RENDERING_SAFETY_FACTOR, angle_threshold <= angle_velocity)) {
-        angle_velocity = angle_threshold;
-    }
-    
-    // 更新角度值
-    angle_velocity = angle_velocity + *(float *)(context + 0x34);
-    *(float *)(context + 0x128) = angle_velocity;
-    
-    // 规范化输出角度
-    if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-        if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-            angle_velocity = angle_velocity + RENDERING_ANGLE_PERIOD;
-            goto ANGLE_NORMALIZATION_COMPLETE;
-        }
-    }
-    else {
-        angle_velocity = angle_velocity - RENDERING_ANGLE_PERIOD;
-ANGLE_NORMALIZATION_COMPLETE:
-        *(float *)(context + 0x128) = angle_velocity;
-    }
-    
-    // 设置插值标志
-    *(undefined4 *)(context + 0x14c) = 0x3ecccccd;
-    rotation_flag = true;
-    
-ANGLE_PROCESSING_COMPLETE:
-    // 计算角度差值
-    current_angle = *(float *)(context + 0x34) - current_angle;
-    if (current_angle <= RENDERING_ANGLE_RANGE) {
-        if (current_angle < -RENDERING_ANGLE_RANGE) {
-            current_angle = current_angle + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        current_angle = current_angle + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 应用角度插值
-    current_angle = (1.0f - time_factor * RENDERING_GAIN_FACTOR) * *(float *)(context + 0x138) + current_angle * RENDERING_GAIN_FACTOR;
-    *(float *)(context + 0x138) = current_angle;
-    
-    // 检查精度阈值
-    if (ABS(current_angle) < RENDERING_VELOCITY_THRESHOLD) {
-        *(undefined4 *)(context + 0x138) = 0;
-    }
-    
-    // 更新配置标志
-    config_flags = *(uint *)(context + 8) | 0x20;
-    if (!rotation_flag) {
-        config_flags = *(uint *)(context + 8) & 0xffffffdf;
-    }
-    *(uint *)(context + 8) = config_flags;
-    return;
+  uint uVar1;
+  longlong unaff_RBX;
+  undefined4 unaff_EBP;
+  char unaff_SIL;
+  float fVar2;
+  float unaff_XMM9_Da;
+  float unaff_XMM14_Da;
+  uint unaff_XMM15_Da;
+  
+  fVar2 = (1.0 - unaff_XMM9_Da * 5.0) * *(float *)(unaff_RBX + 0x138) +
+          (param_3 + unaff_XMM14_Da) * 5.0;
+  *(float *)(unaff_RBX + 0x138) = fVar2;
+  if ((float)((uint)fVar2 & unaff_XMM15_Da) < 0.0001) {
+    *(undefined4 *)(unaff_RBX + 0x138) = unaff_EBP;
+  }
+  uVar1 = *(uint *)(unaff_RBX + 8) | 0x20;
+  if (unaff_SIL == '\0') {
+    uVar1 = *(uint *)(unaff_RBX + 8) & 0xffffffdf;
+  }
+  *(uint *)(unaff_RBX + 8) = uVar1;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级角度处理器变体
+ * 状态重置器
  * 
- * 处理渲染系统的高级角度操作的变体版本，支持更复杂的角度计算和优化。
+ * 重置渲染状态和标志位
+ * 执行简单的内存初始化操作
  * 
- * @param context 渲染上下文指针
- * @param time_factor 时间因子
- * @param config_data 配置数据指针
+ * 主要功能：
+ * - 状态标志位重置
+ * - 内存数据初始化
+ * - 条件判断处理
+ * - 基础状态管理
  */
-void RenderingSystemAdvancedAngleProcessorVariant(longlong context, float time_factor, longlong config_data)
+void FUN_180598972(void)
+
 {
-    int direction_flag;
-    bool rotation_flag;
-    uint config_flags;
-    longlong context_base;
-    undefined8 target_data;
-    float current_angle;
-    float target_angle;
-    float angle_difference;
-    float angle_velocity;
-    float angle_acceleration;
-    float angle_threshold;
-    float interpolation_factor;
-    float rotation_factor;
-    undefined8 optimization_data[14];
-    
-    // 初始化优化数据
-    *(undefined8 *)(context_base + 8) = target_data;
-    rotation_flag = false;
-    
-    // 设置优化参数
-    for (int i = 0; i < 14; i++) {
-        *(undefined4 *)(context_base + (-0x68 - i * 4)) = optimization_data[i];
-    }
-    
-    direction_flag = *(int *)(config_data + 0x28);
-    current_angle = *(float *)(context + 0x34);
-    
-    // 检查配置标志
-    if ((direction_flag == 2) || (((*(uint *)(config_data + 0x68) | *(uint *)(config_data + 0x60)) >> 0x18 & 1) != 0)) {
-        if ((((*(uint *)(config_data + 0x68) | *(uint *)(config_data + 0x60)) >> 0x17 & 1) == 0) &&
-           (*(int *)(config_data + 0x70) != 0x25)) {
-            angle_threshold = atan2f(*(uint *)(config_data + 0x2c) ^ 0x80000000, *(undefined4 *)(config_data + 0x30));
-            FUN_180595490(context, time_factor, config_data, angle_threshold);
-        }
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 处理角度动画
-    if (*(char *)(config_data + 0x9a) != '\0') {
-        angle_velocity = (float)atan2f(*(uint *)(config_data + 0x108) ^ 0x80000000, *(undefined4 *)(config_data + 0x10c));
-        target_angle = angle_velocity - current_angle;
-        
-        // 规范化角度差值
-        if (target_angle <= RENDERING_ANGLE_RANGE) {
-            if (target_angle < -RENDERING_ANGLE_RANGE) {
-                target_angle = target_angle + RENDERING_ANGLE_PERIOD;
-            }
-        }
-        else {
-            target_angle = target_angle + -RENDERING_ANGLE_PERIOD;
-        }
-        
-        // 计算角度阈值
-        angle_acceleration = ABS(target_angle);
-        angle_threshold = angle_acceleration;
-        if (angle_acceleration <= RENDERING_ANGLE_THRESHOLD) {
-            angle_threshold = RENDERING_ANGLE_THRESHOLD;
-        }
-        
-        // 应用角度插值
-        if (angle_threshold * time_factor * RENDERING_FREQUENCY_FACTOR <= angle_acceleration) {
-            angle_velocity = target_angle * RENDERING_FREQUENCY_FACTOR * time_factor + current_angle;
-            *(float *)(context + 0x34) = angle_velocity;
-            
-            // 规范化输出角度
-            if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-                if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-                    *(float *)(context + 0x34) = angle_velocity + RENDERING_ANGLE_PERIOD;
-                }
-            }
-            else {
-                *(float *)(context + 0x34) = angle_velocity - RENDERING_ANGLE_PERIOD;
-            }
-        }
-        else {
-            *(float *)(context + 0x34) = angle_velocity;
-        }
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 检查高度条件
-    if (*(float *)(context + 0x44) <= 0.0f && *(float *)(context + 0x44) != 0.0f) goto ANGLE_PROCESSING_COMPLETE;
-    
-    // 检查配置状态
-    if (*(char *)(config_data + 0x98) != '\0') {
-        *(undefined4 *)(context + 0x138) = 0;
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 检查动画状态
-    if (((*(char *)(config_data + 0x170) == '\0') || (*(int *)(config_data + 0x70) != -1)) ||
-       ((*(byte *)(context + 0x40) & 3) != 1)) {
-        FUN_180595490(context, time_factor, config_data, *(undefined4 *)(config_data + 0x4c));
-        *(undefined4 *)(context + 0x14c) = 0;
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 计算目标角度
-    angle_velocity = *(float *)(config_data + 0x4c) - current_angle;
-    if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-        if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-            angle_velocity = angle_velocity + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        angle_velocity = angle_velocity + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 检查角度标志
-    config_flags = *(uint *)(context + 8) >> 5;
-    if ((config_flags & 1) == 0) {
-        if ((angle_velocity < -RENDERING_ANGLE_LIMIT) || (RENDERING_ANGLE_LIMIT <= angle_velocity)) {
-            target_angle = *(float *)(context + 0x14c);
-            if (((((0.1f <= target_angle) || ((angle_velocity < -RENDERING_ANGLE_RANGE_EXTENDED || (RENDERING_ANGLE_RANGE_EXTENDED <= angle_velocity)))) &&
-                 (*(int *)(config_data + 0x74) != -1)) && ((angle_velocity < -RENDERING_ANGLE_LIMIT || (RENDERING_ANGLE_LIMIT <= angle_velocity)))) ||
-                (((0.2f <= target_angle && ((angle_velocity < -RENDERING_ANGLE_RANGE_EXTENDED || (RENDERING_ANGLE_RANGE_EXTENDED <= angle_velocity)))) ||
-                 ((0.4f <= target_angle && ((angle_velocity < -RENDERING_ANGLE_LIMIT || (RENDERING_ANGLE_LIMIT <= angle_velocity)))))))) {
-                rotation_flag = true;
-            }
-            else {
-                *(float *)(context + 0x128) = current_angle;
-            }
-        }
-        else {
-            *(undefined4 *)(context + 0x14c) = 0;
-        }
-    }
-    
-    // 设置旋转因子
-    if (*(int *)(config_data + 0x74) == -1) {
-        target_angle = RENDERING_ANGLE_RATIO_1;
-    }
-    else {
-        target_angle = RENDERING_ANGLE_RATIO_2;
-    }
-    
-    // 检查旋转条件
-    if ((((config_flags & 1) == 0) && (!rotation_flag)) || 
-        (angle_threshold = *(float *)(config_data + 0x4c) - current_angle, angle_threshold == 0.0f)) {
-        goto ANGLE_PROCESSING_COMPLETE;
-    }
-    
-    // 规范化角度差值
-    if (angle_threshold <= RENDERING_ANGLE_RANGE) {
-        if (angle_threshold < -RENDERING_ANGLE_RANGE) {
-            angle_threshold = angle_threshold + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        angle_threshold = angle_threshold + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 计算插值因子
-    angle_difference = *(float *)(config_data + 0x174) + RENDERING_TOLERANCE_FACTOR;
-    interpolation_factor = (target_angle / angle_difference) * RENDERING_INTERPOLATION_FACTOR;
-    
-    // 应用角度插值
-    if (ABS(angle_velocity) <= interpolation_factor) {
-        target_angle = RENDERING_INTERPOLATION_FACTOR;
-    }
-    else {
-        target_angle = (angle_difference * ABS(angle_velocity)) / target_angle;
-        if (2.0f <= target_angle) {
-            target_angle = 2.0f;
-        }
-    }
-    
-    // 设置旋转因子
-    *(float *)(context + 0x150) = target_angle;
-    FUN_180595490(interpolation_factor, time_factor * RENDERING_DAMPING_FACTOR * target_angle, target_angle, *(undefined4 *)(config_data + 0x4c));
-    
-    // 应用旋转限制
-    angle_velocity = *(float *)(context + 0x150) * -RENDERING_SAFETY_FACTOR;
-    if ((angle_velocity <= angle_threshold) && 
-        (angle_velocity = *(float *)(context + 0x150) * RENDERING_SAFETY_FACTOR, angle_threshold <= angle_velocity)) {
-        angle_velocity = angle_threshold;
-    }
-    
-    // 更新角度值
-    angle_velocity = angle_velocity + *(float *)(context + 0x34);
-    *(float *)(context + 0x128) = angle_velocity;
-    
-    // 规范化输出角度
-    if (angle_velocity <= RENDERING_ANGLE_RANGE) {
-        if (angle_velocity < -RENDERING_ANGLE_RANGE) {
-            angle_velocity = angle_velocity + RENDERING_ANGLE_PERIOD;
-            goto ANGLE_NORMALIZATION_COMPLETE;
-        }
-    }
-    else {
-        angle_velocity = angle_velocity - RENDERING_ANGLE_PERIOD;
-ANGLE_NORMALIZATION_COMPLETE:
-        *(float *)(context + 0x128) = angle_velocity;
-    }
-    
-    // 设置插值标志
-    *(undefined4 *)(context + 0x14c) = 0x3ecccccd;
-    rotation_flag = true;
-    
-ANGLE_PROCESSING_COMPLETE:
-    // 计算角度差值
-    current_angle = *(float *)(context + 0x34) - current_angle;
-    if (current_angle <= RENDERING_ANGLE_RANGE) {
-        if (current_angle < -RENDERING_ANGLE_RANGE) {
-            current_angle = current_angle + RENDERING_ANGLE_PERIOD;
-        }
-    }
-    else {
-        current_angle = current_angle + -RENDERING_ANGLE_PERIOD;
-    }
-    
-    // 应用角度插值
-    current_angle = (1.0f - time_factor * RENDERING_GAIN_FACTOR) * *(float *)(context + 0x138) + current_angle * RENDERING_GAIN_FACTOR;
-    *(float *)(context + 0x138) = current_angle;
-    
-    // 检查精度阈值
-    if (ABS(current_angle) < RENDERING_VELOCITY_THRESHOLD) {
-        *(undefined4 *)(context + 0x138) = 0;
-    }
-    
-    // 更新配置标志
-    config_flags = *(uint *)(context + 8) | 0x20;
-    if (!rotation_flag) {
-        config_flags = *(uint *)(context + 8) & 0xffffffdf;
-    }
-    *(uint *)(context + 8) = config_flags;
-    return;
+  uint uVar1;
+  longlong unaff_RBX;
+  undefined4 unaff_EBP;
+  char unaff_SIL;
+  
+  *(undefined4 *)(unaff_RBX + 0x138) = unaff_EBP;
+  uVar1 = *(uint *)(unaff_RBX + 8) | 0x20;
+  if (unaff_SIL == '\0') {
+    uVar1 = *(uint *)(unaff_RBX + 8) & 0xffffffdf;
+  }
+  *(uint *)(unaff_RBX + 8) = uVar1;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级插值器
+ * 运动处理器
  * 
- * 处理渲染系统的高级插值操作，支持多种插值算法和优化。
+ * 处理对象运动和位置更新
+ * 实现平滑的运动插值算法
  * 
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
+ * @param param_1 位置参数指针
+ * @param param_2 运动速度参数
+ * @param param_3 运动模式标志
+ * @param param_4 状态参数
+ * 
+ * 算法特点：
+ * - 平滑运动插值
+ * - 运动模式切换
+ * - 向量归一化处理
+ * - 运动阻尼控制
+ * - 距离阈值检查
  */
-void RenderingSystemAdvancedInterpolator(undefined8 param1, undefined8 param2, float param3)
+void FUN_1805989b0(float *param_1, float param_2, char param_3, longlong param_4)
+
 {
-    uint config_flags;
-    longlong context_pointer;
-    undefined4 default_value;
-    char interpolation_flag;
-    float interpolation_result;
-    float angle_difference;
-    float angle_threshold;
-    float angle_velocity;
-    float normalization_factor;
-    
-    // 执行高级插值计算
-    interpolation_result = (1.0f - angle_velocity * RENDERING_GAIN_FACTOR) * *(float *)(context_pointer + 0x138) +
-                          (param3 + angle_threshold) * RENDERING_GAIN_FACTOR;
-    *(float *)(context_pointer + 0x138) = interpolation_result;
-    
-    // 检查精度阈值
-    if ((float)((uint)interpolation_result & normalization_factor) < RENDERING_VELOCITY_THRESHOLD) {
-        *(undefined4 *)(context_pointer + 0x138) = default_value;
+  float fVar1;
+  float fVar2;
+  undefined1 auVar3 [16];
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  
+  fVar5 = ABS(*param_1 * 0.101978384);
+  if (param_3 == '\0') {
+    fVar5 = fVar5 - 0.2;
+    if (fVar5 <= 0.0) {
+      fVar5 = 0.0;
     }
-    
-    // 更新配置标志
-    config_flags = *(uint *)(context_pointer + 8) | 0x20;
-    if (interpolation_flag == '\0') {
-        config_flags = *(uint *)(context_pointer + 8) & 0xffffffdf;
+    fVar5 = fVar5 * 1.7;
+  }
+  else {
+    fVar5 = fVar5 - 0.4;
+    if (fVar5 <= 0.0) {
+      fVar5 = 0.0;
     }
-    *(uint *)(context_pointer + 8) = config_flags;
+    fVar5 = fVar5 * 0.25;
+  }
+  if (*param_1 < 0.0) {
+    fVar5 = -fVar5;
+  }
+  fVar6 = -*(float *)(param_4 + 0x90);
+  fVar1 = fVar5 - *(float *)(param_4 + 0x8c);
+  if (-0.6 <= fVar6) {
+    if (0.6 <= fVar6) {
+      fVar6 = 0.6;
+    }
+  }
+  else {
+    fVar6 = -0.6;
+  }
+  fVar7 = -0.6;
+  if ((-0.6 <= fVar1) && (fVar7 = fVar1, 0.6 <= fVar1)) {
+    fVar7 = 0.6;
+  }
+  fVar4 = fVar6 * fVar6 + fVar7 * fVar7;
+  fVar4 = fVar4 + (float)(fVar4 <= 1.1754944e-38) * 1.1754944e-38;
+  auVar3 = rsqrtss(ZEXT416((uint)fVar4),ZEXT416((uint)fVar4));
+  fVar1 = auVar3._0_4_;
+  fVar1 = fVar1 * 0.5 * (3.0 - fVar4 * fVar1 * fVar1);
+  if ((param_3 == '\0') || (ABS(*(float *)(param_4 + 0x8c)) < ABS(fVar5))) {
+    fVar2 = 0.4;
+  }
+  else {
+    fVar2 = fVar1 * fVar4 * 7.0;
+    if (fVar2 <= 0.4) {
+      fVar2 = 0.4;
+    }
+  }
+  fVar2 = fVar2 * param_2;
+  if (fVar2 <= fVar1 * fVar4) {
+    *(float *)(param_4 + 0x90) = fVar6 * fVar1 * fVar2 + *(float *)(param_4 + 0x90);
+    *(float *)(param_4 + 0x8c) = fVar1 * fVar7 * fVar2 + *(float *)(param_4 + 0x8c);
     return;
+  }
+  *(ulonglong *)(param_4 + 0x8c) = (ulonglong)(uint)fVar5;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统简单插值器
+ * 角度处理器
  * 
- * 处理渲染系统的简单插值操作，用于快速插值计算。
+ * 执行角度计算和标准化处理
+ * 支持多种角度计算模式
  * 
- * @param void 无参数
+ * @param param_1 角度基准值
+ * @param param_2 插值系数
+ * @param param_3 处理模式标志
+ * @param param_4 状态参数
+ * 
+ * 技术特点：
+ * - 多模式角度处理
+ * - 插值系数动态调整
+ * - 角度标准化算法
+ * - 状态标志位管理
+ * - 优化的数学计算
  */
-void RenderingSystemSimpleInterpolator(void)
+void FUN_1805989db(float param_1, float param_2, char param_3, longlong param_4)
+
 {
-    uint config_flags;
-    longlong context_pointer;
-    undefined4 default_value;
-    char interpolation_flag;
-    
-    // 设置默认值
-    *(undefined4 *)(context_pointer + 0x138) = default_value;
-    
-    // 更新配置标志
-    config_flags = *(uint *)(context_pointer + 8) | 0x20;
-    if (interpolation_flag == '\0') {
-        config_flags = *(uint *)(context_pointer + 8) & 0xffffffdf;
+  float fVar1;
+  float fVar2;
+  uint in_XMM2_Da;
+  undefined1 auVar3 [16];
+  float in_XMM3_Da;
+  float fVar4;
+  float in_XMM5_Da;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  undefined8 in_stack_00000060;
+  
+  if (param_3 == '\0') {
+    fVar5 = ABS(in_XMM5_Da) - 0.2;
+    if (fVar5 <= param_1) {
+      fVar5 = param_1;
     }
-    *(uint *)(context_pointer + 8) = config_flags;
+    fVar5 = fVar5 * 1.7;
+  }
+  else {
+    fVar5 = ABS(in_XMM5_Da) - 0.4;
+    if (fVar5 <= param_1) {
+      fVar5 = param_1;
+    }
+    fVar5 = fVar5 * 0.25;
+  }
+  if (in_XMM3_Da < param_1) {
+    fVar5 = (float)((uint)fVar5 ^ in_XMM2_Da);
+  }
+  fVar6 = (float)(*(uint *)(param_4 + 0x90) ^ in_XMM2_Da);
+  fVar1 = fVar5 - *(float *)(param_4 + 0x8c);
+  if (-0.6 <= fVar6) {
+    if (0.6 <= fVar6) {
+      fVar6 = 0.6;
+    }
+  }
+  else {
+    fVar6 = -0.6;
+  }
+  fVar7 = -0.6;
+  if ((-0.6 <= fVar1) && (fVar7 = fVar1, 0.6 <= fVar1)) {
+    fVar7 = 0.6;
+  }
+  fVar4 = fVar6 * fVar6 + fVar7 * fVar7;
+  fVar4 = fVar4 + (float)(fVar4 <= 1.1754944e-38) * 1.1754944e-38;
+  auVar3 = rsqrtss(ZEXT416((uint)fVar4),ZEXT416((uint)fVar4));
+  fVar1 = auVar3._0_4_;
+  fVar1 = fVar1 * 0.5 * (3.0 - fVar4 * fVar1 * fVar1);
+  if ((param_3 == '\0') || (ABS(*(float *)(param_4 + 0x8c)) < ABS(fVar5))) {
+    fVar2 = 0.4;
+  }
+  else {
+    fVar2 = fVar1 * fVar4 * 7.0;
+    if (fVar2 <= 0.4) {
+      fVar2 = 0.4;
+    }
+  }
+  fVar2 = fVar2 * param_2;
+  if (fVar2 <= fVar1 * fVar4) {
+    *(float *)(param_4 + 0x90) = fVar6 * fVar1 * fVar2 + *(float *)(param_4 + 0x90);
+    *(float *)(param_4 + 0x8c) = fVar1 * fVar7 * fVar2 + *(float *)(param_4 + 0x8c);
     return;
+  }
+  *(ulonglong *)(param_4 + 0x8c) = CONCAT44(in_stack_00000060._4_4_,fVar5);
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级物理处理器
+ * 向量处理器
  * 
- * 处理渲染系统的高级物理模拟，包括力学计算、碰撞检测和动画控制。
+ * 处理向量运算和数据管理
+ * 包含多个寄存器的向量操作
  * 
- * @param velocity_ptr 速度指针
- * @param force_factor 力因子
- * @param damping_flag 阻尼标志
- * @param context_ptr 上下文指针
+ * @param param_1 向量对象指针
+ * @param param_2 运算参数
+ * @param param_3 向量分量
+ * @param param_4 状态参数
+ * 
+ * 功能特点：
+ * - 向量运算优化
+ * - 多寄存器数据处理
+ * - 条件判断处理
+ * - 内存布局管理
  */
-void RenderingSystemAdvancedPhysicsProcessor(float *velocity_ptr, float force_factor, char damping_flag, longlong context_ptr)
+void FUN_180598b0d(undefined8 param_1, undefined8 param_2, float param_3, longlong param_4)
+
 {
-    float velocity_magnitude;
-    float force_magnitude;
-    float acceleration;
-    undefined1 vector_normalization_data [16];
-    float damping_factor;
-    float force_x;
-    float force_y;
-    float force_z;
-    float force_magnitude_normalized;
-    
-    // 计算速度大小
-    force_magnitude = ABS(*velocity_ptr * 0.101978384f);
-    
-    // 应用阻尼计算
-    if (damping_flag == '\0') {
-        force_magnitude = force_magnitude - 0.2f;
-        if (force_magnitude <= 0.0f) {
-            force_magnitude = 0.0f;
-        }
-        force_magnitude = force_magnitude * 1.7f;
+  float fVar1;
+  uint in_XMM5_Da;
+  float unaff_XMM6_Da;
+  uint unaff_XMM8_Da;
+  float unaff_XMM11_Da;
+  float unaff_XMM12_Da;
+  undefined8 in_stack_00000060;
+  
+  if ((float)(*(uint *)(param_4 + 0x8c) & unaff_XMM8_Da) < (float)(in_XMM5_Da & unaff_XMM8_Da)) {
+    fVar1 = 0.4;
+  }
+  else {
+    fVar1 = unaff_XMM11_Da * 7.0;
+    if (fVar1 <= 0.4) {
+      fVar1 = 0.4;
     }
-    else {
-        force_magnitude = force_magnitude - 0.4f;
-        if (force_magnitude <= 0.0f) {
-            force_magnitude = 0.0f;
-        }
-        force_magnitude = force_magnitude * 0.25f;
-    }
-    
-    // 应用方向性
-    if (*velocity_ptr < 0.0f) {
-        force_magnitude = -force_magnitude;
-    }
-    
-    // 计算力分量
-    force_x = -*(float *)(context_ptr + 0x90);
-    velocity_magnitude = force_magnitude - *(float *)(context_ptr + 0x8c);
-    
-    // 限制力分量
-    if (-0.6f <= force_x) {
-        if (0.6f <= force_x) {
-            force_x = 0.6f;
-        }
-    }
-    else {
-        force_x = -0.6f;
-    }
-    
-    force_y = -0.6f;
-    if ((-0.6f <= velocity_magnitude) && (force_y = velocity_magnitude, 0.6f <= velocity_magnitude)) {
-        force_y = 0.6f;
-    }
-    
-    // 计算力大小
-    damping_factor = force_x * force_x + force_y * force_y;
-    damping_factor = damping_factor + (float)(damping_factor <= RENDERING_NORMALIZATION_THRESHOLD) * RENDERING_NORMALIZATION_THRESHOLD;
-    
-    // 使用SIMD指令计算快速平方根倒数
-    vector_normalization_data = rsqrtss(ZEXT416((uint)damping_factor), ZEXT416((uint)damping_factor));
-    velocity_magnitude = vector_normalization_data._0_4_;
-    velocity_magnitude = velocity_magnitude * 0.5f * (3.0f - damping_factor * velocity_magnitude * velocity_magnitude);
-    
-    // 计算加速度
-    if ((damping_flag == '\0') || (ABS(*(float *)(context_ptr + 0x8c)) < ABS(force_magnitude))) {
-        acceleration = 0.4f;
-    }
-    else {
-        acceleration = velocity_magnitude * damping_factor * RENDERING_OPTIMIZATION_FACTOR;
-        if (acceleration <= 0.4f) {
-            acceleration = 0.4f;
-        }
-    }
-    
-    // 应用加速度
-    acceleration = acceleration * force_factor;
-    if (acceleration <= velocity_magnitude * damping_factor) {
-        *(float *)(context_ptr + 0x90) = force_x * velocity_magnitude * acceleration + *(float *)(context_ptr + 0x90);
-        *(float *)(context_ptr + 0x8c) = velocity_magnitude * force_y * acceleration + *(float *)(context_ptr + 0x8c);
-        return;
-    }
-    
-    // 设置速度值
-    *(ulonglong *)(context_ptr + 0x8c) = (ulonglong)(uint)force_magnitude;
+  }
+  fVar1 = fVar1 * unaff_XMM12_Da;
+  if (fVar1 <= unaff_XMM11_Da) {
+    *(float *)(param_4 + 0x90) = unaff_XMM6_Da * fVar1 + *(float *)(param_4 + 0x90);
+    *(float *)(param_4 + 0x8c) = param_3 * fVar1 + *(float *)(param_4 + 0x8c);
     return;
+  }
+  *(undefined8 *)(param_4 + 0x8c) = in_stack_00000060;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统高级物理处理器变体
+ * 数据初始化器
  * 
- * 处理渲染系统的高级物理模拟的变体版本，支持更复杂的物理计算。
+ * 执行基础的数据初始化和内存设置
+ * 简单的内存操作和数据重置
  * 
- * @param velocity_threshold 速度阈值
- * @param force_factor 力因子
- * @param damping_flag 阻尼标志
- * @param context_ptr 上下文指针
+ * 主要功能：
+ * - 内存数据初始化
+ * - 基础数据结构设置
+ * - 寄存器数据管理
+ * - 简单的状态操作
  */
-void RenderingSystemAdvancedPhysicsProcessorVariant(float velocity_threshold, float force_factor, char damping_flag, longlong context_ptr)
+void FUN_180598b5d(void)
+
 {
-    float velocity_magnitude;
-    float force_magnitude;
-    float acceleration;
-    uint sign_bit_mask;
-    undefined1 vector_normalization_data [16];
-    float input_velocity;
-    float input_angle;
-    float force_x;
-    float force_y;
-    float force_z;
-    float force_magnitude_normalized;
-    undefined8 optimization_data;
-    
-    // 应用阻尼计算
-    if (damping_flag == '\0') {
-        force_magnitude = ABS(input_velocity) - 0.2f;
-        if (force_magnitude <= velocity_threshold) {
-            force_magnitude = velocity_threshold;
-        }
-        force_magnitude = force_magnitude * 1.7f;
-    }
-    else {
-        force_magnitude = ABS(input_velocity) - 0.4f;
-        if (force_magnitude <= velocity_threshold) {
-            force_magnitude = velocity_threshold;
-        }
-        force_magnitude = force_magnitude * 0.25f;
-    }
-    
-    // 应用方向性
-    if (input_angle < velocity_threshold) {
-        force_magnitude = (float)((uint)force_magnitude ^ sign_bit_mask);
-    }
-    
-    // 计算力分量
-    force_x = (float)(*(uint *)(context_ptr + 0x90) ^ sign_bit_mask);
-    velocity_magnitude = force_magnitude - *(float *)(context_ptr + 0x8c);
-    
-    // 限制力分量
-    if (-0.6f <= force_x) {
-        if (0.6f <= force_x) {
-            force_x = 0.6f;
-        }
-    }
-    else {
-        force_x = -0.6f;
-    }
-    
-    force_y = -0.6f;
-    if ((-0.6f <= velocity_magnitude) && (force_y = velocity_magnitude, 0.6f <= velocity_magnitude)) {
-        force_y = 0.6f;
-    }
-    
-    // 计算力大小
-    acceleration = force_x * force_x + force_y * force_y;
-    acceleration = acceleration + (float)(acceleration <= RENDERING_NORMALIZATION_THRESHOLD) * RENDERING_NORMALIZATION_THRESHOLD;
-    
-    // 使用SIMD指令计算快速平方根倒数
-    vector_normalization_data = rsqrtss(ZEXT416((uint)acceleration), ZEXT416((uint)acceleration));
-    velocity_magnitude = vector_normalization_data._0_4_;
-    velocity_magnitude = velocity_magnitude * 0.5f * (3.0f - acceleration * velocity_magnitude * velocity_magnitude);
-    
-    // 计算加速度
-    if ((damping_flag == '\0') || (ABS(*(float *)(context_ptr + 0x8c)) < ABS(force_magnitude))) {
-        acceleration = 0.4f;
-    }
-    else {
-        acceleration = velocity_magnitude * acceleration * RENDERING_OPTIMIZATION_FACTOR;
-        if (acceleration <= 0.4f) {
-            acceleration = 0.4f;
-        }
-    }
-    
-    // 应用加速度
-    acceleration = acceleration * force_factor;
-    if (acceleration <= velocity_magnitude * acceleration) {
-        *(float *)(context_ptr + 0x90) = force_x * velocity_magnitude * acceleration + *(float *)(context_ptr + 0x90);
-        *(float *)(context_ptr + 0x8c) = velocity_magnitude * force_y * acceleration + *(float *)(context_ptr + 0x8c);
-        return;
-    }
-    
-    // 设置速度值
-    *(ulonglong *)(context_ptr + 0x8c) = CONCAT44(optimization_data._4_4_, force_magnitude);
-    return;
+  longlong in_R9;
+  undefined8 in_stack_00000060;
+  
+  *(undefined8 *)(in_R9 + 0x8c) = in_stack_00000060;
+  return;
 }
 
+
+
+
+
 /**
- * @brief 渲染系统优化物理处理器
+ * 碰撞处理器
  * 
- * 处理渲染系统的优化物理模拟，使用优化算法提高性能。
+ * 处理碰撞检测和响应算法
+ * 实现高级的碰撞计算和物理模拟
  * 
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
+ * @param param_1 碰撞对象位置指针
+ * @param param_2 碰撞参数
+ * @param param_3 目标位置指针
+ * @param param_4 碰撞半径
+ * 
+ * 算法特点：
+ * - 距离计算和碰撞检测
+ * - 快速平方根倒数优化
+ * - 碰撞响应计算
+ * - 物理参数调整
+ * - 边界条件处理
+ * - 动态插值算法
  */
-void RenderingSystemOptimizedPhysicsProcessor(undefined8 param1, undefined8 param2, float param3, longlong param4)
+void FUN_180598c50(float *param_1, float param_2, float *param_3, float param_4)
+
 {
-    float acceleration;
-    uint optimization_flag;
-    float optimization_factor;
-    uint optimization_mask;
-    float normalized_value;
-    float optimized_factor;
-    float optimized_value;
-    undefined8 optimization_data;
-    
-    // 检查优化条件
-    if ((float)(*(uint *)(param4 + 0x8c) & optimization_mask) < (float)(optimization_flag & optimization_mask)) {
-        acceleration = 0.4f;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  undefined1 auVar4 [16];
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  
+  fVar1 = param_3[1];
+  fVar8 = param_1[1] * param_2 + fVar1;
+  fVar2 = *param_3;
+  fVar7 = *param_1 * param_2 + fVar2;
+  fVar9 = fVar8 * fVar8 + fVar7 * fVar7;
+  if (param_4 * param_4 < fVar9) {
+    auVar4 = rsqrtss(ZEXT416((uint)fVar9),ZEXT416((uint)fVar9));
+    fVar5 = auVar4._0_4_;
+    fVar3 = 1.0 / (param_2 + 1e-06);
+    fVar6 = fVar5 * 0.5 * (3.0 - fVar9 * fVar5 * fVar5);
+    fVar5 = param_4 - fVar6 * fVar9;
+    fVar9 = fVar5;
+    if (-1.0 <= fVar5) {
+      fVar9 = -1.0;
     }
-    else {
-        acceleration = optimized_factor * RENDERING_OPTIMIZATION_FACTOR;
-        if (acceleration <= 0.4f) {
-            acceleration = 0.4f;
-        }
+    fVar1 = (SQRT(fVar1 * fVar1 + fVar2 * fVar2) - param_4) * fVar3;
+    fVar3 = fVar3 * fVar5;
+    if (2.0 <= fVar1) {
+      fVar1 = 2.0;
     }
-    
-    // 应用优化算法
-    acceleration = acceleration * optimized_value;
-    if (acceleration <= optimized_factor) {
-        *(float *)(param4 + 0x90) = optimization_factor * acceleration + *(float *)(param4 + 0x90);
-        *(float *)(param4 + 0x8c) = param3 * acceleration + *(float *)(param4 + 0x8c);
-        return;
+    fVar2 = fVar9 * 10.0;
+    if (fVar9 * 10.0 <= fVar3) {
+      fVar2 = fVar3;
     }
-    
-    // 设置优化值
-    *(undefined8 *)(param4 + 0x8c) = optimization_data;
-    return;
+    fVar1 = -(fVar8 * fVar6 * param_1[1] + fVar7 * fVar6 * *param_1) - fVar1;
+    if (fVar2 <= fVar1) {
+      fVar1 = fVar2;
+    }
+    param_1[1] = fVar1 * fVar8 * fVar6 + param_1[1];
+    *param_1 = fVar1 * fVar7 * fVar6 + *param_1;
+  }
+  return;
 }
 
-/**
- * @brief 渲染系统简单物理处理器
- * 
- * 处理渲染系统的简单物理模拟，用于快速物理计算。
- * 
- * @param void 无参数
- */
-void RenderingSystemSimplePhysicsProcessor(void)
-{
-    longlong context_pointer;
-    undefined8 optimization_data;
-    
-    // 设置优化值
-    *(undefined8 *)(context_pointer + 0x8c) = optimization_data;
-    return;
-}
+
 
 /**
- * @brief 渲染系统高级碰撞处理器
+ * 模块技术说明和算法总结
  * 
- * 处理渲染系统的高级碰撞检测，包括球形碰撞和距离计算。
+ * 本模块实现了TaleWorlds引擎中高级渲染系统的核心算法，
+ * 主要包含以下技术特点：
  * 
- * @param position_ptr 位置指针
- * @param radius 半径
- * @param target_ptr 目标指针
- * @param max_distance 最大距离
+ * 1. 高级数学算法：
+ *    - 快速平方根倒数算法（rsqrtss）：用于高效的向量归一化
+ *    - 角度标准化：确保角度值在[-π, π]范围内
+ *    - 线性插值算法：实现平滑的参数过渡
+ *    - atan2f角度计算：精确的角度方向计算
+ * 
+ * 2. 相机系统：
+ *    - 相机位置平滑插值：基于距离阈值的动态调整
+ *    - 相机朝向控制：支持多种朝向模式
+ *    - 运动阻尼系统：实现自然的相机运动
+ *    - 视角限制：防止不合理的视角变化
+ * 
+ * 3. 渲染优化：
+ *    - 条件分支优化：减少不必要的计算
+ *    - 寄存器优化：充分利用XMM寄存器
+ *    - 内存布局优化：减少缓存未命中
+ *    - 浮点运算优化：使用SIMD指令
+ * 
+ * 4. 算法复杂度：
+ *    - 大部分函数为O(1)时间复杂度
+ *    - 少数函数包含循环和递归处理
+ *    - 内存使用效率高，避免动态分配
+ *    - 适合实时渲染系统
+ * 
+ * 5. 应用场景：
+ *    - 第三人称相机系统
+ *    - 角色动画系统
+ *    - 物理模拟系统
+ *    - 视觉效果系统
+ * 
+ * 本模块是渲染系统的核心组件，为游戏提供高质量的
+ * 视觉体验和流畅的交互响应。
  */
-void RenderingSystemAdvancedCollisionProcessor(float *position_ptr, float radius, float *target_ptr, float max_distance)
-{
-    float distance_x;
-    float distance_y;
-    float distance_magnitude;
-    float normalization_factor;
-    undefined1 vector_normalization_data [16];
-    float interpolation_factor;
-    float velocity_factor;
-    float force_factor;
-    float acceleration;
-    float distance_threshold;
-    float normalized_distance;
-    
-    // 计算距离分量
-    distance_x = target_ptr[1];
-    distance_magnitude = position_ptr[1] * radius + distance_x;
-    distance_y = *target_ptr;
-    distance_threshold = *position_ptr * radius + distance_y;
-    normalized_distance = distance_magnitude * distance_magnitude + distance_threshold * distance_threshold;
-    
-    // 检查碰撞条件
-    if (max_distance * max_distance < normalized_distance) {
-        // 使用SIMD指令计算快速平方根倒数
-        vector_normalization_data = rsqrtss(ZEXT416((uint)normalized_distance), ZEXT416((uint)normalized_distance));
-        normalization_factor = vector_normalization_data._0_4_;
-        interpolation_factor = 1.0f / (radius + RENDERING_PRECISION_THRESHOLD);
-        velocity_factor = normalization_factor * 0.5f * (3.0f - normalized_distance * normalization_factor * normalization_factor);
-        normalization_factor = max_distance - velocity_factor * normalized_distance;
-        normalized_distance = normalization_factor;
-        
-        // 应用碰撞响应
-        if (-1.0f <= normalization_factor) {
-            normalized_distance = -1.0f;
-        }
-        
-        // 计算碰撞力
-        distance_x = (SQRT(distance_x * distance_x + distance_y * distance_y) - max_distance) * interpolation_factor;
-        interpolation_factor = interpolation_factor * normalization_factor;
-        
-        // 限制碰撞力
-        if (2.0f <= distance_x) {
-            distance_x = 2.0f;
-        }
-        
-        // 计算速度因子
-        distance_y = normalized_distance * 10.0f;
-        if (normalized_distance * 10.0f <= interpolation_factor) {
-            distance_y = interpolation_factor;
-        }
-        
-        // 应用碰撞力
-        distance_x = -(distance_magnitude * velocity_factor * position_ptr[1] + distance_threshold * velocity_factor * *position_ptr) - distance_x;
-        if (distance_y <= distance_x) {
-            distance_x = distance_y;
-        }
-        
-        // 更新位置
-        position_ptr[1] = distance_x * distance_magnitude * velocity_factor + position_ptr[1];
-        *position_ptr = distance_x * distance_threshold * velocity_factor + *position_ptr;
-    }
-    return;
-}
 
-// ============================================================================
-// 渲染系统函数别名定义
-// ============================================================================
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/** 渲染系统高级变换处理器别名 */
-#define RenderingSystemAdvancedTransformProcessor FUN_180598210
 
-/** 渲染系统高级变换处理器变体别名 */
-#define RenderingSystemAdvancedTransformProcessorVariant FUN_18059823c
 
-/** 渲染系统高级插值处理器别名 */
-#define RenderingSystemAdvancedInterpolator FUN_1805982c7
-
-/** 渲染系统高级位置更新器别名 */
-#define RenderingSystemAdvancedPositionUpdater FUN_1805983bf
-
-/** 渲染系统简单处理器别名 */
-#define RenderingSystemSimpleProcessor FUN_18059847b
-
-/** 渲染系统高级角度处理器别名 */
-#define RenderingSystemAdvancedAngleProcessor FUN_1805984e0
-
-/** 渲染系统高级角度处理器变体别名 */
-#define RenderingSystemAdvancedAngleProcessorVariant FUN_1805984f3
-
-/** 渲染系统高级插值器别名 */
-#define RenderingSystemAdvancedInterpolator FUN_1805988fc
-
-/** 渲染系统简单插值器别名 */
-#define RenderingSystemSimpleInterpolator FUN_180598972
-
-/** 渲染系统高级物理处理器别名 */
-#define RenderingSystemAdvancedPhysicsProcessor FUN_1805989b0
-
-/** 渲染系统高级物理处理器变体别名 */
-#define RenderingSystemAdvancedPhysicsProcessorVariant FUN_1805989db
-
-/** 渲染系统优化物理处理器别名 */
-#define RenderingSystemOptimizedPhysicsProcessor FUN_180598b0d
-
-/** 渲染系统简单物理处理器别名 */
-#define RenderingSystemSimplePhysicsProcessor FUN_180598b5d
-
-/** 渲染系统高级碰撞处理器别名 */
-#define RenderingSystemAdvancedCollisionProcessor FUN_180598c50
-
-// ============================================================================
-// 技术说明
-// ============================================================================
-
-/**
- * @section technical_notes 技术说明
- * 
- * 本模块实现了以下关键技术：
- * 
- * 1. **SIMD优化**：使用SIMD指令集进行向量化计算，提高性能
- * 2. **快速平方根倒数算法**：使用牛顿迭代法计算快速平方根倒数
- * 3. **角度归一化**：实现角度的规范化处理，确保角度在有效范围内
- * 4. **插值算法**：支持线性插值、球面插值等多种插值算法
- * 5. **物理模拟**：实现基本的物理模拟，包括碰撞检测和响应
- * 6. **优化算法**：使用多种优化技术提高计算效率
- * 
- * @section performance_notes 性能说明
- * 
- * 本模块针对性能进行了以下优化：
- * - 使用SIMD指令进行向量化计算
- * - 减少内存访问次数
- * - 使用快速数学算法
- * - 优化分支预测
- * - 使用寄存器变量
- * 
- * @section usage_notes 使用说明
- * 
- * 使用本模块时需要注意：
- * - 确保输入参数在有效范围内
- * - 正确处理边界条件
- * - 注意内存对齐要求
- * - 合理使用插值因子
- * - 避免频繁的内存分配
- */

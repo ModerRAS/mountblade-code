@@ -1,975 +1,946 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part500.c - 渲染系统高级变换和矩阵计算模块
-// 包含10个函数，涵盖了渲染系统的高级变换、矩阵计算、资源管理等功能
+// 03_rendering_part500.c - 10 个函数
 
-// 常量定义
-#define RENDER_STATE_DIRTY_FLAG 0x10
-#define RENDER_STATE_FLAG_MASK 0x10000000
-#define MAX_FLOAT_VALUE 3.4028235e+38
-#define MATRIX_SCALE_FACTOR 0.0
-#define INVALID_HANDLE -1
-#define MUTEX_LOCK_TIMEOUT 0xfffffffffffffffe
+// 函数: void FUN_180534410(longlong param_1,undefined8 *param_2)
+void FUN_180534410(longlong param_1,undefined8 *param_2)
 
-// 全局变量重命名
-#define g_RenderContextManager DAT_180c8a9f0
-#define g_RenderThreadData DAT_180d49128
-#define g_TLSIndex __tls_index
-#define g_ThreadLocalStorage ThreadLocalStoragePointer
-#define g_RenderQueue DAT_180c92cd8
-#define g_ResourceManager DAT_180c95578
-#define g_RenderState DAT_180c92514
-#define g_ShaderManager DAT_180c96070
-
-// 未知常量重命名
-#define g_UnknownMatrixData UNK_180a30f00
-#define g_UnknownRenderState UNK_180943060
-#define g_UnknownShaderData UNK_1809fa560
-#define g_UnknownTextureData UNK_1809fa540
-#define g_UnknownResourceData UNK_1809fa490
-#define g_UnknownRenderBuffer UNK_180a30280
-#define g_UnknownShaderCache UNK_180a302c0
-
-/**
- * 更新渲染变换矩阵
- * @param renderContext 渲染上下文指针
- * @param transformMatrix 变换矩阵数据
- * 功能：更新渲染上下文的变换矩阵，处理矩阵乘法运算和状态更新
- */
-void UpdateRenderTransformMatrix(longlong renderContext, undefined8 *transformMatrix)
 {
-    float matrix1[16];
-    float matrix2[16];
-    float matrix3[16];
-    float matrix4[16];
-    float matrix5[16];
-    float matrix6[16];
-    float matrix7[16];
-    float matrix8[16];
-    float matrix9[16];
-    float matrix10[16];
-    float matrix11[16];
-    float matrix12[16];
-    longlong renderObject;
-    float transformX, transformY, transformZ, transformW;
-    float scaleX, scaleY, scaleZ, scaleW;
-    float rotationX, rotationY, rotationZ, rotationW;
-    float translationX, translationY, translationZ, translationW;
-    undefined4 temp1, temp2, temp3;
-    undefined8 matrixData;
-    bool canTransform;
-    char isRenderReady;
-    int objectCount;
-    undefined8 *objectList;
-    longlong objectIterator;
-    longlong currentObject;
-    
-    // 获取渲染上下文数据
-    renderObject = *(longlong *)(renderContext + 0x8a8);
-    objectList = (undefined8 *)(renderObject + 0x30);
-    isRenderReady = func_0x000180285980();
-    
-    if (isRenderReady != '\0') {
-        // 复制变换矩阵数据
-        matrixData = transformMatrix[1];
-        *objectList = *transformMatrix;
-        objectList[1] = matrixData;
-        matrixData = transformMatrix[3];
-        objectList[2] = transformMatrix[2];
-        objectList[3] = matrixData;
-        
-        // 复制矩阵元素
-        temp1 = *(undefined4 *)((longlong)transformMatrix + 0x24);
-        temp2 = *(undefined4 *)(transformMatrix + 5);
-        temp3 = *(undefined4 *)((longlong)transformMatrix + 0x2c);
-        *(undefined4 *)(objectList + 4) = *(undefined4 *)(transformMatrix + 4);
-        *(undefined4 *)((longlong)objectList + 0x24) = temp1;
-        *(undefined4 *)(objectList + 5) = temp2;
-        *(undefined4 *)((longlong)objectList + 0x2c) = temp3;
-        
-        temp1 = *(undefined4 *)((longlong)transformMatrix + 0x34);
-        temp2 = *(undefined4 *)(transformMatrix + 7);
-        temp3 = *(undefined4 *)((longlong)transformMatrix + 0x3c);
-        *(undefined4 *)(objectList + 6) = *(undefined4 *)(transformMatrix + 6);
-        *(undefined4 *)((longlong)objectList + 0x34) = temp1;
-        *(undefined4 *)(objectList + 7) = temp2;
-        *(undefined4 *)((longlong)objectList + 0x3c) = temp3;
-        
-        // 更新渲染状态
-        FUN_180254610();
-        *(byte *)(renderObject + 0x2e8) = *(byte *)(renderObject + 0x2e8) | RENDER_STATE_DIRTY_FLAG;
-        
-        // 检查是否需要更新渲染管线
-        if (((*(uint *)(renderObject + 0x2ac) & RENDER_STATE_FLAG_MASK) == 0) && 
-            (*(longlong *)(renderObject + 0x20) != 0)) {
-            FUN_1801b01f0(*(longlong *)(renderObject + 0x20), renderObject);
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  longlong lVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  float fVar22;
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float fVar26;
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  undefined4 uVar30;
+  undefined4 uVar31;
+  undefined4 uVar32;
+  undefined8 uVar33;
+  bool bVar34;
+  char cVar35;
+  int iVar36;
+  undefined8 *puVar37;
+  longlong lVar38;
+  longlong lVar39;
+  
+  lVar38 = *(longlong *)(param_1 + 0x8a8);
+  puVar37 = (undefined8 *)(lVar38 + 0x30);
+  cVar35 = func_0x000180285980();
+  if (cVar35 != '\0') {
+    uVar33 = param_2[1];
+    *puVar37 = *param_2;
+    puVar37[1] = uVar33;
+    uVar33 = param_2[3];
+    puVar37[2] = param_2[2];
+    puVar37[3] = uVar33;
+    uVar30 = *(undefined4 *)((longlong)param_2 + 0x24);
+    uVar31 = *(undefined4 *)(param_2 + 5);
+    uVar32 = *(undefined4 *)((longlong)param_2 + 0x2c);
+    *(undefined4 *)(puVar37 + 4) = *(undefined4 *)(param_2 + 4);
+    *(undefined4 *)((longlong)puVar37 + 0x24) = uVar30;
+    *(undefined4 *)(puVar37 + 5) = uVar31;
+    *(undefined4 *)((longlong)puVar37 + 0x2c) = uVar32;
+    uVar30 = *(undefined4 *)((longlong)param_2 + 0x34);
+    uVar31 = *(undefined4 *)(param_2 + 7);
+    uVar32 = *(undefined4 *)((longlong)param_2 + 0x3c);
+    *(undefined4 *)(puVar37 + 6) = *(undefined4 *)(param_2 + 6);
+    *(undefined4 *)((longlong)puVar37 + 0x34) = uVar30;
+    *(undefined4 *)(puVar37 + 7) = uVar31;
+    *(undefined4 *)((longlong)puVar37 + 0x3c) = uVar32;
+    FUN_180254610();
+    *(byte *)(lVar38 + 0x2e8) = *(byte *)(lVar38 + 0x2e8) | 0x10;
+    if (((*(uint *)(lVar38 + 0x2ac) & 0x10000000) == 0) && (*(longlong *)(lVar38 + 0x20) != 0)) {
+      FUN_1801b01f0(*(longlong *)(lVar38 + 0x20),lVar38);
+    }
+    iVar36 = (int)(*(longlong *)(lVar38 + 0x1c8) - *(longlong *)(lVar38 + 0x1c0) >> 3);
+    if (0 < iVar36) {
+      lVar39 = 0;
+      do {
+        lVar13 = *(longlong *)(*(longlong *)(lVar38 + 0x1c0) + lVar39 * 8);
+        if ((((*(longlong *)(lVar38 + 0x20) == 0) ||
+             (*(char *)(*(longlong *)(lVar38 + 0x20) + 0x2a62) == '\0')) ||
+            (*(longlong **)(lVar13 + 0x270) == (longlong *)0x0)) ||
+           ((cVar35 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x70))(), cVar35 == '\0' ||
+            (cVar35 = (**(code **)(**(longlong **)(lVar13 + 0x270) + 0x78))(), cVar35 == '\0')))) {
+          bVar34 = false;
         }
-        
-        // 处理所有渲染对象
-        objectCount = (int)(*(longlong *)(renderObject + 0x1c8) - *(longlong *)(renderObject + 0x1c0) >> 3);
-        if (0 < objectCount) {
-            objectIterator = 0;
-            do {
-                currentObject = *(longlong *)(*(longlong *)(renderObject + 0x1c0) + objectIterator * 8);
-                
-                // 检查对象是否可以进行变换
-                if ((((*(longlong *)(renderObject + 0x20) == 0) ||
-                     (*(char *)(*(longlong *)(renderObject + 0x20) + 0x2a62) == '\0')) ||
-                    (*(longlong **)(currentObject + 0x270) == (longlong *)0x0)) ||
-                   ((isRenderReady = (**(code **)(**(longlong **)(currentObject + 0x270) + 0x70))(), 
-                     isRenderReady == '\0' ||
-                    (isRenderReady = (**(code **)(**(longlong **)(currentObject + 0x270) + 0x78))(), 
-                     isRenderReady == '\0')))) {
-                    canTransform = false;
-                }
-                else {
-                    canTransform = true;
-                }
-                
-                if (!canTransform) {
-                    // 获取当前矩阵数据
-                    transformX = *(float *)(renderObject + 0x70);
-                    transformY = *(float *)(renderObject + 0x74);
-                    transformZ = *(float *)(renderObject + 0x78);
-                    transformW = *(float *)(renderObject + 0x7c);
-                    scaleX = *(float *)(renderObject + 0x80);
-                    scaleY = *(float *)(renderObject + 0x84);
-                    scaleZ = *(float *)(renderObject + 0x88);
-                    scaleW = *(float *)(renderObject + 0x8c);
-                    rotationX = *(float *)(renderObject + 0x90);
-                    rotationY = *(float *)(renderObject + 0x94);
-                    rotationZ = *(float *)(renderObject + 0x98);
-                    rotationW = *(float *)(renderObject + 0x9c);
-                    
-                    // 获取对象矩阵数据
-                    matrix1[0] = *(float *)(currentObject + 0x34);
-                    matrix1[1] = *(float *)(currentObject + 0x30);
-                    matrix1[2] = *(float *)(currentObject + 0x38);
-                    matrix2[0] = *(float *)(currentObject + 0x44);
-                    matrix3[0] = *(float *)(currentObject + 0x54);
-                    matrix4[0] = *(float *)(currentObject + 100);
-                    matrix2[1] = *(float *)(currentObject + 0x40);
-                    matrix2[2] = *(float *)(currentObject + 0x48);
-                    matrix3[1] = *(float *)(currentObject + 0x50);
-                    matrix3[2] = *(float *)(currentObject + 0x58);
-                    matrix3[3] = *(float *)(currentObject + 0x60);
-                    matrix4[1] = *(float *)(currentObject + 0x68);
-                    
-                    translationX = *(float *)(renderObject + 0xa0);
-                    translationY = *(float *)(renderObject + 0xa4);
-                    translationZ = *(float *)(renderObject + 0xa8);
-                    translationW = *(float *)(renderObject + 0xac);
-                    
-                    // 执行矩阵乘法运算
-                    *(float *)(currentObject + 0x70) = matrix1[0] * scaleX + matrix1[1] * transformX + matrix1[2] * rotationX;
-                    *(float *)(currentObject + 0x74) = matrix1[0] * scaleY + matrix1[1] * transformY + matrix1[2] * rotationY;
-                    *(float *)(currentObject + 0x78) = matrix1[0] * scaleZ + matrix1[1] * transformZ + matrix1[2] * rotationZ;
-                    *(float *)(currentObject + 0x7c) = matrix1[0] * scaleW + matrix1[1] * transformW + matrix1[2] * rotationW;
-                    
-                    *(float *)(currentObject + 0x80) = matrix2[0] * scaleX + matrix2[1] * transformX + matrix2[2] * rotationX;
-                    *(float *)(currentObject + 0x84) = matrix2[0] * scaleY + matrix2[1] * transformY + matrix2[2] * rotationY;
-                    *(float *)(currentObject + 0x88) = matrix2[0] * scaleZ + matrix2[1] * transformZ + matrix2[2] * rotationZ;
-                    *(float *)(currentObject + 0x8c) = matrix2[0] * scaleW + matrix2[1] * transformW + matrix2[2] * rotationW;
-                    
-                    *(float *)(currentObject + 0x90) = matrix3[0] * scaleX + matrix3[1] * transformX + matrix3[2] * rotationX;
-                    *(float *)(currentObject + 0x94) = matrix3[0] * scaleY + matrix3[1] * transformY + matrix3[2] * rotationY;
-                    *(float *)(currentObject + 0x98) = matrix3[0] * scaleZ + matrix3[1] * transformZ + matrix3[2] * rotationZ;
-                    *(float *)(currentObject + 0x9c) = matrix3[0] * scaleW + matrix3[1] * transformW + matrix3[2] * rotationW;
-                    
-                    *(float *)(currentObject + 0xa0) = matrix4[0] * scaleX + matrix3[3] * transformX + matrix4[1] * rotationX + translationX;
-                    *(float *)(currentObject + 0xa4) = matrix4[0] * scaleY + matrix3[3] * transformY + matrix4[1] * rotationY + translationY;
-                    *(float *)(currentObject + 0xa8) = matrix4[0] * scaleZ + matrix3[3] * transformZ + matrix4[1] * rotationZ + translationZ;
-                    *(float *)(currentObject + 0xac) = matrix4[0] * scaleW + matrix3[3] * transformW + matrix4[1] * rotationW + translationW;
-                    
-                    // 更新对象变换状态
-                    FUN_1802eace0(currentObject);
-                }
-                objectIterator = objectIterator + 1;
-            } while (objectIterator < objectCount);
+        else {
+          bVar34 = true;
         }
-        return;
+        if (!bVar34) {
+          fVar14 = *(float *)(lVar38 + 0x70);
+          fVar15 = *(float *)(lVar38 + 0x74);
+          fVar16 = *(float *)(lVar38 + 0x78);
+          fVar17 = *(float *)(lVar38 + 0x7c);
+          fVar18 = *(float *)(lVar38 + 0x80);
+          fVar19 = *(float *)(lVar38 + 0x84);
+          fVar20 = *(float *)(lVar38 + 0x88);
+          fVar21 = *(float *)(lVar38 + 0x8c);
+          fVar22 = *(float *)(lVar38 + 0x90);
+          fVar23 = *(float *)(lVar38 + 0x94);
+          fVar24 = *(float *)(lVar38 + 0x98);
+          fVar25 = *(float *)(lVar38 + 0x9c);
+          fVar1 = *(float *)(lVar13 + 0x34);
+          fVar2 = *(float *)(lVar13 + 0x30);
+          fVar3 = *(float *)(lVar13 + 0x38);
+          fVar4 = *(float *)(lVar13 + 0x44);
+          fVar5 = *(float *)(lVar13 + 0x54);
+          fVar6 = *(float *)(lVar13 + 100);
+          fVar7 = *(float *)(lVar13 + 0x40);
+          fVar8 = *(float *)(lVar13 + 0x48);
+          fVar9 = *(float *)(lVar13 + 0x50);
+          fVar10 = *(float *)(lVar13 + 0x58);
+          fVar11 = *(float *)(lVar13 + 0x60);
+          fVar12 = *(float *)(lVar13 + 0x68);
+          fVar26 = *(float *)(lVar38 + 0xa0);
+          fVar27 = *(float *)(lVar38 + 0xa4);
+          fVar28 = *(float *)(lVar38 + 0xa8);
+          fVar29 = *(float *)(lVar38 + 0xac);
+          *(float *)(lVar13 + 0x70) = fVar1 * fVar18 + fVar2 * fVar14 + fVar3 * fVar22;
+          *(float *)(lVar13 + 0x74) = fVar1 * fVar19 + fVar2 * fVar15 + fVar3 * fVar23;
+          *(float *)(lVar13 + 0x78) = fVar1 * fVar20 + fVar2 * fVar16 + fVar3 * fVar24;
+          *(float *)(lVar13 + 0x7c) = fVar1 * fVar21 + fVar2 * fVar17 + fVar3 * fVar25;
+          *(float *)(lVar13 + 0x80) = fVar4 * fVar18 + fVar7 * fVar14 + fVar8 * fVar22;
+          *(float *)(lVar13 + 0x84) = fVar4 * fVar19 + fVar7 * fVar15 + fVar8 * fVar23;
+          *(float *)(lVar13 + 0x88) = fVar4 * fVar20 + fVar7 * fVar16 + fVar8 * fVar24;
+          *(float *)(lVar13 + 0x8c) = fVar4 * fVar21 + fVar7 * fVar17 + fVar8 * fVar25;
+          *(float *)(lVar13 + 0x90) = fVar5 * fVar18 + fVar9 * fVar14 + fVar10 * fVar22;
+          *(float *)(lVar13 + 0x94) = fVar5 * fVar19 + fVar9 * fVar15 + fVar10 * fVar23;
+          *(float *)(lVar13 + 0x98) = fVar5 * fVar20 + fVar9 * fVar16 + fVar10 * fVar24;
+          *(float *)(lVar13 + 0x9c) = fVar5 * fVar21 + fVar9 * fVar17 + fVar10 * fVar25;
+          *(float *)(lVar13 + 0xa0) = fVar6 * fVar18 + fVar11 * fVar14 + fVar12 * fVar22 + fVar26;
+          *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
+          *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
+          *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
+          FUN_1802eace0(lVar13);
+        }
+        lVar39 = lVar39 + 1;
+      } while (lVar39 < iVar36);
     }
     return;
+  }
+  return;
 }
 
-/**
- * 获取渲染资源句柄
- * @param resourceId 资源ID
- * @param resourceData 资源数据指针
- * @return 资源句柄，失败返回-1
- */
-undefined4 GetRenderResourceHandle(undefined8 resourceId, longlong resourceData)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined4 FUN_1805344c0(undefined8 param_1,longlong param_2)
+
 {
-    longlong *resourceManager;
-    undefined *resourceName;
-    longlong managerHandle;
-    undefined8 stackData;
-    
-    if (*(int *)(resourceData + 0x10) != 0) {
-        managerHandle = g_RenderContextManager + 0x50;
-        stackData = resourceId;
-        resourceManager = (longlong *)FUN_180058080(managerHandle, &stackData, resourceData);
-        if (*resourceManager != managerHandle) {
-            return *(undefined4 *)(*resourceManager + 0x40);
+  longlong *plVar1;
+  undefined *puVar2;
+  longlong lVar3;
+  undefined8 uStackX_8;
+  
+  if (*(int *)(param_2 + 0x10) != 0) {
+    lVar3 = _DAT_180c8a9f0 + 0x50;
+    uStackX_8 = param_1;
+    plVar1 = (longlong *)FUN_180058080(lVar3,&uStackX_8,param_2);
+    if (*plVar1 != lVar3) {
+      return *(undefined4 *)(*plVar1 + 0x40);
+    }
+    puVar2 = &DAT_18098bc73;
+    if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
+      puVar2 = *(undefined **)(param_2 + 8);
+    }
+    FUN_180627020(&UNK_180a30f00,puVar2);
+  }
+  return 0xffffffff;
+}
+
+
+
+longlong * FUN_180534540(longlong *param_1)
+
+{
+  longlong *plVar1;
+  
+  *param_1 = 0;
+  plVar1 = (longlong *)*param_1;
+  *param_1 = 0;
+  if (plVar1 != (longlong *)0x0) {
+    (**(code **)(*plVar1 + 0x38))();
+  }
+  *(undefined4 *)(param_1 + 1) = 0;
+  return param_1;
+}
+
+
+
+
+
+// 函数: void FUN_180534590(longlong *param_1)
+void FUN_180534590(longlong *param_1)
+
+{
+  longlong *plVar1;
+  
+  plVar1 = (longlong *)*param_1;
+  *param_1 = 0;
+  if (plVar1 != (longlong *)0x0) {
+    (**(code **)(*plVar1 + 0x38))();
+  }
+  if ((longlong *)*param_1 != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 FUN_1805346e0(void)
+
+{
+  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+              0x48) < _DAT_180d49128) {
+    FUN_1808fcb90(&DAT_180d49128);
+    if (_DAT_180d49128 == -1) {
+      FUN_18058f390(0x180d48f30);
+      FUN_1808fc820(&UNK_180943060);
+      FUN_1808fcb30(&DAT_180d49128);
+      return 0x180d48f30;
+    }
+  }
+  return 0x180d48f30;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180534770(longlong param_1,uint *param_2,char param_3)
+void FUN_180534770(longlong param_1,uint *param_2,char param_3)
+
+{
+  uint uVar1;
+  uint *puVar2;
+  undefined1 auStack_68 [32];
+  uint uStack_48;
+  uint uStack_44;
+  uint uStack_40;
+  uint uStack_3c;
+  uint uStack_38;
+  uint uStack_34;
+  uint uStack_30;
+  uint uStack_2c;
+  ulonglong uStack_28;
+  
+  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
+    FUN_1802fac00(param_1,*(longlong *)(param_1 + 0x10) + 0x70,0xbf800000);
+  }
+  puVar2 = (uint *)((longlong)param_3 * 0x100 + *(longlong *)(param_1 + 0x18));
+  do {
+    LOCK();
+    uVar1 = *puVar2;
+    *puVar2 = *puVar2 | 1;
+    UNLOCK();
+  } while ((uVar1 & 1) != 0);
+  uStack_48 = puVar2[1];
+  uStack_44 = puVar2[2];
+  uStack_40 = puVar2[3];
+  uStack_3c = puVar2[4];
+  uStack_38 = puVar2[5];
+  uStack_34 = puVar2[6];
+  uStack_30 = puVar2[7];
+  uStack_2c = puVar2[8];
+  *puVar2 = 0;
+  *param_2 = uStack_48;
+  param_2[1] = uStack_44;
+  param_2[2] = uStack_40;
+  param_2[3] = uStack_3c;
+  param_2[4] = uStack_38;
+  param_2[5] = uStack_34;
+  param_2[6] = uStack_30;
+  param_2[7] = uStack_2c;
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_68);
+}
+
+
+
+float * FUN_180534800(float *param_1,float *param_2,float *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  
+  fVar1 = param_3[1];
+  fVar2 = param_1[4];
+  fVar3 = param_1[5];
+  fVar4 = *param_3;
+  fVar5 = param_3[2];
+  fVar6 = param_3[4];
+  fVar7 = param_3[5];
+  fVar8 = param_1[5];
+  fVar9 = param_1[1];
+  *param_2 = fVar4 * *param_1 + fVar1 * param_1[1];
+  param_2[1] = fVar4 * fVar2 + fVar1 * fVar3;
+  param_2[2] = fVar5;
+  param_2[3] = 3.4028235e+38;
+  fVar1 = param_3[6];
+  fVar3 = param_3[8];
+  fVar4 = *param_1;
+  param_2[4] = fVar6 * *param_1 + fVar7 * fVar9;
+  param_2[5] = fVar6 * fVar2 + fVar7 * fVar8;
+  param_2[6] = fVar1;
+  param_2[7] = 3.4028235e+38;
+  fVar1 = param_3[9];
+  fVar5 = param_1[5];
+  fVar6 = param_3[10];
+  param_2[8] = fVar3 * fVar4 + fVar1 * param_1[1];
+  param_2[9] = fVar3 * fVar2 + fVar1 * fVar5;
+  param_2[10] = fVar6;
+  param_2[0xb] = 3.4028235e+38;
+  return param_2;
+}
+
+
+
+float * FUN_180534930(undefined4 *param_1,float *param_2,float *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  undefined4 uStack_98;
+  undefined4 uStack_94;
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  undefined4 uStack_88;
+  undefined4 uStack_84;
+  undefined4 uStack_80;
+  undefined4 uStack_7c;
+  undefined4 uStack_78;
+  undefined4 uStack_74;
+  undefined4 uStack_70;
+  undefined4 uStack_6c;
+  undefined4 uStack_68;
+  undefined4 uStack_64;
+  undefined4 uStack_60;
+  undefined4 uStack_5c;
+  float fStack_58;
+  float fStack_54;
+  float fStack_50;
+  float fStack_4c;
+  float fStack_48;
+  float fStack_44;
+  float fStack_40;
+  float fStack_3c;
+  float fStack_38;
+  float fStack_34;
+  float fStack_30;
+  float fStack_2c;
+  float fStack_28;
+  float fStack_24;
+  float fStack_20;
+  float fStack_1c;
+  
+  uStack_98 = *param_1;
+  uStack_94 = param_1[1];
+  uStack_90 = param_1[2];
+  uStack_84 = param_1[5];
+  uStack_88 = param_1[4];
+  uStack_78 = param_1[8];
+  uStack_80 = param_1[6];
+  uStack_70 = param_1[10];
+  uStack_74 = param_1[9];
+  uStack_64 = param_1[0xd];
+  uStack_68 = param_1[0xc];
+  uStack_60 = param_1[0xe];
+  uStack_5c = 0x3f800000;
+  uStack_8c = 0;
+  uStack_7c = 0;
+  uStack_6c = 0;
+  FUN_1805351a0(&uStack_98,&fStack_58);
+  fVar1 = param_3[2];
+  fVar2 = *param_3;
+  fVar3 = param_3[1];
+  *param_2 = fVar3 * fStack_48 + fVar2 * fStack_58 + fVar1 * fStack_38 + fStack_28;
+  param_2[1] = fStack_54 * fVar2 + fStack_44 * fVar3 + fStack_34 * fVar1 + fStack_24;
+  param_2[2] = fStack_50 * fVar2 + fStack_40 * fVar3 + fStack_30 * fVar1 + fStack_20;
+  param_2[3] = fStack_4c * fVar2 + fStack_3c * fVar3 + fStack_2c * fVar1 + fStack_1c;
+  return param_2;
+}
+
+
+
+
+
+// 函数: void FUN_180534b00(void)
+void FUN_180534b00(void)
+
+{
+  undefined4 in_XMM3_Da;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fd400(in_XMM3_Da);
+}
+
+
+
+undefined8 FUN_180534d00(longlong param_1,undefined8 param_2,ulonglong param_3,undefined8 param_4)
+
+{
+  int iVar1;
+  
+  if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
+    iVar1 = _Mtx_lock(param_1 + 0xe0,param_2,param_3,param_4,0xfffffffffffffffe);
+    if (iVar1 != 0) {
+      __Throw_C_error_std__YAXH_Z(iVar1);
+    }
+    if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
+      FUN_1802fac00(param_1,*(longlong *)(param_1 + 0x10) + 0x70,0xbf800000);
+    }
+    iVar1 = _Mtx_unlock(param_1 + 0xe0);
+    if (iVar1 != 0) {
+      __Throw_C_error_std__YAXH_Z(iVar1);
+    }
+  }
+  FUN_1801c15d0(param_1,param_2,param_3 & 0xff);
+  return param_2;
+}
+
+
+
+
+
+// 函数: void FUN_180535010(undefined8 param_1,undefined4 param_2)
+void FUN_180535010(undefined8 param_1,undefined4 param_2)
+
+{
+                    // WARNING: Subroutine does not return
+  FUN_1808fd400(param_2);
+}
+
+
+
+
+
+// 函数: void FUN_1805351a0(float *param_1,float *param_2)
+void FUN_1805351a0(float *param_1,float *param_2)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  fVar10 = param_1[10];
+  fVar3 = param_1[1];
+  fVar4 = param_1[0xd];
+  param_2[2] = 0.0;
+  param_2[3] = 0.0;
+  fVar1 = param_1[4];
+  fVar8 = param_1[0xc];
+  fVar5 = fVar3 * fVar10;
+  fVar6 = param_1[5] * fVar10;
+  fVar2 = *param_1;
+  param_2[1] = -fVar5;
+  fVar7 = param_1[5];
+  *param_2 = fVar6;
+  param_2[4] = -(fVar1 * fVar10);
+  param_2[5] = fVar2 * fVar10;
+  param_2[6] = 0.0;
+  param_2[7] = 0.0;
+  param_2[8] = 0.0;
+  param_2[9] = 0.0;
+  fVar9 = fVar2 * fVar7 - fVar1 * fVar3;
+  param_2[0xb] = 0.0;
+  fVar7 = -(fVar1 * -(fVar10 * fVar4)) - fVar8 * fVar6;
+  param_2[10] = fVar9;
+  param_2[0xc] = fVar7;
+  fVar8 = fVar8 * fVar5 + fVar2 * -(fVar10 * fVar4);
+  fVar4 = param_1[0xe] * fVar3 * fVar1 - param_1[0xe] * param_1[5] * fVar2;
+  param_2[0xd] = fVar8;
+  fVar10 = fVar2 * *param_2 + fVar1 * param_2[1];
+  param_2[0xe] = fVar4;
+  fVar3 = fVar2 * fVar6 - fVar1 * fVar5;
+  param_2[0xf] = fVar3;
+  if (fVar10 != 1.0) {
+    fVar10 = 1.0 / fVar10;
+    *param_2 = fVar10 * *param_2;
+    param_2[1] = fVar10 * param_2[1];
+    param_2[5] = fVar10 * param_2[5];
+    param_2[4] = fVar10 * param_2[4];
+    param_2[10] = fVar9 * fVar10;
+    param_2[0xc] = fVar7 * fVar10;
+    param_2[0xd] = fVar8 * fVar10;
+    param_2[0xe] = fVar4 * fVar10;
+    param_2[0xf] = fVar3 * fVar10;
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_1805353a0(float *param_1,undefined4 *param_2)
+void FUN_1805353a0(float *param_1,undefined4 *param_2)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fStack_b8;
+  float fStack_b4;
+  float fStack_b0;
+  float fStack_ac;
+  float fStack_a8;
+  float fStack_a4;
+  float fStack_a0;
+  float fStack_9c;
+  float fStack_98;
+  float fStack_94;
+  float fStack_90;
+  float fStack_8c;
+  float fStack_88;
+  float fStack_84;
+  float fStack_80;
+  float fStack_7c;
+  undefined4 uStack_68;
+  undefined4 uStack_64;
+  undefined4 uStack_60;
+  undefined4 uStack_5c;
+  undefined4 uStack_58;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  
+  uStack_68 = *param_2;
+  uStack_64 = param_2[1];
+  uStack_60 = param_2[2];
+  uStack_54 = param_2[5];
+  uStack_58 = param_2[4];
+  uStack_48 = param_2[8];
+  uStack_50 = param_2[6];
+  uStack_40 = param_2[10];
+  uStack_44 = param_2[9];
+  uStack_34 = param_2[0xd];
+  uStack_38 = param_2[0xc];
+  uStack_30 = param_2[0xe];
+  uStack_2c = 0x3f800000;
+  uStack_5c = 0;
+  uStack_4c = 0;
+  uStack_3c = 0;
+  FUN_1805351a0(&uStack_68,&fStack_b8);
+  fVar1 = param_1[1];
+  fVar2 = *param_1;
+  fVar3 = param_1[2];
+  param_1[3] = 1.0;
+  *param_1 = fVar2 * fStack_b8 + fVar1 * fStack_a8 + fVar3 * fStack_98 + fStack_88;
+  param_1[1] = fVar2 * fStack_b4 + fVar1 * fStack_a4 + fVar3 * fStack_94 + fStack_84;
+  param_1[2] = fVar2 * fStack_b0 + fVar1 * fStack_a0 + fVar3 * fStack_90 + fStack_80;
+  param_1[3] = fVar2 * fStack_ac + fVar1 * fStack_9c + fVar3 * fStack_8c + fStack_7c;
+  param_1[7] = 1.0;
+  fVar1 = param_1[4];
+  fVar2 = param_1[5];
+  fVar3 = param_1[6];
+  param_1[4] = fVar1 * fStack_b8 + fVar2 * fStack_a8 + fVar3 * fStack_98 + fStack_88;
+  param_1[5] = fVar1 * fStack_b4 + fVar2 * fStack_a4 + fVar3 * fStack_94 + fStack_84;
+  param_1[6] = fVar1 * fStack_b0 + fVar2 * fStack_a0 + fVar3 * fStack_90 + fStack_80;
+  param_1[7] = fVar1 * fStack_ac + fVar2 * fStack_9c + fVar3 * fStack_8c + fStack_7c;
+  return;
+}
+
+
+
+float * FUN_180535610(float *param_1,float *param_2,float param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  
+  param_3 = 1.0 / param_3;
+  fVar1 = *param_1;
+  fVar2 = param_1[1];
+  fVar3 = param_1[4];
+  fVar4 = param_1[5];
+  fVar5 = param_1[9];
+  fVar6 = param_1[10];
+  fVar7 = param_1[2];
+  fVar8 = param_1[6];
+  param_2[8] = param_3 * param_1[8];
+  param_2[9] = param_3 * fVar5;
+  param_2[10] = param_3 * fVar6;
+  param_2[0xb] = 3.4028235e+38;
+  *param_2 = param_3 * fVar1;
+  param_2[1] = param_3 * fVar2;
+  param_2[2] = param_3 * fVar7;
+  param_2[3] = 3.4028235e+38;
+  param_2[4] = param_3 * fVar3;
+  param_2[5] = param_3 * fVar4;
+  param_2[6] = param_3 * fVar8;
+  param_2[7] = 3.4028235e+38;
+  return param_2;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+longlong * FUN_180535720(longlong *param_1,longlong *param_2)
+
+{
+  undefined8 uVar1;
+  longlong *plVar2;
+  longlong *plVar3;
+  longlong lVar4;
+  longlong *plVar5;
+  longlong lVar6;
+  longlong *plVar7;
+  
+  plVar3 = (longlong *)0x0;
+  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x98d9e0,0x10,8,0,0xfffffffffffffffe);
+  plVar2 = (longlong *)FUN_1804f2420(uVar1);
+  *param_2 = (longlong)plVar2;
+  if (plVar2 != (longlong *)0x0) {
+    (**(code **)(*plVar2 + 0x28))(plVar2);
+  }
+  lVar6 = 1;
+  if (*param_1 == 0) {
+    plVar2 = (longlong *)*param_2;
+    if (plVar2 != (longlong *)0x0) {
+      (**(code **)(*plVar2 + 0x28))(plVar2);
+    }
+    plVar5 = (longlong *)*param_1;
+    *param_1 = (longlong)plVar2;
+    if (plVar5 != (longlong *)0x0) {
+      (**(code **)(*plVar5 + 0x38))();
+    }
+  }
+  plVar2 = (longlong *)param_1[2];
+  if (plVar2 < (longlong *)param_1[3]) {
+    param_1[2] = (longlong)(plVar2 + 1);
+    plVar3 = (longlong *)*param_2;
+    *plVar2 = (longlong)plVar3;
+    if (plVar3 != (longlong *)0x0) {
+      (**(code **)(*plVar3 + 0x28))();
+    }
+  }
+  else {
+    plVar5 = (longlong *)param_1[1];
+    lVar4 = (longlong)plVar2 - (longlong)plVar5 >> 3;
+    if ((lVar4 == 0) || (lVar6 = lVar4 * 2, plVar7 = plVar3, lVar6 != 0)) {
+      plVar3 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_1[4]);
+      plVar2 = (longlong *)param_1[2];
+      plVar5 = (longlong *)param_1[1];
+      plVar7 = plVar3;
+    }
+    for (; plVar5 != plVar2; plVar5 = plVar5 + 1) {
+      *plVar3 = *plVar5;
+      *plVar5 = 0;
+      plVar3 = plVar3 + 1;
+    }
+    plVar2 = (longlong *)*param_2;
+    *plVar3 = (longlong)plVar2;
+    if (plVar2 != (longlong *)0x0) {
+      (**(code **)(*plVar2 + 0x28))();
+    }
+    plVar2 = (longlong *)param_1[2];
+    plVar5 = (longlong *)param_1[1];
+    if (plVar5 != plVar2) {
+      do {
+        if ((longlong *)*plVar5 != (longlong *)0x0) {
+          (**(code **)(*(longlong *)*plVar5 + 0x38))();
         }
-        resourceName = &DAT_18098bc73;
-        if (*(undefined **)(resourceData + 8) != (undefined *)0x0) {
-            resourceName = *(undefined **)(resourceData + 8);
+        plVar5 = plVar5 + 1;
+      } while (plVar5 != plVar2);
+      plVar5 = (longlong *)param_1[1];
+    }
+    if (plVar5 != (longlong *)0x0) {
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(plVar5);
+    }
+    param_1[1] = (longlong)plVar7;
+    param_1[2] = (longlong)(plVar3 + 1);
+    param_1[3] = (longlong)(plVar7 + lVar6);
+  }
+  return param_2;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1805358d0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_1805358d0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  undefined4 uVar1;
+  longlong lVar2;
+  char cVar3;
+  int iVar4;
+  longlong lVar5;
+  longlong lVar6;
+  longlong *plStackX_8;
+  
+  lVar5 = *param_1;
+  if (lVar5 != 0) {
+    cVar3 = FUN_18055f260(param_3,&plStackX_8,&UNK_1809fa490);
+    FUN_1804fe350(&UNK_180a30280,cVar3,&UNK_180a302c0,&plStackX_8);
+    if ((((cVar3 != '\0') && (-1 < (int)(uint)plStackX_8)) &&
+        ((int)(uint)plStackX_8 < *(int *)(lVar5 + 0x87b31c))) &&
+       (lVar5 = (ulonglong)((uint)plStackX_8 & 0xf) * 0xbe0 +
+                *(longlong *)
+                 (*(longlong *)(lVar5 + 0x87b340) + (ulonglong)((uint)plStackX_8 >> 4) * 8),
+       *(int *)(lVar5 + 8) != 0)) {
+      lVar6 = 0;
+      if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+        iVar4 = _Mtx_lock(0x180c95528);
+        if (iVar4 != 0) {
+          __Throw_C_error_std__YAXH_Z(iVar4);
         }
-        FUN_180627020(&g_UnknownMatrixData, resourceName);
+        uVar1 = *(undefined4 *)(lVar5 + 0xc);
+        cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+        if ((cVar3 != '\0') &&
+           (cVar3 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar3 != '\0')) {
+          FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+        }
+        _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+        iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+        lVar5 = _DAT_180c92cd8;
+        if (0 < iVar4) {
+          do {
+            lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
+            if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
+              FUN_1805b59d0(lVar2,0x180c95578);
+              lVar5 = _DAT_180c92cd8;
+            }
+            lVar6 = lVar6 + 1;
+          } while (lVar6 < iVar4);
+        }
+        if (_DAT_180c96070 != 0) {
+          FUN_180567f30(_DAT_180c92580,0x180c95578);
+        }
+        _DAT_180c95b3c = 0;
+                    // WARNING: Subroutine does not return
+        memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+      }
+      *(undefined2 *)(lVar5 + 0x3d1) = 0;
+      if (*(longlong *)(*(longlong *)(lVar5 + 0xe0) + 0x20) != 0) {
+        FUN_180198980();
+      }
+      plStackX_8 = *(longlong **)(lVar5 + 0xe0);
+      *(undefined8 *)(lVar5 + 0xe0) = 0;
+      if (plStackX_8 != (longlong *)0x0) {
+        (**(code **)(*plStackX_8 + 0x38))();
+      }
+      *(undefined8 *)(lVar5 + 0xe8) = 0;
+      return;
     }
-    return 0xffffffff;
+  }
+  return;
 }
 
-/**
- * 重置渲染资源指针
- * @param resourcePointer 资源指针
- * @return 重置后的资源指针
- */
-longlong * ResetRenderResourcePointer(longlong *resourcePointer)
-{
-    longlong *tempPointer;
-    
-    *resourcePointer = 0;
-    tempPointer = (longlong *)*resourcePointer;
-    *resourcePointer = 0;
-    if (tempPointer != (longlong *)0x0) {
-        (**(code **)(*tempPointer + 0x38))();
-    }
-    *(undefined4 *)(resourcePointer + 1) = 0;
-    return resourcePointer;
-}
 
-/**
- * 清理渲染资源
- * @param resourcePointer 资源指针
- */
-void CleanupRenderResource(longlong *resourcePointer)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1805358ec(void)
+void FUN_1805358ec(void)
+
 {
-    longlong *tempPointer;
-    
-    tempPointer = (longlong *)*resourcePointer;
-    *resourcePointer = 0;
-    if (tempPointer != (longlong *)0x0) {
-        (**(code **)(*tempPointer + 0x38))();
+  undefined4 uVar1;
+  longlong lVar2;
+  char cVar3;
+  int iVar4;
+  longlong lVar5;
+  longlong lVar6;
+  longlong unaff_RDI;
+  uint uStack0000000000000030;
+  
+  cVar3 = FUN_18055f260();
+  FUN_1804fe350(&UNK_180a30280,cVar3,&UNK_180a302c0,&stack0x00000030);
+  if ((((cVar3 != '\0') && (-1 < (int)uStack0000000000000030)) &&
+      ((int)uStack0000000000000030 < *(int *)(unaff_RDI + 0x87b31c))) &&
+     (lVar5 = (ulonglong)(uStack0000000000000030 & 0xf) * 0xbe0 +
+              *(longlong *)
+               (*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(uStack0000000000000030 >> 4) * 8),
+     *(int *)(lVar5 + 8) != 0)) {
+    lVar6 = 0;
+    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+      iVar4 = _Mtx_lock(0x180c95528);
+      if (iVar4 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar4);
+      }
+      uVar1 = *(undefined4 *)(lVar5 + 0xc);
+      cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+      if ((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar3 != '\0')
+         ) {
+        FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+      }
+      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+      iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      lVar5 = _DAT_180c92cd8;
+      if (0 < iVar4) {
+        do {
+          lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
+          if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
+            FUN_1805b59d0(lVar2,0x180c95578);
+            lVar5 = _DAT_180c92cd8;
+          }
+          lVar6 = lVar6 + 1;
+        } while (lVar6 < iVar4);
+      }
+      if (_DAT_180c96070 != 0) {
+        FUN_180567f30(_DAT_180c92580,0x180c95578);
+      }
+      _DAT_180c95b3c = 0;
+                    // WARNING: Subroutine does not return
+      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
     }
-    if ((longlong *)*resourcePointer != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*resourcePointer + 0x38))();
+    *(undefined2 *)(lVar5 + 0x3d1) = 0;
+    if (*(longlong *)(*(longlong *)(lVar5 + 0xe0) + 0x20) != 0) {
+      FUN_180198980();
     }
+    _uStack0000000000000030 = *(longlong **)(lVar5 + 0xe0);
+    *(undefined8 *)(lVar5 + 0xe0) = 0;
+    if (_uStack0000000000000030 != (longlong *)0x0) {
+      (**(code **)(*_uStack0000000000000030 + 0x38))();
+    }
+    *(undefined8 *)(lVar5 + 0xe8) = 0;
     return;
+  }
+  return;
 }
 
-/**
- * 初始化渲染线程数据
- * @return 渲染线程数据指针
- */
-undefined8 InitializeRenderThreadData(void)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180535925(void)
+void FUN_180535925(void)
+
 {
-    if (*(int *)(*(longlong *)((longlong)g_ThreadLocalStorage + (ulonglong)g_TLSIndex * 8) + 0x48) < g_RenderThreadData) {
-        FUN_1808fcb90(&DAT_180d49128);
-        if (g_RenderThreadData == INVALID_HANDLE) {
-            FUN_18058f390(0x180d48f30);
-            FUN_1808fc820(&g_UnknownRenderState);
-            FUN_1808fcb30(&DAT_180d49128);
-            return 0x180d48f30;
-        }
+  undefined4 uVar1;
+  longlong lVar2;
+  longlong *plVar3;
+  char cVar4;
+  int iVar5;
+  longlong lVar6;
+  longlong lVar7;
+  longlong unaff_RDI;
+  uint in_stack_00000030;
+  
+  if (((-1 < (int)in_stack_00000030) && ((int)in_stack_00000030 < *(int *)(unaff_RDI + 0x87b31c)))
+     && (lVar6 = (ulonglong)(in_stack_00000030 & 0xf) * 0xbe0 +
+                 *(longlong *)
+                  (*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(in_stack_00000030 >> 4) * 8),
+        *(int *)(lVar6 + 8) != 0)) {
+    lVar7 = 0;
+    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+      iVar5 = _Mtx_lock(0x180c95528);
+      if (iVar5 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar5);
+      }
+      uVar1 = *(undefined4 *)(lVar6 + 0xc);
+      cVar4 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+      if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar4 != '\0')
+         ) {
+        FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+      }
+      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+      iVar5 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      lVar6 = _DAT_180c92cd8;
+      if (0 < iVar5) {
+        do {
+          lVar2 = *(longlong *)(lVar6 + lVar7 * 8);
+          if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
+            FUN_1805b59d0(lVar2,0x180c95578);
+            lVar6 = _DAT_180c92cd8;
+          }
+          lVar7 = lVar7 + 1;
+        } while (lVar7 < iVar5);
+      }
+      if (_DAT_180c96070 != 0) {
+        FUN_180567f30(_DAT_180c92580,0x180c95578);
+      }
+      _DAT_180c95b3c = 0;
+                    // WARNING: Subroutine does not return
+      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
     }
-    return 0x180d48f30;
-}
-
-/**
- * 处理渲染队列数据
- * @param renderContext 渲染上下文
- * @param queueData 队列数据指针
- * @param queueIndex 队列索引
- */
-void ProcessRenderQueueData(longlong renderContext, uint *queueData, char queueIndex)
-{
-    uint queueValue;
-    uint *queuePointer;
-    undefined1 stackBuffer[32];
-    uint temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8;
-    ulonglong stackChecksum;
-    
-    stackChecksum = DAT_180bf00a8 ^ (ulonglong)stackBuffer;
-    if ((*(byte *)(renderContext + 0xa8) & 1) == 0) {
-        FUN_1802fac00(renderContext, *(longlong *)(renderContext + 0x10) + 0x70, 0xbf800000);
+    *(undefined2 *)(lVar6 + 0x3d1) = 0;
+    if (*(longlong *)(*(longlong *)(lVar6 + 0xe0) + 0x20) != 0) {
+      FUN_180198980();
     }
-    queuePointer = (uint *)((longlong)queueIndex * 0x100 + *(longlong *)(renderContext + 0x18));
-    
-    // 加锁处理队列数据
-    do {
-        LOCK();
-        queueValue = *queuePointer;
-        *queuePointer = *queuePointer | 1;
-        UNLOCK();
-    } while ((queueValue & 1) != 0);
-    
-    // 复制队列数据
-    temp1 = queuePointer[1];
-    temp2 = queuePointer[2];
-    temp3 = queuePointer[3];
-    temp4 = queuePointer[4];
-    temp5 = queuePointer[5];
-    temp6 = queuePointer[6];
-    temp7 = queuePointer[7];
-    temp8 = queuePointer[8];
-    *queuePointer = 0;
-    *queueData = temp1;
-    queueData[1] = temp2;
-    queueData[2] = temp3;
-    queueData[3] = temp4;
-    queueData[4] = temp5;
-    queueData[5] = temp6;
-    queueData[6] = temp7;
-    queueData[7] = temp8;
-    
-    // 处理完成后解锁
-    FUN_1808fc050(stackChecksum ^ (ulonglong)stackBuffer);
-}
-
-/**
- * 计算3D变换矩阵
- * @param sourceMatrix 源矩阵
- * @param destMatrix 目标矩阵
- * @param transformVector 变换向量
- * @return 目标矩阵指针
- */
-float * Calculate3DTransformMatrix(float *sourceMatrix, float *destMatrix, float *transformVector)
-{
-    float vecX, vecY, vecZ;
-    float srcX, srcY, srcZ;
-    float transX, transY, transZ;
-    float rotX, rotY, rotZ;
-    
-    vecY = transformVector[1];
-    srcY = sourceMatrix[4];
-    srcZ = sourceMatrix[5];
-    vecX = *transformVector;
-    vecZ = transformVector[2];
-    rotX = transformVector[4];
-    rotY = transformVector[5];
-    rotZ = sourceMatrix[5];
-    transZ = sourceMatrix[1];
-    
-    // 计算变换矩阵
-    *destMatrix = vecX * *sourceMatrix + vecY * sourceMatrix[1];
-    destMatrix[1] = vecX * srcY + vecY * srcZ;
-    destMatrix[2] = vecZ;
-    destMatrix[3] = MAX_FLOAT_VALUE;
-    
-    vecY = transformVector[6];
-    srcZ = transformVector[8];
-    vecX = *sourceMatrix;
-    destMatrix[4] = rotX * *sourceMatrix + rotY * transZ;
-    destMatrix[5] = rotX * srcY + rotY * rotZ;
-    destMatrix[6] = vecY;
-    destMatrix[7] = MAX_FLOAT_VALUE;
-    
-    vecY = transformVector[9];
-    vecZ = sourceMatrix[5];
-    rotX = transformVector[10];
-    destMatrix[8] = srcZ * vecX + vecY * sourceMatrix[1];
-    destMatrix[9] = srcZ * srcY + vecY * vecZ;
-    destMatrix[10] = rotX;
-    destMatrix[0xb] = MAX_FLOAT_VALUE;
-    
-    return destMatrix;
-}
-
-/**
- * 应用矩阵变换
- * @param transformMatrix 变换矩阵
- * @param destMatrix 目标矩阵
- * @param positionVector 位置向量
- * @return 目标矩阵指针
- */
-float * ApplyMatrixTransform(undefined4 *transformMatrix, float *destMatrix, float *positionVector)
-{
-    float posX, posY, posZ;
-    undefined4 tempMatrix[16];
-    float resultMatrix[16];
-    
-    // 复制变换矩阵数据
-    tempMatrix[0] = *transformMatrix;
-    tempMatrix[1] = transformMatrix[1];
-    tempMatrix[2] = transformMatrix[2];
-    tempMatrix[5] = transformMatrix[5];
-    tempMatrix[4] = transformMatrix[4];
-    tempMatrix[8] = transformMatrix[8];
-    tempMatrix[6] = transformMatrix[6];
-    tempMatrix[10] = transformMatrix[10];
-    tempMatrix[9] = transformMatrix[9];
-    tempMatrix[13] = transformMatrix[0xd];
-    tempMatrix[12] = transformMatrix[0xc];
-    tempMatrix[14] = transformMatrix[0xe];
-    tempMatrix[15] = 0x3f800000;  // 1.0f
-    tempMatrix[3] = 0;
-    tempMatrix[7] = 0;
-    tempMatrix[11] = 0;
-    
-    // 计算矩阵变换
-    FUN_1805351a0(&tempMatrix[0], &resultMatrix[0]);
-    
-    posX = positionVector[2];
-    posY = *positionVector;
-    posZ = positionVector[1];
-    
-    // 应用变换到目标矩阵
-    *destMatrix = posZ * resultMatrix[1] + posY * resultMatrix[0] + posX * resultMatrix[2] + resultMatrix[3];
-    destMatrix[1] = resultMatrix[4] * posY + resultMatrix[5] * posZ + resultMatrix[6] * posX + resultMatrix[7];
-    destMatrix[2] = resultMatrix[8] * posY + resultMatrix[9] * posZ + resultMatrix[10] * posX + resultMatrix[11];
-    destMatrix[3] = resultMatrix[12] * posY + resultMatrix[13] * posZ + resultMatrix[14] * posX + resultMatrix[15];
-    
-    return destMatrix;
-}
-
-/**
- * 清理渲染缓冲区
- */
-void CleanupRenderBuffer(void)
-{
-    undefined4 bufferData;
-    
-    FUN_1808fd400(bufferData);
-}
-
-/**
- * 锁定渲染上下文
- * @param renderContext 渲染上下文
- * @param lockData 锁定数据
- * @param timeout 超时时间
- * @param lockFlag 锁定标志
- * @return 锁定后的资源数据
- */
-undefined8 LockRenderContext(longlong renderContext, undefined8 lockData, ulonglong timeout, undefined8 lockFlag)
-{
-    int lockResult;
-    
-    if ((*(byte *)(renderContext + 0xa8) & 1) == 0) {
-        lockResult = _Mtx_lock(renderContext + 0xe0, lockData, timeout, lockFlag, MUTEX_LOCK_TIMEOUT);
-        if (lockResult != 0) {
-            __Throw_C_error_std__YAXH_Z(lockResult);
-        }
-        if ((*(byte *)(renderContext + 0xa8) & 1) == 0) {
-            FUN_1802fac00(renderContext, *(longlong *)(renderContext + 0x10) + 0x70, 0xbf800000);
-        }
-        lockResult = _Mtx_unlock(renderContext + 0xe0);
-        if (lockResult != 0) {
-            __Throw_C_error_std__YAXH_Z(lockResult);
-        }
+    plVar3 = *(longlong **)(lVar6 + 0xe0);
+    *(undefined8 *)(lVar6 + 0xe0) = 0;
+    if (plVar3 != (longlong *)0x0) {
+      (**(code **)(*plVar3 + 0x38))();
     }
-    FUN_1801c15d0(renderContext, lockData, timeout & 0xff);
-    return lockData;
-}
-
-/**
- * 释放渲染资源
- * @param resourceId 资源ID
- * @param resourceFlag 资源标志
- */
-void ReleaseRenderResource(undefined8 resourceId, undefined4 resourceFlag)
-{
-    FUN_1808fd400(resourceFlag);
-}
-
-/**
- * 计算矩阵逆矩阵
- * @param sourceMatrix 源矩阵
- * @param destMatrix 目标矩阵
- */
-void CalculateMatrixInverse(float *sourceMatrix, float *destMatrix)
-{
-    float scaleX, scaleY, scaleZ;
-    float rotX, rotY, rotZ;
-    float transX, transY, transZ;
-    float determinant;
-    
-    scaleZ = sourceMatrix[10];
-    scaleY = sourceMatrix[1];
-    rotZ = sourceMatrix[0xd];
-    destMatrix[2] = MATRIX_SCALE_FACTOR;
-    destMatrix[3] = MATRIX_SCALE_FACTOR;
-    scaleX = sourceMatrix[4];
-    transZ = sourceMatrix[0xc];
-    
-    // 计算行列式和逆矩阵元素
-    rotY = scaleY * scaleZ;
-    rotZ = sourceMatrix[5] * scaleZ;
-    transX = *sourceMatrix;
-    destMatrix[1] = -rotY;
-    rotX = sourceMatrix[5];
-    *destMatrix = rotZ;
-    destMatrix[4] = -(scaleX * scaleZ);
-    destMatrix[5] = transX * scaleZ;
-    destMatrix[6] = MATRIX_SCALE_FACTOR;
-    destMatrix[7] = MATRIX_SCALE_FACTOR;
-    destMatrix[8] = MATRIX_SCALE_FACTOR;
-    destMatrix[9] = MATRIX_SCALE_FACTOR;
-    
-    determinant = transX * rotX - scaleX * scaleY;
-    destMatrix[0xb] = MATRIX_SCALE_FACTOR;
-    rotX = -(scaleX * -(scaleZ * rotZ)) - transZ * rotZ;
-    destMatrix[10] = determinant;
-    destMatrix[0xc] = rotX;
-    transZ = transZ * rotY + transX * -(scaleZ * rotZ);
-    rotZ = sourceMatrix[0xe] * scaleY * scaleX - sourceMatrix[0xe] * sourceMatrix[5] * transX;
-    destMatrix[0xd] = transZ;
-    scaleZ = transX * *destMatrix + scaleX * destMatrix[1];
-    destMatrix[0xe] = rotZ;
-    scaleY = transX * rotZ - scaleX * rotY;
-    destMatrix[0xf] = scaleY;
-    
-    // 如果行列式不为1，进行归一化
-    if (scaleZ != 1.0) {
-        scaleZ = 1.0 / scaleZ;
-        *destMatrix = scaleZ * *destMatrix;
-        destMatrix[1] = scaleZ * destMatrix[1];
-        destMatrix[5] = scaleZ * destMatrix[5];
-        destMatrix[4] = scaleZ * destMatrix[4];
-        destMatrix[10] = determinant * scaleZ;
-        destMatrix[0xc] = rotX * scaleZ;
-        destMatrix[0xd] = transZ * scaleZ;
-        destMatrix[0xe] = rotZ * scaleZ;
-        destMatrix[0xf] = scaleY * scaleZ;
-    }
+    *(undefined8 *)(lVar6 + 0xe8) = 0;
     return;
+  }
+  return;
 }
 
-/**
- * 应用矩阵变换到向量
- * @param vector 向量数据
- * @param transformMatrix 变换矩阵
- */
-void ApplyMatrixToVector(float *vector, undefined4 *transformMatrix)
-{
-    float vecX, vecY, vecZ;
-    float matrixResult[16];
-    undefined4 tempMatrix[16];
-    
-    // 复制变换矩阵数据
-    tempMatrix[0] = *transformMatrix;
-    tempMatrix[1] = transformMatrix[1];
-    tempMatrix[2] = transformMatrix[2];
-    tempMatrix[5] = transformMatrix[5];
-    tempMatrix[4] = transformMatrix[4];
-    tempMatrix[8] = transformMatrix[8];
-    tempMatrix[6] = transformMatrix[6];
-    tempMatrix[10] = transformMatrix[10];
-    tempMatrix[9] = transformMatrix[9];
-    tempMatrix[13] = transformMatrix[0xd];
-    tempMatrix[12] = transformMatrix[0xc];
-    tempMatrix[14] = transformMatrix[0xe];
-    tempMatrix[15] = 0x3f800000;  // 1.0f
-    tempMatrix[3] = 0;
-    tempMatrix[7] = 0;
-    tempMatrix[11] = 0;
-    
-    // 计算矩阵变换
-    FUN_1805351a0(&tempMatrix[0], &matrixResult[0]);
-    
-    vecY = vector[1];
-    vecX = *vector;
-    vecZ = vector[2];
-    
-    // 应用变换到向量
-    vector[3] = 1.0;
-    *vector = vecX * matrixResult[0] + vecY * matrixResult[4] + vecZ * matrixResult[8] + matrixResult[12];
-    vector[1] = vecX * matrixResult[1] + vecY * matrixResult[5] + vecZ * matrixResult[9] + matrixResult[13];
-    vector[2] = vecX * matrixResult[2] + vecY * matrixResult[6] + vecZ * matrixResult[10] + matrixResult[14];
-    vector[3] = vecX * matrixResult[3] + vecY * matrixResult[7] + vecZ * matrixResult[11] + matrixResult[15];
-    
-    vector[7] = 1.0;
-    vecY = vector[4];
-    vecX = vector[5];
-    vecZ = vector[6];
-    vector[4] = vecX * matrixResult[0] + vecY * matrixResult[4] + vecZ * matrixResult[8] + matrixResult[12];
-    vector[5] = vecX * matrixResult[1] + vecY * matrixResult[5] + vecZ * matrixResult[9] + matrixResult[13];
-    vector[6] = vecX * matrixResult[2] + vecY * matrixResult[6] + vecZ * matrixResult[10] + matrixResult[14];
-    vector[7] = vecX * matrixResult[3] + vecY * matrixResult[7] + vecZ * matrixResult[11] + matrixResult[15];
-    
-    return;
-}
 
-/**
- * 缩放矩阵
- * @param sourceMatrix 源矩阵
- * @param destMatrix 目标矩阵
- * @param scaleFactor 缩放因子
- * @return 目标矩阵指针
- */
-float * ScaleMatrix(float *sourceMatrix, float *destMatrix, float scaleFactor)
-{
-    float scaleX, scaleY, scaleZ;
-    float rotX, rotY, rotZ;
-    float transX, transY, transZ;
-    float vecX, vecY, vecZ;
-    
-    scaleFactor = 1.0 / scaleFactor;
-    scaleX = *sourceMatrix;
-    scaleY = sourceMatrix[1];
-    rotX = sourceMatrix[4];
-    rotY = sourceMatrix[5];
-    transZ = sourceMatrix[9];
-    transX = sourceMatrix[10];
-    vecX = sourceMatrix[2];
-    vecY = sourceMatrix[6];
-    
-    // 应用缩放因子到矩阵元素
-    destMatrix[8] = scaleFactor * sourceMatrix[8];
-    destMatrix[9] = scaleFactor * transZ;
-    destMatrix[10] = scaleFactor * transX;
-    destMatrix[0xb] = MAX_FLOAT_VALUE;
-    *destMatrix = scaleFactor * scaleX;
-    destMatrix[1] = scaleFactor * scaleY;
-    destMatrix[2] = scaleFactor * vecX;
-    destMatrix[3] = MAX_FLOAT_VALUE;
-    destMatrix[4] = scaleFactor * rotX;
-    destMatrix[5] = scaleFactor * rotY;
-    destMatrix[6] = scaleFactor * vecY;
-    destMatrix[7] = MAX_FLOAT_VALUE;
-    
-    return destMatrix;
-}
 
-/**
- * 添加渲染资源到队列
- * @param resourceQueue 资源队列
- * @param resourceData 资源数据
- * @return 资源队列指针
- */
-longlong * AddResourceToQueue(longlong *resourceQueue, longlong *resourceData)
-{
-    undefined8 resourceHandle;
-    longlong *resourcePointer;
-    longlong *queuePointer;
-    longlong queueSize;
-    longlong *newQueue;
-    longlong newSize;
-    longlong *tempPointer;
-    
-    queuePointer = (longlong *)0x0;
-    resourceHandle = FUN_18062b1e0(DAT_180c8ed18, 0x98d9e0, 0x10, 8, 0, MUTEX_LOCK_TIMEOUT);
-    resourcePointer = (longlong *)FUN_1804f2420(resourceHandle);
-    *resourceData = (longlong)resourcePointer;
-    
-    if (resourcePointer != (longlong *)0x0) {
-        (**(code **)(*resourcePointer + 0x28))(resourcePointer);
-    }
-    
-    newSize = 1;
-    if (*resourceQueue == 0) {
-        resourcePointer = (longlong *)*resourceData;
-        if (resourcePointer != (longlong *)0x0) {
-            (**(code **)(*resourcePointer + 0x28))(resourcePointer);
-        }
-        tempPointer = (longlong *)*resourceQueue;
-        *resourceQueue = (longlong)resourcePointer;
-        if (tempPointer != (longlong *)0x0) {
-            (**(code **)(*tempPointer + 0x38))();
-        }
-    }
-    
-    resourcePointer = (longlong *)resourceQueue[2];
-    if (resourcePointer < (longlong *)resourceQueue[3]) {
-        resourceQueue[2] = (longlong)(resourcePointer + 1);
-        queuePointer = (longlong *)*resourceData;
-        *resourcePointer = (longlong)queuePointer;
-        if (queuePointer != (longlong *)0x0) {
-            (**(code **)(*queuePointer + 0x28))();
-        }
-    }
-    else {
-        tempPointer = (longlong *)resourceQueue[1];
-        queueSize = (longlong)resourcePointer - (longlong)tempPointer >> 3;
-        if ((queueSize == 0) || (newSize = queueSize * 2, queuePointer = queuePointer, newSize != 0)) {
-            queuePointer = (longlong *)FUN_18062b420(DAT_180c8ed18, newSize * 8, (char)resourceQueue[4]);
-            resourcePointer = (longlong *)resourceQueue[2];
-            tempPointer = (longlong *)resourceQueue[1];
-            queuePointer = queuePointer;
-        }
-        
-        // 复制现有队列数据
-        for (; tempPointer != resourcePointer; tempPointer = tempPointer + 1) {
-            *queuePointer = *tempPointer;
-            *tempPointer = 0;
-            queuePointer = queuePointer + 1;
-        }
-        
-        // 添加新资源到队列
-        resourcePointer = (longlong *)*resourceData;
-        *queuePointer = (longlong)resourcePointer;
-        if (resourcePointer != (longlong *)0x0) {
-            (**(code **)(*resourcePointer + 0x28))();
-        }
-        
-        // 清理旧队列数据
-        resourcePointer = (longlong *)resourceQueue[2];
-        tempPointer = (longlong *)resourceQueue[1];
-        if (tempPointer != resourcePointer) {
-            do {
-                if ((longlong *)*tempPointer != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)*tempPointer + 0x38))();
-                }
-                tempPointer = tempPointer + 1;
-            } while (tempPointer != resourcePointer);
-            tempPointer = (longlong *)resourceQueue[1];
-        }
-        
-        if (tempPointer != (longlong *)0x0) {
-            FUN_18064e900(tempPointer);
-        }
-        
-        // 更新队列指针
-        resourceQueue[1] = (longlong)queuePointer;
-        resourceQueue[2] = (longlong)(queuePointer + 1);
-        resourceQueue[3] = (longlong)(queuePointer + newSize);
-    }
-    
-    return resourceData;
-}
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * 处理渲染队列事件
- * @param renderManager 渲染管理器
- * @param eventData 事件数据
- * @param eventFlag 事件标志
- */
-void ProcessRenderQueueEvent(longlong *renderManager, undefined8 eventData, undefined8 eventFlag)
-{
-    undefined4 renderState;
-    longlong renderContext;
-    char isRenderReady;
-    int lockResult;
-    longlong queueIterator;
-    longlong *queuePointer;
-    
-    renderContext = *renderManager;
-    if (renderContext != 0) {
-        isRenderReady = FUN_18055f260(eventFlag, &queuePointer, &g_UnknownResourceData);
-        FUN_1804fe350(&g_UnknownRenderBuffer, isRenderReady, &g_UnknownShaderCache, &queuePointer);
-        
-        if ((((isRenderReady != '\0') && (-1 < (int)(uint)queuePointer)) &&
-            ((int)(uint)queuePointer < *(int *)(renderContext + 0x87b31c))) &&
-           (renderContext = (ulonglong)((uint)queuePointer & 0xf) * 0xbe0 +
-            *(longlong *)(*(longlong *)(renderContext + 0x87b340) + (ulonglong)((uint)queuePointer >> 4) * 8),
-            *(int *)(renderContext + 8) != 0)) {
-            
-            queueIterator = 0;
-            if (((g_RenderState - 2U & 0xfffffffc) == 0) && (g_RenderState != 4)) {
-                lockResult = _Mtx_lock(0x180c95528);
-                if (lockResult != 0) {
-                    __Throw_C_error_std__YAXH_Z(lockResult);
-                }
-                renderState = *(undefined4 *)(renderContext + 0xc);
-                isRenderReady = FUN_180645c10(0x180c95578, 0, &g_UnknownShaderData);
-                if ((isRenderReady != '\0') &&
-                   (isRenderReady = FUN_180645c10(0x180c95578, 0x13, &g_UnknownTextureData), isRenderReady != '\0')) {
-                    FUN_180645c10(0x180c95578, renderState, &g_UnknownResourceData);
-                }
-                
-                // 清理渲染状态
-                DAT_180c95b3c = DAT_180c95b3c & 0xffffffff00000000;
-                lockResult = (int)(DAT_180c92ce0 - DAT_180c92cd8 >> 3);
-                renderContext = DAT_180c92cd8;
-                
-                if (0 < lockResult) {
-                    do {
-                        queueIterator = *(longlong *)(renderContext + queueIterator * 8);
-                        if ((queueIterator != 0) && (*(char *)(*(longlong *)(queueIterator + 0x58f8) + 0x1c) != '\0')) {
-                            FUN_1805b59d0(queueIterator, 0x180c95578);
-                            renderContext = DAT_180c92cd8;
-                        }
-                        queueIterator = queueIterator + 1;
-                    } while (queueIterator < lockResult);
-                }
-                
-                if (g_ShaderManager != 0) {
-                    FUN_180567f30(DAT_180c92580, 0x180c95578);
-                }
-                
-                DAT_180c95b3c = 0;
-                memset(DAT_180c95b10, 0, (longlong)(DAT_180c95b08 >> 3));
-            }
-            
-            *(undefined2 *)(renderContext + 0x3d1) = 0;
-            if (*(longlong *)(*(longlong *)(renderContext + 0xe0) + 0x20) != 0) {
-                FUN_180198980();
-            }
-            queuePointer = *(longlong **)(renderContext + 0xe0);
-            *(undefined8 *)(renderContext + 0xe0) = 0;
-            if (queuePointer != (longlong *)0x0) {
-                (**(code **)(*queuePointer + 0x38))();
-            }
-            *(undefined8 *)(renderContext + 0xe8) = 0;
-            return;
-        }
-    }
-    return;
-}
 
-/**
- * 处理渲染队列清理事件
- */
-void ProcessRenderQueueCleanupEvent(void)
-{
-    undefined4 renderState;
-    longlong renderContext;
-    char isRenderReady;
-    int lockResult;
-    longlong queueIterator;
-    longlong unaff_RDI;
-    uint queueData;
-    
-    isRenderReady = FUN_18055f260();
-    FUN_1804fe350(&g_UnknownRenderBuffer, isRenderReady, &g_UnknownShaderCache, &queueData);
-    
-    if ((((isRenderReady != '\0') && (-1 < (int)queueData)) &&
-        ((int)queueData < *(int *)(unaff_RDI + 0x87b31c))) &&
-       (renderContext = (ulonglong)(queueData & 0xf) * 0xbe0 +
-        *(longlong *)(*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(queueData >> 4) * 8),
-        *(int *)(renderContext + 8) != 0)) {
-        
-        queueIterator = 0;
-        if (((g_RenderState - 2U & 0xfffffffc) == 0) && (g_RenderState != 4)) {
-            lockResult = _Mtx_lock(0x180c95528);
-            if (lockResult != 0) {
-                __Throw_C_error_std__YAXH_Z(lockResult);
-            }
-            renderState = *(undefined4 *)(renderContext + 0xc);
-            isRenderReady = FUN_180645c10(0x180c95578, 0, &g_UnknownShaderData);
-            if ((isRenderReady != '\0') && 
-                (isRenderReady = FUN_180645c10(0x180c95578, 0x13, &g_UnknownTextureData), isRenderReady != '\0')) {
-                FUN_180645c10(0x180c95578, renderState, &g_UnknownResourceData);
-            }
-            
-            // 清理渲染状态
-            DAT_180c95b3c = DAT_180c95b3c & 0xffffffff00000000;
-            lockResult = (int)(DAT_180c92ce0 - DAT_180c92cd8 >> 3);
-            renderContext = DAT_180c92cd8;
-            
-            if (0 < lockResult) {
-                do {
-                    queueIterator = *(longlong *)(renderContext + queueIterator * 8);
-                    if ((queueIterator != 0) && (*(char *)(*(longlong *)(queueIterator + 0x58f8) + 0x1c) != '\0')) {
-                        FUN_1805b59d0(queueIterator, 0x180c95578);
-                        renderContext = DAT_180c92cd8;
-                    }
-                    queueIterator = queueIterator + 1;
-                } while (queueIterator < lockResult);
-            }
-            
-            if (g_ShaderManager != 0) {
-                FUN_180567f30(DAT_180c92580, 0x180c95578);
-            }
-            
-            DAT_180c95b3c = 0;
-            memset(DAT_180c95b10, 0, (longlong)(DAT_180c95b08 >> 3));
-        }
-        
-        *(undefined2 *)(renderContext + 0x3d1) = 0;
-        if (*(longlong *)(*(longlong *)(renderContext + 0xe0) + 0x20) != 0) {
-            FUN_180198980();
-        }
-        
-        queueData = *(longlong **)(renderContext + 0xe0);
-        *(undefined8 *)(renderContext + 0xe0) = 0;
-        if (queueData != (longlong *)0x0) {
-            (**(code **)(*queueData + 0x38))();
-        }
-        *(undefined8 *)(renderContext + 0xe8) = 0;
-        return;
-    }
-    return;
-}
 
-/**
- * 处理渲染队列重置事件
- */
-void ProcessRenderQueueResetEvent(void)
-{
-    undefined4 renderState;
-    longlong renderContext;
-    longlong *queuePointer;
-    char isRenderReady;
-    int lockResult;
-    longlong queueIterator;
-    longlong unaff_RDI;
-    uint queueData;
-    
-    if (((-1 < (int)queueData) && ((int)queueData < *(int *)(unaff_RDI + 0x87b31c))) &&
-       (renderContext = (ulonglong)(queueData & 0xf) * 0xbe0 +
-        *(longlong *)(*(longlong *)(unaff_RDI + 0x87b340) + (ulonglong)(queueData >> 4) * 8),
-        *(int *)(renderContext + 8) != 0)) {
-        
-        queueIterator = 0;
-        if (((g_RenderState - 2U & 0xfffffffc) == 0) && (g_RenderState != 4)) {
-            lockResult = _Mtx_lock(0x180c95528);
-            if (lockResult != 0) {
-                __Throw_C_error_std__YAXH_Z(lockResult);
-            }
-            renderState = *(undefined4 *)(renderContext + 0xc);
-            isRenderReady = FUN_180645c10(0x180c95578, 0, &g_UnknownShaderData);
-            if ((isRenderReady != '\0') && 
-                (isRenderReady = FUN_180645c10(0x180c95578, 0x13, &g_UnknownTextureData), isRenderReady != '\0')) {
-                FUN_180645c10(0x180c95578, renderState, &g_UnknownResourceData);
-            }
-            
-            // 清理渲染状态
-            DAT_180c95b3c = DAT_180c95b3c & 0xffffffff00000000;
-            lockResult = (int)(DAT_180c92ce0 - DAT_180c92cd8 >> 3);
-            renderContext = DAT_180c92cd8;
-            
-            if (0 < lockResult) {
-                do {
-                    queueIterator = *(longlong *)(renderContext + queueIterator * 8);
-                    if ((queueIterator != 0) && (*(char *)(*(longlong *)(queueIterator + 0x58f8) + 0x1c) != '\0')) {
-                        FUN_1805b59d0(queueIterator, 0x180c95578);
-                        renderContext = DAT_180c92cd8;
-                    }
-                    queueIterator = queueIterator + 1;
-                } while (queueIterator < lockResult);
-            }
-            
-            if (g_ShaderManager != 0) {
-                FUN_180567f30(DAT_180c92580, 0x180c95578);
-            }
-            
-            DAT_180c95b3c = 0;
-            memset(DAT_180c95b10, 0, (longlong)(DAT_180c95b08 >> 3));
-        }
-        
-        *(undefined2 *)(renderContext + 0x3d1) = 0;
-        if (*(longlong *)(*(longlong *)(renderContext + 0xe0) + 0x20) != 0) {
-            FUN_180198980();
-        }
-        queuePointer = *(longlong **)(renderContext + 0xe0);
-        *(undefined8 *)(renderContext + 0xe0) = 0;
-        if (queuePointer != (longlong *)0x0) {
-            (**(code **)(*queuePointer + 0x38))();
-        }
-        *(undefined8 *)(renderContext + 0xe8) = 0;
-        return;
-    }
-    return;
-}
-
-// 函数别名定义（保持向后兼容）
-#define FUN_180534410 UpdateRenderTransformMatrix
-#define FUN_1805344c0 GetRenderResourceHandle
-#define FUN_180534540 ResetRenderResourcePointer
-#define FUN_180534590 CleanupRenderResource
-#define FUN_1805346e0 InitializeRenderThreadData
-#define FUN_180534770 ProcessRenderQueueData
-#define FUN_180534800 Calculate3DTransformMatrix
-#define FUN_180534930 ApplyMatrixTransform
-#define FUN_180534b00 CleanupRenderBuffer
-#define FUN_180534d00 LockRenderContext
-#define FUN_180535010 ReleaseRenderResource
-#define FUN_1805351a0 CalculateMatrixInverse
-#define FUN_1805353a0 ApplyMatrixToVector
-#define FUN_180535610 ScaleMatrix
-#define FUN_180535720 AddResourceToQueue
-#define FUN_1805358d0 ProcessRenderQueueEvent
-#define FUN_1805358ec ProcessRenderQueueCleanupEvent
-#define FUN_180535925 ProcessRenderQueueResetEvent

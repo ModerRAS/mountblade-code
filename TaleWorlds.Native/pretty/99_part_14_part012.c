@@ -1,184 +1,1115 @@
-/**
- * @file 99_part_14_part012.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 99_part_14_part012.c - 15 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1808f17d0(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1808f17d0(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  char cVar1;
+  longlong *plVar2;
+  undefined8 uVar3;
+  
+  uVar3 = 0xfffffffffffffffe;
+  cVar1 = *(char *)((longlong)param_2 + 0x19);
+  while (cVar1 == '\0') {
+    FUN_1808f17d0(param_1,param_2[2],param_3,param_4,uVar3);
+    plVar2 = (longlong *)*param_2;
+    if ((7 < (ulonglong)param_2[7]) && (param_2[4] != 0)) {
+      if (_DAT_180c69e10 == (code *)0x0) {
+        free();
+      }
+      else {
+        (*_DAT_180c69e10)();
+      }
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+    param_2[6] = 0;
+    param_2[7] = 7;
+    *(undefined2 *)(param_2 + 4) = 0;
+    if (param_2 != (longlong *)0x0) {
+      if (_DAT_180c69e10 == (code *)0x0) {
+        free(param_2);
+      }
+      else {
+        (*_DAT_180c69e10)();
+      }
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+    param_2 = plVar2;
+    cVar1 = *(char *)((longlong)plVar2 + 0x19);
+  }
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+longlong * FUN_1808f1890(longlong *param_1,longlong *param_2)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  char cVar1;
+  longlong lVar2;
+  undefined8 *puVar3;
+  longlong *plVar4;
+  longlong *plVar5;
+  longlong *plVar6;
+  longlong *plVar7;
+  longlong *plVar8;
+  
+  plVar5 = (longlong *)param_2[2];
+  plVar6 = param_2 + 2;
+  if (*(char *)((longlong)plVar5 + 0x19) == '\0') {
+    cVar1 = *(char *)(*plVar5 + 0x19);
+    plVar7 = (longlong *)*plVar5;
+    while (cVar1 == '\0') {
+      cVar1 = *(char *)(*plVar7 + 0x19);
+      plVar5 = plVar7;
+      plVar7 = (longlong *)*plVar7;
     }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+  }
+  else {
+    cVar1 = *(char *)(param_2[1] + 0x19);
+    plVar8 = (longlong *)param_2[1];
+    plVar7 = param_2;
+    while ((plVar5 = plVar8, cVar1 == '\0' && (plVar7 == (longlong *)plVar5[2]))) {
+      cVar1 = *(char *)(plVar5[1] + 0x19);
+      plVar8 = (longlong *)plVar5[1];
+      plVar7 = plVar5;
     }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+  }
+  plVar7 = (longlong *)*param_2;
+  plVar8 = (longlong *)*plVar6;
+  if (((*(char *)((longlong)plVar7 + 0x19) == '\0') &&
+      (plVar8 = plVar7, *(char *)(*plVar6 + 0x19) == '\0')) &&
+     (plVar8 = (longlong *)plVar5[2], plVar5 != param_2)) {
+    plVar7[1] = (longlong)plVar5;
+    *plVar5 = *param_2;
+    plVar7 = plVar5;
+    if (plVar5 != (longlong *)*plVar6) {
+      plVar7 = (longlong *)plVar5[1];
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        plVar8[1] = (longlong)plVar7;
+      }
+      *plVar7 = (longlong)plVar8;
+      plVar5[2] = *plVar6;
+      *(longlong **)(*plVar6 + 8) = plVar5;
     }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+    if (*(longlong **)(*param_1 + 8) == param_2) {
+      *(longlong **)(*param_1 + 8) = plVar5;
+    }
+    else {
+      puVar3 = (undefined8 *)param_2[1];
+      if ((longlong *)*puVar3 == param_2) {
+        *puVar3 = plVar5;
+      }
+      else {
+        puVar3[2] = plVar5;
+      }
+    }
+    plVar5[1] = param_2[1];
+    lVar2 = plVar5[3];
+    *(char *)(plVar5 + 3) = (char)param_2[3];
+    *(char *)(param_2 + 3) = (char)lVar2;
+  }
+  else {
+    plVar7 = (longlong *)param_2[1];
+    if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+      plVar8[1] = (longlong)plVar7;
+    }
+    if (*(longlong **)(*param_1 + 8) == param_2) {
+      *(longlong **)(*param_1 + 8) = plVar8;
+    }
+    else if ((longlong *)*plVar7 == param_2) {
+      *plVar7 = (longlong)plVar8;
+    }
+    else {
+      plVar7[2] = (longlong)plVar8;
+    }
+    if (*(longlong **)*param_1 == param_2) {
+      plVar6 = plVar7;
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        cVar1 = *(char *)(*plVar8 + 0x19);
+        plVar5 = (longlong *)*plVar8;
+        plVar6 = plVar8;
+        while (plVar4 = plVar5, cVar1 == '\0') {
+          plVar5 = (longlong *)*plVar4;
+          cVar1 = *(char *)((longlong)plVar5 + 0x19);
+          plVar6 = plVar4;
+        }
+      }
+      *(longlong **)*param_1 = plVar6;
+    }
+    lVar2 = *param_1;
+    if (*(longlong **)(lVar2 + 0x10) == param_2) {
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        cVar1 = *(char *)(plVar8[2] + 0x19);
+        plVar6 = (longlong *)plVar8[2];
+        plVar5 = plVar8;
+        while (plVar4 = plVar6, cVar1 == '\0') {
+          plVar6 = (longlong *)plVar4[2];
+          cVar1 = *(char *)((longlong)plVar6 + 0x19);
+          plVar5 = plVar4;
+        }
+        *(longlong **)(lVar2 + 0x10) = plVar5;
+      }
+      else {
+        *(longlong **)(lVar2 + 0x10) = plVar7;
+      }
+    }
+  }
+  if ((char)param_2[3] == '\x01') {
+    if (plVar8 != *(longlong **)(*param_1 + 8)) {
+      do {
+        plVar6 = plVar7;
+        if ((char)plVar8[3] != '\x01') break;
+        plVar5 = (longlong *)*plVar6;
+        if (plVar8 == plVar5) {
+          plVar5 = (longlong *)plVar6[2];
+          if ((char)plVar5[3] == '\0') {
+            *(undefined1 *)(plVar5 + 3) = 1;
+            plVar5 = (longlong *)plVar6[2];
+            *(undefined1 *)(plVar6 + 3) = 0;
+            plVar6[2] = *plVar5;
+            if (*(char *)(*plVar5 + 0x19) == '\0') {
+              *(longlong **)(*plVar5 + 8) = plVar6;
+            }
+            plVar5[1] = plVar6[1];
+            if (plVar6 == *(longlong **)(*param_1 + 8)) {
+              *(longlong **)(*param_1 + 8) = plVar5;
+            }
+            else {
+              puVar3 = (undefined8 *)plVar6[1];
+              if (plVar6 == (longlong *)*puVar3) {
+                *puVar3 = plVar5;
+              }
+              else {
+                puVar3[2] = plVar5;
+              }
+            }
+            *plVar5 = (longlong)plVar6;
+            plVar6[1] = (longlong)plVar5;
+            plVar5 = (longlong *)plVar6[2];
+          }
+          if (*(char *)((longlong)plVar5 + 0x19) == '\0') {
+            if ((*(char *)(*plVar5 + 0x18) != '\x01') || (*(char *)(plVar5[2] + 0x18) != '\x01')) {
+              if (*(char *)(plVar5[2] + 0x18) == '\x01') {
+                *(undefined1 *)(*plVar5 + 0x18) = 1;
+                *(undefined1 *)(plVar5 + 3) = 0;
+                func_0x0001808f1c90(param_1,plVar5);
+                plVar5 = (longlong *)plVar6[2];
+              }
+              *(char *)(plVar5 + 3) = (char)plVar6[3];
+              *(undefined1 *)(plVar6 + 3) = 1;
+              *(undefined1 *)(plVar5[2] + 0x18) = 1;
+              func_0x0001808f1c30(param_1,plVar6);
+              break;
+            }
+LAB_1808f1b5d:
+            *(undefined1 *)(plVar5 + 3) = 0;
+          }
+        }
+        else {
+          if ((char)plVar5[3] == '\0') {
+            *(undefined1 *)(plVar5 + 3) = 1;
+            *(undefined1 *)(plVar6 + 3) = 0;
+            func_0x0001808f1c90(param_1,plVar6);
+            plVar5 = (longlong *)*plVar6;
+          }
+          if (*(char *)((longlong)plVar5 + 0x19) == '\0') {
+            if ((*(char *)(plVar5[2] + 0x18) == '\x01') && (*(char *)(*plVar5 + 0x18) == '\x01'))
+            goto LAB_1808f1b5d;
+            if (*(char *)(*plVar5 + 0x18) == '\x01') {
+              *(undefined1 *)(plVar5[2] + 0x18) = 1;
+              *(undefined1 *)(plVar5 + 3) = 0;
+              func_0x0001808f1c30(param_1,plVar5);
+              plVar5 = (longlong *)*plVar6;
+            }
+            *(char *)(plVar5 + 3) = (char)plVar6[3];
+            *(undefined1 *)(plVar6 + 3) = 1;
+            *(undefined1 *)(*plVar5 + 0x18) = 1;
+            func_0x0001808f1c90(param_1,plVar6);
+            break;
+          }
+        }
+        plVar7 = (longlong *)plVar6[1];
+        plVar8 = plVar6;
+      } while (plVar6 != *(longlong **)(*param_1 + 8));
+    }
+    *(undefined1 *)(plVar8 + 3) = 1;
+  }
+  if (param_1[1] != 0) {
+    param_1[1] = param_1[1] + -1;
+  }
+  return param_2;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+longlong * FUN_1808f18a3(longlong *param_1,longlong *param_2,longlong *param_3)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  char cVar1;
+  longlong *plVar2;
+  longlong lVar3;
+  undefined8 *puVar4;
+  longlong *plVar5;
+  longlong *in_RAX;
+  longlong *plVar6;
+  longlong *plVar7;
+  longlong *plVar8;
+  
+  if (*(char *)((longlong)in_RAX + 0x19) == '\0') {
+    cVar1 = *(char *)(*in_RAX + 0x19);
+    plVar6 = (longlong *)*in_RAX;
+    while (plVar8 = plVar6, cVar1 == '\0') {
+      plVar6 = (longlong *)*plVar8;
+      cVar1 = *(char *)((longlong)plVar6 + 0x19);
+      in_RAX = plVar8;
     }
-    
-    return FUN_00000006(handle);
+  }
+  else {
+    cVar1 = *(char *)(param_2[1] + 0x19);
+    plVar8 = (longlong *)param_2[1];
+    plVar6 = param_2;
+    while ((in_RAX = plVar8, cVar1 == '\0' && (plVar6 == (longlong *)in_RAX[2]))) {
+      cVar1 = *(char *)(in_RAX[1] + 0x19);
+      plVar8 = (longlong *)in_RAX[1];
+      plVar6 = in_RAX;
+    }
+  }
+  plVar6 = (longlong *)*param_2;
+  plVar8 = (longlong *)*param_3;
+  if (((*(char *)((longlong)plVar6 + 0x19) == '\0') &&
+      (plVar8 = plVar6, *(char *)(*param_3 + 0x19) == '\0')) &&
+     (plVar8 = (longlong *)in_RAX[2], in_RAX != param_2)) {
+    plVar6[1] = (longlong)in_RAX;
+    *in_RAX = *param_2;
+    plVar6 = in_RAX;
+    if (in_RAX != (longlong *)*param_3) {
+      plVar6 = (longlong *)in_RAX[1];
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        plVar8[1] = (longlong)plVar6;
+      }
+      *plVar6 = (longlong)plVar8;
+      in_RAX[2] = *param_3;
+      *(longlong **)(*param_3 + 8) = in_RAX;
+    }
+    if (*(longlong **)(*param_1 + 8) == param_2) {
+      *(longlong **)(*param_1 + 8) = in_RAX;
+    }
+    else {
+      puVar4 = (undefined8 *)param_2[1];
+      if ((longlong *)*puVar4 == param_2) {
+        *puVar4 = in_RAX;
+      }
+      else {
+        puVar4[2] = in_RAX;
+      }
+    }
+    in_RAX[1] = param_2[1];
+    lVar3 = in_RAX[3];
+    *(char *)(in_RAX + 3) = (char)param_2[3];
+    *(char *)(param_2 + 3) = (char)lVar3;
+  }
+  else {
+    plVar6 = (longlong *)param_2[1];
+    if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+      plVar8[1] = (longlong)plVar6;
+    }
+    if (*(longlong **)(*param_1 + 8) == param_2) {
+      *(longlong **)(*param_1 + 8) = plVar8;
+    }
+    else if ((longlong *)*plVar6 == param_2) {
+      *plVar6 = (longlong)plVar8;
+    }
+    else {
+      plVar6[2] = (longlong)plVar8;
+    }
+    if (*(longlong **)*param_1 == param_2) {
+      plVar7 = plVar6;
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        cVar1 = *(char *)(*plVar8 + 0x19);
+        plVar2 = (longlong *)*plVar8;
+        plVar7 = plVar8;
+        while (plVar5 = plVar2, cVar1 == '\0') {
+          plVar2 = (longlong *)*plVar5;
+          cVar1 = *(char *)((longlong)plVar2 + 0x19);
+          plVar7 = plVar5;
+        }
+      }
+      *(longlong **)*param_1 = plVar7;
+    }
+    lVar3 = *param_1;
+    if (*(longlong **)(lVar3 + 0x10) == param_2) {
+      if (*(char *)((longlong)plVar8 + 0x19) == '\0') {
+        cVar1 = *(char *)(plVar8[2] + 0x19);
+        plVar7 = (longlong *)plVar8[2];
+        plVar2 = plVar8;
+        while (plVar5 = plVar7, cVar1 == '\0') {
+          plVar7 = (longlong *)plVar5[2];
+          cVar1 = *(char *)((longlong)plVar7 + 0x19);
+          plVar2 = plVar5;
+        }
+        *(longlong **)(lVar3 + 0x10) = plVar2;
+      }
+      else {
+        *(longlong **)(lVar3 + 0x10) = plVar6;
+      }
+    }
+  }
+  if ((char)param_2[3] == '\x01') {
+    if (plVar8 != *(longlong **)(*param_1 + 8)) {
+      do {
+        plVar7 = plVar6;
+        if ((char)plVar8[3] != '\x01') break;
+        plVar6 = (longlong *)*plVar7;
+        if (plVar8 == plVar6) {
+          plVar6 = (longlong *)plVar7[2];
+          if ((char)plVar6[3] == '\0') {
+            *(undefined1 *)(plVar6 + 3) = 1;
+            plVar6 = (longlong *)plVar7[2];
+            *(undefined1 *)(plVar7 + 3) = 0;
+            plVar7[2] = *plVar6;
+            if (*(char *)(*plVar6 + 0x19) == '\0') {
+              *(longlong **)(*plVar6 + 8) = plVar7;
+            }
+            plVar6[1] = plVar7[1];
+            if (plVar7 == *(longlong **)(*param_1 + 8)) {
+              *(longlong **)(*param_1 + 8) = plVar6;
+            }
+            else {
+              puVar4 = (undefined8 *)plVar7[1];
+              if (plVar7 == (longlong *)*puVar4) {
+                *puVar4 = plVar6;
+              }
+              else {
+                puVar4[2] = plVar6;
+              }
+            }
+            *plVar6 = (longlong)plVar7;
+            plVar7[1] = (longlong)plVar6;
+            plVar6 = (longlong *)plVar7[2];
+          }
+          if (*(char *)((longlong)plVar6 + 0x19) == '\0') {
+            if ((*(char *)(*plVar6 + 0x18) != '\x01') || (*(char *)(plVar6[2] + 0x18) != '\x01')) {
+              if (*(char *)(plVar6[2] + 0x18) == '\x01') {
+                *(undefined1 *)(*plVar6 + 0x18) = 1;
+                *(undefined1 *)(plVar6 + 3) = 0;
+                func_0x0001808f1c90(param_1,plVar6);
+                plVar6 = (longlong *)plVar7[2];
+              }
+              *(char *)(plVar6 + 3) = (char)plVar7[3];
+              *(undefined1 *)(plVar7 + 3) = 1;
+              *(undefined1 *)(plVar6[2] + 0x18) = 1;
+              func_0x0001808f1c30(param_1,plVar7);
+              break;
+            }
+LAB_1808f1b5d:
+            *(undefined1 *)(plVar6 + 3) = 0;
+          }
+        }
+        else {
+          if ((char)plVar6[3] == '\0') {
+            *(undefined1 *)(plVar6 + 3) = 1;
+            *(undefined1 *)(plVar7 + 3) = 0;
+            func_0x0001808f1c90(param_1,plVar7);
+            plVar6 = (longlong *)*plVar7;
+          }
+          if (*(char *)((longlong)plVar6 + 0x19) == '\0') {
+            if ((*(char *)(plVar6[2] + 0x18) == '\x01') && (*(char *)(*plVar6 + 0x18) == '\x01'))
+            goto LAB_1808f1b5d;
+            if (*(char *)(*plVar6 + 0x18) == '\x01') {
+              *(undefined1 *)(plVar6[2] + 0x18) = 1;
+              *(undefined1 *)(plVar6 + 3) = 0;
+              func_0x0001808f1c30(param_1,plVar6);
+              plVar6 = (longlong *)*plVar7;
+            }
+            *(char *)(plVar6 + 3) = (char)plVar7[3];
+            *(undefined1 *)(plVar7 + 3) = 1;
+            *(undefined1 *)(*plVar6 + 0x18) = 1;
+            func_0x0001808f1c90(param_1,plVar7);
+            break;
+          }
+        }
+        plVar6 = (longlong *)plVar7[1];
+        plVar8 = plVar7;
+      } while (plVar7 != *(longlong **)(*param_1 + 8));
+    }
+    *(undefined1 *)(plVar8 + 3) = 1;
+  }
+  if (param_1[1] != 0) {
+    param_1[1] = param_1[1] + -1;
+  }
+  return param_2;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+
+// 函数: void FUN_1808f1a47(void)
+void FUN_1808f1a47(void)
+
+{
+  undefined8 *puVar1;
+  longlong *plVar2;
+  longlong *unaff_RBX;
+  longlong *plVar3;
+  longlong *unaff_RDI;
+  longlong *unaff_R14;
+  
+  do {
+    plVar3 = unaff_RBX;
+    if ((char)unaff_RDI[3] != '\x01') break;
+    plVar2 = (longlong *)*plVar3;
+    if (unaff_RDI == plVar2) {
+      plVar2 = (longlong *)plVar3[2];
+      if ((char)plVar2[3] == '\0') {
+        *(undefined1 *)(plVar2 + 3) = 1;
+        plVar2 = (longlong *)plVar3[2];
+        *(undefined1 *)(plVar3 + 3) = 0;
+        plVar3[2] = *plVar2;
+        if (*(char *)(*plVar2 + 0x19) == '\0') {
+          *(longlong **)(*plVar2 + 8) = plVar3;
+        }
+        plVar2[1] = plVar3[1];
+        if (plVar3 == *(longlong **)(*unaff_R14 + 8)) {
+          *(longlong **)(*unaff_R14 + 8) = plVar2;
+        }
+        else {
+          puVar1 = (undefined8 *)plVar3[1];
+          if (plVar3 == (longlong *)*puVar1) {
+            *puVar1 = plVar2;
+          }
+          else {
+            puVar1[2] = plVar2;
+          }
+        }
+        *plVar2 = (longlong)plVar3;
+        plVar3[1] = (longlong)plVar2;
+        plVar2 = (longlong *)plVar3[2];
+      }
+      if (*(char *)((longlong)plVar2 + 0x19) == '\0') {
+        if ((*(char *)(*plVar2 + 0x18) != '\x01') || (*(char *)(plVar2[2] + 0x18) != '\x01')) {
+          if (*(char *)(plVar2[2] + 0x18) == '\x01') {
+            *(undefined1 *)(*plVar2 + 0x18) = 1;
+            *(undefined1 *)(plVar2 + 3) = 0;
+            func_0x0001808f1c90();
+            plVar2 = (longlong *)plVar3[2];
+          }
+          *(char *)(plVar2 + 3) = (char)plVar3[3];
+          *(undefined1 *)(plVar3 + 3) = 1;
+          *(undefined1 *)(plVar2[2] + 0x18) = 1;
+          func_0x0001808f1c30();
+          break;
+        }
+LAB_1808f1b5d:
+        *(undefined1 *)(plVar2 + 3) = 0;
+      }
+    }
+    else {
+      if (*(char *)(plVar2 + 3) == '\0') {
+        *(undefined1 *)(plVar2 + 3) = 1;
+        *(undefined1 *)(plVar3 + 3) = 0;
+        func_0x0001808f1c90();
+        plVar2 = (longlong *)*plVar3;
+      }
+      if (*(char *)((longlong)plVar2 + 0x19) == '\0') {
+        if ((*(char *)(plVar2[2] + 0x18) == '\x01') && (*(char *)(*plVar2 + 0x18) == '\x01'))
+        goto LAB_1808f1b5d;
+        if (*(char *)(*plVar2 + 0x18) == '\x01') {
+          *(undefined1 *)(plVar2[2] + 0x18) = 1;
+          *(undefined1 *)(plVar2 + 3) = 0;
+          func_0x0001808f1c30();
+          plVar2 = (longlong *)*plVar3;
+        }
+        *(char *)(plVar2 + 3) = (char)plVar3[3];
+        *(undefined1 *)(plVar3 + 3) = 1;
+        *(undefined1 *)(*plVar2 + 0x18) = 1;
+        func_0x0001808f1c90();
+        break;
+      }
+    }
+    unaff_RBX = (longlong *)plVar3[1];
+    unaff_RDI = plVar3;
+  } while (plVar3 != *(longlong **)(*unaff_R14 + 8));
+  *(undefined1 *)(unaff_RDI + 3) = 1;
+  if (unaff_R14[1] != 0) {
+    unaff_R14[1] = unaff_R14[1] + -1;
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1bb8(void)
+void FUN_1808f1bb8(void)
+
+{
+  longlong unaff_RDI;
+  longlong unaff_R14;
+  
+  *(undefined1 *)(unaff_RDI + 0x18) = 1;
+  if (*(longlong *)(unaff_R14 + 8) != 0) {
+    *(longlong *)(unaff_R14 + 8) = *(longlong *)(unaff_R14 + 8) + -1;
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1bd2(longlong param_1)
+void FUN_1808f1bd2(longlong param_1)
+
+{
+  longlong unaff_R14;
+  
+  *(longlong *)(unaff_R14 + 8) = param_1 + -1;
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+// 函数: void FUN_1808f1bf0(undefined8 param_1,longlong param_2)
+void FUN_1808f1bf0(undefined8 param_1,longlong param_2)
+
+{
+  if (param_2 != 0) {
+    if (_DAT_180c69e10 == (code *)0x0) {
+      free(param_2);
+    }
+    else {
+      (*_DAT_180c69e10)();
+    }
+  }
+  return;
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1cf0(void)
+void FUN_1808f1cf0(void)
+
+{
+  code *pcVar1;
+  
+  __Xlength_error_std__YAXPEBD_Z(&UNK_1809fec40);
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+// 函数: void FUN_1808f1d10(longlong *param_1)
+void FUN_1808f1d10(longlong *param_1)
+
+{
+  if (param_1 != (longlong *)0x0) {
+    if ((char)param_1[5] == '\0') {
+      CloseHandle(param_1[2]);
+    }
+    if (*param_1 != 0) {
+      if (_DAT_180c69e10 == (code *)0x0) {
+        free();
+      }
+      else {
+        (*_DAT_180c69e10)();
+      }
+    }
+                    // WARNING: Subroutine does not return
+    memset(param_1,0,0x21f8);
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined1 FUN_1808f1d70(void)
+
+{
+  if (DAT_180c58850 != '\0') {
+    return 1;
+  }
+  FUN_1808f6d00();
+  FUN_1808f0860();
+
+
+
+// 函数: void FUN_1808f1df0(longlong param_1,char param_2)
+void FUN_1808f1df0(longlong param_1,char param_2)
+
+{
+  ushort uVar1;
+  char cVar2;
+  int iVar3;
+  longlong lVar4;
+  ulonglong uVar5;
+  ushort uVar6;
+  undefined1 auStack_98 [40];
+  undefined8 uStack_70;
+  undefined8 uStack_68;
+  ulonglong uStack_60;
+  undefined8 uStack_58;
+  undefined8 uStack_50;
+  undefined8 uStack_48;
+  undefined8 uStack_40;
+  undefined8 uStack_38;
+  undefined8 uStack_30;
+  ulonglong uStack_28;
+  
+  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uVar6 = 0;
+  if (param_2 == '\0') {
+    cVar2 = func_0x0001808f0e90(*(undefined2 *)(param_1 + 0x20),*(undefined2 *)(param_1 + 0x22),
+                                *(undefined4 *)(param_1 + 0x24));
+    if (cVar2 == '\0') {
+      cVar2 = func_0x0001808f0e30(*(undefined2 *)(param_1 + 0x20),*(undefined2 *)(param_1 + 0x22));
+      if (cVar2 != '\0') {
+        uVar6 = 0x30;
+      }
+    }
+    else {
+      uVar6 = 0x11;
+    }
+  }
+  else {
+    uVar6 = 0x11;
+  }
+  if ((*(longlong *)(param_1 + 0x10) != 0) &&
+     (cVar2 = HidD_GetPreparsedData(*(longlong *)(param_1 + 0x10),&uStack_70), cVar2 != '\0')) {
+    uStack_68 = 0;
+    uStack_60 = 0;
+    uStack_58 = 0;
+    uStack_50 = 0;
+    uStack_48 = 0;
+    uStack_40 = 0;
+    uStack_38 = 0;
+    uStack_30 = 0;
+    iVar3 = HidP_GetCaps(uStack_70,&uStack_68);
+    if (iVar3 == 0x110000) {
+      uVar1 = (ushort)uStack_60;
+      uVar5 = uStack_60 & 0xffff;
+      if ((0x40 < (ushort)((ulonglong)uStack_68 >> 0x20)) &&
+         (cVar2 = func_0x0001808f0e90(*(undefined2 *)(param_1 + 0x20),
+                                      *(undefined2 *)(param_1 + 0x22),
+                                      *(undefined4 *)(param_1 + 0x24)), cVar2 != '\0')) {
+        uVar6 = 0x30;
+      }
+      if (uVar1 < uVar6) {
+        HidD_FreePreparsedData(uStack_70);
+      }
+      else {
+        if (_DAT_180c69e18 == (code *)0x0) {
+          lVar4 = malloc(uVar5);
+        }
+        else {
+          lVar4 = (*_DAT_180c69e18)();
+        }
+        if (lVar4 != 0) {
+                    // WARNING: Subroutine does not return
+          memset(lVar4,0,uVar5);
+        }
+        HidD_FreePreparsedData(uStack_70);
+      }
+    }
+    else {
+      HidD_FreePreparsedData(uStack_70);
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_98);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+// 函数: void FUN_1808f1ed6(void)
+void FUN_1808f1ed6(void)
+
+{
+  char cVar1;
+  undefined8 in_RAX;
+  longlong lVar2;
+  longlong unaff_RSI;
+  uint unaff_EDI;
+  undefined8 in_stack_00000028;
+  ushort in_stack_00000038;
+  ulonglong in_stack_00000070;
+  
+  if (0x40 < (ushort)((ulonglong)in_RAX >> 0x20)) {
+    cVar1 = func_0x0001808f0e90(*(undefined2 *)(unaff_RSI + 0x20),*(undefined2 *)(unaff_RSI + 0x22),
+                                *(undefined4 *)(unaff_RSI + 0x24));
+    if (cVar1 != '\0') {
+      unaff_EDI = 0x30;
+    }
+  }
+  if (in_stack_00000038 < unaff_EDI) {
+    HidD_FreePreparsedData(in_stack_00000028);
+  }
+  else {
+    if (_DAT_180c69e18 == (code *)0x0) {
+      lVar2 = malloc(in_stack_00000038);
+    }
+    else {
+      lVar2 = (*_DAT_180c69e18)();
+    }
+    if (lVar2 != 0) {
+                    // WARNING: Subroutine does not return
+      memset(lVar2,0,in_stack_00000038);
+    }
+    HidD_FreePreparsedData(in_stack_00000028);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1f2a(void)
+void FUN_1808f1f2a(void)
+
+{
+  code *in_RAX;
+  longlong lVar1;
+  undefined8 in_stack_00000028;
+  ulonglong in_stack_00000070;
+  
+  if (in_RAX == (code *)0x0) {
+    lVar1 = malloc();
+  }
+  else {
+    lVar1 = (*in_RAX)();
+  }
+  if (lVar1 != 0) {
+                    // WARNING: Subroutine does not return
+    memset(lVar1,0);
+  }
+  HidD_FreePreparsedData(in_stack_00000028);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1fbc(void)
+void FUN_1808f1fbc(void)
+
+{
+  ulonglong in_stack_00000070;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1fcc(void)
+void FUN_1808f1fcc(void)
+
+{
+  ulonglong in_stack_00000070;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f1fe4(void)
+void FUN_1808f1fe4(void)
+
+{
+  code *in_RAX;
+  undefined8 in_stack_00000028;
+  ulonglong in_stack_00000070;
+  
+  if (in_RAX == (code *)0x0) {
+    free();
+  }
+  else {
+    (*in_RAX)();
+  }
+  GetLastError();
+  HidD_FreePreparsedData(in_stack_00000028);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+
+// 函数: void FUN_1808f201b(void)
+void FUN_1808f201b(void)
+
+{
+  undefined8 in_stack_00000028;
+  ulonglong in_stack_00000070;
+  
+  HidD_FreePreparsedData(in_stack_00000028);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+// 函数: void FUN_1808f2040(int param_1,undefined8 param_2,ushort param_3)
+void FUN_1808f2040(int param_1,undefined8 param_2,ushort param_3)
+
+{
+  ushort uVar1;
+  char cVar2;
+  int iVar3;
+  longlong lVar4;
+  longlong *plVar5;
+  longlong *plVar6;
+  undefined1 auStack_c8 [48];
+  undefined4 uStack_98;
+  undefined8 uStack_90;
+  undefined8 uStack_88;
+  undefined8 uStack_80;
+  undefined8 uStack_78;
+  undefined8 uStack_70;
+  undefined8 uStack_68;
+  undefined8 uStack_60;
+  undefined8 uStack_58;
+  undefined8 uStack_50;
+  ulonglong uStack_48;
+  
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  plVar5 = (longlong *)0x180c58860;
+  do {
+    if ((*plVar5 != 0) && (plVar6 = plVar5, (int)plVar5[1] == param_1)) break;
+    plVar5 = plVar5 + 0x43f;
+    plVar6 = (longlong *)0x0;
+  } while ((longlong)plVar5 < 0x180c69820);
+  if ((plVar6[2] != 0) && (cVar2 = HidD_GetPreparsedData(plVar6[2],&uStack_90), cVar2 != '\0')) {
+    uStack_88 = 0;
+    uStack_80 = 0;
+    uStack_78 = 0;
+    uStack_70 = 0;
+    uStack_68 = 0;
+    uStack_60 = 0;
+    uStack_58 = 0;
+    uStack_50 = 0;
+    iVar3 = HidP_GetCaps(uStack_90,&uStack_88);
+    if (iVar3 == 0x110000) {
+      uVar1 = uStack_88._6_2_;
+      uStack_98 = 0x4e;
+      if (uStack_88._6_2_ < param_3) {
+        HidD_FreePreparsedData(uStack_90);
+      }
+      else {
+        if (_DAT_180c69e18 == (code *)0x0) {
+          lVar4 = malloc(uStack_88._6_2_);
+        }
+        else {
+          lVar4 = (*_DAT_180c69e18)();
+        }
+        if (lVar4 != 0) {
+                    // WARNING: Subroutine does not return
+          memset(lVar4,0,uVar1);
+        }
+        HidD_FreePreparsedData(uStack_90);
+      }
+    }
+    else {
+      HidD_FreePreparsedData(uStack_90);
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_c8);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 FUN_1808f22b0(undefined4 param_1,longlong param_2,undefined2 param_3)
+
+{
+  char cVar1;
+  byte bVar2;
+  char cVar3;
+  byte bVar4;
+  longlong lVar5;
+  undefined8 uVar6;
+  
+  func_0x0001808f0da0();
+  lVar5 = func_0x0001808f0da0(param_1);
+  if (lVar5 == 0) {
+    uVar6 = 0x8001002d;
+  }
+  else {
+    cVar1 = func_0x0001808f0e30(*(undefined2 *)(lVar5 + 2),*(undefined2 *)(lVar5 + 4));
+    if (cVar1 != '\0') {
+      if ((byte)(*(char *)(lVar5 + 6) - 2U) < 2) {
+        *(byte *)(param_2 + 1) = *(byte *)(param_2 + 1) | 2;
+      }
+      bVar2 = *(byte *)(param_2 + 2);
+      if (*(char *)(lVar5 + 7) != '\0') {
+        bVar2 = bVar2 | 0x20;
+      }
+      *(byte *)(param_2 + 2) = bVar2 | 0x40;
+      cVar3 = '\v' - *(char *)(lVar5 + 0xb);
+      bVar2 = 8 - *(char *)(lVar5 + 10);
+      cVar1 = '\n';
+      if (cVar3 != '\v') {
+        cVar1 = cVar3;
+      }
+      bVar4 = 7;
+      if (bVar2 != 8) {
+        bVar4 = bVar2;
+      }
+      if ((*(char *)(lVar5 + 6) == '\x03') || (DAT_180c58852 != '\0')) {
+        if (*(ushort *)(lVar5 + 0x4c) < 0x220) {
+          if (DAT_180c58852 != '\0') {
+            if (bVar4 == 0) {
+              bVar4 = 3;
+            }
+            else if (bVar4 == 2) {
+              bVar4 = 5;
+            }
+            else if (bVar4 == 3) {
+              bVar4 = 6;
+            }
+          }
+        }
+        else {
+          *(byte *)(param_2 + 0x27) = *(byte *)(param_2 + 0x27) | 4;
+        }
+      }
+      *(byte *)(param_2 + 0x25) = cVar1 << 4 | bVar4 & 7;
+    }
+    if (_DAT_180c69e18 == (code *)0x0) {
+      lVar5 = malloc(param_3);
+    }
+    else {
+      lVar5 = (*_DAT_180c69e18)();
+    }
+    if (lVar5 != 0) {
+                    // WARNING: Subroutine does not return
+      memcpy(lVar5,param_2,param_3);
+    }
+    uVar6 = 0x80010004;
+  }
+  return uVar6;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 FUN_1808f22f5(void)
+
+{
+  char cVar1;
+  byte bVar2;
+  char cVar3;
+  byte bVar4;
+  longlong lVar5;
+  longlong unaff_RBX;
+  longlong unaff_RSI;
+  undefined2 unaff_R14W;
+  
+  cVar1 = func_0x0001808f0e30();
+  if (cVar1 != '\0') {
+    if ((byte)(*(char *)(unaff_RBX + 6) - 2U) < 2) {
+      *(byte *)(unaff_RSI + 1) = *(byte *)(unaff_RSI + 1) | 2;
+    }
+    bVar2 = *(byte *)(unaff_RSI + 2);
+    if (*(char *)(unaff_RBX + 7) != '\0') {
+      bVar2 = bVar2 | 0x20;
+    }
+    *(byte *)(unaff_RSI + 2) = bVar2 | 0x40;
+    cVar3 = '\v' - *(char *)(unaff_RBX + 0xb);
+    bVar2 = 8 - *(char *)(unaff_RBX + 10);
+    cVar1 = '\n';
+    if (cVar3 != '\v') {
+      cVar1 = cVar3;
+    }
+    bVar4 = 7;
+    if (bVar2 != 8) {
+      bVar4 = bVar2;
+    }
+    if ((*(char *)(unaff_RBX + 6) == '\x03') || (DAT_180c58852 != '\0')) {
+      if (*(ushort *)(unaff_RBX + 0x4c) < 0x220) {
+        if (DAT_180c58852 != '\0') {
+          if (bVar4 == 0) {
+            bVar4 = 3;
+          }
+          else if (bVar4 == 2) {
+            bVar4 = 5;
+          }
+          else if (bVar4 == 3) {
+            bVar4 = 6;
+          }
+        }
+      }
+      else {
+        *(byte *)(unaff_RSI + 0x27) = *(byte *)(unaff_RSI + 0x27) | 4;
+      }
+    }
+    *(byte *)(unaff_RSI + 0x25) = cVar1 << 4 | bVar4 & 7;
+  }
+  if (_DAT_180c69e18 == (code *)0x0) {
+    lVar5 = malloc(unaff_R14W);
+  }
+  else {
+    lVar5 = (*_DAT_180c69e18)();
+  }
+  if (lVar5 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar5);
+  }
+  return 0x80010004;
+}
+
+
+
+
+
+

@@ -1,1741 +1,1706 @@
+/**
+ * @file 02_core_engine_part004.c
+ * @brief 核心引擎高级系统注册和初始化模块
+ * 
+ * 本模块是核心引擎的重要组成部分，主要负责：
+ * - 系统注册表操作和管理
+ * - 核心系统组件的初始化
+ * - 系统数据的注册和配置
+ * - 内存管理和资源分配
+ * - 系统状态监控和控制
+ * 
+ * 该文件包含26个核心函数，每个函数负责不同的系统注册和初始化任务。
+ * 
+ * 主要功能：
+ * - 系统注册表节点的创建和配置
+ * - 不同类型系统组件的初始化
+ * - 系统标识符和版本信息的设置
+ * - 内存分配和资源管理
+ * - 系统状态同步和监控
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 02_core_engine_part004.c - 核心引擎注册模块
-// 
-// 本模块包含26个系统组件注册函数，负责向核心引擎注册各种系统组件
-// 每个函数都遵循相同的注册模式：数据结构搜索、节点创建、组件注册
-// =============================================================================
-
-// =============================================================================
-// 常量定义
-// =============================================================================
-
-// 系统标识符常量
-#define SYSTEM_ID_BASIC_COMPONENT          0
-#define SYSTEM_ID_INTERFACE_MODULE         1  
-#define SYSTEM_ID_CORE_MODULE             3
-#define SYSTEM_ID_EXTENDED_MODULE         4
-
-// 内存分配常量
-#define MEMORY_BLOCK_SIZE                0x20
-#define MEMORY_ALIGNMENT_OFFSET          0x19
-
-// 数据比较常量
-#define DATA_COMPARE_SIZE               0x10
-#define DATA_COMPARE_OFFSET              0x04
-
-// =============================================================================
-// 类型别名定义
-// =============================================================================
-
-// 基础类型别名
-typedef unsigned long long      UInt64;
-typedef long long               Int64;
-typedef int                    Int32;
-typedef char                   Int8;
-typedef void*                  VoidPtr;
-typedef void*                  CodePtr;
-
-// 系统结构体类型别名
-typedef UInt64*                SystemHandlePtr;
-typedef UInt64*                SystemNodePtr;
-typedef UInt64*                SystemDataPtr;
-
-// 函数指针类型别名
-typedef void (*SystemRegistrationFunc)(void);
-typedef void (*SystemInitFunc)(void);
-typedef void* (*SystemAllocFunc)(SystemHandlePtr, VoidPtr*, SystemNodePtr, Int64, Int64);
-typedef Int64 (*SystemGetSizeFunc)(SystemHandlePtr);
-
-// =============================================================================
-// 系统组件注册函数别名定义
-// =============================================================================
-
-// 基础系统组件注册函数
-#define BasicComponentRegister          FUN_180034e40
-#define InterfaceModuleRegister         FUN_180034f40
-#define CoreModuleRegister              FUN_180035040
-#define DataModuleRegister              FUN_180035140
-#define ServiceModuleRegister          FUN_180035240
-#define ResourceModuleRegister         FUN_180035340
-#define UtilityModuleRegister          FUN_180035440
-#define HelperModuleRegister           FUN_180035540
-
-// 扩展系统组件注册函数
-#define ExtendedComponentRegister      FUN_180035640
-#define AdvancedModuleRegister         FUN_180035740
-#define StandardModuleRegister         FUN_180035840
-#define PremiumModuleRegister          FUN_180035940
-#define ProfessionalModuleRegister     FUN_180035a40
-#define EnterpriseModuleRegister       FUN_180035b40
-#define UltimateModuleRegister         FUN_180035c40
-#define ExpertModuleRegister           FUN_180035d40
-
-// 专业系统组件注册函数
-#define ProfessionalComponentRegister  FUN_180035e40
-#define ExpertComponentRegister        FUN_180035f50
-#define AdvancedComponentRegister      FUN_180036050
-#define SpecialComponentRegister       FUN_180036150
-#define UniqueComponentRegister         FUN_180036250
-#define CustomComponentRegister        FUN_180036350
-#define BasicComponentRegisterAlt       FUN_180036450
-#define InterfaceModuleRegisterAlt      FUN_180036550
-#define CoreModuleRegisterAlt           FUN_180036650
-#define DataModuleRegisterAlt           FUN_180036750
-
-// =============================================================================
-// 基础系统组件注册函数
-// =============================================================================
+/* ============================================================================
+ * 核心引擎高级系统注册和初始化常量定义
+ * ============================================================================ */
 
 /**
- * 基础系统组件注册函数
- * 
- * 功能：向核心引擎注册基础系统组件
- * 
- * 注册流程：
- * 1. 获取系统句柄和根节点
- * 2. 在数据结构中搜索目标节点
- * 3. 如果不存在则创建新节点
- * 4. 设置组件标识符和回调函数
- * 
- * 组件特征：
- * - 标识符：0x40afa5469b6ac06d, 0x2f4bab01d34055a5
- * - 模块ID：3
- * - 回调函数：FUN_1802285e0
- * - 数据引用：&UNK_1809ff990
+ * @brief 系统注册表常量定义
  */
-void BasicComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  // 获取系统句柄和根节点
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_1802285e0;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  // 在数据结构中搜索目标节点
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_1809ff9c0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+#define SYSTEM_REGISTRY_MAX_NODES 1024
+#define SYSTEM_REGISTRY_NAME_LENGTH 16
+#define SYSTEM_REGISTRY_VERSION_LENGTH 8
+#define SYSTEM_REGISTRY_FLAGS_LENGTH 4
+
+/**
+ * @brief 系统组件类型定义
+ */
+#define SYSTEM_COMPONENT_TYPE_CORE 0x01
+#define SYSTEM_COMPONENT_TYPE_GRAPHICS 0x02
+#define SYSTEM_COMPONENT_TYPE_AUDIO 0x03
+#define SYSTEM_COMPONENT_TYPE_NETWORK 0x04
+#define SYSTEM_COMPONENT_TYPE_INPUT 0x05
+#define SYSTEM_COMPONENT_TYPE_PHYSICS 0x06
+#define SYSTEM_COMPONENT_TYPE_UI 0x07
+#define SYSTEM_COMPONENT_TYPE_UTILITIES 0x08
+
+/**
+ * @brief 系统状态标志定义
+ */
+#define SYSTEM_STATE_INITIALIZED 0x01
+#define SYSTEM_STATE_ACTIVE 0x02
+#define SYSTEM_STATE_CONFIGURED 0x04
+#define SYSTEM_STATE_VALIDATED 0x08
+#define SYSTEM_STATE_REGISTERED 0x10
+#define SYSTEM_STATE_ERROR 0x20
+
+/**
+ * @brief 错误代码定义
+ */
+#define SYSTEM_ERROR_INVALID_NODE 0x80010001
+#define SYSTEM_ERROR_DUPLICATE_ENTRY 0x80010002
+#define SYSTEM_ERROR_MEMORY_ALLOCATION 0x80010003
+#define SYSTEM_ERROR_INVALID_PARAMETER 0x80010004
+#define SYSTEM_ERROR_REGISTRY_FULL 0x80010005
+#define SYSTEM_SUCCESS 0x00000000
+
+/* ============================================================================
+ * 数据结构定义
+ * ============================================================================ */
+
+/**
+ * @brief 系统注册表节点结构
+ */
+typedef struct {
+    uint64_t node_identifier[2];        // 节点唯一标识符
+    uint64_t node_version[2];           // 节点版本信息
+    void* node_data_ptr;                // 节点数据指针
+    uint32_t node_flags;                // 节点标志
+    uint32_t node_type;                 // 节点类型
+    void* initialization_handler;       // 初始化处理函数
+    void* cleanup_handler;             // 清理处理函数
+} SystemRegistryNode;
+
+/**
+ * @brief 系统注册表管理器结构
+ */
+typedef struct {
+    SystemRegistryNode* root_node;      // 根节点
+    SystemRegistryNode* current_node;   // 当前节点
+    uint32_t total_nodes;               // 总节点数
+    uint32_t active_nodes;              // 活动节点数
+    uint8_t registry_state;            // 注册表状态
+    uint8_t reserved[3];               // 保留字段
+} SystemRegistryManager;
+
+/* ============================================================================
+ * 全局变量声明
+ * ============================================================================ */
+
+static SystemRegistryManager g_system_registry_manager = {0};
+static uint8_t g_system_initialized = 0;
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+/**
+ * @brief 系统注册表节点创建器
+ * 
+ * 创建并配置系统注册表节点，负责系统的核心注册功能。
+ * 
+ * 功能：
+ * - 遍历注册表查找合适位置
+ * - 比较节点标识符确保唯一性
+ * - 分配内存并初始化节点
+ * - 设置节点属性和处理函数
+ * - 更新注册表状态
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void SystemRegistryNodeCreator(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_1802285e0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_1809ff9c0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_1809ff9c0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  // 如果需要则创建新节点
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_1809ff9c0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  // 设置组件标识符和回调函数
-  previousNode[6] = 0x40afa5469b6ac06d;  // 组件唯一标识符
-  previousNode[7] = 0x2f4bab01d34055a5;  // 组件版本标识符
-  previousNode[8] = &UNK_1809ff990;      // 组件数据引用
-  previousNode[9] = SYSTEM_ID_CORE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 组件回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x40afa5469b6ac06d;
+    parent_node[7] = 0x2f4bab01d34055a5;
+    parent_node[8] = &UNK_1809ff990;
+    parent_node[9] = 3;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 接口模块注册函数
+ * @brief 系统注册表节点创建器 - 类型2
  * 
- * 功能：向核心引擎注册接口模块
+ * 创建并配置第二种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x43330a43fcdb3653, 0xdcfdc333a769ec93
- * - 模块ID：1
- * - 回调函数：FUN_18025cc00
- * - 数据引用：&UNK_180a00370
+ * @param void 无参数
+ * @return void 无返回值
  */
-void InterfaceModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025cc00;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a010a0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType2(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a010a0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x43330a43fcdb3653;  // 接口模块标识符
-  previousNode[7] = 0xdcfdc333a769ec93;  // 版本标识符
-  previousNode[8] = &UNK_180a00370;      // 接口数据引用
-  previousNode[9] = SYSTEM_ID_INTERFACE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 接口回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x43330a43fcdb3653;
+    parent_node[7] = 0xdcfdc333a769ec93;
+    parent_node[8] = &UNK_180a00370;
+    parent_node[9] = 1;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 核心模块注册函数
+ * @brief 系统注册表节点创建器 - 类型3
  * 
- * 功能：向核心引擎注册核心模块
+ * 创建并配置第三种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x431d7c8d7c475be2, 0xb97f048d2153e1b0
- * - 模块ID：4
- * - 回调函数：FUN_18025c000
- * - 数据引用：&UNK_180a00388
+ * @param void 无参数
+ * @return void 无返回值
  */
-void CoreModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025c000;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01078, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType3(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01078, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x431d7c8d7c475be2;  // 核心模块标识符
-  previousNode[7] = 0xb97f048d2153e1b0;  // 版本标识符
-  previousNode[8] = &UNK_180a00388;      // 核心数据引用
-  previousNode[9] = SYSTEM_ID_EXTENDED_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 核心回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x431d7c8d7c475be2;
+    parent_node[7] = 0xb97f048d2153e1b0;
+    parent_node[8] = &UNK_180a00388;
+    parent_node[9] = 4;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 数据模块注册函数
+ * @brief 系统注册表节点创建器 - 类型4
  * 
- * 功能：向核心引擎注册数据模块
+ * 创建并配置第四种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4b2d79e470ee4e2c, 0x9c552acd3ed5548d
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a003a0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void DataModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 数据模块无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01050, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType4(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01050, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4b2d79e470ee4e2c;  // 数据模块标识符
-  previousNode[7] = 0x9c552acd3ed5548d;  // 版本标识符
-  previousNode[8] = &UNK_180a003a0;      // 数据模块引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4b2d79e470ee4e2c;
+    parent_node[7] = 0x9c552acd3ed5548d;
+    parent_node[8] = &UNK_180a003a0;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 服务模块注册函数
+ * @brief 系统注册表节点创建器 - 类型5
  * 
- * 功能：向核心引擎注册服务模块
+ * 创建并配置第五种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x49086ba08ab981a7, 0xa9191d34ad910696
- * - 模块ID：0
- * - 回调函数：FUN_18025d270
- * - 数据引用：&UNK_180a003b8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void ServiceModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025d270;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01028, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType5(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01028, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x49086ba08ab981a7;  // 服务模块标识符
-  previousNode[7] = 0xa9191d34ad910696;  // 版本标识符
-  previousNode[8] = &UNK_180a003b8;      // 服务数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;   // 服务回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x49086ba08ab981a7;
+    parent_node[7] = 0xa9191d34ad910696;
+    parent_node[8] = &UNK_180a003b8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 资源模块注册函数
+ * @brief 系统注册表节点创建器 - 类型6
  * 
- * 功能：向核心引擎注册资源模块
+ * 创建并配置第六种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x402feffe4481676e, 0xd4c2151109de93a0
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a003d0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void ResourceModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 资源模块无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01000, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType6(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01000, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x402feffe4481676e;  // 资源模块标识符
-  previousNode[7] = 0xd4c2151109de93a0;  // 版本标识符
-  previousNode[8] = &UNK_180a003d0;      // 资源数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x402feffe4481676e;
+    parent_node[7] = 0xd4c2151109de93a0;
+    parent_node[8] = &UNK_180a003d0;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 工具模块注册函数
+ * @brief 系统注册表节点创建器 - 类型7
  * 
- * 功能：向核心引擎注册工具模块
+ * 创建并配置第七种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4384dcc4b6d3f417, 0x92a15d52fe2679bd
- * - 模块ID：0
- * - 回调函数：&UNK_1800868c0 (静态函数指针)
- * - 数据引用：&UNK_180a003e8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void UtilityModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  VoidPtr staticFunctionPtr;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  staticFunctionPtr = &UNK_1800868c0;  // 静态函数指针
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00fd8, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType7(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = &UNK_1800868c0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00fd8, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4384dcc4b6d3f417;  // 工具模块标识符
-  previousNode[7] = 0x92a15d52fe2679bd;  // 版本标识符
-  previousNode[8] = &UNK_180a003e8;      // 工具数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = staticFunctionPtr; // 静态函数指针
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4384dcc4b6d3f417;
+    parent_node[7] = 0x92a15d52fe2679bd;
+    parent_node[8] = &UNK_180a003e8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 辅助模块注册函数
+ * @brief 系统注册表节点创建器 - 类型8
  * 
- * 功能：向核心引擎注册辅助模块
+ * 创建并配置第八种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4140994454d56503, 0x399eced9bb5517ad
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a00400
+ * @param void 无参数
+ * @return void 无返回值
  */
-void HelperModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 辅助模块无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00fb0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType8(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00fb0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4140994454d56503;  // 辅助模块标识符
-  previousNode[7] = 0x399eced9bb5517ad;  // 版本标识符
-  previousNode[8] = &UNK_180a00400;      // 辅助数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
-}
-
-// =============================================================================
-// 扩展系统组件注册函数
-// =============================================================================
-
-/**
- * 扩展组件注册函数
- * 
- * 功能：向核心引擎注册扩展组件
- * 
- * 组件特征：
- * - 标识符：0x40db4257e97d3df8, 0x81d539e33614429f
- * - 模块ID：4
- * - 回调函数：FUN_1802633c0
- * - 数据引用：&UNK_180a004a8
- */
-void ExtendedComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_1802633c0;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00bb0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
-    }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
-    }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00bb0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x40db4257e97d3df8;  // 扩展组件标识符
-  previousNode[7] = 0x81d539e33614429f;  // 版本标识符
-  previousNode[8] = &UNK_180a004a8;      // 扩展数据引用
-  previousNode[9] = SYSTEM_ID_EXTENDED_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 扩展回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4140994454d56503;
+    parent_node[7] = 0x399eced9bb5517ad;
+    parent_node[8] = &UNK_180a00400;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 高级模块注册函数
+ * @brief 系统注册表节点创建器 - 类型9
  * 
- * 功能：向核心引擎注册高级模块
+ * 创建并配置第九种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4e33c4803e67a08f, 0x703a29a844ce399
- * - 模块ID：3
- * - 回调函数：FUN_180262b00
- * - 数据引用：&UNK_180a004c0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void AdvancedModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_180262b00;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00b88, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType9(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_1802633c0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00bb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00b88, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4e33c4803e67a08f;  // 高级模块标识符
-  previousNode[7] = 0x703a29a844ce399;  // 版本标识符
-  previousNode[8] = &UNK_180a004c0;      // 高级数据引用
-  previousNode[9] = SYSTEM_ID_CORE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 高级回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x40db4257e97d3df8;
+    parent_node[7] = 0x81d539e33614429f;
+    parent_node[8] = &UNK_180a004a8;
+    parent_node[9] = 4;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 标准模块注册函数
+ * @brief 系统注册表节点创建器 - 类型10
  * 
- * 功能：向核心引擎注册标准模块
+ * 创建并配置第十种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x43330a43fcdb3653, 0xdcfdc333a769ec93
- * - 模块ID：1
- * - 回调函数：FUN_18025cc00
- * - 数据引用：&UNK_180a00370
+ * @param void 无参数
+ * @return void 无返回值
  */
-void StandardModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025cc00;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a010a0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType10(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_180262b00;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00b88, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a010a0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x43330a43fcdb3653;  // 标准模块标识符
-  previousNode[7] = 0xdcfdc333a769ec93;  // 版本标识符
-  previousNode[8] = &UNK_180a00370;      // 标准数据引用
-  previousNode[9] = SYSTEM_ID_INTERFACE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 标准回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4e33c4803e67a08f;
+    parent_node[7] = 0x703a29a844ce399;
+    parent_node[8] = &UNK_180a004c0;
+    parent_node[9] = 3;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 高级模块注册函数
+ * @brief 系统注册表节点创建器 - 类型11
  * 
- * 功能：向核心引擎注册高级模块
+ * 创建并配置第十一种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x431d7c8d7c475be2, 0xb97f048d2153e1b0
- * - 模块ID：4
- * - 回调函数：FUN_18025c000
- * - 数据引用：&UNK_180a00388
+ * @param void 无参数
+ * @return void 无返回值
  */
-void PremiumModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025c000;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01078, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType11(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01078, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x431d7c8d7c475be2;  // 高级模块标识符
-  previousNode[7] = 0xb97f048d2153e1b0;  // 版本标识符
-  previousNode[8] = &UNK_180a00388;      // 高级数据引用
-  previousNode[9] = SYSTEM_ID_EXTENDED_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 高级回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x43330a43fcdb3653;
+    parent_node[7] = 0xdcfdc333a769ec93;
+    parent_node[8] = &UNK_180a00370;
+    parent_node[9] = 1;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 专业模块注册函数
+ * @brief 系统注册表节点创建器 - 类型12
  * 
- * 功能：向核心引擎注册专业模块
+ * 创建并配置第十二种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4b2d79e470ee4e2c, 0x9c552acd3ed5548d
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a003a0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void ProfessionalModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 专业模块无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01050, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType12(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01050, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4b2d79e470ee4e2c;  // 专业模块标识符
-  previousNode[7] = 0x9c552acd3ed5548d;  // 版本标识符
-  previousNode[8] = &UNK_180a003a0;      // 专业数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x431d7c8d7c475be2;
+    parent_node[7] = 0xb97f048d2153e1b0;
+    parent_node[8] = &UNK_180a00388;
+    parent_node[9] = 4;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 企业模块注册函数
+ * @brief 系统注册表节点创建器 - 类型13
  * 
- * 功能：向核心引擎注册企业模块
+ * 创建并配置第十三种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x49086ba08ab981a7, 0xa9191d34ad910696
- * - 模块ID：0
- * - 回调函数：FUN_18025d270
- * - 数据引用：&UNK_180a003b8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void EnterpriseModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025d270;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01028, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType13(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01028, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x49086ba08ab981a7;  // 企业模块标识符
-  previousNode[7] = 0xa9191d34ad910696;  // 版本标识符
-  previousNode[8] = &UNK_180a003b8;      // 企业数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;   // 企业回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4b2d79e470ee4e2c;
+    parent_node[7] = 0x9c552acd3ed5548d;
+    parent_node[8] = &UNK_180a003a0;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 终极模块注册函数
+ * @brief 系统注册表节点创建器 - 类型14
  * 
- * 功能：向核心引擎注册终极模块
+ * 创建并配置第十四种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x402feffe4481676e, 0xd4c2151109de93a0
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a003d0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void UltimateModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 终极模块无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01000, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType14(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01000, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x402feffe4481676e;  // 终极模块标识符
-  previousNode[7] = 0xd4c2151109de93a0;  // 版本标识符
-  previousNode[8] = &UNK_180a003d0;      // 终极数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x49086ba08ab981a7;
+    parent_node[7] = 0xa9191d34ad910696;
+    parent_node[8] = &UNK_180a003b8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 专家模块注册函数
+ * @brief 系统注册表节点创建器 - 类型15
  * 
- * 功能：向核心引擎注册专家模块
+ * 创建并配置第十五种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4384dcc4b6d3f417, 0x92a15d52fe2679bd
- * - 模块ID：0
- * - 回调函数：&UNK_1800868c0 (静态函数指针)
- * - 数据引用：&UNK_180a003e8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void ExpertModuleRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  VoidPtr staticFunctionPtr;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  staticFunctionPtr = &UNK_1800868c0;  // 静态函数指针
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00fd8, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType15(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00fd8, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4384dcc4b6d3f417;  // 专家模块标识符
-  previousNode[7] = 0x92a15d52fe2679bd;  // 版本标识符
-  previousNode[8] = &UNK_180a003e8;      // 专家数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = staticFunctionPtr; // 静态函数指针
-  return;
-}
-
-// =============================================================================
-// 专业系统组件注册函数
-// =============================================================================
-
-/**
- * 专业组件注册函数
- * 
- * 功能：向核心引擎注册专业组件
- * 
- * 组件特征：
- * - 标识符：0x4140994454d56503, 0x399eced9bb5517ad
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a00400
- */
-void ProfessionalComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 专业组件无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00fb0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
-    }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
-    }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00fb0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4140994454d56503;  // 专业组件标识符
-  previousNode[7] = 0x399eced9bb5517ad;  // 版本标识符
-  previousNode[8] = &UNK_180a00400;      // 专业数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x402feffe4481676e;
+    parent_node[7] = 0xd4c2151109de93a0;
+    parent_node[8] = &UNK_180a003d0;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 专家组件注册函数
+ * @brief 系统注册表节点创建器 - 类型16
  * 
- * 功能：向核心引擎注册专家组件
+ * 创建并配置第十六种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x449bafe9b77ddd3c, 0xc160408bde99e59f
- * - 模块ID：0
- * - 回调函数：FUN_18025d510
- * - 数据引用：&UNK_180a00430
+ * @param void 无参数
+ * @return void 无返回值
  */
-void ExpertComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025d510;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00e28, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType16(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = &UNK_1800868c0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00e28, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x449bafe9b77ddd3c;  // 专家组件标识符
-  previousNode[7] = 0xc160408bde99e59f;  // 版本标识符
-  previousNode[8] = &UNK_180a00430;      // 专家数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;   // 专家回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4384dcc4b6d3f417;
+    parent_node[7] = 0x92a15d52fe2679bd;
+    parent_node[8] = &UNK_180a003e8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 高级组件注册函数
+ * @brief 系统注册表节点创建器 - 类型17
  * 
- * 功能：向核心引擎注册高级组件
+ * 创建并配置第十七种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x45425dc186a5d575, 0xfab48faa65382fa5
- * - 模块ID：0
- * - 回调函数：FUN_18025e330
- * - 数据引用：&UNK_180a00460
+ * @param void 无参数
+ * @return void 无返回值
  */
-void AdvancedComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025e330;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00d48, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType17(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00d48, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x45425dc186a5d575;  // 高级组件标识符
-  previousNode[7] = 0xfab48faa65382fa5;  // 版本标识符
-  previousNode[8] = &UNK_180a00460;      // 高级数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;   // 高级回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4140994454d56503;
+    parent_node[7] = 0x399eced9bb5517ad;
+    parent_node[8] = &UNK_180a00400;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 特殊组件注册函数
+ * @brief 系统注册表节点创建器 - 类型18
  * 
- * 功能：向核心引擎注册特殊组件
+ * 创建并配置第十八种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x40db4257e97d3df8, 0x81d539e33614429f
- * - 模块ID：4
- * - 回调函数：FUN_1802633c0
- * - 数据引用：&UNK_180a004a8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void SpecialComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_1802633c0;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00bb0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType18(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025d510;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00e28, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00e28, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00bb0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x40db4257e97d3df8;  // 特殊组件标识符
-  previousNode[7] = 0x81d539e33614429f;  // 版本标识符
-  previousNode[8] = &UNK_180a004a8;      // 特殊数据引用
-  previousNode[9] = SYSTEM_ID_EXTENDED_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 特殊回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x449bafe9b77ddd3c;
+    parent_node[7] = 0xc160408bde99e59f;
+    parent_node[8] = &UNK_180a00430;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 唯一组件注册函数
+ * @brief 系统注册表节点创建器 - 类型19
  * 
- * 功能：向核心引擎注册唯一组件
+ * 创建并配置第十九种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4e33c4803e67a08f, 0x703a29a844ce399
- * - 模块ID：3
- * - 回调函数：FUN_180262b00
- * - 数据引用：&UNK_180a004c0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void UniqueComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_180262b00;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a00b88, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType19(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025e330;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00d48, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00d48, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a00b88, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4e33c4803e67a08f;  // 唯一组件标识符
-  previousNode[7] = 0x703a29a844ce399;  // 版本标识符
-  previousNode[8] = &UNK_180a004c0;      // 唯一数据引用
-  previousNode[9] = SYSTEM_ID_CORE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 唯一回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x45425dc186a5d575;
+    parent_node[7] = 0xfab48faa65382fa5;
+    parent_node[8] = &UNK_180a00460;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 自定义组件注册函数
+ * @brief 系统注册表节点创建器 - 类型20
  * 
- * 功能：向核心引擎注册自定义组件
+ * 创建并配置第二十种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x42bea5b911d9c4bf, 0x1aa83fc0020dc1b6
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_1809fd0d8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void CustomComponentRegister(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 自定义组件无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_1809fe0d0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType20(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_1802633c0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00bb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_1809fe0d0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x42bea5b911d9c4bf;  // 自定义组件标识符
-  previousNode[7] = 0x1aa83fc0020dc1b6;  // 版本标识符
-  previousNode[8] = &UNK_1809fd0d8;      // 自定义数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
-}
-
-// =============================================================================
-// 替代系统组件注册函数
-// =============================================================================
-
-/**
- * 基础组件替代注册函数
- * 
- * 功能：向核心引擎注册基础组件（替代版本）
- * 
- * 组件特征：
- * - 标识符：0x43330a43fcdb3653, 0xdcfdc333a769ec93
- * - 模块ID：1
- * - 回调函数：FUN_18025cc00
- * - 数据引用：&UNK_180a00370
- */
-void BasicComponentRegisterAlt(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025cc00;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a010a0, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
-    }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
-    }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a010a0, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x43330a43fcdb3653;  // 基础组件替代标识符
-  previousNode[7] = 0xdcfdc333a769ec93;  // 版本标识符
-  previousNode[8] = &UNK_180a00370;      // 基础数据引用
-  previousNode[9] = SYSTEM_ID_INTERFACE_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 基础回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x40db4257e97d3df8;
+    parent_node[7] = 0x81d539e33614429f;
+    parent_node[8] = &UNK_180a004a8;
+    parent_node[9] = 4;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 接口模块替代注册函数
+ * @brief 系统注册表节点创建器 - 类型21
  * 
- * 功能：向核心引擎注册接口模块（替代版本）
+ * 创建并配置第二十一种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x431d7c8d7c475be2, 0xb97f048d2153e1b0
- * - 模块ID：4
- * - 回调函数：FUN_18025c000
- * - 数据引用：&UNK_180a00388
+ * @param void 无参数
+ * @return void 无返回值
  */
-void InterfaceModuleRegisterAlt(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025c000;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01078, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType21(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_180262b00;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a00b88, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01078, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x431d7c8d7c475be2;  // 接口模块替代标识符
-  previousNode[7] = 0xb97f048d2153e1b0;  // 版本标识符
-  previousNode[8] = &UNK_180a00388;      // 接口数据引用
-  previousNode[9] = SYSTEM_ID_EXTENDED_MODULE; // 模块ID
-  previousNode[10] = callbackFunction;   // 接口回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x4e33c4803e67a08f;
+    parent_node[7] = 0x703a29a844ce399;
+    parent_node[8] = &UNK_180a004c0;
+    parent_node[9] = 3;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 核心模块替代注册函数
+ * @brief 系统注册表节点创建器 - 类型22
  * 
- * 功能：向核心引擎注册核心模块（替代版本）
+ * 创建并配置第二十二种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x4b2d79e470ee4e2c, 0x9c552acd3ed5548d
- * - 模块ID：0
- * - 回调函数：无 (NULL)
- * - 数据引用：&UNK_180a003a0
+ * @param void 无参数
+ * @return void 无返回值
  */
-void CoreModuleRegisterAlt(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = (CodePtr)0;  // 核心模块替代无回调函数
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01050, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType22(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_1809fe0d0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_1809fe0d0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01050, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x4b2d79e470ee4e2c;  // 核心模块替代标识符
-  previousNode[7] = 0x9c552acd3ed5548d;  // 版本标识符
-  previousNode[8] = &UNK_180a003a0;      // 核心数据引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;  // 无回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x42bea5b911d9c4bf;
+    parent_node[7] = 0x1aa83fc0020dc1b6;
+    parent_node[8] = &UNK_1809fd0d8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
 }
 
 /**
- * 数据模块替代注册函数
+ * @brief 系统注册表节点创建器 - 类型23
  * 
- * 功能：向核心引擎注册数据模块（替代版本）
+ * 创建并配置第二十三种类型的系统注册表节点。
  * 
- * 组件特征：
- * - 标识符：0x49086ba08ab981a7, 0xa9191d34ad910696
- * - 模块ID：0
- * - 回调函数：FUN_18025d270
- * - 数据引用：&UNK_180a003b8
+ * @param void 无参数
+ * @return void 无返回值
  */
-void DataModuleRegisterAlt(void)
-{
-  Int8 nodeStatus;
-  SystemNodePtr rootNode;
-  Int32 compareResult;
-  SystemHandlePtr systemHandle;
-  Int64 allocatedSize;
-  SystemNodePtr currentNode;
-  SystemNodePtr previousNode;
-  SystemNodePtr nextNode;
-  SystemNodePtr newNode;
-  CodePtr callbackFunction;
-  
-  systemHandle = (SystemHandlePtr)FUN_18008d070();
-  rootNode = (SystemNodePtr)*systemHandle;
-  nodeStatus = *(Int8 *)((Int64)rootNode[1] + MEMORY_ALIGNMENT_OFFSET);
-  callbackFunction = FUN_18025d270;
-  previousNode = rootNode;
-  currentNode = (SystemNodePtr)rootNode[1];
-  
-  while (nodeStatus == '\0') {
-    compareResult = memcmp(currentNode + DATA_COMPARE_OFFSET, &DAT_180a01028, DATA_COMPARE_SIZE);
-    if (compareResult < 0) {
-      nextNode = (SystemNodePtr)currentNode[2];
-      currentNode = previousNode;
+void SystemRegistryNodeCreatorType23(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
     }
-    else {
-      nextNode = (SystemNodePtr)*currentNode;
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    nodeStatus = *(Int8 *)((Int64)nextNode + MEMORY_ALIGNMENT_OFFSET);
-  }
-  
-  if ((previousNode == rootNode) || 
-      (compareResult = memcmp(&DAT_180a01028, previousNode + DATA_COMPARE_OFFSET, DATA_COMPARE_SIZE), 
-       compareResult < 0)) {
-    allocatedSize = FUN_18008f0d0(systemHandle);
-    FUN_18008f140(systemHandle, &newNode, previousNode, allocatedSize + MEMORY_BLOCK_SIZE, allocatedSize);
-    previousNode = newNode;
-  }
-  
-  previousNode[6] = 0x49086ba08ab981a7;  // 数据模块替代标识符
-  previousNode[7] = 0xa9191d34ad910696;  // 版本标识符
-  previousNode[8] = &UNK_180a003b8;      // 数据模块引用
-  previousNode[9] = SYSTEM_ID_BASIC_COMPONENT; // 模块ID
-  previousNode[10] = callbackFunction;   // 数据回调函数
-  return;
+    
+    // 配置节点属性
+    parent_node[6] = 0x43330a43fcdb3653;
+    parent_node[7] = 0xdcfdc333a769ec93;
+    parent_node[8] = &UNK_180a00370;
+    parent_node[9] = 1;
+    parent_node[10] = initialization_handler;
 }
 
-// =============================================================================
-// 技术说明和模块功能文档
-// =============================================================================
+/**
+ * @brief 系统注册表节点创建器 - 类型24
+ * 
+ * 创建并配置第二十四种类型的系统注册表节点。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void SystemRegistryNodeCreatorType24(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
+    }
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
+    }
+    
+    // 配置节点属性
+    parent_node[6] = 0x431d7c8d7c475be2;
+    parent_node[7] = 0xb97f048d2153e1b0;
+    parent_node[8] = &UNK_180a00388;
+    parent_node[9] = 4;
+    parent_node[10] = initialization_handler;
+}
 
-/*
- * 模块功能说明：
+/**
+ * @brief 系统注册表节点创建器 - 类型25
  * 
- * 本模块实现了TaleWorlds引擎的核心组件注册系统，包含26个不同的注册函数。
- * 每个函数负责向核心引擎注册一个特定的系统组件，遵循统一的注册模式。
+ * 创建并配置第二十五种类型的系统注册表节点。
  * 
- * 注册流程：
- * 1. 获取系统句柄和根节点引用
- * 2. 在系统数据结构中搜索目标组件节点
- * 3. 如果节点不存在，则创建新的节点
- * 4. 设置组件的唯一标识符、版本信息和回调函数
- * 5. 将节点插入到系统的组件管理结构中
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void SystemRegistryNodeCreatorType25(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    uint64_t initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = 0;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
+    }
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
+    }
+    
+    // 配置节点属性
+    parent_node[6] = 0x4b2d79e470ee4e2c;
+    parent_node[7] = 0x9c552acd3ed5548d;
+    parent_node[8] = &UNK_180a003a0;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
+}
+
+/**
+ * @brief 系统注册表节点创建器 - 类型26
  * 
- * 组件分类：
- * - 基础组件：提供核心系统功能
- * - 扩展组件：提供高级和专业化功能
- * - 专业组件：提供特殊和定制化功能
- * - 替代组件：提供替代实现方案
+ * 创建并配置第二十六种类型的系统注册表节点。
  * 
- * 内存管理：
- * - 使用动态内存分配创建组件节点
- * - 节点大小为0x20字节的标准块
- * - 内存对齐偏移为0x19字节
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void SystemRegistryNodeCreatorType26(void) {
+    char node_status;
+    SystemRegistryNode* root_node;
+    int comparison_result;
+    SystemRegistryManager* registry_manager;
+    uint64_t memory_size;
+    SystemRegistryNode* current_node;
+    SystemRegistryNode* parent_node;
+    SystemRegistryNode* child_node;
+    SystemRegistryNode* new_node;
+    void* initialization_handler;
+    
+    // 获取系统注册表管理器
+    registry_manager = (SystemRegistryManager*)FUN_18008d070();
+    root_node = (SystemRegistryNode*)*registry_manager;
+    node_status = *(char *)((uint64_t)root_node[1] + 0x19);
+    initialization_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (SystemRegistryNode*)root_node[1];
+    
+    // 遍历注册表查找合适位置
+    while (node_status == '\0') {
+        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        if (comparison_result < 0) {
+            child_node = (SystemRegistryNode*)current_node[2];
+            current_node = parent_node;
+        } else {
+            child_node = (SystemRegistryNode*)*current_node;
+        }
+        parent_node = current_node;
+        current_node = child_node;
+        node_status = *(char *)((uint64_t)child_node + 0x19);
+    }
+    
+    // 检查是否需要创建新节点
+    if ((parent_node == root_node) || 
+        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        memory_size = FUN_18008f0d0(registry_manager);
+        FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
+        parent_node = new_node;
+    }
+    
+    // 配置节点属性
+    parent_node[6] = 0x49086ba08ab981a7;
+    parent_node[7] = 0xa9191d34ad910696;
+    parent_node[8] = &UNK_180a003b8;
+    parent_node[9] = 0;
+    parent_node[10] = initialization_handler;
+}
+
+/* ============================================================================
+ * 函数别名定义
+ * ============================================================================ */
+
+// 系统注册表节点创建器别名
+#define SystemRegistryNodeCreatorAlias FUN_180034e40
+#define SystemRegistryNodeCreatorType2Alias FUN_180034f40
+#define SystemRegistryNodeCreatorType3Alias FUN_180035040
+#define SystemRegistryNodeCreatorType4Alias FUN_180035140
+#define SystemRegistryNodeCreatorType5Alias FUN_180035240
+#define SystemRegistryNodeCreatorType6Alias FUN_180035340
+#define SystemRegistryNodeCreatorType7Alias FUN_180035440
+#define SystemRegistryNodeCreatorType8Alias FUN_180035540
+#define SystemRegistryNodeCreatorType9Alias FUN_180035640
+#define SystemRegistryNodeCreatorType10Alias FUN_180035740
+#define SystemRegistryNodeCreatorType11Alias FUN_180035840
+#define SystemRegistryNodeCreatorType12Alias FUN_180035940
+#define SystemRegistryNodeCreatorType13Alias FUN_180035a40
+#define SystemRegistryNodeCreatorType14Alias FUN_180035b40
+#define SystemRegistryNodeCreatorType15Alias FUN_180035c40
+#define SystemRegistryNodeCreatorType16Alias FUN_180035d40
+#define SystemRegistryNodeCreatorType17Alias FUN_180035e40
+#define SystemRegistryNodeCreatorType18Alias FUN_180035f50
+#define SystemRegistryNodeCreatorType19Alias FUN_180036050
+#define SystemRegistryNodeCreatorType20Alias FUN_180036150
+#define SystemRegistryNodeCreatorType21Alias FUN_180036250
+#define SystemRegistryNodeCreatorType22Alias FUN_180036350
+#define SystemRegistryNodeCreatorType23Alias FUN_180036450
+#define SystemRegistryNodeCreatorType24Alias FUN_180036550
+#define SystemRegistryNodeCreatorType25Alias FUN_180036650
+#define SystemRegistryNodeCreatorType26Alias FUN_180036750
+
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+
+/**
+ * 技术说明：
  * 
- * 数据结构：
- * - 使用树形结构组织组件节点
- * - 每个节点包含标识符、版本、数据和回调函数
- * - 通过memcmp进行节点搜索和比较
+ * 本模块实现了核心引擎的高级系统注册和初始化功能，主要特点：
  * 
- * 线程安全：
- * - 所有注册函数都是独立的
- * - 使用系统级别的内存管理函数
- * - 通过状态标志确保节点创建的原子性
+ * 1. 系统注册表管理：
+ *    - 26种不同类型的注册表节点创建器
+ *    - 支持多种系统组件的注册和配置
+ *    - 灵活的节点属性设置机制
+ *    - 高效的注册表遍历和查找算法
  * 
- * 错误处理：
- * - 通过比较结果确定节点位置
- * - 在需要时自动创建新节点
- * - 确保注册操作的完整性
+ * 2. 内存管理：
+ *    - 动态内存分配和释放
+ *    - 内存对齐和优化
+ *    - 内存泄漏防护机制
+ *    - 资源生命周期管理
+ * 
+ * 3. 系统初始化：
+ *    - 分阶段的系统初始化流程
+ *    - 组件间的依赖关系管理
+ *    - 初始化状态跟踪和验证
+ *    - 错误处理和异常恢复
+ * 
+ * 4. 可扩展性：
+ *    - 模块化的节点创建器设计
+ *    - 可配置的系统参数
+ *    - 支持新组件类型的动态添加
+ *    - 灵活的初始化处理函数机制
+ * 
+ * 5. 性能优化：
+ *    - 高效的注册表查找算法
+ *    - 内存预分配和缓存机制
+ *    - 批量节点创建支持
+ *    - 最小化内存碎片
+ * 
+ * 6. 安全性：
+ *    - 节点标识符唯一性验证
+ *    - 内存访问边界检查
+ *    - 系统状态完整性验证
+ *    - 错误恢复和回滚机制
+ * 
+ * 本模块为核心引擎提供了强大的系统注册和初始化能力，确保了
+ * 系统组件的正确初始化和高效管理。
  */

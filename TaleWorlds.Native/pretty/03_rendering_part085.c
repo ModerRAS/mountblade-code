@@ -1,294 +1,531 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part085.c - 渲染系统高级资源处理和动画控制模块
-// 包含4个核心函数：资源清理、动画处理、参数控制等
-// 
-// 简化实现说明：原文件包含复杂的资源处理逻辑，包括内存管理、动画参数计算、
-// 状态控制和资源清理等。本简化实现保留了核心功能结构，但简化了底层优化细节。
+// 03_rendering_part085.c - 4 个函数
 
-// 全局常量定义
-static const float RENDERING_MAX_FLOAT_VALUE = 3.4028235e+38f;  // 最大浮点数值
-static const float RENDERING_NORMALIZATION_FACTOR = 0.05f;     // 归一化因子
-static const int RENDERING_OFFSET_0X38 = 0x38;                 // 函数指针偏移量
-static const int RENDERING_OFFSET_0X28 = 0x28;                 // 另一个函数指针偏移量
+// 函数: void FUN_180317990(longlong *param_1)
+void FUN_180317990(longlong *param_1)
 
-// 全局变量引用
-extern const void* _DAT_180c86938;     // 渲染系统全局数据 (原 _DAT_180c86938)
-extern const void* _DAT_180bf00a8;     // 渲染系统配置数据 (原 _DAT_180bf00a8)
-extern const void* _DAT_180bf02a0;     // 渲染系统状态数据 (原 _DAT_180bf02a0)
-extern const void* _DAT_180c8ed18;     // 渲染系统资源数据 (原 _DAT_180c8ed18)
-extern const void* _DAT_180c86890;     // 渲染系统上下文数据 (原 _DAT_180c86890)
-
-/**
- * 渲染系统资源清理函数
- * 清理渲染系统中的资源指针和调用相应的清理函数
- * 
- * @param resource_ptr 资源指针数组
- */
-void rendering_system_cleanup_resource_pointers(longlong* resource_ptr)
 {
-    // 简化实现：资源指针清理
-    // 原实现包含复杂的资源管理和清理逻辑
-    
-    if (resource_ptr[1] != NULL) {
-        // 调用第二个资源的清理函数
-        void (*cleanup_func)(void) = (void (*)(void))(*(longlong*)resource_ptr[1] + RENDERING_OFFSET_0X38);
-        if (cleanup_func) {
-            cleanup_func();
-        }
-    }
-    
-    if (resource_ptr[0] != NULL) {
-        // 调用第一个资源的清理函数
-        void (*cleanup_func)(void) = (void (*)(void))(*(longlong*)resource_ptr[0] + RENDERING_OFFSET_0X38);
-        if (cleanup_func) {
-            cleanup_func();
-        }
-    }
+  if ((longlong *)param_1[1] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)param_1[1] + 0x38))();
+  }
+  if ((longlong *)*param_1 != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  }
+  return;
 }
 
-/**
- * 渲染系统动画参数处理函数
- * 处理渲染对象的动画参数，包括位置、旋转、缩放等计算
- * 
- * @param render_context 渲染系统上下文
- * @param process_flag 处理标志
- */
-void rendering_system_process_animation_parameters(longlong render_context, char process_flag)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1803179d0(longlong param_1,char param_2)
+void FUN_1803179d0(longlong param_1,char param_2)
+
 {
-    // 简化实现：动画参数处理
-    // 原实现包含复杂的动画计算和参数处理逻辑
-    
-    longlong object_count = *(longlong*)(render_context + 0x18) - *(longlong*)(render_context + 0x10) >> 3;
-    int count = (int)object_count;
-    
-    if ((count > 0) && process_flag != '\0') {
-        // 分配内存用于处理动画数据
-        void* temp_buffer_1 = (void*)0x1800f6ce0(render_context, NULL, count * 4);
-        void* temp_buffer_2 = (void*)0x18031bde0(temp_buffer_1, NULL, object_count & 0xffffffff);
-        
-        longlong output_buffer_1 = ((longlong*)temp_buffer_1)[2];
-        longlong output_buffer_2 = ((longlong*)temp_buffer_2)[2];
-        
-        int valid_count = 1;
-        int current_index = 0;
-        
-        if (count > 0) {
-            longlong object_index = 0;
-            do {
-                bool is_valid_object = current_index != *(int*)(render_context + 0x30);
-                int object_rank = 0;
-                
-                if (is_valid_object) {
-                    object_rank = valid_count;
-                    valid_count++;
-                }
-                
-                // 获取渲染对象数据
-                longlong render_object = *(longlong*)(*(longlong*)(render_context + 0x10) + object_index * 8);
-                
-                // 提取位置和旋转数据
-                float pos_x = *(float*)(render_object + 0x94);
-                float pos_y = *(float*)(render_object + 0x98);
-                float pos_z = *(float*)(render_object + 0x9c);
-                
-                float rot_x = *(float*)(render_object + 0xe4);
-                float rot_y = *(float*)(render_object + 0xe8);
-                float rot_z = *(float*)(render_object + 0xec);
-                
-                // 计算变换后的位置
-                longlong offset = (longlong)(object_rank * 4);
-                *(float*)(output_buffer_1 + offset * 4) = pos_x + rot_x;
-                *(float*)(output_buffer_1 + 4 + offset * 4) = pos_y + rot_y;
-                *(float*)(output_buffer_1 + 8 + offset * 4) = pos_z + rot_z;
-                *(int*)(output_buffer_1 + 0xc + offset * 4) = *(int*)(render_object + 0x48);
-                
-                // 处理缩放和颜色数据
-                float scale_x = *(float*)(render_object + 0x98);
-                float scale_y = *(float*)(render_object + 0x9c);
-                float scale_z = *(float*)(render_object + 0xa0);
-                
-                offset = (longlong)object_rank * 0x60;
-                float* scale_buffer = (float*)(offset + 0x40 + output_buffer_2);
-                
-                scale_buffer[0] = pos_x + rot_x;
-                scale_buffer[1] = scale_y + rot_y;
-                scale_buffer[2] = scale_z + rot_z;
-                scale_buffer[3] = *(float*)(render_object + 0xa0);
-                
-                // 计算距离和大小参数
-                float dist_x = *(float*)(render_object + 0x74);
-                float dist_y = *(float*)(render_object + 0x78);
-                float dist_z = *(float*)(render_object + 0x7c);
-                
-                float* distance_buffer = (float*)(offset + 0x50 + output_buffer_2);
-                distance_buffer[0] = sqrtf(*(float*)(render_object + 100) * *(float*)(render_object + 100) +
-                                         *(float*)(render_object + 0x68) * *(float*)(render_object + 0x68) +
-                                         *(float*)(render_object + 0x6c) * *(float*)(render_object + 0x6c));
-                distance_buffer[1] = sqrtf(dist_x * dist_x + dist_y * dist_y + dist_z * dist_z);
-                distance_buffer[2] = sqrtf(*(float*)(render_object + 0x84) * *(float*)(render_object + 0x84) +
-                                         *(float*)(render_object + 0x88) * *(float*)(render_object + 0x88) +
-                                         *(float*)(render_object + 0x8c) * *(float*)(render_object + 0x8c));
-                distance_buffer[3] = RENDERING_MAX_FLOAT_VALUE;
-                
-                // 复制其他渲染数据
-                render_object = *(longlong*)(*(longlong*)(render_context + 0x10) + object_index * 8);
-                *(longlong*)(offset + output_buffer_2) = *(longlong*)(render_object + 0xa4);
-                *(longlong*)(offset + 8 + output_buffer_2) = *(longlong*)(render_object + 0xac);
-                *(longlong*)(offset + 0x10 + output_buffer_2) = *(longlong*)(render_object + 0xb4);
-                *(longlong*)(offset + 0x18 + output_buffer_2) = *(longlong*)(render_object + 0xbc);
-                *(longlong*)(offset + 0x20 + output_buffer_2) = *(longlong*)(render_object + 0xc4);
-                *(longlong*)(offset + 0x28 + output_buffer_2) = *(longlong*)(render_object + 0xcc);
-                *(longlong*)(offset + 0x30 + output_buffer_2) = *(longlong*)(render_object + 0xd4);
-                *(longlong*)(offset + 0x38 + output_buffer_2) = *(longlong*)(render_object + 0xdc);
-                
-                // 设置渲染参数
-                *(int*)(offset + 0xc + output_buffer_2) = *(int*)(render_object + 0x60);
-                *(int*)(offset + 0x1c + output_buffer_2) = *(int*)(render_object + 0x144);
-                
-                // 清理和设置对象状态
-                *(char*)(render_object + 0x50) = 0;
-                *(int*)(render_object + 0x58) = *(int*)(render_context + 4);
-                
-                current_index++;
-                object_index++;
-            } while (object_index < count);
+  float *pfVar1;
+  undefined8 *puVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  longlong lVar9;
+  longlong lVar10;
+  longlong lVar11;
+  longlong lVar12;
+  int iVar13;
+  ulonglong uVar14;
+  int iVar15;
+  int iVar16;
+  longlong lVar17;
+  int iVar18;
+  bool bVar19;
+  undefined8 uVar20;
+  longlong *plStackX_8;
+  longlong *plStackX_18;
+  
+  uVar14 = *(longlong *)(param_1 + 0x18) - *(longlong *)(param_1 + 0x10) >> 3;
+  iVar13 = (int)uVar14;
+  if ((0 < iVar13) && (param_2 != '\0')) {
+    uVar20 = FUN_1800f6ce0(param_1,&plStackX_18,iVar13 * 4);
+    FUN_18031bde0(uVar20,&plStackX_8,uVar14 & 0xffffffff);
+    lVar9 = plStackX_18[2];
+    lVar10 = plStackX_8[2];
+    iVar15 = 1;
+    iVar18 = 0;
+    if (0 < iVar13) {
+      lVar17 = 0;
+      do {
+        bVar19 = iVar18 != *(int *)(param_1 + 0x30);
+        iVar16 = 0;
+        if (bVar19) {
+          iVar16 = iVar15;
         }
-        
-        // 调用渲染处理函数
-        void (*render_func)(void*, void*, void*) = (void (*)(void*, void*, void*))0x18029b390;
-        render_func(*(void**)((longlong)_DAT_180c86938 + 0x1cd8), 
-                   *(void**)(render_context + 0x40), temp_buffer_1);
-        render_func(*(void**)((longlong)_DAT_180c86938 + 0x1cd8), 
-                   *(void**)(render_context + 0x48), temp_buffer_2);
-        
-        // 清理临时缓冲区
-        if (temp_buffer_2 != NULL) {
-            void (*cleanup_func)(void) = (void (*)(void))(*(longlong*)temp_buffer_2 + RENDERING_OFFSET_0X38);
-            if (cleanup_func) {
-                cleanup_func();
-            }
+        if (bVar19) {
+          iVar15 = iVar15 + 1;
         }
-        
-        if (temp_buffer_1 != NULL) {
-            void (*cleanup_func)(void) = (void (*)(void))(*(longlong*)temp_buffer_1 + RENDERING_OFFSET_0X38);
-            if (cleanup_func) {
-                cleanup_func();
-            }
-        }
+        lVar11 = *(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8);
+        fVar5 = *(float *)(lVar11 + 0x98);
+        fVar6 = *(float *)(lVar11 + 0x9c);
+        fVar3 = *(float *)(lVar11 + 0xe8);
+        fVar4 = *(float *)(lVar11 + 0xec);
+        lVar12 = (longlong)(iVar16 * 4);
+        *(float *)(lVar9 + lVar12 * 4) = *(float *)(lVar11 + 0x94) + *(float *)(lVar11 + 0xe4);
+        *(float *)(lVar9 + 4 + lVar12 * 4) = fVar5 + fVar3;
+        *(float *)(lVar9 + 8 + lVar12 * 4) = fVar6 + fVar4;
+        *(undefined4 *)(lVar9 + 0xc + lVar12 * 4) = *(undefined4 *)(lVar11 + 0x48);
+        fVar5 = *(float *)(lVar11 + 0x98);
+        fVar6 = *(float *)(lVar11 + 0x9c);
+        fVar7 = *(float *)(lVar11 + 0xa0);
+        fVar3 = *(float *)(lVar11 + 0xe8);
+        fVar4 = *(float *)(lVar11 + 0xec);
+        lVar12 = (longlong)iVar16 * 0x60;
+        pfVar1 = (float *)(lVar12 + 0x40 + lVar10);
+        *pfVar1 = *(float *)(lVar11 + 0x94) + *(float *)(lVar11 + 0xe4);
+        pfVar1[1] = fVar5 + fVar3;
+        pfVar1[2] = fVar6 + fVar4;
+        pfVar1[3] = fVar7;
+        *(float *)(lVar12 + 0x4c + lVar10) =
+             (float)*(byte *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8) + 0x149);
+        lVar11 = *(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8);
+        fVar3 = *(float *)(lVar11 + 0x88);
+        fVar4 = *(float *)(lVar11 + 0x84);
+        fVar5 = *(float *)(lVar11 + 0x8c);
+        fVar6 = *(float *)(lVar11 + 0x78);
+        fVar7 = *(float *)(lVar11 + 0x74);
+        fVar8 = *(float *)(lVar11 + 0x7c);
+        pfVar1 = (float *)(lVar12 + 0x50 + lVar10);
+        *pfVar1 = SQRT(*(float *)(lVar11 + 100) * *(float *)(lVar11 + 100) +
+                       *(float *)(lVar11 + 0x68) * *(float *)(lVar11 + 0x68) +
+                       *(float *)(lVar11 + 0x6c) * *(float *)(lVar11 + 0x6c));
+        pfVar1[1] = SQRT(fVar7 * fVar7 + fVar6 * fVar6 + fVar8 * fVar8);
+        pfVar1[2] = SQRT(fVar4 * fVar4 + fVar3 * fVar3 + fVar5 * fVar5);
+        pfVar1[3] = 3.4028235e+38;
+        lVar11 = *(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8);
+        uVar20 = *(undefined8 *)(lVar11 + 0xac);
+        *(undefined8 *)(lVar12 + lVar10) = *(undefined8 *)(lVar11 + 0xa4);
+        ((undefined8 *)(lVar12 + lVar10))[1] = uVar20;
+        uVar20 = *(undefined8 *)(lVar11 + 0xbc);
+        puVar2 = (undefined8 *)(lVar12 + 0x10 + lVar10);
+        *puVar2 = *(undefined8 *)(lVar11 + 0xb4);
+        puVar2[1] = uVar20;
+        uVar20 = *(undefined8 *)(lVar11 + 0xcc);
+        puVar2 = (undefined8 *)(lVar12 + 0x20 + lVar10);
+        *puVar2 = *(undefined8 *)(lVar11 + 0xc4);
+        puVar2[1] = uVar20;
+        uVar20 = *(undefined8 *)(lVar11 + 0xdc);
+        puVar2 = (undefined8 *)(lVar12 + 0x30 + lVar10);
+        *puVar2 = *(undefined8 *)(lVar11 + 0xd4);
+        puVar2[1] = uVar20;
+        *(undefined4 *)(lVar12 + 0xc + lVar10) =
+             *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8) + 0x60);
+        *(undefined4 *)(lVar12 + 0x1c + lVar10) =
+             *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8) + 0x144);
+        *(undefined1 *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8) + 0x50) = 0;
+        *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + lVar17 * 8) + 0x58) =
+             *(undefined4 *)(param_1 + 4);
+        iVar18 = iVar18 + 1;
+        lVar17 = lVar17 + 1;
+      } while (lVar17 < iVar13);
     }
-}
-
-/**
- * 渲染系统状态初始化函数
- * 初始化渲染系统的状态和参数
- * 
- * @param render_context 渲染系统上下文
- */
-void rendering_system_initialize_state(longlong render_context)
-{
-    // 简化实现：状态初始化
-    // 原实现包含复杂的状态设置和参数初始化逻辑
-    
-    longlong state_context = *(longlong*)(render_context + 0x9650);
-    // 设置渲染状态标志
-    *(char*)((longlong)_DAT_180bf02a0) = 0x80;
-    
-    // 设置渲染上下文参数
-    *(longlong*)(render_context + 0x9658) = 0xfffffffffffffffe;
-    
-    // 注意：原实现包含更多的状态初始化逻辑
-    // 这里只保留了基本的结构
-}
-
-/**
- * 渲染系统高级渲染控制函数
- * 执行高级渲染控制，包括材质设置、参数配置、渲染管线控制等
- * 
- * @param render_context 渲染系统上下文
- * @param param_context 参数上下文
- * @param data_ptr 数据指针
- * @param param_4 参数4
- * @param param_5 参数5
- * @param param_6 参数6
- * @param render_mode 渲染模式
- */
-void rendering_system_advanced_render_control(longlong render_context, longlong param_context, 
-                                           longlong* data_ptr, longlong param_4, 
-                                           longlong* param_5, longlong param_6, int render_mode)
-{
-    // 简化实现：高级渲染控制
-    // 原实现包含复杂的渲染控制逻辑，这里只保留核心结构
-    
-    // 获取渲染资源
-    void* render_resource = (void*)0x1800daa50();
-    
-    // 根据渲染模式设置不同的参数
-    switch(render_mode) {
-        case 0:
-            // 模式0：基础渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1a8f0);
-            break;
-        case 1:
-            // 模式1：高级渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1a9d8);
-            break;
-        case 2:
-            // 模式2：特效渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1a9b0);
-            break;
-        case 3:
-            // 模式3：阴影渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1a988);
-            break;
-        case 4:
-            // 模式4：透明渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1a960);
-            break;
-        case 5:
-            // 模式5：后处理渲染
-            void (*setup_func)(void*, void*) = (void (*)(void*, void*))0x180094b30;
-            setup_func(render_resource, (void*)0x180a1aa70);
-            break;
-        default:
-            // 默认模式：错误处理
-            void (*error_func)(void*) = (void (*)(void*))0x180626ee0;
-            error_func((void*)0x180a1aa38);
-            break;
+    FUN_18029b390(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0x40),
+                  plStackX_18);
+    FUN_18029b390(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0x48),
+                  plStackX_8);
+    if (plStackX_8 != (longlong *)0x0) {
+      (**(code **)(*plStackX_8 + 0x38))();
     }
-    
-    // 设置渲染参数
-    *(int*)render_resource = 0x41;  // 渲染状态标志
-    *(longlong*)((longlong)render_resource + 0x4706) = 0;  // 清空渲染队列
-    
-    // 设置纹理坐标
-    *(float*)((longlong)render_resource + 0x4708) = (float)*(ushort*)((longlong)param_5 + 0x32c);
-    *(float*)((longlong)render_resource + 0x470a) = (float)*(ushort*)((longlong)param_5 + 0x32e);
-    
-    // 设置渲染状态
-    *(int*)((longlong)render_resource + 0xd62) = *(ushort*)((longlong)param_5 + 0x32c);
-    *(int*)((longlong)render_resource + 0xd64) = *(ushort*)((longlong)param_5 + 0x32e);
-    
-    // 设置高级渲染参数
-    *(int*)((longlong)render_resource + 1) = 0x10141;  // 渲染模式标志
-    *(int*)((longlong)render_resource + 0x473c) = 0;   // 清空高级参数
-    
-    // 设置渲染状态标志
-    *(char*)((longlong)render_resource + 0x11c37) = 1;
-    *(char*)((longlong)render_resource + 0x1bd9) |= 2;
-    *(char*)((longlong)render_resource + 0x6f6) |= 0x40;
-    
-    // 注意：原实现包含更多的渲染控制逻辑
-    // 这里只保留了基本的结构框架
+    if (plStackX_18 != (longlong *)0x0) {
+      (**(code **)(*plStackX_18 + 0x38))();
+    }
+  }
+  return;
 }
 
-// 函数别名定义 - 保持与原函数名的兼容性
-void FUN_180317990(longlong* resource_ptr) __attribute__((alias("rendering_system_cleanup_resource_pointers")));
-void FUN_1803179d0(longlong render_context, char process_flag) __attribute__((alias("rendering_system_process_animation_parameters")));
-void FUN_180317e00(longlong render_context) __attribute__((alias("rendering_system_initialize_state")));
-void FUN_180317ee0(longlong render_context, longlong param_context, longlong* data_ptr, longlong param_4, longlong* param_5, longlong param_6, int render_mode) __attribute__((alias("rendering_system_advanced_render_control")));
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180317e00(longlong param_1)
+void FUN_180317e00(longlong param_1)
+
+{
+  longlong lVar1;
+  undefined1 auStack_78 [32];
+  undefined8 uStack_58;
+  undefined *puStack_50;
+  undefined1 *puStack_48;
+  undefined4 uStack_40;
+  undefined1 auStack_38 [32];
+  ulonglong uStack_18;
+  
+  uStack_58 = 0xfffffffffffffffe;
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  lVar1 = *(longlong *)(param_1 + 0x9650);
+  _DAT_180bf02a0 = 0x80;
+
+
+// 函数: void FUN_180317ee0(longlong param_1,longlong param_2,longlong *param_3,undefined8 param_4,
+void FUN_180317ee0(longlong param_1,longlong param_2,longlong *param_3,undefined8 param_4,
+                  longlong *param_5,undefined8 param_6,undefined4 param_7)
+
+{
+  int *piVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined8 *puVar5;
+  undefined1 uVar6;
+  undefined4 uVar7;
+  undefined4 *puVar8;
+  longlong *plVar9;
+  undefined8 *puVar10;
+  undefined8 *puVar11;
+  undefined8 *puVar12;
+  longlong lVar13;
+  byte bVar14;
+  undefined8 uVar15;
+  undefined1 auStack_378 [32];
+  undefined8 *puStack_358;
+  undefined1 uStack_350;
+  longlong *plStack_348;
+  undefined *puStack_340;
+  undefined8 *puStack_338;
+  undefined4 uStack_330;
+  undefined8 uStack_328;
+  undefined4 uStack_320;
+  undefined4 uStack_31c;
+  undefined4 uStack_318;
+  undefined8 uStack_314;
+  undefined4 uStack_30c;
+  undefined4 uStack_308;
+  undefined4 uStack_300;
+  undefined4 uStack_2fc;
+  longlong *plStack_2f8;
+  longlong *plStack_2f0;
+  longlong *plStack_2e8;
+  longlong *plStack_2e0;
+  longlong *plStack_2d8;
+  longlong *plStack_2d0;
+  longlong *plStack_2c8;
+  longlong *plStack_2c0;
+  undefined8 uStack_2b8;
+  undefined4 uStack_2b0;
+  undefined2 uStack_2ac;
+  undefined8 uStack_2a8;
+  undefined8 uStack_2a0;
+  undefined4 uStack_298;
+  undefined1 uStack_294;
+  undefined4 uStack_290;
+  undefined8 uStack_28c;
+  undefined2 uStack_284;
+  undefined8 uStack_280;
+  undefined4 uStack_278;
+  undefined8 uStack_270;
+  undefined4 uStack_268;
+  undefined1 uStack_264;
+  undefined8 uStack_250;
+  undefined8 uStack_248;
+  longlong lStack_238;
+  longlong lStack_230;
+  undefined *puStack_228;
+  undefined1 *puStack_220;
+  undefined4 uStack_218;
+  undefined1 auStack_210 [136];
+  undefined8 auStack_188 [40];
+  ulonglong uStack_48;
+  
+  uStack_248 = 0xfffffffffffffffe;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_378;
+  plStack_348 = param_3;
+  puVar8 = (undefined4 *)FUN_1800daa50();
+  switch(param_7) {
+  case 0:
+    FUN_180094b30(puVar8,&UNK_180a1a8f0);
+    break;
+  case 1:
+    FUN_180094b30(puVar8,&UNK_180a1a9d8);
+    break;
+  case 2:
+    FUN_180094b30(puVar8,&UNK_180a1a9b0);
+    break;
+  case 3:
+    FUN_180094b30(puVar8,&UNK_180a1a988);
+    break;
+  case 4:
+    FUN_180094b30(puVar8,&UNK_180a1a960);
+    break;
+  case 5:
+    FUN_180094b30(puVar8,&UNK_180a1aa70);
+    break;
+  default:
+    FUN_180626ee0(&UNK_180a1aa38);
+  }
+  plVar9 = (longlong *)FUN_1800bde30();
+  if (plVar9 != (longlong *)0x0) {
+    plStack_2f0 = plVar9;
+    (**(code **)(*plVar9 + 0x28))(plVar9);
+  }
+  plStack_2f0 = *(longlong **)(puVar8 + 0x2662);
+  *(longlong **)(puVar8 + 0x2662) = plVar9;
+  if (plStack_2f0 != (longlong *)0x0) {
+    (**(code **)(*plStack_2f0 + 0x38))();
+  }
+  *puVar8 = 0x41;
+  *(undefined8 *)(puVar8 + 0x4706) = 0;
+  puVar8[0x4708] = (float)*(ushort *)((longlong)param_5 + 0x32c);
+  puVar8[0x4709] = (float)*(ushort *)((longlong)param_5 + 0x32e);
+  puVar8[0x470a] = 0;
+  puVar8[0x470b] = 0x3f800000;
+  puVar8[0xd62] = (uint)*(ushort *)((longlong)param_5 + 0x32c);
+  puVar8[0xd63] = (uint)*(ushort *)((longlong)param_5 + 0x32e);
+  puVar8[0xd64] = (uint)*(ushort *)((longlong)param_5 + 0x32c);
+  puVar8[0xd65] = (uint)*(ushort *)((longlong)param_5 + 0x32e);
+  puVar8[1] = 0x10141;
+  puVar8[0x473c] = 0;
+  *(undefined1 *)((longlong)puVar8 + 0x11c37) = 1;
+  *(byte *)((longlong)puVar8 + 0x1bd9) = *(byte *)((longlong)puVar8 + 0x1bd9) | 2;
+  *(byte *)(puVar8 + 0x6f6) = *(byte *)(puVar8 + 0x6f6) | 0x40;
+  *(undefined2 *)((longlong)puVar8 + 0x9a31) = 0;
+  *(undefined1 *)(puVar8 + 0x4931) = 1;
+  if (*(longlong *)(puVar8 + 0x2674) != 0) {
+    uStack_318 = 1;
+    uStack_30c = 0x1018a;
+    uStack_314 = 0x2f;
+    uStack_320 = 0x80;
+    uStack_31c = 0x80;
+    uStack_308 = *(undefined4 *)(param_2 + 0x1bd4);
+    puStack_228 = &UNK_1809fcc28;
+    puStack_220 = auStack_210;
+    auStack_210[0] = 0;
+    uStack_218 = 0x11;
+    uVar15 = strcpy_s(auStack_210,0x80,&UNK_180a1aa20);
+    FUN_1800b1d80(uVar15,&plStack_2f8,&puStack_228,&uStack_320);
+    plVar9 = plStack_2f8;
+    puStack_228 = &UNK_18098bcb0;
+    puVar8[1] = puVar8[1] | 2;
+    *(undefined8 *)(puVar8 + 0x2684) = 0;
+    *(undefined8 *)(puVar8 + 0x2686) = 0;
+    plStack_2e0 = plStack_2f8;
+    if (plStack_2f8 != (longlong *)0x0) {
+      (**(code **)(*plStack_2f8 + 0x28))(plStack_2f8);
+    }
+    plStack_2e0 = *(longlong **)(puVar8 + 0x25aa);
+    *(longlong **)(puVar8 + 0x25aa) = plVar9;
+    if (plStack_2e0 != (longlong *)0x0) {
+      (**(code **)(*plStack_2e0 + 0x38))();
+    }
+    plStack_2d8 = param_5;
+    (**(code **)(*param_5 + 0x28))(param_5);
+    plStack_2d8 = *(longlong **)(puVar8 + 0x25a4);
+    *(longlong **)(puVar8 + 0x25a4) = param_5;
+    if (plStack_2d8 != (longlong *)0x0) {
+      (**(code **)(*plStack_2d8 + 0x38))();
+    }
+    bVar14 = 0;
+    puVar8[0xd5f] = 0;
+    puVar8[0xd5e] = param_7;
+    plStack_2d0 = *(longlong **)(puVar8 + 0x265c);
+    *(undefined8 *)(puVar8 + 0x265c) = 0;
+    if (plStack_2d0 != (longlong *)0x0) {
+      (**(code **)(*plStack_2d0 + 0x38))();
+    }
+    plVar9 = (longlong *)FUN_1800be440();
+    if (plVar9 != (longlong *)0x0) {
+      plStack_2c8 = plVar9;
+      (**(code **)(*plVar9 + 0x28))(plVar9);
+    }
+    plStack_2c8 = *(longlong **)(puVar8 + 0x2660);
+    *(longlong **)(puVar8 + 0x2660) = plVar9;
+    if (plStack_2c8 != (longlong *)0x0) {
+      (**(code **)(*plStack_2c8 + 0x38))();
+    }
+    lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x38) + 0x60b80);
+    if (lVar13 == 0) {
+      uStack_300 = 0x3f800000;
+      uStack_2fc = 0x3f800000;
+      uVar15 = 0x3f8000003f800000;
+    }
+    else {
+      uVar15 = *(undefined8 *)(lVar13 + 0x20);
+    }
+    *(undefined8 *)(puVar8 + 0x4932) = uVar15;
+    FUN_180094c20(auStack_188);
+    lStack_238 = *plStack_348;
+    lStack_230 = plStack_348[1];
+    uStack_350 = 1;
+    puStack_358 = (undefined8 *)CONCAT44(puStack_358._4_4_,0x447a0000);
+    FUN_180286300(auStack_188,param_7,&lStack_238);
+    lVar13 = 2;
+    puVar10 = (undefined8 *)(puVar8 + 0xc);
+    puVar5 = auStack_188;
+    do {
+      puVar12 = puVar5;
+      puVar11 = puVar10;
+      uVar15 = puVar12[1];
+      *puVar11 = *puVar12;
+      puVar11[1] = uVar15;
+      uVar15 = puVar12[3];
+      puVar11[2] = puVar12[2];
+      puVar11[3] = uVar15;
+      uVar15 = puVar12[5];
+      puVar11[4] = puVar12[4];
+      puVar11[5] = uVar15;
+      uVar15 = puVar12[7];
+      puVar11[6] = puVar12[6];
+      puVar11[7] = uVar15;
+      uVar15 = puVar12[9];
+      puVar11[8] = puVar12[8];
+      puVar11[9] = uVar15;
+      uVar15 = puVar12[0xb];
+      puVar11[10] = puVar12[10];
+      puVar11[0xb] = uVar15;
+      uVar15 = puVar12[0xd];
+      puVar11[0xc] = puVar12[0xc];
+      puVar11[0xd] = uVar15;
+      uVar15 = puVar12[0xf];
+      puVar11[0xe] = puVar12[0xe];
+      puVar11[0xf] = uVar15;
+      lVar13 = lVar13 + -1;
+      puVar10 = puVar11 + 0x10;
+      puVar5 = puVar12 + 0x10;
+    } while (lVar13 != 0);
+    uVar15 = puVar12[0x11];
+    puVar11[0x10] = puVar12[0x10];
+    puVar11[0x11] = uVar15;
+    uVar15 = puVar12[0x13];
+    puVar11[0x12] = puVar12[0x12];
+    puVar11[0x13] = uVar15;
+    uVar15 = puVar12[0x15];
+    puVar11[0x14] = puVar12[0x14];
+    puVar11[0x15] = uVar15;
+    uVar7 = *(undefined4 *)((longlong)puVar12 + 0xb4);
+    uVar3 = *(undefined4 *)(puVar12 + 0x17);
+    uVar4 = *(undefined4 *)((longlong)puVar12 + 0xbc);
+    *(undefined4 *)(puVar11 + 0x16) = *(undefined4 *)(puVar12 + 0x16);
+    *(undefined4 *)((longlong)puVar11 + 0xb4) = uVar7;
+    *(undefined4 *)(puVar11 + 0x17) = uVar3;
+    *(undefined4 *)((longlong)puVar11 + 0xbc) = uVar4;
+    FUN_18024b8d0(puVar8);
+    if (*(longlong *)(param_1 + 0x38) == -14000) {
+      *(undefined1 *)(puVar8 + 0x473d) = 0;
+    }
+    else {
+      FUN_1801c1c40(puVar8 + 0x4740);
+      *(undefined1 *)(puVar8 + 0x473d) = 1;
+    }
+    *(undefined1 *)(puVar8 + 0x268c) = 1;
+    *(byte *)(puVar8 + 0x6f6) = *(byte *)(puVar8 + 0x6f6) | 0x20;
+    plVar9 = *(longlong **)(param_2 + 0x3580);
+    if (plVar9 != (longlong *)0x0) {
+      plStack_2c0 = plVar9;
+      (**(code **)(*plVar9 + 0x28))(plVar9);
+    }
+    plStack_2c0 = *(longlong **)(puVar8 + 0xd60);
+    *(longlong **)(puVar8 + 0xd60) = plVar9;
+    if (plStack_2c0 != (longlong *)0x0) {
+      (**(code **)(*plStack_2c0 + 0x38))();
+    }
+    puVar8[0x4a7d] = *(undefined4 *)(*(longlong *)(param_1 + 0x38) + 0x3ec4);
+    puVar8[0x4a7e] =
+         *(float *)(*(longlong *)(param_1 + 0x38) + 0x3ec8) * 0.05 *
+         *(float *)(*(longlong *)(*(longlong *)(param_1 + 0x38) + 0x81f0) + 0xc);
+    *(undefined1 *)(puVar8 + 0x718) = 1;
+    uVar6 = func_0x0001800e2bf0(_DAT_180c86890,puVar8);
+    *(undefined1 *)((longlong)puVar8 + 0x1c61) = uVar6;
+    if (puVar8[2] != -1) {
+      bVar14 = (byte)puVar8[6];
+    }
+    *(byte *)((longlong)puVar8 + 0x1c62) = bVar14 & 1;
+    uVar7 = func_0x00018024c420(puVar8);
+    puVar8[0x719] = uVar7;
+    uStack_2b8 = 0;
+    uStack_2ac = 0xff00;
+    uStack_2a8 = 0;
+    uStack_2a0 = 0xffffffffffffffff;
+    uStack_298 = 0xffffffff;
+    uStack_294 = 0xff;
+    uStack_290 = 0xffffffff;
+    uStack_28c = 0;
+    uStack_284 = 0x400;
+    uStack_280 = 0;
+    uStack_278 = 0;
+    uStack_270 = 0;
+    uStack_268 = 0;
+    uStack_264 = 0;
+    uStack_250 = 0;
+    uStack_2b0 = 0;
+    if (*(char *)(*(longlong *)(param_1 + 0x38) + 0x27b8) != '\0') {
+      plVar9 = (longlong *)
+               **(undefined8 **)(*(longlong *)(*(longlong *)(param_1 + 0x38) + 0x81f8) + 0xf0);
+      (**(code **)(*plVar9 + 0xa8))(plVar9,&plStack_348);
+      if (plStack_348 != (longlong *)0x0) {
+        lVar13 = (**(code **)(*plStack_348 + 0x178))();
+        *(undefined4 *)(lVar13 + 0x2c4) = 0x3f800000;
+        puStack_358 = &uStack_2b8;
+        (**(code **)(*plStack_348 + 0x1c8))
+                  (plStack_348,puVar8,*(longlong *)(param_1 + 0x38),
+                   *(longlong *)(*(longlong *)(param_1 + 0x38) + 0x81f8) + 0x70);
+      }
+      puStack_358 = &uStack_2b8;
+      (**(code **)(*plStack_348 + 0x1c8))
+                (plStack_348,puVar8,*(longlong *)(param_1 + 0x38),
+                 *(longlong *)(*(longlong *)(param_1 + 0x38) + 0x81f8) + 0x70);
+      if (plStack_348 != (longlong *)0x0) {
+        (**(code **)(*plStack_348 + 0x38))();
+      }
+    }
+    LOCK();
+    piVar1 = (int *)(param_2 + 0x11a48);
+    iVar2 = *piVar1;
+    *piVar1 = *piVar1 + 1;
+    UNLOCK();
+    *(undefined4 **)(param_2 + 0x9a48 + (longlong)iVar2 * 8) = puVar8;
+    uVar15 = *(undefined8 *)(param_2 + 0x9a3c);
+    *(undefined8 *)(puVar8 + 0x268d) = *(undefined8 *)(param_2 + 0x9a34);
+    *(undefined8 *)(puVar8 + 0x268f) = uVar15;
+    if (plStack_2f8 != (longlong *)0x0) {
+      (**(code **)(*plStack_2f8 + 0x38))();
+    }
+                    // WARNING: Subroutine does not return
+    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_378);
+  }
+  puStack_340 = &UNK_180a3c3e0;
+  uStack_328 = 0;
+  puStack_338 = (undefined8 *)0x0;
+  uStack_330 = 0;
+  puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(undefined1 *)puVar10 = 0;
+  puStack_338 = puVar10;
+  uVar7 = FUN_18064e990(puVar10);
+  uStack_328 = CONCAT44(uStack_328._4_4_,uVar7);
+  *puVar10 = 0x616d776f64616873;
+  puVar10[1] = 0x68706172675f70;
+  uStack_330 = 0xf;
+  plVar9 = (longlong *)FUN_1801f20c0();
+  if (plVar9 != (longlong *)0x0) {
+    plStack_2e8 = plVar9;
+    (**(code **)(*plVar9 + 0x28))(plVar9);
+  }
+  plStack_2e8 = *(longlong **)(puVar8 + 0x2674);
+  *(longlong **)(puVar8 + 0x2674) = plVar9;
+  if (plStack_2e8 != (longlong *)0x0) {
+    (**(code **)(*plStack_2e8 + 0x38))();
+  }
+  puStack_340 = &UNK_180a3c3e0;
+                    // WARNING: Subroutine does not return
+  FUN_18064e900(puVar10);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

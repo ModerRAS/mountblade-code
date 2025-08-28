@@ -1,184 +1,100 @@
-/**
- * @file 99_part_08_part075.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 99_part_08_part075.c - 1 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1805baa98(void)
+void FUN_1805baa98(void)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  longlong lVar1;
+  int in_EAX;
+  float *pfVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  int iVar5;
+  undefined8 *puVar6;
+  longlong lVar7;
+  int unaff_EBP;
+  int unaff_ESI;
+  ulonglong uVar8;
+  longlong *in_R9;
+  longlong lVar9;
+  longlong in_R11;
+  ulonglong unaff_R14;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  uint in_XMM3_Da;
+  float in_XMM4_Da;
+  
+  do {
+    lVar7 = (longlong)in_EAX * 0xa60;
+    if (((*(int *)(lVar7 + 0x3608 + in_R11) == 1) && (in_EAX != *(int *)(*in_R9 + 0x10))) &&
+       (unaff_EBP == (int)*(float *)(lVar7 + 0x33fc + in_R11))) {
+      lVar9 = *(longlong *)(*in_R9 + 0x20);
+      lVar1 = *(longlong *)(lVar7 + 0x30c0 + in_R11);
+      fVar12 = *(float *)(lVar9 + 0xc) - *(float *)(lVar1 + 0xc);
+      fVar11 = *(float *)(lVar9 + 0x10) - *(float *)(lVar1 + 0x10);
+      fVar10 = *(float *)(lVar9 + 0x14) - *(float *)(lVar1 + 0x14);
+      fVar10 = (float)((uint)(fVar12 * fVar12 + fVar11 * fVar11 + fVar10 * fVar10) ^ in_XMM3_Da);
+      if (in_XMM4_Da < fVar10) {
+        iVar5 = *(int *)((longlong)in_R9 + 0x1b6c);
+        uVar4 = unaff_R14 & 0xffffffff;
+        uVar8 = unaff_R14;
+        if (0 < iVar5) {
+          pfVar2 = (float *)((longlong)in_R9 + 0x17b4);
+          do {
+            if (*pfVar2 <= fVar10) break;
+            uVar3 = (int)uVar4 + 1;
+            uVar4 = (ulonglong)uVar3;
+            uVar8 = uVar8 + 1;
+            pfVar2 = pfVar2 + 0xf;
+          } while ((int)uVar3 < iVar5);
+          if (0xf < (longlong)uVar8) goto LAB_1805babfd;
+        }
+        if (iVar5 < 0x10) {
+          iVar5 = iVar5 + 1;
+          *(int *)((longlong)in_R9 + 0x1b6c) = iVar5;
+        }
+        lVar9 = (longlong)(iVar5 + -1);
+        if ((longlong)uVar8 < lVar9) {
+          puVar6 = (undefined8 *)((lVar9 + 0x65) * 0x3c + (longlong)in_R9);
+          lVar9 = lVar9 - uVar8;
+          do {
+            *puVar6 = *(undefined8 *)((longlong)puVar6 + -0x3c);
+            puVar6[1] = *(undefined8 *)((longlong)puVar6 + -0x34);
+            puVar6[2] = *(undefined8 *)((longlong)puVar6 + -0x2c);
+            puVar6[3] = *(undefined8 *)((longlong)puVar6 + -0x24);
+            puVar6[4] = *(undefined8 *)((longlong)puVar6 + -0x1c);
+            puVar6[5] = *(undefined8 *)((longlong)puVar6 + -0x14);
+            puVar6[6] = *(undefined8 *)((longlong)puVar6 + -0xc);
+            *(undefined4 *)(puVar6 + 7) = *(undefined4 *)((longlong)puVar6 + -4);
+            puVar6 = (undefined8 *)((longlong)puVar6 + -0x3c);
+            lVar9 = lVar9 + -1;
+          } while (lVar9 != 0);
+        }
+        lVar9 = (uVar8 + 0x65) * 0x3c;
+        iVar5 = *(int *)(lVar7 + 0x30b0 + in_R11);
+        if (*(int *)(lVar9 + (longlong)in_R9) != iVar5) {
+          *(int *)(lVar9 + (longlong)in_R9) = iVar5;
+          lVar7 = uVar8 * 0x3c;
+          *(float *)(lVar7 + 0x17b4 + (longlong)in_R9) = fVar10;
+          *(undefined8 *)(lVar7 + 0x17e0 + (longlong)in_R9) = 0x7149f2ca;
+          *(int *)(lVar7 + 0x17bc + (longlong)in_R9) = (int)unaff_R14;
+        }
+      }
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+LAB_1805babfd:
+    in_R11 = in_R9[0x291];
+    in_EAX = (int)*(short *)(in_R11 + 0x52dda0 + (longlong)in_EAX * 2);
+    if (unaff_ESI <= in_EAX) {
+      return;
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  } while( true );
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
-{
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
-}
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+

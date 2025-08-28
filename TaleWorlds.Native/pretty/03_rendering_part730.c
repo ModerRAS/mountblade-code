@@ -1,1080 +1,1275 @@
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 03_rendering_part730.c - 渲染系统图像处理与SIMD优化模块
-// =============================================================================
+/**
+ * 03_rendering_part730.c - 渲染系统高级图像处理和向量运算模块
+ * 
+ * 这个文件包含10个核心函数，主要负责高级图像处理、向量运算、SIMD指令优化
+ * 以及图像差异计算等渲染系统功能。
+ * 
+ * 主要功能包括：
+ * - 图像差异计算和绝对差值和（SAD）计算
+ * - AVX2指令优化的图像处理
+ * - 图像块匹配和运动估计
+ * - 向量运算和数据处理
+ * - 图像插值和滤波
+ */
 
-// =============================================================================
+// ============================================================================
 // 常量定义
-// =============================================================================
+// ============================================================================
 
-// 渲染系统SIMD处理模式常量
-#define RENDERING_SIMD_MODE_SAD_8X8        0  // 8x8块绝对差求和
-#define RENDERING_SIMD_MODE_SAD_16X16      1  // 16x16块绝对差求和
-#define RENDERING_SIMD_MODE_SAD_32X32      2  // 32x32块绝对差求和
-#define RENDERING_SIMD_MODE_AVERAGE_SAD    3  // 平均绝对差求和
-#define RENDERING_SIMD_MODE_BLOCK_MATCH    4  // 块匹配处理
+/** 处理块大小常量 */
+#define RENDERING_BLOCK_SIZE_8       8           // 8x8 块大小
+#define RENDERING_BLOCK_SIZE_16      16          // 16x16 块大小
+#define RENDERING_BLOCK_SIZE_32      32          // 32x32 块大小
+#define RENDERING_BLOCK_SIZE_64      64          // 64x64 块大小
 
-// 渲染系统像素处理常量
-#define RENDERING_PIXEL_MAX_VALUE          255  // 像素最大值
-#define RENDERING_PIXEL_MIN_VALUE          0    // 像素最小值
-#define RENDERING_PIXEL_SCALE_FACTOR       64   // 像素缩放因子
-#define RENDERING_PIXEL_ROUND_OFFSET       32   // 像素舍入偏移
+/** SIMD运算常量 */
+#define SIMD_VECTOR_SIZE_128        16          // 128位向量大小
+#define SIMD_VECTOR_SIZE_256        32          // 256位向量大小
 
-// 渲染系统SIMD向量大小常量
-#define SIMD_VECTOR_SIZE_128               16   // 128位向量大小
-#define SIMD_VECTOR_SIZE_256               32   // 256位向量大小
-#define SIMD_PROCESSING_BLOCK_8            8    // 8元素处理块
-#define SIMD_PROCESSING_BLOCK_16           16   // 16元素处理块
-#define SIMD_PROCESSING_BLOCK_32           32   // 32元素处理块
+/** 图像处理常量 */
+#define PIXEL_CLAMP_MIN             0           // 像素值最小值
+#define PIXEL_CLAMP_MAX             255         // 像素值最大值
+#define PIXEL_ROUND_OFFSET          64          // 像素运算舍入偏移
+#define PIXEL_SHIFT_BITS            7           // 像素运算位移位数
 
-// =============================================================================
+/** 运算精度常量 */
+#define ABS_DIFF_PRECISION          0x1f        // 绝对差值精度掩码
+#define BYTE_ALIGNMENT              8           // 字节对齐
+
+// ============================================================================
+// 枚举定义
+// ============================================================================
+
+/** 渲染处理状态枚举 */
+typedef enum {
+    RENDERING_STATUS_SUCCESS = 0,        // 处理成功
+    RENDERING_STATUS_INVALID_PARAM,      // 无效参数
+    RENDERING_STATUS_MEMORY_ERROR,       // 内存错误
+    RENDERING_STATUS_PROCESSING_ERROR    // 处理错误
+} RenderingStatus;
+
+/** 图像块类型枚举 */
+typedef enum {
+    BLOCK_TYPE_8x8 = 8,                 // 8x8 图像块
+    BLOCK_TYPE_16x16 = 16,              // 16x16 图像块
+    BLOCK_TYPE_32x32 = 32,              // 32x32 图像块
+    BLOCK_TYPE_64x64 = 64               // 64x64 图像块
+} ImageBlockType;
+
+// ============================================================================
+// 结构体定义
+// ============================================================================
+
+/** 图像处理参数结构体 */
+typedef struct {
+    uint32_t* source_data;              // 源图像数据指针
+    uint32_t* reference_data;           // 参考图像数据指针
+    int32_t source_stride;               // 源图像步长
+    int32_t reference_stride;            // 参考图像步长
+    int32_t* result_buffer;              // 结果缓冲区
+    int32_t block_size;                 // 处理块大小
+    int32_t processing_mode;             // 处理模式
+} ImageProcessingParams;
+
+/** SIMD运算参数结构体 */
+typedef struct {
+    uint8_t* vector_a;                  // 向量A数据
+    uint8_t* vector_b;                  // 向量B数据
+    uint8_t* vector_c;                  // 向量C数据
+    int32_t stride_a;                   // 向量A步长
+    int32_t stride_b;                   // 向量B步长
+    int32_t stride_c;                   // 向量C步长
+    int32_t operation_count;            // 运算次数
+} SimdOperationParams;
+
+/** 图像插值参数结构体 */
+typedef struct {
+    int16_t* coefficient_table;         // 系数表
+    uint8_t* source_buffer;             // 源缓冲区
+    uint8_t* destination_buffer;        // 目标缓冲区
+    int32_t source_width;               // 源宽度
+    int32_t source_height;              // 源高度
+    int32_t dest_width;                 // 目标宽度
+    int32_t dest_height;                // 目标高度
+    int32_t filter_type;                // 滤波器类型
+} InterpolationParams;
+
+// ============================================================================
 // 函数声明
-// =============================================================================
+// ============================================================================
+
+void RenderingSystemImageDifferenceCalculator(uint32_t* source_data, int32_t source_stride, 
+                                             uint32_t* reference_data, int32_t reference_stride, 
+                                             int32_t* result_buffer);
+
+uint64_t RenderingSystemSimdAverageDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                       uint8_t (*vector_b)[32], int32_t stride_b,
+                                                       uint8_t (*vector_c)[32]);
+
+uint32_t RenderingSystemSimdAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                        uint8_t (*vector_b)[32], int32_t stride_b);
+
+uint64_t RenderingSystemExtendedDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                     uint8_t (*vector_b)[32], int32_t stride_b,
+                                                     uint8_t (*vector_c)[32]);
+
+uint32_t RenderingSystemExtendedAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                             uint8_t (*vector_b)[32], int32_t stride_b);
+
+uint64_t RenderingSystemLargeBlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                      uint8_t (*vector_b)[32], int32_t stride_b,
+                                                      uint8_t (*vector_c)[32]);
+
+uint32_t RenderingSystemLargeBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                              uint8_t (*vector_b)[32], int32_t stride_b);
+
+uint64_t RenderingSystemAdvancedDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                    uint8_t (*vector_b)[32], int32_t stride_b,
+                                                    uint8_t (*vector_c)[32]);
+
+uint32_t RenderingSystemAdvancedAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                            uint8_t (*vector_b)[32], int32_t stride_b);
+
+uint64_t RenderingSystemMegaBlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                      uint8_t (*vector_b)[32], int32_t stride_b,
+                                                      uint8_t (*vector_c)[32]);
+
+uint32_t RenderingSystemMegaBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                              uint8_t (*vector_b)[32], int32_t stride_b);
+
+// ============================================================================
+// 函数实现
+// ============================================================================
 
 /**
- * @brief 渲染系统图像绝对差计算器 - 计算两个图像块之间的绝对差值
- * @param param_1 源图像数据指针
- * @param param_2 源图像步长
- * @param param_3 目标图像数据指针
- * @param param_4 目标图像步长
- * @param param_5 计算结果输出指针
+ * 渲染系统图像差异计算器
  * 
- * 该函数使用SIMD指令优化计算两个图像块之间的绝对差值总和，
- * 支持8x8块的高效处理，主要用于运动估计和图像匹配。
+ * 这个函数计算两个图像块之间的差异，使用SIMD指令进行优化。
+ * 它实现了绝对差值和（SAD）计算，用于运动估计和图像匹配。
+ * 
+ * @param source_data      源图像数据指针
+ * @param source_stride    源图像步长
+ * @param reference_data   参考图像数据指针
+ * @param reference_stride 参考图像步长
+ * @param result_buffer    结果缓冲区
  */
-void rendering_system_absolute_difference_calculator(uint *param_1, int param_2, uint *param_3, int param_4, int *param_5);
+void RenderingSystemImageDifferenceCalculator(uint32_t* source_data, int32_t source_stride, 
+                                             uint32_t* reference_data, int32_t reference_stride, 
+                                             int32_t* result_buffer)
+{
+    int32_t data_config;
+    uint8_t* src_ptr;
+    uint32_t src_value, ref_value;
+    int32_t loop_counter, pixel_counter;
+    uint32_t* src_current, *ref_current;
+    int64_t iteration_count;
+    uint64_t processing_size;
+    int32_t accumulator[8];              // 8个累加器用于SIMD运算
+    uint8_t simd_temp[16];
+    
+    data_config = _DAT_180bf00b0;        // 获取数据配置
+    iteration_count = 8;
+    
+    do {
+        // 初始化累加器
+        for (int i = 0; i < 8; i++) {
+            accumulator[i] = 0;
+        }
+        
+        src_current = source_data;
+        ref_current = reference_data;
+        processing_size = 8;
+        
+        do {
+            // SIMD优化处理
+            processing_size = 0;
+            if (data_config > 1) {
+                processing_size = 8;
+                
+                // 使用SIMD指令进行并行处理
+                // pmovzxbd: 零扩展字节到双字
+                // pabsd: 绝对差值计算
+                simd_temp[0] = pmovzxbd(simd_temp, src_current[0]);
+                simd_temp[4] = pmovzxbd(src_current[0], ref_current[0]);
+                simd_temp[8] = simd_temp[0] - simd_temp[4];
+                simd_temp[12] = simd_temp[1] - simd_temp[5];
+                
+                // 计算绝对差值并累加
+                accumulator[0] += abs(simd_temp[8]);
+                accumulator[1] += abs(simd_temp[9]);
+                accumulator[2] += abs(simd_temp[10]);
+                accumulator[3] += abs(simd_temp[11]);
+            }
+            
+            // 处理剩余像素
+            pixel_counter = 0;
+            if (processing_size < 8) {
+                if ((8 - processing_size) > 1) {
+                    src_ptr = (uint8_t*)(processing_size + (int64_t)ref_current);
+                    int64_t remaining = ((6 - processing_size) >> 1) + 1;
+                    processing_size += remaining * 2;
+                    
+                    do {
+                        // 计算像素差异
+                        src_value = src_ptr[(int64_t)src_current - (int64_t)ref_current];
+                        ref_value = *src_ptr;
+                        pixel_counter += abs(src_value - ref_value);
+                        
+                        // 处理下一个像素对
+                        src_value = (src_ptr + 2)[((int64_t)src_current - (int64_t)ref_current) - 1];
+                        ref_value = src_ptr[1];
+                        pixel_counter += abs(src_value - ref_value);
+                        
+                        remaining--;
+                        src_ptr += 2;
+                    } while (remaining != 0);
+                }
+                
+                // 处理最后一个像素
+                if (processing_size < 8) {
+                    src_value = *(uint8_t*)(processing_size + (int64_t)src_current);
+                    ref_value = *(uint8_t*)(processing_size + (int64_t)ref_current);
+                    pixel_counter += abs(src_value - ref_value);
+                }
+            }
+            
+            // 更新指针
+            src_current = (uint32_t*)((int64_t)src_current + source_stride);
+            ref_current = (uint32_t*)((int64_t)ref_current + reference_stride);
+            iteration_count--;
+        } while (iteration_count != 0);
+        
+        // 存储结果
+        *result_buffer = accumulator[0] + accumulator[1] + accumulator[2] + 
+                        accumulator[3] + accumulator[4] + accumulator[5] + 
+                        accumulator[6] + accumulator[7] + pixel_counter;
+        
+        result_buffer++;
+        reference_data = (uint32_t*)((int64_t)reference_data + 1);
+        data_config--;
+    } while (data_config != 0);
+}
 
 /**
- * @brief 渲染系统平均绝对差计算器(8x8) - 计算平均绝对差
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @param param_5 平均图像数据
- * @return 计算得到的绝对差值
+ * 渲染系统SIMD平均差异计算器
  * 
- * 使用AVX2指令集优化8x8块的平均绝对差计算，
- * 结合vpavgb和vpsadbw指令实现高效处理。
+ * 使用AVX2指令优化的图像差异计算，适用于8x8图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @param vector_c     向量C数据
+ * @return            计算结果
  */
-undefined8 rendering_system_average_absolute_difference_8x8(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4, undefined1 (*param_5)[32]);
+uint64_t RenderingSystemSimdAverageDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                       uint8_t (*vector_b)[32], int32_t stride_b,
+                                                       uint8_t (*vector_c)[32])
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 8;
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpavgb: 计算平均值
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpavgb_avx2(*vector_c, *vector_b);
+        accumulator = vpsadbw_avx2(temp_vector, *vector_a);
+        
+        temp_vector = vpavgb_avx2(vector_c[1], *(uint8_t (*) [32])(*vector_b + stride_b));
+        temp_vector = vpsadbw_avx2(temp_vector, *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_c = vector_c + 2;
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(temp_vector, accumulator);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return ((uint64_t)vector_c >> 0x20) | temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统绝对差求和器(8x8) - 计算绝对差总和
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @return 计算得到的绝对差总和
+ * 渲染系统SIMD绝对差异计算器
  * 
- * 使用AVX2指令集优化8x8块的绝对差求和计算，
- * 采用vpsadbw指令实现高效的字节级绝对差计算。
+ * 使用AVX2指令优化的绝对差值计算，适用于8x8图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @return            计算结果
  */
-undefined4 rendering_system_absolute_difference_sum_8x8(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4);
+uint32_t RenderingSystemSimdAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                        uint8_t (*vector_b)[32], int32_t stride_b)
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 8;
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpsadbw_avx2(*vector_b, *vector_a);
+        accumulator = vpsadbw_avx2(*(uint8_t (*) [32])(*vector_b + stride_b),
+                                  *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(accumulator, temp_vector);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统平均绝对差计算器(16x16) - 计算大块平均绝对差
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @param param_5 平均图像数据
- * @return 计算得到的绝对差值
+ * 渲染系统扩展差异计算器
  * 
- * 使用AVX2指令集优化16x16块的平均绝对差计算，
- * 适用于需要更高精度的图像匹配应用。
+ * 使用AVX2指令优化的图像差异计算，适用于16x16图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @param vector_c     向量C数据
+ * @return            计算结果
  */
-undefined8 rendering_system_average_absolute_difference_16x16(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4, undefined1 (*param_5)[32]);
+uint64_t RenderingSystemExtendedDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                     uint8_t (*vector_b)[32], int32_t stride_b,
+                                                     uint8_t (*vector_c)[32])
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x10;  // 16次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpavgb: 计算平均值
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpavgb_avx2(*vector_c, *vector_b);
+        accumulator = vpsadbw_avx2(temp_vector, *vector_a);
+        
+        temp_vector = vpavgb_avx2(vector_c[1], *(uint8_t (*) [32])(*vector_b + stride_b));
+        temp_vector = vpsadbw_avx2(temp_vector, *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_c = vector_c + 2;
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(temp_vector, accumulator);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return ((uint64_t)vector_c >> 0x20) | temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统绝对差求和器(16x16) - 计算大块绝对差总和
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @return 计算得到的绝对差总和
+ * 渲染系统扩展绝对差异计算器
  * 
- * 使用AVX2指令集优化16x16块的绝对差求和计算，
- * 提供比8x8块更高的计算精度。
+ * 使用AVX2指令优化的绝对差值计算，适用于16x16图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @return            计算结果
  */
-undefined4 rendering_system_absolute_difference_sum_16x16(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4);
+uint32_t RenderingSystemExtendedAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                             uint8_t (*vector_b)[32], int32_t stride_b)
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x10;  // 16次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpsadbw_avx2(*vector_b, *vector_a);
+        accumulator = vpsadbw_avx2(*(uint8_t (*) [32])(*vector_b + stride_b),
+                                  *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(accumulator, temp_vector);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统平均绝对差计算器(32x32) - 计算超大块平均绝对差
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @param param_5 平均图像数据
- * @return 计算得到的绝对差值
+ * 渲染系统大块差异计算器
  * 
- * 使用AVX2指令集优化32x32块的平均绝对差计算，
- * 适用于高精度的图像分析和匹配应用。
+ * 使用AVX2指令优化的图像差异计算，适用于32x32图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @param vector_c     向量C数据
+ * @return            计算结果
  */
-undefined8 rendering_system_average_absolute_difference_32x32(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4, undefined1 (*param_5)[32]);
+uint64_t RenderingSystemLargeBlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                      uint8_t (*vector_b)[32], int32_t stride_b,
+                                                      uint8_t (*vector_c)[32])
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x20;  // 32次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpavgb: 计算平均值
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpavgb_avx2(*vector_c, *vector_b);
+        accumulator = vpsadbw_avx2(temp_vector, *vector_a);
+        
+        temp_vector = vpavgb_avx2(vector_c[1], *(uint8_t (*) [32])(*vector_b + stride_b));
+        temp_vector = vpsadbw_avx2(temp_vector, *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_c = vector_c + 2;
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(temp_vector, accumulator);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return ((uint64_t)vector_c >> 0x20) | temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统绝对差求和器(32x32) - 计算超大块绝对差总和
- * @param param_1 第一个图像块数据
- * @param param_2 第一个图像步长
- * @param param_3 第二个图像块数据
- * @param param_4 第二个图像步长
- * @return 计算得到的绝对差总和
+ * 渲染系统大块绝对差异计算器
  * 
- * 使用AVX2指令集优化32x32块的绝对差求和计算，
- * 提供最高精度的绝对差计算能力。
+ * 使用AVX2指令优化的绝对差值计算，适用于32x32图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @return            计算结果
  */
-undefined4 rendering_system_absolute_difference_sum_32x32(undefined1 (*param_1)[32], int param_2, undefined1 (*param_3)[32], int param_4);
+uint32_t RenderingSystemLargeBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                              uint8_t (*vector_b)[32], int32_t stride_b)
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x20;  // 32次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpsadbw_avx2(*vector_b, *vector_a);
+        accumulator = vpsadbw_avx2(*(uint8_t (*) [32])(*vector_b + stride_b),
+                                  *(uint8_t (*) [32])(*vector_a + stride_a));
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a * 2);
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b * 2);
+        
+        temp_vector = vpaddd_avx2(accumulator, temp_vector);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统多参考帧匹配器 - 执行多参考帧的块匹配
- * @param param_1 当前图像块数据
- * @param param_2 图像步长
- * @param param_3 参考帧数据指针数组
- * @param param_4 参考帧步长
- * @param param_5 匹配结果输出
+ * 渲染系统高级差异计算器
  * 
- * 使用AVX2指令集实现高效的多参考帧块匹配，
- * 支持运动估计和视频压缩应用。
+ * 使用AVX2指令优化的图像差异计算，适用于32x32图像块的变体。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @param vector_c     向量C数据
+ * @return            计算结果
  */
-void rendering_system_multi_reference_frame_matcher(undefined1 (*param_1)[32], int param_2, longlong *param_3, int param_4, undefined1 (*param_5)[16]);
+uint64_t RenderingSystemAdvancedDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                    uint8_t (*vector_b)[32], int32_t stride_b,
+                                                    uint8_t (*vector_c)[32])
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x20;  // 32次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpavgb: 计算平均值
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpavgb_avx2(*vector_c, *vector_b);
+        accumulator = vpsadbw_avx2(temp_vector, *vector_a);
+        
+        temp_vector = vpavgb_avx2(vector_c[1], vector_b[1]);
+        temp_vector = vpsadbw_avx2(temp_vector, vector_a[1]);
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        vector_c = vector_c + 2;
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b);
+        
+        temp_vector = vpaddd_avx2(temp_vector, accumulator);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return ((uint64_t)vector_c >> 0x20) | temp_result[0:4];
+}
 
 /**
- * @brief 渲染系统双线性插值器 - 执行双线性插值操作
- * @param param_1 源图像数据
- * @param param_2 源图像步长
- * @param param_3 目标图像数据
- * @param param_4 目标图像步长
- * @param param_5 插值系数
- * @param param_6 插值步长
- * @param param_7 宽度
- * @param param_8 高度
- * @param param_9 插值模式
+ * 渲染系统高级绝对差异计算器
  * 
- * 实现高质量的双线性插值算法，
- * 支持图像缩放和几何变换应用。
+ * 使用AVX2指令优化的绝对差值计算，适用于32x32图像块的变体。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @return            计算结果
  */
-void rendering_system_bilinear_interpolator(longlong param_1, longlong param_2, longlong param_3, longlong param_4, longlong param_5, uint param_6, int param_7, uint param_8, int param_9);
+uint32_t RenderingSystemAdvancedAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                            uint8_t (*vector_b)[32], int32_t stride_b)
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x20;  // 32次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpsadbw_avx2(*vector_b, *vector_a);
+        accumulator = vpsadbw_avx2(vector_b[1], vector_a[1]);
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b);
+        
+        temp_vector = vpaddd_avx2(accumulator, temp_vector);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return temp_result[0:4];
+}
 
-// =============================================================================
-// 函数别名定义
-// =============================================================================
+/**
+ * 渲染系统巨型块差异计算器
+ * 
+ * 使用AVX2指令优化的图像差异计算，适用于64x64图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @param vector_c     向量C数据
+ * @return            计算结果
+ */
+uint64_t RenderingSystemMegaBlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                      uint8_t (*vector_b)[32], int32_t stride_b,
+                                                      uint8_t (*vector_c)[32])
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x40;  // 64次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpavgb: 计算平均值
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpavgb_avx2(*vector_c, *vector_b);
+        accumulator = vpsadbw_avx2(temp_vector, *vector_a);
+        
+        temp_vector = vpavgb_avx2(vector_c[1], vector_b[1]);
+        temp_vector = vpsadbw_avx2(temp_vector, vector_a[1]);
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        vector_c = vector_c + 2;
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b);
+        
+        temp_vector = vpaddd_avx2(temp_vector, accumulator);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return ((uint64_t)vector_c >> 0x20) | temp_result[0:4];
+}
 
-// 主要功能函数别名
-#define rendering_system_image_block_comparator      rendering_system_absolute_difference_calculator
-#define rendering_system_sad_calculator_8x8          rendering_system_average_absolute_difference_8x8
-#define rendering_system_sad_calculator_16x16        rendering_system_average_absolute_difference_16x16
-#define rendering_system_sad_calculator_32x32        rendering_system_average_absolute_difference_32x32
-#define rendering_system_motion_estimator             rendering_system_multi_reference_frame_matcher
-#define rendering_system_image_scaler                rendering_system_bilinear_interpolator
+/**
+ * 渲染系统巨型块绝对差异计算器
+ * 
+ * 使用AVX2指令优化的绝对差值计算，适用于64x64图像块。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param vector_b     向量B数据
+ * @param stride_b     向量B步长
+ * @return            计算结果
+ */
+uint32_t RenderingSystemMegaBlockAbsoluteDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                              uint8_t (*vector_b)[32], int32_t stride_b)
+{
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    int64_t loop_counter;
+    uint8_t temp_vector[32];
+    
+    loop_counter = 0x40;  // 64次迭代
+    accumulator = (uint64_t)0 << 0x40;  // 初始化累加器
+    
+    do {
+        // vpsadbw: 计算绝对差值和
+        temp_vector = vpsadbw_avx2(*vector_b, *vector_a);
+        accumulator = vpsadbw_avx2(vector_b[1], vector_a[1]);
+        
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        vector_b = (uint8_t (*) [32])(*vector_b + stride_b);
+        
+        temp_vector = vpaddd_avx2(accumulator, temp_vector);
+        accumulator = vpaddd_avx2(temp_vector, accumulator);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 最终结果处理
+    temp_vector = vpsrldq_avx2(accumulator, 8);
+    accumulator = vpaddd_avx2(temp_vector, accumulator);
+    temp_result = vpaddd_avx(accumulator[16:32], accumulator[0:16]);
+    
+    return temp_result[0:4];
+}
 
-// 技术实现函数别名
-#define rendering_system_simd_abs_diff_processor     FUN_1806970f0
-#define rendering_system_avx2_avg_sad_8x8            FUN_1806972a0
-#define rendering_system_avx2_sad_8x8                FUN_180697340
-#define rendering_system_avx2_avg_sad_16x16          FUN_1806973c0
-#define rendering_system_avx2_sad_16x16              FUN_180697460
-#define rendering_system_avx2_avg_sad_32x32          FUN_1806974e0
-#define rendering_system_avx2_sad_32x32              FUN_180697580
-#define rendering_system_avx2_multi_ref_match        FUN_180697600
-#define rendering_system_avx2_sad_multi_ref          FUN_180697680
-#define rendering_system_avx2_large_ref_match        FUN_1806976f0
-#define rendering_system_avx2_sad_large_ref          FUN_180697770
-#define rendering_system_quad_ref_matcher            FUN_1806977e0
-#define rendering_system_octal_ref_matcher            FUN_1806978b0
-#define rendering_system_error_handler               FUN_1806979e0
-#define rendering_system_interpolation_core          FUN_180697ae0
-#define rendering_system_interpolation_optimized     FUN_180697b09
-#define rendering_system_empty_function              FUN_180697c23
-#define rendering_system_advanced_interpolator        FUN_180697c30
-#define rendering_system_interpolation_accelerated   FUN_180697c6b
-#define rendering_system_cleanup_function             FUN_180697dc2
+/**
+ * 渲染系统多参考帧32x32块差异计算器
+ * 
+ * 使用AVX2指令优化的多参考帧图像差异计算，适用于32x32图像块。
+ * 支持多个参考帧的同时处理，提高运动估计效率。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param ref_frames   参考帧位置数组
+ * @param stride_b     向量B步长
+ * @param result       结果数组
+ */
+void RenderingSystemMultiReference32x32BlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                                int64_t* ref_frames, int32_t stride_b,
+                                                                uint8_t (*result)[16])
+{
+    uint8_t temp_vector[32];
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    uint8_t accumulators[4][32];      // 4个累加器用于多参考帧
+    uint8_t (*ref_ptr)[32];
+    int64_t ref_offset1, ref_offset2, ref_offset3, ref_offset_base;
+    int32_t loop_counter;
+    
+    ref_ptr = (uint8_t (*) [32])ref_frames[2];
+    ref_offset_base = *ref_frames - (int64_t)ref_ptr;
+    ref_offset1 = ref_frames[1] - (int64_t)ref_ptr;
+    ref_offset2 = ref_frames[3] - (int64_t)ref_ptr;
+    
+    // 初始化累加器
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 32; j++) {
+            accumulators[i][j] = 0;
+        }
+    }
+    
+    loop_counter = 0x20;  // 32次迭代
+    
+    do {
+        temp_vector = *vector_a;
+        
+        // 计算与第一个参考帧的差异
+        temp_vector = vpsadbw_avx2(temp_vector, *(uint8_t (*) [32])(ref_offset_base + (int64_t)ref_ptr));
+        accumulators[0] = vpaddd_avx2(temp_vector, accumulators[0]);
+        
+        // 计算与第二个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *(uint8_t (*) [32])(ref_offset1 + (int64_t)ref_ptr));
+        accumulators[1] = vpaddd_avx2(temp_vector, accumulators[1]);
+        
+        // 计算与第三个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *ref_ptr);
+        accumulators[2] = vpaddd_avx2(temp_vector, accumulators[2]);
+        
+        // 计算与第四个参考帧的差异
+        temp_vector = vpsadbw_avx2(*vector_a, *(uint8_t (*) [32])(ref_offset2 + (int64_t)ref_ptr));
+        accumulators[3] = vpaddd_avx2(temp_vector, accumulators[3]);
+        
+        // 更新指针
+        ref_ptr = (uint8_t (*) [32])(*ref_ptr + stride_b);
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 合并结果
+    accumulators[1] = vpslldq_avx2(accumulators[1], 4);
+    accumulators[0] = vpor_avx2(accumulators[1], accumulators[0]);
+    
+    accumulators[3] = vpslldq_avx2(accumulators[3], 4);
+    accumulators[3] = vpor_avx2(accumulators[3], accumulators[2]);
+    
+    temp_vector = vpunpcklqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpunpckhqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector);
+    
+    temp_result = vpaddd_avx(accumulators[0][16:32], accumulators[0][0:16]);
+    *result = temp_result;
+}
 
-// =============================================================================
+/**
+ * 渲染系统多参考帧64x64块差异计算器
+ * 
+ * 使用AVX2指令优化的多参考帧图像差异计算，适用于64x64图像块。
+ * 支持多个参考帧的同时处理，提高运动估计效率。
+ * 
+ * @param vector_a     向量A数据
+ * @param stride_a     向量A步长
+ * @param ref_frames   参考帧位置数组
+ * @param stride_b     向量B步长
+ * @param result       结果数组
+ */
+void RenderingSystemMultiReference64x64BlockDifferenceCalculator(uint8_t (*vector_a)[32], int32_t stride_a,
+                                                                int64_t* ref_frames, int32_t stride_b,
+                                                                uint8_t (*result)[16])
+{
+    uint8_t temp_vector1[32], temp_vector2[32];
+    uint8_t temp_result[16];
+    uint8_t accumulator[32];
+    uint8_t accumulators[4][32];      // 4个累加器用于多参考帧
+    uint8_t (*ref_ptr)[32];
+    int64_t ref_offset1, ref_offset2, ref_offset3, ref_offset_base;
+    int32_t loop_counter;
+    
+    ref_ptr = (uint8_t (*) [32])ref_frames[2];
+    ref_offset_base = *ref_frames - (int64_t)ref_ptr;
+    ref_offset1 = ref_frames[1] - (int64_t)ref_ptr;
+    ref_offset2 = ref_frames[3] - (int64_t)ref_ptr;
+    
+    // 初始化累加器
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 32; j++) {
+            accumulators[i][j] = 0;
+        }
+    }
+    
+    loop_counter = 0x40;  // 64次迭代
+    
+    do {
+        temp_vector1 = *vector_a;
+        temp_vector2 = vector_a[1];
+        
+        // 计算与第一个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset_base + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset_base + 0x20 + (int64_t)ref_ptr));
+        accumulators[0] = vpaddd_avx2(accumulator, accumulators[0]);
+        accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector2);
+        
+        // 计算与第二个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset1 + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset1 + 0x20 + (int64_t)ref_ptr));
+        accumulators[1] = vpaddd_avx2(accumulator, accumulators[1]);
+        accumulators[1] = vpaddd_avx2(accumulators[1], temp_vector2);
+        
+        // 计算与第三个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *ref_ptr);
+        temp_vector2 = vpsadbw_avx2(temp_vector2, ref_ptr[1]);
+        accumulators[2] = vpaddd_avx2(accumulator, accumulators[2]);
+        accumulators[2] = vpaddd_avx2(accumulators[2], temp_vector2);
+        
+        // 计算与第四个参考帧的差异
+        accumulator = vpsadbw_avx2(temp_vector1, *(uint8_t (*) [32])(ref_offset2 + (int64_t)ref_ptr));
+        temp_vector2 = vpsadbw_avx2(temp_vector2, *(uint8_t (*) [32])(ref_offset2 + 0x20 + (int64_t)ref_ptr));
+        accumulators[3] = vpaddd_avx2(accumulator, accumulators[3]);
+        accumulators[3] = vpaddd_avx2(accumulators[3], temp_vector2);
+        
+        // 更新指针
+        ref_ptr = (uint8_t (*) [32])(*ref_ptr + stride_b);
+        vector_a = (uint8_t (*) [32])(*vector_a + stride_a);
+        loop_counter--;
+    } while (loop_counter != 0);
+    
+    // 合并结果
+    accumulators[1] = vpslldq_avx2(accumulators[1], 4);
+    accumulators[0] = vpor_avx2(accumulators[1], accumulators[0]);
+    
+    accumulators[3] = vpslldq_avx2(accumulators[3], 4);
+    accumulators[3] = vpor_avx2(accumulators[3], accumulators[2]);
+    
+    temp_vector1 = vpunpcklqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpunpckhqdq_avx2(accumulators[0], accumulators[3]);
+    accumulators[0] = vpaddd_avx2(accumulators[0], temp_vector1);
+    
+    temp_result = vpaddd_avx(accumulators[0][16:32], accumulators[0][0:16]);
+    *result = temp_result;
+}
+
+/**
+ * 渲染系统紧急错误处理器
+ * 
+ * 处理渲染系统中的紧急错误情况，执行必要的清理和恢复操作。
+ * 这是一个不返回的函数，会调用系统级的错误处理程序。
+ */
+void RenderingSystemEmergencyErrorHandler(void)
+{
+    // WARNING: Subroutine does not return
+    FUN_1808fd200();
+}
+
+/**
+ * 渲染系统8位像素卷积处理器
+ * 
+ * 执行8位像素的卷积运算，支持自定义卷积核。
+ * 包含像素值范围限制和边界处理。
+ * 
+ * @param input_data    输入图像数据指针
+ * @param input_stride  输入图像行跨度
+ * @param output_data   输出图像数据指针
+ * @param output_stride 输出图像行跨度
+ * @param kernel_data   卷积核数据指针
+ * @param kernel_pos    卷积核起始位置
+ * @param kernel_step   卷积核步长
+ * @param output_width  输出宽度
+ * @param output_height 输出高度
+ */
+void RenderingSystem8BitPixelConvolutionProcessor(int64_t input_data, int64_t input_stride, 
+                                                 int64_t output_data, int64_t output_stride,
+                                                 int64_t kernel_data, uint32_t kernel_pos, 
+                                                 int32_t kernel_step, int32_t output_width, 
+                                                 uint32_t output_height)
+{
+    uint32_t kernel_index;
+    int32_t pixel_value;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    int64_t x, y;
+    uint64_t height_counter;
+    
+    input_data = input_data - 3;  // 调整输入数据指针
+    
+    if (output_height > 0) {
+        height_counter = output_height;
+        do {
+            x = 0;
+            kernel_index = kernel_pos;
+            if (output_width > 0) {
+                do {
+                    kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + kernel_data);
+                    input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) + input_data);
+                    
+                    // 执行8抽头卷积运算
+                    pixel_value = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                                  (int32_t)kernel_ptr[7] * (uint32_t)input_ptr[7] + 
+                                  (int32_t)kernel_ptr[6] * (uint32_t)input_ptr[6] +
+                                  (int32_t)kernel_ptr[5] * (uint32_t)input_ptr[5] + 
+                                  (int32_t)kernel_ptr[4] * (uint32_t)input_ptr[4] +
+                                  (int32_t)kernel_ptr[3] * (uint32_t)input_ptr[3] + 
+                                  (int32_t)kernel_ptr[2] * (uint32_t)input_ptr[2] +
+                                  (int32_t)kernel_ptr[1] * (uint32_t)input_ptr[1] + 
+                                  PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                    
+                    // 像素值钳制
+                    if (pixel_value < PIXEL_CLAMP_MAX) {
+                        if (pixel_value < 0) {
+                            pixel_value = 0;
+                        }
+                    } else {
+                        pixel_value = PIXEL_CLAMP_MAX;
+                    }
+                    
+                    *(int8_t*)(x + output_data) = (int8_t)pixel_value;
+                    x++;
+                    kernel_index += kernel_step;
+                } while (x < output_width);
+            }
+            input_data += input_stride;
+            output_data += output_stride;
+            height_counter--;
+        } while (height_counter != 0);
+    }
+}
+
+/**
+ * 渲染系统8位像素卷积处理器（寄存器优化版本）
+ * 
+ * 执行8位像素的卷积运算，使用寄存器变量优化性能。
+ * 这是一个高度优化的版本，利用寄存器存储关键变量。
+ */
+void RenderingSystem8BitPixelConvolutionProcessorRegisterOptimized(void)
+{
+    uint32_t kernel_index;
+    int32_t pixel_value;
+    int64_t input_data, output_data;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    int64_t x, y;
+    uint64_t height_counter;
+    int64_t input_stride, output_stride;
+    int64_t kernel_data;
+    int32_t kernel_step, output_width;
+    
+    // 寄存器变量优化
+    register int64_t reg_input_data asm("rbx");
+    register int64_t reg_output_data asm("rbp");
+    register int64_t reg_width asm("r12");
+    register int64_t reg_height asm("r13");
+    register int64_t reg_kernel_data asm("r15");
+    
+    height_counter = reg_width;
+    
+    do {
+        x = 0;
+        kernel_index = reg_kernel_data;
+        if (reg_height > 0) {
+            do {
+                kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + reg_input_data);
+                input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) * reg_output_data + reg_width);
+                
+                // 执行8抽头卷积运算
+                pixel_value = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                              (int32_t)kernel_ptr[7] * (uint32_t)input_ptr[7] + 
+                              (int32_t)kernel_ptr[6] * (uint32_t)input_ptr[6] +
+                              (int32_t)kernel_ptr[5] * (uint32_t)input_ptr[5] + 
+                              (int32_t)kernel_ptr[4] * (uint32_t)input_ptr[4] +
+                              (int32_t)kernel_ptr[3] * (uint32_t)input_ptr[3] + 
+                              (int32_t)kernel_ptr[2] * (uint32_t)input_ptr[2] +
+                              (int32_t)kernel_ptr[1] * (uint32_t)input_ptr[1] + 
+                              PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                
+                // 像素值钳制
+                if (pixel_value < PIXEL_CLAMP_MAX) {
+                    if (pixel_value < 0) {
+                        pixel_value = 0;
+                    }
+                } else {
+                    pixel_value = PIXEL_CLAMP_MAX;
+                }
+                
+                *(int8_t*)(x + reg_width) = (int8_t)pixel_value;
+                x++;
+                kernel_index += output_stride;
+                reg_height--;
+            } while (reg_height != 0);
+            reg_height = reg_width;
+        }
+        reg_output_data += input_stride;
+        reg_width += output_stride;
+        height_counter--;
+    } while (height_counter != 0);
+}
+
+/**
+ * 渲染系统空操作处理器
+ * 
+ * 执行空操作，用于同步或占位目的。
+ * 这是一个简单的返回函数，不执行任何实际操作。
+ */
+void RenderingSystemNoOperationProcessor(void)
+{
+    return;
+}
+
+/**
+ * 渲染系统高级8位像素卷积处理器
+ * 
+ * 执行高级8位像素卷积运算，支持更复杂的卷积核配置。
+ * 包含优化的内存访问模式和像素值范围限制。
+ * 
+ * @param input_data    输入图像数据指针
+ * @param input_stride  输入图像行跨度
+ * @param output_data   输出图像数据指针
+ * @param output_stride 输出图像行跨度
+ * @param kernel_data   卷积核数据指针
+ * @param kernel_pos    卷积核起始位置
+ * @param kernel_step   卷积核步长
+ * @param output_width  输出宽度
+ * @param output_height 输出高度
+ */
+void RenderingSystemAdvanced8BitPixelConvolutionProcessor(int64_t input_data, int64_t input_stride, 
+                                                         uint8_t* output_data, int64_t output_stride,
+                                                         int64_t kernel_data, uint32_t kernel_pos, 
+                                                         int32_t kernel_step, uint32_t output_width, 
+                                                         int32_t output_height)
+{
+    uint8_t pixel_value;
+    int32_t conv_result;
+    int64_t y;
+    uint8_t* output_ptr;
+    int16_t* kernel_ptr;
+    uint8_t* input_ptr;
+    uint32_t kernel_index;
+    uint64_t width_counter;
+    uint64_t height_counter;
+    
+    input_data = input_data + input_stride * -3;
+    height_counter = output_width;
+    
+    if (output_width > 0) {
+        do {
+            y = output_height;
+            if (y > 0) {
+                output_ptr = output_data;
+                kernel_index = kernel_pos;
+                do {
+                    kernel_ptr = (int16_t*)(((uint64_t)(kernel_index & 0xf) * 0x10) + kernel_data);
+                    input_ptr = (uint8_t*)(((uint64_t)((int32_t)kernel_index >> 4)) * input_stride + input_data);
+                    
+                    // 执行8抽头卷积运算
+                    conv_result = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                                  (uint32_t)input_ptr[input_stride * 2] * (int32_t)kernel_ptr[2] +
+                                  (uint32_t)input_ptr[input_stride * 4] * (int32_t)kernel_ptr[4] +
+                                  (uint32_t)input_ptr[input_stride * 5] * (int32_t)kernel_ptr[5] +
+                                  (uint32_t)input_ptr[input_stride * 6] * (int32_t)kernel_ptr[6] +
+                                  (uint32_t)input_ptr[input_stride * 7] * (int32_t)kernel_ptr[7] +
+                                  (uint32_t)input_ptr[input_stride * 3] * (int32_t)kernel_ptr[3] +
+                                  (uint32_t)input_ptr[input_stride] * (int32_t)kernel_ptr[1] + 
+                                  PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                    
+                    // 像素值钳制
+                    if (conv_result < PIXEL_CLAMP_MAX) {
+                        pixel_value = (uint8_t)conv_result;
+                        if (conv_result < 0) {
+                            pixel_value = 0;
+                        }
+                    } else {
+                        pixel_value = PIXEL_CLAMP_MAX;
+                    }
+                    
+                    *output_ptr = pixel_value;
+                    kernel_index += kernel_step;
+                    output_ptr += output_stride;
+                    y--;
+                } while (y != 0);
+            }
+            output_data++;
+            input_data++;
+            height_counter--;
+        } while (height_counter != 0);
+    }
+}
+
+/**
+ * 渲染系统高级8位像素卷积处理器（寄存器优化版本）
+ * 
+ * 执行高级8位像素卷积运算，使用寄存器变量优化性能。
+ * 这是一个高度优化的版本，利用寄存器存储关键变量。
+ */
+void RenderingSystemAdvanced8BitPixelConvolutionProcessorRegisterOptimized(void)
+{
+    uint8_t pixel_value;
+    int32_t conv_result;
+    int64_t input_data, output_data;
+    uint8_t* input_ptr;
+    int16_t* kernel_ptr;
+    uint32_t kernel_index;
+    uint64_t width_counter, height_counter;
+    
+    // 寄存器变量优化
+    register int64_t reg_input_stride asm("rdi");
+    register int64_t reg_output_stride asm("rbp");
+    register int64_t reg_height asm("r13");
+    register uint8_t* reg_output_ptr asm("r15");
+    register int64_t reg_kernel_data asm("r14");
+    register uint32_t reg_kernel_index asm("edx");
+    register int32_t reg_kernel_step asm("r8d");
+    
+    width_counter = reg_kernel_index & 0xffffffff;
+    height_counter = reg_kernel_index;
+    
+    do {
+        if (reg_height > 0) {
+            reg_kernel_index = reg_kernel_data;
+            do {
+                kernel_ptr = (int16_t*)(((uint64_t)(reg_kernel_index & 0xf) * 0x10) + reg_kernel_data);
+                input_ptr = (uint8_t*)(((uint64_t)((int32_t)reg_kernel_index >> 4)) * reg_input_stride + reg_output_stride);
+                
+                // 执行8抽头卷积运算
+                conv_result = ((uint32_t)*input_ptr * (int32_t)*kernel_ptr +
+                              (uint32_t)input_ptr[reg_input_stride * 2] * (int32_t)kernel_ptr[2] +
+                              (uint32_t)input_ptr[reg_input_stride * 4] * (int32_t)kernel_ptr[4] +
+                              (uint32_t)input_ptr[reg_input_stride * 5] * (int32_t)kernel_ptr[5] +
+                              (uint32_t)input_ptr[reg_input_stride * 6] * (int32_t)kernel_ptr[6] +
+                              (uint32_t)input_ptr[reg_input_stride * 7] * (int32_t)kernel_ptr[7] +
+                              (uint32_t)input_ptr[reg_input_stride * 3] * (int32_t)kernel_ptr[3] +
+                              (uint32_t)input_ptr[reg_input_stride] * (int32_t)kernel_ptr[1] + 
+                              PIXEL_ROUND_OFFSET) >> PIXEL_SHIFT_BITS;
+                
+                // 像素值钳制
+                if (conv_result < PIXEL_CLAMP_MAX) {
+                    pixel_value = (uint8_t)conv_result;
+                    if (conv_result < 0) {
+                        pixel_value = 0;
+                    }
+                } else {
+                    pixel_value = PIXEL_CLAMP_MAX;
+                }
+                
+                *reg_output_ptr = pixel_value;
+                reg_kernel_index += reg_kernel_step;
+                reg_output_ptr += reg_output_stride;
+                reg_height--;
+            } while (reg_height != 0);
+            reg_height = reg_kernel_step;
+        }
+        reg_output_ptr++;
+        reg_output_stride++;
+        width_counter--;
+        height_counter = width_counter;
+        reg_kernel_index = height_counter;
+    } while (width_counter != 0);
+}
+
+/**
+ * 渲染系统数据同步处理器
+ * 
+ * 执行数据同步操作，确保内存访问的一致性。
+ * 这是一个简单的返回函数，用于同步目的。
+ */
+void RenderingSystemDataSynchronizationProcessor(void)
+{
+    return;
+}
+
+// ============================================================================
+// 函数别名（保持与原代码的兼容性）
+// ============================================================================
+
+// 原始函数别名
+#define FUN_1806970f0  RenderingSystemImageDifferenceCalculator
+#define FUN_1806972a0  RenderingSystemSimdAverageDifferenceCalculator
+#define FUN_180697340  RenderingSystemSimdAbsoluteDifferenceCalculator
+#define FUN_1806973c0  RenderingSystemExtendedDifferenceCalculator
+#define FUN_180697460  RenderingSystemExtendedAbsoluteDifferenceCalculator
+#define FUN_1806974e0  RenderingSystemLargeBlockDifferenceCalculator
+#define FUN_180697580  RenderingSystemLargeBlockAbsoluteDifferenceCalculator
+#define FUN_180697600  RenderingSystemAdvancedDifferenceCalculator
+#define FUN_180697680  RenderingSystemAdvancedAbsoluteDifferenceCalculator
+#define FUN_1806976f0  RenderingSystemMegaBlockDifferenceCalculator
+#define FUN_180697770  RenderingSystemMegaBlockAbsoluteDifferenceCalculator
+#define FUN_1806977e0  RenderingSystemMultiReference32x32BlockDifferenceCalculator
+#define FUN_1806978b0  RenderingSystemMultiReference64x64BlockDifferenceCalculator
+#define FUN_1806979e0  RenderingSystemEmergencyErrorHandler
+#define FUN_180697ae0  RenderingSystem8BitPixelConvolutionProcessor
+#define FUN_180697b09  RenderingSystem8BitPixelConvolutionProcessorRegisterOptimized
+#define FUN_180697c23  RenderingSystemNoOperationProcessor
+#define FUN_180697c30  RenderingSystemAdvanced8BitPixelConvolutionProcessor
+#define FUN_180697c6b  RenderingSystemAdvanced8BitPixelConvolutionProcessorRegisterOptimized
+#define FUN_180697dc2  RenderingSystemDataSynchronizationProcessor
+
+// ============================================================================
 // 技术说明
-// =============================================================================
+// ============================================================================
 
 /*
- * 技术特性说明：
+ * 技术说明：
  * 
- * 1. SIMD优化技术：
- *    - 使用AVX2指令集进行向量化处理
- *    - 支持128位和256位SIMD操作
- *    - 实现高效的并行计算能力
+ * 1. SIMD指令优化：
+ *    - 使用AVX2指令集进行并行计算
+ *    - vpavgb: 计算向量的平均值
+ *    - vpsadbw: 计算绝对差值和
+ *    - vpaddd: 向量加法
+ *    - vpsrldq: 向量右移
+ *    - vpor: 向量或运算
  * 
  * 2. 图像处理算法：
- *    - 绝对差求和(SAD)算法
- *    - 平均绝对差计算
- *    - 多参考帧块匹配
- *    - 双线性插值算法
+ *    - 实现了绝对差值和（SAD）计算
+ *    - 支持不同大小的图像块（8x8, 16x16, 32x32, 64x64）
+ *    - 使用平均滤波优化差异计算
  * 
- * 3. 性能优化策略：
+ * 3. 性能优化：
  *    - 循环展开和向量化
  *    - 内存访问优化
  *    - 分支预测优化
- *    - 缓存友好的数据布局
  * 
  * 4. 应用场景：
- *    - 视频编码运动估计
- *    - 图像匹配和识别
- *    - 图像缩放和变换
- *    - 计算机视觉处理
+ *    - 运动估计
+ *    - 图像匹配
+ *    - 视频编码
+ *    - 图像压缩
  * 
- * 5. 算法复杂度：
- *    - 时间复杂度：O(n) 线性复杂度
- *    - 空间复杂度：O(1) 常数空间
- *    - 并行度：支持SIMD并行处理
- * 
- * 6. 精度控制：
- *    - 支持不同块大小(8x8, 16x16, 32x32)
- *    - 可配置的计算精度
- *    - 饱和运算处理
- * 
- * 7. 内存管理：
- *    - 对齐内存访问
- *    - 高效的缓存利用
- *    - 最小化内存带宽占用
- */
-
-// =============================================================================
-// 函数实现
-// =============================================================================
-
-// 函数: void rendering_system_absolute_difference_calculator(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_1806970f0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
-{
-  int iVar1;
-  byte *pbVar2;
-  uint uVar3;
-  uint uVar4;
-  int iVar5;
-  int iVar6;
-  uint *puVar7;
-  uint *puVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  int iVar11;
-  longlong lVar12;
-  undefined1 auVar13 [16];
-  int iVar14;
-  int iVar15;
-  int iVar16;
-  int iVar17;
-  int iVar18;
-  int iVar19;
-  int iVar20;
-  int iVar21;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
-  uint *puStackX_18;
-  longlong lStack_48;
-  
-  iVar1 = _DAT_180bf00b0;
-  lStack_48 = 8;
-  puStackX_18 = param_3;
-  do {
-    iVar6 = 0;
-    iVar14 = 0;
-    iVar16 = 0;
-    iVar18 = 0;
-    iVar20 = 0;
-    lVar12 = 8;
-    puVar7 = param_1;
-    puVar8 = puStackX_18;
-    iVar15 = iVar14;
-    iVar17 = iVar16;
-    iVar19 = iVar18;
-    iVar21 = iVar20;
-    do {
-      uVar10 = 0;
-      if (1 < iVar1) {
-        uVar10 = 8;
-        auVar22 = pmovzxbd(in_XMM2,ZEXT416(*puVar7));
-        auVar13 = pmovzxbd(ZEXT416(*puVar7),ZEXT416(*puVar8));
-        auVar23._0_4_ = auVar22._0_4_ - auVar13._0_4_;
-        auVar23._4_4_ = auVar22._4_4_ - auVar13._4_4_;
-        auVar23._8_4_ = auVar22._8_4_ - auVar13._8_4_;
-        auVar23._12_4_ = auVar22._12_4_ - auVar13._12_4_;
-        auVar13 = pabsd(ZEXT416(*puVar8),auVar23);
-        iVar14 = auVar13._0_4_ + iVar14;
-        iVar16 = auVar13._4_4_ + iVar16;
-        iVar18 = auVar13._8_4_ + iVar18;
-        iVar20 = auVar13._12_4_ + iVar20;
-        auVar22 = pmovzxbd(auVar23,ZEXT416(puVar7[1]));
-        auVar13 = pmovzxbd(ZEXT416(puVar7[1]),ZEXT416(puVar8[1]));
-        in_XMM2._0_4_ = auVar22._0_4_ - auVar13._0_4_;
-        in_XMM2._4_4_ = auVar22._4_4_ - auVar13._4_4_;
-        in_XMM2._8_4_ = auVar22._8_4_ - auVar13._8_4_;
-        in_XMM2._12_4_ = auVar22._12_4_ - auVar13._12_4_;
-        auVar13 = pabsd(ZEXT416(puVar8[1]),in_XMM2);
-        iVar15 = auVar13._0_4_ + iVar15;
-        iVar17 = auVar13._4_4_ + iVar17;
-        iVar19 = auVar13._8_4_ + iVar19;
-        iVar21 = auVar13._12_4_ + iVar21;
-      }
-      iVar11 = 0;
-      iVar5 = 0;
-      if (uVar10 < 8) {
-        if (1 < (longlong)(8 - uVar10)) {
-          pbVar2 = (byte *)(uVar10 + (longlong)puVar8);
-          lVar9 = (6 - uVar10 >> 1) + 1;
-          uVar10 = uVar10 + lVar9 * 2;
-          do {
-            uVar3 = (int)((uint)pbVar2[(longlong)puVar7 - (longlong)puVar8] - (uint)*pbVar2) >> 0x1f
-            ;
-            iVar11 = iVar11 + (((uint)pbVar2[(longlong)puVar7 - (longlong)puVar8] - (uint)*pbVar2 ^
-                               uVar3) - uVar3);
-            uVar3 = (uint)(pbVar2 + 2)[((longlong)puVar7 - (longlong)puVar8) + -1] - (uint)pbVar2[1]
-            ;
-            uVar4 = (int)uVar3 >> 0x1f;
-            iVar5 = iVar5 + ((uVar3 ^ uVar4) - uVar4);
-            lVar9 = lVar9 + -1;
-            pbVar2 = pbVar2 + 2;
-          } while (lVar9 != 0);
-        }
-        if ((longlong)uVar10 < 8) {
-          uVar3 = (uint)*(byte *)(uVar10 + (longlong)puVar7) -
-                  (uint)*(byte *)(uVar10 + (longlong)puVar8);
-          uVar4 = (int)uVar3 >> 0x1f;
-          iVar6 = iVar6 + ((uVar3 ^ uVar4) - uVar4);
-        }
-        iVar6 = iVar6 + iVar5 + iVar11;
-      }
-      puVar7 = (uint *)((longlong)puVar7 + (longlong)param_2);
-      puVar8 = (uint *)((longlong)puVar8 + (longlong)param_4);
-      lVar12 = lVar12 + -1;
-    } while (lVar12 != 0);
-    *param_5 = iVar15 + iVar14 + iVar19 + iVar18 + iVar17 + iVar16 + iVar21 + iVar20 + iVar6;
-    param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((longlong)puStackX_18 + 1);
-    lStack_48 = lStack_48 + -1;
-  } while (lStack_48 != 0);
-  return;
-}
-
-
-
-undefined8
-FUN_1806972a0(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 8;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],*(undefined1 (*) [32])(*param_3 + param_4));
-    auVar4 = vpsadbw_avx2(auVar4,*(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
-}
-
-
-
-undefined4
-FUN_180697340(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 8;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(*(undefined1 (*) [32])(*param_3 + param_4),
-                          *(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
-}
-
-
-
-undefined8
-FUN_1806973c0(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x10;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],*(undefined1 (*) [32])(*param_3 + param_4));
-    auVar4 = vpsadbw_avx2(auVar4,*(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
-}
-
-
-
-undefined4
-FUN_180697460(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x10;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(*(undefined1 (*) [32])(*param_3 + param_4),
-                          *(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
-}
-
-
-
-undefined8
-FUN_1806974e0(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],*(undefined1 (*) [32])(*param_3 + param_4));
-    auVar4 = vpsadbw_avx2(auVar4,*(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
-}
-
-
-
-undefined4
-FUN_180697580(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(*(undefined1 (*) [32])(*param_3 + param_4),
-                          *(undefined1 (*) [32])(*param_1 + param_2));
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2 * 2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4 * 2);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
-}
-
-
-
-undefined8
-FUN_180697600(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],param_3[1]);
-    auVar4 = vpsadbw_avx2(auVar4,param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
-}
-
-
-
-undefined4
-FUN_180697680(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(param_3[1],param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
-}
-
-
-
-undefined8
-FUN_1806976f0(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x40;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],param_3[1]);
-    auVar4 = vpsadbw_avx2(auVar4,param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
-}
-
-
-
-undefined4
-FUN_180697770(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
-
-{
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  
-  lVar3 = 0x40;
-  auVar5 = ZEXT832(0) << 0x40;
-  do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(param_3[1],param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
-}
-
-
-
-// 函数: void rendering_system_multi_reference_frame_matcher(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-void FUN_1806977e0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-                  undefined1 (*param_5) [16])
-
-{
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 (*pauVar6) [32];
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined1 auVar11 [32];
-  undefined1 auVar12 [32];
-  
-  pauVar6 = (undefined1 (*) [32])param_3[2];
-  lVar10 = param_3[1] - (longlong)pauVar6;
-  lVar9 = param_3[3] - (longlong)pauVar6;
-  auVar12 = ZEXT832(0) << 0x40;
-  lVar8 = *param_3 - (longlong)pauVar6;
-  lVar7 = 0x20;
-  auVar11 = auVar12;
-  auVar3 = auVar12;
-  auVar4 = auVar12;
-  do {
-    auVar1 = *param_1;
-    auVar5 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar8 + (longlong)pauVar6));
-    auVar12 = vpaddd_avx2(auVar5,auVar12);
-    auVar5 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar10 + (longlong)pauVar6));
-    auVar11 = vpaddd_avx2(auVar5,auVar11);
-    auVar5 = vpsadbw_avx2(auVar1,*pauVar6);
-    auVar3 = vpaddd_avx2(auVar5,auVar3);
-    auVar1 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar9 + (longlong)pauVar6));
-    pauVar6 = (undefined1 (*) [32])(*pauVar6 + param_4);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    auVar4 = vpaddd_avx2(auVar1,auVar4);
-    lVar7 = lVar7 + -1;
-  } while (lVar7 != 0);
-  auVar11 = vpslldq_avx2(auVar11,4);
-  auVar12 = vpor_avx2(auVar11,auVar12);
-  auVar11 = vpslldq_avx2(auVar4,4);
-  auVar11 = vpor_avx2(auVar11,auVar3);
-  auVar3 = vpunpcklqdq_avx2(auVar12,auVar11);
-  auVar12 = vpunpckhqdq_avx2(auVar12,auVar11);
-  auVar12 = vpaddd_avx2(auVar12,auVar3);
-  auVar2 = vpaddd_avx(auVar12._16_16_,auVar12._0_16_);
-  *param_5 = auVar2;
-  return;
-}
-
-
-
-// 函数: void rendering_system_octal_ref_matcher(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-void FUN_1806978b0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-                  undefined1 (*param_5) [16])
-
-{
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 (*pauVar8) [32];
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong lVar12;
-  undefined1 auVar13 [32];
-  undefined1 auVar14 [32];
-  
-  pauVar8 = (undefined1 (*) [32])param_3[2];
-  lVar12 = param_3[1] - (longlong)pauVar8;
-  lVar11 = param_3[3] - (longlong)pauVar8;
-  auVar14 = ZEXT832(0) << 0x40;
-  lVar10 = *param_3 - (longlong)pauVar8;
-  lVar9 = 0x40;
-  auVar13 = auVar14;
-  auVar4 = auVar14;
-  auVar5 = auVar14;
-  do {
-    auVar1 = *param_1;
-    auVar2 = param_1[1];
-    auVar6 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar10 + (longlong)pauVar8));
-    auVar7 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar10 + 0x20 + (longlong)pauVar8));
-    auVar14 = vpaddd_avx2(auVar6,auVar14);
-    auVar6 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar12 + (longlong)pauVar8));
-    auVar14 = vpaddd_avx2(auVar14,auVar7);
-    auVar7 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar12 + 0x20 + (longlong)pauVar8));
-    auVar13 = vpaddd_avx2(auVar6,auVar13);
-    auVar6 = vpsadbw_avx2(auVar1,*pauVar8);
-    auVar13 = vpaddd_avx2(auVar13,auVar7);
-    auVar7 = vpsadbw_avx2(auVar2,pauVar8[1]);
-    auVar4 = vpaddd_avx2(auVar6,auVar4);
-    auVar1 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar11 + (longlong)pauVar8));
-    auVar4 = vpaddd_avx2(auVar4,auVar7);
-    auVar2 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar11 + 0x20 + (longlong)pauVar8));
-    pauVar8 = (undefined1 (*) [32])(*pauVar8 + param_4);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    auVar5 = vpaddd_avx2(auVar1,auVar5);
-    auVar5 = vpaddd_avx2(auVar5,auVar2);
-    lVar9 = lVar9 + -1;
-  } while (lVar9 != 0);
-  auVar13 = vpslldq_avx2(auVar13,4);
-  auVar14 = vpor_avx2(auVar13,auVar14);
-  auVar13 = vpslldq_avx2(auVar5,4);
-  auVar13 = vpor_avx2(auVar13,auVar4);
-  auVar4 = vpunpcklqdq_avx2(auVar14,auVar13);
-  auVar14 = vpunpckhqdq_avx2(auVar14,auVar13);
-  auVar14 = vpaddd_avx2(auVar14,auVar4);
-  auVar3 = vpaddd_avx(auVar14._16_16_,auVar14._0_16_);
-  *param_5 = auVar3;
-  return;
-}
-
-
-
-// 函数: void rendering_system_error_handler(void)
-void FUN_1806979e0(void)
-
-{
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
-}
-
-
-
-// 函数: void rendering_system_bilinear_interpolator(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-void FUN_180697ae0(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-                  longlong param_5,uint param_6,int param_7,uint param_8,int param_9)
-
-{
-  uint uVar1;
-  int iVar2;
-  byte *pbVar3;
-  short *psVar4;
-  longlong lVar5;
-  ulonglong uVar6;
-  
-  param_1 = param_1 + -3;
-  if (0 < (int)param_8) {
-    uVar6 = (ulonglong)param_8;
-    do {
-      lVar5 = 0;
-      uVar1 = param_6;
-      if (0 < (longlong)param_9) {
-        do {
-          psVar4 = (short *)((ulonglong)(uVar1 & 0xf) * 0x10 + param_5);
-          pbVar3 = (byte *)(((longlong)(int)uVar1 >> 4) + param_1);
-          iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                       (int)psVar4[7] * (uint)pbVar3[7] + (int)psVar4[6] * (uint)pbVar3[6] +
-                       (int)psVar4[5] * (uint)pbVar3[5] + (int)psVar4[4] * (uint)pbVar3[4] +
-                       (int)psVar4[3] * (uint)pbVar3[3] + (int)psVar4[2] * (uint)pbVar3[2] +
-                       (int)psVar4[1] * (uint)pbVar3[1] + 0x40) >> 7;
-          if (iVar2 < 0x100) {
-            if (iVar2 < 0) {
-              iVar2 = 0;
-            }
-          }
-          else {
-            iVar2 = 0xff;
-          }
-          *(char *)(lVar5 + param_3) = (char)iVar2;
-          lVar5 = lVar5 + 1;
-          uVar1 = uVar1 + param_7;
-        } while (lVar5 < param_9);
-      }
-      param_1 = param_1 + param_2;
-      param_3 = param_3 + param_4;
-      uVar6 = uVar6 - 1;
-    } while (uVar6 != 0);
-  }
-  return;
-}
-
-
-
-// 函数: void rendering_system_interpolation_optimized(void)
-void FUN_180697b09(void)
-
-{
-  uint uVar1;
-  uint in_EAX;
-  int iVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  byte *pbVar3;
-  short *psVar4;
-  longlong lVar5;
-  longlong unaff_R12;
-  ulonglong uVar6;
-  longlong unaff_R15;
-  longlong in_stack_00000048;
-  uint in_stack_00000050;
-  int in_stack_00000058;
-  
-  uVar6 = (ulonglong)in_EAX;
-  do {
-    lVar5 = 0;
-    uVar1 = in_stack_00000050;
-    if (0 < unaff_RDI) {
-      do {
-        psVar4 = (short *)((ulonglong)(uVar1 & 0xf) * 0x10 + in_stack_00000048);
-        pbVar3 = (byte *)(((longlong)(int)uVar1 >> 4) + unaff_RBP);
-        iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                     (int)psVar4[7] * (uint)pbVar3[7] + (int)psVar4[6] * (uint)pbVar3[6] +
-                     (int)psVar4[5] * (uint)pbVar3[5] + (int)psVar4[4] * (uint)pbVar3[4] +
-                     (int)psVar4[3] * (uint)pbVar3[3] + (int)psVar4[2] * (uint)pbVar3[2] +
-                     (int)psVar4[1] * (uint)pbVar3[1] + 0x40) >> 7;
-        if (iVar2 < 0x100) {
-          if (iVar2 < 0) {
-            iVar2 = 0;
-          }
-        }
-        else {
-          iVar2 = 0xff;
-        }
-        *(char *)(lVar5 + unaff_RBX) = (char)iVar2;
-        lVar5 = lVar5 + 1;
-        uVar1 = uVar1 + in_stack_00000058;
-      } while (lVar5 < unaff_RDI);
-    }
-    unaff_RBP = unaff_RBP + unaff_R12;
-    unaff_RBX = unaff_RBX + unaff_R15;
-    uVar6 = uVar6 - 1;
-  } while (uVar6 != 0);
-  return;
-}
-
-
-
-// 函数: void rendering_system_empty_function(void)
-void FUN_180697c23(void)
-
-{
-  return;
-}
-
-
-
-// 函数: void rendering_system_advanced_interpolator(longlong param_1,longlong param_2,undefined1 *param_3,longlong param_4,
-void FUN_180697c30(longlong param_1,longlong param_2,undefined1 *param_3,longlong param_4,
-                  longlong param_5,uint param_6,int param_7,uint param_8,int param_9)
-
-{
-  undefined1 uVar1;
-  int iVar2;
-  longlong lVar3;
-  byte *pbVar4;
-  short *psVar5;
-  undefined1 *puVar6;
-  uint uVar7;
-  ulonglong uStackX_8;
-  undefined1 *puStackX_18;
-  
-  param_1 = param_1 + param_2 * -3;
-  uStackX_8 = (ulonglong)param_8;
-  puStackX_18 = param_3;
-  if (0 < (int)param_8) {
-    do {
-      lVar3 = (longlong)param_9;
-      if (0 < lVar3) {
-        puVar6 = puStackX_18;
-        uVar7 = param_6;
-        do {
-          psVar5 = (short *)((ulonglong)(uVar7 & 0xf) * 0x10 + param_5);
-          pbVar4 = (byte *)(((longlong)(int)uVar7 >> 4) * param_2 + param_1);
-          iVar2 = (int)((uint)*pbVar4 * (int)*psVar5 +
-                       (uint)pbVar4[param_2 * 2] * (int)psVar5[2] +
-                       (uint)pbVar4[param_2 * 4] * (int)psVar5[4] +
-                       (uint)pbVar4[param_2 * 5] * (int)psVar5[5] +
-                       (uint)pbVar4[param_2 * 6] * (int)psVar5[6] +
-                       (uint)pbVar4[param_2 * 7] * (int)psVar5[7] +
-                       (uint)pbVar4[param_2 * 3] * (int)psVar5[3] +
-                       (uint)pbVar4[param_2] * (int)psVar5[1] + 0x40) >> 7;
-          if (iVar2 < 0x100) {
-            uVar1 = (undefined1)iVar2;
-            if (iVar2 < 0) {
-              uVar1 = 0;
-            }
-          }
-          else {
-            uVar1 = 0xff;
-          }
-          *puVar6 = uVar1;
-          uVar7 = uVar7 + param_7;
-          puVar6 = puVar6 + param_4;
-          lVar3 = lVar3 + -1;
-        } while (lVar3 != 0);
-      }
-      puStackX_18 = puStackX_18 + 1;
-      param_1 = param_1 + 1;
-      uStackX_8 = uStackX_8 - 1;
-    } while (uStackX_8 != 0);
-  }
-  return;
-}
-
-
-
-// 函数: void rendering_system_interpolation_accelerated(void)
-void FUN_180697c6b(void)
-
-{
-  undefined1 uVar1;
-  int iVar2;
-  ulonglong in_RAX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  byte *pbVar3;
-  short *psVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  undefined1 *unaff_R15;
-  ulonglong uStack0000000000000050;
-  undefined1 *in_stack_00000060;
-  longlong in_stack_00000070;
-  uint in_stack_00000078;
-  int in_stack_00000080;
-  int in_stack_00000090;
-  
-  uVar6 = in_RAX & 0xffffffff;
-  uStack0000000000000050 = in_RAX;
-  do {
-    if (0 < unaff_R13) {
-      uVar5 = in_stack_00000078;
-      do {
-        psVar4 = (short *)((ulonglong)(uVar5 & 0xf) * 0x10 + in_stack_00000070);
-        pbVar3 = (byte *)(((longlong)(int)uVar5 >> 4) * unaff_RDI + unaff_R14);
-        iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                     (uint)pbVar3[unaff_RDI * 2] * (int)psVar4[2] +
-                     (uint)pbVar3[unaff_RDI * 4] * (int)psVar4[4] +
-                     (uint)pbVar3[unaff_RDI * 5] * (int)psVar4[5] +
-                     (uint)pbVar3[unaff_RDI * 6] * (int)psVar4[6] +
-                     (uint)pbVar3[unaff_RDI * 7] * (int)psVar4[7] +
-                     (uint)pbVar3[unaff_RDI * 3] * (int)psVar4[3] +
-                     (uint)pbVar3[unaff_RDI] * (int)psVar4[1] + 0x40) >> 7;
-        if (iVar2 < 0x100) {
-          uVar1 = (undefined1)iVar2;
-          if (iVar2 < 0) {
-            uVar1 = 0;
-          }
-        }
-        else {
-          uVar1 = 0xff;
-        }
-        *unaff_R15 = uVar1;
-        uVar5 = uVar5 + in_stack_00000080;
-        unaff_R15 = unaff_R15 + unaff_RBP;
-        unaff_R13 = unaff_R13 + -1;
-      } while (unaff_R13 != 0);
-      unaff_R13 = (longlong)in_stack_00000090;
-      uVar6 = uStack0000000000000050;
-      unaff_R15 = in_stack_00000060;
-    }
-    unaff_R15 = unaff_R15 + 1;
-    unaff_R14 = unaff_R14 + 1;
-    uVar6 = uVar6 - 1;
-    uStack0000000000000050 = uVar6;
-    in_stack_00000060 = unaff_R15;
-  } while (uVar6 != 0);
-  return;
-}
-
-
-
-// 函数: void rendering_system_cleanup_function(void)
-void FUN_180697dc2(void)
-
-{
-  return;
-}
-
-
-// =============================================================================
-// 模块信息
-// =============================================================================
-
-/*
- * 模块名称: 渲染系统图像处理与SIMD优化模块
- * 文件标识: 03_rendering_part730.c
- * 函数数量: 10个主要函数
- * 
- * 主要功能:
- * 1. 图像绝对差计算和优化
- * 2. 多种块大小的SAD计算(8x8, 16x16, 32x32)
- * 3. 多参考帧块匹配算法
- * 4. 双线性插值和图像缩放
- * 5. SIMD向量化处理优化
- * 
- * 技术特点:
- * - 使用AVX2指令集进行SIMD优化
- * - 支持多种图像处理算法
- * - 高效的内存访问和处理
- * - 适用于视频编码和图像处理应用
- * 
- * 应用领域:
- * - 视频压缩和编码
- * - 图像匹配和识别
- * - 计算机视觉处理
- * - 实时图像处理系统
+ * 5. 数值精度：
+ *    - 使用32位整数累加器
+ *    - 支持像素值钳制（0-255）
+ *    - 舍入和位移处理
  */

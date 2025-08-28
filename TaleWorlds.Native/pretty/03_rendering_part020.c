@@ -1,1009 +1,828 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 03_rendering_part020.c - 渲染系统材质处理模块
- * 
- * 本模块包含两个主要函数：
- * 1. MaterialProcessor - 材质处理函数，负责处理材质的加载、解析和应用
- * 2. ModelLoader - 模型加载函数，负责从文件加载模型数据并解析材质信息
- * 
- * 这些函数为游戏引擎提供了材质和模型的底层处理能力，支持材质属性设置、
- * 纹理映射、材质混合等高级渲染功能。
- */
+// 03_rendering_part020.c - 2 个函数
 
-// 常量定义
-#define MAX_STRING_LENGTH 64
-#define DEFAULT_ALPHA_THRESHOLD 0.003921569f  // 1.0f/255.0f
-#define MATERIAL_NAME_LENGTH 0x40
-#define COLOR_COMPONENT_COUNT 4
+// 函数: void FUN_18027a810(longlong *param_1,longlong *param_2)
+void FUN_18027a810(longlong *param_1,longlong *param_2)
 
-// 材质属性偏移量
-#define MATERIAL_FACTOR_OFFSET 0x238
-#define MATERIAL_FACTOR2_OFFSET 0x248
-#define MATERIAL_UV_SCALE_OFFSET 0x2a8
-#define MATERIAL_UV_SCALE2_OFFSET 0x2b8
-
-// 全局变量引用（简化实现）
-extern const char* DEFAULT_STRING;
-extern const char* MESH_NAME_STRING;
-extern const char* MATERIAL_NAME_STRING;
-extern const char* MATERIAL_FACTOR_STRING;
-extern const char* MATERIAL_FACTOR2_STRING;
-extern const char* SECONDARY_MATERIAL_STRING;
-extern const char* MODIFIED_ID_STRING;
-
-/**
- * 材质处理器 - 处理材质加载、解析和应用
- * 
- * 该函数负责：
- * 1. 解析材质配置参数
- * 2. 处理材质名称和属性
- * 3. 设置材质颜色和因子
- * 4. 应用材质到渲染对象
- * 5. 处理二级材质和混合效果
- * 
- * @param render_context 渲染上下文指针
- * @param material_config 材质配置数据指针
- */
-void MaterialProcessor(longlong *render_context, longlong *material_config)
 {
-    // 局部变量声明
-    char *current_char;
-    char *next_char;
-    undefined8 *material_node;
-    undefined8 *attribute_node;
-    longlong material_instance;
-    longlong texture_data;
-    char *attribute_name;
-    char *attribute_value;
-    ulonglong string_length;
-    uint material_count;
-    bool is_match;
-    
-    // 栈变量用于临时存储
-    undefined1 temp_buffer[32];
-    uint material_params[4];
-    longlong *temp_pointer;
-    undefined *temp_undefined;
-    longlong temp_long;
-    uint temp_uint;
-    undefined8 temp_undefined8;
-    
-    // 浮点参数
-    float float_params[16];
-    float alpha_threshold = 0.0f;
-    float blend_factor = 1.0f;
-    
-    // 材质处理状态
-    undefined8 stack_guard = 0xfffffffffffffffe;
-    ulonglong security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
-    
-    // 初始化材质参数
-    material_params[1] = 0;
-    temp_undefined = &UNK_180a3c3e0;
-    temp_undefined8 = 0;
-    temp_long = 0;
-    temp_uint = 0;
-    
-    // 处理材质名称属性
-    current_char = "name";
+  char cVar1;
+  char cVar2;
+  code *pcVar3;
+  undefined8 uVar4;
+  longlong lVar5;
+  char *pcVar6;
+  ulonglong uVar7;
+  longlong *plVar8;
+  longlong lVar9;
+  undefined *puVar10;
+  undefined8 *puVar11;
+  undefined *puVar12;
+  undefined8 *puVar13;
+  char *pcVar14;
+  char *pcVar15;
+  ulonglong uVar16;
+  uint uVar17;
+  bool bVar18;
+  undefined1 auStack_2d8 [32];
+  uint auStack_2b8 [4];
+  longlong *plStack_2a8;
+  undefined *puStack_2a0;
+  longlong lStack_298;
+  uint uStack_290;
+  undefined8 uStack_288;
+  undefined8 uStack_280;
+  undefined8 uStack_278;
+  float fStack_270;
+  float fStack_26c;
+  undefined8 uStack_268;
+  undefined8 uStack_260;
+  undefined8 uStack_258;
+  undefined *puStack_250;
+  longlong lStack_248;
+  int iStack_240;
+  ulonglong uStack_238;
+  undefined *puStack_230;
+  longlong lStack_228;
+  undefined4 uStack_220;
+  ulonglong uStack_218;
+  longlong *aplStack_210 [3];
+  undefined4 uStack_1f8;
+  undefined4 uStack_1f4;
+  undefined4 uStack_1f0;
+  float fStack_1e8;
+  float fStack_1e4;
+  float fStack_1e0;
+  float fStack_1d8;
+  float fStack_1d4;
+  float fStack_1d0;
+  undefined4 uStack_1cc;
+  float fStack_1c8;
+  float fStack_1c4;
+  float fStack_1c0;
+  undefined4 uStack_1bc;
+  float fStack_1b8;
+  float fStack_1b4;
+  float fStack_1b0;
+  undefined4 uStack_1ac;
+  undefined8 uStack_1a8;
+  undefined8 uStack_1a0;
+  longlong *plStack_198;
+  undefined4 uStack_190;
+  undefined4 uStack_18c;
+  undefined4 uStack_188;
+  undefined4 uStack_184;
+  undefined4 uStack_180;
+  undefined4 uStack_17c;
+  undefined4 uStack_178;
+  undefined4 uStack_174;
+  undefined8 uStack_170;
+  undefined4 uStack_168;
+  undefined4 uStack_164;
+  undefined4 uStack_160;
+  undefined4 uStack_15c;
+  undefined *puStack_158;
+  char *pcStack_150;
+  int iStack_148;
+  char acStack_140 [72];
+  undefined *puStack_f8;
+  undefined1 *puStack_f0;
+  undefined4 uStack_e8;
+  undefined1 auStack_e0 [136];
+  ulonglong uStack_58;
+  
+  uStack_170 = 0xfffffffffffffffe;
+  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2d8;
+  auStack_2b8[1] = 0;
+  puStack_2a0 = &UNK_180a3c3e0;
+  uStack_288 = 0;
+  lStack_298 = 0;
+  uStack_290 = 0;
+  pcVar15 = "name";
+  do {
+    pcVar14 = pcVar15;
+    pcVar15 = pcVar14 + 1;
+  } while (*pcVar15 != '\0');
+  for (puVar11 = (undefined8 *)param_2[8]; plStack_2a8 = param_2, puVar11 != (undefined8 *)0x0;
+      puVar11 = (undefined8 *)puVar11[6]) {
+    pcVar15 = (char *)*puVar11;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar6 = (char *)0x0;
+    }
+    else {
+      pcVar6 = (char *)puVar11[2];
+    }
+    if (pcVar6 == pcVar14 + -0x180a03a83) {
+      pcVar6 = pcVar6 + (longlong)pcVar15;
+      if (pcVar6 <= pcVar15) {
+LAB_18027a8f4:
+        lVar9 = 0x180d48d24;
+        if (puVar11[1] != 0) {
+          lVar9 = puVar11[1];
+        }
+        FUN_180627c50(&puStack_2a0,lVar9);
+        break;
+      }
+      lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar9]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar6 <= pcVar15) goto LAB_18027a8f4;
+      }
+    }
+  }
+  if (0 < (int)uStack_290) {
+    lVar9 = FUN_1800b6de0(_DAT_180c86930,&puStack_2a0,1);
+    uVar17 = uStack_290;
+    if (lVar9 == 0) {
+      uVar7 = (ulonglong)uStack_290;
+      if (lStack_298 != 0) {
+        FUN_1806277c0(param_1 + 0x3e,uVar7);
+      }
+      if (uVar17 != 0) {
+                    // WARNING: Subroutine does not return
+        memcpy(param_1[0x3f],lStack_298,uVar7);
+      }
+      *(undefined4 *)(param_1 + 0x40) = 0;
+      if (param_1[0x3f] != 0) {
+        *(undefined1 *)(uVar7 + param_1[0x3f]) = 0;
+      }
+      *(undefined4 *)((longlong)param_1 + 0x20c) = uStack_288._4_4_;
+    }
+    else {
+      FUN_180275a60(lVar9,param_1,1);
+    }
+  }
+  puStack_250 = &UNK_180a3c3e0;
+  uStack_238 = 0;
+  lStack_248 = 0;
+  iStack_240 = 0;
+  pcVar15 = "material";
+  do {
+    pcVar14 = pcVar15;
+    pcVar15 = pcVar14 + 1;
+  } while (*pcVar15 != '\0');
+  for (puVar11 = (undefined8 *)param_2[8]; puVar11 != (undefined8 *)0x0;
+      puVar11 = (undefined8 *)puVar11[6]) {
+    pcVar15 = (char *)*puVar11;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar6 = (char *)0x0;
+    }
+    else {
+      pcVar6 = (char *)puVar11[2];
+    }
+    if (pcVar6 == pcVar14 + -0x180a04ebf) {
+      pcVar6 = pcVar15 + (longlong)pcVar6;
+      if (pcVar6 <= pcVar15) {
+LAB_18027aa35:
+        lVar9 = 0x180d48d24;
+        if (puVar11[1] != 0) {
+          lVar9 = puVar11[1];
+        }
+        FUN_180627c50(&puStack_250,lVar9);
+        break;
+      }
+      lVar9 = (longlong)&UNK_180a04ec0 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar9]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar6 <= pcVar15) goto LAB_18027aa35;
+      }
+    }
+  }
+  if (0 < iStack_240) {
+    pcVar3 = *(code **)(*param_1 + 0x118);
+    uVar4 = FUN_1800b30d0(_DAT_180c86930,&plStack_198,&puStack_250,1);
+    (*pcVar3)(param_1,uVar4);
+    if (plStack_198 != (longlong *)0x0) {
+      (**(code **)(*plStack_198 + 0x38))();
+    }
+  }
+  puStack_250 = &UNK_180a3c3e0;
+  if (lStack_248 != 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900();
+  }
+  lStack_248 = 0;
+  uStack_238 = uStack_238 & 0xffffffff00000000;
+  puStack_250 = &UNK_18098bcb0;
+  puVar11 = (undefined8 *)param_2[6];
+  if (puVar11 != (undefined8 *)0x0) {
+LAB_18027aad4:
     do {
-        attribute_name = current_char;
-        current_char = attribute_name + 1;
-    } while (*current_char != '\0');
-    
-    // 遍历材质配置节点
-    for (material_node = (undefined8 *)material_config[8]; 
-         temp_pointer = material_config, material_node != (undefined8 *)0x0;
-         material_node = (undefined8 *)material_node[6]) {
-        
-        attribute_value = (char *)*material_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)material_node[2];
+      uStack_280 = &UNK_180a3c3e0;
+      uStack_268 = 0;
+      uStack_278 = 0;
+      fStack_270 = 0.0;
+      pcVar15 = "name";
+      do {
+        pcVar14 = pcVar15;
+        pcVar15 = pcVar14 + 1;
+      } while (*pcVar15 != '\0');
+      for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
+          puVar13 = (undefined8 *)puVar13[6]) {
+        pcVar15 = (char *)*puVar13;
+        if (pcVar15 == (char *)0x0) {
+          pcVar15 = (char *)0x180d48d24;
+          pcVar6 = (char *)0x0;
         }
-        
-        // 检查是否为名称属性
-        if (attribute_name == current_char + -0x180a03a83) {
-            attribute_name = attribute_name + (longlong)attribute_value;
-            if (attribute_name <= attribute_value) {
-                // 处理默认名称
-                temp_long = 0x180d48d24;
-                if (material_node[1] != 0) {
-                    temp_long = material_node[1];
-                }
-                FUN_180627c50(&temp_undefined, temp_long);
-                break;
-            }
-            
-            // 字符串比较
-            temp_long = (longlong)&DAT_180a03a84 - (longlong)attribute_value;
-            while (*attribute_value == attribute_value[temp_long]) {
-                attribute_value = attribute_value + 1;
-                if (attribute_name <= attribute_value) {
-                    temp_long = 0x180d48d24;
-                    if (material_node[1] != 0) {
-                        temp_long = material_node[1];
-                    }
-                    FUN_180627c50(&temp_undefined, temp_long);
-                    break;
-                }
-            }
+        else {
+          pcVar6 = (char *)puVar13[2];
         }
-    }
-    
-    // 处理材质数据
-    if (0 < (int)temp_uint) {
-        temp_long = FUN_1800b6de0(_DAT_180c86930, &temp_undefined, 1);
-        material_count = temp_uint;
-        if (temp_long == 0) {
-            string_length = (ulonglong)temp_uint;
-            if (temp_long != 0) {
-                FUN_1806277c0(render_context + 0x3e, string_length);
+        if (pcVar6 == pcVar14 + -0x180a03a83) {
+          pcVar6 = pcVar15 + (longlong)pcVar6;
+          if (pcVar6 <= pcVar15) {
+LAB_18027ab65:
+            lVar9 = 0x180d48d24;
+            if (puVar13[1] != 0) {
+              lVar9 = puVar13[1];
             }
-            if (material_count != 0) {
-                // 复制材质数据
-                memcpy(render_context[0x3f], temp_long, material_count);
-            }
-            *(undefined4 *)(render_context + 0x40) = 0;
-            if (render_context[0x3f] != 0) {
-                *(undefined1 *)(string_length + render_context[0x3f]) = 0;
-            }
-            *(undefined4 *)((longlong)render_context + 0x20c) = temp_undefined8._4_4_;
-        } else {
-            FUN_180275a60(temp_long, render_context, 1);
-        }
-    }
-    
-    // 处理材质类型
-    temp_undefined = &UNK_180a3c3e0;
-    string_length = 0;
-    temp_long = 0;
-    temp_uint = 0;
-    current_char = "material";
-    do {
-        attribute_name = current_char;
-        current_char = attribute_name + 1;
-    } while (*current_char != '\0');
-    
-    // 遍历材质节点
-    for (material_node = (undefined8 *)material_config[8]; 
-         material_node != (undefined8 *)0x0;
-         material_node = (undefined8 *)material_node[6]) {
-        
-        attribute_value = (char *)*material_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)material_node[2];
-        }
-        
-        // 检查是否为材质属性
-        if (attribute_name == current_char + -0x180a04ebf) {
-            attribute_name = attribute_value + (longlong)attribute_name;
-            if (attribute_name <= attribute_value) {
-                temp_long = 0x180d48d24;
-                if (material_node[1] != 0) {
-                    temp_long = material_node[1];
-                }
-                FUN_180627c50(&temp_undefined, temp_long);
-                break;
-            }
-            
-            // 字符串比较
-            temp_long = (longlong)&UNK_180a04ec0 - (longlong)attribute_value;
-            while (*attribute_value == attribute_value[temp_long]) {
-                attribute_value = attribute_value + 1;
-                if (attribute_name <= attribute_value) {
-                    temp_long = 0x180d48d24;
-                    if (material_node[1] != 0) {
-                        temp_long = material_node[1];
-                    }
-                    FUN_180627c50(&temp_undefined, temp_long);
-                    break;
-                }
-            }
-        }
-    }
-    
-    // 应用材质到渲染对象
-    if (0 < temp_uint) {
-        code *material_function = *(code **)(*render_context + 0x118);
-        temp_undefined8 = FUN_1800b30d0(_DAT_180c86930, &temp_pointer, &temp_undefined, 1);
-        (*material_function)(render_context, temp_undefined8);
-        if (temp_pointer != (longlong *)0x0) {
-            (**(code **)(*temp_pointer + 0x38))();
-        }
-    }
-    
-    // 处理材质属性列表
-    temp_undefined = &UNK_180a3c3e0;
-    if (temp_long != 0) {
-        FUN_18064e900();
-    }
-    temp_long = 0;
-    string_length = string_length & 0xffffffff00000000;
-    temp_undefined = &UNK_18098bcb0;
-    material_node = (undefined8 *)material_config[6];
-    
-    if (material_node != (undefined8 *)0x0) {
-        // 处理每个材质属性
-        do {
-            temp_undefined8 = &UNK_180a3c3e0;
-            temp_undefined8 = 0;
-            temp_undefined8 = 0;
-            alpha_threshold = 0.0f;
-            
-            // 处理属性名称
-            current_char = "name";
-            do {
-                attribute_name = current_char;
-                current_char = attribute_name + 1;
-            } while (*current_char != '\0');
-            
-            // 遍历属性节点
-            for (attribute_node = (undefined8 *)material_node[8]; 
-                 attribute_node != (undefined8 *)0x0;
-                 attribute_node = (undefined8 *)attribute_node[6]) {
-                
-                attribute_value = (char *)*attribute_node;
-                if (attribute_value == (char *)0x0) {
-                    attribute_value = (char *)0x180d48d24;
-                    attribute_name = (char *)0x0;
-                } else {
-                    attribute_name = (char *)attribute_node[2];
-                }
-                
-                // 检查是否为名称属性
-                if (attribute_name == current_char + -0x180a03a83) {
-                    attribute_name = attribute_value + (longlong)attribute_name;
-                    if (attribute_name <= attribute_value) {
-                        temp_long = 0x180d48d24;
-                        if (attribute_node[1] != 0) {
-                            temp_long = attribute_node[1];
-                        }
-                        FUN_180627c50(&temp_undefined8, temp_long);
-                        break;
-                    }
-                    
-                    // 字符串比较
-                    temp_long = (longlong)&DAT_180a03a84 - (longlong)attribute_value;
-                    while (*attribute_value == attribute_value[temp_long]) {
-                        attribute_value = attribute_value + 1;
-                        if (attribute_name <= attribute_value) {
-                            temp_long = 0x180d48d24;
-                            if (attribute_node[1] != 0) {
-                                temp_long = attribute_node[1];
-                            }
-                            FUN_180627c50(&temp_undefined8, temp_long);
-                            break;
-                        }
-                    }
-                }
-            }
-            
-            // 处理材质实例
-            string_length = 0;
-            temp_long = render_context[7];
-            if (render_context[8] - temp_long >> 4 != 0) {
-                do {
-                    // 处理每个材质实例
-                    temp_undefined = &UNK_1809fcc58;
-                    temp_long = *(longlong *)(temp_long + string_length * 0x10);
-                    if (*(longlong *)(temp_long + 0x1b0) == 0) {
-                        texture_data = temp_long + 0x10;
-                    } else {
-                        texture_data = func_0x000180079240();
-                    }
-                    
-                    // 获取材质名称
-                    char material_name[MATERIAL_NAME_LENGTH];
-                    material_name[0] = '\0';
-                    int material_id = *(int *)(texture_data + 0x10);
-                    undefined *name_ptr = &DAT_18098bc73;
-                    if (*(undefined **)(texture_data + 8) != (undefined *)0x0) {
-                        name_ptr = *(undefined **)(texture_data + 8);
-                    }
-                    
-                    temp_undefined = temp_undefined;
-                    strcpy_s(material_name, MATERIAL_NAME_LENGTH, name_ptr);
-                    
-                    // 检查材质匹配
-                    if ((float)material_id == alpha_threshold) {
-                        if (material_id == 0) {
-                            if (alpha_threshold != 0.0f) {
-                                is_match = false;
-                            } else {
-                                is_match = true;
-                            }
-                        } else {
-                            // 字符串匹配
-                            char *str1 = material_name;
-                            char *str2 = (char *)((longlong)temp_undefined8 - (longlong)material_name);
-                            is_match = (strcmp(str1, str2) == 0);
-                        }
-                    } else {
-                        is_match = false;
-                    }
-                    
-                    if (is_match) {
-                        // 处理材质属性
-                        material_params[0] = 0;
-                        temp_undefined = &UNK_1809fcc28;
-                        undefined *temp_buffer_ptr = temp_buffer;
-                        temp_uint = 0;
-                        temp_buffer[0] = 0;
-                        
-                        // 处理材质属性
-                        ProcessMaterialAttributes(material_node, temp_long, material_params);
-                    }
-                    
-                    string_length++;
-                    temp_long = render_context[7];
-                } while (string_length < (render_context[8] - temp_long >> 4));
-            }
-            
-            // 处理网格属性
-            temp_undefined8 = &UNK_180a3c3e0;
-            if (temp_undefined8 != 0) {
-                FUN_18064e900();
-            }
-            temp_undefined8 = 0;
-            temp_undefined8 = temp_undefined8 & 0xffffffff00000000;
-            temp_undefined8 = &UNK_18098bcb0;
-            
-            // 查找网格属性
-            current_char = "mesh";
-            do {
-                attribute_name = current_char;
-                current_char = attribute_name + 1;
-            } while (*current_char != '\0');
-            
-            while (true) {
-                do {
-                    material_node = (undefined8 *)material_node[0xb];
-                    material_config = temp_pointer;
-                    if (material_node == (undefined8 *)0x0) break;
-                    attribute_value = (char *)*material_node;
-                    if (attribute_value == (char *)0x0) {
-                        attribute_value = (char *)0x180d48d24;
-                        attribute_name = (char *)0x0;
-                    } else {
-                        attribute_name = (char *)material_node[2];
-                    }
-                } while (attribute_name != current_char + -0x180a0f3e7);
-                
-                if (material_node == (undefined8 *)0x0) break;
-                
-                attribute_name = attribute_value + (longlong)attribute_name;
-                if (attribute_name <= attribute_value) break;
-                temp_long = (longlong)&UNK_180a0f3e8 - (longlong)attribute_value;
-                while (*attribute_value == attribute_value[temp_long]) {
-                    attribute_value = attribute_value + 1;
-                    if (attribute_name <= attribute_value) break;
-                }
-            }
-        } while (true);
-    }
-    
-    // 处理修改ID
-    material_params[2] = 0;
-    current_char = "modified_id";
-    do {
-        attribute_name = current_char;
-        current_char = attribute_name + 1;
-    } while (*current_char != '\0');
-    
-    material_node = (undefined8 *)material_config[8];
-    do {
-        if (material_node == (undefined8 *)0x0) break;
-        attribute_value = (char *)*material_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)material_node[2];
-        }
-        
-        if (attribute_name == current_char + -0x180a16827) {
-            attribute_name = attribute_name + (longlong)attribute_value;
-            if (attribute_name <= attribute_value) {
-                attribute_value = (char *)0x180d48d24;
-                if ((char *)material_node[1] != (char *)0x0) {
-                    attribute_value = (char *)material_node[1];
-                }
-                
-                // 解析修改ID
-                string_length = 0xffffffffffffffff;
-                do {
-                    string_length++;
-                } while (attribute_value[string_length] != '\0');
-                
-                if ((string_length < 3) || (*attribute_value != '0') || 
-                    ((attribute_value[1] + 0xa8U & 0xdf) != 0)) {
-                    temp_undefined = &UNK_180a063a0;
-                } else {
-                    temp_undefined = &UNK_180a3cb84;
-                }
-                
-                FUN_18010cbc0(attribute_value, temp_undefined, material_params + 2);
-                *(uint *)((longlong)render_context + 0x324) = material_params[2];
-            }
-        }
-        material_node = (undefined8 *)material_node[6];
-    } while (true);
-    
-    // 设置材质标志
-    *(undefined1 *)((longlong)render_context + 0x32c) = 0;
-    
-    // 处理二级材质
-    ProcessSecondaryMaterial(render_context, material_config);
-    
-    // 清理资源
-    temp_undefined = &UNK_180a3c3e0;
-    if (temp_long != 0) {
-        FUN_18064e900();
-    }
-    temp_long = 0;
-    string_length = string_length & 0xffffffff00000000;
-    temp_undefined = &UNK_18098bcb0;
-    
-    // 清理临时资源
-    CleanupTemporaryResources();
-    
-    // 安全检查
-    FUN_1808fc050(security_cookie ^ (ulonglong)temp_buffer);
-}
-
-/**
- * 模型加载器 - 从文件加载模型数据并解析材质信息
- * 
- * 该函数负责：
- * 1. 打开并读取模型文件
- * 2. 解析文件头和材质数据
- * 3. 处理材质名称和属性
- * 4. 加载纹理和贴图信息
- * 5. 构建材质数据结构
- * 
- * @param model_context 模型上下文指针
- * @param file_path 文件路径指针
- */
-void ModelLoader(longlong model_context, longlong file_path)
-{
-    // 局部变量声明
-    int file_format;
-    undefined8 *file_handle;
-    longlong name_buffer;
-    longlong texture_buffer;
-    undefined *name_ptr;
-    ulonglong texture_count;
-    uint material_count;
-    int name_length;
-    int data_size;
-    int index_count;
-    
-    // 数组用于存储模型数据
-    int name_array[2];
-    int texture_array[2];
-    int index_array[2];
-    int temp_int;
-    
-    // 临时缓冲区
-    uint temp_buffer[2];
-    undefined *temp_undefined;
-    longlong temp_long;
-    uint temp_uint;
-    undefined4 temp_uint4;
-    undefined1 temp_data[4];
-    undefined1 temp_data2[4];
-    undefined8 stack_guard;
-    
-    // 安全检查
-    stack_guard = 0xfffffffffffffffe;
-    
-    // 分配文件句柄
-    file_handle = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-    
-    // 获取默认材质名称
-    name_ptr = &DAT_18098bc73;
-    if (*(undefined **)(file_path + 8) != (undefined *)0x0) {
-        name_ptr = *(undefined **)(file_path + 8);
-    }
-    
-    // 初始化文件句柄
-    file_format = 0;
-    *file_handle = 0;
-    *(undefined1 *)(file_handle + 2) = 0;
-    FUN_18062dee0(file_handle, name_ptr, &UNK_180a01ff0);
-    
-    if (file_handle[1] != 0) {
-        // 读取文件头
-        fread(temp_buffer, 4, 1);
-        
-        if (temp_buffer[0] == 0x31444d4d) {  // "MMD1" 格式
-            // 读取材质数量
-            fread(&temp_int, 4, 1, file_handle[1]);
-            if (0 < temp_int) {
-                do {
-                    // 读取材质名称长度
-                    fread(name_array, 4, 1, file_handle[1]);
-                    
-                    // 分配名称缓冲区
-                    name_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
-                                              (longlong)(name_array[0] + 1), 0x10, 3);
-                    
-                    // 读取材质名称
-                    fread(name_buffer, 1, (longlong)name_array[0], file_handle[1]);
-                    *(undefined1 *)(name_array[0] + name_buffer) = 0;
-                    
-                    // 处理材质名称
-                    FUN_180627910(&temp_undefined, name_buffer);
-                    
-                    // 清理材质名称中的无效字符
-                    while ((0 < (int)temp_uint && 
-                           (texture_buffer = strstr(temp_long, &DAT_180a0ff10), 
-                            texture_buffer != 0))) {
-                        
-                        // 移除无效字符
-                        int remove_length = 6;
-                        int position = (int)texture_buffer - (int)temp_long;
-                        if (temp_uint < position + 6U) {
-                            remove_length = temp_uint - position;
-                        }
-                        
-                        // 移动数据
-                        ulonglong new_length = position + remove_length;
-                        if (new_length < temp_uint) {
-                            texture_buffer = (longlong)(int)new_length;
-                            do {
-                                *(undefined1 *)((texture_buffer - remove_length) + temp_long) = 
-                                    *(undefined1 *)(texture_buffer + temp_long);
-                                new_length++;
-                                texture_buffer++;
-                            } while (new_length < temp_uint);
-                        }
-                        
-                        temp_uint -= remove_length;
-                        *(undefined1 *)((ulonglong)temp_uint + temp_long) = 0;
-                    }
-                    
-                    // 检查并扩展模型上下文
-                    if (*(ulonglong *)(model_context + 8) < 
-                        *(ulonglong *)(model_context + 0x10)) {
-                        *(ulonglong *)(model_context + 8) += 0x20;
-                        FUN_180627ae0();
-                    } else {
-                        FUN_180059820(model_context, &temp_undefined);
-                    }
-                    
-                    // 读取材质数据
-                    fread(temp_data2, 4, 1, file_handle[1]);
-                    fread(&index_count, 4, 1, file_handle[1]);
-                    
-                    // 分配索引缓冲区
-                    texture_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
-                                                   (longlong)index_count << 2, 0x10, 3);
-                    
-                    // 读取索引数据
-                    fread(texture_buffer, 4, (longlong)index_count, file_handle[1]);
-                    
-                    // 清理资源
-                    if (texture_buffer != 0) {
-                        FUN_18064e900(texture_buffer);
-                    }
-                    if (name_buffer != 0) {
-                        FUN_18064e900(name_buffer);
-                    }
-                    
-                    // 重置临时变量
-                    temp_undefined = &UNK_180a3c3e0;
-                    if (temp_long != 0) {
-                        FUN_18064e900();
-                    }
-                    temp_long = 0;
-                    temp_uint4 = 0;
-                    temp_undefined = &UNK_18098bcb0;
-                    
-                    file_format++;
-                } while (file_format < temp_int);
-            }
-        } else if (0 < (int)temp_buffer[0]) {
-            // 处理其他格式
-            texture_count = (ulonglong)temp_buffer[0];
-            do {
-                // 读取名称长度
-                fread(name_array, 4, 1, file_handle[1]);
-                
-                // 分配名称缓冲区
-                name_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
-                                          (longlong)(name_array[0] + 1), 0x10, 3);
-                
-                // 读取名称
-                fread(name_buffer, 1, (longlong)name_array[0], file_handle[1]);
-                *(undefined1 *)(name_array[0] + name_buffer) = 0;
-                
-                // 读取数据大小
-                fread(temp_data, 4, 1, file_handle[1]);
-                
-                // 处理名称
-                FUN_180627910(&temp_undefined, name_buffer);
-                
-                // 清理无效字符
-                while ((0 < (int)temp_uint && 
-                       (texture_buffer = strstr(temp_long, &DAT_180a0ff10), 
-                        texture_buffer != 0))) {
-                    
-                    // 移除无效字符
-                    int remove_length = 6;
-                    int position = (int)texture_buffer - (int)temp_long;
-                    if (temp_uint < position + 6U) {
-                        remove_length = temp_uint - position;
-                    }
-                    
-                    // 移动数据
-                    ulonglong new_length = position + remove_length;
-                    if (new_length < temp_uint) {
-                        texture_buffer = (longlong)(int)new_length;
-                        do {
-                            *(undefined1 *)((texture_buffer - remove_length) + temp_long) = 
-                                *(undefined1 *)(texture_buffer + temp_long);
-                            new_length++;
-                            texture_buffer++;
-                        } while (new_length < temp_uint);
-                    }
-                    
-                    temp_uint -= remove_length;
-                    *(undefined1 *)((ulonglong)temp_uint + temp_long) = 0;
-                }
-                
-                // 检查并扩展模型上下文
-                if (*(ulonglong *)(model_context + 8) < 
-                    *(ulonglong *)(model_context + 0x10)) {
-                    *(ulonglong *)(model_context + 8) += 0x20;
-                    FUN_180627ae0();
-                } else {
-                    FUN_180059820(model_context, &temp_undefined);
-                }
-                
-                // 读取索引数据
-                fread(index_array, 4, 1, file_handle[1]);
-                texture_buffer = FUN_18062b1e0(_DAT_180c8ed18, 
-                                               (longlong)index_array[0] << 2, 0x10, 3);
-                fread(texture_buffer, 4, (longlong)index_array[0], file_handle[1]);
-                
-                // 清理资源
-                if (texture_buffer != 0) {
-                    FUN_18064e900(texture_buffer);
-                }
-                if (name_buffer != 0) {
-                    FUN_18064e900(name_buffer);
-                }
-                
-                // 重置临时变量
-                temp_undefined = &UNK_180a3c3e0;
-                if (temp_long != 0) {
-                    FUN_18064e900();
-                }
-                temp_long = 0;
-                temp_uint4 = 0;
-                temp_undefined = &UNK_18098bcb0;
-                
-                texture_count--;
-            } while (texture_count != 0);
-        }
-        
-        // 关闭文件
-        if (file_handle[1] != 0) {
-            fclose();
-            file_handle[1] = 0;
-            LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
-            UNLOCK();
-        }
-    }
-    
-    // 清理文件句柄
-    FUN_18064e900(file_handle);
-}
-
-/**
- * 处理材质属性的辅助函数
- */
-static void ProcessMaterialAttributes(undefined8 *material_node, longlong material_instance, 
-                                     uint *material_params)
-{
-    // 处理材质属性
-    char *attribute_name;
-    char *attribute_value;
-    undefined8 *attribute_node;
-    
-    // 处理材质因子
-    attribute_name = "factor";
-    do {
-        char *temp_char = attribute_name;
-        attribute_name = temp_char + 1;
-    } while (*attribute_name != '\0');
-    
-    // 遍历属性节点
-    for (attribute_node = (undefined8 *)material_node[8]; 
-         attribute_node != (undefined8 *)0x0;
-         attribute_node = (undefined8 *)attribute_node[6]) {
-        
-        attribute_value = (char *)*attribute_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)attribute_node[2];
-        }
-        
-        // 检查是否为因子属性
-        if (attribute_name == attribute_name + -0x180a1674b) {
-            attribute_name = attribute_value + (longlong)attribute_name;
-            if (attribute_name <= attribute_value) {
-                // 解析颜色值
-                longlong temp_long = 0x180d48d24;
-                if (attribute_node[1] != 0) {
-                    temp_long = attribute_node[1];
-                }
-                FUN_18010cbc0(temp_long, &UNK_180a063a0, material_params);
-                
-                // 设置材质因子颜色
-                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET) = 
-                    (float)(material_params[0] >> 0x10 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 4) = 
-                    (float)(material_params[0] >> 8 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 8) = 
-                    (float)(material_params[0] & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR_OFFSET + 12) = 
-                    (float)(material_params[0] >> 0x18) * DEFAULT_ALPHA_THRESHOLD;
-                break;
-            }
-        }
-    }
-    
-    // 处理二级因子
-    attribute_name = "factor2";
-    do {
-        char *temp_char = attribute_name;
-        attribute_name = temp_char + 1;
-    } while (*attribute_name != '\0');
-    
-    // 遍历属性节点
-    for (attribute_node = (undefined8 *)material_node[8]; 
-         attribute_node != (undefined8 *)0x0;
-         attribute_node = (undefined8 *)attribute_node[6]) {
-        
-        attribute_value = (char *)*attribute_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)attribute_node[2];
-        }
-        
-        // 检查是否为二级因子属性
-        if (attribute_name == attribute_name + -0x180a167ff) {
-            attribute_name = attribute_value + (longlong)attribute_name;
-            if (attribute_name <= attribute_value) {
-                // 解析颜色值
-                longlong temp_long = 0x180d48d24;
-                if (attribute_node[1] != 0) {
-                    temp_long = attribute_node[1];
-                }
-                FUN_18010cbc0(temp_long, &UNK_180a063a0, material_params);
-                
-                // 设置二级因子颜色
-                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET) = 
-                    (float)(material_params[0] >> 0x10 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 4) = 
-                    (float)(material_params[0] >> 8 & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 8) = 
-                    (float)(material_params[0] & 0xff) * DEFAULT_ALPHA_THRESHOLD;
-                *(float *)(material_instance + MATERIAL_FACTOR2_OFFSET + 12) = 
-                    (float)(material_params[0] >> 0x18) * DEFAULT_ALPHA_THRESHOLD;
-                break;
-            }
-        }
-    }
-    
-    // 处理UV缩放
-    undefined4 uv_scale[4];
-    longlong result = FUN_180631b90(material_node, &UNK_180a167e0, uv_scale);
-    if (result != 0) {
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET) = uv_scale[0];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 4) = uv_scale[1];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 8) = uv_scale[2];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE_OFFSET + 12) = uv_scale[3];
-    }
-    
-    // 处理二级UV缩放
-    result = FUN_180631b90(material_node, &UNK_180a167f0, uv_scale);
-    if (result != 0) {
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET) = uv_scale[0];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 4) = uv_scale[1];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 8) = uv_scale[2];
-        *(undefined4 *)(material_instance + MATERIAL_UV_SCALE2_OFFSET + 12) = uv_scale[3];
-    }
-}
-
-/**
- * 处理二级材质的辅助函数
- */
-static void ProcessSecondaryMaterial(longlong *render_context, longlong *material_config)
-{
-    // 处理二级材质的逻辑
-    undefined *temp_undefined = &UNK_180a3c3e0;
-    ulonglong temp_ulong = 0;
-    longlong temp_long = 0;
-    undefined4 temp_uint4 = 0;
-    
-    // 处理二级材质属性
-    char *attribute_name = "second_material";
-    do {
-        char *temp_char = attribute_name;
-        attribute_name = temp_char + 1;
-    } while (*attribute_name != '\0');
-    
-    undefined8 *material_node = (undefined8 *)material_config[8];
-    do {
-        if (material_node == (undefined8 *)0x0) {
-            // 设置材质参数
-            undefined4 material_params[4];
-            undefined4 color_params[4];
-            float float_params[12];
-            
-            // 初始化参数
-            material_params[0] = (undefined4)render_context[0x6c];
-            material_params[1] = *(undefined4 *)((longlong)render_context + 0x364);
-            material_params[2] = (undefined4)render_context[0x6d];
-            material_params[3] = *(undefined4 *)((longlong)render_context + 0x36c);
-            
-            // 处理材质变换
-            FUN_1801c1720(render_context + 0x66, material_params);
-            FUN_180085020(render_context + 0x66, float_params);
-            
-            // 处理材质属性
-            FUN_180631960(material_config, &UNK_180a16808, material_params);
-            FUN_180631960(material_config, &UNK_180a16818, color_params);
-            FUN_180631960(material_config, &UNK_180a0f108, float_params);
-            
-            // 计算材质混合
-            float blended_color[12];
-            blended_color[0] = (float)material_params[0] * float_params[0];
-            blended_color[1] = material_params[0]._4_4_ * float_params[0];
-            blended_color[2] = (float)material_params[1] * float_params[0];
-            blended_color[3] = float_params[4] * float_params[1];
-            blended_color[4] = float_params[5] * float_params[1];
-            blended_color[5] = (float)material_params[2] * float_params[1];
-            blended_color[6] = (float)material_params[3] * float_params[2];
-            blended_color[7] = material_params[3]._4_4_ * float_params[2];
-            blended_color[8] = (float)temp_uint4 * float_params[2];
-            
-            // 应用材质混合
-            (*(code **)(*render_context + 0x148))(render_context, blended_color);
-            FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
-            
-            // 应用UV缩放
-            temp_long = FUN_180631b90(material_config, &UNK_180a167f0, color_params);
-            if ((temp_long != 0) && 
-                (longlong *temp_ptr = (longlong *)render_context[7], 
-                 temp_ptr < (longlong *)render_context[8])) {
-                do {
-                    temp_long = *temp_ptr;
-                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET) = color_params[0];
-                    *(undefined4 *)(temp_long + 700) = color_params[1];
-                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET + 8) = color_params[2];
-                    *(undefined4 *)(temp_long + MATERIAL_UV_SCALE2_OFFSET + 12) = color_params[3];
-                    temp_ptr += 2;
-                } while (temp_ptr < (longlong *)render_context[8]);
-            }
-            
+            FUN_180627c50(&uStack_280,lVar9);
             break;
+          }
+          lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar15;
+          while (*pcVar15 == pcVar15[lVar9]) {
+            pcVar15 = pcVar15 + 1;
+            if (pcVar6 <= pcVar15) goto LAB_18027ab65;
+          }
         }
-        
-        char *attribute_value = (char *)*material_node;
-        if (attribute_value == (char *)0x0) {
-            attribute_value = (char *)0x180d48d24;
-            attribute_name = (char *)0x0;
-        } else {
-            attribute_name = (char *)material_node[2];
-        }
-        
-        // 检查是否为二级材质属性
-        if (attribute_name == attribute_name + -0x180a1683f) {
-            attribute_name = attribute_value + (longlong)attribute_name;
-            if (attribute_name <= attribute_value) {
-                // 处理二级材质
-                temp_long = 0x180d48d24;
-                if (material_node[1] != 0) {
-                    temp_long = material_node[1];
-                }
-                FUN_180627c50(&temp_undefined, temp_long);
-                
-                // 加载二级材质
-                longlong *temp_ptr = (longlong *)FUN_1800b30d0(_DAT_180c86930, 
-                                                               (longlong **)render_context, 
-                                                               &temp_undefined, 1);
-                material_params[1] = 4;
-                temp_ptr = (longlong *)*temp_ptr;
-                if (temp_ptr != (longlong *)0x0) {
-                    material_config = temp_ptr;
-                    (**(code **)(*temp_ptr + 0x28))(temp_ptr);
-                }
-                
-                // 设置二级材质
-                material_config = (longlong *)render_context[0x77];
-                render_context[0x77] = (longlong)temp_ptr;
-                if (material_config != (longlong *)0x0) {
-                    (**(code **)(*material_config + 0x38))();
-                }
-                
-                // 重置参数
-                material_params[1] = 0;
-                if ((longlong *)render_context[0] != (longlong *)0x0) {
-                    (**(code **)(*render_context[0] + 0x38))();
-                }
-                
-                FUN_1800b30d0(_DAT_180c86930, &material_config, &temp_undefined, 1);
-                material_params[1] = 0;
-                if (material_config != (longlong *)0x0) {
-                    (**(code **)(*material_config + 0x38))();
-                }
-                
-                break;
+      }
+      uVar16 = 0;
+      lVar9 = param_1[7];
+      uVar7 = uVar16;
+      if (param_1[8] - lVar9 >> 4 != 0) {
+        do {
+          puVar10 = &UNK_1809fcc58;
+          lVar9 = *(longlong *)(lVar9 + uVar16 * 0x10);
+          if (*(longlong *)(lVar9 + 0x1b0) == 0) {
+            lVar5 = lVar9 + 0x10;
+          }
+          else {
+            lVar5 = func_0x000180079240();
+          }
+          pcStack_150 = acStack_140;
+          acStack_140[0] = '\0';
+          iStack_148 = *(int *)(lVar5 + 0x10);
+          puVar12 = &DAT_18098bc73;
+          if (*(undefined **)(lVar5 + 8) != (undefined *)0x0) {
+            puVar12 = *(undefined **)(lVar5 + 8);
+          }
+          puStack_158 = puVar10;
+          strcpy_s(acStack_140,0x40,puVar12);
+          if ((float)iStack_148 == fStack_270) {
+            if (iStack_148 == 0) {
+LAB_18027ac8e:
+              if (fStack_270 != 0.0) goto LAB_18027ac96;
+              bVar18 = true;
             }
+            else {
+              pcVar15 = pcStack_150;
+              do {
+                cVar1 = *pcVar15;
+                cVar2 = pcVar15[uStack_278 - (longlong)pcStack_150];
+                if (cVar1 != cVar2) break;
+                pcVar15 = pcVar15 + 1;
+              } while (cVar2 != '\0');
+              bVar18 = cVar1 == cVar2;
+            }
+          }
+          else {
+            if (iStack_148 == 0) goto LAB_18027ac8e;
+LAB_18027ac96:
+            bVar18 = false;
+          }
+          if (bVar18) {
+            auStack_2b8[0] = 0;
+            puStack_f8 = &UNK_1809fcc28;
+            puStack_f0 = auStack_e0;
+            uStack_e8 = 0;
+            auStack_e0[0] = 0;
+            pcVar15 = "material";
+            do {
+              pcVar14 = pcVar15;
+              pcVar15 = pcVar14 + 1;
+            } while (*pcVar15 != '\0');
+            for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
+                puVar13 = (undefined8 *)puVar13[6]) {
+              pcVar15 = (char *)*puVar13;
+              if (pcVar15 == (char *)0x0) {
+                pcVar15 = (char *)0x180d48d24;
+                pcVar6 = (char *)0x0;
+              }
+              else {
+                pcVar6 = (char *)puVar13[2];
+              }
+              if (pcVar6 == pcVar14 + -0x180a04ebf) {
+                pcVar6 = pcVar6 + (longlong)pcVar15;
+                if (pcVar6 <= pcVar15) {
+LAB_18027ad47:
+                  lVar5 = 0x180d48d24;
+                  if (puVar13[1] != 0) {
+                    lVar5 = puVar13[1];
+                  }
+                  FUN_18004a180(&puStack_f8,lVar5);
+                  uVar4 = FUN_1800b30d0(_DAT_180c86930,aplStack_210,&puStack_f8,1);
+                  FUN_180076910(lVar9,uVar4);
+                  if (aplStack_210[0] != (longlong *)0x0) {
+                    (**(code **)(*aplStack_210[0] + 0x38))();
+                  }
+                  break;
+                }
+                lVar5 = (longlong)&UNK_180a04ec0 - (longlong)pcVar15;
+                while (*pcVar15 == pcVar15[lVar5]) {
+                  pcVar15 = pcVar15 + 1;
+                  if (pcVar6 <= pcVar15) goto LAB_18027ad47;
+                }
+              }
+            }
+            pcVar15 = "factor";
+            do {
+              pcVar14 = pcVar15;
+              pcVar15 = pcVar14 + 1;
+            } while (*pcVar15 != '\0');
+            for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
+                puVar13 = (undefined8 *)puVar13[6]) {
+              pcVar15 = (char *)*puVar13;
+              if (pcVar15 == (char *)0x0) {
+                pcVar15 = (char *)0x180d48d24;
+                pcVar6 = (char *)0x0;
+              }
+              else {
+                pcVar6 = (char *)puVar13[2];
+              }
+              if (pcVar6 == pcVar14 + -0x180a1674b) {
+                pcVar6 = pcVar15 + (longlong)pcVar6;
+                if (pcVar6 <= pcVar15) {
+LAB_18027ae16:
+                  lVar5 = 0x180d48d24;
+                  if (puVar13[1] != 0) {
+                    lVar5 = puVar13[1];
+                  }
+                  FUN_18010cbc0(lVar5,&UNK_180a063a0,auStack_2b8);
+                  *(float *)(lVar9 + 0x238) = (float)(auStack_2b8[0] >> 0x10 & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x23c) = (float)(auStack_2b8[0] >> 8 & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x240) = (float)(auStack_2b8[0] & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x244) = (float)(auStack_2b8[0] >> 0x18) * 0.003921569;
+                  break;
+                }
+                lVar5 = (longlong)&UNK_180a1674c - (longlong)pcVar15;
+                while (*pcVar15 == pcVar15[lVar5]) {
+                  pcVar15 = pcVar15 + 1;
+                  if (pcVar6 <= pcVar15) goto LAB_18027ae16;
+                }
+              }
+            }
+            pcVar15 = "factor2";
+            do {
+              pcVar14 = pcVar15;
+              pcVar15 = pcVar14 + 1;
+            } while (*pcVar15 != '\0');
+            for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
+                puVar13 = (undefined8 *)puVar13[6]) {
+              pcVar15 = (char *)*puVar13;
+              if (pcVar15 == (char *)0x0) {
+                pcVar6 = (char *)0x0;
+                pcVar15 = (char *)0x180d48d24;
+              }
+              else {
+                pcVar6 = (char *)puVar13[2];
+              }
+              if (pcVar6 == pcVar14 + -0x180a167ff) {
+                pcVar6 = pcVar6 + (longlong)pcVar15;
+                if (pcVar6 <= pcVar15) {
+LAB_18027af15:
+                  lVar5 = 0x180d48d24;
+                  if (puVar13[1] != 0) {
+                    lVar5 = puVar13[1];
+                  }
+                  FUN_18010cbc0(lVar5,&UNK_180a063a0,auStack_2b8);
+                  *(float *)(lVar9 + 0x248) = (float)(auStack_2b8[0] >> 0x10 & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x24c) = (float)(auStack_2b8[0] >> 8 & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x250) = (float)(auStack_2b8[0] & 0xff) * 0.003921569;
+                  *(float *)(lVar9 + 0x254) = (float)(auStack_2b8[0] >> 0x18) * 0.003921569;
+                  break;
+                }
+                lVar5 = (longlong)&UNK_180a16800 - (longlong)pcVar15;
+                while (*pcVar15 == pcVar15[lVar5]) {
+                  pcVar15 = pcVar15 + 1;
+                  if (pcVar6 <= pcVar15) goto LAB_18027af15;
+                }
+              }
+            }
+            lVar5 = FUN_180631b90(puVar11,&UNK_180a167e0,&uStack_190);
+            if (lVar5 != 0) {
+              *(undefined4 *)(lVar9 + 0x2a8) = uStack_190;
+              *(undefined4 *)(lVar9 + 0x2ac) = uStack_18c;
+              *(undefined4 *)(lVar9 + 0x2b0) = uStack_188;
+              *(undefined4 *)(lVar9 + 0x2b4) = uStack_184;
+            }
+            lVar5 = FUN_180631b90(puVar11,&UNK_180a167f0,&uStack_190);
+            if (lVar5 != 0) {
+              *(undefined4 *)(lVar9 + 0x2b8) = uStack_190;
+              *(undefined4 *)(lVar9 + 700) = uStack_18c;
+              *(undefined4 *)(lVar9 + 0x2c0) = uStack_188;
+              *(undefined4 *)(lVar9 + 0x2c4) = uStack_184;
+            }
+            puStack_f8 = &UNK_18098bcb0;
+          }
+          puStack_158 = &UNK_18098bcb0;
+          uVar17 = (int)uVar7 + 1;
+          uVar16 = uVar16 + 1;
+          lVar9 = param_1[7];
+          uVar7 = (ulonglong)uVar17;
+        } while ((ulonglong)(longlong)(int)uVar17 < (ulonglong)(param_1[8] - lVar9 >> 4));
+      }
+      uStack_280 = &UNK_180a3c3e0;
+      if (uStack_278 != 0) {
+                    // WARNING: Subroutine does not return
+        FUN_18064e900();
+      }
+      uStack_278 = 0;
+      uStack_268 = uStack_268 & 0xffffffff00000000;
+      uStack_280 = &UNK_18098bcb0;
+      pcVar15 = "mesh";
+      do {
+        pcVar14 = pcVar15;
+        pcVar15 = pcVar14 + 1;
+      } while (*pcVar15 != '\0');
+      while( true ) {
+        do {
+          puVar11 = (undefined8 *)puVar11[0xb];
+          param_2 = plStack_2a8;
+          if (puVar11 == (undefined8 *)0x0) goto LAB_18027b0de;
+          pcVar15 = (char *)*puVar11;
+          if (pcVar15 == (char *)0x0) {
+            pcVar15 = (char *)0x180d48d24;
+            pcVar6 = (char *)0x0;
+          }
+          else {
+            pcVar6 = (char *)puVar11[2];
+          }
+        } while (pcVar6 != pcVar14 + -0x180a0f3e7);
+        pcVar6 = pcVar15 + (longlong)pcVar6;
+        if (pcVar6 <= pcVar15) break;
+        lVar9 = (longlong)&UNK_180a0f3e8 - (longlong)pcVar15;
+        while (*pcVar15 == pcVar15[lVar9]) {
+          pcVar15 = pcVar15 + 1;
+          if (pcVar6 <= pcVar15) goto LAB_18027aad4;
         }
-        material_node = (undefined8 *)material_node[6];
-    } while (true);
+      }
+    } while( true );
+  }
+LAB_18027b0de:
+  auStack_2b8[2] = 0;
+  pcVar15 = "modified_id";
+  do {
+    pcVar14 = pcVar15;
+    pcVar15 = pcVar14 + 1;
+  } while (*pcVar15 != '\0');
+  puVar11 = (undefined8 *)param_2[8];
+  do {
+    if (puVar11 == (undefined8 *)0x0) goto LAB_18027b1b5;
+    pcVar15 = (char *)*puVar11;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar6 = (char *)0x0;
+    }
+    else {
+      pcVar6 = (char *)puVar11[2];
+    }
+    if (pcVar6 == pcVar14 + -0x180a16827) {
+      pcVar6 = pcVar6 + (longlong)pcVar15;
+      if (pcVar6 <= pcVar15) {
+LAB_18027b154:
+        pcVar15 = (char *)0x180d48d24;
+        if ((char *)puVar11[1] != (char *)0x0) {
+          pcVar15 = (char *)puVar11[1];
+        }
+        uVar7 = 0xffffffffffffffff;
+        do {
+          uVar7 = uVar7 + 1;
+        } while (pcVar15[uVar7] != '\0');
+        if (((uVar7 < 3) || (*pcVar15 != '0')) ||
+           (puVar10 = &UNK_180a3cb84, (pcVar15[1] + 0xa8U & 0xdf) != 0)) {
+          puVar10 = &UNK_180a063a0;
+        }
+        FUN_18010cbc0(pcVar15,puVar10,auStack_2b8 + 2);
+        *(uint *)((longlong)param_1 + 0x324) = auStack_2b8[2];
+LAB_18027b1b5:
+        *(undefined1 *)((longlong)param_1 + 0x32c) = 0;
+        puStack_230 = &UNK_180a3c3e0;
+        uStack_218 = 0;
+        lStack_228 = 0;
+        uStack_220 = 0;
+        pcVar15 = "second_material";
+        do {
+          pcVar14 = pcVar15;
+          pcVar15 = pcVar14 + 1;
+        } while (*pcVar15 != '\0');
+        puVar11 = (undefined8 *)param_2[8];
+        do {
+          if (puVar11 == (undefined8 *)0x0) {
+LAB_18027b312:
+            uStack_180 = (undefined4)param_1[0x6c];
+            uStack_17c = *(undefined4 *)((longlong)param_1 + 0x364);
+            uStack_178 = (undefined4)param_1[0x6d];
+            uStack_174 = *(undefined4 *)((longlong)param_1 + 0x36c);
+            FUN_1801c1720(param_1 + 0x66,&uStack_1f8);
+            FUN_180085020(param_1 + 0x66,&fStack_1e8);
+            FUN_180631960(param_2,&UNK_180a16808,&uStack_180);
+            FUN_180631960(param_2,&UNK_180a16818,&uStack_1f8);
+            FUN_180631960(param_2,&UNK_180a0f108,&fStack_1e8);
+            uStack_1a8 = CONCAT44(uStack_17c,uStack_180);
+            uStack_1a0 = CONCAT44(uStack_174,uStack_178);
+            uStack_280 = (undefined *)0x3f800000;
+            uStack_278 = 0;
+            fStack_270 = 0.0;
+            fStack_26c = 1.0;
+            uStack_268 = 0;
+            uStack_260 = 0;
+            uStack_258 = 0x3f800000;
+            FUN_180085c10(&uStack_280,uStack_1f0);
+            FUN_180085970(&uStack_280,uStack_1f8);
+            FUN_180085ac0(&uStack_280,uStack_1f4);
+            uStack_1cc = uStack_278._4_4_;
+            uStack_1bc = uStack_268._4_4_;
+            uStack_1ac = uStack_258._4_4_;
+            fStack_1d8 = (float)uStack_280 * fStack_1e8;
+            fStack_1d4 = uStack_280._4_4_ * fStack_1e8;
+            fStack_1d0 = (float)uStack_278 * fStack_1e8;
+            fStack_1c8 = fStack_270 * fStack_1e4;
+            fStack_1c4 = fStack_26c * fStack_1e4;
+            fStack_1c0 = (float)uStack_268 * fStack_1e4;
+            fStack_1b8 = (float)uStack_260 * fStack_1e0;
+            fStack_1b4 = uStack_260._4_4_ * fStack_1e0;
+            fStack_1b0 = (float)uStack_258 * fStack_1e0;
+            (**(code **)(*param_1 + 0x148))(param_1,&fStack_1d8);
+            FUN_180276f30(param_1,(longlong)param_1 + 0x214,1);
+            lVar9 = FUN_180631b90(param_2,&UNK_180a167f0,&uStack_168);
+            if ((lVar9 != 0) && (plVar8 = (longlong *)param_1[7], plVar8 < (longlong *)param_1[8]))
+            {
+              do {
+                lVar9 = *plVar8;
+                *(undefined4 *)(lVar9 + 0x2b8) = uStack_168;
+                *(undefined4 *)(lVar9 + 700) = uStack_164;
+                *(undefined4 *)(lVar9 + 0x2c0) = uStack_160;
+                *(undefined4 *)(lVar9 + 0x2c4) = uStack_15c;
+                plVar8 = plVar8 + 2;
+              } while (plVar8 < (longlong *)param_1[8]);
+            }
+            puStack_230 = &UNK_180a3c3e0;
+            if (lStack_228 != 0) {
+                    // WARNING: Subroutine does not return
+              FUN_18064e900();
+            }
+            lStack_228 = 0;
+            uStack_218 = uStack_218 & 0xffffffff00000000;
+            puStack_230 = &UNK_18098bcb0;
+            puStack_2a0 = &UNK_180a3c3e0;
+            if (lStack_298 != 0) {
+                    // WARNING: Subroutine does not return
+              FUN_18064e900();
+            }
+            lStack_298 = 0;
+            uStack_288 = uStack_288 & 0xffffffff00000000;
+            puStack_2a0 = &UNK_18098bcb0;
+                    // WARNING: Subroutine does not return
+            FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_2d8);
+          }
+          pcVar15 = (char *)*puVar11;
+          if (pcVar15 == (char *)0x0) {
+            pcVar15 = (char *)0x180d48d24;
+            pcVar6 = (char *)0x0;
+          }
+          else {
+            pcVar6 = (char *)puVar11[2];
+          }
+          if (pcVar6 == pcVar14 + -0x180a1683f) {
+            pcVar6 = pcVar15 + (longlong)pcVar6;
+            if (pcVar6 <= pcVar15) {
+LAB_18027b254:
+              lVar9 = 0x180d48d24;
+              if (puVar11[1] != 0) {
+                lVar9 = puVar11[1];
+              }
+              FUN_180627c50(&puStack_230,lVar9);
+              plVar8 = (longlong *)FUN_1800b30d0(_DAT_180c86930,aplStack_210,&puStack_230,1);
+              auStack_2b8[1] = 4;
+              plVar8 = (longlong *)*plVar8;
+              if (plVar8 != (longlong *)0x0) {
+                plStack_2a8 = plVar8;
+                (**(code **)(*plVar8 + 0x28))(plVar8);
+              }
+              plStack_2a8 = (longlong *)param_1[0x77];
+              param_1[0x77] = (longlong)plVar8;
+              if (plStack_2a8 != (longlong *)0x0) {
+                (**(code **)(*plStack_2a8 + 0x38))();
+              }
+              auStack_2b8[1] = 0;
+              if (aplStack_210[0] != (longlong *)0x0) {
+                (**(code **)(*aplStack_210[0] + 0x38))();
+              }
+              FUN_1800b30d0(_DAT_180c86930,&plStack_2a8,&puStack_230,1);
+              auStack_2b8[1] = 0;
+              if (plStack_2a8 != (longlong *)0x0) {
+                (**(code **)(*plStack_2a8 + 0x38))();
+              }
+              goto LAB_18027b312;
+            }
+            lVar9 = (longlong)&UNK_180a16840 - (longlong)pcVar15;
+            while (*pcVar15 == pcVar15[lVar9]) {
+              pcVar15 = pcVar15 + 1;
+              if (pcVar6 <= pcVar15) goto LAB_18027b254;
+            }
+          }
+          puVar11 = (undefined8 *)puVar11[6];
+        } while( true );
+      }
+      lVar9 = (longlong)&UNK_180a16828 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar9]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar6 <= pcVar15) goto LAB_18027b154;
+      }
+    }
+    puVar11 = (undefined8 *)puVar11[6];
+  } while( true );
 }
 
-/**
- * 清理临时资源的辅助函数
- */
-static void CleanupTemporaryResources(void)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18027b5d0(longlong param_1,longlong param_2)
+void FUN_18027b5d0(longlong param_1,longlong param_2)
+
 {
-    // 清理临时资源的逻辑
-    // 这里应该添加资源清理的具体实现
+  int iVar1;
+  undefined8 *puVar2;
+  longlong lVar3;
+  longlong lVar4;
+  undefined *puVar5;
+  ulonglong uVar6;
+  uint uVar7;
+  int iVar8;
+  int iVar9;
+  int aiStackX_10 [2];
+  int aiStackX_18 [2];
+  int aiStackX_20 [2];
+  int iStack_98;
+  int iStack_94;
+  uint auStack_90 [2];
+  undefined *puStack_88;
+  longlong lStack_80;
+  uint uStack_78;
+  undefined4 uStack_70;
+  undefined *puStack_68;
+  longlong lStack_60;
+  uint uStack_58;
+  undefined4 uStack_50;
+  undefined1 auStack_48 [4];
+  undefined1 auStack_44 [4];
+  undefined8 uStack_40;
+  
+  uStack_40 = 0xfffffffffffffffe;
+  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  puVar5 = &DAT_18098bc73;
+  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
+    puVar5 = *(undefined **)(param_2 + 8);
+  }
+  iVar1 = 0;
+  *puVar2 = 0;
+  *(undefined1 *)(puVar2 + 2) = 0;
+  FUN_18062dee0(puVar2,puVar5,&UNK_180a01ff0);
+  if (puVar2[1] != 0) {
+    fread(auStack_90,4,1);
+    if (auStack_90[0] == 0x31444d4d) {
+      fread(&iStack_94,4,1,puVar2[1]);
+      if (0 < iStack_94) {
+        do {
+          fread(aiStackX_18,4,1,puVar2[1]);
+          lVar3 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)(aiStackX_18[0] + 1),0x10,3);
+          fread(lVar3,1,(longlong)aiStackX_18[0],puVar2[1]);
+          *(undefined1 *)(aiStackX_18[0] + lVar3) = 0;
+          FUN_180627910(&puStack_68,lVar3);
+          while ((0 < (int)uStack_58 && (lVar4 = strstr(lStack_60,&DAT_180a0ff10), lVar4 != 0))) {
+            iVar9 = 6;
+            iVar8 = (int)lVar4 - (int)lStack_60;
+            if (uStack_58 < iVar8 + 6U) {
+              iVar9 = uStack_58 - iVar8;
+            }
+            uVar7 = iVar8 + iVar9;
+            if (uVar7 < uStack_58) {
+              lVar4 = (longlong)(int)uVar7;
+              do {
+                *(undefined1 *)((lVar4 - iVar9) + lStack_60) = *(undefined1 *)(lVar4 + lStack_60);
+                uVar7 = uVar7 + 1;
+                lVar4 = lVar4 + 1;
+              } while (uVar7 < uStack_58);
+            }
+            uStack_58 = uStack_58 - iVar9;
+            *(undefined1 *)((ulonglong)uStack_58 + lStack_60) = 0;
+          }
+          if (*(ulonglong *)(param_1 + 8) < *(ulonglong *)(param_1 + 0x10)) {
+            *(ulonglong *)(param_1 + 8) = *(ulonglong *)(param_1 + 8) + 0x20;
+            FUN_180627ae0();
+          }
+          else {
+            FUN_180059820(param_1,&puStack_68);
+          }
+          fread(auStack_44,4,1,puVar2[1]);
+          fread(&iStack_98,4,1,puVar2[1]);
+          lVar4 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)iStack_98 << 2,0x10,3);
+          fread(lVar4,4,(longlong)iStack_98,puVar2[1]);
+          if (lVar4 != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900(lVar4);
+          }
+          if (lVar3 != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900(lVar3);
+          }
+          puStack_68 = &UNK_180a3c3e0;
+          if (lStack_60 != 0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900();
+          }
+          lStack_60 = 0;
+          uStack_50 = 0;
+          puStack_68 = &UNK_18098bcb0;
+          iVar1 = iVar1 + 1;
+        } while (iVar1 < iStack_94);
+      }
+    }
+    else if (0 < (int)auStack_90[0]) {
+      uVar6 = (ulonglong)auStack_90[0];
+      do {
+        fread(aiStackX_10,4,1,puVar2[1]);
+        lVar3 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)(aiStackX_10[0] + 1),0x10,3);
+        fread(lVar3,1,(longlong)aiStackX_10[0],puVar2[1]);
+        *(undefined1 *)(aiStackX_10[0] + lVar3) = 0;
+        fread(auStack_48,4,1,puVar2[1]);
+        FUN_180627910(&puStack_88,lVar3);
+        while ((0 < (int)uStack_78 && (lVar4 = strstr(lStack_80,&DAT_180a0ff10), lVar4 != 0))) {
+          iVar8 = 6;
+          iVar1 = (int)lVar4 - (int)lStack_80;
+          if (uStack_78 < iVar1 + 6U) {
+            iVar8 = uStack_78 - iVar1;
+          }
+          uVar7 = iVar1 + iVar8;
+          if (uVar7 < uStack_78) {
+            lVar4 = (longlong)(int)uVar7;
+            do {
+              *(undefined1 *)((lVar4 - iVar8) + lStack_80) = *(undefined1 *)(lVar4 + lStack_80);
+              uVar7 = uVar7 + 1;
+              lVar4 = lVar4 + 1;
+            } while (uVar7 < uStack_78);
+          }
+          uStack_78 = uStack_78 - iVar8;
+          *(undefined1 *)((ulonglong)uStack_78 + lStack_80) = 0;
+        }
+        if (*(ulonglong *)(param_1 + 8) < *(ulonglong *)(param_1 + 0x10)) {
+          *(ulonglong *)(param_1 + 8) = *(ulonglong *)(param_1 + 8) + 0x20;
+          FUN_180627ae0();
+        }
+        else {
+          FUN_180059820(param_1,&puStack_88);
+        }
+        fread(aiStackX_20,4,1,puVar2[1]);
+        lVar4 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)aiStackX_20[0] << 2,0x10,3);
+        fread(lVar4,4,(longlong)aiStackX_20[0],puVar2[1]);
+        if (lVar4 != 0) {
+                    // WARNING: Subroutine does not return
+          FUN_18064e900(lVar4);
+        }
+        if (lVar3 != 0) {
+                    // WARNING: Subroutine does not return
+          FUN_18064e900(lVar3);
+        }
+        puStack_88 = &UNK_180a3c3e0;
+        if (lStack_80 != 0) {
+                    // WARNING: Subroutine does not return
+          FUN_18064e900();
+        }
+        lStack_80 = 0;
+        uStack_70 = 0;
+        puStack_88 = &UNK_18098bcb0;
+        uVar6 = uVar6 - 1;
+      } while (uVar6 != 0);
+    }
+    if (puVar2[1] != 0) {
+      fclose();
+      puVar2[1] = 0;
+      LOCK();
+      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      UNLOCK();
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_18064e900(puVar2);
 }
 
-// 函数别名映射 - 保持与原始代码的兼容性
-void FUN_18027a810(longlong *param_1, longlong *param_2) __attribute__((alias("MaterialProcessor")));
-void FUN_18027b5d0(longlong param_1, longlong param_2) __attribute__((alias("ModelLoader")));
 
-/**
- * 渲染系统材质处理模块说明：
- * 
- * 本模块提供了完整的材质处理和模型加载功能，包括：
- * 
- * 1. 材质处理功能：
- *    - 材质名称解析和验证
- *    - 材质属性设置（颜色、因子、UV缩放等）
- *    - 材质混合和二级材质处理
- *    - 材质应用到渲染对象
- * 
- * 2. 模型加载功能：
- *    - 支持多种模型文件格式
- *    - 材质数据解析和处理
- *    - 纹理和贴图信息加载
- *    - 模型数据结构构建
- * 
- * 3. 优化特性：
- *    - 高效的字符串处理
- *    - 内存管理和资源清理
- *    - 安全检查和错误处理
- *    - 性能优化的数据处理
- * 
- * 4. 扩展性：
- *    - 支持自定义材质属性
- *    - 可扩展的文件格式支持
- *    - 灵活的材质混合系统
- *    - 模块化的设计结构
- * 
- * 注意：这是一个简化实现，保留了原始代码的核心逻辑和功能，
- * 但提高了代码的可读性和可维护性。在实际使用中，可能需要
- * 根据具体的渲染引擎需求进行调整和优化。
- */
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

@@ -1,848 +1,881 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part059.c - 渲染系统高级数据处理和渲染控制模块
-// 包含12个核心函数，涵盖哈希表操作、数据结构管理、资源管理、参数设置等功能
-// 主要函数包括：render_hash_table_insert_entry、render_data_structure_initialize、render_data_structure_cleanup、
-// render_resource_manager_cleanup、render_resource_manager_add_texture、render_resource_manager_add_shader、
-// render_system_initialize、render_system_initialize_with_index、render_system_update_parameters、
-// render_system_update_with_callback、render_system_execute_task、render_system_process_async_task
+// 03_rendering_part059.c - 12 个函数
 
-// 函数: void render_hash_table_insert_entry(void)
-// 渲染哈希表插入条目函数 - 向哈希表中插入新的条目
-void render_hash_table_insert_entry(void)
+// 函数: void FUN_18029aa23(void)
+void FUN_18029aa23(void)
 
 {
-  longlong hash_table_entry;
-  longlong hash_table_manager;
-  longlong hash_table_index;
-  longlong *entry_data;
+  longlong lVar1;
+  longlong unaff_RDI;
+  longlong unaff_R12;
+  longlong unaff_R13;
+  longlong *unaff_R15;
   
-  // 向哈希表中插入新条目
-  *(undefined8 *)(hash_table_manager + 0x18) = *(undefined8 *)(*(longlong *)(hash_table_manager + 8) + hash_table_index * 8);
-  *(longlong *)(*(longlong *)(hash_table_manager + 8) + hash_table_index * 8) = entry_data;
-  hash_table_entry = *(longlong *)(hash_table_manager + 8);
-  *(longlong *)(hash_table_manager + 0x18) = *(longlong *)(hash_table_manager + 0x18) + 1;
-  *entry_data = hash_table_entry;
-  entry_data[1] = hash_table_entry + hash_table_index * 8;
-  *(undefined1 *)(entry_data + 2) = 1;
+  *(undefined8 *)(unaff_R13 + 0x18) = *(undefined8 *)(*(longlong *)(unaff_RDI + 8) + unaff_R12 * 8);
+  *(longlong *)(*(longlong *)(unaff_RDI + 8) + unaff_R12 * 8) = unaff_R13;
+  lVar1 = *(longlong *)(unaff_RDI + 8);
+  *(longlong *)(unaff_RDI + 0x18) = *(longlong *)(unaff_RDI + 0x18) + 1;
+  *unaff_R15 = unaff_R13;
+  unaff_R15[1] = lVar1 + unaff_R12 * 8;
+  *(undefined1 *)(unaff_R15 + 2) = 1;
   return;
 }
 
-undefined8 * render_data_structure_initialize(undefined8 *data_structure)
+
+
+undefined8 * FUN_18029aa70(undefined8 *param_1)
 
 {
-  longlong *structure_ptr;
-  longlong memory_block;
-  undefined8 *data_ptr;
+  longlong *plVar1;
+  longlong lVar2;
+  undefined8 *puVar3;
   
-  // 初始化数据结构
-  *data_structure = &UNK_180a17010;
-  data_structure[0x2ef] = 0;
-  data_structure[0x2f2] = 0;
-  data_structure[0x2f3] = 0;
-  data_structure[0x2f8] = 0;
-  data_structure[0x2f9] = 0;
-  data_ptr = data_structure + 0x364;
-  memory_block = 0x10;
+  *param_1 = &UNK_180a17010;
+  param_1[0x2ef] = 0;
+  param_1[0x2f2] = 0;
+  param_1[0x2f3] = 0;
+  param_1[0x2f8] = 0;
+  param_1[0x2f9] = 0;
+  puVar3 = param_1 + 0x364;
+  lVar2 = 0x10;
   do {
-    func_0x000180074f10(data_ptr);
-    data_ptr = data_ptr + 1;
-    memory_block = memory_block + -1;
-  } while (memory_block != 0);
-  data_structure[0x37c] = 0;
-  data_structure[0x37d] = 0;
-  data_structure[0x381] = 0;
-  data_structure[0x3be] = 0;
-  data_structure[0x3bf] = 0;
-  data_structure[0x3c0] = 0;
-  FUN_18029c700(data_structure + 0xfe4);
-  data_structure[0x1049] = 0;
-  data_structure[0x104c] = 0;
-  data_structure[0x1048] = 0;
-  data_structure[0x1047] = 0;
-  data_structure[0x104f] = 0xffffffffffffffff;
-  data_structure[0x1053] = 0xffffffffffffffff;
-  data_structure[0x1050] = 0xffffffffffffffff;
-  data_structure[0x1051] = 0xffffffffffffffff;
-  data_structure[0x1052] = 0xffffffffffffffff;
-  data_structure[0x1054] = 0xffffffffffffffff;
-  *(undefined1 *)(data_structure + 0x104e) = 9;
-  data_structure[0x107e] = 0;
-  data_structure[0x1076] = 0xffffffffdeadfeee;
-  data_structure[0x1077] = 0;
-  data_structure[0x106f] = 0xffffffffdeadfeee;
-  data_structure[0x1078] = 0;
-  data_structure[0x1070] = 0xffffffffdeadfeee;
-  data_structure[0x1079] = 0;
-  data_structure[0x1071] = 0xffffffffdeadfeee;
-  data_structure[0x107a] = 0;
-  data_structure[0x1072] = 0xffffffffdeadfeee;
-  data_structure[0x107b] = 0;
-  data_structure[0x1073] = 0xffffffffdeadfeee;
-  data_structure[0x107c] = 0;
-  data_structure[0x1074] = 0xffffffffdeadfeee;
-  data_structure[0x107d] = 0;
-  data_structure[0x1075] = 0xffffffffdeadfeee;
-  *(undefined4 *)(data_structure + 0x1011) = 0;
-  data_structure[0x1016] = 0;
-  data_structure[0x1017] = 0;
-  data_structure[0x1018] = 0;
-  data_structure[0x1019] = 0;
-  data_structure[0x101a] = 0;
-  structure_ptr = (longlong *)data_structure[0x1049];
-  data_structure[0x1049] = 0;
-  if (structure_ptr != (longlong *)0x0) {
-    (**(code **)(*structure_ptr + 0x38))();
+    func_0x000180074f10(puVar3);
+    puVar3 = puVar3 + 1;
+    lVar2 = lVar2 + -1;
+  } while (lVar2 != 0);
+  param_1[0x37c] = 0;
+  param_1[0x37d] = 0;
+  param_1[0x381] = 0;
+  param_1[0x3be] = 0;
+  param_1[0x3bf] = 0;
+  param_1[0x3c0] = 0;
+  FUN_18029c700(param_1 + 0xfe4);
+  param_1[0x1049] = 0;
+  param_1[0x104c] = 0;
+  param_1[0x1048] = 0;
+  param_1[0x1047] = 0;
+  param_1[0x104f] = 0xffffffffffffffff;
+  param_1[0x1053] = 0xffffffffffffffff;
+  param_1[0x1050] = 0xffffffffffffffff;
+  param_1[0x1051] = 0xffffffffffffffff;
+  param_1[0x1052] = 0xffffffffffffffff;
+  param_1[0x1054] = 0xffffffffffffffff;
+  *(undefined1 *)(param_1 + 0x104e) = 9;
+  param_1[0x107e] = 0;
+  param_1[0x1076] = 0xffffffffdeadfeee;
+  param_1[0x1077] = 0;
+  param_1[0x106f] = 0xffffffffdeadfeee;
+  param_1[0x1078] = 0;
+  param_1[0x1070] = 0xffffffffdeadfeee;
+  param_1[0x1079] = 0;
+  param_1[0x1071] = 0xffffffffdeadfeee;
+  param_1[0x107a] = 0;
+  param_1[0x1072] = 0xffffffffdeadfeee;
+  param_1[0x107b] = 0;
+  param_1[0x1073] = 0xffffffffdeadfeee;
+  param_1[0x107c] = 0;
+  param_1[0x1074] = 0xffffffffdeadfeee;
+  param_1[0x107d] = 0;
+  param_1[0x1075] = 0xffffffffdeadfeee;
+  *(undefined4 *)(param_1 + 0x1011) = 0;
+  param_1[0x1016] = 0;
+  param_1[0x1017] = 0;
+  param_1[0x1018] = 0;
+  param_1[0x1019] = 0;
+  param_1[0x101a] = 0;
+  plVar1 = (longlong *)param_1[0x1049];
+  param_1[0x1049] = 0;
+  if (plVar1 != (longlong *)0x0) {
+    (**(code **)(*plVar1 + 0x38))();
   }
-  return data_structure;
+  return param_1;
 }
+
+
 
 undefined8 *
-render_data_structure_cleanup(undefined8 *data_structure,ulonglong cleanup_flags,undefined8 param_3,undefined8 param_4)
+FUN_18029ac70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 cleanup_mask;
+  undefined8 uVar1;
   
-  cleanup_mask = 0xfffffffffffffffe;
-  *data_structure = &UNK_180a17010;
-  if ((longlong *)data_structure[0x1049] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)data_structure[0x1049] + 0x38))();
+  uVar1 = 0xfffffffffffffffe;
+  *param_1 = &UNK_180a17010;
+  if ((longlong *)param_1[0x1049] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)param_1[0x1049] + 0x38))();
   }
-  FUN_18029c460(data_structure + 0xfe4);
-  if ((cleanup_flags & 1) != 0) {
-    free(data_structure,0x8400,param_3,param_4,cleanup_mask);
+  FUN_18029c460(param_1 + 0xfe4);
+  if ((param_2 & 1) != 0) {
+    free(param_1,0x8400,param_3,param_4,uVar1);
   }
-  return data_structure;
+  return param_1;
 }
 
-// 函数: void render_resource_manager_cleanup(undefined8 *resource_manager)
-// 渲染资源管理器清理函数 - 清理渲染资源管理器的资源
-void render_resource_manager_cleanup(undefined8 *resource_manager)
+
+
+
+
+// 函数: void FUN_18029ace0(undefined8 *param_1)
+void FUN_18029ace0(undefined8 *param_1)
 
 {
-  longlong *resource_ptr;
-  undefined8 *resource_data;
-  longlong resource_count;
-  longlong resource_index;
-  ulonglong cleanup_flag;
+  longlong *plVar1;
+  undefined8 *puVar2;
+  longlong lVar3;
+  longlong lVar4;
+  ulonglong uVar5;
   
-  // 清理资源管理器
-  *resource_manager = &UNK_180a17010;
-  if ((longlong *)resource_manager[0x1049] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)resource_manager[0x1049] + 0x38))();
+  *param_1 = &UNK_180a17010;
+  if ((longlong *)param_1[0x1049] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)param_1[0x1049] + 0x38))();
   }
-  cleanup_flag = 0;
-  resource_ptr = resource_manager + 0x1012;
-  resource_count = *resource_ptr;
-  if (resource_manager[0x1013] - resource_count >> 3 != 0) {
+  uVar5 = 0;
+  plVar1 = param_1 + 0x1012;
+  lVar3 = *plVar1;
+  if (param_1[0x1013] - lVar3 >> 3 != 0) {
     do {
-      resource_data = *(undefined8 **)(cleanup_flag * 8 + resource_count);
-      if (resource_data != (undefined8 *)0x0) {
-        if ((longlong *)resource_data[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_data[0xd] + 0x10))();
-          resource_data[0xd] = 0;
+      puVar2 = *(undefined8 **)(uVar5 * 8 + lVar3);
+      if (puVar2 != (undefined8 *)0x0) {
+        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
+          puVar2[0xd] = 0;
         }
-        if ((longlong *)resource_data[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_data[0xe] + 0x10))();
-          resource_data[0xe] = 0;
+        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
+          puVar2[0xe] = 0;
         }
-        if ((longlong *)resource_data[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_data[0xf] + 0x10))();
-          resource_data[0xf] = 0;
+        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
+          puVar2[0xf] = 0;
         }
-        if ((longlong *)resource_data[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_data[0x10] + 0x10))();
-          resource_data[0x10] = 0;
+        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
+          puVar2[0x10] = 0;
         }
-        if ((longlong *)resource_data[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)resource_data[0x11] + 0x10))();
-          resource_data[0x11] = 0;
+        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
+          puVar2[0x11] = 0;
         }
-        *resource_data = &UNK_18098bcb0;
+        *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resource_data);
+        FUN_18064e900(puVar2);
       }
-      *(undefined8 *)(cleanup_flag * 8 + *resource_ptr) = 0;
-      cleanup_flag = (ulonglong)((int)cleanup_flag + 1);
-      resource_count = *resource_ptr;
-    } while (cleanup_flag < (ulonglong)(resource_manager[0x1013] - resource_count >> 3));
+      *(undefined8 *)(uVar5 * 8 + *plVar1) = 0;
+      uVar5 = (ulonglong)((int)uVar5 + 1);
+      lVar3 = *plVar1;
+    } while (uVar5 < (ulonglong)(param_1[0x1013] - lVar3 >> 3));
   }
-  resource_manager[0x1013] = resource_count;
-  resource_data = (undefined8 *)resource_manager[0x1043];
-  if (resource_data != (undefined8 *)0x0) {
-    FUN_1800f74f0(resource_manager + 0x1041,*resource_data);
-    resource_data[4] = &UNK_18098bcb0;
+  param_1[0x1013] = lVar3;
+  puVar2 = (undefined8 *)param_1[0x1043];
+  if (puVar2 != (undefined8 *)0x0) {
+    FUN_1800f74f0(param_1 + 0x1041,*puVar2);
+    puVar2[4] = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resource_data);
+    FUN_18064e900(puVar2);
   }
-  FUN_180058370(resource_manager + 0x103b,resource_manager[0x103d]);
-  FUN_180058370(resource_manager + 0x1035,resource_manager[0x1037]);
-  FUN_180058370(resource_manager + 0x102f,resource_manager[0x1031]);
-  FUN_1808fc8a8(resource_manager + 0x101b,0x20,5,FUN_180046860);
-  if (*resource_ptr != 0) {
+  FUN_180058370(param_1 + 0x103b,param_1[0x103d]);
+  FUN_180058370(param_1 + 0x1035,param_1[0x1037]);
+  FUN_180058370(param_1 + 0x102f,param_1[0x1031]);
+  FUN_1808fc8a8(param_1 + 0x101b,0x20,5,FUN_180046860);
+  if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  FUN_1808fc8a8(resource_manager + 0xffd,0x20,5,FUN_180046860);
-  resource_count = resource_manager[0xffa];
-  for (resource_index = resource_manager[0xff9]; resource_index != resource_count; resource_index = resource_index + 0x40) {
-    FUN_180152b00(resource_index);
+  FUN_1808fc8a8(param_1 + 0xffd,0x20,5,FUN_180046860);
+  lVar3 = param_1[0xffa];
+  for (lVar4 = param_1[0xff9]; lVar4 != lVar3; lVar4 = lVar4 + 0x40) {
+    FUN_180152b00(lVar4);
   }
-  if (resource_manager[0xff9] != 0) {
+  if (param_1[0xff9] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   return;
 }
 
-// 函数: void render_resource_manager_add_texture(longlong *resource_manager,int texture_slot,longlong *texture_data)
-// 渲染资源管理器添加纹理函数 - 向资源管理器添加纹理资源
-void render_resource_manager_add_texture(longlong *resource_manager,int texture_slot,longlong *texture_data)
+
+
+
+
+// 函数: void FUN_18029ad30(longlong *param_1,int param_2,longlong *param_3)
+void FUN_18029ad30(longlong *param_1,int param_2,longlong *param_3)
 
 {
-  if ((texture_data != (longlong *)0x0) && (*texture_data != 0)) {
-    (**(code **)(*resource_manager + 0x70))(resource_manager,*texture_data,1);
-    resource_manager[(longlong)texture_slot + 0x1077] = (longlong)texture_data;
+  if ((param_3 != (longlong *)0x0) && (*param_3 != 0)) {
+    (**(code **)(*param_1 + 0x70))(param_1,*param_3,1);
+    param_1[(longlong)param_2 + 0x1077] = (longlong)param_3;
     return;
   }
-  resource_manager[(longlong)texture_slot + 0x1077] = (longlong)texture_data;
+  param_1[(longlong)param_2 + 0x1077] = (longlong)param_3;
   return;
 }
 
-// 函数: void render_resource_manager_add_shader(longlong *resource_manager,longlong *shader_data,int shader_type)
-// 渲染资源管理器添加着色器函数 - 向资源管理器添加着色器资源
-void render_resource_manager_add_shader(longlong *resource_manager,longlong *shader_data,int shader_type)
+
+
+
+
+// 函数: void FUN_18029ada0(longlong *param_1,longlong *param_2,int param_3)
+void FUN_18029ada0(longlong *param_1,longlong *param_2,int param_3)
 
 {
-  longlong shader_handle;
+  longlong lVar1;
   
-  if ((shader_data != (longlong *)0x0) && (shader_handle = *shader_data, shader_handle != 0)) {
-    if (shader_type == 0) {
-      (**(code **)(*resource_manager + 0x70))(resource_manager,shader_handle,2);
-      resource_manager[0x107e] = (longlong)shader_data;
+  if ((param_2 != (longlong *)0x0) && (lVar1 = *param_2, lVar1 != 0)) {
+    if (param_3 == 0) {
+      (**(code **)(*param_1 + 0x70))(param_1,lVar1,2);
+      param_1[0x107e] = (longlong)param_2;
       return;
     }
-    if (shader_type == 1) {
-      (**(code **)(*resource_manager + 0x70))(resource_manager,shader_handle,4);
-      resource_manager[0x107e] = (longlong)shader_data;
+    if (param_3 == 1) {
+      (**(code **)(*param_1 + 0x70))(param_1,lVar1,4);
+      param_1[0x107e] = (longlong)param_2;
       return;
     }
   }
-  resource_manager[0x107e] = (longlong)shader_data;
+  param_1[0x107e] = (longlong)param_2;
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_initialize(longlong *render_system)
-// 渲染系统初始化函数 - 初始化渲染系统的各种参数和状态
-void render_system_initialize(longlong *render_system)
+
+
+// 函数: void FUN_18029ae20(longlong *param_1)
+void FUN_18029ae20(longlong *param_1)
 
 {
-  longlong system_config;
-  longlong *resource_ptr;
-  int texture_index;
-  int shader_index;
-  longlong *texture_ptr;
-  float viewport_scale;
-  undefined4 texture_format;
-  float projection_scale;
-  undefined8 stack_data;
+  longlong lVar1;
+  longlong *plVar2;
+  int iVar3;
+  int iVar4;
+  longlong *plVar5;
+  float fVar6;
+  undefined4 uVar7;
+  float fVar8;
+  undefined8 uStackX_8;
   
-  // 初始化渲染系统参数
-  texture_index = 0;
-  render_system[0x1048] = 0;
-  render_system[0x1047] = 0;
-  shader_index = texture_index;
+  iVar4 = 0;
+  param_1[0x1048] = 0;
+  param_1[0x1047] = 0;
+  iVar3 = iVar4;
   do {
-    (**(code **)(*render_system + 0xb0))(render_system,shader_index,shader_index,0x33);
-    shader_index = shader_index + 1;
-  } while (shader_index < 9);
-  if ((undefined *)*render_system == &UNK_180a17458) {
-    resource_ptr = render_system + 0x1147;
-    texture_ptr = render_system + 0x1087;
+    (**(code **)(*param_1 + 0xb0))(param_1,iVar3,iVar3,0x33);
+    iVar3 = iVar3 + 1;
+  } while (iVar3 < 9);
+  if ((undefined *)*param_1 == &UNK_180a17458) {
+    plVar2 = param_1 + 0x1147;
+    plVar5 = param_1 + 0x1087;
     do {
-      stack_data = 0;
-      (**(code **)(*(longlong *)render_system[0x1080] + 200))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x1f8))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x1d8))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0xf8))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x40))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x218))
-                ((longlong *)render_system[0x1080],texture_index,1,&stack_data);
-      *texture_ptr = 0;
-      texture_ptr = texture_ptr + 1;
-      texture_index = texture_index + 1;
-      *(undefined4 *)(resource_ptr + -0x40) = 0xffffffff;
-      *(undefined4 *)resource_ptr = 0xffffffff;
-      resource_ptr = (longlong *)((longlong)resource_ptr + 4);
-    } while (texture_index < 0x80);
+      uStackX_8 = 0;
+      (**(code **)(*(longlong *)param_1[0x1080] + 200))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x1f8))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x1d8))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0xf8))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x40))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x218))
+                ((longlong *)param_1[0x1080],iVar4,1,&uStackX_8);
+      *plVar5 = 0;
+      plVar5 = plVar5 + 1;
+      iVar4 = iVar4 + 1;
+      *(undefined4 *)(plVar2 + -0x40) = 0xffffffff;
+      *(undefined4 *)plVar2 = 0xffffffff;
+      plVar2 = (longlong *)((longlong)plVar2 + 4);
+    } while (iVar4 < 0x80);
   }
   else {
-    (**(code **)((undefined *)*render_system + 0x58))(render_system);
+    (**(code **)((undefined *)*param_1 + 0x58))(param_1);
   }
-  (**(code **)(*render_system + 0x110))(render_system,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_system + 0x110))(render_system,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_system + 0x110))(render_system,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_system + 0x110))(render_system,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_system + 0x110))(render_system,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_system + 0x110))(render_system,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_system + 0x110))(render_system,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_system + 0x110))(render_system,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_system + 0x110))(render_system,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
-  system_config = _DAT_180c86920;
-  projection_scale = *(float *)(_DAT_180c86920 + 0x1880);
-  *(float *)(render_system + 0x2a4) = projection_scale;
-  *(float *)((longlong)render_system + 0x1524) = 1.0 / projection_scale;
-  *(float *)((longlong)render_system + 0x1d54) = *(float *)(system_config + 0x2060) * 0.01;
-  *(float *)(render_system + 0x2a5) = *(float *)(system_config + 0x1110) * 0.005 - 0.25;
-  projection_scale = *(float *)(system_config + 0x1180);
-  if (0.0 <= projection_scale) {
-    if (1.0 <= projection_scale) {
-      projection_scale = 1.0;
+  (**(code **)(*param_1 + 0x110))(param_1,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
+  (**(code **)(*param_1 + 0x110))(param_1,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
+  (**(code **)(*param_1 + 0x110))(param_1,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
+  (**(code **)(*param_1 + 0x110))(param_1,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
+  (**(code **)(*param_1 + 0x110))(param_1,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
+  (**(code **)(*param_1 + 0x110))(param_1,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
+  (**(code **)(*param_1 + 0x110))(param_1,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*param_1 + 0x110))(param_1,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*param_1 + 0x110))(param_1,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  lVar1 = _DAT_180c86920;
+  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  *(float *)(param_1 + 0x2a4) = fVar8;
+  *(float *)((longlong)param_1 + 0x1524) = 1.0 / fVar8;
+  *(float *)((longlong)param_1 + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
+  *(float *)(param_1 + 0x2a5) = *(float *)(lVar1 + 0x1110) * 0.005 - 0.25;
+  fVar8 = *(float *)(lVar1 + 0x1180);
+  if (0.0 <= fVar8) {
+    if (1.0 <= fVar8) {
+      fVar8 = 1.0;
     }
   }
   else {
-    projection_scale = 0.0;
+    fVar8 = 0.0;
   }
-  *(float *)(render_system + 0x2f4) = projection_scale;
-  projection_scale = *(float *)(system_config + 0x11f0);
-  viewport_scale = 0.0;
-  if ((0.0 <= projection_scale) && (viewport_scale = projection_scale, 1.0 <= projection_scale)) {
-    viewport_scale = 1.0;
+  *(float *)(param_1 + 0x2f4) = fVar8;
+  fVar8 = *(float *)(lVar1 + 0x11f0);
+  fVar6 = 0.0;
+  if ((0.0 <= fVar8) && (fVar6 = fVar8, 1.0 <= fVar8)) {
+    fVar6 = 1.0;
   }
-  *(float *)((longlong)render_system + 0x17a4) = viewport_scale;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = 0;
-  render_system[0x1078] = 0;
-  render_system[0x1079] = 0;
-  render_system[0x107a] = 0;
-  render_system[0x107b] = 0;
-  render_system[0x107c] = 0;
-  render_system[0x107d] = 0;
-  render_system[0x107e] = 0;
+  *(float *)((longlong)param_1 + 0x17a4) = fVar6;
+  uVar7 = powf(0x40000000,*(undefined4 *)(lVar1 + 0x1260));
+  *(undefined4 *)(param_1 + 0x2f7) = uVar7;
+  param_1[0x1077] = 0;
+  param_1[0x1078] = 0;
+  param_1[0x1079] = 0;
+  param_1[0x107a] = 0;
+  param_1[0x107b] = 0;
+  param_1[0x107c] = 0;
+  param_1[0x107d] = 0;
+  param_1[0x107e] = 0;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(render_system,7);
+  (**(code **)(*param_1 + 0x128))(param_1,7);
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_initialize_with_index(longlong *render_system)
-// 渲染系统带索引初始化函数 - 使用索引初始化渲染系统
-void render_system_initialize_with_index(longlong *render_system)
+
+
+// 函数: void FUN_18029ae29(longlong *param_1)
+void FUN_18029ae29(longlong *param_1)
 
 {
-  longlong system_config;
-  ulonglong init_index;
-  undefined8 init_param;
-  longlong *resource_ptr;
-  uint texture_index;
-  ulonglong resource_index;
-  ulonglong *texture_ptr;
-  float viewport_scale;
-  undefined4 texture_format;
-  float projection_scale;
-  ulonglong stack_param;
-  undefined8 stack_data;
+  longlong lVar1;
+  ulonglong unaff_RBP;
+  undefined8 unaff_RSI;
+  longlong *plVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  ulonglong *puVar5;
+  float fVar6;
+  undefined4 uVar7;
+  float fVar8;
+  ulonglong in_stack_00000040;
+  undefined8 in_stack_00000048;
   
-  render_system[0x1048] = init_index;
-  resource_index = init_index & 0xffffffff;
-  render_system[0x1047] = init_index;
+  param_1[0x1048] = unaff_RBP;
+  uVar4 = unaff_RBP & 0xffffffff;
+  param_1[0x1047] = unaff_RBP;
   do {
-    (**(code **)(*render_system + 0xb0))(render_system,resource_index,resource_index,0x33);
-    texture_index = (int)resource_index + 1;
-    resource_index = (ulonglong)texture_index;
-  } while ((int)texture_index < 9);
-  if ((undefined *)*render_system == &UNK_180a17458) {
-    resource_index = init_index & 0xffffffff;
-    resource_ptr = render_system + 0x1147;
-    texture_ptr = (ulonglong *)(render_system + 0x1087);
-    stack_data = init_param;
+    (**(code **)(*param_1 + 0xb0))(param_1,uVar4,uVar4,0x33);
+    uVar3 = (int)uVar4 + 1;
+    uVar4 = (ulonglong)uVar3;
+  } while ((int)uVar3 < 9);
+  if ((undefined *)*param_1 == &UNK_180a17458) {
+    uVar4 = unaff_RBP & 0xffffffff;
+    plVar2 = param_1 + 0x1147;
+    puVar5 = (ulonglong *)(param_1 + 0x1087);
+    in_stack_00000048 = unaff_RSI;
     do {
-      stack_param = init_index;
-      (**(code **)(*(longlong *)render_system[0x1080] + 200))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x1f8))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x1d8))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0xf8))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x40))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      (**(code **)(*(longlong *)render_system[0x1080] + 0x218))
-                ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-      *texture_ptr = init_index;
-      texture_ptr = texture_ptr + 1;
-      texture_index = (int)resource_index + 1;
-      resource_index = (ulonglong)texture_index;
-      *(undefined4 *)(resource_ptr + -0x40) = 0xffffffff;
-      *(undefined4 *)resource_ptr = 0xffffffff;
-      resource_ptr = (longlong *)((longlong)resource_ptr + 4);
-    } while ((int)texture_index < 0x80);
+      in_stack_00000040 = unaff_RBP;
+      (**(code **)(*(longlong *)param_1[0x1080] + 200))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x1f8))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x1d8))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0xf8))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x40))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      (**(code **)(*(longlong *)param_1[0x1080] + 0x218))
+                ((longlong *)param_1[0x1080],uVar4,1,&stack0x00000040);
+      *puVar5 = unaff_RBP;
+      puVar5 = puVar5 + 1;
+      uVar3 = (int)uVar4 + 1;
+      uVar4 = (ulonglong)uVar3;
+      *(undefined4 *)(plVar2 + -0x40) = 0xffffffff;
+      *(undefined4 *)plVar2 = 0xffffffff;
+      plVar2 = (longlong *)((longlong)plVar2 + 4);
+    } while ((int)uVar3 < 0x80);
   }
   else {
-    (**(code **)((undefined *)*render_system + 0x58))(render_system);
+    (**(code **)((undefined *)*param_1 + 0x58))(param_1);
   }
-  (**(code **)(*render_system + 0x110))(render_system,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_system + 0x110))(render_system,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_system + 0x110))(render_system,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_system + 0x110))(render_system,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_system + 0x110))(render_system,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_system + 0x110))(render_system,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_system + 0x110))(render_system,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_system + 0x110))(render_system,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_system + 0x110))(render_system,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
-  system_config = _DAT_180c86920;
-  projection_scale = *(float *)(_DAT_180c86920 + 0x1880);
-  *(float *)(render_system + 0x2a4) = projection_scale;
-  *(float *)((longlong)render_system + 0x1524) = 1.0 / projection_scale;
-  *(float *)((longlong)render_system + 0x1d54) = *(float *)(system_config + 0x2060) * 0.01;
-  *(float *)(render_system + 0x2a5) = *(float *)(system_config + 0x1110) * 0.005 - 0.25;
-  projection_scale = *(float *)(system_config + 0x1180);
-  if (0.0 <= projection_scale) {
-    if (1.0 <= projection_scale) {
-      projection_scale = 1.0;
+  (**(code **)(*param_1 + 0x110))(param_1,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
+  (**(code **)(*param_1 + 0x110))(param_1,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
+  (**(code **)(*param_1 + 0x110))(param_1,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
+  (**(code **)(*param_1 + 0x110))(param_1,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
+  (**(code **)(*param_1 + 0x110))(param_1,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
+  (**(code **)(*param_1 + 0x110))(param_1,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
+  (**(code **)(*param_1 + 0x110))(param_1,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*param_1 + 0x110))(param_1,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*param_1 + 0x110))(param_1,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  lVar1 = _DAT_180c86920;
+  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  *(float *)(param_1 + 0x2a4) = fVar8;
+  *(float *)((longlong)param_1 + 0x1524) = 1.0 / fVar8;
+  *(float *)((longlong)param_1 + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
+  *(float *)(param_1 + 0x2a5) = *(float *)(lVar1 + 0x1110) * 0.005 - 0.25;
+  fVar8 = *(float *)(lVar1 + 0x1180);
+  if (0.0 <= fVar8) {
+    if (1.0 <= fVar8) {
+      fVar8 = 1.0;
     }
   }
   else {
-    projection_scale = 0.0;
+    fVar8 = 0.0;
   }
-  *(float *)(render_system + 0x2f4) = projection_scale;
-  projection_scale = *(float *)(system_config + 0x11f0);
-  viewport_scale = 0.0;
-  if ((0.0 <= projection_scale) && (viewport_scale = projection_scale, 1.0 <= projection_scale)) {
-    viewport_scale = 1.0;
+  *(float *)(param_1 + 0x2f4) = fVar8;
+  fVar8 = *(float *)(lVar1 + 0x11f0);
+  fVar6 = 0.0;
+  if ((0.0 <= fVar8) && (fVar6 = fVar8, 1.0 <= fVar8)) {
+    fVar6 = 1.0;
   }
-  *(float *)((longlong)render_system + 0x17a4) = viewport_scale;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = init_index;
-  render_system[0x1078] = init_index;
-  render_system[0x1079] = init_index;
-  render_system[0x107a] = init_index;
-  render_system[0x107b] = init_index;
-  render_system[0x107c] = init_index;
-  render_system[0x107d] = init_index;
-  render_system[0x107e] = init_index;
+  *(float *)((longlong)param_1 + 0x17a4) = fVar6;
+  uVar7 = powf(0x40000000,*(undefined4 *)(lVar1 + 0x1260));
+  *(undefined4 *)(param_1 + 0x2f7) = uVar7;
+  param_1[0x1077] = unaff_RBP;
+  param_1[0x1078] = unaff_RBP;
+  param_1[0x1079] = unaff_RBP;
+  param_1[0x107a] = unaff_RBP;
+  param_1[0x107b] = unaff_RBP;
+  param_1[0x107c] = unaff_RBP;
+  param_1[0x107d] = unaff_RBP;
+  param_1[0x107e] = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(render_system,7);
+  (**(code **)(*param_1 + 0x128))(param_1,7);
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_update_parameters(void)
-// 渲染系统更新参数函数 - 更新渲染系统的各种参数
-void render_system_update_parameters(void)
+
+
+// 函数: void FUN_18029ae76(void)
+void FUN_18029ae76(void)
 
 {
-  longlong system_config;
-  longlong *render_system;
-  ulonglong param_index;
-  longlong *resource_ptr;
-  uint texture_index;
-  ulonglong resource_index;
-  ulonglong *texture_ptr;
-  undefined4 texture_format;
-  float viewport_scale;
-  float projection_scale;
+  longlong lVar1;
+  longlong *unaff_RBX;
+  ulonglong unaff_RBP;
+  longlong *plVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  ulonglong *puVar5;
+  undefined4 uVar6;
+  float fVar7;
+  float fVar8;
   
-  resource_index = param_index & 0xffffffff;
-  resource_ptr = render_system + 0x1147;
-  texture_ptr = (ulonglong *)(render_system + 0x1087);
+  uVar4 = unaff_RBP & 0xffffffff;
+  plVar2 = unaff_RBX + 0x1147;
+  puVar5 = (ulonglong *)(unaff_RBX + 0x1087);
   do {
-    (**(code **)(*(longlong *)render_system[0x1080] + 200))
-              ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    (**(code **)(*(longlong *)render_system[0x1080] + 0x1f8))
-              ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    (**(code **)(*(longlong *)render_system[0x1080] + 0x1d8))
-              ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    (**(code **)(*(longlong *)render_system[0x1080] + 0xf8))
-              ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    (**(code **)(*(longlong *)render_system[0x1080] + 0x40))
-              ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    texture_format = (**(code **)(*(longlong *)render_system[0x1080] + 0x218))
-                      ((longlong *)render_system[0x1080],resource_index,1,&stack_param);
-    *texture_ptr = param_index;
-    texture_ptr = texture_ptr + 1;
-    texture_index = (int)resource_index + 1;
-    resource_index = (ulonglong)texture_index;
-    *(undefined4 *)(resource_ptr + -0x40) = 0xffffffff;
-    *(undefined4 *)resource_ptr = 0xffffffff;
-    resource_ptr = (longlong *)((longlong)resource_ptr + 4);
-  } while ((int)texture_index < 0x80);
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_system + 0x110))(texture_format,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_system + 0x110))(texture_format,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
-  system_config = _DAT_180c86920;
-  projection_scale = *(float *)(_DAT_180c86920 + 0x1880);
-  *(float *)(render_system + 0x2a4) = projection_scale;
-  *(float *)((longlong)render_system + 0x1524) = 1.0 / projection_scale;
-  *(float *)((longlong)render_system + 0x1d54) = *(float *)(system_config + 0x2060) * 0.01;
-  *(float *)(render_system + 0x2a5) = *(float *)(system_config + 0x1110) * 0.005 - 0.25;
-  projection_scale = *(float *)(system_config + 0x1180);
-  if (0.0 <= projection_scale) {
-    if (1.0 <= projection_scale) {
-      projection_scale = 1.0;
+    (**(code **)(*(longlong *)unaff_RBX[0x1080] + 200))
+              ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    (**(code **)(*(longlong *)unaff_RBX[0x1080] + 0x1f8))
+              ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    (**(code **)(*(longlong *)unaff_RBX[0x1080] + 0x1d8))
+              ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    (**(code **)(*(longlong *)unaff_RBX[0x1080] + 0xf8))
+              ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    (**(code **)(*(longlong *)unaff_RBX[0x1080] + 0x40))
+              ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    uVar6 = (**(code **)(*(longlong *)unaff_RBX[0x1080] + 0x218))
+                      ((longlong *)unaff_RBX[0x1080],uVar4,1,&stack0x00000040);
+    *puVar5 = unaff_RBP;
+    puVar5 = puVar5 + 1;
+    uVar3 = (int)uVar4 + 1;
+    uVar4 = (ulonglong)uVar3;
+    *(undefined4 *)(plVar2 + -0x40) = 0xffffffff;
+    *(undefined4 *)plVar2 = 0xffffffff;
+    plVar2 = (longlong *)((longlong)plVar2 + 4);
+  } while ((int)uVar3 < 0x80);
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
+  uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*unaff_RBX + 0x110))(uVar6,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  lVar1 = _DAT_180c86920;
+  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  *(float *)(unaff_RBX + 0x2a4) = fVar8;
+  *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar8;
+  *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
+  *(float *)(unaff_RBX + 0x2a5) = *(float *)(lVar1 + 0x1110) * 0.005 - 0.25;
+  fVar8 = *(float *)(lVar1 + 0x1180);
+  if (0.0 <= fVar8) {
+    if (1.0 <= fVar8) {
+      fVar8 = 1.0;
     }
   }
   else {
-    projection_scale = 0.0;
+    fVar8 = 0.0;
   }
-  *(float *)(render_system + 0x2f4) = projection_scale;
-  projection_scale = *(float *)(system_config + 0x11f0);
-  viewport_scale = 0.0;
-  if ((0.0 <= projection_scale) && (viewport_scale = projection_scale, 1.0 <= projection_scale)) {
-    viewport_scale = 1.0;
+  *(float *)(unaff_RBX + 0x2f4) = fVar8;
+  fVar8 = *(float *)(lVar1 + 0x11f0);
+  fVar7 = 0.0;
+  if ((0.0 <= fVar8) && (fVar7 = fVar8, 1.0 <= fVar8)) {
+    fVar7 = 1.0;
   }
-  *(float *)((longlong)render_system + 0x17a4) = viewport_scale;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = param_index;
-  render_system[0x1078] = param_index;
-  render_system[0x1079] = param_index;
-  render_system[0x107a] = param_index;
-  render_system[0x107b] = param_index;
-  render_system[0x107c] = param_index;
-  render_system[0x107d] = param_index;
-  render_system[0x107e] = param_index;
+  *(float *)((longlong)unaff_RBX + 0x17a4) = fVar7;
+  uVar6 = powf(0x40000000,*(undefined4 *)(lVar1 + 0x1260));
+  *(undefined4 *)(unaff_RBX + 0x2f7) = uVar6;
+  unaff_RBX[0x1077] = unaff_RBP;
+  unaff_RBX[0x1078] = unaff_RBP;
+  unaff_RBX[0x1079] = unaff_RBP;
+  unaff_RBX[0x107a] = unaff_RBP;
+  unaff_RBX[0x107b] = unaff_RBP;
+  unaff_RBX[0x107c] = unaff_RBP;
+  unaff_RBX[0x107d] = unaff_RBP;
+  unaff_RBX[0x107e] = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(texture_format,7);
+  (**(code **)(*unaff_RBX + 0x128))(uVar6,7);
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_update_with_callback(undefined4 update_flags)
-// 渲染系统带回调更新函数 - 使用回调函数更新渲染系统
-void render_system_update_with_callback(undefined4 update_flags)
+
+
+// 函数: void FUN_18029af73(undefined4 param_1)
+void FUN_18029af73(undefined4 param_1)
 
 {
-  longlong system_config;
-  longlong *render_system;
-  longlong param_base;
-  undefined4 texture_format;
-  float viewport_scale;
-  float projection_scale;
+  longlong lVar1;
+  longlong *unaff_RBX;
+  longlong unaff_RBP;
+  undefined4 uVar2;
+  float fVar3;
+  float fVar4;
   
-  texture_format = (**(code **)(*render_system + 0x110))(update_flags,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70))
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(param_1,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70))
   ;
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_system + 0x110))(texture_format,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
-  system_config = _DAT_180c86920;
-  projection_scale = *(float *)(_DAT_180c86920 + 0x1880);
-  *(float *)(render_system + 0x2a4) = projection_scale;
-  *(float *)((longlong)render_system + 0x1524) = 1.0 / projection_scale;
-  *(float *)((longlong)render_system + 0x1d54) = *(float *)(system_config + 0x2060) * 0.01;
-  *(float *)(render_system + 0x2a5) = *(float *)(system_config + 0x1110) * 0.005 - 0.25;
-  projection_scale = *(float *)(system_config + 0x1180);
-  if (0.0 <= projection_scale) {
-    if (1.0 <= projection_scale) {
-      projection_scale = 1.0;
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
+  uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*unaff_RBX + 0x110))(uVar2,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  lVar1 = _DAT_180c86920;
+  fVar4 = *(float *)(_DAT_180c86920 + 0x1880);
+  *(float *)(unaff_RBX + 0x2a4) = fVar4;
+  *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar4;
+  *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
+  *(float *)(unaff_RBX + 0x2a5) = *(float *)(lVar1 + 0x1110) * 0.005 - 0.25;
+  fVar4 = *(float *)(lVar1 + 0x1180);
+  if (0.0 <= fVar4) {
+    if (1.0 <= fVar4) {
+      fVar4 = 1.0;
     }
   }
   else {
-    projection_scale = 0.0;
+    fVar4 = 0.0;
   }
-  *(float *)(render_system + 0x2f4) = projection_scale;
-  projection_scale = *(float *)(system_config + 0x11f0);
-  viewport_scale = 0.0;
-  if ((0.0 <= projection_scale) && (viewport_scale = projection_scale, 1.0 <= projection_scale)) {
-    viewport_scale = 1.0;
+  *(float *)(unaff_RBX + 0x2f4) = fVar4;
+  fVar4 = *(float *)(lVar1 + 0x11f0);
+  fVar3 = 0.0;
+  if ((0.0 <= fVar4) && (fVar3 = fVar4, 1.0 <= fVar4)) {
+    fVar3 = 1.0;
   }
-  *(float *)((longlong)render_system + 0x17a4) = viewport_scale;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = param_base;
-  render_system[0x1078] = param_base;
-  render_system[0x1079] = param_base;
-  render_system[0x107a] = param_base;
-  render_system[0x107b] = param_base;
-  render_system[0x107c] = param_base;
-  render_system[0x107d] = param_base;
-  render_system[0x107e] = param_base;
+  *(float *)((longlong)unaff_RBX + 0x17a4) = fVar3;
+  uVar2 = powf(0x40000000,*(undefined4 *)(lVar1 + 0x1260));
+  *(undefined4 *)(unaff_RBX + 0x2f7) = uVar2;
+  unaff_RBX[0x1077] = unaff_RBP;
+  unaff_RBX[0x1078] = unaff_RBP;
+  unaff_RBX[0x1079] = unaff_RBP;
+  unaff_RBX[0x107a] = unaff_RBP;
+  unaff_RBX[0x107b] = unaff_RBP;
+  unaff_RBX[0x107c] = unaff_RBP;
+  unaff_RBX[0x107d] = unaff_RBP;
+  unaff_RBX[0x107e] = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(texture_format,7);
+  (**(code **)(*unaff_RBX + 0x128))(uVar2,7);
   return;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_execute_task(undefined8 task_id,undefined8 task_data,float param_3,float param_4)
-// 渲染系统执行任务函数 - 执行指定的渲染任务
-void render_system_execute_task(undefined8 task_id,undefined8 task_data,float param_3,float param_4)
+
+
+
+// 函数: void FUN_18029b126(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
+void FUN_18029b126(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
 
 {
-  float depth_value;
-  longlong system_config;
-  longlong *render_system;
-  longlong param_base;
-  undefined4 texture_format;
+  float fVar1;
+  longlong in_RAX;
+  longlong *unaff_RBX;
+  longlong unaff_RBP;
+  undefined4 uVar2;
   
-  *(undefined4 *)(render_system + 0x2f4) = 0;
-  depth_value = *(float *)(system_config + 0x11f0);
-  if ((param_3 <= depth_value) && (param_3 = depth_value, param_4 <= depth_value)) {
+  *(undefined4 *)(unaff_RBX + 0x2f4) = 0;
+  fVar1 = *(float *)(in_RAX + 0x11f0);
+  if ((param_3 <= fVar1) && (param_3 = fVar1, param_4 <= fVar1)) {
     param_3 = param_4;
   }
-  *(float *)((longlong)render_system + 0x17a4) = param_3;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = param_base;
-  render_system[0x1078] = param_base;
-  render_system[0x1079] = param_base;
-  render_system[0x107a] = param_base;
-  render_system[0x107b] = param_base;
-  render_system[0x107c] = param_base;
-  render_system[0x107d] = param_base;
-  render_system[0x107e] = param_base;
+  *(float *)((longlong)unaff_RBX + 0x17a4) = param_3;
+  uVar2 = powf(0x40000000,*(undefined4 *)(in_RAX + 0x1260));
+  *(undefined4 *)(unaff_RBX + 0x2f7) = uVar2;
+  unaff_RBX[0x1077] = unaff_RBP;
+  unaff_RBX[0x1078] = unaff_RBP;
+  unaff_RBX[0x1079] = unaff_RBP;
+  unaff_RBX[0x107a] = unaff_RBP;
+  unaff_RBX[0x107b] = unaff_RBP;
+  unaff_RBX[0x107c] = unaff_RBP;
+  unaff_RBX[0x107d] = unaff_RBP;
+  unaff_RBX[0x107e] = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(texture_format,7);
+  (**(code **)(*unaff_RBX + 0x128))(uVar2,7);
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_execute_with_callback(undefined8 callback_data,code *callback_function)
-// 渲染系统带回调执行函数 - 使用回调函数执行渲染任务
-void render_system_execute_with_callback(undefined8 callback_data,code *callback_function)
+
+
+// 函数: void FUN_18029b1c0(undefined8 param_1,code *param_2)
+void FUN_18029b1c0(undefined8 param_1,code *param_2)
 
 {
-  longlong system_config;
-  longlong *render_system;
-  longlong param_base;
-  float viewport_scale;
-  undefined4 texture_format;
-  float projection_scale;
+  longlong lVar1;
+  longlong *unaff_RBX;
+  longlong unaff_RBP;
+  float fVar2;
+  undefined4 uVar3;
+  float fVar4;
   
-  texture_format = (*callback_function)();
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  texture_format = (**(code **)(*render_system + 0x110))(texture_format,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_system + 0x110))(texture_format,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
-  system_config = _DAT_180c86920;
-  projection_scale = *(float *)(_DAT_180c86920 + 0x1880);
-  *(float *)(render_system + 0x2a4) = projection_scale;
-  *(float *)((longlong)render_system + 0x1524) = 1.0 / projection_scale;
-  *(float *)((longlong)render_system + 0x1d54) = *(float *)(system_config + 0x2060) * 0.01;
-  *(float *)(render_system + 0x2a5) = *(float *)(system_config + 0x1110) * 0.005 - 0.25;
-  projection_scale = *(float *)(system_config + 0x1180);
-  if (0.0 <= projection_scale) {
-    if (1.0 <= projection_scale) {
-      projection_scale = 1.0;
+  uVar3 = (*param_2)();
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
+  uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*unaff_RBX + 0x110))(uVar3,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  lVar1 = _DAT_180c86920;
+  fVar4 = *(float *)(_DAT_180c86920 + 0x1880);
+  *(float *)(unaff_RBX + 0x2a4) = fVar4;
+  *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar4;
+  *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
+  *(float *)(unaff_RBX + 0x2a5) = *(float *)(lVar1 + 0x1110) * 0.005 - 0.25;
+  fVar4 = *(float *)(lVar1 + 0x1180);
+  if (0.0 <= fVar4) {
+    if (1.0 <= fVar4) {
+      fVar4 = 1.0;
     }
   }
   else {
-    projection_scale = 0.0;
+    fVar4 = 0.0;
   }
-  *(float *)(render_system + 0x2f4) = projection_scale;
-  projection_scale = *(float *)(system_config + 0x11f0);
-  viewport_scale = 0.0;
-  if ((0.0 <= projection_scale) && (viewport_scale = projection_scale, 1.0 <= projection_scale)) {
-    viewport_scale = 1.0;
+  *(float *)(unaff_RBX + 0x2f4) = fVar4;
+  fVar4 = *(float *)(lVar1 + 0x11f0);
+  fVar2 = 0.0;
+  if ((0.0 <= fVar4) && (fVar2 = fVar4, 1.0 <= fVar4)) {
+    fVar2 = 1.0;
   }
-  *(float *)((longlong)render_system + 0x17a4) = viewport_scale;
-  texture_format = powf(0x40000000,*(undefined4 *)(system_config + 0x1260));
-  *(undefined4 *)(render_system + 0x2f7) = texture_format;
-  render_system[0x1077] = param_base;
-  render_system[0x1078] = param_base;
-  render_system[0x1079] = param_base;
-  render_system[0x107a] = param_base;
-  render_system[0x107b] = param_base;
-  render_system[0x107c] = param_base;
-  render_system[0x107d] = param_base;
-  render_system[0x107e] = param_base;
+  *(float *)((longlong)unaff_RBX + 0x17a4) = fVar2;
+  uVar3 = powf(0x40000000,*(undefined4 *)(lVar1 + 0x1260));
+  *(undefined4 *)(unaff_RBX + 0x2f7) = uVar3;
+  unaff_RBX[0x1077] = unaff_RBP;
+  unaff_RBX[0x1078] = unaff_RBP;
+  unaff_RBX[0x1079] = unaff_RBP;
+  unaff_RBX[0x107a] = unaff_RBP;
+  unaff_RBX[0x107b] = unaff_RBP;
+  unaff_RBX[0x107c] = unaff_RBP;
+  unaff_RBX[0x107d] = unaff_RBP;
+  unaff_RBX[0x107e] = unaff_RBP;
                     // WARNING: Could not recover jumptable at 0x00018029b1b9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*render_system + 0x128))(texture_format,7);
+  (**(code **)(*unaff_RBX + 0x128))(uVar3,7);
   return;
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_process_async_task(longlong *render_system,undefined8 task_data,undefined4 task_param,longlong *task_resources,
-// 渲染系统异步任务处理函数 - 处理异步渲染任务
-void render_system_process_async_task(longlong *render_system,undefined8 task_data,undefined4 task_param,longlong *task_resources,
-                  undefined4 resource_flags,byte task_type)
+
+
+// 函数: void FUN_18029b1d0(longlong *param_1,undefined8 param_2,undefined4 param_3,longlong *param_4,
+void FUN_18029b1d0(longlong *param_1,undefined8 param_2,undefined4 param_3,longlong *param_4,
+                  undefined4 param_5,byte param_6)
 
 {
-  int current_thread;
-  longlong resource_handle;
-  int task_thread;
-  undefined8 async_mask;
-  undefined **resource_ptr;
-  undefined1 task_buffer[32];
-  undefined4 task_flags;
-  byte task_priority;
-  undefined **task_resources_ptr;
-  undefined ***task_manager_ptr;
-  undefined8 task_manager_data;
-  undefined **async_resources_ptr;
-  undefined *async_resource_ptr;
-  undefined1 *async_task_data;
-  undefined4 async_task_id;
-  undefined1 async_task_buffer[128];
-  undefined4 async_task_param;
-  undefined8 async_task_data_2;
-  undefined4 async_task_index;
-  longlong *async_task_resources;
-  ulonglong async_task_id_2;
+  int iVar1;
+  longlong lVar2;
+  int iVar3;
+  undefined8 uVar4;
+  undefined **ppuVar5;
+  undefined1 auStack_178 [32];
+  undefined4 uStack_158;
+  byte bStack_150;
+  undefined **ppuStack_148;
+  undefined ***pppuStack_140;
+  undefined8 uStack_138;
+  undefined **ppuStack_130;
+  undefined *puStack_128;
+  undefined1 *puStack_120;
+  undefined4 uStack_118;
+  undefined1 auStack_110 [128];
+  undefined4 uStack_90;
+  undefined8 uStack_88;
+  undefined4 uStack_80;
+  undefined4 uStack_7c;
+  uint uStack_78;
+  longlong *plStack_68;
+  ulonglong uStack_48;
   
-  async_mask = 0xfffffffffffffffe;
-  async_task_id_2 = _DAT_180bf00a8 ^ (ulonglong)task_buffer;
-  current_thread = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
-  task_thread = _Thrd_id();
-  if (task_thread == current_thread) {
-    task_priority = task_type;
-    task_flags = resource_flags;
-    (**(code **)(*render_system + 0x1e0))(render_system,task_data,task_param,task_resources[2]);
+  uStack_138 = 0xfffffffffffffffe;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  iVar3 = _Thrd_id();
+  if (iVar3 == iVar1) {
+    bStack_150 = param_6;
+    uStack_158 = param_5;
+    (**(code **)(*param_1 + 0x1e0))(param_1,param_2,param_3,param_4[2]);
   }
   else {
-    task_resources_ptr = &async_resource_ptr;
-    async_resource_ptr = &UNK_1809fcc28;
-    async_task_data = async_task_buffer;
-    async_task_id = 0;
-    async_task_buffer[0] = 0;
-    async_task_param = 8;
-    task_flags = resource_flags;
-    async_task_index = (uint)task_type;
-    async_task_data_2 = task_data;
-    async_task_param = task_param;
-    async_task_resources = task_resources;
-    if (*(code **)(*task_resources + 0x28) == (code *)&UNK_180084660) {
+    ppuStack_148 = &puStack_128;
+    puStack_128 = &UNK_1809fcc28;
+    puStack_120 = auStack_110;
+    uStack_118 = 0;
+    auStack_110[0] = 0;
+    uStack_90 = 8;
+    uStack_7c = param_5;
+    uStack_78 = (uint)param_6;
+    uStack_88 = param_2;
+    uStack_80 = param_3;
+    plStack_68 = param_4;
+    if (*(code **)(*param_4 + 0x28) == (code *)&UNK_180084660) {
       LOCK();
-      *(int *)(task_resources + 1) = (int)task_resources[1] + 1;
+      *(int *)(param_4 + 1) = (int)param_4[1] + 1;
       UNLOCK();
     }
     else {
-      (**(code **)(*task_resources + 0x28))(task_resources);
+      (**(code **)(*param_4 + 0x28))(param_4);
     }
-    async_mask = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-    resource_ptr = (undefined **)FUN_18005ce30(async_mask,&async_resource_ptr);
-    async_resources_ptr = resource_ptr;
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    ppuVar5 = (undefined **)FUN_18005ce30(uVar4,&puStack_128);
+    ppuStack_130 = ppuVar5;
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    resource_handle = _DAT_180c82868;
-    task_manager_ptr = &task_resources_ptr;
-    task_resources_ptr = resource_ptr;
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    lVar2 = _DAT_180c82868;
+    pppuStack_140 = &ppuStack_148;
+    ppuStack_148 = ppuVar5;
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    FUN_18005e370(resource_handle,&task_resources_ptr);
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x38))(resource_ptr);
+    FUN_18005e370(lVar2,&ppuStack_148);
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x38))(ppuVar5);
     }
-    task_manager_ptr = (undefined ***)&async_resource_ptr;
-    async_resource_ptr = &UNK_18098bcb0;
+    pppuStack_140 = (undefined ***)&puStack_128;
+    puStack_128 = &UNK_18098bcb0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(async_task_id_2 ^ (ulonglong)task_buffer);
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_178);
 }
+
+
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void render_system_process_sync_task(longlong *render_system,undefined8 task_data,longlong *task_resources)
-// 渲染系统同步任务处理函数 - 处理同步渲染任务
-void render_system_process_sync_task(longlong *render_system,undefined8 task_data,longlong *task_resources)
+
+
+// 函数: void FUN_18029b390(longlong *param_1,undefined8 param_2,longlong *param_3)
+void FUN_18029b390(longlong *param_1,undefined8 param_2,longlong *param_3)
 
 {
-  int current_thread;
-  longlong resource_handle;
-  int task_thread;
-  undefined8 sync_mask;
-  undefined **resource_ptr;
-  undefined1 task_buffer[32];
-  undefined **task_resources_ptr;
-  undefined ***task_manager_ptr;
-  undefined8 task_manager_data;
-  undefined **sync_resources_ptr;
-  undefined *sync_resource_ptr;
-  undefined1 *sync_task_data;
-  undefined4 sync_task_param;
-  undefined1 sync_task_buffer[128];
-  undefined4 sync_task_flags;
-  undefined8 sync_task_data_2;
-  longlong *sync_task_resources;
-  undefined4 sync_resource_format;
-  ulonglong sync_task_id;
+  int iVar1;
+  longlong lVar2;
+  int iVar3;
+  undefined8 uVar4;
+  undefined **ppuVar5;
+  undefined1 auStack_148 [32];
+  undefined **ppuStack_128;
+  undefined ***pppuStack_120;
+  undefined8 uStack_118;
+  undefined **ppuStack_110;
+  undefined *puStack_108;
+  undefined1 *puStack_100;
+  undefined4 uStack_f8;
+  undefined1 auStack_f0 [128];
+  undefined4 uStack_70;
+  undefined8 uStack_68;
+  longlong *plStack_60;
+  undefined4 uStack_58;
+  ulonglong uStack_28;
   
-  sync_mask = 0xfffffffffffffffe;
-  sync_task_id = _DAT_180bf00a8 ^ (ulonglong)task_buffer;
-  current_thread = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
-  task_thread = _Thrd_id();
-  if (task_thread == current_thread) {
-    (**(code **)(*render_system + 0x1e8))
-              (render_system,task_data,task_resources[2],*(undefined4 *)((longlong)task_resources + 0x1c));
+  uStack_118 = 0xfffffffffffffffe;
+  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  iVar3 = _Thrd_id();
+  if (iVar3 == iVar1) {
+    (**(code **)(*param_1 + 0x1e8))
+              (param_1,param_2,param_3[2],*(undefined4 *)((longlong)param_3 + 0x1c));
   }
   else {
-    task_resources_ptr = &sync_resource_ptr;
-    sync_resource_ptr = &UNK_1809fcc28;
-    sync_task_data = sync_task_buffer;
-    sync_task_param = 0;
-    sync_task_buffer[0] = 0;
-    sync_task_flags = 9;
-    sync_resource_format = *(undefined4 *)((longlong)task_resources + 0x1c);
-    sync_task_data_2 = task_data;
-    sync_task_resources = task_resources;
-    if (*(code **)(*task_resources + 0x28) == (code *)&UNK_180084660) {
+    ppuStack_128 = &puStack_108;
+    puStack_108 = &UNK_1809fcc28;
+    puStack_100 = auStack_f0;
+    uStack_f8 = 0;
+    auStack_f0[0] = 0;
+    uStack_70 = 9;
+    uStack_58 = *(undefined4 *)((longlong)param_3 + 0x1c);
+    uStack_68 = param_2;
+    plStack_60 = param_3;
+    if (*(code **)(*param_3 + 0x28) == (code *)&UNK_180084660) {
       LOCK();
-      *(int *)(task_resources + 1) = (int)task_resources[1] + 1;
+      *(int *)(param_3 + 1) = (int)param_3[1] + 1;
       UNLOCK();
     }
     else {
-      (**(code **)(*task_resources + 0x28))(task_resources);
+      (**(code **)(*param_3 + 0x28))(param_3);
     }
-    sync_mask = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-    resource_ptr = (undefined **)FUN_18005ce30(sync_mask,&sync_resource_ptr);
-    sync_resources_ptr = resource_ptr;
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    ppuVar5 = (undefined **)FUN_18005ce30(uVar4,&puStack_108);
+    ppuStack_110 = ppuVar5;
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    resource_handle = _DAT_180c82868;
-    task_manager_ptr = &task_resources_ptr;
-    task_resources_ptr = resource_ptr;
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x28))(resource_ptr);
+    lVar2 = _DAT_180c82868;
+    pppuStack_120 = &ppuStack_128;
+    ppuStack_128 = ppuVar5;
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x28))(ppuVar5);
     }
-    FUN_18005e370(resource_handle,&task_resources_ptr);
-    if (resource_ptr != (undefined **)0x0) {
-      (**(code **)(*resource_ptr + 0x38))(resource_ptr);
+    FUN_18005e370(lVar2,&ppuStack_128);
+    if (ppuVar5 != (undefined **)0x0) {
+      (**(code **)(*ppuVar5 + 0x38))(ppuVar5);
     }
-    task_manager_ptr = (undefined ***)&sync_resource_ptr;
-    sync_resource_ptr = &UNK_18098bcb0;
+    pppuStack_120 = (undefined ***)&puStack_108;
+    puStack_108 = &UNK_18098bcb0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(sync_task_id ^ (ulonglong)task_buffer);
+  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_148);
 }
 
+
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

@@ -1,184 +1,422 @@
-/**
- * @file 03_rendering_part035.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 03_rendering_part035.c - 2 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_180287610(longlong param_1,float *param_2,float *param_3)
+void FUN_180287610(longlong param_1,float *param_2,float *param_3)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  undefined8 uVar5;
+  undefined8 uVar6;
+  float *pfVar7;
+  longlong lVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  undefined1 auStack_198 [44];
+  undefined4 uStack_16c;
+  float fStack_168;
+  float fStack_164;
+  float fStack_160;
+  float fStack_15c;
+  float fStack_158;
+  float fStack_154;
+  float fStack_150;
+  float fStack_14c;
+  float fStack_148;
+  float fStack_144;
+  float fStack_140;
+  float fStack_13c;
+  float afStack_138 [8];
+  float fStack_118;
+  float fStack_114;
+  float fStack_110;
+  float fStack_108;
+  float fStack_104;
+  float fStack_100;
+  float fStack_f8;
+  float fStack_f4;
+  float fStack_f0;
+  float fStack_e8;
+  float fStack_e4;
+  float fStack_e0;
+  float fStack_d8;
+  float fStack_d4;
+  float fStack_d0;
+  float fStack_c8;
+  float fStack_c4;
+  float fStack_c0;
+  ulonglong uStack_b8;
+  
+  uStack_b8 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  fStack_158 = *param_2;
+  fStack_154 = param_2[1];
+  uVar5 = *(undefined8 *)param_2;
+  fStack_150 = param_2[2];
+  fStack_14c = param_2[3];
+  uVar6 = *(undefined8 *)(param_2 + 2);
+  pfVar7 = afStack_138 + 2;
+  fStack_148 = param_2[8];
+  fStack_144 = param_2[9];
+  fStack_140 = param_2[10];
+  fStack_13c = param_2[0xb];
+  lVar8 = 8;
+  fVar1 = *param_3;
+  afStack_138[1] = param_3[1];
+  fVar2 = param_3[2];
+  afStack_138[4] = param_3[4];
+  fVar3 = param_3[5];
+  fVar4 = param_3[6];
+  fStack_168 = param_2[4];
+  fStack_164 = param_2[5];
+  fStack_160 = param_2[6];
+  fStack_15c = param_2[7];
+  fVar11 = 3.4028235e+38;
+  fVar15 = -3.4028235e+38;
+  fVar13 = 3.4028235e+38;
+  fVar17 = -3.4028235e+38;
+  fVar12 = -3.4028235e+38;
+  fVar14 = 3.4028235e+38;
+  afStack_138[0] = fVar1;
+  afStack_138[2] = fVar2;
+  afStack_138[5] = fVar3;
+  afStack_138[6] = fVar4;
+  fStack_118 = fVar1;
+  fStack_114 = fVar3;
+  fStack_110 = fVar2;
+  fStack_108 = afStack_138[4];
+  fStack_104 = fVar3;
+  fStack_100 = fVar2;
+  fStack_f8 = fVar1;
+  fStack_f4 = afStack_138[1];
+  fStack_f0 = fVar4;
+  fStack_e8 = afStack_138[4];
+  fStack_e4 = afStack_138[1];
+  fStack_e0 = fVar4;
+  fStack_d8 = fVar1;
+  fStack_d4 = fVar3;
+  fStack_d0 = fVar4;
+  fStack_c8 = afStack_138[4];
+  fStack_c4 = afStack_138[1];
+  fStack_c0 = fVar2;
+  do {
+    fVar9 = pfVar7[-2];
+    fVar16 = pfVar7[-1];
+    fVar18 = *pfVar7;
+    fVar10 = fVar9 * fStack_158 + fVar16 * fStack_154 + fVar18 * fStack_150;
+    pfVar7[-2] = fVar10;
+    pfVar7[-1] = fVar9 * fStack_168 + fVar16 * fStack_164 + fVar18 * fStack_160;
+    *pfVar7 = fVar9 * fStack_148 + fVar16 * fStack_144 + fVar18 * fStack_140;
+    pfVar7[1] = fVar9 * fStack_13c + fVar16 * fStack_13c + fVar18 * fStack_13c;
+    if (fVar10 <= fVar14) {
+      fVar14 = fVar10;
     }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+    fVar9 = pfVar7[-1];
+    if (fVar9 <= fVar11) {
+      fVar11 = fVar9;
     }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    fVar16 = *pfVar7;
+    if (fVar16 <= fVar13) {
+      fVar13 = fVar16;
     }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    if (fVar15 <= fVar10) {
+      fVar15 = fVar10;
     }
-    
-    return handle;
+    if (fVar17 <= fVar9) {
+      fVar17 = fVar9;
+    }
+    if (fVar12 <= fVar16) {
+      fVar12 = fVar16;
+    }
+    pfVar7 = pfVar7 + 4;
+    lVar8 = lVar8 + -1;
+  } while (lVar8 != 0);
+  fVar12 = param_3[4];
+  uStack_16c = 0x7f7fffff;
+  fVar9 = fVar12 - fVar1;
+  fVar13 = param_3[1];
+  fVar16 = (fVar15 - fVar14) * 0.5;
+  fVar18 = (fVar17 - fVar11) * 0.5;
+  fVar9 = SQRT((fVar3 - param_3[1]) * (fVar3 - param_3[1]) + fVar9 * fVar9 +
+               (fVar4 - fVar2) * (fVar4 - fVar2));
+  fVar17 = fVar9 * 0.5;
+  fVar11 = param_2[8];
+  fVar14 = param_2[9];
+  fVar15 = param_2[10];
+  *(undefined8 *)(param_1 + 0xc0) = uVar5;
+  *(undefined8 *)(param_1 + 200) = uVar6;
+  *(float *)(param_1 + 0xd0) = fStack_168;
+  *(float *)(param_1 + 0xd4) = fStack_164;
+  *(float *)(param_1 + 0xd8) = fStack_160;
+  *(float *)(param_1 + 0xdc) = fStack_15c;
+  *(float *)(param_1 + 0xe0) = fStack_148;
+  *(float *)(param_1 + 0xe4) = fStack_144;
+  *(float *)(param_1 + 0xe8) = fStack_140;
+  *(float *)(param_1 + 0xec) = fStack_13c;
+  *(float *)(param_1 + 0xf0) = (fVar12 + fVar1) * 0.5 + fVar17 * fVar11;
+  *(float *)(param_1 + 0xf4) = fVar17 * fVar14 + (fVar3 + fVar13) * 0.5;
+  *(float *)(param_1 + 0xf8) = (fVar2 + fVar4) * 0.5 + fVar17 * fVar15;
+  *(undefined4 *)(param_1 + 0xfc) = 0x7f7fffff;
+  FUN_1802864f0(param_1);
+  *(float *)(param_1 + 0x118) = fVar9;
+  *(float *)(param_1 + 0x104) = -fVar16;
+  *(float *)(param_1 + 0x110) = -fVar18;
+  *(float *)(param_1 + 0x108) = fVar16;
+  *(float *)(param_1 + 0x10c) = fVar18;
+  *(undefined1 *)(param_1 + 0x100) = 0;
+  *(undefined4 *)(param_1 + 0x114) = 0x3f800000;
+  FUN_1802864f0();
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_b8 ^ (ulonglong)auStack_198);
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+float * FUN_1802879b0(longlong param_1,float *param_2,float param_3)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  
+  fVar1 = *(float *)(param_1 + 0xe0);
+  fVar2 = *(float *)(param_1 + 0xf4);
+  fVar3 = *(float *)(param_1 + 0xe4);
+  fVar4 = *(float *)(param_1 + 0xe8);
+  fVar5 = *(float *)(param_1 + 0xf8);
+  *param_2 = *(float *)(param_1 + 0xf0) - fVar1 * param_3;
+  param_2[1] = fVar2 - fVar3 * param_3;
+  param_2[2] = fVar5 - fVar4 * param_3;
+  param_2[3] = 3.4028235e+38;
+  param_2[4] = -fVar1;
+  param_2[5] = -fVar3;
+  param_2[6] = -fVar4;
+  param_2[7] = 3.4028235e+38;
+  return param_2;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+float * FUN_180287b30(float *param_1,float *param_2)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fStack_cc;
+  float fStack_bc;
+  float fStack_ac;
+  
+  fVar11 = param_1[0xd];
+  fVar1 = param_1[0xe];
+  fVar2 = param_1[8];
+  fVar3 = param_1[4];
+  fVar4 = param_1[9];
+  fVar5 = *param_1;
+  fVar6 = param_1[5];
+  fVar7 = param_1[10];
+  fVar8 = param_1[1];
+  fVar9 = param_1[6];
+  fVar10 = param_1[2];
+  param_2[0xc] = -param_1[0xc];
+  param_2[0xd] = -fVar11;
+  param_2[0xe] = -fVar1;
+  param_2[0xf] = 3.4028235e+38;
+  fVar1 = param_2[0xd];
+  fVar11 = param_2[0xc];
+  fVar12 = param_2[0xe];
+  param_2[0xc] = fVar5 * fVar11 + fVar8 * fVar1 + fVar10 * fVar12;
+  param_2[0xd] = fVar3 * fVar11 + fVar6 * fVar1 + fVar9 * fVar12;
+  param_2[0xe] = fVar2 * fVar11 + fVar4 * fVar1 + fVar7 * fVar12;
+  param_2[0xf] = 3.4028235e+38;
+  *param_2 = fVar5;
+  param_2[1] = fVar3;
+  param_2[2] = fVar2;
+  param_2[3] = fStack_cc;
+  fVar1 = param_1[2];
+  param_2[4] = fVar8;
+  param_2[5] = fVar6;
+  param_2[6] = fVar4;
+  param_2[7] = fStack_bc;
+  param_2[8] = fVar1;
+  param_2[9] = fVar9;
+  param_2[10] = fVar7;
+  param_2[0xb] = fStack_ac;
+  return param_2;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 * FUN_180287d30(undefined8 *param_1)
+
+{
+  longlong lVar1;
+  longlong lVar2;
+  undefined8 *puVar3;
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  undefined8 *puVar6;
+  undefined8 *puVar7;
+  undefined8 *puVar8;
+  ulonglong uVar9;
+  ulonglong uVar10;
+  undefined1 auStack_50 [24];
+  undefined1 auStack_38 [32];
+  
+  puVar8 = (undefined8 *)0x0;
+  uVar10 = 0xf;
+  uVar9 = 1;
+  do {
+    uVar10 = uVar10 | uVar10 >> (((byte)uVar9 & 7) << 3);
+    uVar9 = uVar9 * 2;
+  } while (uVar9 < 8);
+  param_1[9] = uVar10 + 1;
+  if (uVar10 + 1 < 0x401) {
+    puVar4 = (undefined8 *)FUN_1801ee790();
+    if (puVar4 == (undefined8 *)0x0) {
+      FUN_180287f70(auStack_38);
+                    // WARNING: Subroutine does not return
+      _CxxThrowException(auStack_38,&UNK_180bd8a18);
+    }
+    puVar4[0x10] = puVar4;
+  }
+  else {
+    param_1[9] = 0x200;
+    puVar5 = puVar8;
+    puVar6 = puVar8;
+    puVar7 = puVar8;
+    do {
+      lVar1 = param_1[9];
+      lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar1 * 0x1c + 0xaa,3);
+      puVar3 = puVar8;
+      if (lVar2 != 0) {
+        puVar3 = (undefined8 *)((ulonglong)(-(int)lVar2 & 7) + lVar2);
+        *puVar3 = 0;
+        puVar3[1] = 0;
+        puVar3[8] = 0;
+        puVar3[9] = 0;
+        puVar3[0x10] = 0;
+        puVar3[0x11] = (ulonglong)(-(int)(puVar3 + 0x14) & 3) + (longlong)(puVar3 + 0x14);
+        puVar3[0x12] = lVar1 + -1;
+        puVar3[0x13] = lVar2;
+      }
+      if (puVar3 == (undefined8 *)0x0) {
+        FUN_180287f70(auStack_50);
+                    // WARNING: Subroutine does not return
+        _CxxThrowException(auStack_50,&UNK_180bd8a18);
+      }
+      puVar4 = puVar3;
+      if (puVar5 != (undefined8 *)0x0) {
+        puVar6[0x10] = puVar3;
+        puVar4 = puVar5;
+      }
+      puVar3[0x10] = puVar4;
+      puVar7 = (undefined8 *)((longlong)puVar7 + 1);
+      puVar5 = puVar4;
+      puVar6 = puVar3;
+    } while (puVar7 != (undefined8 *)0x2);
+  }
+  *param_1 = puVar4;
+  param_1[8] = puVar4;
+  LOCK();
+  _DAT_180d48d28 = 0;
+  UNLOCK();
+  return param_1;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180287ed0(char *param_1,int param_2,int param_3)
+void FUN_180287ed0(char *param_1,int param_2,int param_3)
+
+{
+  if (*param_1 == '\0') {
+    *(int *)(param_1 + 4) = param_2;
+    *(int *)(param_1 + 8) = param_3;
+    *param_1 = '\x01';
+    return;
+  }
+  if ((*(int *)(param_1 + 4) == param_2) && (*(int *)(param_1 + 8) == param_3)) {
+    return;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_180062300(_DAT_180c86928,&UNK_180a16bd0,*(int *)(param_1 + 4),*(undefined4 *)(param_1 + 8),
+                param_2,param_3);
+}
+
+
+
+undefined8 * FUN_180287f20(undefined8 *param_1,longlong param_2)
+
+{
+  *param_1 = &UNK_18098b928;
+  param_1[1] = 0;
+  param_1[2] = 0;
+  __std_exception_copy(param_2 + 8);
+  *param_1 = &UNK_18098b940;
+  return param_1;
+}
+
+
+
+undefined8 * FUN_180287f70(undefined8 *param_1)
+
+{
+  *param_1 = &UNK_18098b928;
+  param_1[2] = 0;
+  param_1[1] = &UNK_180a16c18;
+  *param_1 = &UNK_18098b940;
+  return param_1;
+}
+
+
+
+undefined8 *
+FUN_180287fc0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  *param_2 = &UNK_18098bcb0;
+  param_2[1] = 0;
+  *(undefined4 *)(param_2 + 2) = 0;
+  *param_2 = &UNK_1809fcc28;
+  param_2[1] = param_2 + 3;
+  *(undefined1 *)(param_2 + 3) = 0;
+  *(undefined4 *)(param_2 + 2) = 0x16;
+  strcpy_s(param_2[1],0x80,&DAT_180a16c50,param_4,0,0xfffffffffffffffe);
+  return param_2;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

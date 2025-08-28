@@ -1,184 +1,537 @@
-/**
- * @file 04_ui_system_part292.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part292.c - 2 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_18082d350(undefined1 (*param_1) [32],uint *param_2,float *param_3,float *param_4,
+void FUN_18082d350(undefined1 (*param_1) [32],uint *param_2,float *param_3,float *param_4,
+                  float *param_5,float *param_6,float *param_7,uint param_8,uint param_9,
+                  uint param_10,uint param_11)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  float *pfVar1;
+  float fVar2;
+  undefined1 auVar3 [32];
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [32];
+  undefined1 auVar6 [32];
+  undefined1 auVar7 [32];
+  int iVar8;
+  longlong lVar9;
+  longlong lVar10;
+  undefined1 in_ZMM0 [64];
+  undefined1 auVar11 [64];
+  undefined1 auVar12 [64];
+  undefined1 auVar13 [32];
+  undefined1 auVar14 [32];
+  undefined1 in_ZMM2 [64];
+  undefined1 auVar15 [64];
+  undefined1 auVar17 [32];
+  undefined1 in_ZMM4 [64];
+  undefined1 auVar18 [64];
+  undefined1 auVar16 [64];
+  
+  auVar7 = _DAT_180980640;
+  iVar8 = (int)param_8 >> 3;
+  if (iVar8 != 0) {
+    in_ZMM4 = ZEXT3264(_DAT_180980640);
+    do {
+      auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_5 + -8));
+      auVar13 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_4 + -8));
+      auVar3 = vunpcklps_avx(auVar13,auVar14);
+      param_4 = param_4 + -8;
+      param_5 = param_5 + -8;
+      auVar14 = vunpckhps_avx(auVar13,auVar14);
+      in_ZMM2 = ZEXT3264(auVar14);
+      auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+      in_ZMM0 = ZEXT3264(auVar13);
+      *param_1 = auVar13;
+      auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+      param_1[1] = auVar14;
+      param_1 = param_1 + 2;
+      iVar8 = iVar8 + -1;
+    } while (iVar8 != 0);
+  }
+  auVar7 = _DAT_180980640;
+  for (param_8 = param_8 & 7; _DAT_180980640 = auVar7, param_8 != 0; param_8 = param_8 - 1) {
+    pfVar1 = param_4 + -1;
+                    // WARNING: Read-only address (ram,0x000180980640) is written
+    param_4 = param_4 + -1;
+    param_5 = param_5 + -1;
+    *(float *)*param_1 = *pfVar1;
+    *(float *)(*param_1 + 4) = *param_5;
+    param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    auVar7 = _DAT_180980640;
+  }
+                    // WARNING: Read-only address (ram,0x000180980640) is written
+  for (iVar8 = (int)param_9 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar11._0_4_ = (float)param_2[-8] * param_4[-8];
+    auVar11._4_4_ = (float)param_2[-7] * param_4[-7];
+    auVar11._8_4_ = (float)param_2[-6] * param_4[-6];
+    auVar11._12_4_ = (float)param_2[-5] * param_4[-5];
+    auVar11._16_4_ = (float)param_2[-4] * param_4[-4];
+    auVar11._20_4_ = (float)param_2[-3] * param_4[-3];
+    auVar11._28_36_ = in_ZMM0._28_36_;
+    auVar11._24_4_ = (float)param_2[-2] * param_4[-2];
+    auVar14 = vpermps_avx2(auVar7,auVar11._0_32_);
+    fVar2 = in_ZMM0._28_4_;
+    auVar17._0_4_ = auVar14._0_4_ + *param_3 * *param_6;
+    auVar17._4_4_ = auVar14._4_4_ + param_3[1] * param_6[1];
+    auVar17._8_4_ = auVar14._8_4_ + param_3[2] * param_6[2];
+    auVar17._12_4_ = auVar14._12_4_ + param_3[3] * param_6[3];
+    auVar17._16_4_ = auVar14._16_4_ + param_3[4] * param_6[4];
+    auVar17._20_4_ = auVar14._20_4_ + param_3[5] * param_6[5];
+    auVar17._24_4_ = auVar14._24_4_ + param_3[6] * param_6[6];
+    auVar17._28_4_ = auVar14._28_4_ + fVar2;
+    in_ZMM4 = ZEXT3264(auVar17);
+    auVar14._4_4_ = (float)param_2[-7] * param_5[-7];
+    auVar14._0_4_ = (float)param_2[-8] * param_5[-8];
+    auVar14._8_4_ = (float)param_2[-6] * param_5[-6];
+    auVar14._12_4_ = (float)param_2[-5] * param_5[-5];
+    auVar14._16_4_ = (float)param_2[-4] * param_5[-4];
+    auVar14._20_4_ = (float)param_2[-3] * param_5[-3];
+    auVar14._24_4_ = (float)param_2[-2] * param_5[-2];
+    auVar14._28_4_ = fVar2;
+    auVar14 = vpermps_avx2(auVar7,auVar14);
+    auVar13._0_4_ = auVar14._0_4_ + *param_3 * *param_7;
+    auVar13._4_4_ = auVar14._4_4_ + param_3[1] * param_7[1];
+    auVar13._8_4_ = auVar14._8_4_ + param_3[2] * param_7[2];
+    auVar13._12_4_ = auVar14._12_4_ + param_3[3] * param_7[3];
+    auVar13._16_4_ = auVar14._16_4_ + param_3[4] * param_7[4];
+    auVar13._20_4_ = auVar14._20_4_ + param_3[5] * param_7[5];
+    auVar13._24_4_ = auVar14._24_4_ + param_3[6] * param_7[6];
+    auVar13._28_4_ = auVar14._28_4_ + fVar2;
+    in_ZMM2 = ZEXT3264(auVar13);
+    param_2 = param_2 + -8;
+    param_4 = param_4 + -8;
+    param_5 = param_5 + -8;
+    param_6 = param_6 + 8;
+    auVar3 = vunpcklps_avx(auVar17,auVar13);
+    auVar14 = vunpckhps_avx(auVar17,auVar13);
+    auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+    in_ZMM0 = ZEXT3264(auVar13);
+    *param_1 = auVar13;
+    auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+    param_7 = param_7 + 8;
+    param_3 = param_3 + 8;
+  }
+  auVar7 = _DAT_180980640;
+  for (param_9 = param_9 & 7; _DAT_180980640 = auVar7, param_9 != 0; param_9 = param_9 - 1) {
+    auVar4 = vfmadd132ss_fma(ZEXT416((uint)param_4[-1]),ZEXT416((uint)(*param_6 * *param_3)),
+                             ZEXT416(param_2[-1]));
+    *(int *)*param_1 = auVar4._0_4_;
+    in_ZMM0 = ZEXT464((uint)param_5[-1]);
+    fVar2 = param_5[-1] * (float)param_2[-1];
+    in_ZMM2 = ZEXT464((uint)fVar2);
+    auVar4 = vfmadd132ss_fma(ZEXT416((uint)*param_3),ZEXT416((uint)fVar2),ZEXT416((uint)*param_7));
+    param_2 = param_2 + -1;
+    param_4 = param_4 + -1;
+    param_5 = param_5 + -1;
+    param_6 = param_6 + 1;
+    *(int *)(*param_1 + 4) = auVar4._0_4_;
+    param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    param_7 = param_7 + 1;
+    param_3 = param_3 + 1;
+    auVar7 = _DAT_180980640;
+  }
+  for (iVar8 = (int)param_10 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar3 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_2 + -8));
+    auVar12._0_4_ = auVar3._0_4_ * *param_4;
+    auVar12._4_4_ = auVar3._4_4_ * param_4[1];
+    auVar12._8_4_ = auVar3._8_4_ * param_4[2];
+    auVar12._12_4_ = auVar3._12_4_ * param_4[3];
+    auVar12._16_4_ = auVar3._16_4_ * param_4[4];
+    auVar12._20_4_ = auVar3._20_4_ * param_4[5];
+    auVar12._28_36_ = in_ZMM0._28_36_;
+    auVar12._24_4_ = auVar3._24_4_ * param_4[6];
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_6 + -8));
+    auVar15._0_4_ = auVar14._0_4_ * *param_3;
+    auVar15._4_4_ = auVar14._4_4_ * param_3[1];
+    auVar15._8_4_ = auVar14._8_4_ * param_3[2];
+    auVar15._12_4_ = auVar14._12_4_ * param_3[3];
+    auVar15._16_4_ = auVar14._16_4_ * param_3[4];
+    auVar15._20_4_ = auVar14._20_4_ * param_3[5];
+    auVar15._28_36_ = in_ZMM2._28_36_;
+    auVar15._24_4_ = auVar14._24_4_ * param_3[6];
+    auVar13 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_7 + -8));
+    auVar14 = vsubps_avx(auVar12._0_32_,auVar15._0_32_);
+    in_ZMM4 = ZEXT3264(auVar14);
+    auVar5._4_4_ = auVar13._4_4_ * param_3[1];
+    auVar5._0_4_ = auVar13._0_4_ * *param_3;
+    auVar5._8_4_ = auVar13._8_4_ * param_3[2];
+    auVar5._12_4_ = auVar13._12_4_ * param_3[3];
+    auVar5._16_4_ = auVar13._16_4_ * param_3[4];
+    auVar5._20_4_ = auVar13._20_4_ * param_3[5];
+    auVar5._24_4_ = auVar13._24_4_ * param_3[6];
+    auVar5._28_4_ = in_ZMM2._28_4_;
+    auVar6._4_4_ = auVar3._4_4_ * param_5[1];
+    auVar6._0_4_ = auVar3._0_4_ * *param_5;
+    auVar6._8_4_ = auVar3._8_4_ * param_5[2];
+    auVar6._12_4_ = auVar3._12_4_ * param_5[3];
+    auVar6._16_4_ = auVar3._16_4_ * param_5[4];
+    auVar6._20_4_ = auVar3._20_4_ * param_5[5];
+    auVar6._24_4_ = auVar3._24_4_ * param_5[6];
+    auVar6._28_4_ = in_ZMM0._28_4_;
+    auVar3 = vsubps_avx(auVar6,auVar5);
+    param_2 = param_2 + -8;
+    param_6 = param_6 + -8;
+    param_7 = param_7 + -8;
+    param_4 = param_4 + 8;
+    auVar13 = vunpcklps_avx(auVar14,auVar3);
+    auVar14 = vunpckhps_avx(auVar14,auVar3);
+    in_ZMM2 = ZEXT3264(auVar14);
+    auVar3 = vperm2f128_avx(auVar13,auVar14,0x20);
+    in_ZMM0 = ZEXT3264(auVar3);
+    *param_1 = auVar3;
+    auVar14 = vperm2f128_avx(auVar13,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+    param_5 = param_5 + 8;
+    param_3 = param_3 + 8;
+  }
+  param_10 = param_10 & 7;
+  if (param_10 != 0) {
+    lVar9 = (longlong)param_4 - (longlong)param_3;
+    lVar10 = (longlong)param_5 - (longlong)param_3;
+    do {
+      pfVar1 = param_6 + -1;
+      param_6 = param_6 + -1;
+      param_2 = param_2 + -1;
+      auVar4 = vfmsub132ss_fma(ZEXT416(*param_2),ZEXT416((uint)(*pfVar1 * *param_3)),
+                               ZEXT416(*(uint *)(lVar9 + (longlong)param_3)));
+      *(int *)*param_1 = auVar4._0_4_;
+      in_ZMM2 = ZEXT464((uint)(param_7[-1] * *param_3));
+      auVar4 = vfmsub132ss_fma(ZEXT416(*param_2),ZEXT416((uint)(param_7[-1] * *param_3)),
+                               ZEXT416(*(uint *)(lVar10 + (longlong)param_3)));
+      param_7 = param_7 + -1;
+      param_3 = param_3 + 1;
+      *(int *)(*param_1 + 4) = auVar4._0_4_;
+      param_1 = (undefined1 (*) [32])(*param_1 + 8);
+      param_10 = param_10 - 1;
+    } while (param_10 != 0);
+  }
+  auVar7 = _DAT_180980640;
+  for (iVar8 = (int)param_11 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_6 + -8));
+    auVar18._0_4_ = auVar14._0_4_ * -1.0;
+    auVar18._4_4_ = auVar14._4_4_ * -1.0;
+    auVar18._8_4_ = auVar14._8_4_ * -1.0;
+    auVar18._12_4_ = auVar14._12_4_ * -1.0;
+    auVar18._16_4_ = auVar14._16_4_ * -1.0;
+    auVar18._20_4_ = auVar14._20_4_ * -1.0;
+    auVar18._28_36_ = in_ZMM4._28_36_;
+    auVar18._24_4_ = auVar14._24_4_ * -1.0;
+    auVar13 = auVar18._0_32_;
+    in_ZMM4 = ZEXT3264(auVar13);
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_7 + -8));
+    auVar16._0_4_ = auVar14._0_4_ * -1.0;
+    auVar16._4_4_ = auVar14._4_4_ * -1.0;
+    auVar16._8_4_ = auVar14._8_4_ * -1.0;
+    auVar16._12_4_ = auVar14._12_4_ * -1.0;
+    auVar16._16_4_ = auVar14._16_4_ * -1.0;
+    auVar16._20_4_ = auVar14._20_4_ * -1.0;
+    auVar16._28_36_ = in_ZMM2._28_36_;
+    auVar16._24_4_ = auVar14._24_4_ * -1.0;
+    auVar14 = auVar16._0_32_;
+    in_ZMM2 = ZEXT3264(auVar14);
+    param_6 = param_6 + -8;
+    param_7 = param_7 + -8;
+    auVar3 = vunpcklps_avx(auVar13,auVar14);
+    auVar14 = vunpckhps_avx(auVar13,auVar14);
+    auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+    *param_1 = auVar13;
+    auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+  }
+  param_11 = param_11 & 7;
+  if (param_11 != 0) {
+    lVar9 = (longlong)param_6 - (longlong)param_7;
+    do {
+      param_7 = param_7 + -1;
+      *(uint *)*param_1 = *(uint *)(lVar9 + (longlong)param_7) ^ 0x80000000;
+      *(float *)(*param_1 + 4) = -*param_7;
+      param_11 = param_11 - 1;
+      param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    } while (param_11 != 0);
+  }
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18082d365(undefined1 (*param_1) [32],uint param_2,float *param_3,float *param_4)
+void FUN_18082d365(undefined1 (*param_1) [32],uint param_2,float *param_3,float *param_4)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  float *pfVar1;
+  float fVar2;
+  undefined1 auVar3 [32];
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [32];
+  undefined1 auVar6 [32];
+  undefined1 auVar7 [32];
+  int in_EAX;
+  int iVar8;
+  longlong lVar9;
+  float *in_R10;
+  longlong lVar10;
+  uint *in_R11;
+  undefined1 in_ZMM0 [64];
+  undefined1 auVar11 [64];
+  undefined1 auVar12 [64];
+  undefined1 auVar13 [32];
+  undefined1 auVar14 [32];
+  undefined1 in_ZMM2 [64];
+  undefined1 auVar15 [64];
+  undefined1 auVar17 [32];
+  undefined1 in_ZMM4 [64];
+  undefined1 auVar18 [64];
+  float *in_stack_00000048;
+  float *in_stack_00000050;
+  uint in_stack_00000060;
+  uint in_stack_00000068;
+  uint in_stack_00000070;
+  undefined1 auVar16 [64];
+  
+  auVar7 = _DAT_180980640;
+  if (in_EAX != 0) {
+    in_ZMM4 = ZEXT3264(_DAT_180980640);
+    do {
+      auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_R10 + -8));
+      auVar13 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(param_4 + -8));
+      auVar3 = vunpcklps_avx(auVar13,auVar14);
+      param_4 = param_4 + -8;
+      in_R10 = in_R10 + -8;
+      auVar14 = vunpckhps_avx(auVar13,auVar14);
+      in_ZMM2 = ZEXT3264(auVar14);
+      auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+      in_ZMM0 = ZEXT3264(auVar13);
+      *param_1 = auVar13;
+      auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+      param_1[1] = auVar14;
+      param_1 = param_1 + 2;
+      in_EAX = in_EAX + -1;
+    } while (in_EAX != 0);
+  }
+  auVar7 = _DAT_180980640;
+  for (param_2 = param_2 & 7; _DAT_180980640 = auVar7, param_2 != 0; param_2 = param_2 - 1) {
+    pfVar1 = param_4 + -1;
+                    // WARNING: Read-only address (ram,0x000180980640) is written
+    param_4 = param_4 + -1;
+    in_R10 = in_R10 + -1;
+    *(float *)*param_1 = *pfVar1;
+    *(float *)(*param_1 + 4) = *in_R10;
+    param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    auVar7 = _DAT_180980640;
+  }
+                    // WARNING: Read-only address (ram,0x000180980640) is written
+  for (iVar8 = (int)in_stack_00000060 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar11._0_4_ = (float)in_R11[-8] * param_4[-8];
+    auVar11._4_4_ = (float)in_R11[-7] * param_4[-7];
+    auVar11._8_4_ = (float)in_R11[-6] * param_4[-6];
+    auVar11._12_4_ = (float)in_R11[-5] * param_4[-5];
+    auVar11._16_4_ = (float)in_R11[-4] * param_4[-4];
+    auVar11._20_4_ = (float)in_R11[-3] * param_4[-3];
+    auVar11._28_36_ = in_ZMM0._28_36_;
+    auVar11._24_4_ = (float)in_R11[-2] * param_4[-2];
+    auVar14 = vpermps_avx2(auVar7,auVar11._0_32_);
+    fVar2 = in_ZMM0._28_4_;
+    auVar17._0_4_ = auVar14._0_4_ + *param_3 * *in_stack_00000048;
+    auVar17._4_4_ = auVar14._4_4_ + param_3[1] * in_stack_00000048[1];
+    auVar17._8_4_ = auVar14._8_4_ + param_3[2] * in_stack_00000048[2];
+    auVar17._12_4_ = auVar14._12_4_ + param_3[3] * in_stack_00000048[3];
+    auVar17._16_4_ = auVar14._16_4_ + param_3[4] * in_stack_00000048[4];
+    auVar17._20_4_ = auVar14._20_4_ + param_3[5] * in_stack_00000048[5];
+    auVar17._24_4_ = auVar14._24_4_ + param_3[6] * in_stack_00000048[6];
+    auVar17._28_4_ = auVar14._28_4_ + fVar2;
+    in_ZMM4 = ZEXT3264(auVar17);
+    auVar14._4_4_ = (float)in_R11[-7] * in_R10[-7];
+    auVar14._0_4_ = (float)in_R11[-8] * in_R10[-8];
+    auVar14._8_4_ = (float)in_R11[-6] * in_R10[-6];
+    auVar14._12_4_ = (float)in_R11[-5] * in_R10[-5];
+    auVar14._16_4_ = (float)in_R11[-4] * in_R10[-4];
+    auVar14._20_4_ = (float)in_R11[-3] * in_R10[-3];
+    auVar14._24_4_ = (float)in_R11[-2] * in_R10[-2];
+    auVar14._28_4_ = fVar2;
+    auVar14 = vpermps_avx2(auVar7,auVar14);
+    auVar13._0_4_ = auVar14._0_4_ + *param_3 * *in_stack_00000050;
+    auVar13._4_4_ = auVar14._4_4_ + param_3[1] * in_stack_00000050[1];
+    auVar13._8_4_ = auVar14._8_4_ + param_3[2] * in_stack_00000050[2];
+    auVar13._12_4_ = auVar14._12_4_ + param_3[3] * in_stack_00000050[3];
+    auVar13._16_4_ = auVar14._16_4_ + param_3[4] * in_stack_00000050[4];
+    auVar13._20_4_ = auVar14._20_4_ + param_3[5] * in_stack_00000050[5];
+    auVar13._24_4_ = auVar14._24_4_ + param_3[6] * in_stack_00000050[6];
+    auVar13._28_4_ = auVar14._28_4_ + fVar2;
+    in_ZMM2 = ZEXT3264(auVar13);
+    in_R11 = in_R11 + -8;
+    param_4 = param_4 + -8;
+    in_R10 = in_R10 + -8;
+    in_stack_00000048 = in_stack_00000048 + 8;
+    auVar3 = vunpcklps_avx(auVar17,auVar13);
+    auVar14 = vunpckhps_avx(auVar17,auVar13);
+    auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+    in_ZMM0 = ZEXT3264(auVar13);
+    *param_1 = auVar13;
+    auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+    in_stack_00000050 = in_stack_00000050 + 8;
+    param_3 = param_3 + 8;
+  }
+  auVar7 = _DAT_180980640;
+  for (in_stack_00000060 = in_stack_00000060 & 7; _DAT_180980640 = auVar7, in_stack_00000060 != 0;
+      in_stack_00000060 = in_stack_00000060 - 1) {
+    auVar4 = vfmadd132ss_fma(ZEXT416((uint)param_4[-1]),
+                             ZEXT416((uint)(*in_stack_00000048 * *param_3)),ZEXT416(in_R11[-1]));
+    *(int *)*param_1 = auVar4._0_4_;
+    in_ZMM0 = ZEXT464((uint)in_R10[-1]);
+    fVar2 = in_R10[-1] * (float)in_R11[-1];
+    in_ZMM2 = ZEXT464((uint)fVar2);
+    auVar4 = vfmadd132ss_fma(ZEXT416((uint)*param_3),ZEXT416((uint)fVar2),
+                             ZEXT416((uint)*in_stack_00000050));
+    in_R11 = in_R11 + -1;
+    param_4 = param_4 + -1;
+    in_R10 = in_R10 + -1;
+    in_stack_00000048 = in_stack_00000048 + 1;
+    *(int *)(*param_1 + 4) = auVar4._0_4_;
+    param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    in_stack_00000050 = in_stack_00000050 + 1;
+    param_3 = param_3 + 1;
+    auVar7 = _DAT_180980640;
+  }
+  for (iVar8 = (int)in_stack_00000068 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar3 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_R11 + -8));
+    auVar12._0_4_ = auVar3._0_4_ * *param_4;
+    auVar12._4_4_ = auVar3._4_4_ * param_4[1];
+    auVar12._8_4_ = auVar3._8_4_ * param_4[2];
+    auVar12._12_4_ = auVar3._12_4_ * param_4[3];
+    auVar12._16_4_ = auVar3._16_4_ * param_4[4];
+    auVar12._20_4_ = auVar3._20_4_ * param_4[5];
+    auVar12._28_36_ = in_ZMM0._28_36_;
+    auVar12._24_4_ = auVar3._24_4_ * param_4[6];
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_stack_00000048 + -8));
+    auVar15._0_4_ = auVar14._0_4_ * *param_3;
+    auVar15._4_4_ = auVar14._4_4_ * param_3[1];
+    auVar15._8_4_ = auVar14._8_4_ * param_3[2];
+    auVar15._12_4_ = auVar14._12_4_ * param_3[3];
+    auVar15._16_4_ = auVar14._16_4_ * param_3[4];
+    auVar15._20_4_ = auVar14._20_4_ * param_3[5];
+    auVar15._28_36_ = in_ZMM2._28_36_;
+    auVar15._24_4_ = auVar14._24_4_ * param_3[6];
+    auVar13 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_stack_00000050 + -8));
+    auVar14 = vsubps_avx(auVar12._0_32_,auVar15._0_32_);
+    in_ZMM4 = ZEXT3264(auVar14);
+    auVar5._4_4_ = auVar13._4_4_ * param_3[1];
+    auVar5._0_4_ = auVar13._0_4_ * *param_3;
+    auVar5._8_4_ = auVar13._8_4_ * param_3[2];
+    auVar5._12_4_ = auVar13._12_4_ * param_3[3];
+    auVar5._16_4_ = auVar13._16_4_ * param_3[4];
+    auVar5._20_4_ = auVar13._20_4_ * param_3[5];
+    auVar5._24_4_ = auVar13._24_4_ * param_3[6];
+    auVar5._28_4_ = in_ZMM2._28_4_;
+    auVar6._4_4_ = auVar3._4_4_ * in_R10[1];
+    auVar6._0_4_ = auVar3._0_4_ * *in_R10;
+    auVar6._8_4_ = auVar3._8_4_ * in_R10[2];
+    auVar6._12_4_ = auVar3._12_4_ * in_R10[3];
+    auVar6._16_4_ = auVar3._16_4_ * in_R10[4];
+    auVar6._20_4_ = auVar3._20_4_ * in_R10[5];
+    auVar6._24_4_ = auVar3._24_4_ * in_R10[6];
+    auVar6._28_4_ = in_ZMM0._28_4_;
+    auVar3 = vsubps_avx(auVar6,auVar5);
+    in_R11 = in_R11 + -8;
+    in_stack_00000048 = in_stack_00000048 + -8;
+    in_stack_00000050 = in_stack_00000050 + -8;
+    param_4 = param_4 + 8;
+    auVar13 = vunpcklps_avx(auVar14,auVar3);
+    auVar14 = vunpckhps_avx(auVar14,auVar3);
+    in_ZMM2 = ZEXT3264(auVar14);
+    auVar3 = vperm2f128_avx(auVar13,auVar14,0x20);
+    in_ZMM0 = ZEXT3264(auVar3);
+    *param_1 = auVar3;
+    auVar14 = vperm2f128_avx(auVar13,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+    in_R10 = in_R10 + 8;
+    param_3 = param_3 + 8;
+  }
+  in_stack_00000068 = in_stack_00000068 & 7;
+  if (in_stack_00000068 != 0) {
+    lVar9 = (longlong)param_4 - (longlong)param_3;
+    lVar10 = (longlong)in_R10 - (longlong)param_3;
+    do {
+      pfVar1 = in_stack_00000048 + -1;
+      in_stack_00000048 = in_stack_00000048 + -1;
+      in_R11 = in_R11 + -1;
+      auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(*pfVar1 * *param_3)),
+                               ZEXT416(*(uint *)(lVar9 + (longlong)param_3)));
+      *(int *)*param_1 = auVar4._0_4_;
+      in_ZMM2 = ZEXT464((uint)(in_stack_00000050[-1] * *param_3));
+      auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(in_stack_00000050[-1] * *param_3)),
+                               ZEXT416(*(uint *)(lVar10 + (longlong)param_3)));
+      in_stack_00000050 = in_stack_00000050 + -1;
+      param_3 = param_3 + 1;
+      *(int *)(*param_1 + 4) = auVar4._0_4_;
+      param_1 = (undefined1 (*) [32])(*param_1 + 8);
+      in_stack_00000068 = in_stack_00000068 - 1;
+    } while (in_stack_00000068 != 0);
+  }
+  auVar7 = _DAT_180980640;
+  for (iVar8 = (int)in_stack_00000070 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_stack_00000048 + -8));
+    auVar18._0_4_ = auVar14._0_4_ * -1.0;
+    auVar18._4_4_ = auVar14._4_4_ * -1.0;
+    auVar18._8_4_ = auVar14._8_4_ * -1.0;
+    auVar18._12_4_ = auVar14._12_4_ * -1.0;
+    auVar18._16_4_ = auVar14._16_4_ * -1.0;
+    auVar18._20_4_ = auVar14._20_4_ * -1.0;
+    auVar18._28_36_ = in_ZMM4._28_36_;
+    auVar18._24_4_ = auVar14._24_4_ * -1.0;
+    auVar13 = auVar18._0_32_;
+    in_ZMM4 = ZEXT3264(auVar13);
+    auVar14 = vpermps_avx2(auVar7,*(undefined1 (*) [32])(in_stack_00000050 + -8));
+    auVar16._0_4_ = auVar14._0_4_ * -1.0;
+    auVar16._4_4_ = auVar14._4_4_ * -1.0;
+    auVar16._8_4_ = auVar14._8_4_ * -1.0;
+    auVar16._12_4_ = auVar14._12_4_ * -1.0;
+    auVar16._16_4_ = auVar14._16_4_ * -1.0;
+    auVar16._20_4_ = auVar14._20_4_ * -1.0;
+    auVar16._28_36_ = in_ZMM2._28_36_;
+    auVar16._24_4_ = auVar14._24_4_ * -1.0;
+    auVar14 = auVar16._0_32_;
+    in_ZMM2 = ZEXT3264(auVar14);
+    in_stack_00000048 = in_stack_00000048 + -8;
+    in_stack_00000050 = in_stack_00000050 + -8;
+    auVar3 = vunpcklps_avx(auVar13,auVar14);
+    auVar14 = vunpckhps_avx(auVar13,auVar14);
+    auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
+    *param_1 = auVar13;
+    auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
+    param_1[1] = auVar14;
+    param_1 = param_1 + 2;
+  }
+  in_stack_00000070 = in_stack_00000070 & 7;
+  if (in_stack_00000070 != 0) {
+    lVar9 = (longlong)in_stack_00000048 - (longlong)in_stack_00000050;
+    do {
+      in_stack_00000050 = in_stack_00000050 + -1;
+      *(uint *)*param_1 = *(uint *)(lVar9 + (longlong)in_stack_00000050) ^ 0x80000000;
+      *(float *)(*param_1 + 4) = -*in_stack_00000050;
+      in_stack_00000070 = in_stack_00000070 - 1;
+      param_1 = (undefined1 (*) [32])(*param_1 + 8);
+    } while (in_stack_00000070 != 0);
+  }
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

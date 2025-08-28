@@ -1,896 +1,1109 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part090.c - 渲染系统高级变换和矩阵处理模块
-// 包含6个核心函数，涵盖渲染对象变换、矩阵运算、数据处理等高级渲染功能
+// =============================================================================
+// 03_rendering_part090.c - 渲染系统高级渲染控制和特效处理模块
+// =============================================================================
 
-/*=============================================================================
-    常量定义
-=============================================================================*/
+// =============================================================================
+// 常量定义
+// =============================================================================
 
-// 渲染系统最大参数数量
-#define RENDERING_MAX_PARAMETER_COUNT 0x18
+#define RENDERING_SYSTEM_MAX_TEXTURE_UNITS 16
+#define RENDERING_SYSTEM_MAX_SHADER_PARAMS 32
+#define RENDERING_SYSTEM_MAX_RENDER_STATES 64
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIBUTES 8
+#define RENDERING_SYSTEM_MAX_TEXTURE_COORDS 4
+#define RENDERING_SYSTEM_MAX_LIGHT_SOURCES 8
+#define RENDERING_SYSTEM_MAX_MATERIAL_PROPERTIES 16
+#define RENDERING_SYSTEM_MAX_RENDER_TARGETS 4
+#define RENDERING_SYSTEM_MAX_VIEWPORTS 2
+#define RENDERING_SYSTEM_MAX_SCENES 1
+#define RENDERING_SYSTEM_MAX_CAMERAS 4
+#define RENDERING_SYSTEM_MAX_RENDER_OBJECTS 1024
+#define RENDERING_SYSTEM_MAX_TEXTURES 512
+#define RENDERING_SYSTEM_MAX_SHADERS 256
+#define RENDERING_SYSTEM_MAX_BUFFERS 128
+#define RENDERING_SYSTEM_MAX_FRAMEBUFFER 8
 
-// 渲染系统最大索引值
-#define RENDERING_MAX_INDEX_VALUE 0xffffffff
+// 渲染状态常量
+#define RENDER_STATE_CULL_FACE 0x00000001
+#define RENDER_STATE_DEPTH_TEST 0x00000002
+#define RENDER_STATE_BLENDING 0x00000004
+#define RENDER_STATE_STENCIL_TEST 0x00000008
+#define RENDER_STATE_SCISSOR_TEST 0x00000010
+#define RENDER_STATE_MULTISAMPLE 0x00000020
+#define RENDER_STATE_ALPHA_TEST 0x00000040
+#define RENDER_STATE_FOG_ENABLE 0x00000080
+#define RENDER_STATE_LIGHTING 0x00000100
+#define RENDER_STATE_TEXTURE_2D 0x00000200
+#define RENDER_STATE_NORMALIZE 0x00000400
+#define RENDER_STATE_RESCALE_NORMAL 0x00000800
+#define RENDER_STATE_COLOR_MATERIAL 0x00001000
+#define RENDER_STATE_AUTO_NORMAL 0x00002000
+#define RENDER_STATE_CLIP_PLANE0 0x00004000
+#define RENDER_STATE_CLIP_PLANE1 0x00008000
+#define RENDER_STATE_CLIP_PLANE2 0x00010000
+#define RENDER_STATE_CLIP_PLANE3 0x00020000
+#define RENDER_STATE_CLIP_PLANE4 0x00040000
+#define RENDER_STATE_CLIP_PLANE5 0x00080000
 
-// 渲染系统默认浮点值
-#define RENDERING_DEFAULT_FLOAT_VALUE 0x7f7fffff
+// 渲染参数常量
+#define RENDER_PARAM_FOV 0x00000001
+#define RENDER_PARAM_ASPECT_RATIO 0x00000002
+#define RENDER_PARAM_NEAR_PLANE 0x00000004
+#define RENDER_PARAM_FAR_PLANE 0x00000008
+#define RENDER_PARAM_VIEWPORT_WIDTH 0x00000010
+#define RENDER_PARAM_VIEWPORT_HEIGHT 0x00000020
+#define RENDER_PARAM_CLEAR_COLOR 0x00000040
+#define RENDER_PARAM_CLEAR_DEPTH 0x00000080
+#define RENDER_PARAM_CLEAR_STENCIL 0x00000100
+#define RENDER_PARAM_DEPTH_FUNC 0x00000200
+#define RENDER_PARAM_BLEND_FUNC 0x00000400
+#define RENDER_PARAM_BLEND_EQUATION 0x00000800
+#define RENDER_PARAM_STENCIL_FUNC 0x00001000
+#define RENDER_PARAM_STENCIL_OP 0x00002000
+#define RENDER_PARAM_CULL_FACE_MODE 0x00004000
+#define RENDER_PARAM_FRONT_FACE 0x00008000
+#define RENDER_PARAM_POLYGON_MODE 0x00010000
+#define RENDER_PARAM_LINE_WIDTH 0x00020000
+#define RENDER_PARAM_POINT_SIZE 0x00040000
+#define RENDER_PARAM_SHADE_MODEL 0x00080000
+#define RENDER_PARAM_LIGHT_MODEL_AMBIENT 0x00100000
+#define RENDER_PARAM_LIGHT_MODEL_TWO_SIDE 0x00200000
+#define RENDER_PARAM_COLOR_MASK 0x00400000
+#define RENDER_PARAM_DEPTH_MASK 0x00800000
+#define RENDER_PARAM_STENCIL_MASK 0x01000000
+#define RENDER_PARAM_SAMPLE_COVERAGE 0x02000000
+#define RENDER_PARAM_SAMPLE_ALPHA_TO_COVERAGE 0x04000000
+#define RENDER_PARAM_SAMPLE_ALPHA_TO_ONE 0x08000000
 
-// 渲染系统默认状态值
-#define RENDERING_DEFAULT_STATE_VALUE 0xffffffff
+// 纹理参数常量
+#define TEXTURE_PARAM_MIN_FILTER 0x00000001
+#define TEXTURE_PARAM_MAG_FILTER 0x00000002
+#define TEXTURE_PARAM_WRAP_S 0x00000004
+#define TEXTURE_PARAM_WRAP_T 0x00000008
+#define TEXTURE_PARAM_WRAP_R 0x00000010
+#define TEXTURE_PARAM_BORDER_COLOR 0x00000020
+#define TEXTURE_PARAM_PRIORITY 0x00000040
+#define TEXTURE_PARAM_COMPARE_MODE 0x00000080
+#define TEXTURE_PARAM_COMPARE_FUNC 0x00000100
+#define TEXTURE_PARAM_MAX_ANISOTROPY 0x00000200
+#define TEXTURE_PARAM_LOD_BIAS 0x00000400
+#define TEXTURE_PARAM_MIN_LOD 0x00000800
+#define TEXTURE_PARAM_MAX_LOD 0x00001000
+#define TEXTURE_PARAM_BASE_LEVEL 0x00002000
+#define TEXTURE_PARAM_MAX_LEVEL 0x00004000
+#define TEXTURE_PARAM_SWIZZLE_R 0x00008000
+#define TEXTURE_PARAM_SWIZZLE_G 0x00010000
+#define TEXTURE_PARAM_SWIZZLE_B 0x00020000
+#define TEXTURE_PARAM_SWIZZLE_A 0x00040000
+#define TEXTURE_PARAM_DEPTH_STENCIL_MODE 0x00080000
+#define TEXTURE_PARAM_GENERATE_MIPMAP 0x00100000
 
-// 渲染系统矩阵大小
-#define RENDERING_MATRIX_SIZE 4
+// 材质参数常量
+#define MATERIAL_PARAM_AMBIENT 0x00000001
+#define MATERIAL_PARAM_DIFFUSE 0x00000002
+#define MATERIAL_PARAM_SPECULAR 0x00000004
+#define MATERIAL_PARAM_EMISSION 0x00000008
+#define MATERIAL_PARAM_SHININESS 0x00000010
+#define MATERIAL_PARAM_TRANSPARENCY 0x00000020
+#define MATERIAL_PARAM_REFLECTIVITY 0x00000040
+#define MATERIAL_PARAM_REFRACT_INDEX 0x00000080
+#define MATERIAL_PARAM_ROUGHNESS 0x00000100
+#define MATERIAL_PARAM_METALLIC 0x00000200
+#define MATERIAL_PARAM_CLEAR_COAT 0x00000400
+#define MATERIAL_PARAM_CLEAR_COAT_ROUGHNESS 0x00000800
+#define MATERIAL_PARAM_ANISOTROPY 0x00001000
+#define MATERIAL_PARAM_ANISOTROPY_ROTATION 0x00002000
+#define MATERIAL_PARAM_SHEEN 0x00004000
+#define MATERIAL_PARAM_SHEEN_TINT 0x00008000
+#define MATERIAL_PARAM_SUBSURFACE 0x00010000
+#define MATERIAL_PARAM_SUBSURFACE_RADIUS 0x00020000
+#define MATERIAL_PARAM_SUBSURFACE_COLOR 0x00040000
+#define MATERIAL_PARAM_SUBSURFACE_SCATTERING 0x00080000
 
-// 渲染系统向量大小
-#define RENDERING_VECTOR_SIZE 3
+// 着色器参数常量
+#define SHADER_PARAM_VERTEX_SHADER 0x00000001
+#define SHADER_PARAM_FRAGMENT_SHADER 0x00000002
+#define SHADER_PARAM_GEOMETRY_SHADER 0x00000004
+#define SHADER_PARAM_TESS_CONTROL_SHADER 0x00000008
+#define SHADER_PARAM_TESS_EVAL_SHADER 0x00000010
+#define SHADER_PARAM_COMPUTE_SHADER 0x00000020
+#define SHADER_PARAM_UNIFORM_BLOCK 0x00000040
+#define SHADER_PARAM_SHADER_STORAGE_BLOCK 0x00000080
+#define SHADER_PARAM_ATOMIC_COUNTER 0x00000100
+#define SHADER_PARAM_TRANSFORM_FEEDBACK 0x00000200
+#define SHADER_PARAM_TRANSFORM_FEEDBACK_VARYING 0x00000400
+#define SHADER_PARAM_TRANSFORM_FEEDBACK_BUFFER_MODE 0x00000800
+#define SHADER_PARAM_PROGRAM_BINARY_RETRIEVABLE_HINT 0x00001000
+#define SHADER_PARAM_PROGRAM_SEPARABLE 0x00002000
+#define SHADER_PARAM_PROGRAM_BINARY_FORMAT 0x00004000
 
-/*=============================================================================
-    函数声明和别名定义
-=============================================================================*/
+// 缓冲区参数常量
+#define BUFFER_PARAM_STATIC_DRAW 0x00000001
+#define BUFFER_PARAM_DYNAMIC_DRAW 0x00000002
+#define BUFFER_PARAM_STREAM_DRAW 0x00000004
+#define BUFFER_PARAM_STATIC_READ 0x00000008
+#define BUFFER_PARAM_DYNAMIC_READ 0x00000010
+#define BUFFER_PARAM_STREAM_READ 0x00000020
+#define BUFFER_PARAM_STATIC_COPY 0x00000040
+#define BUFFER_PARAM_DYNAMIC_COPY 0x00000080
+#define BUFFER_PARAM_STREAM_COPY 0x00000100
+#define BUFFER_PARAM_READ_ONLY 0x00000200
+#define BUFFER_PARAM_WRITE_ONLY 0x00000400
+#define BUFFER_PARAM_READ_WRITE 0x00000800
+#define BUFFER_PARAM_PERSISTENT 0x00001000
+#define BUFFER_PARAM_COHERENT 0x00002000
+#define BUFFER_PARAM_CLIENT_STORAGE 0x00004000
+#define BUFFER_PARAM_DYNAMIC_STORAGE 0x00008000
+#define BUFFER_PARAM_MAP_READ_BIT 0x00010000
+#define BUFFER_PARAM_MAP_WRITE_BIT 0x00020000
+#define BUFFER_PARAM_MAP_INVALIDATE_RANGE_BIT 0x00040000
+#define BUFFER_PARAM_MAP_INVALIDATE_BUFFER_BIT 0x00080000
+#define BUFFER_PARAM_MAP_FLUSH_EXPLICIT_BIT 0x00100000
+#define BUFFER_PARAM_MAP_UNSYNCHRONIZED_BIT 0x00200000
 
-// 主要函数声明
-void rendering_system_advanced_transform_processor(void *render_context, void *render_target);
-void rendering_system_matrix_transform_processor(longlong *transform_params);
-void rendering_system_vector_transform_processor(void);
-void rendering_system_transform_data_processor(longlong param_1, longlong param_2);
-void rendering_system_state_update_processor(void);
-void rendering_system_completion_handler(void);
-
+// =============================================================================
 // 函数别名定义
-#define process_rendering_advanced_transform rendering_system_advanced_transform_processor
-#define process_rendering_matrix_transform rendering_system_matrix_transform_processor
-#define process_rendering_vector_transform rendering_system_vector_transform_processor
-#define process_rendering_transform_data rendering_system_transform_data_processor
-#define update_rendering_system_state rendering_system_state_update_processor
-#define handle_rendering_completion rendering_system_completion_handler
+// =============================================================================
 
-/*=============================================================================
-    全局变量
-=============================================================================*/
+// 主要函数别名
+#define RenderingSystemAdvancedProcessor FUN_18031ce00
+#define RenderingSystemParameterProcessor FUN_18031d520
+#define RenderingSystemDataProcessor FUN_18031d54b
+#define RenderingSystemTransformProcessor FUN_18031d74f
+#define RenderingSystemStateUpdater FUN_18031d7d1
+#define RenderingSystemCleanupHandler FUN_18031d7ee
 
-// 渲染系统全局数据指针
-static void *global_rendering_data_context = (void *)0x180c86938;
+// 辅助函数别名
+#define RenderingSystemResourceInitializer FUN_18031ccb0
+#define RenderingSystemResourceFinalizer FUN_18031ef50
+#define RenderingSystemMemoryManager FUN_1808fc050
 
-// 渲染系统状态管理器
-static void *rendering_state_manager = (void *)0x180c86968;
-
-// 渲染系统参数表
-static void *rendering_parameter_table = (void *)0x180c8695c;
-
-/*=============================================================================
-    核心函数实现
-=============================================================================*/
+// =============================================================================
+// 渲染系统高级处理器
+// =============================================================================
 
 /**
- * 渲染系统高级变换处理器
- * 处理渲染对象的复杂变换操作，包括矩阵变换、参数设置和状态更新
+ * @brief 渲染系统高级处理器
  * 
- * @param render_context 渲染上下文指针
- * @param render_target 渲染目标指针
+ * 主要功能：
+ * - 初始化渲染资源和上下文
+ * - 处理渲染参数和状态
+ * - 管理渲染管线和纹理
+ * - 执行高级渲染操作
+ * - 清理渲染资源
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 渲染参数指针
  */
-void rendering_system_advanced_transform_processor(void *render_context, void *render_target)
-
+void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
 {
-  int iteration_count;
-  void *transform_data;
-  longlong matrix_params;
-  void *render_object;
-  void *render_state;
-  longlong *parameter_list;
-  longlong transform_result;
-  void **render_target_ptr;
-  longlong state_flags;
-  int render_status;
-  
-  // 初始化变换数据结构
-  transform_data = (void *)0xfffffffffffffffe;
-  
-  // 设置渲染系统安全检查
-  void *security_check = (void *)(*((ulonglong *)global_rendering_data_context + 0xa8) ^ (ulonglong)transform_data);
-  
-  // 初始化渲染目标指针
-  render_target_ptr = (void **)0x0;
-  
-  // 调用渲染系统初始化函数
-  void *init_result = rendering_system_initialize_renderer(&transform_data, &rendering_parameter_table);
-  
-  // 设置渲染目标
-  void *current_target = &rendering_target_table;
-  render_object = (void *)rendering_index_array;
-  render_index_array[0] = render_index_array[0] & 0xffffff00;
-  render_status = 0x13;
-  
-  // 复制渲染参数
-  init_result = copy_rendering_parameters(render_index_array, 0x40, &rendering_parameter_name_table);
-  
-  // 设置渲染状态标志
-  render_state_flags = 1;
-  state_flags = 1;
-  transform_data = 0;
-  render_status = 6;
-  iteration_count = 0x10;
-  render_status = 0x21;
-  render_status = 0;
-  transform_data = CONCAT44(transform_data._4_4_, 4);
-  
-  // 执行渲染变换操作
-  rendering_system_execute_transform(init_result, &render_object, 
-                                   *(int *)(*(longlong *)(render_context + 0x88) + 0xa0),
-                                   &current_target);
-  
-  // 更新渲染目标
-  current_target = &rendering_state_table;
-  matrix_params = *(longlong *)(render_context + 0x88);
-  
-  // 检查渲染状态
-  if ((*(char *)(*(longlong *)(matrix_params + 0x60c48) + 0x331d) == '\0') &&
-     (*(int *)(matrix_params + 0x60c40) != -1)) {
-    matrix_params = *(longlong *)(*(longlong *)(matrix_params + 0x60c20) + 
-                                 (longlong)*(int *)(matrix_params + 0x60c40) * 8);
-    if (*(longlong *)(matrix_params + 0x40) == 0) {
-      matrix_params = *(longlong *)(matrix_params + 0x128);
-    }
-    else {
-      matrix_params = *(longlong *)(matrix_params + 0x28);
+    int iVar1;
+    undefined8 uVar2;
+    longlong lVar3;
+    code *pcVar4;
+    undefined8 uVar5;
+    longlong *plVar6;
+    longlong lVar7;
+    code **ppcVar8;
+    longlong lVar9;
+    undefined4 uVar10;
+    undefined1 auStack_268 [32];
+    undefined8 uStack_248;
+    undefined4 uStack_240;
+    undefined4 uStack_238;
+    undefined4 uStack_230;
+    undefined4 uStack_228;
+    undefined8 uStack_220;
+    undefined1 uStack_218;
+    undefined4 uStack_210;
+    undefined1 auStack_208 [8];
+    code **ppcStack_200;
+    code **ppcStack_1f8;
+    code *pcStack_1f0;
+    code *pcStack_1e8;
+    undefined4 uStack_1e0;
+    undefined2 uStack_1dc;
+    undefined2 uStack_1da;
+    code *pcStack_1d8;
+    undefined *puStack_1d0;
+    code *apcStack_1c8 [2];
+    undefined *puStack_1b8;
+    code *pcStack_1b0;
+    undefined8 uStack_1a8;
+    undefined4 uStack_1a0;
+    longlong *plStack_198;
+    undefined *puStack_190;
+    longlong lStack_188;
+    undefined4 uStack_180;
+    ulonglong uStack_178;
+    undefined8 uStack_170;
+    undefined8 uStack_168;
+    longlong *plStack_160;
+    undefined8 uStack_150;
+    undefined *puStack_148;
+    code *pcStack_140;
+    undefined4 uStack_138;
+    undefined4 uStack_134;
+    uint auStack_130 [2];
+    undefined8 uStack_128;
+    undefined1 auStack_120 [32];
+    undefined4 uStack_100;
+    undefined4 uStack_fc;
+    undefined4 uStack_f8;
+    undefined4 uStack_f4;
+    longlong *plStack_f0;
+    undefined *puStack_e8;
+    undefined1 *puStack_e0;
+    undefined4 uStack_d8;
+    undefined1 auStack_d0 [136];
+    ulonglong uStack_48;
+    
+    // 初始化栈保护和变量
+    uStack_150 = 0xfffffffffffffffe;
+    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+    ppcVar8 = (code **)0x0;
+    
+    // 初始化渲染字符串处理
+    FUN_1802c22a0(auStack_208, &UNK_180a1adf0);
+    puStack_148 = &UNK_1809fcc58;
+    pcStack_140 = (code *)auStack_130;
+    auStack_130[0] = auStack_130[0] & 0xffffff00;
+    uStack_138 = 0x13;
+    uVar10 = strcpy_s(auStack_130, 0x40, &UNK_180a1add8);
+    
+    // 设置渲染参数
+    uStack_210 = 1;
+    uStack_218 = 1;
+    uStack_220 = 0;
+    uStack_228 = 6;
+    uStack_230 = 0x10;
+    uStack_238 = 0x21;
+    uStack_240 = 0;
+    uStack_248 = CONCAT44(uStack_248._4_4_, 4);
+    
+    // 处理渲染对象创建
+    FUN_1800b0a10(uVar10, &pcStack_1f0, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
+    puStack_148 = &UNK_18098bcb0;
+    lVar9 = *(longlong *)(param_1 + 0x88);
+    
+    // 检查渲染状态和条件
+    if ((*(char *)(*(longlong *)(lVar9 + 0x60c48) + 0x331d) == '\0') && (*(int *)(lVar9 + 0x60c40) != -1)) {
+        lVar9 = *(longlong *)(*(longlong *)(lVar9 + 0x60c20) + (longlong)*(int *)(lVar9 + 0x60c40) * 8);
+        if (*(longlong *)(lVar9 + 0x40) == 0) {
+            lVar9 = *(longlong *)(lVar9 + 0x128);
+        } else {
+            lVar9 = *(longlong *)(lVar9 + 0x28);
+        }
+        
+        if (lVar9 != 0) {
+            // 初始化渲染对象
+            pcStack_1e8 = (code *)0x0;
+            uStack_1e0 = 0;
+            uStack_1dc = 0;
+            puStack_e8 = &UNK_1809fcc28;
+            puStack_e0 = auStack_d0;
+            auStack_d0[0] = 0;
+            uStack_d8 = 0x18;
+            strcpy_s(auStack_d0, 0x80, &UNK_180a0db08);
+            
+            // 创建渲染资源
+            plVar6 = (longlong *)FUN_1800b31f0(_DAT_180c86930, &ppcStack_1f8, &puStack_e8, 1);
+            puStack_1b8 = (undefined *)*plVar6;
+            
+            if (ppcStack_1f8 != (code **)0x0) {
+                (**(code **)(*ppcStack_1f8 + 0x38))();
+            }
+            
+            // 处理渲染参数
+            puStack_e8 = &UNK_18098bcb0;
+            plStack_198 = (longlong *)0x0;
+            puStack_190 = &UNK_180a3c3e0;
+            uStack_178 = 0;
+            lStack_188 = 0;
+            uStack_180 = 0;
+            plStack_160 = (longlong *)0x0;
+            uVar5 = CONCAT26(uStack_1da, CONCAT24(uStack_1dc, uStack_1e0));
+            pcStack_1b0 = pcStack_1e8;
+            uStack_1a0 = 2;
+            uStack_170 = 0;
+            uStack_168 = 0;
+            uVar2 = *(undefined8 *)(puStack_1b8 + 0x15b8);
+            ppcStack_200 = (code **)&puStack_148;
+            uStack_1a8._4_4_ = (undefined4)((ulonglong)uVar5 >> 0x20);
+            pcStack_140 = pcStack_1e8;
+            uStack_138 = uStack_1e0;
+            uStack_134 = uStack_1a8._4_4_;
+            auStack_130[0] = 2;
+            uStack_128 = 0;
+            uStack_1a8 = uVar5;
+            puStack_148 = puStack_1b8;
+            
+            // 处理渲染数据
+            FUN_180627ae0(auStack_120, &puStack_190);
+            uStack_100 = (undefined4)uStack_170;
+            uStack_fc = uStack_170._4_4_;
+            uStack_f8 = (undefined4)uStack_168;
+            uStack_f4 = uStack_168._4_4_;
+            plStack_f0 = plStack_160;
+            
+            if (plStack_160 != (longlong *)0x0) {
+                (**(code **)(*plStack_160 + 0x28))();
+            }
+            
+            // 执行高级渲染处理
+            lVar7 = FUN_180299eb0(uVar2, 0, &puStack_148, auStack_208);
+            lVar3 = _DAT_180c86938;
+            
+            // 设置渲染参数
+            *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x30b0);
+            uVar10 = powf(0x40000000, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x320c));
+            *(undefined4 *)(*(longlong *)(lVar3 + 0x1cd8) + 0x1d58) = uVar10;
+            
+            // 执行渲染管线
+            FUN_18029fc10(*(longlong *)(lVar3 + 0x1cd8), *(undefined8 *)(lVar3 + 0x1c88), *(longlong *)(lVar3 + 0x1cd8) + 0x1be0, 0x230);
+            
+            // 处理渲染对象
+            lVar3 = *(longlong *)(_DAT_180c86938 + 0x1c88);
+            plVar6 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+            pcVar4 = *(code **)(*plVar6 + 0x238);
+            *(undefined4 *)(lVar3 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+            (*pcVar4)(plVar6, 2, 1, lVar3 + 0x10);
+            
+            // 更新渲染状态
+            lVar3 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+            if ((lVar7 != 0) && (*(longlong *)(lVar3 + 0x82a0) != (longlong)**(int **)(lVar7 + 0x10))) {
+                (**(code **)(**(longlong **)(lVar3 + 0x8400) + 0x228))(*(longlong **)(lVar3 + 0x8400), *(undefined8 *)(*(int **)(lVar7 + 0x10) + 6), 0, 0);
+                *(longlong *)(lVar3 + 0x82a0) = (longlong)**(int **)(lVar7 + 0x10);
+            }
+            
+            // 执行渲染变换
+            uStack_248 = CONCAT44(uStack_248._4_4_, 0xffffffff);
+            FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, lVar9, 0x20);
+            lVar9 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+            
+            if (pcStack_1f0 != (code *)0x0) {
+                *(undefined4 *)(pcStack_1f0 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+                ppcVar8 = *(code ***)(pcStack_1f0 + 0x20);
+            }
+            
+            // 处理渲染管线
+            plVar6 = *(longlong **)(lVar9 + 0x8400);
+            uStack_248 = 0;
+            ppcStack_1f8 = ppcVar8;
+            (**(code **)(*plVar6 + 0x220))(plVar6, 1, 1, &ppcStack_1f8);
+            plVar6 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+            (**(code **)(*plVar6 + 0x148))(plVar6, 1, 1, 1);
+            
+            // 处理纹理渲染
+            puStack_148 = &UNK_1809fcc58;
+            pcStack_140 = (code *)auStack_130;
+            auStack_130[0] = auStack_130[0] & 0xffffff00;
+            uStack_138 = 0x1b;
+            uVar10 = strcpy_s(auStack_130, 0x40, &UNK_180a1adb8);
+            uStack_210 = 1;
+            uStack_218 = 1;
+            uStack_220 = 0;
+            uStack_228 = 6;
+            uStack_230 = 0x10;
+            uStack_238 = 0x21;
+            uStack_240 = 2;
+            uStack_248 = CONCAT44(uStack_248._4_4_, 0x10);
+            FUN_1800b0a10(uVar10, apcStack_1c8, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
+            
+            // 创建着色器资源
+            puStack_148 = &UNK_18098bcb0;
+            ppcVar8 = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
+            pcVar4 = apcStack_1c8[0];
+            ppcVar8[1] = (code *)0x0;
+            ppcVar8[2] = (code *)0x0;
+            ppcVar8[3] = (code *)0x0;
+            ppcVar8[4] = (code *)0x0;
+            ppcVar8[5] = (code *)0x0;
+            ppcVar8[6] = (code *)0x0;
+            ppcVar8[7] = (code *)0x0;
+            ppcVar8[8] = (code *)0x0;
+            *ppcVar8 = (code *)0x0;
+            ppcVar8[1] = (code *)0x0;
+            ppcVar8[2] = (code *)0x0;
+            ppcStack_200 = (code **)apcStack_1c8[0];
+            ppcStack_1f8 = ppcVar8;
+            
+            if (apcStack_1c8[0] != (code *)0x0) {
+                (**(code **)(*(longlong *)apcStack_1c8[0] + 0x28))(apcStack_1c8[0]);
+            }
+            
+            ppcStack_200 = (code **)*ppcVar8;
+            *ppcVar8 = pcVar4;
+            
+            if (ppcStack_200 != (code **)0x0) {
+                (**(code **)((longlong)*ppcStack_200 + 0x38))();
+            }
+            
+            // 处理渲染对象
+            pcVar4 = pcStack_1f0;
+            ppcStack_200 = (code **)pcStack_1f0;
+            
+            if (pcStack_1f0 != (code *)0x0) {
+                (**(code **)(*(longlong *)pcStack_1f0 + 0x28))(pcStack_1f0);
+            }
+            
+            ppcStack_200 = (code **)ppcVar8[1];
+            ppcVar8[1] = pcVar4;
+            
+            if (ppcStack_200 != (code **)0x0) {
+                (**(code **)((longlong)*ppcStack_200 + 0x38))();
+            }
+            
+            if (param_1 != (code *)0x0) {
+                ppcStack_200 = (code **)param_1;
+                (**(code **)(*(longlong *)param_1 + 0x28))(param_1);
+            }
+            
+            ppcStack_200 = (code **)ppcVar8[2];
+            ppcVar8[2] = param_1;
+            
+            if (ppcStack_200 != (code **)0x0) {
+                (**(code **)((longlong)*ppcStack_200 + 0x38))();
+            }
+            
+            // 设置材质参数
+            *(undefined4 *)(ppcVar8 + 4) = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x30cc);
+            ppcVar8[3] = param_2;
+            ppcStack_200 = &pcStack_1e8;
+            pcStack_1d8 = (code *)&UNK_1802e4bc0;
+            puStack_1d0 = &UNK_1800ee4c0;
+            pcStack_1e8 = RenderingSystemResourceInitializer;
+            ppcStack_1f8 = &pcStack_1e8;
+            (*(code *)&UNK_1800ee4c0)(ppcVar8, &pcStack_1e8);
+            
+            if (pcStack_1d8 != (code *)0x0) {
+                (*pcStack_1d8)(&pcStack_1e8, 0, 0);
+            }
+            
+            // 清理渲染资源
+            if (apcStack_1c8[0] != (code *)0x0) {
+                (**(code **)(*(longlong *)apcStack_1c8[0] + 0x38))();
+            }
+            
+            if (plStack_160 != (longlong *)0x0) {
+                (**(code **)(*plStack_160 + 0x38))();
+            }
+            
+            ppcStack_200 = (code **)&puStack_190;
+            puStack_190 = &UNK_180a3c3e0;
+            
+            if (lStack_188 != 0) {
+                // 处理渲染错误
+                FUN_18064e900();
+            }
+            
+            lStack_188 = 0;
+            uStack_178 = uStack_178 & 0xffffffff00000000;
+            puStack_190 = &UNK_18098bcb0;
+            
+            if (plStack_198 != (longlong *)0x0) {
+                (**(code **)(*plStack_198 + 0x38))();
+            }
+            
+            goto LAB_18031d4d2;
+        }
     }
     
-    if (matrix_params != 0) {
-      void *temp_render_object = (void *)0x0;
-      int temp_status = 0;
-      short temp_flags = 0;
-      void *state_manager = &rendering_state_controller;
-      void *state_data = transform_buffer;
-      transform_buffer[0] = 0;
-      render_status = 0x18;
-      
-      // 初始化状态数据
-      copy_rendering_parameters(transform_buffer, 0x80, &rendering_state_init_table);
-      
-      // 获取参数列表
-      parameter_list = (longlong *)rendering_system_get_parameters(rendering_parameter_storage, 
-                                                                  &render_target_ptr, &state_manager, 1);
-      
-      // 设置变换参数
-      void *transform_params = (void *)*parameter_list;
-      if (render_target_ptr != (void **)0x0) {
-        ((void (*)(void))(*(void **)(*render_target_ptr + 0x38)))();
-      }
-      
-      // 执行矩阵变换
-      state_manager = &rendering_state_table;
-      longlong *state_processor = (longlong *)0x0;
-      void *data_processor = &rendering_data_table;
-      ulonglong data_flags = 0;
-      longlong data_counter = 0;
-      int data_status = 0;
-      longlong *data_manager = (longlong *)0x0;
-      
-      // 处理变换数据
-      void *transform_flags = CONCAT26(temp_flags, CONCAT24(temp_flags, temp_status));
-      render_object = temp_render_object;
-      data_status = 2;
-      void *transform_matrix = 0;
-      void *transform_vector = 0;
-      
-      // 获取变换矩阵
-      void *matrix_data = *(void **)(transform_params + 0x15b8);
-      render_target_ptr = (void **)&current_target;
-      transform_matrix._4_4_ = (int)((ulonglong)transform_flags >> 0x20);
-      render_object = temp_render_object;
-      render_status = temp_status;
-      iteration_count = transform_matrix._4_4_;
-      render_index_array[0] = 2;
-      void *matrix_result = 0;
-      transform_matrix = transform_flags;
-      current_target = transform_params;
-      
-      // 执行高级变换
-      rendering_system_process_advanced_transform(transform_buffer, &data_processor);
-      
-      // 更新变换结果
-      render_status = (int)transform_matrix;
-      render_status = transform_matrix._4_4_;
-      render_status = (int)transform_vector;
-      render_status = data_status;
-      state_processor = data_manager;
-      
-      if (data_manager != (longlong *)0x0) {
-        ((void (*)(void))(*(void **)(*data_manager + 0x28)))();
-      }
-      
-      // 计算变换结果
-      transform_result = rendering_system_calculate_transform(matrix_data, 0, &current_target, transform_data);
-      
-      // 更新渲染参数
-      *(int *)(*(longlong *)(*((longlong *)global_rendering_data_context + 0x1cd8) + 0x1d88)) =
-           *(int *)(*(longlong *)(render_context + 0x88) + 0x30b0);
-      
-      // 计算幂次变换
-      float power_result = powf(0x40000000, *(float *)(*(longlong *)(render_context + 0x88) + 0x320c));
-      *(int *)(*(longlong *)(*((longlong *)global_rendering_data_context + 0x1cd8) + 0x1d58)) = *(int *)&power_result;
-      
-      // 应用变换矩阵
-      rendering_system_apply_transform_matrix(*((longlong *)global_rendering_data_context + 0x1cd8), 
-                                           *((void **)((longlong *)global_rendering_data_context + 0x1c88)),
-                                           *((longlong *)global_rendering_data_context + 0x1cd8) + 0x1be0, 0x230);
-      
-      // 更新渲染状态
-      matrix_params = *((longlong *)global_rendering_data_context + 0x1c88);
-      parameter_list = *(longlong **)(*(longlong *)(*((longlong *)global_rendering_data_context + 0x1cd8) + 0x8400));
-      void *render_processor = *(void **)(*parameter_list + 0x238);
-      *(int *)(matrix_params + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-      ((void (*)(void *, int, int, void *))render_processor)(parameter_list, 2, 1, matrix_params + 0x10);
-      
-      // 检查并更新渲染对象
-      matrix_params = *((longlong *)global_rendering_data_context + 0x1cd8);
-      if ((transform_result != 0) && 
-          (*(longlong *)(matrix_params + 0x82a0) != (longlong)**(int **)(transform_result + 0x10))) {
-        ((void (*)(void *, void *, int, int))(*(void **)(**(longlong **)(matrix_params + 0x8400) + 0x228)))
-                  (*(longlong **)(matrix_params + 0x8400), *(void **)(*(int **)(transform_result + 0x10) + 6), 0, 0);
-        *(longlong *)(matrix_params + 0x82a0) = (longlong)**(int **)(transform_result + 0x10);
-      }
-      
-      // 完成变换处理
-      transform_data = CONCAT44(transform_data._4_4_, RENDERING_MAX_INDEX_VALUE);
-      rendering_system_complete_transform(*((void **)((longlong *)global_rendering_data_context + 0x1cd8)), 0, matrix_params, 0x20);
-      
-      // 清理变换数据
-      matrix_params = *((longlong *)global_rendering_data_context + 0x1cd8);
-      if (render_object != (void *)0x0) {
-        *(int *)(render_object + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-        render_target_ptr = *(void ***)(render_object + 0x20);
-      }
-      
-      parameter_list = *(longlong **)(matrix_params + 0x8400);
-      transform_data = 0;
-      render_target_ptr = render_target_ptr;
-      ((void (*)(void *, int, int, void **))(*(void **)(*parameter_list + 0x220)))(parameter_list, 1, 1, &render_target_ptr);
-      
-      parameter_list = *(longlong **)(*(longlong *)(*((longlong *)global_rendering_data_context + 0x1cd8) + 0x8400));
-      ((void (*)(void *, int, int, int))(*(void **)(*parameter_list + 0x148)))(parameter_list, 1, 1, 1);
-      
-      // 更新渲染索引
-      current_target = &rendering_target_table;
-      render_object = (void *)render_index_array;
-      render_index_array[0] = render_index_array[0] & 0xffffff00;
-      render_status = 0x1b;
-      init_result = copy_rendering_parameters(render_index_array, 0x40, &rendering_parameter_name_table_alt);
-      
-      render_state_flags = 1;
-      state_flags = 1;
-      transform_data = 0;
-      render_status = 6;
-      iteration_count = 0x10;
-      render_status = 0x21;
-      render_status = 2;
-      transform_data = CONCAT44(transform_data._4_4_, 0x10);
-      
-      // 执行最终变换
-      rendering_system_execute_transform(init_result, render_target_array, 
-                                       *(int *)(*(longlong *)(render_context + 0x88) + 0xa0),
-                                       &current_target);
-      
-      current_target = &rendering_state_table;
-      render_target_ptr = (void **)rendering_system_allocate_memory(rendering_parameter_storage_alt, 0x48, 8, 3);
-      render_processor = render_target_array[0];
-      render_target_ptr[1] = (void *)0x0;
-      render_target_ptr[2] = (void *)0x0;
-      render_target_ptr[3] = (void *)0x0;
-      render_target_ptr[4] = (void *)0x0;
-      render_target_ptr[5] = (void *)0x0;
-      render_target_ptr[6] = (void *)0x0;
-      render_target_ptr[7] = (void *)0x0;
-      render_target_ptr[8] = (void *)0x0;
-      *render_target_ptr = (void *)0x0;
-      render_target_ptr[1] = (void *)0x0;
-      render_target_ptr[2] = (void *)0x0;
-      render_target_ptr = (void **)render_target_array[0];
-      render_target_ptr = render_target_ptr;
-      
-      if (render_target_array[0] != (void *)0x0) {
-        ((void (*)(void))(*(void **)(*(longlong *)render_target_array[0] + 0x28)))(render_target_array[0]);
-      }
-      
-      render_target_ptr = (void **)*render_target_ptr;
-      *render_target_ptr = render_processor;
-      
-      if (render_target_ptr != (void **)0x0) {
-        ((void (*)(void))(*(void **)((longlong)*render_target_ptr + 0x38)))();
-      }
-      
-      render_processor = render_object;
-      render_target_ptr = (void **)render_object;
-      
-      if (render_object != (void *)0x0) {
-        ((void (*)(void))(*(void **)(*(longlong *)render_object + 0x28)))(render_object);
-      }
-      
-      render_target_ptr = (void **)render_target_ptr[1];
-      render_target_ptr[1] = render_processor;
-      
-      if (render_target_ptr != (void **)0x0) {
-        ((void (*)(void))(*(void **)((longlong)*render_target_ptr + 0x38)))();
-      }
-      
-      if (render_context != (void *)0x0) {
-        render_target_ptr = (void **)render_context;
-        ((void (*)(void))(*(void **)(*(longlong *)render_context + 0x28)))(render_context);
-      }
-      
-      render_target_ptr = (void **)render_target_ptr[2];
-      render_target_ptr[2] = render_context;
-      
-      if (render_target_ptr != (void **)0x0) {
-        ((void (*)(void))(*(void **)((longlong)*render_target_ptr + 0x38)))();
-      }
-      
-      *(int *)(render_target_ptr + 4) = *(int *)(*(longlong *)(render_context + 0x88) + 0x30cc);
-      render_target_ptr[3] = render_target;
-      render_target_ptr = &temp_render_object;
-      void *completion_handler = (void *)&rendering_completion_function;
-      void *cleanup_handler = &rendering_cleanup_function;
-      temp_render_object = rendering_system_complete_transform;
-      render_target_ptr = &temp_render_object;
-      
-      ((void (*)(void **, void **))rendering_cleanup_function)(render_target_ptr, &temp_render_object);
-      
-      if (completion_handler != (void *)0x0) {
-        ((void (*)(void **, int, int))completion_handler)(&temp_render_object, 0, 0);
-      }
-      
-      if (render_target_array[0] != (void *)0x0) {
-        ((void (*)(void))(*(void **)(*(longlong *)render_target_array[0] + 0x38)))();
-      }
-      
-      if (data_manager != (longlong *)0x0) {
-        ((void (*)(void))(*(void **)(*data_manager + 0x38)))();
-      }
-      
-      render_target_ptr = (void **)&data_processor;
-      data_processor = &rendering_data_table;
-      
-      if (data_counter != 0) {
-        // 警告：子函数不返回
-        rendering_system_error_handler();
-      }
-      
-      data_counter = 0;
-      data_flags = data_flags & 0xffffffff00000000;
-      data_processor = &rendering_state_table;
-      
-      if (state_processor != (longlong *)0x0) {
-        ((void (*)(void))(*(void **)(*state_processor + 0x38)))();
-      }
-      
-      goto transform_complete;
+    // 更新渲染计数器
+    iVar1 = *(int *)(param_2 + 0x4c);
+    *(int *)(param_2 + 0x4c) = iVar1 + 1;
+    
+    if (iVar1 + 1 == 0x18) {
+        *(undefined4 *)(param_2 + 0x5c) = 0xffffffff;
     }
-  }
-  
-  // 更新渲染参数
-  iteration_count = *(int *)(render_target + 0x4c);
-  *(int *)(render_target + 0x4c) = iteration_count + 1;
-  if (iteration_count + 1 == RENDERING_MAX_PARAMETER_COUNT) {
-    *(int *)(render_target + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  }
-  
-transform_complete:
-  if (render_object != (void *)0x0) {
-    ((void (*)(void))(*(void **)(*(longlong *)render_object + 0x38)))();
-  }
-  
-  rendering_parameter_table = (void *)((longlong)rendering_parameter_table - 1);
-  ((void (*)(void))(*(void **)(*rendering_state_manager + 0x20)))();
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(security_check);
+    
+LAB_18031d4d2:
+    if (pcStack_1f0 != (code *)0x0) {
+        (**(code **)(*(longlong *)pcStack_1f0 + 0x38))();
+    }
+    
+    // 清理渲染资源
+    _DAT_180c8695c = _DAT_180c8695c + -1;
+    (**(code **)(*_DAT_180c86968 + 0x20))();
+    RenderingSystemMemoryManager(uStack_48 ^ (ulonglong)auStack_268);
 }
 
-/**
- * 渲染系统矩阵变换处理器
- * 处理复杂的矩阵变换运算，包括向量变换、矩阵乘法和投影计算
- * 
- * @param transform_params 变换参数数组
- */
-void rendering_system_matrix_transform_processor(longlong *transform_params)
+// =============================================================================
+// 渲染系统参数处理器
+// =============================================================================
 
+/**
+ * @brief 渲染系统参数处理器
+ * 
+ * 主要功能：
+ * - 处理渲染参数初始化
+ * - 计算球谐函数参数
+ * - 更新渲染状态
+ * - 处理浮点数运算
+ * - 管理渲染对象状态
+ * 
+ * @param param_1 渲染参数数组指针
+ */
+void RenderingSystemParameterProcessor(longlong *param_1)
 {
-  float *vector_data;
-  float matrix_element;
-  longlong matrix_context;
-  longlong *matrix_operations;
-  void *render_processor;
-  int transform_status;
-  int vector_count;
-  float *result_vector;
-  float scale_factor;
-  float projection_factor;
-  void *matrix_data;
-  ulonglong transform_flags;
-  ulonglong vector_index;
-  longlong vector_size;
-  uint vector_component;
-  float final_result;
-  
-  // 设置安全检查
-  void *security_check = (void *)(*((ulonglong *)global_rendering_data_context + 0xa8) ^ (ulonglong)matrix_data);
-  
-  // 初始化矩阵变换
-  ((void (*)(void *, longlong, longlong))(*(void **)(**(longlong **)(*((longlong *)global_rendering_data_context + 0x1cd8) + 0x198))))
-            (*((longlong **)(*((longlong *)global_rendering_data_context + 0x1cd8))), *transform_params, transform_params[1]);
-  
-  vector_size = *transform_params;
-  vector_index = 0;
-  matrix_context = *((longlong *)global_rendering_data_context + 0x1cd8);
-  *(int *)(vector_size + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-  matrix_operations = *(longlong **)(matrix_context + 0x8400);
-  matrix_data = &matrix_result_array;
-  transform_status = 0;
-  
-  // 执行矩阵变换
-  vector_count = ((int (*)(void *, void *, int, int))(*(void **)(*matrix_operations + 0x70)))
-                 (matrix_operations, *(void *)(vector_size + 0x10), 0, 1);
-  
-  if (vector_count < 0) {
-    rendering_system_handle_error(vector_count, &rendering_error_message);
-  }
-  
-  vector_size = transform_params[2];
-  matrix_element = matrix_result_array[1];
-  *(void *)(vector_size + 0x2a8) = *matrix_result_array;
-  *(void *)(vector_size + 0x2b0) = matrix_element;
-  matrix_element = matrix_result_array[3];
-  *(void *)(vector_size + 0x2b8) = matrix_result_array[2];
-  *(void *)(vector_size + 0x2c0) = matrix_element;
-  
-  // 处理矩阵元素
-  transform_status = *(int *)((longlong)matrix_result_array + 0x24);
-  vector_count = *(int *)(matrix_result_array + 5);
-  vector_component = *(int *)((longlong)matrix_result_array + 0x2c);
-  *(int *)(vector_size + 0x2c8) = *(int *)(matrix_result_array + 4);
-  *(int *)(vector_size + 0x2cc) = transform_status;
-  *(int *)(vector_size + 0x2d0) = vector_count;
-  *(int *)(vector_size + 0x2d4) = vector_component;
-  
-  matrix_context = global_rendering_data_context;
-  transform_status = *(int *)((longlong)matrix_result_array + 0x34);
-  vector_count = *(int *)(matrix_result_array + 7);
-  vector_component = *(int *)((longlong)matrix_result_array + 0x3c);
-  *(int *)(vector_size + 0x2d8) = *(int *)(matrix_result_array + 6);
-  *(int *)(vector_size + 0x2dc) = transform_status;
-  *(int *)(vector_size + 0x2e0) = vector_count;
-  *(int *)(vector_size + 0x2e4) = vector_component;
-  
-  vector_size = *transform_params;
-  matrix_operations = *(longlong **)(*(longlong *)(matrix_context + 0x1cd8) + 0x8400);
-  render_processor = *(void **)(*matrix_operations + 0x78);
-  *(int *)(vector_size + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-  ((void (*)(void *, void *, int))render_processor)(matrix_operations, *(void *)(vector_size + 0x10), 0);
-  
-  // 计算向量变换
-  matrix_element = *(float *)((longlong)transform_params + 0x24);
-  scale_factor = *(float *)(transform_params + 5);
-  projection_factor = *(float *)((longlong)transform_params + 0x2c);
-  vector_size = transform_params[2];
-  matrix_element = *(void *)((longlong)transform_params + 0x34);
-  matrix_data = *(void *)((longlong)transform_params + 0x3c);
-  
-  // 设置变换矩阵
-  float transform_matrix[4] = {0.2820948, scale_factor * -0.48860252, projection_factor * 0.48860252, matrix_element * -0.48860252};
-  float transform_vector[3] = {scale_factor * 1.0925485 * matrix_element, scale_factor * -1.0925485 * projection_factor, matrix_element * -1.0925485 * projection_factor};
-  final_result = 0.94391274;
-  transform_vector[2] = (projection_factor * 3.0 * projection_factor - 1.0) * 0.31539157;
-  
-  // 初始化结果向量
-  float result_array[10] = {0.94391274, 0.94391274, 0.94391274, 0.94391274, 0.94391274, 
-                           0.94391274, 0.94391274, 0.94391274, 0.94391274, final_result};
-  transform_vector[0] = (matrix_element * matrix_element - scale_factor * scale_factor) * 0.31539157;
-  
-  // 应用矩阵变换
-  if (0 < *(int *)(vector_size + 0x78)) {
-    matrix_result_array._4_4_ = (float)((ulonglong)matrix_element >> 0x20);
-    matrix_result_array._0_4_ = (float)matrix_element;
-    transform_status = RENDERING_DEFAULT_FLOAT_VALUE;
-    vector_index = transform_flags;
-    ulonglong temp_index = transform_flags;
+    float *pfVar1;
+    float fVar2;
+    float fVar9;
+    float fVar10;
+    longlong lVar3;
+    longlong *plVar4;
+    code *pcVar5;
+    undefined4 uVar6;
+    undefined4 uVar7;
+    undefined4 uVar8;
+    float fVar18;
+    undefined8 uVar11;
+    int iVar12;
+    ulonglong uVar13;
+    ulonglong uVar14;
+    longlong lVar15;
+    uint uVar16;
+    float fVar18_renamed;
+    undefined1 auStack_d8 [32];
+    undefined4 uStack_b8;
+    undefined8 *puStack_b0;
+    undefined8 uStack_a8;
+    undefined8 uStack_a0;
+    float fStack_98;
+    float fStack_94;
+    float fStack_90;
+    undefined4 uStack_8c;
+    float afStack_88 [4];
+    float fStack_78;
+    float fStack_74;
+    float fStack_70;
+    float fStack_6c;
+    float fStack_68;
+    float afStack_60 [10];
+    ulonglong uStack_38;
+    ulonglong uVar17;
+    
+    // 初始化栈保护和变量
+    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    
+    // 执行渲染管线初始化
+    (**(code **)(**(longlong **)(_DAT_180c86938 + 0x1cd8) + 0x198))(*(longlong **)(_DAT_180c86938 + 0x1cd8), *param_1, param_1[1]);
+    
+    lVar15 = *param_1;
+    uVar13 = 0;
+    lVar3 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    *(undefined4 *)(lVar15 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    plVar4 = *(longlong **)(lVar3 + 0x8400);
+    puStack_b0 = &uStack_a8;
+    uStack_b8 = 0;
+    
+    // 处理渲染对象
+    iVar12 = (**(code **)(*plVar4 + 0x70))(plVar4, *(undefined8 *)(lVar15 + 0x10), 0, 1);
+    if (iVar12 < 0) {
+        FUN_180220810(iVar12, &UNK_180a17358);
+    }
+    
+    // 处理渲染数据
+    lVar15 = param_1[2];
+    uVar11 = uStack_a8[1];
+    *(undefined8 *)(lVar15 + 0x2a8) = *uStack_a8;
+    *(undefined8 *)(lVar15 + 0x2b0) = uVar11;
+    uVar11 = uStack_a8[3];
+    *(undefined8 *)(lVar15 + 0x2b8) = uStack_a8[2];
+    *(undefined8 *)(lVar15 + 0x2c0) = uVar11;
+    uVar6 = *(undefined4 *)((longlong)uStack_a8 + 0x24);
+    uVar7 = *(undefined4 *)(uStack_a8 + 5);
+    uVar8 = *(undefined4 *)((longlong)uStack_a8 + 0x2c);
+    *(undefined4 *)(lVar15 + 0x2c8) = *(undefined4 *)(uStack_a8 + 4);
+    *(undefined4 *)(lVar15 + 0x2cc) = uVar6;
+    *(undefined4 *)(lVar15 + 0x2d0) = uVar7;
+    *(undefined4 *)(lVar15 + 0x2d4) = uVar8;
+    
+    // 处理材质参数
+    lVar3 = _DAT_180c86938;
+    uVar6 = *(undefined4 *)((longlong)uStack_a8 + 0x34);
+    uVar7 = *(undefined4 *)(uStack_a8 + 7);
+    uVar8 = *(undefined4 *)((longlong)uStack_a8 + 0x3c);
+    *(undefined4 *)(lVar15 + 0x2d8) = *(undefined4 *)(uStack_a8 + 6);
+    *(undefined4 *)(lVar15 + 0x2dc) = uVar6;
+    *(undefined4 *)(lVar15 + 0x2e0) = uVar7;
+    *(undefined4 *)(lVar15 + 0x2e4) = uVar8;
+    
+    // 执行着色器程序
+    lVar15 = *param_1;
+    plVar4 = *(longlong **)(*(longlong *)(lVar3 + 0x1cd8) + 0x8400);
+    pcVar5 = *(code **)(*plVar4 + 0x78);
+    *(undefined4 *)(lVar15 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    (*pcVar5)(plVar4, *(undefined8 *)(lVar15 + 0x10), 0);
+    
+    // 计算球谐函数参数
+    fVar2 = *(float *)((longlong)param_1 + 0x24);
+    fVar9 = *(float *)(param_1 + 5);
+    fVar10 = *(float *)((longlong)param_1 + 0x2c);
+    lVar15 = param_1[2];
+    uVar11 = *(undefined8 *)((longlong)param_1 + 0x34);
+    uStack_a0 = *(undefined8 *)((longlong)param_1 + 0x3c);
+    
+    // 初始化球谐函数系数
+    afStack_88[0] = 0.2820948;
+    afStack_88[1] = fVar9 * -0.48860252;
+    afStack_88[2] = fVar10 * 0.48860252;
+    fStack_78 = fVar9 * 1.0925485 * fVar2;
+    afStack_88[3] = fVar2 * -0.48860252;
+    fStack_74 = fVar9 * -1.0925485 * fVar10;
+    fStack_6c = fVar2 * -1.0925485 * fVar10;
+    fVar18 = 0.94391274;
+    fStack_70 = (fVar10 * 3.0 * fVar10 - 1.0) * 0.31539157;
+    
+    // 初始化球谐函数权重
+    afStack_60[0] = 0.94391274;
+    afStack_60[1] = 0.94391274;
+    afStack_60[2] = 0.94391274;
+    afStack_60[3] = 0.94391274;
+    afStack_60[4] = 0.94391274;
+    afStack_60[5] = 0.94391274;
+    afStack_60[6] = 0.94391274;
+    afStack_60[7] = 0.94391274;
+    afStack_60[8] = 0.94391274;
+    fStack_68 = (fVar2 * fVar2 - fVar9 * fVar9) * 0.31539157;
+    
+    // 处理球谐函数计算
+    if (0 < *(int *)(lVar15 + 0x78)) {
+        uStack_a8._4_4_ = (float)((ulonglong)uVar11 >> 0x20);
+        uStack_a8._0_4_ = (float)uVar11;
+        uStack_8c = 0x7f7fffff;
+        uVar14 = uVar13;
+        uVar17 = uVar13;
+        
+        do {
+            fVar2 = *(float *)((longlong)afStack_88 + uVar13);
+            fVar18 = *(float *)((longlong)afStack_60 + uVar13);
+            uVar13 = uVar13 + 4;
+            uVar16 = (int)uVar17 + 1;
+            uVar17 = (ulonglong)uVar16;
+            fStack_98 = (float)uStack_a8 * fVar2 * fVar18;
+            fStack_94 = uStack_a8._4_4_ * fVar2 * fVar18;
+            fStack_90 = (float)uStack_a0 * fVar2 * fVar18;
+            pfVar1 = (float *)(uVar14 + 0x338 + lVar15);
+            *pfVar1 = fStack_98;
+            pfVar1[1] = fStack_94;
+            pfVar1[2] = fStack_90;
+            pfVar1[3] = 3.4028235e+38;
+            lVar15 = param_1[2];
+            uVar14 = uVar14 + 0x10;
+        } while ((int)uVar16 < *(int *)(lVar15 + 0x78));
+    }
+    
+    // 更新渲染状态
+    lVar15 = param_1[3];
+    *(int *)(lVar15 + 0x4c) = *(int *)(lVar15 + 0x4c) + 1;
+    
+    if (*(int *)(lVar15 + 0x4c) == 0x18) {
+        *(undefined4 *)(lVar15 + 0x5c) = 0xffffffff;
+    }
+    
+    uStack_a8 = (undefined8 *)uVar11;
+    RenderingSystemResourceFinalizer(param_1, fVar18);
+    RenderingSystemMemoryManager(uStack_38 ^ (ulonglong)auStack_d8);
+}
+
+// =============================================================================
+// 渲染系统数据处理器
+// =============================================================================
+
+/**
+ * @brief 渲染系统数据处理器
+ * 
+ * 主要功能：
+ * - 处理渲染数据初始化
+ * - 计算球谐函数参数
+ * - 执行高级渲染计算
+ * - 管理渲染对象状态
+ * - 处理浮点数运算
+ */
+void RenderingSystemDataProcessor(void)
+{
+    float *pfVar1;
+    float fVar2;
+    float fVar3;
+    float fVar4;
+    longlong lVar5;
+    longlong *plVar6;
+    undefined8 *puVar7;
+    code *pcVar8;
+    undefined4 uVar9;
+    undefined4 uVar10;
+    undefined4 uVar11;
+    float fVar12;
+    undefined8 uVar13;
+    undefined8 uVar14;
+    int iVar15;
+    longlong in_RAX;
+    ulonglong uVar16;
+    ulonglong uVar17;
+    longlong lVar18;
+    uint uVar19;
+    undefined8 unaff_RBX;
+    longlong unaff_RBP;
+    longlong *unaff_RDI;
+    longlong in_R11;
+    float fVar21;
+    float fVar22;
+    float fVar23;
+    float fVar24;
+    undefined4 unaff_XMM6_Da;
+    undefined4 unaff_XMM6_Db;
+    undefined4 unaff_XMM6_Dc;
+    undefined4 unaff_XMM6_Dd;
+    ulonglong uVar20;
+    
+    // 初始化渲染参数
+    *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
+    *(undefined4 *)(in_R11 + -0x18) = unaff_XMM6_Da;
+    *(undefined4 *)(in_R11 + -0x14) = unaff_XMM6_Db;
+    *(undefined4 *)(in_R11 + -0x10) = unaff_XMM6_Dc;
+    *(undefined4 *)(in_R11 + -0xc) = unaff_XMM6_Dd;
+    
+    // 执行渲染管线初始化
+    (**(code **)(**(longlong **)(in_RAX + 0x1cd8) + 0x198))(*(longlong **)(in_RAX + 0x1cd8), *unaff_RDI, unaff_RDI[1]);
+    
+    lVar18 = *unaff_RDI;
+    uVar16 = 0;
+    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    *(undefined4 *)(lVar18 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    plVar6 = *(longlong **)(lVar5 + 0x8400);
+    
+    // 处理渲染对象
+    iVar15 = (**(code **)(*plVar6 + 0x70))(plVar6, *(undefined8 *)(lVar18 + 0x10), 0, 1, 0);
+    if (iVar15 < 0) {
+        FUN_180220810(iVar15, &UNK_180a17358);
+    }
+    
+    // 处理渲染数据
+    lVar18 = unaff_RDI[2];
+    puVar7 = *(undefined8 **)(unaff_RBP + -0x49);
+    uVar13 = puVar7[1];
+    *(undefined8 *)(lVar18 + 0x2a8) = *puVar7;
+    *(undefined8 *)(lVar18 + 0x2b0) = uVar13;
+    uVar13 = puVar7[3];
+    *(undefined8 *)(lVar18 + 0x2b8) = puVar7[2];
+    *(undefined8 *)(lVar18 + 0x2c0) = uVar13;
+    uVar9 = *(undefined4 *)((longlong)puVar7 + 0x24);
+    uVar10 = *(undefined4 *)(puVar7 + 5);
+    uVar11 = *(undefined4 *)((longlong)puVar7 + 0x2c);
+    *(undefined4 *)(lVar18 + 0x2c8) = *(undefined4 *)(puVar7 + 4);
+    *(undefined4 *)(lVar18 + 0x2cc) = uVar9;
+    *(undefined4 *)(lVar18 + 0x2d0) = uVar10;
+    *(undefined4 *)(lVar18 + 0x2d4) = uVar11;
+    
+    // 处理材质参数
+    lVar5 = _DAT_180c86938;
+    uVar9 = *(undefined4 *)((longlong)puVar7 + 0x34);
+    uVar10 = *(undefined4 *)(puVar7 + 7);
+    uVar11 = *(undefined4 *)((longlong)puVar7 + 0x3c);
+    *(undefined4 *)(lVar18 + 0x2d8) = *(undefined4 *)(puVar7 + 6);
+    *(undefined4 *)(lVar18 + 0x2dc) = uVar9;
+    *(undefined4 *)(lVar18 + 0x2e0) = uVar10;
+    *(undefined4 *)(lVar18 + 0x2e4) = uVar11;
+    
+    // 执行着色器程序
+    lVar18 = *unaff_RDI;
+    plVar6 = *(longlong **)(*(longlong *)(lVar5 + 0x1cd8) + 0x8400);
+    pcVar8 = *(code **)(*plVar6 + 0x78);
+    *(undefined4 *)(lVar18 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    (*pcVar8)(plVar6, *(undefined8 *)(lVar18 + 0x10), 0);
+    
+    // 计算球谐函数参数
+    fVar2 = *(float *)((longlong)unaff_RDI + 0x24);
+    fVar3 = *(float *)(unaff_RDI + 5);
+    fVar21 = *(float *)((longlong)unaff_RDI + 0x2c);
+    lVar18 = unaff_RDI[2];
+    uVar13 = *(undefined8 *)((longlong)unaff_RDI + 0x34);
+    uVar14 = *(undefined8 *)((longlong)unaff_RDI + 0x3c);
+    
+    // 初始化球谐函数系数
+    *(undefined4 *)(unaff_RBP + -0x29) = 0x3e906ebb;
+    *(undefined8 *)(unaff_RBP + -0x49) = uVar13;
+    *(undefined8 *)(unaff_RBP + -0x41) = uVar14;
+    *(float *)(unaff_RBP + -0x25) = fVar3 * -0.48860252;
+    *(float *)(unaff_RBP + -0x21) = fVar21 * 0.48860252;
+    *(float *)(unaff_RBP + -0x19) = fVar3 * 1.0925485 * fVar2;
+    *(float *)(unaff_RBP + -0x1d) = fVar2 * -0.48860252;
+    *(float *)(unaff_RBP + -0x15) = fVar3 * -1.0925485 * fVar21;
+    *(float *)(unaff_RBP + -0xd) = fVar2 * -1.0925485 * fVar21;
+    fVar22 = 0.94391274;
+    *(float *)(unaff_RBP + -0x11) = (fVar21 * 3.0 * fVar21 - 1.0) * 0.31539157;
+    
+    // 初始化球谐函数权重
+    *(undefined4 *)(unaff_RBP + -1) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 3) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 7) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 0xb) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 0xf) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 0x13) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 0x17) = 0x3f71a444;
+    *(undefined4 *)(unaff_RBP + 0x1b) = 0x3f71a444;
+    fVar21 = 0.94391274;
+    *(undefined4 *)(unaff_RBP + 0x1f) = 0x3f71a444;
+    *(float *)(unaff_RBP + -9) = (fVar2 * fVar2 - fVar3 * fVar3) * 0.31539157;
+    
+    // 处理球谐函数计算
+    if (0 < *(int *)(lVar18 + 0x78)) {
+        fVar2 = *(float *)(unaff_RBP + -0x41);
+        fVar3 = *(float *)(unaff_RBP + -0x45);
+        fVar4 = *(float *)(unaff_RBP + -0x49);
+        *(undefined4 *)(unaff_RBP + -0x2d) = 0x7f7fffff;
+        uVar17 = uVar16;
+        uVar20 = uVar16;
+        
+        do {
+            fVar24 = *(float *)(unaff_RBP + -0x29 + uVar16);
+            fVar22 = *(float *)(unaff_RBP + -1 + uVar16);
+            uVar16 = uVar16 + 4;
+            uVar19 = (int)uVar20 + 1;
+            uVar20 = (ulonglong)uVar19;
+            fVar12 = *(float *)(unaff_RBP + -0x2d);
+            fVar21 = fVar4 * fVar24 * fVar22;
+            fVar23 = fVar3 * fVar24 * fVar22;
+            fVar24 = fVar2 * fVar24 * fVar22;
+            pfVar1 = (float *)(uVar17 + 0x338 + lVar18);
+            *pfVar1 = fVar21;
+            pfVar1[1] = fVar23;
+            pfVar1[2] = fVar24;
+            pfVar1[3] = fVar12;
+            lVar18 = unaff_RDI[2];
+            *(float *)(unaff_RBP + -0x39) = fVar21;
+            *(float *)(unaff_RBP + -0x35) = fVar23;
+            *(float *)(unaff_RBP + -0x31) = fVar24;
+            *(float *)(unaff_RBP + -0x2d) = fVar12;
+            uVar17 = uVar17 + 0x10;
+        } while ((int)uVar19 < *(int *)(lVar18 + 0x78));
+    }
+    
+    // 更新渲染状态
+    lVar18 = unaff_RDI[3];
+    *(int *)(lVar18 + 0x4c) = *(int *)(lVar18 + 0x4c) + 1;
+    
+    if (*(int *)(lVar18 + 0x4c) == 0x18) {
+        *(undefined4 *)(lVar18 + 0x5c) = 0xffffffff;
+    }
+    
+    RenderingSystemResourceFinalizer(fVar21, fVar22);
+    RenderingSystemMemoryManager(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+}
+
+// =============================================================================
+// 渲染系统变换处理器
+// =============================================================================
+
+/**
+ * @brief 渲染系统变换处理器
+ * 
+ * 主要功能：
+ * - 处理渲染变换计算
+ * - 执行球谐函数变换
+ * - 管理渲染对象状态
+ * - 处理浮点数运算
+ * - 更新渲染计数器
+ * 
+ * @param param_1 渲染对象指针
+ * @param param_2 渲染参数指针
+ */
+void RenderingSystemTransformProcessor(longlong param_1, longlong param_2)
+{
+    float *pfVar1;
+    float fVar2;
+    float fVar3;
+    longlong lVar4;
+    float fVar5;
+    longlong in_RAX;
+    int unaff_EBX;
+    longlong unaff_RBP;
+    longlong unaff_RDI;
+    undefined4 in_XMM0_Da;
+    float fVar6;
+    float fVar7;
+    float fVar8;
+    float in_XMM5_Da;
+    float unaff_XMM6_Da;
+    
+    // 处理变换计算
+    fVar2 = *(float *)(unaff_RBP + -0x49);
+    *(undefined4 *)(unaff_RBP + -0x2d) = in_XMM0_Da;
     
     do {
-      matrix_element = *(float *)((longlong)transform_matrix + vector_index);
-      final_result = *(float *)((longlong)result_array + vector_index);
-      vector_index = vector_index + 4;
-      vector_component = (int)temp_index + 1;
-      temp_index = (ulonglong)vector_component;
-      
-      // 计算变换结果
-      float x_component = (float)matrix_result_array * matrix_element * final_result;
-      float y_component = matrix_result_array._4_4_ * matrix_element * final_result;
-      float z_component = (float)matrix_data * matrix_element * final_result;
-      
-      vector_data = (float *)(vector_index + 0x338 + vector_size);
-      *vector_data = x_component;
-      vector_data[1] = y_component;
-      vector_data[2] = z_component;
-      vector_data[3] = RENDERING_DEFAULT_FLOAT_VALUE;
-      vector_size = transform_params[2];
-      vector_index = vector_index + 0x10;
-    } while ((int)vector_component < *(int *)(vector_size + 0x78));
-  }
-  
-  // 更新变换状态
-  vector_size = transform_params[3];
-  *(int *)(vector_size + 0x4c) = *(int *)(vector_size + 0x4c) + 1;
-  if (*(int *)(vector_size + 0x4c) == RENDERING_MAX_PARAMETER_COUNT) {
-    *(int *)(vector_size + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  }
-  
-  matrix_result_array = (void *)matrix_element;
-  rendering_system_finalize_transform(transform_params, final_result);
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(security_check);
-}
-
-/**
- * 渲染系统向量变换处理器
- * 处理向量的变换运算，包括旋转、缩放和投影变换
- */
-void rendering_system_vector_transform_processor(void)
-
-{
-  float *vector_result;
-  float x_component;
-  float y_component;
-  float z_component;
-  longlong transform_context;
-  longlong *matrix_operations;
-  void **vector_data;
-  void *render_processor;
-  int transform_status;
-  int vector_count;
-  longlong render_context;
-  ulonglong vector_index;
-  ulonglong temp_index;
-  longlong vector_size;
-  uint vector_component;
-  float scale_factor;
-  float projection_factor;
-  void *matrix_element;
-  void *projection_data;
-  
-  // 设置渲染参数
-  *(void *)(render_context + 0x10) = vector_data;
-  *(int *)(render_context + -0x18) = x_component;
-  *(int *)(render_context + -0x14) = y_component;
-  *(int *)(render_context + -0x10) = z_component;
-  *(int *)(render_context + -0xc) = projection_factor;
-  
-  // 初始化向量变换
-  ((void (*)(void *, longlong, longlong))(*(void **)(**(longlong **)(render_context + 0x1cd8) + 0x198))))
-            (*((longlong **)(render_context + 0x1cd8)), *vector_operations, vector_operations[1]);
-  
-  vector_size = *vector_operations;
-  vector_index = 0;
-  transform_context = *((longlong *)global_rendering_data_context + 0x1cd8);
-  *(int *)(vector_size + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-  matrix_operations = *(longlong **)(transform_context + 0x8400);
-  
-  // 执行向量变换
-  vector_count = ((int (*)(void *, void *, int, int, int))(*(void **)(*matrix_operations + 0x70)))
-                 (matrix_operations, *(void *)(vector_size + 0x10), 0, 1, 0);
-  
-  if (vector_count < 0) {
-    rendering_system_handle_error(vector_count, &rendering_error_message);
-  }
-  
-  vector_size = vector_operations[2];
-  vector_data = *(void **)(vector_context + -0x49);
-  matrix_element = vector_data[1];
-  *(void *)(vector_size + 0x2a8) = *vector_data;
-  *(void *)(vector_size + 0x2b0) = matrix_element;
-  matrix_element = vector_data[3];
-  *(void *)(vector_size + 0x2b8) = vector_data[2];
-  *(void *)(vector_size + 0x2c0) = matrix_element;
-  
-  // 处理向量分量
-  transform_status = *(int *)((longlong)vector_data + 0x24);
-  vector_count = *(int *)(vector_data + 5);
-  vector_component = *(int *)((longlong)vector_data + 0x2c);
-  *(int *)(vector_size + 0x2c8) = *(int *)(vector_data + 4);
-  *(int *)(vector_size + 0x2cc) = transform_status;
-  *(int *)(vector_size + 0x2d0) = vector_count;
-  *(int *)(vector_size + 0x2d4) = vector_component;
-  
-  transform_context = global_rendering_data_context;
-  transform_status = *(int *)((longlong)vector_data + 0x34);
-  vector_count = *(int *)(vector_data + 7);
-  vector_component = *(int *)((longlong)vector_data + 0x3c);
-  *(int *)(vector_size + 0x2d8) = *(int *)(vector_data + 6);
-  *(int *)(vector_size + 0x2dc) = transform_status;
-  *(int *)(vector_size + 0x2e0) = vector_count;
-  *(int *)(vector_size + 0x2e4) = vector_component;
-  
-  vector_size = *vector_operations;
-  matrix_operations = *(longlong **)(*(longlong *)(transform_context + 0x1cd8) + 0x8400);
-  render_processor = *(void **)(*matrix_operations + 0x78);
-  *(int *)(vector_size + 0x16c) = *(int *)((longlong *)global_rendering_data_context + 0x224);
-  ((void (*)(void *, void *, int))render_processor)(matrix_operations, *(void *)(vector_size + 0x10), 0);
-  
-  // 计算向量变换
-  x_component = *(float *)((longlong)vector_operations + 0x24);
-  y_component = *(float *)(vector_operations + 5);
-  scale_factor = *(float *)((longlong)vector_operations + 0x2c);
-  vector_size = vector_operations[2];
-  matrix_element = *(void *)((longlong)vector_operations + 0x34);
-  projection_data = *(void *)((longlong)vector_operations + 0x3c);
-  
-  // 设置变换参数
-  *(int *)(vector_context + -0x29) = 0x3e906ebb;
-  *(void *)(vector_context + -0x49) = matrix_element;
-  *(void *)(vector_context + -0x41) = projection_data;
-  *(float *)(vector_context + -0x25) = y_component * -0.48860252;
-  *(float *)(vector_context + -0x21) = scale_factor * 0.48860252;
-  *(float *)(vector_context + -0x19) = y_component * 1.0925485 * x_component;
-  *(float *)(vector_context + -0x1d) = x_component * -0.48860252;
-  *(float *)(vector_context + -0x15) = y_component * -1.0925485 * scale_factor;
-  *(float *)(vector_context + -0xd) = x_component * -1.0925485 * scale_factor;
-  projection_factor = 0.94391274;
-  *(float *)(vector_context + -0x11) = (scale_factor * 3.0 * scale_factor - 1.0) * 0.31539157;
-  *(int *)(vector_context + -1) = 0x3f71a444;
-  *(int *)(vector_context + 3) = 0x3f71a444;
-  *(int *)(vector_context + 7) = 0x3f71a444;
-  *(int *)(vector_context + 0xb) = 0x3f71a444;
-  *(int *)(vector_context + 0xf) = 0x3f71a444;
-  *(int *)(vector_context + 0x13) = 0x3f71a444;
-  *(int *)(vector_context + 0x17) = 0x3f71a444;
-  *(int *)(vector_context + 0x1b) = 0x3f71a444;
-  scale_factor = 0.94391274;
-  *(int *)(vector_context + 0x1f) = 0x3f71a444;
-  *(float *)(vector_context + -9) = (x_component * x_component - y_component * y_component) * 0.31539157;
-  
-  // 应用向量变换
-  if (0 < *(int *)(vector_size + 0x78)) {
-    x_component = *(float *)(vector_context + -0x41);
-    y_component = *(float *)(vector_context + -0x45);
-    z_component = *(float *)(vector_context + -0x49);
-    *(int *)(vector_context + -0x2d) = RENDERING_DEFAULT_FLOAT_VALUE;
-    temp_index = vector_index;
-    ulonglong temp_index2 = vector_index;
+        fVar3 = *(float *)(unaff_RBP + -0x29 + in_RAX);
+        fVar7 = *(float *)(unaff_RBP + -1 + in_RAX);
+        in_RAX = in_RAX + 4;
+        unaff_EBX = unaff_EBX + 1;
+        fVar5 = *(float *)(unaff_RBP + -0x2d);
+        fVar8 = fVar2 * fVar3 * fVar7;
+        fVar6 = unaff_XMM6_Da * fVar3 * fVar7;
+        fVar7 = in_XMM5_Da * fVar3 * fVar7;
+        pfVar1 = (float *)(param_1 + 0x338 + param_2);
+        *pfVar1 = fVar8;
+        pfVar1[1] = fVar6;
+        pfVar1[2] = fVar7;
+        pfVar1[3] = fVar5;
+        param_2 = *(longlong *)(unaff_RDI + 0x10);
+        *(float *)(unaff_RBP + -0x39) = fVar8;
+        *(float *)(unaff_RBP + -0x35) = fVar6;
+        *(float *)(unaff_RBP + -0x31) = fVar7;
+        *(float *)(unaff_RBP + -0x2d) = fVar5;
+        param_1 = param_1 + 0x10;
+    } while (unaff_EBX < *(int *)(param_2 + 0x78));
     
-    do {
-      float temp_result = *(float *)(vector_context + -0x29 + vector_index);
-      projection_factor = *(float *)(vector_context + -1 + vector_index);
-      vector_index = vector_index + 4;
-      vector_component = (int)temp_index2 + 1;
-      temp_index2 = (ulonglong)vector_component;
-      
-      // 计算变换结果
-      float max_value = *(float *)(vector_context + -0x2d);
-      scale_factor = z_component * temp_result * projection_factor;
-      y_component = y_component * temp_result * projection_factor;
-      z_component = x_component * temp_result * projection_factor;
-      
-      vector_result = (float *)(vector_index + 0x338 + vector_size);
-      *vector_result = scale_factor;
-      vector_result[1] = y_component;
-      vector_result[2] = z_component;
-      vector_result[3] = max_value;
-      vector_size = vector_operations[2];
-      *(float *)(vector_context + -0x39) = scale_factor;
-      *(float *)(vector_context + -0x35) = y_component;
-      *(float *)(vector_context + -0x31) = z_component;
-      *(float *)(vector_context + -0x2d) = max_value;
-      vector_index = vector_index + 0x10;
-    } while ((int)vector_component < *(int *)(vector_size + 0x78));
-  }
-  
-  // 更新变换状态
-  vector_size = vector_operations[3];
-  *(int *)(vector_size + 0x4c) = *(int *)(vector_size + 0x4c) + 1;
-  if (*(int *)(vector_size + 0x4c) == RENDERING_MAX_PARAMETER_COUNT) {
-    *(int *)(vector_size + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  }
-  
-  rendering_system_finalize_transform(scale_factor, projection_factor);
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(*(ulonglong *)(vector_context + 0x27) ^ (ulonglong)&stack0x00000000);
-}
-
-/**
- * 渲染系统数据变换处理器
- * 处理渲染数据的批量变换操作
- * 
- * @param param_1 变换参数1
- * @param param_2 变换参数2
- */
-void rendering_system_transform_data_processor(longlong param_1, longlong param_2)
-
-{
-  float *result_data;
-  float transform_factor;
-  float scale_factor;
-  float projection_factor;
-  longlong transform_result;
-  float max_value;
-  longlong render_context;
-  int iteration_count;
-  longlong vector_context;
-  longlong data_context;
-  int transform_status;
-  float x_component;
-  float y_component;
-  float z_component;
-  float transform_data;
-  
-  // 获取变换参数
-  transform_factor = *(float *)(vector_context + -0x49);
-  *(int *)(vector_context + -0x2d) = transform_status;
-  
-  do {
-    // 执行数据变换
-    scale_factor = *(float *)(vector_context + -0x29 + render_context);
-    y_component = *(float *)(vector_context + -1 + render_context);
-    render_context = render_context + 4;
-    iteration_count = iteration_count + 1;
-    max_value = *(float *)(vector_context + -0x2d);
+    // 更新渲染状态
+    lVar4 = *(longlong *)(unaff_RDI + 0x18);
+    *(int *)(lVar4 + 0x4c) = *(int *)(lVar4 + 0x4c) + 1;
     
-    // 计算变换结果
-    x_component = transform_factor * scale_factor * y_component;
-    z_component = transform_data * scale_factor * y_component;
-    y_component = projection_factor * scale_factor * y_component;
+    if (*(int *)(lVar4 + 0x4c) == 0x18) {
+        *(undefined4 *)(lVar4 + 0x5c) = 0xffffffff;
+    }
     
-    result_data = (float *)(param_1 + 0x338 + param_2);
-    *result_data = x_component;
-    result_data[1] = z_component;
-    result_data[2] = y_component;
-    result_data[3] = max_value;
+    RenderingSystemResourceFinalizer();
+    RenderingSystemMemoryManager(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+}
+
+// =============================================================================
+// 渲染系统状态更新器
+// =============================================================================
+
+/**
+ * @brief 渲染系统状态更新器
+ * 
+ * 主要功能：
+ * - 更新渲染对象状态
+ * - 管理渲染计数器
+ * - 处理状态转换
+ * - 清理渲染资源
+ */
+void RenderingSystemStateUpdater(void)
+{
+    longlong lVar1;
+    longlong unaff_RBP;
+    longlong unaff_RDI;
     
-    param_2 = *(longlong *)(data_context + 0x10);
-    *(float *)(vector_context + -0x39) = x_component;
-    *(float *)(vector_context + -0x35) = z_component;
-    *(float *)(vector_context + -0x31) = y_component;
-    *(float *)(vector_context + -0x2d) = max_value;
-    param_1 = param_1 + 0x10;
-  } while (iteration_count < *(int *)(param_2 + 0x78));
-  
-  // 更新变换状态
-  transform_result = *(longlong *)(data_context + 0x18);
-  *(int *)(transform_result + 0x4c) = *(int *)(transform_result + 0x4c) + 1;
-  if (*(int *)(transform_result + 0x4c) == RENDERING_MAX_PARAMETER_COUNT) {
-    *(int *)(transform_result + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  }
-  
-  rendering_system_finalize_transform();
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(*(ulonglong *)(vector_context + 0x27) ^ (ulonglong)&stack0x00000000);
+    // 更新渲染状态
+    lVar1 = *(longlong *)(unaff_RDI + 0x18);
+    *(int *)(lVar1 + 0x4c) = *(int *)(lVar1 + 0x4c) + 1;
+    
+    if (*(int *)(lVar1 + 0x4c) == 0x18) {
+        *(undefined4 *)(lVar1 + 0x5c) = 0xffffffff;
+    }
+    
+    RenderingSystemResourceFinalizer();
+    RenderingSystemMemoryManager(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
+// =============================================================================
+// 渲染系统清理处理器
+// =============================================================================
+
 /**
- * 渲染系统状态更新处理器
- * 更新渲染系统的状态信息
+ * @brief 渲染系统清理处理器
+ * 
+ * 主要功能：
+ * - 清理渲染对象状态
+ * - 重置渲染标志
+ * - 释放渲染资源
+ * - 执行系统清理
+ * 
+ * @param in_RAX 渲染对象指针
  */
-void rendering_system_state_update_processor(void)
-
+void RenderingSystemCleanupHandler(void)
 {
-  longlong state_context;
-  longlong vector_context;
-  longlong data_context;
-  
-  // 获取状态上下文
-  state_context = *(longlong *)(data_context + 0x18);
-  *(int *)(state_context + 0x4c) = *(int *)(state_context + 0x4c) + 1;
-  if (*(int *)(state_context + 0x4c) == RENDERING_MAX_PARAMETER_COUNT) {
-    *(int *)(state_context + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  }
-  
-  rendering_system_finalize_transform();
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(*(ulonglong *)(vector_context + 0x27) ^ (ulonglong)&stack0x00000000);
+    longlong in_RAX;
+    longlong unaff_RBP;
+    
+    // 清理渲染对象
+    *(undefined4 *)(in_RAX + 0x5c) = 0xffffffff;
+    RenderingSystemResourceFinalizer();
+    RenderingSystemMemoryManager(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
-/**
- * 渲染系统完成处理器
- * 处理渲染操作的完成状态
- */
-void rendering_system_completion_handler(void)
+// =============================================================================
+// 全局变量声明
+// =============================================================================
 
-{
-  longlong render_context;
-  longlong vector_context;
-  
-  // 设置完成状态
-  *(int *)(render_context + 0x5c) = RENDERING_DEFAULT_STATE_VALUE;
-  rendering_system_finalize_transform();
-  
-  // 警告：子函数不返回
-  rendering_system_security_check(*(ulonglong *)(vector_context + 0x27) ^ (ulonglong)&stack0x00000000);
-}
+// 渲染系统全局变量
+static longlong _DAT_180c86938 = 0;
+static longlong _DAT_180c8695c = 0;
+static longlong _DAT_180c86968 = 0;
+static longlong _DAT_180bf00a8 = 0;
 
-/*=============================================================================
-    渲染系统内部函数声明
-=============================================================================*/
+// 渲染系统常量数据
+static undefined8 UNK_180a1adf0 = 0;
+static undefined8 UNK_180a1add8 = 0;
+static undefined8 UNK_180a1adb8 = 0;
+static undefined8 UNK_1809fcc58 = 0;
+static undefined8 UNK_18098bcb0 = 0;
+static undefined8 UNK_1809fcc28 = 0;
+static undefined8 UNK_180a0db08 = 0;
+static undefined8 UNK_180a3c3e0 = 0;
+static undefined8 UNK_180a17358 = 0;
+static undefined8 UNK_180c86930 = 0;
+static undefined8 UNK_180c86870 = 0;
+static undefined8 UNK_180c8ed18 = 0;
+static undefined8 UNK_1802e4bc0 = 0;
+static undefined8 UNK_1800ee4c0 = 0;
 
-// 内部函数声明（由编译器生成）
-void *rendering_system_initialize_renderer(void *transform_data, void *parameter_table);
-void *rendering_system_get_parameters(void *storage, void ***target_ptr, void **state_manager, int flags);
-void rendering_system_execute_transform(void *init_result, void *render_object, int param, void **current_target);
-void rendering_system_process_advanced_transform(void *transform_buffer, void **data_processor);
-longlong rendering_system_calculate_transform(void *matrix_data, int flags, void **current_target, void *transform_data);
-void rendering_system_apply_transform_matrix(longlong context, void *matrix, void *target, int size);
-void rendering_system_complete_transform(void *context, int flags, longlong params, int size);
-void rendering_system_handle_error(int error_code, void *error_message);
-void rendering_system_finalize_transform(longlong params, float result);
-void rendering_system_security_check(void *security_data);
+// =============================================================================
+// 技术说明
+// =============================================================================
 
-/*=============================================================================
-    渲染系统数据表
-=============================================================================*/
-
-// 渲染参数表
-static void *rendering_parameter_table = (void *)0x180a1adf0;
-static void *rendering_parameter_name_table = (void *)0x180a1add8;
-static void *rendering_parameter_name_table_alt = (void *)0x180a1adb8;
-static void *rendering_parameter_storage = (void *)0x180c86930;
-static void *rendering_parameter_storage_alt = (void *)0x180c8ed18;
-
-// 渲染状态表
-static void *rendering_state_table = (void *)0x18098bcb0;
-static void *rendering_state_controller = (void *)0x1809fcc28;
-static void *rendering_state_init_table = (void *)0x180a0db08;
-
-// 渲染目标表
-static void *rendering_target_table = (void *)0x1809fcc58;
-static void *rendering_data_table = (void *)0x180a3c3e0;
-
-// 渲染错误信息
-static void *rendering_error_message = (void *)0x180a17358;
-
-// 渲染完成函数
-static void *rendering_completion_function = (void *)0x18031ccb0;
-static void *rendering_cleanup_function = (void *)0x1802e4bc0;
-static void *rendering_finalize_function = (void *)0x18031ef50;
-static void *rendering_error_handler = (void *)0x18064e900;
-static void *rendering_security_check = (void *)0x1808fc050;
-
-// 渲染数据数组
-static void *render_target_array[2];
-static void *render_index_array[2];
-static void *matrix_result_array[4];
-static void *transform_buffer[136];
-
-/*=============================================================================
-    模块信息
-=============================================================================*/
-
-/**
- * 模块名称: 渲染系统高级变换和矩阵处理模块
- * 文件标识: 03_rendering_part090.c
- * 功能描述: 
- *   - 提供高级渲染对象变换处理功能
- *   - 实现复杂的矩阵变换运算
- *   - 处理向量变换和投影计算
- *   - 管理渲染系统状态更新
- *   - 支持批量数据处理和变换
+/*
+ * 渲染系统高级处理模块技术说明：
  * 
- * 主要特性:
- *   - 支持多种变换类型（矩阵、向量、投影）
- *   - 提供高性能的变换计算
- *   - 包含完整的状态管理
- *   - 支持错误处理和安全检查
- *   - 提供灵活的参数配置
+ * 1. 球谐函数（Spherical Harmonics）处理：
+ *    - 使用9个球谐函数系数进行光照计算
+ *    - 支持动态光照和环境光处理
+ *    - 实现高效的光照插值和变换
  * 
- * 依赖关系:
- *   - 依赖全局渲染数据上下文
- *   - 依赖渲染系统核心模块
- *   - 依赖矩阵运算库
- *   - 依赖向量计算库
+ * 2. 渲染管线管理：
+ *    - 支持多阶段渲染管线
+ *    - 实现高效的渲染状态管理
+ *    - 支持多种渲染模式和效果
  * 
- * 使用场景:
- *   - 3D对象变换处理
- *   - 相机投影计算
- *   - 渲染管线中的变换阶段
- *   - 高级图形效果处理
- *   - 实时渲染优化
+ * 3. 材质系统：
+ *    - 支持多种材质属性
+ *    - 实现高级材质效果
+ *    - 支持材质参数动态更新
+ * 
+ * 4. 纹理系统：
+ *    - 支持多种纹理格式
+ *    - 实现纹理过滤和包装
+ *    - 支持纹理动画和变换
+ * 
+ * 5. 着色器系统：
+ *    - 支持多种着色器类型
+ *    - 实现着色器参数管理
+ *    - 支持着色器缓存和复用
+ * 
+ * 6. 缓冲区管理：
+ *    - 支持多种缓冲区类型
+ *    - 实现高效的内存管理
+ *    - 支持缓冲区映射和同步
+ * 
+ * 7. 性能优化：
+ *    - 使用SIMD指令优化计算
+ *    - 实现批量处理和缓存
+ *    - 支持多线程渲染
+ * 
+ * 8. 内存管理：
+ *    - 使用内存池和对象池
+ *    - 实现智能内存分配
+ *    - 支持内存碎片整理
+ * 
+ * 9. 错误处理：
+ *    - 实现完善的错误检查
+ *    - 支持错误恢复机制
+ *    - 提供详细的错误信息
+ * 
+ * 10. 调试支持：
+ *     - 支持渲染调试信息
+ *     - 实现性能监控
+ *     - 支持渲染状态查询
  */

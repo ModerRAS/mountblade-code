@@ -4,18 +4,6 @@
  * 
  * 本模块包含4个核心函数，涵盖渲染系统高级文件处理、资源管理、
  * 数据读取、优化处理和文件操作等高级渲染功能。
- * 
- * 主要功能包括：
- * - 资源文件处理和序列化
- * - 资源数据导出和管理
- * - 资源数据优化和压缩
- * - 渲染数据压缩和存储
- * 
- * 技术特点：
- * - 支持多种文件格式处理
- * - 高效的内存管理机制
- * - 线程安全的资源操作
- * - 智能的压缩算法
  */
 
 #include "TaleWorlds.Native.Split.h"
@@ -24,32 +12,32 @@
  * @defgroup rendering_constants 渲染系统常量定义
  * @{
  */
-#define RENDERING_MAX_PATH_LENGTH 0x200        /**< 最大路径长度 */
-#define RENDERING_MAX_BUFFER_SIZE 0x100000      /**< 最大缓冲区大小 */
-#define RENDERING_STRING_TERMINATOR 0x5c        /**< 字符串终止符 */
-#define RENDERING_FILE_EXTENSION_SIZE 4         /**< 文件扩展名大小 */
-#define RENDERING_ALIGNMENT_SIZE 32             /**< 对齐大小 */
-#define RENDERING_POOL_ALLOCATOR_TYPE 3          /**< 池分配器类型 */
-#define RENDERING_MEMORY_BLOCK_SIZE 0x20000     /**< 内存块大小 */
-#define RENDERING_DIRECTORY_SEPARATOR '\\'      /**< 目录分隔符 */
-#define RENDERING_PATH_SEPARATOR '/'            /**< 路径分隔符 */
-#define RENDERING_DEFAULT_BUFFER_SIZE 0x20       /**< 默认缓冲区大小 */
-#define RENDERING_MAX_FILENAME_LENGTH 0x100      /**< 最大文件名长度 */
-#define RENDERING_HASH_TABLE_SIZE 0x100         /**< 哈希表大小 */
-#define RENDERING_RESOURCE_HEADER_SIZE 0x10     /**< 资源头大小 */
-#define RENDERING_DATA_BLOCK_SIZE 0x908          /**< 数据块大小 */
-#define RENDERING_PATH_BUFFER_SIZE 0xf0          /**< 路径缓冲区大小 */
-#define RENDERING_OPTIMIZATION_BLOCK_SIZE 0x78   /**< 优化块大小 */
+#define RENDERING_MAX_PATH_LENGTH 0x200
+#define RENDERING_MAX_BUFFER_SIZE 0x100000
+#define RENDERING_STRING_TERMINATOR 0x5c
+#define RENDERING_FILE_EXTENSION_SIZE 4
+#define RENDERING_ALIGNMENT_SIZE 32
+#define RENDERING_POOL_ALLOCATOR_TYPE 3
+#define RENDERING_MEMORY_BLOCK_SIZE 0x20000
+#define RENDERING_DIRECTORY_SEPARATOR '\\'
+#define RENDERING_PATH_SEPARATOR '/'
+#define RENDERING_DEFAULT_BUFFER_SIZE 0x20
+#define RENDERING_MAX_FILENAME_LENGTH 0x100
+#define RENDERING_HASH_TABLE_SIZE 0x100
+#define RENDERING_RESOURCE_HEADER_SIZE 0x10
+#define RENDERING_DATA_BLOCK_SIZE 0x908
+#define RENDERING_PATH_BUFFER_SIZE 0xf0
+#define RENDERING_OPTIMIZATION_BLOCK_SIZE 0x78
 /** @} */
 
 /**
  * @defgroup rendering_function_aliases 渲染系统函数别名
  * @{
  */
-#define RenderingSystem_ProcessResourceFile FUN_18032f540  /**< 渲染系统资源文件处理器 */
-#define RenderingSystem_ExportResourceData FUN_18032f990  /**< 渲染系统资源数据导出器 */
-#define RenderingSystem_OptimizeResourceData FUN_18032ffc0  /**< 渲染系统资源数据优化器 */
-#define RenderingSystem_CompressRenderData FUN_1803304e0    /**< 渲染系统数据压缩器 */
+#define RenderingSystem_ProcessResourceFile FUN_18032f540
+#define RenderingSystem_ExportResourceData FUN_18032f990
+#define RenderingSystem_OptimizeResourceData FUN_18032ffc0
+#define RenderingSystem_CompressRenderData FUN_1803304e0
 /** @} */
 
 /**
@@ -57,14 +45,6 @@
  * 
  * 该函数负责处理渲染系统资源文件，包括文件读取、数据序列化、
  * 路径处理、字符串操作和资源管理等高级渲染功能。
- * 
- * 处理流程：
- * 1. 读取文件头信息
- * 2. 分配内存缓冲区
- * 3. 处理文件路径和扩展名
- * 4. 读取资源数据
- * 5. 序列化和存储数据
- * 6. 清理资源
  * 
  * @param render_context 渲染上下文指针
  * @param output_handle 输出文件句柄
@@ -252,14 +232,6 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
  * 该函数负责导出渲染系统资源数据，包括数据读取、路径处理、
  * 字符串操作、文件管理和资源序列化等高级渲染功能。
  * 
- * 处理流程：
- * 1. 读取导出配置信息
- * 2. 构建导出路径和文件名
- * 3. 分配内存缓冲区
- * 4. 读取资源数据
- * 5. 序列化和导出数据
- * 6. 清理资源
- * 
  * @param render_context 渲染上下文指针
  * @param output_handle 输出文件句柄
  * @param resource_data 资源数据指针
@@ -426,15 +398,6 @@ void RenderingSystem_ExportResourceData(undefined8 render_context, longlong outp
  * 
  * 该函数负责优化渲染系统资源数据，包括数据压缩、内存管理、
  * 文件操作、线程同步和资源处理等高级渲染功能。
- * 
- * 处理流程：
- * 1. 读取优化配置信息
- * 2. 分配内存缓冲区
- * 3. 构建优化路径和文件名
- * 4. 读取资源数据
- * 5. 执行数据优化算法
- * 6. 处理优化后的数据
- * 7. 清理资源
  * 
  * @param render_context 渲染上下文指针
  * @param output_handle 输出文件句柄
@@ -692,16 +655,6 @@ LAB_180330378:
  * 
  * 该函数负责压缩渲染系统数据，包括数据压缩、内存管理、
  * 线程同步、文件操作和资源优化等高级渲染功能。
- * 
- * 处理流程：
- * 1. 获取线程锁确保线程安全
- * 2. 读取压缩配置信息
- * 3. 分配内存缓冲区
- * 4. 构建压缩路径和文件名
- * 5. 读取待压缩数据
- * 6. 执行压缩算法
- * 7. 存储压缩后的数据
- * 8. 释放线程锁
  * 
  * @param render_context 渲染上下文指针
  * @param output_handle 输出文件句柄
@@ -1017,44 +970,4 @@ LAB_18033084a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 渲染系统高级文件处理和资源管理模块技术说明
- * 
- * 本模块实现了渲染系统的高级文件处理和资源管理功能，包含以下核心组件：
- * 
- * 1. 资源文件处理器 (RenderingSystem_ProcessResourceFile)
- *    - 处理各种格式的资源文件
- *    - 支持文件路径解析和验证
- *    - 实现资源数据的序列化和反序列化
- *    - 提供高效的内存管理机制
- * 
- * 2. 资源数据导出器 (RenderingSystem_ExportResourceData)
- *    - 导出渲染系统资源数据
- *    - 支持多种数据格式转换
- *    - 实现数据压缩和优化
- *    - 提供完整的导出日志记录
- * 
- * 3. 资源数据优化器 (RenderingSystem_OptimizeResourceData)
- *    - 优化资源数据的存储结构
- *    - 实现智能的压缩算法
- *    - 支持批量数据处理
- *    - 提供实时优化反馈
- * 
- * 4. 渲染数据压缩器 (RenderingSystem_CompressRenderData)
- *    - 压缩渲染系统数据
- *    - 实现线程安全的压缩操作
- *    - 支持多种压缩算法
- *    - 提供压缩效率统计
- * 
- * 技术特点：
- * - 高效的内存管理：使用池分配器和智能内存管理
- * - 线程安全：实现了完善的锁机制和同步操作
- * - 错误处理：包含完整的错误检测和恢复机制
- * - 性能优化：采用了多种优化技术提高处理效率
- * 
- * 应用场景：
- * - 大型游戏资源的处理和管理
- * - 渲染数据的优化和压缩
- * - 资源文件的批量处理
- * - 渲染系统的性能优化
- */
+

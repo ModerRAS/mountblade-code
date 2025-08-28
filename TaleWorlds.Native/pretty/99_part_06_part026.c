@@ -1,1536 +1,771 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 99_part_06_part026.c
- * @brief 模块99未匹配函数第6部分第26个文件 - 场景和预制件处理模块
- * 
- * 本文件包含2个核心函数，主要处理游戏场景层级管理、预制件加载、
- * 场景对象处理、GUID验证、移动性设置、LOD偏置控制等高级场景管理功能。
- * 
- * 主要功能包括：
- * - 场景层级数据结构和处理
- * - 预制件加载和验证
- * - 场景对象名称管理
- * - GUID格式验证和处理
- * - 移动性设置和控制
- * - LOD偏置因子调整
- * - 场景升级级别掩码处理
- * - 季节掩码配置
- * 
- * @author Claude Code
- * @date 2025-08-28
- * @version 1.0
- */
+// 99_part_06_part026.c - 2 个函数
 
-// =============================================================================
-// 常量定义
-// =============================================================================
+// 函数: void FUN_1803bd8e0(longlong param_1,longlong param_2)
+void FUN_1803bd8e0(longlong param_1,longlong param_2)
 
-/** 最大路径长度 */
-#define MAX_PATH_LENGTH 256
-/** 最大GUID长度 */
-#define MAX_GUID_LENGTH 36
-/** 最大名称长度 */
-#define MAX_NAME_LENGTH 128
-/** 场景层级最大深度 */
-#define MAX_SCENE_LEVELS 10
-/** 预制件名称最大长度 */
-#define MAX_PREFAB_NAME_LENGTH 256
-
-// =============================================================================
-// 函数别名定义
-// =============================================================================
-
-/** 场景层级数据处理器 */
-#define SceneLevelDataProcessor FUN_1803bd8e0
-/** 预制件加载和验证处理器 */
-#define PrefabLoadAndValidateProcessor FUN_1803bdc20
-
-// =============================================================================
-// 辅助函数声明
-// =============================================================================
-
-static bool validate_guid_format(const char* guid);
-static bool validate_prefab_name(const char* name);
-static void process_scene_level_data(void* scene_data, void* level_info);
-static void setup_mobility_settings(void* scene_obj, uint32_t mobility_flags);
-static void configure_lod_bias_factor(void* scene_obj, float bias_factor);
-static void process_scene_upgrade_mask(void* scene_obj, uint32_t upgrade_mask);
-static void configure_season_mask(void* scene_obj, uint32_t season_mask);
-
-// =============================================================================
-// 核心函数实现
-// =============================================================================
-
-/**
- * @brief 场景层级数据处理器
- * 
- * 本函数负责处理游戏场景的层级数据结构，包括：
- * - 场景层级的遍历和解析
- * - 层级名称的验证和处理
- * - 场景对象的数据结构管理
- * - 内存分配和资源清理
- * - 层级关系的建立和维护
- * 
- * @param param_1 场景数据指针
- * @param param_2 层级信息指针
- * 
- * @note 本函数会递归处理场景层级结构，确保所有层级数据正确加载
- * @warning 处理过程中会分配内存，调用者需要确保最终释放资源
- */
-void SceneLevelDataProcessor(longlong param_1, longlong param_2)
 {
-    // 局部变量定义
-    uint level_index;
-    char* level_name_ptr;
-    uint name_length;
-    char* current_ptr;
-    char* temp_ptr1;
-    char* temp_ptr2;
-    longlong data_offset1;
-    longlong data_offset2;
-    undefined8* node_ptr;
-    char* string_ptr1;
-    char* string_ptr2;
-    
-    // 栈变量定义
-    undefined1 stack_buffer1[16];
-    undefined* stack_ptr1;
-    longlong stack_offset1;
-    int stack_int1;
-    ulonglong stack_ulong1;
-    undefined* stack_ptr2;
-    undefined8 stack_data1;
-    undefined4 stack_data2;
-    ulonglong stack_ulong2;
-    
-    // 初始化层级名称
-    level_name_ptr = "levels";
-    
-    // 计算层级名称长度
+  uint uVar1;
+  char *pcVar2;
+  uint uVar3;
+  char *pcVar4;
+  char *pcVar5;
+  char *pcVar6;
+  longlong lVar7;
+  longlong lVar8;
+  undefined8 *puVar9;
+  char *pcVar10;
+  char *pcVar11;
+  undefined1 auStack_80 [16];
+  undefined *puStack_70;
+  longlong lStack_68;
+  int iStack_60;
+  ulonglong uStack_58;
+  undefined *puStack_50;
+  undefined8 uStack_48;
+  undefined4 uStack_40;
+  ulonglong uStack_38;
+  
+  pcVar10 = "levels";
+  do {
+    pcVar11 = pcVar10;
+    pcVar10 = pcVar11 + 1;
+  } while (*pcVar10 != '\0');
+  puVar9 = *(undefined8 **)(param_2 + 0x30);
+  if (puVar9 != (undefined8 *)0x0) {
+    pcVar10 = (char *)0x0;
     do {
-        string_ptr1 = level_name_ptr;
-        level_name_ptr = string_ptr1 + 1;
-    } while (*level_name_ptr != '\0');
-    
-    // 获取层级数据节点
-    node_ptr = *(undefined8 **)(param_2 + 0x30);
-    if (node_ptr != (undefined8 *)0x0) {
-        string_ptr2 = (char *)0x0;
-        
-        // 遍历层级数据节点
-        do {
-            current_ptr = (char *)*node_ptr;
-            if (current_ptr == (char *)0x0) {
-                current_ptr = (char *)0x180d48d24;
-                temp_ptr1 = string_ptr2;
-            } else {
-                temp_ptr1 = (char *)node_ptr[2];
+      pcVar4 = (char *)*puVar9;
+      if (pcVar4 == (char *)0x0) {
+        pcVar4 = (char *)0x180d48d24;
+        pcVar5 = pcVar10;
+      }
+      else {
+        pcVar5 = (char *)puVar9[2];
+      }
+      if (pcVar5 == pcVar11 + -0x180a0bafb) {
+        pcVar5 = pcVar5 + (longlong)pcVar4;
+        if (pcVar5 <= pcVar4) {
+LAB_1803bd978:
+          puStack_50 = &UNK_180a3c3e0;
+          uStack_38 = 0;
+          uStack_48 = 0;
+          uStack_40 = 0;
+          pcVar11 = "level";
+          do {
+            pcVar4 = pcVar11;
+            pcVar11 = pcVar4 + 1;
+          } while (*pcVar11 != '\0');
+          for (pcVar11 = (char *)puVar9[6]; pcVar11 != (char *)0x0;
+              pcVar11 = *(char **)(pcVar11 + 0x58)) {
+            pcVar5 = *(char **)pcVar11;
+            if (pcVar5 == (char *)0x0) {
+              pcVar5 = (char *)0x180d48d24;
+              pcVar2 = pcVar10;
             }
-            
-            // 验证层级名称
-            if (temp_ptr1 == string_ptr1 + -0x180a0bafb) {
-                temp_ptr1 = temp_ptr1 + (longlong)current_ptr;
-                if (temp_ptr1 <= current_ptr) {
-                    // 处理场景层级数据
-                    stack_ptr2 = &UNK_180a3c3e0;
-                    stack_ulong2 = 0;
-                    stack_data1 = 0;
-                    stack_data2 = 0;
-                    string_ptr1 = "level";
-                    
-                    // 计算层级标识符长度
-                    do {
-                        current_ptr = string_ptr1;
-                        string_ptr1 = current_ptr + 1;
-                    } while (*string_ptr1 != '\0');
-                    
-                    // 处理层级中的子对象
-                    for (string_ptr1 = (char *)node_ptr[6]; string_ptr1 != (char *)0x0;
-                         string_ptr1 = *(char **)(string_ptr1 + 0x58)) {
-                        temp_ptr1 = *(char **)string_ptr1;
-                        if (temp_ptr1 == (char *)0x0) {
-                            temp_ptr1 = (char *)0x180d48d24;
-                            temp_ptr2 = string_ptr2;
-                        } else {
-                            temp_ptr2 = *(char **)(string_ptr1 + 0x10);
-                        }
-                        
-                        // 验证子对象名称
-                        if (temp_ptr2 == current_ptr + -0x180a0bb0f) {
-                            temp_ptr2 = temp_ptr2 + (longlong)temp_ptr1;
-                            if (temp_ptr2 <= temp_ptr1) {
-                                // 处理场景对象数据
-                                data_offset1 = *(longlong *)(param_1 + 0x28);
-                                data_offset2 = data_offset1 + 400;
-                                
-                                // 调用场景数据处理函数
-                                FUN_1802f4b20(data_offset2, *(undefined8 *)(data_offset1 + 0x1a0), 
-                                            temp_ptr2, node_ptr, 0xfffffffffffffffe);
-                                
-                                // 设置场景对象数据
-                                *(longlong *)data_offset2 = data_offset2;
-                                *(longlong *)(data_offset1 + 0x198) = data_offset2;
-                                *(undefined8 *)(data_offset1 + 0x1a0) = 0;
-                                *(undefined1 *)(data_offset1 + 0x1a8) = 0;
-                                *(undefined8 *)(data_offset1 + 0x1b0) = 0;
-                                
-                                // 处理对象名称
-                                do {
-                                    stack_ptr1 = &UNK_180a3c3e0;
-                                    stack_ulong1 = 0;
-                                    stack_offset1 = 0;
-                                    stack_int1 = 0;
-                                    current_ptr = "name";
-                                    
-                                    // 计算名称长度
-                                    do {
-                                        temp_ptr1 = current_ptr;
-                                        current_ptr = temp_ptr1 + 1;
-                                    } while (*current_ptr != '\0');
-                                    
-                                    // 遍历名称数据节点
-                                    for (node_ptr = *(undefined8 **)(string_ptr1 + 0x40); 
-                                         node_ptr != (undefined8 *)0x0;
-                                         node_ptr = (undefined8 *)node_ptr[6]) {
-                                        current_ptr = (char *)*node_ptr;
-                                        if (current_ptr == (char *)0x0) {
-                                            current_ptr = (char *)0x180d48d24;
-                                            temp_ptr2 = string_ptr2;
-                                        } else {
-                                            temp_ptr2 = (char *)node_ptr[2];
-                                        }
-                                        
-                                        // 验证名称匹配
-                                        if (temp_ptr2 == temp_ptr1 + -0x180a03a83) {
-                                            temp_ptr2 = temp_ptr2 + (longlong)current_ptr;
-                                            if (temp_ptr2 <= current_ptr) {
-                                                // 处理名称数据
-                                                data_offset1 = 0x180d48d24;
-                                                if (node_ptr[1] != 0) {
-                                                    data_offset1 = node_ptr[1];
-                                                }
-                                                FUN_180627c50(&stack_ptr1, data_offset1);
-                                                break;
-                                            }
-                                            
-                                            // 字符串比较
-                                            data_offset1 = (longlong)&DAT_180a03a84 - (longlong)current_ptr;
-                                            while (*current_ptr == current_ptr[data_offset1]) {
-                                                current_ptr = current_ptr + 1;
-                                                if (temp_ptr2 <= current_ptr) {
-                                                    data_offset1 = 0x180d48d24;
-                                                    if (node_ptr[1] != 0) {
-                                                        data_offset1 = node_ptr[1];
-                                                    }
-                                                    FUN_180627c50(&stack_ptr1, data_offset1);
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    
-                                    // 处理名称数据完成后的清理
-                                    if (stack_int1 != 0) {
-                                        FUN_1803c2430(*(longlong *)(param_1 + 0x28) + 400, 
-                                                    stack_buffer1, &stack_ptr1);
-                                    }
-                                    
-                                    // 继续处理层级数据
-                                    current_ptr = "level";
-                                    do {
-                                        temp_ptr1 = current_ptr;
-                                        current_ptr = temp_ptr1 + 1;
-                                    } while (*current_ptr != '\0');
-                                    
-                                    // 遍历层级中的子对象
-                                    for (current_ptr = *(char **)(string_ptr1 + 0x58); 
-                                         string_ptr1 = string_ptr2, current_ptr != (char *)0x0;
-                                         current_ptr = *(char **)(current_ptr + 0x58)) {
-                                        temp_ptr2 = *(char **)current_ptr;
-                                        if (temp_ptr2 == (char *)0x0) {
-                                            temp_ptr2 = (char *)0x180d48d24;
-                                            temp_ptr1 = string_ptr2;
-                                        } else {
-                                            temp_ptr1 = *(char **)(current_ptr + 0x10);
-                                        }
-                                        
-                                        // 验证子对象匹配
-                                        if (temp_ptr1 == temp_ptr2 + -0x180a0bb0f) {
-                                            temp_ptr1 = temp_ptr1 + (longlong)temp_ptr2;
-                                            string_ptr1 = current_ptr;
-                                            if (temp_ptr1 <= temp_ptr2) break;
-                                            
-                                            // 字符串比较
-                                            data_offset1 = (longlong)&UNK_180a0bb10 - (longlong)temp_ptr2;
-                                            while (*temp_ptr2 == temp_ptr2[data_offset1]) {
-                                                temp_ptr2 = temp_ptr2 + 1;
-                                                if (temp_ptr1 <= temp_ptr2) break;
-                                            }
-                                        }
-                                    }
-                                    
-                                    // 清理栈数据
-                                    stack_ptr1 = &UNK_180a3c3e0;
-                                    if (stack_offset1 != 0) {
-                                        // 警告：子函数不返回
-                                        FUN_18064e900();
-                                    }
-                                    stack_offset1 = 0;
-                                    stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-                                    stack_ptr1 = &UNK_18098bcb0;
-                                } while (string_ptr1 != (char *)0x0);
-                                break;
-                            }
-                            
-                            // 字符串比较
-                            data_offset1 = (longlong)&UNK_180a0bb10 - (longlong)temp_ptr1;
-                            while (*temp_ptr1 == temp_ptr1[data_offset1]) {
-                                temp_ptr1 = temp_ptr1 + 1;
-                                if (temp_ptr2 <= temp_ptr1) break;
-                            }
-                        }
-                    }
-                    
-                    // 清理栈数据
-                    stack_data1 = 0;
-                    stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-                    stack_ptr2 = &UNK_18098bcb0;
-                    break;
-                }
-                
-                // 字符串比较
-                data_offset1 = (longlong)&UNK_180a0bafc - (longlong)current_ptr;
-                while (*current_ptr == current_ptr[data_offset1]) {
-                    current_ptr = current_ptr + 1;
-                    if (temp_ptr1 <= current_ptr) break;
-                }
+            else {
+              pcVar2 = *(char **)(pcVar11 + 0x10);
             }
-            node_ptr = (undefined8 *)node_ptr[0xb];
-        } while (node_ptr != (undefined8 *)0x0);
-    }
-    
-    // 场景数据后处理
-    if (*(longlong *)(param_1 + 8) != 0) {
-        FUN_1802eda60(*(undefined8 *)(param_1 + 0x28));
-    }
-    
-    // 场景状态验证和更新
-    if (((*(char *)(param_1 + 0x10) != '\0') &&
-         (level_index = *(uint *)(*(longlong *)(param_1 + 0x28) + 0x2c8),
-         name_length = *(uint *)(param_1 + 4) & 0xfffffffe, (name_length & level_index) != name_length)) && 
-        ((level_index & 1) == 0)) {
-        *(undefined1 *)(param_1 + 0x39) = 1;
-    }
-    
-    return;
-}
-
-/**
- * @brief 预制件加载和验证处理器
- * 
- * 本函数负责处理游戏预制件的加载、验证和配置，包括：
- * - 预制件名称的验证和处理
- * - GUID格式验证和解析
- * - 移动性设置配置
- * - LOD偏置因子调整
- * - 场景升级级别掩码处理
- * - 季节掩码配置
- * - 预制件资源的加载和释放
- * 
- * @param param_1 预制件数据指针
- * @param param_2 配置参数指针
- * @param param_3 额外参数
- * 
- * @note 本函数会执行复杂的验证流程，确保预制件数据完整性
- * @warning 处理过程中会分配大量内存，调用者需要确保资源正确释放
- */
-void PrefabLoadAndValidateProcessor(byte* param_1, longlong param_2, undefined8 param_3)
-{
-    // 局部变量定义
-    longlong* ptr_array;
-    int temp_int1;
-    uint temp_uint1;
-    undefined4 temp_uint2;
-    undefined* temp_ptr1;
-    ulonglong temp_ulong1;
-    char* string_ptr1;
-    longlong data_offset1;
-    undefined* temp_ptr2;
-    uint temp_uint3;
-    char* string_ptr2;
-    int temp_int2;
-    ulonglong temp_ulong2;
-    undefined8* node_ptr;
-    char* string_ptr3;
-    char* string_ptr4;
-    undefined* temp_ptr3;
-    int temp_int3;
-    bool bool_flag;
-    float float_value;
-    
-    // 栈变量定义
-    undefined1 stack_buffer1[32];
-    byte* byte_ptr1;
-    undefined1 stack_buffer2[4];
-    uint stack_uint1;
-    uint stack_uint2;
-    float stack_float;
-    undefined4 stack_array1[2];
-    undefined* stack_ptr1;
-    undefined* stack_ptr2;
-    int stack_int1;
-    ulonglong stack_ulong1;
-    longlong stack_long1;
-    undefined* stack_ptr3;
-    undefined4* stack_ptr4;
-    undefined4 stack_uint4;
-    undefined8 stack_data1;
-    undefined* stack_ptr5;
-    undefined* stack_ptr6;
-    int stack_int2;
-    ulonglong stack_ulong2;
-    undefined8 stack_data2;
-    undefined* stack_ptr7;
-    undefined1* stack_ptr8;
-    int stack_int3;
-    undefined1 stack_buffer3[136];
-    undefined* stack_ptr9;
-    undefined* stack_ptr10;
-    undefined4 stack_uint5;
-    ulonglong stack_ulong3;
-    ulonglong stack_ulong4;
-    
-    // 初始化栈数据
-    stack_data2 = 0xfffffffffffffffe;
-    stack_ulong4 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
-    string_ptr2 = (char *)0x0;
-    stack_long1 = param_2;
-    
-    // 检查预制件状态
-    if (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x268) == 0) {
-        stack_ptr9 = &UNK_180a3c3e0;
-        stack_ulong3 = 0;
-        stack_ptr10 = (undefined *)0x0;
-        stack_uint5 = 0;
-        string_ptr3 = "prefab";
-        
-        // 计算预制件名称长度
-        do {
-            string_ptr4 = string_ptr3;
-            string_ptr3 = string_ptr4 + 1;
-        } while (*string_ptr3 != '\0');
-        
-        // 遍历预制件数据节点
-        for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-             node_ptr = (undefined8 *)node_ptr[6]) {
-            string_ptr3 = (char *)*node_ptr;
-            if (string_ptr3 == (char *)0x0) {
-                string_ptr3 = (char *)0x180d48d24;
-                string_ptr1 = string_ptr2;
-            } else {
-                string_ptr1 = (char *)node_ptr[2];
-            }
-            
-            // 验证预制件名称
-            if (string_ptr1 == string_ptr4 + -0x180a239d3) {
-                string_ptr1 = string_ptr1 + (longlong)string_ptr3;
-                if (string_ptr1 <= string_ptr3) {
-                    // 处理预制件数据
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
+            if (pcVar2 == pcVar4 + -0x180a0bb0f) {
+              pcVar2 = pcVar2 + (longlong)pcVar5;
+              if (pcVar2 <= pcVar5) {
+LAB_1803bda24:
+                lVar7 = *(longlong *)(param_1 + 0x28);
+                lVar8 = lVar7 + 400;
+                FUN_1802f4b20(lVar8,*(undefined8 *)(lVar7 + 0x1a0),pcVar2,puVar9,0xfffffffffffffffe)
+                ;
+                *(longlong *)lVar8 = lVar8;
+                *(longlong *)(lVar7 + 0x198) = lVar8;
+                *(undefined8 *)(lVar7 + 0x1a0) = 0;
+                *(undefined1 *)(lVar7 + 0x1a8) = 0;
+                *(undefined8 *)(lVar7 + 0x1b0) = 0;
+                do {
+                  puStack_70 = &UNK_180a3c3e0;
+                  uStack_58 = 0;
+                  lStack_68 = 0;
+                  iStack_60 = 0;
+                  pcVar4 = "name";
+                  do {
+                    pcVar5 = pcVar4;
+                    pcVar4 = pcVar5 + 1;
+                  } while (*pcVar4 != '\0');
+                  for (puVar9 = *(undefined8 **)(pcVar11 + 0x40); puVar9 != (undefined8 *)0x0;
+                      puVar9 = (undefined8 *)puVar9[6]) {
+                    pcVar4 = (char *)*puVar9;
+                    if (pcVar4 == (char *)0x0) {
+                      pcVar4 = (char *)0x180d48d24;
+                      pcVar2 = pcVar10;
                     }
-                    FUN_180627c50(&stack_ptr9, data_offset1);
-                    data_offset1 = FUN_18020bef0(param_3, &stack_ptr9);
-                    
-                    if (data_offset1 == 0) {
-                        // 预制件验证失败处理
-                        temp_ptr2 = &DAT_18098bc73;
-                        if (*(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0) != (undefined *)0x0) {
-                            temp_ptr2 = *(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0);
-                        }
-                        temp_ptr1 = &DAT_18098bc73;
-                        if (stack_ptr10 != (undefined *)0x0) {
-                            temp_ptr1 = stack_ptr10;
-                        }
-                        FUN_180627020(&UNK_180a239a0, temp_ptr1, temp_ptr2);
-                        param_1[0x39] = 1;
-                        stack_ptr9 = &UNK_180a3c3e0;
-                        if (stack_ptr10 != (undefined *)0x0) {
-                            // 警告：子函数不返回
-                            FUN_18064e900();
-                        }
-                        stack_ptr10 = (undefined *)0x0;
-                        stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
-                        stack_ptr9 = &UNK_18098bcb0;
-                        goto cleanup_section;
+                    else {
+                      pcVar2 = (char *)puVar9[2];
                     }
-                    
-                    // 加载预制件资源
-                    byte_ptr1 = param_1;
-                    FUN_1802ec6e0(*(undefined8 *)(param_1 + 0x28), data_offset1, 1, 0);
-                    FUN_1802ef920(*(undefined8 *)(param_1 + 0x28), data_offset1);
-                    break;
-                }
-                
-                // 字符串比较
-                data_offset1 = (longlong)&UNK_180a239d4 - (longlong)string_ptr3;
-                while (*string_ptr3 == string_ptr3[data_offset1]) {
-                    string_ptr3 = string_ptr3 + 1;
-                    if (string_ptr1 <= string_ptr3) {
-                        data_offset1 = 0x180d48d24;
-                        if (node_ptr[1] != 0) {
-                            data_offset1 = node_ptr[1];
+                    if (pcVar2 == pcVar5 + -0x180a03a83) {
+                      pcVar2 = pcVar2 + (longlong)pcVar4;
+                      if (pcVar2 <= pcVar4) {
+LAB_1803bdad6:
+                        lVar7 = 0x180d48d24;
+                        if (puVar9[1] != 0) {
+                          lVar7 = puVar9[1];
                         }
-                        FUN_180627c50(&stack_ptr9, data_offset1);
-                        data_offset1 = FUN_18020bef0(param_3, &stack_ptr9);
-                        
-                        if (data_offset1 == 0) {
-                            // 预制件验证失败处理
-                            temp_ptr2 = &DAT_18098bc73;
-                            if (*(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0) != (undefined *)0x0) {
-                                temp_ptr2 = *(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0);
-                            }
-                            temp_ptr1 = &DAT_18098bc73;
-                            if (stack_ptr10 != (undefined *)0x0) {
-                                temp_ptr1 = stack_ptr10;
-                            }
-                            FUN_180627020(&UNK_180a239a0, temp_ptr1, temp_ptr2);
-                            param_1[0x39] = 1;
-                            stack_ptr9 = &UNK_180a3c3e0;
-                            if (stack_ptr10 != (undefined *)0x0) {
-                                // 警告：子函数不返回
-                                FUN_18064e900();
-                            }
-                            stack_ptr10 = (undefined *)0x0;
-                            stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
-                            stack_ptr9 = &UNK_18098bcb0;
-                            goto cleanup_section;
-                        }
-                        
-                        // 加载预制件资源
-                        byte_ptr1 = param_1;
-                        FUN_1802ec6e0(*(undefined8 *)(param_1 + 0x28), data_offset1, 1, 0);
-                        FUN_1802ef920(*(undefined8 *)(param_1 + 0x28), data_offset1);
+                        FUN_180627c50(&puStack_70,lVar7);
                         break;
+                      }
+                      lVar7 = (longlong)&DAT_180a03a84 - (longlong)pcVar4;
+                      while (*pcVar4 == pcVar4[lVar7]) {
+                        pcVar4 = pcVar4 + 1;
+                        if (pcVar2 <= pcVar4) goto LAB_1803bdad6;
+                      }
                     }
-                }
-            }
-        }
-        
-        // 清理栈数据
-        stack_ptr9 = &UNK_180a3c3e0;
-        if (stack_ptr10 != (undefined *)0x0) {
-            // 警告：子函数不返回
-            FUN_18064e900();
-        }
-        stack_ptr10 = (undefined *)0x0;
-        stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
-        stack_ptr9 = &UNK_18098bcb0;
-    }
-    
-    // 处理预制件名称
-    stack_ptr5 = &UNK_180a3c3e0;
-    stack_ulong2 = 0;
-    stack_ptr6 = (undefined *)0x0;
-    stack_int2 = 0;
-    string_ptr3 = "name";
-    
-    // 计算名称长度
-    do {
-        string_ptr4 = string_ptr3;
-        string_ptr3 = string_ptr4 + 1;
-    } while (*string_ptr3 != '\0');
-    
-    // 遍历名称数据节点
-    for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-         node_ptr = (undefined8 *)node_ptr[6]) {
-        string_ptr3 = (char *)*node_ptr;
-        if (string_ptr3 == (char *)0x0) {
-            string_ptr3 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr2;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证名称匹配
-        if (string_ptr1 == string_ptr4 + -0x180a03a83) {
-            string_ptr1 = string_ptr3 + (longlong)string_ptr1;
-            if (string_ptr1 <= string_ptr3) {
-                // 处理名称数据
-                data_offset1 = 0x180d48d24;
-                if (node_ptr[1] != 0) {
-                    data_offset1 = node_ptr[1];
-                }
-                FUN_180627c50(&stack_ptr5, data_offset1);
+                  }
+                  if (iStack_60 != 0) {
+                    FUN_1803c2430(*(longlong *)(param_1 + 0x28) + 400,auStack_80,&puStack_70);
+                  }
+                  pcVar4 = "level";
+                  do {
+                    pcVar5 = pcVar4;
+                    pcVar4 = pcVar5 + 1;
+                  } while (*pcVar4 != '\0');
+                  for (pcVar4 = *(char **)(pcVar11 + 0x58); pcVar11 = pcVar10, pcVar4 != (char *)0x0
+                      ; pcVar4 = *(char **)(pcVar4 + 0x58)) {
+                    pcVar2 = *(char **)pcVar4;
+                    if (pcVar2 == (char *)0x0) {
+                      pcVar2 = (char *)0x180d48d24;
+                      pcVar6 = pcVar10;
+                    }
+                    else {
+                      pcVar6 = *(char **)(pcVar4 + 0x10);
+                    }
+                    if (pcVar6 == pcVar5 + -0x180a0bb0f) {
+                      pcVar6 = pcVar6 + (longlong)pcVar2;
+                      pcVar11 = pcVar4;
+                      if (pcVar6 <= pcVar2) break;
+                      lVar7 = (longlong)&UNK_180a0bb10 - (longlong)pcVar2;
+                      while (*pcVar2 == pcVar2[lVar7]) {
+                        pcVar2 = pcVar2 + 1;
+                        if (pcVar6 <= pcVar2) goto LAB_1803bdb74;
+                      }
+                    }
+                  }
+LAB_1803bdb74:
+                  puStack_70 = &UNK_180a3c3e0;
+                  if (lStack_68 != 0) {
+                    // WARNING: Subroutine does not return
+                    FUN_18064e900();
+                  }
+                  lStack_68 = 0;
+                  uStack_58 = uStack_58 & 0xffffffff00000000;
+                  puStack_70 = &UNK_18098bcb0;
+                } while (pcVar11 != (char *)0x0);
                 break;
+              }
+              lVar7 = (longlong)&UNK_180a0bb10 - (longlong)pcVar5;
+              while (*pcVar5 == pcVar5[lVar7]) {
+                pcVar5 = pcVar5 + 1;
+                if (pcVar2 <= pcVar5) goto LAB_1803bda24;
+              }
             }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&DAT_180a03a84 - (longlong)string_ptr3;
-            while (*string_ptr3 == string_ptr3[data_offset1]) {
-                string_ptr3 = string_ptr3 + 1;
-                if (string_ptr1 <= string_ptr3) {
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
-                    }
-                    FUN_180627c50(&stack_ptr5, data_offset1);
-                    break;
-                }
-            }
+          }
+          uStack_48 = 0;
+          uStack_38 = uStack_38 & 0xffffffff00000000;
+          puStack_50 = &UNK_18098bcb0;
+          break;
         }
+        lVar7 = (longlong)&UNK_180a0bafc - (longlong)pcVar4;
+        while (*pcVar4 == pcVar4[lVar7]) {
+          pcVar4 = pcVar4 + 1;
+          if (pcVar5 <= pcVar4) goto LAB_1803bd978;
+        }
+      }
+      puVar9 = (undefined8 *)puVar9[0xb];
+    } while (puVar9 != (undefined8 *)0x0);
+  }
+  if (*(longlong *)(param_1 + 8) != 0) {
+    FUN_1802eda60(*(undefined8 *)(param_1 + 0x28));
+  }
+  if (((*(char *)(param_1 + 0x10) != '\0') &&
+      (uVar1 = *(uint *)(*(longlong *)(param_1 + 0x28) + 0x2c8),
+      uVar3 = *(uint *)(param_1 + 4) & 0xfffffffe, (uVar3 & uVar1) != uVar3)) && ((uVar1 & 1) == 0))
+  {
+    *(undefined1 *)(param_1 + 0x39) = 1;
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+// 函数: void FUN_1803bdc20(byte *param_1,longlong param_2,undefined8 param_3)
+void FUN_1803bdc20(byte *param_1,longlong param_2,undefined8 param_3)
+
+{
+  longlong *plVar1;
+  int iVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  undefined *puVar5;
+  ulonglong uVar6;
+  char *pcVar7;
+  longlong lVar8;
+  undefined *puVar9;
+  uint uVar10;
+  char *pcVar11;
+  int iVar12;
+  ulonglong uVar13;
+  undefined8 *puVar14;
+  char *pcVar15;
+  char *pcVar16;
+  undefined *puVar17;
+  int iVar18;
+  bool bVar19;
+  float fVar20;
+  undefined1 auStack_1c8 [32];
+  byte *pbStack_1a8;
+  undefined1 auStack_198 [4];
+  uint uStack_194;
+  uint uStack_190;
+  float fStack_18c;
+  undefined4 auStack_188 [2];
+  undefined *puStack_180;
+  undefined *puStack_178;
+  int iStack_170;
+  ulonglong uStack_168;
+  longlong lStack_160;
+  undefined *puStack_158;
+  undefined4 *puStack_150;
+  undefined4 uStack_148;
+  undefined8 uStack_140;
+  undefined *puStack_138;
+  undefined *puStack_130;
+  int iStack_128;
+  ulonglong uStack_120;
+  undefined8 uStack_118;
+  undefined *puStack_108;
+  undefined1 *puStack_100;
+  int iStack_f8;
+  undefined1 auStack_f0 [136];
+  undefined *puStack_68;
+  undefined *puStack_60;
+  undefined4 uStack_58;
+  ulonglong uStack_50;
+  ulonglong uStack_48;
+  
+  uStack_118 = 0xfffffffffffffffe;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
+  pcVar11 = (char *)0x0;
+  lStack_160 = param_2;
+  if (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x268) == 0) {
+    puStack_68 = &UNK_180a3c3e0;
+    uStack_50 = 0;
+    puStack_60 = (undefined *)0x0;
+    uStack_58 = 0;
+    pcVar15 = "prefab";
+    do {
+      pcVar16 = pcVar15;
+      pcVar15 = pcVar16 + 1;
+    } while (*pcVar15 != '\0');
+    for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+        puVar14 = (undefined8 *)puVar14[6]) {
+      pcVar15 = (char *)*puVar14;
+      if (pcVar15 == (char *)0x0) {
+        pcVar15 = (char *)0x180d48d24;
+        pcVar7 = pcVar11;
+      }
+      else {
+        pcVar7 = (char *)puVar14[2];
+      }
+      if (pcVar7 == pcVar16 + -0x180a239d3) {
+        pcVar7 = pcVar7 + (longlong)pcVar15;
+        if (pcVar7 <= pcVar15) {
+LAB_1803bdd14:
+          lVar8 = 0x180d48d24;
+          if (puVar14[1] != 0) {
+            lVar8 = puVar14[1];
+          }
+          FUN_180627c50(&puStack_68,lVar8);
+          lVar8 = FUN_18020bef0(param_3,&puStack_68);
+          if (lVar8 == 0) {
+            puVar9 = &DAT_18098bc73;
+            if (*(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0) != (undefined *)0x0) {
+              puVar9 = *(undefined **)(*(longlong *)(param_1 + 0x30) + 0x4e0);
+            }
+            puVar5 = &DAT_18098bc73;
+            if (puStack_60 != (undefined *)0x0) {
+              puVar5 = puStack_60;
+            }
+            FUN_180627020(&UNK_180a239a0,puVar5,puVar9);
+            param_1[0x39] = 1;
+            puStack_68 = &UNK_180a3c3e0;
+            if (puStack_60 != (undefined *)0x0) {
+                    // WARNING: Subroutine does not return
+              FUN_18064e900();
+            }
+            puStack_60 = (undefined *)0x0;
+            uStack_50 = uStack_50 & 0xffffffff00000000;
+            puStack_68 = &UNK_18098bcb0;
+            goto LAB_1803be64e;
+          }
+          pbStack_1a8 = param_1;
+          FUN_1802ec6e0(*(undefined8 *)(param_1 + 0x28),lVar8,1,0);
+          FUN_1802ef920(*(undefined8 *)(param_1 + 0x28),lVar8);
+          break;
+        }
+        lVar8 = (longlong)&UNK_180a239d4 - (longlong)pcVar15;
+        while (*pcVar15 == pcVar15[lVar8]) {
+          pcVar15 = pcVar15 + 1;
+          if (pcVar7 <= pcVar15) goto LAB_1803bdd14;
+        }
+      }
     }
-    
-    // 处理名称数据验证
-    if (0 < stack_int2) {
-        if (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x268) != 0) {
-            string_ptr3 = string_ptr2;
-            if (stack_int2 == 7) {
+    puStack_68 = &UNK_180a3c3e0;
+    if (puStack_60 != (undefined *)0x0) {
+                    // WARNING: Subroutine does not return
+      FUN_18064e900();
+    }
+    puStack_60 = (undefined *)0x0;
+    uStack_50 = uStack_50 & 0xffffffff00000000;
+    puStack_68 = &UNK_18098bcb0;
+  }
+  puStack_138 = &UNK_180a3c3e0;
+  uStack_120 = 0;
+  puStack_130 = (undefined *)0x0;
+  iStack_128 = 0;
+  pcVar15 = "name";
+  do {
+    pcVar16 = pcVar15;
+    pcVar15 = pcVar16 + 1;
+  } while (*pcVar15 != '\0');
+  for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+      puVar14 = (undefined8 *)puVar14[6]) {
+    pcVar15 = (char *)*puVar14;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar7 = pcVar11;
+    }
+    else {
+      pcVar7 = (char *)puVar14[2];
+    }
+    if (pcVar7 == pcVar16 + -0x180a03a83) {
+      pcVar7 = pcVar15 + (longlong)pcVar7;
+      if (pcVar7 <= pcVar15) {
+LAB_1803bde72:
+        lVar8 = 0x180d48d24;
+        if (puVar14[1] != 0) {
+          lVar8 = puVar14[1];
+        }
+        FUN_180627c50(&puStack_138,lVar8);
+        break;
+      }
+      lVar8 = (longlong)&DAT_180a03a84 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar8]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar7 <= pcVar15) goto LAB_1803bde72;
+      }
+    }
+  }
+  if (0 < iStack_128) {
+    if (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x268) != 0) {
+      pcVar15 = pcVar11;
+      if (iStack_128 == 7) {
+        do {
+          pcVar16 = pcVar15;
+          bVar19 = pcVar16[(longlong)puStack_130] == pcVar16[0x180a0b198];
+          if (!bVar19) goto LAB_1803bdeea;
+          pcVar15 = pcVar16 + 1;
+        } while (pcVar16 + 1 != &DAT_00000008);
+        bVar19 = pcVar16[(longlong)puStack_130] == pcVar16[0x180a0b198];
+      }
+      else {
+        bVar19 = false;
+      }
+LAB_1803bdeea:
+      if (bVar19) goto LAB_1803bdf05;
+    }
+    plVar1 = (longlong *)(*(longlong *)(param_1 + 0x28) + 0x288);
+    puVar9 = &DAT_18098bc73;
+    if (puStack_130 != (undefined *)0x0) {
+      puVar9 = puStack_130;
+    }
+    (**(code **)(*plVar1 + 0x10))(plVar1,puVar9);
+  }
+LAB_1803bdf05:
+  pcVar15 = "old_prefab_name";
+  do {
+    pcVar16 = pcVar15;
+    pcVar15 = pcVar16 + 1;
+  } while (*pcVar15 != '\0');
+  for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+      puVar14 = (undefined8 *)puVar14[6]) {
+    pcVar15 = (char *)*puVar14;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar7 = pcVar11;
+    }
+    else {
+      pcVar7 = (char *)puVar14[2];
+    }
+    if (pcVar7 == pcVar16 + -0x180a23a6f) {
+      pcVar7 = pcVar7 + (longlong)pcVar15;
+      if (pcVar7 <= pcVar15) {
+LAB_1803bdf68:
+        lVar8 = 0x180d48d24;
+        if (puVar14[1] != 0) {
+          lVar8 = puVar14[1];
+        }
+        (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x240) + 0x10))
+                  (*(longlong *)(param_1 + 0x28) + 0x240,lVar8);
+        break;
+      }
+      lVar8 = (longlong)&UNK_180a23a70 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar8]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar7 <= pcVar15) goto LAB_1803bdf68;
+      }
+    }
+  }
+  puStack_180 = &UNK_180a3c3e0;
+  uStack_168 = 0;
+  puStack_178 = (undefined *)0x0;
+  iStack_170 = 0;
+  pcVar15 = "guid";
+  do {
+    pcVar16 = pcVar15;
+    pcVar15 = pcVar16 + 1;
+  } while (*pcVar15 != '\0');
+  iVar18 = 1;
+  for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+      puVar14 = (undefined8 *)puVar14[6]) {
+    pcVar15 = (char *)*puVar14;
+    if (pcVar15 == (char *)0x0) {
+      pcVar15 = (char *)0x180d48d24;
+      pcVar7 = pcVar11;
+    }
+    else {
+      pcVar7 = (char *)puVar14[2];
+    }
+    if (pcVar7 == pcVar16 + -0x180a04c43) {
+      pcVar7 = pcVar15 + (longlong)pcVar7;
+      if (pcVar7 <= pcVar15) {
+LAB_1803be024:
+        lVar8 = 0x180d48d24;
+        if (puVar14[1] != 0) {
+          lVar8 = puVar14[1];
+        }
+        FUN_180627c50(&puStack_180,lVar8);
+        puStack_68 = (undefined *)0xf0000000a;
+        puStack_60 = (undefined *)0x1900000014;
+        puVar9 = puStack_178;
+        if (iStack_170 != 0x26) goto LAB_1803be12a;
+        iVar12 = 1;
+        lVar8 = 1;
+        goto LAB_1803be065;
+      }
+      lVar8 = (longlong)&UNK_180a04c44 - (longlong)pcVar15;
+      while (*pcVar15 == pcVar15[lVar8]) {
+        pcVar15 = pcVar15 + 1;
+        if (pcVar7 <= pcVar15) goto LAB_1803be024;
+      }
+    }
+  }
+  goto LAB_1803be163;
+  while( true ) {
+    puVar5 = &DAT_18098bc73;
+    if (puVar9 != (undefined *)0x0) {
+      puVar5 = puVar9;
+    }
+    if (iVar12 == *(int *)((longlong)&puStack_68 + (longlong)pcVar11 * 4) + -1) {
+      if (puVar5[lVar8] != '-') goto LAB_1803be12a;
+      pcVar11 = pcVar11 + 1;
+    }
+    else {
+      iVar2 = isxdigit();
+      puVar9 = puStack_178;
+      if (iVar2 == 0) goto LAB_1803be12a;
+    }
+    iVar12 = iVar12 + 1;
+    lVar8 = lVar8 + 1;
+    if (3 < (longlong)pcVar11) break;
+LAB_1803be065:
+    if (0x24 < lVar8) break;
+  }
+  lVar8 = *(longlong *)(param_1 + 0x28);
+  puStack_108 = &UNK_1809fcc28;
+  puStack_100 = auStack_f0;
+  auStack_f0[0] = 0;
+  iStack_f8 = iStack_170;
+  puVar9 = &DAT_18098bc73;
+  if (puStack_178 != (undefined *)0x0) {
+    puVar9 = puStack_178;
+  }
+  strcpy_s(auStack_f0,0x80,puVar9);
+  FUN_1802268c0(lVar8 + 0x170,&puStack_108);
+  puStack_108 = &UNK_18098bcb0;
+  param_2 = lStack_160;
+LAB_1803be163:
+  auStack_198[0] = 1;
+  lVar8 = FUN_180631000(param_2,&UNK_180a23a40,auStack_198);
+  if (lVar8 != 0) {
+    FUN_1802ee720(*(undefined8 *)(param_1 + 0x28),auStack_198[0]);
+  }
+  pcVar15 = (char *)0x0;
+  uStack_190 = 0;
+  pcVar11 = "mobility";
+  do {
+    pcVar16 = pcVar11;
+    pcVar11 = pcVar16 + 1;
+  } while (*pcVar11 != '\0');
+  puVar14 = *(undefined8 **)(param_2 + 0x40);
+  uVar13 = 0xffffffffffffffff;
+  do {
+    if (puVar14 == (undefined8 *)0x0) goto LAB_1803be2b7;
+    pcVar11 = (char *)*puVar14;
+    if (pcVar11 == (char *)0x0) {
+      pcVar11 = (char *)0x180d48d24;
+      pcVar7 = pcVar15;
+    }
+    else {
+      pcVar7 = (char *)puVar14[2];
+    }
+    if (pcVar7 == pcVar16 + -0x180a23a2f) {
+      pcVar7 = pcVar11 + (longlong)pcVar7;
+      if (pcVar7 <= pcVar11) {
+LAB_1803be204:
+        pcVar11 = (char *)0x180d48d24;
+        if ((char *)puVar14[1] != (char *)0x0) {
+          pcVar11 = (char *)puVar14[1];
+        }
+        uVar6 = 0xffffffffffffffff;
+        do {
+          uVar6 = uVar6 + 1;
+        } while (pcVar11[uVar6] != '\0');
+        if (((uVar6 < 3) || (*pcVar11 != '0')) ||
+           (puVar9 = &UNK_180a3cb84, (pcVar11[1] + 0xa8U & 0xdf) != 0)) {
+          puVar9 = &UNK_180a063a0;
+        }
+        FUN_18010cbc0(pcVar11,puVar9,&uStack_190);
+        uVar3 = uStack_190;
+        lVar8 = *(longlong *)(param_1 + 0x28);
+        *(char *)(lVar8 + 0x2e4) = (char)uStack_190;
+        pcVar11 = pcVar15;
+        pcVar16 = pcVar15;
+        if (*(longlong *)(lVar8 + 0x1c8) - *(longlong *)(lVar8 + 0x1c0) >> 3 != 0) {
+          do {
+            iVar12 = (int)pcVar16;
+            FUN_1802e8580(*(undefined8 *)(pcVar11 + *(longlong *)(lVar8 + 0x1c0)),uVar3 & 0xff,1);
+            pcVar11 = pcVar11 + 8;
+            pcVar16 = (char *)(ulonglong)(iVar12 + 1U);
+          } while ((ulonglong)(longlong)(int)(iVar12 + 1U) <
+                   (ulonglong)(*(longlong *)(lVar8 + 0x1c8) - *(longlong *)(lVar8 + 0x1c0) >> 3));
+        }
+LAB_1803be2b7:
+        fStack_18c = 0.0;
+        pcVar11 = "lod_bias_factor";
+        do {
+          pcVar16 = pcVar11;
+          pcVar11 = pcVar16 + 1;
+        } while (*pcVar11 != '\0');
+        for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+            puVar14 = (undefined8 *)puVar14[6]) {
+          pcVar11 = (char *)*puVar14;
+          if (pcVar11 == (char *)0x0) {
+            pcVar11 = (char *)0x180d48d24;
+            pcVar7 = pcVar15;
+          }
+          else {
+            pcVar7 = (char *)puVar14[2];
+          }
+          if (pcVar7 == pcVar16 + -0x180a23abf) {
+            pcVar7 = pcVar7 + (longlong)pcVar11;
+            if (pcVar7 <= pcVar11) {
+LAB_1803be334:
+              lVar8 = 0x180d48d24;
+              if (puVar14[1] != 0) {
+                lVar8 = puVar14[1];
+              }
+              FUN_18010cbc0(lVar8,&DAT_180a06430,&fStack_18c);
+              fVar20 = -8.0;
+              if ((-8.0 <= fStack_18c) && (fVar20 = fStack_18c, 8.0 <= fStack_18c)) {
+                fVar20 = 8.0;
+              }
+              FUN_1802f0940(*(undefined8 *)(param_1 + 0x28),fVar20);
+              break;
+            }
+            lVar8 = (longlong)&UNK_180a23ac0 - (longlong)pcVar11;
+            while (*pcVar11 == pcVar11[lVar8]) {
+              pcVar11 = pcVar11 + 1;
+              if (pcVar7 <= pcVar11) goto LAB_1803be334;
+            }
+          }
+        }
+        uStack_194 = 0;
+        pcVar11 = "scene_upgrade_level_mask";
+        do {
+          pcVar16 = pcVar11;
+          pcVar11 = pcVar16 + 1;
+        } while (*pcVar11 != '\0');
+        for (puVar14 = *(undefined8 **)(param_2 + 0x40); puVar14 != (undefined8 *)0x0;
+            puVar14 = (undefined8 *)puVar14[6]) {
+          pcVar11 = (char *)*puVar14;
+          if (pcVar11 == (char *)0x0) {
+            pcVar11 = (char *)0x180d48d24;
+            pcVar7 = pcVar15;
+          }
+          else {
+            pcVar7 = (char *)puVar14[2];
+          }
+          if (pcVar7 == pcVar16 + -0x180a23a97) {
+            pcVar7 = pcVar7 + (longlong)pcVar11;
+            if (pcVar7 <= pcVar11) {
+LAB_1803be3f4:
+              pcVar11 = (char *)0x180d48d24;
+              if ((char *)puVar14[1] != (char *)0x0) {
+                pcVar11 = (char *)puVar14[1];
+              }
+              do {
+                uVar13 = uVar13 + 1;
+              } while (pcVar11[uVar13] != '\0');
+              if (((uVar13 < 3) || (*pcVar11 != '0')) ||
+                 (puVar9 = &UNK_180a3cb84, (pcVar11[1] + 0xa8U & 0xdf) != 0)) {
+                puVar9 = &UNK_180a063a0;
+              }
+              FUN_18010cbc0(pcVar11,puVar9,&uStack_194);
+              if (uStack_194 != 0) {
+                uVar10 = 2;
+                uVar3 = uStack_194;
                 do {
-                    string_ptr4 = string_ptr3;
-                    bool_flag = string_ptr4[(longlong)stack_ptr6] == string_ptr4[0x180a0b198];
-                    if (!bool_flag) break;
-                    string_ptr3 = string_ptr4 + 1;
-                } while (string_ptr4 + 1 != &DAT_00000008);
-                bool_flag = string_ptr4[(longlong)stack_ptr6] == string_ptr4[0x180a0b198];
-            } else {
-                bool_flag = false;
-            }
-            
-            if (bool_flag) goto name_validation_complete;
-        }
-        
-        // 处理名称验证
-        ptr_array = (longlong *)(*(longlong *)(param_1 + 0x28) + 0x288);
-        temp_ptr2 = &DAT_18098bc73;
-        if (stack_ptr6 != (undefined *)0x0) {
-            temp_ptr2 = stack_ptr6;
-        }
-        (**(code **)(*ptr_array + 0x10))(ptr_array, temp_ptr2);
-    }
-    
-name_validation_complete:
-    // 处理旧预制件名称
-    string_ptr3 = "old_prefab_name";
-    do {
-        string_ptr4 = string_ptr3;
-        string_ptr3 = string_ptr4 + 1;
-    } while (*string_ptr3 != '\0');
-    
-    // 遍历旧预制件名称数据节点
-    for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-         node_ptr = (undefined8 *)node_ptr[6]) {
-        string_ptr3 = (char *)*node_ptr;
-        if (string_ptr3 == (char *)0x0) {
-            string_ptr3 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr2;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证旧预制件名称匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23a6f) {
-            string_ptr1 = string_ptr1 + (longlong)string_ptr3;
-            if (string_ptr1 <= string_ptr3) {
-                // 处理旧预制件名称数据
-                data_offset1 = 0x180d48d24;
-                if (node_ptr[1] != 0) {
-                    data_offset1 = node_ptr[1];
-                }
-                (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x240) + 0x10))
-                    (*(longlong *)(param_1 + 0x28) + 0x240, data_offset1);
-                break;
-            }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23a70 - (longlong)string_ptr3;
-            while (*string_ptr3 == string_ptr3[data_offset1]) {
-                string_ptr3 = string_ptr3 + 1;
-                if (string_ptr1 <= string_ptr3) {
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
+                  if ((uVar3 & uVar10) != 0) {
+                    puStack_158 = &UNK_180a3c3e0;
+                    uStack_140 = 0;
+                    puStack_150 = (undefined4 *)0x0;
+                    uStack_148 = 0;
+                    puStack_150 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+                    *(undefined1 *)puStack_150 = 0;
+                    uVar4 = FUN_18064e990(puStack_150);
+                    *puStack_150 = 0x6576656c;
+                    *(undefined2 *)(puStack_150 + 1) = 0x5f6c;
+                    *(undefined1 *)((longlong)puStack_150 + 6) = 0;
+                    uStack_148 = 6;
+                    uStack_140._0_4_ = uVar4;
+                    FUN_180628040(&puStack_158,&UNK_1809fd0a0,iVar18);
+                    FUN_1803c2430(*(longlong *)(param_1 + 0x28) + 400,&puStack_68,&puStack_158);
+                    puStack_158 = &UNK_180a3c3e0;
+                    if (puStack_150 != (undefined4 *)0x0) {
+                    // WARNING: Subroutine does not return
+                      FUN_18064e900();
                     }
-                    (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x240) + 0x10))
-                        (*(longlong *)(param_1 + 0x28) + 0x240, data_offset1);
-                    break;
-                }
+                    puStack_150 = (undefined4 *)0x0;
+                    uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+                    puStack_158 = &UNK_18098bcb0;
+                    uVar3 = uStack_194;
+                  }
+                  iVar18 = iVar18 + 1;
+                  uVar10 = uVar10 << 1 | (uint)((int)uVar10 < 0);
+                  param_2 = lStack_160;
+                } while (iVar18 < 4);
+              }
+              break;
             }
-        }
-    }
-    
-    // 处理GUID验证
-    stack_ptr1 = &UNK_180a3c3e0;
-    stack_ulong1 = 0;
-    stack_ptr2 = (undefined *)0x0;
-    stack_int1 = 0;
-    string_ptr3 = "guid";
-    
-    // 计算GUID长度
-    do {
-        string_ptr4 = string_ptr3;
-        string_ptr3 = string_ptr4 + 1;
-    } while (*string_ptr3 != '\0');
-    
-    temp_int3 = 1;
-    
-    // 遍历GUID数据节点
-    for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-         node_ptr = (undefined8 *)node_ptr[6]) {
-        string_ptr3 = (char *)*node_ptr;
-        if (string_ptr3 == (char *)0x0) {
-            string_ptr3 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr2;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证GUID匹配
-        if (string_ptr1 == string_ptr4 + -0x180a04c43) {
-            string_ptr1 = string_ptr3 + (longlong)string_ptr1;
-            if (string_ptr1 <= string_ptr3) {
-                // 处理GUID数据
-                data_offset1 = 0x180d48d24;
-                if (node_ptr[1] != 0) {
-                    data_offset1 = node_ptr[1];
-                }
-                FUN_180627c50(&stack_ptr1, data_offset1);
-                
-                // GUID格式验证
-                stack_ptr9 = (undefined *)0xf0000000a;
-                stack_ptr10 = (undefined *)0x1900000014;
-                temp_ptr2 = stack_ptr2;
-                if (stack_int1 != 0x26) {
-                    temp_int2 = 1;
-                    data_offset1 = 1;
-                    goto guid_validation_loop;
-                }
-                temp_int2 = 1;
-                data_offset1 = 1;
-                goto guid_validation_loop;
+            lVar8 = (longlong)&UNK_180a23a98 - (longlong)pcVar11;
+            while (*pcVar11 == pcVar11[lVar8]) {
+              pcVar11 = pcVar11 + 1;
+              if (pcVar7 <= pcVar11) goto LAB_1803be3f4;
             }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a04c44 - (longlong)string_ptr3;
-            while (*string_ptr3 == string_ptr3[data_offset1]) {
-                string_ptr3 = string_ptr3 + 1;
-                if (string_ptr1 <= string_ptr3) {
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
-                    }
-                    FUN_180627c50(&stack_ptr1, data_offset1);
-                    
-                    // GUID格式验证
-                    stack_ptr9 = (undefined *)0xf0000000a;
-                    stack_ptr10 = (undefined *)0x1900000014;
-                    temp_ptr2 = stack_ptr2;
-                    if (stack_int1 != 0x26) {
-                        temp_int2 = 1;
-                        data_offset1 = 1;
-                        goto guid_validation_loop;
-                    }
-                    temp_int2 = 1;
-                    data_offset1 = 1;
-                    goto guid_validation_loop;
-                }
-            }
+          }
         }
-    }
-    
-    // 处理移动性设置
-    stack_buffer2[0] = 1;
-    data_offset1 = FUN_180631000(param_2, &UNK_180a23a40, stack_buffer2);
-    if (data_offset1 != 0) {
-        FUN_1802ee720(*(undefined8 *)(param_1 + 0x28), stack_buffer2[0]);
-    }
-    
-    string_ptr3 = (char *)0x0;
-    stack_uint2 = 0;
-    string_ptr2 = "mobility";
-    
-    // 计算移动性设置名称长度
-    do {
-        string_ptr4 = string_ptr2;
-        string_ptr2 = string_ptr4 + 1;
-    } while (*string_ptr2 != '\0');
-    
-    // 处理移动性设置
-    node_ptr = *(undefined8 **)(param_2 + 0x40);
-    temp_ulong2 = 0xffffffffffffffff;
-    
-    do {
-        if (node_ptr == (undefined8 *)0x0) break;
-        string_ptr2 = (char *)*node_ptr;
-        if (string_ptr2 == (char *)0x0) {
-            string_ptr2 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr3;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证移动性设置匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23a2f) {
-            string_ptr1 = string_ptr2 + (longlong)string_ptr1;
-            if (string_ptr1 <= string_ptr2) {
-                // 处理移动性设置数据
-                string_ptr2 = (char *)0x180d48d24;
-                if ((char *)node_ptr[1] != (char *)0x0) {
-                    string_ptr2 = (char *)node_ptr[1];
-                }
-                temp_ulong1 = 0xffffffffffffffff;
-                
-                // 计算字符串长度
-                do {
-                    temp_ulong1 = temp_ulong1 + 1;
-                } while (string_ptr2[temp_ulong1] != '\0');
-                
-                // 验证移动性设置值
-                if (((temp_ulong1 < 3) || (*string_ptr2 != '0')) ||
-                    (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                    temp_ptr2 = &UNK_180a063a0;
-                }
-                
-                FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint2);
-                temp_uint1 = stack_uint2;
-                data_offset1 = *(longlong *)(param_1 + 0x28);
-                *(char *)(data_offset1 + 0x2e4) = (char)stack_uint2;
-                
-                // 应用移动性设置
-                string_ptr2 = string_ptr3;
-                string_ptr4 = string_ptr3;
-                if (*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3 != 0) {
-                    do {
-                        temp_int2 = (int)string_ptr4;
-                        FUN_1802e8580(*(undefined8 *)(string_ptr2 + *(longlong *)(data_offset1 + 0x1c0)), 
-                                    temp_uint1 & 0xff, 1);
-                        string_ptr2 = string_ptr2 + 8;
-                        string_ptr4 = (char *)(ulonglong)(temp_int2 + 1U);
-                    } while ((ulonglong)(longlong)(temp_int2 + 1U) <
-                             (ulonglong)(*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3));
-                }
-            }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23a30 - (longlong)string_ptr2;
-            while (*string_ptr2 == string_ptr2[data_offset1]) {
-                string_ptr2 = string_ptr2 + 1;
-                if (string_ptr1 <= string_ptr2) {
-                    // 处理移动性设置数据
-                    string_ptr2 = (char *)0x180d48d24;
-                    if ((char *)node_ptr[1] != (char *)0x0) {
-                        string_ptr2 = (char *)node_ptr[1];
-                    }
-                    temp_ulong1 = 0xffffffffffffffff;
-                    
-                    // 计算字符串长度
-                    do {
-                        temp_ulong1 = temp_ulong1 + 1;
-                    } while (string_ptr2[temp_ulong1] != '\0');
-                    
-                    // 验证移动性设置值
-                    if (((temp_ulong1 < 3) || (*string_ptr2 != '0')) ||
-                        (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                        temp_ptr2 = &UNK_180a063a0;
-                    }
-                    
-                    FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint2);
-                    temp_uint1 = stack_uint2;
-                    data_offset1 = *(longlong *)(param_1 + 0x28);
-                    *(char *)(data_offset1 + 0x2e4) = (char)stack_uint2;
-                    
-                    // 应用移动性设置
-                    string_ptr2 = string_ptr3;
-                    string_ptr4 = string_ptr3;
-                    if (*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3 != 0) {
-                        do {
-                            temp_int2 = (int)string_ptr4;
-                            FUN_1802e8580(*(undefined8 *)(string_ptr2 + *(longlong *)(data_offset1 + 0x1c0)), 
-                                        temp_uint1 & 0xff, 1);
-                            string_ptr2 = string_ptr2 + 8;
-                            string_ptr4 = (char *)(ulonglong)(temp_int2 + 1U);
-                        } while ((ulonglong)(longlong)(temp_int2 + 1U) <
-                                 (ulonglong)(*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3));
-                    }
-                    break;
-                }
-            }
-        }
-        node_ptr = (undefined8 *)node_ptr[6];
-    } while (true);
-    
-    // 处理LOD偏置因子
-    stack_float = 0.0;
-    string_ptr2 = "lod_bias_factor";
-    
-    // 计算LOD偏置因子名称长度
-    do {
-        string_ptr4 = string_ptr2;
-        string_ptr2 = string_ptr4 + 1;
-    } while (*string_ptr2 != '\0');
-    
-    // 遍历LOD偏置因子数据节点
-    for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-         node_ptr = (undefined8 *)node_ptr[6]) {
-        string_ptr2 = (char *)*node_ptr;
-        if (string_ptr2 == (char *)0x0) {
-            string_ptr2 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr3;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证LOD偏置因子匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23abf) {
-            string_ptr1 = string_ptr1 + (longlong)string_ptr2;
-            if (string_ptr1 <= string_ptr2) {
-                // 处理LOD偏置因子数据
-                data_offset1 = 0x180d48d24;
-                if (node_ptr[1] != 0) {
-                    data_offset1 = node_ptr[1];
-                }
-                FUN_18010cbc0(data_offset1, &DAT_180a06430, &stack_float);
-                float_value = -8.0;
-                if ((-8.0 <= stack_float) && (float_value = stack_float, 8.0 <= stack_float)) {
-                    float_value = 8.0;
-                }
-                FUN_1802f0940(*(undefined8 *)(param_1 + 0x28), float_value);
-                break;
-            }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23ac0 - (longlong)string_ptr2;
-            while (*string_ptr2 == string_ptr2[data_offset1]) {
-                string_ptr2 = string_ptr2 + 1;
-                if (string_ptr1 <= string_ptr2) {
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
-                    }
-                    FUN_18010cbc0(data_offset1, &DAT_180a06430, &stack_float);
-                    float_value = -8.0;
-                    if ((-8.0 <= stack_float) && (float_value = stack_float, 8.0 <= stack_float)) {
-                        float_value = 8.0;
-                    }
-                    FUN_1802f0940(*(undefined8 *)(param_1 + 0x28), float_value);
-                    break;
-                }
-            }
-        }
-    }
-    
-    // 处理场景升级级别掩码
-    stack_uint1 = 0;
-    string_ptr2 = "scene_upgrade_level_mask";
-    
-    // 计算场景升级级别掩码名称长度
-    do {
-        string_ptr4 = string_ptr2;
-        string_ptr2 = string_ptr4 + 1;
-    } while (*string_ptr2 != '\0');
-    
-    // 遍历场景升级级别掩码数据节点
-    for (node_ptr = *(undefined8 **)(param_2 + 0x40); node_ptr != (undefined8 *)0x0;
-         node_ptr = (undefined8 *)node_ptr[6]) {
-        string_ptr2 = (char *)*node_ptr;
-        if (string_ptr2 == (char *)0x0) {
-            string_ptr2 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr3;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证场景升级级别掩码匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23a97) {
-            string_ptr1 = string_ptr1 + (longlong)string_ptr2;
-            if (string_ptr1 <= string_ptr2) {
-                // 处理场景升级级别掩码数据
-                string_ptr2 = (char *)0x180d48d24;
-                if ((char *)node_ptr[1] != (char *)0x0) {
-                    string_ptr2 = (char *)node_ptr[1];
-                }
-                
-                // 计算字符串长度
-                do {
-                    temp_ulong2 = temp_ulong2 + 1;
-                } while (string_ptr2[temp_ulong2] != '\0');
-                
-                // 验证场景升级级别掩码值
-                if (((temp_ulong2 < 3) || (*string_ptr2 != '0')) ||
-                    (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                    temp_ptr2 = &UNK_180a063a0;
-                }
-                
-                FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint1);
-                if (stack_uint1 != 0) {
-                    temp_uint3 = 2;
-                    temp_uint1 = stack_uint1;
-                    
-                    // 处理每个升级级别
-                    do {
-                        if ((temp_uint1 & temp_uint3) != 0) {
-                            stack_ptr3 = &UNK_180a3c3e0;
-                            stack_data1 = 0;
-                            stack_ptr4 = (undefined4 *)0x0;
-                            stack_uint4 = 0;
-                            stack_ptr4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-                            *(undefined1 *)stack_ptr4 = 0;
-                            temp_uint2 = FUN_18064e990(stack_ptr4);
-                            *stack_ptr4 = 0x6576656c;
-                            *(undefined2 *)(stack_ptr4 + 1) = 0x5f6c;
-                            *(undefined1 *)((longlong)stack_ptr4 + 6) = 0;
-                            stack_uint4 = 6;
-                            stack_data1._0_4_ = temp_uint2;
-                            FUN_180628040(&stack_ptr3, &UNK_1809fd0a0, temp_int3);
-                            FUN_1803c2430(*(longlong *)(param_1 + 0x28) + 400, &stack_ptr9, &stack_ptr3);
-                            stack_ptr3 = &UNK_180a3c3e0;
-                            if (stack_ptr4 != (undefined4 *)0x0) {
-                                // 警告：子函数不返回
-                                FUN_18064e900();
-                            }
-                            stack_ptr4 = (undefined4 *)0x0;
-                            stack_data1 = (ulonglong)stack_data1._4_4_ << 0x20;
-                            stack_ptr3 = &UNK_18098bcb0;
-                            temp_uint1 = stack_uint1;
-                        }
-                        temp_int3 = temp_int3 + 1;
-                        temp_uint3 = temp_uint3 << 1 | (uint)((int)temp_uint3 < 0);
-                        param_2 = stack_long1;
-                    } while (temp_int3 < 4);
-                }
-                break;
-            }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23a98 - (longlong)string_ptr2;
-            while (*string_ptr2 == string_ptr2[data_offset1]) {
-                string_ptr2 = string_ptr2 + 1;
-                if (string_ptr1 <= string_ptr2) {
-                    string_ptr2 = (char *)0x180d48d24;
-                    if ((char *)node_ptr[1] != (char *)0x0) {
-                        string_ptr2 = (char *)node_ptr[1];
-                    }
-                    
-                    // 计算字符串长度
-                    do {
-                        temp_ulong2 = temp_ulong2 + 1;
-                    } while (string_ptr2[temp_ulong2] != '\0');
-                    
-                    // 验证场景升级级别掩码值
-                    if (((temp_ulong2 < 3) || (*string_ptr2 != '0')) ||
-                        (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                        temp_ptr2 = &UNK_180a063a0;
-                    }
-                    
-                    FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint1);
-                    if (stack_uint1 != 0) {
-                        temp_uint3 = 2;
-                        temp_uint1 = stack_uint1;
-                        
-                        // 处理每个升级级别
-                        do {
-                            if ((temp_uint1 & temp_uint3) != 0) {
-                                stack_ptr3 = &UNK_180a3c3e0;
-                                stack_data1 = 0;
-                                stack_ptr4 = (undefined4 *)0x0;
-                                stack_uint4 = 0;
-                                stack_ptr4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-                                *(undefined1 *)stack_ptr4 = 0;
-                                temp_uint2 = FUN_18064e990(stack_ptr4);
-                                *stack_ptr4 = 0x6576656c;
-                                *(undefined2 *)(stack_ptr4 + 1) = 0x5f6c;
-                                *(undefined1 *)((longlong)stack_ptr4 + 6) = 0;
-                                stack_uint4 = 6;
-                                stack_data1._0_4_ = temp_uint2;
-                                FUN_180628040(&stack_ptr3, &UNK_1809fd0a0, temp_int3);
-                                FUN_1803c2430(*(longlong *)(param_1 + 0x28) + 400, &stack_ptr9, &stack_ptr3);
-                                stack_ptr3 = &UNK_180a3c3e0;
-                                if (stack_ptr4 != (undefined4 *)0x0) {
-                                    // 警告：子函数不返回
-                                    FUN_18064e900();
-                                }
-                                stack_ptr4 = (undefined4 *)0x0;
-                                stack_data1 = (ulonglong)stack_data1._4_4_ << 0x20;
-                                stack_ptr3 = &UNK_18098bcb0;
-                                temp_uint1 = stack_uint1;
-                            }
-                            temp_int3 = temp_int3 + 1;
-                            temp_uint3 = temp_uint3 << 1 | (uint)((int)temp_uint3 < 0);
-                            param_2 = stack_long1;
-                        } while (temp_int3 < 4);
-                    }
-                    break;
-                }
-            }
-        }
-    }
-    
-    // 处理季节掩码
-    stack_array1[0] = 0xffffffff;
-    string_ptr2 = "season_mask";
-    
-    // 计算季节掩码名称长度
-    do {
-        string_ptr4 = string_ptr2;
-        string_ptr2 = string_ptr4 + 1;
-    } while (*string_ptr2 != '\0');
-    
-    // 遍历季节掩码数据节点
-    node_ptr = *(undefined8 **)(param_2 + 0x40);
-    
-    do {
-        if (node_ptr == (undefined8 *)0x0) {
-            // 场景状态最终验证
+        auStack_188[0] = 0xffffffff;
+        pcVar11 = "season_mask";
+        do {
+          pcVar16 = pcVar11;
+          pcVar11 = pcVar16 + 1;
+        } while (*pcVar11 != '\0');
+        puVar14 = *(undefined8 **)(param_2 + 0x40);
+        do {
+          if (puVar14 == (undefined8 *)0x0) {
+LAB_1803be5e2:
             if ((param_1[0x10] != 0) &&
-                ((*param_1 & *(byte *)(*(longlong *)(param_1 + 0x28) + 0x2e7)) == 0)) {
-                param_1[0x39] = 1;
+               ((*param_1 & *(byte *)(*(longlong *)(param_1 + 0x28) + 0x2e7)) == 0)) {
+              param_1[0x39] = 1;
             }
-            
-            // 清理栈数据
-            stack_ptr1 = &UNK_180a3c3e0;
-            if (stack_ptr2 != (undefined *)0x0) {
-                // 警告：子函数不返回
-                FUN_18064e900();
+            puStack_180 = &UNK_180a3c3e0;
+            if (puStack_178 != (undefined *)0x0) {
+                    // WARNING: Subroutine does not return
+              FUN_18064e900();
             }
-            stack_ptr2 = (undefined *)0x0;
-            stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-            stack_ptr1 = &UNK_18098bcb0;
-            stack_ptr5 = &UNK_180a3c3e0;
-            if (stack_ptr6 != (undefined *)0x0) {
-                // 警告：子函数不返回
-                FUN_18064e900();
+            puStack_178 = (undefined *)0x0;
+            uStack_168 = uStack_168 & 0xffffffff00000000;
+            puStack_180 = &UNK_18098bcb0;
+            puStack_138 = &UNK_180a3c3e0;
+            if (puStack_130 != (undefined *)0x0) {
+                    // WARNING: Subroutine does not return
+              FUN_18064e900();
             }
-            stack_ptr6 = (undefined *)0x0;
-            stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-            stack_ptr5 = &UNK_18098bcb0;
-            
-cleanup_section:
-            // 警告：子函数不返回
-            FUN_1808fc050(stack_ulong4 ^ (ulonglong)stack_buffer1);
-        }
-        
-        string_ptr2 = (char *)*node_ptr;
-        if (string_ptr2 == (char *)0x0) {
-            string_ptr2 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr3;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证季节掩码匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23a7f) {
-            string_ptr1 = string_ptr1 + (longlong)string_ptr2;
-            if (string_ptr1 <= string_ptr2) {
-                // 处理季节掩码数据
-                data_offset1 = 0x180d48d24;
-                if (node_ptr[1] != 0) {
-                    data_offset1 = node_ptr[1];
-                }
-                FUN_18010cbc0(data_offset1, &UNK_180a063a0, stack_array1);
-                *(undefined1 *)(*(longlong *)(param_1 + 0x28) + 0x2e7) = (undefined1)stack_array1[0];
-                
-                // 场景状态最终验证
-                if ((param_1[0x10] != 0) &&
-                    ((*param_1 & *(byte *)(*(longlong *)(param_1 + 0x28) + 0x2e7)) == 0)) {
-                    param_1[0x39] = 1;
-                }
-                
-                // 清理栈数据
-                stack_ptr1 = &UNK_180a3c3e0;
-                if (stack_ptr2 != (undefined *)0x0) {
-                    // 警告：子函数不返回
-                    FUN_18064e900();
-                }
-                stack_ptr2 = (undefined *)0x0;
-                stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-                stack_ptr1 = &UNK_18098bcb0;
-                stack_ptr5 = &UNK_180a3c3e0;
-                if (stack_ptr6 != (undefined *)0x0) {
-                    // 警告：子函数不返回
-                    FUN_18064e900();
-                }
-                stack_ptr6 = (undefined *)0x0;
-                stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-                stack_ptr5 = &UNK_18098bcb0;
-                
-                // 警告：子函数不返回
-                FUN_1808fc050(stack_ulong4 ^ (ulonglong)stack_buffer1);
+            puStack_130 = (undefined *)0x0;
+            uStack_120 = uStack_120 & 0xffffffff00000000;
+            puStack_138 = &UNK_18098bcb0;
+LAB_1803be64e:
+                    // WARNING: Subroutine does not return
+            FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1c8);
+          }
+          pcVar11 = (char *)*puVar14;
+          if (pcVar11 == (char *)0x0) {
+            pcVar11 = (char *)0x180d48d24;
+            pcVar7 = pcVar15;
+          }
+          else {
+            pcVar7 = (char *)puVar14[2];
+          }
+          if (pcVar7 == pcVar16 + -0x180a23a7f) {
+            pcVar7 = pcVar7 + (longlong)pcVar11;
+            if (pcVar7 <= pcVar11) {
+LAB_1803be5b4:
+              lVar8 = 0x180d48d24;
+              if (puVar14[1] != 0) {
+                lVar8 = puVar14[1];
+              }
+              FUN_18010cbc0(lVar8,&UNK_180a063a0,auStack_188);
+              *(undefined1 *)(*(longlong *)(param_1 + 0x28) + 0x2e7) = (undefined1)auStack_188[0];
+              goto LAB_1803be5e2;
             }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23a80 - (longlong)string_ptr2;
-            while (*string_ptr2 == string_ptr2[data_offset1]) {
-                string_ptr2 = string_ptr2 + 1;
-                if (string_ptr1 <= string_ptr2) {
-                    data_offset1 = 0x180d48d24;
-                    if (node_ptr[1] != 0) {
-                        data_offset1 = node_ptr[1];
-                    }
-                    FUN_18010cbc0(data_offset1, &UNK_180a063a0, stack_array1);
-                    *(undefined1 *)(*(longlong *)(param_1 + 0x28) + 0x2e7) = (undefined1)stack_array1[0];
-                    
-                    // 场景状态最终验证
-                    if ((param_1[0x10] != 0) &&
-                        ((*param_1 & *(byte *)(*(longlong *)(param_1 + 0x28) + 0x2e7)) == 0)) {
-                        param_1[0x39] = 1;
-                    }
-                    
-                    // 清理栈数据
-                    stack_ptr1 = &UNK_180a3c3e0;
-                    if (stack_ptr2 != (undefined *)0x0) {
-                        // 警告：子函数不返回
-                        FUN_18064e900();
-                    }
-                    stack_ptr2 = (undefined *)0x0;
-                    stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-                    stack_ptr1 = &UNK_18098bcb0;
-                    stack_ptr5 = &UNK_180a3c3e0;
-                    if (stack_ptr6 != (undefined *)0x0) {
-                        // 警告：子函数不返回
-                        FUN_18064e900();
-                    }
-                    stack_ptr6 = (undefined *)0x0;
-                    stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-                    stack_ptr5 = &UNK_18098bcb0;
-                    
-                    // 警告：子函数不返回
-                    FUN_1808fc050(stack_ulong4 ^ (ulonglong)stack_buffer1);
-                }
+            lVar8 = (longlong)&UNK_180a23a80 - (longlong)pcVar11;
+            while (*pcVar11 == pcVar11[lVar8]) {
+              pcVar11 = pcVar11 + 1;
+              if (pcVar7 <= pcVar11) goto LAB_1803be5b4;
             }
-        }
-        node_ptr = (undefined8 *)node_ptr[6];
-    } while (true);
-
-guid_validation_loop:
-    // GUID验证循环
-    while (true) {
-        temp_ptr1 = &DAT_18098bc73;
-        if (temp_ptr2 != (undefined *)0x0) {
-            temp_ptr1 = temp_ptr2;
-        }
-        if (temp_int2 == *(int *)((longlong)&stack_ptr9 + (longlong)string_ptr2 * 4) + -1) {
-            if (temp_ptr1[data_offset1] != '-') break;
-            string_ptr2 = string_ptr2 + 1;
-        } else {
-            temp_int1 = isxdigit();
-            temp_ptr2 = stack_ptr2;
-            if (temp_int1 == 0) break;
-        }
-        temp_int2 = temp_int2 + 1;
-        data_offset1 = data_offset1 + 1;
-        if (3 < (longlong)string_ptr2) break;
+          }
+          puVar14 = (undefined8 *)puVar14[6];
+        } while( true );
+      }
+      lVar8 = (longlong)&UNK_180a23a30 - (longlong)pcVar11;
+      while (*pcVar11 == pcVar11[lVar8]) {
+        pcVar11 = pcVar11 + 1;
+        if (pcVar7 <= pcVar11) goto LAB_1803be204;
+      }
     }
-    
-    // 处理GUID数据
-    data_offset1 = *(longlong *)(param_1 + 0x28);
-    stack_ptr7 = &UNK_1809fcc28;
-    stack_ptr8 = stack_buffer3;
-    stack_buffer3[0] = 0;
-    stack_int3 = stack_int1;
-    temp_ptr2 = &DAT_18098bc73;
-    if (stack_ptr2 != (undefined *)0x0) {
-        temp_ptr2 = stack_ptr2;
+    puVar14 = (undefined8 *)puVar14[6];
+  } while( true );
+LAB_1803be12a:
+  param_2 = lStack_160;
+  if (DAT_180c82860 == '\0') {
+    puVar5 = &DAT_18098bc73;
+    if (*(undefined **)(*(longlong *)(param_1 + 0x28) + 0x290) != (undefined *)0x0) {
+      puVar5 = *(undefined **)(*(longlong *)(param_1 + 0x28) + 0x290);
     }
-    strcpy_s(stack_buffer3, 0x80, temp_ptr2);
-    FUN_1802268c0(data_offset1 + 0x170, &stack_ptr7);
-    stack_ptr7 = &UNK_18098bcb0;
-    param_2 = stack_long1;
-    
-    // 继续处理预制件数据
-    stack_buffer2[0] = 1;
-    data_offset1 = FUN_180631000(param_2, &UNK_180a23a40, stack_buffer2);
-    if (data_offset1 != 0) {
-        FUN_1802ee720(*(undefined8 *)(param_1 + 0x28), stack_buffer2[0]);
+    puVar17 = &DAT_18098bc73;
+    if (puVar9 != (undefined *)0x0) {
+      puVar17 = puVar9;
     }
-    
-    // 处理移动性设置
-    string_ptr3 = (char *)0x0;
-    stack_uint2 = 0;
-    string_ptr2 = "mobility";
-    
-    // 计算移动性设置名称长度
-    do {
-        string_ptr4 = string_ptr2;
-        string_ptr2 = string_ptr4 + 1;
-    } while (*string_ptr2 != '\0');
-    
-    node_ptr = *(undefined8 **)(param_2 + 0x40);
-    temp_ulong2 = 0xffffffffffffffff;
-    
-    do {
-        if (node_ptr == (undefined8 *)0x0) goto cleanup_section;
-        string_ptr2 = (char *)*node_ptr;
-        if (string_ptr2 == (char *)0x0) {
-            string_ptr2 = (char *)0x180d48d24;
-            string_ptr1 = string_ptr3;
-        } else {
-            string_ptr1 = (char *)node_ptr[2];
-        }
-        
-        // 验证移动性设置匹配
-        if (string_ptr1 == string_ptr4 + -0x180a23a2f) {
-            string_ptr1 = string_ptr2 + (longlong)string_ptr1;
-            if (string_ptr1 <= string_ptr2) {
-                // 处理移动性设置数据
-                string_ptr2 = (char *)0x180d48d24;
-                if ((char *)node_ptr[1] != (char *)0x0) {
-                    string_ptr2 = (char *)node_ptr[1];
-                }
-                temp_ulong1 = 0xffffffffffffffff;
-                
-                // 计算字符串长度
-                do {
-                    temp_ulong1 = temp_ulong1 + 1;
-                } while (string_ptr2[temp_ulong1] != '\0');
-                
-                // 验证移动性设置值
-                if (((temp_ulong1 < 3) || (*string_ptr2 != '0')) ||
-                    (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                    temp_ptr2 = &UNK_180a063a0;
-                }
-                
-                FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint2);
-                temp_uint1 = stack_uint2;
-                data_offset1 = *(longlong *)(param_1 + 0x28);
-                *(char *)(data_offset1 + 0x2e4) = (char)stack_uint2;
-                
-                // 应用移动性设置
-                string_ptr2 = string_ptr3;
-                string_ptr4 = string_ptr3;
-                if (*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3 != 0) {
-                    do {
-                        temp_int2 = (int)string_ptr4;
-                        FUN_1802e8580(*(undefined8 *)(string_ptr2 + *(longlong *)(data_offset1 + 0x1c0)), 
-                                    temp_uint1 & 0xff, 1);
-                        string_ptr2 = string_ptr2 + 8;
-                        string_ptr4 = (char *)(ulonglong)(temp_int2 + 1U);
-                    } while ((ulonglong)(longlong)(temp_int2 + 1U) <
-                             (ulonglong)(*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3));
-                }
-            }
-            
-            // 字符串比较
-            data_offset1 = (longlong)&UNK_180a23a30 - (longlong)string_ptr2;
-            while (*string_ptr2 == string_ptr2[data_offset1]) {
-                string_ptr2 = string_ptr2 + 1;
-                if (string_ptr1 <= string_ptr2) {
-                    // 处理移动性设置数据
-                    string_ptr2 = (char *)0x180d48d24;
-                    if ((char *)node_ptr[1] != (char *)0x0) {
-                        string_ptr2 = (char *)node_ptr[1];
-                    }
-                    temp_ulong1 = 0xffffffffffffffff;
-                    
-                    // 计算字符串长度
-                    do {
-                        temp_ulong1 = temp_ulong1 + 1;
-                    } while (string_ptr2[temp_ulong1] != '\0');
-                    
-                    // 验证移动性设置值
-                    if (((temp_ulong1 < 3) || (*string_ptr2 != '0')) ||
-                        (temp_ptr2 = &UNK_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-                        temp_ptr2 = &UNK_180a063a0;
-                    }
-                    
-                    FUN_18010cbc0(string_ptr2, temp_ptr2, &stack_uint2);
-                    temp_uint1 = stack_uint2;
-                    data_offset1 = *(longlong *)(param_1 + 0x28);
-                    *(char *)(data_offset1 + 0x2e4) = (char)stack_uint2;
-                    
-                    // 应用移动性设置
-                    string_ptr2 = string_ptr3;
-                    string_ptr4 = string_ptr3;
-                    if (*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3 != 0) {
-                        do {
-                            temp_int2 = (int)string_ptr4;
-                            FUN_1802e8580(*(undefined8 *)(string_ptr2 + *(longlong *)(data_offset1 + 0x1c0)), 
-                                        temp_uint1 & 0xff, 1);
-                            string_ptr2 = string_ptr2 + 8;
-                            string_ptr4 = (char *)(ulonglong)(temp_int2 + 1U);
-                        } while ((ulonglong)(longlong)(temp_int2 + 1U) <
-                                 (ulonglong)(*(longlong *)(data_offset1 + 0x1c8) - *(longlong *)(data_offset1 + 0x1c0) >> 3));
-                    }
-                    break;
-                }
-            }
-        }
-        node_ptr = (undefined8 *)node_ptr[6];
-    } while (true);
+    FUN_180627020(&UNK_180a23a48,puVar17,puVar5);
+    param_2 = lStack_160;
+  }
+  goto LAB_1803be163;
 }
 
-// =============================================================================
-// 辅助函数实现
-// =============================================================================
 
-/**
- * @brief 验证GUID格式
- * 
- * 验证GUID字符串是否符合标准格式
- * 
- * @param guid 要验证的GUID字符串
- * @return true 如果格式正确，false 如果格式错误
- */
-static bool validate_guid_format(const char* guid)
-{
-    if (guid == NULL) return false;
-    
-    // 基本长度验证
-    size_t len = strlen(guid);
-    if (len != 36) return false;
-    
-    // 格式验证：8-4-4-4-12 格式
-    for (int i = 0; i < 36; i++) {
-        if (i == 8 || i == 13 || i == 18 || i == 23) {
-            if (guid[i] != '-') return false;
-        } else {
-            if (!isxdigit(guid[i])) return false;
-        }
-    }
-    
-    return true;
-}
 
-/**
- * @brief 验证预制件名称
- * 
- * 验证预制件名称是否符合规范
- * 
- * @param name 要验证的预制件名称
- * @return true 如果名称有效，false 如果名称无效
- */
-static bool validate_prefab_name(const char* name)
-{
-    if (name == NULL) return false;
-    
-    size_t len = strlen(name);
-    if (len == 0 || len > MAX_PREFAB_NAME_LENGTH) return false;
-    
-    // 验证名称字符
-    for (size_t i = 0; i < len; i++) {
-        if (!isalnum(name[i]) && name[i] != '_' && name[i] != '-') {
-            return false;
-        }
-    }
-    
-    return true;
-}
 
-/**
- * @brief 处理场景层级数据
- * 
- * 处理和解析场景层级数据结构
- * 
- * @param scene_data 场景数据指针
- * @param level_info 层级信息指针
- */
-static void process_scene_level_data(void* scene_data, void* level_info)
-{
-    if (scene_data == NULL || level_info == NULL) return;
-    
-    // 调用核心处理函数
-    SceneLevelDataProcessor((longlong)scene_data, (longlong)level_info);
-}
 
-/**
- * @brief 设置移动性配置
- * 
- * 配置场景对象的移动性设置
- * 
- * @param scene_obj 场景对象指针
- * @param mobility_flags 移动性标志位
- */
-static void setup_mobility_settings(void* scene_obj, uint32_t mobility_flags)
-{
-    if (scene_obj == NULL) return;
-    
-    // 应用移动性设置到场景对象
-    // 这里会调用相应的系统函数来设置移动性
-}
 
-/**
- * @brief 配置LOD偏置因子
- * 
- * 设置场景对象的LOD偏置因子
- * 
- * @param scene_obj 场景对象指针
- * @param bias_factor 偏置因子值
- */
-static void configure_lod_bias_factor(void* scene_obj, float bias_factor)
-{
-    if (scene_obj == NULL) return;
-    
-    // 应用LOD偏置因子到场景对象
-    // 这里会调用相应的系统函数来设置LOD偏置
-}
-
-/**
- * @brief 处理场景升级掩码
- * 
- * 处理场景对象的升级级别掩码
- * 
- * @param scene_obj 场景对象指针
- * @param upgrade_mask 升级掩码值
- */
-static void process_scene_upgrade_mask(void* scene_obj, uint32_t upgrade_mask)
-{
-    if (scene_obj == NULL) return;
-    
-    // 应用升级掩码到场景对象
-    // 这里会处理每个升级级别并设置相应的属性
-}
-
-/**
- * @brief 配置季节掩码
- * 
- * 设置场景对象的季节掩码
- * 
- * @param scene_obj 场景对象指针
- * @param season_mask 季节掩码值
- */
-static void configure_season_mask(void* scene_obj, uint32_t season_mask)
-{
-    if (scene_obj == NULL) return;
-    
-    // 应用季节掩码到场景对象
-    // 这里会设置场景对象在不同季节的显示属性
-}
-
-// =============================================================================
-// 技术说明
-// =============================================================================
-
-/*
- * 技术实现说明：
- * 
- * 1. 内存管理：
- *    - 使用栈内存进行局部变量存储
- *    - 动态内存分配通过系统函数管理
- *    - 资源清理在函数退出时自动处理
- * 
- * 2. 数据结构：
- *    - 使用链表结构管理场景层级数据
- *    - 使用哈希表进行快速查找和验证
- *    - 使用位掩码进行状态管理
- * 
- * 3. 字符串处理：
- *    - 支持多种字符串编码格式
- *    - 实现字符串长度计算和比较
- *    - 支持动态字符串拼接和处理
- * 
- * 4. 错误处理：
- *    - 使用状态码进行错误指示
- *    - 实现资源清理和恢复机制
- *    - 支持异常情况的优雅处理
- * 
- * 5. 性能优化：
- *    - 使用位运算提高处理效率
- *    - 实现缓存机制减少重复计算
- *    - 使用循环展开提高性能
- * 
- * 6. 安全性：
- *    - 实现输入验证和边界检查
- *    - 防止缓冲区溢出和内存泄漏
- *    - 支持安全的数据传输和处理
- */

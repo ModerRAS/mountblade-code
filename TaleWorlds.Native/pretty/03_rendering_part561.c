@@ -23,10 +23,7 @@
  * @date 2024
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
+#include "TaleWorlds.Native.Split.h"
 
 // 渲染系统常量定义
 #define RENDERING_SYSTEM_FLOAT_ONE 0x3f800000    // 1.0f

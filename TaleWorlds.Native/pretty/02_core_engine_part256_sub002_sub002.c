@@ -1,184 +1,906 @@
-/**
- * @file 02_core_engine_part256_sub002_sub002.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 02_core_engine_part256_sub002_sub002.c - 1 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_180220fe0(longlong param_1)
+void FUN_180220fe0(longlong param_1)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  int iVar1;
+  int iVar2;
+  longlong lVar3;
+  undefined4 uStack_130;
+  undefined4 uStack_120;
+  undefined4 uStack_110;
+  undefined4 uStack_100;
+  undefined4 uStack_f0;
+  undefined4 uStack_e0;
+  undefined4 uStack_d0;
+  undefined4 uStack_c0;
+  undefined4 uStack_b0;
+  undefined4 uStack_a0;
+  undefined4 uStack_90;
+  
+  lVar3 = (longlong)*(int *)(param_1 + 0x70);
+  *(int *)(param_1 + 0x8c) = *(int *)(param_1 + 0x70);
+  *(undefined4 *)(param_1 + 0xb0 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0x128 + lVar3 * 0xc) = 0xc00000005;
+  uStack_130 = CONCAT31(uStack_130._1_3_,1);
+  *(undefined4 *)(param_1 + 0x130 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0xe8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x228) = *(longlong *)(param_1 + 0x228) + 0xc;
+  *(undefined4 *)(param_1 + 0x1e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x74);
+  iVar2 = *(int *)(param_1 + 0x70);
+  *(int *)(param_1 + 0x74) = *(int *)(param_1 + 0x74) + 1;
+  iVar1 = iVar2 + 1;
+  *(int *)(param_1 + 0x70) = iVar1;
+  lVar3 = (longlong)iVar2 + 1;
+  *(int *)(param_1 + 0x78) = iVar1;
+  uStack_120 = CONCAT31(uStack_120._1_3_,1);
+  *(undefined4 *)(param_1 + 0xb0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x128 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x130 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0xe8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x228) = *(longlong *)(param_1 + 0x228) + 4;
+  *(undefined4 *)(param_1 + 0x1e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x74);
+  iVar2 = *(int *)(param_1 + 0x70);
+  *(int *)(param_1 + 0x74) = *(int *)(param_1 + 0x74) + 1;
+  iVar1 = iVar2 + 1;
+  *(int *)(param_1 + 0x70) = iVar1;
+  lVar3 = (longlong)iVar2 + 1;
+  *(int *)(param_1 + 0x80) = iVar1;
+  uStack_110 = CONCAT31(uStack_110._1_3_,1);
+  *(undefined4 *)(param_1 + 0xb0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x128 + lVar3 * 0xc) = 0x800000002;
+  uStack_b0 = CONCAT31(uStack_b0._1_3_,1);
+  uStack_90 = CONCAT31(uStack_90._1_3_,1);
+  uStack_100 = CONCAT31(uStack_100._1_3_,1);
+  uStack_d0 = uStack_d0 & 0xffffff00;
+  uStack_c0 = uStack_c0 & 0xffffff00;
+  uStack_e0 = CONCAT31(uStack_e0._1_3_,1);
+  uStack_a0 = uStack_a0 & 0xffffff00;
+  uStack_f0 = CONCAT31(uStack_f0._1_3_,1);
+  *(undefined4 *)(param_1 + 0x130 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0xe8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x228) = *(longlong *)(param_1 + 0x228) + 8;
+  *(undefined4 *)(param_1 + 0x1e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x74);
+  *(int *)(param_1 + 0x74) = *(int *)(param_1 + 0x74) + 1;
+  iVar2 = *(int *)(param_1 + 0x70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x70) + 1;
+  *(int *)(param_1 + 0x70) = iVar2;
+  *(int *)(param_1 + 0xac) = iVar2;
+  *(undefined4 *)(param_1 + 0xb0 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x128 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x130 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0xe8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x228) = *(longlong *)(param_1 + 0x228) + 8;
+  *(undefined4 *)(param_1 + 0x1e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x74);
+  *(int *)(param_1 + 0x74) = *(int *)(param_1 + 0x74) + 1;
+  *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x230);
+  *(int *)(param_1 + 0x24c) = *(int *)(param_1 + 0x230);
+  *(undefined4 *)(param_1 + 0x270 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0x2e8 + lVar3 * 0xc) = 0xc00000005;
+  *(undefined4 *)(param_1 + 0x2f0 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0x2a8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 1000) = *(longlong *)(param_1 + 1000) + 0xc;
+  *(undefined4 *)(param_1 + 0x3a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x234);
+  *(int *)(param_1 + 0x234) = *(int *)(param_1 + 0x234) + 1;
+  iVar2 = *(int *)(param_1 + 0x230) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x230) + 1;
+  *(int *)(param_1 + 0x230) = iVar2;
+  *(int *)(param_1 + 0x238) = iVar2;
+  *(undefined4 *)(param_1 + 0x270 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x2e8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x2f0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x2a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 1000) = *(longlong *)(param_1 + 1000) + 4;
+  *(undefined4 *)(param_1 + 0x3a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x234);
+  *(int *)(param_1 + 0x234) = *(int *)(param_1 + 0x234) + 1;
+  iVar2 = *(int *)(param_1 + 0x230) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x230) + 1;
+  *(int *)(param_1 + 0x230) = iVar2;
+  *(int *)(param_1 + 0x240) = iVar2;
+  *(undefined4 *)(param_1 + 0x270 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x2e8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x2f0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x2a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 1000) = *(longlong *)(param_1 + 1000) + 8;
+  *(undefined4 *)(param_1 + 0x3a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x234);
+  *(int *)(param_1 + 0x234) = *(int *)(param_1 + 0x234) + 1;
+  iVar2 = *(int *)(param_1 + 0x230) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x230) + 1;
+  *(int *)(param_1 + 0x230) = iVar2;
+  *(int *)(param_1 + 0x26c) = iVar2;
+  *(undefined4 *)(param_1 + 0x270 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x2e8 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x2f0 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0x2a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 1000) = *(longlong *)(param_1 + 1000) + 8;
+  *(undefined4 *)(param_1 + 0x3a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x234);
+  *(int *)(param_1 + 0x234) = *(int *)(param_1 + 0x234) + 1;
+  *(int *)(param_1 + 0x230) = *(int *)(param_1 + 0x230) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x3f0);
+  *(int *)(param_1 + 0x424) = *(int *)(param_1 + 0x3f0);
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 0xb;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x80000000b;
+  *(undefined4 *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_f0;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 8;
+  *(undefined4 *)(param_1 + 0x568 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x3f4);
+  *(int *)(param_1 + 0x3f4) = *(int *)(param_1 + 0x3f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x3f0);
+  iVar1 = iVar2 + 1;
+  *(int *)(param_1 + 0x3f0) = iVar1;
+  lVar3 = (longlong)iVar2 + 1;
+  *(int *)(param_1 + 0x420) = iVar1;
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 4;
+  *(undefined4 *)(param_1 + 0x568 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x3f4);
+  *(int *)(param_1 + 0x3f4) = *(int *)(param_1 + 0x3f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x3f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x3f0) + 1;
+  *(int *)(param_1 + 0x3f0) = iVar2;
+  *(int *)(param_1 + 0x3f8) = iVar2;
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 4;
+  *(undefined4 *)(param_1 + 0x568 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x3f4);
+  *(int *)(param_1 + 0x3f4) = *(int *)(param_1 + 0x3f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x3f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x3f0) + 1;
+  *(int *)(param_1 + 0x3f0) = iVar2;
+  *(int *)(param_1 + 0x400) = iVar2;
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 8;
+  *(undefined4 *)(param_1 + 0x568 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x3f4);
+  *(int *)(param_1 + 0x3f4) = *(int *)(param_1 + 0x3f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x3f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x3f0) + 1;
+  *(int *)(param_1 + 0x3f0) = iVar2;
+  *(int *)(param_1 + 0x418) = iVar2;
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 4;
+  iVar2 = *(int *)(param_1 + 0x3f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x3f0) + 1;
+  *(int *)(param_1 + 0x3f0) = iVar2;
+  *(int *)(param_1 + 0x41c) = iVar2;
+  *(undefined4 *)(param_1 + 0x430 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x4a8 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x4b0 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x468 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x5a8) = *(longlong *)(param_1 + 0x5a8) + 4;
+  *(int *)(param_1 + 0x3f0) = *(int *)(param_1 + 0x3f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570);
+  *(int *)(param_1 + 0x1588) = *(int *)(param_1 + 0x1570);
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 4;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0xc00000004;
+  *(undefined4 *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_b0;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 0xc;
+  *(undefined4 *)(param_1 + 0x16e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1574);
+  *(int *)(param_1 + 0x1574) = *(int *)(param_1 + 0x1574) + 1;
+  iVar2 = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570) + 1;
+  *(int *)(param_1 + 0x1570) = iVar2;
+  *(int *)(param_1 + 0x15a0) = iVar2;
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 4;
+  *(undefined4 *)(param_1 + 0x16e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1574);
+  *(int *)(param_1 + 0x1574) = *(int *)(param_1 + 0x1574) + 1;
+  iVar2 = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570) + 1;
+  *(int *)(param_1 + 0x1570) = iVar2;
+  *(int *)(param_1 + 0x1578) = iVar2;
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 4;
+  *(undefined4 *)(param_1 + 0x16e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1574);
+  *(int *)(param_1 + 0x1574) = *(int *)(param_1 + 0x1574) + 1;
+  iVar2 = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570) + 1;
+  *(int *)(param_1 + 0x1570) = iVar2;
+  *(int *)(param_1 + 0x1580) = iVar2;
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 8;
+  *(undefined4 *)(param_1 + 0x16e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1574);
+  *(int *)(param_1 + 0x1574) = *(int *)(param_1 + 0x1574) + 1;
+  iVar2 = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570) + 1;
+  *(int *)(param_1 + 0x1570) = iVar2;
+  *(int *)(param_1 + 0x1598) = iVar2;
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 4;
+  iVar2 = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1570) + 1;
+  *(int *)(param_1 + 0x1570) = iVar2;
+  *(int *)(param_1 + 0x159c) = iVar2;
+  *(undefined4 *)(param_1 + 0x15b0 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x1628 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x1630 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x15e8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1728) = *(longlong *)(param_1 + 0x1728) + 4;
+  *(int *)(param_1 + 0x1570) = *(int *)(param_1 + 0x1570) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0);
+  *(int *)(param_1 + 0x5e4) = *(int *)(param_1 + 0x5b0);
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 0xb;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x80000000b;
+  *(undefined4 *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_f0;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 8;
+  *(undefined4 *)(param_1 + 0x728 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x5b4);
+  *(int *)(param_1 + 0x5b4) = *(int *)(param_1 + 0x5b4) + 1;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5e0) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 4;
+  *(undefined4 *)(param_1 + 0x728 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x5b4);
+  *(int *)(param_1 + 0x5b4) = *(int *)(param_1 + 0x5b4) + 1;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5b8) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 4;
+  *(undefined4 *)(param_1 + 0x728 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x5b4);
+  *(int *)(param_1 + 0x5b4) = *(int *)(param_1 + 0x5b4) + 1;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5c0) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 8;
+  *(undefined4 *)(param_1 + 0x728 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x5b4);
+  *(int *)(param_1 + 0x5b4) = *(int *)(param_1 + 0x5b4) + 1;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5d8) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 4;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5dc) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 4;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5e8) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 0xc;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x40000000c;
+  *(uint *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_a0;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 4;
+  iVar2 = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x5b0) + 1;
+  *(int *)(param_1 + 0x5b0) = iVar2;
+  *(int *)(param_1 + 0x5ec) = iVar2;
+  *(undefined4 *)(param_1 + 0x5f0 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x668 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x670 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0x628 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x768) = *(longlong *)(param_1 + 0x768) + 8;
+  *(undefined4 *)(param_1 + 0x728 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x5b4);
+  *(int *)(param_1 + 0x5b4) = *(int *)(param_1 + 0x5b4) + 1;
+  *(int *)(param_1 + 0x5b0) = *(int *)(param_1 + 0x5b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730);
+  *(int *)(param_1 + 0x1748) = *(int *)(param_1 + 0x1730);
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 4;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0xc00000004;
+  *(undefined4 *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_b0;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 0xc;
+  *(undefined4 *)(param_1 + 0x18a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1734);
+  *(int *)(param_1 + 0x1734) = *(int *)(param_1 + 0x1734) + 1;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x1760) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 4;
+  *(undefined4 *)(param_1 + 0x18a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1734);
+  *(int *)(param_1 + 0x1734) = *(int *)(param_1 + 0x1734) + 1;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x1738) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 4;
+  *(undefined4 *)(param_1 + 0x18a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1734);
+  *(int *)(param_1 + 0x1734) = *(int *)(param_1 + 0x1734) + 1;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x1740) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 8;
+  *(undefined4 *)(param_1 + 0x18a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1734);
+  *(int *)(param_1 + 0x1734) = *(int *)(param_1 + 0x1734) + 1;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x1758) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 4;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x175c) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 4;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x1768) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 0xc;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x40000000c;
+  *(uint *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_a0;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 4;
+  iVar2 = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1730) + 1;
+  *(int *)(param_1 + 0x1730) = iVar2;
+  *(int *)(param_1 + 0x176c) = iVar2;
+  *(undefined4 *)(param_1 + 6000 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x17e8 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x17f0 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0x17a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x18e8) = *(longlong *)(param_1 + 0x18e8) + 8;
+  *(undefined4 *)(param_1 + 0x18a8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1734);
+  *(int *)(param_1 + 0x1734) = *(int *)(param_1 + 0x1734) + 1;
+  *(int *)(param_1 + 0x1730) = *(int *)(param_1 + 0x1730) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x930);
+  *(int *)(param_1 + 0x94c) = *(int *)(param_1 + 0x930);
+  *(undefined4 *)(param_1 + 0x970 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0x9e8 + lVar3 * 0xc) = 0xc00000005;
+  *(undefined4 *)(param_1 + 0x9f0 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0x9a8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0xae8) = *(longlong *)(param_1 + 0xae8) + 0xc;
+  *(undefined4 *)(param_1 + 0xaa8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x934);
+  *(int *)(param_1 + 0x934) = *(int *)(param_1 + 0x934) + 1;
+  iVar2 = *(int *)(param_1 + 0x930) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x930) + 1;
+  *(int *)(param_1 + 0x930) = iVar2;
+  *(int *)(param_1 + 0x938) = iVar2;
+  *(undefined4 *)(param_1 + 0x970 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x9e8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x9f0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x9a8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xae8) = *(longlong *)(param_1 + 0xae8) + 4;
+  *(undefined4 *)(param_1 + 0xaa8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x934);
+  *(int *)(param_1 + 0x934) = *(int *)(param_1 + 0x934) + 1;
+  iVar2 = *(int *)(param_1 + 0x930) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x930) + 1;
+  *(int *)(param_1 + 0x930) = iVar2;
+  *(int *)(param_1 + 0x940) = iVar2;
+  *(undefined4 *)(param_1 + 0x970 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x9e8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x9f0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x9a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xae8) = *(longlong *)(param_1 + 0xae8) + 8;
+  *(undefined4 *)(param_1 + 0xaa8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x934);
+  *(int *)(param_1 + 0x934) = *(int *)(param_1 + 0x934) + 1;
+  iVar2 = *(int *)(param_1 + 0x930) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x930) + 1;
+  *(int *)(param_1 + 0x930) = iVar2;
+  *(int *)(param_1 + 0x944) = iVar2;
+  *(undefined4 *)(param_1 + 0x970 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0x9e8 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0x9f0 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0x9a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xae8) = *(longlong *)(param_1 + 0xae8) + 8;
+  *(undefined4 *)(param_1 + 0xaa8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x934);
+  *(int *)(param_1 + 0x934) = *(int *)(param_1 + 0x934) + 1;
+  iVar2 = *(int *)(param_1 + 0x930) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x930) + 1;
+  *(int *)(param_1 + 0x930) = iVar2;
+  *(int *)(param_1 + 0x96c) = iVar2;
+  *(undefined4 *)(param_1 + 0x970 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x9e8 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x9f0 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0x9a8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xae8) = *(longlong *)(param_1 + 0xae8) + 8;
+  *(undefined4 *)(param_1 + 0xaa8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x934);
+  *(int *)(param_1 + 0x934) = *(int *)(param_1 + 0x934) + 1;
+  *(int *)(param_1 + 0x930) = *(int *)(param_1 + 0x930) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xaf0);
+  *(int *)(param_1 + 0xb0c) = *(int *)(param_1 + 0xaf0);
+  *(undefined4 *)(param_1 + 0xb30 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0xba8 + lVar3 * 0xc) = 0xc00000005;
+  *(undefined4 *)(param_1 + 0xbb0 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0xb68 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0xca8) = *(longlong *)(param_1 + 0xca8) + 0xc;
+  *(undefined4 *)(param_1 + 0xc68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xaf4);
+  *(int *)(param_1 + 0xaf4) = *(int *)(param_1 + 0xaf4) + 1;
+  iVar2 = *(int *)(param_1 + 0xaf0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xaf0) + 1;
+  *(int *)(param_1 + 0xaf0) = iVar2;
+  *(int *)(param_1 + 0xaf8) = iVar2;
+  *(undefined4 *)(param_1 + 0xb30 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0xba8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0xbb0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0xb68 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xca8) = *(longlong *)(param_1 + 0xca8) + 4;
+  *(undefined4 *)(param_1 + 0xc68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xaf4);
+  *(int *)(param_1 + 0xaf4) = *(int *)(param_1 + 0xaf4) + 1;
+  iVar2 = *(int *)(param_1 + 0xaf0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xaf0) + 1;
+  *(int *)(param_1 + 0xaf0) = iVar2;
+  *(int *)(param_1 + 0xb00) = iVar2;
+  *(undefined4 *)(param_1 + 0xb30 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0xba8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0xbb0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0xb68 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xca8) = *(longlong *)(param_1 + 0xca8) + 8;
+  *(undefined4 *)(param_1 + 0xc68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xaf4);
+  *(int *)(param_1 + 0xaf4) = *(int *)(param_1 + 0xaf4) + 1;
+  iVar2 = *(int *)(param_1 + 0xaf0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xaf0) + 1;
+  *(int *)(param_1 + 0xaf0) = iVar2;
+  *(int *)(param_1 + 0xb04) = iVar2;
+  *(undefined4 *)(param_1 + 0xb30 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0xba8 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0xbb0 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0xb68 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xca8) = *(longlong *)(param_1 + 0xca8) + 8;
+  *(undefined4 *)(param_1 + 0xc68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xaf4);
+  *(int *)(param_1 + 0xaf4) = *(int *)(param_1 + 0xaf4) + 1;
+  iVar2 = *(int *)(param_1 + 0xaf0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xaf0) + 1;
+  *(int *)(param_1 + 0xaf0) = iVar2;
+  *(int *)(param_1 + 0xb2c) = iVar2;
+  *(undefined4 *)(param_1 + 0xb30 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0xba8 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0xbb0 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0xb68 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xca8) = *(longlong *)(param_1 + 0xca8) + 8;
+  *(undefined4 *)(param_1 + 0xc68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xaf4);
+  *(int *)(param_1 + 0xaf4) = *(int *)(param_1 + 0xaf4) + 1;
+  *(int *)(param_1 + 0xaf0) = *(int *)(param_1 + 0xaf0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0);
+  *(int *)(param_1 + 0xce4) = *(int *)(param_1 + 0xcb0);
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 0xb;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x80000000b;
+  *(undefined4 *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_f0;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 8;
+  *(undefined4 *)(param_1 + 0xe28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xcb4);
+  *(int *)(param_1 + 0xcb4) = *(int *)(param_1 + 0xcb4) + 1;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xce0) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 4;
+  *(undefined4 *)(param_1 + 0xe28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xcb4);
+  *(int *)(param_1 + 0xcb4) = *(int *)(param_1 + 0xcb4) + 1;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xcb8) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 4;
+  *(undefined4 *)(param_1 + 0xe28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xcb4);
+  *(int *)(param_1 + 0xcb4) = *(int *)(param_1 + 0xcb4) + 1;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xcc0) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 8;
+  *(undefined4 *)(param_1 + 0xe28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xcb4);
+  *(int *)(param_1 + 0xcb4) = *(int *)(param_1 + 0xcb4) + 1;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xcc4) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 8;
+  *(undefined4 *)(param_1 + 0xe28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xcb4);
+  *(int *)(param_1 + 0xcb4) = *(int *)(param_1 + 0xcb4) + 1;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xcd8) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 4;
+  iVar2 = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xcb0) + 1;
+  *(int *)(param_1 + 0xcb0) = iVar2;
+  *(int *)(param_1 + 0xcdc) = iVar2;
+  *(undefined4 *)(param_1 + 0xcf0 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0xd68 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0xd70 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0xd28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0xe68) = *(longlong *)(param_1 + 0xe68) + 4;
+  *(int *)(param_1 + 0xcb0) = *(int *)(param_1 + 0xcb0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0);
+  *(int *)(param_1 + 0x1908) = *(int *)(param_1 + 0x18f0);
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 4;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0xc00000004;
+  *(undefined4 *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_b0;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 0xc;
+  *(undefined4 *)(param_1 + 0x1a68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x18f4);
+  *(int *)(param_1 + 0x18f4) = *(int *)(param_1 + 0x18f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x1920) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 4;
+  *(undefined4 *)(param_1 + 0x1a68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x18f4);
+  *(int *)(param_1 + 0x18f4) = *(int *)(param_1 + 0x18f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x18f8) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 4;
+  *(undefined4 *)(param_1 + 0x1a68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x18f4);
+  *(int *)(param_1 + 0x18f4) = *(int *)(param_1 + 0x18f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x1900) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 8;
+  *(undefined4 *)(param_1 + 0x1a68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x18f4);
+  *(int *)(param_1 + 0x18f4) = *(int *)(param_1 + 0x18f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x1904) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 8;
+  *(undefined4 *)(param_1 + 0x1a68 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x18f4);
+  *(int *)(param_1 + 0x18f4) = *(int *)(param_1 + 0x18f4) + 1;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x1918) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 4;
+  iVar2 = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x18f0) + 1;
+  *(int *)(param_1 + 0x18f0) = iVar2;
+  *(int *)(param_1 + 0x191c) = iVar2;
+  *(undefined4 *)(param_1 + 0x1930 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x19a8 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x19b0 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x1968 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1aa8) = *(longlong *)(param_1 + 0x1aa8) + 4;
+  *(int *)(param_1 + 0x18f0) = *(int *)(param_1 + 0x18f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70);
+  *(int *)(param_1 + 0xea4) = *(int *)(param_1 + 0xe70);
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 0xb;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x80000000b;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_f0;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 8;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xea0) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 4;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xe78) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 4;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xe80) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 8;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xe84) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 8;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xe98) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 4;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xe9c) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 4;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xea8) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 0xc;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x40000000c;
+  *(uint *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_a0;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 4;
+  iVar2 = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0xe70) + 1;
+  *(int *)(param_1 + 0xe70) = iVar2;
+  *(int *)(param_1 + 0xeac) = iVar2;
+  *(undefined4 *)(param_1 + 0xeb0 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0xf28 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0xf30 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0xee8 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1028) = *(longlong *)(param_1 + 0x1028) + 8;
+  *(undefined4 *)(param_1 + 0xfe8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0xe74);
+  *(int *)(param_1 + 0xe74) = *(int *)(param_1 + 0xe74) + 1;
+  *(int *)(param_1 + 0xe70) = *(int *)(param_1 + 0xe70) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0);
+  *(int *)(param_1 + 0x1ac8) = *(int *)(param_1 + 0x1ab0);
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 4;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0xc00000004;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_b0;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 0xc;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ae0) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 10;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x40000000a;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_e0;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 4;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ab8) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 4;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ac0) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 8;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ac4) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 3;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x800000003;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_90;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 8;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ad8) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 8;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x400000008;
+  *(uint *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_d0;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 4;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1adc) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 9;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x400000009;
+  *(uint *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_c0;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 4;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1ae8) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 0xc;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x40000000c;
+  *(uint *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_a0;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 4;
+  iVar2 = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x1ab0) + 1;
+  *(int *)(param_1 + 0x1ab0) = iVar2;
+  *(int *)(param_1 + 0x1aec) = iVar2;
+  *(undefined4 *)(param_1 + 0x1af0 + lVar3 * 4) = 0xd;
+  *(undefined8 *)(param_1 + 0x1b68 + lVar3 * 0xc) = 0x80000000d;
+  *(undefined4 *)(param_1 + 0x1b70 + lVar3 * 0xc) = uStack_100;
+  *(undefined4 *)(param_1 + 0x1b28 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1c68) = *(longlong *)(param_1 + 0x1c68) + 8;
+  *(undefined4 *)(param_1 + 0x1c28 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x1ab4);
+  *(int *)(param_1 + 0x1ab4) = *(int *)(param_1 + 0x1ab4) + 1;
+  *(int *)(param_1 + 0x1ab0) = *(int *)(param_1 + 0x1ab0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x770);
+  *(int *)(param_1 + 0x788) = *(int *)(param_1 + 0x770);
+  *(undefined4 *)(param_1 + 0x7b0 + lVar3 * 4) = 4;
+  *(undefined8 *)(param_1 + 0x828 + lVar3 * 0xc) = 0xc00000004;
+  *(undefined4 *)(param_1 + 0x830 + lVar3 * 0xc) = uStack_b0;
+  *(undefined4 *)(param_1 + 0x7e8 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x928) = *(longlong *)(param_1 + 0x928) + 0xc;
+  *(undefined4 *)(param_1 + 0x8e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x774);
+  *(int *)(param_1 + 0x774) = *(int *)(param_1 + 0x774) + 1;
+  iVar2 = *(int *)(param_1 + 0x770) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x770) + 1;
+  *(int *)(param_1 + 0x770) = iVar2;
+  *(int *)(param_1 + 0x778) = iVar2;
+  *(undefined4 *)(param_1 + 0x7b0 + lVar3 * 4) = 0;
+  *(undefined8 *)(param_1 + 0x828 + lVar3 * 0xc) = 0x400000000;
+  *(undefined4 *)(param_1 + 0x830 + lVar3 * 0xc) = uStack_120;
+  *(undefined4 *)(param_1 + 0x7e8 + lVar3 * 4) = 4;
+  *(longlong *)(param_1 + 0x928) = *(longlong *)(param_1 + 0x928) + 4;
+  *(undefined4 *)(param_1 + 0x8e8 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x774);
+  *(int *)(param_1 + 0x774) = *(int *)(param_1 + 0x774) + 1;
+  *(int *)(param_1 + 0x770) = *(int *)(param_1 + 0x770) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x11f0);
+  *(int *)(param_1 + 0x120c) = *(int *)(param_1 + 0x11f0);
+  *(undefined4 *)(param_1 + 0x1230 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0x12a8 + lVar3 * 0xc) = 0xc00000005;
+  *(undefined4 *)(param_1 + 0x12b0 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0x1268 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x13a8) = *(longlong *)(param_1 + 0x13a8) + 0xc;
+  *(undefined4 *)(param_1 + 0x1368 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x11f4);
+  *(int *)(param_1 + 0x11f4) = *(int *)(param_1 + 0x11f4) + 1;
+  *(int *)(param_1 + 0x11f0) = *(int *)(param_1 + 0x11f0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x13b0);
+  *(int *)(param_1 + 0x13cc) = *(int *)(param_1 + 0x13b0);
+  *(undefined4 *)(param_1 + 0x13f0 + lVar3 * 4) = 5;
+  *(undefined8 *)(param_1 + 0x1468 + lVar3 * 0xc) = 0xc00000005;
+  *(undefined4 *)(param_1 + 0x1470 + lVar3 * 0xc) = uStack_130;
+  *(undefined4 *)(param_1 + 0x1428 + lVar3 * 4) = 0xc;
+  *(longlong *)(param_1 + 0x1568) = *(longlong *)(param_1 + 0x1568) + 0xc;
+  *(undefined4 *)(param_1 + 0x1528 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x13b4);
+  *(int *)(param_1 + 0x13b4) = *(int *)(param_1 + 0x13b4) + 1;
+  iVar2 = *(int *)(param_1 + 0x13b0) + 1;
+  lVar3 = (longlong)*(int *)(param_1 + 0x13b0) + 1;
+  *(int *)(param_1 + 0x13b0) = iVar2;
+  *(int *)(param_1 + 0x13c0) = iVar2;
+  *(undefined4 *)(param_1 + 0x13f0 + lVar3 * 4) = 2;
+  *(undefined8 *)(param_1 + 0x1468 + lVar3 * 0xc) = 0x800000002;
+  *(undefined4 *)(param_1 + 0x1470 + lVar3 * 0xc) = uStack_110;
+  *(undefined4 *)(param_1 + 0x1428 + lVar3 * 4) = 8;
+  *(longlong *)(param_1 + 0x1568) = *(longlong *)(param_1 + 0x1568) + 8;
+  *(undefined4 *)(param_1 + 0x1528 + lVar3 * 4) = *(undefined4 *)(param_1 + 0x13b4);
+  *(int *)(param_1 + 0x13b4) = *(int *)(param_1 + 0x13b4) + 1;
+  *(int *)(param_1 + 0x13b0) = *(int *)(param_1 + 0x13b0) + 1;
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
-{
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
-}
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+

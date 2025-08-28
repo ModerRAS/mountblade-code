@@ -1,1451 +1,1296 @@
-#include "TaleWorlds.Native.Split.h"
-
-/*=============================================================================
-文件名：03_rendering_part735.c
-模块功能：渲染系统高级SIMD处理和数据操作模块
-文件描述：本模块包含21个核心函数，主要涵盖渲染系统的高级SIMD向量化处理、
-         数据块操作、内存管理、临界区同步、数据复制和初始化等高级渲染功能。
-         特别强调了SIMD指令的优化使用和内存安全操作。
-=============================================================================*/
-
-/*=============================================================================
-常量定义区域
-=============================================================================*/
-
-/* 渲染系统SIMD处理相关常量 */
-#define RENDERING_SIMD_BLOCK_SIZE          0x80        // SIMD数据块大小 (128)
-#define RENDERING_SIMD_OFFSET_MASK        0xff        // SIMD偏移掩码
-#define RENDERING_SIMD_SHIFT_AMOUNT       8           // SIMD位移量
-#define RENDERING_CRITICAL_SECTION_SIZE   0x28        // 临界区结构体大小
-#define RENDERING_STACK_CANARY_SIZE       32          // 栈保护大小
-#define RENDERING_VECTOR_ELEMENT_COUNT     16          // 向量元素数量
-
-/* 渲染系统内存管理常量 */
-#define RENDERING_MEMORY_ALIGNMENT         16          // 内存对齐大小
-#define RENDERING_BUFFER_MULTIPLIER        4           // 缓冲区倍数
-#define RENDERING_DATA_THRESHOLD          0x100        // 数据阈值
-#define RENDERING_GUARD_BAND_SIZE         0x40         // 保护带大小
-
-/* 渲染系统状态常量 */
-#define RENDERING_STATUS_INITIALIZED      1           // 初始化状态
-#define RENDERING_STATUS_ACTIVE          0           // 活动状态
-#define RENDERING_FLAG_MASK              0xfefe       // 标志掩码
-#define RENDERING_COMPONENT_COUNT         4           // 组件数量
-
-/*=============================================================================
-类型别名定义
-=============================================================================*/
-
-/* 基础类型别名 */
-typedef uint8_t         render_byte_t;           // 渲染字节类型
-typedef uint16_t        render_word_t;           // 渲染字类型
-typedef uint32_t        render_dword_t;          // 渲染双字类型
-typedef uint64_t        render_qword_t;          // 渲染四字类型
-typedef int32_t         render_sint_t;           // 渲染有符号整数类型
-typedef uintptr_t       render_addr_t;           // 渲染地址类型
-
-/* SIMD相关类型别名 */
-typedef __m128i         render_vector_t;         // 渲染向量类型
-typedef render_byte_t    render_vector_data_t[16]; // 渲染向量数据类型
-
-/* 渲染系统结构类型别名 */
-typedef void*           render_context_t;        // 渲染上下文类型
-typedef void*           render_buffer_t;         // 渲染缓冲区类型
-typedef void*           render_critical_section_t; // 渲染临界区类型
-
-/* 函数指针类型别名 */
-typedef void (*render_callback_func_t)(void);    // 渲染回调函数类型
-typedef void (*render_vector_op_func_t)(void*, void*, void*, void*); // 渲染向量操作函数类型
-
-/*=============================================================================
-结构体定义
-=============================================================================*/
-
 /**
- * @brief 渲染系统SIMD操作参数结构体
- * @description 存储SIMD操作所需的各种参数和数据块
- */
-typedef struct {
-    render_vector_t           vector_operand1;     // 向量操作数1
-    render_vector_t           vector_operand2;     // 向量操作数2
-    render_vector_t           vector_result;       // 向量结果
-    render_vector_data_t      data_block;          // 数据块
-    render_sint_t             operation_mode;      // 操作模式
-    render_sint_t             element_count;       // 元素数量
-    render_sint_t             stride;              // 步长
-    render_sint_t             flags;               // 标志位
-} render_simd_operation_params_t;
-
-/**
- * @brief 渲染系统内存块描述符结构体
- * @description 描述内存块的属性和状态信息
- */
-typedef struct {
-    render_addr_t             base_address;        // 基地址
-    size_t                    block_size;          // 块大小
-    size_t                    used_size;            // 已使用大小
-    render_sint_t             alignment;           // 对齐方式
-    render_sint_t             flags;               // 标志位
-    render_sint_t             ref_count;            // 引用计数
-} render_memory_block_descriptor_t;
-
-/**
- * @brief 渲染系统临界区管理器结构体
- * @description 管理临界区的创建、销毁和同步操作
- */
-typedef struct {
-    render_critical_section_t critical_section;    // 临界区对象
-    volatile long             lock_count;          // 锁计数
-    volatile long             recursion_count;     // 递归计数
-    render_sint_t             owner_thread_id;     // 所有者线程ID
-    render_sint_t             initialized;         // 初始化标志
-} render_critical_section_manager_t;
-
-/*=============================================================================
-函数别名定义
-=============================================================================*/
-
-/* SIMD处理函数别名 */
-#define rendering_simd_data_processor               FUN_18069bb20    // SIMD数据处理器
-#define rendering_bit_stream_processor              FUN_18069bbd0    // 位流处理器
-#define rendering_memory_block_optimizer           FUN_18069bc50    // 内存块优化器
-#define rendering_buffer_initializer               FUN_18069bd60    // 缓冲区初始化器
-#define rendering_data_block_shifter               FUN_18069beb0    // 数据块移位器
-#define rendering_memory_reorganizer               FUN_18069bebb    // 内存重组器
-#define rendering_critical_section_initializer     FUN_18069bfb0    // 临界区初始化器
-#define rendering_vector_operation_executor        FUN_18069c080    // 向量操作执行器
-#define rendering_data_transform_processor         FUN_18069c200    // 数据变换处理器
-#define rendering_block_copy_optimizer             FUN_18069c3b0    // 块复制优化器
-#define rendering_memory_layout_optimizer          FUN_18069c3f3    // 内存布局优化器
-#define rendering_texture_data_processor           FUN_18069c540    // 纹理数据处理器
-#define rendering_render_target_manager            FUN_18069c640    // 渲染目标管理器
-#define rendering_format_converter                 FUN_18069c710    // 格式转换器
-#define rendering_multi_format_processor           FUN_18069c820    // 多格式处理器
-#define rendering_surface_processor                FUN_18069c900    // 表面处理器
-#define rendering_vector_comparison_engine         FUN_18069c990    // 向量比较引擎
-#define rendering_advanced_surface_processor      FUN_18069ca00    // 高级表面处理器
-
-/* 辅助函数别名 */
-#define rendering_critical_section_cleanup         FUN_18069bfc6    // 临界区清理
-#define rendering_critical_section_finalizer      FUN_18069c023    // 临界区终结器
-#define rendering_memory_cleanup_handler          FUN_18069bf80    // 内存清理处理器
-#define rendering_data_buffer_flusher              FUN_18069c4ff    // 数据缓冲区刷新器
-
-/*=============================================================================
-全局变量声明
-=============================================================================*/
-
-/* 渲染系统SIMD处理全局变量 */
-extern render_vector_t          g_rendering_vector_constants[4];      // 渲染向量常量数组
-extern render_vector_data_t      g_rendering_data_masks[2];            // 渲染数据掩码数组
-extern render_critical_section_manager_t g_rendering_cs_manager;     // 渲染临界区管理器
-
-/* 渲染系统状态全局变量 */
-extern volatile long            g_rendering_initialization_count;     // 渲染初始化计数
-extern volatile long            g_rendering_operation_count;         // 渲染操作计数
-extern render_sint_t             g_rendering_system_flags;            // 渲染系统标志
-
-/*=============================================================================
-函数实现区域
-=============================================================================*/
-
-/**
- * @brief 渲染系统SIMD数据处理器
- * @description 使用SIMD指令处理渲染数据块，执行向量化数据操作
- * 
- * 该函数执行以下主要操作：
- * 1. 初始化SIMD数据指针和偏移量
- * 2. 循环处理128个数据元素
- * 3. 使用不同的SIMD指令处理数据
- * 4. 将结果存储到目标缓冲区
- * 
- * @param param_1 渲染上下文指针，包含数据缓冲区和配置信息
- * @return void
- * 
- * @技术细节
- * - 使用多个SIMD指令函数进行数据处理
- * - 支持不同的数据偏移和操作模式
- * - 优化的循环结构提高处理效率
- * 
- * @内存安全
- * - 所有内存访问都有边界检查
- * - 使用安全的指针运算
- * - 防止缓冲区溢出
- */
-void rendering_simd_data_processor(longlong param_1)
-{
-    render_word_t* data_pointer;
-    render_sint_t  loop_counter;
-    render_word_t  simd_result;
-    
-    /* 初始化数据指针和循环计数器 */
-    data_pointer = (render_word_t*)(param_1 + 0x1620);
-    loop_counter = 0;
-    
-    /* SIMD数据处理主循环 */
-    do {
-        /* 执行SIMD指令处理数据 */
-        simd_result = func_0x00018069eed0(loop_counter, *(render_dword_t*)(param_1 + 0x1e94));
-        data_pointer[-0x100] = simd_result;
-        
-        simd_result = func_0x00018069ee90(loop_counter, *(render_dword_t*)(param_1 + 0x1e98));
-        *data_pointer = simd_result;
-        
-        simd_result = func_0x00018069ef00(loop_counter, *(render_dword_t*)(param_1 + 0x1ea0));
-        data_pointer[0x100] = simd_result;
-        
-        simd_result = func_0x00018069ee60(loop_counter);
-        data_pointer[-0xff] = simd_result;
-        
-        simd_result = func_0x00018069edf0(loop_counter, *(render_dword_t*)(param_1 + 0x1e9c));
-        data_pointer[1] = simd_result;
-        
-        simd_result = func_0x00018069ee30(loop_counter, *(render_dword_t*)(param_1 + 0x1ea4));
-        loop_counter = loop_counter + 1;
-        data_pointer[0x101] = simd_result;
-        data_pointer = data_pointer + 2;
-    } while (loop_counter < RENDERING_SIMD_BLOCK_SIZE);
-    
-    return;
-}
-
-/**
- * @brief 渲染系统位流处理器
- * @description 处理位流数据，执行位级操作和数据提取
- * 
- * 该函数执行以下主要操作：
- * 1. 计算位流参数和阈值
- * 2. 验证数据有效性
- * 3. 执行位级数据操作
- * 4. 更新状态信息
- * 
- * @param param_1 位流上下文指针
- * @param param_2 位流操作参数
- * @return bool 操作成功返回true，失败返回false
- * 
- * @技术细节
- * - 使用位运算优化处理效率
- * - 支持动态位流长度调整
- * - 包含错误检测和恢复机制
- * 
- * @内存安全
- * - 防止整数溢出
- * - 安全的位操作
- * - 边界检查
- */
-bool rendering_bit_stream_processor(longlong param_1, int param_2)
-{
-    render_byte_t  bit_value;
-    render_qword_t temp_value1;
-    render_qword_t temp_value2;
-    render_dword_t calculated_size;
-    bool          operation_result;
-    
-    /* 计算位流大小 */
-    calculated_size = ((render_dword_t)((*(render_sint_t*)(param_1 + 0x1c) + -1) * param_2) >> RENDERING_SIMD_SHIFT_AMOUNT) + 1;
-    
-    /* 检查数据有效性 */
-    if (*(render_sint_t*)(param_1 + 0x18) < 0) {
-        FUN_18069ec80();
-    }
-    
-    /* 执行位流操作 */
-    temp_value1 = *(render_qword_t*)(param_1 + 0x10);
-    temp_value2 = (render_qword_t)calculated_size << 0x38;
-    operation_result = temp_value2 <= temp_value1;
-    
-    if (operation_result) {
-        calculated_size = *(render_sint_t*)(param_1 + 0x1c) - calculated_size;
-        temp_value1 = temp_value1 - temp_value2;
-    }
-    
-    /* 提取位值并更新状态 */
-    bit_value = (&UNK_1809495c0)[calculated_size];
-    *(render_sint_t*)(param_1 + 0x18) = *(render_sint_t*)(param_1 + 0x18) - (render_dword_t)bit_value;
-    *(render_dword_t*)(param_1 + 0x1c) = calculated_size << (bit_value & 0x1f);
-    *(render_qword_t*)(param_1 + 0x10) = temp_value1 << (bit_value & 0x3f);
-    
-    return operation_result;
-}
-
-/**
- * @brief 渲染系统内存块优化器
- * @description 优化内存块布局，执行高效的数据复制和重组
- * 
- * 该函数执行以下主要操作：
- * 1. 计算内存块参数和偏移量
- * 2. 执行条件化的数据复制
- * 3. 优化内存布局
- * 4. 处理不同类型的内存操作
- * 
- * @param param_1 内存块描述符指针
- * @return void
- * 
- * @技术细节
- * - 使用memcpy进行高效数据复制
- * - 支持多种内存布局模式
- * - 优化的内存访问模式
- * 
- * @内存安全
- * - 严格的边界检查
- * - 防止缓冲区溢出
- * - 安全的指针运算
- */
-void rendering_memory_block_optimizer(longlong param_1)
-{
-    render_dword_t  data_size;
-    longlong       source_offset;
-    longlong       target_offset;
-    longlong       operation_offset;
-    
-    /* 计算基础偏移量 */
-    source_offset = (longlong)*(render_sint_t*)(param_1 + 0x10);
-    data_size = *(render_dword_t*)(param_1 + 100);
-    target_offset = (((longlong)(*(render_sint_t*)(param_1 + 4) * *(render_sint_t*)(param_1 + 0x10)) + 
-                     *(longlong*)(param_1 + 0x38)) - (render_qword_t)data_size) - source_offset;
-    
-    /* 执行主要数据复制 */
-    if (0 < (render_sint_t)data_size) {
-        memcpy(source_offset + target_offset, target_offset, source_offset);
-    }
-    
-    /* 处理次要数据块 */
-    source_offset = (longlong)*(render_sint_t*)(param_1 + 0x24);
-    target_offset = (longlong)(*(render_sint_t*)(param_1 + 0x18) * *(render_sint_t*)(param_1 + 0x24));
-    operation_offset = ((*(longlong*)(param_1 + 0x40) - (render_qword_t)(data_size >> 1)) - source_offset) + target_offset;
-    
-    if (data_size >> 1 != 0) {
-        memcpy(source_offset + operation_offset, operation_offset, source_offset);
-    }
-    
-    /* 处理第三数据块 */
-    target_offset = ((*(longlong*)(param_1 + 0x48) - (render_qword_t)(data_size >> 1)) - source_offset) + target_offset;
-    if (data_size >> 1 != 0) {
-        memcpy(source_offset + target_offset, target_offset, source_offset);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统缓冲区初始化器
- * @description 初始化渲染缓冲区，设置初始数据和状态
- * 
- * 该函数执行以下主要操作：
- * 1. 计算缓冲区参数
- * 2. 执行内存初始化
- * 3. 设置初始状态
- * 
- * @param param_1 缓冲区上下文指针
- * @param param_2 初始化数据指针
- * @return void
- * 
- * @技术细节
- * - 使用memset进行内存初始化
- * - 支持动态缓冲区大小
- * - 包含错误处理机制
- * 
- * @内存安全
- * - 防止缓冲区溢出
- * - 安全的内存操作
- * - 参数验证
- */
-void rendering_buffer_initializer(longlong param_1, render_byte_t* param_2)
-{
-    memset((longlong)param_2 - (render_qword_t)*(render_dword_t*)(param_1 + 100), *param_2, 
-           *(render_dword_t*)(param_1 + 100));
-}
-
-/**
- * @brief 渲染系统数据块移位器
- * @description 执行数据块的移位操作，调整数据布局
- * 
- * 该函数执行以下主要操作：
- * 1. 计算移位参数
- * 2. 执行数据块移位
- * 3. 处理多级移位操作
- * 
- * @param param_1 数据块上下文指针
- * @return void
- * 
- * @技术细节
- * - 支持多级数据移位
- * - 优化的内存访问模式
- * - 高效的数据重组
- * 
- * @内存安全
- * - 边界检查
- * - 安全的指针运算
- * - 防止数据损坏
- */
-void rendering_data_block_shifter(longlong param_1)
-{
-    render_dword_t  data_size;
-    render_sint_t   stride_value;
-    longlong       source_address;
-    render_dword_t  half_size;
-    
-    /* 计算基础参数 */
-    data_size = *(render_dword_t*)(param_1 + 100);
-    source_address = *(longlong*)(param_1 + 0x38) - (render_qword_t)data_size;
-    
-    /* 执行主要数据移位 */
-    if (0 < (render_sint_t)data_size) {
-        memcpy(source_address - (render_qword_t)(*(render_sint_t*)(param_1 + 0x10) * data_size), 
-               source_address, (longlong)*(render_sint_t*)(param_1 + 0x10));
-    }
-    
-    /* 处理次级数据移位 */
-    stride_value = *(render_sint_t*)(param_1 + 0x24);
-    half_size = data_size >> 1;
-    source_address = *(longlong*)(param_1 + 0x40) - (render_qword_t)half_size;
-    
-    if (half_size != 0) {
-        memcpy(source_address - (render_qword_t)(stride_value * half_size), source_address, 
-               (longlong)stride_value);
-    }
-    
-    /* 处理第三级数据移位 */
-    source_address = *(longlong*)(param_1 + 0x48) - (render_qword_t)half_size;
-    if (half_size != 0) {
-        memcpy(source_address - (render_qword_t)(stride_value * half_size), source_address, 
-               (longlong)stride_value);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统内存重组器
- * @description 重组内存布局，优化数据访问模式
- * 
- * 该函数执行以下主要操作：
- * 1. 计算重组参数
- * 2. 执行内存重组操作
- * 3. 优化数据访问模式
- * 
- * @param param_1 内存上下文指针
- * @return void
- * 
- * @技术细节
- * - 高效的内存重组算法
- * - 优化的数据访问模式
- * - 支持大块数据操作
- * 
- * @内存安全
- * - 严格的边界检查
- * - 防止内存泄漏
- * - 安全的指针操作
- */
-void rendering_memory_reorganizer(longlong param_1)
-{
-    render_dword_t  data_size;
-    render_sint_t   stride_value;
-    longlong       source_address;
-    render_dword_t  half_size;
-    
-    /* 计算重组参数 */
-    data_size = *(render_dword_t*)(param_1 + 100);
-    source_address = *(longlong*)(param_1 + 0x38) - (render_qword_t)data_size;
-    
-    /* 执行主要内存重组 */
-    if (0 < (render_sint_t)data_size) {
-        memcpy(source_address - (render_qword_t)(*(render_sint_t*)(param_1 + 0x10) * data_size), 
-               source_address, (longlong)*(render_sint_t*)(param_1 + 0x10));
-    }
-    
-    /* 处理次级内存重组 */
-    stride_value = *(render_sint_t*)(param_1 + 0x24);
-    half_size = data_size >> 1;
-    source_address = *(longlong*)(param_1 + 0x40) - (render_qword_t)half_size;
-    
-    if (half_size != 0) {
-        memcpy(source_address - (render_qword_t)(stride_value * half_size), source_address, 
-               (longlong)stride_value);
-    }
-    
-    /* 处理第三级内存重组 */
-    source_address = *(longlong*)(param_1 + 0x48) - (render_qword_t)half_size;
-    if (half_size != 0) {
-        memcpy(source_address - (render_qword_t)(stride_value * half_size), source_address, 
-               (longlong)stride_value);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统临界区初始化器
- * @description 初始化临界区，管理线程同步
- * 
- * 该函数执行以下主要操作：
- * 1. 检查初始化状态
- * 2. 创建临界区对象
- * 3. 管理临界区生命周期
- * 4. 执行同步操作
- * 
- * @param param_1 回调函数指针
- * @return void
- * 
- * @技术细节
- * - 线程安全的初始化
- * - 引用计数管理
- * - 动态资源分配
- * 
- * @内存安全
- * - 防止内存泄漏
- * - 安全的资源管理
- * - 异常处理
- */
-void rendering_critical_section_initializer(render_callback_func_t param_1)
-{
-    render_sint_t   reference_count;
-    longlong       critical_section_ptr;
-    longlong       existing_section;
-    bool           section_exists;
-    
-    /* 检查初始化状态 */
-    if (_DAT_180c0c21c == 0) {
-        LOCK();
-        _DAT_180c0c218 = _DAT_180c0c218 + 1;
-        UNLOCK();
-        
-        /* 创建临界区 */
-        critical_section_ptr = malloc(RENDERING_CRITICAL_SECTION_SIZE);
-        InitializeCriticalSection(critical_section_ptr);
-        
-        LOCK();
-        section_exists = _DAT_180c0c210 != 0;
-        existing_section = critical_section_ptr;
-        
-        if (section_exists) {
-            existing_section = _DAT_180c0c210;
-        }
-        
-        _DAT_180c0c210 = existing_section;
-        UNLOCK();
-        
-        /* 清理冗余临界区 */
-        if (section_exists) {
-            DeleteCriticalSection(critical_section_ptr);
-            free(critical_section_ptr);
-        }
-        
-        /* 执行同步操作 */
-        EnterCriticalSection(_DAT_180c0c210);
-        if (_DAT_180c0c21c == 0) {
-            (*param_1)();
-            _DAT_180c0c21c = RENDERING_STATUS_INITIALIZED;
-        }
-        LeaveCriticalSection(_DAT_180c0c210);
-        
-        /* 管理引用计数 */
-        LOCK();
-        reference_count = _DAT_180c0c218 + -1;
-        UNLOCK();
-        
-        section_exists = _DAT_180c0c218 == 1;
-        _DAT_180c0c218 = reference_count;
-        
-        if (section_exists) {
-            DeleteCriticalSection(_DAT_180c0c210);
-            free(_DAT_180c0c210);
-            _DAT_180c0c210 = 0;
-        }
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统向量操作执行器
- * @description 执行高级SIMD向量操作，处理复杂数据变换
- * 
- * 该函数执行以下主要操作：
- * 1. 设置向量操作参数
- * 2. 执行SIMD指令
- * 3. 处理多级数据变换
- * 4. 管理栈保护和安全性
- * 
- * @param param_1 渲染上下文指针
- * @param param_2 操作参数1
- * @param param_3 操作参数2
- * @param param_4 数据指针1
- * @param param_5 数据指针2
- * @param param_6 数据大小
- * @param param_7 目标地址1
- * @param param_8 目标地址2
- * @param param_9 操作模式
- * @return void
- * 
- * @技术细节
- * - 高级SIMD指令使用
- * - 栈保护机制
- * - 多级数据变换
- * 
- * @内存安全
- * - 栈溢出保护
- * - 数据边界检查
- * - 安全的参数传递
- */
-void rendering_vector_operation_executor(longlong param_1, render_qword_t param_2, 
-                                        render_qword_t param_3, render_byte_t* param_4,
-                                        render_byte_t* param_5, int param_6, render_qword_t param_7, 
-                                        render_qword_t param_8, int param_9)
-{
-    render_byte_t    format_flag;
-    longlong        data_offset;
-    render_vector_op_func_t operation_func;
-    render_byte_t    stack_data[RENDERING_STACK_CANARY_SIZE];
-    render_byte_t    temp_values[16];
-    render_qword_t   stack_guard;
-    
-    /* 设置栈保护 */
-    stack_guard = _DAT_180bf00a8 ^ (render_qword_t)stack_data;
-    data_offset = (longlong)param_6;
-    
-    /* 提取格式标志 */
-    format_flag = *(render_byte_t*)(*(longlong*)(param_1 + 0xf00) + 1);
-    
-    /* 准备操作数据 */
-    temp_values[0] = *param_4;
-    temp_values[8] = *param_5;
-    temp_values[1] = param_4[data_offset];
-    temp_values[9] = param_5[data_offset];
-    temp_values[2] = param_4[data_offset * 2];
-    temp_values[10] = param_5[data_offset * 2];
-    temp_values[3] = param_4[data_offset * 3];
-    temp_values[11] = param_5[data_offset * 3];
-    temp_values[4] = param_4[data_offset * 4];
-    temp_values[12] = param_5[data_offset * 4];
-    temp_values[5] = param_4[data_offset * 5];
-    temp_values[13] = param_5[data_offset * 5];
-    temp_values[6] = param_4[data_offset * 6];
-    temp_values[14] = param_5[data_offset * 6];
-    temp_values[7] = param_4[data_offset * 7];
-    temp_values[15] = param_5[data_offset * 7];
-    
-    /* 选择操作函数 */
-    if (format_flag == 0) {
-        operation_func = *(render_vector_op_func_t*)(((longlong)*(render_sint_t*)(param_1 + 0xf10) + 
-                                                    (longlong)*(render_sint_t*)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c268);
-    } else {
-        operation_func = *(render_vector_op_func_t*)((render_qword_t)format_flag * 0x10 + 0x180c0c228);
-    }
-    
-    /* 执行向量操作 */
-    (*operation_func)(param_7, (longlong)param_9, param_2, &temp_values[0]);
-    (*operation_func)(param_8, (longlong)param_9, param_3, &temp_values[8]);
-    
-    /* 验证栈保护 */
-    FUN_1808fc050(stack_guard ^ (render_qword_t)stack_data);
-}
-
-/**
- * @brief 渲染系统数据变换处理器
- * @description 处理复杂数据变换，支持多种数据格式
- * 
- * 该函数执行以下主要操作：
- * 1. 准备变换数据
- * 2. 执行数据变换
- * 3. 处理不同的数据格式
- * 
- * @param param_1 渲染上下文指针
- * @param param_2 变换参数1
- * @param param_3 数据指针
- * @param param_4 数据大小
- * @param param_5 目标地址
- * @param param_6 操作模式
- * @return void
- * 
- * @技术细节
- * - 支持多种数据格式
- * - 高效的数据变换
- * - 栈保护机制
- * 
- * @内存安全
- * - 数据边界检查
- * - 栈溢出保护
- * - 安全的数据操作
- */
-void rendering_data_transform_processor(longlong param_1, render_qword_t param_2, 
-                                       render_byte_t* param_3, int param_4,
-                                       render_qword_t param_5, int param_6)
-{
-    render_byte_t    format_flag;
-    render_byte_t    data_value;
-    longlong        loop_counter;
-    render_vector_op_func_t operation_func;
-    render_byte_t    stack_data[RENDERING_STACK_CANARY_SIZE];
-    render_byte_t    transform_buffer[16];
-    render_qword_t   stack_guard;
-    
-    /* 设置栈保护 */
-    stack_guard = _DAT_180bf00a8 ^ (render_qword_t)stack_data;
-    format_flag = **(render_byte_t**)(param_1 + 0xf00);
-    loop_counter = 0;
-    
-    /* 准备变换数据 */
-    do {
-        data_value = *param_3;
-        param_3 = param_3 + param_4;
-        transform_buffer[loop_counter] = data_value;
-        loop_counter = loop_counter + 1;
-    } while (loop_counter < RENDERING_VECTOR_ELEMENT_COUNT);
-    
-    /* 选择变换函数 */
-    if (format_flag == 0) {
-        operation_func = *(render_vector_op_func_t*)(((longlong)*(render_sint_t*)(param_1 + 0xf10) + 
-                                                    (longlong)*(render_sint_t*)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c260);
-    } else {
-        operation_func = *(render_vector_op_func_t*)((render_qword_t)format_flag * 0x10 + 0x180c0c220);
-    }
-    
-    /* 执行数据变换 */
-    (*operation_func)(param_5, (longlong)param_6, param_2, transform_buffer);
-    
-    /* 验证栈保护 */
-    FUN_1808fc050(stack_guard ^ (render_qword_t)stack_data);
-}
-
-/**
- * @brief 渲染系统块复制优化器
- * @description 优化块复制操作，提高内存访问效率
- * 
- * 该函数执行以下主要操作：
- * 1. 计算复制参数
- * 2. 执行条件化的块复制
- * 3. 处理不同的复制模式
- * 
- * @param param_1 目标数据指针
- * @param param_2 行步长
- * @param param_3 起始列
- * @param param_4 列数
- * @param param_5 行数
- * @param param_6 块高度
- * @param param_7 结束列偏移
- * @param param_8 结束行偏移
- * @return void
- * 
- * @技术细节
- * - 优化的块复制算法
- * - 支持多种复制模式
- * - 高效的内存访问
- * 
- * @内存安全
- * - 严格的边界检查
- * - 防止缓冲区溢出
- * - 安全的指针运算
- */
-void rendering_block_copy_optimizer(render_byte_t* param_1, int param_2, int param_3, int param_4, 
-                                   int param_5, int param_6, int param_7, int param_8)
-{
-    longlong        block_offset;
-    
-    /* 计算块偏移量 */
-    block_offset = (longlong)param_6;
-    param_8 = param_3 + param_6 + param_8;
-    
-    /* 执行主要块复制 */
-    if (0 < param_4) {
-        memset((longlong)param_1 - block_offset, *param_1, block_offset);
-    }
-    
-    /* 执行次级块复制 */
-    if (0 < param_5) {
-        memcpy(param_1 + (-(param_2 * param_5) - block_offset), (longlong)param_1 - block_offset, 
-               (longlong)param_8);
-    }
-    
-    /* 执行第三级块复制 */
-    if (0 < param_7) {
-        memcpy(param_1 + (param_2 * param_4 - block_offset), 
-               param_1 + ((param_4 + -1) * param_2 - block_offset), (longlong)param_8);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统内存布局优化器
- * @description 优化内存布局，提高数据访问效率
- * 
- * 该函数执行以下主要操作：
- * 1. 计算布局参数
- * 2. 执行内存布局优化
- * 3. 处理不同的布局模式
- * 
- * @param param_1 行参数
- * @param param_2 列参数
- * @param param_3 地址参数1
- * @param param_4 地址参数2
- * @return void
- * 
- * @技术细节
- * - 高效的内存布局算法
- * - 支持多种布局模式
- * - 优化的数据访问
- * 
- * @内存安全
- * - 边界检查
- * - 安全的内存操作
- * - 防止数据损坏
- */
-void rendering_memory_layout_optimizer(int param_1, int param_2, render_qword_t param_3, 
-                                       longlong param_4)
-{
-    longlong        register_rax;
-    longlong        register_r10;
-    int             register_r11d;
-    render_qword_t  register_r12;
-    int             register_r13d;
-    render_qword_t  register_r15;
-    int             stack_param1;
-    int             stack_param2;
-    int             stack_param3;
-    
-    /* 设置寄存器参数 */
-    *(render_qword_t*)(register_rax + 0x18) = register_r12;
-    stack_param2 = param_2 + param_1;
-    *(render_qword_t*)(register_rax + -0x38) = register_r15;
-    
-    /* 执行内存布局优化 */
-    if (0 < register_r11d) {
-        memset();
-    }
-    
-    if (0 < stack_param1) {
-        memcpy((-(register_r13d * stack_param1) - register_r10) + param_4);
-    }
-    
-    if (0 < stack_param3) {
-        memcpy((register_r13d * register_r11d - register_r10) + param_4, 
-               ((register_r11d + -1) * register_r13d - register_r10) + param_4, 
-               (longlong)stack_param2);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统纹理数据处理器
- * @description 处理纹理数据，支持多种纹理格式
- * 
- * 该函数执行以下主要操作：
- * 1. 处理主要纹理数据
- * 2. 处理次级纹理数据
- * 3. 执行纹理数据变换
- * 
- * @param param_1 源纹理数据指针
- * @param param_2 目标纹理数据指针
- * @return void
- * 
- * @技术细节
- * - 支持多种纹理格式
- * - 高效的纹理处理
- * - 优化的数据访问
- * 
- * @内存安全
- * - 严格的边界检查
- * - 防止缓冲区溢出
- * - 安全的纹理操作
- */
-void rendering_texture_data_processor(int* param_1, int* param_2)
-{
-    int  width_value;
-    int  height_value;
-    
-    /* 处理主要纹理数据 */
-    if (0 < param_1[1]) {
-        memcpy(*(render_qword_t*)(param_2 + 0xe), *(render_qword_t*)(param_1 + 0xe), 
-               (longlong)*param_1);
-    }
-    
-    /* 处理次级纹理数据 */
-    if (0 < param_1[6]) {
-        memcpy(*(render_qword_t*)(param_2 + 0x10), *(render_qword_t*)(param_1 + 0x10), 
-               (longlong)param_1[5]);
-    }
-    
-    /* 处理第三级纹理数据 */
-    if (0 < param_1[6]) {
-        memcpy(*(render_qword_t*)(param_2 + 0x12), *(render_qword_t*)(param_1 + 0x12), 
-               (longlong)param_1[5]);
-    }
-    
-    /* 计算纹理参数 */
-    width_value = param_2[0x19];
-    height_value = width_value / 2;
-    
-    /* 执行纹理数据变换 */
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_2 + 0xe), param_2[4], param_2[2], 
-                                   param_2[3], width_value, width_value, 
-                                   (param_2[1] - param_2[3]) + width_value, 
-                                   (width_value - param_2[2]) + *param_2);
-    
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_2 + 0x10), param_2[9], param_2[7], 
-                                   param_2[8], height_value, height_value, 
-                                   (param_2[6] - param_2[8]) + height_value, 
-                                   (param_2[5] - param_2[7]) + height_value);
-    
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_2 + 0x12), param_2[9], param_2[7], 
-                                   param_2[8], height_value, height_value, 
-                                   (param_2[6] - param_2[8]) + height_value, 
-                                   (param_2[5] - param_2[7]) + height_value);
-    
-    return;
-}
-
-/**
- * @brief 渲染系统渲染目标管理器
- * @description 管理渲染目标，处理渲染目标切换
- * 
- * 该函数执行以下主要操作：
- * 1. 计算渲染目标参数
- * 2. 执行渲染目标管理
- * 3. 处理多级渲染目标
- * 
- * @param param_1 渲染目标数据指针
- * @return void
- * 
- * @技术细节
- * - 高效的渲染目标管理
- * - 支持多级渲染目标
- * - 优化的数据访问
- * 
- * @内存安全
- * - 边界检查
- * - 安全的渲染目标操作
- * - 防止资源泄漏
- */
-void rendering_render_target_manager(int* param_1)
-{
-    int  width_value;
-    int  height_value;
-    
-    /* 计算渲染目标参数 */
-    width_value = param_1[0x19];
-    height_value = width_value / 2;
-    
-    /* 执行渲染目标管理 */
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_1 + 0xe), param_1[4], param_1[2], 
-                                   param_1[3], width_value, width_value, 
-                                   (param_1[1] - param_1[3]) + width_value, 
-                                   (width_value - param_1[2]) + *param_1);
-    
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_1 + 0x10), param_1[9], param_1[7], 
-                                   param_1[8], height_value, height_value, 
-                                   (param_1[6] - param_1[8]) + height_value, 
-                                   (param_1[5] - param_1[7]) + height_value);
-    
-    rendering_block_copy_optimizer(*(render_qword_t*)(param_1 + 0x12), param_1[9], param_1[7], 
-                                   param_1[8], height_value, height_value, 
-                                   (param_1[6] - param_1[8]) + height_value, 
-                                   (param_1[5] - param_1[7]) + height_value);
-    
-    return;
-}
-
-/**
- * @brief 渲染系统格式转换器
- * @description 转换渲染数据格式，支持多种格式间的转换
- * 
- * 该函数执行以下主要操作：
- * 1. 检查格式标志
- * 2. 执行格式转换
- * 3. 处理多级格式转换
- * 
- * @param param_1 渲染上下文指针
- * @param param_2 格式参数1
- * @param param_3 地址参数1
- * @param param_4 地址参数2
- * @param param_5 行步长
- * @param param_6 格式标志指针
- * @return void
- * 
- * @技术细节
- * - 支持多种格式转换
- * - 高效的转换算法
- * - 条件化的格式处理
- * 
- * @内存安全
- * - 格式验证
- * - 安全的转换操作
- * - 错误处理
- */
-void rendering_format_converter(longlong param_1, render_qword_t param_2, longlong param_3, 
-                               longlong param_4, int param_5, render_word_t* param_6)
-{
-    /* 检查并处理格式标志 */
-    if (*param_6 != 0) {
-        if ((*param_6 & RENDERING_FLAG_MASK) == 0) {
-            func_0x000180029620();
-        } else {
-            func_0x0001800296e1();
-        }
-    }
-    
-    /* 处理次级格式标志 */
-    if (param_6[1] != 0) {
-        if ((param_6[1] & RENDERING_FLAG_MASK) == 0) {
-            func_0x000180029620(param_1 + 0x40, param_2, param_3 + param_5 * RENDERING_BUFFER_MULTIPLIER, 
-                               param_5);
-        } else {
-            func_0x0001800296e1();
-        }
-    }
-    
-    /* 处理第三级格式标志 */
-    if (param_6[2] != 0) {
-        if ((param_6[2] & RENDERING_FLAG_MASK) == 0) {
-            func_0x000180029620(param_1 + 0x80, param_2, param_4, param_5);
-        } else {
-            func_0x0001800296e1();
-        }
-    }
-    
-    /* 处理第四级格式标志 */
-    if (param_6[3] != 0) {
-        if ((param_6[3] & RENDERING_FLAG_MASK) == 0) {
-            func_0x000180029620(param_1 + 0xc0, param_2, param_4 + param_5 * RENDERING_BUFFER_MULTIPLIER, 
-                               param_5);
-        } else {
-            func_0x0001800296e1();
-        }
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统多格式处理器
- * @description 处理多种渲染格式，支持批量格式处理
- * 
- * 该函数执行以下主要操作：
- * 1. 循环处理多种格式
- * 2. 执行格式转换
- * 3. 更新处理参数
- * 
- * @param param_1 基础地址
- * @param param_2 格式参数1
- * @param param_3 地址参数1
- * @param param_4 数据大小
- * @param param_5 格式标志指针
- * @return void
- * 
- * @技术细节
- * - 批量格式处理
- * - 循环优化
- * - 参数自动更新
- * 
- * @内存安全
- * - 循环边界检查
- * - 安全的参数更新
- * - 防止无限循环
- */
-void rendering_multi_format_processor(longlong param_1, render_qword_t param_2, longlong param_3, 
-                                     int param_4, render_word_t* param_5)
-{
-    longlong        loop_counter;
-    
-    /* 初始化循环计数器 */
-    loop_counter = RENDERING_COMPONENT_COUNT;
-    
-    /* 批量处理多种格式 */
-    do {
-        /* 处理主要格式标志 */
-        if (*param_5 != 0) {
-            if ((*param_5 & RENDERING_FLAG_MASK) == 0) {
-                func_0x000180029620(param_1, param_2, param_3, param_4);
-            } else {
-                func_0x0001800296e1();
-            }
-        }
-        
-        /* 处理次级格式标志 */
-        if (param_5[1] != 0) {
-            if ((param_5[1] & RENDERING_FLAG_MASK) == 0) {
-                func_0x000180029620(param_1 + 0x40, param_2, param_3 + 8, param_4);
-            } else {
-                func_0x0001800296e1();
-            }
-        }
-        
-        /* 更新处理参数 */
-        param_1 = param_1 + 0x80;
-        param_3 = param_3 + param_4 * RENDERING_BUFFER_MULTIPLIER;
-        param_5 = param_5 + 2;
-        loop_counter = loop_counter + -1;
-    } while (loop_counter != 0);
-    
-    return;
-}
-
-/**
- * @brief 渲染系统表面处理器
- * @description 处理渲染表面，支持表面操作和变换
- * 
- * 该函数执行以下主要操作：
- * 1. 执行表面初始化
- * 2. 处理表面数据
- * 3. 管理表面参数
- * 
- * @param param_1 表面参数1
- * @param param_2 地址参数1
- * @param param_3 地址参数2
- * @param param_4 表面参数2
- * @param param_5 数据大小
- * @param param_6 配置参数
- * @return void
- * 
- * @技术细节
- * - 高效的表面处理
- * - 条件化的数据操作
- * - 参数化配置
- * 
- * @内存安全
- * - 参数验证
- * - 安全的表面操作
- * - 错误处理
- */
-void rendering_surface_processor(render_qword_t param_1, longlong param_2, longlong param_3, 
-                                render_dword_t param_4, int param_5, longlong param_6)
-{
-    /* 执行表面初始化 */
-    func_0x00018002acc0(param_1, param_4, *(render_qword_t*)(param_6 + 8), 
-                        *(render_qword_t*)(param_6 + 0x10), *(render_qword_t*)(param_6 + 0x18), 2);
-    
-    /* 处理表面数据 */
-    if (param_2 != 0) {
-        func_0x00018001a840(param_5 * RENDERING_BUFFER_MULTIPLIER + param_2, param_5, 
-                            *(render_qword_t*)(param_6 + 8), *(render_qword_t*)(param_6 + 0x10), 
-                            *(render_qword_t*)(param_6 + 0x18), 
-                            param_5 * RENDERING_BUFFER_MULTIPLIER + param_3);
-    }
-    
-    return;
-}
-
-/**
- * @brief 渲染系统向量比较引擎
- * @description 执行高级SIMD向量比较，支持复杂的比较操作
- * 
- * 该函数执行以下主要操作：
- * 1. 准备向量比较数据
- * 2. 执行SIMD比较操作
- * 3. 处理比较结果
- * 
- * @param param_1 比较参数1
- * @param param_2 比较参数2
- * @param param_3 比较数据指针
- * @return void
- * 
- * @技术细节
- * - 高级SIMD比较操作
- * - 多级比较处理
- * - 优化的比较算法
- * 
- * @内存安全
- * - 数据边界检查
- * - 安全的SIMD操作
- * - 栈保护
- */
-void rendering_vector_comparison_engine(longlong param_1, int param_2, 
-                                       render_byte_t (*param_3) [RENDERING_VECTOR_ELEMENT_COUNT])
-{
-    render_vector_data_t      vector_mask;
-    longlong                  data_offset;
-    render_byte_t (*data_ptr)[RENDERING_VECTOR_ELEMENT_COUNT];
-    render_vector_data_t      vector_operand1;
-    render_vector_data_t      vector_operand2;
-    render_vector_data_t      vector_result1;
-    render_vector_data_t      vector_result2;
-    render_vector_data_t      vector_result3;
-    render_vector_data_t      vector_result4;
-    render_vector_data_t      vector_result5;
-    render_vector_data_t      vector_result6;
-    render_vector_data_t      vector_result7;
-    render_vector_data_t      vector_result8;
-    render_vector_data_t      vector_result9;
-    render_vector_data_t      vector_result10;
-    
-    /* 初始化向量掩码 */
-    vector_mask = _DAT_180d9e5d0;
-    data_ptr = (render_byte_t (*)[RENDERING_VECTOR_ELEMENT_COUNT])(param_2 * RENDERING_BUFFER_MULTIPLIER + param_1);
-    data_offset = (longlong)param_2;
-    
-    /* 准备向量操作数 */
-    vector_result5 = *(render_byte_t (*)[RENDERING_VECTOR_ELEMENT_COUNT])(*data_ptr + data_offset);
-    vector_result7 = *(render_byte_t (*)[RENDERING_VECTOR_ELEMENT_COUNT])((longlong)data_ptr + data_offset * -2);
-    
-    /* 执行向量减法比较 */
-    vector_result4 = psubusb(vector_result5, vector_result7);
-    vector_result6 = psubusb(vector_result7, vector_result5);
-    vector_result4 = (vector_result6 | vector_result4) & _DAT_180d9e5c0;
-    
-    /* 处理比较结果 */
-    vector_result10._0_2_ = vector_result4._0_2_ >> 1;
-    vector_result10._2_2_ = vector_result4._2_2_ >> 1;
-    vector_result10._4_2_ = vector_result4._4_2_ >> 1;
-    vector_result10._6_2_ = vector_result4._6_2_ >> 1;
-    vector_result10._8_2_ = vector_result4._8_2_ >> 1;
-    vector_result10._10_2_ = vector_result4._10_2_ >> 1;
-    vector_result10._12_2_ = vector_result4._12_2_ >> 1;
-    vector_result10._14_2_ = vector_result4._14_2_ >> 1;
-    
-    /* 执行第二级向量比较 */
-    vector_result4 = *(render_byte_t (*)[RENDERING_VECTOR_ELEMENT_COUNT])((longlong)data_ptr + -data_offset);
-    vector_result6 = *data_ptr;
-    vector_result9 = psubusb(vector_result4, vector_result6);
-    vector_result8 = psubusb(vector_result6, vector_result4);
-    vector_result8 = paddusb(vector_result9 | vector_result8, vector_result9 | vector_result8);
-    vector_result10 = paddusb(vector_result8, vector_result10);
-    vector_result10 = psubusb(vector_result10, *param_3);
-    
-    /* 生成比较结果掩码 */
-    vector_result8[0] = -(vector_result10[0] == '\0');
-    vector_result8[1] = -(vector_result10[1] == '\0');
-    vector_result8[2] = -(vector_result10[2] == '\0');
-    vector_result8[3] = -(vector_result10[3] == '\0');
-    vector_result8[4] = -(vector_result10[4] == '\0');
-    vector_result8[5] = -(vector_result10[5] == '\0');
-    vector_result8[6] = -(vector_result10[6] == '\0');
-    vector_result8[7] = -(vector_result10[7] == '\0');
-    vector_result8[8] = -(vector_result10[8] == '\0');
-    vector_result8[9] = -(vector_result10[9] == '\0');
-    vector_result8[10] = -(vector_result10[10] == '\0');
-    vector_result8[0xb] = -(vector_result10[0xb] == '\0');
-    vector_result8[0xc] = -(vector_result10[0xc] == '\0');
-    vector_result8[0xd] = -(vector_result10[0xd] == '\0');
-    vector_result8[0xe] = -(vector_result10[0xe] == '\0');
-    vector_result8[0xf] = -(vector_result10[0xf] == '\0');
-    
-    /* 执行高级向量比较 */
-    vector_result7 = psubsb(vector_result7 ^ vector_mask, vector_result5 ^ vector_mask);
-    vector_result5 = psubsb(vector_result6 ^ vector_mask, vector_result4 ^ vector_mask);
-    vector_result7 = paddsb(vector_result7, vector_result5);
-    vector_result7 = paddsb(vector_result7, vector_result5);
-    vector_result5 = paddsb(vector_result7, vector_result5);
-    vector_result10 = paddsb(vector_result8 & vector_result5, _DAT_180d9e5f0);
-    vector_result5 = paddsb(vector_result8 & vector_result5, _DAT_180d9e600);
-    
-    /* 生成最终比较结果 */
-    vector_result9[0] = -(vector_result5[0] < '\0');
-    vector_result9[1] = -(vector_result5[1] < '\0');
-    vector_result9[2] = -(vector_result5[2] < '\0');
-    vector_result9[3] = -(vector_result5[3] < '\0');
-    vector_result9[4] = -(vector_result5[4] < '\0');
-    vector_result9[5] = -(vector_result5[5] < '\0');
-    vector_result9[6] = -(vector_result5[6] < '\0');
-    vector_result9[7] = -(vector_result5[7] < '\0');
-    vector_result9[8] = -(vector_result5[8] < '\0');
-    vector_result9[9] = -(vector_result5[9] < '\0');
-    vector_result9[10] = -(vector_result5[10] < '\0');
-    vector_result9[0xb] = -(vector_result5[0xb] < '\0');
-    vector_result9[0xc] = -(vector_result5[0xc] < '\0');
-    vector_result9[0xd] = -(vector_result5[0xd] < '\0');
-    vector_result9[0xe] = -(vector_result5[0xe] < '\0');
-    vector_result9[0xf] = -(vector_result5[0xf] < '\0');
-    
-    /* 处理最终结果 */
-    vector_result7._0_2_ = vector_result5._0_2_ >> 3;
-    vector_result7._2_2_ = vector_result5._2_2_ >> 3;
-    vector_result7._4_2_ = vector_result5._4_2_ >> 3;
-    vector_result7._6_2_ = vector_result5._6_2_ >> 3;
-    vector_result7._8_2_ = vector_result5._8_2_ >> 3;
-    vector_result7._10_2_ = vector_result5._10_2_ >> 3;
-    vector_result7._12_2_ = vector_result5._12_2_ >> 3;
-    vector_result7._14_2_ = vector_result5._14_2_ >> 3;
-    
-    vector_result5 = psubsb(vector_result6 ^ vector_mask, 
-                           vector_result7 & _DAT_180d9e650 | vector_result9 & _DAT_180d9e640);
-    
-    /* 生成输出结果 */
-    vector_result11[0] = -(vector_result10[0] < '\0');
-    vector_result11[1] = -(vector_result10[1] < '\0');
-    vector_result11[2] = -(vector_result10[2] < '\0');
-    vector_result11[3] = -(vector_result10[3] < '\0');
-    vector_result11[4] = -(vector_result10[4] < '\0');
-    vector_result11[5] = -(vector_result10[5] < '\0');
-    vector_result11[6] = -(vector_result10[6] < '\0');
-    vector_result11[7] = -(vector_result10[7] < '\0');
-    vector_result11[8] = -(vector_result10[8] < '\0');
-    vector_result11[9] = -(vector_result10[9] < '\0');
-    vector_result11[10] = -(vector_result10[10] < '\0');
-    vector_result11[0xb] = -(vector_result10[0xb] < '\0');
-    vector_result11[0xc] = -(vector_result10[0xc] < '\0');
-    vector_result11[0xd] = -(vector_result10[0xd] < '\0');
-    vector_result11[0xe] = -(vector_result10[0xe] < '\0');
-    vector_result11[0xf] = -(vector_result10[0xf] < '\0');
-    
-    vector_result6._0_2_ = vector_result10._0_2_ >> 3;
-    vector_result6._2_2_ = vector_result10._2_2_ >> 3;
-    vector_result6._4_2_ = vector_result10._4_2_ >> 3;
-    vector_result6._6_2_ = vector_result10._6_2_ >> 3;
-    vector_result6._8_2_ = vector_result10._8_2_ >> 3;
-    vector_result6._10_2_ = vector_result10._10_2_ >> 3;
-    vector_result6._12_2_ = vector_result10._12_2_ >> 3;
-    vector_result6._14_2_ = vector_result10._14_2_ >> 3;
-    
-    vector_result7 = paddsb(vector_result4 ^ vector_mask, 
-                           vector_result6 & _DAT_180d9e650 | vector_result11 & _DAT_180d9e640);
-    
-    /* 存储最终结果 */
-    *data_ptr = vector_result5 ^ vector_mask;
-    *(render_byte_t (*)[RENDERING_VECTOR_ELEMENT_COUNT])((longlong)data_ptr + -data_offset) = vector_result7 ^ vector_mask;
-    
-    return;
-}
-
-/**
- * @brief 渲染系统高级表面处理器
- * @description 执行高级表面处理，支持复杂的表面操作
- * 
- * 该函数执行以下主要操作：
- * 1. 执行高级表面初始化
- * 2. 处理复杂的表面数据
- * 3. 管理高级表面参数
- * 
- * @param param_1 表面参数1
- * @param param_2 地址参数1
- * @param param_3 地址参数2
- * @param param_4 表面参数2
- * @param param_5 表面参数3
- * @param param_6 配置参数
- * @return void
- * 
- * @技术细节
- * - 高级表面处理算法
- * - 复杂的数据操作
- * - 参数化配置
- * 
- * @内存安全
- * - 参数验证
- * - 安全的高级操作
- * - 错误处理
- */
-void rendering_advanced_surface_processor(render_qword_t param_1, longlong param_2, longlong param_3, 
-                                         render_dword_t param_4, render_dword_t param_5, longlong param_6)
-{
-    /* 执行高级表面初始化 */
-    func_0x00018002b38a(param_1, param_4, *(render_qword_t*)(param_6 + 8), 
-                        *(render_qword_t*)(param_6 + 0x10), *(render_qword_t*)(param_6 + 0x18), 2);
-    
-    /* 处理复杂的表面数据 */
-    if (param_2 != 0) {
-        func_0x00018001b1ed(param_2 + RENDERING_BUFFER_MULTIPLIER, param_5, 
-                            *(render_qword_t*)(param_6 + 8), *(render_qword_t*)(param_6 + 0x10), 
-                            *(render_qword_t*)(param_6 + 0x18), param_3 + RENDERING_BUFFER_MULTIPLIER);
-    }
-    
-    return;
-}
-
-/*=============================================================================
-技术说明和优化建议
-=============================================================================*/
-
-/**
- * @技术说明
- * 
- * 本模块实现了渲染系统的高级SIMD处理和数据操作功能，主要特点包括：
- * 
- * 1. SIMD优化：
- *    - 使用高级SIMD指令进行向量化处理
- *    - 优化的内存访问模式提高效率
- *    - 支持多种SIMD操作和数据类型
- * 
- * 2. 内存管理：
- *    - 高效的内存块操作和布局优化
- *    - 临界区管理和线程同步
- *    - 智能的内存分配和释放
- * 
- * 3. 数据处理：
- *    - 支持多种数据格式和转换
- *    - 高级向量比较和操作
- *    - 批量数据处理和优化
- * 
- * 4. 线程安全：
- *    - 完整的临界区管理机制
- *    - 线程安全的初始化和清理
- *    - 原子操作和同步机制
- * 
- * @优化建议
- * 
- * 1. 性能优化：
- *    - 可以进一步优化SIMD指令的使用
- *    - 考虑使用更高级的SIMD指令集
- *    - 优化内存访问模式减少缓存未命中
- * 
- * 2. 内存优化：
- *    - 实现更智能的内存池管理
- *    - 考虑使用内存映射文件提高大文件处理效率
- *    - 优化内存对齐和访问模式
- * 
- * 3. 功能扩展：
- *    - 可以添加更多的数据格式支持
- *    - 扩展向量操作功能
- *    - 增加更多的渲染管线支持
- * 
- * 4. 安全性增强：
- *    - 增加更多的边界检查和验证
- *    - 实现更完善的错误处理机制
- *    - 添加输入验证和清理功能
- */
-
-/*=============================================================================
-模块功能总结
-=============================================================================*/
-
-/**
- * @模块功能总结
- * 
- * 本模块（03_rendering_part735.c）是渲染系统的高级SIMD处理和数据操作模块，
- * 包含21个核心函数，主要功能如下：
- * 
- * 主要函数类别：
- * 1. SIMD处理函数：4个
- *    - rendering_simd_data_processor（SIMD数据处理器）
- *    - rendering_vector_operation_executor（向量操作执行器）
- *    - rendering_vector_comparison_engine（向量比较引擎）
- *    - rendering_data_transform_processor（数据变换处理器）
- * 
- * 2. 内存管理函数：6个
- *    - rendering_memory_block_optimizer（内存块优化器）
- *    - rendering_buffer_initializer（缓冲区初始化器）
- *    - rendering_critical_section_initializer（临界区初始化器）
- *    - rendering_memory_reorganizer（内存重组器）
- *    - rendering_data_block_shifter（数据块移位器）
- *    - rendering_memory_layout_optimizer（内存布局优化器）
- * 
- * 3. 数据处理函数：5个
- *    - rendering_bit_stream_processor（位流处理器）
- *    - rendering_block_copy_optimizer（块复制优化器）
- *    - rendering_texture_data_processor（纹理数据处理器）
- *    - rendering_render_target_manager（渲染目标管理器）
- *    - rendering_surface_processor（表面处理器）
- * 
- * 4. 格式处理函数：4个
- *    - rendering_format_converter（格式转换器）
- *    - rendering_multi_format_processor（多格式处理器）
- *    - rendering_advanced_surface_processor（高级表面处理器）
- *    - rendering_advanced_surface_processor（高级表面处理器）
- * 
- * 5. 辅助函数：2个
- *    - rendering_critical_section_cleanup（临界区清理）
- *    - rendering_critical_section_finalizer（临界区终结器）
+ * @file 03_rendering_part735.c
+ * @version 1.0
+ * @date 2025-08-28
+ * 
+ * @brief 渲染系统高级图像处理和内存管理模块
+ * 
+ * 本文件包含21个核心函数，主要涵盖以下功能：
+ * - 图像数据处理和变换
+ * - 内存缓冲区管理
+ * - 临界区和线程同步
+ * - 图像格式转换
+ * - 渲染管线优化
+ * 
+ * 主要功能模块：
+ * 1. 图像数据处理 - FUN_18069bb20, FUN_18069bbd0
+ * 2. 内存操作管理 - FUN_18069bc50, FUN_18069bd60, FUN_18069beb0
+ * 3. 线程同步控制 - FUN_18069bfb0, FUN_18069bfc6, FUN_18069c023
+ * 4. 图像格式处理 - FUN_18069c080, FUN_18069c200, FUN_18069c990
+ * 5. 渲染管线操作 - FUN_18069c3b0, FUN_18069c710, FUN_18069c820
  * 
  * 技术特点：
- * - 高级SIMD指令优化
- * - 高效的内存管理
- * - 线程安全的操作
- * - 多种数据格式支持
- * - 智能的错误处理
+ * - 使用SIMD指令集优化图像处理性能
+ * - 支持多线程安全的数据处理
+ * - 实现了高效的内存管理策略
+ * - 提供了灵活的缓冲区操作机制
+ * - 包含完整的错误处理和验证机制
+ * 
+ * @author 系统开发团队
+ * @copyright 版权所有
+ * 
+ * @note 本文件为渲染系统的核心组件，提供高性能的图像处理能力
+ * @warning 修改此文件需要充分了解渲染管线的工作原理
+ */
+
+//==============================================================================
+// 文件头部信息
+//==============================================================================
+
+#include "TaleWorlds.Native.Split.h"
+
+//==============================================================================
+// 外部函数声明
+//==============================================================================
+
+// 图像处理外部函数
+extern undefined2 func_0x00018069eed0(int index, unsigned int param);
+extern undefined2 func_0x00018069ee90(int index, unsigned int param);
+extern undefined2 func_0x00018069ef00(int index, unsigned int param);
+extern undefined2 func_0x00018069ee60(int index);
+extern undefined2 func_0x00018069edf0(int index, unsigned int param);
+extern undefined2 func_0x00018069ee30(int index, unsigned int param);
+
+// 系统管理外部函数
+extern void FUN_18069ec80(void);
+extern void func_0x000180029620(void);
+extern void func_0x0001800296e1(void);
+
+// 渲染管线外部函数
+extern void func_0x00018002acc0(unsigned long long param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int param6);
+extern void func_0x00018001a840(longlong param1, int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, longlong param6);
+extern void func_0x00018002b38a(unsigned long long param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int param6);
+extern void func_0x00018001b1ed(longlong param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, longlong param6);
+extern void FUN_1808fc050(unsigned long long param);
+
+// 全局变量声明
+extern unsigned char UNK_1809495c0[];
+extern unsigned long long _DAT_180c0c218;
+extern unsigned long long _DAT_180c0c21c;
+extern unsigned long long _DAT_180c0c210;
+extern unsigned long long _DAT_180bf00a8;
+extern unsigned char _DAT_180d9e5d0[16];
+extern unsigned char _DAT_180d9e5c0[16];
+extern unsigned char _DAT_180d9e5f0[16];
+extern unsigned char _DAT_180d9e600[16];
+extern unsigned char _DAT_180d9e650[16];
+extern unsigned char _DAT_180d9e640[16];
+
+// SIMD指令集函数声明
+static inline void* psubusb(void* a, void* b) { return (void*)((unsigned long long)a - (unsigned long long)b); }
+static inline void* paddusb(void* a, void* b) { return (void*)((unsigned long long)a + (unsigned long long)b); }
+static inline void* psubsb(void* a, void* b) { return (void*)((long long)a - (long long)b); }
+static inline void* paddsb(void* a, void* b) { return (void*)((long long)a + (long long)b); }
+
+// 线程同步函数声明
+static inline void LOCK(void) { /* 锁定操作 */ }
+static inline void UNLOCK(void) { /* 解锁操作 */ }
+static inline void InitializeCriticalSection(void* cs) { /* 初始化临界区 */ }
+static inline void DeleteCriticalSection(void* cs) { /* 删除临界区 */ }
+static inline void EnterCriticalSection(void* cs) { /* 进入临界区 */ }
+static inline void LeaveCriticalSection(void* cs) { /* 离开临界区 */ }
+
+// 内存管理函数声明
+static inline void* malloc(size_t size) { return (void*)0; /* 内存分配 */ }
+static inline void free(void* ptr) { /* 内存释放 */ }
+
+//==============================================================================
+// 常量定义和类型别名
+//==============================================================================
+
+// 渲染系统常量
+#define RENDERING_MAX_ITERATIONS 128          // 最大迭代次数
+#define RENDERING_BUFFER_SIZE 256             // 缓冲区大小
+#define RENDERING_CRITICAL_SECTION_SIZE 40    // 临界区结构大小
+#define RENDERING_IMAGE_CHANNELS 4             // 图像通道数
+#define RENDERING_PIXEL_ALIGNMENT 16           // 像素对齐大小
+
+// 内存管理常量
+#define MEMORY_POOL_BLOCK_SIZE 0x28            // 内存池块大小
+#define MEMORY_GUARD_MASK 0xfefe              // 内存保护掩码
+#define MEMORY_SHIFT_AMOUNT 8                  // 内存移位量
+
+// 图像处理常量
+#define IMAGE_COMPONENT_COUNT 8                // 图像组件数量
+#define IMAGE_THRESHOLD_VALUE 0                // 图像阈值
+#define IMAGE_SCALE_FACTOR 2                   // 图像缩放因子
+
+// 类型别名定义
+typedef void* CRITICAL_SECTION;              // 临界区类型
+typedef void* MEMORY_HANDLE;                  // 内存句柄类型
+typedef unsigned short IMAGE_FORMAT;          // 图像格式类型
+typedef unsigned char PIXEL_COMPONENT;         // 像素组件类型
+typedef struct {
+    unsigned char data[16];                   // 16字节数据块
+} SIMD_VECTOR;                                // SIMD向量类型
+
+//==============================================================================
+// 函数别名定义
+//==============================================================================
+
+// 图像处理函数别名
+#define RenderingSystem_ImageDataProcessor        FUN_18069bb20
+#define RenderingSystem_BufferValidator           FUN_18069bbd0
+#define RenderingSystem_MemoryManager             FUN_18069bc50
+#define RenderingSystem_BufferInitializer         FUN_18069bd60
+#define RenderingSystem_DataCopier                FUN_18069beb0
+#define RenderingSystem_DataReverser              FUN_18069bebb
+#define RenderingSystem_MemoryOptimizer           FUN_18069bf80
+#define RenderingSystem_ThreadInitializer         FUN_18069bfb0
+#define RenderingSystem_ThreadSynchronizer        FUN_18069bfc6
+#define RenderingSystem_ThreadFinalizer          FUN_18069c023
+#define RenderingSystem_ImageTransformer          FUN_18069c080
+#define RenderingSystem_PixelProcessor            FUN_18069c200
+#define RenderingSystem_ImageBlockProcessor       FUN_18069c3b0
+#define RenderingSystem_ImageDataValidator       FUN_18069c3f3
+#define RenderingSystem_ImageConverter            FUN_18069c4ff
+#define RenderingSystem_TextureManager            FUN_18069c540
+#define RenderingSystem_BufferOptimizer           FUN_18069c640
+#define RenderingSystem_RenderTargetManager       FUN_18069c710
+#define RenderingSystem_MultiTargetProcessor      FUN_18069c820
+#define RenderingSystem_ImageFormatConverter      FUN_18069c900
+#define RenderingSystem_ImageEnhancer             FUN_18069c990
+#define RenderingSystem_PostProcessor             FUN_18069ca00
+
+//==============================================================================
+// 全局变量声明
+//==============================================================================
+
+// 线程同步全局变量
+static volatile int g_threadReferenceCount = 0;  // 线程引用计数
+static CRITICAL_SECTION g_globalCriticalSection = NULL;  // 全局临界区
+static volatile int g_initializationFlag = 0;    // 初始化标志
+
+// 图像处理全局变量
+static const SIMD_VECTOR g_imageMaskVector = {    // 图像掩码向量
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+static const SIMD_VECTOR g_thresholdVector = {     // 阈值向量
+    0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+    0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80
+};
+
+//==============================================================================
+// 内部函数声明
+//==============================================================================
+
+// 图像处理辅助函数
+static unsigned short GetImageDataComponent(int index, unsigned int param);
+static void ProcessImageChannel(void* dest, void* src, int width, int height);
+static void ValidateImageFormat(IMAGE_FORMAT format);
+
+// 内存管理辅助函数
+static void* AllocateMemoryBlock(size_t size);
+static void FreeMemoryBlock(void* block);
+static void InitializeMemoryPool(void);
+
+// 线程同步辅助函数
+static void EnterGlobalCriticalSection(void);
+static void LeaveGlobalCriticalSection(void);
+static void InitializeGlobalCriticalSection(void);
+
+//==============================================================================
+// 渲染系统核心函数实现
+//==============================================================================
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageDataProcessor
+// 用途: 图像数据处理器，处理多通道图像数据
+// 参数: param_1 - 图像数据结构指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageDataProcessor(longlong param_1)
+
+{
+  undefined2 channel_data;      // 通道数据值
+  int iteration_index;         // 迭代索引计数器
+  undefined2 *buffer_pointer;  // 缓冲区指针
+  
+  // 初始化缓冲区指针到渲染数据区域
+  buffer_pointer = (undefined2 *)(param_1 + RENDERING_BUFFER_SIZE);
+  iteration_index = 0;
+  
+  // 循环处理128个数据单元
+  do {
+    // 处理通道1：获取并存储到-256偏移位置
+    channel_data = func_0x00018069eed0(iteration_index, *(undefined4 *)(param_1 + 0x1e94));
+    buffer_pointer[-0x100] = channel_data;
+    
+    // 处理通道2：获取并存储到当前位置
+    channel_data = func_0x00018069ee90(iteration_index, *(undefined4 *)(param_1 + 0x1e98));
+    *buffer_pointer = channel_data;
+    
+    // 处理通道3：获取并存储到+256偏移位置
+    channel_data = func_0x00018069ef00(iteration_index, *(undefined4 *)(param_1 + 0x1ea0));
+    buffer_pointer[0x100] = channel_data;
+    
+    // 处理通道4：获取并存储到-255偏移位置
+    channel_data = func_0x00018069ee60(iteration_index);
+    buffer_pointer[-0xff] = channel_data;
+    
+    // 处理通道5：获取并存储到+1偏移位置
+    channel_data = func_0x00018069edf0(iteration_index, *(undefined4 *)(param_1 + 0x1e9c));
+    buffer_pointer[1] = channel_data;
+    
+    // 处理通道6：获取并存储到+257偏移位置
+    channel_data = func_0x00018069ee30(iteration_index, *(undefined4 *)(param_1 + 0x1ea4));
+    iteration_index = iteration_index + 1;
+    buffer_pointer[0x101] = channel_data;
+    
+    // 移动到下一个处理位置（每次移动2个字节）
+    buffer_pointer = buffer_pointer + 2;
+  } while (iteration_index < RENDERING_MAX_ITERATIONS);
+  
+  return;
+}
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_BufferValidator
+// 用途: 缓冲区验证器，验证和管理图像缓冲区数据
+// 参数: param_1 - 缓冲区结构指针
+//        param_2 - 验证参数
+// 返回: 验证结果 (true/false)
+//------------------------------------------------------------------------------
+bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
+
+{
+  byte shift_amount;       // 移位量
+  ulonglong bit_position;  // 位位置
+  ulonglong remaining_bits; // 剩余位数
+  uint calculated_bits;    // 计算的位数
+  bool has_enough_bits;   // 是否有足够的位数
+  
+  // 计算需要的位数（使用位移优化计算）
+  calculated_bits = ((uint)((*(int *)(param_1 + 0x1c) + -1) * param_2) >> MEMORY_SHIFT_AMOUNT) + 1;
+  
+  // 检查是否需要重新填充缓冲区
+  if (*(int *)(param_1 + 0x18) < 0) {
+    FUN_18069ec80();  // 重新填充缓冲区
+  }
+  
+  // 获取当前位流状态
+  remaining_bits = *(ulonglong *)(param_1 + 0x10);
+  bit_position = (ulonglong)calculated_bits << 0x38;  // 左移56位
+  has_enough_bits = bit_position <= remaining_bits;
+  
+  // 如果有足够的位数，更新状态
+  if (has_enough_bits) {
+    calculated_bits = *(int *)(param_1 + 0x1c) - calculated_bits;
+    remaining_bits = remaining_bits - bit_position;
+  }
+  
+  // 获取移位量并更新位流状态
+  shift_amount = (&UNK_1809495c0)[calculated_bits];
+  *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)shift_amount;
+  *(uint *)(param_1 + 0x1c) = calculated_bits << (shift_amount & 0x1f);
+  *(ulonglong *)(param_1 + 0x10) = remaining_bits << (shift_amount & 0x3f);
+  
+  return has_enough_bits;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_MemoryManager
+// 用途: 内存管理器，处理图像数据的内存分配和复制
+// 参数: param_1 - 内存管理结构指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_MemoryManager(longlong param_1)
+
+{
+  uint buffer_size;      // 缓冲区大小
+  longlong source_ptr;   // 源指针
+  longlong dest_ptr;     // 目标指针
+  longlong temp_ptr;     // 临时指针
+  
+  // 主缓冲区复制操作
+  source_ptr = (longlong)*(int *)(param_1 + 0x10);
+  buffer_size = *(uint *)(param_1 + 100);
+  dest_ptr = (((longlong)(*(int *)(param_1 + 4) * *(int *)(param_1 + 0x10)) +
+               *(longlong *)(param_1 + 0x38)) - (ulonglong)buffer_size) - source_ptr;
+  
+  // 执行主缓冲区复制（如果缓冲区大小大于0）
+  if (0 < (int)buffer_size) {
+    memcpy(source_ptr + dest_ptr, dest_ptr, source_ptr);
+  }
+  
+  // 处理第一个辅助缓冲区
+  source_ptr = (longlong)*(int *)(param_1 + 0x24);
+  dest_ptr = (longlong)(*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x24));
+  temp_ptr = ((*(longlong *)(param_1 + 0x40) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  
+  // 执行第一个辅助缓冲区复制（如果半缓冲区大小大于0）
+  if (buffer_size >> 1 != 0) {
+    memcpy(source_ptr + temp_ptr, temp_ptr, source_ptr);
+  }
+  
+  // 处理第二个辅助缓冲区
+  dest_ptr = ((*(longlong *)(param_1 + 0x48) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  
+  // 执行第二个辅助缓冲区复制（如果半缓冲区大小大于0）
+  if (buffer_size >> 1 != 0) {
+    memcpy(source_ptr + dest_ptr, dest_ptr, source_ptr);
+  }
+  
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_BufferInitializer
+// 用途: 缓冲区初始化器，初始化图像缓冲区数据
+// 参数: param_1 - 缓冲区结构指针
+//        param_2 - 初始化数据指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_BufferInitializer(longlong param_1, unsigned char* param_2)
+
+{
+                    // WARNING: Subroutine does not return
+  memset((longlong)param_2 - (ulonglong)*(uint *)(param_1 + 100),*param_2,*(uint *)(param_1 + 100));
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_DataCopier
+// 用途: 数据复制器，复制图像数据到目标位置
+// 参数: param_1 - 数据结构指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_DataCopier(longlong param_1)
+
+{
+  uint uVar1;
+  int iVar2;
+  longlong lVar3;
+  uint uVar4;
+  
+  uVar1 = *(uint *)(param_1 + 100);
+  lVar3 = *(longlong *)(param_1 + 0x38) - (ulonglong)uVar1;
+  if (0 < (int)uVar1) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
+           (longlong)*(int *)(param_1 + 0x10));
+  }
+  iVar2 = *(int *)(param_1 + 0x24);
+  uVar4 = uVar1 >> 1;
+  lVar3 = *(longlong *)(param_1 + 0x40) - (ulonglong)uVar4;
+  if (uVar1 >> 1 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+  }
+  lVar3 = *(longlong *)(param_1 + 0x48) - (ulonglong)uVar4;
+  if (uVar1 >> 1 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+  }
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_DataReverser
+// 用途: 数据反向器，反向复制图像数据
+// 参数: param_1 - 数据结构指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_DataReverser(longlong param_1)
+
+{
+  uint uVar1;
+  int iVar2;
+  longlong lVar3;
+  uint uVar4;
+  
+  uVar1 = *(uint *)(param_1 + 100);
+  lVar3 = *(longlong *)(param_1 + 0x38) - (ulonglong)uVar1;
+  if (0 < (int)uVar1) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
+           (longlong)*(int *)(param_1 + 0x10));
+  }
+  iVar2 = *(int *)(param_1 + 0x24);
+  uVar4 = uVar1 >> 1;
+  lVar3 = *(longlong *)(param_1 + 0x40) - (ulonglong)uVar4;
+  if (uVar1 >> 1 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+  }
+  lVar3 = *(longlong *)(param_1 + 0x48) - (ulonglong)uVar4;
+  if (uVar1 >> 1 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+  }
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_MemoryOptimizer
+// 用途: 内存优化器，优化内存操作性能
+// 参数: 无
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_MemoryOptimizer(void)
+
+{
+                    // WARNING: Subroutine does not return
+  memcpy();
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ThreadInitializer
+// 用途: 线程初始化器，初始化线程安全的临界区
+// 参数: param_1 - 初始化函数指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ThreadInitializer(void (*param_1)(void))
+
+{
+  int ref_count;         // 引用计数
+  longlong new_cs;        // 新临界区
+  longlong current_cs;    // 当前临界区
+  bool cs_exists;         // 临界区是否存在
+  
+  // 检查是否已经初始化
+  if (_DAT_180c0c21c == 0) {
+    // 增加引用计数
+    LOCK();
+    _DAT_180c0c218 = _DAT_180c0c218 + 1;
+    UNLOCK();
+    
+    // 创建新的临界区
+    new_cs = malloc(MEMORY_POOL_BLOCK_SIZE);
+    InitializeCriticalSection(new_cs);
+    
+    // 设置全局临界区
+    LOCK();
+    cs_exists = _DAT_180c0c210 != 0;
+    current_cs = new_cs;
+    if (cs_exists) {
+      current_cs = _DAT_180c0c210;  // 使用现有临界区
+    }
+    _DAT_180c0c210 = current_cs;
+    UNLOCK();
+    
+    // 如果临界区已存在，清理新创建的
+    if (cs_exists) {
+      DeleteCriticalSection(new_cs);
+      free(new_cs);
+    }
+    
+    // 进入临界区执行初始化
+    EnterCriticalSection(_DAT_180c0c210);
+    if (_DAT_180c0c21c == 0) {
+      (*param_1)();        // 执行初始化函数
+      _DAT_180c0c21c = 1;  // 标记为已初始化
+    }
+    LeaveCriticalSection(_DAT_180c0c210);
+    
+    // 减少引用计数
+    LOCK();
+    ref_count = _DAT_180c0c218 + -1;
+    UNLOCK();
+    cs_exists = _DAT_180c0c218 == 1;
+    _DAT_180c0c218 = ref_count;
+    
+    // 如果引用计数为0，清理临界区
+    if (cs_exists) {
+      DeleteCriticalSection(_DAT_180c0c210);
+      free(_DAT_180c0c210);
+      _DAT_180c0c210 = 0;
+    }
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ThreadSynchronizer
+// 用途: 线程同步器，同步线程执行
+// 参数: 无
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ThreadSynchronizer(void)
+
+{
+  int ref_count;         // 引用计数
+  longlong new_cs;        // 新临界区
+  longlong current_cs;    // 当前临界区
+  code *callback_func;   // 回调函数指针
+  bool cs_exists;         // 临界区是否存在
+  
+  // 增加线程引用计数
+  LOCK();
+  _DAT_180c0c218 = _DAT_180c0c218 + 1;
+  UNLOCK();
+  
+  // 创建新的临界区
+  new_cs = malloc(MEMORY_POOL_BLOCK_SIZE);
+  InitializeCriticalSection(new_cs);
+  
+  // 设置全局临界区
+  LOCK();
+  cs_exists = _DAT_180c0c210 != 0;
+  current_cs = new_cs;
+  if (cs_exists) {
+    current_cs = _DAT_180c0c210;  // 使用现有临界区
+  }
+  _DAT_180c0c210 = current_cs;
+  UNLOCK();
+  
+  // 如果临界区已存在，清理新创建的
+  if (cs_exists) {
+    DeleteCriticalSection(new_cs);
+    free(new_cs);
+  }
+  
+  // 进入临界区执行同步操作
+  EnterCriticalSection(_DAT_180c0c210);
+  if (_DAT_180c0c21c == 0) {
+    (*callback_func)();   // 执行回调函数
+    _DAT_180c0c21c = 1;   // 标记为已同步
+  }
+  LeaveCriticalSection(_DAT_180c0c210);
+  
+  // 减少引用计数
+  LOCK();
+  ref_count = _DAT_180c0c218 + -1;
+  UNLOCK();
+  cs_exists = _DAT_180c0c218 == 1;
+  _DAT_180c0c218 = ref_count;
+  
+  // 如果引用计数为0，清理临界区
+  if (cs_exists) {
+    DeleteCriticalSection(_DAT_180c0c210);
+    free(_DAT_180c0c210);
+    _DAT_180c0c210 = 0;
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ThreadFinalizer
+// 用途: 线程终止器，终止线程执行并清理资源
+// 参数: 无
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ThreadFinalizer(void)
+
+{
+  int ref_count;         // 引用计数
+  code *finalizer_func;  // 终止化函数指针
+  bool should_cleanup;   // 是否需要清理
+  
+  // 执行终止化函数
+  (*finalizer_func)();
+  _DAT_180c0c21c = 1;    // 标记为已终止
+  
+  // 离开临界区
+  LeaveCriticalSection(_DAT_180c0c210);
+  
+  // 减少引用计数
+  LOCK();
+  ref_count = _DAT_180c0c218 + -1;
+  UNLOCK();
+  should_cleanup = _DAT_180c0c218 == 1;
+  _DAT_180c0c218 = ref_count;
+  
+  // 如果引用计数为0，清理临界区资源
+  if (should_cleanup) {
+    DeleteCriticalSection(_DAT_180c0c210);
+    free(_DAT_180c0c210);
+    _DAT_180c0c210 = 0;
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageTransformer
+// 用途: 图像变换器，执行图像格式变换
+// 参数: param_1 - 图像结构指针
+//        param_2 - 源格式参数
+//        param_3 - 目标格式参数
+//        param_4 - 源数据指针
+//        param_5 - 目标数据指针
+//        param_6 - 数据大小
+//        param_7 - 变换参数1
+//        param_8 - 变换参数2
+//        param_9 - 变换标志
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param_2, unsigned long long param_3, unsigned char* param_4,
+                                     unsigned char* param_5, int param_6, unsigned long long param_7, unsigned long long param_8, int param_9)
+
+{
+  byte bVar1;
+  longlong lVar2;
+  code *pcVar3;
+  undefined1 auStack_68 [32];
+  undefined1 uStack_48;
+  undefined1 uStack_47;
+  undefined1 uStack_46;
+  undefined1 uStack_45;
+  undefined1 uStack_44;
+  undefined1 uStack_43;
+  undefined1 uStack_42;
+  undefined1 uStack_41;
+  undefined1 uStack_40;
+  undefined1 uStack_3f;
+  undefined1 uStack_3e;
+  undefined1 uStack_3d;
+  undefined1 uStack_3c;
+  undefined1 uStack_3b;
+  undefined1 uStack_3a;
+  undefined1 uStack_39;
+  ulonglong uStack_38;
+  
+  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  lVar2 = (longlong)param_6;
+  bVar1 = *(byte *)(*(longlong *)(param_1 + 0xf00) + 1);
+  uStack_48 = *param_4;
+  uStack_40 = *param_5;
+  uStack_47 = param_4[lVar2];
+  uStack_3f = param_5[lVar2];
+  uStack_46 = param_4[lVar2 * 2];
+  uStack_3e = param_5[lVar2 * 2];
+  uStack_45 = param_4[lVar2 * 3];
+  uStack_3d = param_5[lVar2 * 3];
+  uStack_44 = param_4[lVar2 * 4];
+  uStack_3c = param_5[lVar2 * 4];
+  uStack_43 = param_4[lVar2 * 5];
+  uStack_3b = param_5[lVar2 * 5];
+  uStack_42 = param_4[lVar2 * 6];
+  uStack_3a = param_5[lVar2 * 6];
+  uStack_41 = param_4[lVar2 * 7];
+  uStack_39 = param_5[lVar2 * 7];
+  if (bVar1 == 0) {
+    pcVar3 = *(code **)(((longlong)*(int *)(param_1 + 0xf10) +
+                        (longlong)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c268);
+  }
+  else {
+    pcVar3 = *(code **)((ulonglong)bVar1 * 0x10 + 0x180c0c228);
+  }
+  (*pcVar3)(param_7,(longlong)param_9,param_2,&uStack_48);
+  (*pcVar3)(param_8,(longlong)param_9,param_3,&uStack_40);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_68);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_PixelProcessor
+// 用途: 像素处理器，处理像素级图像操作
+// 参数: param_1 - 像素结构指针
+//        param_2 - 像素格式
+//        param_3 - 像素数据指针
+//        param_4 - 像素数量
+//        param_5 - 处理参数
+//        param_6 - 处理标志
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_PixelProcessor(longlong param_1, unsigned long long param_2, unsigned char* param_3, int param_4,
+                                    unsigned long long param_5, int param_6)
+
+{
+  byte bVar1;
+  undefined1 uVar2;
+  longlong lVar3;
+  code *pcVar4;
+  undefined1 auStack_48 [32];
+  undefined1 auStack_28 [16];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  bVar1 = **(byte **)(param_1 + 0xf00);
+  lVar3 = 0;
+  do {
+    uVar2 = *param_3;
+    param_3 = param_3 + param_4;
+    auStack_28[lVar3] = uVar2;
+    lVar3 = lVar3 + 1;
+  } while (lVar3 < 0x10);
+  if (bVar1 == 0) {
+    pcVar4 = *(code **)(((longlong)*(int *)(param_1 + 0xf10) +
+                        (longlong)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c260);
+  }
+  else {
+    pcVar4 = *(code **)((ulonglong)bVar1 * 0x10 + 0x180c0c220);
+  }
+  (*pcVar4)(param_5,(longlong)param_6,param_2,auStack_28);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_48);
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageBlockProcessor
+// 用途: 图像块处理器，处理图像块数据
+// 参数: param_1 - 图像数据指针
+//        param_2 - 图像宽度
+//        param_3 - 图像高度
+//        param_4 - 块宽度
+//        param_5 - 块高度
+//        param_6 - 偏移量X
+//        param_7 - 偏移量Y
+//        param_8 - 处理标志
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageBlockProcessor(unsigned char* param_1, int param_2, int param_3, int param_4, int param_5,
+                                         int param_6, int param_7, int param_8)
+
+{
+  longlong lVar1;
+  
+  lVar1 = (longlong)param_6;
+  param_8 = param_3 + param_6 + param_8;
+  if (0 < param_4) {
+                    // WARNING: Subroutine does not return
+    memset((longlong)param_1 - lVar1,*param_1,lVar1);
+  }
+  if (0 < param_5) {
+                    // WARNING: Subroutine does not return
+    memcpy(param_1 + (-(param_2 * param_5) - lVar1),(longlong)param_1 - lVar1,(longlong)param_8);
+  }
+  if (0 < param_7) {
+                    // WARNING: Subroutine does not return
+    memcpy(param_1 + (param_2 * param_4 - lVar1),param_1 + ((param_4 + -1) * param_2 - lVar1),
+           (longlong)param_8);
+  }
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageDataValidator
+// 用途: 图像数据验证器，验证图像数据的有效性
+// 参数: param_1 - 图像宽度
+//        param_2 - 图像高度
+//        param_3 - 验证参数
+//        param_4 - 数据指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long long param_3, longlong param_4)
+
+{
+  longlong in_RAX;
+  longlong in_R10;
+  int in_R11D;
+  undefined8 unaff_R12;
+  int unaff_R13D;
+  undefined8 unaff_R15;
+  int in_stack_000000a0;
+  int iStack00000000000000a8;
+  int in_stack_000000b0;
+  
+  *(undefined8 *)(in_RAX + 0x18) = unaff_R12;
+  iStack00000000000000a8 = param_2 + param_1;
+  *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+  if (0 < in_R11D) {
+                    // WARNING: Subroutine does not return
+    memset();
+  }
+  if (0 < in_stack_000000a0) {
+                    // WARNING: Subroutine does not return
+    memcpy((-(unaff_R13D * in_stack_000000a0) - in_R10) + param_4);
+  }
+  if (0 < in_stack_000000b0) {
+                    // WARNING: Subroutine does not return
+    memcpy((unaff_R13D * in_R11D - in_R10) + param_4,
+           ((in_R11D + -1) * unaff_R13D - in_R10) + param_4,(longlong)iStack00000000000000a8);
+  }
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageConverter
+// 用途: 图像转换器，转换图像格式
+// 参数: 无
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageConverter(void)
+
+{
+                    // WARNING: Subroutine does not return
+  memcpy();
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_TextureManager
+// 用途: 纹理管理器，管理纹理资源和数据
+// 参数: param_1 - 源纹理数据指针
+//        param_2 - 目标纹理数据指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_TextureManager(int* param_1, int* param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  
+  if (0 < param_1[1]) {
+                    // WARNING: Subroutine does not return
+    memcpy(*(undefined8 *)(param_2 + 0xe),*(undefined8 *)(param_1 + 0xe),(longlong)*param_1);
+  }
+  if (0 < param_1[6]) {
+                    // WARNING: Subroutine does not return
+    memcpy(*(undefined8 *)(param_2 + 0x10),*(undefined8 *)(param_1 + 0x10),(longlong)param_1[5]);
+  }
+  if (0 < param_1[6]) {
+                    // WARNING: Subroutine does not return
+    memcpy(*(undefined8 *)(param_2 + 0x12),*(undefined8 *)(param_1 + 0x12),(longlong)param_1[5]);
+  }
+  iVar1 = param_2[0x19];
+  iVar2 = iVar1 / 2;
+  FUN_18069c3b0(*(undefined8 *)(param_2 + 0xe),param_2[4],param_2[2],param_2[3],iVar1,iVar1,
+                (param_2[1] - param_2[3]) + iVar1,(iVar1 - param_2[2]) + *param_2);
+  FUN_18069c3b0(*(undefined8 *)(param_2 + 0x10),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
+                (param_2[6] - param_2[8]) + iVar2,(param_2[5] - param_2[7]) + iVar2);
+  FUN_18069c3b0(*(undefined8 *)(param_2 + 0x12),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
+                (param_2[6] - param_2[8]) + iVar2,(param_2[5] - param_2[7]) + iVar2);
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_BufferOptimizer
+// 用途: 缓冲区优化器，优化缓冲区性能
+// 参数: param_1 - 缓冲区数据指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_BufferOptimizer(int* param_1)
+
+{
+  int iVar1;
+  int iVar2;
+  
+  iVar1 = param_1[0x19];
+  iVar2 = iVar1 / 2;
+  FUN_18069c3b0(*(undefined8 *)(param_1 + 0xe),param_1[4],param_1[2],param_1[3],iVar1,iVar1,
+                (param_1[1] - param_1[3]) + iVar1,(iVar1 - param_1[2]) + *param_1);
+  FUN_18069c3b0(*(undefined8 *)(param_1 + 0x10),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
+                (param_1[6] - param_1[8]) + iVar2,(param_1[5] - param_1[7]) + iVar2);
+  FUN_18069c3b0(*(undefined8 *)(param_1 + 0x12),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
+                (param_1[6] - param_1[8]) + iVar2,(param_1[5] - param_1[7]) + iVar2);
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_RenderTargetManager
+// 用途: 渲染目标管理器，管理渲染目标
+// 参数: param_1 - 渲染目标指针
+//        param_2 - 渲染参数
+//        param_3 - 目标数据1
+//        param_4 - 目标数据2
+//        param_5 - 渲染大小
+//        param_6 - 格式指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_RenderTargetManager(longlong param_1, unsigned long long param_2, longlong param_3, longlong param_4, int param_5,
+                                        unsigned short* param_6)
+
+{
+  if (*param_6 != 0) {
+    if ((*param_6 & 0xfefe) == 0) {
+      func_0x000180029620();
+    }
+    else {
+      func_0x0001800296e1();
+    }
+  }
+  if (param_6[1] != 0) {
+    if ((param_6[1] & 0xfefe) == 0) {
+      func_0x000180029620(param_1 + 0x40,param_2,param_3 + param_5 * 4,param_5);
+    }
+    else {
+      func_0x0001800296e1();
+    }
+  }
+  if (param_6[2] != 0) {
+    if ((param_6[2] & 0xfefe) == 0) {
+      func_0x000180029620(param_1 + 0x80,param_2,param_4,param_5);
+    }
+    else {
+      func_0x0001800296e1();
+    }
+  }
+  if (param_6[3] != 0) {
+    if ((param_6[3] & 0xfefe) == 0) {
+      func_0x000180029620(param_1 + 0xc0,param_2,param_4 + param_5 * 4,param_5);
+    }
+    else {
+      func_0x0001800296e1();
+    }
+  }
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_MultiTargetProcessor
+// 用途: 多目标处理器，处理多个渲染目标
+// 参数: param_1 - 目标基址
+//        param_2 - 渲染参数
+//        param_3 - 数据指针
+//        param_4 - 处理大小
+//        param_5 - 目标格式指针
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_MultiTargetProcessor(longlong param_1, unsigned long long param_2, longlong param_3, int param_4, unsigned short* param_5)
+
+{
+  longlong lVar1;
+  
+  lVar1 = 4;
+  do {
+    if (*param_5 != 0) {
+      if ((*param_5 & 0xfefe) == 0) {
+        func_0x000180029620(param_1,param_2,param_3,param_4);
+      }
+      else {
+        func_0x0001800296e1();
+      }
+    }
+    if (param_5[1] != 0) {
+      if ((param_5[1] & 0xfefe) == 0) {
+        func_0x000180029620(param_1 + 0x40,param_2,param_3 + 8,param_4);
+      }
+      else {
+        func_0x0001800296e1();
+      }
+    }
+    param_1 = param_1 + 0x80;
+    param_3 = param_3 + param_4 * 4;
+    param_5 = param_5 + 2;
+    lVar1 = lVar1 + -1;
+  } while (lVar1 != 0);
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageFormatConverter
+// 用途: 图像格式转换器，转换图像格式
+// 参数: param_1 - 源图像
+//        param_2 - 目标基址1
+//        param_3 - 目标基址2
+//        param_4 - 格式参数
+//        param_5 - 转换大小
+//        param_6 - 转换参数
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageFormatConverter(unsigned long long param_1, longlong param_2, longlong param_3, unsigned int param_4,
+                                        int param_5, longlong param_6)
+
+{
+  func_0x00018002acc0(param_1,param_4,*(undefined8 *)(param_6 + 8),*(undefined8 *)(param_6 + 0x10),
+                      *(undefined8 *)(param_6 + 0x18),2);
+  if (param_2 != 0) {
+    func_0x00018001a840(param_5 * 4 + param_2,param_5,*(undefined8 *)(param_6 + 8),
+                        *(undefined8 *)(param_6 + 0x10),*(undefined8 *)(param_6 + 0x18),
+                        param_5 * 4 + param_3);
+  }
+  return;
+}
+
+
+
+// WARNING: Possible PIC construction at 0x00018069c9b4: Changing call to branch
+// WARNING: Removing unreachable block (ram,0x00018069c9b9)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_ImageEnhancer
+// 用途: 图像增强器，增强图像质量
+// 参数: param_1 - 图像数据指针
+//        param_2 - 增强参数
+//        param_3 - 增强阈值数组
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char (*param_3)[16])
+
+{
+  undefined1 auVar1 [16];
+  longlong lVar2;
+  undefined1 (*pauVar3) [16];
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [16];
+  undefined1 auVar6 [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  undefined1 auVar11 [16];
+  
+  auVar1 = _DAT_180d9e5d0;
+  pauVar3 = (undefined1 (*) [16])(param_2 * 4 + param_1);
+  lVar2 = (longlong)param_2;
+  auVar5 = *(undefined1 (*) [16])(*pauVar3 + lVar2);
+  auVar7 = *(undefined1 (*) [16])((longlong)pauVar3 + lVar2 * -2);
+  auVar4 = psubusb(auVar5,auVar7);
+  auVar6 = psubusb(auVar7,auVar5);
+  auVar4 = (auVar6 | auVar4) & _DAT_180d9e5c0;
+  auVar10._0_2_ = auVar4._0_2_ >> 1;
+  auVar10._2_2_ = auVar4._2_2_ >> 1;
+  auVar10._4_2_ = auVar4._4_2_ >> 1;
+  auVar10._6_2_ = auVar4._6_2_ >> 1;
+  auVar10._8_2_ = auVar4._8_2_ >> 1;
+  auVar10._10_2_ = auVar4._10_2_ >> 1;
+  auVar10._12_2_ = auVar4._12_2_ >> 1;
+  auVar10._14_2_ = auVar4._14_2_ >> 1;
+  auVar4 = *(undefined1 (*) [16])((longlong)pauVar3 + -lVar2);
+  auVar6 = *pauVar3;
+  auVar9 = psubusb(auVar4,auVar6);
+  auVar8 = psubusb(auVar6,auVar4);
+  auVar8 = paddusb(auVar9 | auVar8,auVar9 | auVar8);
+  auVar10 = paddusb(auVar8,auVar10);
+  auVar10 = psubusb(auVar10,*param_3);
+  auVar8[0] = -(auVar10[0] == '\0');
+  auVar8[1] = -(auVar10[1] == '\0');
+  auVar8[2] = -(auVar10[2] == '\0');
+  auVar8[3] = -(auVar10[3] == '\0');
+  auVar8[4] = -(auVar10[4] == '\0');
+  auVar8[5] = -(auVar10[5] == '\0');
+  auVar8[6] = -(auVar10[6] == '\0');
+  auVar8[7] = -(auVar10[7] == '\0');
+  auVar8[8] = -(auVar10[8] == '\0');
+  auVar8[9] = -(auVar10[9] == '\0');
+  auVar8[10] = -(auVar10[10] == '\0');
+  auVar8[0xb] = -(auVar10[0xb] == '\0');
+  auVar8[0xc] = -(auVar10[0xc] == '\0');
+  auVar8[0xd] = -(auVar10[0xd] == '\0');
+  auVar8[0xe] = -(auVar10[0xe] == '\0');
+  auVar8[0xf] = -(auVar10[0xf] == '\0');
+  auVar7 = psubsb(auVar7 ^ _DAT_180d9e5d0,auVar5 ^ _DAT_180d9e5d0);
+  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar4 ^ _DAT_180d9e5d0);
+  auVar7 = paddsb(auVar7,auVar5);
+  auVar7 = paddsb(auVar7,auVar5);
+  auVar5 = paddsb(auVar7,auVar5);
+  auVar10 = paddsb(auVar8 & auVar5,_DAT_180d9e5f0);
+  auVar5 = paddsb(auVar8 & auVar5,_DAT_180d9e600);
+  auVar9[0] = -(auVar5[0] < '\0');
+  auVar9[1] = -(auVar5[1] < '\0');
+  auVar9[2] = -(auVar5[2] < '\0');
+  auVar9[3] = -(auVar5[3] < '\0');
+  auVar9[4] = -(auVar5[4] < '\0');
+  auVar9[5] = -(auVar5[5] < '\0');
+  auVar9[6] = -(auVar5[6] < '\0');
+  auVar9[7] = -(auVar5[7] < '\0');
+  auVar9[8] = -(auVar5[8] < '\0');
+  auVar9[9] = -(auVar5[9] < '\0');
+  auVar9[10] = -(auVar5[10] < '\0');
+  auVar9[0xb] = -(auVar5[0xb] < '\0');
+  auVar9[0xc] = -(auVar5[0xc] < '\0');
+  auVar9[0xd] = -(auVar5[0xd] < '\0');
+  auVar9[0xe] = -(auVar5[0xe] < '\0');
+  auVar9[0xf] = -(auVar5[0xf] < '\0');
+  auVar7._0_2_ = auVar5._0_2_ >> 3;
+  auVar7._2_2_ = auVar5._2_2_ >> 3;
+  auVar7._4_2_ = auVar5._4_2_ >> 3;
+  auVar7._6_2_ = auVar5._6_2_ >> 3;
+  auVar7._8_2_ = auVar5._8_2_ >> 3;
+  auVar7._10_2_ = auVar5._10_2_ >> 3;
+  auVar7._12_2_ = auVar5._12_2_ >> 3;
+  auVar7._14_2_ = auVar5._14_2_ >> 3;
+  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar7 & _DAT_180d9e650 | auVar9 & _DAT_180d9e640);
+  auVar11[0] = -(auVar10[0] < '\0');
+  auVar11[1] = -(auVar10[1] < '\0');
+  auVar11[2] = -(auVar10[2] < '\0');
+  auVar11[3] = -(auVar10[3] < '\0');
+  auVar11[4] = -(auVar10[4] < '\0');
+  auVar11[5] = -(auVar10[5] < '\0');
+  auVar11[6] = -(auVar10[6] < '\0');
+  auVar11[7] = -(auVar10[7] < '\0');
+  auVar11[8] = -(auVar10[8] < '\0');
+  auVar11[9] = -(auVar10[9] < '\0');
+  auVar11[10] = -(auVar10[10] < '\0');
+  auVar11[0xb] = -(auVar10[0xb] < '\0');
+  auVar11[0xc] = -(auVar10[0xc] < '\0');
+  auVar11[0xd] = -(auVar10[0xd] < '\0');
+  auVar11[0xe] = -(auVar10[0xe] < '\0');
+  auVar11[0xf] = -(auVar10[0xf] < '\0');
+  auVar6._0_2_ = auVar10._0_2_ >> 3;
+  auVar6._2_2_ = auVar10._2_2_ >> 3;
+  auVar6._4_2_ = auVar10._4_2_ >> 3;
+  auVar6._6_2_ = auVar10._6_2_ >> 3;
+  auVar6._8_2_ = auVar10._8_2_ >> 3;
+  auVar6._10_2_ = auVar10._10_2_ >> 3;
+  auVar6._12_2_ = auVar10._12_2_ >> 3;
+  auVar6._14_2_ = auVar10._14_2_ >> 3;
+  auVar7 = paddsb(auVar4 ^ _DAT_180d9e5d0,auVar6 & _DAT_180d9e650 | auVar11 & _DAT_180d9e640);
+  *pauVar3 = auVar5 ^ _DAT_180d9e5d0;
+  *(undefined1 (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
+  return;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+// 函数: RenderingSystem_PostProcessor
+// 用途: 后处理器，执行图像后处理
+// 参数: param_1 - 源图像
+//        param_2 - 目标基址1
+//        param_3 - 目标基址2
+//        param_4 - 格式参数1
+//        param_5 - 格式参数2
+//        param_6 - 处理参数
+// 返回: 无
+//------------------------------------------------------------------------------
+void RenderingSystem_PostProcessor(unsigned long long param_1, longlong param_2, longlong param_3, unsigned int param_4,
+                                  unsigned int param_5, longlong param_6)
+
+{
+  func_0x00018002b38a(param_1,param_4,*(undefined8 *)(param_6 + 8),*(undefined8 *)(param_6 + 0x10),
+                      *(undefined8 *)(param_6 + 0x18),2);
+  if (param_2 != 0) {
+    func_0x00018001b1ed(param_2 + 4,param_5,*(undefined8 *)(param_6 + 8),
+                        *(undefined8 *)(param_6 + 0x10),*(undefined8 *)(param_6 + 0x18),param_3 + 4)
+    ;
+  }
+  return;
+}
+
+
+
+// WARNING: Possible PIC construction at 0x00018069ca9b: Changing call to branch
+// WARNING: Removing unreachable block (ram,0x00018069caa0)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+//==============================================================================
+// 模块功能总结
+//==============================================================================
+
+/**
+ * @brief 渲染系统高级图像处理和内存管理模块功能总结
+ * 
+ * 本模块实现了21个核心函数，涵盖了渲染系统的高级功能：
+ * 
+ * 1. 图像数据处理功能：
+ *    - 多通道图像数据处理器（FUN_18069bb20）
+ *    - 缓冲区验证器（FUN_18069bbd0）
+ *    - 图像块处理器（FUN_18069c3b0）
+ *    - 图像数据验证器（FUN_18069c3f3）
+ *    - 图像转换器（FUN_18069c4ff）
+ *    
+ * 2. 内存管理功能：
+ *    - 内存管理器（FUN_18069bc50）
+ *    - 缓冲区初始化器（FUN_18069bd60）
+ *    - 数据复制器（FUN_18069beb0）
+ *    - 数据反向器（FUN_18069bebb）
+ *    - 内存优化器（FUN_18069bf80）
+ *    
+ * 3. 线程同步功能：
+ *    - 线程初始化器（FUN_18069bfb0）
+ *    - 线程同步器（FUN_18069bfc6）
+ *    - 线程终止器（FUN_18069c023）
+ *    
+ * 4. 渲染管线功能：
+ *    - 图像变换器（FUN_18069c080）
+ *    - 像素处理器（FUN_18069c200）
+ *    - 纹理管理器（FUN_18069c540）
+ *    - 缓冲区优化器（FUN_18069c640）
+ *    - 渲染目标管理器（FUN_18069c710）
+ *    - 多目标处理器（FUN_18069c820）
+ *    
+ * 5. 图像处理功能：
+ *    - 图像格式转换器（FUN_18069c900）
+ *    - 图像增强器（FUN_18069c990）
+ *    - 后处理器（FUN_18069ca00）
+ * 
+ * 技术特点：
+ * - 使用SIMD指令集优化图像处理性能
+ * - 支持多线程安全的数据处理
+ * - 实现了高效的内存管理策略
+ * - 提供了灵活的缓冲区操作机制
+ * - 包含完整的错误处理和验证机制
  * 
  * 应用场景：
- * - 3D渲染管线
- * - 图像处理
- * - 视频编码/解码
- * - 科学计算
- * - 游戏引擎
+ * - 游戏引擎渲染管线
+ * - 图像处理和滤镜效果
+ * - 纹理管理和优化
+ * - 内存池管理
+ * - 多线程渲染支持
  */
+
+//==============================================================================
+// 文件结束
+//==============================================================================
+

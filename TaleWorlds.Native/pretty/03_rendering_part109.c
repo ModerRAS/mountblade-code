@@ -507,7 +507,7 @@ LAB_180332f24:
           }
           *(undefined8 *)(puVar7 + 4) = *(undefined8 *)(*(longlong *)(lVar12 + 0x9f8) + uVar13 * 8);
           *(uint **)(*(longlong *)(lVar12 + 0x9f8) + uVar13 * 8) = puVar7;
-          *(longlong *)(lVar12 + 0xa08) = *(longlong)(lVar12 + 0xa08) + 1;
+          *(longlong *)(lVar12 + 0xa08) = *(longlong *)(lVar12 + 0xa08) + 1;
 LAB_180333054:
           *(undefined ***)(puVar7 + 2) = ppuVar6;
           uVar13 = uStack_150;
@@ -534,7 +534,7 @@ LAB_180333054:
           }
           *(undefined8 *)(puVar7 + 4) = *(undefined8 *)(*(longlong *)(lVar12 + 0x9f8) + uVar14 * 8);
           *(uint **)(*(longlong *)(lVar12 + 0x9f8) + uVar14 * 8) = puVar7;
-          *(longlong *)(lVar12 + 0xa08) = *(longlong)(lVar12 + 0xa08) + 1;
+          *(longlong *)(lVar12 + 0xa08) = *(longlong *)(lVar12 + 0xa08) + 1;
 LAB_1803330f8:
           ppuVar6 = *(undefined ***)(puVar7 + 2);
         }
@@ -812,8 +812,16 @@ LAB_180333594:
 
 
 
-// 函数: void FUN_1803336f0(longlong param_1)
-void FUN_1803336f0(longlong param_1)
+/**
+ * @brief 渲染系统资源范围处理器
+ * 
+ * 该函数负责处理渲染系统资源的范围操作，包括数据遍历、资源查找、
+ * 范围验证和批量处理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceRange(longlong resource_context)
 
 {
   double dVar1;
@@ -871,8 +879,17 @@ LAB_1803337df:
 
 
 
-// 函数: void FUN_180333810(longlong param_1,char param_2)
-void FUN_180333810(longlong param_1,char param_2)
+/**
+ * @brief 渲染系统资源数据清理器
+ * 
+ * 该函数负责清理渲染系统资源数据，包括内存释放、资源删除、
+ * 状态重置和系统清理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param cleanup_flag 清理标志
+ * @return void
+ */
+void RenderingSystem_CleanupResourceData(longlong resource_context, char cleanup_flag)
 
 {
   int *piVar1;
@@ -960,5 +977,6 @@ void FUN_180333810(longlong param_1,char param_2)
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
 
 

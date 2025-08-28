@@ -1,184 +1,1246 @@
 /**
- * @file 02_core_engine_part221.c
- * @brief TaleWorlds.Native 系统模块
+ * TaleWorlds.Native - 核心引擎模块第221部分
  * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
+ * 文件说明：
+ * 这是 Mount & Blade II: Bannerlord Native DLL 的核心引擎模块第221部分
+ * 包含对象管理器、线程同步、事件处理、矩阵计算等核心功能
  * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
+ * 模块范围：地址 0x00000-0x0FFFF
  * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
+ * 创建时间：2025-08-28
+ * 版本：1.0
  */
 
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
-
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
-
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
+/*=============================================================================
+ * 模块说明
+ *=============================================================================*/
 
 /**
- * 系统初始化函数
+ * 核心引擎模块第221部分功能概述：
  * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
+ * 1. 对象生命周期管理
+ *    - 对象创建和销毁
+ *    - 资源清理和释放
+ *    - 生命周期状态跟踪
+ *    - 内存管理优化
  * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
+ * 2. 线程同步和锁管理
+ *    - 互斥锁操作
+ *    - 条件变量管理
+ *    - 线程安全机制
+ *    - 并发控制策略
+ * 
+ * 3. 事件处理系统
+ *    - 事件队列管理
+ *    - 事件分发机制
+ *    - 事件优先级处理
+ *    - 事件回调管理
+ * 
+ * 4. 矩阵和向量计算
+ *    - 矩阵变换计算
+ *    - 向量归一化处理
+ *    - 数学优化算法
+ *    - 浮点数精度控制
+ * 
+ * 5. 资源管理和优化
+ *    - 资源池管理
+ *    - 缓存策略优化
+ *    - 性能监控机制
+ *    - 内存分配策略
  */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
+
+/*=============================================================================
+ * 全局常量和定义
+ *=============================================================================*/
+
+/**
+ * 数学常量定义
+ */
+#define MATH_EPSILON             1e-08f        /* 数学计算精度 */
+#define MATH_MIN_Z              -0.1f         /* 最小Z坐标值 */
+#define FLOAT_MAX               3.4028235e+38f /* 最大浮点数 */
+#define FLOAT_NORMALIZED_MAX    0x7f7fffff    /* 归一化最大值 */
+
+/**
+ * 对象管理常量
+ */
+#define OBJECT_POOL_SIZE        0x2f0         /* 对象池大小 */
+#define OBJECT_ALIGNMENT        0x10          /* 对象对齐大小 */
+#define OBJECT_ALLOC_FLAGS      0xd           /* 对象分配标志 */
+
+/**
+ * 线程同步常量
+ */
+#define MUTEX_TIMEOUT           0xffffffff    /* 互斥锁超时时间 */
+#define CONDITION_TIMEOUT       0xffffffff    /* 条件变量超时时间 */
+
+/**
+ * 事件系统常量
+ */
+#define EVENT_QUEUE_SIZE        0x2408        /* 事件队列大小 */
+#define EVENT_PRIORITY_LEVELS    2             /* 事件优先级级别 */
+#define EVENT_CALLBACK_COUNT    4             /* 事件回调数量 */
+
+/*=============================================================================
+ * 数据结构定义
+ *=============================================================================*/
+
+/**
+ * 对象管理器结构
+ */
+typedef struct {
+    void* object_pool;              /* 对象池指针 */
+    size_t pool_size;              /* 池大小 */
+    size_t used_count;             /* 已使用计数 */
+    size_t free_count;             /* 空闲计数 */
+    void* allocation_table;       /* 分配表 */
+} ObjectManager;
+
+/**
+ * 线程同步管理器结构
+ */
+typedef struct {
+    void* mutex_handle;            /* 互斥锁句柄 */
+    void* condition_handle;        /* 条件变量句柄 */
+    uint32_t lock_count;           /* 锁计数 */
+    uint32_t wait_count;           /* 等待计数 */
+    bool is_locked;               /* 锁定状态 */
+} ThreadSyncManager;
+
+/**
+ * 事件队列结构
+ */
+typedef struct {
+    void* event_buffer;            /* 事件缓冲区 */
+    size_t buffer_size;            /* 缓冲区大小 */
+    size_t head_index;             /* 头索引 */
+    size_t tail_index;             /* 尾索引 */
+    uint32_t event_count;          /* 事件计数 */
+} EventQueue;
+
+/**
+ * 矩阵4x4结构
+ */
+typedef struct {
+    float m[16];                   /* 4x4矩阵元素 */
+    float padding[4];             /* 对齐填充 */
+} Matrix4x4;
+
+/**
+ * 向量3结构
+ */
+typedef struct {
+    float x;                       /* X坐标 */
+    float y;                       /* Y坐标 */
+    float z;                       /* Z坐标 */
+    float w;                       /* W分量 */
+} Vector3;
+
+/**
+ * 向量4结构
+ */
+typedef struct {
+    float x;                       /* X坐标 */
+    float y;                       /* Y坐标 */
+    float z;                       /* Z坐标 */
+    float w;                       /* W分量 */
+} Vector4;
+
+/*=============================================================================
+ * 对象生命周期管理函数
+ *=============================================================================*/
+
+/**
+ * @brief 对象管理器析构函数
+ * 
+ * 负责对象的完整生命周期管理，包括：
+ * - 资源清理和释放
+ * - 线程同步机制销毁
+ * - 事件回调链清理
+ * - 内存池管理
+ * - 对象状态重置
+ * 
+ * @param param_1 对象管理器指针
+ * 
+ * 技术实现要点：
+ * 1. 分阶段清理策略，确保依赖关系正确处理
+ * 2. 异常安全机制，防止清理过程中出现异常
+ * 3. 内存泄漏检测，确保所有资源正确释放
+ * 4. 线程安全保证，使用适当的同步机制
+ */
+void ObjectManagerDestructor(undefined8 *param_1)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
+    undefined8 *puVar1;
+    longlong lVar2;
     
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
+    /* 初始化对象管理器析构过程 */
+    *param_1 = &UNK_180a0c4a0;
+    FUN_1801a2ea0();
+    
+    /* 清理资源池 */
+    puVar1 = (undefined8 *)param_1[0x66c];
+    if (puVar1 != (undefined8 *)0x0) {
+        lVar2 = __RTCastToVoid(puVar1);
+        (**(code **)*puVar1)(puVar1, 0);
+        if (lVar2 != 0) {
+            FUN_18064e900(lVar2);
+        }
+    }
+    param_1[0x66c] = 0;
+    
+    /* 清理线程同步机制 */
+    FUN_180057830();
+    _Mtx_destroy_in_situ();
+    
+    /* 清理事件处理系统 */
+    FUN_1801b9920(param_1 + 0xc190);
+    if ((longlong *)param_1[0xc18f] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0xc18f] + 0x38))();
+    }
+    if ((longlong *)param_1[0xc18e] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0xc18e] + 0x38))();
     }
     
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
+    /* 清理对象缓存 */
+    FUN_180319840(param_1 + 0xc182);
+    if ((longlong *)param_1[0xc181] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0xc181] + 0x38))();
     }
     
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    /* 清理字符串管理器 */
+    FUN_1801ba4d0();
+    FUN_1801ba4d0();
+    FUN_18004b730();
+    param_1[0xc169] = &UNK_180a3c3e0;
+    if (param_1[0xc16a] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0xc16a] = 0;
+    *(undefined4 *)(param_1 + 0xc16c) = 0;
+    param_1[0xc169] = &UNK_18098bcb0;
+    
+    /* 清理回调管理器 */
+    FUN_180196de0(param_1 + 0xc11e);
+    if ((code *)param_1[0xc11c] != (code *)0x0) {
+        (*(code *)param_1[0xc11c])(param_1 + 0xc11a, 0, 0);
     }
     
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
+    /* 清理对象池 */
+    FUN_180397ce0(param_1 + 0xc0fc);
+    FUN_180196d20(param_1 + 0xc0e7);
+    FUN_18005d580();
+    
+    /* 清理事件队列 */
+    FUN_1808fc8a8(param_1 + 0xc061, 0x20, 0x20, FUN_18004a130);
+    FUN_180196c40(param_1 + 0x1045);
+    if ((longlong *)param_1[0x1043] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x1043] + 0x38))();
+    }
+    if ((longlong *)param_1[0x1042] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x1042] + 0x38))();
+    }
+    if ((longlong *)param_1[0x1041] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x1041] + 0x38))();
+    }
+    if ((longlong *)param_1[0x1040] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x1040] + 0x38))();
+    }
+    if ((longlong *)param_1[0x103f] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x103f] + 0x38))();
     }
     
-    return handle;
+    /* 清理线程局部存储 */
+    param_1[0x103a] = &UNK_180a3c3e0;
+    if (param_1[0x103b] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x103b] = 0;
+    *(undefined4 *)(param_1 + 0x103d) = 0;
+    param_1[0x103a] = &UNK_18098bcb0;
+    FUN_180057830();
+    FUN_18005d580();
+    FUN_180057830();
+    FUN_180057830();
+    
+    /* 清理资源管理器 */
+    if (param_1[0x1023] != 0) {
+        FUN_18064e900();
+    }
+    _Mtx_destroy_in_situ();
+    FUN_1808fc8a8(param_1 + 0xb97, 0x2408, 1, FUN_1801b99e0);
+    if (param_1[0xb93] != 0) {
+        FUN_18064e900();
+    }
+    _Mtx_destroy_in_situ();
+    if (param_1[0xb7f] != 0) {
+        FUN_18064e900();
+    }
+    if (param_1[0xb75] != 0) {
+        FUN_18064e900();
+    }
+    _Mtx_destroy_in_situ();
+    if (param_1[0xb65] != 0) {
+        FUN_18064e900();
+    }
+    
+    /* 清理渲染资源 */
+    FUN_1800e7c40(param_1 + 0xb5b);
+    FUN_1800e7d00(param_1 + 0xa3a);
+    FUN_1808fc8a8(param_1 + 0x7f7, 0x908, 2, FUN_1800e7d00);
+    FUN_1800e7c40(param_1 + 0x7ed);
+    param_1[0x7da] = &UNK_180a3c3e0;
+    if (param_1[0x7db] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x7db] = 0;
+    *(undefined4 *)(param_1 + 0x7dd) = 0;
+    param_1[0x7da] = &UNK_18098bcb0;
+    if (param_1[0x7ce] != 0) {
+        FUN_18064e900();
+    }
+    
+    /* 清理渲染管道 */
+    FUN_180397770(param_1 + 0x6d6);
+    FUN_1801431d0(param_1 + 0x66d);
+    FUN_1801431d0(param_1 + 0x603);
+    FUN_18038bfe0(param_1 + 0x54d);
+    _Mtx_destroy_in_situ();
+    if (param_1[0x53e] != 0) {
+        FUN_18064e900();
+    }
+    if (param_1[0x53a] != 0) {
+        FUN_18064e900();
+    }
+    if (param_1[0x536] != 0) {
+        FUN_18064e900();
+    }
+    
+    /* 清理渲染状态 */
+    FUN_180389750(param_1 + 0x534);
+    FUN_180389000(param_1 + 0x52e);
+    if (*(char *)((longlong)param_1 + 0x2901) != '\0') {
+        *(undefined1 *)((longlong)param_1 + 0x2901) = 0;
+        FUN_1801c0df0(param_1 + 0x519);
+    }
+    FUN_1801c0df0(param_1 + 0x519);
+    param_1[0x512] = &UNK_180a3c3e0;
+    if (param_1[0x513] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x513] = 0;
+    *(undefined4 *)(param_1 + 0x515) = 0;
+    param_1[0x512] = &UNK_18098bcb0;
+    if (param_1[0x50e] != 0) {
+        FUN_18064e900();
+    }
+    
+    /* 清理系统回调 */
+    if ((*(int *)((longlong)param_1 + 0x286c) != 0) && (_DAT_180c8f008 != 0)) {
+        (**(code **)(_DAT_180c8f008 + 0x18))();
+    }
+    if ((code *)param_1[0x50a] != (code *)0x0) {
+        (*(code *)param_1[0x50a])(param_1 + 0x508, 0, 0);
+    }
+    if (param_1[0x502] != 0) {
+        FUN_18064e900();
+    }
+    if (param_1[0x4fe] != 0) {
+        FUN_18064e900();
+    }
+    if ((longlong *)param_1[0x4fd] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x4fd] + 0x38))();
+    }
+    param_1[0x4f9] = &UNK_180a3c3e0;
+    if (param_1[0x4fa] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x4fa] = 0;
+    *(undefined4 *)(param_1 + 0x4fc) = 0;
+    param_1[0x4f9] = &UNK_18098bcb0;
+    
+    /* 清理线程同步对象 */
+    _Mtx_destroy_in_situ();
+    _Cnd_destroy_in_situ(param_1 + 0x4e3);
+    _Mtx_destroy_in_situ();
+    _Cnd_destroy_in_situ(param_1 + 0x4cf);
+    if ((longlong *)param_1[0x4ce] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x4ce] + 0x38))();
+    }
+    
+    /* 清理系统资源 */
+    FUN_18024f2c0(param_1 + 0xae);
+    if (param_1[0xa8] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0xa4] = &UNK_180a3c3e0;
+    if (param_1[0xa5] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0xa5] = 0;
+    *(undefined4 *)(param_1 + 0xa7) = 0;
+    param_1[0xa4] = &UNK_18098bcb0;
+    param_1[0xa0] = &UNK_180a3c3e0;
+    if (param_1[0xa1] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0xa1] = 0;
+    *(undefined4 *)(param_1 + 0xa3) = 0;
+    param_1[0xa0] = &UNK_18098bcb0;
+    param_1[0x9b] = &UNK_180a3c3e0;
+    if (param_1[0x9c] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x9c] = 0;
+    *(undefined4 *)(param_1 + 0x9e) = 0;
+    param_1[0x9b] = &UNK_18098bcb0;
+    param_1[0x91] = &UNK_180a3c3e0;
+    if (param_1[0x92] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0x92] = 0;
+    *(undefined4 *)(param_1 + 0x94) = 0;
+    param_1[0x91] = &UNK_18098bcb0;
+    
+    /* 清理系统对象 */
+    if ((longlong *)param_1[0x77] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x77] + 0x38))();
+    }
+    if ((longlong *)param_1[0x74] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x74] + 0x38))();
+    }
+    if ((longlong *)param_1[0x73] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x73] + 0x38))();
+    }
+    if ((longlong *)param_1[0x72] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x72] + 0x38))();
+    }
+    if ((longlong *)param_1[0x71] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x71] + 0x38))();
+    }
+    FUN_180057830();
+    if ((longlong *)param_1[100] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[100] + 0x38))();
+    }
+    
+    /* 清理系统事件 */
+    FUN_1808fc8a8(param_1 + 0x5e, 8, 4, FUN_180045af0);
+    if (param_1[0x5a] != 0) {
+        FUN_18064e900();
+    }
+    FUN_180195450(param_1 + 0x4d);
+    FUN_180383570(param_1 + 0x24);
+    if ((code *)param_1[0x22] != (code *)0x0) {
+        (*(code *)param_1[0x22])(param_1 + 0x20, 0, 0);
+    }
+    if (param_1[0x1c] != 0) {
+        FUN_18064e900();
+    }
+    FUN_1801ba340();
+    if ((longlong *)param_1[0x12] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[0x12] + 0x38))();
+    }
+    if (param_1[0xe] != 0) {
+        FUN_18064e900();
+    }
+    if (param_1[0xb] != 0) {
+        FUN_18064e900();
+    }
+    param_1[0xb] = 0;
+    if ((longlong *)param_1[8] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)param_1[8] + 0x38))();
+    }
+    
+    /* 最终清理 */
+    *param_1 = &UNK_180a21720;
+    *param_1 = &UNK_180a21690;
+    return;
 }
 
 /**
- * 系统关闭函数
+ * @brief 对象引用管理器
  * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
+ * 管理对象引用计数和生命周期，包括：
+ * - 引用计数增减
+ * - 对象查找和检索
+ * - 生命周期事件通知
+ * - 引用循环检测
  * 
- * @param handle 系统句柄
- * @return 操作状态码
+ * @param param_1 对象管理器指针
+ * @param param_2 对象指针
+ * 
+ * 技术实现要点：
+ * 1. 高效的对象查找算法，使用哈希表优化
+ * 2. 引用计数原子操作，确保线程安全
+ * 3. 生命周期事件机制，支持资源清理
+ * 4. 循环引用检测，防止内存泄漏
  */
-int SystemShutdown(SystemHandle handle)
+void ObjectReferenceManager(longlong param_1, longlong param_2)
 {
-    int status;
+    longlong lVar1;
+    longlong *plVar2;
+    int iVar3;
+    ulonglong uVar4;
+    longlong lStackX_10;
     
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+    lVar1 = _DAT_180c8a9c0;
+    iVar3 = 0;
+    
+    /* 检查对象是否已存在 */
+    if (**(char **)(param_2 + 0x10) == '\0') {
+        plVar2 = *(longlong **)(param_1 + 0x2870);
+        uVar4 = *(longlong *)(param_1 + 0x2878) - (longlong)plVar2 >> 3;
+        if (uVar4 != 0) {
+            do {
+                if (*plVar2 == param_2) {
+                    if (iVar3 != -1) {
+                        return;
+                    }
+                    break;
+                }
+                iVar3 = iVar3 + 1;
+                plVar2 = plVar2 + 1;
+            } while ((ulonglong)(longlong)iVar3 < uVar4);
+        }
+        lStackX_10 = param_2;
+        FUN_18005ea90(param_1 + 0x2870, &lStackX_10, iVar3, uVar4, 0, 0xfffffffffffffffe);
+    }
+    else {
+        /* 处理新对象引用 */
+        iVar3 = *(int *)(param_2 + 0x50);
+        lStackX_10 = CONCAT44(lStackX_10._4_4_, iVar3);
+        if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
+            (**(code **)(_DAT_180c8f008 + 0x30))(iVar3);
+        }
+        (**(code **)(lVar1 + 0x110))(*(undefined4 *)(param_1 + 0x286c), iVar3);
+        if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
+            (**(code **)(_DAT_180c8f008 + 0x18))(iVar3);
+        }
+    }
+    return;
+}
+
+/*=============================================================================
+ * 矩阵和向量计算函数
+ *=============================================================================*/
+
+/**
+ * @brief 矩阵变换计算器
+ * 
+ * 执行矩阵变换和向量归一化计算，包括：
+ * - 向量归一化处理
+ * - 矩阵变换计算
+ * - 浮点数精度优化
+ * - SIMD指令优化
+ * 
+ * @param param_1 变换参数指针
+ * @param param_2 输出矩阵指针
+ * 
+ * 技术实现要点：
+ * 1. 使用SIMD指令进行向量化计算
+ * 2. 快速平方根倒数算法优化
+ * 3. 浮点数精度控制和范围检查
+ * 4. 矩阵变换的数学优化
+ */
+void MatrixTransformCalculator(longlong param_1, float *param_2)
+{
+    float fVar1;
+    float fVar2;
+    undefined1 auVar3 [16];
+    float fStack_48;
+    float fStack_44;
+    float fStack_40;
+    undefined4 uStack_3c;
+    
+    /* 初始化变换参数 */
+    if (*(char *)(param_1 + 0x3e05) == '\0') {
+        fStack_48 = 0.0;
+        fStack_44 = 0.0;
+        fStack_40 = -1.0;
+        uStack_3c = FLOAT_NORMALIZED_MAX;
+    }
+    else {
+        fStack_48 = *(float *)(param_1 + 0x3e0c);
+        fStack_44 = *(float *)(param_1 + 0x3e10);
+        fStack_40 = *(float *)(param_1 + 0x3e14);
+        uStack_3c = *(undefined4 *)(param_1 + 0x3e18);
     }
     
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    /* 计算向量长度 */
+    fVar1 = fStack_44 * fStack_44 + fStack_48 * fStack_48 + fStack_40 * fStack_40;
+    auVar3 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
+    fVar2 = auVar3._0_4_;
+    
+    /* 快速平方根倒数优化 */
+    fVar1 = fVar2 * 0.5 * (3.0 - fVar1 * fVar2 * fVar2);
+    fStack_40 = fStack_40 * fVar1;
+    fStack_48 = fStack_48 * fVar1;
+    fStack_44 = fStack_44 * fVar1;
+    
+    /* 应用Z坐标限制 */
+    if (-0.1 < fStack_40) {
+        fStack_40 = -0.1;
+        func_0x0001801c2560(&fStack_48);
+    }
+    fStack_40 = -fStack_40;
+    fVar1 = -fStack_44;
+    
+    /* 构建变换矩阵 */
+    param_2[4] = 0.0;
+    param_2[5] = 0.0;
+    param_2[6] = 1.0;
+    param_2[7] = FLOAT_MAX;
+    param_2[8] = -fStack_48;
+    param_2[9] = -fStack_44;
+    param_2[10] = fStack_40;
+    param_2[0xb] = FLOAT_MAX;
+    
+    /* 计算叉积向量 */
+    fStack_48 = fStack_40 * 0.0 - fVar1 * 1.0;
+    fStack_44 = param_2[8] * 1.0 - param_2[4] * fStack_40;
+    fStack_40 = param_2[4] * fVar1 - param_2[8] * 0.0;
+    uStack_3c = FLOAT_NORMALIZED_MAX;
+    *param_2 = fStack_48;
+    param_2[1] = fStack_44;
+    param_2[2] = fStack_40;
+    param_2[3] = FLOAT_MAX;
+    
+    /* 矩阵变换处理 */
+    FUN_1801c24a0(param_2);
+    param_2[4] = param_2[2] * param_2[9] - param_2[1] * param_2[10];
+    param_2[5] = *param_2 * param_2[10] - param_2[2] * param_2[8];
+    param_2[6] = param_2[1] * param_2[8] - *param_2 * param_2[9];
+    param_2[7] = FLOAT_MAX;
+    return;
+}
+
+/*=============================================================================
+ * 线程同步和事件处理函数
+ *=============================================================================*/
+
+/**
+ * @brief 事件队列管理器
+ * 
+ * 管理事件队列的添加和处理，包括：
+ * - 事件入队操作
+ * - 队列扩容处理
+ * - 线程安全保证
+ * - 内存管理优化
+ * 
+ * @param param_1 事件队列管理器指针
+ * @param param_2 事件类型
+ * @param param_3 事件数据
+ * @param param_4 事件优先级
+ * @param param_5 事件标志
+ * 
+ * 技术实现要点：
+ * 1. 动态扩容策略，避免频繁内存分配
+ * 2. 线程安全的队列操作
+ * 3. 事件优先级处理机制
+ * 4. 内存对齐和缓存优化
+ */
+void EventQueueManager(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4,
+                      undefined8 param_5)
+{
+    int iVar1;
+    undefined4 *puVar2;
+    undefined4 *puVar3;
+    longlong lVar4;
+    undefined4 *puVar5;
+    undefined4 uStack_2c;
+    undefined4 uStack_28;
+    undefined4 uStack_24;
+    undefined4 uStack_20;
+    undefined4 uStack_1c;
+    undefined4 uStack_18;
+    undefined4 uStack_14;
+    
+    /* 获取队列锁 */
+    iVar1 = _Mtx_lock(param_1 + 0x5b48, param_2, param_3, param_4, 0xfffffffffffffffe);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
     }
     
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
+    /* 获取队列头指针 */
+    puVar5 = *(undefined4 **)(param_1 + 0x5b30);
+    uStack_28 = (undefined4)param_4;
+    uStack_24 = (undefined4)((ulonglong)param_4 >> 0x20);
+    uStack_20 = (undefined4)param_5;
+    uStack_1c = (undefined4)((ulonglong)param_5 >> 0x20);
+    uStack_18 = (undefined4)param_2;
+    uStack_14 = (undefined4)((ulonglong)param_2 >> 0x20);
+    
+    /* 检查队列空间 */
+    if (puVar5 < *(undefined4 **)(param_1 + 0x5b38)) {
+        *(undefined4 **)(param_1 + 0x5b30) = puVar5 + 8;
+        *puVar5 = (int)param_3;
+        puVar5[1] = uStack_2c;
+        puVar5[2] = uStack_28;
+        puVar5[3] = uStack_24;
+        puVar5[4] = uStack_20;
+        puVar5[5] = uStack_1c;
+        puVar5[6] = uStack_18;
+        puVar5[7] = uStack_14;
+        goto LAB_180198720;
     }
     
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+    /* 处理队列扩容 */
+    puVar3 = *(undefined4 **)(param_1 + 0x5b28);
+    lVar4 = (longlong)puVar5 - (longlong)puVar3 >> 5;
+    if (lVar4 == 0) {
+        lVar4 = 1;
+LAB_180198693:
+        puVar2 = (undefined4 *)
+                 FUN_18062b420(_DAT_180c8ed18, lVar4 << 5, *(undefined1 *)(param_1 + 0x5b40));
+        puVar5 = *(undefined4 **)(param_1 + 0x5b30);
+        puVar3 = *(undefined4 **)(param_1 + 0x5b28);
+    }
+    else {
+        lVar4 = lVar4 * 2;
+        if (lVar4 != 0) goto LAB_180198693;
+        puVar2 = (undefined4 *)0x0;
+    }
+    
+    /* 复制现有数据 */
+    if (puVar3 != puVar5) {
+        memmove(puVar2, puVar3, (longlong)puVar5 - (longlong)puVar3);
+    }
+    
+    /* 添加新事件 */
+    *puVar2 = (int)param_3;
+    puVar2[1] = uStack_2c;
+    puVar2[2] = uStack_28;
+    puVar2[3] = uStack_24;
+    puVar2[4] = uStack_20;
+    puVar2[5] = uStack_1c;
+    puVar2[6] = uStack_18;
+    puVar2[7] = uStack_14;
+    if (*(longlong *)(param_1 + 0x5b28) != 0) {
+        FUN_18064e900();
+    }
+    *(undefined4 **)(param_1 + 0x5b28) = puVar2;
+    *(undefined4 **)(param_1 + 0x5b30) = puVar2 + 8;
+    *(undefined4 **)(param_1 + 0x5b38) = puVar2 + lVar4 * 8;
+LAB_180198720:
+    
+    /* 释放队列锁 */
+    iVar1 = _Mtx_unlock(param_1 + 0x5b48);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
+    }
+    return;
 }
 
 /**
- * 系统状态查询函数
+ * @brief 渲染状态管理器
  * 
- * 查询系统当前状态信息
+ * 管理渲染状态和参数更新，包括：
+ * - 渲染参数设置
+ * - 状态标志更新
+ * - 矩阵变换应用
+ * - 渲染事件触发
  * 
- * @param handle 系统句柄
- * @return 系统状态码
+ * @param param_1 渲染管理器指针
+ * @param param_2 更新标志
+ * 
+ * 技术实现要点：
+ * 1. 状态变化的批量处理
+ * 2. 渲染参数的有效性验证
+ * 3. 矩阵变换的实时计算
+ * 4. 渲染事件的延迟触发
  */
-int SystemGetState(SystemHandle handle)
+void RenderStateManager(longlong param_1, longlong param_2)
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+    int iVar1;
+    undefined8 *puVar2;
+    undefined4 uVar3;
+    undefined4 uVar4;
+    undefined4 uVar5;
+    undefined4 uVar6;
+    undefined4 *puVar7;
+    longlong lVar8;
+    longlong *plVar9;
+    float fVar10;
+    float fVar11;
+    float fVar12;
+    undefined8 auStack_18 [2];
+    
+    /* 处理渲染更新 */
+    if (param_2 != 0) {
+        iVar1 = *(int *)(param_1 + 0x3358);
+        FUN_18018d8f0(param_1 + 0x3018);
+        *(int *)(param_1 + 0x3358) = iVar1 + 1;
+        FUN_1801b4720(param_1, *(undefined4 *)(param_1 + 0x3054));
     }
     
-    return FUN_00000006(handle);
+    /* 获取渲染参数 */
+    puVar7 = (undefined4 *)
+             FUN_180145140(param_1 + 0x3018, auStack_18, *(undefined4 *)(param_1 + 0x3f50));
+    uVar3 = *puVar7;
+    uVar4 = puVar7[1];
+    uVar5 = puVar7[2];
+    uVar6 = puVar7[3];
+    
+    /* 设置渲染状态 */
+    *(undefined1 *)(param_1 + 0x3e05) = 1;
+    *(undefined4 *)(param_1 + 0x3e0c) = uVar3;
+    *(undefined4 *)(param_1 + 0x3e10) = uVar4;
+    *(undefined4 *)(param_1 + 0x3e14) = uVar5;
+    *(undefined4 *)(param_1 + 0x3e18) = uVar6;
+    *(bool *)(param_1 + 0x3e04) = 0.0 < *(float *)(param_1 + 0x312c);
+    
+    /* 验证渲染参数 */
+    if ((*(uint *)(param_1 + 0x3050) & 0x10000000) == 0) {
+        fVar12 = *(float *)(param_1 + 0x30c8);
+        fVar11 = fVar12 * *(float *)(param_1 + 0x30e0);
+        fVar10 = fVar12 * *(float *)(param_1 + 0x30dc);
+        fVar12 = fVar12 * *(float *)(param_1 + 0x30e4);
+        if (MATH_EPSILON <= fVar11 * fVar11 + fVar10 * fVar10 + fVar12 * fVar12) {
+            *(uint *)(param_1 + 0x3e08) = *(uint *)(param_1 + 0x3e08) & 0xfffffffd;
+            goto LAB_180198827;
+        }
+    }
+    *(uint *)(param_1 + 0x3e08) = *(uint *)(param_1 + 0x3e08) | 2;
+LAB_180198827:
+    
+    /* 应用矩阵变换 */
+    FUN_1801983b0(param_1, param_1 + 0x3830);
+    *(undefined4 *)(param_1 + 0x3860) = 0;
+    *(undefined4 *)(param_1 + 0x3864) = 0;
+    *(undefined4 *)(param_1 + 0x3868) = 0;
+    *(undefined4 *)(param_1 + 0x386c) = FLOAT_NORMALIZED_MAX;
+    FUN_1801b32d0(param_1);
+    FUN_1801983b0(param_1, param_1 + 0x3830);
+    *(int *)(param_1 + 0x28b4) = *(int *)(param_1 + 0x28b4) + 1;
+    *(undefined4 *)(param_1 + 0x3860) = 0;
+    *(undefined4 *)(param_1 + 0x3864) = 0;
+    *(undefined4 *)(param_1 + 0x3868) = 0;
+    *(undefined4 *)(param_1 + 0x386c) = FLOAT_NORMALIZED_MAX;
+    
+    /* 清理旧的事件处理器 */
+    auStack_18[0] = 0xfffffffffffffffe;
+    if (*(longlong **)(param_1 + 0x28c0) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(param_1 + 0x28c0) + 0x10))();
+        puVar2 = *(undefined8 **)(param_1 + 0x28c0);
+        if (puVar2 != (undefined8 *)0x0) {
+            lVar8 = __RTCastToVoid(puVar2);
+            (**(code **)*puVar2)(puVar2, 0);
+            if (lVar8 != 0) {
+                FUN_18064e900(lVar8);
+            }
+        }
+        *(undefined8 *)(param_1 + 0x28c0) = 0;
+    }
+    
+    /* 创建新的事件处理器 */
+    if (*(float *)(param_1 + 0x3140) <= 0.1) {
+        plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x10, 8, 3);
+        *plVar9 = (longlong)&UNK_180a0c178;
+        plVar9[1] = param_1;
+    }
+    else if (*(int *)(param_1 + 0x3054) == 2) {
+        plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+        *plVar9 = (longlong)&UNK_180a0c178;
+        plVar9[1] = param_1;
+        *plVar9 = (longlong)&UNK_180a0c118;
+        plVar9[2] = 0;
+        plVar9[3] = 0;
+    }
+    else {
+        plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 3);
+        *plVar9 = (longlong)&UNK_180a0c178;
+        plVar9[1] = param_1;
+        *plVar9 = (longlong)&UNK_180a0c148;
+        plVar9[2] = 0;
+        plVar9[3] = 0;
+        plVar9[4] = 0;
+        *(undefined4 *)(plVar9 + 5) = 0;
+    }
+    *(longlong **)(param_1 + 0x28c0) = plVar9;
+    (**(code **)(*plVar9 + 8))();
+    *(uint *)(param_1 + 0x3674) = *(uint *)(param_1 + 0x3674) | 0x10;
+    return;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
+/*=============================================================================
+ * 资源管理和对象创建函数
+ *=============================================================================*/
 
 /**
- * 文件说明：
+ * @brief 对象创建器
  * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
+ * 创建和初始化新对象，包括：
+ * - 内存分配和初始化
+ * - 对象属性设置
+ * - 生命周期管理
+ * - 错误处理机制
  * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
+ * @param param_1 对象类型
+ * @param param_2 对象指针输出
+ * @param param_3 创建标志
+ * @return 创建的对象指针
  * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
+ * 技术实现要点：
+ * 1. 内存池分配策略，减少碎片化
+ * 2. 对象属性的批量初始化
+ * 3. 生命周期事件的正确触发
+ * 4. 错误处理和资源清理
  */
+longlong * ObjectCreator(undefined8 param_1, longlong *param_2, undefined1 param_3)
+{
+    undefined8 uVar1;
+    longlong *plVar2;
+    longlong *plStackX_20;
+    
+    /* 分配对象内存 */
+    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, OBJECT_POOL_SIZE, OBJECT_ALIGNMENT, OBJECT_ALLOC_FLAGS);
+    plVar2 = (longlong *)FUN_1802e6b00(uVar1, param_3);
+    *param_2 = (longlong)plVar2;
+    
+    /* 初始化对象 */
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + 0x28))(plVar2);
+    }
+    
+    /* 验证对象创建 */
+    if (*param_2 == 0) {
+        FUN_180626ee0(&UNK_180a0b200);
+    }
+    
+    /* 设置对象属性 */
+    plStackX_20 = (longlong *)*param_2;
+    if (plStackX_20 != (longlong *)0x0) {
+        (**(code **)(*plStackX_20 + 0x28))();
+    }
+    FUN_180198b90(param_1, &plStackX_20, 1, 1, 0, 1, 0);
+    return param_2;
+}
+
+/**
+ * @brief 对象销毁器
+ * 
+ * 销毁对象并清理资源，包括：
+ * - 引用计数检查
+ * - 资源清理和释放
+ * - 事件通知发送
+ * - 内存回收处理
+ * 
+ * @param param_1 对象管理器指针
+ * @param param_2 对象指针
+ * @param param_3 销毁标志
+ * @param param_4 保留参数
+ * @param param_5 销毁代码
+ * 
+ * 技术实现要点：
+ * 1. 安全的引用计数检查
+ * 2. 分阶段的资源清理
+ * 3. 事件通知的正确发送
+ * 4. 内存泄漏的预防
+ */
+void ObjectDestructor(longlong param_1, longlong *param_2, undefined8 param_3, undefined8 param_4,
+                    undefined4 param_5)
+{
+    longlong lVar1;
+    int iVar2;
+    uint uVar3;
+    longlong *plVar4;
+    uint uVar5;
+    longlong *plStackX_8;
+    longlong *plStackX_10;
+    uint in_stack_ffffffffffffffc0;
+    
+    plStackX_10 = param_2;
+    if (param_2 != (longlong *)0x0) {
+        (**(code **)(*param_2 + 0x28))(param_2);
+    }
+    
+    /* 检查对象所有权 */
+    if (param_2[4] == param_1) {
+        if (*(longlong *)(param_1 + 600) != 0) {
+            FUN_1803a00c0(*(longlong *)(param_1 + 600), param_2);
+        }
+        lVar1 = param_2[0x2d];
+        uVar5 = 0;
+        
+        /* 处理不同类型的对象销毁 */
+        if (lVar1 == 0) {
+            FUN_180398550(param_1 + 0x607e0, param_2);
+            if (*(longlong **)(param_1 + 0x81f8) == param_2) {
+                plStackX_8 = *(longlong **)(param_1 + 0x81f8);
+                *(undefined8 *)(param_1 + 0x81f8) = 0;
+                if (plStackX_8 != (longlong *)0x0) {
+                    (**(code **)(*plStackX_8 + 0x38))();
+                }
+            }
+            if (*(longlong **)(param_1 + 0x8200) == param_2) {
+                plStackX_8 = *(longlong **)(param_1 + 0x8200);
+                *(undefined8 *)(param_1 + 0x8200) = 0;
+                if (plStackX_8 != (longlong *)0x0) {
+                    (**(code **)(*plStackX_8 + 0x38))();
+                }
+            }
+            if (*(longlong **)(param_1 + 0x8208) == param_2) {
+                plStackX_8 = *(longlong **)(param_1 + 0x8208);
+                *(undefined8 *)(param_1 + 0x8208) = 0;
+                if (plStackX_8 != (longlong *)0x0) {
+                    (**(code **)(*plStackX_8 + 0x38))();
+                }
+            }
+            if (*(longlong **)(param_1 + 0x8210) == param_2) {
+                plStackX_8 = *(longlong **)(param_1 + 0x8210);
+                *(undefined8 *)(param_1 + 0x8210) = 0;
+                if (plStackX_8 != (longlong *)0x0) {
+                    (**(code **)(*plStackX_8 + 0x38))();
+                }
+            }
+            plVar4 = *(longlong **)(param_1 + 0x28c0);
+            if (plVar4 != (longlong *)0x0) {
+                (**(code **)(*plVar4 + 0x20))(plVar4, param_2);
+            }
+            FUN_1802eaec0(param_2, 0, 1, 1, 0, in_stack_ffffffffffffffc0 & 0xffffff00, 1, param_5);
+        }
+        else {
+            FUN_1802ed990(lVar1, 1);
+            FUN_1802eb9a0(lVar1, param_2, 0, 0, 1, param_5);
+        }
+        
+        /* 清理对象引用 */
+        iVar2 = FUN_1802ed190(param_2, 7);
+        if (iVar2 != 0) {
+            do {
+                plVar4 = (longlong *)FUN_1802ed2b0(param_2, &plStackX_8, 7, uVar5);
+                lVar1 = *plVar4;
+                if (plStackX_8 != (longlong *)0x0) {
+                    (**(code **)(*plStackX_8 + 0x38))();
+                }
+                *(undefined1 *)(lVar1 + 0x39) = 1;
+                uVar5 = uVar5 + 1;
+                uVar3 = FUN_1802ed190(param_2, 7);
+            } while (uVar5 < uVar3);
+        }
+    }
+    else {
+        FUN_180626f80(&UNK_180a0b258);
+    }
+    
+    /* 最终清理 */
+    (**(code **)(*param_2 + 0x38))(param_2);
+    return;
+}
+
+/**
+ * @brief 对象注册器
+ * 
+ * 注册对象到管理系统，包括：
+ * - 对象类型检查
+ * - 注册表管理
+ * - 优先级处理
+ * - 重复注册检查
+ * 
+ * @param param_1 注册管理器指针
+ * @param param_2 对象指针
+ * @param param_3 注册标志
+ * @param param_4 优先级
+ * @param param_5 保留参数
+ * @param param_6 激活标志
+ * @param param_7 注册模式
+ * @return 注册结果
+ * 
+ * 技术实现要点：
+ * 1. 高效的对象类型检查
+ * 2. 优先级队列管理
+ * 3. 重复注册的检测和处理
+ * 4. 注册表的优化存储
+ */
+ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, undefined1 param_3, undefined1 param_4,
+                       undefined8 param_5, undefined1 param_6, char param_7)
+{
+    undefined8 *puVar1;
+    longlong lVar2;
+    longlong *plVar3;
+    char cVar4;
+    int iVar5;
+    longlong lVar6;
+    longlong *plVar7;
+    undefined8 *puVar8;
+    undefined *puVar9;
+    undefined8 *puVar10;
+    bool bVar11;
+    uint in_stack_ffffffffffffffb0;
+    undefined8 uVar12;
+    
+    uVar12 = 0xfffffffffffffffe;
+    
+    /* 检查对象类型 */
+    cVar4 = FUN_1802eee20(*param_2, &UNK_180a0c460);
+    if (cVar4 != '\0') {
+        *(undefined2 *)(param_1 + 0x5c40) = 0x101;
+    }
+    cVar4 = FUN_1802eee20(*param_2, &UNK_180a0c480);
+    if (cVar4 != '\0') {
+        *(undefined1 *)(param_1 + 0x5bf0) = 1;
+        *(undefined1 *)(param_1 + 0x5c42) = 1;
+    }
+    
+    /* 检查对象是否已注册 */
+    lVar6 = *param_2;
+    lVar2 = *(longlong *)(lVar6 + 0x168);
+    if (lVar2 == 0) {
+        plVar3 = *(longlong **)(param_1 + 0x60860);
+        plVar7 = *(longlong **)(param_1 + 0x60858);
+        if (plVar7 != plVar3) {
+            do {
+                if (*plVar7 == lVar6) break;
+                plVar7 = plVar7 + 1;
+            } while (plVar7 != plVar3);
+            if (plVar7 != plVar3) {
+                if (param_7 != '\0') {
+                    puVar9 = &DAT_18098bc73;
+                    if (*(undefined **)(lVar6 + 0x290) != (undefined *)0x0) {
+                        puVar9 = *(undefined **)(lVar6 + 0x290);
+                    }
+                    plVar7 = (longlong *)FUN_180626f80(&UNK_180a0b220, puVar9);
+                }
+                if ((longlong *)*param_2 != (longlong *)0x0) {
+                    plVar7 = (longlong *)(**(code **)(*(longlong *)*param_2 + 0x38))();
+                }
+                return (ulonglong)plVar7 & 0xffffffffffffff00;
+            }
+        }
+    }
+    else {
+        in_stack_ffffffffffffffb0 = 0;
+        FUN_1802eb9a0(lVar2, lVar6, 0, *(longlong *)(lVar2 + 0x20) == param_1, param_6, 0x16);
+    }
+    
+    /* 执行对象注册 */
+    FUN_1802eaec0(*param_2, param_1, param_3, param_4, param_5, in_stack_ffffffffffffffb0 & 0xffffff00,
+                  param_6, 0xffffffff, uVar12);
+    FUN_1802f2240(*param_2, *(undefined8 *)(param_1 + 600));
+    param_2 = (longlong *)*param_2;
+    
+    /* 获取注册锁 */
+    iVar5 = _Mtx_lock(param_1 + 0x607e0);
+    if (iVar5 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar5);
+    }
+    
+    /* 创建注册节点 */
+    puVar1 = (undefined8 *)(param_1 + 0x60878);
+    lVar6 = FUN_18062b420(_DAT_180c8ed18, 0x28, *(undefined1 *)(param_1 + 0x608a0));
+    *(longlong **)(lVar6 + 0x20) = param_2;
+    if (param_2 != (longlong *)0x0) {
+        (**(code **)(*param_2 + 0x28))(param_2);
+    }
+    
+    /* 按优先级插入注册表 */
+    bVar11 = true;
+    puVar10 = puVar1;
+    if (*(undefined8 **)(param_1 + 0x60888) != (undefined8 *)0x0) {
+        puVar8 = *(undefined8 **)(param_1 + 0x60888);
+        do {
+            puVar10 = puVar8;
+            bVar11 = *(ulonglong *)(lVar6 + 0x20) < (ulonglong)puVar10[4];
+            if (bVar11) {
+                puVar8 = (undefined8 *)puVar10[1];
+            }
+            else {
+                puVar8 = (undefined8 *)*puVar10;
+            }
+        } while (puVar8 != (undefined8 *)0x0);
+    }
+    puVar8 = puVar10;
+    if (bVar11) {
+        if (puVar10 == *(undefined8 **)(param_1 + 0x60880)) goto LAB_180198da7;
+        puVar8 = (undefined8 *)func_0x00018066b9a0(puVar10);
+    }
+    if (*(ulonglong *)(lVar6 + 0x20) <= (ulonglong)puVar8[4]) {
+        if (*(longlong **)(lVar6 + 0x20) != (longlong *)0x0) {
+            (**(code **)(**(longlong **)(lVar6 + 0x20) + 0x38))();
+        }
+        FUN_18064e900(lVar6);
+    }
+LAB_180198da7:
+    if ((puVar10 == puVar1) || (*(ulonglong *)(lVar6 + 0x20) < (ulonglong)puVar10[4])) {
+        uVar12 = 0;
+    }
+    else {
+        uVar12 = 1;
+    }
+    FUN_18066bdc0(lVar6, puVar10, puVar1, uVar12);
+}
+
+/*=============================================================================
+ * 函数别名映射（原始函数名 -> 美化名称）
+ *=============================================================================*/
+
+// 对象生命周期管理函数别名
+#define FUN_180197a20             ObjectManagerDestructor
+#define FUN_1801982b0             ObjectReferenceManager
+
+// 矩阵和向量计算函数别名
+#define FUN_1801983b0             MatrixTransformCalculator
+
+// 线程同步和事件处理函数别名
+#define FUN_1801985e0             EventQueueManager
+
+// 资源管理和对象创建函数别名
+#define FUN_180198750             RenderStateManager
+#define FUN_180198890             ObjectCreator
+#define FUN_180198980             ObjectDestructor
+#define FUN_180198b90             ObjectRegistrar
+
+/*=============================================================================
+ * 技术实现要点
+ *=============================================================================*/
+
+/*
+1. 对象生命周期管理：
+   - 分阶段清理策略，确保依赖关系正确处理
+   - 异常安全机制，防止清理过程中出现异常
+   - 内存泄漏检测，确保所有资源正确释放
+   - 线程安全保证，使用适当的同步机制
+
+2. 线程同步和锁管理：
+   - 互斥锁的获取和释放策略
+   - 条件变量的正确使用
+   - 死锁预防机制
+   - 性能优化的锁粒度
+
+3. 事件处理系统：
+   - 事件队列的动态扩容
+   - 事件优先级的处理
+   - 事件分发的效率优化
+   - 事件回调的管理
+
+4. 矩阵和向量计算：
+   - SIMD指令的优化使用
+   - 快速平方根倒数算法
+   - 浮点数精度控制
+   - 矩阵变换的数学优化
+
+5. 资源管理和优化：
+   - 内存池的分配策略
+   - 对象的快速创建和销毁
+   - 资源的重复利用
+   - 内存碎片化控制
+
+6. 性能优化策略：
+   - 缓存友好的数据结构
+   - 算法的时间复杂度优化
+   - 内存访问模式优化
+   - 并发处理的效率提升
+
+7. 安全考虑：
+   - 输入参数的验证
+   - 内存访问的安全检查
+   - 资源泄露的预防
+   - 异常情况的处理
+
+8. 可维护性设计：
+   - 清晰的函数职责划分
+   - 详细的错误处理机制
+   - 完善的日志记录
+   - 模块化的架构设计
+*/

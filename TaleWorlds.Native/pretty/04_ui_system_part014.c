@@ -1,323 +1,375 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part014.c - UI系统高级动画变换和矩阵处理模块
-// 包含3个核心函数：UI动画变换处理器、矩阵变换控制器、简单变换处理器
-// 
-// 简化实现说明：原文件包含复杂的UI动画变换和矩阵处理逻辑，包括向量运算、
-// 矩阵归一化、动画参数优化、变换计算等。本简化实现保留了核心功能结构，但简化了底层优化细节。
+// 04_ui_system_part014.c - 3 个函数
 
-// 全局常量定义
-static const float UI_PI = 3.1415926535f;            // 圆周率
-static const float UI_HALF_PI = 1.5707964f;          // 半圆周率
-static const float UI_TO_DEGREES = 57.2957795f;      // 弧度转角度
-static const float UI_TO_RADIANS = 0.0174533f;      // 角度转弧度
-static const float UI_EPSILON = 0.001f;              // 浮点数精度阈值
-static const float UI_SMALL_THRESHOLD = 0.05f;      // 小量阈值
-static const float UI_MEDIUM_THRESHOLD = 0.1f;      // 中等量阈值
-static const float UI_LARGE_THRESHOLD = 0.5f;       // 大量阈值
-static const float UI_MAX_VALUE = 1.0f;             // 最大值
-static const float UI_MIN_VALUE = -1.0f;            // 最小值
-static const float UI_ZERO_THRESHOLD = 1.1754944e-38f; // 零值阈值
+// 函数: void FUN_18065a472(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
+void FUN_18065a472(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
+                  undefined8 param_5,undefined8 param_6,float param_7,float param_8,float param_9,
+                  undefined8 param_10,undefined8 param_11,float param_12)
 
-// UI变换数据结构定义
-typedef struct {
-    float transform_matrix[16];      // 变换矩阵
-    float position_x;                  // X位置
-    float position_y;                  // Y位置
-    float scale_factor;                // 缩放因子
-    float rotation_angle;              // 旋转角度
-    int transform_flags;              // 变换标志
-    void* transform_data;              // 变换数据
-} ui_transform_context_t;
-
-typedef struct {
-    float target_x;                    // 目标X位置
-    float target_y;                    // 目标Y位置
-    float current_x;                   // 当前X位置
-    float current_y;                   // 当前Y位置
-    float velocity_x;                  // X速度
-    float velocity_y;                  // Y速度
-    float acceleration_x;              // X加速度
-    float acceleration_y;              // Y加速度
-    float damping_factor;              // 阻尼因子
-    float spring_constant;             // 弹簧常数
-    float max_speed;                   // 最大速度
-    int animation_type;                // 动画类型
-} ui_animation_params_t;
-
-/**
- * UI系统高级动画变换处理器
- * 处理UI元素的复杂动画变换，包括矩阵运算、向量归一化、动画参数优化等
- * 
- * @param transform_context 变换上下文指针
- * @param animation_params 动画参数指针
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @param param5 参数5
- * @param param6 参数6
- * @param param7 参数7
- * @param param8 参数8
- * @param param9 参数9
- * @param param10 参数10
- * @param param11 参数11
- * @param param12 参数12
- */
-void ui_system_advanced_animation_transform_processor(ui_transform_context_t* transform_context, 
-                                                   ui_animation_params_t* animation_params,
-                                                   void* param1, float param2, void* param3, 
-                                                   float param4, void* param5, void* param6, 
-                                                   float param7, float param8, float param9, 
-                                                   void* param10, void* param11, float param12)
 {
-    // 简化实现：UI系统高级动画变换处理
-    // 原实现包含复杂的矩阵运算、向量归一化、动画参数优化等
-    
-    if (transform_context == NULL || animation_params == NULL) {
-        return;
+  undefined3 uVar1;
+  float *pfVar2;
+  int iVar3;
+  int iVar4;
+  longlong unaff_RBP;
+  char cVar5;
+  undefined4 unaff_EDI;
+  longlong unaff_R14;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  undefined1 auVar11 [16];
+  uint in_XMM5_Da;
+  float fVar12;
+  float unaff_XMM6_Da;
+  float unaff_XMM8_Da;
+  float unaff_XMM9_Da;
+  float unaff_XMM14_Da;
+  float fStack000000000000003c;
+  float afStack_60e8 [6200];
+  undefined8 uStack_8;
+  
+  param_4 = param_2 * param_4;
+  if (unaff_XMM6_Da < *(float *)(unaff_R14 + 0x48)) {
+    fVar6 = (*(float *)(unaff_R14 + 0x48) - param_2) * 4.0;
+    if (fVar6 <= unaff_XMM6_Da) {
+      fVar6 = unaff_XMM6_Da;
     }
-    
-    // 计算变换参数
-    float transform_factor = param2 * param4;
-    if (animation_params->damping_factor < animation_params->velocity_x) {
-        float damping_factor = (animation_params->velocity_x - param2) * 4.0f;
-        if (damping_factor <= animation_params->damping_factor) {
-            damping_factor = animation_params->damping_factor;
+    param_4 = param_4 * fVar6;
+  }
+  pfVar2 = (float *)(unaff_R14 + 0x6154);
+  iVar4 = 1;
+  do {
+    fVar6 = *(float *)(((longlong)afStack_60e8 - unaff_R14) + (longlong)pfVar2);
+    fVar7 = fVar6 - pfVar2[-10];
+    fVar8 = (float)((uint)fVar7 & in_XMM5_Da);
+    if (0.001 <= fVar8) {
+      fVar9 = unaff_XMM14_Da;
+      if (unaff_XMM6_Da <= fVar7) {
+        fVar9 = unaff_XMM8_Da;
+      }
+      if (0.05 <= fVar8) {
+        if (0.5 <= fVar8) {
+          fVar8 = 0.5;
         }
-        transform_factor = transform_factor * damping_factor;
+      }
+      else {
+        fVar8 = 0.05;
+      }
+      fVar8 = fVar8 * fVar9 * param_6._4_4_ * 6.0;
+      in_XMM5_Da = 0x7fffffff;
+      if (fVar8 * fVar9 <= fVar9 * fVar7) {
+        fVar6 = pfVar2[-10] + fVar8;
+      }
     }
-    
-    // 处理变换矩阵
-    float* matrix_ptr = (float*)(transform_context + 0x6154);
-    int matrix_index = 1;
-    float accumulated_value = animation_params->damping_factor;
-    
-    do {
-        // 获取矩阵元素
-        float matrix_value = *(float*)(((longlong)transform_context - (longlong)animation_params) + (longlong)matrix_ptr);
-        float value_diff = matrix_value - matrix_ptr[-10];
-        float abs_diff = fabsf(value_diff);
-        
-        // 处理矩阵变换
-        if (UI_EPSILON <= abs_diff) {
-            float direction = animation_params->max_speed;
-            if (animation_params->damping_factor <= value_diff) {
-                direction = animation_params->spring_constant;
-            }
-            
-            // 应用阈值
-            float threshold = UI_SMALL_THRESHOLD;
-            if (UI_SMALL_THRESHOLD <= abs_diff) {
-                if (UI_LARGE_THRESHOLD <= abs_diff) {
-                    threshold = UI_LARGE_THRESHOLD;
-                }
-            }
-            else {
-                threshold = UI_SMALL_THRESHOLD;
-            }
-            
-            threshold = threshold * direction * param7 * 6.0f;
-            if (threshold * direction <= direction * value_diff) {
-                matrix_value = matrix_ptr[-10] + threshold;
-            }
+    pfVar2[-10] = fVar6;
+    *pfVar2 = fVar6;
+    cVar5 = (char)unaff_EDI;
+    if (2 < iVar4) {
+      if (iVar4 < 7) {
+        fVar7 = unaff_XMM8_Da - param_4;
+      }
+      else {
+        fVar7 = unaff_XMM6_Da;
+        if (iVar4 == 7) {
+          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+LAB_18065a5b3:
+            fVar7 = param_4;
+          }
         }
-        
-        matrix_ptr[-10] = matrix_value;
-        *matrix_ptr = matrix_value;
-        
-        // 应用缩放变换
-        if (matrix_index > 2) {
-            if (matrix_index < 7) {
-                float scale_value = animation_params->spring_constant - transform_factor;
-                matrix_value = scale_value * matrix_value;
-                *matrix_ptr = matrix_value;
-            }
+        else {
+          if (iVar4 != 8) goto LAB_18065a5d3;
+          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a5b3;
         }
-        
-        // 更新索引和累积值
-        matrix_index += 3;
-        accumulated_value += matrix_value;
-        matrix_ptr += 3;
-        
-        if (matrix_index > 9) {
-            // 归一化矩阵
-            float norm_factor = animation_params->spring_constant - 
-                ((transform_factor * 6.0f - 15.0f) * transform_factor + 10.0f) * 
-                transform_factor * transform_factor * transform_factor;
-            
-            if (accumulated_value != norm_factor) {
-                if (accumulated_value <= animation_params->damping_factor) {
-                    transform_context->scale_factor = 1.0f;
-                }
-                else {
-                    norm_factor = norm_factor / accumulated_value;
-                    
-                    // 应用归一化到所有矩阵元素
-                    for (int i = 0; i < 9; i++) {
-                        ((float*)(transform_context + 0x6154))[i] *= norm_factor;
-                    }
-                }
-            }
-            
-            // 计算最终变换参数
-            param9 = param9 - param7;
-            float transform_param = ((((param10 + param11) * param8 + param10) - param11) - param12) - param10;
-            
-            // 计算变换向量长度
-            float vector_length = param9 * param9 + transform_param * transform_param;
-            vector_length = (vector_length <= UI_ZERO_THRESHOLD) ? UI_ZERO_THRESHOLD : vector_length;
-            float inv_length = 1.0f / sqrtf(vector_length);
-            
-            float final_x = inv_length * param9;
-            float final_y = inv_length * transform_param;
-            
-            // 应用最终变换
-            if (fabsf(final_y * transform_context->position_x + final_x * transform_context->position_y) <= 0.999f) {
-                // 应用矩阵变换
-                float matrix_diff = transform_context->transform_matrix[0] - transform_context->transform_matrix[1];
-                float matrix_sum = (((transform_context->transform_matrix[2] + transform_context->transform_matrix[3] + 
-                                    transform_context->transform_matrix[6]) - transform_context->transform_matrix[4]) - 
-                                  transform_context->transform_matrix[5]) - transform_context->transform_matrix[7];
-                
-                float matrix_norm = matrix_diff * matrix_diff + matrix_sum * matrix_sum;
-                matrix_norm = (matrix_norm <= UI_ZERO_THRESHOLD) ? UI_ZERO_THRESHOLD : matrix_norm;
-                inv_length = 1.0f / sqrtf(matrix_norm);
-                
-                param7 = param7 * 8.0f;
-                float norm_factor = inv_length * 0.5f * (3.0f - matrix_norm * inv_length * inv_length);
-                
-                float final_transform_x = norm_factor * matrix_diff * param7 + 
-                                         (animation_params->spring_constant - param7) * transform_context->position_y;
-                float final_transform_y = norm_factor * matrix_sum * param7 + 
-                                         (animation_params->spring_constant - param7) * transform_context->position_x;
-                
-                transform_context->position_x = final_transform_x;
-                transform_context->position_y = final_transform_y;
-            }
-            else {
-                transform_context->position_x = final_x;
-                transform_context->position_y = final_y;
-            }
+      }
+      fVar6 = fVar7 * fVar6;
+      *pfVar2 = fVar6;
+    }
+LAB_18065a5d3:
+    fVar7 = *(float *)((longlong)afStack_60e8 + (4 - unaff_R14) + (longlong)pfVar2);
+    fVar8 = fVar7 - pfVar2[-9];
+    fVar9 = (float)((uint)fVar8 & in_XMM5_Da);
+    if (0.001 <= fVar9) {
+      fVar10 = unaff_XMM14_Da;
+      if (unaff_XMM6_Da <= fVar8) {
+        fVar10 = unaff_XMM8_Da;
+      }
+      if (0.05 <= fVar9) {
+        if (0.5 <= fVar9) {
+          fVar9 = 0.5;
         }
-    } while (true);
+      }
+      else {
+        fVar9 = 0.05;
+      }
+      fVar9 = fVar9 * fVar10 * param_6._4_4_ * 6.0;
+      in_XMM5_Da = 0x7fffffff;
+      if (fVar9 * fVar10 <= fVar10 * fVar8) {
+        fVar7 = pfVar2[-9] + fVar9;
+      }
+    }
+    iVar3 = iVar4 + 1;
+    pfVar2[-9] = fVar7;
+    pfVar2[1] = fVar7;
+    if (2 < iVar3) {
+      if (iVar3 < 7) {
+        fVar8 = unaff_XMM8_Da - param_4;
+      }
+      else {
+        fVar8 = unaff_XMM6_Da;
+        if (iVar3 == 7) {
+          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+LAB_18065a67b:
+            fVar8 = param_4;
+          }
+        }
+        else {
+          if (iVar3 != 8) goto LAB_18065a69c;
+          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a67b;
+        }
+      }
+      fVar7 = fVar8 * fVar7;
+      pfVar2[1] = fVar7;
+    }
+LAB_18065a69c:
+    fVar8 = *(float *)((longlong)afStack_60e8 + (8 - unaff_R14) + (longlong)pfVar2);
+    fVar9 = fVar8 - pfVar2[-8];
+    fVar10 = (float)((uint)fVar9 & in_XMM5_Da);
+    if (0.001 <= fVar10) {
+      fVar12 = unaff_XMM14_Da;
+      if (unaff_XMM6_Da <= fVar9) {
+        fVar12 = unaff_XMM8_Da;
+      }
+      if (0.05 <= fVar10) {
+        if (0.5 <= fVar10) {
+          fVar10 = 0.5;
+        }
+      }
+      else {
+        fVar10 = 0.05;
+      }
+      fVar10 = fVar10 * fVar12 * param_6._4_4_ * 6.0;
+      in_XMM5_Da = 0x7fffffff;
+      if (fVar10 * fVar12 <= fVar12 * fVar9) {
+        fVar8 = pfVar2[-8] + fVar10;
+      }
+    }
+    iVar3 = iVar4 + 2;
+    pfVar2[-8] = fVar8;
+    pfVar2[2] = fVar8;
+    if (2 < iVar3) {
+      if (iVar3 < 7) {
+        fVar9 = unaff_XMM8_Da - param_4;
+      }
+      else {
+        fVar9 = unaff_XMM6_Da;
+        if (iVar3 == 7) {
+          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+LAB_18065a744:
+            fVar9 = param_4;
+          }
+        }
+        else {
+          if (iVar3 != 8) goto LAB_18065a765;
+          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a744;
+        }
+      }
+      fVar8 = fVar9 * fVar8;
+      pfVar2[2] = fVar8;
+    }
+LAB_18065a765:
+    iVar4 = iVar4 + 3;
+    unaff_XMM9_Da = unaff_XMM9_Da + fVar6 + fVar7 + fVar8;
+    pfVar2 = pfVar2 + 3;
+    if (9 < iVar4) {
+      fVar6 = *(float *)(unaff_R14 + 0x6150);
+      fVar6 = unaff_XMM8_Da - ((fVar6 * 6.0 - 15.0) * fVar6 + 10.0) * fVar6 * fVar6 * fVar6;
+      if (unaff_XMM9_Da != fVar6) {
+        if (unaff_XMM9_Da <= unaff_XMM6_Da) {
+          *(undefined4 *)(unaff_R14 + 0x6150) = 0x3f800000;
+        }
+        else {
+          fVar6 = fVar6 / unaff_XMM9_Da;
+          *(float *)(unaff_R14 + 0x6154) = *(float *)(unaff_R14 + 0x6154) * fVar6;
+          *(float *)(unaff_R14 + 0x6158) = *(float *)(unaff_R14 + 0x6158) * fVar6;
+          *(float *)(unaff_R14 + 0x615c) = *(float *)(unaff_R14 + 0x615c) * fVar6;
+          *(float *)(unaff_R14 + 0x6160) = *(float *)(unaff_R14 + 0x6160) * fVar6;
+          *(float *)(unaff_R14 + 0x6164) = *(float *)(unaff_R14 + 0x6164) * fVar6;
+          *(float *)(unaff_R14 + 0x6168) = *(float *)(unaff_R14 + 0x6168) * fVar6;
+          *(float *)(unaff_R14 + 0x616c) = *(float *)(unaff_R14 + 0x616c) * fVar6;
+          *(float *)(unaff_R14 + 0x6170) = *(float *)(unaff_R14 + 0x6170) * fVar6;
+          *(float *)(unaff_R14 + 0x6174) = fVar6 * *(float *)(unaff_R14 + 0x6174);
+        }
+      }
+      param_9 = param_9 - param_7;
+      param_10._4_4_ =
+           (((((float)param_10 + (float)param_11) * param_8 + param_10._4_4_) - param_11._4_4_) -
+           param_12) - param_10._4_4_;
+      fVar6 = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
+      uVar1 = (undefined3)((uint)unaff_EDI >> 8);
+      fVar6 = (float)CONCAT31(uVar1,fVar6 <= 1.1754944e-38) * 1.1754944e-38 + fVar6;
+      auVar11 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
+      fVar7 = auVar11._0_4_;
+      fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
+      fStack000000000000003c = fVar6 * param_9;
+      fVar6 = fVar6 * param_10._4_4_;
+      if ((float)((uint)(fVar6 * *(float *)(unaff_R14 + 0x6178) +
+                        fStack000000000000003c * *(float *)(unaff_R14 + 0x617c)) & in_XMM5_Da) <=
+          0.999) {
+        fVar8 = *(float *)(unaff_R14 + 0x6154) - *(float *)(unaff_R14 + 0x6158);
+        fVar9 = (((*(float *)(unaff_R14 + 0x6160) + *(float *)(unaff_R14 + 0x615c) +
+                  *(float *)(unaff_R14 + 0x616c)) - *(float *)(unaff_R14 + 0x6164)) -
+                *(float *)(unaff_R14 + 0x6168)) - *(float *)(unaff_R14 + 0x6170);
+        fVar6 = fVar8 * fVar8 + fVar9 * fVar9;
+        fVar6 = (float)CONCAT31(uVar1,fVar6 <= 1.1754944e-38) * 1.1754944e-38 + fVar6;
+        auVar11 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
+        fVar7 = auVar11._0_4_;
+        param_6._4_4_ = param_6._4_4_ * 8.0;
+        fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
+        fStack000000000000003c =
+             fVar6 * fVar8 * param_6._4_4_ +
+             (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x617c);
+        *(ulonglong *)(unaff_R14 + 0x6178) =
+             CONCAT44(fStack000000000000003c,
+                      fVar6 * fVar9 * param_6._4_4_ +
+                      (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x6178));
+        fVar6 = *(float *)(unaff_R14 + 0x617c);
+        fVar7 = *(float *)(unaff_R14 + 0x6178);
+        fVar8 = fVar7 * fVar7 + fVar6 * fVar6;
+        auVar11 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
+        fVar9 = auVar11._0_4_;
+        fVar8 = fVar9 * 0.5 * (3.0 - fVar8 * fVar9 * fVar9);
+        *(float *)(unaff_R14 + 0x617c) = fVar8 * fVar6;
+        *(float *)(unaff_R14 + 0x6178) = fVar8 * fVar7;
+      }
+      else {
+        *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar6);
+      }
+                    // WARNING: Subroutine does not return
+      uStack_8 = 0x18065aa9f;
+      FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+    }
+  } while( true );
 }
 
-/**
- * UI系统矩阵变换控制器
- * 处理UI系统的矩阵变换和归一化操作
- * 
- * @param transform_context 变换上下文指针
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- * @param param5 参数5
- * @param param6 参数6
- */
-void ui_system_matrix_transform_controller(ui_transform_context_t* transform_context, 
-                                         void* param1, float param2, void* param3, 
-                                         float param4, void* param5, float param6)
-{
-    // 简化实现：UI系统矩阵变换控制
-    // 原实现包含复杂的矩阵变换、归一化操作、参数计算等
-    
-    if (transform_context == NULL) {
-        return;
-    }
-    
-    // 归一化变换矩阵
-    float normalization_factor = param2;
-    if (transform_context->scale_factor <= transform_context->damping_factor) {
-        transform_context->transform_flags = 0x3f800000; // 1.0f
-    }
-    else {
-        normalization_factor = normalization_factor / transform_context->scale_factor;
-        
-        // 应用归一化到所有矩阵元素
-        transform_context->transform_matrix[0] *= normalization_factor;
-        transform_context->transform_matrix[1] *= normalization_factor;
-        transform_context->transform_matrix[2] *= normalization_factor;
-        transform_context->transform_matrix[3] *= normalization_factor;
-        transform_context->transform_matrix[4] *= normalization_factor;
-        transform_context->transform_matrix[5] *= normalization_factor;
-        transform_context->transform_matrix[6] *= normalization_factor;
-        transform_context->transform_matrix[7] *= normalization_factor;
-        transform_context->transform_matrix[8] *= normalization_factor;
-        transform_context->transform_matrix[9] *= normalization_factor;
-    }
-    
-    // 计算变换参数
-    float transform_param_x = param4 - param2;
-    float transform_param_y = ((((param6 + param5) * param4 + param6) - param5) - param6) - param6;
-    
-    // 计算变换向量长度
-    float vector_length = transform_param_x * transform_param_x + transform_param_y * transform_param_y;
-    vector_length = (vector_length <= UI_ZERO_THRESHOLD) ? UI_ZERO_THRESHOLD : vector_length;
-    float inv_length = 1.0f / sqrtf(vector_length);
-    
-    float final_x = inv_length * transform_param_x;
-    float final_y = inv_length * transform_param_y;
-    
-    // 应用最终变换
-    if (fabsf(final_y * transform_context->position_x + final_x * transform_context->position_y) <= 0.999f) {
-        // 应用矩阵变换
-        float matrix_diff = transform_context->transform_matrix[0] - transform_context->transform_matrix[1];
-        float matrix_sum = (((transform_context->transform_matrix[2] + transform_context->transform_matrix[3] + 
-                            transform_context->transform_matrix[6]) - transform_context->transform_matrix[4]) - 
-                          transform_context->transform_matrix[5]) - transform_context->transform_matrix[7];
-        
-        float matrix_norm = matrix_diff * matrix_diff + matrix_sum * matrix_sum;
-        matrix_norm = (matrix_norm <= UI_ZERO_THRESHOLD) ? UI_ZERO_THRESHOLD : matrix_norm;
-        inv_length = 1.0f / sqrtf(matrix_norm);
-        
-        param6 = param6 * 8.0f;
-        float norm_factor = inv_length * 0.5f * (3.0f - matrix_norm * inv_length * inv_length);
-        
-        float final_transform_x = norm_factor * matrix_diff * param6 + 
-                                 (transform_context->scale_factor - param6) * transform_context->position_y;
-        float final_transform_y = norm_factor * matrix_sum * param6 + 
-                                 (transform_context->scale_factor - param6) * transform_context->position_x;
-        
-        transform_context->position_x = final_transform_x;
-        transform_context->position_y = final_transform_y;
-    }
-    else {
-        transform_context->position_x = final_x;
-        transform_context->position_y = final_y;
-    }
-}
 
-/**
- * UI系统简单变换处理器
- * 处理UI系统的简单变换操作
- * 
- * @param transform_context 变换上下文指针
- * @param transform_data 变换数据指针
- */
-void ui_system_simple_transform_processor(ui_transform_context_t* transform_context, 
-                                       void* transform_data)
-{
-    // 简化实现：UI系统简单变换处理
-    // 原实现包含简单的变换操作和数据更新
-    
-    if (transform_context == NULL) {
-        return;
-    }
-    
-    // 应用简单变换
-    transform_context->position_x = ((longlong)transform_data & 0xFFFFFFFF);
-    transform_context->position_y = ((longlong)transform_data >> 32) & 0xFFFFFFFF;
-}
 
-// 函数别名定义 - 保持与原函数名的兼容性
-void FUN_18065a472(undefined8 param_1, float param_2, undefined8 param_3, float param_4,
-                  undefined8 param_5, undefined8 param_6, float param_7, float param_8, 
-                  float param_9, undefined8 param_10, undefined8 param_11, float param_12)
-    __attribute__((alias("ui_system_advanced_animation_transform_processor")));
 
+
+// 函数: void FUN_18065a7dc(void)
 void FUN_18065a7dc(void)
-    __attribute__((alias("ui_system_matrix_transform_controller")));
 
+{
+  undefined3 uVar1;
+  longlong unaff_RBP;
+  undefined4 unaff_EDI;
+  longlong unaff_R14;
+  float fVar2;
+  float fVar3;
+  undefined1 auVar4 [16];
+  float in_XMM3_Da;
+  uint in_XMM5_Da;
+  float unaff_XMM6_Da;
+  float fVar5;
+  float unaff_XMM8_Da;
+  float unaff_XMM9_Da;
+  float unaff_XMM12_Da;
+  float fVar6;
+  float unaff_XMM15_Da;
+  undefined8 in_stack_00000030;
+  float in_stack_00000038;
+  float fStack000000000000003c;
+  float in_stack_00000040;
+  float in_stack_00000048;
+  float fStack0000000000000058;
+  float fStack000000000000005c;
+  float in_stack_00000060;
+  
+  if (unaff_XMM9_Da <= unaff_XMM6_Da) {
+    *(undefined4 *)(unaff_R14 + 0x6150) = 0x3f800000;
+  }
+  else {
+    in_XMM3_Da = in_XMM3_Da / unaff_XMM9_Da;
+    *(float *)(unaff_R14 + 0x6154) = *(float *)(unaff_R14 + 0x6154) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6158) = *(float *)(unaff_R14 + 0x6158) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x615c) = *(float *)(unaff_R14 + 0x615c) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6160) = *(float *)(unaff_R14 + 0x6160) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6164) = *(float *)(unaff_R14 + 0x6164) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6168) = *(float *)(unaff_R14 + 0x6168) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x616c) = *(float *)(unaff_R14 + 0x616c) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6170) = *(float *)(unaff_R14 + 0x6170) * in_XMM3_Da;
+    *(float *)(unaff_R14 + 0x6174) = in_XMM3_Da * *(float *)(unaff_R14 + 0x6174);
+  }
+  in_stack_00000048 = in_stack_00000048 - in_stack_00000038;
+  fVar6 = ((((unaff_XMM12_Da + fStack0000000000000058) * in_stack_00000040 + unaff_XMM15_Da) -
+           fStack000000000000005c) - in_stack_00000060) - unaff_XMM15_Da;
+  fVar2 = in_stack_00000048 * in_stack_00000048 + fVar6 * fVar6;
+  uVar1 = (undefined3)((uint)unaff_EDI >> 8);
+  fVar2 = (float)CONCAT31(uVar1,fVar2 <= 1.1754944e-38) * 1.1754944e-38 + fVar2;
+  auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
+  fVar3 = auVar4._0_4_;
+  fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
+  fStack000000000000003c = fVar2 * in_stack_00000048;
+  fVar2 = fVar2 * fVar6;
+  if ((float)((uint)(fVar2 * *(float *)(unaff_R14 + 0x6178) +
+                    fStack000000000000003c * *(float *)(unaff_R14 + 0x617c)) & in_XMM5_Da) <= 0.999)
+  {
+    fVar6 = *(float *)(unaff_R14 + 0x6154) - *(float *)(unaff_R14 + 0x6158);
+    fVar5 = (((*(float *)(unaff_R14 + 0x6160) + *(float *)(unaff_R14 + 0x615c) +
+              *(float *)(unaff_R14 + 0x616c)) - *(float *)(unaff_R14 + 0x6164)) -
+            *(float *)(unaff_R14 + 0x6168)) - *(float *)(unaff_R14 + 0x6170);
+    fVar2 = fVar6 * fVar6 + fVar5 * fVar5;
+    fVar2 = (float)CONCAT31(uVar1,fVar2 <= 1.1754944e-38) * 1.1754944e-38 + fVar2;
+    auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
+    fVar3 = auVar4._0_4_;
+    in_stack_00000030._4_4_ = in_stack_00000030._4_4_ * 8.0;
+    fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
+    fStack000000000000003c =
+         fVar2 * fVar6 * in_stack_00000030._4_4_ +
+         (unaff_XMM8_Da - in_stack_00000030._4_4_) * *(float *)(unaff_R14 + 0x617c);
+    *(ulonglong *)(unaff_R14 + 0x6178) =
+         CONCAT44(fStack000000000000003c,
+                  fVar2 * fVar5 * in_stack_00000030._4_4_ +
+                  (unaff_XMM8_Da - in_stack_00000030._4_4_) * *(float *)(unaff_R14 + 0x6178));
+    fVar2 = *(float *)(unaff_R14 + 0x617c);
+    fVar3 = *(float *)(unaff_R14 + 0x6178);
+    fVar6 = fVar3 * fVar3 + fVar2 * fVar2;
+    auVar4 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
+    fVar5 = auVar4._0_4_;
+    fVar6 = fVar5 * 0.5 * (3.0 - fVar6 * fVar5 * fVar5);
+    *(float *)(unaff_R14 + 0x617c) = fVar6 * fVar2;
+    *(float *)(unaff_R14 + 0x6178) = fVar6 * fVar3;
+  }
+  else {
+    *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar2);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_18065a91c(void)
 void FUN_18065a91c(void)
-    __attribute__((alias("ui_system_simple_transform_processor")));
+
+{
+  longlong unaff_RBP;
+  longlong unaff_R14;
+  undefined8 in_stack_00000038;
+  
+  *(undefined8 *)(unaff_R14 + 0x6178) = in_stack_00000038;
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

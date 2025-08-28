@@ -1,184 +1,781 @@
-/**
- * @file 03_rendering_part547_sub002_sub002.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 03_rendering_part547_sub002_sub002.c - 1 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_1805698e0(longlong param_1)
+void FUN_1805698e0(longlong param_1)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  (**(code **)(param_1 + 0x100))(0,&UNK_1805fed90);
+  (**(code **)(param_1 + 0x100))(1,FUN_1805fed10);
+  (**(code **)(param_1 + 0x100))(2,FUN_1805feec0);
+  (**(code **)(param_1 + 0x100))(3,FUN_1805fede0);
+  (**(code **)(param_1 + 0x100))(4,FUN_1805febd0);
+  (**(code **)(param_1 + 0x100))(5,&UNK_1805fec90);
+  (**(code **)(param_1 + 0x100))(6,&UNK_1805fecf0);
+  (**(code **)(param_1 + 0x100))(7,&UNK_1805fed00);
+  (**(code **)(param_1 + 0x100))(8,&UNK_1805fecc0);
+  (**(code **)(param_1 + 0x100))(9,FUN_180602490);
+  (**(code **)(param_1 + 0x100))(10,FUN_180602680);
+  (**(code **)(param_1 + 0x100))(0xb,FUN_180600250);
+  (**(code **)(param_1 + 0x100))(0xc,FUN_180600560);
+  (**(code **)(param_1 + 0x100))(0xd,&UNK_180602b20);
+  (**(code **)(param_1 + 0x100))(0xe,FUN_180600770);
+  (**(code **)(param_1 + 0x100))(0xf,&UNK_180601ca0);
+  (**(code **)(param_1 + 0x100))(0x10,FUN_180601cb0);
+  (**(code **)(param_1 + 0x100))(0x11,FUN_1805fffa0);
+  (**(code **)(param_1 + 0x100))(0x12,&UNK_1806038a0);
+  (**(code **)(param_1 + 0x100))(0x13,&UNK_180602360);
+  (**(code **)(param_1 + 0x100))(0x14,FUN_180600f40);
+  (**(code **)(param_1 + 0x100))(0x15,&UNK_180603a10);
+  (**(code **)(param_1 + 0x100))(0x16,FUN_1806038e0);
+  (**(code **)(param_1 + 0x100))(0x17,&UNK_180602b50);
+  (**(code **)(param_1 + 0x100))(0x18,FUN_1806003f0);
+  (**(code **)(param_1 + 0x100))(0x19,&UNK_180600df0);
+  (**(code **)(param_1 + 0x100))(0x1a,&UNK_1805ff4b0);
+  (**(code **)(param_1 + 0x100))(0x1b,FUN_180601af0);
+  (**(code **)(param_1 + 0x100))(0x1c,&UNK_180601ad0);
+  (**(code **)(param_1 + 0x100))(0x1d,FUN_1805ffc20);
+  (**(code **)(param_1 + 0x100))(0x1e,&UNK_1805ff590);
+  (**(code **)(param_1 + 0x100))(0x1f,FUN_1806016b0);
+  (**(code **)(param_1 + 0x100))(0x20,&UNK_1806016a0);
+  (**(code **)(param_1 + 0x100))(0x21,&UNK_180601c00);
+  (**(code **)(param_1 + 0x100))(0x22,&UNK_1806011b0);
+  (**(code **)(param_1 + 0x100))(0x23,&UNK_180601190);
+  (**(code **)(param_1 + 0x100))(0x24,&UNK_1806031c0);
+  (**(code **)(param_1 + 0x100))(0x25,&UNK_180601260);
+  (**(code **)(param_1 + 0x100))(0x26,FUN_1806020e0);
+  (**(code **)(param_1 + 0x100))(0x27,&UNK_180601440);
+  (**(code **)(param_1 + 0x100))(0x28,&UNK_180602900);
+  (**(code **)(param_1 + 0x100))(0x29,FUN_1805ff120);
+  (**(code **)(param_1 + 0x100))(0x2a,FUN_1806021d0);
+  (**(code **)(param_1 + 0x100))(0x2b,&UNK_180602260);
+  (**(code **)(param_1 + 0x100))(0x2c,&UNK_180600a90);
+  (**(code **)(param_1 + 0x100))(0x2d,&UNK_180602cf0);
+  (**(code **)(param_1 + 0x100))(0x2e,&UNK_1806031e0);
+  (**(code **)(param_1 + 0x100))(0x2f,&UNK_180600a20);
+  (**(code **)(param_1 + 0x100))(0x30,FUN_180603140);
+  (**(code **)(param_1 + 0x100))(0x31,&UNK_180602470);
+  (**(code **)(param_1 + 0x100))(0x32,&UNK_180600a40);
+  (**(code **)(param_1 + 0x100))(0x33,&UNK_1805ff500);
+  (**(code **)(param_1 + 0x100))(0x34,&UNK_180602910);
+  (**(code **)(param_1 + 0x100))(0x35,&UNK_180600e70);
+  (**(code **)(param_1 + 0x100))(0x36,&UNK_180600f00);
+  (**(code **)(param_1 + 0x100))(0x37,&UNK_180601010);
+  (**(code **)(param_1 + 0x100))(0x38,&UNK_180601050);
+  (**(code **)(param_1 + 0x100))(0x39,&UNK_180600ec0);
+  (**(code **)(param_1 + 0x100))(0x3a,&UNK_180600e90);
+  (**(code **)(param_1 + 0x100))(0x3b,&UNK_180603130);
+  (**(code **)(param_1 + 0x100))(0x3c,&UNK_180603120);
+  (**(code **)(param_1 + 0x100))(0x3d,&UNK_180600e20);
+  (**(code **)(param_1 + 0x100))(0x3e,&UNK_180602bc0);
+  (**(code **)(param_1 + 0x100))(0x3f,&UNK_180601d80);
+  (**(code **)(param_1 + 0x100))(0x40,&UNK_1806014e0);
+  (**(code **)(param_1 + 0x100))(0x41,&UNK_180600a10);
+  (**(code **)(param_1 + 0x100))(0x42,FUN_1806039b0);
+  (**(code **)(param_1 + 0x100))(0x43,&UNK_180602bd0);
+  (**(code **)(param_1 + 0x100))(0x44,&UNK_1805ff260);
+  (**(code **)(param_1 + 0x100))(0x45,&UNK_180600a00);
+  (**(code **)(param_1 + 0x100))(0x46,&UNK_180602450);
+  (**(code **)(param_1 + 0x100))(0x47,&UNK_180603b80);
+  (**(code **)(param_1 + 0x100))(0x48,&UNK_180602b80);
+  (**(code **)(param_1 + 0x100))(0x49,FUN_180602fd0);
+  (**(code **)(param_1 + 0x100))(0x4a,&UNK_1806030f0);
+  (**(code **)(param_1 + 0x100))(0x4b,&SUB_180525320);
+  (**(code **)(param_1 + 0x100))(0x4c,&UNK_1806023a0);
+  (**(code **)(param_1 + 0x100))(0x4d,FUN_180603100);
+  (**(code **)(param_1 + 0x100))(0x4e,&UNK_1806043b0);
+  (**(code **)(param_1 + 0x100))(0x4f,FUN_1805ff2e0);
+  (**(code **)(param_1 + 0x100))(0x50,FUN_180600930);
+  (**(code **)(param_1 + 0x100))(0x51,&UNK_180602a90);
+  (**(code **)(param_1 + 0x100))(0x52,&UNK_1806009f0);
+  (**(code **)(param_1 + 0x100))(0x53,&UNK_1806014c0);
+  (**(code **)(param_1 + 0x100))(0x54,&UNK_180603d00);
+  (**(code **)(param_1 + 0x100))(0x55,&SUB_18051f9a0);
+  (**(code **)(param_1 + 0x100))(0x56,FUN_1806043c0);
+  (**(code **)(param_1 + 0x100))(0x57,FUN_180602d90);
+  (**(code **)(param_1 + 0x100))(0x58,FUN_180600cc0);
+  (**(code **)(param_1 + 0x100))(0x59,FUN_180601280);
+  (**(code **)(param_1 + 0x100))(0x5a,FUN_1806015a0);
+  (**(code **)(param_1 + 0x100))(0x5b,&UNK_180601590);
+  (**(code **)(param_1 + 0x100))(0x5c,&UNK_1805ff180);
+  (**(code **)(param_1 + 0x100))(0x5d,&UNK_1805ff1a0);
+  (**(code **)(param_1 + 0x100))(0x5e,&UNK_180602250);
+  (**(code **)(param_1 + 0x100))(0x5f,&UNK_180600a10);
+  (**(code **)(param_1 + 0x100))(0x60,FUN_180601520);
+  (**(code **)(param_1 + 0x100))(0x61,FUN_180601ce0);
+  (**(code **)(param_1 + 0x100))(0x62,&UNK_180600880);
+  (**(code **)(param_1 + 0x100))(99,&UNK_1805ff970);
+  (**(code **)(param_1 + 0x100))(100,&UNK_1805ff980);
+  (**(code **)(param_1 + 0x100))(0x65,FUN_1806013b0);
+  (**(code **)(param_1 + 0x100))(0x66,&UNK_180603bf0);
+  (**(code **)(param_1 + 0x100))(0x67,&UNK_180603a20);
+  (**(code **)(param_1 + 0x100))(0x68,FUN_180603d10);
+  (**(code **)(param_1 + 0x100))(0x69,&UNK_180601740);
+  (**(code **)(param_1 + 0x100))(0x6a,&UNK_180601720);
+  (**(code **)(param_1 + 0x100))(0x6b,&UNK_1806014a0);
+  (**(code **)(param_1 + 0x100))(0x6c,&UNK_180600dd0);
+  (**(code **)(param_1 + 0x100))(0x6d,&UNK_1805ff520);
+  (**(code **)(param_1 + 0x100))(0x6e,FUN_1805ff380);
+  (**(code **)(param_1 + 0x100))(0x6f,&UNK_1806022a0);
+  (**(code **)(param_1 + 0x100))(0x70,&UNK_180603c20);
+  (**(code **)(param_1 + 0x100))(0x71,&UNK_180602290);
+  (**(code **)(param_1 + 0x100))(0x72,&UNK_1805ff9c0);
+  (**(code **)(param_1 + 0x100))(0x73,&UNK_1806014d0);
+  (**(code **)(param_1 + 0x100))(0x74,FUN_1805fef40);
+  (**(code **)(param_1 + 0x100))(0x75,&UNK_180602930);
+  (**(code **)(param_1 + 0x100))(0x76,FUN_1806039e0);
+  (**(code **)(param_1 + 0x100))(0x77,FUN_1805ffe60);
+  (**(code **)(param_1 + 0x100))(0x78,&UNK_180600000);
+  (**(code **)(param_1 + 0x100))(0x79,&UNK_180602d20);
+  (**(code **)(param_1 + 0x100))(0x7a,FUN_180601db0);
+  (**(code **)(param_1 + 0x100))(0x7b,&UNK_1806031f0);
+  (**(code **)(param_1 + 0x100))(0x7c,FUN_180601c20);
+  (**(code **)(param_1 + 0x100))(0x7d,FUN_180601c60);
+  (**(code **)(param_1 + 0x100))(0x7e,&UNK_180600850);
+  (**(code **)(param_1 + 0x100))(0x7f,&UNK_180600ac0);
+  (**(code **)(param_1 + 0x100))(0x80,&UNK_180600aa0);
+  (**(code **)(param_1 + 0x100))(0x81,&UNK_1805ff4d0);
+  (**(code **)(param_1 + 0x100))(0x82,&UNK_1805ff8f0);
+  (**(code **)(param_1 + 0x100))(0x83,&UNK_1805ff4e0);
+  (**(code **)(param_1 + 0x100))(0x84,FUN_180602950);
+  (**(code **)(param_1 + 0x100))(0x85,&UNK_180603970);
+  (**(code **)(param_1 + 0x100))(0x86,&UNK_1805ff8e0);
+  (**(code **)(param_1 + 0x100))(0x87,&UNK_180603990);
+  (**(code **)(param_1 + 0x100))(0x88,&UNK_180603980);
+  (**(code **)(param_1 + 0x100))(0x89,&UNK_180602ba0);
+  (**(code **)(param_1 + 0x100))(0x8a,FUN_1806007a0);
+  (**(code **)(param_1 + 0x100))(0x8b,&UNK_180600e10);
+  (**(code **)(param_1 + 0x100))(0x8c,&UNK_180603200);
+  (**(code **)(param_1 + 0x100))(0x8d,&UNK_180602d10);
+  (**(code **)(param_1 + 0x100))(0x8e,FUN_1806027a0);
+  (**(code **)(param_1 + 0x100))(0x8f,FUN_1805ffed0);
+  (**(code **)(param_1 + 0x100))(0x90,FUN_180602590);
+  (**(code **)(param_1 + 0x100))(0x91,&UNK_180600af0);
+  (**(code **)(param_1 + 0x100))(0x92,&UNK_180602bb0);
+  (**(code **)(param_1 + 0x100))(0x93,FUN_180601090);
+  (**(code **)(param_1 + 0x100))(0x94,FUN_1806011d0);
+  (**(code **)(param_1 + 0x100))(0x95,FUN_1806005f0);
+  (**(code **)(param_1 + 0x100))(0x96,FUN_180601e80);
+  (**(code **)(param_1 + 0x100))(0x97,&UNK_180601450);
+  (**(code **)(param_1 + 0x100))(0x98,&UNK_180600830);
+  (**(code **)(param_1 + 0x100))(0x99,&UNK_180603b20);
+  (**(code **)(param_1 + 0x100))(0x9a,FUN_180600d30);
+  (**(code **)(param_1 + 0x100))(0x9b,&UNK_180603a70);
+  (**(code **)(param_1 + 0x100))(0x9c,&UNK_1805ff1c0);
+  (**(code **)(param_1 + 0x100))(0x9d,&UNK_1805ff460);
+  (**(code **)(param_1 + 0x100))(0x9e,&UNK_1805ff280);
+  (**(code **)(param_1 + 0x100))(0x9f,&UNK_180603cf0);
+  (**(code **)(param_1 + 0x100))(0xa0,FUN_180600bc0);
+  (**(code **)(param_1 + 0x100))(0xa1,&UNK_1805ff4f0);
+  (**(code **)(param_1 + 0x100))(0xa2,&UNK_1805ff510);
+  (**(code **)(param_1 + 0x100))(0xa3,&UNK_180601070);
+  (**(code **)(param_1 + 0x100))(0xa4,&UNK_180601140);
+  (**(code **)(param_1 + 0x100))(0xa5,&UNK_180603a60);
+  (**(code **)(param_1 + 0x100))(0xa6,&UNK_1805ff270);
+  (**(code **)(param_1 + 0x100))(0xa7,FUN_180603b90);
+  (**(code **)(param_1 + 0x100))(0xa8,FUN_1805ff5b0);
+  (**(code **)(param_1 + 0x100))(0xa9,FUN_1805ff670);
+  (**(code **)(param_1 + 0x100))(0xaa,&UNK_1805ff880);
+  (**(code **)(param_1 + 0x100))(0xab,FUN_1805ff820);
+  (**(code **)(param_1 + 0x100))(0xac,&UNK_180603a50);
+  (**(code **)(param_1 + 0x100))(0xad,FUN_180600b80);
+  (**(code **)(param_1 + 0x100))(0xae,FUN_180603210);
+  (**(code **)(param_1 + 0x100))(0xaf,FUN_180603540);
+  (**(code **)(param_1 + 0x100))(0xb0,&UNK_180602b90);
+  (**(code **)(param_1 + 0x100))(0xb1,FUN_1805ff9e0);
+  (**(code **)(param_1 + 0x100))(0xb2,&UNK_1805ff290);
+  (**(code **)(param_1 + 0x100))(0xb3,&UNK_1806023b0);
+  (**(code **)(param_1 + 0x100))(0xb4,&UNK_1805ff2b0);
+  (**(code **)(param_1 + 0x100))(0xb5,FUN_1806009b0);
+  (**(code **)(param_1 + 0x100))(0xb6,FUN_180602ab0);
+  (**(code **)(param_1 + 0x100))(0xb7,&UNK_1805ff490);
+  (**(code **)(param_1 + 0x100))(0xb8,&UNK_1806014b0);
+  (**(code **)(param_1 + 0x100))(0xb9,FUN_1806023c0);
+  (**(code **)(param_1 + 0x100))(0xba,FUN_180601310);
+  (**(code **)(param_1 + 0x100))(0xbb,FUN_1806015d0);
+  (**(code **)(param_1 + 0x100))(0xbc,&UNK_1805ff190);
+  (**(code **)(param_1 + 0x100))(0xbd,&UNK_1805ff1b0);
+  (**(code **)(param_1 + 0x100))(0xbe,FUN_1805ff540);
+  (**(code **)(param_1 + 0x100))(0xbf,FUN_180600890);
+  (**(code **)(param_1 + 0x100))(0xc0,&UNK_180600110);
+  (**(code **)(param_1 + 0x100))(0xc1,&UNK_1805ff960);
+  (**(code **)(param_1 + 0x100))(0xc2,FUN_1805ff8c0);
+  (**(code **)(param_1 + 0x100))(0xc3,&UNK_180603c00);
+  (**(code **)(param_1 + 0x100))(0xc4,&UNK_180601750);
+  (**(code **)(param_1 + 0x100))(0xc5,&UNK_180601730);
+  (**(code **)(param_1 + 0x100))(0xc6,FUN_1806018c0);
+  (**(code **)(param_1 + 0x100))(199,FUN_180601760);
+  (**(code **)(param_1 + 0x100))(200,FUN_180601a10);
+  (**(code **)(param_1 + 0x100))(0xc9,FUN_180601460);
+  (**(code **)(param_1 + 0x100))(0xca,&UNK_1805ff810);
+  (**(code **)(param_1 + 0x100))(0xcb,&UNK_180600de0);
+  (**(code **)(param_1 + 0x100))(0xcc,&UNK_1805ff440);
+  (**(code **)(param_1 + 0x100))(0xcd,&UNK_180603c30);
+  (**(code **)(param_1 + 0x100))(0xce,&UNK_180602310);
+  (**(code **)(param_1 + 0x100))(0xcf,&UNK_1806022b0);
+  (**(code **)(param_1 + 0x100))(0xd0,&UNK_1805ff9d0);
+  (**(code **)(param_1 + 0x100))(0xd1,FUN_1806000c0);
+  (**(code **)(param_1 + 0x100))(0xd2,FUN_1806001e0);
+  (**(code **)(param_1 + 0x100))(0xd3,FUN_180600130);
+  (**(code **)(param_1 + 0x100))(0xd4,&UNK_1806001c0);
+  (**(code **)(param_1 + 0x100))(0xd5,FUN_1806000e0);
+  (**(code **)(param_1 + 0x100))(0xd6,FUN_180600020);
+  (**(code **)(param_1 + 0x100))(0xd7,&UNK_1805ff910);
+  (**(code **)(param_1 + 0x100))(0xd8,&UNK_180600120);
+  (**(code **)(param_1 + 0x100))(0xd9,FUN_180601160);
+  (**(code **)(param_1 + 0x100))(0xda,FUN_180603070);
+  (**(code **)(param_1 + 0x100))(0xdb,FUN_1805ffd60);
+  (**(code **)(param_1 + 0x100))(0xdc,FUN_1805ffe20);
+  (**(code **)(param_1 + 0x100))(0xdd,&UNK_180600870);
+  (**(code **)(param_1 + 0x100))(0xde,&UNK_180600240);
+  (**(code **)(param_1 + 0x100))(0xdf,FUN_1805ffac0);
+  (**(code **)(param_1 + 0x100))(0xe0,&UNK_1806028f0);
+  (**(code **)(param_1 + 0x100))(0xe1,FUN_1806072e0);
+  (**(code **)(param_1 + 0x100))(0xe2,FUN_180605ff0);
+  (**(code **)(param_1 + 0x100))(0xe3,FUN_180605ce0);
+  (**(code **)(param_1 + 0x100))(0xe4,&UNK_180605fd0);
+  (**(code **)(param_1 + 0x100))(0xe5,FUN_1806071a0);
+  (**(code **)(param_1 + 0x100))(0xe6,FUN_1806071f0);
+  (**(code **)(param_1 + 0x100))(0xe7,&UNK_180605f70);
+  (**(code **)(param_1 + 0x100))(0xe8,FUN_180606500);
+  (**(code **)(param_1 + 0x100))(0xe9,FUN_1806061a0);
+  (**(code **)(param_1 + 0x100))(0xea,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0xeb,FUN_180607430);
+  (**(code **)(param_1 + 0x100))(0xec,&UNK_1806064e0);
+  (**(code **)(param_1 + 0x100))(0xed,FUN_180605c80);
+  (**(code **)(param_1 + 0x100))(0xee,FUN_180606380);
+  (**(code **)(param_1 + 0x100))(0xef,FUN_180605570);
+  (**(code **)(param_1 + 0x100))(0xf0,FUN_1806057e0);
+  (**(code **)(param_1 + 0x100))(0xf1,FUN_180607060);
+  (**(code **)(param_1 + 0x100))(0xf2,FUN_180605670);
+  (**(code **)(param_1 + 0x100))(0xf3,&UNK_180607580);
+  (**(code **)(param_1 + 0x100))(0xf4,&UNK_180605f60);
+  (**(code **)(param_1 + 0x100))(0xf5,FUN_180606f90);
+  (**(code **)(param_1 + 0x100))(0xf6,FUN_180606e30);
+  (**(code **)(param_1 + 0x100))(0xf7,&UNK_180606ac0);
+  (**(code **)(param_1 + 0x100))(0xf8,FUN_180605fa0);
+  (**(code **)(param_1 + 0x100))(0xf9,&UNK_180606f60);
+  (**(code **)(param_1 + 0x100))(0xfa,FUN_180606c00);
+  (**(code **)(param_1 + 0x100))(0xfb,FUN_1806068f0);
+  (**(code **)(param_1 + 0x100))(0xfc,FUN_180606970);
+  (**(code **)(param_1 + 0x100))(0xfd,FUN_180606cb0);
+  (**(code **)(param_1 + 0x100))(0xfe,FUN_180606d00);
+  (**(code **)(param_1 + 0x100))(0xff,&UNK_180607170);
+  (**(code **)(param_1 + 0x100))(0x100,FUN_180606b60);
+  (**(code **)(param_1 + 0x100))(0x101,&UNK_180606a90);
+  (**(code **)(param_1 + 0x100))(0x102,&UNK_180606c90);
+  (**(code **)(param_1 + 0x100))(0x103,&UNK_180605c60);
+  (**(code **)(param_1 + 0x100))(0x104,FUN_180606690);
+  (**(code **)(param_1 + 0x100))(0x105,FUN_1806073f0);
+  (**(code **)(param_1 + 0x100))(0x106,FUN_180605df0);
+  (**(code **)(param_1 + 0x100))(0x107,FUN_1806062d0);
+  (**(code **)(param_1 + 0x100))(0x108,FUN_180607730);
+  (**(code **)(param_1 + 0x100))(0x109,FUN_1806075e0);
+  (**(code **)(param_1 + 0x100))(0x10a,&UNK_180606850);
+  (**(code **)(param_1 + 0x100))(0x10b,FUN_1806067f0);
+  (**(code **)(param_1 + 0x100))(0x10c,FUN_1806074e0);
+  (**(code **)(param_1 + 0x100))(0x10d,FUN_1806066d0);
+  (**(code **)(param_1 + 0x100))(0x10e,FUN_180607310);
+  (**(code **)(param_1 + 0x100))(0x10f,&UNK_180607570);
+  (**(code **)(param_1 + 0x100))(0x110,&UNK_180605660);
+  (**(code **)(param_1 + 0x100))(0x111,FUN_180607590);
+  (**(code **)(param_1 + 0x100))(0x112,&UNK_1806057d0);
+  (**(code **)(param_1 + 0x100))(0x113,&UNK_180605ba0);
+  (**(code **)(param_1 + 0x100))(0x114,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x115,&UNK_180606a50);
+  (**(code **)(param_1 + 0x100))(0x116,&UNK_180605f80);
+  (**(code **)(param_1 + 0x100))(0x117,&UNK_180606a00);
+  (**(code **)(param_1 + 0x100))(0x118,&UNK_1806067c0);
+  (**(code **)(param_1 + 0x100))(0x119,FUN_180605bc0);
+  (**(code **)(param_1 + 0x100))(0x11a,&UNK_180606a70);
+  (**(code **)(param_1 + 0x100))(0x11b,&UNK_1806067e0);
+  (**(code **)(param_1 + 0x100))(0x11c,FUN_180606600);
+  (**(code **)(param_1 + 0x100))(0x11d,FUN_1806077c0);
+  (**(code **)(param_1 + 0x100))(0x11e,FUN_180605930);
+  (**(code **)(param_1 + 0x100))(0x11f,&UNK_180607780);
+  (**(code **)(param_1 + 0x100))(0x120,&UNK_180605f20);
+  (**(code **)(param_1 + 0x100))(0x121,&UNK_1806067d0);
+  (**(code **)(param_1 + 0x100))(0x122,&UNK_180605560);
+  (**(code **)(param_1 + 0x100))(0x123,&UNK_180607ed0);
+  (**(code **)(param_1 + 0x100))(0x124,&UNK_180607e50);
+  (**(code **)(param_1 + 0x100))(0x125,FUN_180608380);
+  (**(code **)(param_1 + 0x100))(0x126,FUN_180608550);
+  (**(code **)(param_1 + 0x100))(0x127,FUN_1806085b0);
+  (**(code **)(param_1 + 0x100))(0x128,FUN_180608620);
+  (**(code **)(param_1 + 0x100))(0x129,FUN_180607f40);
+  (**(code **)(param_1 + 0x100))(0x12a,FUN_180608420);
+  (**(code **)(param_1 + 0x100))(299,FUN_1806083d0);
+  (**(code **)(param_1 + 0x100))(300,FUN_180608000);
+  (**(code **)(param_1 + 0x100))(0x12d,FUN_180607ef0);
+  (**(code **)(param_1 + 0x100))(0x12e,FUN_180608500);
+  (**(code **)(param_1 + 0x100))(0x12f,FUN_1806080e0);
+  (**(code **)(param_1 + 0x100))(0x130,FUN_1806081c0);
+  (**(code **)(param_1 + 0x100))(0x131,FUN_1806082a0);
+  (**(code **)(param_1 + 0x100))(0x132,FUN_180607e00);
+  (**(code **)(param_1 + 0x100))(0x133,FUN_180607c80);
+  (**(code **)(param_1 + 0x100))(0x134,FUN_180607d30);
+  (**(code **)(param_1 + 0x100))(0x135,&UNK_180608840);
+  (**(code **)(param_1 + 0x100))(0x136,&UNK_180608870);
+  (**(code **)(param_1 + 0x100))(0x137,&UNK_180608890);
+  (**(code **)(param_1 + 0x100))(0x138,FUN_180607e80);
+  (**(code **)(param_1 + 0x100))(0x139,FUN_1806090b0);
+  (**(code **)(param_1 + 0x100))(0x13a,FUN_1806088e0);
+  (**(code **)(param_1 + 0x100))(0x13b,FUN_1804aa300);
+  (**(code **)(param_1 + 0x100))(0x13c,FUN_18060bc80);
+  (**(code **)(param_1 + 0x100))(0x13d,&UNK_18060bc70);
+  (**(code **)(param_1 + 0x100))(0x13e,FUN_18060bbe0);
+  (**(code **)(param_1 + 0x100))(0x13f,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x140,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x141,FUN_18060bd80);
+  (**(code **)(param_1 + 0x100))(0x142,FUN_18060bd20);
+  (**(code **)(param_1 + 0x100))(0x143,FUN_18060bde0);
+  (**(code **)(param_1 + 0x100))(0x144,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x145,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x146,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x147,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x148,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x149,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x14a,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x14b,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x14c,0x180069ee0);
+  (**(code **)(param_1 + 0x100))(0x14d,FUN_18060be50);
+  (**(code **)(param_1 + 0x100))(0x14e,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x14f,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x150,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x151,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x152,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x153,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x154,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x155,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x156,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x157,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x158,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x159,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x15a,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x15b,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x15c,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x15d,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x15e,&UNK_18060c580);
+  (**(code **)(param_1 + 0x100))(0x15f,FUN_18060c590);
+  (**(code **)(param_1 + 0x100))(0x160,FUN_18060c6a0);
+  (**(code **)(param_1 + 0x100))(0x161,FUN_18060cb10);
+  (**(code **)(param_1 + 0x100))(0x162,FUN_18060d060);
+  (**(code **)(param_1 + 0x100))(0x163,&UNK_18060e130);
+  (**(code **)(param_1 + 0x100))(0x164,FUN_18060be80);
+  (**(code **)(param_1 + 0x100))(0x165,FUN_18060bf00);
+  (**(code **)(param_1 + 0x100))(0x166,FUN_18060bf40);
+  (**(code **)(param_1 + 0x100))(0x167,FUN_18060de60);
+  (**(code **)(param_1 + 0x100))(0x168,FUN_18060c270);
+  (**(code **)(param_1 + 0x100))(0x169,FUN_18060cad0);
+  (**(code **)(param_1 + 0x100))(0x16a,FUN_18060da20);
+  (**(code **)(param_1 + 0x100))(0x16b,FUN_18060e170);
+  (**(code **)(param_1 + 0x100))(0x16c,FUN_18060d4d0);
+  (**(code **)(param_1 + 0x100))(0x16d,FUN_18060d910);
+  (**(code **)(param_1 + 0x100))(0x16e,FUN_18060cf50);
+  (**(code **)(param_1 + 0x100))(0x16f,FUN_18060cfd0);
+  (**(code **)(param_1 + 0x100))(0x170,FUN_18060c100);
+  (**(code **)(param_1 + 0x100))(0x171,FUN_18060c1a0);
+  (**(code **)(param_1 + 0x100))(0x172,FUN_18060c160);
+  (**(code **)(param_1 + 0x100))(0x173,FUN_18060c310);
+  (**(code **)(param_1 + 0x100))(0x174,FUN_18060e860);
+  (**(code **)(param_1 + 0x100))(0x175,FUN_18060e7f0);
+  (**(code **)(param_1 + 0x100))(0x176,FUN_18060e8a0);
+  (**(code **)(param_1 + 0x100))(0x177,FUN_18060ef00);
+  (**(code **)(param_1 + 0x100))(0x178,FUN_18060ee30);
+  (**(code **)(param_1 + 0x100))(0x179,FUN_18060efa0);
+  (**(code **)(param_1 + 0x100))(0x17a,FUN_18060f140);
+  (**(code **)(param_1 + 0x100))(0x17b,FUN_18060f0d0);
+  (**(code **)(param_1 + 0x100))(0x17c,FUN_18060f040);
+  (**(code **)(param_1 + 0x100))(0x17d,FUN_18060efd0);
+  (**(code **)(param_1 + 0x100))(0x17e,FUN_18060f240);
+  (**(code **)(param_1 + 0x100))(0x17f,FUN_18060f1b0);
+  (**(code **)(param_1 + 0x100))(0x180,FUN_18060f2b0);
+  (**(code **)(param_1 + 0x100))(0x181,&UNK_18060f320);
+  (**(code **)(param_1 + 0x100))(0x182,FUN_180564f80);
+  (**(code **)(param_1 + 0x100))(0x183,FUN_1805661a0);
+  (**(code **)(param_1 + 0x100))(0x184,FUN_180566010);
+  (**(code **)(param_1 + 0x100))(0x185,FUN_180565d50);
+  (**(code **)(param_1 + 0x100))(0x186,FUN_180565480);
+  (**(code **)(param_1 + 0x100))(0x187,&UNK_180456970);
+  (**(code **)(param_1 + 0x100))(0x188,&UNK_1805668e0);
+  (**(code **)(param_1 + 0x100))(0x189,FUN_180565300);
+  (**(code **)(param_1 + 0x100))(0x18a,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x18b,FUN_180565c60);
+  (**(code **)(param_1 + 0x100))(0x18c,FUN_180566420);
+  (**(code **)(param_1 + 0x100))(0x18d,FUN_180565cc0);
+  (**(code **)(param_1 + 0x100))(0x18e,&UNK_18044c940);
+  (**(code **)(param_1 + 0x100))(399,FUN_180566900);
+  (**(code **)(param_1 + 0x100))(400,&UNK_1805668c0);
+  (**(code **)(param_1 + 0x100))(0x191,&UNK_180566400);
+  (**(code **)(param_1 + 0x100))(0x192,FUN_180565b70);
+  (**(code **)(param_1 + 0x100))(0x193,&UNK_180565b40);
+  (**(code **)(param_1 + 0x100))(0x194,FUN_1805659e0);
+  (**(code **)(param_1 + 0x100))(0x195,&UNK_1805675f0);
+  (**(code **)(param_1 + 0x100))(0x196,FUN_18060f370);
+  (**(code **)(param_1 + 0x100))(0x197,FUN_18060f430);
+  (**(code **)(param_1 + 0x100))(0x198,FUN_18060f4f0);
+  (**(code **)(param_1 + 0x100))(0x199,FUN_1806143e0);
+  (**(code **)(param_1 + 0x100))(0x19a,FUN_180611480);
+  (**(code **)(param_1 + 0x100))(0x19b,FUN_180610560);
+  (**(code **)(param_1 + 0x100))(0x19c,FUN_1806106f0);
+  (**(code **)(param_1 + 0x100))(0x19d,FUN_180610a30);
+  (**(code **)(param_1 + 0x100))(0x19e,FUN_180611e90);
+  (**(code **)(param_1 + 0x100))(0x19f,FUN_18060f810);
+  (**(code **)(param_1 + 0x100))(0x1a0,FUN_180612360);
+  (**(code **)(param_1 + 0x100))(0x1a1,FUN_1806141c0);
+  (**(code **)(param_1 + 0x100))(0x1a2,FUN_180611f50);
+  (**(code **)(param_1 + 0x100))(0x1a3,&UNK_180611fe0);
+  (**(code **)(param_1 + 0x100))(0x1a4,&UNK_180611fd0);
+  (**(code **)(param_1 + 0x100))(0x1a5,&UNK_180612450);
+  (**(code **)(param_1 + 0x100))(0x1a6,FUN_18060f5e0);
+  (**(code **)(param_1 + 0x100))(0x1a7,FUN_180610ac0);
+  (**(code **)(param_1 + 0x100))(0x1a8,&UNK_1806108f0);
+  (**(code **)(param_1 + 0x100))(0x1a9,FUN_180610f30);
+  (**(code **)(param_1 + 0x100))(0x1aa,FUN_180612c60);
+  (**(code **)(param_1 + 0x100))(0x1ab,&UNK_1806121b0);
+  (**(code **)(param_1 + 0x100))(0x1ac,&UNK_1806143a0);
+  (**(code **)(param_1 + 0x100))(0x1ad,FUN_180610210);
+  (**(code **)(param_1 + 0x100))(0x1ae,FUN_180613650);
+  (**(code **)(param_1 + 0x100))(0x1af,FUN_180614650);
+  (**(code **)(param_1 + 0x100))(0x1b0,FUN_1806133d0);
+  (**(code **)(param_1 + 0x100))(0x1b1,FUN_18060fed0);
+  (**(code **)(param_1 + 0x100))(0x1b2,FUN_180612950);
+  (**(code **)(param_1 + 0x100))(0x1b3,FUN_180612ae0);
+  (**(code **)(param_1 + 0x100))(0x1b4,&UNK_180610540);
+  (**(code **)(param_1 + 0x100))(0x1b5,&UNK_1806137f0);
+  (**(code **)(param_1 + 0x100))(0x1b6,FUN_180613860);
+  (**(code **)(param_1 + 0x100))(0x1b7,FUN_180613800);
+  (**(code **)(param_1 + 0x100))(0x1b8,&UNK_1806145f0);
+  (**(code **)(param_1 + 0x100))(0x1b9,&UNK_180611a70);
+  (**(code **)(param_1 + 0x100))(0x1ba,&UNK_180611b10);
+  (**(code **)(param_1 + 0x100))(0x1bb,FUN_1806119a0);
+  (**(code **)(param_1 + 0x100))(0x1bc,FUN_180611aa0);
+  (**(code **)(param_1 + 0x100))(0x1bd,&UNK_180610e40);
+  (**(code **)(param_1 + 0x100))(0x1be,&UNK_18060f720);
+  (**(code **)(param_1 + 0x100))(0x1bf,FUN_1806130d0);
+  (**(code **)(param_1 + 0x100))(0x1c0,FUN_180611b40);
+  (**(code **)(param_1 + 0x100))(0x1c1,FUN_180612e30);
+  (**(code **)(param_1 + 0x100))(0x1c2,&UNK_180610500);
+  (**(code **)(param_1 + 0x100))(0x1c3,&UNK_1806143b0);
+  (**(code **)(param_1 + 0x100))(0x1c4,&UNK_180610f10);
+  (**(code **)(param_1 + 0x100))(0x1c5,FUN_1806125f0);
+  (**(code **)(param_1 + 0x100))(0x1c6,&UNK_1806110b0);
+  (**(code **)(param_1 + 0x100))(0x1c7,&UNK_180610880);
+  (**(code **)(param_1 + 0x100))(0x1c8,&UNK_180611080);
+  (**(code **)(param_1 + 0x100))(0x1c9,&UNK_18060f320);
+  (**(code **)(param_1 + 0x100))(0x1ca,FUN_1806108a0);
+  (**(code **)(param_1 + 0x100))(0x1cb,FUN_1806111b0);
+  (**(code **)(param_1 + 0x100))(0x1cc,FUN_1806139f0);
+  (**(code **)(param_1 + 0x100))(0x1cd,&UNK_18060fe50);
+  (**(code **)(param_1 + 0x100))(0x1ce,&UNK_180611f30);
+  (**(code **)(param_1 + 0x100))(0x1cf,&UNK_180610f20);
+  (**(code **)(param_1 + 0x100))(0x1d0,&UNK_180610fe0);
+  (**(code **)(param_1 + 0x100))(0x1d1,FUN_180612780);
+  (**(code **)(param_1 + 0x100))(0x1d2,FUN_180612460);
+  (**(code **)(param_1 + 0x100))(0x1d3,FUN_180614250);
+  (**(code **)(param_1 + 0x100))(0x1d4,&UNK_180610510);
+  (**(code **)(param_1 + 0x100))(0x1d5,FUN_180611010);
+  (**(code **)(param_1 + 0x100))(0x1d6,FUN_180614620);
+  (**(code **)(param_1 + 0x100))(0x1d7,FUN_180614020);
+  (**(code **)(param_1 + 0x100))(0x1d8,FUN_1806133b0);
+  (**(code **)(param_1 + 0x100))(0x1d9,FUN_180610e80);
+  (**(code **)(param_1 + 0x100))(0x1da,FUN_180610190);
+  (**(code **)(param_1 + 0x100))(0x1db,&UNK_180613370);
+  (**(code **)(param_1 + 0x100))(0x1dc,&UNK_180614300);
+  (**(code **)(param_1 + 0x100))(0x1dd,FUN_18060fe80);
+  (**(code **)(param_1 + 0x100))(0x1de,FUN_18060fe60);
+  (**(code **)(param_1 + 0x100))(0x1df,FUN_180611b60);
+  (**(code **)(param_1 + 0x100))(0x1e0,FUN_180611ce0);
+  (**(code **)(param_1 + 0x100))(0x1e1,FUN_180611bc0);
+  (**(code **)(param_1 + 0x100))(0x1e2,&UNK_180611f00);
+  (**(code **)(param_1 + 0x100))(0x1e3,FUN_180610900);
+  (**(code **)(param_1 + 0x100))(0x1e4,FUN_180611ff0);
+  (**(code **)(param_1 + 0x100))(0x1e5,FUN_1806144b0);
+  (**(code **)(param_1 + 0x100))(0x1e6,&UNK_1806145c0);
+  (**(code **)(param_1 + 0x100))(0x1e7,&UNK_1806145d0);
+  (**(code **)(param_1 + 0x100))(0x1e8,FUN_18060fd90);
+  (**(code **)(param_1 + 0x100))(0x1e9,FUN_18060faa0);
+  (**(code **)(param_1 + 0x100))(0x1ea,FUN_18060f8e0);
+  (**(code **)(param_1 + 0x100))(0x1eb,FUN_180612270);
+  (**(code **)(param_1 + 0x100))(0x1ec,FUN_1806117e0);
+  (**(code **)(param_1 + 0x100))(0x1ed,&UNK_180610890);
+  (**(code **)(param_1 + 0x100))(0x1ee,&UNK_180611f20);
+  (**(code **)(param_1 + 0x100))(0x1ef,FUN_18060f7c0);
+  (**(code **)(param_1 + 0x100))(0x1f0,&UNK_18060f760);
+  (**(code **)(param_1 + 0x100))(0x1f1,FUN_180612410);
+  (**(code **)(param_1 + 0x100))(0x1f2,&UNK_180611f10);
+  (**(code **)(param_1 + 0x100))(499,&UNK_180614310);
+  (**(code **)(param_1 + 0x100))(500,FUN_180610bd0);
+  (**(code **)(param_1 + 0x100))(0x1f5,&UNK_18060f750);
+  (**(code **)(param_1 + 0x100))(0x1f6,&UNK_1806104f0);
+  (**(code **)(param_1 + 0x100))(0x1f7,&UNK_180614320);
+  (**(code **)(param_1 + 0x100))(0x1f8,&UNK_1806143d0);
+  (**(code **)(param_1 + 0x100))(0x1f9,&UNK_180614350);
+  (**(code **)(param_1 + 0x100))(0x1fa,&UNK_180614340);
+  (**(code **)(param_1 + 0x100))(0x1fb,&UNK_180614610);
+  (**(code **)(param_1 + 0x100))(0x1fc,FUN_180611440);
+  (**(code **)(param_1 + 0x100))(0x1fd,&UNK_180611f40);
+  (**(code **)(param_1 + 0x100))(0x1fe,FUN_1806136e0);
+  (**(code **)(param_1 + 0x100))(0x1ff,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x200,&UNK_180614330);
+  (**(code **)(param_1 + 0x100))(0x201,FUN_1806121d0);
+  (**(code **)(param_1 + 0x100))(0x202,&UNK_180610e70);
+  (**(code **)(param_1 + 0x100))(0x203,FUN_180612d20);
+  (**(code **)(param_1 + 0x100))(0x204,&UNK_180614000);
+  (**(code **)(param_1 + 0x100))(0x205,&UNK_1806163a0);
+  (**(code **)(param_1 + 0x100))(0x206,FUN_1806162c0);
+  (**(code **)(param_1 + 0x100))(0x207,FUN_1806163c0);
+  (**(code **)(param_1 + 0x100))(0x208,FUN_180615c40);
+  (**(code **)(param_1 + 0x100))(0x209,FUN_180615ac0);
+  (**(code **)(param_1 + 0x100))(0x20a,&UNK_1806162a0);
+  (**(code **)(param_1 + 0x100))(0x20b,&UNK_180616750);
+  (**(code **)(param_1 + 0x100))(0x20c,FUN_180615a00);
+  (**(code **)(param_1 + 0x100))(0x20d,FUN_180615ca0);
+  (**(code **)(param_1 + 0x100))(0x20e,FUN_180615b90);
+  (**(code **)(param_1 + 0x100))(0x20f,FUN_180615df0);
+  (**(code **)(param_1 + 0x100))(0x210,FUN_180616690);
+  (**(code **)(param_1 + 0x100))(0x211,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x212,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x213,FUN_180615f80);
+  (**(code **)(param_1 + 0x100))(0x214,FUN_180615ed0);
+  (**(code **)(param_1 + 0x100))(0x215,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x216,FUN_180615d40);
+  (**(code **)(param_1 + 0x100))(0x217,FUN_1806164e0);
+  (**(code **)(param_1 + 0x100))(0x218,&UNK_180616750);
+  (**(code **)(param_1 + 0x100))(0x219,FUN_1806152f0);
+  (**(code **)(param_1 + 0x100))(0x21a,FUN_180615080);
+  (**(code **)(param_1 + 0x100))(0x21b,FUN_180614d50);
+  (**(code **)(param_1 + 0x100))(0x21c,FUN_180614eb0);
+  (**(code **)(param_1 + 0x100))(0x21d,FUN_180615130);
+  (**(code **)(param_1 + 0x100))(0x21e,FUN_180614e00);
+  (**(code **)(param_1 + 0x100))(0x21f,FUN_180614f60);
+  (**(code **)(param_1 + 0x100))(0x220,&UNK_1806163b0);
+  (**(code **)(param_1 + 0x100))(0x221,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x222,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x223,FUN_1806163f0);
+  (**(code **)(param_1 + 0x100))(0x224,FUN_1806160b0);
+  (**(code **)(param_1 + 0x100))(0x225,&UNK_180616460);
+  (**(code **)(param_1 + 0x100))(0x226,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x227,&UNK_180616490);
+  (**(code **)(param_1 + 0x100))(0x228,&UNK_180616290);
+  (**(code **)(param_1 + 0x100))(0x229,FUN_180616230);
+  (**(code **)(param_1 + 0x100))(0x22a,FUN_180615960);
+  (**(code **)(param_1 + 0x100))(0x22b,FUN_180615770);
+  (**(code **)(param_1 + 0x100))(0x22c,FUN_1806153b0);
+  (**(code **)(param_1 + 0x100))(0x22d,FUN_180615590);
+  (**(code **)(param_1 + 0x100))(0x22e,FUN_1806158b0);
+  (**(code **)(param_1 + 0x100))(0x22f,FUN_1806154a0);
+  (**(code **)(param_1 + 0x100))(0x230,FUN_180615680);
+  (**(code **)(param_1 + 0x100))(0x231,FUN_180616b10);
+  (**(code **)(param_1 + 0x100))(0x232,FUN_180616ba0);
+  (**(code **)(param_1 + 0x100))(0x233,FUN_180616ce0);
+  (**(code **)(param_1 + 0x100))(0x234,FUN_180616c90);
+  (**(code **)(param_1 + 0x100))(0x235,FUN_180616db0);
+  (**(code **)(param_1 + 0x100))(0x236,FUN_180616960);
+  (**(code **)(param_1 + 0x100))(0x237,FUN_180616e00);
+  (**(code **)(param_1 + 0x100))(0x238,FUN_180616d30);
+  (**(code **)(param_1 + 0x100))(0x239,FUN_1806168b0);
+  (**(code **)(param_1 + 0x100))(0x23a,FUN_180616980);
+  (**(code **)(param_1 + 0x100))(0x23b,FUN_180616800);
+  (**(code **)(param_1 + 0x100))(0x23c,FUN_180616930);
+  (**(code **)(param_1 + 0x100))(0x23d,FUN_180616ac0);
+  (**(code **)(param_1 + 0x100))(0x23e,FUN_180616870);
+  (**(code **)(param_1 + 0x100))(0x23f,FUN_180616770);
+  (**(code **)(param_1 + 0x100))(0x240,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x241,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x242,&UNK_18045d0f0);
+  (**(code **)(param_1 + 0x100))(0x243,FUN_180617030);
+  (**(code **)(param_1 + 0x100))(0x244,FUN_180616e50);
+  (**(code **)(param_1 + 0x100))(0x245,FUN_180617280);
+  (**(code **)(param_1 + 0x100))(0x246,FUN_180617a30);
+  (**(code **)(param_1 + 0x100))(0x247,&UNK_1806178a0);
+  (**(code **)(param_1 + 0x100))(0x248,FUN_180617650);
+  (**(code **)(param_1 + 0x100))(0x249,FUN_180617580);
+  (**(code **)(param_1 + 0x100))(0x24a,FUN_1806174d0);
+  (**(code **)(param_1 + 0x100))(0x24b,&UNK_180617450);
+  (**(code **)(param_1 + 0x100))(0x24c,FUN_180617970);
+  (**(code **)(param_1 + 0x100))(0x24d,FUN_1806177c0);
+  (**(code **)(param_1 + 0x100))(0x24e,FUN_1806178d0);
+  (**(code **)(param_1 + 0x100))(0x24f,FUN_180617480);
+  (**(code **)(param_1 + 0x100))(0x250,&UNK_180617ad0);
+  (**(code **)(param_1 + 0x100))(0x251,FUN_180617ba0);
+  (**(code **)(param_1 + 0x100))(0x252,FUN_180617af0);
+  (**(code **)(param_1 + 0x100))(0x253,FUN_180617c60);
+  (**(code **)(param_1 + 0x100))(0x254,FUN_180617cd0);
+  (**(code **)(param_1 + 0x100))(0x255,FUN_180618110);
+  (**(code **)(param_1 + 0x100))(0x256,FUN_180617ed0);
+  (**(code **)(param_1 + 0x100))(599,FUN_1806182d0);
+  (**(code **)(param_1 + 0x100))(600,FUN_1806183a0);
+  (**(code **)(param_1 + 0x100))(0x259,FUN_1805fef00);
+  (**(code **)(param_1 + 0x100))(0x25a,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x25b,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x25c,&UNK_1805fef20);
+  (**(code **)(param_1 + 0x100))(0x25d,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x25e,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x25f,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x260,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x261,&UNK_180046230);
+  (**(code **)(param_1 + 0x100))(0x262,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x263,FUN_18060e650);
+  (**(code **)(param_1 + 0x100))(0x264,FUN_18060e720);
+  (**(code **)(param_1 + 0x100))(0x265,FUN_18060e5e0);
+  (**(code **)(param_1 + 0x100))(0x266,&UNK_180618ac0);
+  (**(code **)(param_1 + 0x100))(0x267,&UNK_180618560);
+  (**(code **)(param_1 + 0x100))(0x268,&UNK_180618ad0);
+  (**(code **)(param_1 + 0x100))(0x269,FUN_1806188d0);
+  (**(code **)(param_1 + 0x100))(0x26a,FUN_180618570);
+  (**(code **)(param_1 + 0x100))(0x26b,FUN_180618650);
+  (**(code **)(param_1 + 0x100))(0x26c,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x26d,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x26e,&UNK_180618cc0);
+  (**(code **)(param_1 + 0x100))(0x26f,&UNK_180618ae0);
+  (**(code **)(param_1 + 0x100))(0x270,FUN_180618b20);
+  (**(code **)(param_1 + 0x100))(0x271,&UNK_180618b00);
+  (**(code **)(param_1 + 0x100))(0x272,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x273,&UNK_180618cd0);
+  (**(code **)(param_1 + 0x100))(0x274,_guard_check_icall);
+  (**(code **)(param_1 + 0x100))(0x275,_guard_check_icall);
+                    // WARNING: Could not recover jumptable at 0x00018056c54a. Too many branches
+                    // WARNING: Treating indirect jump as call
+  (**(code **)(param_1 + 0x100))(0x276,&UNK_180618b10);
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined8 * FUN_18056ca30(undefined8 *param_1,undefined2 param_2,undefined4 param_3)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  undefined8 *puVar1;
+  longlong lVar2;
+  longlong lVar3;
+  undefined8 *puVar4;
+  undefined4 uVar5;
+  
+  FUN_18056f480();
+  *param_1 = &UNK_180a36660;
+  param_1[0xd7] = 0;
+  param_1[0xde] = 0;
+  param_1[0xdd] = 0;
+  param_1[0xde] = 0;
+  param_1[0xd8] = 0x3f80000000000000;
+  *(undefined4 *)(param_1 + 0xd9) = 0;
+  uVar5 = atan2f(0x80000000,0x3f800000);
+  *(undefined4 *)(param_1 + 0xda) = uVar5;
+  *(undefined1 *)(param_1 + 0xdf) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x6d4) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x6dc) = 0;
+  *(undefined4 *)((longlong)param_1 + 0x6e4) = 0xffffffff;
+  param_1[0xe1] = 0;
+  *(undefined8 *)((longlong)param_1 + 0x71c) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x724) = 0;
+  puVar4 = param_1 + 0xe6;
+  lVar2 = 36000;
+  lVar3 = 36000;
+  puVar1 = puVar4;
+  do {
+    func_0x00018005d390(puVar1);
+    puVar1 = puVar1 + 1;
+    lVar3 = lVar3 + -1;
+  } while (lVar3 != 0);
+  param_1[0x8d86] = 0;
+  param_1[0x8d87] = 0;
+  param_1[0x8d88] = 0;
+  *(undefined4 *)(param_1 + 0x8d89) = 3;
+  param_1[0x8d8a] = 0;
+  param_1[0x8d8b] = 0;
+  param_1[0x8d8c] = 0;
+  *(undefined4 *)(param_1 + 0x8d8d) = 3;
+  FUN_1805fa620(param_1 + 0x8d9a);
+  FUN_18055f5c0();
+  param_1[0x9891] = 0;
+  param_1[0x9892] = 0;
+  param_1[0x9893] = 0;
+  *(undefined4 *)(param_1 + 0x9894) = 3;
+  param_1[0x9899] = 0;
+  param_1[0x989a] = 0;
+  param_1[0x9895] = 0;
+  param_1[0x9896] = 0;
+  param_1[0x9899] = 0;
+  *(undefined4 *)(param_1 + 0x989b) = 0;
+  *(undefined8 *)((longlong)param_1 + 0x4c4dc) = 0xffffffffffffffff;
+  _Mtx_init_in_situ(param_1 + 0x989d,2);
+  *(undefined2 *)(param_1 + 0xe2) = param_2;
+  *(undefined4 *)((longlong)param_1 + 0x714) = param_3;
+  FUN_18056f5d0();
+  param_1[0x8d87] = param_1[0x8d86];
+  param_1[0x8d8b] = param_1[0x8d8a];
+  *(undefined8 *)((longlong)param_1 + 0x71c) = _DAT_180c966e8;
+  *(undefined8 *)((longlong)param_1 + 0x724) = _DAT_180c966e8;
+  *(undefined4 *)((longlong)param_1 + 0x72c) = 0;
+  do {
+    *puVar4 = _DAT_180c966e8;
+    puVar4 = puVar4 + 1;
+    lVar2 = lVar2 + -1;
+  } while (lVar2 != 0);
+  param_1[0x8d90] = 0;
+  param_1[0x8d95] = 0;
+  param_1[0x8d91] = 0;
+  param_1[0x8d96] = 0;
+  param_1[0x8d92] = 0;
+  param_1[0x8d97] = 0;
+  param_1[0x8d93] = 0;
+  param_1[0x8d98] = 0;
+  param_1[0x8d94] = 0;
+  param_1[0x8d99] = 0;
+  param_1[0xd7] = _DAT_180c966e8;
+  param_1[0xe0] = 0;
+  *(undefined4 *)(param_1 + 0xe3) = 0xffffffff;
+  param_1[0x9892] = param_1[0x9891];
+  param_1[0x8d8e] = 0xbff0000000000000;
+  param_1[0x8d8f] = 0;
+  param_1[0xe1] = 0;
+  return param_1;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+longlong FUN_18056cd20(longlong param_1,char param_2,undefined8 param_3,undefined8 param_4)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  int iVar1;
+  undefined8 unaff_RDI;
+  longlong lVar2;
+  
+  iVar1 = _Mtx_lock(param_1 + 0x4c4e8);
+  if (iVar1 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar1);
+  }
+  if (param_2 != '\0') {
+    iVar1 = _Mtx_lock(param_1 + 0x4b828);
+    if (iVar1 != 0) {
+      __Throw_C_error_std__YAXH_Z(iVar1);
     }
-    
-    return FUN_00000006(handle);
+    lVar2 = *(longlong *)(param_1 + 0x46cf0);
+    if (*(int *)(param_1 + 0x4b820) * 8 + -0x21 <= *(int *)(lVar2 + 0x5c8) + 0x28) {
+      FUN_1805fa870(param_1 + 290000);
+      *(undefined4 *)(*(longlong *)(*(longlong *)(param_1 + 0x46cd8) + -8) + 0x5c4) = 0;
+      lVar2 = *(longlong *)(param_1 + 0x46cf0);
+    }
+    *(undefined4 *)(param_1 + 0x46cf8) = *(undefined4 *)(lVar2 + 0x5c8);
+    return lVar2;
+  }
+  iVar1 = _Mtx_lock(param_1 + 0x4c438);
+  if (iVar1 != 0) {
+    __Throw_C_error_std__YAXH_Z(iVar1);
+  }
+  *(undefined8 *)(param_1 + 0x4be5c) = 0;
+                    // WARNING: Subroutine does not return
+  memset(*(undefined8 *)(param_1 + 0x4be30),0,(longlong)(*(int *)(param_1 + 0x4be28) >> 3),param_4,
+         unaff_RDI);
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+
+

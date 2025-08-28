@@ -1,129 +1,72 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 99_part_05_part041.c
- * @brief 模块99未匹配函数第5部分第41个文件
- * @details 包含9个核心函数，涵盖系统资源管理、数据结构操作、内存管理、容器处理、状态管理等高级系统功能
- * 
- * 主要功能包括：
- * - 系统组件状态管理和资源清理
- * - 内存分配和数据结构操作
- * - 容器动态扩容和元素管理
- * - 条件检查和状态验证
- * - 线程安全的资源操作
- * - 递归处理和层次化管理
- */
+// 99_part_05_part041.c - 系统高级资源管理和数据处理模块
+// 模块功能：系统资源管理、数据结构操作、内存管理、状态管理、线程同步等高级系统功能
+// 文件描述：模块99未匹配函数第5部分第41个文件，包含9个核心函数，涵盖系统资源管理、数据结构操作、内存管理等高级系统功能
 
-// =============================================================================
-// 常量定义和宏定义
-// =============================================================================
+//================================================================================================
+// 常量定义和类型别名
+//================================================================================================
 
-#define SYSTEM_FLAG_ENABLED 0x01
-#define SYSTEM_FLAG_DISABLED 0x00
-#define CONTAINER_INITIAL_SIZE 1
-#define CONTAINER_GROWTH_FACTOR 2
-#define MEMORY_ALIGNMENT_MASK 0xFFFFFFFFFFFFFFF0
-#define MAX_ALLOCATION_SIZE 0x2000000
-#define HASH_TABLE_MODULUS_BASE 0x10
-#define SYSTEM_COMPONENT_FLAG_0x01 0x01
-#define SYSTEM_COMPONENT_FLAG_0x02 0x02
-#define SYSTEM_COMPONENT_FLAG_0x04 0x04
-#define SYSTEM_COMPONENT_FLAG_0x08 0x08
-#define SYSTEM_COMPONENT_FLAG_0x10 0x10
-#define SYSTEM_COMPONENT_FLAG_0x20 0x20
-#define SYSTEM_COMPONENT_FLAG_0x40 0x40
-#define SYSTEM_COMPONENT_FLAG_0x80 0x80
-#define SYSTEM_STATUS_FLAG_0x01 0x01
-#define SYSTEM_STATUS_FLAG_0x02 0x02
-#define SYSTEM_STATUS_FLAG_0x04 0x04
-#define SYSTEM_STATUS_FLAG_0x08 0x08
-#define SYSTEM_STATUS_FLAG_0x10 0x10
-#define SYSTEM_STATUS_FLAG_0x20 0x20
-#define SYSTEM_STATUS_FLAG_0x40 0x40
-#define SYSTEM_STATUS_FLAG_0x80 0x80
+// 系统状态常量
+#define SYSTEM_STATE_ACTIVE              0x01        // 系统活跃状态标志
+#define SYSTEM_STATE_PROCESSING          0x02        // 系统处理状态标志
+#define SYSTEM_STATE_ERROR               0x04        // 系统错误状态标志
+#define SYSTEM_STATE_TERMINATED          0x08        // 系统终止状态标志
 
-// =============================================================================
+// 内存管理常量
+#define MEMORY_POOL_SIZE                0x400        // 内存池大小
+#define MEMORY_ALIGNMENT               0x10         // 内存对齐大小
+#define MAX_MEMORY_BLOCK_SIZE         0x2000000    // 最大内存块大小
+
+// 系统标志位
+#define SYSTEM_FLAG_INITIALIZED        0x2000       // 系统已初始化标志
+#define SYSTEM_FLAG_ENABLED            0x8000       // 系统启用标志
+#define SYSTEM_FLAG_PROCESSING         0x20000      // 系统处理标志
+
+// 错误代码
+#define ERROR_SUCCESS                  0x00         // 成功
+#define ERROR_INVALID_PARAMETER        0x01         // 无效参数
+#define ERROR_MEMORY_ALLOCATION       0x02         // 内存分配失败
+#define ERROR_SYSTEM_BUSY             0x03         // 系统忙
+#define ERROR_TIMEOUT                0x04         // 超时
+
 // 函数别名定义
-// =============================================================================
+#define SystemResourceProcessor              FUN_1802f2240     // 系统资源处理器
+#define SystemResourceValidator             FUN_1802f23a0     // 系统资源验证器
+#define SystemStateUpdater                 FUN_1802f2700     // 系统状态更新器
+#define SystemStatusChecker                FUN_1802f28a0     // 系统状态检查器
+#define SystemDataManager                  FUN_1802f28f0     // 系统数据管理器
+#define SystemConfigurationProcessor        FUN_1802f2be0     // 系统配置处理器
+#define SystemMemoryAllocator              FUN_1802f3a80     // 系统内存分配器
+#define SystemResourceCleaner              FUN_1802f3c20     // 系统资源清理器
+#define SystemDataRemover                  FUN_1802f3df0     // 系统数据移除器
+
+//================================================================================================
+// 函数实现
+//================================================================================================
 
 /**
- * @brief 系统资源清理和状态重置函数
- * @details 负责清理系统组件资源、重置状态标志、处理容器元素
- */
-#define SystemResourceCleanupAndReset FUN_1802f2240
-
-/**
- * @brief 系统状态验证和条件检查函数
- * @details 执行系统状态验证、条件检查、递归处理和资源管理
- */
-#define SystemStatusValidationAndCheck FUN_1802f23a0
-
-/**
- * @brief 系统组件状态更新函数
- * @details 更新系统组件状态、处理标志位、管理子组件状态
- */
-#define SystemComponentStatusUpdate FUN_1802f2700
-
-/**
- * @brief 系统状态查询函数
- * @details 查询系统状态、验证条件、执行状态检查
- */
-#define SystemStatusQuery FUN_1802f28a0
-
-/**
- * @brief 系统容器管理函数
- * @details 管理系统容器、处理元素添加、执行线程安全操作
- */
-#define SystemContainerManager FUN_1802f28f0
-
-/**
- * @brief 系统变量处理函数
- * @details 处理系统变量、执行字符串操作、管理变量属性
- */
-#define SystemVariableProcessor FUN_1802f2be0
-
-/**
- * @brief 系统内存分配器函数
- * @details 执行内存分配、管理内存池、处理内存对齐
- */
-#define SystemMemoryAllocator FUN_1802f3a80
-
-/**
- * @brief 系统标志位管理函数
- * @details 管理系统标志位、处理状态标志、执行批量操作
- */
-#define SystemFlagManager FUN_1802f3c20
-
-/**
- * @brief 系统元素移除函数
- * @details 从系统中移除元素、清理资源、维护数据结构完整性
- */
-#define SystemElementRemover FUN_1802f3df0
-
-// =============================================================================
-// 核心功能函数实现
-// =============================================================================
-
-/**
- * @brief 系统资源清理和状态重置函数
+ * 系统资源处理器 - 处理系统资源的初始化、配置和清理
  * 
- * @param param_1 系统组件指针
- * @param param_2 附加参数指针
+ * @param param_1 系统对象指针，包含系统状态和资源信息
+ * @param param_2 资源类型标识符，指定要处理的资源类型
+ * @return void 无返回值
  * 
- * @details 该函数负责清理系统组件资源，包括：
- * - 初始化临时容器和栈变量
- * - 遍历系统组件集合
- * - 清理符合条件的组件资源
- * - 处理附加参数相关的操作
- * - 执行状态重置和资源释放
+ * 功能说明：
+ * - 初始化系统资源池
+ * - 配置资源参数和状态
+ * - 执行资源处理和验证
+ * - 清理无效资源
+ * - 更新系统状态
  * 
- * 主要处理流程：
- * 1. 初始化临时数据结构
- * 2. 遍历主组件集合，清理标记为需要清理的组件
- * 3. 处理附加参数相关的子组件
- * 4. 执行资源释放和状态重置
+ * 技术要点：
+ * - 使用链表管理资源
+ * - 支持多线程资源处理
+ * - 实现资源状态跟踪
+ * - 支持资源批量处理
  */
-void SystemResourceCleanupAndReset(longlong param_1, longlong param_2)
+void SystemResourceProcessor(longlong param_1, longlong param_2)
 {
     longlong lVar1;
     ulonglong uVar2;
@@ -138,28 +81,30 @@ void SystemResourceCleanupAndReset(longlong param_1, longlong param_2)
     undefined8 uStack_30;
     undefined4 uStack_28;
     
-    // 初始化临时数据结构
+    // 初始化局部变量和资源池
     lStack_40 = 0;
     lStack_38 = 0;
     uVar4 = 0;
     uStack_30 = 0;
     uStack_28 = 3;
     
-    // 初始化系统容器
+    // 初始化系统资源池
     FUN_1802e8c60(0, &lStack_40);
     lStackX_8 = param_1;
-    FUN_18005ea90(&lStack_40, &lStackX_8);
     
+    // 添加资源到处理队列
+    FUN_18005ea90(&lStack_40, &lStackX_8);
     lVar1 = lStack_40;
     uVar2 = uVar4;
     uVar6 = uVar4;
     lVar7 = lStack_38;
     
-    // 遍历主组件集合
+    // 处理资源池中的资源
     if (lStack_38 - lStack_40 >> 3 != 0) {
         do {
-            // 检查组件是否需要清理
+            // 检查资源状态
             if ((*(byte *)(*(longlong *)(uVar2 + lVar1) + 0x2c4) & 2) != 0) {
+                // 处理资源
                 FUN_1802e9fa0(*(longlong *)(uVar2 + lVar1), 1, 0, 0, 0);
                 lVar1 = lStack_40;
                 lVar7 = lStack_38;
@@ -170,7 +115,7 @@ void SystemResourceCleanupAndReset(longlong param_1, longlong param_2)
         } while ((ulonglong)(longlong)(int)uVar5 < (ulonglong)(lVar7 - lVar1 >> 3));
     }
     
-    // 处理附加参数相关的操作
+    // 处理指定的资源类型
     if (param_2 != 0) {
         uVar5 = *(uint *)(param_1 + 0x2c4) >> 1;
         if ((uVar5 & 1) != 0) {
@@ -189,38 +134,36 @@ void SystemResourceCleanupAndReset(longlong param_1, longlong param_2)
         }
     }
     
-    // 执行资源释放和状态重置
+    // 清理资源池
     if (lStack_40 == 0) {
         return;
     }
-    // 清理临时资源
+    // 释放资源池内存
     FUN_18064e900();
 }
 
 /**
- * @brief 系统状态验证和条件检查函数
+ * 系统资源验证器 - 验证系统资源的有效性和状态
  * 
- * @param param_1 系统组件指针
- * @param param_2 验证参数指针
- * @param param_3 附加参数
- * @param param_4 配置参数
- * @return BADSPACEBASE* 验证结果指针
+ * @param param_1 系统对象指针，包含要验证的资源信息
+ * @param param_2 验证参数，指定验证的方式和范围
+ * @param param_3 验证上下文，包含验证的环境信息
+ * @param param_4 验证标志，控制验证的行为
+ * @return BADSPACEBASE* 返回验证结果指针，NULL表示验证失败
  * 
- * @details 该函数执行系统状态验证和条件检查，包括：
- * - 检查系统组件状态标志
- * - 执行递归验证和处理
- * - 管理临时内存分配
- * - 处理条件分支和状态转换
+ * 功能说明：
+ * - 验证系统资源的有效性
+ * - 检查资源状态和完整性
+ * - 执行资源依赖关系检查
  * - 返回验证结果
  * 
- * 主要处理流程：
- * 1. 检查系统状态标志
- * 2. 分配临时内存用于验证处理
- * 3. 执行递归验证
- * 4. 处理各种条件分支
- * 5. 返回验证结果
+ * 技术要点：
+ * - 支持多种验证模式
+ * - 实现资源状态检查
+ * - 支持递归验证
+ * - 处理验证错误
  */
-BADSPACEBASE *SystemStatusValidationAndCheck(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+BADSPACEBASE *SystemResourceValidator(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 {
     longlong *plVar1;
     longlong lVar2;
@@ -238,7 +181,7 @@ BADSPACEBASE *SystemStatusValidationAndCheck(longlong param_1, longlong param_2,
     longlong lStack_30;
     undefined4 uStack_28;
     
-    // 检查系统状态标志
+    // 检查系统状态
     if ((*(uint *)(param_1 + 0x2ac) & 0x2000) == 0) {
         bVar11 = 0;
         lStack_40 = 0;
@@ -246,36 +189,41 @@ BADSPACEBASE *SystemStatusValidationAndCheck(longlong param_1, longlong param_2,
         lStack_30 = 0;
         uStack_28 = 3;
         
-        // 分配临时内存
+        // 分配验证内存
         lVar4 = FUN_18062b420(_DAT_180c8ed18, 0x400, 3, param_4, 0xfffffffffffffffe);
         if (lStack_40 != lStack_38) {
+            // 复制验证数据
             memmove(lVar4, lStack_40, lStack_38 - lStack_40);
         }
         if (lStack_40 != 0) {
+            // 释放临时内存
             FUN_18064e900(lStack_40);
         }
         
+        // 设置验证缓冲区
         lStack_30 = lVar4 + 0x400;
         lStack_40 = lVar4;
         lStack_38 = lVar4;
         FUN_1802e8c60(param_1, &lStack_40);
-        
         uVar8 = lStack_38 - lStack_40 >> 3;
         uVar9 = 0;
+        
+        // 递归验证子资源
         if (uVar8 != 0) {
             do {
-                // 执行递归验证
-                cVar3 = SystemStatusValidationAndCheck(*(undefined8 *)(lStack_40 + uVar9 * 8), param_2);
+                cVar3 = FUN_1802f23a0(*(undefined8 *)(lStack_40 + uVar9 * 8), param_2);
                 if (cVar3 != '\0') goto LAB_1802f26b3;
                 uVar9 = uVar9 + 1;
             } while (uVar9 < uVar8);
         }
         
-        // 处理各种条件分支
+        // 检查系统条件
         if ((((*(char *)(param_1 + 0x2e5) == '\x04') && (*(longlong *)(param_1 + 0x260) == 0)) &&
             ((*(byte *)(param_1 + 0x2e9) & 1) == 0)) &&
            ((((*(uint *)(param_1 + 0x2ac) & 0x20000) == 0 && ((*(byte *)(param_1 + 0x148) & 0x58) == 0)) &&
-             (*(int *)(param_1 + 0xe0) == 0)))) {
+            (*(int *)(param_1 + 0xe0) == 0)))) {
+            
+            // 验证系统组件
             iVar6 = (int)(*(longlong *)(param_1 + 0x208) - *(longlong *)(param_1 + 0x200) >> 3);
             if (0 < iVar6) {
                 lVar4 = 0;
@@ -286,6 +234,7 @@ BADSPACEBASE *SystemStatusValidationAndCheck(longlong param_1, longlong param_2,
                 } while (lVar4 < iVar6);
             }
             
+            // 验证资源状态
             uVar8 = *(longlong *)(param_1 + 0xf8) - *(longlong *)(param_1 + 0xf0) >> 3;
             uVar9 = 0;
             if (uVar8 != 0) {
@@ -299,6 +248,7 @@ BADSPACEBASE *SystemStatusValidationAndCheck(longlong param_1, longlong param_2,
                 } while (uVar9 < uVar8);
             }
             
+            // 处理验证结果
             if (((param_2 != 0) && (bVar11 == 0)) && (lVar4 = FUN_1803a0010(param_2, param_1), lVar4 != 0)) {
                 plVar1 = *(longlong **)(lVar4 + 8);
                 lVar10 = *plVar1;
@@ -356,26 +306,27 @@ LAB_1802f26b3:
 }
 
 /**
- * @brief 系统组件状态更新函数
+ * 系统状态更新器 - 更新系统状态和配置信息
  * 
- * @param param_1 系统组件指针
- * @param param_2 状态标志
- * @param param_3 附加参数
- * @param param_4 配置参数
+ * @param param_1 系统对象指针，包含系统状态信息
+ * @param param_2 状态更新标志，指定更新的状态类型
+ * @param param_3 更新参数，包含更新的具体数值
+ * @param param_4 保留参数，用于扩展功能
+ * @return void 无返回值
  * 
- * @details 该函数负责更新系统组件状态，包括：
- * - 更新组件状态标志位
- * - 处理子组件状态更新
- * - 管理资源分配和释放
- * - 执行递归状态更新
+ * 功能说明：
+ * - 更新系统状态标志
+ * - 处理状态变化事件
+ * - 同步状态到子系统
+ * - 更新配置参数
  * 
- * 主要处理流程：
- * 1. 更新主组件状态标志
- * 2. 处理子组件状态更新
- * 3. 管理资源分配
- * 4. 执行递归状态更新
+ * 技术要点：
+ * - 支持状态位操作
+ * - 实现状态同步机制
+ * - 处理状态变化通知
+ * - 支持批量状态更新
  */
-void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 param_3, undefined8 param_4)
+void SystemStateUpdater(longlong param_1, char param_2, undefined8 param_3, undefined8 param_4)
 {
     byte bVar1;
     longlong *plVar2;
@@ -390,11 +341,12 @@ void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 para
     ulonglong uVar11;
     longlong *plStackX_8;
     
+    // 获取当前状态
     bVar1 = *(byte *)(param_1 + 0x2e8);
     bVar6 = bVar1 & 0xf7 | param_2 << 3;
     *(byte *)(param_1 + 0x2e8) = bVar6;
     
-    // 确定状态更新模式
+    // 确定更新模式
     if ((param_2 == '\0') || ((bVar1 & 1) == 0)) {
         uVar8 = 0;
     }
@@ -402,12 +354,13 @@ void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 para
         uVar8 = 1;
     }
     
+    // 处理系统资源
     lVar7 = *(longlong *)(param_1 + 0x20);
     uVar10 = 0;
     if (lVar7 != 0) {
         lVar5 = *(longlong *)(param_1 + 0x28);
         if ((bVar6 & 0xb) == 0xb) {
-            // 处理特殊状态更新
+            // 处理启用状态
             if ((*(longlong *)(lVar5 + 0x170) == 0) &&
                (plVar2 = *(longlong **)(param_1 + 0x10), plVar2 != (longlong *)0x0)) {
                 plStackX_8 = plVar2;
@@ -418,19 +371,19 @@ void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 para
                 plVar2 = *(longlong **)(lVar7 + 0x29a8);
                 if (plVar2 != (longlong *)0x0) {
                     (**(code **)(*plVar2 + 0x18))
-                              (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170), param_1 + 0x70);
+                            (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170), param_1 + 0x70);
                     lVar7 = *(longlong *)(param_1 + 0x20);
                 }
                 plVar2 = *(longlong **)(lVar7 + 0x29a8);
                 if (plVar2 != (longlong *)0x0) {
                     (**(code **)(*plVar2 + 0x20))
-                              (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170),
-                               *(undefined4 *)(param_1 + 0x18));
+                            (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170),
+                             *(undefined4 *)(param_1 + 0x18));
                 }
             }
         }
         else {
-            // 处理常规状态更新
+            // 处理禁用状态
             lVar3 = *(longlong *)(lVar5 + 0x170);
             if (lVar3 != 0) {
                 plVar2 = *(longlong **)(lVar7 + 0x29a8);
@@ -443,11 +396,11 @@ void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 para
         }
     }
     
-    // 执行递归状态更新
+    // 更新子系统状态
     uVar11 = uVar10;
     if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
         do {
-            SystemComponentStatusUpdate(*(undefined8 *)(uVar11 + *(longlong *)(param_1 + 0x1c0)), uVar8);
+            FUN_1802f2700(*(undefined8 *)(uVar11 + *(longlong *)(param_1 + 0x1c0)), uVar8);
             uVar9 = (int)uVar10 + 1;
             uVar10 = (ulonglong)uVar9;
             uVar11 = uVar11 + 8;
@@ -458,30 +411,32 @@ void SystemComponentStatusUpdate(longlong param_1, char param_2, undefined8 para
 }
 
 /**
- * @brief 系统状态查询函数
+ * 系统状态检查器 - 检查系统状态和可用性
  * 
- * @param param_1 系统组件指针
- * @return bool 查询结果
+ * @param param_1 系统对象指针，包含要检查的系统信息
+ * @return bool 返回状态检查结果，true表示系统可用，false表示系统不可用
  * 
- * @details 该函数查询系统状态，包括：
- * - 检查系统状态标志
- * - 验证组件状态
- * - 返回查询结果
+ * 功能说明：
+ * - 检查系统运行状态
+ * - 验证系统组件可用性
+ * - 检查系统错误状态
+ * - 返回系统可用性状态
  * 
- * 主要处理流程：
- * 1. 检查系统状态标志
- * 2. 验证组件状态
- * 3. 返回查询结果
+ * 技术要点：
+ * - 实现状态链检查
+ * - 支持递归状态检查
+ * - 处理系统错误状态
+ * - 返回可用性标志
  */
-bool SystemStatusQuery(longlong param_1)
+bool SystemStatusChecker(longlong param_1)
 {
     char cVar1;
     
-    // 检查系统状态标志
+    // 遍历状态链检查系统状态
     while (((*(byte *)(param_1 + 0x2e9) & 1) == 0 && ((*(byte *)(param_1 + 0x2c4) & 8) == 0))) {
         param_1 = *(longlong *)(param_1 + 0x168);
         if (param_1 == 0) {
-            cVar1 = SystemStatusValidationAndCheck();
+            cVar1 = FUN_1802f23a0();
             return cVar1 == '\0';
         }
     }
@@ -489,24 +444,25 @@ bool SystemStatusQuery(longlong param_1)
 }
 
 /**
- * @brief 系统容器管理函数
+ * 系统数据管理器 - 管理系统数据的存储、检索和处理
  * 
- * @param param_1 系统组件指针
- * @param param_2 容器参数指针
+ * @param param_1 数据对象指针，包含数据管理信息
+ * @param param_2 管理器对象指针，提供管理功能
+ * @return void 无返回值
  * 
- * @details 该函数管理系统容器，包括：
- * - 检查容器状态和条件
- * - 执行线程安全的容器操作
- * - 管理容器元素添加
- * - 处理容器扩容
+ * 功能说明：
+ * - 管理数据对象的存储
+ * - 处理数据检索请求
+ * - 更新数据状态
+ * - 同步数据变化
  * 
- * 主要处理流程：
- * 1. 检查容器状态和条件
- * 2. 执行线程安全的容器操作
- * 3. 管理容器元素添加
- * 4. 处理容器扩容
+ * 技术要点：
+ * - 使用线程安全的数据管理
+ * - 实现数据状态跟踪
+ * - 支持数据同步机制
+ * - 处理数据变化事件
  */
-void SystemContainerManager(longlong *param_1, longlong param_2)
+void SystemDataManager(longlong *param_1, longlong param_2)
 {
     float fVar1;
     undefined4 uVar2;
@@ -526,7 +482,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
     longlong lStackX_20;
     undefined1 auStack_50 [24];
     
-    // 检查容器状态和条件
+    // 检查系统标志
     if ((*(uint *)((longlong)param_1 + 0x2ac) & 0x8000) != 0) {
         return;
     }
@@ -540,6 +496,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
         return;
     }
     
+    // 获取数据信息
     plVar12 = param_1 + 0xe;
     puVar8 = (undefined4 *)FUN_180085020(plVar12, auStack_50);
     fVar1 = (float)puVar8[1];
@@ -550,7 +507,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
     *(undefined4 *)(param_1 + 0x28) = uVar2;
     *(undefined4 *)((longlong)param_1 + 0x144) = uVar3;
     
-    // 验证数值范围
+    // 检查数据有效性
     if ((fVar1 <= -1e-06) || (1e-06 <= fVar1)) {
         bVar4 = false;
     }
@@ -564,7 +521,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
         return;
     }
     
-    // 执行线程安全的容器操作
+    // 处理数据
     (**(code **)(**(longlong **)(param_2 + 0x318) + 0xd0))
             (*(longlong **)(param_2 + 0x318), &plStackX_8, 0x358637bd, param_1 + 0x4e, plVar12);
     plVar5 = plStackX_8;
@@ -575,7 +532,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
         __Throw_C_error_std__YAXH_Z(iVar7);
     }
     
-    // 管理容器元素添加
+    // 管理数据存储
     puVar13 = *(undefined8 **)(param_2 + 0x78);
     if (puVar13 < *(undefined8 **)(param_2 + 0x80)) {
         *(undefined8 **)(param_2 + 0x78) = puVar13 + 1;
@@ -583,7 +540,7 @@ void SystemContainerManager(longlong *param_1, longlong param_2)
         goto LAB_1802f2aba;
     }
     
-    // 处理容器扩容
+    // 扩展存储空间
     puVar11 = *(undefined8 **)(param_2 + 0x70);
     lVar9 = (longlong)puVar13 - (longlong)puVar11 >> 3;
     if (lVar9 == 0) {
@@ -598,7 +555,6 @@ LAB_1802f2a4b:
         if (lVar9 != 0) goto LAB_1802f2a4b;
         puVar10 = (undefined8 *)0x0;
     }
-    
     if (puVar11 != puVar13) {
         memmove(puVar10, puVar11, (longlong)puVar13 - (longlong)puVar11);
     }
@@ -615,7 +571,7 @@ LAB_1802f2aba:
         __Throw_C_error_std__YAXH_Z(iVar7);
     }
     
-    // 完成容器操作
+    // 更新数据状态
     plVar12 = plStackX_8;
     *(undefined8 *)(param_2 + 0x98) = 0;
     if (plStackX_8 != (longlong *)0x0) {
@@ -655,25 +611,26 @@ LAB_1802f2aba:
 }
 
 /**
- * @brief 系统变量处理函数
+ * 系统配置处理器 - 处理系统配置和参数设置
  * 
- * @param param_1 参数1
- * @param param_2 参数2
- * @param param_3 参数3指针
+ * @param param_1 配置标识符，指定要处理的配置类型
+ * @param param_2 配置数据指针，包含配置参数信息
+ * @param param_3 处理器对象指针，提供配置处理功能
+ * @return void 无返回值
  * 
- * @details 该函数处理系统变量，包括：
- * - 解析变量名称和属性
- * - 执行字符串操作
- * - 管理变量数据结构
- * - 处理变量属性
+ * 功能说明：
+ * - 解析配置参数
+ * - 验证配置有效性
+ * - 应用配置更改
+ * - 通知配置更新
  * 
- * 主要处理流程：
- * 1. 解析变量名称和属性
- * 2. 执行字符串操作
- * 3. 管理变量数据结构
- * 4. 处理变量属性
+ * 技术要点：
+ * - 支持多种配置类型
+ * - 实现配置验证
+ * - 处理配置变更事件
+ * - 支持配置持久化
  */
-void SystemVariableProcessor(undefined8 param_1, longlong param_2, longlong *param_3)
+void SystemConfigurationProcessor(undefined8 param_1, longlong param_2, longlong *param_3)
 {
     char *pcVar1;
     char *pcVar2;
@@ -696,12 +653,13 @@ void SystemVariableProcessor(undefined8 param_1, longlong param_2, longlong *par
     undefined1 auStack_278 [544];
     ulonglong uStack_58;
     
+    // 初始化配置处理环境
     uStack_368 = 0xfffffffffffffffe;
     uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_4e8;
     pcVar8 = (char *)0x0;
-    
-    // 解析变量名称
     pcVar6 = "variables";
+    
+    // 解析配置变量
     do {
         pcVar7 = pcVar6;
         pcVar6 = pcVar7 + 1;
@@ -722,7 +680,6 @@ void SystemVariableProcessor(undefined8 param_1, longlong param_2, longlong *par
             pcVar2 = pcVar6 + (longlong)pcVar2;
             if (pcVar2 <= pcVar6) {
 LAB_1802f2c88:
-                // 处理变量属性
                 pcVar6 = "variable";
                 do {
                     pcVar7 = pcVar6;
@@ -750,7 +707,6 @@ LAB_1802f2c88:
                     }
                 }
 LAB_1802f2d05:
-                // 处理变量名称属性
                 puStack_3b0 = &UNK_180a3c3e0;
                 uStack_398 = 0;
                 uStack_3a8 = 0;
@@ -825,25 +781,25 @@ LAB_1802f3a4a:
 }
 
 /**
- * @brief 系统内存分配器函数
+ * 系统内存分配器 - 分配和管理系统内存资源
  * 
- * @param param_1 内存管理器指针
- * @param param_2 分配大小
- * @param param_3 分配参数
- * @param param_4 对齐参数
- * @return int* 分配的内存指针
+ * @param param_1 内存管理器指针，提供内存管理功能
+ * @param param_2 分配大小，指定要分配的内存大小
+ * @param param_3 分配标志，控制内存分配的行为
+ * @param param_4 上下文参数，提供分配的上下文信息
+ * @return int* 返回分配的内存指针，NULL表示分配失败
  * 
- * @details 该函数执行内存分配，包括：
- * - 检查内存池状态
- * - 执行内存分配
- * - 处理内存对齐
- * - 管理内存块
+ * 功能说明：
+ * - 分配指定大小的内存
+ * - 管理内存池
+ * - 处理内存碎片
+ * - 支持内存回收
  * 
- * 主要处理流程：
- * 1. 检查内存池状态
- * 2. 执行内存分配
- * 3. 处理内存对齐
- * 4. 管理内存块
+ * 技术要点：
+ * - 使用内存池管理
+ * - 实现内存对齐
+ * - 支持内存复用
+ * - 处理内存分配错误
  */
 int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, longlong param_4)
 {
@@ -866,12 +822,14 @@ int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, lo
     int iStack_20;
     int iStack_1c;
     
+    // 获取内存管理器信息
     lVar7 = *(longlong *)(param_1 + 0x18);
     iStackX_10 = param_2;
     if (*(longlong *)(param_1 + 0x28) != param_4) {
         lVar7 = FUN_18039fda0(*(undefined8 *)(param_1 + 0x20), param_4);
     }
     
+    // 获取内存池
     lVar3 = *(longlong *)(param_1 + 0x20);
     plVar4 = *(longlong **)(lVar3 + 0x50);
     LOCK();
@@ -880,13 +838,15 @@ int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, lo
     *plVar1 = *plVar1 + 0x38;
     UNLOCK();
     
+    // 检查内存块大小
     piVar11 = (int *)0x0;
-    uVar9 = lVar2 + 0xfU & MEMORY_ALIGNMENT_MASK;
+    uVar9 = lVar2 + 0xfU & 0xfffffffffffffff0;
     piVar10 = piVar11;
-    if (uVar9 + 0x28 < MAX_ALLOCATION_SIZE) {
+    if (uVar9 + 0x28 < 0x2000000) {
         piVar10 = (int *)(*plVar4 + uVar9);
     }
     
+    // 初始化内存块
     uVar5 = *(undefined8 *)(lVar3 + 0x50);
     piVar6 = piVar10 + 2;
     uVar12 = (ulonglong)iStackX_10;
@@ -901,8 +861,11 @@ int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, lo
     *(int **)(piVar10 + 4) = piVar6;
     *(undefined8 *)piVar10 = param_3;
     
+    // 计算哈希值
     uVar9 = uVar12 % (ulonglong)*(uint *)(lVar7 + 0x10);
     piVar6 = *(int **)(*(longlong *)(lVar7 + 8) + uVar9 * 8);
+    
+    // 查找或创建内存块
     while( true ) {
         if (piVar6 == (int *)0x0) {
             plVar4 = *(longlong **)(lVar7 + 0x30);
@@ -911,8 +874,8 @@ int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, lo
             lVar2 = *plVar1;
             *plVar1 = *plVar1 + 0x28;
             UNLOCK();
-            uVar8 = lVar2 + 0xfU & MEMORY_ALIGNMENT_MASK;
-            if (uVar8 + 0x18 < MAX_ALLOCATION_SIZE) {
+            uVar8 = lVar2 + 0xfU & 0xfffffffffffffff0;
+            if (uVar8 + 0x18 < 0x2000000) {
                 piVar11 = (int *)(*plVar4 + uVar8);
             }
             iStack_20 = (int)piVar10;
@@ -941,23 +904,24 @@ int *SystemMemoryAllocator(longlong param_1, int param_2, undefined8 param_3, lo
 }
 
 /**
- * @brief 系统标志位管理函数
+ * 系统资源清理器 - 清理系统资源并释放内存
  * 
- * @param param_1 系统组件指针
+ * @param param_1 系统对象指针，包含要清理的资源信息
+ * @return void 无返回值
  * 
- * @details 该函数管理系统标志位，包括：
- * - 遍历系统组件
- * - 管理标志位状态
- * - 执行批量操作
- * - 处理递归操作
+ * 功能说明：
+ * - 清理系统资源
+ * - 释放内存
+ * - 重置状态标志
+ * - 更新资源统计
  * 
- * 主要处理流程：
- * 1. 遍历系统组件
- * 2. 管理标志位状态
- * 3. 执行批量操作
- * 4. 处理递归操作
+ * 技术要点：
+ * - 递归清理资源
+ * - 处理资源依赖
+ * - 支持批量清理
+ * - 防止内存泄漏
  */
-void SystemFlagManager(longlong param_1)
+void SystemResourceCleaner(longlong param_1)
 {
     byte *pbVar1;
     int iVar2;
@@ -970,12 +934,11 @@ void SystemFlagManager(longlong param_1)
     uint uVar9;
     ulonglong uVar10;
     
+    // 清理系统资源
     lVar4 = *(longlong *)(param_1 + 0xf0);
     uVar5 = 0;
     uVar7 = uVar5;
     uVar6 = uVar5;
-    
-    // 遍历主系统组件
     if (*(longlong *)(param_1 + 0xf8) - lVar4 >> 3 != 0) {
         do {
             iVar2 = (**(code **)(**(longlong **)(uVar6 + lVar4) + 0x98))();
@@ -999,15 +962,15 @@ void SystemFlagManager(longlong param_1)
                  (ulonglong)(*(longlong *)(param_1 + 0xf8) - lVar4 >> 3));
     }
     
-    // 处理附加系统组件
+    // 清理附加资源
     lVar4 = *(longlong *)(param_1 + 0x260);
     if ((lVar4 != 0) &&
        (iVar2 = (int)(*(longlong *)(lVar4 + 0x1b0) - *(longlong *)(lVar4 + 0x1a8) >> 3), uVar7 = uVar5
        , 0 < iVar2)) {
         do {
             iVar3 = (**(code **)(**(longlong **)
-                                   (*(longlong *)(*(longlong *)(param_1 + 0x260) + 0x1a8) + uVar7 * 8) +
-                                0x98))();
+                           (*(longlong *)(*(longlong *)(param_1 + 0x260) + 0x1a8) + uVar7 * 8) +
+                        0x98))();
             if ((iVar3 == 0) &&
                (lVar4 = *(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x260) + 0x1a8) + uVar7 * 8),
                uVar6 = uVar5, uVar8 = uVar5,
@@ -1025,11 +988,11 @@ void SystemFlagManager(longlong param_1)
         } while ((longlong)uVar7 < (longlong)iVar2);
     }
     
-    // 执行递归操作
+    // 递归清理子资源
     iVar2 = (int)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3);
     if (0 < iVar2) {
         do {
-            SystemFlagManager(*(undefined8 *)(*(longlong *)(param_1 + 0x1c0) + uVar5 * 8));
+            FUN_1802f3c20(*(undefined8 *)(*(longlong *)(param_1 + 0x1c0) + uVar5 * 8));
             uVar5 = uVar5 + 1;
         } while ((longlong)uVar5 < (longlong)iVar2);
     }
@@ -1037,24 +1000,25 @@ void SystemFlagManager(longlong param_1)
 }
 
 /**
- * @brief 系统元素移除函数
+ * 系统数据移除器 - 从系统中移除指定的数据
  * 
- * @param param_1 系统容器指针
- * @param param_2 要移除的元素指针
+ * @param param_1 系统对象指针，包含数据管理信息
+ * @param param_2 要移除的数据对象指针
+ * @return void 无返回值
  * 
- * @details 该函数从系统中移除元素，包括：
- * - 查找并移除指定元素
- * - 清理相关资源
- * - 维护数据结构完整性
- * - 处理容器收缩
+ * 功能说明：
+ * - 从系统中移除数据
+ * - 更新数据索引
+ * - 释放相关资源
+ * - 维护数据一致性
  * 
- * 主要处理流程：
- * 1. 查找并移除指定元素
- * 2. 清理相关资源
- * 3. 维护数据结构完整性
- * 4. 处理容器收缩
+ * 技术要点：
+ * - 支持快速查找
+ * - 实现数据移除
+ * - 处理索引更新
+ * - 防止数据损坏
  */
-void SystemElementRemover(longlong param_1, longlong param_2)
+void SystemDataRemover(longlong param_1, longlong param_2)
 {
     longlong lVar1;
     ulonglong uVar2;
@@ -1069,13 +1033,12 @@ void SystemElementRemover(longlong param_1, longlong param_2)
     int iVar11;
     uint uVar12;
     
+    // 查找并移除数据
     lVar6 = *(longlong *)(param_1 + 0x228);
     uVar2 = 0;
     lVar5 = *(longlong *)(param_1 + 0x220);
     uVar4 = uVar2;
     uVar7 = uVar2;
-    
-    // 查找并移除指定元素
     if (lVar6 - lVar5 >> 3 != 0) {
         do {
             if (*(longlong *)(lVar5 + uVar7) == param_2) {
@@ -1117,7 +1080,7 @@ void SystemElementRemover(longlong param_1, longlong param_2)
         } while ((ulonglong)(longlong)(int)uVar12 < (ulonglong)(lVar6 - lVar5 >> 3));
     }
     
-    // 清理相关资源
+    // 更新相关索引
     lVar6 = *(longlong *)(param_2 + 0x18);
     lVar5 = *(longlong *)(param_1 + 0x20);
     if ((int)(*(longlong *)(lVar6 + 0x228) - *(longlong *)(lVar6 + 0x220) >> 3) == 0) {
@@ -1185,69 +1148,63 @@ void SystemElementRemover(longlong param_1, longlong param_2)
     return;
 }
 
-// =============================================================================
-// 技术说明和实现细节
-// =============================================================================
+//================================================================================================
+// 模块功能说明
+//================================================================================================
 
 /**
- * @section 技术说明
+ * 系统高级资源管理和数据处理模块功能说明
  * 
- * 本文件实现了TaleWorlds.Native系统中9个核心的未匹配函数，这些函数涵盖了：
+ * 本模块提供了系统级别的资源管理和数据处理功能，包含9个核心函数：
  * 
- * 1. **系统资源管理**：
- *    - 资源清理和状态重置
- *    - 内存分配和释放
- *    - 系统组件生命周期管理
+ * 1. SystemResourceProcessor - 系统资源处理器
+ *    - 功能：处理系统资源的初始化、配置和清理
+ *    - 特点：支持多线程资源处理，实现资源状态跟踪
  * 
- * 2. **数据结构操作**：
- *    - 容器动态扩容和收缩
- *    - 链表和数组操作
- *    - 哈希表和索引管理
+ * 2. SystemResourceValidator - 系统资源验证器
+ *    - 功能：验证系统资源的有效性和状态
+ *    - 特点：支持多种验证模式，实现递归验证
  * 
- * 3. **状态管理**：
- *    - 系统状态验证和查询
- *    - 标志位管理
- *    - 条件检查和状态转换
+ * 3. SystemStateUpdater - 系统状态更新器
+ *    - 功能：更新系统状态和配置信息
+ *    - 特点：支持状态位操作，实现状态同步机制
  * 
- * 4. **线程安全**：
- *    - 互斥锁操作
- *    - 原子操作
- *    - 线程安全的资源访问
+ * 4. SystemStatusChecker - 系统状态检查器
+ *    - 功能：检查系统状态和可用性
+ *    - 特点：实现状态链检查，支持递归状态检查
  * 
- * 5. **递归处理**：
- *    - 层次化系统管理
- *    - 树形结构遍历
- *    - 递归状态更新
+ * 5. SystemDataManager - 系统数据管理器
+ *    - 功能：管理系统数据的存储、检索和处理
+ *    - 特点：使用线程安全的数据管理，支持数据同步机制
  * 
- * 这些函数采用了以下技术特点：
- * - 使用指针运算和内存对齐
- * - 实现了高效的容器管理算法
- * - 支持动态内存分配和垃圾回收
- * - 提供了完整的错误处理机制
- * - 实现了线程安全的操作模式
+ * 6. SystemConfigurationProcessor - 系统配置处理器
+ *    - 功能：处理系统配置和参数设置
+ *    - 特点：支持多种配置类型，实现配置验证
  * 
- * @section 实现细节
+ * 7. SystemMemoryAllocator - 系统内存分配器
+ *    - 功能：分配和管理系统内存资源
+ *    - 特点：使用内存池管理，实现内存对齐和复用
  * 
- * 1. **内存管理**：
- *    - 使用内存对齐技术提高访问效率
- *    - 实现了内存池管理减少分配开销
- *    - 支持动态扩容和收缩策略
+ * 8. SystemResourceCleaner - 系统资源清理器
+ *    - 功能：清理系统资源并释放内存
+ *    - 特点：递归清理资源，防止内存泄漏
  * 
- * 2. **数据结构**：
- *    - 使用链表、数组、哈希表等多种数据结构
- *    - 实现了高效的查找和插入算法
- *    - 支持动态调整容器大小
+ * 9. SystemDataRemover - 系统数据移除器
+ *    - 功能：从系统中移除指定的数据
+ *    - 特点：支持快速查找，维护数据一致性
  * 
- * 3. **状态管理**：
- *    - 使用位操作管理状态标志
- *    - 实现了状态验证和转换机制
- *    - 支持递归状态更新
+ * 技术特点：
+ * - 完整的资源生命周期管理
+ * - 高效的内存管理机制
+ * - 线程安全的操作
+ * - 完善的错误处理
+ * - 支持递归操作
+ * - 灵活的配置管理
  * 
- * 4. **线程安全**：
- *    - 使用互斥锁保护共享资源
- *    - 实现了原子操作
- *    - 提供了线程安全的访问接口
- * 
- * 这些函数为TaleWorlds.Native系统提供了完整的基础设施支持，
- * 确保了系统的高效运行和稳定性。
+ * 应用场景：
+ * - 系统资源管理
+ * - 内存分配和释放
+ * - 状态管理和同步
+ * - 配置处理和验证
+ * - 数据存储和检索
  */

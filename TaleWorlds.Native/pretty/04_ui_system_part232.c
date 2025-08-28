@@ -1,184 +1,1013 @@
-/**
- * @file 04_ui_system_part232.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 04_ui_system_part232.c - 16 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_18079f269(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
+void FUN_18079f269(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  float *pfVar5;
+  float *pfVar6;
+  float *pfVar7;
+  int in_R10D;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  
+  pfVar7 = (float *)&DAT_180c19950;
+  pfVar6 = (float *)(param_2 + 0x50);
+  pfVar5 = (float *)&DAT_180c19958;
+  do {
+    fVar1 = pfVar5[3];
+    fVar2 = pfVar7[3];
+    pfVar7 = pfVar7 + 2;
+    fVar3 = pfVar5[2];
+    fVar4 = *pfVar7;
+    fVar9 = *pfVar6 + pfVar6[2];
+    fVar11 = pfVar6[-4] + pfVar6[-2];
+    fVar15 = pfVar6[-4] - pfVar6[-2];
+    fVar13 = *pfVar6 - pfVar6[2];
+    fVar17 = fVar3 - (fVar2 + fVar2) * fVar1;
+    fVar18 = (fVar2 + fVar2) * fVar3 - fVar1;
+    fVar10 = pfVar6[-1] + pfVar6[-3];
+    fVar16 = pfVar6[-3] - pfVar6[-1];
+    fVar8 = pfVar6[3] + pfVar6[1];
+    fVar14 = pfVar6[1] - pfVar6[3];
+    fVar12 = fVar11 - fVar9;
+    pfVar6[-4] = fVar9 + fVar11;
+    fVar11 = fVar10 - fVar8;
+    fVar9 = fVar15 - fVar14;
+    fVar14 = fVar14 + fVar15;
+    pfVar6[-3] = fVar8 + fVar10;
+    *pfVar6 = fVar4 * fVar12 - fVar2 * fVar11;
+    pfVar6[1] = fVar4 * fVar11 + fVar2 * fVar12;
+    fVar8 = fVar13 + fVar16;
+    fVar16 = fVar16 - fVar13;
+    pfVar6[-2] = fVar3 * fVar9 - fVar1 * fVar8;
+    pfVar6[-1] = fVar1 * fVar9 + fVar3 * fVar8;
+    pfVar6[2] = fVar17 * fVar14 - fVar18 * fVar16;
+    pfVar6[3] = fVar17 * fVar16 + fVar18 * fVar14;
+    fVar1 = pfVar5[4];
+    fVar3 = pfVar5[5];
+    fVar11 = pfVar6[6] + pfVar6[4];
+    fVar15 = pfVar6[4] - pfVar6[6];
+    fVar9 = pfVar6[10] + pfVar6[8];
+    fVar13 = pfVar6[8] - pfVar6[10];
+    in_R10D = in_R10D + 0x10;
+    fVar17 = fVar1 - (fVar4 + fVar4) * fVar3;
+    fVar10 = pfVar6[7] + pfVar6[5];
+    fVar16 = pfVar6[5] - pfVar6[7];
+    fVar18 = (fVar4 + fVar4) * fVar1 - fVar3;
+    fVar8 = pfVar6[0xb] + pfVar6[9];
+    fVar14 = pfVar6[9] - pfVar6[0xb];
+    fVar12 = fVar11 - fVar9;
+    pfVar6[4] = fVar9 + fVar11;
+    fVar11 = fVar10 - fVar8;
+    fVar9 = fVar15 - fVar14;
+    fVar14 = fVar14 + fVar15;
+    pfVar6[5] = fVar8 + fVar10;
+    fVar8 = fVar13 + fVar16;
+    fVar16 = fVar16 - fVar13;
+    pfVar6[8] = -(fVar2 * fVar12) - fVar4 * fVar11;
+    pfVar6[9] = fVar4 * fVar12 - fVar2 * fVar11;
+    pfVar6[6] = fVar1 * fVar9 - fVar3 * fVar8;
+    pfVar6[7] = fVar3 * fVar9 + fVar1 * fVar8;
+    pfVar6[10] = fVar17 * fVar14 - fVar18 * fVar16;
+    pfVar6[0xb] = fVar17 * fVar16 + fVar18 * fVar14;
+    pfVar6 = pfVar6 + 0x10;
+    pfVar5 = pfVar5 + 4;
+  } while (in_R10D < *(int *)(param_4 + 0x14030) * 2);
+  return;
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
+
+
+
+
+// 函数: void FUN_18079f58c(void)
+void FUN_18079f58c(void)
+
 {
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
+  return;
 }
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
+
+
+
+
+// 函数: void FUN_18079f5c0(longlong param_1,longlong param_2)
+void FUN_18079f5c0(longlong param_1,longlong param_2)
+
 {
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  int iVar4;
+  ulonglong uVar5;
+  uint uVar6;
+  longlong lVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  
+  uVar6 = *(uint *)(param_1 + 0x14030);
+  iVar4 = 2;
+  if (8 < (int)(uVar6 * 2)) {
+    FUN_18079f0b0();
+    uVar6 = *(uint *)(param_1 + 0x14030);
+    iVar4 = 8;
+    if (0x20 < (int)(uVar6 * 2)) {
+      iVar1 = 0x20;
+      do {
+        iVar4 = iVar1;
+        FUN_18079fa70(param_1,param_2);
+        uVar6 = *(uint *)(param_1 + 0x14030);
+        iVar1 = iVar4 * 4;
+      } while (iVar4 * 4 < (int)(uVar6 * 2));
     }
-    
-    return FUN_00000006(handle);
+  }
+  lVar7 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ uVar6) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(param_2 + 4 + lVar7 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar12 = -pfVar3[-lVar7] - *pfVar3;
+        fVar14 = *pfVar3 - pfVar3[-lVar7];
+        fVar9 = pfVar3[lVar7 * 2 + -1] + pfVar3[lVar7 + -1];
+        fVar11 = pfVar3[lVar7 + -1] - pfVar3[lVar7 * 2 + -1];
+        fVar8 = pfVar3[lVar7 * 2] + pfVar3[lVar7];
+        fVar13 = pfVar3[-1 - lVar7] + pfVar3[-1];
+        fVar15 = pfVar3[-1 - lVar7] - pfVar3[-1];
+        fVar10 = pfVar3[lVar7] - pfVar3[lVar7 * 2];
+        pfVar3[-lVar7] = fVar12 - fVar8;
+        pfVar3[-1 - lVar7] = fVar9 + fVar13;
+        pfVar3[lVar7 + -1] = fVar13 - fVar9;
+        pfVar3[lVar7] = fVar8 + fVar12;
+        *pfVar3 = fVar14 - fVar11;
+        pfVar3[-1] = fVar15 - fVar10;
+        pfVar3[lVar7 * 2 + -1] = fVar10 + fVar15;
+        pfVar3[lVar7 * 2] = fVar11 + fVar14;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(param_2 + 4 + lVar7 * 4);
+    lVar2 = (lVar7 - 1U >> 1) + 1;
+    do {
+      fVar8 = pfVar3[-1 - lVar7];
+      fVar9 = pfVar3[-1];
+      fVar10 = pfVar3[-lVar7];
+      fVar11 = *pfVar3;
+      pfVar3[-1 - lVar7] = fVar8 + fVar9;
+      pfVar3[-lVar7] = -fVar10 - *pfVar3;
+      pfVar3[-1] = fVar8 - fVar9;
+      *pfVar3 = fVar11 - fVar10;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
 }
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+
+// 函数: void FUN_18079f5d0(longlong param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+void FUN_18079f5d0(longlong param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+
+{
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  longlong unaff_RSI;
+  int iVar4;
+  ulonglong uVar5;
+  longlong lVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  
+  iVar4 = 2;
+  if (8 < (int)(param_4 * 2)) {
+    FUN_18079f0b0();
+    param_4 = *(uint *)(param_1 + 0x14030);
+    iVar4 = 8;
+    if (0x20 < (int)(param_4 * 2)) {
+      iVar1 = 0x20;
+      do {
+        iVar4 = iVar1;
+        FUN_18079fa70(param_1);
+        param_4 = *(uint *)(param_1 + 0x14030);
+        iVar1 = iVar4 * 4;
+      } while (iVar4 * 4 < (int)(param_4 * 2));
+    }
+  }
+  lVar6 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ param_4) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar11 = -pfVar3[-lVar6] - *pfVar3;
+        fVar13 = *pfVar3 - pfVar3[-lVar6];
+        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
+        fVar10 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
+        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
+        fVar12 = pfVar3[-1 - lVar6] + pfVar3[-1];
+        fVar14 = pfVar3[-1 - lVar6] - pfVar3[-1];
+        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
+        pfVar3[-lVar6] = fVar11 - fVar7;
+        pfVar3[-1 - lVar6] = fVar8 + fVar12;
+        pfVar3[lVar6 + -1] = fVar12 - fVar8;
+        pfVar3[lVar6] = fVar7 + fVar11;
+        *pfVar3 = fVar13 - fVar10;
+        pfVar3[-1] = fVar14 - fVar9;
+        pfVar3[lVar6 * 2 + -1] = fVar9 + fVar14;
+        pfVar3[lVar6 * 2] = fVar10 + fVar13;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+    lVar2 = (lVar6 - 1U >> 1) + 1;
+    do {
+      fVar7 = pfVar3[-1 - lVar6];
+      fVar8 = pfVar3[-1];
+      fVar9 = pfVar3[-lVar6];
+      fVar10 = *pfVar3;
+      pfVar3[-1 - lVar6] = fVar7 + fVar8;
+      pfVar3[-lVar6] = -fVar9 - *pfVar3;
+      pfVar3[-1] = fVar7 - fVar8;
+      *pfVar3 = fVar10 - fVar9;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f605(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f605(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  int iVar4;
+  longlong unaff_RSI;
+  longlong unaff_RDI;
+  ulonglong uVar5;
+  longlong lVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  
+  iVar1 = param_3 + 0x18;
+  do {
+    iVar4 = iVar1;
+    FUN_18079fa70();
+    iVar1 = iVar4 * 4;
+  } while (iVar4 * 4 < (int)(*(uint *)(unaff_RDI + 0x14030) * 2));
+  lVar6 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ *(uint *)(unaff_RDI + 0x14030)) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar11 = -pfVar3[-lVar6] - *pfVar3;
+        fVar13 = *pfVar3 - pfVar3[-lVar6];
+        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
+        fVar10 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
+        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
+        fVar12 = pfVar3[-1 - lVar6] + pfVar3[-1];
+        fVar14 = pfVar3[-1 - lVar6] - pfVar3[-1];
+        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
+        pfVar3[-lVar6] = fVar11 - fVar7;
+        pfVar3[-1 - lVar6] = fVar8 + fVar12;
+        pfVar3[lVar6 + -1] = fVar12 - fVar8;
+        pfVar3[lVar6] = fVar7 + fVar11;
+        *pfVar3 = fVar13 - fVar10;
+        pfVar3[-1] = fVar14 - fVar9;
+        pfVar3[lVar6 * 2 + -1] = fVar9 + fVar14;
+        pfVar3[lVar6 * 2] = fVar10 + fVar13;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+    lVar2 = (lVar6 - 1U >> 1) + 1;
+    do {
+      fVar7 = pfVar3[-1 - lVar6];
+      fVar8 = pfVar3[-1];
+      fVar9 = pfVar3[-lVar6];
+      fVar10 = *pfVar3;
+      pfVar3[-1 - lVar6] = fVar7 + fVar8;
+      pfVar3[-lVar6] = -fVar9 - *pfVar3;
+      pfVar3[-1] = fVar7 - fVar8;
+      *pfVar3 = fVar10 - fVar9;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f63d(undefined8 param_1,undefined8 param_2,int param_3,uint param_4)
+void FUN_18079f63d(undefined8 param_1,undefined8 param_2,int param_3,uint param_4)
+
+{
+  longlong lVar1;
+  float *pfVar2;
+  longlong unaff_RSI;
+  ulonglong uVar3;
+  longlong lVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  
+  lVar4 = (longlong)param_3;
+  if (((param_3 * 2 ^ param_4) & 0x7fffffff) == 0) {
+    if (0 < param_3) {
+      pfVar2 = (float *)(unaff_RSI + 4 + lVar4 * 4);
+      uVar3 = (ulonglong)((param_3 - 1U >> 1) + 1);
+      do {
+        fVar9 = -pfVar2[-lVar4] - *pfVar2;
+        fVar11 = *pfVar2 - pfVar2[-lVar4];
+        fVar6 = pfVar2[lVar4 * 2 + -1] + pfVar2[lVar4 + -1];
+        fVar8 = pfVar2[lVar4 + -1] - pfVar2[lVar4 * 2 + -1];
+        fVar5 = pfVar2[lVar4 * 2] + pfVar2[lVar4];
+        fVar10 = pfVar2[-1 - lVar4] + pfVar2[-1];
+        fVar12 = pfVar2[-1 - lVar4] - pfVar2[-1];
+        fVar7 = pfVar2[lVar4] - pfVar2[lVar4 * 2];
+        pfVar2[-lVar4] = fVar9 - fVar5;
+        pfVar2[-1 - lVar4] = fVar6 + fVar10;
+        pfVar2[lVar4 + -1] = fVar10 - fVar6;
+        pfVar2[lVar4] = fVar5 + fVar9;
+        *pfVar2 = fVar11 - fVar8;
+        pfVar2[-1] = fVar12 - fVar7;
+        pfVar2[lVar4 * 2 + -1] = fVar7 + fVar12;
+        pfVar2[lVar4 * 2] = fVar8 + fVar11;
+        pfVar2 = pfVar2 + 2;
+        uVar3 = uVar3 - 1;
+      } while (uVar3 != 0);
+      return;
+    }
+  }
+  else if (0 < param_3) {
+    pfVar2 = (float *)(unaff_RSI + 4 + lVar4 * 4);
+    lVar1 = (lVar4 - 1U >> 1) + 1;
+    do {
+      fVar5 = pfVar2[-1 - lVar4];
+      fVar6 = pfVar2[-1];
+      fVar7 = pfVar2[-lVar4];
+      fVar8 = *pfVar2;
+      pfVar2[-1 - lVar4] = fVar5 + fVar6;
+      pfVar2[-lVar4] = -fVar7 - *pfVar2;
+      pfVar2[-1] = fVar5 - fVar6;
+      *pfVar2 = fVar8 - fVar7;
+      pfVar2 = pfVar2 + 2;
+      lVar1 = lVar1 + -1;
+    } while (lVar1 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f65a(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f65a(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float *pfVar1;
+  longlong unaff_RSI;
+  ulonglong uVar2;
+  longlong in_R10;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  if (0 < param_3) {
+    pfVar1 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+    uVar2 = (ulonglong)((param_3 - 1U >> 1) + 1);
+    do {
+      fVar7 = -pfVar1[-in_R10] - *pfVar1;
+      fVar9 = *pfVar1 - pfVar1[-in_R10];
+      fVar4 = pfVar1[in_R10 * 2 + -1] + pfVar1[in_R10 + -1];
+      fVar6 = pfVar1[in_R10 + -1] - pfVar1[in_R10 * 2 + -1];
+      fVar3 = pfVar1[in_R10 * 2] + pfVar1[in_R10];
+      fVar8 = pfVar1[-1 - in_R10] + pfVar1[-1];
+      fVar10 = pfVar1[-1 - in_R10] - pfVar1[-1];
+      fVar5 = pfVar1[in_R10] - pfVar1[in_R10 * 2];
+      pfVar1[-in_R10] = fVar7 - fVar3;
+      pfVar1[-1 - in_R10] = fVar4 + fVar8;
+      pfVar1[in_R10 + -1] = fVar8 - fVar4;
+      pfVar1[in_R10] = fVar3 + fVar7;
+      *pfVar1 = fVar9 - fVar6;
+      pfVar1[-1] = fVar10 - fVar5;
+      pfVar1[in_R10 * 2 + -1] = fVar5 + fVar10;
+      pfVar1[in_R10 * 2] = fVar6 + fVar9;
+      pfVar1 = pfVar1 + 2;
+      uVar2 = uVar2 - 1;
+    } while (uVar2 != 0);
+    return;
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f663(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f663(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float *pfVar1;
+  longlong unaff_RSI;
+  ulonglong uVar2;
+  longlong in_R10;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  pfVar1 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+  uVar2 = (ulonglong)((param_3 - 1U >> 1) + 1);
+  do {
+    fVar7 = -pfVar1[-in_R10] - *pfVar1;
+    fVar9 = *pfVar1 - pfVar1[-in_R10];
+    fVar4 = pfVar1[in_R10 * 2 + -1] + pfVar1[in_R10 + -1];
+    fVar6 = pfVar1[in_R10 + -1] - pfVar1[in_R10 * 2 + -1];
+    fVar3 = pfVar1[in_R10 * 2] + pfVar1[in_R10];
+    fVar8 = pfVar1[-1 - in_R10] + pfVar1[-1];
+    fVar10 = pfVar1[-1 - in_R10] - pfVar1[-1];
+    fVar5 = pfVar1[in_R10] - pfVar1[in_R10 * 2];
+    pfVar1[-in_R10] = fVar7 - fVar3;
+    pfVar1[-1 - in_R10] = fVar4 + fVar8;
+    pfVar1[in_R10 + -1] = fVar8 - fVar4;
+    pfVar1[in_R10] = fVar3 + fVar7;
+    *pfVar1 = fVar9 - fVar6;
+    pfVar1[-1] = fVar10 - fVar5;
+    pfVar1[in_R10 * 2 + -1] = fVar5 + fVar10;
+    pfVar1[in_R10 * 2] = fVar6 + fVar9;
+    pfVar1 = pfVar1 + 2;
+    uVar2 = uVar2 - 1;
+  } while (uVar2 != 0);
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f79f(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f79f(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  longlong lVar5;
+  float *pfVar6;
+  longlong unaff_RSI;
+  longlong in_R10;
+  
+  if (0 < param_3) {
+    pfVar6 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+    lVar5 = (in_R10 - 1U >> 1) + 1;
+    do {
+      fVar1 = pfVar6[-1 - in_R10];
+      fVar2 = pfVar6[-1];
+      fVar3 = pfVar6[-in_R10];
+      fVar4 = *pfVar6;
+      pfVar6[-1 - in_R10] = fVar1 + fVar2;
+      pfVar6[-in_R10] = -fVar3 - *pfVar6;
+      pfVar6[-1] = fVar1 - fVar2;
+      *pfVar6 = fVar4 - fVar3;
+      pfVar6 = pfVar6 + 2;
+      lVar5 = lVar5 + -1;
+    } while (lVar5 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f830(longlong param_1,longlong param_2)
+void FUN_18079f830(longlong param_1,longlong param_2)
+
+{
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  int iVar4;
+  ulonglong uVar5;
+  uint uVar6;
+  longlong lVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  
+  uVar6 = *(uint *)(param_1 + 0x14030);
+  iVar4 = 2;
+  if (8 < (int)(uVar6 * 2)) {
+    FUN_18079f0b0();
+    uVar6 = *(uint *)(param_1 + 0x14030);
+    iVar4 = 8;
+    if (0x20 < (int)(uVar6 * 2)) {
+      iVar1 = 0x20;
+      do {
+        iVar4 = iVar1;
+        FUN_18079fa70(param_1,param_2);
+        uVar6 = *(uint *)(param_1 + 0x14030);
+        iVar1 = iVar4 * 4;
+      } while (iVar4 * 4 < (int)(uVar6 * 2));
+    }
+  }
+  lVar7 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ uVar6) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(param_2 + 4 + lVar7 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar9 = pfVar3[lVar7 * 2 + -1] + pfVar3[lVar7 + -1];
+        fVar11 = pfVar3[lVar7 + -1] - pfVar3[lVar7 * 2 + -1];
+        fVar13 = pfVar3[-1 - lVar7] + pfVar3[-1];
+        fVar15 = pfVar3[-1 - lVar7] - pfVar3[-1];
+        fVar8 = pfVar3[lVar7 * 2] + pfVar3[lVar7];
+        fVar12 = pfVar3[-lVar7] + *pfVar3;
+        fVar14 = pfVar3[-lVar7] - *pfVar3;
+        fVar10 = pfVar3[lVar7] - pfVar3[lVar7 * 2];
+        pfVar3[-1 - lVar7] = fVar9 + fVar13;
+        pfVar3[-lVar7] = fVar8 + fVar12;
+        pfVar3[lVar7 + -1] = fVar13 - fVar9;
+        pfVar3[lVar7] = fVar12 - fVar8;
+        pfVar3[-1] = fVar15 - fVar10;
+        *pfVar3 = fVar11 + fVar14;
+        pfVar3[lVar7 * 2 + -1] = fVar10 + fVar15;
+        pfVar3[lVar7 * 2] = fVar14 - fVar11;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(param_2 + 4 + lVar7 * 4);
+    lVar2 = (lVar7 - 1U >> 1) + 1;
+    do {
+      fVar8 = pfVar3[-1 - lVar7];
+      fVar9 = pfVar3[-1];
+      fVar10 = pfVar3[-lVar7];
+      fVar11 = *pfVar3;
+      pfVar3[-1 - lVar7] = fVar8 + fVar9;
+      pfVar3[-lVar7] = fVar10 + *pfVar3;
+      pfVar3[-1] = fVar8 - fVar9;
+      *pfVar3 = fVar10 - fVar11;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f840(longlong param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+void FUN_18079f840(longlong param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+
+{
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  longlong unaff_RSI;
+  int iVar4;
+  ulonglong uVar5;
+  longlong lVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  
+  iVar4 = 2;
+  if (8 < (int)(param_4 * 2)) {
+    FUN_18079f0b0();
+    param_4 = *(uint *)(param_1 + 0x14030);
+    iVar4 = 8;
+    if (0x20 < (int)(param_4 * 2)) {
+      iVar1 = 0x20;
+      do {
+        iVar4 = iVar1;
+        FUN_18079fa70(param_1);
+        param_4 = *(uint *)(param_1 + 0x14030);
+        iVar1 = iVar4 * 4;
+      } while (iVar4 * 4 < (int)(param_4 * 2));
+    }
+  }
+  lVar6 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ param_4) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
+        fVar10 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
+        fVar12 = pfVar3[-1 - lVar6] + pfVar3[-1];
+        fVar14 = pfVar3[-1 - lVar6] - pfVar3[-1];
+        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
+        fVar11 = pfVar3[-lVar6] + *pfVar3;
+        fVar13 = pfVar3[-lVar6] - *pfVar3;
+        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
+        pfVar3[-1 - lVar6] = fVar8 + fVar12;
+        pfVar3[-lVar6] = fVar7 + fVar11;
+        pfVar3[lVar6 + -1] = fVar12 - fVar8;
+        pfVar3[lVar6] = fVar11 - fVar7;
+        pfVar3[-1] = fVar14 - fVar9;
+        *pfVar3 = fVar10 + fVar13;
+        pfVar3[lVar6 * 2 + -1] = fVar9 + fVar14;
+        pfVar3[lVar6 * 2] = fVar13 - fVar10;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+    lVar2 = (lVar6 - 1U >> 1) + 1;
+    do {
+      fVar7 = pfVar3[-1 - lVar6];
+      fVar8 = pfVar3[-1];
+      fVar9 = pfVar3[-lVar6];
+      fVar10 = *pfVar3;
+      pfVar3[-1 - lVar6] = fVar7 + fVar8;
+      pfVar3[-lVar6] = fVar9 + *pfVar3;
+      pfVar3[-1] = fVar7 - fVar8;
+      *pfVar3 = fVar9 - fVar10;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f872(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f872(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  int iVar1;
+  longlong lVar2;
+  float *pfVar3;
+  int iVar4;
+  longlong unaff_RSI;
+  longlong unaff_RDI;
+  ulonglong uVar5;
+  longlong lVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  
+  iVar1 = param_3 + 0x18;
+  do {
+    iVar4 = iVar1;
+    FUN_18079fa70();
+    iVar1 = iVar4 * 4;
+  } while (iVar4 * 4 < (int)(*(uint *)(unaff_RDI + 0x14030) * 2));
+  lVar6 = (longlong)iVar4;
+  if (((iVar4 * 2 ^ *(uint *)(unaff_RDI + 0x14030)) & 0x7fffffff) == 0) {
+    if (0 < iVar4) {
+      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
+      do {
+        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
+        fVar10 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
+        fVar12 = pfVar3[-1 - lVar6] + pfVar3[-1];
+        fVar14 = pfVar3[-1 - lVar6] - pfVar3[-1];
+        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
+        fVar11 = pfVar3[-lVar6] + *pfVar3;
+        fVar13 = pfVar3[-lVar6] - *pfVar3;
+        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
+        pfVar3[-1 - lVar6] = fVar8 + fVar12;
+        pfVar3[-lVar6] = fVar7 + fVar11;
+        pfVar3[lVar6 + -1] = fVar12 - fVar8;
+        pfVar3[lVar6] = fVar11 - fVar7;
+        pfVar3[-1] = fVar14 - fVar9;
+        *pfVar3 = fVar10 + fVar13;
+        pfVar3[lVar6 * 2 + -1] = fVar9 + fVar14;
+        pfVar3[lVar6 * 2] = fVar13 - fVar10;
+        pfVar3 = pfVar3 + 2;
+        uVar5 = uVar5 - 1;
+      } while (uVar5 != 0);
+      return;
+    }
+  }
+  else if (0 < iVar4) {
+    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+    lVar2 = (lVar6 - 1U >> 1) + 1;
+    do {
+      fVar7 = pfVar3[-1 - lVar6];
+      fVar8 = pfVar3[-1];
+      fVar9 = pfVar3[-lVar6];
+      fVar10 = *pfVar3;
+      pfVar3[-1 - lVar6] = fVar7 + fVar8;
+      pfVar3[-lVar6] = fVar9 + *pfVar3;
+      pfVar3[-1] = fVar7 - fVar8;
+      *pfVar3 = fVar9 - fVar10;
+      pfVar3 = pfVar3 + 2;
+      lVar2 = lVar2 + -1;
+    } while (lVar2 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f8a9(undefined8 param_1,undefined8 param_2,int param_3,uint param_4)
+void FUN_18079f8a9(undefined8 param_1,undefined8 param_2,int param_3,uint param_4)
+
+{
+  longlong lVar1;
+  float *pfVar2;
+  longlong unaff_RSI;
+  ulonglong uVar3;
+  longlong lVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  
+  lVar4 = (longlong)param_3;
+  if (((param_3 * 2 ^ param_4) & 0x7fffffff) == 0) {
+    if (0 < param_3) {
+      pfVar2 = (float *)(unaff_RSI + 4 + lVar4 * 4);
+      uVar3 = (ulonglong)((param_3 - 1U >> 1) + 1);
+      do {
+        fVar6 = pfVar2[lVar4 * 2 + -1] + pfVar2[lVar4 + -1];
+        fVar8 = pfVar2[lVar4 + -1] - pfVar2[lVar4 * 2 + -1];
+        fVar10 = pfVar2[-1 - lVar4] + pfVar2[-1];
+        fVar12 = pfVar2[-1 - lVar4] - pfVar2[-1];
+        fVar5 = pfVar2[lVar4 * 2] + pfVar2[lVar4];
+        fVar9 = pfVar2[-lVar4] + *pfVar2;
+        fVar11 = pfVar2[-lVar4] - *pfVar2;
+        fVar7 = pfVar2[lVar4] - pfVar2[lVar4 * 2];
+        pfVar2[-1 - lVar4] = fVar6 + fVar10;
+        pfVar2[-lVar4] = fVar5 + fVar9;
+        pfVar2[lVar4 + -1] = fVar10 - fVar6;
+        pfVar2[lVar4] = fVar9 - fVar5;
+        pfVar2[-1] = fVar12 - fVar7;
+        *pfVar2 = fVar8 + fVar11;
+        pfVar2[lVar4 * 2 + -1] = fVar7 + fVar12;
+        pfVar2[lVar4 * 2] = fVar11 - fVar8;
+        pfVar2 = pfVar2 + 2;
+        uVar3 = uVar3 - 1;
+      } while (uVar3 != 0);
+      return;
+    }
+  }
+  else if (0 < param_3) {
+    pfVar2 = (float *)(unaff_RSI + 4 + lVar4 * 4);
+    lVar1 = (lVar4 - 1U >> 1) + 1;
+    do {
+      fVar5 = pfVar2[-1 - lVar4];
+      fVar6 = pfVar2[-1];
+      fVar7 = pfVar2[-lVar4];
+      fVar8 = *pfVar2;
+      pfVar2[-1 - lVar4] = fVar5 + fVar6;
+      pfVar2[-lVar4] = fVar7 + *pfVar2;
+      pfVar2[-1] = fVar5 - fVar6;
+      *pfVar2 = fVar7 - fVar8;
+      pfVar2 = pfVar2 + 2;
+      lVar1 = lVar1 + -1;
+    } while (lVar1 != 0);
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f8c3(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f8c3(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float *pfVar1;
+  longlong unaff_RSI;
+  ulonglong uVar2;
+  longlong in_R10;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  if (0 < param_3) {
+    pfVar1 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+    uVar2 = (ulonglong)((param_3 - 1U >> 1) + 1);
+    do {
+      fVar4 = pfVar1[in_R10 * 2 + -1] + pfVar1[in_R10 + -1];
+      fVar6 = pfVar1[in_R10 + -1] - pfVar1[in_R10 * 2 + -1];
+      fVar8 = pfVar1[-1 - in_R10] + pfVar1[-1];
+      fVar10 = pfVar1[-1 - in_R10] - pfVar1[-1];
+      fVar3 = pfVar1[in_R10 * 2] + pfVar1[in_R10];
+      fVar7 = pfVar1[-in_R10] + *pfVar1;
+      fVar9 = pfVar1[-in_R10] - *pfVar1;
+      fVar5 = pfVar1[in_R10] - pfVar1[in_R10 * 2];
+      pfVar1[-1 - in_R10] = fVar4 + fVar8;
+      pfVar1[-in_R10] = fVar3 + fVar7;
+      pfVar1[in_R10 + -1] = fVar8 - fVar4;
+      pfVar1[in_R10] = fVar7 - fVar3;
+      pfVar1[-1] = fVar10 - fVar5;
+      *pfVar1 = fVar6 + fVar9;
+      pfVar1[in_R10 * 2 + -1] = fVar5 + fVar10;
+      pfVar1[in_R10 * 2] = fVar9 - fVar6;
+      pfVar1 = pfVar1 + 2;
+      uVar2 = uVar2 - 1;
+    } while (uVar2 != 0);
+    return;
+  }
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f8cc(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f8cc(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float *pfVar1;
+  longlong unaff_RSI;
+  ulonglong uVar2;
+  longlong in_R10;
+  float fVar3;
+  float fVar4;
+  float fVar5;
+  float fVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  
+  pfVar1 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+  uVar2 = (ulonglong)((param_3 - 1U >> 1) + 1);
+  do {
+    fVar4 = pfVar1[in_R10 * 2 + -1] + pfVar1[in_R10 + -1];
+    fVar6 = pfVar1[in_R10 + -1] - pfVar1[in_R10 * 2 + -1];
+    fVar8 = pfVar1[-1 - in_R10] + pfVar1[-1];
+    fVar10 = pfVar1[-1 - in_R10] - pfVar1[-1];
+    fVar3 = pfVar1[in_R10 * 2] + pfVar1[in_R10];
+    fVar7 = pfVar1[-in_R10] + *pfVar1;
+    fVar9 = pfVar1[-in_R10] - *pfVar1;
+    fVar5 = pfVar1[in_R10] - pfVar1[in_R10 * 2];
+    pfVar1[-1 - in_R10] = fVar4 + fVar8;
+    pfVar1[-in_R10] = fVar3 + fVar7;
+    pfVar1[in_R10 + -1] = fVar8 - fVar4;
+    pfVar1[in_R10] = fVar7 - fVar3;
+    pfVar1[-1] = fVar10 - fVar5;
+    *pfVar1 = fVar6 + fVar9;
+    pfVar1[in_R10 * 2 + -1] = fVar5 + fVar10;
+    pfVar1[in_R10 * 2] = fVar9 - fVar6;
+    pfVar1 = pfVar1 + 2;
+    uVar2 = uVar2 - 1;
+  } while (uVar2 != 0);
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18079f9f0(undefined8 param_1,undefined8 param_2,int param_3)
+void FUN_18079f9f0(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float fVar4;
+  longlong lVar5;
+  float *pfVar6;
+  longlong unaff_RSI;
+  longlong in_R10;
+  
+  if (0 < param_3) {
+    pfVar6 = (float *)(unaff_RSI + 4 + in_R10 * 4);
+    lVar5 = (in_R10 - 1U >> 1) + 1;
+    do {
+      fVar1 = pfVar6[-1 - in_R10];
+      fVar2 = pfVar6[-1];
+      fVar3 = pfVar6[-in_R10];
+      fVar4 = *pfVar6;
+      pfVar6[-1 - in_R10] = fVar1 + fVar2;
+      pfVar6[-in_R10] = fVar3 + *pfVar6;
+      pfVar6[-1] = fVar1 - fVar2;
+      *pfVar6 = fVar3 - fVar4;
+      pfVar6 = pfVar6 + 2;
+      lVar5 = lVar5 + -1;
+    } while (lVar5 != 0);
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+

@@ -1,184 +1,1146 @@
-/**
- * @file 02_core_engine_part175_sub002_sub002.c
- * @brief TaleWorlds.Native 系统模块
- * 
- * 本文件是 Mount & Blade II: Bannerlord Native DLL 的组成部分
- * 
- * 技术架构：
- * - 系统核心功能实现
- * - 内存管理和资源分配
- * - 数据处理和验证
- * - 状态管理和控制
- * 
- * 性能优化：
- * - 高效的内存访问模式
- * - 优化的算法实现
- * - 缓存友好的数据结构
- * 
- * 安全考虑：
- * - 输入验证和边界检查
- * - 内存安全防护
- * - 错误处理和恢复
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 系统常量和类型定义
-//==============================================================================
+// 02_core_engine_part175_sub002_sub002.c - 1 个函数
 
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
+// 函数: void FUN_18015c450(longlong param_1)
+void FUN_18015c450(longlong param_1)
 
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
-//==============================================================================
-
-/**
- * 系统初始化函数
- * 
- * 本函数负责初始化系统核心组件，包括：
- * - 内存管理器初始化
- * - 状态管理系统初始化
- * - 核心服务启动
- * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
- */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
 {
-    SystemHandle handle;
-    int local_10;
-    int local_c;
-    
-    // 参数验证
-    if (param1 == 0 || param2 == 0) {
-        return (SystemHandle)SYSTEM_ERROR_INVALID;
-    }
-    
-    // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
-    if (handle == (SystemHandle)0) {
-        return (SystemHandle)SYSTEM_ERROR_MEMORY;
-    }
-    
-    // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
-    if (local_10 != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
-    if (local_c != SYSTEM_SUCCESS) {
-        return (SystemHandle)SYSTEM_ERROR_STATE;
-    }
-    
-    return handle;
+  longlong lVar1;
+  undefined1 auStack_e18 [32];
+  longlong lStack_df8;
+  undefined1 uStack_de8;
+  longlong lStack_de0;
+  undefined8 uStack_dd8;
+  undefined1 auStack_dd0 [56];
+  undefined1 auStack_d98 [56];
+  undefined1 auStack_d60 [56];
+  undefined1 auStack_d28 [56];
+  undefined1 auStack_cf0 [56];
+  undefined1 auStack_cb8 [56];
+  undefined1 auStack_c80 [56];
+  undefined1 auStack_c48 [56];
+  undefined1 auStack_c10 [56];
+  undefined1 auStack_bd8 [56];
+  undefined1 auStack_ba0 [56];
+  undefined1 auStack_b68 [56];
+  undefined1 auStack_b30 [56];
+  undefined1 auStack_af8 [56];
+  undefined1 auStack_ac0 [56];
+  undefined1 auStack_a88 [56];
+  undefined1 auStack_a50 [56];
+  undefined1 auStack_a18 [56];
+  undefined1 auStack_9e0 [56];
+  undefined1 auStack_9a8 [56];
+  undefined1 auStack_970 [56];
+  undefined1 auStack_938 [56];
+  undefined1 auStack_900 [56];
+  undefined1 auStack_8c8 [56];
+  undefined1 auStack_890 [56];
+  undefined1 auStack_858 [56];
+  undefined1 auStack_820 [56];
+  undefined1 auStack_7e8 [56];
+  undefined1 auStack_7b0 [56];
+  undefined1 auStack_778 [56];
+  undefined1 auStack_740 [56];
+  undefined1 auStack_708 [56];
+  undefined1 auStack_6d0 [56];
+  undefined1 auStack_698 [56];
+  undefined1 auStack_660 [56];
+  undefined1 auStack_628 [56];
+  undefined1 auStack_5f0 [56];
+  undefined1 auStack_5b8 [56];
+  undefined1 auStack_580 [56];
+  undefined1 auStack_548 [56];
+  undefined1 auStack_510 [56];
+  undefined1 auStack_4d8 [56];
+  undefined1 auStack_4a0 [56];
+  undefined1 auStack_468 [56];
+  undefined1 auStack_430 [56];
+  undefined1 auStack_3f8 [56];
+  undefined1 auStack_3c0 [56];
+  undefined1 auStack_388 [56];
+  undefined1 auStack_350 [56];
+  undefined1 auStack_318 [56];
+  undefined1 auStack_2e0 [56];
+  undefined1 auStack_2a8 [56];
+  undefined1 auStack_270 [56];
+  undefined1 auStack_238 [56];
+  undefined1 auStack_200 [56];
+  undefined1 auStack_1c8 [56];
+  undefined1 auStack_190 [56];
+  undefined1 auStack_158 [56];
+  undefined1 auStack_120 [56];
+  undefined1 auStack_e8 [56];
+  undefined1 auStack_b0 [56];
+  undefined1 auStack_78 [56];
+  undefined8 uStack_40;
+  undefined8 uStack_38;
+  undefined8 uStack_30;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  ulonglong uStack_18;
+  
+  uStack_dd8 = 0xfffffffffffffffe;
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_e18;
+  lStack_de0 = param_1;
+  uStack_30 = param_1;
+  func_0x000180160d00();
+  lVar1 = param_1 + 0x20;
+  uStack_40._0_4_ = 3;
+  uStack_30 = lVar1;
+  FUN_180160800(lVar1,&uStack_40);
+  uStack_30 = param_1 + 0x50;
+  uStack_40._0_4_ = 3;
+  FUN_1801607a0(uStack_30,&uStack_40);
+  uStack_40._0_4_ = 0;
+  lStack_df8 = 0;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x19;
+  uStack_40._0_4_ = 2;
+  lStack_df8 = 2;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x2d;
+  uStack_40._0_4_ = 1;
+  lStack_df8 = 1;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x2c;
+  uStack_40._0_4_ = 3;
+  lStack_df8 = 3;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x14;
+  uStack_40._0_4_ = 4;
+  lStack_df8 = 4;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x2f;
+  uStack_40._0_4_ = 5;
+  lStack_df8 = 5;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x15;
+  uStack_40._0_4_ = 7;
+  lStack_df8 = 7;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x39;
+  uStack_40._0_4_ = 6;
+  lStack_df8 = 6;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x2e;
+  uStack_40._0_4_ = 8;
+  lStack_df8 = 8;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x13;
+  uStack_40._0_4_ = 9;
+  lStack_df8 = 9;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0xe0;
+  uStack_40._0_4_ = 10;
+  lStack_df8 = 10;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x22;
+  uStack_40._0_4_ = 0xb;
+  lStack_df8 = 0xb;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x16;
+  uStack_40._0_4_ = 0xc;
+  lStack_df8 = 0xc;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x31;
+  uStack_40._0_4_ = 0xd;
+  lStack_df8 = 0xd;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x30;
+  uStack_40._0_4_ = 0xe;
+  lStack_df8 = 0xe;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x11;
+  uStack_40._0_4_ = 0xf;
+  lStack_df8 = 0xf;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x1e;
+  uStack_40._0_4_ = 0x10;
+  lStack_df8 = 0x10;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x1f;
+  uStack_40._0_4_ = 0x11;
+  lStack_df8 = 0x11;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x20;
+  uStack_40._0_4_ = 0x12;
+  lStack_df8 = 0x12;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x12;
+  uStack_40._0_4_ = 0x13;
+  lStack_df8 = 0x13;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x10;
+  uStack_40._0_4_ = 0x14;
+  lStack_df8 = 0x14;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x21;
+  uStack_40._0_4_ = 0x15;
+  lStack_df8 = 0x15;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x17;
+  uStack_40 = CONCAT44(uStack_40._4_4_,0x16);
+  lStack_df8 = 0x16;
+  FUN_180160860(lVar1,&uStack_30,uStack_de8,&uStack_40);
+  *(undefined4 *)(uStack_30 + 4) = 0x25;
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x11;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,10,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x2d;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0xb,auStack_dd0);
+  uStack_40 = 0x32000000e0;
+  uStack_30 = 1;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x54,auStack_dd0);
+  uStack_40._0_4_ = 0x38;
+  uStack_40._4_4_ = 0x32;
+  uStack_38._0_4_ = 0xe0;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x55,auStack_dd0);
+  uStack_30 = CONCAT44(uStack_30._4_4_,0xd2);
+  uStack_40 = CONCAT44(uStack_40._4_4_,1);
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,1);
+  FUN_1801601c0(param_1,0xc,auStack_dd0);
+  uStack_40 = 0x2600000025;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,8,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x24;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x10,auStack_dd0);
+  uStack_40 = 0x1e0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0,auStack_dd0);
+  uStack_40 = 0x2e0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,3,auStack_dd0);
+  uStack_40 = 0x1e00000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0xd,auStack_dd0);
+  uStack_40 = 0x2f0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0xbd,auStack_dd0);
+  uStack_40 = 0x140000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x11,auStack_dd0);
+  uStack_40 = 0x180000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x12,auStack_dd0);
+  uStack_40 = 0x1100000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x13,auStack_dd0);
+  uStack_40 = 0x2600000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x14,auStack_dd0);
+  uStack_40 = 0x1f00000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x15,auStack_dd0);
+  uStack_40 = 0x2f00000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x1a,auStack_dd0);
+  uStack_40 = 0x2000000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x1c,auStack_dd0);
+  uStack_40 = 0x2a00000038;
+  uStack_38._0_4_ = 0x20;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x1f,auStack_dd0);
+  uStack_40 = 0x2c0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,2,auStack_dd0);
+  uStack_40 = 0x150000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,1,auStack_dd0);
+  uStack_40 = 0x2a0000001d;
+  uStack_38._0_4_ = 0x1f;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x16,auStack_dd0);
+  uStack_40 = 0xf0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x23,auStack_dd0);
+  uStack_40 = 0x30000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x24,auStack_dd0);
+  uStack_40 = 0x2a0000001d;
+  uStack_38._0_4_ = 0x52;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x25,auStack_dd0);
+  uStack_40 = 0x1d0000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x26,auStack_dd0);
+  uStack_40 = 0x570000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0xc4,auStack_dd0);
+  uStack_40 = 0x390000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x30,auStack_dd0);
+  uStack_40 = 0x2a0000001d;
+  uStack_38._0_4_ = 0x39;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x31,auStack_dd0);
+  uStack_40 = 0x170000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x39,auStack_dd0);
+  uStack_40 = 0x1000000038;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,4,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38 = CONCAT44(uStack_38._4_4_,0x18);
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x3a,auStack_dd0);
+  uStack_30 = 0x380000001d;
+  uStack_28 = 0x2a;
+  uStack_24 = 0x18;
+  uStack_40 = 0;
+  uStack_38 = 0x100000000;
+  lStack_df8._0_1_ = 1;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,4);
+  FUN_1801601c0(param_1,0x3b,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x16;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x3c,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38 = CONCAT44(uStack_38._4_4_,0x19);
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x3d,auStack_dd0);
+  uStack_40 = 0x420000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x3e,auStack_dd0);
+  uStack_30 = 0x380000001d;
+  uStack_28 = 0x2a;
+  uStack_24 = 0xc9;
+  uStack_40 = 0;
+  uStack_38 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,4);
+  FUN_1801601c0(param_1,0x3f,auStack_dd0);
+  uStack_30 = 0x380000001d;
+  uStack_28 = 0x2a;
+  uStack_24 = 0xd1;
+  uStack_40 = 0;
+  uStack_38 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,4);
+  FUN_1801601c0(param_1,0x40,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0xc9;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x41,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0xd1;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x42,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0xcf;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x43,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x44,auStack_dd0);
+  uStack_40 = 0x100000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x45,auStack_dd0);
+  uStack_40 = 0x300000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x47,auStack_dd0);
+  uStack_40 = 0x2f0000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x48,auStack_dd0);
+  uStack_40 = 0x2a00000038;
+  uStack_38 = CONCAT44(uStack_38._4_4_,0x1e);
+  uStack_30 = 0;
+  uStack_28 = 2;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x49,auStack_dd0);
+  uStack_30 = 0x2a0000001d;
+  uStack_28 = 0x1e;
+  uStack_24 = 0x10;
+  uStack_40 = 0;
+  uStack_38 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,4);
+  FUN_1801601c0(param_1,0x4a,auStack_dd0);
+  uStack_40 = 0xf3000000f9;
+  uStack_30 = 0x200000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x4b,auStack_dd0);
+  uStack_40 = 0x20000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x19,auStack_dd0);
+  uStack_40 = 0x1e0000001d;
+  uStack_38._0_4_ = 0x10;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,5,auStack_dd0);
+  uStack_40 = 0xf0000000f9;
+  uStack_30 = 0x200000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,6,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38 = CONCAT44(uStack_38._4_4_,0x30);
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x4c,auStack_dd0);
+  uStack_40 = 0x430000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x4d,auStack_dd0);
+  uStack_40 = 0x4e0000002a;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x4e,auStack_dd0);
+  uStack_40 = 0x4a0000002a;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x4f,auStack_dd0);
+  uStack_40 = 0x210000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x50,auStack_dd0);
+  uStack_40 = 0x290000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x52,auStack_dd0);
+  uStack_40 = 0x2900000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x51,auStack_dd0);
+  uStack_40 = 0x300000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x58,auStack_dd0);
+  uStack_30 = 0x380000001d;
+  uStack_28 = 0x2a;
+  uStack_24 = 0x13;
+  uStack_40 = 0;
+  uStack_38 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_30,&uStack_40,4);
+  FUN_1801601c0(param_1,9,auStack_dd0);
+  uStack_40 = 0xd0000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x5e,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x13;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,7,auStack_dd0);
+  uStack_40 = 0x3100000038;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x17,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x22;
+  uStack_30 = 0;
+  uStack_28 = 2;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x53,auStack_dd0);
+  uStack_40 = 0xc80000002a;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x2e,auStack_dd0);
+  uStack_40 = 0xd00000002a;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x2f,auStack_dd0);
+  uStack_40 = 0x1f0000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x62,auStack_dd0);
+  uStack_40 = 0x2c0000002a;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x67,auStack_dd0);
+  uStack_40 = 0x320000001d;
+  uStack_30 = 0x200000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x27,auStack_dd0);
+  uStack_40._0_4_ = 0x1d;
+  uStack_40._4_4_ = 0xd2;
+  uStack_30._0_4_ = 0;
+  uStack_30._4_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x60,auStack_dd0);
+  uStack_40._0_4_ = 0x2c;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x2a,auStack_dd0);
+  uStack_40._0_4_ = 0x2d;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x2b,auStack_dd0);
+  uStack_40 = CONCAT44(uStack_40._4_4_,0x2f);
+  uStack_30 = (ulonglong)uStack_30._4_4_ << 0x20;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x2c,auStack_dd0);
+  uStack_40 = 0x4d0000002f;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x2d,auStack_dd0);
+  uStack_40 = 0x4f000000d1;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x28,auStack_dd0);
+  uStack_40 = 0x50000000d1;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x29,auStack_dd0);
+  uStack_40 = 0x5200000031;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x59,auStack_dd0);
+  uStack_40 = 0x4f00000031;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x5a,auStack_dd0);
+  uStack_40 = 0x5000000031;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x5b,auStack_dd0);
+  uStack_40 = 0x5100000031;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x5c,auStack_dd0);
+  uStack_40 = 0x4b00000031;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x5d,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x32;
+  uStack_30 = 0;
+  uStack_28 = 2;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x5f,auStack_dd0);
+  uStack_40 = 0xb0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x65,auStack_dd0);
+  uStack_40 = 0xa0000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x66,auStack_dd0);
+  uStack_40 = 0x190000002a;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x18,auStack_dd0);
+  uStack_40 = 0x140000002a;
+  uStack_30 = 0x200000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,99,auStack_dd0);
+  uStack_40 = 0xf1000000f9;
+  uStack_30 = 0x200000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,100,auStack_dd0);
+  uStack_40 = 0xcb0000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x13f,auStack_dd0);
+  uStack_40 = 0xcd0000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x140,auStack_dd0);
+  uStack_40 = 0xc80000001d;
+  uStack_30 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0x141,auStack_dd0);
+  uStack_40 = 0x2a0000001d;
+  uStack_38._0_4_ = 0xcb;
+  uStack_30 = 0;
+  uStack_28 = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x142,auStack_dd0);
+  uStack_40 = 0xe20000001d;
+  uStack_30 = 0x100000000;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,2);
+  FUN_1801601c0(param_1,0xc1,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x41;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x68,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x42;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x6a,auStack_dd0);
+  uStack_40 = 0x380000001d;
+  uStack_38._0_4_ = 0x43;
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x6b,auStack_dd0);
+  uStack_40._0_4_ = 0x1d;
+  uStack_40._4_4_ = 0x38;
+  uStack_38 = CONCAT44(uStack_38._4_4_,0x44);
+  uStack_30 = 0;
+  uStack_28 = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,3);
+  FUN_1801601c0(param_1,0x6c,auStack_dd0);
+  uStack_40._0_4_ = 0x52;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x6d,auStack_dd0);
+  uStack_40._0_4_ = 0x4f;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x6e,auStack_dd0);
+  uStack_40._0_4_ = 0x51;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x6f,auStack_dd0);
+  uStack_40._0_4_ = 0x4c;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x70,auStack_dd0);
+  uStack_40._0_4_ = 0x47;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x71,auStack_dd0);
+  uStack_40._0_4_ = 0x49;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x72,auStack_dd0);
+  uStack_40._0_4_ = 0x52;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x73,auStack_dd0);
+  uStack_40._0_4_ = 0x4f;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x74,auStack_dd0);
+  uStack_40._0_4_ = 0x51;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x75,auStack_dd0);
+  uStack_40._0_4_ = 0x4c;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x76,auStack_dd0);
+  uStack_40._0_4_ = 0x47;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x77,auStack_dd0);
+  uStack_40._0_4_ = 0x49;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x78,auStack_dd0);
+  uStack_40._0_4_ = 0xb;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x79,auStack_dd0);
+  uStack_40._0_4_ = 2;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7a,auStack_dd0);
+  uStack_40._0_4_ = 3;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7b,auStack_dd0);
+  uStack_40._0_4_ = 4;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7c,auStack_dd0);
+  uStack_40._0_4_ = 5;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7d,auStack_dd0);
+  uStack_40._0_4_ = 6;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7e,auStack_dd0);
+  uStack_40._0_4_ = 7;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_dd0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x7f,auStack_dd0);
+  uStack_40._0_4_ = 8;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_d28,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x80,auStack_d28);
+  uStack_40._0_4_ = 9;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_cf0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x81,auStack_cf0);
+  uStack_40._0_4_ = 10;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_cb8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x82,auStack_cb8);
+  uStack_40._0_4_ = 0x3b;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_c80,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x83,auStack_c80);
+  uStack_40._0_4_ = 0x3c;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_c48,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x84,auStack_c48);
+  uStack_40._0_4_ = 0x3d;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_c10,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x85,auStack_c10);
+  uStack_40._0_4_ = 0x3e;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_bd8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x86,auStack_bd8);
+  uStack_40._0_4_ = 0x40;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_ba0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x87,auStack_ba0);
+  uStack_40._0_4_ = 0x41;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_b68,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x88,auStack_b68);
+  uStack_40._0_4_ = 0x42;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_b30,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x89,auStack_b30);
+  uStack_40._0_4_ = 0x43;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_af8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8a,auStack_af8);
+  uStack_40._0_4_ = 0x44;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_ac0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8b,auStack_ac0);
+  uStack_40._0_4_ = 0x57;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_a88,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8c,auStack_a88);
+  uStack_40._0_4_ = 0x15;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_a50,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8d,auStack_a50);
+  uStack_40._0_4_ = 0x1e;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_a18,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8e,auStack_a18);
+  uStack_40._0_4_ = 0x21;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_9e0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x8f,auStack_9e0);
+  uStack_40._0_4_ = 0x30;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_9a8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x90,auStack_9a8);
+  uStack_40._0_4_ = 0x31;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_970,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x91,auStack_970);
+  uStack_40._0_4_ = 0x2e;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_938,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x92,auStack_938);
+  uStack_40._0_4_ = 0x12;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_900,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x93,auStack_900);
+  uStack_40._0_4_ = 0x24;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_8c8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x94,auStack_8c8);
+  uStack_40._0_4_ = 0x10;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_890,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x95,auStack_890);
+  uStack_40._0_4_ = 0x23;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_858,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x96,auStack_858);
+  uStack_40._0_4_ = 0x11;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_820,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x97,auStack_820);
+  uStack_40._0_4_ = 0x1f;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_7e8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x98,auStack_7e8);
+  uStack_40._0_4_ = 0x16;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_7b0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x99,auStack_7b0);
+  uStack_40._0_4_ = 0x13;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_778,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xc6,auStack_778);
+  uStack_40._0_4_ = 0x13;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_740,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xc5,auStack_740);
+  uStack_40._0_4_ = 0x39;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_708,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9a,auStack_708);
+  uStack_40._0_4_ = 200;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_6d0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xab,auStack_6d0);
+  uStack_40._0_4_ = 0xcb;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_698,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xac,auStack_698);
+  uStack_40._0_4_ = 0xd0;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_660,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xad,auStack_660);
+  uStack_40._0_4_ = 0xcd;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_628,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xae,auStack_628);
+  uStack_40._0_4_ = 0x48;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_5f0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb3,auStack_5f0);
+  uStack_40._0_4_ = 0x50;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_5b8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb5,auStack_5b8);
+  uStack_40._0_4_ = 0x4b;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_580,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb7,auStack_580);
+  uStack_40._0_4_ = 0x4d;
+  uStack_30._0_4_ = 1;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_548,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb9,auStack_548);
+  uStack_40._0_4_ = 200;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_510,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb0,auStack_510);
+  uStack_40._0_4_ = 0xd0;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_4d8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb1,auStack_4d8);
+  uStack_40._0_4_ = 0xcd;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_4a0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb2,auStack_4a0);
+  uStack_40._0_4_ = 0xcb;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_468,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xaf,auStack_468);
+  uStack_40._0_4_ = 0x32;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_430,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9b,auStack_430);
+  uStack_40._0_4_ = 0x22;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_3f8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9c,auStack_3f8);
+  uStack_40._0_4_ = 0x16;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_3c0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9d,auStack_3c0);
+  uStack_40._0_4_ = 0x31;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_388,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9e,auStack_388);
+  uStack_40._0_4_ = 0x30;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_350,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0x9f,auStack_350);
+  uStack_40._0_4_ = 0x14;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_318,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa0,auStack_318);
+  uStack_40._0_4_ = 0x25;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_2e0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa1,auStack_2e0);
+  uStack_40._0_4_ = 0x15;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_2a8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa2,auStack_2a8);
+  uStack_40._0_4_ = 0x2e;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_270,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa3,auStack_270);
+  uStack_40._0_4_ = 0x10;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_238,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa4,auStack_238);
+  uStack_40._0_4_ = 0x12;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_200,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa5,auStack_200);
+  uStack_40._0_4_ = 0x21;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_1c8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa6,auStack_1c8);
+  uStack_40._0_4_ = 0x11;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_190,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa7,auStack_190);
+  uStack_40._0_4_ = 0x1e;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_158,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa8,auStack_158);
+  uStack_40._0_4_ = 0x1f;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_120,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xa9,auStack_120);
+  uStack_40._0_4_ = 0x20;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_e8,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xaa,auStack_e8);
+  uStack_40._0_4_ = 0x48;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_b0,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb4,auStack_b0);
+  uStack_40._0_4_ = 0x50;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_78,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb6,auStack_78);
+  uStack_40._0_4_ = 0x4b;
+  uStack_30._0_4_ = 0;
+  lStack_df8._0_1_ = 0;
+  func_0x00018015c3f0(auStack_d98,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xb8,auStack_d98);
+  uStack_40 = CONCAT44(uStack_40._4_4_,0x4d);
+  uStack_30 = (ulonglong)uStack_30._4_4_ << 0x20;
+  lStack_df8 = (ulonglong)lStack_df8._1_7_ << 8;
+  func_0x00018015c3f0(auStack_d60,&uStack_40,&uStack_30,1);
+  FUN_1801601c0(param_1,0xba,auStack_d60);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_e18);
 }
 
-/**
- * 系统关闭函数
- * 
- * 负责安全关闭系统，释放资源：
- * - 停止所有服务
- * - 释放内存资源
- * - 清理状态信息
- * 
- * @param handle 系统句柄
- * @return 操作状态码
- */
-int SystemShutdown(SystemHandle handle)
-{
-    int status;
-    
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    // 停止系统服务
-    status = FUN_00000003(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 释放资源
-    status = FUN_00000004(handle);
-    if (status != SYSTEM_SUCCESS) {
-        return status;
-    }
-    
-    // 清理状态
-    status = FUN_00000005(handle);
-    return status;
-}
 
-/**
- * 系统状态查询函数
- * 
- * 查询系统当前状态信息
- * 
- * @param handle 系统句柄
- * @return 系统状态码
- */
-int SystemGetState(SystemHandle handle)
-{
-    // 参数验证
-    if (handle == (SystemHandle)0) {
-        return SYSTEM_ERROR_INVALID;
-    }
-    
-    return FUN_00000006(handle);
-}
 
-//==============================================================================
-// 文件信息
-//==============================================================================
 
-/**
- * 文件说明：
- * 
- * 本文件是 TaleWorlds.Native 系统的核心组成部分，提供了系统初始化、
- * 状态管理、资源分配等基础功能。采用模块化设计，支持高效的
- * 内存管理和状态同步机制。
- * 
- * 技术特点：
- * - 采用分层架构设计
- * - 实现了高效的内存管理策略
- * - 提供了完整的状态管理机制
- * - 支持并发操作和同步
- * 
- * 优化策略：
- * - 使用缓存友好的数据结构
- * - 实现了内存池管理
- * - 提供了异步操作支持
- * - 优化了系统调用频率
- * 
- * 安全机制：
- * - 实现了完整的参数验证
- * - 提供了错误恢复机制
- * - 支持状态一致性检查
- * - 防止内存泄漏和越界访问
- */
+
+
+

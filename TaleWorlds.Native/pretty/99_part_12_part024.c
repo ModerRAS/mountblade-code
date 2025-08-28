@@ -1,82 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_12_part024.c - 图形渲染矩阵变换模块
-// 
-// 本模块包含13个函数，主要用于3D图形渲染中的矩阵变换和数学运算
-// 涉及顶点变换、矩阵乘法、向量运算等图形渲染核心功能
-// 
-// 主要数学常数：
-// - 0.8828: 主要缩放系数
-// - 0.4697: 次要缩放系数  
-// - 0.7071: 1/√2，用于45度角变换
-// - 0.4472136: 1/√5，用于五点平均变换
-// - 0.3673, 0.46, 0.7, 0.93: 复合变换权重系数
+// 99_part_12_part024.c - 13 个函数
 
-// 数学常数定义
-#define SCALE_PRIMARY 0.8828f      // 主要缩放系数
-#define SCALE_SECONDARY 0.4697f    // 次要缩放系数
-#define SCALE_45_DEGREE 0.7071f    // 45度角变换系数 (1/√2)
-#define SCALE_5_POINT_AVG 0.4472136f // 五点平均系数 (1/√5)
-#define WEIGHT_3673 0.3673f        // 权重系数1
-#define WEIGHT_46 0.46f            // 权重系数2
-#define WEIGHT_70 0.7f             // 权重系数3
-#define WEIGHT_93 0.93f            // 权重系数4
-
-// 类型别名定义
-typedef longlong MatrixPtr;
-typedef float* FloatPtr;
-typedef uint VertexCount;
-
-// 函数别名：矩阵变换处理器 - 主要变换函数
-void MatrixTransform_Primary(longlong vertexData, longlong *matrixData, uint vertexCount);
-
-// 函数别名：矩阵变换处理器 - 次要变换函数
-void MatrixTransform_Secondary(longlong vertexData, longlong matrixData, uint vertexCount);
-
-// 函数别名：空函数1
-void EmptyFunction_1(void);
-
-// 函数别名：五点平均变换函数
-void FivePointAverageTransform(longlong vertexData, longlong *matrixData, uint vertexCount);
-
-// 函数别名：参数化五点平均变换函数
-void ParametricFivePointAverage(longlong vertexData, undefined8 paramData, uint vertexCount);
-
-// 函数别名：空函数2
-void EmptyFunction_2(void);
-
-// 函数别名：45度角变换函数
-void Degree45Transform(longlong vertexData, longlong *matrixData, uint vertexCount);
-
-// 函数别名：参数化45度角变换函数
-void ParametricDegree45Transform(longlong vertexData, longlong matrixData, uint vertexCount);
-
-// 函数别名：空函数3
-void EmptyFunction_3(void);
-
-// 函数别名：复合45度角变换函数
-void CompositeDegree45Transform(longlong vertexData, longlong *matrixData, uint vertexCount);
-
-// 函数别名：参数化复合45度角变换函数
-void ParametricCompositeDegree45Transform(longlong vertexData, longlong matrixData, uint vertexCount);
-
-// 函数别名：空函数4
-void EmptyFunction_4(void);
-
-// 函数别名：权重复合变换函数
-void WeightedCompositeTransform(longlong vertexData, longlong *matrixData, uint vertexCount);
-
-/**
- * 主要矩阵变换函数
- * 
- * 此函数执行主要的矩阵变换操作，使用主要和次要缩放系数
- * 对顶点数据进行双通道变换处理
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针数组，包含8个矩阵指针
- * @param vertexCount 顶点数量
- */
+// 函数: void FUN_1807d9ce0(longlong param_1,longlong *param_2,uint param_3)
 void FUN_1807d9ce0(longlong param_1,longlong *param_2,uint param_3)
+
 {
   undefined4 *puVar1;
   float *pfVar2;
@@ -180,41 +108,38 @@ void FUN_1807d9ce0(longlong param_1,longlong *param_2,uint param_3)
       puVar1[2] = uVar27;
       puVar1[3] = uVar33;
       pfVar2 = (float *)(lVar7 + uVar36 * 4);
-      *pfVar2 = fVar16 * SCALE_PRIMARY;
-      pfVar2[1] = fVar22 * SCALE_PRIMARY;
-      pfVar2[2] = fVar28 * SCALE_PRIMARY;
-      pfVar2[3] = fVar34 * SCALE_PRIMARY;
+      *pfVar2 = fVar16 * 0.8828;
+      pfVar2[1] = fVar22 * 0.8828;
+      pfVar2[2] = fVar28 * 0.8828;
+      pfVar2[3] = fVar34 * 0.8828;
       pfVar2 = (float *)(lVar11 + uVar36 * 4);
-      *pfVar2 = fVar17 * SCALE_PRIMARY;
-      pfVar2[1] = fVar23 * SCALE_PRIMARY;
-      pfVar2[2] = fVar29 * SCALE_PRIMARY;
-      pfVar2[3] = fVar35 * SCALE_PRIMARY;
+      *pfVar2 = fVar17 * 0.8828;
+      pfVar2[1] = fVar23 * 0.8828;
+      pfVar2[2] = fVar29 * 0.8828;
+      pfVar2[3] = fVar35 * 0.8828;
       pfVar2 = (float *)(lVar12 + uVar36 * 4);
-      *pfVar2 = fVar16 * SCALE_SECONDARY;
-      pfVar2[1] = fVar22 * SCALE_SECONDARY;
-      pfVar2[2] = fVar28 * SCALE_SECONDARY;
-      pfVar2[3] = fVar34 * SCALE_SECONDARY;
+      *pfVar2 = fVar16 * 0.4697;
+      pfVar2[1] = fVar22 * 0.4697;
+      pfVar2[2] = fVar28 * 0.4697;
+      pfVar2[3] = fVar34 * 0.4697;
       pfVar2 = (float *)(lVar10 + uVar36 * 4);
-      *pfVar2 = fVar17 * SCALE_SECONDARY;
-      pfVar2[1] = fVar23 * SCALE_SECONDARY;
-      pfVar2[2] = fVar29 * SCALE_SECONDARY;
-      pfVar2[3] = fVar35 * SCALE_SECONDARY;
+      *pfVar2 = fVar17 * 0.4697;
+      pfVar2[1] = fVar23 * 0.4697;
+      pfVar2[2] = fVar29 * 0.4697;
+      pfVar2[3] = fVar35 * 0.4697;
     } while (uVar37 < param_3 >> 2);
   }
   return;
 }
 
-/**
- * 次要矩阵变换函数
- * 
- * 此函数执行次要的矩阵变换操作，使用寄存器中的动态缩放系数
- * 对顶点数据进行双通道变换处理
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据结构指针
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807d9d14(longlong param_1,longlong param_2,uint param_3)
 void FUN_1807d9d14(longlong param_1,longlong param_2,uint param_3)
+
 {
   undefined4 *puVar1;
   float *pfVar2;
@@ -377,27 +302,26 @@ void FUN_1807d9d14(longlong param_1,longlong param_2,uint param_3)
   return;
 }
 
-/**
- * 空函数1
- * 
- * 此函数为空实现，可能用作占位符或未来扩展
- */
+
+
+
+
+
+// 函数: void FUN_1807d9e44(void)
 void FUN_1807d9e44(void)
+
 {
   return;
 }
 
-/**
- * 五点平均变换函数
- * 
- * 此函数执行五点平均变换操作，使用1/√5系数
- * 对顶点数据进行平滑处理
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针数组
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807d9e60(longlong param_1,longlong *param_2,uint param_3)
 void FUN_1807d9e60(longlong param_1,longlong *param_2,uint param_3)
+
 {
   float *pfVar1;
   float *pfVar2;
@@ -450,26 +374,23 @@ void FUN_1807d9e60(longlong param_1,longlong *param_2,uint param_3)
       uVar4 = uVar21 * 4;
       uVar21 = uVar21 + 1;
       pfVar3 = (float *)(lVar5 + (ulonglong)uVar4 * 4);
-      *pfVar3 = (pfVar2[1] + *pfVar2 + pfVar1[1] + *pfVar1 + pfVar1[2]) * SCALE_5_POINT_AVG;
-      pfVar3[1] = (fVar10 + fVar9 + fVar7 + fVar6 + fVar8) * SCALE_5_POINT_AVG;
-      pfVar3[2] = (fVar15 + fVar14 + fVar12 + fVar11 + fVar13) * SCALE_5_POINT_AVG;
-      pfVar3[3] = (fVar20 + fVar19 + fVar17 + fVar16 + fVar18) * SCALE_5_POINT_AVG;
+      *pfVar3 = (pfVar2[1] + *pfVar2 + pfVar1[1] + *pfVar1 + pfVar1[2]) * 0.4472136;
+      pfVar3[1] = (fVar10 + fVar9 + fVar7 + fVar6 + fVar8) * 0.4472136;
+      pfVar3[2] = (fVar15 + fVar14 + fVar12 + fVar11 + fVar13) * 0.4472136;
+      pfVar3[3] = (fVar20 + fVar19 + fVar17 + fVar16 + fVar18) * 0.4472136;
     } while (uVar21 < param_3 >> 2);
   }
   return;
 }
 
-/**
- * 参数化五点平均变换函数
- * 
- * 此函数执行参数化的五点平均变换操作，使用动态缩放系数
- * 对顶点数据进行平滑处理
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param paramData 参数数据指针
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807d9e84(longlong param_1,undefined8 param_2,uint param_3)
 void FUN_1807d9e84(longlong param_1,undefined8 param_2,uint param_3)
+
 {
   float *pfVar1;
   float *pfVar2;
@@ -531,27 +452,26 @@ void FUN_1807d9e84(longlong param_1,undefined8 param_2,uint param_3)
   return;
 }
 
-/**
- * 空函数2
- * 
- * 此函数为空实现，可能用作占位符或未来扩展
- */
+
+
+
+
+
+// 函数: void FUN_1807d9f40(void)
 void FUN_1807d9f40(void)
+
 {
   return;
 }
 
-/**
- * 45度角变换函数
- * 
- * 此函数执行45度角变换操作，使用1/√2系数
- * 对顶点数据进行旋转变换
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针数组
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807d9f50(longlong param_1,longlong *param_2,uint param_3)
 void FUN_1807d9f50(longlong param_1,longlong *param_2,uint param_3)
+
 {
   float *pfVar1;
   undefined4 *puVar2;
@@ -619,15 +539,15 @@ void FUN_1807d9f50(longlong param_1,longlong *param_2,uint param_3)
       uVar28 = (ulonglong)(uVar29 * 4);
       uVar29 = uVar29 + 1;
       pfVar3 = (float *)(lVar5 + uVar28 * 4);
-      *pfVar3 = *pfVar1 + fVar10 * SCALE_45_DEGREE;
-      pfVar3[1] = fVar13 + fVar15 * SCALE_45_DEGREE;
-      pfVar3[2] = fVar18 + fVar20 * SCALE_45_DEGREE;
-      pfVar3[3] = fVar23 + fVar25 * SCALE_45_DEGREE;
+      *pfVar3 = *pfVar1 + fVar10 * 0.7071;
+      pfVar3[1] = fVar13 + fVar15 * 0.7071;
+      pfVar3[2] = fVar18 + fVar20 * 0.7071;
+      pfVar3[3] = fVar23 + fVar25 * 0.7071;
       pfVar1 = (float *)(lVar6 + uVar28 * 4);
-      *pfVar1 = fVar9 + fVar10 * SCALE_45_DEGREE;
-      pfVar1[1] = fVar14 + fVar15 * SCALE_45_DEGREE;
-      pfVar1[2] = fVar19 + fVar20 * SCALE_45_DEGREE;
-      pfVar1[3] = fVar24 + fVar25 * SCALE_45_DEGREE;
+      *pfVar1 = fVar9 + fVar10 * 0.7071;
+      pfVar1[1] = fVar14 + fVar15 * 0.7071;
+      pfVar1[2] = fVar19 + fVar20 * 0.7071;
+      pfVar1[3] = fVar24 + fVar25 * 0.7071;
       puVar2 = (undefined4 *)(lVar8 + uVar28 * 4);
       *puVar2 = uVar11;
       puVar2[1] = fVar16;
@@ -643,17 +563,14 @@ void FUN_1807d9f50(longlong param_1,longlong *param_2,uint param_3)
   return;
 }
 
-/**
- * 参数化45度角变换函数
- * 
- * 此函数执行参数化的45度角变换操作，使用动态缩放系数
- * 对顶点数据进行旋转变换
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807d9f74(longlong param_1,longlong param_2,uint param_3)
 void FUN_1807d9f74(longlong param_1,longlong param_2,uint param_3)
+
 {
   float *pfVar1;
   undefined4 *puVar2;
@@ -745,27 +662,26 @@ void FUN_1807d9f74(longlong param_1,longlong param_2,uint param_3)
   return;
 }
 
-/**
- * 空函数3
- * 
- * 此函数为空实现，可能用作占位符或未来扩展
- */
+
+
+
+
+
+// 函数: void FUN_1807da056(void)
 void FUN_1807da056(void)
+
 {
   return;
 }
 
-/**
- * 复合45度角变换函数
- * 
- * 此函数执行复合的45度角变换操作，使用1/√2系数
- * 对顶点数据进行复杂的旋转变换
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针数组
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807da060(longlong param_1,longlong *param_2,uint param_3)
 void FUN_1807da060(longlong param_1,longlong *param_2,uint param_3)
+
 {
   float *pfVar1;
   float *pfVar2;
@@ -826,31 +742,28 @@ void FUN_1807da060(longlong param_1,longlong *param_2,uint param_3)
       uVar4 = uVar25 * 4;
       uVar25 = uVar25 + 1;
       pfVar3 = (float *)(lVar5 + (ulonglong)uVar4 * 4);
-      *pfVar3 = (*pfVar2 + fVar8) * SCALE_45_DEGREE + *pfVar1;
-      pfVar3[1] = (fVar13 + fVar12) * SCALE_45_DEGREE + fVar10;
-      pfVar3[2] = (fVar18 + fVar17) * SCALE_45_DEGREE + fVar15;
-      pfVar3[3] = (fVar23 + fVar22) * SCALE_45_DEGREE + fVar20;
+      *pfVar3 = (*pfVar2 + fVar8) * 0.7071 + *pfVar1;
+      pfVar3[1] = (fVar13 + fVar12) * 0.7071 + fVar10;
+      pfVar3[2] = (fVar18 + fVar17) * 0.7071 + fVar15;
+      pfVar3[3] = (fVar23 + fVar22) * 0.7071 + fVar20;
       pfVar1 = (float *)(lVar6 + (ulonglong)uVar4 * 4);
-      *pfVar1 = (fVar9 + fVar8) * SCALE_45_DEGREE + fVar7;
-      pfVar1[1] = (fVar14 + fVar12) * SCALE_45_DEGREE + fVar11;
-      pfVar1[2] = (fVar19 + fVar17) * SCALE_45_DEGREE + fVar16;
-      pfVar1[3] = (fVar24 + fVar22) * SCALE_45_DEGREE + fVar21;
+      *pfVar1 = (fVar9 + fVar8) * 0.7071 + fVar7;
+      pfVar1[1] = (fVar14 + fVar12) * 0.7071 + fVar11;
+      pfVar1[2] = (fVar19 + fVar17) * 0.7071 + fVar16;
+      pfVar1[3] = (fVar24 + fVar22) * 0.7071 + fVar21;
     } while (uVar25 < param_3 >> 2);
   }
   return;
 }
 
-/**
- * 参数化复合45度角变换函数
- * 
- * 此函数执行参数化的复合45度角变换操作，使用动态缩放系数
- * 对顶点数据进行复杂的旋转变换
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807da084(longlong param_1,longlong param_2,uint param_3)
 void FUN_1807da084(longlong param_1,longlong param_2,uint param_3)
+
 {
   float *pfVar1;
   float *pfVar2;
@@ -925,27 +838,26 @@ void FUN_1807da084(longlong param_1,longlong param_2,uint param_3)
   return;
 }
 
-/**
- * 空函数4
- * 
- * 此函数为空实现，可能用作占位符或未来扩展
- */
+
+
+
+
+
+// 函数: void FUN_1807da150(void)
 void FUN_1807da150(void)
+
 {
   return;
 }
 
-/**
- * 权重复合变换函数
- * 
- * 此函数执行权重复合变换操作，使用多个权重系数
- * 对顶点数据进行复杂的复合变换
- * 
- * @param vertexData 顶点数据缓冲区指针
- * @param matrixData 矩阵数据指针数组
- * @param vertexCount 顶点数量
- */
+
+
+
+
+
+// 函数: void FUN_1807da160(longlong param_1,longlong *param_2,uint param_3)
 void FUN_1807da160(longlong param_1,longlong *param_2,uint param_3)
+
 {
   float *pfVar1;
   float *pfVar2;
@@ -1042,15 +954,15 @@ void FUN_1807da160(longlong param_1,longlong *param_2,uint param_3)
       uVar41 = (ulonglong)(uVar42 * 4);
       uVar42 = uVar42 + 1;
       pfVar2 = (float *)(lVar3 + uVar41 * 4);
-      *pfVar2 = *pfVar1 + fVar12 * WEIGHT_3673;
-      pfVar2[1] = fVar16 + fVar20 * WEIGHT_3673;
-      pfVar2[2] = fVar24 + fVar28 * WEIGHT_3673;
-      pfVar2[3] = fVar32 + fVar36 * WEIGHT_3673;
+      *pfVar2 = *pfVar1 + fVar12 * 0.3673;
+      pfVar2[1] = fVar16 + fVar20 * 0.3673;
+      pfVar2[2] = fVar24 + fVar28 * 0.3673;
+      pfVar2[3] = fVar32 + fVar36 * 0.3673;
       pfVar1 = (float *)(lVar4 + uVar41 * 4);
-      *pfVar1 = fVar9 + fVar13 * WEIGHT_3673;
-      pfVar1[1] = fVar17 + fVar21 * WEIGHT_3673;
-      pfVar1[2] = fVar25 + fVar29 * WEIGHT_3673;
-      pfVar1[3] = fVar33 + fVar37 * WEIGHT_3673;
+      *pfVar1 = fVar9 + fVar13 * 0.3673;
+      pfVar1[1] = fVar17 + fVar21 * 0.3673;
+      pfVar1[2] = fVar25 + fVar29 * 0.3673;
+      pfVar1[3] = fVar33 + fVar37 * 0.3673;
       pfVar1 = (float *)(lVar7 + uVar41 * 4);
       *pfVar1 = fVar10;
       pfVar1[1] = fVar18;
@@ -1062,16 +974,22 @@ void FUN_1807da160(longlong param_1,longlong *param_2,uint param_3)
       pfVar1[2] = fVar27;
       pfVar1[3] = fVar35;
       pfVar1 = (float *)(lVar5 + uVar41 * 4);
-      *pfVar1 = fVar15 * WEIGHT_46 + fVar14 * WEIGHT_70 + fVar12 * WEIGHT_93;
-      pfVar1[1] = fVar23 * WEIGHT_46 + fVar22 * WEIGHT_70 + fVar20 * WEIGHT_93;
-      pfVar1[2] = fVar31 * WEIGHT_46 + fVar30 * WEIGHT_70 + fVar28 * WEIGHT_93;
-      pfVar1[3] = fVar39 * WEIGHT_46 + fVar38 * WEIGHT_70 + fVar36 * WEIGHT_93;
+      *pfVar1 = fVar15 * 0.46 + fVar14 * 0.7 + fVar12 * 0.93;
+      pfVar1[1] = fVar23 * 0.46 + fVar22 * 0.7 + fVar20 * 0.93;
+      pfVar1[2] = fVar31 * 0.46 + fVar30 * 0.7 + fVar28 * 0.93;
+      pfVar1[3] = fVar39 * 0.46 + fVar38 * 0.7 + fVar36 * 0.93;
       pfVar1 = (float *)(lVar8 + uVar41 * 4);
-      *pfVar1 = fVar14 * WEIGHT_46 + fVar15 * WEIGHT_70 + fVar13 * WEIGHT_93;
-      pfVar1[1] = fVar22 * WEIGHT_46 + fVar23 * WEIGHT_70 + fVar21 * WEIGHT_93;
-      pfVar1[2] = fVar30 * WEIGHT_46 + fVar31 * WEIGHT_70 + fVar29 * WEIGHT_93;
-      pfVar1[3] = fVar38 * WEIGHT_46 + fVar39 * WEIGHT_70 + fVar37 * WEIGHT_93;
+      *pfVar1 = fVar14 * 0.46 + fVar15 * 0.7 + fVar13 * 0.93;
+      pfVar1[1] = fVar22 * 0.46 + fVar23 * 0.7 + fVar21 * 0.93;
+      pfVar1[2] = fVar30 * 0.46 + fVar31 * 0.7 + fVar29 * 0.93;
+      pfVar1[3] = fVar38 * 0.46 + fVar39 * 0.7 + fVar37 * 0.93;
     } while (uVar42 < param_3 >> 2);
   }
   return;
 }
+
+
+
+
+
+
