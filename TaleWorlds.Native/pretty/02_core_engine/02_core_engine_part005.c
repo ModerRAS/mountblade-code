@@ -1329,50 +1329,61 @@ void initialize_memory_management_registry(void)
 
 
 
-// 函数: void FUN_180037e80(void)
-void FUN_180037e80(void)
-
+/**
+ * 初始化线程管理系统注册表项
+ * 注册ID: 180037e80
+ * 功能：设置线程管理相关的参数和回调函数
+ */
+void initialize_thread_management_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  void *thread_callback;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_180073930;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  thread_callback = thread_management_callback;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &THREAD_MANAGEMENT_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&THREAD_MANAGEMENT_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x421c3cedd07d816d;
-  puVar7[7] = 0xbec25de793b7afa6;
-  puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x421c3cedd07d816d;  // 线程管理标识符
+  previous_node[7] = 0xbec25de793b7afa6;  // 线程管理版本信息
+  previous_node[8] = &thread_management_vtable;  // 虚函数表指针
+  previous_node[9] = 0;  // 保留字段
+  previous_node[10] = thread_callback;  // 线程管理回调函数
   return;
 }
 
@@ -1380,50 +1391,61 @@ void FUN_180037e80(void)
 
 
 
-// 函数: void FUN_180037f80(void)
-void FUN_180037f80(void)
-
+/**
+ * 初始化同步管理系统注册表项
+ * 注册ID: 180037f80
+ * 功能：设置同步管理相关的参数和回调函数
+ */
+void initialize_sync_management_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  undefined8 callback_parameter;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  callback_parameter = 0;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &SYNC_MANAGEMENT_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&SYNC_MANAGEMENT_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x4c22bb0c326587ce;
-  puVar7[7] = 0x5e3cf00ce2978287;
-  puVar7[8] = &UNK_18098c898;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x4c22bb0c326587ce;  // 同步管理标识符
+  previous_node[7] = 0x5e3cf00ce2978287;  // 同步管理版本信息
+  previous_node[8] = &sync_management_vtable;  // 虚函数表指针
+  previous_node[9] = 1;  // 同步管理配置参数
+  previous_node[10] = callback_parameter;  // 回调参数
   return;
 }
 
@@ -1431,50 +1453,61 @@ void FUN_180037f80(void)
 
 
 
-// 函数: void FUN_180038080(void)
-void FUN_180038080(void)
-
+/**
+ * 初始化网络同步系统注册表项
+ * 注册ID: 180038080
+ * 功能：设置网络同步相关的参数和回调函数
+ */
+void initialize_network_sync_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  void *network_callback;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  network_callback = network_sync_callback;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &NETWORK_SYNC_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&NETWORK_SYNC_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x45425dc186a5d575;
-  puVar7[7] = 0xfab48faa65382fa5;
-  puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x45425dc186a5d575;  // 网络同步标识符
+  previous_node[7] = 0xfab48faa65382fa5;  // 网络同步版本信息
+  previous_node[8] = &network_sync_vtable;  // 虚函数表指针
+  previous_node[9] = 0;  // 保留字段
+  previous_node[10] = network_callback;  // 网络同步回调函数
   return;
 }
 

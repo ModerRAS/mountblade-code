@@ -178,129 +178,167 @@ FINALIZE_STRING:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: undefined8 ProcessStringMatchesWithCallbacks(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 功能: 处理字符串匹配并执行相应的回调函数
+// 参数: param_1 - 上下文指针, param_2 - 未知参数, param_3 - 字符串数组, param_4 - 回调参数
+// 返回值: 处理结果状态码
 undefined8
-FUN_180054120(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ProcessStringMatchesWithCallbacks(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
-  char cVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  char *pcVar7;
-  uint uVar8;
-  int *piVar10;
-  ulonglong uVar11;
-  undefined8 uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  undefined8 *puVar16;
-  ulonglong uVar17;
-  undefined *puStack_70;
-  undefined1 *puStack_68;
-  uint uStack_60;
-  undefined8 uStack_58;
-  undefined8 *puStack_50;
-  undefined8 *puStack_48;
-  undefined8 uStack_40;
-  undefined4 uStack_38;
-  ulonglong uVar9;
+  char char1;
+  char char2;
+  undefined8 *current_entry;
+  undefined8 *array_start;
+  undefined8 *array_end;
+  longlong string_hash;
+  char *keyword_ptr;
+  uint processed_chars;
+  int *string_info_ptr;
+  ulonglong entry_count;
+  undefined8 result;
+  ulonglong current_index;
+  ulonglong char_index;
+  longlong length_diff;
+  undefined8 *keyword_table_ptr;
+  ulonglong loop_counter;
+  undefined *string_stream_ptr;
+  undefined1 *string_buffer;
+  uint string_length;
+  undefined8 string_hash_result;
+  undefined8 *callback_array_start;
+  undefined8 *callback_array_end;
+  undefined8 callback_context;
+  undefined4 callback_flags;
+  ulonglong temp_index;
   
-  puStack_50 = (undefined8 *)0x0;
-  puStack_48 = (undefined8 *)0x0;
-  uVar17 = 0;
-  uStack_40 = 0;
-  uStack_38 = 3;
-  FUN_180052200(_DAT_180c86870,&puStack_50,param_3,param_4,0xfffffffffffffffe);
-  puVar5 = puStack_48;
-  puVar4 = puStack_50;
-  uVar11 = (longlong)puStack_48 - (longlong)puStack_50 >> 5;
-  puVar3 = puVar4;
-  if (uVar11 == 0) {
-LAB_180054302:
-    uVar12 = 0;
-joined_r0x00018005430b:
-    for (; puVar3 != puVar5; puVar3 = puVar3 + 4) {
-      (**(code **)*puVar3)(puVar3,0);
+  // 初始化回调数组
+  callback_array_start = (undefined8 *)0x0;
+  callback_array_end = (undefined8 *)0x0;
+  loop_counter = 0;
+  callback_context = 0;
+  callback_flags = 3;
+  
+  // 调用初始化函数处理字符串数组
+  InitializeStringProcessor(GLOBAL_CONTEXT_PTR, &callback_array_start, param_3, param_4, 0xfffffffffffffffe);
+  
+  array_end = callback_array_end;
+  array_start = callback_array_start;
+  entry_count = (longlong)callback_array_end - (longlong)callback_array_start >> 5;
+  current_entry = array_start;
+  
+  // 如果没有条目需要处理，直接返回
+  if (entry_count == 0) {
+PROCESS_CALLBACKS:
+    result = 0;
+EXECUTE_CALLBACKS:
+    // 执行所有回调函数
+    for (; current_entry != array_end; current_entry = current_entry + 4) {
+      (**(code **)*current_entry)(current_entry, 0);
     }
-    if (puVar4 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(puVar4);
+    
+    // 清理回调数组内存
+    if (array_start != (undefined8 *)0x0) {
+      // WARNING: Subroutine does not return
+      FreeMemory(array_start);
     }
-    return uVar12;
+    return result;
   }
-  piVar10 = (int *)(puStack_50 + 2);
-  uVar13 = uVar17;
-LAB_18005419d:
-  puStack_70 = &UNK_180a3c3e0;
-  uStack_58 = 0;
-  puStack_68 = (undefined1 *)0x0;
-  uStack_60 = 0;
-  FUN_1806277c0(&puStack_70,*piVar10);
-  if (*piVar10 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_68,*(undefined8 *)(piVar10 + -2),*piVar10 + 1);
+  
+  // 处理每个字符串条目
+  string_info_ptr = (int *)(callback_array_start + 2);
+  current_index = loop_counter;
+  
+PROCESS_STRING_ENTRY:
+  // 初始化字符串处理流
+  string_stream_ptr = &GLOBAL_STRING_STREAM;
+  string_hash_result = 0;
+  string_buffer = (undefined1 *)0x0;
+  string_length = 0;
+  
+  // 分配字符串缓冲区
+  AllocateStringBuffer(&string_stream_ptr, *string_info_ptr);
+  
+  // 复制字符串数据到缓冲区
+  if (*string_info_ptr != 0) {
+    // WARNING: Subroutine does not return
+    memcpy(string_buffer, *(undefined8 *)(string_info_ptr + -2), *string_info_ptr + 1);
   }
-  if (*(longlong *)(piVar10 + -2) != 0) {
-    uStack_60 = 0;
-    if (puStack_68 != (undefined1 *)0x0) {
-      *puStack_68 = 0;
+  
+  // 初始化字符串
+  if (*(longlong *)(string_info_ptr + -2) != 0) {
+    string_length = 0;
+    if (string_buffer != (undefined1 *)0x0) {
+      *string_buffer = 0;
     }
-    uStack_58 = uStack_58 & 0xffffffff;
+    string_hash_result = string_hash_result & 0xffffffff;
   }
-  uVar9 = uVar17;
-  uVar14 = uVar17;
-  if (uStack_60 != 0) {
+  
+  // 处理字符串中的特殊字符（转换控制字符为空格）
+  temp_index = loop_counter;
+  char_index = loop_counter;
+  if (string_length != 0) {
     do {
-      if ((byte)(puStack_68[uVar14] + 0xbf) < 0x1a) {
-        puStack_68[uVar14] = puStack_68[uVar14] + ' ';
+      if ((byte)(string_buffer[char_index] + 0xbf) < 0x1a) {
+        string_buffer[char_index] = string_buffer[char_index] + ' ';
       }
-      uVar8 = (int)uVar9 + 1;
-      uVar9 = (ulonglong)uVar8;
-      uVar14 = uVar14 + 1;
-    } while (uVar8 < uStack_60);
+      processed_chars = (int)temp_index + 1;
+      temp_index = (ulonglong)processed_chars;
+      char_index = char_index + 1;
+    } while (processed_chars < string_length);
   }
-  lVar6 = func_0x0001800464d0(&puStack_70);
-  puVar16 = (undefined8 *)&UNK_1809fde40;
+  
+  // 计算字符串哈希值
+  string_hash = CalculateStringHash(&string_stream_ptr);
+  
+  // 在关键字表中查找匹配项
+  keyword_table_ptr = (undefined8 *)&KEYWORD_TABLE_START;
   do {
-    pcVar7 = (char *)*puVar16;
-    lVar15 = lVar6 - (longlong)pcVar7;
+    keyword_ptr = (char *)*keyword_table_ptr;
+    length_diff = string_hash - (longlong)keyword_ptr;
+    
+    // 比较字符串是否匹配
     do {
-      cVar1 = *pcVar7;
-      cVar2 = pcVar7[lVar15];
-      if (cVar1 != cVar2) break;
-      pcVar7 = pcVar7 + 1;
-    } while (cVar2 != '\0');
-    if (cVar1 == cVar2) break;
-    puVar16 = puVar16 + 1;
-    if (0x1809fde87 < (longlong)puVar16) {
-      puStack_70 = &UNK_180a3c3e0;
-      if (puStack_68 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+      char1 = *keyword_ptr;
+      char2 = keyword_ptr[length_diff];
+      if (char1 != char2) break;
+      keyword_ptr = keyword_ptr + 1;
+    } while (char2 != '\0');
+    
+    if (char1 == char2) break;  // 找到匹配项
+    
+    keyword_table_ptr = keyword_table_ptr + 1;
+    if (KEYWORD_TABLE_END < (longlong)keyword_table_ptr) {
+      // 未找到匹配项，清理并跳过
+      string_stream_ptr = &GLOBAL_STRING_STREAM;
+      if (string_buffer != (undefined1 *)0x0) {
+        // WARNING: Subroutine does not return
+        FreeMemory();
       }
-      puStack_68 = (undefined1 *)0x0;
-      uStack_58 = (ulonglong)uStack_58._4_4_ << 0x20;
-      puStack_70 = &UNK_18098bcb0;
-      uVar12 = 1;
-      goto joined_r0x00018005430b;
+      string_buffer = (undefined1 *)0x0;
+      string_hash_result = (ulonglong)string_hash_result._4_4_ << 0x20;
+      string_stream_ptr = &GLOBAL_STRING_STREAM;
+      result = 1;
+      goto EXECUTE_CALLBACKS;
     }
   } while( true );
-  puStack_70 = &UNK_180a3c3e0;
-  if (puStack_68 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 找到匹配项，清理缓冲区
+  string_stream_ptr = &GLOBAL_STRING_STREAM;
+  if (string_buffer != (undefined1 *)0x0) {
+    // WARNING: Subroutine does not return
+    FreeMemory();
   }
-  puStack_68 = (undefined1 *)0x0;
-  uStack_58 = (ulonglong)uStack_58._4_4_ << 0x20;
-  puStack_70 = &UNK_18098bcb0;
-  uVar8 = (int)uVar13 + 1;
-  uVar13 = (ulonglong)uVar8;
-  piVar10 = piVar10 + 8;
-  if (uVar11 <= (ulonglong)(longlong)(int)uVar8) goto LAB_180054302;
-  goto LAB_18005419d;
+  string_buffer = (undefined1 *)0x0;
+  string_hash_result = (ulonglong)string_hash_result._4_4_ << 0x20;
+  string_stream_ptr = &GLOBAL_STRING_STREAM;
+  
+  // 移动到下一个条目
+  processed_chars = (int)current_index + 1;
+  current_index = (ulonglong)processed_chars;
+  string_info_ptr = string_info_ptr + 8;
+  if (entry_count <= (ulonglong)(longlong)(int)processed_chars) goto PROCESS_CALLBACKS;
+  goto PROCESS_STRING_ENTRY;
 }
 
 
@@ -309,8 +347,10 @@ LAB_18005419d:
 
 
 
-// 函数: void FUN_180054360(longlong *param_1,longlong param_2)
-void FUN_180054360(longlong *param_1,longlong param_2)
+// 函数: void CreateAndInitializeGameObject(longlong *param_1,longlong param_2)
+// 功能: 创建并初始化游戏对象，设置相关属性和回调
+// 参数: param_1 - 游戏上下文指针数组, param_2 - 对象配置参数
+void CreateAndInitializeGameObject(longlong *param_1,longlong param_2)
 
 {
   uint uVar1;

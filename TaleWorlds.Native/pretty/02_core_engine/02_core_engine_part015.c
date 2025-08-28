@@ -2,37 +2,40 @@
 
 // 02_core_engine_part015.c - 23 个函数
 
-// 函数: void FUN_180055e60(longlong param_1)
-void FUN_180055e60(longlong param_1)
+// 函数：清理对象数组
+// 原始函数名：FUN_180055e60
+// 功能：遍历对象数组，调用析构函数并清理内存
+void cleanup_object_array(longlong object_array_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong *object_array;      // 对象数组指针
+  longlong object_item;         // 单个对象项
+  ulonglong array_size;         // 数组大小
+  ulonglong index;              // 当前索引
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  array_size = *(ulonglong *)(object_array_ptr + 0x10);
+  object_array = *(longlong *)(object_array_ptr + 8);
+  index = 0;
+  if (array_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      object_item = *(longlong *)(object_array + index * 8);
+      if (object_item != 0) {
+        if (*(longlong **)(object_item + 0x10) != (longlong *)0x0) {
+          // 调用对象的析构函数
+          (**(code **)(**(longlong **)(object_item + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        cleanup_object_memory(object_item);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(object_array + index * 8) = 0;
+      index = index + 1;
+    } while (index < array_size);
+    array_size = *(ulonglong *)(object_array_ptr + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+  *(undefined8 *)(object_array_ptr + 0x18) = 0;
+  if ((1 < array_size) && (*(longlong *)(object_array_ptr + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    cleanup_object_memory();
   }
   return;
 }

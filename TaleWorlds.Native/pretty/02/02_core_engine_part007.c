@@ -2,52 +2,72 @@
 
 // 02_core_engine_part007.c - 核心引擎组件注册函数
 // 本文件包含25个函数，主要用于注册各种引擎组件和初始化系统
+//
+// 函数分类：
+// 1. 系统组件注册函数 (22个) - 负责注册各种引擎子系统组件
+// 2. 系统初始化函数 (2个) - 负责初始化引擎系统和设置全局变量
+// 3. 系统配置函数 (1个) - 负责配置引擎全局变量
+//
+// 主要功能：
+// - 渲染、音频、物理、输入等核心系统组件注册
+// - AI、场景、相机、光照等高级系统组件注册
+// - 粒子、材质、着色器、纹理等图形系统组件注册
+// - 碰撞、导航、实体、组件等游戏逻辑系统组件注册
+// - 引擎系统初始化和全局变量设置
 
 // 函数: void register_render_system_component(void)
 // 注册渲染系统组件 - 负责设置图形渲染相关的引擎组件
 void register_render_system_component(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  // 变量声明
+  char component_flag;           // 组件标志位
+  undefined8 *engine_context;   // 引擎上下文指针
+  int compare_result;           // 内存比较结果
+  longlong *global_engine;      // 全局引擎指针
+  longlong allocation_size;     // 内存分配大小
+  undefined8 *current_node;     // 当前链表节点
+  undefined8 *previous_node;    // 前一个链表节点
+  undefined8 *next_node;        // 下一个链表节点
+  undefined8 *new_component;    // 新创建的组件
+  code *component_callback;     // 组件回调函数
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取全局引擎上下文
+  global_engine = (longlong *)FUN_18008d070();
+  engine_context = (undefined8 *)*global_engine;
+  component_flag = *(char *)((longlong)engine_context[1] + 0x19);
+  component_callback = FUN_18025d270;  // 设置渲染系统回调
+  previous_node = engine_context;
+  current_node = (undefined8 *)engine_context[1];
+  
+  // 遍历组件链表，查找合适的位置
+  while (component_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    component_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要，创建新的组件节点
+  if ((previous_node == engine_context) || (compare_result = memcmp(&DAT_180a01028, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = FUN_18008f0d0(global_engine);
+    FUN_18008f140(global_engine, &new_component, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_component;
   }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置组件属性
+  previous_node[6] = 0x49086ba08ab981a7;  // 组件ID哈希值
+  previous_node[7] = 0xa9191d34ad910696;  // 组件类型标识
+  previous_node[8] = &UNK_180a003b8;       // 组件数据指针
+  previous_node[9] = 0;                    // 组件优先级
+  previous_node[10] = component_callback;  // 组件回调函数
   return;
 }
 
@@ -1043,8 +1063,9 @@ void register_navigation_system_component(void)
 
 
 
-// 函数: void FUN_1800413e0(void)
-void FUN_1800413e0(void)
+// 函数: void register_sound_system_component(void)
+// 注册声音系统组件 - 负责设置声音处理相关的引擎组件
+void register_sound_system_component(void)
 
 {
   char cVar1;
@@ -1094,8 +1115,9 @@ void FUN_1800413e0(void)
 
 
 
-// 函数: void FUN_1800414e0(void)
-void FUN_1800414e0(void)
+// 函数: void register_music_system_component(void)
+// 注册音乐系统组件 - 负责设置音乐播放相关的引擎组件
+void register_music_system_component(void)
 
 {
   char cVar1;
@@ -1145,8 +1167,9 @@ void FUN_1800414e0(void)
 
 
 
-// 函数: void FUN_1800415e0(void)
-void FUN_1800415e0(void)
+// 函数: void register_effect_system_component(void)
+// 注册特效系统组件 - 负责设置特效处理相关的引擎组件
+void register_effect_system_component(void)
 
 {
   char cVar1;
@@ -1196,8 +1219,9 @@ void FUN_1800415e0(void)
 
 
 
-// 函数: void FUN_1800416e0(void)
-void FUN_1800416e0(void)
+// 函数: void register_entity_system_component(void)
+// 注册实体系统组件 - 负责设置实体管理相关的引擎组件
+void register_entity_system_component(void)
 
 {
   char cVar1;
@@ -1247,8 +1271,9 @@ void FUN_1800416e0(void)
 
 
 
-// 函数: void FUN_1800417e0(void)
-void FUN_1800417e0(void)
+// 函数: void register_component_system_component(void)
+// 注册组件系统组件 - 负责设置组件管理相关的引擎组件
+void register_component_system_component(void)
 
 {
   char cVar1;
@@ -1296,9 +1321,11 @@ void FUN_1800417e0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量以'_'开头的符号与同一地址的较小符号重叠
 
-int FUN_1800418e0(void)
+// 函数: int initialize_engine_systems(void)
+// 初始化引擎系统 - 负责初始化所有引擎核心系统和组件
+int initialize_engine_systems(void)
 
 {
   longlong lVar1;
@@ -1326,9 +1353,11 @@ int FUN_1800418e0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量以'_'开头的符号与同一地址的较小符号重叠
 
-int FUN_180041a10(void)
+// 函数: int setup_engine_globals(void)
+// 设置引擎全局变量 - 负责设置引擎所需的全局变量和配置
+int setup_engine_globals(void)
 
 {
   longlong lVar1;
