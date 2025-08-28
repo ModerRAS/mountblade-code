@@ -68,10 +68,10 @@ char DAT_180c82864;              /* 线程系统状态 */
  * 全局对象实例
  * 存储系统中重要的全局对象和单例
  */
-undefined UNK_1809fcc28;         /* 全局回调管理器 */
-undefined UNK_180a3def0;         /* 全局字符串处理器 */
-undefined UNK_180a3e3d8;         /* 全局路径管理器 */
-undefined UNK_180a3e3f0;         /* 全局配置管理器 */
+uint8_t UNK_1809fcc28;         /* 全局回调管理器 */
+uint8_t UNK_180a3def0;         /* 全局字符串处理器 */
+uint8_t UNK_180a3e3d8;         /* 全局路径管理器 */
+uint8_t UNK_180a3e3f0;         /* 全局配置管理器 */
 
 /*=============================================================================
  * 系统初始化函数
@@ -906,7 +906,7 @@ void SystemEnvironmentInitializer(void)
     void *puStack_188;
     void *puStack_180;
     int32_t uStack_178;
-    undefined auStack_170 [32];
+    uint8_t auStack_170 [32];
     longlong **applStack_150 [3];
     int8_t auStack_138 [272];
     ulonglong uStack_28;

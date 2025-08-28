@@ -91,7 +91,7 @@ void FUN_1801c93c0(void)
   void *puStack_2f8;
   void *puStack_2f0;
   int iStack_2e8;
-  undefined auStack_2e0 [16];
+  uint8_t auStack_2e0 [16];
   void *puStack_2d0;
   int8_t *puStack_2c8;
   int32_t uStack_2c0;

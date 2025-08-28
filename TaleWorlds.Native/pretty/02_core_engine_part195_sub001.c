@@ -36,7 +36,7 @@ void FUN_1801781f0(uint64_t param_1,uint64_t *param_2,int param_3)
   void *puStack_8e8;
   void *puStack_8e0;
   int iStack_8d8;
-  undefined auStack_8d0 [136];
+  uint8_t auStack_8d0 [136];
   int8_t auStack_848 [2048];
   ulonglong uStack_48;
   

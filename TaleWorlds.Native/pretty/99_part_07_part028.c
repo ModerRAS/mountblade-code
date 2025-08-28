@@ -244,7 +244,7 @@ void FUN_1804b6de0(longlong param_1,longlong param_2)
   void *puStack_78;
   void *puStack_70;
   int iStack_68;
-  undefined auStack_60 [32];
+  uint8_t auStack_60 [32];
   ulonglong uStack_40;
   
   uStack_80 = 0xfffffffffffffffe;

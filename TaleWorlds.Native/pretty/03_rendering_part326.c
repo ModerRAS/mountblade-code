@@ -53,10 +53,10 @@ extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
 extern char DAT_180c82860;           /* 渲染系统标志位 */
 extern void *DAT_18098bc73;     /* 渲染系统默认数据指针 */
 extern uint64_t UNK_18098bc00;     /* 渲染系统未知数据 */
-extern undefined UNK_1809fcc28;      /* 渲染系统配置数据 */
-extern undefined UNK_1809fcc58;      /* 渲染系统扩展配置数据 */
-extern undefined UNK_18098bcb0;     /* 渲染系统缓冲区数据 */
-extern undefined UNK_1809fd0a0;     /* 渲染系统格式化数据 */
+extern uint8_t UNK_1809fcc28;      /* 渲染系统配置数据 */
+extern uint8_t UNK_1809fcc58;      /* 渲染系统扩展配置数据 */
+extern uint8_t UNK_18098bcb0;     /* 渲染系统缓冲区数据 */
+extern uint8_t UNK_1809fd0a0;     /* 渲染系统格式化数据 */
 
 /*=============================================================================
  * 渲染系统参数设置处理器1

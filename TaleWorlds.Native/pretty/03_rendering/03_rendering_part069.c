@@ -57,7 +57,7 @@ void rendering_system_initialize_context(uint64_t *context, int context_id)
     void *stack_ptr3;
     void *stack_ptr4;
     int32_t stack_value2;
-    undefined stack_buffer2[32];
+    uint8_t stack_buffer2[32];
     void *stack_ptr5;
     int8_t *stack_ptr6;
     int32_t stack_value3;

@@ -18,7 +18,7 @@ void FUN_180383870(longlong param_1,longlong param_2)
   void *puStack_e8;
   void *puStack_e0;
   uint uStack_d8;
-  undefined auStack_d0 [136];
+  uint8_t auStack_d0 [136];
   ulonglong uStack_48;
   
   uStack_f0 = 0xfffffffffffffffe;

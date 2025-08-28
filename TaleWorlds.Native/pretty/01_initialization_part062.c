@@ -873,15 +873,15 @@ void FUN_18007fd60(uint64_t param_1,longlong param_2,uint64_t param_3,longlong p
 
 
 
-// 函数: undefined FUN_18004b6f0;
-undefined FUN_18004b6f0;
+// 函数: uint8_t FUN_18004b6f0;
+uint8_t FUN_18004b6f0;
 
 
-// 函数: undefined FUN_18006f4c0;
-undefined FUN_18006f4c0;
+// 函数: uint8_t FUN_18006f4c0;
+uint8_t FUN_18006f4c0;
 
 
-// 函数: undefined FUN_18004c090;
-undefined FUN_18004c090;
+// 函数: uint8_t FUN_18004c090;
+uint8_t FUN_18004c090;
 
 

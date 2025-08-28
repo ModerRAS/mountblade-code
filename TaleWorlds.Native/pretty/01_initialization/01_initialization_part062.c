@@ -978,18 +978,18 @@ void process_data_with_buffers(uint64_t param_1, longlong param_2, uint64_t para
 
 
 
-// 函数: undefined external_function_1;
+// 函数: uint8_t external_function_1;
 // 外部函数1声明 - 可能是库函数或系统调用
-undefined external_function_1;
+uint8_t external_function_1;
 
 
 
-// 函数: undefined external_function_2;
+// 函数: uint8_t external_function_2;
 // 外部函数2声明 - 可能是库函数或系统调用
-undefined external_function_2;
+uint8_t external_function_2;
 
 
 
-// 函数: undefined external_function_3;
+// 函数: uint8_t external_function_3;
 // 外部函数3声明 - 可能是库函数或系统调用
-undefined external_function_3;
+uint8_t external_function_3;

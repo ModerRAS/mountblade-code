@@ -517,7 +517,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   void *puStack_c8;
   void *puStack_c0;
   int32_t uStack_b8;
-  undefined auStack_b0 [40];
+  uint8_t auStack_b0 [40];
   int32_t auStack_88 [14];
   ulonglong uStack_50;
   ulonglong uStack_38;

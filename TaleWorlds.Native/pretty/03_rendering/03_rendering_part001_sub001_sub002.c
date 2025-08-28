@@ -3,20 +3,20 @@
 // 03_rendering_part001_sub001_sub002.c - 渲染系统初始化相关函数
 
 // 渲染初始化函数1
-undefined render_initialize_stage1;
-undefined RENDER_STAGE1_CONFIG_DATA;
+uint8_t render_initialize_stage1;
+uint8_t RENDER_STAGE1_CONFIG_DATA;
 
 // 渲染初始化函数2  
-undefined render_initialize_stage2;
-undefined RENDER_STAGE2_CONFIG_DATA;
+uint8_t render_initialize_stage2;
+uint8_t RENDER_STAGE2_CONFIG_DATA;
 
 // 渲染初始化函数3
-undefined render_initialize_stage3;
-undefined RENDER_STAGE3_CONFIG_DATA;
+uint8_t render_initialize_stage3;
+uint8_t RENDER_STAGE3_CONFIG_DATA;
 
 // 渲染初始化函数4
-undefined render_initialize_stage4;
-undefined RENDER_STAGE4_CONFIG_DATA;
+uint8_t render_initialize_stage4;
+uint8_t RENDER_STAGE4_CONFIG_DATA;
 
 // 函数功能说明:
 // render_initialize_stage1 - 初始化渲染系统第一阶段，设置基础渲染参数

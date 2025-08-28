@@ -2,734 +2,734 @@
 
 // 03_rendering_part289.c - 66 个函数
 
-// 函数: undefined FUN_18068ee80;
-undefined FUN_18068ee80;
+// 函数: uint8_t FUN_18068ee80;
+uint8_t FUN_18068ee80;
 
 
-// 函数: undefined FUN_18068ef70;
-undefined FUN_18068ef70;
+// 函数: uint8_t FUN_18068ef70;
+uint8_t FUN_18068ef70;
 
 
-// 函数: undefined FUN_18068f060;
-undefined FUN_18068f060;
+// 函数: uint8_t FUN_18068f060;
+uint8_t FUN_18068f060;
 
 
-// 函数: undefined FUN_18068f150;
-undefined FUN_18068f150;
+// 函数: uint8_t FUN_18068f150;
+uint8_t FUN_18068f150;
 
 
-// 函数: undefined FUN_18068f240;
-undefined FUN_18068f240;
+// 函数: uint8_t FUN_18068f240;
+uint8_t FUN_18068f240;
 
 
-// 函数: undefined FUN_18068f330;
-undefined FUN_18068f330;
+// 函数: uint8_t FUN_18068f330;
+uint8_t FUN_18068f330;
 
 
-// 函数: undefined FUN_18068f3a0;
-undefined FUN_18068f3a0;
+// 函数: uint8_t FUN_18068f3a0;
+uint8_t FUN_18068f3a0;
 
 
-// 函数: undefined FUN_18068f410;
-undefined FUN_18068f410;
+// 函数: uint8_t FUN_18068f410;
+uint8_t FUN_18068f410;
 
 
-// 函数: undefined FUN_18068f480;
-undefined FUN_18068f480;
+// 函数: uint8_t FUN_18068f480;
+uint8_t FUN_18068f480;
 
 
-// 函数: undefined FUN_18068f4f0;
-undefined FUN_18068f4f0;
+// 函数: uint8_t FUN_18068f4f0;
+uint8_t FUN_18068f4f0;
 
 
-// 函数: undefined FUN_18068f680;
-undefined FUN_18068f680;
+// 函数: uint8_t FUN_18068f680;
+uint8_t FUN_18068f680;
 
 
-// 函数: undefined FUN_18068f810;
-undefined FUN_18068f810;
+// 函数: uint8_t FUN_18068f810;
+uint8_t FUN_18068f810;
 
 
-// 函数: undefined FUN_18068f9a0;
-undefined FUN_18068f9a0;
+// 函数: uint8_t FUN_18068f9a0;
+uint8_t FUN_18068f9a0;
 
 
-// 函数: undefined FUN_18068fb30;
-undefined FUN_18068fb30;
+// 函数: uint8_t FUN_18068fb30;
+uint8_t FUN_18068fb30;
 
 
-// 函数: undefined FUN_18068fba0;
-undefined FUN_18068fba0;
+// 函数: uint8_t FUN_18068fba0;
+uint8_t FUN_18068fba0;
 
 
-// 函数: undefined FUN_18068fc10;
-undefined FUN_18068fc10;
+// 函数: uint8_t FUN_18068fc10;
+uint8_t FUN_18068fc10;
 
 
-// 函数: undefined FUN_18068fc80;
-undefined FUN_18068fc80;
+// 函数: uint8_t FUN_18068fc80;
+uint8_t FUN_18068fc80;
 
 
-// 函数: undefined FUN_18068fcf0;
-undefined FUN_18068fcf0;
+// 函数: uint8_t FUN_18068fcf0;
+uint8_t FUN_18068fcf0;
 
 
-// 函数: undefined FUN_18068fd60;
-undefined FUN_18068fd60;
+// 函数: uint8_t FUN_18068fd60;
+uint8_t FUN_18068fd60;
 
 
-// 函数: undefined FUN_18068fdd0;
-undefined FUN_18068fdd0;
+// 函数: uint8_t FUN_18068fdd0;
+uint8_t FUN_18068fdd0;
 
 
-// 函数: undefined FUN_18068fe10;
-undefined FUN_18068fe10;
+// 函数: uint8_t FUN_18068fe10;
+uint8_t FUN_18068fe10;
 
 
-// 函数: undefined FUN_18068ff60;
-undefined FUN_18068ff60;
+// 函数: uint8_t FUN_18068ff60;
+uint8_t FUN_18068ff60;
 
 
-// 函数: undefined FUN_180690200;
-undefined FUN_180690200;
+// 函数: uint8_t FUN_180690200;
+uint8_t FUN_180690200;
 
 
-// 函数: undefined FUN_1806903c0;
-undefined FUN_1806903c0;
+// 函数: uint8_t FUN_1806903c0;
+uint8_t FUN_1806903c0;
 
 
-// 函数: undefined FUN_1806905c0;
-undefined FUN_1806905c0;
+// 函数: uint8_t FUN_1806905c0;
+uint8_t FUN_1806905c0;
 
 
-// 函数: undefined FUN_1806917c0;
-undefined FUN_1806917c0;
+// 函数: uint8_t FUN_1806917c0;
+uint8_t FUN_1806917c0;
 
 
-// 函数: undefined FUN_180691db0;
-undefined FUN_180691db0;
+// 函数: uint8_t FUN_180691db0;
+uint8_t FUN_180691db0;
 
 
-// 函数: undefined FUN_180694010;
-undefined FUN_180694010;
+// 函数: uint8_t FUN_180694010;
+uint8_t FUN_180694010;
 
 
-// 函数: undefined FUN_180695530;
-undefined FUN_180695530;
+// 函数: uint8_t FUN_180695530;
+uint8_t FUN_180695530;
 
 
-// 函数: undefined FUN_180695560;
-undefined FUN_180695560;
+// 函数: uint8_t FUN_180695560;
+uint8_t FUN_180695560;
 
 
-// 函数: undefined FUN_180695590;
-undefined FUN_180695590;
+// 函数: uint8_t FUN_180695590;
+uint8_t FUN_180695590;
 
 
-// 函数: undefined FUN_180695600;
-undefined FUN_180695600;
+// 函数: uint8_t FUN_180695600;
+uint8_t FUN_180695600;
 
 
-// 函数: undefined FUN_180695700;
-undefined FUN_180695700;
+// 函数: uint8_t FUN_180695700;
+uint8_t FUN_180695700;
 
 
-// 函数: undefined FUN_180695750;
-undefined FUN_180695750;
+// 函数: uint8_t FUN_180695750;
+uint8_t FUN_180695750;
 
 
-// 函数: undefined FUN_180695820;
-undefined FUN_180695820;
+// 函数: uint8_t FUN_180695820;
+uint8_t FUN_180695820;
 
 
-// 函数: undefined FUN_180695870;
-undefined FUN_180695870;
+// 函数: uint8_t FUN_180695870;
+uint8_t FUN_180695870;
 
 
-// 函数: undefined FUN_1806958c0;
-undefined FUN_1806958c0;
+// 函数: uint8_t FUN_1806958c0;
+uint8_t FUN_1806958c0;
 
 
-// 函数: undefined FUN_180695990;
-undefined FUN_180695990;
+// 函数: uint8_t FUN_180695990;
+uint8_t FUN_180695990;
 
 
-// 函数: undefined FUN_180695ac0;
-undefined FUN_180695ac0;
+// 函数: uint8_t FUN_180695ac0;
+uint8_t FUN_180695ac0;
 
 
-// 函数: undefined FUN_180695bf0;
-undefined FUN_180695bf0;
+// 函数: uint8_t FUN_180695bf0;
+uint8_t FUN_180695bf0;
 
 
-// 函数: undefined FUN_180695f70;
-undefined FUN_180695f70;
+// 函数: uint8_t FUN_180695f70;
+uint8_t FUN_180695f70;
 
 
-// 函数: undefined FUN_1806961a0;
-undefined FUN_1806961a0;
+// 函数: uint8_t FUN_1806961a0;
+uint8_t FUN_1806961a0;
 
 
-// 函数: undefined FUN_180696370;
-undefined FUN_180696370;
+// 函数: uint8_t FUN_180696370;
+uint8_t FUN_180696370;
 
 
-// 函数: undefined FUN_180696540;
-undefined FUN_180696540;
+// 函数: uint8_t FUN_180696540;
+uint8_t FUN_180696540;
 
 
-// 函数: undefined FUN_180696710;
-undefined FUN_180696710;
+// 函数: uint8_t FUN_180696710;
+uint8_t FUN_180696710;
 
 
-// 函数: undefined FUN_1806968e0;
-undefined FUN_1806968e0;
+// 函数: uint8_t FUN_1806968e0;
+uint8_t FUN_1806968e0;
 
 
-// 函数: undefined FUN_180696a60;
-undefined FUN_180696a60;
+// 函数: uint8_t FUN_180696a60;
+uint8_t FUN_180696a60;
 
 
-// 函数: undefined FUN_180696be0;
-undefined FUN_180696be0;
+// 函数: uint8_t FUN_180696be0;
+uint8_t FUN_180696be0;
 
 
-// 函数: undefined FUN_180696d90;
-undefined FUN_180696d90;
+// 函数: uint8_t FUN_180696d90;
+uint8_t FUN_180696d90;
 
 
-// 函数: undefined FUN_180696f40;
-undefined FUN_180696f40;
+// 函数: uint8_t FUN_180696f40;
+uint8_t FUN_180696f40;
 
 
-// 函数: undefined FUN_1806970f0;
-undefined FUN_1806970f0;
+// 函数: uint8_t FUN_1806970f0;
+uint8_t FUN_1806970f0;
 
 
-// 函数: undefined FUN_1806972a0;
-undefined FUN_1806972a0;
+// 函数: uint8_t FUN_1806972a0;
+uint8_t FUN_1806972a0;
 
 
-// 函数: undefined FUN_180697340;
-undefined FUN_180697340;
+// 函数: uint8_t FUN_180697340;
+uint8_t FUN_180697340;
 
 
-// 函数: undefined FUN_1806973c0;
-undefined FUN_1806973c0;
+// 函数: uint8_t FUN_1806973c0;
+uint8_t FUN_1806973c0;
 
 
-// 函数: undefined FUN_180697460;
-undefined FUN_180697460;
+// 函数: uint8_t FUN_180697460;
+uint8_t FUN_180697460;
 
 
-// 函数: undefined FUN_1806974e0;
-undefined FUN_1806974e0;
+// 函数: uint8_t FUN_1806974e0;
+uint8_t FUN_1806974e0;
 
 
-// 函数: undefined FUN_180697580;
-undefined FUN_180697580;
+// 函数: uint8_t FUN_180697580;
+uint8_t FUN_180697580;
 
 
-// 函数: undefined FUN_180697600;
-undefined FUN_180697600;
+// 函数: uint8_t FUN_180697600;
+uint8_t FUN_180697600;
 
 
-// 函数: undefined FUN_180697680;
-undefined FUN_180697680;
+// 函数: uint8_t FUN_180697680;
+uint8_t FUN_180697680;
 
 
-// 函数: undefined FUN_1806976f0;
-undefined FUN_1806976f0;
+// 函数: uint8_t FUN_1806976f0;
+uint8_t FUN_1806976f0;
 
 
-// 函数: undefined FUN_180697770;
-undefined FUN_180697770;
+// 函数: uint8_t FUN_180697770;
+uint8_t FUN_180697770;
 
 
-// 函数: undefined FUN_1806977e0;
-undefined FUN_1806977e0;
+// 函数: uint8_t FUN_1806977e0;
+uint8_t FUN_1806977e0;
 
 
-// 函数: undefined FUN_1806978b0;
-undefined FUN_1806978b0;
+// 函数: uint8_t FUN_1806978b0;
+uint8_t FUN_1806978b0;
 
 
-// 函数: undefined FUN_180697dd0;
-undefined FUN_180697dd0;
-undefined DAT_180c0c1ec;
-undefined DAT_180c0c1e8;
-undefined DAT_180c0c1e0;
-undefined DAT_180c0c200;
-undefined DAT_180c0c1fc;
-undefined DAT_180c0c1f8;
-undefined DAT_180c0c1f0;
-undefined UNK_180946b38;
-undefined UNK_180946b50;
-undefined UNK_180946b70;
-undefined UNK_180946ba0;
-undefined UNK_180946bd8;
+// 函数: uint8_t FUN_180697dd0;
+uint8_t FUN_180697dd0;
+uint8_t DAT_180c0c1ec;
+uint8_t DAT_180c0c1e8;
+uint8_t DAT_180c0c1e0;
+uint8_t DAT_180c0c200;
+uint8_t DAT_180c0c1fc;
+uint8_t DAT_180c0c1f8;
+uint8_t DAT_180c0c1f0;
+uint8_t UNK_180946b38;
+uint8_t UNK_180946b50;
+uint8_t UNK_180946b70;
+uint8_t UNK_180946ba0;
+uint8_t UNK_180946bd8;
 
 
-// 函数: undefined FUN_180670800;
-undefined FUN_180670800;
-undefined UNK_180946c30;
-undefined UNK_180946c60;
-undefined UNK_180946c88;
-undefined UNK_180946cb8;
-undefined UNK_180946ce0;
-undefined UNK_180946d10;
-undefined UNK_180946d38;
-undefined UNK_180946d68;
-undefined UNK_180946d90;
-undefined UNK_180946db8;
-undefined UNK_180946de0;
-undefined UNK_180946e08;
-undefined UNK_180946e30;
-undefined UNK_180d9e670;
-undefined DAT_180946f70;
-undefined DAT_180946f90;
-undefined DAT_180946fa0;
-undefined DAT_180946f40;
-undefined DAT_180946f30;
-undefined DAT_180946f20;
-undefined DAT_180946ec0;
-undefined DAT_180946ed0;
-undefined DAT_180946ee0;
-undefined DAT_180946ef0;
-undefined DAT_180946f00;
-undefined DAT_180946f10;
-undefined DAT_180946f50;
-undefined DAT_180946f60;
-undefined DAT_180946f80;
-undefined DAT_180947040;
-undefined DAT_180946fc0;
-undefined DAT_180946fe0;
-undefined DAT_180947000;
-undefined DAT_180947060;
-undefined DAT_180947080;
-undefined DAT_1809470a0;
-undefined DAT_1809470c0;
-undefined DAT_180947510;
-undefined DAT_1809473f0;
-undefined DAT_1809472f0;
-undefined DAT_180947370;
-undefined DAT_180947470;
-undefined DAT_180947500;
-undefined DAT_1809474b0;
-undefined DAT_1809473b0;
-undefined DAT_180947430;
-undefined DAT_180947330;
-undefined DAT_1809474f0;
-undefined DAT_180947520;
-undefined DAT_1809473d0;
-undefined DAT_1809474d0;
-undefined DAT_180947450;
-undefined DAT_180947390;
-undefined DAT_180947310;
-undefined DAT_180947490;
-undefined DAT_180947410;
-undefined DAT_180947350;
-undefined DAT_1809473e0;
-undefined DAT_180947400;
-undefined DAT_1809474e0;
-undefined DAT_180947460;
-undefined DAT_180947380;
-undefined DAT_180947360;
-undefined DAT_180947480;
-undefined DAT_180947300;
-undefined DAT_1809474a0;
-undefined DAT_1809473a0;
-undefined DAT_180947420;
-undefined DAT_1809473c0;
-undefined DAT_180947320;
-undefined DAT_1809474c0;
-undefined DAT_180947440;
-undefined DAT_180947340;
-undefined DAT_180948080;
-undefined UNK_180947e80;
-undefined DAT_1809480d0;
-undefined DAT_1809480a0;
-undefined DAT_1809480e0;
-undefined DAT_1809480b0;
-undefined DAT_1809480c0;
-undefined DAT_180948100;
-undefined DAT_180948160;
-undefined DAT_180948120;
-undefined DAT_180948110;
-undefined DAT_180948150;
-undefined DAT_180948130;
-undefined DAT_180948140;
-undefined DAT_180948180;
-undefined DAT_1809481a0;
-undefined DAT_1809480f0;
-undefined DAT_180a3f870;
-undefined UNK_180948bc0;
-undefined UNK_1809495c0;
-undefined UNK_18001c96c;
-undefined UNK_18001caa4;
-undefined UNK_180948c28;
-undefined UNK_180948c48;
-undefined UNK_180948c78;
-undefined UNK_180948ca0;
-undefined UNK_180948cb8;
-undefined UNK_180948ce8;
-undefined UNK_180948d00;
-undefined UNK_180949110;
-undefined UNK_1809495b0;
-undefined DAT_180c0c21c;
-undefined DAT_180c0c218;
-undefined DAT_180c0c210;
-undefined DAT_180d9e5c0;
-undefined DAT_180d9e5d0;
-undefined DAT_180d9e5f0;
-undefined DAT_180d9e600;
-undefined DAT_180d9e640;
-undefined DAT_180d9e650;
-undefined UNK_180948d81;
-undefined UNK_180948d98;
-undefined UNK_180948db8;
-undefined UNK_180949b40;
-undefined UNK_180949f50;
-undefined UNK_180949f90;
-undefined UNK_180949f91;
-undefined UNK_180949f92;
-undefined UNK_180949fa8;
-undefined UNK_18094a060;
-undefined UNK_1809482e8;
-undefined UNK_1809482fc;
-undefined UNK_180948468;
-undefined UNK_1809484b0;
-undefined UNK_180948308;
-undefined UNK_18094a000;
-undefined UNK_18094a004;
-undefined UNK_18094a008;
-undefined UNK_18094a00c;
-undefined UNK_180948458;
-undefined UNK_180949fb0;
-undefined UNK_180948310;
-undefined UNK_180948300;
-undefined DAT_180be0050;
-undefined DAT_180c0c2f0;
-undefined UNK_18094a108;
-undefined UNK_18094a160;
-undefined UNK_18094a1b0;
-undefined UNK_18094a1f0;
-undefined UNK_18094a0b8;
-undefined UNK_18094a210;
-undefined UNK_18094a3f0;
-undefined UNK_18094a440;
-undefined UNK_18094a4c0;
-undefined UNK_18094a4d8;
-undefined UNK_18094a510;
-undefined UNK_18094a240;
-undefined UNK_18094a268;
-undefined DAT_180c0c2f8;
-undefined DAT_180be0060;
-undefined UNK_18094a280;
-undefined UNK_18094a288;
-undefined UNK_18094a290;
-undefined UNK_18094a2a0;
-undefined UNK_18094a318;
-undefined UNK_18094a328;
-undefined UNK_18094a338;
-undefined UNK_18094a3a0;
-undefined UNK_18094a3b8;
-undefined UNK_18094a3d0;
-undefined UNK_18094a3f8;
-undefined UNK_18094a530;
-undefined UNK_18094a580;
-undefined UNK_18094a598;
-undefined UNK_18094a5a8;
-undefined UNK_18094a608;
-undefined UNK_18094a2b0;
-undefined UNK_18094a3e8;
-undefined UNK_18094a308;
-undefined UNK_18094a358;
-undefined UNK_18094a610;
-undefined UNK_18094a258;
-undefined UNK_18094a650;
-undefined UNK_18094a9b0;
-undefined UNK_18094a9b8;
-undefined UNK_18094aa20;
-undefined UNK_18094aa60;
-undefined UNK_18094ab40;
-undefined UNK_18094ab70;
-undefined UNK_18094aba0;
-undefined UNK_18094abd0;
-undefined UNK_18094a900;
-undefined UNK_18094a9a8;
-undefined UNK_18094a860;
-undefined UNK_18094a830;
-undefined UNK_18094a6c0;
-undefined UNK_18094ac20;
-undefined UNK_18094a800;
-undefined UNK_18094a810;
-undefined UNK_18094a770;
-undefined UNK_18094a6e0;
-undefined UNK_18094a7b0;
-undefined UNK_18094a760;
-undefined UNK_18094a740;
-undefined UNK_18094a698;
-undefined UNK_18094a6a8;
-undefined UNK_18094a6b8;
-undefined UNK_18094a6d0;
-undefined UNK_18094a700;
-undefined UNK_18094a710;
-undefined UNK_18094a720;
-undefined UNK_18094a730;
-undefined UNK_18094a6f0;
-undefined UNK_18094a7c0;
-undefined UNK_18094a780;
-undefined UNK_18094abe0;
-undefined UNK_18094a968;
-undefined UNK_18094a820;
-undefined UNK_18094a7f0;
-undefined UNK_18094a7a0;
-undefined UNK_18094a7d0;
-undefined UNK_18094a790;
-undefined UNK_18094a750;
-undefined UNK_18094a7e0;
-undefined UNK_18094aef8;
-undefined UNK_18094b020;
-undefined UNK_18094b068;
-undefined UNK_18094b100;
-undefined UNK_18094aee8;
-undefined UNK_18094aef0;
-undefined UNK_18094af30;
-undefined UNK_18094b120;
-undefined UNK_18094ad80;
-undefined UNK_18094af38;
-undefined UNK_18094ae08;
-undefined UNK_18094add0;
-undefined UNK_18094b0d0;
-undefined UNK_18094b0e0;
-undefined UNK_18094b0c0;
-undefined UNK_18094ac80;
-undefined UNK_18094ac88;
-undefined UNK_18094ac90;
-undefined UNK_18094ac98;
-undefined UNK_18094aca0;
-undefined UNK_18094aca8;
-undefined UNK_18094acb0;
-undefined UNK_18094acb8;
-undefined UNK_18094acc0;
-undefined UNK_18094acc8;
-undefined UNK_18094acd0;
-undefined UNK_18094acdc;
-undefined UNK_18094ace4;
-undefined UNK_18094acec;
-undefined UNK_18094acf4;
-undefined UNK_18094ad00;
-undefined UNK_18094ad0c;
-undefined UNK_18094ad18;
-undefined UNK_18094ad28;
-undefined UNK_18094ad30;
-undefined UNK_18094ad38;
-undefined UNK_18094ad48;
-undefined UNK_18094ad58;
-undefined UNK_18094b078;
-undefined UNK_18094b080;
-undefined UNK_18094b088;
-undefined UNK_18094b08c;
-undefined UNK_18094b090;
-undefined UNK_18094b098;
-undefined UNK_18094b0a0;
-undefined UNK_18094b0a8;
-undefined UNK_18094b0b0;
-undefined UNK_18094b0b4;
-undefined UNK_18094b0b8;
-undefined UNK_18094b0bc;
-undefined DAT_180a2e148;
-undefined DAT_180a2e14c;
-undefined DAT_180a3e2ac;
-undefined UNK_18094b168;
-undefined UNK_18094b1a0;
-undefined UNK_18094b130;
-undefined UNK_18094b3d0;
-undefined UNK_18094b480;
-undefined UNK_18094b208;
-undefined UNK_18094b250;
-undefined UNK_18094b270;
-undefined UNK_18094b290;
-undefined UNK_18094b2b0;
-undefined UNK_18094b2d0;
-undefined UNK_18094b418;
-undefined UNK_18094b440;
-undefined UNK_18094b4f8;
-undefined UNK_18094b500;
-undefined UNK_18094b508;
-undefined UNK_18094b510;
-undefined UNK_18094b518;
-undefined UNK_18094b528;
-undefined UNK_18094b1d8;
-undefined UNK_18094b2e0;
-undefined UNK_18094b300;
-undefined UNK_18094b358;
-undefined UNK_18094b368;
-undefined UNK_18094b3a0;
-undefined UNK_18094b3b0;
-undefined UNK_18094b458;
-undefined UNK_18094b1b8;
-undefined UNK_18094b1f8;
-undefined UNK_18094b4b0;
-undefined UNK_18094b540;
-undefined UNK_18094b578;
-undefined UNK_18094b590;
-undefined UNK_18094b5c0;
-undefined UNK_18094b608;
-undefined UNK_18094b6b0;
-undefined UNK_18094b930;
-undefined UNK_18094b620;
-undefined UNK_18094b700;
-undefined UNK_18094b750;
-undefined UNK_18094b7b0;
-undefined UNK_18094b820;
-undefined UNK_18094b8c8;
-undefined UNK_18094b8f0;
-undefined UNK_18094b7f8;
-undefined UNK_18094b880;
-undefined UNK_18094c0c8;
-undefined UNK_18094c100;
-undefined UNK_18094c138;
-undefined UNK_18094c170;
-undefined UNK_18094c1a8;
-undefined UNK_18094c1e0;
-undefined UNK_18094c218;
-undefined UNK_18094c250;
-undefined UNK_18094c288;
-undefined UNK_18094c2c0;
-undefined UNK_18094c2f8;
-undefined UNK_18094c330;
-undefined UNK_18094c368;
-undefined UNK_18094c3a0;
-undefined UNK_18094c3d8;
-undefined UNK_18094c410;
-undefined UNK_18094c448;
-undefined UNK_18094c480;
-undefined UNK_18094c4c8;
-undefined UNK_18094c510;
-undefined UNK_18094c558;
-undefined UNK_18094c5a0;
-undefined UNK_18094c5e8;
-undefined UNK_18094c630;
-undefined UNK_18094c678;
-undefined UNK_18094c690;
-undefined UNK_18094c6b0;
-undefined UNK_18094c6c0;
-undefined UNK_18094c6d0;
-undefined UNK_18094c6d8;
-undefined UNK_18094c6e8;
-undefined UNK_18094c6f8;
-undefined UNK_18094c9c0;
-undefined UNK_18094bee8;
-undefined UNK_18094bf00;
-undefined UNK_18094c770;
-undefined UNK_18094c7d0;
-undefined UNK_18094bec8;
-undefined UNK_18094c9a0;
-undefined UNK_18094bf90;
-undefined UNK_18094c840;
-undefined DAT_180be05d0;
-undefined DAT_180be03c0;
-undefined UNK_18094c008;
-undefined UNK_18094c018;
-undefined UNK_18094c030;
-undefined UNK_18094c048;
-undefined UNK_18094c060;
-undefined UNK_18094c070;
-undefined UNK_18094c088;
-undefined UNK_18094c830;
-undefined UNK_18094c858;
-undefined UNK_18094c870;
-undefined UNK_18094c930;
-undefined UNK_18094c990;
-undefined UNK_18094c0b0;
-undefined UNK_18094c850;
-undefined UNK_180a06958;
-undefined UNK_18094c9b0;
-undefined UNK_18094c9b8;
-undefined DAT_180be02c0;
-undefined DAT_180be02f0;
-undefined DAT_180be0350;
-undefined DAT_180be0560;
-undefined DAT_180be0100;
-undefined UNK_18094bbf8;
-undefined UNK_18094c0b8;
-undefined UNK_18094bed8;
-undefined UNK_18094bf18;
-undefined UNK_18094be80;
-undefined UNK_18094c718;
-undefined UNK_18094c758;
-undefined UNK_18094bf50;
-undefined UNK_18094bf60;
-undefined UNK_180a05020;
-undefined UNK_18094bf28;
-undefined UNK_18094bf38;
-undefined UNK_1806d6594;
-undefined UNK_18094c0a8;
-undefined UNK_18094c708;
-undefined UNK_18094c0a4;
-undefined UNK_18094c9d0;
-undefined UNK_18094ca60;
-undefined UNK_18094cab0;
-undefined UNK_18094ca18;
-undefined UNK_18094cad0;
-undefined UNK_18094ca30;
-undefined UNK_18094cb00;
-undefined UNK_18094cde8;
-undefined UNK_18094cfb0;
-undefined UNK_18094d000;
-undefined UNK_18094cb50;
-undefined UNK_18094cbd8;
-undefined UNK_18094cd98;
-undefined UNK_18094d010;
-undefined UNK_18094cba8;
-undefined UNK_18094cb9c;
-undefined UNK_18094cbd0;
-undefined UNK_18094d260;
-undefined UNK_18094d3e8;
-undefined UNK_18094d438;
-undefined UNK_18094d450;
-undefined UNK_18094d090;
-undefined UNK_18094d210;
-undefined UNK_18094d658;
-undefined UNK_18094d7c8;
-undefined UNK_18094d818;
-undefined UNK_18094d830;
-undefined UNK_18094d4a0;
-undefined UNK_18094d608;
-undefined DAT_180c0c300;
-undefined DAT_180c0c304;
-undefined DAT_180c0c308;
+// 函数: uint8_t FUN_180670800;
+uint8_t FUN_180670800;
+uint8_t UNK_180946c30;
+uint8_t UNK_180946c60;
+uint8_t UNK_180946c88;
+uint8_t UNK_180946cb8;
+uint8_t UNK_180946ce0;
+uint8_t UNK_180946d10;
+uint8_t UNK_180946d38;
+uint8_t UNK_180946d68;
+uint8_t UNK_180946d90;
+uint8_t UNK_180946db8;
+uint8_t UNK_180946de0;
+uint8_t UNK_180946e08;
+uint8_t UNK_180946e30;
+uint8_t UNK_180d9e670;
+uint8_t DAT_180946f70;
+uint8_t DAT_180946f90;
+uint8_t DAT_180946fa0;
+uint8_t DAT_180946f40;
+uint8_t DAT_180946f30;
+uint8_t DAT_180946f20;
+uint8_t DAT_180946ec0;
+uint8_t DAT_180946ed0;
+uint8_t DAT_180946ee0;
+uint8_t DAT_180946ef0;
+uint8_t DAT_180946f00;
+uint8_t DAT_180946f10;
+uint8_t DAT_180946f50;
+uint8_t DAT_180946f60;
+uint8_t DAT_180946f80;
+uint8_t DAT_180947040;
+uint8_t DAT_180946fc0;
+uint8_t DAT_180946fe0;
+uint8_t DAT_180947000;
+uint8_t DAT_180947060;
+uint8_t DAT_180947080;
+uint8_t DAT_1809470a0;
+uint8_t DAT_1809470c0;
+uint8_t DAT_180947510;
+uint8_t DAT_1809473f0;
+uint8_t DAT_1809472f0;
+uint8_t DAT_180947370;
+uint8_t DAT_180947470;
+uint8_t DAT_180947500;
+uint8_t DAT_1809474b0;
+uint8_t DAT_1809473b0;
+uint8_t DAT_180947430;
+uint8_t DAT_180947330;
+uint8_t DAT_1809474f0;
+uint8_t DAT_180947520;
+uint8_t DAT_1809473d0;
+uint8_t DAT_1809474d0;
+uint8_t DAT_180947450;
+uint8_t DAT_180947390;
+uint8_t DAT_180947310;
+uint8_t DAT_180947490;
+uint8_t DAT_180947410;
+uint8_t DAT_180947350;
+uint8_t DAT_1809473e0;
+uint8_t DAT_180947400;
+uint8_t DAT_1809474e0;
+uint8_t DAT_180947460;
+uint8_t DAT_180947380;
+uint8_t DAT_180947360;
+uint8_t DAT_180947480;
+uint8_t DAT_180947300;
+uint8_t DAT_1809474a0;
+uint8_t DAT_1809473a0;
+uint8_t DAT_180947420;
+uint8_t DAT_1809473c0;
+uint8_t DAT_180947320;
+uint8_t DAT_1809474c0;
+uint8_t DAT_180947440;
+uint8_t DAT_180947340;
+uint8_t DAT_180948080;
+uint8_t UNK_180947e80;
+uint8_t DAT_1809480d0;
+uint8_t DAT_1809480a0;
+uint8_t DAT_1809480e0;
+uint8_t DAT_1809480b0;
+uint8_t DAT_1809480c0;
+uint8_t DAT_180948100;
+uint8_t DAT_180948160;
+uint8_t DAT_180948120;
+uint8_t DAT_180948110;
+uint8_t DAT_180948150;
+uint8_t DAT_180948130;
+uint8_t DAT_180948140;
+uint8_t DAT_180948180;
+uint8_t DAT_1809481a0;
+uint8_t DAT_1809480f0;
+uint8_t DAT_180a3f870;
+uint8_t UNK_180948bc0;
+uint8_t UNK_1809495c0;
+uint8_t UNK_18001c96c;
+uint8_t UNK_18001caa4;
+uint8_t UNK_180948c28;
+uint8_t UNK_180948c48;
+uint8_t UNK_180948c78;
+uint8_t UNK_180948ca0;
+uint8_t UNK_180948cb8;
+uint8_t UNK_180948ce8;
+uint8_t UNK_180948d00;
+uint8_t UNK_180949110;
+uint8_t UNK_1809495b0;
+uint8_t DAT_180c0c21c;
+uint8_t DAT_180c0c218;
+uint8_t DAT_180c0c210;
+uint8_t DAT_180d9e5c0;
+uint8_t DAT_180d9e5d0;
+uint8_t DAT_180d9e5f0;
+uint8_t DAT_180d9e600;
+uint8_t DAT_180d9e640;
+uint8_t DAT_180d9e650;
+uint8_t UNK_180948d81;
+uint8_t UNK_180948d98;
+uint8_t UNK_180948db8;
+uint8_t UNK_180949b40;
+uint8_t UNK_180949f50;
+uint8_t UNK_180949f90;
+uint8_t UNK_180949f91;
+uint8_t UNK_180949f92;
+uint8_t UNK_180949fa8;
+uint8_t UNK_18094a060;
+uint8_t UNK_1809482e8;
+uint8_t UNK_1809482fc;
+uint8_t UNK_180948468;
+uint8_t UNK_1809484b0;
+uint8_t UNK_180948308;
+uint8_t UNK_18094a000;
+uint8_t UNK_18094a004;
+uint8_t UNK_18094a008;
+uint8_t UNK_18094a00c;
+uint8_t UNK_180948458;
+uint8_t UNK_180949fb0;
+uint8_t UNK_180948310;
+uint8_t UNK_180948300;
+uint8_t DAT_180be0050;
+uint8_t DAT_180c0c2f0;
+uint8_t UNK_18094a108;
+uint8_t UNK_18094a160;
+uint8_t UNK_18094a1b0;
+uint8_t UNK_18094a1f0;
+uint8_t UNK_18094a0b8;
+uint8_t UNK_18094a210;
+uint8_t UNK_18094a3f0;
+uint8_t UNK_18094a440;
+uint8_t UNK_18094a4c0;
+uint8_t UNK_18094a4d8;
+uint8_t UNK_18094a510;
+uint8_t UNK_18094a240;
+uint8_t UNK_18094a268;
+uint8_t DAT_180c0c2f8;
+uint8_t DAT_180be0060;
+uint8_t UNK_18094a280;
+uint8_t UNK_18094a288;
+uint8_t UNK_18094a290;
+uint8_t UNK_18094a2a0;
+uint8_t UNK_18094a318;
+uint8_t UNK_18094a328;
+uint8_t UNK_18094a338;
+uint8_t UNK_18094a3a0;
+uint8_t UNK_18094a3b8;
+uint8_t UNK_18094a3d0;
+uint8_t UNK_18094a3f8;
+uint8_t UNK_18094a530;
+uint8_t UNK_18094a580;
+uint8_t UNK_18094a598;
+uint8_t UNK_18094a5a8;
+uint8_t UNK_18094a608;
+uint8_t UNK_18094a2b0;
+uint8_t UNK_18094a3e8;
+uint8_t UNK_18094a308;
+uint8_t UNK_18094a358;
+uint8_t UNK_18094a610;
+uint8_t UNK_18094a258;
+uint8_t UNK_18094a650;
+uint8_t UNK_18094a9b0;
+uint8_t UNK_18094a9b8;
+uint8_t UNK_18094aa20;
+uint8_t UNK_18094aa60;
+uint8_t UNK_18094ab40;
+uint8_t UNK_18094ab70;
+uint8_t UNK_18094aba0;
+uint8_t UNK_18094abd0;
+uint8_t UNK_18094a900;
+uint8_t UNK_18094a9a8;
+uint8_t UNK_18094a860;
+uint8_t UNK_18094a830;
+uint8_t UNK_18094a6c0;
+uint8_t UNK_18094ac20;
+uint8_t UNK_18094a800;
+uint8_t UNK_18094a810;
+uint8_t UNK_18094a770;
+uint8_t UNK_18094a6e0;
+uint8_t UNK_18094a7b0;
+uint8_t UNK_18094a760;
+uint8_t UNK_18094a740;
+uint8_t UNK_18094a698;
+uint8_t UNK_18094a6a8;
+uint8_t UNK_18094a6b8;
+uint8_t UNK_18094a6d0;
+uint8_t UNK_18094a700;
+uint8_t UNK_18094a710;
+uint8_t UNK_18094a720;
+uint8_t UNK_18094a730;
+uint8_t UNK_18094a6f0;
+uint8_t UNK_18094a7c0;
+uint8_t UNK_18094a780;
+uint8_t UNK_18094abe0;
+uint8_t UNK_18094a968;
+uint8_t UNK_18094a820;
+uint8_t UNK_18094a7f0;
+uint8_t UNK_18094a7a0;
+uint8_t UNK_18094a7d0;
+uint8_t UNK_18094a790;
+uint8_t UNK_18094a750;
+uint8_t UNK_18094a7e0;
+uint8_t UNK_18094aef8;
+uint8_t UNK_18094b020;
+uint8_t UNK_18094b068;
+uint8_t UNK_18094b100;
+uint8_t UNK_18094aee8;
+uint8_t UNK_18094aef0;
+uint8_t UNK_18094af30;
+uint8_t UNK_18094b120;
+uint8_t UNK_18094ad80;
+uint8_t UNK_18094af38;
+uint8_t UNK_18094ae08;
+uint8_t UNK_18094add0;
+uint8_t UNK_18094b0d0;
+uint8_t UNK_18094b0e0;
+uint8_t UNK_18094b0c0;
+uint8_t UNK_18094ac80;
+uint8_t UNK_18094ac88;
+uint8_t UNK_18094ac90;
+uint8_t UNK_18094ac98;
+uint8_t UNK_18094aca0;
+uint8_t UNK_18094aca8;
+uint8_t UNK_18094acb0;
+uint8_t UNK_18094acb8;
+uint8_t UNK_18094acc0;
+uint8_t UNK_18094acc8;
+uint8_t UNK_18094acd0;
+uint8_t UNK_18094acdc;
+uint8_t UNK_18094ace4;
+uint8_t UNK_18094acec;
+uint8_t UNK_18094acf4;
+uint8_t UNK_18094ad00;
+uint8_t UNK_18094ad0c;
+uint8_t UNK_18094ad18;
+uint8_t UNK_18094ad28;
+uint8_t UNK_18094ad30;
+uint8_t UNK_18094ad38;
+uint8_t UNK_18094ad48;
+uint8_t UNK_18094ad58;
+uint8_t UNK_18094b078;
+uint8_t UNK_18094b080;
+uint8_t UNK_18094b088;
+uint8_t UNK_18094b08c;
+uint8_t UNK_18094b090;
+uint8_t UNK_18094b098;
+uint8_t UNK_18094b0a0;
+uint8_t UNK_18094b0a8;
+uint8_t UNK_18094b0b0;
+uint8_t UNK_18094b0b4;
+uint8_t UNK_18094b0b8;
+uint8_t UNK_18094b0bc;
+uint8_t DAT_180a2e148;
+uint8_t DAT_180a2e14c;
+uint8_t DAT_180a3e2ac;
+uint8_t UNK_18094b168;
+uint8_t UNK_18094b1a0;
+uint8_t UNK_18094b130;
+uint8_t UNK_18094b3d0;
+uint8_t UNK_18094b480;
+uint8_t UNK_18094b208;
+uint8_t UNK_18094b250;
+uint8_t UNK_18094b270;
+uint8_t UNK_18094b290;
+uint8_t UNK_18094b2b0;
+uint8_t UNK_18094b2d0;
+uint8_t UNK_18094b418;
+uint8_t UNK_18094b440;
+uint8_t UNK_18094b4f8;
+uint8_t UNK_18094b500;
+uint8_t UNK_18094b508;
+uint8_t UNK_18094b510;
+uint8_t UNK_18094b518;
+uint8_t UNK_18094b528;
+uint8_t UNK_18094b1d8;
+uint8_t UNK_18094b2e0;
+uint8_t UNK_18094b300;
+uint8_t UNK_18094b358;
+uint8_t UNK_18094b368;
+uint8_t UNK_18094b3a0;
+uint8_t UNK_18094b3b0;
+uint8_t UNK_18094b458;
+uint8_t UNK_18094b1b8;
+uint8_t UNK_18094b1f8;
+uint8_t UNK_18094b4b0;
+uint8_t UNK_18094b540;
+uint8_t UNK_18094b578;
+uint8_t UNK_18094b590;
+uint8_t UNK_18094b5c0;
+uint8_t UNK_18094b608;
+uint8_t UNK_18094b6b0;
+uint8_t UNK_18094b930;
+uint8_t UNK_18094b620;
+uint8_t UNK_18094b700;
+uint8_t UNK_18094b750;
+uint8_t UNK_18094b7b0;
+uint8_t UNK_18094b820;
+uint8_t UNK_18094b8c8;
+uint8_t UNK_18094b8f0;
+uint8_t UNK_18094b7f8;
+uint8_t UNK_18094b880;
+uint8_t UNK_18094c0c8;
+uint8_t UNK_18094c100;
+uint8_t UNK_18094c138;
+uint8_t UNK_18094c170;
+uint8_t UNK_18094c1a8;
+uint8_t UNK_18094c1e0;
+uint8_t UNK_18094c218;
+uint8_t UNK_18094c250;
+uint8_t UNK_18094c288;
+uint8_t UNK_18094c2c0;
+uint8_t UNK_18094c2f8;
+uint8_t UNK_18094c330;
+uint8_t UNK_18094c368;
+uint8_t UNK_18094c3a0;
+uint8_t UNK_18094c3d8;
+uint8_t UNK_18094c410;
+uint8_t UNK_18094c448;
+uint8_t UNK_18094c480;
+uint8_t UNK_18094c4c8;
+uint8_t UNK_18094c510;
+uint8_t UNK_18094c558;
+uint8_t UNK_18094c5a0;
+uint8_t UNK_18094c5e8;
+uint8_t UNK_18094c630;
+uint8_t UNK_18094c678;
+uint8_t UNK_18094c690;
+uint8_t UNK_18094c6b0;
+uint8_t UNK_18094c6c0;
+uint8_t UNK_18094c6d0;
+uint8_t UNK_18094c6d8;
+uint8_t UNK_18094c6e8;
+uint8_t UNK_18094c6f8;
+uint8_t UNK_18094c9c0;
+uint8_t UNK_18094bee8;
+uint8_t UNK_18094bf00;
+uint8_t UNK_18094c770;
+uint8_t UNK_18094c7d0;
+uint8_t UNK_18094bec8;
+uint8_t UNK_18094c9a0;
+uint8_t UNK_18094bf90;
+uint8_t UNK_18094c840;
+uint8_t DAT_180be05d0;
+uint8_t DAT_180be03c0;
+uint8_t UNK_18094c008;
+uint8_t UNK_18094c018;
+uint8_t UNK_18094c030;
+uint8_t UNK_18094c048;
+uint8_t UNK_18094c060;
+uint8_t UNK_18094c070;
+uint8_t UNK_18094c088;
+uint8_t UNK_18094c830;
+uint8_t UNK_18094c858;
+uint8_t UNK_18094c870;
+uint8_t UNK_18094c930;
+uint8_t UNK_18094c990;
+uint8_t UNK_18094c0b0;
+uint8_t UNK_18094c850;
+uint8_t UNK_180a06958;
+uint8_t UNK_18094c9b0;
+uint8_t UNK_18094c9b8;
+uint8_t DAT_180be02c0;
+uint8_t DAT_180be02f0;
+uint8_t DAT_180be0350;
+uint8_t DAT_180be0560;
+uint8_t DAT_180be0100;
+uint8_t UNK_18094bbf8;
+uint8_t UNK_18094c0b8;
+uint8_t UNK_18094bed8;
+uint8_t UNK_18094bf18;
+uint8_t UNK_18094be80;
+uint8_t UNK_18094c718;
+uint8_t UNK_18094c758;
+uint8_t UNK_18094bf50;
+uint8_t UNK_18094bf60;
+uint8_t UNK_180a05020;
+uint8_t UNK_18094bf28;
+uint8_t UNK_18094bf38;
+uint8_t UNK_1806d6594;
+uint8_t UNK_18094c0a8;
+uint8_t UNK_18094c708;
+uint8_t UNK_18094c0a4;
+uint8_t UNK_18094c9d0;
+uint8_t UNK_18094ca60;
+uint8_t UNK_18094cab0;
+uint8_t UNK_18094ca18;
+uint8_t UNK_18094cad0;
+uint8_t UNK_18094ca30;
+uint8_t UNK_18094cb00;
+uint8_t UNK_18094cde8;
+uint8_t UNK_18094cfb0;
+uint8_t UNK_18094d000;
+uint8_t UNK_18094cb50;
+uint8_t UNK_18094cbd8;
+uint8_t UNK_18094cd98;
+uint8_t UNK_18094d010;
+uint8_t UNK_18094cba8;
+uint8_t UNK_18094cb9c;
+uint8_t UNK_18094cbd0;
+uint8_t UNK_18094d260;
+uint8_t UNK_18094d3e8;
+uint8_t UNK_18094d438;
+uint8_t UNK_18094d450;
+uint8_t UNK_18094d090;
+uint8_t UNK_18094d210;
+uint8_t UNK_18094d658;
+uint8_t UNK_18094d7c8;
+uint8_t UNK_18094d818;
+uint8_t UNK_18094d830;
+uint8_t UNK_18094d4a0;
+uint8_t UNK_18094d608;
+uint8_t DAT_180c0c300;
+uint8_t DAT_180c0c304;
+uint8_t DAT_180c0c308;
 char DAT_180c0c30c;
-undefined UNK_18094d880;
-undefined UNK_18094da20;
-undefined UNK_18094db40;
-undefined UNK_18094db90;
-undefined UNK_18094dba0;
-undefined UNK_18094d8b8;
-undefined UNK_18094d9d0;
-undefined UNK_18094dd88;
-undefined UNK_18094dee0;
-undefined UNK_18094df30;
-undefined UNK_18094df50;
-undefined UNK_18094dbe8;
-undefined UNK_18094dd38;
-undefined UNK_18094e138;
-undefined UNK_18094e280;
-undefined UNK_18094e2d0;
-undefined UNK_18094e2f0;
-undefined UNK_18094dfa8;
-undefined UNK_18094e0e8;
-undefined UNK_1806f0f60;
-undefined UNK_1806f1a70;
-undefined UNK_18094e3c0;
-undefined UNK_18094e3d0;
-undefined UNK_18094e3e0;
-undefined UNK_18094e3e8;
-undefined UNK_18094e3f8;
-undefined UNK_18094e408;
-undefined UNK_18094e480;
+uint8_t UNK_18094d880;
+uint8_t UNK_18094da20;
+uint8_t UNK_18094db40;
+uint8_t UNK_18094db90;
+uint8_t UNK_18094dba0;
+uint8_t UNK_18094d8b8;
+uint8_t UNK_18094d9d0;
+uint8_t UNK_18094dd88;
+uint8_t UNK_18094dee0;
+uint8_t UNK_18094df30;
+uint8_t UNK_18094df50;
+uint8_t UNK_18094dbe8;
+uint8_t UNK_18094dd38;
+uint8_t UNK_18094e138;
+uint8_t UNK_18094e280;
+uint8_t UNK_18094e2d0;
+uint8_t UNK_18094e2f0;
+uint8_t UNK_18094dfa8;
+uint8_t UNK_18094e0e8;
+uint8_t UNK_1806f0f60;
+uint8_t UNK_1806f1a70;
+uint8_t UNK_18094e3c0;
+uint8_t UNK_18094e3d0;
+uint8_t UNK_18094e3e0;
+uint8_t UNK_18094e3e8;
+uint8_t UNK_18094e3f8;
+uint8_t UNK_18094e408;
+uint8_t UNK_18094e480;
 
 
 // 函数: void FUN_1804234a9(uint64_t param_1,uint64_t param_2,uint *param_3,uint param_4)

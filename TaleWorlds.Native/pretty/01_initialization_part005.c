@@ -20,55 +20,55 @@
 //------------------------------------------------------------------------------
 
 // 系统初始化相关变量
-undefined FUN_18008d070;                           // 系统初始化核心函数指针
-undefined DAT_180a00fb0;                           // 系统配置数据块1
-undefined DAT_180a010a0;                           // 系统配置数据块2
-undefined DAT_180a01078;                           // 系统配置数据块3
-undefined DAT_180a01050;                           // 系统配置数据块4
-undefined DAT_180a01028;                           // 系统配置数据块5
-undefined DAT_180a01000;                           // 系统配置数据块6
-undefined DAT_180a00fd8;                           // 系统配置数据块7
-undefined DAT_180a00d48;                           // 系统配置数据块8
-undefined DAT_180a00e28;                           // 系统配置数据块9
-undefined DAT_1809ff9e8;                           // 系统配置数据块10
-undefined DAT_1809ff9c0;                           // 系统配置数据块11
-undefined DAT_180a00bb0;                           // 系统配置数据块12
-undefined DAT_180a00b88;                           // 系统配置数据块13
+uint8_t FUN_18008d070;                           // 系统初始化核心函数指针
+uint8_t DAT_180a00fb0;                           // 系统配置数据块1
+uint8_t DAT_180a010a0;                           // 系统配置数据块2
+uint8_t DAT_180a01078;                           // 系统配置数据块3
+uint8_t DAT_180a01050;                           // 系统配置数据块4
+uint8_t DAT_180a01028;                           // 系统配置数据块5
+uint8_t DAT_180a01000;                           // 系统配置数据块6
+uint8_t DAT_180a00fd8;                           // 系统配置数据块7
+uint8_t DAT_180a00d48;                           // 系统配置数据块8
+uint8_t DAT_180a00e28;                           // 系统配置数据块9
+uint8_t DAT_1809ff9e8;                           // 系统配置数据块10
+uint8_t DAT_1809ff9c0;                           // 系统配置数据块11
+uint8_t DAT_180a00bb0;                           // 系统配置数据块12
+uint8_t DAT_180a00b88;                           // 系统配置数据块13
 
 // 系统引用变量
-undefined UNK_180a00400;                           // 系统引用指针1
-undefined UNK_180a00370;                           // 系统引用指针2
-undefined UNK_180a00388;                           // 系统引用指针3
-undefined UNK_180a003a0;                           // 系统引用指针4
-undefined UNK_180a003b8;                           // 系统引用指针5
-undefined UNK_180a003d0;                           // 系统引用指针6
-undefined UNK_180a003e8;                           // 系统引用指针7
-undefined UNK_180a00460;                           // 系统引用指针8
-undefined UNK_180a00430;                           // 系统引用指针9
-undefined UNK_1809ff978;                           // 系统引用指针10
-undefined UNK_1809ff990;                           // 系统引用指针11
-undefined UNK_180a004a8;                           // 系统引用指针12
-undefined UNK_180a004c0;                           // 系统引用指针13
+uint8_t UNK_180a00400;                           // 系统引用指针1
+uint8_t UNK_180a00370;                           // 系统引用指针2
+uint8_t UNK_180a00388;                           // 系统引用指针3
+uint8_t UNK_180a003a0;                           // 系统引用指针4
+uint8_t UNK_180a003b8;                           // 系统引用指针5
+uint8_t UNK_180a003d0;                           // 系统引用指针6
+uint8_t UNK_180a003e8;                           // 系统引用指针7
+uint8_t UNK_180a00460;                           // 系统引用指针8
+uint8_t UNK_180a00430;                           // 系统引用指针9
+uint8_t UNK_1809ff978;                           // 系统引用指针10
+uint8_t UNK_1809ff990;                           // 系统引用指针11
+uint8_t UNK_180a004a8;                           // 系统引用指针12
+uint8_t UNK_180a004c0;                           // 系统引用指针13
 
 // 系统回调函数
-undefined FUN_18025cc00;                           // 系统回调函数1
-undefined FUN_18025c000;                           // 系统回调函数2
-undefined FUN_18025d270;                           // 系统回调函数3
-undefined FUN_18025e330;                           // 系统回调函数4
-undefined FUN_18025d510;                           // 系统回调函数5
-undefined FUN_1802281a0;                           // 系统回调函数6
-undefined FUN_1802285e0;                           // 系统回调函数7
-undefined FUN_1802633c0;                           // 系统回调函数8
-undefined FUN_180262b00;                           // 系统回调函数9
+uint8_t FUN_18025cc00;                           // 系统回调函数1
+uint8_t FUN_18025c000;                           // 系统回调函数2
+uint8_t FUN_18025d270;                           // 系统回调函数3
+uint8_t FUN_18025e330;                           // 系统回调函数4
+uint8_t FUN_18025d510;                           // 系统回调函数5
+uint8_t FUN_1802281a0;                           // 系统回调函数6
+uint8_t FUN_1802285e0;                           // 系统回调函数7
+uint8_t FUN_1802633c0;                           // 系统回调函数8
+uint8_t FUN_180262b00;                           // 系统回调函数9
 
 // 系统工具函数
-undefined FUN_18008f0d0;                           // 系统工具函数1
-undefined FUN_18008f140;                           // 系统工具函数2
-undefined UNK_1800868c0;                           // 系统工具变量
+uint8_t FUN_18008f0d0;                           // 系统工具函数1
+uint8_t FUN_18008f140;                           // 系统工具函数2
+uint8_t UNK_1800868c0;                           // 系统工具变量
 
 // 系统数据缓冲区
-undefined DAT_180c8aa70;                           // 系统数据缓冲区1
-undefined DAT_180c8eb70;                           // 系统数据缓冲区2
+uint8_t DAT_180c8aa70;                           // 系统数据缓冲区1
+uint8_t DAT_180c8eb70;                           // 系统数据缓冲区2
 
 //------------------------------------------------------------------------------
 // 常量定义

@@ -180,7 +180,7 @@ void FUN_18037ae90(longlong param_1,longlong param_2,uint64_t *param_3)
   void *puStack_5e8;
   void *puStack_5e0;
   int32_t uStack_5d8;
-  undefined auStack_5d0 [72];
+  uint8_t auStack_5d0 [72];
   void *puStack_588;
   int8_t *puStack_580;
   int32_t uStack_578;

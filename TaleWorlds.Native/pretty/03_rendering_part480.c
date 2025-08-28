@@ -591,7 +591,7 @@ void FUN_1805253f0(longlong param_1,longlong param_2,char param_3,char param_4,i
   void *puStack_170;
   void *puStack_168;
   int32_t uStack_160;
-  undefined auStack_158 [32];
+  uint8_t auStack_158 [32];
   longlong alStack_138 [4];
   int32_t auStack_118 [2];
   int8_t auStack_110 [152];

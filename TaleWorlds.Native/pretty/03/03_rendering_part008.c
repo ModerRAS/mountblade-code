@@ -693,7 +693,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
   void *ptr_e8;
   void *ptr_e0;
   int32_t stack_d8;
-  undefined stack_d0 [136];
+  uint8_t stack_d0 [136];
   ulonglong stack_checksum;
   
   // 初始化栈保护和校验

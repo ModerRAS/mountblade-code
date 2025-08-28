@@ -44,7 +44,7 @@ void initialize_render_pipeline(void)
   void *vertex_buffer;
   void *index_buffer;
   int32_t render_state;
-  undefined material_data[136];
+  uint8_t material_data[136];
   ulonglong frame_time;
   
   render_context_ptr = global_render_context;

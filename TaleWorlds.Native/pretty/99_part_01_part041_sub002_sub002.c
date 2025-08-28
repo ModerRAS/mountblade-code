@@ -128,15 +128,15 @@ void FUN_1800ca380(longlong param_1,longlong param_2)
   void *puStack_7a8;
   void *puStack_7a0;
   int32_t uStack_798;
-  undefined auStack_790 [32];
+  uint8_t auStack_790 [32];
   void *puStack_770;
   void *puStack_768;
   int32_t uStack_760;
-  undefined auStack_758 [32];
+  uint8_t auStack_758 [32];
   void *puStack_738;
   void *puStack_730;
   int32_t uStack_728;
-  undefined auStack_720 [32];
+  uint8_t auStack_720 [32];
   void *puStack_700;
   int8_t *puStack_6f8;
   int32_t uStack_6f0;

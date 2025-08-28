@@ -83,7 +83,7 @@ uint64_t * FUN_18013c940(byte *param_1)
   int iVar11;
   uint64_t *puVar12;
   uint uVar13;
-  undefined5 uStack_15;
+  uint8_t uStack_15;
   
   lVar6 = _DAT_180c8a9b0;
   uVar8 = _DAT_180c8a9a8;

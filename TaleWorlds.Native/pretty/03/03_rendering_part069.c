@@ -89,7 +89,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   void *local_stack_ptr_3;
   void *local_stack_ptr_4;
   int32_t local_stack_var_2;
-  undefined local_stack_array_2 [32];
+  uint8_t local_stack_array_2 [32];
   void *local_stack_ptr_5;
   int8_t *local_stack_ptr_6;
   int32_t local_stack_var_3;

@@ -46,9 +46,9 @@ static void *resource_manager_table[UNMATCHED_PART03_PART079_MAX_RESOURCES];
 static void *memory_pool[UNMATCHED_PART03_PART079_MEMORY_POOL_SIZE];
 
 // 系统状态管理
-static undefined system_initialization_status;
-static undefined resource_allocation_status;
-static undefined system_lifecycle_status;
+static uint8_t system_initialization_status;
+static uint8_t resource_allocation_status;
+static uint8_t system_lifecycle_status;
 
 // ============================================================================
 // 核心函数声明

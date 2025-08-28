@@ -238,11 +238,11 @@ void FUN_180583b80(longlong *param_1,float param_2)
   void *puStack_278;
   void *puStack_270;
   int32_t uStack_268;
-  undefined auStack_260 [8];
+  uint8_t auStack_260 [8];
   void *puStack_258;
   void *puStack_250;
   int32_t uStack_248;
-  undefined auStack_240 [24];
+  uint8_t auStack_240 [24];
   void *puStack_228;
   int8_t *puStack_220;
   int32_t uStack_218;

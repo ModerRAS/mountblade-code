@@ -39,7 +39,7 @@ void process_engine_initialization(uint64_t param_1, uint64_t *param_2, int para
   void *resource_type_ptr;
   void *resource_format;
   int resource_format_id;
-  undefined resource_data_temp[136];
+  uint8_t resource_data_temp[136];
   int8_t resource_large_buffer[2048];
   ulonglong security_hash;
   

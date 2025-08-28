@@ -270,7 +270,7 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
     int new_hash_size;
     uint64_t *found_entry;
     ulonglong max_search;
-    undefined5 stack_data;
+    uint8_t stack_data;
     
     engine_context = _DAT_180c8a9b0;
     hash_result = _DAT_180c8a9a8;
@@ -401,7 +401,7 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
     ulonglong max_search;
     byte string_start;
     byte *string_start_ptr;
-    undefined5 stack_data;
+    uint8_t stack_data;
     
     engine_context = _DAT_180c8a9b0;
     hash_result = _DAT_180c8a9a8;
@@ -528,7 +528,7 @@ uint64_t *create_new_hash_entry(void)
     uint final_hash;
     ulonglong max_search;
     byte *string_start_ptr;
-    undefined5 stack_data;
+    uint8_t stack_data;
     
     engine_context = _DAT_180c8a9b0;
     hash_result = _DAT_180c8a9a8;

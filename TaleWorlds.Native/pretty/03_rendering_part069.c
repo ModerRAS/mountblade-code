@@ -18,7 +18,7 @@ void FUN_180306d80(uint64_t *param_1,int param_2)
   void *puStack_a0;
   void *puStack_98;
   int32_t uStack_90;
-  undefined auStack_88 [32];
+  uint8_t auStack_88 [32];
   void *puStack_68;
   int8_t *puStack_60;
   int32_t uStack_58;

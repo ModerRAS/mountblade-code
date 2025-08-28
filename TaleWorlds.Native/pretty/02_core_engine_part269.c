@@ -178,7 +178,7 @@ typedef struct {
  * - 资源分配和优化
  * - 性能调优和稳定性保障
  * 
- * @return undefined 无返回值
+ * @return uint8_t 无返回值
  * 
  * @note 此函数为核心引擎配置管理的核心组件
  * @warning 配置错误可能导致系统不稳定
@@ -191,7 +191,7 @@ typedef struct {
  * - 支持多线程安全的配置访问
  * - 实现了配置持久化和恢复机制
  */
-undefined FUN_180058c20(void)
+uint8_t FUN_180058c20(void)
 {
     // 核心引擎系统配置管理逻辑
     // 包括配置初始化、状态管理、资源分配、性能优化等功能

@@ -245,7 +245,7 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
   longlong context_offset;
   uint64_t security_param;
   void *material_buffer_ptr;
-  undefined material_buffer[136];
+  uint8_t material_buffer[136];
   void *vertex_buffer_ptr;
   void *index_buffer_ptr;
   int32_t vertex_buffer_size;
@@ -744,15 +744,15 @@ void initialize_render_system(void)
 
 
 // 全局变量和数据定义
-undefined RENDER_SECURITY_KEY;
-undefined RENDER_CONFIG_DATA;
-undefined RENDER_RESOURCE_DATA;
-undefined RENDER_DATA_PTR_1;
-undefined RENDER_DATA_PTR_2;
-undefined RENDER_DATA_PTR_3;
-undefined RENDER_DATA_PTR_4;
-undefined RENDER_STRING_PTR;
-undefined RENDER_EMPTY_STRING;
+uint8_t RENDER_SECURITY_KEY;
+uint8_t RENDER_CONFIG_DATA;
+uint8_t RENDER_RESOURCE_DATA;
+uint8_t RENDER_DATA_PTR_1;
+uint8_t RENDER_DATA_PTR_2;
+uint8_t RENDER_DATA_PTR_3;
+uint8_t RENDER_DATA_PTR_4;
+uint8_t RENDER_STRING_PTR;
+uint8_t RENDER_EMPTY_STRING;
 
 // 原始函数声明（保持与原始代码的兼容性）
 void FUN_1802814d0;

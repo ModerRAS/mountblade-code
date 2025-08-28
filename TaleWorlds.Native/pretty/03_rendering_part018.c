@@ -220,7 +220,7 @@ void FUN_180278870(longlong param_1,longlong param_2,longlong param_3)
   void *puStack_188;
   void *puStack_180;
   int32_t uStack_178;
-  undefined auStack_170 [136];
+  uint8_t auStack_170 [136];
   ulonglong uStack_e8;
   
   uStack_248 = 0xfffffffffffffffe;

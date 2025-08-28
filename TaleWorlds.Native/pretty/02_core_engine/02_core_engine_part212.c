@@ -442,7 +442,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     void *resource_ptr;
     void *resource_type;
     int32_t resource_id;
-    undefined file_data_buffer[520];
+    uint8_t file_data_buffer[520];
     void *resource_array[68];
     char path_buffer[128];
     ulonglong final_guard;

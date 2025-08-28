@@ -601,7 +601,7 @@ void FUN_18023ab60(uint64_t *param_1,uint64_t param_2,int32_t param_3)
   int16_t uStack_46;
   int16_t uStack_44;
   int8_t uStack_42;
-  undefined5 uStack_41;
+  uint8_t uStack_41;
   ulonglong uStack_38;
   
   uStack_b8 = 0xfffffffffffffffe;
@@ -696,7 +696,7 @@ void FUN_18023ab60(uint64_t *param_1,uint64_t param_2,int32_t param_3)
       uVar5 = *(uint64_t *)((longlong)param_1 + 0x334);
       uStack_44 = (int16_t)uVar5;
       uStack_42 = (int8_t)((ulonglong)uVar5 >> 0x10);
-      uStack_41 = (undefined5)((ulonglong)uVar5 >> 0x18);
+      uStack_41 = (uint8_t)((ulonglong)uVar5 >> 0x18);
       FUN_1802a1bc0(&lStack_a8);
       plStack_188 = (longlong *)CONCAT44(plStack_188._4_4_,0xffff00ff);
       uVar8 = uVar7;

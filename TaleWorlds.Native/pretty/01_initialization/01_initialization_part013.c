@@ -507,7 +507,7 @@ void initialize_system_environment(void)
   void *stack_ptr_188;
   void *stack_ptr_180;
   int32_t stack_flag_178;
-  undefined stack_buffer_170[32];
+  uint8_t stack_buffer_170[32];
   longlong **stack_callback_ptr[3];
   int8_t stack_buffer_138[272];
   ulonglong stack_checksum;

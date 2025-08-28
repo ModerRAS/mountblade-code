@@ -306,17 +306,17 @@ extern uint64_t _DAT_180be12f0;        /**< 系统配置基地址 */
 extern uint64_t _DAT_180bf00a8;        /**< 安全配置数据 */
 
 /** 内存管理数据 */
-extern undefined UNK_18097c540;          /**< 内存池指针 */
-extern undefined UNK_18097c600;          /**< 内存管理器 */
-extern undefined UNK_18097c608;          /**< 内存分配器 */
-extern undefined UNK_18097c618;          /**< 内存清理器 */
-extern undefined UNK_18097c628;          /**< 内存验证器 */
-extern undefined UNK_18097c638;          /**< 内存同步器 */
-extern undefined UNK_18097c648;          /**< 内存配置数据1 */
-extern undefined UNK_18097c650;          /**< 内存配置数据2 */
-extern undefined UNK_18097c658;          /**< 内存配置数据3 */
-extern undefined UNK_18097c660;          /**< 内存配置数据4 */
-extern undefined UNK_18097c670;          /**< 内存保护数据 */
+extern uint8_t UNK_18097c540;          /**< 内存池指针 */
+extern uint8_t UNK_18097c600;          /**< 内存管理器 */
+extern uint8_t UNK_18097c608;          /**< 内存分配器 */
+extern uint8_t UNK_18097c618;          /**< 内存清理器 */
+extern uint8_t UNK_18097c628;          /**< 内存验证器 */
+extern uint8_t UNK_18097c638;          /**< 内存同步器 */
+extern uint8_t UNK_18097c648;          /**< 内存配置数据1 */
+extern uint8_t UNK_18097c650;          /**< 内存配置数据2 */
+extern uint8_t UNK_18097c658;          /**< 内存配置数据3 */
+extern uint8_t UNK_18097c660;          /**< 内存配置数据4 */
+extern uint8_t UNK_18097c670;          /**< 内存保护数据 */
 
 /** 系统状态数据 */
 extern int system_operation_flags;        /**< 系统操作标志 */
@@ -378,44 +378,44 @@ extern int buffer_processing_flags;      /**< 缓冲区处理标志 */
 /* ================================ */
 
 /* 系统函数声明 */
-undefined FUN_1807c3dae(void);              /**< 系统初始化函数 */
-undefined FUN_1807c3df0;                    /**< 系统配置函数 */
-undefined FUN_1807c3ed1;                    /**< 系统状态函数 */
-undefined FUN_1807c4087;                    /**< 系统参数函数 */
+uint8_t FUN_1807c3dae(void);              /**< 系统初始化函数 */
+uint8_t FUN_1807c3df0;                    /**< 系统配置函数 */
+uint8_t FUN_1807c3ed1;                    /**< 系统状态函数 */
+uint8_t FUN_1807c4087;                    /**< 系统参数函数 */
 
 /* 数据处理函数声明 */
-undefined FUN_1807c4100;                    /**< 数据验证函数 */
-undefined FUN_1807c4170;                    /**< 数据分配函数 */
-undefined FUN_1807c41d0;                    /**< 数据传输函数 */
-undefined FUN_1807c4200;                    /**< 数据读取函数 */
+uint8_t FUN_1807c4100;                    /**< 数据验证函数 */
+uint8_t FUN_1807c4170;                    /**< 数据分配函数 */
+uint8_t FUN_1807c41d0;                    /**< 数据传输函数 */
+uint8_t FUN_1807c4200;                    /**< 数据读取函数 */
 
 /* 协议处理函数声明 */
-undefined FUN_1807c4260;                    /**< 协议解析函数 */
-undefined FUN_1807c4340;                    /**< 数据包处理函数 */
-undefined FUN_1807c44f0;                    /**< 协议状态函数 */
+uint8_t FUN_1807c4260;                    /**< 协议解析函数 */
+uint8_t FUN_1807c4340;                    /**< 数据包处理函数 */
+uint8_t FUN_1807c44f0;                    /**< 协议状态函数 */
 
 /* 缓冲区管理函数声明 */
-undefined FUN_1807c4570;                    /**< 缓冲区初始化函数 */
-undefined FUN_1807c4771;                    /**< 字符处理函数 */
-undefined FUN_1807c4780;                    /**< 数据流函数 */
+uint8_t FUN_1807c4570;                    /**< 缓冲区初始化函数 */
+uint8_t FUN_1807c4771;                    /**< 字符处理函数 */
+uint8_t FUN_1807c4780;                    /**< 数据流函数 */
 
 /* 错误处理函数声明 */
-undefined FUN_1807c47e0;                    /**< 错误处理函数 */
-undefined FUN_1807c48c6;                    /**< 异常处理函数 */
-undefined FUN_1807c4ae8;                    /**< 终止处理函数 */
+uint8_t FUN_1807c47e0;                    /**< 错误处理函数 */
+uint8_t FUN_1807c48c6;                    /**< 异常处理函数 */
+uint8_t FUN_1807c4ae8;                    /**< 终止处理函数 */
 
 /* 数据变量声明 */
-undefined UNK_18097c540;                    /**< 内存池数据 */
-undefined UNK_18097c600;                    /**< 管理器数据 */
-undefined UNK_18097c608;                    /**< 分配器数据 */
-undefined UNK_18097c618;                    /**< 清理器数据 */
-undefined UNK_18097c628;                    /**< 验证器数据 */
-undefined UNK_18097c638;                    /**< 同步器数据 */
-undefined UNK_18097c648;                    /**< 配置数据1 */
-undefined UNK_18097c650;                    /**< 配置数据2 */
-undefined UNK_18097c658;                    /**< 配置数据3 */
-undefined UNK_18097c660;                    /**< 配置数据4 */
-undefined UNK_18097c670;                    /**< 保护数据 */
+uint8_t UNK_18097c540;                    /**< 内存池数据 */
+uint8_t UNK_18097c600;                    /**< 管理器数据 */
+uint8_t UNK_18097c608;                    /**< 分配器数据 */
+uint8_t UNK_18097c618;                    /**< 清理器数据 */
+uint8_t UNK_18097c628;                    /**< 验证器数据 */
+uint8_t UNK_18097c638;                    /**< 同步器数据 */
+uint8_t UNK_18097c648;                    /**< 配置数据1 */
+uint8_t UNK_18097c650;                    /**< 配置数据2 */
+uint8_t UNK_18097c658;                    /**< 配置数据3 */
+uint8_t UNK_18097c660;                    /**< 配置数据4 */
+uint8_t UNK_18097c670;                    /**< 保护数据 */
 
 /* ================================ */
 /* 文件结束标识 */

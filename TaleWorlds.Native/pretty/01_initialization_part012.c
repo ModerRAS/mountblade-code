@@ -292,9 +292,9 @@ extern uint64_t UNK_180a3c028;            /* 系统字符串3 */
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_1(void)
+uint8_t SystemCallbackRegister_1(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -342,7 +342,7 @@ undefined SystemCallbackRegister_1(void)
     puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -357,9 +357,9 @@ undefined SystemCallbackRegister_1(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_2(void)
+uint8_t SystemCallbackRegister_2(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -407,7 +407,7 @@ undefined SystemCallbackRegister_2(void)
     puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -422,9 +422,9 @@ undefined SystemCallbackRegister_2(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_3(void)
+uint8_t SystemCallbackRegister_3(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -472,7 +472,7 @@ undefined SystemCallbackRegister_3(void)
     puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -487,9 +487,9 @@ undefined SystemCallbackRegister_3(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_4(void)
+uint8_t SystemCallbackRegister_4(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -537,7 +537,7 @@ undefined SystemCallbackRegister_4(void)
     puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -552,9 +552,9 @@ undefined SystemCallbackRegister_4(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_5(void)
+uint8_t SystemCallbackRegister_5(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -602,7 +602,7 @@ undefined SystemCallbackRegister_5(void)
     puVar7[8] = &UNK_1809ff978;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -617,9 +617,9 @@ undefined SystemCallbackRegister_5(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_6(void)
+uint8_t SystemCallbackRegister_6(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -667,7 +667,7 @@ undefined SystemCallbackRegister_6(void)
     puVar7[8] = &UNK_1809ff990;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -682,9 +682,9 @@ undefined SystemCallbackRegister_6(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_7(void)
+uint8_t SystemCallbackRegister_7(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -732,7 +732,7 @@ undefined SystemCallbackRegister_7(void)
     puVar7[8] = &UNK_180a00370;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -747,9 +747,9 @@ undefined SystemCallbackRegister_7(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_8(void)
+uint8_t SystemCallbackRegister_8(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -797,7 +797,7 @@ undefined SystemCallbackRegister_8(void)
     puVar7[8] = &UNK_180a00388;              // 回调数据引用
     puVar7[9] = 4;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -812,9 +812,9 @@ undefined SystemCallbackRegister_8(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_9(void)
+uint8_t SystemCallbackRegister_9(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -862,7 +862,7 @@ undefined SystemCallbackRegister_9(void)
     puVar7[8] = &UNK_180a003a0;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -877,9 +877,9 @@ undefined SystemCallbackRegister_9(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_10(void)
+uint8_t SystemCallbackRegister_10(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -927,7 +927,7 @@ undefined SystemCallbackRegister_10(void)
     puVar7[8] = &UNK_180a003b8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -942,9 +942,9 @@ undefined SystemCallbackRegister_10(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_11(void)
+uint8_t SystemCallbackRegister_11(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -992,7 +992,7 @@ undefined SystemCallbackRegister_11(void)
     puVar7[8] = &UNK_180a003d0;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1007,9 +1007,9 @@ undefined SystemCallbackRegister_11(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_12(void)
+uint8_t SystemCallbackRegister_12(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1057,7 +1057,7 @@ undefined SystemCallbackRegister_12(void)
     puVar7[8] = &UNK_180a003e8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = puStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1072,9 +1072,9 @@ undefined SystemCallbackRegister_12(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_13(void)
+uint8_t SystemCallbackRegister_13(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1122,7 +1122,7 @@ undefined SystemCallbackRegister_13(void)
     puVar7[8] = &UNK_180a00400;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1137,9 +1137,9 @@ undefined SystemCallbackRegister_13(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_14(void)
+uint8_t SystemCallbackRegister_14(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1187,7 +1187,7 @@ undefined SystemCallbackRegister_14(void)
     puVar7[8] = &UNK_18098c790;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1202,9 +1202,9 @@ undefined SystemCallbackRegister_14(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_15(void)
+uint8_t SystemCallbackRegister_15(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1252,7 +1252,7 @@ undefined SystemCallbackRegister_15(void)
     puVar7[8] = &UNK_18098c7a0;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1267,9 +1267,9 @@ undefined SystemCallbackRegister_15(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_16(void)
+uint8_t SystemCallbackRegister_16(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1317,7 +1317,7 @@ undefined SystemCallbackRegister_16(void)
     puVar7[8] = &UNK_18098c7b8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1332,9 +1332,9 @@ undefined SystemCallbackRegister_16(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_17(void)
+uint8_t SystemCallbackRegister_17(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1382,7 +1382,7 @@ undefined SystemCallbackRegister_17(void)
     puVar7[8] = &UNK_18098c7c8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1397,9 +1397,9 @@ undefined SystemCallbackRegister_17(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_18(void)
+uint8_t SystemCallbackRegister_18(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1447,7 +1447,7 @@ undefined SystemCallbackRegister_18(void)
     puVar7[8] = &UNK_18098c7d8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1462,9 +1462,9 @@ undefined SystemCallbackRegister_18(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_19(void)
+uint8_t SystemCallbackRegister_19(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1512,7 +1512,7 @@ undefined SystemCallbackRegister_19(void)
     puVar7[8] = &UNK_18098c7f0;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1527,9 +1527,9 @@ undefined SystemCallbackRegister_19(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_20(void)
+uint8_t SystemCallbackRegister_20(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1577,7 +1577,7 @@ undefined SystemCallbackRegister_20(void)
     puVar7[8] = &UNK_18098c810;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1592,9 +1592,9 @@ undefined SystemCallbackRegister_20(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_21(void)
+uint8_t SystemCallbackRegister_21(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1642,7 +1642,7 @@ undefined SystemCallbackRegister_21(void)
     puVar7[8] = &UNK_18098c870;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1657,9 +1657,9 @@ undefined SystemCallbackRegister_21(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_22(void)
+uint8_t SystemCallbackRegister_22(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1707,7 +1707,7 @@ undefined SystemCallbackRegister_22(void)
     puVar7[8] = &UNK_18098c880;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1722,9 +1722,9 @@ undefined SystemCallbackRegister_22(void)
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
  * 
- * @return undefined 注册结果状态
+ * @return uint8_t 注册结果状态
  */
-undefined SystemCallbackRegister_23(void)
+uint8_t SystemCallbackRegister_23(void)
 {
     char cVar1;
     uint64_t *puVar2;
@@ -1772,7 +1772,7 @@ undefined SystemCallbackRegister_23(void)
     puVar7[8] = &UNK_18098c898;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return undefined;
+    return uint8_t;
 }
 
 /*=============================================================================
@@ -1789,9 +1789,9 @@ undefined SystemCallbackRegister_23(void)
  * - 调用系统核心处理函数
  * - 返回处理结果
  * 
- * @return undefined 处理结果状态
+ * @return uint8_t 处理结果状态
  */
-undefined SystemEventProcessor_1(void)
+uint8_t SystemEventProcessor_1(void)
 {
     uint64_t in_R9;
     void *puStack_a0;
@@ -1808,7 +1808,7 @@ undefined SystemEventProcessor_1(void)
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a33fb0, in_R9, 0xfffffffffffffffe);
     DAT_180c95ecc = SystemCoreFunction_4(&puStack_a0);
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -1821,9 +1821,9 @@ undefined SystemEventProcessor_1(void)
  * - 调用系统核心处理函数
  * - 返回处理结果
  * 
- * @return undefined 处理结果状态
+ * @return uint8_t 处理结果状态
  */
-undefined SystemEventProcessor_2(void)
+uint8_t SystemEventProcessor_2(void)
 {
     uint64_t in_R9;
     void *puStack_a0;
@@ -1840,7 +1840,7 @@ undefined SystemEventProcessor_2(void)
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a3c028, in_R9, 0xfffffffffffffffe);
     DAT_180c9606c = SystemCoreFunction_4(&puStack_a0);
-    return undefined;
+    return uint8_t;
 }
 
 /*=============================================================================
@@ -1857,13 +1857,13 @@ undefined SystemEventProcessor_2(void)
  * - 存储进程句柄到全局变量
  * - 返回初始化结果
  * 
- * @return undefined 初始化结果状态
+ * @return uint8_t 初始化结果状态
  */
-undefined SystemInitializer_1(void)
+uint8_t SystemInitializer_1(void)
 {
     // 获取当前进程句柄并存储
     DAT_180c96218 = GetCurrentProcess();
-    return undefined;
+    return uint8_t;
 }
 
 /**

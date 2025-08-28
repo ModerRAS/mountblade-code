@@ -279,25 +279,25 @@ void handle_ui_system_shutdown(void)
 
 
 // 全局变量和数据定义
-undefined SYSTEM_CONTROL_DATA;
-undefined UNK_180a3e3d8;
-undefined DAT_180c967d8;
-undefined UNK_180a3e3f0;
-undefined SYSTEM_CONFIG_AREA;
-undefined DAT_180c967e8;
-undefined DAT_180c967f0;
-undefined DAT_180c967f8;
-undefined SYSTEM_PARAM_DATA;
-undefined SYSTEM_BUFFER_SIZE;
-undefined STEAM_INTERFACE_PTR_1;
-undefined STEAM_INTERFACE_PTR_2;
-undefined STEAM_INTERFACE_PTR_3;
-undefined STEAM_INTERFACE_PTR_4;
-undefined UI_HANDLER_PTR;
-undefined SYSTEM_DATA_PTR;
+uint8_t SYSTEM_CONTROL_DATA;
+uint8_t UNK_180a3e3d8;
+uint8_t DAT_180c967d8;
+uint8_t UNK_180a3e3f0;
+uint8_t SYSTEM_CONFIG_AREA;
+uint8_t DAT_180c967e8;
+uint8_t DAT_180c967f0;
+uint8_t DAT_180c967f8;
+uint8_t SYSTEM_PARAM_DATA;
+uint8_t SYSTEM_BUFFER_SIZE;
+uint8_t STEAM_INTERFACE_PTR_1;
+uint8_t STEAM_INTERFACE_PTR_2;
+uint8_t STEAM_INTERFACE_PTR_3;
+uint8_t STEAM_INTERFACE_PTR_4;
+uint8_t UI_HANDLER_PTR;
+uint8_t SYSTEM_DATA_PTR;
 
 // 原始函数声明（保持与原始代码的兼容性）
-undefined FUN_180657970;
+uint8_t FUN_180657970;
 uint64_t * FUN_180657a70;
 void FUN_180657aa0;
 void FUN_180657ad0;

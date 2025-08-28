@@ -45,28 +45,28 @@
  * 异常处理系统全局变量
  */
 static char exception_system_status;
-static undefined exception_handler_table;
-static undefined exception_context_data;
+static uint8_t exception_handler_table;
+static uint8_t exception_context_data;
 static uint64_t exception_chain_header;
 static int8_t exception_handler_flag;
 static undefined7 exception_handler_padding;
 static uint64_t exception_context_pointer;
 static ulonglong exception_system_timestamp;
-static undefined exception_control_block;
+static uint8_t exception_control_block;
 
 /**
  * 内存管理系统全局变量
  */
 static int8_t memory_allocator_state;
-static undefined memory_pool_header;
+static uint8_t memory_pool_header;
 static undefined7 memory_allocator_padding;
 static int8_t memory_manager_state;
 static undefined7 memory_manager_padding;
 static uint64_t memory_pool_pointer;
 static ulonglong memory_pool_size;
-static undefined memory_cache_block;
+static uint8_t memory_cache_block;
 static int8_t memory_cache_state;
-static undefined memory_cache_header;
+static uint8_t memory_cache_header;
 static undefined7 memory_cache_padding;
 
 /**

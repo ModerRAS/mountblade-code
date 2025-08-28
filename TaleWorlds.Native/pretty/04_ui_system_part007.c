@@ -31,7 +31,7 @@
  * - 内存分配和资源管理
  * - 数据结构操作
  */
-typedef undefined UISystem_CoreDataProcessor_type;
+typedef uint8_t UISystem_CoreDataProcessor_type;
 
 /**
  * @brief UI系统内存管理器类型
@@ -45,7 +45,7 @@ typedef undefined UISystem_CoreDataProcessor_type;
  * - 内存使用统计
  * - 内存泄漏检测
  */
-typedef undefined UISystem_MemoryManager_type;
+typedef uint8_t UISystem_MemoryManager_type;
 
 /**
  * @brief UI系统Steam接口管理器类型
@@ -59,7 +59,7 @@ typedef undefined UISystem_MemoryManager_type;
  * - Steam功能调用
  * - Steam状态监控
  */
-typedef undefined UISystem_SteamInterfaceManager_type;
+typedef uint8_t UISystem_SteamInterfaceManager_type;
 
 /**
  * @brief UI系统数据结构操作器类型
@@ -73,7 +73,7 @@ typedef undefined UISystem_SteamInterfaceManager_type;
  * - 数据遍历和查询
  * - 数据结构维护
  */
-typedef undefined UISystem_DataStructureOperator_type;
+typedef uint8_t UISystem_DataStructureOperator_type;
 
 /**
  * @brief UI系统状态监控器类型
@@ -87,7 +87,7 @@ typedef undefined UISystem_DataStructureOperator_type;
  * - 状态一致性检查
  * - 状态恢复和修复
  */
-typedef undefined UISystem_StateMonitor_type;
+typedef uint8_t UISystem_StateMonitor_type;
 
 /* ========================================
    核心功能常量定义

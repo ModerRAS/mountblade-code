@@ -224,7 +224,7 @@ void FUN_1803fb0e0(uint64_t *param_1,uint64_t param_2,void **param_3,int32_t par
   void *puStack_118;
   void *puStack_110;
   uint uStack_108;
-  undefined auStack_100 [136];
+  uint8_t auStack_100 [136];
   ulonglong uStack_78;
   
   uStack_208 = 0xfffffffffffffffe;

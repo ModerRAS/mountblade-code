@@ -2,11 +2,11 @@
 
 // 01_initialization_part063_sub002_sub002.c - 1 个函数
 
-// 函数: undefined FUN_180055ed0;
-undefined FUN_180055ed0;
+// 函数: uint8_t FUN_180055ed0;
+uint8_t FUN_180055ed0;
 int32_t UNK_180d49150;
-undefined UNK_1800a0f67;
-undefined UNK_1800a127e;
+uint8_t UNK_1800a0f67;
+uint8_t UNK_1800a127e;
 
 uint64_t FUN_180779434(void)
 

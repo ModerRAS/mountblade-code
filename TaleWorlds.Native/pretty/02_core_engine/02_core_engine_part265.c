@@ -500,7 +500,7 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
   uint object_name_length;         // 对象名称长度
   
   // 配置缓冲区 - 用于构建对象配置字符串
-  undefined config_buffer[136];
+  uint8_t config_buffer[136];
   ulonglong stack_protection_value;
   
   // 初始化堆栈保护

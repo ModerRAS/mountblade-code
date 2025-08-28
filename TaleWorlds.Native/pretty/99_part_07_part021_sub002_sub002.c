@@ -126,7 +126,7 @@ void FUN_1804af7b0(longlong param_1,longlong *param_2,longlong *param_3,longlong
   void *puStack_188;
   void *puStack_180;
   int iStack_178;
-  undefined auStack_170 [72];
+  uint8_t auStack_170 [72];
   void *puStack_128;
   int8_t *puStack_120;
   int32_t uStack_118;

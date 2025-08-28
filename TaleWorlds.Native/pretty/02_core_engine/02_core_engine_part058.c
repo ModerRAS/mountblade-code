@@ -569,7 +569,7 @@ void set_debug_info(longlong debug_context, longlong message)
     void* stack_ptr_1;
     void* stack_ptr_2;
     int32_t stack_size;
-    undefined stack_buffer_2[72];
+    uint8_t stack_buffer_2[72];
     ulonglong stack_guard_2;
     
     stack_guard_1 = 0xfffffffffffffffe;

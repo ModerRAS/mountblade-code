@@ -753,7 +753,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
   void *stack_buffer_ptr;
   void *stack_buffer_ptr2;
   int32_t stack_value;
-  undefined stack_data_buffer[136];
+  uint8_t stack_data_buffer[136];
   ulonglong stack_data_offset;
   
   stack_param_1 = 0xfffffffffffffffe;

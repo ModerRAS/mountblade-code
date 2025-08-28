@@ -63,18 +63,18 @@
 // 类型别名定义
 // ============================================================================
 
-typedef undefined SystemFunction;          // 系统函数类型
-typedef undefined SystemData;             // 系统数据类型
-typedef undefined SystemHandle;            // 系统句柄类型
-typedef undefined SystemStatus;            // 系统状态类型
-typedef undefined SystemError;             // 系统错误类型
-typedef undefined SystemOperation;          // 系统操作类型
-typedef undefined SystemCallback;           // 系统回调类型
-typedef undefined SystemEventHandler;       // 系统事件处理器
-typedef undefined SystemResource;          // 系统资源类型
-typedef undefined SystemMemory;             // 系统内存类型
-typedef undefined SystemHardware;           // 系统硬件类型
-typedef undefined SystemService;           // 系统服务类型
+typedef uint8_t SystemFunction;          // 系统函数类型
+typedef uint8_t SystemData;             // 系统数据类型
+typedef uint8_t SystemHandle;            // 系统句柄类型
+typedef uint8_t SystemStatus;            // 系统状态类型
+typedef uint8_t SystemError;             // 系统错误类型
+typedef uint8_t SystemOperation;          // 系统操作类型
+typedef uint8_t SystemCallback;           // 系统回调类型
+typedef uint8_t SystemEventHandler;       // 系统事件处理器
+typedef uint8_t SystemResource;          // 系统资源类型
+typedef uint8_t SystemMemory;             // 系统内存类型
+typedef uint8_t SystemHardware;           // 系统硬件类型
+typedef uint8_t SystemService;           // 系统服务类型
 
 // ============================================================================
 // 数据结构定义
@@ -162,29 +162,29 @@ typedef struct {
 // ============================================================================
 
 // 系统数据变量
-extern undefined DAT_180a01078;          // 系统数据寄存器1
-extern undefined UNK_180a00388;           // 未知系统数据1
-extern undefined DAT_180a01050;           // 系统数据寄存器2
-extern undefined UNK_180a003a0;          // 未知系统数据2
-extern undefined DAT_180a01028;           // 系统数据寄存器3
-extern undefined UNK_180a003b8;           // 未知系统数据3
-extern undefined DAT_180a01000;           // 系统数据寄存器4
-extern undefined UNK_180a003d0;           // 未知系统数据4
-extern undefined DAT_180a00fd8;           // 系统数据寄存器5
-extern undefined UNK_1800868c0;           // 未知系统数据5
-extern undefined UNK_180a003e8;           // 未知系统数据6
-extern undefined DAT_180a00fb0;           // 系统数据寄存器6
-extern undefined UNK_180a00400;           // 未知系统数据7
-extern undefined DAT_180a00e28;           // 系统数据寄存器7
-extern undefined UNK_180a00430;           // 未知系统数据8
-extern undefined DAT_180a00d48;           // 系统数据寄存器8
-extern undefined UNK_180a00460;           // 未知系统数据9
-extern undefined DAT_180a00bb0;           // 系统数据寄存器9
-extern undefined UNK_180a004a8;           // 未知系统数据10
-extern undefined DAT_180a00b88;           // 系统数据寄存器10
-extern undefined UNK_180a004c0;           // 未知系统数据11
-extern undefined DAT_180bf64d0;           // 系统数据寄存器11
-extern undefined DAT_180bf64d8;           // 系统数据寄存器12
+extern uint8_t DAT_180a01078;          // 系统数据寄存器1
+extern uint8_t UNK_180a00388;           // 未知系统数据1
+extern uint8_t DAT_180a01050;           // 系统数据寄存器2
+extern uint8_t UNK_180a003a0;          // 未知系统数据2
+extern uint8_t DAT_180a01028;           // 系统数据寄存器3
+extern uint8_t UNK_180a003b8;           // 未知系统数据3
+extern uint8_t DAT_180a01000;           // 系统数据寄存器4
+extern uint8_t UNK_180a003d0;           // 未知系统数据4
+extern uint8_t DAT_180a00fd8;           // 系统数据寄存器5
+extern uint8_t UNK_1800868c0;           // 未知系统数据5
+extern uint8_t UNK_180a003e8;           // 未知系统数据6
+extern uint8_t DAT_180a00fb0;           // 系统数据寄存器6
+extern uint8_t UNK_180a00400;           // 未知系统数据7
+extern uint8_t DAT_180a00e28;           // 系统数据寄存器7
+extern uint8_t UNK_180a00430;           // 未知系统数据8
+extern uint8_t DAT_180a00d48;           // 系统数据寄存器8
+extern uint8_t UNK_180a00460;           // 未知系统数据9
+extern uint8_t DAT_180a00bb0;           // 系统数据寄存器9
+extern uint8_t UNK_180a004a8;           // 未知系统数据10
+extern uint8_t DAT_180a00b88;           // 系统数据寄存器10
+extern uint8_t UNK_180a004c0;           // 未知系统数据11
+extern uint8_t DAT_180bf64d0;           // 系统数据寄存器11
+extern uint8_t DAT_180bf64d8;           // 系统数据寄存器12
 
 // ============================================================================
 // 函数声明

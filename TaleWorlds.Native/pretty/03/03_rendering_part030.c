@@ -462,11 +462,11 @@ void rendering_object_processor(longlong process_context, longlong *object_data)
     void *stack_data_2;
     void *stack_data_3;
     int32_t stack_flags_2;
-    undefined stack_data_4[136];
+    uint8_t stack_data_4[136];
     void *stack_data_5;
     void *stack_data_6;
     int32_t stack_flags_3;
-    undefined stack_data_7[136];
+    uint8_t stack_data_7[136];
     ulonglong stack_guard;
     
     // 初始化处理参数

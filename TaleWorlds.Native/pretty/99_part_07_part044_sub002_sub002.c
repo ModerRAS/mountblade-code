@@ -215,7 +215,7 @@ void FUN_1804c4840(longlong param_1,longlong param_2)
   void *puStack_130;
   void *puStack_128;
   int iStack_120;
-  undefined auStack_118 [32];
+  uint8_t auStack_118 [32];
   char acStack_f8 [16];
   ulonglong uStack_e8;
   

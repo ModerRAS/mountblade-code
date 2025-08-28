@@ -519,7 +519,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   void *puStack_50;
   void *puStack_48;
   int iStack_40;
-  undefined auStack_38 [16];
+  uint8_t auStack_38 [16];
   ulonglong uStack_28;
   
   uStack_60 = 0xfffffffffffffffe;

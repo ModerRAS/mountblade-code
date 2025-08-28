@@ -262,7 +262,7 @@ ulonglong FUN_180275f30(uint64_t *param_1,uint *param_2,uint64_t param_3,float *
   float fVar25;
   float fVar26;
   uint64_t uStack_e8;
-  undefined5 uStack_e0;
+  uint8_t uStack_e0;
   int8_t uStack_db;
   int16_t uStack_da;
   uint64_t *puStack_d8;

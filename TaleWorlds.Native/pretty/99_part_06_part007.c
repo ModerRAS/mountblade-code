@@ -1099,15 +1099,15 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     void *event_data_1;
     void *event_data_2;
     int32_t event_flag_1;
-    undefined event_buffer_1 [72];
+    uint8_t event_buffer_1 [72];
     void *event_data_3;
     void *event_data_4;
     int32_t event_flag_2;
-    undefined event_buffer_2 [72];
+    uint8_t event_buffer_2 [72];
     void *callback_data;
     int8_t *string_buffer;
     int32_t string_flag;
-    undefined string_buffer_3 [72];
+    uint8_t string_buffer_3 [72];
     ulonglong security_checksum;
     
     // 初始化系统标志和安全检查

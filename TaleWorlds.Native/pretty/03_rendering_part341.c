@@ -955,7 +955,7 @@ void FUN_18044dd10(uint64_t *param_1,longlong param_2,uint64_t param_3)
   int16_t uStack_76;
   int16_t uStack_74;
   char cStack_72;
-  undefined5 uStack_71;
+  uint8_t uStack_71;
   float fStack_68;
   float fStack_64;
   uint64_t uStack_58;
@@ -981,7 +981,7 @@ void FUN_18044dd10(uint64_t *param_1,longlong param_2,uint64_t param_3)
   uVar2 = *(uint64_t *)(lVar1 + 0x334);
   uStack_74 = (int16_t)uVar2;
   cStack_72 = (char)((ulonglong)uVar2 >> 0x10);
-  uStack_71 = (undefined5)((ulonglong)uVar2 >> 0x18);
+  uStack_71 = (uint8_t)((ulonglong)uVar2 >> 0x18);
   lVar1 = *(longlong *)(param_2 + 8);
   uStack_c8 = 1;
   uVar3 = uVar7;

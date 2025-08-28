@@ -39,15 +39,15 @@
 
 // 全局变量引用
 extern uint64_t _DAT_180bf00a8;
-extern undefined UNK_18098bc80;
+extern uint8_t UNK_18098bc80;
 extern char DAT_180a1eb78;
-extern undefined UNK_18098bcb0;
-extern undefined UNK_1809fcc58;
-extern undefined UNK_180a1ed70;
-extern undefined UNK_180a1ed58;
+extern uint8_t UNK_18098bcb0;
+extern uint8_t UNK_1809fcc58;
+extern uint8_t UNK_180a1ed70;
+extern uint8_t UNK_180a1ed58;
 extern char DAT_180a1eba8;
 extern char DAT_180a1eb48;
-extern undefined UNK_180a1ed88;
+extern uint8_t UNK_180a1ed88;
 extern char DAT_180a1ec30;
 extern char DAT_180a1ec18;
 extern char DAT_180a1ec58;
@@ -60,9 +60,9 @@ extern char DAT_180a1ed30;
 extern char DAT_180a1ed18;
 extern char DAT_180a1ecf8;
 extern char DAT_180a1ecd0;
-extern undefined UNK_180a0ba98;
+extern uint8_t UNK_180a0ba98;
 extern char DAT_180a00300;
-extern undefined UNK_180a1ed48;
+extern uint8_t UNK_180a1ed48;
 extern uint64_t _DAT_180c8ed18;
 
 /**

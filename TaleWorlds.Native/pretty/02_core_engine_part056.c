@@ -88,7 +88,7 @@ void FUN_180091970(ulonglong param_1)
   void *puStack_138;
   void *puStack_130;
   int32_t uStack_128;
-  undefined auStack_120 [72];
+  uint8_t auStack_120 [72];
   void *puStack_d8;
   int8_t *puStack_d0;
   int32_t uStack_c8;

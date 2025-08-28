@@ -229,7 +229,7 @@ void FUN_180443b00(void)
   void *puStack_c8;
   void *puStack_c0;
   int32_t uStack_b8;
-  undefined auStack_b0 [128];
+  uint8_t auStack_b0 [128];
   uint64_t uStack_30;
   ulonglong uStack_28;
   

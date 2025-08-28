@@ -200,7 +200,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   void *texture_ptr2;
   uint texture_flags;
   longlong stack_offset1;
-  undefined texture_buffer1[136];
+  uint8_t texture_buffer1[136];
   void *texture_array1[34];
   void *texture_ptr3;
   longlong stack_offset2;

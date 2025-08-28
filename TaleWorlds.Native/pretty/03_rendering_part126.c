@@ -36,7 +36,7 @@ void FUN_180341be0(void)
   void *puStack_b0;
   void *puStack_a8;
   int iStack_a0;
-  undefined auStack_98 [16];
+  uint8_t auStack_98 [16];
   char acStack_88 [16];
   char acStack_78 [16];
   char acStack_68 [16];
@@ -501,7 +501,7 @@ void FUN_1803427a0(void)
   void *puStack_70;
   void *puStack_68;
   int iStack_60;
-  undefined auStack_58 [16];
+  uint8_t auStack_58 [16];
   char acStack_48 [16];
   ulonglong uStack_38;
   

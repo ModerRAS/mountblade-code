@@ -104,7 +104,7 @@ void FUN_1808cc190(longlong *param_1,uint64_t *param_2)
   int32_t uVar4;
   int32_t uVar5;
   int32_t uVar6;
-  undefined5 uVar7;
+  uint8_t uVar7;
   undefined6 uVar8;
   longlong lVar9;
   char cVar10;

@@ -347,7 +347,7 @@ ulonglong check_rendering_object_collision(uint64_t *object_ptr, uint *render_fl
   float temp_float17;
   float temp_float18;
   uint64_t stack_transform[8];
-  undefined5 stack_params;
+  uint8_t stack_params;
   int8_t stack_flag;
   int16_t stack_indices;
   uint64_t *transform_ptr;

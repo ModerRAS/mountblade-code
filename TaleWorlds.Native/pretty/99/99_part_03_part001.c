@@ -916,7 +916,7 @@ void configuration_file_handler(void)
     void *stack_ptr4;
     void *stack_ptr5;
     int stack_int2;
-    undefined temp_buffer2[32];
+    uint8_t temp_buffer2[32];
     ulonglong stack_ulong3;
     
     // 初始化栈变量
@@ -1043,7 +1043,7 @@ void path_builder(longlong *param_1, longlong param_2)
     void *stack_ptr1;
     void *stack_ptr2;
     int32_t stack_var3;
-    undefined temp_buffer2[16];
+    uint8_t temp_buffer2[16];
     ulonglong stack_ulong1;
     
     // 初始化栈变量

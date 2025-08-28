@@ -101,15 +101,15 @@ void FUN_18008a620(uint64_t *param_1)
   void *puStack_398;
   void *puStack_390;
   uint uStack_388;
-  undefined auStack_380 [264];
+  uint8_t auStack_380 [264];
   void *puStack_278;
   void *puStack_270;
   int iStack_268;
-  undefined auStack_260 [264];
+  uint8_t auStack_260 [264];
   void *puStack_158;
   void *puStack_150;
   uint uStack_148;
-  undefined auStack_140 [264];
+  uint8_t auStack_140 [264];
   ulonglong uStack_38;
   
   uStack_3f8 = 0xfffffffffffffffe;

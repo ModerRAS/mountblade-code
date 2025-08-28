@@ -70,7 +70,7 @@
 /** 系统状态类型别名 */
 typedef longlong                   SystemState;         /**< 系统状态类型 */
 typedef uint                       SystemFlags;        /**< 系统标志类型 */
-typedef undefined                  SystemResource;     /**< 系统资源类型 */
+typedef uint8_t                  SystemResource;     /**< 系统资源类型 */
 typedef code*                      SystemFunction;     /**< 系统函数指针类型 */
 
 /** 内存管理类型别名 */
@@ -245,9 +245,9 @@ typedef struct {
  * - 配置参数的验证和设置
  * - 系统资源的预分配
  * 
- * @return undefined 初始化结果状态
+ * @return uint8_t 初始化结果状态
  */
-undefined SystemInitialize(void)
+uint8_t SystemInitialize(void)
 {
     code *in_RAX;
     void *puVar1;
@@ -288,7 +288,7 @@ undefined SystemInitialize(void)
     *(int32_t *)(unaff_RSI + OFFSET_SYSTEM_STATE + 0xF8) = *(int32_t *)(unaff_RDI + 200);
     *(int8_t *)(unaff_RDI + 0xe9) = 0;
     
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -301,13 +301,13 @@ undefined SystemInitialize(void)
  * - 缓存数据的清理
  * - 系统状态的同步
  * 
- * @return undefined 重置结果状态
+ * @return uint8_t 重置结果状态
  */
-undefined SystemStateReset(void)
+uint8_t SystemStateReset(void)
 {
     // 系统状态重置逻辑
     // 包括状态变量重置、标志清除、计数器归零等操作
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -386,9 +386,9 @@ uint64_t * SystemResourceAllocate(uint64_t *param_1, ulonglong param_2)
  * - 系统性能的监控和优化
  * 
  * @param param_1 系统状态参数
- * @return undefined 处理结果状态
+ * @return uint8_t 处理结果状态
  */
-undefined SystemStateProcessor(longlong param_1)
+uint8_t SystemStateProcessor(longlong param_1)
 {
     int iVar1;
     int iVar2;
@@ -520,9 +520,9 @@ undefined SystemStateProcessor(longlong param_1)
  * - 系统配置的优化和缓存
  * 
  * @param param_1 配置参数指针
- * @return undefined 处理结果状态
+ * @return uint8_t 处理结果状态
  */
-undefined SystemConfigProcessor(longlong param_1)
+uint8_t SystemConfigProcessor(longlong param_1)
 {
     uint64_t uVar1;
     longlong lVar2;
@@ -613,9 +613,9 @@ undefined SystemConfigProcessor(longlong param_1)
  * - 线程资源的终止
  * 
  * @param param_1 系统参数指针
- * @return undefined 清理结果状态
+ * @return uint8_t 清理结果状态
  */
-undefined SystemResourceCleanup(longlong param_1)
+uint8_t SystemResourceCleanup(longlong param_1)
 {
     longlong *plVar1;
     
@@ -710,7 +710,7 @@ undefined SystemResourceCleanup(longlong param_1)
         (**(code **)(*plVar1 + 0x38))();
     }
     
-    return undefined;
+    return uint8_t;
 }
 
 /*==============================================================================

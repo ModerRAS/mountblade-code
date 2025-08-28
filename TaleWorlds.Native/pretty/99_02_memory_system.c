@@ -31,7 +31,7 @@
  * - 内存使用统计
  * - 内存泄漏检测
  */
-typedef undefined MemorySystem_Manager_type;
+typedef uint8_t MemorySystem_Manager_type;
 
 /**
  * @brief 内存池管理器类型
@@ -45,7 +45,7 @@ typedef undefined MemorySystem_Manager_type;
  * - 内存池状态监控
  * - 内存池优化和整理
  */
-typedef undefined MemoryPool_Manager_type;
+typedef uint8_t MemoryPool_Manager_type;
 
 /**
  * @brief 内存监控器类型
@@ -59,7 +59,7 @@ typedef undefined MemoryPool_Manager_type;
  * - 内存性能分析
  * - 内存报告生成
  */
-typedef undefined MemoryMonitor_type;
+typedef uint8_t MemoryMonitor_type;
 
 /**
  * @brief 内存优化器类型
@@ -73,7 +73,7 @@ typedef undefined MemoryMonitor_type;
  * - 内存使用优化
  * - 内存性能提升
  */
-typedef undefined MemoryOptimizer_type;
+typedef uint8_t MemoryOptimizer_type;
 
 /* ========================================
    核心功能常量定义

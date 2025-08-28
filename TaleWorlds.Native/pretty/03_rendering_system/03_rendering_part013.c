@@ -289,7 +289,7 @@ ulonglong process_bone_animation_visibility(uint64_t *render_object, uint *visib
   float bone_transform_z;
   float bone_transform_w;
   uint64_t stack_transform;
-  undefined5 stack_data1;
+  uint8_t stack_data1;
   int8_t stack_flag1;
   int16_t stack_data2;
   uint64_t *bone_data_ptr;

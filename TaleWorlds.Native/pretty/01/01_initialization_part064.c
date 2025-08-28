@@ -3,15 +3,15 @@
 // 01_initialization_part064.c - 初始化模块第64部分 (2个函数声明)
 
 // 函数: 初始化网络连接管理器
-// 声明: undefined initialize_network_connection_manager;
-undefined initialize_network_connection_manager;
+// 声明: uint8_t initialize_network_connection_manager;
+uint8_t initialize_network_connection_manager;
 
 // 函数: 初始化数据同步系统
-// 声明: undefined initialize_data_sync_system;
-undefined initialize_data_sync_system;
+// 声明: uint8_t initialize_data_sync_system;
+uint8_t initialize_data_sync_system;
 
 // 全局变量: 网络连接状态
-undefined network_connection_status;
+uint8_t network_connection_status;
 
 // 全局变量: 数据同步配置
 uint64_t data_sync_config;
@@ -47,19 +47,19 @@ int32_t connection_quality_metrics;
 int32_t network_error_codes;
 
 // 全局变量: 数据同步状态
-undefined data_sync_status;
+uint8_t data_sync_status;
 
 // 全局变量: 连接历史记录
-undefined connection_history;
+uint8_t connection_history;
 
 // 全局变量: 系统初始化标志
-undefined system_init_flag;
+uint8_t system_init_flag;
 
 // 全局变量: 协议版本信息
-undefined protocol_version_info;
+uint8_t protocol_version_info;
 
 // 全局变量: 网络配置参数
-undefined network_config_params;
+uint8_t network_config_params;
 
 // 全局变量: 数据包序列号
 longlong packet_sequence_number;

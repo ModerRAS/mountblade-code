@@ -571,7 +571,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   void *target_info;
   void *target_data;
   int32_t target_id;
-  undefined target_buffer[RENDER_BUFFER_NAME_MAX];
+  uint8_t target_buffer[RENDER_BUFFER_NAME_MAX];
   ulonglong security_key;
   
   magic_value = 0xfffffffffffffffe;

@@ -186,7 +186,7 @@ void FUN_1803a1a70(longlong *param_1)
   int8_t uStack_3c;
   int8_t uStack_3b;
   int8_t uStack_3a;
-  undefined5 uStack_39;
+  uint8_t uStack_39;
   ulonglong uStack_28;
   
   uStack_d8 = 0xfffffffffffffffe;
@@ -273,7 +273,7 @@ LAB_1803a1c46:
         uVar5 = *(uint64_t *)(piVar3 + 0x18);
         uStack_3c = (int8_t)uVar5;
         uStack_3b = (int8_t)((ulonglong)uVar5 >> 8);
-        uStack_39 = (undefined5)((ulonglong)uVar5 >> 0x18);
+        uStack_39 = (uint8_t)((ulonglong)uVar5 >> 0x18);
         *(longlong *)(lVar2 + 8) = *(longlong *)(lVar2 + 8) + 0x58;
         uStack_3a = 0;
         FUN_1802a1bc0(&uStack_a0);

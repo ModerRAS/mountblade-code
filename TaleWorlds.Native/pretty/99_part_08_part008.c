@@ -732,11 +732,11 @@ void FUN_1804e5ca0(uint64_t param_1,longlong param_2)
   void *puStack_e8;
   void *puStack_e0;
   int32_t uStack_d8;
-  undefined auStack_d0 [64];
+  uint8_t auStack_d0 [64];
   void *puStack_90;
   void *puStack_88;
   int32_t uStack_80;
-  undefined auStack_78 [64];
+  uint8_t auStack_78 [64];
   ulonglong uStack_38;
   
   apuStack_118[4] = (void *)0xfffffffffffffffe;

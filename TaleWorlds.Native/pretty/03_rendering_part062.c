@@ -187,7 +187,7 @@ void FUN_18029e6e0(uint64_t param_1,longlong param_2,int32_t param_3,int32_t par
   void *puStack_110;
   void *puStack_108;
   int32_t uStack_100;
-  undefined auStack_f8 [16];
+  uint8_t auStack_f8 [16];
   void *puStack_e8;
   int8_t *puStack_e0;
   int32_t uStack_d8;
@@ -411,7 +411,7 @@ void FUN_18029eb90(longlong param_1,longlong param_2,int param_3,int param_4,uin
   void *puStack_130;
   void *puStack_128;
   int32_t uStack_120;
-  undefined auStack_118 [32];
+  uint8_t auStack_118 [32];
   void *puStack_f8;
   int8_t *puStack_f0;
   int32_t uStack_e8;

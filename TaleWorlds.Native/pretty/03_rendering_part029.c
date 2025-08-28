@@ -210,7 +210,7 @@ void FUN_180281770(uint64_t *param_1,uint64_t param_2)
   void *puStack_4c8;
   void *puStack_4c0;
   int32_t uStack_4b8;
-  undefined auStack_4b0 [136];
+  uint8_t auStack_4b0 [136];
   void *puStack_428;
   void *puStack_420;
   int32_t uStack_418;

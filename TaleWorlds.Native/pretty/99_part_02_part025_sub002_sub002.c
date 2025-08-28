@@ -115,7 +115,7 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
   int8_t auVar112 [15];
   int8_t auVar113 [15];
   uint uVar114;
-  undefined5 uVar115;
+  uint8_t uVar115;
   int8_t auVar116 [12];
   uint64_t uVar117;
   int8_t auVar118 [12];

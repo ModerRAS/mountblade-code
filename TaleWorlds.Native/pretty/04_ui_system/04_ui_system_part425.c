@@ -375,37 +375,37 @@ extern int ui_data_error_count;             /**< UI数据错误计数 */
 /* ================================ */
 
 /* UI系统函数声明 */
-undefined FUN_18089dcd6(void);              /**< UI系统初始化函数 */
-undefined FUN_18089dcf0;                    /**< UI事件处理函数 */
-undefined FUN_18089dd54;                    /**< UI事件响应函数 */
-undefined FUN_18089dd78;                    /**< UI事件状态函数 */
-undefined FUN_18089dda2;                    /**< UI事件数据函数 */
-undefined FUN_18089de39;                    /**< UI数据验证函数 */
-undefined FUN_18089de72;                    /**< UI数据状态函数 */
-undefined FUN_18089df30;                    /**< UI缓冲区初始化函数 */
-undefined FUN_18089df40;                    /**< UI数据流函数 */
-undefined FUN_18089dfc1;                    /**< UI数据流同步函数 */
-undefined FUN_18089dfe4;                    /**< UI数据流优化函数 */
-undefined FUN_18089e043;                    /**< UI数据优化函数 */
-undefined FUN_18089e0be;                    /**< UI系统清理函数 */
-undefined FUN_18089e0d0;                    /**< UI错误处理函数 */
-undefined FUN_18089e230;                    /**< UI数据管理函数 */
-undefined FUN_18089e297;                    /**< UI数据同步函数 */
-undefined FUN_18089e2be;                    /**< UI数据简化函数 */
-undefined FUN_18089e2e8;                    /**< UI数据流管理函数 */
+uint8_t FUN_18089dcd6(void);              /**< UI系统初始化函数 */
+uint8_t FUN_18089dcf0;                    /**< UI事件处理函数 */
+uint8_t FUN_18089dd54;                    /**< UI事件响应函数 */
+uint8_t FUN_18089dd78;                    /**< UI事件状态函数 */
+uint8_t FUN_18089dda2;                    /**< UI事件数据函数 */
+uint8_t FUN_18089de39;                    /**< UI数据验证函数 */
+uint8_t FUN_18089de72;                    /**< UI数据状态函数 */
+uint8_t FUN_18089df30;                    /**< UI缓冲区初始化函数 */
+uint8_t FUN_18089df40;                    /**< UI数据流函数 */
+uint8_t FUN_18089dfc1;                    /**< UI数据流同步函数 */
+uint8_t FUN_18089dfe4;                    /**< UI数据流优化函数 */
+uint8_t FUN_18089e043;                    /**< UI数据优化函数 */
+uint8_t FUN_18089e0be;                    /**< UI系统清理函数 */
+uint8_t FUN_18089e0d0;                    /**< UI错误处理函数 */
+uint8_t FUN_18089e230;                    /**< UI数据管理函数 */
+uint8_t FUN_18089e297;                    /**< UI数据同步函数 */
+uint8_t FUN_18089e2be;                    /**< UI数据简化函数 */
+uint8_t FUN_18089e2e8;                    /**< UI数据流管理函数 */
 
 /* 数据变量声明 */
-undefined UNK_18097c540;                    /**< UI内存池数据 */
-undefined UNK_18097c600;                    /**< UI管理器数据 */
-undefined UNK_18097c608;                    /**< UI分配器数据 */
-undefined UNK_18097c618;                    /**< UI清理器数据 */
-undefined UNK_18097c628;                    /**< UI验证器数据 */
-undefined UNK_18097c638;                    /**< UI同步器数据 */
-undefined UNK_18097c648;                    /**< UI配置数据1 */
-undefined UNK_18097c650;                    /**< UI配置数据2 */
-undefined UNK_18097c658;                    /**< UI配置数据3 */
-undefined UNK_18097c660;                    /**< UI配置数据4 */
-undefined UNK_18097c670;                    /**< UI保护数据 */
+uint8_t UNK_18097c540;                    /**< UI内存池数据 */
+uint8_t UNK_18097c600;                    /**< UI管理器数据 */
+uint8_t UNK_18097c608;                    /**< UI分配器数据 */
+uint8_t UNK_18097c618;                    /**< UI清理器数据 */
+uint8_t UNK_18097c628;                    /**< UI验证器数据 */
+uint8_t UNK_18097c638;                    /**< UI同步器数据 */
+uint8_t UNK_18097c648;                    /**< UI配置数据1 */
+uint8_t UNK_18097c650;                    /**< UI配置数据2 */
+uint8_t UNK_18097c658;                    /**< UI配置数据3 */
+uint8_t UNK_18097c660;                    /**< UI配置数据4 */
+uint8_t UNK_18097c670;                    /**< UI保护数据 */
 
 /* ================================ */
 /* 文件结束标识 */

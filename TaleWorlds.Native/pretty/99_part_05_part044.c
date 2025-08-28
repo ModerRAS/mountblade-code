@@ -489,7 +489,7 @@ void FUN_1802f6100(longlong param_1)
   void *puStack_48;
   void *puStack_40;
   int32_t uStack_38;
-  undefined auStack_30 [32];
+  uint8_t auStack_30 [32];
   ulonglong uStack_10;
   
   uStack_50 = 0xfffffffffffffffe;

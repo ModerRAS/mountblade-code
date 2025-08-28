@@ -67,7 +67,7 @@
 //------------------------------------------------------------------------------
 
 // 基本类型别名
-typedef uint8_t undefined;           // 8位无符号整数
+typedef uint8_t uint8_t;           // 8位无符号整数
 typedef uint32_t int32_t;         // 32位无符号整数
 typedef uint64_t uint64_t;         // 64位无符号整数
 

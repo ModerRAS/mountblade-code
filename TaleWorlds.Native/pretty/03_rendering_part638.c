@@ -415,11 +415,11 @@ void FUN_180624c70(uint64_t param_1,longlong param_2)
   void *puStack_188;
   void *puStack_180;
   uint uStack_178;
-  undefined auStack_170 [136];
+  uint8_t auStack_170 [136];
   void *puStack_e8;
   void *puStack_e0;
   int32_t uStack_d8;
-  undefined auStack_d0 [136];
+  uint8_t auStack_d0 [136];
   ulonglong uStack_48;
   
   uStack_230 = 0xfffffffffffffffe;

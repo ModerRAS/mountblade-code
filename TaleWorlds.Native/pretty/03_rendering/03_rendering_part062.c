@@ -307,7 +307,7 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     void *stack_ptr5;
     void *stack_ptr6;
     int32_t stack_param17;
-    undefined stack_buffer2[16];
+    uint8_t stack_buffer2[16];
     void *stack_ptr7;
     int8_t *stack_ptr8;
     int32_t stack_param18;
@@ -578,7 +578,7 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     void *stack_ptr4;
     void *stack_ptr5;
     int32_t stack_param20;
-    undefined stack_buffer2[32];
+    uint8_t stack_buffer2[32];
     void *stack_ptr6;
     int8_t *stack_ptr7;
     int32_t stack_param21;

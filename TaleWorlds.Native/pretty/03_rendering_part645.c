@@ -60,7 +60,7 @@ void FUN_18062dee0(longlong param_1,longlong param_2,uint64_t param_3)
   void *puStack_5e8;
   void *puStack_5e0;
   int32_t uStack_5d8;
-  undefined auStack_5d0 [264];
+  uint8_t auStack_5d0 [264];
   void *apuStack_4c8 [68];
   int8_t auStack_2a8 [64];
   int8_t auStack_268 [560];

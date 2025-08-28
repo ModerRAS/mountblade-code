@@ -4,13 +4,13 @@
 // 包含系统初始化相关的函数声明和变量定义
 
 // 函数声明：初始化渲染上下文
-undefined initialize_render_context;
+uint8_t initialize_render_context;
 
 // 函数声明：设置图形设备参数
-undefined setup_graphics_device_params;
+uint8_t setup_graphics_device_params;
 
 // 全局变量：渲染状态标志
-undefined render_status_flag;
+uint8_t render_status_flag;
 
 // 常量：图形设备配置参数
 uint64_t GRAPHICS_DEVICE_CONFIG;
@@ -28,15 +28,15 @@ int32_t buffer_width;
 int32_t buffer_height;
 
 // 数据变量：纹理映射数据
-undefined texture_mapping_data;
-undefined shader_program_data;
+uint8_t texture_mapping_data;
+uint8_t shader_program_data;
 
 // 数据变量：显示配置数据
-undefined display_config_data;
-undefined video_mode_data;
+uint8_t display_config_data;
+uint8_t video_mode_data;
 
 // 常量：渲染管线配置
-undefined render_pipeline_config;
+uint8_t render_pipeline_config;
 longlong render_pipeline_state;
 uint64_t render_pipeline_flags;
 longlong render_shader_params;

@@ -355,11 +355,11 @@ void FUN_1802829c0(longlong param_1,longlong *param_2)
   void *puStack_178;
   void *puStack_170;
   int32_t uStack_168;
-  undefined auStack_160 [136];
+  uint8_t auStack_160 [136];
   void *puStack_d8;
   void *puStack_d0;
   int32_t uStack_c8;
-  undefined auStack_c0 [136];
+  uint8_t auStack_c0 [136];
   ulonglong uStack_38;
   
   uStack_190 = 0xfffffffffffffffe;

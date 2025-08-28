@@ -126,10 +126,10 @@ typedef struct {
 // ============================================================================
 
 // 系统全局变量
-extern undefined DAT_180be12f0;                // 系统全局数据1
-extern undefined UNK_180984b50;                // 系统未知数据1
-extern undefined UNK_180958000;                // 系统未知数据2
-extern undefined DAT_180bf00a8;                // 系统全局数据2
+extern uint8_t DAT_180be12f0;                // 系统全局数据1
+extern uint8_t UNK_180984b50;                // 系统未知数据1
+extern uint8_t UNK_180958000;                // 系统未知数据2
+extern uint8_t DAT_180bf00a8;                // 系统全局数据2
 
 // ============================================================================
 // 函数声明

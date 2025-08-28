@@ -414,7 +414,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
     void *mesh_handler;       // 网格处理器
     void *texture_handler;    // 纹理处理器
     int32_t mesh_id;            // 网格ID
-    undefined temp_stack[136];     // 临时栈空间
+    uint8_t temp_stack[136];     // 临时栈空间
     ulonglong security_hash;       // 安全哈希值
     
     // 初始化安全哈希和字符串处理

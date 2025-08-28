@@ -821,7 +821,7 @@ void initialize_system_environment(void)
     void *puStack_188;
     void *puStack_180;
     int32_t uStack_178;
-    undefined auStack_170 [32];
+    uint8_t auStack_170 [32];
     longlong **applStack_150 [3];
     int8_t auStack_138 [272];
     ulonglong uStack_28;

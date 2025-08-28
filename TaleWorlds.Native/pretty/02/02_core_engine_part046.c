@@ -37,7 +37,7 @@ void Engine_ProcessData(longlong engine_instance, longlong *data_buffer, longlon
   void *puStack_258;
   void *puStack_250;
   uint uStack_248;
-  undefined auStack_240 [520];
+  uint8_t auStack_240 [520];
   ulonglong uStack_38;
   
   // 初始化堆栈变量和安全检查

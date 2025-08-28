@@ -808,7 +808,7 @@ void FUN_180639630(undefined6 *param_1,longlong *param_2,char param_3,char param
 {
   uint64_t uVar1;
   undefined7 uVar2;
-  undefined5 uVar3;
+  uint8_t uVar3;
   void *puVar4;
   uint64_t uVar5;
   int8_t auStack_e8 [32];

@@ -393,7 +393,7 @@ void render_system_data_processor(uint64_t render_context, longlong data_context
   void *stack_data_ptr;
   void *stack_data_buffer;
   int32_t stack_operation_code;
-  undefined stack_temp_data [16];
+  uint8_t stack_temp_data [16];
   void *stack_processor_ptr;
   int8_t *stack_output_ptr;
   int32_t stack_param_10;
@@ -717,7 +717,7 @@ void render_system_resource_handler(longlong render_context, longlong target_con
   void *stack_processor_ptr;
   void *stack_data_buffer;
   int32_t stack_operation_code;
-  undefined stack_temp_buffer [32];
+  uint8_t stack_temp_buffer [32];
   void *stack_output_ptr;
   int8_t *stack_output_buffer;
   int32_t stack_param_9;

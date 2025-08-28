@@ -35,7 +35,7 @@ typedef uint64_t  uint64;      /* 64位无符号整数 */
 typedef int32_t  uint32;      /* 32位无符号整数 */
 typedef int16_t  uint16;      /* 16位无符号整数 */
 typedef int8_t  uint8;       /* 8位无符号整数 */
-typedef undefined   void_ptr;    /* 空指针 */
+typedef uint8_t   void_ptr;    /* 空指针 */
 typedef char        byte;        /* 字节类型 */
 
 /* 渲染系统常量 */

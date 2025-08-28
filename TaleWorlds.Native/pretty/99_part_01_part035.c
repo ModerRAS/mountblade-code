@@ -222,7 +222,7 @@ void FUN_1800c33e0(longlong param_1)
   void *puStack_f8;
   void *puStack_f0;
   int32_t uStack_e8;
-  undefined auStack_e0 [72];
+  uint8_t auStack_e0 [72];
   void *puStack_98;
   int8_t *puStack_90;
   int32_t uStack_88;

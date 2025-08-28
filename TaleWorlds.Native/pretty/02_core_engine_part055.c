@@ -39,7 +39,7 @@ void FUN_180091430(void)
   void *puStack_c8;
   void *puStack_c0;
   int32_t uStack_b8;
-  undefined auStack_b0 [136];
+  uint8_t auStack_b0 [136];
   ulonglong uStack_28;
   
   plVar7 = _DAT_180c86950;

@@ -62,42 +62,42 @@
 /**
  * 数据处理系统全局变量
  */
-static undefined data_interpolation_processor;
-static undefined pixel_coordinate_transformer;
-static undefined bilinear_interpolation_calculator;
-static undefined texture_sampler;
-static undefined color_space_converter;
-static undefined data_normalizer;
-static undefined coordinate_mapper;
-static undefined pixel_processor;
-static undefined image_scaler;
-static undefined texture_mapper;
+static uint8_t data_interpolation_processor;
+static uint8_t pixel_coordinate_transformer;
+static uint8_t bilinear_interpolation_calculator;
+static uint8_t texture_sampler;
+static uint8_t color_space_converter;
+static uint8_t data_normalizer;
+static uint8_t coordinate_mapper;
+static uint8_t pixel_processor;
+static uint8_t image_scaler;
+static uint8_t texture_mapper;
 
 /**
  * 像素处理系统全局变量
  */
-static undefined pixel_sampler;
-static undefined color_interpolator;
-static undefined texture_coordinate_mapper;
-static undefined pixel_buffer_manager;
-static undefined color_converter;
-static undefined pixel_filter;
-static undefined image_processor;
-static undefined pixel_normalizer;
-static undefined color_space_manager;
+static uint8_t pixel_sampler;
+static uint8_t color_interpolator;
+static uint8_t texture_coordinate_mapper;
+static uint8_t pixel_buffer_manager;
+static uint8_t color_converter;
+static uint8_t pixel_filter;
+static uint8_t image_processor;
+static uint8_t pixel_normalizer;
+static uint8_t color_space_manager;
 
 /**
  * 坐标处理系统全局变量
  */
-static undefined coordinate_transformer;
-static undefined coordinate_validator;
-static undefined coordinate_scaler;
-static undefined coordinate_interpolator;
-static undefined coordinate_mapper;
-static undefined coordinate_normalizer;
-static undefined coordinate_processor;
-static undefined coordinate_manager;
-static undefined coordinate_calculator;
+static uint8_t coordinate_transformer;
+static uint8_t coordinate_validator;
+static uint8_t coordinate_scaler;
+static uint8_t coordinate_interpolator;
+static uint8_t coordinate_mapper;
+static uint8_t coordinate_normalizer;
+static uint8_t coordinate_processor;
+static uint8_t coordinate_manager;
+static uint8_t coordinate_calculator;
 
 /*==========================================
 =            函数声明            =

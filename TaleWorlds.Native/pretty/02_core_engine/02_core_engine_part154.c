@@ -147,7 +147,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
   int current_count;
   uint64_t *entry_ptr;
   uint hash_value;
-  undefined5 stack_temp;
+  uint8_t stack_temp;
   
   global_data = _DAT_180c8a9b0;
   new_array = _DAT_180c8a9a8;

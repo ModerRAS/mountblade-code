@@ -378,7 +378,7 @@ void FUN_180443b00(void)
     void *stack_ptr_c8;
     void *stack_ptr_c0;
     int32_t stack_data_b8;
-    undefined stack_array_b0 [128];
+    uint8_t stack_array_b0 [128];
     uint64_t stack_data_30;
     ulonglong stack_data_28;
     

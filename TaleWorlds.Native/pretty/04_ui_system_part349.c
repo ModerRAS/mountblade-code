@@ -141,7 +141,7 @@
  * - UI事件处理和回调
  * - UI资源管理和清理
  */
-typedef undefined UISystem_Processor_type;
+typedef uint8_t UISystem_Processor_type;
 
 /**
  * @brief UI系统管理器类型
@@ -155,7 +155,7 @@ typedef undefined UISystem_Processor_type;
  * - UI数据结构管理
  * - UI系统配置和控制
  */
-typedef undefined UISystem_Manager_type;
+typedef uint8_t UISystem_Manager_type;
 
 /**
  * @brief UI系统事件类型
@@ -169,7 +169,7 @@ typedef undefined UISystem_Manager_type;
  * - 事件队列管理
  * - 事件状态监控
  */
-typedef undefined UISystem_Event_type;
+typedef uint8_t UISystem_Event_type;
 
 /**
  * @brief UI系统回调类型
@@ -183,7 +183,7 @@ typedef undefined UISystem_Event_type;
  * - 回调状态监控
  * - 回调结果处理
  */
-typedef undefined UISystem_Callback_type;
+typedef uint8_t UISystem_Callback_type;
 
 /* ============================================================================
  * 结构体定义

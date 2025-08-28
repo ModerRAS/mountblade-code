@@ -350,8 +350,8 @@ void rendering_system_heap_sort(uint* data_array, longlong array_size) {
 longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_start, longlong* src_end, uint* dest_data) {
     longlong* current_src;
     uint element_value;
-    undefined float_value1;
-    undefined float_value2;
+    uint8_t float_value1;
+    uint8_t float_value2;
     longlong data_offset;
     longlong* element_ptr;
     longlong array_size;

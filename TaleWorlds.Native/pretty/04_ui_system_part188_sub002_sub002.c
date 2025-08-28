@@ -1062,21 +1062,21 @@ uint64_t FUN_1807793f0(void)
 }
 
 
-undefined UNK_180959e90;
-undefined DAT_180be2198;
-undefined DAT_180be2288;
-undefined UNK_18095a310;
-undefined UNK_18095a384;
-undefined UNK_18095a598;
-undefined UNK_18095a5a0;
-undefined UNK_18095a618;
-undefined UNK_18095a628;
-undefined UNK_18095a638;
-undefined UNK_18095a648;
-undefined UNK_18095a650;
-undefined UNK_18095a658;
-undefined UNK_18095a668;
-undefined UNK_180a215c0;
+uint8_t UNK_180959e90;
+uint8_t DAT_180be2198;
+uint8_t DAT_180be2288;
+uint8_t UNK_18095a310;
+uint8_t UNK_18095a384;
+uint8_t UNK_18095a598;
+uint8_t UNK_18095a5a0;
+uint8_t UNK_18095a618;
+uint8_t UNK_18095a628;
+uint8_t UNK_18095a638;
+uint8_t UNK_18095a648;
+uint8_t UNK_18095a650;
+uint8_t UNK_18095a658;
+uint8_t UNK_18095a668;
+uint8_t UNK_180a215c0;
 
 
 

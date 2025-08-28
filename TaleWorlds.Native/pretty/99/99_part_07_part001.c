@@ -97,25 +97,25 @@ typedef struct {
 /**
  * @brief 系统数据处理核心数据区域
  */
-extern undefined UNK_180bf00a8;           /* 系统主控制器 */
-extern undefined UNK_180c8ed18;           /* 系统配置管理器 */
-extern undefined UNK_180c86930;           /* 系统数据处理器 */
-extern undefined UNK_180c86938;           /* 系统状态管理器 */
-extern undefined UNK_180c86870;           /* 系统资源管理器 */
-extern undefined UNK_180c86890;           /* 系统渲染管理器 */
-extern undefined UNK_180c8695c;           /* 系统计数器 */
-extern undefined UNK_180c86968;           /* 系统回调管理器 */
-extern undefined UNK_180a3c3e0;           /* 系统数据缓冲区 */
-extern undefined UNK_180a1a8d8;           /* 系统字符串处理器 */
-extern undefined UNK_18098bc73;           /* 系统默认字符串 */
-extern undefined UNK_1809fcc28;           /* 系统数据接口 */
-extern undefined UNK_18098bcb0;           /* 系统状态接口 */
-extern undefined UNK_1809fcc58;           /* 系统配置接口 */
-extern undefined UNK_180a26368;           /* 系统对象管理器 */
-extern undefined UNK_180a264e0;           /* 系统内存管理器 */
-extern undefined UNK_180a26270;           /* 系统渲染数据1 */
-extern undefined UNK_180a26280;           /* 系统渲染数据2 */
-extern undefined UNK_180a0eb68;           /* 系统常量数据 */
+extern uint8_t UNK_180bf00a8;           /* 系统主控制器 */
+extern uint8_t UNK_180c8ed18;           /* 系统配置管理器 */
+extern uint8_t UNK_180c86930;           /* 系统数据处理器 */
+extern uint8_t UNK_180c86938;           /* 系统状态管理器 */
+extern uint8_t UNK_180c86870;           /* 系统资源管理器 */
+extern uint8_t UNK_180c86890;           /* 系统渲染管理器 */
+extern uint8_t UNK_180c8695c;           /* 系统计数器 */
+extern uint8_t UNK_180c86968;           /* 系统回调管理器 */
+extern uint8_t UNK_180a3c3e0;           /* 系统数据缓冲区 */
+extern uint8_t UNK_180a1a8d8;           /* 系统字符串处理器 */
+extern uint8_t UNK_18098bc73;           /* 系统默认字符串 */
+extern uint8_t UNK_1809fcc28;           /* 系统数据接口 */
+extern uint8_t UNK_18098bcb0;           /* 系统状态接口 */
+extern uint8_t UNK_1809fcc58;           /* 系统配置接口 */
+extern uint8_t UNK_180a26368;           /* 系统对象管理器 */
+extern uint8_t UNK_180a264e0;           /* 系统内存管理器 */
+extern uint8_t UNK_180a26270;           /* 系统渲染数据1 */
+extern uint8_t UNK_180a26280;           /* 系统渲染数据2 */
+extern uint8_t UNK_180a0eb68;           /* 系统常量数据 */
 
 /* ============================================================================
  * 系统数据处理函数声明
@@ -270,36 +270,36 @@ void FUN_1803fa980(longlong *param_1, longlong param_2);
 /**
  * @brief 系统数据处理相关变量
  */
-extern undefined DAT_180bf00a8;           /* 系统数据控制器 */
-extern undefined UNK_1801f9270;           /* 系统初始化器 */
-extern undefined UNK_18062b420;           /* 系统内存分配器 */
-extern undefined UNK_18064e990;           /* 系统数据验证器 */
-extern undefined UNK_180628040;           /* 系统字符串管理器 */
-extern undefined UNK_1800b1230;           /* 系统数据处理器 */
-extern undefined UNK_18029ad30;           /* 系统资源管理器 */
-extern undefined UNK_18029de40;           /* 系统状态更新器 */
-extern undefined UNK_18029fc10;           /* 系统配置管理器 */
-extern undefined UNK_1801f7d20;           /* 系统参数处理器 */
-extern undefined UNK_180627ae0;           /* 系统数据转换器 */
-extern undefined UNK_180299eb0;           /* 系统数据优化器 */
-extern undefined UNK_18029d150;           /* 系统渲染管理器 */
-extern undefined UNK_18029d000;           /* 系统资源释放器 */
-extern undefined UNK_18029cdd0;           /* 系统数据同步器 */
-extern undefined UNK_18029e110;           /* 系统状态同步器 */
-extern undefined UNK_1808fc838;           /* 系统对象创建器 */
-extern undefined UNK_1808fc8a8;           /* 系统对象配置器 */
-extern undefined UNK_1801f9920;           /* 系统初始化管理器 */
-extern undefined UNK_1801f8ea0;           /* 系统数据管理器 */
-extern undefined UNK_18062b1e0;           /* 系统内存管理器 */
-extern undefined UNK_1808fc050;           /* 系统清理器 */
-extern undefined UNK_1802c22a0;           /* 系统字符串处理器 */
-extern undefined UNK_180049bf0;           /* 系统数据处理器 */
-extern undefined UNK_1802c2560;           /* 系统资源管理器 */
-extern undefined UNK_1802c2ac0;           /* 系统资源清理器 */
-extern undefined UNK_18064e900;           /* 系统错误处理器 */
-extern undefined UNK_1801fa180;           /* 系统配置管理器 */
-extern undefined UNK_180045af0;           /* 系统回调处理器 */
-extern undefined UNK_1801f6650;           /* 系统渲染管理器 */
+extern uint8_t DAT_180bf00a8;           /* 系统数据控制器 */
+extern uint8_t UNK_1801f9270;           /* 系统初始化器 */
+extern uint8_t UNK_18062b420;           /* 系统内存分配器 */
+extern uint8_t UNK_18064e990;           /* 系统数据验证器 */
+extern uint8_t UNK_180628040;           /* 系统字符串管理器 */
+extern uint8_t UNK_1800b1230;           /* 系统数据处理器 */
+extern uint8_t UNK_18029ad30;           /* 系统资源管理器 */
+extern uint8_t UNK_18029de40;           /* 系统状态更新器 */
+extern uint8_t UNK_18029fc10;           /* 系统配置管理器 */
+extern uint8_t UNK_1801f7d20;           /* 系统参数处理器 */
+extern uint8_t UNK_180627ae0;           /* 系统数据转换器 */
+extern uint8_t UNK_180299eb0;           /* 系统数据优化器 */
+extern uint8_t UNK_18029d150;           /* 系统渲染管理器 */
+extern uint8_t UNK_18029d000;           /* 系统资源释放器 */
+extern uint8_t UNK_18029cdd0;           /* 系统数据同步器 */
+extern uint8_t UNK_18029e110;           /* 系统状态同步器 */
+extern uint8_t UNK_1808fc838;           /* 系统对象创建器 */
+extern uint8_t UNK_1808fc8a8;           /* 系统对象配置器 */
+extern uint8_t UNK_1801f9920;           /* 系统初始化管理器 */
+extern uint8_t UNK_1801f8ea0;           /* 系统数据管理器 */
+extern uint8_t UNK_18062b1e0;           /* 系统内存管理器 */
+extern uint8_t UNK_1808fc050;           /* 系统清理器 */
+extern uint8_t UNK_1802c22a0;           /* 系统字符串处理器 */
+extern uint8_t UNK_180049bf0;           /* 系统数据处理器 */
+extern uint8_t UNK_1802c2560;           /* 系统资源管理器 */
+extern uint8_t UNK_1802c2ac0;           /* 系统资源清理器 */
+extern uint8_t UNK_18064e900;           /* 系统错误处理器 */
+extern uint8_t UNK_1801fa180;           /* 系统配置管理器 */
+extern uint8_t UNK_180045af0;           /* 系统回调处理器 */
+extern uint8_t UNK_1801f6650;           /* 系统渲染管理器 */
 
 /* ============================================================================
  * 系统数据处理实现
@@ -650,7 +650,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     void *puStack_118;
     void *puStack_110;
     uint uStack_108;
-    undefined auStack_100 [136];
+    uint8_t auStack_100 [136];
     ulonglong uStack_78;
     
     // 系统初始化和配置

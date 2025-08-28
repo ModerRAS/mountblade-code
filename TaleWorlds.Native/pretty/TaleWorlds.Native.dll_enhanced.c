@@ -45,7 +45,7 @@ typedef uint64_t          uint64_t;       /** 64位无符号整数 */
 typedef int32_t          uint32_t;       /** 32位无符号整数 */
 typedef int16_t          uint16_t;       /** 16位无符号整数 */
 typedef int8_t          uint8_t;        /** 8位无符号整数 */
-typedef undefined           void_t;         /** 空类型 */
+typedef uint8_t           void_t;         /** 空类型 */
 typedef int8_t          byte_t;         /** 字节类型 */
 typedef void*          ptr_t;          /** 通用指针类型 */
 
@@ -83,32 +83,32 @@ typedef uint64_t (*uint64_func_t)();        /** 64位返回函数指针 */
  * 全局数据变量组 (DAT_ 前缀)
  * 这些变量存储系统的全局状态和配置信息
  */
-extern undefined DAT_1809fc740;    /** 系统主配置数据 */
-extern undefined DAT_1809fc768;    /** 系统状态数据 */
-extern undefined DAT_18098c9b8;    /** 核心数据缓存 */
-extern undefined DAT_18098c940;    /** 系统资源数据 */
-extern undefined DAT_18098c918;    /** 处理队列数据 */
-extern undefined DAT_18098c968;    /** 管理信息数据 */
-extern undefined DAT_18098c990;    /** 控制参数数据 */
-extern undefined DAT_18098c9e0;    /** 通信接口数据 */
-extern undefined DAT_18098c8f0;    /** 处理器数据 */
-extern undefined DAT_18098c8c8;    /** 系统通信数据 */
+extern uint8_t DAT_1809fc740;    /** 系统主配置数据 */
+extern uint8_t DAT_1809fc768;    /** 系统状态数据 */
+extern uint8_t DAT_18098c9b8;    /** 核心数据缓存 */
+extern uint8_t DAT_18098c940;    /** 系统资源数据 */
+extern uint8_t DAT_18098c918;    /** 处理队列数据 */
+extern uint8_t DAT_18098c968;    /** 管理信息数据 */
+extern uint8_t DAT_18098c990;    /** 控制参数数据 */
+extern uint8_t DAT_18098c9e0;    /** 通信接口数据 */
+extern uint8_t DAT_18098c8f0;    /** 处理器数据 */
+extern uint8_t DAT_18098c8c8;    /** 系统通信数据 */
 
 /** 
  * 未知类型变量组 (UNK_ 前缀)
  * 这些变量的具体用途需要进一步分析
  */
-extern undefined UNK_18098c790;    /** 未知类型变量 - 可能是系统句柄 */
-extern undefined UNK_18098c7a0;    /** 未知类型变量 - 可能是接口指针 */
-extern undefined UNK_18098c7b8;    /** 未知类型变量 - 可能是状态标志 */
-extern undefined UNK_18098c7c8;    /** 未知类型变量 - 可能是配置指针 */
-extern undefined UNK_18098c7d8;    /** 未知类型变量 - 可能是缓存指针 */
-extern undefined UNK_18098c7f0;    /** 未知类型变量 - 可能是管理器指针 */
-extern undefined UNK_18098c810;    /** 未知类型变量 - 可能是处理器指针 */
-extern undefined UNK_18098c870;    /** 未知类型变量 - 可能是系统对象 */
-extern undefined UNK_18098c880;    /** 未知类型变量 - 可能是服务对象 */
-extern undefined UNK_18098c898;    /** 未知类型变量 - 可能是引擎对象 */
-extern undefined UNK_18098bc80;    /** 未知类型变量 - 可能是渲染对象 */
+extern uint8_t UNK_18098c790;    /** 未知类型变量 - 可能是系统句柄 */
+extern uint8_t UNK_18098c7a0;    /** 未知类型变量 - 可能是接口指针 */
+extern uint8_t UNK_18098c7b8;    /** 未知类型变量 - 可能是状态标志 */
+extern uint8_t UNK_18098c7c8;    /** 未知类型变量 - 可能是配置指针 */
+extern uint8_t UNK_18098c7d8;    /** 未知类型变量 - 可能是缓存指针 */
+extern uint8_t UNK_18098c7f0;    /** 未知类型变量 - 可能是管理器指针 */
+extern uint8_t UNK_18098c810;    /** 未知类型变量 - 可能是处理器指针 */
+extern uint8_t UNK_18098c870;    /** 未知类型变量 - 可能是系统对象 */
+extern uint8_t UNK_18098c880;    /** 未知类型变量 - 可能是服务对象 */
+extern uint8_t UNK_18098c898;    /** 未知类型变量 - 可能是引擎对象 */
+extern uint8_t UNK_18098bc80;    /** 未知类型变量 - 可能是渲染对象 */
 
 /** 特殊类型变量 */
 extern int8_t DAT_180bf5240;   /** 1字节状态标志变量 */
@@ -121,104 +121,104 @@ extern uint64_t UNK_180bf5298;   /** 8字节计数器变量 */
  * ============================================================================ */
 
 /** 渲染核心变量 */
-extern undefined DAT_180bf5268;    /** 渲染配置主数据 */
-extern undefined DAT_180bf5270;    /** 渲染状态主数据 */
-extern undefined DAT_180bf5280;    /** 渲染缓冲主数据 */
-extern undefined DAT_180bf5288;    /** 渲染纹理主数据 */
+extern uint8_t DAT_180bf5268;    /** 渲染配置主数据 */
+extern uint8_t DAT_180bf5270;    /** 渲染状态主数据 */
+extern uint8_t DAT_180bf5280;    /** 渲染缓冲主数据 */
+extern uint8_t DAT_180bf5288;    /** 渲染纹理主数据 */
 
 /** 渲染资源变量 */
-extern undefined DAT_180bf5290;    /** 渲染着色器数据 */
-extern undefined DAT_180bf52a0;    /** 渲染模型数据 */
-extern undefined DAT_180bf52c0;    /** 渲染灯光数据 */
-extern undefined DAT_180bf52c8;    /** 渲染相机数据 */
-extern undefined DAT_180bf52d0;    /** 渲染材质数据 */
-extern undefined DAT_180bf52d8;    /** 渲染效果数据 */
-extern undefined DAT_180bf52a8;    /** 渲染资源管理数据 */
-extern undefined DAT_180bf52b0;    /** 渲染队列管理数据 */
+extern uint8_t DAT_180bf5290;    /** 渲染着色器数据 */
+extern uint8_t DAT_180bf52a0;    /** 渲染模型数据 */
+extern uint8_t DAT_180bf52c0;    /** 渲染灯光数据 */
+extern uint8_t DAT_180bf52c8;    /** 渲染相机数据 */
+extern uint8_t DAT_180bf52d0;    /** 渲染材质数据 */
+extern uint8_t DAT_180bf52d8;    /** 渲染效果数据 */
+extern uint8_t DAT_180bf52a8;    /** 渲染资源管理数据 */
+extern uint8_t DAT_180bf52b0;    /** 渲染队列管理数据 */
 
 /* ============================================================================
  * UI系统变量组
  * ============================================================================ */
 
 /** UI核心变量 */
-extern undefined DAT_180bf5770;    /** UI配置主数据 */
-extern undefined DAT_180bf5778;    /** UI状态主数据 */
-extern undefined DAT_180bf5780;    /** UI布局主数据 */
-extern undefined DAT_180bf5788;    /** UI控件主数据 */
+extern uint8_t DAT_180bf5770;    /** UI配置主数据 */
+extern uint8_t DAT_180bf5778;    /** UI状态主数据 */
+extern uint8_t DAT_180bf5780;    /** UI布局主数据 */
+extern uint8_t DAT_180bf5788;    /** UI控件主数据 */
 
 /** UI样式变量 */
-extern undefined DAT_180bf5208;    /** UI主题数据 */
-extern undefined DAT_180bf5210;    /** UI字体数据 */
-extern undefined DAT_180bf5218;    /** UI颜色数据 */
-extern undefined DAT_180bf5220;    /** UI样式数据 */
+extern uint8_t DAT_180bf5208;    /** UI主题数据 */
+extern uint8_t DAT_180bf5210;    /** UI字体数据 */
+extern uint8_t DAT_180bf5218;    /** UI颜色数据 */
+extern uint8_t DAT_180bf5220;    /** UI样式数据 */
 
 /* ============================================================================
  * 音频系统变量组
  * ============================================================================ */
 
 /** 音频核心变量 */
-extern undefined DAT_180bf5bc0;    /** 音频配置主数据 */
-extern undefined DAT_180bf5bc8;    /** 音频状态主数据 */
-extern undefined DAT_180bf5bd0;    /** 音频缓冲主数据 */
-extern undefined DAT_180bf5bd8;    /** 音频效果主数据 */
+extern uint8_t DAT_180bf5bc0;    /** 音频配置主数据 */
+extern uint8_t DAT_180bf5bc8;    /** 音频状态主数据 */
+extern uint8_t DAT_180bf5bd0;    /** 音频缓冲主数据 */
+extern uint8_t DAT_180bf5bd8;    /** 音频效果主数据 */
 
 /** 音频控制变量 */
-extern undefined DAT_180bf5c30;    /** 音频音量数据 */
-extern undefined DAT_180bf5c38;    /** 音频音调数据 */
-extern undefined DAT_180bf5c40;    /** 音频声道数据 */
-extern undefined DAT_180bf5c48;    /** 音频采样数据 */
+extern uint8_t DAT_180bf5c30;    /** 音频音量数据 */
+extern uint8_t DAT_180bf5c38;    /** 音频音调数据 */
+extern uint8_t DAT_180bf5c40;    /** 音频声道数据 */
+extern uint8_t DAT_180bf5c48;    /** 音频采样数据 */
 
 /* ============================================================================
  * 网络系统变量组
  * ============================================================================ */
 
 /** 网络核心变量 */
-extern undefined DAT_180bf6080;    /** 网络配置主数据 */
-extern undefined DAT_180bf6088;    /** 网络状态主数据 */
-extern undefined DAT_180bf6090;    /** 网络连接主数据 */
-extern undefined DAT_180bf6098;    /** 网络协议主数据 */
+extern uint8_t DAT_180bf6080;    /** 网络配置主数据 */
+extern uint8_t DAT_180bf6088;    /** 网络状态主数据 */
+extern uint8_t DAT_180bf6090;    /** 网络连接主数据 */
+extern uint8_t DAT_180bf6098;    /** 网络协议主数据 */
 
 /* ============================================================================
  * 系统函数指针声明
  * ============================================================================ */
 
 /** 系统核心函数组 */
-extern undefined FUN_18007fcd0;    /** 系统初始化主函数 */
-extern undefined FUN_180073930;    /** 系统核心处理函数 */
-extern undefined FUN_1809414f0;    /** 渲染系统主函数 */
-extern undefined FUN_180941590;    /** UI系统主函数 */
-extern undefined FUN_1809415b0;    /** 输入系统主函数 */
-extern undefined FUN_1809415d0;    /** 音频系统主函数 */
-extern undefined FUN_1809415f0;    /** 网络系统主函数 */
-extern undefined FUN_180941610;    /** 物理系统主函数 */
-extern undefined FUN_180941650;    /** 动画系统主函数 */
-extern undefined FUN_180941690;    /** AI系统主函数 */
-extern undefined FUN_1809416d0;    /** 资源管理主函数 */
-extern undefined FUN_180941710;    /** 内存管理主函数 */
+extern uint8_t FUN_18007fcd0;    /** 系统初始化主函数 */
+extern uint8_t FUN_180073930;    /** 系统核心处理函数 */
+extern uint8_t FUN_1809414f0;    /** 渲染系统主函数 */
+extern uint8_t FUN_180941590;    /** UI系统主函数 */
+extern uint8_t FUN_1809415b0;    /** 输入系统主函数 */
+extern uint8_t FUN_1809415d0;    /** 音频系统主函数 */
+extern uint8_t FUN_1809415f0;    /** 网络系统主函数 */
+extern uint8_t FUN_180941610;    /** 物理系统主函数 */
+extern uint8_t FUN_180941650;    /** 动画系统主函数 */
+extern uint8_t FUN_180941690;    /** AI系统主函数 */
+extern uint8_t FUN_1809416d0;    /** 资源管理主函数 */
+extern uint8_t FUN_180941710;    /** 内存管理主函数 */
 
 /** 系统初始化函数组 */
-extern undefined FUN_18005ab20;    /** 系统初始化入口函数 */
-extern undefined FUN_1800637c0;    /** 系统配置初始化函数 */
-extern undefined FUN_1800637f0;    /** 系统资源初始化函数 */
-extern undefined FUN_1809417a0;    /** 系统模块初始化函数 */
+extern uint8_t FUN_18005ab20;    /** 系统初始化入口函数 */
+extern uint8_t FUN_1800637c0;    /** 系统配置初始化函数 */
+extern uint8_t FUN_1800637f0;    /** 系统资源初始化函数 */
+extern uint8_t FUN_1809417a0;    /** 系统模块初始化函数 */
 
 /** 核心引擎函数组 */
-extern undefined FUN_1802281a0;    /** 引擎主循环函数 */
-extern undefined FUN_1802285e0;    /** 引擎处理函数 */
-extern undefined FUN_1809417c0;    /** 引擎更新函数 */
-extern undefined FUN_180941800;    /** 引擎渲染函数 */
-extern undefined FUN_180941820;    /** 引擎管理函数 */
+extern uint8_t FUN_1802281a0;    /** 引擎主循环函数 */
+extern uint8_t FUN_1802285e0;    /** 引擎处理函数 */
+extern uint8_t FUN_1809417c0;    /** 引擎更新函数 */
+extern uint8_t FUN_180941800;    /** 引擎渲染函数 */
+extern uint8_t FUN_180941820;    /** 引擎管理函数 */
 
 /** 子系统管理函数组 */
-extern undefined FUN_180941840;    /** 子系统处理函数 */
-extern undefined FUN_180941860;    /** 子系统更新函数 */
-extern undefined FUN_180941880;    /** 子系统渲染函数 */
-extern undefined FUN_1809418a0;    /** 子系统管理函数 */
-extern undefined FUN_1809418c0;    /** 子系统清理函数 */
-extern undefined FUN_1809418e0;    /** 子系统状态函数 */
-extern undefined FUN_180941900;    /** 子系统配置函数 */
-extern undefined FUN_180941980;    /** 子系统初始化函数 */
-extern undefined FUN_1809419a0;    /** 子系统终止函数 */
+extern uint8_t FUN_180941840;    /** 子系统处理函数 */
+extern uint8_t FUN_180941860;    /** 子系统更新函数 */
+extern uint8_t FUN_180941880;    /** 子系统渲染函数 */
+extern uint8_t FUN_1809418a0;    /** 子系统管理函数 */
+extern uint8_t FUN_1809418c0;    /** 子系统清理函数 */
+extern uint8_t FUN_1809418e0;    /** 子系统状态函数 */
+extern uint8_t FUN_180941900;    /** 子系统配置函数 */
+extern uint8_t FUN_180941980;    /** 子系统初始化函数 */
+extern uint8_t FUN_1809419a0;    /** 子系统终止函数 */
 
 /* ============================================================================
  * 特殊系统变量
@@ -231,27 +231,27 @@ extern int8_t DAT_180c91238;   /** 系统状态标志3 */
 extern int8_t DAT_180c912d8;   /** 系统状态标志4 */
 
 /** 系统管理变量 */
-extern undefined DAT_1809fe0d0;    /** 系统管理主数据 */
-extern undefined UNK_1809fd0d8;    /** 系统管理指针 */
-extern undefined DAT_1809ff9e8;    /** 系统配置主数据 */
-extern undefined UNK_1809ff978;    /** 系统配置指针 */
-extern undefined DAT_1809ff9c0;    /** 系统缓存主数据 */
-extern undefined UNK_1809ff990;    /** 系统缓存指针 */
+extern uint8_t DAT_1809fe0d0;    /** 系统管理主数据 */
+extern uint8_t UNK_1809fd0d8;    /** 系统管理指针 */
+extern uint8_t DAT_1809ff9e8;    /** 系统配置主数据 */
+extern uint8_t UNK_1809ff978;    /** 系统配置指针 */
+extern uint8_t DAT_1809ff9c0;    /** 系统缓存主数据 */
+extern uint8_t UNK_1809ff990;    /** 系统缓存指针 */
 
 /* ============================================================================
  * 工具函数声明
  * ============================================================================ */
 
 /** 内存管理工具函数 */
-extern undefined FUN_18008d070;    /** 内存分配函数 */
-extern undefined FUN_18008f0d0;    /** 内存管理函数 */
-extern undefined FUN_18008f140;    /** 内存操作函数 */
+extern uint8_t FUN_18008d070;    /** 内存分配函数 */
+extern uint8_t FUN_18008f0d0;    /** 内存管理函数 */
+extern uint8_t FUN_18008f140;    /** 内存操作函数 */
 
 /** 系统工具函数 */
-extern undefined FUN_1809fcc58;    /** 系统工具函数1 */
-extern undefined UNK_180941760;    /** 系统工具函数2 */
-extern undefined UNK_180941780;    /** 系统工具函数3 */
-extern undefined DAT_180c91900;    /** 系统工具数据 */
+extern uint8_t FUN_1809fcc58;    /** 系统工具函数1 */
+extern uint8_t UNK_180941760;    /** 系统工具函数2 */
+extern uint8_t UNK_180941780;    /** 系统工具函数3 */
+extern uint8_t DAT_180c91900;    /** 系统工具数据 */
 
 /* ============================================================================
  * 数据结构定义

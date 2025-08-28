@@ -221,7 +221,7 @@ static uint32_t g_collision_info_count = 0;
  * 
  * @note 这是一个简化的实现，原本实现包含复杂的物理引擎逻辑
  */
-undefined FUN_1802633c0(void)
+uint8_t FUN_1802633c0(void)
 {
     PhysicsHandle physics_handle;
     PhysicsObjectInfo* current_object;
@@ -326,7 +326,7 @@ undefined FUN_1802633c0(void)
  * 
  * @note 这是一个简化的实现，原本实现包含复杂的碰撞检测算法
  */
-undefined FUN_180262b00(void)
+uint8_t FUN_180262b00(void)
 {
     PhysicsObjectInfo* object_a;
     PhysicsObjectInfo* object_b;

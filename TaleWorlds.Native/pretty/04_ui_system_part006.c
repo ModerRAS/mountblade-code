@@ -31,7 +31,7 @@
  * - 数据遍历和查询
  * - 数据结构维护
  */
-typedef undefined UISystem_DataStructureOperator_type;
+typedef uint8_t UISystem_DataStructureOperator_type;
 
 /**
  * @brief UI系统字符串处理器类型
@@ -45,7 +45,7 @@ typedef undefined UISystem_DataStructureOperator_type;
  * - 字符串内存管理
  * - 字符串编码处理
  */
-typedef undefined UISystem_StringProcessor_type;
+typedef uint8_t UISystem_StringProcessor_type;
 
 /**
  * @brief UI系统资源管理器类型
@@ -59,7 +59,7 @@ typedef undefined UISystem_StringProcessor_type;
  * - 资源优化和回收
  * - 资源状态监控
  */
-typedef undefined UISystem_ResourceManager_type;
+typedef uint8_t UISystem_ResourceManager_type;
 
 /**
  * @brief UI系统数据验证器类型
@@ -73,7 +73,7 @@ typedef undefined UISystem_ResourceManager_type;
  * - 数据转换处理
  * - 数据错误处理
  */
-typedef undefined UISystem_DataValidator_type;
+typedef uint8_t UISystem_DataValidator_type;
 
 /**
  * @brief UI系统状态监控器类型
@@ -87,7 +87,7 @@ typedef undefined UISystem_DataValidator_type;
  * - 状态一致性检查
  * - 状态恢复和修复
  */
-typedef undefined UISystem_StateMonitor_type;
+typedef uint8_t UISystem_StateMonitor_type;
 
 /* ========================================
    核心功能常量定义

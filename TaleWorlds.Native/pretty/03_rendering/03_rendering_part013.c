@@ -354,7 +354,7 @@ ulonglong Process_Rendering_Data(uint64_t *render_context, uint *render_flags, u
   float camera_z;
   float max_distance;
   uint64_t stack_param_1;
-  undefined5 stack_param_2;
+  uint8_t stack_param_2;
   int8_t stack_param_3;
   int16_t stack_param_4;
   uint64_t *stack_param_ptr;

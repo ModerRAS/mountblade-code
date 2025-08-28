@@ -76,7 +76,7 @@ void FUN_1802cf670(longlong param_1,longlong param_2)
   void *puStack_478;
   void *puStack_470;
   int32_t uStack_468;
-  undefined auStack_460 [1032];
+  uint8_t auStack_460 [1032];
   int aiStack_58 [6];
   ulonglong uStack_40;
   

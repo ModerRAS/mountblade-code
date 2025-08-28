@@ -165,7 +165,7 @@ extern uint64_t _DAT_180bf00a8;
 extern int32_t DAT_1809fcc18;
 
 /** 渲染系统空对象指针 */
-extern undefined UNK_180a3c3e0;
+extern uint8_t UNK_180a3c3e0;
 
 // ============================================================================
 // 函数声明

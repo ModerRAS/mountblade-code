@@ -284,16 +284,16 @@ LAB_180280958:
 
 
 // 全局变量和数据定义
-undefined RENDER_CONTROL_DATA;
-undefined UNK_180a3e3d8;
-undefined DAT_180c967d8;
-undefined UNK_180a3e3f0;
-undefined RENDER_SYSTEM_CONFIG;
-undefined DAT_180c967e8;
-undefined DAT_180c967f0;
-undefined DAT_180c967f8;
-undefined RENDER_PARAM_DATA;
-undefined RENDER_BUFFER_SIZE;
+uint8_t RENDER_CONTROL_DATA;
+uint8_t UNK_180a3e3d8;
+uint8_t DAT_180c967d8;
+uint8_t UNK_180a3e3f0;
+uint8_t RENDER_SYSTEM_CONFIG;
+uint8_t DAT_180c967e8;
+uint8_t DAT_180c967f0;
+uint8_t DAT_180c967f8;
+uint8_t RENDER_PARAM_DATA;
+uint8_t RENDER_BUFFER_SIZE;
 
 // 原始函数声明（保持与原始代码的兼容性）
 uint64_t FUN_180280ab8;

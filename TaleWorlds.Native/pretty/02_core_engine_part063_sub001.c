@@ -204,7 +204,7 @@ typedef struct {
  * - 任务队列的管理和维护
  * - 异步任务的处理和同步
  * 
- * @return undefined 无返回值
+ * @return uint8_t 无返回值
  * 
  * @note 此函数为核心引擎任务调度的核心组件
  * @warning 任务调度错误可能导致系统性能下降
@@ -221,7 +221,7 @@ typedef struct {
  * - 实现了任务生命周期管理
  * - 提供任务执行统计和报告
  */
-undefined FUN_180058c20(void)
+uint8_t FUN_180058c20(void)
 {
     // 核心引擎高级任务调度逻辑
     // 包括任务创建、调度、执行、状态管理、资源优化等功能

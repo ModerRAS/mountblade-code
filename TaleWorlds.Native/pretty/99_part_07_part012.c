@@ -145,7 +145,7 @@ void create_game_application(void)
   void *puStack_50;
   void *puStack_48;
   int iStack_40;
-  undefined auStack_38 [8];
+  uint8_t auStack_38 [8];
   uint64_t uStack_30;
   ulonglong uStack_28;
   

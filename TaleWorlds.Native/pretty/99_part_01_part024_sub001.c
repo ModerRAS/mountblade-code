@@ -360,7 +360,7 @@ void FUN_1800b8090(longlong *param_1)
   void *puStack_e8;
   void *puStack_e0;
   uint uStack_d8;
-  undefined auStack_d0 [136];
+  uint8_t auStack_d0 [136];
   char acStack_48 [16];
   ulonglong uStack_38;
   longlong lVar4;

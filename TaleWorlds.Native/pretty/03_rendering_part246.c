@@ -255,15 +255,15 @@ void FUN_180407fa0(uint64_t param_1,longlong param_2)
   void *puStack_1b8;
   void *puStack_1b0;
   int iStack_1a8;
-  undefined auStack_1a0 [72];
+  uint8_t auStack_1a0 [72];
   void *puStack_158;
   void *puStack_150;
   int32_t uStack_148;
-  undefined auStack_140 [72];
+  uint8_t auStack_140 [72];
   void *puStack_f8;
   void *puStack_f0;
   int32_t uStack_e8;
-  undefined auStack_e0 [72];
+  uint8_t auStack_e0 [72];
   void *puStack_98;
   int8_t *puStack_90;
   int32_t uStack_88;

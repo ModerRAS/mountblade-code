@@ -646,7 +646,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
   void *temp_stack_ptr;
   void *char_buffer;
   int32_t data_size;
-  undefined temp_string [16];
+  uint8_t temp_string [16];
   ulonglong security_hash;
   longlong temp_offset;
   

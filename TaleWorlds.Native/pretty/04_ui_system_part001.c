@@ -37,26 +37,26 @@
 //------------------------------------------------------------------------------
 
 // UI系统初始化函数
-undefined FUN_180651d20;                           // UI系统初始化器 - 负责UI系统的初始化和配置
+uint8_t FUN_180651d20;                           // UI系统初始化器 - 负责UI系统的初始化和配置
 
 // UI组件管理变量
-undefined UNK_180180860;                           // UI组件注册表 - 存储所有已注册的UI组件
-undefined UNK_1801808a0;                           // UI组件工厂 - 负责创建和管理UI组件实例
-undefined UNK_1801808b0;                           // UI组件生命周期管理器 - 管理组件的创建、更新和销毁
-undefined UNK_1801808f0;                           // UI组件属性管理器 - 管理组件的属性和状态
-undefined UNK_180180900;                           // UI组件事件处理器 - 处理组件相关的事件
+uint8_t UNK_180180860;                           // UI组件注册表 - 存储所有已注册的UI组件
+uint8_t UNK_1801808a0;                           // UI组件工厂 - 负责创建和管理UI组件实例
+uint8_t UNK_1801808b0;                           // UI组件生命周期管理器 - 管理组件的创建、更新和销毁
+uint8_t UNK_1801808f0;                           // UI组件属性管理器 - 管理组件的属性和状态
+uint8_t UNK_180180900;                           // UI组件事件处理器 - 处理组件相关的事件
 
 // UI渲染系统变量
-undefined UNK_18021cb40;                           // UI渲染管线 - 负责UI元素的渲染和绘制
-undefined UNK_180941b00;                           // UI渲染配置 - 存储渲染相关的配置参数
-undefined UNK_180a09c50;                           // UI渲染缓冲区管理器 - 管理渲染缓冲区的分配和释放
-undefined UNK_180a09cf0;                           // UI渲染状态管理器 - 管理渲染状态和上下文
-undefined UNK_180a0f0b8;                           // UI渲染资源管理器 - 管理渲染所需的资源
+uint8_t UNK_18021cb40;                           // UI渲染管线 - 负责UI元素的渲染和绘制
+uint8_t UNK_180941b00;                           // UI渲染配置 - 存储渲染相关的配置参数
+uint8_t UNK_180a09c50;                           // UI渲染缓冲区管理器 - 管理渲染缓冲区的分配和释放
+uint8_t UNK_180a09cf0;                           // UI渲染状态管理器 - 管理渲染状态和上下文
+uint8_t UNK_180a0f0b8;                           // UI渲染资源管理器 - 管理渲染所需的资源
 
 // UI事件系统变量
-undefined UNK_180a3dca0;                           // UI事件分发器 - 负责事件的分发和处理
-undefined UNK_180a3dcb0;                           // UI事件队列管理器 - 管理事件的队列和优先级
-undefined UNK_180a3e030;                           // UI事件监听器管理器 - 管理事件监听器的注册和注销
+uint8_t UNK_180a3dca0;                           // UI事件分发器 - 负责事件的分发和处理
+uint8_t UNK_180a3dcb0;                           // UI事件队列管理器 - 管理事件的队列和优先级
+uint8_t UNK_180a3e030;                           // UI事件监听器管理器 - 管理事件监听器的注册和注销
 
 
 //------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ undefined UNK_180a3e030;                           // UI事件监听器管理器
 //------------------------------------------------------------------------------
 
 // UI事件处理核心函数
-undefined FUN_180662260;                           // UI事件处理器 - 负责处理用户输入和系统事件
+uint8_t FUN_180662260;                           // UI事件处理器 - 负责处理用户输入和系统事件
 
 
 //------------------------------------------------------------------------------
@@ -72,105 +72,105 @@ undefined FUN_180662260;                           // UI事件处理器 - 负责
 //------------------------------------------------------------------------------
 
 // UI组件管理核心函数
-undefined FUN_1806500b0;                           // UI组件管理器 - 负责UI组件的创建、管理和销毁
+uint8_t FUN_1806500b0;                           // UI组件管理器 - 负责UI组件的创建、管理和销毁
 
 // UI组件状态变量
-undefined UNK_180a3c5a0;                           // UI组件状态管理器 - 管理组件的状态转换
-undefined UNK_180a3c6f8;                           // UI组件属性表 - 存储组件的属性数据
-undefined UNK_180a3c710;                           // UI组件样式表 - 存储组件的样式信息
-undefined UNK_180a3c9b0;                           // UI组件布局管理器 - 管理组件的布局和排列
-undefined UNK_180a3c948;                           // UI组件渲染器 - 负责组件的渲染绘制
-undefined UNK_180a3c968;                           // UI组件事件绑定器 - 管理组件的事件绑定
+uint8_t UNK_180a3c5a0;                           // UI组件状态管理器 - 管理组件的状态转换
+uint8_t UNK_180a3c6f8;                           // UI组件属性表 - 存储组件的属性数据
+uint8_t UNK_180a3c710;                           // UI组件样式表 - 存储组件的样式信息
+uint8_t UNK_180a3c9b0;                           // UI组件布局管理器 - 管理组件的布局和排列
+uint8_t UNK_180a3c948;                           // UI组件渲染器 - 负责组件的渲染绘制
+uint8_t UNK_180a3c968;                           // UI组件事件绑定器 - 管理组件的事件绑定
 
 // UI系统状态标志
 int8_t DAT_180c95fea;                          // UI系统初始化标志 - 标识系统是否已初始化
 char DAT_180c8eced;                                // UI系统运行状态 - 存储当前运行状态
 
 // UI组件生命周期管理变量
-undefined UNK_180a3ca20;                           // UI组件创建器 - 负责组件的创建
-undefined UNK_180a3ca70;                           // UI组件更新器 - 负责组件的更新
-undefined UNK_180a3cac0;                           // UI组件销毁器 - 负责组件的销毁
+uint8_t UNK_180a3ca20;                           // UI组件创建器 - 负责组件的创建
+uint8_t UNK_180a3ca70;                           // UI组件更新器 - 负责组件的更新
+uint8_t UNK_180a3cac0;                           // UI组件销毁器 - 负责组件的销毁
 
 // UI组件资源管理变量
-undefined DAT_180a12e00;                          // UI组件资源池 - 管理组件使用的资源
-undefined UNK_180a12e10;                           // UI组件资源分配器 - 负责资源的分配
-undefined UNK_180a0794c;                           // UI组件资源回收器 - 负责资源的回收
+uint8_t DAT_180a12e00;                          // UI组件资源池 - 管理组件使用的资源
+uint8_t UNK_180a12e10;                           // UI组件资源分配器 - 负责资源的分配
+uint8_t UNK_180a0794c;                           // UI组件资源回收器 - 负责资源的回收
 
 // UI组件交互变量
-undefined UNK_180a3cb70;                           // UI组件交互管理器 - 管理组件的交互逻辑
-undefined UNK_180a3cb58;                           // UI组件焦点管理器 - 管理组件的焦点控制
-undefined UNK_180a3cb00;                           // UI组件选择器 - 管理组件的选择状态
-undefined UNK_180a3cad8;                           // UI组件导航器 - 管理组件的导航逻辑
+uint8_t UNK_180a3cb70;                           // UI组件交互管理器 - 管理组件的交互逻辑
+uint8_t UNK_180a3cb58;                           // UI组件焦点管理器 - 管理组件的焦点控制
+uint8_t UNK_180a3cb00;                           // UI组件选择器 - 管理组件的选择状态
+uint8_t UNK_180a3cad8;                           // UI组件导航器 - 管理组件的导航逻辑
 
 // UI组件数据管理变量
-undefined UNK_180a3cb48;                           // UI组件数据绑定器 - 管理组件的数据绑定
-undefined UNK_180a3cb40;                           // UI组件数据验证器 - 验证组件数据的合法性
-undefined UNK_180a063a4;                           // UI组件数据转换器 - 转换组件数据的格式
+uint8_t UNK_180a3cb48;                           // UI组件数据绑定器 - 管理组件的数据绑定
+uint8_t UNK_180a3cb40;                           // UI组件数据验证器 - 验证组件数据的合法性
+uint8_t UNK_180a063a4;                           // UI组件数据转换器 - 转换组件数据的格式
 
 // UI系统配置变量
 char DAT_180c95fea;                                // UI系统配置标志 - 标识配置状态
-undefined UNK_180a3cbc8;                           // UI系统配置管理器 - 管理系统配置
-undefined UNK_180a3cc28;                           // UI系统配置解析器 - 解析配置文件
-undefined UNK_180a3cbe0;                           // UI系统配置验证器 - 验证配置的有效性
+uint8_t UNK_180a3cbc8;                           // UI系统配置管理器 - 管理系统配置
+uint8_t UNK_180a3cc28;                           // UI系统配置解析器 - 解析配置文件
+uint8_t UNK_180a3cbe0;                           // UI系统配置验证器 - 验证配置的有效性
 
 // UI系统渲染变量
-undefined UNK_180a3cc48;                           // UI系统渲染器 - 负责系统级别的渲染
-undefined UNK_180a3c9ec;                           // UI系统渲染队列 - 管理渲染任务队列
-undefined UNK_180a3cc0c;                           // UI系统渲染缓存 - 管理渲染缓存
-undefined UNK_180a3cc1c;                           // UI系统渲染优化器 - 优化渲染性能
+uint8_t UNK_180a3cc48;                           // UI系统渲染器 - 负责系统级别的渲染
+uint8_t UNK_180a3c9ec;                           // UI系统渲染队列 - 管理渲染任务队列
+uint8_t UNK_180a3cc0c;                           // UI系统渲染缓存 - 管理渲染缓存
+uint8_t UNK_180a3cc1c;                           // UI系统渲染优化器 - 优化渲染性能
 
 // UI系统内存管理变量
-undefined UNK_180a3c9f8;                           // UI系统内存分配器 - 管理内存分配
-undefined UNK_180a3ccc8;                           // UI系统内存回收器 - 管理内存回收
-undefined UNK_180a3cca0;                           // UI系统内存池 - 管理内存池资源
+uint8_t UNK_180a3c9f8;                           // UI系统内存分配器 - 管理内存分配
+uint8_t UNK_180a3ccc8;                           // UI系统内存回收器 - 管理内存回收
+uint8_t UNK_180a3cca0;                           // UI系统内存池 - 管理内存池资源
 
 // UI系统线程管理变量
-undefined UNK_180a03a90;                           // UI系统线程管理器 - 管理UI线程
-undefined UNK_180a10118;                           // UI系统任务调度器 - 调度UI任务
+uint8_t UNK_180a03a90;                           // UI系统线程管理器 - 管理UI线程
+uint8_t UNK_180a10118;                           // UI系统任务调度器 - 调度UI任务
 
 // UI系统输入处理变量
-undefined UNK_180a12c70;                           // UI系统输入处理器 - 处理用户输入
-undefined UNK_180a12c90;                           // UI系统输入缓冲区 - 管理输入缓冲
-undefined UNK_180a12cb0;                           // UI系统输入验证器 - 验证输入有效性
-undefined UNK_180a12cd0;                           // UI系统输入转换器 - 转换输入格式
-undefined UNK_180a12d20;                           // UI系统输入分发器 - 分发输入事件
+uint8_t UNK_180a12c70;                           // UI系统输入处理器 - 处理用户输入
+uint8_t UNK_180a12c90;                           // UI系统输入缓冲区 - 管理输入缓冲
+uint8_t UNK_180a12cb0;                           // UI系统输入验证器 - 验证输入有效性
+uint8_t UNK_180a12cd0;                           // UI系统输入转换器 - 转换输入格式
+uint8_t UNK_180a12d20;                           // UI系统输入分发器 - 分发输入事件
 
 // UI系统资源变量
-undefined DAT_180a2fce0;                          // UI系统资源表 - 存储系统资源
-undefined UNK_180a341b0;                           // UI系统资源加载器 - 加载系统资源
+uint8_t DAT_180a2fce0;                          // UI系统资源表 - 存储系统资源
+uint8_t UNK_180a341b0;                           // UI系统资源加载器 - 加载系统资源
 
 // UI系统同步变量
-undefined UNK_180a3cc58;                           // UI系统同步器 - 管理系统同步
-undefined UNK_180a3cc70;                           // UI系统锁管理器 - 管理系统锁
-undefined UNK_180a3cc80;                           // UI系统信号量 - 管理系统信号量
-undefined UNK_180a3cc90;                           // UI系统条件变量 - 管理条件变量
-undefined UNK_180a3ccdc;                           // UI系统原子操作器 - 执行原子操作
-undefined UNK_180a3ccf8;                           // UI系统屏障 - 管理系统屏障
-undefined UNK_180a3cd08;                           // UI系统内存屏障 - 管理内存屏障
-undefined UNK_180a3cd18;                           // UI系统缓存管理器 - 管理系统缓存
-undefined UNK_180a3cd30;                           // UI系统缓存行 - 管理缓存行
-undefined UNK_180a3cd40;                           // UI系统缓存集 - 管理缓存集
-undefined UNK_180a3cd50;                           // UI系统缓存大小 - 存储缓存大小信息
-undefined UNK_180a3cd5c;                           // UI系统缓存对齐 - 管理缓存对齐
-undefined UNK_180a3cd68;                           // UI系统缓存策略 - 管理缓存策略
-undefined UNK_180a3cd80;                           // UI系统缓存控制器 - 控制缓存操作
-undefined UNK_180a3cd98;                           // UI系统缓存统计器 - 统计缓存使用情况
+uint8_t UNK_180a3cc58;                           // UI系统同步器 - 管理系统同步
+uint8_t UNK_180a3cc70;                           // UI系统锁管理器 - 管理系统锁
+uint8_t UNK_180a3cc80;                           // UI系统信号量 - 管理系统信号量
+uint8_t UNK_180a3cc90;                           // UI系统条件变量 - 管理条件变量
+uint8_t UNK_180a3ccdc;                           // UI系统原子操作器 - 执行原子操作
+uint8_t UNK_180a3ccf8;                           // UI系统屏障 - 管理系统屏障
+uint8_t UNK_180a3cd08;                           // UI系统内存屏障 - 管理内存屏障
+uint8_t UNK_180a3cd18;                           // UI系统缓存管理器 - 管理系统缓存
+uint8_t UNK_180a3cd30;                           // UI系统缓存行 - 管理缓存行
+uint8_t UNK_180a3cd40;                           // UI系统缓存集 - 管理缓存集
+uint8_t UNK_180a3cd50;                           // UI系统缓存大小 - 存储缓存大小信息
+uint8_t UNK_180a3cd5c;                           // UI系统缓存对齐 - 管理缓存对齐
+uint8_t UNK_180a3cd68;                           // UI系统缓存策略 - 管理缓存策略
+uint8_t UNK_180a3cd80;                           // UI系统缓存控制器 - 控制缓存操作
+uint8_t UNK_180a3cd98;                           // UI系统缓存统计器 - 统计缓存使用情况
 
 // UI系统配置数据
-undefined DAT_180a07230;                          // UI系统配置数据块 - 存储配置数据
-undefined UNK_180a3ce28;                           // UI系统配置版本管理器 - 管理配置版本
-undefined UNK_180a3cdf8;                           // UI系统配置备份器 - 备份配置数据
-undefined UNK_180a3ce00;                           // UI系统配置恢复器 - 恢复配置数据
-undefined UNK_180a3ce10;                           // UI系统配置验证器 - 验证配置数据
+uint8_t DAT_180a07230;                          // UI系统配置数据块 - 存储配置数据
+uint8_t UNK_180a3ce28;                           // UI系统配置版本管理器 - 管理配置版本
+uint8_t UNK_180a3cdf8;                           // UI系统配置备份器 - 备份配置数据
+uint8_t UNK_180a3ce00;                           // UI系统配置恢复器 - 恢复配置数据
+uint8_t UNK_180a3ce10;                           // UI系统配置验证器 - 验证配置数据
 
 // UI系统定时器变量
-undefined UNK_1809fe5e8;                           // UI系统定时器管理器 - 管理系统定时器
-undefined UNK_180a3d120;                           // UI系统定时器队列 - 管理定时器队列
-undefined UNK_180a3d168;                           // UI系统定时器回调 - 管理定时器回调
-undefined UNK_180a3d1a8;                           // UI系统定时器精度 - 控制定时器精度
-undefined UNK_180a3d220;                           // UI系统定时器同步 - 管理定时器同步
+uint8_t UNK_1809fe5e8;                           // UI系统定时器管理器 - 管理系统定时器
+uint8_t UNK_180a3d120;                           // UI系统定时器队列 - 管理定时器队列
+uint8_t UNK_180a3d168;                           // UI系统定时器回调 - 管理定时器回调
+uint8_t UNK_180a3d1a8;                           // UI系统定时器精度 - 控制定时器精度
+uint8_t UNK_180a3d220;                           // UI系统定时器同步 - 管理定时器同步
 // UI系统辅助函数
-undefined SUB_18063e940;                           // UI系统辅助函数 - 提供辅助功能
+uint8_t SUB_18063e940;                           // UI系统辅助函数 - 提供辅助功能
 
 // UI系统常量定义
 uint UNK_00004000;                                 // UI系统最大组件数 - 定义最大组件数量
@@ -178,115 +178,115 @@ int16_t UNK_00004006;                           // UI系统事件类型 - 定义
 int UNK_00004018;                                  // UI系统渲染模式 - 定义渲染模式
 
 // UI系统布局变量
-undefined UNK_1809fb180;                           // UI系统布局管理器 - 管理界面布局
-undefined UNK_1809fb1a0;                           // UI系统布局计算器 - 计算布局参数
-undefined UNK_180a3d268;                           // UI系统布局优化器 - 优化布局性能
-undefined UNK_180a3d290;                           // UI系统布局缓存器 - 缓存布局数据
-undefined UNK_180a3d240;                           // UI系统布局验证器 - 验证布局有效性
-undefined UNK_180a3d2c0;                           // UI系统布局调整器 - 调整布局参数
+uint8_t UNK_1809fb180;                           // UI系统布局管理器 - 管理界面布局
+uint8_t UNK_1809fb1a0;                           // UI系统布局计算器 - 计算布局参数
+uint8_t UNK_180a3d268;                           // UI系统布局优化器 - 优化布局性能
+uint8_t UNK_180a3d290;                           // UI系统布局缓存器 - 缓存布局数据
+uint8_t UNK_180a3d240;                           // UI系统布局验证器 - 验证布局有效性
+uint8_t UNK_180a3d2c0;                           // UI系统布局调整器 - 调整布局参数
 
 // UI系统样式变量
-undefined UNK_1809fb1e8;                           // UI系统样式管理器 - 管理界面样式
-undefined UNK_1809fb1f8;                           // UI系统样式表 - 存储样式数据
-undefined UNK_1809fb208;                           // UI系统样式解析器 - 解析样式文件
-undefined UNK_1809fb228;                           // UI系统样式应用器 - 应用样式到组件
+uint8_t UNK_1809fb1e8;                           // UI系统样式管理器 - 管理界面样式
+uint8_t UNK_1809fb1f8;                           // UI系统样式表 - 存储样式数据
+uint8_t UNK_1809fb208;                           // UI系统样式解析器 - 解析样式文件
+uint8_t UNK_1809fb228;                           // UI系统样式应用器 - 应用样式到组件
 
 // UI系统动画变量
-undefined UNK_180a3d358;                           // UI系统动画管理器 - 管理界面动画
-undefined UNK_180a3d2f8;                           // UI系统动画插值器 - 插值动画参数
-undefined UNK_180a3d388;                           // UI系统动画控制器 - 控制动画播放
-undefined UNK_1809fb280;                           // UI系统动画队列 - 管理动画队列
+uint8_t UNK_180a3d358;                           // UI系统动画管理器 - 管理界面动画
+uint8_t UNK_180a3d2f8;                           // UI系统动画插值器 - 插值动画参数
+uint8_t UNK_180a3d388;                           // UI系统动画控制器 - 控制动画播放
+uint8_t UNK_1809fb280;                           // UI系统动画队列 - 管理动画队列
 
 // UI系统状态数据
-undefined DAT_180c8ed78;                          // UI系统状态数据块 - 存储状态数据
-undefined DAT_180bfbf1c;                          // UI系统状态标志 - 标识状态变化
-undefined DAT_180bfbf18;                          // UI系统状态版本 - 管理状态版本
+uint8_t DAT_180c8ed78;                          // UI系统状态数据块 - 存储状态数据
+uint8_t DAT_180bfbf1c;                          // UI系统状态标志 - 标识状态变化
+uint8_t DAT_180bfbf18;                          // UI系统状态版本 - 管理状态版本
 
 // UI系统对话框变量
-undefined UNK_180a3d710;                           // UI系统对话框管理器 - 管理对话框
+uint8_t UNK_180a3d710;                           // UI系统对话框管理器 - 管理对话框
 char DAT_180c8f000;                               // UI系统对话框状态 - 存储对话框状态
 
 // UI系统数据表
-undefined DAT_180c8ed98;                          // UI系统组件数据表 - 存储组件数据
-undefined DAT_180c8ed88;                          // UI系统属性数据表 - 存储属性数据
-undefined DAT_180c8ed90;                          // UI系统样式数据表 - 存储样式数据
-undefined DAT_180c8eda0;                          // UI系统事件数据表 - 存储事件数据
-undefined DAT_180c8edb8;                          // UI系统布局数据表 - 存储布局数据
-undefined DAT_180c8eda8;                          // UI系统动画数据表 - 存储动画数据
-undefined DAT_180c8edb0;                          // UI系统资源数据表 - 存储资源数据
-undefined DAT_180c8edc0;                          // UI系统配置数据表 - 存储配置数据
-undefined DAT_180c8edd8;                          // UI系统状态数据表 - 存储状态数据
-undefined DAT_180c8edc8;                          // UI系统日志数据表 - 存储日志数据
-undefined DAT_180c8edd0;                          // UI系统性能数据表 - 存储性能数据
-undefined DAT_180c8ede0;                          // UI系统内存数据表 - 存储内存数据
-undefined DAT_180c8edf8;                          // UI系统错误数据表 - 存储错误数据
-undefined DAT_180c8ede8;                          // UI系统警告数据表 - 存储警告数据
-undefined DAT_180c8edf0;                          // UI系统调试数据表 - 存储调试数据
-undefined DAT_180c8ee00;                          // UI系统用户数据表 - 存储用户数据
-undefined DAT_180c8ee18;                          // UI系统会话数据表 - 存储会话数据
-undefined DAT_180c8ee08;                          // UI系统设置数据表 - 存储设置数据
-undefined DAT_180c8ee10;                          // UI系统偏好数据表 - 存储偏好数据
-undefined DAT_180c8ee20;                          // UI系统历史数据表 - 存储历史数据
-undefined DAT_180c8ee38;                          // UI系统缓存数据表 - 存储缓存数据
-undefined DAT_180c8ee28;                          // UI系统临时数据表 - 存储临时数据
-undefined DAT_180c8ee30;                          // UI系统备份数据表 - 存储备份数据
-undefined DAT_180c8ee60;                          // UI系统统计数据表 - 存储统计数据
-undefined DAT_180c8ee78;                          // UI系统报告数据表 - 存储报告数据
+uint8_t DAT_180c8ed98;                          // UI系统组件数据表 - 存储组件数据
+uint8_t DAT_180c8ed88;                          // UI系统属性数据表 - 存储属性数据
+uint8_t DAT_180c8ed90;                          // UI系统样式数据表 - 存储样式数据
+uint8_t DAT_180c8eda0;                          // UI系统事件数据表 - 存储事件数据
+uint8_t DAT_180c8edb8;                          // UI系统布局数据表 - 存储布局数据
+uint8_t DAT_180c8eda8;                          // UI系统动画数据表 - 存储动画数据
+uint8_t DAT_180c8edb0;                          // UI系统资源数据表 - 存储资源数据
+uint8_t DAT_180c8edc0;                          // UI系统配置数据表 - 存储配置数据
+uint8_t DAT_180c8edd8;                          // UI系统状态数据表 - 存储状态数据
+uint8_t DAT_180c8edc8;                          // UI系统日志数据表 - 存储日志数据
+uint8_t DAT_180c8edd0;                          // UI系统性能数据表 - 存储性能数据
+uint8_t DAT_180c8ede0;                          // UI系统内存数据表 - 存储内存数据
+uint8_t DAT_180c8edf8;                          // UI系统错误数据表 - 存储错误数据
+uint8_t DAT_180c8ede8;                          // UI系统警告数据表 - 存储警告数据
+uint8_t DAT_180c8edf0;                          // UI系统调试数据表 - 存储调试数据
+uint8_t DAT_180c8ee00;                          // UI系统用户数据表 - 存储用户数据
+uint8_t DAT_180c8ee18;                          // UI系统会话数据表 - 存储会话数据
+uint8_t DAT_180c8ee08;                          // UI系统设置数据表 - 存储设置数据
+uint8_t DAT_180c8ee10;                          // UI系统偏好数据表 - 存储偏好数据
+uint8_t DAT_180c8ee20;                          // UI系统历史数据表 - 存储历史数据
+uint8_t DAT_180c8ee38;                          // UI系统缓存数据表 - 存储缓存数据
+uint8_t DAT_180c8ee28;                          // UI系统临时数据表 - 存储临时数据
+uint8_t DAT_180c8ee30;                          // UI系统备份数据表 - 存储备份数据
+uint8_t DAT_180c8ee60;                          // UI系统统计数据表 - 存储统计数据
+uint8_t DAT_180c8ee78;                          // UI系统报告数据表 - 存储报告数据
 // UI系统扩展数据表
-undefined DAT_180c8ee68;                          // UI系统分析数据表 - 存储分析数据
-undefined DAT_180c8ee70;                          // UI系统诊断数据表 - 存储诊断数据
-undefined DAT_180c8ee40;                          // UI系统测试数据表 - 存储测试数据
-undefined DAT_180c8ee58;                          // UI系统基准数据表 - 存储基准数据
-undefined DAT_180c8ee48;                          // UI系统比较数据表 - 存储比较数据
-undefined DAT_180c8ee50;                          // UI系统验证数据表 - 存储验证数据
-undefined DAT_180c8ee80;                          // UI系统审计数据表 - 存储审计数据
-undefined DAT_180c8ee98;                          // UI系统监控数据表 - 存储监控数据
-undefined DAT_180c8ee88;                          // UI系统追踪数据表 - 存储追踪数据
-undefined DAT_180c8ee90;                          // UI系统度量数据表 - 存储度量数据
+uint8_t DAT_180c8ee68;                          // UI系统分析数据表 - 存储分析数据
+uint8_t DAT_180c8ee70;                          // UI系统诊断数据表 - 存储诊断数据
+uint8_t DAT_180c8ee40;                          // UI系统测试数据表 - 存储测试数据
+uint8_t DAT_180c8ee58;                          // UI系统基准数据表 - 存储基准数据
+uint8_t DAT_180c8ee48;                          // UI系统比较数据表 - 存储比较数据
+uint8_t DAT_180c8ee50;                          // UI系统验证数据表 - 存储验证数据
+uint8_t DAT_180c8ee80;                          // UI系统审计数据表 - 存储审计数据
+uint8_t DAT_180c8ee98;                          // UI系统监控数据表 - 存储监控数据
+uint8_t DAT_180c8ee88;                          // UI系统追踪数据表 - 存储追踪数据
+uint8_t DAT_180c8ee90;                          // UI系统度量数据表 - 存储度量数据
 
 // UI系统资源管理数据
-undefined DAT_180c8ef00;                          // UI系统纹理数据表 - 存储纹理数据
-undefined DAT_180c8ef18;                          // UI系统字体数据表 - 存储字体数据
-undefined DAT_180c8ef08;                          // UI系统颜色数据表 - 存储颜色数据
-undefined DAT_180c8ef10;                          // UI系统图像数据表 - 存储图像数据
-undefined DAT_180c8ef20;                          // UI系统音频数据表 - 存储音频数据
-undefined DAT_180c8ef38;                          // UI系统视频数据表 - 存储视频数据
-undefined DAT_180c8ef28;                          // UI系统图标数据表 - 存储图标数据
-undefined DAT_180c8ef30;                          // UI系统光标数据表 - 存储光标数据
+uint8_t DAT_180c8ef00;                          // UI系统纹理数据表 - 存储纹理数据
+uint8_t DAT_180c8ef18;                          // UI系统字体数据表 - 存储字体数据
+uint8_t DAT_180c8ef08;                          // UI系统颜色数据表 - 存储颜色数据
+uint8_t DAT_180c8ef10;                          // UI系统图像数据表 - 存储图像数据
+uint8_t DAT_180c8ef20;                          // UI系统音频数据表 - 存储音频数据
+uint8_t DAT_180c8ef38;                          // UI系统视频数据表 - 存储视频数据
+uint8_t DAT_180c8ef28;                          // UI系统图标数据表 - 存储图标数据
+uint8_t DAT_180c8ef30;                          // UI系统光标数据表 - 存储光标数据
 
 // UI系统本地化数据
-undefined DAT_180c8eea0;                          // UI系统文本数据表 - 存储文本数据
-undefined DAT_180c8eeb8;                          // UI系统语言数据表 - 存储语言数据
-undefined DAT_180c8eea8;                          // UI系统区域数据表 - 存储区域数据
-undefined DAT_180c8eeb0;                          // UI系统文化数据表 - 存储文化数据
+uint8_t DAT_180c8eea0;                          // UI系统文本数据表 - 存储文本数据
+uint8_t DAT_180c8eeb8;                          // UI系统语言数据表 - 存储语言数据
+uint8_t DAT_180c8eea8;                          // UI系统区域数据表 - 存储区域数据
+uint8_t DAT_180c8eeb0;                          // UI系统文化数据表 - 存储文化数据
 
 // UI系统性能优化数据
-undefined DAT_180c8ef40;                          // UI系统优化数据表 - 存储优化数据
-undefined DAT_180c8ef48;                          // UI系统缓存命中率表 - 存储缓存命中率
-undefined DAT_180c8ef50;                          // UI系统渲染性能表 - 存储渲染性能
-undefined DAT_180c8ef58;                          // UI系统内存使用表 - 存储内存使用
-undefined DAT_180c8ef60;                          // UI系统CPU使用表 - 存储CPU使用
-undefined DAT_180c8ef68;                          // UI系统GPU使用表 - 存储GPU使用
-undefined DAT_180c8ef70;                          // UI系统响应时间表 - 存储响应时间
-undefined DAT_180c8ef78;                          // UI系统吞吐量表 - 存储吞吐量
-undefined DAT_180c8ef80;                          // UI系统延迟数据表 - 存储延迟数据
-undefined DAT_180c8ef88;                          // UI系统带宽数据表 - 存储带宽数据
-undefined DAT_180c8ef90;                          // UI系统容量数据表 - 存储容量数据
-undefined DAT_180c8ef98;                          // UI系统负载均衡表 - 存储负载均衡
+uint8_t DAT_180c8ef40;                          // UI系统优化数据表 - 存储优化数据
+uint8_t DAT_180c8ef48;                          // UI系统缓存命中率表 - 存储缓存命中率
+uint8_t DAT_180c8ef50;                          // UI系统渲染性能表 - 存储渲染性能
+uint8_t DAT_180c8ef58;                          // UI系统内存使用表 - 存储内存使用
+uint8_t DAT_180c8ef60;                          // UI系统CPU使用表 - 存储CPU使用
+uint8_t DAT_180c8ef68;                          // UI系统GPU使用表 - 存储GPU使用
+uint8_t DAT_180c8ef70;                          // UI系统响应时间表 - 存储响应时间
+uint8_t DAT_180c8ef78;                          // UI系统吞吐量表 - 存储吞吐量
+uint8_t DAT_180c8ef80;                          // UI系统延迟数据表 - 存储延迟数据
+uint8_t DAT_180c8ef88;                          // UI系统带宽数据表 - 存储带宽数据
+uint8_t DAT_180c8ef90;                          // UI系统容量数据表 - 存储容量数据
+uint8_t DAT_180c8ef98;                          // UI系统负载均衡表 - 存储负载均衡
 
 // UI系统版本控制数据
-undefined DAT_180c8efa0;                          // UI系统版本数据表 - 存储版本数据
-undefined DAT_180c8efa8;                          // UI系统发布数据表 - 存储发布数据
-undefined DAT_180c8efb0;                          // UI系统更新数据表 - 存储更新数据
-undefined DAT_180c8efb8;                          // UI系统补丁数据表 - 存储补丁数据
+uint8_t DAT_180c8efa0;                          // UI系统版本数据表 - 存储版本数据
+uint8_t DAT_180c8efa8;                          // UI系统发布数据表 - 存储发布数据
+uint8_t DAT_180c8efb0;                          // UI系统更新数据表 - 存储更新数据
+uint8_t DAT_180c8efb8;                          // UI系统补丁数据表 - 存储补丁数据
 
 // UI系统调试变量
-undefined UNK_180a156a4;                           // UI系统调试器 - 管理系统调试
-undefined UNK_180a3d3cc;                           // UI系统断点管理器 - 管理断点
-undefined UNK_180a3d3dc;                           // UI系统日志记录器 - 记录调试日志
-undefined UNK_180a3d3e0;                           // UI系统变量监视器 - 监视变量
-undefined UNK_180a3d3f0;                           // UI系统堆栈跟踪器 - 跟踪堆栈
-undefined UNK_180a3d3f8;                           // UI系统内存检查器 - 检查内存
+uint8_t UNK_180a156a4;                           // UI系统调试器 - 管理系统调试
+uint8_t UNK_180a3d3cc;                           // UI系统断点管理器 - 管理断点
+uint8_t UNK_180a3d3dc;                           // UI系统日志记录器 - 记录调试日志
+uint8_t UNK_180a3d3e0;                           // UI系统变量监视器 - 监视变量
+uint8_t UNK_180a3d3f0;                           // UI系统堆栈跟踪器 - 跟踪堆栈
+uint8_t UNK_180a3d3f8;                           // UI系统内存检查器 - 检查内存
 
 
 //------------------------------------------------------------------------------
@@ -294,21 +294,21 @@ undefined UNK_180a3d3f8;                           // UI系统内存检查器 - 
 //------------------------------------------------------------------------------
 
 // UI系统初始化函数
-undefined FUN_180655f50;                           // UI系统初始化函数 - 负责UI系统的初始化和配置
+uint8_t FUN_180655f50;                           // UI系统初始化函数 - 负责UI系统的初始化和配置
 
 // UI系统渲染函数
-undefined FUN_180656020;                           // UI系统渲染函数 - 负责UI元素的渲染和绘制
-undefined DAT_180bf3ff4;                          // UI系统渲染配置 - 存储渲染配置数据
+uint8_t FUN_180656020;                           // UI系统渲染函数 - 负责UI元素的渲染和绘制
+uint8_t DAT_180bf3ff4;                          // UI系统渲染配置 - 存储渲染配置数据
 
 // UI系统事件处理函数
-undefined FUN_180656110;                           // UI系统事件处理函数 - 处理用户输入和系统事件
-undefined DAT_180c8ecfc;                          // UI系统事件配置 - 存储事件配置数据
+uint8_t FUN_180656110;                           // UI系统事件处理函数 - 处理用户输入和系统事件
+uint8_t DAT_180c8ecfc;                          // UI系统事件配置 - 存储事件配置数据
 
 // UI系统更新函数
-undefined FUN_180656160;                           // UI系统更新函数 - 负责UI系统的状态更新
+uint8_t FUN_180656160;                           // UI系统更新函数 - 负责UI系统的状态更新
 
 // UI系统清理函数
-undefined FUN_1806561d0;                           // UI系统清理函数 - 负责UI系统的资源清理
+uint8_t FUN_1806561d0;                           // UI系统清理函数 - 负责UI系统的资源清理
 
 //------------------------------------------------------------------------------
 // UI系统常量定义
@@ -405,25 +405,25 @@ typedef uint64_t UITransitionHandle;             // UI过渡句柄 - 用于标�
 #define UISystemCleanup                             FUN_1806561d0  // UI系统清理器
 
 // UI系统调试变量
-undefined UNK_180046680;                           // UI系统调试控制台 - 提供调试界面
-undefined UNK_180084650;                           // UI系统性能监视器 - 监视系统性能
+uint8_t UNK_180046680;                           // UI系统调试控制台 - 提供调试界面
+uint8_t UNK_180084650;                           // UI系统性能监视器 - 监视系统性能
 
 //------------------------------------------------------------------------------
 // UI系统辅助功能函数组
 //------------------------------------------------------------------------------
 
 // UI系统调试函数
-undefined FUN_180656340;                           // UI系统调试函数 - 提供调试功能
-undefined UNK_180150380;                           // UI系统调试配置 - 存储调试配置
+uint8_t FUN_180656340;                           // UI系统调试函数 - 提供调试功能
+uint8_t UNK_180150380;                           // UI系统调试配置 - 存储调试配置
 
 // UI系统性能分析函数
-undefined FUN_1806563a0;                           // UI系统性能分析函数 - 分析系统性能
-undefined UNK_1803f60a0;                           // UI系统性能数据 - 存储性能数据
+uint8_t FUN_1806563a0;                           // UI系统性能分析函数 - 分析系统性能
+uint8_t UNK_1803f60a0;                           // UI系统性能数据 - 存储性能数据
 
 // UI系统配置函数
-undefined FUN_180656410;                           // UI系统配置函数 - 配置系统参数
-undefined UNK_180655e50;                           // UI系统配置缓存 - 缓存配置数据
-undefined UNK_180655f30;                           // UI系统配置验证器 - 验证配置有效性
+uint8_t FUN_180656410;                           // UI系统配置函数 - 配置系统参数
+uint8_t UNK_180655e50;                           // UI系统配置缓存 - 缓存配置数据
+uint8_t UNK_180655f30;                           // UI系统配置验证器 - 验证配置有效性
 
 //==============================================================================
 // 文件总结
@@ -488,21 +488,21 @@ undefined UNK_180655f30;                           // UI系统配置验证器 - 
 //------------------------------------------------------------------------------
 
 // UI系统输入处理函数
-undefined FUN_1806565a0;                           // UI系统输入处理函数 - 处理用户输入事件
-undefined UNK_180656100;                          // UI系统输入状态 - 存储输入状态信息
+uint8_t FUN_1806565a0;                           // UI系统输入处理函数 - 处理用户输入事件
+uint8_t UNK_180656100;                          // UI系统输入状态 - 存储输入状态信息
 
 // UI系统焦点管理函数
-undefined FUN_180656610;                           // UI系统焦点管理函数 - 管理组件焦点控制
-undefined UNK_1806561b0;                          // UI系统焦点状态 - 存储焦点状态信息
+uint8_t FUN_180656610;                           // UI系统焦点管理函数 - 管理组件焦点控制
+uint8_t UNK_1806561b0;                          // UI系统焦点状态 - 存储焦点状态信息
 
 // UI系统导航函数
-undefined FUN_1806566c0;                           // UI系统导航函数 - 处理界面导航逻辑
-undefined UNK_1806561c0;                          // UI系统导航状态 - 存储导航状态信息
-undefined UNK_180656320;                          // UI系统导航映射 - 存储导航映射数据
-undefined UNK_180656330;                          // UI系统导航历史 - 存储导航历史记录
-undefined UNK_180656700;                          // UI系统导航缓存 - 缓存导航数据
-undefined UNK_180a3dc30;                          // UI系统导航配置 - 存储导航配置
-undefined UNK_180a3dc58;                          // UI系统导航优化器 - 优化导航性能
+uint8_t FUN_1806566c0;                           // UI系统导航函数 - 处理界面导航逻辑
+uint8_t UNK_1806561c0;                          // UI系统导航状态 - 存储导航状态信息
+uint8_t UNK_180656320;                          // UI系统导航映射 - 存储导航映射数据
+uint8_t UNK_180656330;                          // UI系统导航历史 - 存储导航历史记录
+uint8_t UNK_180656700;                          // UI系统导航缓存 - 缓存导航数据
+uint8_t UNK_180a3dc30;                          // UI系统导航配置 - 存储导航配置
+uint8_t UNK_180a3dc58;                          // UI系统导航优化器 - 优化导航性能
 
 
 //------------------------------------------------------------------------------
@@ -510,10 +510,10 @@ undefined UNK_180a3dc58;                          // UI系统导航优化器 - �
 //------------------------------------------------------------------------------
 
 // UI系统验证函数
-undefined FUN_1806552e0;                           // UI系统验证函数 - 验证UI组件和数据的合法性
+uint8_t FUN_1806552e0;                           // UI系统验证函数 - 验证UI组件和数据的合法性
 
 // UI系统转换函数
-undefined FUN_1806555f0;                           // UI系统转换函数 - 转换UI数据的格式和类型
+uint8_t FUN_1806555f0;                           // UI系统转换函数 - 转换UI数据的格式和类型
 
 
 //------------------------------------------------------------------------------
@@ -521,12 +521,12 @@ undefined FUN_1806555f0;                           // UI系统转换函数 - 转
 //------------------------------------------------------------------------------
 
 // UI系统数据序列化函数
-undefined FUN_180655e60;                           // UI系统数据序列化函数 - 序列化和反序列化UI数据
-undefined UNK_180a16f70;                          // UI系统序列化缓存 - 缓存序列化数据
-undefined UNK_180a3dd38;                          // UI系统序列化配置 - 存储序列化配置
+uint8_t FUN_180655e60;                           // UI系统数据序列化函数 - 序列化和反序列化UI数据
+uint8_t UNK_180a16f70;                          // UI系统序列化缓存 - 缓存序列化数据
+uint8_t UNK_180a3dd38;                          // UI系统序列化配置 - 存储序列化配置
 defundefined DAT_180c8f020;                       // UI系统序列化标志 - 标识序列化状态
 defint8_t DAT_180c8f020;                      // UI系统序列化锁 - 控制序列化访问
-undefined UNK_180a3dd80;                          // UI系统序列化验证器 - 验证序列化数据
+uint8_t UNK_180a3dd80;                          // UI系统序列化验证器 - 验证序列化数据
 defundefined DAT_180c967c8;                       // UI系统序列化统计 - 统计序列化信息
 
 
@@ -535,112 +535,112 @@ defundefined DAT_180c967c8;                       // UI系统序列化统计 - �
 //------------------------------------------------------------------------------
 
 // UI系统垃圾回收函数
-undefined FUN_180653580;                           // UI系统垃圾回收函数 - 回收无用的UI资源
+uint8_t FUN_180653580;                           // UI系统垃圾回收函数 - 回收无用的UI资源
 
 // UI系统内存压缩函数
-undefined FUN_1806535c0;                           // UI系统内存压缩函数 - 压缩内存使用
+uint8_t FUN_1806535c0;                           // UI系统内存压缩函数 - 压缩内存使用
 
 // UI系统渲染批处理函数
-undefined FUN_180653630;                           // UI系统渲染批处理函数 - 批量处理渲染操作
+uint8_t FUN_180653630;                           // UI系统渲染批处理函数 - 批量处理渲染操作
 
 // UI系统缓存管理函数
-undefined FUN_180653670;                           // UI系统缓存管理函数 - 管理UI系统缓存
-undefined DAT_180a3dda8;                          // UI系统缓存配置 - 存储缓存配置数据
-undefined DAT_180c91028;                          // UI系统缓存统计 - 存储缓存统计数据
-undefined UNK_180a3ddc0;                          // UI系统缓存索引器 - 管理缓存索引
-undefined UNK_180a3deb8;                          // UI系统缓存映射器 - 管理缓存映射
-undefined UNK_180a3e0b8;                          // UI系统缓存策略器 - 管理缓存策略
-undefined UNK_180a3e0d8;                          // UI系统缓存分析器 - 分析缓存使用情况
-undefined UNK_180a3e0f0;                          // UI系统缓存优化器 - 优化缓存性能
-undefined UNK_180a3e110;                          // UI系统缓存调度器 - 调度缓存操作
-undefined UNK_180a3e128;                          // UI系统缓存分配器 - 分配缓存资源
-undefined UNK_180a3e148;                          // UI系统缓存回收器 - 回收缓存资源
-undefined UNK_180a3e150;                          // UI系统缓存验证器 - 验证缓存数据
-undefined UNK_180a3e160;                          // UI系统缓存同步器 - 同步缓存操作
-undefined UNK_180a3e178;                          // UI系统缓存监控器 - 监控缓存状态
-undefined UNK_180a3e180;                          // UI系统缓存分析器 - 分析缓存性能
-undefined UNK_180a3e1a0;                          // UI系统缓存预取器 - 预取缓存数据
-undefined UNK_180a3e1b0;                          // UI系统缓存压缩器 - 压缩缓存数据
-undefined UNK_180a3e1c8;                          // UI系统缓存加密器 - 加密缓存数据
-undefined UNK_180a3e1f8;                          // UI系统缓存解压器 - 解压缓存数据
-undefined UNK_180a3e210;                          // UI系统缓存清理器 - 清理缓存数据
-undefined UNK_180a3e224;                          // UI系统缓存配置器 - 配置缓存参数
-undefined UNK_180a3e230;                          // UI系统缓存状态器 - 管理缓存状态
-undefined UNK_180a3e248;                          // UI系统缓存加载器 - 加载缓存数据
-undefined UNK_180a3e260;                          // UI系统缓存保存器 - 保存缓存数据
-undefined UNK_180a3e1e0;                          // UI系统缓存检查器 - 检查缓存完整性
-undefined UNK_180a3e1e8;                          // UI系统缓存修复器 - 修复缓存错误
-undefined UNK_180a3e270;                          // UI系统缓存迁移器 - 迁移缓存数据
-undefined UNK_180a3e280;                          // UI系统缓存版本器 - 管理缓存版本
-undefined UNK_180a3e294;                          // UI系统缓存校验器 - 校验缓存数据
-undefined UNK_180a3e2a0;                          // UI系统缓存序列化器 - 序列化缓存数据
-undefined UNK_180a3e2b0;                          // UI系统缓存反序列化器 - 反序列化缓存数据
-undefined UNK_180a3e2b8;                          // UI系统缓存压缩器 - 压缩缓存存储
-undefined UNK_180a3e2c8;                          // UI系统缓存解压器 - 解压缓存存储
-undefined UNK_180a3e2d8;                          // UI系统缓存加密器 - 加密缓存存储
-undefined UNK_180a3e2e8;                          // UI系统缓存解密器 - 解密缓存存储
-undefined UNK_180a3e300;                          // UI系统缓存备份器 - 备份缓存数据
-undefined UNK_180a3e310;                          // UI系统缓存恢复器 - 恢复缓存数据
-undefined UNK_180a3e378;                          // UI系统缓存测试器 - 测试缓存功能
+uint8_t FUN_180653670;                           // UI系统缓存管理函数 - 管理UI系统缓存
+uint8_t DAT_180a3dda8;                          // UI系统缓存配置 - 存储缓存配置数据
+uint8_t DAT_180c91028;                          // UI系统缓存统计 - 存储缓存统计数据
+uint8_t UNK_180a3ddc0;                          // UI系统缓存索引器 - 管理缓存索引
+uint8_t UNK_180a3deb8;                          // UI系统缓存映射器 - 管理缓存映射
+uint8_t UNK_180a3e0b8;                          // UI系统缓存策略器 - 管理缓存策略
+uint8_t UNK_180a3e0d8;                          // UI系统缓存分析器 - 分析缓存使用情况
+uint8_t UNK_180a3e0f0;                          // UI系统缓存优化器 - 优化缓存性能
+uint8_t UNK_180a3e110;                          // UI系统缓存调度器 - 调度缓存操作
+uint8_t UNK_180a3e128;                          // UI系统缓存分配器 - 分配缓存资源
+uint8_t UNK_180a3e148;                          // UI系统缓存回收器 - 回收缓存资源
+uint8_t UNK_180a3e150;                          // UI系统缓存验证器 - 验证缓存数据
+uint8_t UNK_180a3e160;                          // UI系统缓存同步器 - 同步缓存操作
+uint8_t UNK_180a3e178;                          // UI系统缓存监控器 - 监控缓存状态
+uint8_t UNK_180a3e180;                          // UI系统缓存分析器 - 分析缓存性能
+uint8_t UNK_180a3e1a0;                          // UI系统缓存预取器 - 预取缓存数据
+uint8_t UNK_180a3e1b0;                          // UI系统缓存压缩器 - 压缩缓存数据
+uint8_t UNK_180a3e1c8;                          // UI系统缓存加密器 - 加密缓存数据
+uint8_t UNK_180a3e1f8;                          // UI系统缓存解压器 - 解压缓存数据
+uint8_t UNK_180a3e210;                          // UI系统缓存清理器 - 清理缓存数据
+uint8_t UNK_180a3e224;                          // UI系统缓存配置器 - 配置缓存参数
+uint8_t UNK_180a3e230;                          // UI系统缓存状态器 - 管理缓存状态
+uint8_t UNK_180a3e248;                          // UI系统缓存加载器 - 加载缓存数据
+uint8_t UNK_180a3e260;                          // UI系统缓存保存器 - 保存缓存数据
+uint8_t UNK_180a3e1e0;                          // UI系统缓存检查器 - 检查缓存完整性
+uint8_t UNK_180a3e1e8;                          // UI系统缓存修复器 - 修复缓存错误
+uint8_t UNK_180a3e270;                          // UI系统缓存迁移器 - 迁移缓存数据
+uint8_t UNK_180a3e280;                          // UI系统缓存版本器 - 管理缓存版本
+uint8_t UNK_180a3e294;                          // UI系统缓存校验器 - 校验缓存数据
+uint8_t UNK_180a3e2a0;                          // UI系统缓存序列化器 - 序列化缓存数据
+uint8_t UNK_180a3e2b0;                          // UI系统缓存反序列化器 - 反序列化缓存数据
+uint8_t UNK_180a3e2b8;                          // UI系统缓存压缩器 - 压缩缓存存储
+uint8_t UNK_180a3e2c8;                          // UI系统缓存解压器 - 解压缓存存储
+uint8_t UNK_180a3e2d8;                          // UI系统缓存加密器 - 加密缓存存储
+uint8_t UNK_180a3e2e8;                          // UI系统缓存解密器 - 解密缓存存储
+uint8_t UNK_180a3e300;                          // UI系统缓存备份器 - 备份缓存数据
+uint8_t UNK_180a3e310;                          // UI系统缓存恢复器 - 恢复缓存数据
+uint8_t UNK_180a3e378;                          // UI系统缓存测试器 - 测试缓存功能
 defint8_t DAT_180c96808;                      // UI系统缓存标志 - 标识缓存状态
-undefined UNK_180a3e470;                          // UI系统缓存调试器 - 调试缓存功能
-undefined UNK_180a3e408;                          // UI系统缓存分析器 - 分析缓存性能
-undefined UNK_180a3e418;                          // UI系统缓存优化器 - 优化缓存操作
+uint8_t UNK_180a3e470;                          // UI系统缓存调试器 - 调试缓存功能
+uint8_t UNK_180a3e408;                          // UI系统缓存分析器 - 分析缓存性能
+uint8_t UNK_180a3e418;                          // UI系统缓存优化器 - 优化缓存操作
 defundefined DAT_180a3c248;                       // UI系统缓存计数器 - 统计缓存操作
-undefined UNK_180a3e4a0;                          // UI系统缓存控制器 - 控制缓存操作
-undefined UNK_180a3e4b8;                          // UI系统缓存调度器 - 调度缓存任务
-undefined UNK_180a3e4c8;                          // UI系统缓存管理器 - 管理缓存资源
-undefined UNK_180a3e4d8;                          // UI系统缓存监控器 - 监控缓存状态
-undefined UNK_180a3e4e8;                          // UI系统缓存报告器 - 生成缓存报告
+uint8_t UNK_180a3e4a0;                          // UI系统缓存控制器 - 控制缓存操作
+uint8_t UNK_180a3e4b8;                          // UI系统缓存调度器 - 调度缓存任务
+uint8_t UNK_180a3e4c8;                          // UI系统缓存管理器 - 管理缓存资源
+uint8_t UNK_180a3e4d8;                          // UI系统缓存监控器 - 监控缓存状态
+uint8_t UNK_180a3e4e8;                          // UI系统缓存报告器 - 生成缓存报告
 
 //------------------------------------------------------------------------------
 // UI系统缓存扩展变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180a3e500;                          // UI系统缓存预测器 - 预测缓存需求
-undefined UNK_180a3e510;                          // UI系统缓存适配器 - 适配缓存策略
-undefined UNK_180a3e588;                          // UI系统缓存协调器 - 协调缓存操作
+uint8_t UNK_180a3e500;                          // UI系统缓存预测器 - 预测缓存需求
+uint8_t UNK_180a3e510;                          // UI系统缓存适配器 - 适配缓存策略
+uint8_t UNK_180a3e588;                          // UI系统缓存协调器 - 协调缓存操作
 char DAT_180d4913c;                               // UI系统缓存状态标志 - 标识缓存运行状态
 
 //------------------------------------------------------------------------------
 // UI系统性能监控变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180946540;                          // UI系统性能监控器 - 监控系统性能
-undefined UNK_180946ae0;                          // UI系统性能分析器 - 分析性能数据
-undefined UNK_180946af8;                          // UI系统性能优化器 - 优化性能表现
-undefined UNK_180946b10;                          // UI系统性能报告器 - 生成性能报告
+uint8_t UNK_180946540;                          // UI系统性能监控器 - 监控系统性能
+uint8_t UNK_180946ae0;                          // UI系统性能分析器 - 分析性能数据
+uint8_t UNK_180946af8;                          // UI系统性能优化器 - 优化性能表现
+uint8_t UNK_180946b10;                          // UI系统性能报告器 - 生成性能报告
 
 //------------------------------------------------------------------------------
 // UI系统数据存储变量组
 //------------------------------------------------------------------------------
 
-undefined DAT_180c0c1cc;                          // UI系统主数据表 - 存储主要数据
-undefined DAT_180c0c1c8;                          // UI系统备份数据表 - 存储备份数据
-undefined DAT_180c0c1c0;                          // UI系统临时数据表 - 存储临时数据
-undefined DAT_180d4a9b0;                          // UI系统配置数据块 - 存储配置数据
-undefined DAT_180d4a9a8;                          // UI系统状态数据块 - 存储状态数据
-undefined DAT_180d4a990;                          // UI系统缓存数据块 - 存储缓存数据
-undefined DAT_180d4a9c8;                          // UI系统索引数据块 - 存储索引数据
-undefined DAT_180d4a9c0;                          // UI系统映射数据块 - 存储映射数据
-undefined DAT_180d4a9b8;                          // UI系统队列数据块 - 存储队列数据
-undefined DAT_180d4a9a0;                          // UI系统堆栈数据块 - 存储堆栈数据
-undefined DAT_180d4a998;                          // UI系统列表数据块 - 存储列表数据
-undefined DAT_180d4a988;                          // UI系统树形数据块 - 存储树形数据
-undefined DAT_180d4a980;                          // UI系统图形数据块 - 存储图形数据
-undefined DAT_180d4a978;                          // UI系统网络数据块 - 存储网络数据
-undefined DAT_180d4a970;                          // UI系统数据库块 - 存储数据库信息
+uint8_t DAT_180c0c1cc;                          // UI系统主数据表 - 存储主要数据
+uint8_t DAT_180c0c1c8;                          // UI系统备份数据表 - 存储备份数据
+uint8_t DAT_180c0c1c0;                          // UI系统临时数据表 - 存储临时数据
+uint8_t DAT_180d4a9b0;                          // UI系统配置数据块 - 存储配置数据
+uint8_t DAT_180d4a9a8;                          // UI系统状态数据块 - 存储状态数据
+uint8_t DAT_180d4a990;                          // UI系统缓存数据块 - 存储缓存数据
+uint8_t DAT_180d4a9c8;                          // UI系统索引数据块 - 存储索引数据
+uint8_t DAT_180d4a9c0;                          // UI系统映射数据块 - 存储映射数据
+uint8_t DAT_180d4a9b8;                          // UI系统队列数据块 - 存储队列数据
+uint8_t DAT_180d4a9a0;                          // UI系统堆栈数据块 - 存储堆栈数据
+uint8_t DAT_180d4a998;                          // UI系统列表数据块 - 存储列表数据
+uint8_t DAT_180d4a988;                          // UI系统树形数据块 - 存储树形数据
+uint8_t DAT_180d4a980;                          // UI系统图形数据块 - 存储图形数据
+uint8_t DAT_180d4a978;                          // UI系统网络数据块 - 存储网络数据
+uint8_t DAT_180d4a970;                          // UI系统数据库块 - 存储数据库信息
 
 //------------------------------------------------------------------------------
 // UI系统低级操作变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_1800018c7;                          // UI系统内存操作器 - 执行内存操作
-undefined UNK_180001b8d;                          // UI系统寄存器操作器 - 执行寄存器操作
-undefined UNK_1800025f0;                          // UI系统堆栈操作器 - 执行堆栈操作
-undefined UNK_1800028e4;                          // UI系统指针操作器 - 执行指针操作
-undefined UNK_180002cb0;                          // UI系统中断操作器 - 执行中断操作
-undefined UNK_180002d90;                          // UI系统异常操作器 - 执行异常操作
+uint8_t UNK_1800018c7;                          // UI系统内存操作器 - 执行内存操作
+uint8_t UNK_180001b8d;                          // UI系统寄存器操作器 - 执行寄存器操作
+uint8_t UNK_1800025f0;                          // UI系统堆栈操作器 - 执行堆栈操作
+uint8_t UNK_1800028e4;                          // UI系统指针操作器 - 执行指针操作
+uint8_t UNK_180002cb0;                          // UI系统中断操作器 - 执行中断操作
+uint8_t UNK_180002d90;                          // UI系统异常操作器 - 执行异常操作
 
 
 //------------------------------------------------------------------------------
@@ -648,49 +648,49 @@ undefined UNK_180002d90;                          // UI系统异常操作器 - �
 //------------------------------------------------------------------------------
 
 // UI系统主题管理函数
-undefined FUN_1806714a0;                           // UI系统主题管理器 - 管理UI主题和样式
+uint8_t FUN_1806714a0;                           // UI系统主题管理器 - 管理UI主题和样式
 
 // UI系统本地化函数
-undefined FUN_1806718d0;                           // UI系统本地化器 - 处理多语言和本地化
+uint8_t FUN_1806718d0;                           // UI系统本地化器 - 处理多语言和本地化
 
 // UI系统辅助功能函数
-undefined FUN_180671eb0;                           // UI系统辅助功能管理器 - 管理辅助功能
+uint8_t FUN_180671eb0;                           // UI系统辅助功能管理器 - 管理辅助功能
 
 // UI系统无障碍函数
-undefined FUN_1806721d0;                           // UI系统无障碍支持器 - 支持无障碍访问
+uint8_t FUN_1806721d0;                           // UI系统无障碍支持器 - 支持无障碍访问
 
 // UI系统多模态交互函数
-undefined FUN_1806725c0;                           // UI系统多模态交互器 - 支持多种交互方式
+uint8_t FUN_1806725c0;                           // UI系统多模态交互器 - 支持多种交互方式
 
 // UI系统手势识别函数
-undefined FUN_180672a50;                           // UI系统手势识别器 - 识别用户手势
+uint8_t FUN_180672a50;                           // UI系统手势识别器 - 识别用户手势
 
 // UI系统语音控制函数
-undefined FUN_180672da0;                           // UI系统语音控制器 - 支持语音控制
+uint8_t FUN_180672da0;                           // UI系统语音控制器 - 支持语音控制
 
 // UI系统眼动追踪函数
-undefined FUN_180673220;                           // UI系统眼动追踪器 - 支持眼动追踪
+uint8_t FUN_180673220;                           // UI系统眼动追踪器 - 支持眼动追踪
 
 // UI系统脑机接口函数
-undefined FUN_180673360;                           // UI系统脑机接口器 - 支持脑机接口
+uint8_t FUN_180673360;                           // UI系统脑机接口器 - 支持脑机接口
 
 // UI系统虚拟现实函数
-undefined FUN_180673850;                           // UI系统虚拟现实器 - 支持VR界面
+uint8_t FUN_180673850;                           // UI系统虚拟现实器 - 支持VR界面
 
 // UI系统增强现实函数
-undefined FUN_180673970;                           // UI系统增强现实器 - 支持AR界面
+uint8_t FUN_180673970;                           // UI系统增强现实器 - 支持AR界面
 
 // UI系统混合现实函数
-undefined FUN_180673e10;                           // UI系统混合现实器 - 支持MR界面
+uint8_t FUN_180673e10;                           // UI系统混合现实器 - 支持MR界面
 
 // UI系统空间计算函数
-undefined FUN_180673f50;                           // UI系统空间计算器 - 计算空间位置
+uint8_t FUN_180673f50;                           // UI系统空间计算器 - 计算空间位置
 
 // UI系统物理模拟函数
-undefined FUN_180674040;                           // UI系统物理模拟器 - 模拟物理效果
+uint8_t FUN_180674040;                           // UI系统物理模拟器 - 模拟物理效果
 
 // UI系统粒子系统函数
-undefined FUN_180674120;                           // UI系统粒子系统器 - 管理粒子效果
+uint8_t FUN_180674120;                           // UI系统粒子系统器 - 管理粒子效果
 
 
 //------------------------------------------------------------------------------
@@ -698,186 +698,186 @@ undefined FUN_180674120;                           // UI系统粒子系统器 - 
 //------------------------------------------------------------------------------
 
 // UI系统流体模拟函数
-undefined FUN_1806742a0;                           // UI系统流体模拟器 - 模拟流体效果
+uint8_t FUN_1806742a0;                           // UI系统流体模拟器 - 模拟流体效果
 
 // UI系统光影效果函数
-undefined FUN_1806743e0;                           // UI系统光影效果器 - 处理光影效果
+uint8_t FUN_1806743e0;                           // UI系统光影效果器 - 处理光影效果
 
 // UI系统材质系统函数
-undefined FUN_1806744d0;                           // UI系统材质系统器 - 管理材质和着色器
+uint8_t FUN_1806744d0;                           // UI系统材质系统器 - 管理材质和着色器
 
 // UI系统高级渲染函数
-undefined FUN_180674610;                           // UI系统高级渲染器 - 执行高级渲染操作
+uint8_t FUN_180674610;                           // UI系统高级渲染器 - 执行高级渲染操作
 
 //------------------------------------------------------------------------------
 // UI系统渲染数据变量组
 //------------------------------------------------------------------------------
 
-undefined DAT_180c0c1dc;                          // UI系统渲染数据表 - 存储渲染数据
-undefined DAT_180c0c1d8;                          // UI系统渲染配置表 - 存储渲染配置
-undefined DAT_180c0c1d0;                          // UI系统渲染状态表 - 存储渲染状态
-undefined DAT_180d4a758;                          // UI系统顶点数据表 - 存储顶点数据
-undefined DAT_180d4a710;                          // UI系统索引数据表 - 存储索引数据
-undefined DAT_180d4a6d0;                          // UI系统纹理数据表 - 存储纹理数据
-undefined DAT_180d4a6a8;                          // UI系统着色器数据表 - 存储着色器数据
-undefined DAT_180d4a950;                          // UI系统缓冲区数据表 - 存储缓冲区数据
-undefined DAT_180d4a918;                          // UI系统管线数据表 - 存储渲染管线数据
-undefined DAT_180d4a890;                          // UI系统帧缓冲数据表 - 存储帧缓冲数据
-undefined DAT_180d4a880;                          // UI系统深度缓冲数据表 - 存储深度缓冲数据
-undefined DAT_180d4a868;                          // UI系统模板缓冲数据表 - 存储模板缓冲数据
-undefined DAT_180d4a850;                          // UI系统颜色缓冲数据表 - 存储颜色缓冲数据
-undefined DAT_180d4a838;                          // UI系统法线数据表 - 存储法线数据
-undefined DAT_180d4a810;                          // UI系统切线数据表 - 存储切线数据
-undefined DAT_180d4a7f8;                          // UI系统UV坐标数据表 - 存储UV坐标数据
-undefined DAT_180d4a7d0;                          // UI系统骨骼数据表 - 存储骨骼数据
-undefined DAT_180d4a7b8;                          // UI系统动画数据表 - 存储动画数据
-undefined DAT_180d4a7a8;                          // UI系统材质数据表 - 存储材质数据
-undefined DAT_180d4a798;                          // UI系统光照数据表 - 存储光照数据
-undefined DAT_180d4a780;                          // UI系统阴影数据表 - 存储阴影数据
-undefined DAT_180d4a748;                          // UI系统反射数据表 - 存储反射数据
-undefined DAT_180d4a730;                          // UI系统折射数据表 - 存储折射数据
-undefined DAT_180d4a718;                          // UI系统环境光数据表 - 存储环境光数据
-undefined DAT_180d4a6f8;                          // UI系统后处理数据表 - 存储后处理数据
-undefined DAT_180d4a8f8;                          // UI系统抗锯齿数据表 - 存储抗锯齿数据
-undefined DAT_180d4a8e0;                          // UI系统景深数据表 - 存储景深数据
-undefined DAT_180d4a8c8;                          // UI系统动态模糊数据表 - 存储动态模糊数据
-undefined DAT_180d4a888;                          // UI系统运动模糊数据表 - 存储运动模糊数据
-undefined DAT_180d4a848;                          // UI系统体积光数据表 - 存储体积光数据
-undefined DAT_180d4a828;                          // UI系统屏幕空间反射数据表 - 存储SSR数据
-undefined DAT_180d4a808;                          // UI系统屏幕空间环境光遮蔽数据表 - 存储SSAO数据
-undefined DAT_180d4a7f0;                          // UI系统全局光照数据表 - 存储全局光照数据
-undefined DAT_180d4a790;                          // UI系统光线追踪数据表 - 存储光线追踪数据
-undefined DAT_180d4a760;                          // UI系统路径追踪数据表 - 存储路径追踪数据
-undefined DAT_180d4a728;                          // UI系统辐射度数据表 - 存储辐射度数据
-undefined DAT_180d4a938;                          // UI系统光子映射数据表 - 存储光子映射数据
-undefined DAT_180d4a8b8;                          // UI系统体素数据表 - 存储体素数据
-undefined DAT_180d4a860;                          // UI系统八叉树数据表 - 存储八叉树数据
-undefined DAT_180d4a800;                          // UI系统BVH数据表 - 存储BVH数据
-undefined DAT_180d4a7c8;                          // UI系统KD树数据表 - 存储KD树数据
-undefined DAT_180d4a768;                          // UI系统四叉树数据表 - 存储四叉树数据
-undefined DAT_180d4a738;                          // UI系统网格数据表 - 存储网格数据
-undefined DAT_180d4a720;                          // UI系统细分曲面数据表 - 存储细分曲面数据
-undefined DAT_180d4a6e8;                          // UI系统位移映射数据表 - 存储位移映射数据
-undefined DAT_180d4a6c8;                          // UI系统法线映射数据表 - 存储法线映射数据
-undefined DAT_180d4a6c0;                          // UI系统高度映射数据表 - 存储高度映射数据
-undefined DAT_180d4a6a0;                          // UI系统环境映射数据表 - 存储环境映射数据
-undefined DAT_180d4a960;                          // UI系统立方体贴图数据表 - 存储立方体贴图数据
-undefined DAT_180d4a940;                          // UI系统球面贴图数据表 - 存储球面贴图数据
-undefined DAT_180d4a908;                          // UI系统柱面贴图数据表 - 存储柱面贴图数据
-undefined DAT_180d4a8e8;                          // UI系统平面贴图数据表 - 存储平面贴图数据
-undefined DAT_180d4a8a0;                          // UI系统纹理数组数据表 - 存储纹理数组数据
-undefined DAT_180d4a878;                          // UI系统纹理图集数据表 - 存储纹理图集数据
-undefined DAT_180d4a840;                          // UI系统纹理链数据表 - 存储纹理链数据
-undefined DAT_180d4a818;                          // UI系统纹理流数据表 - 存储纹理流数据
-undefined DAT_180d4a7d8;                          // UI系统纹理压缩数据表 - 存储纹理压缩数据
-undefined DAT_180d4a7a0;                          // UI系统纹理过滤数据表 - 存储纹理过滤数据
-undefined DAT_180d4a770;                          // UI系统纹理混合数据表 - 存储纹理混合数据
-undefined DAT_180d4a6f0;                          // UI系统纹理生成数据表 - 存储纹理生成数据
-undefined DAT_180d4a6d8;                          // UI系统纹理缓存数据表 - 存储纹理缓存数据
-undefined DAT_180d4a6b0;                          // UI系统纹理管理数据表 - 存储纹理管理数据
-undefined DAT_180d4a930;                          // UI系统着色器编译数据表 - 存储着色器编译数据
-undefined DAT_180d4a900;                          // UI系统着色器链接数据表 - 存储着色器链接数据
-undefined DAT_180d4a8d8;                          // UI系统着色器优化数据表 - 存储着色器优化数据
-undefined DAT_180d4a8b0;                          // UI系统着色器缓存数据表 - 存储着色器缓存数据
-undefined DAT_180d4a870;                          // UI系统着色器管理数据表 - 存储着色器管理数据
-undefined DAT_180d4a830;                          // UI系统管线状态数据表 - 存储管线状态数据
-undefined DAT_180d4a7e8;                          // UI系统管线配置数据表 - 存储管线配置数据
-undefined DAT_180d4a7c0;                          // UI系统管线缓存数据表 - 存储管线缓存数据
-undefined DAT_180d4a788;                          // UI系统管线管理数据表 - 存储管线管理数据
-undefined DAT_180d4a740;                          // UI系统缓冲区管理数据表 - 存储缓冲区管理数据
-undefined DAT_180d4a700;                          // UI系统内存管理数据表 - 存储内存管理数据
-undefined DAT_180d4a6e0;                          // UI系统资源管理数据表 - 存储资源管理数据
-undefined DAT_180d4a6b8;                          // UI系统性能监控数据表 - 存储性能监控数据
-undefined DAT_180d4a968;                          // UI系统调试信息数据表 - 存储调试信息
-undefined DAT_180d4a948;                          // UI系统日志记录数据表 - 存储日志记录
-undefined DAT_180d4a920;                          // UI系统错误报告数据表 - 存储错误报告
-undefined DAT_180d4a8f0;                          // UI系统统计信息数据表 - 存储统计信息
-undefined DAT_180d4a8d0;                          // UI系统配置文件数据表 - 存储配置文件
-undefined DAT_180d4a898;                          // UI系统用户偏好数据表 - 存储用户偏好
-undefined DAT_180d4a858;                          // UI系统主题样式数据表 - 存储主题样式
-undefined DAT_180d4a820;                          // UI系统本地化数据表 - 存储本地化数据
-undefined DAT_180d4a7e0;                          // UI系统动画数据表 - 存储动画数据
-undefined DAT_180d4a7b0;                          // UI系统过渡效果数据表 - 存储过渡效果
-undefined DAT_180d4a778;                          // UI系统交互反馈数据表 - 存储交互反馈
-undefined DAT_180d4a750;                          // UI系统音频效果数据表 - 存储音频效果
-undefined DAT_180d4a708;                          // UI系统视频播放数据表 - 存储视频播放
-undefined DAT_180d4a958;                          // UI系统网络通信数据表 - 存储网络通信
-undefined DAT_180d4a928;                          // UI系统数据同步数据表 - 存储数据同步
-undefined DAT_180d4a910;                          // UI系统文件操作数据表 - 存储文件操作
-undefined DAT_180d4a8c0;                          // UI系统数据库访问数据表 - 存储数据库访问
-undefined DAT_180d4a8a8;                          // UI系统缓存管理数据表 - 存储缓存管理
+uint8_t DAT_180c0c1dc;                          // UI系统渲染数据表 - 存储渲染数据
+uint8_t DAT_180c0c1d8;                          // UI系统渲染配置表 - 存储渲染配置
+uint8_t DAT_180c0c1d0;                          // UI系统渲染状态表 - 存储渲染状态
+uint8_t DAT_180d4a758;                          // UI系统顶点数据表 - 存储顶点数据
+uint8_t DAT_180d4a710;                          // UI系统索引数据表 - 存储索引数据
+uint8_t DAT_180d4a6d0;                          // UI系统纹理数据表 - 存储纹理数据
+uint8_t DAT_180d4a6a8;                          // UI系统着色器数据表 - 存储着色器数据
+uint8_t DAT_180d4a950;                          // UI系统缓冲区数据表 - 存储缓冲区数据
+uint8_t DAT_180d4a918;                          // UI系统管线数据表 - 存储渲染管线数据
+uint8_t DAT_180d4a890;                          // UI系统帧缓冲数据表 - 存储帧缓冲数据
+uint8_t DAT_180d4a880;                          // UI系统深度缓冲数据表 - 存储深度缓冲数据
+uint8_t DAT_180d4a868;                          // UI系统模板缓冲数据表 - 存储模板缓冲数据
+uint8_t DAT_180d4a850;                          // UI系统颜色缓冲数据表 - 存储颜色缓冲数据
+uint8_t DAT_180d4a838;                          // UI系统法线数据表 - 存储法线数据
+uint8_t DAT_180d4a810;                          // UI系统切线数据表 - 存储切线数据
+uint8_t DAT_180d4a7f8;                          // UI系统UV坐标数据表 - 存储UV坐标数据
+uint8_t DAT_180d4a7d0;                          // UI系统骨骼数据表 - 存储骨骼数据
+uint8_t DAT_180d4a7b8;                          // UI系统动画数据表 - 存储动画数据
+uint8_t DAT_180d4a7a8;                          // UI系统材质数据表 - 存储材质数据
+uint8_t DAT_180d4a798;                          // UI系统光照数据表 - 存储光照数据
+uint8_t DAT_180d4a780;                          // UI系统阴影数据表 - 存储阴影数据
+uint8_t DAT_180d4a748;                          // UI系统反射数据表 - 存储反射数据
+uint8_t DAT_180d4a730;                          // UI系统折射数据表 - 存储折射数据
+uint8_t DAT_180d4a718;                          // UI系统环境光数据表 - 存储环境光数据
+uint8_t DAT_180d4a6f8;                          // UI系统后处理数据表 - 存储后处理数据
+uint8_t DAT_180d4a8f8;                          // UI系统抗锯齿数据表 - 存储抗锯齿数据
+uint8_t DAT_180d4a8e0;                          // UI系统景深数据表 - 存储景深数据
+uint8_t DAT_180d4a8c8;                          // UI系统动态模糊数据表 - 存储动态模糊数据
+uint8_t DAT_180d4a888;                          // UI系统运动模糊数据表 - 存储运动模糊数据
+uint8_t DAT_180d4a848;                          // UI系统体积光数据表 - 存储体积光数据
+uint8_t DAT_180d4a828;                          // UI系统屏幕空间反射数据表 - 存储SSR数据
+uint8_t DAT_180d4a808;                          // UI系统屏幕空间环境光遮蔽数据表 - 存储SSAO数据
+uint8_t DAT_180d4a7f0;                          // UI系统全局光照数据表 - 存储全局光照数据
+uint8_t DAT_180d4a790;                          // UI系统光线追踪数据表 - 存储光线追踪数据
+uint8_t DAT_180d4a760;                          // UI系统路径追踪数据表 - 存储路径追踪数据
+uint8_t DAT_180d4a728;                          // UI系统辐射度数据表 - 存储辐射度数据
+uint8_t DAT_180d4a938;                          // UI系统光子映射数据表 - 存储光子映射数据
+uint8_t DAT_180d4a8b8;                          // UI系统体素数据表 - 存储体素数据
+uint8_t DAT_180d4a860;                          // UI系统八叉树数据表 - 存储八叉树数据
+uint8_t DAT_180d4a800;                          // UI系统BVH数据表 - 存储BVH数据
+uint8_t DAT_180d4a7c8;                          // UI系统KD树数据表 - 存储KD树数据
+uint8_t DAT_180d4a768;                          // UI系统四叉树数据表 - 存储四叉树数据
+uint8_t DAT_180d4a738;                          // UI系统网格数据表 - 存储网格数据
+uint8_t DAT_180d4a720;                          // UI系统细分曲面数据表 - 存储细分曲面数据
+uint8_t DAT_180d4a6e8;                          // UI系统位移映射数据表 - 存储位移映射数据
+uint8_t DAT_180d4a6c8;                          // UI系统法线映射数据表 - 存储法线映射数据
+uint8_t DAT_180d4a6c0;                          // UI系统高度映射数据表 - 存储高度映射数据
+uint8_t DAT_180d4a6a0;                          // UI系统环境映射数据表 - 存储环境映射数据
+uint8_t DAT_180d4a960;                          // UI系统立方体贴图数据表 - 存储立方体贴图数据
+uint8_t DAT_180d4a940;                          // UI系统球面贴图数据表 - 存储球面贴图数据
+uint8_t DAT_180d4a908;                          // UI系统柱面贴图数据表 - 存储柱面贴图数据
+uint8_t DAT_180d4a8e8;                          // UI系统平面贴图数据表 - 存储平面贴图数据
+uint8_t DAT_180d4a8a0;                          // UI系统纹理数组数据表 - 存储纹理数组数据
+uint8_t DAT_180d4a878;                          // UI系统纹理图集数据表 - 存储纹理图集数据
+uint8_t DAT_180d4a840;                          // UI系统纹理链数据表 - 存储纹理链数据
+uint8_t DAT_180d4a818;                          // UI系统纹理流数据表 - 存储纹理流数据
+uint8_t DAT_180d4a7d8;                          // UI系统纹理压缩数据表 - 存储纹理压缩数据
+uint8_t DAT_180d4a7a0;                          // UI系统纹理过滤数据表 - 存储纹理过滤数据
+uint8_t DAT_180d4a770;                          // UI系统纹理混合数据表 - 存储纹理混合数据
+uint8_t DAT_180d4a6f0;                          // UI系统纹理生成数据表 - 存储纹理生成数据
+uint8_t DAT_180d4a6d8;                          // UI系统纹理缓存数据表 - 存储纹理缓存数据
+uint8_t DAT_180d4a6b0;                          // UI系统纹理管理数据表 - 存储纹理管理数据
+uint8_t DAT_180d4a930;                          // UI系统着色器编译数据表 - 存储着色器编译数据
+uint8_t DAT_180d4a900;                          // UI系统着色器链接数据表 - 存储着色器链接数据
+uint8_t DAT_180d4a8d8;                          // UI系统着色器优化数据表 - 存储着色器优化数据
+uint8_t DAT_180d4a8b0;                          // UI系统着色器缓存数据表 - 存储着色器缓存数据
+uint8_t DAT_180d4a870;                          // UI系统着色器管理数据表 - 存储着色器管理数据
+uint8_t DAT_180d4a830;                          // UI系统管线状态数据表 - 存储管线状态数据
+uint8_t DAT_180d4a7e8;                          // UI系统管线配置数据表 - 存储管线配置数据
+uint8_t DAT_180d4a7c0;                          // UI系统管线缓存数据表 - 存储管线缓存数据
+uint8_t DAT_180d4a788;                          // UI系统管线管理数据表 - 存储管线管理数据
+uint8_t DAT_180d4a740;                          // UI系统缓冲区管理数据表 - 存储缓冲区管理数据
+uint8_t DAT_180d4a700;                          // UI系统内存管理数据表 - 存储内存管理数据
+uint8_t DAT_180d4a6e0;                          // UI系统资源管理数据表 - 存储资源管理数据
+uint8_t DAT_180d4a6b8;                          // UI系统性能监控数据表 - 存储性能监控数据
+uint8_t DAT_180d4a968;                          // UI系统调试信息数据表 - 存储调试信息
+uint8_t DAT_180d4a948;                          // UI系统日志记录数据表 - 存储日志记录
+uint8_t DAT_180d4a920;                          // UI系统错误报告数据表 - 存储错误报告
+uint8_t DAT_180d4a8f0;                          // UI系统统计信息数据表 - 存储统计信息
+uint8_t DAT_180d4a8d0;                          // UI系统配置文件数据表 - 存储配置文件
+uint8_t DAT_180d4a898;                          // UI系统用户偏好数据表 - 存储用户偏好
+uint8_t DAT_180d4a858;                          // UI系统主题样式数据表 - 存储主题样式
+uint8_t DAT_180d4a820;                          // UI系统本地化数据表 - 存储本地化数据
+uint8_t DAT_180d4a7e0;                          // UI系统动画数据表 - 存储动画数据
+uint8_t DAT_180d4a7b0;                          // UI系统过渡效果数据表 - 存储过渡效果
+uint8_t DAT_180d4a778;                          // UI系统交互反馈数据表 - 存储交互反馈
+uint8_t DAT_180d4a750;                          // UI系统音频效果数据表 - 存储音频效果
+uint8_t DAT_180d4a708;                          // UI系统视频播放数据表 - 存储视频播放
+uint8_t DAT_180d4a958;                          // UI系统网络通信数据表 - 存储网络通信
+uint8_t DAT_180d4a928;                          // UI系统数据同步数据表 - 存储数据同步
+uint8_t DAT_180d4a910;                          // UI系统文件操作数据表 - 存储文件操作
+uint8_t DAT_180d4a8c0;                          // UI系统数据库访问数据表 - 存储数据库访问
+uint8_t DAT_180d4a8a8;                          // UI系统缓存管理数据表 - 存储缓存管理
 //------------------------------------------------------------------------------
 // UI系统低级内存操作变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180002e60;                          // UI系统内存分配器 - 分配内存块
-undefined UNK_180002ea0;                          // UI系统内存释放器 - 释放内存块
-undefined UNK_180002ee0;                          // UI系统内存复制器 - 复制内存块
-undefined UNK_180002f20;                          // UI系统内存移动器 - 移动内存块
-undefined UNK_180002f70;                          // UI系统内存填充器 - 填充内存块
-undefined UNK_180002fd0;                          // UI系统内存比较器 - 比较内存块
-undefined UNK_180003050;                          // UI系统内存搜索器 - 搜索内存块
-undefined UNK_180003110;                          // UI系统内存验证器 - 验证内存块
-undefined UNK_1800032a0;                          // UI系统内存保护器 - 保护内存块
-undefined UNK_180003300;                          // UI系统内存锁定器 - 锁定内存块
-undefined UNK_1800033b0;                          // UI系统内存解锁器 - 解锁内存块
-undefined UNK_180003430;                          // UI系统内存映射器 - 映射内存块
-undefined UNK_180003540;                          // UI系统内存取消映射器 - 取消映射内存块
-undefined UNK_1800035c0;                          // UI系统内存同步器 - 同步内存块
-undefined UNK_1800036c0;                          // UI系统内存刷新器 - 刷新内存块
-undefined UNK_180003880;                          // UI系统内存缓存器 - 缓存内存块
-undefined UNK_180003d80;                          // UI系统内存预取器 - 预取内存块
-undefined UNK_180003de0;                          // UI系统内存写回器 - 写回内存块
-undefined UNK_180003e90;                          // UI系统内存无效器 - 无效内存块
-undefined UNK_180003fa0;                          // UI系统内存清零器 - 清零内存块
+uint8_t UNK_180002e60;                          // UI系统内存分配器 - 分配内存块
+uint8_t UNK_180002ea0;                          // UI系统内存释放器 - 释放内存块
+uint8_t UNK_180002ee0;                          // UI系统内存复制器 - 复制内存块
+uint8_t UNK_180002f20;                          // UI系统内存移动器 - 移动内存块
+uint8_t UNK_180002f70;                          // UI系统内存填充器 - 填充内存块
+uint8_t UNK_180002fd0;                          // UI系统内存比较器 - 比较内存块
+uint8_t UNK_180003050;                          // UI系统内存搜索器 - 搜索内存块
+uint8_t UNK_180003110;                          // UI系统内存验证器 - 验证内存块
+uint8_t UNK_1800032a0;                          // UI系统内存保护器 - 保护内存块
+uint8_t UNK_180003300;                          // UI系统内存锁定器 - 锁定内存块
+uint8_t UNK_1800033b0;                          // UI系统内存解锁器 - 解锁内存块
+uint8_t UNK_180003430;                          // UI系统内存映射器 - 映射内存块
+uint8_t UNK_180003540;                          // UI系统内存取消映射器 - 取消映射内存块
+uint8_t UNK_1800035c0;                          // UI系统内存同步器 - 同步内存块
+uint8_t UNK_1800036c0;                          // UI系统内存刷新器 - 刷新内存块
+uint8_t UNK_180003880;                          // UI系统内存缓存器 - 缓存内存块
+uint8_t UNK_180003d80;                          // UI系统内存预取器 - 预取内存块
+uint8_t UNK_180003de0;                          // UI系统内存写回器 - 写回内存块
+uint8_t UNK_180003e90;                          // UI系统内存无效器 - 无效内存块
+uint8_t UNK_180003fa0;                          // UI系统内存清零器 - 清零内存块
 
 //------------------------------------------------------------------------------
 // UI系统线程操作变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180004300;                          // UI系统线程创建器 - 创建线程
-undefined UNK_1800049d0;                          // UI系统线程销毁器 - 销毁线程
-undefined UNK_180005080;                          // UI系统线程启动器 - 启动线程
-undefined UNK_180005440;                          // UI系统线程停止器 - 停止线程
-undefined UNK_1800057b0;                          // UI系统线程暂停器 - 暂停线程
-undefined UNK_180005bc0;                          // UI系统线程恢复器 - 恢复线程
-undefined UNK_180006190;                          // UI系统线程同步器 - 同步线程
-undefined UNK_1800065d0;                          // UI系统线程调度器 - 调度线程
-undefined UNK_180006945;                          // UI系统线程优先级器 - 设置线程优先级
-undefined UNK_180006b22;                          // UI系统线程亲和力器 - 设置线程亲和力
-undefined UNK_180006dcf;                          // UI系统线程等待器 - 等待线程
-undefined UNK_180006f34;                          // UI系统线程通知器 - 通知线程
-undefined UNK_180006ff0;                          // UI系统线程信号器 - 发送线程信号
+uint8_t UNK_180004300;                          // UI系统线程创建器 - 创建线程
+uint8_t UNK_1800049d0;                          // UI系统线程销毁器 - 销毁线程
+uint8_t UNK_180005080;                          // UI系统线程启动器 - 启动线程
+uint8_t UNK_180005440;                          // UI系统线程停止器 - 停止线程
+uint8_t UNK_1800057b0;                          // UI系统线程暂停器 - 暂停线程
+uint8_t UNK_180005bc0;                          // UI系统线程恢复器 - 恢复线程
+uint8_t UNK_180006190;                          // UI系统线程同步器 - 同步线程
+uint8_t UNK_1800065d0;                          // UI系统线程调度器 - 调度线程
+uint8_t UNK_180006945;                          // UI系统线程优先级器 - 设置线程优先级
+uint8_t UNK_180006b22;                          // UI系统线程亲和力器 - 设置线程亲和力
+uint8_t UNK_180006dcf;                          // UI系统线程等待器 - 等待线程
+uint8_t UNK_180006f34;                          // UI系统线程通知器 - 通知线程
+uint8_t UNK_180006ff0;                          // UI系统线程信号器 - 发送线程信号
 
 //------------------------------------------------------------------------------
 // UI系统同步原语变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_18000b3dd;                          // UI系统互斥锁创建器 - 创建互斥锁
-undefined UNK_18000d630;                          // UI系统互斥锁销毁器 - 销毁互斥锁
-undefined UNK_18000dbc6;                          // UI系统互斥锁锁定器 - 锁定互斥锁
-undefined UNK_18000deb4;                          // UI系统互斥锁解锁器 - 解锁互斥锁
-undefined UNK_18000e06e;                          // UI系统信号量创建器 - 创建信号量
-undefined UNK_18000e39c;                          // UI系统信号量销毁器 - 销毁信号量
-undefined UNK_18000e470;                          // UI系统信号量等待器 - 等待信号量
-undefined UNK_18000e4e0;                          // UI系统信号量发布器 - 发布信号量
-undefined UNK_18000e550;                          // UI系统条件变量创建器 - 创建条件变量
-undefined UNK_18000e5e0;                          // UI系统条件变量销毁器 - 销毁条件变量
-undefined UNK_18000e670;                          // UI系统条件变量等待器 - 等待条件变量
-undefined UNK_18000e6e0;                          // UI系统条件变量信号器 - 发送条件变量信号
-undefined UNK_18000e750;                          // UI系统读写锁创建器 - 创建读写锁
-undefined UNK_18000e7c0;                          // UI系统读写锁销毁器 - 销毁读写锁
-undefined UNK_18000e850;                          // UI系统读写锁读锁定器 - 读锁定读写锁
-undefined UNK_18000e8e0;                          // UI系统读写锁读解锁器 - 读解锁读写锁
-undefined UNK_18000f120;                          // UI系统读写锁写锁定器 - 写锁定读写锁
-undefined UNK_180017300;                          // UI系统读写锁写解锁器 - 写解锁读写锁
+uint8_t UNK_18000b3dd;                          // UI系统互斥锁创建器 - 创建互斥锁
+uint8_t UNK_18000d630;                          // UI系统互斥锁销毁器 - 销毁互斥锁
+uint8_t UNK_18000dbc6;                          // UI系统互斥锁锁定器 - 锁定互斥锁
+uint8_t UNK_18000deb4;                          // UI系统互斥锁解锁器 - 解锁互斥锁
+uint8_t UNK_18000e06e;                          // UI系统信号量创建器 - 创建信号量
+uint8_t UNK_18000e39c;                          // UI系统信号量销毁器 - 销毁信号量
+uint8_t UNK_18000e470;                          // UI系统信号量等待器 - 等待信号量
+uint8_t UNK_18000e4e0;                          // UI系统信号量发布器 - 发布信号量
+uint8_t UNK_18000e550;                          // UI系统条件变量创建器 - 创建条件变量
+uint8_t UNK_18000e5e0;                          // UI系统条件变量销毁器 - 销毁条件变量
+uint8_t UNK_18000e670;                          // UI系统条件变量等待器 - 等待条件变量
+uint8_t UNK_18000e6e0;                          // UI系统条件变量信号器 - 发送条件变量信号
+uint8_t UNK_18000e750;                          // UI系统读写锁创建器 - 创建读写锁
+uint8_t UNK_18000e7c0;                          // UI系统读写锁销毁器 - 销毁读写锁
+uint8_t UNK_18000e850;                          // UI系统读写锁读锁定器 - 读锁定读写锁
+uint8_t UNK_18000e8e0;                          // UI系统读写锁读解锁器 - 读解锁读写锁
+uint8_t UNK_18000f120;                          // UI系统读写锁写锁定器 - 写锁定读写锁
+uint8_t UNK_180017300;                          // UI系统读写锁写解锁器 - 写解锁读写锁
 
 //------------------------------------------------------------------------------
 // UI系统原子操作变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180679b80;                          // UI系统原子加载器 - 原子加载
-undefined UNK_180679bb0;                          // UI系统原子存储器 - 原子存储
+uint8_t UNK_180679b80;                          // UI系统原子加载器 - 原子加载
+uint8_t UNK_180679bb0;                          // UI系统原子存储器 - 原子存储
 
 
 //------------------------------------------------------------------------------
@@ -885,19 +885,19 @@ undefined UNK_180679bb0;                          // UI系统原子存储器 - �
 //------------------------------------------------------------------------------
 
 // UI系统后处理函数
-undefined FUN_180674700;                           // UI系统后处理器 - 执行后处理效果
+uint8_t FUN_180674700;                           // UI系统后处理器 - 执行后处理效果
 
 // UI系统抗锯齿函数
-undefined FUN_180674930;                           // UI系统抗锯齿器 - 执行抗锯齿处理
+uint8_t FUN_180674930;                           // UI系统抗锯齿器 - 执行抗锯齿处理
 
 // UI系统景深函数
-undefined FUN_180674aa0;                           // UI系统景深器 - 执行景深效果
+uint8_t FUN_180674aa0;                           // UI系统景深器 - 执行景深效果
 
 // UI系统动态模糊函数
-undefined FUN_180674d10;                           // UI系统动态模糊器 - 执行动态模糊效果
+uint8_t FUN_180674d10;                           // UI系统动态模糊器 - 执行动态模糊效果
 
 // UI系统运动模糊函数
-undefined FUN_180674f40;                           // UI系统运动模糊器 - 执行运动模糊效果
+uint8_t FUN_180674f40;                           // UI系统运动模糊器 - 执行运动模糊效果
 
 
 //------------------------------------------------------------------------------
@@ -905,106 +905,106 @@ undefined FUN_180674f40;                           // UI系统运动模糊器 - 
 //------------------------------------------------------------------------------
 
 // UI系统体积光函数
-undefined FUN_1806750b0;                           // UI系统体积光器 - 执行体积光效果
+uint8_t FUN_1806750b0;                           // UI系统体积光器 - 执行体积光效果
 
 // UI系统屏幕空间反射函数
-undefined FUN_1806760f0;                           // UI系统屏幕空间反射器 - 执行SSR效果
+uint8_t FUN_1806760f0;                           // UI系统屏幕空间反射器 - 执行SSR效果
 
 // UI系统屏幕空间环境光遮蔽函数
-undefined FUN_180676320;                           // UI系统屏幕空间环境光遮蔽器 - 执行SSAO效果
+uint8_t FUN_180676320;                           // UI系统屏幕空间环境光遮蔽器 - 执行SSAO效果
 
 // UI系统全局光照函数
-undefined FUN_180676490;                           // UI系统全局光照器 - 执行全局光照
+uint8_t FUN_180676490;                           // UI系统全局光照器 - 执行全局光照
 
 // UI系统光线追踪函数
-undefined FUN_180676700;                           // UI系统光线追踪器 - 执行光线追踪
+uint8_t FUN_180676700;                           // UI系统光线追踪器 - 执行光线追踪
 
 // UI系统路径追踪函数
-undefined FUN_180676930;                           // UI系统路径追踪器 - 执行路径追踪
+uint8_t FUN_180676930;                           // UI系统路径追踪器 - 执行路径追踪
 
 // UI系统辐射度函数
-undefined FUN_180676aa0;                           // UI系统辐射度器 - 执行辐射度计算
+uint8_t FUN_180676aa0;                           // UI系统辐射度器 - 执行辐射度计算
 
 // UI系统光子映射函数
-undefined FUN_180677100;                           // UI系统光子映射器 - 执行光子映射
+uint8_t FUN_180677100;                           // UI系统光子映射器 - 执行光子映射
 
 // UI系统体素化函数
-undefined FUN_180677190;                           // UI系统体素化器 - 执行体素化
+uint8_t FUN_180677190;                           // UI系统体素化器 - 执行体素化
 
 // UI系统八叉树函数
-undefined FUN_180677300;                           // UI系统八叉树构建器 - 构建八叉树
+uint8_t FUN_180677300;                           // UI系统八叉树构建器 - 构建八叉树
 
 // UI系统BVH函数
-undefined FUN_180677530;                           // UI系统BVH构建器 - 构建BVH
+uint8_t FUN_180677530;                           // UI系统BVH构建器 - 构建BVH
 
 // UI系统KD树函数
-undefined FUN_1806780c0;                           // UI系统KD树构建器 - 构建KD树
+uint8_t FUN_1806780c0;                           // UI系统KD树构建器 - 构建KD树
 
 // UI系统四叉树函数
-undefined FUN_1806782c0;                           // UI系统四叉树构建器 - 构建四叉树
+uint8_t FUN_1806782c0;                           // UI系统四叉树构建器 - 构建四叉树
 
 // UI系统网格函数
-undefined FUN_180678430;                           // UI系统网格生成器 - 生成网格
+uint8_t FUN_180678430;                           // UI系统网格生成器 - 生成网格
 
 // UI系统细分曲面函数
-undefined FUN_180678540;                           // UI系统细分曲面生成器 - 生成细分曲面
+uint8_t FUN_180678540;                           // UI系统细分曲面生成器 - 生成细分曲面
 
 // UI系统位移映射函数
-undefined FUN_180678810;                           // UI系统位移映射器 - 执行位移映射
+uint8_t FUN_180678810;                           // UI系统位移映射器 - 执行位移映射
 
 // UI系统法线映射函数
-undefined FUN_1806789c0;                           // UI系统法线映射器 - 执行法线映射
+uint8_t FUN_1806789c0;                           // UI系统法线映射器 - 执行法线映射
 
 // UI系统高度映射函数
-undefined FUN_180678b10;                           // UI系统高度映射器 - 执行高度映射
+uint8_t FUN_180678b10;                           // UI系统高度映射器 - 执行高度映射
 
 // UI系统环境映射函数
-undefined FUN_180678bc0;                           // UI系统环境映射器 - 执行环境映射
+uint8_t FUN_180678bc0;                           // UI系统环境映射器 - 执行环境映射
 
 // UI系统立方体贴图函数
-undefined FUN_180678e20;                           // UI系统立方体贴图生成器 - 生成立方体贴图
+uint8_t FUN_180678e20;                           // UI系统立方体贴图生成器 - 生成立方体贴图
 
 // UI系统球面贴图函数
-undefined FUN_180678ef0;                           // UI系统球面贴图生成器 - 生成球面贴图
+uint8_t FUN_180678ef0;                           // UI系统球面贴图生成器 - 生成球面贴图
 
 // UI系统柱面贴图函数
-undefined FUN_180678fc0;                           // UI系统柱面贴图生成器 - 生成柱面贴图
+uint8_t FUN_180678fc0;                           // UI系统柱面贴图生成器 - 生成柱面贴图
 
 // UI系统平面贴图函数
-undefined FUN_1806790b0;                           // UI系统平面贴图生成器 - 生成平面贴图
+uint8_t FUN_1806790b0;                           // UI系统平面贴图生成器 - 生成平面贴图
 
 // UI系统纹理数组函数
-undefined FUN_180679310;                           // UI系统纹理数组生成器 - 生成纹理数组
+uint8_t FUN_180679310;                           // UI系统纹理数组生成器 - 生成纹理数组
 
 // UI系统纹理图集函数
-undefined FUN_180679480;                           // UI系统纹理图集生成器 - 生成纹理图集
+uint8_t FUN_180679480;                           // UI系统纹理图集生成器 - 生成纹理图集
 
 // UI系统纹理链函数
-undefined FUN_1806795f0;                           // UI系统纹理链生成器 - 生成纹理链
+uint8_t FUN_1806795f0;                           // UI系统纹理链生成器 - 生成纹理链
 
 // UI系统纹理流函数
-undefined FUN_1806796f0;                           // UI系统纹理流生成器 - 生成纹理流
+uint8_t FUN_1806796f0;                           // UI系统纹理流生成器 - 生成纹理流
 
 // UI系统纹理压缩函数
-undefined FUN_180679ac0;                           // UI系统纹理压缩器 - 压缩纹理
+uint8_t FUN_180679ac0;                           // UI系统纹理压缩器 - 压缩纹理
 
 // UI系统纹理过滤函数
-undefined FUN_180679b20;                           // UI系统纹理过滤器 - 过滤纹理
+uint8_t FUN_180679b20;                           // UI系统纹理过滤器 - 过滤纹理
 
 // UI系统纹理混合函数
-undefined FUN_180679d30;                           // UI系统纹理混合器 - 混合纹理
+uint8_t FUN_180679d30;                           // UI系统纹理混合器 - 混合纹理
 
 // UI系统着色器编译函数
-undefined FUN_18067c470;                           // UI系统着色器编译器 - 编译着色器
+uint8_t FUN_18067c470;                           // UI系统着色器编译器 - 编译着色器
 
 // UI系统着色器链接函数
-undefined FUN_180683f90;                           // UI系统着色器链接器 - 链接着色器
+uint8_t FUN_180683f90;                           // UI系统着色器链接器 - 链接着色器
 
 // UI系统着色器优化函数
-undefined FUN_1806844a0;                           // UI系统着色器优化器 - 优化着色器
+uint8_t FUN_1806844a0;                           // UI系统着色器优化器 - 优化着色器
 
 // UI系统着色器缓存函数
-undefined FUN_18068b080;                           // UI系统着色器缓存器 - 缓存着色器
+uint8_t FUN_18068b080;                           // UI系统着色器缓存器 - 缓存着色器
 
 
 //------------------------------------------------------------------------------
@@ -1012,128 +1012,128 @@ undefined FUN_18068b080;                           // UI系统着色器缓存器
 //------------------------------------------------------------------------------
 
 // UI系统着色器管理函数
-undefined FUN_18068d2b0;                           // UI系统着色器管理器 - 管理着色器资源
+uint8_t FUN_18068d2b0;                           // UI系统着色器管理器 - 管理着色器资源
 
 // UI系统着色器验证函数
-undefined FUN_18068d480;                           // UI系统着色器验证器 - 验证着色器
+uint8_t FUN_18068d480;                           // UI系统着色器验证器 - 验证着色器
 
 // UI系统着色器加载函数
-undefined FUN_18068d4b0;                           // UI系统着色器加载器 - 加载着色器
+uint8_t FUN_18068d4b0;                           // UI系统着色器加载器 - 加载着色器
 
 // UI系统着色器卸载函数
-undefined FUN_18068d530;                           // UI系统着色器卸载器 - 卸载着色器
+uint8_t FUN_18068d530;                           // UI系统着色器卸载器 - 卸载着色器
 
 // UI系统着色器重载函数
-undefined FUN_18068d5b0;                           // UI系统着色器重载器 - 重载着色器
+uint8_t FUN_18068d5b0;                           // UI系统着色器重载器 - 重载着色器
 
 // UI系统着色器切换函数
-undefined FUN_18068d630;                           // UI系统着色器切换器 - 切换着色器
+uint8_t FUN_18068d630;                           // UI系统着色器切换器 - 切换着色器
 
 // UI系统着色器混合函数
-undefined FUN_18068d6b0;                           // UI系统着色器混合器 - 混合着色器
+uint8_t FUN_18068d6b0;                           // UI系统着色器混合器 - 混合着色器
 
 // UI系统着色器参数函数
-undefined FUN_18068d730;                           // UI系统着色器参数器 - 设置着色器参数
+uint8_t FUN_18068d730;                           // UI系统着色器参数器 - 设置着色器参数
 
 // UI系统着色器常量函数
-undefined FUN_18068d7b0;                           // UI系统着色器常量器 - 设置着色器常量
+uint8_t FUN_18068d7b0;                           // UI系统着色器常量器 - 设置着色器常量
 
 // UI系统着色器变量函数
-undefined FUN_18068d8d0;                           // UI系统着色器变量器 - 管理着色器变量
+uint8_t FUN_18068d8d0;                           // UI系统着色器变量器 - 管理着色器变量
 
 // UI系统着色器属性函数
-undefined FUN_18068d9f0;                           // UI系统着色器属性器 - 管理着色器属性
+uint8_t FUN_18068d9f0;                           // UI系统着色器属性器 - 管理着色器属性
 
 // UI系统着色器统一变量函数
-undefined FUN_18068db10;                           // UI系统着色器统一变量器 - 管理统一变量
+uint8_t FUN_18068db10;                           // UI系统着色器统一变量器 - 管理统一变量
 
 // UI系统着色器采样器函数
-undefined FUN_18068dc30;                           // UI系统着色器采样器器 - 管理采样器
+uint8_t FUN_18068dc30;                           // UI系统着色器采样器器 - 管理采样器
 
 // UI系统着色器纹理函数
-undefined FUN_18068dd50;                           // UI系统着色器纹理器 - 管理着色器纹理
+uint8_t FUN_18068dd50;                           // UI系统着色器纹理器 - 管理着色器纹理
 
 // UI系统着色器缓冲区函数
-undefined FUN_18068de70;                           // UI系统着色器缓冲区器 - 管理着色器缓冲区
+uint8_t FUN_18068de70;                           // UI系统着色器缓冲区器 - 管理着色器缓冲区
 
 // UI系统着色器图像函数
-undefined FUN_18068def0;                           // UI系统着色器图像器 - 管理着色器图像
+uint8_t FUN_18068def0;                           // UI系统着色器图像器 - 管理着色器图像
 
 // UI系统着色器原子函数
-undefined FUN_18068df70;                           // UI系统着色器原子器 - 管理着色器原子操作
+uint8_t FUN_18068df70;                           // UI系统着色器原子器 - 管理着色器原子操作
 
 // UI系统着色器屏障函数
-undefined FUN_18068dff0;                           // UI系统着色器屏障器 - 管理着色器屏障
+uint8_t FUN_18068dff0;                           // UI系统着色器屏障器 - 管理着色器屏障
 
 // UI系统着色器同步函数
-undefined FUN_18068e070;                           // UI系统着色器同步器 - 同步着色器操作
+uint8_t FUN_18068e070;                           // UI系统着色器同步器 - 同步着色器操作
 
 // UI系统着色器内存函数
-undefined FUN_18068e250;                           // UI系统着色器内存器 - 管理着色器内存
+uint8_t FUN_18068e250;                           // UI系统着色器内存器 - 管理着色器内存
 
 // UI系统着色器工作组函数
-undefined FUN_18068e430;                           // UI系统着色器工作组器 - 管理着色器工作组
+uint8_t FUN_18068e430;                           // UI系统着色器工作组器 - 管理着色器工作组
 
 // UI系统着色器调度函数
-undefined FUN_18068e610;                           // UI系统着色器调度器 - 调度着色器执行
+uint8_t FUN_18068e610;                           // UI系统着色器调度器 - 调度着色器执行
 
 // UI系统着色器执行函数
-undefined FUN_18068e7f0;                           // UI系统着色器执行器 - 执行着色器
+uint8_t FUN_18068e7f0;                           // UI系统着色器执行器 - 执行着色器
 
 // UI系统着色器完成函数
-undefined FUN_18068e870;                           // UI系统着色器完成器 - 完成着色器执行
+uint8_t FUN_18068e870;                           // UI系统着色器完成器 - 完成着色器执行
 
 // UI系统着色器等待函数
-undefined FUN_18068e8f0;                           // UI系统着色器等待器 - 等待着色器完成
+uint8_t FUN_18068e8f0;                           // UI系统着色器等待器 - 等待着色器完成
 
 // UI系统着色器状态函数
-undefined FUN_18068e970;                           // UI系统着色器状态器 - 查询着色器状态
+uint8_t FUN_18068e970;                           // UI系统着色器状态器 - 查询着色器状态
 
 // UI系统着色器结果函数
-undefined FUN_18068e9f0;                           // UI系统着色器结果器 - 获取着色器结果
+uint8_t FUN_18068e9f0;                           // UI系统着色器结果器 - 获取着色器结果
 
 // UI系统着色器分析函数
-undefined FUN_18068ea70;                           // UI系统着色器分析器 - 分析着色器性能
+uint8_t FUN_18068ea70;                           // UI系统着色器分析器 - 分析着色器性能
 
 // UI系统着色器优化函数
-undefined FUN_18068eaf0;                           // UI系统着色器优化器 - 优化着色器性能
+uint8_t FUN_18068eaf0;                           // UI系统着色器优化器 - 优化着色器性能
 
 // UI系统着色器调试函数
-undefined FUN_18068eb60;                           // UI系统着色器调试器 - 调试着色器
+uint8_t FUN_18068eb60;                           // UI系统着色器调试器 - 调试着色器
 
 // UI系统着色器测试函数
-undefined FUN_18068ebd0;                           // UI系统着色器测试器 - 测试着色器
+uint8_t FUN_18068ebd0;                           // UI系统着色器测试器 - 测试着色器
 
 // UI系统着色器基准函数
-undefined FUN_18068ec40;                           // UI系统着色器基准器 - 基准测试着色器
+uint8_t FUN_18068ec40;                           // UI系统着色器基准器 - 基准测试着色器
 
 // UI系统着色器配置函数
-undefined FUN_18068ecb0;                           // UI系统着色器配置器 - 配置着色器
-undefined FUN_18068ecb0;
+uint8_t FUN_18068ecb0;                           // UI系统着色器配置器 - 配置着色器
+uint8_t FUN_18068ecb0;
 
 
-// 函数: undefined FUN_18068ed20;
-undefined FUN_18068ed20;
+// 函数: uint8_t FUN_18068ed20;
+uint8_t FUN_18068ed20;
 
 
-// 函数: undefined FUN_18068ed90;
-undefined FUN_18068ed90;
+// 函数: uint8_t FUN_18068ed90;
+uint8_t FUN_18068ed90;
 
 
-// 函数: undefined FUN_18068ee80;
-undefined FUN_18068ee80;
+// 函数: uint8_t FUN_18068ee80;
+uint8_t FUN_18068ee80;
 
 
-// 函数: undefined FUN_18068ef70;
-undefined FUN_18068ef70;
+// 函数: uint8_t FUN_18068ef70;
+uint8_t FUN_18068ef70;
 
 
-// 函数: undefined FUN_18068f060;
-undefined FUN_18068f060;
+// 函数: uint8_t FUN_18068f060;
+uint8_t FUN_18068f060;
 
 
-// 函数: undefined FUN_18068f150;
-undefined FUN_18068f150;
+// 函数: uint8_t FUN_18068f150;
+uint8_t FUN_18068f150;
 
 
 //------------------------------------------------------------------------------
@@ -1141,206 +1141,206 @@ undefined FUN_18068f150;
 //------------------------------------------------------------------------------
 
 // UI系统内存分析函数
-undefined FUN_18068f240;                           // UI系统内存分析器 - 分析内存使用情况
+uint8_t FUN_18068f240;                           // UI系统内存分析器 - 分析内存使用情况
 
 // UI系统性能分析函数
-undefined FUN_18068f330;                           // UI系统性能分析器 - 分析系统性能
+uint8_t FUN_18068f330;                           // UI系统性能分析器 - 分析系统性能
 
 // UI系统资源分析函数
-undefined FUN_18068f3a0;                           // UI系统资源分析器 - 分析资源使用
+uint8_t FUN_18068f3a0;                           // UI系统资源分析器 - 分析资源使用
 
 // UI系统缓存分析函数
-undefined FUN_18068f410;                           // UI系统缓存分析器 - 分析缓存性能
+uint8_t FUN_18068f410;                           // UI系统缓存分析器 - 分析缓存性能
 
 // UI系统网络分析函数
-undefined FUN_18068f480;                           // UI系统网络分析器 - 分析网络性能
+uint8_t FUN_18068f480;                           // UI系统网络分析器 - 分析网络性能
 
 // UI系统存储分析函数
-undefined FUN_18068f4f0;                           // UI系统存储分析器 - 分析存储性能
+uint8_t FUN_18068f4f0;                           // UI系统存储分析器 - 分析存储性能
 
 // UI系统计算分析函数
-undefined FUN_18068f680;                           // UI系统计算分析器 - 分析计算性能
+uint8_t FUN_18068f680;                           // UI系统计算分析器 - 分析计算性能
 
 // UI系统渲染分析函数
-undefined FUN_18068f810;                           // UI系统渲染分析器 - 分析渲染性能
+uint8_t FUN_18068f810;                           // UI系统渲染分析器 - 分析渲染性能
 
 // UI系统输入分析函数
-undefined FUN_18068f9a0;                           // UI系统输入分析器 - 分析输入性能
+uint8_t FUN_18068f9a0;                           // UI系统输入分析器 - 分析输入性能
 
 // UI系统音频分析函数
-undefined FUN_18068fb30;                           // UI系统音频分析器 - 分析音频性能
+uint8_t FUN_18068fb30;                           // UI系统音频分析器 - 分析音频性能
 
 // UI系统视频分析函数
-undefined FUN_18068fba0;                           // UI系统视频分析器 - 分析视频性能
+uint8_t FUN_18068fba0;                           // UI系统视频分析器 - 分析视频性能
 
 // UI系统物理分析函数
-undefined FUN_18068fc10;                           // UI系统物理分析器 - 分析物理性能
+uint8_t FUN_18068fc10;                           // UI系统物理分析器 - 分析物理性能
 
 // UI系统动画分析函数
-undefined FUN_18068fc80;                           // UI系统动画分析器 - 分析动画性能
+uint8_t FUN_18068fc80;                           // UI系统动画分析器 - 分析动画性能
 
 // UI系统粒子分析函数
-undefined FUN_18068fcf0;                           // UI系统粒子分析器 - 分析粒子性能
+uint8_t FUN_18068fcf0;                           // UI系统粒子分析器 - 分析粒子性能
 
 // UI系统光照分析函数
-undefined FUN_18068fd60;                           // UI系统光照分析器 - 分析光照性能
+uint8_t FUN_18068fd60;                           // UI系统光照分析器 - 分析光照性能
 
 // UI系统材质分析函数
-undefined FUN_18068fdd0;                           // UI系统材质分析器 - 分析材质性能
+uint8_t FUN_18068fdd0;                           // UI系统材质分析器 - 分析材质性能
 
 // UI系统纹理分析函数
-undefined FUN_18068fe10;                           // UI系统纹理分析器 - 分析纹理性能
+uint8_t FUN_18068fe10;                           // UI系统纹理分析器 - 分析纹理性能
 
 // UI系统着色器分析函数
-undefined FUN_18068ff60;                           // UI系统着色器分析器 - 分析着色器性能
+uint8_t FUN_18068ff60;                           // UI系统着色器分析器 - 分析着色器性能
 
 // UI系统几何分析函数
-undefined FUN_180690200;                           // UI系统几何分析器 - 分析几何性能
+uint8_t FUN_180690200;                           // UI系统几何分析器 - 分析几何性能
 
 // UI系统拓扑分析函数
-undefined FUN_1806903c0;                           // UI系统拓扑分析器 - 分析拓扑性能
+uint8_t FUN_1806903c0;                           // UI系统拓扑分析器 - 分析拓扑性能
 
 // UI系统缓冲区分析函数
-undefined FUN_1806905c0;                           // UI系统缓冲区分析器 - 分析缓冲区性能
+uint8_t FUN_1806905c0;                           // UI系统缓冲区分析器 - 分析缓冲区性能
 
 // UI系统帧率分析函数
-undefined FUN_1806917c0;                           // UI系统帧率分析器 - 分析帧率性能
+uint8_t FUN_1806917c0;                           // UI系统帧率分析器 - 分析帧率性能
 
 // UI系统延迟分析函数
-undefined FUN_180691db0;                           // UI系统延迟分析器 - 分析延迟性能
+uint8_t FUN_180691db0;                           // UI系统延迟分析器 - 分析延迟性能
 
 // UI系统吞吐量分析函数
-undefined FUN_180694010;                           // UI系统吞吐量分析器 - 分析吞吐量性能
+uint8_t FUN_180694010;                           // UI系统吞吐量分析器 - 分析吞吐量性能
 
 // UI系统带宽分析函数
-undefined FUN_180695530;                           // UI系统带宽分析器 - 分析带宽性能
+uint8_t FUN_180695530;                           // UI系统带宽分析器 - 分析带宽性能
 
 // UI系统CPU分析函数
-undefined FUN_180695560;                           // UI系统CPU分析器 - 分析CPU性能
+uint8_t FUN_180695560;                           // UI系统CPU分析器 - 分析CPU性能
 
 // UI系统GPU分析函数
-undefined FUN_180695590;                           // UI系统GPU分析器 - 分析GPU性能
+uint8_t FUN_180695590;                           // UI系统GPU分析器 - 分析GPU性能
 
 // UI系统内存分析函数
-undefined FUN_180695600;                           // UI系统内存分析器 - 分析内存性能
+uint8_t FUN_180695600;                           // UI系统内存分析器 - 分析内存性能
 
 // UI系统磁盘分析函数
-undefined FUN_180695700;                           // UI系统磁盘分析器 - 分析磁盘性能
+uint8_t FUN_180695700;                           // UI系统磁盘分析器 - 分析磁盘性能
 
 // UI系统网络分析函数
-undefined FUN_180695750;                           // UI系统网络分析器 - 分析网络性能
+uint8_t FUN_180695750;                           // UI系统网络分析器 - 分析网络性能
 
 // UI系统温度分析函数
-undefined FUN_180695820;                           // UI系统温度分析器 - 分析温度性能
+uint8_t FUN_180695820;                           // UI系统温度分析器 - 分析温度性能
 
 // UI系统功耗分析函数
-undefined FUN_180695870;                           // UI系统功耗分析器 - 分析功耗性能
+uint8_t FUN_180695870;                           // UI系统功耗分析器 - 分析功耗性能
 
 // UI系统电池分析函数
-undefined FUN_1806958c0;                           // UI系统电池分析器 - 分析电池性能
+uint8_t FUN_1806958c0;                           // UI系统电池分析器 - 分析电池性能
 
 // UI系统散热分析函数
-undefined FUN_180695990;                           // UI系统散热分析器 - 分析散热性能
+uint8_t FUN_180695990;                           // UI系统散热分析器 - 分析散热性能
 
 // UI系统噪音分析函数
-undefined FUN_180695ac0;                           // UI系统噪音分析器 - 分析噪音性能
+uint8_t FUN_180695ac0;                           // UI系统噪音分析器 - 分析噪音性能
 
 // UI系统振动分析函数
-undefined FUN_180695bf0;                           // UI系统振动分析器 - 分析振动性能
+uint8_t FUN_180695bf0;                           // UI系统振动分析器 - 分析振动性能
 
 // UI系统压力分析函数
-undefined FUN_180695f70;                           // UI系统压力分析器 - 分析压力性能
+uint8_t FUN_180695f70;                           // UI系统压力分析器 - 分析压力性能
 
 // UI系统负载分析函数
-undefined FUN_1806961a0;                           // UI系统负载分析器 - 分析负载性能
+uint8_t FUN_1806961a0;                           // UI系统负载分析器 - 分析负载性能
 
 // UI系统容量分析函数
-undefined FUN_180696370;                           // UI系统容量分析器 - 分析容量性能
+uint8_t FUN_180696370;                           // UI系统容量分析器 - 分析容量性能
 
 // UI系统可扩展性分析函数
-undefined FUN_180696540;                           // UI系统可扩展性分析器 - 分析可扩展性性能
+uint8_t FUN_180696540;                           // UI系统可扩展性分析器 - 分析可扩展性性能
 
 // UI系统可靠性分析函数
-undefined FUN_180696710;                           // UI系统可靠性分析器 - 分析可靠性性能
+uint8_t FUN_180696710;                           // UI系统可靠性分析器 - 分析可靠性性能
 
 // UI系统稳定性分析函数
-undefined FUN_1806968e0;                           // UI系统稳定性分析器 - 分析稳定性性能
+uint8_t FUN_1806968e0;                           // UI系统稳定性分析器 - 分析稳定性性能
 
 // UI系统安全性分析函数
-undefined FUN_180696a60;                           // UI系统安全性分析器 - 分析安全性性能
+uint8_t FUN_180696a60;                           // UI系统安全性分析器 - 分析安全性性能
 
 // UI系统隐私分析函数
-undefined FUN_180696be0;                           // UI系统隐私分析器 - 分析隐私性能
+uint8_t FUN_180696be0;                           // UI系统隐私分析器 - 分析隐私性能
 
 // UI系统合规分析函数
-undefined FUN_180696d90;                           // UI系统合规分析器 - 分析合规性能
+uint8_t FUN_180696d90;                           // UI系统合规分析器 - 分析合规性能
 
 // UI系统审计分析函数
-undefined FUN_180696f40;                           // UI系统审计分析器 - 分析审计性能
+uint8_t FUN_180696f40;                           // UI系统审计分析器 - 分析审计性能
 
 // UI系统监控分析函数
-undefined FUN_1806970f0;                           // UI系统监控分析器 - 分析监控性能
+uint8_t FUN_1806970f0;                           // UI系统监控分析器 - 分析监控性能
 
 // UI系统日志分析函数
-undefined FUN_1806972a0;                           // UI系统日志分析器 - 分析日志性能
+uint8_t FUN_1806972a0;                           // UI系统日志分析器 - 分析日志性能
 
 // UI系统错误分析函数
-undefined FUN_180697340;                           // UI系统错误分析器 - 分析错误性能
+uint8_t FUN_180697340;                           // UI系统错误分析器 - 分析错误性能
 
 // UI系统警告分析函数
-undefined FUN_1806973c0;                           // UI系统警告分析器 - 分析警告性能
+uint8_t FUN_1806973c0;                           // UI系统警告分析器 - 分析警告性能
 
 // UI系统异常分析函数
-undefined FUN_180697460;                           // UI系统异常分析器 - 分析异常性能
+uint8_t FUN_180697460;                           // UI系统异常分析器 - 分析异常性能
 
 // UI系统崩溃分析函数
-undefined FUN_1806974e0;                           // UI系统崩溃分析器 - 分析崩溃性能
+uint8_t FUN_1806974e0;                           // UI系统崩溃分析器 - 分析崩溃性能
 
 // UI系统恢复分析函数
-undefined FUN_180697580;                           // UI系统恢复分析器 - 分析恢复性能
+uint8_t FUN_180697580;                           // UI系统恢复分析器 - 分析恢复性能
 
 // UI系统备份分析函数
-undefined FUN_180697600;                           // UI系统备份分析器 - 分析备份性能
+uint8_t FUN_180697600;                           // UI系统备份分析器 - 分析备份性能
 
 // UI系统还原分析函数
-undefined FUN_180697680;                           // UI系统还原分析器 - 分析还原性能
+uint8_t FUN_180697680;                           // UI系统还原分析器 - 分析还原性能
 
 // UI系统同步分析函数
-undefined FUN_1806976f0;                           // UI系统同步分析器 - 分析同步性能
+uint8_t FUN_1806976f0;                           // UI系统同步分析器 - 分析同步性能
 
 // UI系统异步分析函数
-undefined FUN_180697770;                           // UI系统异步分析器 - 分析异步性能
+uint8_t FUN_180697770;                           // UI系统异步分析器 - 分析异步性能
 
 // UI系统并发分析函数
-undefined FUN_1806977e0;                           // UI系统并发分析器 - 分析并发性能
+uint8_t FUN_1806977e0;                           // UI系统并发分析器 - 分析并发性能
 
 // UI系统并行分析函数
-undefined FUN_1806978b0;                           // UI系统并行分析器 - 分析并行性能
+uint8_t FUN_1806978b0;                           // UI系统并行分析器 - 分析并行性能
 
 // UI系统分布式分析函数
-undefined FUN_180697dd0;                           // UI系统分布式分析器 - 分析分布式性能
+uint8_t FUN_180697dd0;                           // UI系统分布式分析器 - 分析分布式性能
 
 //------------------------------------------------------------------------------
 // UI系统分析数据变量组
 //------------------------------------------------------------------------------
 
-undefined DAT_180c0c1ec;                          // UI系统分析数据表 - 存储分析数据
-undefined DAT_180c0c1e8;                          // UI系统分析配置表 - 存储分析配置
-undefined DAT_180c0c1e0;                          // UI系统分析结果表 - 存储分析结果
-undefined DAT_180c0c200;                          // UI系统分析统计表 - 存储分析统计
-undefined DAT_180c0c1fc;                          // UI系统分析历史表 - 存储分析历史
-undefined DAT_180c0c1f8;                          // UI系统分析趋势表 - 存储分析趋势
-undefined DAT_180c0c1f0;                          // UI系统分析预测表 - 存储分析预测
+uint8_t DAT_180c0c1ec;                          // UI系统分析数据表 - 存储分析数据
+uint8_t DAT_180c0c1e8;                          // UI系统分析配置表 - 存储分析配置
+uint8_t DAT_180c0c1e0;                          // UI系统分析结果表 - 存储分析结果
+uint8_t DAT_180c0c200;                          // UI系统分析统计表 - 存储分析统计
+uint8_t DAT_180c0c1fc;                          // UI系统分析历史表 - 存储分析历史
+uint8_t DAT_180c0c1f8;                          // UI系统分析趋势表 - 存储分析趋势
+uint8_t DAT_180c0c1f0;                          // UI系统分析预测表 - 存储分析预测
 
 //------------------------------------------------------------------------------
 // UI系统分析工具变量组
 //------------------------------------------------------------------------------
 
-undefined UNK_180946b38;                          // UI系统分析引擎 - 执行分析引擎
-undefined UNK_180946b50;                          // UI系统分析编译器 - 编译分析规则
-undefined UNK_180946b70;                          // UI系统分析优化器 - 优化分析性能
-undefined UNK_180946ba0;                          // UI系统分析调度器 - 调度分析任务
-undefined UNK_180946bd8;                          // UI系统分析报告器 - 生成分析报告
+uint8_t UNK_180946b38;                          // UI系统分析引擎 - 执行分析引擎
+uint8_t UNK_180946b50;                          // UI系统分析编译器 - 编译分析规则
+uint8_t UNK_180946b70;                          // UI系统分析优化器 - 优化分析性能
+uint8_t UNK_180946ba0;                          // UI系统分析调度器 - 调度分析任务
+uint8_t UNK_180946bd8;                          // UI系统分析报告器 - 生成分析报告
 
 //==============================================================================
 // 文件总结

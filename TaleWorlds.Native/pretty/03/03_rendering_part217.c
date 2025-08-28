@@ -65,40 +65,40 @@
 /**
  * 渲染系统核心功能全局变量
  */
-static undefined rendering_system_geometry_calculator;
-static undefined rendering_system_edge_detector;
-static undefined rendering_system_vector_normalizer;
-static undefined rendering_system_distance_calculator;
-static undefined rendering_system_path_optimizer;
-static undefined rendering_system_collision_detector;
-static undefined rendering_system_visibility_calculator;
-static undefined rendering_system_mesh_processor;
-static undefined rendering_system_transform_manager;
-static undefined rendering_system_state_validator;
+static uint8_t rendering_system_geometry_calculator;
+static uint8_t rendering_system_edge_detector;
+static uint8_t rendering_system_vector_normalizer;
+static uint8_t rendering_system_distance_calculator;
+static uint8_t rendering_system_path_optimizer;
+static uint8_t rendering_system_collision_detector;
+static uint8_t rendering_system_visibility_calculator;
+static uint8_t rendering_system_mesh_processor;
+static uint8_t rendering_system_transform_manager;
+static uint8_t rendering_system_state_validator;
 
 /**
  * 几何计算系统全局变量
  */
-static undefined geometry_processor_buffer;
-static undefined edge_detection_handler;
-static undefined vector_calculation_engine;
-static undefined distance_measurement_system;
-static undefined path_finding_algorithm;
-static undefined collision_detection_system;
-static undefined visibility_culling_engine;
-static undefined mesh_optimization_processor;
+static uint8_t geometry_processor_buffer;
+static uint8_t edge_detection_handler;
+static uint8_t vector_calculation_engine;
+static uint8_t distance_measurement_system;
+static uint8_t path_finding_algorithm;
+static uint8_t collision_detection_system;
+static uint8_t visibility_culling_engine;
+static uint8_t mesh_optimization_processor;
 
 /**
  * 数据处理系统全局变量
  */
-static undefined data_structure_manager;
-static undefined memory_allocation_handler;
-static undefined stack_frame_processor;
-static undefined register_optimizer;
-static undefined cache_manager;
-static undefined buffer_controller;
-static undefined stream_processor;
-static undefined pipeline_manager;
+static uint8_t data_structure_manager;
+static uint8_t memory_allocation_handler;
+static uint8_t stack_frame_processor;
+static uint8_t register_optimizer;
+static uint8_t cache_manager;
+static uint8_t buffer_controller;
+static uint8_t stream_processor;
+static uint8_t pipeline_manager;
 
 /*==========================================
 =            函数声明            =

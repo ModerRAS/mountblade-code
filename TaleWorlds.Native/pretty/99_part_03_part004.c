@@ -800,11 +800,11 @@ void FUN_1801c8b50(uint64_t param_1,longlong *param_2,longlong *param_3)
   void *puStack_118;
   void *puStack_110;
   uint uStack_108;
-  undefined auStack_100 [24];
+  uint8_t auStack_100 [24];
   void *puStack_e8;
   void *puStack_e0;
   uint uStack_d8;
-  undefined auStack_d0 [136];
+  uint8_t auStack_d0 [136];
   ulonglong uStack_48;
   
   uStack_550 = 0xfffffffffffffffe;

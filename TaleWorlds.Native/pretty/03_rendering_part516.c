@@ -491,11 +491,11 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
   void *puStack_190;
   void *puStack_188;
   int32_t uStack_180;
-  undefined auStack_178 [16];
+  uint8_t auStack_178 [16];
   void *puStack_168;
   void *puStack_160;
   int32_t uStack_158;
-  undefined auStack_150 [24];
+  uint8_t auStack_150 [24];
   int8_t auStack_138 [32];
   float afStack_118 [2];
   int8_t auStack_110 [152];

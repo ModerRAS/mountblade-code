@@ -763,7 +763,7 @@ void create_save_file(void)
     void *stack_data13;
     void *stack_data14;
     int stack_data15;
-    undefined stack_data16[32];
+    uint8_t stack_data16[32];
     ulonglong stack_data17;
     
     stack_data12 = 0xfffffffffffffffe;
@@ -874,7 +874,7 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
     void *stack_data4;
     void *stack_data5;
     int32_t stack_data6;
-    undefined stack_data7[16];
+    uint8_t stack_data7[16];
     ulonglong stack_data8;
     
     stack_data3 = 0xfffffffffffffffe;

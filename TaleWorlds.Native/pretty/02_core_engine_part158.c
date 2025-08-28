@@ -614,7 +614,7 @@ void FUN_180142300(longlong param_1,uint64_t *param_2,longlong param_3)
   void *puStack_68;
   void *puStack_60;
   int32_t uStack_58;
-  undefined auStack_50 [16];
+  uint8_t auStack_50 [16];
   ulonglong uStack_40;
   longlong lVar9;
   

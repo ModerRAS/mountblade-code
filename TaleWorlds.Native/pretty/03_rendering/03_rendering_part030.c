@@ -509,11 +509,11 @@ void update_material_system_status(longlong material_system, longlong* texture_d
     void* stack_name;
     longlong** stack_ref;
     int32_t stack_flags;
-    undefined stack_data[136];
+    uint8_t stack_data[136];
     void* stack_source;
     void* stack_buffer;
     int32_t stack_format;
-    undefined stack_cache[136];
+    uint8_t stack_cache[136];
     ulonglong security_cookie;
     
     // 初始化栈保护

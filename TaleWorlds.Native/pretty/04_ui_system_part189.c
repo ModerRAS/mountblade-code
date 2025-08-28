@@ -117,7 +117,7 @@
  * @param 无直接参数，通过全局状态和配置进行操作
  * @return uint64_t 操作状态码，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180763100(void);
+uint8_t FUN_180763100(void);
 
 /**
  * @brief UI系统状态管理器
@@ -133,7 +133,7 @@ undefined FUN_180763100(void);
  * @param 无直接参数，通过系统状态接口进行操作
  * @return uint64_t 操作状态码，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1807868e0(void);
+uint8_t FUN_1807868e0(void);
 
 /**
  * @brief UI系统事件处理器
@@ -151,7 +151,7 @@ undefined FUN_1807868e0(void);
  * @param event_size 事件数据大小
  * @return uint64_t 事件处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180788990(uint64_t event_type, uint64_t event_data, uint64_t event_size);
+uint8_t FUN_180788990(uint64_t event_type, uint64_t event_data, uint64_t event_size);
 
 /**
  * @brief UI系统布局管理器
@@ -169,7 +169,7 @@ undefined FUN_180788990(uint64_t event_type, uint64_t event_data, uint64_t event
  * @param available_size 可用空间大小
  * @return uint64_t 布局操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1807863b0(uint64_t layout_info, uint64_t constraints, uint64_t available_size);
+uint8_t FUN_1807863b0(uint64_t layout_info, uint64_t constraints, uint64_t available_size);
 
 /**
  * @brief UI系统资源控制器
@@ -187,7 +187,7 @@ undefined FUN_1807863b0(uint64_t layout_info, uint64_t constraints, uint64_t ava
  * @param load_options 加载选项参数
  * @return uint64_t 资源操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180787030(uint64_t resource_type, uint64_t resource_path, uint64_t load_options);
+uint8_t FUN_180787030(uint64_t resource_type, uint64_t resource_path, uint64_t load_options);
 
 /**
  * @brief UI系统元素处理器
@@ -205,7 +205,7 @@ undefined FUN_180787030(uint64_t resource_type, uint64_t resource_path, uint64_t
  * @param element_data 元素数据指针
  * @return uint64_t 元素操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079bc20(uint64_t element_id, uint64_t operation_type, uint64_t element_data);
+uint8_t FUN_18079bc20(uint64_t element_id, uint64_t operation_type, uint64_t element_data);
 
 /**
  * @brief UI系统渲染优化器
@@ -222,7 +222,7 @@ undefined FUN_18079bc20(uint64_t element_id, uint64_t operation_type, uint64_t e
  * @param optimization_level 优化级别参数
  * @return uint64_t 优化操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079c2e0(uint64_t render_context, uint64_t optimization_level);
+uint8_t FUN_18079c2e0(uint64_t render_context, uint64_t optimization_level);
 
 /**
  * @brief UI系统交互处理器
@@ -239,7 +239,7 @@ undefined FUN_18079c2e0(uint64_t render_context, uint64_t optimization_level);
  * @param interaction_type 交互类型标识符
  * @return uint64_t 交互处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b740(uint64_t interaction_data, uint64_t interaction_type);
+uint8_t FUN_18079b740(uint64_t interaction_data, uint64_t interaction_type);
 
 /**
  * @brief UI系统显示管理器
@@ -256,7 +256,7 @@ undefined FUN_18079b740(uint64_t interaction_data, uint64_t interaction_type);
  * @param display_config 显示配置参数
  * @return uint64_t 显示管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b400(uint64_t display_info, uint64_t display_config);
+uint8_t FUN_18079b400(uint64_t display_info, uint64_t display_config);
 
 /**
  * @brief UI系统动画控制器
@@ -273,7 +273,7 @@ undefined FUN_18079b400(uint64_t display_info, uint64_t display_config);
  * @param animation_control 动画控制参数
  * @return uint64_t 动画控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b4c0(uint64_t animation_id, uint64_t animation_control);
+uint8_t FUN_18079b4c0(uint64_t animation_id, uint64_t animation_control);
 
 /**
  * @brief UI系统特效处理器
@@ -290,7 +290,7 @@ undefined FUN_18079b4c0(uint64_t animation_id, uint64_t animation_control);
  * @param effect_params 特效参数结构体指针
  * @return uint64_t 特效处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b5a0(uint64_t effect_type, uint64_t effect_params);
+uint8_t FUN_18079b5a0(uint64_t effect_type, uint64_t effect_params);
 
 /**
  * @brief UI系统过渡管理器
@@ -307,7 +307,7 @@ undefined FUN_18079b5a0(uint64_t effect_type, uint64_t effect_params);
  * @param transition_type 过渡类型标识符
  * @return uint64_t 过渡管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b600(uint64_t transition_data, uint64_t transition_type);
+uint8_t FUN_18079b600(uint64_t transition_data, uint64_t transition_type);
 
 /**
  * @brief UI系统纹理处理器
@@ -324,7 +324,7 @@ undefined FUN_18079b600(uint64_t transition_data, uint64_t transition_type);
  * @param texture_operation 纹理操作类型
  * @return uint64_t 纹理处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079cd20(uint64_t texture_id, uint64_t texture_operation);
+uint8_t FUN_18079cd20(uint64_t texture_id, uint64_t texture_operation);
 
 /**
  * @brief UI系统着色器处理器
@@ -341,7 +341,7 @@ undefined FUN_18079cd20(uint64_t texture_id, uint64_t texture_operation);
  * @param shader_params 着色器参数结构体指针
  * @return uint64_t 着色器处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079cda0(uint64_t shader_id, uint64_t shader_params);
+uint8_t FUN_18079cda0(uint64_t shader_id, uint64_t shader_params);
 
 /**
  * @brief UI系统缓冲区管理器
@@ -359,7 +359,7 @@ undefined FUN_18079cda0(uint64_t shader_id, uint64_t shader_params);
  * @param buffer_data 缓冲区数据指针
  * @return uint64_t 缓冲区管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180801cc0(uint64_t buffer_type, uint64_t buffer_size, uint64_t buffer_data);
+uint8_t FUN_180801cc0(uint64_t buffer_type, uint64_t buffer_size, uint64_t buffer_data);
 
 /**
  * @brief UI系统内存分配器
@@ -376,7 +376,7 @@ undefined FUN_180801cc0(uint64_t buffer_type, uint64_t buffer_size, uint64_t buf
  * @param alignment 对齐要求参数
  * @return uint64_t 分配的内存指针，失败返回NULL
  */
-undefined FUN_180808090(uint64_t allocation_size, uint64_t alignment);
+uint8_t FUN_180808090(uint64_t allocation_size, uint64_t alignment);
 
 /**
  * @brief UI系统性能监控器
@@ -392,7 +392,7 @@ undefined FUN_180808090(uint64_t allocation_size, uint64_t alignment);
  * @param monitor_config 监控配置结构体指针
  * @return uint64_t 性能监控结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808267d0(uint64_t monitor_config);
+uint8_t FUN_1808267d0(uint64_t monitor_config);
 
 /**
  * @brief UI系统质量控制台
@@ -408,7 +408,7 @@ undefined FUN_1808267d0(uint64_t monitor_config);
  * @param quality_params 质量参数结构体指针
  * @return uint64_t 质量控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180824f70(uint64_t quality_params);
+uint8_t FUN_180824f70(uint64_t quality_params);
 
 /**
  * @brief UI系统设置管理器
@@ -425,7 +425,7 @@ undefined FUN_180824f70(uint64_t quality_params);
  * @param settings_scope 设置作用域标识符
  * @return uint64_t 设置管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180825ef0(uint64_t settings_data, uint64_t settings_scope);
+uint8_t FUN_180825ef0(uint64_t settings_data, uint64_t settings_scope);
 
 /**
  * @brief UI系统配置加载器
@@ -442,7 +442,7 @@ undefined FUN_180825ef0(uint64_t settings_data, uint64_t settings_scope);
  * @param config_type 配置类型标识符
  * @return uint64_t 配置加载结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18081c0c0(uint64_t config_path, uint64_t config_type);
+uint8_t FUN_18081c0c0(uint64_t config_path, uint64_t config_type);
 
 /**
  * @brief UI系统配置文件管理器
@@ -459,7 +459,7 @@ undefined FUN_18081c0c0(uint64_t config_path, uint64_t config_type);
  * @param profile_operation 配置文件操作类型
  * @return uint64_t 配置文件管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18081bc60(uint64_t profile_id, uint64_t profile_operation);
+uint8_t FUN_18081bc60(uint64_t profile_id, uint64_t profile_operation);
 
 /**
  * @brief UI系统调试工具
@@ -476,7 +476,7 @@ undefined FUN_18081bc60(uint64_t profile_id, uint64_t profile_operation);
  * @param debug_params 调试参数结构体指针
  * @return uint64_t 调试工具结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18082ed00(uint64_t debug_command, uint64_t debug_params);
+uint8_t FUN_18082ed00(uint64_t debug_command, uint64_t debug_params);
 
 /**
  * @brief UI系统性能分析器
@@ -492,7 +492,7 @@ undefined FUN_18082ed00(uint64_t debug_command, uint64_t debug_params);
  * @param analysis_config 分析配置结构体指针
  * @return uint64_t 性能分析结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18082e800(uint64_t analysis_config);
+uint8_t FUN_18082e800(uint64_t analysis_config);
 
 /**
  * @brief UI系统渲染管线
@@ -509,7 +509,7 @@ undefined FUN_18082e800(uint64_t analysis_config);
  * @param render_target 渲染目标参数
  * @return uint64_t 渲染管线结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808632b0(uint64_t pipeline_config, uint64_t render_target);
+uint8_t FUN_1808632b0(uint64_t pipeline_config, uint64_t render_target);
 
 /**
  * @brief UI系统图形引擎
@@ -526,7 +526,7 @@ undefined FUN_1808632b0(uint64_t pipeline_config, uint64_t render_target);
  * @param graphics_params 图形参数结构体指针
  * @return uint64_t 图形引擎结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180873f80(uint64_t graphics_command, uint64_t graphics_params);
+uint8_t FUN_180873f80(uint64_t graphics_command, uint64_t graphics_params);
 
 /**
  * @brief UI系统输入处理器
@@ -543,7 +543,7 @@ undefined FUN_180873f80(uint64_t graphics_command, uint64_t graphics_params);
  * @param input_data 输入数据结构体指针
  * @return uint64_t 输入处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808793e0(uint64_t input_type, uint64_t input_data);
+uint8_t FUN_1808793e0(uint64_t input_type, uint64_t input_data);
 
 /**
  * @brief UI系统光标管理器
@@ -560,7 +560,7 @@ undefined FUN_1808793e0(uint64_t input_type, uint64_t input_data);
  * @param cursor_params 光标参数结构体指针
  * @return uint64_t 光标管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808777c0(uint64_t cursor_command, uint64_t cursor_params);
+uint8_t FUN_1808777c0(uint64_t cursor_command, uint64_t cursor_params);
 
 /**
  * @brief UI系统焦点控制器
@@ -577,7 +577,7 @@ undefined FUN_1808777c0(uint64_t cursor_command, uint64_t cursor_params);
  * @param focus_params 焦点参数结构体指针
  * @return uint64_t 焦点控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180877810(uint64_t focus_command, uint64_t focus_params);
+uint8_t FUN_180877810(uint64_t focus_command, uint64_t focus_params);
 
 /**
  * @brief UI系统可访问性管理器
@@ -593,7 +593,7 @@ undefined FUN_180877810(uint64_t focus_command, uint64_t focus_params);
  * @param accessibility_config 可访问性配置结构体指针
  * @return uint64_t 可访问性管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180877f00(uint64_t accessibility_config);
+uint8_t FUN_180877f00(uint64_t accessibility_config);
 
 /**
  * @brief UI系统主题处理器
@@ -610,7 +610,7 @@ undefined FUN_180877f00(uint64_t accessibility_config);
  * @param theme_operation 主题操作类型
  * @return uint64_t 主题处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808780d0(uint64_t theme_data, uint64_t theme_operation);
+uint8_t FUN_1808780d0(uint64_t theme_data, uint64_t theme_operation);
 
 /**
  * @brief UI系统本地化处理器
@@ -627,7 +627,7 @@ undefined FUN_1808780d0(uint64_t theme_data, uint64_t theme_operation);
  * @param locale_operation 本地化操作类型
  * @return uint64_t 本地化处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808794d0(uint64_t locale_data, uint64_t locale_operation);
+uint8_t FUN_1808794d0(uint64_t locale_data, uint64_t locale_operation);
 
 /**
  * @brief UI系统字体渲染器
@@ -644,7 +644,7 @@ undefined FUN_1808794d0(uint64_t locale_data, uint64_t locale_operation);
  * @param text_data 文本数据结构体指针
  * @return uint64_t 字体渲染结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180879510(uint64_t font_id, uint64_t text_data);
+uint8_t FUN_180879510(uint64_t font_id, uint64_t text_data);
 
 /**
  * @brief UI系统声音控制器
@@ -661,7 +661,7 @@ undefined FUN_180879510(uint64_t font_id, uint64_t text_data);
  * @param sound_params 声音参数结构体指针
  * @return uint64_t 声音控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876d70(uint64_t sound_id, uint64_t sound_params);
+uint8_t FUN_180876d70(uint64_t sound_id, uint64_t sound_params);
 
 /**
  * @brief UI系统振动管理器
@@ -678,7 +678,7 @@ undefined FUN_180876d70(uint64_t sound_id, uint64_t sound_params);
  * @param vibration_params 振动参数结构体指针
  * @return uint64_t 振动管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876d90(uint64_t vibration_pattern, uint64_t vibration_params);
+uint8_t FUN_180876d90(uint64_t vibration_pattern, uint64_t vibration_params);
 
 /**
  * @brief UI系统触觉处理器
@@ -695,7 +695,7 @@ undefined FUN_180876d90(uint64_t vibration_pattern, uint64_t vibration_params);
  * @param haptic_params 触觉参数结构体指针
  * @return uint64_t 触觉处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876eb0(uint64_t haptic_effect, uint64_t haptic_params);
+uint8_t FUN_180876eb0(uint64_t haptic_effect, uint64_t haptic_params);
 
 /**
  * @brief UI系统网络处理器
@@ -712,7 +712,7 @@ undefined FUN_180876eb0(uint64_t haptic_effect, uint64_t haptic_params);
  * @param network_params 网络参数结构体指针
  * @return uint64_t 网络处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876fb0(uint64_t network_operation, uint64_t network_params);
+uint8_t FUN_180876fb0(uint64_t network_operation, uint64_t network_params);
 
 /**
  * @brief UI系统平台适配器
@@ -729,7 +729,7 @@ undefined FUN_180876fb0(uint64_t network_operation, uint64_t network_params);
  * @param platform_params 平台参数结构体指针
  * @return uint64_t 平台适配结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18088ea60(uint64_t platform_type, uint64_t platform_params);
+uint8_t FUN_18088ea60(uint64_t platform_type, uint64_t platform_params);
 
 /**
  * @brief UI系统数据复制器
@@ -772,30 +772,30 @@ uint64_t FUN_180779df5(int32_t transform_params, ulonglong matrix_size);
  * ============================================================================ */
 
 // 全局数据定义
-undefined DAT_180c0fa90;      // UI系统全局状态数据
-undefined DAT_180c0fa94;      // UI系统配置数据
-undefined DAT_180c0fcd0;      // UI系统渲染状态数据
-undefined DAT_180c0fcd4;      // UI系统资源管理数据
-undefined DAT_180c0fc70;      // UI系统事件队列数据
-undefined DAT_180c0fc74;      // UI系统输入状态数据
-undefined DAT_180c0faf0;      // UI系统动画状态数据
-undefined DAT_180c0faf4;      // UI系统布局缓存数据
-undefined DAT_180c0fe50;      // UI系统性能监控数据
-undefined DAT_180c0fe54;      // UI系统调试信息数据
-undefined DAT_180c0fdf0;      // UI系统主题数据
-undefined DAT_180c0fdf4;      // UI系统本地化数据
-undefined DAT_180c0fb50;      // UI系统字体缓存数据
-undefined DAT_180c0fb54;      // UI系统纹理缓存数据
-undefined DAT_180c0fd90;      // UI系统着色器缓存数据
-undefined DAT_180c0fd94;      // UI系统缓冲区管理数据
-undefined DAT_180c0fbb0;      // UI系统内存池数据
-undefined DAT_180c0fbb4;      // UI系统对象池数据
-undefined DAT_180c0fc10;      // UI系统时间管理数据
-undefined DAT_180c0fc14;      // UI系统帧率控制数据
-undefined DAT_180c0fd30;      // UI系统输入映射数据
-undefined DAT_180c0fd34;      // UI系统焦点管理数据
-undefined DAT_180c0feb0;      // UI系统声音管理数据
-undefined DAT_180c0feb4;      // UI系统振动管理数据
+uint8_t DAT_180c0fa90;      // UI系统全局状态数据
+uint8_t DAT_180c0fa94;      // UI系统配置数据
+uint8_t DAT_180c0fcd0;      // UI系统渲染状态数据
+uint8_t DAT_180c0fcd4;      // UI系统资源管理数据
+uint8_t DAT_180c0fc70;      // UI系统事件队列数据
+uint8_t DAT_180c0fc74;      // UI系统输入状态数据
+uint8_t DAT_180c0faf0;      // UI系统动画状态数据
+uint8_t DAT_180c0faf4;      // UI系统布局缓存数据
+uint8_t DAT_180c0fe50;      // UI系统性能监控数据
+uint8_t DAT_180c0fe54;      // UI系统调试信息数据
+uint8_t DAT_180c0fdf0;      // UI系统主题数据
+uint8_t DAT_180c0fdf4;      // UI系统本地化数据
+uint8_t DAT_180c0fb50;      // UI系统字体缓存数据
+uint8_t DAT_180c0fb54;      // UI系统纹理缓存数据
+uint8_t DAT_180c0fd90;      // UI系统着色器缓存数据
+uint8_t DAT_180c0fd94;      // UI系统缓冲区管理数据
+uint8_t DAT_180c0fbb0;      // UI系统内存池数据
+uint8_t DAT_180c0fbb4;      // UI系统对象池数据
+uint8_t DAT_180c0fc10;      // UI系统时间管理数据
+uint8_t DAT_180c0fc14;      // UI系统帧率控制数据
+uint8_t DAT_180c0fd30;      // UI系统输入映射数据
+uint8_t DAT_180c0fd34;      // UI系统焦点管理数据
+uint8_t DAT_180c0feb0;      // UI系统声音管理数据
+uint8_t DAT_180c0feb4;      // UI系统振动管理数据
 
 /* ============================================================================
  * 技术说明

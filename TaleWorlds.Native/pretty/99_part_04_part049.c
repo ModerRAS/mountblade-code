@@ -759,7 +759,7 @@ void FUN_1802b5530(longlong param_1,longlong param_2,longlong param_3,char param
   void *puStack_c8;
   void *puStack_c0;
   int32_t uStack_b8;
-  undefined auStack_b0 [72];
+  uint8_t auStack_b0 [72];
   int8_t auStack_68 [40];
   ulonglong uStack_40;
   

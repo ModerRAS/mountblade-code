@@ -548,9 +548,9 @@ void process_config_file_reading(longlong config_ptr)
     void *string_ptr;
     uint string_length;
     int32_t line_flag;
-    undefined line_buffer[512];
+    uint8_t line_buffer[512];
     char file_path_buffer[1024];
-    undefined processed_buffer[512];
+    uint8_t processed_buffer[512];
     ulonglong stack_guard;
     
     stack_guard = _DAT_180bf00a8 ^ (ulonglong)line_buffer;
@@ -872,7 +872,7 @@ int find_extended_resource_index(longlong resource_ptr, uint64_t param2, uint64_
     int key_length;
     longlong *resource_list;
     longlong key_offset;
-    undefined stack_param;
+    uint8_t stack_param;
     
     current_index = 0;
     entry_count = (int)((search_range - param1) >> 2) - ((search_range - param1) >> 0x1f);
@@ -1025,7 +1025,7 @@ void initialize_resource_manager(void)
     int32_t resource_flag;
     void *string_ptr;
     uint string_length;
-    undefined resource_stack[48];
+    uint8_t resource_stack[48];
     int32_t stack_flags[2];
     void *temp_ptr;
     uint64_t *temp_resource;

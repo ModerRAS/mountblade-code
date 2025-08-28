@@ -9,7 +9,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 类型定义
-typedef uint8_t undefined;
+typedef uint8_t uint8_t;
 typedef uint32_t int32_t;
 typedef uint64_t uint64_t;
 

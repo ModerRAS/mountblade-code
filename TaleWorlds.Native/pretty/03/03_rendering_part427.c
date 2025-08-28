@@ -549,7 +549,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   void *alloc_ptr2;
   void *alloc_ptr3;
   int string_size;
-  undefined string_buffer[16];
+  uint8_t string_buffer[16];
   ulonglong security_hash;
   
   data_buffer = 0xfffffffffffffffe;

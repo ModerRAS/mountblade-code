@@ -185,7 +185,7 @@ typedef struct {
  * - 资源的优化分配和释放
  * - 错误处理和恢复机制
  * 
- * @return undefined 无返回值
+ * @return uint8_t 无返回值
  * 
  * @note 此函数为核心引擎高级数据处理的的核心组件
  * @warning 数据处理错误可能导致系统不稳定
@@ -200,7 +200,7 @@ typedef struct {
  * - 包含完整的错误处理和日志记录
  * - 支持数据的持久化和恢复
  */
-undefined FUN_180058c20(void)
+uint8_t FUN_180058c20(void)
 {
     // 核心引擎高级数据处理逻辑
     // 包括数据接收、验证、处理、状态管理、资源优化等功能

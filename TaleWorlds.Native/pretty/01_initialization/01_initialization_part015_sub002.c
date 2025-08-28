@@ -133,8 +133,8 @@ extern int32_t DAT_1800497f0;              // 互斥锁状态标志
 extern uint64_t UNK_1800497f8;               // 互斥锁控制块
 extern void *UNK_180049800;               // 互斥锁指针表
 extern int32_t UNK_180049808;               // 互斥锁计数器
-extern undefined DAT_180049810;                // 互斥锁配置数据
-extern undefined DAT_180049830;                // 互斥锁资源数据
+extern uint8_t DAT_180049810;                // 互斥锁配置数据
+extern uint8_t DAT_180049830;                // 互斥锁资源数据
 
 /* ============================================================================
  * 函数声明
@@ -159,27 +159,27 @@ void MutexSystem_DestroyInSitu(void);
  * 
  * 该函数负责验证互斥锁句柄的有效性。
  * 
- * @return undefined 验证结果状态
+ * @return uint8_t 验证结果状态
  */
-undefined MutexSystem_ValidateHandle(void);
+uint8_t MutexSystem_ValidateHandle(void);
 
 /**
  * @brief 互斥锁资源清理器
  * 
  * 该函数负责清理互斥锁相关资源。
  * 
- * @return undefined 清理结果状态
+ * @return uint8_t 清理结果状态
  */
-undefined MutexSystem_CleanupResources(void);
+uint8_t MutexSystem_CleanupResources(void);
 
 /**
  * @brief 互斥锁状态更新器
  * 
  * 该函数负责更新互斥锁状态。
  * 
- * @return undefined 更新结果状态
+ * @return uint8_t 更新结果状态
  */
-undefined MutexSystem_UpdateStatus(void);
+uint8_t MutexSystem_UpdateStatus(void);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -333,9 +333,9 @@ void FUN_1800497b0(void)
  * 
  * 该函数负责验证互斥锁句柄的有效性。
  * 
- * @return undefined 验证结果状态
+ * @return uint8_t 验证结果状态
  */
-undefined MutexSystem_ValidateHandle(void)
+uint8_t MutexSystem_ValidateHandle(void)
 {
     // 互斥锁句柄验证逻辑实现
     
@@ -361,7 +361,7 @@ undefined MutexSystem_ValidateHandle(void)
      *    - 验证上下文有效性
      */
     
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -369,9 +369,9 @@ undefined MutexSystem_ValidateHandle(void)
  * 
  * 该函数负责清理互斥锁相关资源。
  * 
- * @return undefined 清理结果状态
+ * @return uint8_t 清理结果状态
  */
-undefined MutexSystem_CleanupResources(void)
+uint8_t MutexSystem_CleanupResources(void)
 {
     // 互斥锁资源清理逻辑实现
     
@@ -397,7 +397,7 @@ undefined MutexSystem_CleanupResources(void)
      *    - 释放统计信息
      */
     
-    return undefined;
+    return uint8_t;
 }
 
 /**
@@ -405,9 +405,9 @@ undefined MutexSystem_CleanupResources(void)
  * 
  * 该函数负责更新互斥锁状态。
  * 
- * @return undefined 更新结果状态
+ * @return uint8_t 更新结果状态
  */
-undefined MutexSystem_UpdateStatus(void)
+uint8_t MutexSystem_UpdateStatus(void)
 {
     // 互斥锁状态更新逻辑实现
     
@@ -433,7 +433,7 @@ undefined MutexSystem_UpdateStatus(void)
      *    - 处理状态异常
      */
     
-    return undefined;
+    return uint8_t;
 }
 
 /* ============================================================================

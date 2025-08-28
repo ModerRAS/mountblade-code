@@ -229,7 +229,7 @@ uint64_t * FUN_18013cf40(uint64_t param_1,uint64_t param_2,byte *param_3)
   int iVar14;
   uint64_t *puVar15;
   ulonglong uVar16;
-  undefined5 uStack_15;
+  uint8_t uStack_15;
   
   lVar6 = _DAT_180c8a9b0;
   uVar9 = _DAT_180c8a9a8;
@@ -347,7 +347,7 @@ uint64_t * FUN_18013cf5d(uint64_t param_1,uint64_t param_2,uint param_3,byte *pa
   ulonglong uVar16;
   byte in_R10B;
   byte *in_R11;
-  undefined5 uStackX_13;
+  uint8_t uStackX_13;
   
   lVar6 = _DAT_180c8a9b0;
   uVar8 = _DAT_180c8a9a8;
@@ -463,7 +463,7 @@ uint64_t * FUN_18013cfa8(void)
   uint uVar15;
   ulonglong uVar16;
   byte *in_R11;
-  undefined5 uStackX_13;
+  uint8_t uStackX_13;
   
   lVar6 = _DAT_180c8a9b0;
   uVar8 = _DAT_180c8a9a8;

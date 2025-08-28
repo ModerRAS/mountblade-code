@@ -87,41 +87,41 @@
 /**
  * 渲染系统全局变量
  */
-static undefined rendering_system_processor;
-static undefined graphics_state_manager;
-static undefined string_comparator;
-static undefined memory_allocator;
-static undefined shader_processor;
-static undefined texture_manager;
-static undefined render_target_manager;
-static undefined camera_controller;
-static undefined light_system;
-static undefined material_processor;
+static uint8_t rendering_system_processor;
+static uint8_t graphics_state_manager;
+static uint8_t string_comparator;
+static uint8_t memory_allocator;
+static uint8_t shader_processor;
+static uint8_t texture_manager;
+static uint8_t render_target_manager;
+static uint8_t camera_controller;
+static uint8_t light_system;
+static uint8_t material_processor;
 
 /**
  * 图形处理系统全局变量
  */
-static undefined graphics_pipeline;
-static undefined vertex_processor;
-static undefined fragment_processor;
-static undefined geometry_processor;
-static undefined tessellation_processor;
-static undefined compute_processor;
-static undefined rasterizer;
-static undefined output_merger;
-static undefined resource_manager;
+static uint8_t graphics_pipeline;
+static uint8_t vertex_processor;
+static uint8_t fragment_processor;
+static uint8_t geometry_processor;
+static uint8_t tessellation_processor;
+static uint8_t compute_processor;
+static uint8_t rasterizer;
+static uint8_t output_merger;
+static uint8_t resource_manager;
 
 /**
  * 状态管理系统全局变量
  */
-static undefined state_machine;
-static undefined transition_handler;
-static undefined event_processor;
-static undefined callback_manager;
-static undefined synchronization_manager;
-static undefined thread_manager;
-static undefined memory_manager;
-static undefined resource_tracker;
+static uint8_t state_machine;
+static uint8_t transition_handler;
+static uint8_t event_processor;
+static uint8_t callback_manager;
+static uint8_t synchronization_manager;
+static uint8_t thread_manager;
+static uint8_t memory_manager;
+static uint8_t resource_tracker;
 
 /*==========================================
 =            函数声明            =

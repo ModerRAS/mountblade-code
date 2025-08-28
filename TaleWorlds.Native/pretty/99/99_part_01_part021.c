@@ -670,7 +670,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
     void *puStack_98;
     void *puStack_90;
     int32_t uStack_88;
-    undefined auStack_80 [72];
+    uint8_t auStack_80 [72];
     ulonglong uStack_38;
     
     // 初始化内存管理器

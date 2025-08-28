@@ -160,23 +160,23 @@ void FUN_180366df0(longlong param_1)
   void *puStack_180;
   void *puStack_178;
   int32_t uStack_170;
-  undefined auStack_168 [16];
+  uint8_t auStack_168 [16];
   void *puStack_158;
   void *puStack_150;
   int32_t uStack_148;
-  undefined auStack_140 [16];
+  uint8_t auStack_140 [16];
   void *puStack_130;
   void *puStack_128;
   int32_t uStack_120;
-  undefined auStack_118 [16];
+  uint8_t auStack_118 [16];
   void *puStack_108;
   void *puStack_100;
   int32_t uStack_f8;
-  undefined auStack_f0 [24];
+  uint8_t auStack_f0 [24];
   void *puStack_d8;
   void *puStack_d0;
   int iStack_c8;
-  undefined auStack_c0 [72];
+  uint8_t auStack_c0 [72];
   ulonglong uStack_78;
   
   uStack_1b8 = 0xfffffffffffffffe;

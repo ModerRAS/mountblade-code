@@ -4,79 +4,79 @@
 // 包含引擎初始化和配置相关的函数实现
 
 // 函数声明：注册图形设备类型A
-undefined register_graphics_device_type_a;
+uint8_t register_graphics_device_type_a;
 
 // 函数声明：注册图形设备类型B  
-undefined register_graphics_device_type_b;
+uint8_t register_graphics_device_type_b;
 
 // 函数声明：注册图形设备类型C
-undefined register_graphics_device_type_c;
+uint8_t register_graphics_device_type_c;
 
 // 函数声明：注册图形设备类型D
-undefined register_graphics_device_type_d;
+uint8_t register_graphics_device_type_d;
 
 // 函数声明：注册图形设备类型E
-undefined register_graphics_device_type_e;
+uint8_t register_graphics_device_type_e;
 
 // 函数声明：注册图形设备类型F
-undefined register_graphics_device_type_f;
+uint8_t register_graphics_device_type_f;
 
 // 函数声明：注册图形设备类型G
-undefined register_graphics_device_type_g;
+uint8_t register_graphics_device_type_g;
 
 // 函数声明：注册图形设备类型H
-undefined register_graphics_device_type_h;
+uint8_t register_graphics_device_type_h;
 
 // 函数声明：注册图形设备类型I
-undefined register_graphics_device_type_i;
+uint8_t register_graphics_device_type_i;
 
 // 函数声明：注册图形设备类型J
-undefined register_graphics_device_type_j;
+uint8_t register_graphics_device_type_j;
 
 // 函数声明：注册图形设备类型K
-undefined register_graphics_device_type_k;
+uint8_t register_graphics_device_type_k;
 
 // 函数声明：注册图形设备类型L
-undefined register_graphics_device_type_l;
+uint8_t register_graphics_device_type_l;
 
 // 函数声明：注册图形设备类型M
-undefined register_graphics_device_type_m;
+uint8_t register_graphics_device_type_m;
 
 // 函数声明：注册图形设备类型N
-undefined register_graphics_device_type_n;
+uint8_t register_graphics_device_type_n;
 
 // 函数声明：注册图形设备类型O
-undefined register_graphics_device_type_o;
+uint8_t register_graphics_device_type_o;
 
 // 函数声明：注册图形设备类型P
-undefined register_graphics_device_type_p;
+uint8_t register_graphics_device_type_p;
 
 // 函数声明：注册图形设备类型Q
-undefined register_graphics_device_type_q;
+uint8_t register_graphics_device_type_q;
 
 // 函数声明：注册图形设备类型R
-undefined register_graphics_device_type_r;
+uint8_t register_graphics_device_type_r;
 
 // 函数声明：注册图形设备类型S
-undefined register_graphics_device_type_s;
+uint8_t register_graphics_device_type_s;
 
 // 函数声明：注册图形设备类型T
-undefined register_graphics_device_type_t;
+uint8_t register_graphics_device_type_t;
 
 // 函数声明：注册图形设备类型U
-undefined register_graphics_device_type_u;
+uint8_t register_graphics_device_type_u;
 
 // 函数声明：注册图形设备类型V
-undefined register_graphics_device_type_v;
+uint8_t register_graphics_device_type_v;
 
 // 函数声明：注册图形设备类型W
-undefined register_graphics_device_type_w;
+uint8_t register_graphics_device_type_w;
 
 // 函数声明：初始化引擎核心系统
-undefined initialize_engine_core_system;
+uint8_t initialize_engine_core_system;
 
 // 函数声明：配置引擎全局参数
-undefined configure_engine_global_parameters;
+uint8_t configure_engine_global_parameters;
 
 // 全局变量：图形设备注册表
 uint64_t graphics_device_registry_table[16];
@@ -95,9 +95,9 @@ uint64_t DEVICE_TYPE_TERTIARY;
 uint64_t DEVICE_TYPE_QUATERNARY;
 
 // 数据变量：初始化数据块
-undefined device_init_data_blocks[64];
-undefined engine_config_data_structure;
-undefined system_resource_allocation_table;
+uint8_t device_init_data_blocks[64];
+uint8_t engine_config_data_structure;
+uint8_t system_resource_allocation_table;
 
 // 简化实现说明：
 // 原始实现包含25个高度相似的设备注册函数，每个函数都遵循相同的模式：

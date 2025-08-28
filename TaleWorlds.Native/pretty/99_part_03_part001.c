@@ -910,7 +910,7 @@ void FileManager(void)
     void *puStack_68;
     void *puStack_60;
     int iStack_58;
-    undefined auStack_50[32];
+    uint8_t auStack_50[32];
     ulonglong uStack_30;
     
     uStack_70 = 0xfffffffffffffffe;
@@ -1044,7 +1044,7 @@ void StringPathBuilder(longlong *param_1, longlong param_2)
     void *puStack_38;
     void *puStack_30;
     int32_t uStack_28;
-    undefined auStack_20[16];
+    uint8_t auStack_20[16];
     ulonglong uStack_10;
     
     uStack_40 = 0xfffffffffffffffe;

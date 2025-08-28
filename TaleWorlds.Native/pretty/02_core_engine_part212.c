@@ -413,7 +413,7 @@ void FUN_18018f6a0(uint64_t param_1,longlong param_2)
   void *puStack_4f8;
   void *puStack_4f0;
   int32_t uStack_4e8;
-  undefined auStack_4e0 [520];
+  uint8_t auStack_4e0 [520];
   void *apuStack_2d8 [68];
   char acStack_b8 [128];
   ulonglong uStack_38;

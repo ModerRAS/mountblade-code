@@ -384,7 +384,7 @@ void generate_system_info_report(uint64_t report_param)
     void *stack_ptr28;
     void *stack_ptr29;
     int32_t stack_uint16;
-    undefined stack_buffer4[40];
+    uint8_t stack_buffer4[40];
     int32_t stack_buffer5[14];
     ulonglong stack_ulong13;
     ulonglong stack_ulong14;

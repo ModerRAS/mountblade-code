@@ -125,15 +125,15 @@ void process_path_and_resource_queue(uint64_t *context)
     void *stack_ptr14;
     void *stack_ptr15;
     uint stack_uint2;
-    undefined local_buffer3[264];
+    uint8_t local_buffer3[264];
     void *stack_ptr16;
     void *stack_ptr17;
     int stack_int1;
-    undefined local_buffer4[264];
+    uint8_t local_buffer4[264];
     void *stack_ptr18;
     void *stack_ptr19;
     uint stack_uint3;
-    undefined local_buffer5[264];
+    uint8_t local_buffer5[264];
     ulonglong xor_key;                // XOR加密密钥
     
     xor_key = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
