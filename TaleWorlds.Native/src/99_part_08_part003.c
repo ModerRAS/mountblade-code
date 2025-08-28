@@ -126,6 +126,38 @@ void UInt16InsertionSortProcessor(void);
 #define InsertionSort_StringSecondary    StringInsertionSortProcessor_Secondary
 #define InsertionSort_UInt16            UInt16InsertionSortProcessor
 
+/**
+ * @brief 内存分配函数
+ * @details 系统内存分配器的函数别名
+ */
+#define MemoryAllocator_Alloc            FUN_18062b420
+
+/**
+ * @brief 数据处理回调函数
+ * @details 数据处理完成后的回调函数别名
+ */
+#define DataProcessor_Callback_104        FUN_1804ddda0
+#define DataProcessor_Callback_26        FUN_1804dde40
+#define DataProcessor_Callback_48        FUN_1804ddee0
+
+/**
+ * @brief 内存清理函数
+ * @details 内存资源清理函数别名
+ */
+#define MemoryCleanup_Function           FUN_18064e900
+
+/**
+ * @brief 排序操作函数
+ * @details 排序算法的核心处理函数别名
+ */
+#define SortingOperation_Execute         FUN_180387e60
+
+/**
+ * @brief 预排序函数
+ * @details 预排序处理函数别名
+ */
+#define PreSorting_Process               FUN_1804df7c0
+
 // ============================================================================
 // 核心功能实现
 // ============================================================================
@@ -172,7 +204,7 @@ void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, und
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_104, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -231,7 +263,7 @@ capacity_calculation_complete:
     }
     
     // 调用数据处理回调函数
-    FUN_1804ddda0(write_position, param_2);
+    DataProcessor_Callback_104(write_position, param_2);
     
     // 清理旧的内存资源
     offset = array_control->data_end;
@@ -259,7 +291,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    MemoryCleanup_Function(current_position);
 }
 
 
@@ -310,7 +342,7 @@ void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, unde
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_26, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -373,7 +405,7 @@ capacity_calculation_complete:
     }
     
     // 调用数据处理回调函数
-    FUN_1804dde40(write_position, param_2);
+    DataProcessor_Callback_26(write_position, param_2);
     
     // 清理旧的内存资源
     offset = array_control->data_end;
@@ -401,7 +433,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    MemoryCleanup_Function(current_position);
 }
 
 
@@ -452,7 +484,7 @@ void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, unde
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_48, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -489,7 +521,7 @@ capacity_calculation_complete:
     }
     
     // 调用数据处理回调函数
-    FUN_1804ddee0(write_position, param_2);
+    DataProcessor_Callback_48(write_position, param_2);
     
     // 清理旧的内存资源
     offset = array_control->data_end;
@@ -520,7 +552,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    MemoryCleanup_Function(current_position);
 }
 
 
@@ -568,7 +600,7 @@ void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2)
                     // 获取辅助键值
                     secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                     // 执行排序操作
-                    FUN_180387e60(*(undefined8 *)
+                    SortingOperation_Execute(*(undefined8 *)
                                    (*(longlong *)
                                      (*(longlong *)(param_2 + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
                                    (longlong)(int)(*(UInt32 *)(param_2 + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
@@ -624,7 +656,7 @@ void SortProcessor_BitmaskOptimized(void)
                 // 获取辅助键值
                 secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                 // 执行优化的排序操作
-                FUN_180387e60(*(undefined8 *)
+                SortingOperation_Execute(*(undefined8 *)
                                (*(longlong *)
                                  (*(longlong *)(data_source + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
                                (longlong)(int)(*(UInt32 *)(data_source + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
@@ -709,7 +741,7 @@ void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
         }
         
         // 执行预排序
-        FUN_1804df7c0(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
+        PreSorting_Process(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
         
         if (element_count < INSERTION_SORT_THRESHOLD) {
             // 小规模数据直接插入排序
@@ -865,7 +897,7 @@ void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr
     }
     
     // 执行预排序
-    FUN_1804df7c0(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
+    PreSorting_Process(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
     
     if (element_count < INSERTION_SORT_THRESHOLD) {
         // 小规模数据直接插入排序
