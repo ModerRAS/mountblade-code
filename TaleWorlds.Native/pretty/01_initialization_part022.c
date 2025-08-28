@@ -1134,8 +1134,8 @@ void SystemDataFinalizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint6
 
 
 
-// 函数: void FUN_1800574b0(int64_t *param_1)
-void FUN_1800574b0(int64_t *param_1)
+// 函数: void SystemMemoryFinalizer(int64_t *param_1)
+void SystemMemoryFinalizer(int64_t *param_1)
 
 {
   int64_t lVar1;
@@ -1156,8 +1156,8 @@ void FUN_1800574b0(int64_t *param_1)
 
 
 
-// 函数: void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemResourceDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemResourceDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_1800582b0(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -1168,8 +1168,8 @@ void FUN_180057510(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_180057530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemDataDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemDataDeallocator(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_180058370(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);

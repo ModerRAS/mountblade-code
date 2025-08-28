@@ -7,7 +7,7 @@
 // 函数别名定义
 #define MemoryCleanupAndFree MemoryCleanupAndFree  // 内存清理和释放函数
 #define SystemMemoryAllocator SystemMemoryAllocator  // 系统内存分配器
-#define SystemInitializer FUN_180627be0      // 系统初始化函数
+#define SystemInitializer SystemInitializer      // 系统初始化函数
 
 // 函数: void FUN_18026d3f0(int64_t param_1,int64_t param_2)
 void FUN_18026d3f0(int64_t param_1,int64_t param_2)
@@ -38,7 +38,7 @@ void FUN_18026d3f0(int64_t param_1,int64_t param_2)
   int32_t uVar22;
   
   uVar17 = 0xfffffffffffffffe;
-  FUN_180627be0();
+  SystemInitializer();
   plVar20 = (int64_t *)(param_1 + 0x40);
   if (plVar20 != (int64_t *)(param_2 + 0x40)) {
     lVar9 = *(int64_t *)(param_2 + 0x48);
